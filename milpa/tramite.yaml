@@ -57,7 +57,7 @@ reglas:
       # sufijo _encig2025 -- mismo patrón que la enmienda ENCUCI2020 de
       # abajo, por la misma razón: emisor.py:476-479 devuelve la PRIMERA
       # coincidencia.
-      - {conducta: paga_mordida_encig2025, p: 0.085118, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: paga_mordida_encig2025, p: 0.085118, clase: "MEDIDO·p(tasa base ponderada)", corrida0_resultado_id: RESULT-ENCIG-MOR-A-P-SOL1, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio esta tasa bajo GEN2 (RESULT-ENCIG-MOR-A-P-SOL1 = 0.08511814556534456, n=40042, 442 estratos, 9172 UPM) y reproduce el 0.085118 publicado al grano de seis decimales con que milpa/ materializa (delta +1.456e-07). El `p` NO se movio: se declara de donde viene. RESERVA declarada en la spec sellada §2.1: P8_3_1 mide SOLICITUD, no pago, y es solo el PRIMER inciso del reactivo 8.3 -- los tres juntos dan 0.115702 (RESULT-ENCIG-MOR-A-P-SOLANY).
       - {conducta: tramite_normal_encig2025, p: 0.914882, clase: "MEDIDO·p(tasa base ponderada)"}
       # ── ENMIENDA ENCUCI · FP-200=b (mesa, 31/ago/2026) · ACTO MAESTRA32-E20 ──
       # Las DOS salidas de arriba NO se tocan: siguen ASIGNADAS y siguen siendo
@@ -142,9 +142,9 @@ reglas:
       - {conducta: paga_mordida_encig2025_digital, p: 0.027358, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}
       - {conducta: tramite_normal_encig2025_digital, p: 0.972642, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}
       # CORRIDA 2 (2/sep, recorrida sin deduplicar, firma r1) -- ACTO MAESTRA35-N4 · SELLA-L1
-      - {conducta: paga_mordida_encig2025_presencial_r2, p: 0.141041, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)"}
+      - {conducta: paga_mordida_encig2025_presencial_r2, p: 0.141041, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)", corrida0_resultado_id: RESULT-ENCIG-MOR-B-P-PRE-SD, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio bajo GEN2 (RESULT-ENCIG-MOR-B-P-PRE-SD = 0.1410407168724654, n=11167 eventos, 381 estratos, 2996 UPM -- los dos conteos de diseno identicos a los sellados) y reproduce el 0.141041 al grano de seis decimales (delta -2.831e-07). El `p` NO se movio.
       - {conducta: tramite_normal_encig2025_presencial_r2, p: 0.858959, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)"}
-      - {conducta: paga_mordida_encig2025_digital_r2, p: 0.029868, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)"}
+      - {conducta: paga_mordida_encig2025_digital_r2, p: 0.029868, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)", corrida0_resultado_id: RESULT-ENCIG-MOR-B-P-DIG-SD, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio bajo GEN2 (RESULT-ENCIG-MOR-B-P-DIG-SD = 0.029867554626649372, n=7219 eventos, 362 estratos, 2518 UPM -- identicos a los sellados) y reproduce el 0.029868 al grano de seis decimales (delta -4.454e-07). El `p` NO se movio.
       - {conducta: tramite_normal_encig2025_digital_r2, p: 0.970132, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)"}
     porque: {generador: [G1], mecanismo: "el registro rompe la trampa social"}
     tier: FUERTE
@@ -345,7 +345,7 @@ reglas:
       - {conducta: adopta, p: 0.71, clase: ASIGNADO}
       - {conducta: rechaza_servicio, p: 0.29, clase: ASIGNADO}
       # ── ENMIENDA ENCIG2025 · firma a1 (2/sep/2026) · ACTO MAESTRA35-N1 ──
-      - {conducta: adopta_encig2025_luz, p: 0.673393, clase: "MEDIDO·p(tasa base ponderada, universo N_TRA=01)"}
+      - {conducta: adopta_encig2025_luz, p: 0.673393, clase: "MEDIDO·p(tasa base ponderada, universo N_TRA=01)", corrida0_resultado_id: RESULT-ENCIG-MOR-C-P-ADOPTA, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio bajo GEN2 (RESULT-ENCIG-MOR-C-P-ADOPTA = 0.6733930340661712, n=20203, 441 estratos, 8486 UPM) y reproduce el 0.673393 al grano de seis decimales (delta +3.407e-08). El `p` NO se movio.
       - {conducta: rechaza_servicio_encig2025_luz, p: 0.326607, clase: "MEDIDO·p(tasa base ponderada, universo N_TRA=01)"}
     porque: {generador: [G1], mecanismo: "la utilidad predice la adopción; sin coerción ni amenaza fiscal desaparece la razón para rechazar"}
     tier: FUERTE          # era MEDIA-FUERTE; sube por firma a1 (mesa 2/sep/2026, ACTO MAESTRA35-N1)

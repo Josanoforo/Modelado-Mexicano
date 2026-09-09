@@ -1,0 +1,438 @@
+# CALC-ENCIG-0001 -- cara mecanica de spec.md (ACTO GEN2-LOTE-ENCIG-1).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/ENCIG-MORDIDA-spec-v1_0.md (`prereg-caja-ENCIG-MORDIDA`).
+# Releva la demanda CORR-0002 (12 RESULT) bajo el registro GEN2.
+# CONGELADO en el COMMIT-1, antes de abrir un solo conjunto_de_datos/*.csv.
+calc_id: CALC-ENCIG-0001
+spec_md: spec.md
+spec_md_sha256: e7eaa10403612fd85f412016f0ab651bd2370c9d18d89ee4574e18dbbcb11232
+
+script: data/corrida0/CALC-ENCIG-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: TASA-BASE-DE-REGLA
+  cuenta_gen2: SI
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENCIG-MORDIDA-spec-v1_0.md
+  spec_sellada_sha256: 00c7c4a67a4a579fff8a64c01979deefe2d458c75cfbaa630de21fa05d37cf8a
+  demanda_que_releva: "CORR-0002 (ENCIG2025) -> los 12 RESULT: RES-0003/0004 (familia A), RES-0009..0016 (familia B, ramas CD y SD), RES-0021/0022 (familia C). NO releva CORR-0001 (ENCIG2023, sin payload): identidad pendiente con decision propia, ADENDA (3)."
+  reglas_bajo_prueba: "NINGUNA cambia de cifra por esta corrida. tramite.mordida.discrecional (R3.1), tramite.mordida.con_registro (R3.2) y tramite.gobierno_digital.util_sin_coercion (R3.4) ya estan MEDIDAS y selladas en milpa/tramite.yaml. Este CALC monta la cadena E.2 sobre esas cantidades; la adopcion de P3 es CITA, no cambio de cifra, y su rama la deciden los RESULT *-ADOPCION."
+  firma_de_contador: "FIRMA DE MESA 9/sep/2026 con OBJETO explicito, verbatim en el encargo archivado: «cuenta_gen2 = SI para el CALC que este acto selle». Estandar FP-367/368 satisfecho (autoridad + fecha + OBJETO). El merge de mesa la perfecciona."
+  contaminacion_declarada: "ADR-46 -- al congelar, la sesion YA habia leido (a) los 12 valores GEN1 en el encargo y en demanda-resultados.tsv; (b) IC95, n, estratos, UPM y ponderador de las tres enmiendas en milpa/tramite.yaml; (c) LA CODIFICACION GEN1 COMPLETA (P8_3_1 con 1/2 y 9-fuera; P8_4 x P7_3 con presencial={1} y digital={3,4,5}; N_TRA=01 con adopta={4,5} sobre P7_3 en {1,2,4,5,6}); (d) el diagnostico de MAESTRA35-L1 sobre la deduplicacion de r1. Por eso las PRIMARIAS de esta spec NO son las de GEN1: familia A primaria SOLANY (los tres incisos del reactivo 8.3, no solo P8_3_1) y familia B primaria SD (sin deduplicar, por NT_TIPO del descriptor). Lo genuinamente desconocido al congelar: el peso residual de P7_3 fuera del par presencial/digital, el peso de {9,blanco} en P8_3_1, la cobertura del join sec_7 x sec_8, y si la llave declarada por el descriptor es la llave real -- ninguno aparece en fuente alguna leida."
+  medidor_ejecutado_al_congelar: "NO -- escrito y congelado en el COMMIT-1, corrido en el COMMIT-2 del mismo acto"
+
+inputs:
+  - id: encig25_base_datos_csv
+    origen: manifiesto
+  - id: IN-ENCIG-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/ENCIG-MORDIDA-spec-v1_0.md
+    sha256: 00c7c4a67a4a579fff8a64c01979deefe2d458c75cfbaa630de21fa05d37cf8a
+
+variables:
+  - {archivo: "encig2025_01_sec1_A_3_4_5_8_9_10.csv", variable: P8_3_1, rol: "DESENLACE A -- 8.3 inciso 1: servidor(a) publico(a) intento apropiarse o solicito de forma directa", codigos: "Numerico(1): 1=Si, 2=No, 9=No sabe/no responde", direccion: "1 si P8_3_1=1; 0 si =2. MAS ALTO = MAS SOLICITUD DECLARADA."}
+  - {archivo: "encig2025_01_sec1_A_3_4_5_8_9_10.csv", variable: P8_3_2, rol: "DESENLACE A -- 8.3 inciso 2: tercera persona o coyote", codigos: "Numerico(1): 1=Si, 2=No, 9=No sabe/no responde", direccion: "entra en SOLANY, no en SOL1"}
+  - {archivo: "encig2025_01_sec1_A_3_4_5_8_9_10.csv", variable: P8_3_3, rol: "DESENLACE A -- 8.3 inciso 3: insinuo o genero las condiciones", codigos: "Numerico(1): 1=Si, 2=No, 9=No sabe/no responde", direccion: "entra en SOLANY, no en SOL1"}
+  - {archivo: "encig2025_01_sec1_A_3_4_5_8_9_10.csv", variable: FAC_P18, rol: "ponderador de la unidad A (persona 18+)", codigos: "Numerico"}
+  - {archivo: "encig2025_01_sec1_A_3_4_5_8_9_10.csv", variable: EST_DIS, rol: "estrato de diseno -- estratificacion del bootstrap (LLAVE DE TEXTO OPACA)", codigos: "Alfanumerico -- NO se convierte a entero ni se re-rellena"}
+  - {archivo: "encig2025_01_sec1_A_3_4_5_8_9_10.csv", variable: UPM_DIS, rol: "UPM -- conglomerado que se re-muestrea (LLAVE DE TEXTO OPACA)", codigos: "Alfanumerico"}
+  - {archivo: "encig2025_04_sec_7.csv", variable: ID_TRA, rol: "llave del join hacia sec_8", codigos: "Alfanumerico"}
+  - {archivo: "encig2025_04_sec_7.csv", variable: NT_TIPO, rol: "numero de evento del tramite (descriptor: «Numero de tramite / Ultimo evento»), 01-03 -- lo que hace que ID_TRA NO sea unico", codigos: "Alfanumerico 01-03"}
+  - {archivo: "encig2025_04_sec_7.csv", variable: N_TRA, rol: "tipo de tramite -- filtro de universo de la familia C (01 = pago ordinario del servicio de luz)", codigos: "Numerico(2), 01..23E", direccion: "NO-APLICA (nominal)"}
+  - {archivo: "encig2025_04_sec_7.csv", variable: P7_3, rol: "CANAL -- 7.3 tipo de lugar o medio al que acudio/recurrio", codigos: "Numerico(1): 1=Instalaciones de gobierno, 2=Banco/supermercado/tienda/farmacia, 3=Lineas de atencion telefonica, 4=Internet (web/app), 5=Cajero automatico o kiosco inteligente, 6=Modulos/clinicas/oficinas temporales o moviles, 7=No se ha podido concluir, 8=Otro, 9=NS/NR, b=blanco", direccion: "B: presencial={1}, digital={3,4,5}, residuo={2,6,7,8,9,b}. C: adopta={4,5}, no-adopta={1,2,6}, residuo={3,7,8,9,b}."}
+  - {archivo: "encig2025_04_sec_7.csv", variable: FAC_TRA, rol: "ponderador de la unidad tramite (familias B y C)", codigos: "Numerico"}
+  - {archivo: "encig2025_04_sec_7.csv", variable: EST_DIS, rol: "estrato de diseno de B y C (LLAVE DE TEXTO OPACA)", codigos: "Alfanumerico"}
+  - {archivo: "encig2025_04_sec_7.csv", variable: UPM_DIS, rol: "UPM de B y C (LLAVE DE TEXTO OPACA)", codigos: "Alfanumerico"}
+  - {archivo: "encig2025_04_sec_7.csv", variable: CVE_ENT, rol: "componente de la llave primaria DECLARADA por el descriptor (guardia G-2)", codigos: "Numerico(2) 01..32"}
+  - {archivo: "encig2025_04_sec_7.csv", variable: UPM, rol: "componente de la llave primaria DECLARADA (guardia G-2)", codigos: "Alfanumerico"}
+  - {archivo: "encig2025_04_sec_7.csv", variable: V_SEL, rol: "componente de la llave primaria DECLARADA (guardia G-2)", codigos: "Numerico 1-10"}
+  - {archivo: "encig2025_04_sec_7.csv", variable: R_ELE, rol: "componente de la llave primaria DECLARADA (guardia G-2)", codigos: "Alfanumerico 01-30"}
+  - {archivo: "encig2025_05_sec_8.csv", variable: ID_TRA, rol: "llave del join desde sec_7 (guardia G-4: unicidad)", codigos: "Alfanumerico"}
+  - {archivo: "encig2025_05_sec_8.csv", variable: P8_4, rol: "DESENLACE B -- 8.4 en cual de los tramites se suscitaron las anteriores circunstancias", codigos: "Numerico(1): 1=Si, 0=No, b=blanco  (OJO: el 'no' es 0, no 2)", direccion: "1 si P8_4=1; 0 si P8_4=0. MAS ALTO = MAS MORDIDA EN ESE TRAMITE."}
+  - {archivo: "encig2025_05_sec_8.csv", variable: P8_6, rol: "familia X (hallazgo, NO consumidor) -- cantidad de la que se apropiaron", codigos: "Numerico(1): 1=No le dio nada, 2=Hasta $200, 3=$201-500, 4=$501-1000, 5=$1001-5000, 6=Mas de $5000, 7=Otros, 9=NS/NR, b=blanco", direccion: "DIO-ALGO = 1 si P8_6 en {2..7}; 0 si =1"}
+  - {archivo: "encig2025_05_sec_8.csv", variable: FAC_P18, rol: "ponderador de la familia X (el que trae la tabla sec_8)", codigos: "Numerico"}
+
+universo: >-
+  ENCIG 2025 (INEGI). Poblacion de 18 anos y mas residente en ciudades de 100
+  mil habitantes o mas -- 82 areas urbanas, estampa del manifiesto: NINGUN
+  estimador de esta spec es nacional. Periodo de referencia 2025 (el reactivo
+  8.3 dice «Durante 2025»).
+  U_A, unidad PERSONA: filas del archivo persona con P8_3_1 en {1,2} y FAC_P18
+  finito > 0. U_SOLANY: ademas, si ningun inciso de 8.3 es 1 y alguno es
+  9/blanco, la fila SALE (contada) -- un 9 no borra un 1 en otro inciso, pero
+  impide afirmar el 0.
+  U_B, unidad EVENTO DE TRAMITE: filas de sec_7 emparejadas con sec_8 por
+  ID_TRA, con P8_4 en {0,1} y FAC_TRA finito > 0. Rama SD (PRIMARIA) sin
+  deduplicar; rama CD deduplicando sec_7 por ID_TRA (primera fila en orden de
+  archivo). Canal presencial = P7_3=1; digital = P7_3 en {3,4,5}; el residuo
+  P7_3 en {2,6,7,8,9,blanco} se cuenta y se pesa, NO se reasigna.
+  U_C, unidad TRAMITE tipo 01 (pago ordinario del servicio de luz): filas de
+  sec_7 con N_TRA=1, P7_3 en {1,2,4,5,6} y FAC_TRA finito > 0, SIN deduplicar.
+  Residuo P7_3 en {3,7,8,9,blanco} contado y pesado.
+  U_X, familia de hallazgo: filas de sec_8 con P8_6 en {1..7} y FAC_P18 valido.
+
+filtros: >-
+  Sale del universo, CONTADO y no imputado: P8_3_1 = 9 (A-N-P831-NSNR) y
+  P8_3_1 blanco/no numerico (A-N-P831-BLANCO); P8_4 blanco/no numerico
+  (B-N-P84-BLANCO); P7_3 fuera del par de cada familia (B-N-RESIDUO-CANAL /
+  C-N-RESIDUO); ponderador no finito o <= 0 (*-N-SIN-PONDERADOR).
+  Se cuenta pero NO sale del punto: filas sin EST_DIS o sin UPM_DIS
+  (*-N-SIN-DISENO) -- afectan al IC, no al estimador.
+  CERO NUNCA SUSTITUYE FALTA DE DATO.
+  Si falta una columna declarada -> NO-ESTIMABLE-COLUMNA-AUSENTE:<col>; si
+  existe y no trae ningun valor valido -> NO-ESTIMABLE-COLUMNA-VACIA:<col>; si
+  un universo queda vacio -> NO-ESTIMABLE-UNIVERSO-VACIO; si la llave del join
+  no es unica -> NO-ESTIMABLE-LLAVE-NO-UNICA y las ramas de B no se estiman
+  (no se elige otra llave sobre la marcha). Si TODA fila de un universo carece
+  de diseno -> METODO-IC = NO-ESTIMABLE-DISENO-INCOMPLETO y los IC salen null,
+  pero el punto se reporta igual.
+
+ponderador: >-
+  FAC_P18 en la familia A (y en X, que es el factor que trae sec_8). FAC_TRA en
+  las familias B y C -- el factor de los tramites captados en la seccion VI,
+  descriptor §1.4. NO se usa FAC_VIV (factor de vivienda, otra unidad).
+
+transformacion: >-
+  d(SOL1) = 1 si P8_3_1=1, 0 si =2.
+  d(SOLANY) = 1 si alguno de P8_3_1/P8_3_2/P8_3_3 = 1; 0 si los tres = 2; la
+  fila sale de U_SOLANY si ninguno es 1 y alguno es 9/blanco.
+  d(B) = 1 si P8_4=1, 0 si P8_4=0.
+  d(C) = 1 si P7_3 en {4,5}, 0 si P7_3 en {1,2,6}.
+  d(X) = 1 si P8_6 en {2..7}, 0 si P8_6=1.
+  p(U) = suma(w*d)/suma(w) sobre U, sumas en ORDEN FIJO DE FILA.
+  Los complementos se emiten como suma ponderada de la categoria contraria
+  sobre el MISMO denominador, y ademas se emite la SUMA como prueba mecanica.
+  NO se promedia entre olas, no se ajusta tendencia, no se extrapola, no se
+  imputa, no se re-escala.
+
+estimando: >-
+  DESCRIPTIVO. (1) PRIMARIOS: A-P-SOLANY (solicitud de soborno por cualquiera
+  de los tres incisos del reactivo 8.3, unidad PERSONA); B-P-PRE-SD y
+  B-P-DIG-SD (mordida por canal, unidad EVENTO DE TRAMITE, sin deduplicar);
+  C-P-ADOPTA (uso de canal digital/autoservicio en el pago de luz, unidad
+  TRAMITE). (2) SECUNDARIOS DECLARADOS: A-P-SOL1 (la celda GEN1) y su delta
+  contra SOLANY -- lo que vale restringir 8.3 a su primer inciso; B-P-PRE-CD y
+  B-P-DIG-CD (rama deduplicada, celdas GEN1 base) y el conteo de eventos que la
+  deduplicacion borra; los complementos con su denominador escrito; los pesos
+  residuales que contestan si cada par es exhaustivo o solo lo parece bajo el
+  recorte; y la familia X (pago efectivo), que NO releva a ningun consumidor.
+  NINGUN RESULT ES CAUSAL: B-DIFERENCIA-PRE-DIG-SD y B-RAZON-PRE-DIG-SD van
+  rotuladas ASOCIACION -- la eleccion de canal y la elegibilidad por canal
+  confunden la comparacion.
+
+dependencias_materiales: [numpy]
+
+parametros:
+  fuente_acto: "ACTO GEN2-LOTE-ENCIG-1 · SEGUNDO LOTE DE LA CARTERA · CALC-ENCIG-0001"
+  firma_que_lo_autoriza: "Firma de mesa 9/sep/2026, verbatim: «Encargo ACTO GEN2-R-SERIE-DBF corriendo PR's mergeados, dame los siguientes encargos.» -- ordena el lote. Y, con OBJETO explicito sobre el contador, el parrafo del propio encargo: «cuenta_gen2 = SI para el CALC que este acto selle». Estandar FP-367/368 satisfecho."
+  bootstrap_replicas: 2000
+  umbral_replica_gen1: 1.0e-6
+  grano_milpa_decimales: 6
+  metodo_ic: "bootstrap de UPM_DIS CON REEMPLAZO dentro de EST_DIS, conservando el numero de UPM por estrato; percentiles 2.5/97.5"
+  regla_estrato_upm_unica: >-
+    Un estrato con exactamente una UPM se re-muestrea a si mismo: aporta
+    varianza cero. NO se colapsa (decision de diseno que esta spec no esta
+    autorizada a tomar) y NO se descarta (sesgaria el punto). Si el conteo es
+    > 0, METODO-IC sale IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como LIMITE
+    INFERIOR de la anchura verdadera, nunca como IC exacto.
+  llaves_opacas: >-
+    EST_DIS y UPM_DIS se agrupan como CADENA CRUDA. Nunca se convierten a
+    entero ni se re-rellenan a un ancho tomado del descriptor: normalizarlas
+    partiria o fusionaria estratos en silencio (leccion de ACTO
+    GEN2-LOTE-ENVIPE-1 §3.4, donde el descriptor iba desfasado respecto de su
+    propio microdato).
+  ranura_no_preregistrada: >-
+    Nadie pre-registro el metodo de IC para estas series. Lo elige el ejecutor
+    sobre ranura vacia, se declara y se eleva a mesa. NO se espera coincidencia
+    digito a digito de los extremos con los IC95 GEN1.
+  tablas:
+    persona: "encig2025_01_sec1_A_3_4_5_8_9_10.csv"
+    tramites_calidad: "encig2025_04_sec_7.csv"
+    tramites_corrupcion: "encig2025_05_sec_8.csv"
+  codificacion:
+    A_sol1_uno: [1]
+    A_sol1_cero: [2]
+    A_incisos_solany: [P8_3_1, P8_3_2, P8_3_3]
+    B_uno: [1]
+    B_cero: [0]
+    B_canal_presencial: [1]
+    B_canal_digital: [3, 4, 5]
+    B_canal_residuo: [2, 6, 7, 8, 9]
+    C_adopta: [4, 5]
+    C_no_adopta: [1, 2, 6]
+    C_residuo: [3, 7, 8, 9]
+    C_tipo_tramite: 1
+    X_dio_algo: [2, 3, 4, 5, 6, 7]
+    X_no_dio: [1]
+  valores_gen1_referencia:
+    A-P-SOL1: 0.085118
+    B-P-PRE-CD: 0.116000
+    B-P-DIG-CD: 0.027358
+    B-P-PRE-SD: 0.141041
+    B-P-DIG-SD: 0.029868
+    C-P-ADOPTA: 0.673393
+  complementos_gen1_referencia:
+    RES-0004: 0.914882
+    RES-0010: 0.884000
+    RES-0012: 0.972642
+    RES-0014: 0.858959
+    RES-0016: 0.970132
+    RES-0022: 0.326607
+  criterio_adopcion_p3: >-
+    CANTIDAD-MEDIDA (recibe cita corrida0_resultado_id + corrida0_generacion:
+    GEN2 en milpa/tramite.yaml) si y solo si (1) su numerador es una categoria
+    declarada del reactivo contada DIRECTAMENTE -- no 1 menos otra cosa -- y
+    (2) round(medido, 6) == valor sellado. En otro caso
+    COMPLEMENTO-CON-DENOMINADOR-RECORTADO: SIN cita y con fila NC de
+    advertencia (patron NC-0085 del lote ENVIPE). La medicion decide, no la
+    lista: si el residuo de un par pesa exactamente 0, su complemento SI es
+    cantidad medida.
+  adopcion_p3:
+    consumidores:
+      RES-0003: "milpa/tramite.yaml:tramite.mordida.discrecional:paga_mordida_encig2025 <- A-P-SOL1"
+      RES-0009: "…:tramite.mordida.con_registro:paga_mordida_encig2025_presencial <- B-P-PRE-CD"
+      RES-0011: "…:paga_mordida_encig2025_digital <- B-P-DIG-CD"
+      RES-0013: "…:paga_mordida_encig2025_presencial_r2 <- B-P-PRE-SD"
+      RES-0015: "…:paga_mordida_encig2025_digital_r2 <- B-P-DIG-SD"
+      RES-0021: "…:tramite.gobierno_digital.util_sin_coercion:adopta_encig2025_luz <- C-P-ADOPTA"
+    nota: >-
+      La celda que se cita NO es siempre la primaria de esta spec. Para la
+      familia A la primaria es SOLANY y la adoptable es SOL1: son
+      codificaciones distintas y adoptar la primaria cambiaria en silencio el
+      significado del parametro del motor. La unica celda con la MISMA
+      codificacion que el valor ya materializado es la que se cita.
+  sufijos_result:
+  - G-N-FILAS-PERSONA
+  - G-N-FILAS-SEC7
+  - G-N-FILAS-SEC8
+  - G-LLAVE-SEC7-DECLARADA-UNICA
+  - G-LLAVE-SEC7-IDTRA-NTTIPO-UNICA
+  - G-LLAVE-SEC7-IDTRA-UNICA
+  - G-N-IDTRA-REPETIDOS-SEC7
+  - G-LLAVE-SEC8-IDTRA-UNICA
+  - G-VEREDICTO-ESTRUCTURA
+  - A-N-U
+  - A-N-P831-NSNR
+  - A-N-P831-BLANCO
+  - A-N-SIN-PONDERADOR
+  - A-N-SIN-DISENO
+  - A-N-U-SOLANY
+  - A-N-SOLANY-EXCLUIDAS-POR-NSNR
+  - A-MASA-FAC-P18-U
+  - A-P-SOL1
+  - A-IC-LO-SOL1
+  - A-IC-HI-SOL1
+  - A-P-SOLANY
+  - A-IC-LO-SOLANY
+  - A-IC-HI-SOLANY
+  - A-DELTA-SOLANY-SOL1
+  - A-P-NORMAL-SOL1
+  - A-SUMA-SOL1
+  - A-P-RESIDUO
+  - A-VEREDICTO-EXHAUSTIVIDAD
+  - A-N-ESTRATOS
+  - A-N-UPM
+  - A-N-ESTRATOS-UPM-UNICA
+  - A-METODO-IC
+  - A-VEREDICTO
+  - B-N-EMPAREJADAS
+  - B-N-SEC7-SIN-PAREJA
+  - B-COBERTURA
+  - B-N-P84-BLANCO
+  - B-N-RESIDUO-CANAL
+  - B-P-RESIDUO-CANAL
+  - B-VEREDICTO-CANAL
+  - B-N-EVENTOS-DESCARTADOS-POR-DEDUP
+  - B-N-PRE-SD
+  - B-N-DIG-SD
+  - B-N-PRE-CD
+  - B-N-DIG-CD
+  - B-P-PRE-SD
+  - B-IC-LO-PRE-SD
+  - B-IC-HI-PRE-SD
+  - B-P-DIG-SD
+  - B-IC-LO-DIG-SD
+  - B-IC-HI-DIG-SD
+  - B-P-PRE-CD
+  - B-IC-LO-PRE-CD
+  - B-IC-HI-PRE-CD
+  - B-P-DIG-CD
+  - B-IC-LO-DIG-CD
+  - B-IC-HI-DIG-CD
+  - B-P-NORMAL-PRE-SD
+  - B-P-NORMAL-DIG-SD
+  - B-P-NORMAL-PRE-CD
+  - B-P-NORMAL-DIG-CD
+  - B-DIFERENCIA-PRE-DIG-SD
+  - B-RAZON-PRE-DIG-SD
+  - B-DIFERENCIA-PRE-DIG-CD
+  - B-RAZON-PRE-DIG-CD
+  - B-N-ESTRATOS-PRE-SD
+  - B-N-UPM-PRE-SD
+  - B-N-ESTRATOS-UPM-UNICA-PRE-SD
+  - B-N-ESTRATOS-DIG-SD
+  - B-N-UPM-DIG-SD
+  - B-N-ESTRATOS-UPM-UNICA-DIG-SD
+  - B-METODO-IC
+  - B-VEREDICTO
+  - C-N-TIPO-01
+  - C-N-U
+  - C-N-RESIDUO
+  - C-P-RESIDUO
+  - C-N-SIN-PONDERADOR
+  - C-MASA-FAC-TRA-U
+  - C-P-ADOPTA
+  - C-IC-LO-ADOPTA
+  - C-IC-HI-ADOPTA
+  - C-P-RECHAZA
+  - C-SUMA
+  - C-VEREDICTO-EXHAUSTIVIDAD
+  - C-N-ESTRATOS
+  - C-N-UPM
+  - C-N-ESTRATOS-UPM-UNICA
+  - C-METODO-IC
+  - C-VEREDICTO
+  - X-N-U
+  - X-P-DIO-ALGO
+  - X-P-NO-DIO-NADA
+  - X-VEREDICTO-PAGO
+  - DELTA-VS-GEN1-A-SOL1
+  - DELTA-VS-GEN1-B-PRE-CD
+  - DELTA-VS-GEN1-B-DIG-CD
+  - DELTA-VS-GEN1-B-PRE-SD
+  - DELTA-VS-GEN1-B-DIG-SD
+  - DELTA-VS-GEN1-C-ADOPTA
+  - REPRODUCE-GEN1
+  - ADOPCION-P3-RES-0003
+  - ADOPCION-P3-RES-0009
+  - ADOPCION-P3-RES-0011
+  - ADOPCION-P3-RES-0013
+  - ADOPCION-P3-RES-0015
+  - ADOPCION-P3-RES-0021
+  - ADOPCION-P3-COMPLEMENTOS
+
+seed:
+  aplica: true
+  valor: 20260909
+  rng: numpy.PCG64
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Bootstrap fijado por seed + rng declarados y sumas en orden fijo de fila: la
+    unica diferencia esperable entre dos corridas del mismo arbol es redondeo de
+    float64 al reasociar sumas ponderadas. Los enteros y los textos se comparan
+    EXACTO. NO se afloja para que la adopcion de P3 pase: si el grano de milpa/
+    (seis decimales) no cabe, la cita no se escribe y eso es el hallazgo.
+
+resultados:
+  - {id: RESULT-ENCIG-MOR-G-N-FILAS-PERSONA, tipo: entero, unidad: "filas del archivo persona, antes de todo filtro"}
+  - {id: RESULT-ENCIG-MOR-G-N-FILAS-SEC7, tipo: entero, unidad: "filas de sec_7 (calidad de tramites), antes de todo filtro"}
+  - {id: RESULT-ENCIG-MOR-G-N-FILAS-SEC8, tipo: entero, unidad: "filas de sec_8 (corrupcion por tramite), antes de todo filtro"}
+  - {id: RESULT-ENCIG-MOR-G-LLAVE-SEC7-DECLARADA-UNICA, tipo: texto, unidad: "UNICA / NO-UNICA:<grupos>/<filas> -- la llave que DECLARA el descriptor para sec_7: (CVE_ENT,UPM,V_SEL,R_ELE,N_TRA)"}
+  - {id: RESULT-ENCIG-MOR-G-LLAVE-SEC7-IDTRA-NTTIPO-UNICA, tipo: texto, unidad: "UNICA / NO-UNICA:<grupos>/<filas> -- la llave que verifico MAESTRA35-L1: (ID_TRA,NT_TIPO)"}
+  - {id: RESULT-ENCIG-MOR-G-LLAVE-SEC7-IDTRA-UNICA, tipo: texto, unidad: "UNICA / NO-UNICA:<grupos>/<filas> -- ID_TRA solo en sec_7; si NO-UNICA, la deduplicacion de la rama CD borra eventos reales"}
+  - {id: RESULT-ENCIG-MOR-G-N-IDTRA-REPETIDOS-SEC7, tipo: entero, unidad: "valores de ID_TRA con mas de una fila en sec_7"}
+  - {id: RESULT-ENCIG-MOR-G-LLAVE-SEC8-IDTRA-UNICA, tipo: texto, unidad: "UNICA / NO-UNICA:<grupos>/<filas> -- de esto depende que el join sec_7 x sec_8 sea uno-a-muchos exacto"}
+  - {id: RESULT-ENCIG-MOR-G-VEREDICTO-ESTRUCTURA, tipo: texto, unidad: "ESTRUCTURA-COMO-LA-DECLARA-EL-DESCRIPTOR / DESCRIPTOR-INCOMPLETO-LLAVE-REAL-INCLUYE-NT-TIPO / JOIN-NO-EXACTO / COLUMNAS-AUSENTES:<cols>"}
+  - {id: RESULT-ENCIG-MOR-A-N-U, tipo: entero, unidad: "U_A: personas con P8_3_1 en {1,2} y FAC_P18 valido"}
+  - {id: RESULT-ENCIG-MOR-A-N-P831-NSNR, tipo: entero, unidad: "personas con P8_3_1 = 9 (No sabe/no responde) -- categoria real del instrumento que U_A excluye"}
+  - {id: RESULT-ENCIG-MOR-A-N-P831-BLANCO, tipo: entero, unidad: "personas con P8_3_1 blanco o no numerico -- NO imputadas a cero, fuera de todo universo"}
+  - {id: RESULT-ENCIG-MOR-A-N-SIN-PONDERADOR, tipo: entero, unidad: "filas con P8_3_1 en {1,2} y FAC_P18 no finito o <= 0"}
+  - {id: RESULT-ENCIG-MOR-A-N-SIN-DISENO, tipo: entero, unidad: "filas de U_A sin EST_DIS o sin UPM_DIS -- afectan al IC, no al punto"}
+  - {id: RESULT-ENCIG-MOR-A-N-U-SOLANY, tipo: entero, unidad: "U_SOLANY: filas de U_A con d(SOLANY) definido"}
+  - {id: RESULT-ENCIG-MOR-A-N-SOLANY-EXCLUIDAS-POR-NSNR, tipo: entero, unidad: "filas de U_A sin ningun inciso = 1 y con algun inciso 9/blanco -- un 9 no borra un 1, pero impide afirmar el 0"}
+  - {id: RESULT-ENCIG-MOR-A-MASA-FAC-P18-U, tipo: flotante, unidad: "suma de FAC_P18 sobre U_A (personas expandidas)", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-A-P-SOL1, tipo: proporcion, unidad: "[SECUNDARIO · CELDA GEN1 · ADOPTABLE] proporcion ponderada de personas a las que un(a) servidor(a) publico(a) intento apropiarse o solicito de forma directa un beneficio (P8_3_1=1), unidad PERSONA, FAC_P18, escala [0,1], mas alto = mas solicitud", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-A-IC-LO-SOL1, tipo: flotante, unidad: "limite inferior IC95 de A-P-SOL1 (bootstrap de UPM dentro de estrato)", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-A-IC-HI-SOL1, tipo: flotante, unidad: "limite superior IC95 de A-P-SOL1", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-A-P-SOLANY, tipo: proporcion, unidad: "[PRIMARIO] proporcion ponderada de personas con solicitud/insinuacion de soborno por CUALQUIERA de los tres incisos del reactivo 8.3, unidad PERSONA, FAC_P18, escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-A-IC-LO-SOLANY, tipo: flotante, unidad: "limite inferior IC95 de A-P-SOLANY", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-A-IC-HI-SOLANY, tipo: flotante, unidad: "limite superior IC95 de A-P-SOLANY", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-A-DELTA-SOLANY-SOL1, tipo: flotante, unidad: "A-P-SOLANY menos A-P-SOL1, CON SIGNO -- lo que vale en proporcion restringir el reactivo 8.3 a su primer inciso, como hizo GEN1", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-A-P-NORMAL-SOL1, tipo: proporcion, unidad: "proporcion ponderada de U_A con P8_3_1=2 -- el candidato a RES-0004 (tramite_normal_encig2025), denominador U_A escrito, escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-A-SUMA-SOL1, tipo: flotante, unidad: "A-P-SOL1 + A-P-NORMAL-SOL1 -- prueba mecanica de que U_A se parte en dos bloques disjuntos que lo agotan", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-A-P-RESIDUO, tipo: proporcion, unidad: "peso de P8_3_1 en {9, blanco} sobre U_A mas residuo -- cuanto del instrumento deja fuera el denominador del par", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-A-VEREDICTO-EXHAUSTIVIDAD, tipo: texto, unidad: "EXHAUSTIVAS-EN-EL-UNIVERSO-COMPLETO / EXHAUSTIVAS-Y-EXCLUYENTES-SOLO-BAJO-EL-RECORTE"}
+  - {id: RESULT-ENCIG-MOR-A-N-ESTRATOS, tipo: entero, unidad: "estratos EST_DIS distintos presentes en U_A"}
+  - {id: RESULT-ENCIG-MOR-A-N-UPM, tipo: entero, unidad: "pares (EST_DIS, UPM_DIS) distintos presentes en U_A"}
+  - {id: RESULT-ENCIG-MOR-A-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "estratos de U_A con una sola UPM -- si es > 0 el IC es limite inferior de la anchura verdadera"}
+  - {id: RESULT-ENCIG-MOR-A-METODO-IC, tipo: texto, unidad: "IC-BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-DISENO-INCOMPLETO"}
+  - {id: RESULT-ENCIG-MOR-A-VEREDICTO, tipo: texto, unidad: "TASA-REPORTADA / NO-ESTIMABLE-COLUMNA-AUSENTE:<col> / NO-ESTIMABLE-COLUMNA-VACIA:<col> / NO-ESTIMABLE-UNIVERSO-VACIO"}
+  - {id: RESULT-ENCIG-MOR-B-N-EMPAREJADAS, tipo: entero, unidad: "filas de sec_7 con pareja en sec_8 por ID_TRA"}
+  - {id: RESULT-ENCIG-MOR-B-N-SEC7-SIN-PAREJA, tipo: entero, unidad: "filas de sec_7 SIN pareja en sec_8 -- la auto-seleccion por 8.3 que GEN1 declaro como reserva y aqui se cuenta"}
+  - {id: RESULT-ENCIG-MOR-B-COBERTURA, tipo: flotante, unidad: "B-N-EMPAREJADAS / G-N-FILAS-SEC7, escala [0,1] -- si es baja, el estimando NO es p(mordida|canal) sobre el universo de tramites", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-N-P84-BLANCO, tipo: entero, unidad: "filas emparejadas con P8_4 blanco o no numerico -- fuera de U_B, contadas, no imputadas"}
+  - {id: RESULT-ENCIG-MOR-B-N-RESIDUO-CANAL, tipo: entero, unidad: "filas de U_B con P7_3 en {2,6,7,8,9,blanco} -- categorias reales de canal que el par presencial/digital NO usa"}
+  - {id: RESULT-ENCIG-MOR-B-P-RESIDUO-CANAL, tipo: proporcion, unidad: "peso ponderado de ese residuo sobre U_B, escala [0,1] -- cuanto del instrumento deja fuera la dicotomia presencial/digital", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-VEREDICTO-CANAL, tipo: texto, unidad: "CANAL-DICOTOMICO-EN-EL-INSTRUMENTO / DICOTOMIA-ES-PROPIEDAD-DEL-RECORTE -- contesta si presencial-vs-digital agota P7_3 o solo lo parece"}
+  - {id: RESULT-ENCIG-MOR-B-N-EVENTOS-DESCARTADOS-POR-DEDUP, tipo: entero, unidad: "filas de U_B que la rama CD borra al deduplicar por ID_TRA -- eventos que NT_TIPO existe para distinguir"}
+  - {id: RESULT-ENCIG-MOR-B-N-PRE-SD, tipo: entero, unidad: "eventos de U_B con P7_3=1 (presencial), rama SD"}
+  - {id: RESULT-ENCIG-MOR-B-N-DIG-SD, tipo: entero, unidad: "eventos de U_B con P7_3 en {3,4,5} (digital/registrado), rama SD"}
+  - {id: RESULT-ENCIG-MOR-B-N-PRE-CD, tipo: entero, unidad: "idem presencial, rama CD (deduplicada por ID_TRA)"}
+  - {id: RESULT-ENCIG-MOR-B-N-DIG-CD, tipo: entero, unidad: "idem digital, rama CD"}
+  - {id: RESULT-ENCIG-MOR-B-P-PRE-SD, tipo: proporcion, unidad: "[PRIMARIO · ADOPTABLE RES-0013] proporcion ponderada de eventos presenciales con P8_4=1, FAC_TRA, escala [0,1], mas alto = mas mordida", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-IC-LO-PRE-SD, tipo: flotante, unidad: "limite inferior IC95 de B-P-PRE-SD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-IC-HI-PRE-SD, tipo: flotante, unidad: "limite superior IC95 de B-P-PRE-SD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-P-DIG-SD, tipo: proporcion, unidad: "[PRIMARIO · ADOPTABLE RES-0015] idem canal digital/registrado, rama SD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-IC-LO-DIG-SD, tipo: flotante, unidad: "limite inferior IC95 de B-P-DIG-SD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-IC-HI-DIG-SD, tipo: flotante, unidad: "limite superior IC95 de B-P-DIG-SD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-P-PRE-CD, tipo: proporcion, unidad: "[SECUNDARIO · ADOPTABLE RES-0009] idem presencial, rama CD (deduplicada) -- la celda GEN1 base", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-IC-LO-PRE-CD, tipo: flotante, unidad: "limite inferior IC95 de B-P-PRE-CD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-IC-HI-PRE-CD, tipo: flotante, unidad: "limite superior IC95 de B-P-PRE-CD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-P-DIG-CD, tipo: proporcion, unidad: "[SECUNDARIO · ADOPTABLE RES-0011] idem digital, rama CD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-IC-LO-DIG-CD, tipo: flotante, unidad: "limite inferior IC95 de B-P-DIG-CD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-IC-HI-DIG-CD, tipo: flotante, unidad: "limite superior IC95 de B-P-DIG-CD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-P-NORMAL-PRE-SD, tipo: proporcion, unidad: "proporcion ponderada de eventos presenciales con P8_4=0 -- candidato a RES-0014, denominador escrito", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-P-NORMAL-DIG-SD, tipo: proporcion, unidad: "idem digital -- candidato a RES-0016", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-P-NORMAL-PRE-CD, tipo: proporcion, unidad: "idem presencial rama CD -- candidato a RES-0010", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-P-NORMAL-DIG-CD, tipo: proporcion, unidad: "idem digital rama CD -- candidato a RES-0012", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-DIFERENCIA-PRE-DIG-SD, tipo: flotante, unidad: "[ASOCIACION, NO CAUSAL] B-P-PRE-SD menos B-P-DIG-SD, CON SIGNO -- la eleccion de canal y la elegibilidad por canal confunden la comparacion", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-RAZON-PRE-DIG-SD, tipo: flotante, unidad: "[ASOCIACION, NO CAUSAL] B-P-PRE-SD / B-P-DIG-SD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-DIFERENCIA-PRE-DIG-CD, tipo: flotante, unidad: "[ASOCIACION, NO CAUSAL] idem rama CD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-RAZON-PRE-DIG-CD, tipo: flotante, unidad: "[ASOCIACION, NO CAUSAL] idem rama CD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-B-N-ESTRATOS-PRE-SD, tipo: entero, unidad: "estratos EST_DIS distintos en el brazo presencial de la rama SD"}
+  - {id: RESULT-ENCIG-MOR-B-N-UPM-PRE-SD, tipo: entero, unidad: "pares (EST_DIS,UPM_DIS) distintos en ese brazo"}
+  - {id: RESULT-ENCIG-MOR-B-N-ESTRATOS-UPM-UNICA-PRE-SD, tipo: entero, unidad: "estratos con una sola UPM en ese brazo"}
+  - {id: RESULT-ENCIG-MOR-B-N-ESTRATOS-DIG-SD, tipo: entero, unidad: "estratos EST_DIS distintos en el brazo digital de la rama SD"}
+  - {id: RESULT-ENCIG-MOR-B-N-UPM-DIG-SD, tipo: entero, unidad: "pares (EST_DIS,UPM_DIS) distintos en ese brazo"}
+  - {id: RESULT-ENCIG-MOR-B-N-ESTRATOS-UPM-UNICA-DIG-SD, tipo: entero, unidad: "estratos con una sola UPM en ese brazo"}
+  - {id: RESULT-ENCIG-MOR-B-METODO-IC, tipo: texto, unidad: "IC-BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-DISENO-INCOMPLETO"}
+  - {id: RESULT-ENCIG-MOR-B-VEREDICTO, tipo: texto, unidad: "TASA-REPORTADA / NO-ESTIMABLE-LLAVE-NO-UNICA / NO-ESTIMABLE-COLUMNA-AUSENTE:<col> / NO-ESTIMABLE-COLUMNA-VACIA:<col> / NO-ESTIMABLE-UNIVERSO-VACIO"}
+  - {id: RESULT-ENCIG-MOR-C-N-TIPO-01, tipo: entero, unidad: "filas de sec_7 con N_TRA = 1 (pago ordinario del servicio de luz)"}
+  - {id: RESULT-ENCIG-MOR-C-N-U, tipo: entero, unidad: "U_C: las anteriores con P7_3 en {1,2,4,5,6} y FAC_TRA valido"}
+  - {id: RESULT-ENCIG-MOR-C-N-RESIDUO, tipo: entero, unidad: "filas del tipo 01 con P7_3 en {3,7,8,9,blanco} -- categorias reales que el universo GEN1 excluye (3 = telefono, 7 = tramite no concluido)"}
+  - {id: RESULT-ENCIG-MOR-C-P-RESIDUO, tipo: proporcion, unidad: "peso ponderado de ese residuo sobre el total del tipo 01, escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-C-N-SIN-PONDERADOR, tipo: entero, unidad: "filas del tipo 01 con FAC_TRA no finito o <= 0"}
+  - {id: RESULT-ENCIG-MOR-C-MASA-FAC-TRA-U, tipo: flotante, unidad: "suma de FAC_TRA sobre U_C (tramites expandidos)", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-C-P-ADOPTA, tipo: proporcion, unidad: "[PRIMARIO · ADOPTABLE RES-0021] proporcion ponderada de pagos de luz por canal digital/autoservicio (P7_3 en {4,5}) sobre U_C, FAC_TRA, escala [0,1], mas alto = mas uso de canal digital", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-C-IC-LO-ADOPTA, tipo: flotante, unidad: "limite inferior IC95 de C-P-ADOPTA", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-C-IC-HI-ADOPTA, tipo: flotante, unidad: "limite superior IC95 de C-P-ADOPTA", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-C-P-RECHAZA, tipo: proporcion, unidad: "proporcion ponderada de U_C con P7_3 en {1,2,6} -- candidato a RES-0022. ADVERTENCIA DE ROTULO: significa «uso un canal fisico», NO «rechazo un servicio digital»", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-C-SUMA, tipo: flotante, unidad: "C-P-ADOPTA + C-P-RECHAZA -- prueba mecanica de que U_C se agota en dos bloques disjuntos", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-C-VEREDICTO-EXHAUSTIVIDAD, tipo: texto, unidad: "EXHAUSTIVAS-EN-EL-UNIVERSO-COMPLETO / EXHAUSTIVAS-Y-EXCLUYENTES-SOLO-BAJO-EL-RECORTE"}
+  - {id: RESULT-ENCIG-MOR-C-N-ESTRATOS, tipo: entero, unidad: "estratos EST_DIS distintos en U_C"}
+  - {id: RESULT-ENCIG-MOR-C-N-UPM, tipo: entero, unidad: "pares (EST_DIS,UPM_DIS) distintos en U_C"}
+  - {id: RESULT-ENCIG-MOR-C-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "estratos de U_C con una sola UPM"}
+  - {id: RESULT-ENCIG-MOR-C-METODO-IC, tipo: texto, unidad: "IC-BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-DISENO-INCOMPLETO"}
+  - {id: RESULT-ENCIG-MOR-C-VEREDICTO, tipo: texto, unidad: "TASA-REPORTADA / NO-ESTIMABLE-COLUMNA-AUSENTE:<col> / NO-ESTIMABLE-COLUMNA-VACIA:<col> / NO-ESTIMABLE-UNIVERSO-VACIO"}
+  - {id: RESULT-ENCIG-MOR-X-N-U, tipo: entero, unidad: "filas de sec_8 con P8_6 en {1..7} y FAC_P18 valido -- HALLAZGO, no releva a ningun consumidor"}
+  - {id: RESULT-ENCIG-MOR-X-P-DIO-ALGO, tipo: proporcion, unidad: "[HALLAZGO · CITA PROHIBIDA] peso de P8_6 en {2..7} (entrego dinero, regalo o favor) sobre U_X, escala [0,1] -- contesta si el rotulo «paga_mordida» describe lo que la celda sellada mide", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-X-P-NO-DIO-NADA, tipo: proporcion, unidad: "[HALLAZGO · CITA PROHIBIDA] peso de P8_6 = 1 (No le dio nada) sobre U_X", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-X-VEREDICTO-PAGO, tipo: texto, unidad: "EL-ROTULO-PAGA-DESCRIBE-SOLICITUD-NO-PAGO / NO-ESTIMABLE-COLUMNA-AUSENTE:<col> / NO-ESTIMABLE-UNIVERSO-VACIO"}
+  - {id: RESULT-ENCIG-MOR-DELTA-VS-GEN1-A-SOL1, tipo: flotante, unidad: "A-P-SOL1 menos 0.085118 (GEN1 sellado, milpa/tramite.yaml:60), CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-DELTA-VS-GEN1-B-PRE-CD, tipo: flotante, unidad: "B-P-PRE-CD menos 0.116000 (milpa/tramite.yaml:140), CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-DELTA-VS-GEN1-B-DIG-CD, tipo: flotante, unidad: "B-P-DIG-CD menos 0.027358 (milpa/tramite.yaml:142), CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-DELTA-VS-GEN1-B-PRE-SD, tipo: flotante, unidad: "B-P-PRE-SD menos 0.141041 (milpa/tramite.yaml:145), CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-DELTA-VS-GEN1-B-DIG-SD, tipo: flotante, unidad: "B-P-DIG-SD menos 0.029868 (milpa/tramite.yaml:147), CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-DELTA-VS-GEN1-C-ADOPTA, tipo: flotante, unidad: "C-P-ADOPTA menos 0.673393 (milpa/tramite.yaml:348), CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-ENCIG-MOR-REPRODUCE-GEN1, tipo: texto, unidad: "REPRODUCE-<n>/6 con el detalle por celda -- control positivo externo; NO-REPRODUCE no invalida la corrida ni autoriza tocar el medidor ni ajustar hacia atras"}
+  - {id: RESULT-ENCIG-MOR-ADOPCION-P3-RES-0003, tipo: texto, unidad: "CANTIDAD-MEDIDA-ADOPTABLE / NO-ADOPTABLE-POR-GRANO:<delta> / NO-ADOPTABLE-NO-ESTIMABLE -- rama pre-declarada del criterio §5.3 de la sellada"}
+  - {id: RESULT-ENCIG-MOR-ADOPCION-P3-RES-0009, tipo: texto, unidad: "idem para paga_mordida_encig2025_presencial (B-P-PRE-CD)"}
+  - {id: RESULT-ENCIG-MOR-ADOPCION-P3-RES-0011, tipo: texto, unidad: "idem para paga_mordida_encig2025_digital (B-P-DIG-CD)"}
+  - {id: RESULT-ENCIG-MOR-ADOPCION-P3-RES-0013, tipo: texto, unidad: "idem para paga_mordida_encig2025_presencial_r2 (B-P-PRE-SD)"}
+  - {id: RESULT-ENCIG-MOR-ADOPCION-P3-RES-0015, tipo: texto, unidad: "idem para paga_mordida_encig2025_digital_r2 (B-P-DIG-SD)"}
+  - {id: RESULT-ENCIG-MOR-ADOPCION-P3-RES-0021, tipo: texto, unidad: "idem para adopta_encig2025_luz (C-P-ADOPTA)"}
+  - {id: RESULT-ENCIG-MOR-ADOPCION-P3-COMPLEMENTOS, tipo: texto, unidad: "veredicto conjunto de los seis complementos (RES-0004/0010/0012/0014/0016/0022): CANTIDAD-MEDIDA-ADOPTABLE si el residuo de su par pesa exactamente 0, COMPLEMENTO-CON-DENOMINADOR-RECORTADO si pesa > 0 -- en el segundo caso NO se escribe cita y va fila NC (patron NC-0085)"}
