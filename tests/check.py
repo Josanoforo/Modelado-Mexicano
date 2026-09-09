@@ -1772,6 +1772,36 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # archivarse este acto) -- es MENCIÓN de la clasificación del acto, no
     # USO de una ranura sin dueño.
     "forense/encargos/2026-09-08-GEN2-T11-RUTINAS-FIX.md",
+    # ACTO GEN2-OBRA-V11, 9/sep/2026: encargo archivado VERBATIM (0-bis
+    # A.3), pegado en el mensaje que invocó `/acto`. `COMPUERTA: ninguna`.
+    # Dispara `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`) dos veces: la
+    # línea que describe la cabecera de procedencia que P0 añade a las dos
+    # propuestas de Astra (menciona su propio texto, no abre una decisión),
+    # y "LO QUE NO HACE" al citar que FP-361/362/363/367 "viven en la vista
+    # --mesa" -- cita filas YA existentes de `firmas-pendientes.tsv`, no
+    # crea una ranura nueva sin fila.
+    "forense/encargos/2026-09-09-GEN2-OBRA-V11.md",
+    # ACTO GEN2-OBRA-V11, 9/sep/2026: insumo externo (ChatGPT/Astra)
+    # archivado VERBATIM por P0 del mismo acto (A.3 y regla de mesa 4) --
+    # el texto de abajo no se edita para complacer un test. Dispara
+    # `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`) en su propia cabecera
+    # de autodescripción ("ChatGPT (Astra) ... PROPUESTA ... mesa sella
+    # mediante merge"): mención de la clasificación del propio documento,
+    # no una decisión nueva esperando firma.
+    "forense/notas/2026-09-09-PROPUESTA-SIGUIENTES-CALCULOS-GEN2-v1_0-astra.md",
+    # ACTO GEN2-OBRA-V11, 9/sep/2026: PLAN-DE-OBRA-GEN2 v1.0, entregado a
+    # mesa 8/sep, archivado VERBATIM (texto intacto, P1 del mismo acto).
+    # Dispara `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`) al citar el
+    # estado ya conocido y trazado de S6 ("S6 en PROPUESTA con reserva"),
+    # el mismo estado que sostiene la fila ABIERTA `FP-361` en
+    # `firmas-pendientes.tsv` (dónde cita `S6-L16-spec-v1_3.md`) -- no abre
+    # una ranura nueva sin fila.
+    "forense/notas/PLAN-DE-OBRA-GEN2-v1_0-2026-09-08.md",
+    # ACTO GEN2-OBRA-V11, 9/sep/2026: PLAN-DE-OBRA-GEN2 v1.1, vigente,
+    # archivado por P2 del mismo acto. Mismo disparo que el v1.0 de arriba
+    # ("S6 PROPUESTA con reserva"), misma fila `FP-361` ya ABIERTA que lo
+    # cubre -- no abre ranura nueva.
+    "forense/notas/PLAN-DE-OBRA-GEN2-v1_1-2026-09-09.md",
 }
 
 def _t22_tabla():
