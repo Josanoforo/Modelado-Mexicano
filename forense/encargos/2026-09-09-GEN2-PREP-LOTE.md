@@ -29,3 +29,9 @@ CIERRE · Cascada completa + ## NO-CORRIDO / RESERVAS + ## CONSUMIDO con el PR.
 | P3 · lanzar `GEN2-LOTE-ENCIG-1` con la compuerta nueva | `DIFERIDO-A:GEN2-LOTE-ENCIG-1` | El encargo ENCIG sigue con su P0 escrito tal cual hasta que dirección propague la línea que este acto dejó redactada (`forense/notas/2026-09-09-GEN2-PREP-LOTE-identidad-migracion.md` §5). Este acto no lo edita ni lo lanza — es exactamente lo que "no lanza ENCIG" pedía. | `GEN2-LOTE-ENCIG-1` (dirección propaga la adenda) |
 
 **CONTADOR: no** — herramienta pura. Ningún `CALC` nace, ningún sello se toca, `status()` sobre el árbol real da lo mismo antes y después (la re-derivación de la demanda no toca la oferta), y las validaciones de P1/P2 corren sobre fixture aislado.
+
+---
+
+## CONSUMIDO
+
+Ejecutado por [PR #662](https://github.com/Josanoforo/Modelado-Mexicano/pull/662) — `ACTO GEN2-PREP-LOTE · EL SIGUIENTE LOTE NACE CON LA ETIQUETA CORRECTA Y SIN ROMPER LA SUITE`, rama `claude/encargo-acto-gen2-prep-lote-kioasj`, 9/sep/2026, NUBE, Sonnet. Base `origin/main = c71e01f` (`PR #660`, `ACTO GEN2-REGISTRO-REPLAY` fusionado). P1: identidad por consumidor en `tools/corrida0.py:_instrumento()`, `demanda-corridas.tsv`/`demanda-resultados.tsv` re-derivados, tabla de correspondencia en `forense/notas/2026-09-09-GEN2-PREP-LOTE-identidad-migracion.md`. P2(a): `T-STATUS-FIXTURE` reemplaza los asserts absolutos de `T-STATUS-SMOKES`. P2(b): `t30_yamedido(hoy=...)` inyectable, `NC-0080` CERRADA con `T30b T-YAMEDIDO-HUSO` en la suite. P3: nota con la línea de destrabe de `GEN2-LOTE-ENCIG-1`. Cascada cerrada: `ADR-436`, `L0` recifrado, rótulo `GEN2 · GEN2-PREP-LOTE` censado en `canon/registro-rotulos.tsv`. `tests/check.py --baseline` VERDE (confirmado con `TZ` sin fijar, `TZ=UTC` y `TZ=America/Mexico_City`). **El merge de mesa es la firma.**
