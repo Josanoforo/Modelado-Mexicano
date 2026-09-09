@@ -38,3 +38,11 @@ CIERRE · Cascada completa + ## NO-CORRIDO / RESERVAS + ## CONSUMIDO con el PR.
 | **No resuelve `NC-0086` para las otras fuentes de fase 1** | `FUERA-DE-PERÍMETRO` | Sólo se aplicó la lección a ENIF. `FP-201` sigue sin re-examinar para las tres fuentes restantes de fase 1 | `NC-0086` sigue **ABIERTA** para esas fuentes; este acto cierra sólo su parte ENIF |
 | **`RES-0031`/`RES-0032` (`dinero.ahorro.tiene_ahorros`) no se tocan** | `FUERA-DE-PERÍMETRO` | Son de la misma `CORR-0009` y del mismo payload, pero el encargo nombra ocho `RESULT` y éstos no están entre ellos. Siguen sellados por `ACTO MAESTRA35-N1`, sin cadena GEN2 | `SIN-ASIGNAR` — un lote sucesor sobre `CORR-0009` los recogería en una sola corrida |
 | **No toca marcador, capturas ni `CALC-R`** | `FUERA-DE-PERÍMETRO` | Como el encargo ordena | n/a — cumplido |
+
+## CONSUMIDO
+
+Ejecutado por **`PR #667`** — `ACTO GEN2-LOTE-ENIF-1 · TERCER LOTE DE LA
+CARTERA`, rama `acto/gen2-lote-enif-1`, 9/sep/2026, CAJA (Ubuntu/WSL2), Opus.
+Cascada cerrada bajo **`ADR-439`** (colisión de numeración declarada:
+`NC-0122`). Cierre completo en
+`forense/notas/2026-09-09-GEN2-LOTE-ENIF-1-cierre.md`.
