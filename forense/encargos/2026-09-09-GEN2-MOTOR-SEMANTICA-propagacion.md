@@ -18,3 +18,13 @@ CONTADOR: no — propagación de decisiones; se dice en una línea. LO QUE NO HA
 |---|---|---|---|
 | P2 · "la plantilla de spec (si existe una) gana la línea para que las futuras lo hereden pre-registrado" | FUERA-DE-PERÍMETRO (parcial) — no hay plantilla de spec en `forense/prereg-caja/` a la fecha (censado: cero archivos `*plantilla*`/`*template*`); no hay dónde escribir la línea. La enmienda fechada §8 sobre `ENCIG-MORDIDA-spec-v1_0.md` sí se hizo completa. | El estándar de IC de D3 queda ratificado en esta familia, pero una spec nueva de otra familia sin método propio no lo hereda automáticamente hasta que exista una plantilla que lo declare. | SIN-ASIGNAR — el primer acto que cree o edite una plantilla de spec de `forense/prereg-caja/` |
 | Registro-tsv `NC-0129` (falso negativo de `ya_medido.py`, reabre causa raíz de `NC-0110`) | FUERA-DE-PERÍMETRO — es el defecto de la herramienta (`_tiene_veredicto_real()`), no de esta propagación; ya está `ABIERTA` con sucesor propio desde el lote ENIF. | Ninguno propio de este acto: se documentó de nuevo en A.8 (§11 de la nota de cierre) sin re-abrir ni duplicar la fila. | GEN2-LOTE-ENIF-1 (ya declarado) |
+
+## CONSUMIDO
+
+`PR #670` — cuatro commits en `claude/wizardly-ptolemy-pnsvsz`: 0-bis A.3
+(este archivo) · P0-P2 (nota de respaldo + anotaciones D1/D2/D4 en
+`milpa/tramite.yaml` + enmienda §8 de D3 sobre la spec ENCIG) · P3
+(NC-0108/0110/0112/0113 → CERRADA + A.8 `ya_medido.py` + exención
+`T-YAMEDIDO`) · cascada (ADR-443, L0, `registro-rotulos.tsv`,
+`## NO-CORRIDO / RESERVAS`). `tests/check.py --baseline` VERDE en cada
+paso, sin FAIL nuevo. NO FUSIONAR — merge de mesa.
