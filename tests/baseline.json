@@ -1,5 +1,5 @@
 {
-  "head": "dee5fc544b4e6ff96d5506a1605546e1df6a68e3",
+  "head": "42a6dec711e02b3b08954d0e3bed06e90e10ea36",
   "fails": [
     [
       "T06",
@@ -149,18 +149,6 @@
     ],
     [
       "T03",
-      "forense/encargos/cola/2026-09-07-ENCARGOS-GEN2-en-orden.md: cita `spec.yaml`, que no existe"
-    ],
-    [
-      "T03",
-      "forense/encargos/cola/2026-09-07-GEN2-E3-AUTOMATIZA-GEN2-1.md: cita `spec.yaml`, que no existe"
-    ],
-    [
-      "T03",
-      "forense/encargos/cola/2026-09-07-GEN2-E5-CALC-0001-0003.md: cita `spec.yaml`, que no existe"
-    ],
-    [
-      "T03",
       "forense/hallazgos.md: cita `estado-programa-v1_9.md`, que no existe"
     ],
     [
@@ -213,11 +201,11 @@
     ],
     [
       "T03",
-      "forense/notas/PLAN-FINAL-GEN2-v2_0-2026-09-07.md: cita `spec.md`, que no existe"
+      "forense/notas/2026-09-09-PROPUESTA-PLAN-DE-OBRA-GEN2-v1_1-astra.md: cita `PROPUESTA-SIGUIENTES-CALCULOS-GEN2-v1_0-2026-09-09.md`, que no existe"
     ],
     [
       "T03",
-      "forense/notas/PLAN-FINAL-GEN2-v2_0-2026-09-07.md: cita `spec.yaml`, que no existe"
+      "forense/notas/2026-09-09-PROPUESTA-SIGUIENTES-CALCULOS-GEN2-v1_0-astra.md: cita `PROPUESTA-PLAN-DE-OBRA-GEN2-v1_1-2026-09-09.md`, que no existe"
     ],
     [
       "T03",
@@ -508,19 +496,23 @@
     "principio": "Congelar no es aceptar. La cifra congelada mezcla deuda real del corpus con ruido de medición conocido del propio T03 (cobertura angosta); ver forense/censo-integridad-v1_1.md §1 para la derivación completa de cada bucket. Bajada de 89 a 83 WARN el 29/jul/2026 (sesión de correcciones, ver mensaje de commit) sin tocar ningún FAIL. Re-congelada el 30/jul/2026 tras el merge del PR #1 (main 22a7d9d): 3 entradas nuevas, cada una con bucket propio — 1 T03 (cita ilustrativa de LICENSE-CORPUS, artefacto propuesto y descartado por D-05, patrón I-01) y 2 T16 que son su consecuencia aritmética. Re-congelada el 13/ago/2026, ACTO A8-LAND (ADR-78), autorizado explícitamente por mesa en el hilo de la sesión tras que el ejecutor reportara los hallazgos y preguntara si congelar — mismo mecanismo de autorización que ya usó ENCARGO ADR-PROVISIONALIDAD §9 (PR #199): 3 entradas nuevas — 1 T03 (forense/encargos/2026-08-13-A8LAND-instrucciones-v2_7.md cita \"v2_6.md\" sin prefijo, verbatim, tres veces, patrón M6-sello) y 2 T16 (gobernanza:1104/ADR-76(f) y gobernanza:1132/ADR-77, cada uno correcto contra lo que su propio ADR midió al sellarse, consecuencia aritmética del T03 de este mismo refreeze — ninguno de los dos ADR está mal, el WARN real se movió después de que ambos sellaran). Re-congelada el 13/ago/2026, ACTO PROC-10-bis (ADR-79(a)), autorizado explícitamente por el usuario en la sesión ('pull and solve CI', tras reportarle el fallo de CI de PR #227 y el hallazgo verificado) — mismo mecanismo de autorización que ya usó ACTO A8-LAND. Corrige la causa raíz declarada por PROC-10-bis (T19b/T19c contaban solo `MEDIDO·PARCIAL`, no reconocían la séptima clase `MEDIDO·NACIONAL` que ese acto selló — corregido en ambas regex, `tests/check.py` líneas ~918/~1001) y congela el residuo esperado: 7 T03 (los cinco archivos de MOTOR-1 nunca entregados a la sesión, más dos citas del propio encargo verbatim a `propuesta-motor-matriz-v0_2.md`, que no existe — solo `v0_1` — error del encargo original, no de este acto) y 6 T16 (cuatro citas históricas de \"107 WARN\"/\"18 FAIL · 107 WARN\" en gobernanza:764,856 y estado-programa:129,221, correctas cuando se escribieron, más las dos ya clasificadas de A8-LAND cuyo número de línea real se corrió de :1132 a :1134 por edits ajenos entre sesiones — consecuencia aritmética de subir el WARN real, ninguna cita está mal). Detalle completo: forense/notas/2026-08-13-proc-10-bis.md §4. Re-congelada el 17/ago/2026, ACTO T22-DERIVA (ADR-88), autorizada por mesa en la sesión mediante pregunta estructurada que citó ADR-76(f) verbatim y describió qué cambia y qué no con cada opción — mismo mecanismo de autorización que ya usó ADR-86, y misma honestidad de procedencia: no es cita verbatim de texto libre. Este recongelado NO absorbe deuda nueva del corpus: reescribe las 19 claves de T22 bajo la normalización nueva de `_baseline_key`, que deja de meter la antigüedad variable ('(N días)') en la clave. Sin esa corrección el recongelado duraba un solo día — probado contra el propio CI, no supuesto: el run 31772585548 sobre f3873c2 fue SUCCESS el 14/ago y ese mismo commit da exit 1 el 17/ago. La suite cruda no se mueve y T22 sigue emitiendo sus 19 WARN en cada corrida: cambia qué cuenta como regresión nueva, no qué reporta la suite. Detalle completo: forense/notas/2026-08-17-t22-deriva.md. Re-congelada el 7/sep/2026, ACTO GEN2-E0 · ENCOLA, autorizada explícitamente por mesa en la sesión tras que el ejecutor PARARA en el paso 4 de `/encola`, reportara las 16 entradas nuevas con su token exacto y pusiera la decisión a dirección («los archivos que te pasé son los finales»). Absorbe 8 WARN de T03, todas del mismo bucket `T03_pieza_GEN2_verbatim__…` y todas sobre texto de dirección archivado verbatim (A.3): 2 nombran los documentos que el propio PLAN-FINAL-GEN2 v2.0 declara haber absorbido («integra y sustituye»), 1 es la cola de una elipsis de nombre de archivo (patrón M6-sello) y 5 citan `spec.yaml` / `spec.md`, el contrato de dos capas que GEN2-E3 y GEN2-E5 crearán bajo `data/corrida0/CALC-NNNN/`. Cero FAIL nuevos y cero bajas: los 8 T25 que esta misma sesión produjo NO se congelaron — se resolvieron por exención de archivo con censo en `canon/registro-rotulos.tsv`, y antes de pedirla el ejecutor corrigió los rótulos pelados de su PROPIA prosa de bitácora, que sí era editable. Detalle completo: el PR `[COLA]` de este acto.",
     "fecha_de_clasificacion": "2026-08-17",
     "conteo_por_bucket": {
+      "T-ALTA-RELACION_sin_clasificar": 1,
+      "T-CRON_sin_clasificar": 1,
+      "T-NO-CORRIDO_sin_clasificar": 41,
+      "T-REPRO_sin_clasificar": 315,
       "T03_TRANSFER-9_cita_ilustrativa_del_propio_falso_positivo__mismo_patron_benigno_ya_reconocido": 2,
       "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 3,
       "T03_encargo_archivado_cita_nombre_corto_verbatim__A.3_prohibe_editar__patron_M6-sello": 2,
       "T03_encargo_verbatim_cita_v0_2_inexistente__solo_existe_v0_1__error_del_encargo_PROC-10-bis": 3,
       "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test": 4,
       "T03_historia_real_no_cubierta_por_HISTORICOS__deuda_de_mantener_la_lista": 6,
-      "T03_pieza_GEN2_verbatim__doc_sustituido_por_el_plan_v2_0__elipsis_de_nombre__o_artefacto_que_E3-E5_creara": 8,
-      "T03_sin_clasificar": 26,
+      "T03_pieza_GEN2_verbatim__doc_sustituido_por_el_plan_v2_0__elipsis_de_nombre__o_artefacto_que_E3-E5_creara": 3,
+      "T03_sin_clasificar": 28,
       "T06_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
       "T08_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
       "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7": 65,
       "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 3,
-      "T22_sin_clasificar": 45
+      "T22_sin_clasificar": 52
     }
   }
 }
