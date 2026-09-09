@@ -17,3 +17,17 @@ PERÍMETRO Y CONCURRENCIA. Toca: `.claude/commands/revisa.md` · `forense/notas/
 LO QUE NO HACE (y es la mitad del valor): NO implementa `lote`, `delta`, `vigencia` ni `siguiente` — quedan como contratos archivados en la propuesta (backlog citable), cada uno esperando su uso próximo y su gate D-14; `delta` sigue opcional POR DECISIÓN DE MESA (regla 8) hasta autorización concreta con par y pregunta · NO añade ejecución de CAJA a NUBE · NO crea segundo comentario, revisor paralelo, script nuevo (si el runbook + validadores bastan), rutina programada, framework, caché de estados ni motor de workflows · NO reabre el #649 ni ningún defecto corregido — el documento histórico entra como fuente, no como reapertura · NO auto-adopta, auto-firma ni repara specs · NO toca los sellos de ningún CALC.
 SUCESORES (se despachan cuando su uso llegue, no antes; cada uno con su D-14 respondido en el encargo que lo lance): ACTO-lote (unido al siguiente lote real de caja — ENCIG o ENIF — con la triple semántica previsualiza/`--ejecuta`/`--escribe` y reanudación por sellos) · ACTO-vigencia (cuando dirección localice las reglas temporales del uso) · ACTO-delta (cuando mesa active B-7 para un par concreto, empezando por el precedente #647) · ACTO-siguiente (solo tras piloto de utilidad contra una selección humana; si no ahorra, no se construye).
 CIERRE · Cascada de /acto completa + `## NO-CORRIDO / RESERVAS` (obligatoria; «Ninguno.» si aplica) + `## CONSUMIDO` con el PR + la línea de contadores movidos (cero, y se dice).
+
+## NO-CORRIDO / RESERVAS
+
+Ninguno. Las cinco piezas de este acto (P0(a), P0(b), P0(c), P1, P2) se ejecutaron enteras:
+
+- P0(a) — propuesta final de Astra archivada verbatim con cabecera de procedencia: `forense/notas/2026-09-09-PROPUESTA-FINAL-AUTOMATIZACIONES-POSTCALCULOS-astra.md`.
+- P0(b) — revisión adversarial del PR #649 archivada verbatim, sha256 re-derivado dos veces (adjunto y archivo commiteado) con MATCH exacto: `forense/notas/2026-09-09-REVISION-ADVERSARIAL-PR649-astra.md`.
+- P0(c) — `NC-0082` cerrada citando ambos archivos, el hash y este acto.
+- P1 — bloque `## 2-bis · REVISA-CALC` añadido a `.claude/commands/revisa.md`.
+- P2 — calibración documental contra #634/#644, #647 y #649→#651 en `forense/notas/2026-09-09-GEN2-REVISA-CALC-cierre.md`.
+
+Lo que el encargo explícitamente **no pide** ejecutar aquí — `lote`, `delta`, `vigencia`, `siguiente` — está clasificado bajo `DIFERIDO-A:<sucesor>` en la sección "SUCESORES" del propio encargo (arriba), no como pieza pedida y omitida: el encargo mismo los excluye del perímetro de este acto ("LO QUE NO HACE"). No hay pieza pedida, no tocada y sin fila.
+
+**Contadores movidos: cero, y se dice.** Este acto no mide nada sobre México (`CONTADOR: no`, declarado en la cabecera del encargo).
