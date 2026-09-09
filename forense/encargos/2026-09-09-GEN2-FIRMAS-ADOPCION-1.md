@@ -17,3 +17,14 @@ LO QUE NO HACE: no toca sellos de ningún CALC · no adopta RES-0028 (NC-0085) �
 SUCESORES: los lotes GEN2-R-SERIE-CSV y -DBF (encargos hermanos, no gateados por éste) · la comparación GEN1↔GEN2 formal de la serie, si mesa la pide, cuando delta se active.
 
 CIERRE · Cascada de /acto completa + ## NO-CORRIDO / RESERVAS («Ninguno.» si aplica) + ## CONSUMIDO con el PR.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| Verificar OBJETO 1 (`CALC-C0D-MARCADOR-v3`/`FP-368`) por comando propio, además de citarlo | `SUSTITUIDO-POR:PR #655` — la ADENDA de dirección confirmó que `PR #655` ya lo escribió, fusionado, fuera de circuito (sin 0-bis ni cascada propios). Absorbe: la escritura en `decisiones.tsv`, `corridas.tsv`/`resultados.tsv` re-derivados y `FP-368` FIRMADA/EJECUTADA. Huérfano: ninguno — este acto verificó EXISTE-SATISFACE por comando (`awk`/`grep`) y lo cita en `ADR-432`, sin re-ejecutarlo. | Ninguno — el contador ya refleja OBJETO 1. | `PR #655` (ya fusionado) |
+| Verificar OBJETO 2 (`CALC-ENVIPE-0001`/`FP-369`) por comando propio, además de citarlo | `SUSTITUIDO-POR:PR #655` — misma razón que la fila anterior: fila FP creada y cerrada FIRMADA en el mismo commit `b8083b9`, fuera del circuito de `/acto`. Absorbe la creación+cierre de `FP-369` y la escritura en `decisiones.tsv`. Huérfano: ninguno. | Ninguno — el contador ya refleja OBJETO 2. | `PR #655` (ya fusionado) |
+| Decidir `FP-361` (S6 v1.4) y `FP-363` (S12 receptores) — `NC-0089` | `DECISIÓN-DE-MESA-PENDIENTE` — explícitamente fuera de esta firma (el encargo las declara en la vista `--mesa`, no en el OBJETO de esta firma). | `N_corridas_selladas`/`N_resultados_gen2_sellados` no se mueven por estas dos filas. | Mesa decide, sin acto asignado todavía — `SIN-ASIGNAR` |
+| Adoptar `RES-0028` (`denuncia_por_otra_razon`) | `FUERA-DE-PERÍMETRO` (`NC-0085`, advertencia vigente, no nueva) — `0.705687` no es cantidad medida, es `1 −` el primario sobre un denominador que excluye 9.19 % del peso del universo; una cita `corrida0_resultado_id` lo presentaría como medido. | `N_resultados_gen2_adoptados_activos` no sube por esta conducta. | Ninguno — permanece deliberadamente sin adoptar hasta que exista una medición propia. |
+| Correspondencia OCDE/tandas — `NC-0090` | `DECISIÓN-DE-MESA-PENDIENTE` — mesa la pospuso un día, verbatim en la firma de este encargo. | Ninguno sobre los contadores de este acto. | Encargo de correspondencia, día siguiente — `SIN-ASIGNAR` |
+| Implementar `delta` — `NC-0091` | `DECISIÓN-DE-MESA-PENDIENTE` — sigue opcional por decisión de mesa, declarado explícitamente fuera de este encargo. | Ninguno sobre los contadores de este acto. | Cuando mesa lo pida — `SIN-ASIGNAR` |
