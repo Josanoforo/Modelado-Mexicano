@@ -18,4 +18,4 @@ LO QUE NO HACE: no reescribe los JSON GEN1 ni la familia sellada por el CSV · n
 
 SUCESORES: adopción por lote de los seis R en el duelo (F3) · contrato del duelo temporal (F5, con la serie completa a la vista) · si mesa quiere la comparación formal GEN1↔GEN2 de la serie, el activador de delta con este par concreto.
 
-CIERRE · Cascada completa + ## NO-CORRIDO / RESERVAS + ## CONSUMIDO con el PR. El merge de B casi está, mientras lee el encargo y ponte al día con los requisitos del encargo.
+CIERRE · Cascada completa + ## NO-CORRIDO / RESERVAS + ## CONSUMIDO con el PR.
