@@ -1412,6 +1412,18 @@ _T22_MARCADOR_PENDIENTE = re.compile(
 # cualquiera de los dos marcadores es exactamente el defecto que (b)
 # existe para atrapar.
 _T22_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-REGISTRO-REPLAY, 9/sep/2026: encargo archivado VERBATIM
+    # (0-bis A.3). Dispara `_T22_MARCADOR_PENDIENTE` por MENCION, no por uso:
+    # la palabra sale al DESCRIBIR el insumo externo que el acto archiva --
+    # «despacho del punto 2 de PROPUESTA-MEJORAS-NOTAS-PR631-659 (Astra,
+    # 9/sep), adaptada por direccion tras verificacion» -- y al nombrar los
+    # archivos `PROPUESTA-*-astra.md` de forense/notas/. Ninguna es una
+    # decision de mesa nueva: el acto NO abre ranura, NO pide firma, y su
+    # unica firma (el merge de mesa) viaja verbatim en el propio encargo.
+    # Explicado en la nota del acto, §7: se despacha SOLO el punto 2 de esa
+    # propuesta; los puntos 3, 4 y 5 siguen siendo propuesta, no decision, y
+    # por eso no ganan fila en forense/firmas-pendientes.tsv.
+    "forense/encargos/2026-09-09-GEN2-REGISTRO-REPLAY.md",
     # ACTO GEN2-GOBIERNO-DECISIONES, 9/sep/2026: encargo archivado VERBATIM
     # (0-bis A.3), que no se edita para complacer un test. Dispara
     # `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`) dos veces, y ninguna es
@@ -2769,6 +2781,16 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # como `E · GEN2-E5` en `canon/registro-rotulos.tsv` por ese mismo acto.
     # El rótulo que ESTE acto reclama es `E · GEN2-E5-1`, y lo censa él.
     "forense/encargos/2026-09-08-GEN2-E5-1-VERIFICADOR-CALC0003V2-FIRMA.md",
+    # ACTO GEN2-REGISTRO-REPLAY · LA EVIDENCIA DE REPLAY NO SE PISA,
+    # 9/sep/2026: encargo archivado VERBATIM (0-bis A.3), pegado en el mensaje
+    # que lanzo el acto, que no se edita para complacer un test. Cita `E2`
+    # pelado dos veces, las dos por PROCEDENCIA y no como rotulo nuevo: en el
+    # bloque de concurrencia («E2 (PREP-LOTE) espera tu merge: mismo archivo
+    # corrida0.py») y en LO QUE NO HACE («no toca la identidad de la demanda
+    # (E2)») -- las dos son referencias al acto SUCESOR, que censara su propio
+    # rotulo cuando corra. El rotulo que ESTE acto reclama es
+    # `GEN2 · GEN2-REGISTRO-REPLAY`, y lo censa el en canon/registro-rotulos.tsv.
+    "forense/encargos/2026-09-09-GEN2-REGISTRO-REPLAY.md",
     # ACTO GEN2-CHECADOR-2 · TRES-DEFECTOS-CORRIDA0, 9/sep/2026: encargo
     # archivado VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`,
     # que no se edita para complacer un test. Cita `E5` pelado una vez, como

@@ -2309,6 +2309,239 @@ def t_encargo_gen2_desfasado():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ── ACTO GEN2-REGISTRO-REPLAY · P3 · las seis validaciones dirigidas ───────
+#
+# Sobre FIXTURE, no sobre el arbol real y sin un solo replay de verdad: el
+# defecto de NC-0094 es de REGISTRO, y probar un problema de registro con 23
+# reejecuciones de microdato costaria una caja y no probaria nada extra.
+# Cada caso demuestra primero el defecto y despues la proteccion.
+
+_EJEC_FIXTURE = {
+    "spec_yaml_sha256": "a" * 64,
+    "script_blob_sha256": "b" * 64,
+    "input_sha256": {"IN-UNO": "c" * 64},
+}
+
+
+def _asiento(calc_id, resultado, contexto, **cambia):
+    """Una fila de `replay-evidencia.tsv` con la identidad del fixture."""
+    spec_sha, script_sha, inputs = C._identidad_replay(_EJEC_FIXTURE)
+    fila = {
+        "calc_id": calc_id, "corrida_id": f"{calc_id}--0000deadbeef",
+        "resultado_replay": resultado, "contexto_replay": contexto,
+        "razones": "fixture", "spec_yaml_sha256": spec_sha,
+        "script_blob_sha256": script_sha, "input_sha256_efectivos": inputs,
+        "codigo_commit": "0" * 40, "fecha_verificacion": "2026-09-01",
+        "entorno": "CAJA", "procedencia": "VERIFY-ESTRUCTURADO",
+        "alcance": "fixture", "nota": "fixture",
+    }
+    fila.update(cambia)
+    return fila
+
+
+@contextlib.contextmanager
+def _vista_temporal(filas_publicadas):
+    """Re-apunta `C.VISTA_CORRIDAS` a una vista de fixture. `filas_publicadas`
+    es `[(corrida_id, spec_id, resultado, contexto)]`."""
+    tmp = Path(tempfile.mkdtemp(prefix="replay-test-"))
+    previo = C.VISTA_CORRIDAS
+    C.VISTA_CORRIDAS = tmp / "corridas.tsv"
+    filas = [_fila_vista(*f) for f in filas_publicadas]
+    C._escribe(C.VISTA_CORRIDAS, C.COLS_VISTA_CORRIDAS, filas)
+    try:
+        yield
+    finally:
+        C.VISTA_CORRIDAS = previo
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def _fila_vista(corrida_id, spec_id, resultado, contexto):
+    fila = {c: "X" for c in C.COLS_VISTA_CORRIDAS}
+    fila.update({"corrida_id": corrida_id, "spec_id": spec_id,
+                 "resultado_replay": resultado, "contexto_replay": contexto})
+    return fila
+
+
+def t_replay_a_lote_nuevo_no_toca_evidencia_ajena():
+    """(a) Registrar un lote NUEVO no modifica evidencia ajena; y mover una
+    ajena exige nombrarla -- esa es la unica «razon explicita» que existe."""
+    caso = "t_replay_a_lote_nuevo_no_toca_evidencia_ajena"
+    publicadas = [("CALC-VIEJA--01", "CALC-VIEJA", "REPRODUCE", "IDENTICO"),
+                  ("CALC-ADVERSA--02", "CALC-ADVERSA", "NO-REPRODUCE", "IDENTICO")]
+    with _vista_temporal(publicadas):
+        # el lote nuevo se AGREGA; las dos ajenas conservan su veredicto
+        propuesto = [_fila_vista(*f) for f in publicadas]
+        propuesto.append(_fila_vista("CALC-NUEVA--03", "CALC-NUEVA",
+                                     "REPRODUCE", "IDENTICO"))
+        _afirma(C._transiciones_replay(propuesto) == [], caso,
+                "una corrida nueva no tiene veredicto ajeno que pisar")
+        try:
+            C._para_si_pisa_replay(propuesto, set())
+        except C.ReplayPisado as exc:
+            _falla(caso, f"paro sin tocar nada ajeno: {exc}")
+
+        # EL DEFECTO: la ajena adversa se degrada a NO-VERIFICADO
+        pisa = [_fila_vista("CALC-VIEJA--01", "CALC-VIEJA", "REPRODUCE", "IDENTICO"),
+                _fila_vista("CALC-ADVERSA--02", "CALC-ADVERSA",
+                            C.NO_VERIFICADO, C.NO_VERIFICADO)]
+        try:
+            C._para_si_pisa_replay(pisa, set())
+            _falla(caso, "LA PROTECCION NO PARO: borro un NO-REPRODUCE ajeno")
+        except C.ReplayPisado as exc:
+            _afirma("CALC-ADVERSA--02" in str(exc), caso,
+                    "el PARO no nombra la corrida afectada")
+            _afirma("NO-REPRODUCE -> NO-VERIFICADO" in str(exc), caso,
+                    "el PARO no muestra la transicion")
+            _afirma("CALC-VIEJA--01" not in str(exc), caso,
+                    "el PARO acusa a una corrida que no cambio")
+
+        # LA PROTECCION: nombrarla en el lote es lo que la autoriza
+        try:
+            C._para_si_pisa_replay(pisa, {"CALC-ADVERSA"})
+        except C.ReplayPisado as exc:
+            _falla(caso, f"nombrada en --lote y aun asi paro: {exc}")
+
+
+def t_replay_b_segundo_registro_idempotente():
+    """(b) Un segundo registro sobre el mismo corte no cambia nada."""
+    caso = "t_replay_b_segundo_registro_idempotente"
+    publicadas = [("CALC-UNA--01", "CALC-UNA", "REPRODUCE", "IDENTICO"),
+                  ("CALC-DOS--02", "CALC-DOS", "NO-EJECUTABLE", "DISTINTO")]
+    with _vista_temporal(publicadas):
+        propuesto = [_fila_vista(*f) for f in publicadas]
+        for vuelta in (1, 2):
+            _afirma(C._transiciones_replay(propuesto) == [], caso,
+                    f"vuelta {vuelta}: el mismo corte produjo transiciones")
+
+
+def t_replay_c_sesion_sin_corpus_no_borra_evidencia():
+    """(c) Una sesion sin corpus reporta su limitacion APARTE; no degrada un
+    REPRODUCE anterior ni esconde un NO-REPRODUCE anterior."""
+    caso = "t_replay_c_sesion_sin_corpus_no_borra_evidencia"
+    ev = {"CALC-X": _asiento("CALC-X", "REPRODUCE", "IDENTICO")}
+
+    # sin --verifica: se proyecta la evidencia, no NO-VERIFICADO
+    r, ctx, fuente, avisos = C._proyecta_replay("CALC-X", _EJEC_FIXTURE, None, ev)
+    _afirma((r, ctx) == ("REPRODUCE", "IDENTICO"), caso,
+            f"sin --verifica se perdio la evidencia: {r}/{ctx}")
+    _afirma(fuente["clase"] == "EVIDENCIA-HISTORICA", caso,
+            f"no se declaro la clase de fuente: {fuente['clase']}")
+
+    # con --verifica en una caja sin corpus: verify no puede pronunciarse
+    sin_corpus = {"veredicto": "NO-EJECUTABLE", "contexto": "DISTINTO"}
+    r, ctx, fuente, avisos = C._proyecta_replay("CALC-X", _EJEC_FIXTURE,
+                                                sin_corpus, ev)
+    _afirma((r, ctx) == ("REPRODUCE", "IDENTICO"), caso,
+            f"la caja sin corpus borro evidencia de CAJA: {r}/{ctx}")
+    _afirma(fuente.get("limitacion_sesion") == "NO-EJECUTABLE", caso,
+            "la limitacion de la sesion no se reporto aparte")
+    _afirma(any("REPLAY-NO-VERIFICABLE-HOY" in a for a in avisos), caso,
+            "la limitacion de la sesion no salio como aviso")
+
+    # y tampoco esconde un veredicto ADVERSO anterior
+    ev_adv = {"CALC-X": _asiento("CALC-X", "NO-REPRODUCE", "IDENTICO")}
+    r, ctx, _f, _a = C._proyecta_replay("CALC-X", _EJEC_FIXTURE, sin_corpus, ev_adv)
+    _afirma((r, ctx) == ("NO-REPRODUCE", "IDENTICO"), caso,
+            f"la sesion sin corpus escondio un NO-REPRODUCE: {r}/{ctx}")
+
+
+def t_replay_d_cambio_de_identidad_invalida_el_comprobante():
+    """(d) Cambiar un input o la spec impide reutilizar el comprobante como
+    evidencia vigente. No se arrastra a la identidad nueva, y no se finge."""
+    caso = "t_replay_d_cambio_de_identidad_invalida_el_comprobante"
+    ev = {"CALC-X": _asiento("CALC-X", "REPRODUCE", "IDENTICO")}
+    for campo, ejec_nueva in (
+            ("input", dict(_EJEC_FIXTURE, input_sha256={"IN-UNO": "d" * 64})),
+            ("spec", dict(_EJEC_FIXTURE, spec_yaml_sha256="e" * 64)),
+            ("codigo", dict(_EJEC_FIXTURE, script_blob_sha256="f" * 64))):
+        r, ctx, fuente, avisos = C._proyecta_replay("CALC-X", ejec_nueva, None, ev)
+        _afirma((r, ctx) == (C.NO_VERIFICADO, C.NO_VERIFICADO), caso,
+                f"cambio de {campo}: se arrastro la evidencia -> {r}/{ctx}")
+        _afirma(fuente["clase"] == "ASIENTO-NO-VIGENTE", caso,
+                f"cambio de {campo}: no se declaro el asiento como no vigente")
+        _afirma(any("EVIDENCIA-NO-VIGENTE" in a for a in avisos), caso,
+                f"cambio de {campo}: el asiento caduco en silencio")
+    # control: sin cambio de identidad, el comprobante SI es vigente
+    r, _c, _f, _a = C._proyecta_replay("CALC-X", _EJEC_FIXTURE, None, ev)
+    _afirma(r == "REPRODUCE", caso,
+            "sin cambio de identidad la evidencia deberia seguir vigente")
+
+
+def t_replay_e_no_reproduce_posterior_queda_visible():
+    """(e) Conservar historia NO privilegia el ultimo exito: un NO-REPRODUCE
+    posterior se ve, con su contexto y junto al asiento que contradice."""
+    caso = "t_replay_e_no_reproduce_posterior_queda_visible"
+    ev = {"CALC-X": _asiento("CALC-X", "REPRODUCE", "IDENTICO")}
+    fresco = {"veredicto": "NO-REPRODUCE", "contexto": "IDENTICO"}
+    r, ctx, fuente, avisos = C._proyecta_replay("CALC-X", _EJEC_FIXTURE, fresco, ev)
+    _afirma((r, ctx) == ("NO-REPRODUCE", "IDENTICO"), caso,
+            f"el exito viejo tapo el fallo nuevo: {r}/{ctx}")
+    _afirma(fuente["clase"] == "VERIFICADO-EN-ESTA-SESION", caso,
+            "no se declaro que el veredicto es observacion de hoy")
+    aviso = " ".join(avisos)
+    _afirma("REPLAY-CONTRADICE-ASIENTO" in aviso, caso,
+            "la contradiccion con el asiento no se reporto")
+    for pedazo in ("NO-REPRODUCE", "REPRODUCE", "2026-09-01"):
+        _afirma(pedazo in aviso, caso,
+                f"el aviso no muestra {pedazo}: los dos veredictos y la fecha "
+                f"tienen que verse juntos")
+    # y al reves: un asiento adverso no lo borra un exito de hoy en silencio
+    ev_adv = {"CALC-X": _asiento("CALC-X", "NO-REPRODUCE", "IDENTICO")}
+    r, _c, _f, avisos = C._proyecta_replay(
+        "CALC-X", _EJEC_FIXTURE, {"veredicto": "REPRODUCE", "contexto": "IDENTICO"},
+        ev_adv)
+    _afirma(r == "REPRODUCE", caso, "la observacion de hoy debe proyectarse")
+    _afirma(any("REPLAY-CONTRADICE-ASIENTO" in a for a in avisos), caso,
+            "un exito de hoy tapo un NO-REPRODUCE asentado sin avisar")
+
+
+def t_replay_f_caso_23_filas_defecto_y_proteccion():
+    """(f) El caso medido de NC-0094, en fixture: 23 corridas / 46 campos.
+    Primero el defecto (la derivacion sin fuente los degrada y la proteccion
+    PARA), despues la reparacion (con asiento, la derivacion los conserva)."""
+    caso = "t_replay_f_caso_23_filas_defecto_y_proteccion"
+    # mismos veredictos que el corte real: adversos incluidos, no solo exitos
+    veredictos = ([("REPRODUCE", "IDENTICO")] * 14 +
+                  [("REPLICA-RESULTADO · CONTEXTO-DISTINTO", "DISTINTO")] * 5 +
+                  [("NO-EJECUTABLE", "DISTINTO")] * 3 +
+                  [("NO-REPRODUCE", "IDENTICO")])
+    _afirma(len(veredictos) == 23, caso, "el fixture no tiene 23 corridas")
+    publicadas = [(f"CALC-{i:02d}--{i:012d}", f"CALC-{i:02d}", r, c)
+                  for i, (r, c) in enumerate(veredictos)]
+
+    with _vista_temporal(publicadas):
+        # EL DEFECTO: `_lee_oferta` sin fuente dejaba los dos ejes en
+        # NO-VERIFICADO -- 23 corridas, dos campos cada una.
+        degradado = [_fila_vista(cid, sid, C.NO_VERIFICADO, C.NO_VERIFICADO)
+                     for cid, sid, _r, _c in publicadas]
+        cambios = C._transiciones_replay(degradado)
+        _afirma(len({x[0] for x in cambios}) == 23 and len(cambios) == 46, caso,
+                f"el defecto no se reprodujo: {len({x[0] for x in cambios})} "
+                f"corridas / {len(cambios)} campos (esperado 23 / 46)")
+        try:
+            C._para_si_pisa_replay(degradado, set())
+            _falla(caso, "LA PROTECCION NO PARO ante las 23 corridas")
+        except C.ReplayPisado as exc:
+            _afirma("23 corrida" in str(exc) and "46 campo" in str(exc), caso,
+                    f"el PARO no cuenta bien lo que iba a pisar: {exc}")
+            _afirma("NO-REPRODUCE -> NO-VERIFICADO" in str(exc), caso,
+                    "el PARO no destaca que se perdia un veredicto ADVERSO")
+
+        # LA PROTECCION: con el asiento, la misma derivacion los conserva.
+        evidencia = {sid: _asiento(sid, r, c) for _cid, sid, r, c in publicadas}
+        reparado = []
+        for cid, sid, _r, _c in publicadas:
+            r, c, _f, _a = C._proyecta_replay(sid, _EJEC_FIXTURE, None, evidencia)
+            reparado.append(_fila_vista(cid, sid, r, c))
+        _afirma(C._transiciones_replay(reparado) == [], caso,
+                f"con asiento la derivacion todavia pisa: "
+                f"{C._transiciones_replay(reparado)[:3]}")
+        try:
+            C._para_si_pisa_replay(reparado, set())
+        except C.ReplayPisado as exc:
+            _falla(caso, f"con la evidencia conservada aun paro: {exc}")
+
+
 TESTS = [v for k, v in sorted(globals().items()) if k.startswith("t_")]
 
 
