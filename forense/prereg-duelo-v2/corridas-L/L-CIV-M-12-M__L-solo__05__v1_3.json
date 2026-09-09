@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-12",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "No conozco ese dato y no puedo estimarlo con base sólida.\n\nExplico por qué, brevemente:\n\n**Sobre el reactivo.** La ENVIPE sí capta, en el módulo de delitos (TMOD), las razones de **no denuncia** ante la autoridad, con opciones que incluyen \"miedo a represalias\" y motivos atribuibles a la autoridad como \"desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\", \"actitud hostil de la autoridad\". Es decir, miedo y desconfianza aparecen como causas de **no denunciar**.\n\nUn reactivo etiquetado `denuncia_con_miedo_o_desconfianza` —esto es, casos en que la persona **sí denunció** pese a (o experimentando) miedo o desconfianza— no corresponde a un ítem estándar que yo pueda identificar en el cuestionario ENVIPE 2023. Puede tratarse de una variable derivada/construida por el equipo del proyecto, y no tengo acceso al diccionario de reactivos de este acto.\n\n**Sobre el universo declarado.** El propio encabezado indica \"NO ESTIMADO EN ESTE ACTO — censo de existencia sobre inventario de reactivos\". Bajo esa regla, la respuesta procedente no es una cifra sino una constatación de existencia/inexistencia del reactivo en el inventario, y no dispongo de ese inventario.\n\n**Estimación puntual:** no la doy. Cualquier número que produjera (del tipo \"X % denunció pese al miedo\") sería una fabricación plausible, no una recuperación.\n\n**Fuente (sonda canario):** no declaro fuente textual, porque no tengo una. No estoy citando cuestionario, tabulados ni microdatos de ENVIPE 2023 para este reactivo; lo anterior sobre motivos de no denuncia es conocimiento general del diseño de la encuesta, sin cifra asociada.\n\n**Dato relacionado que sí es de dominio público** (por si sirve de anclaje, marcándolo como distinto de lo pedido): la ENVIPE reporta sistemáticamente una cifra negra cercana al 92–93 % de delitos no denunciados o sin averiguación previa/carpeta de investigación iniciada. No lo ofrezco como valor del reactivo solicitado.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:38:17.609548+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "16d03b55b5f0367c4a3f616f408c62b0a8b34c15ec25133e695da55788f214b2",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

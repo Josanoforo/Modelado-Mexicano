@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "**Estimación puntual: ~4.5% de los hogares** (proporción de hogares con remesas > 0 en ENIGH 2020, universo completo de `concentradohogar`).\n\nIntervalo subjetivo (aunque la escala sea binaria, expreso incertidumbre sobre la proporción poblacional): **3.8% – 5.5%**, con mayor masa entre 4.2% y 5.0%.\n\nRazonamiento (no es cita de tabla):\n- Históricamente, ENIGH reporta que entre 4% y 6% de los hogares mexicanos declaran ingreso por remesas; en olas de mediados de los 2010 la cifra rondaba 4–5%, con tendencia ligeramente descendente respecto a 2006–2008 (cuando estaba más cerca de 6–7%).\n- En 2020 el flujo agregado de remesas creció fuerte (~40 mil millones USD), pero eso se refleja más en el monto por hogar receptor que en el número de hogares receptores, por lo que no esperaría un salto grande en la proporción.\n- La ENIGH suele subestimar la incidencia respecto a estimaciones basadas en flujos de Banxico.\n\n**Sonda canario / fuente:** no tengo una fuente textual verificable para esta cifra. No estoy recuperando un valor publicado de la tabulación de ENIGH 2020 Nueva Serie; es una estimación derivada de conocimiento general sobre la serie ENIGH, no una lectura del microdato ni de un cuadro del INEGI. Si necesitas el valor exacto, debe calcularse directamente de `concentradohogar` 2020 (proporción de `remesas > 0`, con y sin `factor` de expansión — nota que el porcentaje ponderado y el no ponderado difieren, y mi estimación apunta al **ponderado**; el no ponderado suele ser algo mayor por el sobremuestreo de estratos rurales/bajos, quizá 5–7%).",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:16:58.190502+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "96c0a2435f44da302d82737be6394d42803415676e05cb72e5653179f5b0c444",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

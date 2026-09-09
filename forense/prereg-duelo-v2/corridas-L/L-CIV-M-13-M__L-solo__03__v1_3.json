@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-13",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "No conozco ese dato y no puedo darlo como cifra verificada.\n\nPrecisión sobre por qué:\n\n1. **El reactivo tal como está nombrado no existe en la ENVIPE con esa etiqueta.** La ENVIPE (INEGI) sí capta, en el módulo de delitos (Módulo IV, sección de denuncia), las **razones de no denuncia** ante la autoridad. Entre las opciones precodificadas figuran, en categorías separadas: \"miedo al agresor\", \"por miedo a que lo extorsionaran\", \"desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\", \"delito de poca importancia\", entre otras. Es decir, miedo y desconfianza son **causas de NO denunciar**, no atributos de una denuncia realizada.\n\n2. **\"denuncia_con_miedo_o_desconfianza\" como binaria** parece ser una variable derivada/construida por el equipo de investigación (recodificación de esas opciones), no un reactivo nativo del cuestionario. Sin el diccionario de datos o el inventario de reactivos del proyecto, no puedo confirmar su definición operativa ni su dirección de codificación.\n\n3. **No emito estimación puntual.** Cualquier número que ofreciera (p. ej. \"≈X% de los delitos no denunciados fue por miedo/desconfianza\") sería una reconstrucción de memoria de tabulados ENVIPE que no puedo verificar en este acto, y el universo declarado explícitamente indica que **no corresponde re-derivar contra microdato**, sino hacer censo de existencia sobre el inventario. Bajo esa regla, la respuesta correcta es un reporte de estado, no una cifra.\n\n**Sonda canario / fuente textual declarada:** no tengo fuente citable en este acto. No consulté microdatos ENVIPE 2024, ni tabulados del INEGI, ni ningún documento adjunto del proyecto (confirmo que no tengo acceso a ninguno). Lo anterior sobre la estructura del cuestionario proviene de conocimiento general del instrumento, sin verificación documental aquí, y debe tratarse como no confirmado.\n\n**Lo que necesitaría para responder:** el diccionario de variables del proyecto (para saber qué preguntas ENVIPE se colapsan en este binario) o el inventario de reactivos MAESTRA32-E15.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:29:34.059053+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2a234d666fd452b123ac6236ca86ac87da0194273a46b2559f505dcd9dcb7ec2",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

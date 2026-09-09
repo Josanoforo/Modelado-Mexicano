@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-12",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "No conozco ese dato y no puedo estimarlo de forma responsable.\n\nExplicación breve:\n\n1. **El reactivo, tal como se nombra, no existe en el cuestionario de la ENVIPE.** La ENVIPE (módulo de victimización, sección de denuncia) pregunta por las **razones de NO denunciar**, y entre las opciones atribuibles a la autoridad figuran \"miedo al agresor\", \"por miedo a que lo extorsionaran\", \"desconfianza en la autoridad\". Es decir, el miedo y la desconfianza aparecen como causas de **no** denuncia, no como atributo de una denuncia efectuada. Un reactivo llamado `denuncia_con_miedo_o_desconfianza` no corresponde a ninguna variable que yo pueda identificar en el inventario ENVIPE 2023, ni en el cuestionario principal (CP) ni en el módulo de victimización (MV).\n\n2. **Además, \"binaria\" no coincide con el formato de esas preguntas**, que son de opción múltiple con respuesta única sobre la causa principal de no denuncia.\n\n3. Dado que el acto solicitado es un **censo de existencia sobre inventario de reactivos** (no una re-derivación contra microdato), mi respuesta al ítem es: **no verificado / probablemente inexistente bajo esa etiqueta**, no una proporción.\n\n**Estimación puntual: no la doy.** Cualquier cifra que ofreciera (del tipo \"≈X% de las denuncias se realizan pese al miedo o desconfianza\") sería una construcción mía, no un dato de la ENVIPE.\n\n**Sonda canario / fuente:** no declaro fuente textual, porque no tengo ninguna. No dispongo de acceso a los documentos del proyecto, ni consulté el cuestionario, el descriptor de archivo (FD) ni los tabulados de la ENVIPE 2023 en este acto. Lo anterior proviene de conocimiento general previo sobre el diseño de la ENVIPE, con fecha de corte de mi entrenamiento, y no debe tratarse como verificación documental.\n\nSi lo que se busca es un dato real y adyacente, el candidato correcto sería la **cifra negra** (~92–93% de delitos no denunciados o sin averiguación previa/carpeta de investigación, ENVIPE 2023) y la **distribución de causas de no denuncia** atribuibles a la autoridad (≈ 6 de cada 10 de las no denuncias, con \"pérdida de tiempo\" y \"desconfianza en la autoridad\" como principales). Marco esas cifras como **recordadas, no verificadas en este acto**; requieren confirmación contra los tabulados del INEGI antes de usarse.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:24:00.076852+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "16d03b55b5f0367c4a3f616f408c62b0a8b34c15ec25133e695da55788f214b2",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

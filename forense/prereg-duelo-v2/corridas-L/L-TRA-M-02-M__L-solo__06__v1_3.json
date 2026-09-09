@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "**No conozco ese dato y hay una inconsistencia en la especificación del reactivo.**\n\nTres observaciones:\n\n1. **Incompatibilidad de fuente**: la variable se llama `paga_mordida_encig2025`, pero el universo declarado es ENCUCI 2020 (SEC_4_5, batería AP5_16_1..10). La ENCUCI (Encuesta Nacional de Cultura Cívica, INEGI) y la ENCIG (Encuesta Nacional de Calidad e Impacto Gubernamental) son instrumentos distintos, con universos y marcos muestrales distintos. No puedo emitir una estimación de un reactivo ENCIG 2025 sobre una base ENCUCI 2020.\n\n2. **Sonda canario**: no tengo una fuente textual verificable para un reactivo así etiquetado. No dispongo de los microdatos ni del cuestionario de este proyecto, y no tengo resultados publicados de ENCIG 2025 con los que pueda respaldar una cifra. Cualquier número que diera sería una confabulación con apariencia plausible.\n\n3. **Lo único que sí puedo ofrecer, claramente etiquetado como ancla externa y no como estimación del reactivo pedido**: en las ENCIG previas (2019, 2021, 2023), la prevalencia de corrupción entre personas que realizaron algún trámite personal ronda el orden de 14–16% (equivalentemente, ~14,000–16,000 víctimas por cada 100,000 habitantes que tuvieron contacto con algún trámite). Es un dato de memoria, de orden de magnitud, y **no** es la estimación de `paga_mordida_encig2025` sobre el universo ENCUCI 2020.\n\nSi me confirmas cuál es el reactivo real —por ejemplo, si se trata de un ítem de la batería AP5_16 sobre contacto con autoridades y pago de \"mordida\" en ENCUCI 2020— puedo intentar una estimación acotada. Tal como está planteado, la respuesta correcta es: **dato desconocido**.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:16:30.518147+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "3747d8a14bf13fa5b97245dcb39cf7b972f57a76bca7c304f3ccd9b9768942f9",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

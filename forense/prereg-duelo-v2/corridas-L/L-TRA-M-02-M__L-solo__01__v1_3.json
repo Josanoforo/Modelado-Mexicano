@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "**No conozco ese dato: no puedo citar una fuente textual para él (sonda canario: sin fuente declarada).**\n\nAdemás hay una inconsistencia en el planteamiento: `paga_mordida_encig2025` refiere nominalmente a la **ENCIG 2025** (INEGI), mientras que el universo descrito (AP5_16_1..10, SEC_4_5, ~21,519 filas) corresponde a la **ENCUCI 2020**. No tengo constancia de que exista un reactivo con ese nombre en la ENCUCI 2020, ni tengo acceso al diccionario de datos del proyecto para verificarlo.\n\n**Estimación puntual (solo como anclaje a priori, no como dato reportado):** ~**14%** de prevalencia de corrupción entre quienes tuvieron contacto con servidores públicos.\n\nEse anclaje proviene de mi conocimiento general de la serie ENCIG del INEGI (tasa de población que experimentó actos de corrupción en al menos un trámite: ≈14–16% en las ediciones 2017–2023), no de la ENCUCI ni de una edición 2025 que yo pueda verificar. Rango subjetivo si se fuerza una lectura continua: **10–20%**, con baja confianza.\n\nSi me indicas la etiqueta literal del reactivo y la fuente documental del proyecto, puedo ajustar la estimación; sin eso, prefiero declarar el desconocimiento a producir una cifra plausible pero infundada.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:05:49.970544+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "3747d8a14bf13fa5b97245dcb39cf7b972f57a76bca7c304f3ccd9b9768942f9",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

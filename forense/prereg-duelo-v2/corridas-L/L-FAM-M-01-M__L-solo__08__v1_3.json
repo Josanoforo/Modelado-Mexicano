@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-01",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "No conozco este dato.\n\nExplico por qué y qué sí puedo decir con honestidad:\n\n**Sobre el reactivo.** La ENIF 2018 (INEGI/CNBV) sí incluye en su cuestionario un módulo sobre previsión para la vejez, donde se pregunta al informante cómo planea mantenerse económicamente cuando ya no pueda trabajar, con opciones que típicamente incluyen ahorro propio, pensión/Afore, apoyo de gobierno, seguir trabajando, y **apoyo de familiares/hijos**. También hay reactivos sobre fuentes de ingreso actuales que incluyen dinero de familiares dentro y fuera del país. Pero no puedo confirmar que exista una variable con el nombre exacto `recibe_dinero_familiares_para_vejez` ni verificar su etiqueta, su código o su posición en el catálogo de la ENIF 2018.\n\n**Sobre la estimación puntual.** No tengo memorizada una proporción publicada para ese reactivo específico. Cualquier cifra que diera (del tipo \"≈X% responde sí\") sería una reconstrucción plausible pero inventada, y con escala binaria el riesgo de que parezca creíble sin serlo es alto. Prefiero no darla.\n\n**Sonda canario / fuente textual.** No tengo una fuente textual declarada que respalde una cifra aquí. No dispongo de los tabulados de la ENIF 2018 ni del descriptor de archivo de datos en este acto, y el enunciado indica explícitamente que se trata de un censo de existencia sobre inventario de reactivos, no de una re-derivación contra microdato. Por tanto no procede que yo produzca un valor derivado.\n\n**Qué resolvería la duda.** El descriptor de archivo de datos (FD) y el catálogo de la ENIF 2018 en el sitio del INEGI, más el cuestionario impreso, permiten confirmar si el reactivo existe con ese nombre y bajo qué sección (previsión para la vejez vs. fuentes de ingreso).",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:13:32.322553+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2abf2dbb064411640e9fa6fb744e10cee70d658576ea052ca97c968d8ffa984d",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "**Estimación puntual: ≈ 4.5 % de los hogares** (recibe_remesas = 1) en ENIGH 2018 Nueva Serie.\n\nIntervalo subjetivo (aunque la escala sea binaria, expreso mi incertidumbre sobre la proporción poblacional): **3.8 % – 5.5 %**, con la mayor parte de mi masa de probabilidad entre 4.0 % y 5.0 %.\n\nRazonamiento breve:\n- La ENIGH capta remesas dentro del rubro de transferencias del `concentradohogar`; históricamente la proporción de hogares con ingreso por remesas del exterior ronda el 4–5 % nacional, y la serie mostró una tendencia ligeramente creciente entre 2016 y 2020 acorde con el auge de las remesas medidas por Banxico.\n- Con ponderador `factor` la cifra puede diferir en unas décimas respecto al conteo no ponderado de registros; mi estimación corresponde a la versión ponderada (expandida a hogares).\n\nSobre la fuente (sonda canario): **no tengo una fuente textual verificada para esta cifra.** No estoy citando un tabulado específico del INEGI ni un cálculo directo sobre el microdato de ENIGH 2018; no tengo acceso a documentos de este proyecto ni he ejecutado el cálculo. La estimación proviene de mi conocimiento general aproximado sobre la ENIGH y las estadísticas de remesas en México, no de una lectura concreta. Si necesitas el dato exacto, debe calcularse directamente sobre `concentradohogar` de ENIGH 2018 con el factor de expansión.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:43:38.347892+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "18f5fc872946028c58d96289603cfb55c53b9b0ca0754e1c9891eb4cb9e2ecf0",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

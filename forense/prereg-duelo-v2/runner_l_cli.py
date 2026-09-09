@@ -135,9 +135,10 @@ SPEC_VERSION = "v1_3"
 
 # (1) Paquete-corpus real, en vez del placeholder literal que `_iter_plan()`
 # traía para L+corpus ("[contexto tierizado -- no construido en este acto]").
-# Directorio congelado en el mismo COMMIT-1 que esta enmienda; manifiesto.json
-# mapea id_celda -> lista de documentos permitidos por el corte temporal de
-# esa celda (P1(a)), cada uno con su sha256 individual.
+# manifiesto.json (congelado en COMMIT-1) mapea id_celda -> lista de
+# documentos permitidos por el corte temporal de esa celda (P1(a)), cada uno
+# con su sha256 individual -- por RUTA dentro de `corpus/` (ENMIENDA F5-3: no
+# se duplica el byte del documento en el repo, ver `cargar_contexto_corpus`).
 PAQUETE_CORPUS_DIR = DIR / "paquete-corpus-F5-v1_0"
 PAQUETE_CORPUS_MANIFIESTO = PAQUETE_CORPUS_DIR / "manifiesto.json"
 # Presupuesto de caracteres del contexto ensamblado por invocación L+corpus.
@@ -153,11 +154,23 @@ MAX_CHARS_CONTEXTO_CORPUS = 600_000
 
 def cargar_contexto_corpus(id_celda: str) -> tuple[str, dict]:
     """Ensambla el contexto documental para la variante L+corpus de una
-    celda, desde el paquete-corpus congelado en P1 -- nunca desde `corpus/`
-    directamente (la sesión ejecutora de D-iii tampoco tendría ese acceso;
-    este runner replica, en la caja, exactamente lo que P2 blinda). Si la
-    celda no tiene entrada en el manifiesto (specs anteriores a v1_3, que no
-    tienen paquete-corpus construido -- CIV-M-06/08/09/11, TRA-M-05 de
+    celda, desde el manifiesto congelado en P1 (`manifiesto.json`) leyendo
+    los documentos por ruta+hash desde `corpus/` (repo-relativo a `ROOT`).
+
+    ENMIENDA F5-3 (medida, no supuesta: T02/T25 marcaron 75 FAIL nuevos
+    porque `paquete-corpus-F5-v1_0/documentos/` duplicaba, byte a byte, los
+    37 archivos que ya viven en `corpus/`). El manifiesto solo referencia
+    ruta+hash -- no se commitea una segunda copia. La caja aislada de P2
+    sigue siendo self-contained: al construirla, quien arma el directorio
+    copia `corpus/reports/`+`corpus/forense/` (verificado contra los hashes
+    del manifiesto) hacia la caja -- eso vive fuera del clon, nunca en el
+    repo. Esto no invalida las 224 capturas ya selladas de P3: el texto que
+    recibió el modelo fue, byte a byte, el mismo contenido de `corpus/` que
+    esta función lee ahora -- solo cambia de dónde lo lee el runner en el
+    repo (antes: la copia duplicada; ahora: la fuente única).
+
+    Si la celda no tiene entrada en el manifiesto (specs anteriores a v1_3,
+    que no tienen paquete-corpus construido -- CIV-M-06/08/09/11, TRA-M-05 de
     v1_1/v1_2), cae al placeholder histórico sin romper la regresión, con la
     razón declarada en los metadatos en vez de fallar en silencio."""
     if not PAQUETE_CORPUS_MANIFIESTO.exists():
@@ -178,7 +191,7 @@ def cargar_contexto_corpus(id_celda: str) -> tuple[str, dict]:
     documentos_leidos: list[str] = []
     truncado_en: str | None = None
     for ruta_rel in documentos:
-        ruta_abs = PAQUETE_CORPUS_DIR / ruta_rel
+        ruta_abs = ROOT / ruta_rel
         texto_doc = ruta_abs.read_text(encoding="utf-8")
         cabecera = f"\n\n=== {ruta_rel} ===\n\n"
         bloque = cabecera + texto_doc

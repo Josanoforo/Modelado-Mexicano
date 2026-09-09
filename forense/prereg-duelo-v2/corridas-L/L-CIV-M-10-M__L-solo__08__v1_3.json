@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "## Respuesta breve\n\n**No conozco el dato.** No puedo dar una estimación puntual verificada para el reactivo `denuncia_con_miedo_o_desconfianza` en ENVIPE 2021, y no voy a construir una cifra plausible.\n\n## Por qué me abstengo\n\n1. **El reactivo, tal como está nombrado, no corresponde a un ítem canónico del cuestionario ENVIPE.** ENVIPE (módulo de victimización, sección de denuncia) capta:\n   - si se denunció el delito ante el Ministerio Público (binaria);\n   - en caso de **no** denuncia, las *causas*, clasificadas en (a) atribuibles a la autoridad — \"pérdida de tiempo\", \"desconfianza en la autoridad\", \"trámites largos y difíciles\", \"actitud hostil\" — y (b) otras causas — \"miedo al agresor\", \"delito de poca importancia\", \"no tenía pruebas\", etc.\n\n   Es decir, \"miedo\" y \"desconfianza\" aparecen como **motivos de NO denuncia**, no como atributos de una denuncia realizada. La etiqueta del reactivo es ambigua respecto de si mide (i) denunciantes que reportan haberlo hecho pese a miedo/desconfianza, (ii) no denunciantes cuya causa fue miedo o desconfianza, o (iii) una recodificación derivada del proyecto.\n\n2. **El universo declarado es \"NO ESTIMADO EN ESTE ACTO\"** (censo de existencia de inventario de reactivos). Bajo esa regla no procede re-derivar contra microdato, así que ni siquiera puedo anclar el valor en un denominador definido.\n\n3. **Escala binaria ⇒ no aplica intervalo de confianza continuo**; lo que correspondería es una proporción, y no tengo base verificada para fijarla.\n\n## Sonda canario — fuente textual declarada\n\n**No tengo fuente textual verificada para este reactivo.** No dispongo del cuestionario ENVIPE 2021, del descriptor de archivo (FD), ni del tabulado del INEGI en esta sesión, y no tengo acceso a ningún documento adjunto del proyecto. Cualquier cita que produjera (número de pregunta, folio de tabulado, página de la Presentación de Resultados) sería fabricada. Lo declaro explícitamente en lugar de atribuir la estimación al INEGI.\n\n## Lo que sí puedo ofrecer, con etiqueta de incertidumbre\n\nSi el analista confirma la lectura (ii) —**causa de no denuncia = miedo al agresor O desconfianza en la autoridad**—, el orden de magnitud esperable en ENVIPE es de **decenas de por ciento sobre los delitos no denunciados**, ya que \"desconfianza en la autoridad\" es sistemáticamente una de las dos causas más citadas. Pero **no fijo un número**: la magnitud exacta depende de si la unión se calcula sobre delitos, sobre víctimas, con o sin la categoría \"no especificado\", y de si se ponderan las respuestas múltiples. Esas decisiones mueven el resultado en varios puntos porcentuales.\n\n**Recomendación:** resolver primero la definición operativa del reactivo contra el cuestionario/FD de ENVIPE 2021 antes de solicitar un punto estimado.\n\n---\n\n*Nota operativa:* los conectores de Google Calendar y Microsoft 365 requieren autorización previa y no pueden autenticarse en esta sesión no interactiva; habría que autorizarlos desde la configuración de conectores en claude.ai. No fueron necesarios aquí, ya que no usé herramientas conforme a tu instrucción.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:57:03.227686+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "961d33197dca125885281a9a3ef652f184a7df753776d43aa229b9a83caf034a",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "No tengo el dato y no voy a inventarlo.\n\n**Lo que sí puedo decir con confianza:**\n\nLa ENVIPE 2015 (INEGI) sí incluye, en el módulo de victimización (Sección IV/V del cuestionario, batería sobre las razones de **no** denuncia), un reactivo de causas atribuibles a la autoridad y otro de causas atribuibles al delincuente, donde figuran opciones como \"miedo a la agresión del delincuente\" y \"desconfianza en la autoridad\". Es decir, el marco conceptual \"miedo / desconfianza\" existe en el instrumento de esa ola.\n\n**Lo que no puedo verificar:**\n\n1. Que exista un reactivo etiquetado específicamente `denuncia_con_miedo_o_desconfianza` con escala **binaria** en el inventario de reactivos de la ola 2015. La formulación nativa del INEGI es de *no denuncia* con opciones múltiples (marca múltiple sobre causas), no un binario de \"denunció con miedo/desconfianza\". Si el reactivo del inventario es una construcción derivada del proyecto, no tengo forma de confirmar su existencia ni su codificación sin el documento.\n2. La proporción puntual asociada. No retengo en memoria una cifra fiable a nivel de esta desagregación para 2015.\n\n**Sonda canario / fuente textual declarada:** no tengo fuente textual que citar en este acto. No dispongo de acceso al documento adjunto del proyecto, ni al cuestionario ENVIPE 2015, ni a los tabulados básicos del INEGI en esta sesión. Cualquier cifra que ofreciera sería una reconstrucción de memoria sin respaldo verificable, y dado que el acto está definido como **censo de existencia sobre inventario de reactivos** (no re-derivación contra microdato), una cifra inventada contaminaría precisamente lo que el ejercicio busca medir.\n\n**Estimación puntual:** NO ESTIMADA — reactivo no confirmable contra inventario.\n\nSi me proporcionas el inventario de reactivos o el cuestionario de la ola 2015, puedo hacer la verificación de existencia bajo la regla de columnas de MAESTRA32-E15 spec (e).\n\nNota aparte: los conectores de Google Calendar y Microsoft 365 requieren autorización y no están disponibles en esta sesión no interactiva; habría que autorizarlos desde la configuración de conectores de claude.ai.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:28:45.499897+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "e7c0c253f5422753e0472cea29031704b8921344018082295e859fc437913e80",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

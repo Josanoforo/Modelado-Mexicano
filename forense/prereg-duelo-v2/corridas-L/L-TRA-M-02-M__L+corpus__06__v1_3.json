@@ -1,0 +1,61 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L+corpus",
+  "indice": 6,
+  "texto_crudo": "No conozco ese dato y no lo voy a inventar.\n\nRazones concretas:\n\n1. **La variable no corresponde a la encuesta declarada.** El encargo dice \"Encuesta: ENCUCI (ola 2020)\" con universo AP5_16_1..10 / SEC_4_5, pero el reactivo se llama `paga_mordida_encig2025`, es decir, apunta a la ENCIG 2025 (Encuesta Nacional de Calidad e Impacto Gubernamental), no a la ENCUCI. No puedo estimar un valor sin saber cuál de las dos es la fuente real ni cuál es la redacción exacta del reactivo (¿\"pagó una mordida en el último año\"? ¿\"conoce a alguien que pagó\"? ¿\"considera aceptable pagar\"?). Cada una de esas versiones da prevalencias radicalmente distintas.\n\n2. **Sonda canario (M1): no tengo fuente textual declarada.** El corpus tierizado que se me proporcionó no contiene ningún tabulado de ENCIG ni de ENCUCI con esta variable. Lo único que el corpus dice sobre mordida es cualitativo y de segunda mano: que \"corrupción/mordida y adaptación a instituciones que fallan, no cultura de la ilegalidad\" está CONFIRMADO indirectamente (tier MEDIA), y algunos datos adyacentes de ENCIG 2023 sobre *percepción* de corrupción (86.7% en policía, 73.0% en Ministerio Público) y ENSU (47.2% de quienes tuvieron contacto con autoridad de seguridad reportaron un acto de corrupción). Nada de eso es la tasa de la variable pedida.\n\n3. **La confusión entre percepción y experiencia es exactamente el error que aquí importa.** Las cifras de percepción rondan el 80–90%; las de experiencia directa de pago son un orden de magnitud menores y dependen fuertemente de si el denominador es \"población adulta\" o \"quienes tuvieron contacto con un trámite/autoridad\". Dar un número puntual sin fijar el denominador sería inventar una cifra plausible, que es justo lo que se me pide no hacer.\n\n**Lo único que puedo ofrecer con honestidad**, y marcándolo como inferencia de orden de magnitud y no como estimación de la variable:\n\n- Si el reactivo mide **experiencia de pago de soborno en el último año sobre población adulta general**, el rango histórico de la serie ENCIG está en el orden de un dígito bajo a medio (aproximadamente 10–15% de adultos que tuvieron contacto con un trámite). Confianza: baja.\n- Si el reactivo mide **incidencia sobre quienes tuvieron contacto con la autoridad de seguridad pública**, el orden es mucho mayor (~45–50%). Confianza: baja-media, apoyada en el dato ENSU citado en el corpus.\n\nNo emito un punto único ni un intervalo formal porque no tengo el reactivo, ni el denominador, ni la fuente. Para cerrarlo se necesita el tabulado primario de INEGI de la encuesta que efectivamente corresponda (ENCIG 2025 o ENCUCI 2020) y la redacción literal del ítem.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T23:01:47.280465+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "paquete-corpus-F5-v1_0",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "daabe12550f4b50620d4554a0b25096f5c578434654b2622be0d098bae6b867e",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": {
+    "estado": "OK",
+    "id_celda": "TRA-M-02",
+    "corte_temporal": null,
+    "documentos_disponibles": 32,
+    "documentos_incluidos": [
+      "documentos/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano__Validación_Forense_de_Supuestos_contra_Desenlaces_Reales.md",
+      "documentos/forense/Consumo_Aspiracional_en_México__Validación_Forense_del_Modelo_Anti-Esencialista.md",
+      "documentos/forense/Crédito_Fácil_y_Sobreendeudamiento_en_México__Escaneo_de_Indicadores_Adelantados_2025-2026.md",
+      "documentos/forense/Crédito_Popular_en_México__Morosidad_Auditada__Fondeo_y_Gobierno_Corporativo_como_Verdaderos_Riesgos_Estructurales.md",
+      "documentos/forense/Validación_Forense_del_Clientelismo_Electoral_en_México__Agencia_del_Votante__Programas_Sociales_y_Límites_de_la_Compra_de_Voto.md",
+      "documentos/forense/compass-4-e29a28d4-credito-popular-2026.md",
+      "documentos/reports/Adopción_y_Resistencia_Tecnológica_en_México__La_Paradoja_de_la_Baja_Confianza_Institucional.md",
+      "documentos/reports/Ausencia_sin_certeza__duelo_y_pérdida_ambigua_en_familias_de_personas_desaparecidas_en_México.md",
+      "documentos/reports/Behavioral_Finance_Mexicano__Estructura__Adaptación_Racional_y_Cultura_en_el_Ahorro__Crédito_y_Riesgo.md",
+      "documentos/reports/Confianza_y_Desconfianza_en_México__Anatomía_Psicológica_de_una_Sociedad_Dual.md",
+      "documentos/reports/El_Clasemediero_Mexicano__Identidad__Ansiedad_de_Estatus_y_el_Miedo_Racional_a_Caer.md",
+      "documentos/reports/El_Efecto_Ambiental_de_la_Violencia_Crónica_en_México__Cómo_el_Miedo_Reorganiza_la_Conducta_Psicológica_de_la_Población.md",
+      "documentos/reports/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md",
+      "documentos/reports/El_México_Rural_e_Indígena_en_sus_Propios_Términos__Comunalidad__Autoridad_y_Reciprocidad_como_Sistemas_con_Lógica_Propia.md",
+      "documentos/reports/Elegir__Cortejar_y_Amar_en_el_México_de_Hoy__Díada_de_Pareja__Apps_de_Citas_y_Cambio_en_los_Guiones_de_Género.md",
+      "documentos/reports/Genetica_y_Conducta_del_Mexicano_Contemporaneo__Canal_Individual_vs__Estructura.md",
+      "documentos/reports/Health__Body__Food_and_Substance_Use_in_Mexico__The_Behavioral_Layer_of_Decisions__Environment_and_Structure.md",
+      "documentos/reports/Humor_in_Mexican_Psychological_Life__2023-2026_Update.md",
+      "documentos/reports/La_familia_mexicana_como_sistema_psicológico__entre_el_afecto__la_obligación_y_la_adaptación_económica.md",
+      "documentos/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md"
+    ],
+    "documentos_excluidos": [
+      "documentos/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md",
+      "documentos/reports/La_arquitectura_invisible_de_la_interacción_social_en_México.md",
+      "documentos/reports/Non-Family_Social_Capital_in_Mexico__Cooperation__Trust__and_Collective_Action_Beyond_Kinship.md",
+      "documentos/reports/Psicología_Política_y_Comportamiento_Cívico_del_Mexicano_Contemporáneo__Una_Lectura_Anti-Esencialista_desde_Abajo__2026_.md",
+      "documentos/reports/Psicología__Conducta_y_Sociedad_en_el_México_Contemporáneo__Análisis_Transcultural_y_Estructural.md"
+    ],
+    "chars_incluidos": 600000,
+    "truncado": true,
+    "truncado_en_documento": "documentos/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "**Estimación puntual: ~4.5% de los hogares** (proporción ponderada de hogares con remesas > 0 en ENIGH 2018 Nueva Serie).\n\nIntervalo subjetivo (aunque la escala es binaria, expreso mi incertidumbre sobre la proporción poblacional): **3.8% – 5.5%**, con la mayor parte de la masa entre 4% y 5%.\n\nBase del razonamiento:\n- Las series históricas de ENIGH ubican la fracción de hogares receptores de remesas en el rango aproximado de 4–6% desde mediados de los 2000, con un descenso tras la crisis de 2008–2009 (de ~6–7% en 2006 hacia ~4–5% en 2010–2016) y una relativa estabilidad o ligero repunte hacia 2018.\n- En números absolutos esto equivaldría a del orden de 1.5–1.9 millones de hogares sobre un total de ~34.7 millones en 2018.\n\nAdvertencia de honestidad (sonda de fuente): **no tengo una cifra verificada tabulada directamente del microdato de ENIGH 2018 para este indicador, ni estoy citando una fuente textual concreta.** No dispongo del archivo `concentradohogar` ni de un cuadro oficial del INEGI en memoria con este porcentaje exacto. La cifra anterior es una inferencia a partir de conocimiento general sobre la distribución de remesas en ENIGH, no una lectura de fuente. Si necesitas el valor exacto, debe calcularse sobre `concentradohogar` de ENIGH 2018 con el factor de expansión `factor`, contando `remesas > 0`.\n\nNota adicional: dos detalles metodológicos alteran el resultado y conviene fijarlos antes de comparar con cualquier cifra publicada: (1) si se usa la estimación ponderada o el conteo simple de registros en muestra, y (2) que ENIGH capta remesas del extranjero dentro del rubro de transferencias, por lo que definiciones ligeramente distintas (por ejemplo, incluir o no transferencias monetarias nacionales) producen porcentajes que pueden diferir en un punto o más.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:00:14.379960+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "18f5fc872946028c58d96289603cfb55c53b9b0ca0754e1c9891eb4cb9e2ecf0",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

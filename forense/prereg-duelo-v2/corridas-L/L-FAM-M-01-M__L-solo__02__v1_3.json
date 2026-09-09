@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-01",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "No conozco el dato. No puedo dar una estimación puntual fundamentada para este reactivo.\n\nRazones concretas:\n\n1. **No tengo constancia del reactivo tal como está formulado.** La ENIF 2018 (INEGI/CNBV) sí incluye un módulo sobre previsión para la vejez / retiro, donde se pregunta por las fuentes con las que la persona espera mantenerse o se mantiene en la vejez (opciones típicas: pensión/jubilación, ahorro, apoyo de familiares, apoyos de gobierno, seguir trabajando, etc.). Pero no puedo confirmar que exista una variable binaria discreta con el identificador o el fraseo `recibe_dinero_familiares_para_vejez` en el diseño de registro de 2018, ni si corresponde a \"recibe actualmente\" (población 60+) o a \"espera recibir\" (prospectivo, población 18-70). Esa distinción cambia por completo la prevalencia.\n\n2. **La consigna del universo dice explícitamente que este acto es un censo de existencia sobre el inventario de reactivos, no una re-derivación contra microdato.** Por tanto, aun si arriesgara un porcentaje, no sería una estimación validable bajo la regla declarada.\n\n3. **Sonda canario — fuente textual declarada: ninguna.** No tengo acceso al descriptor de archivos, al cuestionario ni a los tabulados de ENIF 2018 en esta sesión, y no dispongo de un documento adjunto del proyecto. Cualquier cifra que ofreciera sería una reconstrucción de memoria no verificable, es decir, fabricada en el sentido relevante.\n\nLo que sí puedo afirmar con seguridad moderada, sin cifra: en encuestas mexicanas de este tipo, el \"apoyo de hijos/familiares\" aparece consistentemente como una de las fuentes más citadas para el sostenimiento en la vejez, típicamente por encima de instrumentos financieros formales distintos de la pensión contributiva. Pero eso es una dirección cualitativa, no un punto estimado.\n\nPara resolverlo se necesitaría el descriptor de registro de ENIF 2018 o el cuestionario, para fijar primero el fraseo exacto y el universo (edad, condición de actividad) antes de hablar de proporciones.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:29:48.882765+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2abf2dbb064411640e9fa6fb744e10cee70d658576ea052ca97c968d8ffa984d",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

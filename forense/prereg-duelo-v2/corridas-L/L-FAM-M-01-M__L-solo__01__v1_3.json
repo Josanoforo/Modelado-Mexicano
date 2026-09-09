@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-01",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "No conozco este dato y no puedo darlo con fundamento.\n\n**Declaración explícita:** No tengo memorizado ningún valor puntual para un reactivo llamado `recibe_dinero_familiares_para_vejez` en la ENIF 2018 (Encuesta Nacional de Inclusión Financiera, INEGI/CNBV), ni puedo verificar contra el cuestionario o los microdatos en este acto.\n\n**Sobre la existencia del reactivo (que es lo que se pide en este censo de inventario):** La ENIF 2018 sí incluye en su módulo de ahorro/previsión una batería sobre cómo la persona planea afrontar sus gastos en la vejez, cuyas opciones típicamente incluyen apoyo de familiares/hijos, pensión, ahorro propio, seguir trabajando, etc. Sin embargo:\n\n- No puedo confirmar que exista un reactivo con esa etiqueta exacta ni con esa formulación (recepción **actual** de dinero de familiares para la vejez vs. **expectativa** de apoyo futuro; son cosas distintas y la ENIF se orienta más a lo segundo).\n- Tampoco puedo confirmar el nombre de variable ni el número de pregunta.\n\n**Estimación puntual:** me abstengo. Cualquier cifra que diera (p. ej. \"≈30% responde sí\") sería una fabricación plausible, no una recuperación.\n\n**Fuente (sonda canario):** No declaro fuente textual. No estoy consultando el cuestionario de la ENIF 2018, el descriptor de archivo de datos (FD) ni los tabulados del INEGI; no hay documento adjunto en este proyecto al que pueda apelar. Mi único insumo es conocimiento general de la encuesta, insuficiente para el nivel de especificidad solicitado.\n\n**Recomendación de verificación:** cuestionario ENIF 2018 (sección de ahorro y previsión para el retiro) y el descriptor de archivo de datos publicados por INEGI, para fijar si el reactivo es de recepción actual o de expectativa antes de asignarle un valor.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:31:55.897795+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2abf2dbb064411640e9fa6fb744e10cee70d658576ea052ca97c968d8ffa984d",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

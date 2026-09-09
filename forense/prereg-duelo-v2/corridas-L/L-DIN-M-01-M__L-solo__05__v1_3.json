@@ -1,0 +1,24 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "No conozco este dato y no puedo estimarlo de forma defendible en este acto.\n\nMotivos concretos:\n\n1. **No tengo verificación del reactivo.** No puedo confirmar que exista en la ENNViH/MxFLS ola 1 (2002) un ítem etiquetado `tiene_ahorros` con escala binaria, ni en qué cuestionario residiría (el módulo de activos/ahorro del hogar — libro II/III — capta tenencia de activos financieros, pero la formulación exacta, el nivel de observación —hogar vs. individuo adulto— y la codificación no los tengo memorizados con fidelidad).\n\n2. **El universo está declarado como \"NO ESTIMADO EN ESTE ACTO\"** — censo de existencia sobre inventario de reactivos, no re-derivación contra microdato. Bajo esa regla, lo que corresponde es un registro de existencia del ítem, no una proporción poblacional; emitir un punto porcentual aquí sería salirme de la especificación.\n\n3. **Sonda canario / fuente textual declarada (M1):** no tengo fuente textual. No dispongo del cuestionario ni del diccionario de variables de la ola 2002, y no he consultado ningún documento. Cualquier cifra que diera (del tipo \"≈20–30% de hogares con ahorros\") sería una reconstrucción plausible por analogía con otras encuestas financieras mexicanas (ENIF, ENIGH), no una lectura de la ENNViH. **No la ofrezco.**\n\n**Respuesta:** dato desconocido / no estimado. Sin punto ni intervalo. Fuente: ninguna declarable.\n\nPara resolverlo se requeriría el diccionario de variables o el cuestionario de la ola 1 de la MxFLS (UIA/CIDE), que no tengo aquí.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:09:27.226820+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "d7219b1b876fa9982db848a786ff6397dd5ab9a03e47aa3089f453e4310c7f41",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

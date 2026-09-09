@@ -196,16 +196,26 @@ consistente con que su rol aquí es secundario, sin veto (§5).
 `forense/prereg-duelo-v2/paquete-corpus-F5-v1_0/` — congelado en este COMMIT-1,
 contiene:
 
-- `manifiesto.json` — por celda: documentos incluidos/excluidos (rutas relativas a
-  este directorio) + razón de cada exclusión; `documentos`: sha256 individual de
-  cada uno de los 37; `bundle_sha256`: `79d054cc186c06e3f07569c44896163efeef890de908f3ee64d5689ee15e95e0`
+- `manifiesto.json` — por celda: documentos incluidos/excluidos (rutas
+  **relativas a la raíz del repo**, dentro de `corpus/reports/`/`corpus/forense/`)
+  + razón de cada exclusión; `documentos`: sha256 individual de cada uno de
+  los 37; `bundle_sha256`: `79d054cc186c06e3f07569c44896163efeef890de908f3ee64d5689ee15e95e0`
   (sha256 del JSON canónico `{ruta: sha256}` de los 37 documentos, orden
   determinista).
-- `documentos/` — copia verbatim, sin edición, de los 37 archivos de
-  `corpus/reports/` + `corpus/forense/` (el corpus GEN2 adoptado íntegro —
-  `PLAN-DE-OBRA-GEN2-v1_1` F5). La copia existe para que P2 pueda mover este
-  directorio COMPLETO a la caja aislada sin que esa caja necesite ruta al clon
-  (`corpus/` vive dentro del clon; el paquete-corpus no).
+
+**ENMIENDA F5-3 (medida, no supuesta).** La primera versión de este paquete
+copiaba, además, los 37 documentos byte a byte bajo `documentos/` —
+`tests/check.py` (`T02`/`T25`) marcó 75 FAIL nuevos: contenido idéntico bajo
+dos rutas es exactamente lo que `T02` existe para atrapar. Corregido: el
+paquete-corpus es **solo el manifiesto** (ruta+hash), no una segunda copia de
+los bytes. La caja aislada de P2 sigue siendo self-contained sin ruta al
+clon — al construirla, quien arma el directorio copia
+`corpus/reports/`+`corpus/forense/` (verificado contra los hashes del
+manifiesto) hacia la caja; eso vive fuera del clon y no se commitea, igual
+que el resto de P2. Esto no invalida las 224 capturas ya selladas de P3 (§9):
+el texto que recibió el modelo fue, byte a byte, el mismo contenido de
+`corpus/` — solo cambia dónde vive la copia física (antes: duplicada en el
+repo; ahora: solo en la caja aislada, fuera de git).
 
 **Exclusiones universales — categorías que NUNCA entran al paquete-corpus, con su
 razón, aunque ninguna de las cinco exista físicamente dentro de `corpus/`:**
@@ -392,7 +402,8 @@ volverse circular):
 | `L-CORRIDAS-v1_2` (firma DL-(1), `sha256_prompt`/`params`) | `0c10e9ab…` | `7ac9852e22201bc61218d2ccfb501e97efc76b51d55261abf213388257e04e4b` |
 | `P4 (D3)`, commit `e8a95d0`, `FP-235`/`FP-240` (sufijo `__<SPEC_VERSION>`) | `7ac9852e…` | `b2c3965851423d07f164d11da914972742924e70bfb5f9f71cc8f70ad5aeb7e3` |
 | **ENMIENDA F5** (este acto: contexto real de `L+corpus`, orden contrabalanceado, reintentos acotados y contados) | `b2c39658…` | `2f1983eb687dd2f4dbcc04378e3dafb6e055e2f24e1c5201ef15583c39acb8ad` |
-| **ENMIENDA F5-2** (medida en P3, no supuesta: `OSError: [Errno 7] Argument list too long` en la primera invocación `L+corpus` real — el prompt con contexto de hasta 600 000 caracteres excedía el límite por-argumento de `execve`; el prompt ya no viaja en `argv`, se entrega por `stdin`, verificado empíricamente con `claude -p` antes de aplicar) | `2f1983eb…` | **`54c994b22111df70f60da599b6ffa0dacd8a62c55fcc5a217ff6cab79cdbaca5`** |
+| **ENMIENDA F5-2** (medida en P3, no supuesta: `OSError: [Errno 7] Argument list too long` en la primera invocación `L+corpus` real — el prompt con contexto de hasta 600 000 caracteres excedía el límite por-argumento de `execve`; el prompt ya no viaja en `argv`, se entrega por `stdin`, verificado empíricamente con `claude -p` antes de aplicar) | `2f1983eb…` | `54c994b22111df70f60da599b6ffa0dacd8a62c55fcc5a217ff6cab79cdbaca5` |
+| **ENMIENDA F5-3** (medida, no supuesta: `tests/check.py` `T02`/`T25` marcaron 75 FAIL nuevos porque `paquete-corpus-F5-v1_0/documentos/` duplicaba byte a byte los 37 archivos de `corpus/`; `cargar_contexto_corpus()` ahora lee de `ROOT / ruta_rel` — el manifiesto referencia `corpus/`, no se duplica nada en el repo) | `54c994b2…` | **`69e137a7e9a6f5f501018debbcdf33e4c7da72e8cce12789f6c8a57173d8b5b9`** |
 
 **Regresión obligatoria de la última fila, corrida en este acto:** `--dry-run` con
 `L-spec-v1_1.json` → 176 rutas (verde, sin cambio de conteo); `L-spec-v1_2.json` →

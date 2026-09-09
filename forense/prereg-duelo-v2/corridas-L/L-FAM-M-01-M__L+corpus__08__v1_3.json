@@ -1,0 +1,60 @@
+{
+  "id_celda": "FAM-M-01",
+  "variante": "L+corpus",
+  "indice": 8,
+  "texto_crudo": "No conozco el dato.\n\nNo tengo información sobre un reactivo llamado `recibe_dinero_familiares_para_vejez` en la ENIF 2018. La ENIF (Encuesta Nacional de Inclusión Financiera, INEGI/CNBV) sí incluye en su módulo de retiro/vejez preguntas sobre cómo la persona espera solventar sus gastos en la vejez, entre cuyas opciones suele figurar el apoyo de familiares —pero no puedo confirmar la existencia, redacción exacta ni el código de este reactivo específico en el inventario de la ola 2018, y no daré una cifra puntual porque sería inventada.\n\nSobre la escala: si el reactivo existe como binaria, sería previsiblemente una opción dentro de una batería de fuentes esperadas de ingreso en la vejez, con codificación sí/no. Pero eso es inferencia sobre el diseño típico del instrumento, no conocimiento del reactivo.\n\nFuente de esta respuesta (sonda canario): **ninguna fuente textual declarada**. No estoy citando el cuestionario de la ENIF 2018 ni ningún documento del corpus adjunto; el contexto tierizado que se me proporcionó (paquete-corpus-F5-v1_0) trata de consumo aspiracional, crédito popular, clientelismo, confianza, salud, familia y genómica, y **no contiene el inventario de reactivos de la ENIF** ni ninguna referencia a esta variable. Mi respuesta se basa únicamente en conocimiento general previo sobre el instrumento, insuficiente para adjudicar este ítem.\n\nDado que el universo se declara \"censo de existencia sobre inventario de reactivos, no re-derivación contra microdato\", la resolución correcta requiere consultar el cuestionario/catálogo de la ENIF 2018 directamente; no puedo suplirlo por memoria.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:27:11.379285+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "paquete-corpus-F5-v1_0",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "9d249fd2540976d93c626d17d21abf3fbcb6744e4590c48cb75ee403fd0f11c9",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": {
+    "estado": "OK",
+    "id_celda": "FAM-M-01",
+    "corte_temporal": null,
+    "documentos_disponibles": 32,
+    "documentos_incluidos": [
+      "documentos/forense/Consumo_Aspiracional_en_México__Validación_Forense_del_Modelo_Anti-Esencialista.md",
+      "documentos/forense/Crédito_Popular_en_México__Morosidad_Auditada__Fondeo_y_Gobierno_Corporativo_como_Verdaderos_Riesgos_Estructurales.md",
+      "documentos/forense/Validación_Forense_del_Clientelismo_Electoral_en_México__Agencia_del_Votante__Programas_Sociales_y_Límites_de_la_Compra_de_Voto.md",
+      "documentos/forense/compass-4-e29a28d4-credito-popular-2026.md",
+      "documentos/reports/Adopción_y_Resistencia_Tecnológica_en_México__La_Paradoja_de_la_Baja_Confianza_Institucional.md",
+      "documentos/reports/Ausencia_sin_certeza__duelo_y_pérdida_ambigua_en_familias_de_personas_desaparecidas_en_México.md",
+      "documentos/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md",
+      "documentos/reports/Confianza_y_Desconfianza_en_México__Anatomía_Psicológica_de_una_Sociedad_Dual.md",
+      "documentos/reports/El_Clasemediero_Mexicano__Identidad__Ansiedad_de_Estatus_y_el_Miedo_Racional_a_Caer.md",
+      "documentos/reports/El_Efecto_Ambiental_de_la_Violencia_Crónica_en_México__Cómo_el_Miedo_Reorganiza_la_Conducta_Psicológica_de_la_Población.md",
+      "documentos/reports/El_México_Rural_e_Indígena_en_sus_Propios_Términos__Comunalidad__Autoridad_y_Reciprocidad_como_Sistemas_con_Lógica_Propia.md",
+      "documentos/reports/Elegir__Cortejar_y_Amar_en_el_México_de_Hoy__Díada_de_Pareja__Apps_de_Citas_y_Cambio_en_los_Guiones_de_Género.md",
+      "documentos/reports/Genetica_y_Conducta_del_Mexicano_Contemporaneo__Canal_Individual_vs__Estructura.md",
+      "documentos/reports/Health__Body__Food_and_Substance_Use_in_Mexico__The_Behavioral_Layer_of_Decisions__Environment_and_Structure.md",
+      "documentos/reports/Humor_in_Mexican_Psychological_Life__2023-2026_Update.md",
+      "documentos/reports/La_arquitectura_invisible_de_la_interacción_social_en_México.md",
+      "documentos/reports/La_familia_mexicana_como_sistema_psicológico__entre_el_afecto__la_obligación_y_la_adaptación_económica.md",
+      "documentos/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md",
+      "documentos/reports/Moral_Emotions_in_Mexico__Declared_Dignity__Relational_Face__and_Residual_Catholic_Guilt.md"
+    ],
+    "documentos_excluidos": [
+      "documentos/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano__Validación_Forense_de_Supuestos_contra_Desenlaces_Reales.md",
+      "documentos/forense/Crédito_Fácil_y_Sobreendeudamiento_en_México__Escaneo_de_Indicadores_Adelantados_2025-2026.md",
+      "documentos/reports/Behavioral_Finance_Mexicano__Estructura__Adaptación_Racional_y_Cultura_en_el_Ahorro__Crédito_y_Riesgo.md",
+      "documentos/reports/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md",
+      "documentos/reports/Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md"
+    ],
+    "chars_incluidos": 600000,
+    "truncado": true,
+    "truncado_en_documento": "documentos/reports/Moral_Emotions_in_Mexico__Declared_Dignity__Relational_Face__and_Residual_Catholic_Guilt.md"
+  }
+}

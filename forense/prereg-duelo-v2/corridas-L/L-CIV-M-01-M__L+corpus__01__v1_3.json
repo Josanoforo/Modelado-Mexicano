@@ -1,0 +1,62 @@
+{
+  "id_celda": "CIV-M-01",
+  "variante": "L+corpus",
+  "indice": 1,
+  "texto_crudo": "No tengo ese dato.\n\nNo conozco un reactivo llamado `denuncia_con_miedo_o_desconfianza` en la ENVIPE 2012, ni puedo dar una estimación puntual defendible de su valor. Lo que sí puedo declarar, con la separación que el acto exige:\n\n**Lo que sé del instrumento (no es estimación del reactivo):** la ENVIPE incluye desde su primera ola (2011, levantada sobre 2010) un módulo de causas de no denuncia, con dos bloques que la propia metodología distingue: causas atribuibles a la autoridad (pérdida de tiempo, desconfianza en la autoridad, trámites largos y difíciles, actitud hostil) y causas atribuibles a otras circunstancias (miedo al agresor, delito de poca importancia, no tenía pruebas, por miedo a que lo extorsionaran). \"Miedo\" y \"desconfianza\" aparecen ahí como **opciones separadas y en bloques distintos**, no como un reactivo binario compuesto.\n\n**Por qué no doy cifra:** el nombre del reactivo tal como viene planteado —`denuncia_con_miedo_o_desconfianza`, escala binaria— no corresponde a ninguna redacción de cuestionario que pueda verificar. Puede ser (a) una variable derivada construida por el proyecto agregando dos opciones del módulo de causas, (b) una reetiquetación, o (c) un reactivo que no existe. Las tres posibilidades tienen implicaciones distintas y ninguna se resuelve por memoria. Dar un número aquí sería inventar una cifra plausible, que es exactamente lo prohibido.\n\n**Sonda canario — fuente textual declarada:** no tengo fuente textual para este reactivo. No estoy citando microdato ENVIPE 2012, no estoy citando el cuestionario de esa ola, y no tengo el inventario de reactivos contra el cual se está haciendo el censo de existencia. Las opciones de respuesta que enumero arriba son conocimiento general del instrumento ENVIPE, no lectura verificada de la ola 2012 en este acto.\n\n**Sobre el corpus adjunto:** el material tierizado que acompaña la consulta (paquete-corpus-F5-v1_0) no contiene ENVIPE 2012 ni el módulo de denuncia. Su contenido es de crédito popular, consumo aspiracional, clientelismo electoral y adopción tecnológica. Los únicos datos de percepción de inseguridad que aparecen son ENSU 4T-2025 (63.8% de percepción de inseguridad) y ENVIPE citada de segunda mano en el report de tiempo, ninguno de los cuales sirve para este reactivo ni para esta ola. No hay nada en el corpus de lo que pueda derivarse la respuesta.\n\n**Lo que corresponde según la regla de columnas invocada:** si esto es censo de existencia sobre inventario, la salida correcta es marcar el reactivo como `NO-VERIFICADO-EN-ESTE-ACTO` y remitir a la fuente primaria (cuestionario ENVIPE 2012, INEGI) o al inventario del proyecto para resolver si es reactivo nativo o variable derivada. Universo: `NO ESTIMADO`, tal como el propio acto lo declara.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:57:52.844590+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "paquete-corpus-F5-v1_0",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "6471692b2a2a7eb981f21811b79c209b6a5eacaa3be4bc3f3b79946c7fb98360",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": {
+    "estado": "OK",
+    "id_celda": "CIV-M-01",
+    "corte_temporal": null,
+    "documentos_disponibles": 31,
+    "documentos_incluidos": [
+      "documentos/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano__Validación_Forense_de_Supuestos_contra_Desenlaces_Reales.md",
+      "documentos/forense/Consumo_Aspiracional_en_México__Validación_Forense_del_Modelo_Anti-Esencialista.md",
+      "documentos/forense/Crédito_Fácil_y_Sobreendeudamiento_en_México__Escaneo_de_Indicadores_Adelantados_2025-2026.md",
+      "documentos/forense/Crédito_Popular_en_México__Morosidad_Auditada__Fondeo_y_Gobierno_Corporativo_como_Verdaderos_Riesgos_Estructurales.md",
+      "documentos/forense/Validación_Forense_del_Clientelismo_Electoral_en_México__Agencia_del_Votante__Programas_Sociales_y_Límites_de_la_Compra_de_Voto.md",
+      "documentos/forense/compass-4-e29a28d4-credito-popular-2026.md",
+      "documentos/reports/Adopción_y_Resistencia_Tecnológica_en_México__La_Paradoja_de_la_Baja_Confianza_Institucional.md",
+      "documentos/reports/Ausencia_sin_certeza__duelo_y_pérdida_ambigua_en_familias_de_personas_desaparecidas_en_México.md",
+      "documentos/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md",
+      "documentos/reports/Behavioral_Finance_Mexicano__Estructura__Adaptación_Racional_y_Cultura_en_el_Ahorro__Crédito_y_Riesgo.md",
+      "documentos/reports/El_Clasemediero_Mexicano__Identidad__Ansiedad_de_Estatus_y_el_Miedo_Racional_a_Caer.md",
+      "documentos/reports/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md",
+      "documentos/reports/El_México_Rural_e_Indígena_en_sus_Propios_Términos__Comunalidad__Autoridad_y_Reciprocidad_como_Sistemas_con_Lógica_Propia.md",
+      "documentos/reports/Elegir__Cortejar_y_Amar_en_el_México_de_Hoy__Díada_de_Pareja__Apps_de_Citas_y_Cambio_en_los_Guiones_de_Género.md",
+      "documentos/reports/Genetica_y_Conducta_del_Mexicano_Contemporaneo__Canal_Individual_vs__Estructura.md",
+      "documentos/reports/Health__Body__Food_and_Substance_Use_in_Mexico__The_Behavioral_Layer_of_Decisions__Environment_and_Structure.md",
+      "documentos/reports/Humor_in_Mexican_Psychological_Life__2023-2026_Update.md",
+      "documentos/reports/La_arquitectura_invisible_de_la_interacción_social_en_México.md",
+      "documentos/reports/La_familia_mexicana_como_sistema_psicológico__entre_el_afecto__la_obligación_y_la_adaptación_económica.md",
+      "documentos/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md"
+    ],
+    "documentos_excluidos": [
+      "documentos/reports/Confianza_y_Desconfianza_en_México__Anatomía_Psicológica_de_una_Sociedad_Dual.md",
+      "documentos/reports/El_Efecto_Ambiental_de_la_Violencia_Crónica_en_México__Cómo_el_Miedo_Reorganiza_la_Conducta_Psicológica_de_la_Población.md",
+      "documentos/reports/Non-Family_Social_Capital_in_Mexico__Cooperation__Trust__and_Collective_Action_Beyond_Kinship.md",
+      "documentos/reports/Psicología_Política_y_Comportamiento_Cívico_del_Mexicano_Contemporáneo__Una_Lectura_Anti-Esencialista_desde_Abajo__2026_.md",
+      "documentos/reports/Psicología__Conducta_y_Sociedad_en_el_México_Contemporáneo__Análisis_Transcultural_y_Estructural.md",
+      "documentos/reports/Sanción_Social_Horizontal_en_México__Chisme__Envidia_y_Mal_de_Ojo_como_Mecanismos_de_Nivelación.md"
+    ],
+    "chars_incluidos": 600000,
+    "truncado": true,
+    "truncado_en_documento": "documentos/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md"
+  }
+}

@@ -1,4 +1,4 @@
-# ACTO GEN2-F5-RECAPTURA-L — nota de cierre de P1+P2
+# ACTO GEN2-F5-RECAPTURA-L — nota de cierre (P1+P2, y P3 tras autorización de mesa)
 
 **Fecha:** 2026-09-09 · **Entorno:** CAJA (Ubuntu/WSL de mesa), Sonnet ·
 **Redactado contra** `origin/main = ffeeca2cd1a9df65f513f1b286b35761c1fcf806`
@@ -148,11 +148,48 @@ cambios toca código de producción fuera de `forense/prereg-duelo-v2/`, y el
 runner enmendado se regresionó directamente (§1). Se deja para el revisor del
 PR confirmarlo si lo considera necesario.
 
+## 5 · P3 — ejecutado, tras autorización explícita de mesa
+
+Mesa, preguntada si lanzar P3 ahora que la compuerta se despejó, respondió
+verbatim: *"Si está dentro del encargo ejecutalo si no no"* — P3 es
+explícitamente la tercera pieza del encargo (COMMIT-2+), así que se ejecutó.
+
+**Defecto medido en la primera invocación real, no supuesto.** Con el
+contexto real de `L+corpus` (hasta 600 000 caracteres) ya construido (§1),
+`subprocess.run(comando + [prompt], ...)` tiró `OSError: [Errno 7] Argument
+list too long` — el argumento excede `MAX_ARG_STRLEN` de `execve` en Linux
+(~128 KiB). Las 4 capturas `L-solo` (sin contexto) ya escritas no tocaban ese
+límite y siguieron siendo válidas. **ENMIENDA F5-2**: `construir_comando_cli()`
+ya no recibe ni devuelve el prompt; `ejecutar_corrida()` lo entrega por
+`subprocess.run(..., input=prompt)` — verificado empíricamente con `claude -p`
+(lee stdin cuando no recibe `[prompt]` posicional) antes de aplicar. Hash
+`2f1983eb…` → `54c994b2…`. Regresión verde (v1.1: 176, v1.2: 224, v1.3: 224).
+La corrida, reanudable, retomó exactamente donde se había quedado.
+
+**Resultado: 224/224 capturas, embudo limpio.** `OK=224 · rechazadas=0 ·
+reintentos=0`. Las 28 combinaciones (celda × variante) tienen sus 8 réplicas
+cada una, sin faltantes. Duración total: 3 914 s (~65 min).
+
+**Hallazgo declarado, no oculto: `modelo_real=None` en las 224 capturas.**
+Limitación pre-existente y ya documentada (`FP-240`, medida primero sobre las
+128 capturas de v1.2 con cliente `2.1.258`): el cliente en uso
+(`claude --version` = `2.1.267 "Claude Code"`) sigue sin emitir la clave
+`model` en `--output-format json`. `version_declarada` queda en el valor
+precargado (`claude-opus-4-6`), nunca sustituido por falta de valor real.
+Alias solicitado en cada invocación: `opus`.
+
+`forense/prereg-duelo-v2/manifiesto-capturas-P3-v1_0.json`: hash individual
+por archivo (`sha256_archivo`) ligado a `sha256_prompt`, bundle
+`2ce0a78871f1afc17af52e2e63097a7d6112f0ff4963373ea84b1097643f89de`. Las 224
+capturas viven en `forense/prereg-duelo-v2/corridas-L/` junto a las 424
+históricas (648 total), con sufijo `__v1_3` que las distingue por nombre.
+
 ## Cascada
 
-Este cierre es **parcial** (P1+P2, no el acto completo) — no deriva ADR, no
-toca `canon/gobernanza-v1_15.md`, `estado-programa-v1_12.md` ni
-`registro-rotulos.tsv`. `NC-0134` (P3, diferido a decisión de mesa) queda en
-`forense/no-corrido.tsv`, `ABIERTA`. El encargo, con su tabla
-NO-CORRIDO/RESERVAS y `Estado: CONSUMIDO (parcial)`, vive en
+Cierre completo: `ADR-444` (`canon/gobernanza-v1_15.md`), `L0`
+(`canon/estado-programa-v1_12.md`), rótulo `GEN2-F5-RECAPTURA-L` censado
+(`canon/registro-rotulos.tsv`), reconciliados con
+`tools/cierre_acto.py --aplica` (443→444 en los tres anclajes). `NC-0134`
+CERRADA. El encargo, con su tabla NO-CORRIDO/RESERVAS (vacía — las tres
+piezas se ejecutaron) y `Estado: CONSUMIDO`, vive en
 `forense/encargos/2026-09-09-GEN2-F5-RECAPTURA-L.md` (0-bis, A.3).

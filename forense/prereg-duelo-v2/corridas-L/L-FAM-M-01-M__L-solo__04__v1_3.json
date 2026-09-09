@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-01",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "No conozco el dato.\n\nConcretamente: no tengo memorizado un valor puntual verificable para un reactivo etiquetado `recibe_dinero_familiares_para_vejez` en la ENIF 2018 (ENIF, INEGI/CNBV, levantamiento 2018). Cualquier cifra que diera —del tipo \"X% de los adultos de 18 a 70 años declara que espera/recibe apoyo económico de familiares para su vejez\"— sería una reconstrucción plausible, no un recuerdo de fuente. No la voy a producir.\n\nNotas sobre lo que sí puedo afirmar con cierta seguridad, sin cifras:\n\n- La ENIF 2018 sí contiene un módulo sobre previsión para la vejez / retiro, con reactivos de opción múltiple o binaria sobre las fuentes esperadas de sustento en la vejez (Afore/pensión, ahorro propio, seguir trabajando, apoyo de hijos o familiares, programas de gobierno). Es altamente probable que el reactivo referido corresponda a la opción \"apoyo de hijos/familiares\" dentro de ese bloque.\n- Hay ambigüedad relevante entre \"recibe actualmente dinero de familiares\" y \"cuenta con/espera el apoyo de familiares para su vejez\". El nombre de la variable no desambigua, y el valor estimado cambia sustancialmente según cuál sea.\n\nSobre la sonda canario (M1): **no tengo fuente textual declarable**. No estoy citando el cuestionario ni el tabulado de la ENIF 2018 porque no los tengo a la vista en este acto, y no dispongo del inventario de reactivos referido en el universo (MAESTRA32-E15 spec (e)). Declarar \"INEGI/CNBV, ENIF 2018\" como fuente de una cifra concreta sería una atribución falsa.\n\nPara resolverlo se necesita el cuestionario de la ENIF 2018 (sección de previsión para el retiro) o los tabulados/microdatos publicados por INEGI.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:08:16.568009+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2abf2dbb064411640e9fa6fb744e10cee70d658576ea052ca97c968d8ffa984d",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

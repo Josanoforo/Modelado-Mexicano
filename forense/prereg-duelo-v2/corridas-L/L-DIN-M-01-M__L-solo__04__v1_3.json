@@ -1,0 +1,24 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "No conozco el dato. No puedo dar una estimación puntual fundamentada para `tiene_ahorros` en la ENNViH/MxFLS ola 1 (2002).\n\nRazones explícitas:\n\n1. **No tengo el inventario de reactivos del proyecto.** El universo declarado es un censo de existencia sobre inventario de reactivos, y no tengo acceso a ningún documento adjunto de este proyecto, ni al cuestionario de hogar/adultos de MxFLS-1 en forma verificable.\n\n2. **No puedo confirmar que exista un reactivo llamado `tiene_ahorros` con esa forma binaria.** La MxFLS-1 captura activos y ahorro dentro de los módulos de economía del hogar (activos, deuda, transferencias), pero no puedo afirmar sin inventar que haya un ítem dicotómico único de \"¿tiene ahorros?\" ni cuál sería su prevalencia marginal.\n\n3. **Sonda canario / fuente textual declarada (M1): no tengo fuente.** No puedo citar página, número de pregunta, libro del cuestionario ni tabulado publicado. Cualquier cifra que diera (p. ej. \"≈20–25% de hogares\") sería una confabulación plausible, no una recuperación.\n\n**Respuesta formal:** ESTIMACIÓN NO EMITIDA — falta de fuente verificable. Escala binaria, sin intervalo aplicable.\n\nPara resolverlo se necesitaría el inventario de reactivos del proyecto o el cuestionario MxFLS-1 (libro de hogar, sección de activos/ahorro) del sitio de la Universidad Iberoamericana / MxFLS, que no puedo consultar en este acto.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:01:21.591898+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "d7219b1b876fa9982db848a786ff6397dd5ab9a03e47aa3089f453e4310c7f41",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

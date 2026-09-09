@@ -30,24 +30,38 @@ legado de WSL seguía instalado (verificado empíricamente). Presentada la
 evidencia, mesa autorizó ejecutar P1+P2 ahora y detener antes de P3 (patrón
 [[feedback-partial-gate-deviation]]). A mitad de sesión, `PR #668 ·
 GEN2-RETIRO-CRON-LEGADO` se fusionó (`cc1cfe2`) — la compuerta se cumple desde
-ese momento. P3 sigue sin ejecutarse en este acto: lanzarlo es una decisión de
-mesa que esta sesión no se autoconcede solo porque la compuerta se despejó.
+ese momento. Preguntada explícitamente, mesa autorizó P3 verbatim: *"Si está
+dentro del encargo ejecutalo si no no"* — P3 está nombrado explícitamente
+como la tercera pieza del encargo (COMMIT-2+), así que se ejecutó.
+
+**P3 tuvo su propio defecto medido, no supuesto.** La primera invocación real
+`L+corpus` (contexto de hasta 600 000 caracteres) tiró `OSError: [Errno 7]
+Argument list too long` al pasar el prompt como argumento posicional de
+`claude -p` — excede el límite por-argumento de `execve` en Linux. Corregido
+(`ENMIENDA F5-2`): el prompt viaja por `stdin`, verificado empíricamente antes
+de aplicar. Las 4 capturas `L-solo` ya escritas antes del defecto no se
+invalidaron (el texto enviado al modelo es idéntico por cualquiera de las dos
+vías). Regresión verde, corrida resumida sin pérdida.
 
 ## NO-CORRIDO / RESERVAS
 
 | NC | Qué no se corrió | Razón | Impacto | Sucesor |
 |---|---|---|---|---|
-| `NC-0134` | P3 completo: las 224 invocaciones reales de `runner_l_cli.py --correr`, `corridas-L-M/`, manifiesto de capturas | `DECISIÓN-DE-MESA-PENDIENTE` — la compuerta que bloqueaba P3 se cumplió a mitad de sesión (`PR #668`), pero el encargo autorizó explícitamente solo P1+P2; lanzar 224 invocaciones reales con captura sellada e inamovible no es una expansión de alcance que esta sesión se autoconceda | Ninguna captura GEN2 del marco v1.3 existe todavía; `NC-0077` (435 payloads posteriores a la ventana) sigue abierta | Este mismo acto (`GEN2-F5-RECAPTURA-L`), P3, en cuanto mesa autorice el lanzamiento — el blindaje (P2) y el contrato (P1) ya están verificados y listos |
-| — | Cascada completa de cierre (ADR, L0, `registro-rotulos.tsv`, T25) | `DIFERIDO-A` el cierre completo del acto — sellar un ADR para un contrato cuyas dos terceras partes (P2 ejercido solo parcialmente sin captura real, P3) siguen pendientes sería prematuro; `cierre_acto.py` ya deriva el candidato (`443`, dado que `442` lo tomó `PR #668`) para cuando corresponda | Ninguno — `canon/gobernanza-v1_15.md` sigue coincidiendo (441 ADR reales = cabecera = L0) | Cierre completo del acto, tras P3 + `ACTO GEN2-F5-DUELO-CALC` |
-| — | Registro del rótulo `GEN2-F5-RECAPTURA-L` en `canon/registro-rotulos.tsv` | `NO-VERIFICABLE-AQUÍ` — `cierre_acto.py` marca `que_significa`/`donde_vive` como juicio humano, no mecánico | Ninguno hoy | Cierre completo del acto |
+| — | Ninguno. Las tres piezas (P1, P2, P3) se ejecutaron completas. | — | — | — |
 
-**Contador:** no se movió — cero llamadas a `claude`, ninguna captura, ningún
-cómputo del marcador. Se dice en una línea, como el encargo pide.
+`NC-0134` (P3, diferido a decisión de mesa) **CIERRA** con este acto — mesa
+autorizó el lanzamiento tras confirmar que P3 está dentro del encargo.
+
+**Contador:** no se movió — las 224 capturas son insumo sellado del duelo, no
+una medición; el `CALC` sucesor (`ACTO GEN2-F5-DUELO-CALC`) cuenta.
 
 ## Estado
 
-`ACTO GEN2-F5-RECAPTURA-L` — **CONSUMIDO (parcial)**: P1 y P2 completos y
-verificados con el PR de la rama `acto/gen2-f5-recaptura-l` (base `origin/main =
-ffeeca2c`, ejecutado contra `origin/main = cc1cfe2` tras el merge de `PR #668`
-a mitad de sesión — número de PR pendiente de asignar al abrirlo). P3 queda
-`ABIERTA` (`NC-0134`) hasta que mesa autorice su lanzamiento.
+`ACTO GEN2-F5-RECAPTURA-L` — **CONSUMIDO**: P1, P2 y P3 completos y
+verificados. `PR #669` (rama `acto/gen2-f5-recaptura-l`, base `origin/main =
+ffeeca2c`, ejecutado en tres tramos contra `origin/main = ffeeca2c → cc1cfe2
+(PR #668) → bc2aeb6 (PR #670)`). Cascada completa: `ADR-444`
+(`canon/gobernanza-v1_15.md`), `L0` (`canon/estado-programa-v1_12.md`),
+rótulo `GEN2-F5-RECAPTURA-L` censado (`canon/registro-rotulos.tsv`),
+`NC-0134` CERRADA. Sucesor: `ACTO GEN2-F5-DUELO-CALC` (consume las 224
+capturas selladas + los seis `R` GEN2, ejecuta la escala B-bis pre-declarada).

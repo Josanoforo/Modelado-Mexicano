@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "**Estimación puntual: ≈ 4.5 % de los hogares con `remesas > 0`** (es decir, `recibe_remesas = 1` en aproximadamente 1.5 millones de los ~33.4 millones de hogares del universo ENIGH 2016 Nueva Serie).\n\n**Intervalo subjetivo (80–90 % de credibilidad): 3.5 % – 5.5 %.**\n\nRazonamiento y calibración:\n- En las ENIGH de la década de 2010 la proporción de hogares que reportan ingreso por remesas (rubro `remesas` de concentradohogar, que incluye remesas del exterior) se ha ubicado de forma bastante estable en el rango de 4 % a 5.5 %, con tendencia ligeramente descendente respecto a los máximos de 2006–2008 (cuando rondaba 6–7 %).\n- La cifra depende de si se cuenta solo el rubro de remesas del exterior o si el clasificador incluye transferencias de otros hogares del país; en la Nueva Serie el rubro `remesas` corresponde a las provenientes de otros países, lo que empuja la estimación hacia el extremo bajo del rango.\n\n**Sobre la fuente (sonda canario):** no tengo un documento, tabulado ni microdato a la vista en este entorno, y no puedo citar una tabla específica del INEGI para 2016. La cifra proviene de mi conocimiento general previo sobre las series de ENIGH y su orden de magnitud, no de una fuente textual verificada aquí. No conozco con precisión el valor exacto que arroja el cálculo directo sobre el microdato de 2016, así que la estimación debe tratarse como aproximación, no como dato confirmado.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:30:41.352849+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a8dde17ac46b97f502532aad4d19f4cd26e37037bf75b73971401678ef712acc",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

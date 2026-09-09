@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "No conozco este dato y no puedo estimarlo con base sólida.\n\nRazones concretas:\n\n1. **El reactivo tal como se nombra no existe en la ENVIPE 2013 con esa etiqueta.** La ENVIPE sí capta, en el módulo de victimización (delito por delito), las *razones de no denuncia* ante autoridad, entre las cuales figuran \"miedo al agresor\" y \"por desconfianza en la autoridad\" (junto con \"pérdida de tiempo\", \"trámites largos y difíciles\", \"delito de poca importancia\", \"no tenía pruebas\", \"actitud hostil de la autoridad\", etc.). Pero esas son causas de **no** denuncia. Un reactivo llamado \"denuncia_con_miedo_o_desconfianza\" —es decir, personas que sí denunciaron a pesar de miedo o desconfianza— no corresponde a ningún ítem que yo pueda ubicar en el cuestionario principal de la ENVIPE 2013.\n\n2. **El universo está declarado como \"NO ESTIMADO EN ESTE ACTO\"**, y la tarea se define como censo de existencia sobre inventario de reactivos, no como re-derivación contra microdato. Bajo esa regla no corresponde que yo produzca una cifra: lo procedente es el dictamen de existencia/no existencia del reactivo, y mi dictamen es **no localizado / probable ítem derivado o recodificado fuera del instrumento original**.\n\n3. **No tengo acceso al inventario de reactivos de este proyecto** (no hay documento adjunto disponible en esta sesión), por lo que no puedo verificar si la etiqueta corresponde a una construcción interna del equipo.\n\n**Sonda canario (fuente textual declarada):** no puedo declarar una fuente textual verificada para una cifra de este reactivo, porque no tengo una. Lo único que puedo citar de memoria es el marco general: INEGI, *Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública (ENVIPE) 2013*, cuestionario principal, sección de descripción del delito (razones de no denuncia) y el tabulado clásico de que alrededor del 92% de los delitos en 2012 no fueron denunciados o no derivaron en averiguación previa (\"cifra negra\"). Esa cifra de cifra negra la doy con confianza moderada-alta; cualquier número específico para \"denuncia_con_miedo_o_desconfianza\" sería inventado.\n\n**Estimación puntual: no la doy.** Escala binaria, dictamen = reactivo no confirmado en el instrumento ENVIPE 2013.\n\nSi me indicas si el reactivo debe leerse como (a) \"denunció y además reportó miedo/desconfianza\" o (b) \"no denunció por miedo o desconfianza\", puedo al menos decirte contra qué ítems del cuestionario original mapearía y con qué nivel de certeza, aunque seguiría sin poder dar la proporción sin el microdato.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:38:01.966118+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "0131d4a9547fa5d8e6ca930d842dd0bfed8f54a6d6e4b9117c82a74e882c1b7f",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

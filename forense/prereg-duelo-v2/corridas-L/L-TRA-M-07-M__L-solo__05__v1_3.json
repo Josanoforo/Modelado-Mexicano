@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-07",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "**Nota previa (sonda canario / inconsistencia del reactivo):** el identificador de la variable es `paga_mordida_encig2025`, pero la ola declarada es **ENCIG 2021**. Son referencias temporales incompatibles: no puede haber un reactivo de la ola 2025 en el levantamiento 2021, y en todo caso el INEGI levanta ENCIG en años impares (…2017, 2019, 2021, 2023, 2025). **No estoy re-derivando el reactivo desde microdato ni tengo el catálogo de reactivos del proyecto**, así que estimo sobre el constructo que el nombre sugiere (\"pagó mordida / fue víctima de un acto de corrupción\"), no sobre una etiqueta verificada.\n\n**Estimación puntual (ENCIG 2021, población de 18 años y más):**\n\n- Si el constructo es **prevalencia de corrupción** (proporción de la población 18+ que tuvo contacto con alguna autoridad o realizó un trámite y **experimentó al menos un acto de corrupción**): **≈ 14–15 %** (orden de ~14,700 víctimas por cada 100,000 habitantes). Mi mejor punto: **14.7 %**, con intervalo subjetivo **[13 %, 17 %]**.\n- Si el constructo es más estricto — **\"pagó\" efectivamente una mordida** (dinero/dádiva entregada, no solo insinuada) — la proporción es sensiblemente menor, plausiblemente **≈ 5–8 %** de la población 18+ en el año de referencia. Punto: **~6 %**, intervalo subjetivo **[4 %, 10 %]**.\n- Si el denominador se restringe a **contacto con autoridades de seguridad pública** (el trámite con mayor incidencia), la prevalencia sube a **~50–60 %** de quienes tuvieron ese contacto.\n\n**Fuente declarada:** memoria de los comunicados/tabulados del INEGI sobre ENCIG 2021 (prevalencia e incidencia de corrupción). **No verifiqué la cifra contra el archivo ni contra el tabulado en este acto**, y no tengo el documento del proyecto; el \"14.7 %\" es recuerdo de orden de magnitud, no una cita comprobada. Si el reactivo real es la variable dicotómica de \"pago\" a nivel trámite (no a nivel persona), mi estimación cambiaría y la respuesta correcta sería que **no conozco el dato** con la precisión que pide la pregunta.\n\n**Recomendación:** confirmar (a) el año real de la ola y (b) si el denominador es población 18+, población con contacto, o trámites realizados; las tres bases dan cifras que difieren por factores de 2 a 4.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:50:40.315711+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "403b95330be3de3998ee5c84fe8bca8107c5180318e5fcc0c81eaffe58e48725",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

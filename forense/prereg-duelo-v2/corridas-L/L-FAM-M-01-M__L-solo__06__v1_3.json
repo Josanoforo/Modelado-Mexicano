@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-01",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "No conozco este dato. No puedo dar una estimación puntual fundamentada.\n\nRazones concretas:\n\n1. **No tengo memorizado el inventario de reactivos de la ENIF 2018.** La ENIF (Encuesta Nacional de Inclusión Financiera, INEGI/CNBV) sí incluye un módulo sobre previsión para la vejez, con preguntas del tipo \"¿cómo piensa mantenerse económicamente cuando ya no pueda trabajar?\" y sobre fuentes de ingreso actuales de adultos mayores, donde \"apoyo de familiares / hijos\" aparece como opción. Pero no puedo confirmar que exista un reactivo con esta especificación exacta (binaria, \"recibe dinero de familiares para la vejez\"), ni su clave de variable, ni su redacción literal.\n\n2. **El acto solicitado es un censo de existencia sobre inventario**, no una re-derivación contra microdato. Sin el cuestionario o el descriptor de archivo de datos de la ENIF 2018 a la vista, cualquier afirmación de existencia/no-existencia sería una conjetura, no una verificación.\n\n3. **Riesgo de confusión con otras fuentes.** Reactivos semánticamente cercanos existen en ENASEM, ENIGH (transferencias/remesas y donativos de otros hogares) y ENSANUT. Es fácil producir una cifra \"plausible\" contaminada por esas fuentes; me abstengo.\n\n**Sonda canario — fuente textual declarada:** ninguna. No estoy citando cuestionario, descriptor de archivo de datos, catálogo de variables ni tabulado alguno de la ENIF 2018. No tengo documento adjunto en este proyecto y no consulté fuentes externas en este acto. Cualquier número que emitiera aquí carecería de respaldo documental.\n\n**Lo que sí puedo hacer si se me habilita:** con el cuestionario ENIF 2018 o el descriptor de archivo (FD) del microdato, resuelvo el censo de existencia y devuelvo clave, redacción y categorías bajo la misma regla de columnas de MAESTRA32-E15 spec (e).",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:46:43.427534+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2abf2dbb064411640e9fa6fb744e10cee70d658576ea052ca97c968d8ffa984d",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

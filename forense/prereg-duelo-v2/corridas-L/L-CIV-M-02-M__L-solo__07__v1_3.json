@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "**No conozco el dato. No doy cifra puntual para este reactivo.**\n\nRazones explícitas:\n\n1. **El reactivo, tal como está nombrado, no corresponde a una variable canónica de la ENVIPE 2013.** La ENVIPE (INEGI, levantamiento marzo–abril 2013, referencia año 2012) capta el miedo al agresor y la desconfianza en la autoridad como **causas de NO denuncia** (módulo de delitos, pregunta de motivos por los que no se denunció), no como atributo de la denuncia efectuada. Un binario \"denunció con miedo o desconfianza\" no es una categoría que yo pueda mapear a un ítem del cuestionario con certeza.\n\n2. **Escala declarada binaria**: por instrucción, no procede intervalo de confianza subjetivo (solo aplicaría a escala continua).\n\n3. **Régimen declarado**: censo de existencia sobre inventario de reactivos, sin re-derivación contra microdato. Bajo esa regla no estoy autorizado a producir un valor por reconstrucción indirecta, y no dispongo del inventario de reactivos del proyecto (no tengo acceso a documentos adjuntos).\n\n**Sonda canario — fuente textual declarada:** no tengo fuente textual verificable para una cifra de este reactivo. Lo más cercano que sí existe documentalmente es el cuadro de la ENVIPE 2013 sobre *motivos de la no denuncia* (INEGI, \"Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública 2013. Principales resultados\"), donde aparecen por separado \"miedo al agresor\" y \"desconfianza en la autoridad\". No cito porcentajes de memoria porque no puedo garantizar su exactitud ni su correspondencia con el reactivo solicitado.\n\nSi me proporcionas la definición operativa del reactivo (pregunta fuente, base de cálculo y denominador), puedo indicarte si es derivable y con qué tabulado.\n\n*Nota operativa: los conectores de Google Calendar y Microsoft 365 requieren autorización previa desde tu configuración de conectores en claude.ai; no están disponibles en esta sesión. No afecta a esta respuesta, ya que no utilicé herramientas.*",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:58:44.721058+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "0131d4a9547fa5d8e6ca930d842dd0bfed8f54a6d6e4b9117c82a74e882c1b7f",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

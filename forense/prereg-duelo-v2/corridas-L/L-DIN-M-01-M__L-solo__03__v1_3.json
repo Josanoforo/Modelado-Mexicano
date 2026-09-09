@@ -1,0 +1,24 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "No conozco este dato y no puedo estimarlo de forma responsable.\n\n**Motivos concretos:**\n\n1. **El acto solicitado no es una estimación de prevalencia.** El universo declarado especifica \"censo de existencia sobre inventario de reactivos, no re-derivación contra microdato\". Es decir, lo que correspondería verificar es si existe un reactivo identificable como `tiene_ahorros` en el cuestionario de la ENNViH-1 (2002) —no qué proporción de la población responde afirmativamente. No tengo acceso al inventario de reactivos de este proyecto, que es la única base admisible bajo esa regla de columnas.\n\n2. **No puedo confirmar la existencia ni el fraseo del reactivo.** La ENNViH-1 (2002) incluye módulos de hogar con secciones sobre activos, gasto, crédito y economía del hogar, y es plausible que exista algún ítem sobre tenencia de ahorros. Pero \"plausible\" no es verificado: desconozco el identificador exacto, la sección, el cuestionario (hogar vs. adulto), la unidad de análisis (individuo o hogar) y si la escala original es efectivamente binaria o politómica colapsada. Sin eso, cualquier cifra que diera sería una fabricación con apariencia de dato.\n\n3. **Sonda canario — fuente textual declarada:** no tengo ninguna. No estoy citando el Documento Metodológico de la ENNViH, ni el cuestionario de hogar 2002, ni ninguna tabulación publicada, porque no los tengo delante ni retengo sus valores puntuales con precisión suficiente. Declarar una fuente aquí sería falso.\n\n**Estimación puntual: no emitida.** No procede tampoco intervalo, dado que la escala es binaria y el acto es de existencia, no de magnitud.\n\n**Lo que sí puedo hacer, si me lo autorizas:** revisar los archivos del directorio de trabajo o tu Drive por si el inventario de reactivos está ahí, o localizar la documentación oficial de la ENNViH-1. Indícame si quieres que use herramientas —en esta ocasión me pediste que no lo hiciera.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:03:30.728107+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "d7219b1b876fa9982db848a786ff6397dd5ab9a03e47aa3089f453e4310c7f41",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

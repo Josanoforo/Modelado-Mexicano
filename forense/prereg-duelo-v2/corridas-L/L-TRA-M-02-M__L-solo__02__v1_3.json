@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "**No tengo el dato exacto y no puedo citar una fuente textual: no tengo acceso a ningún documento de este proyecto, y el reactivo tal como se plantea es internamente inconsistente** (una variable etiquetada `encig2025` evaluada sobre el universo ENCUCI 2020, SEC_4_5, AP5_16_1..10). Lo que sigue es una estimación razonada, no una lectura de fuente.\n\n**Estimación puntual: ≈ 14 % responde \"sí\" (pagó mordida / hubo acto de corrupción) entre quienes tuvieron contacto con autoridad.**\n\nIntervalo de confianza subjetivo (aunque la escala sea binaria, sobre la proporción poblacional): **10 %–20 %**, con la masa de probabilidad concentrada entre 12 % y 17 %.\n\nBase del anclaje (de memoria, no verificada contra documento):\n\n- La serie ENCIG del INEGI reporta la tasa de prevalencia de corrupción por cada 100,000 habitantes **que tuvieron contacto con servidores públicos**, y esa tasa se ha movido de forma bastante estable alrededor de 14,000–15,700 por 100 mil (≈14 %–15.7 %) en las ediciones 2017, 2019, 2021 y 2023.\n- Un módulo replicado dentro de ENCUCI 2020 con filtro de contacto (n útil ≈13,375) debería producir un orden de magnitud similar, aunque el modo de aplicación y el fraseo distinto suelen mover la cifra unos puntos.\n\nAdvertencias importantes:\n\n1. **No me consta que exista una ENCIG 2025 publicada** cuyos resultados yo pueda reproducir; si la etiqueta refiere a una edición 2025, no tengo la cifra.\n2. La estimación cambia drásticamente según el denominador: si el reactivo se restringe a **contacto con policía o trámites vehiculares**, la proporción de \"sí\" sube fácilmente a 45 %–60 %; si es contacto con cualquier autoridad, se queda cerca del 14 % citado.\n3. Si el reactivo mide **percepción/justificación** (\"¿es aceptable pagar una mordida?\") en lugar de **experiencia**, mi estimación sería otra: alrededor de 15 %–25 % de aceptación, con mayor incertidumbre.\n\n**Sonda canario:** no declaro fuente textual; no consulté ni tengo el cuestionario, la base ni el tabulado de ENCUCI 2020. Mi cifra proviene de conocimiento general de la serie ENCIG, no de este proyecto.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:40:54.038806+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "3747d8a14bf13fa5b97245dcb39cf7b972f57a76bca7c304f3ccd9b9768942f9",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

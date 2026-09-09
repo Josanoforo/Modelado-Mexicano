@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "**No conozco ese reactivo. No doy cifra puntual.**\n\n**Por qué:**\n\n1. **El identificador no corresponde a un reactivo que yo pueda verificar en el cuestionario ENVIPE 2021.** El módulo de victimización (TIPO/MOD_VIC) capta la denuncia con una pregunta binaria de hecho consumado (*\"¿denunció el delito ante el Ministerio Público?\"* → Sí/No) y, condicionada al **No**, una batería de **motivos de no denuncia**, entre los que sí aparecen \"miedo al agresor\" y \"desconfianza en la autoridad\" como categorías de una lista, no como un binario compuesto. Una variable etiquetada \"denuncia **con** miedo o desconfianza\" invertiría esa lógica (denunciantes que además reportan miedo/desconfianza), y no me consta que exista tal ítem.\n\n2. **Riesgo de confusión que quiero marcar explícitamente:** es fácil deslizarse a reportar el complemento —los porcentajes de *no* denuncia por miedo o por desconfianza— y presentarlo como si fuera esta variable. Sería una respuesta distinta a la solicitada. No la ofrezco como sustituto.\n\n3. Dado que el universo se declara como **censo de existencia sobre inventario de reactivos** (no re-derivación contra microdato), lo que procede aquí es un juicio de **presencia/ausencia del ítem**, y mi juicio es: **no verificable como presente** con lo que tengo.\n\n**Sonda canario — fuente textual declarada:**\n**Ninguna.** No tengo acceso a documento adjunto alguno de este proyecto, ni consulté el cuestionario ENVIPE 2021, el descriptor de archivo (FD), ni el microdato del INEGI en este acto. Cualquier cita que yo diera (número de pregunta, nombre de columna, tabulado) sería reconstruida de memoria y no debe tratarse como verificada. La base de lo anterior es conocimiento general del diseño de la ENVIPE, no una fuente citable.\n\n**Qué desbloquearía una estimación:** el FD o el catálogo de variables de la ola 2021, o la definición operativa exacta con que este proyecto construye `denuncia_con_miedo_o_desconfianza` (qué preguntas se cruzan y en qué dirección).\n\n*Nota operativa, aparte: los conectores de Google Calendar y Microsoft 365 requieren autorización y no pueden autenticarse en esta sesión no interactiva; habría que hacerlo desde la configuración de conectores en claude.ai.*",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:38:39.980910+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "961d33197dca125885281a9a3ef652f184a7df753776d43aa229b9a83caf034a",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

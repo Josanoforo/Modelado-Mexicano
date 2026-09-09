@@ -1,0 +1,59 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L+corpus",
+  "indice": 3,
+  "texto_crudo": "## Estimación\n\n**recibe_remesas = 1: ≈ 5 % de los hogares** (ENIGH 2020, Nueva Serie, universo completo de `concentradohogar`).\n\n**Intervalo subjetivo (aunque la escala sea binaria, doy incertidumbre sobre la proporción): ~4 % – 6.5 %**, con la masa de probabilidad concentrada entre 4.5 % y 5.5 %. Es decir, del orden de 1.7–2.0 millones de hogares de los ~35 millones del marco.\n\n## Razonamiento\n\n- Las series históricas de ENIGH ubican la proporción de hogares con ingreso por remesas (\"Ingresos por remesas del extranjero\" dentro de transferencias) en un rango estrecho y estable, en torno a 4–5 % desde ~2010.\n- 2020 fue un año de récord en remesas agregadas (~40 mil mdd), pero el crecimiento se dio más por **monto por hogar receptor** que por ampliación del número de hogares receptores, así que no esperaría un salto grande en la proporción, quizá un ligero repunte respecto a 2018.\n- La concentración es fuertemente regional (Michoacán, Guerrero, Oaxaca, Zacatecas muy por encima; CDMX y frontera norte muy por debajo), por lo que el promedio nacional oculta heterogeneidad de un orden de magnitud entre entidades.\n\n## Sonda canario — declaración de fuente\n\n**No tengo fuente textual verificable a la mano para esta cifra.** No estoy leyendo tabulados de ENIGH 2020 ni microdatos; esta es una estimación de memoria sobre publicaciones del INEGI/CONEVAL y literatura sobre remesas en México. El corpus adjunto en el contexto (documentos forenses sobre crédito popular, consumo aspiracional, clientelismo, etc.) **no contiene el dato de ENIGH 2020 sobre remesas** —lo he revisado y no aparece—, así que no puedo citarlo como respaldo.\n\nSi se requiere la cifra exacta, debe calcularse directamente sobre `concentradohogar` de ENIGH 2020 NS con el factor de expansión (`factor`), como proporción ponderada de hogares con `remesas > 0`. Trate mi 5 % como un prior calibrado, no como un dato.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:00:53.279312+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "paquete-corpus-F5-v1_0",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "20cf875208aa8bd519dcb825f7426e847be01a870aa1139e58b9307a9f031081",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": {
+    "estado": "OK",
+    "id_celda": "FAM-M-07",
+    "corte_temporal": null,
+    "documentos_disponibles": 33,
+    "documentos_incluidos": [
+      "documentos/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano__Validación_Forense_de_Supuestos_contra_Desenlaces_Reales.md",
+      "documentos/forense/Consumo_Aspiracional_en_México__Validación_Forense_del_Modelo_Anti-Esencialista.md",
+      "documentos/forense/Crédito_Fácil_y_Sobreendeudamiento_en_México__Escaneo_de_Indicadores_Adelantados_2025-2026.md",
+      "documentos/forense/Crédito_Popular_en_México__Morosidad_Auditada__Fondeo_y_Gobierno_Corporativo_como_Verdaderos_Riesgos_Estructurales.md",
+      "documentos/forense/Validación_Forense_del_Clientelismo_Electoral_en_México__Agencia_del_Votante__Programas_Sociales_y_Límites_de_la_Compra_de_Voto.md",
+      "documentos/forense/compass-4-e29a28d4-credito-popular-2026.md",
+      "documentos/reports/Adopción_y_Resistencia_Tecnológica_en_México__La_Paradoja_de_la_Baja_Confianza_Institucional.md",
+      "documentos/reports/Ausencia_sin_certeza__duelo_y_pérdida_ambigua_en_familias_de_personas_desaparecidas_en_México.md",
+      "documentos/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md",
+      "documentos/reports/Confianza_y_Desconfianza_en_México__Anatomía_Psicológica_de_una_Sociedad_Dual.md",
+      "documentos/reports/El_Efecto_Ambiental_de_la_Violencia_Crónica_en_México__Cómo_el_Miedo_Reorganiza_la_Conducta_Psicológica_de_la_Población.md",
+      "documentos/reports/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md",
+      "documentos/reports/El_México_Rural_e_Indígena_en_sus_Propios_Términos__Comunalidad__Autoridad_y_Reciprocidad_como_Sistemas_con_Lógica_Propia.md",
+      "documentos/reports/Elegir__Cortejar_y_Amar_en_el_México_de_Hoy__Díada_de_Pareja__Apps_de_Citas_y_Cambio_en_los_Guiones_de_Género.md",
+      "documentos/reports/Genetica_y_Conducta_del_Mexicano_Contemporaneo__Canal_Individual_vs__Estructura.md",
+      "documentos/reports/Humor_in_Mexican_Psychological_Life__2023-2026_Update.md",
+      "documentos/reports/La_arquitectura_invisible_de_la_interacción_social_en_México.md",
+      "documentos/reports/La_familia_mexicana_como_sistema_psicológico__entre_el_afecto__la_obligación_y_la_adaptación_económica.md",
+      "documentos/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md"
+    ],
+    "documentos_excluidos": [
+      "documentos/reports/Behavioral_Finance_Mexicano__Estructura__Adaptación_Racional_y_Cultura_en_el_Ahorro__Crédito_y_Riesgo.md",
+      "documentos/reports/El_Clasemediero_Mexicano__Identidad__Ansiedad_de_Estatus_y_el_Miedo_Racional_a_Caer.md",
+      "documentos/reports/Health__Body__Food_and_Substance_Use_in_Mexico__The_Behavioral_Layer_of_Decisions__Environment_and_Structure.md",
+      "documentos/reports/Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md"
+    ],
+    "chars_incluidos": 600000,
+    "truncado": true,
+    "truncado_en_documento": "documentos/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md"
+  }
+}

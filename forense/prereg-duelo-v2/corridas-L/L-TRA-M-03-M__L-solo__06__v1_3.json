@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-03",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "**Advertencia previa (sonda canario):** el identificador del reactivo dice `paga_mordida_encig2025`, pero la ola declarada es **ENCIG 2013**. Esa incongruencia (2025 vs. 2013) no la puedo resolver sin el inventario de reactivos, y **no tengo acceso a ningún documento de este proyecto**. Tampoco tengo una fuente textual declarada que citar: no existe en mi contexto ni un catálogo de reactivos ni el cuestionario ENCIG que me permita confirmar la redacción exacta de este ítem. Lo que sigue es una estimación de memoria, no una lectura de fuente.\n\n**Estimación puntual (escala binaria, proporción \"sí\"): ≈ 0.12 (12%).**\n\nBase del número, con sus supuestos explícitos:\n- Interpreto el reactivo como el indicador de **prevalencia de corrupción** de la ENCIG: proporción de la población de 18+ que, habiendo tenido contacto con al menos un servidor público, experimentó al menos un acto de corrupción (mordida/soborno) en el periodo de referencia.\n- Para ENCIG 2013 recuerdo una cifra del orden de **~12,000–12,600 víctimas por cada 100,000 habitantes**, es decir alrededor de 12–13%. Mi confianza en esa cifra específica es **media-baja**; podría estar confundiendo la ola 2013 con la 2015 (~12,590) o con la 2011 de la ENCIG piloto.\n\nRango subjetivo, aunque la escala sea binaria (incertidumbre sobre el parámetro, no sobre la respuesta individual): **10%–16%**, con cola hacia arriba si el denominador no se restringe a quienes tuvieron contacto con un servidor público.\n\n**Advertencias que cambian la cifra sustancialmente:**\n- Si el reactivo es \"pagó mordida\" sobre **toda** la población 18+ (sin condicionar a contacto), la proporción baja, probablemente a **5%–9%**.\n- Si es sobre **trámites específicos de alto riesgo** (contacto con policía, trámites vehiculares, juzgados), sube mucho: **30%–60%** según el trámite.\n- Si la ola realmente fuera 2025 y no 2013, la cifra correcta sería otra: la serie ENCIG mostró alzas hacia 2017 (~14%) y no conozco resultados de una ola 2025.\n\n**En corto:** no conozco con certeza el dato exacto de este reactivo tal como está codificado. Doy 12% como mejor conjetura bajo la interpretación de \"prevalencia condicionada a contacto\", y recomiendo verificar contra el tabulado oficial del INEGI para ENCIG 2013 antes de usarlo.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:40:29.782722+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "949e063cd6c9afe7e44c2f645360c369c2383e5d806acbdebc3f9e1f3b1037f0",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}
