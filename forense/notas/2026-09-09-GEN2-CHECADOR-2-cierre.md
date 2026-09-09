@@ -52,7 +52,7 @@ Antes de este acto, las tres habrían traído además `commit_distinto` (los
 versión real que quedó sellada) — es **ajeno a `FP-358`**: son exactamente las
 dos cosas que este acto declara no tocar («cero microdato», NUBE sin corpus).
 Con ellas presentes, ninguna de las tres puede llegar hoy a
-`REPRODUCE · IDENTICO` completo — **`NC-0061`**, sucesor CAJA (ver
+`REPRODUCE · IDENTICO` completo — **`NC-0062`**, sucesor CAJA (ver
 `## NO-CORRIDO / RESERVAS` del encargo archivado). Lo que este acto SÍ prueba,
 aislado y con control positivo verificable sin microdato, es exactamente lo que
 `FP-358` pedía: el eje commit deja de gatear.
@@ -154,7 +154,7 @@ citando este acto (`ACTO GEN2-CHECADOR-2`, PR pendiente al momento de este
 commit — se completa en `## CONSUMIDO`). `NC-0051` (FP-358) y `NC-0052`
 (FP-359), las dos reservas de `GEN2-E5-1` que dependían de estas piezas,
 quedan `CERRADA` con la misma cita. Una reserva nueva se abre, no se cierra de
-más: `NC-0061` — la tabla `REPRODUCE · IDENTICO` plena sobre las tres corridas
+más: `NC-0062` — la tabla `REPRODUCE · IDENTICO` plena sobre las tres corridas
 reales, que este acto no puede producir desde NUBE (perímetro propio: cero
 microdato) y que queda para un acto en CAJA con corpus montado y
 `numpy`/`pandas`/`scipy` instalados.

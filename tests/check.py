@@ -4685,13 +4685,14 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
         escritor.writerow(fila)
     csv_out_lines = buf.getvalue().split("\r\n")
     diffs_csv = [i for i, (a, b) in enumerate(zip(orig_lines, csv_out_lines)) if a != b]
-    if len(diffs_csv) != 21:
+    if len(diffs_csv) != 22:
         fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv daba "
-                         f"21 líneas distintas (20, 29, 35, 37, 38, 40, 47, 50, 51, 63, 94, 97, "
-                         f"114, 117, 119, 121, 123, 124, 125, 136, 139) el 8/sep/2026 (ACTO "
-                         f"GEN2-UNIVERSO-C, tras actualizar filas 9/10/50 y añadir filas 136-139 "
-                         f"de cola-adquisicion-registro.tsv -- ver forense/notas/2026-09-08-"
-                         f"GEN2-UNIVERSO-C-tandas-enafin.md); hoy da "
+                         f"22 líneas distintas (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94, "
+                         f"97, 114, 117, 119, 121, 123, 124, 125, 136, 139) el 8/sep/2026 (ACTO "
+                         f"GEN2-TRAMITE-BANDEJA, tras añadir la fila 41 -- "
+                         f"REGISTRO_OPERATIVO_DE_TANDAS_DIGITALES gana el texto del correo de "
+                         f"tanteo entre comillas dobles -- ver forense/notas/2026-09-08-"
+                         f"GEN2-TRAMITE-BANDEJA-bandeja-mesa.md); hoy da "
                          f"{len(diffs_csv)} ({[i + 1 for i in diffs_csv]}) -- el archivo cambió "
                          f"de forma que el control ya no describe la realidad, actualiza el número "
                          f"esperado con el hallazgo re-medido, no lo silencies.")
