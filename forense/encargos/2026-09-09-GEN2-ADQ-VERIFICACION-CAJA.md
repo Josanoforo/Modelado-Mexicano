@@ -36,3 +36,7 @@ Todas en `forense/no-corrido.tsv`, con sucesor nombrado:
 `NC-0060` queda **CERRADA** por este acto, con cita y estampa de universo (A.10), por hallazgo positivo parcial — no por negativo.
 
 **Pisadas reportadas (concurrencia con el CABLEADO en NUBE, `PR #665`):** el encargo preveía «cero intersección de archivos salvo `no-corrido.tsv`». En los hechos hay una segunda intersección, en la cascada: `PR #665` reclama **`ADR-438`**, que `origin/main` ya tiene asignado a `ACTO GEN2-LOTE-ENCIG-1` — fue redactado contra `b984531` (`PR #663`), cuando el máximo era 437. Este acto toma `ADR-439`, el siguiente libre contra `origin/main = 0f62668`. **`PR #665` tendrá que renumerar en cualquier caso**; si se fusiona antes que este acto y toma el 439, este PR renumera a 440 al fusionar. `forense/no-corrido.tsv` se tocó por append (`NC-0114`..`NC-0118`) y edición quirúrgica de la fila `NC-0060`, sin reserializar el resto; las 9 filas con 10 columnas del archivo son preexistentes, verificado contra `HEAD`.
+
+## CONSUMIDO
+
+`ACTO GEN2-ADQ-VERIFICACION-CAJA` cierra con `PR #666` (`ADR-439`), rama `acto/gen2-adq-verificacion-caja`, base `origin/main = 0f62668`.
