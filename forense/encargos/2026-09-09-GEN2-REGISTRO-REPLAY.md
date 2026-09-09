@@ -30,3 +30,9 @@ CIERRE · Cascada completa + ## NO-CORRIDO / RESERVAS + ## CONSUMIDO con el PR.
 | Reserva · alcance de lo despachado | `DECISIÓN-DE-MESA-PENDIENTE` | Este acto despacha **solo el punto 2** de la propuesta de Astra (`§3`, integridad del registro). Los puntos 3 (identidad ENCIG/ENCUCI por consumidor), 4 (tests de conteo y huso, `NC-0080`), 5 (calibración del revisor) y 6 (localización en el derivador, alineación documental) **no se tocaron** y siguen siendo propuesta, no decisión. Se dice aquí para que su ausencia no se lea como cobertura. | `GEN2-PREP-LOTE` (puntos 3 y 4) y el encargo de operación (puntos 5 y 6), ambos por despachar |
 
 **CONTADOR: no** — este acto protege mediciones, no las produce. Ningún `CALC` nace, ningún sello se toca, `status` da lo mismo antes y después, y las tres vistas derivadas salen sin diferencia con el disco.
+
+---
+
+## CONSUMIDO
+
+Ejecutado por [PR #660](https://github.com/Josanoforo/Modelado-Mexicano/pull/660) — `ACTO GEN2-REGISTRO-REPLAY · LA EVIDENCIA DE REPLAY NO SE PISA`, rama `claude/funny-ramanujan-puyxic`, 9/sep/2026, NUBE, Opus. Base `origin/main = 66eed1b4f4a3` (`PR #658`). Cascada cerrada: `ADR-434`, `L0` recifrado, tres contadores a `434`, rótulo `GEN2 · GEN2-REGISTRO-REPLAY` censado en `canon/registro-rotulos.tsv`, `T22`/`T25` censados con comentario. `tests/check.py --baseline` VERDE. **El merge de mesa es la firma.**
