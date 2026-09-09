@@ -47,6 +47,7 @@ reglas:
       # ENCIG 2011-2025 (enmienda_encig2025 abajo) mide 4.45%-8.51%, siempre
       # muy por debajo. Se conserva como historia -- NO se borra --, se
       # sustituye por el MEDIDO de abajo en el cálculo del motor.
+      # SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado. Comentario en linea propia -- esta conducta la cita cita_p (M-TRA-M-01/02) por TEXTO EXACTO de su propia linea; anotar en la misma linea rompe esa regresion (tests/test_emite_m_calibracion.py::test_regresion_p2_pasa).
       - {conducta: paga_mordida, p: 0.62, clase: ASIGNADO}
       - {conducta: tramite_normal, p: 0.38, clase: ASIGNADO}
       # ── ENMIENDA ENCIG2025 · firma DM (1/sep/2026) · ACTO MAESTRA34-N4 ──
@@ -57,8 +58,9 @@ reglas:
       # sufijo _encig2025 -- mismo patrón que la enmienda ENCUCI2020 de
       # abajo, por la misma razón: emisor.py:476-479 devuelve la PRIMERA
       # coincidencia.
+      # SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado; el reactivo 8.3 completo (A-P-SOLANY = 0.115702) queda descriptivo sin consumidor hasta que un caso de uso lo pida. Comentario en linea propia -- esta conducta la cita cita_p (M-TRA-M-02__v1_3 y hermanas) por TEXTO EXACTO de su propia linea; anotar en la misma linea rompe esa regresion (tests/test_emite_m_calibracion.py::test_regresion_p2_pasa).
       - {conducta: paga_mordida_encig2025, p: 0.085118, clase: "MEDIDO·p(tasa base ponderada)", corrida0_resultado_id: RESULT-ENCIG-MOR-A-P-SOL1, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio esta tasa bajo GEN2 (RESULT-ENCIG-MOR-A-P-SOL1 = 0.08511814556534456, n=40042, 442 estratos, 9172 UPM) y reproduce el 0.085118 publicado al grano de seis decimales con que milpa/ materializa (delta +1.456e-07). El `p` NO se movio: se declara de donde viene. RESERVA declarada en la spec sellada §2.1: P8_3_1 mide SOLICITUD, no pago, y es solo el PRIMER inciso del reactivo 8.3 -- los tres juntos dan 0.115702 (RESULT-ENCIG-MOR-A-P-SOLANY).
-      - {conducta: tramite_normal_encig2025, p: 0.914882, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: tramite_normal_encig2025, p: 0.914882, clase: "MEDIDO·p(tasa base ponderada)"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025); residuo del denominador declarado en la spec sellada §3.1-3.4. Sin corrida0 propia, sin cita corrida0_*.
       # ── ENMIENDA ENCUCI · FP-200=b (mesa, 31/ago/2026) · ACTO MAESTRA32-E20 ──
       # Las DOS salidas de arriba NO se tocan: siguen ASIGNADAS y siguen siendo
       # lo que emitir_binaria devuelve para `paga_mordida`/`tramite_normal`
@@ -71,8 +73,8 @@ reglas:
       # Desviacion declarada ANTES de correr en
       # forense/notas/2026-08-31-lote-nube-1-spec.md §P0(b). Si mesa prefiere
       # SUSTITUCION en vez de convivencia, es firma nueva y acto nuevo.
-      - {conducta: paga_mordida_encuci2020, p: 0.125822, clase: "MEDIDO·p(tasa base ponderada)"}
-      - {conducta: tramite_normal_encuci2020, p: 0.874178, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: paga_mordida_encuci2020, p: 0.125822, clase: "MEDIDO·p(tasa base ponderada)"}  # SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
+      - {conducta: tramite_normal_encuci2020, p: 0.874178, clase: "MEDIDO·p(tasa base ponderada)"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encuci2020); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
     porque: {generador: [G1], mecanismo: "trampa social: cada quien paga porque supone que los demás pagan"}
     tier: FUERTE
     falsable_si: "Si al digitalizar y agregar testigos la mordida no baja, no es trampa social sino otra cosa"
@@ -120,6 +122,14 @@ reglas:
       payload_manifiesto_id: encig25_base_datos_csv
 
   - id: tramite.mordida.con_registro
+    # COBERTURA-PARCIAL-DECLARADA (D2, NC-0110, ACTO GEN2-MOTOR-SEMANTICA): el
+    # par presencial (P7_3=1) / digital (P7_3 en {3,4,5}) cubre 78.02% del peso
+    # de P7_3; deja fuera 21.98% (residuo B-P-RESIDUO-CANAL = 0.219818: P7_3=2
+    # banco/supermercado/tiendas/farmacias, P7_3=6 modulos/clinicas/oficinas
+    # temporales o moviles). Categoria intermedia fuera por decision de mesa
+    # 9/sep/2026: ampliar el mapeo exige un argumento de homogeneidad MEDIDO,
+    # no asumido -- precedente: el codigo 08, medido en +3.3-3.9 pp antes de
+    # decidir. Cierra NC-0110.
     situacion: realiza_tramite_gobierno
     si:
       disparadores: {sancion_creible: true, quien_observa: "registro_o_testigos"}
@@ -127,7 +137,7 @@ reglas:
       # REFUTADA-POR-R (ACTO MAESTRA34-N4 · PLOMERIA-v1_2, firma DM «Si eso
       # da eso da») -- se conserva como historia, no se borra.
       - {conducta: tramite_normal, p: 0.88, clase: ASIGNADO}
-      - {conducta: paga_mordida, p: 0.12, clase: ASIGNADO}
+      - {conducta: paga_mordida, p: 0.12, clase: ASIGNADO}  # SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
       # ── ENMIENDA ENCIG2025 · firma DM (1/sep/2026) · ACTO MAESTRA34-N4 ──
       # Sustituye el 0.12 ASIGNADO de arriba. Mapeo canal↔disparador
       # (aceptado por firma DM, ii): presencial (P7_3=1) ≈ "nadie observa"
@@ -137,15 +147,15 @@ reglas:
       # milpa/tramite-ola5-propuesta-v0.yaml:551-576
       # (id tramite.mordida.con_registro_encig2025 + companero_presencial).
       # CORRIDA 1 (1/sep, firma DM) -- presencial VENCIDA EN ALCANCE por 0.000817 y digital CORRECCION SIN CAMBIO MATERIAL (ACTO MAESTRA35-L1, ADR-291); sustituidas en el cálculo por la corrida 2 de abajo por coherencia de corrida (firma r1, mesa 2/sep/2026, ACTO MAESTRA35-N4). Se conservan como historia, no se borran.
-      - {conducta: paga_mordida_encig2025_presencial, p: 0.116000, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}
-      - {conducta: tramite_normal_encig2025_presencial, p: 0.884000, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}
-      - {conducta: paga_mordida_encig2025_digital, p: 0.027358, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}
-      - {conducta: tramite_normal_encig2025_digital, p: 0.972642, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}
+      - {conducta: paga_mordida_encig2025_presencial, p: 0.116000, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}  # SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
+      - {conducta: tramite_normal_encig2025_presencial, p: 0.884000, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_presencial); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
+      - {conducta: paga_mordida_encig2025_digital, p: 0.027358, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}  # SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
+      - {conducta: tramite_normal_encig2025_digital, p: 0.972642, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_digital); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
       # CORRIDA 2 (2/sep, recorrida sin deduplicar, firma r1) -- ACTO MAESTRA35-N4 · SELLA-L1
-      - {conducta: paga_mordida_encig2025_presencial_r2, p: 0.141041, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)", corrida0_resultado_id: RESULT-ENCIG-MOR-B-P-PRE-SD, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio bajo GEN2 (RESULT-ENCIG-MOR-B-P-PRE-SD = 0.1410407168724654, n=11167 eventos, 381 estratos, 2996 UPM -- los dos conteos de diseno identicos a los sellados) y reproduce el 0.141041 al grano de seis decimales (delta -2.831e-07). El `p` NO se movio.
-      - {conducta: tramite_normal_encig2025_presencial_r2, p: 0.858959, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)"}
-      - {conducta: paga_mordida_encig2025_digital_r2, p: 0.029868, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)", corrida0_resultado_id: RESULT-ENCIG-MOR-B-P-DIG-SD, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio bajo GEN2 (RESULT-ENCIG-MOR-B-P-DIG-SD = 0.029867554626649372, n=7219 eventos, 362 estratos, 2518 UPM -- identicos a los sellados) y reproduce el 0.029868 al grano de seis decimales (delta -4.454e-07). El `p` NO se movio.
-      - {conducta: tramite_normal_encig2025_digital_r2, p: 0.970132, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)"}
+      - {conducta: paga_mordida_encig2025_presencial_r2, p: 0.141041, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)", corrida0_resultado_id: RESULT-ENCIG-MOR-B-P-PRE-SD, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio bajo GEN2 (RESULT-ENCIG-MOR-B-P-PRE-SD = 0.1410407168724654, n=11167 eventos, 381 estratos, 2996 UPM -- los dos conteos de diseno identicos a los sellados) y reproduce el 0.141041 al grano de seis decimales (delta -2.831e-07). El `p` NO se movio. SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
+      - {conducta: tramite_normal_encig2025_presencial_r2, p: 0.858959, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_presencial_r2); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
+      - {conducta: paga_mordida_encig2025_digital_r2, p: 0.029868, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)", corrida0_resultado_id: RESULT-ENCIG-MOR-B-P-DIG-SD, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio bajo GEN2 (RESULT-ENCIG-MOR-B-P-DIG-SD = 0.029867554626649372, n=7219 eventos, 362 estratos, 2518 UPM -- identicos a los sellados) y reproduce el 0.029868 al grano de seis decimales (delta -4.454e-07). El `p` NO se movio. SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
+      - {conducta: tramite_normal_encig2025_digital_r2, p: 0.970132, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_digital_r2); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
     porque: {generador: [G1], mecanismo: "el registro rompe la trampa social"}
     tier: FUERTE
     falsable_si: "Si la digitalización no reduce la mordida, la hipótesis de trampa social falla"
