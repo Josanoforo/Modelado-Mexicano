@@ -1,5 +1,9 @@
 # ENCARGO · ACTO GEN2-SONDA-3-PILOTO-CAJA · EJERCITA-SONDA-LATERAL-SOBRE-NEGATIVO-REAL
 
+ESTADO: LISTO-CAJA — compuerta re-derivada por `ACTO GEN2-CIERRES-CON-CITA` (9/sep/2026): `GEN2-SONDA-3 · ESCALAMIENTO-LATERAL` fusionó como `PR #642` (`git log --all --oneline --grep="pull request #642"` → `c5b89a9`); `git cat-file -e origin/main:.claude/commands/sonda.md` existe y `git show origin/main:.claude/commands/sonda.md | grep -c "Segunda pasada crítica"` → `1` (≥1 exigido). Compuerta CUMPLIDA. Entorno asignado es CAJA/Ubuntu (no nube): `/despacha` no lo ejecuta, pero ahora puede nombrarlo como ejecutable para la próxima sesión de caja.
+BITACORA:
+- 2026-09-09 · LISTO-CAJA · esta línea no existía (fila sin `ESTADO:` reconocible por `/despacha`, solo un `**Estado:** VIVO` de prosa); añadida por `ACTO GEN2-CIERRES-CON-CITA` tras re-derivar la compuerta contra `origin/main` real.
+
 **SHA de redacción:** contra `origin/main` al momento en que se fusione `ACTO GEN2-SONDA-3 · ESCALAMIENTO-LATERAL` — este encargo se redacta antes de conocer ese SHA (el acto que lo escribe deja escrito el mecanismo de derivación, no un SHA que todavía no existe).
 **Entorno asignado:** CAJA/Ubuntu con corpus (`data/raw`) montado y red real. Explícitamente NO nube — el piloto ejercita adquisición/verificación de vías laterales, que exige red hacia fuentes externas.
 **Estado:** VIVO
