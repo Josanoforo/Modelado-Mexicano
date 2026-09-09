@@ -49,16 +49,26 @@ el guardrail gana y lo reportas.
    error. Ante la duda, no actúes: repórtalo.
 4. **CONTADOR: cero, declarado.** Este agente no mide nada. Es
    infraestructura. El PR lo dice con esas palabras.
-5. **Perímetro duro, cerrado**, y son cuatro rutas:
+5. **Perímetro duro, cerrado**, y son cinco rutas:
    - `forense/firmas-pendientes.tsv`
    - `forense/digesto/`
    - la sección `## CONSUMIDO` de archivos en `forense/encargos/`
    - `forense/rutinas.tsv` (una línea apendada por tick, bloque 3.5;
      `ACTO GEN2-E7` pieza D)
+   - `forense/no-corrido.tsv`, **LIMITADO a tres columnas**:
+     `estado`, `cerrado_por`, `fecha_cierre` (P2 de
+     `ACTO GEN2-GOBIERNO-DECISIONES`, `forense/encargos/2026-09-09-
+     GEN2-GOBIERNO-DECISIONES.md`, que amplía —no reemplaza— la
+     exclusión original de este archivo). Las demás columnas de NC
+     (`id`, `fecha`, `acto`, `pr`, `pieza`, `que_no_se_corrio`, `razon`,
+     `impacto`, `sucesor`) son **inmutables**: si cerrar una fila exige
+     tocar cualquiera de ellas, eso es interpretar o decidir contenido
+     sustantivo — no toca este agente, va al acto de dirección
+     correspondiente (§3 de la propuesta de Astra). Ver bloque 3.6.
    **Nada más.** Ni `canon/`, ni `tests/`, ni `milpa/`, ni `tools/`, ni
-   `.github/`, ni `data/`, ni este archivo. Si te encuentras escribiendo
-   fuera de esa lista, **PARA** — el perímetro estaba mal calculado y
-   saberlo vale más que el atajo.
+   `.github/`, ni el resto de `data/`, ni este archivo. Si te encuentras
+   escribiendo fuera de esa lista, **PARA** — el perímetro estaba mal
+   calculado y saberlo vale más que el atajo.
 6. **NO fusiona su propio PR**, y no lo aprueba. Fusionar es firmar.
 
 Dos prohibiciones que se derivan de las anteriores y conviene tener
@@ -116,16 +126,29 @@ empieces sin ellas.
    cualquier acto en curso; no cambies de rama encima de cambios
    pendientes ni muevas archivos de un encargo para poder registrar la
    huella.
-3. **SUITE.** `python3 tests/check.py --baseline`.
+3. **SUITE, DESPUÉS de la vista/huella (orden ajustado, §8 de la
+   propuesta de Astra).** Antes de correr la suite, emite la vista de
+   mesa (`--mesa`, bloque 2, ahora primero) — su lectura y su huella
+   quedan disponibles aunque la suite bloquee lo que sigue. Hecho eso:
+   `python3 tests/check.py --baseline`.
    - **VERDE** → sigue.
-   - **ROJO** → **PARO**. Termina con cero commits y reporta la salida
-     cruda. Un agente de trámite que commitea sobre una línea base rota
-     mete su ruido encima del hallazgo de otro. La suite roja no es tuya
-     para arreglarla: es un hallazgo, y va al reporte.
+   - **ROJO** → **PARO**. Termina con cero commits (salvo la huella ya
+     permitida del bloque 2/3.5) y reporta la salida cruda. Un agente de
+     trámite que commitea sobre una línea base rota mete su ruido encima
+     del hallazgo de otro. La suite roja no es tuya para arreglarla: es
+     un hallazgo, y va al reporte.
+   El orden viejo (suite antes que digesto) está descrito abajo tal como
+   quedaba en la v1.0 de este archivo; la sección 3.6 explica por qué se
+   invierte y qué NO cambia en la compuerta de escritura.
 
 ---
 
 ## 2 · EL DIGESTO
+
+**Orden (§8 de la propuesta de Astra, ver 3.6): esto corre ANTES de la
+compuerta de suite del bloque 1 punto 3**, no después — la vista y la
+huella del día deben quedar disponibles aunque la suite bloquee lo que
+sigue.
 
 ```
 python3 tools/digesto_tramite.py
@@ -312,6 +335,137 @@ candidato puede legítimamente no dejar comentario ni fila.
 
 **El archivo entra al perímetro de esta skill**: es la cuarta ruta del
 bloque 0.
+
+### 3.6 · El bucle de cierre de NC — P2 de `ACTO GEN2-GOBIERNO-DECISIONES`
+
+Instaurado por `ACTO GEN2-GOBIERNO-DECISIONES`
+(`forense/encargos/2026-09-09-GEN2-GOBIERNO-DECISIONES.md`), que ejecuta
+la propuesta de Astra (`forense/notas/2026-09-09-PROPUESTA-GOBIERNO-
+DECISIONES-PENDIENTES-astra.md` §3). Extiende el bloque 0/5: este agente
+ya puede tocar `forense/no-corrido.tsv`, pero **solo** sus columnas
+`estado`, `cerrado_por`, `fecha_cierre` — el resto de la fila es
+histórico e intocable, igual que `firmada_en`/`ejecutada_en` en FP.
+
+**Descubrimiento completo, no solo lo nuevo.** Cada ciclo exitoso
+considera TODAS las filas `ABIERTA` de NC (`EC.es_abierta` sobre la
+columna `estado`, mismo criterio de prefijo que FP — una glosa `ABIERTA
+-- ... EJECUTADA para una parte` sigue contando como abierta), no solo
+las que cambiaron desde el corte anterior. Un diff solo de los TSV
+perdería exactamente las firmas asentadas en otro documento (encargo,
+nota de conciliación, PR fusionado) que el propio `no-corrido.tsv` no
+refleja todavía.
+
+**Proceso mínimo, los 6 pasos de §3:**
+
+1. Resolver el corte (`HEAD` del clon) y leer las filas `ABIERTA` de NC
+   con `EC.lee_tablero`/el lector de `no-corrido.tsv` que ya usa la
+   sección H del digesto — nunca un parser nuevo.
+2. Buscar el `id` de cada abierta y sus referencias explícitas en
+   fuentes autoritativas VERSIONADAS: campos de firma/cierre de FP,
+   encargos archivados, notas de resultado/conciliación en
+   `forense/notas/`, decisiones y documentos que la propia fila cita.
+   Excluidos como prueba: digestos/vistas (son lectura, no evidencia) y
+   la repetición del propio texto original de la fila.
+3. Emitir las candidatas con el fragmento exacto que las produjo y lo
+   que falta verificar. Revisar también las que no tienen enlace
+   claro por `id` — una glosa o una decisión conversacional no
+   registrada no aparece siempre por búsqueda de identificador.
+4. Leer las candidatas y las abiertas sin cruce inequívoco. **Si el
+   presupuesto de la sesión no permite completar esta lectura, lista los
+   `id` NO REVISADOS y declara el ciclo de conciliación INCOMPLETO —
+   nunca publiques "cero cerrables" como conclusión global.** Un ciclo
+   incompleto es información honesta; "cero cerrables" sin declarar el
+   límite es una falsedad por omisión.
+5. Preparar en el PR de trámite existente (bloque 4, uno solo) los
+   cambios de propagación demostrados: `estado` → token vigente (P4,
+   abajo), `cerrado_por` con la cita, `fecha_cierre` con la fecha. Los
+   casos que exigen interpretar o decidir vuelven a dirección/mesa como
+   fila del digesto — igual que 3.1-3.3 para FP.
+6. Mesa fusiona. El ciclo siguiente deriva desde `main` el nuevo estado;
+   una propagación propuesta en un PR todavía abierto no desaparece de
+   la lista consolidada — se muestra como "propuesto en PR", información,
+   sin cambiar la autoridad de `main`.
+
+**Evidencia exigida antes de mover una fila de NC (§3, tabla):**
+
+| Evidencia | Qué se propaga | Qué comprobar antes |
+|---|---|---|
+| Firma fechada que identifica exactamente la fila y su objeto | referencia, fecha, texto, correspondencia explícita | cobertura íntegra o parcial; ausencia de condición material incumplida |
+| Sucesora firmada (columna `sucesor` cita una `FP-…`) | vínculo y estado de la sucesora | que absorbe explícitamente la obligación; el residual se enumera — **firmar la sucesora no acredita ejecutarla** |
+| PR fusionado o relanzamiento | merge comprobado y archivos afectados | que el contenido satisface la pieza concreta, no solo que el título/rama se parecen — lanzado no es ejecutado |
+| Glosa "ejecutada" con token inicial `ABIERTA` | contradicción textual, candidato a revisión | si es cierre total, parcial, cita histórica o negación (control real: `FP-362` — la firma de v3 no cierra v4) |
+| Objeto/versión/universo distinto | diferencia explícita, cuando está representada | si la decisión anterior aplica al caso nuevo — juicio de dirección/mesa, nunca del agente |
+| Ausencia de citas, referencias rotas, fuentes inaccesibles | falta de evidencia comprobable | localizar/registrar la evidencia; **nunca cerrar por antigüedad o parecido** |
+
+Toda propuesta de cierre necesita, escrito en `cerrado_por`: fila/pieza
+exacta; firma o resultado habilitante; cita a SHA + localizador
+permanente; el token vigente al que transita (nunca uno improvisado);
+fecha de decisión/ejecución si consta (distinta de la fecha de
+conciliación, que va en `fecha_cierre`); universo cubierto y residual.
+Nada se borra — las columnas inmutables de la fila quedan intactas.
+
+**Un solo PR de trámite** — ya es la práctica del bloque 4; esta pieza
+confirma que también cubre las propagaciones de NC: no se abre un
+segundo PR para no-corrido.
+
+**Set canónico de tokens para ESCRITURAS NUEVAS (P4 de
+`ACTO GEN2-GOBIERNO-DECISIONES`).** La HISTORIA no se reescribe — esto
+gobierna solo lo que este bucle de cierre escribe de aquí en adelante:
+
+- FP (`estado`): `FIRMADA` · `FIRMADA-PARCIAL` · `FIRMADA-POR-MERGE` ·
+  `FIRMADA-PENDIENTE-EJECUCION` · `FIRMADA-EJECUTADA` · `EJECUTADA` ·
+  `DECLINADA-POR-PROCESO` · `SUPERADA` · `CERRADA(-…)`.
+- NC (`estado`): `ABIERTA` · `CERRADA(-…)` (p. ej. `CERRADA`,
+  `CERRADA-DESISTIDA`, `CERRADA-DECLINADA` — el sufijo describe la vía,
+  nunca se inventa un token sin prefijo `CERRADA`).
+
+`EC.es_abierta`/la vista `--mesa` siguen leyendo por PREFIJO
+(`^ABIERTA(\s|$)`), así que variantes heredadas de la historia
+(`CERRADAS`, compuestos largos) se siguen leyendo bien — la disciplina de
+arriba es solo para lo que se escriba nuevo, para que ese desorden deje
+de crecer.
+
+### 3.7 · Prueba de cobertura antes de pedir otra decisión — P3
+
+De la propuesta de Astra §4, verbatim (contrato de formato, no prosa a
+resumir). Antes de llevarle a mesa CUALQUIER pregunta —de FP, de NC, o
+nueva— este agente y quien lo lee aplican la pregunta obligatoria:
+
+> **«¿Qué parte exacta de esta petición sigue sin resolver después de
+> consultar lo ya firmado para el mismo objeto y alcance?»**
+
+Se obtiene la vista por ID u objeto (`--mesa --id …`, P1), se siguen las
+referencias relacionadas, y se comparan cuatro elementos:
+objeto/versión, decisión solicitada, condiciones, universo. Una sola
+conclusión, con cita:
+
+- **Cubierto íntegramente:** propagar/conciliar; no volver a preguntar.
+- **Cubierto parcialmente:** preguntar solo el residual, conservando la
+  firma previa (control real: `FP-362`).
+- **Sustituido explícitamente:** seguir a la sucesora, mostrar lo que
+  absorbió y lo que dejó pendiente.
+- **Cambió el alcance:** mostrar la diferencia y solicitar reexamen de
+  esa parte.
+- **Sin cobertura encontrada:** indicar fuentes/patrones y frontera
+  examinada; presentar la decisión con esa reserva.
+
+Formato de conversación, corto y siempre el mismo:
+
+> **[Referencia] Necesito que decidas:** pregunta exacta. **Ya quedó
+> cubierto:** decisión y cita, con alcance. **Falta:** residual.
+> **Desbloquea:** resultado/consumidor o «sin bloqueo actual
+> documentado». **Recomiendo:** opción y razón. **Revisar de nuevo si:**
+> fecha o cambio material. **Si no respondes:** permanece pendiente;
+> consecuencia concreta de esperar.
+
+Si lo único pendiente es una acción ya autorizada (enviar un correo,
+descargar un archivo ya firmado), encabezar **«Necesito esta acción»** y
+citar la autorización — no pedir otra firma por inercia.
+
+Estos son veredictos de **cobertura**, no estados de los TSV. Compartir
+tema o aparecer en el mismo PR solo produce una relación candidata; no
+afirmar que una decisión nunca existió solo porque no apareció en el
+universo consultado por este agente.
 
 ---
 
