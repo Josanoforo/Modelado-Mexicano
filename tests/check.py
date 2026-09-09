@@ -5692,6 +5692,32 @@ def t41_digesto_mesa():
         fail("T-DIGESTO-MESA", f)
 
 
+def t42_digesto_candidatas():
+    """T42 · T-CANDIDATAS -- P1 de `ACTO GEN2-OPERACION-1 ·
+    CICLO-CONCILIACION-PAGABLE`
+    (`forense/encargos/2026-09-09-GEN2-OPERACION-1-CICLO-CONCILIACION-PAGABLE.md`).
+    Corre `tests/test_digesto_candidatas.py`: falsadores dirigidos de la
+    sección K de `tools/digesto_tramite.py` (localización de candidatas)
+    -- mismo arnés que T39/T40/T41."""
+    ruta = os.path.join(ROOT, "tests", "test_digesto_candidatas.py")
+    if not os.path.exists(ruta):
+        fail("T-CANDIDATAS", "no existe `tests/test_digesto_candidatas.py`")
+        return
+    try:
+        import importlib.util as _iu
+        _spec = _iu.spec_from_file_location("test_digesto_candidatas_desde_check", ruta)
+        _mod = _iu.module_from_spec(_spec)
+        sys.modules[_spec.name] = _mod
+        _spec.loader.exec_module(_mod)
+        fallos = _mod.corre()
+    except Exception as exc:
+        fail("T-CANDIDATAS", f"`tests/test_digesto_candidatas.py` no pudo correr: "
+                              f"{type(exc).__name__}: {exc}")
+        return
+    for f in fallos:
+        fail("T-CANDIDATAS", f)
+
+
 def t39_digesto_nc():
     ruta = os.path.join(ROOT, "tests", "test_digesto_nc.py")
     if not os.path.exists(ruta):
@@ -6218,6 +6244,7 @@ def main():
         ("T34 T-NO-CORRIDO",                          t34_no_corrido),
         ("T35 T-REPRO",                                t35_repro),
         ("T41 T-DIGESTO-MESA",                          t41_digesto_mesa),
+        ("T42 T-CANDIDATAS",                            t42_digesto_candidatas),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))

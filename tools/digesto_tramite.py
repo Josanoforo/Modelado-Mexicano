@@ -88,6 +88,18 @@ ausente en ese árbol, SHA no resoluble— se declara `SIN-BASE-COMPARABLE`
 con la causa, nunca "todo es nuevo". Ver el docstring de `seccion_h()`
 para el contrato completo.
 
+v1.4 — SECCIÓN K, LOCALIZACIÓN DE CANDIDATAS. P1 de `ACTO
+GEN2-OPERACION-1 · CICLO-CONCILIACION-PAGABLE`
+(`forense/encargos/2026-09-09-GEN2-OPERACION-1-CICLO-CONCILIACION-PAGABLE.md`).
+Cruza TODAS las filas `ABIERTA` de `forense/no-corrido.tsv` y
+`forense/firmas-pendientes.tsv` contra las tres fuentes que el runbook
+ya admite como evidencia (`forense/notas/`, `forense/encargos/` +
+`cola/`, `canon/gobernanza-v1_15.md`) por coincidencia literal de `id`.
+Coincidencia textual = CANDIDATO, nunca cierre; excluye como prueba el
+propio `forense/digesto/`, la repetición literal de la obligación y las
+citas desnudas de PR (no verificables desde el árbol). Ver el docstring
+de `bloque_k()` para el contrato completo.
+
 ────────────────────────────────────────────────────────────────────
 NEUTRALIZACIÓN DE MARCADORES — léelo antes de tocar `_neutraliza()`.
 ────────────────────────────────────────────────────────────────────
@@ -1422,6 +1434,277 @@ def seccion_j(raiz, fecha, ramas_remotas, fuente_ramas):
 
 
 # ───────────────────────────────────────────────────────────────
+# K · P1 de `ACTO GEN2-OPERACION-1 · CICLO-CONCILIACION-PAGABLE`
+# (`forense/encargos/2026-09-09-GEN2-OPERACION-1-CICLO-CONCILIACION-PAGABLE.md`).
+#
+# QUÉ ES. NC-0083/NC-0055 y el resto de las filas `ABIERTA` de
+# `forense/no-corrido.tsv`/`forense/firmas-pendientes.tsv` piden una
+# comprobación humana concreta, pero nada en el digesto decía DÓNDE
+# buscar esa comprobación -- mesa tenía que abrir notas, encargos y
+# gobernanza a mano cada vez, sin memoria de qué ya se cruzó. K hace esa
+# pasada mecánica: para cada fila abierta, busca su `id` (literal, sin
+# motor de búsqueda nuevo -- `str.find`, igual que el resto del archivo
+# usa `re`/`glob` ya existentes) en las tres fuentes que el runbook ya
+# admite como evidencia (notas, encargos+cola, gobernanza), y por cada
+# cruce emite id/objeto/ruta/fragmento/tipo de evidencia/comprobación
+# humana restante.
+#
+# QUÉ NO ES. Coincidencia textual es CANDIDATO, nunca cierre: esta
+# sección no escribe `no-corrido.tsv` ni `firmas-pendientes.tsv`, ni
+# decide qué candidato basta. Tres exclusiones deliberadas de la prueba:
+# (1) `forense/digesto/` -- es memoria de trabajo de este mismo agente,
+# nunca prueba de que algo se resolvió; (2) la repetición literal de la
+# obligación -- si el fragmento hallado es el mismo texto que ya trae la
+# fila (`que_no_se_corrio`/`qué_se_firma`), no es una fuente EXTERNA, es
+# la fila citándose a sí misma; (3) referencias a PR (`#NNN`) sin ningún
+# otro texto -- un PR es estado vivo de GitHub, no verificable desde el
+# árbol de trabajo, así que un hallazgo que sólo es un número de PR se
+# reporta NO-RESOLUBLE, nunca como candidato.
+#
+# FUERZA DE LA EVIDENCIA. Un hallazgo cuya ventana de texto alrededor
+# del `id` contiene alguna de las palabras clave que la propia
+# convención del proyecto ya usa para apuntar a sucesores
+# (`sucesor`/`encargo`/`objeto` -- columna `sucesor` de
+# `no-corrido.tsv`, ver `forense/encargos/convencion.md`) se marca
+# **FUERTE**; el resto se marca **SEMÁNTICA** y se declara igual, pero
+# NO se prioriza como si fuera lo mismo -- queda explícitamente para
+# lectura humana (P1 del encargo).
+#
+# A.13/ALCANCE. Esta sección declara siempre cuántas filas abiertas
+# examinó, cuántos candidatos/no-resolubles/sin-evidencia produjo, y si
+# alguna de las tres fuentes esperadas falta en el árbol (directorio
+# inexistente) o si el tope de archivos por fuente (`--tope-archivos-k`,
+# por defecto sin tope real -- ver `_TOPE_ARCHIVOS_K`) se alcanzó --
+# **ALCANCE INCOMPLETO**, nunca en silencio.
+# ───────────────────────────────────────────────────────────────
+
+RE_REF_FUERTE_K = re.compile(r"\b(sucesor(?:a)?|encargo|objeto)\b", re.I)
+# Exclusión (3): una referencia a PR (`#123`) es estado VIVO de GitHub, no
+# verificable desde el árbol de trabajo -- si el hallazgo se apoya en una
+# cita de PR y NO trae, además, una palabra clave fuerte propia (sucesor/
+# encargo/objeto), no es prueba resoluble desde aquí, sea cual sea el resto
+# de la prosa alrededor.
+RE_CITA_PR_K = re.compile(r"#\d+\b")
+_TOPE_ARCHIVOS_K = 2000  # cota defensiva, no un límite de negocio -- ver bloque_k()
+
+
+def _lee_texto_archivo_k(ruta):
+    """Lee un archivo como texto; None si no se puede (nunca lanza --
+    igual criterio que `corre()` de este archivo)."""
+    try:
+        with open(ruta, encoding="utf-8", errors="replace") as fh:
+            return fh.read()
+    except OSError:
+        return None
+
+
+def _universo_fuentes_k(raiz):
+    """(dict fuente->(rutas, faltante), alcance_incompleto:list[str]).
+    Las TRES fuentes que el runbook ya admite (P1 del encargo): notas,
+    encargos (+ `cola/`), gobernanza. `forense/digesto/` NUNCA entra
+    aquí -- no es una fuente que se "olvidó" agregar, es prueba excluida
+    a propósito (ver cabecera del bloque)."""
+    universo = {}
+    incompleto = []
+
+    d_notas = os.path.join(raiz, "forense", "notas")
+    if os.path.isdir(d_notas):
+        universo["notas"] = (sorted(glob.glob(os.path.join(d_notas, "*.md"))), False)
+    else:
+        universo["notas"] = ([], True)
+        incompleto.append("`forense/notas/` no existe")
+
+    d_enc = os.path.join(raiz, "forense", "encargos")
+    if os.path.isdir(d_enc):
+        rutas = sorted(glob.glob(os.path.join(d_enc, "*.md")))
+        d_cola = os.path.join(d_enc, "cola")
+        if os.path.isdir(d_cola):
+            rutas += sorted(glob.glob(os.path.join(d_cola, "*.md")))
+        universo["encargos"] = (rutas, False)
+    else:
+        universo["encargos"] = ([], True)
+        incompleto.append("`forense/encargos/` no existe")
+
+    ruta_gob = os.path.join(raiz, "canon", "gobernanza-v1_15.md")
+    if os.path.exists(ruta_gob):
+        universo["gobernanza"] = ([ruta_gob], False)
+    else:
+        universo["gobernanza"] = ([], True)
+        incompleto.append("`canon/gobernanza-v1_15.md` no existe")
+
+    n_archivos = sum(len(r) for r, _ in universo.values())
+    if n_archivos > _TOPE_ARCHIVOS_K:
+        incompleto.append(
+            f"universo de {n_archivos} archivo(s) excede el tope defensivo "
+            f"({_TOPE_ARCHIVOS_K}) -- búsqueda truncada, no completa")
+
+    return universo, incompleto
+
+
+def _propio_texto_fila_k(fila):
+    """Concatena las columnas de prosa propia de la fila (NC o FP) --
+    se usa para excluir la repetición literal de la obligación como si
+    fuera evidencia externa (P1: "la propia fila citándose a sí
+    misma")."""
+    partes = [fila.get(c, "") for c in
+              ("que_no_se_corrio", "razon", "impacto", "sucesor",
+               "qué_se_firma", "gatea")]
+    return " ".join(p for p in partes if p)
+
+
+def _busca_candidatas_fila_k(raiz, universo, rid, texto_propio, ruta_digesto_norm,
+                              tope_frag):
+    """Cruza `rid` contra `universo` (fuente->(rutas, faltante)).
+    Devuelve (candidatos_fuertes, candidatos_semanticos, no_resolubles) --
+    listas de dicts {fuente, ruta, fragmento}. `str.find`, ninguna
+    interpolación de shell, ningún motor de búsqueda nuevo."""
+    fuertes, semanticas, no_resolubles = [], [], []
+    inicio_propio = (texto_propio or "")[:60].strip()
+    for fuente, (rutas, _faltante) in universo.items():
+        for ruta in rutas:
+            if os.path.normpath(ruta).startswith(ruta_digesto_norm):
+                continue  # exclusión (1): nunca prueba
+            texto = _lee_texto_archivo_k(ruta)
+            if not texto:
+                continue
+            idx = texto.find(rid)
+            if idx == -1:
+                continue
+            ventana = texto[max(0, idx - 200):idx + 200]
+            if inicio_propio and inicio_propio in ventana:
+                continue  # exclusión (2): la fila citándose a sí misma
+            frag = una_linea(texto[max(0, idx - tope_frag // 2):
+                                    idx + tope_frag // 2])
+            rel = os.path.relpath(ruta, raiz)
+            fuerte = bool(RE_REF_FUERTE_K.search(ventana))
+            if RE_CITA_PR_K.search(ventana) and not fuerte:
+                no_resolubles.append({"fuente": fuente, "ruta": rel, "fragmento": frag})
+                continue  # exclusión (3): se apoya en una cita de PR, no verificable aquí
+            dest = fuertes if fuerte else semanticas
+            dest.append({"fuente": fuente, "ruta": rel, "fragmento": frag})
+    return fuertes, semanticas, no_resolubles
+
+
+def bloque_k(raiz, cuenta, tope_texto=220, tope_lista=25):
+    """K · localización de candidatas (P1 de GEN2-OPERACION-1).
+
+    Recorre TODAS las filas `ABIERTA` de `forense/no-corrido.tsv`
+    (`_lee_no_corrido`, ya usado por H) y `forense/firmas-pendientes.tsv`
+    (`EC.lee_tablero`, ya usado por A), y por cada una busca su `id`
+    contra `_universo_fuentes_k` (notas/encargos+cola/gobernanza).
+    Coincidencia textual = CANDIDATO, nunca cierre (ver cabecera del
+    bloque). Devuelve (líneas, resumen-dict) igual que el resto del
+    digesto; `resumen["alcance_incompleto"]` es la lista (posiblemente
+    vacía) de fuentes faltantes o topes alcanzados -- SIEMPRE presente,
+    nunca omitida en silencio (A.13)."""
+    out = ["## K · Localización de candidatas para filas abiertas (A.13)", "",
+           "Comando: por cada fila `ABIERTA` de `forense/no-corrido.tsv` y "
+           "`forense/firmas-pendientes.tsv`, búsqueda literal de su `id` en "
+           "`forense/notas/*.md`, `forense/encargos/*.md` (+ `cola/`) y "
+           "`canon/gobernanza-v1_15.md` (`str.find`, sin motor de búsqueda "
+           "nuevo). Coincidencia textual produce **CANDIDATO**, nunca "
+           "cierre -- el cierre real lo hace mesa o un acto con su propia "
+           "evidencia citada.", ""]
+
+    universo, incompleto = _universo_fuentes_k(raiz)
+    ruta_digesto_norm = os.path.normpath(os.path.join(raiz, "forense", "digesto"))
+
+    _, filas_nc, _ = _lee_no_corrido(raiz)
+    filas_nc = filas_nc or []
+    abiertas_nc = [f for f in filas_nc if EC.es_abierta(f.get("estado", ""))]
+
+    _, filas_fp, _ = EC.lee_tablero(raiz)
+    filas_fp = filas_fp or []
+    abiertas_fp = [f for f in filas_fp if EC.es_abierta(f.get("estado", ""))]
+
+    n_examinadas = len(abiertas_nc) + len(abiertas_fp)
+    n_candidatos = n_no_resolubles = n_sin_evidencia = 0
+    filas_tabla = []
+
+    def _procesa(rid, objeto, fila):
+        nonlocal n_candidatos, n_no_resolubles, n_sin_evidencia
+        texto_propio = _propio_texto_fila_k(fila)
+        fuertes, semanticas, no_res = _busca_candidatas_fila_k(
+            raiz, universo, rid, texto_propio, ruta_digesto_norm, tope_texto)
+        if fuertes or semanticas:
+            n_candidatos += 1
+        elif no_res:
+            n_no_resolubles += 1
+        else:
+            n_sin_evidencia += 1
+        for tipo, lote in (("FUERTE (sucesor/encargo/objeto)", fuertes),
+                            ("SEMÁNTICA (sólo id, para lectura humana)", semanticas)):
+            for h in lote:
+                filas_tabla.append((rid, objeto, h["ruta"], tipo,
+                                    neutraliza(h["fragmento"], cuenta),
+                                    "confirmar en mesa que el cruce cierra la fila"))
+        for h in no_res:
+            filas_tabla.append((rid, objeto, h["ruta"], "NO-RESOLUBLE (sólo cita de PR)",
+                                "(sin fragmento -- PR no verificable desde el árbol)",
+                                "verificar estado del PR desde GitHub, no desde el árbol"))
+        if not fuertes and not semanticas and not no_res:
+            filas_tabla.append((rid, objeto, "—", "SIN-EVIDENCIA",
+                                "ninguna coincidencia literal del id en el universo",
+                                "sonda manual (encargo/mesa) fuera de este universo"))
+
+    for f in abiertas_nc:
+        rid = f.get("id", "?")
+        objeto = neutraliza(una_linea(f.get("que_no_se_corrio", "") or
+                                       f.get("razon", ""), 140), cuenta)
+        _procesa(rid, objeto, f)
+    for f in abiertas_fp:
+        rid = f.get("id", "?")
+        objeto = neutraliza(una_linea(f.get("qué_se_firma", ""), 140), cuenta)
+        _procesa(rid, objeto, f)
+
+    out += [f"Universo examinado: **{n_examinadas}** fila(s) abierta(s) "
+            f"(**{len(abiertas_nc)}** de `no-corrido.tsv` + **{len(abiertas_fp)}** de "
+            f"`firmas-pendientes.tsv`, A.13). Resultado: **{n_candidatos}** con "
+            f"candidato(s) · **{n_no_resolubles}** no-resoluble(s) · "
+            f"**{n_sin_evidencia}** sin-evidencia.", ""]
+
+    if incompleto:
+        out += ["**ALCANCE INCOMPLETO.** " + "; ".join(incompleto) + ".", ""]
+    else:
+        out += ["Alcance: las tres fuentes admitidas existen en el árbol y "
+                "el universo no alcanzó el tope defensivo de archivos.", ""]
+
+    if filas_tabla:
+        tope = tope_lista if tope_lista else len(filas_tabla)
+        out += ["| id | objeto | ruta/evidencia | tipo | fragmento | comprobación humana restante |",
+               "|---|---|---|---|---|---|"]
+        for rid, objeto, ruta, tipo, frag, restante in filas_tabla[:tope]:
+            # Neutraliza la FILA COMPLETA, no cada campo por separado: una
+            # palabra clave de T22(b)/T25 puede quedar a caballo entre dos
+            # campos de la misma línea de tabla (medido: `PROPUESTA...` de
+            # una ruta de nota + `...mesa` de la comprobación restante
+            # componen `PROPUESTA.*mesa` en la misma línea aunque ningún
+            # campo por sí solo lo contenga).
+            fila_txt = (f"| `{rid}` | {objeto} | `{ruta}` | {tipo} | "
+                       f"{frag.replace('|', chr(92)+'|')} | {restante} |")
+            out.append(neutraliza(fila_txt, cuenta))
+        if len(filas_tabla) > tope:
+            out.append(f"| … | **{len(filas_tabla) - tope} fila(s) más, omitidas por el "
+                       f"tope de presentación (`--tope-lista`)** | | | | |")
+        out.append("")
+    else:
+        out.append("Sin filas abiertas que examinar (A.13).")
+        out.append("")
+
+    # NC-0040: calibración a mesa, no resolución de esta sección (P1 del
+    # encargo lo pide en una línea, explícitamente sin decidir nada).
+    out += ["**NC-0040 (calibración pendiente para mesa, no resuelta aquí):** "
+            "consulta corroborada de comentarios `[REVISA]` vía `gh`/API de "
+            "GitHub vs. alcance por huella local (sección J) — mesa decide "
+            "qué criterio aplica; este digesto sólo la nombra.", ""]
+
+    resumen = {"examinadas": n_examinadas, "candidatos": n_candidatos,
+               "no_resolubles": n_no_resolubles, "sin_evidencia": n_sin_evidencia,
+               "alcance_incompleto": incompleto}
+    return out, resumen
+
+
+# ───────────────────────────────────────────────────────────────
 # H · P1/P2 (`ACTO AUTO-DIGESTO-1 · CAMBIOS-DESDE-EL-ULTIMO-CORTE`,
 # 8/sep/2026, `forense/encargos/2026-09-08-digesto-incremental-reservas.md`)
 # -- contrato de referencia y de comparación del digesto incremental de
@@ -2220,6 +2503,7 @@ def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso, base_nc_ref=
     n_nc_abiertas = res_h["no_corrido_abiertas"]
     i, res_i = seccion_i(raiz, fecha, cuenta)
     j, res_j = seccion_j(raiz, fecha, ramas, fuente_ramas)
+    k, res_k = bloque_k(raiz, cuenta, tope_texto=tope_texto, tope_lista=tope_lista)
     fals, n_venc = bloque_falsadores(raiz, fecha)
 
     pie = ["## Pie · falsadores vivos, neutralización de marcadores y A.13", "",
@@ -2248,15 +2532,16 @@ def construye(raiz, fecha, sin_suite, tope_texto, tope_lista, piso, base_nc_ref=
            f"`forense/prereg-duelo-v2/corridas-{{M,R,L}}/` · `milpa/tramite.yaml` · "
            f"`milpa/procedencia.yaml` · `forense/encargos/cola/*.md` · "
            f"`milpa/*.yaml` · `forense/no-corrido.tsv` · `forense/rutinas.tsv` · "
-           f"`forense/notas/*revisa*.md` · los runbooks y skills de "
+           f"`forense/notas/*revisa*.md` · `forense/notas/*.md` (K) · "
+           f"`canon/gobernanza-v1_15.md` (K) · los runbooks y skills de "
            f"la tabla de falsadores · ramas del remoto `origin`. Fuera de ese "
            "universo este digesto no dice nada, y no debe leerse como si dijera.", ""]
 
-    cuerpo = cab + venc + a + b + c + d + e + f + g + h + i + j + pie
+    cuerpo = cab + venc + a + b + c + d + e + f + g + h + i + j + k + pie
     resumen = {"abiertas": n_ab, "ramas": n_ramas, "sin_consumido": n_sin,
                "contadores": n_cont, "neutralizaciones": cuenta.total(),
                "detalle_d": det_d, "sha": sha, "cola": res_f,
-               "rutinas": res_i, "revisiones": res_j,
+               "rutinas": res_i, "revisiones": res_j, "candidatas": res_k,
                "pendientes_mesa": n_pend, "falsadores_vencidos": n_venc,
                "vencidas": n_vencidas, "vencen_semana": n_vencen_semana,
                "no_corrido_abiertas": n_nc_abiertas, "h_error": res_h["h_error"]}
@@ -2428,7 +2713,12 @@ def main(argv=None):
           f"{res['falsadores_vencidos']} falsador(es) vencido(s) · "
           f"{res['vencidas']} vencida(s) · {res['vencen_semana']} vencen esta semana · "
           f"{res['neutralizaciones']} neutralización(es) · "
-          f"no_corrido_abiertas {res['no_corrido_abiertas']} · HEAD {res['sha']}",
+          f"no_corrido_abiertas {res['no_corrido_abiertas']} · "
+          f"K: {res['candidatas']['examinadas']} examinada(s)/"
+          f"{res['candidatas']['candidatos']} candidato(s)/"
+          f"{res['candidatas']['no_resolubles']} no-resoluble(s)/"
+          f"{res['candidatas']['sin_evidencia']} sin-evidencia · "
+          f"HEAD {res['sha']}",
           file=sys.stderr)
     return 0
 
