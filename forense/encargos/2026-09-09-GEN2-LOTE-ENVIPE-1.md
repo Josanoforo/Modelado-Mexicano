@@ -101,3 +101,24 @@ declara territorio virgen ni la re-clasifica: la releva bajo el registro GEN2
 (cadena E.2 completa), que es exactamente lo que `CORR-0009` demanda con receta
 `PARCIAL:script+spec+spec_sha`. La cobertura retroactiva localizada se detalla en
 la nota del lote.
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+| qué (verbatim del encargo) | por qué | impacto | sucesor |
+|---|---|---|---|
+| **«Prepara la adopción para los consumidores medidos … el valor adoptado llega al parámetro que el emisor de M ejecuta»** — la ESCRITURA de la cita en `milpa/tramite.yaml:583` | `FUERA-DE-PERÍMETRO` | La adopción queda **preparada y demostrada**, no escrita. La prueba dirigida de consumo **pasa** (`emitir_binaria` → `valor_punto = 0.294313` = `round(RESULT-ENVIPE-DEN-P-C2-U4, 6)`; 10 corridas `M` selladas lo consumen; `ADOPCION-P3 = ADOPTABLE-POR-REPLICA`, delta `0.0` al grano de `milpa/`). Pero el `PERÍMETRO` de este mismo encargo enumera los archivos que toca y **`milpa/` no está en la lista** — el encargo hermano de `GEN2-C0-D` sí escribió «milpa/+tablero solo las citas de P4» cuando quiso autorizarlo. `usos.tsv` se re-derivó sin cambio (205 filas): sin cita no hay adopción que registrar. El parche exacto, de una línea, está verbatim en la nota §4.2. | `NC-0084` — acto con `milpa/` en su perímetro |
+| **«el complemento (`denuncia_por_otra_razon`) SOLO si el codebook demuestra categorías exhaustivas y excluyentes del mismo universo»** | `LA CONDICIÓN NO SE CUMPLE` | **Contestado, y la respuesta es que no.** `VEREDICTO-EXHAUSTIVIDAD = EXHAUSTIVAS-Y-EXCLUYENTES-SOLO-BAJO-U1`: `09` (Otra, 2 200 filas) y `99` (NS/NR, 111) son categorías reales del reactivo — 9.19% del peso. `RES-0028` queda cubierto **sólo** como complemento sobre `U1`, con su denominador escrito en la unidad; **no** como cantidad medida independiente. | `NC-0085` — decisión de mesa sobre `RES-0028` |
+| **«Los otros 4 RESULT de CORR-0009 entran solo si comparten apertura coherente y su spec quedó completa en P1»** (`RES-0039..0042`) | `APERTURA-DISTINTA` | **No entran y NO se declaran cubiertos.** Otra apertura: unidad delito restringida a `BPCOD = 01` (robo total de vehículo), condicionada a cobertura de seguro, desenlace `denuncia`/`no_denuncia` — no razones de no-denuncia. Su spec no se escribió. Cobertura retroactiva ya localizada para el sucesor: `tools/medidor_denuncia_seguro_envipe25.py`. | `NC-0088` |
+| **«si necesita el trabajo C0-C pendiente (NC-0024/0026), lo consume solo en el perímetro necesario y lo cita»** | `NO-APLICA` | **No se necesitó.** La prueba dirigida de consumo se resolvió con una sonda de sólo lectura sobre el motor real (`milpa.src.emisor.emitir_binaria`) y con las 10 corridas `M` ya selladas en el árbol. No se abrió `C0-C`, no se envolvió `emite_m.py` (que es justo lo que `NC-0026` prohíbe), y el árbol quedó intacto tras la sonda. `NC-0024`/`NC-0026` siguen **ABIERTAS** y sin tocar. | ninguno nuevo |
+| **«no decide el hueco temporal 2012–2024»** | `DECISIÓN-DE-MESA` (lo excluye el propio encargo) | ENVIPE 2025 mide delitos de **2024**; no valida transferencia a olas previas ni cumple sus cortes. Queda con la nota a la vista. | `NC-0087` — mesa |
+| **`cuenta_gen2` del CALC** | `FIRMA-CONTADOR AUSENTE` | La firma de mesa del 9/sep ordena el lote pero **su objeto no es el contador** (estándar `FP-367`). `cuenta_gen2 = PENDIENTE-DE-MESA`: el contador **no lo cuenta, y se dice**. `decisiones.tsv` no se toca. | firma explícita de mesa sobre `cuenta_gen2` de `CALC-ENVIPE-0001` |
+
+Fuera de lo que el encargo pidió, este acto abrió además `NC-0086` (las otras cuatro fuentes de fase 1 de `FP-201` quedan sin revisar: para ENVIPE 2025 el campo de diseño **sí** existía, y generalizar desde ahí sería el mismo vicio al revés).
+
+## CONSUMIDO
+
+Ejecutado por **`PR #653`** (`ACTO GEN2-LOTE-ENVIPE-1 · PRIMER LOTE F4→F3`), rama `acto/gen2-lote-envipe-1`, 9/sep/2026, CAJA (Ubuntu) con corpus montado, Opus. Cinco commits: 0-bis `10553db` · COMMIT-1 `06223f3` (spec congelada) · COMMIT-2 `414f002` (corrida sellada, `verify REPRODUCE`) · COMMIT-3 `e11d10f` (P3, P4, notas, `NO-CORRIDO`, cascada) · renumeración `60d1c3a` + merge `73a9418` (`PR #652` fusionó primero y colisionó en ADR y en NC; regla de la casa aplicada en ambos).
+
+`ADR-430` (renumerado desde `429`). Productos: `forense/prereg-caja/ENVIPE-DENUNCIA-spec-v1_0.md` · `data/corrida0/CALC-ENVIPE-0001/` · `forense/notas/2026-09-09-GEN2-LOTE-ENVIPE-1-cierre.md` · `forense/notas/2026-09-09-identidad-encig-corr-0002-0003.md` · `NC-0084`…`NC-0088`.
