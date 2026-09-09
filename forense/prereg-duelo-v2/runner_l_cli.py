@@ -243,10 +243,21 @@ def ruta_salida(id_celda: str, variante: str, indice: int) -> Path:
     return DIR / "corridas-L" / f"L-{id_celda}-M__{variante}__{indice:02d}__{SPEC_VERSION}.json"
 
 
-def construir_comando_cli(prompt: str) -> list[str]:
+def construir_comando_cli() -> list[str]:
     """Comando exacto que P2 fija, uno por corrida. `--tools ""` deshabilita
     herramientas; `--max-turns 1` fuerza una sola vuelta ciega; el prompt de
-    sistema por defecto del CLI se reemplaza, no se agrega."""
+    sistema por defecto del CLI se reemplaza, no se agrega.
+
+    ENMIENDA F5-2 (9/sep/2026, medida en P3, no supuesta): el prompt YA NO se
+    pasa como argumento posicional -- `subprocess.run(..., input=prompt)` lo
+    entrega por stdin (`claude -p` lo lee cuando no recibe `[prompt]`,
+    verificado empíricamente antes de aplicar el cambio). Defecto real: con
+    contexto de paquete-corpus (hasta 600 000 caracteres), el argumento
+    excedía el límite por-argumento de `execve` en Linux (`MAX_ARG_STRLEN`,
+    ~128 KiB) -- `OSError: [Errno 7] Argument list too long`, medido en la
+    primera invocación `L+corpus` real de P3 (4 capturas `L-solo` ya habían
+    corrido bien, sin contexto, sin tocar este límite). El comando de línea
+    ya no depende del tamaño del prompt."""
     return [
         "claude", "-p",
         "--model", MODELO_ALIAS,
@@ -254,7 +265,6 @@ def construir_comando_cli(prompt: str) -> list[str]:
         "--system-prompt", SISTEMA_MINIMO,
         "--tools", "",
         "--max-turns", "1",
-        prompt,
     ]
 
 
@@ -293,12 +303,12 @@ def ejecutar_corrida(spec, params_variante: str, prompt: str, id_celda: str, ind
     `estado_captura=RECHAZADO_TRAS_REINTENTOS` para que `correr()` siga con
     la siguiente tupla y el embudo de P3 cuente el rechazo en vez de perder
     la fila o tumbar el lote completo."""
-    comando = construir_comando_cli(prompt)
+    comando = construir_comando_cli()
     sha_prompt = hashlib.sha256(prompt.encode("utf-8")).hexdigest()
     ultimo_error: str | None = None
     for intento in range(1, MAX_REINTENTOS + 2):
         try:
-            resultado = subprocess.run(comando, capture_output=True, text=True, check=True, timeout=180)
+            resultado = subprocess.run(comando, input=prompt, capture_output=True, text=True, check=True, timeout=180)
             texto_crudo, modelo_real = parsear_salida_cli(resultado.stdout)
             return {
                 "id_celda": id_celda,
@@ -380,10 +390,11 @@ def dry_run() -> int:
         n_prompts_vistos.add((celda["id"], variante))
         assert ruta not in rutas_vistas, f"ruta colisionada: {ruta}"
         rutas_vistas.add(ruta)
-        comando = construir_comando_cli(prompt)
+        comando = construir_comando_cli()
         assert comando[0] == "claude" and "-p" in comando
         assert "--tools" in comando and comando[comando.index("--tools") + 1] == ""
         assert SISTEMA_MINIMO in comando
+        assert prompt not in comando, "el prompt NO debe viajar en argv (ENMIENDA F5-2, arg-list-too-long)"
         if variante == "L+corpus":
             assert contexto_metadata is not None, f"L+corpus sin contexto_metadata para {celda['id']}"
             if contexto_metadata.get("estado") == "OK":
@@ -409,7 +420,7 @@ def dry_run() -> int:
 
     print(f"OK -- {len(n_prompts_vistos)} pares (celda, variante) x k={K_CORRIDAS_SELLADO} = {n_rutas} rutas de salida verificadas")
     print(f"OK -- esquema de salida (campos del piloto) verificado contra {ejemplos[0].name}")
-    print(f"OK -- comando CLI construido para las {n_rutas} corridas: claude -p --model {MODELO_ALIAS} --output-format json --system-prompt '<P1>' --tools '' --max-turns 1 '<prompt>'")
+    print(f"OK -- comando CLI construido para las {n_rutas} corridas: claude -p --model {MODELO_ALIAS} --output-format json --system-prompt '<P1>' --tools '' --max-turns 1  (prompt por stdin, ENMIENDA F5-2)")
     print(f"OK -- contexto_corpus real para {contexto_corpus_ok} invocaciones L+corpus; {contexto_corpus_sin_paquete} sin paquete-corpus (spec no cubierta por F5, placeholder declarado)")
     print(f"OK -- orden_captura() determinista (semilla={SEMILLA_ORDEN}), cubre las {total_esperado} tuplas sin pérdida ni duplicado")
     print("OK -- ningún subproceso `claude` invocado en este acto (--dry-run)")

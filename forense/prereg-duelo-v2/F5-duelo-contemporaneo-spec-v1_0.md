@@ -232,8 +232,11 @@ sin cambio salvo lo que esta sección fija:
 
 - `14 celdas × 2 variantes (L-solo, L+corpus) × k=8 = 224 invocaciones`.
 - Cliente: Claude Code CLI en modo print (`claude -p --model opus --output-format
-  json --system-prompt "<mínimo fijo>" --tools "" --max-turns 1 "<prompt>"`), CERO
-  API. Prompt de sistema reemplazado por la cadena mínima fija ya sellada
+  json --system-prompt "<mínimo fijo>" --tools "" --max-turns 1`, prompt de
+  celda entregado por **stdin**, no por `argv` — ENMIENDA F5-2, §8: con
+  contexto de hasta 600 000 caracteres el argumento excedía el límite
+  por-argumento de `execve`), CERO API. Prompt de sistema reemplazado por la
+  cadena mínima fija ya sellada
   (`SISTEMA_MINIMO`). Sin `--add-dir`, sin herramientas de archivo sobre el clon.
 - `contexto_corpus` para `L+corpus`: ensamblado real desde `paquete-corpus-F5-v1_0`
   (§3), documentos concatenados en orden alfabético de ruta, presupuesto de
@@ -388,7 +391,8 @@ volverse circular):
 | `MAESTRA34-N4` (firma DR-a, dimensión dinámica) | `1ae70bc2…` | `0c10e9ab95350ce2b3596216eeda0c23e270bce492177bd14c5657c6e28598e2` |
 | `L-CORRIDAS-v1_2` (firma DL-(1), `sha256_prompt`/`params`) | `0c10e9ab…` | `7ac9852e22201bc61218d2ccfb501e97efc76b51d55261abf213388257e04e4b` |
 | `P4 (D3)`, commit `e8a95d0`, `FP-235`/`FP-240` (sufijo `__<SPEC_VERSION>`) | `7ac9852e…` | `b2c3965851423d07f164d11da914972742924e70bfb5f9f71cc8f70ad5aeb7e3` |
-| **ENMIENDA F5** (este acto: contexto real de `L+corpus`, orden contrabalanceado, reintentos acotados y contados) | `b2c39658…` | **`2f1983eb687dd2f4dbcc04378e3dafb6e055e2f24e1c5201ef15583c39acb8ad`** |
+| **ENMIENDA F5** (este acto: contexto real de `L+corpus`, orden contrabalanceado, reintentos acotados y contados) | `b2c39658…` | `2f1983eb687dd2f4dbcc04378e3dafb6e055e2f24e1c5201ef15583c39acb8ad` |
+| **ENMIENDA F5-2** (medida en P3, no supuesta: `OSError: [Errno 7] Argument list too long` en la primera invocación `L+corpus` real — el prompt con contexto de hasta 600 000 caracteres excedía el límite por-argumento de `execve`; el prompt ya no viaja en `argv`, se entrega por `stdin`, verificado empíricamente con `claude -p` antes de aplicar) | `2f1983eb…` | **`54c994b22111df70f60da599b6ffa0dacd8a62c55fcc5a217ff6cab79cdbaca5`** |
 
 **Regresión obligatoria de la última fila, corrida en este acto:** `--dry-run` con
 `L-spec-v1_1.json` → 176 rutas (verde, sin cambio de conteo); `L-spec-v1_2.json` →
