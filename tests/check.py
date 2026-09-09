@@ -2638,6 +2638,12 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # censó `ACTO GEN2-T7-CIERRE` al encolarlo), y `E5-0` ya figura por la
     # misma razón en las exenciones de `AUTO-MOTOR-1` y `GEN2-T9` de arriba.
     "forense/encargos/2026-09-08-GEN2-E5-0-SPECS-EJECUTABLES.md",
+    # ACTO GEN2-CIERRES-CON-CITA, 9/sep/2026: encargo archivado VERBATIM
+    # (0-bis A.3), que no se edita para complacer un test. Cita "el encargo
+    # E5-0" al pedir sincronizar su token de cola -- procedencia del mismo
+    # rótulo `GEN2-E5-0` ya censado arriba y en `canon/registro-rotulos.tsv`,
+    # no un rótulo nuevo.
+    "forense/encargos/2026-09-09-GEN2-CIERRES-CON-CITA.md",
     # ACTO GEN2-E5 · CALC-0001..0003, 8/sep/2026: encargo archivado VERBATIM
     # (0-bis A.3) desde `forense/encargos/cola/`, que no se edita para
     # complacer un test. El rótulo pelado que trae es `E5` -- el encabezado
