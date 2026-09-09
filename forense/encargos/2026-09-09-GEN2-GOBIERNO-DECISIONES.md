@@ -60,4 +60,4 @@ PERÍMETRO: `tools/digesto_tramite.py` · `tools/estado_comun.py` (solo extensi�
 
 ## CONSUMIDO
 
-Ejecutado por `PR #650` (rama `claude/kind-pasteur-sj6r2p`, `ADR-426`). P0-P5 implementados; cinco reservas declaradas en `## NO-CORRIDO / RESERVAS` arriba. `tests/check.py --baseline`: **VERDE**.
+Ejecutado por `PR #650` (rama `claude/kind-pasteur-sj6r2p`, `ADR-427` — renumerado de `ADR-426`: `PR #649` (`ACTO GEN2-C0-D`) fusionó primero y tomó el `426`; regla de la casa, renumera quien fusiona segundo). P0-P5 implementados; cinco reservas declaradas en `## NO-CORRIDO / RESERVAS` arriba. `tests/check.py --baseline`: **VERDE**.
