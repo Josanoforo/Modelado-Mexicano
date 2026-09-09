@@ -63,3 +63,24 @@ esta regla (vía `ENCIG-MORDIDA-spec-v1_0.md`) ya declaraba en §3.7.
 Corrido en verde tras las tres piezas (P0/P1/P2, cierres P3, y la exención
 de `_T_YAMEDIDO_ARCHIVOS_CONOCIDOS` de arriba). Salida completa en el commit
 de cascada.
+
+## §13 · Fix de CI post-PR (defecto real, no flake)
+
+`PR #670`, CI en rojo: `tests/test_emite_m_calibracion.py::test_regresion_p2_pasa`
+fallaba (regresión P2 de `M-TRA-M-01`/`M-TRA-M-02`, ver §5/§25.5 del acto
+`MAESTRA38-M13`). Causa: `cita_p`/`cita_ola_calibracion` citan una línea
+de `milpa/tramite.yaml` **por texto exacto** (`tools/emite_m.py::_primera_linea`
+devuelve la línea completa, comentario incluido); este acto había anotado
+`# SEMANTICA (D4, NC-0113)` **en la misma línea** que citan `M-TRA-M-01`,
+`M-TRA-M-02`, `M-TRA-M-03`, `M-TRA-M-05`, `M-TRA-M-07` (línea `paga_mordida,
+p: 0.62, ASIGNADO`) y `M-TRA-M-02__v1_3`/`M-TRA-M-03__v1_3`/`M-TRA-M-07__v1_3`
+(línea `paga_mordida_encig2025, p: 0.085118`) — el texto citado ya no
+coincidía con el archivado en esos `M-*.json`. Corregido moviendo las dos
+anotaciones `SEMANTICA` a una línea de comentario propia, inmediatamente
+antes de la línea citada (no matchea el regex `conducta:\s*<nombre>\b`,
+así que no se convierte en el nuevo "primera línea" del bloque). Verificado:
+censo de las 23 `cita_p`/`cita_ola_calibracion` no vacías en
+`forense/prereg-duelo-v2/corridas-M/*.json` — ninguna otra cae sobre una
+línea anotada por este acto. `tests/test_emite_m_calibracion.py` (16/16 OK),
+`tests/check.py --baseline` (línea base VERDE) y `tests/test_svystat.py` /
+`tests/test_scoring_adv1_m3.py` corridos en verde tras el fix.

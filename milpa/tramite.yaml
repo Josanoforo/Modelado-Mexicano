@@ -47,7 +47,8 @@ reglas:
       # ENCIG 2011-2025 (enmienda_encig2025 abajo) mide 4.45%-8.51%, siempre
       # muy por debajo. Se conserva como historia -- NO se borra --, se
       # sustituye por el MEDIDO de abajo en el cálculo del motor.
-      - {conducta: paga_mordida, p: 0.62, clase: ASIGNADO}  # SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
+      # SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado. Comentario en linea propia -- esta conducta la cita cita_p (M-TRA-M-01/02) por TEXTO EXACTO de su propia linea; anotar en la misma linea rompe esa regresion (tests/test_emite_m_calibracion.py::test_regresion_p2_pasa).
+      - {conducta: paga_mordida, p: 0.62, clase: ASIGNADO}
       - {conducta: tramite_normal, p: 0.38, clase: ASIGNADO}
       # ── ENMIENDA ENCIG2025 · firma DM (1/sep/2026) · ACTO MAESTRA34-N4 ──
       # Sustituye el 0.62 ASIGNADO de arriba: serie de 8 olas ENCIG
@@ -57,7 +58,8 @@ reglas:
       # sufijo _encig2025 -- mismo patrón que la enmienda ENCUCI2020 de
       # abajo, por la misma razón: emisor.py:476-479 devuelve la PRIMERA
       # coincidencia.
-      - {conducta: paga_mordida_encig2025, p: 0.085118, clase: "MEDIDO·p(tasa base ponderada)", corrida0_resultado_id: RESULT-ENCIG-MOR-A-P-SOL1, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio esta tasa bajo GEN2 (RESULT-ENCIG-MOR-A-P-SOL1 = 0.08511814556534456, n=40042, 442 estratos, 9172 UPM) y reproduce el 0.085118 publicado al grano de seis decimales con que milpa/ materializa (delta +1.456e-07). El `p` NO se movio: se declara de donde viene. RESERVA declarada en la spec sellada §2.1: P8_3_1 mide SOLICITUD, no pago, y es solo el PRIMER inciso del reactivo 8.3 -- los tres juntos dan 0.115702 (RESULT-ENCIG-MOR-A-P-SOLANY). SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado; el reactivo 8.3 completo (A-P-SOLANY = 0.115702) queda descriptivo sin consumidor hasta que un caso de uso lo pida.
+      # SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado; el reactivo 8.3 completo (A-P-SOLANY = 0.115702) queda descriptivo sin consumidor hasta que un caso de uso lo pida. Comentario en linea propia -- esta conducta la cita cita_p (M-TRA-M-02__v1_3 y hermanas) por TEXTO EXACTO de su propia linea; anotar en la misma linea rompe esa regresion (tests/test_emite_m_calibracion.py::test_regresion_p2_pasa).
+      - {conducta: paga_mordida_encig2025, p: 0.085118, clase: "MEDIDO·p(tasa base ponderada)", corrida0_resultado_id: RESULT-ENCIG-MOR-A-P-SOL1, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio esta tasa bajo GEN2 (RESULT-ENCIG-MOR-A-P-SOL1 = 0.08511814556534456, n=40042, 442 estratos, 9172 UPM) y reproduce el 0.085118 publicado al grano de seis decimales con que milpa/ materializa (delta +1.456e-07). El `p` NO se movio: se declara de donde viene. RESERVA declarada en la spec sellada §2.1: P8_3_1 mide SOLICITUD, no pago, y es solo el PRIMER inciso del reactivo 8.3 -- los tres juntos dan 0.115702 (RESULT-ENCIG-MOR-A-P-SOLANY).
       - {conducta: tramite_normal_encig2025, p: 0.914882, clase: "MEDIDO·p(tasa base ponderada)"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025); residuo del denominador declarado en la spec sellada §3.1-3.4. Sin corrida0 propia, sin cita corrida0_*.
       # ── ENMIENDA ENCUCI · FP-200=b (mesa, 31/ago/2026) · ACTO MAESTRA32-E20 ──
       # Las DOS salidas de arriba NO se tocan: siguen ASIGNADAS y siguen siendo
