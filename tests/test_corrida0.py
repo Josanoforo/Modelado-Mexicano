@@ -1748,48 +1748,60 @@ def t_status_arbol_real_no_cuenta_smokes():
     vigila NO cambia: que los replays LEGACY no suban ni una unidad de GEN2,
     y que la firma no se pierda en un merge.
 
-    Premisa actualizada por `ACTO GEN2-R-SERIE-CSV` (9/sep/2026, `ADR-432`):
+    Premisa actualizada por `ACTO GEN2-R-SERIE-CSV` (9/sep/2026, `ADR-433`):
     tres arbitros R sellados con `cuenta_gen2=SI` por firma de mesa con
     OBJETO dentro del encargo (estandar FP-367/368), citada verbatim en
-    `etiquetas.cuenta_gen2_firma` de cada `spec.yaml` --
-    `CALC-R-CIV-M-10`, `CALC-R-CIV-M-12`, `CALC-R-CIV-M-13`, 38 RESULT cada
-    una: `7 -> 10` corridas, `644+114 = 758` y `516+114 = 630`. Ninguno es
-    replay LEGACY. La adopcion NO se mueve (`1`): que R consume el duelo lo
-    decide mesa por lote en F3 (`NC-0089`), y `usos.tsv` se re-derivo sin
-    cambio, que es justo lo que este falsador debe seguir viendo."""
+    `etiquetas.cuenta_gen2_firma` de cada `spec.yaml` -- `CALC-R-CIV-M-10`,
+    `CALC-R-CIV-M-12`, `CALC-R-CIV-M-13`, 38 RESULT propios cada una
+    (ninguno `repite_de` otra corrida): `8 -> 11` corridas, `787+114 = 901`
+    y `517+114 = 631`. Ninguno es replay LEGACY. La adopcion NO se mueve
+    (`2`): que R consume el duelo lo decide mesa por lote en F3 (`NC-0092`),
+    y `usos.tsv` quedo identico al de `origin/main` -- que es justo lo que
+    este falsador debe seguir viendo."""
     caso = "T-STATUS-SMOKES"
     c = C.status(imprime=False)
     _afirma(c["replays_legacy_sellados"] >= 2, caso,
             f"replays sellados={c['replays_legacy_sellados']} (se esperaban >=2)")
-    _afirma(c["N_corridas_selladas"] == 10, caso,
-            f"N_corridas_selladas={c['N_corridas_selladas']}, esperado 10 tras la firma "
-            f"con OBJETO de ACTO GEN2-R-SERIE-CSV (3 CALC-R) sobre los 7 de FIRMA DE "
-            f"CONTADOR 9/sep/2026 (FP-368: CALC-C0D-MARCADOR-v3 · FP-369: "
-            f"CALC-ENVIPE-0001) -- si es 7, la firma de los tres R se perdio; "
-            f"si es >10, un replay GEN1 conto como GEN2")
-    _afirma(c["N_resultados_sellados"] == 758, caso,
-            f"N_resultados_sellados={c['N_resultados_sellados']}, esperado 758 "
-            f"(644 previos + 3 x 38 de los CALC-R de ACTO GEN2-R-SERIE-CSV) -- si es 644, "
-            f"la firma de los tres R se perdio; si es >758, un replay GEN1 conto como GEN2")
+    # ACTO GEN2-FIRMAS-ADOPCION-1 (9/sep/2026): OBJETO 3 de la misma FIRMA DE
+    # MESA firma cuenta_gen2=SI para CALC-0003-v4 (resuelve FP-362), con
+    # CALC-0003-v3 quedando SUPERADO->v4. v4 aporta su propia corrida
+    # sellada -- 7 -> 8 -- sin quitarle su lugar a C0D-MARCADOR-v3/ENVIPE-0001.
+    _afirma(c["N_corridas_selladas"] == 11, caso,
+            f"N_corridas_selladas={c['N_corridas_selladas']}, esperado 11 tras los tres "
+            f"CALC-R de ACTO GEN2-R-SERIE-CSV sobre los 8 de OBJETO 3 de la FIRMA DE "
+            f"MESA 9/sep/2026 (CALC-0003-v4, resuelve FP-362) -- si es 8, la firma de "
+            f"los tres R se perdio; si es >11, un replay GEN1 conto como GEN2")
+    # CALC-0003-v4 sella 143 RESULT propios (no se resta lo de v3: v3 pasa a
+    # SUPERADO pero sus 142 RESULT no estaban en el 644 previo -- solo
+    # contaban los de v2/v3 vigentes al momento de cada firma).
+    _afirma(c["N_resultados_sellados"] == 901, caso,
+            f"N_resultados_sellados={c['N_resultados_sellados']}, esperado 901 "
+            f"(787 previos + 3 x 38 de los CALC-R de ACTO GEN2-R-SERIE-CSV) -- si es "
+            f"787, la firma de los tres R se perdio; si es >901, un replay GEN1 conto "
+            f"como GEN2")
     # Ids UNICOS, que es otra pregunta: v3 (CALC-0003) repite 128 de los 142
     # ids de v2 por cadena `repite_de`, asi que aporta 14 nuevos, no 142.
     # 211+90+14 = 315. La FIRMA DE CONTADOR de 9/sep/2026 suma las 162+39
     # ids propias de CALC-C0D-MARCADOR-v3/CALC-ENVIPE-0001: 315+162+39=516.
-    _afirma(c["N_resultados_gen2_sellados"] == 630, caso,
+    # v4 repite casi todos los ids de la cadena v2->v3 y aporta 1 solo nuevo
+    # (medido en FP-362: "v4 aportaria 1 mas" sobre el conjunto ya contado).
+    _afirma(c["N_resultados_gen2_sellados"] == 631, caso,
             f"N_resultados_gen2_sellados={c['N_resultados_gen2_sellados']}, esperado "
-            f"630 (516 previos + 3 x 38 de los CALC-R; los 114 ids son propios, ninguno "
-            f"repite_de otra corrida) -- si sale 516, la firma de los tres R se perdio")
-    # E.2: la primera silla esta ocupada. `dependencias_legacy` baja en 1 por
-    # la cita de P4 y ya NO iguala a los activos -- y ese 1 es la adopcion.
-    _afirma(c["N_resultados_gen2_adoptados_activos"] == 1, caso,
+            f"631 (517 previos + 3 x 38 ids propios de los CALC-R; ninguno repite_de "
+            f"otra corrida) -- si sale 517, la firma de los tres R se perdio")
+    # E.2: la primera silla esta ocupada, y NC-0084 (ACTO GEN2-FIRMAS-ADOPCION-1,
+    # 9/sep/2026) es la SEGUNDA adopcion real: milpa/tramite.yaml:583 cita
+    # RESULT-ENVIPE-DEN-P-C2-U4. `dependencias_legacy` baja una unidad mas.
+    _afirma(c["N_resultados_gen2_adoptados_activos"] == 2, caso,
             f"N_resultados_gen2_adoptados_activos="
-            f"{c['N_resultados_gen2_adoptados_activos']}, esperado 1: la cita de "
-            f"ACTO GEN2-PRIMERA-SILLA P4 (RESULT-B-ENIGH-2022-P) se perdio")
+            f"{c['N_resultados_gen2_adoptados_activos']}, esperado 2: la cita de "
+            f"ACTO GEN2-PRIMERA-SILLA P4 (RESULT-B-ENIGH-2022-P) mas la de NC-0084 "
+            f"(RESULT-ENVIPE-DEN-P-C2-U4) se perdio")
     _afirma(c["dependencias_numericas_legacy_activas"]
-            == c["N_resultados_activos"] - 1, caso,
+            == c["N_resultados_activos"] - 2, caso,
             f"dependencias_legacy={c['dependencias_numericas_legacy_activas']} sobre "
-            f"{c['N_resultados_activos']} activos: la adopcion de P4 tiene que bajar "
-            f"exactamente 1 (NC-0053, E.2)")
+            f"{c['N_resultados_activos']} activos: las dos adopciones (NC-0053, "
+            f"NC-0084) tienen que bajar exactamente 2 (E.2)")
 
 
 def t_repro_atrapa_valor_movido():

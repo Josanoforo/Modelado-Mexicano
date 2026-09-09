@@ -580,7 +580,7 @@ reglas:
         # no denunciantes), no de una condicional del motor.
       disparadores_estado: PENDIENTE-DE-MESA  # sin cita SI-ENTONCES en canon/modelo-decision-v4_0.md:428-473 (§2.1-2.2); NO se inventa (spec §P0(c))
     entonces:
-      - {conducta: denuncia_con_miedo_o_desconfianza, p: 0.294313, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: denuncia_con_miedo_o_desconfianza, p: 0.294313, clase: "MEDIDO·p(tasa base ponderada)", corrida0_resultado_id: RESULT-ENVIPE-DEN-P-C2-U4, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENVIPE-1: CALC-ENVIPE-0001 remidió esta tasa bajo GEN2 (RESULT-ENVIPE-DEN-P-C2-U4 = 0.29431298745731216) y reproduce el 0.294313 publicado al grano de seis decimales con que milpa/ materializa (delta −1.254e-08). El merge del PR que aplique esta línea es la adopción (E.2). El `p` NO se movió: se declara de dónde viene.
       - {conducta: denuncia_por_otra_razon, p: 0.705687, clase: "MEDIDO·p(tasa base ponderada)"}
     porque: {generador: [G4], mecanismo: PENDIENTE-DE-MESA}
       # mecanismo causal no re-derivado por este acto (fuera de perimetro);

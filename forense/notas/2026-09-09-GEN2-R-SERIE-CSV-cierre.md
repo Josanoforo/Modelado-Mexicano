@@ -18,9 +18,9 @@ Un medidor escrito de cero — congelado antes de abrir un solo byte de microdat
 
 `VEREDICTO-CV = CV-ACEPTABLE` en las tres (la regla `CV ≥ 30 % ⇒ SKIP` de `PROCEDIMIENTO-R-v1_0.md` §1 / `FP-79` no dispara: el peor `CV` es 2.77 %). `ESTADO = CALCULADO` en las tres. `corrida0 verify` → **`REPRODUCE`** con **`CONTEXTO: IDENTICO`** en las tres, 38 de 38 `RESULT` cada una.
 
-**Qué vale y qué no vale este control.** Vale como **validación independiente del punto**: dos implementaciones escritas sin verse — la de GEN1 en `tools/arbitra.py` y la de este acto, derivada sólo de `codificacion-R-v1_0.tsv` — coinciden bit a bit sobre el mismo archivo. **No** vale como validación del `EE`: el `EE` de GEN1 no se comparó, porque su IC salió de un bootstrap sin semilla comparable y compararlo fabricaría un desacuerdo sin significado. Y **no** es la validación independiente formal del registro (`validacion_independiente: NO-HECHA`, `NC-0093`).
+**Qué vale y qué no vale este control.** Vale como **validación independiente del punto**: dos implementaciones escritas sin verse — la de GEN1 en `tools/arbitra.py` y la de este acto, derivada sólo de `codificacion-R-v1_0.tsv` — coinciden bit a bit sobre el mismo archivo. **No** vale como validación del `EE`: el `EE` de GEN1 no se comparó, porque su IC salió de un bootstrap sin semilla comparable y compararlo fabricaría un desacuerdo sin significado. Y **no** es la validación independiente formal del registro (`validacion_independiente: NO-HECHA`, `NC-0096`).
 
-Cadena `E.2` completa por celda: `SPEC` (`prereg-caja-R-ENVIPE-SERIE`, `sha b9a29cf6…`) → `CALC-R-<celda>` → `INPUTS` (4, con `sha256` del manifiesto verificado en `preflight`) → `CÓDIGO FIJADO` (`script_blob_sha256 e1e563d0…`, **el mismo en las tres**) → `ENTORNO` (`firma_entorno` en `ejecucion.json`) → `EJECUCIÓN` (`corrida_id` propio) → `RESULT` con tipo/unidad/tolerancia → `USO`: **ninguno todavía**, y ése es el único eslabón abierto (`NC-0089`, es decisión de mesa por diseño).
+Cadena `E.2` completa por celda: `SPEC` (`prereg-caja-R-ENVIPE-SERIE`, `sha b9a29cf6…`) → `CALC-R-<celda>` → `INPUTS` (4, con `sha256` del manifiesto verificado en `preflight`) → `CÓDIGO FIJADO` (`script_blob_sha256 e1e563d0…`, **el mismo en las tres**) → `ENTORNO` (`firma_entorno` en `ejecucion.json`) → `EJECUCIÓN` (`corrida_id` propio) → `RESULT` con tipo/unidad/tolerancia → `USO`: **ninguno todavía**, y ése es el único eslabón abierto (`NC-0092`, es decisión de mesa por diseño).
 
 ---
 
@@ -37,7 +37,7 @@ $ awk -F'\t' '$1=="CIV-M-10"' forense/prereg-duelo-v2/espec-R-ciega-v1_2.tsv
 
 Idéntico en `CIV-M-12`, `CIV-M-13` y en `marco-M-congelado-v1_2.tsv`. El hueco **no** lo llenó el ejecutor: lo llena `forense/prereg-duelo-v2/codificacion-R-v1_0.tsv` (`sha cf5dfb18…`), fechada 31/ago y 1/sep/2026 — anterior a esta sesión y a este encargo —, y cada uno de sus seis elementos se verificó contra el codebook de cada ola antes de congelar (§2 y §2.1 de la sellada). Esto importa por una razón concreta: es lo que hace que la codificación **no sea una palanca** del ejecutor, que conocía los tres resultados GEN1 desde el primer minuto (§0.3 de la sellada, `ADR-46`).
 
-**Salvedad que viaja con el resultado:** `codificacion-R-v1_0.tsv` sigue en `estado = PROPUESTA`, no `SELLADA`. Tres `R` sellados descansan hoy sobre una propuesta. Se declara, no se disimula → **`FP-370`** y `NC-0092`.
+**Salvedad que viaja con el resultado:** `codificacion-R-v1_0.tsv` sigue en `estado = PROPUESTA`, no `SELLADA`. Tres `R` sellados descansan hoy sobre una propuesta. Se declara, no se disimula → **`FP-370`** y `NC-0095`.
 
 ---
 
@@ -113,7 +113,7 @@ La serie que sigue es **sólo** `p(C1, U1)`: unidad DELITO, `BPCOD 05..15`, `BP1
 Tres advertencias que viajan con la tabla, y ninguna es opcional:
 
 1. **La ola se llama 20NN y mide delitos de 20NN−1.** El eje de la tabla es el **año de delito**, no el nombre de la ola. Confundirlos desplaza la serie un año entero.
-2. **Falta el año de delito 2021** (`envipe2022_csv`, en el corpus, no medida: no es una de las tres plazas de la demanda). `NC-0090`.
+2. **Falta el año de delito 2021** (`envipe2022_csv`, en el corpus, no medida: no es una de las tres plazas de la demanda). `NC-0093`.
 3. **La serie completa espera al trío DBF.** Las olas 2012–2020 son `GEN2-R-SERIE-DBF`, gateado al merge de éste. Hasta que corra, esto son **cuatro** puntos, no trece.
 
 ### 5.1 · Lo que vale el código `08`, medido en cada ola
@@ -139,32 +139,33 @@ Es una decisión de codificación que vale entre 3.3 y 3.9 puntos de proporción
 
 **Una escritura fuera de la lista enumerada, declarada y no disimulada.** El perímetro del encargo enumera `forense/prereg-caja/R-ENVIPE-SERIE*`, `data/corrida0/CALC-R-*/`, los TSV re-derivados, `forense/notas/`, `forense/no-corrido.tsv`, el 0-bis y **la cascada** — y `tests/` no aparece por nombre. Sellar tres corridas deja `tests/test_corrida0.py::T-STATUS-SMOKES` en ROJO, porque ese falsador **cablea los contadores esperados** (`7`/`644`/`516`) y este acto los mueve a `10`/`758`/`630`. Se actualizaron esos tres números, con el párrafo de premisa que la casa ya usa para los tres actos anteriores que hicieron lo mismo, **leyendo «cascada» como el paso 5 de `/acto` la define** (que nombra `tests/check.py` explícitamente) y bajo el paso 6 (la suite en VERDE o PARO-reporte). Se dice aquí para que mesa lo revise como lectura de perímetro y no lo descubra en el diff: **es lo único escrito fuera de la lista enumerada, y no toca ninguna aserción del falsador, sólo la cifra que ya no correspondía.** Suite en VERDE en los dos relojes: `TZ=UTC python3 tests/check.py --baseline` y el local (CST) dan **`LÍNEA BASE: VERDE`**, `3 FAIL · 990 WARN`, sin entrada nueva.
 
-### 6.1 · Un defecto del re-derivado que se encontró al pisarlo, y que valía más que el atajo
+### 6.1 · Un defecto del re-derivado, encontrado al pisarlo — y que volvió a ocurrir el mismo día en otro PR
 
-`corrida0 registro --escribe` **sin** `--verifica` deja las columnas `resultado_replay` y `contexto_replay` en `NO-VERIFICADO` para **las 14 corridas que ya las traían llenas**. Es decir: re-derivar «como manda la casa» para añadir tres filas **borraba catorce veredictos de replay ajenos**, en silencio y con el comando correcto.
+`corrida0 registro --escribe` **sin** `--verifica` deja las columnas `resultado_replay` y `contexto_replay` en `NO-VERIFICADO` para **todas las corridas que ya las traían llenas**. Es decir: re-derivar «como manda la casa» para añadir tres filas **borra veredictos de replay ajenos**, en silencio y con el comando correcto.
 
-Se corrió con `--verifica` (re-ejecuta cada medidor sellado). Resultado, medido:
+Se encontró midiéndolo sobre `origin/main = 071406a` (14 filas se habrían blanqueado) y se evitó corriendo con `--verifica`. **Y volvió a ocurrir, en otro acto, mientras éste cerraba:** `origin/main` avanzó a `a94317e` (`PR #656`, `GEN2-FIRMAS-ADOPCION-1`) con **las 14 filas ya blanqueadas a `NO-VERIFICADO`**. Sobre el árbol fusionado, la re-derivación de este acto **con** `--verifica` las vuelve a llenar. Estado final, medido contra `origin/main = a94317e`:
 
 - `data/corrida0/resultados.tsv` → **cero pisadas** (1 413 filas idénticas fuera de las nuevas).
-- `data/corrida0/usos.tsv` → **cero pisadas**, 205 filas, **sin cambio**: este acto **no adopta nada**, y el TSV lo confirma.
-- `data/corrida0/corridas.tsv` → **7 filas ajenas cambian**, y el cambio es **informativo, no destructivo**:
+- `data/corrida0/usos.tsv` → **idéntico byte a byte al de `origin/main`** (`git diff --stat` vacío): este acto **no adopta nada**, y las dos adopciones del programa (`NC-0053` y `NC-0084`) llegan intactas del merge.
+- `data/corrida0/corridas.tsv` → **14 filas ajenas cambian, y ninguna pierde información**: las 14 pasan de `NO-VERIFICADO` a un veredicto real — doce a `REPRODUCE`/`REPLICA-RESULTADO`/`NO-REPRODUCE` con su contexto, y `CALC-0001`/`CALC-0002` a `NO-EJECUTABLE` porque sus payloads (CIDE/LAPOP) viven en la raíz `descargas_mx`, **que esta caja no lee**.
 
-| corridas | antes (`origin/main`) | ahora | por qué |
-|---|---|---|---|
-| `CALC-0003-v2/-v3/-v4`, `CALC-B-0001`, `CALC-ENVIPE-0001` | `NO-EJECUTABLE` / `DISTINTO` | **`REPRODUCE` / `IDENTICO`** | el TSV de `main` se derivó **en NUBE, sin corpus**: no podían re-ejecutarse. En CAJA con `data/raw` montado, sí — y reproducen. |
-| `CALC-0001`, `CALC-0002` | `NO-VERIFICABLE` | `NO-EJECUTABLE` / `DISTINTO` | sus payloads (CIDE/LAPOP) viven en la raíz `descargas_mx`, que **esta caja no lee**. |
-
-**El defecto de fondo:** dos columnas de un artefacto marcado `# DERIVADO — NO EDITAR` **dependen del entorno que corre la derivación**. Gana quien re-derivó al último, y el diff no dice que la causa fue la caja. No se resolvió a mano (un DERIVADO no se edita) → **`NC-0091`**, para un acto con `tools/` en su perímetro.
+**El defecto de fondo, ahora con dos instancias en el mismo día:** dos columnas de un artefacto marcado `# DERIVADO — NO EDITAR` **dependen del entorno y de la bandera** con que se corre la derivación. Gana quien re-derivó al último, y el diff no dice que la causa fue la caja ni la bandera. No se resolvió a mano (un `DERIVADO` no se edita) → **`NC-0094`**, para un acto con `tools/` en su perímetro.
 
 ### 6.2 · Concurrencia declarada
 
-`FIRMAS-ADOPCION-1` (NUBE) y `REVISA-CALC` no habían movido `origin/main` al cerrar (`git rev-list --count HEAD..origin/main = 0` tras `git fetch --prune`). La intersección prevista era `forense/no-corrido.tsv` y los TSV derivados: en `no-corrido.tsv` este acto sólo **añade** al final; en los TSV, lo de §6.1.
+**`FIRMAS-ADOPCION-1` fusionó primero, y colisionó en tres numeraciones.** Al terminar la cascada, `git fetch --prune` mostró `origin/main` **7 commits adelante** (`PR #656`). Se hizo `git merge origin/main` de inmediato y se aplicó la regla de la casa —**renumera quien fusiona segundo**— en las tres colisiones, ninguna resuelta por inferencia:
+
+- **`ADR-432` → `ADR-433`.** `cierre_acto.py` Fase A había dado candidato `432` sin ninguna rama remota accesible que lo trajera redactado; `PR #656` lo tomó primero.
+- **`NC-0089`…`NC-0094` → `NC-0092`…`NC-0097`.** `PR #656` abrió `NC-0089`/`-0090`/`-0091`. Las seis filas propias y **sus referencias internas** se remapearon en **un solo paso con un diccionario** — no seis reemplazos sucesivos, que se habrían pisado entre sí. Las referencias a `NC` ajenos (`NC-0018`, `NC-0087`) no se tocaron.
+- **`FP-370`** no colisiona: el máximo en `origin/main` sigue siendo `FP-369`.
+
+Conflictos resueltos con la convención de la casa —**la entrada de `origin/main` primero, la propia después, verbatim, sin reordenar**— en `forense/no-corrido.tsv`, `canon/registro-rotulos.tsv` y `canon/gobernanza-v1_15.md`. En la línea `L0`, la anotación propia va delante (es la nueva) y la de `PR #656` recibe `{cita-historica}`. `tests/test_corrida0.py::T-STATUS-SMOKES` se tomó **entero del lado de `origin/main`** (que ya lo había re-pineado a `8`/`787`/`517`/`2`) y sobre eso se sumaron los tres `CALC-R`: **`11`/`901`/`631`**, con la adopción **sin moverse en `2`**. Las tres cifras se leyeron de `corrida0 status` sobre el árbol fusionado, no se calcularon a mano.
 
 ---
 
 ## 7 · Contadores
 
-`N_corridas_selladas` **7 → 10** · `N_resultados_gen2_sellados` **516 → 630** (`+114 = 3 × 38`) · `N_resultados_gen2_adoptados_activos` **1 → 1** (sin cambio: este acto no adopta) · `N_corridas_requeridas` 86, sin cambio.
+Leídos de `corrida0 status` sobre el árbol **fusionado** con `PR #656`, no calculados a mano: `N_corridas_selladas` **8 → 11** · `N_resultados_sellados` **787 → 901** · `N_resultados_gen2_sellados` **517 → 631** (`+114 = 3 × 38`, ids todos propios) · `N_resultados_gen2_adoptados_activos` **2 → 2** (sin cambio: este acto no adopta; las dos adopciones vivas son `NC-0053` y `NC-0084`, ambas ajenas) · `resultados_con_validacion_independiente` **0**, sin cambio (`NC-0096`) · `N_corridas_requeridas` 86, sin cambio.
 
 `cuenta_gen2 = SI` para los tres, con la firma de mesa del 9/sep/2026 **con OBJETO explícito** citada verbatim en `etiquetas.cuenta_gen2_firma` de cada `spec.yaml` (estándar `FP-367`/`FP-368`). El contador **ya los cuenta** por la etiqueta de la spec (`motivo_cuenta_gen2 = etiqueta de la spec`); lo que **no** se escribió es la fila de `data/corrida0/decisiones.tsv`, porque ese archivo **no está en el perímetro** y lo tiene en el suyo el trámite `FIRMAS-ADOPCION-1` que corre en paralelo. Queda en `## NO-CORRIDO`, con su impacto exacto: **ningún contador se queda quieto**; lo que falta es la fila del artefacto de mesa.
 
