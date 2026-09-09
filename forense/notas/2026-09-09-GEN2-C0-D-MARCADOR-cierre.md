@@ -131,6 +131,8 @@ RESULT-C0D-ADJUDICACION-HALLAZGO  = NO-ADJUDICA-POR-CONTROL     ← §5.4, pre-d
 | `WARN` de la suite | 659 | **666** |
 | `no_corrido_abiertas` | 37 | **43** |
 
+*(Las dos últimas se miden sobre la base de este acto, `main = b711ee0`. **El árbol fusionado muestra `39` y `662`**, no porque este acto haya cambiado de efecto sino porque `PR #648` (`ACTO GEN2-CIERRES-CON-CITA`) fusionó mientras tanto y cerró cuatro filas `NC`. La resta de este acto es la misma en las dos lecturas: **+6 `NC` abiertas y +1 `FP`**.)*
+
 **Razón 1 — falta la FIRMA, y el encargo lo previó.** El encargo escribió: *«`cuenta_gen2` del CALC-C0D viaja como FIRMA en el mensaje de lanzamiento (mismo estándar: autoridad, fecha, objeto) o el contador no lo cuenta y se dice.»* **En el mensaje de lanzamiento no viaja ninguna firma de contador.** La única firma citada es D-2/`FP-348`, que autoriza *la comparación*, no *el conteo*: no nombra `CALC-C0D-MARCADOR` como objeto, y una firma que no nombra su objeto no firma nada (precedente: «la compuerta se verifica por producto, no por rótulo»). `spec.yaml` declara `cuenta_gen2: PENDIENTE-DE-MESA` y `data/corrida0/decisiones.tsv` **no se toca**: escribir ahí la fila sería falsificar una firma de mesa. **`FP-367`.**
 
 **Razón 2 — y ésta no la levanta ninguna firma sola: regla E.1.** El registro clasificó **las dos** corridas como `envuelto_legacy = SI`, con este motivo derivado por la máquina:
@@ -232,7 +234,11 @@ $ git show origin/main:canon/gobernanza-v1_15.md | grep '^\*\*ADR-424'          
 ## 9 · Suite
 
 **Línea base al arrancar** (`main = b711ee0`, `TZ=UTC`): **3 FAIL · 659 WARN**, `LÍNEA BASE: VERDE`.
-**Al cerrar** (`TZ=UTC`): **3 FAIL · 666 WARN**, `LÍNEA BASE: VERDE`. **Este acto no agrega ni quita FAIL.**
+**Al cerrar, sobre esa misma base** (`TZ=UTC`): **3 FAIL · 666 WARN**, `LÍNEA BASE: VERDE`.
+**Al cerrar, sobre el árbol fusionado con `origin/main`** (`TZ=UTC`): **3 FAIL · 662 WARN**, `LÍNEA BASE: VERDE`.
+**Este acto no agrega ni quita FAIL en ninguna de las tres lecturas.**
+
+La diferencia `666` vs `662` **no** es de este acto: entre su arranque y su push, `PR #648` (`ACTO GEN2-CIERRES-CON-CITA`) fusionó a `main` y cerró cuatro filas `NC`, que valen `−4` en `T34`. **El delta de este acto es el mismo en las dos lecturas: `+7`.**
 
 Los 3 `FAIL` son los mismos preexistentes y ninguno está en el perímetro: `T06` (2, Gini y confianza interpersonal divergentes en el corpus) y `T08` (1, siete reports sin mapa de evidencia). Deuda declarada desde `MAESTRA38-N4`.
 
@@ -252,13 +258,25 @@ TZ=UTC:        3 FAIL · 659 WARN · LÍNEA BASE: VERDE
 · T34 T-NO-CORRIDO: 37 -> 43   (+6)   las seis NC nuevas que quedan ABIERTAS (NC-0074 nace CERRADA)
 · T22 T-FIRMAS:     50 -> 51   (+1)   FP-367, la firma de contador pendiente
 · T35 T-REPRO:     443 -> 443   (0)
+                                      (fusionado con origin/main: T34 queda en 39 -- 33 de main
+                                       tras los cuatro cierres de PR #648, mas mis 6)
 ```
 
 **Ningún otro test cambia ni una unidad, y `T35` es el que importa: no se mueve.** Es coherente con §4 y §5 — el marcador no cuenta (regla E.1 + firma ausente), así que sus 152 `RESULT` **no entran** al universo `SELLADA-SIN-ADOPTAR`, y al no adoptar nada tampoco lo bajan: `442 → 442`. Los `+7` son deuda que este acto **declara**, no defecto que introduce: es exactamente para lo que `T34` y `T22` existen.
 
 ---
 
-## 10 · Higiene
+## 10 · Renumeración `ADR-425 → ADR-426`, dicha y no escondida
+
+Al re-derivar el número **inmediatamente antes del push** (`git fetch`, no heredado del arranque), `origin/main` se había movido 4 commits y **`PR #648` (`ACTO GEN2-CIERRES-CON-CITA`) ya había tomado el `425`**. Regla de la casa: **renumera quien fusiona segundo** — este acto pasa a **`ADR-426`**.
+
+**El auto-merge de `gobernanza` NO detecta la colisión:** fusionó limpio y dejó **dos `**ADR-425`** en el árbol. Se resolvió a mano, tocando **sólo mi entrada**; la del otro acto queda intacta, incluida su posición en el archivo. `estado-programa` y `registro-rotulos` sí dieron conflicto y se resolvieron conservando **ambas** filas. `L0` verificado **por conteo**: `1` línea `**L0 · Gobierno`, no dos. Los tres contadores reconciliados con `cierre_acto.py --aplica`: `gobernanza 426 · L0 426 · tabla estado 426`.
+
+Y una comprobación que la fusión hacía obligatoria: **`PR #648` no cerró `NC-0024` ni `NC-0026`** — las dos siguen `ABIERTA` en el árbol fusionado, así que §5.2 sigue en pie tal como se escribió.
+
+---
+
+## 11 · Higiene
 
 - Todos los `git add` por ruta explícita, nunca `-A` ni `.`.
 - `registro --escribe` corrido **una sola vez**, después de sellar las dos corridas; ninguna otra escritura de TSV.
