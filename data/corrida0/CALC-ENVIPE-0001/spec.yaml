@@ -1,0 +1,230 @@
+# CALC-ENVIPE-0001 -- cara mecanica de spec.md (ACTO GEN2-LOTE-ENVIPE-1).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/ENVIPE-DENUNCIA-spec-v1_0.md (`prereg-caja-ENVIPE-DENUNCIA`).
+# Releva la demanda CORR-0009 (RES-0027 / RES-0028) bajo el registro GEN2.
+# CONGELADO en el COMMIT-1, antes de abrir un solo conjunto_de_datos/*.csv.
+calc_id: CALC-ENVIPE-0001
+spec_md: spec.md
+spec_md_sha256: 9b9e090863c35292cd3c8eb8081c3ebafc61f0bd2e3c066848b89876d001f223
+
+script: data/corrida0/CALC-ENVIPE-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: TASA-BASE-DE-REGLA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENVIPE-DENUNCIA-spec-v1_0.md
+  spec_sellada_sha256: e404e7b5faeb54af6ce3a49b02f1adc4c25fcd9b82c82d79956f68c370bd49b5
+  demanda_que_releva: "CORR-0009 -> RES-0027 (denuncia_con_miedo_o_desconfianza) y, en el sentido acotado de la sellada 6.2, RES-0028 (denuncia_por_otra_razon). NO releva RES-0039..0042: otra apertura (BPCOD=01, condicional a seguro), citados en ## NO-CORRIDO."
+  reglas_bajo_prueba: "NINGUNA se mueve por esta corrida. civico.denuncia.miedo_desconfianza ya esta SELLADA en milpa/tramite.yaml:574 con p=0.294313 (ACTO MAESTRA32-E18). Este CALC monta la cadena E.2 que el registro GEN2 exige sobre esa cantidad; la adopcion de P3 es cita, no cambio de cifra, y su rama la decide RESULT-ENVIPE-DEN-ADOPCION-P3."
+  contaminacion_declarada: "ADR-46 -- al congelar esta spec la sesion YA habia leido (a) los dos valores GEN1 0.294313 / 0.705687 en el propio encargo y en demanda-resultados.tsv, (b) el IC95 y la n=13023 de la corrida GEN1 en forense/firmas-pendientes.tsv:FP-201, y (c) LA CODIFICACION GEN1 COMPLETA en forense/notas/2026-08-31-reglas-fase1-spec.md (miedo={01,02,06,08} vs practica={03,04,05,07}). Por eso la codificacion PRIMARIA de esta spec (C1) NO es la de GEN1: deja fuera el codigo 08 y mide con DELTA-C2-C1 lo que vale ese juicio. Los conteos de 09/99/blanco -- de los que depende el veredicto de exhaustividad -- no aparecen en ninguna fuente leida."
+  medidor_ejecutado_al_congelar: "NO -- escrito y congelado en el COMMIT-1, corrido en el COMMIT-2 del mismo acto"
+
+inputs:
+  - id: envipe2025_csv
+    origen: manifiesto
+  - id: IN-ENVIPE-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/ENVIPE-DENUNCIA-spec-v1_0.md
+    sha256: e404e7b5faeb54af6ce3a49b02f1adc4c25fcd9b82c82d79956f68c370bd49b5
+
+variables:
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: ID_DEL, rol: "identidad de la fila -- UNIDAD DE OBSERVACION PRIMARIA (un delito)", codigos: "Alfanumerico(21)"}
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: ID_PER, rol: "llave a tper_vic2 -- unica via al ponderador de persona", codigos: "Alfanumerico(16)"}
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: BPCOD, rol: "tipo de delito -- filtro de universo", codigos: "Caracter(2), 01..15; personales = 05..15 (catalogo bpcod.csv)", direccion: "NO-APLICA (nominal)"}
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: BP1_20, rol: "denuncio ante MP/Fiscalia -- filtro de universo (2 = no denuncio)", codigos: "Numerico(1): 1=Si, 2=No (catalogo bp1_20.csv)", direccion: "NO-APLICA (filtro)"}
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: BP1_23, rol: "DESENLACE -- razon principal de la no denuncia (respuesta unica)", codigos: "Numerico(2): 01 miedo al agresor · 02 miedo a extorsion · 03 delito de poca importancia · 04 perdida de tiempo · 05 tramites largos y dificiles · 06 desconfianza en la autoridad · 07 no tenia pruebas · 08 actitud hostil de la autoridad · 09 Otra · 99 NS/NR · b blanco (catalogo bp1_23.csv, identico al cuestionario 1.23)", direccion: "C1: 1 si BP1_23 en {01,02,06}; 0 si en {03,04,05,07,08}. C2: 1 si en {01,02,06,08}; 0 si en {03,04,05,07}. MAS ALTO = MAS PESO DEL MIEDO/DESCONFIANZA."}
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: FAC_DEL, rol: "ponderador de la unidad primaria (delito)", codigos: "Numerico(6), 000001..999999"}
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: EST_DIS, rol: "estrato de diseno muestral -- estratificacion del bootstrap", codigos: "Caracter(3), 001..607"}
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: UPM_DIS, rol: "unidad primaria de muestreo -- conglomerado que se re-muestrea", codigos: "Caracter(7), 0000001..9999999"}
+  - {archivo: "tper_vic2_envipe2025/conjunto_de_datos/conjunto_de_datos_tper_vic2_envipe2025.csv", variable: ID_PER, rol: "identidad de la fila en U4 (una persona informante seleccionada)", codigos: "Alfanumerico(16)"}
+  - {archivo: "tper_vic2_envipe2025/conjunto_de_datos/conjunto_de_datos_tper_vic2_envipe2025.csv", variable: FAC_ELE, rol: "ponderador de persona -- el que uso la corrida GEN1", codigos: "Numerico(6), 000001..999999"}
+  - {archivo: "tper_vic2_envipe2025/conjunto_de_datos/conjunto_de_datos_tper_vic2_envipe2025.csv", variable: EST_DIS, rol: "estrato de diseno de U4", codigos: "Caracter(3), 001..607"}
+  - {archivo: "tper_vic2_envipe2025/conjunto_de_datos/conjunto_de_datos_tper_vic2_envipe2025.csv", variable: UPM_DIS, rol: "UPM de U4", codigos: "Caracter(7), 0000001..9999999"}
+
+universo: >-
+  ENVIPE 2025 (levantamiento marzo-abril 2025; delitos de referencia 2024-01-01 a
+  2024-12-31, `metadatos_envipe2025.txt`). UNIVERSO PRIMARIO U1, unidad DELITO:
+  filas de tmod_vic con BPCOD en {05,...,15} (delitos personales -- el unico tramo
+  al que el cuestionario enruta a la pregunta 1.23 por una sola condicion),
+  BP1_20 = 2 (no denuncio) y BP1_23 en {01,...,08}. U3 = el mismo tramo con
+  BP1_23 en {01,...,09, 99}. U4, unidad PERSONA: las personas de tper_vic2 con al
+  menos un delito en U1, con la regla de colapso de la corrida GEN1 verbatim (la
+  persona vale 1 si ALGUNO de sus delitos de U1 califica). Los delitos de hogar
+  (BPCOD 01..04) quedan FUERA: su ruta a 1.23 pasa ademas por 1.21, y esa condicion
+  extra cambia el universo. Las olas 2012-2024 quedan FUERA (limite 7.1 de la
+  sellada): esta corrida no valida transferencia temporal.
+
+filtros: >-
+  Sale del universo, CONTADO y no imputado: BP1_23 en blanco pese a BP1_20 = 2
+  (RESULT-...-N-BP1-23-BLANCO); FAC_DEL no finito o <= 0 (N-SIN-PONDERADOR).
+  Se cuenta pero NO sale del punto: filas sin EST_DIS o sin UPM_DIS
+  (N-SIN-DISENO) -- afectan al IC, no al estimador. Cero NUNCA sustituye falta
+  de dato. Si falta una columna declarada -> NO-ESTIMABLE-COLUMNA-AUSENTE con el
+  nombre; si existe y no tiene ningun valor valido -> NO-ESTIMABLE-COLUMNA-VACIA;
+  si U1 queda vacio -> NO-ESTIMABLE-UNIVERSO-VACIO; si TODA fila de U1 carece de
+  diseno -> METODO-IC = NO-ESTIMABLE-DISENO-INCOMPLETO y los IC salen null, pero
+  el punto se reporta igual.
+
+ponderador: >-
+  FAC_DEL (factor delito) en U1 y U3. FAC_ELE (factor de personas elegidas) en U4
+  -- el mismo que uso la corrida GEN1. NO se usan FAC_DEL_AM ni FAC_ELE_AM
+  (factores de area urbana de interes, otro dominio de estimacion).
+
+transformacion: >-
+  d(C1) = 1 si BP1_23 en {01,02,06}, 0 si en {03,04,05,07,08}. d(C2) = 1 si
+  BP1_23 en {01,02,06,08}, 0 si en {03,04,05,07}. p(C,U) = suma(w*d) / suma(w)
+  sobre U, sumas en orden fijo de fila. Complemento de C2 en U1 = suma sobre
+  {03,04,05,07} / suma(U1). En U4, d de la persona = maximo de las d de sus
+  delitos de U1 (regla de colapso GEN1). NO se promedia entre olas, no se ajusta
+  tendencia, no se extrapola, no se imputa.
+
+estimando: >-
+  DESCRIPTIVO. (1) PRIMARIO: p(C1, U1), proporcion ponderada de delitos
+  personales no denunciados cuya razon principal declarada es miedo o
+  desconfianza segun el texto literal del reactivo, con IC95 de diseno.
+  (2) SECUNDARIOS DECLARADOS: p(C2, U1) (particion GEN1) y su delta contra C1 --
+  lo que vale reclasificar el codigo 08; el complemento de C2 y la suma, que
+  contestan si las dos categorias GEN1 son exhaustivas y excluyentes o solo lo
+  parecen bajo el recorte; la descomposicion de U3 (Otra, NS/NR); y p(C2, U4),
+  unica celda comparable con la cifra GEN1 sellada. NINGUN RESULT es causal: la
+  razon principal es lo que la persona DECLARO, no una causa medida.
+
+dependencias_materiales: [numpy]
+
+parametros:
+  fuente_acto: "ACTO GEN2-LOTE-ENVIPE-1 · PRIMER LOTE F4->F3 · CALC-ENVIPE-0001"
+  firma_que_lo_autoriza: "Firma de mesa 9/sep/2026, verbatim: «Ya sabes, clona repo, revisa transfer, encargo corriendo con commits pusheados. Y revisa estas dos propuestas de Astra. Intégralo en encargos para hacer los ajustes necesarios.» -- ordena el lote. Su OBJETO no es el contador: cuenta_gen2 queda PENDIENTE-DE-MESA (estandar FP-367)."
+  bootstrap_replicas: 2000
+  valor_gen1_referencia: 0.294313
+  umbral_replica_gen1: 1.0e-6
+  grano_milpa_decimales: 6
+  metodo_ic: "bootstrap de UPM_DIS CON REEMPLAZO dentro de EST_DIS, conservando el numero de UPM por estrato; percentiles 2.5/97.5"
+  regla_estrato_upm_unica: >-
+    Un estrato con exactamente una UPM se re-muestrea a si mismo: aporta varianza
+    cero. NO se colapsa con otro estrato (decision de diseno que esta spec no esta
+    autorizada a tomar) y NO se descarta (sesgaria el punto). Su conteo va en
+    RESULT-ENVIPE-DEN-N-ESTRATOS-UPM-UNICA-U1 y, si es > 0, METODO-IC sale
+    IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como LIMITE INFERIOR de la anchura
+    verdadera, nunca como IC exacto.
+  ranura_no_preregistrada: >-
+    Nadie pre-registro el metodo de IC para esta serie. Lo elige el ejecutor sobre
+    ranura vacia, se declara y se eleva a mesa. NO se hereda el bootstrap simple de
+    filas de la corrida GEN1 (FP-201 lo uso porque declaro no tener campo de diseno;
+    para ENVIPE 2025 el descriptor SI declara EST_DIS y UPM_DIS en las dos tablas).
+    No se espera coincidencia digito a digito de los extremos.
+  tablas:
+    modulo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv"
+    persona: "tper_vic2_envipe2025/conjunto_de_datos/conjunto_de_datos_tper_vic2_envipe2025.csv"
+  codificacion:
+    C1_uno: ["01", "02", "06"]
+    C1_cero: ["03", "04", "05", "07", "08"]
+    C2_uno: ["01", "02", "06", "08"]
+    C2_cero: ["03", "04", "05", "07"]
+  adopcion_p3:
+    consumidor: "milpa/tramite.yaml:civico.denuncia.miedo_desconfianza:denuncia_con_miedo_o_desconfianza"
+    result_id: RESULT-ENVIPE-DEN-P-C2-U4
+    valor_materializado: 0.294313
+    nota: >-
+      La adopcion candidata NO es el estimando primario (p(C1,U1)): esa es otra
+      codificacion Y otra unidad, y adoptarla cambiaria en silencio el significado
+      del parametro del motor. La unica celda con la MISMA codificacion y la MISMA
+      unidad que el valor ya materializado es p(C2,U4). La compatibilidad se
+      demuestra con RESULT-ENVIPE-DEN-ADOPCION-P3, no se supone.
+  sufijos_result:
+  - N-FILAS-MODULO
+  - N-BPCOD-05-15
+  - N-NO-DENUNCIO
+  - N-U1
+  - N-BP1-23-09
+  - N-BP1-23-99
+  - N-BP1-23-BLANCO
+  - N-SIN-PONDERADOR
+  - N-SIN-DISENO
+  - MASA-FAC-DEL-U1
+  - P-C1-U1
+  - IC-LO-C1-U1
+  - IC-HI-C1-U1
+  - VEREDICTO
+  - P-C2-U1
+  - IC-LO-C2-U1
+  - IC-HI-C2-U1
+  - DELTA-C2-C1
+  - P-COMPLEMENTO-C2-U1
+  - SUMA-C2-U1
+  - VEREDICTO-EXHAUSTIVIDAD
+  - P-C2-U3
+  - P-OTRA-U3
+  - P-NSNR-U3
+  - N-U3
+  - N-PERSONAS-U4
+  - P-C1-U4
+  - P-C2-U4
+  - IC-LO-C2-U4
+  - IC-HI-C2-U4
+  - MASA-FAC-ELE-U4
+  - DELTA-VS-GEN1
+  - REPRODUCE-GEN1
+  - N-ESTRATOS-U1
+  - N-UPM-U1
+  - N-ESTRATOS-UPM-UNICA-U1
+  - METODO-IC
+  - ADOPCION-P3
+  - ADOPCION-P3-DELTA
+
+seed:
+  aplica: true
+  valor: 20260909
+  rng: numpy.PCG64
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Bootstrap fijado por seed + rng declarados y sumas en orden fijo de fila: la
+    unica diferencia esperable entre dos corridas del mismo arbol es redondeo de
+    float64 al reasociar sumas ponderadas. Los enteros y los textos se comparan
+    EXACTO. NO se afloja para que la adopcion de P3 pase: si el grano de milpa/
+    (seis decimales) no cabe, la cita no se escribe y eso es el hallazgo.
+
+resultados:
+  - {id: RESULT-ENVIPE-DEN-N-FILAS-MODULO, tipo: entero, unidad: "filas de tmod_vic (delitos declarados en el modulo), antes de todo filtro"}
+  - {id: RESULT-ENVIPE-DEN-N-BPCOD-05-15, tipo: entero, unidad: "delitos con BPCOD en {05..15} (personales)"}
+  - {id: RESULT-ENVIPE-DEN-N-NO-DENUNCIO, tipo: entero, unidad: "de los anteriores, los que traen BP1_20 = 2 (no denuncio)"}
+  - {id: RESULT-ENVIPE-DEN-N-U1, tipo: entero, unidad: "universo primario U1: no denunciados con BP1_23 en {01..08} y FAC_DEL valido"}
+  - {id: RESULT-ENVIPE-DEN-N-BP1-23-09, tipo: entero, unidad: "no denunciados con BP1_23 = 09 (Otra) -- categoria real del instrumento que U1 excluye"}
+  - {id: RESULT-ENVIPE-DEN-N-BP1-23-99, tipo: entero, unidad: "no denunciados con BP1_23 = 99 (No sabe / no responde)"}
+  - {id: RESULT-ENVIPE-DEN-N-BP1-23-BLANCO, tipo: entero, unidad: "no denunciados con BP1_23 en blanco -- NO imputados a cero, fuera de todo universo"}
+  - {id: RESULT-ENVIPE-DEN-N-SIN-PONDERADOR, tipo: entero, unidad: "filas del tramo no denunciado con FAC_DEL no finito o <= 0"}
+  - {id: RESULT-ENVIPE-DEN-N-SIN-DISENO, tipo: entero, unidad: "filas del tramo no denunciado sin EST_DIS o sin UPM_DIS -- afectan al IC, no al punto"}
+  - {id: RESULT-ENVIPE-DEN-MASA-FAC-DEL-U1, tipo: flotante, unidad: "suma de FAC_DEL sobre U1 (delitos expandidos)", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-P-C1-U1, tipo: proporcion, unidad: "[PRIMARIO] proporcion ponderada de delitos de U1 con razon principal en {01,02,06} (miedo/desconfianza por texto literal), unidad DELITO, ponderador FAC_DEL, escala [0,1], mas alto = mas miedo/desconfianza", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-IC-LO-C1-U1, tipo: flotante, unidad: "[PRIMARIO] limite inferior IC95 de P-C1-U1 (bootstrap de UPM dentro de estrato)", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-IC-HI-C1-U1, tipo: flotante, unidad: "[PRIMARIO] limite superior IC95 de P-C1-U1", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-VEREDICTO, tipo: texto, unidad: "TASA-REPORTADA / NO-ESTIMABLE-COLUMNA-AUSENTE:<col> / NO-ESTIMABLE-COLUMNA-VACIA:<col> / NO-ESTIMABLE-UNIVERSO-VACIO"}
+  - {id: RESULT-ENVIPE-DEN-P-C2-U1, tipo: proporcion, unidad: "[SECUNDARIO] idem con la particion GEN1 {01,02,06,08}, unidad DELITO, FAC_DEL, escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-IC-LO-C2-U1, tipo: flotante, unidad: "[SECUNDARIO] limite inferior IC95 de P-C2-U1", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-IC-HI-C2-U1, tipo: flotante, unidad: "[SECUNDARIO] limite superior IC95 de P-C2-U1", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-DELTA-C2-C1, tipo: flotante, unidad: "P-C2-U1 menos P-C1-U1, CON SIGNO -- lo que vale en proporcion reclasificar el codigo 08 (actitud hostil de la autoridad) como desconfianza", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-P-COMPLEMENTO-C2-U1, tipo: proporcion, unidad: "proporcion ponderada de U1 con razon principal en {03,04,05,07} -- el candidato a RES-0028 (denuncia_por_otra_razon), denominador U1, escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-SUMA-C2-U1, tipo: flotante, unidad: "P-C2-U1 + P-COMPLEMENTO-C2-U1 -- prueba mecanica de que U1 se parte en dos bloques disjuntos que lo agotan", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-VEREDICTO-EXHAUSTIVIDAD, tipo: texto, unidad: "EXHAUSTIVAS-Y-EXCLUYENTES-SOLO-BAJO-U1 / EXHAUSTIVAS-EN-EL-UNIVERSO-COMPLETO / NO-EXHAUSTIVAS -- contesta si la suma a 1 de los dos valores GEN1 es propiedad del instrumento o del recorte"}
+  - {id: RESULT-ENVIPE-DEN-P-C2-U3, tipo: proporcion, unidad: "P de C2 sobre U3 (denominador que INCLUYE 09 y 99), escala [0,1] -- cuanto baja el primario al no excluir categorias reales", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-P-OTRA-U3, tipo: proporcion, unidad: "proporcion ponderada de U3 con BP1_23 = 09 (Otra), escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-P-NSNR-U3, tipo: proporcion, unidad: "proporcion ponderada de U3 con BP1_23 = 99 (No sabe / no responde), escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-N-U3, tipo: entero, unidad: "universo U3: no denunciados con BP1_23 en {01..09, 99} y FAC_DEL valido"}
+  - {id: RESULT-ENVIPE-DEN-N-PERSONAS-U4, tipo: entero, unidad: "personas de tper_vic2 con al menos un delito en U1 y FAC_ELE valido -- comparar con la n=13023 declarada por FP-201"}
+  - {id: RESULT-ENVIPE-DEN-P-C1-U4, tipo: proporcion, unidad: "codificacion primaria C1 a nivel PERSONA (colapso GEN1), ponderador FAC_ELE, escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-P-C2-U4, tipo: proporcion, unidad: "particion GEN1 a nivel PERSONA con FAC_ELE -- UNICA celda que comparte codificacion Y unidad con la cifra GEN1 sellada, escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-IC-LO-C2-U4, tipo: flotante, unidad: "limite inferior IC95 de P-C2-U4 (bootstrap de UPM dentro de estrato, diseno de tper_vic2)", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-IC-HI-C2-U4, tipo: flotante, unidad: "limite superior IC95 de P-C2-U4", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-MASA-FAC-ELE-U4, tipo: flotante, unidad: "suma de FAC_ELE sobre U4 (personas expandidas)", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-DELTA-VS-GEN1, tipo: flotante, unidad: "P-C2-U4 menos 0.294313 (valor GEN1 sellado en milpa/tramite.yaml:574), CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-DEN-REPRODUCE-GEN1, tipo: texto, unidad: "REPRODUCE (|delta| <= 1e-6) / NO-REPRODUCE / NO-COMPARABLE -- control positivo externo; NO-REPRODUCE no invalida la corrida ni autoriza tocar el medidor"}
+  - {id: RESULT-ENVIPE-DEN-N-ESTRATOS-U1, tipo: entero, unidad: "estratos EST_DIS distintos presentes en U1"}
+  - {id: RESULT-ENVIPE-DEN-N-UPM-U1, tipo: entero, unidad: "pares (EST_DIS, UPM_DIS) distintos presentes en U1"}
+  - {id: RESULT-ENVIPE-DEN-N-ESTRATOS-UPM-UNICA-U1, tipo: entero, unidad: "estratos de U1 con una sola UPM -- si es > 0 el IC es limite inferior de la anchura verdadera"}
+  - {id: RESULT-ENVIPE-DEN-METODO-IC, tipo: texto, unidad: "IC-BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-DISENO-INCOMPLETO"}
+  - {id: RESULT-ENVIPE-DEN-ADOPCION-P3, tipo: texto, unidad: "rama de adopcion pre-declarada: ADOPTABLE-POR-REPLICA / NO-ADOPTABLE-POR-DISCREPANCIA / NO-ADOPTABLE-POR-GRANO / NO-ADOPTABLE-NO-ESTIMABLE"}
+  - {id: RESULT-ENVIPE-DEN-ADOPCION-P3-DELTA, tipo: flotante, unidad: "P-C2-U4 redondeado al grano de milpa/ (6 decimales) menos 0.294313, CON SIGNO -- la prueba de grano, distinta de DELTA-VS-GEN1", permite_no_estimable: true}
