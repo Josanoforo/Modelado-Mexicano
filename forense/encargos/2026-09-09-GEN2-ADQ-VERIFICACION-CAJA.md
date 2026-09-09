@@ -21,7 +21,7 @@ Recibido en mesa 9/sep/2026. Texto verbatim del lanzamiento:
 > SUCESORES: la primera corrida de producción post-CABLEADO, correlacionada de punta a punta con las dos reparaciones puestas · la decisión de mesa que el desenlace del piloto pida (handoff autorizado o frontera aceptada).
 > 
 > CIERRE · Cascada completa + ## NO-CORRIDO / RESERVAS + ## CONSUMIDO con el PR.
-## NO-CORRIDO / RESERVAS (A.14)
+## NO-CORRIDO / RESERVAS
 
 Todas en `forense/no-corrido.tsv`, con sucesor nombrado:
 
