@@ -23,16 +23,29 @@ contesta... y las dos no se mezclan en una afirmación única").
 encargo declara: *"COMPUERTA: GATED a PR del ACTO GEN2-RETIRO-CRON-LEGADO
 fusionado (fila de caja; además garantiza que ningún cron dispare a media
 captura)."* Verificado en esta sesión, contra GitHub y contra el crontab real de
-esta caja: **ese PR no existe** — ni fusionado, ni abierto, ni en rama, en ningún
-punto del árbol o del repositorio remoto. La línea de crontab legado
-(`30 7 * * 1-5 cd /home/pc0/mm-adq && ./tools/adquiere_cron.sh`) sigue instalada
-hoy en esta caja (verificado con `crontab -l`). Mesa, informada de este hallazgo,
-autorizó una desviación acotada y por escrito (patrón ya usado en este programa:
-[[feedback-partial-gate-deviation]]): **P1 (este documento) y P2 (el blindaje)
-proceden ahora; P3 (las 224 invocaciones reales) queda diferido hasta que la
-compuerta se resuelva** — por el PR de `GEN2-RETIRO-CRON-LEGADO`, o por otra
-decisión explícita de mesa. Nada de lo que sigue invoca `claude`; **CONTADOR: cero**
-se mantiene íntegro en este acto.
+esta caja, ANTES de escribir esta spec: **ese PR no existe** — ni fusionado, ni
+abierto, ni en rama, en ningún punto del árbol o del repositorio remoto. La línea
+de crontab legado (`30 7 * * 1-5 cd /home/pc0/mm-adq && ./tools/adquiere_cron.sh`)
+sigue instalada hoy en esta caja (verificado con `crontab -l`). Mesa, informada de
+este hallazgo, autorizó una desviación acotada y por escrito (patrón ya usado en
+este programa: [[feedback-partial-gate-deviation]]): **P1 (este documento) y P2
+(el blindaje) proceden ahora; P3 (las 224 invocaciones reales) queda diferido
+hasta que la compuerta se resuelva** — por el PR de `GEN2-RETIRO-CRON-LEGADO`, o
+por otra decisión explícita de mesa. Nada de lo que sigue invoca `claude`;
+**CONTADOR: cero** se mantiene íntegro en este acto.
+
+**ENMIENDA (misma sesión, ~15:37, no se reescribe el párrafo de arriba — regla de
+enmienda fechada, no de silencio).** `PR #668 · ACTO GEN2-RETIRO-CRON-LEGADO` se
+fusionó mientras este acto redactaba P1/P2 (merge `cc1cfe2`, ~15:16) — **la
+compuerta que el párrafo de arriba encontró incumplida YA se cumple.** Verificado
+de nuevo, empíricamente, en esta misma caja: `crontab -l` ya no trae la línea de
+`adquiere_cron.sh` (solo el bloque de comentario y el `PATH=`). El hallazgo del
+párrafo de arriba fue correcto **en el momento en que se hizo** — no se corrige
+hacia atrás, se declara que el estado cambió. **P3 sigue sin ejecutarse en este
+acto**: la decisión de lanzarlo ahora que la compuerta se despejó es de mesa, no
+de esta sesión — el encargo autorizó explícitamente P1+P2, no P3, y 224
+invocaciones reales con captura sellada e inamovible no es una expansión de
+alcance que se autoconceda.
 
 ---
 
