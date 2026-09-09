@@ -166,6 +166,6 @@ microdato) y que queda para un acto en CAJA con corpus montado y
 `python3 tests/test_corrida0.py` → `68 casos · 68 ok · 0 FALLOS` (64 previos +
 4 falsadores nuevos, cero regresiones). `python3 tests/check.py --baseline` →
 `LÍNEA BASE: VERDE` (3 FAIL preexistentes, sin ninguno nuevo; el único WARN/FAIL
-nuevo que apareció al escribir el 0-bis — `T25` sobre `E5` pelado en el propio
-encargo verbatim — se resolvió como manda `/acto` §4.5: censando el archivo en
+nuevo que apareció al escribir el 0-bis — `T25` sobre el rótulo pelado GEN2-E5
+citado en el propio encargo verbatim — se resolvió como manda `/acto` §4.5: censando el archivo en
 `tests/check.py::_T25_ARCHIVOS_CONOCIDOS`, sin editar el encargo).
