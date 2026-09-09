@@ -1,0 +1,227 @@
+{
+ "corrida_id": "CALC-ENVIPE-0001--06223f3dc02d",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "ADR-46 -- al congelar esta spec la sesion YA habia leido (a) los dos valores GEN1 0.294313 / 0.705687 en el propio encargo y en demanda-resultados.tsv, (b) el IC95 y la n=13023 de la corrida GEN1 en forense/firmas-pendientes.tsv:FP-201, y (c) LA CODIFICACION GEN1 COMPLETA en forense/notas/2026-08-31-reglas-fase1-spec.md (miedo={01,02,06,08} vs practica={03,04,05,07}). Por eso la codificacion PRIMARIA de esta spec (C1) NO es la de GEN1: deja fuera el codigo 08 y mide con DELTA-C2-C1 lo que vale ese juicio. Los conteos de 09/99/blanco -- de los que depende el veredicto de exhaustividad -- no aparecen en ninguna fuente leida.",
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "demanda_que_releva": "CORR-0009 -> RES-0027 (denuncia_con_miedo_o_desconfianza) y, en el sentido acotado de la sellada 6.2, RES-0028 (denuncia_por_otra_razon). NO releva RES-0039..0042: otra apertura (BPCOD=01, condicional a seguro), citados en ## NO-CORRIDO.",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": "NO -- escrito y congelado en el COMMIT-1, corrido en el COMMIT-2 del mismo acto",
+  "reglas_bajo_prueba": "NINGUNA se mueve por esta corrida. civico.denuncia.miedo_desconfianza ya esta SELLADA en milpa/tramite.yaml:574 con p=0.294313 (ACTO MAESTRA32-E18). Este CALC monta la cadena E.2 que el registro GEN2 exige sobre esa cantidad; la adopcion de P3 es cita, no cambio de cifra, y su rama la decide RESULT-ENVIPE-DEN-ADOPCION-P3.",
+  "spec_sellada": "forense/prereg-caja/ENVIPE-DENUNCIA-spec-v1_0.md",
+  "spec_sellada_sha256": "e404e7b5faeb54af6ce3a49b02f1adc4c25fcd9b82c82d79956f68c370bd49b5",
+  "tipo": "TASA-BASE-DE-REGLA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-09T05:35:29Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 400,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "06223f3dc02d3777bed5cec184c1cbcd3d7c8252",
+  "git_rama": "acto/gen2-lote-envipe-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "06223f3dc02d3777bed5cec184c1cbcd3d7c8252",
+ "input_ids": [
+  "envipe2025_csv",
+  "IN-ENVIPE-SPEC-SELLADA"
+ ],
+ "input_sha256": {
+  "IN-ENVIPE-SPEC-SELLADA": "e404e7b5faeb54af6ce3a49b02f1adc4c25fcd9b82c82d79956f68c370bd49b5",
+  "envipe2025_csv": "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
+ },
+ "parametros": {
+  "adopcion_p3": {
+   "consumidor": "milpa/tramite.yaml:civico.denuncia.miedo_desconfianza:denuncia_con_miedo_o_desconfianza",
+   "nota": "La adopcion candidata NO es el estimando primario (p(C1,U1)): esa es otra codificacion Y otra unidad, y adoptarla cambiaria en silencio el significado del parametro del motor. La unica celda con la MISMA codificacion y la MISMA unidad que el valor ya materializado es p(C2,U4). La compatibilidad se demuestra con RESULT-ENVIPE-DEN-ADOPCION-P3, no se supone.",
+   "result_id": "RESULT-ENVIPE-DEN-P-C2-U4",
+   "valor_materializado": 0.294313
+  },
+  "bootstrap_replicas": 2000,
+  "codificacion": {
+   "C1_cero": [
+    "03",
+    "04",
+    "05",
+    "07",
+    "08"
+   ],
+   "C1_uno": [
+    "01",
+    "02",
+    "06"
+   ],
+   "C2_cero": [
+    "03",
+    "04",
+    "05",
+    "07"
+   ],
+   "C2_uno": [
+    "01",
+    "02",
+    "06",
+    "08"
+   ]
+  },
+  "firma_que_lo_autoriza": "Firma de mesa 9/sep/2026, verbatim: «Ya sabes, clona repo, revisa transfer, encargo corriendo con commits pusheados. Y revisa estas dos propuestas de Astra. Intégralo en encargos para hacer los ajustes necesarios.» -- ordena el lote. Su OBJETO no es el contador: cuenta_gen2 queda PENDIENTE-DE-MESA (estandar FP-367).",
+  "fuente_acto": "ACTO GEN2-LOTE-ENVIPE-1 · PRIMER LOTE F4->F3 · CALC-ENVIPE-0001",
+  "grano_milpa_decimales": 6,
+  "metodo_ic": "bootstrap de UPM_DIS CON REEMPLAZO dentro de EST_DIS, conservando el numero de UPM por estrato; percentiles 2.5/97.5",
+  "ranura_no_preregistrada": "Nadie pre-registro el metodo de IC para esta serie. Lo elige el ejecutor sobre ranura vacia, se declara y se eleva a mesa. NO se hereda el bootstrap simple de filas de la corrida GEN1 (FP-201 lo uso porque declaro no tener campo de diseno; para ENVIPE 2025 el descriptor SI declara EST_DIS y UPM_DIS en las dos tablas). No se espera coincidencia digito a digito de los extremos.",
+  "regla_estrato_upm_unica": "Un estrato con exactamente una UPM se re-muestrea a si mismo: aporta varianza cero. NO se colapsa con otro estrato (decision de diseno que esta spec no esta autorizada a tomar) y NO se descarta (sesgaria el punto). Su conteo va en RESULT-ENVIPE-DEN-N-ESTRATOS-UPM-UNICA-U1 y, si es > 0, METODO-IC sale IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como LIMITE INFERIOR de la anchura verdadera, nunca como IC exacto.",
+  "sufijos_result": [
+   "N-FILAS-MODULO",
+   "N-BPCOD-05-15",
+   "N-NO-DENUNCIO",
+   "N-U1",
+   "N-BP1-23-09",
+   "N-BP1-23-99",
+   "N-BP1-23-BLANCO",
+   "N-SIN-PONDERADOR",
+   "N-SIN-DISENO",
+   "MASA-FAC-DEL-U1",
+   "P-C1-U1",
+   "IC-LO-C1-U1",
+   "IC-HI-C1-U1",
+   "VEREDICTO",
+   "P-C2-U1",
+   "IC-LO-C2-U1",
+   "IC-HI-C2-U1",
+   "DELTA-C2-C1",
+   "P-COMPLEMENTO-C2-U1",
+   "SUMA-C2-U1",
+   "VEREDICTO-EXHAUSTIVIDAD",
+   "P-C2-U3",
+   "P-OTRA-U3",
+   "P-NSNR-U3",
+   "N-U3",
+   "N-PERSONAS-U4",
+   "P-C1-U4",
+   "P-C2-U4",
+   "IC-LO-C2-U4",
+   "IC-HI-C2-U4",
+   "MASA-FAC-ELE-U4",
+   "DELTA-VS-GEN1",
+   "REPRODUCE-GEN1",
+   "N-ESTRATOS-U1",
+   "N-UPM-U1",
+   "N-ESTRATOS-UPM-UNICA-U1",
+   "METODO-IC",
+   "ADOPCION-P3",
+   "ADOPCION-P3-DELTA"
+  ],
+  "tablas": {
+   "modulo": "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv",
+   "persona": "tper_vic2_envipe2025/conjunto_de_datos/conjunto_de_datos_tper_vic2_envipe2025.csv"
+  },
+  "umbral_replica_gen1": 1e-06,
+  "valor_gen1_referencia": 0.294313
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENVIPE-DEN-ADOPCION-P3",
+  "RESULT-ENVIPE-DEN-ADOPCION-P3-DELTA",
+  "RESULT-ENVIPE-DEN-DELTA-C2-C1",
+  "RESULT-ENVIPE-DEN-DELTA-VS-GEN1",
+  "RESULT-ENVIPE-DEN-IC-HI-C1-U1",
+  "RESULT-ENVIPE-DEN-IC-HI-C2-U1",
+  "RESULT-ENVIPE-DEN-IC-HI-C2-U4",
+  "RESULT-ENVIPE-DEN-IC-LO-C1-U1",
+  "RESULT-ENVIPE-DEN-IC-LO-C2-U1",
+  "RESULT-ENVIPE-DEN-IC-LO-C2-U4",
+  "RESULT-ENVIPE-DEN-MASA-FAC-DEL-U1",
+  "RESULT-ENVIPE-DEN-MASA-FAC-ELE-U4",
+  "RESULT-ENVIPE-DEN-METODO-IC",
+  "RESULT-ENVIPE-DEN-N-BP1-23-09",
+  "RESULT-ENVIPE-DEN-N-BP1-23-99",
+  "RESULT-ENVIPE-DEN-N-BP1-23-BLANCO",
+  "RESULT-ENVIPE-DEN-N-BPCOD-05-15",
+  "RESULT-ENVIPE-DEN-N-ESTRATOS-U1",
+  "RESULT-ENVIPE-DEN-N-ESTRATOS-UPM-UNICA-U1",
+  "RESULT-ENVIPE-DEN-N-FILAS-MODULO",
+  "RESULT-ENVIPE-DEN-N-NO-DENUNCIO",
+  "RESULT-ENVIPE-DEN-N-PERSONAS-U4",
+  "RESULT-ENVIPE-DEN-N-SIN-DISENO",
+  "RESULT-ENVIPE-DEN-N-SIN-PONDERADOR",
+  "RESULT-ENVIPE-DEN-N-U1",
+  "RESULT-ENVIPE-DEN-N-U3",
+  "RESULT-ENVIPE-DEN-N-UPM-U1",
+  "RESULT-ENVIPE-DEN-P-C1-U1",
+  "RESULT-ENVIPE-DEN-P-C1-U4",
+  "RESULT-ENVIPE-DEN-P-C2-U1",
+  "RESULT-ENVIPE-DEN-P-C2-U3",
+  "RESULT-ENVIPE-DEN-P-C2-U4",
+  "RESULT-ENVIPE-DEN-P-COMPLEMENTO-C2-U1",
+  "RESULT-ENVIPE-DEN-P-NSNR-U3",
+  "RESULT-ENVIPE-DEN-P-OTRA-U3",
+  "RESULT-ENVIPE-DEN-REPRODUCE-GEN1",
+  "RESULT-ENVIPE-DEN-SUMA-C2-U1",
+  "RESULT-ENVIPE-DEN-VEREDICTO",
+  "RESULT-ENVIPE-DEN-VEREDICTO-EXHAUSTIVIDAD"
+ ],
+ "script_blob_sha256": "a7385a43a48bfc1e92cb36c49df58d6a0c01cc0e34c2fbf8d5f276641db3ba21",
+ "script_path": "data/corrida0/CALC-ENVIPE-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260909
+ },
+ "spec_id": "CALC-ENVIPE-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "9b9e090863c35292cd3c8eb8081c3ebafc61f0bd2e3c066848b89876d001f223",
+ "spec_yaml_sha256": "06fcd2a260dccbabe958867c93ca3239d45c9b160ff90a823c5b3a206d4a0c8b",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "Bootstrap fijado por seed + rng declarados y sumas en orden fijo de fila: la unica diferencia esperable entre dos corridas del mismo arbol es redondeo de float64 al reasociar sumas ponderadas. Los enteros y los textos se comparan EXACTO. NO se afloja para que la adopcion de P3 pase: si el grano de milpa/ (seis decimales) no cabe, la cita no se escribe y eso es el hallazgo.",
+  "tipo": "flotante"
+ }
+}
