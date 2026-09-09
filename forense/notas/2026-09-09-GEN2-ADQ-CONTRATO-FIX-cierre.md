@@ -12,6 +12,21 @@ P0 del encargo pedía archivar verbatim `forense/notas/2026-09-09-REVISION-IMPLE
 
 La decisión tomada: el propio encargo declara que dirección **ya reverificó H1 textualmente** (cita exacta de la línea de código defectuosa) y **H5 «confirmado en clase»**, y pide explícitamente re-derivar H2/H3 contra el código como primer paso — es decir, el encargo mismo no depende de leer el documento ausente para ejecutar P1-P4. Se registra como `NC-0134` (`ABIERTA`, sucesor `DECISIÓN-DE-MESA-PENDIENTE`) en vez de parar el acto completo, siguiendo el principio de `AGENTS.md` («ante un defecto material, corrige, acota su efecto o pide decisión» — aquí el efecto se acota a la sola pieza de registro/procedencia, que no cambia ninguna medición ni comportamiento del ejecutable).
 
+## 0-bis · El documento llegó, adjunto tarde — `NC-0134` CIERRA
+
+El insumo (`REVISION-IMPLEMENTACION-PR660-666`, Astra, 9/sep) llegó adjunto en un mensaje de seguimiento sobre esta misma sesión, después de que P1-P4 ya estaban implementados, probados y en PR. Se archivó verbatim en `forense/notas/2026-09-09-REVISION-IMPLEMENTACION-PR660-666-astra.md` con la cabecera de procedencia que P0 pedía. `NC-0134` pasa a `CERRADA`.
+
+**Verificación cruzada, línea por línea, contra el trabajo ya hecho sin haber leído el documento:**
+
+- **H1** (documento §H1): cita textual `tools/adq_doctor.py:358–365`, `_autorizada()` — coincide exactamente con lo que dirección ya había reverificado en la firma de mesa del encargo, y con el arreglo aplicado (§2 arriba). Los cuatro fixtures de aceptación que el documento pide (ausencia, negación-espacio, negación-guion, cita ajena) son los mismos cuatro que `tests/test_adq_contrato_fix.py::prueba_h1_autorizada_fixtures_negativos_y_positivo` ya cubre.
+- **H2** (documento §H2): cita `tools/adq_doctor.py:340–355` y el mismo par de contraejemplos (fechas en distinto orden textual; una fecha de referencia documental leída como intento) que motivaron el rediseño de `fecha_intento_efectivo()` en §3.
+- **H3** (documento §H3): describe el defecto **exactamente** como se encontró aquí de forma independiente — una fila `SIN-FETCH` autorizada y nombrada que «termina excluida como "estado fuera del contrato"» — confirmando que la causa real no era la ausencia de código de excepción, sino una rama muerta que nunca alcanzaba `candidatas`.
+- **H5** (documento §H5): cita `tests/check.py:5610–5614` y pide explícitamente revisar `tools/adquiere_cron.sh` «alrededor de 527–550» — la misma línea que P4 del encargo señala y que llevó a extraer `publica_censo_manual()`.
+- **H4 y H6** (documento §H4/§H6, `tools/digesto_tramite.py` y `tools/corrida0.py`): **fuera del perímetro de este acto**, tal como el propio encargo restringe a H1/H2/H3/H5 y como el documento mismo recomienda («encargar primero H1–H3 y H5 ... después H4 y H6 dentro de los derivadores existentes»). No se tocan aquí; quedan para `GEN2-DERIVADORES-FIX` u otro sucesor.
+- El documento también nombra `NC-0114/0115/0119/0120/0123` como reservas operativas de CAJA — todas ya citadas como frontera en el encargo y no tocadas por este acto, consistente con lo declarado.
+
+Ningún hallazgo del documento contradice o amplía lo ya implementado en P1-P4; la reconstrucción hecha sin el documento fue completa.
+
 ## 1 · Contraejemplos congelados en rojo antes de reparar
 
 `tests/test_adq_contrato_fix.py`, 20 pruebas, corridas contra el código sin tocar:
@@ -85,6 +100,6 @@ Probado como integración completa, no herramienta por herramienta (`prueba_h3_r
 
 ## 7 · Reservas — lo que este acto no cierra
 
-Ver `## NO-CORRIDO / RESERVAS` en `forense/encargos/2026-09-09-GEN2-ADQ-CONTRATO-FIX.md`. En breve: el registro verbatim de `REVISION-IMPLEMENTACION-PR660-666` (§0 de esta nota, `NC-0134`); reintentos automáticos para `FECHA-INDETERMINADA` (deliberadamente no habilitados); la primera corrida post-arreglo en producción (`NC-0114`, de caja, no de este acto). `NC-0119`/`NC-0115`/`NC-0120` se citan como frontera y no se tocan.
+Ver `## NO-CORRIDO / RESERVAS` en `forense/encargos/2026-09-09-GEN2-ADQ-CONTRATO-FIX.md` (registro histórico de lo que faltaba al cerrar la implementación). `NC-0134` (el registro verbatim de `REVISION-IMPLEMENTACION-PR660-666`) **CIERRA** en esta misma rama — ver §0-bis arriba: el documento llegó adjunto en un mensaje de seguimiento antes de que este PR se fusionara. Siguen abiertas, sin tocar: reintentos automáticos para `FECHA-INDETERMINADA` (deliberadamente no habilitados); la primera corrida post-arreglo en producción (`NC-0114`, de caja, no de este acto). `NC-0119`/`NC-0115`/`NC-0120` se citan como frontera y no se tocan.
 
 **Contador:** no se mueve. Este acto corrige el selector de adquisición y el vigilante de cron; ningún `CALC` nace, ningún sello se toca, ninguna fuente se descarga.
