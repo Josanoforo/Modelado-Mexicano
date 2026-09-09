@@ -13,7 +13,7 @@ Filosofía: cada ADR que declara un principio necesita un test que FALLE
 visiblemente si no se cumple. "Principio declarado sin requisito de salida"
 es el patrón que explica casi todos los fallos del programa.
 """
-import csv, io, os, re, sys, glob, hashlib, unicodedata, datetime
+import csv, io, os, re, sys, glob, hashlib, unicodedata, datetime, tempfile, shutil
 from collections import Counter, defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -2730,6 +2730,14 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-PREP-LOTE, 9/sep/2026: encargo archivado VERBATIM (0-bis
+    # A.3), que no se edita para complacer un test (misma regla que rige el
+    # resto de esta lista). Cita "archivada por E1" -- el rótulo pelado del
+    # bloque de despacho de un lote de encargos previo (E1 de la serie
+    # ENCARGOS-GEN2), sin el prefijo de espacio en esa mención puntual. No
+    # es un rótulo nuevo: es una referencia retrospectiva a trabajo ya
+    # censado bajo su propia serie.
+    "forense/encargos/2026-09-09-GEN2-PREP-LOTE.md",
     # ACTO GEN2-E5-0 · SPECS EJECUTABLES, 8/sep/2026: encargo archivado
     # VERBATIM (0-bis A.3) desde `forense/encargos/cola/`, que no se edita para
     # complacer un test (misma regla que rige el resto de esta lista). El
@@ -5207,11 +5215,33 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # distinto, no reabierto aquí. Salida completa citada en
     # `forense/notas/2026-09-08-GEN2-UNIVERSO-C-tandas-enafin.md` §0.
     "forense/encargos/2026-09-08-GEN2-UNIVERSO-C-TANDAS-Y-ENAFIN.md",
+    # ACTO GEN2-PREP-LOTE, 9/sep/2026: encargo archivado VERBATIM (0-bis
+    # A.3), que no se edita para complacer un test (misma regla que rige
+    # T25). Cita `tramite.mordida.discrecional` como motivacion del defecto
+    # de identidad que este acto corrige -- el objeto del acto es la
+    # RESOLUCION de identidad en `_instrumento()`, no re-medir ni
+    # re-clasificar la regla.
+    #
+    # Veredicto REAL de `python3 tools/ya_medido.py
+    # tramite.mordida.discrecional` (corrido, ultima linea): `NUNCA-MEDIDA`
+    # -- consistente con que este acto no mide nada ni toca el motor.
+    "forense/encargos/2026-09-09-GEN2-PREP-LOTE.md",
 }
 
 
-def t30_yamedido():
-    hoy = datetime.date.today()
+def t30_yamedido(hoy: "datetime.date | None" = None):
+    """T-YAMEDIDO. NC-0080 (P2(b), ACTO GEN2-PREP-LOTE, 9/sep/2026): el
+    `hoy` de este test es UTC, no la hora local del contenedor -- un
+    encargo fechado hoy en hora local de mesa (CST, UTC-6) puede caer
+    "mañana" en UTC hasta las 18:00 CST, y con `datetime.date.today()`
+    (huso local del proceso) el mismo encargo entra o sale de la ventana
+    `fecha < hoy` según el TZ del entorno que corre la suite -- exactamente
+    lo que hacía este test flaquear (`TZ=UTC` da 3 FAIL, sin `TZ` da 4).
+    `hoy` es inyectable para el caso de prueba de medianoche; sin
+    argumento, se deriva de UTC -- convención propuesta, sujeta a la que
+    mesa fije."""
+    if hoy is None:
+        hoy = datetime.datetime.now(datetime.timezone.utc).date()
     for p in sorted(glob.glob(os.path.join(ROOT, "forense", "encargos", "*.md"))):
         relp = rel(p)
         if relp in _T_YAMEDIDO_ARCHIVOS_CONOCIDOS:
@@ -5237,6 +5267,63 @@ def t30_yamedido():
              f"`MEDIDA-EN:` en el archivo) -- corre la herramienta y pega su "
              f"salida en A.8, o si la cita es solo ilustrativa añade este "
              f"archivo a `_T_YAMEDIDO_ARCHIVOS_CONOCIDOS` con la razón")
+
+
+def t30b_yamedido_huso_medianoche():
+    """T-YAMEDIDO-HUSO (P2(b), ACTO GEN2-PREP-LOTE, 9/sep/2026, NC-0080).
+    El MISMO instante, probado a los dos lados de la medianoche LOCAL
+    (America/Mexico_City, UTC-6): a las 21:30 CST del 8/sep, ya son las
+    03:30 UTC del 9/sep -- el caso real que NC-0080 midio (21:26 CST
+    alcanzaba a un encargo del 8/sep local que en UTC ya era de ayer).
+    Con `hoy` inyectado desde ese MISMO instante en UTC (la convencion de
+    `t30_yamedido`), un encargo fechado 9/sep se trata como "de hoy" --
+    sujeto a exigir su cita de `ya_medido.py` -- sin importar que el reloj
+    de pared del proceso diga 8/sep o 9/sep: `t30_yamedido` ya no llama a
+    `datetime.date.today()` (huso del proceso), asi que el resultado no
+    depende de la TZ del contenedor que corre la suite. NC-0080 se cierra
+    con este caso en la suite -- no por salir verde una vez."""
+    instante_utc = datetime.datetime(2026, 9, 9, 3, 30, tzinfo=datetime.timezone.utc)
+    huso_cst = datetime.timezone(datetime.timedelta(hours=-6))
+    instante_cst = instante_utc.astimezone(huso_cst)
+    _afirma_t30(instante_utc.date() == datetime.date(2026, 9, 9), "T-YAMEDIDO-HUSO",
+                "el instante de fixture no cae en 9/sep UTC -- revisa el fixture")
+    _afirma_t30(instante_cst.date() == datetime.date(2026, 9, 8), "T-YAMEDIDO-HUSO",
+                "el instante de fixture no cae en 8/sep local (CST) -- el "
+                "caso de medianoche no esta armado")
+
+    hoy_utc = instante_utc.date()
+    tmp = tempfile.mkdtemp(prefix="check-t30b-")
+    try:
+        d = os.path.join(tmp, "forense", "encargos")
+        os.makedirs(d, exist_ok=True)
+        p_hoy = os.path.join(d, "2026-09-09-FIXTURE-SIN-CITA.md")
+        with open(p_hoy, "w", encoding="utf-8") as fh:
+            fh.write("cita R1.6 sin salida de ya_medido.py\n")
+
+        global ROOT
+        root_previo, fails_previo = ROOT, list(FAILS)
+        ROOT = tmp
+        try:
+            FAILS.clear()
+            t30_yamedido(hoy=hoy_utc)
+            fails_con_hoy_utc = list(FAILS)
+        finally:
+            ROOT = root_previo
+            FAILS.clear()
+            FAILS.extend(fails_previo)
+
+        _afirma_t30(len(fails_con_hoy_utc) == 1, "T-YAMEDIDO-HUSO",
+                    f"con `hoy` derivado del instante UTC, un encargo fechado "
+                    f"el mismo dia UTC (9/sep) sin cita de `ya_medido.py` "
+                    f"deberia fallar exactamente una vez -- salio "
+                    f"{len(fails_con_hoy_utc)}: {fails_con_hoy_utc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def _afirma_t30(cond, test, msg):
+    if not cond:
+        fail(test, msg)
 
 
 # ───────────────────────────────────────────────────────────────
@@ -6120,6 +6207,7 @@ def main():
         ("T28 T-A3",                               t28_a3_encargo_archivado),
         ("T29 T-FIRMAS-2",                         t29_firmas_2_no_perdidas),
         ("T30 T-YAMEDIDO",                         t30_yamedido),
+        ("T30b T-YAMEDIDO-HUSO",                    t30b_yamedido_huso_medianoche),
         ("T31 T-CRON",                              t31_cron),
         ("T32 T-CORRIDA0",                           t32_corrida0),
         ("T36 T-CORREDORES-GEN2",                     t36_corredores_gen2),
