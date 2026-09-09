@@ -27,3 +27,7 @@ PERÍMETRO: `forense/no-corrido.tsv` (tokens de las filas 1-6) · `forense/encar
   **sucesor:** `GEN2-TRAMITE-TABLERO-2` (ya nombrado en la propia fila) o un tercer relanzamiento que regenere el adjunto contra la señal post-firma vigente.
 
 Todo lo demás del encargo (filas 2-5, 7-8) corrió tal como se pidió.
+
+## CONSUMIDO
+
+Ejecutado por `PR #648` (rama `claude/modest-hopper-3dxkct`, `ADR-425`). Seis de ocho cierres reproducen y quedan `CERRADA`/`CERRADA-DESISTIDA`/`CONSUMIDO`/`LISTO-CAJA`; dos (`NC-0037`, `NC-0055`) no reproducen y quedan `ABIERTA` con hallazgo, per `## NO-CORRIDO / RESERVAS` arriba. `tests/check.py --baseline`: **VERDE**.
