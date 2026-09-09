@@ -2730,6 +2730,15 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-LOTE-ENCIG-1, 9/sep/2026: encargo archivado VERBATIM (0-bis
+    # A.3), que no se edita para complacer un test. Su ADENDA DE PROPAGACION
+    # cita "Es el sucesor que E1 nombro" -- EL MISMO rotulo pelado y por la
+    # misma razon que la exencion de GEN2-PREP-LOTE de abajo: `E1` es el
+    # bloque de despacho de un lote de encargos previo (E1 de la serie
+    # ENCARGOS-GEN2), mencionado en retrospectiva. No es un rotulo nuevo: el
+    # rotulo propio de este acto, `L · GEN2-LOTE-ENCIG-1`, SI va censado en
+    # canon/registro-rotulos.tsv.
+    "forense/encargos/2026-09-09-GEN2-LOTE-ENCIG-1.md",
     # ACTO GEN2-PREP-LOTE, 9/sep/2026: encargo archivado VERBATIM (0-bis
     # A.3), que no se edita para complacer un test (misma regla que rige el
     # resto de esta lista). Cita "archivada por E1" -- el rótulo pelado del
