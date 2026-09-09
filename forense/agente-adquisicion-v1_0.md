@@ -1,5 +1,34 @@
 # Agente de adquisición · v1.0 — runbook de mesa
 
+> ## ENMIENDA DE PRECEDENCIA — qué sección gobierna HOY
+>
+> Añadida por `ACTO GEN2-SONDA-ADQ-CABLEADO` (9/sep/2026, P1/P2,
+> `forense/encargos/2026-09-09-GEN2-SONDA-ADQ-CABLEADO.md`), a partir del §4
+> de `forense/notas/2026-09-09-REVISION-CABLEADO-SONDA-ADQUISICION-astra.md`
+> («también hay documentación desfasada: el registro canónico aún encabeza
+> cron de WSL, describe el vigilante anterior… el instalador y el código ya
+> emplean otro mecanismo. Debe haber una enmienda visible que diga qué
+> sección gobierna hoy»). Se enmienda por fecha, **no** reescribiendo el
+> texto histórico: lo de abajo se conserva para poder auditar qué se decidió
+> y cuándo.
+>
+> | Asunto | Qué gobierna HOY | Qué queda como histórico |
+> |---|---|---|
+> | **Disparador** | Windows Task Scheduler, tarea `\ModeladoMexicano\AdquiereCron`, instalada por `tools/windows/instala-tarea-adquisicion.ps1` (`ACTO ADQ-CRON-V2`, 7/sep/2026) | La «línea de crontab sugerida» del final de este archivo, y toda mención de `crontab -e` en la caja. El cron de WSL **está retirado**: no se instala, y si sigue instalado en alguna caja es hallazgo a reportar, no el mecanismo vigente. `adq_doctor.check_crontab_legado()` lo vigila por eso. |
+> | **Selección de filas** | `.claude/commands/adquiere.md` §1, «CONTRATO ÚNICO DE ELEGIBILIDAD Y ORDEN», proyectado con `python3 tools/adq_doctor.py --selecciona` | La regla que el prompt de §1 traía por su cuenta («las 5 más antiguas con último intento ≥ 7 días»), que divergía del orden por prioridad de la skill. El prompt ahora **cita** el contrato en vez de repetirlo. |
+> | **Vigilante** | `tests/check.py` T31 tras H1 (evidencia fusionada primaria, filtrado por fecha y `run_id`, `SIN-EVIDENCIA-NO-VERIFICABLE` para lecturas fallidas) y `tools/adq_doctor.py` que lo reusa | La lectura por rama `censo/<fecha>` como requisito, y el `COMPLETO` derivado de un cuerpo `[ADQ]` sin comprobar su fecha. |
+> | **Horario** | Lun-vie 07:30, hora de mesa (`America/Mexico_City`). **Este acto NO lo cambia.** | — |
+>
+> **Advertencia de propagación** (revisión del 9/sep, §4, verbatim:
+> «cualquier cambio futuro de hora debe propagarse a los consumidores, no
+> solo al instalador»). La hora 07:30 vive hoy en TRES sitios que no se leen
+> entre sí: el trigger del instalador de Windows, el `date` local del runner
+> (`tools/adquiere_cron.sh`) y la constante de T31
+> (`tests/check.py::t31_cron`, 07:30 + gracia de `data/adq-config.yaml`).
+> `data/adq-config.yaml` **no** es todavía autoridad uniforme del calendario.
+> Quien cambie el horario cambia los tres, o el vigilante empezará a mentir
+> otra vez. Queda **escrito, no ejecutado**: este acto no toca el horario.
+
 **P3** de `ACTO MAESTRA34-N7 · SKILLS-COLA-Y-ADQ`
 (`forense/encargos/2026-09-01-MAESTRA34-N7-SKILLS-COLA-Y-ADQ.md`, SHA de
 redacción `e4af4ed`, merge `PR #455`).
@@ -48,11 +77,20 @@ Pega esto, tal cual, como prompt de la tarea recurrente (o pásalo por
 `tools/adquiere_cron.sh`, que hace exactamente esto):
 
 ```text
-Corre /adquiere sobre las 5 filas mas antiguas de
-data/curacion-registro/cola-adquisicion-registro.tsv cuyo ultimo intento
-tenga >= 7 dias (o sin intento previo), en este clon, entorno CAJA (no
-NUBE): confirma /home/pc0/mm-corpus/raw montado y red real a
-inegi.org.mx antes de caminar una sola fila.
+Corre /adquiere en este clon, entorno CAJA (no NUBE): confirma
+/home/pc0/mm-corpus/raw montado y red real a inegi.org.mx antes de
+caminar una sola fila.
+La seleccion NO se re-decide aqui: el contrato unico de elegibilidad y
+orden vive en .claude/commands/adquiere.md seccion 1, y se proyecta con
+`python3 tools/adq_doctor.py --selecciona --maximo 5`. Pega su salida
+-- IDs elegidos, excluidos y razon, incluso cuando los elegidos son
+cero -- en el cierre de la caminata, ANTES de tocar ninguna fila. Una
+caminata vacia con su lista emitida es informacion; una caminata vacia
+sin lista es indistinguible de una seleccion equivocada.
+La antiguedad se cuenta desde el intento efectivo de descarga, nunca
+desde la fecha de descubrimiento de via que escribe /sonda. No actives
+en bloque SIN-FETCH, OBTENIDO-PARCIAL ni negativos: una recomendacion
+de /sonda sin autorizacion citada permanece propuesta.
 Registra cada fila caminada por las tres capas: la capa payload
 (data/manifiesto.yaml, via tests/manifiesto.py --registra), la capa cola
 (data/curacion-registro/cola-adquisicion-registro.tsv, estado_A4A5) y la

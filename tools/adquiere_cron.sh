@@ -40,6 +40,36 @@
 #     no legibilidad del contenedor, y no adjudica un cambio de bytes por
 #     sí solo (Enmienda 4, sigue vigente).
 
+# ACTO GEN2-SONDA-ADQ-CABLEADO · EL VIGILANTE DEJA DE MENTIR EN AMBOS
+# SENTIDOS (P1, 9/sep/2026,
+# forense/encargos/2026-09-09-GEN2-SONDA-ADQ-CABLEADO.md; casos congelados
+# en tests/test_adq_cableado.py; revisión de origen en
+# forense/notas/2026-09-09-REVISION-CABLEADO-SONDA-ADQUISICION-astra.md).
+# Cuatro defectos reproducidos, todos de la misma familia: el runner
+# reportaba éxito por caminos que no lo acreditaban.
+#   - H4 · `curl -w '%{http_code}' ... || echo 'sin-respuesta'` concatena:
+#     un transporte fallido daba la cadena `000sin-respuesta`, que NO es
+#     igual a `sin-respuesta`, así que la compuerta PARO-RED no entraba y
+#     el runner gastaba la invocación de Claude. Ahora el código de salida
+#     de curl, el HTTP y la causa se capturan POR SEPARADO (sonda_red).
+#   - H5 · `commit_censo_linea()` registraba `PARO-CENSO-PUSH` y seguía;
+#     con un doble que hacía fallar solo `git push`, la función terminaba
+#     en 0. Ahora devuelve fallo operativo, conserva el recibo local y el
+#     runner cierra con un resultado COMPUESTO (trabajo + publicación),
+#     no solo con el exit de Claude.
+#   - H6 · `timeout` sin `--kill-after`: un proceso que ignora TERM
+#     sobrevivía al límite. Y la instancia rechazada por `flock` escribía
+#     en el heartbeat del DUEÑO, borrando su estado. Ahora hay gracia
+#     finita con escalamiento, y solo el dueño del lock toca el heartbeat
+#     (por temporal + rename); el rechazo se apendiza al log con su
+#     propio run_id.
+#   - Prompt · el `awk` recogía TODOS los bloques ```text del runbook y
+#     los concatenaba en silencio. Ahora se exige bloque único.
+# NO se construye aquí: servidor, scheduler duplicado ni reintentos
+# ilimitados. El horario del cron NO cambia (cualquier cambio futuro se
+# propaga a TODOS los consumidores -- runner, T31, instalador --, no solo
+# al instalador; queda escrito, no ejecutado).
+
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -56,24 +86,113 @@ HEARTBEAT="${ESTADO_DIR}/heartbeat.json"
 LOCKFILE="${ESTADO_DIR}/adquiere_cron.lock"
 RUN_ID="${FECHA}T$(date +%H%M%S)-$$"
 FASE="INICIO"
-
-CLAUDE_TIMEOUT_SEGUNDOS="${CLAUDE_TIMEOUT_SEGUNDOS:-$(python3 tools/adq_config.py claude_timeout_segundos 2>/dev/null || echo 1800)}"
-RUNBOOK="$(python3 tools/adq_config.py runbook 2>/dev/null || echo 'forense/agente-adquisicion-v1_0.md')"
-SONDA_URL="$(python3 tools/adq_config.py sonda_red_url 2>/dev/null || echo 'https://www.inegi.org.mx/')"
+# Dueño del lock: 0 hasta que `flock` lo conceda. Solo el dueño escribe el
+# heartbeat activo (H6) -- una segunda invocación rechazada no puede
+# borrar el estado de la que sigue trabajando.
+SOY_DUENO_DEL_LOCK=0
+# Resultado COMPUESTO (H5): el runner no cierra con el exit de Claude a
+# secas. `PUBLICACION_FALLIDA` cuenta los recibos que quedaron locales.
+PUBLICACION_FALLIDA=0
+CIERRE_ESCRITO=0
 
 log() {
   echo "[$(date '+%Y-%m-%d %H:%M:%S%z')] $*" | tee -a "$LOGFILE"
 }
 
+# ── H4 · sonda de red con transporte y HTTP SEPARADOS ────────────
+# Devuelve 0 si el destino RESPONDIÓ (cualquier código HTTP, 403
+# incluido) y 1 si el transporte falló. Exporta CODIGO_HTTP,
+# CURL_SALIDA y CAUSA_RED para que el llamador registre la causa exacta.
+# Un 403 es una respuesta y un bloqueo de ESE destino: jamás «sin
+# internet» ni «no existe», y no contagia paro a fuentes independientes.
+sonda_red() {
+  local url="$1" salida_curl codigo
+  set +e
+  codigo="$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 "$url" 2>/dev/null)"
+  salida_curl=$?
+  set -e
+  CURL_SALIDA="$salida_curl"
+  CODIGO_HTTP="$codigo"
+  if [ "$salida_curl" -ne 0 ]; then
+    CAUSA_RED="TRANSPORTE-FALLIDO: curl salió ${salida_curl} sobre ${url} (http='${codigo}')"
+    log "sonda ${url}: PARO-RED -- ${CAUSA_RED}"
+    return 1
+  fi
+  case "$codigo" in
+    000|"")
+      CAUSA_RED="TRANSPORTE-FALLIDO: curl salió 0 pero sin código HTTP sobre ${url}"
+      log "sonda ${url}: PARO-RED -- ${CAUSA_RED}"
+      return 1
+      ;;
+    403)
+      CAUSA_RED="BLOQUEO-DEL-DESTINO: HTTP 403 en ${url} -- es una respuesta, no ausencia de red ni de objeto; no se extiende a fuentes independientes"
+      log "sonda ${url}: http=403 -- ${CAUSA_RED}"
+      return 0
+      ;;
+    *)
+      CAUSA_RED="RESPUESTA: HTTP ${codigo} en ${url}"
+      log "sonda ${url}: curl salió 0, http=${codigo}"
+      return 0
+      ;;
+  esac
+}
+
+# ── P1 · extracción del prompt con bloque ```text ÚNICO ──────────
+# El awk anterior recogía TODOS los bloques ```text del archivo y los
+# concatenaba sin avisar; un runbook con dos bloques producía un prompt
+# que nadie escribió. Ahora se cuentan primero: != 1 es PARO-PROMPT.
+extrae_prompt() {
+  local archivo="$1" cuantos
+  cuantos="$(grep -c '^```text$' "$archivo" || true)"
+  if [ "${cuantos:-0}" -ne 1 ]; then
+    log "PARO-PROMPT: ${archivo} tiene ${cuantos:-0} bloques \`\`\`text; se exige exactamente 1. No se concatena a ciegas ni se invoca claude -p con el archivo entero."
+    return 1
+  fi
+  awk '/^```text$/{flag=1; next} /^```$/{if(flag){flag=0}} flag' "$archivo"
+}
+
+# ── H4/config · la configuración se valida DESPUÉS de sincronizar ─
+# Antes, las tres claves se leían al arrancar el script (antes del `git
+# pull` del paso 1) y cada una caía a un default con `|| echo` en
+# silencio: una config rota se sustituía sin que nadie lo supiera, y
+# encima se leía la versión vieja del clon. Ahora se leen tras el pull y
+# la degradación se DECLARA en el log y en la huella.
+CONFIG_DEGRADADA=""
+lee_config() {
+  local clave="$1" respaldo="$2" valor
+  if valor="$(python3 tools/adq_config.py "$clave" 2>&1)"; then
+    printf '%s' "$valor"
+    return 0
+  fi
+  CONFIG_DEGRADADA="${CONFIG_DEGRADADA}${clave} "
+  log "CONFIG-DEGRADADA: no se pudo leer '${clave}' de data/adq-config.yaml (${valor}); se usa el respaldo '${respaldo}' -- declarado, no silencioso."
+  printf '%s' "$respaldo"
+}
+
 # escribe_heartbeat <estado> [codigo]
 # JSON pequeño en $HEARTBEAT -- tools/adq_doctor.py (P4) lo lee tal cual.
-# Escritura simple (no atómica con temp+rename como cierre_acto.py): un
-# heartbeat truncado a medio escribir es, en el peor caso, un dato de
-# diagnóstico perdido de ESTA corrida, no un archivo canónico del corpus.
+#
+# H6 (GEN2-SONDA-ADQ-CABLEADO, 9/sep/2026). Dos correcciones:
+#
+#   1. SOLO EL DUEÑO DEL LOCK ESCRIBE. Reproducido con el bloque real de
+#      arranque: `RUN-A / STARTED` era reemplazado por `RUN-B / PARO-LOCK`
+#      cuando una segunda invocación era rechazada por `flock`, aunque A
+#      seguía siendo dueño y seguía trabajando. Una segunda invocación
+#      podía así ocultar el estado del trabajo en curso. Ahora la
+#      instancia rechazada NO toca el heartbeat: se apendiza al LOG con su
+#      propio run_id, que es donde su rechazo es información y no ruido.
+#   2. TEMPORAL + RENAME. `os.replace` sobre el mismo directorio es
+#      atómico: el doctor nunca lee un heartbeat truncado a medio
+#      escribir. Y se actualiza en las TRANSICIONES de fase, no solo al
+#      arrancar y al morir.
 escribe_heartbeat() {
   local estado="$1" codigo="${2:-}"
+  if [ "${SOY_DUENO_DEL_LOCK:-0}" != "1" ]; then
+    log "heartbeat NO escrito por run_id=${RUN_ID} (estado=${estado}): esta invocación no es dueña del lock y no puede pisar el estado de la que trabaja."
+    return 0
+  fi
   python3 - "$HEARTBEAT" "$RUN_ID" "$$" "$estado" "$FASE" "$FECHA" "$codigo" <<'PYEOF'
-import json, sys, datetime
+import json, os, sys, datetime, tempfile
 ruta, run_id, pid, estado, fase, fecha, codigo = sys.argv[1:8]
 doc = {
     "run_id": run_id,
@@ -84,46 +203,31 @@ doc = {
     "codigo_salida": (int(codigo) if codigo not in ("", "-") else None),
     "actualizado": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
 }
-with open(ruta, "w", encoding="utf-8") as f:
-    json.dump(doc, f, ensure_ascii=False, indent=2)
-    f.write("\n")
+d = os.path.dirname(os.path.abspath(ruta)) or "."
+fd, tmp = tempfile.mkstemp(dir=d, prefix=".heartbeat-", suffix=".tmp")
+try:
+    with os.fdopen(fd, "w", encoding="utf-8") as f:
+        json.dump(doc, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(tmp, ruta)   # atómico: nadie lee un heartbeat a medio escribir
+except BaseException:
+    try:
+        os.unlink(tmp)
+    except OSError:
+        pass
+    raise
 PYEOF
 }
 
-log "=== adquiere_cron.sh arrancando en $REPO_DIR (run_id=${RUN_ID}) ==="
-
-# Lock de instancia única. No bloqueante: una segunda invocación mientras
-# la primera sigue viva no espera ni encola, se retira de inmediato -- el
-# reintento del mismo día (permitido, P3) es responsabilidad de quien
-# dispara el runner (scheduler o mano), no de esperar aquí.
-exec 200>"$LOCKFILE"
-if ! flock -n 200; then
-  FASE="PARO-LOCK"
-  log "PARO-LOCK: ya hay una instancia de adquiere_cron.sh corriendo (${LOCKFILE} tomado). Esta invocación (run_id=${RUN_ID}) no toca git ni el corpus, termina de inmediato."
-  escribe_heartbeat "PARO-LOCK" "-"
-  exit 3
-fi
-
-# A partir de aquí sí tenemos el lock: instala el trap que SIEMPRE deja
-# huella local (heartbeat + línea de log), pase lo que pase después --
-# incluido un `git fetch` que falle bajo `set -e` antes de llegar a
-# cualquier otro paso. `trap ... EXIT` de bash corre también cuando
-# `set -e` mata el script por un comando que falló, no solo en un `exit`
-# explícito.
-finalizar() {
-  local codigo=$?
-  local estado="TERMINADO"
-  [ "$codigo" -ne 0 ] && estado="FAILED"
-  log "=== adquiere_cron.sh terminado (run_id=${RUN_ID} fase=${FASE} exit=${codigo}) ==="
-  escribe_heartbeat "$estado" "$codigo" 2>>"$LOGFILE" || true
-  # Restauración segura del contexto: best-effort, nunca deja que un
-  # checkout fallido dispare un segundo trap ni cambie el código de salida
-  # que ya se reportó arriba.
-  git checkout main >>"$LOGFILE" 2>&1 || true
+# transicion <fase> -- H6: el heartbeat se actualiza en las transiciones
+# relevantes, no solo al arrancar y al morir; si el proceso muere en
+# medio, el último estado publicado dice DÓNDE murió.
+transicion() {
+  FASE="$1"
+  escribe_heartbeat "EN-CURSO" "-" 2>>"$LOGFILE" || true
 }
-trap finalizar EXIT
-
-escribe_heartbeat "STARTED" "-"
 
 # checkout_o_crea_censo -- cambia a censo/${FECHA}, creándola SOLO si no
 # existe todavía (local o remota). Nunca `checkout -B`: reiniciar el
@@ -144,24 +248,6 @@ checkout_o_crea_censo() {
   fi
 }
 
-# 1 · clon al día
-FASE="CLON-AL-DIA"
-log "git fetch && git checkout main && git pull"
-git fetch origin >>"$LOGFILE" 2>&1
-git checkout main >>"$LOGFILE" 2>&1
-git pull origin main >>"$LOGFILE" 2>&1
-log "HEAD tras pull: $(git log -1 --format='%h %s')"
-
-# ACTO MAESTRA38-CRON-3 · HUELLA-REAL-Y-PRUEBA-EN-CAJA. Estado ANTES,
-# capturado apenas el clon queda al día y antes de cualquier PARO posible
-# -- es el punto de referencia para medir lo que ESTA corrida produjo
-# (D-b: [ADQ] deja huella siempre, con lo que pasó de verdad, nunca una
-# constante). commits_nuevos/ramas_nuevas/archivos_modificados de la
-# línea [ADQ] se miden contra esto, no se asumen ni se derivan de la cola.
-HEAD_ANTES="$(git rev-parse HEAD)"
-RAMAS_ANTES="$(git ls-remote --heads origin | wc -l)"
-T0="$(date +%s)"
-
 # commit_censo_linea <contenido> <resumen> <mensaje>
 # Ritual único de checkout/append/commit/push/checkout-main contra
 # censo/${FECHA} (crea la rama solo si no existe todavía, local o
@@ -172,10 +258,23 @@ T0="$(date +%s)"
 # que se anexa al archivo del censo (puede ser multilínea); <resumen> es
 # la línea corta que va en el cuerpo del commit; <mensaje> es el asunto
 # ("[ADQ] <fecha>" / "[ADQ-PDN] <fecha>").
+# H5 (GEN2-SONDA-ADQ-CABLEADO, 9/sep/2026): esta función registraba
+# `PARO-CENSO-PUSH` y CONTINUABA con `git checkout main`, terminando en 0.
+# Con el cuerpo real y un doble que hacía fallar únicamente `git push`, el
+# resultado era éxito: `exit=0` del proceso no garantizaba que el recibo
+# hubiera llegado al repo. Ahora:
+#   - el recibo LOCAL se conserva siempre (el append y el commit ocurren
+#     antes del push y no se deshacen);
+#   - la fase y el error de publicación quedan en el log;
+#   - la función devuelve FALLO OPERATIVO (2) y sube PUBLICACION_FALLIDA,
+#     que el cierre del runner lee para componer su resultado;
+#   - el reintento reconcilia con `--no-rebase` sin reescribir historia y
+#     DECLARA la divergencia si la hay. Sin force-push, nunca.
 commit_censo_linea() {
   local contenido="$1" resumen="$2" mensaje="$3"
   local rama_censo="censo/${FECHA}"
   local archivo="${CENSO_DIR}/${FECHA}.txt"
+  local publicado=0
   mkdir -p "$CENSO_DIR"
 
   checkout_o_crea_censo
@@ -188,10 +287,46 @@ commit_censo_linea() {
   git commit -m "${mensaje}
 
 ${resumen}" >>"$LOGFILE" 2>&1
-  if ! git push -u origin "$rama_censo" >>"$LOGFILE" 2>&1; then
-    log "PARO-CENSO-PUSH: el commit de ${rama_censo} (${mensaje}) quedó local, no se pudo empujar."
+
+  if git push -u origin "$rama_censo" >>"$LOGFILE" 2>&1; then
+    publicado=1
+  else
+    # Un push rechazado puede ser divergencia (otra corrida del mismo día
+    # ya empujó) o red caída. Se intenta reconciliar UNA vez, sin
+    # reescribir historia; si sigue fallando, se declara y se conserva el
+    # recibo local -- no se fuerza.
+    log "PUBLICACION-FALLIDA (intento 1): ${mensaje} no se pudo empujar a ${rama_censo}; se intenta reconciliar sin reescribir historia."
+    if git pull --no-rebase --no-edit origin "$rama_censo" >>"$LOGFILE" 2>&1; then
+      log "reconciliado con origin/${rama_censo} por merge (sin force-push); reintentando push."
+      if git push origin "$rama_censo" >>"$LOGFILE" 2>&1; then
+        publicado=1
+        log "publicado tras reconciliar: ${mensaje} en ${rama_censo}."
+      fi
+    else
+      log "DIVERGENCIA-DECLARADA: no se pudo reconciliar ${rama_censo} con el remoto. NO se hace force-push."
+    fi
   fi
-  git checkout main >>"$LOGFILE" 2>&1
+
+  git checkout main >>"$LOGFILE" 2>&1 || true
+
+  if [ "$publicado" -ne 1 ]; then
+    PUBLICACION_FALLIDA=$((PUBLICACION_FALLIDA + 1))
+    log "PARO-CENSO-PUSH: el commit de ${rama_censo} (${mensaje}) quedó LOCAL. El recibo existe en ${archivo}; la publicación NO ocurrió. Esto es fallo operativo, no éxito."
+    return 2
+  fi
+
+  # Reutiliza el PR diario abierto de esta rama si ya existe -- eso no es
+  # un fallo de creación, y distinguirlo evita leer "gh pr create falló"
+  # como si el recibo no hubiera llegado (H5).
+  if command -v gh >/dev/null 2>&1; then
+    local pr_abierto
+    pr_abierto="$(gh pr list --head "$rama_censo" --state open --json number \
+                  --jq '.[0].number' 2>/dev/null || true)"
+    if [ -n "$pr_abierto" ]; then
+      log "PR diario ya abierto para ${rama_censo}: #${pr_abierto} -- se REUTILIZA (no es fallo de gh pr create)."
+    fi
+  fi
+  return 0
 }
 
 # huella_adq <invocado:si|no> <motivo:-|PARO-RAIZ|PARO-RED|PARO-PROMPT|PARO-CORPUS> <exit:codigo|->
@@ -200,9 +335,24 @@ ${resumen}" >>"$LOGFILE" 2>&1
 # fallo de claude -p -- nunca calla, y si invocado=no los tres últimos
 # campos se miden igual (deben dar 0 porque no hubo tiempo de producir
 # nada, no se asumen en 0).
+#
+# GEN2-SONDA-ADQ-CABLEADO añade dos campos y una advertencia:
+#   - `sha=` -- el SHA REALMENTE USADO por esta corrida (HEAD tras el pull
+#     del paso 1), para poder correlacionar la huella con el árbol contra
+#     el que se trabajó. Antes la huella no lo decía y no había forma de
+#     saberlo desde el recibo.
+#   - `publicacion=` -- OK / FALLIDA(n): separa "el agente terminó" de
+#     "la huella se publicó" (H5).
+# ADVERTENCIA VIGENTE, verbatim de la revisión del 9/sep: los contadores
+# NO son payloads adquiridos ni fuentes obtenidas. `ramas_nuevas` incluye
+# la propia rama del censo y se calcula sobre TODAS las refs remotas, así
+# que cuenta trabajo ajeno; `commits_nuevos`/`archivos_modificados` miden
+# movimiento del árbol. `invocado=si` con `exit=0` acredita que el agente
+# corrió y cerró limpio -- no cuántas fuentes bajó. Quien quiera esa cifra
+# la lee de data/manifiesto.yaml y de la cola, no de aquí.
 huella_adq() {
   local invocado="$1" motivo="$2" exit_cod="$3"
-  local hhmm t1 duracion head_despues commits_nuevos ramas_despues ramas_nuevas archivos_modificados linea
+  local hhmm t1 duracion head_despues commits_nuevos ramas_despues ramas_nuevas archivos_modificados linea publicacion
   hhmm="$(date +%H:%M)"
   t1="$(date +%s)"
   duracion=$((t1 - T0))
@@ -211,11 +361,112 @@ huella_adq() {
   ramas_despues="$(git ls-remote --heads origin 2>/dev/null | wc -l || echo "$RAMAS_ANTES")"
   ramas_nuevas=$((ramas_despues - RAMAS_ANTES))
   archivos_modificados="$(git status --short 2>/dev/null | wc -l)"
+  if [ "${PUBLICACION_FALLIDA:-0}" -eq 0 ]; then
+    publicacion="OK"
+  else
+    publicacion="FALLIDA(${PUBLICACION_FALLIDA})"
+  fi
 
-  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} run_id=${RUN_ID}"
+  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} publicacion=${publicacion} run_id=${RUN_ID}"
   log "${linea}"
-  commit_censo_linea "$linea" "$linea" "[ADQ] ${FECHA}"
+  CIERRE_ESCRITO=1
+  commit_censo_linea "$linea" "$linea" "[ADQ] ${FECHA}" || true
 }
+
+# ── Seam de solo-definición (ADQ_CRON_SOLO_DEFINE=1) ─────────────
+# Con la variable puesta, este archivo define sus funciones y RETORNA sin
+# ejecutar un solo paso: es lo que permite que tests/test_adq_cableado.py
+# ejercite las funciones REALES (sonda_red, commit_censo_linea,
+# escribe_heartbeat, extrae_prompt) con dobles de curl/git, en vez de
+# reimplementarlas en el test y probar una copia que puede divergir. No
+# cambia nada del camino de producción: el runner sin la variable corre
+# exactamente igual que antes de este acto.
+if [ -n "${ADQ_CRON_SOLO_DEFINE:-}" ]; then
+  return 0 2>/dev/null || exit 0
+fi
+
+log "=== adquiere_cron.sh arrancando en $REPO_DIR (run_id=${RUN_ID}) ==="
+
+# Lock de instancia única. No bloqueante: una segunda invocación mientras
+# la primera sigue viva no espera ni encola, se retira de inmediato -- el
+# reintento del mismo día (permitido, P3) es responsabilidad de quien
+# dispara el runner (scheduler o mano), no de esperar aquí.
+exec 200>"$LOCKFILE"
+if ! flock -n 200; then
+  FASE="PARO-LOCK"
+  # H6: el rechazo se apendiza al LOG con su propio run_id -- NUNCA al
+  # heartbeat, que sigue siendo del dueño que está trabajando. Antes de
+  # este acto esta línea llamaba a escribe_heartbeat() y borraba el
+  # STARTED de la instancia activa (reproducido: RUN-A/STARTED sustituido
+  # por RUN-B/PARO-LOCK con A todavía dueño del lock).
+  log "PARO-LOCK: ya hay una instancia de adquiere_cron.sh corriendo (${LOCKFILE} tomado). Esta invocación (run_id=${RUN_ID}) no toca git, ni el corpus, ni el heartbeat del dueño; termina de inmediato."
+  exit 3
+fi
+SOY_DUENO_DEL_LOCK=1
+
+# A partir de aquí sí tenemos el lock: instala el trap que SIEMPRE deja
+# huella local (heartbeat + línea de log), pase lo que pase después --
+# incluido un `git fetch` que falle bajo `set -e` antes de llegar a
+# cualquier otro paso. `trap ... EXIT` de bash corre también cuando
+# `set -e` mata el script por un comando que falló, no solo en un `exit`
+# explícito.
+finalizar() {
+  local codigo=$?
+  local estado="TERMINADO"
+  [ "$codigo" -ne 0 ] && estado="FAILED"
+  # H6: un proceso muerto sin haber escrito su cierre queda INCOMPLETO --
+  # no se inventa un éxito ni una causa de muerte. `CIERRE_ESCRITO` solo
+  # vale 1 si huella_adq() llegó a componer y registrar su línea.
+  if [ "${CIERRE_ESCRITO:-0}" -ne 1 ]; then
+    estado="INCOMPLETO"
+    log "INCOMPLETO: run_id=${RUN_ID} terminó en fase=${FASE} sin haber escrito su huella [ADQ]. No se infiere ni éxito ni causa de muerte."
+  fi
+  log "=== adquiere_cron.sh terminado (run_id=${RUN_ID} fase=${FASE} exit=${codigo}) ==="
+  escribe_heartbeat "$estado" "$codigo" 2>>"$LOGFILE" || true
+  # Restauración segura del contexto: best-effort, nunca deja que un
+  # checkout fallido dispare un segundo trap ni cambie el código de salida
+  # que ya se reportó arriba.
+  git checkout main >>"$LOGFILE" 2>&1 || true
+}
+trap finalizar EXIT
+
+escribe_heartbeat "STARTED" "-"
+
+# 1 · clon al día
+FASE="CLON-AL-DIA"
+log "git fetch && git checkout main && git pull"
+git fetch origin >>"$LOGFILE" 2>&1
+git checkout main >>"$LOGFILE" 2>&1
+git pull origin main >>"$LOGFILE" 2>&1
+log "HEAD tras pull: $(git log -1 --format='%h %s')"
+
+# P1 (GEN2-SONDA-ADQ-CABLEADO): la configuración se lee y se valida AQUÍ,
+# DESPUÉS de sincronizar -- antes se leía al arrancar el script, es decir
+# contra la versión vieja del clon, y cada default entraba en silencio.
+transicion "CONFIG"
+CLAUDE_TIMEOUT_SEGUNDOS="${CLAUDE_TIMEOUT_SEGUNDOS:-$(lee_config claude_timeout_segundos 1800)}"
+# Gracia de escalamiento TERM->KILL. Default de shell, NO clave de
+# config: `data/adq-config.yaml` está fuera del perímetro de este acto, y
+# leerla por `lee_config` emitiría un CONFIG-DEGRADADA en cada corrida
+# por una clave que nadie escribió todavía. Queda como reserva declarada.
+CLAUDE_KILL_AFTER_SEGUNDOS="${CLAUDE_KILL_AFTER_SEGUNDOS:-60}"
+RUNBOOK="$(lee_config runbook 'forense/agente-adquisicion-v1_0.md')"
+SONDA_URL="$(lee_config sonda_red_url 'https://www.inegi.org.mx/')"
+if [ -n "$CONFIG_DEGRADADA" ]; then
+  log "CONFIG-DEGRADADA (resumen): claves no leídas de data/adq-config.yaml -> ${CONFIG_DEGRADADA}. La corrida SIGUE con respaldos, pero queda declarado: una config rota no se sustituye en silencio."
+fi
+
+# ACTO MAESTRA38-CRON-3 · HUELLA-REAL-Y-PRUEBA-EN-CAJA. Estado ANTES,
+# capturado apenas el clon queda al día y antes de cualquier PARO posible
+# -- es el punto de referencia para medir lo que ESTA corrida produjo
+# (D-b: [ADQ] deja huella siempre, con lo que pasó de verdad, nunca una
+# constante). commits_nuevos/ramas_nuevas/archivos_modificados de la
+# línea [ADQ] se miden contra esto, no se asumen ni se derivan de la cola.
+HEAD_ANTES="$(git rev-parse HEAD)"
+RAMAS_ANTES="$(git ls-remote --heads origin | wc -l)"
+# SHA realmente usado por esta corrida -- va en la huella (P1).
+HEAD_USADO="$HEAD_ANTES"
+T0="$(date +%s)"
 
 # 2 · corpus montado (A.2, tercera parte)
 FASE="CORPUS"
@@ -324,8 +575,8 @@ fi
 #   también deja una línea commiteada, para que el día 4 no parezca silencio.
 FASE="PDN"
 DIA_MES_A5="$(date +%-d)"
-PDN_VENTANA_INICIO="$(python3 tools/adq_config.py pdn.ventana_dia_inicio 2>/dev/null || echo 1)"
-PDN_VENTANA_FIN="$(python3 tools/adq_config.py pdn.ventana_dia_fin 2>/dev/null || echo 3)"
+PDN_VENTANA_INICIO="$(lee_config pdn.ventana_dia_inicio 1)"
+PDN_VENTANA_FIN="$(lee_config pdn.ventana_dia_fin 3)"
 if [ "$DIA_MES_A5" -ge "$PDN_VENTANA_INICIO" ] && [ "$DIA_MES_A5" -le "$PDN_VENTANA_FIN" ]; then
   ADQ_PDN_DIR="data/raw/pdn_bulk_$(date +%Y_%m)"
   mkdir -p "$ADQ_PDN_DIR"
@@ -377,15 +628,14 @@ else
 fi
 
 # 3 · sonda de red real, valor crudo (nunca curl -I)
-FASE="SONDA-RED"
-CODIGO_HTTP="$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 "$SONDA_URL" || echo 'sin-respuesta')"
-log "sonda ${SONDA_URL}: curl -s -o /dev/null -w '%{http_code}' --max-time 10 ${SONDA_URL} -> ${CODIGO_HTTP}"
-if [ "$CODIGO_HTTP" = "sin-respuesta" ]; then
+transicion "SONDA-RED"
+if ! sonda_red "$SONDA_URL"; then
   FASE="PARO-RED"
-  log "PARO: sonda de red sin respuesta. No se invoca claude -p."
+  log "PARO-RED: ${CAUSA_RED}. No se invoca claude -p -- la compuerta corta ANTES de gastar la invocación."
   huella_adq "no" "PARO-RED" "-"
   exit 1
 fi
+log "sonda de red superada: ${CAUSA_RED}"
 
 # 4 · lanza claude -p con el prompt exacto de §1 del runbook.
 #   Extrae solo el bloque ```text ... ``` de §1, no el archivo entero:
@@ -399,7 +649,7 @@ if [ ! -f "$RUNBOOK" ]; then
   exit 1
 fi
 
-PROMPT="$(awk '/^```text$/{flag=1; next} /^```$/{if(flag){flag=0}} flag' "$RUNBOOK")"
+PROMPT="$(extrae_prompt "$RUNBOOK" || true)"
 
 if [ -z "$PROMPT" ]; then
   FASE="PARO-PROMPT"
@@ -412,7 +662,7 @@ log "prompt extraído (§1 de ${RUNBOOK}), $(echo "$PROMPT" | wc -l) líneas:"
 echo "$PROMPT" >>"$LOGFILE"
 
 FASE="CLAUDE"
-log "invocando: timeout ${CLAUDE_TIMEOUT_SEGUNDOS}s claude --add-dir /home/pc0/mm-corpus -p \"\$PROMPT\""
+log "invocando: timeout --kill-after=${CLAUDE_KILL_AFTER_SEGUNDOS}s ${CLAUDE_TIMEOUT_SEGUNDOS}s claude --add-dir /home/pc0/mm-corpus -p \"\$PROMPT\""
 # set +e/-e: la huella [ADQ] tiene que capturar el código real de salida
 # incluso cuando claude -p falla -- bajo `set -e` (activo desde la línea
 # 13) un `cmd; CODIGO=$?` normal aborta el script en `cmd` mismo, antes
@@ -423,7 +673,11 @@ log "invocando: timeout ${CLAUDE_TIMEOUT_SEGUNDOS}s claude --add-dir /home/pc0/m
 # colgado ya no puede dejar la instancia con el lock tomado
 # indefinidamente -- exit 124 si lo mató por timeout.
 set +e
-timeout "${CLAUDE_TIMEOUT_SEGUNDOS}s" claude --add-dir /home/pc0/mm-corpus -p "$PROMPT" >>"$LOGFILE" 2>&1
+# H6: `--kill-after` con gracia FINITA. Sin él, un proceso que ignora
+# SIGTERM sobrevivía al límite (reproducido: vivo tras cuatro veces el
+# límite, eliminado solo por el harness). TERM primero, y si no se va en
+# ${CLAUDE_KILL_AFTER_SEGUNDOS}s, KILL.
+timeout --kill-after="${CLAUDE_KILL_AFTER_SEGUNDOS}s" "${CLAUDE_TIMEOUT_SEGUNDOS}s" claude --add-dir /home/pc0/mm-corpus -p "$PROMPT" >>"$LOGFILE" 2>&1
 CODIGO_SALIDA=$?
 set -e
 if [ "$CODIGO_SALIDA" -eq 124 ]; then
@@ -434,5 +688,14 @@ log "claude -p terminó con código ${CODIGO_SALIDA}"
 FASE="HUELLA-FINAL"
 huella_adq "si" "-" "${CODIGO_SALIDA}"
 
+# H5 · RESULTADO COMPUESTO: trabajo + publicación. Antes el runner
+# devolvía el exit de Claude a secas, así que un recibo que nunca llegó al
+# repo se leía como corrida exitosa. «El agente terminó» y «la huella se
+# publicó» son dos cosas y ahora se reportan como dos cosas.
 FASE="FIN"
+if [ "${PUBLICACION_FALLIDA:-0}" -gt 0 ]; then
+  log "RESULTADO-COMPUESTO: claude -p cerró con ${CODIGO_SALIDA}, pero ${PUBLICACION_FALLIDA} recibo(s) requerido(s) NO se publicaron (quedan locales en ${CENSO_DIR}/). Fallo operativo: exit 4."
+  exit 4
+fi
+log "RESULTADO-COMPUESTO: trabajo exit=${CODIGO_SALIDA}, publicación OK."
 exit "$CODIGO_SALIDA"

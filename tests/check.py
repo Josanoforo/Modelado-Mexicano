@@ -5411,18 +5411,36 @@ def _t_cron_ahora_mx():
             False)
 
 
-def _t_cron_gracia_minutos():
-    """Minutos de gracia tras 07:30 antes de exigir la corrida del día
-    (`data/adq-config.yaml:t_cron_gracia_minutos`, default 45 si el
-    archivo/la clave no resuelve -- nunca bloquea T31 por un config roto)."""
+def t_cron_gracia_minutos_declarada(_lector=None):
+    """(minutos, degradado) -- ACTO GEN2-SONDA-ADQ-CABLEADO (P1, 9/sep/2026).
+
+    Antes de este acto la lectura de `data/adq-config.yaml:
+    t_cron_gracia_minutos` degradaba a 45 dentro de un `except Exception`
+    mudo: una configuración rota se sustituía por el default **en
+    silencio**, que es exactamente lo que la revisión del 9/sep pide dejar
+    de hacer («no silenciar una configuración rota sustituyéndola por
+    defaults sin informar»). El default sigue existiendo -- T31 no puede
+    bloquearse por un config ilegible --, pero ahora el segundo valor
+    devuelto DECLARA que se degradó, y el llamador lo dice en la señal.
+
+    `_lector` es el seam de prueba: una función sin argumentos que
+    devuelve el valor de configuración o lanza."""
+    if _lector is None:
+        def _lector():
+            ruta_tools = os.path.join(ROOT, "tools")
+            if ruta_tools not in sys.path:
+                sys.path.insert(0, ruta_tools)
+            import adq_config
+            return adq_config.obten("t_cron_gracia_minutos")
     try:
-        ruta_tools = os.path.join(ROOT, "tools")
-        if ruta_tools not in sys.path:
-            sys.path.insert(0, ruta_tools)
-        import adq_config
-        return int(adq_config.obten("t_cron_gracia_minutos"))
+        return int(_lector()), False
     except Exception:
-        return 45
+        return 45, True
+
+
+def _t_cron_gracia_minutos():
+    """Compatibilidad: solo los minutos (ver `t_cron_gracia_minutos_declarada`)."""
+    return t_cron_gracia_minutos_declarada()[0]
 
 
 def _t_cron_fecha_a_evaluar(hoy):
@@ -5432,6 +5450,82 @@ def _t_cron_fecha_a_evaluar(hoy):
     if hoy.weekday() < 5:
         return hoy
     return t_cron_ultimo_habil(hoy)
+
+
+# ACTO GEN2-SONDA-ADQ-CABLEADO · H1 (9/sep/2026). El vigilante dejaba de
+# ver un cierre verdadero y aceptaba uno de otro día. Las dos mitades del
+# defecto tenían la misma causa: T31 leía la RAMA temporal `censo/<fecha>`
+# como si fuera la evidencia, y del cuerpo `[ADQ]` que encontrara ahí solo
+# miraba `invocado=`/`exit=` -- nunca la fecha de la línea. Consecuencias
+# medidas el 9/sep sobre el árbol real:
+#   - la rama `censo/2026-09-09` ya no existía (fusionada y retirada), así
+#     que el doctor devolvía CENSO-SIN-CIERRE mientras la huella
+#     `[ADQ] 2026-09-09 07:33: ... exit=0` estaba publicada en
+#     `forense/censo-raiz/2026-09-09.txt`, en `main`;
+#   - un cierre del 8/sep heredado de `main` a una rama nueva del 9
+#     devolvía COMPLETO para el 9.
+# El arreglo invierte el orden de autoridad: primero la EVIDENCIA FUSIONADA
+# (los archivos de censo de ESE día, que sobreviven al merge), después la
+# rama viva como contraste. Y toda huella se filtra por la fecha que la
+# propia línea declara, agrupada por `run_id` para no mezclar fases de
+# intentos distintos.
+_T_CRON_RE_HUELLA = re.compile(
+    r"^\[ADQ\]\s+(?P<fecha>\d{4}-\d{2}-\d{2})\s+(?P<hhmm>\d{2}:\d{2}):\s*(?P<resto>.*)$"
+)
+
+
+def t_cron_huellas_adq(texto, fecha):
+    """Función pura: todas las huellas `[ADQ]` de `texto` cuya PROPIA fecha
+    es `fecha`, en orden de aparición. Cada una es un dict con
+    `fecha`/`hhmm`/`invocado`/`motivo`/`exit`/`run_id` (`run_id` None en
+    huellas históricas anteriores a MAESTRA38-CRON-3, que no lo escribían
+    -- compatibilidad EXPLÍCITA, no accidental: se acreditan igual y se
+    declaran como históricas en el detalle).
+
+    Filtrar por la fecha de la línea es la mitad del arreglo de H1: una
+    huella del 8/sep en el árbol del 9 ya no acredita el 9."""
+    huellas = []
+    for linea in (texto or "").splitlines():
+        m = _T_CRON_RE_HUELLA.match(linea.strip())
+        if not m or m.group("fecha") != fecha.isoformat():
+            continue
+        resto = m.group("resto")
+
+        def _campo(nombre):
+            mm = re.search(rf"\b{nombre}=(\S+)", resto)
+            return mm.group(1) if mm else None
+
+        huellas.append({
+            "fecha": m.group("fecha"),
+            "hhmm": m.group("hhmm"),
+            "invocado": _campo("invocado"),
+            "motivo": _campo("motivo"),
+            "exit": _campo("exit"),
+            "run_id": _campo("run_id"),
+        })
+    return huellas
+
+
+def _t_cron_evidencia_fusionada(fecha):
+    """Texto concatenado de los censos YA FUSIONADOS a este árbol para
+    `fecha` (`forense/censo-raiz/<fecha>*.txt`). `None` si no hay ninguno
+    -- distinto de "hay archivo pero sin cierre", que es cadena vacía o
+    texto sin `[ADQ]`.
+
+    Es la evidencia PRIMARIA desde H1: sobrevive al merge y a la retirada
+    de la rama; la rama viva pasa a ser contraste, no requisito."""
+    rutas = sorted(glob.glob(os.path.join(
+        ROOT, "forense", "censo-raiz", f"{fecha.isoformat()}*.txt")))
+    if not rutas:
+        return None
+    partes = []
+    for r in rutas:
+        try:
+            with open(r, encoding="utf-8", errors="replace") as f:
+                partes.append(f.read())
+        except OSError:
+            continue
+    return "\n".join(partes) if partes else None
 
 
 def _t_cron_existe_censo_local(fecha):
@@ -5447,42 +5541,51 @@ def _t_cron_existe_censo_local(fecha):
 def _t_cron_ref_censo(fecha, timeout=20):
     """Resuelve una ref legible para censo/<fecha>: local si existe, si no
     remota (fetch superficial de SOLO esa rama, profundidad 100 -- nunca
-    trae el repo completo). None si la rama no existe en ningún lado, o si
-    no se pudo verificar (sin red / timeout) -- ambos casos indistintos
-    aquí, mismo límite que el código que reemplaza."""
+    trae el repo completo).
+
+    Devuelve `(ref_o_None, remoto_legible)`. H1 (GEN2-SONDA-ADQ-CABLEADO)
+    separa los dos casos que la versión anterior confundía en un solo
+    `None`: `(None, True)` = se preguntó y la rama NO existe; `(None,
+    False)` = no se pudo preguntar (sin red, timeout, git que revienta) --
+    lectura fallida, que no es ausencia comprobada. `git ls-remote
+    --exit-code` distingue las dos con su propio código: 2 = la ref no
+    está; cualquier otro no-cero = no se pudo consultar."""
     import subprocess
     rama = f"censo/{fecha.isoformat()}"
     try:
         if subprocess.run(["git", "show-ref", "--verify", "--quiet", f"refs/heads/{rama}"],
                            cwd=ROOT, timeout=timeout).returncode == 0:
-            return f"refs/heads/{rama}"
+            return f"refs/heads/{rama}", True
         if subprocess.run(["git", "show-ref", "--verify", "--quiet", f"refs/remotes/origin/{rama}"],
                            cwd=ROOT, timeout=timeout).returncode == 0:
-            return f"refs/remotes/origin/{rama}"
+            return f"refs/remotes/origin/{rama}", True
         r = subprocess.run(["git", "ls-remote", "--exit-code", "--heads", "origin", rama],
                             cwd=ROOT, capture_output=True, text=True, timeout=timeout)
+        if r.returncode == 2:
+            return None, True          # se preguntó: la rama no existe.
         if r.returncode != 0 or not r.stdout.strip():
-            return None
+            return None, False         # no se pudo preguntar.
         rf = subprocess.run(
             ["git", "fetch", "-q", "--depth=100", "origin",
              f"refs/heads/{rama}:refs/remotes/origin/{rama}"],
             cwd=ROOT, capture_output=True, text=True, timeout=timeout)
         if rf.returncode == 0:
-            return f"refs/remotes/origin/{rama}"
+            return f"refs/remotes/origin/{rama}", True
     except Exception:
         pass
-    return None
+    return None, False
 
 
 def _t_cron_commits_censo(fecha, timeout=20):
     """(set_de_prefijos_presentes, cuerpo_del_commit_[ADQ]_mas_reciente)
     para censo/<fecha>. `None` si la rama no se pudo leer -- `t31_cron`
-    lo trata como "sin evidencia por esta vía" y todavía consulta
-    `_t_cron_existe_censo_local` antes de concluir SIN-HUELLA."""
+    lo trata como "no se pudo leer el remoto" -- distinto de "la rama no
+    existe", que devuelve `(set(), None)`. La evidencia FUSIONADA del día
+    (`_t_cron_evidencia_fusionada`) se consulta aparte y es primaria."""
     import subprocess
-    ref = _t_cron_ref_censo(fecha, timeout=timeout)
+    ref, legible = _t_cron_ref_censo(fecha, timeout=timeout)
     if ref is None:
-        return None
+        return (set(), None) if legible else None
     try:
         r = subprocess.run(["git", "log", ref, "--format=%s", "-n", "50"],
                             cwd=ROOT, capture_output=True, text=True, timeout=timeout)
@@ -5504,29 +5607,95 @@ def _t_cron_commits_censo(fecha, timeout=20):
     return prefijos, cuerpo_adq
 
 
-def t_cron_estado(fecha, prefijos, cuerpo_adq):
-    """Función pura (P5): dado el conjunto de prefijos de commit presentes
-    en censo/<fecha> y el cuerpo del commit `[ADQ]` más reciente (o `None`
-    si no hay ninguno), devuelve `(estado, detalle)` -- sin tocar git ni
-    reloj, para que las pruebas la ejerciten directo sin red ni mocks."""
-    if not prefijos:
-        return "SIN-HUELLA", f"censo/{fecha.isoformat()} no existe (ni local ni remota)"
-    if "[ADQ]" not in prefijos:
+def _t_cron_exitosa(h):
+    """Una huella acredita el día si el runner invocó al agente y el
+    agente cerró en 0. `invocado=no` con cualquier `PARO-*` no acredita,
+    aunque el proceso haya salido limpio."""
+    return h.get("invocado") == "si" and h.get("exit") == "0"
+
+
+def _t_cron_rotula(h):
+    r = h.get("run_id")
+    return f"{h['hhmm']} run_id={r}" if r else f"{h['hhmm']} (huella histórica sin run_id)"
+
+
+def t_cron_estado(fecha, prefijos, cuerpo_adq,
+                  evidencia_fusionada=None, remoto_legible=True):
+    """Función pura (P5, reescrita por H1 de GEN2-SONDA-ADQ-CABLEADO):
+    devuelve `(estado, detalle)` sin tocar git ni reloj.
+
+    Orden de autoridad, invertido respecto de la versión anterior:
+
+    1. `evidencia_fusionada` -- el texto de los censos del día ya
+       fusionados a este árbol. Es la evidencia primaria: sobrevive al
+       merge y a la retirada de `censo/<fecha>`.
+    2. `cuerpo_adq` -- el cuerpo del commit `[ADQ]` de la rama viva, como
+       CONTRASTE. Sus huellas también se filtran por fecha propia.
+    3. `prefijos` -- actividad de censo observada, para distinguir
+       "murió a medio camino" de "no hay nada".
+
+    `remoto_legible=False` declara que la consulta a la rama remota falló
+    (sin red, timeout): eso NO es ausencia comprobada (A.13), y produce
+    `SIN-EVIDENCIA-NO-VERIFICABLE`, nunca `SIN-HUELLA`.
+
+    Estados: COMPLETO · COMPLETO-CON-INTENTO-POSTERIOR-FALLIDO ·
+    ARRANCO-FALLO · CENSO-SIN-CIERRE · SIN-HUELLA ·
+    SIN-EVIDENCIA-NO-VERIFICABLE."""
+    dia = fecha.isoformat()
+
+    # Huellas del día, de las dos vías, deduplicadas por run_id -- nunca
+    # se combinan fases de intentos distintos: cada huella es un intento
+    # completo y se evalúa como tal.
+    huellas = []
+    vistos = set()
+    for fuente in (evidencia_fusionada, cuerpo_adq):
+        for h in t_cron_huellas_adq(fuente, fecha):
+            clave = (h["run_id"], h["hhmm"])
+            if clave in vistos:
+                continue
+            vistos.add(clave)
+            huellas.append(h)
+    huellas.sort(key=lambda h: h["hhmm"])
+
+    if huellas:
+        exitosas = [h for h in huellas if _t_cron_exitosa(h)]
+        ultimo = huellas[-1]
+        historico = any(h["run_id"] is None for h in huellas)
+        nota_hist = " (acreditado por huella histórica sin run_id)" if historico else ""
+        if exitosas and _t_cron_exitosa(ultimo):
+            return ("COMPLETO",
+                    f"censo del {dia}: [ADQ] invocado=si exit=0 -- "
+                    f"{_t_cron_rotula(ultimo)}{nota_hist}")
+        if exitosas:
+            # Discrepan "último intento" y "al menos un éxito": se
+            # declaran los DOS, con sus run_id, en vez de elegir uno.
+            e = exitosas[-1]
+            return ("COMPLETO-CON-INTENTO-POSTERIOR-FALLIDO",
+                    f"censo del {dia}: hubo al menos un éxito "
+                    f"[{_t_cron_rotula(e)}], pero el ÚLTIMO intento "
+                    f"[{_t_cron_rotula(ultimo)}] cerró "
+                    f"invocado={ultimo['invocado']} motivo={ultimo['motivo']} "
+                    f"exit={ultimo['exit']}{nota_hist}")
+        return ("ARRANCO-FALLO",
+                f"censo del {dia}: {len(huellas)} intento(s), ninguno exitoso; "
+                f"último [{_t_cron_rotula(ultimo)}] invocado={ultimo['invocado']} "
+                f"motivo={ultimo['motivo']} exit={ultimo['exit']}")
+
+    # Sin huella [ADQ] del día por ninguna vía. ¿Hubo actividad de censo?
+    hubo_censo = bool(prefijos) or evidencia_fusionada is not None
+    if hubo_censo:
+        vias = sorted(prefijos) if prefijos else ["censo fusionado del día"]
         return ("CENSO-SIN-CIERRE",
-                f"censo/{fecha.isoformat()} tiene {sorted(prefijos)} pero nunca llegó "
-                f"la huella final [ADQ]")
-    invocado = motivo = exit_ = None
-    if cuerpo_adq:
-        m = re.search(r"invocado=(\S+)", cuerpo_adq)
-        invocado = m.group(1) if m else None
-        m = re.search(r"motivo=(\S+)", cuerpo_adq)
-        motivo = m.group(1) if m else None
-        m = re.search(r"\bexit=(\S+)", cuerpo_adq)
-        exit_ = m.group(1) if m else None
-    if invocado == "si" and exit_ == "0":
-        return "COMPLETO", f"censo/{fecha.isoformat()}: [ADQ] invocado=si exit=0"
-    return ("ARRANCO-FALLO",
-            f"censo/{fecha.isoformat()}: [ADQ] invocado={invocado} motivo={motivo} exit={exit_}")
+                f"hay actividad de censo del {dia} ({vias}) pero nunca llegó "
+                f"la huella final [ADQ] con esa fecha")
+    if not remoto_legible:
+        return ("SIN-EVIDENCIA-NO-VERIFICABLE",
+                f"no hay censo del {dia} en este árbol y la consulta a "
+                f"censo/{dia} en el remoto no se pudo completar -- lectura "
+                f"fallida, NO ausencia comprobada (A.13)")
+    return ("SIN-HUELLA",
+            f"censo/{dia} no existe (ni local ni remota) y no hay censo "
+            f"fusionado del día en este árbol")
 
 
 def t31_cron():
@@ -5536,18 +5705,30 @@ def t31_cron():
     if fecha < _T_CRON_INSTALACION:
         return
     if fecha == hoy:
-        gracia = _t_cron_gracia_minutos()
+        gracia, gracia_degradada = t_cron_gracia_minutos_declarada()
         limite = (datetime.datetime.combine(fecha, datetime.time(7, 30), tzinfo=ahora_mx.tzinfo)
                   + datetime.timedelta(minutes=gracia))
         if ahora_mx < limite:
             return  # PENDIENTE: no se exige nada todavía, no es señal.
+    else:
+        gracia_degradada = False
+    # H1 (GEN2-SONDA-ADQ-CABLEADO): la evidencia FUSIONADA del día se
+    # resuelve primero; la rama viva es contraste, no requisito.
+    evidencia = _t_cron_evidencia_fusionada(fecha)
     resultado = _t_cron_commits_censo(fecha)
-    prefijos, cuerpo_adq = resultado if resultado is not None else (set(), None)
+    remoto_legible = resultado is not None
+    prefijos, cuerpo_adq = resultado if remoto_legible else (set(), None)
     if _t_cron_existe_censo_local(fecha):
         prefijos = prefijos | {"[CENSO]"}
-    estado, detalle = t_cron_estado(fecha, prefijos, cuerpo_adq)
+    estado, detalle = t_cron_estado(fecha, prefijos, cuerpo_adq,
+                                    evidencia_fusionada=evidencia,
+                                    remoto_legible=remoto_legible)
     if estado == "COMPLETO":
         return
+    if gracia_degradada:
+        detalle += (" -- ADEMÁS: t_cron_gracia_minutos no se pudo leer de "
+                    "data/adq-config.yaml; se usó el default 45 (declarado, "
+                    "no silencioso)")
     # ACTO ADQ-CRON-V2 · DISPARO-PERSISTENTE-Y-RUNNER-IDEMPOTENTE (P1,
     # 7/sep/2026): `senal()`, no `warn()`. El 7/sep/2026 el WSL de mesa
     # estuvo suspendido en la ventana 07:30 y T-CRON habría marcado ROJO un

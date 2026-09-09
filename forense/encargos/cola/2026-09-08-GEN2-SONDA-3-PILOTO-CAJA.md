@@ -1,3 +1,31 @@
+ENTORNO: CAJA
+
+<!--
+CORRECCIÓN REGISTRADA, 9/sep/2026, por `ACTO GEN2-SONDA-ADQ-CABLEADO`
+(P2/H3, `forense/encargos/2026-09-09-GEN2-SONDA-ADQ-CABLEADO.md`).
+
+Este encargo estaba `LISTO-CAJA` desde el 8/sep y declaraba su entorno solo
+en prosa Markdown (`**Entorno asignado:** CAJA/Ubuntu…`). `/despacha` lista
+los pendientes de caja con el comando literal
+`git show "origin/main:$f" | grep -q '^ENTORNO: CAJA'`
+(`.claude/commands/despacha.md`:479), que sobre este archivo devolvía CERO
+coincidencias: la compuerta estaba satisfecha y el trabajo estaba listo,
+pero el anuncio de «esperando caja» no lo incluía — trabajo preparado que no
+llegaba a quien debe ejecutarlo.
+
+Lo ÚNICO que cambia es la cabecera canónica de la primera línea y este
+bloque. El texto original de abajo no se edita, no se re-redacta el piloto y
+no se crea otro: es el mismo encargo, ahora visible.
+
+Deuda vigente: se reutiliza `NC-0060` (ABIERTA, `forense/no-corrido.tsv:61`,
+sucesor `GEN2-SONDA-3-PILOTO-CAJA`) — no se abre una deuda gemela. El número
+candidato que menciona el cuerpo histórico del `PR #642` NO es el id vigente
+y no se copia como tal.
+
+Este acto NO ejecuta el piloto: es NUBE, y el piloto exige CAJA con corpus y
+red real.
+-->
+
 # ENCARGO · ACTO GEN2-SONDA-3-PILOTO-CAJA · EJERCITA-SONDA-LATERAL-SOBRE-NEGATIVO-REAL
 
 ESTADO: LISTO-CAJA — compuerta re-derivada por `ACTO GEN2-CIERRES-CON-CITA` (9/sep/2026): `GEN2-SONDA-3 · ESCALAMIENTO-LATERAL` fusionó como `PR #642` (`git log --all --oneline --grep="pull request #642"` → `c5b89a9`); `git cat-file -e origin/main:.claude/commands/sonda.md` existe y `git show origin/main:.claude/commands/sonda.md | grep -c "Segunda pasada crítica"` → `1` (≥1 exigido). Compuerta CUMPLIDA. Entorno asignado es CAJA/Ubuntu (no nube): `/despacha` no lo ejecuta, pero ahora puede nombrarlo como ejecutable para la próxima sesión de caja.
