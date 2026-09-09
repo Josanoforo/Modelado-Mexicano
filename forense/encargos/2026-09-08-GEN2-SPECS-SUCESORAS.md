@@ -85,3 +85,15 @@ $ python3 tools/ya_medido.py R7.6
 4. **`S6 v1.3` corrige el código «No» en DOS sitios** (§1 y la cláusula `se_mueve_si` de §5, que repetía el `0`). Es el mismo hecho de codebook llevado hasta donde llegaba; la cuenta de diferencias no sube, y se dice en §0.5 para que nadie tenga que descubrirlo leyendo.
 5. **`S12 v1.1` trae dos anotaciones de resolución** (§1 y §3) además de sus dos diferencias: citan lo que `CALC-0001` ya había resuelto de los cuatro «no confirmado sin abrir el `.sav`» de `v1.0`, **sin borrar** el texto que declaró la incertidumbre. Son citas, no cambios de criterio.
 6. **La base de ejecución no es la del encargo.** Redactado contra `origin/main = 351fd25f` (`PR #639`); ejecutado sobre `c5b89a9` (`PR #642`), 9 commits después. Re-derivado, no heredado — ninguno de los 9 toca el perímetro.
+
+---
+
+## CONSUMIDO
+
+Ejecutado por **`PR #645`** (`ACTO GEN2-SPECS-SUCESORAS · S6 v1.3 + S12 v1.1`), rama `acto/gen2-specs-sucesoras`, 8/sep/2026, **UBUNTU (caja)**, `ADR-422`.
+
+**Productos sellados:** `forense/prereg-caja/S6-L16-spec-v1_3.md` (`e075356b…`) · `forense/prereg-caja/S12-CSES-spec-v1_1.md` (`31100ef8…`) · `data/corrida0/CALC-0003-v3/` (142 `RESULT`, sello `3b2399b1…`, `VERIFY REPRODUCE`) · `data/corrida0/CALC-0003-v4/` (143 `RESULT`, sello `b3845dba…`, `VERIFY REPRODUCE`).
+
+**Firmas:** `FP-349`, `FP-350`, `FP-351`, `FP-357` → `EJECUTADAS`. `FP-361`, `FP-362`, `FP-363` abiertas.
+
+**No fusionado por el ejecutor** — el merge es de mesa, y es la autorización, no un trámite.
