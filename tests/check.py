@@ -2738,6 +2738,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # es un rótulo nuevo: es una referencia retrospectiva a trabajo ya
     # censado bajo su propia serie.
     "forense/encargos/2026-09-09-GEN2-PREP-LOTE.md",
+    # ACTO GEN2-OPERACION-1 · CICLO-CONCILIACION-PAGABLE, 9/sep/2026:
+    # encargo archivado VERBATIM (0-bis A.3), que no se edita para
+    # complacer un test (misma regla que rige el resto de esta lista).
+    # Cita "archivada por E1" -- misma referencia retrospectiva al rótulo
+    # pelado del bloque de despacho de un lote previo (E1 de la serie
+    # ENCARGOS-GEN2) que GEN2-PREP-LOTE ya trae arriba con el mismo texto.
+    # No es un rótulo nuevo.
+    "forense/encargos/2026-09-09-GEN2-OPERACION-1-CICLO-CONCILIACION-PAGABLE.md",
     # ACTO GEN2-E5-0 · SPECS EJECUTABLES, 8/sep/2026: encargo archivado
     # VERBATIM (0-bis A.3) desde `forense/encargos/cola/`, que no se edita para
     # complacer un test (misma regla que rige el resto de esta lista). El
