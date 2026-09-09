@@ -2795,9 +2795,178 @@ def cmd_estado(args) -> int:
     return 0
 
 
+# ── ACTO GEN2-REGISTRO-REPLAY · P2 · evidencia de replay ──────────────────
+#
+# NC-0094, en una linea: `resultado_replay`/`contexto_replay` mezclaban DOS
+# preguntas distintas -- «que dijo el replay» (evidencia, historica) y
+# «puede esta sesion replayar» (capacidad, de hoy). Con las dos en la misma
+# celda, regenerar el registro desde una caja sin corpus borraba veredictos
+# ajenos: 23 corridas / 46 campos al SHA 66eed1b, incluidos NO-REPRODUCE
+# (CALC-MOTOR-celdas-semilla) y NO-EJECUTABLE. Cambiar `NO-REPRODUCE` por
+# «no verificado ahora» no demuestra que la discrepancia desaparecio.
+#
+# La separacion, sin inventar otra maquina de estados: los DOS EJES de E.3
+# conservan su vocabulario sellado y son EVIDENCIA; la limitacion de la
+# sesion presente se reporta APARTE (avisos y `registro --fuentes`), nunca
+# sobreescribiendo la evidencia.
+#
+# La FUENTE de esa evidencia es `forense/replay-evidencia.tsv`. No es un
+# TSV derivado y no se deriva de las vistas: es un asiento versionado que
+# un acto escribe con cita. Se eligio archivo aparte porque la identidad
+# que `sello.json`/`ejecucion.json` ya traen (corrida, hashes, spec,
+# codigo, inputs, fecha, entorno) NO alcanza -- les faltan los DOS EJES con
+# sus razones -- y los bytes sellados no se editan para alojar metadatos
+# (E.3). Las vistas siguen siendo derivadas de esta fuente; los TSV
+# derivados NO se vuelven su propia fuente.
+#
+# VIGENCIA: la evidencia vale para la identidad que se verifico. Si la spec,
+# el blob del script o los SHA de los inputs efectivos cambian, el
+# comprobante deja de ser vigente para el objeto nuevo -- no se arrastra, no
+# se degrada a otro veredicto: se declara NO-VERIFICADO con la razon.
+# `codigo_commit`, `fecha` y `entorno` se asientan como descripcion, no como
+# llave: un commit distinto con el mismo blob no cambia lo que se ejecuto.
+
+REPLAY_EVIDENCIA = RAIZ / "forense" / "replay-evidencia.tsv"
+
+COLS_REPLAY_EVIDENCIA = [
+    "calc_id", "corrida_id", "resultado_replay", "contexto_replay",
+    "razones", "spec_yaml_sha256", "script_blob_sha256",
+    "input_sha256_efectivos", "codigo_commit", "fecha_verificacion",
+    "entorno", "procedencia", "alcance", "nota",
+]
+
+# Veredictos que CONCLUYEN sobre la reproducibilidad. Los de fuera de esta
+# lista (`NO-EJECUTABLE`, `NO-VERIFICABLE`) dicen que la sesion no pudo
+# pronunciarse -- son limitacion, no hallazgo sobre el numero -- y por eso
+# no pisan un veredicto anterior.
+VEREDICTOS_CONCLUYENTES = frozenset({
+    "REPRODUCE", "NO-REPRODUCE",
+    "REPLICA-RESULTADO · CONTEXTO-DISTINTO",
+    "NO-REPRODUCE · CONTEXTO-DISTINTO",
+})
+
+
+def _lee_evidencia_replay() -> dict:
+    """`calc_id -> fila` de `forense/replay-evidencia.tsv`. Ausente = {}:
+    sin asiento no hay evidencia que proyectar, y eso NO es un error."""
+    if not REPLAY_EVIDENCIA.exists():
+        return {}
+    filas = {}
+    for f in _leer_tsv(REPLAY_EVIDENCIA):
+        if f.get("calc_id"):
+            filas[f["calc_id"]] = f
+    return filas
+
+
+def _identidad_replay(ejec: dict) -> tuple[str, str, str]:
+    """La terna que hace vigente (o no) un comprobante: spec, codigo e
+    inputs efectivamente verificados. Mismo formato que la vista, para que
+    un humano pueda comparar las dos columnas a ojo."""
+    sha_inputs = (ejec or {}).get("input_sha256") or {}
+    return (
+        (ejec or {}).get("spec_yaml_sha256") or NO_DECLARADO,
+        (ejec or {}).get("script_blob_sha256") or NO_DECLARADO,
+        ",".join(f"{i}={sha_inputs[i]}" for i in sorted(sha_inputs)) or "PENDIENTE",
+    )
+
+
+def _evidencia_vigente(ev: dict, ejec: dict) -> tuple[bool, str]:
+    """`(vigente, razon)`. Un cambio de identidad NO invalida la evidencia
+    como historia -- invalida presentarla como vigente para ESTE objeto."""
+    spec_sha, script_sha, inputs = _identidad_replay(ejec)
+    difieren = []
+    for campo, hoy in (("spec_yaml_sha256", spec_sha),
+                       ("script_blob_sha256", script_sha),
+                       ("input_sha256_efectivos", inputs)):
+        asentado = (ev.get(campo) or "").strip()
+        if asentado and asentado != hoy:
+            difieren.append(f"{campo}: asentado={asentado} · hoy={hoy}")
+    if difieren:
+        return False, " ; ".join(difieren)
+    return True, ""
+
+
+def _proyecta_replay(calc_id: str, ejec: dict, fresco: dict | None,
+                     evidencia: dict) -> tuple[str, str, dict, list[str]]:
+    """El nucleo de NC-0094. Devuelve `(replay, contexto, fuente, avisos)`.
+
+    Precedencia DECLARADA, y ninguna rama borra evidencia:
+
+      1. un veredicto CONCLUYENTE de esta sesion (`--verifica`) manda --
+         es observacion de hoy sobre la misma identidad. Si contradice al
+         asiento, se avisa con AMBOS: conservar historia no privilegia el
+         ultimo exito, y un `NO-REPRODUCE` nuevo no queda escondido detras
+         de un `REPRODUCE` viejo;
+      2. si esta sesion NO pudo pronunciarse (`NO-EJECUTABLE` /
+         `NO-VERIFICABLE`, tipicamente por falta de corpus) y hay asiento
+         vigente, se proyecta el ASIENTO y la limitacion de la sesion se
+         reporta APARTE. Esta es la rama que impide que una caja sin
+         microdato borre lo que otra si midio;
+      3. asiento vigente sin verificacion de hoy -> se proyecta el asiento;
+      4. asiento NO vigente (cambio de spec/codigo/inputs) -> NO-VERIFICADO
+         con la razon: la evidencia anterior no es del objeto de hoy;
+      5. nada de lo anterior -> lo que la sesion sepa, y si no sabe nada,
+         `NO-VERIFICADO`, que sigue siendo la verdad cuando no hay fuente.
+    """
+    avisos: list[str] = []
+    ev = evidencia.get(calc_id)
+    vigente, razon_no_vigente = (False, "")
+    if ev:
+        vigente, razon_no_vigente = _evidencia_vigente(ev, ejec)
+
+    def _fuente(clase, **extra):
+        f = {"calc_id": calc_id, "clase": clase}
+        f.update(extra)
+        return f
+
+    if fresco is not None:
+        v = fresco.get("veredicto", NO_VERIFICADO)
+        ctx = fresco.get("contexto", NO_VERIFICADO)
+        if v in VEREDICTOS_CONCLUYENTES:
+            if ev and vigente and ev["resultado_replay"] != v:
+                avisos.append(
+                    f"REPLAY-CONTRADICE-ASIENTO: {calc_id} -- esta sesion "
+                    f"observa {v}/{ctx}; el asiento vigente dice "
+                    f"{ev['resultado_replay']}/{ev['contexto_replay']} "
+                    f"({ev.get('fecha_verificacion') or 'sin fecha'}). Se "
+                    f"proyecta lo observado hoy; el asiento NO se borra: "
+                    f"actualizalo con cita en la nota de cierre del lote")
+            return v, ctx, _fuente("VERIFICADO-EN-ESTA-SESION",
+                                   veredicto=v, contexto=ctx), avisos
+        # (2) la sesion no pudo pronunciarse.
+        if ev and vigente:
+            avisos.append(
+                f"REPLAY-NO-VERIFICABLE-HOY: {calc_id} -- esta sesion no pudo "
+                f"replayar ({v}); NO degrada la evidencia asentada "
+                f"{ev['resultado_replay']}/{ev['contexto_replay']}, que se "
+                f"proyecta como evidencia historica")
+            return (ev["resultado_replay"], ev["contexto_replay"],
+                    _fuente("EVIDENCIA-HISTORICA", asiento=ev,
+                            limitacion_sesion=v), avisos)
+        avisos.append(
+            f"REPLAY-SIN-EVIDENCIA: {calc_id} -- esta sesion observa {v} y no "
+            f"hay asiento vigente en {_rel(REPLAY_EVIDENCIA)}")
+        return v, ctx, _fuente("OBSERVACION-SIN-ASIENTO", veredicto=v), avisos
+
+    if ev and vigente:
+        return (ev["resultado_replay"], ev["contexto_replay"],
+                _fuente("EVIDENCIA-HISTORICA", asiento=ev), avisos)
+    if ev and not vigente:
+        avisos.append(
+            f"EVIDENCIA-NO-VIGENTE: {calc_id} -- hay asiento "
+            f"({ev['resultado_replay']}/{ev['contexto_replay']}, "
+            f"{ev.get('fecha_verificacion') or 'sin fecha'}) pero la identidad "
+            f"cambio, asi que NO se presenta como vigente -> {NO_VERIFICADO}. "
+            f"{razon_no_vigente}")
+        return NO_VERIFICADO, NO_VERIFICADO, _fuente(
+            "ASIENTO-NO-VIGENTE", asiento=ev, razon=razon_no_vigente), avisos
+    return NO_VERIFICADO, NO_VERIFICADO, _fuente("SIN-FUENTE"), avisos
+
+
 def _lee_oferta(verifica: bool) -> list[dict]:
     """Un registro por carpeta `CALC-*/`. Levanta `ParoRegistro` en las
     validaciones que el plan declara bloqueantes."""
+    evidencia = _lee_evidencia_replay()
     oferta = []
     for d in _dirs_calc():
         calc_id = d.name
@@ -2853,12 +3022,19 @@ def _lee_oferta(verifica: bool) -> list[dict]:
             raise ParoRegistro(f"HASH-AUSENTE: {calc_id} sellada sin "
                                f"{', '.join(faltan)}")
 
-        replay, contexto = NO_VERIFICADO, NO_VERIFICADO
-        if verifica and estado == "SELLADA":
-            r = verify(calc_id, imprime=False)
-            replay, contexto = r.get("veredicto", NO_VERIFICADO), r.get("contexto", NO_VERIFICADO)
-        elif estado != "SELLADA":
+        # ACTO GEN2-REGISTRO-REPLAY · P2 (NC-0094). Antes esta rama era
+        # `NO_VERIFICADO` salvo `--verifica`, y por eso una regeneracion
+        # desde una caja sin corpus borraba veredictos ajenos. Ahora la
+        # evidencia tiene fuente propia y la capacidad de ESTA sesion se
+        # reporta aparte; ninguna rama pisa un veredicto anterior.
+        fuente_replay: dict = {"calc_id": calc_id, "clase": "NO-CORRIDA"}
+        avisos_replay: list[str] = []
+        if estado != "SELLADA":
             replay, contexto = NO_CORRIDA, NO_CORRIDA
+        else:
+            fresco = verify(calc_id, imprime=False) if verifica else None
+            replay, contexto, fuente_replay, avisos_replay = _proyecta_replay(
+                calc_id, ejec or {}, fresco, evidencia)
 
         oferta.append({
             "calc_id": calc_id, "spec": spec, "ejec": ejec or {},
@@ -2867,6 +3043,7 @@ def _lee_oferta(verifica: bool) -> list[dict]:
             "motivo_cuenta_gen2": motivo_cuenta,
             "envuelto_legacy": "SI" if _inputs_legacy_de(spec) else "NO",
             "replay": replay, "contexto": contexto,
+            "fuente_replay": fuente_replay, "avisos_replay": avisos_replay,
             "hashes_faltantes": faltan,
             "repite_de": str(spec.get("repite_de") or ""),
         })
@@ -3007,6 +3184,14 @@ def _filas_registro(verifica: bool = False) -> dict:
     oferta = _lee_oferta(verifica)
     marcas = _ids_corrida0_declarados()
     avisos: list[str] = []
+    # ACTO GEN2-REGISTRO-REPLAY · P2: la limitacion de ESTA sesion viaja
+    # como aviso, APARTE de la columna de evidencia. Es la mitad del arreglo
+    # de NC-0094 que no se ve en el TSV -- y por eso tiene que verse aqui.
+    fuentes_replay = {}
+    for o in oferta:
+        avisos.extend(o.get("avisos_replay") or [])
+        if o.get("fuente_replay"):
+            fuentes_replay[o["calc_id"]] = o["fuente_replay"]
 
     sucesor_de = {o["repite_de"]: o["calc_id"] for o in oferta if o["repite_de"]}
 
@@ -3215,7 +3400,8 @@ def _filas_registro(verifica: bool = False) -> dict:
             avisos.append(f"LEGACY-SIN-SUCESOR: {f['resultado_id']} es "
                           f"{GENERACION_LEGADO} y no declara sucesor")
     return {"corridas": filas_corridas, "resultados": filas_resultados,
-            "usos": filas_usos, "avisos": avisos}
+            "usos": filas_usos, "avisos": avisos,
+            "fuentes_replay": fuentes_replay}
 
 
 def _verifica_ciclos(filas: list[dict]) -> None:
@@ -3272,8 +3458,87 @@ def _imprime_diff_vista(ruta: Path, columnas: list[str], filas: list[dict]) -> N
         print(f"  {linea}", end="" if linea.endswith("\n") else "\n")
 
 
+# ── ACTO GEN2-REGISTRO-REPLAY · P1 · la contencion, mecanica ──────────────
+#
+# La adenda de NC-0094 pedia a mano lo que sigue: pegar el diff antes de
+# escribir y parar si tocaba corridas ajenas. Aqui deja de depender de que
+# alguien se acuerde. `registro --escribe` calcula el diff de los DOS EJES
+# contra las vistas PUBLICADAS antes de tocar ningun TSV; si una corrida
+# AJENA al lote autorizado cambiaria de veredicto, se niega, lista los ids
+# con sus transiciones y termina sin escribir. No hay `--force` y no hay
+# borrado silencioso: la unica forma de mover un veredicto ajeno es
+# nombrarlo en `--lote`, que es exactamente la «razon explicita» que la
+# validacion de aceptacion (a) exige.
+#
+# Una corrida que NO esta en la vista publicada no tiene veredicto que
+# pisar: registrar un lote nuevo nunca cae en esta proteccion.
+
+
+class ReplayPisado(ParoRegistro):
+    """P1: la escritura borraria o cambiaria evidencia de replay ajena al
+    lote autorizado. Hereda de `ParoRegistro` para que `cmd_registro` ya la
+    trate como lo que es: un PARO que no escribe ninguna vista."""
+
+
+def _lote_autorizado(lote) -> set:
+    """`--lote CALC-A,CALC-B` o `--lote CALC-A --lote CALC-B`. Sin lote, el
+    conjunto autorizado es VACIO: ninguna transicion de veredicto pasa sin
+    que alguien la nombre."""
+    ids = set()
+    for item in (lote or []):
+        ids.update(x.strip() for x in str(item).split(",") if x.strip())
+    return ids
+
+
+def _transiciones_replay(filas_corridas: list[dict]) -> list[tuple]:
+    """`(corrida_id, campo, publicado, propuesto)` para cada eje que
+    cambiaria respecto de la vista publicada. Solo compara filas que YA
+    existen: una corrida nueva no tiene evidencia que perder."""
+    if not VISTA_CORRIDAS.exists():
+        return []
+    publicado = {f["corrida_id"]: f for f in _leer_tsv_derivado(VISTA_CORRIDAS)}
+    cambios = []
+    for fila in filas_corridas:
+        anterior = publicado.get(fila["corrida_id"])
+        if anterior is None:
+            continue
+        for campo in ("resultado_replay", "contexto_replay"):
+            if anterior.get(campo) != fila[campo]:
+                cambios.append((fila["corrida_id"], campo,
+                                anterior.get(campo), fila[campo]))
+    return cambios
+
+
+def _para_si_pisa_replay(filas_corridas: list[dict], lote: set) -> None:
+    """PARA antes de escribir. `lote` se compara contra el `spec_id` de la
+    fila (el `CALC-*`) y tambien contra el `corrida_id` completo, para que
+    autorizar un lote no exija copiar el sufijo de hash."""
+    por_id = {f["corrida_id"]: f for f in filas_corridas}
+    ajenas = []
+    for corrida_id, campo, antes, ahora in _transiciones_replay(filas_corridas):
+        spec_id = (por_id.get(corrida_id) or {}).get("spec_id", "")
+        if corrida_id in lote or spec_id in lote:
+            continue
+        ajenas.append((corrida_id, campo, antes, ahora))
+    if not ajenas:
+        return
+    ids = sorted({a[0] for a in ajenas})
+    detalle = "\n".join(
+        f"    {cid} · {campo}: {antes} -> {ahora}"
+        for cid, campo, antes, ahora in sorted(ajenas))
+    raise ReplayPisado(
+        f"REPLAY-PISADO (NC-0094): escribir borraria o cambiaria evidencia de "
+        f"replay de {len(ids)} corrida(s) AJENA(s) al lote autorizado "
+        f"({len(ajenas)} campo(s)). No se escribio ninguna vista.\n"
+        f"{detalle}\n"
+        f"  Si el cambio es intencional, nombra las corridas en "
+        f"`--lote {','.join(ids)}` y di por que en la nota de cierre del "
+        f"lote. No existe `--force`: un veredicto ajeno no se mueve sin "
+        f"razon explicita.")
+
+
 def registro(escribe: bool = False, verifica: bool = False,
-             imprime: bool = True) -> dict:
+             imprime: bool = True, lote=None, fuentes: bool = False) -> dict:
     """FP-359: la fotocopiadora se desarma -- `escribe` por defecto es
     `False`. Escribir las tres vistas en disco exige el `True` explicito
     (`--escribe` en la CLI); sin el, esta funcion deriva, valida y --si
@@ -3283,7 +3548,13 @@ def registro(escribe: bool = False, verifica: bool = False,
     modos como efecto colateral (`FP-359`) -- publico una firma que mesa
     nunca dio."""
     vistas = _filas_registro(verifica)
+    if fuentes and imprime:
+        _imprime_fuentes_replay(vistas["fuentes_replay"])
     if escribe:
+        # P1 (NC-0094): el diff de los dos ejes se calcula ANTES de tocar
+        # el primer TSV. Si pisa evidencia ajena, esto levanta y no se
+        # escribe nada -- ni la primera de las tres vistas.
+        _para_si_pisa_replay(vistas["corridas"], _lote_autorizado(lote))
         _escribe(VISTA_CORRIDAS, COLS_VISTA_CORRIDAS, vistas["corridas"])
         _escribe(VISTA_RESULTADOS, COLS_VISTA_RESULTADOS, vistas["resultados"])
         _escribe(VISTA_USOS, COLS_VISTA_USOS, vistas["usos"])
@@ -3304,10 +3575,36 @@ def registro(escribe: bool = False, verifica: bool = False,
     return vistas
 
 
+def _imprime_fuentes_replay(fuentes: dict) -> None:
+    """P2: de donde sale CADA veredicto proyectado. Es la cita que el
+    encargo pide -- el registro no se limita a mostrar el veredicto, dice
+    quien lo sostiene, con que fecha y con que alcance."""
+    print(f"FUENTES DE REPLAY  ({_rel(REPLAY_EVIDENCIA)})")
+    for calc_id in sorted(fuentes):
+        f = fuentes[calc_id]
+        asiento = f.get("asiento") or {}
+        linea = f"  {calc_id}: {f['clase']}"
+        if asiento:
+            linea += (f" · {asiento['resultado_replay']}/"
+                      f"{asiento['contexto_replay']}"
+                      f" · fecha={asiento.get('fecha_verificacion') or 'DESCONOCIDA'}"
+                      f" · entorno={asiento.get('entorno') or 'NO-DECLARADO'}"
+                      f" · alcance={asiento.get('alcance') or 'NO-DECLARADO'}")
+            if asiento.get("nota"):
+                linea += f" · nota={asiento['nota']}"
+        if f.get("limitacion_sesion"):
+            linea += f" · limitacion de ESTA sesion: {f['limitacion_sesion']}"
+        if f.get("razon"):
+            linea += f" · {f['razon']}"
+        print(linea)
+
+
 def cmd_registro(args) -> int:
     try:
         registro(escribe=getattr(args, "escribe", False),
-                 verifica=getattr(args, "verifica", False))
+                 verifica=getattr(args, "verifica", False),
+                 lote=getattr(args, "lote", None),
+                 fuentes=getattr(args, "fuentes", False))
     except ParoRegistro as exc:
         print(f"PARO · {exc}", file=sys.stderr)
         print("no se escribio ninguna vista", file=sys.stderr)
@@ -3469,6 +3766,17 @@ def construye_parser() -> argparse.ArgumentParser:
                     help="FP-359: sin esta bandera, `registro` deriva, valida "
                          "e imprime el diff que escribiria SIN tocar ningun "
                          "TSV -- con ella, escribe las tres vistas de verdad")
+    # ACTO GEN2-REGISTRO-REPLAY (NC-0094).
+    rg.add_argument("--lote", action="append", metavar="CALC-A,CALC-B",
+                    help="corridas cuyo veredicto de replay SI puede cambiar "
+                         "en esta escritura (la 'razon explicita'). Sin ella, "
+                         "ninguna transicion de resultado_replay/contexto_replay "
+                         "sobre una corrida ya publicada pasa: `--escribe` PARA "
+                         "y lista los ids. No existe `--force`")
+    rg.add_argument("--fuentes", action="store_true",
+                    help="imprime de donde sale cada veredicto de replay "
+                         "proyectado (asiento, fecha, entorno, alcance, nota) "
+                         "y la limitacion de esta sesion, aparte de la columna")
     rg.set_defaults(func=cmd_registro)
 
     st = subs.add_parser("status", help="B-11 · contadores GEN2, todos derivados")
