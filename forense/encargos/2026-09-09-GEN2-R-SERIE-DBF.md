@@ -55,3 +55,38 @@ enumera el perímetro y `tests/` no aparece por nombre. Se tocó
 este acto hace avanzar por construcción — misma escritura y misma razón que
 declaró `ADR-433`: un contador que el acto mueve y no actualiza deja la suite
 roja para el siguiente.
+
+---
+
+## CONSUMIDO
+
+Ejecutado por **`PR #661`** (`ACTO GEN2-R-SERIE-DBF · LA SERIE SE CERTIFICA DE
+CERO, TRÍO VIEJO`), rama `acto/gen2-r-serie-dbf`, 9/sep/2026, **CAJA (Ubuntu)
+con corpus montado**, Opus.
+
+Ocho commits: 0-bis `658ce39` (encargo recuperado verbatim del transcript de la
+sesión que murió a los 74 segundos por reinicio de la máquina) · corrección del
+0-bis `c0d0299` (texto canónico de mesa; diff de **una línea** sobre veinte
+párrafos idénticos byte a byte) · `COMMIT-1` `894707a` (spec por ola
+`R-ENVIPE-SERIE-DBF`, los tres `CALC-R`, el `medidor.py` byte-idéntico y el
+script de control, congelados **sin abrir un solo registro de microdato**) ·
+`COMMIT-2a` `2951696` / `COMMIT-2b` `dd95bca` / `COMMIT-2c` `7861db2` (las tres
+olas selladas, una por commit, cada una con el árbol limpio que el `preflight`
+exige) · `COMMIT-3` `a9580ef` (P3, nota del lote, serie de siete puntos,
+`NC-0098`…`NC-0103` y cascada `ADR-434`) · merge de `origin/main` y declaración
+de la colisión de numeración `2c5cb0d`.
+
+**Lo que este acto entregó:** tres árbitros `R` con cadena `E.2` completa y
+control positivo externo con **delta `+0` exacto** contra los tres dictámenes
+GEN1; el hallazgo del **corrimiento de `BPCOD` en 2012**, con sus once parejas
+verbatim, su residuo nulo declarado y un falsador **estructural** que no usa
+resultados; el **vínculo de diseño por ola** que evitó declarar `NO-ESTIMABLE`
+dos de tres olas por un falso negativo de nombre; la **corrección contra el
+árbol de la premisa (3)** del propio encargo; y la serie homologada llevada de
+cuatro a **siete** puntos, descriptiva y con su costura visible.
+
+**Lo que NO entregó** está en `## NO-CORRIDO / RESERVAS`, arriba: seis filas,
+ninguna vacía, ninguna huérfana.
+
+⚠️ **`ADR-434` puede pasar a `435` antes del merge.** `PR #660` está abierto con
+el mismo número redactado; regla de la casa, **renumera quien fusiona segundo**.
