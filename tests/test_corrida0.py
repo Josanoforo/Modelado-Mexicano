@@ -1727,24 +1727,45 @@ def t_status_arbol_real_no_cuenta_smokes():
     mesa en `data/corrida0/decisiones.tsv`, `0/0` era la cifra correcta;
     desde esa firma (`CALC-0001`, `CALC-0002`, `CALC-0003-v2`,
     `cuenta_gen2=SI`), la cifra correcta es `3/211` (83+128 RESULT
-    sellados), y los replays LEGACY siguen sin contar ni una unidad de eso."""
+    sellados), y los replays LEGACY siguen sin contar ni una unidad de eso.
+
+    Premisa actualizada por `ACTO GEN2-PRIMERA-SILLA` (8/sep/2026): FIRMA 1
+    de mesa agrega `CALC-0003-v3` y `CALC-B-0001` a `decisiones.tsv`, asi que
+    la cifra correcta pasa a `5` corridas; y P4 escribe la PRIMERA adopcion
+    real, asi que `N_resultados_activos == dependencias_legacy` deja de ser
+    cierto -- es justo lo que la adopcion significa. Lo que este falsador
+    vigila NO cambia: que los replays LEGACY no suban ni una unidad de GEN2,
+    y que la firma no se pierda en un merge."""
     caso = "T-STATUS-SMOKES"
     c = C.status(imprime=False)
     _afirma(c["replays_legacy_sellados"] >= 2, caso,
             f"replays sellados={c['replays_legacy_sellados']} (se esperaban >=2)")
-    _afirma(c["N_corridas_selladas"] == 3, caso,
-            f"N_corridas_selladas={c['N_corridas_selladas']}, esperado 3 tras la firma "
-            f"de mesa (ACTO GEN2-FIRMA-CONTADOR) -- si es 0, la firma se perdio; si es "
-            f">3, un replay GEN1 conto como GEN2")
-    _afirma(c["N_resultados_sellados"] == 211, caso,
-            f"N_resultados_sellados={c['N_resultados_sellados']}, esperado 211 (83+128) "
-            f"tras la firma de mesa -- si es 0, la firma se perdio; si es >211, un "
+    _afirma(c["N_corridas_selladas"] == 5, caso,
+            f"N_corridas_selladas={c['N_corridas_selladas']}, esperado 5 tras FIRMA 1 "
+            f"(ACTO GEN2-PRIMERA-SILLA: CALC-0001, CALC-0002, CALC-0003-v2, "
+            f"CALC-0003-v3, CALC-B-0001) -- si es 0, la firma se perdio; si es >5, un "
             f"replay GEN1 conto como GEN2")
-    _afirma(c["N_resultados_activos"] == c["dependencias_numericas_legacy_activas"], caso,
-            "hoy toda dependencia activa es legacy: ningun consumidor declara "
-            "corrida0_resultado_id todavia en un archivo que el motor carga "
-            "(milpa/tramite-ola5-propuesta-v0.yaml lo declara pero es PROPUESTA, "
-            "no cargada) -- E.2 (adopcion) sigue pendiente, NC-0053")
+    _afirma(c["N_resultados_sellados"] == 443, caso,
+            f"N_resultados_sellados={c['N_resultados_sellados']}, esperado 443 "
+            f"(54+29+128+142+90 RENGLONES de OFERTA que cuentan GEN2) tras FIRMA 1 -- "
+            f"si es 0, la firma se perdio; si es >443, un replay GEN1 conto como GEN2")
+    # Ids UNICOS, que es otra pregunta: v3 repite 128 de los 142 ids de v2 por
+    # cadena `repite_de`, asi que aporta 14 nuevos, no 142. 211+90+14 = 315.
+    _afirma(c["N_resultados_gen2_sellados"] == 315, caso,
+            f"N_resultados_gen2_sellados={c['N_resultados_gen2_sellados']}, esperado "
+            f"315 (los 211 previos + 90 de CALC-B-0001 + los 14 ids que v3 agrega "
+            f"sobre los 128 que repite de v2) -- si sale 353, se sumo v3 dos veces")
+    # E.2: la primera silla esta ocupada. `dependencias_legacy` baja en 1 por
+    # la cita de P4 y ya NO iguala a los activos -- y ese 1 es la adopcion.
+    _afirma(c["N_resultados_gen2_adoptados_activos"] == 1, caso,
+            f"N_resultados_gen2_adoptados_activos="
+            f"{c['N_resultados_gen2_adoptados_activos']}, esperado 1: la cita de "
+            f"ACTO GEN2-PRIMERA-SILLA P4 (RESULT-B-ENIGH-2022-P) se perdio")
+    _afirma(c["dependencias_numericas_legacy_activas"]
+            == c["N_resultados_activos"] - 1, caso,
+            f"dependencias_legacy={c['dependencias_numericas_legacy_activas']} sobre "
+            f"{c['N_resultados_activos']} activos: la adopcion de P4 tiene que bajar "
+            f"exactamente 1 (NC-0053, E.2)")
 
 
 def t_repro_atrapa_valor_movido():
@@ -2037,6 +2058,172 @@ def t_sellada_sin_adoptar_agregado_coincide():
         _afirma(n_agregado == len(entradas), caso,
                 f"el agregado ({agregados[0]!r}) no coincide con las "
                 f"{len(entradas)} entradas: {entradas!r}")
+
+
+# ── ACTO GEN2-PRIMERA-SILLA · P1 (NC-0069) y P2 (NC-0068) ─────────────────
+
+# El caso NO es inventado: es el que `ACTO GEN2-C0-B` §5.4 midio contra el
+# arbol real -- `RESULT-B-ENIGH-2022-P` = 0.04569409956405095 contra el
+# `p: 0.045694` que `milpa/tramite.yaml:familia.seguro.
+# volatilidad_ausencia_estado:recibe_remesas` materializa, delta 9.956e-08.
+_C0B_RESULT = 0.04569409956405095
+_C0B_MILPA = 0.045694
+
+
+def t_adopcion_grano_del_consumidor():
+    """T-ADOPCION-GRANO (P1, NC-0069/FP-365). El caso MEDIDO de C0-B, en sus
+    dos direcciones:
+
+      · el candidato real -- que con la vara de reproducibilidad (`1e-10`)
+        daba FAIL por grano y por eso dejo la silla vacia -- ahora ADOPTA;
+      · un valor genuinamente distinto en el SEXTO decimal sigue fallando.
+
+    Sin la segunda mitad esto seria aflojar la tolerancia con otro nombre."""
+    caso = "T-ADOPCION-GRANO"
+    decl = {"tipo": "proporcion"}
+    tol_repro = {"tipo": "flotante", "abs": 1.0e-10}
+
+    # La vara VIEJA sigue diciendo que no: el FAIL falso era real, no un mito.
+    igual_repro, _ = C._compara_result(_C0B_RESULT, _C0B_MILPA, decl, tol_repro)
+    _afirma(igual_repro is False, caso,
+            "la tolerancia de reproducibilidad ya no rechaza el caso medido: "
+            "el falsador perdio su control negativo")
+
+    igual, delta, modo = C._compara_adopcion(_C0B_RESULT, _C0B_MILPA, decl, tol_repro)
+    _afirma(igual is True, caso,
+            f"el candidato real de C0-B no adopta: delta={delta} modo={modo!r}")
+    _afirma("grano" in modo, caso, f"la vara no se nombra en el modo: {modo!r}")
+
+    # Sexto decimal genuinamente distinto -> sigue fallando.
+    igual, delta, modo = C._compara_adopcion(_C0B_RESULT, 0.045695, decl, tol_repro)
+    _afirma(igual is False, caso,
+            f"un sexto decimal distinto (0.045695) adopto: delta={delta} modo={modo!r}")
+
+    # Y la reproducibilidad NO se afloja: `verify` sigue con su propia vara.
+    igual, _ = C._compara_result(_C0B_RESULT, _C0B_MILPA, decl, tol_repro)
+    _afirma(igual is False, caso,
+            "`_compara_result` cambio de contrato: la reproducibilidad se aflojo")
+
+
+def t_adopcion_tolerancia_declarada_y_no_aplica():
+    """T-ADOPCION-DECLARADA (P1). `tolerancia_adopcion` la puede declarar la
+    spec y gana sobre el grano; `NO-APLICA` es un VALOR -- exige la
+    tolerancia de reproducibilidad -- y no es lo mismo que no declarar
+    nada."""
+    caso = "T-ADOPCION-DECLARADA"
+    decl = {"tipo": "proporcion"}
+    tol_repro = {"tipo": "flotante", "abs": 1.0e-10}
+
+    igual, _, modo = C._compara_adopcion(_C0B_RESULT, _C0B_MILPA, decl, tol_repro,
+                                         1.0e-6)
+    _afirma(igual is True, caso, f"tolerancia_adopcion=1e-6 no adopto ({modo!r})")
+
+    igual, _, modo = C._compara_adopcion(_C0B_RESULT, _C0B_MILPA, decl, tol_repro,
+                                         1.0e-12)
+    _afirma(igual is False, caso,
+            f"tolerancia_adopcion=1e-12 adopto un delta de 9.96e-08 ({modo!r})")
+
+    igual, _, modo = C._compara_adopcion(_C0B_RESULT, _C0B_MILPA, decl, tol_repro,
+                                         C.TOL_ADOPCION_NO_APLICA)
+    _afirma(igual is False, caso,
+            f"`NO-APLICA` no cayo a la vara de reproducibilidad ({modo!r})")
+    _afirma("NO-APLICA" in modo, caso, f"`NO-APLICA` no se nombra: {modo!r}")
+
+    # Un tipo donde el grano no significa nada: comparacion exacta de siempre.
+    igual, _, modo = C._compara_adopcion("SERIE-REPORTADA", "SERIE-REPORTADA",
+                                         {"tipo": "texto"}, tol_repro)
+    _afirma(igual is True and modo == "EXACTO-POR-TIPO", caso,
+            f"un RESULT de texto no comparo exacto por tipo: {modo!r}")
+    igual, _, _ = C._compara_adopcion(90102, 90103, {"tipo": "entero"}, tol_repro)
+    _afirma(igual is False, caso, "un entero distinto adopto")
+
+
+def t_warn_sin_adoptar_baja_en_uno_al_adoptar():
+    """T-SSA-LLAVE (P2, NC-0068/FP-364). El falsador que la nota de C0-B §5.3
+    dejo escrito con su tabla: adoptar UNA vez tiene que bajar el conteo de
+    `SELLADA-SIN-ADOPTAR` en EXACTAMENTE 1.
+
+    Con la llave de antes (`usos.resultado_id`, del lado DEMANDA) el conteo
+    no se movia -- medido: 301 antes y 301 despues de una cita real. Es el
+    caso que volvia inalcanzable la premisa "el WARN baja por primera vez"."""
+    caso = "T-SSA-LLAVE"
+    chk = _carga_check()
+    calcs = [{"calc_id": "CALC-FIX-LLAVE-A",
+              "valores": {"RESULT-LLAVE-A": _C0B_RESULT},
+              "decl_res": [{"id": "RESULT-LLAVE-A", "tipo": "proporcion",
+                            "unidad": "proporcion [0,1]"}],
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}},
+             {"calc_id": "CALC-FIX-LLAVE-B", "valores": {"RESULT-LLAVE-B": 1.0},
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}}]
+
+    def _conteo(tramite):
+        with _arbol_registro(calcs=calcs, tramite=tramite):
+            if tramite is not None:
+                consumidor = f"{C._rel(C.TRAMITE)}:r.remesas:recibe_remesas"
+                C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS,
+                           [_fila_demanda("RES-0001", consumidor, "CORR-0001")])
+                C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS,
+                           [_fila_corrida("CORR-0001", ["RES-0001"])])
+            chk.WARNS.clear()
+            chk.FAILS.clear()
+            chk.SENAL.clear()
+            chk.t35_repro(modulo=C)
+        entradas = [m for _, m in chk.WARNS if m.startswith("SELLADA-SIN-ADOPTAR ")]
+        fails = [m for _, m in chk.FAILS]
+        return entradas, fails
+
+    antes, fails_antes = _conteo(None)
+    _afirma(len(antes) == 2, caso,
+            f"el arbol sin adoptar no dio 2 SELLADA-SIN-ADOPTAR: {antes!r}")
+
+    # La cita real: marca + generacion, en la unica ranura que el registro
+    # reconoce (una conducta con `p:` dentro del `entonces` de una regla).
+    cita = {"reglas": [{"id": "r.remesas", "entonces": [
+        {"conducta": "recibe_remesas", "p": _C0B_MILPA,
+         "corrida0_resultado_id": "RESULT-LLAVE-A",
+         "corrida0_generacion": "GEN2"}]}]}
+    despues, fails_despues = _conteo(cita)
+
+    _afirma(len(despues) == len(antes) - 1, caso,
+            f"adoptar 1 no bajo el conteo en exactamente 1: "
+            f"antes={len(antes)} despues={len(despues)} ({despues!r})")
+    _afirma(not any("RESULT-LLAVE-A" in m for m in despues), caso,
+            f"el RESULT adoptado sigue contando como sin adoptar: {despues!r}")
+    _afirma(any("RESULT-LLAVE-B" in m for m in despues), caso,
+            f"el RESULT NO adoptado dejo de contar: {despues!r}")
+    # Y la cita no mete un FAIL nuevo: es justo lo que P1 desbloquea.
+    _afirma(len(fails_despues) == len(fails_antes), caso,
+            f"la cita metio FAIL nuevo: {[m for m in fails_despues if m not in fails_antes]!r}")
+
+
+def t_warn_sin_adoptar_ignora_cadena_a_medias():
+    """T-SSA-LLAVE-MEDIAS (P2). Una marca SIN `corrida0_generacion: GEN2` es
+    cadena incompleta -- T35 (e) ya la hace FAIL -- y no debe contar como
+    adopcion: si contara, media cita bajaria el conteo y el WARN volveria a
+    mentir, esta vez por el otro lado."""
+    caso = "T-SSA-LLAVE-MEDIAS"
+    chk = _carga_check()
+    calcs = [{"calc_id": "CALC-FIX-MEDIAS", "valores": {"RESULT-MEDIAS": 0.5},
+              "decl_res": [{"id": "RESULT-MEDIAS", "tipo": "proporcion",
+                            "unidad": "proporcion [0,1]"}],
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}}]
+    with _arbol_registro(calcs=calcs,
+                         tramite=_tramite_con_marca("r.uno", "c1",
+                                                    "RESULT-MEDIAS", 0.5)):
+        consumidor = f"{C._rel(C.TRAMITE)}:r.uno:c1"
+        C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS,
+                   [_fila_demanda("RES-0001", consumidor, "CORR-0001")])
+        C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS,
+                   [_fila_corrida("CORR-0001", ["RES-0001"])])
+        chk.WARNS.clear()
+        chk.FAILS.clear()
+        chk.SENAL.clear()
+        chk.t35_repro(modulo=C)
+    entradas = [m for _, m in chk.WARNS if m.startswith("SELLADA-SIN-ADOPTAR ")]
+    _afirma(any("RESULT-MEDIAS" in m for m in entradas), caso,
+            f"una cadena a medias conto como adopcion: {entradas!r}")
+    _afirma(any("cadena incompleta" in m for _, m in chk.FAILS), caso,
+            f"T35 (e) dejo de avisar la cadena incompleta: {chk.FAILS!r}")
 
 
 def t_encargo_gen2_desfasado():

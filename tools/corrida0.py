@@ -2174,6 +2174,125 @@ def _compara_result(previo, hoy, decl: dict, tol: dict) -> tuple[bool, object]:
     return delta <= limite, delta
 
 
+TOL_ADOPCION_NO_APLICA = "NO-APLICA"
+
+
+def _texto_tol_adopcion(valor) -> str:
+    """Serializa `tolerancia_adopcion` para el TSV. Cadena vacia == sin
+    declarar == defecto (grano del consumidor); `NO-APLICA` es un valor y
+    viaja como tal."""
+    if valor is None or valor == "":
+        return ""
+    return str(valor)
+
+
+def _tol_adopcion_de(fila: dict):
+    """Lee del renglon de la vista lo que `_compara_adopcion` espera:
+    `None` si no hay declaracion, la cadena `NO-APLICA`, o un numero."""
+    crudo = (fila or {}).get("tolerancia_adopcion", "")
+    if crudo in ("", None, NO_DECLARADO, "PENDIENTE"):
+        return None
+    if str(crudo).strip().upper() == TOL_ADOPCION_NO_APLICA:
+        return TOL_ADOPCION_NO_APLICA
+    try:
+        return float(crudo)
+    except (TypeError, ValueError):
+        return str(crudo)
+
+
+def _grano_decimales(valor) -> int | None:
+    """Con cuantos decimales materializa el consumidor su cifra.
+
+    El grano no se declara en ningun lado: esta en la cifra misma que
+    `milpa/` escribe (`p: 0.045694` son SEIS decimales). Se lee del literal
+    y no de una convencion, porque es el consumidor -- no la spec -- quien
+    decide cuanta precision publica.
+
+    Devuelve `None` cuando la pregunta no aplica (no es flotante, o el
+    repr sale en notacion exponencial y el literal ya no dice el grano);
+    quien llama cae entonces a la tolerancia de reproducibilidad, que es el
+    comportamiento estricto de siempre."""
+    if isinstance(valor, bool) or not isinstance(valor, float):
+        return None
+    texto = repr(float(valor))
+    if "e" in texto or "E" in texto:
+        return None
+    if "." not in texto:
+        return 0
+    return len(texto.split(".", 1)[1])
+
+
+def _compara_adopcion(previo, hoy, decl: dict, tol: dict,
+                      tol_adopcion=None) -> tuple[bool, object, str]:
+    """NC-0069 / FP-365: la comparacion de ADOPCION, separada de la de
+    REPRODUCIBILIDAD.
+
+    `tolerancia.abs` servia hoy a dos preguntas distintas:
+
+      1. *"esta corrida se reproduce a si misma?"* -- `1e-10` es la
+         respuesta correcta y aflojarla un decimal es perder sensibilidad.
+         Esa pregunta la sigue contestando `_compara_result`, intacta.
+      2. *"el consumidor materializa este RESULT?"* -- el grano NO lo fija
+         la corrida sino `milpa/`, que publica seis decimales. Medido en
+         `ACTO GEN2-C0-B` §5.4: `RESULT-B-ENIGH-2022-P` = 0.04569409956405095
+         contra el `p: 0.045694` del motor, `delta = 9.956e-08`. Reproduce
+         al grano con que el consumidor materializa y NO reproduce a `1e-10`
+         -- y como T35 (c) usaba la segunda, escribir la cita metia un FAIL
+         falso. Esa es la pregunta que contesta esta funcion.
+
+    Tres modos, en este orden:
+
+      `tolerancia_adopcion` numerica declarada por la spec -> se usa tal cual.
+      `tolerancia_adopcion: NO-APLICA`                     -> se exige la
+          tolerancia de reproducibilidad (el estricto de siempre); es un
+          VALOR declarable, no la ausencia del campo.
+      sin declarar (defecto)                               -> se compara el
+          RESULT REDONDEADO al grano del consumidor contra la cifra
+          materializada, EXACTO.
+
+    El redondeo es lo que hace al falsador honesto: `0.045694` adopta, y un
+    valor genuinamente distinto en el sexto decimal (`0.045695`) sigue
+    fallando, porque `round(0.04569409956405095, 6)` no es `0.045695`.
+
+    Devuelve `(igual, delta, modo)`; `modo` va al mensaje de T35 para que la
+    linea diga con que vara se comparo y no haya que adivinarlo."""
+    tipo = (decl or {}).get("tipo")
+    if tipo not in ("flotante", "proporcion") or previo is None or hoy is None:
+        # entero / texto / NO-ESTIMABLE: el grano no significa nada ahi y la
+        # comparacion exacta por tipo ya es la correcta.
+        igual, delta = _compara_result(previo, hoy, decl, tol)
+        return igual, delta, "EXACTO-POR-TIPO"
+
+    if isinstance(tol_adopcion, str) and tol_adopcion.strip().upper() == TOL_ADOPCION_NO_APLICA:
+        igual, delta = _compara_result(previo, hoy, decl, tol)
+        return igual, delta, f"NO-APLICA -> reproducibilidad ({(tol or {}).get('abs', TOL_FLOTANTE_DEFECTO)})"
+
+    if tol_adopcion is not None:
+        try:
+            limite = float(tol_adopcion)
+        except (TypeError, ValueError):
+            igual, delta = _compara_result(previo, hoy, decl, tol)
+            return igual, delta, (f"tolerancia_adopcion ilegible ({tol_adopcion!r}) "
+                                  f"-> reproducibilidad")
+        igual, delta = _compara_result(previo, hoy, decl, {"abs": limite})
+        return igual, delta, f"tolerancia_adopcion={limite}"
+
+    grano = _grano_decimales(hoy)
+    if grano is None:
+        igual, delta = _compara_result(previo, hoy, decl, tol)
+        return igual, delta, "SIN-GRANO -> reproducibilidad"
+
+    # La validacion de tipo/finitud/[0,1] la sigue haciendo `_compara_result`;
+    # si no pasa, no hay grano que valga.
+    valido, motivo = _compara_result(previo, hoy, decl, {"abs": float("inf")})
+    if not valido:
+        return False, motivo, f"grano={grano} (rechazado por tipo)"
+    redondeado = round(float(previo), grano)
+    igual = redondeado == float(hoy)
+    delta = abs(float(previo) - float(hoy))
+    return igual, delta, f"grano del consumidor = {grano} decimales"
+
+
 def _verifica_sello(d: Path) -> tuple[str, str]:
     """P5(1): valida el sello del recibo COMPLETO -- el sidecar de
     `sello.json` (via `sella_sha256.py --verifica`) Y que cada archivo que
@@ -2462,6 +2581,9 @@ COLS_VISTA_CORRIDAS = [
 COLS_VISTA_RESULTADOS = [
     "resultado_id", "origen", "corrida_id", "spec_id", "valor", "tipo",
     "unidad", "estado", "generacion", "cuenta_gen2", "tolerancia",
+    # NC-0069 / FP-365: la vara de ADOPCION, separada de la de
+    # reproducibilidad (`tolerancia`). Vacia = defecto (grano del consumidor).
+    "tolerancia_adopcion",
     "validacion_independiente", "valor_legacy", "delta_legacy", "sello",
     "depende_de", "n_usos", "sucesor",
 ]
@@ -2934,6 +3056,7 @@ def _filas_registro(verifica: bool = False) -> dict:
             "valor": "PENDIENTE", "tipo": r["tipo"], "unidad": NO_DECLARADO,
             "estado": r["estado"], "generacion": "GEN2-PENDIENTE",
             "cuenta_gen2": "SI", "tolerancia": "PENDIENTE",
+            "tolerancia_adopcion": "PENDIENTE",
             "validacion_independiente": r["validacion_independiente"],
             "valor_legacy": r["valor_legacy"], "delta_legacy": NO_COMPARABLE,
             "sello": "PENDIENTE", "depende_de": r["depende_de"],
@@ -2970,6 +3093,11 @@ def _filas_registro(verifica: bool = False) -> dict:
         decl_res = {str(d.get("id")): d for d in (spec.get("resultados") or [])
                     if isinstance(d, dict)}
         tol = spec.get("tolerancia") or {}
+        # NC-0069: `tolerancia_adopcion` se declara por RESULT o, si no, una
+        # vez para toda la spec. Ausente NO es un defecto: es el defecto
+        # (grano del consumidor). `NO-APLICA` es un VALOR -- exige la
+        # tolerancia de reproducibilidad -- y por eso se distingue de vacio.
+        tol_adop_spec = spec.get("tolerancia_adopcion")
         filas_corridas.append({
             "corrida_id": corrida_id, "origen": "OFERTA", "spec_id": calc_id,
             "estado": estado, "generacion": o["generacion"],
@@ -3008,6 +3136,8 @@ def _filas_registro(verifica: bool = False) -> dict:
                 "cuenta_gen2": o["cuenta_gen2"],
                 "tolerancia": json.dumps(tol, ensure_ascii=False, sort_keys=True,
                                          default=str) if tol else NO_DECLARADO,
+                "tolerancia_adopcion": _texto_tol_adopcion(
+                    decl.get("tolerancia_adopcion", tol_adop_spec)),
                 "validacion_independiente": _etiqueta(spec, "validacion_independiente",
                                                       "NO-HECHA"),
                 "valor_legacy": NO_COMPARABLE, "delta_legacy": NO_COMPARABLE,

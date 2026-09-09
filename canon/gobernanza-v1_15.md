@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **423 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **424 ADR**
 
 > | | |
 > |---|---|
@@ -7432,6 +7432,28 @@ FIRMA DE MESA, verbatim del 8/sep/2026: «ármame el sello, el encargo ya corri�
 **Suite.** `python3 tests/test_corrida0.py` → `68 casos · 68 ok · 0 FALLOS`. `python3 tests/check.py --baseline` → `LÍNEA BASE: VERDE` (3 `FAIL` heredados, sin ninguno nuevo).
 
 **Perímetro cumplido.** `tools/corrida0.py` (solo `_evalua_contexto`, `status` sin cambio de código, `registro`, `preflight`) · `tests/test_corrida0.py` (cuatro falsadores) · `forense/runbook-caja.md` (nuevo) · `forense/{firmas-pendientes,no-corrido}.tsv` · `forense/notas/2026-09-09-GEN2-CHECADOR-2-cierre.md` · el 0-bis · `tests/check.py::_T25_ARCHIVOS_CONOCIDOS` (mecánico, T25 sobre el propio encargo verbatim) · esta cascada. **No tocó** sellos, `CALC`, `decisiones.tsv`, specs ni `T35`.
+
+---
+
+**ADR-424 (derivado por `python3 tools/cierre_acto.py`, Fase A: máximo real `423`, candidato contiguo `424`, no redactado en ninguna rama remota accesible; al cerrar, `git ls-remote --heads origin` no reportaba ninguna rama además de `main`, de modo que no hay otro acto en vuelo conocido que pueda tomar el número primero) · `ACTO GEN2-PRIMERA-SILLA`**, 9/sep/2026, entorno **NUBE, Opus, cero microdato** (`forense/encargos/2026-09-09-GEN2-PRIMERA-SILLA.md`, archivado verbatim, 0-bis; base `main = 8b9f9d4`). **`COMPUERTA: ninguna`. Dos firmas de mesa del 8/sep/2026 que el merge sella: FIRMA 1 (contador) y FIRMA 2 (adopción, condicionada a P1/P2 en verde).**
+
+**El programa adopta una cifra GEN2 por primera vez.** `ACTO GEN2-C0-B` (`ADR-423`) dejó la primera silla derivada, medida y **vacía**, por dos defectos de cableado que su perímetro no le permitía tocar. Este acto los repara y escribe la cita. Las cuatro piezas se ejecutaron.
+
+**P1 · `tolerancia_adopcion` — un campo que servía a dos preguntas, ahora son dos** (`NC-0069` → CERRADA, `FP-365` → EJECUTADA). `tolerancia.abs` contestaba a la vez «¿esta corrida se reproduce a sí misma?» (donde `1e-10` es correcto) y «¿el consumidor materializa este RESULT?» (donde el grano lo fija `milpa/`, en seis decimales). `tools/corrida0.py::_compara_adopcion` separa las dos, con tres modos: `tolerancia_adopcion` numérica declarada por la spec; `NO-APLICA`, que **es un valor** y exige la vara de reproducibilidad; y el defecto, que compara contra el RESULT **redondeado al grano del consumidor**. `_compara_result` y `verify` no cambiaron una línea: la reproducibilidad no se afloja un decimal. Falsadores sobre el caso MEDIDO de `C0-B` §5.4 y no sobre uno inventado — `0.045694` adopta (`delta = 9.956e-08`) y `0.045695` sigue fallando.
+
+**P2 · La llave del `WARN SELLADA-SIN-ADOPTAR`** (`NC-0068` → CERRADA, `FP-364` → EJECUTADA). `t35_repro` consultaba un `Counter` sobre `usos.resultado_id` (ids de DEMANDA) con un id de OFERTA; `C0-B` §5.3 midió la intersección de los dos espacios: **0**. Ahora la llave es `usos.corrida0_resultado_id`, y sólo cuenta con la cadena COMPLETA (uso activo + marca + `corrida0_generacion: GEN2`) — media cita no adopta. Control positivo corrido de verdad: revirtiendo *sólo* la llave, el falsador `T-SSA-LLAVE` falla con `antes=2 despues=2`, que es exactamente la tabla que `C0-B` predijo.
+
+**P3 · FIRMA 1, por vía directa y cero simulación** (`FP-366` → FIRMADA-EJECUTADA; `FP-362` → ABIERTA/FIRMADA-PARCIAL). Dos filas en `data/corrida0/decisiones.tsv` (`CALC-0003-v3` y `CALC-B-0001`, `cuenta_gen2=SI`; cuenta, no adopta, no compara con GEN1) y registro re-derivado. **`N_corridas_selladas` 3 → 5.** La cifra de resultados salió distinta de la que el encargo esperaba y **se pega explicada, no forzada**: `N_resultados_gen2_sellados` da **315** y no 301 porque la simulación de `C0-B` firmaba un solo CALC mientras FIRMA 1 firma dos, y porque `CALC-0003-v3` repite 128 de sus 142 ids de `v2` por cadena `repite_de` — aporta 14, no 142 (`211 + 90 + 14 = 315`). **Reserva que no se forzó** (`NC-0071`): FIRMA 1 nombra `v3` y no `v4`, y `v4` es el sello vigente, así que el contador cuenta hoy una corrida superada; firmar `v4` desde el acto habría sido inventar el objeto de una firma de mesa.
+
+**P4 · La cita — la primera silla queda ocupada** (`NC-0053` → CERRADA). Un consumidor, un campo, en la única ranura que el registro reconoce: `milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas` cita `RESULT-B-ENIGH-2022-P` con `corrida0_generacion: GEN2`. **El `p: 0.045694` no se movió** — sólo se declara de dónde viene; no se aflojó ninguna tolerancia, no se redondeó ningún RESULT y no se tocó ninguna spec congelada. Medido antes y después con lo demás idéntico: **`SELLADA-SIN-ADOPTAR` 443 → 442, exactamente uno, y con `0 FAIL` en `T35`**. Los dos hechos importan por separado: el `−1` es P2 funcionando y el `0 FAIL` es P1 funcionando. `N_resultados_gen2_adoptados_activos` **0 → 1** y `dependencias_numericas_legacy_activas` **205 → 204**.
+
+**La cifra del encargo era `211 → 210` y la real es `443 → 442`.** No es discrepancia de mecanismo sino de orden: P3 firma dos CALC antes de que P4 adopte, así que el universo del WARN sube antes de bajar. La resta es la misma y es 1.
+
+**Perímetro cumplido.** `tools/corrida0.py` (adopción) · `tests/check.py` (T35) · `tests/test_corrida0.py` (falsadores) · `data/corrida0/decisiones.tsv` + los TSV re-derivados · `milpa/tramite.yaml` (un consumidor, un campo) · `forense/{firmas-pendientes,no-corrido}.tsv` · nota · 0-bis · cascada. Nada fuera de ahí.
+
+**Suite.** Línea base al arrancar: `3 FAIL · 432 WARN`. Al cerrar: `3 FAIL · 660 WARN` — **los mismos tres FAIL de la línea base** (`T06` ×2, `T08` ×1: deuda de corpus preexistente, declarada desde `MAESTRA38-N4`, ninguna en el perímetro). El WARN se mueve por FIRMA 1 y no por defecto, y sólo en dos tests: `T-REPRO` 212 → 443 (la firma mete 232 renglones nuevos al universo de `SELLADA-SIN-ADOPTAR` y la adopción de P4 resta 1), que es literalmente lo que «cuenta, no adopta» significa, y `T22` 53 → 50 porque tres FP dejan de estar pendientes.
+
+**Lo que `C0-D` hereda.** El patrón de cita **probado punta a punta** (dos campos, copiables); las dos varas separadas y con nombre; y la constancia de que **la segunda silla necesita un CALC nuevo, no otra cita** (`NC-0072`) — los demás CALC producen deltas, marginales y veredictos, y ninguno es una probabilidad de conducta del motor.
 
 ---
 

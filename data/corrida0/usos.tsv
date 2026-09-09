@@ -34,7 +34,7 @@ RES-0031	milpa/tramite.yaml:dinero.ahorro.tiene_ahorros:tiene_ahorros_enif2024	c
 RES-0032	milpa/tramite.yaml:dinero.ahorro.tiene_ahorros:no_tiene_ahorros_enif2024	conducta_p_medido	SI	dinero.ahorro.tiene_ahorros	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
 RES-0033	milpa/tramite.yaml:familia.apoyo.recibe_dinero_familiares:recibe_dinero_familiares_para_vejez	conducta_p_medido	SI	familia.apoyo.recibe_dinero_familiares	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
 RES-0034	milpa/tramite.yaml:familia.apoyo.recibe_dinero_familiares:no_recibe_dinero_familiares_para_vejez	conducta_p_medido	SI	familia.apoyo.recibe_dinero_familiares	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
-RES-0035	milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas	conducta_p_medido	SI	familia.seguro.volatilidad_ausencia_estado	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
+RES-0035	milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas	conducta_p_medido	SI	familia.seguro.volatilidad_ausencia_estado	GEN2	GEN2	RESULT-B-ENIGH-2022-P	0.045694
 RES-0036	milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:no_recibe_remesas	conducta_p_medido	SI	familia.seguro.volatilidad_ausencia_estado	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
 RES-0037	milpa/tramite.yaml:dinero.planeacion.formal_estable:tiene_afore	conducta_p_medido	SI	dinero.planeacion.formal_estable	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
 RES-0038	milpa/tramite.yaml:dinero.planeacion.formal_estable:no_tiene_afore	conducta_p_medido	SI	dinero.planeacion.formal_estable	LEGACY-GEN1			NO-DECLARADO-EN-EL-REGISTRO
