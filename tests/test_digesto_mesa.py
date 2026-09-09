@@ -117,18 +117,19 @@ def t_ocho_casos_cola():
 
 
 # ───────────────────────────────────────────────────────────────
-# FP-362 -- la firma de v3 no cierra v4; el residual queda visible.
+# FP-362 -- el residual v4 se firmó (ACTO GEN2-FIRMAS-ADOPCION-1,
+# 9/sep/2026): la vista de mesa ya no debe pedir decisión sobre esto.
 # ───────────────────────────────────────────────────────────────
 
 def t_fp362_residual_v4():
     caso = "t_fp362_residual_v4"
     texto, _ = _mesa_texto(id_filtro="FP-362", tope_texto=0)
     _afirma("`FP-362`" in texto, caso, "FP-362 no aparece")
-    _afirma("Mesa decide" in texto, caso,
-           "FP-362 sigue ABIERTA en el tablero real -- debe pedir decisión, no "
-           "presentarse como resuelta")
     _afirma("v4" in texto, caso,
-           "el residual de v4 (no firmado) debe quedar visible en el texto citado")
+           "la resolución del residual de v4 debe quedar visible en el texto citado")
+    _afirma("FIRMADA" in texto, caso,
+           "FP-362 quedó FIRMADA (ambas mitades, v3 y v4, EJECUTADAS) -- ya no "
+           "debe presentarse como pendiente de decisión")
 
 
 # ───────────────────────────────────────────────────────────────
@@ -153,22 +154,25 @@ def t_d14_doc_vs_fila_sin_colision():
 
 # ───────────────────────────────────────────────────────────────
 # Glosa-vs-token: `ABIERTA -- ... EJECUTADA para una parte` sigue abierta.
+# FP-362 fue el ancla real hasta que ACTO GEN2-FIRMAS-ADOPCION-1 (9/sep/2026)
+# firmó su residual v4 y la glosa pasó a `FIRMADA` -- el defecto que este
+# falsador protege (que la máquina no lea el token por encima de la glosa
+# real) ya no tiene ancla viva en el árbol, así que el caso pasa a
+# sintético (excepción declarada en la cabecera del archivo: "salvo que
+# el caso lo exija").
 # ───────────────────────────────────────────────────────────────
 
 def t_glosa_vs_token_fp362():
     caso = "t_glosa_vs_token_fp362"
-    _, filas_fp, _ = D.EC.lee_tablero(str(RAIZ))
-    fila = next((f for f in filas_fp if f.get("id", "").strip() == "FP-362"), None)
-    _afirma(fila is not None, caso, "FP-362 no está en forense/firmas-pendientes.tsv")
-    if fila is not None:
-        _afirma(fila["estado"].startswith("ABIERTA"), caso,
-               f"FP-362 debería traer glosa ABIERTA -- ..., tiene {fila['estado']!r}")
-        _afirma("EJECUTADA" in fila["estado"], caso,
-               "FP-362 debería citar EJECUTADA en su glosa (para v3) sin dejar de "
-               "contar como ABIERTA")
-        _afirma(D.EC.es_abierta(fila["estado"]), caso,
-               "es_abierta() debe seguir leyendo FP-362 como ABIERTA pese a la glosa "
-               "EJECUTADA -- defecto real que el falsador protege")
+    glosa_sintetica = "ABIERTA -- FIRMADA-PARCIAL -- EJECUTADA para v3, ABIERTA para v4."
+    _afirma(glosa_sintetica.startswith("ABIERTA"), caso,
+           f"fixture mal formado -- debería empezar con ABIERTA, es {glosa_sintetica!r}")
+    _afirma("EJECUTADA" in glosa_sintetica, caso,
+           "fixture mal formado -- debería citar EJECUTADA en la glosa")
+    _afirma(D.EC.es_abierta(glosa_sintetica), caso,
+           "es_abierta() debe leer una glosa `ABIERTA -- ... EJECUTADA para una "
+           "parte` como ABIERTA -- defecto real que el falsador protege, hoy sin "
+           "ancla viva porque FP-362 ya se firmó por completo")
 
 
 # ───────────────────────────────────────────────────────────────
