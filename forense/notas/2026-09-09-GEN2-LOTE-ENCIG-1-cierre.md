@@ -143,7 +143,7 @@ Las tres reglas de este acto están medidas y selladas en `milpa/tramite.yaml`, 
 
 `cuenta_gen2` de `CALC-ENCIG-0001` queda en **`SI`**. A diferencia del lote ENVIPE, la firma que ordena este lote **sí tiene como objeto el contador**: el encargo trae, verbatim, *«cuenta_gen2 = SI para el CALC que este acto selle»*. Estándar `FP-367/368` satisfecho (autoridad + fecha + **OBJETO**). El merge de mesa la perfecciona.
 
-**ADENDA (5) · asiento `NC-0097`:** se escriben además las tres filas de `cuenta_gen2=SI` de los `CALC-R` del CSV (`M-10`/`-12`/`-13`) citando la firma embebida en el encargo del `ACTO GEN2-R-SERIE-CSV` y su merge (`PR #657`) — **asiento, no re-firma**. Consecuencia mecánica que la propia fila `NC-0097` predijo y que aquí se verifica: `motivo_cuenta_gen2` de los tres pasa de *«etiqueta de la spec»* a *«decisión de mesa (`decisiones.tsv`)»*, así que las vistas se re-derivaron **después** de escribir `decisiones.tsv`. `NC-0097` **CIERRA**. `NC-0103` (trío DBF) **no** es de este acto y sigue abierta.
+**ADENDA (5) · asiento `NC-0097`:** se escriben además las tres filas de `cuenta_gen2=SI` de los `CALC-R` del CSV (`CALC-R-CIV-M-10`, `CALC-R-CIV-M-12`, `CALC-R-CIV-M-13`) citando la firma embebida en el encargo del `ACTO GEN2-R-SERIE-CSV` y su merge (`PR #657`) — **asiento, no re-firma**. Consecuencia mecánica que la propia fila `NC-0097` predijo y que aquí se verifica: `motivo_cuenta_gen2` de los tres pasa de *«etiqueta de la spec»* a *«decisión de mesa (`decisiones.tsv`)»*, así que las vistas se re-derivaron **después** de escribir `decisiones.tsv`. `NC-0097` **CIERRA**. `NC-0103` (trío DBF) **no** es de este acto y sigue abierta.
 
 ## 8 · A.13 — qué se examinó
 
