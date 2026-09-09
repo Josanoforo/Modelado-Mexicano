@@ -712,7 +712,30 @@ def _verifica_grafo(filas: list[dict]) -> None:
         visita(fila["resultado_id"], [])
 
 
-def _instrumento(fila: dict, crudo_tramite, marco_por_consumidor) -> str:
+_RE_INSTRUMENTO = re.compile(r"[A-Z][A-Z0-9]{2,}[0-9]{4}")
+_RE_PROGRAMA_ANIO = re.compile(r"/programas/([a-z0-9]+)/([0-9]{4})/", re.IGNORECASE)
+
+
+def _instrumento_de_payload(payload_id: str, manifiesto_por_id: dict) -> str:
+    """ACTO GEN2-PREP-LOTE · P1: el PAYLOAD que la conducta declara (o
+    hereda por enmienda, `payload_ids_legacy` -- ya resuelto por conducta en
+    `_consumidores_conductas`) trae su programa/año en `url_origen` del
+    manifiesto; leerlo ahi es leer el dato, no el nombre historico de la
+    regla. Los sufijos de nombre de conducta (`_encig2025`,
+    `_encuci2020`) son pista para detectar discrepancia, nunca autoridad
+    para corregir esto -- no se leen aqui.
+    Ver forense/notas/2026-09-09-identidad-encig-corr-0002-0003.md."""
+    entrada = manifiesto_por_id.get(payload_id)
+    if not isinstance(entrada, dict):
+        return NO_DECLARADO
+    m = _RE_PROGRAMA_ANIO.search(str(entrada.get("url_origen") or ""))
+    if not m:
+        return NO_DECLARADO
+    return f"{m.group(1).upper()}{m.group(2)}"
+
+
+def _instrumento(fila: dict, crudo_tramite, marco_por_consumidor,
+                  manifiesto_por_id: dict = None, ambiguas: list = None) -> str:
     # ACTO GEN2-T9: un momento del catalogo declara su propio universo de
     # instrumento; es lo que agrupa su corrida.
     if fila["tipo"] == "momento":
@@ -721,13 +744,36 @@ def _instrumento(fila: dict, crudo_tramite, marco_por_consumidor) -> str:
         return marco_por_consumidor.get(fila["consumidor"].split(":")[1],
                                         NO_DECLARADO)
     if fila["tipo"].startswith("conducta_"):
+        # ACTO GEN2-PREP-LOTE · P1: identidad por CONSUMIDOR. Primero se
+        # intenta el payload propio de ESTA conducta (correcto incluso
+        # cuando la regla mezcla instrumentos entre sus conductas); el
+        # `fuente:` de la regla es solo respaldo para conductas ASIGNADAS
+        # sin payload propio -- nunca autoridad sobre una conducta MEDIDA.
+        payload = fila.get("payload_ids_legacy", NO_DECLARADO)
+        if manifiesto_por_id and _es_id_payload(payload):
+            de_payload = _instrumento_de_payload(payload, manifiesto_por_id)
+            if de_payload != NO_DECLARADO:
+                return de_payload
         rid = fila["consumidor"].split(":")[1]
         for r in crudo_tramite["reglas"]:
             if r["id"] == rid:
                 fuentes = [str(f) for f in (r.get("fuente") or [])]
-                for f in fuentes:
-                    if re.fullmatch(r"[A-Z][A-Z0-9]{2,}[0-9]{4}", f):
-                        return f
+                candidatos = [f for f in fuentes if _RE_INSTRUMENTO.fullmatch(f)]
+                if len(candidatos) > 1:
+                    # Ambigüedad sin correspondencia inequívoca: no se
+                    # resuelve por "la primera que calce" -- se declara.
+                    if ambiguas is not None:
+                        ambiguas.append(
+                            f"{fila.get('resultado_id', '?')} "
+                            f"({fila['consumidor']}): conducta sin payload "
+                            f"propio y la regla '{rid}' declara "
+                            f"{len(candidatos)} fuentes con forma de "
+                            f"instrumento ({candidatos}) -- cual le "
+                            f"corresponde a esta conducta no lo decide el "
+                            f"registro")
+                    return "AMBIGUA"
+                if candidatos:
+                    return candidatos[0]
                 return fuentes[0] if fuentes else NO_DECLARADO
     return NO_DECLARADO
 
@@ -753,12 +799,14 @@ def _peor(recetas: list[str]) -> str:
     return max(recetas, key=lambda r: (PEOR_RECETA[r.split(":")[0]], r))
 
 
-def _corridas(filas: list[dict], crudo_tramite, marco_por_consumidor) -> list[dict]:
+def _corridas(filas: list[dict], crudo_tramite, marco_por_consumidor,
+              manifiesto_por_id: dict = None, ambiguas: list = None) -> list[dict]:
     grupos: dict[tuple, list[dict]] = {}
     orden: list[tuple] = []
     for fila in filas:
         clave = (ORDEN_CAUSAL[fila["tipo"]],
-                 _instrumento(fila, crudo_tramite, marco_por_consumidor),
+                 _instrumento(fila, crudo_tramite, marco_por_consumidor,
+                              manifiesto_por_id, ambiguas),
                  fila["payload_ids_legacy"],
                  fila["spec_legacy"],
                  fila["script_legacy"])
@@ -866,10 +914,11 @@ def cmd_demanda(args) -> int:
 
     _verifica_grafo(filas)
 
-    ids_manifiesto = {e.get("id") for e in
-                      yaml.safe_load((RAIZ / "data" / "manifiesto.yaml")
-                                     .read_text(encoding="utf-8"))
-                      if isinstance(e, dict)}
+    manifiesto_por_id = {e.get("id"): e for e in
+                         yaml.safe_load((RAIZ / "data" / "manifiesto.yaml")
+                                        .read_text(encoding="utf-8"))
+                         if isinstance(e, dict)}
+    ids_manifiesto = set(manifiesto_por_id)
     for fila in filas:
         valor = fila["payload_ids_legacy"]
         if valor == NO_DECLARADO:
@@ -904,7 +953,8 @@ def cmd_demanda(args) -> int:
 
     marco_por_consumidor = {
         c["id"]: f"{c['encuesta']} {c['ola']}" for c in _leer_tsv(MARCO_VIGENTE)}
-    corridas = _corridas(filas, crudo_tramite, marco_por_consumidor)
+    corridas = _corridas(filas, crudo_tramite, marco_por_consumidor,
+                         manifiesto_por_id, ambiguas)
 
     _escribe(SALIDA / "demanda-resultados.tsv", COLS_RESULTADOS, filas)
     _escribe(SALIDA / "demanda-corridas.tsv", COLS_CORRIDAS, corridas)

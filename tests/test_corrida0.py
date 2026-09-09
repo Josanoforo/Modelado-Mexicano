@@ -1718,98 +1718,109 @@ def t_status_puro_y_registro_seco_no_escriben():
             C.VISTA_CORRIDAS, C.VISTA_RESULTADOS, C.VISTA_USOS = previos
 
 
+_FIRMAS_GEN2_SELLADAS_CONOCIDAS = {
+    "CALC-0001", "CALC-0002", "CALC-0003-v2", "CALC-0003-v3", "CALC-0003-v4",
+    "CALC-B-0001", "CALC-C0D-MARCADOR-v3", "CALC-ENVIPE-0001",
+    "CALC-R-CIV-M-01", "CALC-R-CIV-M-02", "CALC-R-CIV-M-04",
+    "CALC-R-CIV-M-10", "CALC-R-CIV-M-12", "CALC-R-CIV-M-13",
+}
+
+
 def t_status_arbol_real_no_cuenta_smokes():
-    """T-STATUS-SMOKES. Sobre el arbol DE VERDAD: los dos replays sellados
-    existen y estan contados aparte -- nunca suben una unidad de GEN2, con
-    firma de mesa o sin ella (eso es lo que este falsador vigila; no que el
-    contador GEN2 se quede en cero). Premisa actualizada por
-    `ACTO GEN2-FIRMA-CONTADOR` (8/sep/2026, NC-0053): antes de la firma de
-    mesa en `data/corrida0/decisiones.tsv`, `0/0` era la cifra correcta;
-    desde esa firma (`CALC-0001`, `CALC-0002`, `CALC-0003-v2`,
-    `cuenta_gen2=SI`), la cifra correcta es `3/211` (83+128 RESULT
-    sellados), y los replays LEGACY siguen sin contar ni una unidad de eso.
-
-    Premisa actualizada por `ACTO GEN2-PRIMERA-SILLA` (8/sep/2026): FIRMA 1
-    de mesa agrega `CALC-0003-v3` y `CALC-B-0001` a `decisiones.tsv`, asi que
-    la cifra correcta pasa a `5` corridas; y P4 escribe la PRIMERA adopcion
-    real, asi que `N_resultados_activos == dependencias_legacy` deja de ser
-    cierto -- es justo lo que la adopcion significa.
-
-    Premisa actualizada de nuevo por `FIRMA DE CONTADOR` (mesa, 9/sep/2026,
-    citada en `data/corrida0/decisiones.tsv`): OBJETO 1 `cuenta_gen2=SI`
-    para `CALC-C0D-MARCADOR-v3` (resuelve FP-368, absorbe FP-367 por objeto
-    superado) y OBJETO 2 `cuenta_gen2=SI` para `CALC-ENVIPE-0001` (resuelve
-    la fila FP que faltaba, FP-369). Dos corridas mas selladas cuentan:
-    `5 -> 7`. `CALC-C0D-MARCADOR-v3` sella 162 RESULT y `CALC-ENVIPE-0001`
-    sella 39 -- `443+162+39 = 644` y `315+162+39 = 516`. Ninguno de los dos
-    es un replay LEGACY (`envuelto_legacy` de C0D-MARCADOR-v3 sigue `SI`
-    por la regla E.1, pero eso no lo cuenta aqui como replay -- es una
-    corrida OFERTA con `cuenta_gen2=SI` propia). Lo que este falsador
-    vigila NO cambia: que los replays LEGACY no suban ni una unidad de GEN2,
-    y que la firma no se pierda en un merge.
-
-    Premisa actualizada por `ACTO GEN2-R-SERIE-CSV` (9/sep/2026, `ADR-433`):
-    tres arbitros R sellados con `cuenta_gen2=SI` por firma de mesa con
-    OBJETO dentro del encargo (estandar FP-367/368), citada verbatim en
-    `etiquetas.cuenta_gen2_firma` de cada `spec.yaml` -- `CALC-R-CIV-M-10`,
-    `CALC-R-CIV-M-12`, `CALC-R-CIV-M-13`, 38 RESULT propios cada una
-    (ninguno `repite_de` otra corrida): `8 -> 11` corridas, `787+114 = 901`
-    y `517+114 = 631`. Ninguno es replay LEGACY. La adopcion NO se mueve
-    (`2`): que R consume el duelo lo decide mesa por lote en F3 (`NC-0092`),
-    y `usos.tsv` quedo identico al de `origin/main` -- que es justo lo que
-    este falsador debe seguir viendo."""
+    """T-STATUS-SMOKES (reducido, P2(a) ACTO GEN2-PREP-LOTE, 9/sep/2026).
+    Los conteos EXACTOS de `status()` sobre el arbol de verdad migraron a
+    `T-STATUS-FIXTURE` -- un fixture chico con conteos calculables a mano.
+    Este test cargaba `==11`/`==901`/`==631`/`==2` reescritos cinco veces
+    en cinco lotes seguidos (`#636`/`#647`/`#655`/`#656`/`#657`): un lote
+    legitimo que sella una corrida GEN2 mas rompia el test sin que el
+    codigo tuviera ningun defecto. Sobre el ARBOL DE VERDAD, lo que sigue
+    vigilando:
+      (a) INTEGRIDAD -- los agregados de `status()` coinciden con un
+          recuento independiente (no comparten la funcion que se prueba);
+      (b) PRESENCIA -- las firmas de mesa ya conocidas
+          (`_FIRMAS_GEN2_SELLADAS_CONOCIDAS`) siguen selladas y contando
+          como GEN2 -- si una desaparece del registro, este test la nota;
+      (c) los replays LEGACY nunca suben una unidad de GEN2, con firma de
+          mesa o sin ella.
+    Criterio de salida (P2, el encargo): el crecimiento legitimo del
+    siguiente lote (una firma NUEVA que se agrega a la lista) no exige
+    tocar los asserts de abajo -- solo agregar su id a la lista de
+    conocidas, y solo si dirección quiere que este test la vigile."""
     caso = "T-STATUS-SMOKES"
     c = C.status(imprime=False)
+    v = C._filas_registro(verifica=False)
+    corridas = v["corridas"]
+    sellada = lambda f: str(f["estado"]).startswith(("SELLADA", "SUPERADO"))
+    selladas_gen2 = [f for f in corridas if f["origen"] == "OFERTA"
+                     and f["cuenta_gen2"] == "SI" and sellada(f)]
+    _afirma(c["N_corridas_selladas"] == len(selladas_gen2), caso,
+            f"N_corridas_selladas={c['N_corridas_selladas']} no coincide con "
+            f"el recuento independiente sobre `_filas_registro()` "
+            f"({len(selladas_gen2)})")
+    prefijos_presentes = {f["corrida_id"].split("--")[0] for f in selladas_gen2}
+    faltantes = _FIRMAS_GEN2_SELLADAS_CONOCIDAS - prefijos_presentes
+    _afirma(not faltantes, caso,
+            f"firmas de mesa ya conocidas que desaparecieron del registro "
+            f"sellado GEN2: {sorted(faltantes)}")
     _afirma(c["replays_legacy_sellados"] >= 2, caso,
             f"replays sellados={c['replays_legacy_sellados']} (se esperaban >=2)")
-    # ACTO GEN2-FIRMAS-ADOPCION-1 (9/sep/2026): OBJETO 3 de la misma FIRMA DE
-    # MESA firma cuenta_gen2=SI para CALC-0003-v4 (resuelve FP-362), con
-    # CALC-0003-v3 quedando SUPERADO->v4. v4 aporta su propia corrida
-    # sellada -- 7 -> 8 -- sin quitarle su lugar a C0D-MARCADOR-v3/ENVIPE-0001.
-    # ACTO GEN2-R-SERIE-DBF (9/sep/2026): el trio VIEJO (CALC-R-CIV-M-01/-02/-04,
-    # olas 2012/2013/2015 en DBF) aporta tres corridas selladas mas -- 11 -> 14.
-    _afirma(c["N_corridas_selladas"] == 14, caso,
-            f"N_corridas_selladas={c['N_corridas_selladas']}, esperado 14: los 8 de "
-            f"OBJETO 3 de la FIRMA DE MESA 9/sep/2026 (CALC-0003-v4, resuelve FP-362), "
-            f"mas los tres CALC-R de ACTO GEN2-R-SERIE-CSV (trio moderno), mas los tres "
-            f"de ACTO GEN2-R-SERIE-DBF (trio viejo) -- si es 11, la firma del trio DBF "
-            f"se perdio; si es >14, un replay GEN1 conto como GEN2")
-    # CALC-0003-v4 sella 143 RESULT propios (no se resta lo de v3: v3 pasa a
-    # SUPERADO pero sus 142 RESULT no estaban en el 644 previo -- solo
-    # contaban los de v2/v3 vigentes al momento de cada firma).
-    _afirma(c["N_resultados_sellados"] == 1021, caso,
-            f"N_resultados_sellados={c['N_resultados_sellados']}, esperado 1021 "
-            f"(787 previos + 3 x 38 de los CALC-R de ACTO GEN2-R-SERIE-CSV + 3 x 40 de "
-            f"los de ACTO GEN2-R-SERIE-DBF) -- el trio DBF emite 40 y no 38 porque "
-            f"anade PERFIL-DBF y PERFIL-BPCOD, y renombra N-BPCOD-01-04/05-15 a "
-            f"N-BPCOD-HOGAR/PERSONALES porque en 2012 el catalogo va corrido -- si es "
-            f"901, la firma del trio DBF se perdio; si es >1021, un replay GEN1 conto "
-            f"como GEN2")
-    # Ids UNICOS, que es otra pregunta: v3 (CALC-0003) repite 128 de los 142
-    # ids de v2 por cadena `repite_de`, asi que aporta 14 nuevos, no 142.
-    # 211+90+14 = 315. La FIRMA DE CONTADOR de 9/sep/2026 suma las 162+39
-    # ids propias de CALC-C0D-MARCADOR-v3/CALC-ENVIPE-0001: 315+162+39=516.
-    # v4 repite casi todos los ids de la cadena v2->v3 y aporta 1 solo nuevo
-    # (medido en FP-362: "v4 aportaria 1 mas" sobre el conjunto ya contado).
-    _afirma(c["N_resultados_gen2_sellados"] == 751, caso,
-            f"N_resultados_gen2_sellados={c['N_resultados_gen2_sellados']}, esperado "
-            f"751 (517 previos + 3 x 38 ids propios del trio CSV + 3 x 40 del trio DBF; "
-            f"ninguno repite_de otra corrida, y los ids del trio DBF son de otras "
-            f"celdas -- CIV-M-01/-02/-04 frente a CIV-M-10/-12/-13) -- si sale 631, la "
-            f"firma del trio DBF se perdio")
-    # E.2: la primera silla esta ocupada, y NC-0084 (ACTO GEN2-FIRMAS-ADOPCION-1,
-    # 9/sep/2026) es la SEGUNDA adopcion real: milpa/tramite.yaml:583 cita
-    # RESULT-ENVIPE-DEN-P-C2-U4. `dependencias_legacy` baja una unidad mas.
-    _afirma(c["N_resultados_gen2_adoptados_activos"] == 2, caso,
+
+
+def t_status_fixture_computable():
+    """T-STATUS-FIXTURE (P2(a) ACTO GEN2-PREP-LOTE, 9/sep/2026). Los
+    conteos EXACTOS de `status()`, sobre un fixture chico y aislado --
+    SIN CORPUS, sin tocar `data/corrida0/` real -- con cada contribucion
+    calculable a mano: un replay LEGACY (nunca cuenta GEN2), una corrida
+    GEN2 autorizada, su sucesora por `repite_de` (repite un id, aporta uno
+    nuevo -- prueba que los ids UNICOS no se cuentan dos veces aunque el
+    RESULT si), y un consumidor GEN2 activo que adopta uno de los RESULT
+    sellados. Prohibido generar el valor esperado con la misma funcion que
+    se prueba: los numeros de abajo se derivan a mano del fixture, no de
+    `status()`."""
+    caso = "T-STATUS-FIXTURE"
+    calcs = [
+        {"calc_id": "CALC-FIX-LEGACY", "valores": {"RESULT-L1": 0.1},
+         "etiquetas": {"generacion": "LEGACY-GEN1", "cuenta_gen2": "NO"}},
+        {"calc_id": "CALC-FIX-AUTORIZADA",
+         "valores": {"RESULT-A1": 0.2, "RESULT-A2": 0.3},
+         "etiquetas": {"generacion": "GEN2", "cuenta_gen2": "SI"}},
+        {"calc_id": "CALC-FIX-SUCESORA",
+         "valores": {"RESULT-A1": 0.2, "RESULT-A3": 0.4},
+         "etiquetas": {"generacion": "GEN2", "cuenta_gen2": "SI"},
+         "repite_de": "CALC-FIX-AUTORIZADA"},
+    ]
+    tramite = {"reglas": [{"id": "r.uno", "entonces": [
+        {"conducta": "c1", "p": 0.2, "corrida0_generacion": "GEN2",
+         "corrida0_resultado_id": "RESULT-A1"}]}]}
+    with _arbol_registro(calcs=calcs, tramite=tramite):
+        consumidor = f"{C._rel(C.TRAMITE)}:r.uno:c1"
+        res = [_fila_demanda("RES-0001", consumidor, "CORR-0001")]
+        corr = [_fila_corrida("CORR-0001", ["RES-0001"])]
+        C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS, res)
+        C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS, corr)
+        c = C.status(imprime=False)
+    _afirma(c["N_corridas_selladas"] == 2, caso,
+            f"N_corridas_selladas={c['N_corridas_selladas']}, esperado 2 "
+            f"(autorizada + sucesora -- la autorizada queda SUPERADO pero "
+            f"`sellada()` cuenta SELLADA y SUPERADO igual)")
+    _afirma(c["N_resultados_sellados"] == 4, caso,
+            f"N_resultados_sellados={c['N_resultados_sellados']}, esperado 4 "
+            f"(2 de la autorizada + 2 de la sucesora -- RESULT-A1 se repite "
+            f"por la cadena `repite_de`, y este contador SI cuenta RESULT, "
+            f"no ids unicos)")
+    _afirma(c["N_resultados_gen2_sellados"] == 3, caso,
+            f"N_resultados_gen2_sellados={c['N_resultados_gen2_sellados']}, "
+            f"esperado 3 ids UNICOS (RESULT-A1/A2/A3) -- si sale 4, un "
+            f"RESULT repetido por `repite_de` se esta contando dos veces "
+            f"como si fuera un dato nuevo")
+    _afirma(c["N_resultados_gen2_adoptados_activos"] == 1, caso,
             f"N_resultados_gen2_adoptados_activos="
-            f"{c['N_resultados_gen2_adoptados_activos']}, esperado 2: la cita de "
-            f"ACTO GEN2-PRIMERA-SILLA P4 (RESULT-B-ENIGH-2022-P) mas la de NC-0084 "
-            f"(RESULT-ENVIPE-DEN-P-C2-U4) se perdio")
-    _afirma(c["dependencias_numericas_legacy_activas"]
-            == c["N_resultados_activos"] - 2, caso,
-            f"dependencias_legacy={c['dependencias_numericas_legacy_activas']} sobre "
-            f"{c['N_resultados_activos']} activos: las dos adopciones (NC-0053, "
-            f"NC-0084) tienen que bajar exactamente 2 (E.2)")
+            f"{c['N_resultados_gen2_adoptados_activos']}, esperado 1: el "
+            f"consumidor GEN2 que cita RESULT-A1")
+    _afirma(c["replays_legacy_sellados"] == 1, caso,
+            f"replays_legacy_sellados={c['replays_legacy_sellados']}, "
+            f"esperado 1 -- el replay LEGACY no debe subir ni "
+            f"N_corridas_selladas ni N_resultados_gen2_sellados")
 
 
 def t_repro_atrapa_valor_movido():
@@ -2548,6 +2559,92 @@ def t_replay_f_caso_23_filas_defecto_y_proteccion():
             C._para_si_pisa_replay(reparado, set())
         except C.ReplayPisado as exc:
             _falla(caso, f"con la evidencia conservada aun paro: {exc}")
+
+
+def _fila_conducta(rid: str, regla_id: str, conducta: str, payload: str) -> dict:
+    fila = {c: C.NO_DECLARADO for c in C.COLS_RESULTADOS}
+    fila.update({
+        "resultado_id": rid,
+        "consumidor": f"milpa/tramite.yaml:{regla_id}:{conducta}",
+        "tipo": "conducta_p_medido",
+        "payload_ids_legacy": payload,
+    })
+    return fila
+
+
+_MANIFIESTO_FIXTURE = {
+    "payload_encig2025": {
+        "url_origen": "https://www.inegi.org.mx/contenidos/programas/encig/2025/microdatos/x.zip"},
+    "payload_encuci2020": {
+        "url_origen": "https://www.inegi.org.mx/contenidos/programas/encuci/2020/microdatos/y.zip"},
+}
+
+
+def t_instrumento_no_agrupa_por_sufijo_de_regla():
+    """P1 · GEN2-PREP-LOTE. Una regla con conductas medidas en dos
+    instrumentos distintos (`_encig2025`, `_encuci2020`) no se agrupa bajo
+    el `fuente:` viejo de la regla (`ENCIG2023`): cada conducta resuelve su
+    propio instrumento por el payload que declara."""
+    caso = "T-INSTRUMENTO-NO-AGRUPA-POR-REGLA"
+    crudo_tramite = {"reglas": [{
+        "id": "r.mixta", "fuente": ["ENCIG2023", "Rothstein_trampa_social"]}]}
+    f_encig = _fila_conducta("RES-0001", "r.mixta", "c_encig2025", "payload_encig2025")
+    f_encuci = _fila_conducta("RES-0002", "r.mixta", "c_encuci2020", "payload_encuci2020")
+    i_encig = C._instrumento(f_encig, crudo_tramite, {}, _MANIFIESTO_FIXTURE)
+    i_encuci = C._instrumento(f_encuci, crudo_tramite, {}, _MANIFIESTO_FIXTURE)
+    _afirma(i_encig == "ENCIG2025", caso,
+            f"conducta con payload ENCIG 2025 resolvio '{i_encig}', no ENCIG2025")
+    _afirma(i_encuci == "ENCUCI2020", caso,
+            f"conducta con payload ENCUCI 2020 resolvio '{i_encuci}', no ENCUCI2020")
+    _afirma(i_encig != i_encuci, caso,
+            "las dos conductas de la misma regla, medidas en instrumentos "
+            "distintos, no pueden compartir corrida")
+    _afirma("ENCIG2023" not in (i_encig, i_encuci), caso,
+            f"el `fuente:` viejo de la regla ('ENCIG2023') se coló en la "
+            f"identidad resuelta ({i_encig}, {i_encuci})")
+
+
+def t_instrumento_orden_de_fuente_no_cambia_identidad():
+    """P1 · invertir el orden de `fuente:` en la regla no cambia la
+    identidad resuelta -- el payload de la conducta manda, no la posicion
+    en la lista."""
+    caso = "T-INSTRUMENTO-ORDEN-NO-IMPORTA"
+    f = _fila_conducta("RES-0001", "r.mixta", "c_encig2025", "payload_encig2025")
+    for fuente in (["ENCIG2023", "Rothstein_trampa_social"],
+                   ["Rothstein_trampa_social", "ENCIG2023"]):
+        crudo_tramite = {"reglas": [{"id": "r.mixta", "fuente": fuente}]}
+        i = C._instrumento(f, crudo_tramite, {}, _MANIFIESTO_FIXTURE)
+        _afirma(i == "ENCIG2025", caso,
+                f"con fuente={fuente} resolvio '{i}', no ENCIG2025 -- el "
+                f"orden de la lista no deberia importar cuando hay payload")
+
+
+def t_instrumento_fuente_ambigua_no_resuelve_por_primera():
+    """P1 · sin payload propio, y con mas de una fuente con forma de
+    instrumento en la regla, la corrida se etiqueta AMBIGUA y se declara --
+    nunca se resuelve tomando la primera en silencio."""
+    caso = "T-INSTRUMENTO-AMBIGUA-NO-PRIMERA"
+    crudo_tramite = {"reglas": [{
+        "id": "r.ambigua", "fuente": ["ENIGH2022", "ENIGH2012"]}]}
+    f = _fila_conducta("RES-0001", "r.ambigua", "c_asignada", C.NO_DECLARADO)
+    ambiguas = []
+    i = C._instrumento(f, crudo_tramite, {}, {}, ambiguas)
+    _afirma(i == "AMBIGUA", caso,
+            f"con dos fuentes con forma de instrumento y sin payload "
+            f"propio, resolvio '{i}' -- no deberia tomar 'la primera' "
+            f"({crudo_tramite['reglas'][0]['fuente'][0]}) en silencio")
+    _afirma(len(ambiguas) == 1 and "ENIGH2022" in ambiguas[0]
+            and "ENIGH2012" in ambiguas[0], caso,
+            f"la ambigüedad no quedo declarada en la lista: {ambiguas}")
+    # Independiente: una conducta SIN relacion con la ambigua sigue
+    # resolviendo normal -- la apertura ambigua se detiene, las demas no.
+    f_independiente = _fila_conducta(
+        "RES-0002", "r.mixta", "c_encig2025", "payload_encig2025")
+    crudo_ambas = {"reglas": crudo_tramite["reglas"] + [
+        {"id": "r.mixta", "fuente": ["ENCIG2023"]}]}
+    i2 = C._instrumento(f_independiente, crudo_ambas, {}, _MANIFIESTO_FIXTURE, [])
+    _afirma(i2 == "ENCIG2025", caso,
+            f"una apertura AMBIGUA detuvo a una independiente: {i2}")
 
 
 TESTS = [v for k, v in sorted(globals().items()) if k.startswith("t_")]
