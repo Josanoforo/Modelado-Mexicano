@@ -294,3 +294,33 @@ fila `NC` de este acto con sucesor nombrado; este acto **no repara
 **Cierra este PR:** `NC-0097` (asiento de las tres filas de `cuenta_gen2=SI` de los `CALC-R` del CSV en `decisiones.tsv`, ADENDA 5). `NC-0103` (trío DBF) **no** es de este acto y sigue abierta.
 
 **Piezas del encargo NO ejecutadas:** `P0` — `SUSTITUIDO-POR: ACTO GEN2-PREP-LOTE` (`PR #662`), por ADENDA (2). Absorbe la corrección de `_instrumento()` y la re-derivación de identidad **completas**; **nada queda huérfano** de esa pieza. `CORR-0001` (ENCIG2023, 4 `RESULT`) queda fuera por instrucción explícita de la ADENDA (3): ni se mide ni se declara.
+
+---
+
+## CONSUMIDO
+
+`ACTO GEN2-LOTE-ENCIG-1` cierra con **`PR #664`**
+(`https://github.com/Josanoforo/Modelado-Mexicano/pull/664`), rama
+`acto/gen2-lote-encig-1`, contra `origin/main = b984531` (`PR #663`).
+
+**Lo que entregó:** la spec sellada `prereg-caja-ENCIG-MORDIDA` v1.0
+(`forense/prereg-caja/ENCIG-MORDIDA-spec-v1_0.md`, `sha 00c7c4a6…`), congelada
+antes de abrir un byte de microdato; la corrida `data/corrida0/CALC-ENCIG-0001/`
+(108 `RESULT`, `PRE-FLIGHT VERDE` → `verify: REPRODUCE` 108/108,
+`CONTEXTO=IDENTICO`, `cuenta_gen2 = SI`); control positivo contra GEN1
+**`REPRODUCE-4/6`**; y —por primera vez en la cartera F4→F3— el **ciclo entero**:
+cuatro citas `corrida0_resultado_id` + `corrida0_generacion: GEN2` escritas en
+`milpa/tramite.yaml` con los doce `p` **intactos**, sonda de consumo del emisor
+**4/4** en solo lectura, `adoptados_activos` **2 → 6** y `dependencias_legacy`
+**203 → 199**.
+
+**Cascada:** `ADR-438` · `L0` recifrado · tres contadores reconciliados con
+`tools/cierre_acto.py --aplica` · rótulo `LOTE / GEN2-LOTE-ENCIG-1` censado en
+`canon/registro-rotulos.tsv` · `tests/check.py --baseline` **VERDE** ·
+`NC-0097` **CERRADA** · `NC-0107`…`NC-0113` abiertas con sucesor ·
+nota de cierre en `forense/notas/2026-09-09-GEN2-LOTE-ENCIG-1-cierre.md`.
+
+**Sucesor:** `GEN2-LOTE-ENIF-1`, gateado al merge de este PR.
+
+**El merge de mesa es la firma** — de la adopción (E.2) y del contador
+(`cuenta_gen2 = SI`, con OBJETO explícito en el propio encargo).
