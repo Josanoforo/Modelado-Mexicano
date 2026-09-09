@@ -265,3 +265,50 @@ vigente `RES-0039`…`RES-0042` son de **`CORR-0007`**, y `CORR-0009` es
 ENIF2024. Es una referencia cruzada equivocada en una spec ya fusionada.
 **No se editó** (spec sellada, fuera del perímetro de este acto). Va a
 `## NO-CORRIDO` con sucesor.
+
+---
+
+## 11 · `ya_medido.py` (A.8, `ADR-340`) — salida cruda, y un falso negativo más
+
+El encargo archivado es **verbatim** y no se edita para complacer un test
+(misma regla que rige `T25`), así que la salida vive aquí. `T-YAMEDIDO`
+registra la exención en `_T_YAMEDIDO_ARCHIVOS_CONOCIDOS` con esta razón.
+
+```
+$ python3 tools/ya_medido.py dinero.ahorro.horizonte_corto
+  milpa/tramite.yaml:1025  situacion=ingreso_sin_seguridad_social tier=FUERTE p=0.330600
+      id: dinero.ahorro.horizonte_corto
+  MEDIDA-EN: L7
+
+$ python3 tools/ya_medido.py dinero.ahorro.horizonte_no_corto_con_seguridad_social
+  milpa/tramite.yaml:1049  situacion=ingreso_con_seguridad_social tier=FUERTE p=0.173400
+      id: dinero.ahorro.horizonte_no_corto_con_seguridad_social
+  NUNCA-MEDIDA          <-- FALSO NEGATIVO
+
+$ python3 tools/ya_medido.py dinero.ahorro.via_informal
+  MEDIDA-EN: MAESTRA38-SELLO-3
+
+$ python3 tools/ya_medido.py dinero.ahorro.seguro_deposito_enif2024
+  milpa/tramite.yaml:1190  situacion=SELLADA tier=FUERTE veredicto=veredicto_Bbis=NO-DISCRIMINA p=0.060780
+      id: dinero.ahorro.seguro_deposito_enif2024
+  MEDIDA-EN: MAESTRA38-SELLO-3, canon§7, tramite-ola5-propuesta-v0.yaml
+```
+
+**El segundo es un falso negativo verificado.** `ya_medido.py` devuelve
+`NUNCA-MEDIDA` para una regla que **está medida y sellada** en
+`milpa/tramite.yaml:1049`, `tier=FUERTE`, `p=0.173400` — y la **propia sección
+de listado de la herramienta la imprime ahí, en la línea anterior a su
+veredicto**. Es el defecto que `ACTO GEN2-LOTE-ENCIG-1` (`ADR-438`) diagnosticó:
+`_tiene_veredicto_real()` **no reconoce `MEDIDO`**, sólo los veredictos de
+falsación `R` o un campo `veredicto:`, así que una regla medida como **tasa
+base** —el patrón de toda la cartera F4→F3— le es invisible.
+
+**Cuarta familia de reglas donde se confirma.** `T-YAMEDIDO` existe para que
+ningún acto llame «territorio virgen» a una regla ya medida: para ésta habría
+dejado pasar exactamente ese error. **No se repara aquí** (fuera de
+perímetro); va a `## NO-CORRIDO` con sucesor.
+
+Nótese la asimetría que lo delata: los otros tres ids sí devuelven
+`MEDIDA-EN:`. Lo que separa al que falla no es que esté menos medido —está
+medido igual— sino dónde cae su evidencia respecto de la ventana y del
+vocabulario de veredictos que el script sabe leer.

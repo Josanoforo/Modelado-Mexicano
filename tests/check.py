@@ -5049,6 +5049,31 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-LOTE-ENIF-1 · TERCER LOTE DE LA CARTERA, 9/sep/2026: encargo
+    # archivado VERBATIM (A.3), que no se edita para complacer un test (misma
+    # regla que rige T25). Cita `dinero.ahorro.horizonte_corto` y
+    # `dinero.ahorro.via_informal` porque son consumidores de milpa/tramite.yaml
+    # que este acto SI pone a consumir -- o sea A.8 aplica de lleno, y la
+    # herramienta SI se corrio en el ARRANQUE, sobre los cuatro ids. Su salida
+    # no cabe en el encargo (es verbatim); esta pegada CRUDA en
+    # forense/notas/2026-09-09-GEN2-LOTE-ENIF-1-cierre.md §11 y resumida en
+    # ADR-439.
+    #
+    # Veredictos REALES de `python3 tools/ya_medido.py <id>` (ultima linea):
+    #   dinero.ahorro.horizonte_corto                        -> MEDIDA-EN: L7
+    #   dinero.ahorro.horizonte_no_corto_con_seguridad_social -> NUNCA-MEDIDA
+    #   dinero.ahorro.via_informal                           -> MEDIDA-EN: MAESTRA38-SELLO-3
+    #   dinero.ahorro.seguro_deposito_enif2024               -> MEDIDA-EN: MAESTRA38-SELLO-3, canon§7, tramite-ola5-propuesta-v0.yaml
+    #
+    # El segundo es un FALSO NEGATIVO verificado: esa regla ESTA medida y
+    # sellada en milpa/tramite.yaml:1049 con tier=FUERTE y p=0.173400, y la
+    # propia seccion de LISTADO de la herramienta la imprime ahi. Es el defecto
+    # que ACTO GEN2-LOTE-ENCIG-1 (ADR-438) documento con dos causas:
+    # `_tiene_veredicto_real()` no reconoce `MEDIDO` -- solo veredictos de
+    # falsacion R o un campo `veredicto:` -- asi que una regla medida como TASA
+    # BASE le es invisible. Cuarta familia de reglas donde se confirma. No se
+    # repara aqui (fuera de perimetro): queda como fila NC con sucesor.
+    "forense/encargos/2026-09-09-GEN2-LOTE-ENIF-1.md",
     # ACTO MAESTRA38-M13 · M-POR-CELDA v1.3, 7/sep/2026: encargo archivado
     # VERBATIM (A.3), que no se edita para complacer un test (misma regla que
     # rige T25). Cita `tramite.mordida.discrecional` porque re-enlaza tres
