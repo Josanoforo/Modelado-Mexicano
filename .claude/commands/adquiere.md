@@ -44,6 +44,54 @@ siempre); solo cambia que ya no es donde se escribe (ver nota de
 `MAESTRA33-A5` arriba). No leas las cinco tablas de agosto salvo para
 resolver un puntero `origen` concreto que esta caminata cite.
 
+**CONTRATO ÚNICO DE ELEGIBILIDAD Y ORDEN** (ACTO GEN2-SONDA-ADQ-CABLEADO,
+P2/H2, 9/sep/2026). Hasta hoy había DOS reglas que nadie había reconciliado:
+el prompt del runbook (`forense/agente-adquisicion-v1_0.md` §1) pedía «las 5
+más antiguas con último intento ≥ 7 días», y esta sección ordenaba primero
+por prioridad. Ninguna emitía lista auditable, así que una caminata vacía era
+indistinguible de una selección equivocada. Desde este acto **esta sección es
+el contrato**, el runbook lo cita en vez de repetirlo, y el orden es uno solo:
+
+1. **antigüedad primero** — sin intento previo antes que con intento; entre
+   los que tienen intento, el más viejo primero;
+2. **prioridad después**, como desempate (numérica antes que la prefijada por
+   tabla de origen, que no comparte escala);
+3. **`fuente_canonica`** al final, para que el orden sea total: la misma
+   fecha y el mismo conjunto de filas producen SIEMPRE la misma selección.
+
+**Antes de caminar, emite la lista.** Corre el contrato, que vive como opción
+de solo lectura de una herramienta existente:
+
+```
+python3 tools/adq_doctor.py --selecciona            # texto
+python3 tools/adq_doctor.py --selecciona --json     # mismo contenido
+python3 tools/adq_doctor.py --selecciona --nombrada <ID>   # fila pedida por el operador
+```
+
+Emite **IDs elegidos, excluidos y razón — incluso cuando los elegidos son
+cero**. Pega esa salida en el cierre de la caminata: es lo que distingue «no
+había nada elegible» de «el selector se equivocó». La herramienta NO escribe
+la cola ni descarga: proyecta. El escritor canónico sigue siendo
+`tools/curador_registro/tsv_crudo.py::upsert_fila`.
+
+**Antigüedad se cuenta desde el INTENTO EFECTIVO, no desde el sondeo.** La
+nota distingue `intento efectivo <fecha>` (hubo descarga intentada) de
+`descubrimiento de vía <fecha>` (lo que escribe `/sonda`). Sondear **no**
+reinicia el plazo de descarga: una fila cuya nota solo trae descubrimiento de
+vía se trata como sin intento previo, no como intentada hoy.
+
+**Handoff autorizado — cuatro elementos, no tres.** Una candidata que llega
+de `/sonda` habilita adquisición solo si la nota trae: (a) el objeto
+faltante, (b) la vía nueva, (c) la **autorización con su cita**, y (d) el
+modo de invocación por ID. Una `SONDA-LATERAL-RECOMENDADA` sin autorización
+citada **permanece propuesta** y el selector la excluye con esa razón —
+recomendar no es autorizar (ver §6-bis).
+
+**No se activan en bloque** `SIN-FETCH`, `OBTENIDO-PARCIAL` ni los negativos.
+Un objeto completo conserva `OBTENIDO`; el residual lleva cobertura y sucesor
+explícitos. El operador puede nombrar cualquiera de ellos por ID
+(`--nombrada`), y eso es autoridad humana, no barrido automático.
+
 Elegibles para esta caminata, en este orden:
 
 1. `estado_A4A5 == PENDIENTE`, ordenadas por `prioridad` ascendente cuando la
