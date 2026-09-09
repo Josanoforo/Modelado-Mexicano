@@ -1766,18 +1766,24 @@ def t_status_arbol_real_no_cuenta_smokes():
     # MESA firma cuenta_gen2=SI para CALC-0003-v4 (resuelve FP-362), con
     # CALC-0003-v3 quedando SUPERADO->v4. v4 aporta su propia corrida
     # sellada -- 7 -> 8 -- sin quitarle su lugar a C0D-MARCADOR-v3/ENVIPE-0001.
-    _afirma(c["N_corridas_selladas"] == 11, caso,
-            f"N_corridas_selladas={c['N_corridas_selladas']}, esperado 11 tras los tres "
-            f"CALC-R de ACTO GEN2-R-SERIE-CSV sobre los 8 de OBJETO 3 de la FIRMA DE "
-            f"MESA 9/sep/2026 (CALC-0003-v4, resuelve FP-362) -- si es 8, la firma de "
-            f"los tres R se perdio; si es >11, un replay GEN1 conto como GEN2")
+    # ACTO GEN2-R-SERIE-DBF (9/sep/2026): el trio VIEJO (CALC-R-CIV-M-01/-02/-04,
+    # olas 2012/2013/2015 en DBF) aporta tres corridas selladas mas -- 11 -> 14.
+    _afirma(c["N_corridas_selladas"] == 14, caso,
+            f"N_corridas_selladas={c['N_corridas_selladas']}, esperado 14: los 8 de "
+            f"OBJETO 3 de la FIRMA DE MESA 9/sep/2026 (CALC-0003-v4, resuelve FP-362), "
+            f"mas los tres CALC-R de ACTO GEN2-R-SERIE-CSV (trio moderno), mas los tres "
+            f"de ACTO GEN2-R-SERIE-DBF (trio viejo) -- si es 11, la firma del trio DBF "
+            f"se perdio; si es >14, un replay GEN1 conto como GEN2")
     # CALC-0003-v4 sella 143 RESULT propios (no se resta lo de v3: v3 pasa a
     # SUPERADO pero sus 142 RESULT no estaban en el 644 previo -- solo
     # contaban los de v2/v3 vigentes al momento de cada firma).
-    _afirma(c["N_resultados_sellados"] == 901, caso,
-            f"N_resultados_sellados={c['N_resultados_sellados']}, esperado 901 "
-            f"(787 previos + 3 x 38 de los CALC-R de ACTO GEN2-R-SERIE-CSV) -- si es "
-            f"787, la firma de los tres R se perdio; si es >901, un replay GEN1 conto "
+    _afirma(c["N_resultados_sellados"] == 1021, caso,
+            f"N_resultados_sellados={c['N_resultados_sellados']}, esperado 1021 "
+            f"(787 previos + 3 x 38 de los CALC-R de ACTO GEN2-R-SERIE-CSV + 3 x 40 de "
+            f"los de ACTO GEN2-R-SERIE-DBF) -- el trio DBF emite 40 y no 38 porque "
+            f"anade PERFIL-DBF y PERFIL-BPCOD, y renombra N-BPCOD-01-04/05-15 a "
+            f"N-BPCOD-HOGAR/PERSONALES porque en 2012 el catalogo va corrido -- si es "
+            f"901, la firma del trio DBF se perdio; si es >1021, un replay GEN1 conto "
             f"como GEN2")
     # Ids UNICOS, que es otra pregunta: v3 (CALC-0003) repite 128 de los 142
     # ids de v2 por cadena `repite_de`, asi que aporta 14 nuevos, no 142.
@@ -1785,10 +1791,12 @@ def t_status_arbol_real_no_cuenta_smokes():
     # ids propias de CALC-C0D-MARCADOR-v3/CALC-ENVIPE-0001: 315+162+39=516.
     # v4 repite casi todos los ids de la cadena v2->v3 y aporta 1 solo nuevo
     # (medido en FP-362: "v4 aportaria 1 mas" sobre el conjunto ya contado).
-    _afirma(c["N_resultados_gen2_sellados"] == 631, caso,
+    _afirma(c["N_resultados_gen2_sellados"] == 751, caso,
             f"N_resultados_gen2_sellados={c['N_resultados_gen2_sellados']}, esperado "
-            f"631 (517 previos + 3 x 38 ids propios de los CALC-R; ninguno repite_de "
-            f"otra corrida) -- si sale 517, la firma de los tres R se perdio")
+            f"751 (517 previos + 3 x 38 ids propios del trio CSV + 3 x 40 del trio DBF; "
+            f"ninguno repite_de otra corrida, y los ids del trio DBF son de otras "
+            f"celdas -- CIV-M-01/-02/-04 frente a CIV-M-10/-12/-13) -- si sale 631, la "
+            f"firma del trio DBF se perdio")
     # E.2: la primera silla esta ocupada, y NC-0084 (ACTO GEN2-FIRMAS-ADOPCION-1,
     # 9/sep/2026) es la SEGUNDA adopcion real: milpa/tramite.yaml:583 cita
     # RESULT-ENVIPE-DEN-P-C2-U4. `dependencias_legacy` baja una unidad mas.

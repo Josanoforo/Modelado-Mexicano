@@ -224,7 +224,7 @@ estaba mal calculado y saberlo vale más que el atajo». La propia fila NC-0097 
 nombra el hogar correcto: `FIRMAS-ADOPCION-1 (o acto con decisiones.tsv en su
 perímetro)`. Queda **ABIERTA** con el residuo escrito.
 
-**NC-0098 (nueva).** Los 23 asientos son `HEREDADO`, con
+**NC-0104 (nueva; renumerada de `NC-0098`).** Los 23 asientos son `HEREDADO`, con
 `fecha_verificacion = DESCONOCIDA` y sin las razones del eje CONTEXTO: son
 evidencia histórica de alcance limitado, y así se proyectan y se imprimen.
 Ninguno es todavía `VERIFY-ESTRUCTURADO`. El mecanismo para producirlos existe
@@ -235,3 +235,43 @@ re-derivación global que este acto no tiene autorizada.
 
 **NC-0094 se cierra**: P1 y P2 aterrizaron completos y probados por mutación, y
 la comprobación de §5 lo demuestra en el árbol real.
+
+## 9 · Enmienda tras el merge de `GEN2-R-SERIE-DBF` (`PR #661`)
+
+`PR #661` fusionó primero, con `origin/main` movido 11 commits. Re-derivado
+contra `435e60a` al resolver el merge:
+
+**Renumeración, por la regla de la casa** (*renumera quien fusiona segundo*, y
+`ADR-434` de DBF **declaró la colisión antes de su push**): `ADR-434` → **`ADR-435`**
+(reubicado además al final de la lista, que va en orden ascendente), y la fila
+nueva `NC-0098` → **`NC-0104`**, porque `#661` tomó `NC-0098`…`NC-0103`. Ningún
+número se salta. Los tres contadores y la anotación `L0` se recifraron a `435`;
+la anotación de DBF **no se reescribió** — la mía se insertó delante, como manda
+la convención.
+
+**La protección se estrenó en producción, y funcionó.** DBF selló tres `CALC`
+nuevos (`CALC-R-CIV-M-01`/`-02`/`-04`, trío viejo). Al re-derivar sobre el árbol
+fusionado, esas tres corridas cambiaban de `REPRODUCE / IDENTICO` a
+`NO-VERIFICADO`: **6 transiciones**, y `_para_si_pisa_replay` **paró** —
+exactamente el defecto de `NC-0094`, atrapado esta vez por la máquina y no por
+la memoria de nadie.
+
+La reparación **no fue autorizar el borrado** con `--lote`, sino darles fuente.
+DBF corrió `verify` en CAJA **con corpus** y lo dejó escrito en su nota de
+cierre: «`preflight` VERDE → `run` → `verify` **`REPRODUCE`** con
+`CONTEXTO=IDENTICO` en las tres», con `Δ +0` contra `GEN1` por corrida. Se
+asentaron las tres con `procedencia = VERIFY-CITADO-DE-NOTA-DE-CIERRE · ACTO
+GEN2-R-SERIE-DBF (PR #661)`, `fecha_verificacion = 2026-09-09` y
+`entorno = CAJA (Ubuntu) con corpus montado`. Es un comprobante **mejor que
+`HEREDADO`** —tiene fecha, entorno y quién lo corrió, citados de la nota del
+lote que selló las corridas—, y aun así **no** es la salida estructurada del
+`verify` archivada verbatim: eso sigue siendo `NC-0104`, y el `alcance` de cada
+fila lo dice.
+
+Tras el asiento, sobre el árbol fusionado: **cero transiciones**, `P1` no para, y
+las tres vistas vuelven a salir **sin diferencia con el disco** (`113` · `1714` ·
+`205` filas). El registro de evidencia pasa de 23 a **26 filas**.
+
+Esto es también la respuesta empírica a la pregunta que el encargo dejaba
+abierta: el flujo previsto —un lote mide en CAJA, escribe su nota, y el registro
+cita esa nota— **es el que ocurrió**, sin editar un solo sello.
