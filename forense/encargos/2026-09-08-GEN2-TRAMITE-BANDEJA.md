@@ -28,3 +28,7 @@ ENTORNO ASIGNADO — y el que NO. NUBE (repo-only). NO se lanza en Ubuntu/caja: 
 ## NO-CORRIDO / RESERVAS
 
 - **qué:** el envío físico de los dos correos ya redactados — el de `OECD` (`govtrustinfo@oecd.org`, preparado por `ACTO GEN2-CIERRES-GRUPO-A`) y el de tandas (`equipo@tandamas.mx`, preparado por P3 de este acto). **por qué:** `DECISIÓN-DE-MESA-PENDIENTE` — el agente no envía correos institucionales. **impacto:** ninguno hoy — ningún veredicto vigente depende de que cualquiera de los dos microdatos llegue; ambos robustecerían huecos ya cubiertos parcialmente por otra vía (`R8.3` cerrada por WVS7 para OCDE; `R8.2`/`N29` con mapa clasificado para tandas). **sucesor:** mesa, con la bandeja de `forense/notas/2026-09-08-GEN2-TRAMITE-BANDEJA-bandeja-mesa.md` §4(a) a la vista — `NC-0061`.
+
+## CONSUMIDO
+
+Ejecutado por `PR #643` (`ACTO GEN2-TRAMITE-BANDEJA`), rama `claude/youthful-davinci-q9r91b`. Cascada de cierre: `ADR-420` (`canon/gobernanza-v1_15.md`), `L0` recifrado (`canon/estado-programa-v1_12.md`), rótulo `GEN2-TRAMITE-BANDEJA` censado en `canon/registro-rotulos.tsv`, `T26-bis` re-medido (`tests/check.py`). `python3 tests/check.py --baseline` → LÍNEA BASE VERDE.
