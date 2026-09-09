@@ -29,9 +29,12 @@ Todas en `forense/no-corrido.tsv`, con sucesor nombrado:
 |---|---|---|---|
 | `NC-0114` | Retirar la línea del crontab legado de WSL | FUERA-DE-PERÍMETRO — la atribución **ya está probada** (condición (1) de la GUÍA cumplida), pero el paso (3) exige documentar en `forense/cron/REGISTRO-CRON-v1_0.md`, fuera de perímetro; y retirar el respaldo mientras el CABLEADO modifica `adquiere_cron.sh` en paralelo agrega riesgo sin urgencia — el `flock` ya contiene el daño | acto con `forense/cron/` en su perímetro, tras la primera corrida post-CABLEADO |
 | `NC-0115` | Habilitar el canal `TaskScheduler/Operational` y observar una recuperación real | NO-VERIFICABLE-DESDE-ESTA-SESIÓN — canal `IsEnabled=False`; se intentó habilitarlo y Windows lo rechazó sin elevación | mesa, elevado; prueba acotada de recuperación que mesa autorice aparte |
-| `NC-0116` | Extender el cruce canal×fintech a ENIF 2018/2021 | FUERA-DE-PERÍMETRO — el piloto es UNA fila y 90 min | acto de universo que tome `N19`/`R1.3` con las tres olas |
-| `NC-0117` | Medir el canal de alta **del producto fintech en sí** | SIN-INSTRUMENTO-EN-ESTA-OLA — `P6_6`/`P5_16` preguntan por el último producto, sin sufijo; y «referido» no existe como código de canal | decisión de mesa: ¿basta el proxy para `R1.3` pierna 3 / `N19`? |
+| `NC-0116` | Extender el cruce canal×fintech a ENIF 2018/2021 | FUERA-DE-PERÍMETRO — el piloto es UNA fila y 90 min | acto de universo que tome `N19` y la regla de abajo con las tres olas |
+| `NC-0117` | Medir el canal de alta **del producto fintech en sí** | SIN-INSTRUMENTO-EN-ESTA-OLA — `P6_6`/`P5_16` preguntan por el último producto, sin sufijo; y «referido» no existe como código de canal | decisión de mesa: ¿basta el proxy para `N19` y la regla de abajo? |
 | `NC-0118` | Reparar que el índice de reactivos es ciego a ENIF (382 filas, 0 con texto) | FUERA-DE-PERÍMETRO — `tools/` no está en el perímetro | acto con `tools/`: indexar el texto desde los `FD`, o declarar la ceguera en la línea de universo A.13 que el propio tool imprime |
+
+
+**La regla consumidora es `R1.3`** (pierna 3) — `MEDIDA-EN: milpa/tramite.yaml:1154` (SELLADA, tier FUERTE, p=0.357153, CONTRARIA) y `MEDIDA-EN: milpa/tramite-ola5-propuesta-v0.yaml:903,1120,1884`, según `TZ=UTC python3 tools/ya_medido.py R1.3`. Se cita medida, no a ciegas. Este acto **no** tocó `milpa/**`: la fila de cola cambia de estado, la regla no.
 
 `NC-0060` queda **CERRADA** por este acto, con cita y estampa de universo (A.10), por hallazgo positivo parcial — no por negativo.
 
