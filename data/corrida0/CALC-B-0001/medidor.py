@@ -17,6 +17,7 @@ identifica.
 from __future__ import annotations
 
 import io
+import sys
 import types
 import zipfile
 
@@ -42,9 +43,16 @@ def _norm(col: str) -> str:
 
 
 def _selector(inputs):
-    """Modulo del selector, ejecutado desde los bytes verificados."""
+    """Modulo del selector, ejecutado desde los bytes verificados.
+
+    El modulo se registra en `sys.modules` ANTES del `exec`: `@dataclass`
+    resuelve las anotaciones via `sys.modules[cls.__module__].__dict__`, y sin
+    el registro eso es `None.__dict__`. Mismo patron que `_carga_medidor` de
+    `tools/corrida0.py`."""
     crudo = inputs["IN-B-SELECTOR"]["bytes"]
-    mod = types.ModuleType("baseline_temporal_calc_b_0001")
+    nombre = "baseline_temporal_calc_b_0001"
+    mod = types.ModuleType(nombre)
+    sys.modules[nombre] = mod
     exec(compile(crudo, "tools/baseline_temporal.py", "exec"), mod.__dict__)
     return mod
 
