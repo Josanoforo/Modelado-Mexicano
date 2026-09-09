@@ -1,0 +1,241 @@
+# CALC-R-CIV-M-12 -- cara mecanica de spec.md (ACTO GEN2-R-SERIE-CSV).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/R-ENVIPE-SERIE-spec-v1_0.md (`prereg-caja-R-ENVIPE-SERIE`).
+# Releva la demanda CORR-0040 (RES-0113) bajo el registro GEN2.
+# CONGELADO en el COMMIT-1, antes de abrir un solo conjunto_de_datos/*.csv.
+calc_id: CALC-R-CIV-M-12
+spec_md: spec.md
+spec_md_sha256: 352dda9be02995e8efc968e53e237e2d6c4d8782b5ba18a0254fa764fe3bfcd5
+
+script: data/corrida0/CALC-R-CIV-M-12/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: ARBITRO-R-DE-CELDA
+  cuenta_gen2: SI
+  cuenta_gen2_firma: "Firma de mesa 9/sep/2026, incluida en el encargo con OBJETO explicito (estandar FP-367/368), verbatim: «Decision 1 - Mas que barata es la mejor? Si es la mejor lo hacemos si no estamos seguro corremos de 0. Decision 2 - firmemos. la correspondencia puede esperar un dia mas. La decision va en el encargo no fuera y mi firma es el merge. Dame los encargos.» El encargo escribe: cuenta_gen2 = SI para los tres CALC que este acto selle; el merge de mesa la perfecciona."
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/R-ENVIPE-SERIE-spec-v1_0.md
+  spec_sellada_sha256: b9a29cf656b9fcfe2794eaa4e2b3de0a9df699d72af1d143e0059c64b051dba4
+  demanda_que_releva: "CORR-0040 -> RES-0113 (arbitro R de la celda CIV-M-12 del marco M, consumidor forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-12:R). La ADOPCION no es de este acto: la decide mesa por lote (F3)."
+  reglas_bajo_prueba: "NINGUNA. Este CALC no toca milpa/, no mueve tier y no adopta. civico.denuncia.miedo_desconfianza sigue sellada con p=0.294313 de la ola 2025 y esta corrida mide OTRA ola."
+  contaminacion_declarada: "ADR-46 -- al congelar, la sesion YA habia leido los tres puntos R de GEN1 (0.20493399286059008 / 0.20811159524290274 / 0.1946118021509308, en el encargo y en demanda-resultados.tsv) y la spec completa de la ola 2025. La codificacion primaria NO se elige aqui: se copia verbatim de codificacion-R-v1_0.tsv (sha cf5dfb18...), anterior a esta sesion. El medidor NO abre los JSON de corridas-R/ ni recibe el valor GEN1 por ningun parametro: el control positivo lo corre un script aparte DESPUES de sellar (spec sellada, 6.1). NO se abrio tools/arbitra.py, para que el control no sea una tautologia."
+  medidor_ejecutado_al_congelar: "NO -- escrito y congelado en el COMMIT-1, corrido en el COMMIT-2 del mismo acto"
+  medidor_identico_a: "CALC-R-CIV-M-10, CALC-R-CIV-M-12 y CALC-R-CIV-M-13 depositan el MISMO medidor.py byte a byte; que sus tres script_blob_sha256 coincidan es la prueba de que las tres olas corrieron el mismo codigo."
+
+inputs:
+  - id: envipe2023_csv
+    origen: manifiesto
+  - id: IN-R-SERIE-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/R-ENVIPE-SERIE-spec-v1_0.md
+    sha256: b9a29cf656b9fcfe2794eaa4e2b3de0a9df699d72af1d143e0059c64b051dba4
+  - id: IN-CODIFICACION-R-V1-0
+    origen: repo
+    ruta: forense/prereg-duelo-v2/codificacion-R-v1_0.tsv
+    sha256: cf5dfb182f3c914fd8a91ce6d589ad745c507a8c3defad2d6459ee876c01f598
+  - id: IN-ESPEC-R-CIEGA-V1-2
+    origen: repo
+    ruta: forense/prereg-duelo-v2/espec-R-ciega-v1_2.tsv
+    sha256: b2dacd8a4f66ccb29eb97e448c2d0e9cf1b70002669d0c5770a49def061beb53
+
+variables:
+  - {archivo: "tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv", variable: ID_DEL, rol: "identidad de la fila -- UNIDAD DE OBSERVACION (un delito)", codigos: "Alfanumerico(21)"}
+  - {archivo: "tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv", variable: BPCOD, rol: "tipo de delito -- particion HOGAR (01..04) / PERSONAL (05..15); NO filtra el universo primario", codigos: "Numerico(2), 01..15", direccion: "NO-APLICA (nominal)"}
+  - {archivo: "tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv", variable: BP1_20, rol: "denuncio ante MP/Fiscalia -- NO filtra el universo primario; se usa para contar N-INCONSISTENTES-BP1-20 y para construir U1", codigos: "Numerico(1): 1=Si, 2=No (catalogo bp1_20)", direccion: "NO-APLICA (filtro/diagnostico)"}
+  - {archivo: "tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv", variable: BP1_23, rol: "DESENLACE -- razon principal de la no denuncia (RESPUESTA UNICA, pregunta 1.23)", codigos: "Numerico(2): 01 miedo al agresor - 02 miedo a extorsion - 03 delito de poca importancia - 04 perdida de tiempo - 05 tramites largos y dificiles - 06 desconfianza en la autoridad - 07 no tenia pruebas - 08 actitud hostil de la autoridad - 09 Otra - 99 NS/NR - b blanco (catalogo bp1_23 de esta ola, leido en latin-1, identico al cuestionario 1.23)", direccion: "C_R (PRIMARIA): 1 si BP1_23 en {01,02,06}; 0 si en {03,04,05,07,08,09}; 99 y blanco FUERA. C1 (secundaria homologada): 1 si en {01,02,06}; 0 si en {03,04,05,07,08}. C2: 1 si en {01,02,06,08}; 0 si en {03,04,05,07}. MAS ALTO = MAS PESO DEL MIEDO/DESCONFIANZA."}
+  - {archivo: "tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv", variable: FAC_DEL, rol: "ponderador de la unidad (delito)", codigos: "Numerico(6), 000001..999999"}
+  - {archivo: "tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv", variable: EST_DIS, rol: "estrato de diseno muestral -- LLAVE OPACA de texto, nunca int() ni zfill()", codigos: "Alfanumerico(3), 001..595 SEGUN DESCRIPTOR"}
+  - {archivo: "tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv", variable: UPM_DIS, rol: "unidad primaria de muestreo -- LLAVE OPACA de texto, nunca int() ni zfill()", codigos: "Alfanumerico(5) SEGUN DESCRIPTOR"}
+
+universo: >-
+  ENVIPE 2023 (delitos de 2022; metadatos_*.txt: Identifier MEX-INEGI.EGS3.02-ENVIPE-2023,
+  Temporal 2022-01-01-2022-12-31, 2023-03-01-2023-04-30 y 2023-03-01-2023-12-31). UNIVERSO PRIMARIO U_R,
+  unidad DELITO, verbatim de codificacion-R-v1_0.tsv: filas de TMod_Vic con
+  BP1_23 en {01,...,09} y FAC_DEL valido -- TODOS los tipos de delito
+  (BPCOD 01..15), sin filtro adicional mas alla de la codificacion. 99 y blanco
+  quedan FUERA. UNIVERSO SECUNDARIO U1, homologado a
+  prereg-caja-ENVIPE-DENUNCIA: BPCOD en {05,...,15}, BP1_20 = 2, BP1_23 en
+  {01,...,08} y FAC_DEL valido. U_R y U1 NO son comparables entre si (A-bis.4):
+  estan en la misma corrida porque salen de la misma lectura del mismo archivo.
+  Las otras olas de ENVIPE quedan FUERA: esta corrida no valida transferencia temporal.
+
+filtros: >-
+  Sale del universo, CONTADO y no imputado: BP1_23 en blanco o 'b'
+  (N-BP1-23-BLANCO); BP1_23 = 99 (N-BP1-23-99); BP1_23 con un codigo que el
+  catalogo no declara (N-CODIGO-FUERA-DE-CATALOGO); FAC_DEL no finito o <= 0
+  (N-SIN-PONDERADOR). Se cuenta pero NO sale del punto: filas sin EST_DIS o sin
+  UPM_DIS (N-SIN-DISENO) -- entran al punto y forman un pseudo-estrato de llave
+  vacia en la varianza. CERO NUNCA SUSTITUYE FALTA DE DATO. Si falta una columna
+  declarada -> ESTADO = NO-ESTIMABLE-COLUMNA-AUSENTE:<col>; si BP1_23 existe y no
+  tiene ningun valor valido -> NO-ESTIMABLE-COLUMNA-VACIA:BP1_23; si U_R queda
+  vacio -> NO-ESTIMABLE-UNIVERSO-VACIO.
+
+ponderador: >-
+  FAC_DEL (factor delito), en U_R y en U1, verbatim de codificacion-R-v1_0.tsv.
+  NO se usa FAC_DEL_AM (factor de area urbana de interes, otro dominio de
+  estimacion). No hay ponderador de persona en esta corrida: R es de unidad
+  delito y no colapsa a persona.
+
+transformacion: >-
+  d(C_R) = 1 si BP1_23 en {01,02,06}, 0 si en {03,04,05,07,08,09}.
+  d(C1) = 1 si en {01,02,06}, 0 si en {03,04,05,07,08}.
+  d(C2) = 1 si en {01,02,06,08}, 0 si en {03,04,05,07}.
+  p(C,U) = suma(w*d) / suma(w) sobre U, sumas en ORDEN FIJO DE FILA.
+  EE e IC95 por conglomerado ultimo, importando tests/svystat.py:prop_ultimate_cluster
+  (NO se reimplementa). Ademas, solo para el secundario, IC por bootstrap de UPM
+  con reemplazo dentro de estrato conservando el numero de UPM por estrato,
+  percentiles 2.5/97.5 -- el metodo de la ola 2025. NO se promedia entre olas, no
+  se ajusta tendencia, no se extrapola, no se imputa.
+
+estimando: >-
+  DESCRIPTIVO. (1) PRIMARIO: R = p(C_R, U_R), el arbitro de la celda CIV-M-12 tal
+  como lo definen espec-R-ciega-v1_2.tsv (variable BP1_23, escala binaria) y
+  codificacion-R-v1_0.tsv (codificacion, universo, ponderador, diseno), con EE de
+  diseno y CV. (2) SECUNDARIO HOMOLOGADO: p(C1, U1), el punto de serie bajo el
+  universo y la codificacion de prereg-caja-ENVIPE-DENUNCIA, para que la serie
+  hable el mismo idioma que el punto de la ola 2025; mas p(C2, U1) y su delta
+  contra C1. NINGUN RESULT es causal: la razon principal es lo que la persona
+  DECLARO, no una causa medida de la no denuncia.
+
+dependencias_materiales: [numpy]
+
+parametros:
+  fuente_acto: "ACTO GEN2-R-SERIE-CSV · LA SERIE SE CERTIFICA DE CERO, TRIO MODERNO · CALC-R-CIV-M-12"
+  id_celda: CIV-M-12
+  payload_id: envipe2023_csv
+  tabla_miembro: "tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv"
+  columnas: [ID_DEL, BPCOD, BP1_20, BP1_23, FAC_DEL, EST_DIS, UPM_DIS]
+  bootstrap_replicas: 2000
+  umbral_cv_skip: 0.30
+  metodo_ic_primario: "conglomerado ultimo (ultimate cluster, Wolter) via tests/svystat.py:prop_ultimate_cluster -- lo manda PROCEDIMIENTO-R-v1_0.md §1 y este acto lo importa, no lo reimplementa"
+  metodo_ic_secundario: "ademas del anterior, bootstrap de UPM_DIS con reemplazo dentro de EST_DIS conservando el numero de UPM por estrato, percentiles 2.5/97.5 -- el metodo con el que prereg-caja-ENVIPE-DENUNCIA fijo el IC de la ola 2025, replicado aqui para que la columna de IC de la serie sea homogenea"
+  regla_estrato_upm_unica: >-
+    Un estrato con exactamente una UPM no aporta varianza estimable con este
+    metodo: NO se colapsa con otro estrato (decision de diseno que esta spec no
+    esta autorizada a tomar) y NO se descarta (sesgaria el punto). Entra al punto,
+    aporta varianza cero, y en el bootstrap se re-muestrea a si mismo. Su conteo
+    va en N-ESTRATOS-UPM-UNICA y, si es > 0, METODO-IC sale
+    IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como LIMITE INFERIOR de la anchura
+    verdadera, nunca como IC exacto.
+  llaves_de_diseno_opacas: >-
+    EST_DIS y UPM_DIS se agrupan como cadenas crudas. Nunca int(), nunca zfill(),
+    nunca re-relleno al ancho del descriptor: convertirlas partiria o fundiria
+    estratos en silencio. El descriptor de esta ola dice "Alfanumerico(3), 001..595 SEGUN DESCRIPTOR / Alfanumerico(5) SEGUN DESCRIPTOR"
+    y ya se midio que miente en la ola 2025 (declaraba Caracter(3) 001..607 y el
+    archivo traia 4 caracteres, 0001..0746, 739 valores). El perfil REAL se emite
+    en PERFIL-DISENO y su desacuerdo con el descriptor es hallazgo, no defecto a
+    corregir.
+  nota_catalogo_ola: "el catalogo y el descriptor declaran el codigo b (blanco)."
+  nota_redaccion_ola: "Diferencia literal de esta ola frente a las otras dos: anade 'o Fiscalia Estatal'; sigue 'Por miedo al agresor'. Ninguna de esas diferencias mueve un codigo: los diez codigos y el flujo de saltos son identicos en 2021, 2023, 2024 y 2025."
+  control_positivo_gen1: >-
+    NO lo calcula este medidor. Lo corre
+    forense/prereg-caja/R-ENVIPE-SERIE-control-gen1.py DESPUES de sellar, contra
+    forense/prereg-duelo-v2/corridas-R/CIV-M-12.json, sobre el PUNTO y no sobre el IC.
+    Cuatro ramas pre-declaradas en la spec sellada 6.1. NO-REPRODUCE no invalida la
+    corrida, no autoriza tocar el medidor y no cambia el estimando.
+  codificacion:
+    CR_uno: [1, 2, 6]
+    CR_cero: [3, 4, 5, 7, 8, 9]
+    C1_uno: [1, 2, 6]
+    C1_cero: [3, 4, 5, 7, 8]
+    C2_uno: [1, 2, 6, 8]
+    C2_cero: [3, 4, 5, 7]
+    bpcod_hogar: [1, 2, 3, 4]
+    bpcod_personales: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    codigo_nsnr: 99
+  sufijos_result:
+  - N-FILAS-TABLA
+  - N-BP1-23-01-09
+  - N-BP1-23-99
+  - N-BP1-23-BLANCO
+  - N-SIN-PONDERADOR
+  - N-SIN-DISENO
+  - N-CODIGO-FUERA-DE-CATALOGO
+  - N-INCONSISTENTES-BP1-20
+  - N-BPCOD-01-04
+  - N-BPCOD-05-15
+  - MASA-FAC-DEL
+  - PUNTO
+  - EE
+  - IC-LO
+  - IC-HI
+  - N
+  - CV
+  - VEREDICTO-CV
+  - N-ESTRATOS
+  - N-UPM
+  - N-ESTRATOS-UPM-UNICA
+  - METODO-IC
+  - PERFIL-DISENO
+  - N-U1
+  - MASA-FAC-DEL-U1
+  - P-C1-U1
+  - EE-C1-U1
+  - IC-LO-C1-U1
+  - IC-HI-C1-U1
+  - IC-BOOT-LO-C1-U1
+  - IC-BOOT-HI-C1-U1
+  - P-C2-U1
+  - EE-C2-U1
+  - IC-BOOT-LO-C2-U1
+  - IC-BOOT-HI-C2-U1
+  - DELTA-C2-C1
+  - N-ESTRATOS-UPM-UNICA-U1
+  - ESTADO
+
+seed:
+  aplica: true
+  valor: 20260909
+  rng: numpy.PCG64
+  nota: "La semilla solo gobierna el bootstrap del estimando SECUNDARIO. El punto primario, su EE y su IC son deterministas: no dependen de la semilla. Es la misma semilla que uso la ola 2025, para que el metodo sea el mismo y no solo se parezca."
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Punto y varianza deterministas, bootstrap fijado por seed y rng declarados, y
+    sumas en orden fijo de fila: la unica diferencia esperable entre dos corridas
+    del mismo arbol es redondeo de float64 al reasociar sumas ponderadas. Los
+    enteros y los textos se comparan EXACTO. NO se afloja para que el control
+    positivo contra GEN1 pase: si no reproduce, eso es el hallazgo.
+
+resultados:
+  - {id: RESULT-R-CIV-M-12-N-FILAS-TABLA, tipo: entero, unidad: "filas de TMod_Vic de ENVIPE 2023 (delitos de 2022), unidad DELITO, antes de todo filtro"}
+  - {id: RESULT-R-CIV-M-12-N-BP1-23-01-09, tipo: entero, unidad: "filas con BP1_23 en {01..09} -- universo candidato de R, antes del filtro de ponderador"}
+  - {id: RESULT-R-CIV-M-12-N-BP1-23-99, tipo: entero, unidad: "filas con BP1_23 = 99 (No sabe / no responde): categoria real del instrumento que el universo de R excluye"}
+  - {id: RESULT-R-CIV-M-12-N-BP1-23-BLANCO, tipo: entero, unidad: "filas con BP1_23 en blanco o 'b' -- NO imputadas a cero, fuera de todo universo"}
+  - {id: RESULT-R-CIV-M-12-N-SIN-PONDERADOR, tipo: entero, unidad: "filas del universo candidato con FAC_DEL no finito o <= 0 -- contadas y excluidas"}
+  - {id: RESULT-R-CIV-M-12-N-SIN-DISENO, tipo: entero, unidad: "filas de U_R sin EST_DIS o sin UPM_DIS -- entran al punto y forman pseudo-estrato de llave vacia en la varianza"}
+  - {id: RESULT-R-CIV-M-12-N-CODIGO-FUERA-DE-CATALOGO, tipo: entero, unidad: "filas con un codigo de BP1_23 que el catalogo de la ola NO declara (ni 01..09, ni 99, ni blanco) -- guardia de catalogo"}
+  - {id: RESULT-R-CIV-M-12-N-INCONSISTENTES-BP1-20, tipo: entero, unidad: "filas con BP1_23 en {01..09} y BP1_20 != 2 -- mide la diferencia entre la ruta de universo implicita de codificacion-R y la explicita de U1; NO cambia el estimando"}
+  - {id: RESULT-R-CIV-M-12-N-BPCOD-01-04, tipo: entero, unidad: "de U_R, delitos de HOGAR (BPCOD 01..04) -- el tramo que U1 excluye"}
+  - {id: RESULT-R-CIV-M-12-N-BPCOD-05-15, tipo: entero, unidad: "de U_R, delitos PERSONALES (BPCOD 05..15)"}
+  - {id: RESULT-R-CIV-M-12-MASA-FAC-DEL, tipo: flotante, unidad: "suma de FAC_DEL sobre U_R (delitos expandidos)", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-PUNTO, tipo: proporcion, unidad: "[PRIMARIO] R = proporcion ponderada de U_R con BP1_23 en {01,02,06}, ENVIPE 2023 (delitos de 2022), unidad DELITO, ponderador FAC_DEL, escala [0,1], MAS ALTO = MAS PESO DEL MIEDO/DESCONFIANZA como razon principal", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-EE, tipo: flotante, unidad: "[PRIMARIO] error estandar de diseno de R por conglomerado ultimo (tests/svystat.py:prop_ultimate_cluster), en proporcion", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-IC-LO, tipo: flotante, unidad: "[PRIMARIO] limite inferior IC95 de R (p +- 1.959963985*EE, recortado a [0,1])", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-IC-HI, tipo: flotante, unidad: "[PRIMARIO] limite superior IC95 de R", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-N, tipo: entero, unidad: "n NO PONDERADO de U_R: filas con BP1_23 en {01..09} y FAC_DEL valido"}
+  - {id: RESULT-R-CIV-M-12-CV, tipo: flotante, unidad: "coeficiente de variacion EE/R, en proporcion (0.30 = 30%)", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-VEREDICTO-CV, tipo: texto, unidad: "CV-ACEPTABLE / SKIP-POR-CV (regla CV >= 30% de PROCEDIMIENTO-R v1.0 §1, FP-79) / NO-ESTIMABLE. SKIP no borra el punto: lo marca como no utilizable por el marcador"}
+  - {id: RESULT-R-CIV-M-12-N-ESTRATOS, tipo: entero, unidad: "estratos EST_DIS distintos presentes en U_R -- se compara contra el rango del descriptor"}
+  - {id: RESULT-R-CIV-M-12-N-UPM, tipo: entero, unidad: "pares (EST_DIS, UPM_DIS) distintos presentes en U_R"}
+  - {id: RESULT-R-CIV-M-12-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "estratos de U_R con una sola UPM -- si es > 0 el IC es LIMITE INFERIOR de la anchura verdadera"}
+  - {id: RESULT-R-CIV-M-12-METODO-IC, tipo: texto, unidad: "IC-ULTIMATE-CLUSTER / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-DISENO-INCOMPLETO"}
+  - {id: RESULT-R-CIV-M-12-PERFIL-DISENO, tipo: texto, unidad: "perfil OBSERVADO de las llaves opacas sobre U_R: longitudes de EST_DIS y de UPM_DIS con su conteo, y cuantas traen espacios en los bordes. El descriptor ya mintio sobre esto en la ola 2025"}
+  - {id: RESULT-R-CIV-M-12-N-U1, tipo: entero, unidad: "n NO PONDERADO de U1, universo homologado a prereg-caja-ENVIPE-DENUNCIA: BPCOD 05..15, BP1_20 = 2, BP1_23 en {01..08}, FAC_DEL valido"}
+  - {id: RESULT-R-CIV-M-12-MASA-FAC-DEL-U1, tipo: flotante, unidad: "suma de FAC_DEL sobre U1", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-P-C1-U1, tipo: proporcion, unidad: "[SECUNDARIO HOMOLOGADO -- PUNTO DE SERIE] proporcion ponderada de U1 con BP1_23 en {01,02,06}, ENVIPE 2023 (delitos de 2022), unidad DELITO, FAC_DEL, escala [0,1]. Mismo universo y misma codificacion que RESULT-ENVIPE-DEN-P-C1-U1 de la ola 2025", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-EE-C1-U1, tipo: flotante, unidad: "error estandar de diseno de P-C1-U1 por conglomerado ultimo", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-IC-LO-C1-U1, tipo: flotante, unidad: "limite inferior IC95 de P-C1-U1 por conglomerado ultimo", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-IC-HI-C1-U1, tipo: flotante, unidad: "limite superior IC95 de P-C1-U1 por conglomerado ultimo", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-IC-BOOT-LO-C1-U1, tipo: flotante, unidad: "limite inferior IC95 de P-C1-U1 por BOOTSTRAP de UPM en estrato -- el metodo con el que la ola 2025 fijo su IC; se emite para que la columna de IC de la serie sea homogenea con ese punto", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-IC-BOOT-HI-C1-U1, tipo: flotante, unidad: "limite superior IC95 de P-C1-U1 por bootstrap", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-P-C2-U1, tipo: proporcion, unidad: "proporcion ponderada de U1 con BP1_23 en {01,02,06,08} -- la particion GEN1 que la ola 2025 midio como C2, FAC_DEL, escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-EE-C2-U1, tipo: flotante, unidad: "error estandar de diseno de P-C2-U1 por conglomerado ultimo", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-IC-BOOT-LO-C2-U1, tipo: flotante, unidad: "limite inferior IC95 de P-C2-U1 por bootstrap", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-IC-BOOT-HI-C2-U1, tipo: flotante, unidad: "limite superior IC95 de P-C2-U1 por bootstrap", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-DELTA-C2-C1, tipo: flotante, unidad: "P-C2-U1 menos P-C1-U1, CON SIGNO -- lo que vale en esta ola reclasificar el codigo 08 (actitud hostil de la autoridad) como desconfianza", permite_no_estimable: true}
+  - {id: RESULT-R-CIV-M-12-N-ESTRATOS-UPM-UNICA-U1, tipo: entero, unidad: "estratos de U1 con una sola UPM"}
+  - {id: RESULT-R-CIV-M-12-ESTADO, tipo: texto, unidad: "CALCULADO / NO-ESTIMABLE-COLUMNA-AUSENTE:<col> / NO-ESTIMABLE-COLUMNA-VACIA:BP1_23 / NO-ESTIMABLE-UNIVERSO-VACIO"}
