@@ -44,3 +44,10 @@ CIERRE · Cascada completa + ## NO-CORRIDO / RESERVAS + ## CONSUMIDO con el PR.
 | **`.claude/commands/despacha.md`** — no se tocó. | `FUERA-DE-PERÍMETRO` | Ninguno: el perímetro lo admitía «solo si el contrato lo exige», y no lo exigió. El defecto H3 no estaba en el selector de `/despacha` (su `grep '^ENTORNO: CAJA'` es correcto y sigue siéndolo) sino en el archivo del piloto, que es donde se corrigió. | Ninguno. |
 
 **Pisadas en paralelo:** ninguna observada. La intersección declarada con el lote ENCIG de CAJA era `forense/no-corrido.tsv` y sus derivados; este acto solo **apendiza** (`NC-0107`, `NC-0108`) y no re-deriva ninguna vista. `NC-0060` se cita sin editarla.
+
+## CONSUMIDO
+
+`ACTO GEN2-SONDA-ADQ-CABLEADO` cierra con **`PR #665`**
+(`https://github.com/Josanoforo/Modelado-Mexicano/pull/665`), rama
+`claude/eager-planck-fbt360`, contra `origin/main = b984531` (`PR #663`).
+`ADR-438`. **NO fusionado por el ejecutor**: el merge es de mesa.
