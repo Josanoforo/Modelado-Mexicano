@@ -1,0 +1,286 @@
+{
+ "corrida_id": "CALC-R-CIV-M-02--2951696fc787",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "ADR-46 -- al congelar, la sesion YA habia leido el punto R de GEN1 de esta celda (0.24339981393062482) y los de las otras dos, porque el encargo los cita y el A.8 del ejecutor abrio los tres JSON. La codificacion primaria NO se elige aqui: se copia verbatim de codificacion-R-v1_0.tsv (sha cf5dfb18...), anterior a esta sesion. El mapeo de BPCOD se valida contra ETIQUETAS Y ESTRUCTURA (PERFIL-BPCOD), nunca contra resultados. El medidor NO abre los JSON de corridas-R/ ni recibe el valor GEN1 por ningun parametro: el control positivo lo corre un script aparte DESPUES de sellar (spec sellada 7). NO se abrio tools/arbitra.py.",
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_firma": "Firma de mesa 9/sep/2026, incluida en el encargo con OBJETO explicito (estandar FP-367/368), verbatim: «Decision 1 - Mas que barata es la mejor? Si es la mejor lo hacemos si no estamos seguro corremos de 0. Decision 2 - firmemos. la correspondencia puede esperar un dia mas. La decision va en el encargo no fuera y mi firma es el merge. Dame los encargos.» El encargo escribe: cuenta_gen2 = SI para los tres CALC que este acto selle; el merge de mesa la perfecciona.",
+  "demanda_que_releva": "CORR-0028 -> RES-0098 (arbitro R de la celda CIV-M-02 del marco M, consumidor forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-02:R). La ADOPCION no es de este acto: la decide mesa por lote (F3).",
+  "generacion": "GEN2",
+  "guardia_tper_vic2": "NO-APLICA -- la familia R-ENVIPE-SERIE mide U_R y U1, ambos unidad DELITO sobre tmod_vic con FAC_DEL, y no abre tper_vic2. Valor declarado, no omision (D-15). Spec sellada 5.",
+  "medidor_ejecutado_al_congelar": "NO -- escrito y congelado en el COMMIT-1, corrido en el COMMIT-2 del mismo acto",
+  "medidor_identico_a": "CALC-R-CIV-M-01, CALC-R-CIV-M-02 y CALC-R-CIV-M-04 depositan el MISMO medidor.py byte a byte; que sus tres script_blob_sha256 coincidan es la prueba de que las tres olas corrieron el mismo codigo.",
+  "reglas_bajo_prueba": "NINGUNA. Este CALC no toca milpa/, no mueve tier y no adopta.",
+  "spec_familia_madre": "forense/prereg-caja/R-ENVIPE-SERIE-spec-v1_0.md",
+  "spec_familia_madre_editada": "NO -- sucesion por extension, no reescritura (perimetro del encargo)",
+  "spec_familia_madre_sha256": "b9a29cf656b9fcfe2794eaa4e2b3de0a9df699d72af1d143e0059c64b051dba4",
+  "spec_sellada": "forense/prereg-caja/R-ENVIPE-SERIE-DBF-spec-v1_0.md",
+  "spec_sellada_sha256": "f5ce91e16cfd3ad0ae8a5a90ed8bbb74e7b7618cbe9a361002e1cf16d0e4d063",
+  "tipo": "ARBITRO-R-DE-CELDA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-09T16:06:56Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 400,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "2951696fc7874e5124fb6c64f0dbbf85938f45dc",
+  "git_rama": "acto/gen2-r-serie-dbf",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "2951696fc7874e5124fb6c64f0dbbf85938f45dc",
+ "input_ids": [
+  "envipe_2013_bd_envipe13_dbf",
+  "IN-R-SERIE-DBF-SPEC-SELLADA",
+  "IN-R-SERIE-SPEC-MADRE",
+  "IN-CODIFICACION-R-V1-0",
+  "IN-ESPEC-R-CIEGA-V1-2"
+ ],
+ "input_sha256": {
+  "IN-CODIFICACION-R-V1-0": "cf5dfb182f3c914fd8a91ce6d589ad745c507a8c3defad2d6459ee876c01f598",
+  "IN-ESPEC-R-CIEGA-V1-2": "b2dacd8a4f66ccb29eb97e448c2d0e9cf1b70002669d0c5770a49def061beb53",
+  "IN-R-SERIE-DBF-SPEC-SELLADA": "f5ce91e16cfd3ad0ae8a5a90ed8bbb74e7b7618cbe9a361002e1cf16d0e4d063",
+  "IN-R-SERIE-SPEC-MADRE": "b9a29cf656b9fcfe2794eaa4e2b3de0a9df699d72af1d143e0059c64b051dba4",
+  "envipe_2013_bd_envipe13_dbf": "b0b9fd1d1dafc12c22162bf695aa3c95ad4c8e86bf00171f082f69e79b54f890"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "codificacion": {
+   "C1_cero": [
+    3,
+    4,
+    5,
+    7,
+    8
+   ],
+   "C1_uno": [
+    1,
+    2,
+    6
+   ],
+   "C2_cero": [
+    3,
+    4,
+    5,
+    7
+   ],
+   "C2_uno": [
+    1,
+    2,
+    6,
+    8
+   ],
+   "CR_cero": [
+    3,
+    4,
+    5,
+    7,
+    8,
+    9
+   ],
+   "CR_uno": [
+    1,
+    2,
+    6
+   ],
+   "bpcod_hogar": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "bpcod_personales": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "codigo_nsnr": 99
+  },
+  "columnas": [
+   "BP1_23",
+   "BP1_20",
+   "BPCOD",
+   "FAC_DEL",
+   "EST",
+   "UPM"
+  ],
+  "control_positivo_gen1": "NO lo calcula este medidor. Lo corre forense/prereg-caja/R-ENVIPE-SERIE-DBF-control-gen1.py DESPUES de sellar, contra forense/prereg-duelo-v2/corridas-R/CIV-M-02.json, sobre el PUNTO PRIMARIO y no sobre el IC. Cuatro ramas pre-declaradas en la spec sellada 7. NO-REPRODUCE no invalida la corrida, no autoriza tocar el medidor y no cambia el estimando.",
+  "descriptor_citado": "FD_ENVIPE13.xlsx, hoja TMod_Vic (BP1_23 fila 292, BPCOD fila 30, FAC_DEL 626, EST 632, UPM 633)",
+  "fuente_acto": "ACTO GEN2-R-SERIE-DBF · LA SERIE SE CERTIFICA DE CERO, TRIO VIEJO · CALC-R-CIV-M-02",
+  "id_celda": "CIV-M-02",
+  "lector_dbf": "inline en medidor.py (`_lee_dbf`): cabecera de 32 bytes + descriptores de campo de 32 bytes del PROPIO archivo. No se usa el FD para anchos ni una plantilla. Todo campo se decodifica en latin-1, que es total sobre bytes y preserva la longitud en caracteres -- requisito de las llaves opacas. Sin dependencia externa de DBF.",
+  "llaves_de_diseno_opacas": "El estrato y la UPM se agrupan como cadenas crudas. Nunca int(), nunca zfill(), nunca re-relleno al ancho del descriptor. El perfil REAL se emite en PERFIL-DISENO y su desacuerdo con el descriptor es hallazgo, no defecto a corregir.",
+  "mapa_columnas": {
+   "BP1_20": "BP1_20",
+   "BP1_23": "BP1_23",
+   "BPCOD": "BPCOD",
+   "ESTRATO": "EST",
+   "FAC_DEL": "FAC_DEL",
+   "UPM": "UPM"
+  },
+  "metodo_ic_primario": "conglomerado ultimo (ultimate cluster, Wolter) via tests/svystat.py:prop_ultimate_cluster",
+  "metodo_ic_secundario": "ademas del anterior, bootstrap de UPM con reemplazo dentro de estrato conservando el numero de UPM por estrato, percentiles 2.5/97.5 -- el metodo con el que la ola 2025 y el trio CSV fijaron su IC",
+  "nota_ola": "Sin corrimiento: el catalogo de BPCOD de esta ola es identico al moderno (01..15) y su bloque personal es {05..15}. El diseno SI cambia de nombre: EST/UPM, no EST_DIS/UPM_DIS.",
+  "payload_id": "envipe_2013_bd_envipe13_dbf",
+  "regla_estrato_upm_unica": "Un estrato con exactamente una UPM no aporta varianza estimable: NO se colapsa y NO se descarta. Entra al punto, aporta varianza cero, y en el bootstrap se re-muestrea a si mismo. Su conteo va en N-ESTRATOS-UPM-UNICA y, si es > 0, METODO-IC sale IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como LIMITE INFERIOR de la anchura verdadera, nunca como IC exacto.",
+  "sufijos_result": [
+   "N-FILAS-TABLA",
+   "N-BP1-23-01-09",
+   "N-BP1-23-99",
+   "N-BP1-23-BLANCO",
+   "N-SIN-PONDERADOR",
+   "N-SIN-DISENO",
+   "N-CODIGO-FUERA-DE-CATALOGO",
+   "N-INCONSISTENTES-BP1-20",
+   "N-BPCOD-HOGAR",
+   "N-BPCOD-PERSONALES",
+   "MASA-FAC-DEL",
+   "PUNTO",
+   "EE",
+   "IC-LO",
+   "IC-HI",
+   "N",
+   "CV",
+   "VEREDICTO-CV",
+   "N-ESTRATOS",
+   "N-UPM",
+   "N-ESTRATOS-UPM-UNICA",
+   "METODO-IC",
+   "PERFIL-DISENO",
+   "PERFIL-DBF",
+   "PERFIL-BPCOD",
+   "N-U1",
+   "MASA-FAC-DEL-U1",
+   "P-C1-U1",
+   "EE-C1-U1",
+   "IC-LO-C1-U1",
+   "IC-HI-C1-U1",
+   "IC-BOOT-LO-C1-U1",
+   "IC-BOOT-HI-C1-U1",
+   "P-C2-U1",
+   "EE-C2-U1",
+   "IC-BOOT-LO-C2-U1",
+   "IC-BOOT-HI-C2-U1",
+   "DELTA-C2-C1",
+   "N-ESTRATOS-UPM-UNICA-U1",
+   "ESTADO"
+  ],
+  "tabla_miembro": "tmod_vic.dbf",
+  "umbral_cv_skip": 0.3
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-R-CIV-M-02-CV",
+  "RESULT-R-CIV-M-02-DELTA-C2-C1",
+  "RESULT-R-CIV-M-02-EE",
+  "RESULT-R-CIV-M-02-EE-C1-U1",
+  "RESULT-R-CIV-M-02-EE-C2-U1",
+  "RESULT-R-CIV-M-02-ESTADO",
+  "RESULT-R-CIV-M-02-IC-BOOT-HI-C1-U1",
+  "RESULT-R-CIV-M-02-IC-BOOT-HI-C2-U1",
+  "RESULT-R-CIV-M-02-IC-BOOT-LO-C1-U1",
+  "RESULT-R-CIV-M-02-IC-BOOT-LO-C2-U1",
+  "RESULT-R-CIV-M-02-IC-HI",
+  "RESULT-R-CIV-M-02-IC-HI-C1-U1",
+  "RESULT-R-CIV-M-02-IC-LO",
+  "RESULT-R-CIV-M-02-IC-LO-C1-U1",
+  "RESULT-R-CIV-M-02-MASA-FAC-DEL",
+  "RESULT-R-CIV-M-02-MASA-FAC-DEL-U1",
+  "RESULT-R-CIV-M-02-METODO-IC",
+  "RESULT-R-CIV-M-02-N",
+  "RESULT-R-CIV-M-02-N-BP1-23-01-09",
+  "RESULT-R-CIV-M-02-N-BP1-23-99",
+  "RESULT-R-CIV-M-02-N-BP1-23-BLANCO",
+  "RESULT-R-CIV-M-02-N-BPCOD-HOGAR",
+  "RESULT-R-CIV-M-02-N-BPCOD-PERSONALES",
+  "RESULT-R-CIV-M-02-N-CODIGO-FUERA-DE-CATALOGO",
+  "RESULT-R-CIV-M-02-N-ESTRATOS",
+  "RESULT-R-CIV-M-02-N-ESTRATOS-UPM-UNICA",
+  "RESULT-R-CIV-M-02-N-ESTRATOS-UPM-UNICA-U1",
+  "RESULT-R-CIV-M-02-N-FILAS-TABLA",
+  "RESULT-R-CIV-M-02-N-INCONSISTENTES-BP1-20",
+  "RESULT-R-CIV-M-02-N-SIN-DISENO",
+  "RESULT-R-CIV-M-02-N-SIN-PONDERADOR",
+  "RESULT-R-CIV-M-02-N-U1",
+  "RESULT-R-CIV-M-02-N-UPM",
+  "RESULT-R-CIV-M-02-P-C1-U1",
+  "RESULT-R-CIV-M-02-P-C2-U1",
+  "RESULT-R-CIV-M-02-PERFIL-BPCOD",
+  "RESULT-R-CIV-M-02-PERFIL-DBF",
+  "RESULT-R-CIV-M-02-PERFIL-DISENO",
+  "RESULT-R-CIV-M-02-PUNTO",
+  "RESULT-R-CIV-M-02-VEREDICTO-CV"
+ ],
+ "script_blob_sha256": "05a6b875ffb9e5e7083bea90f7e2022bb68dd0e2865586eadd181717506f9cc0",
+ "script_path": "data/corrida0/CALC-R-CIV-M-02/medidor.py",
+ "seed": {
+  "aplica": true,
+  "nota": "La semilla solo gobierna el bootstrap del estimando SECUNDARIO. El punto primario, su EE y su IC son deterministas. Es la misma semilla de la ola 2025 y del trio CSV, para que el metodo sea el mismo y no solo se parezca.",
+  "rng": "numpy.PCG64",
+  "valor": 20260909
+ },
+ "spec_id": "CALC-R-CIV-M-02",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "704db683c30bcd016145a33a3134b5c3ebd16948f8bbe9e86b6e50aab21bd1cc",
+ "spec_yaml_sha256": "cee94e5b7bfe0b01d1a5d5d85297b2e970122330da3c7b62fa71dd8ade7256f9",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "Punto y varianza deterministas, bootstrap fijado por seed y rng declarados, y sumas en orden fijo de fila. Los enteros y los textos se comparan EXACTO. NO se afloja para que el control positivo contra GEN1 pase: si no reproduce, eso es el hallazgo.",
+  "tipo": "flotante"
+ }
+}
