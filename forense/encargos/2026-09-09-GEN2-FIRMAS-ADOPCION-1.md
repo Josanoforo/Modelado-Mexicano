@@ -28,3 +28,13 @@ CIERRE · Cascada de /acto completa + ## NO-CORRIDO / RESERVAS («Ninguno.» si 
 | Adoptar `RES-0028` (`denuncia_por_otra_razon`) | `FUERA-DE-PERÍMETRO` (`NC-0085`, advertencia vigente, no nueva) — `0.705687` no es cantidad medida, es `1 −` el primario sobre un denominador que excluye 9.19 % del peso del universo; una cita `corrida0_resultado_id` lo presentaría como medido. | `N_resultados_gen2_adoptados_activos` no sube por esta conducta. | Ninguno — permanece deliberadamente sin adoptar hasta que exista una medición propia. |
 | Correspondencia OCDE/tandas — `NC-0090` | `DECISIÓN-DE-MESA-PENDIENTE` — mesa la pospuso un día, verbatim en la firma de este encargo. | Ninguno sobre los contadores de este acto. | Encargo de correspondencia, día siguiente — `SIN-ASIGNAR` |
 | Implementar `delta` — `NC-0091` | `DECISIÓN-DE-MESA-PENDIENTE` — sigue opcional por decisión de mesa, declarado explícitamente fuera de este encargo. | Ninguno sobre los contadores de este acto. | Cuando mesa lo pida — `SIN-ASIGNAR` |
+
+## CONSUMIDO
+
+Ejecutado por `PR #656` (rama `claude/blissful-feynman-ebnvbx`): OBJETO 3
+(`cuenta_gen2=SI` para `CALC-0003-v4`, resuelve `FP-362`), `NC-0084`
+(adopción `milpa/tramite.yaml:583`, segunda adopción real del programa) y
+la cascada (`ADR-432`, L0, `canon/registro-rotulos.tsv`). Los OBJETOs 1-2
+(`CALC-C0D-MARCADOR-v3`/`FP-368`, `CALC-ENVIPE-0001`/`FP-369`) ya estaban
+ejecutados por `PR #655`, fuera de circuito — verificados EXISTE-SATISFACE
+por comando, citados en `ADR-432`, no re-ejecutados.
