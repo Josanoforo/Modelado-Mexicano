@@ -554,6 +554,65 @@ def t_manifiesto_ausente_bloquea():
     _afirma(r["veredicto"] == "BLOQUEADO", caso, "veredicto no fue BLOQUEADO")
 
 
+def t_preflight_raiz_no_visible_es_aviso_no_bloqueo():
+    """T-PREFLIGHT-FP352 (FP-352). El detector aprende la diferencia entre
+    dos `AUSENTE` muy distintos: la raiz LOGICA esta configurada (a
+    diferencia de `t_manifiesto_ausente_bloquea`, donde el id ni siquiera
+    esta en el manifiesto y `raiz_logica` sale `None`) pero:
+
+      (a) su raiz FISICA no resuelve desde este proceso -- el caso
+          sandbox//mnt/c medido en FP-352 -- entonces NO bloquea: sale
+          `NO-VISIBLE-EN-ESTE-CONTEXTO` como AVISO, con instruccion de
+          correr fuera del sandbox.
+      (b) su raiz FISICA SI resuelve (existe de verdad) y el archivo
+          simplemente no esta ahi -- AUSENTE real, sigue bloqueando.
+
+    Simula el entorno (raiz configurada en la maquina, invisible desde ESTE
+    proceso -- lo que en `data/raices.local.yaml`/`MODELADO_RAICES` varia
+    por maquina) mockeando la resolucion de raiz, sin tocar
+    `tests/payload_resolver.py` ni `tests/manifiesto.py` (fuera de
+    perimetro de este acto)."""
+    caso = "T-PREFLIGHT-FP352"
+    iid = "IN-FP352-DESCARGAS-MX"
+
+    def _mock_resolver_payload(payload_id, **kw):
+        return {"id": payload_id, "raiz_logica": "descargas_mx",
+                "ruta_absoluta": "/mnt/c/Users/PC0/Descargas MX/archivo.csv",
+                "sha256_esperado": "aaa" * 21 + "a", "sha256_actual": None,
+                "tamano": None, "estado": "AUSENTE"}
+
+    original_resolver_payload = C._PR.resolver_payload
+    original_resolver_raiz = C._PR.M.resolver_raiz
+    C._PR.resolver_payload = _mock_resolver_payload
+    try:
+        # (a) la raiz fisica NO resuelve desde este proceso (el mount no
+        # esta montado aqui, o el sandbox lo esconde) -> AVISO, no bloqueo.
+        C._PR.M.resolver_raiz = (
+            lambda nombre, root, raw_dir: "/mnt/c/definitivamente-no-existe-fp352-test")
+        spec = dict(_SPEC_BASE, inputs=[{"id": iid, "origen": "manifiesto"}])
+        r, _s = _preflight_de(spec)
+        _afirma(f"input_manifiesto_AUSENTE={iid}" not in r["bloqueos"], caso,
+                f"NO-VISIBLE-EN-ESTE-CONTEXTO sigue bloqueando: {r['bloqueos']}")
+        _afirma(any(a.startswith(f"input_manifiesto_NO-VISIBLE-EN-ESTE-CONTEXTO={iid}")
+                    for a in r["avisos"]), caso,
+                f"no aparece el aviso NO-VISIBLE-EN-ESTE-CONTEXTO: {r['avisos']}")
+
+        # (b) la raiz fisica SI resuelve (existe de verdad) -> AUSENTE real,
+        # sigue bloqueando -- el fix no puede volverse ciego al caso real.
+        with tempfile.TemporaryDirectory(prefix="fp352-raiz-visible-") as raiz_real:
+            C._PR.M.resolver_raiz = lambda nombre, root, raw_dir: raiz_real
+            r2, _s2 = _preflight_de(spec)
+        _afirma(f"input_manifiesto_AUSENTE={iid}" in r2["bloqueos"], caso,
+                f"un AUSENTE real (raiz visible, archivo ausente) dejo de "
+                f"bloquear: {r2['bloqueos']}")
+        _afirma(not any(a.startswith("input_manifiesto_NO-VISIBLE-EN-ESTE-CONTEXTO")
+                        for a in r2["avisos"]), caso,
+                f"un AUSENTE real se etiqueto como NO-VISIBLE: {r2['avisos']}")
+    finally:
+        C._PR.resolver_payload = original_resolver_payload
+        C._PR.M.resolver_raiz = original_resolver_raiz
+
+
 def t_manifiesto_ruta_al_medidor():
     """T-MANIFIESTO-RUTA-AL-MEDIDOR. El objeto que resolvio el payload
     (P1) alimenta al medidor: `ruta_absoluta`/`raiz_logica` viajan, ningun
@@ -843,6 +902,48 @@ def t_verify_contexto_llaves_no_cadena():
     _afirma(C._canoniza_llaves({1: "a", "1": "b"})
             != C._canoniza_llaves({1: "a"}), caso,
             "el canonizador aplasto `{1: 'a', '1': 'b'}` contra `{1: 'a'}`")
+
+
+def t_verify_contexto_fp358_commit_no_gatea():
+    """T-VERIFY-CONTEXTO-FP358 (FP-358). El commit es dato INFORMATIVO, no
+    criterio. Control positivo medido en FP-358 sobre CALC-0003-v2: mismo
+    CALC, un commit ajeno despues del sello (COMMIT-2/cascada/merge, que el
+    propio protocolo del acto OBLIGA a hacer) -- antes de este acto,
+    `CONTEXTO` caia a `DISTINTO` con razon `commit_distinto` (y `verify`
+    degradaba a `REPLICA-RESULTADO · CONTEXTO-DISTINTO`); ahora sigue
+    `IDENTICO`, sin razon alguna."""
+    caso = "T-VERIFY-CONTEXTO-FP358"
+    with _calc_temporal(dict(_SPEC_BASE, calc_id="CALC-TEST-FP358-A")) as (d, cid):
+        spec, ejec = _construye_calc_sellado(d, cid, {"a": 1}, {"a": 1})
+        # Simula "cayeron commits ajenos despues del sello": el commit real
+        # de HOY (HEAD de este arbol) ya no coincide con el que quedo
+        # sellado -- justo lo que el protocolo del acto obliga a que pase.
+        ejec_con_commit_viejo = dict(ejec, git_commit="0" * 40)
+        contexto, razones = C._evalua_contexto(d, spec, ejec_con_commit_viejo)
+    _afirma(contexto == "IDENTICO", caso,
+            f"un commit distinto por si solo ya no deberia gatear CONTEXTO: "
+            f"contexto={contexto} razones={razones}")
+    _afirma("commit_distinto" not in razones and not razones, caso,
+            f"el commit se colo de vuelta como razon: razones={razones}")
+
+
+def t_verify_contexto_fp358_codigo_distinto():
+    """T-VERIFY-CONTEXTO-FP358-CODIGO (FP-358). El OTRO lado del falsador:
+    quitarle el gateo al commit no puede volver ciego al cambio real de
+    codigo. Si el blob del medidor SI cambio, `CONTEXTO` sigue DISTINTO,
+    con razon `codigo_distinto` (antes: `script_cambiado`)."""
+    caso = "T-VERIFY-CONTEXTO-FP358-CODIGO"
+    with _calc_temporal(dict(_SPEC_BASE, calc_id="CALC-TEST-FP358-B")) as (d, cid):
+        spec, ejec = _construye_calc_sellado(d, cid, {"a": 1}, {"a": 1})
+        ejec_con_blob_viejo = dict(ejec, script_blob_sha256="0" * 64)
+        contexto, razones = C._evalua_contexto(d, spec, ejec_con_blob_viejo)
+    _afirma(contexto == "DISTINTO", caso,
+            f"un blob de medidor distinto deberia seguir dando DISTINTO: "
+            f"contexto={contexto} razones={razones}")
+    _afirma("codigo_distinto" in razones, caso,
+            f"la razon esperada `codigo_distinto` no aparecio: razones={razones}")
+    _afirma("script_cambiado" not in razones, caso,
+            f"la razon vieja `script_cambiado` sigue viva: razones={razones}")
 
 
 def _listado_canonico(d: Path) -> list[str]:
@@ -1566,6 +1667,55 @@ def t_status_cifras_derivadas():
                 "replays_legacy_sellados": 1}
     for k, v in esperado.items():
         _afirma(c[k] == v, caso, f"{k}={c[k]}, esperado {v}")
+
+
+def t_status_puro_y_registro_seco_no_escriben():
+    """T-FOTOCOPIADORA (FP-359). `status` deriva en memoria -- correrlo dos
+    veces deja cero bytes cambiados en los tres TSV. Y `registro` SIN
+    `escribe=True` (el default nuevo) tampoco escribe un byte -- el defecto
+    medido era exactamente lo contrario: el procedimiento recomendado por
+    `ADR-410` para "simular la firma en memoria, sin escribir nada" SI
+    escribia, porque `registro` escribia por defecto. `escribe=True`, como
+    control positivo, SI debe cambiar los archivos -- si no, el falsador
+    seria vacuo (no probaria nada con solo la mitad silenciosa)."""
+    caso = "T-FOTOCOPIADORA"
+    calcs = [{"calc_id": "CALC-FIX-0001", "valores": {"RESULT-A": 1.0},
+              "etiquetas": {"generacion": "GEN2", "cuenta_gen2": "SI"}}]
+    with _arbol_registro(calcs=calcs) as tmp:
+        vista_corridas, vista_resultados, vista_usos = (
+            tmp / "corridas.tsv", tmp / "resultados.tsv", tmp / "usos.tsv")
+        placeholder = "# DERIVADO — NO EDITAR\nplaceholder-no-tocar\n"
+        for ruta in (vista_corridas, vista_resultados, vista_usos):
+            ruta.write_text(placeholder, encoding="utf-8")
+        antes = {p.name: C._sha256_archivo(p)
+                 for p in (vista_corridas, vista_resultados, vista_usos)}
+
+        previos = (C.VISTA_CORRIDAS, C.VISTA_RESULTADOS, C.VISTA_USOS)
+        C.VISTA_CORRIDAS, C.VISTA_RESULTADOS, C.VISTA_USOS = (
+            vista_corridas, vista_resultados, vista_usos)
+        try:
+            C.status(imprime=False)
+            C.status(imprime=False)
+            despues_status = {p.name: C._sha256_archivo(p)
+                              for p in (vista_corridas, vista_resultados, vista_usos)}
+            _afirma(antes == despues_status, caso,
+                    f"`status` (dos corridas) cambio bytes: {antes} vs {despues_status}")
+
+            C.registro(imprime=False)  # sin `escribe`: el default nuevo es False
+            despues_registro_seco = {p.name: C._sha256_archivo(p)
+                                     for p in (vista_corridas, vista_resultados, vista_usos)}
+            _afirma(antes == despues_registro_seco, caso,
+                    f"`registro()` sin `escribe=True` escribio: "
+                    f"{antes} vs {despues_registro_seco}")
+
+            C.registro(escribe=True, imprime=False)  # control positivo
+            despues_escribe = {p.name: C._sha256_archivo(p)
+                               for p in (vista_corridas, vista_resultados, vista_usos)}
+            _afirma(antes != despues_escribe, caso,
+                    "`registro(escribe=True)` NO cambio nada -- falsador vacuo, "
+                    "el control positivo no controla nada")
+        finally:
+            C.VISTA_CORRIDAS, C.VISTA_RESULTADOS, C.VISTA_USOS = previos
 
 
 def t_status_arbol_real_no_cuenta_smokes():

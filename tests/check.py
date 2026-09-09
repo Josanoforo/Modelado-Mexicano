@@ -2665,6 +2665,15 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # como `E · GEN2-E5` en `canon/registro-rotulos.tsv` por ese mismo acto.
     # El rótulo que ESTE acto reclama es `E · GEN2-E5-1`, y lo censa él.
     "forense/encargos/2026-09-08-GEN2-E5-1-VERIFICADOR-CALC0003V2-FIRMA.md",
+    # ACTO GEN2-CHECADOR-2 · TRES-DEFECTOS-CORRIDA0, 9/sep/2026: encargo
+    # archivado VERBATIM (0-bis A.3), pegado en el mensaje que invocó `/acto`,
+    # que no se edita para complacer un test. Cita `E5` pelado una vez, como
+    # PROCEDENCIA y no como rótulo nuevo: «una línea al runbook de caja
+    # documentando el rodeo ya en uso (E5 corrió así, declarado)» -- referencia
+    # al acto predecesor `ACTO GEN2-E5 · CALC-0001..0003`, ya censado como
+    # `E · GEN2-E5` en `canon/registro-rotulos.tsv`. Este acto reclama
+    # `GEN2-CHECADOR-2`, sin serie `E`/`M`, y lo censa como token pelado nuevo.
+    "forense/encargos/2026-09-09-GEN2-CHECADOR-2-tres-defectos-corrida0.md",
     # ACTO GEN2-FIRMA-CONTADOR, 8/sep/2026: encargo archivado VERBATIM
     # (0-bis A.3), pegado en el mensaje que invocó `/acto`. Cita "E5-1"
     # pelado dos veces, las dos como PROCEDENCIA al acto predecesor ("la
