@@ -1,0 +1,122 @@
+{
+ "corrida_id": "CALC-R-DIN-M-01-v2--a796ed134a16",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "corridas-R/correr-R.py": "AUSENTE",
+  "pyreadstat solo si DTA": "AUSENTE",
+  "tests/svystat.py": "AUSENTE",
+  "tools/arbitra.py": "AUSENTE"
+ },
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "SI",
+  "firma": "FP-370; OBJETO=CALC-R-DIN-M-01-v2:DIN-M-01",
+  "generacion": "GEN2",
+  "tipo": "ARBITRO-R-DE-CELDA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-10T15:20:00Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 401,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "a796ed134a169e3652dadd36d58195e49693f2ac",
+  "git_rama": "acto/gen2-r-completa-marco",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "a796ed134a169e3652dadd36d58195e49693f2ac",
+ "input_ids": [
+  "ennvih1_2002_hogar_dta",
+  "ennvih1_2002_ponderador",
+  "IN-CODIFICACION-R-V1-1",
+  "IN-MARCO-R-V1-3"
+ ],
+ "input_sha256": {
+  "IN-CODIFICACION-R-V1-1": "be54679ee93018cea743d01a5999c0744a5416785ff2262214277786f29dfb37",
+  "IN-MARCO-R-V1-3": "f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a",
+  "ennvih1_2002_hogar_dta": "8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923",
+  "ennvih1_2002_ponderador": "bbe8006844f715c19b724ebb74f1408c4cfa07e2efdfe7d6748b5182ef214587"
+ },
+ "parametros": {
+  "codificacion": "y=1 si cr27=='1' (Si); y=0 si=='3' (No); 7 y 8 (no sabe / no responde) fuera",
+  "estrato": "DISENO-APROXIMADO:CONSTANTE (un solo estrato: el estrato de diseno real -alto/medio/bajo, 14 indicadores de la ENE 2001- NO se publica en el microdato, ver ennvih_diseno/ennvih-1_muestra.pdf p.3; y `ent` no existe en ninguna de las dos tablas que esta fila nombra)",
+  "id_celda": "DIN-M-01",
+  "payload_id": "ennvih1_2002_hogar_dta",
+  "ponderador": "fac_3b@ehh02w_all/ehh02w_b3b.dta[folio+ls]",
+  "tabla": "ehh02dta_all/ehh02dta_b3b/iiib_cr.dta",
+  "universo": "19802 filas del libro 3B (seccion CR) de ENNViH-1 2002; cr27 tiene etiqueta 'TIENE AHORROS' con 2665 en '1', 17074 en '3', 60 en '7' y 3 nulos; sin filtro adicional",
+  "upm": "DISENO-APROXIMADO:folio (hogar; la UPM real es un conglomerado de viviendas y NO se publica: grep -i upm sobre guiausuariov1.pdf, doc/ehh02cb_bc.pdf y doc/eloc02cb_bcc.pdf da 0 aciertos en los tres)",
+  "variable": "cr27"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-R-DIN-M-01-EE",
+  "RESULT-R-DIN-M-01-ESTADO",
+  "RESULT-R-DIN-M-01-IC-HI",
+  "RESULT-R-DIN-M-01-IC-LO",
+  "RESULT-R-DIN-M-01-MASA-PONDERADA",
+  "RESULT-R-DIN-M-01-METODO-IC",
+  "RESULT-R-DIN-M-01-N",
+  "RESULT-R-DIN-M-01-N-CODIGO-EXCLUIDO",
+  "RESULT-R-DIN-M-01-N-ESTRATOS",
+  "RESULT-R-DIN-M-01-N-ESTRATOS-UPM-UNICA",
+  "RESULT-R-DIN-M-01-N-FALTANTES-EXCLUIDOS",
+  "RESULT-R-DIN-M-01-N-FILAS-TABLA",
+  "RESULT-R-DIN-M-01-N-FUERA-UNIVERSO",
+  "RESULT-R-DIN-M-01-N-SIN-PONDERADOR",
+  "RESULT-R-DIN-M-01-N-UPM",
+  "RESULT-R-DIN-M-01-PUNTO"
+ ],
+ "script_blob_sha256": "b06f7cdf3257f412e7758e5af26cc1784c07e57d1b013e12e86cd5a99384b892",
+ "script_path": "data/corrida0/CALC-R-DIN-M-01-v2/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-R-DIN-M-01-v2",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "af249d61160cfb00d4586b1acf54fba291975e28f07897548389cc21d7384b29",
+ "spec_yaml_sha256": "3ae8da5e44996f2756bbc85b58b938a0da1a26aba2b0a7b6f0f11b772f088475",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "punto y varianza deterministas; enteros/texto exactos",
+  "tipo": "flotante"
+ }
+}
