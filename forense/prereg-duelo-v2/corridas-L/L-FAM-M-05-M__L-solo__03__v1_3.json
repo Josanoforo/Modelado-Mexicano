@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "**Estimación puntual: ≈ 4.5 % de los hogares (proporción ponderada) reciben remesas en ENIGH 2016 Nueva Serie.**\n\nIntervalo subjetivo (aunque la escala es binaria, doy mi incertidumbre sobre la proporción): **3.8 % – 5.5 %**, con la mayor parte de mi masa de probabilidad entre 4.2 % y 5.0 %.\n\nRazonamiento y calibración:\n- Las series históricas de ENIGH ubican la proporción de hogares con ingreso por remesas del exterior en el rango de ~4 % a ~6 % desde mediados de los 2000, con una tendencia descendente respecto al pico previo a 2008 (que llegó a ~6–7 %) y una recuperación parcial hacia 2018–2022.\n- Con ~33.5 millones de hogares en 2016, 4.5 % implicaría ~1.5 millones de hogares receptores, cifra consistente con los órdenes de magnitud que suelen reportarse a partir de ENIGH (nótese que ENIGH subestima respecto a los registros de Banxico, que cubren transacciones, no hogares).\n- Si la estimación se calcula **sin ponderador** (conteo simple de registros), el valor puede diferir algo del ponderado; mi cifra apunta a la versión expandida con `factor`.\n\n**Sobre la fuente (sonda canario):** no tengo acceso al microdato de ENIGH 2016 en esta sesión ni puedo citar un cuadro específico del INEGI que reporte exactamente esta operacionalización (`remesas > 0` sobre `concentradohogar`). Mi número es una estimación de conocimiento general, **no una lectura de una fuente textual declarada**. No voy a atribuirlo a un documento concreto porque sería inventar la cita.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:33:12.777846+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a8dde17ac46b97f502532aad4d19f4cd26e37037bf75b73971401678ef712acc",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

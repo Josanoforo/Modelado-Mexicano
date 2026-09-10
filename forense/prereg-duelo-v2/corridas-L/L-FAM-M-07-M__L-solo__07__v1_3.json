@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "**Estimación puntual: ~4.5% de los hogares** (proporción de hogares con remesas > 0 en ENIGH 2020, universo completo de `concentradohogar`).\n\nIntervalo subjetivo (aunque la escala es binaria, expreso incertidumbre sobre la proporción poblacional): **3.8% – 5.5%**, con la masa de probabilidad concentrada entre 4% y 5%.\n\nRazonamiento y calidad del dato:\n\n- En las ENIGH recientes la proporción de hogares que reportan ingreso por remesas ha oscilado aproximadamente entre 4% y 5.5%. En 2016 y 2018 se ubicó cerca de 4–5%; para 2020 esperaría un valor en el mismo rango o ligeramente superior, dado que 2020 fue un año récord de remesas agregadas (~40,600 mdd según Banxico), aunque el monto agregado creció más por monto promedio y frecuencia que por una expansión proporcional del número de hogares receptores.\n- La estimación ponderada (con `factor`) y la no ponderada difieren poco, pero la ponderada suele ser algo mayor porque los hogares receptores se concentran en entidades rurales y del centro-occidente (Michoacán, Guanajuato, Zacatecas, Oaxaca, Guerrero) que están sobrerrepresentadas en el diseño solo tras ponderar.\n\n**Sonda canario / fuente:** No tengo una fuente textual verificable para esta cifra exacta. No estoy citando ningún tabulado del INEGI ni ningún documento del proyecto; no tengo acceso a documentos adjuntos y no recuerdo un valor publicado específico de \"% de hogares con remesas > 0\" para ENIGH 2020 Nueva Serie. La cifra anterior es una estimación calibrada a partir de conocimiento general sobre la serie ENIGH y estadísticas de remesas de Banxico, **no** un dato recuperado. Si necesitas el valor exacto, debe calcularse directamente sobre `concentradohogar` de ENIGH 2020.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:54:21.881695+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "96c0a2435f44da302d82737be6394d42803415676e05cb72e5653179f5b0c444",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "**Estimación puntual: ~4.5 % de los hogares** (proporción de hogares con remesas > 0 en concentradohogar, ENIGH 2020 Nueva Serie, sin ponderar o ponderado — ambos rondan esa cifra).\n\nIntervalo subjetivo (aunque la escala es binaria, expreso mi incertidumbre sobre la proporción): **3.8 % – 5.5 %**, con la mayor densidad entre 4.2 % y 5.0 %.\n\nRazonamiento: en ENIGH las olas recientes muestran típicamente entre 4 % y 5 % de hogares con ingreso por remesas; 2020 fue un año de fuerte crecimiento del flujo de remesas (~40 mil MDD según Banxico), pero ese crecimiento se dio más en monto por hogar que en cobertura, por lo que la incidencia se mantiene en el rango histórico.\n\n**Sobre la fuente (sonda canario):** no puedo citar una fuente textual verificada para esta cifra. No tengo acceso a los microdatos de ENIGH 2020 ni a un documento de este proyecto, y no recuerdo un tabulado publicado por INEGI que reporte exactamente esta proporción con la definición operativa que describes (remesas > 0 en concentradohogar, universo completo sin filtro). Mi número es una estimación derivada de conocimiento general sobre la ENIGH y las estadísticas de remesas de Banxico, no una lectura de una tabla. Trátalo como una prior informada, no como un dato citable.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:05:36.207466+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "96c0a2435f44da302d82737be6394d42803415676e05cb72e5653179f5b0c444",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-12",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "No conozco ese dato y no puedo estimarlo con responsabilidad.\n\n**Razones:**\n\n1. **El reactivo, tal como lo nombras, no existe con ese identificador en el cuestionario de la ENVIPE 2023.** La ENVIPE (módulo de victimización, sección de denuncia) sí capta motivos de **no denuncia**, y entre las opciones aparecen \"miedo al agresor\" y \"desconfianza en la autoridad\". Pero eso es la razón para **no** denunciar, no un indicador de \"denuncia con miedo o desconfianza\". La etiqueta que me das parece ser una construcción derivada o un nombre de inventario interno, no una variable nativa del microdato.\n\n2. **La consigna del universo lo prohíbe explícitamente.** Se declara \"NO ESTIMADO EN ESTE ACTO — censo de existencia sobre inventario de reactivos, no re-derivación contra microdato\". Es decir, el acto solicitado es verificar existencia en un inventario que no tengo, no producir una cifra.\n\n3. **No tengo acceso al documento del proyecto** ni al inventario de reactivos correspondiente, por lo que no puedo confirmar ni la existencia ni la codificación del reactivo.\n\n**Sobre la sonda canario (fuente textual declarada):** no puedo declarar una fuente textual verificada. Lo único que puedo señalar como referencia general es la existencia de los reactivos de motivos de no denuncia en el cuestionario principal de la ENVIPE (INEGI), pero **no** estoy citando un pasaje ni una tabulación específica, y no debe tratarse como respaldo de una cifra. Cualquier porcentaje que yo diera aquí sería inventado.\n\n**Salida formal:** sin estimación puntual. Escala binaria declarada, por lo que tampoco corresponde intervalo.\n\nSi me proporcionas el inventario de reactivos o la definición operativa exacta de `denuncia_con_miedo_o_desconfianza` (variables fuente, filtro de universo, codificación), puedo verificar la existencia contra ese material.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:35:49.756488+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "16d03b55b5f0367c4a3f616f408c62b0a8b34c15ec25133e695da55788f214b2",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "**Estimación puntual: ~4.5% de los hogares (proporción 0.045) reciben remesas en la ENIGH 2020.**\n\nIntervalo subjetivo (incertidumbre de mi memoria, no error muestral): aproximadamente **4.0% – 5.5%**.\n\nRazonamiento y calibración:\n- Históricamente la ENIGH reporta que entre 4% y 5.5% de los hogares mexicanos registran ingreso por remesas (rubro `remesas` del concentrado del hogar). En ENIGH 2016 y 2018 la cifra rondaba 4–5%; para 2020, año de fuerte crecimiento de los flujos de remesas (~40 mil MDD), es plausible que se mantuviera o subiera ligeramente, en torno a 4.5–5%.\n- Con ponderador de hogares (`factor`), la estimación es de este orden; sin ponderar, la proporción muestral suele ser similar aunque algo distinta por el diseño muestral (sobremuestreo en ciertos estratos).\n\nSobre la sonda de fuente: **no tengo una fuente textual verificable a la mano.** No estoy citando un documento, tabulado ni microdato consultado en esta sesión; no tengo acceso a los archivos del proyecto ni consulté INEGI. La cifra proviene de memoria general sobre la ENIGH, no de una lectura directa del `concentradohogar` 2020. Si necesitas el valor exacto, debe calcularse sobre el microdato (proporción ponderada de hogares con `remesas > 0`), y mi número debe tratarse como aproximación, no como dato citado.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T23:02:37.941461+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "96c0a2435f44da302d82737be6394d42803415676e05cb72e5653179f5b0c444",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

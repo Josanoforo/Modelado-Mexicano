@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-07",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "**Respuesta breve: no puedo verificar la existencia de ese reactivo con ese identificador, y hay una inconsistencia que debo señalar antes de estimar.**\n\n**1. Sonda canario / inconsistencia detectada**\n\nEl identificador es `paga_mordida_encig2025`, pero la ola declarada es **ENCIG 2021**. Son incompatibles. Además, \"paga_mordida\" no es un nombre de variable del catálogo real de la ENCIG (INEGI usa nomenclatura tipo `P5_x`, `P6_x`, etc., con etiquetas descriptivas). No tengo forma de confirmar que este reactivo exista en el inventario de la ola 2021. **No declaro una fuente textual: no tengo el documento ni el catálogo de este proyecto a la vista.**\n\n**2. Estimación condicional (si el constructo es \"experimentó/pagó un acto de corrupción\")**\n\nEscala binaria. La estimación depende críticamente del denominador, que no está especificado:\n\n- **Denominador = población 18+ que tuvo contacto con algún servidor público** (definición estándar ENCIG de *prevalencia de corrupción*): mi mejor estimación puntual para 2021 es **≈ 14–15 % (punto: 14.7 %)**. Este es el orden de magnitud que recuerdo para la tasa de prevalencia de ENCIG 2021 (~14,600 por cada 100,000 habitantes), pero es memoria aproximada, no lectura de fuente.\n- **Denominador = toda la población 18+, sin condicionar a contacto**: la cifra cae sustancialmente, estimo **≈ 8–12 %**.\n- **Si el reactivo mide autorreporte directo de \"haber dado dinero/regalo a un servidor público\"** (más estigmatizado, con sesgo de deseabilidad social a la baja), estimo **≈ 5–10 %**.\n\n**3. Lo que no sé y no voy a inventar**\n\n- El texto exacto del reactivo, sus opciones y filtros.\n- Si existe en la ola 2021 con ese nombre (probablemente **no**, dado el sufijo 2025).\n- El *n* efectivo y el universo exacto — usted mismo indica que no fueron re-derivados.\n- Si \"ENCIG 2025\" existe como ola levantada; la serie es bienal (2011, 2013, 2015, 2017, 2019, 2021, 2023...), por lo que 2025 sería plausible en calendario pero no tengo confirmación de su publicación.\n\n**Recomendación:** aclare la ola y el denominador antes de que este valor entre al inventario. Tal como está planteado, marcaría este ítem como **no verificable / posible reactivo espurio**.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:21:58.764575+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "403b95330be3de3998ee5c84fe8bca8107c5180318e5fcc0c81eaffe58e48725",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

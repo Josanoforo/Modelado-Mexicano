@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-12",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "No conozco este dato y no puedo estimarlo con base sólida. Explico por qué:\n\n**1. El reactivo tal como está nombrado no existe en el cuestionario ENVIPE.** La ENVIPE (módulo de victimización, sección de denuncia) sí capta razones de **no denuncia**, y entre ellas figuran \"miedo al agresor\" y \"desconfianza en la autoridad\" (dentro del bloque de causas atribuibles a la autoridad vs. otras causas). Pero `denuncia_con_miedo_o_desconfianza` —denunciar *pese a* o *con* miedo/desconfianza— no corresponde a un reactivo estándar del instrumento que yo pueda identificar. Podría ser una variable derivada por el equipo del proyecto, y no tengo el documento que la define.\n\n**2. La consigna misma dice \"NO ESTIMADO EN ESTE ACTO\".** El universo declarado es un censo de existencia sobre inventario de reactivos, no una re-derivación contra microdato. Bajo esa regla, lo procedente es reportar presencia/ausencia del reactivo en el inventario, no una proporción poblacional. No tengo el inventario.\n\n**3. Sonda de fuente:** no puedo citar fuente textual declarada. No tengo acceso al cuestionario ENVIPE 2023, a los tabulados del INEGI, ni al documento del proyecto donde se define esta variable. Cualquier cifra que diera (del tipo \"≈X% de las víctimas que denunciaron reportaron miedo o desconfianza\") sería una fabricación con apariencia de plausibilidad.\n\n**Lo que sí puedo ofrecer como anclaje verificable por usted, con la salvedad de que son cifras de memoria y deben confirmarse contra el tabulado del INEGI:** en ENVIPE la tasa de no denuncia ronda históricamente el 92–94% de los delitos, y dentro de las razones de no denuncia, \"pérdida de tiempo\" y \"desconfianza en la autoridad\" suelen ser las dos más frecuentes, con \"miedo al agresor\" bastante por debajo. Esto es contexto, **no** una estimación del reactivo solicitado.\n\n**Estimación puntual: me abstengo.** Para producirla necesitaría (a) la definición operativa de la variable en el documento del proyecto, o (b) la regla de columnas de MAESTRA32-E15 spec (e) para saber si se pide existencia binaria del reactivo o una proporción.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:47:20.299808+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "16d03b55b5f0367c4a3f616f408c62b0a8b34c15ec25133e695da55788f214b2",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

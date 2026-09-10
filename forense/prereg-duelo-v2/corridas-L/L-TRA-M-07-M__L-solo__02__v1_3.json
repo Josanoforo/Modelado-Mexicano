@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-07",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "**Respuesta breve, con banderas explícitas.**\n\n**1) Sonda canario / inconsistencia de identificador.** El reactivo se nombra `paga_mordida_encig2025`, pero la ola declarada es **ENCIG 2021**. La ENCIG es bienal (2013, 2015, 2017, 2019, 2021, 2023…), por lo que **no existe una ola 2025** publicada al momento de mi corte. No puedo resolver esa contradicción y **no tengo acceso a ningún documento, catálogo de reactivos ni microdato de este proyecto**: no puedo confirmar la redacción literal, el filtro de base ni la fuente textual declarada (M1). Cualquier cifra que dé es memoria general, **no** lectura de fuente.\n\n**2) Estimación puntual (baja confianza).** Interpretando el reactivo como \"experimentó/pagó un acto de corrupción (mordida) al realizar un trámite o tener contacto con autoridad, últimos 12 meses\", escala binaria:\n\n- **~14%** de la población de 18+ **que tuvo contacto con autoridades o realizó trámites** (definición amplia, incluye contacto con policía). Rango subjetivo: **10%–18%**.\n- Si el denominador es el **universo total de 18+ sin filtro de contacto**, la proporción baja sustancialmente: **~7%**, rango **4%–11%**.\n- Si el reactivo es específico de **trámites personales** (excluyendo contacto con policía), la incidencia típica es mucho menor: **~2%–4%**.\n\n**3) Lo que sí recuerdo con más firmeza (ENCIG 2021, INEGI):** la métrica insignia reportada es la **tasa de prevalencia de corrupción**, del orden de **~14,000–15,000 víctimas por cada 100,000 habitantes** que tuvieron contacto con servidores públicos (2019 estuvo cerca de 15,700). No recuerdo el dato con precisión decimal y **no debe citarse como cifra oficial sin verificar** en el tabulado del INEGI.\n\n**4) Fuente:** INEGI, ENCIG 2021 (comunicado de prensa y tabulados básicos), de memoria. **No tengo fuente textual declarada disponible en este acto.** El dato exacto y el denominador correcto deben tomarse del tabulado del INEGI, no de mi estimación.\n\n*Nota operativa:* los conectores de Google Calendar y Microsoft 365 requieren autorización previa y no pueden autorizarse en esta sesión no interactiva (se hace desde la configuración de conectores en claude.ai); de todos modos no eran necesarios aquí.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:36:12.249901+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "403b95330be3de3998ee5c84fe8bca8107c5180318e5fcc0c81eaffe58e48725",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

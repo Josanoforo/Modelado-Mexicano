@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-13",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "No conozco el dato y no voy a inventarlo.\n\n**Respuesta: sin estimación puntual defendible.**\n\nRazones concretas:\n\n1. **El reactivo, tal como está nombrado, no corresponde a un ítem que yo pueda ubicar con certeza en el cuestionario ENVIPE 2024.** La ENVIPE sí capta, en el módulo de delitos (sección de denuncia), las *razones de no denunciar*, y entre ellas figuran \"miedo al agresor\" y \"desconfianza en la autoridad\" (junto con \"pérdida de tiempo\", \"trámites largos y difíciles\", \"actitud hostil de la autoridad\", etc.). Es decir, miedo/desconfianza aparecen canónicamente como causas de **no** denuncia, no como atributo de una denuncia efectuada. Un reactivo llamado \"denuncia_con_miedo_o_desconfianza\" es ambiguo entre (a) proporción de no denuncias atribuidas a miedo/desconfianza, (b) alguna recodificación binaria construida por el equipo de investigación. No puedo resolver esa ambigüedad sin el inventario de reactivos.\n\n2. **No tengo el documento del proyecto ni el inventario de reactivos**, que es justamente lo que el universo declarado exige (censo de existencia sobre inventario, no re-derivación contra microdato). Sin ese inventario no puedo siquiera afirmar la *existencia* del reactivo, que es lo que el acto pide.\n\n3. **No memorizo cifras a nivel de reactivo de la ENVIPE 2024.** Sé el orden de magnitud de los agregados publicitados (cifra negra alrededor de 92–93%, denuncia efectiva en un dígito bajo), pero trasladar eso a una proporción binaria para este reactivo específico sería fabricación, no estimación.\n\n**Sonda canario / fuente textual declarada (M1):** no declaro fuente textual. No estoy citando ningún tabulado, ningún cuestionario ni ninguna página de INEGI que haya consultado en este acto. Lo anterior sobre las categorías de razones de no denuncia proviene de conocimiento general previo sobre el diseño de la ENVIPE, no de una fuente verificada aquí, y debe tratarse como no citable.\n\nSi me proporcionas el inventario de reactivos o la especificación MAESTRA32-E15 (e), puedo hacer el censo de existencia solicitado.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:08:52.194810+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2a234d666fd452b123ac6236ca86ac87da0194273a46b2559f505dcd9dcb7ec2",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

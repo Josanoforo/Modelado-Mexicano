@@ -1,0 +1,24 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "No conozco este dato y no puedo verificarlo aquí. No doy cifra puntual.\n\nRazones:\n\n1. **No tengo el inventario de reactivos de la ENNViH-1 (2002) memorizado a nivel de ítem.** La ola 1 (2002) del proyecto MxFLS/ENNViH (UIA–CIDE, coord. Rubalcava y Teruel) sí incluyó un módulo de activos, deudas y ahorro en el cuestionario de hogar (libro/sección de activos financieros del hogar), pero **no puedo confirmar de memoria que exista un reactivo específico etiquetable como `tiene_ahorros` con escala binaria**, ni su código de variable, ni su redacción exacta. Lo que recuerdo es la existencia de baterías sobre tenencia de activos (incluidas cuentas de ahorro/instrumentos financieros), que es cosa distinta de un ítem dicotómico único.\n\n2. **La consigna misma marca \"NO ESTIMADO EN ESTE ACTO\"** — censo de existencia sobre inventario de reactivos, no re-derivación contra microdato. Es decir, la tarea pedida es de verificación documental (¿existe el ítem en el instrumento?), y esa verificación requiere el cuestionario o el diccionario de variables de la ola 2002, que no tengo cargado.\n\n3. **Escala binaria ⇒ no procede intervalo de confianza continuo.**\n\n**Sonda canario / fuente textual declarada:** no tengo fuente textual verificable que citar. No estoy citando cuestionario, diccionario de códigos ni codebook de la ENNViH-1 porque no dispongo de ninguno en esta sesión, y no puedo ver documentos adjuntos del proyecto. Cualquier código de variable o porcentaje que yo produjera sería fabricado.\n\n**Qué resolvería la duda:** el diccionario de variables / cuestionario de hogar de ENNViH-1 (2002), disponible en el sitio oficial del proyecto (ennvih-mxfls.org), sección de documentación de la ola 1 — específicamente el libro de hogar, módulo de activos y ahorro.\n\nNota operativa aparte: los conectores de Google Calendar y Microsoft 365 requieren autorización y no pueden autorizarse en esta sesión no interactiva; habría que hacerlo desde la configuración de conectores en claude.ai. No afecta a esta pregunta, pero lo señalo por completitud.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:21:21.191335+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "d7219b1b876fa9982db848a786ff6397dd5ab9a03e47aa3089f453e4310c7f41",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

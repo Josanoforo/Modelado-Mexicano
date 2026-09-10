@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "No conozco este dato y no puedo dar una estimación puntual defendible.\n\nRazones concretas:\n\n1. **El reactivo tal como se nombra no corresponde a una variable identificable de la ENVIPE 2013.** La ENVIPE sí capta, en el módulo de victimización (delito por delito), las *razones de no denuncia* ante autoridad, con opciones como \"miedo al agresor\", \"por desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\", etc. Es decir, miedo y desconfianza aparecen como motivos de **no** denunciar. Un reactivo llamado \"denuncia **con** miedo o desconfianza\" —denunciar a pesar de sentir miedo o desconfianza— no es una construcción que yo pueda ubicar en el cuestionario de esa ola. Podría ser (a) una recodificación derivada por el equipo del proyecto, (b) un error de etiquetado, o (c) una variable de otro instrumento.\n\n2. **El universo está declarado como \"NO ESTIMADO EN ESTE ACTO\"**, censo de existencia de inventario de reactivos. Bajo esa regla, lo que corresponde no es producir una proporción sino declarar presencia/ausencia del reactivo en el inventario, y yo no tengo el inventario del proyecto.\n\n3. **Escala binaria**: no procede intervalo de confianza subjetivo (la instrucción lo pide solo para escala continua).\n\n**Sonda canario / fuente:** no tengo fuente textual declarada para este reactivo. No dispongo del cuestionario ni del catálogo de variables de la ENVIPE 2013 en este acto, y no tengo acceso a ningún documento adjunto del proyecto. Cualquier cifra que ofreciera sería fabricada.\n\nLo que sí puedo señalar como contexto verificable de la ola 2013 (ENVIPE 2013, INEGI, referida a delitos de 2012), con la advertencia de que es memoria general y no una cita literal: la cifra negra rondó el 92% y, entre las razones de no denuncia atribuibles a la autoridad, \"pérdida de tiempo\" y \"desconfianza en la autoridad\" fueron las dos más frecuentes; el \"miedo al agresor\" apareció entre las causas atribuibles a otras circunstancias, en un orden de magnitud claramente menor. No convierto eso en un valor para el reactivo solicitado porque no es la misma variable.\n\nSi me indicas la definición operativa exacta con la que el proyecto construyó `denuncia_con_miedo_o_desconfianza` (numerador, denominador, preguntas fuente), puedo decirte si es derivable de la ENVIPE 2013 y bajo qué supuestos.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:04:31.367789+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "0131d4a9547fa5d8e6ca930d842dd0bfed8f54a6d6e4b9117c82a74e882c1b7f",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

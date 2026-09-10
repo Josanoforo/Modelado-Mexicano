@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "**No conozco ese dato y no voy a dar una cifra puntual inventada.**\n\nRazones explícitas:\n\n1. **El reactivo, tal como está nombrado, no corresponde a un ítem que yo pueda identificar en el cuestionario ENVIPE 2021.** Lo que sí existe en ENVIPE (módulo de victimización, sección de denuncia) son las *razones para NO denunciar*, entre ellas \"miedo al agresor\" y \"desconfianza en la autoridad\" — es decir, miedo/desconfianza aparecen como causas de **no** denuncia, no como atributo de una denuncia realizada. Un reactivo binario \"denunció **con** miedo o desconfianza\" no es una categoría que reconozca en el instrumento.\n\n2. **Sonda canario / fuente textual declarada (M1): no tengo ninguna.** No tengo acceso a documento adjunto alguno de este proyecto, ni al cuestionario, ni a los tabulados básicos ni al microdato de ENVIPE 2021. Cualquier proporción que ofreciera sería reconstrucción de memoria, no lectura de fuente, y no puedo citar página, tabulado ni variable del catálogo.\n\n3. **Naturaleza del universo declarado.** El universo indicado (\"censo de existencia sobre inventario de reactivos, no re-derivación contra microdato\") sugiere que lo pertinente aquí es un juicio de *existencia del reactivo en el inventario*, no una estimación poblacional. Sobre esa base mi respuesta de existencia es: **no verificable con la información disponible en este acto**; me inclino a que el reactivo, con ese nombre exacto, es una construcción derivada o una recodificación, no un ítem literal del cuestionario.\n\n4. **Escala binaria → sin intervalo.** Al declararse binaria la escala, no procede intervalo de confianza subjetivo sobre una media continua; y no emito probabilidad puntual porque carecería de anclaje.\n\nSi me indicas el número de pregunta (p. ej. la batería de razones de no denuncia del módulo de victimización) o me das acceso al documento del proyecto, puedo ubicar el reactivo correcto y entonces sí pronunciarme.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T21:59:19.269145+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "961d33197dca125885281a9a3ef652f184a7df753776d43aa229b9a83caf034a",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

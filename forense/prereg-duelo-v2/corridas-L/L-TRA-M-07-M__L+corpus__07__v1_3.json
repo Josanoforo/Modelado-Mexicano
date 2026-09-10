@@ -1,0 +1,62 @@
+{
+  "id_celda": "TRA-M-07",
+  "variante": "L+corpus",
+  "indice": 7,
+  "texto_crudo": "No conozco ese dato y no puedo estimarlo honestamente.\n\nRazones concretas:\n\n1. **El reactivo no existe como lo nombras.** \"paga_mordida_encig2025\" mezcla dos cosas incompatibles: la ENCIG es bienal y sus levantamientos son 2019, 2021, 2023 (no hay ola 2025 con ese identificador), y el nombre del reactivo parece inventado o reconstruido, no una variable del cuestionario ENCIG. No tengo el inventario de reactivos de esa ola para verificar su existencia, redacción exacta ni universo.\n\n2. **La sonda canario:** no tengo fuente textual declarada que respalde una cifra puntual para este reactivo específico. Cualquier número que diera sería una plausibilidad fabricada a partir de indicadores adyacentes (tasa de prevalencia de corrupción por cada 100 mil habitantes que tuvo contacto con autoridad, tasa de víctimas de actos de corrupción en trámites), que **no son la misma variable** que \"pagó mordida\" en escala binaria sobre población de 18 años y más.\n\n3. **El corpus adjunto no contiene el dato.** Los documentos del paquete-corpus-F5-v1_0 tratan crédito popular, consumo aspiracional, clientelismo, adopción tecnológica y emociones morales. Ninguno reporta cifras de ENCIG sobre pago de sobornos. El único pasaje cercano —\"Corrupción/mordida y adaptación a instituciones que fallan\"— es una regla interpretativa marcada [MEDIA], sin cifra.\n\n**Lo que sí puedo decir sin inventar:** el orden de magnitud de los indicadores de corrupción de la ENCIG en olas verificadas es alto (decenas de miles por cada 100 mil habitantes que tuvieron contacto con autoridades), pero eso está definido sobre un universo condicional (quienes tuvieron contacto/realizaron trámite), no sobre la población adulta general, y no es una binaria \"paga mordida\". Dar un punto porcentual sobre el universo que planteas sería un error de denominador, no solo de memoria.\n\nSi me das la redacción literal del reactivo y su universo condicional (¿todos los adultos? ¿solo quienes realizaron trámite en los últimos 12 meses?), puedo decirte si reconozco el indicador y con qué confianza — pero no puedo generar la cifra desde aquí.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:24:41.352042+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "paquete-corpus-F5-v1_0",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "601295bb88b597589704dfb9b93ba1ae8c4ef13b1118b3fb500ce656e096eee5",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": {
+    "estado": "OK",
+    "id_celda": "TRA-M-07",
+    "corte_temporal": null,
+    "documentos_disponibles": 31,
+    "documentos_incluidos": [
+      "documentos/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano__Validación_Forense_de_Supuestos_contra_Desenlaces_Reales.md",
+      "documentos/forense/Consumo_Aspiracional_en_México__Validación_Forense_del_Modelo_Anti-Esencialista.md",
+      "documentos/forense/Crédito_Fácil_y_Sobreendeudamiento_en_México__Escaneo_de_Indicadores_Adelantados_2025-2026.md",
+      "documentos/forense/Crédito_Popular_en_México__Morosidad_Auditada__Fondeo_y_Gobierno_Corporativo_como_Verdaderos_Riesgos_Estructurales.md",
+      "documentos/forense/Validación_Forense_del_Clientelismo_Electoral_en_México__Agencia_del_Votante__Programas_Sociales_y_Límites_de_la_Compra_de_Voto.md",
+      "documentos/forense/compass-4-e29a28d4-credito-popular-2026.md",
+      "documentos/reports/Adopción_y_Resistencia_Tecnológica_en_México__La_Paradoja_de_la_Baja_Confianza_Institucional.md",
+      "documentos/reports/Ausencia_sin_certeza__duelo_y_pérdida_ambigua_en_familias_de_personas_desaparecidas_en_México.md",
+      "documentos/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md",
+      "documentos/reports/El_Clasemediero_Mexicano__Identidad__Ansiedad_de_Estatus_y_el_Miedo_Racional_a_Caer.md",
+      "documentos/reports/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md",
+      "documentos/reports/El_México_Rural_e_Indígena_en_sus_Propios_Términos__Comunalidad__Autoridad_y_Reciprocidad_como_Sistemas_con_Lógica_Propia.md",
+      "documentos/reports/Elegir__Cortejar_y_Amar_en_el_México_de_Hoy__Díada_de_Pareja__Apps_de_Citas_y_Cambio_en_los_Guiones_de_Género.md",
+      "documentos/reports/Genetica_y_Conducta_del_Mexicano_Contemporaneo__Canal_Individual_vs__Estructura.md",
+      "documentos/reports/Health__Body__Food_and_Substance_Use_in_Mexico__The_Behavioral_Layer_of_Decisions__Environment_and_Structure.md",
+      "documentos/reports/Humor_in_Mexican_Psychological_Life__2023-2026_Update.md",
+      "documentos/reports/La_arquitectura_invisible_de_la_interacción_social_en_México.md",
+      "documentos/reports/La_familia_mexicana_como_sistema_psicológico__entre_el_afecto__la_obligación_y_la_adaptación_económica.md",
+      "documentos/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md",
+      "documentos/reports/Moral_Emotions_in_Mexico__Declared_Dignity__Relational_Face__and_Residual_Catholic_Guilt.md"
+    ],
+    "documentos_excluidos": [
+      "documentos/reports/Behavioral_Finance_Mexicano__Estructura__Adaptación_Racional_y_Cultura_en_el_Ahorro__Crédito_y_Riesgo.md",
+      "documentos/reports/Confianza_y_Desconfianza_en_México__Anatomía_Psicológica_de_una_Sociedad_Dual.md",
+      "documentos/reports/El_Efecto_Ambiental_de_la_Violencia_Crónica_en_México__Cómo_el_Miedo_Reorganiza_la_Conducta_Psicológica_de_la_Población.md",
+      "documentos/reports/Mérito__Movilidad_Social_y_Desigualdad_en_México__Actualización_2025-2026.md",
+      "documentos/reports/Psicología_Política_y_Comportamiento_Cívico_del_Mexicano_Contemporáneo__Una_Lectura_Anti-Esencialista_desde_Abajo__2026_.md",
+      "documentos/reports/Report_26__The_Contemporary_Mexican_and_Knowledge__Expertise__Education_and_Information_as_Decision_Behavior.md"
+    ],
+    "chars_incluidos": 600000,
+    "truncado": true,
+    "truncado_en_documento": "documentos/reports/Moral_Emotions_in_Mexico__Declared_Dignity__Relational_Face__and_Residual_Catholic_Guilt.md"
+  }
+}

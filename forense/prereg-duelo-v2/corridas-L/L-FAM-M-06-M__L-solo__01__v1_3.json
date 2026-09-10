@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "**Estimación puntual: ~4.5% de los hogares** (proporción de hogares con remesas > 0 en ENIGH 2018 Nueva Serie).\n\n**Intervalo subjetivo (aunque la escala es binaria, expreso incertidumbre sobre la proporción poblacional): 3.5% – 5.5%**, con la mayor parte de mi masa de probabilidad entre 4% y 5%.\n\n**Base del razonamiento:**\n- La literatura sobre ENIGH ha reportado históricamente que entre 4% y 6% de los hogares mexicanos reciben remesas del exterior, con una tendencia descendente desde el pico de ~7% en 2006 hacia ~4-5% en la segunda mitad de la década de 2010.\n- En 2018 el monto agregado de remesas fue alto (~33.5 mil millones USD según Banxico), pero eso refleja crecimiento del monto por hogar receptor más que expansión del número de hogares receptores; además, ENIGH subcapta remesas respecto a Banxico.\n\n**Advertencia sobre la fuente (sonda canario):** no tengo acceso a la base `concentradohogar` de ENIGH 2018 ni a un tabulado oficial verificado de esta proporción exacta. **No puedo citar una fuente textual concreta** (número de página, cuadro, o comunicado del INEGI) para la cifra. Mi estimación es una inferencia a partir de conocimiento general sobre la serie ENIGH, no una lectura de un documento. Si necesitas la cifra exacta, debe calcularse directamente sobre el archivo `concentradohogar` con el factor de expansión `factor`, y el resultado ponderado puede diferir del no ponderado.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:13:06.702979+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "18f5fc872946028c58d96289603cfb55c53b9b0ca0754e1c9891eb4cb9e2ecf0",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

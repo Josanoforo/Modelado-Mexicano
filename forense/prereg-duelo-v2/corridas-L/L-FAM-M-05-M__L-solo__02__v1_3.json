@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "**Estimación puntual: ~4.5 % de los hogares** (proporción ponderada de hogares con `remesas > 0` en concentradohogar, ENIGH 2016 Nueva Serie).\n\nRango subjetivo de incertidumbre (aunque la escala sea binaria, para la proporción): **3.8 % – 5.5 %**, con la masa de probabilidad concentrada entre 4.2 % y 5.0 %.\n\nRazonamiento breve:\n- Históricamente la ENIGH capta remesas en una fracción pequeña de hogares; en las olas 2014–2018 el porcentaje de hogares perceptores ronda el 4–5 %.\n- 2016 corresponde a un periodo de recuperación del flujo de remesas (post-2014), por lo que ubicarlo levemente por debajo de 5 % me parece lo más consistente.\n- Con expansión (`factor`) la cifra tiende a ser ligeramente mayor que sin ponderar, porque los hogares perceptores se concentran en entidades rurales y de alta migración (Michoacán, Guanajuato, Zacatecas, Oaxaca, Guerrero), con factores de expansión relativamente altos.\n\n**Sonda canario / fuente:** no tengo una fuente textual verificada para esta cifra exacta. No estoy citando una tabla concreta del INEGI ni un tabulado publicado; se trata de una estimación de memoria aproximada basada en el orden de magnitud conocido de la serie ENIGH. **No conozco el dato exacto** de ENIGH 2016 y no debe tomarse esta cifra como valor recuperado de una fuente. Para obtenerlo con precisión habría que calcular directamente sobre `concentradohogar` con el factor de expansión.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:56:12.865174+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a8dde17ac46b97f502532aad4d19f4cd26e37037bf75b73971401678ef712acc",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

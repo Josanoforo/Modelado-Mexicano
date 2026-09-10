@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-13",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "No conozco ese dato y no puedo darlo como cifra puntual verificada.\n\n**Por qué:**\n\n1. **El reactivo tal como está nombrado no existe en el cuestionario ENVIPE.** La ENVIPE (módulo de victimización, sección de denuncia) sí capta las **razones de NO denunciar**, con opciones como \"miedo al agresor\", \"por desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\", \"actitud hostil de la autoridad\", etc. Es decir, miedo y desconfianza aparecen como *causas de no denuncia*, no como atributo de una denuncia efectuada. Un reactivo binario llamado \"denuncia_con_miedo_o_desconfianza\" no corresponde a ninguna pregunta que yo pueda identificar en el instrumento 2024.\n\n2. **Por lo tanto no hay una proporción publicada que pueda citar honestamente.** Cualquier número que diera (del orden de \"X% de las denuncias\") sería una construcción mía, no un dato de INEGI.\n\n**Sobre la sonda de fuente (M1):** no tengo acceso a ningún documento del proyecto, ni al cuestionario, tabulados o microdatos de la ENVIPE 2024 en esta sesión. Mi conocimiento es de memoria de entrenamiento, sin capacidad de verificación. No declaro fuente textual porque no la tengo abierta.\n\n**Lo más cercano que sí recuerdo, con baja-media confianza y como referencia, no como respuesta:** en ENVIPE las causas atribuibles a la autoridad concentran alrededor de 6 de cada 10 razones de no denuncia, y dentro de las causas atribuibles al propio contexto, \"miedo al agresor\" ronda el orden de 5–10% del total de no denuncias. Estas cifras son aproximaciones de memoria y no deben usarse sin verificar contra los tabulados oficiales.\n\n**Recomendación:** si el reactivo proviene de un inventario interno del proyecto, conviene resolver primero el mapeo a la pregunta original de ENVIPE (probablemente derivado de la batería de razones de no denuncia) antes de pedir una estimación, porque la definición del numerador y denominador cambia el valor de forma drástica.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:03:15.509771+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2a234d666fd452b123ac6236ca86ac87da0194273a46b2559f505dcd9dcb7ec2",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

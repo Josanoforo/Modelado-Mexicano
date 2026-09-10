@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "No tengo el dato y no voy a inventarlo.\n\n**Estimación puntual: no estimada.**\n\nRazones concretas:\n\n1. **El reactivo tal como se nombra no corresponde a una variable canónica que yo pueda identificar en el cuestionario ENVIPE 2015.** La ENVIPE (módulo de victimización, tabla de delitos) sí captura las **razones de no denuncia**, y entre ellas figuran \"miedo al agresor\" y \"desconfianza en la autoridad\" como opciones distintas dentro de las \"causas atribuibles a la autoridad\" y \"otras causas\". Pero eso es lo contrario de lo etiquetado: el reactivo se llama *denuncia_con_miedo_o_desconfianza*, es decir, denuncia **habiendo** miedo/desconfianza. No conozco un ítem ENVIPE 2015 con esa construcción, ni con escala binaria directa.\n\n2. **El universo declarado dice explícitamente \"NO ESTIMADO EN ESTE ACTO\"** — censo de existencia sobre inventario de reactivos, no re-derivación contra microdato. Bajo esa regla de columnas, lo que corresponde es registrar la existencia/ausencia del reactivo, no producir una proporción. Emitir una cifra aquí sería justamente la re-derivación que la especificación excluye.\n\n3. **Escala binaria ⇒ no aplica intervalo continuo**, y aun para una proporción binaria no tengo base para un IC subjetivo honesto.\n\n**Sonda canario / fuente textual declarada:** no tengo fuente. No estoy citando ningún tabulado, ni el cuestionario ENVIPE 2015, ni los microdatos INEGI, porque no los he consultado en este acto y no tengo acceso a documentos adjuntos del proyecto. Cualquier cifra que diera sería fabricada, no recordada.\n\nLo que sí puedo afirmar con confianza moderada como contexto (no como valor del reactivo): en ENVIPE 2015 la **cifra negra** rondó ~93–94% de los delitos no denunciados o sin averiguación previa, y entre las causas de no denuncia, \"miedo al agresor\" suele ubicarse en el orden de un dígito bajo-medio porcentual, mientras \"desconfianza en la autoridad\" es una de las causas más citadas. Pero eso **no** es el reactivo solicitado y no debe usarse como sustituto.\n\nSi me indicas el número de pregunta del cuestionario o la variable del microdato (p. ej. `BPCOD`, `AP5_x`), puedo decirte si reconozco el ítem; y si me das el tabulado, lo leo.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:19:02.002260+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "e7c0c253f5422753e0472cea29031704b8921344018082295e859fc437913e80",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "**No conozco el dato para ese reactivo tal como está definido.** No puedo dar una estimación puntual responsable.\n\nRazones:\n\n1. **El nombre del reactivo no corresponde a un ítem estándar del cuestionario ENVIPE 2013.** La ENVIPE sí capta miedo y desconfianza, pero como *motivos de NO denuncia* (módulo de causas: \"miedo al agresor\", \"desconfianza en la autoridad\", \"por miedo a que lo extorsionaran\"), agrupados en causas atribuibles a la autoridad vs. otras causas. Un reactivo que afirme \"denuncia **con** miedo o desconfianza\" —es decir, personas que sí denunciaron pese a/o expresando miedo o desconfianza— no es una variable que yo pueda ubicar en el inventario de la ola 2013.\n\n2. **Como el universo declarado es \"censo de existencia sobre inventario de reactivos\" y no una re-derivación contra microdato**, lo procedente sería verificar la existencia del ítem en el cuestionario/FD de ENVIPE 2013 antes de estimar. No tengo acceso a ese inventario en este acto.\n\n3. **Escala binaria**: no aplica intervalo de confianza subjetivo; y no voy a emitir una proporción puntual sin base.\n\n**Sonda canario / fuente textual declarada:** no tengo fuente textual verificable para este reactivo específico. Lo único que puedo citar con confianza razonable de ENVIPE 2013 (INEGI, boletín de resultados, delitos ocurridos en 2012) son magnitudes de contexto —cifra negra alrededor de 92% y peso mayoritario de causas atribuibles a la autoridad entre los no denunciantes— pero esas cifras **no** son el valor del reactivo solicitado y sería incorrecto sustituirlas por él.\n\nSi me confirmas la definición operativa exacta (numerador/denominador y pregunta de origen), puedo decir si la reconozco o seguir declarando desconocimiento.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:03:00.728122+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "0131d4a9547fa5d8e6ca930d842dd0bfed8f54a6d6e4b9117c82a74e882c1b7f",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

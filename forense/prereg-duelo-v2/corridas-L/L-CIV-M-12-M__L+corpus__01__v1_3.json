@@ -1,0 +1,62 @@
+{
+  "id_celda": "CIV-M-12",
+  "variante": "L+corpus",
+  "indice": 1,
+  "texto_crudo": "No conozco el dato.\n\nLa ENVIPE (INEGI) sí capta, entre las víctimas que **no** denunciaron, las razones de no denuncia —donde figuran \"miedo al agresor\" y \"desconfianza en la autoridad\"—, pero eso es lo contrario del reactivo que se me pide. Un reactivo binario llamado `denuncia_con_miedo_o_desconfianza` (es decir, personas que **sí** denunciaron pese a sentir miedo o desconfianza) no corresponde a ninguna variable que yo pueda identificar como existente en el cuestionario ni en el inventario de reactivos de la ENVIPE 2023.\n\nPor tanto:\n\n- **Estimación puntual:** ninguna. No emito cifra.\n- **Estatus del reactivo:** no verificable como existente en ENVIPE 2023 con lo que tengo. Puede tratarse de (a) un reactivo derivado/construido fuera del cuestionario original, (b) un cruce de dos módulos distintos (denuncia + razones de no denuncia, que son poblaciones disjuntas), o (c) un ítem inexistente.\n- **Fuente declarada (sonda M1):** ninguna fuente textual. No estoy citando cuestionario, tabulado ni microdato de ENVIPE 2023; no tuve acceso a ellos en este acto y no los reconstruyo de memoria.\n\nLo único que sí puedo declarar con confianza, y lo separo explícitamente de la estimación pedida: en ENVIPE las razones de no denuncia atribuibles a la autoridad (\"pérdida de tiempo\", \"desconfianza en la autoridad\") han rondado históricamente la mayoría de los casos no denunciados, y \"miedo al agresor\" una fracción menor de un dígito alto. Pero **esos órdenes de magnitud son memoria aproximada, no cita verificada**, y además no responden al reactivo solicitado. No deben usarse como su valor.\n\nRecomendación para cerrar el censo de existencia: marcar este reactivo como `NO-ENCONTRADO` con nota de causa probable (\"posible confusión con módulo de razones de no denuncia; poblaciones disjuntas\"), en lugar de asignarle una estimación.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:32:13.992673+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "paquete-corpus-F5-v1_0",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "3c80d9cf21a94a0c0d55d8e998dbac878215216db4fab2245813f5b61a0dd722",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": {
+    "estado": "OK",
+    "id_celda": "CIV-M-12",
+    "corte_temporal": null,
+    "documentos_disponibles": 31,
+    "documentos_incluidos": [
+      "documentos/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano__Validación_Forense_de_Supuestos_contra_Desenlaces_Reales.md",
+      "documentos/forense/Consumo_Aspiracional_en_México__Validación_Forense_del_Modelo_Anti-Esencialista.md",
+      "documentos/forense/Crédito_Fácil_y_Sobreendeudamiento_en_México__Escaneo_de_Indicadores_Adelantados_2025-2026.md",
+      "documentos/forense/Crédito_Popular_en_México__Morosidad_Auditada__Fondeo_y_Gobierno_Corporativo_como_Verdaderos_Riesgos_Estructurales.md",
+      "documentos/forense/Validación_Forense_del_Clientelismo_Electoral_en_México__Agencia_del_Votante__Programas_Sociales_y_Límites_de_la_Compra_de_Voto.md",
+      "documentos/forense/compass-4-e29a28d4-credito-popular-2026.md",
+      "documentos/reports/Adopción_y_Resistencia_Tecnológica_en_México__La_Paradoja_de_la_Baja_Confianza_Institucional.md",
+      "documentos/reports/Ausencia_sin_certeza__duelo_y_pérdida_ambigua_en_familias_de_personas_desaparecidas_en_México.md",
+      "documentos/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md",
+      "documentos/reports/Behavioral_Finance_Mexicano__Estructura__Adaptación_Racional_y_Cultura_en_el_Ahorro__Crédito_y_Riesgo.md",
+      "documentos/reports/El_Clasemediero_Mexicano__Identidad__Ansiedad_de_Estatus_y_el_Miedo_Racional_a_Caer.md",
+      "documentos/reports/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md",
+      "documentos/reports/El_México_Rural_e_Indígena_en_sus_Propios_Términos__Comunalidad__Autoridad_y_Reciprocidad_como_Sistemas_con_Lógica_Propia.md",
+      "documentos/reports/Elegir__Cortejar_y_Amar_en_el_México_de_Hoy__Díada_de_Pareja__Apps_de_Citas_y_Cambio_en_los_Guiones_de_Género.md",
+      "documentos/reports/Genetica_y_Conducta_del_Mexicano_Contemporaneo__Canal_Individual_vs__Estructura.md",
+      "documentos/reports/Health__Body__Food_and_Substance_Use_in_Mexico__The_Behavioral_Layer_of_Decisions__Environment_and_Structure.md",
+      "documentos/reports/Humor_in_Mexican_Psychological_Life__2023-2026_Update.md",
+      "documentos/reports/La_arquitectura_invisible_de_la_interacción_social_en_México.md",
+      "documentos/reports/La_familia_mexicana_como_sistema_psicológico__entre_el_afecto__la_obligación_y_la_adaptación_económica.md",
+      "documentos/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md"
+    ],
+    "documentos_excluidos": [
+      "documentos/reports/Confianza_y_Desconfianza_en_México__Anatomía_Psicológica_de_una_Sociedad_Dual.md",
+      "documentos/reports/El_Efecto_Ambiental_de_la_Violencia_Crónica_en_México__Cómo_el_Miedo_Reorganiza_la_Conducta_Psicológica_de_la_Población.md",
+      "documentos/reports/Non-Family_Social_Capital_in_Mexico__Cooperation__Trust__and_Collective_Action_Beyond_Kinship.md",
+      "documentos/reports/Psicología_Política_y_Comportamiento_Cívico_del_Mexicano_Contemporáneo__Una_Lectura_Anti-Esencialista_desde_Abajo__2026_.md",
+      "documentos/reports/Psicología__Conducta_y_Sociedad_en_el_México_Contemporáneo__Análisis_Transcultural_y_Estructural.md",
+      "documentos/reports/Sanción_Social_Horizontal_en_México__Chisme__Envidia_y_Mal_de_Ojo_como_Mecanismos_de_Nivelación.md"
+    ],
+    "chars_incluidos": 600000,
+    "truncado": true,
+    "truncado_en_documento": "documentos/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md"
+  }
+}

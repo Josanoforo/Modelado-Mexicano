@@ -1,0 +1,59 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L+corpus",
+  "indice": 4,
+  "texto_crudo": "## Estimación\n\n**recibe_remesas = 1 (proporción de hogares): ≈ 0.047 (4.7 %)**\n\nIntervalo subjetivo (aunque la escala es binaria, doy incertidumbre sobre el parámetro): **4.0 % – 5.5 %**, con cola plausible hasta 3.5 %–6.5 %.\n\nEn números absolutos implica del orden de 1.5–1.7 millones de hogares sobre los ~34.7 millones del universo de `concentradohogar` de ENIGH 2018 (Nueva Serie).\n\n## Razonamiento\n\n- La serie histórica de hogares receptores de remesas en ENIGH viene bajando desde el pico de mediados de los 2000 (del orden de 7 %+ en 2006) hasta estabilizarse en el rango de 4–5 % en la segunda mitad de la década de 2010, pese a que el *monto* agregado de remesas creció fuertemente en el mismo periodo (más dinero, concentrado en un padrón de hogares que no se expande).\n- La dicotomización `remesas > 0` sobre el universo completo sin filtro tiende a dar cifras ligeramente **más altas** que las estimaciones que restringen a hogares con receptor identificado, porque captura cualquier ingreso positivo por transferencias del exterior, incluidos montos pequeños u ocasionales. Por eso pongo el punto en la mitad alta del rango 4–5 %.\n- Espero fuerte heterogeneidad regional (Michoacán, Zacatecas, Guanajuato, Oaxaca, Guerrero muy por encima; frontera norte y sureste no migrante por debajo), lo que hace que cualquier estimación nacional sea un promedio de distribuciones muy distintas.\n\n## Sobre la fuente (sonda canario)\n\n**No tengo una fuente textual verificada para este dato.** No dispongo del tabulado de ENIGH 2018 ni de los microdatos, y el corpus tierizado adjunto no contiene nada sobre remesas a nivel de hogar en ENIGH. Mi estimación proviene de memoria de la literatura secundaria del tema (tipo *Anuario de Migración y Remesas* CONAPO/BBVA y análisis de ENIGH que reportan porcentaje de hogares receptores), no de una cifra que pueda citar con página, cuadro o valor exacto. Trátese como estimación calibrada, no como dato recuperado.\n\nSi necesitas el valor exacto, es directamente computable: `mean(concentradohogar$remesas > 0)` ponderado por `factor` sobre el archivo de ENIGH 2018 Nueva Serie.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:26:12.368141+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "paquete-corpus-F5-v1_0",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "119a231cd4325fad9ea011401549b315d8a7e25ea8e00d9d3fefc439a2b343b9",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": {
+    "estado": "OK",
+    "id_celda": "FAM-M-06",
+    "corte_temporal": null,
+    "documentos_disponibles": 33,
+    "documentos_incluidos": [
+      "documentos/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano__Validación_Forense_de_Supuestos_contra_Desenlaces_Reales.md",
+      "documentos/forense/Consumo_Aspiracional_en_México__Validación_Forense_del_Modelo_Anti-Esencialista.md",
+      "documentos/forense/Crédito_Fácil_y_Sobreendeudamiento_en_México__Escaneo_de_Indicadores_Adelantados_2025-2026.md",
+      "documentos/forense/Crédito_Popular_en_México__Morosidad_Auditada__Fondeo_y_Gobierno_Corporativo_como_Verdaderos_Riesgos_Estructurales.md",
+      "documentos/forense/Validación_Forense_del_Clientelismo_Electoral_en_México__Agencia_del_Votante__Programas_Sociales_y_Límites_de_la_Compra_de_Voto.md",
+      "documentos/forense/compass-4-e29a28d4-credito-popular-2026.md",
+      "documentos/reports/Adopción_y_Resistencia_Tecnológica_en_México__La_Paradoja_de_la_Baja_Confianza_Institucional.md",
+      "documentos/reports/Ausencia_sin_certeza__duelo_y_pérdida_ambigua_en_familias_de_personas_desaparecidas_en_México.md",
+      "documentos/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md",
+      "documentos/reports/Confianza_y_Desconfianza_en_México__Anatomía_Psicológica_de_una_Sociedad_Dual.md",
+      "documentos/reports/El_Efecto_Ambiental_de_la_Violencia_Crónica_en_México__Cómo_el_Miedo_Reorganiza_la_Conducta_Psicológica_de_la_Población.md",
+      "documentos/reports/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md",
+      "documentos/reports/El_México_Rural_e_Indígena_en_sus_Propios_Términos__Comunalidad__Autoridad_y_Reciprocidad_como_Sistemas_con_Lógica_Propia.md",
+      "documentos/reports/Elegir__Cortejar_y_Amar_en_el_México_de_Hoy__Díada_de_Pareja__Apps_de_Citas_y_Cambio_en_los_Guiones_de_Género.md",
+      "documentos/reports/Genetica_y_Conducta_del_Mexicano_Contemporaneo__Canal_Individual_vs__Estructura.md",
+      "documentos/reports/Humor_in_Mexican_Psychological_Life__2023-2026_Update.md",
+      "documentos/reports/La_arquitectura_invisible_de_la_interacción_social_en_México.md",
+      "documentos/reports/La_familia_mexicana_como_sistema_psicológico__entre_el_afecto__la_obligación_y_la_adaptación_económica.md",
+      "documentos/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md"
+    ],
+    "documentos_excluidos": [
+      "documentos/reports/Behavioral_Finance_Mexicano__Estructura__Adaptación_Racional_y_Cultura_en_el_Ahorro__Crédito_y_Riesgo.md",
+      "documentos/reports/El_Clasemediero_Mexicano__Identidad__Ansiedad_de_Estatus_y_el_Miedo_Racional_a_Caer.md",
+      "documentos/reports/Health__Body__Food_and_Substance_Use_in_Mexico__The_Behavioral_Layer_of_Decisions__Environment_and_Structure.md",
+      "documentos/reports/Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md"
+    ],
+    "chars_incluidos": 600000,
+    "truncado": true,
+    "truncado_en_documento": "documentos/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md"
+  }
+}

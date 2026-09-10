@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-01",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "No conozco este dato y no puedo darlo con confianza.\n\nExplico por qué y qué es lo que sí puedo afirmar:\n\n**Sobre el reactivo.** La ENVIPE 2012 (INEGI, levantamiento marzo–abril 2012, referencia a delitos de 2011) sí incluye en su módulo de victimización un bloque sobre denuncia: si se denunció el delito ante el Ministerio Público, y si no se denunció, las **razones de la no denuncia** (categorías tipo \"miedo al agresor\", \"por desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\", \"actitud hostil de la autoridad\"). Es decir, \"miedo\" y \"desconfianza en la autoridad\" existen como opciones de respuesta, pero como **razones de NO denunciar**, no como atributo de la denuncia.\n\n**Por qué no estimo una cifra.** El nombre del reactivo tal como está formulado —`denuncia_con_miedo_o_desconfianza`, escala binaria— no corresponde a ninguna variable que yo pueda identificar como existente en el cuestionario o en la base de microdatos de ENVIPE 2012 con ese contenido. Puede tratarse de (a) una variable derivada construida por el proyecto, (b) un recodificado de las razones de no denuncia, o (c) un reactivo que simplemente no existe en esa ola. Dar un porcentaje aquí sería inventar una cifra plausible sobre una variable cuya definición operativa no puedo verificar.\n\n**Sobre la instrucción de universo.** El propio encabezado indica que se trata de un censo de existencia sobre inventario de reactivos, no una re-derivación contra microdato. Bajo esa regla, la respuesta correcta es un juicio de existencia/no existencia del reactivo, no una proporción poblacional. Mi juicio: **no verificable como reactivo directo de ENVIPE 2012**; probablemente derivado.\n\n**Fuente (sonda canario).** No tengo fuente textual que citar. No he consultado el cuestionario ni los microdatos de ENVIPE 2012 en este acto, y no dispongo de documentos del proyecto. Lo anterior proviene de conocimiento general sobre el diseño de la ENVIPE, no de una consulta documental, y por tanto no lo respaldo con cita.\n\nSi me indicas la definición operativa exacta del derivado (qué preguntas y qué categorías lo componen), puedo razonar sobre su plausibilidad, pero seguiría sin poder producir un punto estimado verificable sin el microdato.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:15:40.720135+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a3742903eb175c351deef91ca54308c2541a05214fecef4c4dfbb638d505d4dd",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

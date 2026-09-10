@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-01",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "No conozco el dato. No puedo dar una estimación puntual fundamentada para este reactivo.\n\nRazones concretas:\n\n1. **No tengo memorizado el valor de esta variable en la ENIF 2018.** La ENIF (Encuesta Nacional de Inclusión Financiera, INEGI/CNBV) sí incluye en su módulo de ahorro/previsión para el retiro una batería sobre cómo la persona planea solventar sus gastos en la vejez, con opciones que incluyen apoyo de familiares/hijos. Pero no retengo la cifra publicada del reactivo específico etiquetado aquí como `recibe_dinero_familiares_para_vejez`, ni su distribución binaria ponderada.\n\n2. **Ambigüedad de definición no resuelta.** El nombre del reactivo admite al menos dos lecturas materialmente distintas: (a) recibe *actualmente* dinero de familiares (población adulta mayor, receptores efectivos), o (b) *espera/planea* depender de familiares para la vejez (población 18–70, expectativa prospectiva). Estas producen prevalencias muy diferentes. Sin el cuestionario o el diccionario de datos no puedo desambiguar, y una cifra dada sobre la lectura equivocada sería ruido, no señal.\n\n3. **El universo está declarado como \"NO ESTIMADO EN ESTE ACTO\"**, y la instrucción es censo de existencia sobre inventario de reactivos, no re-derivación contra microdato. Esto refuerza que la respuesta correcta aquí es de existencia/registro, no una cifra.\n\n**Sonda canario — fuente textual declarada:** ninguna. No estoy citando ningún documento, tabulado ni microdato de la ENIF 2018; no tengo acceso a documentos adjuntos de este proyecto y no consulté fuentes externas. Cualquier porcentaje que emitiera sería confabulación con apariencia plausible.\n\n**Lo que sí puedo afirmar con confianza moderada** (conocimiento general, sin cita): el reactivo o uno funcionalmente equivalente *existe* en la ENIF 2018, dentro del módulo de previsión para el retiro/vejez, y el apoyo de hijos o familiares es una de las respuestas más frecuentes en esa batería en México. Pero afirmar *cuál* porcentaje excede lo que sé.\n\nSi me proporcionas el cuestionario, el diccionario de datos o el tabulado correspondiente, puedo localizar la cifra exacta y su definición operativa.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:40:08.039006+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2abf2dbb064411640e9fa6fb744e10cee70d658576ea052ca97c968d8ffa984d",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

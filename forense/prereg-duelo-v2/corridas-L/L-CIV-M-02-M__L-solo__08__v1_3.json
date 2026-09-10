@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "No conozco este dato y no puedo dar una cifra puntual defendible.\n\nRazones concretas:\n\n1. **El reactivo, tal como está nombrado, no existe como variable única en ENVIPE 2013.** El módulo de denuncia (TMOD_VIC) capta, para los delitos no denunciados, los *motivos de no denuncia*, entre los que sí aparecen \"miedo al agresor\" y \"desconfianza en la autoridad\" — pero como categorías de una batería de razones de **no** denuncia, no como un indicador binario de \"denuncia con miedo o desconfianza\". La etiqueta que me dan parece una construcción derivada o un renombre de inventario, no una variable de microdato original.\n\n2. **El propio enunciado del universo lo declara**: \"NO ESTIMADO EN ESTE ACTO — censo de existencia sobre inventario de reactivos, no re-derivación contra microdato\". Es decir, la tarea es registrar existencia de reactivo, no producir una proporción poblacional. Emitir un porcentaje aquí sería fabricar un número fuera del acto solicitado.\n\n3. **Sonda canario / fuente textual declarada (M1):** no tengo fuente textual verificable a la mano. No tengo acceso a los documentos adjuntos del proyecto, ni al cuestionario ENVIPE 2013, ni a los tabulados del INEGI en esta sesión. Cualquier porcentaje que citara (del tipo \"≈X% por miedo al agresor\") sería recuperado de memoria sin verificación y no debe tratarse como dato.\n\n**Estimación puntual: no disponible.** Escala binaria, así que no procede intervalo continuo.\n\nLo que sí puedo afirmar con confianza cualitativa alta, sin cifra: en ENVIPE 2013 las razones atribuibles a la autoridad (pérdida de tiempo, desconfianza en la autoridad) pesaron más que las atribuibles al agresor (miedo al agresor), dentro del bloque de motivos de no denuncia. Esa ordinalidad es robusta en todas las olas de ENVIPE; la magnitud no la afirmo.\n\nSi desea el valor real, la fuente correcta sería: INEGI, ENVIPE 2013, tabulados básicos, cuadro de \"distribución de delitos no denunciados según causa\", o directamente la variable de motivos en el microdato TMOD_VIC.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:57:19.026783+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "0131d4a9547fa5d8e6ca930d842dd0bfed8f54a6d6e4b9117c82a74e882c1b7f",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

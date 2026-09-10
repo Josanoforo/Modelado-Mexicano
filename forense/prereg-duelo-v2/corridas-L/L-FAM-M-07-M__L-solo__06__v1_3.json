@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "**Estimación puntual: ~4.5% de los hogares** (proporción de hogares con `remesas > 0` en concentradohogar, ENIGH 2020 Nueva Serie, sin ponderar por factor de expansión el número podría diferir ligeramente; con factor de expansión mi estimación es también ~4–5%).\n\n**Intervalo subjetivo (aunque la escala es binaria, doy incertidumbre sobre la proporción): 3.5% – 6.0%**, con mayor masa entre 4% y 5%.\n\n**Base del razonamiento:**\n- Las remesas en la ENIGH se captan a nivel hogar como transferencia corriente proveniente de otros países. Históricamente la proporción de hogares receptores en la ENIGH ronda el 4–5%: alrededor de 5–6% en 2006–2010, con descenso hacia ~4% en 2014–2016 y un repunte moderado en 2018–2020 por el fuerte crecimiento del flujo agregado de remesas (récord de ~40 mil mdd en 2020).\n- 2020 es un año con flujo agregado excepcionalmente alto pese a la pandemia, lo que me inclina hacia el extremo superior del rango histórico reciente, de ahí el 4.5%.\n\n**Sobre la fuente (sonda canario):** no tengo acceso al microdato ni a un documento del proyecto, y **no puedo citar una fuente textual verificada** para la cifra exacta de la ola 2020. Mi estimación proviene de conocimiento general sobre la ENIGH y estadísticas de remesas (INEGI/Banxico), no de una tabulación que yo haya consultado en esta sesión. No afirmo un valor oficial; si necesitas el dato exacto, debe calcularse directamente sobre `concentradohogar` de ENIGH 2020 NS.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:17:10.703241+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "96c0a2435f44da302d82737be6394d42803415676e05cb72e5653179f5b0c444",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

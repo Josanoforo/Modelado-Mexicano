@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "**No conozco el dato de este reactivo. No voy a dar una cifra puntual como si la tuviera.**\n\nRazones concretas:\n\n1. **El nombre del reactivo no corresponde a una variable que yo pueda identificar en el cuestionario ENVIPE 2013.** \"Miedo\" y \"desconfianza en la autoridad\" aparecen en ENVIPE como **causas de NO denuncia** (módulo de delitos no denunciados), no como atributos de una denuncia efectuada. Un reactivo llamado `denuncia_con_miedo_o_desconfianza` con escala binaria podría ser: (a) una recodificación derivada por el equipo del proyecto, (b) un ítem de un instrumento distinto, o (c) una etiqueta de inventario interna. Sin el documento del proyecto no puedo resolver la ambigüedad, y estimar sobre una definición mal identificada produciría una cifra falsamente precisa.\n\n2. **El universo está declarado como \"NO ESTIMADO EN ESTE ACTO\"** — censo de existencia sobre inventario de reactivos. Bajo esa regla, lo que corresponde es registrar existencia/no existencia del reactivo, no re-derivar una proporción contra microdato. Emitir un punto aquí violaría la propia especificación.\n\n**Sonda canario — fuente textual declarada:** ninguna. No tengo a la vista el cuestionario ENVIPE 2013, el catálogo de variables del INEGI, ni el diccionario de datos de la ola. Cualquier cifra que produjera sería reconstrucción de memoria paramétrica, no lectura de fuente.\n\n**Lo único que puedo ofrecer, marcado explícitamente como recuerdo impreciso y no como estimación válida:** en ENVIPE 2013 la cifra negra rondó el ~92% de delitos, y entre las causas de no denuncia atribuibles a la víctima, \"miedo al agresor\" era minoritaria (orden de un dígito porcentual) mientras \"desconfianza en la autoridad\" era de las más frecuentes entre las atribuibles a la autoridad. **Estos órdenes de magnitud son recuerdo, no deben usarse como valor del reactivo, y la definición del ítem no coincide con ellos.**\n\nPara cerrar el registro necesito el texto literal del reactivo y su ubicación en el cuestionario o en el inventario del proyecto.\n\n*(Nota operativa: los conectores de Google Calendar y Microsoft 365 requieren autorización en la configuración de conectores de claude.ai; no es posible completarla en esta sesión no interactiva. No afecta a esta respuesta, que no usó herramientas.)*",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:45:32.111834+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "0131d4a9547fa5d8e6ca930d842dd0bfed8f54a6d6e4b9117c82a74e882c1b7f",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

@@ -1,0 +1,24 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "No conozco este dato y no puedo estimarlo con base documental.\n\n**Declaración explícita:** No tengo en memoria un reactivo verificable llamado `tiene_ahorros` en el cuestionario de la ENNViH-1 (MxFLS-1, 2002), ni una cifra publicada de prevalencia binaria asociada a él. No dispongo de acceso al inventario de reactivos de este proyecto ni al microdato.\n\n**Sonda canario (fuente textual declarada):** No puedo citar fuente. Cualquier cifra que ofreciera sería una fabricación con apariencia plausible, no una recuperación.\n\n**Lo que sí puedo acotar honestamente:**\n\n- La ENNViH-1 (2002, ~8,440 hogares, ~35,000 individuos; UIA/Duke) sí incluyó módulos de activos, deuda y economía del hogar, por lo que la existencia de un ítem sobre tenencia de ahorros es *plausible* — pero plausibilidad no es verificación, y el nombre de variable exacto y su codificación (libro/sección) no los tengo confirmados.\n- Si el universo declarado es un \"censo de existencia sobre inventario de reactivos\" y no una re-derivación contra microdato, entonces la respuesta correcta depende de un documento que no poseo. Emitir un punto estimado aquí confundiría la tarea de catalogación con una tarea de inferencia estadística.\n\n**Estimación puntual:** ninguna. Escala binaria, sin intervalo aplicable.\n\n**Para resolverlo correctamente se necesitaría:** el catálogo de variables de la ENNViH-1 (Libro II/III, sección de activos financieros del hogar) o el diccionario de datos oficial en ennvih-mxfls.org.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:48:45.925098+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "d7219b1b876fa9982db848a786ff6397dd5ab9a03e47aa3089f453e4310c7f41",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "**Respuesta honesta: no conozco ese dato específico.**\n\nHay además una inconsistencia en la especificación que conviene señalar antes de estimar:\n\n- El **universo** que describes es de la **ENCUCI 2020** (Encuesta Nacional de Cultura Cívica, INEGI/SEGOB), sección SEC_4_5, con batería AP5_16_1..10.\n- El **nombre de la variable** (`paga_mordida_encig2025`) remite a la **ENCIG 2025** (Encuesta Nacional de Calidad e Impacto Gubernamental), que es un instrumento distinto, con otro universo y otro cuestionario.\n\nNo puedo verificar que exista un reactivo llamado así en la ENCUCI 2020, ni tengo el marginal de esa variable en el archivo del proyecto (no tengo acceso a documentos adjuntos).\n\n**Estimación puntual subjetiva (baja confianza), escala binaria:**\n\n- Si el reactivo mide **haber pagado un soborno/mordida en el último año al realizar un trámite** (fraseo tipo ENCIG, victimización entre usuarios de trámites): **≈ 14 %** de \"sí\". Rango subjetivo amplio: **10–20 %**.\n- Si mide **justificación o disposición** (\"¿usted pagaría una mordida?\" / \"a veces es aceptable dar una mordida\"), típico de ENCUCI: la proporción de \"sí\" sube considerablemente, **≈ 30 %**, rango **20–45 %**.\n\n**Fuente declarada:** ninguna documental verificable para esta variable. El ancla de ~14 % proviene de mi conocimiento general del orden de magnitud reportado por INEGI en ENCIG para prevalencia de corrupción entre usuarios de trámites (ediciones 2017–2021), no de una consulta a la base ni al tabulado de este proyecto. **No estoy citando una fuente textual específica porque no la tengo a la vista.**\n\nSi me indicas el fraseo literal del reactivo y a qué instrumento corresponde realmente, puedo afinar la estimación.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:54:39.486520+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "3747d8a14bf13fa5b97245dcb39cf7b972f57a76bca7c304f3ccd9b9768942f9",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

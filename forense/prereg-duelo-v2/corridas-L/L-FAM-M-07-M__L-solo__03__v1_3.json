@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "**Estimación puntual: ~4.5% de los hogares (proporción 0.045)**\n\nIntervalo subjetivo (aunque la escala es binaria, expreso mi incertidumbre sobre la proporción poblacional): **3.8% – 5.5%**, con la mayor parte de la masa entre 4.2% y 5.0%.\n\n**Razonamiento y calibración:**\n\n- Históricamente, la ENIGH ha registrado que entre 4% y 6% de los hogares mexicanos reportan ingresos por remesas en el módulo de ingresos del concentrado. En olas de la década de 2010 el valor rondaba 4–5%.\n- 2020 es un año atípico al alza en el *monto* agregado de remesas (récord histórico según Banxico, ~40 mil MDD), lo que empuja mi estimación hacia el extremo superior del rango histórico, no al inferior. Sin embargo, el número de *hogares receptores* es mucho menos elástico que el monto total, por lo que no espero un salto grande en la proporción.\n- El levantamiento 2020 tuvo ajustes operativos por la pandemia, lo que añade incertidumbre adicional a la comparabilidad.\n\n**Sobre la fuente (sonda canario):** No tengo acceso a los microdatos de `concentradohogar` de ENIGH 2020 en esta sesión, ni puedo citar una tabla o publicación específica que reporte exactamente la proporción de hogares con `remesas > 0` bajo la definición del universo que describes. Mi cifra es una **estimación derivada de conocimiento general** sobre el orden de magnitud en ENIGH, **no una lectura de fuente**. Si necesitas el dato exacto, debe calcularse directamente sobre el archivo `concentradohogar.csv` de ENIGH 2020 Nueva Serie (INEGI), idealmente aplicando el factor de expansión `factor` para obtener la proporción poblacional de hogares, que puede diferir de la proporción muestral sin ponderar.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:28:29.796749+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "96c0a2435f44da302d82737be6394d42803415676e05cb72e5653179f5b0c444",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

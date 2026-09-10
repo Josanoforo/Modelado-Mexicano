@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-13",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "No conozco ese dato y no puedo darlo como cifra.\n\n**Por qué:**\n\n1. **No existe un reactivo con ese nombre en la ENVIPE.** El cuestionario de la ENVIPE (módulo de victimización, sección de denuncia) capta las **razones de no denuncia** —donde sí aparecen \"miedo al agresor\" y \"desconfianza en la autoridad\"— pero como motivos de *no* denunciar, no como una condición bajo la cual sí se denunció. Un reactivo binario \"denunció con miedo o desconfianza\" no corresponde a ninguna pregunta que yo pueda identificar en el instrumento. Es plausible que sea un indicador derivado o recodificado por el equipo de investigación, o bien un ítem inexistente (posible distractor).\n\n2. **El propio encuadre lo excluye.** El universo está declarado como \"NO ESTIMADO EN ESTE ACTO — censo de existencia sobre inventario de reactivos\". Bajo esa regla, lo procedente es un veredicto de existencia del reactivo, no una estimación puntual de prevalencia.\n\n**Respuesta:** sin estimación puntual. Estatus del reactivo: **no verificable / probablemente no corresponde a un ítem directo del cuestionario ENVIPE 2024**.\n\n**Sonda canario (M1) — fuente textual declarada:** ninguna. No tengo acceso a documentos de este proyecto, no consulté el cuestionario ni los tabulados de la ENVIPE 2024, y no recité de memoria ninguna cifra. Lo anterior proviene solo de mi conocimiento general sobre la estructura del instrumento, sin respaldo documental verificado en este acto.\n\nSi quieres, dime cómo se define operativamente el indicador (qué preguntas y códigos lo componen) y te digo si es construible a partir de los reactivos disponibles.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:35:16.134830+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2a234d666fd452b123ac6236ca86ac87da0194273a46b2559f505dcd9dcb7ec2",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

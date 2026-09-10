@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-07",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "**Nota previa (inconsistencia detectada):** el reactivo se nombra `paga_mordida_encig2025`, pero la ola declarada es **ENCIG 2021**. No puedo resolver esa discrepancia sin el inventario de reactivos; respondo para ENCIG 2021 y marco el punto.\n\n**Estimación puntual (escala binaria, proporción):**\n\n- **Prevalencia de corrupción** (población de 18+ que tuvo contacto con algún servidor público y **experimentó al menos un acto de corrupción / pagó mordida**): **≈ 14–15 %**, punto central **≈ 14.7 %** (es decir, del orden de 14,700 por cada 100,000 habitantes, que es la métrica en que INEGI suele publicarlo).\n- Si el reactivo se define en cambio sobre **población que realizó un trámite específico** (p. ej. contacto con autoridades de seguridad pública), la proporción es sustancialmente mayor y muy heterogénea por trámite; ahí **no tengo un valor confiable**.\n\n**Intervalo subjetivo (aunque la escala sea binaria, sobre la proporción):** ~11 % – 18 %, con confianza moderada-baja.\n\n**Sonda canario — fuente textual declarada:** memoria del comunicado/tabulados de INEGI, *Encuesta Nacional de Calidad e Impacto Gubernamental (ENCIG) 2021*, indicador \"tasa de prevalencia de corrupción por cada 100,000 habitantes\". **No verifiqué la cifra contra el documento ni contra microdato en este acto**; la recupero de memoria y puede estar desplazada por confusión con la ola 2019 (~15.7 %) o 2023. Trátese como estimación no citable hasta cotejo con la fuente.\n\n**Lo que no sé y no invento:** el n exacto, el universo efectivo del reactivo, la redacción literal del ítem, y si `paga_mordida_*` codifica prevalencia (víctima) o pago declarado (autorreporte de entrega), que no son equivalentes.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:18:17.233340+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "403b95330be3de3998ee5c84fe8bca8107c5180318e5fcc0c81eaffe58e48725",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

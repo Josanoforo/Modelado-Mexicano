@@ -1,0 +1,24 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "No conozco este dato y no puedo dar una estimación puntual fundamentada.\n\n**Razones explícitas:**\n\n1. **No tengo memorizada la existencia ni el nombre de un reactivo `tiene_ahorros`** en el cuestionario de la ENNViH-1 (MxFLS-1, 2002). La ENNViH-1 sí contiene un libro/sección de hogar sobre economía del hogar, activos y ahorro, pero no puedo confirmar de memoria si existe un ítem binario específico con esa denominación, ni su código de variable, ni su marginal.\n\n2. **El universo declarado es \"NO ESTIMADO EN ESTE ACTO\"** — se trata de un censo de existencia sobre inventario de reactivos, no de una re-derivación contra microdato. Es decir, la tarea correcta aquí no es producir una proporción, sino verificar presencia/ausencia del reactivo en el instrumento, y eso requiere el cuestionario o el diccionario de variables, que no tengo a la vista.\n\n3. **Sonda canario / fuente textual declarada:** no puedo citar ninguna fuente textual verificada. No tengo acceso a documentos adjuntos de este proyecto, ni al cuestionario ENNViH-1, ni al diccionario de códigos, ni a tabulados publicados. Cualquier cifra que diera sería una confabulación con apariencia plausible (por ejemplo, \"≈20-30% de hogares con ahorros\"), y precisamente por eso me abstengo.\n\n**Lo que sí puedo decir sin inventar:** la ENNViH-1 (2002) fue levantada por la UIA/CIDE con muestra de ~8,440 hogares y ~35,000 individuos, y su diseño incluye módulos socioeconómicos de hogar. Pero la presencia y el código exacto de un ítem binario de tenencia de ahorros debe verificarse contra el cuestionario oficial (Libro de hogar / sección de activos-ahorro) o el diccionario de variables del sitio ennvih-mxfls.org.\n\nEscala binaria ⇒ no procede intervalo de confianza continuo; y sin base empírica tampoco procede un intervalo sobre la proporción.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:33:46.301543+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "d7219b1b876fa9982db848a786ff6397dd5ab9a03e47aa3089f453e4310c7f41",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

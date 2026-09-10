@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "**No conozco el dato exacto.** No tengo memorizada la distribución de un reactivo llamado `paga_mordida_encig2025` construido sobre el universo ENCUCI 2020 SEC_4_5 / AP5_16_1..10, y no tengo acceso a la documentación de este proyecto.\n\n**Sonda canario — fuente:** no tengo fuente textual declarada para esta cifra. Lo que sigue es una inferencia razonada, no un valor recordado de una publicación.\n\n**Estimación puntual (escala binaria, proporción \"sí pagó mordida\" entre quienes tuvieron contacto):** ~13 %.\n\n**Intervalo subjetivo (creencia, no muestral):** 8 % – 20 %.\n\n**Base del razonamiento (declarada como tal):**\n- El anclaje natural es la serie ENCIG del INEGI, donde la prevalencia de corrupción entre *usuarios que realizaron un trámite o tuvieron contacto con autoridad* ronda el 14–15 % (ENCIG 2019/2021/2023, orden de magnitud que sí recuerdo con confianza moderada). El nombre del reactivo sugiere que fue armonizado deliberadamente contra ese marco.\n- Sin embargo, ENCUCI 2020 no es ENCIG: distinto operativo, distinto fraseo y distinta batería de contacto (AP5_16 con 10 tipos de autoridad). Un universo de contacto más amplio —que incluye contacto con policía, no solo trámites— tiende a **elevar** la prevalencia; un fraseo más autoincriminatorio o de recuerdo más largo tiende a **deprimirla** por deseabilidad social. Estos dos sesgos se compensan parcialmente, lo que justifica el intervalo ancho.\n\n**Advertencias sobre el planteamiento:**\n1. Hay una inconsistencia de etiquetado: el nombre invoca ENCIG **2025** pero el universo es ENCUCI **2020**. Si es un reactivo derivado/imputado o una recodificación armonizada, mi estimación puede no ser comparable con lo que realmente contiene la variable.\n2. Los tres *n* útiles distintos (13 375 / 13 393 / 13 365) sugieren que en realidad hay varios indicadores o varias definiciones de \"pagó\" (p. ej., dinero, regalo, favor), lo que cambia la proporción entre ellos, probablemente en unos pocos puntos porcentuales.\n\nSi me indicas el fraseo literal del reactivo y qué categorías de AP5_16 entran en el numerador, puedo afinar la estimación; tal como está, trátala como una banda de plausibilidad, no como un dato.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:54:08.784426+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "3747d8a14bf13fa5b97245dcb39cf7b972f57a76bca7c304f3ccd9b9768942f9",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}
