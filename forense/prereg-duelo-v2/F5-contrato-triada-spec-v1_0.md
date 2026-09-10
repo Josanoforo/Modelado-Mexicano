@@ -134,8 +134,11 @@ de `U3` completa y ejecutable (arriba) más la parte que **sí** es
 derivable hoy sin esos insumos: `U3 ⊆ UR` siempre, así que **ninguna de
 las 8 celdas sin árbitro puede entrar a `U3` bajo ninguna circunstancia
 futura** — esa parte de la membresía queda cerrada ya, con las 6 celdas de
-`UR` como el techo (`|U3| ≤ 6`). Ver `## NO-CORRIDO / RESERVAS` del
-encargo archivado: esta es la reserva declarada, no un hueco silencioso.
+`UR` como el techo (`|U3| ≤ 6`). Reserva declarada como `NC-0143`
+(`forense/no-corrido.tsv`, `ABIERTA`, sucesor: quien resuelva `NC-0142` +
+`ACTO GEN2-ENCARGO-4/5` + el ejecutor de P2 bajo este contrato) — ver
+también `## NO-CORRIDO / RESERVAS` del encargo archivado: es la reserva
+declarada, no un hueco silencioso.
 
 ### 1.4 · `CONTAMINADA-POR-OBJETIVO` — regla y verificación disponible hoy
 

@@ -114,3 +114,15 @@ claude code... dame 5 completos"). Texto verbatim del lanzamiento:
 > CONTADOR: cero.
 > CIERRE: merge de esta spec = firma del contrato.
 > SUCESORES: ENCARGO 3/5, ENCARGO 4/5 y finalmente ENCARGO 5/5.
+
+## NO-CORRIDO / RESERVAS
+
+| NC | Qué no se corrió | Razón | Impacto | Sucesor |
+|---|---|---|---|---|
+| NC-0143 | Cierre de la membresía final de `U3` (intersección de `UR` con punto válido de `L_SOLO`, `L_CORPUS` y `M`) | `DECISIÓN-DE-MESA-PENDIENTE` — dos de las tres condiciones de entrada de `U3` dependen de insumos que no existen aún al congelar este contrato: (1) extractor de `valor_extraido` validado contra el formato real de `corridas-L/*__v1_3.json` (`NC-0142`, sigue `ABIERTA`); (2) snapshot sellado de `M` de `ACTO GEN2-ENCARGO-4/5`, no ejecutado todavía | `U3` queda con su regla congelada y su techo (`|U3| ≤ 6`, las 6 celdas de `UR`) pero sin membresía final — ningún ranking ni adjudicación de la tríada puede correr hasta que esta fila cierre | Acto sucesor que resuelva `NC-0142` (extractor validado) + `ACTO GEN2-ENCARGO-4/5` (snapshot de `M`); el ejecutor de P2 bajo este contrato (presumiblemente `ENCARGO 5/5`) cierra esta fila derivando `U3` en firme |
+
+Las siete piezas del encargo (P1–P7) se ejecutaron enteras dentro de lo
+que este acto podía derivar sin los dos insumos pendientes: la regla
+completa y ejecutable de cada pieza queda congelada; lo no corrido es,
+puntualmente, la membresía final de `U3` (dentro de P1) — no una pieza
+completa omitida.
