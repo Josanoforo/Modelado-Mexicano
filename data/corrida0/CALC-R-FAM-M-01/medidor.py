@@ -1,7 +1,7 @@
 """Medidor R GEN2 para una celda del marco de 14.
 
 La identidad sustantiva sale exclusivamente de codificacion-R-v1_1.tsv,
-sucesora sellada registralmente por FP-370. No abre corridas-L, corridas-M,
+sucesora byte-identica sellada por FP-370. No abre corridas-L, corridas-M,
 CALC TRIADA ni los JSON R legados. El control positivo ocurre fuera de este
 medidor y despues del sello.
 """

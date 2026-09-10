@@ -4,7 +4,7 @@
 
 ## Resultado
 
-El árbol determinó 6 árbitros R ya sellados y 8 faltantes ejecutables. Los ocho pasaron `spec-check → preflight VERDE → run → verify REPRODUCE/CONTEXTO=IDENTICO`; no hubo celda bloqueada ni sin spec. `UR` queda congelado en **14/14** mediante `universo-triada-v1_1.tsv`; esto amplía el panel disponible al `ENCARGO 5/5`, pero no decide `U3` ni adjudica contendiente alguno.
+El árbol determinó 6 árbitros R ya sellados y 8 faltantes ejecutables. Los ocho pasaron `spec-check → preflight VERDE → run → verify REPRODUCE/CONTEXTO=IDENTICO`. Al aplicar la corrección puramente registral de estado/fecha exigida por FP-370, la guardia de inmutabilidad impidió re-sellar los mismos IDs; por eso nacieron ocho sucesores `-v2` ligados por `repite_de`, que repiten la misma cadena bajo el hash registral final. No hubo celda bloqueada ni sin spec. `UR` queda congelado en **14/14** mediante `universo-triada-v1_1.tsv`; esto amplía el panel disponible al `ENCARGO 5/5`, pero no decide `U3` ni adjudica contendiente alguno.
 
 `codificacion-R-v1_1.tsv` conserva literalmente, para las 14 celdas del marco (15 filas físicas por la sucesora `DIN-M-01b`), los campos sustantivos de v1.0. Sólo cambia estado/fecha a `SELLADA (FP-370; ACTO GEN2-R-COMPLETA-MARCO)` y acota la sucesora a esas filas (`sha256 be54679e…fb37`): no cambió código, universo, ponderador, estrato, UPM ni estimando después de abrir microdato.
 
@@ -42,6 +42,6 @@ Ningún target R requiere una fuente nueva: **0 bloqueados, 0 sin spec, 0 NC nue
 ## Cascada
 
 - Sucesoras: `codificacion-R-v1_1.tsv` y `universo-triada-v1_1.tsv`, ambas con hash.
-- Ocho CALC-R nuevos, sellados y reproducibles; vistas de `corrida0` rederivadas. La rederivación global incorporó además el `CALC-DUELO-0001` ya fusionado pero ausente de las vistas; la guardia NC-0094 exigió revalidar tres asientos ajenos y `CALC-M-marco-M-sorteado-v1_3`, sin cambiar ningún CALC: sus estados finales conservaron la evidencia que ya mostraba el árbol.
+- Ocho CALC-R activos `-v2`, sellados y reproducibles; las primeras ocho ejecuciones permanecen intactas y quedan `SUPERADO→…-v2`. Las vistas de `corrida0` se rederivan sobre los sucesores. La rederivación global incorporó además el `CALC-DUELO-0001` ya fusionado pero ausente de las vistas; la guardia NC-0094 exigió revalidar tres asientos ajenos y `CALC-M-marco-M-sorteado-v1_3`, sin cambiar ningún CALC: sus estados finales conservaron la evidencia que ya mostraba el árbol.
 - `ADR-451`, L0 y rótulo `GEN2-R-COMPLETA-MARCO` registran el acto.
 - `ENCARGO 5/5` debe usar este `UR=14` congelado y aplicar, sin ampliarlo, la intersección U3 de la spec TRIADA.

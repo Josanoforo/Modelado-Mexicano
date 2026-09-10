@@ -1,33 +1,33 @@
-calc_id: CALC-R-FAM-M-07
+calc_id: CALC-R-FAM-M-01-v2
+repite_de: CALC-R-FAM-M-01
 spec_md: spec.md
-spec_md_sha256: d3b5fa16dd50ed0a8f95ca5a179b0190464a06624c1d8b6b176ec2d0c96b0999
-script: data/corrida0/CALC-R-FAM-M-07/medidor.py
+spec_md_sha256: c72b14cecdac2a2577db0080523c70d3b964af0f937ecce2187e380626608dd9
+script: data/corrida0/CALC-R-FAM-M-01-v2/medidor.py
 etiquetas:
   generacion: GEN2
   tipo: ARBITRO-R-DE-CELDA
   cuenta_gen2: SI
   validacion_independiente: NO-HECHA
-  firma: FP-370; OBJETO=CALC-R-FAM-M-07:FAM-M-07
+  firma: FP-370; OBJETO=CALC-R-FAM-M-01-v2:FAM-M-01
 inputs:
-- id: enigh2020_nc_csv
+- id: enif2018_csv
   origen: manifiesto
 - id: IN-CODIFICACION-R-V1-1
   origen: repo
   ruta: forense/prereg-duelo-v2/codificacion-R-v1_1.tsv
-  sha256: cf5dfb182f3c914fd8a91ce6d589ad745c507a8c3defad2d6459ee876c01f598
+  sha256: be54679ee93018cea743d01a5999c0744a5416785ff2262214277786f29dfb37
 - id: IN-MARCO-R-V1-3
   origen: repo
   ruta: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
   sha256: f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a
 variables:
-- archivo: conjunto_de_datos_concentradohogar_enigh_2020_ns/conjunto_de_datos/conjunto_de_datos_concentradohogar_enigh_2020_ns.csv
-  variable: remesas
-universo: hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2020 Nueva Serie, sin filtro adicional
-  (asi lo declara el marco v1_2); 89006 filas leidas, 0 vacios en remesas
+- archivo: conjunto_de_datos_tmodulo2_enif_2018/conjunto_de_datos/conjunto_de_datos_tmodulo2_enif_2018.csv
+  variable: p9_9_4
+universo: la tabla ya es ese universo (personas seleccionadas de tmodulo2, seccion 9.9); sin filtro adicional declarado en
+  el diccionario
 filtros: solo los implícitos en la codificacion sellada; sin filtro adicional
-ponderador: factor
-transformacion: 'y=1 si remesas > 0; y=0 si remesas == 0 -- UMBRAL NUMERICO, no conjunto de codigos: remesas es monto continuo
-  en pesos con 1389 valores distintos en 2020'
+ponderador: fac_per
+transformacion: y=1 si p9_9_4=='1' (Si); y=0 si=='2' (No); 9 (no sabe/no responde) fuera
 estimando: proporcion ponderada descriptiva definida por la fila sellada
 dependencias_materiales:
 - tools/arbitra.py
@@ -35,17 +35,16 @@ dependencias_materiales:
 - tests/svystat.py
 - pyreadstat solo si DTA
 parametros:
-  id_celda: FAM-M-07
-  payload_id: enigh2020_nc_csv
-  tabla: conjunto_de_datos_concentradohogar_enigh_2020_ns/conjunto_de_datos/conjunto_de_datos_concentradohogar_enigh_2020_ns.csv
-  variable: remesas
-  universo: hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2020 Nueva Serie, sin filtro adicional
-    (asi lo declara el marco v1_2); 89006 filas leidas, 0 vacios en remesas
-  codificacion: 'y=1 si remesas > 0; y=0 si remesas == 0 -- UMBRAL NUMERICO, no conjunto de codigos: remesas es monto continuo
-    en pesos con 1389 valores distintos en 2020'
-  ponderador: factor
+  id_celda: FAM-M-01
+  payload_id: enif2018_csv
+  tabla: tmodulo2
+  variable: p9_9_4
+  universo: la tabla ya es ese universo (personas seleccionadas de tmodulo2, seccion 9.9); sin filtro adicional declarado
+    en el diccionario
+  codificacion: y=1 si p9_9_4=='1' (Si); y=0 si=='2' (No); 9 (no sabe/no responde) fuera
+  ponderador: fac_per
   estrato: est_dis
-  upm: upm
+  upm: upm_dis
 seed:
   aplica: false
 tolerancia:
@@ -53,67 +52,67 @@ tolerancia:
   abs: 1.0e-10
   razon: punto y varianza deterministas; enteros/texto exactos
 resultados:
-- id: RESULT-R-FAM-M-07-PUNTO
+- id: RESULT-R-FAM-M-01-PUNTO
   tipo: proporcion
   unidad: proporcion ponderada R en [0,1]
   permite_no_estimable: true
-- id: RESULT-R-FAM-M-07-EE
+- id: RESULT-R-FAM-M-01-EE
   tipo: flotante
   unidad: error estandar de diseno en proporcion
   permite_no_estimable: true
-- id: RESULT-R-FAM-M-07-IC-LO
+- id: RESULT-R-FAM-M-01-IC-LO
   tipo: flotante
   unidad: limite inferior IC95 en proporcion
   permite_no_estimable: true
-- id: RESULT-R-FAM-M-07-IC-HI
+- id: RESULT-R-FAM-M-01-IC-HI
   tipo: flotante
   unidad: limite superior IC95 en proporcion
   permite_no_estimable: true
-- id: RESULT-R-FAM-M-07-N
+- id: RESULT-R-FAM-M-01-N
   tipo: entero
   unidad: n no ponderado del universo efectivo
   permite_no_estimable: true
-- id: RESULT-R-FAM-M-07-MASA-PONDERADA
+- id: RESULT-R-FAM-M-01-MASA-PONDERADA
   tipo: flotante
   unidad: suma del ponderador en el universo efectivo
   permite_no_estimable: true
-- id: RESULT-R-FAM-M-07-N-FILAS-TABLA
+- id: RESULT-R-FAM-M-01-N-FILAS-TABLA
   tipo: entero
   unidad: filas leidas antes de exclusiones
   permite_no_estimable: true
-- id: RESULT-R-FAM-M-07-N-FALTANTES-EXCLUIDOS
+- id: RESULT-R-FAM-M-01-N-FALTANTES-EXCLUIDOS
   tipo: entero
   unidad: total excluido por universo, codigo o ponderador
   permite_no_estimable: true
-- id: RESULT-R-FAM-M-07-N-CODIGO-EXCLUIDO
+- id: RESULT-R-FAM-M-01-N-CODIGO-EXCLUIDO
   tipo: entero
   unidad: filas excluidas por codigo faltante o no valido
   permite_no_estimable: true
-- id: RESULT-R-FAM-M-07-N-FUERA-UNIVERSO
+- id: RESULT-R-FAM-M-01-N-FUERA-UNIVERSO
   tipo: entero
   unidad: filas excluidas por filtro de universo
   permite_no_estimable: true
-- id: RESULT-R-FAM-M-07-N-SIN-PONDERADOR
+- id: RESULT-R-FAM-M-01-N-SIN-PONDERADOR
   tipo: entero
   unidad: filas elegibles sin ponderador valido
   permite_no_estimable: true
-- id: RESULT-R-FAM-M-07-N-ESTRATOS
+- id: RESULT-R-FAM-M-01-N-ESTRATOS
   tipo: entero
   unidad: estratos presentes en el universo efectivo
   permite_no_estimable: true
-- id: RESULT-R-FAM-M-07-N-UPM
+- id: RESULT-R-FAM-M-01-N-UPM
   tipo: entero
   unidad: pares estrato-UPM presentes en el universo efectivo
   permite_no_estimable: true
-- id: RESULT-R-FAM-M-07-N-ESTRATOS-UPM-UNICA
+- id: RESULT-R-FAM-M-01-N-ESTRATOS-UPM-UNICA
   tipo: entero
   unidad: estratos con una sola UPM
   permite_no_estimable: true
-- id: RESULT-R-FAM-M-07-METODO-IC
+- id: RESULT-R-FAM-M-01-METODO-IC
   tipo: texto
   unidad: metodo o reserva explicita del IC
   permite_no_estimable: true
-- id: RESULT-R-FAM-M-07-ESTADO
+- id: RESULT-R-FAM-M-01-ESTADO
   tipo: texto
   unidad: CALCULADO o motivo explicito de abstencion
   permite_no_estimable: true

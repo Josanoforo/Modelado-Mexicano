@@ -1,20 +1,21 @@
-calc_id: CALC-R-FAM-M-07
+calc_id: CALC-R-FAM-M-07-v2
+repite_de: CALC-R-FAM-M-07
 spec_md: spec.md
-spec_md_sha256: d3b5fa16dd50ed0a8f95ca5a179b0190464a06624c1d8b6b176ec2d0c96b0999
-script: data/corrida0/CALC-R-FAM-M-07/medidor.py
+spec_md_sha256: 588907e94fedbcca59a1cf75e51fba2dc996d716e092f25504138cc49f3185fb
+script: data/corrida0/CALC-R-FAM-M-07-v2/medidor.py
 etiquetas:
   generacion: GEN2
   tipo: ARBITRO-R-DE-CELDA
   cuenta_gen2: SI
   validacion_independiente: NO-HECHA
-  firma: FP-370; OBJETO=CALC-R-FAM-M-07:FAM-M-07
+  firma: FP-370; OBJETO=CALC-R-FAM-M-07-v2:FAM-M-07
 inputs:
 - id: enigh2020_nc_csv
   origen: manifiesto
 - id: IN-CODIFICACION-R-V1-1
   origen: repo
   ruta: forense/prereg-duelo-v2/codificacion-R-v1_1.tsv
-  sha256: cf5dfb182f3c914fd8a91ce6d589ad745c507a8c3defad2d6459ee876c01f598
+  sha256: be54679ee93018cea743d01a5999c0744a5416785ff2262214277786f29dfb37
 - id: IN-MARCO-R-V1-3
   origen: repo
   ruta: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
