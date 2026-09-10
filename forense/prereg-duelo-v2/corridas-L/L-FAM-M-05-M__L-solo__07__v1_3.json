@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "**Estimación puntual: ~4.5% de los hogares** (proporción ponderada de hogares con remesas > 0 en ENIGH 2016 Nueva Serie).\n\nIntervalo subjetivo (aunque la escala sea binaria, expreso mi incertidumbre sobre la proporción): **3.8% – 5.5%**, con la mayor densidad entre 4.2% y 5.0%.\n\nRazonamiento y calidad de la evidencia:\n\n- El orden de magnitud lo tengo bastante anclado: en las ENIGH de la última década la proporción de hogares que reportan ingreso por remesas ronda el 4–5%, con una ligera tendencia al alza hacia 2018–2022 (cuando se acerca más a 5–6%). Para 2016 esperaría el extremo bajo de ese rango.\n- La cifra exacta del tabulado de ENIGH 2016 **no la recuerdo con precisión**; no puedo citar un número oficial verificado para esa ola y ese universo específico (concentradohogar completo, sin filtros, ponderado por `factor`).\n\nSonda canario / fuente: **no tengo una fuente textual declarada.** No dispongo de acceso a los microdatos ni a ningún documento de este proyecto, y no estoy citando un tabulado del INEGI que pueda verificar. La estimación proviene de conocimiento general previo sobre la ENIGH, no de una consulta a la fuente. Si necesitas el dato exacto, debe calcularse directamente de `concentradohogar` 2016 con el factor de expansión, o consultarse en los tabulados básicos de ingreso corriente del INEGI.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:09:38.358820+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a8dde17ac46b97f502532aad4d19f4cd26e37037bf75b73971401678ef712acc",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

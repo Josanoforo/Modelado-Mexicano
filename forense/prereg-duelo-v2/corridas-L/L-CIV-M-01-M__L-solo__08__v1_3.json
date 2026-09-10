@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-01",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "No conozco ese dato y no puedo estimarlo con fundamento.\n\nDetalle de por qué:\n\n1. **El reactivo, tal como está nombrado, no lo puedo verificar.** En el cuestionario de la ENVIPE 2012 (módulo de victimización, sección de denuncia) existe una batería de razones por las que la víctima **no** denunció el delito, con opciones como \"por miedo al agresor\", \"por desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\", \"no tenía pruebas\", \"delito de poca importancia\", \"por actitud hostil de la autoridad\". Un reactivo etiquetado *denuncia_con_miedo_o_desconfianza* (es decir, denuncia **realizada** pese al miedo/desconfianza) no corresponde a una pregunta que yo pueda confirmar como existente en ese instrumento con la codificación binaria que se me indica.\n\n2. **No tengo acceso al inventario de reactivos ni a los documentos de este proyecto**, y la tarea se define explícitamente como censo de existencia sobre ese inventario, no como re-derivación contra microdato. Sin el inventario no puedo emitir un juicio de existencia.\n\n3. **Sonda de fuente:** no tengo una fuente textual declarada que respalde una cifra puntual para este reactivo. Cualquier número que diera (por ejemplo, un porcentaje del orden de 60–65% para \"desconfianza en la autoridad\" como motivo de no denuncia) sería una reconstrucción de memoria sobre un reactivo **distinto** al solicitado, y presentarlo como estimación de este reactivo sería inventar.\n\nSi me proporcionas el nombre exacto de la pregunta en el cuestionario ENVIPE 2012 (número de reactivo y redacción literal) o el inventario del proyecto, puedo intentar ubicarla y decir si tengo o no una estimación defendible.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:57:31.381205+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a3742903eb175c351deef91ca54308c2541a05214fecef4c4dfbb638d505d4dd",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

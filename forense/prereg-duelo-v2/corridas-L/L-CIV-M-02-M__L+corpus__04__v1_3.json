@@ -1,0 +1,62 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L+corpus",
+  "indice": 4,
+  "texto_crudo": "No conozco ese dato.\n\nNo tengo una estimación puntual defendible para el reactivo \"denuncia_con_miedo_o_desconfianza\" en la ENVIPE 2013, y no voy a inventar una cifra plausible.\n\nPrecisiones sobre por qué:\n\n1. **El reactivo, tal como está nombrado, no corresponde a un ítem canónico de la ENVIPE 2013 que yo pueda identificar con seguridad.** La ENVIPE sí capta *razones de no denuncia* (entre ellas \"por miedo al agresor\", \"por desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\"), pero eso es una batería de motivos **de no denuncia**, categórica y multi-opción — no una binaria \"denunció con miedo o desconfianza\". El nombre del reactivo sugiere una recodificación derivada, y sin el diccionario de variables no puedo saber sobre qué base (delitos, víctimas, hogares) ni con qué regla de colapso se construyó.\n\n2. **La escala declarada (binaria) no coincide con la estructura que recuerdo del instrumento**, lo que refuerza que se trata de una construcción del proyecto, no de un ítem publicado.\n\n3. **El acto está declarado como censo de existencia sobre inventario de reactivos, no re-derivación contra microdato.** Bajo esa regla, lo procedente es registrar el reactivo como presente/ausente en el inventario, no emitir un punto estimado. Emitir una cifra aquí sería exactamente el fallo que la instrucción busca evitar.\n\n**Sonda canario / fuente:** no tengo fuente textual declarada. No estoy citando ENVIPE 2013 tabulados, ni microdato, ni el diccionario de variables del proyecto; no tengo acceso a ninguno de ellos en este acto. Cualquier número que diera sería reconstrucción de memoria sin anclaje verificable — y el orden de magnitud que sí recuerdo del dominio (que la no denuncia ronda ~92% de los delitos y que \"miedo al agresor\" y \"desconfianza en la autoridad\" son motivos frecuentes dentro de las causas atribuibles a la autoridad) **no es transferible** a un reactivo binario cuya definición desconozco.\n\nLo que sí puedo afirmar sin inventar: la ENVIPE 2013 (levantamiento marzo–abril 2013, referencia año 2012) existe y contiene módulo de denuncia y razones de no denuncia. Si me pasas el diccionario de variables o el tabulado correspondiente, puedo ubicar el reactivo y estimar contra ese material.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:33:00.758322+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "paquete-corpus-F5-v1_0",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "0d99e387c7f66500e649ba25a2ffb357f385d9daf3045bfea165e2873657ecc7",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": {
+    "estado": "OK",
+    "id_celda": "CIV-M-02",
+    "corte_temporal": null,
+    "documentos_disponibles": 31,
+    "documentos_incluidos": [
+      "documentos/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano__Validación_Forense_de_Supuestos_contra_Desenlaces_Reales.md",
+      "documentos/forense/Consumo_Aspiracional_en_México__Validación_Forense_del_Modelo_Anti-Esencialista.md",
+      "documentos/forense/Crédito_Fácil_y_Sobreendeudamiento_en_México__Escaneo_de_Indicadores_Adelantados_2025-2026.md",
+      "documentos/forense/Crédito_Popular_en_México__Morosidad_Auditada__Fondeo_y_Gobierno_Corporativo_como_Verdaderos_Riesgos_Estructurales.md",
+      "documentos/forense/Validación_Forense_del_Clientelismo_Electoral_en_México__Agencia_del_Votante__Programas_Sociales_y_Límites_de_la_Compra_de_Voto.md",
+      "documentos/forense/compass-4-e29a28d4-credito-popular-2026.md",
+      "documentos/reports/Adopción_y_Resistencia_Tecnológica_en_México__La_Paradoja_de_la_Baja_Confianza_Institucional.md",
+      "documentos/reports/Ausencia_sin_certeza__duelo_y_pérdida_ambigua_en_familias_de_personas_desaparecidas_en_México.md",
+      "documentos/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md",
+      "documentos/reports/Behavioral_Finance_Mexicano__Estructura__Adaptación_Racional_y_Cultura_en_el_Ahorro__Crédito_y_Riesgo.md",
+      "documentos/reports/El_Clasemediero_Mexicano__Identidad__Ansiedad_de_Estatus_y_el_Miedo_Racional_a_Caer.md",
+      "documentos/reports/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md",
+      "documentos/reports/El_México_Rural_e_Indígena_en_sus_Propios_Términos__Comunalidad__Autoridad_y_Reciprocidad_como_Sistemas_con_Lógica_Propia.md",
+      "documentos/reports/Elegir__Cortejar_y_Amar_en_el_México_de_Hoy__Díada_de_Pareja__Apps_de_Citas_y_Cambio_en_los_Guiones_de_Género.md",
+      "documentos/reports/Genetica_y_Conducta_del_Mexicano_Contemporaneo__Canal_Individual_vs__Estructura.md",
+      "documentos/reports/Health__Body__Food_and_Substance_Use_in_Mexico__The_Behavioral_Layer_of_Decisions__Environment_and_Structure.md",
+      "documentos/reports/Humor_in_Mexican_Psychological_Life__2023-2026_Update.md",
+      "documentos/reports/La_arquitectura_invisible_de_la_interacción_social_en_México.md",
+      "documentos/reports/La_familia_mexicana_como_sistema_psicológico__entre_el_afecto__la_obligación_y_la_adaptación_económica.md",
+      "documentos/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md"
+    ],
+    "documentos_excluidos": [
+      "documentos/reports/Confianza_y_Desconfianza_en_México__Anatomía_Psicológica_de_una_Sociedad_Dual.md",
+      "documentos/reports/El_Efecto_Ambiental_de_la_Violencia_Crónica_en_México__Cómo_el_Miedo_Reorganiza_la_Conducta_Psicológica_de_la_Población.md",
+      "documentos/reports/Non-Family_Social_Capital_in_Mexico__Cooperation__Trust__and_Collective_Action_Beyond_Kinship.md",
+      "documentos/reports/Psicología_Política_y_Comportamiento_Cívico_del_Mexicano_Contemporáneo__Una_Lectura_Anti-Esencialista_desde_Abajo__2026_.md",
+      "documentos/reports/Psicología__Conducta_y_Sociedad_en_el_México_Contemporáneo__Análisis_Transcultural_y_Estructural.md",
+      "documentos/reports/Sanción_Social_Horizontal_en_México__Chisme__Envidia_y_Mal_de_Ojo_como_Mecanismos_de_Nivelación.md"
+    ],
+    "chars_incluidos": 600000,
+    "truncado": true,
+    "truncado_en_documento": "documentos/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md"
+  }
+}

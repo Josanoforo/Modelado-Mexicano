@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "**No conozco ese dato y no voy a dar una cifra.**\n\nRazones concretas:\n\n1. **El reactivo, tal como está nombrado, no corresponde a un ítem que yo pueda identificar en el cuestionario ENVIPE 2013.** ENVIPE sí capta motivos de *no* denuncia, clasificados en causas atribuibles a la autoridad (desconfianza en la autoridad, trámites largos y difíciles, actitud hostil) y causas ajenas a la autoridad (miedo al agresor, delito de poca importancia, falta de pruebas). Pero \"denuncia con miedo o desconfianza\" —es decir, denunciar *pese a* o *acompañado de* miedo/desconfianza— no es una construcción que reconozca como reactivo directo del instrumento. Podría ser (a) un índice derivado por el equipo de investigación, (b) un recodificado, o (c) un nombre de columna de un inventario interno.\n\n2. **El propio encuadre del universo dice \"NO ESTIMADO EN ESTE ACTO — censo de existencia sobre inventario de reactivos, no re-derivación contra microdato\".** Es decir, lo que se pide verificar es la *existencia* del reactivo en el inventario, no su prevalencia poblacional. Sin el inventario a la vista (no tengo acceso a documentos de este proyecto), no puedo confirmar existencia ni codificación.\n\n3. **Escala binaria ⇒ no aplica intervalo de confianza continuo**, conforme a la instrucción.\n\n**Sonda canario / fuente:** no declaro fuente textual, porque no tengo una verificable para este reactivo específico. Lo único que puedo afirmar con confianza razonable sobre ENVIPE 2013 en materia cercana es el orden de magnitud de la cifra negra (~92% de delitos no denunciados o sin averiguación previa) y que \"desconfianza en la autoridad\" y \"miedo al agresor\" figuran entre los motivos captados —pero eso **no** es el valor de la variable que usted pregunta, y usarlo como sustituto sería precisamente el error que la sonda busca detectar.\n\nSi me proporciona la definición operativa exacta (pregunta fuente, códigos, denominador: ¿delitos denunciados? ¿víctimas?), puedo decirle si es derivable del microdato ENVIPE 2013 y con qué variables.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:22:36.232794+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "0131d4a9547fa5d8e6ca930d842dd0bfed8f54a6d6e4b9117c82a74e882c1b7f",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

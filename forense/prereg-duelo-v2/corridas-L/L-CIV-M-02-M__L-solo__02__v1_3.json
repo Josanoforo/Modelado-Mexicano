@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-02",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "**Estimación: NO LA TENGO. No voy a dar una cifra.**\n\n**Por qué (y qué sí puedo decir con honestidad):**\n\n1. **El propio encabezado del acto lo marca como no estimable aquí.** El universo declarado es \"NO ESTIMADO EN ESTE ACTO — censo de existencia sobre inventario de reactivos\". Bajo esa regla, lo que corresponde es registrar la *existencia/no existencia* del reactivo en el inventario, no producir un valor puntual re-derivado. Cualquier número que yo pusiera sería una re-derivación no autorizada por la especificación.\n\n2. **El reactivo, tal como está nombrado, no lo reconozco como un ítem canónico de ENVIPE 2013.** La etiqueta `denuncia_con_miedo_o_desconfianza` es ambigua en su dirección: podría leerse como (a) proporción de denuncias efectuadas pese a miedo/desconfianza, o (b) proporción de *no* denuncias motivadas por miedo al agresor o desconfianza en la autoridad. En el instrumento ENVIPE el bloque relevante es el de \"causas de no denuncia\", que **no es binario** sino de opción múltiple con categorías separadas (\"miedo al agresor\", \"desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\", etc.), clasificadas además en atribuibles a la autoridad vs. al victimizado. Una escala binaria no mapea limpiamente a ese bloque sin una regla de colapso que aquí no está especificada.\n\n3. **Fuente textual declarada: ninguna.** No tengo a la vista el cuestionario, el catálogo de variables ni el tabulado de ENVIPE 2013 en este acto, y no tengo acceso a documentos adjuntos del proyecto. No puedo citar página, número de pregunta ni tabulado. Declarar una fuente sería falso.\n\n**Lo que necesitaría para responder:** la regla de colapso a binaria (qué categorías cuentan como \"1\"), la base de denominador (delitos totales / delitos no denunciados / víctimas), y el tabulado o microdato de referencia (módulo de victimización, sección de denuncia).\n\n*Nota operativa:* los conectores de Google Calendar y Microsoft 365 no están autorizados en esta sesión; si llegara a necesitarlos, habría que autorizarlos desde la configuración de conectores en claude.ai. No fueron necesarios aquí.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:43:10.439112+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "0131d4a9547fa5d8e6ca930d842dd0bfed8f54a6d6e4b9117c82a74e882c1b7f",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

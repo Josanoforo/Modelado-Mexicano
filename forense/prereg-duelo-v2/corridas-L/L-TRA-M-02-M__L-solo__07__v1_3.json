@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "## Respuesta\n\n**Sonda canario (fuente):** No tengo ninguna fuente textual declarada. No tengo acceso a documentos de este proyecto, ni a un libro de códigos de ENCUCI 2020, ni a microdatos o tabulados de ENCIG 2025. Cualquier cifra que dé es una inferencia mía, no una cita.\n\n**Problema con la especificación:** el nombre de la variable (`paga_mordida_encig2025`) apunta a ENCIG 2025, pero el universo descrito es ENCUCI 2020 (batería de contacto AP5_16_1..10, SEC_4_5). Son dos instrumentos distintos del INEGI con marcos y universos distintos. No puedo resolver esa inconsistencia sin el documento, así que no sé exactamente qué operacionalización se está midiendo (¿pagó mordida en algún trámite en los últimos 12 meses, condicional a haber tenido contacto?).\n\n**Estimación puntual (baja confianza, escala binaria):**\n- Proporción \"sí pagó mordida\" ≈ **0.14** (14%) entre quienes tuvieron contacto con alguna autoridad/trámite.\n- Rango subjetivo plausible: **8% – 22%**.\n\n**Base del anclaje (de memoria, no verificada):** las series de ENCIG sobre prevalencia de corrupción entre población que tuvo contacto con servidores públicos han rondado el orden de 12–16% en ediciones recientes, con tasas por 100 mil habitantes reportadas alrededor de 14–15 mil. No recuerdo con precisión el dato de ENCIG 2025 (publicación posterior o cercana a mi corte) ni el estimador equivalente en ENCUCI 2020.\n\n**Confianza global:** baja. Si el interés es el valor exacto de esa variable derivada en el archivo del proyecto, no lo conozco y no debería tomarse mi número como dato.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:01:42.077226+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "3747d8a14bf13fa5b97245dcb39cf7b972f57a76bca7c304f3ccd9b9768942f9",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

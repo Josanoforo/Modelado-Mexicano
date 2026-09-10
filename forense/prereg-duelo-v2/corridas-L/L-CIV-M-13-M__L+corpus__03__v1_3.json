@@ -1,0 +1,62 @@
+{
+  "id_celda": "CIV-M-13",
+  "variante": "L+corpus",
+  "indice": 3,
+  "texto_crudo": "No conozco el dato.\n\nNo tengo una estimación puntual defendible para un reactivo llamado `denuncia_con_miedo_o_desconfianza` en la ENVIPE 2024, y no voy a inventar una cifra plausible.\n\nRazones concretas:\n\n1. **No existe en el corpus proporcionado.** Ninguno de los documentos tierizados que se me pasaron contiene inventario de reactivos de la ENVIPE, ni de la ola 2024 ni de ninguna otra. El corpus cubre crédito popular, consumo aspiracional, clientelismo, adopción tecnológica, familia, tiempo, salud, humor, genómica — nada de victimización y percepción de seguridad pública a nivel de reactivo.\n\n2. **El nombre del reactivo no corresponde a nomenclatura ENVIPE que pueda verificar.** La ENVIPE sí capta *razones de no denuncia* (con opciones como \"por miedo al agresor\", \"desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\"), pero eso es una batería de causas de **no** denuncia, no un binario `denuncia_con_miedo_o_desconfianza`. Una variable con ese nombre y escala binaria podría ser (a) una recodificación derivada del proyecto, (b) un reactivo de otro instrumento, o (c) una construcción del acto de censo. No puedo resolver cuál sin el inventario.\n\n3. **El universo declarado es \"censo de existencia sobre inventario de reactivos, no re-derivación contra microdato\".** Es decir, la pregunta correcta aquí no es \"¿qué porcentaje?\" sino \"¿existe este reactivo en el inventario, con qué wording y qué escala?\" — y eso solo se responde contra el inventario, que no tengo. Estimar una proporción sería responder una pregunta distinta de la que se hizo.\n\n**Fuente de esta respuesta (sonda canario):** ninguna. No estoy citando ENVIPE, ni INEGI, ni el corpus. Esta es una declaración de ausencia de fuente, no una estimación con fuente débil.\n\nLo que sí puedo decir con base: la ENVIPE 2024 (INEGI) existe, tiene módulo de denuncia y razones de no denuncia, y la cifra macro históricamente citada es una cifra negra superior al 90% — pero **eso no es el reactivo preguntado** y no debe usarse como sustituto. Si se necesita el dato, la ruta es el inventario de reactivos del proyecto o el cuestionario oficial ENVIPE 2024, no mi estimación.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:38:56.087460+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L+corpus",
+    "corpus_id_si_aplica": "paquete-corpus-F5-v1_0",
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "15a7b54240ed2e07f670933adac311486e01a863dfcda744161c598b26eb5e0d",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": {
+    "estado": "OK",
+    "id_celda": "CIV-M-13",
+    "corte_temporal": null,
+    "documentos_disponibles": 31,
+    "documentos_incluidos": [
+      "documentos/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano__Validación_Forense_de_Supuestos_contra_Desenlaces_Reales.md",
+      "documentos/forense/Consumo_Aspiracional_en_México__Validación_Forense_del_Modelo_Anti-Esencialista.md",
+      "documentos/forense/Crédito_Fácil_y_Sobreendeudamiento_en_México__Escaneo_de_Indicadores_Adelantados_2025-2026.md",
+      "documentos/forense/Crédito_Popular_en_México__Morosidad_Auditada__Fondeo_y_Gobierno_Corporativo_como_Verdaderos_Riesgos_Estructurales.md",
+      "documentos/forense/Validación_Forense_del_Clientelismo_Electoral_en_México__Agencia_del_Votante__Programas_Sociales_y_Límites_de_la_Compra_de_Voto.md",
+      "documentos/forense/compass-4-e29a28d4-credito-popular-2026.md",
+      "documentos/reports/Adopción_y_Resistencia_Tecnológica_en_México__La_Paradoja_de_la_Baja_Confianza_Institucional.md",
+      "documentos/reports/Ausencia_sin_certeza__duelo_y_pérdida_ambigua_en_familias_de_personas_desaparecidas_en_México.md",
+      "documentos/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md",
+      "documentos/reports/Behavioral_Finance_Mexicano__Estructura__Adaptación_Racional_y_Cultura_en_el_Ahorro__Crédito_y_Riesgo.md",
+      "documentos/reports/El_Clasemediero_Mexicano__Identidad__Ansiedad_de_Estatus_y_el_Miedo_Racional_a_Caer.md",
+      "documentos/reports/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md",
+      "documentos/reports/El_México_Rural_e_Indígena_en_sus_Propios_Términos__Comunalidad__Autoridad_y_Reciprocidad_como_Sistemas_con_Lógica_Propia.md",
+      "documentos/reports/Elegir__Cortejar_y_Amar_en_el_México_de_Hoy__Díada_de_Pareja__Apps_de_Citas_y_Cambio_en_los_Guiones_de_Género.md",
+      "documentos/reports/Genetica_y_Conducta_del_Mexicano_Contemporaneo__Canal_Individual_vs__Estructura.md",
+      "documentos/reports/Health__Body__Food_and_Substance_Use_in_Mexico__The_Behavioral_Layer_of_Decisions__Environment_and_Structure.md",
+      "documentos/reports/Humor_in_Mexican_Psychological_Life__2023-2026_Update.md",
+      "documentos/reports/La_arquitectura_invisible_de_la_interacción_social_en_México.md",
+      "documentos/reports/La_familia_mexicana_como_sistema_psicológico__entre_el_afecto__la_obligación_y_la_adaptación_económica.md",
+      "documentos/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md"
+    ],
+    "documentos_excluidos": [
+      "documentos/reports/Confianza_y_Desconfianza_en_México__Anatomía_Psicológica_de_una_Sociedad_Dual.md",
+      "documentos/reports/El_Efecto_Ambiental_de_la_Violencia_Crónica_en_México__Cómo_el_Miedo_Reorganiza_la_Conducta_Psicológica_de_la_Población.md",
+      "documentos/reports/Non-Family_Social_Capital_in_Mexico__Cooperation__Trust__and_Collective_Action_Beyond_Kinship.md",
+      "documentos/reports/Psicología_Política_y_Comportamiento_Cívico_del_Mexicano_Contemporáneo__Una_Lectura_Anti-Esencialista_desde_Abajo__2026_.md",
+      "documentos/reports/Psicología__Conducta_y_Sociedad_en_el_México_Contemporáneo__Análisis_Transcultural_y_Estructural.md",
+      "documentos/reports/Sanción_Social_Horizontal_en_México__Chisme__Envidia_y_Mal_de_Ojo_como_Mecanismos_de_Nivelación.md"
+    ],
+    "chars_incluidos": 600000,
+    "truncado": true,
+    "truncado_en_documento": "documentos/reports/Mexican_Population_Genomics__2025-2026_Scientific_and_Market_Opportunity_Update.md"
+  }
+}

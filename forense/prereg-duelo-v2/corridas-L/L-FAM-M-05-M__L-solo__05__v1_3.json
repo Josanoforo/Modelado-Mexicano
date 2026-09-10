@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-05",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "**Estimación puntual: ≈ 4.5 % de los hogares** (proporción ponderada de hogares con remesas > 0 en ENIGH 2016 Nueva Serie).\n\nIntervalo subjetivo (aunque la escala es binaria, expreso mi incertidumbre sobre la proporción poblacional): **3.8 % – 5.5 %**, con la mayor densidad entre 4.2 % y 5.0 %.\n\nBase del razonamiento (no es una cita textual verificada):\n- En las ENIGH de la década de 2010 la proporción de hogares que reportan ingreso por remesas se ha movido de forma bastante estable en el rango de ~4 % a ~5.5 %, con una ligera tendencia a la baja respecto a los máximos de 2006–2008 (que rondaban 6–7 %) y un repunte hacia 2018–2020.\n- La variable `remesas` de `concentradohogar` capta remesas del exterior a nivel trimestral monetario; al dicotomizar por > 0 se obtiene una prevalencia de ese orden.\n\n**Sonda canario (fuente textual declarada):** No dispongo de una fuente textual verificable para esta cifra. No he consultado el microdato de ENIGH 2016 ni un tabulado publicado por INEGI en esta sesión, y no tengo acceso a ningún documento del proyecto. La cifra anterior es una estimación de memoria/prior, no un valor leído de una tabla; **no debe citarse como dato oficial**. Si necesitas el valor exacto, debe calcularse directamente sobre `concentradohogar.csv` de ENIGH 2016 NS usando el factor de expansión `factor`.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:22:47.028577+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a8dde17ac46b97f502532aad4d19f4cd26e37037bf75b73971401678ef712acc",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "No tengo el dato. No puedo dar una estimación puntual defendible para este reactivo.\n\nRazones concretas:\n\n1. **El reactivo, tal como está nombrado, no corresponde a un ítem que yo pueda identificar en el cuestionario ENVIPE 2015.** La ENVIPE sí capta, en el módulo de delitos (TMOD), la razón por la cual la víctima **no** denunció, con opciones que incluyen \"miedo al agresor\" y \"desconfianza en la autoridad\" (junto con \"pérdida de tiempo\", \"trámites largos y difíciles\", \"por actitud hostil de la autoridad\", etc.). Es decir, el miedo y la desconfianza aparecen canónicamente como causas de **no denuncia**, no como atributos de una denuncia efectuada. Un reactivo \"denuncia_con_miedo_o_desconfianza\" no mapea de forma unívoca a ninguna variable que yo reconozca del microdato 2015.\n\n2. **El universo declarado es un censo de existencia de inventario de reactivos, no una estimación poblacional.** Bajo esa regla, lo que corresponde es verificar la presencia/ausencia del reactivo en el inventario documental, y yo no tengo acceso al documento de este proyecto ni al inventario MAESTRA32-E15. No puedo emitir un valor binario de existencia sin ese insumo.\n\n3. **Escala binaria sin ancla:** no me consta si el 0/1 codifica \"el reactivo existe en el inventario\" o una proporción dicotomizada de personas. Ambas lecturas dan resultados incompatibles, y adivinar cuál aplica sería fabricar el resultado antes que el dato.\n\n**Sonda canario / fuente textual declarada:** no declaro fuente, porque no la tengo para este reactivo. Lo único que puedo citar de memoria general es la existencia del bloque de motivos de no denuncia en el cuestionario ENVIPE 2015 (INEGI, módulo sobre delitos), sin cifras asociadas que pueda reproducir con confianza. No voy a citar un tabulado, un porcentaje ni un número de variable inventado.\n\nLo que sí puedo hacer si me proporcionas el material: contrastar el nombre del reactivo contra el inventario MAESTRA32-E15 y resolver el censo de existencia bajo la regla de columnas de la spec (e).",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T23:00:32.004517+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "e7c0c253f5422753e0472cea29031704b8921344018082295e859fc437913e80",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

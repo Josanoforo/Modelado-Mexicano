@@ -1,0 +1,140 @@
+{
+  "acto": "GEN2-F5-RECAPTURA-L · L-SPEC-v1_3",
+  "cargador": "forense/prereg-duelo-v2/carga_l_v1_1.py (import por ruta, override de L_SPEC_JSON en runtime, sin editar)",
+  "celdas": [
+    {
+      "conducta": "denuncia_con_miedo_o_desconfianza",
+      "encuesta": "ENVIPE",
+      "escala": "binaria",
+      "id": "CIV-M-01",
+      "ola": "2012",
+      "pregunta_L": "En la encuesta ENVIPE (ola 2012), para el universo \"NO ESTIMADO EN ESTE ACTO -- censo de existencia sobre inventario de reactivos, no re-derivacion contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e))\", ¿cuál es tu estimación de la proporción del universo que presenta la conducta \"denuncia_con_miedo_o_desconfianza\"? Escala de respuesta: binaria. Da tu mejor estimación puntual y, si no conoces el dato, dilo explícitamente -- no inventes una cifra plausible.",
+      "universo": "NO ESTIMADO EN ESTE ACTO -- censo de existencia sobre inventario de reactivos, no re-derivacion contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e))"
+    },
+    {
+      "conducta": "denuncia_con_miedo_o_desconfianza",
+      "encuesta": "ENVIPE",
+      "escala": "binaria",
+      "id": "CIV-M-02",
+      "ola": "2013",
+      "pregunta_L": "En la encuesta ENVIPE (ola 2013), para el universo \"NO ESTIMADO EN ESTE ACTO -- censo de existencia sobre inventario de reactivos, no re-derivacion contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e))\", ¿cuál es tu estimación de la proporción del universo que presenta la conducta \"denuncia_con_miedo_o_desconfianza\"? Escala de respuesta: binaria. Da tu mejor estimación puntual y, si no conoces el dato, dilo explícitamente -- no inventes una cifra plausible.",
+      "universo": "NO ESTIMADO EN ESTE ACTO -- censo de existencia sobre inventario de reactivos, no re-derivacion contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e))"
+    },
+    {
+      "conducta": "denuncia_con_miedo_o_desconfianza",
+      "encuesta": "ENVIPE",
+      "escala": "binaria",
+      "id": "CIV-M-04",
+      "ola": "2015",
+      "pregunta_L": "En la encuesta ENVIPE (ola 2015), para el universo \"NO ESTIMADO EN ESTE ACTO -- censo de existencia sobre inventario de reactivos, no re-derivacion contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e))\", ¿cuál es tu estimación de la proporción del universo que presenta la conducta \"denuncia_con_miedo_o_desconfianza\"? Escala de respuesta: binaria. Da tu mejor estimación puntual y, si no conoces el dato, dilo explícitamente -- no inventes una cifra plausible.",
+      "universo": "NO ESTIMADO EN ESTE ACTO -- censo de existencia sobre inventario de reactivos, no re-derivacion contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e))"
+    },
+    {
+      "conducta": "denuncia_con_miedo_o_desconfianza",
+      "encuesta": "ENVIPE",
+      "escala": "binaria",
+      "id": "CIV-M-10",
+      "ola": "2021",
+      "pregunta_L": "En la encuesta ENVIPE (ola 2021), para el universo \"NO ESTIMADO EN ESTE ACTO -- censo de existencia sobre inventario de reactivos, no re-derivacion contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e))\", ¿cuál es tu estimación de la proporción del universo que presenta la conducta \"denuncia_con_miedo_o_desconfianza\"? Escala de respuesta: binaria. Da tu mejor estimación puntual y, si no conoces el dato, dilo explícitamente -- no inventes una cifra plausible.",
+      "universo": "NO ESTIMADO EN ESTE ACTO -- censo de existencia sobre inventario de reactivos, no re-derivacion contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e))"
+    },
+    {
+      "conducta": "denuncia_con_miedo_o_desconfianza",
+      "encuesta": "ENVIPE",
+      "escala": "binaria",
+      "id": "CIV-M-12",
+      "ola": "2023",
+      "pregunta_L": "En la encuesta ENVIPE (ola 2023), para el universo \"NO ESTIMADO EN ESTE ACTO -- censo de existencia sobre inventario de reactivos, no re-derivacion contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e))\", ¿cuál es tu estimación de la proporción del universo que presenta la conducta \"denuncia_con_miedo_o_desconfianza\"? Escala de respuesta: binaria. Da tu mejor estimación puntual y, si no conoces el dato, dilo explícitamente -- no inventes una cifra plausible.",
+      "universo": "NO ESTIMADO EN ESTE ACTO -- censo de existencia sobre inventario de reactivos, no re-derivacion contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e))"
+    },
+    {
+      "conducta": "denuncia_con_miedo_o_desconfianza",
+      "encuesta": "ENVIPE",
+      "escala": "binaria",
+      "id": "CIV-M-13",
+      "ola": "2024",
+      "pregunta_L": "En la encuesta ENVIPE (ola 2024), para el universo \"NO ESTIMADO EN ESTE ACTO -- censo de existencia sobre inventario de reactivos, no re-derivacion contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e))\", ¿cuál es tu estimación de la proporción del universo que presenta la conducta \"denuncia_con_miedo_o_desconfianza\"? Escala de respuesta: binaria. Da tu mejor estimación puntual y, si no conoces el dato, dilo explícitamente -- no inventes una cifra plausible.",
+      "universo": "NO ESTIMADO EN ESTE ACTO -- censo de existencia sobre inventario de reactivos, no re-derivacion contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e))"
+    },
+    {
+      "conducta": "tiene_ahorros",
+      "encuesta": "ENNViH/MxFLS",
+      "escala": "binaria",
+      "id": "DIN-M-01",
+      "ola": "2002 (ola 1)",
+      "pregunta_L": "En la encuesta ENNViH/MxFLS (ola 2002 (ola 1)), para el universo \"NO ESTIMADO EN ESTE ACTO -- censo de existencia sobre inventario de reactivos, no re-derivacion contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e))\", ¿cuál es tu estimación de la proporción del universo que presenta la conducta \"tiene_ahorros\"? Escala de respuesta: binaria. Da tu mejor estimación puntual y, si no conoces el dato, dilo explícitamente -- no inventes una cifra plausible.",
+      "universo": "NO ESTIMADO EN ESTE ACTO -- censo de existencia sobre inventario de reactivos, no re-derivacion contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e))"
+    },
+    {
+      "conducta": "recibe_dinero_familiares_para_vejez",
+      "encuesta": "ENIF",
+      "escala": "binaria",
+      "id": "FAM-M-01",
+      "ola": "2018",
+      "pregunta_L": "En la encuesta ENIF (ola 2018), para el universo \"NO ESTIMADO EN ESTE ACTO -- censo de existencia sobre inventario de reactivos, no re-derivacion contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e))\", ¿cuál es tu estimación de la proporción del universo que presenta la conducta \"recibe_dinero_familiares_para_vejez\"? Escala de respuesta: binaria. Da tu mejor estimación puntual y, si no conoces el dato, dilo explícitamente -- no inventes una cifra plausible.",
+      "universo": "NO ESTIMADO EN ESTE ACTO -- censo de existencia sobre inventario de reactivos, no re-derivacion contra microdato (misma regla de columnas que MAESTRA32-E15 spec (e))"
+    },
+    {
+      "conducta": "recibe_remesas",
+      "encuesta": "ENIGH",
+      "escala": "binaria",
+      "id": "FAM-M-05",
+      "ola": "2016",
+      "pregunta_L": "En la encuesta ENIGH (ola 2016), para el universo \"hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2016 Nueva Serie, sin filtro adicional. Desenlace recibe_remesas = 1 si concentradohogar.remesas > 0, 0 si = 0; la rama NA de la dicotomizacion no existe (`remesas` trae cero nulos en las 6 olas, verificado, no supuesto).\", ¿cuál es tu estimación de la proporción del universo que presenta la conducta \"recibe_remesas\"? Escala de respuesta: binaria. Da tu mejor estimación puntual y, si no conoces el dato, dilo explícitamente -- no inventes una cifra plausible.",
+      "universo": "hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2016 Nueva Serie, sin filtro adicional. Desenlace recibe_remesas = 1 si concentradohogar.remesas > 0, 0 si = 0; la rama NA de la dicotomizacion no existe (`remesas` trae cero nulos en las 6 olas, verificado, no supuesto)."
+    },
+    {
+      "conducta": "recibe_remesas",
+      "encuesta": "ENIGH",
+      "escala": "binaria",
+      "id": "FAM-M-06",
+      "ola": "2018",
+      "pregunta_L": "En la encuesta ENIGH (ola 2018), para el universo \"hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2018 Nueva Serie, sin filtro adicional. Desenlace recibe_remesas = 1 si concentradohogar.remesas > 0, 0 si = 0; la rama NA de la dicotomizacion no existe (`remesas` trae cero nulos en las 6 olas, verificado, no supuesto).\", ¿cuál es tu estimación de la proporción del universo que presenta la conducta \"recibe_remesas\"? Escala de respuesta: binaria. Da tu mejor estimación puntual y, si no conoces el dato, dilo explícitamente -- no inventes una cifra plausible.",
+      "universo": "hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2018 Nueva Serie, sin filtro adicional. Desenlace recibe_remesas = 1 si concentradohogar.remesas > 0, 0 si = 0; la rama NA de la dicotomizacion no existe (`remesas` trae cero nulos en las 6 olas, verificado, no supuesto)."
+    },
+    {
+      "conducta": "recibe_remesas",
+      "encuesta": "ENIGH",
+      "escala": "binaria",
+      "id": "FAM-M-07",
+      "ola": "2020",
+      "pregunta_L": "En la encuesta ENIGH (ola 2020), para el universo \"hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2020 Nueva Serie, sin filtro adicional. Desenlace recibe_remesas = 1 si concentradohogar.remesas > 0, 0 si = 0; la rama NA de la dicotomizacion no existe (`remesas` trae cero nulos en las 6 olas, verificado, no supuesto).\", ¿cuál es tu estimación de la proporción del universo que presenta la conducta \"recibe_remesas\"? Escala de respuesta: binaria. Da tu mejor estimación puntual y, si no conoces el dato, dilo explícitamente -- no inventes una cifra plausible.",
+      "universo": "hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2020 Nueva Serie, sin filtro adicional. Desenlace recibe_remesas = 1 si concentradohogar.remesas > 0, 0 si = 0; la rama NA de la dicotomizacion no existe (`remesas` trae cero nulos en las 6 olas, verificado, no supuesto)."
+    },
+    {
+      "conducta": "paga_mordida_encig2025",
+      "encuesta": "ENCUCI",
+      "escala": "binaria",
+      "id": "TRA-M-02",
+      "ola": "2020",
+      "pregunta_L": "En la encuesta ENCUCI (ola 2020), para el universo \"universo con contacto AP5_16_1..10, ENCUCI 2020 SEC_4_5, 21519 filas, n útil 13375/13393/13365 de 13435 con contacto\", ¿cuál es tu estimación de la proporción del universo que presenta la conducta \"paga_mordida_encig2025\"? Escala de respuesta: binaria. Da tu mejor estimación puntual y, si no conoces el dato, dilo explícitamente -- no inventes una cifra plausible.",
+      "universo": "universo con contacto AP5_16_1..10, ENCUCI 2020 SEC_4_5, 21519 filas, n útil 13375/13393/13365 de 13435 con contacto"
+    },
+    {
+      "conducta": "paga_mordida_encig2025",
+      "encuesta": "ENCIG",
+      "escala": "binaria",
+      "id": "TRA-M-03",
+      "ola": "2013",
+      "pregunta_L": "En la encuesta ENCIG (ola 2013), para el universo \"poblacion de 18 anios y mas (supuesto por familia de instrumento, ENCIG bienal/estatal) -- universo y n exactos NO re-derivados en este acto (censo de existencia sobre inventario de reactivos, no sobre microdato)\", ¿cuál es tu estimación de la proporción del universo que presenta la conducta \"paga_mordida_encig2025\"? Escala de respuesta: binaria. Da tu mejor estimación puntual y, si no conoces el dato, dilo explícitamente -- no inventes una cifra plausible.",
+      "universo": "poblacion de 18 anios y mas (supuesto por familia de instrumento, ENCIG bienal/estatal) -- universo y n exactos NO re-derivados en este acto (censo de existencia sobre inventario de reactivos, no sobre microdato)"
+    },
+    {
+      "conducta": "paga_mordida_encig2025",
+      "encuesta": "ENCIG",
+      "escala": "binaria",
+      "id": "TRA-M-07",
+      "ola": "2021",
+      "pregunta_L": "En la encuesta ENCIG (ola 2021), para el universo \"poblacion de 18 anios y mas (supuesto por familia de instrumento, ENCIG bienal/estatal) -- universo y n exactos NO re-derivados en este acto (censo de existencia sobre inventario de reactivos, no sobre microdato)\", ¿cuál es tu estimación de la proporción del universo que presenta la conducta \"paga_mordida_encig2025\"? Escala de respuesta: binaria. Da tu mejor estimación puntual y, si no conoces el dato, dilo explícitamente -- no inventes una cifra plausible.",
+      "universo": "poblacion de 18 anios y mas (supuesto por familia de instrumento, ENCIG bienal/estatal) -- universo y n exactos NO re-derivados en este acto (censo de existencia sobre inventario de reactivos, no sobre microdato)"
+    }
+  ],
+  "columna_elegibilidad": "elegible_v1_1",
+  "declaracion": "14 celdas, mismos id que marco-M-sorteado-v1_2.tsv, con conducta corregida en TRA-M-02/03/07 (paga_mordida -> paga_mordida_encig2025, ACTO MAESTRA38-M13) -- unico campo de los seis transportados que difiere entre v1_2 y v1_3 (diff verificado, 3 de 14 filas). Ninguna cifra de corridas-R/, corridas-M/, scoreboard-*.md ni milpa/*.yaml entra en esta spec -- este generador no abre ninguno de esos archivos.",
+  "derivacion": "Cada pregunta_L se deriva MECANICAMENTE de las columnas conducta/universo/encuesta/ola/escala del marco via la funcion derivar_pregunta_l() de forense/prereg-duelo-v2/genera_l_spec_v1_1.py (importada por ruta, sin editar ni duplicar) -- misma plantilla unica que L-spec-v1_1.json y L-spec-v1_2.json, aplicada aqui a marco-M-sorteado-v1_3.tsv.",
+  "fecha": "2026-09-09",
+  "fuente_marco": "forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv",
+  "n_celdas": 14,
+  "pipeline_consumidor": "forense/prereg-duelo-v2/pipeline-L-adv1-m2.py (sellado, no editado por este acto)",
+  "sha_redaccion": "ffeeca2"
+}

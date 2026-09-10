@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "No conozco este dato y no puedo dar una estimación puntual responsable.\n\nRazones concretas:\n\n1. **El reactivo no corresponde a una variable estándar identificable de la ENVIPE 2015.** La ENVIPE sí capta motivos de no denuncia (donde figuran \"miedo al agresor\" y \"desconfianza en la autoridad\" como causas *atribuibles a la autoridad* o *no atribuibles*), pero eso es lo contrario a lo que describe la etiqueta: \"denuncia_con_miedo_o_desconfianza\" sugiere personas que **sí denunciaron** pese a sentir miedo o desconfianza. No tengo memoria de un reactivo así en el cuestionario principal (Módulo IV / TMod) ni en el cuestionario de percepción. Puede ser una variable derivada del proyecto, no un ítem nativo.\n\n2. **El propio encabezado del acto declara que no se estima.** El universo dice \"NO ESTIMADO EN ESTE ACTO — censo de existencia sobre inventario de reactivos, no re-derivación contra microdato\". Bajo esa regla, la respuesta procedente es un registro de existencia/no-existencia del reactivo, no una proporción. Emitir una cifra aquí sería salirme de la especificación.\n\n3. **Escala binaria sin denominador definido.** Aun si el reactivo existiera, una proporción binaria carece de sentido sin saber si el denominador son delitos, víctimas, o denuncias efectivas. Esa ambigüedad por sí sola impide una estimación defendible.\n\n**Sonda canario / fuente textual declarada:** no tengo fuente. No puedo citar cuestionario, catálogo de variables ni tabulado del INEGI para la ENVIPE 2015 que contenga este reactivo con ese nombre o esa formulación. No dispongo de los documentos del proyecto y no voy a atribuir la cifra a una fuente que no puedo verificar.\n\n**Lo que sí puedo afirmar con contexto (sin que sea la estimación pedida):** en ENVIPE la no denuncia ronda históricamente el 92–93% de los delitos, y entre los motivos de no denuncia atribuibles a la autoridad destacan \"pérdida de tiempo\" y \"desconfianza en la autoridad\"; entre los no atribuibles, \"miedo al agresor\". Pero mapear eso al reactivo solicitado sería una inferencia mía, no un dato.\n\nSi me indicas el número de pregunta o la definición operativa exacta (denominador y redacción del ítem), reevalúo si corresponde estimar o confirmar inexistencia.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:17:27.125373+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "e7c0c253f5422753e0472cea29031704b8921344018082295e859fc437913e80",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

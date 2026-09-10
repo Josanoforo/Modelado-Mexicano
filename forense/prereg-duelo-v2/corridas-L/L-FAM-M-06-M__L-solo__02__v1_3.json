@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "**Estimación puntual: ~4.5% de los hogares** (proporción de hogares con `remesas > 0` en concentradohogar, ENIGH 2018 Nueva Serie, sin ponderar o ponderando con `factor` — la diferencia entre ambos suele ser pequeña, del orden de décimas de punto).\n\n**Intervalo subjetivo (aunque la escala es binaria, doy incertidumbre sobre la proporción): 3.5% – 6.0%**, con mayor masa entre 4% y 5%.\n\n**Base del razonamiento:**\n- El ingreso por remesas en ENIGH históricamente aparece en una fracción minoritaria de hogares; en las olas de la década de 2010 la cifra ronda el 4–5%.\n- Los conteos de CONAPO/BBVA con base en ENIGH suelen reportar del orden de 1.6–1.8 millones de hogares receptores frente a ~34.7 millones de hogares totales en 2018, lo que da ≈4.7–5.2%. Ese cálculo es el que ancla mi punto central.\n- La ENIGH tiende a subestimar respecto a los flujos de Banxico, pero eso afecta más al monto que a la prevalencia.\n\n**Sobre la fuente (sonda canario):** no tengo acceso al microdato ni a un documento del proyecto, y **no puedo citar una fuente textual verificada** para esta cifra exacta. No estoy recuperando un número leído de una tabla publicada de ENIGH 2018 con la definición exacta del universo que describes; es una estimación reconstruida a partir de conocimiento general sobre magnitudes de hogares receptores en México. Si necesitas el valor auditable, debe calcularse directamente sobre `concentradohogar` 2018 (`mean(remesas > 0)`, y su versión ponderada por `factor`).",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:13:18.934857+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "18f5fc872946028c58d96289603cfb55c53b9b0ca0754e1c9891eb4cb9e2ecf0",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

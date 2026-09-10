@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-02",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "**No conozco el dato y no voy a inventar una cifra.**\n\nMotivos concretos:\n\n1. **Inconsistencia en la especificación.** El reactivo se llama `paga_mordida_encig2025`, es decir, apunta a la **ENCIG (INEGI), levantamiento 2025**, pero el universo declarado es **ENCUCI 2020, SEC_4_5, bloque AP5_16_1..10** (n útil ~13,375–13,393 de 13,435 con contacto). Son dos instrumentos distintos, de instituciones distintas (SEGOB/CIDE–UNAM vs. INEGI), con marcos muestrales y universos no equivalentes. No puedo estimar una proporción \"ENCIG 2025\" sobre una base ENCUCI 2020.\n\n2. **Sonda canario / fuente textual.** No tengo ningún documento adjunto de este proyecto, y no puedo declarar una fuente textual verificada para esta variable. No existe, hasta donde alcanza mi conocimiento, un reactivo con ese nombre en el cuestionario público de ENCUCI 2020. Cualquier número que diera sería una fabricación con apariencia plausible.\n\n3. **Corte de conocimiento.** La ENCIG 2025 (si se levantó en ese ciclo) queda en el límite o fuera de lo que puedo confirmar con precisión; no tengo memoria confiable de sus tabulados.\n\n**Lo único que puedo ofrecer, claramente etiquetado como contexto y NO como la estimación pedida:** en ENCIG de ciclos previos (2019, 2021, 2023), la tasa de prevalencia de corrupción entre la población que realizó algún trámite personal se ha ubicado en el rango aproximado de **13–15%**, y la percepción de frecuencia de actos de corrupción supera el 85%. Estos son órdenes de magnitud de referencia, no una estimación de `paga_mordida_encig2025` sobre el universo ENCUCI 2020.\n\nSi me indicas el enunciado literal del reactivo y a qué universo debe aplicarse realmente, puedo dar una estimación puntual razonada.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:05:02.897809+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "3747d8a14bf13fa5b97245dcb39cf7b972f57a76bca7c304f3ccd9b9768942f9",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

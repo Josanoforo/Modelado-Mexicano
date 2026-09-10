@@ -1,0 +1,24 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "No conozco este dato y no puedo darlo con base documental.\n\n**Declaración explícita:** No tengo memorizada la existencia ni el contenido de un reactivo llamado `tiene_ahorros` en el cuestionario de la ENNViH-1 (MxFLS-1, 2002), ni una cifra publicada de prevalencia de tenencia de ahorros en esa ola. No dispongo de acceso al inventario de reactivos de este proyecto.\n\n**Sonda canario / fuente textual declarada:** ninguna. No puedo citar página, sección ni número de pregunta del cuestionario de hogar de la ENNViH-1. Cualquier cifra que ofreciera sería fabricada.\n\n**Lo que sí puedo decir con honestidad, marcado como no-fuente:**\n- La ENNViH-1 (2002) sí levantó módulos de activos y economía del hogar (libro de activos, ahorro y crédito), por lo que es plausible que exista un reactivo de este tipo; pero *plausible* no es *verificado*, y no lo estoy afirmando como hecho.\n- Como orden de magnitud puramente prior (no estimación de encuesta): la proporción de hogares mexicanos con algún ahorro formal a inicios de los 2000 era baja, del orden de una minoría clara. No emito un punto numérico porque no tengo base para anclarlo y hacerlo sería exactamente el error que la sonda busca detectar.\n\n**Nota operativa:** el universo indicado dice explícitamente \"NO ESTIMADO EN ESTE ACTO — censo de existencia sobre inventario de reactivos, no re-derivación contra microdato\". Bajo esa regla, la respuesta correcta no es una prevalencia sino un juicio de existencia del reactivo en el inventario — y ese inventario no está en mi contexto. Por tanto: **no estimado, sin fuente**.\n\nSi me proporcionas el inventario de reactivos o el cuestionario, respondo el censo de existencia contra ese material.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:45:44.896284+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "d7219b1b876fa9982db848a786ff6397dd5ab9a03e47aa3089f453e4310c7f41",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-04",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "No tengo el dato y no voy a inventarlo.\n\nRazones concretas:\n\n1. **El reactivo tal como se nombra no existe en mi conocimiento del cuestionario ENVIPE 2015.** La ENVIPE sí capta, en el módulo de victimización (TIPO), las **razones de no denuncia**, donde figuran \"miedo al agresor\" y \"desconfianza en la autoridad\" como opciones. Pero eso es un reactivo sobre *no denuncia*, no sobre \"denuncia con miedo o desconfianza\". Un ítem que mida denuncias efectivamente realizadas *pese a* miedo o desconfianza no lo tengo identificado en el inventario 2015.\n\n2. **La consigna del universo es explícita**: \"censo de existencia sobre inventario de reactivos, no re-derivación contra microdato\". Es decir, lo que se pide verificar es si el reactivo existe en el inventario, no producir una proporción. Emitir un porcentaje aquí sería responder a una pregunta distinta de la formulada.\n\n3. **Escala declarada binaria**: no corresponde intervalo de confianza subjetivo (la instrucción lo condiciona a escala continua).\n\n**Estimación puntual:** no estimada. Si el marco de codificación admite un valor de existencia, mi lectura es *no verificable como reactivo distinto en ENVIPE 2015* — plausiblemente una recodificación derivada de las razones de no denuncia, no un ítem levantado en campo.\n\n**Sonda canario / fuente textual declarada:** no tengo fuente textual. No estoy consultando el cuestionario ENVIPE 2015, ni los descriptores de archivo del INEGI, ni ningún documento del proyecto. Lo anterior proviene de memoria de entrenamiento sobre la estructura general de la ENVIPE, sin verificación documental en este acto. No cito folio, número de pregunta ni página porque no los tengo confirmados y cualquier cita concreta que produjera sería fabricada.\n\nNota operativa aparte: los conectores de Google Calendar y Microsoft 365 requieren autorización previa y no puedo completar el flujo OAuth en esta sesión no interactiva; habría que autorizarlos desde la configuración de conectores en claude.ai. No es necesario para esta pregunta, pero queda señalado.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:16:45.541086+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "e7c0c253f5422753e0472cea29031704b8921344018082295e859fc437913e80",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

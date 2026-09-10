@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-01",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "No conozco ese dato y no puedo estimarlo con honestidad.\n\nRazones concretas:\n\n1. **El reactivo, tal como se nombra, no corresponde a un ítem que yo pueda identificar en el cuestionario ENVIPE 2012.** La ENVIPE (módulo de victimización, sección de denuncia) sí capta las **razones de no denuncia** —y ahí aparecen categorías como \"miedo al agresor\", \"por miedo a que lo extorsionaran\", \"desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\"— pero esas se preguntan a quienes **no** denunciaron. Un reactivo binario llamado \"denuncia_con_miedo_o_desconfianza\" (es decir, denunciar *pese a* miedo/desconfianza, o denuncia acompañada de esos motivos) no es una construcción que yo pueda mapear a una pregunta específica del instrumento 2012.\n\n2. **Sin ese mapeo, cualquier cifra que diera sería inventada.** Podría ofrecer proporciones aproximadas de \"no denuncia por desconfianza en la autoridad\" del orden de dos dígitos bajos sobre el total de delitos no denunciados, pero no tengo memoria confiable del valor exacto para la ola 2012 y no lo presentaré como estimación de este reactivo, porque no es el mismo objeto.\n\n3. **Sonda canario / fuente textual declarada:** no tengo ninguna fuente textual a la vista. No dispongo del documento del proyecto, del catálogo de reactivos, ni del cuestionario o los tabulados del INEGI en esta sesión. La única \"fuente\" sería memoria paramétrica no verificada, lo cual no satisface el requisito de fuente declarada.\n\n4. **Nota sobre el universo:** el enunciado indica explícitamente \"NO ESTIMADO EN ESTE ACTO — censo de existencia sobre inventario de reactivos\". Interpreto que lo que corresponde aquí es un juicio de *existencia* del reactivo en el inventario, no una re-derivación numérica. Mi juicio de existencia es: **no verificable con la información disponible**; probablemente se trate de un reactivo derivado/construido por el equipo, no de una variable nativa del microdato ENVIPE 2012.\n\n**Estimación puntual: ninguna.** Escala binaria, por lo que no aplica intervalo de confianza continuo.\n\nSi me indica el número de pregunta del cuestionario ENVIPE 2012 (por ejemplo, dentro del módulo 4.x sobre denuncia) o la regla de construcción de la variable, puedo revisar si tengo algo utilizable.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:52:06.080873+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a3742903eb175c351deef91ca54308c2541a05214fecef4c4dfbb638d505d4dd",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

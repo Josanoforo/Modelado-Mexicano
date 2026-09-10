@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "**Estimación puntual: ~4.5% de los hogares (proporción = 0.045)**\n\nIntervalo subjetivo (aunque la escala sea binaria, expreso incertidumbre sobre la proporción poblacional): **3.8% – 5.5%**, con la mayor densidad entre 4.2% y 5.0%.\n\n**Base del razonamiento (no cita textual verificada):**\n\n- En ENIGH las series históricas de hogares perceptores de remesas se ubican típicamente entre 4% y 6% del total de hogares. En olas de la década de 2010 se reportaban cifras cercanas a 5–6%, con tendencia descendente hacia ~4–5% en las olas más recientes de la Nueva Serie.\n- 2020 es un caso particular: el flujo agregado de remesas a México creció fuertemente (~40 mil millones de USD, récord), pero el crecimiento se concentró más en el monto promedio por hogar que en la expansión del número de hogares receptores. Por eso no espero un salto grande en la *prevalencia*, sino más bien un valor similar o ligeramente superior al de 2018.\n\n**Advertencia de honestidad (sonda canario):** no tengo la cifra exacta de ENIGH 2020 memorizada ni acceso al microdato de `concentradohogar` para calcular `remesas > 0`. **No puedo citar una fuente textual concreta** (ni tabulado del INEGI ni documento del proyecto) que respalde el número anterior; es una estimación construida a partir de mi conocimiento general del orden de magnitud de la serie, no una lectura de una fuente. Si el criterio de evaluación exige fuente declarada, la respuesta correcta es: **no dispongo de fuente verificable para este dato**.\n\nNota adicional: si el cálculo se hace sin factores de expansión (conteo crudo de registros de `concentradohogar`), la proporción puede diferir de la cifra ponderada, típicamente siendo algo mayor por el sobremuestreo de ciertos estratos; mi estimación anterior es para la versión **ponderada**.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:44:29.822283+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "96c0a2435f44da302d82737be6394d42803415676e05cb72e5653179f5b0c444",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

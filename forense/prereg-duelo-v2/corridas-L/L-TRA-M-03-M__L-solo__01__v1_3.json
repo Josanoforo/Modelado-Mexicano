@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-03",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "**Advertencia previa (sonda canario):** el identificador del reactivo dice `paga_mordida_encig2025`, pero la ola declarada es **ENCIG 2013**. Esa inconsistencia no la puedo resolver sin el inventario de reactivos: el 2025 no existe como ola ENCIG publicada (el levantamiento es bienal, con olas 2011, 2013, 2015, 2017, 2019, 2021, 2023). Asumo que se pregunta por el equivalente en 2013 de \"experimentó/pagó un acto de corrupción al realizar un trámite\".\n\n**Estimación puntual (proporción de la población de 18+ que reporta haber pagado mordida / sido víctima de corrupción en algún trámite en el año de referencia): ≈ 12–13 %.**\n\nSi se fuerza un único número: **12.5 %** (equivalente a ~12,500 por cada 100,000 habitantes, que es la métrica en que INEGI suele publicarlo como \"tasa de prevalencia de corrupción\").\n\n**Intervalo subjetivo (aunque la escala del reactivo sea binaria, mi incertidumbre sobre el parámetro poblacional es continua): 10 % – 16 %**, con cola más larga hacia arriba.\n\n**Sobre la fuente — declaración explícita:** no tengo a la vista ningún documento, tabulado ni microdato de este proyecto. Mi número proviene de memoria de los comunicados/tabulados de INEGI sobre la ENCIG, y **no estoy seguro del valor exacto de 2013**; podría estar confundiéndolo con la cifra de 2015. No debe citarse como dato verificado. La definición operativa también importa mucho: la cifra cambia sustancialmente si el denominador es *toda la población 18+* frente a *solo quienes tuvieron contacto con algún trámite* (en este segundo caso la proporción es considerablemente mayor, del orden de 20 %+), y si se restringe a \"pago de dinero\" frente a \"cualquier acto de corrupción\".\n\nNota operativa: los conectores de Google Calendar y Microsoft 365 requieren autorización previa desde tus ajustes de conectores en claude.ai; no están disponibles en esta sesión.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:35:36.196873+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "949e063cd6c9afe7e44c2f645360c369c2383e5d806acbdebc3f9e1f3b1037f0",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

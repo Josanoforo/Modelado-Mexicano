@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-07",
+  "variante": "L-solo",
+  "indice": 2,
+  "texto_crudo": "**Estimación puntual: ~4.5% de los hogares** (proporción de hogares con `remesas > 0` en concentradohogar, ENIGH 2020 Nueva Serie, sin ponderar vs. ponderado difieren poco; mi cifra apunta al estimado ponderado poblacional).\n\n**Intervalo subjetivo (aunque la escala es binaria, doy rango de incertidumbre sobre la proporción): 3.5% – 6.0%**, con la mayor masa entre 4% y 5.5%.\n\n**Razonamiento (no fuente textual):**\n- Históricamente ENIGH reporta que entre 4% y 6% de los hogares mexicanos reciben remesas del exterior; en olas de los 2000s rondaba 6–7%, y ha bajado en las últimas décadas pese al aumento del monto total.\n- 2020 fue un año de remesas récord en monto agregado (~$40 mil millones USD), pero eso refleja mayor monto por hogar receptor más que mayor cobertura de hogares.\n- Con ~35 millones de hogares, 4.5% implicaría ~1.6 millones de hogares receptores, cifra consistente con el orden de magnitud usual.\n\n**Sonda canario / fuente:** No tengo una fuente textual verificable para esta cifra exacta. **No recuerdo el valor tabulado específico de ENIGH 2020 para la proporción de hogares con `remesas > 0`**, ni tengo acceso al microdato ni a documento adjunto alguno en esta sesión. La cifra anterior es una estimación derivada de conocimiento general sobre la serie ENIGH, no una cita de INEGI. Si necesitas el dato exacto, debe calcularse directamente del archivo `concentradohogar` de ENIGH 2020 (Nueva Serie), preferentemente ponderando por `factor`.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:13:56.330494+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "96c0a2435f44da302d82737be6394d42803415676e05cb72e5653179f5b0c444",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

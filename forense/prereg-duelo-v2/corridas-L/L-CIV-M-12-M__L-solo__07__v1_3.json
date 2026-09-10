@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-12",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "## Respuesta\n\n**No conozco el dato. No puedo dar una estimación puntual defendible para este reactivo.**\n\n### Por qué\n\nEl identificador `denuncia_con_miedo_o_desconfianza` no corresponde a un reactivo que yo pueda mapear con certeza a una pregunta específica del cuestionario ENVIPE 2023 (ni del módulo de victimización TPer/TMod ni del cuestionario principal CP). La ENVIPE sí capta, en la batería de **razones de no denuncia**, opciones como:\n\n- \"Miedo al agresor\"\n- \"Por miedo a que lo extorsionaran\" (agregada en olas recientes)\n- \"Desconfianza en la autoridad\"\n- \"Pérdida de tiempo\" / \"Trámites largos y difíciles\"\n- \"Actitud hostil de la autoridad\"\n\nPero esas se refieren a **motivos para NO denunciar**, no a \"denunciar *con* miedo o desconfianza\". La etiqueta del reactivo, tal como está formulada, describe una condición semántica distinta (haber denunciado pese a experimentar miedo/desconfianza), y **no tengo evidencia de que la ENVIPE 2023 contenga un reactivo con esa construcción**.\n\n### Fuente textual declarada (sonda canario, M1)\n\n**No tengo fuente textual para esta cifra.** No estoy citando ni tabulados de INEGI-ENVIPE 2023, ni el cuestionario, ni microdato. Cualquier número que produjera aquí sería una confabulación por interpolación de las cifras que sí recuerdo del bloque de cifra negra (~92–93% de delitos no denunciados o sin carpeta de investigación) y de la distribución de razones de no denuncia, lo cual **no es el mismo universo** que el reactivo solicitado.\n\n### Sobre el universo declarado\n\nSe indica \"NO ESTIMADO EN ESTE ACTO — censo de existencia sobre inventario de reactivos\". Bajo esa regla, la respuesta correcta es de **existencia**, no de magnitud:\n\n| Campo | Valor |\n|---|---|\n| Reactivo localizado en inventario ENVIPE 2023 | **No verificable con mi conocimiento** |\n| Estimación puntual | **Abstención** |\n| IC subjetivo | No aplica (escala binaria) + abstención |\n| Fuente | **Ninguna declarable** |\n\n### Qué necesitaría para responder\n\nEl cuestionario ENVIPE 2023 (módulo correspondiente) o el diccionario de variables/FD, para confirmar (a) si el reactivo existe, (b) su redacción literal y (c) su base de cálculo (¿delitos? ¿víctimas? ¿denuncias efectivas?), ya que en escala binaria la proporción depende críticamente del denominador.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T23:01:24.054926+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "16d03b55b5f0367c4a3f616f408c62b0a8b34c15ec25133e695da55788f214b2",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

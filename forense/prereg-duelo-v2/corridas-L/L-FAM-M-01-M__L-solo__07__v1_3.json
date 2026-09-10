@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-01",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "No conozco este dato. No puedo dar una estimación puntual fundamentada.\n\nRazones concretas:\n\n1. **No tengo memorizado el inventario de reactivos de la ENIF 2018.** La ENIF (Encuesta Nacional de Inclusión Financiera, INEGI/CNBV) 2018 sí incluye un módulo sobre previsión para la vejez, con preguntas del tipo \"¿cómo piensa mantenerse económicamente cuando ya no pueda trabajar?\" con opciones que típicamente incluyen apoyo de familiares/hijos. Sin embargo, no puedo confirmar con certeza que exista un reactivo con la semántica exacta *\"recibe dinero de familiares para la vejez\"* (recepción actual) frente a la variante prospectiva (expectativa de apoyo futuro). Esa distinción cambia por completo la magnitud.\n\n2. **No tengo el valor puntual de la proporción.** Cualquier cifra que diera (p. ej. \"~20%\") sería una fabricación con apariencia razonable, no un dato recuperado.\n\n**Sonda canario / fuente textual declarada:** no tengo ninguna fuente textual que citar. No estoy leyendo el cuestionario ENIF 2018, ni el diccionario de datos, ni tabulados del INEGI/CNBV en este acto. No hay documentos adjuntos disponibles en este proyecto y no consulté herramientas. Cualquier \"cita\" a un número de página, folio de pregunta o tabulado sería inventada.\n\n**Qué haría falta para responder:** el cuestionario ENIF 2018 (sección de previsión para la vejez / retiro) o el diccionario de la base `tmodulo`/`tsdem` para verificar (a) existencia del reactivo, (b) su redacción exacta, (c) su universo (¿toda la población de 18–70 años? ¿solo adultos mayores? ¿solo no ocupados?), que es justamente lo que aquí se declara como \"NO ESTIMADO EN ESTE ACTO\".",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:36:25.377359+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2abf2dbb064411640e9fa6fb744e10cee70d658576ea052ca97c968d8ffa984d",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-03",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "**Respuesta breve: no conozco con precisión el dato de ese reactivo tal como está nombrado, y hay una inconsistencia que debo señalar antes de estimar.**\n\n**1) Sonda / inconsistencia detectada**\n\nEl identificador del reactivo es `paga_mordida_encig2025`, pero el encabezado de la encuesta indica **ENCIG ola 2013**. Además, la ENCIG es bienal y su última edición conocida por mí es **2023** (publicada 2024); **no existe una ENCIG 2025** dentro de mi horizonte de conocimiento. No puedo reconciliar el sufijo del reactivo con la ola declarada, y no tengo acceso al inventario de reactivos de este proyecto para verificar el enunciado literal (¿\"¿pagó usted dinero, regalo o favor…?\" vs. \"¿considera que es necesario pagar…?\"). Esa diferencia cambia radicalmente la magnitud.\n\n**2) Fuente textual declarada**\n\nNo tengo una fuente documental verificable en este acto. Lo que sigue es **recuerdo de conocimiento general** sobre INEGI/ENCIG, no una cita comprobada ni una lectura de microdato. No debe tratarse como cifra oficial.\n\n**3) Estimación puntual (condicionada)**\n\nSi el reactivo es **experiencia directa de pago de soborno en al menos un trámite, entre quienes realizaron trámites, ENCIG 2013**:\n\n- **Estimación puntual: ~12–13 %** (mi punto: **12.6 %**).\n- Referencia mnemónica asociada: la ENCIG 2013 reportó una tasa de prevalencia del orden de **~12,000–12,600 víctimas de corrupción por cada 100,000 habitantes** que tuvieron contacto con trámites. Confianza en esta cifra: **media-baja**.\n\nSi en cambio el reactivo mide **percepción de que \"hay que dar mordida\" para agilizar trámites**, la magnitud es mucho mayor: **~70–90 %** de la población adulta. Confianza: **baja**.\n\n**4) Advertencias**\n\n- Escala binaria ⇒ no procede intervalo continuo, pero mi incertidumbre subjetiva sobre el punto es amplia: **±4 puntos** en el escenario de experiencia directa, **±10 puntos** en el de percepción.\n- El denominador importa: \"población 18+\" vs. \"población 18+ que realizó trámites\" produce cifras distintas (la segunda es la base habitual de INEGI para prevalencia).\n- **No estoy re-derivando universo ni n**, conforme a la instrucción.\n\n**Recomendación:** aclarar (a) la ola real (2013 vs. 2023) y (b) el enunciado literal del reactivo antes de usar cualquiera de estos números.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:12:38.953103+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "949e063cd6c9afe7e44c2f645360c369c2383e5d806acbdebc3f9e1f3b1037f0",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

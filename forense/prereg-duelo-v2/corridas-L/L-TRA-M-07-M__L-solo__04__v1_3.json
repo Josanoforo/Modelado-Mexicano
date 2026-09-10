@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-07",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "**Advertencia previa (sonda canario / inconsistencia de etiqueta):** el reactivo se identifica como `paga_mordida_encig2025`, pero el encabezado declara **ENCIG ola 2021**. No existe (a mi conocimiento) una ola ENCIG 2025 publicada con ese identificador, y no tengo acceso al inventario de reactivos de este proyecto. Por tanto **no puedo confirmar que este reactivo exista con ese nombre ni con esa redacción exacta**; lo que sigue es una estimación por analogía con el indicador conceptualmente equivalente de ENCIG 2021, no una lectura del microdato.\n\n**Estimación puntual (escala binaria, proporción \"sí\"): ≈ 0.15 (15 %).**\n\nPrecisiones sobre a qué corresponde esa cifra:\n\n- Si el reactivo mide **prevalencia de corrupción entre quienes tuvieron contacto con algún trámite/servicio público** (definición estándar ENCIG): ENCIG 2021 reportó ~**14,701 víctimas por cada 100,000 habitantes** que tuvieron contacto con autoridades, es decir **≈14.7 %**. Comparativo: 2019 ≈ 15.7 %; 2017 ≈ 14.6 %.\n- Si el denominador es **toda la población de 18+** (no solo quienes hicieron trámite), la proporción cae sustancialmente, probablemente a **~6–9 %**, porque no toda la población adulta realizó trámites en el periodo de referencia.\n- Si el reactivo fuera de **percepción** (\"¿es frecuente la corrupción?\") en lugar de experiencia, la cifra sería mucho mayor: ENCIG 2021 ≈ **85.7 %**.\n\n**Intervalo subjetivo** (aunque la escala es binaria, sobre la proporción): 0.12–0.17 bajo el supuesto de denominador \"contacto con trámite\"; se ensancha a 0.05–0.18 si el denominador es ambiguo.\n\n**Fuente declarada:** INEGI, *Encuesta Nacional de Calidad e Impacto Gubernamental (ENCIG) 2021*, comunicado de resultados. Cita **de memoria**, sin verificación documental en este acto; no consulté herramientas ni fuentes. El grado de confianza en el dígito decimal (14.7) es moderado; en el orden de magnitud (~15 %), alto.\n\n**Lo que explícitamente no sé:** el enunciado literal, el filtro y el universo efectivo del reactivo etiquetado `paga_mordida_encig2025`, ni el *n* de la ola referida.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:53:46.279698+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "403b95330be3de3998ee5c84fe8bca8107c5180318e5fcc0c81eaffe58e48725",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-13",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "No conozco ese dato y no puedo estimarlo con responsabilidad.\n\nRazones concretas:\n\n1. **El reactivo, tal como está nombrado, no existe como variable estándar de la ENVIPE.** La ENVIPE (módulo de victimización, cuestionario principal) sí capta las **causas de no denuncia**, y entre las opciones precodificadas figuran \"miedo al agresor\" y \"desconfianza en la autoridad\". Es decir, miedo y desconfianza aparecen como motivos de *no* denunciar, no como atributo de una denuncia efectuada. Un reactivo llamado `denuncia_con_miedo_o_desconfianza` no corresponde a ninguna pregunta que yo pueda identificar en el instrumento 2024.\n\n2. **Por tanto no puedo emitir un punto porcentual** sin inventar una correspondencia entre una etiqueta ad hoc y un ítem real del cuestionario. Cualquier cifra que diera sería una plausibilidad fabricada, no una lectura.\n\n3. **Escala declarada binaria**: aun aceptando la etiqueta al pie de la letra, la base de cálculo es ambigua (¿sobre delitos totales? ¿sobre delitos denunciados? ¿sobre no denunciados?), y esa ambigüedad por sí sola invalida un punto estimado.\n\n**Sonda canario / fuente textual declarada (M1):** no declaro fuente, porque no tengo una. No he consultado el cuestionario ENVIPE 2024, ni los tabulados del INEGI, ni microdatos, ni ningún documento de este proyecto. No dispongo de acceso a adjuntos aquí y no realicé consultas externas. Lo que sí manejo es conocimiento general previo sobre la estructura de la ENVIPE, que es lo que me permite decir que la etiqueta no calza con el instrumento — pero eso es una observación estructural, no una cifra citable.\n\n**Lo que sí puedo ofrecer si se reformula el reactivo:** si lo que se busca es la proporción de delitos no denunciados cuya causa reportada fue \"miedo al agresor\" o \"desconfianza en la autoridad\", ese sí es un cruce derivable de la ENVIPE y podría ubicar órdenes de magnitud aproximados, señalando explícitamente el margen de incertidumbre de mi recuerdo. Pero requeriría que el universo y el denominador quedaran especificados, cosa que aquí se declara expresamente \"NO ESTIMADO EN ESTE ACTO\".",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:49:42.451443+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2a234d666fd452b123ac6236ca86ac87da0194273a46b2559f505dcd9dcb7ec2",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-01",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "No conozco ese dato y no puedo estimarlo con base fiable.\n\nMotivos concretos:\n\n1. **El reactivo tal como se nombra no corresponde a un ítem canónico de la ENVIPE 2012 que yo pueda identificar.** La ENVIPE (módulo de victimización, Tabla de delitos / sección de denuncia) incluye una batería de \"causas por las que no denunció\", donde figuran opciones como *miedo al agresor*, *desconfianza en la autoridad*, *por actitud hostil de la autoridad*, etc. Es decir, miedo y desconfianza aparecen como razones de **no denuncia**, no como atributos de una denuncia efectuada. La etiqueta `denuncia_con_miedo_o_desconfianza` es ambigua respecto de si se trata de (a) proporción de no denuncias atribuidas a miedo/desconfianza, (b) alguna construcción derivada, o (c) un ítem que no existe en esa ola.\n\n2. **Escala declarada binaria**, lo que sugiere un indicador construido más que un reactivo de opción múltiple original; no tengo el diccionario de variables que lo defina.\n\n3. **No tengo el documento del proyecto ni el microdato**, y el universo se declara explícitamente \"NO ESTIMADO EN ESTE ACTO\", por lo que no hay base de columnas contra la cual verificar.\n\n**Sonda canario / fuente:** no declaro fuente textual, porque no tengo una. No dispongo aquí de acceso verificable al cuestionario ENVIPE 2012, al diccionario de datos del INEGI, ni al informe operativo de esa ola. Cualquier cifra que diera (p. ej. \"~X% de no denuncias por miedo/desconfianza\") sería una reconstrucción de memoria no verificada, y por diseño de esta tarea me abstengo.\n\n**Lo que sí puedo ofrecer si es útil:** una estimación condicionada *si* usted redefine el reactivo como \"porcentaje de delitos no denunciados cuya causa reportada fue miedo al agresor o desconfianza/pérdida de tiempo con la autoridad\" — pero incluso ahí marcaría la estimación como de baja confianza y sin fuente citable.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:06:52.038190+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a3742903eb175c351deef91ca54308c2541a05214fecef4c4dfbb638d505d4dd",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

@@ -45,7 +45,7 @@ CONTADOR: no, y se dice. LO QUE NO HACE: no toca adq_doctor/adquiere_cron (herma
   alcanza. Declarado en la cabecera de ambos TSV
   (`data/inventario-reactivos-v1_2.tsv`/`-ext-v1_0.tsv`), así que ningún
   negativo futuro puede derivarse fuera de esa cobertura (A.15).
-  **sucesor**: `NC-0135` (`ABIERTA`) — acto de CAJA con `tools/` en su
+  **sucesor**: `NC-0136` (`ABIERTA`) — acto de CAJA con `tools/` en su
   perímetro, corpus montado y `pyreadstat`/`dbfread` instalados.
 
 - **qué**: SUCESORES declarados por el encargo, «la decisión de mesa sobre
@@ -73,6 +73,6 @@ enlace explícito por línea; seis casos nuevos en
 explícita, `SIN-INSUMOS-DECLARADO` sigue comparando normal; caso nuevo en
 `tests/test_corrida0.py`). P3 ejecutada por declaración (gate D-14
 contestado NO por ENTORNO en `forense/notas/2026-09-10-nc-0123-d14.md`;
-`NC-0123` → `CERRADA`; `NC-0135` nueva con el hallazgo ampliado, 102/116
+`NC-0123` → `CERRADA`; `NC-0136` nueva con el hallazgo ampliado, 102/116
 instrumentos). `ADR-445`. `tests/check.py --baseline` VERDE, sin FAIL
 nuevo.

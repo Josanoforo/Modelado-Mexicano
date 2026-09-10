@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-10",
+  "variante": "L-solo",
+  "indice": 4,
+  "texto_crudo": "**No conozco el dato. No doy cifra puntual.**\n\nRazones explícitas:\n\n1. **El reactivo, tal como está nombrado, no lo reconozco como ítem estándar de la ENVIPE 2021.** Lo que sí existe en el cuestionario ENVIPE (módulo de victimización, batería de \"razones por las que no denunció\") son opciones del tipo *\"miedo al agresor\"*, *\"miedo a que lo extorsionaran\"* y *\"desconfianza en la autoridad\"* — es decir, causas de **NO denuncia**, no una categoría de \"denuncia realizada con miedo o desconfianza\". Un ítem que capture \"denunció *a pesar de* / *con* miedo o desconfianza\" no me consta que forme parte del inventario de reactivos de esa ola.\n\n2. **Escala binaria + universo de \"censo de existencia\"**: si lo que se pide es un veredicto de existencia (presente/ausente en el inventario de reactivos), mi lectura es **\"no presente\"** como ítem literal, pero con **confianza baja**, porque no puedo verificar contra el cuestionario ni contra el descriptor de archivo de la ENVIPE 2021. No tengo acceso a documentos de este proyecto ni he consultado fuentes en este acto.\n\n3. **Sonda de fuente (M1): no declaro fuente textual.** No tengo a la vista el cuestionario ENVIPE 2021, el descriptor de la base, ni la tabulación correspondiente. Cualquier cifra que produjera (p. ej. \"X % denunció pese a desconfiar de la autoridad\") sería una reconstrucción plausible, no una lectura. No la emito.\n\n**Qué haría falta para resolverlo**: el cuestionario principal ENVIPE 2021 (sección de delitos, pregunta de razones de no denuncia y sus claves) o el diccionario de variables del módulo `TPer_Vic1/TMod_Vic`, para confirmar si el constructo se deriva o si existe como reactivo directo. Si la regla del proyecto (MAESTRA32-E15, inciso (e)) permite marcar el caso como *derivable pero no reactivo*, esa sería mi clasificación tentativa.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:25:21.163047+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "961d33197dca125885281a9a3ef652f184a7df753776d43aa229b9a83caf034a",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

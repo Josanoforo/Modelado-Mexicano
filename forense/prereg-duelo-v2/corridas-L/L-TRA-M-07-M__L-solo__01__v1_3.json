@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-07",
+  "variante": "L-solo",
+  "indice": 1,
+  "texto_crudo": "**Respuesta breve: no tengo el dato exacto y no lo voy a inventar.**\n\n**1. Alerta de inconsistencia (sonda canario).** El reactivo se identifica como `paga_mordida_encig2025`, pero la ola declarada es **ENCIG 2021**. Son dos cosas incompatibles: no existe una ENCIG 2025 levantada y publicada bajo ese nombre en mi conocimiento (la serie es bienal: 2011, 2013, 2015, 2017, 2019, 2021, 2023). No puedo confirmar la existencia de este reactivo en el inventario de la ola 2021 con esa etiqueta. **No declaro fuente textual porque no la tengo a la vista**: no tengo acceso a documentos de este proyecto, ni al cuestionario, ni al catálogo de variables de la ENCIG 2021.\n\n**2. Estimación puntual (a título de prior, no de dato recuperado).**\n\nDepende críticamente del denominador, que aquí no está fijado:\n\n- **Base: población 18+ que tuvo contacto con algún trámite/servicio público o autoridad en el año de referencia** → proporción con al menos un acto de corrupción (mordida): **≈ 14 %** (rango subjetivo plausible 12–17 %).\n- **Base: toda la población 18+** (incluidos quienes no tuvieron contacto) → **≈ 4–5 %** (rango 3–8 %).\n\nLa ENCIG reporta esto históricamente como *tasa de prevalencia de corrupción por cada 100,000 habitantes* (orden de magnitud ~14,000–16,000 en olas recientes), no como binaria directa, así que la conversión a proporción binaria ya introduce supuestos míos.\n\n**3. Confianza:** baja. Los números anteriores son reconstrucción de memoria del orden de magnitud de la serie ENCIG, no lectura de la tabulación 2021. No los use como cifra citable.\n\n**4. Lo que haría falta para responder bien:** (a) resolver si la ola es 2021 o 2023; (b) la redacción literal del reactivo; (c) el filtro/universo efectivo (contacto con trámite sí/no), que es lo que mueve el estimador por un factor de ~3.\n\n*Nota operativa aparte:* los conectores de Google Calendar y Microsoft 365 no están autorizados en esta sesión y no puedo hacer el flujo OAuth aquí; si los necesita, habría que autorizarlos desde la configuración de conectores de claude.ai (o con `claude mcp` / `/mcp` en sesión interactiva).",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:51:18.646384+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "403b95330be3de3998ee5c84fe8bca8107c5180318e5fcc0c81eaffe58e48725",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

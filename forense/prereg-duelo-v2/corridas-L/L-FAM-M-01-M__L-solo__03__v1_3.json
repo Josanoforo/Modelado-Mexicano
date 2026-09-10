@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-01",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "No conozco este dato. No puedo dar una estimación puntual confiable.\n\nDetalle de por qué:\n\n1. **No tengo memorizada la existencia de este reactivo específico en el cuestionario ENIF 2018.** La ENIF 2018 (INEGI/CNBV) sí incluye una sección sobre previsión para la vejez / retiro, con reactivos del tipo \"¿de qué manera piensa mantenerse económicamente cuando ya no pueda trabajar?\" o \"¿quién lo mantiene actualmente?\", donde una de las opciones típicas es apoyo de hijos/familiares. Pero no puedo confirmar que exista una variable binaria con el contenido exacto `recibe_dinero_familiares_para_vejez`, ni su clave real en el microdato, ni su redacción textual.\n\n2. **El nombre de la variable que se me da es claramente un alias normalizado**, no una clave INEGI (que serían del tipo `P7_x` / `AP7_x`). Sin el diccionario de datos no puedo mapearlo.\n\n3. **Sobre la sonda canario:** no tengo fuente textual declarada. No dispongo del cuestionario ENIF 2018 ni del diccionario de variables en este acto, y no me han sido adjuntados documentos. Cualquier cita que produjera (número de pregunta, porcentaje ponderado, página del cuestionario) sería fabricada.\n\n4. **Escala binaria:** por diseño de la consigna no corresponde intervalo de confianza continuo.\n\nLo que sí puedo ofrecer como contexto no numérico, marcado explícitamente como recuerdo general y no como dato de la ENIF 2018: en encuestas mexicanas de esa época, la dependencia declarada de apoyo económico de hijos/familiares como estrategia de sostenimiento en la vejez suele aparecer como una de las respuestas más frecuentes entre adultos sin sistema de pensión formal. No convierto esto en cifra porque no tengo la tabulación correspondiente y el riesgo de anclaje espurio es alto.\n\nPara resolverlo se requiere: cuestionario ENIF 2018 (sección de retiro/vejez), diccionario de datos, y si se quiere prevalencia, el microdato con factor de expansión `FAC_PER`.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:52:50.143380+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2abf2dbb064411640e9fa6fb744e10cee70d658576ea052ca97c968d8ffa984d",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

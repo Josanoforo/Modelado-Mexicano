@@ -1,0 +1,24 @@
+{
+  "id_celda": "FAM-M-06",
+  "variante": "L-solo",
+  "indice": 6,
+  "texto_crudo": "**Estimación puntual: ~4.5 % de los hogares (proporción ponderada) recibieron remesas en ENIGH 2018.**\n\nIntervalo subjetivo (aunque la escala es binaria, expreso mi incertidumbre sobre la proporción): **3.8 % – 5.5 %**, con la masa de probabilidad concentrada entre 4 % y 5 %.\n\nRazonamiento y calibración:\n- La ENIGH capta remesas en `concentradohogar.remesas` como ingreso del hogar; históricamente la fracción de hogares con remesas positivas en ENIGH ha oscilado alrededor de 4–6 % desde 2010, con tendencia ligeramente descendente respecto a los niveles de 2006–2008 (que estaban más cerca de 6–7 %).\n- En 2018, con ~34.7 millones de hogares en la expansión de la ENIGH Nueva Serie, ~4.5 % implicaría del orden de 1.5 millones de hogares receptores.\n- Si se calcula **sin ponderador** (conteo simple de registros de la muestra, ~74,600 hogares), la proporción suele ser algo mayor que la ponderada, porque el diseño sobremuestrea entidades y estratos con alta migración; podría ubicarse cerca de **5 %–5.5 %**. La diferencia ponderada/no ponderada es una fuente relevante de discrepancia con mi cifra.\n\nSobre la fuente (sonda canario): **no tengo una fuente textual verificable para este dato**. No estoy citando un tabulado específico del INEGI ni un cálculo propio sobre el microdato de ENIGH 2018; la cifra proviene de mi conocimiento general aproximado sobre la distribución de remesas en encuestas de hogares mexicanas, no de un documento consultado. No debe tratarse como cifra oficial. Para el valor exacto habría que calcularlo directamente sobre `concentradohogar.csv` de ENIGH 2018 Nueva Serie con el factor de expansión `factor`.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:32:41.078708+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "18f5fc872946028c58d96289603cfb55c53b9b0ca0754e1c9891eb4cb9e2ecf0",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

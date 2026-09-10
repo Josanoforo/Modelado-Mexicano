@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-12",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "No conozco ese dato y no puedo darlo con precisión.\n\nExplico por qué y qué sí puedo decir:\n\n**Sobre el reactivo.** En la ENVIPE (cuestionario de módulo de victimización, sección de denuncia), cuando la víctima no denuncia se le pregunta por las **causas de la no denuncia**, con opciones como \"miedo al agresor\", \"por miedo a que lo extorsionaran\", \"desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\", etc. Es decir, el diseño canónico registra miedo/desconfianza como **motivos de NO denunciar**, no como una condición bajo la cual sí se denunció.\n\nUn reactivo llamado `denuncia_con_miedo_o_desconfianza` —denunciar *pese a* o *con* miedo/desconfianza— **no corresponde a un reactivo que yo pueda identificar en el inventario de la ENVIPE 2023**. Puede tratarse de (a) una variable derivada construida por el equipo de investigación, (b) una recodificación de las causas de no denuncia, o (c) un ítem inexistente incluido como control. Sin el documento de inventario del proyecto no puedo resolver esa ambigüedad.\n\n**Sobre la sonda de fuente.** No tengo fuente textual declarada que respalde una cifra para este reactivo. No voy a citar el tabulado de la ENVIPE 2023 como si contuviera esta variable, porque no me consta que la contenga bajo esa definición.\n\n**Lo único que puedo anclar con confianza razonable** (contexto, no estimación del reactivo pedido): en la ENVIPE la cifra negra ronda el 92–93% de los delitos, y entre las causas atribuibles a la autoridad, \"desconfianza en la autoridad\" suele situarse en torno a un dígito alto o cerca de 15% de las razones de no denuncia, y \"miedo a que lo extorsionaran\" bastante menor. Estas magnitudes son de memoria, aproximadas, y **no** son la respuesta a lo que se me pregunta.\n\n**Estimación puntual solicitada:** me abstengo. Escala binaria, sin intervalo aplicable.\n\nSi el inventario del proyecto define operacionalmente el reactivo (pregunta fuente, filtro de base y regla de recodificación), con eso sí puedo pronunciarme sobre existencia y, en su caso, sobre plausibilidad de magnitud.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:09:54.424663+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "16d03b55b5f0367c4a3f616f408c62b0a8b34c15ec25133e695da55788f214b2",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

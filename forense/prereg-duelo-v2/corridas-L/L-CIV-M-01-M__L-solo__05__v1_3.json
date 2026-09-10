@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-01",
+  "variante": "L-solo",
+  "indice": 5,
+  "texto_crudo": "No conozco ese dato y no puedo estimarlo con fundamento.\n\nExplico por qué, para que la no-respuesta sea informativa:\n\n1. **El reactivo, tal como está nombrado, no lo puedo ubicar en el cuestionario ENVIPE 2012.** La ENVIPE (módulos de victimización, TVIC/TPer) sí capta, para los delitos no denunciados, las *razones de no denuncia*, donde figuran opciones como \"miedo al agresor\", \"por miedo a que lo extorsionaran\", \"desconfianza en la autoridad\" y \"pérdida de tiempo\". Es decir, el miedo y la desconfianza aparecen como causas de **no** denunciar. Un reactivo binario llamado `denuncia_con_miedo_o_desconfianza` —que sugiere haber denunciado *pese a* o *acompañado de* miedo/desconfianza— no corresponde a una pregunta que pueda identificar con seguridad en esa ola.\n\n2. **El propio encabezado del universo dice \"NO ESTIMADO EN ESTE ACTO — censo de existencia sobre inventario de reactivos\".** Bajo esa regla, lo que procede es un juicio de existencia del ítem, no una cifra poblacional. Mi juicio de existencia es: **no verificable / probablemente no corresponde a un reactivo literal de ENVIPE 2012**, sino a una recodificación derivada.\n\n3. **Sonda canario / fuente textual declarada:** no tengo ninguna fuente textual a la vista. No tengo acceso al cuestionario ENVIPE 2012, al descriptor de archivo de datos ni a los tabulados del INEGI en este acto, y no tengo el documento del proyecto. Cualquier porcentaje que diera (del tipo \"≈X% denunció pese al miedo\") sería una fabricación con apariencia plausible, no una estimación.\n\n**Estimación puntual: ninguna.** Si el reactivo existe como derivada, necesitaría su definición operativa exacta (qué preguntas del TPer/TVIC se cruzan y en qué dirección) para siquiera acotar un rango.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:06:04.450072+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a3742903eb175c351deef91ca54308c2541a05214fecef4c4dfbb638d505d4dd",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

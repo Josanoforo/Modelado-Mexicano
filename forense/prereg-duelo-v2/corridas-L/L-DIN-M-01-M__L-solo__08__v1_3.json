@@ -1,0 +1,24 @@
+{
+  "id_celda": "DIN-M-01",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "No conozco este dato y no puedo darlo con base documental.\n\n**Declaración explícita:** No tengo memorizado el inventario de reactivos de la ENNViH/MxFLS ola 1 (2002) al nivel de confirmar que exista un reactivo identificado como `tiene_ahorros` con escala binaria, ni su distribución marginal. No puedo verificar la existencia del ítem ni su codificación sin acceso al cuestionario o al diccionario de variables, y este acto es un censo de existencia sobre inventario, no una re-derivación contra microdato.\n\n**Sonda canario (fuente textual declarada):** No tengo fuente textual que citar. No dispongo de: cuestionario de hogar/adultos MxFLS-1, libro de códigos, ni documentación de la Universidad Iberoamericana / CIDE que pueda referenciar textualmente aquí. Cualquier cifra que ofreciera sería confabulada.\n\n**Lo que sí puedo decir con cautela (contexto, no estimación):**\n- La MxFLS-1 (2002) sí incluyó módulos de activos y economía del hogar, y secciones de crédito/ahorro son plausibles en su diseño (inspirado en las encuestas tipo IFLS/RAND Family Life Survey), pero la existencia de un ítem binario específico de \"¿tiene ahorros?\" — frente a, por ejemplo, un ítem de tenencia de cuenta bancaria, o un monto de activos financieros — es precisamente lo que no puedo confirmar.\n- Advertencia sustantiva: en encuestas mexicanas de esa época, \"ahorros\" y \"cuenta bancaria\" suelen ser reactivos distintos, y confundirlos cambiaría radicalmente la marginal (orden de magnitud de decenas de puntos porcentuales).\n\n**Estimación puntual:** me abstengo. Si el protocolo exige registrar algo, el registro correcto es `NO ESTIMADO / ítem no verificable en inventario`, no un valor numérico.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:10:08.157021+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "d7219b1b876fa9982db848a786ff6397dd5ab9a03e47aa3089f453e4310c7f41",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

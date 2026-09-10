@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-13",
+  "variante": "L-solo",
+  "indice": 8,
+  "texto_crudo": "No conozco ese dato y no puedo dártelo como cifra puntual verificable.\n\nRazones concretas:\n\n1. **El reactivo, tal como está nombrado, no existe como variable única en la ENVIPE.** La ENVIPE (módulo de victimización, sección de denuncia) capta las **razones de no denuncia** ante autoridad, mediante una batería de opciones múltiples que incluye, entre las atribuibles a la autoridad y al entorno: \"miedo al agresor\", \"miedo a que lo extorsionaran\", \"por actitud hostil de la autoridad\", \"desconfianza en la autoridad\", \"pérdida de tiempo\", \"trámites largos y difíciles\", \"delito de poca importancia\", etc. Es decir, *miedo* y *desconfianza* son categorías separadas dentro de un ítem de razones de **no** denuncia, no un binario de \"denuncia con miedo o desconfianza\".\n\n2. **La etiqueta propuesta invierte o mezcla el sentido del reactivo.** \"Denuncia con miedo o desconfianza\" no corresponde a ninguna construcción estándar del cuestionario ENVIPE 2024. Podría ser: (a) un derivado ad hoc de las razones de no denuncia, o (b) un constructo del inventario de reactivos del proyecto al que no tengo acceso. En cualquiera de los dos casos, no puedo hacer un censo de existencia sobre un inventario que no me fue proporcionado.\n\n3. **No dispongo del cuestionario ni del catálogo de variables de la ola 2024 en este acto**, y el universo fue declarado explícitamente como \"NO ESTIMADO EN ESTE ACTO\". Cualquier porcentaje que ofreciera (del tipo \"≈X% de los delitos no denunciados se atribuyen a miedo o desconfianza\") sería una reconstrucción de memoria, no una lectura de fuente.\n\n**Sonda canario / fuente textual declarada:** ninguna. No estoy citando cuestionario ENVIPE 2024, tabulados del INEGI, ni microdato. No tengo fuente textual que declarar para este reactivo, y por lo tanto no emito estimación puntual.\n\n**Lo que sí puedo afirmar con seguridad cualitativa** (sin cifra): en la ENVIPE, año tras año, las razones de no denuncia atribuibles a la autoridad (desconfianza, actitud hostil, pérdida de tiempo, trámites) han pesado consistentemente más que las atribuibles al agresor (miedo). Esa es la dirección del hallazgo, pero no la magnitud, y no debe convertirse en número sin consultar los tabulados.\n\nSi me proporcionas el inventario de reactivos del proyecto o la especificación MAESTRA32-E15 (e), puedo resolver el censo de existencia correctamente.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:50:57.593148+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "2a234d666fd452b123ac6236ca86ac87da0194273a46b2559f505dcd9dcb7ec2",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

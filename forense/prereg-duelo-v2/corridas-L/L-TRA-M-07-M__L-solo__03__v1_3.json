@@ -1,0 +1,24 @@
+{
+  "id_celda": "TRA-M-07",
+  "variante": "L-solo",
+  "indice": 3,
+  "texto_crudo": "**Respuesta breve: no conozco el dato exacto para ese reactivo tal como está definido, y hay una inconsistencia en el ítem que debo señalar antes de estimar.**\n\n**1) Señalamiento de inconsistencia (sonda)**\nEl identificador del reactivo es `paga_mordida_encig2025`, pero la ola declarada es **ENCIG 2021**. Son referencias incompatibles: o el reactivo pertenece a otra ola, o la etiqueta está mal asignada. Además, \"paga_mordida\" no es un nombre de variable del catálogo real de la ENCIG (los reactivos de experiencia de corrupción en ENCIG se codifican en el módulo de trámites/pagos, no bajo ese mnemónico). No puedo confirmar que este reactivo exista con ese nombre en ningún cuestionario ENCIG.\n\n**2) Fuente textual declarada**\nNo tengo acceso a ningún documento del proyecto ni al cuestionario/microdato de la ENCIG en este acto. Cualquier cifra que dé proviene de memoria de resultados publicados por INEGI, no de una consulta verificada.\n\n**3) Estimación puntual condicionada (baja confianza)**\nSi el reactivo se interpreta como el indicador clásico de la ENCIG —*proporción de la población de 18 años y más que tuvo contacto con un servidor público y experimentó al menos un acto de corrupción*—, mi mejor estimación puntual para 2021 es:\n\n- **≈ 14–15% de la población adulta** (tasa de prevalencia del orden de **~14,700 por cada 100,000 habitantes**).\n- Rango subjetivo de incertidumbre: **13% – 17%**.\n\nAdvertencia importante: la ENCIG reporta dos denominadores muy distintos y el resultado cambia radicalmente según cuál aplique el reactivo:\n- Sobre **población total adulta**: ~14–15%.\n- Sobre **quienes realizaron algún trámite/tuvieron contacto** (subpoblación): la incidencia sube a un orden de **~25–30%**, y en trámites específicos (contacto con policía, trámites vehiculares) puede superar el 50%.\n\n**4) Conclusión**\nNo entrego una cifra como dato firme para `paga_mordida_encig2025`. La estimación anterior es una inferencia por analogía con el indicador de prevalencia de corrupción de ENCIG 2021, no una lectura del reactivo solicitado. Para resolverlo se requiere el cuestionario y el diccionario de datos de la ola correspondiente.\n\n*Nota operativa del entorno: los conectores de Google Calendar y Microsoft 365 no están autorizados en esta sesión; requerirían autorización desde la configuración de conectores de claude.ai. No son necesarios para esta respuesta.*",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T22:14:50.529357+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "403b95330be3de3998ee5c84fe8bca8107c5180318e5fcc0c81eaffe58e48725",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}

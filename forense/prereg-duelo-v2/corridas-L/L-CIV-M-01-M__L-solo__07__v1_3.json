@@ -1,0 +1,24 @@
+{
+  "id_celda": "CIV-M-01",
+  "variante": "L-solo",
+  "indice": 7,
+  "texto_crudo": "No conozco este dato y no puedo darlo con fundamento.\n\nPrecisiones sobre por qué:\n\n1. **No existe un reactivo con ese nombre en el cuestionario ENVIPE 2012.** La ENVIPE (módulo de victimización, ficha por delito) sí capta si hubo denuncia y, en caso de **no** denunciar, las razones, distinguiendo causas atribuibles a la autoridad (pérdida de tiempo, desconfianza en la autoridad, trámites largos y difíciles, actitud hostil) y causas atribuibles a otras circunstancias (miedo al agresor, delito de poca importancia, no tenía pruebas, por miedo a que lo extorsionaran, etc.). Es decir, \"miedo\" y \"desconfianza\" aparecen como razones de **no denuncia**, no como atributo de la denuncia realizada.\n\n2. Por tanto, un binario etiquetado `denuncia_con_miedo_o_desconfianza` no corresponde a ninguna variable directa del microdato ENVIPE 2012 que yo pueda identificar; sería una construcción derivada cuya definición operativa desconozco (¿denunció pese al miedo? ¿no denunció por miedo o desconfianza?). Sin esa definición, cualquier cifra que ofreciera sería inventada.\n\n3. **Sonda canario / fuente textual declarada (M1):** no dispongo de ningún documento adjunto de este proyecto, ni del inventario de reactivos MAESTRA32-E15, ni de acceso al microdato o al cuestionario ENVIPE 2012 en esta sesión. No cito fuente porque no tengo una fuente textual verificable a la mano para este reactivo; sólo conocimiento general del diseño de la ENVIPE. No hay documento de proyecto que respalde la existencia del reactivo tal como está nombrado.\n\n4. Como marco de referencia general (no como estimación del reactivo pedido): en ENVIPE 2012 la cifra negra rondaba ~92% de los delitos no denunciados/sin averiguación previa, y entre las razones de no denuncia, \"desconfianza en la autoridad\" y \"miedo al agresor\" figuraban entre las principales, pero **no daré un porcentaje puntual atribuido a este reactivo** porque no puedo verificar su definición ni su valor.\n\nSi me proporcionas la definición operativa exacta y la fuente del inventario, puedo evaluar si es estimable.",
+  "valor_extraido": null,
+  "fuente_citada": null,
+  "timestamp": "2026-09-09T23:02:03.322240+00:00",
+  "modelo_real": null,
+  "params": {
+    "modelo_id": "claude-opus-4-6",
+    "version_declarada": "claude-opus-4-6",
+    "fecha_congelacion": "2026-09-01",
+    "temperatura": 1.0,
+    "k_corridas": 8,
+    "variante": "L-solo",
+    "corpus_id_si_aplica": null,
+    "ejecutor": "sesión limpia fuera del proyecto (D-iii)"
+  },
+  "sha256_prompt": "a3742903eb175c351deef91ca54308c2541a05214fecef4c4dfbb638d505d4dd",
+  "intentos": 1,
+  "estado_captura": "OK",
+  "contexto_corpus_metadata": null
+}
