@@ -29419,3 +29419,72 @@
     independiente del host oficial, cosechado 2019-07-28 antes de que la fuente original muriera.
     Es un snapshot historico (corte real 2019-04-25), NO el RUPC vivo/actual -- declarado
     explicitamente, no se presenta como corriente.'
+
+- id: dd_pic_contratos_compranet_xlsx
+  usado_para: 'fila cola-adquisicion-registro.tsv DD_COMPRANET_DICCIONARIOS_DE_DATOS (1 de
+    3): diccionario de datos del Reporte de Datos Relevantes del Contrato de Plataforma Integral
+    CompraNet; inventario de campos de Contratos_CompraNet5.xlsx que MAESTRA36-A2 tuvo que
+    inferir por falta de este diccionario'
+  url_origen: https://upcp-compranet.funcionpublica.gob.mx/publicas/DD_PIC_CONTRATOS_2400703.xlsx
+  fecha_descarga: '2026-09-10'
+  descargado_por: agente, via captura Wayback 20250116072442 de web.archive.org (host original
+    sin registro A; ruta viva sirve shell Angular soft-200)
+  archivo: DD_CompraNet_2025/DD_PIC_CONTRATOS_2400703.xlsx
+  sha256: a16c3166d7b8d6cef3ebf81cb134338359ebfd1576cc974fad89846b062da76e
+  tamano_bytes: 18502
+  formato: xlsx
+  licencia: no declarada por la fuente ni por el archivo (la pagina que la declararia, canvas-compranet.buengobierno.gob.mx/informacion_ayuda/datos_abiertos.html,
+    respondio 502 de 547 B en 2 intentos el 2026-09-10, igual que el 2026-09-03)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO /adquiere 2026-09-10 (CAJA). A.7 doble descarga: sha256 identico en ambas bajadas
+    (a16c3166...). Estructura: zipfile.testzip()=None, 14 entradas, hoja unica ''Hoja1'' 75x7.
+    Identidad verificada por contenido (titulo verbatim en A1 + cabecera Seccion/Nombre del
+    Campo/Descripcion/Obligatorio/Tipo/Valores), no por rotulo. EDICION: snapshot 2025-01-16
+    del host original; la edicion viva NO se obtuvo (medido hoy: upcp-compranet.buengobierno.gob.mx/publicas/DD_RUPC_240912.xlsx
+    sirve 200 de 7000 B text/html, shell Angular).'
+
+- id: dd_pic_expedientes_compranet_xlsx
+  usado_para: 'fila cola-adquisicion-registro.tsv DD_COMPRANET_DICCIONARIOS_DE_DATOS (2 de
+    3): diccionario de datos del Reporte de Expedientes de Plataforma Integral CompraNet;
+    inventario de campos de Expedientes_CompraNet5.xlsx que MAESTRA36-A2 tuvo que inferir
+    por falta de este diccionario'
+  url_origen: https://upcp-compranet.funcionpublica.gob.mx/publicas/DD_PIC_EXPEDIENTES.xlsx
+  fecha_descarga: '2026-09-10'
+  descargado_por: agente, via captura Wayback 20250116075606 de web.archive.org (host original
+    sin registro A; ruta viva sirve shell Angular soft-200)
+  archivo: DD_CompraNet_2025/DD_PIC_EXPEDIENTES.xlsx
+  sha256: 1b82b858d3c27da71c1371a33c0387290a4a78fa850d2751982ccb1e0ec46265
+  tamano_bytes: 14177
+  formato: xlsx
+  licencia: no declarada por la fuente ni por el archivo (la pagina que la declararia, canvas-compranet.buengobierno.gob.mx/informacion_ayuda/datos_abiertos.html,
+    respondio 502 de 547 B en 2 intentos el 2026-09-10, igual que el 2026-09-03)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO /adquiere 2026-09-10 (CAJA). A.7 doble descarga: sha256 identico en ambas bajadas
+    (1b82b858...). Estructura: zipfile.testzip()=None, 12 entradas, hoja unica ''DD PIC EXPEDIENTE''
+    38x7. Identidad verificada por contenido (titulo verbatim en A1 + cabecera Seccion/Nombre
+    del Campo/Descripcion/Obligatorio/Tipo/Valores), no por rotulo. EDICION: snapshot 2025-01-16
+    del host original; la edicion viva NO se obtuvo (mismo shell Angular medido hoy).'
+
+- id: dd_rupc_compranet_xlsx
+  usado_para: 'fila cola-adquisicion-registro.tsv DD_COMPRANET_DICCIONARIOS_DE_DATOS (3 de
+    3): diccionario de datos del Listado de proveedores y contratistas inscritos en el RUPC;
+    documenta el esquema del padron RUPC, util para leer rupc_datamx_json (17 campos) y la
+    columna ''Folio en el RUPC'' de compranet5_contratos_2022_2023_xlsx'
+  url_origen: https://upcp-compranet.funcionpublica.gob.mx/publicas/DD_RUPC_240912.xlsx
+  fecha_descarga: '2026-09-10'
+  descargado_por: agente, via captura Wayback 20250116061519 de web.archive.org (host original
+    sin registro A; ruta viva sirve shell Angular soft-200)
+  archivo: DD_CompraNet_2025/DD_RUPC_240912.xlsx
+  sha256: 2761a852c62bfba8ec5749e21e9a06e85445d6e8680799a1ab45ee7a2169ed22
+  tamano_bytes: 10237
+  formato: xlsx
+  licencia: no declarada por la fuente ni por el archivo (la pagina que la declararia, canvas-compranet.buengobierno.gob.mx/informacion_ayuda/datos_abiertos.html,
+    respondio 502 de 547 B en 2 intentos el 2026-09-10, igual que el 2026-09-03)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'ACTO /adquiere 2026-09-10 (CAJA). A.7 doble descarga: sha256 identico en ambas bajadas
+    (2761a852...). Estructura: zipfile.testzip()=None, 10 entradas, hoja unica ''Hoja1'' 21x5.
+    Identidad verificada por contenido (titulo verbatim en A1 + cabecera Nombre del Campo/Descripcion/Obligatorio/Observaciones),
+    no por rotulo. MISMA-FUENTE-OTRA-RUTA verificada por contenido (A.4/6-bis.1): la captura
+    del host espejo buengobierno (20250215213808, upcp-compranet.buengobierno.gob.mx/publicas/)
+    da sha256 IDENTICO 2761a852... -- dos hostnames, un solo objeto, no dos ediciones. EDICION:
+    snapshot 2025-01-16; la edicion viva NO se obtuvo (mismo shell Angular medido hoy).'
