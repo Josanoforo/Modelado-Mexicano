@@ -1,0 +1,487 @@
+# CALC-ENCUCI-0001 -- cara mecanica de spec.md (ACTO GEN2-LOTE-ENCUCI-1).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/ENCUCI-MORDIDA-PROTESTA-spec-v1_0.md
+# (`prereg-caja-ENCUCI-MORDIDA-PROTESTA`).
+# Releva la demanda CORR-0003 (4 RESULT: RES-0005/0006/0061/0062) bajo GEN2.
+# CONGELADO en el COMMIT-1, antes de leer un solo REGISTRO de un .dbf.
+calc_id: CALC-ENCUCI-0001
+spec_md: spec.md
+spec_md_sha256: 33f3727f35668421a982bb1b3bd59885f6d119e7e4443c87bc2218daec2be417
+
+script: data/corrida0/CALC-ENCUCI-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: TASA-BASE-DE-REGLA
+  cuenta_gen2: SI
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENCUCI-MORDIDA-PROTESTA-spec-v1_0.md
+  spec_sellada_sha256: 33add37841455a9da6402e2dce8c7edaaa33e8ecc9a94c3c5a9d44b10961a919
+  demanda_que_releva: "CORR-0003 (ENCUCI2020) -> los 4 RESULT: RES-0005/RES-0006 (familia A, tramite.mordida.discrecional) y RES-0061/RES-0062 (familia B, civico.protesta.agravio_urbano_encuci2020). Son DOS constructos, no uno: el encargo nombra solo la mordida y la plaza trae ademas la protesta. NO releva CORR-0001 (ENCIG2023, sin payload) ni las cuatro corridas R de ENCUCI (CORR-0064..0067)."
+  reglas_bajo_prueba: "NINGUNA cambia de cifra por esta corrida. tramite.mordida.discrecional (enmienda_encuci2020, FP-200=b) y civico.protesta.agravio_urbano_encuci2020 (R7.4, SELLADA) ya estan MEDIDAS en milpa/tramite.yaml. Este CALC monta la cadena E.2 sobre esas cantidades; la adopcion de P3 es CITA, no cambio de cifra, y su rama la deciden los RESULT *-ADOPCION-P3*."
+  firma_de_contador: "FIRMA DE MESA 9/sep/2026 con OBJETO explicito, verbatim en el encargo archivado (forense/encargos/2026-09-09-GEN2-LOTE-ENCUCI-1.md): «cuenta_gen2 = SI para el CALC que este acto selle». Estandar FP-367/368 satisfecho (autoridad + fecha + OBJETO). El merge de mesa la perfecciona."
+  contaminacion_declarada: "ADR-46 -- al congelar, la sesion YA habia leido (a) los cuatro valores GEN1 (0.125822 / 0.874178 / 0.112192 / 0.091912) en el encargo, en demanda-resultados.tsv y en milpa/tramite.yaml; (b) LA CODIFICACION GEN1 COMPLETA de la familia A en el bloque enmienda_encuci2020 (desenlace 'AP5_17|AP5_18', ponderador FAC_SEL, universo 'SEC_4_5 con contacto declarado AP5_16_1..10>=1', n=13435, ic95 [0.116323, 0.135544]); (c) la de la familia B en la regla civico.protesta.agravio_urbano_encuci2020 (AP7_3_5==1 x DOMINIO agrupado x AP4_3_2, universo 20187 de 21519, y los dos contrastes con sus IC); (d) las anotaciones SEMANTICA (D4, NC-0113) y DERIVADO-NO-MEDIDO (D1, NC-0108) de ACTO GEN2-MOTOR-SEMANTICA. Por eso las PRIMARIAS de esta spec NO son las de GEN1: en A la primaria es A-P-ENTREGA (AP5_18 solo, el unico reactivo que mide entrega y el que corresponde al nombre paga_mordida) y la celda GEN1 se mide como A-P-CUALQUIERA, unica adoptable; en B las primarias son las CUATRO celdas del eje, no solo las dos con agravio. Lo genuinamente desconocido al congelar: el peso de 9/blanco en cada reactivo, la separacion entre solicitud y entrega (nadie ha publicado A-P-ENTREGA), la prevalencia sobre la poblacion completa y no sobre el recorte de contacto, el reparto de DOMINIO entre sus TRES valores y el efecto de asignar 'C', el perfil de las llaves opacas, y si los tipos del header del DBF coinciden con los del descriptor -- ninguno aparece en fuente alguna leida."
+  medidor_ejecutado_al_congelar: "NO -- escrito y congelado en el COMMIT-1, corrido en el COMMIT-2 del mismo acto"
+
+inputs:
+  - id: encuci2020_bd_dbf
+    origen: manifiesto
+  - id: IN-ENCUCI-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/ENCUCI-MORDIDA-PROTESTA-spec-v1_0.md
+    sha256: 33add37841455a9da6402e2dce8c7edaaa33e8ecc9a94c3c5a9d44b10961a919
+
+variables:
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: ID_PER, rol: "llave de la persona seleccionada -- join hacia SEC_6_7_8 (guardia G-4)", codigos: "Caracter(13) en el DBF; el descriptor lo define como UPM + VIV_SEL + R_SEL"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: UPM, rol: "componente de la llave que DECLARA el descriptor (guardia G-4)", codigos: "Caracter(7) en el DBF, 0100001-3299999"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: VIV_SEL, rol: "componente de la llave declarada (guardia G-4)", codigos: "Caracter en el DBF; descriptor 01-23"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: R_SEL, rol: "componente de la llave declarada (guardia G-4)", codigos: "Caracter; descriptor 01-30, renglon del seleccionado"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: AP5_16_1, rol: "FILTRO 5.16 inciso 1 (Policia de transito/seguridad publica) -- contacto declarado; ademas es la variable de la guardia de tipo G-3", codigos: "descriptor: Numerico(1) 1=Si 2=No 9=NS/NR, SIN codigo b (pregunta universal). DBF: N 19,15 -- el texto crudo llega '1.000000000000000'", direccion: "NO-APLICA (filtro de universo)"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: AP5_16_2, rol: "FILTRO 5.16 inciso 2 (Ministerio Publico)", codigos: "idem AP5_16_1", direccion: "NO-APLICA (filtro)"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: AP5_16_3, rol: "FILTRO 5.16 inciso 3 (Jueces)", codigos: "idem", direccion: "NO-APLICA (filtro)"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: AP5_16_4, rol: "FILTRO 5.16 inciso 4 (Medico/Enfermero/Servidor social en hospital o clinica publica)", codigos: "idem", direccion: "NO-APLICA (filtro)"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: AP5_16_5, rol: "FILTRO 5.16 inciso 5 (Maestros de escuelas o universidades publicas)", codigos: "idem", direccion: "NO-APLICA (filtro)"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: AP5_16_6, rol: "FILTRO 5.16 inciso 6 (Autoridades de seguridad social y bienestar)", codigos: "idem", direccion: "NO-APLICA (filtro)"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: AP5_16_7, rol: "FILTRO 5.16 inciso 7 (Empleados de oficinas de gobierno municipales)", codigos: "idem", direccion: "NO-APLICA (filtro)"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: AP5_16_8, rol: "FILTRO 5.16 inciso 8 (Empleados de gobierno estatal o federal)", codigos: "idem", direccion: "NO-APLICA (filtro)"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: AP5_16_9, rol: "FILTRO 5.16 inciso 9 (Guardia Nacional)", codigos: "idem", direccion: "NO-APLICA (filtro)"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: AP5_16_10, rol: "FILTRO 5.16 inciso 10 (Ejercito y Marina)", codigos: "idem", direccion: "NO-APLICA (filtro)"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: AP5_17, rol: "DESENLACE A -- 5.17 SOLICITUD: un servidor publico le PIDIO dadiva, favor o dinero extra", codigos: "descriptor: Numerico(1) 1=Si 2=No 9=NS/NR b=blanco. DBF: C 6", direccion: "1 si AP5_17=1; 0 si =2. MAS ALTO = MAS SOLICITUD DECLARADA."}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: AP5_18, rol: "DESENLACE A -- 5.18 ENTREGA: TUVO QUE DAR dadiva, favor o dinero extra (que no sea la tarifa oficial)", codigos: "descriptor: Numerico(1) 1=Si 2=No 9=NS/NR b=blanco. DBF: C 6", direccion: "1 si AP5_18=1; 0 si =2. MAS ALTO = MAS ENTREGA EFECTIVA."}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: AP4_3_2, rol: "EJE B -- 4.3 inciso 2: problemas de pandillerismo, robos o delincuencia en la (COLONIA/LOCALIDAD). ES PERCEPCION DE ENTORNO, NO VICTIMIZACION PROPIA", codigos: "descriptor: Numerico(1) 1=Si 2=No 9=NS/NR, SIN codigo b. DBF: N 19,15", direccion: "NO-APLICA (eje: parte el universo, no es desenlace)"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: FAC_SEL, rol: "ponderador de la persona seleccionada (familia A) y control cruzado con SEC_6_7_8 (guardia)", codigos: "descriptor: Numerico 1-999999 long. 6. DBF: N 19,10 -- se lee como flotante TAL CUAL, jamas se normaliza"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: EST_DIS, rol: "estrato de diseno de la familia A -- estratificacion del bootstrap (LLAVE DE TEXTO OPACA)", codigos: "descriptor: Caracter 001-999 long. 3. DBF: C 7 -- NO se convierte a entero ni se re-rellena"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: UPM_DIS, rol: "UPM de la familia A -- conglomerado que se re-muestrea (LLAVE DE TEXTO OPACA)", codigos: "descriptor: Caracter 0000001-9999999. DBF: C 7"}
+  - {archivo: "ENCUCI_2020_SEC_4_5.dbf", variable: DOMINIO, rol: "control cruzado del eje de entorno contra SEC_6_7_8", codigos: "Alfanumerico: U=Urbano, C=Complemento urbano, R=Rural. TRES valores, no dos", direccion: "NO-APLICA (eje)"}
+  - {archivo: "ENCUCI_2020_SEC_6_7_8.dbf", variable: ID_PER, rol: "llave de la persona seleccionada -- join desde SEC_4_5 (guardia G-4: unicidad)", codigos: "Caracter(13)"}
+  - {archivo: "ENCUCI_2020_SEC_6_7_8.dbf", variable: UPM, rol: "componente de la llave declarada (guardia G-4)", codigos: "Caracter(7)"}
+  - {archivo: "ENCUCI_2020_SEC_6_7_8.dbf", variable: VIV_SEL, rol: "componente de la llave declarada (guardia G-4)", codigos: "Caracter"}
+  - {archivo: "ENCUCI_2020_SEC_6_7_8.dbf", variable: R_SEL, rol: "componente de la llave declarada (guardia G-4)", codigos: "Caracter"}
+  - {archivo: "ENCUCI_2020_SEC_6_7_8.dbf", variable: AP7_3_5, rol: "DESENLACE B -- 7.3 inciso 5: 'Alguna vez en su vida, ha participado en una protesta'. SIN ventana de 12 meses", codigos: "descriptor: Numerico(1) 1=Si 2=No 9=NS/NR b=blanco. DBF: C 7. OJO A.15c: el inciso hermano AP7_3_4 declara 3=NS/NR, no 9 -- el mapeo es POR REACTIVO", direccion: "1 si AP7_3_5=1; 0 si =2. MAS ALTO = MAS PROTESTA DECLARADA."}
+  - {archivo: "ENCUCI_2020_SEC_6_7_8.dbf", variable: DOMINIO, rol: "EJE B de entorno -- agrupacion CONGELADA urbano={U,C}, rural={R}; alternativa {U} vs {R,C} solo como sensibilidad", codigos: "Alfanumerico: U=Urbano, C=Complemento urbano, R=Rural", direccion: "NO-APLICA (eje)"}
+  - {archivo: "ENCUCI_2020_SEC_6_7_8.dbf", variable: FAC_SEL, rol: "ponderador de la familia B", codigos: "descriptor: Numerico 1-999999. DBF: N 19,10"}
+  - {archivo: "ENCUCI_2020_SEC_6_7_8.dbf", variable: EST_DIS, rol: "estrato de diseno de la familia B (LLAVE DE TEXTO OPACA)", codigos: "descriptor: Caracter 001-999. DBF: C 7"}
+  - {archivo: "ENCUCI_2020_SEC_6_7_8.dbf", variable: UPM_DIS, rol: "UPM de la familia B (LLAVE DE TEXTO OPACA)", codigos: "descriptor: Caracter 0000001-9999999. DBF: C 7"}
+
+universo: >-
+  ENCUCI 2020 (INEGI), UNA sola ola. Poblacion mexicana de 15 ANIOS Y MAS
+  residente en viviendas seleccionadas; dominios de estimacion declarados por
+  el descriptor: nacional urbano, nacional rural y seis regiones. Los
+  estimadores de esta spec son NACIONALES. Ventana de referencia de los
+  reactivos 5.16/5.17/5.18: «los ultimos 12 meses, es decir, de agosto de 2019
+  a la fecha» -- precede al confinamiento, aunque la entrevista ocurra dentro
+  de el. AP7_3_5 es «alguna vez en su vida» y no tiene ventana.
+  U_A, unidad PERSONA SELECCIONADA (tabla SEC_4_5): filas con FAC_SEL finito
+  > 0, contacto declarado (_cod(AP5_16_k) == 1 para algun k en 1..10) y
+  AP5_17 y AP5_18 AMBOS en {1,2}.
+  U_A_POB, mismo archivo: filas con FAC_SEL finito > 0 que o bien NO declaran
+  contacto (d = 0: 5.17 pregunta «DE ESOS contactos», asi que sin contacto no
+  hay ocasion posible -- por eso el descriptor declara codigo `b` en 5.17/5.18
+  y NO en 5.16; el 0 es la logica del instrumento, no una imputacion) o bien
+  estan en U_A. Las filas con contacto y 9/blanco NO entran como 0: salen, y su
+  peso va en A-P-RESIDUO-POBLACION. Prevalencia sobre la poblacion completa,
+  secundaria declarada, NO adoptable.
+  U_B, unidad PERSONA SELECCIONADA (SEC_6_7_8 emparejada con SEC_4_5 por
+  ID_PER): filas con pareja, FAC_SEL finito > 0, AP7_3_5 en {1,2}, AP4_3_2 en
+  {1,2} y DOMINIO en {U,C,R}. Eje CONGELADO: urbano = {U, C} (el descriptor
+  llama a C «Complemento urbano»), rural = {R}.
+
+filtros: >-
+  Sale del universo, CONTADO y no imputado: AP5_17 o AP5_18 = 9 (A-N-NSNR-17 /
+  A-N-NSNR-18), en blanco (A-N-BLANCO-17 / A-N-BLANCO-18) o fuera del dominio
+  declarado (A-N-FUERA-DE-DOMINIO); ausencia de contacto (A-N-SIN-CONTACTO);
+  AP7_3_5 = 9 o blanco (B-N-NSNR / B-N-BLANCO); AP4_3_2 fuera de {1,2}
+  (B-N-AGRAVIO-NSNR); DOMINIO fuera de {U,C,R} (B-N-DOMINIO-FUERA); ponderador
+  no finito o <= 0 (*-N-SIN-PONDERADOR); fila de SEC_6_7_8 sin pareja
+  (B-N-SIN-PAREJA).
+  Se cuenta pero NO sale del punto: filas sin EST_DIS o sin UPM_DIS
+  (*-N-SIN-DISENO) -- afectan al IC, no al estimador.
+  CERO NUNCA SUSTITUYE FALTA DE DATO.
+  Si falta un miembro del ZIP -> NO-ESTIMABLE-MIEMBRO-AUSENTE:<m>; si falta una
+  columna declarada -> NO-ESTIMABLE-COLUMNA-AUSENTE:<col>; si existe y no trae
+  ningun valor valido -> NO-ESTIMABLE-COLUMNA-VACIA:<col>; si un universo queda
+  vacio -> NO-ESTIMABLE-UNIVERSO-VACIO; si ID_PER no es unico en alguna de las
+  dos tablas -> la familia B sale NO-ESTIMABLE-LLAVE-NO-UNICA y NO se elige
+  otra llave sobre la marcha. Si TODA fila de un universo carece de diseno ->
+  METODO-IC = NO-ESTIMABLE-DISENO-INCOMPLETO y los IC salen null, pero el punto
+  se reporta igual.
+
+ponderador: >-
+  FAC_SEL en las dos familias -- el descriptor lo define como «Ponderador que se
+  utiliza para estimar resultados de las preguntas que se refieren al informante
+  seleccionado». NO se usa FAC_VIV (factor de vivienda, otra unidad). El
+  descriptor declara FAC_SEL como Numerico de longitud 6 y el DBF lo declara
+  N 19,10: manda el header, se lee como flotante tal cual y jamas se normaliza,
+  ni se redondea, ni se trunca.
+
+transformacion: >-
+  _cod(v) = entero si el texto crudo, tras strip(), parsea como flotante finito
+  de parte fraccionaria nula; None en cualquier otro caso. Asi '1' y
+  '1.000000000000000' dan el mismo 1 sin apostar por un formato.
+  d(SOLICITUD) = 1 si AP5_17=1, 0 si =2.
+  d(ENTREGA)   = 1 si AP5_18=1, 0 si =2.
+  d(CUALQUIERA)= 1 si AP5_17=1 o AP5_18=1; 0 si ambos =2  [codificacion GEN1].
+  d(AMBAS)     = 1 si AP5_17=1 y AP5_18=1; 0 en otro caso.
+  d(COMPLEMENTO) = 1 si AP5_17=2 y AP5_18=2 -- contado DIRECTAMENTE sobre el
+  mismo denominador, nunca como 1 - p.
+  d(B) = 1 si AP7_3_5=1, 0 si =2.
+  p(U) = suma(w*d)/suma(w) sobre U, sumas en ORDEN FIJO DE FILA.
+  Los IC de las diferencias B-DIF-C1 y B-DIF-C2 se toman de la MISMA replica
+  bootstrap (diferencia por replica), no de dos bootstraps independientes.
+  NO se promedia entre olas, no se ajusta tendencia, no se extrapola, no se
+  imputa, no se re-escala. NINGUNA cifra se puentea a ENCIG 2025.
+
+estimando: >-
+  DESCRIPTIVO. (1) PRIMARIOS: A-P-ENTREGA y A-P-SOLICITUD (los dos reactivos de
+  pago informal por separado, unidad PERSONA 15+ con contacto declarado) y las
+  CUATRO celdas del eje entorno x agravio de la familia B. (2) CELDA ADOPTABLE
+  de A: A-P-CUALQUIERA, la codificacion GEN1 -- se mide igual pero NO es la
+  primaria por codebook. (3) SECUNDARIOS DECLARADOS: A-P-AMBAS,
+  A-P-SOLICITUD-SIN-ENTREGA, A-P-CUALQUIERA-POBLACION (segundo denominador),
+  el complemento con su denominador escrito, las cuatro celdas de la agrupacion
+  alternativa de DOMINIO, los pesos residuales y todos los conteos de embudo.
+  NINGUN RESULT ES CAUSAL: B-DIF-C1 y B-DIF-C2 van rotuladas ASOCIACION --
+  entorno y agravio no se asignan al azar. La comparabilidad con ENCIG 2025
+  queda DECLARADA COMO PREGUNTA ABIERTA, no como supuesto: mismo constructo no
+  es mismo instrumento, y ninguna salida de esta spec los pone lado a lado.
+
+dependencias_materiales: [numpy]
+
+parametros:
+  fuente_acto: "ACTO GEN2-LOTE-ENCUCI-1 · CUARTO LOTE DE LA CARTERA · CALC-ENCUCI-0001"
+  firma_que_lo_autoriza: "Firma de mesa 9/sep/2026, verbatim en el encargo archivado: «Encargo f5 corriendo, revisa este de chatpgt y dame este encargo y los que siguen de Gen2, necesito que medes al menos 5 encargos a correr en claude code, no me separas los que te estoy pidiendo, dame 5 completos.» -- ordena el lote. Y, con OBJETO explicito sobre el contador, el parrafo del propio encargo: «cuenta_gen2 = SI para el CALC que este acto selle». Estandar FP-367/368 satisfecho."
+  bootstrap_replicas: 2000
+  umbral_replica_gen1: 1.0e-6
+  grano_milpa_decimales: 6
+  metodo_ic: "bootstrap de UPM_DIS CON REEMPLAZO dentro de EST_DIS, conservando el numero de UPM por estrato; percentiles 2.5/97.5; las diferencias se toman de la misma replica"
+  regla_estrato_upm_unica: >-
+    Un estrato con exactamente una UPM se re-muestrea a si mismo: aporta
+    varianza cero. NO se colapsa (decision de diseno que esta spec no esta
+    autorizada a tomar) y NO se descarta (sesgaria el punto). Si el conteo es
+    > 0, METODO-IC sale IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como LIMITE
+    INFERIOR de la anchura verdadera, nunca como IC exacto.
+  llaves_opacas: >-
+    EST_DIS y UPM_DIS se agrupan como CADENA CRUDA. Nunca se convierten a
+    entero ni se re-rellenan a un ancho tomado del descriptor: el descriptor ya
+    discrepa (declara EST_DIS de ancho 3; el DBF lo declara de ancho 7), y
+    normalizarlas partiria o fusionaria estratos en silencio. El perfil
+    observado se emite como RESULT de texto pre-declarado.
+  ranura_no_preregistrada: >-
+    Nadie pre-registro el metodo de IC para ENCUCI. Lo elige el ejecutor sobre
+    ranura vacia, se declara y se eleva a mesa. Los ic95 [0.116323, 0.135544]
+    de enmienda_encuci2020 NO se ponen lado a lado con estos (A-bis.3): su
+    metodo no esta escrito en ningun artefacto reproducible. El control
+    positivo es SOLO DEL PUNTO.
+  tablas:
+    sec_4_5: "ENCUCI_2020_SEC_4_5.dbf"
+    sec_6_7_8: "ENCUCI_2020_SEC_6_7_8.dbf"
+  miembros_zip_declarados:
+  - "ENCUCI_2020_SD.dbf"
+  - "ENCUCI_2020_SEC_4_5.dbf"
+  - "ENCUCI_2020_SEC_6_7_8.dbf"
+  - "ENCUCI_2020_SEC_9_10.dbf"
+  - "ENCUCI_2020_VIV.dbf"
+  codificacion:
+    A_contacto_si: [1]
+    A_incisos_contacto: [AP5_16_1, AP5_16_2, AP5_16_3, AP5_16_4, AP5_16_5, AP5_16_6, AP5_16_7, AP5_16_8, AP5_16_9, AP5_16_10]
+    A_uno: [1]
+    A_cero: [2]
+    A_nsnr: [9]
+    A_dominio_declarado: [1, 2, 9]
+    B_uno: [1]
+    B_cero: [2]
+    B_nsnr: [9]
+    B_agravio_si: [1]
+    B_agravio_no: [2]
+    B_dominio_urbano: [U, C]
+    B_dominio_rural: [R]
+    B_dominio_urbano_alt: [U]
+    B_dominio_rural_alt: [R, C]
+    B_dominio_declarado: [U, C, R]
+  valores_gen1_referencia:
+    RES-0005: 0.125822
+    RES-0006: 0.874178
+    RES-0061: 0.112192
+    RES-0062: 0.091912
+  n_gen1_referencia:
+    U_A: 13435
+    U_B: 20187
+  criterio_adopcion_p3: >-
+    CANTIDAD-MEDIDA (recibe cita corrida0_resultado_id + corrida0_generacion:
+    GEN2 en milpa/tramite.yaml) si y solo si (1) su numerador es una categoria
+    declarada del reactivo contada DIRECTAMENTE -- no 1 menos otra cosa -- y
+    (2) round(medido, 6) == valor sellado. En otro caso
+    NO-ADOPTABLE-POR-DISCREPANCIA / NO-ADOPTABLE-POR-GRANO /
+    COMPLEMENTO-CON-DENOMINADOR-RECORTADO / NO-ADOPTABLE-NO-ESTIMABLE.
+    RES-0006 falla la condicion (1) POR CONSTRUCCION: D1/NC-0108 ya lo declaro
+    DERIVADO-NO-MEDIDO y esta spec lo obedece, no lo reabre -- se dice aqui,
+    antes de medir, para que no parezca conclusion hallada a posteriori. El `p`
+    del motor NO se mueve: la adopcion es CITA.
+  adopcion_p3:
+    consumidores:
+      RES-0005: "milpa/tramite.yaml:tramite.mordida.discrecional:paga_mordida_encuci2020 <- RESULT-ENCUCI-A-P-CUALQUIERA"
+      RES-0006: "…:tramite_normal_encuci2020 <- SIN CITA (D1, NC-0108, complemento derivado)"
+      RES-0061: "milpa/tramite.yaml:civico.protesta.agravio_urbano_encuci2020:protesta_alguna_vez_urbano_con_agravio_encuci2020 <- RESULT-ENCUCI-B-P-URB-AGR"
+      RES-0062: "…:protesta_alguna_vez_rural_con_agravio_encuci2020 <- RESULT-ENCUCI-B-P-RUR-AGR"
+    nota: >-
+      La celda que se cita NO es la primaria de la familia A. La primaria por
+      codebook es A-P-ENTREGA (AP5_18, la entrega efectiva); la adoptable es
+      A-P-CUALQUIERA, que es la codificacion con la que el valor 0.125822 se
+      materializo. Adoptar la primaria cambiaria en silencio el significado del
+      parametro del motor. En la familia B primaria y adoptable coinciden.
+  sufijos_result:
+  - G-N-FILAS-SEC45
+  - G-N-FILAS-SEC678
+  - G-N-AP5-16-1-CADENA-UNO
+  - G-N-AP5-16-1-NUMERICO-UNO
+  - G-VEREDICTO-TIPO-AP5-16
+  - G-LLAVE-SEC45-IDPER-UNICA
+  - G-LLAVE-SEC678-IDPER-UNICA
+  - G-LLAVE-SEC45-TERNA-UNICA
+  - G-LLAVE-SEC678-TERNA-UNICA
+  - G-VEREDICTO-ESTRUCTURA
+  - G-N-FAC-SEL-INVALIDO-SEC45
+  - G-N-FAC-SEL-INVALIDO-SEC678
+  - G-N-FAC-SEL-DISCREPA-ENTRE-TABLAS
+  - G-VEREDICTO-DISENO
+  - G-PERFIL-EST-DIS
+  - G-PERFIL-UPM-DIS
+  - G-N-EST-DIS-DISTINTOS
+  - G-N-UPM-DIS-DISTINTOS
+  - A-N-FILAS
+  - A-N-SIN-PONDERADOR
+  - A-N-CONTACTO
+  - A-N-SIN-CONTACTO
+  - A-N-U
+  - A-N-NSNR-17
+  - A-N-NSNR-18
+  - A-N-BLANCO-17
+  - A-N-BLANCO-18
+  - A-N-FUERA-DE-DOMINIO
+  - A-N-SIN-DISENO
+  - A-N-ESTRATOS
+  - A-N-UPM
+  - A-N-ESTRATOS-UPM-UNICA
+  - A-MASA-FAC-SEL-U
+  - A-P-SOLICITUD
+  - A-IC-LO-SOLICITUD
+  - A-IC-HI-SOLICITUD
+  - A-P-ENTREGA
+  - A-IC-LO-ENTREGA
+  - A-IC-HI-ENTREGA
+  - A-P-CUALQUIERA
+  - A-IC-LO-CUALQUIERA
+  - A-IC-HI-CUALQUIERA
+  - A-P-AMBAS
+  - A-P-SOLICITUD-SIN-ENTREGA
+  - A-P-COMPLEMENTO-CUALQUIERA
+  - A-SUMA-CUALQUIERA
+  - A-N-U-POB
+  - A-P-CUALQUIERA-POBLACION
+  - A-P-RESIDUO-POBLACION
+  - A-VEREDICTO
+  - A-VEREDICTO-SEMANTICA
+  - A-VEREDICTO-EXHAUSTIVIDAD
+  - A-METODO-IC
+  - A-DELTA-VS-GEN1
+  - A-REPRODUCE-GEN1
+  - A-DELTA-COMP-VS-GEN1
+  - A-REPRODUCE-COMP-GEN1
+  - A-DELTA-N-VS-GEN1
+  - A-ADOPCION-P3
+  - A-ADOPCION-P3-DELTA
+  - A-ADOPCION-P3-COMPLEMENTO
+  - B-N-FILAS-SEC678
+  - B-N-SIN-PAREJA
+  - B-COBERTURA-JOIN
+  - B-N-SIN-PONDERADOR
+  - B-N-NSNR
+  - B-N-BLANCO
+  - B-N-FUERA-DE-DOMINIO
+  - B-N-AGRAVIO-NSNR
+  - B-N-DOMINIO-U
+  - B-N-DOMINIO-C
+  - B-N-DOMINIO-R
+  - B-N-DOMINIO-FUERA
+  - B-N-U
+  - B-N-URB-AGR
+  - B-N-RUR-AGR
+  - B-N-URB-SIN
+  - B-N-RUR-SIN
+  - B-N-SIN-DISENO
+  - B-N-ESTRATOS
+  - B-N-UPM
+  - B-N-ESTRATOS-UPM-UNICA
+  - B-MASA-FAC-SEL-U
+  - B-P-U
+  - B-P-URB-AGR
+  - B-IC-LO-URB-AGR
+  - B-IC-HI-URB-AGR
+  - B-P-RUR-AGR
+  - B-IC-LO-RUR-AGR
+  - B-IC-HI-RUR-AGR
+  - B-P-URB-SIN
+  - B-IC-LO-URB-SIN
+  - B-IC-HI-URB-SIN
+  - B-P-RUR-SIN
+  - B-IC-LO-RUR-SIN
+  - B-IC-HI-RUR-SIN
+  - B-DIF-C1
+  - B-IC-LO-DIF-C1
+  - B-IC-HI-DIF-C1
+  - B-DIF-C2
+  - B-IC-LO-DIF-C2
+  - B-IC-HI-DIF-C2
+  - B-ALT-P-URB-AGR
+  - B-ALT-P-RUR-AGR
+  - B-ALT-P-URB-SIN
+  - B-ALT-P-RUR-SIN
+  - B-DELTA-AGRUPACION
+  - B-VEREDICTO
+  - B-METODO-IC
+  - B-DELTA-URB-VS-GEN1
+  - B-REPRODUCE-URB-GEN1
+  - B-DELTA-RUR-VS-GEN1
+  - B-REPRODUCE-RUR-GEN1
+  - B-DELTA-N-VS-GEN1
+  - B-ADOPCION-P3-URB
+  - B-ADOPCION-P3-URB-DELTA
+  - B-ADOPCION-P3-RUR
+  - B-ADOPCION-P3-RUR-DELTA
+  - B-VEREDICTO-CONTRASTES
+
+seed:
+  aplica: true
+  valor: 20260909
+  rng: numpy.PCG64
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Bootstrap fijado por seed + rng declarados y sumas en orden fijo de fila: la
+    unica diferencia esperable entre dos corridas del mismo arbol es redondeo de
+    float64 al reasociar sumas ponderadas. Los enteros y los textos se comparan
+    EXACTO. NO se afloja para que la adopcion de P3 pase: si el grano de milpa/
+    (seis decimales) no cabe, la cita no se escribe y eso es el hallazgo.
+
+resultados:
+  - {id: RESULT-ENCUCI-G-N-FILAS-SEC45, tipo: entero, unidad: "registros activos leidos de ENCUCI_2020_SEC_4_5.dbf (la cabecera declara 21519)"}
+  - {id: RESULT-ENCUCI-G-N-FILAS-SEC678, tipo: entero, unidad: "registros activos leidos de ENCUCI_2020_SEC_6_7_8.dbf (la cabecera declara 21519)"}
+  - {id: RESULT-ENCUCI-G-N-AP5-16-1-CADENA-UNO, tipo: entero, unidad: "filas cuyo texto CRUDO de AP5_16_1 es exactamente '1' -- la comparacion INGENUA; el DBF declara el campo N 19,15"}
+  - {id: RESULT-ENCUCI-G-N-AP5-16-1-NUMERICO-UNO, tipo: entero, unidad: "filas con _cod(AP5_16_1) == 1 -- la comparacion POR VALOR, la que la spec usa"}
+  - {id: RESULT-ENCUCI-G-VEREDICTO-TIPO-AP5-16, tipo: texto, unidad: "CADENA-Y-NUMERO-COINCIDEN / SOLO-NUMERO-ACIERTA / SOLO-CADENA-ACIERTA / NINGUNO-ACIERTA -- mide la trampa de tipo en vez de suponerla"}
+  - {id: RESULT-ENCUCI-G-LLAVE-SEC45-IDPER-UNICA, tipo: texto, unidad: "SI / NO -- ID_PER unico en SEC_4_5"}
+  - {id: RESULT-ENCUCI-G-LLAVE-SEC678-IDPER-UNICA, tipo: texto, unidad: "SI / NO -- ID_PER unico en SEC_6_7_8"}
+  - {id: RESULT-ENCUCI-G-LLAVE-SEC45-TERNA-UNICA, tipo: texto, unidad: "SI / NO -- la llave que DECLARA el descriptor (UPM+VIV_SEL+R_SEL) es unica en SEC_4_5"}
+  - {id: RESULT-ENCUCI-G-LLAVE-SEC678-TERNA-UNICA, tipo: texto, unidad: "SI / NO -- idem en SEC_6_7_8"}
+  - {id: RESULT-ENCUCI-G-VEREDICTO-ESTRUCTURA, tipo: texto, unidad: "LLAVE-DECLARADA-Y-ID-PER-COINCIDEN / DESCRIPTOR-DISCORDA-CON-EL-ARCHIVO / LLAVE-NO-UNICA -- ninguna llave se adopta por autoridad"}
+  - {id: RESULT-ENCUCI-G-N-FAC-SEL-INVALIDO-SEC45, tipo: entero, unidad: "filas de SEC_4_5 con FAC_SEL no finito o <= 0"}
+  - {id: RESULT-ENCUCI-G-N-FAC-SEL-INVALIDO-SEC678, tipo: entero, unidad: "filas de SEC_6_7_8 con FAC_SEL no finito o <= 0"}
+  - {id: RESULT-ENCUCI-G-N-FAC-SEL-DISCREPA-ENTRE-TABLAS, tipo: entero, unidad: "personas emparejadas cuyo FAC_SEL difiere entre SEC_4_5 y SEC_6_7_8 (esperado 0; no se corrige, se cuenta)"}
+  - {id: RESULT-ENCUCI-G-VEREDICTO-DISENO, tipo: texto, unidad: "DISENO-IDENTIFICABLE / DISENO-INCOMPLETO / DISENO-AUSENTE -- contesta FP-201 para ENCUCI 2020 con dato"}
+  - {id: RESULT-ENCUCI-G-PERFIL-EST-DIS, tipo: texto, unidad: "perfil observado de EST_DIS: longitudes con su conteo y si algun valor trae espacio en los bordes (llave OPACA: nunca int() ni zfill())"}
+  - {id: RESULT-ENCUCI-G-PERFIL-UPM-DIS, tipo: texto, unidad: "perfil observado de UPM_DIS, mismo formato"}
+  - {id: RESULT-ENCUCI-G-N-EST-DIS-DISTINTOS, tipo: entero, unidad: "valores distintos de EST_DIS en SEC_4_5 (cadena cruda)"}
+  - {id: RESULT-ENCUCI-G-N-UPM-DIS-DISTINTOS, tipo: entero, unidad: "pares (EST_DIS, UPM_DIS) distintos en SEC_4_5"}
+  - {id: RESULT-ENCUCI-A-N-FILAS, tipo: entero, unidad: "filas de SEC_4_5 con FAC_SEL valido -- base de U_A_POB"}
+  - {id: RESULT-ENCUCI-A-N-SIN-PONDERADOR, tipo: entero, unidad: "filas de SEC_4_5 con FAC_SEL no finito o <= 0 (fuera de todo universo, contadas)"}
+  - {id: RESULT-ENCUCI-A-N-CONTACTO, tipo: entero, unidad: "filas con contacto declarado: _cod(AP5_16_k) == 1 para algun k en 1..10"}
+  - {id: RESULT-ENCUCI-A-N-SIN-CONTACTO, tipo: entero, unidad: "filas SIN contacto declarado -- fuera del punto de U_A, contadas; en U_A_POB cuentan como 0"}
+  - {id: RESULT-ENCUCI-A-N-U, tipo: entero, unidad: "[U_A] contacto declarado y AP5_17 y AP5_18 ambos en {1,2} -- comparar con la n=13435 que declara enmienda_encuci2020"}
+  - {id: RESULT-ENCUCI-A-N-NSNR-17, tipo: entero, unidad: "filas con contacto y AP5_17 = 9 (No sabe/no responde) -- NO imputadas a 0"}
+  - {id: RESULT-ENCUCI-A-N-NSNR-18, tipo: entero, unidad: "filas con contacto y AP5_18 = 9 -- NO imputadas a 0"}
+  - {id: RESULT-ENCUCI-A-N-BLANCO-17, tipo: entero, unidad: "filas con contacto y AP5_17 en blanco (codigo 'b' del descriptor)"}
+  - {id: RESULT-ENCUCI-A-N-BLANCO-18, tipo: entero, unidad: "filas con contacto y AP5_18 en blanco"}
+  - {id: RESULT-ENCUCI-A-N-FUERA-DE-DOMINIO, tipo: entero, unidad: "filas con contacto y AP5_17 o AP5_18 con un codigo que el descriptor NO declara (dominio {1,2,9,b})"}
+  - {id: RESULT-ENCUCI-A-N-SIN-DISENO, tipo: entero, unidad: "filas de U_A sin EST_DIS o sin UPM_DIS -- afectan al IC, no al punto"}
+  - {id: RESULT-ENCUCI-A-N-ESTRATOS, tipo: entero, unidad: "estratos EST_DIS distintos en U_A"}
+  - {id: RESULT-ENCUCI-A-N-UPM, tipo: entero, unidad: "pares (EST_DIS, UPM_DIS) distintos en U_A"}
+  - {id: RESULT-ENCUCI-A-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "estratos de U_A con una sola UPM -- si > 0 el IC es limite inferior de la anchura verdadera"}
+  - {id: RESULT-ENCUCI-A-MASA-FAC-SEL-U, tipo: flotante, unidad: "suma de FAC_SEL sobre U_A (personas expandidas)", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-P-SOLICITUD, tipo: proporcion, unidad: "[PRIMARIO] proporcion ponderada de U_A con AP5_17 = 1 (le PIDIERON dadiva), unidad PERSONA 15+, ponderador FAC_SEL, escala [0,1], mas alto = mas solicitud", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-IC-LO-SOLICITUD, tipo: flotante, unidad: "limite inferior IC95 de A-P-SOLICITUD (bootstrap de UPM dentro de estrato)", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-IC-HI-SOLICITUD, tipo: flotante, unidad: "limite superior IC95 de A-P-SOLICITUD", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-P-ENTREGA, tipo: proporcion, unidad: "[PRIMARIO] proporcion ponderada de U_A con AP5_18 = 1 (TUVO QUE DAR dadiva) -- el unico reactivo de ENCUCI que mide entrega, y el que corresponde al nombre de la conducta paga_mordida; escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-IC-LO-ENTREGA, tipo: flotante, unidad: "limite inferior IC95 de A-P-ENTREGA", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-IC-HI-ENTREGA, tipo: flotante, unidad: "limite superior IC95 de A-P-ENTREGA", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-P-CUALQUIERA, tipo: proporcion, unidad: "[CELDA ADOPTABLE] proporcion ponderada de U_A con AP5_17 = 1 O AP5_18 = 1 -- la codificacion GEN1 verbatim (desenlace 'AP5_17|AP5_18' de enmienda_encuci2020); escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-IC-LO-CUALQUIERA, tipo: flotante, unidad: "limite inferior IC95 de A-P-CUALQUIERA", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-IC-HI-CUALQUIERA, tipo: flotante, unidad: "limite superior IC95 de A-P-CUALQUIERA", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-P-AMBAS, tipo: proporcion, unidad: "[SECUNDARIO] proporcion de U_A con AP5_17 = 1 Y AP5_18 = 1 (le pidieron y dio), escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-P-SOLICITUD-SIN-ENTREGA, tipo: proporcion, unidad: "[SECUNDARIO] proporcion de U_A con AP5_17 = 1 y AP5_18 = 2 -- solicitudes que NO terminan en entrega; el dato que separa los dos constructos y que nadie ha medido en esta fuente", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-P-COMPLEMENTO-CUALQUIERA, tipo: proporcion, unidad: "[COMPLEMENTO, D1] proporcion ponderada de U_A con AP5_17 = 2 Y AP5_18 = 2, contada DIRECTAMENTE sobre el MISMO denominador U_A (no es 1 - nada) -- candidato de RES-0006, que D1/NC-0108 ya declaro DERIVADO-NO-MEDIDO: se emite con su denominador escrito, SIN cita y SIN rango de medido", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-SUMA-CUALQUIERA, tipo: flotante, unidad: "A-P-CUALQUIERA + A-P-COMPLEMENTO-CUALQUIERA -- prueba mecanica de que U_A se parte en dos bloques disjuntos que lo agotan", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-N-U-POB, tipo: entero, unidad: "[U_A_POB] filas de SEC_4_5 con FAC_SEL valido que o bien NO declaran contacto (d=0 por la logica del instrumento: 5.17 pregunta «DE ESOS contactos») o bien estan en U_A -- las filas con contacto y 9/blanco NO entran como 0"}
+  - {id: RESULT-ENCUCI-A-P-CUALQUIERA-POBLACION, tipo: proporcion, unidad: "[SECUNDARIO] A-P-CUALQUIERA sobre U_A_POB (poblacion 15+ completa, 'sin contacto' cuenta como 0) -- cuanto del 0.1258 sellado es propiedad del recorte de contacto; escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-P-RESIDUO-POBLACION, tipo: proporcion, unidad: "[SECUNDARIO] peso de las filas con contacto pero con 9 o blanco en AP5_17/AP5_18 -- lo que sale por FALTA DE DATO -- sobre el total de filas con ponderador valido, escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-VEREDICTO, tipo: texto, unidad: "TASA-REPORTADA / NO-ESTIMABLE-MIEMBRO-AUSENTE:<m> / NO-ESTIMABLE-COLUMNA-AUSENTE:<col> / NO-ESTIMABLE-COLUMNA-VACIA:<col> / NO-ESTIMABLE-UNIVERSO-VACIO"}
+  - {id: RESULT-ENCUCI-A-VEREDICTO-SEMANTICA, tipo: texto, unidad: "SOLICITUD-Y-ENTREGA-COINCIDEN / LA-UNION-EXCEDE-A-CADA-PARTE / ENTREGA-DOMINA / SOLICITUD-DOMINA / NO-ESTIMABLE -- contesta con dato si la anotacion NC-0113 ('mide solicitud, no pago consumado') describe la celda ENCUCI"}
+  - {id: RESULT-ENCUCI-A-VEREDICTO-EXHAUSTIVIDAD, tipo: texto, unidad: "EXHAUSTIVAS-EN-EL-UNIVERSO-COMPLETO / EXHAUSTIVAS-Y-EXCLUYENTES-SOLO-BAJO-U-A / NO-EXHAUSTIVAS"}
+  - {id: RESULT-ENCUCI-A-METODO-IC, tipo: texto, unidad: "IC-BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-DISENO-INCOMPLETO"}
+  - {id: RESULT-ENCUCI-A-DELTA-VS-GEN1, tipo: flotante, unidad: "A-P-CUALQUIERA menos 0.125822 (RES-0005, milpa/tramite.yaml:76), CON SIGNO -- control positivo del PUNTO, nunca del IC (A-bis.3)", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-REPRODUCE-GEN1, tipo: texto, unidad: "REPRODUCE (|delta| <= 1e-6) / NO-REPRODUCE / NO-COMPARABLE -- un NO-REPRODUCE no invalida la corrida ni autoriza tocar el medidor"}
+  - {id: RESULT-ENCUCI-A-DELTA-COMP-VS-GEN1, tipo: flotante, unidad: "A-P-COMPLEMENTO-CUALQUIERA menos 0.874178 (RES-0006), CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-REPRODUCE-COMP-GEN1, tipo: texto, unidad: "REPRODUCE / NO-REPRODUCE / NO-COMPARABLE para el complemento"}
+  - {id: RESULT-ENCUCI-A-DELTA-N-VS-GEN1, tipo: entero, unidad: "A-N-U menos 13435 (la n que declara enmienda_encuci2020) -- si difiere, el universo no es el mismo aunque el punto coincida"}
+  - {id: RESULT-ENCUCI-A-ADOPCION-P3, tipo: texto, unidad: "rama pre-declarada para RES-0005: ADOPTABLE-POR-REPLICA / NO-ADOPTABLE-POR-DISCREPANCIA / NO-ADOPTABLE-POR-GRANO / NO-ADOPTABLE-NO-ESTIMABLE"}
+  - {id: RESULT-ENCUCI-A-ADOPCION-P3-DELTA, tipo: flotante, unidad: "round(A-P-CUALQUIERA, 6) menos 0.125822 -- la prueba de GRANO, distinta de A-DELTA-VS-GEN1", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-A-ADOPCION-P3-COMPLEMENTO, tipo: texto, unidad: "rama de RES-0006: COMPLEMENTO-CON-DENOMINADOR-RECORTADO por construccion (falla la condicion 1 del criterio: no es una categoria contada directamente que releve un primario independiente) -- D1/NC-0108, SIN cita"}
+  - {id: RESULT-ENCUCI-B-N-FILAS-SEC678, tipo: entero, unidad: "filas de SEC_6_7_8 antes de todo filtro"}
+  - {id: RESULT-ENCUCI-B-N-SIN-PAREJA, tipo: entero, unidad: "filas de SEC_6_7_8 sin pareja por ID_PER en SEC_4_5 -- fuera, contadas"}
+  - {id: RESULT-ENCUCI-B-COBERTURA-JOIN, tipo: proporcion, unidad: "fraccion de filas de SEC_6_7_8 con pareja en SEC_4_5, escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-N-SIN-PONDERADOR, tipo: entero, unidad: "filas emparejadas con FAC_SEL no finito o <= 0"}
+  - {id: RESULT-ENCUCI-B-N-NSNR, tipo: entero, unidad: "filas emparejadas con AP7_3_5 = 9 (No sabe/no responde) -- NO imputadas a 0"}
+  - {id: RESULT-ENCUCI-B-N-BLANCO, tipo: entero, unidad: "filas emparejadas con AP7_3_5 en blanco (codigo 'b' del descriptor)"}
+  - {id: RESULT-ENCUCI-B-N-FUERA-DE-DOMINIO, tipo: entero, unidad: "filas emparejadas con AP7_3_5 fuera del dominio declarado {1,2,9,b}"}
+  - {id: RESULT-ENCUCI-B-N-AGRAVIO-NSNR, tipo: entero, unidad: "filas con AP4_3_2 = 9 o fuera de {1,2} -- fuera del eje, contadas"}
+  - {id: RESULT-ENCUCI-B-N-DOMINIO-U, tipo: entero, unidad: "filas emparejadas con DOMINIO = 'U' (Urbano)"}
+  - {id: RESULT-ENCUCI-B-N-DOMINIO-C, tipo: entero, unidad: "filas emparejadas con DOMINIO = 'C' (Complemento urbano) -- el tercer valor que la cita GEN1 no menciona"}
+  - {id: RESULT-ENCUCI-B-N-DOMINIO-R, tipo: entero, unidad: "filas emparejadas con DOMINIO = 'R' (Rural)"}
+  - {id: RESULT-ENCUCI-B-N-DOMINIO-FUERA, tipo: entero, unidad: "filas emparejadas con DOMINIO fuera de {U,C,R}"}
+  - {id: RESULT-ENCUCI-B-N-U, tipo: entero, unidad: "[U_B] emparejadas con AP7_3_5 en {1,2}, AP4_3_2 en {1,2}, DOMINIO en {U,C,R} y FAC_SEL valido -- comparar con las 20187 que declara la regla"}
+  - {id: RESULT-ENCUCI-B-N-URB-AGR, tipo: entero, unidad: "celda urbano({U,C}) x agravio(AP4_3_2=1)"}
+  - {id: RESULT-ENCUCI-B-N-RUR-AGR, tipo: entero, unidad: "celda rural({R}) x agravio"}
+  - {id: RESULT-ENCUCI-B-N-URB-SIN, tipo: entero, unidad: "celda urbano x sin agravio (AP4_3_2=2)"}
+  - {id: RESULT-ENCUCI-B-N-RUR-SIN, tipo: entero, unidad: "celda rural x sin agravio"}
+  - {id: RESULT-ENCUCI-B-N-SIN-DISENO, tipo: entero, unidad: "filas de U_B sin EST_DIS o sin UPM_DIS"}
+  - {id: RESULT-ENCUCI-B-N-ESTRATOS, tipo: entero, unidad: "estratos EST_DIS distintos en U_B"}
+  - {id: RESULT-ENCUCI-B-N-UPM, tipo: entero, unidad: "pares (EST_DIS, UPM_DIS) distintos en U_B"}
+  - {id: RESULT-ENCUCI-B-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "estratos de U_B con una sola UPM"}
+  - {id: RESULT-ENCUCI-B-MASA-FAC-SEL-U, tipo: flotante, unidad: "suma de FAC_SEL sobre U_B", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-P-U, tipo: proporcion, unidad: "proporcion ponderada de U_B con AP7_3_5 = 1, SIN partir por el eje -- la tasa global de protesta alguna vez en la vida, escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-P-URB-AGR, tipo: proporcion, unidad: "[PRIMARIO · candidata de RES-0061] proporcion ponderada de protesta alguna vez en la vida en urbano({U,C}) con agravio (problemas declarados de pandillerismo, robos o delincuencia en la colonia), unidad PERSONA 15+, FAC_SEL, escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-IC-LO-URB-AGR, tipo: flotante, unidad: "limite inferior IC95 de B-P-URB-AGR", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-IC-HI-URB-AGR, tipo: flotante, unidad: "limite superior IC95 de B-P-URB-AGR", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-P-RUR-AGR, tipo: proporcion, unidad: "[PRIMARIO · candidata de RES-0062] idem en rural({R}) con agravio, escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-IC-LO-RUR-AGR, tipo: flotante, unidad: "limite inferior IC95 de B-P-RUR-AGR", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-IC-HI-RUR-AGR, tipo: flotante, unidad: "limite superior IC95 de B-P-RUR-AGR", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-P-URB-SIN, tipo: proporcion, unidad: "[PRIMARIO] idem en urbano SIN agravio, escala [0,1] -- sin esta celda el eje no esta completo y C2 no se puede formar", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-IC-LO-URB-SIN, tipo: flotante, unidad: "limite inferior IC95 de B-P-URB-SIN", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-IC-HI-URB-SIN, tipo: flotante, unidad: "limite superior IC95 de B-P-URB-SIN", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-P-RUR-SIN, tipo: proporcion, unidad: "[PRIMARIO] idem en rural SIN agravio, escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-IC-LO-RUR-SIN, tipo: flotante, unidad: "limite inferior IC95 de B-P-RUR-SIN", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-IC-HI-RUR-SIN, tipo: flotante, unidad: "limite superior IC95 de B-P-RUR-SIN", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-DIF-C1, tipo: flotante, unidad: "ASOCIACION, NO causal: B-P-URB-AGR menos B-P-RUR-AGR (entorno, dado agravio), CON SIGNO, en proporcion (no en puntos porcentuales)", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-IC-LO-DIF-C1, tipo: flotante, unidad: "limite inferior IC95 de B-DIF-C1 (mismo bootstrap, diferencia por replica)", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-IC-HI-DIF-C1, tipo: flotante, unidad: "limite superior IC95 de B-DIF-C1", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-DIF-C2, tipo: flotante, unidad: "ASOCIACION, NO causal: B-P-URB-AGR menos B-P-URB-SIN (agravio, dentro de lo urbano), CON SIGNO, en proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-IC-LO-DIF-C2, tipo: flotante, unidad: "limite inferior IC95 de B-DIF-C2", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-IC-HI-DIF-C2, tipo: flotante, unidad: "limite superior IC95 de B-DIF-C2", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-ALT-P-URB-AGR, tipo: proporcion, unidad: "[SENSIBILIDAD, NO adoptable] B-P-URB-AGR bajo la agrupacion alternativa urbano={U}, rural={R,C}", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-ALT-P-RUR-AGR, tipo: proporcion, unidad: "[SENSIBILIDAD, NO adoptable] B-P-RUR-AGR bajo la agrupacion alternativa", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-ALT-P-URB-SIN, tipo: proporcion, unidad: "[SENSIBILIDAD] B-P-URB-SIN bajo la agrupacion alternativa", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-ALT-P-RUR-SIN, tipo: proporcion, unidad: "[SENSIBILIDAD] B-P-RUR-SIN bajo la agrupacion alternativa", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-DELTA-AGRUPACION, tipo: flotante, unidad: "B-P-URB-AGR menos B-ALT-P-URB-AGR, CON SIGNO -- lo que vale la decision de meter 'Complemento urbano' en urbano, que la cita GEN1 no explicita", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-VEREDICTO, tipo: texto, unidad: "TASA-REPORTADA / NO-ESTIMABLE-LLAVE-NO-UNICA / NO-ESTIMABLE-COLUMNA-AUSENTE:<col> / NO-ESTIMABLE-UNIVERSO-VACIO"}
+  - {id: RESULT-ENCUCI-B-METODO-IC, tipo: texto, unidad: "IC-BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-DISENO-INCOMPLETO"}
+  - {id: RESULT-ENCUCI-B-DELTA-URB-VS-GEN1, tipo: flotante, unidad: "B-P-URB-AGR menos 0.112192 (RES-0061), CON SIGNO -- control del punto", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-REPRODUCE-URB-GEN1, tipo: texto, unidad: "REPRODUCE / NO-REPRODUCE / NO-COMPARABLE"}
+  - {id: RESULT-ENCUCI-B-DELTA-RUR-VS-GEN1, tipo: flotante, unidad: "B-P-RUR-AGR menos 0.091912 (RES-0062), CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-REPRODUCE-RUR-GEN1, tipo: texto, unidad: "REPRODUCE / NO-REPRODUCE / NO-COMPARABLE"}
+  - {id: RESULT-ENCUCI-B-DELTA-N-VS-GEN1, tipo: entero, unidad: "B-N-U menos 20187 (el universo que declara la regla)"}
+  - {id: RESULT-ENCUCI-B-ADOPCION-P3-URB, tipo: texto, unidad: "rama pre-declarada para RES-0061: ADOPTABLE-POR-REPLICA / NO-ADOPTABLE-POR-DISCREPANCIA / NO-ADOPTABLE-POR-GRANO / NO-ADOPTABLE-NO-ESTIMABLE"}
+  - {id: RESULT-ENCUCI-B-ADOPCION-P3-URB-DELTA, tipo: flotante, unidad: "round(B-P-URB-AGR, 6) menos 0.112192 -- prueba de grano", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-ADOPCION-P3-RUR, tipo: texto, unidad: "rama pre-declarada para RES-0062"}
+  - {id: RESULT-ENCUCI-B-ADOPCION-P3-RUR-DELTA, tipo: flotante, unidad: "round(B-P-RUR-AGR, 6) menos 0.091912 -- prueba de grano", permite_no_estimable: true}
+  - {id: RESULT-ENCUCI-B-VEREDICTO-CONTRASTES, tipo: texto, unidad: "rotulo obligatorio de los dos contrastes: siempre ASOCIACION-NO-CAUSAL; entorno y agravio no se asignan al azar"}
