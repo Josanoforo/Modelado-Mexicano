@@ -4,7 +4,17 @@
 
 **Entorno asignado:** NUBE/Ubuntu, repo-only; cero llamadas a Claude.
 
-**Estado:** VIVO hasta que se abra el PR de este acto.
+**Estado:** CONSUMIDO por PR #684.
+
+## NO-CORRIDO / RESERVAS
+
+- **No ejecutado:** ninguna captura L, ninguna llamada `claude -p`, ningún cálculo de errores contra R, ninguna adjudicación TRIADA y ninguna modificación de resultados o capturas históricas.
+- **Reserva operativa:** las 176 invocaciones prospectivas no se lanzan todavía. El veredicto `REQUIERE-CORPUS-SUCESOR-ANTES-DE-RECAPTURA` remite primero a un contrato sucesor de acceso documental; después corresponde recapturar ambos brazos de las 11 celdas marcadas.
+- **Pendiente conservado:** `NC-0146` permanece ABIERTA; `NC-0147` y `NC-0148` quedaron fuera de perímetro y sin cambios.
+
+## CONSUMIDO
+
+Consumido por PR #684. El producto fija el contrato semántico L v1.4, deriva 11 celdas de recaptura (176 invocaciones futuras), recomienda `REQUIERE-CORPUS-SUCESOR-ANTES-DE-RECAPTURA` y mantiene `NC-0146` ABIERTA.
 
 ## ARRANQUE
 
