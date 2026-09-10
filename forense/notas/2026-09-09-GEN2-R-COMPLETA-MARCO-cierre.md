@@ -39,9 +39,11 @@ Los ocho CALC sólo declaran payload, `codificacion-R-v1_1.tsv`, marco v1.3 y el
 
 Ningún target R requiere una fuente nueva: **0 bloqueados, 0 sin spec, 0 NC nuevas**. Se mantienen las reservas estadísticas nombradas arriba. `NC-0143` sigue abierta porque cerrar `U3` requiere los puntos válidos de L y el snapshot M; su habilitador se actualiza para consumir el `UR=14` congelado aquí. Este acto no amplía el panel después de observar quién gana y no realiza comparación triádica.
 
+**Reserva de suite:** `tests/check.py --baseline` conserva los 3 FAIL heredados y añade 1 en T22. Es un falso positivo textual acotado: las filas 10–13 de `codificacion-R-v1_1.tsv` conservan en el campo de procedencia la frase histórica “fila PROPUESTA”; sus columnas `estado` dicen `SELLADA`, FP-370 está `FIRMADA -- EJECUTADA` y no existe decisión pendiente. T02 ya queda verde. `tests/` está fuera del perímetro y no se añadió una excepción al validador para silenciarlo.
+
 ## Cascada
 
 - Sucesoras: `codificacion-R-v1_1.tsv` y `universo-triada-v1_1.tsv`, ambas con hash.
-- Ocho CALC-R activos `-v2`, sellados y reproducibles; las primeras ocho ejecuciones permanecen intactas y quedan `SUPERADO→…-v2`. Las vistas de `corrida0` se rederivan sobre los sucesores. La rederivación global incorporó además el `CALC-DUELO-0001` ya fusionado pero ausente de las vistas; la guardia NC-0094 exigió revalidar tres asientos ajenos y `CALC-M-marco-M-sorteado-v1_3`, sin cambiar ningún CALC: sus estados finales conservaron la evidencia que ya mostraba el árbol.
+- Ocho CALC-R activos `-v2`, sellados y reproducibles; las primeras ocho ejecuciones permanecen intactas y quedan `SUPERADO→…-v2`, por lo que el contador vigente suma ocho mediciones, no dieciséis. Las vistas de `corrida0` se rederivan sobre los sucesores. La rederivación global incorporó además el `CALC-DUELO-0001` ya fusionado pero ausente de las vistas; la guardia NC-0094 exigió revalidar tres asientos ajenos y `CALC-M-marco-M-sorteado-v1_3`, sin cambiar ningún CALC: sus estados finales conservaron la evidencia que ya mostraba el árbol.
 - `ADR-451`, L0 y rótulo `GEN2-R-COMPLETA-MARCO` registran el acto.
 - `ENCARGO 5/5` debe usar este `UR=14` congelado y aplicar, sin ampliarlo, la intersección U3 de la spec TRIADA.
