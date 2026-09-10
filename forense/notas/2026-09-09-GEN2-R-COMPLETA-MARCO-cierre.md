@@ -6,9 +6,9 @@
 
 El árbol determinó 6 árbitros R ya sellados y 8 faltantes ejecutables. Los ocho pasaron `spec-check → preflight VERDE → run → verify REPRODUCE/CONTEXTO=IDENTICO`; no hubo celda bloqueada ni sin spec. `UR` queda congelado en **14/14** mediante `universo-triada-v1_1.tsv`; esto amplía el panel disponible al `ENCARGO 5/5`, pero no decide `U3` ni adjudica contendiente alguno.
 
-`codificacion-R-v1_1.tsv` es una copia byte a byte de v1.0 (`sha256 cf5dfb182f3c914fd8a91ce6d589ad745c507a8c3defad2d6459ee876c01f598`). La firma/sucesión vive en su nombre y sidecar: no cambió código, universo, ponderador, estrato, UPM ni estimando después de abrir microdato.
+`codificacion-R-v1_1.tsv` conserva literalmente, para las 14 celdas del marco (15 filas físicas por la sucesora `DIN-M-01b`), los campos sustantivos de v1.0. Sólo cambia estado/fecha a `SELLADA (FP-370; ACTO GEN2-R-COMPLETA-MARCO)` y acota la sucesora a esas filas (`sha256 be54679e…fb37`): no cambió código, universo, ponderador, estrato, UPM ni estimando después de abrir microdato.
 
-La fila `FP-370` queda `FIRMADA -- EJECUTADA` por la firma de mesa de este encargo y remite a la sucesora byte-idéntica; v1.0 permanece intacta.
+La fila `FP-370` queda `FIRMADA -- EJECUTADA` por la firma de mesa de este encargo y remite a la sucesora sellada; v1.0 permanece intacta.
 
 ## Las 14 celdas
 
