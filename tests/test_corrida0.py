@@ -2514,6 +2514,88 @@ def t_replay_e_no_reproduce_posterior_queda_visible():
             "un exito de hoy tapo un NO-REPRODUCE asentado sin avisar")
 
 
+def t_replay_g_hash_vacio_no_certifica_identidad():
+    """(g) H6, revision adversarial `ACTO GEN2-DERIVADORES-FIX`. Antes,
+    `_evidencia_vigente` sólo comparaba un campo si el asiento traía un
+    valor (`if asentado and asentado != hoy`) -- un campo VACIO en el
+    asiento saltaba la comparacion por completo, asi que un recibo
+    REPRODUCE/IDENTICO sin ningun hash quedaba `vigente=True` sin importar
+    la identidad de hoy: el vacio actuaba como comodin. Ahora un campo
+    vacio es SIEMPRE incompleto -- nunca "sin diferencia" -- y la ausencia
+    de identidad nunca certifica identidad."""
+    caso = "t_replay_g_hash_vacio_no_certifica_identidad"
+
+    # EL DEFECTO EN CRUDO: el asiento no trae NINGUN hash (los tres campos
+    # vacios) y la identidad de HOY es TOTALMENTE distinta de cualquier
+    # cosa que el asiento pudiera haber visto. Con el comodin viejo esto
+    # daba (True, "").
+    ev_sin_hashes = _asiento("CALC-X", "REPRODUCE", "IDENTICO",
+                             spec_yaml_sha256="", script_blob_sha256="",
+                             input_sha256_efectivos="")
+    vigente, razon = C._evidencia_vigente(ev_sin_hashes, _EJEC_FIXTURE)
+    _afirma(vigente is False, caso,
+            f"un recibo sin ningun hash NO debe certificar identidad: "
+            f"vigente={vigente!r}, razon={razon!r}")
+    _afirma("IDENTIDAD-INCOMPLETA" in razon, caso,
+            f"la razon no declara la limitacion explicita: {razon!r}")
+
+    # lo mismo, a traves de la proyeccion completa: nunca como verificacion
+    # equivalente (NO_VERIFICADO, jamas REPRODUCE).
+    ev_map = {"CALC-X": ev_sin_hashes}
+    r, ctx, fuente, avisos = C._proyecta_replay("CALC-X", _EJEC_FIXTURE, None, ev_map)
+    _afirma((r, ctx) == (C.NO_VERIFICADO, C.NO_VERIFICADO), caso,
+            f"un asiento con identidad incompleta se proyecto como "
+            f"verificacion equivalente: {r}/{ctx}")
+    _afirma(fuente["clase"] == "ASIENTO-NO-VIGENTE", caso,
+            "no se declaro el asiento sin hashes como no vigente")
+    _afirma(any("IDENTIDAD-INCOMPLETA" in a for a in avisos), caso,
+            f"la limitacion no llego al aviso: {avisos!r}")
+
+    # vaciar cada hash POR SEPARADO -- cualquiera de los tres, solo, basta
+    # para invalidar.
+    for campo in ("spec_yaml_sha256", "script_blob_sha256",
+                  "input_sha256_efectivos"):
+        ev_un_vacio = _asiento("CALC-X", "REPRODUCE", "IDENTICO", **{campo: ""})
+        vigente, razon = C._evidencia_vigente(ev_un_vacio, _EJEC_FIXTURE)
+        _afirma(vigente is False, caso,
+                f"vaciar solo {campo} debe bastar para invalidar: "
+                f"vigente={vigente!r}")
+        _afirma("IDENTIDAD-INCOMPLETA" in razon and campo in razon, caso,
+                f"la razon no nombra el campo vacio ({campo}): {razon!r}")
+
+    # cambiar cada hash POR SEPARADO (no vaciarlo -- un valor distinto,
+    # completo) sigue invalidando por CAMBIO, no por incompletitud -- el
+    # comportamiento que ya existia y no debe romperse.
+    cambios = {"spec_yaml_sha256": "1" * 64, "script_blob_sha256": "2" * 64,
+               "input_sha256_efectivos": "IN-UNO=" + "3" * 64}
+    for campo, valor_distinto in cambios.items():
+        ev_cambiado = _asiento("CALC-X", "REPRODUCE", "IDENTICO",
+                               **{campo: valor_distinto})
+        vigente, razon = C._evidencia_vigente(ev_cambiado, _EJEC_FIXTURE)
+        _afirma(vigente is False, caso,
+                f"cambiar {campo} a un valor completo distinto debe invalidar")
+        _afirma("IDENTIDAD-INCOMPLETA" not in razon, caso,
+                f"un cambio real no es una incompletitud: {razon!r}")
+
+    # SIN-INSUMOS-DECLARADO: un calculo que de verdad no tiene insumos
+    # asienta "PENDIENTE" (no vacio) y hoy tambien deriva "PENDIENTE" --
+    # esto SI debe pasar como vigente, sin marcarse IDENTIDAD-INCOMPLETA.
+    ejec_sin_insumos = dict(_EJEC_FIXTURE, input_sha256={})
+    ev_sin_insumos = _asiento("CALC-SININSUMOS", "REPRODUCE", "IDENTICO",
+                              input_sha256_efectivos="PENDIENTE")
+    vigente, razon = C._evidencia_vigente(ev_sin_insumos, ejec_sin_insumos)
+    _afirma(vigente is True and razon == "", caso,
+            f"el caso sin-insumos declarado (PENDIENTE == PENDIENTE) debe "
+            f"pasar como vigente: vigente={vigente!r}, razon={razon!r}")
+
+    # control positivo: identidad completa e identica sigue vigente.
+    ev_completo = _asiento("CALC-X", "REPRODUCE", "IDENTICO")
+    vigente, razon = C._evidencia_vigente(ev_completo, _EJEC_FIXTURE)
+    _afirma((vigente, razon) == (True, ""), caso,
+            f"identidad completa e identica dejo de ser vigente: "
+            f"{vigente!r}/{razon!r}")
+
+
 def t_replay_f_caso_23_filas_defecto_y_proteccion():
     """(f) El caso medido de NC-0094, en fixture: 23 corridas / 46 campos.
     Primero el defecto (la derivacion sin fuente los degrada y la proteccion
