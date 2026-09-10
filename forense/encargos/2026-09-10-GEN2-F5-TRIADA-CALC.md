@@ -215,3 +215,114 @@ Comandos: `git cat-file -e origin/main:<ruta>` + `git show origin/main:<ruta> | 
 para cada fila; para los 14 `CALC-R`, `git cat-file -e` sobre los cuatro
 archivos de cada directorio nombrado en la columna `fuente_R` de
 `universo-triada-v1_4.tsv`. **COMPUERTA CUMPLIDA — 4/4.**
+
+---
+
+## Cierre — orden obligatorio del encargo
+
+### 1 · Resultado primario
+
+**`SIN-GANADOR-UNICO`, sobre `U3 = 3` celdas del marco de 14.** Ningún
+contendiente gana sus dos comparaciones pareadas bajo la banda `δ = 0.5 pp`
+pre-registrada. **No** es `NO-ADJUDICABLE-POR-CONTROL`: los controles
+salieron limpios. Lectura permitida, la única (P4, verbatim): *"El panel no
+permite identificar un ganador único bajo la magnitud, incertidumbre y
+cobertura pre-registradas."*
+
+### 2 · Cifras y universo
+
+`U0 = 14` · `UR = 14` · `U3 = 3` (`FAM-M-05`, `FAM-M-06`, `FAM-M-07`),
+derivadas por la intersección congelada de `F5-contrato-triada-spec-v1_1.md`
+§1.3 sin ampliar ni reducir `UR` y sin observar errores antes de fijarla.
+
+| Contendiente | `MAE` (pp) | Ranking puntual |
+|---|---:|:--:|
+| `M` | 0.1758 | 1 |
+| `L_SOLO` | 0.1990 | 2 |
+| `L_CORPUS` | 0.3466 | 3 |
+
+Ranking **descriptivo**, reportado por separado de la banda como manda §4:
+las tres distancias caben dentro de `δ`.
+
+### 3 · Cobertura
+
+Sobre `UR = 14`: `M` 14/14 · `L_SOLO` 6/14 · `L_CORPUS` **3/14**. Réplicas
+(de 112 por brazo): `L_SOLO` 33 `EXTRAIBLE` / 75 `NO-EXTRAIBLE` / 4
+`AMBIGUA`; `L_CORPUS` 23 / 89 / 0. 224/224 capturas examinadas. Las
+`NO-EXTRAIBLE`/`AMBIGUA` cuentan en cobertura; ninguna se sustituyó por cero.
+Las 8 réplicas de una celda no se contaron como 8 tareas independientes.
+
+### 4 · Pareadas
+
+| Comparación | Δ (pp) | IC95 (pp) | Veredicto |
+|---|---:|---|---|
+| `Δ(L_CORPUS, L_SOLO)` | +0.1476 | `[−0.1000, +0.5000]` | `INCONCLUSO` |
+| `Δ(M, L_SOLO)` | −0.0231 | `[−0.0694, +0.0694]` | `EMPATE-PRACTICO` |
+| `Δ(M, L_CORPUS)` | −0.1708 | `[−0.4306, +0.0306]` | `EMPATE-PRACTICO` |
+
+Mismo `U3` y **mismo vector de índices de bootstrap por réplica** para los
+tres contendientes; `seed = 42` heredada, 10,000 réplicas, IC95.
+
+### 5 · Secundaria
+
+TRANSFERENCIA: **`SIN-UNIVERSO`**. Las 14 celdas de `UR` quedan
+`M-NO-COMPARABLE-EN-TRANSFERENCIA` bajo el criterio mecánico de §6 (cita con
+año ≥ ola de la celda, o sin año determinable, excluye). No veta ni
+reemplaza la primaria.
+
+### 6 · Límites
+
+`U3 = 3/14` de **una sola familia** (ENIGH `recibe_remesas`) y **una sola
+escala**; `L` se abstuvo en 11/14 celdas para `L_CORPUS` y 8/14 para
+`L_SOLO` —dato de desempeño que el `MAE` no captura—; `M` en `U3` reproduce
+la tasa base ENIGH 2022; `B` no es piso independiente (sus cifras sobre este
+panel **son** el propio `R`). Ninguna salida autoriza causalidad, «todos los
+mexicanos», «todos los LLM», modelo/versionado futuro, tarea fuera del
+marco, ni que el corpus «explique» diferencia alguna. El `IC-HI` de la
+primera pareada cae exactamente en `+0.5 pp` y el veredicto global es
+**invariante** a esa frontera (`NC-0147`). Detalle completo en la nota de
+veredicto §9.
+
+### 7 · Contadores antes/después
+
+| Contador | Antes (`origin/main = c439065`) | Después |
+|---|---:|---:|
+| ADR | 452 | **453** |
+| Corridas derivadas en vivo (`corrida0 status`) | 138 | **139** |
+| `RESULT` derivados en vivo | 2630 | **2889** (+259) |
+| `corredores_envueltos_legacy` | 20 | **21** |
+| `N_corridas_selladas` (vista TSV) | 34 | 34 — **no se movió**, ver `NC-0145` |
+| `N_resultados_gen2_sellados` (vista TSV) | 1294 | 1294 — **no se movió**, ver `NC-0145` |
+| `NC` abiertas | 82 | 84 (`−2` cerradas, `+4` abiertas) |
+| Adopciones al motor | — | **cero**: este acto no adopta nada |
+
+### 8 · Cascada
+
+`ADR-453` (`canon/gobernanza-v1_15.md`) · `L0` recifrado
+(`canon/estado-programa-v1_12.md`, con reparación del ancla duplicada
+heredada, `NC-0148`) · rótulo `GEN2-F5-TRIADA-CALC` censado
+(`canon/registro-rotulos.tsv`) · firma de contador con OBJETO
+(`data/corrida0/decisiones.tsv`) · nota de veredicto
+(`forense/notas/2026-09-10-GEN2-F5-TRIADA-CALC-veredicto.md`) ·
+`python3 tools/cierre_acto.py --aplica` → `APLICADO: gobernanza 452→453 ·
+tabla estado 452→453` · `python3 tests/check.py --baseline` → **VERDE**
+(3 `FAIL` preexistentes: `T06`×2, `T08`; nada nuevo frente a
+`tests/baseline.json`).
+
+## NO-CORRIDO / RESERVAS
+
+| qué (pieza citada del encargo) | por qué | impacto | sucesor |
+|---|---|---|---|
+| **`PERÍMETRO · «vistas corrida0 derivadas»`** — reescribir `data/corrida0/corridas.tsv` y `resultados.tsv` con la corrida sellada | `NO-VERIFICABLE-AQUÍ` | `registro --escribe` PARA (no existe `--force`) porque degradaría a `NO-VERIFICADO` el veredicto de replay de 29 corridas ajenas, entre ellas los 14 `CALC-R`. Medido: esta sesión es NUBE sin `data/raw` (`acceso_corpus.montado=NO`, `archivos_examinados=0`) y `verify CALC-R-FAM-M-05-v3` devuelve `NO-REPRODUCE · CONTEXTO-DISTINTO` con todos los `RESULT` en `hoy=None`, así que `--verifica` tampoco puede llenarlas. `N_corridas_selladas` (34) y `N_resultados_gen2_sellados` (1294) no se mueven en la vista; **ninguna cifra de este veredicto depende de esa escritura**. | `NC-0145` — acto de cascada en CAJA/Ubuntu con `data/raw` montada |
+| **`P3 · «RESULTADO PRIMARIO: [GANADOR-TRIADA-…]»`** — coronar un ganador con cobertura suficiente | `DIFERIDO-A:` acto sucesor **bajo spec nueva** | `SIN-GANADOR-UNICO` sobre `U3 = 3/14`, una sola familia y una sola escala. Fuente dominante de incertidumbre medida y nombrada: **abstención de `L`** (11/14 sin punto de `L_CORPUS`, 8/14 sin `L_SOLO`), no varianza del árbitro ni del motor. **`F6 · COSECHA` NO procede.** | `NC-0146` — P5 del encargo, verbatim: *"estudiar la fuente dominante de incertidumbre o ampliar prospectivamente el marco bajo una spec nueva. No añadir celdas a este CALC."* |
+| **`P2 · escala pareada de la spec TRIADA §4`** — resolver la escala cuando un límite del IC95 cae **exactamente** en `±δ` | `DECISIÓN-DE-MESA-PENDIENTE` | `Δ(L_CORPUS,L_SOLO)` selló `IC-HI = +0.5000000000000004 pp`; el valor exacto es `+0.5 pp` (residuo de coma flotante por calcular `|L−R|` dos veces con el mismo `R`). Sobre el número sellado la escala da `INCONCLUSO`; sobre el exacto daría `EMPATE-PRACTICO`. **Impacto nulo aquí, verificado:** el veredicto global es `SIN-GANADOR-UNICO` en ambos casos. Se reporta lo que el procedimiento sellado produjo, sin editarlo. | `NC-0147` — spec sucesora que declare tolerancia numérica en los límites de la banda |
+| **`CASCADA · recifrado L0`** — impedir que se repita el ancla `L0` duplicada | `FUERA-DE-PERÍMETRO` | Defecto **heredado** de `ADR-452`, latente mientras `452 == 452` y detonado al subir a 453 (`APLICACION_ABORTADA · L0: 2 ancla(s)`, suite ROJO con dos `T15`). Reparado aquí sin reescribir prosa ajena: la anotación de `ADR-451` se restituyó verbatim en la cadena viva (612 anotaciones, orden 453-452-451-450-449) y la línea duplicada se borró sólo tras comprobar que su cola era byte-idéntica. Lo que no se corrió: **ningún test atrapa la duplicación**, así que puede repetirse; `tests/` no está en el perímetro. | `NC-0148` — acto de infraestructura con `tests/` en perímetro |
+
+Todo lo demás que el encargo pidió **se corrió**: `P1` (espejo del contrato
+por hash, 259 `RESULT` declarados antes de calcular, frase de cierre
+verbatim), `P2` (`preflight → run → verify`, fila durable por celda, mismo
+conjunto de celdas para los tres `MAE`, mismos índices de bootstrap), `P3`
+(nota de veredicto en el orden pedido, con la tabla por celda, la secundaria,
+`B` como diagnóstico y los límites), `P4` (lectura permitida, sin
+extralimitaciones), `P5` (sucesor decidido por diagnóstico, no por
+preferencia) y el perímetro, sin tocar ninguno de los inputs prohibidos.
