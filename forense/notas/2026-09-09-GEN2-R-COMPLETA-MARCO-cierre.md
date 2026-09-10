@@ -4,9 +4,9 @@
 
 ## Resultado
 
-El árbol determinó 6 árbitros R ya sellados y 8 faltantes ejecutables. Los ocho pasaron `spec-check → preflight VERDE → run → verify REPRODUCE/CONTEXTO=IDENTICO`. Al aplicar la corrección puramente registral de estado/fecha exigida por FP-370, la guardia de inmutabilidad impidió re-sellar los mismos IDs; por eso nacieron ocho sucesores `-v2` ligados por `repite_de`, que repiten la misma cadena bajo el hash registral final. No hubo celda bloqueada ni sin spec. `UR` queda congelado en **14/14** mediante `universo-triada-v1_1.tsv`; esto amplía el panel disponible al `ENCARGO 5/5`, pero no decide `U3` ni adjudica contendiente alguno.
+El árbol determinó 6 árbitros R ya sellados y 8 faltantes ejecutables. Los ocho pasaron `spec-check → preflight VERDE → run → verify REPRODUCE/CONTEXTO=IDENTICO`. Al aplicar la corrección puramente registral de estado/fecha exigida por FP-370, la guardia de inmutabilidad impidió re-sellar los mismos IDs; por eso nacieron ocho sucesores `-v2` ligados por `repite_de`. La revisión adversarial de PR #680 conserva esos sellos históricos intactos y añade sucesores técnicos `-v3` sólo para completar las dependencias materiales del replay. No hubo celda bloqueada ni sin spec. `UR` permanece congelado en **14/14** mediante `universo-triada-v1_2.tsv`; esto habilita el panel para el `ENCARGO 5/5`, pero no decide `U3` ni adjudica contendiente alguno.
 
-`codificacion-R-v1_1.tsv` conserva literalmente, para las 14 celdas del marco (15 filas físicas por la sucesora `DIN-M-01b`), los campos sustantivos de v1.0. Sólo cambia estado/fecha a `SELLADA (FP-370; ACTO GEN2-R-COMPLETA-MARCO)` y acota la sucesora a esas filas (`sha256 be54679e…fb37`): no cambió código, universo, ponderador, estrato, UPM ni estimando después de abrir microdato.
+`codificacion-R-v1_1.tsv` fue el primer sello registral. La revisión adversarial de PR #680 detectó que esa redacción hacía parecer que FP-370 autorizaba epistemológicamente el diseño aproximado de `DIN-M-01b`. La sucesora `codificacion-R-v1_2.tsv` conserva sin cambio el estimando y el punto: separa el punto descriptivo disponible del EE/IC bajo diseño aproximado. FP-370 no autoriza esa inferencia; `FP-371` queda ABIERTA y sin firma exclusivamente para aceptar o rechazar estrato constante + `folio` como aproximación de diseño.
 
 La fila `FP-370` queda `FIRMADA -- EJECUTADA` por la firma de mesa de este encargo y remite a la sucesora sellada; v1.0 permanece intacta.
 
@@ -20,7 +20,7 @@ La fila `FP-370` queda `FIRMADA -- EJECUTADA` por la firma de mesa de este encar
 | CIV-M-10 | R-YA-SELLADO | SI | control positivo, no re-medido | — | — | — | — | CALC histórico |
 | CIV-M-12 | R-YA-SELLADO | SI | control positivo, no re-medido | — | — | — | — | CALC histórico |
 | CIV-M-13 | R-YA-SELLADO | SI | control positivo, no re-medido | — | — | — | — | CALC histórico |
-| DIN-M-01 | R-YA-SELLADO | SI | 0.15558094338412926 | 19,739 | 68,002,840 | 63 | 1 / 8,050 | [0.1461309873, 0.1650308994]; diseño aproximado, cota inferior |
+| DIN-M-01 | R-YA-SELLADO | SI | 0.15558094338412926 | 19,739 | 68,002,840 | 63 | 1 / 8,050 | [0.1461309873, 0.1650308994]; DISEÑO APROXIMADO / NO AUTORIZADO COMO GROUND TRUTH INFERENCIAL DE TRIADA SIN FIRMA DE MESA |
 | FAM-M-01 | R-YA-SELLADO | SI | 0.5571925669683186 | 12,054 | 76,430,133 | 392 | 182 / 1,908 | [0.5439300566, 0.5704550773] |
 | FAM-M-05 | R-YA-SELLADO | SI | 0.04745859252351374 | 70,311 | 32,974,661 | 0 | 536 / 7,891 | [0.0449844107, 0.0499327743] |
 | FAM-M-06 | R-YA-SELLADO | SI | 0.04728548395278385 | 74,647 | 34,400,515 | 0 | 543 / 8,377 | [0.0449423946, 0.0496285733] |
@@ -43,7 +43,7 @@ Ningún target R requiere una fuente nueva: **0 bloqueados, 0 sin spec, 0 NC nue
 
 ## Cascada
 
-- Sucesoras: `codificacion-R-v1_1.tsv` y `universo-triada-v1_1.tsv`, ambas con hash.
-- Ocho CALC-R activos `-v2`, sellados y reproducibles; las primeras ocho ejecuciones permanecen intactas y quedan `SUPERADO→…-v2`, por lo que el contador vigente suma ocho mediciones, no dieciséis. Las vistas de `corrida0` se rederivan sobre los sucesores. La rederivación global incorporó además el `CALC-DUELO-0001` ya fusionado pero ausente de las vistas; la guardia NC-0094 exigió revalidar tres asientos ajenos y `CALC-M-marco-M-sorteado-v1_3`, sin cambiar ningún CALC: sus estados finales conservaron la evidencia que ya mostraba el árbol.
-- `ADR-451`, L0 y rótulo `GEN2-R-COMPLETA-MARCO` registran el acto.
+- Sucesoras vigentes tras la corrección adversarial: `codificacion-R-v1_2.tsv` y `universo-triada-v1_2.tsv`, ambas con hash. La segunda actualiza sólo el estado factual: extractor L v1.3 y snapshot M v1.0 ya están disponibles en `main`; U3 sigue sin derivar y UR permanece congelado en 14/14.
+- Ocho CALC-R activos `-v3`, cada uno con `repite_de` a su `-v2`. Los `-v2` permanecen intactos y superados. Los `-v3` reparan únicamente el replay: ligan por SHA256 `tools/arbitra.py`, `forense/prereg-duelo-v2/corridas-R/correr-R.py`, `tests/dbfmini.py` y `tests/svystat.py`. El contador vigente conserva ocho mediciones, no suma sucesores técnicos.
+- `ADR-452`, L0 y rótulo `GEN2-R-COMPLETA-MARCO` registran el acto.
 - `ENCARGO 5/5` debe usar este `UR=14` congelado y aplicar, sin ampliarlo, la intersección U3 de la spec TRIADA.

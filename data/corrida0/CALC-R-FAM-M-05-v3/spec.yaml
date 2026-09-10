@@ -1,0 +1,120 @@
+calc_id: CALC-R-FAM-M-05-v3
+repite_de: CALC-R-FAM-M-05-v2
+spec_md: spec.md
+spec_md_sha256: 135403ca475c6836d6881bfe97029aaac1f9c3c02d8de8156bc671ac84f46e46
+script: data/corrida0/CALC-R-FAM-M-05-v3/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: ARBITRO-R-DE-CELDA
+  cuenta_gen2: SI
+  validacion_independiente: NO-HECHA
+  firma: HEREDA-CONTADOR-DE=CALC-R-FAM-M-05-v2; SUCESOR-TECNICO-DE-REPLAY
+inputs:
+- id: enigh2016_nc_csv
+  origen: manifiesto
+- id: IN-CODIFICACION-R-V1-2
+  origen: repo
+  ruta: forense/prereg-duelo-v2/codificacion-R-v1_2.tsv
+  sha256: 41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e
+- id: IN-MARCO-R-V1-3
+  origen: repo
+  ruta: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
+  sha256: f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a
+variables:
+- archivo: conjunto_de_datos_concentradohogar_enigh_2016_ns/conjunto_de_datos/conjunto_de_datos_concentradohogar_enigh_2016_ns.csv
+  variable: remesas
+universo: hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2016 Nueva Serie, sin filtro adicional
+  (asi lo declara el marco v1_2); 70311 filas leidas, 0 vacios en remesas
+filtros: solo los implícitos en la codificacion sellada; sin filtro adicional
+ponderador: factor
+transformacion: 'y=1 si remesas > 0; y=0 si remesas == 0 -- UMBRAL NUMERICO, no conjunto de codigos: remesas es monto continuo
+  en pesos con 1313 valores distintos en 2016'
+estimando: proporcion ponderada descriptiva definida por la fila sellada
+dependencias_materiales:
+- tools/arbitra.py
+- forense/prereg-duelo-v2/corridas-R/correr-R.py
+- tests/dbfmini.py
+- tests/svystat.py
+parametros:
+  id_celda: FAM-M-05
+  payload_id: enigh2016_nc_csv
+  tabla: conjunto_de_datos_concentradohogar_enigh_2016_ns/conjunto_de_datos/conjunto_de_datos_concentradohogar_enigh_2016_ns.csv
+  variable: remesas
+  universo: hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2016 Nueva Serie, sin filtro adicional
+    (asi lo declara el marco v1_2); 70311 filas leidas, 0 vacios en remesas
+  codificacion: 'y=1 si remesas > 0; y=0 si remesas == 0 -- UMBRAL NUMERICO, no conjunto de codigos: remesas es monto continuo
+    en pesos con 1313 valores distintos en 2016'
+  ponderador: factor
+  estrato: est_dis
+  upm: upm
+seed:
+  aplica: false
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: punto y varianza deterministas; enteros/texto exactos
+resultados:
+- id: RESULT-R-FAM-M-05-PUNTO
+  tipo: proporcion
+  unidad: proporcion ponderada R en [0,1]
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-05-EE
+  tipo: flotante
+  unidad: error estandar de diseno en proporcion
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-05-IC-LO
+  tipo: flotante
+  unidad: limite inferior IC95 en proporcion
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-05-IC-HI
+  tipo: flotante
+  unidad: limite superior IC95 en proporcion
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-05-N
+  tipo: entero
+  unidad: n no ponderado del universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-05-MASA-PONDERADA
+  tipo: flotante
+  unidad: suma del ponderador en el universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-05-N-FILAS-TABLA
+  tipo: entero
+  unidad: filas leidas antes de exclusiones
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-05-N-FALTANTES-EXCLUIDOS
+  tipo: entero
+  unidad: total excluido por universo, codigo o ponderador
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-05-N-CODIGO-EXCLUIDO
+  tipo: entero
+  unidad: filas excluidas por codigo faltante o no valido
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-05-N-FUERA-UNIVERSO
+  tipo: entero
+  unidad: filas excluidas por filtro de universo
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-05-N-SIN-PONDERADOR
+  tipo: entero
+  unidad: filas elegibles sin ponderador valido
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-05-N-ESTRATOS
+  tipo: entero
+  unidad: estratos presentes en el universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-05-N-UPM
+  tipo: entero
+  unidad: pares estrato-UPM presentes en el universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-05-N-ESTRATOS-UPM-UNICA
+  tipo: entero
+  unidad: estratos con una sola UPM
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-05-METODO-IC
+  tipo: texto
+  unidad: metodo o reserva explicita del IC
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-05-ESTADO
+  tipo: texto
+  unidad: CALCULADO o motivo explicito de abstencion
+  permite_no_estimable: true
