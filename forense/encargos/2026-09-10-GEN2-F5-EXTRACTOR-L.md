@@ -150,6 +150,38 @@ no cubra.
 Ninguna de las tres partes revela que el trabajo ya esté hecho — el hueco es
 real y es exactamente el que el encargo describe.
 
+## Resultado
+
+Nota completa: `forense/notas/2026-09-10-GEN2-F5-EXTRACTOR-L-v1-resultado.md`.
+Resumen: `tools/extrae_l_v1_3.py` (P1, COMMIT-1 + una ENMIENDA fechada
+corrigiendo dos falsos-conflicto de formato hallados al correr sobre el
+universo real, antes del commit final) aplicado a las 224 capturas reales
+(P2, COMMIT-2): `56 EXTRAIBLE · 164 NO-EXTRAIBLE · 4 AMBIGUA · 0
+ERROR-IDENTIDAD`. Las 6 celdas con árbitro `R` (`CIV-M-01/02/04/10/12/13`,
+96 capturas) vuelven `96/96 NO-EXTRAIBLE` — confirmado sobre el universo
+completo, no solo en los tres ejemplos que `PR #674` midió a mano. Los tres
+controles negativos obligatorios (`CIV-M-12__L-solo__01`,
+`CIV-M-13__L+corpus__04`, `CIV-M-01__L+corpus__02`) vuelven `NO-EXTRAIBLE`,
+nunca la cifra de contexto que el extractor viejo capturaba. Sellados
+`forense/prereg-duelo-v2/L-extraido-v1_3.tsv` y
+`forense/prereg-duelo-v2/manifiesto-extraccion-L-v1_3.json` (P3). `NC-0142`
+**CIERRA en su componente instrumental**; nace `NC-0143` (ABIERTA) para el
+componente de adjudicación, diferido al `ENCARGO 5/5`
+(`ACTO GEN2-F5-TRIADA-CALC`).
+
+## NO-CORRIDO / RESERVAS
+
+| NC | Qué no se corrió | Razón | Impacto | Sucesor |
+|---|---|---|---|---|
+| NC-0143 | Adjudicación de banda (GANA/PIERDE/EMPATE/INCONCLUSO) de la pareada primaria TRANSFERENCIA contra la escala B-bis sellada — ahora con instrumento de extracción validado | `DIFERIDO-A:GEN2-F5-TRIADA-CALC` — este acto construye y sella el instrumento (P1-P3); la adjudicación misma es del `ENCARGO 5/5` por diseño explícito del propio encargo ("La adjudicación continúa perteneciendo al ENCARGO 5/5") | El marcador `#651` sigue `INCONCLUSO` hasta que corra la adjudicación con el instrumento nuevo; hallazgo declarado por este acto (no resuelto): las 6 celdas con árbitro `R` vuelven `96/96 NO-EXTRAIBLE` con el instrumento validado, por lo que el universo pareado disponible para esa adjudicación puede resultar vacío o casi vacío | `ENCARGO 5/5` (`ACTO GEN2-F5-TRIADA-CALC`), cuando también existan el marco `R` y el snapshot `M` que ese encargo exige |
+
+Las tres piezas nombradas por el encargo (P1 contrato del extractor, P2
+validación y ejecución, P3 producto para el duelo) se ejecutaron enteras —
+lo no corrido es, puntualmente, la ADJUDICACIÓN de la pareada primaria
+(explícitamente fuera de perímetro de este acto, nombrada al `ENCARGO 5/5`
+en el propio texto del lanzamiento), no una pieza completa omitida de este
+encargo.
+
 ## Estado
 
 `VIVO`
