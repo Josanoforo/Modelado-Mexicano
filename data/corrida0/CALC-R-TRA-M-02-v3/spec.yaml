@@ -12,6 +12,22 @@ etiquetas:
 inputs:
 - id: encuci2020_bd_dbf
   origen: manifiesto
+- id: IN-CODIGO-ARBITRA
+  origen: repo
+  ruta: tools/arbitra.py
+  sha256: d668829386db9fba8ca6a7c2ed2955cb391e540e0e5ae54c839def3580446cdf
+- id: IN-CODIGO-CORRER-R
+  origen: repo
+  ruta: forense/prereg-duelo-v2/corridas-R/correr-R.py
+  sha256: 02896f92aa075b2039eaab5554502779851cb047da6adffc779d33283808514a
+- id: IN-CODIGO-DBFMINI
+  origen: repo
+  ruta: tests/dbfmini.py
+  sha256: a14952e7f754b6921c78312cf1f5c2156b73d4b82f12fa6f9dad72740160335b
+- id: IN-CODIGO-SVYSTAT
+  origen: repo
+  ruta: tests/svystat.py
+  sha256: 5d97b1362dbf31845bb2080f479ac3022921579546a7b327cbd7e1204e4959de
 - id: IN-CODIFICACION-R-V1-2
   origen: repo
   ruta: forense/prereg-duelo-v2/codificacion-R-v1_2.tsv
@@ -36,11 +52,7 @@ transformacion: 'y=1 si AP5_17==''1'' o AP5_18==''1''; y=0 si AP5_17==''2'' y AP
   (salto del cuestionario) y cualquier otra combinacion; codigos verificados en el FD (AP5_17 y AP5_18: 1 Si, 2 No, 9 No sabe/no
   responde, b blanco)'
 estimando: proporcion ponderada descriptiva definida por la fila sellada
-dependencias_materiales:
-- tools/arbitra.py
-- forense/prereg-duelo-v2/corridas-R/correr-R.py
-- tests/dbfmini.py
-- tests/svystat.py
+dependencias_materiales: [yaml]
 parametros:
   id_celda: TRA-M-02
   payload_id: encuci2020_bd_dbf
