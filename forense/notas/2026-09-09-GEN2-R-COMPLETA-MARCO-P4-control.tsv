@@ -1,0 +1,15 @@
+id_celda	tipo_control	calc_R	codificacion_sucesora	identidad_o_delta	veredicto
+CIV-M-01	CONTROL-POSITIVO-SIN-REMEDIR	data/corrida0/CALC-R-CIV-M-01/	BP1_23; universo 01..09; CR={1,2,6}; no-CR={3,4,5,7,8,9}; FAC_VIV; EST_DIS; UPM_DIS	identidad literal de variable/universo/codigos/ponderador/estrato/UPM	COINCIDE
+CIV-M-02	CONTROL-POSITIVO-SIN-REMEDIR	data/corrida0/CALC-R-CIV-M-02/	BP1_23; universo 01..09; CR={1,2,6}; no-CR={3,4,5,7,8,9}; FAC_VIV; EST_DIS; UPM_DIS	identidad literal de variable/universo/codigos/ponderador/estrato/UPM	COINCIDE
+CIV-M-04	CONTROL-POSITIVO-SIN-REMEDIR	data/corrida0/CALC-R-CIV-M-04/	BP1_23; universo 01..09; CR={1,2,6}; no-CR={3,4,5,7,8,9}; FAC_VIV; EST_DIS; UPM_DIS	identidad literal de variable/universo/codigos/ponderador/estrato/UPM	COINCIDE
+CIV-M-10	CONTROL-POSITIVO-SIN-REMEDIR	data/corrida0/CALC-R-CIV-M-10/	BP1_23; universo 01..09; CR={1,2,6}; no-CR={3,4,5,7,8,9}; FAC_VIV; EST_DIS; UPM_DIS	identidad literal de variable/universo/codigos/ponderador/estrato/UPM	COINCIDE
+CIV-M-12	CONTROL-POSITIVO-SIN-REMEDIR	data/corrida0/CALC-R-CIV-M-12/	BP1_23; universo 01..09; CR={1,2,6}; no-CR={3,4,5,7,8,9}; FAC_VIV; EST_DIS; UPM_DIS	identidad literal de variable/universo/codigos/ponderador/estrato/UPM	COINCIDE
+CIV-M-13	CONTROL-POSITIVO-SIN-REMEDIR	data/corrida0/CALC-R-CIV-M-13/	BP1_23; universo 01..09; CR={1,2,6}; no-CR={3,4,5,7,8,9}; FAC_VIV; EST_DIS; UPM_DIS	identidad literal de variable/universo/codigos/ponderador/estrato/UPM	COINCIDE
+DIN-M-01	COMPARACION-POST-SELLO	data/corrida0/CALC-R-DIN-M-01/	forense/prereg-duelo-v2/codificacion-R-v1_1.tsv	delta punto contra corridas-R/DIN-M-01.json = 0	COINCIDE
+FAM-M-01	COMPARACION-POST-SELLO	data/corrida0/CALC-R-FAM-M-01/	forense/prereg-duelo-v2/codificacion-R-v1_1.tsv	delta punto contra corridas-R/FAM-M-01.json = 0	COINCIDE
+FAM-M-05	COMPARACION-POST-SELLO	data/corrida0/CALC-R-FAM-M-05/	forense/prereg-duelo-v2/codificacion-R-v1_1.tsv	delta punto contra corridas-R/FAM-M-05.json = 0	COINCIDE
+FAM-M-06	COMPARACION-POST-SELLO	data/corrida0/CALC-R-FAM-M-06/	forense/prereg-duelo-v2/codificacion-R-v1_1.tsv	delta punto contra corridas-R/FAM-M-06.json = 0	COINCIDE
+FAM-M-07	COMPARACION-POST-SELLO	data/corrida0/CALC-R-FAM-M-07/	forense/prereg-duelo-v2/codificacion-R-v1_1.tsv	delta punto contra corridas-R/FAM-M-07.json = 0	COINCIDE
+TRA-M-02	COMPARACION-POST-SELLO	data/corrida0/CALC-R-TRA-M-02/	forense/prereg-duelo-v2/codificacion-R-v1_1.tsv	delta punto contra corridas-R/TRA-M-02.json = 0	COINCIDE
+TRA-M-03	COMPARACION-POST-SELLO	data/corrida0/CALC-R-TRA-M-03/	forense/prereg-duelo-v2/codificacion-R-v1_1.tsv	delta punto contra corridas-R/TRA-M-03.json = 0	COINCIDE
+TRA-M-07	COMPARACION-POST-SELLO	data/corrida0/CALC-R-TRA-M-07/	forense/prereg-duelo-v2/codificacion-R-v1_1.tsv	delta punto contra corridas-R/TRA-M-07.json = 0	COINCIDE
