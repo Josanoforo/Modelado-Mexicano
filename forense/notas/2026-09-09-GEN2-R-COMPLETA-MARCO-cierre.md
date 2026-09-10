@@ -39,7 +39,7 @@ Los ocho CALC activos sólo declaran payload, `codificacion-R-v1_2.tsv`, marco v
 
 Ningún target R requiere una fuente nueva: **0 bloqueados, 0 sin spec, 0 NC nuevas**. Se mantienen las reservas estadísticas nombradas arriba. `NC-0143` sigue abierta porque cerrar `U3` requiere los puntos válidos de L y el snapshot M; su habilitador se actualiza para consumir el `UR=14` congelado aquí. Este acto no amplía el panel después de observar quién gana y no realiza comparación triádica.
 
-**Reserva de suite:** se completa tras ejecutar `tests/check.py --baseline` sobre el árbol corregido y comparar con la baseline heredada; no se congela ni se modifica `tests/baseline.json`.
+**Reserva de suite:** `tests/test_corrida0.py` pasa 83/83. `python3 tests/check.py --baseline` da 4 FAIL y 1,959 WARN: conserva los 3 FAIL heredados y añade 1 FAIL de T22. Ese delta es el falso positivo textual ya acotado: las filas 10–13 de `codificacion-R-v1_1.tsv` preservan literalmente en el campo de procedencia la frase histórica “fila PROPUESTA”, aunque su columna `estado` dice `SELLADA` y FP-370 está `FIRMADA -- EJECUTADA`. No se mutó el sello v1.1 ni se modificó `tests/` para silenciarlo; `tests/baseline.json` permanece intacto. T02, T15 y T32 quedan verdes.
 
 ## Cascada
 
