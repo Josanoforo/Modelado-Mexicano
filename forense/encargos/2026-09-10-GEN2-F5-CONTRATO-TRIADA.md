@@ -126,3 +126,16 @@ que este acto podía derivar sin los dos insumos pendientes: la regla
 completa y ejecutable de cada pieza queda congelada; lo no corrido es,
 puntualmente, la membresía final de `U3` (dentro de P1) — no una pieza
 completa omitida.
+
+## CONSUMIDO
+
+`ACTO GEN2-F5-CONTRATO-TRIADA` — **CONSUMIDO**. Ejecutado por `PR #675`
+(rama `claude/determined-faraday-io36oz`, contra `origin/main = eab46ed`,
+`PR #674` ya fusionado). Producto: `forense/prereg-duelo-v2/F5-contrato-triada-spec-v1_0.md`
+(spec sucesora) + `forense/prereg-duelo-v2/universo-triada-v1_0.tsv`
+(sidecar) + `forense/notas/2026-09-10-GEN2-F5-CONTRATO-TRIADA-decision.md`
+(nota de decisión). Cascada: `ADR-449` (`canon/gobernanza-v1_15.md`), `L0`
+(`canon/estado-programa-v1_12.md`), rótulo `GEN2-F5-CONTRATO-TRIADA`
+censado (`canon/registro-rotulos.tsv`), `NC-0143` (`ABIERTA`, sucesor
+declarado). `tests/check.py --baseline` → 3 FAIL · 1688 WARN, LÍNEA BASE
+VERDE.
