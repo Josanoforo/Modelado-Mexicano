@@ -68,7 +68,7 @@ quedan `EXTRAIBLE` por esa vía. Verificado a mano contra tres de esas 59
 exactamente la clase de regla improvisada después de ver resultados que el
 propio encargo prohíbe en espíritu ("prohibido... elegir entre variantes de
 agregación después de ver resultados — lo no fijado en P1 no existe"). Se
-declara el hueco (`NC-0136`, abajo) y se deja como trabajo de un sucesor con
+declara el hueco (`NC-0142`, abajo) y se deja como trabajo de un sucesor con
 instrumento validado — no se adjudica sobre un número que ya se demostró
 contaminado.
 
@@ -180,7 +180,7 @@ antes de `CALC-DUELO-0001`) vs. después (commit `0732f93`, este cierre):
   este CALC)
 - `N_corridas_selladas`: **17 → 17** (sin cambio — este contador no cuenta
   por directorio `CALC-*` nuevo; crudo, no se investiga más en este acto)
-- `no_corrido_abiertas`: **80 → 80 aquí; → 81 al registrar `NC-0136`** en la
+- `no_corrido_abiertas`: **80 → 80 aquí; → 81 al registrar `NC-0142`** en la
   cascada de este mismo cierre (append, no en este comando)
 - `corredores_envueltos_legacy`: **11 → 12** (crudo; no se atribuye causa
   sin verificarla — no es un contador que este acto haya tocado a propósito)
@@ -198,7 +198,7 @@ toca el marcador histórico ni sus `NC`.
 - **La lectura de mesa del veredicto** — con esta nota como único insumo
   necesario: el duelo NO resolvió la tesis de transferencia; mesa decide si
   eso cambia F6/Ola 6/cartera.
-- **`NC-0136`** (abajo, en el encargo archivado): construir y sellar un
+- **`NC-0142`** (abajo, en el encargo archivado): construir y sellar un
   extractor de `valor_extraido` calibrado contra el formato real de
   `corridas-L/*__v1_3.json` (prosa sin encabezados de sección, refusals
   ricos en cifras de contexto) antes de re-intentar la pareada primaria.
