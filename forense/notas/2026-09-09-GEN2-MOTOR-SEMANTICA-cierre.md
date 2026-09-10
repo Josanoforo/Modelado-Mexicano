@@ -56,7 +56,8 @@ ubica ahí. El defecto es de `_tiene_veredicto_real()` (no reconoce
 `MEDIDO`, solo veredictos de falsación `R` o campo `veredicto:`), no de
 este acto — que además no clasifica, pre-registra, carga ni sella nada: la
 cita en P2 es para ratificar el método de IC que la propia spec sellada de
-esta regla (vía `ENCIG-MORDIDA-spec-v1_0.md`) ya declaraba en §3.7.
+esta regla (vía `ENCIG-MORDIDA-spec-v1_0.md`) ya declaraba en §3.7; la
+ratificación posterior vive en su sucesora `ENCIG-MORDIDA-spec-v1_1.md`.
 
 ## §12 · `tests/check.py --baseline`
 

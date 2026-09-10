@@ -56,7 +56,8 @@ tratar la varianza-cero de un estrato de UPM única como "conservador
 declarado" en vez de "sesgado": el método no inventa precisión que no
 tiene. Sobre esa base, mesa ratifica el método de §3.7 como estándar de
 familia para ranuras sin método propio (enmienda fechada en
-`forense/prereg-caja/ENCIG-MORDIDA-spec-v1_0.md` §8).
+`forense/prereg-caja/ENCIG-MORDIDA-spec-v1_1.md` §8; la v1.0 permanece
+inmutable como input sellado de `CALC-ENCIG-0001`).
 
 ## D4 · Semántica de la mordida (NC-0113) — por qué el nombre se conserva con reserva anotada
 
