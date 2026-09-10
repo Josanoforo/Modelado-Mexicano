@@ -65,3 +65,7 @@ ffeeca2c`, ejecutado en tres tramos contra `origin/main = ffeeca2c → cc1cfe2
 rótulo `GEN2-F5-RECAPTURA-L` censado (`canon/registro-rotulos.tsv`),
 `NC-0135` CERRADA. Sucesor: `ACTO GEN2-F5-DUELO-CALC` (consume las 224
 capturas selladas + los seis `R` GEN2, ejecuta la escala B-bis pre-declarada).
+
+## CONSUMIDO
+
+`PR #669` (derivación mecánica, puertas 1-3 de `/tramite`, bloque 3.3).
