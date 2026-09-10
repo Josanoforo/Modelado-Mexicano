@@ -1,0 +1,120 @@
+{
+ "corrida_id": "CALC-R-TRA-M-02--25bc1387eac3",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "corridas-R/correr-R.py": "AUSENTE",
+  "pyreadstat solo si DTA": "AUSENTE",
+  "tests/svystat.py": "AUSENTE",
+  "tools/arbitra.py": "AUSENTE"
+ },
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "SI",
+  "firma": "FP-370; OBJETO=CALC-R-TRA-M-02:TRA-M-02",
+  "generacion": "GEN2",
+  "tipo": "ARBITRO-R-DE-CELDA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-10T04:42:34Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 400,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "25bc1387eac3beda7eca4e88c5712689896735cf",
+  "git_rama": "acto/gen2-r-completa-marco",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "25bc1387eac3beda7eca4e88c5712689896735cf",
+ "input_ids": [
+  "encuci2020_bd_dbf",
+  "IN-CODIFICACION-R-V1-1",
+  "IN-MARCO-R-V1-3"
+ ],
+ "input_sha256": {
+  "IN-CODIFICACION-R-V1-1": "cf5dfb182f3c914fd8a91ce6d589ad745c507a8c3defad2d6459ee876c01f598",
+  "IN-MARCO-R-V1-3": "f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a",
+  "encuci2020_bd_dbf": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+ },
+ "parametros": {
+  "codificacion": "y=1 si AP5_17=='1' o AP5_18=='1'; y=0 si AP5_17=='2' y AP5_18=='2' -- COMPUESTO OR de dos variables (_PATRON_COMPUESTO_OR); resto FUERA (cae en n_codigo_no_valido, no se reclasifica): 9 = No sabe/no responde, b = blanco (salto del cuestionario) y cualquier otra combinacion; codigos verificados en el FD (AP5_17 y AP5_18: 1 Si, 2 No, 9 No sabe/no responde, b blanco)",
+  "estrato": "EST_DIS",
+  "id_celda": "TRA-M-02",
+  "payload_id": "encuci2020_bd_dbf",
+  "ponderador": "FAC_SEL",
+  "tabla": "SEC_4_5",
+  "universo": "persona seleccionada (informante de 15 anios y mas, tabla SEC_4_5) con contacto en los ultimos 12 meses = alguna de AP5_16_1..AP5_16_10 == '1' (codigos del FD: 1 Si, 2 No, 9 No sabe/no responde); 21519 filas leidas y 13435 con contacto segun la proyeccion ciega (guardias: se reportan, no se ajustan). El filtro NO se ejecuta como codigo (limite declarado de arbitra.py): lo aplica el salto del cuestionario -- sin contacto AP5_17/AP5_18 van en blanco y caen FUERA por la codificacion",
+  "upm": "UPM_DIS",
+  "variable": "AP5_17|AP5_18"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-R-TRA-M-02-EE",
+  "RESULT-R-TRA-M-02-ESTADO",
+  "RESULT-R-TRA-M-02-IC-HI",
+  "RESULT-R-TRA-M-02-IC-LO",
+  "RESULT-R-TRA-M-02-MASA-PONDERADA",
+  "RESULT-R-TRA-M-02-METODO-IC",
+  "RESULT-R-TRA-M-02-N",
+  "RESULT-R-TRA-M-02-N-CODIGO-EXCLUIDO",
+  "RESULT-R-TRA-M-02-N-ESTRATOS",
+  "RESULT-R-TRA-M-02-N-ESTRATOS-UPM-UNICA",
+  "RESULT-R-TRA-M-02-N-FALTANTES-EXCLUIDOS",
+  "RESULT-R-TRA-M-02-N-FILAS-TABLA",
+  "RESULT-R-TRA-M-02-N-FUERA-UNIVERSO",
+  "RESULT-R-TRA-M-02-N-SIN-PONDERADOR",
+  "RESULT-R-TRA-M-02-N-UPM",
+  "RESULT-R-TRA-M-02-PUNTO"
+ ],
+ "script_blob_sha256": "0eb88595f4f20c8606662a9d4b9e28763e2d52762e1550418ef9966e2cf25894",
+ "script_path": "data/corrida0/CALC-R-TRA-M-02/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-R-TRA-M-02",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "e03cf2616dbb8739bc0675ee58abee11015bd91e019cbdf7485f927a1857fb9d",
+ "spec_yaml_sha256": "ada43da1f4c8f2e665559df69d0cf2be0314cd8b6bcc263dd16513e7482f2397",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "punto y varianza deterministas; enteros/texto exactos",
+  "tipo": "flotante"
+ }
+}
