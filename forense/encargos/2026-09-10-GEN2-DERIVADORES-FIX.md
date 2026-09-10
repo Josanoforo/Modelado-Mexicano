@@ -58,3 +58,21 @@ CONTADOR: no, y se dice. LO QUE NO HACE: no toca adq_doctor/adquiere_cron (herma
   desde `ACTO GEN2-ADQ-CONTRATO-FIX`.
   **sucesor**: mesa — carga hacia el siguiente despacho de la secuencia de
   5 (3/5).
+
+## CONSUMIDO
+
+Ejecutado por [PR #672](https://github.com/Josanoforo/Modelado-Mexicano/pull/672), 10/sep/2026, NUBE, Opus declarado/Sonnet 5 real.
+
+P0 ejecutada (dos contraejemplos congelados en rojo, confirmados fallando
+contra el código viejo, antes de reparar). P1 ejecutada (H4:
+`_busca_candidatas_fila_k` recorre todas las apariciones como token
+completo, exclusiones por aparición, dedup, archivo ilegible declarado,
+enlace explícito por línea; seis casos nuevos en
+`tests/test_digesto_candidatas.py`). P2 ejecutada (H6:
+`_evidencia_vigente` ya no trata el vacío como comodín — `IDENTIDAD-INCOMPLETA`
+explícita, `SIN-INSUMOS-DECLARADO` sigue comparando normal; caso nuevo en
+`tests/test_corrida0.py`). P3 ejecutada por declaración (gate D-14
+contestado NO por ENTORNO en `forense/notas/2026-09-10-nc-0123-d14.md`;
+`NC-0123` → `CERRADA`; `NC-0135` nueva con el hallazgo ampliado, 102/116
+instrumentos). `ADR-445`. `tests/check.py --baseline` VERDE, sin FAIL
+nuevo.
