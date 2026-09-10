@@ -65,7 +65,15 @@ P2/P3), no una pieza completa omitida.
 
 ## Estado
 
-`ACTO GEN2-F5-DUELO-CALC` — `VIVO`, P1/P2/P3 completos y cascada
-(`ADR-448`, `L0`, `registro-rotulos`, `NC-0142`) ya asentada. `## CONSUMIDO`
-se añade en un commit posterior sobre esta misma rama, citando el número
-real del PR (paso 11 de `/acto` — nunca antes de que el PR exista).
+## CONSUMIDO
+
+`ACTO GEN2-F5-DUELO-CALC` — **CONSUMIDO**. Ejecutado por `PR #674`
+(rama `acto/gen2-f5-duelo-calc`, contra `origin/main = 9dbe570`,
+`PR #669`/`PR #673` ya fusionados). P1 (`data/corrida0/CALC-DUELO-0001/
+spec.yaml`+`spec.md`+`medidor.py` congelados), P2 (corrida sellada vía
+`tools/corrida0.py`, `sha256=c1de72df948a6d8dd462493e4cdfe4b9ffc98c4fb9053adbd210a1680b8f646d`)
+y P3 (`forense/notas/2026-09-10-GEN2-F5-DUELO-CALC-veredicto.md`)
+completos. Cascada: `ADR-448` (`canon/gobernanza-v1_15.md`), `L0`
+(`canon/estado-programa-v1_12.md`), rótulo `GEN2-F5-DUELO-CALC` censado
+(`canon/registro-rotulos.tsv`), `NC-0142` (ABIERTA, sucesor declarado).
+`tests/check.py --baseline` → 3 FAIL · 1687 WARN, LÍNEA BASE VERDE.
