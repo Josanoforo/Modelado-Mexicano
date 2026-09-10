@@ -345,15 +345,26 @@ con universo declarado:
 |---|---|---|---|---|
 | `data/inventario-reactivos-v1_2.tsv` (el vigente) | 178 246 | **458** | **0** | 0 |
 | `data/inventario-reactivos-ext-v1_0.tsv` | 63 345 (**24 138** con texto) | **0** | 0 | 0 |
-| `data/inventario-fd-ext-v1_0.tsv` | — | **62** (todas con texto) | 62 | **0** — son descripciones de **tabla** |
-| `data/inventario-fd-v1_1.tsv` | — | **0** | 0 | 0 |
+| `data/inventario-fd-ext-v1_0.tsv` | 10 635 (todas con texto) | **62** | 62 | **0** — son descripciones de **tabla**, no de variable |
+| `data/inventario-fd-v1_1.tsv` | 17 094 (todas con texto) | **0** | 0 | 0 |
 
 **No es ceguera al DBF:** `inventario-reactivos-v1_2.tsv` no trae
 `texto_reactivo` en **ninguna** de sus 178 246 filas — control positivo `encig`,
-10 465 filas, **0** con texto. Y el único inventario que sí lo trae no tiene
-**ninguna** fila de ENCUCI. Todo el texto y todos los códigos de esta spec
-salen del `FD_ENCUCI2020.pdf`, y **ningún negativo de este acto se apoya en el
-inventario**.
+10 465 filas, **0** con texto. Y el único inventario de reactivos que sí lo trae
+(`-ext-v1_0`, 24 138 filas con texto) no tiene **ninguna** fila de ENCUCI. Todo
+el texto y todos los códigos de esta spec salen del `FD_ENCUCI2020.pdf`, y
+**ningún negativo de este acto se apoya en el inventario**.
+
+**Convergencia, no novedad — y se dice.** Mientras este acto corría, `ACTO
+GEN2-DERIVADORES-FIX` (`PR #672`, fusionado 9/sep 19:46) llegó al mismo sitio por
+otra vía y lo generalizó: **102 de 116 instrumentos** tienen `texto_reactivo`
+vacío en el 100% de sus filas, y abrió **`NC-0136`**
+(`forense/notas/2026-09-10-nc-0123-d14.md`). Estas cuatro filas se re-derivaron
+**después** de fusionar ese PR y no cambian. Lo que este acto añade es la parte
+ENCUCI, que esa nota no mide: de las **nueve** variables que esta spec usa,
+**cero** tienen texto indexado en **ninguno** de los cuatro inventarios, y las 62
+filas ENCUCI de `inventario-fd-ext-v1_0.tsv` describen **tablas**, no variables.
+**No se abre fila nueva: se apunta a `NC-0136`.**
 
 *(`spec-check` sí encuentra las 30 variables: **30 OK · 0 FAIL**, 317 718 filas
 examinadas. El inventario indexa **nombres**; lo que no trae es el **texto**.)*
@@ -401,6 +412,17 @@ negativo que `NC-0109` (lote ENCIG) y `NC-0129` (lote ENIF) ya asentaron:
 `_tiene_veredicto_real()` no reconoce `MEDIDO`. **Tercera confirmación en tres
 lotes consecutivos**; no se abre fila nueva, se apunta a las dos abiertas.
 `civico.protesta.agravio_urbano_encuci2020` y `R7.4` sí salen `MEDIDA-EN:`.
+
+## 10-bis · Nota de cascada — el censo de rótulo dio un `SI` falso
+
+`python3 tools/cierre_acto.py` (Fase A) reportó *«¿Ya en
+`canon/registro-rotulos.tsv`?: **SI**»* para `GEN2-LOTE-ENCUCI-1`. **Es falso
+positivo por subcadena**: verificado por columna,
+`awk -F'\t' '$2=="GEN2-LOTE-ENCUCI-1"'` → **vacío**. El acierto venía del texto
+de la fila de `GEN2-LOTE-ENIF-1`, que **menciona** los lotes hermanos. El rótulo
+se censó a mano (fila nueva, `1 0`). Es comportamiento ya conocido del preflight
+—se anota para el registro, no se abre fila: **un `SI` de esa línea se verifica
+contra la columna 2, nunca contra el archivo.**
 
 ## 11 · Límites declarados
 
