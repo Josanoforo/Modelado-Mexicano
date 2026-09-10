@@ -114,6 +114,36 @@ class TestControlesPositivosFormatosReales(unittest.TestCase):
         self.assertEqual(ext.estado, "NO-EXTRAIBLE")
         self.assertEqual(ext.regla_de_extraccion, "ANCLA-RECHAZO")
 
+    def test_header_no_confunde_cifra_de_contexto_en_parrafo_de_razonamiento(self):
+        # ENMIENDA: hallado corriendo sobre el universo real de 224 --
+        # "Razonamiento y calibración:" trae, en el mismo bloque, una cifra
+        # histórica de contexto ("las estimaciones oscilan entre ~4% y
+        # ~7%") que NO es un segundo punto del modelo. Antes de la
+        # enmienda esto daba AMBIGUA (0.055 del punto declarado contra 0.04
+        # de la cifra de contexto); después de la enmienda, el escaneo de
+        # la sección se detiene en el párrafo "Razonamiento..." y solo
+        # queda el punto declarado.
+        t = _texto_real("L-FAM-M-05-M__L+corpus__01__v1_3.json")
+        ext = EXTRAE.extraer_valor(t)
+        self.assertEqual(ext.estado, "EXTRAIBLE")
+        self.assertAlmostEqual(ext.valor_extraido, 0.055, places=4)
+        # El mismo párrafo cae bajo Familia H (encabezado "# Estimación...")
+        # Y Familia F ("Estimación puntual" es también frase-ancla); ambas
+        # coinciden en 0.055 -- cuál de las dos se cita como "última" no es
+        # lo que este control verifica, solo que NO hay conflicto.
+        self.assertIn(ext.regla_de_extraccion, ("ANCLA-HEADER-PUNTO", "ANCLA-FRASE-PUNTO"))
+
+    def test_frase_ancla_reconoce_me_abstengo(self):
+        # ENMIENDA: hallado corriendo sobre el universo real de 224 -- "me
+        # abstengo" (primera persona, presente) no compartía subcadena con
+        # "abstenci" (la forma nominal ya cubierta) y el caso caía a
+        # SIN-ANCLA en vez de ANCLA-RECHAZO -- mismo estado final
+        # (NO-EXTRAIBLE) pero regla mal etiquetada para el reporte de P2.
+        t = _texto_real("L-TRA-M-02-M__L+corpus__02__v1_3.json")
+        ext = EXTRAE.extraer_valor(t)
+        self.assertEqual(ext.estado, "NO-EXTRAIBLE")
+        self.assertEqual(ext.regla_de_extraccion, "ANCLA-RECHAZO")
+
 
 class TestCasosSinteticos(unittest.TestCase):
     """Formas no observadas literalmente en el corpus pero que la regla

@@ -167,6 +167,7 @@ _RECHAZO_KW = [
     "no la voy a fabricar", "no lo voy a inventar", "no lo voy a fabricar",
     "no debe registrarse", "no debe usarse", "no debe convertirse",
     "no debe tratarse", "no debe sustituir",
+    "me abstengo", "nos abstenemos",
 ]
 
 _EXCLUSION_INCERTIDUMBRE_KW = [
@@ -175,6 +176,31 @@ _EXCLUSION_INCERTIDUMBRE_KW = [
     "ic95", "ic 95", "intervalo de confianza", "confianza del",
     "margen de error",
 ]
+
+# ENMIENDA (misma sesión, tras correr sobre el universo real de 224 y
+# encontrar dos falsos-AMBIGUA: FAM-M-05__L+corpus__{01,08}). La sección de
+# un encabezado "estimaci..." trae, de forma consistente en el corpus, un
+# patrón "punto -> banda -> razonamiento/fuente -> nota" -- los párrafos de
+# razonamiento citan cifras HISTÓRICAS/de contexto ("las estimaciones
+# oscilan entre ~4% y ~7%") que no son un segundo punto del modelo, y el
+# extractor viejo (v1_1) ya había fallado por confundir contexto con
+# respuesta -- no se repite ese defecto aquí solo con otro nombre. Un
+# párrafo cuyo contenido (sin marcadores markdown) EMPIEZA con una de estas
+# etiquetas fijas cierra el escaneo de la sección: los párrafos posteriores
+# nunca se examinan en busca de un candidato de punto. No es una regla
+# elegida después de ver el resultado sobre R/M -- ninguna de las dos se ha
+# abierto en este acto -- es una corrección de la regla de identificación
+# de FORMATO, igual que las líneas de arriba.
+_ETIQUETAS_FIN_DE_PUNTO = [
+    "razonamiento", "sonda canario", "fuente", "nota", "declaracion",
+    "advertencia", "advertencias", "base del calculo", "base del razonamiento",
+    "recomendacion", "recomendaciones",
+]
+
+
+def _empieza_con_etiqueta_fin(parrafo_norm: str) -> bool:
+    limpio = parrafo_norm.lstrip("*_# \t-").strip()
+    return any(limpio.startswith(etq) for etq in _ETIQUETAS_FIN_DE_PUNTO)
 
 _FRASES_ANCLA = [
     r"estimaci[oó]n\s+puntual",
@@ -259,6 +285,8 @@ def _anclas_familia_h(texto: str) -> list[Ancla]:
         evidencia_rechazo = ""
         for parrafo in parrafos:
             parrafo_norm = _norm(parrafo)
+            if _empieza_con_etiqueta_fin(parrafo_norm):
+                break
             if _contiene_alguna(parrafo_norm, _EXCLUSION_INCERTIDUMBRE_KW):
                 continue
             val = _parsear_numero_de_parrafo(parrafo)
