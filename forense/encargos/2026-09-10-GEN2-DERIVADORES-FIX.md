@@ -11,3 +11,50 @@ PIEZAS: P0 · CASOS ROJOS PRIMERO. Re-ejecuta los dos contraejemplos (H4: primer
 PERÍMETRO Y CONCURRENCIA. Toca: tools/digesto_tramite.py · tools/corrida0.py (solo la comparación de identidad) · data/inventario-reactivos-* (cabecera/sucesor) · tests propios (test_digesto_candidatas, test_corrida0 casos nuevos) · forense/notas/ · forense/no-corrido.tsv · 0-bis · cascada. EN PARALELO: MOTOR-SEMANTICA (milpa — cero intersección), F5-RECAPTURA (caja) y, si ya fusionó, DUELO-CALC espera a nadie — pero si DUELO-CALC corre a la vez, NO toques rutas de run/verify más allá de la comparación listada. «Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.»
 
 CONTADOR: no, y se dice. LO QUE NO HACE: no toca adq_doctor/adquiere_cron (hermano 1/5) · no reabre las 26 filas sanas · no construye seguimiento semántico de sucesoras · no indexa nada sin el D-14 contestado. SUCESORES: el primer ciclo de trámite post-H4 (debe encontrar la candidata que hoy se pierde) · la decisión de mesa sobre la fecha indeterminada (viaja de 1/5). CIERRE · Cascada + ## NO-CORRIDO / RESERVAS + ## CONSUMIDO con el PR.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué**: SUCESORES declarados por el encargo, «el primer ciclo de trámite
+  post-H4 (debe encontrar la candidata que hoy se pierde)».
+  **por qué**: `NO-VERIFICABLE-AQUÍ` — la reparación de H4 está probada
+  contra fixtures (seis casos nuevos en `tests/test_digesto_candidatas.py`,
+  dos de ellos reproduciendo el defecto exacto en rojo antes de reparar:
+  `t_h4_primera_mencion_excluida_segunda_valida` y
+  `t_h4_id_prefijo_de_otro_no_colisiona`), pero una demostración en
+  PRODUCCIÓN de que un ciclo real de `/tramite` encuentra hoy una candidata
+  que antes se perdía exige que ese ciclo corra sobre el árbol real
+  después de este merge — no algo que esta sesión pueda observar antes de
+  fusionar.
+  **impacto**: la reparación de H4 no tiene todavía un caso de producción
+  confirmado; queda probada sólo por fixture.
+  **sucesor**: el primer ciclo de `/tramite` que corra después de este PR
+  — mesa/trámite observa si el digesto trae una candidata nueva que el
+  código viejo hubiera perdido.
+
+- **qué**: P3, «la REPARACIÓN (indexar DBF/ENIF)».
+  **por qué**: `PARO-ENTORNO` — gate D-14 respondido NO en
+  `forense/notas/2026-09-10-nc-0123-d14.md`: la reparación real exige leer
+  FD/microdato reales (`pyreadstat`/`dbfread`/`openpyxl`) contra
+  `data/raw` montado, ausente en NUBE (`python3 tools/entorno.py`:
+  `data/raw` NO montado, `numpy`/`pandas`/`pyreadstat` `AUSENTE`). Además,
+  la medición ampliada (102/116 instrumentos, no sólo ENIF) hace que
+  "indexar DBF/ENIF" sea sólo una fracción del hallazgo real, medido por
+  comando en la misma nota.
+  **impacto**: 102 de 116 instrumentos del índice de reactivos (241591
+  filas de universo) siguen sin texto buscable; sólo `variable_id` los
+  alcanza. Declarado en la cabecera de ambos TSV
+  (`data/inventario-reactivos-v1_2.tsv`/`-ext-v1_0.tsv`), así que ningún
+  negativo futuro puede derivarse fuera de esa cobertura (A.15).
+  **sucesor**: `NC-0135` (`ABIERTA`) — acto de CAJA con `tools/` en su
+  perímetro, corpus montado y `pyreadstat`/`dbfread` instalados.
+
+- **qué**: SUCESORES declarados por el encargo, «la decisión de mesa sobre
+  la fecha indeterminada (viaja de 1/5)».
+  **por qué**: `FUERA-DE-PERÍMETRO` — pertenece a `tools/adq_doctor.py`
+  (H2 de `ACTO GEN2-ADQ-CONTRATO-FIX`), fuera del perímetro de este acto
+  (que sólo toca `tools/digesto_tramite.py` y la comparación de identidad
+  de `tools/corrida0.py`).
+  **impacto**: ninguno nuevo — ya viajaba como `DECISIÓN-DE-MESA-PENDIENTE`
+  desde `ACTO GEN2-ADQ-CONTRATO-FIX`.
+  **sucesor**: mesa — carga hacia el siguiente despacho de la secuencia de
+  5 (3/5).

@@ -169,6 +169,7 @@ verdad de un texto: cita el `id` de la fila, y la fila íntegra vive en
 import argparse
 import csv
 import datetime
+import functools
 import glob
 import hashlib
 import io
@@ -1552,37 +1553,143 @@ def _propio_texto_fila_k(fila):
     return " ".join(p for p in partes if p)
 
 
+_RE_ID_TOKEN_CHAR = re.compile(r"[A-Za-z0-9_-]")
+# H4 (revisión adversarial, `ACTO GEN2-DERIVADORES-FIX`). Un `id` como
+# `NC-100` es substring literal de `NC-1005` -- `str.find` sin límites de
+# token lo contaría como aparición. Un carácter alfanumérico, `_` o `-`
+# inmediatamente antes o después del hallazgo significa que el hallazgo es
+# PARTE de un id más largo, nunca el id como tal.
+
+_RE_CITA_LINEA_K = re.compile(
+    r"`(forense/(?:no-corrido|firmas-pendientes)\.tsv):(\d+)`")
+# Enlace explícito a la fila sin repetir el id (P1): única forma de
+# seguimiento de sucesoras que este bloque implementa -- una cita
+# `` `archivo.tsv:N` `` ya en uso real en el corpus (p. ej.
+# `forense/encargos/cola/2026-09-08-GEN2-SONDA-3-PILOTO-CAJA.md`) que
+# apunta a una línea concreta de uno de los dos TSV de origen. Se resuelve
+# leyendo esa línea en el árbol ACTUAL y comparando su primera columna
+# (id) contra `rid` -- mecánico, sin adivinar semántica. Cualquier otra
+# forma de referencia a una sucesora que no repita el id literal queda
+# como residual de lectura humana (declarado, no perseguido).
+
+
+@functools.lru_cache(maxsize=4096)
+def _resuelve_id_en_linea_k(ruta_abs, num_linea):
+    """Primera columna (id) de la línea `num_linea` (1-indexada, misma
+    convención que `grep -n`/`sed -n Np` -- verificado contra el árbol
+    real) de un TSV. `None` si no resuelve (archivo ilegible, línea fuera
+    de rango). Cacheado: la misma cita `archivo:línea` se re-resuelve una
+    vez por cada `rid` que se examina contra el mismo universo."""
+    try:
+        with open(ruta_abs, encoding="utf-8", errors="replace") as fh:
+            for i, linea in enumerate(fh, start=1):
+                if i == num_linea:
+                    campos = linea.split("\t")
+                    return campos[0].strip() if campos else None
+    except OSError:
+        return None
+    return None
+
+
+def _es_limite_id_k(texto, inicio, fin):
+    """El carácter justo antes de `inicio` y justo después de `fin` NO es
+    parte de un token de id -- si lo fuera, el hallazgo sería PREFIJO (o
+    sufijo) de un id distinto, nunca el id como tal."""
+    antes_ok = inicio == 0 or not _RE_ID_TOKEN_CHAR.match(texto[inicio - 1])
+    despues_ok = fin >= len(texto) or not _RE_ID_TOKEN_CHAR.match(texto[fin])
+    return antes_ok and despues_ok
+
+
+def _ocurrencias_id_k(texto, rid):
+    """Todas las posiciones donde `rid` aparece como TOKEN completo --
+    nunca como prefijo/sufijo de un id más largo (H4: `NC-100` no debe
+    casar dentro de `NC-1005`). `str.find` en bucle sobre el propio id
+    (literal, no patrón); ningún motor de búsqueda nuevo."""
+    posiciones = []
+    n = len(rid)
+    start = 0
+    while True:
+        idx = texto.find(rid, start)
+        if idx == -1:
+            break
+        if _es_limite_id_k(texto, idx, idx + n):
+            posiciones.append(idx)
+        start = idx + 1
+    return posiciones
+
+
 def _busca_candidatas_fila_k(raiz, universo, rid, texto_propio, ruta_digesto_norm,
                               tope_frag):
     """Cruza `rid` contra `universo` (fuente->(rutas, faltante)).
-    Devuelve (candidatos_fuertes, candidatos_semanticos, no_resolubles) --
-    listas de dicts {fuente, ruta, fragmento}. `str.find`, ninguna
-    interpolación de shell, ningún motor de búsqueda nuevo."""
-    fuertes, semanticas, no_resolubles = [], [], []
+    Devuelve (candidatos_fuertes, candidatos_semanticos, no_resolubles,
+    ilegibles) -- las tres primeras listas de dicts
+    {fuente, ruta, fragmento}, la última lista de rutas relativas que no
+    se pudieron leer. `str.find`, ninguna interpolación de shell, ningún
+    motor de búsqueda nuevo.
+
+    H4 (revisión adversarial): recorre TODAS las apariciones de `rid`
+    como token completo en cada archivo -- antes, `texto.find(rid)` una
+    sola vez significaba que si la PRIMERA aparición caía en la exclusión
+    (2) (la propia obligación citándose a sí misma), el archivo entero
+    quedaba descartado (`continue` al siguiente archivo) aunque trajera
+    una segunda mención real más adelante. Cada aparición se evalúa y se
+    excluye por separado; el resultado se deduplica después (dos
+    apariciones pueden producir el mismo fragmento). Un archivo ilegible
+    se declara -- nunca desaparece en silencio (A.13)."""
+    fuertes, semanticas, no_resolubles, ilegibles = [], [], [], []
+    vistos = set()  # (lista, fuente, ruta, fragmento) -- dedup tras recorrer TODAS las apariciones
     inicio_propio = (texto_propio or "")[:60].strip()
     for fuente, (rutas, _faltante) in universo.items():
         for ruta in rutas:
             if os.path.normpath(ruta).startswith(ruta_digesto_norm):
                 continue  # exclusión (1): nunca prueba
             texto = _lee_texto_archivo_k(ruta)
+            if texto is None:
+                ilegibles.append(os.path.relpath(ruta, raiz))
+                continue  # A.13: archivo ilegible declara alcance incompleto, nunca en silencio
             if not texto:
                 continue
-            idx = texto.find(rid)
-            if idx == -1:
-                continue
-            ventana = texto[max(0, idx - 200):idx + 200]
-            if inicio_propio and inicio_propio in ventana:
-                continue  # exclusión (2): la fila citándose a sí misma
-            frag = una_linea(texto[max(0, idx - tope_frag // 2):
-                                    idx + tope_frag // 2])
             rel = os.path.relpath(ruta, raiz)
-            fuerte = bool(RE_REF_FUERTE_K.search(ventana))
-            if RE_CITA_PR_K.search(ventana) and not fuerte:
-                no_resolubles.append({"fuente": fuente, "ruta": rel, "fragmento": frag})
-                continue  # exclusión (3): se apoya en una cita de PR, no verificable aquí
-            dest = fuertes if fuerte else semanticas
-            dest.append({"fuente": fuente, "ruta": rel, "fragmento": frag})
-    return fuertes, semanticas, no_resolubles
+
+            for idx in _ocurrencias_id_k(texto, rid):
+                ventana = texto[max(0, idx - 200):idx + 200]
+                if inicio_propio and inicio_propio in ventana:
+                    continue  # exclusión (2), por aparición: la fila citándose a sí misma
+                frag = una_linea(texto[max(0, idx - tope_frag // 2):
+                                        idx + tope_frag // 2])
+                fuerte = bool(RE_REF_FUERTE_K.search(ventana))
+                if RE_CITA_PR_K.search(ventana) and not fuerte:
+                    clave = ("no-resoluble", fuente, rel, frag)
+                    if clave not in vistos:
+                        vistos.add(clave)
+                        no_resolubles.append({"fuente": fuente, "ruta": rel, "fragmento": frag})
+                    continue  # exclusión (3), por aparición: se apoya en una cita de PR, no verificable aquí
+                clave = ("fuerte" if fuerte else "semantica", fuente, rel, frag)
+                if clave in vistos:
+                    continue
+                vistos.add(clave)
+                dest = fuertes if fuerte else semanticas
+                dest.append({"fuente": fuente, "ruta": rel, "fragmento": frag})
+
+            # Enlace explícito a la fila sin repetir el id (P1).
+            for m in _RE_CITA_LINEA_K.finditer(texto):
+                ruta_citada, num_linea = m.group(1), int(m.group(2))
+                if _resuelve_id_en_linea_k(os.path.join(raiz, ruta_citada),
+                                           num_linea) != rid:
+                    continue
+                idx = m.start()
+                ventana = texto[max(0, idx - 200):idx + 200]
+                if inicio_propio and inicio_propio in ventana:
+                    continue
+                frag = una_linea(texto[max(0, idx - tope_frag // 2):
+                                        idx + tope_frag // 2])
+                clave = ("enlace-linea", fuente, rel, frag)
+                if clave in vistos:
+                    continue
+                vistos.add(clave)
+                fuertes.append({"fuente": fuente, "ruta": rel, "fragmento": frag})
+
+    return fuertes, semanticas, no_resolubles, ilegibles
 
 
 def bloque_k(raiz, cuenta, tope_texto=220, tope_lista=25):
@@ -1620,12 +1727,14 @@ def bloque_k(raiz, cuenta, tope_texto=220, tope_lista=25):
     n_examinadas = len(abiertas_nc) + len(abiertas_fp)
     n_candidatos = n_no_resolubles = n_sin_evidencia = 0
     filas_tabla = []
+    ilegibles_totales = set()
 
     def _procesa(rid, objeto, fila):
         nonlocal n_candidatos, n_no_resolubles, n_sin_evidencia
         texto_propio = _propio_texto_fila_k(fila)
-        fuertes, semanticas, no_res = _busca_candidatas_fila_k(
+        fuertes, semanticas, no_res, ilegibles = _busca_candidatas_fila_k(
             raiz, universo, rid, texto_propio, ruta_digesto_norm, tope_texto)
+        ilegibles_totales.update(ilegibles)
         if fuertes or semanticas:
             n_candidatos += 1
         elif no_res:
@@ -1662,6 +1771,11 @@ def bloque_k(raiz, cuenta, tope_texto=220, tope_lista=25):
             f"`firmas-pendientes.tsv`, A.13). Resultado: **{n_candidatos}** con "
             f"candidato(s) · **{n_no_resolubles}** no-resoluble(s) · "
             f"**{n_sin_evidencia}** sin-evidencia.", ""]
+
+    if ilegibles_totales:
+        incompleto = incompleto + [
+            f"{len(ilegibles_totales)} archivo(s) ilegible(s) durante la "
+            f"búsqueda (A.13): " + ", ".join(sorted(ilegibles_totales))]
 
     if incompleto:
         out += ["**ALCANCE INCOMPLETO.** " + "; ".join(incompleto) + ".", ""]

@@ -268,6 +268,148 @@ def t_nc_0040_se_presenta_sin_resolver():
         a.cerrar()
 
 
+# ───────────────────────────────────────────────────────────────
+# H4 (revisión adversarial, ACTO GEN2-DERIVADORES-FIX) -- P0/P1:
+# `_busca_candidatas_fila_k` usaba `texto.find(rid)` una sola vez por
+# archivo. Si la PRIMERA aparición del id caía dentro de la exclusión (2)
+# (la propia obligación citándose a sí misma), la función hacía `continue`
+# al siguiente archivo sin examinar ninguna aparición posterior -- una
+# segunda mención real, con sucesor firmado, en el MISMO archivo, quedaba
+# invisible. Estos casos fallan contra el código viejo y deben pasar tras
+# el fix (todas las apariciones, exclusiones por aparición, dedup,
+# archivo ilegible declarado, enlace por línea sin repetir id).
+# ───────────────────────────────────────────────────────────────
+
+def t_h4_primera_mencion_excluida_segunda_valida():
+    caso = "h4_primera_excluida_segunda_valida"
+    fila = {"que_no_se_corrio": "obligación repetida NC-1001 en todas partes",
+            "razon": "razón", "impacto": "impacto", "sucesor": "Y"}
+    texto_propio = D._propio_texto_fila_k(fila)
+    tmp = Path(tempfile.mkdtemp(prefix="h4-unit-"))
+    try:
+        ruta = tmp / "n.md"
+        # Primera aparición: repite la obligación verbatim (exclusión 2) --
+        # el mismo texto que `_propio_texto_fila_k` deriva de la fila.
+        # Segunda aparición, más adelante en el MISMO archivo: mención
+        # real con palabra clave fuerte (sucesor), sin relación con la
+        # obligación propia.
+        ruta.write_text(
+            f"NC-1001: {texto_propio}\n" + ("relleno de por medio, sin el id.\n" * 5) +
+            "El sucesor de NC-1001 es este mismo encargo, que lo cierra.\n",
+            encoding="utf-8")
+        universo = {"notas": ([str(ruta)], False)}
+        fuertes, semanticas, _no_res, _ileg = D._busca_candidatas_fila_k(
+            str(tmp), universo, "NC-1001", texto_propio, str(tmp / "digesto"), 220)
+        _afirma(len(fuertes) + len(semanticas) == 1, caso,
+                f"fuertes+semanticas={len(fuertes) + len(semanticas)}, esperado 1 -- "
+                "la segunda aparición (válida) no debe quedar oculta por la "
+                "exclusión de la primera")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def t_h4_varias_candidatas_en_un_archivo():
+    caso = "h4_varias_candidatas_en_un_archivo"
+    tmp = Path(tempfile.mkdtemp(prefix="h4-unit-"))
+    try:
+        ruta = tmp / "n.md"
+        ruta.write_text(
+            "El objeto de NC-1002 se toca aquí, encargo A.\n" +
+            ("relleno\n" * 5) +
+            "Y de nuevo, sucesor de NC-1002 en encargo B, más abajo.\n",
+            encoding="utf-8")
+        universo = {"notas": ([str(ruta)], False)}
+        fuertes, semanticas, _no_res, _ileg = D._busca_candidatas_fila_k(
+            str(tmp), universo, "NC-1002", "", str(tmp / "digesto"), 220)
+        _afirma(len(fuertes) + len(semanticas) == 2, caso,
+                f"hallados {len(fuertes) + len(semanticas)}, esperado 2 -- "
+                "dos apariciones distintas del id en el mismo archivo deben "
+                "producir dos candidatos, no recortarse a la primera")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def t_h4_id_prefijo_de_otro_no_colisiona():
+    caso = "h4_id_prefijo_de_otro"
+    a = _Arbol()
+    try:
+        a.escribe_nc([_fila_nc("NC-100")])
+        # Sólo aparece NC-1005 (NC-100 es *prefijo* de NC-1005, nunca debe
+        # contar como aparición de NC-100 como token).
+        a.nota("2026-09-10-prefijo.md",
+              "El sucesor de NC-1005 es este encargo, objeto claro.\n")
+        _, res = a.k()
+        _afirma(res["candidatos"] == 0 and res["sin_evidencia"] == 1, caso,
+                "NC-100 no debe casar como prefijo dentro de NC-1005")
+    finally:
+        a.cerrar()
+
+
+def t_h4_fuente_ilegible_declara_alcance_incompleto():
+    caso = "h4_fuente_ilegible"
+    a = _Arbol()
+    try:
+        a.escribe_nc([_fila_nc("NC-1006")])
+        # Un directorio con sufijo `.md` cae dentro del glob `*.md` pero
+        # `open()` sobre él lanza `IsADirectoryError` (subclase de
+        # `OSError`) sin importar privilegios -- a diferencia de
+        # `chmod 0o000`, que root ignora, esto reproduce "archivo
+        # ilegible" de forma portable.
+        (a.dir / "forense" / "notas" / "2026-09-10-ilegible.md").mkdir()
+        texto, res = a.k()
+        _afirma(res["alcance_incompleto"], caso,
+                "un archivo ilegible debe declarar ALCANCE INCOMPLETO, "
+                "nunca desaparecer en silencio")
+        _afirma("ilegible" in texto.lower() or "ALCANCE INCOMPLETO" in texto, caso,
+                "no declara la causa del alcance incompleto")
+    finally:
+        a.cerrar()
+
+
+def t_h4_sucesora_enlazada_sin_repetir_id():
+    caso = "h4_sucesora_enlazada_sin_repetir_id"
+    a = _Arbol()
+    try:
+        filas = [_fila_nc("NC-1007"), _fila_nc("NC-1008")]
+        a.escribe_nc(filas)
+        # NC-1007 es la fila 2 (línea 2, tras la cabecera) de no-corrido.tsv
+        # en este árbol -- la nota cita esa línea explícitamente y JAMÁS
+        # repite el texto "NC-1007".
+        a.nota("2026-09-10-enlace-linea.md",
+              "El objeto que cierra esta deuda queda descrito en "
+              "`forense/no-corrido.tsv:2`, sin repetir aquí el identificador.\n")
+        _, res = a.k()
+        _afirma(res["candidatos"] >= 1, caso,
+                "una cita explícita `archivo.tsv:N` que resuelve a la línea "
+                "de NC-1007 debe producir candidato aunque el id no se "
+                "repita como texto")
+    finally:
+        a.cerrar()
+
+
+def t_h4_tope_lista_cero_agota_el_conjunto():
+    caso = "h4_tope_lista_cero_agota_conjunto"
+    a = _Arbol()
+    try:
+        filas = [_fila_nc(f"NC-{2000+i}") for i in range(8)]
+        a.escribe_nc(filas)
+        for i in range(8):
+            a.nota(f"2026-09-10-pag-{i}.md",
+                  f"El sucesor de NC-{2000+i} vive en este encargo, objeto {i}.\n")
+        cuenta = D.Cuenta()
+        out_topado, _ = D.bloque_k(str(a.dir), cuenta, tope_lista=3)
+        texto_topado = "\n".join(out_topado)
+        _afirma("omitidas por el" in texto_topado, caso,
+                "con tope bajo debe declarar filas omitidas, no ocultarlas en silencio")
+        out_todo, res_todo = D.bloque_k(str(a.dir), cuenta, tope_lista=0)
+        texto_todo = "\n".join(out_todo)
+        for i in range(8):
+            _afirma(f"NC-{2000+i}" in texto_todo, caso,
+                    f"tope_lista=0 debe agotar el conjunto -- NC-{2000+i} no aparece")
+    finally:
+        a.cerrar()
+
+
 def corre():
     FALLOS.clear()
     for nombre, fn in list(globals().items()):
