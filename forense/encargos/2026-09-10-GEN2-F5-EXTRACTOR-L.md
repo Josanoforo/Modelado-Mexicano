@@ -184,4 +184,19 @@ encargo.
 
 ## Estado
 
-`VIVO`
+## CONSUMIDO
+
+`ACTO GEN2-F5-EXTRACTOR-L-v1` — **CONSUMIDO**. Ejecutado por `PR #676`
+(rama `acto/gen2-f5-extractor-l`, contra `origin/main = eab46ed`, `PR #674`
+ya fusionado). P1 (`tools/extrae_l_v1_3.py` + `tests_extrae_l_v1_3.py` +
+`regla-extraccion-L-v1_3.md`, congelados, con una ENMIENDA fechada
+corrigiendo dos falsos-conflicto de formato hallados al correr sobre el
+universo real), P2 (`L-extraido-v1_3.tsv` + `manifiesto-extraccion-L-v1_3.json`,
+224 capturas: `56 EXTRAIBLE · 164 NO-EXTRAIBLE · 4 AMBIGUA · 0
+ERROR-IDENTIDAD`) y P3 (`forense/notas/2026-09-10-GEN2-F5-EXTRACTOR-L-v1-resultado.md`)
+completos. Cascada: `ADR-449` (`canon/gobernanza-v1_15.md`), `L0`
+(`canon/estado-programa-v1_12.md`), rótulo `GEN2-F5-EXTRACTOR-L` censado
+(`canon/registro-rotulos.tsv`), `NC-0142` CERRADA (componente
+instrumental), `NC-0143` nueva (ABIERTA, componente de adjudicación,
+sucesor `ENCARGO 5/5`). `tests/check.py --baseline` → 3 FAIL · 1687 WARN,
+LÍNEA BASE VERDE.
