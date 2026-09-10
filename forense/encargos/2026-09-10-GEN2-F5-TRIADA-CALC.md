@@ -326,3 +326,48 @@ conjunto de celdas para los tres `MAE`, mismos índices de bootstrap), `P3`
 `B` como diagnóstico y los límites), `P4` (lectura permitida, sin
 extralimitaciones), `P5` (sucesor decidido por diagnóstico, no por
 preferencia) y el perímetro, sin tocar ninguno de los inputs prohibidos.
+
+## CONSUMIDO
+
+Ejecutado por **[PR #681](https://github.com/Josanoforo/Modelado-Mexicano/pull/681)**
+— `ACTO GEN2-F5-TRIADA-CALC · LLM SOLO vs LLM CON CORPUS vs MOTOR`, rama
+`claude/calc-triada-gen2-adjudicacion-s40h3r`, base `origin/main = c439065`,
+10/sep/2026, NUBE/Opus, cero microdato / cero red / cero llamadas nuevas a
+ningún modelo.
+
+**Compuerta 4/4 cumplida por producto** antes de cualquier edición
+sustantiva (tabla de hashes arriba). **P1** congeló el espejo del contrato
+en `COMMIT-1` (`data/corrida0/CALC-TRIADA-0001/spec.md` + `spec.yaml` con
+248 inputs por hash y **los 259 `RESULT` declarados antes de calcular**, más
+el medidor escrito y **no ejecutado**). **P2** corrió en `COMMIT-2`:
+`preflight VERDE → run exit=0 → verify REPRODUCE` (`CONTEXTO=IDENTICO`,
+sello `b5826272…`), con fila durable por celda para las 14 y el mismo
+conjunto de celdas y los mismos índices de bootstrap para los tres
+contendientes. **P3**:
+`forense/notas/2026-09-10-GEN2-F5-TRIADA-CALC-veredicto.md`.
+
+**`RESULTADO PRIMARIO: SIN-GANADOR-UNICO`, sobre `U3 = 3` celdas del marco
+de 14.** `MAE` (pp): `M` 0.1758 < `L_SOLO` 0.1990 < `L_CORPUS` 0.3466 —
+ranking puntual descriptivo, con las tres distancias dentro de `δ = 0.5 pp`.
+Pareadas: `Δ(L_CORPUS,L_SOLO)` `INCONCLUSO`, `Δ(M,L_SOLO)` y
+`Δ(M,L_CORPUS)` `EMPATE-PRACTICO`. Secundaria TRANSFERENCIA `SIN-UNIVERSO`.
+`B` sólo diagnóstico: sus únicas cifras sobre este panel **son** el propio
+`R`. Controles limpios (224/224 identidad, 0 discordancias de
+re-derivación, 0 contaminadas) — por eso no es
+`NO-ADJUDICABLE-POR-CONTROL`: lo que falta es cobertura.
+
+Cascada: `ADR-453` (`canon/gobernanza-v1_15.md`), `L0`
+(`canon/estado-programa-v1_12.md`, con la reparación del ancla duplicada
+heredada de `ADR-452`, `NC-0148`), rótulo `GEN2-F5-TRIADA-CALC` censado
+(`canon/registro-rotulos.tsv`), firma de contador con OBJETO
+(`data/corrida0/decisiones.tsv`). `NC-0143` y `NC-0144` **CIERRAN** (la
+segunda por hallazgo, no por ejecución); abren `NC-0145`, `NC-0146`,
+`NC-0147` y `NC-0148`. `python3 tests/check.py --baseline` **VERDE**
+(3 `FAIL` preexistentes: `T06`×2, `T08`).
+
+**Sucesor:** **`F6 · COSECHA` NO procede** — exige ganador único con
+cobertura suficiente, y no hay ninguna de las dos cosas. Por `P5`, y por
+diagnóstico y no por preferencia: la fuente dominante de incertidumbre es la
+**abstención de `L`** (11/14 celdas de `UR` sin punto de `L_CORPUS`, 8/14
+sin `L_SOLO`), y el sucesor la estudia o amplía prospectivamente el marco
+**bajo una spec nueva** — sin añadir celdas a este CALC (`NC-0146`).
