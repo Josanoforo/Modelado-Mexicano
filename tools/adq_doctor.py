@@ -322,46 +322,102 @@ DIAS_REINTENTO = 7
 # Estados que NUNCA se activan en bloque (P2 verbatim: «NO se activan en
 # bloque los SIN-FETCH/parciales/negativos»). Cada uno con la razón que
 # se emite, para que la exclusión sea legible sin abrir el código.
+# `SIN-FETCH` NO vive aquí (ver H3, `ACTO GEN2-ADQ-CONTRATO-FIX`): tiene su
+# propia rama, siempre excluyente incluso con `pedida`, porque saltarlo por
+# invocación nominal es exactamente el defecto que esa pieza cierra --
+# la transformación canónica (`transforma_sin_fetch_autorizada`) es la
+# única puerta hacia PENDIENTE.
 _RAZON_POR_ESTADO = {
     "OBTENIDO": "OBTENIDO: A.8 ya resuelto, un objeto completo conserva OBTENIDO",
     "NO-ACCESIBLE": ("NO-ACCESIBLE: barrera declarada; solo camina si el operador "
                      "la nombra por ID"),
-    "SIN-FETCH": ("SIN-FETCH: vía localizada pero no abierta; no se activa en bloque, "
-                  "requiere autorización de mesa citada en la nota"),
     "OBTENIDO-PARCIAL": ("OBTENIDO-PARCIAL: el residual necesita cobertura y sucesor "
                          "explícitos; no se activa en bloque"),
 }
 
+_RAZON_SIN_FETCH = ("SIN-FETCH: vía localizada pero no abierta; no se activa en bloque, "
+                    "requiere autorización de mesa citada en la nota")
+_RAZON_SONDA_SIN_AUTORIZAR = ("recomendación de /sonda sin autorización citada: "
+                              "permanece propuesta, no habilita adquisición")
+_RAZON_FECHA_INDETERMINADA = ("FECHA-INDETERMINADA: la nota trae «intento efectivo» "
+                              "con fecha inválida o indecidible; va a conciliación de "
+                              "mesa, nunca se infiere una fecha")
+
+# Centinela (H2, `ACTO GEN2-ADQ-CONTRATO-FIX`): distinto de `None` (sin
+# intento) y de cualquier `datetime.date` real -- una nota histórica cuyo
+# «intento efectivo» trae una fecha inválida o indecidible no se descarta
+# ni se infiere: se marca así, explícitamente, para que el llamador la
+# mande a conciliación en vez de tratarla como "sin intento previo" (que
+# la volvería urgente) o inventarle una fecha (que la volvería medible).
+FECHA_INDETERMINADA = object()
+
 _RE_INTENTO_EFECTIVO = re.compile(r"intento efectivo (\d{4}-\d{2}-\d{2})")
-_RE_DESCUBRIMIENTO = re.compile(r"descubrimiento de vía (\d{4}-\d{2}-\d{2})")
-_RE_FECHA_SUELTA = re.compile(r"(\d{4}-\d{2}-\d{2})")
 
 
 def fecha_intento_efectivo(nota):
-    """Fecha del último INTENTO DE DESCARGA registrado en la nota -- no la
-    fecha de descubrimiento de vía.
+    """El ÚLTIMO INTENTO DE DESCARGA registrado en la nota, por VALOR de
+    fecha -- no el primero que aparece en el texto (H2, revisión del
+    9/sep). Solo cuentan entradas explícitamente marcadas `intento
+    efectivo <fecha>`; fechas en nombres de archivo, citas documentales,
+    enlaces o `descubrimiento de vía <fecha>` (la que escribe `/sonda`)
+    NUNCA entran al cómputo -- por construcción, porque el regex no las
+    busca fuera de esa etiqueta explícita.
 
-    P2 verbatim: «fecha de descubrimiento de vía separada de fecha de
-    intento efectivo (sondear no reinicia el plazo de descarga)». Una nota
-    que solo trae `descubrimiento de vía <fecha>` (la que escribe `/sonda`)
-    devuelve None: no hay intento del que contar antigüedad, y no se puede
-    tomar esa fecha como si hubiera habido descarga."""
+    Devuelve `None` si no hay ningún `intento efectivo` en la nota,
+    `FECHA_INDETERMINADA` si hay uno o más pero NINGUNO trae una fecha de
+    calendario válida (nota histórica indecidible -- va a conciliación de
+    mesa, nunca se presenta una fecha inferida como medida), o la fecha
+    máxima entre las válidas si hay al menos una."""
     nota = nota or ""
-    m = _RE_INTENTO_EFECTIVO.search(nota)
-    if m:
-        return datetime.date.fromisoformat(m.group(1))
-    sin_descubrimiento = _RE_DESCUBRIMIENTO.sub("", nota)
-    m = _RE_FECHA_SUELTA.search(sin_descubrimiento)
-    return datetime.date.fromisoformat(m.group(1)) if m else None
+    crudos = _RE_INTENTO_EFECTIVO.findall(nota)
+    if not crudos:
+        return None
+    validas = []
+    for crudo in crudos:
+        try:
+            validas.append(datetime.date.fromisoformat(crudo))
+        except ValueError:
+            continue
+    if validas:
+        return max(validas)
+    return FECHA_INDETERMINADA
 
 
-def _autorizada(nota):
+# A.16: token, no prosa. Una autorización afirmativa e inequívoca se cita
+# como `AUTORIZADA:<quién>/<AAAA-MM-DD>/<objeto>` -- el objeto tiene que
+# ser la `fuente_canonica` de la fila que se está evaluando, para que una
+# cita ajena a otra fila nunca autorice ésta.
+_RE_TOKEN_AUTORIZADA = re.compile(
+    r"AUTORIZADA:(?P<quien>[^/\s]+)/(?P<fecha>\d{4}-\d{2}-\d{2})/(?P<objeto>[^\s/]+)"
+)
+# Negación explícita, con guion o con espacio -- se comprueba ANTES que el
+# token y manda sobre cualquier coincidencia de éste. H1 (revisión del
+# 9/sep): un regex con límites de palabra no basta por sí solo --
+# "NO-AUTORIZADA" contiene "AUTORIZADA" como palabra completa igual que
+# una autorización afirmativa; lo que distingue el caso es la negación
+# explícita, comprobada aparte y con prioridad, no un límite de palabra
+# más fino.
+_RE_NEGACION_AUTORIZADA = re.compile(r"\bNO[-\s]+AUTORIZAD[AO]S?\b", re.IGNORECASE)
+
+
+def _autorizada(nota, fuente):
     """Un handoff de `/sonda` habilita adquisición solo con los cuatro
     elementos que P2 exige: objeto faltante + vía nueva + autorización/cita
-    + invocación por ID. Aquí se comprueba el que falta más a menudo y el
-    único mecánicamente legible: la AUTORIZACIÓN citada. Una
-    `SONDA-LATERAL-RECOMENDADA` sin ella permanece propuesta."""
-    return "AUTORIZADA" in (nota or "")
+    + invocación por ID. Esta función resuelve el que falta más a menudo y
+    el único mecánicamente legible: la AUTORIZACIÓN citada, explícita e
+    inequívoca (A.16: token, no prosa), con referencia verificable a
+    quién/cuándo/objeto -- el objeto tiene que ser ESTA fila (`fuente`).
+
+    Ausencia, negación (`NO-AUTORIZADA` / `NO AUTORIZADA`, con guion o con
+    espacio) o una cita que nombra otra fila -> `False`. Una
+    `SONDA-LATERAL-RECOMENDADA` sin esto permanece propuesta."""
+    nota = nota or ""
+    if _RE_NEGACION_AUTORIZADA.search(nota):
+        return False
+    m = _RE_TOKEN_AUTORIZADA.search(nota)
+    if not m:
+        return False
+    return m.group("objeto") == fuente
 
 
 def _clave_orden(fila):
@@ -379,8 +435,9 @@ def _clave_orden(fila):
     origen (`academico-N`, `civil-N`, …), que no comparte escala."""
     fuente, _estado, prioridad, nota = fila
     intento = fecha_intento_efectivo(nota)
-    sin_intento = 0 if intento is None else 1
-    orden_intento = intento.toordinal() if intento else 0
+    es_fecha = isinstance(intento, datetime.date)
+    sin_intento = 0 if (intento is None or not es_fecha) else 1
+    orden_intento = intento.toordinal() if es_fecha else 0
     try:
         prio = (0, float(prioridad))
     except (TypeError, ValueError):
@@ -405,25 +462,53 @@ def selecciona_filas(filas, corte, maximo=5, nombradas=None):
         fuente, estado, prioridad, nota = fila
         base = (estado or "").split("(")[0].strip()
         pedida = fuente in nombradas
-        if base in _RAZON_POR_ESTADO and not pedida:
-            razon = _RAZON_POR_ESTADO[base]
-            if base == "SIN-FETCH" and "SONDA-LATERAL-RECOMENDADA" in (nota or ""):
-                razon = ("recomendación de /sonda sin autorización citada: "
-                         "permanece propuesta, no habilita adquisición")
+
+        # H3 (ACTO GEN2-ADQ-CONTRATO-FIX): SIN-FETCH NUNCA entra a
+        # candidatas desde aquí, ni siquiera con `pedida` -- "no hay rama
+        # de excepción que salte estados en el selector". La única puerta
+        # hacia PENDIENTE es la transformación canónica
+        # (`transforma_sin_fetch_autorizada`, vía el escritor
+        # `tsv_crudo.py::upsert_fila`); la invocación nominal solo
+        # selecciona sobre estados YA transformados.
+        if base == "SIN-FETCH":
+            razon = _RAZON_SIN_FETCH
+            if "SONDA-LATERAL-RECOMENDADA" in (nota or ""):
+                razon = _RAZON_SONDA_SIN_AUTORIZAR
+            if pedida:
+                razon += (" -- la invocación nominal no salta estados en el "
+                          "selector: requiere transformación canónica previa "
+                          "(transforma_sin_fetch_autorizada)")
             excluidos.append({"id": fuente, "estado": estado, "razon": razon})
             continue
+
+        if base in _RAZON_POR_ESTADO and not pedida:
+            excluidos.append({"id": fuente, "estado": estado,
+                              "razon": _RAZON_POR_ESTADO[base]})
+            continue
+
         if base == "PENDIENTE":
+            # P1: la invocación nominal NO sustituye la autorización
+            # cuando el contrato (handoff de /sonda) exige ambas -- por
+            # eso esta comprobación ya no se salta con `pedida`.
             if ("SONDA-LATERAL-RECOMENDADA" in (nota or "")
-                    and not _autorizada(nota) and not pedida):
+                    and not _autorizada(nota, fuente)):
                 excluidos.append({"id": fuente, "estado": estado,
-                                  "razon": ("recomendación de /sonda sin autorización "
-                                            "citada: permanece propuesta, no habilita "
-                                            "adquisición")})
+                                  "razon": _RAZON_SONDA_SIN_AUTORIZAR})
+                continue
+            intento = fecha_intento_efectivo(nota)
+            if intento is FECHA_INDETERMINADA and not pedida:
+                excluidos.append({"id": fuente, "estado": estado,
+                                  "razon": _RAZON_FECHA_INDETERMINADA})
                 continue
             candidatas.append(fila)
             continue
+
         if base == "NO-OBTENIDO-POR-ESTE-AGENTE":
             intento = fecha_intento_efectivo(nota)
+            if intento is FECHA_INDETERMINADA and not pedida:
+                excluidos.append({"id": fuente, "estado": estado,
+                                  "razon": _RAZON_FECHA_INDETERMINADA})
+                continue
             if pedida or intento is None:
                 candidatas.append(fila)
                 continue
@@ -450,12 +535,17 @@ def selecciona_filas(filas, corte, maximo=5, nombradas=None):
                                        f"(maximo={maximo})"})
             continue
         intento = fecha_intento_efectivo(nota)
+        es_fecha = isinstance(intento, datetime.date)
+        if es_fecha:
+            razon = f"último intento efectivo {intento.isoformat()}, {(corte - intento).days} días"
+        elif intento is FECHA_INDETERMINADA:
+            razon = _RAZON_FECHA_INDETERMINADA + " (seleccionada por invocación nominal)"
+        else:
+            razon = "sin intento previo registrado"
         elegidos.append({
             "id": fuente, "estado": estado, "prioridad": prioridad,
-            "intento_efectivo": intento.isoformat() if intento else None,
-            "razon": ("sin intento previo registrado" if intento is None
-                      else f"último intento efectivo {intento.isoformat()}, "
-                           f"{(corte - intento).days} días")})
+            "intento_efectivo": intento.isoformat() if es_fecha else None,
+            "razon": razon})
     return {"corte": corte.isoformat(), "maximo": maximo,
             "elegidos": elegidos, "excluidos": excluidos}
 
@@ -475,6 +565,52 @@ def lee_cola(ruta=RUTA_COLA):
             filas.append((d.get("fuente_canonica", ""), d.get("estado_A4A5", ""),
                           d.get("prioridad", ""), d.get("nota", "")))
     return filas
+
+
+def transforma_sin_fetch_autorizada(fuente, ruta=RUTA_COLA):
+    """Transformación CANÓNICA (P3/H3, `ACTO GEN2-ADQ-CONTRATO-FIX`): una
+    fila `SIN-FETCH` con autorización afirmativa e inequívoca
+    (`_autorizada`) pasa a su estado accionable (`PENDIENTE`), con la cita
+    conservada en `nota` -- ANTES de que el selector la considere, nunca al
+    revés. El escritor sigue siendo
+    `tools/curador_registro/tsv_crudo.py::upsert_fila`; esta función solo
+    decide y arma la fila nueva, no reimplementa el TSV.
+
+    Es la ÚNICA puerta hacia PENDIENTE para una fila `SIN-FETCH`: el
+    selector (`selecciona_filas`) nunca salta ese estado por invocación
+    nominal, con o sin autorización -- ver H3.
+
+    Devuelve `(ok: bool, razon: str)`. No transforma nada si la fila no
+    existe, si su estado actual no es `SIN-FETCH`, o si su autorización no
+    es afirmativa e inequívoca para ESTA fila."""
+    ruta_tsv_crudo = os.path.join(RAIZ, "tools", "curador_registro")
+    if ruta_tsv_crudo not in sys.path:
+        sys.path.insert(0, ruta_tsv_crudo)
+    import tsv_crudo
+    from pathlib import Path
+
+    ruta_p = Path(ruta)
+    lineas = tsv_crudo.leer_lineas(ruta_p)
+    if not lineas:
+        return False, f"{ruta}: archivo vacío, no se transforma nada"
+    campos = lineas[0].split("\t")
+    filas = tsv_crudo.leer_dicts(ruta_p)
+    fila = next((f for f in filas if f.get("fuente_canonica") == fuente), None)
+    if fila is None:
+        return False, f"{fuente}: no existe en {ruta}"
+    base = (fila.get("estado_A4A5") or "").split("(")[0].strip()
+    if base != "SIN-FETCH":
+        return False, (f"{fuente}: estado actual {fila.get('estado_A4A5')!r} no es "
+                       f"SIN-FETCH, no se transforma")
+    nota = fila.get("nota", "")
+    if not _autorizada(nota, fuente):
+        return False, (f"{fuente}: sin autorización afirmativa e inequívoca citada "
+                       f"para esta fila; permanece SIN-FETCH")
+    nueva = dict(fila)
+    nueva["estado_A4A5"] = "PENDIENTE"
+    tsv_crudo.upsert_fila(ruta_p, nueva, campos, clave="fuente_canonica")
+    return True, (f"{fuente}: SIN-FETCH -> PENDIENTE (transformación canónica, "
+                  f"autorización citada conservada en nota)")
 
 
 SECCIONES = [
@@ -527,7 +663,19 @@ def main():
                     help="tope de filas de la caminata proyectada (default 5)")
     ap.add_argument("--nombrada", action="append", default=[],
                     help="ID que el operador pide explícitamente; repetible")
+    ap.add_argument("--transforma-sin-fetch", metavar="ID",
+                    help="transformación canónica (H3): con autorización afirmativa "
+                         "e inequívoca ya asentada en la nota de esa fila, la pasa de "
+                         "SIN-FETCH a PENDIENTE. Única puerta -- el selector nunca "
+                         "salta ese estado por invocación nominal")
     a = ap.parse_args()
+    if a.transforma_sin_fetch:
+        ok, razon = transforma_sin_fetch_autorizada(a.transforma_sin_fetch)
+        if a.json:
+            print(json.dumps({"ok": ok, "razon": razon}, ensure_ascii=False))
+        else:
+            print(("OK: " if ok else "NO: ") + razon)
+        return 0 if ok else 1
     if a.selecciona:
         r = selecciona_filas(lee_cola(), corte=datetime.date.today(),
                              maximo=a.maximo, nombradas=a.nombrada)
