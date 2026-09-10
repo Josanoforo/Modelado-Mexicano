@@ -52,8 +52,20 @@ ENMIENDA fechada a la escala de la spec sellada (que no preveía esta clase de
 hueco), no una edición de esa spec ni una regla de extracción improvisada
 sobre la marcha.
 
+## NO-CORRIDO / RESERVAS
+
+| NC | Qué no se corrió | Razón | Impacto | Sucesor |
+|---|---|---|---|---|
+| NC-0142 | Adjudicación de banda (GANA/PIERDE/EMPATE) de la pareada primaria TRANSFERENCIA contra la escala B-bis sellada | `NO-VERIFICABLE-AQUÍ` — el único extractor de `valor_extraido` disponible (`tools/extrae_l_v1_1.py`) no está validado contra el formato real-corpus de las 96 capturas de las 6 celdas con árbitro (0/96 traen el encabezado que busca; verificado a mano que su fallback captura cifras de contexto, no la estimación pedida) | El duelo NO adjudica la tesis de transferencia de la misma generación en este acto; el marcador sigue `INCONCLUSO` (`#651`) con una segunda razón declarada, no resuelta | Acto sucesor que construya y selle un extractor de `valor_extraido` calibrado contra el formato real de `corridas-L/*__v1_3.json`, luego re-lance la pareada con ese instrumento |
+
+Las tres piezas nombradas por el encargo (P1 espejo del contrato, P2 el
+cómputo, P3 el veredicto) se ejecutaron enteras — lo no corrido es,
+puntualmente, la ADJUDICACIÓN de banda de la pareada primaria (dentro de
+P2/P3), no una pieza completa omitida.
+
 ## Estado
 
-`ACTO GEN2-F5-DUELO-CALC` — `VIVO`. `## NO-CORRIDO / RESERVAS` y
-`## CONSUMIDO` se añaden al cierre, en un commit posterior sobre esta misma
-rama (paso 10-11 de `/acto`).
+`ACTO GEN2-F5-DUELO-CALC` — `VIVO`, P1/P2/P3 completos y cascada
+(`ADR-448`, `L0`, `registro-rotulos`, `NC-0142`) ya asentada. `## CONSUMIDO`
+se añade en un commit posterior sobre esta misma rama, citando el número
+real del PR (paso 11 de `/acto` — nunca antes de que el PR exista).
