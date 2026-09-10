@@ -1,0 +1,125 @@
+{
+ "corrida_id": "CALC-R-TRA-M-07-v3--9557bf487772",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "yaml": "6.0.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "SI",
+  "firma": "HEREDA-CONTADOR-DE=CALC-R-TRA-M-07-v2; SUCESOR-TECNICO-DE-REPLAY",
+  "generacion": "GEN2",
+  "tipo": "ARBITRO-R-DE-CELDA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-10T16:26:37Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 401,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "9557bf4877729b1bc1fa61ce7ae19f8556665484",
+  "git_rama": "acto/gen2-r-completa-marco",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "9557bf4877729b1bc1fa61ce7ae19f8556665484",
+ "input_ids": [
+  "encig2021_csv",
+  "IN-CODIGO-ARBITRA",
+  "IN-CODIGO-CORRER-R",
+  "IN-CODIGO-DBFMINI",
+  "IN-CODIGO-SVYSTAT",
+  "IN-CODIFICACION-R-V1-2",
+  "IN-MARCO-R-V1-3"
+ ],
+ "input_sha256": {
+  "IN-CODIFICACION-R-V1-2": "41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e",
+  "IN-CODIGO-ARBITRA": "d668829386db9fba8ca6a7c2ed2955cb391e540e0e5ae54c839def3580446cdf",
+  "IN-CODIGO-CORRER-R": "02896f92aa075b2039eaab5554502779851cb047da6adffc779d33283808514a",
+  "IN-CODIGO-DBFMINI": "a14952e7f754b6921c78312cf1f5c2156b73d4b82f12fa6f9dad72740160335b",
+  "IN-CODIGO-SVYSTAT": "5d97b1362dbf31845bb2080f479ac3022921579546a7b327cbd7e1204e4959de",
+  "IN-MARCO-R-V1-3": "f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a",
+  "encig2021_csv": "c92ea34c7c57237c49ca3d8d99382e340b5939c371ce820332876f7c4c62c56a"
+ },
+ "parametros": {
+  "codificacion": "y=1 si P8_3_1=='1' (Si); y=0 si=='2' (No); 9 (No sabe / no responde) fuera",
+  "estrato": "EST_DIS",
+  "id_celda": "TRA-M-07",
+  "payload_id": "encig2021_csv",
+  "ponderador": "FAC_P18",
+  "tabla": "conjunto_de_datos_encig2021_01_sec1_A_3_4_5_8_9_10/conjunto_de_datos/conjunto_de_datos_encig2021_01_sec1_A_3_4_5_8_9_10.csv",
+  "universo": "la tabla ya es el universo de la seccion VIII (39930 filas = 37168 No + 2595 Si + 167 No sabe, exacto, cero blancos); sin filtro adicional",
+  "upm": "UPM_DIS",
+  "variable": "P8_3_1"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-R-TRA-M-07-EE",
+  "RESULT-R-TRA-M-07-ESTADO",
+  "RESULT-R-TRA-M-07-IC-HI",
+  "RESULT-R-TRA-M-07-IC-LO",
+  "RESULT-R-TRA-M-07-MASA-PONDERADA",
+  "RESULT-R-TRA-M-07-METODO-IC",
+  "RESULT-R-TRA-M-07-N",
+  "RESULT-R-TRA-M-07-N-CODIGO-EXCLUIDO",
+  "RESULT-R-TRA-M-07-N-ESTRATOS",
+  "RESULT-R-TRA-M-07-N-ESTRATOS-UPM-UNICA",
+  "RESULT-R-TRA-M-07-N-FALTANTES-EXCLUIDOS",
+  "RESULT-R-TRA-M-07-N-FILAS-TABLA",
+  "RESULT-R-TRA-M-07-N-FUERA-UNIVERSO",
+  "RESULT-R-TRA-M-07-N-SIN-PONDERADOR",
+  "RESULT-R-TRA-M-07-N-UPM",
+  "RESULT-R-TRA-M-07-PUNTO"
+ ],
+ "script_blob_sha256": "6c2abddbc176e94e1b52ea57bd17d77fedaf998bc8557f19a075ba9bd1d7866f",
+ "script_path": "data/corrida0/CALC-R-TRA-M-07-v3/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-R-TRA-M-07-v3",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "7d9d281e466ada06ef89c8b54972fb7632e80fe9be33d82d0d98d1e260c3095c",
+ "spec_yaml_sha256": "d725ec5a0c1a8a77a64be932e1b971bef11ee4503240e22e8c9aada150a360c3",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "punto y varianza deterministas; enteros/texto exactos",
+  "tipo": "flotante"
+ }
+}
