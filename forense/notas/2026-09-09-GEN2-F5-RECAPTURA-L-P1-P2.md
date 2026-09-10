@@ -186,10 +186,10 @@ históricas (648 total), con sufijo `__v1_3` que las distingue por nombre.
 
 ## Cascada
 
-Cierre completo: `ADR-444` (`canon/gobernanza-v1_15.md`), `L0`
+Cierre completo: `ADR-445` (`canon/gobernanza-v1_15.md`), `L0`
 (`canon/estado-programa-v1_12.md`), rótulo `GEN2-F5-RECAPTURA-L` censado
 (`canon/registro-rotulos.tsv`), reconciliados con
-`tools/cierre_acto.py --aplica` (443→444 en los tres anclajes). `NC-0134`
+`tools/cierre_acto.py --aplica` (444→445 en los tres anclajes, tras la colisión con `ADR-444` de `ACTO GEN2-ADQ-CONTRATO-FIX`). `NC-0135` (renumerada de `NC-0134`, que `PR #671` tomó primero para otro asunto)
 CERRADA. El encargo, con su tabla NO-CORRIDO/RESERVAS (vacía — las tres
 piezas se ejecutaron) y `Estado: CONSUMIDO`, vive en
 `forense/encargos/2026-09-09-GEN2-F5-RECAPTURA-L.md` (0-bis, A.3).

@@ -74,23 +74,50 @@ había nada elegible» de «el selector se equivocó». La herramienta NO escrib
 la cola ni descarga: proyecta. El escritor canónico sigue siendo
 `tools/curador_registro/tsv_crudo.py::upsert_fila`.
 
-**Antigüedad se cuenta desde el INTENTO EFECTIVO, no desde el sondeo.** La
-nota distingue `intento efectivo <fecha>` (hubo descarga intentada) de
+**Antigüedad se cuenta desde el INTENTO EFECTIVO, no desde el sondeo, y solo
+la ÚLTIMA cuenta** (`ACTO GEN2-ADQ-CONTRATO-FIX`, P2/H2, 9/sep/2026). La nota
+distingue `intento efectivo <fecha>` (hubo descarga intentada) de
 `descubrimiento de vía <fecha>` (lo que escribe `/sonda`). Sondear **no**
 reinicia el plazo de descarga: una fila cuya nota solo trae descubrimiento de
-vía se trata como sin intento previo, no como intentada hoy.
+vía se trata como sin intento previo, no como intentada hoy. Cuando la nota
+trae varias menciones `intento efectivo <fecha>` (orden textual no
+determinado), se toma la de **valor** más reciente, nunca la primera que
+aparece en el texto; una fecha en un nombre de archivo, una cita documental o
+un enlace **nunca** entra al cómputo. Una mención con fecha de calendario
+inválida es `FECHA-INDETERMINADA` (va a conciliación de mesa) — no se
+descarta como "sin intento" ni se infiere como "hoy".
 
-**Handoff autorizado — cuatro elementos, no tres.** Una candidata que llega
-de `/sonda` habilita adquisición solo si la nota trae: (a) el objeto
+**Handoff autorizado — cuatro elementos, no tres, y la autorización es un
+TOKEN, no prosa** (`ACTO GEN2-ADQ-CONTRATO-FIX`, P1/H1). Una candidata que
+llega de `/sonda` habilita adquisición solo si la nota trae: (a) el objeto
 faltante, (b) la vía nueva, (c) la **autorización con su cita**, y (d) el
-modo de invocación por ID. Una `SONDA-LATERAL-RECOMENDADA` sin autorización
-citada **permanece propuesta** y el selector la excluye con esa razón —
-recomendar no es autorizar (ver §6-bis).
+modo de invocación por ID. La cita de (c) se escribe
+`AUTORIZADA:<quién>/<AAAA-MM-DD>/<objeto>`, con `<objeto>` igual a la
+`fuente_canonica` de ESA fila — una cita que nombra otra fila no la
+autoriza. Ausencia, negación (`NO-AUTORIZADA` / `NO AUTORIZADA`, con guion o
+con espacio) o ambigüedad → `SONDA-LATERAL-RECOMENDADA` **permanece
+propuesta** y el selector la excluye con esa razón — recomendar no es
+autorizar (ver §6-bis). La invocación nominal (`--nombrada`) **no sustituye**
+la autorización cuando el contrato exige ambas.
 
 **No se activan en bloque** `SIN-FETCH`, `OBTENIDO-PARCIAL` ni los negativos.
 Un objeto completo conserva `OBTENIDO`; el residual lleva cobertura y sucesor
-explícitos. El operador puede nombrar cualquiera de ellos por ID
-(`--nombrada`), y eso es autoridad humana, no barrido automático.
+explícitos. El operador puede nombrar por ID (`--nombrada`) cualquiera de los
+estados de arriba salvo `SIN-FETCH` — eso es autoridad humana, no barrido
+automático, pero nunca un salto de estado en el selector.
+
+**`SIN-FETCH` no tiene excepción nominal en el selector** (`ACTO
+GEN2-ADQ-CONTRATO-FIX`, P3/H3): nombrarla por `--nombrada` no la activa. La
+única puerta hacia `PENDIENTE` (su estado accionable) es la transformación
+CANÓNICA — `python3 tools/adq_doctor.py --transforma-sin-fetch <ID>` —, que
+exige la misma autorización afirmativa e inequívoca de arriba ya asentada en
+la nota de esa fila, y escribe con el escritor de siempre
+(`tools/curador_registro/tsv_crudo.py::upsert_fila`). El recorrido correcto
+de una candidata de `/sonda` es: propuesta → autorización asentada en la
+nota → `--transforma-sin-fetch` la pasa a `PENDIENTE` → **entonces** el
+selector (nominal o no) la camina como cualquier otra `PENDIENTE`. Saltarse
+el paso de transformación y solo nombrar la fila no basta — nunca bastó,
+aunque pareciera que sí.
 
 Elegibles para esta caminata, en este orden:
 

@@ -5541,6 +5541,7 @@ def t_cron_huellas_adq(texto, fecha):
             "invocado": _campo("invocado"),
             "motivo": _campo("motivo"),
             "exit": _campo("exit"),
+            "publicacion": _campo("publicacion"),
             "run_id": _campo("run_id"),
         })
     return huellas
@@ -5647,11 +5648,26 @@ def _t_cron_commits_censo(fecha, timeout=20):
     return prefijos, cuerpo_adq
 
 
+def _t_cron_publicacion_ok(h):
+    """H5 (`ACTO GEN2-ADQ-CONTRATO-FIX`, 9/sep/2026): «terminar» y
+    «publicar» son dos cosas. `publicacion=` es el campo que el runner ya
+    escribe (OK / FALLIDA(n)) para declarar si el censo/push/PR de esa
+    corrida realmente llegó al remoto. Ausente (huella histórica anterior
+    a este campo) es COMPATIBLE -- se conserva su tratamiento declarado,
+    no se reinterpreta por la ausencia; cualquier valor explícito distinto
+    de `OK` es publicación fallida."""
+    p = h.get("publicacion")
+    return p is None or p == "OK"
+
+
 def _t_cron_exitosa(h):
-    """Una huella acredita el día si el runner invocó al agente y el
-    agente cerró en 0. `invocado=no` con cualquier `PARO-*` no acredita,
-    aunque el proceso haya salido limpio."""
-    return h.get("invocado") == "si" and h.get("exit") == "0"
+    """Una huella acredita el día si el runner invocó al agente, el
+    agente cerró en 0 Y la publicación de esa corrida no fue declarada
+    fallida (H5: `invocado=si`/`exit=0` acredita que el AGENTE terminó,
+    no que la corrida PUBLICÓ). `invocado=no` con cualquier `PARO-*` no
+    acredita, aunque el proceso haya salido limpio."""
+    return (h.get("invocado") == "si" and h.get("exit") == "0"
+            and _t_cron_publicacion_ok(h))
 
 
 def _t_cron_rotula(h):
@@ -5679,8 +5695,8 @@ def t_cron_estado(fecha, prefijos, cuerpo_adq,
     `SIN-EVIDENCIA-NO-VERIFICABLE`, nunca `SIN-HUELLA`.
 
     Estados: COMPLETO · COMPLETO-CON-INTENTO-POSTERIOR-FALLIDO ·
-    ARRANCO-FALLO · CENSO-SIN-CIERRE · SIN-HUELLA ·
-    SIN-EVIDENCIA-NO-VERIFICABLE."""
+    AGENTE-OK-PUBLICACION-FALLIDA · ARRANCO-FALLO · CENSO-SIN-CIERRE ·
+    SIN-HUELLA · SIN-EVIDENCIA-NO-VERIFICABLE."""
     dia = fecha.isoformat()
 
     # Huellas del día, de las dos vías, deduplicadas por run_id -- nunca
@@ -5716,6 +5732,22 @@ def t_cron_estado(fecha, prefijos, cuerpo_adq,
                     f"[{_t_cron_rotula(ultimo)}] cerró "
                     f"invocado={ultimo['invocado']} motivo={ultimo['motivo']} "
                     f"exit={ultimo['exit']}{nota_hist}")
+        # H5 (`ACTO GEN2-ADQ-CONTRATO-FIX`): el agente puede terminar limpio
+        # (invocado=si exit=0) y aun así no acreditar el día si la
+        # publicación falló -- eso NO es "ninguno exitoso" en el sentido
+        # de ARRANCO-FALLO (el agente sí corrió y cerró bien), así que se
+        # nombra aparte en vez de mezclarlo con un fallo del propio agente.
+        agente_ok_publicacion_fallida = [
+            h for h in huellas
+            if h.get("invocado") == "si" and h.get("exit") == "0"
+            and not _t_cron_publicacion_ok(h)
+        ]
+        if agente_ok_publicacion_fallida:
+            u = agente_ok_publicacion_fallida[-1]
+            return ("AGENTE-OK-PUBLICACION-FALLIDA",
+                    f"censo del {dia}: el agente terminó limpio "
+                    f"[{_t_cron_rotula(u)}] pero publicacion={u.get('publicacion')} "
+                    f"-- terminar no es publicar, el día no se acredita")
         return ("ARRANCO-FALLO",
                 f"censo del {dia}: {len(huellas)} intento(s), ninguno exitoso; "
                 f"último [{_t_cron_rotula(ultimo)}] invocado={ultimo['invocado']} "

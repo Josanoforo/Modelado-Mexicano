@@ -49,7 +49,7 @@ vías). Regresión verde, corrida resumida sin pérdida.
 |---|---|---|---|---|
 | — | Ninguno. Las tres piezas (P1, P2, P3) se ejecutaron completas. | — | — | — |
 
-`NC-0134` (P3, diferido a decisión de mesa) **CIERRA** con este acto — mesa
+`NC-0135` (P3, diferido a decisión de mesa; renumerada de `NC-0134`, que `ACTO GEN2-ADQ-CONTRATO-FIX`/`PR #671` tomó primero para otro asunto) **CIERRA** con este acto — mesa
 autorizó el lanzamiento tras confirmar que P3 está dentro del encargo.
 
 **Contador:** no se movió — las 224 capturas son insumo sellado del duelo, no
@@ -60,8 +60,8 @@ una medición; el `CALC` sucesor (`ACTO GEN2-F5-DUELO-CALC`) cuenta.
 `ACTO GEN2-F5-RECAPTURA-L` — **CONSUMIDO**: P1, P2 y P3 completos y
 verificados. `PR #669` (rama `acto/gen2-f5-recaptura-l`, base `origin/main =
 ffeeca2c`, ejecutado en tres tramos contra `origin/main = ffeeca2c → cc1cfe2
-(PR #668) → bc2aeb6 (PR #670)`). Cascada completa: `ADR-444`
+(PR #668) → bc2aeb6 (PR #670) → b80eee8 (PR #671)`). Cascada completa: `ADR-445` (renumerada de `444`, tomado por `ACTO GEN2-ADQ-CONTRATO-FIX`)
 (`canon/gobernanza-v1_15.md`), `L0` (`canon/estado-programa-v1_12.md`),
 rótulo `GEN2-F5-RECAPTURA-L` censado (`canon/registro-rotulos.tsv`),
-`NC-0134` CERRADA. Sucesor: `ACTO GEN2-F5-DUELO-CALC` (consume las 224
+`NC-0135` CERRADA. Sucesor: `ACTO GEN2-F5-DUELO-CALC` (consume las 224
 capturas selladas + los seis `R` GEN2, ejecuta la escala B-bis pre-declarada).
