@@ -2922,15 +2922,37 @@ def _identidad_replay(ejec: dict) -> tuple[str, str, str]:
 
 def _evidencia_vigente(ev: dict, ejec: dict) -> tuple[bool, str]:
     """`(vigente, razon)`. Un cambio de identidad NO invalida la evidencia
-    como historia -- invalida presentarla como vigente para ESTE objeto."""
+    como historia -- invalida presentarla como vigente para ESTE objeto.
+
+    H6 (revision adversarial, `ACTO GEN2-DERIVADORES-FIX`): un campo de
+    identidad VACIO en el asiento no es "sin diferencia que declarar" --
+    es identidad que NUNCA se registro, y no certifica nada. Antes,
+    `if asentado and asentado != hoy` saltaba la comparacion entera cuando
+    `asentado` era `""` (o `None`), asi que un recibo REPRODUCE/IDENTICO
+    sin ningun hash quedaba `vigente=True` sin importar la identidad de
+    hoy -- el vacio actuaba como comodin. Ahora un asentado vacio es
+    SIEMPRE incompleto, nunca "no declaro diferencia". `"PENDIENTE"`
+    (SIN-INSUMOS-DECLARADO, el calculo que de verdad no tiene insumos) es
+    un VALOR -- no un vacio -- y se compara igual que cualquier otro."""
     spec_sha, script_sha, inputs = _identidad_replay(ejec)
     difieren = []
+    incompletos = []
     for campo, hoy in (("spec_yaml_sha256", spec_sha),
                        ("script_blob_sha256", script_sha),
                        ("input_sha256_efectivos", inputs)):
         asentado = (ev.get(campo) or "").strip()
-        if asentado and asentado != hoy:
+        if not asentado:
+            incompletos.append(campo)
+            continue
+        if asentado != hoy:
             difieren.append(f"{campo}: asentado={asentado} · hoy={hoy}")
+    if incompletos:
+        razon = (f"IDENTIDAD-INCOMPLETA: {', '.join(incompletos)} vacío(s) "
+                 f"en el asiento -- la ausencia de identidad nunca certifica "
+                 f"identidad")
+        if difieren:
+            razon += "; además " + " ; ".join(difieren)
+        return False, razon
     if difieren:
         return False, " ; ".join(difieren)
     return True, ""
