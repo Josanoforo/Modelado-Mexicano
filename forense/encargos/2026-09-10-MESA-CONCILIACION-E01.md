@@ -160,7 +160,7 @@ Esto acredita la medición histórica que se conserva. No demuestra que la
 cláusula sucesora sea evaluable con LAPOP 2019/2021/2023; ese alcance continúa
 en `NC-0043`/`ENCARGO-E06`.
 
-### NO-CORRIDO / RESERVAS
+## NO-CORRIDO / RESERVAS
 
 - ENCARGO-E02–ENCARGO-E11 no se ejecutan en este acto. Quedan autorizados y con los sucesores
   identificados en `forense/no-corrido.tsv` y la nota de cierre.
@@ -168,3 +168,25 @@ en `NC-0043`/`ENCARGO-E06`.
   se toca el scheduler real y no se modifican consumidores del motor.
 - D21 sigue sin decisión. Una cosecha F6 definitiva requiere evidencia futura;
   este acto no proclama ganador.
+
+---
+
+## CONSUMIDO
+
+PR #685, rama `acto/mesa-conciliacion-e01`, primer commit `9e45c45`.
+
+Resultado: D01–D20 asentadas; D21 no inventada; catorce NC cerradas por
+evidencia exacta; FP-234 ejecutada; FP-314/361/363 firmadas con sus ejecuciones
+visibles en NC-0151/0065/0064; FP-371 permanece abierta. El universo termina en
+69 NC abiertas y 75 cerradas. Los originales D11/D16 se archivan íntegros y
+conservan los hashes declarados arriba.
+
+Validación: pruebas dirigidas del digesto/estado en verde;
+`tests/check.py --baseline` VERDE, sin entradas nuevas frente al baseline;
+`git diff --check` limpio; `cierre_acto.py --sin-suite` reconcilia 454 ADR,
+una FP abierta, rótulo presente y cero NC huérfanas. La vista de mesa presenta
+NC-0103 y FP-361 como ya resueltas y no vuelve a pedirlas.
+
+No se ejecutó ENCARGO-E02–ENCARGO-E11, no se fusionó el PR y no se aplicó la
+derivación global de `corridas.tsv`: su dry-run mostró 35 transiciones de replay
+y no sustituye la evidencia efectiva que conserva abierta NC-0104.
