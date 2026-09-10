@@ -1,0 +1,120 @@
+{
+ "corrida_id": "CALC-R-FAM-M-07--c475b9d645f7",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "corridas-R/correr-R.py": "AUSENTE",
+  "pyreadstat solo si DTA": "AUSENTE",
+  "tests/svystat.py": "AUSENTE",
+  "tools/arbitra.py": "AUSENTE"
+ },
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "SI",
+  "firma": "FP-370; OBJETO=CALC-R-FAM-M-07:FAM-M-07",
+  "generacion": "GEN2",
+  "tipo": "ARBITRO-R-DE-CELDA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-10T04:42:09Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 400,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "c475b9d645f78c69085e54aba8fd88388b4c6acf",
+  "git_rama": "acto/gen2-r-completa-marco",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "c475b9d645f78c69085e54aba8fd88388b4c6acf",
+ "input_ids": [
+  "enigh2020_nc_csv",
+  "IN-CODIFICACION-R-V1-1",
+  "IN-MARCO-R-V1-3"
+ ],
+ "input_sha256": {
+  "IN-CODIFICACION-R-V1-1": "cf5dfb182f3c914fd8a91ce6d589ad745c507a8c3defad2d6459ee876c01f598",
+  "IN-MARCO-R-V1-3": "f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a",
+  "enigh2020_nc_csv": "47417cac13da7dce3a710d86c5767564101086a51666ec674acf27740e0701d4"
+ },
+ "parametros": {
+  "codificacion": "y=1 si remesas > 0; y=0 si remesas == 0 -- UMBRAL NUMERICO, no conjunto de codigos: remesas es monto continuo en pesos con 1389 valores distintos en 2020",
+  "estrato": "est_dis",
+  "id_celda": "FAM-M-07",
+  "payload_id": "enigh2020_nc_csv",
+  "ponderador": "factor",
+  "tabla": "conjunto_de_datos_concentradohogar_enigh_2020_ns/conjunto_de_datos/conjunto_de_datos_concentradohogar_enigh_2020_ns.csv",
+  "universo": "hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2020 Nueva Serie, sin filtro adicional (asi lo declara el marco v1_2); 89006 filas leidas, 0 vacios en remesas",
+  "upm": "upm",
+  "variable": "remesas"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-R-FAM-M-07-EE",
+  "RESULT-R-FAM-M-07-ESTADO",
+  "RESULT-R-FAM-M-07-IC-HI",
+  "RESULT-R-FAM-M-07-IC-LO",
+  "RESULT-R-FAM-M-07-MASA-PONDERADA",
+  "RESULT-R-FAM-M-07-METODO-IC",
+  "RESULT-R-FAM-M-07-N",
+  "RESULT-R-FAM-M-07-N-CODIGO-EXCLUIDO",
+  "RESULT-R-FAM-M-07-N-ESTRATOS",
+  "RESULT-R-FAM-M-07-N-ESTRATOS-UPM-UNICA",
+  "RESULT-R-FAM-M-07-N-FALTANTES-EXCLUIDOS",
+  "RESULT-R-FAM-M-07-N-FILAS-TABLA",
+  "RESULT-R-FAM-M-07-N-FUERA-UNIVERSO",
+  "RESULT-R-FAM-M-07-N-SIN-PONDERADOR",
+  "RESULT-R-FAM-M-07-N-UPM",
+  "RESULT-R-FAM-M-07-PUNTO"
+ ],
+ "script_blob_sha256": "0eb88595f4f20c8606662a9d4b9e28763e2d52762e1550418ef9966e2cf25894",
+ "script_path": "data/corrida0/CALC-R-FAM-M-07/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-R-FAM-M-07",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "d3b5fa16dd50ed0a8f95ca5a179b0190464a06624c1d8b6b176ec2d0c96b0999",
+ "spec_yaml_sha256": "41a87c091fae4c04b651b7b9e76b5963455f45ea6223f1e0ba6c22231c7ecd14",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "punto y varianza deterministas; enteros/texto exactos",
+  "tipo": "flotante"
+ }
+}

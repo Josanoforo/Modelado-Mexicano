@@ -1,0 +1,120 @@
+{
+ "corrida_id": "CALC-R-FAM-M-01-v2--98be8f02c99c",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "corridas-R/correr-R.py": "AUSENTE",
+  "pyreadstat solo si DTA": "AUSENTE",
+  "tests/svystat.py": "AUSENTE",
+  "tools/arbitra.py": "AUSENTE"
+ },
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "SI",
+  "firma": "FP-370; OBJETO=CALC-R-FAM-M-01-v2:FAM-M-01",
+  "generacion": "GEN2",
+  "tipo": "ARBITRO-R-DE-CELDA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-10T15:20:05Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 401,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "98be8f02c99cbb9c8219904aa0d282e24df92b30",
+  "git_rama": "acto/gen2-r-completa-marco",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "98be8f02c99cbb9c8219904aa0d282e24df92b30",
+ "input_ids": [
+  "enif2018_csv",
+  "IN-CODIFICACION-R-V1-1",
+  "IN-MARCO-R-V1-3"
+ ],
+ "input_sha256": {
+  "IN-CODIFICACION-R-V1-1": "be54679ee93018cea743d01a5999c0744a5416785ff2262214277786f29dfb37",
+  "IN-MARCO-R-V1-3": "f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a",
+  "enif2018_csv": "51f33ec74ccd596dc74b695587310d02e651923467255520aadc4d9fe13461d5"
+ },
+ "parametros": {
+  "codificacion": "y=1 si p9_9_4=='1' (Si); y=0 si=='2' (No); 9 (no sabe/no responde) fuera",
+  "estrato": "est_dis",
+  "id_celda": "FAM-M-01",
+  "payload_id": "enif2018_csv",
+  "ponderador": "fac_per",
+  "tabla": "tmodulo2",
+  "universo": "la tabla ya es ese universo (personas seleccionadas de tmodulo2, seccion 9.9); sin filtro adicional declarado en el diccionario",
+  "upm": "upm_dis",
+  "variable": "p9_9_4"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-R-FAM-M-01-EE",
+  "RESULT-R-FAM-M-01-ESTADO",
+  "RESULT-R-FAM-M-01-IC-HI",
+  "RESULT-R-FAM-M-01-IC-LO",
+  "RESULT-R-FAM-M-01-MASA-PONDERADA",
+  "RESULT-R-FAM-M-01-METODO-IC",
+  "RESULT-R-FAM-M-01-N",
+  "RESULT-R-FAM-M-01-N-CODIGO-EXCLUIDO",
+  "RESULT-R-FAM-M-01-N-ESTRATOS",
+  "RESULT-R-FAM-M-01-N-ESTRATOS-UPM-UNICA",
+  "RESULT-R-FAM-M-01-N-FALTANTES-EXCLUIDOS",
+  "RESULT-R-FAM-M-01-N-FILAS-TABLA",
+  "RESULT-R-FAM-M-01-N-FUERA-UNIVERSO",
+  "RESULT-R-FAM-M-01-N-SIN-PONDERADOR",
+  "RESULT-R-FAM-M-01-N-UPM",
+  "RESULT-R-FAM-M-01-PUNTO"
+ ],
+ "script_blob_sha256": "b06f7cdf3257f412e7758e5af26cc1784c07e57d1b013e12e86cd5a99384b892",
+ "script_path": "data/corrida0/CALC-R-FAM-M-01-v2/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-R-FAM-M-01-v2",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "c72b14cecdac2a2577db0080523c70d3b964af0f937ecce2187e380626608dd9",
+ "spec_yaml_sha256": "74d66456e54fe72821935dfb4bceb1c5d264a1279ce8124f3276d53d21b612aa",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "punto y varianza deterministas; enteros/texto exactos",
+  "tipo": "flotante"
+ }
+}

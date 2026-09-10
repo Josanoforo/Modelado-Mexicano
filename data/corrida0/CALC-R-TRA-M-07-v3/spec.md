@@ -1,0 +1,13 @@
+# `CALC-R-TRA-M-07-v3` — sucesor técnico de replay del árbitro R
+
+ **Corrección adversarial PR #680:** sucede al sello `-v2` sin mutarlo. FP-370 conserva su alcance y no se extiende a este identificador técnico. **Celda:** `TRA-M-07`.
+
+Hereda sin cambio los campos y resultados esperados congelados en `-v2`. Se crea después de la medición únicamente para completar la cadena de replay del estimando fijado en
+`codificacion-R-v1_2.tsv`, sucesora registral de v1.1 que conserva el estimando y explicita reservas: payload `encig2021_csv`,
+tabla `conjunto_de_datos_encig2021_01_sec1_A_3_4_5_8_9_10/conjunto_de_datos/conjunto_de_datos_encig2021_01_sec1_A_3_4_5_8_9_10.csv`, variable `P8_3_1`, universo `la tabla ya es el universo de la seccion VIII (39930 filas = 37168 No + 2595 Si + 167 No sabe, exacto, cero blancos); sin filtro adicional`,
+codificación `y=1 si P8_3_1=='1' (Si); y=0 si=='2' (No); 9 (No sabe / no responde) fuera`, ponderador `FAC_P18`, estrato
+`EST_DIS` y UPM `UPM_DIS`. Ninguno de esos campos se elige en la corrida.
+
+Salida esperada por nombre, nunca por valor: punto, EE/IC o reserva, n, masa,
+exclusiones, estratos y UPM. El medidor no abre L, corpus, M, TRIADA ni R legado.
+Este sucesor técnico no añade una medición: hereda el conteo único de la cadena desde `CALC-R-TRA-M-07-v2`, cuyo objeto firmado es la medición R de `TRA-M-07`.

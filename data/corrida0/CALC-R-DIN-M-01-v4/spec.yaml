@@ -1,0 +1,135 @@
+calc_id: CALC-R-DIN-M-01-v4
+repite_de: CALC-R-DIN-M-01-v3
+spec_md: spec.md
+spec_md_sha256: 391a86e1bd118fcde165a2058147d6c3764ec2c0453fec1ff298b2cbacc9233f
+script: data/corrida0/CALC-R-DIN-M-01-v4/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: ARBITRO-R-DE-CELDA
+  cuenta_gen2: SI
+  validacion_independiente: NO-HECHA
+  firma: HEREDA-CONTADOR-DE=CALC-R-DIN-M-01-v2; SUCESOR-TECNICO-DE-REPLAY
+inputs:
+- id: ennvih1_2002_hogar_dta
+  origen: manifiesto
+- id: ennvih1_2002_ponderador
+  origen: manifiesto
+- id: IN-CODIGO-ARBITRA
+  origen: repo
+  ruta: tools/arbitra.py
+  sha256: d668829386db9fba8ca6a7c2ed2955cb391e540e0e5ae54c839def3580446cdf
+- id: IN-CODIGO-CORRER-R
+  origen: repo
+  ruta: forense/prereg-duelo-v2/corridas-R/correr-R.py
+  sha256: 02896f92aa075b2039eaab5554502779851cb047da6adffc779d33283808514a
+- id: IN-CODIGO-DBFMINI
+  origen: repo
+  ruta: tests/dbfmini.py
+  sha256: a14952e7f754b6921c78312cf1f5c2156b73d4b82f12fa6f9dad72740160335b
+- id: IN-CODIGO-SVYSTAT
+  origen: repo
+  ruta: tests/svystat.py
+  sha256: 5d97b1362dbf31845bb2080f479ac3022921579546a7b327cbd7e1204e4959de
+- id: IN-CODIFICACION-R-V1-2
+  origen: repo
+  ruta: forense/prereg-duelo-v2/codificacion-R-v1_2.tsv
+  sha256: 41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e
+- id: IN-MARCO-R-V1-3
+  origen: repo
+  ruta: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
+  sha256: f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a
+variables:
+- archivo: ehh02dta_all/ehh02dta_b3b/iiib_cr.dta
+  variable: cr27
+universo: 19802 filas del libro 3B (seccion CR) de ENNViH-1 2002; cr27 tiene etiqueta 'TIENE AHORROS' con 2665 en '1', 17074
+  en '3', 60 en '7' y 3 nulos; sin filtro adicional
+filtros: solo los implícitos en la codificacion sellada; sin filtro adicional
+ponderador: fac_3b@ehh02w_all/ehh02w_b3b.dta[folio+ls]
+transformacion: y=1 si cr27=='1' (Si); y=0 si=='3' (No); 7 y 8 (no sabe / no responde) fuera
+estimando: proporcion ponderada descriptiva definida por la fila sellada
+dependencias_materiales: [yaml, pyreadstat]
+parametros:
+  id_celda: DIN-M-01
+  payload_id: ennvih1_2002_hogar_dta
+  tabla: ehh02dta_all/ehh02dta_b3b/iiib_cr.dta
+  variable: cr27
+  universo: 19802 filas del libro 3B (seccion CR) de ENNViH-1 2002; cr27 tiene etiqueta 'TIENE AHORROS' con 2665 en '1', 17074
+    en '3', 60 en '7' y 3 nulos; sin filtro adicional
+  codificacion: y=1 si cr27=='1' (Si); y=0 si=='3' (No); 7 y 8 (no sabe / no responde) fuera
+  ponderador: fac_3b@ehh02w_all/ehh02w_b3b.dta[folio+ls]
+  estrato: 'DISENO-APROXIMADO:CONSTANTE (un solo estrato: el estrato de diseno real -alto/medio/bajo, 14 indicadores de la
+    ENE 2001- NO se publica en el microdato, ver ennvih_diseno/ennvih-1_muestra.pdf p.3; y `ent` no existe en ninguna de las
+    dos tablas que esta fila nombra)'
+  upm: 'DISENO-APROXIMADO:folio (hogar; la UPM real es un conglomerado de viviendas y NO se publica: grep -i upm sobre guiausuariov1.pdf,
+    doc/ehh02cb_bc.pdf y doc/eloc02cb_bcc.pdf da 0 aciertos en los tres)'
+seed:
+  aplica: false
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: punto y varianza deterministas; enteros/texto exactos
+resultados:
+- id: RESULT-R-DIN-M-01-PUNTO
+  tipo: proporcion
+  unidad: proporcion ponderada R en [0,1]
+  permite_no_estimable: true
+- id: RESULT-R-DIN-M-01-EE
+  tipo: flotante
+  unidad: error estandar bajo DISENO APROXIMADO; NO AUTORIZADO COMO GROUND TRUTH INFERENCIAL DE TRIADA SIN FIRMA DE MESA
+  permite_no_estimable: true
+- id: RESULT-R-DIN-M-01-IC-LO
+  tipo: flotante
+  unidad: limite inferior IC95 en proporcion
+  permite_no_estimable: true
+- id: RESULT-R-DIN-M-01-IC-HI
+  tipo: flotante
+  unidad: limite superior IC95 en proporcion
+  permite_no_estimable: true
+- id: RESULT-R-DIN-M-01-N
+  tipo: entero
+  unidad: n no ponderado del universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-DIN-M-01-MASA-PONDERADA
+  tipo: flotante
+  unidad: suma del ponderador en el universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-DIN-M-01-N-FILAS-TABLA
+  tipo: entero
+  unidad: filas leidas antes de exclusiones
+  permite_no_estimable: true
+- id: RESULT-R-DIN-M-01-N-FALTANTES-EXCLUIDOS
+  tipo: entero
+  unidad: total excluido por universo, codigo o ponderador
+  permite_no_estimable: true
+- id: RESULT-R-DIN-M-01-N-CODIGO-EXCLUIDO
+  tipo: entero
+  unidad: filas excluidas por codigo faltante o no valido
+  permite_no_estimable: true
+- id: RESULT-R-DIN-M-01-N-FUERA-UNIVERSO
+  tipo: entero
+  unidad: filas excluidas por filtro de universo
+  permite_no_estimable: true
+- id: RESULT-R-DIN-M-01-N-SIN-PONDERADOR
+  tipo: entero
+  unidad: filas elegibles sin ponderador valido
+  permite_no_estimable: true
+- id: RESULT-R-DIN-M-01-N-ESTRATOS
+  tipo: entero
+  unidad: estratos presentes en el universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-DIN-M-01-N-UPM
+  tipo: entero
+  unidad: pares estrato-UPM presentes en el universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-DIN-M-01-N-ESTRATOS-UPM-UNICA
+  tipo: entero
+  unidad: estratos con una sola UPM
+  permite_no_estimable: true
+- id: RESULT-R-DIN-M-01-METODO-IC
+  tipo: texto
+  unidad: metodo o reserva explicita del IC
+  permite_no_estimable: true
+- id: RESULT-R-DIN-M-01-ESTADO
+  tipo: texto
+  unidad: CALCULADO o motivo explicito de abstencion
+  permite_no_estimable: true

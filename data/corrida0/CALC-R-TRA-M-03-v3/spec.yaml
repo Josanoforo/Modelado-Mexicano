@@ -1,0 +1,144 @@
+calc_id: CALC-R-TRA-M-03-v3
+repite_de: CALC-R-TRA-M-03-v2
+spec_md: spec.md
+spec_md_sha256: 4f72a0389f2a981ea87bd2e892fac45624ff6603fcfa755a0594829b82a7247e
+script: data/corrida0/CALC-R-TRA-M-03-v3/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: ARBITRO-R-DE-CELDA
+  cuenta_gen2: SI
+  validacion_independiente: NO-HECHA
+  firma: HEREDA-CONTADOR-DE=CALC-R-TRA-M-03-v2; SUCESOR-TECNICO-DE-REPLAY
+inputs:
+- id: encig_2013_encig13_base_datos_dbf
+  origen: manifiesto
+- id: IN-CODIGO-ARBITRA
+  origen: repo
+  ruta: tools/arbitra.py
+  sha256: d668829386db9fba8ca6a7c2ed2955cb391e540e0e5ae54c839def3580446cdf
+- id: IN-CODIGO-CORRER-R
+  origen: repo
+  ruta: forense/prereg-duelo-v2/corridas-R/correr-R.py
+  sha256: 02896f92aa075b2039eaab5554502779851cb047da6adffc779d33283808514a
+- id: IN-CODIGO-DBFMINI
+  origen: repo
+  ruta: tests/dbfmini.py
+  sha256: a14952e7f754b6921c78312cf1f5c2156b73d4b82f12fa6f9dad72740160335b
+- id: IN-CODIGO-SVYSTAT
+  origen: repo
+  ruta: tests/svystat.py
+  sha256: 5d97b1362dbf31845bb2080f479ac3022921579546a7b327cbd7e1204e4959de
+- id: IN-CODIFICACION-R-V1-2
+  origen: repo
+  ruta: forense/prereg-duelo-v2/codificacion-R-v1_2.tsv
+  sha256: 41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e
+- id: IN-MARCO-R-V1-3
+  origen: repo
+  ruta: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
+  sha256: f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a
+variables:
+- archivo: Encig2013_01_viv_sec_1_3_4_5_8_9.DBF
+  variable: P8_3
+universo: 'de los 33000 registros de la tabla (roster de vivienda+persona), 4617 son menores de 18 (FAC_P18<=0, correctamente
+  fuera del universo 18+); de los 28383 restantes (18 anios y mas), 22653 (79.8%) tienen respuesta individual valida en la
+  seccion VIII y 5730 (20.2%) quedan en blanco en P8_3 pese a que la vivienda muestra R_DEF=00 (entrevista de vivienda completa)
+  -- no-respuesta a nivel PERSONA (R_ELE con codigo distinto de 01 en su mayoria), distinta de la no-respuesta a nivel vivienda;
+  arbitra.py los excluye igual que a cualquier codigo invalido (blanco no calza ''1'' ni ''2''), tratamiento estandar de no-respuesta.
+  R se calcula sobre los 22653 adultos con respuesta valida. Este patron NO aparece en 2017/2021 (~0.2-0.4% en blanco): las
+  tablas de datos abiertos de esas olas ya vienen filtradas al informante entrevistado, mientras que la tabla de 2013 conserva
+  una fila por cada miembro del hogar en el roster, responda o no la seccion VIII -- diferencia de estructura de tabla entre
+  olas, no de universo pretendido (las tres apuntan a poblacion de 18 anios y mas)'
+filtros: solo los implícitos en la codificacion sellada; sin filtro adicional
+ponderador: FAC_P18
+transformacion: y=1 si P8_3=='1' (Si); y=0 si=='2' (No); 9 (No sabe / no responde) fuera
+estimando: proporcion ponderada descriptiva definida por la fila sellada
+dependencias_materiales: [yaml]
+parametros:
+  id_celda: TRA-M-03
+  payload_id: encig_2013_encig13_base_datos_dbf
+  tabla: Encig2013_01_viv_sec_1_3_4_5_8_9.DBF
+  variable: P8_3
+  universo: 'de los 33000 registros de la tabla (roster de vivienda+persona), 4617 son menores de 18 (FAC_P18<=0, correctamente
+    fuera del universo 18+); de los 28383 restantes (18 anios y mas), 22653 (79.8%) tienen respuesta individual valida en
+    la seccion VIII y 5730 (20.2%) quedan en blanco en P8_3 pese a que la vivienda muestra R_DEF=00 (entrevista de vivienda
+    completa) -- no-respuesta a nivel PERSONA (R_ELE con codigo distinto de 01 en su mayoria), distinta de la no-respuesta
+    a nivel vivienda; arbitra.py los excluye igual que a cualquier codigo invalido (blanco no calza ''1'' ni ''2''), tratamiento
+    estandar de no-respuesta. R se calcula sobre los 22653 adultos con respuesta valida. Este patron NO aparece en 2017/2021
+    (~0.2-0.4% en blanco): las tablas de datos abiertos de esas olas ya vienen filtradas al informante entrevistado, mientras
+    que la tabla de 2013 conserva una fila por cada miembro del hogar en el roster, responda o no la seccion VIII -- diferencia
+    de estructura de tabla entre olas, no de universo pretendido (las tres apuntan a poblacion de 18 anios y mas)'
+  codificacion: y=1 si P8_3=='1' (Si); y=0 si=='2' (No); 9 (No sabe / no responde) fuera
+  ponderador: FAC_P18
+  estrato: EST_DIS
+  upm: UPM_DIS
+seed:
+  aplica: false
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: punto y varianza deterministas; enteros/texto exactos
+resultados:
+- id: RESULT-R-TRA-M-03-PUNTO
+  tipo: proporcion
+  unidad: proporcion ponderada R en [0,1]
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-03-EE
+  tipo: flotante
+  unidad: error estandar de diseno en proporcion
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-03-IC-LO
+  tipo: flotante
+  unidad: limite inferior IC95 en proporcion
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-03-IC-HI
+  tipo: flotante
+  unidad: limite superior IC95 en proporcion
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-03-N
+  tipo: entero
+  unidad: n no ponderado del universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-03-MASA-PONDERADA
+  tipo: flotante
+  unidad: suma del ponderador en el universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-03-N-FILAS-TABLA
+  tipo: entero
+  unidad: filas leidas antes de exclusiones
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-03-N-FALTANTES-EXCLUIDOS
+  tipo: entero
+  unidad: total excluido por universo, codigo o ponderador
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-03-N-CODIGO-EXCLUIDO
+  tipo: entero
+  unidad: filas excluidas por codigo faltante o no valido
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-03-N-FUERA-UNIVERSO
+  tipo: entero
+  unidad: filas excluidas por filtro de universo
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-03-N-SIN-PONDERADOR
+  tipo: entero
+  unidad: filas elegibles sin ponderador valido
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-03-N-ESTRATOS
+  tipo: entero
+  unidad: estratos presentes en el universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-03-N-UPM
+  tipo: entero
+  unidad: pares estrato-UPM presentes en el universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-03-N-ESTRATOS-UPM-UNICA
+  tipo: entero
+  unidad: estratos con una sola UPM
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-03-METODO-IC
+  tipo: texto
+  unidad: metodo o reserva explicita del IC
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-03-ESTADO
+  tipo: texto
+  unidad: CALCULADO o motivo explicito de abstencion
+  permite_no_estimable: true

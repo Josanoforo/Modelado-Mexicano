@@ -1,0 +1,142 @@
+calc_id: CALC-R-TRA-M-02-v3
+repite_de: CALC-R-TRA-M-02-v2
+spec_md: spec.md
+spec_md_sha256: f0620c04028eec491bb0baf1acd562b730e84fbe7b637d1365b6f69a7341fcf8
+script: data/corrida0/CALC-R-TRA-M-02-v3/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: ARBITRO-R-DE-CELDA
+  cuenta_gen2: SI
+  validacion_independiente: NO-HECHA
+  firma: HEREDA-CONTADOR-DE=CALC-R-TRA-M-02-v2; SUCESOR-TECNICO-DE-REPLAY
+inputs:
+- id: encuci2020_bd_dbf
+  origen: manifiesto
+- id: IN-CODIGO-ARBITRA
+  origen: repo
+  ruta: tools/arbitra.py
+  sha256: d668829386db9fba8ca6a7c2ed2955cb391e540e0e5ae54c839def3580446cdf
+- id: IN-CODIGO-CORRER-R
+  origen: repo
+  ruta: forense/prereg-duelo-v2/corridas-R/correr-R.py
+  sha256: 02896f92aa075b2039eaab5554502779851cb047da6adffc779d33283808514a
+- id: IN-CODIGO-DBFMINI
+  origen: repo
+  ruta: tests/dbfmini.py
+  sha256: a14952e7f754b6921c78312cf1f5c2156b73d4b82f12fa6f9dad72740160335b
+- id: IN-CODIGO-SVYSTAT
+  origen: repo
+  ruta: tests/svystat.py
+  sha256: 5d97b1362dbf31845bb2080f479ac3022921579546a7b327cbd7e1204e4959de
+- id: IN-CODIFICACION-R-V1-2
+  origen: repo
+  ruta: forense/prereg-duelo-v2/codificacion-R-v1_2.tsv
+  sha256: 41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e
+- id: IN-MARCO-R-V1-3
+  origen: repo
+  ruta: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
+  sha256: f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a
+variables:
+- archivo: ENCUCI_2020_SEC_4_5.dbf
+  variable: AP5_17
+- archivo: ENCUCI_2020_SEC_4_5.dbf
+  variable: AP5_18
+universo: 'persona seleccionada (informante de 15 anios y mas, tabla SEC_4_5) con contacto en los ultimos 12 meses = alguna
+  de AP5_16_1..AP5_16_10 == ''1'' (codigos del FD: 1 Si, 2 No, 9 No sabe/no responde); 21519 filas leidas y 13435 con contacto
+  segun la proyeccion ciega (guardias: se reportan, no se ajustan). El filtro NO se ejecuta como codigo (limite declarado
+  de arbitra.py): lo aplica el salto del cuestionario -- sin contacto AP5_17/AP5_18 van en blanco y caen FUERA por la codificacion'
+filtros: solo los implícitos en la codificacion sellada; sin filtro adicional
+ponderador: FAC_SEL
+transformacion: 'y=1 si AP5_17==''1'' o AP5_18==''1''; y=0 si AP5_17==''2'' y AP5_18==''2'' -- COMPUESTO OR de dos variables
+  (_PATRON_COMPUESTO_OR); resto FUERA (cae en n_codigo_no_valido, no se reclasifica): 9 = No sabe/no responde, b = blanco
+  (salto del cuestionario) y cualquier otra combinacion; codigos verificados en el FD (AP5_17 y AP5_18: 1 Si, 2 No, 9 No sabe/no
+  responde, b blanco)'
+estimando: proporcion ponderada descriptiva definida por la fila sellada
+dependencias_materiales: [yaml]
+parametros:
+  id_celda: TRA-M-02
+  payload_id: encuci2020_bd_dbf
+  tabla: SEC_4_5
+  variable: AP5_17|AP5_18
+  universo: 'persona seleccionada (informante de 15 anios y mas, tabla SEC_4_5) con contacto en los ultimos 12 meses = alguna
+    de AP5_16_1..AP5_16_10 == ''1'' (codigos del FD: 1 Si, 2 No, 9 No sabe/no responde); 21519 filas leidas y 13435 con contacto
+    segun la proyeccion ciega (guardias: se reportan, no se ajustan). El filtro NO se ejecuta como codigo (limite declarado
+    de arbitra.py): lo aplica el salto del cuestionario -- sin contacto AP5_17/AP5_18 van en blanco y caen FUERA por la codificacion'
+  codificacion: 'y=1 si AP5_17==''1'' o AP5_18==''1''; y=0 si AP5_17==''2'' y AP5_18==''2'' -- COMPUESTO OR de dos variables
+    (_PATRON_COMPUESTO_OR); resto FUERA (cae en n_codigo_no_valido, no se reclasifica): 9 = No sabe/no responde, b = blanco
+    (salto del cuestionario) y cualquier otra combinacion; codigos verificados en el FD (AP5_17 y AP5_18: 1 Si, 2 No, 9 No
+    sabe/no responde, b blanco)'
+  ponderador: FAC_SEL
+  estrato: EST_DIS
+  upm: UPM_DIS
+seed:
+  aplica: false
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: punto y varianza deterministas; enteros/texto exactos
+resultados:
+- id: RESULT-R-TRA-M-02-PUNTO
+  tipo: proporcion
+  unidad: proporcion ponderada R en [0,1]
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-02-EE
+  tipo: flotante
+  unidad: error estandar de diseno en proporcion
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-02-IC-LO
+  tipo: flotante
+  unidad: limite inferior IC95 en proporcion
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-02-IC-HI
+  tipo: flotante
+  unidad: limite superior IC95 en proporcion
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-02-N
+  tipo: entero
+  unidad: n no ponderado del universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-02-MASA-PONDERADA
+  tipo: flotante
+  unidad: suma del ponderador en el universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-02-N-FILAS-TABLA
+  tipo: entero
+  unidad: filas leidas antes de exclusiones
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-02-N-FALTANTES-EXCLUIDOS
+  tipo: entero
+  unidad: total excluido por universo, codigo o ponderador
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-02-N-CODIGO-EXCLUIDO
+  tipo: entero
+  unidad: filas excluidas por codigo faltante o no valido
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-02-N-FUERA-UNIVERSO
+  tipo: entero
+  unidad: filas excluidas por filtro de universo
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-02-N-SIN-PONDERADOR
+  tipo: entero
+  unidad: filas elegibles sin ponderador valido
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-02-N-ESTRATOS
+  tipo: entero
+  unidad: estratos presentes en el universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-02-N-UPM
+  tipo: entero
+  unidad: pares estrato-UPM presentes en el universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-02-N-ESTRATOS-UPM-UNICA
+  tipo: entero
+  unidad: estratos con una sola UPM
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-02-METODO-IC
+  tipo: texto
+  unidad: metodo o reserva explicita del IC
+  permite_no_estimable: true
+- id: RESULT-R-TRA-M-02-ESTADO
+  tipo: texto
+  unidad: CALCULADO o motivo explicito de abstencion
+  permite_no_estimable: true

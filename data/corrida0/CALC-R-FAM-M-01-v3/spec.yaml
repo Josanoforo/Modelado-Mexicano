@@ -1,0 +1,130 @@
+calc_id: CALC-R-FAM-M-01-v3
+repite_de: CALC-R-FAM-M-01-v2
+spec_md: spec.md
+spec_md_sha256: b8385d0d8de03ca18fb89fb5bbfb2690a36370b1dbc735707fa96a6b88386935
+script: data/corrida0/CALC-R-FAM-M-01-v3/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: ARBITRO-R-DE-CELDA
+  cuenta_gen2: SI
+  validacion_independiente: NO-HECHA
+  firma: HEREDA-CONTADOR-DE=CALC-R-FAM-M-01-v2; SUCESOR-TECNICO-DE-REPLAY
+inputs:
+- id: enif2018_csv
+  origen: manifiesto
+- id: IN-CODIGO-ARBITRA
+  origen: repo
+  ruta: tools/arbitra.py
+  sha256: d668829386db9fba8ca6a7c2ed2955cb391e540e0e5ae54c839def3580446cdf
+- id: IN-CODIGO-CORRER-R
+  origen: repo
+  ruta: forense/prereg-duelo-v2/corridas-R/correr-R.py
+  sha256: 02896f92aa075b2039eaab5554502779851cb047da6adffc779d33283808514a
+- id: IN-CODIGO-DBFMINI
+  origen: repo
+  ruta: tests/dbfmini.py
+  sha256: a14952e7f754b6921c78312cf1f5c2156b73d4b82f12fa6f9dad72740160335b
+- id: IN-CODIGO-SVYSTAT
+  origen: repo
+  ruta: tests/svystat.py
+  sha256: 5d97b1362dbf31845bb2080f479ac3022921579546a7b327cbd7e1204e4959de
+- id: IN-CODIFICACION-R-V1-2
+  origen: repo
+  ruta: forense/prereg-duelo-v2/codificacion-R-v1_2.tsv
+  sha256: 41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e
+- id: IN-MARCO-R-V1-3
+  origen: repo
+  ruta: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
+  sha256: f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a
+variables:
+- archivo: conjunto_de_datos_tmodulo2_enif_2018/conjunto_de_datos/conjunto_de_datos_tmodulo2_enif_2018.csv
+  variable: p9_9_4
+universo: la tabla ya es ese universo (personas seleccionadas de tmodulo2, seccion 9.9); sin filtro adicional declarado en
+  el diccionario
+filtros: solo los implícitos en la codificacion sellada; sin filtro adicional
+ponderador: fac_per
+transformacion: y=1 si p9_9_4=='1' (Si); y=0 si=='2' (No); 9 (no sabe/no responde) fuera
+estimando: proporcion ponderada descriptiva definida por la fila sellada
+dependencias_materiales: [yaml]
+parametros:
+  id_celda: FAM-M-01
+  payload_id: enif2018_csv
+  tabla: tmodulo2
+  variable: p9_9_4
+  universo: la tabla ya es ese universo (personas seleccionadas de tmodulo2, seccion 9.9); sin filtro adicional declarado
+    en el diccionario
+  codificacion: y=1 si p9_9_4=='1' (Si); y=0 si=='2' (No); 9 (no sabe/no responde) fuera
+  ponderador: fac_per
+  estrato: est_dis
+  upm: upm_dis
+seed:
+  aplica: false
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: punto y varianza deterministas; enteros/texto exactos
+resultados:
+- id: RESULT-R-FAM-M-01-PUNTO
+  tipo: proporcion
+  unidad: proporcion ponderada R en [0,1]
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-01-EE
+  tipo: flotante
+  unidad: error estandar de diseno en proporcion
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-01-IC-LO
+  tipo: flotante
+  unidad: limite inferior IC95 en proporcion
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-01-IC-HI
+  tipo: flotante
+  unidad: limite superior IC95 en proporcion
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-01-N
+  tipo: entero
+  unidad: n no ponderado del universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-01-MASA-PONDERADA
+  tipo: flotante
+  unidad: suma del ponderador en el universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-01-N-FILAS-TABLA
+  tipo: entero
+  unidad: filas leidas antes de exclusiones
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-01-N-FALTANTES-EXCLUIDOS
+  tipo: entero
+  unidad: total excluido por universo, codigo o ponderador
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-01-N-CODIGO-EXCLUIDO
+  tipo: entero
+  unidad: filas excluidas por codigo faltante o no valido
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-01-N-FUERA-UNIVERSO
+  tipo: entero
+  unidad: filas excluidas por filtro de universo
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-01-N-SIN-PONDERADOR
+  tipo: entero
+  unidad: filas elegibles sin ponderador valido
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-01-N-ESTRATOS
+  tipo: entero
+  unidad: estratos presentes en el universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-01-N-UPM
+  tipo: entero
+  unidad: pares estrato-UPM presentes en el universo efectivo
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-01-N-ESTRATOS-UPM-UNICA
+  tipo: entero
+  unidad: estratos con una sola UPM
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-01-METODO-IC
+  tipo: texto
+  unidad: metodo o reserva explicita del IC
+  permite_no_estimable: true
+- id: RESULT-R-FAM-M-01-ESTADO
+  tipo: texto
+  unidad: CALCULADO o motivo explicito de abstencion
+  permite_no_estimable: true
