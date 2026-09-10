@@ -4501,6 +4501,28 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # ese hueco es de quien mantenga el censo del catálogo de momentos, no
     # de este acto (fuera de perímetro: este acto no toca `milpa/`).
     "forense/notas/2026-09-08-GEN2-UNIVERSO-C-tandas-enafin.md",
+    # Paquete `forense/encargos/cola/2026-09-10-GEN2-POST-685/` (9 archivos:
+    # índice 00 + ocho lotes ejecutables 01..08), texto verbatim de dirección
+    # encolado 10/sep/2026 con `/encola` (corte
+    # `486eda19944a94d978791eb423559144de98d16b`, posterior a PR #685). Cada
+    # archivo cita en su cabecera de Destino/Integra y (el índice) en su tabla
+    # de cobertura de antecedentes los identificadores bare `E01`.."E11"` --
+    # los mismos habitantes que ACTO MESA-CONCILIACION-E01 ya fijó, siempre
+    # con el prefijo `ENCARGO-` (tabla D01..D20, p.ej. `ENCARGO-E02`), nunca
+    # antes censados aquí porque esa forma prefijada nunca disparó T25.
+    # Referencia de PROCEDENCIA, no un rótulo nuevo ni una ranura adicional:
+    # censados en la fila `E · ENCARGO-E01..ENCARGO-E11` de `canon/registro-
+    # rotulos.tsv`. Decisión de dirección al encolar (no se edita el
+    # verbatim, A.3): un encargo verbatim no se edita para complacer un test.
+    "forense/encargos/cola/2026-09-10-GEN2-POST-685/00-LEEME-LANZAMIENTO-POST-685.md",
+    "forense/encargos/cola/2026-09-10-GEN2-POST-685/01-GEN2-F5-COMPLETA.md",
+    "forense/encargos/cola/2026-09-10-GEN2-POST-685/02-GEN2-MOTOR-USOS-Y-COMPLEMENTOS.md",
+    "forense/encargos/cola/2026-09-10-GEN2-POST-685/03-GEN2-ENIF-POBLACION-Y-ADOPCION.md",
+    "forense/encargos/cola/2026-09-10-GEN2-POST-685/04-GEN2-S6-S12-S13-SUCESORAS.md",
+    "forense/encargos/cola/2026-09-10-GEN2-POST-685/05-GEN2-ENVIPE-SERIE-COMPLETA.md",
+    "forense/encargos/cola/2026-09-10-GEN2-POST-685/06-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md",
+    "forense/encargos/cola/2026-09-10-GEN2-POST-685/07-GEN2-SONDA-CRON-PRODUCCION.md",
+    "forense/encargos/cola/2026-09-10-GEN2-POST-685/08-GEN2-PRUEBAS-LIMPIAS-Y-REPLAY.md",
 }
 
 
