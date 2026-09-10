@@ -56,3 +56,18 @@ fila nueva.
 | «`SUCESORES`: el cruce ENCUCI↔ENCIG si mesa lo pide» | `DIFERIDO-A:acto propio con su pre-registro` | Ninguna salida de este acto pone ENCUCI 2020 y ENCIG 2025 lado a lado. La comparabilidad queda **declarada como pregunta abierta**, no como supuesto: difieren universo, ventana, filtro de entrada y reactivo. | mesa · acto de cruce con pre-registro propio |
 | «`SUCESORES`: la decisión de mesa sobre `CORR-0001`» | `DECISIÓN-DE-MESA-PENDIENTE` | `CORR-0001` (ENCIG2023) sigue sin payload (`NO-DECLARADO-EN-EL-REGISTRO`) y sus 4 `RESULT` siguen `PENDIENTE`. El encargo lo declara fuera («no mide ENCIG 2023»). | mesa: ¿se adquiere ENCIG 2023 o se declara la celda sin fuente? |
 | «no repara el inventario DBF (`NC-0123` es de 2/5)» | `SUSTITUIDO-POR:ACTO GEN2-DERIVADORES-FIX (PR #672)` | `NC-0123` **cerró** por declaración mientras este acto corría, y nació **`NC-0136`** con el hallazgo ampliado (102 de 116 instrumentos ciegos, no 1). Este acto **corrobora desde otra fuente** sin abrir fila nueva: de sus **nueve** variables, **cero** tienen texto indexado en ninguno de los cuatro inventarios. **Nada queda huérfano**: lo que `NC-0123` pedía lo absorbe `NC-0136`, con sucesor de CAJA. | **`NC-0136`** (ya abierta) |
+
+## CONSUMIDO
+
+`PR #673` — `ACTO GEN2-LOTE-ENCUCI-1 · CUARTO LOTE DE LA CARTERA — la mordida de
+2020 no mide lo que su rótulo dice, y la protesta reproduce al dígito`
+(rama `acto/gen2-lote-encuci-1`, `ADR-447`).
+
+Ejecutado en CAJA (Ubuntu/WSL2), Opus, sobre `origin/main = d20039a3` (`PR #669`)
+y cerrado tras fusionar `origin/main = 24adbda` (`PR #672`). Compuerta cumplida
+por producto. `CALC-ENCUCI-0001` sellado (119 `RESULT`, `verify: REPRODUCE`,
+`CONTEXTO=IDENTICO`); dos de los cuatro consumidores adoptados con cita
+`corrida0_*`; `cuenta_gen2 = SI` asentado en `data/corrida0/decisiones.tsv`.
+Cierre completo en `forense/notas/2026-09-09-GEN2-LOTE-ENCUCI-1-cierre.md`.
+
+**NO FUSIONAR por el ejecutor: el merge es de mesa.**
