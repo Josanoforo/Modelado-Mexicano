@@ -228,7 +228,7 @@ def medir(inputs: dict, contrato: dict) -> dict:
                 f"{ej['cid']}__{ej['variante']}__{ej['k']:02d}")
             resultados[f"RESULT-DUELO-DIAGNOSTICO-EJEMPLO-{idx}-SHA256"] = inputs[iid]["sha256"]
             resultados[f"RESULT-DUELO-DIAGNOSTICO-EJEMPLO-{idx}-VALOR-CAPTURADO-INDEBIDAMENTE"] = (
-                ej["valor_capturado"])
+                str(ej["valor_capturado"]))
             resultados[f"RESULT-DUELO-DIAGNOSTICO-EJEMPLO-{idx}-FRAGMENTO"] = ej["fragmento"]
         else:
             resultados[f"RESULT-DUELO-DIAGNOSTICO-EJEMPLO-{idx}-ID"] = "SIN-EJEMPLO"
