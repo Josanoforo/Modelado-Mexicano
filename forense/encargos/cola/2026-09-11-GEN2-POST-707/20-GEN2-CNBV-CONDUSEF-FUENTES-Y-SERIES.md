@@ -1,3 +1,5 @@
+ESTADO: EN-CURSO — ejecución archivada; cierre y PR pendientes.
+
 # Encargo 20 · fuentes financieras y series utilizables
 
 ENTORNO: CAJA

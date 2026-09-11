@@ -9,8 +9,9 @@ commit A.3 `76d11d99f998247d556200525a5fb82346867a2a`. La rama partió del `main
 disponible `a37837a0df69240e35c160a53c5c1de209f9be01`, que ya contiene el corte
 #708 requerido. No había rama ni PR abierto del mismo objeto. Estado inicial
 limpio; corpus con 403 payloads resolubles desde `data_raw+descargas_mx`.
-Antes de cerrar se integró `origin/main=4aa91622cba4dca953145b2b241a49716639f0dc`
-(PR #712) y se conciliaron sus cambios compartidos.
+Antes de cerrar se integró `origin/main=f6c93326048c7219181bd903a2fd41857265831e`
+(PR #714, que contiene #712) y se conciliaron sus cambios compartidos. Ese
+merge tomó ADR-474; por la regla de la casa, este acto renumeró a ADR-475.
 
 Alcance: adquisición y extracción descriptiva. Cero llamadas a modelos, cero
 cambio a motor, `milpa/`, capturas, R, sellos históricos, cron o métodos
@@ -230,3 +231,30 @@ existían en manifiesto; no se contabilizan como adquisiciones nuevas. Se
 añadieron sólo el XLS CNBV y la ficha de diseño ENCRIGE. No se usaron como
 fuentes empíricas documentos de encargos del censo #707. No hay medición GEN2,
 `RESULT`, parámetro ni adopción nuevos: **contador científico = cero**.
+
+`A.8` también se ejerció sobre los dos consumidores nombrados en el encargo.
+Salida terminal de `python3 tools/ya_medido.py dinero.credito.scoring_alternativo`:
+
+```text
+resuelto por canon: dinero.credito.scoring_alternativo -> R1.6
+milpa/tramite.yaml: sin apariciones
+milpa/tramite-ola5-propuesta-v0.yaml: sin apariciones
+data/corrida0: sin apariciones
+canon/modelo-decision-v4_0.md §7: R1.6, tier [MEDIA], medido No
+NUNCA-MEDIDA
+```
+
+Salida terminal de
+`python3 tools/ya_medido.py dinero.credito.baja_friccion_usura_dano_downstream`:
+
+```text
+resuelto por canon: dinero.credito.baja_friccion_usura_dano_downstream -> R1.7
+milpa/tramite.yaml: sin apariciones
+milpa/tramite-ola5-propuesta-v0.yaml: sin apariciones
+data/corrida0: sin apariciones
+canon/modelo-decision-v4_0.md §7: R1.7, tier [MEDIA], medido No
+NUNCA-MEDIDA
+```
+
+Son negativos de medición, no ausencias de fuente: este acto sólo entrega
+insumos descriptivos y mantiene cualquier definición futura antes del cálculo.

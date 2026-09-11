@@ -5109,6 +5109,12 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES, 11/sep/2026: encargo A.3
+    # archivado VERBATIM. Los dos ids aparecen como consumidores que se deben
+    # localizar, no como tasas que el acto vaya a medir o adoptar. A.8 sí se
+    # ejecutó: ambos devolvieron NUNCA-MEDIDA y la salida se conserva en la
+    # nota de cierre §8. Editar el encargo rompería la custodia A.3.
+    "forense/encargos/2026-09-11-GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES.md",
     # ACTO GEN2-MOTOR-Y-HERENCIA-EXPLICITA, 11/sep/2026: encargo A.3
     # archivado VERBATIM que manda verificar la regla S6. La herramienta se
     # ejecuto y su salida real se conserva en la nota de cierre y en
