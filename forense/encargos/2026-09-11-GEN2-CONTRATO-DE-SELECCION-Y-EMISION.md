@@ -19,6 +19,9 @@
 - **Cobertura retroactiva:** #712 y #718 están fusionados. Al iniciar no había
   PR abierto ni correctivo remoto del mismo objeto; este acto parte del
   `origin/main` vigente y preserva el snapshot v1.0 como antecedente.
+- **Medición ya existente:** salida final de
+  `python3 tools/ya_medido.py familia.seguro.volatilidad_ausencia_estado`:
+  `MEDIDA-EN: CALC-B-0001, tramite-ola5-propuesta-v0.yaml, tramite.yaml`.
 
 ## Texto del encargo, verbatim
 

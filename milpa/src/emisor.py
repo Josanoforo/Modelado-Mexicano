@@ -38,10 +38,13 @@ Salidas del bucle, las tres explícitas (gobernanza:275): `EMITE` ·
 from __future__ import annotations
 
 import csv
+import hashlib
+import json
 import math
 import re
 from collections.abc import Mapping
 from dataclasses import dataclass, field, replace
+from datetime import date
 from pathlib import Path
 
 import yaml
@@ -53,6 +56,7 @@ RUTA_MODELO = RAIZ / "canon" / "modelo-decision-v4_0.md"
 RUTA_MARCO = RAIZ / "forense" / "marco-candidatas-piloto-v1_0.tsv"
 RUTA_USOS_CORRIDA0 = RAIZ / "data" / "corrida0" / "usos.tsv"
 RUTA_RESULTADOS_CORRIDA0 = RAIZ / "data" / "corrida0" / "resultados.tsv"
+RUTA_CORRIDA0 = RAIZ / "data" / "corrida0"
 
 MODO_HISTORICO = "HISTORICO"
 MODO_GEN2 = "GEN2"
@@ -522,6 +526,7 @@ class PrediccionM:
     origen_numerico: str | None = None
     aptitud_uso: str | None = None
     camino_linaje: str | None = None
+    rol_seleccion: str | None = None
     dependencias_estructurales: tuple[str, ...] = ()
     detalle: str = ""
 
@@ -531,6 +536,8 @@ class EvidenciaResultado:
     """Fila vigente de ``resultados.tsv`` que acredita un número."""
 
     resultado_id: str
+    corrida_id: str
+    spec_id: str
     valor: float | None
     tipo: str
     unidad: str
@@ -604,6 +611,8 @@ def cargar_indice_linaje_emision(
         f = vigentes[0]
         resultados[resultado_id] = EvidenciaResultado(
             resultado_id=resultado_id,
+            corrida_id=f.get("corrida_id", ""),
+            spec_id=f.get("spec_id", ""),
             valor=_valor_numerico(f.get("valor", "")),
             tipo=f.get("tipo", ""),
             unidad=f.get("unidad", ""),
@@ -641,6 +650,235 @@ def cargar_indice_linaje_emision(
     return IndiceLinajeEmision(resultados=resultados, usos=usos)
 
 
+def _documentos_calc_sellado(spec_id: str) -> tuple[dict, dict, dict]:
+    """Lee la evidencia sellada de una spec sin aceptar rutas del llamador."""
+    if not spec_id or Path(spec_id).name != spec_id:
+        raise ValueError(f"spec_id no seguro o ausente: {spec_id!r}")
+    directorio = RUTA_CORRIDA0 / spec_id
+    ruta_spec = directorio / "spec.yaml"
+    ruta_ejecucion = directorio / "ejecucion.json"
+    ruta_resultados = directorio / "resultados.json"
+    faltan = [str(p.relative_to(RAIZ)) for p in
+              (ruta_spec, ruta_ejecucion, ruta_resultados) if not p.is_file()]
+    if faltan:
+        raise ValueError(
+            "evidencia sellada incompleta para transferencia: " + ", ".join(faltan))
+    spec_bytes = ruta_spec.read_bytes()
+    spec = yaml.safe_load(spec_bytes)
+    ejecucion = json.loads(ruta_ejecucion.read_text(encoding="utf-8"))
+    resultados = json.loads(ruta_resultados.read_text(encoding="utf-8"))
+    esperado = str(ejecucion.get("spec_yaml_sha256") or "")
+    observado = hashlib.sha256(spec_bytes).hexdigest()
+    if esperado != observado:
+        raise ValueError(
+            f"spec sin identidad con la ejecución sellada: {observado} != {esperado}")
+    if (ejecucion.get("spec_id") != spec_id
+            or resultados.get("spec_id") != spec_id):
+        raise ValueError("spec_id no coincide entre spec, ejecución y resultados")
+    return spec, ejecucion, resultados
+
+
+def _resultados_serie_por_ola(spec: dict) -> dict[str, dict]:
+    """Deriva observaciones de serie por metadato, no por prefijo del ID."""
+    parametros = spec.get("parametros") or {}
+    declaraciones = [d for d in (spec.get("resultados") or [])
+                     if isinstance(d, dict)]
+    por_ola = {}
+    for ficha in parametros.get("olas") or []:
+        ola = str(ficha.get("ola") or "")
+        candidatos = [d for d in declaraciones
+                      if str(d.get("tipo") or "") == "proporcion"
+                      and str(d.get("unidad") or "").startswith(f"[{ola}] ")]
+        if len(candidatos) != 1:
+            raise ValueError(
+                f"la spec no acredita una observación de serie única para ola {ola}: "
+                f"{len(candidatos)} candidatas")
+        por_ola[ola] = {"ficha": ficha, "resultado": candidatos[0]}
+    if not por_ola:
+        raise ValueError("la spec no acredita olas transferibles")
+    return por_ola
+
+
+def _depende_de_objetivo(indice: IndiceLinajeEmision, inicio: str,
+                         objetivo: str) -> bool:
+    """Resuelve dependencia por aristas del registro, aunque cambie el rótulo."""
+    pendientes, vistos = [inicio], set()
+    while pendientes:
+        actual = pendientes.pop()
+        if actual in vistos:
+            continue
+        vistos.add(actual)
+        if actual == objetivo:
+            return True
+        evidencia = indice.resultados.get(actual)
+        if evidencia is None:
+            continue
+        pendientes.extend(
+            d.strip() for d in re.split(r"[;,]", evidencia.depende_de) if d.strip())
+    return False
+
+
+def _fecha_contrato(valor: object, campo: str) -> date:
+    try:
+        return date.fromisoformat(str(valor))
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{campo} no es una fecha ISO acreditable") from exc
+
+
+def _validar_seleccion_transferencia(
+        seleccion: Mapping,
+        *,
+        consumidor: str,
+        resultado_objetivo_id: str,
+        indice: IndiceLinajeEmision,
+) -> tuple[EvidenciaResultado, str, str]:
+    """Autentica y reproduce una selección contra spec, ejecución y registro.
+
+    El llamador transporta el contrato, pero no decide su compatibilidad ni su
+    rol. Sólo una salida que la spec sellada identifica como observación de la
+    misma serie puede adquirir el rol ``OBSERVACION-SERIE-PREVIA``.
+    """
+    if not isinstance(seleccion, Mapping):
+        raise ValueError("transferencia exige una selección estructurada")
+    objetivo = seleccion.get("objetivo")
+    elegida = seleccion.get("seleccion")
+    if not isinstance(objetivo, Mapping) or not isinstance(elegida, Mapping):
+        raise ValueError("selección sin objetivo u observación verificable")
+    if seleccion.get("contrato_version") != "SELECCION-TEMPORAL-v1":
+        raise ValueError("versión de contrato de selección ausente o desconocida")
+    serie_objetivo = objetivo.get("serie")
+    serie_elegida = elegida.get("serie")
+    if not isinstance(serie_objetivo, Mapping) or serie_objetivo != serie_elegida:
+        raise ValueError("serie seleccionada incompatible con la serie objetivo")
+
+    periodo_obj = objetivo.get("periodo") or {}
+    periodo_sel = elegida.get("periodo") or {}
+    inicio_obj = _fecha_contrato(periodo_obj.get("inicio"), "objetivo.periodo.inicio")
+    fin_obj = _fecha_contrato(periodo_obj.get("fin"), "objetivo.periodo.fin")
+    inicio_sel = _fecha_contrato(periodo_sel.get("inicio"), "seleccion.periodo.inicio")
+    fin_sel = _fecha_contrato(periodo_sel.get("fin"), "seleccion.periodo.fin")
+    disponibilidad = _fecha_contrato(
+        elegida.get("disponibilidad"), "seleccion.disponibilidad")
+    corte = _fecha_contrato(objetivo.get("corte_temporal"),
+                            "objetivo.corte_temporal")
+    if inicio_obj > fin_obj or inicio_sel > fin_sel:
+        raise ValueError("periodo inválido en contrato de transferencia")
+    if fin_sel >= inicio_obj:
+        raise ValueError("la selección no es estrictamente anterior al objetivo")
+    if disponibilidad > corte:
+        raise ValueError("la selección es posterior al corte temporal")
+
+    procedencia = elegida.get("evidencia_procedencia")
+    if not isinstance(procedencia, Mapping):
+        raise ValueError("selección sin evidencia de procedencia")
+    resultado_id = str(procedencia.get("resultado_id") or "")
+    evidencia = indice.resultados.get(resultado_id)
+    if evidencia is None:
+        raise ValueError(f"RESULT seleccionado inexistente: {resultado_id or '<vacío>'}")
+    objetivo_evidencia = indice.resultados.get(resultado_objetivo_id)
+    if objetivo_evidencia is None:
+        raise ValueError(f"RESULT adoptado inexistente: {resultado_objetivo_id}")
+    if evidencia.spec_id != objetivo_evidencia.spec_id:
+        raise ValueError(
+            "RESULT seleccionado pertenece a otra serie/spec: "
+            f"{evidencia.spec_id} != {objetivo_evidencia.spec_id}")
+    if (procedencia.get("valor") is None or evidencia.valor is None
+            or not math.isclose(float(procedencia["valor"]), evidencia.valor,
+                                rel_tol=0.0, abs_tol=1e-12)):
+        raise ValueError("valor seleccionado no coincide con resultados.tsv")
+    if not evidencia.fuente_replay or evidencia.fuente_replay == "NO-CORRIDA":
+        raise ValueError("RESULT seleccionado sin evidencia de procedencia acreditada")
+
+    spec, ejecucion, resultados_doc = _documentos_calc_sellado(evidencia.spec_id)
+    parametros = spec.get("parametros") or {}
+    serie_spec = parametros.get("serie")
+    if not isinstance(serie_spec, dict) or dict(serie_objetivo) != serie_spec:
+        raise ValueError("serie transportada no coincide con la spec sellada")
+    if (objetivo.get("estimando") != spec.get("estimando")
+            or objetivo.get("transformacion") != spec.get("transformacion")):
+        raise ValueError("estimando o transformación no coinciden con la spec sellada")
+
+    adopcion = parametros.get("adopcion_p3") or {}
+    if (adopcion.get("consumidor") != consumidor
+            or adopcion.get("result_id") != resultado_objetivo_id):
+        raise ValueError("la spec no permite esta serie para el consumidor objetivo")
+    por_ola = _resultados_serie_por_ola(spec)
+    olas_objetivo = [ola for ola, datos in por_ola.items()
+                     if inicio_obj == date(int(ola), 1, 1)
+                     and fin_obj == date(int(ola), 12, 31)]
+    if len(olas_objetivo) != 1:
+        raise ValueError("periodo objetivo no corresponde a una ola acreditada")
+    ola_objetivo = olas_objetivo[0]
+    resultado_objetivo_spec = str(
+        por_ola[ola_objetivo]["resultado"].get("id") or "")
+    if resultado_objetivo_spec != resultado_objetivo_id:
+        raise ValueError("el objetivo no es el RESULT adoptado por el consumidor")
+
+    coincidencias = [(ola, datos) for ola, datos in por_ola.items()
+                     if datos["resultado"].get("id") == resultado_id]
+    if len(coincidencias) != 1:
+        raise ValueError(
+            "el rol no está acreditado como observación directa de la serie; "
+            "el nombre o la etiqueta OPERATIVO no bastan")
+    ola_sel, datos_sel = coincidencias[0]
+    declaracion = datos_sel["resultado"]
+    ficha_sel = datos_sel["ficha"]
+    if (evidencia.tipo != declaracion.get("tipo")
+            or evidencia.unidad != declaracion.get("unidad")):
+        raise ValueError("tipo/unidad del RESULT no coinciden con su spec sellada")
+    if (inicio_sel != date(int(ola_sel), 1, 1)
+            or fin_sel != date(int(ola_sel), 12, 31)
+            or str(procedencia.get("fuente") or "") != ficha_sel.get("payload_id")
+            or disponibilidad != date.fromisoformat(str(ficha_sel.get("modified")))):
+        raise ValueError("periodo, disponibilidad o fuente no coinciden con la evidencia")
+    if _depende_de_objetivo(indice, resultado_id, resultado_objetivo_id):
+        raise ValueError("el RESULT seleccionado depende del objetivo experimental")
+
+    valores_sellados = resultados_doc.get("resultados") or {}
+    valor_sellado = _valor_numerico(valores_sellados.get(resultado_id))
+    if (resultado_id not in set(ejecucion.get("resultado_ids") or [])
+            or valor_sellado is None
+            or not math.isclose(valor_sellado, evidencia.valor,
+                                rel_tol=0.0, abs_tol=1e-12)):
+        raise ValueError("valor/identidad no coinciden con la ejecución sellada")
+
+    # El emisor no confía en la selección recibida: reconstruye todas las olas
+    # desde la spec y el registro y vuelve a ejecutar el selector.
+    from tools.baseline_temporal import (
+        Objetivo, Observacion, Serie, seleccionar_transferencia)
+    serie = Serie(**serie_spec)
+    objetivo_reconstruido = Objetivo(
+        serie, inicio_obj, fin_obj, corte)
+    historial = []
+    for ola, datos in por_ola.items():
+        if ola == ola_objetivo:
+            continue
+        ficha = datos["ficha"]
+        rid = str(datos["resultado"].get("id") or "")
+        ev = indice.resultados.get(rid)
+        if ev is None:
+            raise ValueError(f"falta evidencia de la ola {ola}: {rid}")
+        historial.append(Observacion(
+            serie=serie,
+            periodo_inicio=date(int(ola), 1, 1),
+            periodo_fin=date(int(ola), 12, 31),
+            disponible_desde=date.fromisoformat(str(ficha.get("modified"))),
+            publicada=True,
+            p=ev.valor,
+            resultado_id=rid,
+            fuente=str(ficha.get("payload_id") or ""),
+        ))
+    esperada = seleccionar_transferencia(
+        objetivo_reconstruido, historial,
+        estimando=str(spec.get("estimando") or ""),
+        transformacion=str(spec.get("transformacion") or ""),
+    )
+    if dict(seleccion) != esperada:
+        raise ValueError(
+            "la selección no reproduce el selector sobre la evidencia sellada")
+    return evidencia, "OBSERVACION-SERIE-PREVIA", str(seleccion.get("metodo") or "")
+
+
 def _salida(regla: Regla, conducta: str) -> Salida | None:
     coincidencias = [s for s in regla.entonces
                      if conducta == s.conducta or conducta in s.aliases]
@@ -651,7 +889,8 @@ def _salida(regla: Regla, conducta: str) -> Salida | None:
     return coincidencias[0] if coincidencias else None
 
 
-def _dependencias_estructurales(regla: Regla) -> tuple[str, ...]:
+def _dependencias_estructurales(
+        regla: Regla, salida: Salida | None = None) -> tuple[str, ...]:
     """Componentes que un RESULT numérico no acredita por sí solo."""
     partes = [f"regla:{regla.id}:disparadores"]
     if regla.palancas:
@@ -660,6 +899,11 @@ def _dependencias_estructurales(regla: Regla) -> tuple[str, ...]:
         partes.append("generadores:" + ",".join(regla.generadores))
     if regla.tier:
         partes.append(f"tier:{regla.tier}")
+    if salida is not None and salida.complemento_de:
+        partes.extend((
+            f"padre:{regla.id}:{salida.complemento_de}",
+            "transformacion:1-p",
+        ))
     return tuple(partes)
 
 
@@ -766,18 +1010,23 @@ def emitir_binaria_contrato(
         proposito: str,
         uso_solicitado: str | None = None,
         indice: IndiceLinajeEmision | None = None,
+        seleccion_transferencia: Mapping | None = None,
+        # Compatibilidad de llamada sólo para fallar cerrado: estos campos
+        # sueltos ya no expresan una transferencia válida.
         resultado_id_seleccionado: str | None = None,
         valor_seleccionado: float | None = None,
-        rol_seleccionado: str = "OPERATIVO",
+        rol_seleccionado: str | None = None,
         detalle_seleccion: str = "",
 ) -> PrediccionM:
     """Emite por la ruta histórica o por un contrato GEN2 que falla cerrado.
 
     La ruta ``HISTORICO`` conserva el valor materializado en YAML. La ruta
     ``GEN2`` exige la fila activa del consumidor, un RESULT sellado, origen
-    ``NUEVO`` apto según :mod:`milpa.src.linaje` e identidad numérica. Para
-    transferencia el selector puede entregar otro RESULT; el valor se vuelve
-    a leer del registro y nunca del árbitro ni del ``p`` histórico.
+    ``NUEVO`` apto según :mod:`milpa.src.linaje` e identidad numérica. Consulta
+    sólo puede leer el RESULT adoptado por el consumidor. Transferencia exige
+    el contrato estructurado de ``seleccionar_transferencia`` y lo reproduce
+    contra spec, ejecución, resultados y registro sellados; nunca confía en
+    una afirmación libre de compatibilidad o rol.
     """
     modo_norm = str(modo or "").upper()
     proposito_norm = str(proposito or "").strip().lower()
@@ -789,7 +1038,8 @@ def emitir_binaria_contrato(
     }
     uso = str(uso_solicitado or usos_por_defecto.get(
         (modo_norm, proposito_norm), "")).upper().replace("_", "-")
-    dependencias = _dependencias_estructurales(regla)
+    salida = _salida(regla, conducta)
+    dependencias = _dependencias_estructurales(regla, salida)
     uso_contexto = {
         "BASELINE": "baseline",
         "DESCRIPTIVO": "consulta_descriptiva",
@@ -799,7 +1049,6 @@ def emitir_binaria_contrato(
         regla, conducta, contexto, uso_solicitado=uso_contexto)
 
     if modo_norm == MODO_HISTORICO:
-        salida = _salida(regla, conducta)
         extra = ()
         if salida is not None and salida.resultado_id is None:
             clase = str(salida.clase or "SIN-CLASE").split("·", 1)[0]
@@ -820,19 +1069,39 @@ def emitir_binaria_contrato(
                    "'transferencia'; baseline pertenece a HISTORICO"),
             modo=modo_norm, proposito=proposito_norm, uso=uso,
             dependencias=dependencias)
+    parametros_sueltos = any((
+        resultado_id_seleccionado is not None,
+        valor_seleccionado is not None,
+        rol_seleccionado is not None,
+        bool(detalle_seleccion),
+    ))
+    if proposito_norm == "consulta" and (
+            seleccion_transferencia is not None or parametros_sueltos):
+        return _sin_cobertura_contrato(
+            base, ("consulta no acepta selección externa; usa exclusivamente "
+                   "el RESULT adoptado por el consumidor"),
+            modo=modo_norm, proposito=proposito_norm, uso=uso,
+            dependencias=dependencias,
+            resultado_id=resultado_id_seleccionado)
+    if proposito_norm == "transferencia" and parametros_sueltos:
+        return _sin_cobertura_contrato(
+            base, ("los parámetros sueltos no acreditan una transferencia; "
+                   "se requiere seleccion_transferencia estructurada"),
+            modo=modo_norm, proposito=proposito_norm, uso=uso,
+            dependencias=dependencias,
+            resultado_id=resultado_id_seleccionado)
+    if (proposito_norm == "transferencia"
+            and seleccion_transferencia is None):
+        return _sin_cobertura_contrato(
+            base, "transferencia sin selección estructurada verificable",
+            modo=modo_norm, proposito=proposito_norm, uso=uso,
+            dependencias=dependencias)
     if base.estado != "EMITE":
         return _sin_cobertura_contrato(
             base, "el dominio o propósito de la salida no está cubierto",
             modo=modo_norm, proposito=proposito_norm, uso=uso,
             dependencias=dependencias)
-    if rol_seleccionado.upper() in {"ARBITRO", "ORIGEN-ARBITRO"}:
-        return _sin_cobertura_contrato(
-            base, "un valor usado como árbitro no puede alimentar GEN2",
-            modo=modo_norm, proposito=proposito_norm, uso=uso,
-            dependencias=dependencias,
-            resultado_id=resultado_id_seleccionado)
 
-    salida = _salida(regla, conducta)
     if salida is None:
         return _sin_cobertura_contrato(
             base, "conducta sin salida máquina", modo=modo_norm,
@@ -854,9 +1123,8 @@ def emitir_binaria_contrato(
                 dependencias=dependencias)
         fuente_salida = padre
 
-    transferencia = resultado_id_seleccionado is not None
-    resultado_id = resultado_id_seleccionado or fuente_salida.resultado_id
-    if not resultado_id:
+    resultado_objetivo_id = fuente_salida.resultado_id
+    if not resultado_objetivo_id:
         return _sin_cobertura_contrato(
             base, "la salida numérica no declara RESULT; no se usa el p viejo",
             modo=modo_norm, proposito=proposito_norm, uso=uso,
@@ -869,31 +1137,50 @@ def emitir_binaria_contrato(
         return _sin_cobertura_contrato(
             base, f"consumidor no activo en usos.tsv: {consumidor}",
             modo=modo_norm, proposito=proposito_norm, uso=uso,
-            dependencias=dependencias, resultado_id=resultado_id)
+            dependencias=dependencias, resultado_id=resultado_objetivo_id)
 
-    if not transferencia:
-        consumidor_fuente = (
-            f"milpa/tramite.yaml:{regla.id}:{fuente_salida.conducta}")
-        uso_fuente = indice.usos.get(consumidor_fuente)
-        if uso_fuente is None:
+    consumidor_fuente = (
+        f"milpa/tramite.yaml:{regla.id}:{fuente_salida.conducta}")
+    uso_fuente = indice.usos.get(consumidor_fuente)
+    if uso_fuente is None:
+        return _sin_cobertura_contrato(
+            base, f"padre numérico no activo: {consumidor_fuente}",
+            modo=modo_norm, proposito=proposito_norm, uso=uso,
+            dependencias=dependencias, resultado_id=resultado_objetivo_id)
+    if (uso_fuente.corrida0_resultado_id != resultado_objetivo_id
+            or uso_fuente.corrida0_generacion != "GEN2"
+            or fuente_salida.resultado_generacion != "GEN2"):
+        return _sin_cobertura_contrato(
+            base, ("identidad/generación declarada no coincide: "
+                   f"YAML={fuente_salida.resultado_id}/"
+                   f"{fuente_salida.resultado_generacion}, "
+                   f"registro={uso_fuente.corrida0_resultado_id}/"
+                   f"{uso_fuente.corrida0_generacion}"),
+            modo=modo_norm, proposito=proposito_norm, uso=uso,
+            dependencias=dependencias, resultado_id=resultado_objetivo_id,
+            camino=uso_fuente.camino_linaje)
+    transferencia = proposito_norm == "transferencia"
+    rol_seleccion = None
+    metodo_seleccion = ""
+    if transferencia:
+        try:
+            evidencia, rol_seleccion, metodo_seleccion = (
+                _validar_seleccion_transferencia(
+                    seleccion_transferencia,
+                    consumidor=consumidor_fuente,
+                    resultado_objetivo_id=resultado_objetivo_id,
+                    indice=indice,
+                ))
+        except (KeyError, TypeError, ValueError) as exc:
             return _sin_cobertura_contrato(
-                base, f"padre numérico no activo: {consumidor_fuente}",
-                modo=modo_norm, proposito=proposito_norm, uso=uso,
-                dependencias=dependencias, resultado_id=resultado_id)
-        if (uso_fuente.corrida0_resultado_id != resultado_id
-                or uso_fuente.corrida0_generacion != "GEN2"
-                or fuente_salida.resultado_generacion != "GEN2"):
-            return _sin_cobertura_contrato(
-                base, ("identidad/generación declarada no coincide: "
-                       f"YAML={fuente_salida.resultado_id}/"
-                       f"{fuente_salida.resultado_generacion}, "
-                       f"registro={uso_fuente.corrida0_resultado_id}/"
-                       f"{uso_fuente.corrida0_generacion}"),
-                modo=modo_norm, proposito=proposito_norm, uso=uso,
-                dependencias=dependencias, resultado_id=resultado_id,
-                camino=uso_fuente.camino_linaje)
+                base, f"selección no acreditada: {exc}", modo=modo_norm,
+                proposito=proposito_norm, uso=uso,
+                dependencias=dependencias, resultado_id=resultado_objetivo_id)
+        resultado_id = evidencia.resultado_id
+    else:
+        resultado_id = resultado_objetivo_id
+        evidencia = indice.resultados.get(resultado_id)
 
-    evidencia = indice.resultados.get(resultado_id)
     if evidencia is None:
         return _sin_cobertura_contrato(
             base, f"RESULT inexistente en resultados.tsv: {resultado_id}",
@@ -927,21 +1214,9 @@ def emitir_binaria_contrato(
             origen=evidencia.origen_numerico, aptitud=aptitud, camino=camino)
 
     valor_resultado = evidencia.valor
-    if transferencia:
-        if valor_seleccionado is None or not math.isclose(
-                valor_seleccionado, valor_resultado, rel_tol=0.0, abs_tol=1e-12):
-            return _sin_cobertura_contrato(
-                base, ("el valor elegido por el selector no coincide con "
-                       f"{resultado_id}: {valor_seleccionado!r} != "
-                       f"{valor_resultado!r}"),
-                modo=modo_norm, proposito=proposito_norm, uso=uso,
-                dependencias=dependencias, resultado_id=resultado_id,
-                origen=evidencia.origen_numerico, aptitud=aptitud,
-                camino=camino)
-        valor_emitido = valor_resultado
-    else:
-        valor_emitido = (1.0 - valor_resultado
-                         if salida.complemento_de else valor_resultado)
+    valor_emitido = (1.0 - valor_resultado
+                     if salida.complemento_de else valor_resultado)
+    if not transferencia:
         if (base.valor_punto is None or
                 abs(base.valor_punto - valor_emitido) >
                 TOLERANCIA_MATERIALIZACION_P):
@@ -955,14 +1230,16 @@ def emitir_binaria_contrato(
                 camino=camino)
 
     detalle = f"{resultado_id}: {motivo}"
-    if detalle_seleccion:
-        detalle += f"; selección={detalle_seleccion}"
+    if transferencia:
+        detalle += (f"; selección={metodo_seleccion}; "
+                    f"rol_resuelto={rol_seleccion}")
     return replace(
         base, valor_punto=valor_emitido, resultado_id=resultado_id,
         resultado_generacion=evidencia.generacion,
         modo_emision=MODO_GEN2, proposito=proposito_norm,
         uso_solicitado=uso, origen_numerico=evidencia.origen_numerico,
         aptitud_uso=aptitud, camino_linaje=camino,
+        rol_seleccion=rol_seleccion,
         dependencias_estructurales=dependencias, detalle=detalle,
     )
 

@@ -14,7 +14,13 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(RAIZ))
-from tools.baseline_temporal import Objetivo, Observacion, Serie, seleccionar_baseline
+from tools.baseline_temporal import (
+    Objetivo,
+    Observacion,
+    Serie,
+    seleccionar_baseline,
+    seleccionar_transferencia,
+)
 
 
 class BaselineTemporalTest(unittest.TestCase):
@@ -88,6 +94,21 @@ class BaselineTemporalTest(unittest.TestCase):
         r = seleccionar_baseline(self.objetivo, [solapada])
         self.assertEqual(r["estado"], "SIN_BASELINE")
         self.assertEqual(r["excluidas"][0]["motivo"], "OLA_NO_ANTERIOR")
+
+    def test_transferencia_transporta_contrato_completo(self):
+        r = seleccionar_transferencia(
+            self.objetivo, [self.obs(2019, .2)],
+            estimando="proporción de adultos con P1=si",
+            transformacion="1 si P1=si; 0 si P1=no")
+        self.assertEqual(r["contrato_version"], "SELECCION-TEMPORAL-v1")
+        self.assertEqual(r["objetivo"]["serie"]["unidad"], "proporcion")
+        self.assertEqual(r["objetivo"]["serie"]["universo"], "adultos")
+        self.assertEqual(r["objetivo"]["corte_temporal"], "2020-12-31")
+        self.assertEqual(r["seleccion"]["periodo"]["inicio"], "2019-01-01")
+        self.assertEqual(r["seleccion"]["disponibilidad"], "2020-06-01")
+        self.assertEqual(
+            r["seleccion"]["evidencia_procedencia"]["resultado_id"],
+            "RESULT-FICTICIO-2019")
 
     def test_cli_corre_sobre_fixture_y_rechaza_entrada_invalida(self):
         with tempfile.TemporaryDirectory() as tmp:
