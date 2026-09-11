@@ -101,7 +101,8 @@ rama `acto/gen2-expedientes-acceso-21`, HEAD al abrir el PR
 `origin/main = a37837a0df69240e35c160a53c5c1de209f9be01`. Entrega los cinco
 expedientes técnicos, el DOCX OECD reproducible, el registro de recepción y
 los actualizadores acotados; conserva identidad, firma y presentación en el
-titular. Cierre canónico: `ADR-471`, L0 y rótulo
+titular. Cierre canónico: `ADR-478` (renumerado desde `ADR-471` al sincronizar
+`origin/main`), L0 y rótulo
 `GEN2-EXPEDIENTES-ACCESO-21`. Línea base verde sin entradas nuevas. Este
 asiento registra el PR real; no afirma que el acceso haya sido concedido ni
 que el PR haya sido fusionado.

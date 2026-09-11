@@ -29686,3 +29686,35 @@
   licencia: Descarga pública del productor; no se infiere licencia adicional de redistribución
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: Resultados publicados; no amplían la cobertura a México nacional.
+
+- id: gen2_cnbv_040_1a_r16_imor_tipo_cartera
+  usado_para: CNBV_PORTAFOLIO_INFORMACION_IMOR_CONSUMO; R1.6/dinero.credito.scoring_alternativo;
+    extracción descriptiva, no parámetro adoptado
+  url_origen: https://portafolioinfdoctos.cnbv.gob.mx/Documentacion/minfo/XLS/40/040_1a_R16.xls
+  fecha_descarga: '2026-09-11'
+  descargado_por: agente; curl+wget con TLS verificado y cadena GlobalSign oficial, bytes
+    idénticos
+  archivo: GEN2_FUENTES_FINANCIERAS_20/040_1a_R16.xls
+  sha256: 3b6ac444df102a4b6cecf0a24469471940bb9cc838e82b3c304e17bc56491629
+  tamano_bytes: 5491712
+  formato: XLS OLE con macros; reporte 040-1A-R16; foto cacheada 202112
+  licencia: Información pública oficial CNBV; términos específicos no determinados
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Plantilla pública vigente descargada desde el flujo ReportViwer/Agrupados. Sólo expone
+    el periodo cacheado 202112; la macro refresca sp_obtiene_reporte contra una conexión interna
+    UNC de CNBV, por lo que no constituye la serie histórica pública solicitada.
+
+- id: gen2_encrige2020_diseno_muestral
+  usado_para: ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF; documentar universo, diseño y factores
+    de expansión para N34/dinero.credito.baja_friccion_usura_dano_downstream
+  url_origen: https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463901969.pdf
+  fecha_descarga: '2026-09-11'
+  descargado_por: agente; curl+wget, bytes idénticos
+  archivo: GEN2_FUENTES_FINANCIERAS_20/encrige2020_diseno_muestral.pdf
+  sha256: 3f314258dc4ad0ddc5a4b94b327c763f3ff8c2abacf0bcac0a171519ce479961
+  tamano_bytes: 1185888
+  formato: PDF
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Diseño muestral ENCRIGE 2020, edición 2021: población objetivo, marco RENEM, diseño
+    probabilístico estratificado, muestra y cálculo/ajuste de factores de expansión.'

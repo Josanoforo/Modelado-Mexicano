@@ -82,6 +82,29 @@ class MotorUsosComplementos(unittest.TestCase):
                        if s.conducta == "paga_mordida_encig2025_digital")
         self.assertIn("NO-ADOPTAR-NC-0107", antigua.uso_motor)
 
+    def test_encig_r2_es_proxy_y_no_probabilidad_por_evento(self):
+        regla = self.reglas["tramite.mordida.con_registro"]
+        contexto = {"p8_4_observado": True,
+                    "canal_p7_3": "digital_registrado"}
+        descriptiva = emisor.emitir_binaria_en_contexto(
+            regla, "paga_mordida_encig2025_digital_r2", contexto,
+            uso_solicitado="consulta_descriptiva")
+        self.assertEqual("EMITE", descriptiva.estado)
+        self.assertEqual("proxy_descriptivo", descriptiva.rol_uso)
+        self.assertIn("no es tasa general ni probabilidad empírica",
+                      descriptiva.uso_motor)
+
+        evento = emisor.emitir_binaria_en_contexto(
+            regla, "paga_mordida_encig2025_digital_r2", contexto,
+            uso_solicitado="probabilidad_evento")
+        self.assertEqual("NO_COVERAGE", evento.estado)
+        self.assertIn("probabilidad_evento", evento.detalle)
+
+        # La ruta histórica conserva su resultado para replays y baseline.
+        historica = emisor.emitir_binaria_en_contexto(
+            regla, "paga_mordida_encig2025_digital_r2", contexto)
+        self.assertEqual(descriptiva.valor_punto, historica.valor_punto)
+
     def test_enif_corrige_rotulo_y_preserva_alias(self):
         regla = self.reglas["dinero.ahorro.seguro_deposito_enif2024"]
         alias = emisor.emitir_binaria(
@@ -120,8 +143,29 @@ class MotorUsosComplementos(unittest.TestCase):
         self.assertEqual(padre.valor_categoria, resto.derivado_de)
         salida = next(s for s in regla.entonces
                       if s.conducta == "denuncia_por_otra_razon")
-        self.assertIn("NO categoría literal 09", salida.evento)
+        self.assertIn("ni categoría literal 09", salida.evento)
+        self.assertIn("NO significa algún delito", salida.evento)
+        self.assertEqual("complemento_dependiente", salida.rol_uso)
         self.assertIn("NC-0085", salida.uso_motor)
+
+    def test_res0028_persona_con_razones_mixtas_no_es_alguna_otra(self):
+        # Una persona con delitos 01 y 04 pertenece tanto al grupo padre como
+        # al conjunto de códigos residuales. El complemento del indicador
+        # padre es 0; "alguna razón residual" daría 1 y es otro estimando.
+        razones = {"01", "04"}
+        indicador_padre = int(bool(razones & {"01", "02", "06", "08"}))
+        alguna_razon_residual = int(bool(razones & {"03", "04", "05", "07"}))
+        complemento_del_padre = 1 - indicador_padre
+        self.assertEqual((1, 1, 0),
+                         (indicador_padre, alguna_razon_residual,
+                          complemento_del_padre))
+
+        regla = self.reglas["civico.denuncia.miedo_desconfianza"]
+        salida = next(s for s in regla.entonces
+                      if s.conducta == "denuncia_por_otra_razon")
+        self.assertEqual("denuncia_con_miedo_o_desconfianza",
+                         salida.complemento_de)
+        self.assertIn("padre=1, complemento=0", salida.uso_motor)
 
     def test_replicas_del_complemento_no_son_otro_sorteo(self):
         q, replicas_q = emisor.complementar_replicas(
@@ -151,6 +195,49 @@ class MotorUsosComplementos(unittest.TestCase):
         proxy = fila["proxy_canal_enif2024"]
         self.assertIn("último producto", proxy["etiqueta"])
         self.assertIn("NO-CALIBRA", proxy["uso_motor"])
+
+    def test_fintech_d10_incorpora_serie_sin_calibrar_r16(self):
+        doc = yaml.safe_load((RAIZ / "milpa" / "procedencia.yaml").read_text())
+        fila = next(f for f in doc["asignados_probabilidad"]
+                    if f["regla"] == "dinero.credito.scoring_alternativo")
+        self.assertEqual([0.71, 0.29], fila["valores"])
+        serie = fila["serie_descriptiva_gen2"]
+        self.assertEqual("DESCRIPTIVO-NO-CALIBRA", serie["uso_motor"])
+        self.assertIn("CALC-ENIF-FINTECH-0001--5b92cee28946",
+                      serie["fuente_2021"])
+        self.assertEqual("NO-ESTIMABLE-RUPTURA-ESTRUCTURAL",
+                         serie["cuenta"][2018]["estado"])
+        self.assertIsNone(serie["cuenta"][2018]["valor"])
+        self.assertNotIn("delta", serie["cuenta"])
+        self.assertIn("NC-0122", serie["limite"])
+
+    def test_s6_traslada_limite_sin_reescribir_veredictos(self):
+        doc = yaml.safe_load(
+            (RAIZ / "milpa" / "tramite-ola5-propuesta-v0.yaml").read_text())
+        regla = next(r for r in doc["reglas_propuestas"]
+                     if r["id"] == "salud.atencion.grave_ennvih2002")
+        enmienda = regla["enmienda_alcance_inferencial_2026_09_10"]
+        self.assertEqual("IC-SENSIBILIDAD-LOCALIDAD-NO-DISENO-OFICIAL",
+                         enmienda["incertidumbre"])
+        self.assertEqual("MEDIA", enmienda["tier_regla_referida"])
+        self.assertEqual("NO-DISCRIMINA",
+                         enmienda["resultados_consumibles"]["C1_primaria"]
+                         ["veredicto_Bbis_historico"])
+        self.assertEqual("CORROBORADA",
+                         enmienda["resultados_consumibles"]["C3_secundaria"]
+                         ["veredicto_Bbis_historico"])
+        self.assertIn("FP-372 ABIERTA", enmienda["decision_inferencial"])
+
+    def test_identidad_encig_ya_deriva_del_payload(self):
+        with (RAIZ / "data/corrida0/demanda-corridas.tsv").open(
+                encoding="utf-8", newline="") as f:
+            next(f)
+            filas = {r["corrida_id"]: r
+                     for r in csv.DictReader(f, delimiter="\t")}
+        self.assertEqual("ENCIG2025", filas["CORR-0002"]["instrumento"])
+        self.assertEqual("encig25_base_datos_csv",
+                         filas["CORR-0002"]["payload_ids"])
+        self.assertEqual("ENCUCI2020", filas["CORR-0003"]["instrumento"])
 
 
 if __name__ == "__main__":

@@ -34,6 +34,7 @@ ANTES de llamar a `preflight`, asi que `run()` si se invoca completo.
 from __future__ import annotations
 
 import csv
+import hashlib
 import importlib.util
 import io
 import json
@@ -1410,7 +1411,7 @@ def _fila_corrida(cid: str, rids: list[str], **kw) -> dict:
 
 def _sella_calc_fixture(d: Path, cid: str, valores: dict, etiquetas: dict,
                         decl_res=None, sin_sello=False, sin_hash=None,
-                        repite_de=None) -> None:
+                        repite_de=None, inputs=None) -> None:
     """Un CALC de fixture con su sello real (`sella_sha256.py`, no un sidecar
     escrito a mano). `sin_sello` deja `resultados.json` sin respaldo y
     `sin_hash` borra un campo del recibo -- las dos son las condiciones que
@@ -1421,6 +1422,7 @@ def _sella_calc_fixture(d: Path, cid: str, valores: dict, etiquetas: dict,
     medidor = d / "medidor.py"
     medidor.write_text("def medir(inputs, contrato):\n    return {}\n", encoding="utf-8")
     spec = dict(_SPEC_REGISTRO_BASE, calc_id=cid, etiquetas=etiquetas,
+                inputs=list(inputs or []),
                 script=os.path.relpath(medidor, RAIZ),
                 resultados=decl_res or [{"id": r, "tipo": "flotante", "unidad": "u"}
                                         for r in valores])
@@ -1428,11 +1430,13 @@ def _sella_calc_fixture(d: Path, cid: str, valores: dict, etiquetas: dict,
         spec["repite_de"] = repite_de
     spec["spec_md_sha256"] = _sha(d / "spec.md")
     (d / "spec.yaml").write_text(yaml.safe_dump(spec, allow_unicode=True), encoding="utf-8")
+    input_ids = [str(e.get("id")) for e in spec["inputs"] if e.get("id")]
+    input_sha = {iid: "c" * 64 for iid in input_ids}
     ejec = {"corrida_id": f"{cid}--fixture", "spec_id": cid,
             "git_commit": "0" * 40, "script_path": spec["script"],
             "script_blob_sha256": C._sha256_archivo(medidor),
             "spec_yaml_sha256": C._sha256_archivo(d / "spec.yaml"),
-            "input_ids": [], "input_sha256": {}, "exit_code": 0,
+            "input_ids": input_ids, "input_sha256": input_sha, "exit_code": 0,
             "fecha": "2026-09-08T00:00:00Z", "parametros": spec["parametros"],
             "seed": spec["seed"], "resultado_ids": sorted(valores)}
     if sin_hash:
@@ -1448,7 +1452,7 @@ def _sella_calc_fixture(d: Path, cid: str, valores: dict, etiquetas: dict,
 
 @contextlib.contextmanager
 def _arbol_registro(res=None, corr=None, calcs=(), tramite=None, propuesta=None,
-                    evidencia=()):
+                    evidencia=(), validaciones=()):
     """Monta demanda + oferta en un temporal y re-apunta `corrida0` ahi.
     Restaura SIEMPRE: ningun caso escribe en `data/corrida0/`."""
     import yaml
@@ -1456,7 +1460,7 @@ def _arbol_registro(res=None, corr=None, calcs=(), tramite=None, propuesta=None,
     previos = {k: getattr(C, k) for k in
                ("CORRIDAS", "DEMANDA_RESULTADOS", "DEMANDA_CORRIDAS",
                 "NO_CORRIDO_TSV", "TRAMITE", "PROCEDENCIA", "PROPUESTA",
-                "REPLAY_EVIDENCIA")}
+                "REPLAY_EVIDENCIA", "VALIDACIONES_INDEPENDIENTES")}
     C.CORRIDAS = tmp
     C.DEMANDA_RESULTADOS = tmp / "demanda-resultados.tsv"
     C.DEMANDA_CORRIDAS = tmp / "demanda-corridas.tsv"
@@ -1465,6 +1469,7 @@ def _arbol_registro(res=None, corr=None, calcs=(), tramite=None, propuesta=None,
     C.PROCEDENCIA = tmp / "procedencia-ausente.yaml"
     C.PROPUESTA = tmp / "propuesta-ausente.yaml"
     C.REPLAY_EVIDENCIA = tmp / "replay-evidencia.tsv"
+    C.VALIDACIONES_INDEPENDIENTES = tmp / "validaciones-independientes.tsv"
     C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS, res or [])
     C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS, corr or [])
     C.TRAMITE.write_text(yaml.safe_dump(tramite or {"reglas": []},
@@ -1474,6 +1479,12 @@ def _arbol_registro(res=None, corr=None, calcs=(), tramite=None, propuesta=None,
                            lineterminator="\n")
         w.writeheader()
         w.writerows(evidencia)
+    with C.VALIDACIONES_INDEPENDIENTES.open(
+            "w", encoding="utf-8", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=C.COLS_VALIDACIONES_INDEPENDIENTES,
+                           delimiter="\t", lineterminator="\n")
+        w.writeheader()
+        w.writerows(validaciones)
     if propuesta is not None:
         C.PROPUESTA = tmp / "tramite-ola5-propuesta-v0.yaml"
         C.PROPUESTA.write_text(yaml.safe_dump(propuesta, allow_unicode=True),
@@ -1482,7 +1493,7 @@ def _arbol_registro(res=None, corr=None, calcs=(), tramite=None, propuesta=None,
         _sella_calc_fixture(tmp / c["calc_id"], c["calc_id"], c.get("valores", {}),
                             c.get("etiquetas", {}), c.get("decl_res"),
                             c.get("sin_sello", False), c.get("sin_hash"),
-                            c.get("repite_de"))
+                            c.get("repite_de"), c.get("inputs"))
     try:
         yield tmp
     finally:
@@ -2838,6 +2849,275 @@ def t_instrumento_fuente_ambigua_no_resuelve_por_primera():
     i2 = C._instrumento(f_independiente, crudo_ambas, {}, _MANIFIESTO_FIXTURE, [])
     _afirma(i2 == "ENCIG2025", caso,
             f"una apertura AMBIGUA detuvo a una independiente: {i2}")
+
+
+# ── ACTO GEN2-LINAJE-Y-ADOPCION: procedencia por RESULT y uso ────────
+
+def _oferta_linaje(cid: str, inputs, rids=("RESULT-A",), generacion="GEN2",
+                   decl_res=None) -> dict:
+    return {
+        "calc_id": cid,
+        "spec": {
+            "inputs": list(inputs),
+            "resultados": decl_res or [{"id": rid} for rid in rids],
+        },
+        "valores": {rid: 1.0 for rid in rids},
+        "generacion": generacion,
+    }
+
+
+def t_linaje_aliases_exactos_prefijo_y_enlace():
+    """La identidad es material: slash/dot/dotdot/enlace convergen; un
+    nombre que sólo comparte prefijo no se vuelve fuente numérica."""
+    caso = "T-LINAJE-ALIASES"
+    variantes = [
+        "milpa/tramite.yaml", "./milpa/tramite.yaml",
+        "milpa/../milpa/tramite.yaml", "milpa\\tramite.yaml",
+    ]
+    for ruta in variantes:
+        malos = C._inputs_legacy_de({"inputs": [{"id": "I", "ruta": ruta,
+                                                  "funcion": "DATO"}]})
+        _afirma(malos, caso, f"alias legacy no reconocido: {ruta}")
+    _afirma(not C._inputs_legacy_de({"inputs": [{
+        "id": "PREFIJO", "ruta": "milpa/tramite.yaml.otro", "funcion": "DATO"}]}),
+        caso, "un archivo de nombre parecido produjo falso positivo")
+
+    previo = C.RAIZ
+    with tempfile.TemporaryDirectory(prefix="linaje-symlink-") as td:
+        raiz = Path(td)
+        (raiz / "milpa").mkdir()
+        (raiz / "milpa" / "tramite.yaml").write_text("reglas: []\n", encoding="utf-8")
+        (raiz / "alias.yaml").symlink_to("milpa/tramite.yaml")
+        (raiz / "roto.yaml").symlink_to("no-existe.yaml")
+        try:
+            C.RAIZ = raiz
+            C._normaliza_ruta_repo.cache_clear()
+            C._referencias_numericas_de_intermediario.cache_clear()
+            normal, estado = C._normaliza_ruta_repo("alias.yaml")
+            _afirma((normal, estado) == ("milpa/tramite.yaml", "MATERIAL"), caso,
+                    f"enlace material resolvio {(normal, estado)}")
+            origen = _oferta_linaje(
+                "CALC-ALIAS", [{"id": "I", "ruta": "alias.yaml", "funcion": "DATO"}])
+            C._propaga_envuelto([origen])
+            _afirma(origen["origen_numerico"] == C.ORIGEN_HEREDADO, caso,
+                    f"enlace a legado dio {origen['origen_numerico']}")
+            roto = _oferta_linaje(
+                "CALC-ROTO", [{"id": "I", "ruta": "roto.yaml", "funcion": "DATO"}])
+            C._propaga_envuelto([roto])
+            _afirma(roto["origen_numerico"] == C.ORIGEN_INDETERMINADO, caso,
+                    f"enlace roto dio {roto['origen_numerico']}")
+        finally:
+            C.RAIZ = previo
+            C._normaliza_ruta_repo.cache_clear()
+            C._referencias_numericas_de_intermediario.cache_clear()
+
+
+def t_linaje_intermediario_padre_nieto_y_orden():
+    """Los snapshots y las cadenas RESULT->CALC conservan herencia aunque
+    los hijos aparezcan antes que sus padres en la oferta."""
+    caso = "T-LINAJE-GRAFO"
+    snapshot = "forense/prereg-duelo-v2/snapshot-M-triada-v1_0.json"
+    snap = _oferta_linaje("CALC-SNAPSHOT", [
+        {"id": "SNAPSHOT-M", "ruta": snapshot, "funcion": "DATO"}])
+    abuelo = _oferta_linaje("CALC-ABUELO", [], generacion="LEGACY-GEN1")
+    hijo = _oferta_linaje("CALC-HIJO", [
+        {"id": "PADRE", "ruta": "data/corrida0/CALC-ABUELO/resultados.json"}])
+    nieto = _oferta_linaje("CALC-NIETO", [
+        {"id": "PADRE", "ruta": "data/corrida0/CALC-HIJO/resultados.json"}])
+    C._propaga_envuelto([nieto, snap, hijo, abuelo])
+    for oferta in (snap, hijo, nieto):
+        _afirma(oferta["origen_numerico"] == C.ORIGEN_HEREDADO, caso,
+                f"{oferta['calc_id']} dio {oferta['origen_numerico']}")
+        _afirma(oferta["envuelto_legacy"] == "SI", caso,
+                f"{oferta['calc_id']} no marco herencia")
+
+
+def t_linaje_codigo_historico_no_es_tasa_y_ocho_r():
+    """Reusar el estimador R no copia sus números: los ocho R vigentes
+    parten del manifiesto y quedan nuevos, sin cambiar su firma de conteo."""
+    caso = "T-LINAJE-CODIGO-NO-DATO"
+    oferta = _oferta_linaje("CALC-R-FIX", [
+        {"id": "RAW", "origen": "manifiesto"},
+        {"id": "IN-CODIGO-CORRER-R",
+         "ruta": "forense/prereg-duelo-v2/corridas-R/correr-R.py"},
+    ])
+    C._propaga_envuelto([oferta])
+    _afirma(oferta["origen_numerico"] == C.ORIGEN_NUEVO, caso,
+            f"código histórico contaminó origen: {oferta['camino_linaje']}")
+    _afirma(not C._inputs_legacy_de(oferta["spec"]), caso,
+            "correr-R.py fue tratado como tasa copiada")
+
+    vigentes = {
+        "CALC-R-DIN-M-01-v4", "CALC-R-FAM-M-01-v3", "CALC-R-FAM-M-05-v3",
+        "CALC-R-FAM-M-06-v3", "CALC-R-FAM-M-07-v3", "CALC-R-TRA-M-02-v3",
+        "CALC-R-TRA-M-03-v3", "CALC-R-TRA-M-07-v3",
+    }
+    import yaml
+    reales = {}
+    decisiones = C._lee_decisiones()
+    for cid in sorted(vigentes):
+        ruta = C.CORRIDAS / cid / "spec.yaml"
+        if not ruta.exists():
+            continue
+        spec = yaml.safe_load(ruta.read_text(encoding="utf-8"))
+        rids = tuple(str(r["id"]) for r in spec.get("resultados", []))
+        item = _oferta_linaje(cid, spec.get("inputs", []), rids,
+                              C._etiqueta(spec, "generacion", "GEN2"),
+                              spec.get("resultados", []))
+        item["cuenta_gen2"] = C._cuenta_gen2_resuelto(cid, spec, decisiones)[0]
+        reales[cid] = item
+    C._propaga_envuelto(list(reales.values()))
+    _afirma(set(reales) == vigentes, caso,
+            f"faltan R vigentes: {sorted(vigentes - set(reales))}")
+    malos = {cid: (o["origen_numerico"], o["cuenta_gen2"])
+             for cid, o in reales.items()
+             if o["origen_numerico"] != C.ORIGEN_NUEVO or o["cuenta_gen2"] != "SI"}
+    _afirma(not malos, caso, f"los ocho R no quedaron NUEVO/SI: {malos}")
+
+
+def t_linaje_desconocido_ciclo_y_excepcion_contador():
+    """Lo irresoluble y los ciclos no se limpian; una firma administrativa
+    de conteo tampoco cambia la procedencia numérica."""
+    caso = "T-LINAJE-INDETERMINADO"
+    desconocido = _oferta_linaje("CALC-DESC", [
+        {"id": "X", "ruta": "ruta/que/no-existe.bin"}])
+    a = _oferta_linaje("CALC-CICLO-A", [
+        {"id": "B", "ruta": "data/corrida0/CALC-CICLO-B/resultados.json"}])
+    b = _oferta_linaje("CALC-CICLO-B", [
+        {"id": "A", "ruta": "data/corrida0/CALC-CICLO-A/resultados.json"}])
+    C._propaga_envuelto([desconocido, a, b])
+    for oferta in (desconocido, a, b):
+        _afirma(oferta["origen_numerico"] == C.ORIGEN_INDETERMINADO, caso,
+                f"{oferta['calc_id']} se limpió: {oferta['origen_numerico']}")
+    _afirma("CICLO" in a["camino_linaje"] or "CICLO" in b["camino_linaje"], caso,
+            "el camino no hizo visible el ciclo")
+
+    spec = {"inputs": [{"id": "OLD", "ruta": "milpa/tramite.yaml",
+                         "funcion": "DATO"}],
+            "etiquetas": {"generacion": "GEN2", "cuenta_gen2": "NO"},
+            "resultados": [{"id": "RESULT-A"}]}
+    cuenta, _ = C._cuenta_gen2_resuelto(
+        "CALC-FIRMA", spec, {"CALC-FIRMA": "cuenta_gen2=SI · firma de mesa"})
+    firmado = _oferta_linaje("CALC-FIRMA", spec["inputs"])
+    C._propaga_envuelto([firmado])
+    _afirma(cuenta == "SI" and firmado["origen_numerico"] == C.ORIGEN_HEREDADO,
+            caso, f"firma administrativa alteró origen: {cuenta}/{firmado['origen_numerico']}")
+
+
+def t_linaje_por_resultado_y_roles_de_uso():
+    """Un CALC puede producir RESULT nuevos, heredados y mixtos; la aptitud
+    depende del RESULT y del rol solicitado, no de todo el directorio."""
+    caso = "T-LINAJE-POR-RESULT"
+    decl = [
+        {"id": "RESULT-N", "dependencias_numericas": ["RAW"]},
+        {"id": "RESULT-H", "dependencias_numericas": ["OLD"]},
+        {"id": "RESULT-M", "dependencias_numericas": ["RAW", "OLD"]},
+    ]
+    oferta = _oferta_linaje("CALC-SPLIT", [
+        {"id": "RAW", "origen": "manifiesto"},
+        {"id": "OLD", "ruta": "forense/prereg-duelo-v2/corridas-M/resultado.json",
+         "funcion": "DATO"},
+    ], ("RESULT-N", "RESULT-H", "RESULT-M"), decl_res=decl)
+    C._propaga_envuelto([oferta])
+    origenes = {rid: lin["origen"] for rid, lin in oferta["linajes_resultados"].items()}
+    _afirma(origenes == {"RESULT-N": C.ORIGEN_NUEVO,
+                         "RESULT-H": C.ORIGEN_HEREDADO,
+                         "RESULT-M": C.ORIGEN_MIXTO}, caso, f"orígenes={origenes}")
+    _afirma(C.aptitud_para_uso(C.ORIGEN_NUEVO, "MEDICION-GEN2")[0]
+            == C.APTA_LINAJE, caso, "una medición nueva fue rechazada")
+    _afirma(C.aptitud_para_uso(C.ORIGEN_HEREDADO, "MEDICION-GEN2")[0]
+            == C.NO_APTA, caso, "una medición heredada fue aceptada")
+    _afirma(C.aptitud_para_uso(C.ORIGEN_HEREDADO, "HISTORICO")[0]
+            == "APTA-CON-HERENCIA-DECLARADA", caso, "un histórico explícito fue rechazado")
+    _afirma(C.aptitud_para_uso(C.ORIGEN_NUEVO, "CONFIRMACION-INDEPENDIENTE",
+                               "NO-HECHA", "HOLDOUT")[0] == C.NO_APTA,
+            caso, "confirmación sin validación independiente fue aceptada")
+    _afirma(C.aptitud_para_uso(C.ORIGEN_NUEVO, "CONFIRMACION-INDEPENDIENTE",
+                               "PASA", "HOLDOUT")[0] == C.APTA_LINAJE,
+            caso, "confirmación retenida y validada fue rechazada")
+
+
+def t_linaje_registro_rechaza_envuelto_y_acepta_nuevo():
+    """El registro bloquea un RESULT heredado aunque esté sellado y firmado
+    como GEN2, y acepta el mismo cableado cuando su origen sí es nuevo."""
+    caso = "T-LINAJE-ADOPCION"
+
+    def arbol(rid, valor):
+        return {"reglas": [{"id": "r.linaje", "entonces": [{
+            "conducta": "c1", "p": valor, "corrida0_resultado_id": rid,
+            "corrida0_generacion": "GEN2", "corrida0_uso": "MEDICION-GEN2",
+        }]}]}
+
+    heredado = [{"calc_id": "CALC-ENVUELTO", "valores": {"RESULT-H": 1.0},
+                 "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"},
+                 "inputs": [{"id": "OLD", "ruta": "milpa/tramite.yaml",
+                              "funcion": "DATO"}]}]
+    with _arbol_registro(calcs=heredado, tramite=arbol("RESULT-H", 1.0)):
+        consumidor = f"{C._rel(C.TRAMITE)}:r.linaje:c1"
+        C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS,
+                   [_fila_demanda("RES-0001", consumidor, "CORR-0001")])
+        C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS,
+                   [_fila_corrida("CORR-0001", ["RES-0001"])])
+        try:
+            C.registro(escribe=False, imprime=False)
+            _falla(caso, "un RESULT heredado firmado como GEN2 fue adoptado")
+        except C.ParoRegistro as exc:
+            mensaje = str(exc)
+            _afirma("USO-NO-APTO" in mensaje and "RESULT-H" in mensaje
+                    and "r.linaje" in mensaje and "HEREDADO" in mensaje,
+                    caso, f"diagnóstico incompleto: {mensaje}")
+
+    nuevo = [{"calc_id": "CALC-NUEVO", "valores": {"RESULT-N": 1.0},
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"},
+              "inputs": [{"id": "RAW", "origen": "manifiesto"}]}]
+    with _arbol_registro(calcs=nuevo, tramite=arbol("RESULT-N", 1.0)):
+        consumidor = f"{C._rel(C.TRAMITE)}:r.linaje:c1"
+        C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS,
+                   [_fila_demanda("RES-0001", consumidor, "CORR-0001")])
+        C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS,
+                   [_fila_corrida("CORR-0001", ["RES-0001"])])
+        vistas = C.registro(escribe=False, imprime=False)
+    uso = vistas["usos"][0]
+    _afirma((uso["origen_numerico"], uso["aptitud_uso"])
+            == (C.ORIGEN_NUEVO, C.APTA_LINAJE), caso,
+            f"adopción nueva inesperada: {uso}")
+
+
+def t_validacion_overlay_sucesor_por_resultado_y_hash():
+    """Una validación posterior se vincula por RESULT sin tocar la spec
+    sellada; un hash falso o un destino inexistente paran el registro."""
+    caso = "T-VALIDACION-OVERLAY"
+    calcs = [{"calc_id": "CALC-VALIDA",
+              "valores": {"RESULT-P": 0.25, "RESULT-EE": 0.1},
+              "etiquetas": {"generacion": "GEN2", "cuenta_gen2": "SI",
+                             "validacion_independiente": "NO-HECHA"}}]
+    ref = "tests/test_corrida0.py"
+    sha = hashlib.sha256((RAIZ / ref).read_bytes()).hexdigest()
+    asiento = {
+        "spec_id": "CALC-VALIDA", "resultado_id": "RESULT-P",
+        "validacion_independiente": "PASA", "validacion_ref": ref,
+        "evidencia_sha256": sha, "alcance_validacion": "PUNTO-VALIDADO",
+    }
+    with _arbol_registro(calcs=calcs, validaciones=[asiento]):
+        vistas = C.registro(escribe=False, imprime=False)
+    por_id = {f["resultado_id"]: f for f in vistas["resultados"]}
+    _afirma((por_id["RESULT-P"]["validacion_independiente"],
+             por_id["RESULT-P"]["validacion_ref"],
+             por_id["RESULT-P"]["alcance_validacion"])
+            == ("PASA", ref, "PUNTO-VALIDADO"), caso,
+            f"el asiento no viajó completo: {por_id['RESULT-P']}")
+    _afirma(por_id["RESULT-EE"]["validacion_independiente"] == "NO-HECHA"
+            and por_id["RESULT-EE"]["validacion_ref"] == C.NO_DECLARADO,
+            caso, "el overlay promovió un RESULT no listado")
+
+    hash_falso = dict(asiento, evidencia_sha256="0" * 64)
+    p = _paro_de(calcs=calcs, validaciones=[hash_falso])
+    _afirma("VALIDACION-EVIDENCIA-DISCORDA" in p, caso,
+            f"un hash falso no paró: {p!r}")
+    inexistente = dict(asiento, resultado_id="RESULT-AUSENTE")
+    p = _paro_de(calcs=calcs, validaciones=[inexistente])
+    _afirma("VALIDACION-OVERLAY-DESTINO" in p, caso,
+            f"un destino ausente no paró: {p!r}")
 
 
 TESTS = [v for k, v in sorted(globals().items()) if k.startswith("t_")]

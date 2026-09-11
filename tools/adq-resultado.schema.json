@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ejecutor",
+    "seleccion",
+    "resultado_sustantivo",
+    "intentos",
+    "objetos_o_recetas",
+    "publicacion_agente",
+    "resumen"
+  ],
+  "properties": {
+    "ejecutor": {"type": "string", "enum": ["codex"]},
+    "seleccion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["elegidos", "excluidos_con_causa"],
+      "properties": {
+        "elegidos": {"type": "array", "items": {"type": "string"}},
+        "excluidos_con_causa": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "resultado_sustantivo": {
+      "type": "string",
+      "enum": ["adquisicion_obtenida", "intentos_documentados", "cola_vacia", "fallo"]
+    },
+    "intentos": {"type": "array", "items": {"type": "string"}},
+    "objetos_o_recetas": {"type": "array", "items": {"type": "string"}},
+    "publicacion_agente": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["estado", "referencia"],
+      "properties": {
+        "estado": {"type": "string", "enum": ["publicada", "sin_cambios", "fallida", "no_aplica"]},
+        "referencia": {"type": "string"}
+      }
+    },
+    "resumen": {"type": "string", "minLength": 1}
+  }
+}

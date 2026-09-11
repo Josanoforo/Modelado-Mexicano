@@ -72,6 +72,8 @@
 
 set -euo pipefail
 
+RUNNER_VERSION="adq-codex-1"
+
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_DIR"
 
@@ -90,12 +92,24 @@ mkdir -p "$ESTADO_DIR"
 HEARTBEAT="${ESTADO_DIR}/heartbeat.json"
 LOCKFILE="${ESTADO_DIR}/adquiere_cron.lock"
 RUN_ID="${FECHA}T$(date +%H%M%S)-$$"
+INICIO_ISO="$(date --iso-8601=seconds)"
 DISPARADOR="${ADQ_DISPARADOR:-manual}"
 case "$DISPARADOR" in
-  windows-task-scheduler|manual|prueba-programada|fixture) ;;
+  windows-task-scheduler|puesta-en-marcha-programada|manual|prueba-programada|fixture) ;;
   *) DISPARADOR="desconocido" ;;
 esac
+CAUSA_DISPARO="${ADQ_CAUSA_DISPARO:-$DISPARADOR}"
 FASE="INICIO"
+EJECUTOR="desconocido"
+CLI_VERSION="desconocida"
+MODELO_CONFIGURADO="no-configurado"
+MODELO_EFECTIVO="no-observable"
+RESULTADO_SUSTANTIVO="no-invocado"
+SELECCION_ELEGIDOS="-"
+SELECCION_EXCLUIDOS="-"
+SELECCION_JSON="null"
+RESULTADO_PUBLICO="null"
+PUBLICACION_ESTADO="pendiente"
 # Dueño del lock: 0 hasta que `flock` lo conceda. Solo el dueño escribe el
 # heartbeat activo (H6) -- una segunda invocación rechazada no puede
 # borrar el estado de la que sigue trabajando.
@@ -107,6 +121,17 @@ CIERRE_ESCRITO=0
 
 log() {
   echo "[$(date '+%Y-%m-%d %H:%M:%S%z')] $*" | tee -a "$LOGFILE"
+}
+
+# Regresa al árbol que el launcher resolvió. En el camino heredado conserva
+# `main`; en despliegue fijado nunca permite que un checkout auxiliar a
+# censo/<fecha> rebaje el árbol a una versión anterior del ejecutor.
+restaura_arbol_operativo() {
+  if [ -n "${ADQ_DEPLOY_SHA:-}" ]; then
+    git checkout --detach "$ADQ_DEPLOY_SHA" >>"$LOGFILE" 2>&1
+  else
+    git checkout main >>"$LOGFILE" 2>&1
+  fi
 }
 
 # ── H4 · sonda de red con transporte y HTTP SEPARADOS ────────────
@@ -218,9 +243,11 @@ escribe_heartbeat() {
     log "heartbeat NO escrito por run_id=${RUN_ID} (estado=${estado}): esta invocación no es dueña del lock y no puede pisar el estado de la que trabaja."
     return 0
   fi
-  python3 - "$HEARTBEAT" "$RUN_ID" "$$" "$estado" "$FASE" "$FECHA" "$codigo" "$DISPARADOR" "${HEAD_USADO:-desconocido}" <<'PYEOF'
+  python3 - "$HEARTBEAT" "$RUN_ID" "$$" "$estado" "$FASE" "$FECHA" "$codigo" "$DISPARADOR" "${HEAD_USADO:-desconocido}" "$CAUSA_DISPARO" "$EJECUTOR" "$CLI_VERSION" "$MODELO_CONFIGURADO" "$MODELO_EFECTIVO" "$RUNNER_VERSION" "$INICIO_ISO" "$RESULTADO_SUSTANTIVO" "$PUBLICACION_ESTADO" "${ADQ_DEPLOY_MODE:-legacy}" "$SELECCION_ELEGIDOS" "$SELECCION_EXCLUIDOS" <<'PYEOF'
 import json, os, sys, datetime, tempfile
-ruta, run_id, pid, estado, fase, fecha, codigo, disparador, sha = sys.argv[1:10]
+(ruta, run_id, pid, estado, fase, fecha, codigo, disparador, sha, causa,
+ ejecutor, cli_version, modelo_configurado, modelo_efectivo, runner_version,
+ inicio, resultado, publicacion, despliegue, elegidos, excluidos) = sys.argv[1:22]
 doc = {
     "run_id": run_id,
     "pid": int(pid),
@@ -228,10 +255,24 @@ doc = {
     "fase": fase,
     "fecha": fecha,
     "disparador": disparador,
+    "causa_disparo": causa,
+    "ejecutor": ejecutor,
+    "cli_version": cli_version,
+    "modelo_configurado": modelo_configurado,
+    "modelo_efectivo": modelo_efectivo,
+    "runner_version": runner_version,
+    "despliegue": despliegue,
     "sha": sha,
+    "inicio": inicio,
+    "resultado_sustantivo": resultado,
+    "seleccion_elegidos": elegidos,
+    "seleccion_excluidos": excluidos,
+    "publicacion": publicacion,
     "codigo_salida": (int(codigo) if codigo not in ("", "-") else None),
     "actualizado": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
 }
+if estado in ("TERMINADO", "FAILED", "INCOMPLETO"):
+    doc["fin"] = doc["actualizado"]
 d = os.path.dirname(os.path.abspath(ruta)) or "."
 fd, tmp = tempfile.mkstemp(dir=d, prefix=".heartbeat-", suffix=".tmp")
 try:
@@ -336,7 +377,7 @@ ${resumen}" >>"$LOGFILE" 2>&1
     fi
   fi
 
-  git checkout main >>"$LOGFILE" 2>&1 || true
+  restaura_arbol_operativo || true
 
   if [ "$publicado" -ne 1 ]; then
     PUBLICACION_FALLIDA=$((PUBLICACION_FALLIDA + 1))
@@ -429,7 +470,7 @@ ${RESUMEN}" >>"$LOGFILE" 2>&1
   else
     log "[CENSO] ${FECHA}: sin cambios respecto al censo previo, no se commitea de nuevo."
   fi
-  git checkout main >>"$LOGFILE" 2>&1 || true
+  restaura_arbol_operativo || true
 }
 
 # huella_adq <invocado:si|no> <motivo:-|PARO-RAIZ|PARO-RED|PARO-PROMPT|PARO-CORPUS> <exit:codigo|->
@@ -455,7 +496,7 @@ ${RESUMEN}" >>"$LOGFILE" 2>&1
 # la lee de data/manifiesto.yaml y de la cola, no de aquí.
 huella_adq() {
   local invocado="$1" motivo="$2" exit_cod="$3"
-  local hhmm t1 duracion head_despues commits_nuevos ramas_despues ramas_nuevas archivos_modificados linea publicacion
+  local hhmm t1 duracion head_despues commits_nuevos ramas_despues ramas_nuevas archivos_modificados linea publicacion contenido fin_iso cli_token
   hhmm="$(date +%H:%M)"
   t1="$(date +%s)"
   duracion=$((t1 - T0))
@@ -500,10 +541,17 @@ huella_adq() {
     publicacion="FALLIDA(${fallidas_antes})"
   fi
 
-  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} publicacion=${publicacion} disparador=${DISPARADOR} run_id=${RUN_ID}"
+  fin_iso="$(date --iso-8601=seconds)"
+  cli_token="${CLI_VERSION// /_}"
+  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} launcher_sha=${ADQ_DEPLOY_SHA:-legacy} runner_version=${RUNNER_VERSION} ejecutor=${EJECUTOR} cli_version=${cli_token} modelo_configurado=${MODELO_CONFIGURADO} modelo_efectivo=${MODELO_EFECTIVO} resultado=${RESULTADO_SUSTANTIVO} seleccion_elegidos=${SELECCION_ELEGIDOS} seleccion_excluidos=${SELECCION_EXCLUIDOS} inicio=${INICIO_ISO} fin=${fin_iso} publicacion=${publicacion} disparador=${DISPARADOR} causa=${CAUSA_DISPARO} run_id=${RUN_ID}"
   log "${linea}"
   CIERRE_ESCRITO=1
-  if ! commit_censo_linea "$linea" "$linea" "[ADQ] ${FECHA}"; then
+  printf -v contenido '[ADQ-SELECCION] run_id=%s %s\n[ADQ-RESULTADO] run_id=%s %s\n%s' \
+    "$RUN_ID" "$SELECCION_JSON" "$RUN_ID" "$RESULTADO_PUBLICO" "$linea"
+  if commit_censo_linea "$contenido" "$linea" "[ADQ] ${FECHA}"; then
+    PUBLICACION_ESTADO="OK"
+  else
+    PUBLICACION_ESTADO="FALLIDA"
     if [ "${PUBLICACION_FALLIDA:-0}" -gt "$fallidas_antes" ]; then
       # commit_censo_linea ya volvió a `main` antes de devolver el fallo
       # -- hay que regresar a censo/${FECHA} para corregir el commit que
@@ -522,7 +570,7 @@ huella_adq() {
 
 ${linea_corregida}" >>"$LOGFILE" 2>&1 || true
         log "HUELLA-CORREGIDA: el push de esta huella falló; se corrigió el commit local (nunca empujado, en ${rama_censo}) para declarar: ${linea_corregida}"
-        git checkout main >>"$LOGFILE" 2>&1 || true
+        restaura_arbol_operativo || true
       else
         log "HUELLA-NO-CORREGIDA: no se pudo volver a ${rama_censo} para corregir el commit local; el log ya declaró FALLIDA(${PUBLICACION_FALLIDA}) aunque el commit quedó con publicacion=${publicacion}."
       fi
@@ -548,8 +596,10 @@ log "=== adquiere_cron.sh arrancando en $REPO_DIR (run_id=${RUN_ID} disparador=$
 # la primera sigue viva no espera ni encola, se retira de inmediato -- el
 # reintento del mismo día (permitido, P3) es responsabilidad de quien
 # dispara el runner (scheduler o mano), no de esperar aquí.
-exec 200>"$LOCKFILE"
-if ! flock -n 200; then
+if [ "${ADQ_LOCK_FD_INHERITED:-0}" != "1" ]; then
+  exec 200>"$LOCKFILE"
+fi
+if [ "${ADQ_LOCK_FD_INHERITED:-0}" != "1" ] && ! flock -n 200; then
   FASE="PARO-LOCK"
   # H6: el rechazo se apendiza al LOG con su propio run_id -- NUNCA al
   # heartbeat, que sigue siendo del dueño que está trabajando. Antes de
@@ -583,28 +633,39 @@ finalizar() {
   # Restauración segura del contexto: best-effort, nunca deja que un
   # checkout fallido dispare un segundo trap ni cambie el código de salida
   # que ya se reportó arriba.
-  git checkout main >>"$LOGFILE" 2>&1 || true
+  restaura_arbol_operativo || true
 }
 trap finalizar EXIT
 
 escribe_heartbeat "STARTED" "-"
 
-# 1 · clon al día
+# 1 · árbol coherente. El launcher actualiza ANTES de cargar este archivo.
 FASE="CLON-AL-DIA"
-log "git fetch && git checkout main && git pull"
-git fetch origin >>"$LOGFILE" 2>&1
-git checkout main >>"$LOGFILE" 2>&1
-git pull origin main >>"$LOGFILE" 2>&1
-log "HEAD tras pull: $(git log -1 --format='%h %s')"
+if [ -n "${ADQ_DEPLOY_SHA:-}" ]; then
+  HEAD_REAL="$(git rev-parse HEAD)"
+  if [ "$HEAD_REAL" != "$ADQ_DEPLOY_SHA" ]; then
+    log "PARO-REVISION: launcher declaró $ADQ_DEPLOY_SHA pero el árbol está en $HEAD_REAL"
+    exit 5
+  fi
+  log "árbol resuelto por launcher antes de cargar runner: sha=$HEAD_REAL modo=${ADQ_DEPLOY_MODE:-desconocido}"
+else
+  log "camino compatible sin launcher: git fetch && git checkout main && git pull"
+  git fetch origin >>"$LOGFILE" 2>&1
+  git checkout main >>"$LOGFILE" 2>&1
+  git pull --ff-only origin main >>"$LOGFILE" 2>&1
+fi
+log "HEAD operativo: $(git log -1 --format='%h %s')"
 
 # P1 (GEN2-SONDA-ADQ-CABLEADO): la configuración se lee y se valida AQUÍ,
 # DESPUÉS de sincronizar -- antes se leía al arrancar el script, es decir
 # contra la versión vieja del clon, y cada default entraba en silencio.
 transicion "CONFIG"
-lee_entero_resuelto claude_timeout_segundos CLAUDE_TIMEOUT_SEGUNDOS 1800
-CLAUDE_TIMEOUT_SEGUNDOS="$VALOR_CONFIG_RESUELTO"
-lee_entero_resuelto claude_kill_after_segundos CLAUDE_KILL_AFTER_SEGUNDOS 60
-CLAUDE_KILL_AFTER_SEGUNDOS="$VALOR_CONFIG_RESUELTO"
+EJECUTOR_JSON="$(python3 tools/adq_config.py --ejecutor-json)"
+EJECUTOR="$(printf '%s' "$EJECUTOR_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["nombre"])')"
+TIMEOUT_EJECUTOR="$(printf '%s' "$EJECUTOR_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["timeout"]["valor"])')"
+KILL_AFTER_EJECUTOR="$(printf '%s' "$EJECUTOR_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["kill_after"]["valor"])')"
+MAXIMO_FILAS="$(printf '%s' "$EJECUTOR_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["maximo_filas"])')"
+log "CONFIG: ejecutor=$EJECUTOR timeout=${TIMEOUT_EJECUTOR}s kill_after=${KILL_AFTER_EJECUTOR}s maximo_filas=$MAXIMO_FILAS"
 CALENDARIO_JSON="$(python3 tools/adq_config.py --calendario-json)"
 ADQ_ZONA_HORARIA="$(printf '%s' "$CALENDARIO_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["zona_iana"])')"
 CALENDARIO_DEGRADADO="$(printf '%s' "$CALENDARIO_JSON" | python3 -c 'import json,sys; print("si" if json.load(sys.stdin)["degradada"] else "no")')"
@@ -747,7 +808,7 @@ if ! sonda_red "$SONDA_URL"; then
 fi
 log "sonda de red superada: ${CAUSA_RED}"
 
-# 4 · lanza claude -p con el prompt exacto de §1 del runbook.
+# 4 · ejecuta el procedimiento con el ejecutor seleccionado.
 #   Extrae solo el bloque ```text ... ``` de §1, no el archivo entero:
 #   el runbook trae prosa de mesa (firmas, razones, línea de crontab) que
 #   no es parte del prompt de la tarea recurrente.
@@ -763,7 +824,7 @@ PROMPT="$(extrae_prompt "$RUNBOOK" || true)"
 
 if [ -z "$PROMPT" ]; then
   FASE="PARO-PROMPT"
-  log "PARO: no se pudo extraer el bloque de prompt (\`\`\`text ... \`\`\`) de ${RUNBOOK}. No se invoca claude -p a ciegas con el archivo entero."
+  log "PARO: no se pudo extraer el bloque de prompt (\`\`\`text ... \`\`\`) de ${RUNBOOK}. No se invoca el ejecutor a ciegas con el archivo entero."
   huella_adq "no" "PARO-PROMPT" "-"
   exit 1
 fi
@@ -771,10 +832,22 @@ fi
 log "prompt extraído (§1 de ${RUNBOOK}), $(echo "$PROMPT" | wc -l) líneas:"
 echo "$PROMPT" >>"$LOGFILE"
 
-FASE="CLAUDE"
-log "invocando: timeout --kill-after=${CLAUDE_KILL_AFTER_SEGUNDOS}s ${CLAUDE_TIMEOUT_SEGUNDOS}s claude --add-dir /home/pc0/mm-corpus -p \"\$PROMPT\""
+transicion "SELECCION"
+SELECCION_JSON="$(python3 tools/adq_doctor.py --selecciona --maximo "$MAXIMO_FILAS" --json | python3 -c 'import json,sys; print(json.dumps(json.load(sys.stdin), ensure_ascii=False, separators=(",",":")))')"
+SELECCION_ELEGIDOS="$(printf '%s' "$SELECCION_JSON" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(",".join(x["id"] for x in d["elegidos"]) or "ninguno")')"
+SELECCION_EXCLUIDOS="$(printf '%s' "$SELECCION_JSON" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)["excluidos"]))')"
+log "selección autoritativa: elegidos=${SELECCION_ELEGIDOS} excluidos=${SELECCION_EXCLUIDOS} máximo=${MAXIMO_FILAS}"
+
+PROMPT_EFECTIVO="${PROMPT}
+
+INSTRUCCIÓN DE EJECUCIÓN PARA CODEX CLI:
+Lee completa .claude/commands/adquiere.md y ejecuta ese procedimiento; la frase histórica 'Corre /adquiere' no depende de un slash command registrado. No invoques tools/adquiere_launcher.sh, tools/adquiere_cron.sh, Task Scheduler ni otro agente: ya eres el único hijo de esa corrida. Preserva cualquier modificación ajena, especialmente data/manifiesto-staging.yaml, y nunca la incluyas en un commit. Máximo ${MAXIMO_FILAS} filas.
+Esta es la selección proyectada inmediatamente antes de tu arranque; contrástala y reporta todos los elegidos y excluidos con causa:
+${SELECCION_JSON}
+Tu último mensaje debe cumplir tools/adq-resultado.schema.json. Exit 0 sólo si ejecutaste el recorrido: una cola vacía exige resultado_sustantivo=cola_vacia y la lista completa; no basta dejar un plan o pedir otra sesión."
+
 # set +e/-e: la huella [ADQ] tiene que capturar el código real de salida
-# incluso cuando claude -p falla -- bajo `set -e` (activo desde la línea
+# incluso cuando el hijo falla -- bajo `set -e`
 # 13) un `cmd; CODIGO=$?` normal aborta el script en `cmd` mismo, antes
 # de llegar a leer `$?`, y huella_adq() nunca se llamaría. Ventana
 # mínima, solo alrededor de esta invocación (necesario para que la
@@ -783,18 +856,84 @@ log "invocando: timeout --kill-after=${CLAUDE_KILL_AFTER_SEGUNDOS}s ${CLAUDE_TIM
 # colgado ya no puede dejar la instancia con el lock tomado
 # indefinidamente -- exit 124 si lo mató por timeout.
 set +e
-# H6: `--kill-after` con gracia FINITA. Sin él, un proceso que ignora
-# SIGTERM sobrevivía al límite (reproducido: vivo tras cuatro veces el
-# límite, eliminado solo por el harness). TERM primero, y si no se va en
-# ${CLAUDE_KILL_AFTER_SEGUNDOS}s, KILL.
-timeout --kill-after="${CLAUDE_KILL_AFTER_SEGUNDOS}s" "${CLAUDE_TIMEOUT_SEGUNDOS}s" claude --add-dir /home/pc0/mm-corpus -p "$PROMPT" >>"$LOGFILE" 2>&1
-CODIGO_SALIDA=$?
+if [ "$EJECUTOR" = "codex" ]; then
+  FASE="CODEX"
+  CODEX_BINARIO="$(printf '%s' "$EJECUTOR_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["codex"]["binario"])')"
+  MODELO_CONFIGURADO="$(printf '%s' "$EJECUTOR_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["codex"]["modelo"])')"
+  CODEX_SANDBOX="$(printf '%s' "$EJECUTOR_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["codex"]["sandbox"])')"
+  CODEX_DIR_ADICIONAL="$(printf '%s' "$EJECUTOR_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["codex"]["directorio_adicional"])')"
+  CODEX_ESQUEMA="$(printf '%s' "$EJECUTOR_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["codex"]["esquema_resultado"])')"
+  if [ ! -x "$CODEX_BINARIO" ]; then
+    log "PARO-EJECUTOR: binario Codex no ejecutable: $CODEX_BINARIO"
+    CODIGO_SALIDA=127
+  elif ! "$CODEX_BINARIO" login status >>"$LOGFILE" 2>&1; then
+    log "PARO-AUTENTICACION: codex login status no confirmó una sesión"
+    CODIGO_SALIDA=78
+  else
+    CLI_VERSION="$($CODEX_BINARIO --version 2>&1 | tail -1)"
+    MODELO_EFECTIVO="$MODELO_CONFIGURADO"
+    EVENTOS_CODEX="$LOGDIR/${RUN_ID}-codex.jsonl"
+    STDERR_CODEX="$LOGDIR/${RUN_ID}-codex.stderr.log"
+    ULTIMO_MENSAJE="$LOGDIR/${RUN_ID}-codex-final.json"
+    PROMPT_LOCAL="$LOGDIR/${RUN_ID}-prompt.txt"
+    printf '%s\n' "$PROMPT_EFECTIVO" >"$PROMPT_LOCAL"
+    log "invocando: timeout --kill-after=${KILL_AFTER_EJECUTOR}s ${TIMEOUT_EJECUTOR}s codex exec --json --sandbox ${CODEX_SANDBOX} --model ${MODELO_CONFIGURADO} --add-dir ${CODEX_DIR_ADICIONAL} (aprobaciones=never red=true)"
+    timeout --kill-after="${KILL_AFTER_EJECUTOR}s" "${TIMEOUT_EJECUTOR}s" \
+      "$CODEX_BINARIO" exec --ignore-user-config --ephemeral --json --color never \
+      --sandbox "$CODEX_SANDBOX" --model "$MODELO_CONFIGURADO" \
+      --add-dir "$CODEX_DIR_ADICIONAL" \
+      -c 'approval_policy="never"' \
+      -c 'sandbox_workspace_write.network_access=true' \
+      --output-schema "$CODEX_ESQUEMA" --output-last-message "$ULTIMO_MENSAJE" \
+      - <"$PROMPT_LOCAL" >"$EVENTOS_CODEX" 2>"$STDERR_CODEX"
+    CODIGO_SALIDA=$?
+    if [ "$CODIGO_SALIDA" -eq 0 ]; then
+      if python3 - "$SELECCION_JSON" "$ULTIMO_MENSAJE" <<'PYEOF'
+import json, sys
+esperada = json.loads(sys.argv[1])
+with open(sys.argv[2], encoding="utf-8") as f:
+    resultado = json.load(f)
+ids = [x["id"] for x in esperada["elegidos"]]
+if resultado["ejecutor"] != "codex":
+    raise SystemExit("ejecutor final distinto de codex")
+if resultado["seleccion"]["elegidos"] != ids:
+    raise SystemExit("la selección final no coincide con la proyección")
+estado = resultado["resultado_sustantivo"]
+if not ids and estado != "cola_vacia":
+    raise SystemExit("cero elegidos exige resultado_sustantivo=cola_vacia")
+if estado == "fallo":
+    raise SystemExit("el hijo declaró fallo sustantivo")
+PYEOF
+      then
+        RESULTADO_PUBLICO="$(python3 -c 'import json,sys; print(json.dumps(json.load(open(sys.argv[1], encoding="utf-8")), ensure_ascii=False, separators=(",",":")))' "$ULTIMO_MENSAJE")"
+        RESULTADO_SUSTANTIVO="$(printf '%s' "$RESULTADO_PUBLICO" | python3 -c 'import json,sys; print(json.load(sys.stdin)["resultado_sustantivo"])')"
+      else
+        log "PARO-RESULTADO: exit 0 sin evidencia sustantiva válida en $ULTIMO_MENSAJE"
+        RESULTADO_SUSTANTIVO="resultado_invalido"
+        CODIGO_SALIDA=65
+      fi
+    fi
+  fi
+else
+  # Compatibilidad intencional: sólo entra si data/adq-config.yaml selecciona
+  # explícitamente `claude`; nunca es fallback de un fallo de Codex.
+  FASE="CLAUDE-COMPAT"
+  CLI_VERSION="$(claude --version 2>&1 | head -1)"
+  log "ejecutor=claude seleccionado explícitamente; invocando compatibilidad"
+  timeout --kill-after="${KILL_AFTER_EJECUTOR}s" "${TIMEOUT_EJECUTOR}s" \
+    claude --add-dir /home/pc0/mm-corpus -p "$PROMPT"
+  CODIGO_SALIDA=$?
+  RESULTADO_SUSTANTIVO="compatibilidad_claude"
+fi
 set -e
+if [ "$CODIGO_SALIDA" -ne 0 ] && [ "$RESULTADO_SUSTANTIVO" = "no-invocado" ]; then
+  RESULTADO_SUSTANTIVO="fallo_ejecutor"
+fi
 case "$CODIGO_SALIDA" in
-  124) log "TIMEOUT-PROCESO: límite=${CLAUDE_TIMEOUT_SEGUNDOS}s; terminó durante gracia TERM->KILL=${CLAUDE_KILL_AFTER_SEGUNDOS}s; exit=124" ;;
-  137) log "TIMEOUT-KILL: límite=${CLAUDE_TIMEOUT_SEGUNDOS}s y gracia TERM->KILL=${CLAUDE_KILL_AFTER_SEGUNDOS}s agotados; se aplicó KILL; exit=137" ;;
+  124) log "TIMEOUT-PROCESO: límite=${TIMEOUT_EJECUTOR}s; terminó durante gracia TERM->KILL=${KILL_AFTER_EJECUTOR}s; exit=124" ;;
+  137) log "TIMEOUT-KILL: límite=${TIMEOUT_EJECUTOR}s y gracia TERM->KILL=${KILL_AFTER_EJECUTOR}s agotados; se aplicó KILL; exit=137" ;;
 esac
-log "claude -p terminó con código ${CODIGO_SALIDA}"
+log "${EJECUTOR} terminó con código ${CODIGO_SALIDA}; resultado=${RESULTADO_SUSTANTIVO}"
 
 FASE="HUELLA-FINAL"
 huella_adq "si" "-" "${CODIGO_SALIDA}"
@@ -805,7 +944,7 @@ huella_adq "si" "-" "${CODIGO_SALIDA}"
 # publicó» son dos cosas y ahora se reportan como dos cosas.
 FASE="FIN"
 if [ "${PUBLICACION_FALLIDA:-0}" -gt 0 ]; then
-  log "RESULTADO-COMPUESTO: claude -p cerró con ${CODIGO_SALIDA}, pero ${PUBLICACION_FALLIDA} recibo(s) requerido(s) NO se publicaron (quedan locales en ${CENSO_DIR}/). Fallo operativo: exit 4."
+  log "RESULTADO-COMPUESTO: ${EJECUTOR} cerró con ${CODIGO_SALIDA}, pero ${PUBLICACION_FALLIDA} recibo(s) requerido(s) NO se publicaron (quedan locales en ${CENSO_DIR}/). Fallo operativo: exit 4."
   exit 4
 fi
 log "RESULTADO-COMPUESTO: trabajo exit=${CODIGO_SALIDA}, publicación OK."

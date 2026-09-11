@@ -24,14 +24,27 @@ calendario:
 
 sonda_red_url: https://www.inegi.org.mx/
 
-# Timeout por defecto de `claude -p` dentro de tools/adquiere_cron.sh.
-# Configurable en caliente sin editar este archivo: la variable de entorno
-# CLAUDE_TIMEOUT_SEGUNDOS, si está fijada, gana sobre este valor.
-claude_timeout_segundos: 1800
+# Ejecutor autoritativo de adquisición. `claude` sigue siendo un valor
+# compatible únicamente cuando se selecciona aquí de forma explícita; nunca es
+# fallback de Codex. Los overrides nuevos son ADQ_TIMEOUT_SEGUNDOS y
+# ADQ_KILL_AFTER_SEGUNDOS. El lector aún entiende los nombres CLAUDE_* y las
+# claves antiguas sólo como compatibilidad para configuraciones históricas.
+ejecutor: codex
+ejecutor_timeout_segundos: 1800
+ejecutor_kill_after_segundos: 60
+maximo_filas: 5
 
-# Gracia entre TERM y KILL del proceso del ejecutor. CLAUDE_KILL_AFTER_SEGUNDOS,
-# si está fijada y es válida, gana sobre este valor.
-claude_kill_after_segundos: 60
+# Ámbito aislado de la corrida: no modifica ~/.codex/config.toml. El modelo se
+# observó en la configuración real de Jonás el 11/sep/2026 y se fija por
+# invocación para que el recibo no tenga que inferirlo por el nombre "Codex".
+codex:
+  binario: /home/pc0/.local/bin/codex
+  modelo: gpt-5.6-sol
+  sandbox: workspace-write
+  aprobaciones: never
+  red_workspace_write: true
+  directorio_adicional: /home/pc0/mm-corpus
+  esquema_resultado: tools/adq-resultado.schema.json
 
 runbook: forense/agente-adquisicion-v1_0.md
 

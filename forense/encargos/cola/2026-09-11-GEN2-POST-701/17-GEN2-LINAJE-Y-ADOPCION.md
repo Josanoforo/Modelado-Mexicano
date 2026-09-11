@@ -1,3 +1,5 @@
+ESTADO: CONSUMIDO — PR #710 abierto; cierre entregado, merge reservado a mesa.
+
 # ENCARGO 17 · GEN2-LINAJE-Y-ADOPCION
 
 ENTORNO: NUBE

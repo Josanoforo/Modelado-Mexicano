@@ -1,3 +1,5 @@
+ESTADO: CONSUMIDO — PR #713 abierto; cierre entregado, merge reservado a mesa.
+
 # ENCARGO 19 · GEN2-EVALUACION-SIN-FUGAS
 
 ENTORNO: NUBE
