@@ -1,3 +1,18 @@
+# Archivo 0-bis A.3 · ACTO GEN2-PRUEBAS-LIMPIAS-Y-REPLAY
+
+- **SHA de redacción:** `486eda19944a94d978791eb423559144de98d16b` (merge de PR #685).
+- **SHA de ejecución:** `origin/main = 44134745ce7f19af18a87b153a99de3d506063b0` (merge de PR #686); el corte de redacción es ancestro.
+- **Entorno asignado:** NUBE para pruebas/derivador y CLI Ubuntu con corpus para comprobante real/publicación.
+- **Estado:** VIVO.
+
+## VERIFICACIÓN DE EXISTENCIA (A.8; ejecutor, 10/sep/2026)
+
+- **Estructura:** existen `tests/check.py`, `tests/test_corrida0.py`, `tests/test_cierre_acto.py`, `tools/cierre_acto.py`, `tools/corrida0.py`, `forense/replay-evidencia.tsv` y las tres vistas `data/corrida0/{corridas,resultados,usos}.tsv`.
+- **Contenido:** `t_cmd_demanda_aplica_fp339` llama `C.cmd_demanda(None)` con las rutas reales y después lee `C.SALIDA/demanda-resultados.tsv`; la regla compartida `L0_ADR_RE` ya exige unicidad en `cierre_acto.py`; las tres vistas publicadas carecen de columna de fuente, aunque `forense/replay-evidencia.tsv` distingue procedencia y alcance.
+- **Cobertura retroactiva:** `NC-0141`, `NC-0148` y `NC-0104` existen y siguen `ABIERTA` en `forense/no-corrido.tsv`. La evidencia heredada está sembrada, pero falta un comprobante real `VERIFY-ESTRUCTURADO` y su fuente persistida en las tres vistas. PR #682/#683 son antecedentes, no objetos a reabrir.
+
+---
+
 # ENCARGO · GEN2-PRUEBAS-LIMPIAS-Y-REPLAY
 
 ## Pruebas sin escritura → evidencia de replay → vistas con fuente
