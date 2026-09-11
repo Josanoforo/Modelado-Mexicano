@@ -1,7 +1,7 @@
 # ACTO GEN2-LINAJE-Y-ADOPCION · cierre
 
-Fecha: 11/sep/2026  
-Entorno: NUBE, repo y agregados; cero microdatos, cero red científica y cero llamadas a modelos.  
+Fecha: 11/sep/2026
+Entorno: NUBE, repo y agregados; cero microdatos, cero red científica y cero llamadas a modelos.
 Encargo: `forense/encargos/2026-09-11-GEN2-LINAJE-Y-ADOPCION.md`.
 
 ## Resultado
@@ -92,4 +92,3 @@ Derivación sobre el corte integrado: 16/16 `MEDICION-GEN2`, 16/16 origen
 | Auditar adopciones | tabla 16/16 | reglas de `milpa/tramite.yaml` | CERRADA; cero pérdida |
 | Consultar el contrato desde el emisor | módulo puro disponible | ejecución del motor | DIFERIDO a `GEN2-MOTOR-Y-HERENCIA-EXPLICITA` |
 | Completar roles de evaluación retenida | guard prospectivo implementado | confirmación independiente | DIFERIDO a `GEN2-EVALUACION-SIN-FUGAS` |
-

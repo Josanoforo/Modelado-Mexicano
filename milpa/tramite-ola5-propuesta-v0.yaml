@@ -3907,6 +3907,19 @@ reglas_propuestas:
     payload_manifiesto_id: ennvih1_2002_hogar_dta
     spec: "prereg-caja-S6-L16 v1.1 -- forense/prereg-caja/S6-L16-spec-v1_1.md, sha256 7a0120a3a471fe81a732035dec6c2a9ed292d9b722cc408248eaec96d2e6643a"
     medido_en: "ACTO MAESTRA38-L16-BIS-2, 7/sep/2026 -- forense/notas/2026-09-07-MAESTRA38-L16-BIS-2-resultados.md; data/l16bis2-atencion-grave-rama-a-v1_0.json"
+    enmienda_alcance_inferencial_2026_09_10:
+      referencia: "forense/prereg-caja/S6-L16-spec-v1_5.md (ADR-466, PR #702)"
+      corrida_sucesora: "CALC-0003-v4; conserva sus 143 RESULT, medidor, specs y sellos"
+      uso_motor: "DESCRIPTIVO; no cargar una p nueva ni promover conclusiones sólo porque un IC incluya o excluya cero"
+      incertidumbre: "IC-SENSIBILIDAD-LOCALIDAD-NO-DISENO-OFICIAL"
+      receta: "bootstrap de id_loc dentro de cuatro clases c_portad.estrato; sensibilidad no acreditada como las 180 UPM y tres estratos socioeconómicos oficiales"
+      resultados_consumibles:
+        C1_primaria: {delta: RESULT-C1-B3B-FAC3B-DELTA, ic_lo: RESULT-C1-B3B-FAC3B-IC-LO, ic_hi: RESULT-C1-B3B-FAC3B-IC-HI, veredicto_Bbis_historico: NO-DISCRIMINA}
+        C3_secundaria: {delta: RESULT-C3-B3B-FAC3B-DELTA, ic_lo: RESULT-C3-B3B-FAC3B-IC-LO, ic_hi: RESULT-C3-B3B-FAC3B-IC-HI, veredicto_Bbis_historico: CORROBORADA}
+        C4_secundaria: {delta: RESULT-C4-B3B-FAC3B-DELTA, ic_lo: RESULT-C4-B3B-FAC3B-IC-LO, ic_hi: RESULT-C4-B3B-FAC3B-IC-HI, veredicto_Bbis_historico: CORROBORADA}
+      tier_regla_referida: MEDIA
+      decision_inferencial: "FP-372 ABIERTA; esta enmienda no firma opción A ni B"
+      residual: "NC-0156 conserva la vía oficial de pesos replicados o servicio de varianza; FP-371 de DIN-M-01 es otro objeto"
 
   # ══════════════════════════════════════════════════════════════════
   # ACTO GEN2-E5 · CALC-0001..0003 — primeras cifras GEN2 selladas

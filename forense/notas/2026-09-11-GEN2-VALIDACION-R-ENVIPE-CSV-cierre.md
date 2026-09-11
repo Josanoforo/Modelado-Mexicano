@@ -26,7 +26,10 @@ la sola coincidencia del punto. Tras fusionarse PR #710, el overlay común
 `data/corrida0/validaciones-independientes.tsv` proyecta por RESULT la
 validación posterior: 9 `PASA` para punto/n/denominador y 12
 `CONCUERDA-NO-APROBADA` para EE/IC/CV, con referencia y SHA verificados. Las
-specs y resultados sellados siguen intactos. `NC-0159` conserva únicamente la
+specs y resultados sellados siguen intactos. La cascada de #712 rederiva sólo
+la huella de `data/corrida0/resultados.tsv` en el snapshot de consumo del
+emisor; sus emisiones permanecen idénticas y los snapshots científicos
+F5/TRIADA no cambian. `NC-0159` conserva únicamente la
 vía de diseño: roster completo de UPM o servicio oficial de varianza y spec
 prospectiva. Ninguna adopción, uso de consumidor o firma de contador se
 infiere; contador científico: cero.

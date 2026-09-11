@@ -88,7 +88,9 @@ quedó fijado en `3896dc5` antes del contraste y el resultado en `74233c1`:
 3/3 puntos `VALIDADO`, 3/3 EE históricos `CONCUERDA` y aptitud inferencial de
 los IC `NO-APROBADA`. Tras la fusión de PR #710, el overlay común proyecta 9
 RESULT `PASA` y 12 `CONCUERDA-NO-APROBADA`, con referencia y SHA verificados,
-sin reescribir congelados. `NC-0096` cierra con el veredicto completo;
+sin reescribir congelados. La cascada de #712 actualiza sólo la huella de la
+vista en su snapshot derivado de consumo; no cambia emisiones ni snapshots
+científicos F5/TRIADA. `NC-0096` cierra con el veredicto completo;
 `NC-0159` conserva sólo la vía de roster/servicio oficial de varianza.
 Contador científico cero; ningún CALC, spec, resultado, sello, adopción o
 consumidor congelado fue modificado. La fusión de PR #714 permanece reservada
