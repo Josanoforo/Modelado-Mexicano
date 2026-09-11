@@ -74,7 +74,7 @@ Cada fase termina con resultado o bloqueo preciso y prueba. Cierre completo: aut
 - Vistas corrida0 (`corridas.tsv`, `resultados.tsv`, `usos.tsv`) ·
   `DIFERIDO-A:GEN2-PRUEBAS-LIMPIAS-Y-REPLAY` · el candado `NC-0094` detectó
   32 transiciones ajenas y escribió cero vistas; el CALC, demanda y evidencia
-  fuente sí quedan versionados · sucesor: `ENCARGO-E08` / `NC-0153`.
+  fuente sí quedan versionados · sucesor: `ENCARGO-E08` / `NC-0154`.
 
 ## CONSUMIDO
 
@@ -84,7 +84,7 @@ PR #691, rama `acto/gen2-enif-poblacion`; commits de arranque y sustancia
 Resultado: D04/D05 ejecutadas; celdas A/A exactas reutilizadas de
 `CALC-ENIF-0001`; `CALC-ENIF-0002` sellado y reproducido para no trabajadores;
 motor y procedencia adoptados por dominio; B/B conservado como histórico.
-`NC-0124` y `NC-0128` cierran; `NC-0126` permanece abierta. `NC-0153` registra
+`NC-0124` y `NC-0128` cierran; `NC-0126` permanece abierta. `NC-0154` registra
 la única pieza diferida: publicación global de vistas corrida0 por lote08,
 después de que el candado NC-0094 impidiera 32 transiciones ajenas.
 
@@ -92,4 +92,4 @@ Validación: prueba dirigida 2/2; spec-check 8 OK/0 FAIL; preflight VERDE;
 run exit 0; verify REPRODUCE/CONTEXTO=IDENTICO 59/59; smoke del emisor por tres
 dominios; `tests/check.py --baseline` exit 0; `git diff --check` limpio. El PR
 queda abierto para mesa; el ejecutor no lo fusiona. Colisión conocida con PR
-#687 tomó los candidatos ADR-455/NC-0152; este acto renumeró a ADR-456/NC-0153; PR #688 tomó después ADR-456 y este acto renumera finalmente a ADR-457.
+#687 tomó los candidatos ADR-455/NC-0152; este acto renumeró a ADR-456/NC-0153; PR #688, #690 y #689 ocuparon después ADR-456 a ADR-458 y este acto renumera finalmente a ADR-459/NC-0154.
