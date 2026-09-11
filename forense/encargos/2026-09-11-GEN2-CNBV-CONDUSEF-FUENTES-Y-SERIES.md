@@ -59,3 +59,8 @@ Archivar el encargo, nota de cierre y filas afectadas por el procedimiento vigen
 
 
 **Actualización al entregar:** #708 también está fusionado; main=`e7a471bf1499a096abbe58dc298f02243e885135`. Archiva el benchmark sin firmar sus cuatro decisiones; no cambia el alcance de este encargo.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** `Fase 2 · CNBV: obtener la serie y hacerla legible`; **por qué:** `NO-VERIFICABLE-AQUÍ`; **impacto:** el corte 2021-12 queda utilizable, pero R1.6 sigue `NUNCA-MEDIDA`, no se obtiene la serie mensual ni se mueve el motor; **sucesor:** `ACTO GEN2-CNBV-IMOR-HISTORICO` deberá usar acceso institucional CNBV o una publicación oficial estática equivalente, con spec previa a cualquier CALC.
+- **qué:** `Fase 3 · CONDUSEF y ENCRIGE: producir evidencia con la unidad correcta` para satisfacer N34; **por qué:** `DIFERIDO-A:ACTO GEN2-N34-CONSUMIDOR-DEUDOR`; **impacto:** la adquisición queda trazada y los agregados son utilizables, pero N34/R1.7 sigue `NUNCA-MEDIDA` y sin adopción; **sucesor:** `ACTO GEN2-N34-CONSUMIDOR-DEUDOR` deberá localizar una fuente que observe causa/BNPL/usura del lado consumidor con denominador compatible y fijar su definición antes de calcular.
