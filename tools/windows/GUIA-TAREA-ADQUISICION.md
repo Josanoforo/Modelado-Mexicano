@@ -41,6 +41,18 @@ actualiza referencias y sólo entonces carga el runner de ese SHA. Cuando
 no hay descenso a una versión Claude entre ambos pasos. Un checkout que
 choque con trabajo ajeno aborta sin `reset` ni `clean`.
 
+El launcher crea el `run_id` y el heartbeat local antes de `git fetch` y
+propaga esa misma identidad al runner. Así, un fallo de fetch/checkout conserva
+fase, revisión conocida o desconocida, timestamps, motivo y el código original;
+el doctor no reutiliza como si fuera actual el éxito de una corrida anterior.
+Una segunda instancia rechazada por el lock sólo escribe en `launcher.log` y no
+pisa el heartbeat del dueño.
+
+Si el selector determinista devuelve cero elegidos, el runner publica la
+selección, sus exclusiones y el recibo `invocado=no` sin llamar a ningún LLM.
+`publicacion_trabajo` (objetos/intentos del agente) y `publicacion` (recibo del
+wrapper) son cierres distintos.
+
 El script es idempotente (`Register-ScheduledTask ... -Force`): correrlo
 de nuevo actualiza la tarea existente, no la duplica.
 
