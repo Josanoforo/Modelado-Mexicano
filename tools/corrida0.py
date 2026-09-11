@@ -2641,6 +2641,7 @@ DEMANDA_CORRIDAS = CORRIDAS / "demanda-corridas.tsv"
 VISTA_CORRIDAS = CORRIDAS / "corridas.tsv"
 VISTA_RESULTADOS = CORRIDAS / "resultados.tsv"
 VISTA_USOS = CORRIDAS / "usos.tsv"
+VALIDACIONES_INDEPENDIENTES = CORRIDAS / "validaciones-independientes.tsv"
 NO_CORRIDO_TSV = RAIZ / "forense" / "no-corrido.tsv"
 
 NO_VERIFICADO = "NO-VERIFICADO"
@@ -2665,12 +2666,20 @@ COLS_VISTA_RESULTADOS = [
     # NC-0069 / FP-365: la vara de ADOPCION, separada de la de
     # reproducibilidad (`tolerancia`). Vacia = defecto (grano del consumidor).
     "tolerancia_adopcion",
-    "validacion_independiente", "rol_evaluacion", "origen_numerico",
+    "validacion_independiente", "validacion_ref", "alcance_validacion",
+    "rol_evaluacion", "origen_numerico",
     "funciones_dependencia", "camino_linaje",
     "valor_legacy", "delta_legacy", "sello",
     "fuente_replay",
     "depende_de", "sucesor", "n_usos",
 ]
+COLS_VALIDACIONES_INDEPENDIENTES = [
+    "spec_id", "resultado_id", "validacion_independiente", "validacion_ref",
+    "evidencia_sha256", "alcance_validacion",
+]
+ESTADOS_VALIDACION_INDEPENDIENTE = {
+    "PASA", "NO-PASA", "CONCUERDA-NO-APROBADA",
+}
 COLS_VISTA_USOS = [
     "resultado_id", "consumidor", "tipo_uso", "activo", "reglas_impacto",
     "generacion_leida", "corrida0_generacion", "corrida0_resultado_id",
@@ -2690,6 +2699,62 @@ def _leer_tsv_derivado(ruta: Path) -> list[dict]:
     with ruta.open(encoding="utf-8") as fh:
         lineas = [l for l in fh if not l.startswith("#")]
     return list(csv.DictReader(lineas, delimiter="\t"))
+
+
+def _aplica_validaciones_independientes(filas: list[dict]) -> None:
+    """Aplica el overlay sucesor sin reescribir specs o resultados sellados.
+
+    La llave es ``(spec_id, resultado_id)`` porque un RESULT puede reaparecer
+    legítimamente en una cadena de replay. El asiento falla cerrado si apunta
+    a cero/múltiples filas o si la evidencia citada ya no tiene el hash
+    declarado. Sólo proyecta validación; no altera origen, rol ni aptitud.
+    """
+    if not VALIDACIONES_INDEPENDIENTES.exists():
+        return
+    with VALIDACIONES_INDEPENDIENTES.open(encoding="utf-8", newline="") as fh:
+        lector = csv.DictReader(fh, delimiter="\t")
+        if lector.fieldnames != COLS_VALIDACIONES_INDEPENDIENTES:
+            raise ParoRegistro(
+                "VALIDACION-OVERLAY-COLUMNAS: "
+                f"{_rel(VALIDACIONES_INDEPENDIENTES)} declara "
+                f"{lector.fieldnames}; esperado {COLS_VALIDACIONES_INDEPENDIENTES}")
+        asientos = list(lector)
+
+    vistos: set[tuple[str, str]] = set()
+    for asiento in asientos:
+        clave = (asiento["spec_id"], asiento["resultado_id"])
+        if clave in vistos:
+            raise ParoRegistro(
+                f"VALIDACION-OVERLAY-DUPLICADA: {clave[0]}/{clave[1]}")
+        vistos.add(clave)
+        estado = asiento["validacion_independiente"]
+        if estado not in ESTADOS_VALIDACION_INDEPENDIENTE:
+            raise ParoRegistro(
+                f"VALIDACION-OVERLAY-ESTADO: {clave[0]}/{clave[1]}={estado}")
+        ref = asiento["validacion_ref"]
+        try:
+            ruta_ref = (RAIZ / ref).resolve(strict=True)
+            ruta_ref.relative_to(RAIZ.resolve())
+            sha = hashlib.sha256(ruta_ref.read_bytes()).hexdigest()
+        except (OSError, ValueError):
+            raise ParoRegistro(
+                f"VALIDACION-EVIDENCIA-AUSENTE: {clave[0]}/{clave[1]} -> {ref}")
+        if sha != asiento["evidencia_sha256"]:
+            raise ParoRegistro(
+                f"VALIDACION-EVIDENCIA-DISCORDA: {clave[0]}/{clave[1]} -> "
+                f"{ref} ({sha} != {asiento['evidencia_sha256']})")
+        if not asiento["alcance_validacion"]:
+            raise ParoRegistro(
+                f"VALIDACION-OVERLAY-SIN-ALCANCE: {clave[0]}/{clave[1]}")
+        destinos = [f for f in filas
+                    if (f["spec_id"], f["resultado_id"]) == clave]
+        if len(destinos) != 1:
+            raise ParoRegistro(
+                f"VALIDACION-OVERLAY-DESTINO: {clave[0]}/{clave[1]} "
+                f"resuelve {len(destinos)} filas; esperado 1")
+        destinos[0]["validacion_independiente"] = estado
+        destinos[0]["validacion_ref"] = ref
+        destinos[0]["alcance_validacion"] = asiento["alcance_validacion"]
 
 
 def _dirs_calc() -> list[Path]:
@@ -3653,6 +3718,8 @@ def _filas_registro(verifica: bool = False) -> dict:
             "cuenta_gen2": "SI", "tolerancia": "PENDIENTE",
             "tolerancia_adopcion": "PENDIENTE",
             "validacion_independiente": r["validacion_independiente"],
+            "validacion_ref": NO_DECLARADO,
+            "alcance_validacion": NO_DECLARADO,
             "rol_evaluacion": NO_DECLARADO,
             "origen_numerico": ORIGEN_INDETERMINADO,
             "funciones_dependencia": "SIN-SPEC",
@@ -3754,6 +3821,8 @@ def _filas_registro(verifica: bool = False) -> dict:
                     decl.get("tolerancia_adopcion", tol_adop_spec)),
                 "validacion_independiente": _etiqueta(spec, "validacion_independiente",
                                                       "NO-HECHA"),
+                "validacion_ref": NO_DECLARADO,
+                "alcance_validacion": NO_DECLARADO,
                 "rol_evaluacion": str(decl.get("rol_evaluacion") or
                                       _etiqueta(spec, "rol_evaluacion", NO_DECLARADO)),
                 "origen_numerico": linaje["origen"],
@@ -3773,6 +3842,11 @@ def _filas_registro(verifica: bool = False) -> dict:
         if o["cuenta_gen2"] == "SI" and estado.startswith("SELLADA"):
             avisos.append(f"CALC-SIN-CONSUMIDOR-ACTIVO: {calc_id} esta sellada "
                           f"y ningun consumidor activo la cita todavia")
+
+    # ACTO GEN2-VALIDACION-R-ENVIPE-22: las specs y resultados sellados no
+    # se reescriben. El overlay común de validación se aplica por RESULT y
+    # deja explícitos tanto el asiento como su alcance antes de evaluar usos.
+    _aplica_validaciones_independientes(filas_resultados)
 
     # PARA: el mismo RESULT en dos corridas que NO son la misma cadena de
     # replay. `repite_de` es lo unico que autoriza repetir un id.
