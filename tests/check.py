@@ -788,8 +788,12 @@ def _suite_real():
     import subprocess
     env = dict(os.environ, CHECK_SELFCHECK_CHILD="1")
     try:
+        # T32 ahora falsifica también el linaje transitivo sobre 90 casos y
+        # el registro real abre cientos de specs. Conservamos un límite duro,
+        # pero con margen para el arranque frío del runner de CI: 60 s llegó a
+        # cortar una suite que termina verde localmente, no un ciclo real.
         r = subprocess.run([sys.executable, os.path.join(ROOT, "tests", "check.py")],
-                            cwd=ROOT, capture_output=True, text=True, env=env, timeout=60)
+                            cwd=ROOT, capture_output=True, text=True, env=env, timeout=120)
     except Exception as e:
         return None, None, str(e)
     m = re.search(r"(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN", r.stdout)
@@ -2740,6 +2744,13 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-MOTOR-Y-HERENCIA-EXPLICITA, 11/sep/2026: el encargo A.3
+    # archivado VERBATIM cita `E0` al distinguir la rebanada matricial de
+    # `milpa/src/motor.py` del emisor probabilistico, y la nota de Fase 1
+    # repite esa distincion descriptiva. No crean un rotulo: `E0` ya es el
+    # habitante censado bajo el espacio `E` en canon/registro-rotulos.tsv.
+    "forense/encargos/2026-09-11-GEN2-MOTOR-Y-HERENCIA-EXPLICITA.md",
+    "forense/notas/2026-09-11-GEN2-MOTOR-Y-HERENCIA-EXPLICITA-fase1.md",
     # ACTO GEN2-SOCIALES-SUCESORAS, 10/sep/2026: copia A.3 verbatim del
     # encargo 04 ya encolado por PR #686. Sus E06/E07 son referencias a los
     # habitantes ENCARGO-E06/E07 definidos y censados por MESA-E01, no
@@ -5098,6 +5109,24 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES, 11/sep/2026: encargo A.3
+    # archivado VERBATIM. Los dos ids aparecen como consumidores que se deben
+    # localizar, no como tasas que el acto vaya a medir o adoptar. A.8 sí se
+    # ejecutó: ambos devolvieron NUNCA-MEDIDA y la salida se conserva en la
+    # nota de cierre §8. Editar el encargo rompería la custodia A.3.
+    "forense/encargos/2026-09-11-GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES.md",
+    # ACTO GEN2-LINAJE-Y-ADOPCION, 11/sep/2026: encargo archivado VERBATIM
+    # (A.3). `tramite.yaml.otro` es un nombre ficticio y deliberadamente
+    # parecido que prueba que el clasificador de rutas exige coincidencia
+    # material exacta; no identifica una regla ni solicita medirla.
+    "forense/encargos/2026-09-11-GEN2-LINAJE-Y-ADOPCION.md",
+    # ACTO GEN2-MOTOR-Y-HERENCIA-EXPLICITA, 11/sep/2026: encargo A.3
+    # archivado VERBATIM que manda verificar la regla S6. La herramienta se
+    # ejecuto y su salida real se conserva en la nota de cierre y en
+    # `## CONSUMIDO`: `MEDIDA-EN: tramite-ola5-propuesta-v0.yaml`. Esta
+    # exencion preserva el original sin convertir una comprobacion cumplida
+    # en un falso positivo del control documental.
+    "forense/encargos/2026-09-11-GEN2-MOTOR-Y-HERENCIA-EXPLICITA.md",
     # ACTO GEN2-LOTE-ENIF-1 · TERCER LOTE DE LA CARTERA, 9/sep/2026: encargo
     # archivado VERBATIM (A.3), que no se edita para complacer un test (misma
     # regla que rige T25). Cita `dinero.ahorro.horizonte_corto` y
@@ -6538,6 +6567,18 @@ def t35_repro(modulo=None):
         if gen_declarada == "GEN2" and destino["generacion"] == C.GENERACION_LEGADO:
             fail("T-REPRO", f"(f) {u['consumidor']}: corrida0_generacion=GEN2 "
                             f"y {marca} resuelve a {C.GENERACION_LEGADO}")
+        # El registro y T35 comparten exactamente el contrato de aptitud.
+        # Generacion, contador y sello no limpian un origen heredado, mixto
+        # o indeterminado.
+        aptitud, motivo = C.aptitud_para_uso(
+            destino["origen_numerico"], u.get("uso_solicitado", ""),
+            destino.get("validacion_independiente", "NO-HECHA"),
+            destino.get("rol_evaluacion", ""))
+        if u.get("aptitud_uso") != aptitud:
+            fail("T-REPRO", f"(g) {u['consumidor']}: registro={u.get('aptitud_uso')} "
+                            f"pero contrato compartido={aptitud}")
+        if aptitud == C.NO_APTA:
+            fail("T-REPRO", f"(g) {u['consumidor']} -> {marca}: {motivo}")
         if not (C.CORRIDAS / destino["spec_id"] / "spec.yaml").exists():
             fail("T-REPRO", f"(b) {u['consumidor']} -> {marca} -> "
                             f"{destino['spec_id']}: el CALC no resuelve")

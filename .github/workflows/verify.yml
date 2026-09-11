@@ -110,6 +110,11 @@ jobs:
         # preguntar", y detección de lock tomado por otro proceso.
         run: python3 tests/test_adq_doctor.py
 
+      - name: Fuentes financieras — unidades, faltantes y duplicados (bloqueante)
+        # Fixtures puras: no requieren corpus ni red. Las tablas reales se
+        # reproducen en CAJA con tools/extrae_fuentes_financieras.py --verifica.
+        run: python3 tests/test_fuentes_financieras.py
+
       - name: motor ejecutable — procedencia→B→evaluar() sobre las tres celdas-D (bloqueante)
         # ACTO AUTO-MOTOR-1 · RECUPERA-Y-EJERCITA, NC-0023 (PR #615, ACTO
         # GEN2-T9). El motor matricial sellado por ADR-91 dejó de arrancar

@@ -28,8 +28,26 @@ powershell -ExecutionPolicy Bypass -File tools\windows\instala-tarea-adquisicion
 powershell -ExecutionPolicy Bypass -File tools\windows\instala-tarea-adquisicion.ps1            # instala de verdad
 ```
 
+Mientras una revisión autorizada siga en PR, pásala de forma explícita:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\windows\instala-tarea-adquisicion.ps1 `
+  -WindowsUser PC0 -LinuxUser pc0 -DeploymentRevision <SHA-publicado>
+```
+
+La tarea llama `tools/adquiere_launcher.sh`. El launcher toma el mismo lock,
+actualiza referencias y sólo entonces carga el runner de ese SHA. Cuando
+`origin/main` ya contiene la revisión fijada, cambia automáticamente a main;
+no hay descenso a una versión Claude entre ambos pasos. Un checkout que
+choque con trabajo ajeno aborta sin `reset` ni `clean`.
+
 El script es idempotente (`Register-ScheduledTask ... -Force`): correrlo
 de nuevo actualiza la tarea existente, no la duplica.
+
+Si la tarea existe, su principal se conserva aunque la consola actual sea una
+cuenta elevada distinta. `-WindowsUser` permite declararlo explícitamente; en
+esta caja productiva es `PC0`, `Interactive`, `Limited`, y el usuario WSL es
+independientemente `pc0`.
 
 Hora, días y traducción de zona se leen únicamente de
 `data/adq-config.yaml:calendario` mediante `tools/adq_config.py`. El
@@ -109,6 +127,8 @@ Ver `Get-Help .\instala-tarea-adquisicion.ps1 -Full` — todos tienen
 default sensato para esta máquina (`Distro=Ubuntu`, `LinuxUser=pc0`,
 `ClonPath=/home/pc0/mm-adq`,
 `NombreTarea=\ModeladoMexicano\AdquiereCron`, `LogonType=Interactive`).
+`WindowsUser` conserva el principal existente y `DeploymentRevision` permite
+fijar un SHA publicado hasta que main lo incorpore.
 
 El calendario efectivo se consulta con `python3 tools/adq_doctor.py --json`
 en `configuracion_operativa`; `scheduler_windows` contrasta hora, máscara de

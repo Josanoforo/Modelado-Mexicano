@@ -58,6 +58,18 @@ def prueba_crontab_instalado_detecta_linea():
     afirma(r["instalado"] is True, f"línea de adquiere_cron.sh presente debe dar True -- dio {r}")
 
 
+def prueba_crontab_retirado_ignora_comentario_historico():
+    crontab = (
+        "# tools/adquiere_cron.sh resuelve su propio REPO_DIR\n"
+        "PATH=/usr/local/bin:/usr/bin:/bin:/home/pc0/.local/bin\n"
+    )
+    with unittest.mock.patch.object(
+            D, "_corre", lambda *a, **kw: (0, crontab, "")):
+        r = D.check_crontab_legado()
+    afirma(r["instalado"] is False and r["lineas_relevantes"] == [],
+           f"un comentario histórico no reinstala el cron legado -- dio {r}")
+
+
 def prueba_lock_libre():
     with tempfile.TemporaryDirectory() as td:
         ruta = os.path.join(td, "forense", "adq-log", "estado")
@@ -105,7 +117,8 @@ def prueba_scheduler_contrasta_calendario_y_disparador():
         "State": "Ready", "TaskName": "AdquiereCron",
         "TaskPath": "\\ModeladoMexicano\\", "UserId": "PC0",
         "LogonType": "Interactive", "Execute": "wsl.exe",
-        "Arguments": "-d Ubuntu -- env ADQ_DISPARADOR=windows-task-scheduler bash -lc /x",
+        "Arguments": ("-d Ubuntu -u pc0 -- env ADQ_DISPARADOR=windows-task-scheduler "
+                      "bash -lc /home/pc0/mm-adq/tools/adquiere_launcher.sh"),
         "StartBoundary": "2026-09-07T07:30:00-06:00", "DaysOfWeek": 62,
         "TriggerEnabled": True, "StartWhenAvailable": True,
         "MultipleInstances": "IgnoreNew", "LastRunTime": "2026-09-10T09:05:41-06:00",
@@ -135,6 +148,7 @@ def main():
     prueba_crontab_sin_credencial_no_es_no_instalado()
     prueba_crontab_realmente_vacio()
     prueba_crontab_instalado_detecta_linea()
+    prueba_crontab_retirado_ignora_comentario_historico()
     prueba_lock_libre()
     prueba_lock_tomado_por_otro_proceso()
     prueba_scheduler_contrasta_calendario_y_disparador()
@@ -144,7 +158,7 @@ def main():
         for m in FAILS:
             print(f"  · {m}")
         return 1
-    print("OK -- test_adq_doctor.py: 7 pruebas, 0 fallos")
+    print("OK -- test_adq_doctor.py: 8 pruebas, 0 fallos")
     return 0
 
 
