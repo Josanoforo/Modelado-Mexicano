@@ -7,6 +7,8 @@ por límite semanal. El análisis observado sobre `U3=12/14` da
 `SIN-GANADOR-UNICO`, pero es **provisional**: no cierra NC-0146, no habilita F6
 ni adopta ningún brazo. La reanudación exacta queda disponible después del
 reinicio de cuota anunciado para **12/sep/2026 11:00 America/Mexico_City**.
+El avance está publicado en **PR #687**, deliberadamente sin marca
+`CONSUMIDO` y sin merge.
 
 ## Qué cambió respecto de PR #681
 

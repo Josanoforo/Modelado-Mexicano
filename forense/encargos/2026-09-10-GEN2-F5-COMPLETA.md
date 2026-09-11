@@ -7,7 +7,8 @@
 únicamente si el cliente y la identidad registrados están disponibles. Sin API
 de pago ni sustitución de competidor.
 
-**Estado:** EN-CURSO (194/224 respuestas `OK`; 30 reanudables tras la cuota).
+**Estado:** EN-CURSO en PR #687 (194/224 respuestas `OK`; 30 reanudables tras
+la cuota). No consumido como cierre completo.
 
 ## ARRANQUE
 
