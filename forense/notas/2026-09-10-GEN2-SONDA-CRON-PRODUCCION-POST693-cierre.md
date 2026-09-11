@@ -89,6 +89,39 @@ sonda negativa. Verificación posterior: `RecoveryProbesRemaining=0`; la tarea
 productiva siguió `Ready`, con sus argumentos originales y
 `StartWhenAvailable=True`.
 
+## Consumo de NC-0153 después de PR #695
+
+La compuerta se cumplió por merge `51f52ba8bdd51441aa6ddd36a015188148e0e360`
+y esta rama integró después `origin/main`. No se repitió la investigación.
+Se consumieron la fila canónica y los recibos de #695:
+
+- `NC-0153` permanece `ABIERTA`, estado operativo
+  `OBTENIDO-PARCIAL-F3-EJECUTADA`.
+- La fila
+  `TASA_GENERAL_SOLICITUD_PAGO_INFORMAL_POR_CANAL_TRAMITES_MEXICO` está
+  `OBTENIDO-PARCIAL`, prioridad 0, con los ids manifestados y la nota de
+  investigación como recibo.
+- Diez payloads nuevos quedaron registrados por #695. ENEAC 2021 sí observa
+  evento×canal×solicitud, pero sólo para microempresas SCIAN 46/72 de
+  Aguascalientes; MCCI/INCBG no traen canal y ENCIG no ofrece una llave
+  unívoca evento↔canal. Ninguno acredita la tasa nacional exacta.
+
+Proyección nominal ejecutada después del merge:
+
+```text
+SELECCIÓN /adquiere · corte 2026-09-10 · maximo 5
+ELEGIDOS (0):
+  (ninguno -- caminata vacía, no selección equivocada)
+TASA_GENERAL_SOLICITUD_PAGO_INFORMAL_POR_CANAL_TRAMITES_MEXICO
+  [OBTENIDO-PARCIAL] -- estado fuera del contrato de elegibilidad
+```
+
+El resultado es **DIFERIDO CON CAUSA Y RECIBO**, no fallo del cron y no
+autorización para otra búsqueda. El residual externo exacto sigue siendo pedir
+al titular la llave ENCIG entre conteo 8.5 y `NT_TIPO`/`P7_3`, o localizar un
+microdato nacional equivalente con evento, canal, negativos, diseño y
+ponderadores. No se envió solicitud.
+
 ## Pruebas y continuación
 
 - `test_adq_config.py`: 7/7; próxima hora, cambio de día/zona, inválidos y override.
@@ -101,10 +134,8 @@ productiva siguió `Ready`, con sus argumentos originales y
 - `python3 tests/check.py --baseline`: sin delta nuevo; sólo los tres FAIL
   históricos T06×2/T08×1.
 
-Fase 4 queda compuertada al merge de PR #695 por instrucción adicional de
-mesa. No se duplica su investigación de NC-0153. Después del merge se integra
-`origin/main` y se consume la fila/resultado real para demostrar selección o
-diferimiento y recibo.
+Fase 4 queda cumplida con el consumo y diferimiento anteriores; no se duplica
+la investigación de NC-0153.
 
 Instalación productiva, después del merge de este cambio y preservando primero
 `data/manifiesto-staging.yaml` en `/home/pc0/mm-adq`:
