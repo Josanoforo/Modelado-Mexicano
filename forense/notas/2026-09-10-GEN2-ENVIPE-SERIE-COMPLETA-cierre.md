@@ -36,7 +36,7 @@ Lectura descriptiva: el máximo puntual ocurre en 2013 (0.3203) y el mínimo en 
 
 **Fase 3 — producto.** `tools/deriva_serie_envipe_completa.py` sólo selecciona resultados sellados y falla ante duplicados o huecos; produjo 15/15 filas contiguas con `calc_id` y `result_id_punto` por ola. No se sustituyó ninguna regla del motor: `tools/ya_medido.py civico.denuncia.miedo_desconfianza` localiza el consumidor vigente y este acto entrega evidencia descriptiva, no una adopción nueva.
 
-**Fase 4 — cierre.** `NC-0087`, `NC-0093` y `NC-0101` cierran por evidencia ejecutada. Los comprobantes `VERIFY-ESTRUCTURADO` se incorporan al registro con lote explícito para no pisar replay ajeno. `NC-0152` conserva como residual la validación por implementación independiente: reproducibilidad no se presenta como independencia.
+**Fase 4 — cierre.** `NC-0087`, `NC-0093` y `NC-0101` cierran por evidencia ejecutada. Los comprobantes `VERIFY-ESTRUCTURADO` se incorporan al registro con lote explícito para no pisar replay ajeno. `NC-0153` conserva como residual la validación por implementación independiente: reproducibilidad no se presenta como independencia. El candidato original `NC-0152` se renumeró tras integrar `origin/main`, donde PR #687 ya había tomado esa identidad.
 
 ## Resultado por ola nueva
 

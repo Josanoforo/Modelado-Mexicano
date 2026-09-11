@@ -1,0 +1,132 @@
+{
+ "corrida_id": "CALC-TRIADA-0002--677c352346fd",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "adopta_al_motor": false,
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_firma": "Encargo GEN2-F5-COMPLETA, 10/sep/2026, Contrato de ejecución: \"Para CALC científicos nuevos, aplicar cuenta_gen2=SI con objeto y cita explícitos\". OBJETO=CALC-TRIADA-0002; el merge de mesa perfecciona la firma.",
+  "generacion": "GEN2",
+  "metodo_congelado_antes_de_resultados": "SI; commit 7d97681, F5-completa-spec-v1_0.md + plan + tools/calcula_f5_completa.py, anterior a las capturas.",
+  "tipo": "TRIADA-F5-COMPLETA-L_SOLO-L_CORPUS-M",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-11T01:15:23Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 0,
+   "montado": "NO",
+   "nota": "data/raw ausente -- normal en un clon fresco / en la nube"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "677c352346fdc915ee5e829a9ae88c43655f884c",
+  "git_rama": "acto/gen2-f5-completa",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "NO",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "677c352346fdc915ee5e829a9ae88c43655f884c",
+ "input_ids": [
+  "IN-F5C-SPEC",
+  "IN-F5C-PLAN",
+  "IN-F5C-CALCULADOR",
+  "IN-F5C-SNAPSHOT-M",
+  "IN-F5C-UNIVERSO-R"
+ ],
+ "input_sha256": {
+  "IN-F5C-CALCULADOR": "eeae052d9c39ffdb278d38276b7bfd27d4c92eb5d427f438823c042c760c2f2c",
+  "IN-F5C-PLAN": "ed7734616774bac2f7e6d4c25f5f404f27e8f4c33d49f30957e5b48bfed73307",
+  "IN-F5C-SNAPSHOT-M": "b53ac6d51d1b50ce929fdf1b3e14b124c11db39fb216a15d7073a287ed3f065c",
+  "IN-F5C-SPEC": "25daa3e35cf493b3cdbb92c6882fc2bce24d78a90f3b575d4055440088c4f74d",
+  "IN-F5C-UNIVERSO-R": "840fc68ce7261686426221effbf9df313ef17e2876fa6345b3c00589bab80f80"
+ },
+ "parametros": {
+  "bootstrap_replicas": 10000,
+  "delta_banda_pp": 0.5,
+  "identidad_colectiva_capturas": "forense/prereg-duelo-v2/corridas-L-completa-v1_0/*.json fijada por el commit de ejecución; 224 rutas enumeradas en IN-F5C-PLAN",
+  "k_replicas": 8,
+  "nivel_ic": 0.95,
+  "posiciones": 224,
+  "tolerancia_numerica_pp": 1e-09
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-F5C-ABSTENCIONES",
+  "RESULT-F5C-COBERTURA-L-CORPUS",
+  "RESULT-F5C-COBERTURA-L-SOLO",
+  "RESULT-F5C-COBERTURA-M",
+  "RESULT-F5C-DELTA-LCORPUS-LSOLO-IC95-HI-PP",
+  "RESULT-F5C-DELTA-LCORPUS-LSOLO-IC95-LO-PP",
+  "RESULT-F5C-DELTA-LCORPUS-LSOLO-PUNTO-PP",
+  "RESULT-F5C-DELTA-LCORPUS-LSOLO-VEREDICTO",
+  "RESULT-F5C-DELTA-M-LCORPUS-IC95-HI-PP",
+  "RESULT-F5C-DELTA-M-LCORPUS-IC95-LO-PP",
+  "RESULT-F5C-DELTA-M-LCORPUS-PUNTO-PP",
+  "RESULT-F5C-DELTA-M-LCORPUS-VEREDICTO",
+  "RESULT-F5C-DELTA-M-LSOLO-IC95-HI-PP",
+  "RESULT-F5C-DELTA-M-LSOLO-IC95-LO-PP",
+  "RESULT-F5C-DELTA-M-LSOLO-PUNTO-PP",
+  "RESULT-F5C-DELTA-M-LSOLO-VEREDICTO",
+  "RESULT-F5C-ERRORES-IDENTIDAD",
+  "RESULT-F5C-ERRORES-TECNICOS",
+  "RESULT-F5C-MAE-L-CORPUS-PP",
+  "RESULT-F5C-MAE-L-SOLO-PP",
+  "RESULT-F5C-MAE-M-PP",
+  "RESULT-F5C-MALFORMADAS",
+  "RESULT-F5C-POSICIONES",
+  "RESULT-F5C-U3-IDS",
+  "RESULT-F5C-U3-N",
+  "RESULT-F5C-VALIDAS",
+  "RESULT-F5C-VEREDICTO-GLOBAL"
+ ],
+ "script_blob_sha256": "6d0e70d3823dbc147d5e97105e3a367f1150733b85bd72820fc7a8761ec85c96",
+ "script_path": "data/corrida0/CALC-TRIADA-0002/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "random.Random",
+  "valor": 42
+ },
+ "spec_id": "CALC-TRIADA-0002",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "48af914e7303793817674ed612d560ffc723ce02e6dfbf5f70bdfec558a200e7",
+ "spec_yaml_sha256": "6cb3e602decfea84c701550ac21c1d81188c1fd712e67b6467ba0607f9d17a6a",
+ "tolerancia": {
+  "abs": 1e-09,
+  "razon": "Tolerancia prospectiva D02, ocho órdenes menor que delta=0.5 pp; textos y enteros comparan exacto.",
+  "tipo": "flotante"
+ }
+}

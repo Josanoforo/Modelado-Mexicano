@@ -1,0 +1,141 @@
+{
+  "cliente_version": "2.1.267 (Claude Code)",
+  "estado_captura": "OK",
+  "id_celda": "FAM-M-05",
+  "identidad": "c4684567351a59a11b240ea770a29c379d9a6d644033487638567fb4b96ab6ca",
+  "intentos": [
+    {
+      "fin_utc": "2026-09-10T23:45:35.947867+00:00",
+      "inicio_utc": "2026-09-10T23:45:26.547385+00:00",
+      "numero": 1,
+      "returncode": 0,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":7917,\"stop_reason\":\"end_turn\",\"session_id\":\"c3ecd18d-573a-4d19-b3e2-44e7e9dfa0a0\",\"total_cost_usd\":0.0129265,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":1489,\"output_tokens\":436,\"output_tokens_details\":{\"thinking_tokens\":275},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":436,\"cache_read_input_tokens\":1489,\"cache_creation_input_tokens\":0,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":0},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":1177,\"outputTokens\":19,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.0012720000000000001,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":2,\"outputTokens\":436,\"cacheReadInputTokens\":1489,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.0116545,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":275,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Con base en lo que se conoce de la ENIGH (la proporción de hogares con remesas > 0 en `concentradohogar` ha rondado el 4–6% en las olas de la Nueva Serie; para 2016 los análisis publicados con esa fuente sitúan la cifra cerca del 5%), mi mejor estimación puntual para el universo completo de hogares sin ponderar es alrededor de 5%.\\n\\nESTIMACION_PUNTUAL=5%\",\"ttft_ms\":4913,\"type\":\"result\",\"duration_ms\":7037,\"uuid\":\"5fcc980b-113e-4d5e-8a8a-43ccf140bbaf\",\"ttft_stream_ms\":942,\"time_to_request_ms\":98,\"first_content_frame_ms\":1458,\"queued_turn_count\":0}\n"
+    }
+  ],
+  "modelo_alias_solicitado": "opus",
+  "modelo_reportado": null,
+  "modelos_en_uso_reportados": [
+    "claude-haiku-4-5-20251001",
+    "claude-opus-5"
+  ],
+  "replica": 5,
+  "sha256_manifiesto_corpus": "3196b0cfb16e5d091f6873ae320857e88831d55f446bf592558c8bd878691c45",
+  "sha256_paquete": null,
+  "sha256_prompt": "1d2e21f2b4b29ddde9f193a161326e58a10057c872cd303fda912c1cea40761c",
+  "sha256_spec_estudio": "25daa3e35cf493b3cdbb92c6882fc2bce24d78a90f3b575d4055440088c4f74d",
+  "sha256_spec_l": "914907e86fc5ded7618f9d6bcb1e44e62b3c4fbe32b6df5f29179be732caf51f",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 7917,
+    "duration_ms": 7037,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 1458,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.0012720000000000001,
+        "inputTokens": 1177,
+        "maxOutputTokens": 32000,
+        "outputTokens": 19,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 1489,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 0.0116545,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 436,
+        "provider": "firstParty",
+        "thinkingTokens": 275,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 1,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "Con base en lo que se conoce de la ENIGH (la proporción de hogares con remesas > 0 en `concentradohogar` ha rondado el 4–6% en las olas de la Nueva Serie; para 2016 los análisis publicados con esa fuente sitúan la cifra cerca del 5%), mi mejor estimación puntual para el universo completo de hogares sin ponderar es alrededor de 5%.\n\nESTIMACION_PUNTUAL=5%",
+    "session_id": "c3ecd18d-573a-4d19-b3e2-44e7e9dfa0a0",
+    "stop_reason": "end_turn",
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 98,
+    "total_cost_usd": 0.0129265,
+    "ttft_ms": 4913,
+    "ttft_stream_ms": 942,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 1489,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 1489,
+          "input_tokens": 2,
+          "output_tokens": 436,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 436,
+      "output_tokens_details": {
+        "thinking_tokens": 275
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "5fcc980b-113e-4d5e-8a8a-43ccf140bbaf"
+  },
+  "texto_crudo": "Con base en lo que se conoce de la ENIGH (la proporción de hogares con remesas > 0 en `concentradohogar` ha rondado el 4–6% en las olas de la Nueva Serie; para 2016 los análisis publicados con esa fuente sitúan la cifra cerca del 5%), mi mejor estimación puntual para el universo completo de hogares sin ponderar es alrededor de 5%.\n\nESTIMACION_PUNTUAL=5%",
+  "timestamp_utc": "2026-09-10T23:45:35.947954+00:00",
+  "variante": "L-solo"
+}

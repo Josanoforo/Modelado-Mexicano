@@ -1,0 +1,177 @@
+{
+  "antecedentes_reanudacion": [
+    {
+      "estado_captura": "ERROR_TECNICO",
+      "intentos": [
+        {
+          "fin_utc": "2026-09-11T00:11:27.200064+00:00",
+          "inicio_utc": "2026-09-11T00:11:24.162856+00:00",
+          "numero": 1,
+          "returncode": 1,
+          "stderr_original": "",
+          "stdout_original": "{\"duration_api_ms\":0,\"stop_reason\":\"stop_sequence\",\"session_id\":\"c1c69c1f-bbb7-442c-a7b4-9eefda0e8211\",\"total_cost_usd\":0,\"usage\":{\"output_tokens_details\":{\"thinking_tokens\":0},\"input_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"output_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"api_error\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":429,\"result\":\"You've hit your weekly limit · resets Sep 12, 11am (America/Mexico_City)\",\"type\":\"result\",\"duration_ms\":522,\"uuid\":\"fe7e00b6-c227-4110-8836-bca098376a67\",\"queued_turn_count\":0}\n"
+        },
+        {
+          "fin_utc": "2026-09-11T00:11:30.295809+00:00",
+          "inicio_utc": "2026-09-11T00:11:27.200087+00:00",
+          "numero": 2,
+          "returncode": 1,
+          "stderr_original": "",
+          "stdout_original": "{\"duration_api_ms\":0,\"stop_reason\":\"stop_sequence\",\"session_id\":\"fada80a3-7f7f-4121-9759-8ab800359f24\",\"total_cost_usd\":0,\"usage\":{\"output_tokens_details\":{\"thinking_tokens\":0},\"input_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"output_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"api_error\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":429,\"result\":\"You've hit your weekly limit · resets Sep 12, 11am (America/Mexico_City)\",\"type\":\"result\",\"duration_ms\":662,\"uuid\":\"d1662cb5-af91-4f86-81e4-81afb4865e09\",\"queued_turn_count\":0}\n"
+        },
+        {
+          "fin_utc": "2026-09-11T00:11:33.373770+00:00",
+          "inicio_utc": "2026-09-11T00:11:30.295834+00:00",
+          "numero": 3,
+          "returncode": 1,
+          "stderr_original": "",
+          "stdout_original": "{\"duration_api_ms\":0,\"stop_reason\":\"stop_sequence\",\"session_id\":\"993b4af5-13d6-4204-a9ed-8abfa3536d1a\",\"total_cost_usd\":0,\"usage\":{\"output_tokens_details\":{\"thinking_tokens\":0},\"input_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"output_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"api_error\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":429,\"result\":\"You've hit your weekly limit · resets Sep 12, 11am (America/Mexico_City)\",\"type\":\"result\",\"duration_ms\":688,\"uuid\":\"67d7200b-ea46-48d5-b507-60eb76bed417\",\"queued_turn_count\":0}\n"
+        }
+      ],
+      "modelo_reportado": null,
+      "modelos_en_uso_reportados": [],
+      "sobre_cli_original": null,
+      "texto_crudo": null,
+      "timestamp_utc": "2026-09-11T00:11:33.373800+00:00"
+    }
+  ],
+  "cliente_version": "2.1.267 (Claude Code)",
+  "estado_captura": "OK",
+  "id_celda": "CIV-M-01",
+  "identidad": "7495e2211c6523d7b6d8e46eb57624139d16ad16ad3566ef1421ddf22dfe9732",
+  "intentos": [
+    {
+      "fin_utc": "2026-09-11T01:07:38.499553+00:00",
+      "inicio_utc": "2026-09-11T01:07:28.125014+00:00",
+      "numero": 1,
+      "returncode": 0,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":8628,\"stop_reason\":\"end_turn\",\"session_id\":\"b640677b-fbdd-4213-91e9-debdc4fc63bb\",\"total_cost_usd\":0.017845499999999997,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":1545,\"output_tokens\":629,\"output_tokens_details\":{\"thinking_tokens\":421},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":629,\"cache_read_input_tokens\":1545,\"cache_creation_input_tokens\":0,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":0},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":1218,\"outputTokens\":24,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.001338,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":2,\"outputTokens\":629,\"cacheReadInputTokens\":1545,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.016507499999999998,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":421,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Con base en la distribución de razones de no denuncia reportada por ENVIPE 2012 (pérdida de tiempo ~32%, desconfianza en la autoridad ~16-17%, delito de poca importancia ~15%, falta de pruebas ~9%, trámites ~7%, miedo al agresor ~4-5%, miedo a extorsión ~2%, actitud hostil ~4%, otra ~9%), la suma de miedo al agresor + miedo a extorsión + desconfianza en la autoridad queda alrededor del 22-24%.\\n\\nESTIMACION_PUNTUAL=23%\",\"ttft_ms\":5652,\"type\":\"result\",\"duration_ms\":7725,\"uuid\":\"87808eca-8f40-4a45-bacb-5495cb967cea\",\"ttft_stream_ms\":928,\"time_to_request_ms\":125,\"first_content_frame_ms\":1484,\"queued_turn_count\":0}\n"
+    }
+  ],
+  "modelo_alias_solicitado": "opus",
+  "modelo_reportado": "claude-opus-5",
+  "modelos_en_uso_reportados": [
+    "claude-haiku-4-5",
+    "claude-opus-5"
+  ],
+  "replica": 8,
+  "sha256_manifiesto_corpus": "3196b0cfb16e5d091f6873ae320857e88831d55f446bf592558c8bd878691c45",
+  "sha256_paquete": null,
+  "sha256_prompt": "94f9a622bae5423c74dd57dd560c8810fe222e7c2069cb0a7a3c83f5c7b8fc52",
+  "sha256_spec_estudio": "25daa3e35cf493b3cdbb92c6882fc2bce24d78a90f3b575d4055440088c4f74d",
+  "sha256_spec_l": "914907e86fc5ded7618f9d6bcb1e44e62b3c4fbe32b6df5f29179be732caf51f",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 8628,
+    "duration_ms": 7725,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 1484,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.001338,
+        "inputTokens": 1218,
+        "maxOutputTokens": 32000,
+        "outputTokens": 24,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 1545,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 0.016507499999999998,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 629,
+        "provider": "firstParty",
+        "thinkingTokens": 421,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 1,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "Con base en la distribución de razones de no denuncia reportada por ENVIPE 2012 (pérdida de tiempo ~32%, desconfianza en la autoridad ~16-17%, delito de poca importancia ~15%, falta de pruebas ~9%, trámites ~7%, miedo al agresor ~4-5%, miedo a extorsión ~2%, actitud hostil ~4%, otra ~9%), la suma de miedo al agresor + miedo a extorsión + desconfianza en la autoridad queda alrededor del 22-24%.\n\nESTIMACION_PUNTUAL=23%",
+    "session_id": "b640677b-fbdd-4213-91e9-debdc4fc63bb",
+    "stop_reason": "end_turn",
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 125,
+    "total_cost_usd": 0.017845499999999997,
+    "ttft_ms": 5652,
+    "ttft_stream_ms": 928,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 1545,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 1545,
+          "input_tokens": 2,
+          "output_tokens": 629,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 629,
+      "output_tokens_details": {
+        "thinking_tokens": 421
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "87808eca-8f40-4a45-bacb-5495cb967cea"
+  },
+  "texto_crudo": "Con base en la distribución de razones de no denuncia reportada por ENVIPE 2012 (pérdida de tiempo ~32%, desconfianza en la autoridad ~16-17%, delito de poca importancia ~15%, falta de pruebas ~9%, trámites ~7%, miedo al agresor ~4-5%, miedo a extorsión ~2%, actitud hostil ~4%, otra ~9%), la suma de miedo al agresor + miedo a extorsión + desconfianza en la autoridad queda alrededor del 22-24%.\n\nESTIMACION_PUNTUAL=23%",
+  "timestamp_utc": "2026-09-11T01:07:38.499779+00:00",
+  "variante": "L-solo"
+}

@@ -1,0 +1,141 @@
+{
+  "cliente_version": "2.1.267 (Claude Code)",
+  "estado_captura": "OK",
+  "id_celda": "FAM-M-01",
+  "identidad": "cfed7b35b842d29100e51d41f48d12c0f382cb44c86d453b6068d03b7d74aaba",
+  "intentos": [
+    {
+      "fin_utc": "2026-09-10T23:56:17.012528+00:00",
+      "inicio_utc": "2026-09-10T23:56:01.430272+00:00",
+      "numero": 1,
+      "returncode": 0,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":14249,\"stop_reason\":\"end_turn\",\"session_id\":\"5abe56b8-e829-4ca5-bf6c-48250b3d3bc8\",\"total_cost_usd\":0.025839,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":1488,\"output_tokens\":949,\"output_tokens_details\":{\"thinking_tokens\":727},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":949,\"cache_read_input_tokens\":1488,\"cache_creation_input_tokens\":0,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":0},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":1180,\"outputTokens\":36,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.00136,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":2,\"outputTokens\":949,\"cacheReadInputTokens\":1488,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.024479,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":727,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Recuerdo de los resultados publicados de ENIF 2018 (sección \\\"Ahorro para el retiro / gastos en la vejez\\\") que, entre las formas en que la población de 18 a 70 años piensa cubrir sus gastos en la vejez, la opción \\\"dinero que le den su pareja, hijos u otros familiares\\\" fue mencionada por aproximadamente un tercio de las personas, por debajo de \\\"seguir trabajando\\\" y \\\"con ahorros\\\". No tengo el tabulado exacto para este universo (excluyendo no sabe/no responde), así que mi mejor estimación aproximada es:\\n\\nESTIMACION_PUNTUAL=31%\",\"ttft_ms\":10282,\"type\":\"result\",\"duration_ms\":13220,\"uuid\":\"f13b49b9-694f-4d05-bc27-052f3fc881e0\",\"ttft_stream_ms\":1025,\"time_to_request_ms\":101,\"first_content_frame_ms\":1538,\"queued_turn_count\":0}\n"
+    }
+  ],
+  "modelo_alias_solicitado": "opus",
+  "modelo_reportado": null,
+  "modelos_en_uso_reportados": [
+    "claude-haiku-4-5-20251001",
+    "claude-opus-5"
+  ],
+  "replica": 7,
+  "sha256_manifiesto_corpus": "3196b0cfb16e5d091f6873ae320857e88831d55f446bf592558c8bd878691c45",
+  "sha256_paquete": null,
+  "sha256_prompt": "dd1f460c66d08bfddb82662f6a4348999cffbb64156bc043a04b547f50b28032",
+  "sha256_spec_estudio": "25daa3e35cf493b3cdbb92c6882fc2bce24d78a90f3b575d4055440088c4f74d",
+  "sha256_spec_l": "914907e86fc5ded7618f9d6bcb1e44e62b3c4fbe32b6df5f29179be732caf51f",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 14249,
+    "duration_ms": 13220,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 1538,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.00136,
+        "inputTokens": 1180,
+        "maxOutputTokens": 32000,
+        "outputTokens": 36,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 1488,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 0.024479,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 949,
+        "provider": "firstParty",
+        "thinkingTokens": 727,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 1,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "Recuerdo de los resultados publicados de ENIF 2018 (sección \"Ahorro para el retiro / gastos en la vejez\") que, entre las formas en que la población de 18 a 70 años piensa cubrir sus gastos en la vejez, la opción \"dinero que le den su pareja, hijos u otros familiares\" fue mencionada por aproximadamente un tercio de las personas, por debajo de \"seguir trabajando\" y \"con ahorros\". No tengo el tabulado exacto para este universo (excluyendo no sabe/no responde), así que mi mejor estimación aproximada es:\n\nESTIMACION_PUNTUAL=31%",
+    "session_id": "5abe56b8-e829-4ca5-bf6c-48250b3d3bc8",
+    "stop_reason": "end_turn",
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 101,
+    "total_cost_usd": 0.025839,
+    "ttft_ms": 10282,
+    "ttft_stream_ms": 1025,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 1488,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 1488,
+          "input_tokens": 2,
+          "output_tokens": 949,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 949,
+      "output_tokens_details": {
+        "thinking_tokens": 727
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "f13b49b9-694f-4d05-bc27-052f3fc881e0"
+  },
+  "texto_crudo": "Recuerdo de los resultados publicados de ENIF 2018 (sección \"Ahorro para el retiro / gastos en la vejez\") que, entre las formas en que la población de 18 a 70 años piensa cubrir sus gastos en la vejez, la opción \"dinero que le den su pareja, hijos u otros familiares\" fue mencionada por aproximadamente un tercio de las personas, por debajo de \"seguir trabajando\" y \"con ahorros\". No tengo el tabulado exacto para este universo (excluyendo no sabe/no responde), así que mi mejor estimación aproximada es:\n\nESTIMACION_PUNTUAL=31%",
+  "timestamp_utc": "2026-09-10T23:56:17.012613+00:00",
+  "variante": "L-solo"
+}
