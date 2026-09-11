@@ -74,21 +74,21 @@ modifica el emisor para hacerlos caber.
 
 ### 3.2 Coordinación con encargo 23
 
-Al cierre de esta propuesta, el encargo 23 está publicado pero **no fusionado**
-en [PR #720](https://github.com/Josanoforo/Modelado-Mexicano/pull/720), cabeza
-`67aa13d73e9300acd14c4b593e3bcfb6bc945712`. La inspección estática de ese
-commit introduce:
+La sincronización final consume el encargo 23 ya fusionado por
+[PR #720](https://github.com/Josanoforo/Modelado-Mexicano/pull/720), commit de
+`main` `6cda0282079e9623425529f51c2bea171657b0cf`. Su interfaz efectiva introduce:
 
 - `SELECCION-TEMPORAL-v1` y `seleccionar_transferencia`;
 - `seleccion_transferencia` estructurada en `emitir_binaria_contrato`;
 - rol derivado `OBSERVACION-SERIE-PREVIA`;
 - snapshot sucesor `snapshot-M-gen2-explicito-v1_1.json`.
 
-Estos nombres y el SHA de cabeza **no son todavía autoridad**. Antes de
-cualquier ejecución, el acto sucesor debe comprobar que #720 fue fusionado,
-registrar el commit efectivo en `main`, verificar que contiene la interfaz y
-adaptar esta referencia si cambió. Una observación previa seleccionada sirve
-para M; nunca se convierte por ello en R objetivo o en rol retenido.
+El snapshot v1.1 conserva las 16 emisiones directas de v1.0; autenticar su
+selección no crea familias nuevas ni roles retenidos y no cambia el conteo de
+este inventario. Antes de ejecutar, el acto sucesor debe verificar que su HEAD
+desciende de `6cda0282` y registrar la identidad completa del snapshot. Una
+observación previa seleccionada sirve para M; nunca se convierte por ello en R
+objetivo o en rol retenido.
 
 ### 3.3 Cuatro ejes que no se colapsan
 

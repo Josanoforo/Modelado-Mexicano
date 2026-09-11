@@ -2,22 +2,17 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "ejecutor",
-    "seleccion",
-    "resultado_sustantivo",
-    "intentos",
-    "objetos_o_recetas",
-    "publicacion_agente",
-    "resumen"
-  ],
+  "required": ["ejecutor", "seleccion", "resultado_sustantivo", "resultados_por_objeto", "publicacion_trabajo", "resumen"],
   "properties": {
-    "ejecutor": {"type": "string", "enum": ["codex"]},
+    "ejecutor": {"const": "codex"},
     "seleccion": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["elegidos", "excluidos_con_causa"],
+      "required": ["calculada", "corte", "maximo", "elegidos", "excluidos_con_causa"],
       "properties": {
+        "calculada": {"const": true},
+        "corte": {"type": "string"},
+        "maximo": {"type": "integer", "minimum": 0},
         "elegidos": {"type": "array", "items": {"type": "string"}},
         "excluidos_con_causa": {"type": "array", "items": {"type": "string"}}
       }
@@ -26,15 +21,49 @@
       "type": "string",
       "enum": ["adquisicion_obtenida", "intentos_documentados", "cola_vacia", "fallo"]
     },
-    "intentos": {"type": "array", "items": {"type": "string"}},
-    "objetos_o_recetas": {"type": "array", "items": {"type": "string"}},
-    "publicacion_agente": {
+    "resultados_por_objeto": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["objeto_id", "desenlace", "evidencias", "intentos", "archivos", "ids_manifiesto"],
+        "properties": {
+          "objeto_id": {"type": "string", "minLength": 1},
+          "desenlace": {"type": "string", "enum": ["adquirido", "intento_documentado"]},
+          "evidencias": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "intentos": {
+            "type": "array",
+            "items": {
+              "type": "object", "additionalProperties": false,
+              "required": ["via", "resultado"],
+              "properties": {
+                "via": {"type": "string", "minLength": 1},
+                "resultado": {"type": "string", "minLength": 1}
+              }
+            }
+          },
+          "archivos": {"type": "array", "items": {"type": "string", "minLength": 1}},
+          "ids_manifiesto": {"type": "array", "items": {"type": "string", "minLength": 1}}
+        }
+      }
+    },
+    "publicacion_trabajo": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["estado", "referencia"],
+      "required": ["estado", "referencias"],
       "properties": {
-        "estado": {"type": "string", "enum": ["publicada", "sin_cambios", "fallida", "no_aplica"]},
-        "referencia": {"type": "string"}
+        "estado": {"type": "string", "enum": ["publicada", "fallida", "no_aplica"]},
+        "referencias": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["ref", "commit"],
+            "properties": {
+              "ref": {"type": "string", "minLength": 1},
+              "commit": {"type": "string", "minLength": 1}
+            }
+          }
+        }
       }
     },
     "resumen": {"type": "string", "minLength": 1}

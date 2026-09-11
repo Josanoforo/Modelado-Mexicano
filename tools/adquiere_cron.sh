@@ -72,7 +72,7 @@
 
 set -euo pipefail
 
-RUNNER_VERSION="adq-codex-1"
+RUNNER_VERSION="adq-codex-2"
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_DIR"
@@ -91,8 +91,8 @@ ESTADO_DIR="${LOGDIR}/estado"
 mkdir -p "$ESTADO_DIR"
 HEARTBEAT="${ESTADO_DIR}/heartbeat.json"
 LOCKFILE="${ESTADO_DIR}/adquiere_cron.lock"
-RUN_ID="${FECHA}T$(date +%H%M%S)-$$"
-INICIO_ISO="$(date --iso-8601=seconds)"
+RUN_ID="${ADQ_RUN_ID:-${FECHA}T$(date +%H%M%S)-$$}"
+INICIO_ISO="${ADQ_INICIO_ISO:-$(date --iso-8601=seconds)}"
 DISPARADOR="${ADQ_DISPARADOR:-manual}"
 case "$DISPARADOR" in
   windows-task-scheduler|puesta-en-marcha-programada|manual|prueba-programada|fixture) ;;
@@ -105,11 +105,14 @@ CLI_VERSION="desconocida"
 MODELO_CONFIGURADO="no-configurado"
 MODELO_EFECTIVO="no-observable"
 RESULTADO_SUSTANTIVO="no-invocado"
+RESULTADO_TRABAJO="no-invocado"
 SELECCION_ELEGIDOS="-"
 SELECCION_EXCLUIDOS="-"
 SELECCION_JSON="null"
 RESULTADO_PUBLICO="null"
 PUBLICACION_ESTADO="pendiente"
+PUBLICACION_TRABAJO="no_aplica"
+MOTIVO_CIERRE="-"
 # Dueño del lock: 0 hasta que `flock` lo conceda. Solo el dueño escribe el
 # heartbeat activo (H6) -- una segunda invocación rechazada no puede
 # borrar el estado de la que sigue trabajando.
@@ -243,11 +246,12 @@ escribe_heartbeat() {
     log "heartbeat NO escrito por run_id=${RUN_ID} (estado=${estado}): esta invocación no es dueña del lock y no puede pisar el estado de la que trabaja."
     return 0
   fi
-  python3 - "$HEARTBEAT" "$RUN_ID" "$$" "$estado" "$FASE" "$FECHA" "$codigo" "$DISPARADOR" "${HEAD_USADO:-desconocido}" "$CAUSA_DISPARO" "$EJECUTOR" "$CLI_VERSION" "$MODELO_CONFIGURADO" "$MODELO_EFECTIVO" "$RUNNER_VERSION" "$INICIO_ISO" "$RESULTADO_SUSTANTIVO" "$PUBLICACION_ESTADO" "${ADQ_DEPLOY_MODE:-legacy}" "$SELECCION_ELEGIDOS" "$SELECCION_EXCLUIDOS" <<'PYEOF'
+  python3 - "$HEARTBEAT" "$RUN_ID" "$$" "$estado" "$FASE" "$FECHA" "$codigo" "$DISPARADOR" "${HEAD_USADO:-${ADQ_DEPLOY_SHA:-desconocido}}" "$CAUSA_DISPARO" "$EJECUTOR" "$CLI_VERSION" "$MODELO_CONFIGURADO" "$MODELO_EFECTIVO" "$RUNNER_VERSION" "$INICIO_ISO" "$RESULTADO_SUSTANTIVO" "$RESULTADO_TRABAJO" "$PUBLICACION_ESTADO" "$PUBLICACION_TRABAJO" "${ADQ_DEPLOY_MODE:-legacy}" "$SELECCION_ELEGIDOS" "$SELECCION_EXCLUIDOS" "$MOTIVO_CIERRE" <<'PYEOF'
 import json, os, sys, datetime, tempfile
 (ruta, run_id, pid, estado, fase, fecha, codigo, disparador, sha, causa,
  ejecutor, cli_version, modelo_configurado, modelo_efectivo, runner_version,
- inicio, resultado, publicacion, despliegue, elegidos, excluidos) = sys.argv[1:22]
+ inicio, resultado, resultado_trabajo, publicacion, publicacion_trabajo,
+ despliegue, elegidos, excluidos, motivo) = sys.argv[1:25]
 doc = {
     "run_id": run_id,
     "pid": int(pid),
@@ -261,13 +265,17 @@ doc = {
     "modelo_configurado": modelo_configurado,
     "modelo_efectivo": modelo_efectivo,
     "runner_version": runner_version,
+    "componente": "runner",
     "despliegue": despliegue,
     "sha": sha,
     "inicio": inicio,
     "resultado_sustantivo": resultado,
+    "resultado_trabajo": resultado_trabajo,
     "seleccion_elegidos": elegidos,
     "seleccion_excluidos": excluidos,
     "publicacion": publicacion,
+    "publicacion_trabajo": publicacion_trabajo,
+    "motivo": motivo,
     "codigo_salida": (int(codigo) if codigo not in ("", "-") else None),
     "actualizado": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
 }
@@ -543,7 +551,8 @@ huella_adq() {
 
   fin_iso="$(date --iso-8601=seconds)"
   cli_token="${CLI_VERSION// /_}"
-  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} launcher_sha=${ADQ_DEPLOY_SHA:-legacy} runner_version=${RUNNER_VERSION} ejecutor=${EJECUTOR} cli_version=${cli_token} modelo_configurado=${MODELO_CONFIGURADO} modelo_efectivo=${MODELO_EFECTIVO} resultado=${RESULTADO_SUSTANTIVO} seleccion_elegidos=${SELECCION_ELEGIDOS} seleccion_excluidos=${SELECCION_EXCLUIDOS} inicio=${INICIO_ISO} fin=${fin_iso} publicacion=${publicacion} disparador=${DISPARADOR} causa=${CAUSA_DISPARO} run_id=${RUN_ID}"
+  MOTIVO_CIERRE="$motivo"
+  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} launcher_sha=${ADQ_DEPLOY_SHA:-legacy} runner_version=${RUNNER_VERSION} ejecutor=${EJECUTOR} cli_version=${cli_token} modelo_configurado=${MODELO_CONFIGURADO} modelo_efectivo=${MODELO_EFECTIVO} resultado=${RESULTADO_SUSTANTIVO} resultado_trabajo=${RESULTADO_TRABAJO} publicacion_trabajo=${PUBLICACION_TRABAJO} seleccion_elegidos=${SELECCION_ELEGIDOS} seleccion_excluidos=${SELECCION_EXCLUIDOS} inicio=${INICIO_ISO} fin=${fin_iso} publicacion=${publicacion} disparador=${DISPARADOR} causa=${CAUSA_DISPARO} run_id=${RUN_ID}"
   log "${linea}"
   CIERRE_ESCRITO=1
   printf -v contenido '[ADQ-SELECCION] run_id=%s %s\n[ADQ-RESULTADO] run_id=%s %s\n%s' \
@@ -626,6 +635,7 @@ finalizar() {
   # vale 1 si huella_adq() llegó a componer y registrar su línea.
   if [ "${CIERRE_ESCRITO:-0}" -ne 1 ]; then
     estado="INCOMPLETO"
+    [ "$MOTIVO_CIERRE" = "-" ] && MOTIVO_CIERRE="salida-inesperada-en-${FASE}"
     log "INCOMPLETO: run_id=${RUN_ID} terminó en fase=${FASE} sin haber escrito su huella [ADQ]. No se infiere ni éxito ni causa de muerte."
   fi
   log "=== adquiere_cron.sh terminado (run_id=${RUN_ID} fase=${FASE} exit=${codigo}) ==="
@@ -692,6 +702,59 @@ RAMAS_ANTES="$(git ls-remote --heads origin | wc -l)"
 # SHA realmente usado por esta corrida -- va en la huella (P1).
 HEAD_USADO="$HEAD_ANTES"
 T0="$(date +%s)"
+
+# La selección es determinista y no necesita red ni un LLM. Se calcula y se
+# conserva antes del resto del recorrido: un fallo del selector es PARO, nunca
+# una lista vacía; cero elegidos habilita el cierre mecánico de abajo.
+transicion "SELECCION"
+SELECCION_ARCHIVO="$LOGDIR/${RUN_ID}-seleccion.json"
+set +e
+python3 tools/adq_doctor.py --selecciona --maximo "$MAXIMO_FILAS" --json \
+  >"$SELECCION_ARCHIVO" 2>>"$LOGFILE"
+CODIGO_SELECTOR=$?
+set -e
+if [ "$CODIGO_SELECTOR" -ne 0 ] || ! python3 -m json.tool "$SELECCION_ARCHIVO" >/dev/null 2>>"$LOGFILE"; then
+  [ "$CODIGO_SELECTOR" -eq 0 ] && CODIGO_SELECTOR=65
+  FASE="PARO-SELECCION"
+  RESULTADO_SUSTANTIVO="fallo"
+  RESULTADO_TRABAJO="fallo_selector"
+  MOTIVO_CIERRE="PARO-SELECCION"
+  log "PARO-SELECCION: el selector salió ${CODIGO_SELECTOR} o no produjo JSON legible; nunca se interpreta como cola vacía."
+  huella_adq "no" "PARO-SELECCION" "$CODIGO_SELECTOR"
+  exit "$CODIGO_SELECTOR"
+fi
+SELECCION_JSON="$(python3 -c 'import json,sys; print(json.dumps(json.load(open(sys.argv[1], encoding="utf-8")), ensure_ascii=False, separators=(",",":")))' "$SELECCION_ARCHIVO")"
+SELECCION_ELEGIDOS="$(printf '%s' "$SELECCION_JSON" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(",".join(x["id"] for x in d["elegidos"]) or "ninguno")')"
+SELECCION_EXCLUIDOS="$(printf '%s' "$SELECCION_JSON" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)["excluidos"]))')"
+NUM_ELEGIDOS="$(printf '%s' "$SELECCION_JSON" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)["elegidos"]))')"
+log "selección autoritativa: elegidos=${SELECCION_ELEGIDOS} excluidos=${SELECCION_EXCLUIDOS} máximo=${MAXIMO_FILAS}"
+
+if [ "$NUM_ELEGIDOS" -eq 0 ]; then
+  RESULTADO_SUSTANTIVO="cola_vacia"
+  RESULTADO_TRABAJO="cola_vacia"
+  PUBLICACION_TRABAJO="no_aplica"
+  RESULTADO_PUBLICO="$(python3 - "$SELECCION_ARCHIVO" <<'PYEOF'
+import json, sys
+with open(sys.argv[1], encoding="utf-8") as f:
+    s = json.load(f)
+r = {
+    "ejecutor": "codex",
+    "seleccion": {
+        "calculada": True, "corte": s["corte"], "maximo": s["maximo"],
+        "elegidos": [],
+        "excluidos_con_causa": [
+            f'{x["id"]} [{x["estado"]}] — {x["razon"]}' for x in s["excluidos"]
+        ],
+    },
+    "resultado_sustantivo": "cola_vacia",
+    "resultados_por_objeto": [],
+    "publicacion_trabajo": {"estado": "no_aplica", "referencias": []},
+    "resumen": "Selección determinista completada sin objetos elegidos; cierre sin invocar LLM.",
+}
+print(json.dumps(r, ensure_ascii=False, separators=(",", ":")))
+PYEOF
+)"
+fi
 
 # 2 · corpus montado (A.2, tercera parte)
 FASE="CORPUS"
@@ -798,6 +861,19 @@ else
   commit_censo_linea "$LINEA_PDN" "$LINEA_PDN" "[ADQ-PDN] ${FECHA}"
 fi
 
+if [ "$NUM_ELEGIDOS" -eq 0 ]; then
+  FASE="HUELLA-COLA-VACIA"
+  log "COLA-VACIA: selección calculada correctamente con 0 elegidos; se cierra sin invocar Codex ni Claude."
+  huella_adq "no" "COLA-VACIA" "0"
+  FASE="FIN"
+  if [ "${PUBLICACION_FALLIDA:-0}" -gt 0 ]; then
+    log "RESULTADO-COMPUESTO: selección=cola_vacia, invocado=no, pero ${PUBLICACION_FALLIDA} publicación(es) requerida(s) fallaron; exit 4."
+    exit 4
+  fi
+  log "RESULTADO-COMPUESTO: selección=cola_vacia, trabajo=no-invocado, publicación de recibo OK."
+  exit 0
+fi
+
 # 3 · sonda de red real, valor crudo (nunca curl -I)
 transicion "SONDA-RED"
 if ! sonda_red "$SONDA_URL"; then
@@ -832,19 +908,13 @@ fi
 log "prompt extraído (§1 de ${RUNBOOK}), $(echo "$PROMPT" | wc -l) líneas:"
 echo "$PROMPT" >>"$LOGFILE"
 
-transicion "SELECCION"
-SELECCION_JSON="$(python3 tools/adq_doctor.py --selecciona --maximo "$MAXIMO_FILAS" --json | python3 -c 'import json,sys; print(json.dumps(json.load(sys.stdin), ensure_ascii=False, separators=(",",":")))')"
-SELECCION_ELEGIDOS="$(printf '%s' "$SELECCION_JSON" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(",".join(x["id"] for x in d["elegidos"]) or "ninguno")')"
-SELECCION_EXCLUIDOS="$(printf '%s' "$SELECCION_JSON" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)["excluidos"]))')"
-log "selección autoritativa: elegidos=${SELECCION_ELEGIDOS} excluidos=${SELECCION_EXCLUIDOS} máximo=${MAXIMO_FILAS}"
-
 PROMPT_EFECTIVO="${PROMPT}
 
 INSTRUCCIÓN DE EJECUCIÓN PARA CODEX CLI:
 Lee completa .claude/commands/adquiere.md y ejecuta ese procedimiento; la frase histórica 'Corre /adquiere' no depende de un slash command registrado. No invoques tools/adquiere_launcher.sh, tools/adquiere_cron.sh, Task Scheduler ni otro agente: ya eres el único hijo de esa corrida. Preserva cualquier modificación ajena, especialmente data/manifiesto-staging.yaml, y nunca la incluyas en un commit. Máximo ${MAXIMO_FILAS} filas.
 Esta es la selección proyectada inmediatamente antes de tu arranque; contrástala y reporta todos los elegidos y excluidos con causa:
 ${SELECCION_JSON}
-Tu último mensaje debe cumplir tools/adq-resultado.schema.json. Exit 0 sólo si ejecutaste el recorrido: una cola vacía exige resultado_sustantivo=cola_vacia y la lista completa; no basta dejar un plan o pedir otra sesión."
+Tu último mensaje debe cumplir tools/adq-resultado.schema.json. Entrega exactamente un resultados_por_objeto por cada elegido, en el mismo orden. Cada evidencia debe ser una ruta local existente; toda adquisición debe acreditar archivos e ids pertinentes de data/manifiesto.yaml; todo intento debe conservar vía y resultado verificable. Con elegidos, la publicación del trabajo exige refs/heads/<rama> y el SHA remoto exacto: la publicación posterior del recibo por el wrapper no la sustituye. Si el trabajo existe pero su publicación falla, conserva sus resultados por objeto, declara resultado_sustantivo=fallo y publicacion_trabajo=fallida."
 
 # set +e/-e: la huella [ADQ] tiene que capturar el código real de salida
 # incluso cuando el hijo falla -- bajo `set -e`
@@ -888,28 +958,31 @@ if [ "$EJECUTOR" = "codex" ]; then
       - <"$PROMPT_LOCAL" >"$EVENTOS_CODEX" 2>"$STDERR_CODEX"
     CODIGO_SALIDA=$?
     if [ "$CODIGO_SALIDA" -eq 0 ]; then
-      if python3 - "$SELECCION_JSON" "$ULTIMO_MENSAJE" <<'PYEOF'
-import json, sys
-esperada = json.loads(sys.argv[1])
-with open(sys.argv[2], encoding="utf-8") as f:
-    resultado = json.load(f)
-ids = [x["id"] for x in esperada["elegidos"]]
-if resultado["ejecutor"] != "codex":
-    raise SystemExit("ejecutor final distinto de codex")
-if resultado["seleccion"]["elegidos"] != ids:
-    raise SystemExit("la selección final no coincide con la proyección")
-estado = resultado["resultado_sustantivo"]
-if not ids and estado != "cola_vacia":
-    raise SystemExit("cero elegidos exige resultado_sustantivo=cola_vacia")
-if estado == "fallo":
-    raise SystemExit("el hijo declaró fallo sustantivo")
-PYEOF
-      then
+      VALIDACION_RESULTADO="$LOGDIR/${RUN_ID}-validacion-resultado.json"
+      python3 tools/adq_doctor.py --valida-resultado "$ULTIMO_MENSAJE" \
+        --seleccion-archivo "$SELECCION_ARCHIVO" --json \
+        >"$VALIDACION_RESULTADO" 2>>"$LOGFILE"
+      CODIGO_VALIDACION=$?
+      if [ "$CODIGO_VALIDACION" -eq 0 ]; then
         RESULTADO_PUBLICO="$(python3 -c 'import json,sys; print(json.dumps(json.load(open(sys.argv[1], encoding="utf-8")), ensure_ascii=False, separators=(",",":")))' "$ULTIMO_MENSAJE")"
         RESULTADO_SUSTANTIVO="$(printf '%s' "$RESULTADO_PUBLICO" | python3 -c 'import json,sys; print(json.load(sys.stdin)["resultado_sustantivo"])')"
+        RESULTADO_TRABAJO="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["resultado_trabajo"])' "$VALIDACION_RESULTADO")"
+        PUBLICACION_TRABAJO="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["publicacion_trabajo"])' "$VALIDACION_RESULTADO")"
+        CIERRE_HIJO="$(python3 -c 'import json,sys; print("si" if json.load(open(sys.argv[1], encoding="utf-8"))["cierre_exitoso"] else "no")' "$VALIDACION_RESULTADO")"
+        if [ "$CIERRE_HIJO" != "si" ]; then
+          if [ "$PUBLICACION_TRABAJO" = "fallida" ]; then
+            CODIGO_SALIDA=4
+            log "FALLO-PUBLICACION-TRABAJO: resultados por objeto conservados y válidos, pero sus referencias no se publicaron."
+          else
+            CODIGO_SALIDA=66
+            log "FALLO-TRABAJO: el documento es coherente pero declara fallo sustantivo."
+          fi
+        fi
       else
-        log "PARO-RESULTADO: exit 0 sin evidencia sustantiva válida en $ULTIMO_MENSAJE"
+        log "PARO-RESULTADO: exit 0 sin evidencia sustantiva válida; ver $VALIDACION_RESULTADO"
         RESULTADO_SUSTANTIVO="resultado_invalido"
+        RESULTADO_TRABAJO="indeterminado"
+        PUBLICACION_TRABAJO="indeterminada"
         CODIGO_SALIDA=65
       fi
     fi

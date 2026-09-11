@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import unittest
+from copy import deepcopy
 from dataclasses import replace
 from datetime import date
 from pathlib import Path
@@ -124,6 +125,11 @@ class MotorGen2Explicito(unittest.TestCase):
         self.assertEqual(
             q.derivado_de, "solicitud_o_entrega_mordida_encuci2020")
         self.assertIn("NO IMPLICA MUESTRA INDEPENDIENTE", q.camino_linaje)
+        self.assertIn("transformacion:1-p", q.dependencias_estructurales)
+        self.assertIn(
+            "padre:tramite.mordida.discrecional:"
+            "solicitud_o_entrega_mordida_encuci2020",
+            q.dependencias_estructurales)
 
     def test_06_ola_futura_falla_en_transferencia(self):
         serie = Serie(
@@ -161,7 +167,7 @@ class MotorGen2Explicito(unittest.TestCase):
         actual = construir_snapshot()
         esperado = json.loads((
             RAIZ / "forense" / "prereg-duelo-v2" /
-            "snapshot-M-gen2-explicito-v1_0.json"
+            "snapshot-M-gen2-explicito-v1_1.json"
         ).read_text(encoding="utf-8"))
         self.assertEqual(
             json.loads(json.dumps(actual, ensure_ascii=False)), esperado)
@@ -179,18 +185,78 @@ class MotorGen2Explicito(unittest.TestCase):
             r["selector"]["resultado_id"], "RESULT-B-ENIGH-2020-P")
         self.assertEqual(r["emision"]["estado"], "EMITE")
         self.assertEqual(r["evaluacion"], "NO-EVALUACION-INDEPENDIENTE")
-        regla = self.reglas["familia.seguro.volatilidad_ausencia_estado"]
-        arbitro = emitir_binaria_contrato(
-            regla, "recibe_remesas", {}, modo=MODO_GEN2,
-            proposito="transferencia", uso_solicitado="MEDICION-GEN2",
-            indice=self.indice,
-            resultado_id_seleccionado=r["selector"]["resultado_id"],
-            valor_seleccionado=r["selector"]["p"],
-            rol_seleccionado="ARBITRO")
-        self.assertEqual(arbitro.estado, "NO_COVERAGE")
-        self.assertIn("árbitro", arbitro.detalle)
+        self.assertEqual(
+            r["emision"]["rol_seleccion"], "OBSERVACION-SERIE-PREVIA")
 
-    def test_09_cambio_de_p_sin_result_correspondiente_se_detecta(self):
+    def test_09_envipe_no_se_convierte_en_remesas_por_parametros_sueltos(self):
+        regla = self.reglas["familia.seguro.volatilidad_ausencia_estado"]
+        resultado_id = "RESULT-R-CIV-M-01-P-C1-U1"
+        valor = self.indice.resultados[resultado_id].valor
+        for proposito in ("consulta", "transferencia"):
+            with self.subTest(proposito=proposito):
+                r = emitir_binaria_contrato(
+                    regla, "recibe_remesas", {}, modo=MODO_GEN2,
+                    proposito=proposito, uso_solicitado="MEDICION-GEN2",
+                    indice=self.indice,
+                    resultado_id_seleccionado=resultado_id,
+                    valor_seleccionado=valor)
+                self.assertEqual(r.estado, "NO_COVERAGE")
+                self.assertIsNone(r.valor_punto)
+        self.assertIn("consulta no acepta selección externa", (
+            emitir_binaria_contrato(
+                regla, "recibe_remesas", {}, modo=MODO_GEN2,
+                proposito="consulta", indice=self.indice,
+                resultado_id_seleccionado=resultado_id,
+                valor_seleccionado=valor).detalle))
+
+    def test_10_consulta_no_activa_transferencia_estructurada(self):
+        transferencia = construir_snapshot()["transferencia_temporal_operativa"]
+        regla = self.reglas["familia.seguro.volatilidad_ausencia_estado"]
+        r = emitir_binaria_contrato(
+            regla, "recibe_remesas", {}, modo=MODO_GEN2,
+            proposito="consulta", uso_solicitado="MEDICION-GEN2",
+            indice=self.indice,
+            seleccion_transferencia=transferencia["selector"])
+        self.assertEqual(r.estado, "NO_COVERAGE")
+        self.assertIn("consulta no acepta selección externa", r.detalle)
+
+    def test_11_transferencia_rechaza_incompatibilidad_corte_valor_y_rol(self):
+        transferencia = construir_snapshot()["transferencia_temporal_operativa"]
+        seleccion = transferencia["selector"]
+        regla = self.reglas["familia.seguro.volatilidad_ausencia_estado"]
+
+        casos = []
+        incompatible = deepcopy(seleccion)
+        incompatible["seleccion"]["serie"]["encuesta"] = "ENVIPE"
+        casos.append((incompatible, "serie seleccionada incompatible"))
+
+        posterior = deepcopy(seleccion)
+        posterior["seleccion"]["disponibilidad"] = "2022-01-01"
+        casos.append((posterior, "posterior al corte temporal"))
+
+        valor_falso = deepcopy(seleccion)
+        valor_falso["seleccion"]["evidencia_procedencia"]["valor"] += 0.01
+        casos.append((valor_falso, "valor seleccionado no coincide"))
+
+        operativo = deepcopy(seleccion)
+        rid_operativo = "RESULT-B-OPERATIVO-2022-P"
+        operativo["resultado_id"] = rid_operativo
+        operativo["seleccion"]["evidencia_procedencia"][
+            "resultado_id"] = rid_operativo
+        casos.append((operativo, "rol no está acreditado"))
+
+        for contrato, causa in casos:
+            with self.subTest(causa=causa):
+                r = emitir_binaria_contrato(
+                    regla, "recibe_remesas", {}, modo=MODO_GEN2,
+                    proposito="transferencia",
+                    uso_solicitado="MEDICION-GEN2", indice=self.indice,
+                    seleccion_transferencia=contrato)
+                self.assertEqual(r.estado, "NO_COVERAGE")
+                self.assertIsNone(r.valor_punto)
+                self.assertIn(causa, r.detalle)
+
+    def test_12_cambio_de_p_sin_result_correspondiente_se_detecta(self):
         regla = self.reglas["tramite.mordida.discrecional"]
         alteradas = tuple(
             replace(s, p=s.p + 0.01)
@@ -204,8 +270,10 @@ class MotorGen2Explicito(unittest.TestCase):
         self.assertEqual(r.estado, "NO_COVERAGE")
         self.assertIn("p materializado no identifica al RESULT", r.detalle)
 
-    def test_10_congelados_historicos_f5_no_cambian(self):
+    def test_13_congelados_historicos_y_snapshot_v1_0_no_cambian(self):
         esperados = {
+            "forense/prereg-duelo-v2/snapshot-M-gen2-explicito-v1_0.json":
+                "05350667baa245c79c3ed487aeb1403d74b4612fcae69e16845b8d42f1a5eaa8",
             "forense/prereg-duelo-v2/snapshot-M-triada-v1_0.json":
                 "b53ac6d51d1b50ce929fdf1b3e14b124c11db39fb216a15d7073a287ed3f065c",
             "data/corrida0/CALC-TRIADA-0002/resultados.json":

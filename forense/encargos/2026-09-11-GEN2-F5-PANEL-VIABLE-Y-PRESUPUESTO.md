@@ -160,7 +160,7 @@ deberá referenciar la interfaz corregida antes de una futura ejecución.
 |---|---|---|---|
 | Ejecutar las 32 llamadas documentales de FP-373 | `DECISIÓN-DE-MESA-PENDIENTE` | no hubo capturas L, gasto ni cierre de `NC-0160`; fuentes identificadas no equivalen a transporte validado | encargo `GEN2-F5-DOCUMENTAL-EJECUCION`, ya preparado en cola y pendiente de firma de Jonás |
 | Ejecutar piloto/confirmación FP-374 o abrir R | `PANEL-RETENIDO-INSUFICIENTE` | 0 familias retenidas ejecutables; `NC-0161/0162` siguen abiertas y F6 no se habilita | ampliación sólo con lista nominal previa de 18 familias × 2 celdas, consumidores M, acceso/diseño, split y snapshot elegible |
-| Consumir la interfaz final del encargo 23 | `DEPENDENCIA-ABIERTA` | PR #720 estaba abierto; su cabeza inspeccionada no se trata como autoridad ni se modifica el emisor | el acto de ejecución registra el commit efectivo fusionado en `main` y adapta el protocolo si la interfaz difiere |
+| Anclar la ejecución a la interfaz final del encargo 23 | `COMPUERTA-CUMPLIDA-SIN-EJECUCIÓN` | PR #720 ya está fusionado en `main=6cda0282`; este acto consume el contrato y no modifica el emisor por cuenta propia | el acto de ejecución verifica ascendencia, fija snapshot v1.1 e identidad de interfaz |
 
 ## CONSUMIDO
 
@@ -169,6 +169,8 @@ rama `acto/gen2-f5-panel-viable-y-presupuesto`, HEAD al abrir el PR
 `25ec8d380690d5ffe8c6d58abf6257dc63482eb4`, contra
 `origin/main=70c64d9ead92384ece0eaf18cbfb53372bb88a74`. Entrega tabla nominal,
 mapa M/fuentes, protocolo y presupuesto coherentes, fichas FP-373/374 y un
-siguiente encargo pendiente de firma. Cierre canónico: `ADR-479`, L0 y rótulo
+siguiente encargo pendiente de firma. Sincronizado después con
+`origin/main=6cda0282079e9623425529f51c2bea171657b0cf`, que fusiona el contrato
+del encargo 23. Cierre canónico: `ADR-480`, L0 y rótulo
 `GEN2-F5-PANEL-VIABLE-Y-PRESUPUESTO`. Línea base verde sin entradas nuevas.
 Este asiento registra el PR real; no afirma fusión, firma ni ejecución.

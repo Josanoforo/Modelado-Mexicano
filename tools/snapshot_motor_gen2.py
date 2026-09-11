@@ -30,15 +30,15 @@ from tools.baseline_temporal import (
     Objetivo,
     Observacion,
     Serie,
-    seleccionar_baseline,
+    seleccionar_transferencia,
 )
 from tools.emite_m import cita_ola_calibracion
 
 
-VERSION = "GEN2-MOTOR-EXPLICITO-v1.0"
+VERSION = "GEN2-MOTOR-EXPLICITO-v1.1"
 RUTA_SNAPSHOT = (
     RAIZ / "forense" / "prereg-duelo-v2" /
-    "snapshot-M-gen2-explicito-v1_0.json"
+    "snapshot-M-gen2-explicito-v1_1.json"
 )
 RUTA_SPEC_B = RAIZ / "data" / "corrida0" / "CALC-B-0001" / "spec.yaml"
 RUTA_RESULTADOS_B = (
@@ -139,7 +139,12 @@ def _seleccion_enigh_operativa(indice, regla) -> dict:
             resultado_id=resultado_id,
             fuente=ficha["payload_id"],
         ))
-    seleccion = seleccionar_baseline(objetivo, historial)
+    seleccion = seleccionar_transferencia(
+        objetivo,
+        historial,
+        estimando=str(spec["estimando"]),
+        transformacion=str(spec["transformacion"]),
+    )
     if seleccion["estado"] != "EMITE":
         raise AssertionError(f"transferencia ENIGH dejó de emitir: {seleccion}")
     salida = emitir_binaria_contrato(
@@ -150,13 +155,7 @@ def _seleccion_enigh_operativa(indice, regla) -> dict:
         proposito="transferencia",
         uso_solicitado="MEDICION-GEN2",
         indice=indice,
-        resultado_id_seleccionado=seleccion["resultado_id"],
-        valor_seleccionado=seleccion["p"],
-        rol_seleccionado="OPERATIVO",
-        detalle_seleccion=(
-            "serie exacta ENIGH-NS; objetivo=2022; "
-            "corte=2021-12-31; última ola estrictamente anterior y disponible"
-        ),
+        seleccion_transferencia=seleccion,
     )
     return {
         "familia": "FAM",
@@ -168,7 +167,7 @@ def _seleccion_enigh_operativa(indice, regla) -> dict:
         "fecha_corte": "2021-12-31",
         "serie_exacta": asdict(serie),
         "selector": seleccion,
-        "rol_seleccionado": "OPERATIVO-NO-ARBITRO",
+        "rol_seleccionado": salida.rol_seleccion,
         "evaluacion": "NO-EVALUACION-INDEPENDIENTE",
         "emision": asdict(salida),
     }
@@ -284,9 +283,24 @@ def construir_snapshot() -> dict:
         RAIZ / "milpa" / "tramite.yaml",
         RAIZ / "data" / "corrida0" / "usos.tsv",
         RAIZ / "data" / "corrida0" / "resultados.tsv",
+        RUTA_SPEC_B,
+        RAIZ / "data" / "corrida0" / "CALC-B-0001" / "ejecucion.json",
+        RUTA_RESULTADOS_B,
     ]
     return {
-        "schema_version": "1.0",
+        "schema_version": "1.1",
+        "sucesion": {
+            "reemplaza": (
+                "forense/prereg-duelo-v2/"
+                "snapshot-M-gen2-explicito-v1_0.json"),
+            "motivo": (
+                "la transferencia v1 exige selección estructurada y "
+                "reproducida contra evidencia sellada"),
+            "consumidores": [
+                "tools/snapshot_motor_gen2.py",
+                "tests/test_motor_gen2_explicito.py",
+            ],
+        },
         "fecha_corte": "2026-09-11",
         "modo": MODO_GEN2,
         "naturaleza": (

@@ -12,7 +12,7 @@ Entrega: [PR #722](https://github.com/Josanoforo/Modelado-Mexicano/pull/722).
 
 La opción recomendada es **autorizar FP-373 en un acto posterior**, después de
 que Jonás firme modelo, cliente, tarifa y llamadas, CAJA materialice los
-paquetes fuente-nativos y el sucesor consuma la interfaz final fusionada del
+paquetes fuente-nativos y el sucesor verifique la interfaz fusionada del
 encargo 23. Son 32 llamadas lógicas y, con máximo dos reintentos exclusivamente
 técnicos por posición, hasta 96 solicitudes facturables.
 
@@ -74,14 +74,14 @@ cliente, caché/batch, ventana, límites y tarifa oficial verificable.
 
 ## Interfaz del encargo 23
 
-El encargo 23 se publicó durante este acto como PR #720. Su cabeza observada,
-`67aa13d73e9300acd14c4b593e3bcfb6bc945712`, contiene
+La sincronización final consume el encargo 23 fusionado como PR #720 en el
+commit de `main` `6cda0282079e9623425529f51c2bea171657b0cf`. Contiene
 `SELECCION-TEMPORAL-v1`, `seleccionar_transferencia`, el parámetro estructurado
 `seleccion_transferencia`, el rol `OBSERVACION-SERIE-PREVIA` y un snapshot
-v1.1. #720 seguía abierto al cierre y **su cabeza no es autoridad**. Antes de
-cualquier ejecución el acto sucesor debe registrar el commit efectivo ya
-fusionado en `main`, comprobar la interfaz real y adaptar la referencia. Este
-acto no modificó el emisor.
+v1.1. Este último conserva las 16 emisiones directas de v1.0 y no crea reserva,
+familias ni consumidores. Antes de cualquier ejecución el acto sucesor debe
+verificar ascendencia, fijar el snapshot y registrar la interfaz real. Este
+acto consume el contrato sin modificar el emisor por cuenta propia.
 
 ## Productos
 

@@ -18,12 +18,11 @@ y no abrir F6.
 
 1. Este encargo debe ser firmado y movido desde `forense/encargos/cola/` a un
    encargo VIVO archivado verbatim antes de ejecutar.
-2. El encargo 23, publicado como PR #720 con cabeza observada
-   `67aa13d73e9300acd14c4b593e3bcfb6bc945712`, debe estar fusionado. Registrar
-   el commit efectivo en `main` y la forma final de
-   `SELECCION-TEMPORAL-v1`/`seleccion_transferencia`, o actualizar la spec si la
-   interfaz final difiere. La cabeza abierta no es autoridad. No modificar el
-   emisor aquí.
+2. Verificar que el HEAD de ejecución desciende del merge de PR #720,
+   `6cda0282079e9623425529f51c2bea171657b0cf`, y registrar la forma efectiva de
+   `SELECCION-TEMPORAL-v1`/`seleccion_transferencia` y el snapshot v1.1. Esta
+   compuerta quedó satisfecha en la preparación sincronizada; se vuelve a
+   comprobar, no se modifica el emisor aquí.
 3. Jonás debe fijar proveedor, modelo exacto, cliente/versión, endpoint,
    herramientas, ventana, salida, parámetros, cuenta presupuestaria, tarifa y
    autorización explícita de las llamadas.
