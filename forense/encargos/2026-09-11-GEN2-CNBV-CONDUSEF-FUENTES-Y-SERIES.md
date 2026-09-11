@@ -64,3 +64,14 @@ Archivar el encargo, nota de cierre y filas afectadas por el procedimiento vigen
 
 - **qué:** `Fase 2 · CNBV: obtener la serie y hacerla legible`; **por qué:** `NO-VERIFICABLE-AQUÍ`; **impacto:** el corte 2021-12 queda utilizable, pero R1.6 sigue `NUNCA-MEDIDA`, no se obtiene la serie mensual ni se mueve el motor; **sucesor:** `ACTO GEN2-CNBV-IMOR-HISTORICO` deberá usar acceso institucional CNBV o una publicación oficial estática equivalente, con spec previa a cualquier CALC.
 - **qué:** `Fase 3 · CONDUSEF y ENCRIGE: producir evidencia con la unidad correcta` para satisfacer N34; **por qué:** `DIFERIDO-A:ACTO GEN2-N34-CONSUMIDOR-DEUDOR`; **impacto:** la adquisición queda trazada y los agregados son utilizables, pero N34/R1.7 sigue `NUNCA-MEDIDA` y sin adopción; **sucesor:** `ACTO GEN2-N34-CONSUMIDOR-DEUDOR` deberá localizar una fuente que observe causa/BNPL/usura del lado consumidor con denominador compatible y fijar su definición antes de calcular.
+
+## CONSUMIDO
+
+PR #717 ejecuta este encargo en `acto/gen2-fuentes-financieras-20` y deja el
+merge a mesa. Resultado: CNBV `OBTENIDO-PARCIAL` con corte R16 2021-12 y
+barrera histórica demostrada; ENCRIGE+CONDUSEF `OBTENIDO` en adquisición,
+29/29 CSV verificados, diseño ENCRIGE oficial y seis tablas reproducibles.
+ADR-475; FP-324 registra ejecutadas las recetas 2, 3 y 4 y conserva abiertas
+1 y 5. R1.6 y R1.7 siguen `NUNCA-MEDIDA`; contador científico cero y ninguna
+adopción. Cierre completo en
+`forense/notas/2026-09-11-GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES-cierre.md`.

@@ -1,4 +1,4 @@
-ESTADO: EN-CURSO — ejecución archivada; cierre y PR pendientes.
+ESTADO: CONSUMIDO — PR #717 abierto; ejecución y cierre archivados, merge reservado a mesa.
 
 # Encargo 20 · fuentes financieras y series utilizables
 
