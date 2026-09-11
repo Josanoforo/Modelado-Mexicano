@@ -1,4 +1,4 @@
-ESTADO: EN EJECUCIÓN — rama `acto/gen2-linaje-adopcion`.
+ESTADO: CONSUMIDO — PR #710 abierto; cierre entregado, merge reservado a mesa.
 
 # ENCARGO 17 · GEN2-LINAJE-Y-ADOPCION
 
