@@ -1035,22 +1035,28 @@ reglas:
   - id: dinero.ahorro.horizonte_corto
     situacion: ingreso_sin_seguridad_social
     si:
-      disparadores: {seguridad_social_laboral: false}
+      disparadores: {actividad_laboral: true, seguridad_social_laboral: false}
     entonces:
-      - {conducta: horizonte_corto, p: 0.330600, clase: "MEDIDO·p(tasa base ponderada, condicional a formalidad; P4_10='1', universo restringido A-bis 4, cobertura 66.89%)"}
-      - {conducta: horizonte_no_corto, p: 0.669400, clase: "MEDIDO·p(tasa base ponderada, condicional a formalidad; P4_10='1', universo restringido A-bis 4, cobertura 66.89%)"}
+      - {conducta: horizonte_corto, p: 0.541343, clase: "MEDIDO·p(tasa base ponderada; trabaja sin seguridad social; P4_10∈{1,2})", corrida0_resultado_id: RESULT-ENIF-AHO-A-P-CORTO-SIN-P, corrida0_generacion: GEN2}
+      - {conducta: horizonte_no_corto, p: 0.458657, clase: "DERIVADO·p(1-horizonte_corto sobre el mismo dominio)", derivado_de: RESULT-ENIF-AHO-A-P-CORTO-SIN-P}
     porque: {generador: [G3], mecanismo: "ingreso volátil/informal -- horizonte corto, ahorro informal (tanda, 'guardado en casa'), foco en emergencia -- canon/modelo-decision-v4_0.md:499 verbatim. Dominio agrícola INEJECUTABLE por hueco de mercado (hitoD-R1.1, D archivado, 28/jul/2026) -- no bloquea esta tasa base nacional"}
     tier: FUERTE # firma d1
     falsable_si: "R1.1 en forense/hitoD-preregistro-v2_0.md:25-... (Nota 5, veredicto D archivado 28/jul/2026, hueco de mercado no de dato) y forense/hitoD-R1_1-veredicto-v1_0.md -- cita, no reescribas"
     fuente: ["ENIF2024", "canon/modelo-decision-v4_0.md:499", "milpa/tramite-ola5-propuesta-v0.yaml"]
     ola_calibracion: "ENIF 2024"
-    ic95: [0.312154, 0.349156]
+    ic95: [0.521597, 0.561928]
     n: 4973
     estratos: 189
     upm: 1717
     ponderador: FAC_PER
-    universo: "18+ elegidas ∧ P3_13∈{1..7} ∧ P4_10∈{1..5}; n = 9 031 de 13 502, celda sin seguridad social n = 4 973 -- copiado de la entrada dinero.ahorro.horizonte_corto_ejes_enif2024 de la propuesta"
-    sensibilidad_pre_declarada:
+    universo: "18+ elegidas que trabajan ∧ P3_13=7 ∧ P4_10∈{1..5}; n=4 973; masa expandida=35 086 918 (37.2388% de toda la población 18+)"
+    historico_gen1:
+      estado: "CONSERVADO-NO-VIGENTE · D04 A/A"
+      definicion: "P4_10={1}; agrupación heredada de P3_13 distinta de A/A; cobertura declarada 66.89%"
+      valores: {horizonte_corto: 0.330600, horizonte_no_corto: 0.669400, ic95_corto: [0.312154, 0.349156]}
+      fuente: "milpa/tramite.yaml anterior a D04; ACTO MAESTRA35-L7"
+    sensibilidad_legacy_pre_declarada:
+      nota: "histórica; usó agrupación P3_13 distinta de D04 A/A"
       P4_10_en_1_2: {sin: 0.541300, con: 0.369700}
     referencia_cruzada: "dinero.ahorro.tiene_ahorros.segmentacion_ejes_enif2024 (L1) -- mismo universo formalidad, sin duplicar celdas"
     sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
@@ -1059,22 +1065,28 @@ reglas:
   - id: dinero.ahorro.horizonte_no_corto_con_seguridad_social
     situacion: ingreso_con_seguridad_social
     si:
-      disparadores: {seguridad_social_laboral: true}
+      disparadores: {actividad_laboral: true, seguridad_social_laboral: true}
     entonces:
-      - {conducta: horizonte_corto, p: 0.173400, clase: "MEDIDO·p(tasa base ponderada, condicional a formalidad; P4_10='1', universo restringido A-bis 4, cobertura 66.89%)"}
-      - {conducta: horizonte_no_corto, p: 0.826600, clase: "MEDIDO·p(tasa base ponderada, condicional a formalidad; P4_10='1', universo restringido A-bis 4, cobertura 66.89%)"}
+      - {conducta: horizonte_corto, p: 0.373130, clase: "MEDIDO·p(tasa base ponderada; trabaja con seguridad social; P4_10∈{1,2})", corrida0_resultado_id: RESULT-ENIF-AHO-A-P-CORTO-CON-P, corrida0_generacion: GEN2}
+      - {conducta: horizonte_no_corto, p: 0.626870, clase: "DERIVADO·p(1-horizonte_corto sobre el mismo dominio)", derivado_de: RESULT-ENIF-AHO-A-P-CORTO-CON-P}
     porque: {generador: [G3], mecanismo: "ingreso estable/formal -- horizonte no corto, contraste directo con la celda sin seguridad social de dinero.ahorro.horizonte_corto -- canon/modelo-decision-v4_0.md:499 verbatim"}
     tier: FUERTE # firma d1
     falsable_si: "R1.1 en forense/hitoD-preregistro-v2_0.md:25-... (Nota 5, veredicto D archivado 28/jul/2026, hueco de mercado no de dato) y forense/hitoD-R1_1-veredicto-v1_0.md -- cita, no reescribas"
     fuente: ["ENIF2024", "canon/modelo-decision-v4_0.md:499", "milpa/tramite-ola5-propuesta-v0.yaml"]
     ola_calibracion: "ENIF 2024"
-    ic95: [0.157108, 0.190722]
-    n: 4058
+    ic95: [0.349888, 0.393834]
+    n: 3969
     estratos: 187
-    upm: 1806
+    upm: 1786
     ponderador: FAC_PER
-    universo: "18+ elegidas ∧ P3_13∈{1..7} ∧ P4_10∈{1..5}; n = 9 031 de 13 502, celda con seguridad social n = 4 058 -- copiado de la entrada dinero.ahorro.horizonte_corto_ejes_enif2024 de la propuesta"
-    sensibilidad_pre_declarada:
+    universo: "18+ elegidas que trabajan ∧ P3_13∈{1,2,3,4} ∧ P4_10∈{1..5}; n=3 969; masa expandida=26 064 281 (27.6628% de toda la población 18+)"
+    historico_gen1:
+      estado: "CONSERVADO-NO-VIGENTE · D04 A/A"
+      definicion: "P4_10={1}; P3_13∈{1..6}; cobertura declarada 66.89%"
+      valores: {horizonte_corto: 0.173400, horizonte_no_corto: 0.826600, ic95_corto: [0.157108, 0.190722], n: 4058, upm: 1806}
+      fuente: "milpa/tramite.yaml anterior a D04; ACTO MAESTRA35-L7"
+    sensibilidad_legacy_pre_declarada:
+      nota: "histórica; usó P3_13∈{1..6}, no la seguridad social {1..4} de D04 A/A"
       P4_10_en_1_2: {sin: 0.541300, con: 0.369700}
     referencia_cruzada: "dinero.ahorro.tiene_ahorros.segmentacion_ejes_enif2024 (L1) -- mismo universo formalidad, sin duplicar celdas"
     sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
@@ -1284,3 +1296,33 @@ reglas:
       medido_en: "ACTO MAESTRA38-LOTE-ENSANUT (L17), 6/sep/2026 -- forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md; tools/medidor_l17_vacunacion_disponible.py"
       nota: "No mueve el tier [FUERTE] de R9.2 (ya lo tenia) -- esta carga es la primera vez que la regla entra al motor, no un cambio de tier. Rama A (ENNVIH) y Rama C (descriptiva, adolescentes) NO se cargan aqui -- solo la Rama B primaria de la spec, tal como la propuesta la sella."
       sha256_payload_manifiesto_referido: "f3aea086cee60e59fa3858334eaa6e00218e30a0b19c67fb37ae806fd586830f"  # sha256 de la spec S7-L17-spec-v1_0.md, no un payload de datos
+
+  # GEN2-ENIF-POBLACION (D05): regla nueva al final para no renumerar la demanda histórica.
+  - id: dinero.ahorro.horizonte_no_trabajadores
+    situacion: sin_ingreso_laboral_actual
+    si:
+      disparadores: {actividad_laboral: false}
+    entonces:
+      - {conducta: horizonte_corto, p: 0.632782, clase: "MEDIDO·p(tasa base ponderada; no trabaja; P4_10∈{1,2})", corrida0_resultado_id: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P, corrida0_generacion: GEN2}
+      - {conducta: horizonte_no_corto, p: 0.367218, clase: "DERIVADO·p(1-horizonte_corto sobre el mismo dominio)", derivado_de: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P}
+    porque: {generador: [G3], mecanismo: "celda poblacional autorizada por D05; describe el colchón de ahorro cuando no hay trabajo actual, sin imputar seguridad social laboral"}
+    tier: FUERTE
+    falsable_si: "Otra medición reproducible del mismo P4_10 y dominio de saltos 3.8/3.9 cambia el punto fuera del error de cómputo"
+    fuente: ["ENIF2024", "data/corrida0/CALC-ENIF-0002/resultados.json", "MESA-10SEP:D05"]
+    ola_calibracion: "ENIF 2024"
+    ic95: [0.608904, 0.656366]
+    ic95_horizonte_no_corto: [0.343634, 0.391096]
+    n: 3462
+    estratos: 189
+    upm: 1554
+    ponderador: FAC_PER
+    universo: "18+ elegidas que no trabajaron el mes anterior: P3_8=8 o P3_9=7; P4_10∈{1..5}; n=3 462; masa expandida=25 090 350 (26.6291% de toda la población 18+)"
+    definicion_actividad: "trabaja=P3_8∈{1,2} o P3_9∈{1..6}; no trabaja=P3_8=8 o P3_9=7; P3_13 no se imputa"
+    limitacion_instrumento: "P4_10=1 combina menos de una semana con no tiene ahorros; NC-0126 permanece visible"
+    cobertura_poblacional:
+      P4_10_valido: {fraccion: 0.956698, n: 12930, masa: 90141468}
+      trabajador_residual: {fraccion: 0.041391, n: 526, masa: 3899919, p_horizonte_corto: 0.596182}
+      P4_10_faltante: {fraccion: 0.043302, n: 572, masa: 4079973}
+      total_descriptivo: {p_horizonte_corto: 0.520528, ic95: [0.507667, 0.533833], nota: "razón directa con diseño; no promedio de tasas"}
+    sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+    payload_manifiesto_id: enif_2024_enif_2024_bd_csv
