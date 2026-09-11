@@ -1,3 +1,9 @@
+ESTADO: EN-CURSO — ejecutándose en `acto/gen2-publicacion-post693`; la copia canónica de ejecución está archivada en `forense/encargos/2026-09-10-GEN2-PUBLICACION-POST693-Y-CIERRES.md`.
+
+BITÁCORA: PR #694 encoló esta copia después del arranque y del commit 0-bis del acto. Se conserva el cuerpo recibido verbatim debajo de esta cabecera; no lanzar una segunda ejecución. El número del PR ejecutor se asentará al consumir el encargo.
+
+---
+
 # ENCARGO · GEN2-PUBLICACION-POST693-Y-CIERRES
 
 ENTORNO: CAJA
