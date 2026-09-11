@@ -90,11 +90,16 @@ Producto `b789cca`: `tools/ya_medido.py` reconoce identidad estructural y
 resuelve RESULT + ejecución + sello. Los dos falsos negativos terminan en
 `MEDIDA-EN` citando `CALC-ENCIG-0001` y `CALC-ENIF-0001`; el negativo legítimo
 permanece `NUNCA-MEDIDA`. Cierre `49004ec`, integración `da4bdc9` y
-reconciliación `9f0019d`: `NC-0109`/`NC-0129` cerradas, `NC-0110` intacta y
-acto renumerado a ADR-466.
+reconciliación inicial `9f0019d`: `NC-0109`/`NC-0129` cerradas y `NC-0110`
+intacta. Tras la precedencia de PR #706, el acto queda renumerado finalmente
+a ADR-469 sobre `origin/main=0d8e056`.
 
-Validación sobre `origin/main=7d55234`: 8/8 regresiones dirigidas OK;
+Validación inicial sobre `origin/main=7d55234`: 8/8 regresiones dirigidas OK;
 `tests/check.py --baseline` terminó con código 0 y `LÍNEA BASE: VERDE`, con
 T02/T15/T25/T30/T30b en `ok`. Las cinco huellas de demanda/vistas corrida0
 fueron idénticas antes y después. No hubo medición, cambio científico, llamada
 a modelos ni escritura de vistas. El único residual es la fusión por mesa.
+
+Revalidación después de la precedencia y merge de PR #706: 8/8 regresiones
+OK; línea base completa con código 0 y `LÍNEA BASE: VERDE` sobre
+`origin/main=0d8e056`, conservando los 3 `FAIL` y 2756 `WARN` ya cubiertos.
