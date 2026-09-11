@@ -1,4 +1,4 @@
-# GEN2-CORRUPCION-UNIDAD-Y-FUENTE-GENERAL · cierre técnico
+# GEN2-CORRUPCION-UNIDAD-Y-FUENTE-GENERAL · cierre técnico continuado
 
 Fecha de ejecución: 10 de septiembre de 2026. Entorno: CAJA/WSL2, corpus
 compartido montado. Base: `origin/main=e76f3a1d476049d0c7adcba87535e60f507c8d91`.
@@ -13,7 +13,9 @@ los últimos eventos de ese trámite y `P7_3` describe el lugar o medio de cada
 evento. Elegir la primera o última fila colapsaría eventos legítimos y, en 501
 grupos, asignaría un canal sin fundamento. Se entrega una sensibilidad
 exploratoria reproducible, sin adopción, y la demanda general `NC-0153` queda
-enrutada hasta la selección seca de adquisición.
+enrutada y sometida a adquisición/investigación web real. La continuación de
+Fase 3 está documentada en
+`forense/notas/2026-09-10-GEN2-CORRUPCION-FUENTE-GENERAL-investigacion.md`.
 
 No se creó `CALC` sucesor: el diagnóstico se hizo después de conocer los
 resultados históricos, no define un nuevo estimando de producción y queda
@@ -89,7 +91,21 @@ Propuesta de consumo acotada ya satisfecha por las funciones actuales:
 Para ese uso restringido r2 basta. No se necesita otro parámetro. Para el uso
 general, r2 no basta y no se extrapola.
 
-## F3 · fuente general y adquisición
+## F3 · fuente general y adquisición (continuación ejecutada)
+
+La selección seca descrita en el primer corte fue superada el mismo 10 de
+septiembre de 2026 por una investigación dirigida con red real. El HTTP 000 se
+diagnosticó como fallo DNS anterior a HTTP dentro del sandbox; fuera de él
+INEGI respondió 200. Se consultaron productores, catálogos, APIs, repositorios,
+archivos históricos y Wayback; se descargaron y registraron diez payloads.
+
+No apareció la fuente nacional exacta. Sí apareció ENEAC 2021, que enlaza por
+trámite canal y solicitud/insinuación, pero sólo representa microempresas SCIAN
+46/72 de Aguascalientes. La fila canónica queda `OBTENIDO-PARCIAL`, nunca
+`OBTENIDO`. Reactivos, unidades, numeradores, denominadores, diseños, URLs,
+respuestas de las rutas, hashes y solicitud externa exacta están en la nota de
+investigación citada arriba. Lo siguiente conserva los resultados del primer
+corte local; no es ya el cierre de Fase 3.
 
 Se examinaron primero los candidatos ya presentes. Cada uno aporta parte del
 objeto, pero ninguno observa solicitud y canal sobre la misma unidad evento.
@@ -117,16 +133,15 @@ se regeneró la vista `data/cola-adquisicion-v1_0.tsv`. La fila exige:
 - canal observado en ese evento;
 - periodo y diseño disponibles.
 
-Prueba seca nominal, sin red ni descarga:
+Prueba seca nominal del primer corte, después superada por la continuación:
 
 ```text
 ELEGIDO TASA_GENERAL_SOLICITUD_PAGO_INFORMAL_POR_CANAL_TRAMITES_MEXICO
 estado=PENDIENTE prioridad=0 razon=sin intento previo registrado
 ```
 
-El siguiente paso es SONDA dirigida en fuentes primarias del productor. No se
-lanzó adquisición productiva para no competir con el cron y no se envió
-ninguna solicitud.
+La SONDA dirigida y la adquisición productiva ya se ejecutaron. No se envió
+ninguna solicitud externa ni se eludieron controles de acceso.
 
 ## F4 · obligaciones
 
@@ -134,12 +149,14 @@ ninguna solicitud.
 |---|---|---|---|
 | NC-0107 | unidad reconstruida; 501 discordantes; sensibilidad sin desempate | ABIERTA | mesa retira/sustituye RES-0009/0011 o define nueva unidad prospectiva |
 | NC-0111 | r2 sigue condicionada; dos candidatos parciales no cubren canal × evento | ABIERTA | conservar límite estructural y consumir r2 sólo en dominio |
-| NC-0153 | fila canónica, vista y selección seca efectivas | ABIERTA | SONDA primaria y luego medición sólo si una fuente satisface el objeto exacto |
+| NC-0153 | Fase 3 web real; diez payloads; ENEAC 2021 parcial por geografía/universo; ninguna fuente nacional exacta | ABIERTA | solicitar llave ENCIG evento↔8.5 o localizar encuesta nacional equivalente; no extrapolar parciales |
 
 ## A.13 y reservas
 
 Se abrieron 2 tablas del ZIP ENCIG (`sec_7` y `sec_8`, ya usadas por
 CALC-ENCIG-0001), el descriptor ENCIG, 1 microdato UNAM-IIJ con 1,200 filas ×
 255 variables y sus etiquetas, y los resultados/spec de ENCUCI ya sellados.
-No se descargó ningún payload. La sonda de red de arranque dio HTTP 000; no
-afecta las comprobaciones locales ni se interpreta como ausencia de fuente.
+Ese fue el perímetro del primer corte. La continuación descargó diez payloads
+pertinentes, todos registrados en `data/manifiesto.yaml`; diagnosticó el HTTP
+000 como fallo DNS del aislamiento y no lo interpretó como ausencia. El detalle
+y A.13 actualizado están en la nota de investigación de Fase 3.
