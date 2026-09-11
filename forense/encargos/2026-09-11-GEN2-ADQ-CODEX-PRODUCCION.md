@@ -170,3 +170,17 @@ Estado/huellas antes y después, sin descartes
 El cierre principal debe decir «INSTALADO Y EJECUTADO CON CODEX» sólo si existe esa cadena. Si falta una credencial/elevación o hay indisponibilidad externa real, decir exactamente qué falta y continuar en esta misma sesión cuando el titular lo resuelva; no declarar entrega terminada con «LISTO-PARA-PROBAR».
 
 Entregar PR/HEAD, revisión desplegada, recibo y reserva material restante. Los detalles rutinarios de sincronización/numeración no son una nueva decisión de mesa. El resultado de esta tarea es adquisición operativa; no otra ronda de auditoría general.
+
+## NO-CORRIDO / RESERVAS
+
+Sólo `NC-0120`: observar una recuperación real futura de `StartWhenAvailable`
+si ocurre naturalmente. El canal Operational ya está habilitado y esta reserva
+no bloquea Codex. No reiniciar, suspender ni mover el reloj para fabricarla.
+
+## CONSUMIDO
+
+Ejecutado íntegramente por `ACTO GEN2-ADQ-CODEX-PRODUCCION`, PR #718,
+11/sep/2026. Resultado: **INSTALADO Y EJECUTADO CON CODEX**. Revisión
+productiva `1e880f05faa16c7cee1ca86aea322188336d279f`; corrida programada
+`2026-09-11T102646-1498932`; recibo `8c6ca338` en PR #716. Cierre en
+`forense/notas/2026-09-11-GEN2-ADQ-CODEX-PRODUCCION-cierre.md`.
