@@ -71,3 +71,11 @@ Usa `tools/cierre_acto.py` primero en seco y luego `--aplica` cuando corresponda
 **Pruebas y parada.** Validar primero el resultado material; correr el baseline requerido sin ampliarlo para ocultar fallos. No perseguir los tres FAIL históricos por rutina. No volver a arreglar NC-0141/0148: #690 ya lo hizo. Revisar el diff después de las pruebas y añadir sólo archivos deliberados. D-14: cualquier automatización adicional debe evitar un error observado con efecto material y costar menos que su corrección repetida; si no, resolver directamente. Auditoría aproximadamente 20%, salvo riesgo material en números, identidad o decisión.
 
 Avanza entre fases ya autorizadas sin pedir confirmación. Termina cuando entregues el resultado suficiente o un residual externo concreto. Cadena de cierre: autorización → producto → evidencia → consumidor cuando aplique → obligaciones → vistas/cola → PR → merge de mesa. Una fila mixta conserva su parte pendiente. No cerrar por palabra coincidente ni por recomendación. Respuesta final del ejecutor: resultado útil, fases cumplidas/pendientes, PR/SHA, pruebas, y tabla `obligación | evidencia | cerrada/residual | siguiente acción`.
+
+## CONSUMIDO
+
+ACTO `GEN2-S6-DISENO-Y-ALCANCE-INFERENCIAL` ejecutado por PR #702 sobre la rama
+`acto/gen2-s6-diseno-alcance`. Resultado: equivalencia no acreditada; puntos
+C1/C3/C4 preservados, IC por localidad acotados a sensibilidad, S6 v1.5
+sucesora, `FP-372` ABIERTA y `NC-0156` como vía oficial residual. Cero
+recalculo, cero modelos y ningún merge ejecutado por el agente.

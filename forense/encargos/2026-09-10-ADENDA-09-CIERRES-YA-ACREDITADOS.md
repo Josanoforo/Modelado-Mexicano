@@ -16,7 +16,3 @@ Las notas de #692/#691 afirman esos cierres, pero las filas siguen ABIERTA; la r
 Se agrega a la conciliación ya autorizada de FP-361/363. Reutilizar evidencia exacta; no hacer un barrido completo de todas las NC. Conservar los residuales independientes y los cuerpos históricos verbatim. La referencia errónea NC-0129→NC-0110 pertenece al nuevo encargo 14; no tocar esas filas desde 09 si 14 ya está activo.
 
 Los nuevos encargos 14–16 tienen sus propias filas y no deben regenerar las vistas globales mientras 09 está publicándolas. Informar cualquier resultado nuevo mediante recibos para su incorporación controlada. El merge sigue siendo de mesa.
-
-## CONSUMIDO
-
-Incorporada como instrucción posterior del mismo `ACTO GEN2-PUBLICACION-POST693-Y-CIERRES`: se archivó verbatim, se conciliaron `NC-0087`, `NC-0093`, `NC-0101` y `NC-0124` contra la evidencia ya publicada por PR #692/#691/#696, y no se reejecutaron cálculos ni se regeneraron vistas. El merge del cambio complementario permanece a cargo de mesa.

@@ -1,54 +1,51 @@
-ESTADO: CONSUMIDO — PR #698; diagnóstico y diseño sucesor en
-`forense/notas/2026-09-10-GEN2-F5-APRENDIZAJES-Y-SUCESOR-diagnostico.md`.
+# ENCARGO · GEN2-ENVIPE-VALIDACION-Y-LECTURA
 
-# ENCARGO · GEN2-F5-APRENDIZAJES-Y-SUCESOR
-
-ENTORNO: NUBE
-COMPUERTA: PR #687, #689 y #691 fusionados; snapshots y salidas de TRIADA disponibles.
-RAMA: acto/gen2-f5-aprendizajes-sucesor
-MODELOS: cero capturas nuevas, cero llamadas a Claude u otro modelo.
+ENTORNO: CAJA
+COMPUERTA: PR #692 fusionado y los ocho CALC con sus insumos disponibles.
+RAMA: acto/gen2-envipe-validacion-lectura
+MODELOS: cero llamadas nuevas.
 
 ## Resultado útil
 
-Explicar qué parte del error observado puede orientar la próxima mejora del motor y qué permitiría cubrir las dos celdas con abstención persistente. Entregar un siguiente experimento propuesto con pregunta y criterio de parada concretos. **No repetir las 224 llamadas, no cambiar el veredicto de TRIADA-0002 y no abrir F6 por inferencia.**
+Validar por una implementación separada los ocho puntos nuevos de ENVIPE y entregar una lectura temporal usable de la serie 2010–2024. Resolver NC-0155, que pide independencia y no otro replay del mismo código. No adoptar la serie al motor ni presentarla como tasa general de denuncia.
 
-## Estado consolidado
+## Entradas y alcance
 
-#687 completó 224/224 capturas: 171 puntos, 53 abstenciones válidas, cero errores técnicos/malformados/de identidad. L_SOLO y M tienen punto en 14/14; L_CORPUS, en 12/14. U3=12/14. MAE en U3: L_SOLO 3.957362 pp, L_CORPUS 3.889026 pp, M 4.986673 pp. Las tres pareadas son INCONCLUSAS; resultado SIN-GANADOR-UNICO. No prueba equivalencia entre brazos ni superioridad general de uno.
+Leer `forense/prereg-caja/ENVIPE-SERIE-COMPLETA-spec-v1_0.md`, `data/corrida0/envipe-serie-denuncia-v1_0.tsv`, los specs/resultados/recibos de `CALC-ENVIPE-SERIE-{2011,2014,2016,2017,2018,2019,2020,2022}`, el cierre de #692 y los cuestionarios/diseños oficiales ya registrados. Siete puntos previos se reutilizan; no volver a encargar las ocho olas ni descargar archivos que el corpus ya tiene.
 
-NC-0152 conserva DIN-M-01 y TRA-M-07: sus 16 respuestas L_CORPUS son abstenciones válidas. No son llamadas faltantes. NC-0146/0147 ya cerraron y el diagnóstico previo #684 no se repite.
+Objeto exacto: `p(C1,U1)`, proporción ponderada por FAC_DEL de motivos 01/02/06 entre **delitos personales no denunciados con respuesta 01..08**. Es unidad delito y composición de motivos. No es la probabilidad poblacional de denunciar, ni el complemento de RES-0028 que usa otro recorte/unidad.
 
-Leer `F5-completa-{resultado,extraccion,plan}-v1_0`, `F5-completa-spec-v1_0.md`, `snapshot-M-triada-v1_0.json`, `universo-triada-v1_4.tsv`, capturas ya archivadas, `CALC-TRIADA-0002` y cierres de #687/#689/#691. Las versiones exactas se resuelven por ruta/hash; el motor vivo posterior no sustituye al M congelado del experimento.
+## Fase 1 · Segunda implementación
 
-## Fase 1 · Descomponer el resultado existente
+Congelar una receta de comprobación antes de generar sus salidas: por ola, miembro ZIP, variables, códigos de delito personal, respuesta válida, ponderador, estrato y UPM. Usar el cuestionario y spec como autoridad semántica. No importar la función decisiva de `tools/medidor_envipe_serie_completa.py`, ni copiar su algoritmo como supuesta implementación independiente.
 
-Derivar una tabla por celda/familia con R, M congelado, medianas de los dos L, réplicas válidas/abstenciones, errores absolutos y contribución al MAE. Mantener U3 y reportar aparte las dos celdas excluidas. Reconciliar aritméticamente el agregado con el resultado sellado sin ejecutar nuevos CALC de medición ni tocar salidas congeladas.
+Tabular separadamente numerador ponderado, denominador ponderado, n incluido, excluidos por código y punto. Aplicar a las ocho olas un único script pequeño con mapa explícito DBF/CSV. Fijar tolerancia numérica con justificación antes del contraste; no ajustarla para que todo pase. Registrar que los valores originales ya son conocidos: esta es validación técnica independiente, no arbitraje ciego.
 
-Mostrar tamaños de familia: seis celdas cívicas y tres ENIGH relacionadas no son nueve réplicas independientes de un mecanismo. Una descomposición por familia es exploratoria; no adjudicar “ganadores por familia” con n mínimo ni inventar significación post-hoc. Separar error del panel, variación de capturas e incertidumbre del árbitro, que el cálculo actual no integra por completo.
+Comprobar la rama 2011 (`BP1_21`, 04..14, residuos 88/98/99, EST/UPM), la otra DBF y la rama CSV contra documentación. Si surge diferencia material, rastrearla por universo/peso/código y conservar el resultado original; producir correctivo o sucesora sólo del objeto afectado. No expandir hacia toda la historia.
 
-## Fase 2 · Relacionar errores con el uso del motor
+## Fase 2 · Alcance de la incertidumbre
 
-Para las contribuciones materiales al error, seguir el parámetro del snapshot M hasta fuente, año, población, evento y transformación. Comparar con los contratos ya corregidos en #689/#691 para distinguir mejora implementada después del snapshot, limitación de fuente y defecto aún vigente. La repetición de un valor M entre celdas puede ser una regla legítima o extrapolación: comprobar el contrato antes de llamarla error de código.
+NC-0155 exige ocho puntos: repetir el bootstrap original no añade independencia. Validar la implementación de incertidumbre en un caso representativo por receta material distinta, mediante un método de referencia compatible con el diseño, si los insumos lo permiten. Separar punto validado, implementación del IC comprobada y comparación metodológica. No exigir igualdad exacta entre IC bootstrap y Taylor, ni acreditar los 40 RESULT de cada CALC a partir de validar un punto.
 
-Entregar como máximo tres acciones priorizadas por resultado esperado: corregir un uso, medir un parámetro pertinente o cambiar el diseño de evaluación. No ajustar M usando los R del mismo panel y después evaluar sobre ellos como prueba nueva. No alterar snapshots. Si se calcula una sensibilidad con el motor actual, rotularla como reanálisis sobre un panel conocido, sin tratarla como confirmación independiente.
+Si el diseño o una diferencia de IC puede cambiar la lectura, acotar esa comparación. La incertidumbre de diferencias entre años necesita su propia hipótesis de covarianza: no tratar el solapamiento de dos IC como prueba formal ni asumir independencia entre olas sin justificarla.
 
-## Fase 3 · Las dos abstenciones y el diseño sucesor
+## Fase 3 · Producto descriptivo
 
-Leer las 16 justificaciones existentes de DIN-M-01/TRA-M-07 y el paquete efectivamente entregado. Clasificar si falta documento, evidencia cuantitativa, definición o si el brazo decide abstenerse aun con acceso correcto. Vincular demandas a NC-0153/adquisición cuando sean el mismo objeto; no generar otra búsqueda general.
+Entregar TSV con trazabilidad y una figura exportable SVG/PNG/PDF usando herramientas de gráficos exactos: año del hecho 2010–2024, punto e IC por ola, ruptura de 2011 marcada y etiqueta completa del estimando. Mantener el archivo canónico existente como fuente; no crear otra serie divergente.
 
-Proponer prospectivamente la menor modificación que responda una pregunta nueva: dos celdas pueden bastar para probar acceso/cobertura, pero no completan retrospectivamente el ranking de 14 si cambia tratamiento, modelo o ventana. Si se propone comparación de brazos, explicitar captura contemporánea, presupuesto y condición de estabilidad del modelo; no reciclar controles incompatibles. Definir de antemano éxito, abstención aceptable, límite de reintentos y criterio de parada. Una abstención válida no se arregla forzando una cifra.
+Añadir lectura breve: magnitud en puntos porcentuales, tramos de cambio, límites de comparabilidad, composición de motivos y posibles explicaciones como hipótesis. El máximo puntual 2013 y el cambio 2018→2019 son hallazgos exploratorios ya vistos; no presentarlos como contrastes pre-registrados. No atribuir causalidad ni proclamar una tendencia poblacional de corrupción/denuncia a partir de este recorte.
 
-## Fase 4 · Producto y residual
+## Fase 4 · Evidencia y cierre
 
-Entregar tabla reproducible, figura compacta de contribución al error y nota breve de decisión con el próximo cambio recomendado y qué podría refutarlo. Éste es un diagnóstico técnico de F5, no el informe final del programa ni una firma de D21/F6.
+Registrar la validación independiente mediante el mecanismo vigente, con implementación y resultados comparados, sin editar specs selladas para cambiar `NO-HECHA` retrospectivamente. Cerrar NC-0155 con el alcance exacto satisfecho o conservar únicamente su diferencia material. Este control no crea ocho mediciones científicas adicionales.
 
-NC-0152 conserva pendiente la cobertura mientras no exista el producto que exige; un diseño propuesto no equivale a capturas ejecutadas. No abrir nuevas llamadas desde este encargo. Si la evidencia favorece aceptar el resultado y trabajar en otro parámetro, decirlo expresamente: el objetivo no es conseguir un ganador a toda costa.
+Entregar comprobantes al encargo `GEN2-PUBLICACION-POST693-Y-CIERRES` si sigue abierto. Si ya fusionó, usar el registro existente con lote propio y sin pisar evidencia ajena. La lectura descriptiva local no depende de la firma de RES-0028, FP-371 ni F6.
 
 ## Perímetro y aceptación
 
-Un script de análisis derivado, sus salidas nuevas en una ruta sucesora y nota/figura; NC-0152 sólo para enlazar el siguiente paso; administración común. Lectura de motor, corpus documental versionado, capturas y resultados; cero microdatos, cambios a extractor, snapshots, medidores sellados o adopciones.
+Un validador independiente y una prueba sólo si protege una diferencia real; evidencias/nota/figura de ENVIPE y registro de validación aplicable; NC-0155; administración común. Los CALC originales y el motor son de lectura.
 
-Aceptación: agregado reconciliado, errores localizados sin confundir familia con réplica, hasta tres mejoras concretas, dos abstenciones explicadas con evidencia y propuesta prospectiva acotada. Puede ejecutarse ahora en Cloud y en paralelo con todos los trabajos de CAJA. No depende de la publicación global para analizar las salidas selladas.
+Aceptación: ocho puntos contrastados con numeradores/denominadores reconstruidos; discrepancias resueltas o acotadas; IC descritos con su alcance; producto temporal legible y reproducible; ninguna tasa de denuncia inventada ni cambio de adopción. Puede correr en paralelo con publicación y cron: no comparte microdatos en escritura ni modifica sus herramientas.
 
 ## Contrato común, incluido para ejecutar este archivo por separado
 
@@ -71,3 +68,13 @@ Usa `tools/cierre_acto.py` primero en seco y luego `--aplica` cuando corresponda
 **Pruebas y parada.** Validar primero el resultado material; correr el baseline requerido sin ampliarlo para ocultar fallos. No perseguir los tres FAIL históricos por rutina. No volver a arreglar NC-0141/0148: #690 ya lo hizo. Revisar el diff después de las pruebas y añadir sólo archivos deliberados. D-14: cualquier automatización adicional debe evitar un error observado con efecto material y costar menos que su corrección repetida; si no, resolver directamente. Auditoría aproximadamente 20%, salvo riesgo material en números, identidad o decisión.
 
 Avanza entre fases ya autorizadas sin pedir confirmación. Termina cuando entregues el resultado suficiente o un residual externo concreto. Cadena de cierre: autorización → producto → evidencia → consumidor cuando aplique → obligaciones → vistas/cola → PR → merge de mesa. Una fila mixta conserva su parte pendiente. No cerrar por palabra coincidente ni por recomendación. Respuesta final del ejecutor: resultado útil, fases cumplidas/pendientes, PR/SHA, pruebas, y tabla `obligación | evidencia | cerrada/residual | siguiente acción`.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| Ninguno. El perímetro científico y administrativo del encargo se ejecutó completo; `NC-0155` quedó cerrada con evidencia independiente. | — | — | — |
+
+## CONSUMIDO
+
+Ejecutado en el PR #697 desde `acto/gen2-envipe-validacion-lectura`; el producto, la evidencia y el cierre del acto quedaron registrados en los commits de esa rama. La fusión permanece reservada a la mesa.
