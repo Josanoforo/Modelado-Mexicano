@@ -70,9 +70,10 @@ significación.
 - Las réplicas L no se remuestrean como familias. Familias compartidas no se
   presentan como independientes.
 
-DIN y S6 siguen el benchmark web del 11/sep/2026: sus puntos descriptivos no
-adquieren inferencia por folio/localidad, tamaño bruto o estabilidad del
-bootstrap aproximado.
+DIN y S6 siguen
+`forense/notas/BENCHMARK-WEB-CUATRO-DECISIONES-GEN2-2026-09-11.md`: sus
+puntos descriptivos no adquieren inferencia por folio/localidad, tamaño bruto
+o estabilidad del bootstrap aproximado.
 
 ## Éxito, faltantes y parada
 

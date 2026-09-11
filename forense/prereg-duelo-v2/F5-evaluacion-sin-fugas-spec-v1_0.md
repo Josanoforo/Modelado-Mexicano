@@ -130,8 +130,9 @@ El reporte mantiene por separado:
 - dependencia entre celdas/familias y número de familias realmente nuevas.
 
 El bootstrap histórico trata R como fijo y remuestrea celdas; no es
-incertidumbre total. Conforme al benchmark web de las cuatro decisiones del
-11/sep/2026, `DIN-M-01` conserva su punto R descriptivo de 15.56%, mientras
+incertidumbre total. Conforme a
+`forense/notas/BENCHMARK-WEB-CUATRO-DECISIONES-GEN2-2026-09-11.md`,
+`DIN-M-01` conserva su punto R descriptivo de 15.56%, mientras
 SRS y constante+folio son sensibilidades: el hogar no acredita UPM ni una
 varianza oficial. Un IC estable bajo esa receta no se promueve a ground truth.
 La misma separación impide que réplicas L o celdas de una sola familia se
