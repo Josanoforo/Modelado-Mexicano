@@ -3,7 +3,7 @@
 - **SHA de redacción:** `70c64d9ead92384ece0eaf18cbfb53372bb88a74`
   (`origin/main` al iniciar la ejecución).
 - **Entorno asignado:** NUBE; compatible también con Codex CLI.
-- **Estado:** `VIVO`.
+- **Estado:** `CONSUMIDO`.
 
 ## VERIFICACIÓN DE EXISTENCIA
 
@@ -157,3 +157,22 @@ Coordina con 25 el formato del contrato; 25 no modifica el emisor.
 No autoriza nuevas capturas F5, adopciones, firmas metodológicas ni
 modificación de resultados históricos.
 ```
+
+## NO-CORRIDO / RESERVAS
+
+- No se fusiona el PR: esa decisión queda expresamente en manos de Jonás.
+- `NC-0158` sigue abierta por roles retenidos de confirmación independiente;
+  no es una obligación creada ni satisfecha por este contrato de emisión.
+- No quedan reservas técnicas propias de este acto.
+
+## CONSUMIDO
+
+Consumido el 11/sep/2026 por PR #720, rama
+`acto/gen2-contrato-seleccion-emision`. El archivo fue fijado verbatim en
+`525bd05`; la implementación y el snapshot sucesor quedaron en `67aa13d`, y
+la cadena de cierre en el commit posterior del mismo PR. Consulta rechaza toda
+selección externa; transferencia exige `SELECCION-TEMPORAL-v1` y la revalida
+contra evidencia sellada. El contraejemplo ENVIPE deja de emitir, la
+transferencia ENIGH legítima y las 16 emisiones directas se conservan, y el
+snapshot v1.0 permanece intacto. ADR-479; contador científico cero; la fusión
+queda en manos de Jonás.
