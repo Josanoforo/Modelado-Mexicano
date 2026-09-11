@@ -4521,8 +4521,8 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # ese hueco es de quien mantenga el censo del catálogo de momentos, no
     # de este acto (fuera de perímetro: este acto no toca `milpa/`).
     "forense/notas/2026-09-08-GEN2-UNIVERSO-C-tandas-enafin.md",
-    # Paquete `forense/encargos/cola/2026-09-10-GEN2-POST-685/` (9 archivos:
-    # índice 00 + ocho lotes ejecutables 01..08), texto verbatim de dirección
+    # Paquete `forense/encargos/cola/2026-09-10-GEN2-POST-685/` (índice 00 +
+    # lotes aún en cola) y lote 08 ya archivado por su 0-bis, texto verbatim de dirección
     # encolado 10/sep/2026 con `/encola` (corte
     # `486eda19944a94d978791eb423559144de98d16b`, posterior a PR #685). Cada
     # archivo cita en su cabecera de Destino/Integra y (el índice) en su tabla
@@ -4542,7 +4542,7 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/cola/2026-09-10-GEN2-POST-685/05-GEN2-ENVIPE-SERIE-COMPLETA.md",
     "forense/encargos/cola/2026-09-10-GEN2-POST-685/06-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md",
     "forense/encargos/cola/2026-09-10-GEN2-POST-685/07-GEN2-SONDA-CRON-PRODUCCION.md",
-    "forense/encargos/cola/2026-09-10-GEN2-POST-685/08-GEN2-PRUEBAS-LIMPIAS-Y-REPLAY.md",
+    "forense/encargos/2026-09-10-GEN2-PRUEBAS-LIMPIAS-Y-REPLAY.md",
 }
 
 
