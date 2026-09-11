@@ -65,3 +65,11 @@ Este archivo es autocontenido. Su fuente de autoridad es la instrucción de mesa
 Cada fase termina con resultado o bloqueo preciso y prueba. Cierre completo: autorización → resultado/cambio → evidencia → consumidor, si aplica → FP/NC → vistas/cola → PR y merge. Una decisión firmada no cierra una ejecución pendiente. Registrar fecha real, cita y universo; nada se borra ni se rejuvenece por traslado. Si falta una pieza, usar el vocabulario vigente y sucesor concreto.
 
 **Formato final del ejecutor:** resultado útil en cinco líneas; fases realizadas/pendientes; PR y SHA; pruebas; tabla `obligación | evidencia | cerrada/residual | siguiente acción`. No parar en un inventario cuando el entorno permite ejecutar. No continuar por inercia después de satisfacer el resultado.
+
+## NO-CORRIDO / RESERVAS
+
+Ninguna fase quedó sin ejecutar. La comparación de amenaza sí corrió y quedó sellada, pero su soporte por categoría es menor que 10; se conserva como limitación inferencial explícita, no como obligación pendiente. El registro derivado se ensayó en seco y no se escribió porque proponía además 35 mutaciones ajenas a este acto; la cadena autoritativa del nuevo CALC sí quedó completa en su directorio sellado y en `data/corrida0/decisiones.tsv`.
+
+## CONSUMIDO
+
+**PR #688 · `acto/gen2-sociales-sucesoras`.** Fases 1–4 ejecutadas: S6 v1.4, S13 v1.1, S12 v1.2 y CALC-0001-v2 sellado con 38 RESULT, `verify REPRODUCE 38/38 · CONTEXTO=IDENTICO`; NC-0065, NC-0043 y NC-0064 cerradas. Commits sustantivos: `8a777bd` (congelación previa a resultados) y `16df7c8` (ejecución, prueba y propagación). Merge reservado a mesa.

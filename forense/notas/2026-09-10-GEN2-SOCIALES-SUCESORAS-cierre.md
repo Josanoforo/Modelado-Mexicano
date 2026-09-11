@@ -27,4 +27,4 @@ Receptores declarados/analíticos/excluidos: OFERTA 58/42/16; AMENAZA 24/14/10. 
 - `tests/test_calc0001_v2.py`: verde.
 - Validación independiente: tabulación directa del SAV, sin importar `medidor.py`, coincide exactamente en 17/25 y 6/8, y dentro de `1e-12` en pesos y proporciones.
 
-`CALC-0001-v2` cuenta GEN2 por D14/FP-363 con objeto explícito. No se incorpora ninguna tasa al motor y ningún tier cambia. ADR candidato 455 colisiona con el candidato del PR #687; se renumera si ese PR fusiona primero.
+`CALC-0001-v2` cuenta GEN2 por D14/FP-363 con objeto explícito. No se incorpora ninguna tasa al motor y ningún tier cambia. Entrega: PR #688. ADR candidato 455 colisiona con el candidato del PR #687; se renumera si ese PR fusiona primero.
