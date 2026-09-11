@@ -68,3 +68,13 @@ Usa `tools/cierre_acto.py` primero en seco y luego `--aplica` cuando corresponda
 **Pruebas y parada.** Validar primero el resultado material; correr el baseline requerido sin ampliarlo para ocultar fallos. No perseguir los tres FAIL históricos por rutina. No volver a arreglar NC-0141/0148: #690 ya lo hizo. Revisar el diff después de las pruebas y añadir sólo archivos deliberados. D-14: cualquier automatización adicional debe evitar un error observado con efecto material y costar menos que su corrección repetida; si no, resolver directamente. Auditoría aproximadamente 20%, salvo riesgo material en números, identidad o decisión.
 
 Avanza entre fases ya autorizadas sin pedir confirmación. Termina cuando entregues el resultado suficiente o un residual externo concreto. Cadena de cierre: autorización → producto → evidencia → consumidor cuando aplique → obligaciones → vistas/cola → PR → merge de mesa. Una fila mixta conserva su parte pendiente. No cerrar por palabra coincidente ni por recomendación. Respuesta final del ejecutor: resultado útil, fases cumplidas/pendientes, PR/SHA, pruebas, y tabla `obligación | evidencia | cerrada/residual | siguiente acción`.
+
+## NO-CORRIDO / RESERVAS
+
+- `NC-0037` permanece ABIERTA en dos componentes: no se localizó un ledger mexicano abierto de grupo, organizadora, turnos, cuotas y pagos; la vía comercial continúa diferida por D18. La encuesta individual no los sustituye.
+- La entrada/salida entre olas no se calculó: requiere una spec sucesora que homologue crosswalk, universo longitudinal, ponderación y attrition. No bloquea los tres puntos transversales entregados.
+- No se adoptó una nueva probabilidad para R8.2 ni se modificó el motor. La propuesta de escenario espera firma del objeto.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-TANDAS-MEDICION-ACADEMICA`, 10/sep/2026, en CAJA/Ubuntu, worktree `/home/pc0/mm-gen2-tandas-medicion-academica`, rama `acto/gen2-tandas-medicion-academica`, `PR #700`. Commits de congelamiento y resultado: `911be66`, `3c9a6fa`, `534cfca`, `77338cf`, `d2ba406`; cierre administrativo candidato `ADR-462`: `103191f` y sucesor. `CALC-TANDAS-ENNVIH-0001` entrega tres puntos ponderados de participación individual en tanda durante los últimos 12 meses: 14.67% (2002), 8.58% (2005–06), 12.04% (2009–12); `verify REPRODUCE`, `CONTEXTO=IDENTICO`, 39/39. Sin IC por ausencia de UPM/estrato/réplicas oficiales, sin tasa de incumplimiento, sin adopción de R8.2 y sin incremento del contador GEN2. `NC-0037` conserva abiertos el ledger de turnos/pagos no localizado y la vía comercial diferida; el panel entrada/salida queda para una spec sucesora. El merge pertenece a mesa.
