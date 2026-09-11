@@ -2,6 +2,10 @@
 # tests/check.py y el resto de tests/ corren con la librería estándar.
 PyYAML
 
+# tools/extrae_fuentes_financieras.py lee la plantilla oficial XLS (OLE) de
+# CNBV; openpyxl no abre el formato .xls binario.
+xlrd
+
 # tools/tablero_vista.py usa markdown para convertir
 # forense/tablero/TABLERO-PROGRAMA-vX_Y.md a la vista HTML.
 markdown
