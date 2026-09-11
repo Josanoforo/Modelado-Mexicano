@@ -2640,6 +2640,7 @@ COLS_VISTA_CORRIDAS = [
     "spec_yaml_sha256", "script_path", "script_blob_sha256", "codigo_commit",
     "fecha", "n_resultados", "resultados_ids", "input_ids",
     "input_sha256_efectivos", "sello", "resultado_replay", "contexto_replay",
+    "fuente_replay",
     "sucesor", "entorno_requerido", "receta", "orden_causal",
 ]
 COLS_VISTA_RESULTADOS = [
@@ -2649,11 +2650,13 @@ COLS_VISTA_RESULTADOS = [
     # reproducibilidad (`tolerancia`). Vacia = defecto (grano del consumidor).
     "tolerancia_adopcion",
     "validacion_independiente", "valor_legacy", "delta_legacy", "sello",
+    "fuente_replay",
     "depende_de", "n_usos", "sucesor",
 ]
 COLS_VISTA_USOS = [
     "resultado_id", "consumidor", "tipo_uso", "activo", "reglas_impacto",
     "generacion_leida", "corrida0_generacion", "corrida0_resultado_id",
+    "fuente_replay",
     "valor_materializado",
 ]
 
@@ -3049,6 +3052,23 @@ def _proyecta_replay(calc_id: str, ejec: dict, fresco: dict | None,
     return NO_VERIFICADO, NO_VERIFICADO, _fuente("SIN-FUENTE"), avisos
 
 
+def _cita_fuente_replay(fuente: dict | None) -> str:
+    """Representación persistible de la fuente que ya resolvió
+    `_proyecta_replay`. La cita viaja por corrida -> RESULT -> uso; no vuelve
+    a inferir procedencia ni convierte la vista derivada en fuente propia."""
+    fuente = fuente or {}
+    clase = str(fuente.get("clase") or "SIN-FUENTE")
+    calc_id = str(fuente.get("calc_id") or "")
+    asiento = fuente.get("asiento") or {}
+    if asiento:
+        procedencia = str(asiento.get("procedencia") or clase)
+        return (f"{procedencia} · {_rel(REPLAY_EVIDENCIA)}"
+                + (f"#{calc_id}" if calc_id else ""))
+    if clase == "VERIFICADO-EN-ESTA-SESION":
+        return f"VERIFY-EN-ESTA-SESION · verify({calc_id})"
+    return clase
+
+
 def _lee_oferta(verifica: bool) -> list[dict]:
     """Un registro por carpeta `CALC-*/`. Levanta `ParoRegistro` en las
     validaciones que el plan declara bloqueantes."""
@@ -3307,7 +3327,8 @@ def _filas_registro(verifica: bool = False) -> dict:
             "resultados_ids": c["resultados_ids"],
             "input_ids": c["payload_ids"], "input_sha256_efectivos": "PENDIENTE",
             "sello": "PENDIENTE", "resultado_replay": NO_CORRIDA,
-            "contexto_replay": NO_CORRIDA, "sucesor": "",
+            "contexto_replay": NO_CORRIDA, "fuente_replay": "NO-CORRIDA",
+            "sucesor": "",
             "entorno_requerido": c["entorno_requerido"], "receta": c["receta"],
             "orden_causal": c["orden_causal"],
         })
@@ -3330,7 +3351,8 @@ def _filas_registro(verifica: bool = False) -> dict:
             "tolerancia_adopcion": "PENDIENTE",
             "validacion_independiente": r["validacion_independiente"],
             "valor_legacy": r["valor_legacy"], "delta_legacy": NO_COMPARABLE,
-            "sello": "PENDIENTE", "depende_de": r["depende_de"],
+            "sello": "PENDIENTE", "fuente_replay": "NO-CORRIDA",
+            "depende_de": r["depende_de"],
             "n_usos": 1, "sucesor": "",
         })
         usos_por_resultado[rid] = 1
@@ -3349,6 +3371,7 @@ def _filas_registro(verifica: bool = False) -> dict:
                                  else GENERACION_LEGADO),
             "corrida0_generacion": generacion_declarada,
             "corrida0_resultado_id": marca.get("resultado_id", ""),
+            "fuente_replay": "NO-CORRIDA",
             "valor_materializado": marca.get("valor", NO_DECLARADO),
         })
 
@@ -3369,6 +3392,7 @@ def _filas_registro(verifica: bool = False) -> dict:
         # (grano del consumidor). `NO-APLICA` es un VALOR -- exige la
         # tolerancia de reproducibilidad -- y por eso se distingue de vacio.
         tol_adop_spec = spec.get("tolerancia_adopcion")
+        cita_fuente = _cita_fuente_replay(o.get("fuente_replay"))
         filas_corridas.append({
             "corrida_id": corrida_id, "origen": "OFERTA", "spec_id": calc_id,
             "estado": estado, "generacion": o["generacion"],
@@ -3386,7 +3410,8 @@ def _filas_registro(verifica: bool = False) -> dict:
             "input_sha256_efectivos": ",".join(
                 f"{i}={sha_inputs[i]}" for i in sorted(sha_inputs)) or "PENDIENTE",
             "sello": o["sello"], "resultado_replay": o["replay"],
-            "contexto_replay": o["contexto"], "sucesor": sucesor,
+            "contexto_replay": o["contexto"], "fuente_replay": cita_fuente,
+            "sucesor": sucesor,
             "entorno_requerido": "NUBE-O-CAJA", "receta": "OK",
             "orden_causal": NO_DECLARADO,
         })
@@ -3412,7 +3437,8 @@ def _filas_registro(verifica: bool = False) -> dict:
                 "validacion_independiente": _etiqueta(spec, "validacion_independiente",
                                                       "NO-HECHA"),
                 "valor_legacy": NO_COMPARABLE, "delta_legacy": NO_COMPARABLE,
-                "sello": o["sello"], "depende_de": "", "n_usos": 0,
+                "sello": o["sello"], "fuente_replay": cita_fuente,
+                "depende_de": "", "n_usos": 0,
                 "sucesor": sucesor,
             })
         if o["hashes_faltantes"]:
@@ -3461,6 +3487,7 @@ def _filas_registro(verifica: bool = False) -> dict:
             raise ParoRegistro(f"USO-A-RESULT-INEXISTENTE: {u['consumidor']} "
                                f"usa {u['resultado_id']}, que no existe")
         marca = u["corrida0_resultado_id"]
+        destino_fuente = indice_resultados[u["resultado_id"]]
         if marca:
             destino = indice_resultados.get(marca)
             if destino is None:
@@ -3471,6 +3498,8 @@ def _filas_registro(verifica: bool = False) -> dict:
                 raise ParoRegistro(f"CONSUMIDOR-ACTIVO-A-LEGACY: {u['consumidor']} "
                                    f"es GEN2 y resuelve a {marca}, que es "
                                    f"{GENERACION_LEGADO}")
+            destino_fuente = destino
+        u["fuente_replay"] = destino_fuente["fuente_replay"]
     _verifica_ciclos(filas_resultados)
 
     # ── avisos (no paran) ─────────────────────────────────────────────────

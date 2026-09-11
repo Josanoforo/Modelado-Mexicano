@@ -1,0 +1,78 @@
+calc_id: CALC-TRIADA-0002
+spec_md: spec.md
+spec_md_sha256: 48af914e7303793817674ed612d560ffc723ce02e6dfbf5f70bdfec558a200e7
+script: data/corrida0/CALC-TRIADA-0002/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: TRIADA-F5-COMPLETA-L_SOLO-L_CORPUS-M
+  cuenta_gen2: SI
+  cuenta_gen2_firma: 'Encargo GEN2-F5-COMPLETA, 10/sep/2026, Contrato de ejecución: "Para CALC científicos nuevos, aplicar cuenta_gen2=SI con objeto y cita explícitos". OBJETO=CALC-TRIADA-0002; el merge de mesa perfecciona la firma.'
+  validacion_independiente: NO-HECHA
+  adopta_al_motor: NO
+  metodo_congelado_antes_de_resultados: 'SI; commit 7d97681, F5-completa-spec-v1_0.md + plan + tools/calcula_f5_completa.py, anterior a las capturas.'
+
+inputs:
+  - {id: IN-F5C-SPEC, origen: repo, ruta: "forense/prereg-duelo-v2/F5-completa-spec-v1_0.md", sha256: 25daa3e35cf493b3cdbb92c6882fc2bce24d78a90f3b575d4055440088c4f74d}
+  - {id: IN-F5C-PLAN, origen: repo, ruta: "forense/prereg-duelo-v2/F5-completa-plan-v1_0.json", sha256: ed7734616774bac2f7e6d4c25f5f404f27e8f4c33d49f30957e5b48bfed73307}
+  - {id: IN-F5C-CALCULADOR, origen: repo, ruta: "tools/calcula_f5_completa.py", sha256: eeae052d9c39ffdb278d38276b7bfd27d4c92eb5d427f438823c042c760c2f2c}
+  - {id: IN-F5C-SNAPSHOT-M, origen: repo, ruta: "forense/prereg-duelo-v2/snapshot-M-triada-v1_0.json", sha256: b53ac6d51d1b50ce929fdf1b3e14b124c11db39fb216a15d7073a287ed3f065c}
+  - {id: IN-F5C-UNIVERSO-R, origen: repo, ruta: "forense/prereg-duelo-v2/universo-triada-v1_4.tsv", sha256: 840fc68ce7261686426221effbf9df313ef17e2876fa6345b3c00589bab80f80}
+
+dependencias_materiales: []
+
+universo: 'Marco prospectivo fijo de 14 celdas de L-spec-v1_4. U3 es la interseccion de celdas con R, M, mediana valida L_SOLO y mediana valida L_CORPUS; no se agregan ni eliminan celdas despues de observar errores.'
+filtros: 'Por replica: identidad distinta del plan se reporta ERROR_IDENTIDAD; estado de captura no OK se reporta ERROR_TECNICO; ultima linea ABSTENCION no produce punto; marcador ausente o fuera de [0,100]% es MALFORMADA. Ningun faltante se sustituye por cero. Por celda, sin al menos una replica numerica no hay mediana y la celda queda fuera de U3.'
+ponderador: 'Peso igual por celda dentro de U3 para MAE y bootstrap. Las replicas solo forman la mediana de su celda; no son pseudo-celdas. R conserva su ponderador original en cada CALC-R, que este CALC reutiliza sin reestimar.'
+transformacion: 'Ultima linea ESTIMACION_PUNTUAL=N% -> N/100; mediana por celda/brazo; error absoluto |L_o_M-R| por 100 en pp; MAE como media simple sobre el mismo U3; diferencias pareadas de MAE con bootstrap de celdas, 10000 replicas y seed 42.'
+estimando: 'Descriptivo y comparativo: diferencia de MAE en puntos porcentuales entre L_SOLO, L_CORPUS y M frente al mismo R sobre U3, con IC95 pareado. Pregunta primaria: uso documental/operacional en este marco. No causal, no generalizable fuera del marco y no autorizante de adopcion.'
+
+parametros:
+  k_replicas: 8
+  posiciones: 224
+  bootstrap_replicas: 10000
+  nivel_ic: 0.95
+  delta_banda_pp: 0.5
+  tolerancia_numerica_pp: 1.0e-9
+  identidad_colectiva_capturas: 'forense/prereg-duelo-v2/corridas-L-completa-v1_0/*.json fijada por el commit de ejecución; 224 rutas enumeradas en IN-F5C-PLAN'
+
+seed:
+  aplica: true
+  valor: 42
+  rng: random.Random
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-9
+  razon: 'Tolerancia prospectiva D02, ocho órdenes menor que delta=0.5 pp; textos y enteros comparan exacto.'
+
+resultados:
+  - {id: RESULT-F5C-POSICIONES, tipo: entero, unidad: posiciones}
+  - {id: RESULT-F5C-VALIDAS, tipo: entero, unidad: replicas}
+  - {id: RESULT-F5C-ABSTENCIONES, tipo: entero, unidad: replicas}
+  - {id: RESULT-F5C-MALFORMADAS, tipo: entero, unidad: replicas}
+  - {id: RESULT-F5C-ERRORES-TECNICOS, tipo: entero, unidad: replicas}
+  - {id: RESULT-F5C-ERRORES-IDENTIDAD, tipo: entero, unidad: replicas}
+  - {id: RESULT-F5C-U3-N, tipo: entero, unidad: celdas}
+  - {id: RESULT-F5C-U3-IDS, tipo: texto, unidad: ids_de_celda}
+  - {id: RESULT-F5C-COBERTURA-L-SOLO, tipo: entero, unidad: celdas_con_punto}
+  - {id: RESULT-F5C-COBERTURA-L-CORPUS, tipo: entero, unidad: celdas_con_punto}
+  - {id: RESULT-F5C-COBERTURA-M, tipo: entero, unidad: celdas_con_punto}
+  - {id: RESULT-F5C-MAE-L-SOLO-PP, tipo: flotante, unidad: puntos_porcentuales}
+  - {id: RESULT-F5C-MAE-L-CORPUS-PP, tipo: flotante, unidad: puntos_porcentuales}
+  - {id: RESULT-F5C-MAE-M-PP, tipo: flotante, unidad: puntos_porcentuales}
+  - {id: RESULT-F5C-VEREDICTO-GLOBAL, tipo: texto, unidad: categoria}
+  - {id: RESULT-F5C-DELTA-LCORPUS-LSOLO-PUNTO-PP, tipo: flotante, unidad: puntos_porcentuales}
+  - {id: RESULT-F5C-DELTA-LCORPUS-LSOLO-IC95-LO-PP, tipo: flotante, unidad: puntos_porcentuales}
+  - {id: RESULT-F5C-DELTA-LCORPUS-LSOLO-IC95-HI-PP, tipo: flotante, unidad: puntos_porcentuales}
+  - {id: RESULT-F5C-DELTA-LCORPUS-LSOLO-VEREDICTO, tipo: texto, unidad: categoria}
+  - {id: RESULT-F5C-DELTA-M-LSOLO-PUNTO-PP, tipo: flotante, unidad: puntos_porcentuales}
+  - {id: RESULT-F5C-DELTA-M-LSOLO-IC95-LO-PP, tipo: flotante, unidad: puntos_porcentuales}
+  - {id: RESULT-F5C-DELTA-M-LSOLO-IC95-HI-PP, tipo: flotante, unidad: puntos_porcentuales}
+  - {id: RESULT-F5C-DELTA-M-LSOLO-VEREDICTO, tipo: texto, unidad: categoria}
+  - {id: RESULT-F5C-DELTA-M-LCORPUS-PUNTO-PP, tipo: flotante, unidad: puntos_porcentuales}
+  - {id: RESULT-F5C-DELTA-M-LCORPUS-IC95-LO-PP, tipo: flotante, unidad: puntos_porcentuales}
+  - {id: RESULT-F5C-DELTA-M-LCORPUS-IC95-HI-PP, tipo: flotante, unidad: puntos_porcentuales}
+  - {id: RESULT-F5C-DELTA-M-LCORPUS-VEREDICTO, tipo: texto, unidad: categoria}
+
+variables: []

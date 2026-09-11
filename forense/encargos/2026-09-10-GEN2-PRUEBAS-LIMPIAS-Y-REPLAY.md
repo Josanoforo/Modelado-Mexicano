@@ -1,3 +1,18 @@
+# Archivo 0-bis A.3 · ACTO GEN2-PRUEBAS-LIMPIAS-Y-REPLAY
+
+- **SHA de redacción:** `486eda19944a94d978791eb423559144de98d16b` (merge de PR #685).
+- **SHA de ejecución:** `origin/main = 44134745ce7f19af18a87b153a99de3d506063b0` (merge de PR #686); el corte de redacción es ancestro.
+- **Entorno asignado:** NUBE para pruebas/derivador y CLI Ubuntu con corpus para comprobante real/publicación.
+- **Estado:** CONSUMIDO por PR #690.
+
+## VERIFICACIÓN DE EXISTENCIA (A.8; ejecutor, 10/sep/2026)
+
+- **Estructura:** existen `tests/check.py`, `tests/test_corrida0.py`, `tests/test_cierre_acto.py`, `tools/cierre_acto.py`, `tools/corrida0.py`, `forense/replay-evidencia.tsv` y las tres vistas `data/corrida0/{corridas,resultados,usos}.tsv`.
+- **Contenido:** `t_cmd_demanda_aplica_fp339` llama `C.cmd_demanda(None)` con las rutas reales y después lee `C.SALIDA/demanda-resultados.tsv`; la regla compartida `L0_ADR_RE` ya exige unicidad en `cierre_acto.py`; las tres vistas publicadas carecen de columna de fuente, aunque `forense/replay-evidencia.tsv` distingue procedencia y alcance.
+- **Cobertura retroactiva:** `NC-0141`, `NC-0148` y `NC-0104` existen y siguen `ABIERTA` en `forense/no-corrido.tsv`. La evidencia heredada está sembrada, pero falta un comprobante real `VERIFY-ESTRUCTURADO` y su fuente persistida en las tres vistas. PR #682/#683 son antecedentes, no objetos a reabrir.
+
+---
+
 # ENCARGO · GEN2-PRUEBAS-LIMPIAS-Y-REPLAY
 
 ## Pruebas sin escritura → evidencia de replay → vistas con fuente
@@ -63,6 +78,20 @@ Este archivo es autocontenido. Su fuente de autoridad es la instrucción de mesa
 **Cambios concurrentes:** el perímetro es propio aunque otros lotes avancen. Antes de integrar, actualizar con main y reconciliar sólo colisiones de IDs, registros y archivos compartidos del propio acto. No copiar una versión antigua del TSV completo. No relajar el candado del despacho automático. Las entradas congeladas de un experimento se resuelven por versión/hash aunque el árbol avance.
 
 **Medición:** reutilizar resultados sellados cuando coincidan estimando e insumos; para un cálculo nuevo, congelar spec y método en un commit anterior al primer resultado. Resolver datos por manifiesto/raíz configurada; no inventar `/home/...`, no subir microdatos restringidos ni credenciales. Registrar unidad, universo, ponderador, exclusiones, incertidumbre y uso. Los cambios a código usado por un sello exigen preservar su reproducción por la vía existente o crear una sucesora explícita; no romper históricos para modernizar una herramienta.
+
+## NO-CORRIDO / RESERVAS
+
+- La publicación efectiva de `fuente_replay` en las tres vistas no corrió: la compuerta rechazó 64 transiciones de 32 corridas ajenas y preservó los hashes. El sucesor exacto está en `NC-0104` y en la tabla de la nota de cierre.
+
+## CONSUMIDO
+
+Consumido por PR #690, rama `acto/gen2-pruebas-replay`.
+
+- Fases 1 y 2 completas: escritura confinada al fixture temporal; guard de unicidad L0 integrado y probado.
+- Fase 3 completa en derivador y fixtures: `fuente_replay` conserva correspondencia en corridas, resultados y usos.
+- Fase 4 parcial por compuerta efectiva: `CALC-ENVIPE-0001` verificó 39/39 con contexto idéntico y dejó comprobante `VERIFY-ESTRUCTURADO`; la publicación del lote explícito se negó antes de escribir por 64 transiciones de 32 corridas ajenas. Las vistas conservaron sus hashes.
+- `NC-0141` y `NC-0148` cerradas. `NC-0104` permanece abierta hasta publicar efectivamente la fuente en las tres vistas; tabla exacta y continuidad en `forense/notas/2026-09-10-GEN2-PRUEBAS-LIMPIAS-Y-REPLAY-cierre.md`.
+- Reserva administrativa resuelta: PR #687 fusionó `ADR-455` y PR #688 fusionó después `ADR-456`; este acto se actualizó contra ambos y tomó `ADR-457`.
 
 **Objeto de firma al merge:** propagación de las decisiones de mesa citadas y de los resultados del encargo. Para CALC científicos nuevos, aplicar `cuenta_gen2=SI` con objeto y cita explícitos conforme al contrato vigente; los sucesores técnicos no inflan mediciones independientes. Contar no equivale a adoptar: sólo se activa en el motor lo autorizado por la decisión concreta y sustentado por su evidencia.
 

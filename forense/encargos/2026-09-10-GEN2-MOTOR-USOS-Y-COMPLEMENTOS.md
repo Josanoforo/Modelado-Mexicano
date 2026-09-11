@@ -86,9 +86,9 @@ Cada fase termina con resultado o bloqueo preciso y prueba. Cierre completo: aut
 
 - `NC-0085`: la adopción final de RES-0028 requiere firma de mesa.
 - `NC-0107`: las dos tasas ENCIG deduplicadas discrepantes siguen sin adopción.
-- `NC-0111` y `NC-0152`: falta una tasa general ENCIG con denominador general.
+- `NC-0111` y `NC-0153`: falta una tasa general ENCIG con denominador general.
 - `NC-0121`/`NC-0122`: no se fabricó serie fintech ni canal exacto de producto.
-- El merge y la eventual renumeración por la colisión de `ADR-455` son de mesa.
+- La integración con `main` renumeró el acto a `ADR-458` y la demanda a `NC-0153`.
 
 ## CONSUMIDO
 
@@ -96,5 +96,5 @@ Ejecutado en la rama `acto/gen2-motor-usos` y presentado para revisión en
 PR #689. Commits de ejecución: `6134100` y `9263d2d`; el archivo fue archivado
 antes del objeto en `c655c65`. Resultado y residuales:
 `forense/notas/2026-09-10-GEN2-MOTOR-USOS-Y-COMPLEMENTOS-cierre.md`.
-El merge y la reconciliación de la colisión declarada de `ADR-455` con PR #687
-pertenecen a mesa.
+La rama integra `origin/main` hasta el merge de PR #690; el merge final del
+PR #689 pertenece a mesa.

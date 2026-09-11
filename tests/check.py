@@ -2730,6 +2730,11 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-SOCIALES-SUCESORAS, 10/sep/2026: copia A.3 verbatim del
+    # encargo 04 ya encolado por PR #686. Sus E06/E07 son referencias a los
+    # habitantes ENCARGO-E06/E07 definidos y censados por MESA-E01, no
+    # rótulos nuevos. La cabecera A.3 evita además duplicidad byte a byte.
+    "forense/encargos/2026-09-10-GEN2-S6-S12-S13-SUCESORAS.md",
     # ACTO GEN2-LOTE-ENCIG-1, 9/sep/2026: encargo archivado VERBATIM (0-bis
     # A.3), que no se edita para complacer un test. Su ADENDA DE PROPAGACION
     # cita "Es el sucesor que E1 nombro" -- EL MISMO rotulo pelado y por la
@@ -4522,9 +4527,13 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/cola/2026-09-10-GEN2-POST-685/05-GEN2-ENVIPE-SERIE-COMPLETA.md",
     "forense/encargos/cola/2026-09-10-GEN2-POST-685/06-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md",
     "forense/encargos/cola/2026-09-10-GEN2-POST-685/07-GEN2-SONDA-CRON-PRODUCCION.md",
-    "forense/encargos/cola/2026-09-10-GEN2-POST-685/08-GEN2-PRUEBAS-LIMPIAS-Y-REPLAY.md",
+    "forense/encargos/2026-09-10-GEN2-PRUEBAS-LIMPIAS-Y-REPLAY.md",
+    # Copia A.3 del lote 01 anterior. Conserva verbatim los mismos E02/E03
+    # de procedencia ya censados por la fila ENCARGO-E01..ENCARGO-E11; no
+    # introduce otro habitante y no se edita para complacer T25.
+    "forense/encargos/2026-09-10-GEN2-F5-COMPLETA.md",
     # Copia A.3 verbatim ejecutada del lote 02: conserva las mismas menciones
-    # bare E01..E11 que su fuente de cola, ya censadas en la fila E del
+    # bare E01..E11 de su fuente de cola, ya censadas en la fila E del
     # registro de rótulos. No es un habitante nuevo ni se edita el verbatim.
     "forense/encargos/2026-09-10-GEN2-MOTOR-USOS-Y-COMPLEMENTOS.md",
 }

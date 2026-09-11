@@ -21,7 +21,7 @@ Tasas del perímetro sin consumidor nuevo: las transiciones ENCUCI de solicitud 
 entrega ya tenían RESULT sellado, pero sólo la unión tenía salida legacy. Ahora
 `emitir_transicion` las expone sin agregarlas al inventario de demandas legacy.
 Consumidor sin respaldo: la tasa general ENCIG no es identificable en P8_4; se
-inscribe como demanda `NC-0152` y se remite al lote 06. No se registra como
+inscribe como demanda `NC-0153` y se remite al lote 06. No se registra como
 adquisición.
 
 ## F1 · decisiones inequívocas propagadas
@@ -89,7 +89,7 @@ ambigüedades, exactamente las dos ENIGH del perímetro.
 
 Cerradas por consumidor corregido: NC-0105, NC-0127 y NC-0137/0138/0139.
 Permanecen abiertas: NC-0107 (variantes deduplicadas discrepantes), NC-0111 y
-NC-0152 (tasa general ENCIG), NC-0121 (serie fintech 2018/2021), NC-0122
+NC-0153 (tasa general ENCIG), NC-0121 (serie fintech 2018/2021), NC-0122
 (canal del producto fintech exacto) y NC-0085 (firma de RES-0028).
 
 Rutas sustantivas editadas: `milpa/tramite.yaml`, `milpa/procedencia.yaml`,
