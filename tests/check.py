@@ -169,6 +169,16 @@ def t02_duplicates():
             "data/inventario-reactivos-descargas-mx-v1_0.tsv",
             "data/inventario-reactivos-descargas-mx-v1_2.tsv",
         }),
+        # ACTO GEN2-ENVIPE-VALIDACION-LECTURA, 10/sep/2026: el encargo llegó
+        # desde Descargas y se archivó verbatim por 0-bis A.3 antes de que
+        # PR #694 incorporara, mientras el acto corría, la misma copia a la
+        # cola GEN2-POST-693. Ambas rutas son registros deliberados con ciclo
+        # distinto (archivo ejecutado vs. cola preparada), no duplicación
+        # accidental; el encargo archivado no se borra retrospectivamente.
+        frozenset({
+            "forense/encargos/2026-09-10-GEN2-ENVIPE-VALIDACION-Y-LECTURA.md",
+            "forense/encargos/cola/2026-09-11-GEN2-POST-693/10-GEN2-ENVIPE-VALIDACION-Y-LECTURA.md",
+        }),
     )
     by_name, by_hash = defaultdict(list), defaultdict(list)
     for p in glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True):

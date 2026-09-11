@@ -1,0 +1,85 @@
+{
+  "head": "4816101e506f527d018dd2c47467a8b57bfbd487",
+  "rutas": {
+    "milpa/tramite.yaml": [
+      "NO",
+      "regla E.1 (ACTO GEN2-T9, D-1): input LEGACY GEN1 X=milpa/tramite.yaml"
+    ],
+    "./milpa/tramite.yaml": [
+      "SI",
+      "etiqueta de la spec"
+    ],
+    "milpa/../milpa/tramite.yaml": [
+      "SI",
+      "etiqueta de la spec"
+    ],
+    "forense/prereg-duelo-v2/snapshot-M-triada-v1_0.json": [
+      "SI",
+      "etiqueta de la spec"
+    ],
+    "forense/prereg-duelo-v2/corridas-R/correr-R.py": [
+      "NO",
+      "regla E.1 (ACTO GEN2-T9, D-1): input LEGACY GEN1 X=forense/prereg-duelo-v2/corridas-R/correr-R.py"
+    ]
+  },
+  "herencia_padre_declarado_legacy": "NO",
+  "adopcion_wrapper": {
+    "envuelto_legacy": "SI",
+    "generacion": "GEN2",
+    "cuenta_gen2": "NO",
+    "t35_fallos": []
+  },
+  "f5_estado_firewall": {
+    "celda_sigue_en_u3": true,
+    "u3_n": 12,
+    "mae_igual": true,
+    "veredicto": "SIN-GANADOR-UNICO"
+  },
+  "f5_identidad_confirmada": {
+    "celda_sigue_en_u3": true,
+    "u3_n": 12,
+    "mae_igual": true,
+    "veredicto": "SIN-GANADOR-UNICO"
+  },
+  "f5_inputs": {
+    "inputs_entregados": 0,
+    "resultados_emitidos": 27,
+    "json_extra_no_declarados": 238,
+    "capturas_extra": 224,
+    "r_extra": 14,
+    "muestra": [
+      "data/corrida0/CALC-R-CIV-M-01/resultados.json",
+      "data/corrida0/CALC-R-CIV-M-02/resultados.json",
+      "data/corrida0/CALC-R-CIV-M-04/resultados.json",
+      "data/corrida0/CALC-R-CIV-M-10/resultados.json"
+    ]
+  },
+  "usos_actuales": {
+    "LEGACY-GEN1": 191,
+    "GEN2": 16
+  },
+  "tríadas_actuales": [
+    {
+      "spec_id": "CALC-TRIADA-0001",
+      "generacion": "GEN2",
+      "cuenta_gen2": "SI",
+      "envuelto_legacy": "SI"
+    },
+    {
+      "spec_id": "CALC-TRIADA-0002",
+      "generacion": "GEN2",
+      "cuenta_gen2": "SI",
+      "envuelto_legacy": "NO"
+    }
+  ],
+  "arbitros_clasificados_por_ruta_codigo": [
+    "CALC-R-DIN-M-01-v4",
+    "CALC-R-FAM-M-01-v3",
+    "CALC-R-FAM-M-05-v3",
+    "CALC-R-FAM-M-06-v3",
+    "CALC-R-FAM-M-07-v3",
+    "CALC-R-TRA-M-02-v3",
+    "CALC-R-TRA-M-03-v3",
+    "CALC-R-TRA-M-07-v3"
+  ]
+}
