@@ -80,3 +80,7 @@ Cada fase termina con resultado o bloqueo preciso y prueba. Cierre completo: aut
 | **Rama** | `acto/gen2-envipe-serie` |
 | **Entorno** | CAJA (Ubuntu/WSL2), `data/raw` montado; 401 archivos examinados por `tools/entorno.py` |
 | **Estado** | CERRADO — serie 15/15 publicada; cierre en `forense/notas/2026-09-10-GEN2-ENVIPE-SERIE-COMPLETA-cierre.md` |
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-ENVIPE-SERIE-COMPLETA`: ocho olas nuevas selladas y reproducibles, producto anual 2010–2024 publicado, `NC-0087/0093/0101` cerradas y validación independiente conservada en `NC-0153`. El merge y cualquier adopción pertenecen a mesa.
