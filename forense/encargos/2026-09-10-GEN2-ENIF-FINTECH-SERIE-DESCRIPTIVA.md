@@ -1,56 +1,49 @@
-# ENCARGO · GEN2-YA-MEDIDO-SIN-FALSOS-NEGATIVOS
+# ENCARGO · GEN2-ENIF-FINTECH-SERIE-DESCRIPTIVA
 
-ENTORNO: NUBE
-COMPUERTA: PR #694 fusionado; sin tarea/PR del mismo objeto.
-RAMA: acto/gen2-ya-medido-tasas
+ENTORNO: CAJA
+COMPUERTA: PR #689 y #694 fusionados; comprobar corpus ENIF y ausencia de tarea duplicada.
+RAMA: acto/gen2-enif-fintech-serie
 MODELOS: cero llamadas nuevas.
 
-## Resultado útil
+## Resultado útil y decisión ya tomada
 
-Hacer que `tools/ya_medido.py` reconozca tasas ya medidas y cite la evidencia propia de cada regla. Evitar que los encargos actuales vuelvan a medir algo por un falso “NUNCA-MEDIDA”. Resolver NC-0109 y NC-0129 sin ampliar la herramienta a un motor de búsqueda nuevo.
+Completar lo que NC-0121 conserva pendiente: extender a ENIF 2018/2021 el proxy descriptivo del canal del último producto entre personas con fintech, y compararlo con 2024 sólo cuando sea semánticamente válido. **D10 ya lo autorizó**; no pedir esa firma otra vez. Este objeto no está en el alcance de ENIF población #691 ni de los seis encargos 07R/09–13.
 
-## Defecto reproducido al preparar el encargo
+## Entradas y alcance real
 
-En main `4816101`, estos dos comandos terminan en `NUNCA-MEDIDA` aunque listan medición/adopción de la regla:
+Leer el cierre `forense/notas/2026-09-09-GEN2-ADQ-VERIFICACION-CAJA-cierre.md` §P2, la enmienda de #689 en `milpa/procedencia.yaml` y NC-0121/0122. Resolver los archivos manifestados `enif2018_csv`, `enif2021_csv` y documentación de las tres olas desde el corpus compartido. Los IDs concretos se confirman en el manifiesto, sin inventar rutas.
 
-```bash
-python3 tools/ya_medido.py tramite.mordida.con_registro
-python3 tools/ya_medido.py dinero.ahorro.horizonte_no_corto_con_seguridad_social
-```
+El antecedente 2024 cruza P6_2_8 con P6_6 para crédito y P5_4_8 con P5_16 para cuenta; usa FAC_PER y diseño EST_DIS/UPM_DIS. Esas variables identifican tenencia y canal del **último** producto: no el canal del producto fintech específico. “Recomendación de conocidos” no equivale a un canal de contratación. No reutilizar nombres de variable/código entre olas sin cuestionario.
 
-La causa asentada en NC-0109/0129 sigue vigente: el detector privilegia vocabulario de falsación y no identifica adecuadamente una tasa medida. La ventana de ±260 caracteres también puede perder evidencia del mismo bloque. El caso `tramite.gobierno_digital.util_sin_coercion` hoy imprime MEDIDA-EN, pero lo hace citando la nota que describe el defecto; no afirmar que ese contraejemplo sigue fallando exactamente igual.
+## Fase 1 · Correspondencia antes de calcular
 
-NC-0129 apunta a NC-0110 como supuesto duplicado; la causa de herramienta corresponde a **NC-0109**. NC-0110 es el recorte de canales, está CERRADA y no se reabre.
+Construir una tabla por ola y familia (cuenta/crédito): texto del reactivo, población/edad, ventana, criterio de fintech, canal, códigos, no respuesta, ponderador y diseño. Evaluar cambios en definición, tipos de proveedor y productos. No considerar automáticamente equivalentes “internet”, “app” y “fintech” a través de años.
 
-## Fase 1 · Contrato de evidencia mínimo
+Si una ola no mide el mismo objeto, marcar ruptura/no comparable y conservar el mejor descriptivo que sí identifique. No recodificar hasta que la serie parezca continua. La ausencia de texto en el inventario de reactivos no acredita ausencia en ENIF; NC-0123 ya documentó ese límite. Leer los cuestionarios/FD existentes en vez de indexar 102 instrumentos desde este encargo.
 
-Leer la herramienta completa, los dos NC, el cierre de GEN2-LOTE-ENCIG-1 y el de GEN2-LOTE-ENIF-1, y las entradas efectivas de las dos reglas. Distinguir: tasa ejecutada y citada; intento con veredicto NO-ESTIMABLE; adopción al motor; hipótesis/propuesta; mera mención. Mantener compatibilidad de la salida que consume T-YAMEDIDO; no convertir `MEDIDA-EN` en garantía de validez o adopción.
+## Fase 2 · Congelamiento y medición por ola
 
-Un número `p`, una palabra MEDIDO en prosa, un plan de corrida o un RESULT declarado sin ejecución no bastan para acreditar medición. Resolver las referencias existentes de consumidor → CALC/RESULT/ejecución/sello cuando estén disponibles; conservar los antecedentes GEN1 con su procedencia. Usar directamente los artefactos sellados si las vistas están retrasadas; 09 está publicándolas y no es compuerta para este arreglo.
+Pre-registrar una spec sucesora y método antes de generar resultados: cuenta y crédito separados, denominadores, especiales, pesos, categorías y aceptación. Medir todas las olas compatibles disponibles. Reportar n, masa ponderada, porcentajes por canal, faltantes y precisión compatible con el diseño cuando esté acreditado.
 
-## Fase 2 · Reparación pequeña
+Usar 2024 como control existente; no recontar como nueva medición una envoltura de sus porcentajes ya publicados. Reproducir una tabulación puntual de control si hace falta comprobar la receta. Para el primer tipo nuevo, reconstruir numerador/denominador por una implementación separada. Los tamaños pequeños, en especial crédito, se informan; no fusionar categorías por buscar significación después del dato.
 
-Corregir el reconocimiento de medición y la delimitación estructural del bloque de la regla. No sustituir la ventana por búsqueda indiscriminada de todo el archivo: eso atribuiría el veredicto de una regla vecina. Identidad exacta y alias declarados, sin parecido de nombres. Las notas que diagnostican una falla pueden ser antecedentes, pero la salida debe poder citar la evidencia sustantiva que la resuelve.
+## Fase 3 · Producto temporal útil
 
-No introducir embeddings, otra base de datos, índices persistentes o un inventario global. No modificar `tools/corrida0.py`, `milpa/*.yaml`, los CALC ni la clasificación científica de ninguna regla.
+Entregar tabla derivada y figura exacta por ola, distinguiendo cuenta/crédito y rupturas. Cuantificar cambios en puntos porcentuales sólo entre objetos comparables; el resto queda como comparación descriptiva rotulada. No atribuir cambios al crecimiento del mercado fintech, ni medir adquisición causal, aprobación, rechazo o recomendación a partir de este proxy.
 
-## Fase 3 · Pruebas que protegen el defecto
+Proponer su uso concreto como evidencia descriptiva/contextual. No alterar tasas del motor ni el M congelado de F5. Para no chocar con 11/12, entregar la actualización propuesta de `milpa/procedencia.yaml` en la nota; se integra después en el acto dueño de esa ruta. No cambiar el mapa id↔R-n basándose en una mención de la nota antigua: resolver el consumidor exacto en main.
 
-Fixtures pequeños para: tasa ejecutada con evidencia exacta; propuesta con p pero sin ejecución; dos reglas vecinas con veredictos diferentes; evidencia pertinente más allá de 260 caracteres; alias declarado; intento NO-ESTIMABLE sin confundirlo con parámetro disponible. Reutilizar los controles positivos y negativos existentes. La prueba no debe depender del conteo total del repo.
+## Fase 4 · Cierre
 
-Ejecutar los dos comandos reales de arriba después de la corrección y comprobar que citan su evidencia, además de un negativo legítimo. Confirmar que la herramienta es de lectura y no modifica demanda/vistas. Verificar la integración con T-YAMEDIDO sin convertir nuevas advertencias documentales en bloqueos científicos.
+NC-0121 cierra cuando las olas estén medidas o la comparabilidad imposible esté demostrada con los reactivos y el residual preciso. No llamarlo serie completa si una ola tiene un objeto distinto. NC-0122 conserva la limitación del canal del producto fintech exacto, aunque D10 ya aceptó el proxy; no reabrir esa decisión.
 
-## Fase 4 · Cierre y entrega
-
-Cerrar NC-0109 y NC-0129 por corrección ejecutada; rectificar el enlace errado de NC-0129 conservando su antecedente. No cerrar NC-0110 otra vez ni reabrirla. Un solo PR con el script, pruebas pertinentes y cierre.
-
-Puede fusionarse antes o después de 09. Los seis encargos actuales deben incorporar el arreglo desde main cuando esté fusionado; no copiar el script entre ramas activas ni detener mediciones ya bien identificadas para esperarlo.
+Publicar recibos mediante el mecanismo vigente. Coordinar con 09 mientras esté abierto; si ya fusionó, incorporar main y publicar sólo el lote propio, sin transiciones ajenas. No modificar vistas globales desde una base previa al trabajo del publicador.
 
 ## Perímetro y aceptación
 
-`tools/ya_medido.py`; pruebas propias y referencia T-YAMEDIDO sólo si la interfaz lo exige; NC-0109/0129 y administración común. Cero cambios de medición, motor, inventario de reactivos, cron o vistas corrida0.
+Specs/CALC(s) nuevos cuando haya cantidades nuevas, medidor y control de tabulación, tabla/figura y nota de fintech, NC-0121/0122 y administración común. Lectura del motor, manifiesto e inventario; cero escritura en `milpa/`, `tools/corrida0.py`, `tools/ya_medido.py` y configuración del cron.
 
-Aceptación: desaparecen los dos falsos negativos reproducidos; una hipótesis con p sigue sin acreditarse como ejecutada; no se confunden veredictos vecinos; cada positivo muestra una fuente pertinente; cierre trazable sin otra capa de control. D-14: evita el error ya ocurrido de redescubrir reglas medidas y cuesta menos que otro sondeo/cálculo duplicado.
+Aceptación: cantidades 2018/2021 medidas donde el instrumento lo permita; comparación 2024 con sus rupturas; ningún canal del último producto presentado como canal fintech exacto; fuente, n y denominador por cifra. Puede correr en otro worktree de CAJA a la vez que 10/11/12, compartiendo corpus sólo en lectura y ajustando carga a la RAM disponible.
 
 ## Contrato común, incluido para ejecutar este archivo por separado
 
@@ -74,32 +67,24 @@ Usa `tools/cierre_acto.py` primero en seco y luego `--aplica` cuando corresponda
 
 Avanza entre fases ya autorizadas sin pedir confirmación. Termina cuando entregues el resultado suficiente o un residual externo concreto. Cadena de cierre: autorización → producto → evidencia → consumidor cuando aplique → obligaciones → vistas/cola → PR → merge de mesa. Una fila mixta conserva su parte pendiente. No cerrar por palabra coincidente ni por recomendación. Respuesta final del ejecutor: resultado útil, fases cumplidas/pendientes, PR/SHA, pruebas, y tabla `obligación | evidencia | cerrada/residual | siguiente acción`.
 
+---
+
 ## NO-CORRIDO / RESERVAS
 
-Ninguna fase material quedó sin ejecutar. La fusión del PR permanece, por
-contrato del encargo, reservada a mesa y no constituye una medición pendiente.
+- `NC-0122` permanece ABIERTA: ENIF 2018/2021/2024 no liga el canal al
+  producto fintech específico; el objeto medido es el canal del último
+  producto entre personas con tenencia fintech.
+- La actualización propuesta de `milpa/procedencia.yaml` quedó íntegra en la
+  nota de cierre. No se integró aquí porque la ruta pertenece a otro acto.
+- El merge del PR pertenece a mesa.
 
 ## CONSUMIDO
 
-Ejecutado el 10/sep/2026 en la rama `acto/gen2-ya-medido-tasas`; entrega
-revisable en **PR #705**. El archivo fue archivado inicialmente por A.3 en
-`002bb80`; al aparecer esta copia oficial byte-idéntica en `main`, la copia
-duplicada se retiró del árbol final y permanece recuperable en ese commit.
-
-Producto `b789cca`: `tools/ya_medido.py` reconoce identidad estructural y
-resuelve RESULT + ejecución + sello. Los dos falsos negativos terminan en
-`MEDIDA-EN` citando `CALC-ENCIG-0001` y `CALC-ENIF-0001`; el negativo legítimo
-permanece `NUNCA-MEDIDA`. Cierre `49004ec`, integración `da4bdc9` y
-reconciliación inicial `9f0019d`: `NC-0109`/`NC-0129` cerradas y `NC-0110`
-intacta. Tras la precedencia de PR #706, el acto queda renumerado finalmente
-a ADR-469 sobre `origin/main=0d8e056`.
-
-Validación inicial sobre `origin/main=7d55234`: 8/8 regresiones dirigidas OK;
-`tests/check.py --baseline` terminó con código 0 y `LÍNEA BASE: VERDE`, con
-T02/T15/T25/T30/T30b en `ok`. Las cinco huellas de demanda/vistas corrida0
-fueron idénticas antes y después. No hubo medición, cambio científico, llamada
-a modelos ni escritura de vistas. El único residual es la fusión por mesa.
-
-Revalidación después de la precedencia y merge de PR #706: 8/8 regresiones
-OK; línea base completa con código 0 y `LÍNEA BASE: VERDE` sobre
-`origin/main=0d8e056`, conservando los 3 `FAIL` y 2756 `WARN` ya cubiertos.
+PR #706. Encargo ejecutado en `acto/gen2-enif-fintech-serie`. Prerregistro congelado
+en `5b92cee28946453c7d9716df632da7089e33e418`; medición sellada y publicada
+en la rama; `CALC-ENIF-FINTECH-0001` verifica REPRODUCE/CONTEXTO=IDENTICO
+131/131 y el control independiente coincide. ENIF 2018 queda NO-ESTIMABLE,
+2021 medido y 2024 conservado como antecedente. `NC-0121` cierra; `NC-0122`
+conserva el límite estructural. PR revisable:
+https://github.com/Josanoforo/Modelado-Mexicano/pull/706. No fusionado por el
+ejecutor.

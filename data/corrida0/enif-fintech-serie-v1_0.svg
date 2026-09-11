@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1120" viewBox="0 0 1280 1120" role="img" aria-labelledby="title desc">
+  <title id="title">Canal del último producto entre personas con tenencia fintech, ENIF 2021 y 2024</title>
+  <desc id="desc">Dos diagramas de puntos para cuenta y crédito. Los puntos 2021 incluyen intervalos de confianza de 95 por ciento. Los triángulos 2024 son cifras ya publicadas sin intervalo. Cuenta tiene ruptura y crédito es comparable con deriva de ejemplos. ENIF 2018 no es estimable.</desc>
+  <rect width="1280" height="1120" fill="#fbfaf7"/>
+  <style>
+    text { font-family: Inter, Arial, sans-serif; fill: #19242e; }
+    .title { font-size: 25px; font-weight: 700; }
+    .sub { font-size: 15px; fill: #4d5b66; }
+    .panel { font-size: 20px; font-weight: 700; }
+    .label { font-size: 14px; }
+    .small { font-size: 12px; fill: #52616d; }
+    .grid { stroke: #d9dddf; stroke-width: 1; }
+    .ci { stroke: #176b87; stroke-width: 3; }
+    .cap { stroke: #176b87; stroke-width: 2; }
+    .p21 { fill: #176b87; }
+    .p24 { fill: #d2633d; }
+  </style>
+  <text x="50" y="42" class="title">Canal del último producto entre personas con tenencia fintech</text>
+  <text x="50" y="67" class="sub">ENIF · porcentaje ponderado · 2021 estimado con diseño; 2024 antecedente publicado</text>
+  <rect x="50" y="84" width="1180" height="42" rx="7" fill="#ece8df"/>
+  <text x="70" y="110" class="label"><tspan font-weight="700">2018: NO-ESTIMABLE.</tspan> El instrumento no identifica la categoría fintech ni el canal del último producto; no es un cero.</text>
+
+  <circle cx="810" cy="105" r="6" class="p21"/><text x="822" y="110" class="small">2021 (IC95)</text>
+  <path d="M930 112 l7 -14 l7 14 z" class="p24"/><text x="950" y="110" class="small">2024 publicado (sin IC)</text>
+
+  <text x="50" y="160" class="panel">Cuenta — comparación lateral con ruptura; no calcular delta</text>
+  <text x="50" y="181" class="small">2021: n=337, masa=2,257,763 · 2024: n=1,407, masa=8,919,712</text>
+  <g>
+    <line x1="230" y1="194" x2="230" y2="630" class="grid"/><line x1="430" y1="194" x2="430" y2="630" class="grid"/>
+    <line x1="630" y1="194" x2="630" y2="630" class="grid"/><line x1="830" y1="194" x2="830" y2="630" class="grid"/>
+    <line x1="1030" y1="194" x2="1030" y2="630" class="grid"/>
+    <text x="224" y="649" class="small">0%</text><text x="420" y="649" class="small">20%</text><text x="620" y="649" class="small">40%</text><text x="820" y="649" class="small">60%</text><text x="1020" y="649" class="small">80%</text>
+  </g>
+  <g class="label">
+    <text x="50" y="222">Sucursal</text><line x1="647.34" y1="211" x2="807.20" y2="211" class="ci"/><line x1="647.34" y1="205" x2="647.34" y2="217" class="cap"/><line x1="807.20" y1="205" x2="807.20" y2="217" class="cap"/><circle cx="727.27" cy="211" r="6" class="p21"/><text x="739" y="216">49.73%</text><path d="M513 231 l7 -14 l7 14 z" class="p24"/><text x="532" y="231">29.0%</text>
+    <text x="50" y="277">App celular</text><line x1="384.91" y1="266" x2="525.65" y2="266" class="ci"/><line x1="384.91" y1="260" x2="384.91" y2="272" class="cap"/><line x1="525.65" y1="260" x2="525.65" y2="272" class="cap"/><circle cx="455.28" cy="266" r="6" class="p21"/><text x="467" y="271">22.53%</text><path d="M529 286 l7 -14 l7 14 z" class="p24"/><text x="548" y="286">30.6%</text>
+    <text x="50" y="332">Página internet</text><line x1="283.66" y1="321" x2="398.75" y2="321" class="ci"/><line x1="283.66" y1="315" x2="283.66" y2="327" class="cap"/><line x1="398.75" y1="315" x2="398.75" y2="327" class="cap"/><circle cx="341.20" cy="321" r="6" class="p21"/><text x="353" y="326">11.12%</text><path d="M362 341 l7 -14 l7 14 z" class="p24"/><text x="381" y="341">13.9%</text>
+    <text x="50" y="387">Establecimiento</text><line x1="230" y1="376" x2="243.76" y2="376" class="ci"/><line x1="230" y1="370" x2="230" y2="382" class="cap"/><line x1="243.76" y1="370" x2="243.76" y2="382" class="cap"/><circle cx="236.56" cy="376" r="6" class="p21"/><text x="249" y="381">0.66%</text><path d="M357 396 l7 -14 l7 14 z" class="p24"/><text x="376" y="396">13.4%</text>
+    <text x="50" y="442">Promotor</text><line x1="237.38" y1="431" x2="267.72" y2="431" class="ci"/><line x1="237.38" y1="425" x2="237.38" y2="437" class="cap"/><line x1="267.72" y1="425" x2="267.72" y2="437" class="cap"/><circle cx="252.55" cy="431" r="6" class="p21"/><text x="265" y="426">2.26%</text><path d="M238 451 l7 -14 l7 14 z" class="p24"/><text x="257" y="451">1.5%</text>
+    <text x="50" y="497">Empleador</text><line x1="318.49" y1="486" x2="415.78" y2="486" class="ci"/><line x1="318.49" y1="480" x2="318.49" y2="492" class="cap"/><line x1="415.78" y1="480" x2="415.78" y2="492" class="cap"/><circle cx="367.14" cy="486" r="6" class="p21"/><text x="379" y="481">13.71%</text><path d="M333 506 l7 -14 l7 14 z" class="p24"/><text x="352" y="506">11.0%</text>
+    <text x="50" y="552">Programa social</text><text x="230" y="546" class="small">No existe en catálogo 2021</text><path d="M228 561 l7 -14 l7 14 z" class="p24"/><text x="247" y="561">0.5%</text>
+    <text x="50" y="607">Otro</text><circle cx="230" cy="596" r="6" class="p21"/><text x="242" y="601">0.00%</text><text x="330" y="601" class="small">2024: categoría/p no publicada en el antecedente</text>
+  </g>
+
+  <text x="50" y="700" class="panel">Crédito — comparable con deriva de ejemplos; delta = 2024 − 2021</text>
+  <text x="50" y="721" class="small">2021: n=58, masa=345,435 · 2024: n=200, masa=1,178,431 · el redondeo 2024 induce ±0.05 pp</text>
+  <g>
+    <line x1="230" y1="735" x2="230" y2="1070" class="grid"/><line x1="430" y1="735" x2="430" y2="1070" class="grid"/>
+    <line x1="630" y1="735" x2="630" y2="1070" class="grid"/><line x1="830" y1="735" x2="830" y2="1070" class="grid"/>
+    <line x1="1030" y1="735" x2="1030" y2="1070" class="grid"/><line x1="1130" y1="735" x2="1130" y2="1070" class="grid"/>
+    <text x="224" y="1090" class="small">0%</text><text x="420" y="1090" class="small">20%</text><text x="620" y="1090" class="small">40%</text><text x="820" y="1090" class="small">60%</text><text x="1020" y="1090" class="small">80%</text><text x="1120" y="1090" class="small">90%</text>
+  </g>
+  <g class="label">
+    <text x="50" y="773">Sucursal</text><line x1="247.79" y1="762" x2="376.84" y2="762" class="ci"/><line x1="247.79" y1="756" x2="247.79" y2="768" class="cap"/><line x1="376.84" y1="756" x2="376.84" y2="768" class="cap"/><circle cx="312.31" cy="762" r="6" class="p21"/><text x="324" y="757">8.23%</text><path d="M338 782 l7 -14 l7 14 z" class="p24"/><text x="357" y="782">11.5% · +3.27 pp</text>
+    <text x="50" y="828">App celular</text><line x1="791.02" y1="817" x2="1065.04" y2="817" class="ci"/><line x1="791.02" y1="811" x2="791.02" y2="823" class="cap"/><line x1="1065.04" y1="811" x2="1065.04" y2="823" class="cap"/><circle cx="928.03" cy="817" r="6" class="p21"/><text x="940" y="812">69.80%</text><path d="M798 837 l7 -14 l7 14 z" class="p24"/><text x="817" y="837">57.5% · −12.30 pp</text>
+    <text x="50" y="883">Página internet</text><line x1="268.78" y1="872" x2="434.06" y2="872" class="ci"/><line x1="268.78" y1="866" x2="268.78" y2="878" class="cap"/><line x1="434.06" y1="866" x2="434.06" y2="878" class="cap"/><circle cx="351.42" cy="872" r="6" class="p21"/><text x="363" y="867">12.14%</text><path d="M429 892 l7 -14 l7 14 z" class="p24"/><text x="448" y="892">20.6% · +8.46 pp</text>
+    <text x="50" y="938">Establecimiento</text><line x1="230" y1="927" x2="349.10" y2="927" class="ci"/><line x1="230" y1="921" x2="230" y2="933" class="cap"/><line x1="349.10" y1="921" x2="349.10" y2="933" class="cap"/><circle cx="279.73" cy="927" r="6" class="p21"/><text x="292" y="922">4.97%</text><path d="M256 947 l7 -14 l7 14 z" class="p24"/><text x="275" y="947">3.3% · −1.67 pp</text>
+    <text x="50" y="993">Promotor</text><line x1="230" y1="982" x2="320.94" y2="982" class="ci"/><line x1="230" y1="976" x2="230" y2="988" class="cap"/><line x1="320.94" y1="976" x2="320.94" y2="988" class="cap"/><circle cx="265.69" cy="982" r="6" class="p21"/><text x="278" y="977">3.57%</text><path d="M265 1002 l7 -14 l7 14 z" class="p24"/><text x="284" y="1002">4.2% · +0.63 pp</text>
+    <text x="50" y="1048">Otro</text><line x1="230" y1="1037" x2="261.13" y2="1037" class="ci"/><line x1="230" y1="1031" x2="230" y2="1043" class="cap"/><line x1="261.13" y1="1031" x2="261.13" y2="1043" class="cap"/><circle cx="242.82" cy="1037" r="6" class="p21"/><text x="255" y="1032">1.28%</text><path d="M254 1057 l7 -14 l7 14 z" class="p24"/><text x="273" y="1057">3.1% · +1.82 pp</text>
+  </g>
+  <text x="50" y="1110" class="small">Objeto: canal del último producto de la familia entre tenedores fintech; no canal del producto fintech exacto. Cortes transversales, no panel ni causalidad.</text>
+</svg>

@@ -1,5 +1,7 @@
 # ENCARGO · GEN2-ENIF-FINTECH-SERIE-DESCRIPTIVA
 
+ESTADO: CONSUMIDO — PR #706 abierto; resultados sellados y cierre entregado, merge reservado a mesa.
+
 ENTORNO: CAJA
 COMPUERTA: PR #689 y #694 fusionados; comprobar corpus ENIF y ausencia de tarea duplicada.
 RAMA: acto/gen2-enif-fintech-serie

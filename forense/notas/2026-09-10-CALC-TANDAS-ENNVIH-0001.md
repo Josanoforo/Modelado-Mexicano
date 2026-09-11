@@ -105,7 +105,9 @@ asentó el comprobante `VERIFY-ESTRUCTURADO` en
 `python3 tools/corrida0.py registro --escribe --lote
 CALC-TANDAS-ENNVIH-0001`. El lote añadió exactamente **1 corrida** y **39
 resultados**, sin borrar ni modificar filas ajenas. La vista de usos quedó
-byte-idéntica porque no existe consumidor firmado. Totales posteriores:
-151 corridas, 3,374 resultados y 207 usos. La corrida publicada conserva
-`REPRODUCE/IDENTICO` y cita la fuente estructurada de `ADR-468`; no adopta
-R8.2 ni incrementa el contador GEN2.
+byte-idéntica porque no existe consumidor firmado. Totales inmediatamente
+después de ese lote: 151 corridas, 3,374 resultados y 207 usos. Tras integrar
+los PR #704–#706, que añadieron otra corrida, el seco final del árbol conjunto
+da 152 corridas, 3,505 resultados y 207 usos, sin diferencia contra disco. La
+corrida publicada conserva `REPRODUCE/IDENTICO` y cita la fuente estructurada
+de `ADR-470`; no adopta R8.2 ni incrementa el contador GEN2.
