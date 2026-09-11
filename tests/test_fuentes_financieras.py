@@ -91,6 +91,42 @@ def prueba_encrige_contrasta_porcentaje_publicado() -> None:
         raise AssertionError("debió rechazar el porcentaje discordante")
 
 
+def prueba_periodos_banxico_sin_huecos() -> None:
+    assert F.periodo_banxico("ene-16") == "2016-01"
+    assert F.periodo_banxico("dic-25") == "2025-12"
+    assert F.periodos_mensuales("2021-11", "2022-02") == [
+        "2021-11", "2021-12", "2022-01", "2022-02",
+    ]
+    try:
+        F.periodo_banxico("2026-01")
+    except ValueError as exc:
+        assert "inesperado" in str(exc)
+    else:
+        raise AssertionError("debió rechazar una etiqueta fuera del formato oficial")
+
+
+def prueba_resumen_ensafi_conserva_pesos_y_denominador() -> None:
+    filas = [
+        {"expuesto": "1", "dano": "1", "peso": "2"},
+        {"expuesto": "1", "dano": "2", "peso": "6"},
+        {"expuesto": "2", "dano": "1", "peso": "100"},
+        {"expuesto": "1", "dano": "9", "peso": "50"},
+    ]
+    resumen = F.resumen_ponderado(
+        filas,
+        "peso",
+        lambda fila: fila["expuesto"] == "1" and fila["dano"] in {"1", "2"},
+        lambda fila: fila["dano"] == "1",
+    )
+    assert resumen == {
+        "n_muestra_denominador": "2",
+        "masa_expandida_denominador": "8",
+        "n_muestra_numerador": "1",
+        "masa_expandida_numerador": "2",
+        "porcentaje_ponderado": "25",
+    }
+
+
 def main() -> int:
     pruebas = [
         prueba_periodo_y_unidad_imor,
@@ -98,6 +134,8 @@ def main() -> int:
         prueba_conteos_no_admiten_fracciones,
         prueba_porcentaje_conserva_denominador,
         prueba_encrige_contrasta_porcentaje_publicado,
+        prueba_periodos_banxico_sin_huecos,
+        prueba_resumen_ensafi_conserva_pesos_y_denominador,
     ]
     for prueba in pruebas:
         prueba()

@@ -29718,3 +29718,48 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: 'Diseño muestral ENCRIGE 2020, edición 2021: población objetivo, marco RENEM, diseño
     probabilístico estratificado, muestra y cálculo/ajuste de factores de expansión.'
+
+- id: gen2_banxico_imor_consumo_producto_mensual_2026t1_html
+  usado_para: CNBV_PORTAFOLIO_INFORMACION_IMOR_CONSUMO; R1.6/dinero.credito.scoring_alternativo;
+    publicación oficial equivalente con historia mensual por producto
+  url_origen: https://www.banxico.org.mx/TablasWeb/informes-trimestrales/enero-marzo-2026/B133C3DC-462F-40C1-B2BA-04086A1CFAB1.html
+  fecha_descarga: '2026-09-11'
+  descargado_por: agente; curl+wget con TLS verificado, bytes idénticos
+  archivo: GEN2_FUENTES_FINANCIERAS_CONTINUACION/banxico_imor_producto_2026T1.html
+  sha256: c9691762bb6e086a08b4487f3d121ace04d74b31cfdc7e7a6c4c2512aa96c4b2
+  tamano_bytes: 223734
+  formato: HTML oficial; tabla con exportación CSV generada en cliente
+  licencia: Banco de México, términos de uso del sitio
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Serie oficial equivalente, no R16 CNBV: 2016-01 a 2026-03; banca comercial; incluye
+    Sofomes ER subsidiarias; excluye CI Banco; ruptura IFRS9 desde 2022-01.'
+
+- id: gen2_ensafi2023_diseno_muestral
+  usado_para: ENSAFI_2023_N34_CONSUMIDOR_DEUDOR; N34/R1.7; población, diseño, ponderación
+    y denominadores
+  url_origen: https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463916840.pdf
+  fecha_descarga: '2026-09-11'
+  descargado_por: agente; curl+wget, bytes idénticos
+  archivo: GEN2_FUENTES_FINANCIERAS_CONTINUACION/ensafi_2023_diseno_muestral.pdf
+  sha256: 80a097b28f55cf5b8282f8d0a656d52e0d9b21693663c4f52803f55985a0fb31
+  tamano_bytes: 1540078
+  formato: PDF, diseño muestral ENSAFI 2023
+  licencia: Términos de Libre Uso de la Información del INEGI
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Documenta diseño probabilístico, multietápico, estratificado y por conglomerados;
+    unidad última persona; cobertura nacional y por entidad.
+
+- id: gen2_ensafi2023_presentacion_resultados
+  usado_para: ENSAFI_2023_N34_CONSUMIDOR_DEUDOR; N34/R1.7; contraste oficial de atraso en
+    deuda
+  url_origen: https://www.inegi.org.mx/contenidos/programas/ensafi/2023/doc/ensafi_2023_presentacion_resultados.pdf
+  fecha_descarga: '2026-09-11'
+  descargado_por: agente; curl+wget, bytes idénticos
+  archivo: GEN2_FUENTES_FINANCIERAS_CONTINUACION/ensafi_2023_presentacion_resultados.pdf
+  sha256: 4ad641dff0c90b389044d85efb975ced2dc21fd6a820bab6903b560a32d802ef
+  tamano_bytes: 1545505
+  formato: PDF, presentación oficial de resultados ENSAFI 2023
+  licencia: Términos de Libre Uso de la Información del INEGI
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Publica 27.3% de la población de 18 años y más con deuda que se ha atrasado en algún
+    préstamo o crédito; se usa como control de reproducción, no como parámetro adoptado.
