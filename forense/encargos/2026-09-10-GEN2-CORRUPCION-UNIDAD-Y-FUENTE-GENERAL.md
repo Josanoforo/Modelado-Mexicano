@@ -78,3 +78,10 @@ Avanza entre fases ya autorizadas sin pedir confirmación. Termina cuando entreg
 | Fase 2 · CALC sucesor y adopción de una nueva unidad | DECISIÓN-DE-MESA-PENDIENTE | la sensibilidad exploratoria no mueve RES-0009/0011 ni crea parámetro; NC-0107 permanece abierta | mesa: retirar/sustituir RES-0009/0011 o definir prospectivamente otra unidad |
 | Fase 3 · SONDA web y adquisición productiva del objeto exacto | DIFERIDO-A:GEN2-SONDA-CRON-PRODUCCION-POST693 | NC-0153 llega a selección seca, pero no se adquirió ni midió una fuente exacta | fila `TASA_GENERAL_SOLICITUD_PAGO_INFORMAL_POR_CANAL_TRAMITES_MEXICO` y acto 07R |
 | Fase 4 · cierre material de NC-0107/0111/0153 | DECISIÓN-DE-MESA-PENDIENTE | las tres obligaciones conservan su residual explícito; ninguna sensibilidad ni fila vacía se trata como cierre | mesa para NC-0107; fuente exacta vía NC-0153 para NC-0111/0153 |
+
+## CONSUMIDO
+
+Ejecutado por PR #695 (`acto/gen2-corrupcion-unidad-fuente`). Resultado y
+reservas en
+`forense/notas/2026-09-10-GEN2-CORRUPCION-UNIDAD-Y-FUENTE-GENERAL-cierre.md`.
+El merge corresponde a mesa.
