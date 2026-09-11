@@ -1,0 +1,452 @@
+{
+  "acto": "GEN2-F5-COMPLETA",
+  "bootstrap": {
+    "ic": 0.95,
+    "replicas": 10000,
+    "seed": 42
+  },
+  "celdas": {
+    "CIV-M-01": {
+      "M": 0.294313,
+      "R": 0.25899878251638075,
+      "brazos": {
+        "L_CORPUS": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.25,
+          "validas": 8
+        },
+        "L_SOLO": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.235,
+          "validas": 8
+        }
+      }
+    },
+    "CIV-M-02": {
+      "M": 0.294313,
+      "R": 0.24339981393062482,
+      "brazos": {
+        "L_CORPUS": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.24,
+          "validas": 8
+        },
+        "L_SOLO": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.275,
+          "validas": 8
+        }
+      }
+    },
+    "CIV-M-04": {
+      "M": 0.294313,
+      "R": 0.24366832225578466,
+      "brazos": {
+        "L_CORPUS": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.25,
+          "validas": 8
+        },
+        "L_SOLO": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.255,
+          "validas": 8
+        }
+      }
+    },
+    "CIV-M-10": {
+      "M": 0.294313,
+      "R": 0.20493399286059008,
+      "brazos": {
+        "L_CORPUS": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.23,
+          "validas": 8
+        },
+        "L_SOLO": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.23,
+          "validas": 8
+        }
+      }
+    },
+    "CIV-M-12": {
+      "M": 0.294313,
+      "R": 0.20811159524290274,
+      "brazos": {
+        "L_CORPUS": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.24,
+          "validas": 8
+        },
+        "L_SOLO": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.22,
+          "validas": 8
+        }
+      }
+    },
+    "CIV-M-13": {
+      "M": 0.294313,
+      "R": 0.1946118021509308,
+      "brazos": {
+        "L_CORPUS": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.22,
+          "validas": 8
+        },
+        "L_SOLO": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.2125,
+          "validas": 8
+        }
+      }
+    },
+    "DIN-M-01": {
+      "M": 0.174804,
+      "R": 0.15558094338412926,
+      "brazos": {
+        "L_CORPUS": {
+          "abstenciones": 8,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": null,
+          "validas": 0
+        },
+        "L_SOLO": {
+          "abstenciones": 6,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.18,
+          "validas": 2
+        }
+      }
+    },
+    "FAM-M-01": {
+      "M": 0.457707,
+      "R": 0.5571925669683186,
+      "brazos": {
+        "L_CORPUS": {
+          "abstenciones": 7,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.3,
+          "validas": 1
+        },
+        "L_SOLO": {
+          "abstenciones": 3,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.3,
+          "validas": 5
+        }
+      }
+    },
+    "FAM-M-05": {
+      "M": 0.045694,
+      "R": 0.04745859252351374,
+      "brazos": {
+        "L_CORPUS": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.0475,
+          "validas": 8
+        },
+        "L_SOLO": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.05,
+          "validas": 8
+        }
+      }
+    },
+    "FAM-M-06": {
+      "M": 0.045694,
+      "R": 0.04728548395278385,
+      "brazos": {
+        "L_CORPUS": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.05,
+          "validas": 8
+        },
+        "L_SOLO": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.05,
+          "validas": 8
+        }
+      }
+    },
+    "FAM-M-07": {
+      "M": 0.045694,
+      "R": 0.04377543852935772,
+      "brazos": {
+        "L_CORPUS": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.05,
+          "validas": 8
+        },
+        "L_SOLO": {
+          "abstenciones": 0,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.05,
+          "validas": 8
+        }
+      }
+    },
+    "TRA-M-02": {
+      "M": 0.085118,
+      "R": 0.12602486953090247,
+      "brazos": {
+        "L_CORPUS": {
+          "abstenciones": 7,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.15,
+          "validas": 1
+        },
+        "L_SOLO": {
+          "abstenciones": 4,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.15000000000000002,
+          "validas": 4
+        }
+      }
+    },
+    "TRA-M-03": {
+      "M": 0.085118,
+      "R": 0.04453797671500066,
+      "brazos": {
+        "L_CORPUS": {
+          "abstenciones": 2,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.12,
+          "validas": 6
+        },
+        "L_SOLO": {
+          "abstenciones": 2,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.10500000000000001,
+          "validas": 6
+        }
+      }
+    },
+    "TRA-M-07": {
+      "M": 0.085118,
+      "R": 0.07181522879909936,
+      "brazos": {
+        "L_CORPUS": {
+          "abstenciones": 8,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": null,
+          "validas": 0
+        },
+        "L_SOLO": {
+          "abstenciones": 6,
+          "ejecutadas": 8,
+          "errores_identidad": 0,
+          "errores_tecnicos": 0,
+          "malformadas": 0,
+          "pendientes": 0,
+          "programadas": 8,
+          "punto_mediana": 0.1,
+          "validas": 2
+        }
+      }
+    }
+  },
+  "cobertura_celdas_con_punto": {
+    "L_CORPUS": 12,
+    "L_SOLO": 14,
+    "M": 14
+  },
+  "comparaciones": {
+    "L_CORPUS_vs_L_SOLO": {
+      "delta_mae_pp": -0.06833643448958737,
+      "ic95_hi": 0.5774968988437461,
+      "ic95_lo": -0.7883426368020927,
+      "veredicto": "INCONCLUSO"
+    },
+    "M_vs_L_CORPUS": {
+      "delta_mae_pp": 1.0976474926699082,
+      "ic95_hi": 3.90631767172816,
+      "ic95_lo": -2.798037040182111,
+      "veredicto": "INCONCLUSO"
+    },
+    "M_vs_L_SOLO": {
+      "delta_mae_pp": 1.0293110581803209,
+      "ic95_hi": 3.933769629445853,
+      "ic95_lo": -2.825633072935577,
+      "veredicto": "INCONCLUSO"
+    }
+  },
+  "delta_pp": 0.5,
+  "errores_identidad": [],
+  "mae_pp": {
+    "L_CORPUS": 3.889025747112979,
+    "L_SOLO": 3.9573621816025666,
+    "M": 4.9866732397828875
+  },
+  "marco": 14,
+  "tolerancia_numerica_pp": 1e-09,
+  "u3_ids": [
+    "CIV-M-01",
+    "CIV-M-02",
+    "CIV-M-04",
+    "CIV-M-10",
+    "CIV-M-12",
+    "CIV-M-13",
+    "FAM-M-01",
+    "FAM-M-05",
+    "FAM-M-06",
+    "FAM-M-07",
+    "TRA-M-02",
+    "TRA-M-03"
+  ],
+  "u3_n": 12,
+  "veredicto_global": "SIN-GANADOR-UNICO"
+}
