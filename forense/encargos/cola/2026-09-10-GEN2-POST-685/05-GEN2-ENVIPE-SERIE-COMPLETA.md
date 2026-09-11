@@ -83,10 +83,10 @@ Cada fase termina con resultado o bloqueo preciso y prueba. Cierre completo: aut
 
 ## NO-CORRIDO / RESERVAS
 
-- `NC-0153`: validación independiente de los ocho puntos nuevos, sin reutilizar la función decisiva del adaptador común.
+- `NC-0155`: validación independiente de los ocho puntos nuevos, sin reutilizar la función decisiva del adaptador común.
 - No se adoptó ni recalibró ninguna regla del motor; D12 autoriza el producto de serie, no su activación silenciosa.
 - Tras integrar `origin/main`, el guardián `NC-0094` impidió rederivar de nuevo las vistas porque habría movido replay de 32 corridas ajenas. Se conservaron las vistas ya escritas por este lote y los ocho asientos `VERIFY-ESTRUCTURADO`.
 
 ## CONSUMIDO
 
-Ejecutado por `ACTO GEN2-ENVIPE-SERIE-COMPLETA`: ocho olas nuevas selladas y reproducibles, producto anual 2010–2024 publicado, `NC-0087/0093/0101` cerradas y validación independiente conservada en `NC-0153`. El merge y cualquier adopción pertenecen a mesa.
+Ejecutado por `ACTO GEN2-ENVIPE-SERIE-COMPLETA`: ocho olas nuevas selladas y reproducibles, producto anual 2010–2024 publicado, `NC-0087/0093/0101` cerradas y validación independiente conservada en `NC-0155`. El merge y cualquier adopción pertenecen a mesa.

@@ -65,6 +65,12 @@ class Salida:
     conducta: str
     p: float | None
     clase: str | None
+    aliases: tuple[str, ...] = ()
+    evento: str | None = None
+    dominio_elegible: tuple[tuple[str, object], ...] = ()
+    complemento_de: str | None = None
+    resultado_id: str | None = None
+    uso_motor: str | None = None
 
 
 @dataclass(frozen=True)
@@ -75,6 +81,7 @@ class Regla:
     palancas: tuple[tuple[str, object], ...]       # nivel 2 — booleanos de dominio
     palancas_origen: tuple[str, ...]               # de qué sub-dict vinieron (contexto_*)
     entonces: tuple[Salida, ...]
+    transiciones: tuple[Salida, ...]
     tier: str
     generadores: tuple[str, ...]
     fuente: tuple[str, ...]
@@ -101,15 +108,32 @@ def cargar_reglas(ruta: Path = RUTA_TRAMITE) -> tuple[Regla, ...]:
             if k.startswith("contexto_"):
                 origen.append(k)
                 palancas.extend(sorted((si[k] or {}).items()))
-        entonces = tuple(
-            Salida(e["conducta"], e.get("p"), e.get("clase"))
-            for e in r.get("entonces", [])
-        )
+        entonces = tuple(Salida(
+            conducta=e["conducta"], p=e.get("p"), clase=e.get("clase"),
+            aliases=tuple(e.get("aliases", []) or []),
+            evento=e.get("evento"),
+            dominio_elegible=tuple(sorted(
+                (e.get("dominio_elegible") or {}).items())),
+            complemento_de=e.get("complemento_de"),
+            resultado_id=e.get("corrida0_resultado_id"),
+            uso_motor=e.get("uso_motor"),
+        ) for e in r.get("entonces", []))
+        transiciones = tuple(Salida(
+            conducta=e["conducta"], p=e.get("p"), clase=e.get("clase"),
+            aliases=tuple(e.get("aliases", []) or []),
+            evento=e.get("evento"),
+            dominio_elegible=tuple(sorted(
+                (e.get("dominio_elegible") or {}).items())),
+            complemento_de=e.get("complemento_de"),
+            resultado_id=e.get("corrida0_resultado_id"),
+            uso_motor=e.get("uso_motor"),
+        ) for e in r.get("transiciones", []))
         porque = r.get("porque", {}) or {}
         reglas.append(Regla(
             id=r["id"], situacion=r.get("situacion", ""),
             disparadores=disparadores, palancas=tuple(palancas),
             palancas_origen=tuple(origen), entonces=entonces,
+            transiciones=transiciones,
             tier=r.get("tier", ""),
             generadores=tuple(porque.get("generador", []) or []),
             fuente=tuple(r.get("fuente", []) or []),
@@ -470,15 +494,108 @@ class PrediccionM:
     clase: str | None = None               # clase-como-confianza (IPCC: no probabilística)
     regla_id: str | None = None
     estado: str = "EMITE"
+    derivado_de: str | None = None
+    dominio_elegible: tuple[tuple[str, object], ...] = ()
+    detalle: str = ""
+
+
+def _salida(regla: Regla, conducta: str) -> Salida | None:
+    coincidencias = [s for s in regla.entonces
+                     if conducta == s.conducta or conducta in s.aliases]
+    if len(coincidencias) > 1:
+        raise ValueError(
+            f"alias ambiguo {conducta!r} en regla {regla.id}: "
+            f"{[s.conducta for s in coincidencias]!r}")
+    return coincidencias[0] if coincidencias else None
 
 
 def emitir_binaria(regla: Regla, conducta: str) -> PrediccionM:
-    for s in regla.entonces:
-        if s.conducta == conducta:
-            return PrediccionM("binaria", valor_punto=s.p, valor_categoria=conducta,
-                               clase=s.clase, regla_id=regla.id)
+    """Emite una salida y conserva alias; un complemento se deriva del padre.
+
+    La API historica sigue disponible para replays. Los consumidores nuevos
+    que conocen el contexto deben usar :func:`emitir_binaria_en_contexto`.
+    """
+    s = _salida(regla, conducta)
+    if s is not None:
+        punto = s.p
+        if s.complemento_de:
+            padre = _salida(regla, s.complemento_de)
+            if padre is None or padre.p is None:
+                return PrediccionM(
+                    "binaria", estado="NO-EMITE", regla_id=regla.id,
+                    valor_categoria=s.conducta,
+                    detalle=f"complemento sin padre {s.complemento_de!r}")
+            punto = 1.0 - padre.p
+            if s.p is not None and abs(s.p - punto) > 5e-7:
+                return PrediccionM(
+                    "binaria", estado="CONFLICTO", regla_id=regla.id,
+                    valor_categoria=s.conducta, derivado_de=padre.conducta,
+                    detalle=(f"p materializada {s.p} no coincide con "
+                             f"1-p({padre.conducta})={punto}"))
+        return PrediccionM(
+            "binaria", valor_punto=punto, valor_categoria=s.conducta,
+            clase=s.clase, regla_id=regla.id, derivado_de=s.complemento_de,
+            dominio_elegible=s.dominio_elegible)
     return PrediccionM("binaria", estado="NO-EMITE", regla_id=regla.id,
                        valor_categoria=conducta)
+
+
+def emitir_binaria_en_contexto(regla: Regla, conducta: str,
+                               contexto: dict) -> PrediccionM:
+    """Impide aplicar una tasa condicional fuera de su dominio observado."""
+    s = _salida(regla, conducta)
+    if s is None:
+        return emitir_binaria(regla, conducta)
+    faltan = {k: v for k, v in s.dominio_elegible
+             if k not in contexto or contexto[k] != v}
+    if faltan:
+        return PrediccionM(
+            "binaria", estado="NO_COVERAGE", regla_id=regla.id,
+            valor_categoria=s.conducta, dominio_elegible=s.dominio_elegible,
+            detalle=f"fuera del dominio elegible: requiere {faltan!r}")
+    return emitir_binaria(regla, conducta)
+
+
+def emitir_transicion(regla: Regla, evento: str, contexto: dict) -> PrediccionM:
+    """Emite una transición medida sin mezclarla con la salida legacy."""
+    coincidencias = [s for s in regla.transiciones if s.evento == evento]
+    if len(coincidencias) != 1:
+        return PrediccionM(
+            "binaria", estado="NO-EMITE", regla_id=regla.id,
+            valor_categoria=evento,
+            detalle=f"se esperaban 1 transicion para {evento!r}; hay {len(coincidencias)}")
+    s = coincidencias[0]
+    faltan = {k: v for k, v in s.dominio_elegible
+             if k not in contexto or contexto[k] != v}
+    if faltan:
+        return PrediccionM(
+            "binaria", estado="NO_COVERAGE", regla_id=regla.id,
+            valor_categoria=s.conducta, dominio_elegible=s.dominio_elegible,
+            detalle=f"fuera del dominio elegible: requiere {faltan!r}")
+    return PrediccionM(
+        "binaria", valor_punto=s.p, valor_categoria=s.conducta,
+        clase=s.clase, regla_id=regla.id,
+        dominio_elegible=s.dominio_elegible)
+
+
+def estado_encuci_solicitud_entrega(solicitud: int | None,
+                                    entrega: int | None) -> dict:
+    """Lógica de AP5_17/AP5_18 sin imponer E⊆S ni convertir faltantes en No."""
+    validos = {0, 1, None}
+    if solicitud not in validos or entrega not in validos:
+        raise ValueError("solicitud y entrega deben ser 0, 1 o None")
+    union = 1 if 1 in (solicitud, entrega) else (
+        0 if solicitud == 0 and entrega == 0 else None)
+    return {"solicitud": solicitud, "entrega": entrega, "union": union}
+
+
+def complementar_replicas(punto: float,
+                           replicas: tuple[float, ...] = ()) -> tuple[float, tuple[float, ...]]:
+    """D11: q=1-p y q[b]=1-p[b], nunca un segundo sorteo independiente."""
+    valores = (punto,) + replicas
+    if any(v < 0.0 or v > 1.0 for v in valores):
+        raise ValueError("una proporcion y sus replicas deben estar en [0,1]")
+    return 1.0 - punto, tuple(1.0 - v for v in replicas)
 
 
 # ── Crosswalk pregunta↔máquina, pasada 1 ───────────────────────────────────
