@@ -29488,3 +29488,53 @@
     del host espejo buengobierno (20250215213808, upcp-compranet.buengobierno.gob.mx/publicas/)
     da sha256 IDENTICO 2761a852... -- dos hostnames, un solo objeto, no dos ediciones. EDICION:
     snapshot 2025-01-16; la edicion viva NO se obtuvo (mismo shell Angular medido hoy).'
+
+- id: bauchet_price_information_mexico_author_version_2012_pdf
+  usado_para: PRICE_AND_INFORMATION_TYPE_IN_LIFE_MICROINSURANCE_DEMAND — versión de autor
+    2012 del estudio de Jonathan Bauchet sobre ~8,700 prestatarias de Compartamos en Sonora;
+    cubre contenido académico del objeto SSRN 2474620, pero no se presenta como el artefacto
+    SSRN 2014 ni cierra R1.4
+  url_origen: https://www.dartmouth.edu/neudc2012/docs/paper_208.pdf
+  fecha_descarga: '2026-09-10'
+  descargado_por: Codex CLI, doble descarga curl+wget
+  archivo: milk_rct_microseguro/Bauchet-Price-and-Information-Life-Microinsurance-Mexico-author-version-2012.pdf
+  sha256: 4d252d1938f42b30e34947de3737fae8e4d84099768c54d6056c75188869b8d5
+  tamano_bytes: 1335782
+  formato: PDF, 47 páginas, versión de autor/conferencia 2012
+  licencia: PDF público alojado por Dartmouth/NEUDC; copyright y permiso de redistribución
+    no determinados, conservar fuera de Git para uso de investigación
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Doble descarga por curl y wget idéntica: sha256 4d252d1938f42b30e34947de3737fae8e4d84099768c54d6056c75188869b8d5.
+    Identidad verificada por portada y contenido; diferencia material declarada: 2012/47 páginas
+    vs SSRN 2474620 fechado 2014/49 páginas.'
+
+- id: campos_1998_tandas_mexico_pdf
+  usado_para: 'GEN2 tandas: fuente mexicana directa para selección, reputación, sanciones,
+    tamaño, periodicidad, monto y razones de salida; no es ledger ni tasa de incumplimiento'
+  url_origen: https://sociologicamexico.azc.uam.mx/index.php/Sociologica/article/download/560/533/1103
+  fecha_descarga: '2026-09-10'
+  descargado_por: Codex CLI, doble descarga curl+wget
+  archivo: academico_tandas_mexico/Campos-1998-Las-tandas-en-Mexico.pdf
+  sha256: 6cb62eaa7b3e26db6da9a01ac664ba5119c23e00fd29a893f9c33cdb07e53748
+  tamano_bytes: 3805683
+  formato: PDF, 24 páginas
+  licencia: Artículo académico de acceso público en portal de Sociológica/UAM; derechos de
+    autor de la publicación, uso de investigación
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Doble descarga idéntica. Encuestas nacional 1997 (n=1200) y tres ciudades 1996 (n=741);
+    conservar ambigüedades de denominador/año señaladas en el informe de tandas.
+
+- id: bansefi_patmir_estudio_cualitativo_2006_pdf
+  usado_para: 'GEN2 tandas: casos cualitativos mexicanos con frecuencia, duración, aportación,
+    fondo, confianza y organización; no ponderar ni usar como prevalencia nacional'
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/302502/7.2_Estudio_Cualitativo_BANSEFI-PATMIR-Abril_2006.pdf
+  fecha_descarga: '2026-09-10'
+  descargado_por: Codex CLI, doble descarga curl+wget
+  archivo: academico_tandas_mexico/Estudio-Cualitativo-BANSEFI-PATMIR-2006.pdf
+  sha256: f1ff23f78bce4e7ef076422163bcda41e4bf2f865cae79886cbd6a8bcc13b98a
+  tamano_bytes: 1116816
+  formato: PDF, 233 páginas
+  licencia: Documento público BANSEFI-PATMIR alojado en gob.mx; uso de investigación con atribución
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Doble descarga idéntica. Estudio BANSEFI-CIESAS-UIA: 116 hogares, 21 localidades
+    de 13 estados; evidencia cualitativa, no muestra representativa de tandas.'
