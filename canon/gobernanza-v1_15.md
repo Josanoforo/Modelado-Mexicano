@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **473 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **474 ADR**
 
 > | | |
 > |---|---|
@@ -163,6 +163,8 @@ Cuando una validación rompe o degrada una afirmación:
 ## 4. Registro de decisiones (ADR)
 
 *Formato: qué se decidió · por qué · qué rompería revertirla · estado.*
+
+**ADR-474 · `ACTO GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES · OBTENER UN ARCHIVO NO INVENTA LA SERIE NI EL DENOMINADOR`**, 11/sep/2026, entorno **CAJA Ubuntu/WSL2 con corpus compartido y red oficial; cero llamadas a modelos y cero cambio al motor** (`forense/encargos/2026-09-11-GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES.md`, archivado verbatim por A.3 en `76d11d9`; cierre en `forense/notas/2026-09-11-GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES-cierre.md`). La ruta vigente `ReportViwer/Agrupados` de CNBV entrega el XLS oficial `040-01A-R16`, verificado por dos clientes con TLS estricto y registrado fuera de Git (`3b6ac444…`, 5,491,712 B); sólo contiene el corte 202112 de Total Banca Múltiple. El extractor preserva nueve productos, porcentajes y el vacío original; no lo llama serie. La actualización del libro lee `\\sector5\DGAIN\MINFO\dgaex.txt` y ejecuta `sp_obtiene_reporte`, mientras la sección pública de series históricas no ofrece R16: la historia mensual queda en barrera externa exacta y la fila CNBV en `OBTENIDO-PARCIAL`. Los 29 CSV CONDUSEF ya manifestados se verifican 29/29 y producen inventario más tres agregados que mantienen canales, CONDUSEF/REUNE y ediciones separados; carecen de causa/BNPL y denominador de clientes, por lo que sus conteos no son prevalencia. ENCRIGE 2020 ya estaba en corpus; se añade su diseño oficial (`3f314258…`, 1,185,888 B) y se fija que 4.2–4.4 observan a la empresa acreedora/contratante frente a contrapartes privadas, no al consumidor deudor. La fila conjunta pasa a `OBTENIDO` sólo en adquisición; N34 no queda satisfecha. Seis tablas se reproducen byte a byte; pruebas puras cubren unidad, faltante, duplicación, conteo entero, denominador y la llave registral `fuente_canonica`. FP-324 registra ejecutadas las recetas 3 y 4, conserva la ejecución previa de la 2 y deja abiertas 1 (RUPC) y 5 (OECD PUM). **CONTADOR: cero; no crea CALC, RESULT, parámetro ni adopción.** Integrado sobre `origin/main=4aa9162` después de PR #712. → **Propuesto para revisión de mesa.**
 
 ### Fundación
 

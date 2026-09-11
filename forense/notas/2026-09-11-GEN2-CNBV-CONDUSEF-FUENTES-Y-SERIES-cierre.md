@@ -9,6 +9,8 @@ commit A.3 `76d11d99f998247d556200525a5fb82346867a2a`. La rama partió del `main
 disponible `a37837a0df69240e35c160a53c5c1de209f9be01`, que ya contiene el corte
 #708 requerido. No había rama ni PR abierto del mismo objeto. Estado inicial
 limpio; corpus con 403 payloads resolubles desde `data_raw+descargas_mx`.
+Antes de cerrar se integró `origin/main=4aa91622cba4dca953145b2b241a49716639f0dc`
+(PR #712) y se conciliaron sus cambios compartidos.
 
 Alcance: adquisición y extracción descriptiva. Cero llamadas a modelos, cero
 cambio a motor, `milpa/`, capturas, R, sellos históricos, cron o métodos
@@ -219,7 +221,7 @@ python3 tests/test_fuentes_financieras.py
 | identidad/alcance ENCRIGE | paquete, cuestionario, diseño y tabla de seis resultados | ola 2020 y actor/diseño resueltos | no satisface daño de consumidor-deudor N34 |
 | incorporación canónica | dos altas de manifiesto, dos filas de registro y proyección regenerada | adquisición trazable sin reescribir corpus ajeno | ninguna cifra queda adoptada |
 | pruebas de unidad/duplicación/faltantes | prueba dirigida y `--verifica` | porcentaje≠fracción, conteos enteros, denominadores, vacíos y llaves controlados | suite integral se reporta en el cierre mecánico |
-| FP-324 / recetas 3 y 4 | esta nota y filas registrales | receta CNBV ejecutada hasta barrera; receta ENCRIGE+CONDUSEF ejecutada | las otras tres recetas de FP-324 permanecen abiertas; N34 y la serie CNBV siguen científicamente pendientes |
+| FP-324 / recetas 3 y 4 | esta nota y filas registrales | receta CNBV ejecutada hasta barrera; receta ENCRIGE+CONDUSEF ejecutada | recetas 1 (RUPC) y 5 (OECD PUM) permanecen abiertas; N34 y la serie CNBV siguen científicamente pendientes |
 
 ## 8 · A.8 y contadores
 
