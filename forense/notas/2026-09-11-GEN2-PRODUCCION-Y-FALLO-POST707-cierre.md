@@ -13,6 +13,9 @@ actualizar se preservó como `stash@{0}`, objeto
 `c72508bc0fd29a83348730d6cdc10087b3d281e7cb2b08f61080a4e405be6597`.
 No se usó `reset`/`clean`, no se descartó ningún payload y los 33 documentos
 que el censo marcó como nuevos no se promovieron al manifiesto científico.
+Al cerrar se reaplicó el stash sin borrarlo: el archivo volvió a la misma
+huella SHA-256 y al mismo diff 392/1, y el objeto `1900f77d…` permanece como
+respaldo recuperable adicional.
 
 Después de `git fetch --prune`, `main` estaba ocho commits detrás y avanzó por
 fast-forward a `a37837a0df69240e35c160a53c5c1de209f9be01` (merge de #709), más
@@ -138,7 +141,7 @@ residual y no se fabricó suspendiendo, reiniciando o cambiando el reloj.
 | tarea única y configuración fusionada | exportaciones antes/después, `-WhatIf`, instalación única y doctor real | CUMPLIDA | observar la ventana del 14 de septiembre |
 | atribución programada | acción futura marcada; Operational sigue apagado y el evento histórico no existe | RESERVA EXACTA | habilitar canal elevado y correlacionar evento↔run |
 | recuperación real | `StartWhenAvailable=True`, pero ninguna pérdida real observada | ABIERTA (`NC-0120`) | esperar una pérdida natural; no fabricarla |
-| staging ajeno | stash identificado por objeto y SHA previo | PRESERVADO | reaplicar al terminar el acto y verificar el mismo contenido |
+| staging ajeno | stash identificado por objeto; reaplicado con el mismo SHA y diff 392/1; respaldo retenido | PRESERVADO Y RESTITUIDO | ninguna |
 | retiro del cron legado | `crontab -l` sin línea ejecutable; registro §9 | CUMPLIDA (`NC-0133`) | ninguna |
 | diccionarios CompraNet | tres ids manifestados, snapshot 2025-01-16 | CUMPLIDA SÓLO PARA ESA RECETA | edición viva no afirmada; cuatro recetas de `FP-324` siguen abiertas |
 
