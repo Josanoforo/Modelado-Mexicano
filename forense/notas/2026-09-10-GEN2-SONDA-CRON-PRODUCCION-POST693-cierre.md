@@ -85,7 +85,9 @@ marcador en `%TEMP%`. Tras 20 s no ejecutó (`LastRunTime` centinela de 1999,
 `LastTaskResult=267011`, marcador ausente, `NumberOfMissedRuns=0`). La tarea y
 el marcador se eliminaron en `finally`. Resultado: recuperación **no
 observada**; no se generaliza desde `StartWhenAvailable=True` ni desde esta
-sonda negativa.
+sonda negativa. Verificación posterior: `RecoveryProbesRemaining=0`; la tarea
+productiva siguió `Ready`, con sus argumentos originales y
+`StartWhenAvailable=True`.
 
 ## Pruebas y continuación
 
@@ -96,6 +98,8 @@ sonda negativa.
   aislado que ignora TERM sin matar procesos ajenos.
 - `test_adq_contrato_fix.py`: 20/20; incluye ejecutor/publicación fallidos.
 - `bash -n tools/adquiere_cron.sh` y `git diff --check`: sin errores.
+- `python3 tests/check.py --baseline`: sin delta nuevo; sólo los tres FAIL
+  históricos T06×2/T08×1.
 
 Fase 4 queda compuertada al merge de PR #695 por instrucción adicional de
 mesa. No se duplica su investigación de NC-0153. Después del merge se integra
