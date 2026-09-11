@@ -1,7 +1,7 @@
 <!--
 SHA de redacción: 486eda19944a94d978791eb423559144de98d16b
 Entorno asignado: Cloud; CLI sólo para nuevos estimadores que requieran microdatos
-Estado: VIVO
+Estado: CONSUMIDO
 Fuente verbatim: forense/encargos/cola/2026-09-10-GEN2-POST-685/02-GEN2-MOTOR-USOS-Y-COMPLEMENTOS.md
 sha256 del cuerpo: 4c589782f6c062e1437999afa0ee299d0127184ca7c7a4a4f69fa86885ab2f94
 -->
@@ -81,3 +81,20 @@ Este archivo es autocontenido. Su fuente de autoridad es la instrucción de mesa
 Cada fase termina con resultado o bloqueo preciso y prueba. Cierre completo: autorización → resultado/cambio → evidencia → consumidor, si aplica → FP/NC → vistas/cola → PR y merge. Una decisión firmada no cierra una ejecución pendiente. Registrar fecha real, cita y universo; nada se borra ni se rejuvenece por traslado. Si falta una pieza, usar el vocabulario vigente y sucesor concreto.
 
 **Formato final del ejecutor:** resultado útil en cinco líneas; fases realizadas/pendientes; PR y SHA; pruebas; tabla `obligación | evidencia | cerrada/residual | siguiente acción`. No parar en un inventario cuando el entorno permite ejecutar. No continuar por inercia después de satisfacer el resultado.
+
+## NO-CORRIDO / RESERVAS
+
+- `NC-0085`: la adopción final de RES-0028 requiere firma de mesa.
+- `NC-0107`: las dos tasas ENCIG deduplicadas discrepantes siguen sin adopción.
+- `NC-0111` y `NC-0152`: falta una tasa general ENCIG con denominador general.
+- `NC-0121`/`NC-0122`: no se fabricó serie fintech ni canal exacto de producto.
+- El merge y la eventual renumeración por la colisión de `ADR-455` son de mesa.
+
+## CONSUMIDO
+
+Ejecutado en la rama `acto/gen2-motor-usos` y presentado para revisión en
+PR #689. Commits de ejecución: `6134100` y `9263d2d`; el archivo fue archivado
+antes del objeto en `c655c65`. Resultado y residuales:
+`forense/notas/2026-09-10-GEN2-MOTOR-USOS-Y-COMPLEMENTOS-cierre.md`.
+El merge y la reconciliación de la colisión declarada de `ADR-455` con PR #687
+pertenecen a mesa.
