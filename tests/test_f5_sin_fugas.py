@@ -27,6 +27,14 @@ GENERADOR = importlib.util.module_from_spec(SPEC_GENERADOR)
 assert SPEC_GENERADOR.loader
 SPEC_GENERADOR.loader.exec_module(GENERADOR)
 
+SPEC_MEDIDOR = importlib.util.spec_from_file_location(
+    "medidor_f5_sin_fugas_bajo_prueba",
+    ROOT / "data" / "corrida0" / "CALC-F5-REANALISIS-0001" / "medidor.py",
+)
+MEDIDOR = importlib.util.module_from_spec(SPEC_MEDIDOR)
+assert SPEC_MEDIDOR.loader
+SPEC_MEDIDOR.loader.exec_module(MEDIDOR)
+
 
 def entrada(iid: str, rol: str, contenido, **meta) -> dict:
     if not isinstance(contenido, bytes):
@@ -433,6 +441,53 @@ class TestContrato(unittest.TestCase):
         with self.assertRaisesRegex(CALC.ContratoInvalido,
                                     "comparaciones_no_cubren_triada"):
             CALC.calcular(inputs, contrato, linaje_fixture)
+
+
+class TestInterfazLinaje(unittest.TestCase):
+    class LinajeComun:
+        APTA_LINAJE = "APTA-POR-LINAJE"
+        ORIGEN_INDETERMINADO = "INDETERMINADO"
+        USO_CONFIRMACION_INDEPENDIENTE = "CONFIRMACION-INDEPENDIENTE"
+
+        @staticmethod
+        def aptitud_para_uso(origen, uso, validacion_independiente="NO-HECHA",
+                             rol_evaluacion=""):
+            if (origen == "NUEVO" and uso == "CONFIRMACION-INDEPENDIENTE"
+                    and validacion_independiente == "PASA"
+                    and rol_evaluacion == "EVALUACION-RETENIDA"):
+                return "APTA-POR-LINAJE", "origen y retención acreditados"
+            return "NO-APTA", "no acredita independencia"
+
+    def test_snapshot_retenido_nuevo_es_apto(self):
+        clasificar = MEDIDOR._linaje_comun(self.LinajeComun)
+        resultado = clasificar(celda_m={
+            "origen_numerico": "NUEVO",
+            "camino_linaje": ["M", "fuente-independiente"],
+            "dependencia_objetivo": "NO",
+            "validacion_independiente": "PASA",
+            "rol_evaluacion": "EVALUACION-RETENIDA",
+        })
+        self.assertEqual(resultado["estado"], "APTO")
+        self.assertEqual(resultado["dependencia_objetivo"], "NO")
+
+    def test_heredado_y_dependiente_no_es_apto(self):
+        clasificar = MEDIDOR._linaje_comun(self.LinajeComun)
+        resultado = clasificar(celda_m={
+            "origen_numerico": "HEREDADO",
+            "camino_linaje": "R-OBJETIVO",
+            "dependencia_objetivo": "SI",
+            "validacion_independiente": "PASA",
+            "rol_evaluacion": "EVALUACION-RETENIDA",
+        })
+        self.assertEqual(resultado["estado"], "NO-APTO")
+        self.assertEqual(resultado["camino"], ["R-OBJETIVO"])
+
+    def test_snapshot_historico_sin_campos_queda_indeterminado(self):
+        clasificar = MEDIDOR._linaje_comun(self.LinajeComun)
+        resultado = clasificar(celda_m={})
+        self.assertEqual(resultado["estado"], "INDETERMINADO")
+        self.assertEqual(resultado["origen_numerico"], "INDETERMINADO")
+        self.assertEqual(resultado["dependencia_objetivo"], "INDETERMINADA")
 
 
 class TestBaselineHistorico(unittest.TestCase):
