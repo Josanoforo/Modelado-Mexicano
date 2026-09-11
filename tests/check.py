@@ -342,17 +342,14 @@ HISTORICOS = {
     "REVISION-ADVERSARIAL-PR649.md",
 }
 
-# Paquete GEN2-POST-723, 11/sep/2026: dos encargos encolados verbatim citan
-# artefactos que viven en sus PR predecesores abiertos (#723 y #722). Son
-# dependencias declaradas del encargo, no archivos omitidos por esta carga.
+# Paquete GEN2-POST-723, 11/sep/2026: un encargo encolado verbatim cita un
+# artefacto que vive en su PR predecesor abierto (#723). Es una dependencia
+# declarada del encargo, no un archivo omitido por esta carga.
 # La exencion queda acotada por archivo y basename para no volver globalmente
 # invisible una referencia con el mismo nombre en otro documento.
 _T03_DEPENDENCIAS_PENDIENTES = {
     "forense/encargos/cola/2026-09-11-GEN2-POST-723/27-GEN2-ENSAFI-MEDICION-DESCRIPTIVA-CON-DISENO.md": {
         "2026-09-11-GEN2-FUENTES-FINANCIERAS-CONTINUACION-EFECTIVA-cierre.md",
-    },
-    "forense/encargos/cola/2026-09-11-GEN2-POST-723/31-GEN2-F5-DOCUMENTAL-EJECUCION-PARA-FIRMA.md": {
-        "F5-panel-viabilidad-presupuesto-spec-v1_0.md",
     },
 }
 
