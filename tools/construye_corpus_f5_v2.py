@@ -19,7 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "forense/prereg-duelo-v2/paquete-corpus-F5-v1_0/manifiesto.json"
-SALIDA = ROOT / "forense/prereg-duelo-v2/paquete-corpus-F5-v2_0/manifiesto.json"
+SALIDA = ROOT / "forense/prereg-duelo-v2/paquete-corpus-F5-v2_0/manifiesto-F5-v2_0.json"
 
 TERMINOS = {
     "CIV": ["no denuncia", "denuncia", "miedo al agresor", "desconfianza en la autoridad", "victimizacion"],

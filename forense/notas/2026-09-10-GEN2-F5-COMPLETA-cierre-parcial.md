@@ -44,6 +44,11 @@ la intersección común sube de 3 a 12. Dos celdas siguen sin punto de
   fallos quedaron balanceados 15/15 entre brazos por el orden observado, pero
   distribuidos entre celdas. Esta discrepancia se declara y no se corrige a
   posteriori en los artefactos congelados.
+- Ajuste registral postcaptura: `manifiesto.json` se renombró a
+  `manifiesto-F5-v2_0.json` porque T02 normaliza basenames y detectó colisión
+  con el manifiesto histórico. Sus bytes y SHA256 no cambiaron; por eso el
+  plan y las identidades congeladas siguen reproduciendo. La ruta narrativa
+  de la spec sellada se conserva como registro histórico de la ruta usada.
 
 ## Tabla 14/14 observada
 
