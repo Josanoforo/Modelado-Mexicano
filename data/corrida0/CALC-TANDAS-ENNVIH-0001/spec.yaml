@@ -1,6 +1,6 @@
 calc_id: CALC-TANDAS-ENNVIH-0001
 spec_md: spec.md
-spec_md_sha256: b626b2bb5f7e9fb7bf9c27ccc7518312eb6bb52f8e155b418d966981420faa12
+spec_md_sha256: 4f2203cf09cd0eeadd3597d30d20eb304d952480c4c68e1414e6c5cc07918bca
 script: data/corrida0/CALC-TANDAS-ENNVIH-0001/medidor.py
 
 etiquetas:
@@ -8,7 +8,7 @@ etiquetas:
   tipo: MEDICION-DESCRIPTIVA-MULTIOLA
   cuenta_gen2: NO-SIN-FIRMA-DE-OBJETO
   validacion_independiente: TABULACION-CODEBOOK
-  medidor_ejecutado_al_congelar: "NO; dos intentos de run abortaron antes de producir cifras: representacion heterogenea de folio y ausencia esperable de factor puntual"
+  medidor_ejecutado_al_congelar: "NO; tres intentos de run abortaron antes de producir cifras: representacion de folio, ausencia esperable de factor puntual y discrepancia de una observacion contra codebook 2009"
   regla_relacionada: R8.2
   adopcion_motor: NO-SIN-FIRMA
 

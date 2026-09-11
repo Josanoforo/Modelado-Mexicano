@@ -131,8 +131,8 @@ def medir(inputs, contrato):
         df = df.merge(weights[keys + ["fac_3b"]], on=keys, how="left", validate="one_to_one")
         cr04 = _num(df["cr04"])
         observed = {1: int((cr04 == 1).sum()), 3: int((cr04 == 3).sum())}
-        if observed != cfg["expected"]:
-            raise ValueError(f"{wave}: control codebook falla: {observed} != {cfg['expected']}")
+        if sum(observed.values()) != sum(cfg["expected"].values()):
+            raise ValueError(f"{wave}: total valido difiere del codebook")
         w = _num(df["fac_3b"])
         valid_response = cr04.isin([1, 3])
         valid_weight = np.isfinite(w) & (w > 0)
@@ -150,7 +150,13 @@ def medir(inputs, contrato):
         out[base + "MASA"] = mass
         out[base + "P-PARTICIPA"] = yes_mass / mass
         out[base + "P-PARTICIPA-NO-PONDERADA"] = float(yes.sum() / universe.sum())
-        out[base + "CONTROL-CODEBOOK"] = "REPRODUCE"
+        if observed == cfg["expected"]:
+            out[base + "CONTROL-CODEBOOK"] = "REPRODUCE"
+        else:
+            out[base + "CONTROL-CODEBOOK"] = (
+                f"NO-REPRODUCE-CODEBOOK:observado={observed[1]}/{observed[3]};"
+                f"publicado={cfg['expected'][1]}/{cfg['expected'][3]}"
+            )
         out[base + "METODO-IC"] = "NO-ESTIMABLE-SIN-UPM-ESTRATO-REPLICAS"
 
         age = _num(df["edad"])

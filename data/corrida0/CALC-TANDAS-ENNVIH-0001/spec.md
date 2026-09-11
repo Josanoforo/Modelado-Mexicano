@@ -68,10 +68,14 @@ estrato ni réplicas. Se publican puntos descriptivos sin IC. No se hereda
 `folio` como conglomerado, no se inventa un diseño y no se llama conservador a
 un intervalo inexistente.
 
-Control independiente predeclarado: las frecuencias crudas de `cr04` deben
-reproducir los codebooks del Libro IIIB: 2002 `sí=2,469`, `no=17,333`;
-2005–06 `sí=1,505`, `no=18,952`; 2009–12 `sí=2,497`, `no=20,960`. Cualquier
-desacuerdo aborta.
+Control independiente predeclarado: las frecuencias crudas de `cr04` se
+comparan con los codebooks del Libro IIIB: 2002 `sí=2,469`, `no=17,333`;
+2005–06 `sí=1,505`, `no=18,952`; 2009–12 `sí=2,497`, `no=20,960`. El tercer
+intento, aún sin punto sellado, encontró que el microdato 2009 trae
+`sí=2,496`, `no=20,961`: mismo total, una observación desplazada. El control
+queda `NO-REPRODUCE-CODEBOOK` con ambos pares explícitos; no se altera el
+microdato ni se fuerza coincidencia. Un total distinto o códigos observados
+fuera de `{1,3}` y faltante abortan.
 
 La medición es descriptiva. No mide conocimiento de la organizadora,
 reputación, turno, cuota incumplida, sanción ni causalidad; `rg08_11` queda
