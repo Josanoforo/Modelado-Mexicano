@@ -700,6 +700,26 @@ def t15_adr_count():
         fail("T15", f"{rel(g)}: no se encontró ningún `**ADR-N`")
         return
     real = len(set(nums))
+    # NC-0148: reutiliza exactamente la regla/ancla que gobierna
+    # `cierre_acto.py`; no busca la frase por todo el repo, porque un encargo
+    # archivado puede citarla literalmente sin crear una segunda ancla viva.
+    herramientas = os.path.join(ROOT, "tools")
+    inserto_path = herramientas not in sys.path
+    if inserto_path:
+        sys.path.insert(0, herramientas)
+    try:
+        import cierre_acto as _cierre_acto
+        inspeccion = _cierre_acto.inspeccion_gobernanza(real, raiz=ROOT)
+    except Exception as exc:
+        fail("T15", f"no se pudo comprobar la unicidad L0 con cierre_acto.py: "
+                    f"{type(exc).__name__}: {exc}")
+        inspeccion = None
+    finally:
+        if inserto_path:
+            sys.path.remove(herramientas)
+    if inspeccion is not None and inspeccion["l0_anclas"] != 1:
+        fail("T15", f"canon/estado-programa-v1_12.md trae "
+                    f"{inspeccion['l0_anclas']} ancla(s) L0; se requiere exactamente 1")
     dup = sorted(n for n, c in Counter(nums).items() if c > 1)
     if dup:
         fail("T15", f"{rel(g)}: ADR repetido(s), mismo número dos veces: {dup}")
