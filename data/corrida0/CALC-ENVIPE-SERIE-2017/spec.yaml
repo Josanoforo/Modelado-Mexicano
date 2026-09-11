@@ -1,0 +1,318 @@
+calc_id: CALC-ENVIPE-SERIE-2017
+spec_md: spec.md
+spec_md_sha256: 03603a7c7a7c4631f56da16d3f85cb146771a3fae03550beb921c96756cc68e7
+script: data/corrida0/CALC-ENVIPE-SERIE-2017/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: SERIE-TEMPORAL-DESCRIPTIVA
+  cuenta_gen2: SI
+  cuenta_gen2_firma: 'Encargo GEN2-ENVIPE-SERIE-COMPLETA, 10/sep/2026: para CALC científicos nuevos, aplicar cuenta_gen2=SI
+    con objeto y cita explícitos; objeto: punto anual nuevo de la serie p(C1,U1). El merge de mesa perfecciona la
+    firma.'
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENVIPE-SERIE-COMPLETA-spec-v1_0.md
+  spec_sellada_sha256: ef8b0cdc471d9792b6d53fe1c0a21eee9091a1232ad4bb1cb605d9e136f5de5c
+  decisión: D12; integra NC-0087/0093/0101
+  ruptura_comparabilidad: NINGUNA-EN-C1-U1
+inputs:
+- id: envipe_2017_bd_envipe2017_dbf
+  origen: manifiesto
+- id: IN-ENVIPE-SERIE-COMPLETA-SPEC
+  origen: repo
+  ruta: forense/prereg-caja/ENVIPE-SERIE-COMPLETA-spec-v1_0.md
+  sha256: ef8b0cdc471d9792b6d53fe1c0a21eee9091a1232ad4bb1cb605d9e136f5de5c
+variables:
+- archivo: BASE_DE_DATOS_ENVIPE_2017_en/TMod_Vic.dbf
+  variable: BP1_23
+  rol: 'desenlace: razón principal de no denuncia'
+  codigos: 01..09 sustantivos; NS/NR y blanco excluidos
+  direccion: 01/02/06 = 1; 03/04/05/07/08 = 0 en C1
+- archivo: BASE_DE_DATOS_ENVIPE_2017_en/TMod_Vic.dbf
+  variable: BP1_20
+  rol: filtro no denunció
+  codigos: 1 sí, 2 no
+- archivo: BASE_DE_DATOS_ENVIPE_2017_en/TMod_Vic.dbf
+  variable: BPCOD
+  rol: tipo de delito y filtro personal
+  codigos: personales [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+- archivo: BASE_DE_DATOS_ENVIPE_2017_en/TMod_Vic.dbf
+  variable: FAC_DEL
+  rol: ponderador de delito
+- archivo: BASE_DE_DATOS_ENVIPE_2017_en/TMod_Vic.dbf
+  variable: EST_DIS
+  rol: estrato; llave opaca
+- archivo: BASE_DE_DATOS_ENVIPE_2017_en/TMod_Vic.dbf
+  variable: UPM_DIS
+  rol: UPM; llave opaca
+universo: ENVIPE 2017, delitos de 2016; U1 = delito personal, BP1_20=2, respuesta 01..08 y FAC_DEL válido. Unidad
+  DELITO.
+filtros: 09, [99] y blanco fuera de U1 y contados; ponderador no finito o <=0 fuera; sin diseño entra al punto y
+  se declara.
+ponderador: FAC_DEL; no se usa factor de persona ni FAC_DEL_AM
+transformacion: C1=1 para 01/02/06 y 0 para 03/04/05/07/08; C2 añade 08; sum(w*y)/sum(w); IC analítico ultimate-cluster
+  y bootstrap predeclarado
+estimando: DESCRIPTIVO. P-C1-U1 es el punto de serie; PUNTO es diagnóstico R y no se mezcla con la serie.
+dependencias_materiales:
+- numpy
+parametros:
+  fuente_acto: ACTO GEN2-ENVIPE-SERIE-COMPLETA · CALC-ENVIPE-SERIE-2017
+  ola_encuesta: 2017
+  anio_hecho: 2016
+  payload_id: envipe_2017_bd_envipe2017_dbf
+  formato: DBF
+  tabla_miembro: BASE_DE_DATOS_ENVIPE_2017_en/TMod_Vic.dbf
+  mapa_columnas:
+    BP1_23: BP1_23
+    BP1_20: BP1_20
+    BPCOD: BPCOD
+    FAC_DEL: FAC_DEL
+    ESTRATO: EST_DIS
+    UPM: UPM_DIS
+  bootstrap_replicas: 2000
+  umbral_cv_skip: 0.3
+  codificacion:
+    CR_uno:
+    - 1
+    - 2
+    - 6
+    CR_cero:
+    - 3
+    - 4
+    - 5
+    - 7
+    - 8
+    - 9
+    C1_uno:
+    - 1
+    - 2
+    - 6
+    C1_cero:
+    - 3
+    - 4
+    - 5
+    - 7
+    - 8
+    C2_uno:
+    - 1
+    - 2
+    - 6
+    - 8
+    C2_cero:
+    - 3
+    - 4
+    - 5
+    - 7
+    bpcod_hogar:
+    - 1
+    - 2
+    - 3
+    - 4
+    bpcod_personales:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    codigos_nsnr:
+    - 99
+  sufijos_result:
+  - N-FILAS-TABLA
+  - N-RESPUESTA-01-09
+  - N-NSNR
+  - N-BLANCO
+  - N-SIN-PONDERADOR
+  - N-SIN-DISENO
+  - N-INCONSISTENTES-BP1-20
+  - N-CODIGO-FUERA-DE-CATALOGO
+  - N-BPCOD-HOGAR
+  - N-BPCOD-PERSONALES
+  - MASA-FAC-DEL
+  - PUNTO
+  - EE
+  - IC-LO
+  - IC-HI
+  - N
+  - CV
+  - VEREDICTO-CV
+  - N-ESTRATOS
+  - N-UPM
+  - N-ESTRATOS-UPM-UNICA
+  - METODO-IC
+  - PERFIL-DISENO
+  - PERFIL-LECTURA
+  - PERFIL-BPCOD
+  - N-U1
+  - MASA-FAC-DEL-U1
+  - P-C1-U1
+  - EE-C1-U1
+  - IC-LO-C1-U1
+  - IC-HI-C1-U1
+  - IC-BOOT-LO-C1-U1
+  - IC-BOOT-HI-C1-U1
+  - P-C2-U1
+  - EE-C2-U1
+  - IC-BOOT-LO-C2-U1
+  - IC-BOOT-HI-C2-U1
+  - DELTA-C2-C1
+  - N-ESTRATOS-UPM-UNICA-U1
+  - ESTADO
+seed:
+  aplica: true
+  valor: 20260909
+  rng: numpy.PCG64
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: mismo archivo, orden fijo, semilla y RNG; textos/enteros exactos
+resultados:
+- id: RESULT-ENVIPE-SERIE-2017-N-FILAS-TABLA
+  tipo: entero
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-N-RESPUESTA-01-09
+  tipo: entero
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-N-NSNR
+  tipo: entero
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-N-BLANCO
+  tipo: entero
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-N-SIN-PONDERADOR
+  tipo: entero
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-N-SIN-DISENO
+  tipo: entero
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-N-INCONSISTENTES-BP1-20
+  tipo: entero
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-N-CODIGO-FUERA-DE-CATALOGO
+  tipo: entero
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-N-BPCOD-HOGAR
+  tipo: entero
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-N-BPCOD-PERSONALES
+  tipo: entero
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-MASA-FAC-DEL
+  tipo: flotante
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-PUNTO
+  tipo: proporcion
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO; diagnóstico R sobre U_R, no es el punto de serie
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-EE
+  tipo: flotante
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-IC-LO
+  tipo: proporcion
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-IC-HI
+  tipo: proporcion
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-N
+  tipo: flotante
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-CV
+  tipo: flotante
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-VEREDICTO-CV
+  tipo: texto
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-N-ESTRATOS
+  tipo: entero
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-N-UPM
+  tipo: entero
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-N-ESTRATOS-UPM-UNICA
+  tipo: entero
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-METODO-IC
+  tipo: texto
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-PERFIL-DISENO
+  tipo: texto
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-PERFIL-LECTURA
+  tipo: texto
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-PERFIL-BPCOD
+  tipo: texto
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-N-U1
+  tipo: entero
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-MASA-FAC-DEL-U1
+  tipo: flotante
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-P-C1-U1
+  tipo: proporcion
+  unidad: 'ENVIPE 2017, delitos de 2016, unidad DELITO; PUNTO DE SERIE: proporción ponderada de U1 con razón 01/02/06;
+    FAC_DEL; escala [0,1]'
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-EE-C1-U1
+  tipo: flotante
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-IC-LO-C1-U1
+  tipo: proporcion
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-IC-HI-C1-U1
+  tipo: proporcion
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-IC-BOOT-LO-C1-U1
+  tipo: proporcion
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO; límite IC95 bootstrap de UPM dentro de estrato; con UPM única
+    es límite inferior de anchura
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-IC-BOOT-HI-C1-U1
+  tipo: proporcion
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO; límite IC95 bootstrap de UPM dentro de estrato; con UPM única
+    es límite inferior de anchura
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-P-C2-U1
+  tipo: proporcion
+  unidad: 'ENVIPE 2017, delitos de 2016, unidad DELITO; sensibilidad: C1 más código 08; no sustituye al punto de
+    serie'
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-EE-C2-U1
+  tipo: flotante
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-IC-BOOT-LO-C2-U1
+  tipo: proporcion
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO; límite IC95 bootstrap de UPM dentro de estrato; con UPM única
+    es límite inferior de anchura
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-IC-BOOT-HI-C2-U1
+  tipo: proporcion
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO; límite IC95 bootstrap de UPM dentro de estrato; con UPM única
+    es límite inferior de anchura
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-DELTA-C2-C1
+  tipo: flotante
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO; P-C2-U1 menos P-C1-U1, con signo
+  permite_no_estimable: true
+- id: RESULT-ENVIPE-SERIE-2017-N-ESTRATOS-UPM-UNICA-U1
+  tipo: entero
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO
+- id: RESULT-ENVIPE-SERIE-2017-ESTADO
+  tipo: texto
+  unidad: ENVIPE 2017, delitos de 2016, unidad DELITO

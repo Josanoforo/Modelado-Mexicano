@@ -73,8 +73,27 @@ reglas:
       # Desviacion declarada ANTES de correr en
       # forense/notas/2026-08-31-lote-nube-1-spec.md §P0(b). Si mesa prefiere
       # SUSTITUCION en vez de convivencia, es firma nueva y acto nuevo.
-      - {conducta: paga_mordida_encuci2020, p: 0.125822, clase: "MEDIDO·p(tasa base ponderada)"}  # SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
-      - {conducta: tramite_normal_encuci2020, p: 0.874178, clase: "MEDIDO·p(tasa base ponderada)"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encuci2020); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
+      - conducta: solicitud_o_entrega_mordida_encuci2020
+        aliases: [paga_mordida_encuci2020]
+        evento: "AP5_17=1 o AP5_18=1; unión, no solicitud ni entrega por separado"
+        dominio_elegible: {contacto_funcionario_ultimos_12_meses: true, respuesta_solicitud_entrega_valida: true}
+        p: 0.126006
+        clase: "MEDIDO·p(unión ponderada, condicional a contacto y respuesta válida)"
+        corrida0_resultado_id: RESULT-ENCUCI-A-P-CUALQUIERA
+        corrida0_generacion: GEN2
+        uso_motor: "transición unión S∪E entre contactos; para carga poblacional usar RESULT-ENCUCI-A-P-CUALQUIERA-POBLACION, no esta tasa"
+      - conducta: sin_solicitud_y_sin_entrega_encuci2020
+        aliases: [tramite_normal_encuci2020]
+        evento: "AP5_17=2 y AP5_18=2 dentro del mismo recorte válido"
+        dominio_elegible: {contacto_funcionario_ultimos_12_meses: true, respuesta_solicitud_entrega_valida: true}
+        p: 0.873994
+        clase: "DERIVADO·q=1-p(unión), mismo universo e incertidumbre"
+        complemento_de: solicitud_o_entrega_mordida_encuci2020
+        uso_motor: "complemento dependiente; no sortear como confirmación independiente"
+    transiciones:
+      - {conducta: solicitud_mordida_encuci2020, evento: solicitud, p: 0.106319, clase: "MEDIDO·p(S|contacto,respuesta válida)", dominio_elegible: {contacto_funcionario_ultimos_12_meses: true, respuesta_solicitud_entrega_valida: true}, corrida0_resultado_id: RESULT-ENCUCI-A-P-SOLICITUD, uso_motor: "cuando el estado modelado es que un servidor pide dádiva"}
+      - {conducta: entrega_mordida_encuci2020, evento: entrega, p: 0.073640, clase: "MEDIDO·p(E|contacto,respuesta válida)", dominio_elegible: {contacto_funcionario_ultimos_12_meses: true, respuesta_solicitud_entrega_valida: true}, corrida0_resultado_id: RESULT-ENCUCI-A-P-ENTREGA, uso_motor: "cuando el estado modelado es que la persona da la dádiva; no es P(E|S)"}
+      - {conducta: solicitud_o_entrega_mordida_encuci2020, evento: union, p: 0.126006, clase: "MEDIDO·p(S∪E|contacto,respuesta válida)", dominio_elegible: {contacto_funcionario_ultimos_12_meses: true, respuesta_solicitud_entrega_valida: true}, corrida0_resultado_id: RESULT-ENCUCI-A-P-CUALQUIERA, uso_motor: "sólo si el estado agrupa cualquiera de las dos transiciones"}
     porque: {generador: [G1], mecanismo: "trampa social: cada quien paga porque supone que los demás pagan"}
     tier: FUERTE
     falsable_si: "Si al digitalizar y agregar testigos la mordida no baja, no es trampa social sino otra cosa"
@@ -82,7 +101,7 @@ reglas:
     enmienda_encuci2020:
       sellada_por: "FP-200=b (mesa, 31/ago/2026) -- ACTO MAESTRA32-E20 · LOTE-NUBE-1"
       origen: "milpa/tramite-ola5-propuesta-v0.yaml:107-138 (ADR-236), copiada verbatim"
-      aplica_a: [paga_mordida_encuci2020, tramite_normal_encuci2020]
+      aplica_a: [solicitud_o_entrega_mordida_encuci2020, sin_solicitud_y_sin_entrega_encuci2020, paga_mordida_encuci2020, tramite_normal_encuci2020]
       desenlace: "AP5_17|AP5_18 -- compuesto: 1 si AP5_17=1 o AP5_18=1 (procedencia.yaml:888)"
       ponderador: FAC_SEL
       ola_calibracion: "ENCUCI 2020 (unica ola)"
@@ -147,15 +166,15 @@ reglas:
       # milpa/tramite-ola5-propuesta-v0.yaml:551-576
       # (id tramite.mordida.con_registro_encig2025 + companero_presencial).
       # CORRIDA 1 (1/sep, firma DM) -- presencial VENCIDA EN ALCANCE por 0.000817 y digital CORRECCION SIN CAMBIO MATERIAL (ACTO MAESTRA35-L1, ADR-291); sustituidas en el cálculo por la corrida 2 de abajo por coherencia de corrida (firma r1, mesa 2/sep/2026, ACTO MAESTRA35-N4). Se conservan como historia, no se borran.
-      - {conducta: paga_mordida_encig2025_presencial, p: 0.116000, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}  # SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
-      - {conducta: tramite_normal_encig2025_presencial, p: 0.884000, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_presencial); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
-      - {conducta: paga_mordida_encig2025_digital, p: 0.027358, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}  # SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
-      - {conducta: tramite_normal_encig2025_digital, p: 0.972642, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_digital); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
+      - {conducta: paga_mordida_encig2025_presencial, p: 0.116000, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)", dominio_elegible: {p8_4_observado: true, canal_p7_3: presencial}, uso_motor: "NO-ADOPTAR-NC-0107: variante deduplicada discrepante; conservar sólo como historia"}  # SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
+      - {conducta: tramite_normal_encig2025_presencial, p: 0.884000, clase: "DERIVADO·q=1-p(tasa condicional a canal)", dominio_elegible: {p8_4_observado: true, canal_p7_3: presencial}, complemento_de: paga_mordida_encig2025_presencial, uso_motor: "NO-ADOPTAR-NC-0107: comparte la discrepancia del padre"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_presencial); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
+      - {conducta: paga_mordida_encig2025_digital, p: 0.027358, clase: "MEDIDO·p(tasa base ponderada, condicional a canal)", dominio_elegible: {p8_4_observado: true, canal_p7_3: digital_registrado}, uso_motor: "NO-ADOPTAR-NC-0107: variante deduplicada discrepante; conservar sólo como historia"}  # SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
+      - {conducta: tramite_normal_encig2025_digital, p: 0.972642, clase: "DERIVADO·q=1-p(tasa condicional a canal)", dominio_elegible: {p8_4_observado: true, canal_p7_3: digital_registrado}, complemento_de: paga_mordida_encig2025_digital, uso_motor: "NO-ADOPTAR-NC-0107: comparte la discrepancia del padre"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_digital); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
       # CORRIDA 2 (2/sep, recorrida sin deduplicar, firma r1) -- ACTO MAESTRA35-N4 · SELLA-L1
-      - {conducta: paga_mordida_encig2025_presencial_r2, p: 0.141041, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)", corrida0_resultado_id: RESULT-ENCIG-MOR-B-P-PRE-SD, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio bajo GEN2 (RESULT-ENCIG-MOR-B-P-PRE-SD = 0.1410407168724654, n=11167 eventos, 381 estratos, 2996 UPM -- los dos conteos de diseno identicos a los sellados) y reproduce el 0.141041 al grano de seis decimales (delta -2.831e-07). El `p` NO se movio. SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
-      - {conducta: tramite_normal_encig2025_presencial_r2, p: 0.858959, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_presencial_r2); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
-      - {conducta: paga_mordida_encig2025_digital_r2, p: 0.029868, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)", corrida0_resultado_id: RESULT-ENCIG-MOR-B-P-DIG-SD, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio bajo GEN2 (RESULT-ENCIG-MOR-B-P-DIG-SD = 0.029867554626649372, n=7219 eventos, 362 estratos, 2518 UPM -- identicos a los sellados) y reproduce el 0.029868 al grano de seis decimales (delta -4.454e-07). El `p` NO se movio. SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
-      - {conducta: tramite_normal_encig2025_digital_r2, p: 0.970132, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_digital_r2); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
+      - {conducta: paga_mordida_encig2025_presencial_r2, p: 0.141041, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)", corrida0_resultado_id: RESULT-ENCIG-MOR-B-P-PRE-SD, corrida0_generacion: GEN2, dominio_elegible: {p8_4_observado: true, canal_p7_3: presencial}, uso_motor: "sólo dentro del grupo observado por P8_4; no es tasa general de trámites"}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio bajo GEN2 (RESULT-ENCIG-MOR-B-P-PRE-SD = 0.1410407168724654, n=11167 eventos, 381 estratos, 2996 UPM -- los dos conteos de diseno identicos a los sellados) y reproduce el 0.141041 al grano de seis decimales (delta -2.831e-07). El `p` NO se movio. SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
+      - {conducta: tramite_normal_encig2025_presencial_r2, p: 0.858959, clase: "DERIVADO·q=1-p(tasa condicional a canal)", dominio_elegible: {p8_4_observado: true, canal_p7_3: presencial}, complemento_de: paga_mordida_encig2025_presencial_r2, uso_motor: "mismo grupo observado que el padre; no sortear aparte"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_presencial_r2); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
+      - {conducta: paga_mordida_encig2025_digital_r2, p: 0.029868, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)", corrida0_resultado_id: RESULT-ENCIG-MOR-B-P-DIG-SD, corrida0_generacion: GEN2, dominio_elegible: {p8_4_observado: true, canal_p7_3: digital_registrado}, uso_motor: "sólo dentro del grupo observado por P8_4; no es tasa general de trámites"}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio bajo GEN2 (RESULT-ENCIG-MOR-B-P-DIG-SD = 0.029867554626649372, n=7219 eventos, 362 estratos, 2518 UPM -- identicos a los sellados) y reproduce el 0.029868 al grano de seis decimales (delta -4.454e-07). El `p` NO se movio. SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
+      - {conducta: tramite_normal_encig2025_digital_r2, p: 0.970132, clase: "DERIVADO·q=1-p(tasa condicional a canal)", dominio_elegible: {p8_4_observado: true, canal_p7_3: digital_registrado}, complemento_de: paga_mordida_encig2025_digital_r2, uso_motor: "mismo grupo observado que el padre; no sortear aparte"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_digital_r2); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
     porque: {generador: [G1], mecanismo: "el registro rompe la trampa social"}
     tier: FUERTE
     falsable_si: "Si la digitalización no reduce la mordida, la hipótesis de trampa social falla"
@@ -590,8 +609,8 @@ reglas:
         # no denunciantes), no de una condicional del motor.
       disparadores_estado: PENDIENTE-DE-MESA  # sin cita SI-ENTONCES en canon/modelo-decision-v4_0.md:428-473 (§2.1-2.2); NO se inventa (spec §P0(c))
     entonces:
-      - {conducta: denuncia_con_miedo_o_desconfianza, p: 0.294313, clase: "MEDIDO·p(tasa base ponderada)", corrida0_resultado_id: RESULT-ENVIPE-DEN-P-C2-U4, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENVIPE-1: CALC-ENVIPE-0001 remidió esta tasa bajo GEN2 (RESULT-ENVIPE-DEN-P-C2-U4 = 0.29431298745731216) y reproduce el 0.294313 publicado al grano de seis decimales con que milpa/ materializa (delta −1.254e-08). El merge del PR que aplique esta línea es la adopción (E.2). El `p` NO se movió: se declara de dónde viene.
-      - {conducta: denuncia_por_otra_razon, p: 0.705687, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: denuncia_con_miedo_o_desconfianza, evento: "algún delito no denunciado en U1 con BP1_23 en {01,02,06,08}", dominio_elegible: {victima_18_mas: true, delito_no_denunciado: true, bp1_23_en_01_08: true}, p: 0.294313, clase: "MEDIDO·p(tasa base ponderada)", corrida0_resultado_id: RESULT-ENVIPE-DEN-P-C2-U4, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENVIPE-1: CALC-ENVIPE-0001 remidió esta tasa bajo GEN2 (RESULT-ENVIPE-DEN-P-C2-U4 = 0.29431298745731216) y reproduce el 0.294313 publicado al grano de seis decimales con que milpa/ materializa (delta −1.254e-08). El merge del PR que aplique esta línea es la adopción (E.2). El `p` NO se movió: se declara de dónde viene.
+      - {conducta: denuncia_por_otra_razon, evento: "resto {03,04,05,07} de la partición U1; NO categoría literal 09 Otra", dominio_elegible: {victima_18_mas: true, delito_no_denunciado: true, bp1_23_en_01_08: true}, p: 0.705687, clase: "DERIVADO·q=1-p(C2,U4), mismo recorte e incertidumbre", complemento_de: denuncia_con_miedo_o_desconfianza, uso_motor: "PROPUESTA-NO-ADOPTADA-NC-0085: sólo como resto del recorte U1 a nivel persona; no sortear aparte ni llamar categoría Otra"}
     porque: {generador: [G4], mecanismo: PENDIENTE-DE-MESA}
       # mecanismo causal no re-derivado por este acto (fuera de perimetro);
       # el generador G4 (exposicion_violencia/confianza_institucional[justicia])
@@ -846,8 +865,8 @@ reglas:
       disparadores: {}
       disparadores_estado: "el SI de §3.5 (segsoc=2 ∨ residencia ∈ {EUA, Otro país} ∨ hogar con remesas P041) es circular con el desenlace medido (recibe_remesas) y sus mitades no circulares no existen en concentradohogar; tasa base incondicional sobre universo completo de hogares, declarado en #447"
     entonces:
-      - {conducta: recibe_remesas, p: 0.045694, clase: "MEDIDO·p(tasa base ponderada)", corrida0_resultado_id: RESULT-B-ENIGH-2022-P, corrida0_generacion: GEN2}  # ACTO GEN2-PRIMERA-SILLA P4 (FIRMA 2 de mesa, 8/sep/2026): la PRIMERA cita de un consumidor de milpa/ a un RESULT GEN2. CALC-B-0001 remidio esta tasa bajo GEN2 (RESULT-B-ENIGH-2022-P = 0.04569409956405095) y reproduce el 0.045694 publicado al grano de seis decimales con que milpa/ materializa (delta +9.956e-08). El merge de este PR es la adopcion (E.2). El `p` NO se movio: se declara de donde viene.
-      - {conducta: no_recibe_remesas, p: 0.954306, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: recibe_remesas, evento: "remesas>0 en ENIGH 2022", p: 0.045694, clase: "MEDIDO·p(tasa base ponderada)", corrida0_resultado_id: RESULT-B-ENIGH-2022-P, corrida0_generacion: GEN2, uso_motor: "calibración puntual ENIGH 2022; serie_olas se conserva separada y no se promedia"}  # ACTO GEN2-PRIMERA-SILLA P4 (FIRMA 2 de mesa, 8/sep/2026): la PRIMERA cita de un consumidor de milpa/ a un RESULT GEN2. CALC-B-0001 remidio esta tasa bajo GEN2 (RESULT-B-ENIGH-2022-P = 0.04569409956405095) y reproduce el 0.045694 publicado al grano de seis decimales con que milpa/ materializa (delta +9.956e-08). El merge de este PR es la adopcion (E.2). El `p` NO se movio: se declara de donde viene.
+      - {conducta: no_recibe_remesas, evento: "remesas=0 en ENIGH 2022", p: 0.954306, clase: "DERIVADO·q=1-p(recibe_remesas), misma ola y universo", complemento_de: recibe_remesas, uso_motor: "calibración puntual ENIGH 2022; comparte incertidumbre con el padre y no es una segunda medición"}
     porque: {generador: [G5], mecanismo: "la familia opera como seguro (corresidencia, pooling, remesas) ante ingreso volátil / ausencia de Estado — §3.5 verbatim"}
     tier: FUERTE
     falsable_si: "falsador pre-registrado de R5.1 en forense/hitoD-preregistro-v2_0.md (cita la ficha, no la reescribas)"
@@ -866,6 +885,13 @@ reglas:
       - {ola: 2022, p: 0.045694, ic95: [0.043754, 0.047711], n: 90102, estratos: 560, upm: 10211, ponderador: factor,     hogares_expandidos: 37560123, sha256_payload: "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06", payload_manifiesto_id: enigh2022_nc_csv}
     sha256_payload: "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06"
     payload_manifiesto_id: enigh2022_nc_csv
+    enmienda_procedencia_enigh2022:
+      aplica_a: [recibe_remesas, no_recibe_remesas]
+      instrumento: ENIGH2022
+      ola_calibracion: "ENIGH 2022 (punto usado por estas dos conductas; las demás olas quedan como serie separada)"
+      payload_manifiesto_id: enigh2022_nc_csv
+      sha256_payload: "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06"
+      origen: "CALC-B-0001 / RESULT-B-ENIGH-2022-P; NC-0105 ejecutada por conducta"
 
   - id: dinero.planeacion.formal_estable
     situacion: SELLADA  # D2-a (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8): citando ADR-274 (ACTO MAESTRA34-N1 · SELLA-REGLAS-ACTIVOS-2) -- tier FUERTE, campo situacion desactualizado hasta este acto
@@ -1035,22 +1061,28 @@ reglas:
   - id: dinero.ahorro.horizonte_corto
     situacion: ingreso_sin_seguridad_social
     si:
-      disparadores: {seguridad_social_laboral: false}
+      disparadores: {actividad_laboral: true, seguridad_social_laboral: false}
     entonces:
-      - {conducta: horizonte_corto, p: 0.330600, clase: "MEDIDO·p(tasa base ponderada, condicional a formalidad; P4_10='1', universo restringido A-bis 4, cobertura 66.89%)"}
-      - {conducta: horizonte_no_corto, p: 0.669400, clase: "MEDIDO·p(tasa base ponderada, condicional a formalidad; P4_10='1', universo restringido A-bis 4, cobertura 66.89%)"}
+      - {conducta: horizonte_corto, p: 0.541343, clase: "MEDIDO·p(tasa base ponderada; trabaja sin seguridad social; P4_10∈{1,2})", corrida0_resultado_id: RESULT-ENIF-AHO-A-P-CORTO-SIN-P, corrida0_generacion: GEN2}
+      - {conducta: horizonte_no_corto, p: 0.458657, clase: "DERIVADO·p(1-horizonte_corto sobre el mismo dominio)", derivado_de: RESULT-ENIF-AHO-A-P-CORTO-SIN-P}
     porque: {generador: [G3], mecanismo: "ingreso volátil/informal -- horizonte corto, ahorro informal (tanda, 'guardado en casa'), foco en emergencia -- canon/modelo-decision-v4_0.md:499 verbatim. Dominio agrícola INEJECUTABLE por hueco de mercado (hitoD-R1.1, D archivado, 28/jul/2026) -- no bloquea esta tasa base nacional"}
     tier: FUERTE # firma d1
     falsable_si: "R1.1 en forense/hitoD-preregistro-v2_0.md:25-... (Nota 5, veredicto D archivado 28/jul/2026, hueco de mercado no de dato) y forense/hitoD-R1_1-veredicto-v1_0.md -- cita, no reescribas"
     fuente: ["ENIF2024", "canon/modelo-decision-v4_0.md:499", "milpa/tramite-ola5-propuesta-v0.yaml"]
     ola_calibracion: "ENIF 2024"
-    ic95: [0.312154, 0.349156]
+    ic95: [0.521597, 0.561928]
     n: 4973
     estratos: 189
     upm: 1717
     ponderador: FAC_PER
-    universo: "18+ elegidas ∧ P3_13∈{1..7} ∧ P4_10∈{1..5}; n = 9 031 de 13 502, celda sin seguridad social n = 4 973 -- copiado de la entrada dinero.ahorro.horizonte_corto_ejes_enif2024 de la propuesta"
-    sensibilidad_pre_declarada:
+    universo: "18+ elegidas que trabajan ∧ P3_13=7 ∧ P4_10∈{1..5}; n=4 973; masa expandida=35 086 918 (37.2388% de toda la población 18+)"
+    historico_gen1:
+      estado: "CONSERVADO-NO-VIGENTE · D04 A/A"
+      definicion: "P4_10={1}; agrupación heredada de P3_13 distinta de A/A; cobertura declarada 66.89%"
+      valores: {horizonte_corto: 0.330600, horizonte_no_corto: 0.669400, ic95_corto: [0.312154, 0.349156]}
+      fuente: "milpa/tramite.yaml anterior a D04; ACTO MAESTRA35-L7"
+    sensibilidad_legacy_pre_declarada:
+      nota: "histórica; usó agrupación P3_13 distinta de D04 A/A"
       P4_10_en_1_2: {sin: 0.541300, con: 0.369700}
     referencia_cruzada: "dinero.ahorro.tiene_ahorros.segmentacion_ejes_enif2024 (L1) -- mismo universo formalidad, sin duplicar celdas"
     sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
@@ -1059,22 +1091,28 @@ reglas:
   - id: dinero.ahorro.horizonte_no_corto_con_seguridad_social
     situacion: ingreso_con_seguridad_social
     si:
-      disparadores: {seguridad_social_laboral: true}
+      disparadores: {actividad_laboral: true, seguridad_social_laboral: true}
     entonces:
-      - {conducta: horizonte_corto, p: 0.173400, clase: "MEDIDO·p(tasa base ponderada, condicional a formalidad; P4_10='1', universo restringido A-bis 4, cobertura 66.89%)"}
-      - {conducta: horizonte_no_corto, p: 0.826600, clase: "MEDIDO·p(tasa base ponderada, condicional a formalidad; P4_10='1', universo restringido A-bis 4, cobertura 66.89%)"}
+      - {conducta: horizonte_corto, p: 0.373130, clase: "MEDIDO·p(tasa base ponderada; trabaja con seguridad social; P4_10∈{1,2})", corrida0_resultado_id: RESULT-ENIF-AHO-A-P-CORTO-CON-P, corrida0_generacion: GEN2}
+      - {conducta: horizonte_no_corto, p: 0.626870, clase: "DERIVADO·p(1-horizonte_corto sobre el mismo dominio)", derivado_de: RESULT-ENIF-AHO-A-P-CORTO-CON-P}
     porque: {generador: [G3], mecanismo: "ingreso estable/formal -- horizonte no corto, contraste directo con la celda sin seguridad social de dinero.ahorro.horizonte_corto -- canon/modelo-decision-v4_0.md:499 verbatim"}
     tier: FUERTE # firma d1
     falsable_si: "R1.1 en forense/hitoD-preregistro-v2_0.md:25-... (Nota 5, veredicto D archivado 28/jul/2026, hueco de mercado no de dato) y forense/hitoD-R1_1-veredicto-v1_0.md -- cita, no reescribas"
     fuente: ["ENIF2024", "canon/modelo-decision-v4_0.md:499", "milpa/tramite-ola5-propuesta-v0.yaml"]
     ola_calibracion: "ENIF 2024"
-    ic95: [0.157108, 0.190722]
-    n: 4058
+    ic95: [0.349888, 0.393834]
+    n: 3969
     estratos: 187
-    upm: 1806
+    upm: 1786
     ponderador: FAC_PER
-    universo: "18+ elegidas ∧ P3_13∈{1..7} ∧ P4_10∈{1..5}; n = 9 031 de 13 502, celda con seguridad social n = 4 058 -- copiado de la entrada dinero.ahorro.horizonte_corto_ejes_enif2024 de la propuesta"
-    sensibilidad_pre_declarada:
+    universo: "18+ elegidas que trabajan ∧ P3_13∈{1,2,3,4} ∧ P4_10∈{1..5}; n=3 969; masa expandida=26 064 281 (27.6628% de toda la población 18+)"
+    historico_gen1:
+      estado: "CONSERVADO-NO-VIGENTE · D04 A/A"
+      definicion: "P4_10={1}; P3_13∈{1..6}; cobertura declarada 66.89%"
+      valores: {horizonte_corto: 0.173400, horizonte_no_corto: 0.826600, ic95_corto: [0.157108, 0.190722], n: 4058, upm: 1806}
+      fuente: "milpa/tramite.yaml anterior a D04; ACTO MAESTRA35-L7"
+    sensibilidad_legacy_pre_declarada:
+      nota: "histórica; usó P3_13∈{1..6}, no la seguridad social {1..4} de D04 A/A"
       P4_10_en_1_2: {sin: 0.541300, con: 0.369700}
     referencia_cruzada: "dinero.ahorro.tiene_ahorros.segmentacion_ejes_enif2024 (L1) -- mismo universo formalidad, sin duplicar celdas"
     sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
@@ -1204,8 +1242,8 @@ reglas:
     si:
       disparadores: {}  # NO-APLICA (verbatim del acumulador) -- mapping vacio, mismo patron que civico.denuncia.miedo_desconfianza:577
     entonces:
-      - {conducta: desconfianza_como_razon_principal_conoce_proteccion_enif2024, p: 0.060780, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de conocimiento de la proteccion)", corrida0_resultado_id: RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-P, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENIF-1: CALC-ENIF-0001 remidio esta tasa bajo GEN2 (RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-P = 0.06078, n=426, 138 estratos, 351 UPM) y reproduce el 0.060780 publicado al grano de seis decimales con que milpa/ materializa (delta +0.000e+00). El merge del PR que aplique esta linea es la adopcion (E.2). El `p` NO se movio: se declara de donde viene. DENOMINADOR CORREGIDO respecto de la escala legacy: son personas de 18 anios Y MAS (EDAD_V 18-95; el cuestionario rotula «PARA PERSONAS DE 18 ANIOS Y MAS»), no de 18 a 70 -- la corrida lo verifico con la guardia G-P1 y la escala legacy queda desmentida. Denominador: personas SIN CUENTA que SI conocen la proteccion (n=426). NO suma con la linea de no_conoce: son denominadores distintos. El codigo P5_20='03' CONFLACIONA desconfianza y mal servicio: mide la categoria, no el constructo.
-      - {conducta: desconfianza_como_razon_principal_no_conoce_enif2024, p: 0.054767, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de conocimiento de la proteccion)", corrida0_resultado_id: RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-P, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENIF-1: CALC-ENIF-0001 remidio esta tasa bajo GEN2 (RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-P = 0.054767, n=2544, 186 estratos, 1105 UPM) y reproduce el 0.054767 publicado al grano de seis decimales con que milpa/ materializa (delta +0.000e+00). El merge del PR que aplique esta linea es la adopcion (E.2). El `p` NO se movio: se declara de donde viene. DENOMINADOR CORREGIDO respecto de la escala legacy: 18 anios Y MAS, no 18-70 (guardia G-P1). Denominador: personas SIN CUENTA que NO conocen la proteccion (n=2544). NO suma con la linea de conoce. El eje P5_23 se pregunta a TODA la poblacion (0 blancos en 13502 filas, guardia G-C1): no es un filtro de elegibilidad de 5.20, es un eje POSTERIOR que parte el denominador -- el flujo del cuestionario es 5.20 -> PASE A 5.23.
+      - {conducta: desconfianza_o_mal_servicio_como_razon_principal_conoce_proteccion_enif2024, aliases: [desconfianza_como_razon_principal_conoce_proteccion_enif2024], evento: "P5_20=03: desconfianza o mal servicio", p: 0.060780, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de conocimiento de la proteccion)", corrida0_resultado_id: RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-P, corrida0_generacion: GEN2, dominio_elegible: {sin_cuenta: true, conoce_proteccion_ipab: true}}  # ACTO GEN2-LOTE-ENIF-1: etiqueta corregida por NC-0127 sin cambiar calculo ni adopcion; el alias conserva compatibilidad. CALC-ENIF-0001 midio P5_20=03 bajo GEN2 (0.06078, n=426). P5_20='03' CONFLACIONA desconfianza y mal servicio: mide la categoria, no desconfianza aislada.
+      - {conducta: desconfianza_o_mal_servicio_como_razon_principal_no_conoce_enif2024, aliases: [desconfianza_como_razon_principal_no_conoce_enif2024], evento: "P5_20=03: desconfianza o mal servicio", p: 0.054767, clase: "MEDIDO·p(proporcion ponderada, condicional al eje de conocimiento de la proteccion)", corrida0_resultado_id: RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-P, corrida0_generacion: GEN2, dominio_elegible: {sin_cuenta: true, conoce_proteccion_ipab: false}}  # ACTO GEN2-LOTE-ENIF-1: etiqueta corregida por NC-0127 sin cambiar calculo ni adopcion; el alias conserva compatibilidad. CALC-ENIF-0001 midio P5_20=03 bajo GEN2 (0.054767, n=2544). El eje P5_23 parte el denominador; no es filtro de elegibilidad de 5.20.
     porque: {generador: [G1], mecanismo: "G1 + diseno, con confianza_institucional[financiera] (ADR-52 B); este acto NO re-deriva el generador"}
     falsable_si: NO-APLICA
     fuente: ["ENIF2024", "forense/notas/2026-09-02-MAESTRA35-L9-spec.md"]
@@ -1284,3 +1322,33 @@ reglas:
       medido_en: "ACTO MAESTRA38-LOTE-ENSANUT (L17), 6/sep/2026 -- forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md; tools/medidor_l17_vacunacion_disponible.py"
       nota: "No mueve el tier [FUERTE] de R9.2 (ya lo tenia) -- esta carga es la primera vez que la regla entra al motor, no un cambio de tier. Rama A (ENNVIH) y Rama C (descriptiva, adolescentes) NO se cargan aqui -- solo la Rama B primaria de la spec, tal como la propuesta la sella."
       sha256_payload_manifiesto_referido: "f3aea086cee60e59fa3858334eaa6e00218e30a0b19c67fb37ae806fd586830f"  # sha256 de la spec S7-L17-spec-v1_0.md, no un payload de datos
+
+  # GEN2-ENIF-POBLACION (D05): regla nueva al final para no renumerar la demanda histórica.
+  - id: dinero.ahorro.horizonte_no_trabajadores
+    situacion: sin_ingreso_laboral_actual
+    si:
+      disparadores: {actividad_laboral: false}
+    entonces:
+      - {conducta: horizonte_corto, p: 0.632782, clase: "MEDIDO·p(tasa base ponderada; no trabaja; P4_10∈{1,2})", corrida0_resultado_id: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P, corrida0_generacion: GEN2}
+      - {conducta: horizonte_no_corto, p: 0.367218, clase: "DERIVADO·p(1-horizonte_corto sobre el mismo dominio)", derivado_de: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P}
+    porque: {generador: [G3], mecanismo: "celda poblacional autorizada por D05; describe el colchón de ahorro cuando no hay trabajo actual, sin imputar seguridad social laboral"}
+    tier: FUERTE
+    falsable_si: "Otra medición reproducible del mismo P4_10 y dominio de saltos 3.8/3.9 cambia el punto fuera del error de cómputo"
+    fuente: ["ENIF2024", "data/corrida0/CALC-ENIF-0002/resultados.json", "MESA-10SEP:D05"]
+    ola_calibracion: "ENIF 2024"
+    ic95: [0.608904, 0.656366]
+    ic95_horizonte_no_corto: [0.343634, 0.391096]
+    n: 3462
+    estratos: 189
+    upm: 1554
+    ponderador: FAC_PER
+    universo: "18+ elegidas que no trabajaron el mes anterior: P3_8=8 o P3_9=7; P4_10∈{1..5}; n=3 462; masa expandida=25 090 350 (26.6291% de toda la población 18+)"
+    definicion_actividad: "trabaja=P3_8∈{1,2} o P3_9∈{1..6}; no trabaja=P3_8=8 o P3_9=7; P3_13 no se imputa"
+    limitacion_instrumento: "P4_10=1 combina menos de una semana con no tiene ahorros; NC-0126 permanece visible"
+    cobertura_poblacional:
+      P4_10_valido: {fraccion: 0.956698, n: 12930, masa: 90141468}
+      trabajador_residual: {fraccion: 0.041391, n: 526, masa: 3899919, p_horizonte_corto: 0.596182}
+      P4_10_faltante: {fraccion: 0.043302, n: 572, masa: 4079973}
+      total_descriptivo: {p_horizonte_corto: 0.520528, ic95: [0.507667, 0.533833], nota: "razón directa con diseño; no promedio de tasas"}
+    sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+    payload_manifiesto_id: enif_2024_enif_2024_bd_csv

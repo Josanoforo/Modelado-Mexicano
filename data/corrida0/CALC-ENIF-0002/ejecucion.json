@@ -1,0 +1,201 @@
+{
+ "corrida_id": "CALC-ENIF-0002--5f5469b5e95b",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "SI",
+  "demanda_que_releva": "MESA-10SEP:D04/D05; NC-0124 y NC-0128; celda de no trabajadores y adopcion A/A",
+  "firma_de_contador": "Encargo GEN2-ENIF-POBLACION-Y-ADOPCION, 10/sep/2026, objeto explicito: cuenta_gen2=SI para CALC-ENIF-0002 al ejecutar D04/D05; el merge de mesa perfecciona la firma.",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": false,
+  "spec_sellada": "data/corrida0/CALC-ENIF-0002/spec.md",
+  "spec_sellada_sha256": "b6e5acca642adacbfb1f035caff8a088d22bf0dda1e1239748a1848b638a8834",
+  "tipo": "TASA-BASE-DE-REGLA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-11T01:16:38Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 401,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "5f5469b5e95b3382742d94ff12022e9b542e6454",
+  "git_rama": "acto/gen2-enif-poblacion",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "9fe0470b0ade60a5aa8989925b096cc949b126aa40c9b7c54283c2733fa634a4",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "9fe0470b0ade60a5aa8989925b096cc949b126aa40c9b7c54283c2733fa634a4",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "5f5469b5e95b3382742d94ff12022e9b542e6454",
+ "input_ids": [
+  "enif_2024_enif_2024_bd_csv",
+  "IN-CALC-ENIF-0001-RESULTADOS"
+ ],
+ "input_sha256": {
+  "IN-CALC-ENIF-0001-RESULTADOS": "2a90c52e532e0c8f17ff87f31c70567f7810f337274f895f3a4623d08f4c57e6",
+  "enif_2024_enif_2024_bd_csv": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+ },
+ "parametros": {
+  "bootstrap_replicas": 1000,
+  "codificacion": {
+   "con_ss_p3_13": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "corto_p4_10": [
+    "1",
+    "2"
+   ],
+   "no_corto_p4_10": [
+    "3",
+    "4",
+    "5"
+   ],
+   "no_trabaja_p3_8": [
+    "8"
+   ],
+   "no_trabaja_p3_9": [
+    "7"
+   ],
+   "sin_ss_p3_13": [
+    "7"
+   ],
+   "trabaja_p3_8": [
+    "1",
+    "2"
+   ],
+   "trabaja_p3_9": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ]
+  },
+  "fuente_acto": "ACTO GEN2-ENIF-POBLACION-Y-ADOPCION · CALC-ENIF-0002",
+  "metodo_ic": "bootstrap de UPM_DIS con reemplazo dentro de EST_DIS; percentiles 2.5/97.5"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENIF-POB-G-COLUMNAS-AUSENTES",
+  "RESULT-ENIF-POB-G-DOMINIOS",
+  "RESULT-ENIF-POB-G-ENCODING-USADO",
+  "RESULT-ENIF-POB-G-N-FILAS-TMODULO",
+  "RESULT-ENIF-POB-G-NOTA-P410-1",
+  "RESULT-ENIF-POB-G-NOTA-TOTAL",
+  "RESULT-ENIF-POB-G-P410-PREGUNTA-A-TODOS",
+  "RESULT-ENIF-POB-G-PARTICION-ACTIVIDAD",
+  "RESULT-ENIF-POB-G-PARTICION-ACTIVIDAD-SIN-CLASE-N",
+  "RESULT-ENIF-POB-G-PARTICION-ACTIVIDAD-SOLAPE-N",
+  "RESULT-ENIF-POB-G-PARTICION-PESO-DELTA",
+  "RESULT-ENIF-POB-G-REUSO-CALC-ENIF-0001",
+  "RESULT-ENIF-POB-M-COBERTURA-P410-VALIDO",
+  "RESULT-ENIF-POB-M-NO-TRABAJA-FRACCION",
+  "RESULT-ENIF-POB-M-NO-TRABAJA-N",
+  "RESULT-ENIF-POB-M-NO-TRABAJA-PESO",
+  "RESULT-ENIF-POB-M-P410-FALTANTE-FRACCION",
+  "RESULT-ENIF-POB-M-P410-FALTANTE-N",
+  "RESULT-ENIF-POB-M-P410-FALTANTE-PESO",
+  "RESULT-ENIF-POB-M-PESO-TOTAL-18MAS",
+  "RESULT-ENIF-POB-M-TRABAJA-CON-SS-FRACCION",
+  "RESULT-ENIF-POB-M-TRABAJA-CON-SS-N",
+  "RESULT-ENIF-POB-M-TRABAJA-CON-SS-PESO",
+  "RESULT-ENIF-POB-M-TRABAJA-RESIDUAL-FRACCION",
+  "RESULT-ENIF-POB-M-TRABAJA-RESIDUAL-N",
+  "RESULT-ENIF-POB-M-TRABAJA-RESIDUAL-PESO",
+  "RESULT-ENIF-POB-M-TRABAJA-SIN-SS-FRACCION",
+  "RESULT-ENIF-POB-M-TRABAJA-SIN-SS-N",
+  "RESULT-ENIF-POB-M-TRABAJA-SIN-SS-PESO",
+  "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-IC-HI",
+  "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-IC-LO",
+  "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-METODO-IC",
+  "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-N-DENOMINADOR",
+  "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-N-ESTRATOS",
+  "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-N-ESTRATOS-UPM-UNICA",
+  "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-N-SIN-DISENO",
+  "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-N-UPM",
+  "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P",
+  "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-PESO-DENOMINADOR",
+  "RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-IC-HI",
+  "RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-IC-LO",
+  "RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-METODO-IC",
+  "RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-N-DENOMINADOR",
+  "RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-N-ESTRATOS",
+  "RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-N-ESTRATOS-UPM-UNICA",
+  "RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-N-SIN-DISENO",
+  "RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-N-UPM",
+  "RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-P",
+  "RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-PESO-DENOMINADOR",
+  "RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-IC-HI",
+  "RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-IC-LO",
+  "RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-METODO-IC",
+  "RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-N-DENOMINADOR",
+  "RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-N-ESTRATOS",
+  "RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-N-ESTRATOS-UPM-UNICA",
+  "RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-N-SIN-DISENO",
+  "RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-N-UPM",
+  "RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-P",
+  "RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-PESO-DENOMINADOR"
+ ],
+ "script_blob_sha256": "615550f08de3eb1a160e881ee5c56993d389db1c719cd6954d570264ec8b56bf",
+ "script_path": "data/corrida0/CALC-ENIF-0002/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260910
+ },
+ "spec_id": "CALC-ENIF-0002",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "b6e5acca642adacbfb1f035caff8a088d22bf0dda1e1239748a1848b638a8834",
+ "spec_yaml_sha256": "2c18233c831a23c1350891a38d0d0879deaf2d308fa8df66f7f639e0c979676c",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "seed, RNG y orden de suma fijos; textos y enteros comparan exacto",
+  "tipo": "flotante"
+ }
+}

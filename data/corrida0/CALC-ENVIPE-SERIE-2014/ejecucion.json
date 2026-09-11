@@ -1,0 +1,255 @@
+{
+ "corrida_id": "CALC-ENVIPE-SERIE-2014--b84e8716266d",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_firma": "Encargo GEN2-ENVIPE-SERIE-COMPLETA, 10/sep/2026: para CALC científicos nuevos, aplicar cuenta_gen2=SI con objeto y cita explícitos; objeto: punto anual nuevo de la serie p(C1,U1). El merge de mesa perfecciona la firma.",
+  "decisión": "D12; integra NC-0087/0093/0101",
+  "generacion": "GEN2",
+  "ruptura_comparabilidad": "NINGUNA-EN-C1-U1",
+  "spec_sellada": "forense/prereg-caja/ENVIPE-SERIE-COMPLETA-spec-v1_0.md",
+  "spec_sellada_sha256": "ef8b0cdc471d9792b6d53fe1c0a21eee9091a1232ad4bb1cb605d9e136f5de5c",
+  "tipo": "SERIE-TEMPORAL-DESCRIPTIVA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-11T01:21:29Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 401,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "b84e8716266d2d645378d3a5e8887095910fb6ef",
+  "git_rama": "acto/gen2-envipe-serie",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "b84e8716266d2d645378d3a5e8887095910fb6ef",
+ "input_ids": [
+  "envipe_2014_bd_envipe2014_dbf",
+  "IN-ENVIPE-SERIE-COMPLETA-SPEC"
+ ],
+ "input_sha256": {
+  "IN-ENVIPE-SERIE-COMPLETA-SPEC": "ef8b0cdc471d9792b6d53fe1c0a21eee9091a1232ad4bb1cb605d9e136f5de5c",
+  "envipe_2014_bd_envipe2014_dbf": "8f1d0eb519a0ceabe36d187d9a49734dbef97f219b86eea9084ebd1818973f77"
+ },
+ "parametros": {
+  "anio_hecho": 2013,
+  "bootstrap_replicas": 2000,
+  "codificacion": {
+   "C1_cero": [
+    3,
+    4,
+    5,
+    7,
+    8
+   ],
+   "C1_uno": [
+    1,
+    2,
+    6
+   ],
+   "C2_cero": [
+    3,
+    4,
+    5,
+    7
+   ],
+   "C2_uno": [
+    1,
+    2,
+    6,
+    8
+   ],
+   "CR_cero": [
+    3,
+    4,
+    5,
+    7,
+    8,
+    9
+   ],
+   "CR_uno": [
+    1,
+    2,
+    6
+   ],
+   "bpcod_hogar": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "bpcod_personales": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "codigos_nsnr": [
+    99
+   ]
+  },
+  "formato": "DBF",
+  "fuente_acto": "ACTO GEN2-ENVIPE-SERIE-COMPLETA · CALC-ENVIPE-SERIE-2014",
+  "mapa_columnas": {
+   "BP1_20": "BP1_20",
+   "BP1_23": "BP1_23",
+   "BPCOD": "BPCOD",
+   "ESTRATO": "EST",
+   "FAC_DEL": "FAC_DEL",
+   "UPM": "UPM"
+  },
+  "ola_encuesta": 2014,
+  "payload_id": "envipe_2014_bd_envipe2014_dbf",
+  "sufijos_result": [
+   "N-FILAS-TABLA",
+   "N-RESPUESTA-01-09",
+   "N-NSNR",
+   "N-BLANCO",
+   "N-SIN-PONDERADOR",
+   "N-SIN-DISENO",
+   "N-INCONSISTENTES-BP1-20",
+   "N-CODIGO-FUERA-DE-CATALOGO",
+   "N-BPCOD-HOGAR",
+   "N-BPCOD-PERSONALES",
+   "MASA-FAC-DEL",
+   "PUNTO",
+   "EE",
+   "IC-LO",
+   "IC-HI",
+   "N",
+   "CV",
+   "VEREDICTO-CV",
+   "N-ESTRATOS",
+   "N-UPM",
+   "N-ESTRATOS-UPM-UNICA",
+   "METODO-IC",
+   "PERFIL-DISENO",
+   "PERFIL-LECTURA",
+   "PERFIL-BPCOD",
+   "N-U1",
+   "MASA-FAC-DEL-U1",
+   "P-C1-U1",
+   "EE-C1-U1",
+   "IC-LO-C1-U1",
+   "IC-HI-C1-U1",
+   "IC-BOOT-LO-C1-U1",
+   "IC-BOOT-HI-C1-U1",
+   "P-C2-U1",
+   "EE-C2-U1",
+   "IC-BOOT-LO-C2-U1",
+   "IC-BOOT-HI-C2-U1",
+   "DELTA-C2-C1",
+   "N-ESTRATOS-UPM-UNICA-U1",
+   "ESTADO"
+  ],
+  "tabla_miembro": "bd_envipe2014/bd_envipe2014/TMod_Vic.dbf",
+  "umbral_cv_skip": 0.3
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENVIPE-SERIE-2014-CV",
+  "RESULT-ENVIPE-SERIE-2014-DELTA-C2-C1",
+  "RESULT-ENVIPE-SERIE-2014-EE",
+  "RESULT-ENVIPE-SERIE-2014-EE-C1-U1",
+  "RESULT-ENVIPE-SERIE-2014-EE-C2-U1",
+  "RESULT-ENVIPE-SERIE-2014-ESTADO",
+  "RESULT-ENVIPE-SERIE-2014-IC-BOOT-HI-C1-U1",
+  "RESULT-ENVIPE-SERIE-2014-IC-BOOT-HI-C2-U1",
+  "RESULT-ENVIPE-SERIE-2014-IC-BOOT-LO-C1-U1",
+  "RESULT-ENVIPE-SERIE-2014-IC-BOOT-LO-C2-U1",
+  "RESULT-ENVIPE-SERIE-2014-IC-HI",
+  "RESULT-ENVIPE-SERIE-2014-IC-HI-C1-U1",
+  "RESULT-ENVIPE-SERIE-2014-IC-LO",
+  "RESULT-ENVIPE-SERIE-2014-IC-LO-C1-U1",
+  "RESULT-ENVIPE-SERIE-2014-MASA-FAC-DEL",
+  "RESULT-ENVIPE-SERIE-2014-MASA-FAC-DEL-U1",
+  "RESULT-ENVIPE-SERIE-2014-METODO-IC",
+  "RESULT-ENVIPE-SERIE-2014-N",
+  "RESULT-ENVIPE-SERIE-2014-N-BLANCO",
+  "RESULT-ENVIPE-SERIE-2014-N-BPCOD-HOGAR",
+  "RESULT-ENVIPE-SERIE-2014-N-BPCOD-PERSONALES",
+  "RESULT-ENVIPE-SERIE-2014-N-CODIGO-FUERA-DE-CATALOGO",
+  "RESULT-ENVIPE-SERIE-2014-N-ESTRATOS",
+  "RESULT-ENVIPE-SERIE-2014-N-ESTRATOS-UPM-UNICA",
+  "RESULT-ENVIPE-SERIE-2014-N-ESTRATOS-UPM-UNICA-U1",
+  "RESULT-ENVIPE-SERIE-2014-N-FILAS-TABLA",
+  "RESULT-ENVIPE-SERIE-2014-N-INCONSISTENTES-BP1-20",
+  "RESULT-ENVIPE-SERIE-2014-N-NSNR",
+  "RESULT-ENVIPE-SERIE-2014-N-RESPUESTA-01-09",
+  "RESULT-ENVIPE-SERIE-2014-N-SIN-DISENO",
+  "RESULT-ENVIPE-SERIE-2014-N-SIN-PONDERADOR",
+  "RESULT-ENVIPE-SERIE-2014-N-U1",
+  "RESULT-ENVIPE-SERIE-2014-N-UPM",
+  "RESULT-ENVIPE-SERIE-2014-P-C1-U1",
+  "RESULT-ENVIPE-SERIE-2014-P-C2-U1",
+  "RESULT-ENVIPE-SERIE-2014-PERFIL-BPCOD",
+  "RESULT-ENVIPE-SERIE-2014-PERFIL-DISENO",
+  "RESULT-ENVIPE-SERIE-2014-PERFIL-LECTURA",
+  "RESULT-ENVIPE-SERIE-2014-PUNTO",
+  "RESULT-ENVIPE-SERIE-2014-VEREDICTO-CV"
+ ],
+ "script_blob_sha256": "0f5befa2e9e801525cf2b263febfe45691b77eb6cf17f72f532b3f7258824f09",
+ "script_path": "data/corrida0/CALC-ENVIPE-SERIE-2014/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260909
+ },
+ "spec_id": "CALC-ENVIPE-SERIE-2014",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "04ffecdeaca1fddfcd7808bf060daaf39d33bc38242f94c3c353b3039b05b1ef",
+ "spec_yaml_sha256": "ea60b44aef509f8a6cac461458d23d8ec9f7bfe1e1c5dd13a941c9a4df9803d7",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "mismo archivo, orden fijo, semilla y RNG; textos/enteros exactos",
+  "tipo": "flotante"
+ }
+}

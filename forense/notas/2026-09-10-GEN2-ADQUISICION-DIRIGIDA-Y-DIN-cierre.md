@@ -43,7 +43,7 @@ un `CALC`, no se adopta un parámetro y el contador de mediciones GEN2 es cero.
 - `tests/test_cola_writer.py`: `5/5 OK`.
 - `tests/test_manifiesto_seguro.py`: `4/4 OK`.
 - Registro/vista: 139 filas y reproducción byte-exacta.
-- `tests/check.py --baseline`: `LÍNEA BASE: VERDE`; 3 fallos y 2 264 avisos
+- `tests/check.py --baseline`: `LÍNEA BASE: VERDE`; 3 fallos y 2 634 avisos
   heredados, cero entradas nuevas.
 
 ## Obligaciones

@@ -1,0 +1,150 @@
+calc_id: CALC-ENIF-0002
+spec_md: spec.md
+spec_md_sha256: b6e5acca642adacbfb1f035caff8a088d22bf0dda1e1239748a1848b638a8834
+script: data/corrida0/CALC-ENIF-0002/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: TASA-BASE-DE-REGLA
+  cuenta_gen2: SI
+  validacion_independiente: NO-HECHA
+  spec_sellada: data/corrida0/CALC-ENIF-0002/spec.md
+  spec_sellada_sha256: b6e5acca642adacbfb1f035caff8a088d22bf0dda1e1239748a1848b638a8834
+  demanda_que_releva: "MESA-10SEP:D04/D05; NC-0124 y NC-0128; celda de no trabajadores y adopcion A/A"
+  firma_de_contador: "Encargo GEN2-ENIF-POBLACION-Y-ADOPCION, 10/sep/2026, objeto explicito: cuenta_gen2=SI para CALC-ENIF-0002 al ejecutar D04/D05; el merge de mesa perfecciona la firma."
+  medidor_ejecutado_al_congelar: NO
+
+payloads:
+  - id: enif_2024_enif_2024_bd_csv
+    archivo: enif_2024_bd_csv.zip
+    sha256: 00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039
+    miembro_usado: TMODULO.csv
+
+codebook:
+  - id: enif2024_fd_xlsx
+    archivo: enif_2024_fd.xlsx
+    sha256: 17e2ad86ce9e4fd5783ee54e9b51ee436b934e002d5736b82094070c74a25db2
+    rol: "autoridad de nemonicos, codigos y blancos por secuencia"
+  - id: enif2024_cuestionario_pdf
+    archivo: enif_2024_cuestionario.pdf
+    sha256: 32e37cc13da38691dee20fbffcef3637aeb87b8dac194e64f83bebed8b57ef8b
+    rol: "autoridad de saltos 3.8 -> 3.9/3.10/3.14; 3.9 -> 3.10/3.14; 3.10=6 -> 3.14"
+
+variables:
+  - {archivo: TMODULO.csv, variable: P3_8, rol: "condicion de actividad; 1/2 trabajan; 8 pase directo a 3.14; 3..7/9 pasan por 3.9", codigos: "1..9"}
+  - {archivo: TMODULO.csv, variable: P3_9, rol: "verificacion de actividad; 1..6 actividad; 7 ninguna actividad por ingreso; b por secuencia", codigos: "1..7,b"}
+  - {archivo: TMODULO.csv, variable: P3_10, rol: "guardia de trabajador sin pago; 6 pasa a 3.14 y deja P3_13 blanco", codigos: "1..6,b"}
+  - {archivo: TMODULO.csv, variable: P3_13, rol: "eje solo para trabajadores; con SS 1..4, sin SS 7, residual 5/6/9/b", codigos: "1..7,9,b"}
+  - {archivo: TMODULO.csv, variable: P4_10, rol: "desenlace preguntado a toda la poblacion; corto 1/2; no corto 3/4/5; NS/NR 8/9", codigos: "1..5,8,9"}
+  - {archivo: TMODULO.csv, variable: FAC_PER, rol: "factor de expansion de persona", codigos: "numerico positivo"}
+  - {archivo: TMODULO.csv, variable: EST_DIS, rol: "estrato de diseno como texto opaco", codigos: "001..190"}
+  - {archivo: TMODULO.csv, variable: UPM_DIS, rol: "UPM de diseno como texto opaco", codigos: "00001..02172"}
+
+universo: >-
+  ENIF 2024, personas elegidas de 18 anios y mas en viviendas particulares,
+  TMODULO.csv. U_NT = (P3_8=8 o P3_9=7) y P4_10 en 1..5 y FAC_PER valido.
+  Trabaja = P3_8 en 1/2 o P3_9 en 1..6. P3_13 nunca se imputa.
+filtros: >-
+  P4_10 8/9/blanco/invalido se cuenta como faltante y sale de las tasas; peso
+  no finito o no positivo sale. La particion de actividad debe ser exhaustiva
+  y disjunta sobre P4_10 valido o el medidor para.
+ponderador: "FAC_PER de TMODULO.csv; unidad persona, nunca FAC_VIV/FAC_HOG"
+transformacion: >-
+  corto=1[P4_10 en {1,2}], no_corto=1[P4_10 en {3,4,5}]. La particion
+  poblacional es trabaja-con-SS / trabaja-sin-SS / no-trabaja /
+  trabaja-residual. El total es una razon directa, no promedio de tasas.
+estimando: >-
+  Descriptivo. Primario: p(horizonte corto | no trabaja). Secundarios:
+  p(corto | trabajador residual), p(corto | poblacion 18+ con P4_10 valido),
+  masas y cobertura. CALC-ENIF-0001 se reutiliza para las celdas trabajadoras
+  A/A y no se vuelve a medir.
+
+inputs:
+  - id: enif_2024_enif_2024_bd_csv
+    origen: manifiesto
+  - id: IN-CALC-ENIF-0001-RESULTADOS
+    origen: repo
+    ruta: data/corrida0/CALC-ENIF-0001/resultados.json
+    sha256: 2a90c52e532e0c8f17ff87f31c70567f7810f337274f895f3a4623d08f4c57e6
+
+seed: {aplica: true, valor: 20260910, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: "seed, RNG y orden de suma fijos; textos y enteros comparan exacto"
+
+resultados:
+  - {id: RESULT-ENIF-POB-G-N-FILAS-TMODULO, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIF-POB-G-ENCODING-USADO, tipo: texto, unidad: encoding}
+  - {id: RESULT-ENIF-POB-G-COLUMNAS-AUSENTES, tipo: texto, unidad: guardia}
+  - {id: RESULT-ENIF-POB-G-DOMINIOS, tipo: texto, unidad: guardia}
+  - {id: RESULT-ENIF-POB-G-PARTICION-ACTIVIDAD-SOLAPE-N, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIF-POB-G-PARTICION-ACTIVIDAD-SIN-CLASE-N, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIF-POB-G-PARTICION-ACTIVIDAD, tipo: texto, unidad: guardia}
+  - {id: RESULT-ENIF-POB-G-P410-PREGUNTA-A-TODOS, tipo: texto, unidad: guardia}
+  - {id: RESULT-ENIF-POB-G-REUSO-CALC-ENIF-0001, tipo: texto, unidad: guardia}
+  - {id: RESULT-ENIF-POB-M-PESO-TOTAL-18MAS, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIF-POB-M-TRABAJA-CON-SS-N, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIF-POB-M-TRABAJA-CON-SS-PESO, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIF-POB-M-TRABAJA-CON-SS-FRACCION, tipo: flotante, unidad: proporcion poblacional}
+  - {id: RESULT-ENIF-POB-M-TRABAJA-SIN-SS-N, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIF-POB-M-TRABAJA-SIN-SS-PESO, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIF-POB-M-TRABAJA-SIN-SS-FRACCION, tipo: flotante, unidad: proporcion poblacional}
+  - {id: RESULT-ENIF-POB-M-NO-TRABAJA-N, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIF-POB-M-NO-TRABAJA-PESO, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIF-POB-M-NO-TRABAJA-FRACCION, tipo: flotante, unidad: proporcion poblacional}
+  - {id: RESULT-ENIF-POB-M-TRABAJA-RESIDUAL-N, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIF-POB-M-TRABAJA-RESIDUAL-PESO, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIF-POB-M-TRABAJA-RESIDUAL-FRACCION, tipo: flotante, unidad: proporcion poblacional}
+  - {id: RESULT-ENIF-POB-M-P410-FALTANTE-N, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIF-POB-M-P410-FALTANTE-PESO, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIF-POB-M-P410-FALTANTE-FRACCION, tipo: flotante, unidad: proporcion poblacional}
+  - {id: RESULT-ENIF-POB-M-COBERTURA-P410-VALIDO, tipo: flotante, unidad: proporcion poblacional}
+  - {id: RESULT-ENIF-POB-G-PARTICION-PESO-DELTA, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-N-DENOMINADOR, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P, tipo: flotante, unidad: proporcion ponderada}
+  - {id: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-IC-LO, tipo: flotante, unidad: IC95 inferior}
+  - {id: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-IC-HI, tipo: flotante, unidad: IC95 superior}
+  - {id: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-METODO-IC, tipo: texto, unidad: metodo}
+  - {id: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-PESO-DENOMINADOR, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-N-ESTRATOS, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-N-UPM, tipo: entero, unidad: UPM}
+  - {id: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-N-SIN-DISENO, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-N-DENOMINADOR, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-P, tipo: flotante, unidad: proporcion ponderada}
+  - {id: RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-IC-LO, tipo: flotante, unidad: IC95 inferior}
+  - {id: RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-IC-HI, tipo: flotante, unidad: IC95 superior}
+  - {id: RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-METODO-IC, tipo: texto, unidad: metodo}
+  - {id: RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-PESO-DENOMINADOR, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-N-ESTRATOS, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-N-UPM, tipo: entero, unidad: UPM}
+  - {id: RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENIF-POB-P-CORTO-TRABAJA-RESIDUAL-N-SIN-DISENO, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-N-DENOMINADOR, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-P, tipo: flotante, unidad: proporcion ponderada}
+  - {id: RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-IC-LO, tipo: flotante, unidad: IC95 inferior}
+  - {id: RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-IC-HI, tipo: flotante, unidad: IC95 superior}
+  - {id: RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-METODO-IC, tipo: texto, unidad: metodo}
+  - {id: RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-PESO-DENOMINADOR, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-N-ESTRATOS, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-N-UPM, tipo: entero, unidad: UPM}
+  - {id: RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENIF-POB-P-CORTO-POBLACION-18MAS-N-SIN-DISENO, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIF-POB-G-NOTA-P410-1, tipo: texto, unidad: limitacion instrumental}
+  - {id: RESULT-ENIF-POB-G-NOTA-TOTAL, tipo: texto, unidad: metodo}
+
+dependencias_materiales: [numpy]
+parametros:
+  fuente_acto: "ACTO GEN2-ENIF-POBLACION-Y-ADOPCION · CALC-ENIF-0002"
+  bootstrap_replicas: 1000
+  metodo_ic: "bootstrap de UPM_DIS con reemplazo dentro de EST_DIS; percentiles 2.5/97.5"
+  codificacion:
+    trabaja_p3_8: ["1", "2"]
+    trabaja_p3_9: ["1", "2", "3", "4", "5", "6"]
+    no_trabaja_p3_8: ["8"]
+    no_trabaja_p3_9: ["7"]
+    con_ss_p3_13: ["1", "2", "3", "4"]
+    sin_ss_p3_13: ["7"]
+    corto_p4_10: ["1", "2"]
+    no_corto_p4_10: ["3", "4", "5"]
