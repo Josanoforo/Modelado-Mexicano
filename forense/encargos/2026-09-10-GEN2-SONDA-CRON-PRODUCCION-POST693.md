@@ -72,3 +72,13 @@ Usa `tools/cierre_acto.py` primero en seco y luego `--aplica` cuando corresponda
 **Pruebas y parada.** Validar primero el resultado material; correr el baseline requerido sin ampliarlo para ocultar fallos. No perseguir los tres FAIL históricos por rutina. No volver a arreglar NC-0141/0148: #690 ya lo hizo. Revisar el diff después de las pruebas y añadir sólo archivos deliberados. D-14: cualquier automatización adicional debe evitar un error observado con efecto material y costar menos que su corrección repetida; si no, resolver directamente. Auditoría aproximadamente 20%, salvo riesgo material en números, identidad o decisión.
 
 Avanza entre fases ya autorizadas sin pedir confirmación. Termina cuando entregues el resultado suficiente o un residual externo concreto. Cadena de cierre: autorización → producto → evidencia → consumidor cuando aplique → obligaciones → vistas/cola → PR → merge de mesa. Una fila mixta conserva su parte pendiente. No cerrar por palabra coincidente ni por recomendación. Respuesta final del ejecutor: resultado útil, fases cumplidas/pendientes, PR/SHA, pruebas, y tabla `obligación | evidencia | cerrada/residual | siguiente acción`.
+
+## CONSUMIDO
+
+Ejecutado el 10/sep/2026 en `acto/gen2-sonda-cron-produccion`; PR #704,
+ADR-466. Configuración, pruebas y evidencia operativa en
+`forense/notas/2026-09-10-GEN2-SONDA-CRON-PRODUCCION-POST693-cierre.md`.
+La Fase 4 consume el resultado fusionado de PR #695 sin repetir su búsqueda:
+`NC-0153` y su demanda permanecen `OBTENIDO-PARCIAL`, diferidas con causa y
+recibo. `NC-0115` cierra; `NC-0114` y `NC-0120` conservan sus residuales
+operativos exactos. Merge de #704 reservado a mesa.
