@@ -9,8 +9,7 @@ import hashlib
 import io
 import json
 import math
-import shutil
-import tempfile
+import struct
 import zipfile
 from collections import Counter, defaultdict
 from dataclasses import dataclass
@@ -80,17 +79,49 @@ def iter_records(path: Path, wave: Wave):
                     yield {column: upper.get(column.upper()) for column in columns}
             return
 
-        import pyreadstat
+        with archive.open(member) as binary:
+            yield from iter_dbf_records(binary, columns)
 
-        suffix = Path(member).suffix or ".dbf"
-        with tempfile.NamedTemporaryFile(suffix=suffix) as extracted:
-            with archive.open(member) as source:
-                shutil.copyfileobj(source, extracted)
-            extracted.flush()
-            frame, _ = pyreadstat.read_dbf(extracted.name, usecols=columns)
-            for raw in frame.to_dict(orient="records"):
-                upper = {str(key).upper(): value for key, value in raw.items()}
-                yield {column: upper.get(column.upper()) for column in columns}
+
+def iter_dbf_records(binary, columns):
+    """Lee las columnas necesarias de dBase III/IV sin una librería de análisis."""
+    header = binary.read(32)
+    if len(header) != 32:
+        raise ValueError("cabecera DBF truncada")
+    record_count = struct.unpack("<I", header[4:8])[0]
+    header_length = struct.unpack("<H", header[8:10])[0]
+    record_length = struct.unpack("<H", header[10:12])[0]
+    field_area = binary.read(header_length - 32)
+    fields = []
+    offset = 1
+    cursor = 0
+    while cursor < len(field_area) and field_area[cursor] != 0x0D:
+        descriptor = field_area[cursor : cursor + 32]
+        if len(descriptor) != 32:
+            raise ValueError("descriptor DBF truncado")
+        name = descriptor[:11].split(b"\x00", 1)[0].decode("ascii", errors="strict").upper()
+        length = descriptor[16]
+        fields.append((name, offset, length))
+        offset += length
+        cursor += 32
+    if offset != record_length:
+        raise ValueError(f"longitud DBF declarada={record_length}, reconstruida={offset}")
+    wanted = {name.upper() for name in columns}
+    available = {name for name, _, _ in fields}
+    missing = wanted - available
+    if missing:
+        raise ValueError(f"columnas DBF ausentes: {sorted(missing)}")
+    selected = [(name, start, length) for name, start, length in fields if name in wanted]
+    for _ in range(record_count):
+        record = binary.read(record_length)
+        if len(record) != record_length:
+            raise ValueError("registro DBF truncado")
+        if record[:1] == b"*":
+            continue
+        yield {
+            name: record[start : start + length].decode("latin-1").strip()
+            for name, start, length in selected
+        }
 
 
 def integer(value):

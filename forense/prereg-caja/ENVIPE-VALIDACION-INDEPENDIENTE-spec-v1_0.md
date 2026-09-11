@@ -21,9 +21,9 @@ el cuestionario y la especificación sellada
 
 El validador no importa `tools/medidor_envipe_serie_completa.py`,
 `tests/svystat.py`, los `medidor.py` de los CALC ni código de bootstrap. Usa
-`zipfile`/`csv` de la biblioteca estándar, `pyreadstat` sólo como lector DBF y
-`decimal.Decimal` para acumular las masas. Los CALC, sus specs y el motor son
-de lectura.
+`zipfile`/`csv` de la biblioteca estándar, un lector mínimo de cabecera,
+descriptores y registros dBase III/IV, y `decimal.Decimal` para acumular las
+masas. Los CALC, sus specs y el motor son de lectura.
 
 ## 2. Mapa congelado
 
