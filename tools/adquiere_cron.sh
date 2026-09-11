@@ -926,6 +926,9 @@ else
   RESULTADO_SUSTANTIVO="compatibilidad_claude"
 fi
 set -e
+if [ "$CODIGO_SALIDA" -ne 0 ] && [ "$RESULTADO_SUSTANTIVO" = "no-invocado" ]; then
+  RESULTADO_SUSTANTIVO="fallo_ejecutor"
+fi
 case "$CODIGO_SALIDA" in
   124) log "TIMEOUT-PROCESO: límite=${TIMEOUT_EJECUTOR}s; terminó durante gracia TERM->KILL=${KILL_AFTER_EJECUTOR}s; exit=124" ;;
   137) log "TIMEOUT-KILL: límite=${TIMEOUT_EJECUTOR}s y gracia TERM->KILL=${KILL_AFTER_EJECUTOR}s agotados; se aplicó KILL; exit=137" ;;

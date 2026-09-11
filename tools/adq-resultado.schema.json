@@ -12,7 +12,7 @@
     "resumen"
   ],
   "properties": {
-    "ejecutor": {"const": "codex"},
+    "ejecutor": {"type": "string", "enum": ["codex"]},
     "seleccion": {
       "type": "object",
       "additionalProperties": false,
@@ -23,6 +23,7 @@
       }
     },
     "resultado_sustantivo": {
+      "type": "string",
       "enum": ["adquisicion_obtenida", "intentos_documentados", "cola_vacia", "fallo"]
     },
     "intentos": {"type": "array", "items": {"type": "string"}},
@@ -32,7 +33,7 @@
       "additionalProperties": false,
       "required": ["estado", "referencia"],
       "properties": {
-        "estado": {"enum": ["publicada", "sin_cambios", "fallida", "no_aplica"]},
+        "estado": {"type": "string", "enum": ["publicada", "sin_cambios", "fallida", "no_aplica"]},
         "referencia": {"type": "string"}
       }
     },
