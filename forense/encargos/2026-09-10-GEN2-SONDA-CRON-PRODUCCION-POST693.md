@@ -87,7 +87,7 @@ Avanza entre fases ya autorizadas sin pedir confirmación. Termina cuando entreg
 ## CONSUMIDO
 
 Ejecutado el 10/sep/2026 en `acto/gen2-sonda-cron-produccion`; PR #704,
-ADR-466. Configuración, pruebas y evidencia operativa en
+ADR-467. Configuración, pruebas y evidencia operativa en
 `forense/notas/2026-09-10-GEN2-SONDA-CRON-PRODUCCION-POST693-cierre.md`.
 La Fase 4 consume el resultado fusionado de PR #695 sin repetir su búsqueda:
 `NC-0153` y su demanda permanecen `OBTENIDO-PARCIAL`, diferidas con causa y

@@ -152,6 +152,6 @@ Luego se verifica `scheduler_windows` y la siguiente corrida con:
 python3 tools/adq_doctor.py --json
 ```
 
-Publicación del acto: PR #704, ADR-466 (renumerado porque PR #697 fusionó
+Publicación del acto: PR #704, ADR-467 (renumerado porque PR #697 fusionó
 ADR-465 antes de la publicación de esta rama). El merge de #704 corresponde a
 mesa.

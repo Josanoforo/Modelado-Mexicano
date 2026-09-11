@@ -1,6 +1,6 @@
 # ENCARGO · GEN2-SONDA-CRON-PRODUCCION
 
-> **ESTADO 2026-09-10:** EJECUTADO en PR #704, ADR-466, por
+> **ESTADO 2026-09-10:** EJECUTADO en PR #704, ADR-467, por
 > `forense/encargos/2026-09-10-GEN2-SONDA-CRON-PRODUCCION-POST693.md`
 > en la rama `acto/gen2-sonda-cron-produccion`. No es una segunda tarea.
 >
