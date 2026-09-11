@@ -4527,7 +4527,7 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/cola/2026-09-10-GEN2-POST-685/05-GEN2-ENVIPE-SERIE-COMPLETA.md",
     "forense/encargos/cola/2026-09-10-GEN2-POST-685/06-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md",
     "forense/encargos/cola/2026-09-10-GEN2-POST-685/07-GEN2-SONDA-CRON-PRODUCCION.md",
-    "forense/encargos/cola/2026-09-10-GEN2-POST-685/08-GEN2-PRUEBAS-LIMPIAS-Y-REPLAY.md",
+    "forense/encargos/2026-09-10-GEN2-PRUEBAS-LIMPIAS-Y-REPLAY.md",
     # Copia A.3 del lote 01 anterior. Conserva verbatim los mismos E02/E03
     # de procedencia ya censados por la fila ENCARGO-E01..ENCARGO-E11; no
     # introduce otro habitante y no se edita para complacer T25.

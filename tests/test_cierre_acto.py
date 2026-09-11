@@ -203,6 +203,40 @@ def prueba_g_ancla_tabla_rota_aborta_todo_o_nada():
                "estado-programa no debe cambiar cuando su propia ancla de tabla está rota")
 
 
+def prueba_h_unicidad_l0_uno_duplicado_ausente_y_cita_historica():
+    """NC-0148: la regla compartida distingue 1/2/0 anclas aun cuando el
+    duplicado declara la misma cifra. Una cita literal fuera del canónico es
+    historia, no otra ancla viva."""
+    with tempfile.TemporaryDirectory() as tmp:
+        _fixture(tmp, adr_reales=4, cabecera_declara=4, l0_declara=4)
+        forense = os.path.join(tmp, "forense", "encargos")
+        os.makedirs(forense, exist_ok=True)
+        with open(os.path.join(forense, "historico.md"), "w", encoding="utf-8") as f:
+            f.write("Cita histórica literal: **L0 · Gobierno — completo y al día.** 4 ADR\n")
+
+        uno = CA.inspeccion_gobernanza(4, raiz=tmp)
+        afirma(uno["l0_anclas"] == 1,
+               f"una cita histórica fuera del canónico produjo falso fallo: {uno}")
+
+        ruta_est = CA._ruta_estado(tmp)
+        original = CA._leer(ruta_est)
+        ancla = CA.L0_ADR_RE.search(original)
+        afirma(ancla is not None, "precondición: falta el ancla L0 del fixture")
+        if ancla is None:
+            return
+        with open(ruta_est, "w", encoding="utf-8") as f:
+            f.write(original + "\n" + ancla.group(0) + " *(duplicado con igual cifra)*\n")
+        duplicado = CA.inspeccion_gobernanza(4, raiz=tmp)
+        afirma(duplicado["l0_anclas"] == 2 and duplicado["l0_declara"] is None,
+               f"el duplicado con cifra coincidente no fue detectado: {duplicado}")
+
+        with open(ruta_est, "w", encoding="utf-8") as f:
+            f.write(CA.L0_ADR_RE.sub("L0 ausente", original))
+        ausente = CA.inspeccion_gobernanza(4, raiz=tmp)
+        afirma(ausente["l0_anclas"] == 0 and ausente["l0_declara"] is None,
+               f"el ancla ausente no fue detectada: {ausente}")
+
+
 def prueba_d_ya_reconciliado_no_cambia():
     with tempfile.TemporaryDirectory() as tmp:
         _fixture(tmp, adr_reales=4, cabecera_declara=4, l0_declara=4)
@@ -278,6 +312,7 @@ def main():
     prueba_b_aplica_actualiza_los_tres()
     prueba_c_ancla_rota_aborta_todo_o_nada()
     prueba_g_ancla_tabla_rota_aborta_todo_o_nada()
+    prueba_h_unicidad_l0_uno_duplicado_ausente_y_cita_historica()
     prueba_d_ya_reconciliado_no_cambia()
     prueba_e_rotulo_ausente_no_escribe_registro()
     prueba_f_fallo_de_confirmacion_no_miente()
@@ -286,7 +321,7 @@ def main():
         for m in FAILS:
             print(f"  · {m}")
         return 1
-    print("OK -- test_cierre_acto.py: 7 pruebas, 0 fallos")
+    print("OK -- test_cierre_acto.py: 8 pruebas, 0 fallos")
     return 0
 
 

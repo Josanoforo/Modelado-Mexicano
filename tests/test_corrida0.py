@@ -466,14 +466,30 @@ def t_decisiones_tsv_se_lee():
 
 
 def t_cmd_demanda_aplica_fp339():
-    """`cmd_demanda` real (arbol de trabajo, no fixture): los 7 casos de
-    FP-339 dejan de listarse como ambiguos por `stderr` porque mesa ya los
-    decidio en `decisiones.tsv`, y las filas de las celdas TRA-M usan el M
-    `__v1_3` mientras las de DIN/FAM quedan SIN-RECETA."""
+    """`cmd_demanda` real, con sus insumos canónicos de sólo lectura y la
+    SALIDA re-apuntada a un árbol temporal: los 7 casos de FP-339 dejan de
+    listarse como ambiguos y se escriben de verdad en el fixture, nunca en
+    `data/corrida0/`. Los bytes previos del árbol se comprueban al final."""
     caso = "cmd_demanda aplica D9/D10 · FP-339"
+    rutas_reales = tuple(C.SALIDA / n for n in
+                         ("demanda-resultados.tsv", "demanda-corridas.tsv"))
+    bytes_antes = {p: p.read_bytes() if p.exists() else None for p in rutas_reales}
     buf_out, buf_err = io.StringIO(), io.StringIO()
-    with contextlib.redirect_stdout(buf_out), contextlib.redirect_stderr(buf_err):
-        codigo = C.cmd_demanda(None)
+    salida_real = C.SALIDA
+    with tempfile.TemporaryDirectory(prefix="demanda-fp339-test-") as tmp:
+        C.SALIDA = Path(tmp) / "data" / "corrida0"
+        try:
+            with contextlib.redirect_stdout(buf_out), contextlib.redirect_stderr(buf_err):
+                codigo = C.cmd_demanda(None)
+            ruta_resultados = C.SALIDA / "demanda-resultados.tsv"
+            ruta_corridas = C.SALIDA / "demanda-corridas.tsv"
+            _afirma(ruta_resultados.exists() and ruta_corridas.exists(), caso,
+                    "cmd_demanda no escribio ambos TSV dentro del fixture")
+            with ruta_resultados.open(encoding="utf-8") as fh:
+                fh.readline()  # "# DERIVADO -- NO EDITAR"
+                resultados = list(csv.DictReader(fh, delimiter="\t"))
+        finally:
+            C.SALIDA = salida_real
     _afirma(codigo == 0, caso, f"cmd_demanda devolvio {codigo}")
     salida_err = buf_err.getvalue()
     salida_out = buf_out.getvalue()
@@ -487,9 +503,9 @@ def t_cmd_demanda_aplica_fp339():
         _afirma(fragmento not in salida_err, caso,
                 f"{fragmento} sigue listado como ambiguo pese a FP-339: {salida_err!r}")
 
-    with (C.SALIDA / "demanda-resultados.tsv").open(encoding="utf-8") as fh:
-        fh.readline()  # "# DERIVADO -- NO EDITAR"
-        resultados = list(csv.DictReader(fh, delimiter="\t"))
+    bytes_despues = {p: p.read_bytes() if p.exists() else None for p in rutas_reales}
+    _afirma(bytes_despues == bytes_antes, caso,
+            "el test modifico demanda-resultados.tsv o demanda-corridas.tsv reales")
     por_consumidor = {f["consumidor"]: f for f in resultados}
     for sufijo in ("tiene_ahorros", "no_tiene_ahorros"):
         cons = f"milpa/tramite.yaml:dinero.ahorro.tiene_ahorros:{sufijo}"
@@ -1431,14 +1447,16 @@ def _sella_calc_fixture(d: Path, cid: str, valores: dict, etiquetas: dict,
 
 
 @contextlib.contextmanager
-def _arbol_registro(res=None, corr=None, calcs=(), tramite=None, propuesta=None):
+def _arbol_registro(res=None, corr=None, calcs=(), tramite=None, propuesta=None,
+                    evidencia=()):
     """Monta demanda + oferta en un temporal y re-apunta `corrida0` ahi.
     Restaura SIEMPRE: ningun caso escribe en `data/corrida0/`."""
     import yaml
     tmp = Path(tempfile.mkdtemp(prefix="registro-test-"))
     previos = {k: getattr(C, k) for k in
                ("CORRIDAS", "DEMANDA_RESULTADOS", "DEMANDA_CORRIDAS",
-                "NO_CORRIDO_TSV", "TRAMITE", "PROCEDENCIA", "PROPUESTA")}
+                "NO_CORRIDO_TSV", "TRAMITE", "PROCEDENCIA", "PROPUESTA",
+                "REPLAY_EVIDENCIA")}
     C.CORRIDAS = tmp
     C.DEMANDA_RESULTADOS = tmp / "demanda-resultados.tsv"
     C.DEMANDA_CORRIDAS = tmp / "demanda-corridas.tsv"
@@ -1446,10 +1464,16 @@ def _arbol_registro(res=None, corr=None, calcs=(), tramite=None, propuesta=None)
     C.TRAMITE = tmp / "tramite.yaml"
     C.PROCEDENCIA = tmp / "procedencia-ausente.yaml"
     C.PROPUESTA = tmp / "propuesta-ausente.yaml"
+    C.REPLAY_EVIDENCIA = tmp / "replay-evidencia.tsv"
     C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS, res or [])
     C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS, corr or [])
     C.TRAMITE.write_text(yaml.safe_dump(tramite or {"reglas": []},
                                         allow_unicode=True), encoding="utf-8")
+    with C.REPLAY_EVIDENCIA.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=C.COLS_REPLAY_EVIDENCIA, delimiter="\t",
+                           lineterminator="\n")
+        w.writeheader()
+        w.writerows(evidencia)
     if propuesta is not None:
         C.PROPUESTA = tmp / "tramite-ola5-propuesta-v0.yaml"
         C.PROPUESTA.write_text(yaml.safe_dump(propuesta, allow_unicode=True),
@@ -2356,6 +2380,93 @@ def _asiento(calc_id, resultado, contexto, **cambia):
     }
     fila.update(cambia)
     return fila
+
+
+def _asiento_de_ejecucion(calc_id: str, ejec: dict, procedencia: str) -> dict:
+    """Asiento de fixture con la identidad exacta que se acaba de sellar."""
+    spec_sha, script_sha, inputs = C._identidad_replay(ejec)
+    return {
+        "calc_id": calc_id, "corrida_id": ejec["corrida_id"],
+        "resultado_replay": "REPRODUCE", "contexto_replay": "IDENTICO",
+        "razones": "fixture de fuente", "spec_yaml_sha256": spec_sha,
+        "script_blob_sha256": script_sha, "input_sha256_efectivos": inputs,
+        "codigo_commit": ejec["git_commit"],
+        "fecha_verificacion": "2026-09-10T00:00:00Z", "entorno": "CAJA",
+        "procedencia": procedencia, "alcance": "fixture", "nota": "fixture",
+    }
+
+
+def t_fuente_replay_persiste_en_tres_vistas():
+    """NC-0104: un comprobante estructurado, uno heredado y uno ausente
+    conservan su fuente por corrida y RESULT; cada uso hereda la fuente del
+    RESULT que realmente cita, no una atribución conjunta inventada."""
+    caso = "T-FUENTE-REPLAY-TRES-VISTAS"
+    calcs = [
+        {"calc_id": "CALC-FIX-VERIFY", "valores": {"RESULT-VERIFY": 0.1},
+         "etiquetas": {"generacion": "GEN2", "cuenta_gen2": "SI"}},
+        {"calc_id": "CALC-FIX-HEREDADO", "valores": {"RESULT-HEREDADO": 0.2},
+         "etiquetas": {"generacion": "GEN2", "cuenta_gen2": "SI"}},
+        {"calc_id": "CALC-FIX-SIN-FUENTE", "valores": {"RESULT-SIN-FUENTE": 0.3},
+         "etiquetas": {"generacion": "GEN2", "cuenta_gen2": "SI"}},
+    ]
+    destinos = (("verify", "RESULT-VERIFY"), ("heredado", "RESULT-HEREDADO"),
+                ("ausente", "RESULT-SIN-FUENTE"))
+    tramite = {"reglas": [{"id": "r.fuentes", "entonces": [
+        {"conducta": nombre, "p": (i + 1) / 10,
+         "corrida0_generacion": "GEN2", "corrida0_resultado_id": rid}
+        for i, (nombre, rid) in enumerate(destinos)]}]}
+    with _arbol_registro(calcs=calcs, tramite=tramite):
+        consumidores = [f"{C._rel(C.TRAMITE)}:r.fuentes:{nombre}"
+                        for nombre, _rid in destinos]
+        C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS, [
+            _fila_demanda(f"RES-{i + 1:04d}", consumidor, f"CORR-{i + 1:04d}")
+            for i, consumidor in enumerate(consumidores)])
+        C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS, [
+            _fila_corrida(f"CORR-{i + 1:04d}", [f"RES-{i + 1:04d}"])
+            for i in range(3)])
+
+        ejec_verify = json.loads((C.CORRIDAS / "CALC-FIX-VERIFY" /
+                                  "ejecucion.json").read_text(encoding="utf-8"))
+        ejec_heredado = json.loads((C.CORRIDAS / "CALC-FIX-HEREDADO" /
+                                    "ejecucion.json").read_text(encoding="utf-8"))
+        evidencia = [
+            _asiento_de_ejecucion("CALC-FIX-VERIFY", ejec_verify,
+                                  "VERIFY-ESTRUCTURADO"),
+            _asiento_de_ejecucion("CALC-FIX-HEREDADO", ejec_heredado,
+                                  "HEREDADO-DEL-REGISTRO-PUBLICADO"),
+        ]
+        with C.REPLAY_EVIDENCIA.open("w", encoding="utf-8", newline="") as fh:
+            w = csv.DictWriter(fh, fieldnames=C.COLS_REPLAY_EVIDENCIA,
+                               delimiter="\t", lineterminator="\n")
+            w.writeheader()
+            w.writerows(evidencia)
+        vistas = C.registro(escribe=False, imprime=False)
+
+    fuente_corrida = {f["spec_id"]: f["fuente_replay"] for f in vistas["corridas"]
+                      if f["origen"] == "OFERTA"}
+    fuente_resultado = {f["resultado_id"]: f["fuente_replay"]
+                        for f in vistas["resultados"] if f["origen"] == "OFERTA"}
+    fuente_uso = {f["corrida0_resultado_id"]: f["fuente_replay"]
+                  for f in vistas["usos"] if f["corrida0_resultado_id"]}
+
+    esperadas = {
+        "RESULT-VERIFY": fuente_corrida["CALC-FIX-VERIFY"],
+        "RESULT-HEREDADO": fuente_corrida["CALC-FIX-HEREDADO"],
+        "RESULT-SIN-FUENTE": fuente_corrida["CALC-FIX-SIN-FUENTE"],
+    }
+    _afirma("VERIFY-ESTRUCTURADO" in esperadas["RESULT-VERIFY"], caso,
+            f"fuente verify incorrecta: {esperadas['RESULT-VERIFY']}")
+    _afirma("HEREDADO-DEL-REGISTRO-PUBLICADO" in esperadas["RESULT-HEREDADO"], caso,
+            f"fuente heredada incorrecta: {esperadas['RESULT-HEREDADO']}")
+    _afirma(esperadas["RESULT-SIN-FUENTE"] == "SIN-FUENTE", caso,
+            f"ausencia inventó fuente: {esperadas['RESULT-SIN-FUENTE']}")
+    _afirma(len(set(esperadas.values())) == 3, caso,
+            f"las tres procedencias se colapsaron: {esperadas}")
+    for rid, fuente in esperadas.items():
+        _afirma(fuente_resultado.get(rid) == fuente, caso,
+                f"{rid}: corrida y resultado discrepan")
+        _afirma(fuente_uso.get(rid) == fuente, caso,
+                f"{rid}: el uso no conserva la fuente de su RESULT")
 
 
 @contextlib.contextmanager
