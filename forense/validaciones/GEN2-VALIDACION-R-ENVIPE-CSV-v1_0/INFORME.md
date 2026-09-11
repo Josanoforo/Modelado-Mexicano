@@ -150,10 +150,11 @@ Ese cierre **no aprueba** el uso inferencial de los IC.
 
 Quedan dos residuales separados:
 
-- integrar estos artefactos por el contrato común de linaje/validación del
+- `NC-0157`: integrar estos artefactos por el contrato común de
+  linaje/validación del
   encargo 17; al corte de este informe su `PR #710` sigue abierto y no se
   incorpora código de una rama no fusionada;
-- acreditar el roster completo de UPM seleccionadas —o un servicio oficial de
+- `NC-0158`: acreditar el roster completo de UPM seleccionadas —o un servicio oficial de
   varianza— y ejecutar prospectivamente el estimador de dominio que conserva
   contribuciones cero. El diagnóstico `TVivienda` es la propuesta reproducible
   que cambia sólo ese componente.

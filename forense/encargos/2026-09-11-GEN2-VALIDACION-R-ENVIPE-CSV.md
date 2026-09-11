@@ -73,3 +73,10 @@ Usar corpus compartido en lectura y salidas propias; no escribir pruebas sobre e
 
 
 **Actualización al entregar:** #708 también está fusionado; main=`e7a471bf1499a096abbe58dc298f02243e885135`. Archiva el benchmark sin firmar sus cuatro decisiones; no cambia el alcance de este encargo.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| «Vincular la validación mediante el mecanismo vigente y el contrato de 17 cuando esté integrado.» | `DIFERIDO-A:GEN2-LINAJE-Y-ADOPCION` | El informe y los artefactos quedan completos, pero el enlace común no se publica y su contador permanece intacto; PR #710 sigue abierto al corte y este acto no copia código de una rama no fusionada. | Tras fusionar PR #710, acto sucesor que concilie exclusivamente el enlace de esta validación con el contrato integrado (`NC-0157`). |
+| «una propuesta sucesora reproducible que cambie sólo el componente identificado» — ejecución prospectiva | `DIFERIDO-A:sucesor de varianza ENVIPE R` | Los tres puntos quedan validados y los EE históricos reproducidos, pero sus IC no adquieren aptitud inferencial; `TVivienda` elimina los 72 singleton observados, aunque no acredita por sí sola que ninguna UPM seleccionada completa falte. | Titular de mesa: obtener roster de UPM seleccionadas o servicio oficial de varianza y congelar una spec sucesora antes de recalcular (`NC-0158`; acto aún `SIN-ASIGNAR`). |
