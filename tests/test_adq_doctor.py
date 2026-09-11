@@ -16,6 +16,7 @@ Corre sola:
     python3 tests/test_adq_doctor.py
 """
 import os
+import json
 import subprocess
 import sys
 import tempfile
@@ -99,18 +100,51 @@ def prueba_lock_tomado_por_otro_proceso():
             proc.wait(timeout=5)
 
 
+def prueba_scheduler_contrasta_calendario_y_disparador():
+    campos = {
+        "State": "Ready", "TaskName": "AdquiereCron",
+        "TaskPath": "\\ModeladoMexicano\\", "UserId": "PC0",
+        "LogonType": "Interactive", "Execute": "wsl.exe",
+        "Arguments": "-d Ubuntu -- env ADQ_DISPARADOR=windows-task-scheduler bash -lc /x",
+        "StartBoundary": "2026-09-07T07:30:00-06:00", "DaysOfWeek": 62,
+        "TriggerEnabled": True, "StartWhenAvailable": True,
+        "MultipleInstances": "IgnoreNew", "LastRunTime": "2026-09-10T09:05:41-06:00",
+        "LastTaskResult": 0, "NextRunTime": "2026-09-11T07:30:00-06:00",
+    }
+    with unittest.mock.patch.object(D.os.path, "exists", lambda _: True), \
+         unittest.mock.patch.object(D, "_corre", lambda *a, **kw: (0, json.dumps(campos), "")):
+        r = D.check_scheduler_windows()
+    afirma(r["dias_coinciden"] is True and r["hora_coincide"] is True,
+           f"doctor debe contrastar hora y días de la config común, dio {r}")
+    afirma(r["disparador_atribuible"] is True and r["StartWhenAvailable"] is True,
+           f"doctor debe exigir acción atribuible y recuperación configurada, dio {r}")
+
+
+def prueba_scheduler_detecta_calendario_divergente():
+    campos = {"State": "Ready", "Arguments": "bash -lc /x",
+              "StartBoundary": "2026-09-07T08:00:00-06:00", "DaysOfWeek": 64}
+    with unittest.mock.patch.object(D.os.path, "exists", lambda _: True), \
+         unittest.mock.patch.object(D, "_corre", lambda *a, **kw: (0, json.dumps(campos), "")):
+        r = D.check_scheduler_windows()
+    afirma(not r["dias_coinciden"] and not r["hora_coincide"]
+           and not r["disparador_atribuible"],
+           f"tarea divergente debe quedar explícita, dio {r}")
+
+
 def main():
     prueba_crontab_sin_credencial_no_es_no_instalado()
     prueba_crontab_realmente_vacio()
     prueba_crontab_instalado_detecta_linea()
     prueba_lock_libre()
     prueba_lock_tomado_por_otro_proceso()
+    prueba_scheduler_contrasta_calendario_y_disparador()
+    prueba_scheduler_detecta_calendario_divergente()
     if FAILS:
         print(f"FALLÓ ({len(FAILS)}):")
         for m in FAILS:
             print(f"  · {m}")
         return 1
-    print("OK -- test_adq_doctor.py: 5 pruebas, 0 fallos")
+    print("OK -- test_adq_doctor.py: 7 pruebas, 0 fallos")
     return 0
 
 
