@@ -63,3 +63,23 @@ Este archivo es autocontenido. Su fuente de autoridad es la instrucción de mesa
 Cada fase termina con resultado o bloqueo preciso y prueba. Cierre completo: autorización → resultado/cambio → evidencia → consumidor, si aplica → FP/NC → vistas/cola → PR y merge. Una decisión firmada no cierra una ejecución pendiente. Registrar fecha real, cita y universo; nada se borra ni se rejuvenece por traslado. Si falta una pieza, usar el vocabulario vigente y sucesor concreto.
 
 **Formato final del ejecutor:** resultado útil en cinco líneas; fases realizadas/pendientes; PR y SHA; pruebas; tabla `obligación | evidencia | cerrada/residual | siguiente acción`. No parar en un inventario cuando el entorno permite ejecutar. No continuar por inercia después de satisfacer el resultado.
+
+---
+
+## CONSUMIDO
+
+PR #691, rama `acto/gen2-enif-poblacion`; commits de arranque y sustancia
+`7ccdb8a`, `5f5469b`, `c11e0c7`, `88bd2e6`, `d69d3b7`.
+
+Resultado: D04/D05 ejecutadas; celdas A/A exactas reutilizadas de
+`CALC-ENIF-0001`; `CALC-ENIF-0002` sellado y reproducido para no trabajadores;
+motor y procedencia adoptados por dominio; B/B conservado como histórico.
+`NC-0124` y `NC-0128` cierran; `NC-0126` permanece abierta. `NC-0152` registra
+la única pieza diferida: publicación global de vistas corrida0 por lote08,
+después de que el candado NC-0094 impidiera 32 transiciones ajenas.
+
+Validación: prueba dirigida 2/2; spec-check 8 OK/0 FAIL; preflight VERDE;
+run exit 0; verify REPRODUCE/CONTEXTO=IDENTICO 59/59; smoke del emisor por tres
+dominios; `tests/check.py --baseline` exit 0; `git diff --check` limpio. El PR
+queda abierto para mesa; el ejecutor no lo fusiona. Colisión conocida con PR
+#687 sobre los candidatos ADR-455/NC-0152: renumera quien fusione segundo.

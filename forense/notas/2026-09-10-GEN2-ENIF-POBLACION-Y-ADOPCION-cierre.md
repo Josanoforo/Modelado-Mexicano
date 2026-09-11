@@ -100,5 +100,7 @@ versionada y vigente.
 - `preflight` / `run` / `verify`: VERDE / 0 / REPRODUCE-IDENTICO.
 - Smoke de `milpa.src.emisor`: tres dominios emiten 0.541343/0.458657,
   0.373130/0.626870 y 0.632782/0.367218; cruce inválido no tiene cobertura.
-- El gate integral y la reconciliación administrativa se registran al cierre
-  del PR.
+- `python3 tests/check.py --baseline`: exit 0, VERDE; `git diff --check` limpio.
+
+PR #691, rama `acto/gen2-enif-poblacion`; abierto para revisión de mesa, sin
+merge por el ejecutor.
