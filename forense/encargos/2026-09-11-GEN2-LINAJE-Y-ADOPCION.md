@@ -71,3 +71,19 @@ Continúa entre fases autorizadas. Ante una decisión científica nueva, prepara
 
 
 **Actualización comprobada al cierre:** main avanzó a `a63fd4ccc40204cf5215d466a593b4e1491bdda6` por #699 y #696. No cambió el código objeto de las sondas. 09 ya está fusionado: partir de sus vistas y no repetir su publicación. 14–16 están encolados por #699. Esta actualización prevalece sobre referencias de coordinación redactadas al corte inicial.
+
+## NO-CORRIDO / RESERVAS
+
+- Consulta del contrato desde el emisor · `DIFERIDO-A:GEN2-MOTOR-Y-HERENCIA-EXPLICITA` · el emisor aún no bloquea por aptitud antes de materializar una adopción GEN2; las 16 adopciones vigentes no se mueven · `GEN2-MOTOR-Y-HERENCIA-EXPLICITA` (`NC-0157`).
+- Roles de evaluación retenida para `CONFIRMACION-INDEPENDIENTE` · `DIFERIDO-A:GEN2-EVALUACION-SIN-FUGAS` · la compuerta prospectiva existe, pero `resultados_con_validacion_independiente` sigue en 0 y ninguna cifra obtiene uso confirmatorio · `GEN2-EVALUACION-SIN-FUGAS` (`NC-0158`).
+
+Nota de control: el nombre adversarial `tramite.yaml.otro` prueba identidad de ruta y no declara una regla `NUNCA-MEDIDA`.
+
+## CONSUMIDO
+
+PR: `#710`, rama `acto/gen2-linaje-adopcion`, contra `main`. Ejecutado:
+`ACTO GEN2-LINAJE-Y-ADOPCION` (`ADR-471`). El contrato común separa origen
+numérico y aptitud por uso; las vistas quedan publicadas y secas, con 16/16
+adopciones activas `NUEVO` y `APTA-POR-LINAJE`. `NC-0157` y `NC-0158`
+conservan los dos residuos sucesores. Contador: cero. El PR queda abierto;
+el ejecutor no realizó el merge.
