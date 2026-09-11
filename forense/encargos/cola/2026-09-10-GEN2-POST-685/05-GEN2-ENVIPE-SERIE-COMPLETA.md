@@ -67,3 +67,16 @@ Este archivo es autocontenido. Su fuente de autoridad es la instrucción de mesa
 Cada fase termina con resultado o bloqueo preciso y prueba. Cierre completo: autorización → resultado/cambio → evidencia → consumidor, si aplica → FP/NC → vistas/cola → PR y merge. Una decisión firmada no cierra una ejecución pendiente. Registrar fecha real, cita y universo; nada se borra ni se rejuvenece por traslado. Si falta una pieza, usar el vocabulario vigente y sucesor concreto.
 
 **Formato final del ejecutor:** resultado útil en cinco líneas; fases realizadas/pendientes; PR y SHA; pruebas; tabla `obligación | evidencia | cerrada/residual | siguiente acción`. No parar en un inventario cuando el entorno permite ejecutar. No continuar por inercia después de satisfacer el resultado.
+
+---
+
+## Bloque de archivo (0-bis A.3) — ejecución
+
+| | |
+|---|---|
+| **SHA256 del encargo recibido** | `19fb659c6e51ced9ca963c4578795282b7d64f5408d3b61c1869ddc3e665a403` — coincide byte a byte con este archivo ya encolado por `PR #686` |
+| **Base real de arranque** | `44134745ce7f19af18a87b153a99de3d506063b0` (`origin/main`, 10/sep/2026) |
+| **Worktree** | `/home/pc0/mm-gen2-envipe-serie` |
+| **Rama** | `acto/gen2-envipe-serie` |
+| **Entorno** | CAJA (Ubuntu/WSL2), `data/raw` montado; 401 archivos examinados por `tools/entorno.py` |
+| **Estado** | VIVO |
