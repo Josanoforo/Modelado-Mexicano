@@ -1,0 +1,55 @@
+{
+  "acto": "GEN2-F5-APRENDIZAJES-Y-SUCESOR",
+  "controles": {
+    "filas_abstenciones": 16,
+    "filas_celdas": 14,
+    "veredicto_preservado": "SIN-GANADOR-UNICO"
+  },
+  "insumos_sha256": {
+    "data/corrida0/CALC-TRIADA-0002/resultados.json": "e2d0adc2a9fb9722d50a9479916129b3524cb87ce9021359ebfe755ec0e9e22a",
+    "forense/prereg-duelo-v2/F5-completa-extraccion-v1_0.tsv": "3aefbcccfae2eb4a49cd50001739ec30e209531eae9710222e689f84ff26443b",
+    "forense/prereg-duelo-v2/F5-completa-resultado-v1_0.json": "e1ec8765f769f76c7f649958f46b72b34fcef786bcc113f5c3cbc997c4ed0079",
+    "forense/prereg-duelo-v2/L-spec-v1_4.json": "914907e86fc5ded7618f9d6bcb1e44e62b3c4fbe32b6df5f29179be732caf51f",
+    "forense/prereg-duelo-v2/paquete-corpus-F5-v2_0/manifiesto-F5-v2_0.json": "3196b0cfb16e5d091f6873ae320857e88831d55f446bf592558c8bd878691c45",
+    "forense/prereg-duelo-v2/snapshot-M-triada-v1_0.json": "b53ac6d51d1b50ce929fdf1b3e14b124c11db39fb216a15d7073a287ed3f065c"
+  },
+  "reconciliacion": {
+    "L_CORPUS": {
+      "delta_pp": 0.0,
+      "mae_pp_recalculado": 3.889025747112979,
+      "mae_pp_resultado": 3.889025747112979
+    },
+    "L_SOLO": {
+      "delta_pp": 0.0,
+      "mae_pp_recalculado": 3.9573621816025666,
+      "mae_pp_resultado": 3.9573621816025666
+    },
+    "M": {
+      "delta_pp": 0.0,
+      "mae_pp_recalculado": 4.9866732397828875,
+      "mae_pp_resultado": 4.9866732397828875
+    }
+  },
+  "sensibilidad_no_confirmatoria": {
+    "advertencia": "usa el panel R ya conocido y no prueba mejora fuera de muestra",
+    "descripcion": "selección por ola en series ENIGH/ENCIG alineadas y unión ENCUCI ya corregida por #689; conserva las demás celdas del snapshot",
+    "mae_M_original_pp": 4.9866732397828875,
+    "mae_M_reanalisis_pp": 4.2638290065469535,
+    "reduccion_pp": 0.7228442332359339
+  },
+  "tipo": "DIAGNOSTICO-EXPLORATORIO-SOBRE-PANEL-CONOCIDO",
+  "u3_ids": [
+    "CIV-M-01",
+    "CIV-M-02",
+    "CIV-M-04",
+    "CIV-M-10",
+    "CIV-M-12",
+    "CIV-M-13",
+    "FAM-M-01",
+    "FAM-M-05",
+    "FAM-M-06",
+    "FAM-M-07",
+    "TRA-M-02",
+    "TRA-M-03"
+  ]
+}
