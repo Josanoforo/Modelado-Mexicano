@@ -25,6 +25,9 @@ import shutil
 import subprocess
 import sys
 
+import jsonschema
+import yaml
+
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(RAIZ, "tools"))
 sys.path.insert(0, os.path.join(RAIZ, "tests"))
@@ -728,6 +731,177 @@ def transforma_sin_fetch_autorizada(fuente, ruta=RUTA_COLA):
                   f"autorización citada conservada en nota)")
 
 
+def _exclusion_serializada(fila):
+    return f"{fila['id']} [{fila['estado']}] — {fila['razon']}"
+
+
+def _lee_texto_evidencia(ruta, limite=2_000_000):
+    try:
+        with open(ruta, encoding="utf-8", errors="replace") as f:
+            return f.read(limite)
+    except OSError:
+        return ""
+
+
+def valida_resultado_adquisicion(resultado, seleccion, comprobar_remoto=True,
+                                  raiz=None):
+    """Valida estructura, coherencia y evidencia del cierre del hijo.
+
+    El esquema evita formas vacías; esta función prueba lo que JSON Schema no
+    puede expresar: igualdad con la selección calculada, un desenlace por cada
+    elegido, archivos/manifiesto reales y referencias presentes en el remoto.
+    Devuelve tanto el resultado del trabajo como el de su publicación para no
+    convertir un push fallido en ausencia de trabajo.
+    """
+    raiz = os.path.realpath(raiz or RAIZ)
+    errores = []
+    esquema_path = os.path.join(raiz, "tools", "adq-resultado.schema.json")
+    try:
+        with open(esquema_path, encoding="utf-8") as f:
+            esquema = json.load(f)
+        jsonschema.Draft202012Validator(esquema).validate(resultado)
+    except Exception as e:
+        errores.append(f"esquema: {e.message if hasattr(e, 'message') else e}")
+        return {"valido": False, "cierre_exitoso": False,
+                "resultado_trabajo": "indeterminado",
+                "publicacion_trabajo": "indeterminada", "errores": errores}
+
+    esperados = [x["id"] for x in seleccion.get("elegidos", [])]
+    excluidos = [_exclusion_serializada(x) for x in seleccion.get("excluidos", [])]
+    salida_sel = resultado["seleccion"]
+    if salida_sel["calculada"] is not True:
+        errores.append("selección no marcada como calculada")
+    if salida_sel["corte"] != seleccion.get("corte"):
+        errores.append("corte de selección distinto del calculado")
+    if salida_sel["maximo"] != seleccion.get("maximo"):
+        errores.append("máximo de selección distinto del calculado")
+    if salida_sel["elegidos"] != esperados:
+        errores.append("elegidos distintos de la selección calculada")
+    if salida_sel["excluidos_con_causa"] != excluidos:
+        errores.append("exclusiones o causas distintas de la selección calculada")
+
+    por_objeto = resultado["resultados_por_objeto"]
+    ids_resultado = [x["objeto_id"] for x in por_objeto]
+    if ids_resultado != esperados:
+        errores.append("debe existir exactamente un resultado, en orden, por cada objeto elegido")
+    if len(ids_resultado) != len(set(ids_resultado)):
+        errores.append("hay resultados de objeto duplicados")
+
+    try:
+        with open(os.path.join(raiz, "data", "manifiesto.yaml"), encoding="utf-8") as f:
+            manifiesto = yaml.safe_load(f) or []
+    except Exception as e:
+        manifiesto = []
+        errores.append(f"manifiesto no legible: {e}")
+    manifiesto_por_id = {x.get("id"): x for x in manifiesto if isinstance(x, dict)}
+
+    try:
+        import csv
+        with open(os.path.join(raiz, "data", "curacion-registro",
+                               "cola-adquisicion-registro.tsv"),
+                  encoding="utf-8", newline="") as f:
+            cola = {x.get("fuente_canonica"): x for x in csv.DictReader(f, delimiter="\t")}
+    except Exception as e:
+        cola = {}
+        errores.append(f"cola canónica no legible: {e}")
+
+    adquiridos = 0
+    for item in por_objeto:
+        objeto = item["objeto_id"]
+        textos = []
+        for referencia in item["evidencias"]:
+            ruta = (referencia if os.path.isabs(referencia)
+                    else os.path.join(raiz, referencia))
+            real = os.path.realpath(ruta)
+            permitido = (real == raiz or real.startswith(raiz + os.sep)
+                          or real.startswith("/home/pc0/mm-corpus/"))
+            if not permitido or not os.path.exists(real):
+                errores.append(f"{objeto}: evidencia local inexistente o fuera de ámbito: {referencia}")
+            else:
+                textos.append(_lee_texto_evidencia(real))
+
+        fila = cola.get(objeto)
+        if fila is None:
+            errores.append(f"{objeto}: no existe en la cola canónica")
+        if item["desenlace"] == "adquirido":
+            adquiridos += 1
+            if not item["archivos"] or not item["ids_manifiesto"]:
+                errores.append(f"{objeto}: adquisición sin archivos o ids de manifiesto")
+            archivos_manifiesto = set()
+            for mid in item["ids_manifiesto"]:
+                entrada = manifiesto_por_id.get(mid)
+                if not entrada:
+                    errores.append(f"{objeto}: id de manifiesto inexistente: {mid}")
+                    continue
+                usado = str(entrada.get("usado_para", ""))
+                if objeto not in usado:
+                    errores.append(f"{objeto}: manifiesto {mid} no acredita pertinencia en usado_para")
+                if entrada.get("archivo"):
+                    archivos_manifiesto.add(str(entrada["archivo"]))
+            for archivo in item["archivos"]:
+                ruta = archivo if os.path.isabs(archivo) else os.path.join(raiz, archivo)
+                if not os.path.isfile(os.path.realpath(ruta)):
+                    errores.append(f"{objeto}: archivo adquirido inexistente: {archivo}")
+                if os.path.basename(archivo) not in archivos_manifiesto:
+                    errores.append(f"{objeto}: archivo {archivo} no corresponde a sus ids de manifiesto")
+            if fila and not (fila.get("estado_A4A5") or "").startswith("OBTENIDO"):
+                errores.append(f"{objeto}: la cola no conserva el desenlace OBTENIDO")
+        else:
+            if not item["intentos"]:
+                errores.append(f"{objeto}: intento documentado sin intentos verificables")
+            estado = (fila or {}).get("estado_A4A5", "")
+            if not estado.startswith(("NO-OBTENIDO-POR-ESTE-AGENTE", "NO-ACCESIBLE",
+                                      "SIN-FETCH", "OBTENIDO-PARCIAL")):
+                errores.append(f"{objeto}: la cola no conserva la barrera/intento ({estado!r})")
+            corpus_evidencia = "\n".join(textos + [str((fila or {}).get("nota", ""))])
+            for intento in item["intentos"]:
+                if intento["resultado"] not in corpus_evidencia:
+                    errores.append(f"{objeto}: resultado de intento no aparece en evidencia: {intento['resultado']}")
+
+    if not esperados:
+        resultado_trabajo = "cola_vacia"
+    elif adquiridos:
+        resultado_trabajo = "adquisicion_obtenida"
+    else:
+        resultado_trabajo = "intentos_documentados"
+
+    estado_publicacion = resultado["publicacion_trabajo"]["estado"]
+    referencias = resultado["publicacion_trabajo"]["referencias"]
+    if estado_publicacion == "publicada" and not referencias:
+        errores.append("publicación declarada sin referencias remotas")
+    if estado_publicacion == "no_aplica" and esperados:
+        errores.append("con objetos elegidos, publicación del trabajo no puede ser no_aplica")
+    if comprobar_remoto and estado_publicacion == "publicada":
+        for ref in referencias:
+            if (not re.fullmatch(r"refs/heads/[^\s]+", ref["ref"])
+                    or not re.fullmatch(r"[0-9a-f]{40}", ref["commit"])):
+                errores.append(f"referencia de publicación mal formada: {ref}")
+                continue
+            codigo, out, err = _corre(
+                ["git", "ls-remote", "--exit-code", "origin", ref["ref"]],
+                timeout=20, cwd=raiz)
+            pares = {linea.split()[0]: linea.split()[1]
+                     for linea in out.splitlines() if len(linea.split()) == 2}
+            if codigo != 0 or pares.get(ref["ref"]) != ref["commit"]:
+                errores.append(f"publicación remota no comprobada: {ref['ref']}@{ref['commit']} ({(err or out).strip()[:160]})")
+
+    declarado = resultado["resultado_sustantivo"]
+    if not esperados:
+        if declarado != "cola_vacia" or por_objeto or estado_publicacion != "no_aplica":
+            errores.append("cola_vacia exige selección calculada vacía, cero resultados y publicación de trabajo no_aplica")
+    elif estado_publicacion == "publicada":
+        if declarado != resultado_trabajo:
+            errores.append(f"resultado declarado {declarado!r} no coincide con trabajo {resultado_trabajo!r}")
+    elif declarado != "fallo":
+        errores.append("publicación del trabajo fallida exige resultado_sustantivo=fallo")
+
+    cierre_exitoso = (not errores and declarado != "fallo"
+                      and (not esperados or estado_publicacion == "publicada"))
+    return {"valido": not errores, "cierre_exitoso": cierre_exitoso,
+            "resultado_trabajo": resultado_trabajo,
+            "publicacion_trabajo": estado_publicacion, "errores": errores}
+
+
 SECCIONES = [
     ("entorno", check_entorno),
     ("configuracion_operativa", check_configuracion_operativa),
@@ -786,7 +960,21 @@ def main():
                          "e inequívoca ya asentada en la nota de esa fila, la pasa de "
                          "SIN-FETCH a PENDIENTE. Única puerta -- el selector nunca "
                          "salta ese estado por invocación nominal")
+    ap.add_argument("--valida-resultado", metavar="JSON",
+                    help="valida un cierre del ejecutor contra evidencia local/remota")
+    ap.add_argument("--seleccion-archivo", metavar="JSON",
+                    help="selección calculada usada por --valida-resultado")
     a = ap.parse_args()
+    if a.valida_resultado:
+        if not a.seleccion_archivo:
+            ap.error("--valida-resultado exige --seleccion-archivo")
+        with open(a.valida_resultado, encoding="utf-8") as f:
+            resultado = json.load(f)
+        with open(a.seleccion_archivo, encoding="utf-8") as f:
+            seleccion = json.load(f)
+        informe = valida_resultado_adquisicion(resultado, seleccion)
+        print(json.dumps(informe, ensure_ascii=False, indent=2))
+        return 0 if informe["valido"] else 65
     if a.transforma_sin_fetch:
         ok, razon = transforma_sin_fetch_autorizada(a.transforma_sin_fetch)
         if a.json:

@@ -351,6 +351,21 @@ fila, no se asume cubierto.
    `/acto` (ADR/registro-rotulos/T25) salvo que el propio `/acto` que invocó
    esta skill lo pida en su propio CIERRE.
 
+5. Cuando el runner pide `tools/adq-resultado.schema.json`, el cierre entrega
+   exactamente un `resultados_por_objeto` por cada ID elegido, en el mismo
+   orden. Una adquisición cita archivos presentes en `data/raw/` e IDs
+   pertinentes de `data/manifiesto.yaml`; una barrera conserva cada vía y su
+   resultado verificable en rutas de evidencia existentes. Con elegidos, la
+   rama y el SHA del trabajo deben existir en el remoto. El recibo `[ADQ]` que
+   publica el wrapper es otra publicación y nunca sustituye ésta. Si el push
+   del trabajo falla, se conservan los resultados por objeto y se declara
+   `resultado_sustantivo=fallo` con `publicacion_trabajo=fallida`.
+
+El runner calcula la selección antes de invocar al ejecutor. Si termina
+correctamente con cero elegidos, genera este cierre de manera determinista con
+`invocado=no`: no llama a Codex ni a Claude. Un error del selector es
+`PARO-SELECCION`, nunca `cola_vacia`.
+
 ## Lo que esta skill no hace
 
 No abre ni analiza el contenido semántico de ningún payload — solo verifica

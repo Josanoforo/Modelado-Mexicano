@@ -5487,7 +5487,9 @@ def _afirma_t30(cond, test, msg):
 #   - ARRANCO-FALLO     -- existe la huella final `[ADQ]` pero reporta un
 #                         cierre no exitoso (`invocado=no` con cualquier
 #                         `PARO-*`, o `invocado=si` con `exit` != 0).
-#   - COMPLETO          -- `[ADQ]` presente con `invocado=si exit=0`.
+#   - COMPLETO          -- `[ADQ]` presente con `invocado=si exit=0`, o
+#                         cierre mecánico `invocado=no motivo=COLA-VACIA
+#                         resultado=cola_vacia exit=0`; ambos publicados.
 #
 #   La señal se emite con `senal()` (P1): visible en la suite, nunca
 #   regresión de `tests/baseline.json`. Sigue sin bloquear CI global
@@ -5653,6 +5655,9 @@ def t_cron_huellas_adq(texto, fecha):
             "invocado": _campo("invocado"),
             "motivo": _campo("motivo"),
             "exit": _campo("exit"),
+            "resultado": _campo("resultado"),
+            "resultado_trabajo": _campo("resultado_trabajo"),
+            "publicacion_trabajo": _campo("publicacion_trabajo"),
             "publicacion": _campo("publicacion"),
             "disparador": _campo("disparador"),
             "run_id": _campo("run_id"),
@@ -5707,12 +5712,15 @@ def _t_cron_ref_censo(fecha, timeout=20):
     import subprocess
     rama = f"censo/{fecha.isoformat()}"
     try:
-        if subprocess.run(["git", "show-ref", "--verify", "--quiet", f"refs/heads/{rama}"],
-                           cwd=ROOT, timeout=timeout).returncode == 0:
-            return f"refs/heads/{rama}", True
+        # La rama local puede estar checked out en otro worktree y quedarse
+        # detrás mientras la tarea productiva publica en el remoto. La ref de
+        # seguimiento, cuando existe, es el contraste más reciente disponible.
         if subprocess.run(["git", "show-ref", "--verify", "--quiet", f"refs/remotes/origin/{rama}"],
                            cwd=ROOT, timeout=timeout).returncode == 0:
             return f"refs/remotes/origin/{rama}", True
+        if subprocess.run(["git", "show-ref", "--verify", "--quiet", f"refs/heads/{rama}"],
+                           cwd=ROOT, timeout=timeout).returncode == 0:
+            return f"refs/heads/{rama}", True
         r = subprocess.run(["git", "ls-remote", "--exit-code", "--heads", "origin", rama],
                             cwd=ROOT, capture_output=True, text=True, timeout=timeout)
         if r.returncode == 2:
@@ -5774,13 +5782,17 @@ def _t_cron_publicacion_ok(h):
 
 
 def _t_cron_exitosa(h):
-    """Una huella acredita el día si el runner invocó al agente, el
-    agente cerró en 0 Y la publicación de esa corrida no fue declarada
-    fallida (H5: `invocado=si`/`exit=0` acredita que el AGENTE terminó,
-    no que la corrida PUBLICÓ). `invocado=no` con cualquier `PARO-*` no
-    acredita, aunque el proceso haya salido limpio."""
-    return (h.get("invocado") == "si" and h.get("exit") == "0"
-            and _t_cron_publicacion_ok(h))
+    """Acredita trabajo válido (agente o cola vacía mecánica) y recibo.
+
+    `invocado=no` sólo es éxito bajo el contrato completo y no ambiguo de
+    cola vacía; cualquier PARO sigue siendo fallo aunque salga limpio.
+    """
+    agente_ok = h.get("invocado") == "si" and h.get("exit") == "0"
+    cola_vacia_ok = (
+        h.get("invocado") == "no" and h.get("motivo") == "COLA-VACIA"
+        and h.get("exit") == "0" and h.get("resultado") == "cola_vacia"
+    )
+    return (agente_ok or cola_vacia_ok) and _t_cron_publicacion_ok(h)
 
 
 def _t_cron_rotula(h):
@@ -5835,7 +5847,9 @@ def t_cron_estado(fecha, prefijos, cuerpo_adq,
         nota_hist = " (acreditado por huella histórica sin run_id)" if historico else ""
         if exitosas and _t_cron_exitosa(ultimo):
             return ("COMPLETO",
-                    f"censo del {dia}: [ADQ] invocado=si exit=0 -- "
+                    f"censo del {dia}: [ADQ] invocado={ultimo['invocado']} "
+                    f"motivo={ultimo['motivo']} resultado={ultimo['resultado']} "
+                    f"exit=0 -- "
                     f"{_t_cron_rotula(ultimo)}{nota_hist}")
         if exitosas:
             # Discrepan "último intento" y "al menos un éxito": se
@@ -5852,6 +5866,18 @@ def t_cron_estado(fecha, prefijos, cuerpo_adq,
         # publicación falló -- eso NO es "ninguno exitoso" en el sentido
         # de ARRANCO-FALLO (el agente sí corrió y cerró bien), así que se
         # nombra aparte en vez de mezclarlo con un fallo del propio agente.
+        cola_vacia_publicacion_fallida = [
+            h for h in huellas
+            if h.get("invocado") == "no" and h.get("motivo") == "COLA-VACIA"
+            and h.get("resultado") == "cola_vacia" and h.get("exit") == "0"
+            and not _t_cron_publicacion_ok(h)
+        ]
+        if cola_vacia_publicacion_fallida:
+            u = cola_vacia_publicacion_fallida[-1]
+            return ("COLA-VACIA-PUBLICACION-FALLIDA",
+                    f"censo del {dia}: selección vacía cerró sin LLM "
+                    f"[{_t_cron_rotula(u)}] pero publicacion={u.get('publicacion')} "
+                    f"-- el recibo no llegó y el día no se acredita")
         agente_ok_publicacion_fallida = [
             h for h in huellas
             if h.get("invocado") == "si" and h.get("exit") == "0"
