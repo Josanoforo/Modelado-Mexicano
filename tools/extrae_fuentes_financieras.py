@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Extrae los objetos financieros del Encargo GEN2 20.
+"""Extrae los objetos financieros de #717 y su continuación efectiva.
 
 Lee exclusivamente payloads declarados en ``data/manifiesto.yaml`` y produce
 tablas descriptivas.  No calibra el motor ni interpreta reclamaciones como
@@ -27,6 +27,7 @@ import sys
 import unicodedata
 from collections import defaultdict
 from decimal import Decimal, InvalidOperation
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Iterable
 from zipfile import ZipFile
@@ -41,15 +42,30 @@ SALIDA_PREDETERMINADA = RAIZ_REPO / "data" / "fuentes-financieras-20"
 REGISTRO_ADQUISICION = (
     RAIZ_REPO / "data" / "curacion-registro" / "cola-adquisicion-registro.tsv"
 )
+NO_CORRIDO = RAIZ_REPO / "forense" / "no-corrido.tsv"
+ENCARGO_CONTINUACION = (
+    "forense/encargos/"
+    "2026-09-11-GEN2-FUENTES-FINANCIERAS-CONTINUACION-EFECTIVA.md"
+)
 
 ID_CNBV = "gen2_cnbv_040_1a_r16_imor_tipo_cartera"
+ID_BANXICO_IMOR = "gen2_banxico_imor_consumo_producto_mensual_2026t1_html"
 ID_ENCRIGE_DATOS = "conjunto_de_datos_encrige_2020_csv"
+ID_ENSAFI_DATOS = "ensafi2023_bd_csv_zip"
+ID_ENSAFI_FD = "ensafi2023_fd_xlsx_zip"
+ID_ENSAFI_CUESTIONARIO = "ensafi2023_cuestionario_pdf"
+ID_ENSAFI_DISENO = "gen2_ensafi2023_diseno_muestral"
+ID_ENSAFI_RESULTADOS = "gen2_ensafi2023_presentacion_resultados"
 PREFIJO_CONDUSEF = "A6_CONDUSEF_DATOS_ABIERTOS/"
 CARPETA_CONDUSEF = "condusef_redeco_reune/"
 
 URL_CNBV = (
     "https://portafolioinfdoctos.cnbv.gob.mx/Documentacion/"
     "minfo/XLS/40/040_1a_R16.xls"
+)
+URL_BANXICO_IMOR = (
+    "https://www.banxico.org.mx/TablasWeb/informes-trimestrales/"
+    "enero-marzo-2026/B133C3DC-462F-40C1-B2BA-04086A1CFAB1.html"
 )
 
 
@@ -184,6 +200,305 @@ def asegura_unicos(filas: Iterable[dict], campos: tuple[str, ...], objeto: str) 
         if llave in vistos:
             raise ValueError(f"llave duplicada en {objeto}: {llave}")
         vistos.add(llave)
+
+
+class _TablasHTML(HTMLParser):
+    """Extrae texto de celdas conservando el orden de cada fila HTML."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.filas: list[list[str]] = []
+        self._fila: list[str] | None = None
+        self._celda: list[str] | None = None
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag.casefold() == "tr":
+            self._fila = []
+        elif tag.casefold() in {"td", "th"} and self._fila is not None:
+            self._celda = []
+
+    def handle_data(self, data: str) -> None:
+        if self._celda is not None:
+            self._celda.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag.casefold() in {"td", "th"} and self._celda is not None:
+            assert self._fila is not None
+            self._fila.append(" ".join("".join(self._celda).split()))
+            self._celda = None
+        elif tag.casefold() == "tr" and self._fila is not None:
+            if self._fila:
+                self.filas.append(self._fila)
+            self._fila = None
+
+
+MESES_ES = {
+    "ene": 1, "feb": 2, "mar": 3, "abr": 4, "may": 5, "jun": 6,
+    "jul": 7, "ago": 8, "sep": 9, "oct": 10, "nov": 11, "dic": 12,
+}
+
+
+def periodo_banxico(valor: str) -> str:
+    pareja = re.fullmatch(r"([a-záéíóú]{3})-(\d{2})", texto_sin_acentos(valor))
+    if not pareja or pareja.group(1) not in MESES_ES:
+        raise ValueError(f"periodo Banxico inesperado: {valor!r}")
+    return f"20{pareja.group(2)}-{MESES_ES[pareja.group(1)]:02d}"
+
+
+def periodos_mensuales(inicio: str, fin: str) -> list[str]:
+    ano, mes = map(int, inicio.split("-"))
+    ano_fin, mes_fin = map(int, fin.split("-"))
+    salida = []
+    while (ano, mes) <= (ano_fin, mes_fin):
+        salida.append(f"{ano:04d}-{mes:02d}")
+        mes += 1
+        if mes == 13:
+            ano += 1
+            mes = 1
+    return salida
+
+
+def extrae_banxico_imor(
+    entrada: dict, raices: dict[str, Path]
+) -> tuple[list[str], list[dict]]:
+    """Lee la tabla oficial equivalente de Banxico, no la plantilla R16."""
+    ruta = ruta_payload(entrada, raices)
+    verifica_payload(entrada, ruta)
+    texto = ruta.read_text(encoding="utf-8")
+    texto_norm = texto_sin_acentos(texto)
+    for marca in (
+        "a partir de enero de 2022",
+        "saldo de la cartera clasificada como etapa 3",
+        "sofomes er subsidiarias",
+        "se excluyen los datos de ci banco",
+    ):
+        if marca not in texto_norm:
+            raise ValueError(f"la publicación Banxico perdió la nota metodológica: {marca}")
+
+    parser = _TablasHTML()
+    parser.feed(texto)
+    filas_fuente = [
+        fila for fila in parser.filas
+        if len(fila) == 12 and re.fullmatch(r"[a-záéíóú]{3}-\d{2}", fila[0].casefold())
+    ]
+    if not filas_fuente:
+        raise ValueError("no se localizaron meses en la tabla Banxico")
+    periodos = [periodo_banxico(fila[0]) for fila in filas_fuente]
+    if periodos != periodos_mensuales(periodos[0], periodos[-1]):
+        raise ValueError("la tabla Banxico tiene meses duplicados, faltantes o fuera de orden")
+    if (periodos[0], periodos[-1]) != ("2016-01", "2026-03"):
+        raise ValueError(f"cobertura Banxico inesperada: {periodos[0]}..{periodos[-1]}")
+
+    productos = [
+        (7, "Consumo total"),
+        (8, "Tarjetas de crédito"),
+        (9, "ABCD"),
+        (10, "Nómina"),
+        (11, "Personales"),
+    ]
+    salida = []
+    for periodo, fila in zip(periodos, filas_fuente, strict=True):
+        regimen = "IFRS9_ETAPA_3" if periodo >= "2022-01" else "PRE_IFRS9_CARTERA_VENCIDA"
+        numerador = (
+            "saldo de cartera clasificada como etapa 3"
+            if regimen == "IFRS9_ETAPA_3" else
+            "saldo de cartera vencida"
+        )
+        for indice, producto in productos:
+            valor_texto = fila[indice].strip()
+            if not valor_texto:
+                valor = ""
+                faltante = "faltante en el original; no se imputa ni se convierte a cero"
+            else:
+                valor_decimal = decimal(valor_texto)
+                if valor_decimal < 0 or valor_decimal > 100:
+                    raise ValueError(f"IMOR Banxico fuera de 0..100: {valor_decimal}")
+                valor = str(valor_decimal)
+                faltante = "sin faltante"
+            salida.append({
+                "fecha": periodo,
+                "producto": producto,
+                "indicador": "IMOR",
+                "numerador": numerador,
+                "denominador": "saldo de la cartera total del mismo producto",
+                "valor": valor,
+                "unidad": "porcentaje",
+                "frecuencia": "mensual",
+                "universo_institucional": (
+                    "banca comercial; incluye Sofomes ER subsidiarias de instituciones "
+                    "bancarias y grupos financieros; excluye CI Banco"
+                ),
+                "regimen_definicion": regimen,
+                "fuente": ID_BANXICO_IMOR,
+                "nota": (
+                    f"publicación oficial equivalente, no R16 CNBV; {faltante}; "
+                    f"ABCD incluye bienes muebles y automotriz; URL {URL_BANXICO_IMOR}"
+                ),
+            })
+    asegura_unicos(salida, ("fecha", "producto"), "IMOR Banxico")
+    return list(salida[0]), salida
+
+
+def lee_csv_zip_dicts(zipf: ZipFile, nombre: str) -> list[dict[str, str]]:
+    candidatos = [n for n in zipf.namelist() if Path(n).name == nombre]
+    if len(candidatos) != 1:
+        raise ValueError(f"se esperaba un {nombre} en ENSAFI; hay {candidatos}")
+    texto, _encoding = decodifica_csv(zipf.read(candidatos[0]))
+    lector = csv.DictReader(io.StringIO(texto, newline=""))
+    if lector.fieldnames is None:
+        raise ValueError(f"{nombre} sin cabecera")
+    return [
+        {str(k): (v or "").strip() for k, v in fila.items()}
+        for fila in lector
+    ]
+
+
+def resumen_ponderado(
+    filas: list[dict[str, str]],
+    campo_peso: str,
+    es_denominador,
+    es_numerador,
+) -> dict[str, str]:
+    denominador = [fila for fila in filas if es_denominador(fila)]
+    numerador = [fila for fila in denominador if es_numerador(fila)]
+    pesos_den = sum((decimal(fila[campo_peso]) for fila in denominador), Decimal(0))
+    pesos_num = sum((decimal(fila[campo_peso]) for fila in numerador), Decimal(0))
+    if pesos_den <= 0:
+        raise ValueError("denominador ENSAFI vacío o sin peso positivo")
+    return {
+        "n_muestra_denominador": str(len(denominador)),
+        "masa_expandida_denominador": str(pesos_den),
+        "n_muestra_numerador": str(len(numerador)),
+        "masa_expandida_numerador": str(pesos_num),
+        "porcentaje_ponderado": porcentaje(pesos_num, pesos_den),
+    }
+
+
+def extrae_ensafi_hogar(
+    entrada: dict, raices: dict[str, Path]
+) -> tuple[list[str], list[dict]]:
+    ruta = ruta_payload(entrada, raices)
+    verifica_payload(entrada, ruta)
+    with ZipFile(ruta) as zipf:
+        if zipf.testzip() is not None:
+            raise ValueError("ZIP ENSAFI corrupto")
+        filas = lee_csv_zip_dicts(zipf, "THOGAR.csv")
+    if len({fila["LLAVEHOG"] for fila in filas}) != len(filas):
+        raise ValueError("LLAVEHOG duplicada en ENSAFI")
+    productos = [
+        (1, "tarjeta o crédito bancario, financiero o de tienda departamental"),
+        (2, "caja de ahorro, familiares o amistades"),
+        (3, "casa de empeño"),
+        (4, "prestamistas o agiotistas"),
+    ]
+    salida = []
+    for indice, producto in productos:
+        deuda = f"P4_7_{indice}"
+        atraso = f"P4_8_{indice}"
+        expuestos = [fila for fila in filas if fila[deuda] == "1"]
+        desconocidos = [fila for fila in expuestos if fila[atraso] == "9"]
+        resumen = resumen_ponderado(
+            filas,
+            "FAC_HOG",
+            lambda fila, d=deuda, a=atraso: fila[d] == "1" and fila[a] in {"1", "2"},
+            lambda fila, a=atraso: fila[a] == "1",
+        )
+        salida.append({
+            "periodo": "último mes antes de la entrevista de 2023",
+            "unidad_observacion": "hogar",
+            "poblacion": "hogares en México con la clase de deuda indicada",
+            "producto_clase": producto,
+            "dano": "atraso en el pago de esa deuda",
+            "variable_exposicion": deuda,
+            "variable_dano": atraso,
+            "n_muestra_expuestos": str(len(expuestos)),
+            "n_muestra_dano_desconocido": str(len(desconocidos)),
+            **resumen,
+            "factor_expansion": "FAC_HOG",
+            "escala": "porcentaje de hogares expuestos con respuesta sí/no válida",
+            "fuente": ID_ENSAFI_DATOS,
+            "uso": "prevalencia descriptiva poblacional por clase amplia de deuda",
+            "limite": (
+                "no identifica institución, CAT, BNPL ni causalidad; la clase formal agrupa "
+                "banco, institución financiera y tienda; los cuatro renglones no son excluyentes"
+            ),
+        })
+    asegura_unicos(salida, ("producto_clase",), "ENSAFI hogar")
+    return list(salida[0]), salida
+
+
+def extrae_ensafi_persona(
+    entrada: dict, raices: dict[str, Path]
+) -> tuple[list[str], list[dict]]:
+    ruta = ruta_payload(entrada, raices)
+    verifica_payload(entrada, ruta)
+    with ZipFile(ruta) as zipf:
+        if zipf.testzip() is not None:
+            raise ValueError("ZIP ENSAFI corrupto")
+        filas = lee_csv_zip_dicts(zipf, "TMODULO.csv")
+    if len({fila["LLAVEMOD"] for fila in filas}) != len(filas):
+        raise ValueError("LLAVEMOD duplicada en ENSAFI")
+
+    salida = []
+    deuda = resumen_ponderado(
+        filas,
+        "FAC_ELE",
+        lambda fila: fila["P6_8"] in {"1", "2", "3", "4"},
+        lambda fila: fila["P6_7"] == "1",
+    )
+    if Decimal(deuda["porcentaje_ponderado"]).quantize(Decimal("0.1")) != Decimal("27.3"):
+        raise ValueError("el atraso ENSAFI no reproduce el 27.3% oficial")
+    salida.append({
+        "periodo": "sin periodo de referencia explícito para P6_7; levantamiento 2023",
+        "unidad_observacion": "persona de 18 años y más seleccionada",
+        "poblacion_denominador": "personas que declararon deuda excesiva, alta, moderada o baja (P6_8=1..4)",
+        "estimando": "se ha atrasado en uno de sus préstamos o créditos",
+        "variable_numerador": "P6_7=1 y P6_8=1..4",
+        "variable_denominador": "P6_8=1..4",
+        **deuda,
+        "factor_expansion": "FAC_ELE",
+        "escala": "porcentaje ponderado",
+        "contraste_publicado": "27.3",
+        "fuente": ID_ENSAFI_DATOS,
+        "uso": "prevalencia descriptiva poblacional de atraso entre personas con deuda",
+        "limite": "P6_7 no identifica cuál producto se atrasó ni establece que baja fricción o tasa usuraria causó el atraso",
+    })
+
+    estrategias = [
+        (1, "pidió prestado a familiares o amistades"),
+        (2, "utilizó ahorros"),
+        (3, "redujo gastos"),
+        (4, "vendió o empeñó algún bien"),
+        (5, "solicitó adelanto salarial, horas extra o trabajo temporal"),
+        (6, "usó tarjeta o solicitó crédito formal/de tienda"),
+        (7, "se atrasó en el pago de un crédito o préstamo"),
+        (8, "pidió a cajas de ahorro, prestamistas o agiotistas"),
+    ]
+    for indice, estrategia in estrategias:
+        variable = f"P6_10_{indice}"
+        resumen = resumen_ponderado(
+            filas,
+            "FAC_ELE",
+            lambda fila, v=variable: fila["P6_9"] == "2" and fila[v] in {"1", "2"},
+            lambda fila, v=variable: fila[v] == "1",
+        )
+        salida.append({
+            "periodo": "último mes antes de la entrevista de 2023",
+            "unidad_observacion": "persona de 18 años y más seleccionada",
+            "poblacion_denominador": "personas cuyo ingreso no alcanzó para cubrir gastos sin endeudarse (P6_9=2)",
+            "estimando": estrategia,
+            "variable_numerador": f"{variable}=1 y P6_9=2",
+            "variable_denominador": "P6_9=2; respuesta válida sí/no en P6_10",
+            **resumen,
+            "factor_expansion": "FAC_ELE",
+            "escala": "porcentaje ponderado",
+            "contraste_publicado": "",
+            "fuente": ID_ENSAFI_DATOS,
+            "uso": "respuesta descriptiva ante insuficiencia de ingreso; categorías múltiples",
+            "limite": "no atribuye la estrategia a un producto concreto ni identifica un efecto causal de crédito de baja fricción/usura",
+        })
+    asegura_unicos(salida, ("estimando",), "ENSAFI persona")
+    return list(salida[0]), salida
 
 
 def clasifica_condusef(archivo: str) -> tuple[str, str, str]:
@@ -609,6 +924,8 @@ def filas_por_fuente_adquisicion(filas: Iterable[dict]) -> dict[str, dict]:
     objetivos = {
         "CNBV_PORTAFOLIO_INFORMACION_IMOR_CONSUMO",
         "ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF",
+        "BANXICO_IMOR_CONSUMO_POR_PRODUCTO_MENSUAL",
+        "ENSAFI_2023_N34_CONSUMIDOR_DEUDOR",
     }
     por_fuente: dict[str, dict] = {}
     for fila in filas:
@@ -620,7 +937,7 @@ def filas_por_fuente_adquisicion(filas: Iterable[dict]) -> dict[str, dict]:
 
 
 def actualiza_registro_adquisicion() -> None:
-    """Actualiza sólo las dos filas del encargo mediante el escritor canónico."""
+    """Actualiza por fuente estable y añade las dos fuentes de continuación."""
     from curador_registro.tsv_crudo import leer_dicts, upsert_fila
 
     campos = [
@@ -645,16 +962,14 @@ def actualiza_registro_adquisicion() -> None:
         "CNBV_PORTAFOLIO_INFORMACION_IMOR_CONSUMO": {
             "estado_A4A5": "OBTENIDO-PARCIAL",
             "url_conocida": URL_CNBV,
-            "ids_manifiesto": ID_CNBV,
+            "ids_manifiesto": f"{ID_CNBV};{ID_BANXICO_IMOR}",
             "adenda": (
-                "ACTO GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES (11/sep/2026): "
-                "OBTENIDO-PARCIAL. El flujo vigente ReportViwer/Agrupados entrega "
-                "el XLS oficial 040-1A-R16, verificado curl+wget, pero sólo con la "
-                "foto cacheada 202112. La macro lee su conexión desde "
-                r"\\sector5\DGAIN\MINFO\dgaex.txt y ejecuta sp_obtiene_reporte, "
-                "ruta interna no alcanzable públicamente: la serie histórica sigue "
-                "como barrera externa demostrada; queda utilizable el corte y el "
-                "extractor, no un parámetro del motor."
+                "ACTO GEN2-FUENTES-FINANCIERAS-CONTINUACION-EFECTIVA "
+                "(11/sep/2026): la fuente CNBV R16 conserva OBTENIDO-PARCIAL, pero "
+                "su necesidad científica de historia mensual queda cubierta por la "
+                "publicación oficial equivalente de Banxico, 2016-01..2026-03, cinco "
+                "productos. No es R16: banca comercial con Sofomes ER subsidiarias, "
+                "CI Banco excluido y ruptura IFRS9 desde 2022-01."
             ),
         },
         "ENCRIGE_2020_FD_COMPLETO_MAS_CONDUSEF": {
@@ -662,29 +977,129 @@ def actualiza_registro_adquisicion() -> None:
             "url_conocida": "https://www.inegi.org.mx/programas/encrige/2020/",
             "ids_manifiesto": ";".join(encrige_ids),
             "adenda": (
-                "ACTO GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES (11/sep/2026): "
-                "OBTENIDO en la capa de adquisición. La ola ENCRIGE 2020 existe: "
-                "paquete tabulado, cuestionario y diseño muestral oficiales quedaron "
-                "verificados; se leyeron 29/29 CSV CONDUSEF ya manifestados. ENCRIGE "
-                "observa a la empresa frente a contrapartes privadas y CONDUSEF no "
-                "trae denominador de clientes ni causa/BNPL: la demanda científica "
-                "N34 no queda satisfecha ni se adopta parámetro por este estado."
+                "ACTO GEN2-FUENTES-FINANCIERAS-CONTINUACION-EFECTIVA "
+                "(11/sep/2026): esta fuente conserva su alcance empresa/administrativo; "
+                "el residual consumidor-deudor se atiende por una identidad separada "
+                "ENSAFI_2023_N34_CONSUMIDOR_DEUDOR, sin reinterpretar ENCRIGE ni quejas."
+            ),
+        },
+        "BANXICO_IMOR_CONSUMO_POR_PRODUCTO_MENSUAL": {
+            "nueva": True,
+            "estado_A4A5": "OBTENIDO",
+            "prioridad": "3",
+            "url_conocida": URL_BANXICO_IMOR,
+            "ids_manifiesto": ID_BANXICO_IMOR,
+            "origen": ENCARGO_CONTINUACION,
+            "nota": (
+                "Publicación oficial equivalente con 123 meses (2016-01..2026-03) "
+                "y cinco productos de consumo. IMOR es porcentaje de saldos; desde "
+                "2022-01 el numerador es cartera etapa 3 por IFRS9. Universo distinto "
+                "de R16: banca comercial, incluye Sofomes ER subsidiarias y excluye "
+                "CI Banco. Extracción descriptiva; ningún parámetro adoptado."
+            ),
+        },
+        "ENSAFI_2023_N34_CONSUMIDOR_DEUDOR": {
+            "nueva": True,
+            "estado_A4A5": "OBTENIDO",
+            "prioridad": "3",
+            "url_conocida": "https://www.inegi.org.mx/programas/ensafi/2023/",
+            "ids_manifiesto": ";".join([
+                ID_ENSAFI_DATOS,
+                ID_ENSAFI_FD,
+                ID_ENSAFI_CUESTIONARIO,
+                ID_ENSAFI_DISENO,
+                ID_ENSAFI_RESULTADOS,
+            ]),
+            "origen": ENCARGO_CONTINUACION,
+            "nota": (
+                "Microdato, descriptor, cuestionario, diseño y resultados oficiales. "
+                "Entrega prevalencias descriptivas con población y denominador: atraso "
+                "por cuatro clases amplias de deuda del hogar y atraso/estrategias ante "
+                "ingreso insuficiente de personas de 18+. Reproduce 27.3% oficial. "
+                "No identifica BNPL/CAT ni un efecto causal de baja fricción o usura."
             ),
         },
     }
     for fuente, cambio in cambios.items():
-        if fuente not in por_fuente:
-            raise ValueError(f"fila de adquisición ausente: {fuente}")
-        fila = dict(por_fuente[fuente])
-        fila["estado_A4A5"] = cambio["estado_A4A5"]
-        fila["url_conocida"] = cambio["url_conocida"]
-        fila["ids_manifiesto"] = cambio["ids_manifiesto"]
-        if cambio["adenda"] not in fila["nota"]:
-            fila["nota"] = fila["nota"].rstrip() + " " + cambio["adenda"]
+        if cambio.get("nueva"):
+            fila = {
+                "fila_origen": ENCARGO_CONTINUACION,
+                "fuente_canonica": fuente,
+                "fuente_canonica_normalizada": fuente,
+                "discordancia_alias": "",
+                "estado_A4A5": cambio["estado_A4A5"],
+                "prioridad": cambio["prioridad"],
+                "url_conocida": cambio["url_conocida"],
+                "ids_manifiesto": cambio["ids_manifiesto"],
+                "origen": cambio["origen"],
+                "nota": cambio["nota"],
+            }
+        else:
+            if fuente not in por_fuente:
+                raise ValueError(f"fila de adquisición ausente: {fuente}")
+            fila = dict(por_fuente[fuente])
+            fila["estado_A4A5"] = cambio["estado_A4A5"]
+            fila["url_conocida"] = cambio["url_conocida"]
+            fila["ids_manifiesto"] = cambio["ids_manifiesto"]
+            if cambio["adenda"] not in fila["nota"]:
+                fila["nota"] = fila["nota"].rstrip() + " " + cambio["adenda"]
         # Varias fuentes históricas comparten fila_origen; la identidad de
         # esta tabla para una actualización de adquisición es la fuente.
         upsert_fila(REGISTRO_ADQUISICION, fila, campos, clave="fuente_canonica")
         print(f"registro actualizado: {fuente} -> {cambio['estado_A4A5']}")
+
+
+def actualiza_reservas() -> None:
+    """Concilia sólo NC-0163/0164 por identidad estable."""
+    from curador_registro.tsv_crudo import leer_dicts, upsert_fila
+
+    campos = [
+        "id", "fecha", "acto", "pr", "pieza", "que_no_se_corrio", "razon",
+        "impacto", "sucesor", "estado", "cerrado_por", "fecha_cierre",
+    ]
+    por_id = {fila["id"]: fila for fila in leer_dicts(NO_CORRIDO)}
+    requeridos = {"NC-0163", "NC-0164"}
+    if not requeridos <= por_id.keys():
+        raise ValueError(f"reservas de #717 ausentes: {sorted(requeridos - por_id.keys())}")
+
+    imor = dict(por_id["NC-0163"])
+    imor.update({
+        "razon": "EJECUTADA-POR-PUBLICACION-OFICIAL-EQUIVALENTE",
+        "impacto": (
+            "Banxico aporta IMOR mensual 2016-01..2026-03 para consumo total, "
+            "tarjeta, ABCD, nomina y personales, con denominador de cartera del "
+            "mismo producto y ruptura IFRS9 explicita; no es la exportacion R16."
+        ),
+        "sucesor": (
+            "ninguno para la historia mensual solicitada; obtener R16 exacto queda "
+            "como mejora opcional de comparabilidad institucional"
+        ),
+        "estado": "CERRADA",
+        "cerrado_por": "ACTO GEN2-FUENTES-FINANCIERAS-CONTINUACION-EFECTIVA",
+        "fecha_cierre": "2026-09-11",
+    })
+    upsert_fila(NO_CORRIDO, imor, campos, clave="id")
+
+    n34 = dict(por_id["NC-0164"])
+    n34.update({
+        "razon": "EJECUTADA-PARCIAL-CONSUMIDOR-Y-DENOMINADORES",
+        "impacto": (
+            "ENSAFI 2023 aporta prevalencia descriptiva poblacional del lado "
+            "consumidor-deudor, atraso por cuatro clases amplias de deuda y "
+            "estrategias ante ingreso insuficiente. No enlaza en una observacion "
+            "causa de baja friccion/usura/BNPL, producto exacto y dano."
+        ),
+        "sucesor": (
+            "spec prospectiva solo si mesa acepta los estimandos descriptivos; para "
+            "el mecanismo completo, fuente o instrumento que enlace producto exacto, "
+            "exposicion, costo/CAT o friccion, atraso/cobranza/venta de activos y pesos"
+        ),
+        "estado": "ABIERTA",
+        "cerrado_por": "NO-APLICA-MIENTRAS-ABIERTA",
+        "fecha_cierre": "NO-APLICA-MIENTRAS-ABIERTA",
+    })
+    upsert_fila(NO_CORRIDO, n34, campos, clave="id")
+    print("reservas conciliadas: NC-0163 -> CERRADA; NC-0164 -> ABIERTA-PARCIAL")
 
 
 def construye() -> dict[str, bytes]:
@@ -697,13 +1112,30 @@ def construye() -> dict[str, bytes]:
     ]
     if not condusef:
         raise ValueError("no se encontraron CSV CONDUSEF manifestados")
+    for identificador in (
+        ID_ENSAFI_FD,
+        ID_ENSAFI_CUESTIONARIO,
+        ID_ENSAFI_DISENO,
+        ID_ENSAFI_RESULTADOS,
+    ):
+        entrada = por_id[identificador]
+        verifica_payload(entrada, ruta_payload(entrada, raices))
     productos: dict[str, tuple[list[str], list[dict]]] = {
         "cnbv-imor-consumo.csv": extrae_cnbv(por_id[ID_CNBV], raices),
+        "banxico-imor-consumo-mensual.csv": extrae_banxico_imor(
+            por_id[ID_BANXICO_IMOR], raices
+        ),
         "condusef-inventario.csv": inventario_condusef(condusef, raices),
         "condusef-acciones-defensa.csv": agrega_acciones(condusef, raices),
         "condusef-reclamaciones-clase.csv": agrega_reclamaciones_clase(condusef, raices),
         "condusef-reclamaciones-producto.csv": agrega_reclamaciones_producto(condusef, raices),
         "encrige2020-cumplimiento-contratos.csv": extrae_encrige(por_id[ID_ENCRIGE_DATOS], raices),
+        "ensafi2023-atraso-deuda-producto-hogar.csv": extrae_ensafi_hogar(
+            por_id[ID_ENSAFI_DATOS], raices
+        ),
+        "ensafi2023-deuda-y-afrontamiento-persona.csv": extrae_ensafi_persona(
+            por_id[ID_ENSAFI_DATOS], raices
+        ),
     }
     return {nombre: renderiza_csv(*producto) for nombre, producto in productos.items()}
 
@@ -714,7 +1146,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--verifica", action="store_true", help="no escribe; compara con salidas existentes")
     parser.add_argument(
         "--actualiza-registro", action="store_true",
-        help="actualiza las dos filas de adquisición con tsv_crudo.upsert_fila",
+        help="actualiza fuentes por identidad estable con tsv_crudo.upsert_fila",
     )
     args = parser.parse_args(argv)
     productos = construye()
@@ -736,6 +1168,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{nombre}: {filas} filas")
     if args.actualiza_registro:
         actualiza_registro_adquisicion()
+        actualiza_reservas()
     return 0
 
 
