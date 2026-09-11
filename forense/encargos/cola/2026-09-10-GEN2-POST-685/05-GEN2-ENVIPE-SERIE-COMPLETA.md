@@ -1,3 +1,12 @@
+ESTADO: CONSUMIDO — PR #692; serie anual 2010–2024 completa, con NC-0155
+preservada para validación independiente.
+
+BITÁCORA: ejecución y cierre en
+`forense/encargos/cola/2026-09-10-GEN2-POST-685/05-GEN2-ENVIPE-SERIE-COMPLETA.md`
+y `forense/notas/2026-09-10-GEN2-ENVIPE-SERIE-COMPLETA-cierre.md`.
+
+──── CUERPO VERBATIM RECIBIDO DE DIRECCIÓN ────
+
 # ENCARGO · GEN2-ENVIPE-SERIE-COMPLETA
 
 ## Insumos → comparabilidad → serie temporal
@@ -89,4 +98,4 @@ Cada fase termina con resultado o bloqueo preciso y prueba. Cierre completo: aut
 
 ## CONSUMIDO
 
-Ejecutado por `ACTO GEN2-ENVIPE-SERIE-COMPLETA`: ocho olas nuevas selladas y reproducibles, producto anual 2010–2024 publicado, `NC-0087/0093/0101` cerradas y validación independiente conservada en `NC-0155`. El merge y cualquier adopción pertenecen a mesa.
+Ejecutado por `ACTO GEN2-ENVIPE-SERIE-COMPLETA`: ocho olas nuevas selladas y reproducibles, producto anual 2010–2024 publicado, `NC-0087/0093/0101` cerradas y validación independiente conservada en `NC-0155`. Fusionado por mesa en PR #692; cualquier adopción adicional requiere su decisión propia.

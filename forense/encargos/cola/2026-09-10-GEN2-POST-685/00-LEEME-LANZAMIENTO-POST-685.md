@@ -1,5 +1,11 @@
 # Paquete de ejecución multifase · posterior a PR #685
 
+ESTADO: lotes 01–06 CONSUMIDOS y fusionados por mesa en PR #687, #689,
+#691, #688, #692 y #693, respectivamente. El lote 07 permanece PENDIENTE.
+
+BITÁCORA: cada lote consumido remite en su cabecera a su encargo archivado y
+nota de cierre; los cuerpos verbatim se conservan como historia del pedido.
+
 Fecha: 10 de septiembre de 2026. Autor: ChatGPT, preparación de encargos para mesa y Codex. Estado consultado: `origin/main=486eda19944a94d978791eb423559144de98d16b`. Este paquete es un despacho preparado; todavía no se ejecutaron sus ocho lotes ni se modificó el repo desde esta revisión.
 
 **Objetivo: completar la evaluación y convertir las decisiones ya firmadas en datos, parámetros y operación utilizables durante los siguientes días y semanas.**

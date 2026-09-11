@@ -1,9 +1,3 @@
-ESTADO: CONSUMIDO — PR #696; la copia canónica de ejecución está archivada en `forense/encargos/2026-09-10-GEN2-PUBLICACION-POST693-Y-CIERRES.md`.
-
-BITÁCORA: PR #694 encoló esta copia después del arranque y del commit 0-bis del acto. PR #696 publicó las vistas, cerró las obligaciones acreditadas y dejó los residuales expresos. Se conserva el cuerpo recibido verbatim debajo de esta cabecera; no lanzar una segunda ejecución. El ejecutor no fusionó el PR.
-
----
-
 # ENCARGO · GEN2-PUBLICACION-POST693-Y-CIERRES
 
 ENTORNO: CAJA
@@ -73,3 +67,11 @@ Usa `tools/cierre_acto.py` primero en seco y luego `--aplica` cuando corresponda
 **Pruebas y parada.** Validar primero el resultado material; correr el baseline requerido sin ampliarlo para ocultar fallos. No perseguir los tres FAIL históricos por rutina. No volver a arreglar NC-0141/0148: #690 ya lo hizo. Revisar el diff después de las pruebas y añadir sólo archivos deliberados. D-14: cualquier automatización adicional debe evitar un error observado con efecto material y costar menos que su corrección repetida; si no, resolver directamente. Auditoría aproximadamente 20%, salvo riesgo material en números, identidad o decisión.
 
 Avanza entre fases ya autorizadas sin pedir confirmación. Termina cuando entregues el resultado suficiente o un residual externo concreto. Cadena de cierre: autorización → producto → evidencia → consumidor cuando aplique → obligaciones → vistas/cola → PR → merge de mesa. Una fila mixta conserva su parte pendiente. No cerrar por palabra coincidente ni por recomendación. Respuesta final del ejecutor: resultado útil, fases cumplidas/pendientes, PR/SHA, pruebas, y tabla `obligación | evidencia | cerrada/residual | siguiente acción`.
+
+## NO-CORRIDO / RESERVAS
+
+Ninguno. El lote 07 y `NC-0151`/`NC-0152`/`NC-0153`/`NC-0155` no eran piezas a ejecutar en este acto: el encargo ordena expresamente conservarlos pendientes, y así permanecen.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-PUBLICACION-POST693-Y-CIERRES` en PR #696: las tres vistas publican `fuente_replay` para 150 corridas, 3 335 resultados y 207 usos; los tres CALC omitidos quedaron visibles; el negativo C0D se preservó; `NC-0104`/`NC-0154` cerraron y `FP-361`/`FP-363` registran su ejecución exacta. Los lotes POST685 01–06 quedaron conciliados como fusionados; lote 07 y `NC-0151`/`0152`/`0153`/`0155` permanecen pendientes. El ejecutor no fusionó el PR: esa decisión pertenece a mesa.

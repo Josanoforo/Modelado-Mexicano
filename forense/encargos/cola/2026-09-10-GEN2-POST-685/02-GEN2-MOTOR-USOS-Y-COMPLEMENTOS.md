@@ -1,3 +1,12 @@
+ESTADO: CONSUMIDO — PR #689; consumidores corregidos y residuales explícitos
+en NC-0085/0107/0111/0121/0122/0153.
+
+BITÁCORA: ejecución y cierre en
+`forense/encargos/2026-09-10-GEN2-MOTOR-USOS-Y-COMPLEMENTOS.md` y
+`forense/notas/2026-09-10-GEN2-MOTOR-USOS-Y-COMPLEMENTOS-cierre.md`.
+
+──── CUERPO VERBATIM RECIBIDO DE DIRECCIÓN ────
+
 # ENCARGO · GEN2-MOTOR-USOS-Y-COMPLEMENTOS
 
 ## Uso de parámetros → semántica → integración verificable
