@@ -3571,7 +3571,7 @@ reglas_propuestas:
       asignado).
     situacion: SELLADA-SIN-CARGA  # D2-h (ACTO MAESTRA38-CARGA-LAPOP-2, 7/sep/2026): R10.3 conserva [FUERTE], gana cláusula de movimiento
     tier: SELLADA  # hereda R10.3 [FUERTE], sin movimiento -- D2-h, D16 (ACTO MAESTRA38-TRAMITE-3, tier es token de la receta, la prosa va en comentario)
-    se_mueve_si: "segunda medición con la misma batería (AOJ1/AOJ11/AOJ12/vic1) en una ola ≥ 2019 ya en corpus; si tampoco discrimina → FUERTE→MEDIA por D2; si discrimina → la de 2004 queda como acotada temporalmente"  # D2-h
+    se_mueve_si: "D2-h histórica: segunda medición con la batería original. NO EVALUABLE con las olas 2019/2021/2023 ya examinadas por ausencia de aoj1; reexaminar sólo ante fuente nueva que mida la pregunta original o decisión explícita de mesa sobre otro estimando. R10.3 conserva [FUERTE] y 2004 conserva NO-DISCRIMINA"  # D15 · S13 v1.1
     si:
       disparadores: NO-APLICA
     entonces:
@@ -3579,7 +3579,7 @@ reglas_propuestas:
       - {conducta: silencio_no_denuncia_contexto_inseguro_BAJO_lapop2004, p: 0.674157, clase: "MEDIDO·p(sin ponderar; victimas con INDICE_CONTEXTO 0-1 de 3)"}
     porque: {generador: [G4], mecanismo: "adaptacion racional, no timidez -- este acto NO re-deriva el generador ni lo mide: el PORQUE es mecanismo, no antecedente exigible"}
     falsable_si: NO-APLICA
-    fuente: ["LAPOP_MEX_2004", "forense/prereg-caja/S8-L18-spec-v1_0.md", "forense/notas/2026-09-05-MAESTRA38-N10-cobertura-ola6.md#2.6"]
+    fuente: ["LAPOP_MEX_2004", "forense/prereg-caja/S8-L18-spec-v1_0.md", "forense/prereg-caja/S13-R10-3-spec-v1_1.md", "forense/notas/2026-09-05-MAESTRA38-N10-cobertura-ola6.md#2.6"]
     ola_calibracion: "LAPOP AmericasBarometer Mexico 2004 -- UNA SOLA OLA: el desenlace aoj1/aoj1a/aoj1b existe solo ahi (2006/2019/2021/2023: NO-ENCONTRADO, ambas capitalizaciones, re-verificado por el censo A.4 de este acto). Corrige a N10 §2.6, que lo describia en 'las mismas cinco olas'."
     medido_en: "ACTO MAESTRA38-L18 (LOTE-LAPOP), 6/sep/2026 -- forense/notas/2026-09-06-MAESTRA38-LOTE-LAPOP-L18-resultados.md; data/l18-ver-oir-callar-lapop2004-v1_0.json"
     reactivo: "aoj11 (inseguridad en el barrio) + b18 (confianza en la Policia) + aoj12 (confianza en que la justicia castigue) -> aoj1 (denuncio el hecho); b10a como verificacion cruzada de aoj12"
