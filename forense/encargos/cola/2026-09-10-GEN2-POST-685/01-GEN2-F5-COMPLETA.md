@@ -1,3 +1,12 @@
+ESTADO: CONSUMIDO — PR #687; 224/224 `OK`; `CALC-TRIADA-0002` sellado y
+`REPRODUCE`/`IDENTICO`; resultado `SIN-GANADOR-UNICO`, sin adopción ni F6.
+
+BITÁCORA: ejecución y cierre en
+`forense/encargos/2026-09-10-GEN2-F5-COMPLETA.md` y
+`forense/notas/2026-09-10-GEN2-F5-COMPLETA-cierre.md`.
+
+──── CUERPO VERBATIM RECIBIDO DE DIRECCIÓN ────
+
 # ENCARGO · GEN2-F5-COMPLETA
 
 ## Corpus útil → recaptura → evaluación completa

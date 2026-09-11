@@ -7,8 +7,30 @@
 únicamente si el cliente y la identidad registrados están disponibles. Sin API
 de pago ni sustitución de competidor.
 
-**Estado:** EN-CURSO en PR #687 (194/224 respuestas `OK`; 30 reanudables tras
-la cuota). No consumido como cierre completo.
+**Estado:** CONSUMIDO en PR #687. Las 224/224 posiciones terminaron `OK`,
+`CALC-TRIADA-0002` quedó sellado y verificó `REPRODUCE` con
+`CONTEXTO=IDENTICO`; el resultado es `SIN-GANADOR-UNICO` sobre `U3=12/14`.
+
+## NO-CORRIDO / RESERVAS
+
+- Transferencia conserva el resultado secundario `SIN-UNIVERSO` del contrato
+  vigente: las 14 celdas son `M-NO-COMPARABLE-EN-TRANSFERENCIA`; no bloquea la
+  pregunta primaria de uso documental/operacional.
+- `L_CORPUS` no produjo punto en `DIN-M-01` ni `TRA-M-07`: las 16 respuestas
+  fueron abstenciones válidas. El residual prospectivo queda en `NC-0152`.
+- La prosa congelada menciona semilla de orden `20260910`, mientras el plan,
+  runner e identidades ejecutadas usan `42`. Se conserva el orden exacto del
+  plan; no se corrigió retrospectivamente ni se alegó contrabalanceo estricto.
+
+## CONSUMIDO
+
+PR #687 ejecutó las fases 0–5: corpus sucesor por celda, diseño prospectivo,
+sonda, 224 capturas nuevas con Claude Opus, extracción terminal, cálculo y
+sello corrida0. Resultado final: 171 estimaciones numéricas, 53 abstenciones
+válidas, 0 errores técnicos, 0 malformadas y 0 errores de identidad. El sello
+de `CALC-TRIADA-0002` es
+`e0e7c229db9aca39e7dfe117ed1081bfe3f53b973ad0a73100ac6849a55c26b8`.
+No se adopta ningún brazo y F6 no procede.
 
 ## ARRANQUE
 

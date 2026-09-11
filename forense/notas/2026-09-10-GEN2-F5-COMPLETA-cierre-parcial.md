@@ -1,5 +1,9 @@
 # GEN2-F5-COMPLETA · cierre parcial por cuota
 
+> Registro histórico superado por el cierre completo del mismo acto en
+> `2026-09-10-GEN2-F5-COMPLETA-cierre.md`. Las 30 posiciones se reanudaron sin
+> reemplazar las 194 `OK` y terminaron correctamente.
+
 **Resultado útil:** el corpus sucesor y el diseño completo quedaron construidos,
 la sonda aceptó el paquete máximo y se intentaron las 224 posiciones nuevas. El
 cliente entregó 194 respuestas y después devolvió 30 fallos técnicos `HTTP 429`
