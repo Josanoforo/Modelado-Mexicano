@@ -140,3 +140,39 @@ Mantener perímetro y PR de 18, sin duplicar resolver de 17 ni evaluación de 19
   tenedores fintech, no el canal exacto del producto fintech.
 - El escenario de tandas no se adoptó. No se ejecutaron llamadas a modelos,
   microdatos, solicitudes externas ni cierres de PR ajenos.
+
+## CONSUMIDO
+
+Consumido el 11/sep/2026 en la rama
+`acto/gen2-motor-herencia-explicita`, PR #712. El commit técnico es `758afb7`
+y el cierre previo a esta constancia es `ac913d0`. La dependencia ejecutable
+de linaje se integró desde PR #710; el benchmark fusionado por PR #708 se
+trató como propuesta y no como firma. El PR queda abierto y no se fusionó.
+
+El emisor conserva `HISTORICO` y añade `GEN2` con propósito, dominio,
+consumidor, RESULT sellado, origen apto, identidad numérica y corte temporal
+explícitos. Ante ausencia o incompatibilidad devuelve `NO_COVERAGE`; no usa
+el `p` viejo, cero ni el árbitro. El snapshot sucesor reproduce 207 usos
+activos: 16 directos GEN2 emitidos y 191 dependencias legacy visibles.
+
+Verificación final:
+
+- `tests/test_motor_gen2_explicito.py`: 10/10.
+- `tests/test_motor_usos_complementos.py`: 16/16.
+- `tests/test_corrida0.py`: 90/90; fidelidad y M2 también pasan.
+- `tools/snapshot_motor_gen2.py --verifica`: reproducción exacta.
+- `corrida0 registro` seco: sin diferencias en 152 corridas, 3 505
+  resultados y 207 usos; `status --json` informa 16 adopciones GEN2, 191
+  dependencias legacy y cero diferencias materiales.
+- `tests/check.py --baseline`: VERDE frente a la línea congelada; permanecen
+  sólo los tres FAIL históricos de T06/T08.
+- `git diff --check origin/main...HEAD`: pasa.
+
+Salida final cruda de la comprobación S6 exigida por el encargo:
+
+`MEDIDA-EN: tramite-ola5-propuesta-v0.yaml`
+
+El cierre crea ADR-472, cierra NC-0157 y conserva NC-0158, NC-0085,
+NC-0107/0153, NC-0122, NC-0156 y FP-371/372 con los alcances descritos en
+`## NO-CORRIDO / RESERVAS`. **CONTADOR: cero**: no se creó ni adoptó una
+medición científica.
