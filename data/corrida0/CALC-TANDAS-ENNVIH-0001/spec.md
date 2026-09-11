@@ -30,8 +30,10 @@ antes de producir cifras porque 2002 guarda la misma llave numérica en crédito
 y textual con ceros en ponderadores. El diagnóstico posterior mostró además
 duplicados exactos de llave en ponderadores 2005/2009: se colapsan sólo si hay
 cero o un único valor positivo distinto de `fac_3b`; más de uno aborta. Esta
-corrección de representación no depende de resultados. Duplicados restantes o
-falta de cobertura de una fila de crédito en portada/ponderador abortan.
+corrección de representación no depende de resultados. Duplicados restantes
+abortan. La ausencia de factor puntual —observada en personas seguidas que no
+pertenecen al universo puntual— se cuenta y excluye, como fijó desde el inicio
+la definición del denominador; una edad ausente sólo excluye del corte etario.
 
 ## Cortes mínimos
 

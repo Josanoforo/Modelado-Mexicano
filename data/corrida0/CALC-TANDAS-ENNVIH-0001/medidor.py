@@ -129,9 +129,6 @@ def medir(inputs, contrato):
             raise ValueError(f"{wave}: identidad folio+ls no es unica")
         df = cr.merge(port[keys + ["edad"]], on=keys, how="left", validate="one_to_one")
         df = df.merge(weights[keys + ["fac_3b"]], on=keys, how="left", validate="one_to_one")
-        if df["edad"].isna().any() or df["fac_3b"].isna().any():
-            raise ValueError(f"{wave}: credito sin cobertura en portada/ponderador")
-
         cr04 = _num(df["cr04"])
         observed = {1: int((cr04 == 1).sum()), 3: int((cr04 == 3).sum())}
         if observed != cfg["expected"]:
