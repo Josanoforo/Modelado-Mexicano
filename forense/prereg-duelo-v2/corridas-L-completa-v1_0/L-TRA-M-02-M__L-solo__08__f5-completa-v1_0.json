@@ -1,45 +1,177 @@
 {
+  "antecedentes_reanudacion": [
+    {
+      "estado_captura": "ERROR_TECNICO",
+      "intentos": [
+        {
+          "fin_utc": "2026-09-11T00:10:05.980300+00:00",
+          "inicio_utc": "2026-09-11T00:10:03.022171+00:00",
+          "numero": 1,
+          "returncode": 1,
+          "stderr_original": "",
+          "stdout_original": "{\"duration_api_ms\":0,\"stop_reason\":\"stop_sequence\",\"session_id\":\"b8e99bc3-147d-4de8-b3a5-2cb99db5a8e0\",\"total_cost_usd\":0,\"usage\":{\"output_tokens_details\":{\"thinking_tokens\":0},\"input_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"output_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"api_error\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":429,\"result\":\"You've hit your weekly limit · resets Sep 12, 11am (America/Mexico_City)\",\"type\":\"result\",\"duration_ms\":561,\"uuid\":\"697fd1cb-6731-4cfb-8c38-e8a9abe5a490\",\"queued_turn_count\":0}\n"
+        },
+        {
+          "fin_utc": "2026-09-11T00:10:08.987649+00:00",
+          "inicio_utc": "2026-09-11T00:10:05.980320+00:00",
+          "numero": 2,
+          "returncode": 1,
+          "stderr_original": "",
+          "stdout_original": "{\"duration_api_ms\":0,\"stop_reason\":\"stop_sequence\",\"session_id\":\"879795c4-1a25-42ef-a542-1327d2be5558\",\"total_cost_usd\":0,\"usage\":{\"output_tokens_details\":{\"thinking_tokens\":0},\"input_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"output_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"api_error\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":429,\"result\":\"You've hit your weekly limit · resets Sep 12, 11am (America/Mexico_City)\",\"type\":\"result\",\"duration_ms\":612,\"uuid\":\"2c455263-807f-46f8-aff3-2984d7c0f934\",\"queued_turn_count\":0}\n"
+        },
+        {
+          "fin_utc": "2026-09-11T00:10:11.996936+00:00",
+          "inicio_utc": "2026-09-11T00:10:08.987669+00:00",
+          "numero": 3,
+          "returncode": 1,
+          "stderr_original": "",
+          "stdout_original": "{\"duration_api_ms\":0,\"stop_reason\":\"stop_sequence\",\"session_id\":\"e4555c93-b9ef-4ed7-bcb8-a106443eba51\",\"total_cost_usd\":0,\"usage\":{\"output_tokens_details\":{\"thinking_tokens\":0},\"input_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"output_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"api_error\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":429,\"result\":\"You've hit your weekly limit · resets Sep 12, 11am (America/Mexico_City)\",\"type\":\"result\",\"duration_ms\":597,\"uuid\":\"c584bc49-0fa2-493a-8e2f-9d49e9fdc70f\",\"queued_turn_count\":0}\n"
+        }
+      ],
+      "modelo_reportado": null,
+      "modelos_en_uso_reportados": [],
+      "sobre_cli_original": null,
+      "texto_crudo": null,
+      "timestamp_utc": "2026-09-11T00:10:11.996966+00:00"
+    }
+  ],
   "cliente_version": "2.1.267 (Claude Code)",
-  "estado_captura": "ERROR_TECNICO",
+  "estado_captura": "OK",
   "id_celda": "TRA-M-02",
   "identidad": "48efc2e28b090f82d046e1aaa7794ddf241dafa552a9cbb8b27d3cf7e3c4a4fd",
   "intentos": [
     {
-      "fin_utc": "2026-09-11T00:10:05.980300+00:00",
-      "inicio_utc": "2026-09-11T00:10:03.022171+00:00",
+      "fin_utc": "2026-09-11T01:05:36.152822+00:00",
+      "inicio_utc": "2026-09-11T01:05:24.444051+00:00",
       "numero": 1,
-      "returncode": 1,
+      "returncode": 0,
       "stderr_original": "",
-      "stdout_original": "{\"duration_api_ms\":0,\"stop_reason\":\"stop_sequence\",\"session_id\":\"b8e99bc3-147d-4de8-b3a5-2cb99db5a8e0\",\"total_cost_usd\":0,\"usage\":{\"output_tokens_details\":{\"thinking_tokens\":0},\"input_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"output_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"api_error\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":429,\"result\":\"You've hit your weekly limit · resets Sep 12, 11am (America/Mexico_City)\",\"type\":\"result\",\"duration_ms\":561,\"uuid\":\"697fd1cb-6731-4cfb-8c38-e8a9abe5a490\",\"queued_turn_count\":0}\n"
-    },
-    {
-      "fin_utc": "2026-09-11T00:10:08.987649+00:00",
-      "inicio_utc": "2026-09-11T00:10:05.980320+00:00",
-      "numero": 2,
-      "returncode": 1,
-      "stderr_original": "",
-      "stdout_original": "{\"duration_api_ms\":0,\"stop_reason\":\"stop_sequence\",\"session_id\":\"879795c4-1a25-42ef-a542-1327d2be5558\",\"total_cost_usd\":0,\"usage\":{\"output_tokens_details\":{\"thinking_tokens\":0},\"input_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"output_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"api_error\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":429,\"result\":\"You've hit your weekly limit · resets Sep 12, 11am (America/Mexico_City)\",\"type\":\"result\",\"duration_ms\":612,\"uuid\":\"2c455263-807f-46f8-aff3-2984d7c0f934\",\"queued_turn_count\":0}\n"
-    },
-    {
-      "fin_utc": "2026-09-11T00:10:11.996936+00:00",
-      "inicio_utc": "2026-09-11T00:10:08.987669+00:00",
-      "numero": 3,
-      "returncode": 1,
-      "stderr_original": "",
-      "stdout_original": "{\"duration_api_ms\":0,\"stop_reason\":\"stop_sequence\",\"session_id\":\"e4555c93-b9ef-4ed7-bcb8-a106443eba51\",\"total_cost_usd\":0,\"usage\":{\"output_tokens_details\":{\"thinking_tokens\":0},\"input_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"output_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"api_error\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":429,\"result\":\"You've hit your weekly limit · resets Sep 12, 11am (America/Mexico_City)\",\"type\":\"result\",\"duration_ms\":597,\"uuid\":\"c584bc49-0fa2-493a-8e2f-9d49e9fdc70f\",\"queued_turn_count\":0}\n"
+      "stdout_original": "{\"duration_api_ms\":10194,\"stop_reason\":\"end_turn\",\"session_id\":\"63a6360f-6b40-47be-ab00-41402466ec50\",\"total_cost_usd\":0.0178325,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":1617,\"output_tokens\":625,\"output_tokens_details\":{\"thinking_tokens\":472},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":625,\"cache_read_input_tokens\":1617,\"cache_creation_input_tokens\":0,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":0},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":1269,\"outputTokens\":24,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.001389,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":2,\"outputTokens\":625,\"cacheReadInputTokens\":1617,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.0164435,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":472,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"No conozco el dato publicado de ENCUCI 2020 para este indicador específico (unión de AP5_17 o AP5_18 sobre el universo de personas con contacto con alguno de los funcionarios listados). Tengo referencias aproximadas de otras encuestas (p. ej., ENCIG), pero corresponden a un universo y una definición distintos, y no debo convertir esa cifra en la estimación solicitada.\\n\\nABSTENCION\",\"ttft_ms\":7123,\"type\":\"result\",\"duration_ms\":9193,\"uuid\":\"7ca7a20a-d04c-45a3-9d3c-36359090d373\",\"ttft_stream_ms\":839,\"time_to_request_ms\":111,\"first_content_frame_ms\":1549,\"queued_turn_count\":0}\n"
     }
   ],
   "modelo_alias_solicitado": "opus",
-  "modelo_reportado": null,
-  "modelos_en_uso_reportados": [],
+  "modelo_reportado": "claude-opus-5",
+  "modelos_en_uso_reportados": [
+    "claude-haiku-4-5",
+    "claude-opus-5"
+  ],
   "replica": 8,
   "sha256_manifiesto_corpus": "3196b0cfb16e5d091f6873ae320857e88831d55f446bf592558c8bd878691c45",
   "sha256_paquete": null,
   "sha256_prompt": "a55c36c912d352817eb59ca35045934bcda66c6c83ee4ed2ae757a92ef2f578d",
   "sha256_spec_estudio": "25daa3e35cf493b3cdbb92c6882fc2bce24d78a90f3b575d4055440088c4f74d",
   "sha256_spec_l": "914907e86fc5ded7618f9d6bcb1e44e62b3c4fbe32b6df5f29179be732caf51f",
-  "sobre_cli_original": null,
-  "texto_crudo": null,
-  "timestamp_utc": "2026-09-11T00:10:11.996966+00:00",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 10194,
+    "duration_ms": 9193,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 1549,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.001389,
+        "inputTokens": 1269,
+        "maxOutputTokens": 32000,
+        "outputTokens": 24,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 1617,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 0.0164435,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 625,
+        "provider": "firstParty",
+        "thinkingTokens": 472,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 1,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "No conozco el dato publicado de ENCUCI 2020 para este indicador específico (unión de AP5_17 o AP5_18 sobre el universo de personas con contacto con alguno de los funcionarios listados). Tengo referencias aproximadas de otras encuestas (p. ej., ENCIG), pero corresponden a un universo y una definición distintos, y no debo convertir esa cifra en la estimación solicitada.\n\nABSTENCION",
+    "session_id": "63a6360f-6b40-47be-ab00-41402466ec50",
+    "stop_reason": "end_turn",
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 111,
+    "total_cost_usd": 0.0178325,
+    "ttft_ms": 7123,
+    "ttft_stream_ms": 839,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 1617,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 1617,
+          "input_tokens": 2,
+          "output_tokens": 625,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 625,
+      "output_tokens_details": {
+        "thinking_tokens": 472
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "7ca7a20a-d04c-45a3-9d3c-36359090d373"
+  },
+  "texto_crudo": "No conozco el dato publicado de ENCUCI 2020 para este indicador específico (unión de AP5_17 o AP5_18 sobre el universo de personas con contacto con alguno de los funcionarios listados). Tengo referencias aproximadas de otras encuestas (p. ej., ENCIG), pero corresponden a un universo y una definición distintos, y no debo convertir esa cifra en la estimación solicitada.\n\nABSTENCION",
+  "timestamp_utc": "2026-09-11T01:05:36.152931+00:00",
   "variante": "L-solo"
 }
