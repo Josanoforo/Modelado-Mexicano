@@ -1,3 +1,5 @@
+ESTADO: EN EJECUCIÓN — rama `acto/gen2-evaluacion-sin-fugas`.
+
 # ENCARGO 19 · GEN2-EVALUACION-SIN-FUGAS
 
 ENTORNO: NUBE
