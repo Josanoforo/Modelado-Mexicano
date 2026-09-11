@@ -196,6 +196,49 @@ class MotorUsosComplementos(unittest.TestCase):
         self.assertIn("último producto", proxy["etiqueta"])
         self.assertIn("NO-CALIBRA", proxy["uso_motor"])
 
+    def test_fintech_d10_incorpora_serie_sin_calibrar_r16(self):
+        doc = yaml.safe_load((RAIZ / "milpa" / "procedencia.yaml").read_text())
+        fila = next(f for f in doc["asignados_probabilidad"]
+                    if f["regla"] == "dinero.credito.scoring_alternativo")
+        self.assertEqual([0.71, 0.29], fila["valores"])
+        serie = fila["serie_descriptiva_gen2"]
+        self.assertEqual("DESCRIPTIVO-NO-CALIBRA", serie["uso_motor"])
+        self.assertIn("CALC-ENIF-FINTECH-0001--5b92cee28946",
+                      serie["fuente_2021"])
+        self.assertEqual("NO-ESTIMABLE-RUPTURA-ESTRUCTURAL",
+                         serie["cuenta"][2018]["estado"])
+        self.assertIsNone(serie["cuenta"][2018]["valor"])
+        self.assertNotIn("delta", serie["cuenta"])
+        self.assertIn("NC-0122", serie["limite"])
+
+    def test_s6_traslada_limite_sin_reescribir_veredictos(self):
+        doc = yaml.safe_load(
+            (RAIZ / "milpa" / "tramite-ola5-propuesta-v0.yaml").read_text())
+        regla = next(r for r in doc["reglas_propuestas"]
+                     if r["id"] == "salud.atencion.grave_ennvih2002")
+        enmienda = regla["enmienda_alcance_inferencial_2026_09_10"]
+        self.assertEqual("IC-SENSIBILIDAD-LOCALIDAD-NO-DISENO-OFICIAL",
+                         enmienda["incertidumbre"])
+        self.assertEqual("MEDIA", enmienda["tier_regla_referida"])
+        self.assertEqual("NO-DISCRIMINA",
+                         enmienda["resultados_consumibles"]["C1_primaria"]
+                         ["veredicto_Bbis_historico"])
+        self.assertEqual("CORROBORADA",
+                         enmienda["resultados_consumibles"]["C3_secundaria"]
+                         ["veredicto_Bbis_historico"])
+        self.assertIn("FP-372 ABIERTA", enmienda["decision_inferencial"])
+
+    def test_identidad_encig_ya_deriva_del_payload(self):
+        with (RAIZ / "data/corrida0/demanda-corridas.tsv").open(
+                encoding="utf-8", newline="") as f:
+            next(f)
+            filas = {r["corrida_id"]: r
+                     for r in csv.DictReader(f, delimiter="\t")}
+        self.assertEqual("ENCIG2025", filas["CORR-0002"]["instrumento"])
+        self.assertEqual("encig25_base_datos_csv",
+                         filas["CORR-0002"]["payload_ids"])
+        self.assertEqual("ENCUCI2020", filas["CORR-0003"]["instrumento"])
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
