@@ -12,7 +12,9 @@ from unittest import mock
 
 RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "tools"))
+sys.path.insert(0, str(RAIZ / "tests"))
 import adq_doctor as D  # noqa: E402
+import check as C  # noqa: E402
 
 FALLOS = []
 
@@ -145,6 +147,22 @@ def prueba_cola_vacia_mecanica_valida():
         td.cleanup()
 
 
+def prueba_vigilante_acredita_cola_vacia_sin_llm():
+    linea = ("[ADQ] 2026-09-11 17:10: invocado=no motivo=COLA-VACIA exit=0 "
+             "resultado=cola_vacia resultado_trabajo=cola_vacia "
+             "publicacion_trabajo=no_aplica publicacion=OK "
+             "disparador=puesta-en-marcha-programada run_id=RUN-VACIO\n")
+    estado, detalle = C.t_cron_estado(__import__("datetime").date(2026, 9, 11),
+                                      {"[ADQ]"}, linea)
+    afirma(estado == "COMPLETO" and "invocado=no" in detalle,
+           f"vigilante no acreditó el cierre mecánico publicado: {estado} {detalle}")
+    fallo = linea.replace("publicacion=OK", "publicacion=FALLIDA(1)")
+    estado2, _ = C.t_cron_estado(__import__("datetime").date(2026, 9, 11),
+                                  {"[ADQ]"}, fallo)
+    afirma(estado2 == "COLA-VACIA-PUBLICACION-FALLIDA",
+           f"cola vacía sin publicación no debe acreditar: {estado2}")
+
+
 def _launcher_fixture(raiz):
     (raiz / "tools").mkdir()
     shutil.copy2(RAIZ / "tools" / "adquiere_launcher.sh", raiz / "tools" / "adquiere_launcher.sh")
@@ -200,6 +218,7 @@ def main():
     prueba_resultado_parcial_y_publicacion_separada()
     prueba_adquisicion_exige_archivo_manifiesto_pertinente()
     prueba_cola_vacia_mecanica_valida()
+    prueba_vigilante_acredita_cola_vacia_sin_llm()
     prueba_h3_fetch_128_deja_identidad_y_cierre()
     prueba_launcher_rechazado_no_pisa_heartbeat()
     if FALLOS:
@@ -207,7 +226,7 @@ def main():
         for fallo in FALLOS:
             print(f"  · {fallo}")
         return 1
-    print("OK -- test_adq_cierre_verificable.py: 6 casos, 0 fallos")
+    print("OK -- test_adq_cierre_verificable.py: 7 casos, 0 fallos")
     return 0
 
 
