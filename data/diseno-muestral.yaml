@@ -506,7 +506,13 @@
     inferior ni conservadora. Para DIN-M-01, tanto SRS como estrato constante + folio son sensibilidades
     aproximadas y no ground truth inferencial mientras FP-371 siga ABIERTA. El punto ponderado descriptivo
     no espera esa decision. La via oficial abierta pide pesos replicados o un servicio de varianza, porque
-    la FAQ del productor confirma que la UPM no es publica.'
+    la FAQ del productor confirma que la UPM no es publica. ENMIENDA S6 / ACTO GEN2-S6-DISENO-Y-ALCANCE-INFERENCIAL
+    (2026-09-10): id_loc identifica 150 localidades y c_portad.estrato cuatro clases de tamano; la nota
+    oficial de ENNViH-1 documenta 180 UPM y tres estratos socioeconomicos de seleccion. No hay equivalencia
+    explicita ni aproximacion oficialmente admitida. Los IC de CALC-0003-v4 por localidad dentro de esas
+    cuatro clases se conservan como sensibilidad sin direccion garantizada, no como varianza del diseno;
+    sus puntos ponderados permanecen descriptivamente disponibles. FP-372 decide su uso inferencial y es
+    un objeto distinto de FP-371 (DIN-M-01).'
 - fuente: ENOE / ENOEN (Encuesta Nacional de Ocupación y Empleo / ENOE Nueva Edición)
   estado: MAPEADO
   ponderador: 'Dos eras, nombres distintos. ENOE clasica (hasta 2019/2020): FAC, "Ponderador", citado

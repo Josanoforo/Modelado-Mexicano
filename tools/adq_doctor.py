@@ -30,6 +30,30 @@ sys.path.insert(0, os.path.join(RAIZ, "tools"))
 sys.path.insert(0, os.path.join(RAIZ, "tests"))
 
 
+def _calendario_resuelto():
+    import adq_config
+    return adq_config.calendario_resuelto()
+
+
+def check_configuracion_operativa():
+    """Valores efectivos y procedencia; separa calendario, timeout y KILL."""
+    import adq_config
+    cal = _calendario_resuelto()
+    proxima = adq_config.proxima_ejecucion(
+        datetime.datetime.now(datetime.timezone.utc), cal=cal)
+    timeout = adq_config.entero_resuelto(
+        "claude_timeout_segundos", "CLAUDE_TIMEOUT_SEGUNDOS", 1800)
+    kill_after = adq_config.entero_resuelto(
+        "claude_kill_after_segundos", "CLAUDE_KILL_AFTER_SEGUNDOS", 60)
+    return {
+        "calendario": cal,
+        "proxima_ejecucion": proxima.isoformat(timespec="minutes"),
+        "timeout_proceso": timeout,
+        "gracia_term_kill": kill_after,
+        "ventana_observacion_minutos": cal["ventana_observacion_minutos"],
+    }
+
+
 def _seguro(fn, *a, **kw):
     """Corre `fn`, nunca lanza: un chequeo que falla se reporta como error,
     no tumba al resto del doctor."""
@@ -79,6 +103,7 @@ def check_entorno():
 
 
 def check_zona_horaria():
+    calendario = _calendario_resuelto()
     ahora_local = datetime.datetime.now().astimezone()
     tz_sistema = None
     try:
@@ -88,7 +113,7 @@ def check_zona_horaria():
         pass
     try:
         from zoneinfo import ZoneInfo
-        ahora_mx = datetime.datetime.now(ZoneInfo("America/Mexico_City"))
+        ahora_mx = datetime.datetime.now(ZoneInfo(calendario["zona_iana"]))
         zoneinfo_ok = True
     except Exception:
         ahora_mx = None
@@ -107,11 +132,16 @@ def check_zona_horaria():
     else:
         tz_windows = "NO-VERIFICABLE: tzutil.exe no es legible desde este proceso"
     return {
+        "zona_iana_configurada": calendario["zona_iana"],
+        "zona_windows_configurada": calendario["zona_windows"],
+        "config_degradada": calendario["degradada"],
         "tz_sistema_etc_timezone": tz_sistema or "NO-LEGIBLE",
         "offset_local_actual": ahora_local.strftime("%z"),
         "zoneinfo_america_mexico_city_disponible": zoneinfo_ok,
         "ahora_america_mexico_city": ahora_mx.isoformat(timespec="seconds") if ahora_mx else None,
         "tz_windows_host_tzutil": tz_windows,
+        "zonas_coinciden": (tz_windows == calendario["zona_windows"]
+                             if not tz_windows.startswith("NO-VERIFICABLE") else "NO-VERIFICABLE"),
     }
 
 
@@ -137,7 +167,12 @@ def check_scheduler_windows():
         f"$t = Get-ScheduledTask -TaskName '{task_name}' -TaskPath '{task_path}'; "
         f"$i = Get-ScheduledTaskInfo -TaskName '{task_name}' -TaskPath '{task_path}'; "
         f"[pscustomobject]@{{"
-        f"State=$t.State.ToString(); LogonType=$t.Principal.LogonType.ToString(); "
+        f"State=$t.State.ToString(); TaskName=$t.TaskName; TaskPath=$t.TaskPath; "
+        f"UserId=$t.Principal.UserId; LogonType=$t.Principal.LogonType.ToString(); "
+        f"Execute=$t.Actions[0].Execute; Arguments=$t.Actions[0].Arguments; "
+        f"StartBoundary=$t.Triggers[0].StartBoundary; DaysOfWeek=[int]$t.Triggers[0].DaysOfWeek; "
+        f"TriggerEnabled=$t.Triggers[0].Enabled; StartWhenAvailable=$t.Settings.StartWhenAvailable; "
+        f"MultipleInstances=$t.Settings.MultipleInstances.ToString(); "
         f"LastRunTime=$i.LastRunTime.ToString('o'); LastTaskResult=$i.LastTaskResult; "
         f"NextRunTime=$i.NextRunTime.ToString('o')"
         f"}} | ConvertTo-Json"
@@ -150,7 +185,18 @@ def check_scheduler_windows():
         campos = json.loads(out)
     except json.JSONDecodeError:
         return {"estado": "NO-VERIFICABLE", "razon": f"salida de PowerShell no fue JSON: {out.strip()[:200]}"}
-    return {"estado": "INSTALADA", "tarea": nombre_tarea, **campos}
+    calendario = _calendario_resuelto()
+    mascara_esperada = sum(2 << d for d in calendario["weekdays"])
+    accion_esperada = "ADQ_DISPARADOR=windows-task-scheduler" in (campos.get("Arguments") or "")
+    return {"estado": "INSTALADA", "tarea": nombre_tarea, **campos,
+            "calendario_esperado": {
+                "hora": calendario["hora"], "dias_mascara": mascara_esperada,
+                "zona_iana": calendario["zona_iana"],
+                "zona_windows": calendario["zona_windows"],
+            },
+            "dias_coinciden": campos.get("DaysOfWeek") == mascara_esperada,
+            "hora_coincide": calendario["hora"] in (campos.get("StartBoundary") or ""),
+            "disparador_atribuible": accion_esperada}
 
 
 def check_crontab_legado():
@@ -253,15 +299,17 @@ def check_t_cron():
     """Reusa tests/check.py -- una sola fuente de verdad para "¿corrió el
     cron?", no una segunda implementación que pueda divergir."""
     import check as C
+    calendario, calendario_degradado = C.t_cron_calendario_declarado()
     ahora_mx, zona_real = C._t_cron_ahora_mx()
     hoy = ahora_mx.date()
-    fecha = C._t_cron_fecha_a_evaluar(hoy)
+    fecha = C._t_cron_fecha_a_evaluar(hoy, calendario["weekdays"])
     if fecha < C._T_CRON_INSTALACION:
         return {"estado": "ANTES-DE-INSTALACION", "fecha_evaluada": fecha.isoformat()}
     gracia_degradada = False
     if fecha == hoy:
         gracia, gracia_degradada = C.t_cron_gracia_minutos_declarada()
-        limite = (datetime.datetime.combine(fecha, datetime.time(7, 30), tzinfo=ahora_mx.tzinfo)
+        hh, mm = map(int, calendario["hora"].split(":"))
+        limite = (datetime.datetime.combine(fecha, datetime.time(hh, mm), tzinfo=ahora_mx.tzinfo)
                   + datetime.timedelta(minutes=gracia))
         if ahora_mx < limite:
             return {"estado": "PENDIENTE", "fecha_evaluada": fecha.isoformat(),
@@ -281,10 +329,17 @@ def check_t_cron():
                                       remoto_legible=remoto_legible)
     salida = {"estado": estado, "fecha_evaluada": fecha.isoformat(),
               "detalle": detalle, "remoto_legible": remoto_legible,
-              "evidencia_fusionada_presente": evidencia is not None}
+              "evidencia_fusionada_presente": evidencia is not None,
+              "calendario": calendario,
+              "zona_real": zona_real}
     if gracia_degradada:
         salida["gracia_config"] = ("DEGRADADA-A-DEFAULT-45: t_cron_gracia_minutos "
                                    "no se pudo leer de data/adq-config.yaml")
+    if calendario_degradado:
+        salida["calendario_config"] = (
+            f"DEGRADADA: {calendario.get('causa')}; valor aplicado="
+            f"{calendario['hora']} {calendario['zona_iana']} "
+            f"días={','.join(calendario['dias_semana'])}")
     return salida
 
 
@@ -615,6 +670,7 @@ def transforma_sin_fetch_autorizada(fuente, ruta=RUTA_COLA):
 
 SECCIONES = [
     ("entorno", check_entorno),
+    ("configuracion_operativa", check_configuracion_operativa),
     ("zona_horaria", check_zona_horaria),
     ("scheduler_windows", check_scheduler_windows),
     ("crontab_legado", check_crontab_legado),

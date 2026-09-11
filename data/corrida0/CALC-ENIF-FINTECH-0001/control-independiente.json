@@ -1,0 +1,22 @@
+{
+  "calc_id": "CALC-ENIF-FINTECH-0001",
+  "control": "credito_2021_app_celular",
+  "script_sha256": "c91976d6f87006e4c4073ac5231425b409043b5e3166979cedadff938477da47",
+  "input_id": "enif2021_csv",
+  "input_sha256": "0f314fa3733b4b5519486ed4015fca1c9e0864840bcd5944aa7de27796fe5cd9",
+  "n_numerador": 33,
+  "masa_numerador": 241124.0,
+  "n_denominador": 58,
+  "masa_denominador": 345435.0,
+  "p": 0.69803002012,
+  "comparacion_resultados": {
+    "RESULT-ENIF-FINTECH-2021-CREDITO-CANAL-APP-CELULAR-N": "COINCIDE",
+    "RESULT-ENIF-FINTECH-2021-CREDITO-CANAL-APP-CELULAR-MASA": "COINCIDE",
+    "RESULT-ENIF-FINTECH-2021-CREDITO-CANAL-VALIDO-N": "COINCIDE",
+    "RESULT-ENIF-FINTECH-2021-CREDITO-CANAL-VALIDO-MASA": "COINCIDE",
+    "RESULT-ENIF-FINTECH-2021-CREDITO-CANAL-APP-CELULAR-P": "COINCIDE"
+  },
+  "tolerancia_p": 1e-12,
+  "tolerancia_masas": 1e-6,
+  "veredicto": "VALIDACION-INDEPENDIENTE-COINCIDE"
+}

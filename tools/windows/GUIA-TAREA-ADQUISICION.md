@@ -31,6 +31,11 @@ powershell -ExecutionPolicy Bypass -File tools\windows\instala-tarea-adquisicion
 El script es idempotente (`Register-ScheduledTask ... -Force`): correrlo
 de nuevo actualiza la tarea existente, no la duplica.
 
+Hora, días y traducción de zona se leen únicamente de
+`data/adq-config.yaml:calendario` mediante `tools/adq_config.py`. El
+instalador compara `tzutil /g` con `calendario.zona_windows` y se detiene
+si no coincide: no registra 07:30 en la zona accidental del host.
+
 ## Tipo de logon: `Interactive` (default) vs. `S4U`
 
 Medido en esta máquina, no supuesto: `S4U` (correría con la sesión de
@@ -102,11 +107,9 @@ Unregister-ScheduledTask -TaskName "AdquiereCron" -TaskPath "\ModeladoMexicano\"
 
 Ver `Get-Help .\instala-tarea-adquisicion.ps1 -Full` — todos tienen
 default sensato para esta máquina (`Distro=Ubuntu`, `LinuxUser=pc0`,
-`ClonPath=/home/pc0/mm-adq`, `HoraLocal=07:30`,
+`ClonPath=/home/pc0/mm-adq`,
 `NombreTarea=\ModeladoMexicano\AdquiereCron`, `LogonType=Interactive`).
 
-**Supuesto que el script NO verifica solo**: que el reloj/zona horaria de
-Windows ya está en `America/Mexico_City` — Task Scheduler dispara en hora
-LOCAL del sistema, sin campo de zona horaria explícito como cron.
-`python3 tools/adq_doctor.py` reporta la zona horaria del lado de WSL;
-compárala contra `tzutil /g` en Windows si hay duda.
+El calendario efectivo se consulta con `python3 tools/adq_doctor.py --json`
+en `configuracion_operativa`; `scheduler_windows` contrasta hora, máscara de
+días, argumentos atribuibles y `StartWhenAvailable` contra la tarea instalada.
