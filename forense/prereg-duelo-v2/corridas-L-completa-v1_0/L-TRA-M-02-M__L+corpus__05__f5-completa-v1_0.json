@@ -1,0 +1,45 @@
+{
+  "cliente_version": "2.1.267 (Claude Code)",
+  "estado_captura": "ERROR_TECNICO",
+  "id_celda": "TRA-M-02",
+  "identidad": "4204eb5285580ea4fc2b9dba6661653409f4b03c91628c36de68f0f966389d0b",
+  "intentos": [
+    {
+      "fin_utc": "2026-09-11T00:12:48.817240+00:00",
+      "inicio_utc": "2026-09-11T00:12:45.763049+00:00",
+      "numero": 1,
+      "returncode": 1,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":0,\"stop_reason\":\"stop_sequence\",\"session_id\":\"385a8909-2e0d-4a43-8d04-add10dfa3cda\",\"total_cost_usd\":0,\"usage\":{\"output_tokens_details\":{\"thinking_tokens\":0},\"input_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"output_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"api_error\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":429,\"result\":\"You've hit your weekly limit · resets Sep 12, 11am (America/Mexico_City)\",\"type\":\"result\",\"duration_ms\":617,\"uuid\":\"4f50b74e-a92a-4ac2-b808-2dbacb2d1990\",\"queued_turn_count\":0}\n"
+    },
+    {
+      "fin_utc": "2026-09-11T00:12:51.774659+00:00",
+      "inicio_utc": "2026-09-11T00:12:48.817261+00:00",
+      "numero": 2,
+      "returncode": 1,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":0,\"stop_reason\":\"stop_sequence\",\"session_id\":\"99efe2af-da5a-4ff7-844c-2933120f6bf7\",\"total_cost_usd\":0,\"usage\":{\"output_tokens_details\":{\"thinking_tokens\":0},\"input_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"output_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"api_error\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":429,\"result\":\"You've hit your weekly limit · resets Sep 12, 11am (America/Mexico_City)\",\"type\":\"result\",\"duration_ms\":596,\"uuid\":\"e504ff94-23f1-4ced-be97-6c0f02adeb8a\",\"queued_turn_count\":0}\n"
+    },
+    {
+      "fin_utc": "2026-09-11T00:12:54.624438+00:00",
+      "inicio_utc": "2026-09-11T00:12:51.774682+00:00",
+      "numero": 3,
+      "returncode": 1,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":0,\"stop_reason\":\"stop_sequence\",\"session_id\":\"955ca1f5-ff39-45cc-bfe5-3e9e0395430a\",\"total_cost_usd\":0,\"usage\":{\"output_tokens_details\":{\"thinking_tokens\":0},\"input_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"output_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"api_error\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":429,\"result\":\"You've hit your weekly limit · resets Sep 12, 11am (America/Mexico_City)\",\"type\":\"result\",\"duration_ms\":494,\"uuid\":\"3f2ab862-73cf-4940-a943-4f550a3e6bdf\",\"queued_turn_count\":0}\n"
+    }
+  ],
+  "modelo_alias_solicitado": "opus",
+  "modelo_reportado": null,
+  "modelos_en_uso_reportados": [],
+  "replica": 5,
+  "sha256_manifiesto_corpus": "3196b0cfb16e5d091f6873ae320857e88831d55f446bf592558c8bd878691c45",
+  "sha256_paquete": "d02cf9b2774e0633819fc02af84ed174a3df983eb43479e74262238d0aa3d45b",
+  "sha256_prompt": "aad93694ef6616c95a0fc0b4f2abd4931ee4a3e951e5049d9ff02efdb7a12966",
+  "sha256_spec_estudio": "25daa3e35cf493b3cdbb92c6882fc2bce24d78a90f3b575d4055440088c4f74d",
+  "sha256_spec_l": "914907e86fc5ded7618f9d6bcb1e44e62b3c4fbe32b6df5f29179be732caf51f",
+  "sobre_cli_original": null,
+  "texto_crudo": null,
+  "timestamp_utc": "2026-09-11T00:12:54.624468+00:00",
+  "variante": "L+corpus"
+}

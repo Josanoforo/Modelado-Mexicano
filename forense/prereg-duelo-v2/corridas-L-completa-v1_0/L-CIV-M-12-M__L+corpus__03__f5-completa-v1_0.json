@@ -1,0 +1,141 @@
+{
+  "cliente_version": "2.1.267 (Claude Code)",
+  "estado_captura": "OK",
+  "id_celda": "CIV-M-12",
+  "identidad": "17663975c62e39d2e3ed8785e8a8e004de6d7ab6ff3129ea6fdc2b22bc145a92",
+  "intentos": [
+    {
+      "fin_utc": "2026-09-11T00:00:38.728827+00:00",
+      "inicio_utc": "2026-09-11T00:00:22.012602+00:00",
+      "numero": 1,
+      "returncode": 0,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":17687,\"stop_reason\":\"end_turn\",\"session_id\":\"1a54e94f-47a9-4f7b-bb7f-5d515eb394e4\",\"total_cost_usd\":0.048331000000000006,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":18150,\"output_tokens\":1005,\"output_tokens_details\":{\"thinking_tokens\":753},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":1005,\"cache_read_input_tokens\":18150,\"cache_creation_input_tokens\":0,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":0},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":13951,\"outputTokens\":34,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.014121,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":2,\"outputTokens\":1005,\"cacheReadInputTokens\":18150,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.034210000000000004,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":753,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"El contexto documental entregado no contiene la distribución de razones de no denuncia de la ENVIPE 2023, así que no puedo derivarla de ahí. Con base en mi conocimiento previo de los reportes de la ENVIPE (donde \\\"pérdida de tiempo\\\" domina con ~33%, \\\"desconfianza en la autoridad\\\" ronda 14-15%, \\\"miedo al agresor\\\" ~6% y \\\"miedo a que lo extorsionaran\\\" ~3%), la suma de las tres razones del evento se ubica aproximadamente en un cuarto de los delitos no denunciados. Es una estimación por recuerdo de magnitudes generales, no una cifra verificada ola por ola.\\n\\nESTIMACION_PUNTUAL=24%\",\"ttft_ms\":10853,\"type\":\"result\",\"duration_ms\":14188,\"uuid\":\"cb2e161f-e9c3-4260-b1e9-56edcdaa42a1\",\"ttft_stream_ms\":1819,\"time_to_request_ms\":102,\"first_content_frame_ms\":2481,\"queued_turn_count\":0}\n"
+    }
+  ],
+  "modelo_alias_solicitado": "opus",
+  "modelo_reportado": null,
+  "modelos_en_uso_reportados": [
+    "claude-haiku-4-5-20251001",
+    "claude-opus-5"
+  ],
+  "replica": 3,
+  "sha256_manifiesto_corpus": "3196b0cfb16e5d091f6873ae320857e88831d55f446bf592558c8bd878691c45",
+  "sha256_paquete": "babfc4b111b91a6ebad4ac1e7baa17b5619578da2600fa3a3def83f2dc1d54c4",
+  "sha256_prompt": "313e24153d86cd11e10e673e3c8c0f81c3df041a274e58bf4079cbba801a6ec4",
+  "sha256_spec_estudio": "25daa3e35cf493b3cdbb92c6882fc2bce24d78a90f3b575d4055440088c4f74d",
+  "sha256_spec_l": "914907e86fc5ded7618f9d6bcb1e44e62b3c4fbe32b6df5f29179be732caf51f",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 17687,
+    "duration_ms": 14188,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 2481,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.014121,
+        "inputTokens": 13951,
+        "maxOutputTokens": 32000,
+        "outputTokens": 34,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 18150,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 0.034210000000000004,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 1005,
+        "provider": "firstParty",
+        "thinkingTokens": 753,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 1,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "El contexto documental entregado no contiene la distribución de razones de no denuncia de la ENVIPE 2023, así que no puedo derivarla de ahí. Con base en mi conocimiento previo de los reportes de la ENVIPE (donde \"pérdida de tiempo\" domina con ~33%, \"desconfianza en la autoridad\" ronda 14-15%, \"miedo al agresor\" ~6% y \"miedo a que lo extorsionaran\" ~3%), la suma de las tres razones del evento se ubica aproximadamente en un cuarto de los delitos no denunciados. Es una estimación por recuerdo de magnitudes generales, no una cifra verificada ola por ola.\n\nESTIMACION_PUNTUAL=24%",
+    "session_id": "1a54e94f-47a9-4f7b-bb7f-5d515eb394e4",
+    "stop_reason": "end_turn",
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 102,
+    "total_cost_usd": 0.048331000000000006,
+    "ttft_ms": 10853,
+    "ttft_stream_ms": 1819,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 18150,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 18150,
+          "input_tokens": 2,
+          "output_tokens": 1005,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1005,
+      "output_tokens_details": {
+        "thinking_tokens": 753
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "cb2e161f-e9c3-4260-b1e9-56edcdaa42a1"
+  },
+  "texto_crudo": "El contexto documental entregado no contiene la distribución de razones de no denuncia de la ENVIPE 2023, así que no puedo derivarla de ahí. Con base en mi conocimiento previo de los reportes de la ENVIPE (donde \"pérdida de tiempo\" domina con ~33%, \"desconfianza en la autoridad\" ronda 14-15%, \"miedo al agresor\" ~6% y \"miedo a que lo extorsionaran\" ~3%), la suma de las tres razones del evento se ubica aproximadamente en un cuarto de los delitos no denunciados. Es una estimación por recuerdo de magnitudes generales, no una cifra verificada ola por ola.\n\nESTIMACION_PUNTUAL=24%",
+  "timestamp_utc": "2026-09-11T00:00:38.728925+00:00",
+  "variante": "L+corpus"
+}
