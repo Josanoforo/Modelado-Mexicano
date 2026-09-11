@@ -20,4 +20,3 @@ Pruebas materiales: hashes oficiales y de v1.4 verificados; sidecar v1.5
 FAIL históricos, ningún FAIL nuevo). La primera corrida del baseline detectó
 la copia duplicada del encargo y la colisión nominal de la nota; ambas se
 reconciliaron y la repetición quedó verde.
-

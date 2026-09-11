@@ -102,4 +102,3 @@ una enmienda fechada que cite esta nota y `S6-L16-spec-v1_5.md`, preserve el
 `veredicto_Bbis` histórico, y rotule C1/C3/C4 como
 `IC-SENSIBILIDAD-LOCALIDAD-NO-DISENO-OFICIAL`. No se propone cargar un `p`,
 cambiar el tier ni sustituir el texto histórico.
-

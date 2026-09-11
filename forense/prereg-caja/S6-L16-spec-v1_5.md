@@ -52,4 +52,3 @@ sucesora en CAJA con método, escala, grados de libertad, tratamiento de UPM
 La decisión de mesa sobre este uso es `FP-372`. Redactar esta recomendación no
 la firma. `FP-371` pertenece a DIN-M-01 (constante + `folio`) y no acredita ni
 autoriza automáticamente el diseño de S6.
-
