@@ -29538,3 +29538,151 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: 'Doble descarga idéntica. Estudio BANSEFI-CIESAS-UIA: 116 hogares, 21 localidades
     de 13 estados; evidencia cualitativa, no muestra representativa de tandas.'
+
+- id: encig25_cuestionario_pdf
+  usado_para: 'NC-0153 / TASA_GENERAL_SOLICITUD_PAGO_INFORMAL_POR_CANAL_TRAMITES_MEXICO: instrumento
+    primario para verificar texto, filtros y canal de ENCIG 2025'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2025/doc/encig25_cuestionario.pdf
+  fecha_descarga: '2026-09-10'
+  descargado_por: Codex, curl directo HTTPS tras diagnóstico DNS; archivo público de INEGI
+  archivo: gen2_corrupcion_fuente_general/encig25_cuestionario.pdf
+  sha256: 807196d6aba5ee584fcc3710b6f01c6a43970b91c7f3c380f68109a4bd16bd33
+  tamano_bytes: 2060955
+  formato: PDF, cuestionario general ENCIG 2025
+  licencia: 'Términos de Libre Uso de la Información del INEGI: https://www.inegi.org.mx/inegi/terminos.html'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'URL identificada por sonda de variantes: esta dio 206 application/pdf; variantes
+    encig2025_* devolvieron soft-404 200 text/html de 2263 bytes.'
+
+- id: mcci_encuesta_corrupcion_impunidad_2019_2024_xlsx
+  usado_para: 'NC-0153: candidato parcial de tasa general de corrupción; verificar reactivos
+    y ausencia/presencia de canal'
+  url_origen: https://contralacorrupcion.mx/wp-content/uploads/2024/08/Encuesta-MCCI_2019-2024.xlsx
+  fecha_descarga: '2026-09-10'
+  descargado_por: Codex, curl directo HTTPS desde la página pública de MCCI
+  archivo: gen2_corrupcion_fuente_general/Encuesta-MCCI_2019-2024.xlsx
+  sha256: ffa39bbb62e62a2dda0276f0120afbfeb37ad6c3c6b6e1f378a627642463372c
+  tamano_bytes: 4109327
+  formato: XLSX, bases 2019-2024 y etiquetas
+  licencia: 'Página del productor declara bases públicas y gratuitas: https://contralacorrupcion.mx/encuesta-nacional-mcci-corrupcion-e-impunidad/'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Producto secundario no gubernamental; conservar sólo con el alcance que acrediten
+    reactivos, universo y diseño propios.
+
+- id: incbg2010_informe_ejecutivo_pdf
+  usado_para: 'NC-0153: candidato histórico parcial, tasa por ocasión de trámite/servicio
+    sin canal'
+  url_origen: https://www.tm.org.mx/wp-content/uploads/2013/05/01-INCBG-2010-Informe-Ejecutivo1.pdf
+  fecha_descarga: '2026-09-10'
+  descargado_por: Codex, curl directo HTTPS desde Transparencia Mexicana
+  archivo: gen2_corrupcion_fuente_general/INCBG-2010-Informe-Ejecutivo.pdf
+  sha256: 68a00a843d0b837326fd1b5c4503689da0b72e336aea2295b108fc871dcc2f38
+  tamano_bytes: 1213893
+  formato: PDF, informe ejecutivo INCBG 2010, 8 páginas
+  licencia: Disponibilidad pública en el sitio del productor; no se infiere licencia de redistribución
+    adicional
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: La base completa fue anunciada para consulta en CIDE; este payload es el informe público,
+    no el microdato.
+
+- id: asf_profedet_auditoria_2024_0282_pdf
+  usado_para: 'NC-0153: candidato parcial institucional; solicitud de dinero para agilizar
+    trámite entre usuarios de PROFEDET'
+  url_origen: https://www.asf.gob.mx/Trans/Informes/IR2024b/Documentos/Auditorias/2024_0282_a.pdf
+  fecha_descarga: '2026-09-10'
+  descargado_por: Codex, curl directo HTTPS desde ASF
+  archivo: gen2_corrupcion_fuente_general/asf-profedet-2024-0282.pdf
+  sha256: dd7bd4a1ef59e22fd4336f3050685ea02c42538a63b4a1ce4fad44bd33b4cdbf
+  tamano_bytes: 447934
+  formato: PDF, auditoría de desempeño ASF 2024, 111 páginas
+  licencia: Documento público de fiscalización alojado por ASF; no se infiere licencia de
+    redistribución adicional
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Encuesta institucional a usuarios; conserva alcance parcial. El propio informe advierte
+    inconsistencias entre preguntas, bases y resultados reportados.
+
+- id: eneac2021_tramites_codigos_xlsx
+  usado_para: 'NC-0153: candidato parcial por canal y evento; Aguascalientes microempresas,
+    no México nacional'
+  url_origen: https://seaaguascalientes.org/publicaciones/docs/eneac_2021/ENEAC2021-BD_tramites.codigos.xlsx
+  fecha_descarga: '2026-09-10'
+  descargado_por: Codex, curl directo HTTPS desde SESEA Aguascalientes
+  archivo: gen2_corrupcion_fuente_general/eneac2021-tramites-codigos.xlsx
+  sha256: 7b66456fc5f4fa098a026cacc72d0bef84ebaea92f5a8b3b932a426871cb13d1
+  tamano_bytes: 1587917
+  formato: XLSX, microdato de trámites ENEAC 2021 con códigos
+  licencia: Descarga pública del productor; no se infiere licencia adicional de redistribución
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Microdato evento de trámite; 706 establecimientos, 894 trámites declarados; contiene
+    canal P13 y reactivos P16-P18.
+
+- id: eneac2021_tramites_etiquetas_xlsx
+  usado_para: 'NC-0153: candidato parcial por canal y evento; Aguascalientes microempresas,
+    no México nacional'
+  url_origen: https://seaaguascalientes.org/publicaciones/docs/eneac_2021/ENEAC2021-BD_tramites.etiquetas.xlsx
+  fecha_descarga: '2026-09-10'
+  descargado_por: Codex, curl directo HTTPS desde SESEA Aguascalientes
+  archivo: gen2_corrupcion_fuente_general/eneac2021-tramites-etiquetas.xlsx
+  sha256: 95e4e3d9ba17a24b27b22149b5cbd01f4c6c5d21bb1271c100eb25ad668a3d82
+  tamano_bytes: 1582860
+  formato: XLSX, microdato de trámites ENEAC 2021 con etiquetas
+  licencia: Descarga pública del productor; no se infiere licencia adicional de redistribución
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Versión etiquetada del microdato; se conserva junto con códigos y SAV.
+
+- id: eneac2021_tramites_sav
+  usado_para: 'NC-0153: candidato parcial por canal y evento; Aguascalientes microempresas,
+    no México nacional'
+  url_origen: https://seaaguascalientes.org/publicaciones/docs/eneac_2021/ENEAC2021-BD_tramites.sav
+  fecha_descarga: '2026-09-10'
+  descargado_por: Codex, curl directo HTTPS desde SESEA Aguascalientes
+  archivo: gen2_corrupcion_fuente_general/eneac2021-tramites.sav
+  sha256: 99b3fdb3c09eaae8b06278eda418cd018dcfd8928229a32a2451f013ff8b4af8
+  tamano_bytes: 1496623
+  formato: SAV, microdato de trámites ENEAC 2021
+  licencia: Descarga pública del productor; no se infiere licencia adicional de redistribución
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Archivo SPSS con etiquetas de valor; confirma código 4=NS/NC para canal.
+
+- id: eneac2021_cuestionario_pdf
+  usado_para: 'NC-0153: candidato parcial por canal y evento; Aguascalientes microempresas,
+    no México nacional'
+  url_origen: https://seaaguascalientes.org/publicaciones/docs/eneac_2021/ENEAC2021-Cuestionario.pdf
+  fecha_descarga: '2026-09-10'
+  descargado_por: Codex, curl directo HTTPS desde SESEA Aguascalientes
+  archivo: gen2_corrupcion_fuente_general/eneac2021-cuestionario.pdf
+  sha256: 10a0ab1ed70c581d5276ffa1a17a0b9707f3f112afbdc487f98576d7081a0404
+  tamano_bytes: 857096
+  formato: PDF, cuestionario ENEAC 2021, 6 páginas
+  licencia: Descarga pública del productor; no se infiere licencia adicional de redistribución
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Instrumento enlaza por trámite P13 canal con P16-P18 solicitud/insinuación.
+
+- id: eneac2021_nota_metodologica_pdf
+  usado_para: 'NC-0153: candidato parcial por canal y evento; Aguascalientes microempresas,
+    no México nacional'
+  url_origen: https://seaaguascalientes.org/publicaciones/docs/eneac_2021/ENEAC2021-Nota_Metodologica.pdf
+  fecha_descarga: '2026-09-10'
+  descargado_por: Codex, curl directo HTTPS desde SESEA Aguascalientes
+  archivo: gen2_corrupcion_fuente_general/eneac2021-nota-metodologica.pdf
+  sha256: 2608f85c79db54dc38234cf866eb94edb7dc7fe98d6d632c27c0f9588251240d
+  tamano_bytes: 3457056
+  formato: PDF, nota metodológica ENEAC 2021
+  licencia: Descarga pública del productor; no se infiere licencia adicional de redistribución
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Diseño probabilístico estatal: microempresas de sectores 46 y 72 en Aguascalientes;
+    706 entrevistas, 1-7 diciembre 2021.'
+
+- id: eneac2021_reporte_grafico_pdf
+  usado_para: 'NC-0153: candidato parcial por canal y evento; Aguascalientes microempresas,
+    no México nacional'
+  url_origen: https://seaaguascalientes.org/publicaciones/docs/eneac_2021/ENEAC2021-Reporte_Grafico.pdf
+  fecha_descarga: '2026-09-10'
+  descargado_por: Codex, curl directo HTTPS desde SESEA Aguascalientes
+  archivo: gen2_corrupcion_fuente_general/eneac2021-reporte-grafico.pdf
+  sha256: 81560e686086f7ad04f4ee8e7fb9e10054cfc645781660b107dd859467bd5a2c
+  tamano_bytes: 12218528
+  formato: PDF, reporte gráfico ENEAC 2021
+  licencia: Descarga pública del productor; no se infiere licencia adicional de redistribución
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Resultados publicados; no amplían la cobertura a México nacional.
