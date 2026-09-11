@@ -35,6 +35,14 @@ MEDIDOR = importlib.util.module_from_spec(SPEC_MEDIDOR)
 assert SPEC_MEDIDOR.loader
 SPEC_MEDIDOR.loader.exec_module(MEDIDOR)
 
+SPEC_LINAJE = importlib.util.spec_from_file_location(
+    "linaje_comun_bajo_prueba",
+    ROOT / "milpa" / "src" / "linaje.py",
+)
+LINAJE = importlib.util.module_from_spec(SPEC_LINAJE)
+assert SPEC_LINAJE.loader
+SPEC_LINAJE.loader.exec_module(LINAJE)
+
 
 def entrada(iid: str, rol: str, contenido, **meta) -> dict:
     if not isinstance(contenido, bytes):
@@ -488,6 +496,25 @@ class TestInterfazLinaje(unittest.TestCase):
         self.assertEqual(resultado["estado"], "INDETERMINADO")
         self.assertEqual(resultado["origen_numerico"], "INDETERMINADO")
         self.assertEqual(resultado["dependencia_objetivo"], "INDETERMINADA")
+
+    def test_modulo_real_de_17_cumple_la_interfaz(self):
+        clasificar = MEDIDOR._linaje_comun(LINAJE)
+        apto = clasificar(celda_m={
+            "origen_numerico": LINAJE.ORIGEN_NUEVO,
+            "camino_linaje": ["M", "fuente-independiente"],
+            "dependencia_objetivo": "NO",
+            "validacion_independiente": "PASA",
+            "rol_evaluacion": "HOLDOUT",
+        })
+        heredado = clasificar(celda_m={
+            "origen_numerico": LINAJE.ORIGEN_HEREDADO,
+            "camino_linaje": ["M", "R"],
+            "dependencia_objetivo": "SI",
+            "validacion_independiente": "PASA",
+            "rol_evaluacion": "HOLDOUT",
+        })
+        self.assertEqual(apto["estado"], "APTO")
+        self.assertEqual(heredado["estado"], "NO-APTO")
 
 
 class TestBaselineHistorico(unittest.TestCase):
