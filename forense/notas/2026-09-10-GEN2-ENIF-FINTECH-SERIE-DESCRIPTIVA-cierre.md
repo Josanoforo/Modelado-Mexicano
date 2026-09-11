@@ -142,5 +142,16 @@ serie_descriptiva_propuesta:
   FAIL.
 - `preflight` / `run` / `verify`: VERDE / 0 / REPRODUCE-IDENTICO 131/131.
 - Control independiente: `VALIDACION-INDEPENDIENTE-COINCIDE`.
-- El baseline integral, la cascada de cierre y el HEAD remoto se registran al
-  cierre del PR.
+- `python3 tools/corrida0.py registro --lote CALC-ENIF-FINTECH-0001
+  --fuentes`: seco estable, 151/3,466/207 filas en
+  `corridas/resultados/usos`.
+- `python3 tests/check.py --baseline`: línea base VERDE, sin fallos nuevos;
+  conserva únicamente los tres `FAIL` históricos T06×2/T08 y 2,757 avisos.
+- `tools/cierre_acto.py`: cascada reconciliada a `ADR-466`; rótulo y L0
+  presentes, `NC` sin huérfanas.
+- `git diff --check` es limpio para los cambios manuales. El diff completo
+  conserva el tabulador final que el escritor canónico de `resultados.tsv`
+  emite para representar el campo sucesor vacío; la vista seca es byte a byte
+  estable y el mismo patrón existe en publicaciones previas de la herramienta.
+- El PR y la sincronización de su HEAD remoto se registran en el cierre
+  administrativo final.
