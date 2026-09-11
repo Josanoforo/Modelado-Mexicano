@@ -172,7 +172,7 @@ Salida final cruda de la comprobación S6 exigida por el encargo:
 
 `MEDIDA-EN: tramite-ola5-propuesta-v0.yaml`
 
-El cierre crea ADR-472, cierra NC-0157 y conserva NC-0158, NC-0085,
+El cierre crea ADR-473, cierra NC-0157 y conserva NC-0158, NC-0085,
 NC-0107/0153, NC-0122, NC-0156 y FP-371/372 con los alcances descritos en
 `## NO-CORRIDO / RESERVAS`. **CONTADOR: cero**: no se creó ni adoptó una
 medición científica.

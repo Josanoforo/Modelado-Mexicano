@@ -218,3 +218,44 @@ cron, es el hallazgo que este comparador existe para producir).
 
 Actualiza §1 (huella mínima) y §3 (calendario) arriba, que describían el
 `--escanea` retirado.
+
+## §9 · Retiro del cron WSL y despliegue actual de Task Scheduler (11/sep/2026)
+
+`PR #668` (`ACTO GEN2-RETIRO-CRON-LEGADO`) retiró la línea ejecutable
+`30 7 * * 1-5 ... tools/adquiere_cron.sh` el 9/sep/2026. La comprobación
+directa del 11/sep (`crontab -l`) conserva únicamente los comentarios
+históricos de §2 y la asignación `PATH`; no contiene una entrada ejecutable
+que nombre el runner. Windows Task Scheduler es, por tanto, el único
+scheduler activo. Este asiento satisface el paso 3 de
+`tools/windows/GUIA-TAREA-ADQUISICION.md` y cierra `NC-0133`; la evidencia
+antes/después original permanece en
+`forense/notas/2026-09-09-gen2-retiro-cron-legado-cierre.md`.
+
+La tarea `\ModeladoMexicano\AdquiereCron` se exportó y contrastó el 11/sep.
+Antes del despliegue conservaba calendario 07:30 lunes–viernes, principal
+`PC0`/`Interactive`, `StartWhenAvailable=True`, `IgnoreNew` y límite `PT2H`,
+pero la acción aún no llevaba la marca de atribución (export SHA-256
+`3f0ac617bb60fb54948284691d049d68aa177eda7891226262c62f4dafab1a7f`). El
+instalador vigente corrió primero con `-WhatIf` y luego una sola vez de forma
+efectiva. La exportación posterior (SHA-256
+`714e03dee7d4a2bd67ce1461902c8238eecedd203fe0f4c373f0872713eeb7d7`) conserva
+esos campos materiales (el `StartBoundary` se reemitió con fecha 11/sep, sin
+cambiar hora, días ni próxima ejecución) y usa:
+
+```text
+wsl.exe -d Ubuntu -u pc0 -- env ADQ_DISPARADOR=windows-task-scheduler bash -lc /home/pc0/mm-adq/tools/adquiere_cron.sh
+```
+
+La siguiente ventana es `2026-09-14T07:30:00-06:00`. El canal
+`Microsoft-Windows-TaskScheduler/Operational` sigue deshabilitado: el intento
+sin elevación devolvió `Acceso denegado`/código 5. Debe habilitarse antes de la
+ventana con PowerShell elevado:
+
+```powershell
+wevtutil sl Microsoft-Windows-TaskScheduler/Operational /e:true
+```
+
+Hasta observar `EventRecord`/`ActivityId`, la coincidencia de hora entre la
+tarea y WSL no distingue trigger semanal, recuperación o clic manual. La
+cadena y el fallo externo del 11/sep se documentan en
+`forense/notas/2026-09-11-GEN2-PRODUCCION-Y-FALLO-POST707-cierre.md`.

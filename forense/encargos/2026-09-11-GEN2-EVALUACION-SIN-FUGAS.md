@@ -96,5 +96,5 @@ sellado como `CALC-F5-REANALISIS-0001`: 245 inputs directos coinciden,
 `U3=0` y veredicto `NO-ADJUDICABLE-POR-CONTROL`; el resultado histórico
 permanece intacto. Los actos 17 y 18 se integraron por sus interfaces reales,
 sin presentar el snapshot sucesor como evaluación retenida. `FP-373/374` y
-`NC-0159/0160/0161` conservan las decisiones y ejecuciones pendientes.
-`ADR-473`; contador cero. El PR queda abierto y el ejecutor no realizó merge.
+`NC-0160/0161/0162` conservan las decisiones y ejecuciones pendientes.
+`ADR-475`; contador cero. El PR queda abierto y el ejecutor no realizó merge.

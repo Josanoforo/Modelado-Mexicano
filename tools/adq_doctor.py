@@ -216,8 +216,17 @@ def check_crontab_legado():
         if "no crontab for" in salida.lower():
             return {"instalado": False, "detalle": salida[:200]}
         return {"instalado": "NO-VERIFICABLE", "detalle": salida[:200]}
-    tiene_adquiere = "adquiere_cron.sh" in out
-    return {"instalado": tiene_adquiere, "lineas_relevantes": [l for l in out.splitlines() if "adquiere_cron" in l]}
+    # Solo una entrada ejecutable cuenta como scheduler legado. El crontab
+    # retirado de esta caja conserva comentarios históricos que nombran
+    # `adquiere_cron.sh`; buscar la subcadena en todo el texto producía un
+    # falso positivo (`instalado: true`) aun sin ninguna línea de cron viva.
+    lineas_relevantes = [
+        linea for linea in out.splitlines()
+        if linea.strip() and not linea.lstrip().startswith("#")
+        and "adquiere_cron.sh" in linea
+    ]
+    return {"instalado": bool(lineas_relevantes),
+            "lineas_relevantes": lineas_relevantes}
 
 
 def check_binarios():
