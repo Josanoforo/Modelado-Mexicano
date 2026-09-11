@@ -10,6 +10,10 @@ quedó resuelta con `data/raices.local.yaml` y `data/raw` enlazado al corpus
 compartido `/home/pc0/mm-corpus/raw`; la sonda acreditó red HTTP 200,
 `data_raw=SI`, `descargas_mx=SI` y corpus resoluble antes de extraer.
 
+Sincronización final: se integró `origin/main=5f4bfeac2350597c0f66b8f66a14c07befa18a53`
+(PR #719/#720/#722). Esos cambios ocuparon ADR-479/480; por la regla de la casa,
+este acto se renumeró de ADR-479 a ADR-481, conservando ambos lados del canon.
+
 Alcance: adquisición pública y extracción descriptiva. No se repite el
 inventario de 29 CSV ni la identificación de ENCRIGE. Cero cambios al motor,
 cron o evaluación; cero CALC, RESULT, parámetro o adopción.

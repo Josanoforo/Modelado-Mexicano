@@ -16,7 +16,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from datetime import date
 from pathlib import Path
 
@@ -136,6 +136,66 @@ def seleccionar_baseline(objetivo: Objetivo, historial: list[Observacion]) -> di
         "periodo_fin": seleccionada.periodo_fin.isoformat(),
         "disponible_desde": seleccionada.disponible_desde.isoformat(),
         "excluidas": excluidas,
+    }
+
+
+def seleccionar_transferencia(
+        objetivo: Objetivo,
+        historial: list[Observacion],
+        *,
+        estimando: str,
+        transformacion: str,
+) -> dict:
+    """Envuelve la selección temporal en un contrato transportable.
+
+    El selector comprueba identidad exacta de serie, precedencia, disponibilidad
+    y unicidad, igual que :func:`seleccionar_baseline`. Además conserva en una
+    sola estructura los metadatos que el emisor necesita volver a contrastar
+    contra evidencia sellada. No adjudica compatibilidad científica ni rol
+    experimental: esas dos decisiones se derivan en el emisor desde la spec y
+    el registro, no desde una etiqueta aportada por el llamador.
+    """
+    for nombre, valor in {
+        "estimando": estimando,
+        "transformacion": transformacion,
+    }.items():
+        if (not isinstance(valor, str) or not valor.strip()
+                or valor.strip().upper() in {"PENDIENTE", "NO-DEFINIDO"}):
+            raise ValueError(f"{nombre} debe estar definido")
+
+    base = seleccionar_baseline(objetivo, historial)
+    por_id = {obs.resultado_id: obs for obs in historial}
+    if len(por_id) != len(historial):
+        raise ValueError("resultado_id duplicado en historial de transferencia")
+    elegida = (por_id.get(base["resultado_id"])
+               if base["resultado_id"] is not None else None)
+
+    return {
+        **base,
+        "contrato_version": "SELECCION-TEMPORAL-v1",
+        "objetivo": {
+            "serie": asdict(objetivo.serie),
+            "estimando": estimando,
+            "transformacion": transformacion,
+            "periodo": {
+                "inicio": objetivo.periodo_inicio.isoformat(),
+                "fin": objetivo.periodo_fin.isoformat(),
+            },
+            "corte_temporal": objetivo.fecha_corte.isoformat(),
+        },
+        "seleccion": None if elegida is None else {
+            "serie": asdict(elegida.serie),
+            "periodo": {
+                "inicio": elegida.periodo_inicio.isoformat(),
+                "fin": elegida.periodo_fin.isoformat(),
+            },
+            "disponibilidad": elegida.disponible_desde.isoformat(),
+            "evidencia_procedencia": {
+                "resultado_id": elegida.resultado_id,
+                "fuente": elegida.fuente,
+                "valor": elegida.p,
+            },
+        },
     }
 
 
