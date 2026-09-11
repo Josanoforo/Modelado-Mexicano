@@ -92,3 +92,16 @@ reescribe el archivo histórico de R8.3 que el propio encargo manda preservar.
 | Presentar y recibir una vía oficial de varianza ENNViH para DIN y S6 | `DECISIÓN-DE-MESA-PENDIENTE` | `NC-0156`, `FP-371` y `FP-372` siguen abiertas; puntos disponibles e incertidumbre actual sólo como sensibilidad | titular envía; sucesor congela spec en CAJA antes de calcular si la respuesta es ejecutable |
 | Presentar y recibir el enlace/tabulado/microdato ENCIG nacional con negativos y diseño | `DECISIÓN-DE-MESA-PENDIENTE` | `NC-0153` conserva `OBTENIDO-PARCIAL`; la tasa nacional por evento × canal no queda identificada | titular presenta por INEGI; receptor valida unidad, denominador, ponderación y diseño |
 | Binario SSRN 2014 y vías comerciales de tandas | `FUERA-DE-PERÍMETRO` | ningún comparador se declara resuelto y D18 sigue vigente | `NC-0151` para el límite SSRN; decisión D18 para cualquier reapertura comercial |
+
+## CONSUMIDO
+
+Ejecutado por **[PR #715](https://github.com/Josanoforo/Modelado-Mexicano/pull/715)**,
+rama `acto/gen2-expedientes-acceso-21`, HEAD al abrir el PR
+`597fa958503b2547cc77909088ce0cb50892570d`, contra
+`origin/main = a37837a0df69240e35c160a53c5c1de209f9be01`. Entrega los cinco
+expedientes técnicos, el DOCX OECD reproducible, el registro de recepción y
+los actualizadores acotados; conserva identidad, firma y presentación en el
+titular. Cierre canónico: `ADR-471`, L0 y rótulo
+`GEN2-EXPEDIENTES-ACCESO-21`. Línea base verde sin entradas nuevas. Este
+asiento registra el PR real; no afirma que el acceso haya sido concedido ni
+que el PR haya sido fusionado.
