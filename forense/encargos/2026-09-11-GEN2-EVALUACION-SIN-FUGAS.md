@@ -97,4 +97,7 @@ sellado como `CALC-F5-REANALISIS-0001`: 245 inputs directos coinciden,
 permanece intacto. Los actos 17 y 18 se integraron por sus interfaces reales,
 sin presentar el snapshot sucesor como evaluación retenida. `FP-373/374` y
 `NC-0160/0161/0162` conservan las decisiones y ejecuciones pendientes.
-`ADR-475`; contador cero. El PR queda abierto y el ejecutor no realizó merge.
+El resultado fusionado de PR #714 se incorpora como validación posterior de
+los tres puntos R ENVIPE y como límite `CONCUERDA-NO-APROBADA` de su
+incertidumbre; no cambia M, U3 ni el sello. `ADR-475`; contador cero. El PR
+queda abierto y el ejecutor no realizó merge.

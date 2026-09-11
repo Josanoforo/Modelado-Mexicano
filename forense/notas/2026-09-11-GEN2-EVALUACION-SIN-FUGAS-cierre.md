@@ -32,6 +32,14 @@ son `medicion_directa` (14) o `proxy_descriptivo` (2), no
 `HOLDOUT`/`EVALUACION-RETENIDA`. Por ello no habilita confirmación
 independiente ni se evaluó un M renovado.
 
+Actualización posterior: PR #714 quedó fusionado y añadió validación
+independiente de resultados **R**, no de esas 16 emisiones M. El overlay
+`data/corrida0/validaciones-independientes.tsv` registra para
+`CIV-M-10/12/13` nueve RESULT `PASA` (punto, `n` y masa `FAC_DEL`) y doce
+`CONCUERDA-NO-APROBADA` (EE, límites del IC y CV). Esto fortalece la identidad
+del punto R, pero no crea rol retenido, no acredita la aptitud inferencial de
+los intervalos y no cambia la elegibilidad de M ni el U3 sellado.
+
 ## Historia y reanálisis lado a lado
 
 | salida | histórica `CALC-TRIADA-0002` | protegida `CALC-F5-REANALISIS-0001` |
@@ -60,6 +68,10 @@ Fuente común **A**:
 Fuente **B**:
 `forense/prereg-duelo-v2/F5-aprendizajes-sucesor-v1_0/traza-motor.tsv` y
 `forense/notas/BENCHMARK-WEB-CUATRO-DECISIONES-GEN2-2026-09-11.md §3`.
+Fuente **C** (posterior al sello):
+`data/corrida0/validaciones-independientes.tsv` y
+`forense/validaciones/GEN2-VALIDACION-R-ENVIPE-CSV-v1_0/INFORME.md`,
+fusionadas por PR #714.
 El detalle canónico completo, incluidos puntos, brazos y razones, está en
 `RESULT-F5SF-DETALLE-CELDAS-JSON` del resultado sellado.
 
@@ -68,9 +80,9 @@ El detalle canónico completo, incluidos puntos, brazos y razones, está en
 | CIV-M-01 | unidad, recorte, códigos y ola difieren | A | no elegible: estimando/corte no acreditados; linaje/dependencia indeterminados | conserva L/L/M/R; no entra a U3 |
 | CIV-M-02 | unidad, recorte, códigos y ola difieren | A | no elegible: estimando/corte no acreditados; linaje/dependencia indeterminados | conserva L/L/M/R; no entra a U3 |
 | CIV-M-04 | unidad, recorte, códigos y ola difieren | A | no elegible: estimando/corte no acreditados; linaje/dependencia indeterminados | conserva L/L/M/R; no entra a U3 |
-| CIV-M-10 | unidad, recorte, códigos y ola difieren | A | no elegible: estimando/corte no acreditados; linaje/dependencia indeterminados | conserva L/L/M/R; no entra a U3 |
-| CIV-M-12 | unidad, recorte, códigos y ola difieren | A | no elegible: estimando/corte no acreditados; linaje/dependencia indeterminados | conserva L/L/M/R; no entra a U3 |
-| CIV-M-13 | unidad, recorte, códigos y ola difieren | A | no elegible: estimando/corte no acreditados; linaje/dependencia indeterminados | conserva L/L/M/R; no entra a U3 |
+| CIV-M-10 | unidad, recorte, códigos y ola difieren; punto/n/masa R validados después | A + C | R validado; M no elegible por estimando/corte y linaje/dependencia | conserva L/L/M/R; no entra a U3 |
+| CIV-M-12 | unidad, recorte, códigos y ola difieren; punto/n/masa R validados después | A + C | R validado; M no elegible por estimando/corte y linaje/dependencia | conserva L/L/M/R; no entra a U3 |
+| CIV-M-13 | unidad, recorte, códigos y ola difieren; punto/n/masa R validados después | A + C | R validado; M no elegible por estimando/corte y linaje/dependencia | conserva L/L/M/R; no entra a U3 |
 | DIN-M-01 | población entre olas y diseño de varianza no acreditados; R=15.56% permanece descriptivo | B | no elegible: comparabilidad/estimando/corte y linaje indeterminados | conserva L_SOLO/M/R; L_CORPUS sin punto; no entra a U3 |
 | FAM-M-01 | coincide el inciso, no la elegibilidad poblacional entre versiones | A | no elegible: comparabilidad/estimando/corte y linaje indeterminados | conserva L/L/M/R; no entra a U3 |
 | FAM-M-05 | unidad/evento/ponderación alinean, pero M usa una ola posterior a R | A | no elegible: corte no acreditado; linaje/dependencia indeterminados | conserva L/L/M/R; no entra a U3 |
@@ -83,6 +95,21 @@ El detalle canónico completo, incluidos puntos, brazos y razones, está en
 Que una cadena de payload sea distinta evita afirmar contaminación directa;
 no acredita por sí sola comparabilidad ni independencia. La cercanía numérica
 tampoco resuelve unidad o corte.
+
+## Resultado de validación ENVIPE de #714
+
+La implementación independiente reconstruyó filtros, unidad DELITO,
+numerador, `n`, masa `FAC_DEL` y punto para `CIV-M-10`, `CIV-M-12` y
+`CIV-M-13`. Los tres puntos coinciden; la evidencia común queda identificada
+por SHA-256 `6889d0853f55d16ebafe7e45a13f5ec68ceadaa532b0d9aab060fd5d6289b48b`.
+
+La concordancia de incertidumbre no equivale a aprobación del diseño. Los
+19/33/20 estratos singleton observados en `U_R` desaparecen al conservar en
+`TVivienda` las UPM observables con contribución cero, pero no existe un roster
+completo acreditado de todas las UPM seleccionadas. Por eso EE, IC y CV quedan
+`CONCUERDA-NO-APROBADA`; `NC-0159` conserva la vía de roster oficial o servicio
+de varianza. Esta actualización no reescribe el resultado sellado, no puntúa
+una celda M excluida y no convierte validación de R en confirmación de M.
 
 ## Ajustes consumidos del benchmark web
 
@@ -125,6 +152,8 @@ como permiso de API.
 - `corrida0 preflight`: verde; 245/245 inputs coinciden.
 - `corrida0 verify`: `CONTEXTO=IDENTICO · RESULTADO=REPRODUCE`.
 - Sello: `data/corrida0/CALC-F5-REANALISIS-0001/sello.sha256`.
+- Validación #714: overlay común con 9 RESULT `PASA` y 12
+  `CONCUERDA-NO-APROBADA`; protocolo/evidencia citados sin recalcular microdato.
 - Suite global: `LÍNEA BASE: VERDE`; conserva sólo tres fallos heredados
   (`T06`×2 y `T08`×1), sin entradas nuevas ni recifrado de `baseline.json`.
 
@@ -135,6 +164,7 @@ como permiso de API.
 | Impedir puntuación contaminada o sin identidad | calculador y pruebas adversariales | toda celda F5 sucesora | CERRADA |
 | Cerrar inputs realmente leídos | spec de 245 miembros, preflight y prueba sin lecturas extra | reanálisis 0001 | CERRADA |
 | Reutilizar linaje de 17 | input hash del módulo común, medidor y prueba de interfaz real | 17→19 | CERRADA |
+| Incorporar validación ENVIPE #714 | overlay por RESULT, informe y evidencia SHA-256 | R de CIV-M-10/12/13 | CERRADA para punto/n/masa; incertidumbre sigue NO-APROBADA |
 | Mantener historia | comparación lado a lado; cero cambio a TRIADA-0002 | panel conocido | CERRADA |
 | Acreditar comparabilidad por celda | tarjetas y resultado detallado | 14 celdas | CERRADA como diagnóstico; 0 elegibles |
 | Ejecutar producto documental | spec con 32 llamadas | DIN/TRA | PENDIENTE de decisión de mesa y fuentes |
