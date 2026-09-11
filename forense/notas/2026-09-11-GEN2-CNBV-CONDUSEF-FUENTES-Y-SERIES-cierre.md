@@ -11,7 +11,10 @@ disponible `a37837a0df69240e35c160a53c5c1de209f9be01`, que ya contiene el corte
 limpio; corpus con 403 payloads resolubles desde `data_raw+descargas_mx`.
 Antes de cerrar se integró `origin/main=f6c93326048c7219181bd903a2fd41857265831e`
 (PR #714, que contiene #712) y se conciliaron sus cambios compartidos. Ese
-merge tomó ADR-474; por la regla de la casa, este acto renumeró a ADR-475.
+merge tomó ADR-474; por la regla de la casa, este acto renumeró provisionalmente
+a ADR-475. La sincronización posterior con `origin/main=36e6b3f` incorporó el
+PR #713, que ya ocupaba ADR-475 y NC-0160/0161/0162; el cierre final queda en
+ADR-476 y sus reservas en NC-0163/0164.
 
 Alcance: adquisición y extracción descriptiva. Cero llamadas a modelos, cero
 cambio a motor, `milpa/`, capturas, R, sellos históricos, cron o métodos

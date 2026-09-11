@@ -71,7 +71,7 @@ PR #717 ejecuta este encargo en `acto/gen2-fuentes-financieras-20` y deja el
 merge a mesa. Resultado: CNBV `OBTENIDO-PARCIAL` con corte R16 2021-12 y
 barrera histórica demostrada; ENCRIGE+CONDUSEF `OBTENIDO` en adquisición,
 29/29 CSV verificados, diseño ENCRIGE oficial y seis tablas reproducibles.
-ADR-475; FP-324 registra ejecutadas las recetas 2, 3 y 4 y conserva abiertas
+ADR-476; FP-324 registra ejecutadas las recetas 2, 3 y 4 y conserva abiertas
 1 y 5. R1.6 y R1.7 siguen `NUNCA-MEDIDA`; contador científico cero y ninguna
 adopción. Cierre completo en
 `forense/notas/2026-09-11-GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES-cierre.md`.

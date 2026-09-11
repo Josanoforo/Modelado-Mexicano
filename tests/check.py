@@ -5115,6 +5115,11 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # ejecutó: ambos devolvieron NUNCA-MEDIDA y la salida se conserva en la
     # nota de cierre §8. Editar el encargo rompería la custodia A.3.
     "forense/encargos/2026-09-11-GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES.md",
+    # ACTO GEN2-LINAJE-Y-ADOPCION, 11/sep/2026: encargo archivado VERBATIM
+    # (A.3). `tramite.yaml.otro` es un nombre ficticio y deliberadamente
+    # parecido que prueba que el clasificador de rutas exige coincidencia
+    # material exacta; no identifica una regla ni solicita medirla.
+    "forense/encargos/2026-09-11-GEN2-LINAJE-Y-ADOPCION.md",
     # ACTO GEN2-MOTOR-Y-HERENCIA-EXPLICITA, 11/sep/2026: encargo A.3
     # archivado VERBATIM que manda verificar la regla S6. La herramienta se
     # ejecuto y su salida real se conserva en la nota de cierre y en

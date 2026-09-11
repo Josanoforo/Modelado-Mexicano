@@ -1,3 +1,5 @@
+ESTADO: CONSUMIDO — PR #712 abierto; cierre entregado, merge reservado a mesa.
+
 # ENCARGO 18 · GEN2-MOTOR-Y-HERENCIA-EXPLICITA
 
 ENTORNO: NUBE
