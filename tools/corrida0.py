@@ -135,6 +135,10 @@ ORDEN_CAUSAL = {
     "corte_pi": 0,
     "celda_D": 0,
     "conducta_p_medido": 1,
+    # Un complemento algebraico hereda el mismo instrumento y denominador
+    # del primario: no es una medicion independiente, pero tampoco un p
+    # asignado por juicio. Comparte peldano con el estadistico del que deriva.
+    "conducta_p_derivado": 1,
     # 1 · un momento del catalogo es un estadistico OBSERVADO del instrumento,
     # de la misma naturaleza que una tasa base: mismo peldano.
     "momento": 1,
@@ -264,6 +268,7 @@ def _consumidores_conductas(crudo_tramite, ambiguas) -> list[dict]:
                 continue
             clase = salida.clase or NO_DECLARADO
             medido = str(clase).startswith("MEDIDO")
+            derivado = bool(salida.complemento_de)
             enmienda = enmiendas.get(salida.conducta)
             payload_c = (enmienda or {}).get("payload_manifiesto_id") or payload
             sha_c = (enmienda or {}).get("sha256_payload") or sha
@@ -276,12 +281,15 @@ def _consumidores_conductas(crudo_tramite, ambiguas) -> list[dict]:
                 fecha_c = fecha_e if fecha_e != NO_DECLARADO else fecha
             filas.append(_fila(
                 consumidor=f"milpa/tramite.yaml:{regla.id}:{salida.conducta}",
-                tipo="conducta_p_medido" if medido else "conducta_p_asignado",
+                tipo=("conducta_p_derivado" if derivado else
+                      "conducta_p_medido" if medido else
+                      "conducta_p_asignado"),
                 valor_legacy=repr(salida.p),
                 escala_legacy=escala,
                 clase_legacy=clase,
                 acto_legacy=acto_c, fecha_legacy=fecha_c,
                 payload_ids_legacy=payload_c, sha256_legacy=sha_c,
+                _instrumento_declarado=(enmienda or {}).get("instrumento"),
             ))
         if not medido_alguno(regla) and crudo.get("sha256_payload"):
             ambiguas.append(
@@ -744,6 +752,12 @@ def _instrumento(fila: dict, crudo_tramite, marco_por_consumidor,
         return marco_por_consumidor.get(fila["consumidor"].split(":")[1],
                                         NO_DECLARADO)
     if fila["tipo"].startswith("conducta_"):
+        # D09 / ACTO GEN2-MOTOR-USOS: cuando una regla contiene una serie,
+        # la procedencia por conducta manda sobre la lista multianual. No se
+        # elige la primera ola ni se fabrica una media.
+        declarado = fila.get("_instrumento_declarado")
+        if declarado:
+            return declarado
         # ACTO GEN2-PREP-LOTE · P1: identidad por CONSUMIDOR. Primero se
         # intenta el payload propio de ESTA conducta (correcto incluso
         # cuando la regla mezcla instrumentos entre sus conductas); el
