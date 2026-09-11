@@ -1,3 +1,5 @@
+ESTADO: EN EJECUCIÓN — rama `acto/gen2-f5-aprendizajes-sucesor`.
+
 # ENCARGO · GEN2-F5-APRENDIZAJES-Y-SUCESOR
 
 ENTORNO: NUBE
