@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import datetime as dt
 import hashlib
 import io
 import json
@@ -272,6 +273,7 @@ def make_figure(repo: Path, figure_dir: Path):
     errors = [[point - low for point, low in zip(points, lows)], [high - point for point, high in zip(points, highs)]]
 
     plt.style.use("seaborn-v0_8-whitegrid")
+    plt.rcParams["svg.hashsalt"] = "envipe-p-c1-u1-2010-2024"
     fig, axis = plt.subplots(figsize=(11.5, 6.4), layout="constrained")
     axis.errorbar(years, points, yerr=errors, fmt="o-", color="#175676", ecolor="#7aa6b8", capsize=3, linewidth=1.8, markersize=5)
     axis.scatter([2010], [points[0]], color="#b23a48", s=65, zorder=4)
@@ -284,8 +286,15 @@ def make_figure(repo: Path, figure_dir: Path):
     axis.set_title("ENVIPE 2010–2024: motivos 01/02/06 entre delitos personales no denunciados")
     axis.text(0, -0.22, "Estimando: proporción ponderada por FAC_DEL entre respuestas 01..08; unidad delito. No es tasa general de denuncia.", transform=axis.transAxes, fontsize=9)
     figure_dir.mkdir(parents=True, exist_ok=True)
+    title = "ENVIPE p(C1,U1), años del hecho 2010-2024"
+    fixed_date = dt.datetime(2026, 9, 10, tzinfo=dt.timezone.utc)
+    metadata = {
+        "svg": {"Title": title, "Date": "2026-09-10"},
+        "png": {"Title": title},
+        "pdf": {"Title": title, "CreationDate": fixed_date, "ModDate": fixed_date},
+    }
     for suffix in ("svg", "png", "pdf"):
-        fig.savefig(figure_dir / f"envipe-p-c1-u1-2010-2024.{suffix}", dpi=180, metadata={"Title": "ENVIPE p(C1,U1), años del hecho 2010-2024"})
+        fig.savefig(figure_dir / f"envipe-p-c1-u1-2010-2024.{suffix}", dpi=180, metadata=metadata[suffix])
     plt.close(fig)
 
 
