@@ -119,6 +119,15 @@ SALIDA = RAIZ / "data" / "corrida0"
 CABECERA_DERIVADO = "# DERIVADO — NO EDITAR"
 NO_DECLARADO = "NO-DECLARADO-EN-EL-REGISTRO"
 
+# El registro abre cientos de documentos YAML en una sola derivación. La
+# variante C conserva el contrato seguro de SafeLoader y evita que T16 dependa
+# de la velocidad del runner; instalaciones sin libyaml caen al loader Python.
+_YAML_SAFE_LOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
+
+
+def _yaml_safe_load(stream):
+    return yaml.load(stream, Loader=_YAML_SAFE_LOADER)
+
 COLS_RESULTADOS = [
     "resultado_id", "consumidor", "tipo", "valor_legacy", "escala_legacy",
     "clase_legacy", "acto_legacy", "fecha_legacy", "payload_ids_legacy",
@@ -893,8 +902,8 @@ def _lee_decisiones() -> dict:
 
 
 def cmd_demanda(args) -> int:
-    crudo_tramite = yaml.safe_load(TRAMITE.read_text(encoding="utf-8"))
-    crudo_proc = yaml.safe_load(PROCEDENCIA.read_text(encoding="utf-8"))
+    crudo_tramite = _yaml_safe_load(TRAMITE.read_text(encoding="utf-8"))
+    crudo_proc = _yaml_safe_load(PROCEDENCIA.read_text(encoding="utf-8"))
     ambiguas: list[str] = []
 
     filas = _consumidores_conductas(crudo_tramite, ambiguas)
@@ -935,7 +944,7 @@ def cmd_demanda(args) -> int:
     _verifica_grafo(filas)
 
     manifiesto_por_id = {e.get("id"): e for e in
-                         yaml.safe_load((RAIZ / "data" / "manifiesto.yaml")
+                         _yaml_safe_load((RAIZ / "data" / "manifiesto.yaml")
                                         .read_text(encoding="utf-8"))
                          if isinstance(e, dict)}
     ids_manifiesto = set(manifiesto_por_id)
@@ -1130,7 +1139,7 @@ def _carga_spec(calc_id: str) -> tuple[Path, dict]:
     if not ruta.exists():
         raise BloqueoPreflight(f"spec_yaml_ausente={_rel(ruta)}")
     with ruta.open(encoding="utf-8") as fh:
-        datos = yaml.safe_load(fh) or {}
+        datos = _yaml_safe_load(fh) or {}
     if not isinstance(datos, dict):
         raise BloqueoPreflight(f"spec_yaml_no_es_mapa={_rel(ruta)}")
     return d, datos
@@ -2739,7 +2748,7 @@ def _ids_corrida0_declarados() -> dict[str, dict]:
         if not ruta.exists():
             continue
         try:
-            crudo = yaml.safe_load(ruta.read_text(encoding="utf-8"))
+            crudo = _yaml_safe_load(ruta.read_text(encoding="utf-8"))
         except (OSError, yaml.YAMLError):
             continue
         rel = _rel(ruta)
@@ -2786,7 +2795,7 @@ def _resultados_citados_en(ruta: Path) -> set[str]:
     if not ruta.exists():
         return set()
     try:
-        crudo = yaml.safe_load(ruta.read_text(encoding="utf-8"))
+        crudo = _yaml_safe_load(ruta.read_text(encoding="utf-8"))
     except (OSError, yaml.YAMLError):
         return set()
     citados: set[str] = set()
@@ -2831,7 +2840,7 @@ def estado_calc(calc_id: str, evalua_preflight: bool = False) -> dict:
     if not ruta_spec.exists():
         return {"calc_id": calc_id, "estado": "BORRADOR"}
     try:
-        spec = yaml.safe_load(ruta_spec.read_text(encoding="utf-8")) or {}
+        spec = _yaml_safe_load(ruta_spec.read_text(encoding="utf-8")) or {}
     except yaml.YAMLError as exc:
         return {"calc_id": calc_id, "estado": "BORRADOR",
                 "motivo": f"spec.yaml ilegible: {exc}"}
@@ -3093,7 +3102,7 @@ def _lee_oferta(verifica: bool) -> list[dict]:
         if not ruta_spec.exists():
             raise ParoRegistro(f"CALC-SIN-SPEC: {_rel(d)} no trae spec.yaml")
         try:
-            spec = yaml.safe_load(ruta_spec.read_text(encoding="utf-8")) or {}
+            spec = _yaml_safe_load(ruta_spec.read_text(encoding="utf-8")) or {}
         except yaml.YAMLError as exc:
             raise ParoRegistro(f"CALC-SIN-SPEC: {_rel(ruta_spec)} ilegible: {exc}")
         if not isinstance(spec, dict):
@@ -3326,7 +3335,7 @@ def _referencias_numericas_de_intermediario(ruta: str) -> tuple[tuple[str, ...],
                 for fila in csv.DictReader(fh, delimiter="\t"):
                     textos.extend(str(v) for v in fila.values() if v)
         else:
-            camina(yaml.safe_load(archivo.read_text(encoding="utf-8")))
+            camina(_yaml_safe_load(archivo.read_text(encoding="utf-8")))
     except (OSError, ValueError, yaml.YAMLError, csv.Error) as exc:
         return (), f"ILEGIBLE:{type(exc).__name__}"
     refs = sorted({_normaliza_ruta_repo(t)[0] for t in textos

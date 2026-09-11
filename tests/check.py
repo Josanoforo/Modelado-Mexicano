@@ -788,8 +788,12 @@ def _suite_real():
     import subprocess
     env = dict(os.environ, CHECK_SELFCHECK_CHILD="1")
     try:
+        # T32 ahora falsifica también el linaje transitivo sobre 90 casos y
+        # el registro real abre cientos de specs. Conservamos un límite duro,
+        # pero con margen para el arranque frío del runner de CI: 60 s llegó a
+        # cortar una suite que termina verde localmente, no un ciclo real.
         r = subprocess.run([sys.executable, os.path.join(ROOT, "tests", "check.py")],
-                            cwd=ROOT, capture_output=True, text=True, env=env, timeout=60)
+                            cwd=ROOT, capture_output=True, text=True, env=env, timeout=120)
     except Exception as e:
         return None, None, str(e)
     m = re.search(r"(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN", r.stdout)
