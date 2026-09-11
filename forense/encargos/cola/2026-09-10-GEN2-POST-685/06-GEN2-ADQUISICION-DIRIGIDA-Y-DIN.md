@@ -84,7 +84,8 @@ Cada fase termina con resultado o bloqueo preciso y prueba. Cierre completo: aut
 ## CONSUMIDO
 
 PR: `#693`, rama `acto/gen2-adquisicion-dirigida`, contra `main`. Ejecutado:
-`ACTO GEN2-ADQUISICION-DIRIGIDA-Y-DIN` (`ADR-456`). Tres documentos públicos
+`ACTO GEN2-ADQUISICION-DIRIGIDA-Y-DIN` (`ADR-457`, renumerado al integrar
+`origin/main` después de PR #688). Tres documentos públicos
 quedaron en `data_raw`, fuera de Git y registrados por manifiesto; se entregó
 la ruta académica de tandas y el dictamen DIN, se actualizaron cola/FP/NC y se
 preservaron los accesos personales como residuales. Contador: cero. **NO
