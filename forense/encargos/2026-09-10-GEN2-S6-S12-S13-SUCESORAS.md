@@ -1,3 +1,5 @@
+> **Archivo A.3:** copia del encargo 04 encolado por PR #686; se archiva aquí para la ejecución `ACTO GEN2-SOCIALES-SUCESORAS`. El cuerpo siguiente se conserva verbatim.
+
 # ENCARGO · GEN2-S6-S12-S13-SUCESORAS
 
 ## Documentar llave → medir receptores → acotar historia
