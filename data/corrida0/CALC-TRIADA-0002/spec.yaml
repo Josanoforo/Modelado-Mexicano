@@ -21,6 +21,12 @@ inputs:
 
 dependencias_materiales: []
 
+universo: 'Marco prospectivo fijo de 14 celdas de L-spec-v1_4. U3 es la interseccion de celdas con R, M, mediana valida L_SOLO y mediana valida L_CORPUS; no se agregan ni eliminan celdas despues de observar errores.'
+filtros: 'Por replica: identidad distinta del plan se reporta ERROR_IDENTIDAD; estado de captura no OK se reporta ERROR_TECNICO; ultima linea ABSTENCION no produce punto; marcador ausente o fuera de [0,100]% es MALFORMADA. Ningun faltante se sustituye por cero. Por celda, sin al menos una replica numerica no hay mediana y la celda queda fuera de U3.'
+ponderador: 'Peso igual por celda dentro de U3 para MAE y bootstrap. Las replicas solo forman la mediana de su celda; no son pseudo-celdas. R conserva su ponderador original en cada CALC-R, que este CALC reutiliza sin reestimar.'
+transformacion: 'Ultima linea ESTIMACION_PUNTUAL=N% -> N/100; mediana por celda/brazo; error absoluto |L_o_M-R| por 100 en pp; MAE como media simple sobre el mismo U3; diferencias pareadas de MAE con bootstrap de celdas, 10000 replicas y seed 42.'
+estimando: 'Descriptivo y comparativo: diferencia de MAE en puntos porcentuales entre L_SOLO, L_CORPUS y M frente al mismo R sobre U3, con IC95 pareado. Pregunta primaria: uso documental/operacional en este marco. No causal, no generalizable fuera del marco y no autorizante de adopcion.'
+
 parametros:
   k_replicas: 8
   posiciones: 224
