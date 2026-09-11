@@ -96,3 +96,16 @@ puntuales.
 Sigue abierto el faltante material: no se localizó un ledger mexicano abierto
 de grupo, organizadora, turnos, cuotas y pagos. La vía comercial permanece
 diferida por D18. Una encuesta individual no cierra ese faltante.
+
+## Recibo de publicación posterior al publicador 09
+
+Después de integrar `origin/main` con los PR #695–#703 ya fusionados, se
+asentó el comprobante `VERIFY-ESTRUCTURADO` en
+`forense/replay-evidencia.tsv` y se ejecutó una sola publicación explícita:
+`python3 tools/corrida0.py registro --escribe --lote
+CALC-TANDAS-ENNVIH-0001`. El lote añadió exactamente **1 corrida** y **39
+resultados**, sin borrar ni modificar filas ajenas. La vista de usos quedó
+byte-idéntica porque no existe consumidor firmado. Totales posteriores:
+151 corridas, 3,374 resultados y 207 usos. La corrida publicada conserva
+`REPRODUCE/IDENTICO` y cita la fuente estructurada de `ADR-467`; no adopta
+R8.2 ni incrementa el contador GEN2.
