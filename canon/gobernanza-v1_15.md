@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **458 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **459 ADR**
 
 > | | |
 > |---|---|
@@ -22,6 +22,8 @@ No repite el contenido del corpus: lo gobierna.*
 ---
 
 ## 1. Qué gobierna esto (y qué no)
+
+**ADR-459 · `ACTO GEN2-ENIF-POBLACION-Y-ADOPCION · DEL CORTE A/A A UNA REGLA QUE SABE A QUIÉN REPRESENTA`**, 10/sep/2026, entorno **CAJA (Ubuntu/WSL2), corpus ENIF 2024 montado, cero adquisición nueva** (`forense/encargos/2026-09-10-GEN2-ENIF-POBLACION-Y-ADOPCION.md`, archivado verbatim por 0-bis A.3). Ejecuta D04/D05 de `MESA-10SEP`: reutiliza `CALC-ENIF-0001` sólo donde el estimando coincide exactamente y sella `CALC-ENIF-0002` para la celda independiente de no trabajadores. Definición por saltos, sin imputar `P3_13`: trabaja = `P3_8∈{1,2}` o `P3_9∈{1..6}`; no trabaja = `P3_8=8` o `P3_9=7`. Resultado nuevo: `p(P4_10∈{1,2}|no trabaja)=0.632782`, IC95 `[0.608904,0.656366]`, n=3,462, masa 25,090,350. Cobertura poblacional honesta: con SS 27.6628%, sin SS 37.2388%, no trabaja 26.6291%, trabajador residual 4.1391%, `P4_10` faltante 4.3302%; total descriptivo directo 0.520528, no promedio de celdas. `preflight` VERDE → `run` 0 → `verify` REPRODUCE/IDENTICO, 59/59; sello `2614029c…`; asiento `VERIFY-ESTRUCTURADO` para lote08. El motor adopta A/A por dominio (0.541343 sin SS; 0.373130 con SS), sus complementos exactos y la celda nueva 0.632782/0.367218; B/B queda bajo `historico_gen1`. `P4_10=1` sigue conflando horizonte mínimo y ausencia de ahorro: `NC-0126` permanece ABIERTA. `NC-0124` y `NC-0128` CIERRAN por propagación/medición efectivas. `corrida0 demanda` rederiva 207 resultados/82 corridas; `registro --escribe` escribe cero vistas porque el candado NC-0094 detecta 32 transiciones ajenas; `NC-0154` remite esa integración global a lote08. **CONTADOR: `CALC-ENIF-0002 cuenta_gen2=SI`**, objeto y cita D05 asentados. Renumerado finalmente a `ADR-459`: PR #687, #688, #690 y #689 ocuparon ADR-455 a ADR-458; `NC-0154` conserva el residual de vistas. Cierre: `forense/notas/2026-09-10-GEN2-ENIF-POBLACION-Y-ADOPCION-cierre.md`.
 
 **Gobierna:** qué artefacto es fuente de verdad, cómo se propagan los cambios, qué decisiones están tomadas y cuáles siguen abiertas.
 
