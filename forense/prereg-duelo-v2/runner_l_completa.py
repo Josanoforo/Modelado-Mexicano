@@ -125,7 +125,31 @@ def verificar_plan() -> int:
     return 0
 
 
-def invocar(prompt: str) -> tuple[dict | None, list[dict]]:
+def modelos_reales(sobre: dict | None) -> list[str]:
+    """Deriva modelos canónicos del sobre nuevo, que ya no expone ``model``."""
+    if not isinstance(sobre, dict) or not isinstance(sobre.get("modelUsage"), dict):
+        return []
+    modelos = []
+    for alias, uso in sobre["modelUsage"].items():
+        canonico = uso.get("canonicalModel") if isinstance(uso, dict) else None
+        modelos.append(canonico or alias)
+    return sorted(set(modelos))
+
+
+def modelo_competidor(sobre: dict | None) -> str | None:
+    candidatos = [x for x in modelos_reales(sobre) if "opus" in x.lower()]
+    return candidatos[0] if len(candidatos) == 1 else None
+
+
+def error_sistemico(texto: str) -> bool:
+    bajo = texto.lower()
+    return any(x in bajo for x in (
+        "auth", "quota", "rate limit", "credit", "login",
+        "weekly limit", "usage limit", "hit your limit",
+    ))
+
+
+def invocar(prompt: str) -> tuple[dict | None, list[dict], bool]:
     intentos = []
     for numero in range(1, MAX_REINTENTOS + 2):
         inicio = datetime.now(timezone.utc).isoformat()
@@ -134,16 +158,21 @@ def invocar(prompt: str) -> tuple[dict | None, list[dict]]:
             intento = {"numero": numero, "inicio_utc": inicio, "fin_utc": datetime.now(timezone.utc).isoformat(),
                        "returncode": p.returncode, "stdout_original": p.stdout, "stderr_original": p.stderr}
             intentos.append(intento)
-            if p.returncode != 0:
-                continue
+            sobre = None
             try:
-                return json.loads(p.stdout), intentos
+                sobre = json.loads(p.stdout)
             except json.JSONDecodeError:
+                pass
+            texto_error = p.stdout + "\n" + p.stderr
+            if error_sistemico(texto_error):
+                return None, intentos, True
+            if p.returncode != 0 or not isinstance(sobre, dict) or sobre.get("is_error"):
                 continue
+            return sobre, intentos, False
         except subprocess.TimeoutExpired as exc:
             intentos.append({"numero": numero, "inicio_utc": inicio, "fin_utc": datetime.now(timezone.utc).isoformat(),
                              "error": "TimeoutExpired", "stdout_original": exc.stdout, "stderr_original": exc.stderr})
-    return None, intentos
+    return None, intentos, False
 
 
 def ejecutar() -> int:
@@ -151,36 +180,57 @@ def ejecutar() -> int:
     plan = json.loads(PLAN.read_text(encoding="utf-8"))
     cliente = plan["cliente_version"]
     prompts = {p["identidad"]: p["prompt"] for p in construir_posiciones(cliente)}
+    modelos_previos = set()
+    for ruta_previa in SALIDAS.glob("*.json"):
+        previa = json.loads(ruta_previa.read_text(encoding="utf-8"))
+        if previa.get("estado_captura") == "OK":
+            modelo = modelo_competidor(previa.get("sobre_cli_original"))
+            if modelo:
+                modelos_previos.add(modelo)
+    if len(modelos_previos) > 1:
+        raise RuntimeError(f"capturas exitosas mezclan modelos competidores: {sorted(modelos_previos)}")
+    modelo_esperado = next(iter(modelos_previos), None)
     hechas = reanudadas = errores = 0
     for pos in plan["posiciones"]:
         ruta = ROOT / pos["ruta"]
+        previo = None
         if ruta.exists():
             previo = json.loads(ruta.read_text(encoding="utf-8"))
             if previo.get("identidad") != pos["identidad"]:
                 raise RuntimeError(f"colisión de reanudación: {ruta}")
-            reanudadas += 1
-            continue
-        sobre, intentos = invocar(prompts[pos["identidad"]])
+            if previo.get("estado_captura") == "OK":
+                reanudadas += 1
+                continue
+        sobre, intentos, paro_sistemico = invocar(prompts[pos["identidad"]])
         texto = sobre.get("result") if isinstance(sobre, dict) else None
-        modelos_uso = sorted((sobre.get("modelUsage") or {}).keys()) if isinstance(sobre, dict) and isinstance(sobre.get("modelUsage"), dict) else []
+        modelos_uso = modelos_reales(sobre)
+        modelo = modelo_competidor(sobre)
+        estado = "OK" if sobre is not None else "ERROR_TECNICO"
+        if estado == "OK" and (modelo is None or (modelo_esperado and modelo != modelo_esperado)):
+            estado = "ERROR_MODELO"
+        antecedentes = list(previo.get("antecedentes_reanudacion", [])) if previo else []
+        if previo:
+            antecedentes.append({k: previo.get(k) for k in (
+                "timestamp_utc", "estado_captura", "texto_crudo", "modelo_reportado",
+                "modelos_en_uso_reportados", "sobre_cli_original", "intentos",
+            )})
         registro = {
             **{k: v for k, v in pos.items() if k != "ruta"},
             "timestamp_utc": datetime.now(timezone.utc).isoformat(),
-            "estado_captura": "OK" if sobre is not None else "ERROR_TECNICO",
+            "estado_captura": estado,
             "texto_crudo": texto,
-            "modelo_reportado": sobre.get("model") if isinstance(sobre, dict) else None,
+            "modelo_reportado": modelo,
             "modelos_en_uso_reportados": modelos_uso,
             "sobre_cli_original": sobre,
             "intentos": intentos,
+            "antecedentes_reanudacion": antecedentes,
         }
         ruta.parent.mkdir(parents=True, exist_ok=True)
         ruta.write_text(json.dumps(registro, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-        if sobre is None:
+        if estado != "OK":
             errores += 1
-            # autenticación/cuota sistémica: no quemar el resto del lote
-            ult = json.dumps(intentos[-1], ensure_ascii=False).lower()
-            if any(x in ult for x in ("auth", "quota", "rate limit", "credit", "login")):
-                print(f"PARO sistémico tras {ruta.name}")
+            if paro_sistemico or estado == "ERROR_MODELO":
+                print(f"PARO sistémico tras {ruta.name}: {estado}")
                 break
         else:
             hechas += 1
@@ -194,7 +244,7 @@ def sonda_transporte() -> int:
     posiciones = construir_posiciones(cliente)
     mayor = max((p for p in posiciones if p["variante"] == "L+corpus"), key=lambda x: len(x["prompt"]))
     marcador = "\n\nSONDA DE TRANSPORTE, NO ES REPLICA: ignora la pregunta y responde solamente TRANSPORTE_OK."
-    sobre, intentos = invocar(mayor["prompt"] + marcador)
+    sobre, intentos, _ = invocar(mayor["prompt"] + marcador)
     texto = sobre.get("result", "") if sobre else ""
     if "TRANSPORTE_OK" not in texto:
         raise RuntimeError(f"sonda no aceptada tras {len(intentos)} intentos")
