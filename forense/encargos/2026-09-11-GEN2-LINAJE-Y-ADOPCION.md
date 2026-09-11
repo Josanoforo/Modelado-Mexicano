@@ -78,3 +78,12 @@ Continúa entre fases autorizadas. Ante una decisión científica nueva, prepara
 - Roles de evaluación retenida para `CONFIRMACION-INDEPENDIENTE` · `DIFERIDO-A:GEN2-EVALUACION-SIN-FUGAS` · la compuerta prospectiva existe, pero `resultados_con_validacion_independiente` sigue en 0 y ninguna cifra obtiene uso confirmatorio · `GEN2-EVALUACION-SIN-FUGAS` (`NC-0158`).
 
 Nota de control: el nombre adversarial `tramite.yaml.otro` prueba identidad de ruta y no declara una regla `NUNCA-MEDIDA`.
+
+## CONSUMIDO
+
+PR: `#710`, rama `acto/gen2-linaje-adopcion`, contra `main`. Ejecutado:
+`ACTO GEN2-LINAJE-Y-ADOPCION` (`ADR-471`). El contrato común separa origen
+numérico y aptitud por uso; las vistas quedan publicadas y secas, con 16/16
+adopciones activas `NUEVO` y `APTA-POR-LINAJE`. `NC-0157` y `NC-0158`
+conservan los dos residuos sucesores. Contador: cero. El PR queda abierto;
+el ejecutor no realizó el merge.
