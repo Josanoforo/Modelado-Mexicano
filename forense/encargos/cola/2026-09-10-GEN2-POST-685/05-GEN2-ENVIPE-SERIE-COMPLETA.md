@@ -79,4 +79,4 @@ Cada fase termina con resultado o bloqueo preciso y prueba. Cierre completo: aut
 | **Worktree** | `/home/pc0/mm-gen2-envipe-serie` |
 | **Rama** | `acto/gen2-envipe-serie` |
 | **Entorno** | CAJA (Ubuntu/WSL2), `data/raw` montado; 401 archivos examinados por `tools/entorno.py` |
-| **Estado** | VIVO |
+| **Estado** | CERRADO — serie 15/15 publicada; cierre en `forense/notas/2026-09-10-GEN2-ENVIPE-SERIE-COMPLETA-cierre.md` |
