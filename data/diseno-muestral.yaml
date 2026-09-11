@@ -473,7 +473,9 @@
     una errata de la propia fuente). El metodo SI esta documentado en data/raw/ennvih/calculo-de-factores-de-expansion.pdf
     (region -> estrato -> UPM con probabilidad igual -> USM 6 por UPM con PPS -> vivienda), pero en notacion
     matematica, sin nombre de campo.'
-  upm: 'NO EXISTE, ni en documento ni en microdato. Negativo con conteo (A.13): se leyo la cabecera de
+  upm: 'NO PUBLICA por confidencialidad y no existe como columna en el microdato. La FAQ oficial de
+    ENNViH responde expresamente que municipio, localidad y UPM no pueden hacerse del dominio publico
+    (https://ennvih-mxfls.org/faq.html, re-verificado 2026-09-10). Negativo con conteo (A.13): se leyo la cabecera de
     TODOS los .dta de las tres olas -- 137 en ehh02dta_all.zip, 147 en ehh05dta_all.zip y 141 en ehh09dta_all.zip,
     425 archivos, 425 examinados sin fallo de lectura -- buscando nombre o etiqueta que casara con estrat|upm|usm|conglom|psu|strat.
     Unico acierto en las tres olas: la columna estrato de c_portad.dta descrita arriba. Cero columnas
@@ -492,17 +494,19 @@
     los nombra. CONSECUENCIA DIRECTA PARA LA CORRIDA CAL-G3: sobre ENNViH se pueden calcular estimaciones
     puntuales ponderadas (fac_* existe y esta completo) pero NO errores estandar basados en diseno --
     no hay con que declarar strata ni id/cluster en un svydesign. Quien necesite varianza sobre ENNViH
-    tiene que (i) declarar explicitamente un supuesto de muestreo aleatorio simple y asumir el sesgo,
-    o (ii) conseguir de la fuente el archivo de identificadores de diseno, que no esta en ennvih-mxfls.org/assets
-    segun lo adquirido. Esto es hallazgo de este acto, no supuesto heredado. FIRMADO 2026-08-25 (FP-118,
+    tiene que (i) declarar explicitamente un supuesto de muestreo aleatorio simple y tratar su incertidumbre
+    como sensibilidad sin direccion garantizada, o (ii) conseguir del productor pesos replicados oficiales
+    o un servicio de varianza; la UPM no es publica por confidencialidad segun la FAQ oficial. Esto es hallazgo
+    de este acto, no supuesto heredado. FIRMADO 2026-08-25 (FP-118,
     ranura F0 de PACK NUBE-2, ADR-183): mesa adopta (i) sin variante -- ver campo supuesto_varianza abajo;
     (ii) queda abierta en paralelo, sin bloquear (i).'
-  supuesto_varianza: 'SRS_ASUMIDO -- firma de mesa 2026-08-25 (FP-118): toda corrida CAL-G3 sobre ENNViH
-    que exija varianza declara explicitamente un supuesto de muestreo aleatorio simple, con la subestimacion
-    del error estandar de un diseno por conglomerados ESCRITA en la ficha de esa corrida; la estimacion
-    puntual ponderada no espera a esta firma. La via (ii) -- receta A.5 a la fuente por los identificadores
-    de diseno -- queda abierta en paralelo, sin bloquear nada. Campo de alta de vocabulario, ver cabecera
-    del archivo.'
+  supuesto_varianza: 'SRS_ASUMIDO -- firma historica de mesa 2026-08-25 (FP-118), acotada a CAL-G3. CORRECCION
+    D16 / ACTO GEN2-ADQUISICION-DIRIGIDA-Y-DIN (2026-09-10): omitir simultaneamente estratificacion y
+    conglomeracion no garantiza el sentido neto del error; por tanto SRS no se llama subestimacion, cota
+    inferior ni conservadora. Para DIN-M-01, tanto SRS como estrato constante + folio son sensibilidades
+    aproximadas y no ground truth inferencial mientras FP-371 siga ABIERTA. El punto ponderado descriptivo
+    no espera esa decision. La via oficial abierta pide pesos replicados o un servicio de varianza, porque
+    la FAQ del productor confirma que la UPM no es publica.'
 - fuente: ENOE / ENOEN (Encuesta Nacional de Ocupación y Empleo / ENOE Nueva Edición)
   estado: MAPEADO
   ponderador: 'Dos eras, nombres distintos. ENOE clasica (hasta 2019/2020): FAC, "Ponderador", citado
