@@ -788,8 +788,12 @@ def _suite_real():
     import subprocess
     env = dict(os.environ, CHECK_SELFCHECK_CHILD="1")
     try:
+        # T32 ahora falsifica también el linaje transitivo sobre 90 casos y
+        # el registro real abre cientos de specs. Conservamos un límite duro,
+        # pero con margen para el arranque frío del runner de CI: 60 s llegó a
+        # cortar una suite que termina verde localmente, no un ciclo real.
         r = subprocess.run([sys.executable, os.path.join(ROOT, "tests", "check.py")],
-                            cwd=ROOT, capture_output=True, text=True, env=env, timeout=60)
+                            cwd=ROOT, capture_output=True, text=True, env=env, timeout=120)
     except Exception as e:
         return None, None, str(e)
     m = re.search(r"(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN", r.stdout)
@@ -6538,6 +6542,18 @@ def t35_repro(modulo=None):
         if gen_declarada == "GEN2" and destino["generacion"] == C.GENERACION_LEGADO:
             fail("T-REPRO", f"(f) {u['consumidor']}: corrida0_generacion=GEN2 "
                             f"y {marca} resuelve a {C.GENERACION_LEGADO}")
+        # El registro y T35 comparten exactamente el contrato de aptitud.
+        # Generacion, contador y sello no limpian un origen heredado, mixto
+        # o indeterminado.
+        aptitud, motivo = C.aptitud_para_uso(
+            destino["origen_numerico"], u.get("uso_solicitado", ""),
+            destino.get("validacion_independiente", "NO-HECHA"),
+            destino.get("rol_evaluacion", ""))
+        if u.get("aptitud_uso") != aptitud:
+            fail("T-REPRO", f"(g) {u['consumidor']}: registro={u.get('aptitud_uso')} "
+                            f"pero contrato compartido={aptitud}")
+        if aptitud == C.NO_APTA:
+            fail("T-REPRO", f"(g) {u['consumidor']} -> {marca}: {motivo}")
         if not (C.CORRIDAS / destino["spec_id"] / "spec.yaml").exists():
             fail("T-REPRO", f"(b) {u['consumidor']} -> {marca} -> "
                             f"{destino['spec_id']}: el CALC no resuelve")
