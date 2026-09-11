@@ -73,6 +73,17 @@ Usa `tools/cierre_acto.py` primero en seco y luego `--aplica` cuando corresponda
 
 Avanza entre fases ya autorizadas sin pedir confirmación. Termina cuando entregues el resultado suficiente o un residual externo concreto. Cadena de cierre: autorización → producto → evidencia → consumidor cuando aplique → obligaciones → vistas/cola → PR → merge de mesa. Una fila mixta conserva su parte pendiente. No cerrar por palabra coincidente ni por recomendación. Respuesta final del ejecutor: resultado útil, fases cumplidas/pendientes, PR/SHA, pruebas, y tabla `obligación | evidencia | cerrada/residual | siguiente acción`.
 
+## NO-CORRIDO / RESERVAS
+
+- `NC-0114`: falta observar una corrida con el runner fusionado y correlacionar
+  la etiqueta de disparador con el evento Windows, `run_id`, SHA y recibo.
+- `NC-0120`: falta que un operador habilite el canal Operational con elevación
+  y observar una recuperación real futura; la sonda aislada negativa no la
+  acredita.
+- `NC-0153`: PR #695 obtuvo productos parciales, no la tasa nacional exacta;
+  queda para el titular pedir la llave ENCIG 8.5↔`NT_TIPO/P7_3` o un microdato
+  nacional equivalente. No se envió solicitud ni se repitió la búsqueda.
+
 ## CONSUMIDO
 
 Ejecutado el 10/sep/2026 en `acto/gen2-sonda-cron-produccion`; PR #704,
