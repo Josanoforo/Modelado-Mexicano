@@ -25,7 +25,12 @@ su función `aptitud_para_uso`; no mantiene un segundo resolver. El snapshot M
 histórico carece de `origen_numerico`, `camino_linaje`,
 `dependencia_objetivo`, `validacion_independiente` y `rol_evaluacion`, por lo
 que las 14 celdas quedan correctamente `INDETERMINADO`, sin inferir limpieza.
-No se evaluó un M renovado ni se usó un snapshot del acto 18.
+La dependencia 18 quedó integrada, pero su snapshot sucesor no es input de
+esta corrida: sus 16 salidas directas declaran origen `NUEVO` y aptitud de
+linaje, pero las 16 conservan `validacion_independiente=NO-HECHA` y sus roles
+son `medicion_directa` (14) o `proxy_descriptivo` (2), no
+`HOLDOUT`/`EVALUACION-RETENIDA`. Por ello no habilita confirmación
+independiente ni se evaluó un M renovado.
 
 ## Historia y reanálisis lado a lado
 
