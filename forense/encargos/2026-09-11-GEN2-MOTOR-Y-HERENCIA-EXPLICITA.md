@@ -121,3 +121,22 @@ Para corrupción, la restricción a un dominio no identifica por sí sola una pr
 Tabla `decisión o límite acreditado | RESULT/fuente | consumidor | uso efectivo | prueba | cierre/residual`. S6 y fintech llegan al lugar donde se usan; el modo Gen2 no sustituye una ausencia por números legacy ni por el árbitro. Pruebas dirigidas de dominio, linaje y ausencia; ningún congelado histórico cambia.
 
 Mantener perímetro y PR de 18, sin duplicar resolver de 17 ni evaluación de 19. Cero llamadas nuevas, cero envíos a terceros y ninguna firma científica inferida. Los encargos 20–22 aportarán fuentes, expedientes y validación; no bloquean terminar estas incorporaciones ya autorizadas.
+
+## NO-CORRIDO / RESERVAS
+
+- Los 191 usos legacy se re-derivaron y agruparon por causa. No se ejecutaron
+  191 mediciones ni se promovieron números históricos por cuota; la ruta
+  `HISTORICO` conserva su identidad y dependencias.
+- `NC-0157` queda CERRADA por la consulta efectiva del contrato de 17 desde el
+  emisor. `NC-0158` permanece ABIERTA: confirmación independiente y roles
+  retenidos pertenecen a `GEN2-EVALUACION-SIN-FUGAS`.
+- `FP-371`, `FP-372` y `NC-0156` permanecen: no se firmó uso inferencial de
+  sensibilidades DIN/S6 ni se inventó diseño oficial.
+- `NC-0085` permanece: se implementó el contrato del complemento ENVIPE y su
+  rechazo sin firma, no su adopción científica.
+- `NC-0107`/`NC-0153` permanecen: r2 sólo sirve como proxy descriptivo; no se
+  obtuvo ni adoptó una probabilidad nacional por evento/canal.
+- `NC-0122` permanece: D10 describe el canal del último producto entre
+  tenedores fintech, no el canal exacto del producto fintech.
+- El escenario de tandas no se adoptó. No se ejecutaron llamadas a modelos,
+  microdatos, solicitudes externas ni cierres de PR ajenos.
