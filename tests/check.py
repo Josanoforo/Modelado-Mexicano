@@ -2730,6 +2730,11 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-SOCIALES-SUCESORAS, 10/sep/2026: copia A.3 verbatim del
+    # encargo 04 ya encolado por PR #686. Sus E06/E07 son referencias a los
+    # habitantes ENCARGO-E06/E07 definidos y censados por MESA-E01, no
+    # rótulos nuevos. La cabecera A.3 evita además duplicidad byte a byte.
+    "forense/encargos/2026-09-10-GEN2-S6-S12-S13-SUCESORAS.md",
     # ACTO GEN2-LOTE-ENCIG-1, 9/sep/2026: encargo archivado VERBATIM (0-bis
     # A.3), que no se edita para complacer un test. Su ADENDA DE PROPAGACION
     # cita "Es el sucesor que E1 nombro" -- EL MISMO rotulo pelado y por la
