@@ -82,6 +82,29 @@ class MotorUsosComplementos(unittest.TestCase):
                        if s.conducta == "paga_mordida_encig2025_digital")
         self.assertIn("NO-ADOPTAR-NC-0107", antigua.uso_motor)
 
+    def test_encig_r2_es_proxy_y_no_probabilidad_por_evento(self):
+        regla = self.reglas["tramite.mordida.con_registro"]
+        contexto = {"p8_4_observado": True,
+                    "canal_p7_3": "digital_registrado"}
+        descriptiva = emisor.emitir_binaria_en_contexto(
+            regla, "paga_mordida_encig2025_digital_r2", contexto,
+            uso_solicitado="consulta_descriptiva")
+        self.assertEqual("EMITE", descriptiva.estado)
+        self.assertEqual("proxy_descriptivo", descriptiva.rol_uso)
+        self.assertIn("no es tasa general ni probabilidad empírica",
+                      descriptiva.uso_motor)
+
+        evento = emisor.emitir_binaria_en_contexto(
+            regla, "paga_mordida_encig2025_digital_r2", contexto,
+            uso_solicitado="probabilidad_evento")
+        self.assertEqual("NO_COVERAGE", evento.estado)
+        self.assertIn("probabilidad_evento", evento.detalle)
+
+        # La ruta histórica conserva su resultado para replays y baseline.
+        historica = emisor.emitir_binaria_en_contexto(
+            regla, "paga_mordida_encig2025_digital_r2", contexto)
+        self.assertEqual(descriptiva.valor_punto, historica.valor_punto)
+
     def test_enif_corrige_rotulo_y_preserva_alias(self):
         regla = self.reglas["dinero.ahorro.seguro_deposito_enif2024"]
         alias = emisor.emitir_binaria(
@@ -120,8 +143,29 @@ class MotorUsosComplementos(unittest.TestCase):
         self.assertEqual(padre.valor_categoria, resto.derivado_de)
         salida = next(s for s in regla.entonces
                       if s.conducta == "denuncia_por_otra_razon")
-        self.assertIn("NO categoría literal 09", salida.evento)
+        self.assertIn("ni categoría literal 09", salida.evento)
+        self.assertIn("NO significa algún delito", salida.evento)
+        self.assertEqual("complemento_dependiente", salida.rol_uso)
         self.assertIn("NC-0085", salida.uso_motor)
+
+    def test_res0028_persona_con_razones_mixtas_no_es_alguna_otra(self):
+        # Una persona con delitos 01 y 04 pertenece tanto al grupo padre como
+        # al conjunto de códigos residuales. El complemento del indicador
+        # padre es 0; "alguna razón residual" daría 1 y es otro estimando.
+        razones = {"01", "04"}
+        indicador_padre = int(bool(razones & {"01", "02", "06", "08"}))
+        alguna_razon_residual = int(bool(razones & {"03", "04", "05", "07"}))
+        complemento_del_padre = 1 - indicador_padre
+        self.assertEqual((1, 1, 0),
+                         (indicador_padre, alguna_razon_residual,
+                          complemento_del_padre))
+
+        regla = self.reglas["civico.denuncia.miedo_desconfianza"]
+        salida = next(s for s in regla.entonces
+                      if s.conducta == "denuncia_por_otra_razon")
+        self.assertEqual("denuncia_con_miedo_o_desconfianza",
+                         salida.complemento_de)
+        self.assertIn("padre=1, complemento=0", salida.uso_motor)
 
     def test_replicas_del_complemento_no_son_otro_sorteo(self):
         q, replicas_q = emisor.complementar_replicas(

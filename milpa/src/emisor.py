@@ -71,6 +71,7 @@ class Salida:
     complemento_de: str | None = None
     resultado_id: str | None = None
     uso_motor: str | None = None
+    rol_uso: str | None = None
 
 
 @dataclass(frozen=True)
@@ -117,6 +118,7 @@ def cargar_reglas(ruta: Path = RUTA_TRAMITE) -> tuple[Regla, ...]:
             complemento_de=e.get("complemento_de"),
             resultado_id=e.get("corrida0_resultado_id"),
             uso_motor=e.get("uso_motor"),
+            rol_uso=e.get("rol_uso"),
         ) for e in r.get("entonces", []))
         transiciones = tuple(Salida(
             conducta=e["conducta"], p=e.get("p"), clase=e.get("clase"),
@@ -127,6 +129,7 @@ def cargar_reglas(ruta: Path = RUTA_TRAMITE) -> tuple[Regla, ...]:
             complemento_de=e.get("complemento_de"),
             resultado_id=e.get("corrida0_resultado_id"),
             uso_motor=e.get("uso_motor"),
+            rol_uso=e.get("rol_uso"),
         ) for e in r.get("transiciones", []))
         porque = r.get("porque", {}) or {}
         reglas.append(Regla(
@@ -496,6 +499,8 @@ class PrediccionM:
     estado: str = "EMITE"
     derivado_de: str | None = None
     dominio_elegible: tuple[tuple[str, object], ...] = ()
+    rol_uso: str | None = None
+    uso_motor: str | None = None
     detalle: str = ""
 
 
@@ -535,14 +540,21 @@ def emitir_binaria(regla: Regla, conducta: str) -> PrediccionM:
         return PrediccionM(
             "binaria", valor_punto=punto, valor_categoria=s.conducta,
             clase=s.clase, regla_id=regla.id, derivado_de=s.complemento_de,
-            dominio_elegible=s.dominio_elegible)
+            dominio_elegible=s.dominio_elegible, rol_uso=s.rol_uso,
+            uso_motor=s.uso_motor)
     return PrediccionM("binaria", estado="NO-EMITE", regla_id=regla.id,
                        valor_categoria=conducta)
 
 
 def emitir_binaria_en_contexto(regla: Regla, conducta: str,
-                               contexto: dict) -> PrediccionM:
-    """Impide aplicar una tasa condicional fuera de su dominio observado."""
+                               contexto: dict, *,
+                               uso_solicitado: str | None = None) -> PrediccionM:
+    """Impide aplicar una tasa fuera de su dominio o propósito declarado.
+
+    ``uso_solicitado=None`` conserva la API histórica. Un consumidor nuevo
+    puede declarar su propósito; los proxies descriptivos fallan cerrados si
+    se les pide una probabilidad empírica u otro uso no acreditado.
+    """
     s = _salida(regla, conducta)
     if s is None:
         return emitir_binaria(regla, conducta)
@@ -553,6 +565,17 @@ def emitir_binaria_en_contexto(regla: Regla, conducta: str,
             "binaria", estado="NO_COVERAGE", regla_id=regla.id,
             valor_categoria=s.conducta, dominio_elegible=s.dominio_elegible,
             detalle=f"fuera del dominio elegible: requiere {faltan!r}")
+    permitidos_proxy = {"baseline", "consulta_descriptiva", "escenario"}
+    if (s.rol_uso in {"proxy_descriptivo", "complemento_proxy_descriptivo"}
+            and uso_solicitado is not None
+            and uso_solicitado not in permitidos_proxy):
+        return PrediccionM(
+            "binaria", estado="NO_COVERAGE", regla_id=regla.id,
+            valor_categoria=s.conducta, dominio_elegible=s.dominio_elegible,
+            rol_uso=s.rol_uso, uso_motor=s.uso_motor,
+            detalle=(f"uso {uso_solicitado!r} no permitido para "
+                     f"rol_uso={s.rol_uso!r}; permitidos="
+                     f"{sorted(permitidos_proxy)!r}"))
     return emitir_binaria(regla, conducta)
 
 
@@ -575,7 +598,8 @@ def emitir_transicion(regla: Regla, evento: str, contexto: dict) -> PrediccionM:
     return PrediccionM(
         "binaria", valor_punto=s.p, valor_categoria=s.conducta,
         clase=s.clase, regla_id=regla.id,
-        dominio_elegible=s.dominio_elegible)
+        dominio_elegible=s.dominio_elegible, rol_uso=s.rol_uso,
+        uso_motor=s.uso_motor)
 
 
 def estado_encuci_solicitud_entrega(solicitud: int | None,
