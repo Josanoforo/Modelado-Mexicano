@@ -39,17 +39,15 @@ def check_configuracion_operativa():
     """Valores efectivos y procedencia; separa calendario, timeout y KILL."""
     import adq_config
     cal = _calendario_resuelto()
+    ejecutor = adq_config.ejecutor_resuelto()
     proxima = adq_config.proxima_ejecucion(
         datetime.datetime.now(datetime.timezone.utc), cal=cal)
-    timeout = adq_config.entero_resuelto(
-        "claude_timeout_segundos", "CLAUDE_TIMEOUT_SEGUNDOS", 1800)
-    kill_after = adq_config.entero_resuelto(
-        "claude_kill_after_segundos", "CLAUDE_KILL_AFTER_SEGUNDOS", 60)
     return {
         "calendario": cal,
         "proxima_ejecucion": proxima.isoformat(timespec="minutes"),
-        "timeout_proceso": timeout,
-        "gracia_term_kill": kill_after,
+        "ejecutor": ejecutor,
+        "timeout_proceso": ejecutor["timeout"],
+        "gracia_term_kill": ejecutor["kill_after"],
         "ventana_observacion_minutos": cal["ventana_observacion_minutos"],
     }
 
@@ -84,8 +82,7 @@ def _corre(cmd, timeout=10, cwd=None):
 
 
 def check_entorno():
-    """CAJA/WSL esperado -- convención del programa (ver .claude/commands/
-    acto.md A.2): CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE sin fijar = CAJA."""
+    """CAJA se prueba por WSL, ubicación y corpus; la variable Claude es auxiliar."""
     tipo = os.environ.get("CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE")
     es_wsl = False
     version = ""
@@ -98,6 +95,9 @@ def check_entorno():
     return {
         "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": tipo or "(sin fijar -- CAJA)",
         "es_wsl_detectado": es_wsl,
+        "cwd": os.path.realpath(RAIZ),
+        "clon_productivo_esperado": os.path.realpath(RAIZ) == "/home/pc0/mm-adq",
+        "home_usuario": os.path.expanduser("~"),
         "proc_version": version[:160],
     }
 
@@ -168,7 +168,7 @@ def check_scheduler_windows():
         f"$i = Get-ScheduledTaskInfo -TaskName '{task_name}' -TaskPath '{task_path}'; "
         f"[pscustomobject]@{{"
         f"State=$t.State.ToString(); TaskName=$t.TaskName; TaskPath=$t.TaskPath; "
-        f"UserId=$t.Principal.UserId; LogonType=$t.Principal.LogonType.ToString(); "
+        f"UserId=$t.Principal.UserId; LogonType=$t.Principal.LogonType.ToString(); RunLevel=$t.Principal.RunLevel.ToString(); "
         f"Execute=$t.Actions[0].Execute; Arguments=$t.Actions[0].Arguments; "
         f"StartBoundary=$t.Triggers[0].StartBoundary; DaysOfWeek=[int]$t.Triggers[0].DaysOfWeek; "
         f"TriggerEnabled=$t.Triggers[0].Enabled; StartWhenAvailable=$t.Settings.StartWhenAvailable; "
@@ -187,7 +187,10 @@ def check_scheduler_windows():
         return {"estado": "NO-VERIFICABLE", "razon": f"salida de PowerShell no fue JSON: {out.strip()[:200]}"}
     calendario = _calendario_resuelto()
     mascara_esperada = sum(2 << d for d in calendario["weekdays"])
-    accion_esperada = "ADQ_DISPARADOR=windows-task-scheduler" in (campos.get("Arguments") or "")
+    argumentos = campos.get("Arguments") or ""
+    accion_esperada = ("ADQ_DISPARADOR=windows-task-scheduler" in argumentos
+                       and "/home/pc0/mm-adq/tools/adquiere_launcher.sh" in argumentos
+                       and "-d Ubuntu -u pc0" in argumentos)
     return {"estado": "INSTALADA", "tarea": nombre_tarea, **campos,
             "calendario_esperado": {
                 "hora": calendario["hora"], "dias_mascara": mascara_esperada,
@@ -197,6 +200,21 @@ def check_scheduler_windows():
             "dias_coinciden": campos.get("DaysOfWeek") == mascara_esperada,
             "hora_coincide": calendario["hora"] in (campos.get("StartBoundary") or ""),
             "disparador_atribuible": accion_esperada}
+
+
+def check_eventos_windows():
+    powershell = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"
+    if not os.path.exists(powershell):
+        return {"estado": "NO-VERIFICABLE", "razon": "powershell.exe no legible"}
+    canal = "Microsoft-Windows-TaskScheduler/Operational"
+    script = (f"$l=Get-WinEvent -ListLog '{canal}'; "
+              "[pscustomobject]@{LogName=$l.LogName;IsEnabled=$l.IsEnabled;"
+              "RecordCount=$l.RecordCount;LastWriteTime=$l.LastWriteTime.ToString('o')}|ConvertTo-Json")
+    codigo, out, err = _corre([powershell, "-NoProfile", "-Command", script], timeout=20)
+    if codigo != 0:
+        return {"estado": "NO-VERIFICABLE", "razon": (err or out).strip()[:300]}
+    return {"estado": "HABILITADO" if json.loads(out)["IsEnabled"] else "DESHABILITADO",
+            **json.loads(out)}
 
 
 def check_crontab_legado():
@@ -230,7 +248,40 @@ def check_crontab_legado():
 
 
 def check_binarios():
-    return {b: (shutil.which(b) or "AUSENTE") for b in ("git", "curl", "python3", "gh", "claude")}
+    import adq_config
+    nombre = adq_config.ejecutor_resuelto()["nombre"]
+    base = {b: (shutil.which(b) or "AUSENTE") for b in ("git", "curl", "python3", "gh")}
+    base["ejecutor_seleccionado"] = nombre
+    base[nombre] = shutil.which(nombre) or "AUSENTE"
+    return base
+
+
+def check_ejecutor():
+    import adq_config
+    cfg = adq_config.ejecutor_resuelto()
+    nombre = cfg["nombre"]
+    if nombre == "codex":
+        binario = cfg["codex"]["binario"]
+        version_rc, version, version_err = _corre([binario, "--version"], timeout=20)
+        login_rc, login, login_err = _corre([binario, "login", "status"], timeout=20)
+        return {
+            "seleccionado": "codex",
+            "binario_configurado": binario,
+            "binario_real": os.path.realpath(binario) if os.path.exists(binario) else "AUSENTE",
+            "version": (version or version_err).strip().splitlines()[-1] if (version or version_err) else "",
+            "version_exit": version_rc,
+            "autenticacion": (login or login_err).strip().splitlines()[-1] if (login or login_err) else "",
+            "autenticacion_exit": login_rc,
+            "modelo_configurado": cfg["codex"]["modelo"],
+            "modelo_efectivo": "se fija con --model; snapshot subyacente no expuesto",
+            "sandbox": cfg["codex"]["sandbox"],
+            "aprobaciones": cfg["codex"]["aprobaciones"],
+            "red_workspace_write": cfg["codex"]["red_workspace_write"],
+            "directorio_adicional": cfg["codex"]["directorio_adicional"],
+        }
+    ruta = shutil.which("claude")
+    return {"seleccionado": "claude", "binario_real": ruta or "AUSENTE",
+            "nota": "compatibilidad explícita; no es fallback de Codex"}
 
 
 def check_corpus():
@@ -682,8 +733,10 @@ SECCIONES = [
     ("configuracion_operativa", check_configuracion_operativa),
     ("zona_horaria", check_zona_horaria),
     ("scheduler_windows", check_scheduler_windows),
+    ("eventos_windows", check_eventos_windows),
     ("crontab_legado", check_crontab_legado),
     ("binarios", check_binarios),
+    ("ejecutor", check_ejecutor),
     ("corpus_data_raw", check_corpus),
     ("descargas_mx", check_descargas_mx),
     ("red", check_red),

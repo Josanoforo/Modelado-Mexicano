@@ -179,6 +179,82 @@ def entero_resuelto(clave, env_var, respaldo, *, entorno=None, cfg=None,
             "causa": "; ".join(causas)}
 
 
+def _entero_compat(nueva_clave, nueva_env, clave_antigua, env_antigua,
+                    respaldo, *, entorno=None, cfg=None, config_path=None):
+    """Autoridad nueva con lectura explícita, y aliases antiguos sólo si falta.
+
+    Orden: env nueva > YAML nuevo > env antiguo > YAML antiguo > respaldo. Una
+    clave nueva presente nunca compite con la antigua.
+    """
+    entorno = os.environ if entorno is None else entorno
+    cfg = cargar(config_path if config_path is not None else RUTA_CONFIG) if cfg is None else cfg
+    if nueva_env in entorno:
+        r = entero_resuelto(nueva_clave, nueva_env, respaldo, entorno=entorno,
+                            cfg=cfg, minimo=1, maximo=86400)
+        return r
+    try:
+        valor = _entero_positivo(obten(nueva_clave, cfg=cfg), nueva_clave)
+        return {"valor": valor, "fuente": f"config:{nueva_clave}",
+                "degradada": False, "causa": None}
+    except KeyError:
+        pass
+    if env_antigua in entorno:
+        valor = _entero_positivo(entorno[env_antigua], env_antigua)
+        return {"valor": valor, "fuente": f"compat-env:{env_antigua}",
+                "degradada": False, "causa": "alias histórico"}
+    try:
+        valor = _entero_positivo(obten(clave_antigua, cfg=cfg), clave_antigua)
+        return {"valor": valor, "fuente": f"compat-config:{clave_antigua}",
+                "degradada": False, "causa": "alias histórico"}
+    except KeyError:
+        valor = _entero_positivo(respaldo, "respaldo")
+        return {"valor": valor, "fuente": "respaldo-compatible",
+                "degradada": True,
+                "causa": f"faltan {nueva_clave} y alias {clave_antigua}"}
+
+
+def ejecutor_resuelto(cfg=None, config_path=None, entorno=None):
+    """Configuración validada del único ejecutor seleccionado."""
+    entorno = os.environ if entorno is None else entorno
+    cfg = cargar(config_path if config_path is not None else RUTA_CONFIG) if cfg is None else cfg
+    nombre = str(cfg.get("ejecutor", "claude")).strip().lower()
+    if nombre not in ("codex", "claude"):
+        raise ConfiguracionError(f"ejecutor={nombre!r}: se esperaba codex o claude")
+    timeout = _entero_compat(
+        "ejecutor_timeout_segundos", "ADQ_TIMEOUT_SEGUNDOS",
+        "claude_timeout_segundos", "CLAUDE_TIMEOUT_SEGUNDOS", 1800,
+        entorno=entorno, cfg=cfg)
+    kill_after = _entero_compat(
+        "ejecutor_kill_after_segundos", "ADQ_KILL_AFTER_SEGUNDOS",
+        "claude_kill_after_segundos", "CLAUDE_KILL_AFTER_SEGUNDOS", 60,
+        entorno=entorno, cfg=cfg)
+    maximo = _entero_positivo(cfg.get("maximo_filas", 5), "maximo_filas", 1, 5)
+    resultado = {
+        "nombre": nombre,
+        "timeout": timeout,
+        "kill_after": kill_after,
+        "maximo_filas": maximo,
+    }
+    if nombre == "codex":
+        codex = cfg.get("codex")
+        if not isinstance(codex, dict):
+            raise ConfiguracionError("codex debe ser un mapa cuando ejecutor=codex")
+        requeridas = ("binario", "modelo", "sandbox", "aprobaciones",
+                      "red_workspace_write", "directorio_adicional",
+                      "esquema_resultado")
+        faltan = [k for k in requeridas if k not in codex]
+        if faltan:
+            raise ConfiguracionError(f"codex: faltan {', '.join(faltan)}")
+        if codex["sandbox"] != "workspace-write":
+            raise ConfiguracionError("codex.sandbox debe ser workspace-write")
+        if codex["aprobaciones"] != "never":
+            raise ConfiguracionError("codex.aprobaciones debe ser never para el job no interactivo")
+        if codex["red_workspace_write"] is not True:
+            raise ConfiguracionError("codex.red_workspace_write debe ser true")
+        resultado["codex"] = dict(codex)
+    return resultado
+
+
 def proxima_ejecucion(ahora, cal=None):
     """Próxima hora del calendario, calculada en su zona y no en la del host."""
     cal = calendario() if cal is None else cal
@@ -199,12 +275,15 @@ def main(argv=None):
     if argv == ["--calendario-json"]:
         print(json.dumps(calendario_resuelto(), ensure_ascii=False))
         return 0
+    if argv == ["--ejecutor-json"]:
+        print(json.dumps(ejecutor_resuelto(), ensure_ascii=False))
+        return 0
     if len(argv) == 4 and argv[0] == "--entero-json":
         clave, env_var, respaldo = argv[1:]
         print(json.dumps(entero_resuelto(clave, env_var, respaldo), ensure_ascii=False))
         return 0
     if len(argv) != 1:
-        print("uso: adq_config.py <ruta.punteada> | --calendario-json | "
+        print("uso: adq_config.py <ruta.punteada> | --calendario-json | --ejecutor-json | "
               "--entero-json <clave> <env> <respaldo>", file=sys.stderr)
         return 2
     try:

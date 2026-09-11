@@ -17,15 +17,16 @@ propio repo (`tools/adquiere_cron.sh`, `forense/agente-adquisicion-v1_0.md`,
 
 | campo | valor |
 |---|---|
-| script | `tools/adquiere_cron.sh` |
+| script | `tools/adquiere_launcher.sh` (resuelve revisión y lock; entrega una sola vez a `tools/adquiere_cron.sh`) |
 | caja | `mm-adq` (Ubuntu/WSL de mesa — fijada por firma `DC-a`, `ACTO MAESTRA34-N7`: "cloud claude code no tiene acceso a hacer esas revisiones") |
 | horario | lunes a viernes, 07:30 hora de mesa (`CST`, UTC-6) |
 | usuario del crontab | el de mesa en `mm-adq` (no root) |
-| repo que opera | el clon de trabajo de mesa en `mm-adq`, rama `main` |
-| log | `forense/adq-log/<AAAA-MM-DD>.log` (por corrida) + `forense/adq-log/cron-stdout.log` (stdout/stderr crudo del propio crontab, apéndice) |
+| repo que opera | `/home/pc0/mm-adq`; revisión publicada fijada por `ADQ_DEPLOY_REVISION` mientras no sea ancestro de `origin/main`, y transición automática a `main` después del merge |
+| log | `forense/adq-log/<AAAA-MM-DD>.log`, eventos Codex JSONL/stderr/final locales por `run_id`, heartbeat en `forense/adq-log/estado/heartbeat.json` y recibo publicable en `censo/<AAAA-MM-DD>` |
 | huella mínima esperada por corrida | **tres commits** en `censo/<AAAA-MM-DD>` (ACTO MAESTRA38-CRON-3, `ADR-354`): `[CENSO] <fecha>` (paso 2.5), `[ADQ-PDN] <fecha>` (paso 2.6 — fuera de ventana día 1-3: una línea `fuera de ventana`; dentro de ventana: cuatro líneas `[ADQ-PDN] <SIS_LOGICO>: …`, una por sistema (s1/s2/s3/s6), con el resultado de `--compara-sha` — formato nuevo desde `ACTO AUTOMATIZA-2-E4 · PDN-COMPARA`, ver §8) y `[ADQ] <fecha> <HH:MM>: invocado=<si\|no> motivo=<-\|PARO-RAIZ\|PARO-RED\|PARO-PROMPT\|PARO-CORPUS> exit=<código\|-> duracion=<s> commits_nuevos=<k> ramas_nuevas=<j> archivos_modificados=<m>` (D-b) — medida contra el estado real del clon, nunca una constante; se escribe siempre, incluso `invocado=no` |
 | commit del censo | `[CENSO] <AAAA-MM-DD>`, rama `censo/<AAAA-MM-DD>`, PR (main protegida, check `check` requerido) |
-| runbook | `forense/agente-adquisicion-v1_0.md` §1 (bloque ```text``` que el script extrae para `claude -p`) |
+| runbook | `forense/agente-adquisicion-v1_0.md` §1; Codex recibe el prompt explícito por stdin y lee la definición vigente `.claude/commands/adquiere.md`, sin depender de un slash command registrado |
+| ejecutor vigente | `codex exec`, no interactivo, autenticación ChatGPT conservada; `data/adq-config.yaml:ejecutor=codex` es la autoridad. Claude sólo puede activarse por selección explícita compatible y no es fallback. |
 | modelo que lo declara | `D-13` (`canon/gobernanza-v1_15.md`, `ADR-281`, `ACTO MAESTRA34-N7 · SKILLS-COLA-Y-ADQ`) |
 | diagnóstico previo | `PR #557` (`ACTO MAESTRA38-CRON · DIAGNOSTICO-Y-ARREGLO`) — cero código tocado, las cuatro lecturas pre-declaradas del encargo anterior no se cumplieron: la línea de crontab ya era correcta, el estado sucio del log del 5/sep ya estaba resuelto por `PR #546`, el 5/sep/2026 fue **sábado** (fuera de ventana `1-5`, no defecto), y las líneas `PARO-RAIZ` venían de un sandbox de Claude Code que entonces bloqueaba `/mnt/c` |
 
@@ -99,16 +100,14 @@ Cuando `T-CRON` da WARN o alguien sospecha que el cron dejó de correr:
    ya instrumentada en el propio script (corpus no montado, raíz local
    no resuelve, red caída, o el push del commit `[CENSO]` falló) — no
    son el mismo defecto que "el cron no corrió".
-4. **¿El log llega hasta `claude -p` y el código de salida es != 0?**
-   Revisar las últimas líneas del log para el mensaje de error de
-   `claude -p` — puede ser cuota, autenticación, o el prompt extraído
-   de `forense/agente-adquisicion-v1_0.md` §1 vacío/roto.
-5. **¿El crontab sigue instalado y con la línea de §2?**
-   `crontab -l | grep adquiere_cron` en `mm-adq`. Si la línea no está,
-   o `PATH=` no está fijado, esa es la causa más común y más silenciosa
-   — cron no hereda el `PATH` de un shell interactivo, así que un cron
-   sin `PATH=` explícito puede fallar en el primer `git`/`curl` sin
-   dejar log alguno (nada se ejecuta después del fallo del intérprete).
+4. **¿El log llega hasta `codex exec` y el código de salida es != 0?**
+   Contrastar JSONL, stderr, salida final y `codex login status`; cuota,
+   autenticación, esquema o resultado sustantivo fallido son causas distintas.
+5. **¿La tarea única conserva launcher, usuario, revisión y calendario?**
+   Exportar `\\ModeladoMexicano\\AdquiereCron`; debe ejecutar `wsl.exe` como
+   principal `PC0`/`Interactive` y Linux `pc0`, apuntar a
+   `/home/pc0/mm-adq/tools/adquiere_launcher.sh`, conservar un solo trigger
+   semanal lunes-viernes 07:30 y no coexistir con un crontab ejecutable.
 6. **¿La máquina `mm-adq` estuvo encendida y con red a las 07:30?**
    Última verificación, la más manual: si las cinco de arriba no
    explican la ausencia de huella, la caja pudo estar apagada,
@@ -259,3 +258,44 @@ Hasta observar `EventRecord`/`ActivityId`, la coincidencia de hora entre la
 tarea y WSL no distingue trigger semanal, recuperación o clic manual. La
 cadena y el fallo externo del 11/sep se documentan en
 `forense/notas/2026-09-11-GEN2-PRODUCCION-Y-FALLO-POST707-cierre.md`.
+
+## §10 · Codex principal y puesta en marcha programada (11/sep/2026)
+
+La decisión de Jonás del 11/sep sustituye la espera al lunes y la dependencia
+obligatoria de Claude. `data/adq-config.yaml` selecciona `codex`; el runner
+observó `/home/pc0/.local/bin/codex`, `codex-cli 0.154.0`, sesión
+`Logged in using ChatGPT` y modelo explícito `gpt-5.6-sol`. La invocación no
+interactiva usa escritura `workspace-write`, aprobaciones `never`, red del
+sandbox habilitada y `/home/pc0/mm-corpus` como raíz adicional. Eventos,
+stderr, prompt y salida final permanecen locales; el recibo no publica sesión
+ni credenciales.
+
+El canal `Microsoft-Windows-TaskScheduler/Operational` fue habilitado por UAC
+con un script acotado, bajo `FF-5563\\PC0`, y quedó `IsEnabled=True`. La misma
+tarea recibió temporalmente un trigger `Once` de hora; no se usó
+`Start-ScheduledTask`. El recorrido exitoso fue:
+
+- Windows `RecordId 77`, evento 107, inició por condición de trigger de hora a
+  `2026-09-11T10:26:45-06:00`; `RecordId 79/80` inició tarea/`wsl.exe`.
+- Los cinco eventos 77/79/80/81/82 comparten
+  `ActivityId 53e8f092-5db2-4510-a807-d1b0d13207a8`; 81/82 cierran con código
+  `0` a las 10:29:22.
+- WSL produjo `run_id=2026-09-11T102646-1498932`, revisión fijada
+  `1e880f05faa16c7cee1ca86aea322188336d279f`, selección real de máximo cinco:
+  cero elegibles y 140 exclusiones con causa. Codex devolvió
+  `resultado_sustantivo=cola_vacia`, `exit=0`; el runner publicó el recibo en
+  `censo/2026-09-11`, commit `8c6ca338`, PR #716.
+
+Hubo una sola intentona previa a las 10:18: el trigger horario llegó a Codex,
+pero la API rechazó el esquema estructurado (`invalid_json_schema`) antes del
+trabajo; terminó `exit=1` y publicó ese fallo separado. Se corrigió la causa en
+`1e880f05…` y sólo entonces se repitió el tramo programado. No hubo llamada a
+Claude en ninguna de las dos.
+
+El trigger temporal fue retirado mediante el instalador autoritativo. Estado
+final: tarea `Ready`, principal `PC0`/`Interactive`/`Limited`, acción
+`wsl.exe -d Ubuntu -u pc0` hacia el launcher, un solo trigger semanal
+lunes-viernes 07:30, siguiente corrida `2026-09-14T07:30:00-06:00`,
+`Operational=True`. `ADQ_DEPLOY_REVISION=1e880f05…` impide que un pull de
+`main` restaure Claude mientras PR #718 siga abierto; el launcher cambia solo
+a `main` cuando esa revisión ya sea ancestro de `origin/main`.
