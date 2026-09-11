@@ -399,6 +399,7 @@ reglas:
       origen: "milpa/tramite-ola5-propuesta-v0.yaml:684-741 (id tramite.gobierno_digital.util_sin_coercion_encig2025), copiada verbatim"
       aplica_a: [adopta_encig2025_luz, rechaza_servicio_encig2025_luz]
       sustituye: "ASIGNADO 0.71/0.29 de arriba en el cálculo -- se conserva, no se borra (prior no refutado, firma a1)"
+      ola_calibracion: "ENCIG 2025 (pago ordinario del servicio de luz, N_TRA=01)"
       ic95: [0.663165, 0.683910]
       n: 20203
       estratos: 441

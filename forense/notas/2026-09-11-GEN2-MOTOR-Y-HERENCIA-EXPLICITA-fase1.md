@@ -1,9 +1,11 @@
 # GEN2-MOTOR-Y-HERENCIA-EXPLICITA · mapa de Fase 1
 
-Fecha real: 11 de septiembre de 2026. Base inspeccionada:
-`origin/main=c23dce15a917bb6fb0a4e44dabf3767e03c9ded8`. Este artefacto es el
-resultado independiente permitido por la compuerta del encargo 18; no es un
-snapshot de emisión Gen2 ni acredita aptitud numérica.
+Fecha real: 11 de septiembre de 2026. Base inicial inspeccionada:
+`origin/main=c23dce15a917bb6fb0a4e44dabf3767e03c9ded8`. Revalidación:
+`origin/main=e7a471bf1499a096abbe58dc298f02243e885135` (#708). La primera parte
+de este artefacto conserva la captura anterior a la compuerta de 17; la
+sección «Resolución ejecutable» documenta su integración y sustituye los
+estados provisionales.
 
 ## Reproducción y perímetro ejecutable
 
@@ -28,7 +30,7 @@ la rebanada matricial de E0 que produce veredictos de estado y no una
 probabilidad del duelo. Tratar ambos como un único “motor” ocultaría qué
 ejecutable materializa cada cifra.
 
-## Los 16 usos rotulados GEN2, sin promover su linaje
+## Captura previa: los 16 usos rotulados GEN2, sin promover su linaje
 
 `origen numérico` queda deliberadamente `INDETERMINADO-HASTA-17`: el registro
 actual comprueba que existe el RESULT y que su corrida es GEN2, pero no separa
@@ -100,10 +102,12 @@ permanece descriptiva y no se usa aquí como criterio de selección.
 
 ## Adenda: benchmark web de cuatro decisiones
 
-Se revisó `BENCHMARK-WEB-CUATRO-DECISIONES-GEN2-2026-09-11.md`; otra sesión
-posee su carga al repositorio y este acto no duplica ese archivo. Sus cuatro
-recomendaciones siguen siendo propuestas, no firmas. Se aplicaron sólo los
-candados técnicos que corresponden al perímetro de 18:
+Se revisó
+`forense/notas/BENCHMARK-WEB-CUATRO-DECISIONES-GEN2-2026-09-11.md`, cargado
+por la sesión concurrente y fusionado en #708. Este acto consumió ese archivo
+sin duplicarlo. Sus cuatro recomendaciones siguen siendo propuestas, no
+firmas. Se aplicaron sólo los candados técnicos que corresponden al perímetro
+de 18:
 
 - r2 de ENCIG conserva sus puntos y la ruta histórica, pero ahora declara
   `rol_uso=proxy_descriptivo`; una petición explícita con
@@ -121,14 +125,62 @@ complemento ni el destino científico de las tasas antiguas. Tampoco se crea
 una medición/evento nuevo para r2. El cambio hace visible y ejecutable la
 separación de propósito sin alterar ningún valor.
 
-## Compuerta pendiente y baseline preservado
+## Resolución ejecutable tras integrar 17
 
-Al corte de esta nota, `origin/main`, las ramas remotas y los PR abiertos no
-contienen `GEN2-LINAJE-Y-ADOPCION` ni `acto/gen2-linaje-adopcion`. Sin ese
-producto no hay autoridad técnica para resolver `origen numérico` ni aptitud
-por uso, y duplicarlo aquí contradiría el perímetro (“17 posee
-registro/T35/vistas; 18 consume su contrato”). Por eso no se añadieron todavía
-el modo Gen2, el snapshot apto ni las pruebas que dependen de dicho resolver.
+Se integró por objeto `d19c92d` (`[GEN2] separa linaje numerico y aptitud de
+adopcion`). El emisor consume `milpa/src/linaje.py`, `usos.tsv` y
+`resultados.tsv`; no replica su resolvedor. La re-derivación vigente clasifica
+los 16 enlaces directos como `origen_numerico=NUEVO` y
+`aptitud_uso=APTA-POR-LINAJE`. Esa aptitud no certifica por sí sola la
+compatibilidad semántica del estimando.
+
+`milpa/src/emisor.py:emitir_binaria_contrato` conserva dos identidades:
+
+- `HISTORICO` emite el valor anterior con las dependencias heredadas visibles;
+- `GEN2` exige propósito, dominio, consumidor activo, RESULT sellado, origen
+  apto e identidad numérica; ante cualquier ausencia devuelve `NO_COVERAGE`;
+- `transferencia` recibe la elección de `tools/baseline_temporal.py`, vuelve a
+  leer el RESULT y rechaza un valor con rol `ARBITRO`;
+- los proxies r2 sólo admiten `DESCRIPTIVO`; una probabilidad por evento falla
+  cerrada;
+- los complementos usan el RESULT del padre. El complemento ENCUCI ya
+  adoptado emite sin sumar una medición; la propuesta ENVIPE devuelve
+  `NO_COVERAGE` mientras no exista firma de adopción.
+
+El snapshot nuevo es
+`forense/prereg-duelo-v2/snapshot-M-gen2-explicito-v1_0.json`. Registra hashes
+del emisor, contrato de linaje y selector, además de unidad, evento, universo,
+ola, activación, uso, RESULT completo y dependencias estructurales por salida.
+Sus conteos se derivan en cada ejecución:
+
+| alcance | antes | después en modo GEN2 explícito |
+|---|---:|---:|
+| registro activo global | 207: 16 directos GEN2, 191 legacy | 16 directos evaluados, 16 `EMITE` |
+| emisor `milpa/tramite.yaml` | 66: 16 directos GEN2, 50 legacy | CIV 3, TRA 5, FAM 1, DIN 7 |
+
+La demostración contractual de transferencia ENIGH-NS para objetivo 2022 y
+corte `2021-12-31` elige `RESULT-B-ENIGH-2020-P`; queda rotulada
+`OPERATIVO-NO-ARBITRO` y `NO-EVALUACION-INDEPENDIENTE`. No usa la ola 2022,
+una ola posterior, un estimando parecido ni el valor del árbitro.
+
+## Aceptación de la adenda
+
+| decisión o límite acreditado | RESULT/fuente | consumidor | uso efectivo | prueba | cierre/residual |
+|---|---|---|---|---|---|
+| S6: IC por localidad no es diseño oficial | `RESULT-S6-*`; #702 y `S6-L16-spec-v1_5.md` | `salud.atencion.grave_ennvih2002` | puntos/asociaciones descriptivas; `IC-SENSIBILIDAD-LOCALIDAD-NO-DISENO-OFICIAL` | `test_s6_traslada_limite_sin_reescribir_veredictos` | Enmienda trasladada; FP-372 y NC-0156 siguen abiertas; R4.4 permanece MEDIA |
+| Fintech D10 | `CALC-ENIF-FINTECH-0001--5b92cee28946` | contexto R1.6 en `milpa/procedencia.yaml` | `DESCRIPTIVO-NO-CALIBRA`; 2021/2024 lado a lado, 2018 no estimable | `test_fintech_d10_incorpora_serie_sin_calibrar_r16` | D10 consumida; NC-0122 conserva el límite estructural |
+| Identidad ENCIG2023 | payload ya aplicado por #700 | entradas pertinentes de NC-0106 | etiqueta documental | `test_identidad_encig_ya_deriva_del_payload` | Ya corregida; no se repitió ni cambió ola/medición |
+| Tandas | #700 | escenario académico | antecedente, no parámetro | pruebas de ausencia/calibración existentes | D18 comercial diferida; no se infiere adopción |
+| DIN | `DIN-M-01` y benchmark #708 | consumidores DIN | punto descriptivo; sensibilidades separadas | snapshot explicita uso/linaje | FP-371 sigue sin firma inferencial |
+| Complemento ENVIPE | padre `RESULT-ENVIPE-DEN-P-C2-U4` | `denuncia_por_otra_razon` | dependencia a nivel persona, no observación nueva | `test_res0028_persona_con_razones_mixtas_no_es_alguna_otra` y caso 05 GEN2 | `NO_COVERAGE` hasta firma; NC-0085 no cierra |
+| Corrupción r2 | `RESULT-ENCIG-MOR-B-P-{PRE,DIG}-SD` | dos salidas r2 | proxy descriptivo dentro del grupo observado | `test_encig_r2_es_proxy_y_no_probabilidad_por_evento` | Probabilidad por evento rechazada; NC-0107 y adopción de tasas antiguas no cierran |
+
+No se firmaron las opciones DIN/S6, la adopción concreta del complemento ni
+una nueva regla de corrupción. No se promovió el escenario de tandas. Las
+únicas decisiones nuevas del acto son de interfaz y trazabilidad: fallar
+cerrado, preservar identidad y exponer herencia.
+
+## Baseline preservado
 
 El baseline de F5 queda intacto:
 
@@ -138,7 +190,7 @@ El baseline de F5 queda intacto:
 | `data/corrida0/CALC-TRIADA-0002/resultados.json` | `e2d0adc2a9fb9722d50a9479916129b3524cb87ce9021359ebfe755ec0e9e22a` |
 | `forense/prereg-duelo-v2/F5-completa-resultado-v1_0.json` | `e1ec8765f769f76c7f649958f46b72b34fcef786bcc113f5c3cbc997c4ed0079` |
 
-Continuación exacta: integrar primero el contrato de 17; rebasar esta rama;
-hacer que el emisor consulte esa aptitud por RESULT/uso; implementar los modos
-`baseline`, `consulta` y `transferencia`; producir un snapshot sucesor (nunca
-editar el de TRIADA-0002); y ejecutar los diez casos obligatorios del encargo.
+Los diez casos obligatorios viven en
+`tests/test_motor_gen2_explicito.py`; sus conteos de cobertura se comparan con
+la vista recién derivada, no con el literal 16. El snapshot de TRIADA-0002 y
+los resultados F5 no fueron modificados.
