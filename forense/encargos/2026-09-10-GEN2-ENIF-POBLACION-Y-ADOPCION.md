@@ -74,7 +74,7 @@ PR #691, rama `acto/gen2-enif-poblacion`; commits de arranque y sustancia
 Resultado: D04/D05 ejecutadas; celdas A/A exactas reutilizadas de
 `CALC-ENIF-0001`; `CALC-ENIF-0002` sellado y reproducido para no trabajadores;
 motor y procedencia adoptados por dominio; B/B conservado como histórico.
-`NC-0124` y `NC-0128` cierran; `NC-0126` permanece abierta. `NC-0152` registra
+`NC-0124` y `NC-0128` cierran; `NC-0126` permanece abierta. `NC-0153` registra
 la única pieza diferida: publicación global de vistas corrida0 por lote08,
 después de que el candado NC-0094 impidiera 32 transiciones ajenas.
 
@@ -82,4 +82,4 @@ Validación: prueba dirigida 2/2; spec-check 8 OK/0 FAIL; preflight VERDE;
 run exit 0; verify REPRODUCE/CONTEXTO=IDENTICO 59/59; smoke del emisor por tres
 dominios; `tests/check.py --baseline` exit 0; `git diff --check` limpio. El PR
 queda abierto para mesa; el ejecutor no lo fusiona. Colisión conocida con PR
-#687 sobre los candidatos ADR-455/NC-0152: renumera quien fusione segundo.
+#687 tomó los candidatos ADR-455/NC-0152; este acto renumera a ADR-456/NC-0153.
