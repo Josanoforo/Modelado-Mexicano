@@ -199,6 +199,21 @@ class TestElegibilidad(unittest.TestCase):
         self.assertFalse(resultado["comparacion_congelada_comprometida"])
         self.assertEqual(resultado["veredicto_global"], "SIN-GANADOR-UNICO")
 
+    def test_incertidumbre_r_no_acreditada_no_borra_punto_descriptivo(self):
+        inputs, contrato = fixture()
+        tarjetas = inputs["IN-TARJETAS"]
+        tarjetas["bytes"] = tarjetas["bytes"].replace(
+            b"SI\tACREDITADA\tACREDITADA",
+            b"SI\tSENSIBILIDAD-NO-DISENO\tACREDITADA",
+        )
+        tarjetas["sha256"] = hashlib.sha256(tarjetas["bytes"]).hexdigest()
+        resultado, _ = CALC.calcular(inputs, contrato, linaje_fixture)
+        self.assertEqual(resultado["u3_puntuable"], ["A", "B"])
+        self.assertEqual(
+            resultado["celdas"]["A"]["R_incertidumbre"],
+            "SENSIBILIDAD-NO-DISENO",
+        )
+
     def test_dominancia_sin_cobertura_no_corona_ganador(self):
         inputs, contrato = fixture()
         contrato["parametros"]["u3_congelado"] = ["A"]
