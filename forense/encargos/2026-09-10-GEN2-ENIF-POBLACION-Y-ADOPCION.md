@@ -92,4 +92,4 @@ Validación: prueba dirigida 2/2; spec-check 8 OK/0 FAIL; preflight VERDE;
 run exit 0; verify REPRODUCE/CONTEXTO=IDENTICO 59/59; smoke del emisor por tres
 dominios; `tests/check.py --baseline` exit 0; `git diff --check` limpio. El PR
 queda abierto para mesa; el ejecutor no lo fusiona. Colisión conocida con PR
-#687 tomó los candidatos ADR-455/NC-0152; este acto renumera a ADR-456/NC-0153.
+#687 tomó los candidatos ADR-455/NC-0152; este acto renumeró a ADR-456/NC-0153; PR #688 tomó después ADR-456 y este acto renumera finalmente a ADR-457.
