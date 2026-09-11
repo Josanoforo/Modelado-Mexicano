@@ -36,6 +36,11 @@ unidad, evento, códigos, ponderador/transformación, fecha de referencia,
 disponibilidad, función de R, origen numérico y criterio de comparación. Una
 diferencia de unidad no se resuelve por cercanía numérica.
 
+El snapshot transporta además `camino_linaje`, `dependencia_objetivo`,
+`validacion_independiente` y `rol_evaluacion=EVALUACION-RETENIDA`. La aptitud
+se consulta a la interfaz común de 17; generación administrativa y firma de
+contador no sustituyen esos campos.
+
 ## Tamaño por precisión, no por disponibilidad
 
 Se propone un diseño en dos muestras **disjuntas**:

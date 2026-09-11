@@ -71,6 +71,13 @@ Antes de puntuar se exige:
 6. en cada M, identidad booleana confirmada, estado, firewall, punto y tarjeta
    aptos para el propósito declarado.
 
+Para una evaluación renovada, el snapshot sucesor de 18 debe transportar por
+celda los campos que consume el contrato común de 17: `origen_numerico`,
+`camino_linaje`, `dependencia_objetivo`, `validacion_independiente` y
+`rol_evaluacion`. Ausencia o valor desconocido se conserva como
+`INDETERMINADO`; el medidor importa `milpa/src/linaje.py::aptitud_para_uso` y
+no vuelve a trazar ni a promover el origen.
+
 Un duplicado, ID extraño, punto booleano/no finito/fuera de `[0,1]`, JSON
 malformado o correspondencia ambigua es `ContratoInvalido`: no existe una
 comparación identificable y no se produce un resultado parcial fingidamente
