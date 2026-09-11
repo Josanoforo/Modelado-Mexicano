@@ -1,0 +1,177 @@
+{
+  "antecedentes_reanudacion": [
+    {
+      "estado_captura": "ERROR_TECNICO",
+      "intentos": [
+        {
+          "fin_utc": "2026-09-11T00:11:09.100241+00:00",
+          "inicio_utc": "2026-09-11T00:11:06.158739+00:00",
+          "numero": 1,
+          "returncode": 1,
+          "stderr_original": "",
+          "stdout_original": "{\"duration_api_ms\":0,\"stop_reason\":\"stop_sequence\",\"session_id\":\"0e78cd8a-a242-4506-954b-710068162a32\",\"total_cost_usd\":0,\"usage\":{\"output_tokens_details\":{\"thinking_tokens\":0},\"input_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"output_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"api_error\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":429,\"result\":\"You've hit your weekly limit · resets Sep 12, 11am (America/Mexico_City)\",\"type\":\"result\",\"duration_ms\":565,\"uuid\":\"9579f89f-4fb6-4e82-b547-c2f811eb31b7\",\"queued_turn_count\":0}\n"
+        },
+        {
+          "fin_utc": "2026-09-11T00:11:12.115693+00:00",
+          "inicio_utc": "2026-09-11T00:11:09.100265+00:00",
+          "numero": 2,
+          "returncode": 1,
+          "stderr_original": "",
+          "stdout_original": "{\"duration_api_ms\":0,\"stop_reason\":\"stop_sequence\",\"session_id\":\"4ad36263-2e06-4ba9-bd85-5cf5f45b139b\",\"total_cost_usd\":0,\"usage\":{\"output_tokens_details\":{\"thinking_tokens\":0},\"input_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"output_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"api_error\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":429,\"result\":\"You've hit your weekly limit · resets Sep 12, 11am (America/Mexico_City)\",\"type\":\"result\",\"duration_ms\":572,\"uuid\":\"ecda6522-33f6-4e04-9d31-cfc26e7aa637\",\"queued_turn_count\":0}\n"
+        },
+        {
+          "fin_utc": "2026-09-11T00:11:15.289842+00:00",
+          "inicio_utc": "2026-09-11T00:11:12.115715+00:00",
+          "numero": 3,
+          "returncode": 1,
+          "stderr_original": "",
+          "stdout_original": "{\"duration_api_ms\":0,\"stop_reason\":\"stop_sequence\",\"session_id\":\"489b617b-132e-4d68-8eb3-e62adbe4ef9e\",\"total_cost_usd\":0,\"usage\":{\"output_tokens_details\":{\"thinking_tokens\":0},\"input_tokens\":0,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":0,\"output_tokens\":0,\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"\",\"iterations\":[],\"speed\":\"standard\"},\"modelUsage\":{},\"permission_denials\":[],\"terminal_reason\":\"api_error\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":true,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":429,\"result\":\"You've hit your weekly limit · resets Sep 12, 11am (America/Mexico_City)\",\"type\":\"result\",\"duration_ms\":719,\"uuid\":\"9c51c5c6-cf49-49c1-a55d-8ec6b7c62a13\",\"queued_turn_count\":0}\n"
+        }
+      ],
+      "modelo_reportado": null,
+      "modelos_en_uso_reportados": [],
+      "sobre_cli_original": null,
+      "texto_crudo": null,
+      "timestamp_utc": "2026-09-11T00:11:15.289874+00:00"
+    }
+  ],
+  "cliente_version": "2.1.267 (Claude Code)",
+  "estado_captura": "OK",
+  "id_celda": "CIV-M-10",
+  "identidad": "c21a38fdb5345b770b5f23c7298212ed65cb1caded7b8245d635a4f8a258677e",
+  "intentos": [
+    {
+      "fin_utc": "2026-09-11T01:07:15.240524+00:00",
+      "inicio_utc": "2026-09-11T01:07:03.144904+00:00",
+      "numero": 1,
+      "returncode": 0,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":10618,\"stop_reason\":\"end_turn\",\"session_id\":\"a6d2de5f-ed25-4c6f-87e3-750de5d4db4c\",\"total_cost_usd\":0.015225500000000001,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":1545,\"output_tokens\":524,\"output_tokens_details\":{\"thinking_tokens\":374},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":524,\"cache_read_input_tokens\":1545,\"cache_creation_input_tokens\":0,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":0},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":1218,\"outputTokens\":25,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.001343,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":2,\"outputTokens\":524,\"cacheReadInputTokens\":1545,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.0138825,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":374,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Con base en las cifras publicadas de la ENVIPE 2021 (delitos de 2020): desconfianza en la autoridad ≈14.2%, miedo al agresor ≈6–7%, miedo a que lo extorsionaran ≈1.5–2%. La suma aproximada de estas tres razones ronda el 22–24% de los delitos no denunciados con razón válida.\\n\\nESTIMACION_PUNTUAL=23%\",\"ttft_ms\":7692,\"type\":\"result\",\"duration_ms\":9571,\"uuid\":\"c35a7c21-d818-4632-8489-864a2e82253b\",\"ttft_stream_ms\":2497,\"time_to_request_ms\":105,\"first_content_frame_ms\":3105,\"queued_turn_count\":0}\n"
+    }
+  ],
+  "modelo_alias_solicitado": "opus",
+  "modelo_reportado": "claude-opus-5",
+  "modelos_en_uso_reportados": [
+    "claude-haiku-4-5",
+    "claude-opus-5"
+  ],
+  "replica": 8,
+  "sha256_manifiesto_corpus": "3196b0cfb16e5d091f6873ae320857e88831d55f446bf592558c8bd878691c45",
+  "sha256_paquete": null,
+  "sha256_prompt": "5a611ed700a0124510a8406025cf0ca4f37bd42e33bbcc107bf6314d5cf475ca",
+  "sha256_spec_estudio": "25daa3e35cf493b3cdbb92c6882fc2bce24d78a90f3b575d4055440088c4f74d",
+  "sha256_spec_l": "914907e86fc5ded7618f9d6bcb1e44e62b3c4fbe32b6df5f29179be732caf51f",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 10618,
+    "duration_ms": 9571,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 3105,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.001343,
+        "inputTokens": 1218,
+        "maxOutputTokens": 32000,
+        "outputTokens": 25,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 1545,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 0.0138825,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 524,
+        "provider": "firstParty",
+        "thinkingTokens": 374,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 1,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "Con base en las cifras publicadas de la ENVIPE 2021 (delitos de 2020): desconfianza en la autoridad ≈14.2%, miedo al agresor ≈6–7%, miedo a que lo extorsionaran ≈1.5–2%. La suma aproximada de estas tres razones ronda el 22–24% de los delitos no denunciados con razón válida.\n\nESTIMACION_PUNTUAL=23%",
+    "session_id": "a6d2de5f-ed25-4c6f-87e3-750de5d4db4c",
+    "stop_reason": "end_turn",
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 105,
+    "total_cost_usd": 0.015225500000000001,
+    "ttft_ms": 7692,
+    "ttft_stream_ms": 2497,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 1545,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 1545,
+          "input_tokens": 2,
+          "output_tokens": 524,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 524,
+      "output_tokens_details": {
+        "thinking_tokens": 374
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "c35a7c21-d818-4632-8489-864a2e82253b"
+  },
+  "texto_crudo": "Con base en las cifras publicadas de la ENVIPE 2021 (delitos de 2020): desconfianza en la autoridad ≈14.2%, miedo al agresor ≈6–7%, miedo a que lo extorsionaran ≈1.5–2%. La suma aproximada de estas tres razones ronda el 22–24% de los delitos no denunciados con razón válida.\n\nESTIMACION_PUNTUAL=23%",
+  "timestamp_utc": "2026-09-11T01:07:15.240674+00:00",
+  "variante": "L-solo"
+}

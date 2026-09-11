@@ -1,0 +1,141 @@
+{
+  "cliente_version": "2.1.267 (Claude Code)",
+  "estado_captura": "OK",
+  "id_celda": "CIV-M-02",
+  "identidad": "a1404896e98cdc1b06122e9f23782651cdbb7475a239d62f983c53af9bacbf4d",
+  "intentos": [
+    {
+      "fin_utc": "2026-09-10T23:31:22.008856+00:00",
+      "inicio_utc": "2026-09-10T23:31:06.585252+00:00",
+      "numero": 1,
+      "returncode": 0,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":14758,\"stop_reason\":\"end_turn\",\"session_id\":\"ccf71636-b48f-499a-81c8-99d79e0c764f\",\"total_cost_usd\":0.047331,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":18150,\"output_tokens\":967,\"output_tokens_details\":{\"thinking_tokens\":749},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":967,\"cache_read_input_tokens\":18150,\"cache_creation_input_tokens\":0,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":0},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":13951,\"outputTokens\":24,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.014071,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":2,\"outputTokens\":967,\"cacheReadInputTokens\":18150,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.03326,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":749,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"El contexto documental entregado no contiene tabulados de ENVIPE 2013 sobre BP1_23; la estimación se basa en mi conocimiento previo de los reportes de la ENVIPE 2013 (delitos 2012), donde entre los delitos no denunciados la \\\"desconfianza en la autoridad\\\" rondaba 16–17%, el \\\"miedo al agresor\\\" alrededor de 4–5% y el \\\"miedo a que lo extorsionaran\\\" cerca de 1–2%, mientras que \\\"pérdida de tiempo\\\" (~33%) concentraba la mayor parte del resto.\\n\\nESTIMACION_PUNTUAL=23%\",\"ttft_ms\":10225,\"type\":\"result\",\"duration_ms\":13036,\"uuid\":\"eac21f19-8eff-43a0-b122-6d36f55c2034\",\"ttft_stream_ms\":1063,\"time_to_request_ms\":92,\"first_content_frame_ms\":1643,\"queued_turn_count\":0}\n"
+    }
+  ],
+  "modelo_alias_solicitado": "opus",
+  "modelo_reportado": null,
+  "modelos_en_uso_reportados": [
+    "claude-haiku-4-5-20251001",
+    "claude-opus-5"
+  ],
+  "replica": 7,
+  "sha256_manifiesto_corpus": "3196b0cfb16e5d091f6873ae320857e88831d55f446bf592558c8bd878691c45",
+  "sha256_paquete": "15203ff2cb869c474df9e5ae52db91d027c5903bc8babeef1fc32cc43ceef3d3",
+  "sha256_prompt": "012d3fa74d994f85b55df48fa73947c46df5eda02a1dacd926882d6fd14b0680",
+  "sha256_spec_estudio": "25daa3e35cf493b3cdbb92c6882fc2bce24d78a90f3b575d4055440088c4f74d",
+  "sha256_spec_l": "914907e86fc5ded7618f9d6bcb1e44e62b3c4fbe32b6df5f29179be732caf51f",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 14758,
+    "duration_ms": 13036,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 1643,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.014071,
+        "inputTokens": 13951,
+        "maxOutputTokens": 32000,
+        "outputTokens": 24,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 18150,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 0.03326,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 967,
+        "provider": "firstParty",
+        "thinkingTokens": 749,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 1,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "El contexto documental entregado no contiene tabulados de ENVIPE 2013 sobre BP1_23; la estimación se basa en mi conocimiento previo de los reportes de la ENVIPE 2013 (delitos 2012), donde entre los delitos no denunciados la \"desconfianza en la autoridad\" rondaba 16–17%, el \"miedo al agresor\" alrededor de 4–5% y el \"miedo a que lo extorsionaran\" cerca de 1–2%, mientras que \"pérdida de tiempo\" (~33%) concentraba la mayor parte del resto.\n\nESTIMACION_PUNTUAL=23%",
+    "session_id": "ccf71636-b48f-499a-81c8-99d79e0c764f",
+    "stop_reason": "end_turn",
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 92,
+    "total_cost_usd": 0.047331,
+    "ttft_ms": 10225,
+    "ttft_stream_ms": 1063,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 18150,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 18150,
+          "input_tokens": 2,
+          "output_tokens": 967,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 967,
+      "output_tokens_details": {
+        "thinking_tokens": 749
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "eac21f19-8eff-43a0-b122-6d36f55c2034"
+  },
+  "texto_crudo": "El contexto documental entregado no contiene tabulados de ENVIPE 2013 sobre BP1_23; la estimación se basa en mi conocimiento previo de los reportes de la ENVIPE 2013 (delitos 2012), donde entre los delitos no denunciados la \"desconfianza en la autoridad\" rondaba 16–17%, el \"miedo al agresor\" alrededor de 4–5% y el \"miedo a que lo extorsionaran\" cerca de 1–2%, mientras que \"pérdida de tiempo\" (~33%) concentraba la mayor parte del resto.\n\nESTIMACION_PUNTUAL=23%",
+  "timestamp_utc": "2026-09-10T23:31:22.008941+00:00",
+  "variante": "L+corpus"
+}

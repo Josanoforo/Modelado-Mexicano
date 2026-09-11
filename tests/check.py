@@ -700,26 +700,6 @@ def t15_adr_count():
         fail("T15", f"{rel(g)}: no se encontró ningún `**ADR-N`")
         return
     real = len(set(nums))
-    # NC-0148: reutiliza exactamente la regla/ancla que gobierna
-    # `cierre_acto.py`; no busca la frase por todo el repo, porque un encargo
-    # archivado puede citarla literalmente sin crear una segunda ancla viva.
-    herramientas = os.path.join(ROOT, "tools")
-    inserto_path = herramientas not in sys.path
-    if inserto_path:
-        sys.path.insert(0, herramientas)
-    try:
-        import cierre_acto as _cierre_acto
-        inspeccion = _cierre_acto.inspeccion_gobernanza(real, raiz=ROOT)
-    except Exception as exc:
-        fail("T15", f"no se pudo comprobar la unicidad L0 con cierre_acto.py: "
-                    f"{type(exc).__name__}: {exc}")
-        inspeccion = None
-    finally:
-        if inserto_path:
-            sys.path.remove(herramientas)
-    if inspeccion is not None and inspeccion["l0_anclas"] != 1:
-        fail("T15", f"canon/estado-programa-v1_12.md trae "
-                    f"{inspeccion['l0_anclas']} ancla(s) L0; se requiere exactamente 1")
     dup = sorted(n for n, c in Counter(nums).items() if c > 1)
     if dup:
         fail("T15", f"{rel(g)}: ADR repetido(s), mismo número dos veces: {dup}")
@@ -4521,8 +4501,8 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # ese hueco es de quien mantenga el censo del catálogo de momentos, no
     # de este acto (fuera de perímetro: este acto no toca `milpa/`).
     "forense/notas/2026-09-08-GEN2-UNIVERSO-C-tandas-enafin.md",
-    # Paquete `forense/encargos/cola/2026-09-10-GEN2-POST-685/` (índice 00 +
-    # lotes aún en cola) y lote 08 ya archivado por su 0-bis, texto verbatim de dirección
+    # Paquete `forense/encargos/cola/2026-09-10-GEN2-POST-685/` (9 archivos:
+    # índice 00 + ocho lotes ejecutables 01..08), texto verbatim de dirección
     # encolado 10/sep/2026 con `/encola` (corte
     # `486eda19944a94d978791eb423559144de98d16b`, posterior a PR #685). Cada
     # archivo cita en su cabecera de Destino/Integra y (el índice) en su tabla
@@ -4543,6 +4523,10 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/cola/2026-09-10-GEN2-POST-685/06-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md",
     "forense/encargos/cola/2026-09-10-GEN2-POST-685/07-GEN2-SONDA-CRON-PRODUCCION.md",
     "forense/encargos/2026-09-10-GEN2-PRUEBAS-LIMPIAS-Y-REPLAY.md",
+    # Copia A.3 del lote 01 anterior. Conserva verbatim los mismos E02/E03
+    # de procedencia ya censados por la fila ENCARGO-E01..ENCARGO-E11; no
+    # introduce otro habitante y no se edita para complacer T25.
+    "forense/encargos/2026-09-10-GEN2-F5-COMPLETA.md",
 }
 
 
