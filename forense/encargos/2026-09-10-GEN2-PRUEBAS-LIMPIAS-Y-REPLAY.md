@@ -91,7 +91,7 @@ Consumido por PR #690, rama `acto/gen2-pruebas-replay`.
 - Fase 3 completa en derivador y fixtures: `fuente_replay` conserva correspondencia en corridas, resultados y usos.
 - Fase 4 parcial por compuerta efectiva: `CALC-ENVIPE-0001` verificó 39/39 con contexto idéntico y dejó comprobante `VERIFY-ESTRUCTURADO`; la publicación del lote explícito se negó antes de escribir por 64 transiciones de 32 corridas ajenas. Las vistas conservaron sus hashes.
 - `NC-0141` y `NC-0148` cerradas. `NC-0104` permanece abierta hasta publicar efectivamente la fuente en las tres vistas; tabla exacta y continuidad en `forense/notas/2026-09-10-GEN2-PRUEBAS-LIMPIAS-Y-REPLAY-cierre.md`.
-- Reserva administrativa resuelta: PR #687 fusionó primero `ADR-455`; este acto se actualizó contra `main` y tomó `ADR-456`.
+- Reserva administrativa resuelta: PR #687 fusionó `ADR-455` y PR #688 fusionó después `ADR-456`; este acto se actualizó contra ambos y tomó `ADR-457`.
 
 **Objeto de firma al merge:** propagación de las decisiones de mesa citadas y de los resultados del encargo. Para CALC científicos nuevos, aplicar `cuenta_gen2=SI` con objeto y cita explícitos conforme al contrato vigente; los sucesores técnicos no inflan mediciones independientes. Contar no equivale a adoptar: sólo se activa en el motor lo autorizado por la decisión concreta y sustentado por su evidencia.
 

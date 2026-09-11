@@ -72,5 +72,5 @@ PR #682 y PR #683 son antecedentes resueltos; este acto no reabre `NC-0140` ni `
 ## NO-CORRIDO / RESERVAS
 
 - No se publicaron las tres vistas: la compuerta `REPLAY-PISADO` preservó sus bytes ante 64 cambios ajenos. El sucesor debe adjudicar o producir evidencia para las 32 corridas de la tabla y volver a ejecutar una publicación explícita.
-- La colisión administrativa quedó resuelta: PR #687 fusionó primero `ADR-455`; este acto, que fusiona después, se actualizó contra `main` y tomó `ADR-456`. No se copió trabajo sustantivo de aquel PR.
+- La numeración concurrente quedó resuelta dos veces: PR #687 fusionó `ADR-455` y PR #688 fusionó después `ADR-456`; este acto se actualizó contra ambos y tomó `ADR-457`. No se copió trabajo sustantivo de esos PR.
 - No se recalculó, adoptó ni alteró ningún resultado sellado. El `verify` sólo reprodujo `CALC-ENVIPE-0001` y asentó su comprobante.
