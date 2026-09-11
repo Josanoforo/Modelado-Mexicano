@@ -66,6 +66,16 @@ Cada fase termina con resultado o bloqueo preciso y prueba. Cierre completo: aut
 
 ---
 
+## NO-CORRIDO / RESERVAS
+
+- `P4_10=1` combina «menos de una semana» y «no tiene ahorros» ·
+  `NO-VERIFICABLE-AQUÍ` · ninguna tasa puede desagregar ambos componentes;
+  `NC-0126` sigue ABIERTA · sucesor: `SIN-ASIGNAR`, requiere otro reactivo.
+- Vistas corrida0 (`corridas.tsv`, `resultados.tsv`, `usos.tsv`) ·
+  `DIFERIDO-A:GEN2-PRUEBAS-LIMPIAS-Y-REPLAY` · el candado `NC-0094` detectó
+  32 transiciones ajenas y escribió cero vistas; el CALC, demanda y evidencia
+  fuente sí quedan versionados · sucesor: `ENCARGO-E08` / `NC-0153`.
+
 ## CONSUMIDO
 
 PR #691, rama `acto/gen2-enif-poblacion`; commits de arranque y sustancia
