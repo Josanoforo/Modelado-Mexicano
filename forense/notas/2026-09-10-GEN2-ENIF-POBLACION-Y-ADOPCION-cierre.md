@@ -88,8 +88,8 @@ posicional vigente desplaza en +2 los `RES-*` posteriores; los `RESULT-*`
 científicos no cambian. `corrida0 registro --escribe --lote CALC-ENIF-0002`
 aplicó correctamente el candado `NC-0094` y escribió cero vistas: detectó 32
 corridas ajenas cuya evidencia publicada cambiaría con el árbol actual. No se
-autorizó esa mutación ajena ni se copió un TSV antiguo. Queda como residual de
-integración global para lote08; la evidencia fuente de este CALC sí está
+autorizó esa mutación ajena ni se copió un TSV antiguo. `NC-0152` registra el
+residual de integración global para lote08; la evidencia fuente de este CALC sí está
 versionada y vigente.
 
 ## 6. Validación
