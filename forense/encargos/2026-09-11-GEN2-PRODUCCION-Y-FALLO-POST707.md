@@ -56,3 +56,14 @@ Al entregar este encargo al ejecutor se autorizan sus fases técnicas, commits, 
 
 
 **Actualización al entregar:** #708 también está fusionado; main=`e7a471bf1499a096abbe58dc298f02243e885135`. Archiva el benchmark sin firmar sus cuatro decisiones; no cambia el alcance de este encargo.
+
+## NO-CORRIDO / RESERVAS
+
+Se reutilizan `NC-0114` y `NC-0120`; no se abren filas gemelas.
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| Habilitar `Microsoft-Windows-TaskScheduler/Operational` y recuperar `EventRecord`/`ActivityId` del run del 11/sep | `PARO-ENTORNO` — Windows exigió elevación y devolvió acceso denegado/código 5; el evento histórico no se registró y ya no es recuperable | `NC-0114` no cierra por atribución programada; una hora coincidente no distingue trigger, recuperación o clic manual | `NC-0120`: operador ejecuta `wevtutil sl Microsoft-Windows-TaskScheduler/Operational /e:true` en PowerShell elevado |
+| Observar la siguiente ventana natural con la acción atribuible ya desplegada | `DIFERIDO-A:NC-0114` — la siguiente ejecución es el lunes 14/sep a las 07:30 y esta sesión no espera indefinidamente ni cambia el reloj | no se declara una adquisición exitosa ni una activación programada atribuida | `NC-0114`: correlacionar evento Windows, `run_id`, `disparador`, SHA, heartbeat, exit y publicación |
+| Observar una recuperación real de `StartWhenAvailable` | `NO-VERIFICABLE-AQUÍ` — no ocurrió una pérdida natural durante la sesión y no se suspende/reinicia la máquina para fabricarla | `NC-0120` conserva el alcance de recuperación; una corrida normal no lo satisface | `NC-0120`: observar una pérdida real futura con Operational habilitado |
+| Ejecución funcional adicional de adquisición el 11/sep | `PARO-ENTORNO` — el ejecutor informó límite semanal hasta el 12/sep 11:00; otra corrida contra la misma indisponibilidad no valida la corrección técnica | el fallo queda diagnosticado, pero no se cuenta como adquisición exitosa | `NC-0114`: ventana natural posterior al reinicio de capacidad |
