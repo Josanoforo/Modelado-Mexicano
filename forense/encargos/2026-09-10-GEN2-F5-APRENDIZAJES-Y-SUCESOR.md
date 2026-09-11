@@ -68,3 +68,21 @@ Usa `tools/cierre_acto.py` primero en seco y luego `--aplica` cuando corresponda
 **Pruebas y parada.** Validar primero el resultado material; correr el baseline requerido sin ampliarlo para ocultar fallos. No perseguir los tres FAIL históricos por rutina. No volver a arreglar NC-0141/0148: #690 ya lo hizo. Revisar el diff después de las pruebas y añadir sólo archivos deliberados. D-14: cualquier automatización adicional debe evitar un error observado con efecto material y costar menos que su corrección repetida; si no, resolver directamente. Auditoría aproximadamente 20%, salvo riesgo material en números, identidad o decisión.
 
 Avanza entre fases ya autorizadas sin pedir confirmación. Termina cuando entregues el resultado suficiente o un residual externo concreto. Cadena de cierre: autorización → producto → evidencia → consumidor cuando aplique → obligaciones → vistas/cola → PR → merge de mesa. Una fila mixta conserva su parte pendiente. No cerrar por palabra coincidente ni por recomendación. Respuesta final del ejecutor: resultado útil, fases cumplidas/pendientes, PR/SHA, pruebas, y tabla `obligación | evidencia | cerrada/residual | siguiente acción`.
+
+## NO-CORRIDO / RESERVAS
+
+- `NC-0152` permanece ABIERTA: el diseño de 32 posiciones está propuesto,
+  pero no se adquirieron las dos fuentes dirigidas ni se hicieron capturas.
+- La comparación CIV no queda reparada retrospectivamente: exige estimandos
+  M/R alineados por unidad, recorte, códigos y ola.
+- `ADR-462` es candidato en colisión con otra rama; quien fusione segundo
+  deberá renumerar contra `main`.
+- No se abrió F6, no se modificó M y no se alteró `TRIADA-0002`.
+
+## CONSUMIDO
+
+Ejecutado en PR #698 por la rama `acto/gen2-f5-aprendizajes-sucesor`.
+Producto sustantivo: `forense/notas/2026-09-10-GEN2-F5-APRENDIZAJES-Y-SUCESOR-diagnostico.md`
+y `forense/prereg-duelo-v2/F5-aprendizajes-sucesor-v1_0/`. Conserva
+`TRIADA-0002` como `SIN-GANADOR-UNICO`, mantiene NC-0152 abierta y no abre F6.
+El merge pertenece a mesa.

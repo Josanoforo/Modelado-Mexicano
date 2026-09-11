@@ -1,4 +1,5 @@
-ESTADO: EN EJECUCIÓN — rama `acto/gen2-f5-aprendizajes-sucesor`.
+ESTADO: CONSUMIDO — PR #698; diagnóstico y diseño sucesor en
+`forense/notas/2026-09-10-GEN2-F5-APRENDIZAJES-Y-SUCESOR-diagnostico.md`.
 
 # ENCARGO · GEN2-F5-APRENDIZAJES-Y-SUCESOR
 
