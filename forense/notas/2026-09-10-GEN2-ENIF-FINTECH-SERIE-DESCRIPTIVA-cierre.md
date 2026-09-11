@@ -153,5 +153,6 @@ serie_descriptiva_propuesta:
   conserva el tabulador final que el escritor canónico de `resultados.tsv`
   emite para representar el campo sucesor vacío; la vista seca es byte a byte
   estable y el mismo patrón existe en publicaciones previas de la herramienta.
-- El PR y la sincronización de su HEAD remoto se registran en el cierre
-  administrativo final.
+- PR revisable [#706](https://github.com/Josanoforo/Modelado-Mexicano/pull/706),
+  abierto sin fusionar; el merge pertenece a mesa. La sincronización final
+  del HEAD remoto se verifica después del commit administrativo de consumo.

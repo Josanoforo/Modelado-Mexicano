@@ -1,6 +1,6 @@
 # ENCARGO · GEN2-ENIF-FINTECH-SERIE-DESCRIPTIVA
 
-ESTADO: EN-CURSO — ejecución en `acto/gen2-enif-fintech-serie`; encargo archivado verbatim y resultados sellados, pendiente PR de cierre.
+ESTADO: CONSUMIDO — PR #706 abierto; resultados sellados y cierre entregado, merge reservado a mesa.
 
 ENTORNO: CAJA
 COMPUERTA: PR #689 y #694 fusionados; comprobar corpus ENIF y ausencia de tarea duplicada.

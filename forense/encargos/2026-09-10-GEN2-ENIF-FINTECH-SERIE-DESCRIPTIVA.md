@@ -66,3 +66,25 @@ Usa `tools/cierre_acto.py` primero en seco y luego `--aplica` cuando corresponda
 **Pruebas y parada.** Validar primero el resultado material; correr el baseline requerido sin ampliarlo para ocultar fallos. No perseguir los tres FAIL históricos por rutina. No volver a arreglar NC-0141/0148: #690 ya lo hizo. Revisar el diff después de las pruebas y añadir sólo archivos deliberados. D-14: cualquier automatización adicional debe evitar un error observado con efecto material y costar menos que su corrección repetida; si no, resolver directamente. Auditoría aproximadamente 20%, salvo riesgo material en números, identidad o decisión.
 
 Avanza entre fases ya autorizadas sin pedir confirmación. Termina cuando entregues el resultado suficiente o un residual externo concreto. Cadena de cierre: autorización → producto → evidencia → consumidor cuando aplique → obligaciones → vistas/cola → PR → merge de mesa. Una fila mixta conserva su parte pendiente. No cerrar por palabra coincidente ni por recomendación. Respuesta final del ejecutor: resultado útil, fases cumplidas/pendientes, PR/SHA, pruebas, y tabla `obligación | evidencia | cerrada/residual | siguiente acción`.
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+- `NC-0122` permanece ABIERTA: ENIF 2018/2021/2024 no liga el canal al
+  producto fintech específico; el objeto medido es el canal del último
+  producto entre personas con tenencia fintech.
+- La actualización propuesta de `milpa/procedencia.yaml` quedó íntegra en la
+  nota de cierre. No se integró aquí porque la ruta pertenece a otro acto.
+- El merge del PR pertenece a mesa.
+
+## CONSUMIDO
+
+PR #706. Encargo ejecutado en `acto/gen2-enif-fintech-serie`. Prerregistro congelado
+en `5b92cee28946453c7d9716df632da7089e33e418`; medición sellada y publicada
+en la rama; `CALC-ENIF-FINTECH-0001` verifica REPRODUCE/CONTEXTO=IDENTICO
+131/131 y el control independiente coincide. ENIF 2018 queda NO-ESTIMABLE,
+2021 medido y 2024 conservado como antecedente. `NC-0121` cierra; `NC-0122`
+conserva el límite estructural. PR revisable:
+https://github.com/Josanoforo/Modelado-Mexicano/pull/706. No fusionado por el
+ejecutor.
