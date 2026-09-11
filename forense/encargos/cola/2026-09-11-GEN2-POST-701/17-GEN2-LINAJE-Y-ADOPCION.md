@@ -1,3 +1,5 @@
+ESTADO: EN EJECUCIÓN — rama `acto/gen2-linaje-adopcion`.
+
 # ENCARGO 17 · GEN2-LINAJE-Y-ADOPCION
 
 ENTORNO: NUBE

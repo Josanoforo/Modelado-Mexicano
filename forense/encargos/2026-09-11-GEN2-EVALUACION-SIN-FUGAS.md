@@ -81,3 +81,9 @@ Continúa entre fases autorizadas. Ante una decisión científica nueva, prepara
 
 
 **Actualización comprobada al cierre:** main avanzó a `a63fd4ccc40204cf5215d466a593b4e1491bdda6` por #699 y #696. No cambió el código objeto de las sondas. 09 ya está fusionado: partir de sus vistas y no repetir su publicación. 14–16 están encolados por #699. Esta actualización prevalece sobre referencias de coordinación redactadas al corte inicial.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** `Fase 4 · A. Uso documental — No ejecutar las 32 posiciones bajo este encargo.` · **por qué:** `DECISIÓN-DE-MESA-PENDIENTE` · **impacto:** no se ejecutan 32 llamadas ni cambia `NC-0152`; la spec sólo deja congelables fuentes, éxito y parada · **sucesor:** `FP-373`.
+- **qué:** `Fase 4 · B. Transferencia o generalización de M — Diseñar un conjunto realmente reservado.` · **por qué:** `DECISIÓN-DE-MESA-PENDIENTE` · **impacto:** no se ejecutan piloto/confirmación, no se abre F6 y no cambia ningún contador o adopción · **sucesor:** `FP-374`.
+- **qué:** `COMPUERTA: integrar 17 y el snapshot de 18 antes de evaluar un M renovado.` · **por qué:** `DECISIÓN-DE-MESA-PENDIENTE` · **impacto:** el reanálisis usa sólo el snapshot histórico y no emite veredicto sobre un M renovado · **sucesor:** `FP-374`.

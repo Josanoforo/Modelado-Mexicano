@@ -5098,6 +5098,11 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-LINAJE-Y-ADOPCION, 11/sep/2026: encargo archivado VERBATIM
+    # (A.3). `tramite.yaml.otro` es un nombre ficticio y deliberadamente
+    # parecido que prueba que el clasificador de rutas exige coincidencia
+    # material exacta; no identifica una regla ni solicita medirla.
+    "forense/encargos/2026-09-11-GEN2-LINAJE-Y-ADOPCION.md",
     # ACTO GEN2-LOTE-ENIF-1 · TERCER LOTE DE LA CARTERA, 9/sep/2026: encargo
     # archivado VERBATIM (A.3), que no se edita para complacer un test (misma
     # regla que rige T25). Cita `dinero.ahorro.horizonte_corto` y
