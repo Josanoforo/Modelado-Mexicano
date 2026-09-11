@@ -1,0 +1,141 @@
+{
+  "cliente_version": "2.1.267 (Claude Code)",
+  "estado_captura": "OK",
+  "id_celda": "CIV-M-04",
+  "identidad": "01080b614723cb09cd08841bede88102bc273a6bfb875c449a495731f6d53aca",
+  "intentos": [
+    {
+      "fin_utc": "2026-09-11T00:07:00.284159+00:00",
+      "inicio_utc": "2026-09-11T00:06:48.093387+00:00",
+      "numero": 1,
+      "returncode": 0,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":10866,\"stop_reason\":\"end_turn\",\"session_id\":\"9cc5a446-0fb0-443d-a28d-18775027cb3c\",\"total_cost_usd\":0.0163805,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":1545,\"output_tokens\":570,\"output_tokens_details\":{\"thinking_tokens\":409},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":570,\"cache_read_input_tokens\":1545,\"cache_creation_input_tokens\":0,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":0},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":1218,\"outputTokens\":26,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.0013479999999999998,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":2,\"outputTokens\":570,\"cacheReadInputTokens\":1545,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.015032499999999999,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":409,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Con base en los tabulados de ENVIPE 2015 sobre causas de no denuncia (delitos ocurridos en 2014): desconfianza en la autoridad ≈ 17%, miedo al agresor ≈ 7%, miedo a que lo extorsionaran ≈ 1.5–2%. La suma de estas tres razones ronda una cuarta parte de los delitos no denunciados con razón válida.\\n\\nESTIMACION_PUNTUAL=26%\",\"ttft_ms\":8033,\"type\":\"result\",\"duration_ms\":9844,\"uuid\":\"30c178c7-9704-4ca5-9877-c9989442457e\",\"ttft_stream_ms\":2589,\"time_to_request_ms\":105,\"first_content_frame_ms\":3242,\"queued_turn_count\":0}\n"
+    }
+  ],
+  "modelo_alias_solicitado": "opus",
+  "modelo_reportado": null,
+  "modelos_en_uso_reportados": [
+    "claude-haiku-4-5-20251001",
+    "claude-opus-5"
+  ],
+  "replica": 8,
+  "sha256_manifiesto_corpus": "3196b0cfb16e5d091f6873ae320857e88831d55f446bf592558c8bd878691c45",
+  "sha256_paquete": null,
+  "sha256_prompt": "b04ab97ded675dce6d83ed0275c860ab55d157be0b3c1d0fcf6c6e1dfa8b9722",
+  "sha256_spec_estudio": "25daa3e35cf493b3cdbb92c6882fc2bce24d78a90f3b575d4055440088c4f74d",
+  "sha256_spec_l": "914907e86fc5ded7618f9d6bcb1e44e62b3c4fbe32b6df5f29179be732caf51f",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 10866,
+    "duration_ms": 9844,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 3242,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.0013479999999999998,
+        "inputTokens": 1218,
+        "maxOutputTokens": 32000,
+        "outputTokens": 26,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 1545,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 0.015032499999999999,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 570,
+        "provider": "firstParty",
+        "thinkingTokens": 409,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 1,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "Con base en los tabulados de ENVIPE 2015 sobre causas de no denuncia (delitos ocurridos en 2014): desconfianza en la autoridad ≈ 17%, miedo al agresor ≈ 7%, miedo a que lo extorsionaran ≈ 1.5–2%. La suma de estas tres razones ronda una cuarta parte de los delitos no denunciados con razón válida.\n\nESTIMACION_PUNTUAL=26%",
+    "session_id": "9cc5a446-0fb0-443d-a28d-18775027cb3c",
+    "stop_reason": "end_turn",
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 105,
+    "total_cost_usd": 0.0163805,
+    "ttft_ms": 8033,
+    "ttft_stream_ms": 2589,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 1545,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 1545,
+          "input_tokens": 2,
+          "output_tokens": 570,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 570,
+      "output_tokens_details": {
+        "thinking_tokens": 409
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "30c178c7-9704-4ca5-9877-c9989442457e"
+  },
+  "texto_crudo": "Con base en los tabulados de ENVIPE 2015 sobre causas de no denuncia (delitos ocurridos en 2014): desconfianza en la autoridad ≈ 17%, miedo al agresor ≈ 7%, miedo a que lo extorsionaran ≈ 1.5–2%. La suma de estas tres razones ronda una cuarta parte de los delitos no denunciados con razón válida.\n\nESTIMACION_PUNTUAL=26%",
+  "timestamp_utc": "2026-09-11T00:07:00.284261+00:00",
+  "variante": "L-solo"
+}

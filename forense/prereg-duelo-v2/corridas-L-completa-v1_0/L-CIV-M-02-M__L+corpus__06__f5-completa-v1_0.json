@@ -1,0 +1,141 @@
+{
+  "cliente_version": "2.1.267 (Claude Code)",
+  "estado_captura": "OK",
+  "id_celda": "CIV-M-02",
+  "identidad": "c133a5335b1ce5ead27933478ea039b61cd21fe47335a9b5224900bd4a14b921",
+  "intentos": [
+    {
+      "fin_utc": "2026-09-10T23:30:14.952926+00:00",
+      "inicio_utc": "2026-09-10T23:29:59.631674+00:00",
+      "numero": 1,
+      "returncode": 0,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":14376,\"stop_reason\":\"end_turn\",\"session_id\":\"f3ad1457-5376-4d92-8200-31b741a09d93\",\"total_cost_usd\":0.219011,\"usage\":{\"input_tokens\":2,\"cache_creation_input_tokens\":18150,\"cache_read_input_tokens\":0,\"output_tokens\":937,\"output_tokens_details\":{\"thinking_tokens\":725},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":18150,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":937,\"cache_read_input_tokens\":0,\"cache_creation_input_tokens\":18150,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":18150},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":13951,\"outputTokens\":25,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.014076,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":2,\"outputTokens\":937,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":18150,\"webSearchRequests\":0,\"costUSD\":0.204935,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":725,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":1,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"Esta cifra no aparece en el contexto documental entregado; mi estimación se basa en lo que conozco de los tabulados de ENVIPE 2013 (razones de no denuncia): \\\"pérdida de tiempo\\\" es la razón dominante (~31-33%), \\\"desconfianza en la autoridad\\\" ronda 16-17%, \\\"miedo al agresor\\\" cerca de 8-9% y \\\"miedo a que lo extorsionaran\\\" alrededor de 1-2%. Sumando las tres categorías del evento, la proporción queda aproximadamente en el rango 25-30%.\\n\\nESTIMACION_PUNTUAL=27%\",\"ttft_ms\":10181,\"type\":\"result\",\"duration_ms\":12896,\"uuid\":\"7e7b2bfe-356d-4ecd-ac9c-d500bed1292c\",\"ttft_stream_ms\":1144,\"time_to_request_ms\":96,\"first_content_frame_ms\":1727,\"queued_turn_count\":0}\n"
+    }
+  ],
+  "modelo_alias_solicitado": "opus",
+  "modelo_reportado": null,
+  "modelos_en_uso_reportados": [
+    "claude-haiku-4-5-20251001",
+    "claude-opus-5"
+  ],
+  "replica": 6,
+  "sha256_manifiesto_corpus": "3196b0cfb16e5d091f6873ae320857e88831d55f446bf592558c8bd878691c45",
+  "sha256_paquete": "15203ff2cb869c474df9e5ae52db91d027c5903bc8babeef1fc32cc43ceef3d3",
+  "sha256_prompt": "012d3fa74d994f85b55df48fa73947c46df5eda02a1dacd926882d6fd14b0680",
+  "sha256_spec_estudio": "25daa3e35cf493b3cdbb92c6882fc2bce24d78a90f3b575d4055440088c4f74d",
+  "sha256_spec_l": "914907e86fc5ded7618f9d6bcb1e44e62b3c4fbe32b6df5f29179be732caf51f",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 14376,
+    "duration_ms": 12896,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 1727,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.014076,
+        "inputTokens": 13951,
+        "maxOutputTokens": 32000,
+        "outputTokens": 25,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 18150,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 0.204935,
+        "inputTokens": 2,
+        "maxOutputTokens": 64000,
+        "outputTokens": 937,
+        "provider": "firstParty",
+        "thinkingTokens": 725,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 1,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "Esta cifra no aparece en el contexto documental entregado; mi estimación se basa en lo que conozco de los tabulados de ENVIPE 2013 (razones de no denuncia): \"pérdida de tiempo\" es la razón dominante (~31-33%), \"desconfianza en la autoridad\" ronda 16-17%, \"miedo al agresor\" cerca de 8-9% y \"miedo a que lo extorsionaran\" alrededor de 1-2%. Sumando las tres categorías del evento, la proporción queda aproximadamente en el rango 25-30%.\n\nESTIMACION_PUNTUAL=27%",
+    "session_id": "f3ad1457-5376-4d92-8200-31b741a09d93",
+    "stop_reason": "end_turn",
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 96,
+    "total_cost_usd": 0.219011,
+    "ttft_ms": 10181,
+    "ttft_stream_ms": 1144,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18150,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 18150,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "not_available",
+      "input_tokens": 2,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 18150,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 18150,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 2,
+          "output_tokens": 937,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 937,
+      "output_tokens_details": {
+        "thinking_tokens": 725
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "7e7b2bfe-356d-4ecd-ac9c-d500bed1292c"
+  },
+  "texto_crudo": "Esta cifra no aparece en el contexto documental entregado; mi estimación se basa en lo que conozco de los tabulados de ENVIPE 2013 (razones de no denuncia): \"pérdida de tiempo\" es la razón dominante (~31-33%), \"desconfianza en la autoridad\" ronda 16-17%, \"miedo al agresor\" cerca de 8-9% y \"miedo a que lo extorsionaran\" alrededor de 1-2%. Sumando las tres categorías del evento, la proporción queda aproximadamente en el rango 25-30%.\n\nESTIMACION_PUNTUAL=27%",
+  "timestamp_utc": "2026-09-10T23:30:14.953019+00:00",
+  "variante": "L+corpus"
+}
