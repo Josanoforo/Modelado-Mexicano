@@ -38,7 +38,9 @@ Salidas del bucle, las tres explícitas (gobernanza:275): `EMITE` ·
 from __future__ import annotations
 
 import csv
+import math
 import re
+from collections.abc import Mapping
 from dataclasses import dataclass, field, replace
 from pathlib import Path
 
@@ -49,6 +51,14 @@ RUTA_TRAMITE = RAIZ / "milpa" / "tramite.yaml"
 RUTA_PROCEDENCIA = RAIZ / "milpa" / "procedencia.yaml"
 RUTA_MODELO = RAIZ / "canon" / "modelo-decision-v4_0.md"
 RUTA_MARCO = RAIZ / "forense" / "marco-candidatas-piloto-v1_0.tsv"
+RUTA_USOS_CORRIDA0 = RAIZ / "data" / "corrida0" / "usos.tsv"
+RUTA_RESULTADOS_CORRIDA0 = RAIZ / "data" / "corrida0" / "resultados.tsv"
+
+MODO_HISTORICO = "HISTORICO"
+MODO_GEN2 = "GEN2"
+# `milpa/tramite.yaml` materializa proporciones a seis decimales. Este umbral
+# sólo acredita esa representación; la aptitud del RESULT la decide linaje.py.
+TOLERANCIA_MATERIALIZACION_P = 5e-7
 
 # Umbrales del gate — ASIGNADOS, no medidos (milpa-spec §10.1 / ADR-37,
 # gobernanza:267+: "los criterios de B y C (≥70%, <30%) son ASIGNADOS...
@@ -70,7 +80,9 @@ class Salida:
     dominio_elegible: tuple[tuple[str, object], ...] = ()
     complemento_de: str | None = None
     resultado_id: str | None = None
+    resultado_generacion: str | None = None
     uso_motor: str | None = None
+    rol_uso: str | None = None
 
 
 @dataclass(frozen=True)
@@ -116,7 +128,9 @@ def cargar_reglas(ruta: Path = RUTA_TRAMITE) -> tuple[Regla, ...]:
                 (e.get("dominio_elegible") or {}).items())),
             complemento_de=e.get("complemento_de"),
             resultado_id=e.get("corrida0_resultado_id"),
+            resultado_generacion=e.get("corrida0_generacion"),
             uso_motor=e.get("uso_motor"),
+            rol_uso=e.get("rol_uso"),
         ) for e in r.get("entonces", []))
         transiciones = tuple(Salida(
             conducta=e["conducta"], p=e.get("p"), clase=e.get("clase"),
@@ -126,7 +140,9 @@ def cargar_reglas(ruta: Path = RUTA_TRAMITE) -> tuple[Regla, ...]:
                 (e.get("dominio_elegible") or {}).items())),
             complemento_de=e.get("complemento_de"),
             resultado_id=e.get("corrida0_resultado_id"),
+            resultado_generacion=e.get("corrida0_generacion"),
             uso_motor=e.get("uso_motor"),
+            rol_uso=e.get("rol_uso"),
         ) for e in r.get("transiciones", []))
         porque = r.get("porque", {}) or {}
         reglas.append(Regla(
@@ -495,8 +511,134 @@ class PrediccionM:
     regla_id: str | None = None
     estado: str = "EMITE"
     derivado_de: str | None = None
+    resultado_id: str | None = None
+    resultado_generacion: str | None = None
     dominio_elegible: tuple[tuple[str, object], ...] = ()
+    rol_uso: str | None = None
+    uso_motor: str | None = None
+    modo_emision: str = MODO_HISTORICO
+    proposito: str | None = None
+    uso_solicitado: str | None = None
+    origen_numerico: str | None = None
+    aptitud_uso: str | None = None
+    camino_linaje: str | None = None
+    dependencias_estructurales: tuple[str, ...] = ()
     detalle: str = ""
+
+
+@dataclass(frozen=True)
+class EvidenciaResultado:
+    """Fila vigente de ``resultados.tsv`` que acredita un número."""
+
+    resultado_id: str
+    valor: float | None
+    tipo: str
+    unidad: str
+    estado: str
+    generacion: str
+    origen_numerico: str
+    validacion_independiente: str
+    rol_evaluacion: str
+    camino_linaje: str
+    fuente_replay: str
+    depende_de: str
+
+
+@dataclass(frozen=True)
+class UsoRegistrado:
+    """Enlace activo consumidor→RESULT derivado por el registro de 17."""
+
+    consumidor: str
+    resultado_id: str
+    corrida0_resultado_id: str
+    generacion_leida: str
+    corrida0_generacion: str
+    tipo_uso: str
+    uso_solicitado: str
+    origen_numerico: str
+    aptitud_uso: str
+    motivo_aptitud: str
+    activo: str
+    camino_linaje: str
+
+
+@dataclass(frozen=True)
+class IndiceLinajeEmision:
+    resultados: Mapping[str, EvidenciaResultado]
+    usos: Mapping[str, UsoRegistrado]
+
+
+def _leer_vista_derivada(ruta: Path) -> list[dict[str, str]]:
+    lineas = ruta.read_text(encoding="utf-8").splitlines()
+    if lineas and lineas[0].startswith("# DERIVADO"):
+        lineas = lineas[1:]
+    return list(csv.DictReader(lineas, delimiter="\t"))
+
+
+def _valor_numerico(valor: str) -> float | None:
+    if str(valor).strip() in {"", "None", "null", "PENDIENTE", "NO-COMPARABLE"}:
+        return None
+    try:
+        numero = float(valor)
+    except (TypeError, ValueError):
+        return None
+    return numero if math.isfinite(numero) else None
+
+
+def cargar_indice_linaje_emision(
+        ruta_usos: Path = RUTA_USOS_CORRIDA0,
+        ruta_resultados: Path = RUTA_RESULTADOS_CORRIDA0,
+) -> IndiceLinajeEmision:
+    """Consume las vistas de 17; no vuelve a resolver rutas ni procedencia."""
+    por_id: dict[str, list[dict[str, str]]] = {}
+    for fila in _leer_vista_derivada(ruta_resultados):
+        por_id.setdefault(fila["resultado_id"], []).append(fila)
+
+    resultados: dict[str, EvidenciaResultado] = {}
+    for resultado_id, filas in por_id.items():
+        vigentes = [f for f in filas
+                    if not str(f.get("estado", "")).startswith("SUPERADO")]
+        if len(vigentes) != 1:
+            raise ValueError(
+                f"{resultado_id}: se esperaba una fila vigente; hay {len(vigentes)}")
+        f = vigentes[0]
+        resultados[resultado_id] = EvidenciaResultado(
+            resultado_id=resultado_id,
+            valor=_valor_numerico(f.get("valor", "")),
+            tipo=f.get("tipo", ""),
+            unidad=f.get("unidad", ""),
+            estado=f.get("estado", ""),
+            generacion=f.get("generacion", ""),
+            origen_numerico=f.get("origen_numerico", ""),
+            validacion_independiente=f.get("validacion_independiente", ""),
+            rol_evaluacion=f.get("rol_evaluacion", ""),
+            camino_linaje=f.get("camino_linaje", ""),
+            fuente_replay=f.get("fuente_replay", ""),
+            depende_de=f.get("depende_de", ""),
+        )
+
+    usos: dict[str, UsoRegistrado] = {}
+    for f in _leer_vista_derivada(ruta_usos):
+        if f.get("activo") != "SI":
+            continue
+        consumidor = f["consumidor"]
+        if consumidor in usos:
+            raise ValueError(f"consumidor activo duplicado: {consumidor}")
+        usos[consumidor] = UsoRegistrado(
+            consumidor=consumidor,
+            resultado_id=f.get("resultado_id", ""),
+            corrida0_resultado_id=f.get("corrida0_resultado_id", ""),
+            generacion_leida=f.get("generacion_leida", ""),
+            corrida0_generacion=f.get("corrida0_generacion", ""),
+            tipo_uso=f.get("tipo_uso", ""),
+            uso_solicitado=f.get("uso_solicitado", ""),
+            origen_numerico=f.get("origen_numerico", ""),
+            aptitud_uso=f.get("aptitud_uso", ""),
+            motivo_aptitud=f.get("motivo_aptitud", ""),
+            activo=f.get("activo", ""),
+            camino_linaje=f.get("camino_linaje", ""),
+        )
+    return IndiceLinajeEmision(resultados=resultados, usos=usos)
 
 
 def _salida(regla: Regla, conducta: str) -> Salida | None:
@@ -507,6 +649,18 @@ def _salida(regla: Regla, conducta: str) -> Salida | None:
             f"alias ambiguo {conducta!r} en regla {regla.id}: "
             f"{[s.conducta for s in coincidencias]!r}")
     return coincidencias[0] if coincidencias else None
+
+
+def _dependencias_estructurales(regla: Regla) -> tuple[str, ...]:
+    """Componentes que un RESULT numérico no acredita por sí solo."""
+    partes = [f"regla:{regla.id}:disparadores"]
+    if regla.palancas:
+        partes.append(f"regla:{regla.id}:palancas")
+    if regla.generadores:
+        partes.append("generadores:" + ",".join(regla.generadores))
+    if regla.tier:
+        partes.append(f"tier:{regla.tier}")
+    return tuple(partes)
 
 
 def emitir_binaria(regla: Regla, conducta: str) -> PrediccionM:
@@ -535,14 +689,26 @@ def emitir_binaria(regla: Regla, conducta: str) -> PrediccionM:
         return PrediccionM(
             "binaria", valor_punto=punto, valor_categoria=s.conducta,
             clase=s.clase, regla_id=regla.id, derivado_de=s.complemento_de,
-            dominio_elegible=s.dominio_elegible)
+            resultado_id=(padre.resultado_id if s.complemento_de else
+                          s.resultado_id),
+            resultado_generacion=(padre.resultado_generacion
+                                  if s.complemento_de else
+                                  s.resultado_generacion),
+            dominio_elegible=s.dominio_elegible, rol_uso=s.rol_uso,
+            uso_motor=s.uso_motor)
     return PrediccionM("binaria", estado="NO-EMITE", regla_id=regla.id,
                        valor_categoria=conducta)
 
 
 def emitir_binaria_en_contexto(regla: Regla, conducta: str,
-                               contexto: dict) -> PrediccionM:
-    """Impide aplicar una tasa condicional fuera de su dominio observado."""
+                               contexto: dict, *,
+                               uso_solicitado: str | None = None) -> PrediccionM:
+    """Impide aplicar una tasa fuera de su dominio o propósito declarado.
+
+    ``uso_solicitado=None`` conserva la API histórica. Un consumidor nuevo
+    puede declarar su propósito; los proxies descriptivos fallan cerrados si
+    se les pide una probabilidad empírica u otro uso no acreditado.
+    """
     s = _salida(regla, conducta)
     if s is None:
         return emitir_binaria(regla, conducta)
@@ -552,8 +718,253 @@ def emitir_binaria_en_contexto(regla: Regla, conducta: str,
         return PrediccionM(
             "binaria", estado="NO_COVERAGE", regla_id=regla.id,
             valor_categoria=s.conducta, dominio_elegible=s.dominio_elegible,
+            resultado_id=s.resultado_id,
+            resultado_generacion=s.resultado_generacion,
+            rol_uso=s.rol_uso, uso_motor=s.uso_motor,
             detalle=f"fuera del dominio elegible: requiere {faltan!r}")
+    permitidos_proxy = {"baseline", "consulta_descriptiva", "escenario"}
+    if (s.rol_uso in {"proxy_descriptivo", "complemento_proxy_descriptivo"}
+            and uso_solicitado is not None
+            and uso_solicitado not in permitidos_proxy):
+        return PrediccionM(
+            "binaria", estado="NO_COVERAGE", regla_id=regla.id,
+            valor_categoria=s.conducta, dominio_elegible=s.dominio_elegible,
+            resultado_id=s.resultado_id,
+            resultado_generacion=s.resultado_generacion,
+            rol_uso=s.rol_uso, uso_motor=s.uso_motor,
+            detalle=(f"uso {uso_solicitado!r} no permitido para "
+                     f"rol_uso={s.rol_uso!r}; permitidos="
+                     f"{sorted(permitidos_proxy)!r}"))
     return emitir_binaria(regla, conducta)
+
+
+def _sin_cobertura_contrato(base: PrediccionM, detalle: str, *, modo: str,
+                            proposito: str, uso: str,
+                            dependencias: tuple[str, ...],
+                            resultado_id: str | None = None,
+                            origen: str | None = None,
+                            aptitud: str | None = None,
+                            camino: str | None = None) -> PrediccionM:
+    previo = f"{base.detalle}; " if base.detalle else ""
+    return replace(
+        base, estado="NO_COVERAGE", valor_punto=None,
+        resultado_id=resultado_id or base.resultado_id,
+        modo_emision=modo, proposito=proposito, uso_solicitado=uso,
+        origen_numerico=origen, aptitud_uso=aptitud,
+        camino_linaje=camino,
+        dependencias_estructurales=dependencias,
+        detalle=previo + detalle,
+    )
+
+
+def emitir_binaria_contrato(
+        regla: Regla,
+        conducta: str,
+        contexto: dict,
+        *,
+        modo: str,
+        proposito: str,
+        uso_solicitado: str | None = None,
+        indice: IndiceLinajeEmision | None = None,
+        resultado_id_seleccionado: str | None = None,
+        valor_seleccionado: float | None = None,
+        rol_seleccionado: str = "OPERATIVO",
+        detalle_seleccion: str = "",
+) -> PrediccionM:
+    """Emite por la ruta histórica o por un contrato GEN2 que falla cerrado.
+
+    La ruta ``HISTORICO`` conserva el valor materializado en YAML. La ruta
+    ``GEN2`` exige la fila activa del consumidor, un RESULT sellado, origen
+    ``NUEVO`` apto según :mod:`milpa.src.linaje` e identidad numérica. Para
+    transferencia el selector puede entregar otro RESULT; el valor se vuelve
+    a leer del registro y nunca del árbitro ni del ``p`` histórico.
+    """
+    modo_norm = str(modo or "").upper()
+    proposito_norm = str(proposito or "").strip().lower()
+    usos_por_defecto = {
+        (MODO_HISTORICO, "baseline"): "BASELINE",
+        (MODO_HISTORICO, "consulta"): "DESCRIPTIVO",
+        (MODO_GEN2, "consulta"): "MEDICION-GEN2",
+        (MODO_GEN2, "transferencia"): "MEDICION-GEN2",
+    }
+    uso = str(uso_solicitado or usos_por_defecto.get(
+        (modo_norm, proposito_norm), "")).upper().replace("_", "-")
+    dependencias = _dependencias_estructurales(regla)
+    uso_contexto = {
+        "BASELINE": "baseline",
+        "DESCRIPTIVO": "consulta_descriptiva",
+        "CALIBRACION": "escenario",
+    }.get(uso, "probabilidad_evento")
+    base = emitir_binaria_en_contexto(
+        regla, conducta, contexto, uso_solicitado=uso_contexto)
+
+    if modo_norm == MODO_HISTORICO:
+        salida = _salida(regla, conducta)
+        extra = ()
+        if salida is not None and salida.resultado_id is None:
+            clase = str(salida.clase or "SIN-CLASE").split("·", 1)[0]
+            extra = (f"numero:{clase}-SIN-RESULT",)
+        return replace(
+            base, modo_emision=MODO_HISTORICO,
+            proposito=proposito_norm, uso_solicitado=uso,
+            dependencias_estructurales=dependencias + extra,
+        )
+
+    if modo_norm != MODO_GEN2:
+        return _sin_cobertura_contrato(
+            base, f"modo de emisión desconocido: {modo!r}", modo=modo_norm,
+            proposito=proposito_norm, uso=uso, dependencias=dependencias)
+    if proposito_norm not in {"consulta", "transferencia"}:
+        return _sin_cobertura_contrato(
+            base, ("GEN2 exige propósito explícito 'consulta' o "
+                   "'transferencia'; baseline pertenece a HISTORICO"),
+            modo=modo_norm, proposito=proposito_norm, uso=uso,
+            dependencias=dependencias)
+    if base.estado != "EMITE":
+        return _sin_cobertura_contrato(
+            base, "el dominio o propósito de la salida no está cubierto",
+            modo=modo_norm, proposito=proposito_norm, uso=uso,
+            dependencias=dependencias)
+    if rol_seleccionado.upper() in {"ARBITRO", "ORIGEN-ARBITRO"}:
+        return _sin_cobertura_contrato(
+            base, "un valor usado como árbitro no puede alimentar GEN2",
+            modo=modo_norm, proposito=proposito_norm, uso=uso,
+            dependencias=dependencias,
+            resultado_id=resultado_id_seleccionado)
+
+    salida = _salida(regla, conducta)
+    if salida is None:
+        return _sin_cobertura_contrato(
+            base, "conducta sin salida máquina", modo=modo_norm,
+            proposito=proposito_norm, uso=uso, dependencias=dependencias)
+    marca_adopcion = str(salida.uso_motor or "").upper()
+    if ("PROPUESTA-NO-ADOPTADA" in marca_adopcion
+            or "NO-ADOPTAR" in marca_adopcion):
+        return _sin_cobertura_contrato(
+            base, "la salida está documentada pero su adopción no fue firmada",
+            modo=modo_norm, proposito=proposito_norm, uso=uso,
+            dependencias=dependencias, resultado_id=salida.resultado_id)
+    fuente_salida = salida
+    if salida.complemento_de:
+        padre = _salida(regla, salida.complemento_de)
+        if padre is None:
+            return _sin_cobertura_contrato(
+                base, f"complemento sin padre {salida.complemento_de!r}",
+                modo=modo_norm, proposito=proposito_norm, uso=uso,
+                dependencias=dependencias)
+        fuente_salida = padre
+
+    transferencia = resultado_id_seleccionado is not None
+    resultado_id = resultado_id_seleccionado or fuente_salida.resultado_id
+    if not resultado_id:
+        return _sin_cobertura_contrato(
+            base, "la salida numérica no declara RESULT; no se usa el p viejo",
+            modo=modo_norm, proposito=proposito_norm, uso=uso,
+            dependencias=dependencias)
+    indice = indice or cargar_indice_linaje_emision()
+
+    consumidor = f"milpa/tramite.yaml:{regla.id}:{salida.conducta}"
+    uso_activo = indice.usos.get(consumidor)
+    if uso_activo is None:
+        return _sin_cobertura_contrato(
+            base, f"consumidor no activo en usos.tsv: {consumidor}",
+            modo=modo_norm, proposito=proposito_norm, uso=uso,
+            dependencias=dependencias, resultado_id=resultado_id)
+
+    if not transferencia:
+        consumidor_fuente = (
+            f"milpa/tramite.yaml:{regla.id}:{fuente_salida.conducta}")
+        uso_fuente = indice.usos.get(consumidor_fuente)
+        if uso_fuente is None:
+            return _sin_cobertura_contrato(
+                base, f"padre numérico no activo: {consumidor_fuente}",
+                modo=modo_norm, proposito=proposito_norm, uso=uso,
+                dependencias=dependencias, resultado_id=resultado_id)
+        if (uso_fuente.corrida0_resultado_id != resultado_id
+                or uso_fuente.corrida0_generacion != "GEN2"
+                or fuente_salida.resultado_generacion != "GEN2"):
+            return _sin_cobertura_contrato(
+                base, ("identidad/generación declarada no coincide: "
+                       f"YAML={fuente_salida.resultado_id}/"
+                       f"{fuente_salida.resultado_generacion}, "
+                       f"registro={uso_fuente.corrida0_resultado_id}/"
+                       f"{uso_fuente.corrida0_generacion}"),
+                modo=modo_norm, proposito=proposito_norm, uso=uso,
+                dependencias=dependencias, resultado_id=resultado_id,
+                camino=uso_fuente.camino_linaje)
+
+    evidencia = indice.resultados.get(resultado_id)
+    if evidencia is None:
+        return _sin_cobertura_contrato(
+            base, f"RESULT inexistente en resultados.tsv: {resultado_id}",
+            modo=modo_norm, proposito=proposito_norm, uso=uso,
+            dependencias=dependencias, resultado_id=resultado_id)
+    camino = f"{consumidor} -> {resultado_id} -> {evidencia.camino_linaje}"
+    if not evidencia.estado.startswith("SELLADA"):
+        return _sin_cobertura_contrato(
+            base, f"RESULT no sellado: estado={evidencia.estado}",
+            modo=modo_norm, proposito=proposito_norm, uso=uso,
+            dependencias=dependencias, resultado_id=resultado_id,
+            origen=evidencia.origen_numerico, camino=camino)
+    if evidencia.generacion != "GEN2" or evidencia.valor is None:
+        return _sin_cobertura_contrato(
+            base, (f"RESULT sin número GEN2: generación={evidencia.generacion}, "
+                   f"valor={evidencia.valor!r}"),
+            modo=modo_norm, proposito=proposito_norm, uso=uso,
+            dependencias=dependencias, resultado_id=resultado_id,
+            origen=evidencia.origen_numerico, camino=camino)
+
+    # Contrato compartido con registro/T35; esta capa agrega dominio e
+    # identidad de estimando, que linaje.py deliberadamente no decide.
+    from milpa.src.linaje import APTA_LINAJE, aptitud_para_uso
+    aptitud, motivo = aptitud_para_uso(
+        evidencia.origen_numerico, uso,
+        evidencia.validacion_independiente, evidencia.rol_evaluacion)
+    if aptitud != APTA_LINAJE:
+        return _sin_cobertura_contrato(
+            base, motivo, modo=modo_norm, proposito=proposito_norm, uso=uso,
+            dependencias=dependencias, resultado_id=resultado_id,
+            origen=evidencia.origen_numerico, aptitud=aptitud, camino=camino)
+
+    valor_resultado = evidencia.valor
+    if transferencia:
+        if valor_seleccionado is None or not math.isclose(
+                valor_seleccionado, valor_resultado, rel_tol=0.0, abs_tol=1e-12):
+            return _sin_cobertura_contrato(
+                base, ("el valor elegido por el selector no coincide con "
+                       f"{resultado_id}: {valor_seleccionado!r} != "
+                       f"{valor_resultado!r}"),
+                modo=modo_norm, proposito=proposito_norm, uso=uso,
+                dependencias=dependencias, resultado_id=resultado_id,
+                origen=evidencia.origen_numerico, aptitud=aptitud,
+                camino=camino)
+        valor_emitido = valor_resultado
+    else:
+        valor_emitido = (1.0 - valor_resultado
+                         if salida.complemento_de else valor_resultado)
+        if (base.valor_punto is None or
+                abs(base.valor_punto - valor_emitido) >
+                TOLERANCIA_MATERIALIZACION_P):
+            return _sin_cobertura_contrato(
+                base, ("p materializado no identifica al RESULT: "
+                       f"{base.valor_punto!r} vs {valor_emitido!r}, tolerancia="
+                       f"{TOLERANCIA_MATERIALIZACION_P}"),
+                modo=modo_norm, proposito=proposito_norm, uso=uso,
+                dependencias=dependencias, resultado_id=resultado_id,
+                origen=evidencia.origen_numerico, aptitud=aptitud,
+                camino=camino)
+
+    detalle = f"{resultado_id}: {motivo}"
+    if detalle_seleccion:
+        detalle += f"; selección={detalle_seleccion}"
+    return replace(
+        base, valor_punto=valor_emitido, resultado_id=resultado_id,
+        resultado_generacion=evidencia.generacion,
+        modo_emision=MODO_GEN2, proposito=proposito_norm,
+        uso_solicitado=uso, origen_numerico=evidencia.origen_numerico,
+        aptitud_uso=aptitud, camino_linaje=camino,
+        dependencias_estructurales=dependencias, detalle=detalle,
+    )
 
 
 def emitir_transicion(regla: Regla, evento: str, contexto: dict) -> PrediccionM:
@@ -571,11 +982,17 @@ def emitir_transicion(regla: Regla, evento: str, contexto: dict) -> PrediccionM:
         return PrediccionM(
             "binaria", estado="NO_COVERAGE", regla_id=regla.id,
             valor_categoria=s.conducta, dominio_elegible=s.dominio_elegible,
+            resultado_id=s.resultado_id,
+            resultado_generacion=s.resultado_generacion,
+            rol_uso=s.rol_uso, uso_motor=s.uso_motor,
             detalle=f"fuera del dominio elegible: requiere {faltan!r}")
     return PrediccionM(
         "binaria", valor_punto=s.p, valor_categoria=s.conducta,
         clase=s.clase, regla_id=regla.id,
-        dominio_elegible=s.dominio_elegible)
+        resultado_id=s.resultado_id,
+        resultado_generacion=s.resultado_generacion,
+        dominio_elegible=s.dominio_elegible, rol_uso=s.rol_uso,
+        uso_motor=s.uso_motor)
 
 
 def estado_encuci_solicitud_entrega(solicitud: int | None,

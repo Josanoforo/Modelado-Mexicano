@@ -791,7 +791,24 @@ asignados_probabilidad:
       credito_tiene_fintech: {filtro: "P6_2_8=1", canal_ultimo_credito: P6_6, n: 200, poblacion_expandida: 1178431, porcentajes: {app_celular: 0.575, pagina_internet: 0.206, sucursal: 0.115, promotor: 0.042, establecimiento: 0.033, otro: 0.031}}
       cuenta_tiene_fintech: {filtro: "P5_4_8=1", canal_ultima_cuenta: P5_16, n: 1407, poblacion_expandida: 8919712, porcentajes: {app_celular: 0.306, sucursal: 0.290, pagina_internet: 0.139, establecimiento: 0.134, empleador: 0.110, promotor: 0.015, programa_social: 0.005}}
       limites: "P6_6/P5_16 no tienen sufijo de producto; recomendación de amistades es fuente de información, no canal de alta; una sola ola, sin tendencia"
-      residual: "NC-0121 (serie 2018/2021) y NC-0122 (canal del producto fintech exacto)"
+      residual: "NC-0122 (canal del producto fintech exacto); NC-0121 quedó ejecutada por CALC-ENIF-FINTECH-0001 sin convertir 2018 en cero"
+    serie_descriptiva_gen2:
+      objeto: "canal del último producto entre personas con tenencia fintech; no canal del producto fintech exacto"
+      uso_motor: "DESCRIPTIVO-NO-CALIBRA"
+      consumidor_contextual: "dinero.credito.scoring_alternativo (R1.6); no sustituye [0.71, 0.29]"
+      decision: "D10, recibida por ADENDA-18-CONSUMOS-Y-BENCHMARK; no volver a preguntar"
+      fuente_2021: "CALC-ENIF-FINTECH-0001--5b92cee28946"
+      cuenta:
+        2018: {estado: "NO-ESTIMABLE-RUPTURA-ESTRUCTURAL", valor: null}
+        2021: {n: 337, poblacion_expandida: 2257763, porcentajes: {sucursal: 0.497268756730, app_celular: 0.225282724538, empleador: 0.137135740111, pagina_internet: 0.111203434550, promotor: 0.022550196810, establecimiento: 0.006559147262, otro: 0.0}}
+        2024: {referencia: "proxy_canal_enif2024.cuenta_tiene_fintech"}
+        comparabilidad_2021_2024: "RUPTURA-DEFINICIONAL; LADO-A-LADO-SIN-DELTA; no inventar la categoría faltante"
+      credito:
+        2018: {estado: "NO-ESTIMABLE-RUPTURA-ESTRUCTURAL", valor: null}
+        2021: {n: 58, poblacion_expandida: 345435, porcentajes: {app_celular: 0.698030020120, pagina_internet: 0.121420817230, sucursal: 0.082313604586, establecimiento: 0.049728603066, promotor: 0.035688334998, otro: 0.012818620001}}
+        2024: {referencia: "proxy_canal_enif2024.credito_tiene_fintech"}
+        comparabilidad_2021_2024: "COMPARACION-DESCRIPTIVA; no calibra aprobación, rechazo ni probabilidad de R1.6"
+      limite: "NC-0122 permanece: P6_6/P5_16 describen el último producto y no identifican el canal del producto fintech exacto"
 
   - regla: dinero.consumo.estatus_mediado_por_credito
     valores: [0.58, 0.42]
