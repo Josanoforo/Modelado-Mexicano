@@ -133,6 +133,7 @@ class MotorUsosComplementos(unittest.TestCase):
     def test_vista_corrida0_no_cuenta_complemento_como_medicion(self):
         with (RAIZ / "data/corrida0/demanda-resultados.tsv").open(
                 encoding="utf-8", newline="") as f:
+            next(f)  # cabecera de procedencia de la vista derivada
             filas = {r["resultado_id"]: r
                      for r in csv.DictReader(f, delimiter="\t")}
         for padre, complemento in (("RES-0005", "RES-0006"),
