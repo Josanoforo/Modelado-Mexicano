@@ -34,6 +34,7 @@ ANTES de llamar a `preflight`, asi que `run()` si se invoca completo.
 from __future__ import annotations
 
 import csv
+import hashlib
 import importlib.util
 import io
 import json
@@ -1451,7 +1452,7 @@ def _sella_calc_fixture(d: Path, cid: str, valores: dict, etiquetas: dict,
 
 @contextlib.contextmanager
 def _arbol_registro(res=None, corr=None, calcs=(), tramite=None, propuesta=None,
-                    evidencia=()):
+                    evidencia=(), validaciones=()):
     """Monta demanda + oferta en un temporal y re-apunta `corrida0` ahi.
     Restaura SIEMPRE: ningun caso escribe en `data/corrida0/`."""
     import yaml
@@ -1459,7 +1460,7 @@ def _arbol_registro(res=None, corr=None, calcs=(), tramite=None, propuesta=None,
     previos = {k: getattr(C, k) for k in
                ("CORRIDAS", "DEMANDA_RESULTADOS", "DEMANDA_CORRIDAS",
                 "NO_CORRIDO_TSV", "TRAMITE", "PROCEDENCIA", "PROPUESTA",
-                "REPLAY_EVIDENCIA")}
+                "REPLAY_EVIDENCIA", "VALIDACIONES_INDEPENDIENTES")}
     C.CORRIDAS = tmp
     C.DEMANDA_RESULTADOS = tmp / "demanda-resultados.tsv"
     C.DEMANDA_CORRIDAS = tmp / "demanda-corridas.tsv"
@@ -1468,6 +1469,7 @@ def _arbol_registro(res=None, corr=None, calcs=(), tramite=None, propuesta=None,
     C.PROCEDENCIA = tmp / "procedencia-ausente.yaml"
     C.PROPUESTA = tmp / "propuesta-ausente.yaml"
     C.REPLAY_EVIDENCIA = tmp / "replay-evidencia.tsv"
+    C.VALIDACIONES_INDEPENDIENTES = tmp / "validaciones-independientes.tsv"
     C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS, res or [])
     C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS, corr or [])
     C.TRAMITE.write_text(yaml.safe_dump(tramite or {"reglas": []},
@@ -1477,6 +1479,12 @@ def _arbol_registro(res=None, corr=None, calcs=(), tramite=None, propuesta=None,
                            lineterminator="\n")
         w.writeheader()
         w.writerows(evidencia)
+    with C.VALIDACIONES_INDEPENDIENTES.open(
+            "w", encoding="utf-8", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=C.COLS_VALIDACIONES_INDEPENDIENTES,
+                           delimiter="\t", lineterminator="\n")
+        w.writeheader()
+        w.writerows(validaciones)
     if propuesta is not None:
         C.PROPUESTA = tmp / "tramite-ola5-propuesta-v0.yaml"
         C.PROPUESTA.write_text(yaml.safe_dump(propuesta, allow_unicode=True),
@@ -3073,6 +3081,43 @@ def t_linaje_registro_rechaza_envuelto_y_acepta_nuevo():
     _afirma((uso["origen_numerico"], uso["aptitud_uso"])
             == (C.ORIGEN_NUEVO, C.APTA_LINAJE), caso,
             f"adopción nueva inesperada: {uso}")
+
+
+def t_validacion_overlay_sucesor_por_resultado_y_hash():
+    """Una validación posterior se vincula por RESULT sin tocar la spec
+    sellada; un hash falso o un destino inexistente paran el registro."""
+    caso = "T-VALIDACION-OVERLAY"
+    calcs = [{"calc_id": "CALC-VALIDA",
+              "valores": {"RESULT-P": 0.25, "RESULT-EE": 0.1},
+              "etiquetas": {"generacion": "GEN2", "cuenta_gen2": "SI",
+                             "validacion_independiente": "NO-HECHA"}}]
+    ref = "tests/test_corrida0.py"
+    sha = hashlib.sha256((RAIZ / ref).read_bytes()).hexdigest()
+    asiento = {
+        "spec_id": "CALC-VALIDA", "resultado_id": "RESULT-P",
+        "validacion_independiente": "PASA", "validacion_ref": ref,
+        "evidencia_sha256": sha, "alcance_validacion": "PUNTO-VALIDADO",
+    }
+    with _arbol_registro(calcs=calcs, validaciones=[asiento]):
+        vistas = C.registro(escribe=False, imprime=False)
+    por_id = {f["resultado_id"]: f for f in vistas["resultados"]}
+    _afirma((por_id["RESULT-P"]["validacion_independiente"],
+             por_id["RESULT-P"]["validacion_ref"],
+             por_id["RESULT-P"]["alcance_validacion"])
+            == ("PASA", ref, "PUNTO-VALIDADO"), caso,
+            f"el asiento no viajó completo: {por_id['RESULT-P']}")
+    _afirma(por_id["RESULT-EE"]["validacion_independiente"] == "NO-HECHA"
+            and por_id["RESULT-EE"]["validacion_ref"] == C.NO_DECLARADO,
+            caso, "el overlay promovió un RESULT no listado")
+
+    hash_falso = dict(asiento, evidencia_sha256="0" * 64)
+    p = _paro_de(calcs=calcs, validaciones=[hash_falso])
+    _afirma("VALIDACION-EVIDENCIA-DISCORDA" in p, caso,
+            f"un hash falso no paró: {p!r}")
+    inexistente = dict(asiento, resultado_id="RESULT-AUSENTE")
+    p = _paro_de(calcs=calcs, validaciones=[inexistente])
+    _afirma("VALIDACION-OVERLAY-DESTINO" in p, caso,
+            f"un destino ausente no paró: {p!r}")
 
 
 TESTS = [v for k, v in sorted(globals().items()) if k.startswith("t_")]

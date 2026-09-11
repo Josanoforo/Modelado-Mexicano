@@ -148,13 +148,17 @@ Dos ejecuciones consecutivas produjeron hashes idénticos:
 los tres puntos están validados y la incertidumbre histórica está contrastada.
 Ese cierre **no aprueba** el uso inferencial de los IC.
 
-Quedan dos residuales separados:
+Tras la fusión de `PR #710`, la validación queda vinculada al contrato común
+mediante `data/corrida0/validaciones-independientes.tsv`, overlay por RESULT
+que verifica referencia y SHA sin reescribir specs ni resultados sellados. La
+vista publica 9 RESULT `PASA` (punto, n y denominador de cada ola) y 12
+`CONCUERDA-NO-APROBADA` (EE, extremos de IC y CV). El contador
+`resultados_con_validacion_independiente` pasa de 0 a 9; no es un contador de
+mediciones ni habilita confirmación retenida.
 
-- `NC-0157`: integrar estos artefactos por el contrato común de
-  linaje/validación del
-  encargo 17; al corte de este informe su `PR #710` sigue abierto y no se
-  incorpora código de una rama no fusionada;
-- `NC-0158`: acreditar el roster completo de UPM seleccionadas —o un servicio oficial de
+Queda un residual separado:
+
+- `NC-0159`: acreditar el roster completo de UPM seleccionadas —o un servicio oficial de
   varianza— y ejecutar prospectivamente el estimador de dominio que conserva
   contribuciones cero. El diagnóstico `TVivienda` es la propuesta reproducible
   que cambia sólo ese componente.

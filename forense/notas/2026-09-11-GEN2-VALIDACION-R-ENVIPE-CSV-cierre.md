@@ -22,9 +22,12 @@ explícito completo de selección, de modo que el diagnóstico no sustituye
 retrospectivamente los intervalos congelados.
 
 `NC-0096` cierra por validación formal ejecutada con veredicto completo, no por
-la sola coincidencia del punto. `NC-0157` conserva la integración al contrato
-común del encargo 17, cuyo PR #710 sigue abierto al corte. `NC-0158` conserva
-la vía de diseño: roster completo de UPM o servicio oficial de varianza y spec
+la sola coincidencia del punto. Tras fusionarse PR #710, el overlay común
+`data/corrida0/validaciones-independientes.tsv` proyecta por RESULT la
+validación posterior: 9 `PASA` para punto/n/denominador y 12
+`CONCUERDA-NO-APROBADA` para EE/IC/CV, con referencia y SHA verificados. Las
+specs y resultados sellados siguen intactos. `NC-0159` conserva únicamente la
+vía de diseño: roster completo de UPM o servicio oficial de varianza y spec
 prospectiva. Ninguna adopción, uso de consumidor o firma de contador se
 infiere; contador científico: cero.
 
@@ -33,4 +36,6 @@ Reproducción:
 ```bash
 python3 forense/validaciones/GEN2-VALIDACION-R-ENVIPE-CSV-v1_0/valida_r_envipe.py --self-test
 python3 forense/validaciones/GEN2-VALIDACION-R-ENVIPE-CSV-v1_0/valida_r_envipe.py --write
+python3 tools/corrida0.py registro --escribe
+python3 tools/corrida0.py status
 ```

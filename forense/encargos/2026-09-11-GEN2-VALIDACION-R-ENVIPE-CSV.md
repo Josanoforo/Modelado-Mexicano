@@ -78,8 +78,7 @@ Usar corpus compartido en lectura y salidas propias; no escribir pruebas sobre e
 
 | qué | por qué | impacto | sucesor |
 |---|---|---|---|
-| «Vincular la validación mediante el mecanismo vigente y el contrato de 17 cuando esté integrado.» | `DIFERIDO-A:GEN2-LINAJE-Y-ADOPCION` | El informe y los artefactos quedan completos, pero el enlace común no se publica y su contador permanece intacto; PR #710 sigue abierto al corte y este acto no copia código de una rama no fusionada. | Tras fusionar PR #710, acto sucesor que concilie exclusivamente el enlace de esta validación con el contrato integrado (`NC-0157`). |
-| «una propuesta sucesora reproducible que cambie sólo el componente identificado» — ejecución prospectiva | `DIFERIDO-A:sucesor de varianza ENVIPE R` | Los tres puntos quedan validados y los EE históricos reproducidos, pero sus IC no adquieren aptitud inferencial; `TVivienda` elimina los 72 singleton observados, aunque no acredita por sí sola que ninguna UPM seleccionada completa falte. | Titular de mesa: obtener roster de UPM seleccionadas o servicio oficial de varianza y congelar una spec sucesora antes de recalcular (`NC-0158`; acto aún `SIN-ASIGNAR`). |
+| «una propuesta sucesora reproducible que cambie sólo el componente identificado» — ejecución prospectiva | `DIFERIDO-A:sucesor de varianza ENVIPE R` | Los tres puntos quedan validados y vinculados por el contrato común, pero sus IC no adquieren aptitud inferencial; `TVivienda` elimina los 72 singleton observados, aunque no acredita por sí sola que ninguna UPM seleccionada completa falte. | Titular de mesa: obtener roster de UPM seleccionadas o servicio oficial de varianza y congelar una spec sucesora antes de recalcular (`NC-0159`; acto aún `SIN-ASIGNAR`). |
 
 ## CONSUMIDO
 
@@ -87,8 +86,10 @@ Ejecutado por `ACTO GEN2-VALIDACION-R-ENVIPE-22`, 11/sep/2026, en
 CAJA/Ubuntu, rama `acto/gen2-validacion-r-envipe-22`, `PR #714`. El protocolo
 quedó fijado en `3896dc5` antes del contraste y el resultado en `74233c1`:
 3/3 puntos `VALIDADO`, 3/3 EE históricos `CONCUERDA` y aptitud inferencial de
-los IC `NO-APROBADA`. `NC-0096` cierra con el veredicto completo; `NC-0157` y
-`NC-0158` conservan, respectivamente, el enlace al contrato común aún abierto
-en PR #710 y la vía de roster/servicio oficial de varianza. Contador científico
-cero; ningún CALC, spec, resultado, sello, adopción o consumidor congelado fue
-modificado. La fusión de PR #714 permanece reservada a la mesa.
+los IC `NO-APROBADA`. Tras la fusión de PR #710, el overlay común proyecta 9
+RESULT `PASA` y 12 `CONCUERDA-NO-APROBADA`, con referencia y SHA verificados,
+sin reescribir congelados. `NC-0096` cierra con el veredicto completo;
+`NC-0159` conserva sólo la vía de roster/servicio oficial de varianza.
+Contador científico cero; ningún CALC, spec, resultado, sello, adopción o
+consumidor congelado fue modificado. La fusión de PR #714 permanece reservada
+a la mesa.
