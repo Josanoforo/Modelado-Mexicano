@@ -1,0 +1,868 @@
+{
+  "execution_date": "2026-09-11",
+  "not_blind": true,
+  "not_reused": [
+    "data/corrida0/CALC-R-CIV-M-{10,12,13}/medidor.py",
+    "tools/arbitra.py",
+    "tools/valida_envipe_independiente.py",
+    "tests/svystat.py:prop_ultimate_cluster"
+  ],
+  "overall": {
+    "all_numeric_concordance": true,
+    "all_points_validated": true,
+    "historical_intervals_inferentially_approved": false,
+    "reason": "la concordancia histórica no incorpora UPM con contribución cero fuera de U_R; la aptitud se decide por el diagnóstico TVivienda y se propone como sucesor, no como reescritura"
+  },
+  "protocol_sha256": "a1e1c02b505ab21b1c179e411ae9cc9b48e4175ee6c983b1fcf2e91cc2e92d58",
+  "python": "3.14.4",
+  "reused": [
+    "biblioteca estándar de Python para ZIP/CSV/SHA-256"
+  ],
+  "script_sha256": "ba1504b3367ca0e798b571419928d4fdefec46928d118f8a15f9cd9a7ad1554e",
+  "self_tests": [
+    {
+      "case": "pesos_desiguales",
+      "point": "0.25",
+      "status": "OK"
+    },
+    {
+      "case": "exclusiones_y_varios_delitos",
+      "n": 2,
+      "status": "OK"
+    },
+    {
+      "case": "estratos_upm_y_singleton",
+      "se": 0.25,
+      "status": "OK",
+      "variance": 0.0625
+    },
+    {
+      "case": "upm_cero_no_impone_direccion",
+      "se_2_upm": 0.5,
+      "se_3_upm": 0.4330127018922193,
+      "status": "OK"
+    }
+  ],
+  "validation_id": "GEN2-VALIDACION-R-ENVIPE-CSV-v1_0",
+  "waves": [
+    {
+      "cell": "CIV-M-10",
+      "comparison": {
+        "concordancia_numerica": "CONCUERDA",
+        "differences_validator_minus_producer": {
+          "cv": 0.0,
+          "denominator": 0.0,
+          "ic_hi": -2.1955215423474783e-12,
+          "ic_lo": 2.1955215423474783e-12,
+          "n": 0,
+          "n_psu": 0,
+          "n_singleton_strata": 0,
+          "n_strata": 0,
+          "point": 0.0,
+          "se": 0.0
+        },
+        "historical_reconstructed": {
+          "cv": 0.02329253851183317,
+          "ic_hi": 0.21428974946854243,
+          "ic_lo": 0.19557823625263773,
+          "n_psu": 9903,
+          "n_singleton_strata": 19,
+          "n_strata": 597,
+          "se": 0.004773432921089039
+        },
+        "producer": {
+          "cv": 0.02329253851183317,
+          "denominator": 26433277.0,
+          "ic_hi": 0.21428974947073795,
+          "ic_lo": 0.1955782362504422,
+          "n": 32967,
+          "n_psu": 9903,
+          "n_singleton_strata": 19,
+          "n_strata": 597,
+          "path": "data/corrida0/CALC-R-CIV-M-10/resultados.json",
+          "point": 0.20493399286059008,
+          "se": 0.004773432921089039,
+          "sha256": "73bdb87c6d8c7b39cc168f480795f0d7d26e776eed8c2337ca3d85d8767ac136"
+        }
+      },
+      "design_diagnostics": {
+        "domain_aware_tvivienda": {
+          "cv": 0.023305424812344443,
+          "ic_hi": 0.2142949254218246,
+          "ic_lo": 0.19557306029935556,
+          "n_psu": 13195,
+          "n_singleton_strata": 0,
+          "n_strata": 606,
+          "se": 0.004776073762106015,
+          "variance": 2.2810880581077505e-05
+        },
+        "n_singletons_tmod_completo": 17,
+        "n_singletons_tvivienda": 0,
+        "n_singletons_u_r": 19,
+        "n_singletons_u_r_creados_por_restriccion": 19,
+        "n_singletons_u_r_persisten_tvivienda": 0,
+        "n_upm_adicionales_tmod_vs_u_r": 429,
+        "n_upm_adicionales_tvivienda_vs_u_r": 3292,
+        "n_upm_tmod_ausentes_tvivienda": 0,
+        "n_upm_tmod_completo": 10332,
+        "n_upm_tvivienda": 13195,
+        "n_upm_u_r": 9903,
+        "n_upm_u_r_ausentes_tvivienda": 0,
+        "official_sample_dwellings": 102297,
+        "perfil_singletons_u_r": [
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 10,
+            "upm_en_tmod_completo": 1,
+            "upm_en_tvivienda": 2
+          },
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 5,
+            "upm_en_tmod_completo": 1,
+            "upm_en_tvivienda": 3
+          },
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 1,
+            "upm_en_tmod_completo": 1,
+            "upm_en_tvivienda": 5
+          },
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 2,
+            "upm_en_tmod_completo": 2,
+            "upm_en_tvivienda": 3
+          },
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 1,
+            "upm_en_tmod_completo": 2,
+            "upm_en_tvivienda": 4
+          }
+        ],
+        "tvivienda": {
+          "n_distinct_id_viv": 90335,
+          "n_missing_design": 0,
+          "n_repeated_id_viv": 0,
+          "n_rows": 90335
+        }
+      },
+      "fact_year": 2020,
+      "measurement": {
+        "bp1_23_frequencies": {
+          "01": 1795,
+          "02": 164,
+          "03": 4539,
+          "04": 11183,
+          "05": 2450,
+          "06": 4700,
+          "07": 3722,
+          "08": 1119,
+          "09": 3295,
+          "99": 227,
+          "BLANCO": 3962
+        },
+        "bpcod_frequencies": {
+          "01": 997,
+          "02": 5769,
+          "03": 4515,
+          "04": 4552,
+          "05": 4554,
+          "06": 1535,
+          "07": 3106,
+          "08": 2257,
+          "09": 4446,
+          "10": 2814,
+          "11": 949,
+          "12": 63,
+          "13": 1381,
+          "14": 95,
+          "15": 123
+        },
+        "funnel": {
+          "descarta_bp1_23_99": 227,
+          "descarta_bp1_23_blanco": 3962,
+          "descarta_bp1_23_otro": 0,
+          "descarta_bpcod_fuera_01_15": 0,
+          "descarta_fac_del_no_positivo_o_no_finito": 0,
+          "filas_tabla": 37156,
+          "filas_tabla_sin_diseno": 0,
+          "incluida_sin_diseno": 0,
+          "n_u_r": 32967,
+          "pasa_bp1_23_01_09": 32967,
+          "pasa_bpcod_01_15": 37156,
+          "pasa_fac_del": 32967
+        },
+        "max_delitos_por_persona": 23,
+        "n": 32967,
+        "n_id_del_distintos": 32967,
+        "n_id_del_repetidos": 0,
+        "n_personas": 19953,
+        "n_personas_con_varios_delitos": 6807,
+        "point": 0.20493399286059008,
+        "point_decimal": "0.20493399286059008120710875159368246320726711258691",
+        "unit": "DELITO",
+        "weighted_denominator": "26433277",
+        "weighted_numerator": "5417077"
+      },
+      "source": {
+        "archive": "envipe2021_csv.zip",
+        "archive_bytes": 22334244,
+        "archive_sha256": "88153c67ff3666be511dab3f3b483226a0af9f0e8683bd8dbfba8d616ddbfdd1",
+        "catalog_bp1_23": {
+          "01": "Por miedo al agresor",
+          "02": "Por miedo a que lo extorsionaran",
+          "03": "Delito de poca importancia",
+          "04": "Pérdida de tiempo",
+          "05": "Trámites largos y difíciles",
+          "06": "Desconfianza en la autoridad",
+          "07": "No tenía pruebas",
+          "08": "Por actitud hostil de la autoridad",
+          "09": "Otra",
+          "99": "No sabe / no responde"
+        },
+        "catalog_encoding": "latin-1",
+        "catalog_member": "conjunto_de_datos_TMod_Vic_ENVIPE_2021/catalogos/BP1_23.csv",
+        "catalog_member_sha256": "a86e80d92a2df176887867b817cf2b6e6e39e564fb243a6ba28a73a2f4cb8562",
+        "data_encoding": "utf-8-sig",
+        "data_member": "conjunto_de_datos_TMod_Vic_ENVIPE_2021/conjunto_de_datos/conjunto_de_datos_TMod_Vic_ENVIPE_2021.csv",
+        "data_member_sha256": "a742559fb3d541742ecfd3e65ba019933821fcd92f175530f9748828f4470052",
+        "descriptor": {
+          "archivo": "fd_envipe2021.pdf",
+          "bytes": 1758289,
+          "id": "envipe2021_fd_pdf",
+          "sha256": "d85775241d6f427d6dd6643bce973ed0bdbfca4e0b0d6a9b02265e8327179945"
+        },
+        "dictionary_encoding": "latin-1",
+        "dictionary_member": "conjunto_de_datos_TMod_Vic_ENVIPE_2021/diccionario_de_datos/diccionario_de_datos_TMod_Vic_ENVIPE_2021.csv",
+        "dictionary_member_sha256": "ae8a882c88c55c60649bf5fda9ff6f36c7e53269b84adbbdfcbaaf786e57b186",
+        "dictionary_variables": {
+          "BP1_23": {
+            "longitud": "2",
+            "nombre": "Razón principal de la no denuncia",
+            "rango": "99",
+            "tipo": "Numérico"
+          },
+          "BPCOD": {
+            "longitud": "2",
+            "nombre": "Códigos para delitos",
+            "rango": "15",
+            "tipo": "Numérico"
+          },
+          "EST_DIS": {
+            "longitud": "3",
+            "nombre": "Estrato de diseño muestral",
+            "rango": "001 303",
+            "tipo": "Numérico"
+          },
+          "FAC_DEL": {
+            "longitud": "6",
+            "nombre": "Factor delito",
+            "rango": "000001 999999",
+            "tipo": "Numérico"
+          },
+          "FAC_DEL_AM": {
+            "longitud": "6",
+            "nombre": "Factor delito en área metropolitana",
+            "rango": "000001 999999",
+            "tipo": "Numérico"
+          },
+          "ID_DEL": {
+            "longitud": "21",
+            "nombre": "Identificador del delito",
+            "rango": "0100001.01.01.01.01.1 3299999.99.99.30.15.5",
+            "tipo": "Alfanumérico"
+          },
+          "ID_PER": {
+            "longitud": "16",
+            "nombre": "Identificador de la persona",
+            "rango": "0100001.01.01.01 3299999.99.99.30",
+            "tipo": "Alfanumérico"
+          },
+          "UPM_DIS": {
+            "longitud": "5",
+            "nombre": "Unidad primaria de muestreo",
+            "rango": "00001 99999",
+            "tipo": "Numérico"
+          }
+        },
+        "dwelling_encoding": "latin-1",
+        "dwelling_member": "conjunto_de_datos_TVivienda_ENVIPE_2021/conjunto_de_datos/conjunto_de_datos_TVivienda_ENVIPE_2021.csv",
+        "dwelling_member_sha256": "80cd0b231251c8e032dc82174601cf2c5dd725d51dbb3ee97a004f6a297edf5a",
+        "official_design": {
+          "official_sample_dwellings": 102297,
+          "retrieval_sha256_2026_09_11": "090da555cfcf132035dc4fedb30c311376ab200439837c9d29068b3eeaefd6a4",
+          "upc": "889463902454",
+          "url": "https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463902454.pdf"
+        },
+        "payload_id": "envipe2021_csv",
+        "questionnaire": {
+          "archivo": "cuest_modulo_envipe2021.pdf",
+          "bytes": 911976,
+          "id": "envipe2021_cuest_modulo_pdf",
+          "sha256": "390ef00ec15cabb9dcdf86d9fa79e108cea4ef1a2e8fdfcf4f4c409794636e0c"
+        },
+        "questionnaire_reactive": "pregunta 1.23, página PDF 4; códigos 01..09 y 99 contrastados con catálogo"
+      },
+      "survey": 2021,
+      "verdicts": {
+        "aptitud_inferencial": "NO-ACREDITADA-TVIVIENDA-NO-COINCIDE-CON-MUESTRA-OFICIAL",
+        "concordancia_numerica": "CONCUERDA",
+        "validacion_punto": "VALIDADO"
+      }
+    },
+    {
+      "cell": "CIV-M-12",
+      "comparison": {
+        "concordancia_numerica": "CONCUERDA",
+        "differences_validator_minus_producer": {
+          "cv": -3.469446951953614e-18,
+          "denominator": 0.0,
+          "ic_hi": -2.1894708268632712e-12,
+          "ic_lo": 2.1894708268632712e-12,
+          "n": 0,
+          "n_psu": 0,
+          "n_singleton_strata": 0,
+          "n_strata": 0,
+          "point": 0.0,
+          "se": -8.673617379884035e-19
+        },
+        "historical_reconstructed": {
+          "cv": 0.022873623291206274,
+          "ic_hi": 0.2174415456146765,
+          "ic_lo": 0.19878164487112898,
+          "n_psu": 9745,
+          "n_singleton_strata": 33,
+          "n_strata": 602,
+          "se": 0.004760266232118153
+        },
+        "producer": {
+          "cv": 0.022873623291206277,
+          "denominator": 25461157.0,
+          "ic_hi": 0.21744154561686596,
+          "ic_lo": 0.1987816448689395,
+          "n": 31012,
+          "n_psu": 9745,
+          "n_singleton_strata": 33,
+          "n_strata": 602,
+          "path": "data/corrida0/CALC-R-CIV-M-12/resultados.json",
+          "point": 0.20811159524290274,
+          "se": 0.004760266232118154,
+          "sha256": "54318445ca15b43ae1f2daa0062554aa54aa4e85fc86c236a7528ac5fc8df1c9"
+        }
+      },
+      "design_diagnostics": {
+        "domain_aware_tvivienda": {
+          "cv": 0.0229635526686601,
+          "ic_hi": 0.2174782270191889,
+          "ic_lo": 0.19874496346661658,
+          "n_psu": 13085,
+          "n_singleton_strata": 0,
+          "n_strata": 607,
+          "se": 0.00477898157831927,
+          "variance": 2.2838664925914937e-05
+        },
+        "n_singletons_tmod_completo": 31,
+        "n_singletons_tvivienda": 0,
+        "n_singletons_u_r": 33,
+        "n_singletons_u_r_creados_por_restriccion": 33,
+        "n_singletons_u_r_persisten_tvivienda": 0,
+        "n_upm_adicionales_tmod_vs_u_r": 438,
+        "n_upm_adicionales_tvivienda_vs_u_r": 3340,
+        "n_upm_tmod_ausentes_tvivienda": 0,
+        "n_upm_tmod_completo": 10183,
+        "n_upm_tvivienda": 13085,
+        "n_upm_u_r": 9745,
+        "n_upm_u_r_ausentes_tvivienda": 0,
+        "official_sample_dwellings": 102362,
+        "perfil_singletons_u_r": [
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 21,
+            "upm_en_tmod_completo": 1,
+            "upm_en_tvivienda": 2
+          },
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 5,
+            "upm_en_tmod_completo": 1,
+            "upm_en_tvivienda": 3
+          },
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 2,
+            "upm_en_tmod_completo": 1,
+            "upm_en_tvivienda": 4
+          },
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 1,
+            "upm_en_tmod_completo": 1,
+            "upm_en_tvivienda": 5
+          },
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 2,
+            "upm_en_tmod_completo": 2,
+            "upm_en_tvivienda": 2
+          },
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 1,
+            "upm_en_tmod_completo": 2,
+            "upm_en_tvivienda": 4
+          },
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 1,
+            "upm_en_tmod_completo": 3,
+            "upm_en_tvivienda": 4
+          }
+        ],
+        "tvivienda": {
+          "n_distinct_id_viv": 90383,
+          "n_missing_design": 0,
+          "n_repeated_id_viv": 0,
+          "n_rows": 90383
+        }
+      },
+      "fact_year": 2022,
+      "measurement": {
+        "bp1_23_frequencies": {
+          "01": 1704,
+          "02": 168,
+          "03": 3901,
+          "04": 10299,
+          "05": 2501,
+          "06": 4205,
+          "07": 3813,
+          "08": 1101,
+          "09": 3320,
+          "99": 166,
+          "BLANCO": 3957
+        },
+        "bpcod_frequencies": {
+          "01": 925,
+          "02": 5133,
+          "03": 4147,
+          "04": 4134,
+          "05": 3819,
+          "06": 1471,
+          "07": 3046,
+          "08": 2299,
+          "09": 4616,
+          "10": 2778,
+          "11": 908,
+          "12": 65,
+          "13": 1538,
+          "14": 106,
+          "15": 150
+        },
+        "funnel": {
+          "descarta_bp1_23_99": 166,
+          "descarta_bp1_23_blanco": 3957,
+          "descarta_bp1_23_otro": 0,
+          "descarta_bpcod_fuera_01_15": 0,
+          "descarta_fac_del_no_positivo_o_no_finito": 0,
+          "filas_tabla": 35135,
+          "filas_tabla_sin_diseno": 0,
+          "incluida_sin_diseno": 0,
+          "n_u_r": 31012,
+          "pasa_bp1_23_01_09": 31012,
+          "pasa_bpcod_01_15": 35135,
+          "pasa_fac_del": 31012
+        },
+        "max_delitos_por_persona": 24,
+        "n": 31012,
+        "n_id_del_distintos": 31012,
+        "n_id_del_repetidos": 0,
+        "n_personas": 19252,
+        "n_personas_con_varios_delitos": 6363,
+        "point": 0.20811159524290274,
+        "point_decimal": "0.20811159524290274789947683838562403114673853980791",
+        "unit": "DELITO",
+        "weighted_denominator": "25461157",
+        "weighted_numerator": "5298762"
+      },
+      "source": {
+        "archive": "envipe2023_csv.zip",
+        "archive_bytes": 17728995,
+        "archive_sha256": "0dcc00a7fc37b79806f1bf1b85b12cd090b5ecc8e76983a3a1a861f2ef3fb404",
+        "catalog_bp1_23": {
+          "01": "Por miedo al agresor",
+          "02": "Por miedo a que lo extorsionaran",
+          "03": "Delito de poca importancia",
+          "04": "Pérdida de tiempo",
+          "05": "Trámites largos y difíciles",
+          "06": "Desconfianza en la autoridad",
+          "07": "No tenía pruebas",
+          "08": "Por actitud hostil de la autoridad",
+          "09": "Otra",
+          "99": "No sabe / no responde"
+        },
+        "catalog_encoding": "latin-1",
+        "catalog_member": "tmod_vic_envipe2023/catalogos/bp1_23.csv",
+        "catalog_member_sha256": "cac94baad1536d099fcfa23359eab1f6086adfb21b3ae2bd77eeac6f8612cd2a",
+        "data_encoding": "utf-8-sig",
+        "data_member": "tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv",
+        "data_member_sha256": "d8cccc7b221b838c391888a24ff965438e66566d6e7250e3bc43b4ac290d4b4d",
+        "descriptor": {
+          "archivo": "fd_envipe2023.pdf",
+          "bytes": 2980669,
+          "id": "envipe2023_fd_pdf",
+          "sha256": "743c260e89a6c5d6f2fcc6eac0f1884c40bc6b437164b34e13ba6fe1caf1be63"
+        },
+        "dictionary_encoding": "latin-1",
+        "dictionary_member": "tmod_vic_envipe2023/diccionario_de_datos/diccionario_de_datos_tmod_vic_envipe2023.csv",
+        "dictionary_member_sha256": "4ab1747a38defdc1373165cf36df24e6c450d702f40cd7e43bbf179eb629dfc8",
+        "dictionary_variables": {
+          "BP1_23": {
+            "longitud": "2",
+            "nombre": "Razón principal de la no denuncia",
+            "rango": "b",
+            "tipo": "Numérico"
+          },
+          "BPCOD": {
+            "longitud": "2",
+            "nombre": "Códigos para delitos",
+            "rango": "15",
+            "tipo": "Numérico"
+          },
+          "EST_DIS": {
+            "longitud": "3",
+            "nombre": "Estrato de diseño muestral",
+            "rango": "001, ,595",
+            "tipo": "Alfanumérico"
+          },
+          "FAC_DEL": {
+            "longitud": "6",
+            "nombre": "Factor delito",
+            "rango": "000001, ,999999",
+            "tipo": "Numérico"
+          },
+          "FAC_DEL_AM": {
+            "longitud": "6",
+            "nombre": "Factor delito en área metropolitana",
+            "rango": "000001, ,999999",
+            "tipo": "Numérico"
+          },
+          "ID_DEL": {
+            "longitud": "21",
+            "nombre": "Identificador del delito",
+            "rango": "0100001.01.01.01.01.1, ,3299999.99.99.30.15.5",
+            "tipo": "Alfanumérico"
+          },
+          "ID_PER": {
+            "longitud": "16",
+            "nombre": "Identificador de la persona",
+            "rango": "0100001.01.01.01, ,3299999.99.99.30",
+            "tipo": "Alfanumérico"
+          },
+          "UPM_DIS": {
+            "longitud": "5",
+            "nombre": "Unidad primaria de muestreo",
+            "rango": "00001, ,99999",
+            "tipo": "Alfanumérico"
+          }
+        },
+        "dwelling_encoding": "latin-1",
+        "dwelling_member": "tvivienda_envipe2023/conjunto_de_datos/conjunto_de_datos_tvivienda_envipe2023.csv",
+        "dwelling_member_sha256": "8dfeacb9fc752df7b989b0ec6bd83995b4f6a9910ff02e9e16b9f176966394bd",
+        "official_design": {
+          "official_sample_dwellings": 102362,
+          "retrieval_sha256_2026_09_11": "2031d7d5a0999c5356b63fe151c7e049fe5921a133bf6234b0f933dcb166f745",
+          "upc": "889463912637",
+          "url": "https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463912637.pdf"
+        },
+        "payload_id": "envipe2023_csv",
+        "questionnaire": {
+          "archivo": "cuest_modulo_envipe2023.pdf",
+          "bytes": 947099,
+          "id": "envipe2023_cuest_modulo_pdf",
+          "sha256": "98d3c632cc038c4a9a1ff129efb63f6d1ac786f46e4886aaaf5aff92b4cdf5b4"
+        },
+        "questionnaire_reactive": "pregunta 1.23, página PDF 4; códigos 01..09 y 99 contrastados con catálogo"
+      },
+      "survey": 2023,
+      "verdicts": {
+        "aptitud_inferencial": "NO-ACREDITADA-TVIVIENDA-NO-COINCIDE-CON-MUESTRA-OFICIAL",
+        "concordancia_numerica": "CONCUERDA",
+        "validacion_punto": "VALIDADO"
+      }
+    },
+    {
+      "cell": "CIV-M-13",
+      "comparison": {
+        "concordancia_numerica": "CONCUERDA",
+        "differences_validator_minus_producer": {
+          "cv": 0.0,
+          "denominator": 0.0,
+          "ic_hi": -2.4797386366515184e-12,
+          "ic_lo": 2.4797386366515184e-12,
+          "n": 0,
+          "n_psu": 0,
+          "n_singleton_strata": 0,
+          "n_strata": 0,
+          "point": 0.0,
+          "se": 0.0
+        },
+        "historical_reconstructed": {
+          "cv": 0.027703433128418952,
+          "ic_hi": 0.20517878146854138,
+          "ic_lo": 0.18404482283332022,
+          "n_psu": 9654,
+          "n_singleton_strata": 20,
+          "n_strata": 600,
+          "se": 0.005391415046889411
+        },
+        "producer": {
+          "cv": 0.027703433128418952,
+          "denominator": 29887247.0,
+          "ic_hi": 0.20517878147102112,
+          "ic_lo": 0.18404482283084048,
+          "n": 33108,
+          "n_psu": 9654,
+          "n_singleton_strata": 20,
+          "n_strata": 600,
+          "path": "data/corrida0/CALC-R-CIV-M-13/resultados.json",
+          "point": 0.1946118021509308,
+          "se": 0.005391415046889411,
+          "sha256": "a292cfa93d1d9796d75a346031b00f1e8f4738f829d73e13df07605d6549aadb"
+        }
+      },
+      "design_diagnostics": {
+        "domain_aware_tvivienda": {
+          "cv": 0.027724023702384835,
+          "ic_hi": 0.2051866353748867,
+          "ic_lo": 0.18403696892697488,
+          "n_psu": 13080,
+          "n_singleton_strata": 0,
+          "n_strata": 607,
+          "se": 0.005395422215596233,
+          "variance": 2.9110580884549362e-05
+        },
+        "n_singletons_tmod_completo": 19,
+        "n_singletons_tvivienda": 0,
+        "n_singletons_u_r": 20,
+        "n_singletons_u_r_creados_por_restriccion": 20,
+        "n_singletons_u_r_persisten_tvivienda": 0,
+        "n_upm_adicionales_tmod_vs_u_r": 442,
+        "n_upm_adicionales_tvivienda_vs_u_r": 3426,
+        "n_upm_tmod_ausentes_tvivienda": 0,
+        "n_upm_tmod_completo": 10096,
+        "n_upm_tvivienda": 13080,
+        "n_upm_u_r": 9654,
+        "n_upm_u_r_ausentes_tvivienda": 0,
+        "official_sample_dwellings": 102287,
+        "perfil_singletons_u_r": [
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 9,
+            "upm_en_tmod_completo": 1,
+            "upm_en_tvivienda": 2
+          },
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 5,
+            "upm_en_tmod_completo": 1,
+            "upm_en_tvivienda": 3
+          },
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 1,
+            "upm_en_tmod_completo": 1,
+            "upm_en_tvivienda": 4
+          },
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 2,
+            "upm_en_tmod_completo": 1,
+            "upm_en_tvivienda": 5
+          },
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 1,
+            "upm_en_tmod_completo": 1,
+            "upm_en_tvivienda": 8
+          },
+          {
+            "clasificacion": "creado_por_restriccion_u_r",
+            "n_estratos": 2,
+            "upm_en_tmod_completo": 2,
+            "upm_en_tvivienda": 2
+          }
+        ],
+        "tvivienda": {
+          "n_distinct_id_viv": 88020,
+          "n_missing_design": 0,
+          "n_repeated_id_viv": 0,
+          "n_rows": 88020
+        }
+      },
+      "fact_year": 2023,
+      "measurement": {
+        "bp1_23_frequencies": {
+          "01": 1796,
+          "02": 254,
+          "03": 4607,
+          "04": 11768,
+          "05": 2926,
+          "06": 3923,
+          "07": 3665,
+          "08": 915,
+          "09": 3254,
+          "99": 244,
+          "BLANCO": 4262
+        },
+        "bpcod_frequencies": {
+          "01": 1035,
+          "02": 5712,
+          "03": 4732,
+          "04": 4084,
+          "05": 3951,
+          "06": 1608,
+          "07": 3278,
+          "08": 2788,
+          "09": 4468,
+          "10": 2866,
+          "11": 1256,
+          "12": 67,
+          "13": 1521,
+          "14": 94,
+          "15": 154
+        },
+        "funnel": {
+          "descarta_bp1_23_99": 244,
+          "descarta_bp1_23_blanco": 4262,
+          "descarta_bp1_23_otro": 0,
+          "descarta_bpcod_fuera_01_15": 0,
+          "descarta_fac_del_no_positivo_o_no_finito": 0,
+          "filas_tabla": 37614,
+          "filas_tabla_sin_diseno": 0,
+          "incluida_sin_diseno": 0,
+          "n_u_r": 33108,
+          "pasa_bp1_23_01_09": 33108,
+          "pasa_bpcod_01_15": 37614,
+          "pasa_fac_del": 33108
+        },
+        "max_delitos_por_persona": 24,
+        "n": 33108,
+        "n_id_del_distintos": 33108,
+        "n_id_del_repetidos": 0,
+        "n_personas": 19071,
+        "n_personas_con_varios_delitos": 6900,
+        "point": 0.1946118021509308,
+        "point_decimal": "0.19461180215093079667056654632659876635676748681469",
+        "unit": "DELITO",
+        "weighted_denominator": "29887247",
+        "weighted_numerator": "5816411"
+      },
+      "source": {
+        "archive": "envipe2024_csv.zip",
+        "archive_bytes": 17837779,
+        "archive_sha256": "90776b2fab6e3666dad1cb5f5f3eb7d6a7699dbfefd4f8f04f07fb01e61a6fb2",
+        "catalog_bp1_23": {
+          "01": "Por miedo al (a la) agresor(a)",
+          "02": "Por miedo a que lo (la) extorsionaran",
+          "03": "Delito de poca importancia",
+          "04": "Pérdida de tiempo",
+          "05": "Trámites largos y difíciles",
+          "06": "Desconfianza en la autoridad",
+          "07": "No tenía pruebas",
+          "08": "Por actitud hostil de la autoridad",
+          "09": "Otra",
+          "99": "No sabe / no responde"
+        },
+        "catalog_encoding": "utf-8-sig",
+        "catalog_member": "tmod_vic_envipe2024/catalogos/bp1_23.csv",
+        "catalog_member_sha256": "f6d5c8b979853f727df6e3b9ae63749c9ec37b7dcb56fd2aebecdf7c8ce19390",
+        "data_encoding": "utf-8-sig",
+        "data_member": "tmod_vic_envipe2024/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2024.csv",
+        "data_member_sha256": "74fa26a0b27452db87fa136ebb2678e54746cb0692cf1c4e6d14e3abda48b262",
+        "descriptor": {
+          "archivo": "fd_envipe2024.pdf",
+          "bytes": 3087144,
+          "id": "envipe2024_fd_pdf",
+          "sha256": "f8d72038595746ceac21e5096462b277e757d7501bd3a1b61ac86bf9fc0d57d5"
+        },
+        "dictionary_encoding": "utf-8-sig",
+        "dictionary_member": "tmod_vic_envipe2024/diccionario_de_datos/diccionario_de_datos_tmod_vic_envipe2024.csv",
+        "dictionary_member_sha256": "8eca6eb0cb557fe2e92af02da9dc6c6098872cead1cf0c0d06e7682c3039d078",
+        "dictionary_variables": {
+          "BP1_23": {
+            "longitud": "2",
+            "nombre": "Razón principal de la no denuncia",
+            "rango": "b",
+            "tipo": "Numérico"
+          },
+          "BPCOD": {
+            "longitud": "2",
+            "nombre": "Códigos para delitos",
+            "rango": "15",
+            "tipo": "Carácter"
+          },
+          "EST_DIS": {
+            "longitud": "3",
+            "nombre": "Estrato de diseño muestral",
+            "rango": "001,…,607",
+            "tipo": "Carácter"
+          },
+          "FAC_DEL": {
+            "longitud": "6",
+            "nombre": "Factor delito",
+            "rango": "000001,…,999999",
+            "tipo": "Numérico"
+          },
+          "FAC_DEL_AM": {
+            "longitud": "6",
+            "nombre": "Factor delito en área urbana de interés",
+            "rango": "000001,…,999999",
+            "tipo": "Numérico"
+          },
+          "ID_DEL": {
+            "longitud": "21",
+            "nombre": "Identificador del delito",
+            "rango": "0100001.01.01.01.01.1,…,3299999.99.99.30.15.5",
+            "tipo": "Alfanumérico"
+          },
+          "ID_PER": {
+            "longitud": "16",
+            "nombre": "Identificador de la persona",
+            "rango": "0100001.01.01.01,…,3299999.99.99.30",
+            "tipo": "Alfanumérico"
+          },
+          "UPM_DIS": {
+            "longitud": "7",
+            "nombre": "Unidad primaria de muestreo",
+            "rango": "0000001,…,9999999",
+            "tipo": "Carácter"
+          }
+        },
+        "dwelling_encoding": "utf-8-sig",
+        "dwelling_member": "tvivienda_envipe2024/conjunto_de_datos/conjunto_de_datos_tvivienda_envipe2024.csv",
+        "dwelling_member_sha256": "51b767ea2682ca1d91ae208a84d3c3e7f50181ebf9fc24af47353615284efd8e",
+        "official_design": {
+          "official_sample_dwellings": 102287,
+          "retrieval_sha256_2026_09_11": "a366d2a2fdccad18991de5d0a447341267808948018e3f3ec8bbed8d2d6dc6f6",
+          "upc": "889463920014",
+          "url": "https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463920014.pdf"
+        },
+        "payload_id": "envipe2024_csv",
+        "questionnaire": {
+          "archivo": "cuest_modulo_envipe2024.pdf",
+          "bytes": 933605,
+          "id": "envipe2024_cuest_modulo_pdf",
+          "sha256": "7628127d5e9bd4424737f7a8cb60bbded28e21c2242d1f412c86367e03836e28"
+        },
+        "questionnaire_reactive": "pregunta 1.23, página PDF 4; códigos 01..09 y 99 contrastados con catálogo"
+      },
+      "survey": 2024,
+      "verdicts": {
+        "aptitud_inferencial": "NO-ACREDITADA-TVIVIENDA-NO-COINCIDE-CON-MUESTRA-OFICIAL",
+        "concordancia_numerica": "CONCUERDA",
+        "validacion_punto": "VALIDADO"
+      }
+    }
+  ]
+}
