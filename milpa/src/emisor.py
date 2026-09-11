@@ -70,6 +70,7 @@ class Salida:
     dominio_elegible: tuple[tuple[str, object], ...] = ()
     complemento_de: str | None = None
     resultado_id: str | None = None
+    resultado_generacion: str | None = None
     uso_motor: str | None = None
     rol_uso: str | None = None
 
@@ -117,6 +118,7 @@ def cargar_reglas(ruta: Path = RUTA_TRAMITE) -> tuple[Regla, ...]:
                 (e.get("dominio_elegible") or {}).items())),
             complemento_de=e.get("complemento_de"),
             resultado_id=e.get("corrida0_resultado_id"),
+            resultado_generacion=e.get("corrida0_generacion"),
             uso_motor=e.get("uso_motor"),
             rol_uso=e.get("rol_uso"),
         ) for e in r.get("entonces", []))
@@ -128,6 +130,7 @@ def cargar_reglas(ruta: Path = RUTA_TRAMITE) -> tuple[Regla, ...]:
                 (e.get("dominio_elegible") or {}).items())),
             complemento_de=e.get("complemento_de"),
             resultado_id=e.get("corrida0_resultado_id"),
+            resultado_generacion=e.get("corrida0_generacion"),
             uso_motor=e.get("uso_motor"),
             rol_uso=e.get("rol_uso"),
         ) for e in r.get("transiciones", []))
@@ -498,6 +501,8 @@ class PrediccionM:
     regla_id: str | None = None
     estado: str = "EMITE"
     derivado_de: str | None = None
+    resultado_id: str | None = None
+    resultado_generacion: str | None = None
     dominio_elegible: tuple[tuple[str, object], ...] = ()
     rol_uso: str | None = None
     uso_motor: str | None = None
@@ -540,6 +545,11 @@ def emitir_binaria(regla: Regla, conducta: str) -> PrediccionM:
         return PrediccionM(
             "binaria", valor_punto=punto, valor_categoria=s.conducta,
             clase=s.clase, regla_id=regla.id, derivado_de=s.complemento_de,
+            resultado_id=(padre.resultado_id if s.complemento_de else
+                          s.resultado_id),
+            resultado_generacion=(padre.resultado_generacion
+                                  if s.complemento_de else
+                                  s.resultado_generacion),
             dominio_elegible=s.dominio_elegible, rol_uso=s.rol_uso,
             uso_motor=s.uso_motor)
     return PrediccionM("binaria", estado="NO-EMITE", regla_id=regla.id,
@@ -564,6 +574,8 @@ def emitir_binaria_en_contexto(regla: Regla, conducta: str,
         return PrediccionM(
             "binaria", estado="NO_COVERAGE", regla_id=regla.id,
             valor_categoria=s.conducta, dominio_elegible=s.dominio_elegible,
+            resultado_id=s.resultado_id,
+            resultado_generacion=s.resultado_generacion,
             rol_uso=s.rol_uso, uso_motor=s.uso_motor,
             detalle=f"fuera del dominio elegible: requiere {faltan!r}")
     permitidos_proxy = {"baseline", "consulta_descriptiva", "escenario"}
@@ -573,6 +585,8 @@ def emitir_binaria_en_contexto(regla: Regla, conducta: str,
         return PrediccionM(
             "binaria", estado="NO_COVERAGE", regla_id=regla.id,
             valor_categoria=s.conducta, dominio_elegible=s.dominio_elegible,
+            resultado_id=s.resultado_id,
+            resultado_generacion=s.resultado_generacion,
             rol_uso=s.rol_uso, uso_motor=s.uso_motor,
             detalle=(f"uso {uso_solicitado!r} no permitido para "
                      f"rol_uso={s.rol_uso!r}; permitidos="
@@ -595,11 +609,15 @@ def emitir_transicion(regla: Regla, evento: str, contexto: dict) -> PrediccionM:
         return PrediccionM(
             "binaria", estado="NO_COVERAGE", regla_id=regla.id,
             valor_categoria=s.conducta, dominio_elegible=s.dominio_elegible,
+            resultado_id=s.resultado_id,
+            resultado_generacion=s.resultado_generacion,
             rol_uso=s.rol_uso, uso_motor=s.uso_motor,
             detalle=f"fuera del dominio elegible: requiere {faltan!r}")
     return PrediccionM(
         "binaria", valor_punto=s.p, valor_categoria=s.conducta,
         clase=s.clase, regla_id=regla.id,
+        resultado_id=s.resultado_id,
+        resultado_generacion=s.resultado_generacion,
         dominio_elegible=s.dominio_elegible, rol_uso=s.rol_uso,
         uso_motor=s.uso_motor)
 
