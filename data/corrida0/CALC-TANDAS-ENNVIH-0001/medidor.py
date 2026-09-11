@@ -57,9 +57,31 @@ WAVES = {
 
 def _read_member(path, member):
     with zipfile.ZipFile(path) as zf:
-        return pd.read_stata(io.BytesIO(zf.read(member)),
-                             convert_categoricals=False,
-                             preserve_dtypes=False)
+        df = pd.read_stata(io.BytesIO(zf.read(member)),
+                           convert_categoricals=False,
+                           preserve_dtypes=False)
+    if "folio" in df and "ls" in df:
+        def key(value, width):
+            if pd.isna(value):
+                return ""
+            if isinstance(value, (int, float, np.integer, np.floating)):
+                if not float(value).is_integer():
+                    raise ValueError(f"llave numerica no entera: {value!r}")
+                return str(int(value)).zfill(width)
+            raw = str(value).strip()
+            return raw.zfill(width) if raw.isdigit() else raw
+        df["folio"] = df["folio"].map(lambda value: key(value, 8))
+        df["ls"] = df["ls"].map(lambda value: key(value, 2))
+    if "fac_3b" in df:
+        rows = []
+        for (folio, ls), group in df.groupby(["folio", "ls"], sort=False):
+            positive = sorted(set(_num(group["fac_3b"]).dropna().loc[lambda x: x > 0]))
+            if len(positive) > 1:
+                raise ValueError(f"ponderadores positivos ambiguos para {(folio, ls)}")
+            rows.append({"folio": folio, "ls": ls,
+                         "fac_3b": positive[0] if positive else 0.0})
+        df = pd.DataFrame(rows, columns=["folio", "ls", "fac_3b"])
+    return df
 
 
 def _num(s):

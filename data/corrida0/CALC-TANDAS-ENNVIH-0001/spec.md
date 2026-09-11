@@ -23,8 +23,15 @@ una representa su propio periodo y población puntual.
 
 El cruce dentro de cada ola usa exclusivamente la identidad oficial
 `folio + ls` de esa ola entre `iiib_cr.dta`, `iiib_portad.dta` y el ponderador
-del Libro IIIB. `pid_link` no se usa. Duplicados o falta de cobertura de una
-fila de crédito en portada/ponderador abortan la corrida.
+del Libro IIIB. `pid_link` no se usa. Las llaves se canonizan como texto
+(`folio` a 8 dígitos y `ls` a 2 en 2002/2005; las llaves alfanuméricas 2009 se
+conservan). El primer intento, posterior al commit de congelamiento, abortó
+antes de producir cifras porque 2002 guarda la misma llave numérica en crédito
+y textual con ceros en ponderadores. El diagnóstico posterior mostró además
+duplicados exactos de llave en ponderadores 2005/2009: se colapsan sólo si hay
+cero o un único valor positivo distinto de `fac_3b`; más de uno aborta. Esta
+corrección de representación no depende de resultados. Duplicados restantes o
+falta de cobertura de una fila de crédito en portada/ponderador abortan.
 
 ## Cortes mínimos
 
@@ -69,4 +76,3 @@ reputación, turno, cuota incumplida, sanción ni causalidad; `rg08_11` queda
 fuera porque es una expectativa hipotética. Su uso permitido en R8.2 es un
 escenario/base de prevalencia de participación y de exposición potencial al
 mecanismo, sujeto a firma del objeto. No cambia probabilidades del motor.
-
