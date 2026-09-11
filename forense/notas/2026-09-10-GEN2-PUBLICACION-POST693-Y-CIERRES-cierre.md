@@ -29,3 +29,16 @@ La lectura seca posterior de corridas, resultados y usos fue estable. El hash ag
 - `python3 tests/test_cierre_acto.py`: 8 pruebas, 0 fallos.
 - `python3 tests/check.py --baseline`: línea base VERDE; 3 FAIL históricos y 2 632 WARN, ninguna entrada nueva.
 - `python3 tools/corrida0.py registro`: seco estable, sin diferencia en 150/3 335/207 filas.
+
+## Adenda posterior de mesa
+
+Después del merge de PR #696, mesa remitió `ADENDA-09-CIERRES-YA-ACREDITADOS`. La conciliación administrativa cierra cuatro filas cuyos productos ya estaban acreditados antes de este acto, sin reejecutar cálculos ni regenerar vistas:
+
+| obligación | evidencia reutilizada | cierre acotado / residual conservado |
+|---|---|---|
+| `NC-0093` | PR #692; `CALC-ENVIPE-SERIE-2022`; serie anual 2010–2024 | medición 2022 cerrada; `NC-0155` conserva validación independiente |
+| `NC-0101` | PR #692; ocho CALC sellados, 40/40 RESULT por ola | cálculo de las ocho olas cerrado; no se vuelven a pedir datos |
+| `NC-0087` | PR #692; producto descriptivo contiguo 15/15 | hueco descriptivo cerrado; no acredita transferencia causal ni adjudicación del corte informativo |
+| `NC-0124` | PR #691; D04, citas en `milpa/tramite.yaml` y procedencia | adopción A/A cerrada; `NC-0126` conserva el límite del reactivo y `NC-0154` preservó publicación hasta #696 |
+
+Los nueve campos históricos anteriores a `estado` permanecen verbatim; sólo se actualizó `estado` y se añadieron `cerrado_por` y `fecha_cierre`. No se tocaron `NC-0129`/`NC-0110`, reservadas al encargo 14, ni las filas propias de 14–16.
