@@ -1,3 +1,9 @@
+ESTADO: CONSUMIDO — PR #696; la copia canónica de ejecución está archivada en `forense/encargos/2026-09-10-GEN2-PUBLICACION-POST693-Y-CIERRES.md`.
+
+BITÁCORA: PR #694 encoló esta copia después del arranque y del commit 0-bis del acto. PR #696 publicó las vistas, cerró las obligaciones acreditadas y dejó los residuales expresos. Se conserva el cuerpo recibido verbatim debajo de esta cabecera; no lanzar una segunda ejecución. El ejecutor no fusionó el PR.
+
+---
+
 # ENCARGO · GEN2-PUBLICACION-POST693-Y-CIERRES
 
 ENTORNO: CAJA

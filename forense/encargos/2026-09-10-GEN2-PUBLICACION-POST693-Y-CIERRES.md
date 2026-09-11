@@ -1,51 +1,50 @@
-# ENCARGO · GEN2-F5-APRENDIZAJES-Y-SUCESOR
+# ENCARGO · GEN2-PUBLICACION-POST693-Y-CIERRES
 
-ENTORNO: NUBE
-COMPUERTA: PR #687, #689 y #691 fusionados; snapshots y salidas de TRIADA disponibles.
-RAMA: acto/gen2-f5-aprendizajes-sucesor
-MODELOS: cero capturas nuevas, cero llamadas a Claude u otro modelo.
+ENTORNO: CAJA
+COMPUERTA: PR #690 y PR #693 fusionados; comprobar por producto y ascendencia.
+RAMA: acto/gen2-publicacion-post693
+MODELOS: cero llamadas nuevas.
 
 ## Resultado útil
 
-Explicar qué parte del error observado puede orientar la próxima mejora del motor y qué permitiría cubrir las dos celdas con abstención persistente. Entregar un siguiente experimento propuesto con pregunta y criterio de parada concretos. **No repetir las 224 llamadas, no cambiar el veredicto de TRIADA-0002 y no abrir F6 por inferencia.**
+Publicar los cálculos ya terminados y la procedencia de replay sin borrar evidencia histórica. Cerrar NC-0104 y NC-0154 únicamente cuando las tres vistas efectivas estén publicadas. Conciliar dos firmas cuya ejecución ya está probada, sin repetir S6/S12.
 
-## Estado consolidado
+## Premisas verificadas al corte
 
-#687 completó 224/224 capturas: 171 puntos, 53 abstenciones válidas, cero errores técnicos/malformados/de identidad. L_SOLO y M tienen punto en 14/14; L_CORPUS, en 12/14. U3=12/14. MAE en U3: L_SOLO 3.957362 pp, L_CORPUS 3.889026 pp, M 4.986673 pp. Las tres pareadas son INCONCLUSAS; resultado SIN-GANADOR-UNICO. No prueba equivalencia entre brazos ni superioridad general de uno.
+- #690 implementó `fuente_replay` y cerró NC-0141/0148; no publicó las vistas.
+- El seco actual da **64 cambios de campos en 32 corridas**: dos C0D pasarían de NO-REPRODUCE/DISTINTO a REPRODUCE/IDENTICO por un asiento heredado contradictorio; 22 pasarían de REPRODUCE/IDENTICO a NO-VERIFICADO; ocho de REPLICA-RESULTADO/DISTINTO a NO-VERIFICADO por falta de asiento.
+- Vistas publicadas: 147 filas de corridas, 3,209 de resultados, 205 de usos. Derivación actual: 150, 3,335 y 207. Son filas de vistas, no conteos de mediciones científicas. Faltan `CALC-0001-v2`, `CALC-ENIF-0002` y `CALC-TRIADA-0002`; las ocho olas nuevas ENVIPE ya aparecen. Las tres vistas carecen de la columna fuente.
+- FP-361 y FP-363 siguen diciendo ejecución pendiente, aunque #688 cerró NC-0065/0064 y entregó S6 v1.4/S12 v1.2 y CALC-0001-v2.
 
-NC-0152 conserva DIN-M-01 y TRA-M-07: sus 16 respuestas L_CORPUS son abstenciones válidas. No son llamadas faltantes. NC-0146/0147 ya cerraron y el diagnóstico previo #684 no se repite.
+Leer `tools/corrida0.py`, `forense/replay-evidencia.tsv`, las vistas, `forense/notas/2026-09-10-GEN2-PRUEBAS-LIMPIAS-Y-REPLAY-cierre.md`, los cierres de F5, ENIF y SOCIALES-SUCESORAS, y los asientos posteriores pertinentes. No repetir la investigación general de replay ni reabrir #682/#683.
 
-Leer `F5-completa-{resultado,extraccion,plan}-v1_0`, `F5-completa-spec-v1_0.md`, `snapshot-M-triada-v1_0.json`, `universo-triada-v1_4.tsv`, capturas ya archivadas, `CALC-TRIADA-0002` y cierres de #687/#689/#691. Las versiones exactas se resuelven por ruta/hash; el motor vivo posterior no sustituye al M congelado del experimento.
+## Fase 1 · Resolver sólo las transiciones que bloquean
 
-## Fase 1 · Descomponer el resultado existente
+1. Ejecutar `registro` en seco mediante la interfaz existente; recalcular IDs y transiciones actuales. Los 32 son evidencia del corte, no una constante de implementación.
+2. Para cada transición, comprobar la identidad exacta y localizar el comprobante o asiento publicado que la sostiene. La identidad incompleta nunca es comodín. Distinguir una limitación del entorno actual de un cambio real del objeto.
+3. Reutilizar comprobantes estructurados existentes. Cuando sólo exista evidencia histórica publicada con identidad acreditada, registrarla mediante el mecanismo ya existente como **HEREDADO-DEL-REGISTRO-PUBLICADO**, citando commit, archivo/fila, identidad, fecha conocida y alcance. No llamarla verify nuevo ni validación independiente; no completar fechas desconocidas con la fecha actual. Preservar evidencia negativa.
+4. En los dos C0D, resolver la contradicción por evidencia temporal y de identidad: #683 ya trató la transición histórica; no importar el éxito viejo por encima de un negativo posterior. Si requiere reproducción, usar sus entradas congeladas y el procedimiento existente, sin tocar el marcador histórico.
+5. Ejecutar `verify` con corpus sólo donde la evidencia siga faltando o haya una contradicción material. Guardar salida real y los campos de contexto; nunca forzar IDENTICO para publicar. Si el código de proyección contiene un defecto demostrado, corregirlo con fixture mínimo que lo reproduzca, preservando históricos.
 
-Derivar una tabla por celda/familia con R, M congelado, medianas de los dos L, réplicas válidas/abstenciones, errores absolutos y contribución al MAE. Mantener U3 y reportar aparte las dos celdas excluidas. Reconciliar aritméticamente el agregado con el resultado sellado sin ejecutar nuevos CALC de medición ni tocar salidas congeladas.
+Este encargo autoriza regularizar las transiciones individualmente justificadas, no autoriza degradar todas las filas ni pasar todos los IDs a `--lote` para saltarse el guard. Si una identidad no puede acreditarse, aislar su limitación por el mecanismo vigente; no inventar un comprobante. Usar la ruta más corta que conserve evidencia y permita publicar.
 
-Mostrar tamaños de familia: seis celdas cívicas y tres ENIGH relacionadas no son nueve réplicas independientes de un mecanismo. Una descomposición por familia es exploratoria; no adjudicar “ganadores por familia” con n mínimo ni inventar significación post-hoc. Separar error del panel, variación de capturas e incertidumbre del árbitro, que el cálculo actual no integra por completo.
+## Fase 2 · Publicar y comprobar estabilidad
 
-## Fase 2 · Relacionar errores con el uso del motor
+Con demanda y asientos actualizados, derivar nuevamente. Comparar sólo las transiciones autorizadas, declarar el lote explícito y escribir las tres vistas mediante `registro --escribe`. No `--force`, no parche manual de las vistas. Deben aparecer los tres CALC omitidos y sus resultados/usos correspondientes, con fuente propia por corrida/resultado/uso.
 
-Para las contribuciones materiales al error, seguir el parámetro del snapshot M hasta fuente, año, población, evento y transformación. Comparar con los contratos ya corregidos en #689/#691 para distinguir mejora implementada después del snapshot, limitación de fuente y defecto aún vigente. La repetición de un valor M entre celdas puede ser una regla legítima o extrapolación: comprobar el contrato antes de llamarla error de código.
+Repetir una derivación **sin verify ni nuevas escrituras**: debe ser estable, sin borrar evidencias por falta de corpus. Contrastar antes/después de los dos ejes de replay y de los números sellados. La publicación no modifica valores, snapshots, adopciones ni SELLOS. No fijar los conteos del corte en un test.
 
-Entregar como máximo tres acciones priorizadas por resultado esperado: corregir un uso, medir un parámetro pertinente o cambiar el diseño de evaluación. No ajustar M usando los R del mismo panel y después evaluar sobre ellos como prueba nueva. No alterar snapshots. Si se calcula una sensibilidad con el motor actual, rotularla como reanálisis sobre un panel conocido, sin tratarla como confirmación independiente.
+## Fase 3 · Cerrar las obligaciones acreditadas
 
-## Fase 3 · Las dos abstenciones y el diseño sucesor
+Actualizar `ejecutada_en` y enlaces de FP-361/363 con #688 y los artefactos exactos; preservar sus firmas. Conciliar sólo las cabeceras/bitácoras/CONSUMIDO de los siete lotes ya fusionados cuando sigan ofreciendo ejecutar el mismo objeto; no editar sus cuerpos verbatim, y conservar residuales NC-0152/0153/0155/0151. El lote 07 permanece pendiente.
 
-Leer las 16 justificaciones existentes de DIN-M-01/TRA-M-07 y el paquete efectivamente entregado. Clasificar si falta documento, evidencia cuantitativa, definición o si el brazo decide abstenerse aun con acceso correcto. Vincular demandas a NC-0153/adquisición cuando sean el mismo objeto; no generar otra búsqueda general.
-
-Proponer prospectivamente la menor modificación que responda una pregunta nueva: dos celdas pueden bastar para probar acceso/cobertura, pero no completan retrospectivamente el ranking de 14 si cambia tratamiento, modelo o ventana. Si se propone comparación de brazos, explicitar captura contemporánea, presupuesto y condición de estabilidad del modelo; no reciclar controles incompatibles. Definir de antemano éxito, abstención aceptable, límite de reintentos y criterio de parada. Una abstención válida no se arregla forzando una cifra.
-
-## Fase 4 · Producto y residual
-
-Entregar tabla reproducible, figura compacta de contribución al error y nota breve de decisión con el próximo cambio recomendado y qué podría refutarlo. Éste es un diagnóstico técnico de F5, no el informe final del programa ni una firma de D21/F6.
-
-NC-0152 conserva pendiente la cobertura mientras no exista el producto que exige; un diseño propuesto no equivale a capturas ejecutadas. No abrir nuevas llamadas desde este encargo. Si la evidencia favorece aceptar el resultado y trabajar en otro parámetro, decirlo expresamente: el objetivo no es conseguir un ganador a toda costa.
+Cerrar NC-0104 y NC-0154 por publicación efectiva. Una nota que enumere 32 corridas no sustituye este resultado. Si queda un residual real, describir su efecto y la siguiente acción, sin reabrir NC-0140/0145.
 
 ## Perímetro y aceptación
 
-Un script de análisis derivado, sus salidas nuevas en una ruta sucesora y nota/figura; NC-0152 sólo para enlazar el siguiente paso; administración común. Lectura de motor, corpus documental versionado, capturas y resultados; cero microdatos, cambios a extractor, snapshots, medidores sellados o adopciones.
+Toca `tools/corrida0.py` y pruebas pertinentes sólo ante defecto; `forense/replay-evidencia.tsv`; `data/corrida0/{corridas,resultados,usos}.tsv` y demanda si cambió; filas FP/NC y cierres citados; cabeceras de cola del paquete POST685; administración común. No adopciones nuevas ni suite general de limpieza.
 
-Aceptación: agregado reconciliado, errores localizados sin confundir familia con réplica, hasta tres mejoras concretas, dos abstenciones explicadas con evidencia y propuesta prospectiva acotada. Puede ejecutarse ahora en Cloud y en paralelo con todos los trabajos de CAJA. No depende de la publicación global para analizar las salidas selladas.
+Aceptación: tres vistas con fuente; tres CALC faltantes visibles; ninguna evidencia negativa escondida; diff seco posterior estable; números sellados intactos; FP-361/363 dejan de pedir lo ejecutado. Pruebas dirigidas `test_corrida0.py`, `test_cierre_acto.py`, y baseline sobre el PR integrado. La revisión de preparación ya obtuvo 84/84 y 8/8: no presentar esas ejecuciones como prueba del cambio futuro.
 
 ## Contrato común, incluido para ejecutar este archivo por separado
 
@@ -71,18 +70,8 @@ Avanza entre fases ya autorizadas sin pedir confirmación. Termina cuando entreg
 
 ## NO-CORRIDO / RESERVAS
 
-- `NC-0152` permanece ABIERTA: el diseño de 32 posiciones está propuesto,
-  pero no se adquirieron las dos fuentes dirigidas ni se hicieron capturas.
-- La comparación CIV no queda reparada retrospectivamente: exige estimandos
-  M/R alineados por unidad, recorte, códigos y ola.
-- `ADR-463` es el número definitivo tras integrar `origin/main`; `ADR-462`
-  quedó ocupado por `ACTO GEN2-PUBLICACION-POST693-Y-CIERRES`.
-- No se abrió F6, no se modificó M y no se alteró `TRIADA-0002`.
+Ninguno. El lote 07 y `NC-0151`/`NC-0152`/`NC-0153`/`NC-0155` no eran piezas a ejecutar en este acto: el encargo ordena expresamente conservarlos pendientes, y así permanecen.
 
 ## CONSUMIDO
 
-Ejecutado en PR #698 por la rama `acto/gen2-f5-aprendizajes-sucesor`.
-Producto sustantivo: `forense/notas/2026-09-10-GEN2-F5-APRENDIZAJES-Y-SUCESOR-diagnostico.md`
-y `forense/prereg-duelo-v2/F5-aprendizajes-sucesor-v1_0/`. Conserva
-`TRIADA-0002` como `SIN-GANADOR-UNICO`, mantiene NC-0152 abierta y no abre F6.
-El merge pertenece a mesa.
+Ejecutado por `ACTO GEN2-PUBLICACION-POST693-Y-CIERRES` en PR #696: las tres vistas publican `fuente_replay` para 150 corridas, 3 335 resultados y 207 usos; los tres CALC omitidos quedaron visibles; el negativo C0D se preservó; `NC-0104`/`NC-0154` cerraron y `FP-361`/`FP-363` registran su ejecución exacta. Los lotes POST685 01–06 quedaron conciliados como fusionados; lote 07 y `NC-0151`/`0152`/`0153`/`0155` permanecen pendientes. El ejecutor no fusionó el PR: esa decisión pertenece a mesa.

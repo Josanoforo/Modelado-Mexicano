@@ -1,3 +1,12 @@
+ESTADO: CONSUMIDO — PR #691; `CALC-ENIF-0002` sellado y adoptado por dominio;
+NC-0126 y NC-0154 quedaron como residuales al cierre original.
+
+BITÁCORA: ejecución y cierre en
+`forense/encargos/2026-09-10-GEN2-ENIF-POBLACION-Y-ADOPCION.md` y
+`forense/notas/2026-09-10-GEN2-ENIF-POBLACION-Y-ADOPCION-cierre.md`.
+
+──── CUERPO VERBATIM RECIBIDO DE DIRECCIÓN ────
+
 # ENCARGO · GEN2-ENIF-POBLACION-Y-ADOPCION
 
 ## A/A → no trabajadores → uso poblacional

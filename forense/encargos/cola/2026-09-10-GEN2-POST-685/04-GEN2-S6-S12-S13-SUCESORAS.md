@@ -1,3 +1,12 @@
+ESTADO: CONSUMIDO — PR #688; S6 v1.4, S12 v1.2, S13 v1.1 y
+`CALC-0001-v2` entregados; NC-0065/0064/0043 cerradas.
+
+BITÁCORA: ejecución y cierre en
+`forense/encargos/2026-09-10-GEN2-S6-S12-S13-SUCESORAS.md` y
+`forense/notas/2026-09-10-GEN2-SOCIALES-SUCESORAS-cierre.md`.
+
+──── CUERPO VERBATIM RECIBIDO DE DIRECCIÓN ────
+
 # ENCARGO · GEN2-S6-S12-S13-SUCESORAS
 
 ## Documentar llave → medir receptores → acotar historia

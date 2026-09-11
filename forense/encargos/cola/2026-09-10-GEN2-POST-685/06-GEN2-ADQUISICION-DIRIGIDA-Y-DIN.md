@@ -1,3 +1,12 @@
+ESTADO: CONSUMIDO — PR #693; documentos públicos y dictamen DIN entregados;
+NC-0151 y FP-371 preservan las acciones externas y la decisión de mesa.
+
+BITÁCORA: ejecución y cierre en
+`forense/encargos/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md` y
+`forense/notas/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-Y-DIN-cierre.md`.
+
+──── CUERPO VERBATIM RECIBIDO DE DIRECCIÓN ────
+
 # ENCARGO · GEN2-ADQUISICION-DIRIGIDA-Y-DIN
 
 ## Accesos → tandas académicas → diseño de DIN
@@ -88,5 +97,5 @@ PR: `#693`, rama `acto/gen2-adquisicion-dirigida`, contra `main`. Ejecutado:
 `origin/main` después de los PR #688/#690/#689/#691/#692). Tres documentos públicos
 quedaron en `data_raw`, fuera de Git y registrados por manifiesto; se entregó
 la ruta académica de tandas y el dictamen DIN, se actualizaron cola/FP/NC y se
-preservaron los accesos personales como residuales. Contador: cero. **NO
-fusionado por el ejecutor** — mesa revisa y fusiona.
+preservaron los accesos personales como residuales. Contador: cero. Fusionado
+por mesa en PR #693; el ejecutor no realizó el merge.
