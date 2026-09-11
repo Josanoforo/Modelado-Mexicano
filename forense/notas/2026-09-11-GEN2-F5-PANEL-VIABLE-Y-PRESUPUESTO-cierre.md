@@ -1,8 +1,10 @@
 # ACTO GEN2-F5-PANEL-VIABLE-Y-PRESUPUESTO · cierre
 
-Fecha: 11 de septiembre de 2026.  
+Fecha: 11 de septiembre de 2026.
+
 Entorno: NUBE/WSL2; inventario estático y documentación pública, sin abrir
-valores R reservados, capturar L, emitir M ni llamar modelos.  
+valores R reservados, capturar L, emitir M ni llamar modelos.
+
 Base: `70c64d9ead92384ece0eaf18cbfb53372bb88a74` (`origin/main` al arranque).
 Entrega: [PR #722](https://github.com/Josanoforo/Modelado-Mexicano/pull/722).
 
