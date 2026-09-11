@@ -2,7 +2,7 @@
 
 SHA de redacción: `70c64d9ead92384ece0eaf18cbfb53372bb88a74` (`origin/main`, verificado 11/sep/2026).
 Entorno asignado: **NUBE**; CLI compatible sólo si el inventario documental requiere corpus local. No autoriza microdatos en nube.
-Estado: **VIVO**.
+Estado: **CONSUMIDO**.
 
 ## VERIFICACIÓN DE EXISTENCIA
 
@@ -153,3 +153,22 @@ No firmes DIN, S6, complementos ni deduplicación ENCIG mediante este PR.
 
 Puede arrancar junto con 23, 24 y 26. La versión final del protocolo
 deberá referenciar la interfaz corregida antes de una futura ejecución.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| Ejecutar las 32 llamadas documentales de FP-373 | `DECISIÓN-DE-MESA-PENDIENTE` | no hubo capturas L, gasto ni cierre de `NC-0160`; fuentes identificadas no equivalen a transporte validado | encargo `GEN2-F5-DOCUMENTAL-EJECUCION`, ya preparado en cola y pendiente de firma de Jonás |
+| Ejecutar piloto/confirmación FP-374 o abrir R | `PANEL-RETENIDO-INSUFICIENTE` | 0 familias retenidas ejecutables; `NC-0161/0162` siguen abiertas y F6 no se habilita | ampliación sólo con lista nominal previa de 18 familias × 2 celdas, consumidores M, acceso/diseño, split y snapshot elegible |
+| Consumir la interfaz final del encargo 23 | `DEPENDENCIA-ABIERTA` | PR #720 estaba abierto; su cabeza inspeccionada no se trata como autoridad ni se modifica el emisor | el acto de ejecución registra el commit efectivo fusionado en `main` y adapta el protocolo si la interfaz difiere |
+
+## CONSUMIDO
+
+Consumido el 11/sep/2026 por **[PR #722](https://github.com/Josanoforo/Modelado-Mexicano/pull/722)**,
+rama `acto/gen2-f5-panel-viable-y-presupuesto`, HEAD al abrir el PR
+`25ec8d380690d5ffe8c6d58abf6257dc63482eb4`, contra
+`origin/main=70c64d9ead92384ece0eaf18cbfb53372bb88a74`. Entrega tabla nominal,
+mapa M/fuentes, protocolo y presupuesto coherentes, fichas FP-373/374 y un
+siguiente encargo pendiente de firma. Cierre canónico: `ADR-479`, L0 y rótulo
+`GEN2-F5-PANEL-VIABLE-Y-PRESUPUESTO`. Línea base verde sin entradas nuevas.
+Este asiento registra el PR real; no afirma fusión, firma ni ejecución.
