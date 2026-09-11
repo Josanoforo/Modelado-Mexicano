@@ -1,5 +1,13 @@
 # ENCARGO · GEN2-SONDA-CRON-PRODUCCION
 
+> **ESTADO 2026-09-10:** EJECUTADO en PR #704, ADR-467, por
+> `forense/encargos/2026-09-10-GEN2-SONDA-CRON-PRODUCCION-POST693.md`
+> en la rama `acto/gen2-sonda-cron-produccion`. No es una segunda tarea.
+>
+> **BITÁCORA:** configuración única, prueba de caja y cierre operativo se
+> ejecutaron en la continuación POST693. Este cuerpo se conserva como
+> antecedente; la evidencia y los residuales están en su nota de cierre.
+
 ## Configuración única → prueba de caja → rastro de producción
 
 Fecha de preparación: 10 de septiembre de 2026. Corte verificado: `486eda19944a94d978791eb423559144de98d16b` (merge de #685).
