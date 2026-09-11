@@ -1,0 +1,128 @@
+calc_id: CALC-TANDAS-ENNVIH-0001
+spec_md: spec.md
+spec_md_sha256: 4f2203cf09cd0eeadd3597d30d20eb304d952480c4c68e1414e6c5cc07918bca
+script: data/corrida0/CALC-TANDAS-ENNVIH-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: MEDICION-DESCRIPTIVA-MULTIOLA
+  cuenta_gen2: NO-SIN-FIRMA-DE-OBJETO
+  validacion_independiente: TABULACION-CODEBOOK
+  medidor_ejecutado_al_congelar: "NO; tres intentos de run abortaron antes de producir cifras: representacion de folio, ausencia esperable de factor puntual y discrepancia de una observacion contra codebook 2009"
+  regla_relacionada: R8.2
+  adopcion_motor: NO-SIN-FIRMA
+
+inputs:
+  - {id: ennvih1_2002_hogar_dta, origen: manifiesto}
+  - {id: ennvih1_2002_ponderador, origen: manifiesto}
+  - {id: ennvih1_2002_hogar_q, origen: manifiesto}
+  - {id: ennvih1_2002_guia, origen: manifiesto}
+  - {id: ennvih2_2005_hogar_dta, origen: manifiesto}
+  - {id: ennvih2_2005_ponderador_transversal, origen: manifiesto}
+  - {id: ennvih2_2005_hogar_q, origen: manifiesto}
+  - {id: ennvih2_2005_guia, origen: manifiesto}
+  - {id: ennvih3_2009_hogar_dta, origen: manifiesto}
+  - {id: ennvih3_2009_ponderador_transversal, origen: manifiesto}
+  - {id: ennvih3_2009_hogar_q, origen: manifiesto}
+  - {id: ennvih3_2009_guia, origen: manifiesto}
+  - {id: ennvih3_2009_factores_exp, origen: manifiesto}
+
+variables:
+  - {archivo: iiib_cr.dta, variable: cr04, rol: "participacion en tanda en ultimos 12 meses", codigos: "1=si; 3=no; otros/falta excluidos"}
+  - {archivo: iiib_cr.dta, variable: cr05a_1, rol: "2002/2005 indicador de monto aportado", codigos: "1=monto; 8=NS"}
+  - {archivo: iiib_cr.dta, variable: cr05a_2, rol: "2002/2005 monto aportado", codigos: "pesos nominales"}
+  - {archivo: iiib_cr.dta, variable: cr05b_1, rol: "2002/2005 indicador de monto recibido", codigos: "1=monto; 8=NS"}
+  - {archivo: iiib_cr.dta, variable: cr05b_2, rol: "2002/2005 monto recibido", codigos: "pesos nominales"}
+  - {archivo: iiib_cr.dta, variable: cr05c_1, rol: "2002/2005 indicador de monto por recibir", codigos: "1=monto; 8=NS"}
+  - {archivo: iiib_cr.dta, variable: cr05c_2, rol: "2002/2005 monto por recibir", codigos: "pesos nominales"}
+  - {archivo: iiib_cr.dta, variable: cr05_1, rol: "2009 indicador de monto recibido o por recibir", codigos: "1=monto"}
+  - {archivo: iiib_cr.dta, variable: cr05_2, rol: "2009 monto recibido o por recibir", codigos: "pesos nominales"}
+  - {archivo: iiib_cr.dta, variable: cr05a_1, rol: "2009 unidad de duracion", codigos: "1=dias; 2=semanas; 3=meses; 8=NS"}
+  - {archivo: iiib_cr.dta, variable: cr05a_21, rol: "2009 duracion en dias", codigos: "numero"}
+  - {archivo: iiib_cr.dta, variable: cr05a_22, rol: "2009 duracion en semanas", codigos: "numero"}
+  - {archivo: iiib_cr.dta, variable: cr05a_23, rol: "2009 duracion en meses", codigos: "numero"}
+  - {archivo: iiib_cr.dta, variable: folio, rol: "identidad oficial del hogar dentro de la ola", codigos: "llave"}
+  - {archivo: iiib_cr.dta, variable: ls, rol: "identidad oficial individual dentro de la ola", codigos: "llave"}
+  - {archivo: iiib_portad.dta, variable: edad, rol: "cortes descriptivos y guardia de universo 15+", codigos: "15-120 valido para cortes"}
+  - {archivo: iiib_portad.dta, variable: folio, rol: "identidad oficial del hogar dentro de la ola", codigos: "llave"}
+  - {archivo: iiib_portad.dta, variable: ls, rol: "identidad oficial individual dentro de la ola", codigos: "llave"}
+  - {archivo: ehh02w_b3b.dta, variable: fac_3b, rol: "factor persona Libro IIIB 2002", codigos: "finito y positivo"}
+  - {archivo: ehh05w_b3b.dta, variable: fac_3b, rol: "factor puntual persona Libro IIIB 2005-06", codigos: "finito y positivo"}
+  - {archivo: ehh09w_b3b.dta, variable: fac_3b, rol: "factor puntual persona Libro IIIB 2009-12", codigos: "finito y positivo"}
+
+universo: >-
+  Por ola, personas de 15 anos o mas que respondieron el Libro IIIB, con
+  cr04 en {1,3} y fac_3b puntual de esa ola finito y positivo. Unidad persona.
+  Ventana del reactivo: ultimos 12 meses. Las tres olas se estiman por separado.
+filtros: >-
+  cr04 fuera de {1,3} se cuenta y excluye; fac_3b ausente, no finito o <=0 se
+  cuenta y excluye. Edad invalida solo excluye del corte etario. Montos y
+  duracion no finitos o negativos se cuentan y excluyen; cero no se imputa.
+  Duplicados del ponderador se colapsan si traen como maximo un valor positivo
+  distinto; multiples valores positivos distintos abortan.
+ponderador: >-
+  fac_3b puntual del Libro IIIB y de la misma ola, enlazado por folio+ls.
+  No se usan factores longitudinales porque no se estima entrada/salida.
+transformacion: >-
+  p=sum(fac_3b*1[cr04=1])/sum(fac_3b). Edad: 15-29, 30-49, 50+.
+  Medianas ponderadas por primer valor cuya masa acumulada alcanza 50%.
+  Llaves folio/ls canonizadas como texto con ancho oficial por ola. Duracion
+  2009: dias*1, semanas*7, meses*(365.25/12). No hay deflacion.
+estimando: >-
+  Descriptivo: prevalencia individual de participacion en tanda en los ultimos
+  12 meses, por ola y edad; montos nominales y duracion como secundarios.
+  No identifica conocimiento de organizadora, impago, sancion ni causalidad.
+dependencias_materiales: [numpy, pandas]
+parametros:
+  llave_join: [folio, ls]
+  codigos_cr04: {"si": 1, "no": 3}
+  grupos_edad: [15-29, 30-49, 50+]
+  meses_a_dias: 30.4375
+  metodo_ic: NO-ESTIMABLE-SIN-UPM-ESTRATO-REPLICAS
+  control_codebook: "2002 2469/17333; 2005-06 1505/18952; 2009-12 2497/20960"
+seed: {aplica: false}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: "sumas deterministas en orden de fila; textos y enteros exactos"
+
+resultados:
+  - {id: RESULT-TANDAS-ENNVIH-2002-N-FILAS, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2002-N-VALIDO, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2002-N-SI, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2002-N-RESPUESTA-FALTANTE, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2002-N-PONDERADOR-INVALIDO, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2002-MASA, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-TANDAS-ENNVIH-2002-P-PARTICIPA, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-TANDAS-ENNVIH-2002-P-PARTICIPA-NO-PONDERADA, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-TANDAS-ENNVIH-2002-CONTROL-CODEBOOK, tipo: texto, unidad: veredicto}
+  - {id: RESULT-TANDAS-ENNVIH-2002-METODO-IC, tipo: texto, unidad: metodo}
+  - {id: RESULT-TANDAS-ENNVIH-2002-N-EDAD-FUERA-O-FALTANTE, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2002-CORTES-EDAD-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-TANDAS-ENNVIH-2002-SECUNDARIOS-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-TANDAS-ENNVIH-2005_06-N-FILAS, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2005_06-N-VALIDO, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2005_06-N-SI, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2005_06-N-RESPUESTA-FALTANTE, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2005_06-N-PONDERADOR-INVALIDO, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2005_06-MASA, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-TANDAS-ENNVIH-2005_06-P-PARTICIPA, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-TANDAS-ENNVIH-2005_06-P-PARTICIPA-NO-PONDERADA, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-TANDAS-ENNVIH-2005_06-CONTROL-CODEBOOK, tipo: texto, unidad: veredicto}
+  - {id: RESULT-TANDAS-ENNVIH-2005_06-METODO-IC, tipo: texto, unidad: metodo}
+  - {id: RESULT-TANDAS-ENNVIH-2005_06-N-EDAD-FUERA-O-FALTANTE, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2005_06-CORTES-EDAD-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-TANDAS-ENNVIH-2005_06-SECUNDARIOS-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-TANDAS-ENNVIH-2009_12-N-FILAS, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2009_12-N-VALIDO, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2009_12-N-SI, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2009_12-N-RESPUESTA-FALTANTE, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2009_12-N-PONDERADOR-INVALIDO, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2009_12-MASA, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-TANDAS-ENNVIH-2009_12-P-PARTICIPA, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-TANDAS-ENNVIH-2009_12-P-PARTICIPA-NO-PONDERADA, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-TANDAS-ENNVIH-2009_12-CONTROL-CODEBOOK, tipo: texto, unidad: veredicto}
+  - {id: RESULT-TANDAS-ENNVIH-2009_12-METODO-IC, tipo: texto, unidad: metodo}
+  - {id: RESULT-TANDAS-ENNVIH-2009_12-N-EDAD-FUERA-O-FALTANTE, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-ENNVIH-2009_12-CORTES-EDAD-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-TANDAS-ENNVIH-2009_12-SECUNDARIOS-JSON, tipo: texto, unidad: JSON canonico}

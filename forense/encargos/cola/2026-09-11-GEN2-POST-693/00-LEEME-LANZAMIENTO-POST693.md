@@ -41,7 +41,7 @@ Otro residual concreto: la cartera de #693 espera que se defina la demanda gener
 | [09 · Publicación y cierres](09-GEN2-PUBLICACION-POST693-Y-CIERRES.md) | Tres vistas completas, replay preservado y firmas ejecutadas reflejadas | CLI/CAJA; preparación repo-only posible | Productos ya fusionados |
 | [10 · ENVIPE validación y lectura](10-GEN2-ENVIPE-VALIDACION-Y-LECTURA.md) | Ocho puntos contrastados independientemente y lectura temporal | CLI/CAJA | Corpus ENVIPE; no depende de una nueva adquisición |
 | [11 · Corrupción: unidad y fuente](11-GEN2-CORRUPCION-UNIDAD-Y-FUENTE-GENERAL.md) | Tratamiento de canales ambiguos y demanda general en adquisición | CLI/CAJA; búsqueda/código preparables en Cloud | Corpus ENCIG; definición NC-0153 ya existe |
-| [12 · Tandas: primera medición](12-GEN2-TANDAS-MEDICION-ACADEMICA.md) | Participación/atributos medidos con fuentes mexicanas | CLI/CAJA; documentos preparables en Cloud | Fuentes de #693 y corpus ENNViH |
+| [12 · Tandas: primera medición](../../2026-09-10-GEN2-TANDAS-MEDICION-ACADEMICA.md) | Participación/atributos medidos con fuentes mexicanas; consumido por PR #700 | CLI/CAJA; documentos preparables en Cloud | Fuentes de #693 y corpus ENNViH |
 | [13 · Aprendizajes de F5](13-GEN2-F5-APRENDIZAJES-Y-SUCESOR.md) | Errores por celda, prioridades de mejora y propuesta sucesora | Cloud o CLI | Sólo resultados ya versionados |
 | [07R · SONDA/cron](07R-GEN2-SONDA-CRON-PRODUCCION-POST693.md) | Configuración única y operación atribuible | CLI Windows/WSL | Estado instalado y disponibilidad del ejecutor productivo |
 

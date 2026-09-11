@@ -1,0 +1,175 @@
+{
+ "corrida_id": "CALC-TANDAS-ENNVIH-0001--77338cf7ab3a",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "adopcion_motor": "NO-SIN-FIRMA",
+  "cuenta_gen2": "NO-SIN-FIRMA-DE-OBJETO",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": "NO; tres intentos de run abortaron antes de producir cifras: representacion de folio, ausencia esperable de factor puntual y discrepancia de una observacion contra codebook 2009",
+  "regla_relacionada": "R8.2",
+  "tipo": "MEDICION-DESCRIPTIVA-MULTIOLA",
+  "validacion_independiente": "TABULACION-CODEBOOK"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-11T04:28:25Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 402,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "77338cf7ab3a34c15d7ef795bf8b903f481b755b",
+  "git_rama": "acto/gen2-tandas-medicion-academica",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "77338cf7ab3a34c15d7ef795bf8b903f481b755b",
+ "input_ids": [
+  "ennvih1_2002_hogar_dta",
+  "ennvih1_2002_ponderador",
+  "ennvih1_2002_hogar_q",
+  "ennvih1_2002_guia",
+  "ennvih2_2005_hogar_dta",
+  "ennvih2_2005_ponderador_transversal",
+  "ennvih2_2005_hogar_q",
+  "ennvih2_2005_guia",
+  "ennvih3_2009_hogar_dta",
+  "ennvih3_2009_ponderador_transversal",
+  "ennvih3_2009_hogar_q",
+  "ennvih3_2009_guia",
+  "ennvih3_2009_factores_exp"
+ ],
+ "input_sha256": {
+  "ennvih1_2002_guia": "d38ee15b9c6b4681364e75fefeed27a26b216c5974a2a5d5c4c7c213e2eede53",
+  "ennvih1_2002_hogar_dta": "8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923",
+  "ennvih1_2002_hogar_q": "40af29bd864e967200dbbde2c9744795b33c0a23cdbb19902dd2ecdb7beb3cac",
+  "ennvih1_2002_ponderador": "bbe8006844f715c19b724ebb74f1408c4cfa07e2efdfe7d6748b5182ef214587",
+  "ennvih2_2005_guia": "6d3334e77e1d417bf7be997715c4e38b0c0047e595a948d7bbcd8295255f0ddc",
+  "ennvih2_2005_hogar_dta": "fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a",
+  "ennvih2_2005_hogar_q": "e73709d1de16f4c79cd20a48080dca7ea6ec3a2dcca491837d7f79a00928e894",
+  "ennvih2_2005_ponderador_transversal": "34ee12b0c0d71e76676197089b5fd6048c0fdaa590a220f440d95526b1f4713b",
+  "ennvih3_2009_factores_exp": "cc297561caa5e963fd5a7cd88a8ab0a45726b997015eafbcdac7bcf088fe214d",
+  "ennvih3_2009_guia": "f5e884eb6d923211ea21bf98c5584d87cb04e7540c62d59d6812bbaa28401ba8",
+  "ennvih3_2009_hogar_dta": "00a7649a1839a3523be22612c2fa3555d5e743cf5329d6bcdc432b901e98bd15",
+  "ennvih3_2009_hogar_q": "4eaed9c07a638fdd388901cd84692b9de2f8503ccf5d54da524b660b46fb5340",
+  "ennvih3_2009_ponderador_transversal": "e7929b49a7cd4f1eae5aa17da77c7eea4794d0f26265fbd40dde5e9c8e3ef8b8"
+ },
+ "parametros": {
+  "codigos_cr04": {
+   "no": 3,
+   "si": 1
+  },
+  "control_codebook": "2002 2469/17333; 2005-06 1505/18952; 2009-12 2497/20960",
+  "grupos_edad": [
+   "15-29",
+   "30-49",
+   "50+"
+  ],
+  "llave_join": [
+   "folio",
+   "ls"
+  ],
+  "meses_a_dias": 30.4375,
+  "metodo_ic": "NO-ESTIMABLE-SIN-UPM-ESTRATO-REPLICAS"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-TANDAS-ENNVIH-2002-CONTROL-CODEBOOK",
+  "RESULT-TANDAS-ENNVIH-2002-CORTES-EDAD-JSON",
+  "RESULT-TANDAS-ENNVIH-2002-MASA",
+  "RESULT-TANDAS-ENNVIH-2002-METODO-IC",
+  "RESULT-TANDAS-ENNVIH-2002-N-EDAD-FUERA-O-FALTANTE",
+  "RESULT-TANDAS-ENNVIH-2002-N-FILAS",
+  "RESULT-TANDAS-ENNVIH-2002-N-PONDERADOR-INVALIDO",
+  "RESULT-TANDAS-ENNVIH-2002-N-RESPUESTA-FALTANTE",
+  "RESULT-TANDAS-ENNVIH-2002-N-SI",
+  "RESULT-TANDAS-ENNVIH-2002-N-VALIDO",
+  "RESULT-TANDAS-ENNVIH-2002-P-PARTICIPA",
+  "RESULT-TANDAS-ENNVIH-2002-P-PARTICIPA-NO-PONDERADA",
+  "RESULT-TANDAS-ENNVIH-2002-SECUNDARIOS-JSON",
+  "RESULT-TANDAS-ENNVIH-2005_06-CONTROL-CODEBOOK",
+  "RESULT-TANDAS-ENNVIH-2005_06-CORTES-EDAD-JSON",
+  "RESULT-TANDAS-ENNVIH-2005_06-MASA",
+  "RESULT-TANDAS-ENNVIH-2005_06-METODO-IC",
+  "RESULT-TANDAS-ENNVIH-2005_06-N-EDAD-FUERA-O-FALTANTE",
+  "RESULT-TANDAS-ENNVIH-2005_06-N-FILAS",
+  "RESULT-TANDAS-ENNVIH-2005_06-N-PONDERADOR-INVALIDO",
+  "RESULT-TANDAS-ENNVIH-2005_06-N-RESPUESTA-FALTANTE",
+  "RESULT-TANDAS-ENNVIH-2005_06-N-SI",
+  "RESULT-TANDAS-ENNVIH-2005_06-N-VALIDO",
+  "RESULT-TANDAS-ENNVIH-2005_06-P-PARTICIPA",
+  "RESULT-TANDAS-ENNVIH-2005_06-P-PARTICIPA-NO-PONDERADA",
+  "RESULT-TANDAS-ENNVIH-2005_06-SECUNDARIOS-JSON",
+  "RESULT-TANDAS-ENNVIH-2009_12-CONTROL-CODEBOOK",
+  "RESULT-TANDAS-ENNVIH-2009_12-CORTES-EDAD-JSON",
+  "RESULT-TANDAS-ENNVIH-2009_12-MASA",
+  "RESULT-TANDAS-ENNVIH-2009_12-METODO-IC",
+  "RESULT-TANDAS-ENNVIH-2009_12-N-EDAD-FUERA-O-FALTANTE",
+  "RESULT-TANDAS-ENNVIH-2009_12-N-FILAS",
+  "RESULT-TANDAS-ENNVIH-2009_12-N-PONDERADOR-INVALIDO",
+  "RESULT-TANDAS-ENNVIH-2009_12-N-RESPUESTA-FALTANTE",
+  "RESULT-TANDAS-ENNVIH-2009_12-N-SI",
+  "RESULT-TANDAS-ENNVIH-2009_12-N-VALIDO",
+  "RESULT-TANDAS-ENNVIH-2009_12-P-PARTICIPA",
+  "RESULT-TANDAS-ENNVIH-2009_12-P-PARTICIPA-NO-PONDERADA",
+  "RESULT-TANDAS-ENNVIH-2009_12-SECUNDARIOS-JSON"
+ ],
+ "script_blob_sha256": "9525644232f5539beee13101e72e239fd5cc014fc6e03e21a5ecb0fa86d0263a",
+ "script_path": "data/corrida0/CALC-TANDAS-ENNVIH-0001/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-TANDAS-ENNVIH-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "4f2203cf09cd0eeadd3597d30d20eb304d952480c4c68e1414e6c5cc07918bca",
+ "spec_yaml_sha256": "9c2d10d39542e7e13fcad4ce5fb3afdc4ae2ca06eaafd5f3b90f77b8c2924c7a",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "sumas deterministas en orden de fila; textos y enteros exactos",
+  "tipo": "flotante"
+ }
+}
