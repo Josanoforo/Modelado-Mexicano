@@ -342,6 +342,20 @@ HISTORICOS = {
     "REVISION-ADVERSARIAL-PR649.md",
 }
 
+# Paquete GEN2-POST-723, 11/sep/2026: dos encargos encolados verbatim citan
+# artefactos que viven en sus PR predecesores abiertos (#723 y #722). Son
+# dependencias declaradas del encargo, no archivos omitidos por esta carga.
+# La exencion queda acotada por archivo y basename para no volver globalmente
+# invisible una referencia con el mismo nombre en otro documento.
+_T03_DEPENDENCIAS_PENDIENTES = {
+    "forense/encargos/cola/2026-09-11-GEN2-POST-723/27-GEN2-ENSAFI-MEDICION-DESCRIPTIVA-CON-DISENO.md": {
+        "2026-09-11-GEN2-FUENTES-FINANCIERAS-CONTINUACION-EFECTIVA-cierre.md",
+    },
+    "forense/encargos/cola/2026-09-11-GEN2-POST-723/31-GEN2-F5-DOCUMENTAL-EJECUCION-PARA-FIRMA.md": {
+        "F5-panel-viabilidad-presupuesto-spec-v1_0.md",
+    },
+}
+
 def _normalize_version_dots(name):
     """ADR-36: la plataforma convierte el punto en guion bajo al subir
     (`...-v3.0.md` -> `...-v3_0.md`). Una cita con la convención canónica
@@ -377,6 +391,8 @@ def t03_dangling_refs():
             for mo in re.finditer(r"`([A-Za-z0-9_\-áéíóúñÁÉÍÓÚÑ.]+\.(?:md|yaml))`", l):
                 m = mo.group(1)
                 if m in existing or _normalize_version_dots(m) in existing or m in HISTORICOS:
+                    continue
+                if m in _T03_DEPENDENCIAS_PENDIENTES.get(rel(p), set()):
                     continue
                 if re.match(MARCA_ILUSTRATIVA, l[mo.end():]):
                     continue
@@ -2744,6 +2760,10 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # Paquete GEN2-POST-723, 11/sep/2026: el encargo 29 se carga verbatim y
+    # cita "motor E0 historico" como procedencia. No crea otro rotulo: E0
+    # ya es el habitante MOTOR-3-E0 censado en canon/registro-rotulos.tsv.
+    "forense/encargos/cola/2026-09-11-GEN2-POST-723/29-GEN2-CONSULTA-OPERATIVA-CON-CONTRATO.md",
     # ACTO GEN2-MOTOR-Y-HERENCIA-EXPLICITA, 11/sep/2026: el encargo A.3
     # archivado VERBATIM cita `E0` al distinguir la rebanada matricial de
     # `milpa/src/motor.py` del emisor probabilistico, y la nota de Fase 1
