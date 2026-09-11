@@ -5471,23 +5471,57 @@ def t_cron_ultimo_habil(hoy):
     return hoy - datetime.timedelta(days=desplazo[hoy.weekday()])
 
 
+def t_cron_ultimo_programado(hoy, weekdays):
+    """Último día del calendario estrictamente anterior a ``hoy``."""
+    permitidos = set(weekdays)
+    for dias_atras in range(1, 8):
+        candidato = hoy - datetime.timedelta(days=dias_atras)
+        if candidato.weekday() in permitidos:
+            return candidato
+    raise ValueError("calendario sin día programado en una semana")
+
+
 _T_CRON_INSTALACION = datetime.date(2026, 9, 4)
 
 try:
     from zoneinfo import ZoneInfo as _T_CRON_ZoneInfo
-    _T_CRON_ZONA_MX = _T_CRON_ZoneInfo("America/Mexico_City")
 except Exception:
-    _T_CRON_ZONA_MX = None
+    _T_CRON_ZoneInfo = None
 
 
 def _t_cron_ahora_mx():
-    """(ahora, zona_real) en America/Mexico_City. Si el sistema no tiene
-    base de zonas horarias (`tzdata` ausente), degrada a UTC-6 fijo --
-    declarado en el segundo valor devuelto, nunca silencioso."""
-    if _T_CRON_ZONA_MX is not None:
-        return datetime.datetime.now(_T_CRON_ZONA_MX), True
+    """(ahora, zona_real) en la zona de la configuración compartida."""
+    calendario, degradado = t_cron_calendario_declarado()
+    try:
+        zona = _T_CRON_ZoneInfo(calendario["zona_iana"]) if _T_CRON_ZoneInfo else None
+    except Exception:
+        zona = None
+    if zona is not None:
+        return datetime.datetime.now(zona), not degradado
     return (datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=-6))),
             False)
+
+
+def t_cron_calendario_declarado(_lector=None):
+    """(calendario, degradado), con causa y valores dentro del dict."""
+    if _lector is None:
+        def _lector():
+            ruta_tools = os.path.join(ROOT, "tools")
+            if ruta_tools not in sys.path:
+                sys.path.insert(0, ruta_tools)
+            import adq_config
+            return adq_config.calendario_resuelto()
+    try:
+        valor = _lector()
+        return valor, bool(valor.get("degradada", False))
+    except Exception as e:
+        ruta_tools = os.path.join(ROOT, "tools")
+        if ruta_tools not in sys.path:
+            sys.path.insert(0, ruta_tools)
+        import adq_config
+        valor = adq_config.calendario_resuelto(cfg={})
+        valor["causa"] = f"{type(e).__name__}: {e}"
+        return valor, True
 
 
 def t_cron_gracia_minutos_declarada(_lector=None):
@@ -5505,12 +5539,12 @@ def t_cron_gracia_minutos_declarada(_lector=None):
     `_lector` es el seam de prueba: una función sin argumentos que
     devuelve el valor de configuración o lanza."""
     if _lector is None:
-        def _lector():
-            ruta_tools = os.path.join(ROOT, "tools")
-            if ruta_tools not in sys.path:
-                sys.path.insert(0, ruta_tools)
-            import adq_config
-            return adq_config.obten("t_cron_gracia_minutos")
+        ruta_tools = os.path.join(ROOT, "tools")
+        if ruta_tools not in sys.path:
+            sys.path.insert(0, ruta_tools)
+        import adq_config
+        resuelto = adq_config.calendario_resuelto()
+        return int(resuelto["ventana_observacion_minutos"]), bool(resuelto["degradada"])
     try:
         return int(_lector()), False
     except Exception:
@@ -5522,13 +5556,13 @@ def _t_cron_gracia_minutos():
     return t_cron_gracia_minutos_declarada()[0]
 
 
-def _t_cron_fecha_a_evaluar(hoy):
-    """`hoy` mismo si es día hábil (lunes-viernes); si no, el último hábil
-    (P5: T-CRON evalúa el día en curso con gracia, no siempre "ayer" --
-    detecta un fallo el mismo día en vez de esperar al siguiente)."""
-    if hoy.weekday() < 5:
+def _t_cron_fecha_a_evaluar(hoy, weekdays=None):
+    """Hoy si está programado; si no, el último día del calendario."""
+    if weekdays is None:
+        weekdays = t_cron_calendario_declarado()[0]["weekdays"]
+    if hoy.weekday() in weekdays:
         return hoy
-    return t_cron_ultimo_habil(hoy)
+    return t_cron_ultimo_programado(hoy, weekdays)
 
 
 # ACTO GEN2-SONDA-ADQ-CABLEADO · H1 (9/sep/2026). El vigilante dejaba de
@@ -5581,6 +5615,7 @@ def t_cron_huellas_adq(texto, fecha):
             "motivo": _campo("motivo"),
             "exit": _campo("exit"),
             "publicacion": _campo("publicacion"),
+            "disparador": _campo("disparador"),
             "run_id": _campo("run_id"),
         })
     return huellas
@@ -5711,7 +5746,9 @@ def _t_cron_exitosa(h):
 
 def _t_cron_rotula(h):
     r = h.get("run_id")
-    return f"{h['hhmm']} run_id={r}" if r else f"{h['hhmm']} (huella histórica sin run_id)"
+    base = f"{h['hhmm']} run_id={r}" if r else f"{h['hhmm']} (huella histórica sin run_id)"
+    disparador = h.get("disparador")
+    return f"{base} disparador={disparador}" if disparador else f"{base} (sin disparador histórico)"
 
 
 def t_cron_estado(fecha, prefijos, cuerpo_adq,
@@ -5810,14 +5847,16 @@ def t_cron_estado(fecha, prefijos, cuerpo_adq,
 
 
 def t31_cron():
+    calendario, calendario_degradado = t_cron_calendario_declarado()
     ahora_mx, zona_real = _t_cron_ahora_mx()
     hoy = ahora_mx.date()
-    fecha = _t_cron_fecha_a_evaluar(hoy)
+    fecha = _t_cron_fecha_a_evaluar(hoy, calendario["weekdays"])
     if fecha < _T_CRON_INSTALACION:
         return
     if fecha == hoy:
         gracia, gracia_degradada = t_cron_gracia_minutos_declarada()
-        limite = (datetime.datetime.combine(fecha, datetime.time(7, 30), tzinfo=ahora_mx.tzinfo)
+        hh, mm = map(int, calendario["hora"].split(":"))
+        limite = (datetime.datetime.combine(fecha, datetime.time(hh, mm), tzinfo=ahora_mx.tzinfo)
                   + datetime.timedelta(minutes=gracia))
         if ahora_mx < limite:
             return  # PENDIENTE: no se exige nada todavía, no es señal.
@@ -5840,6 +5879,10 @@ def t31_cron():
         detalle += (" -- ADEMÁS: t_cron_gracia_minutos no se pudo leer de "
                     "data/adq-config.yaml; se usó el default 45 (declarado, "
                     "no silencioso)")
+    if calendario_degradado:
+        detalle += (f" -- ADEMÁS: calendario degradado; causa={calendario.get('causa')}; "
+                    f"valor aplicado={calendario['hora']} {calendario['zona_iana']} "
+                    f"días={','.join(calendario['dias_semana'])}")
     # ACTO ADQ-CRON-V2 · DISPARO-PERSISTENTE-Y-RUNNER-IDEMPOTENTE (P1,
     # 7/sep/2026): `senal()`, no `warn()`. El 7/sep/2026 el WSL de mesa
     # estuvo suspendido en la ventana 07:30 y T-CRON habría marcado ROJO un

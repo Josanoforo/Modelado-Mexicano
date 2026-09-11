@@ -42,6 +42,10 @@
     ejecuta este instalador una vez como Administrador, pasar
     `-LogonType S4U` habilita el disparo también con la sesión cerrada.
 
+    Hora, días y zona vienen de `data/adq-config.yaml:calendario`. El
+    instalador traduce días con el lector común y exige que `tzutil /g`
+    coincida con el id Windows asociado a la zona IANA antes de registrar.
+
     `MultipleInstances=IgnoreNew` es una segunda capa sobre el lock
     propio de `flock` que ya trae `tools/adquiere_cron.sh` (P3) -- si
     Task Scheduler mismo intenta lanzar una segunda instancia mientras la
@@ -69,14 +73,6 @@
     Ruta ABSOLUTA de Linux al clon de mesa dentro de WSL (default:
     /home/pc0/mm-adq).
 
-.PARAMETER HoraLocal
-    Hora de disparo en HH:mm, hora LOCAL del sistema Windows (default
-    07:30). Task Scheduler dispara en hora local del sistema, no lleva
-    zona horaria explícita -- este script asume que el reloj de Windows
-    ya está en America/Mexico_City (mismo supuesto que el resto del
-    programa hace del lado de WSL); `python3 tools/adq_doctor.py`
-    reporta la zona horaria de ambos lados para poder verificarlo.
-
 .PARAMETER NombreTarea
     Ruta completa de la tarea dentro de Task Scheduler (default:
     "\ModeladoMexicano\AdquiereCron"). Debe coincidir con
@@ -91,13 +87,34 @@ param(
     [string]$Distro = "Ubuntu",
     [string]$LinuxUser = "pc0",
     [string]$ClonPath = "/home/pc0/mm-adq",
-    [string]$HoraLocal = "07:30",
     [string]$NombreTarea = "\ModeladoMexicano\AdquiereCron",
     [ValidateSet("Interactive", "S4U")]
     [string]$LogonType = "Interactive"
 )
 
 $ErrorActionPreference = "Stop"
+
+# Una sola autoridad: PowerShell no parsea YAML ni repite calendario. El
+# lector compartido valida, normaliza días y entrega el id Windows asociado
+# a la zona IANA. Un respaldo compatible siempre queda declarado.
+$CalendarioJson = & wsl.exe -d $Distro -u $LinuxUser -- `
+    python3 "$ClonPath/tools/adq_config.py" --calendario-json
+if ($LASTEXITCODE -ne 0) {
+    throw "No se pudo leer data/adq-config.yaml mediante tools/adq_config.py (exit=$LASTEXITCODE)."
+}
+$Calendario = $CalendarioJson | ConvertFrom-Json
+$ZonaWindowsActual = (& tzutil.exe /g).Trim()
+if ($ZonaWindowsActual -ne $Calendario.zona_windows) {
+    throw ("Zona Windows incompatible: actual='{0}', configuración IANA='{1}' " +
+           "requiere Windows='{2}'. No se registra una hora accidental del host." -f `
+           $ZonaWindowsActual, $Calendario.zona_iana, $Calendario.zona_windows)
+}
+if ($Calendario.degradada) {
+    Write-Warning ("CONFIG-DEGRADADA: {0}; valores aplicados: {1} {2}, días={3}, " +
+                   "zona_windows={4}" -f $Calendario.causa, $Calendario.hora,
+                   $Calendario.zona_iana, ($Calendario.dias_semana -join ','),
+                   $Calendario.zona_windows)
+}
 
 $partes = $NombreTarea.Trim('\') -split '\\'
 if ($partes.Count -eq 1) {
@@ -112,15 +129,18 @@ Write-Host "Tarea:            $TaskFolder$TaskName"
 Write-Host "Distro WSL:       $Distro"
 Write-Host "Usuario Linux:    $LinuxUser"
 Write-Host "Clon:             $ClonPath"
-Write-Host "Hora local:       $HoraLocal (asume reloj de Windows ya en America/Mexico_City)"
+Write-Host "Calendario:       $($Calendario.hora) $($Calendario.zona_iana) [$($Calendario.dias_semana -join ',')]"
+Write-Host "Zona Windows:     $ZonaWindowsActual (traducción configurada: $($Calendario.zona_windows))"
 Write-Host "Principal:        $env:USERNAME (LogonType=$LogonType)"
 
-$Argumentos = "-d $Distro -u $LinuxUser -- bash -lc $ClonPath/tools/adquiere_cron.sh"
+$Argumentos = ("-d $Distro -u $LinuxUser -- env ADQ_DISPARADOR=windows-task-scheduler " +
+               "bash -lc $ClonPath/tools/adquiere_cron.sh")
 $Action = New-ScheduledTaskAction -Execute "wsl.exe" -Argument $Argumentos
 
-$HoraParsed = [datetime]::ParseExact($HoraLocal, "HH:mm", $null)
+$HoraParsed = [datetime]::ParseExact($Calendario.hora, "HH:mm", $null)
+$DiasWindows = @($Calendario.dias_windows)
 $Trigger = New-ScheduledTaskTrigger -Weekly `
-    -DaysOfWeek Monday,Tuesday,Wednesday,Thursday,Friday `
+    -DaysOfWeek $DiasWindows `
     -At $HoraParsed
 
 $Settings = New-ScheduledTaskSettingsSet `
@@ -135,9 +155,9 @@ $Principal = New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType $LogonT
 if ($PSCmdlet.ShouldProcess("$TaskFolder$TaskName", "Register-ScheduledTask")) {
     Register-ScheduledTask -TaskName $TaskName -TaskPath $TaskFolder `
         -Action $Action -Trigger $Trigger -Settings $Settings -Principal $Principal `
-        -Description ("ACTO ADQ-CRON-V2 (7/sep/2026) -- disparador autoritativo del runner de " +
-                       "adquisicion (tools/adquiere_cron.sh), reemplaza a cron dentro de WSL. " +
-                       "StartWhenAvailable recupera una hora perdida.") `
+        -Description ("Runner de adquisicion (tools/adquiere_cron.sh). Calendario autoritativo " +
+                       "data/adq-config.yaml: $($Calendario.hora) $($Calendario.zona_iana), " +
+                       "dias=$($Calendario.dias_semana -join ','). StartWhenAvailable habilitado.") `
         -Force | Out-Null
     Write-Host ""
     Write-Host "Tarea registrada/actualizada: $TaskFolder$TaskName"

@@ -17,17 +17,13 @@
 > | **Disparador** | Windows Task Scheduler, tarea `\ModeladoMexicano\AdquiereCron`, instalada por `tools/windows/instala-tarea-adquisicion.ps1` (`ACTO ADQ-CRON-V2`, 7/sep/2026) | La «línea de crontab sugerida» del final de este archivo, y toda mención de `crontab -e` en la caja. El cron de WSL **está retirado**: no se instala, y si sigue instalado en alguna caja es hallazgo a reportar, no el mecanismo vigente. `adq_doctor.check_crontab_legado()` lo vigila por eso. |
 > | **Selección de filas** | `.claude/commands/adquiere.md` §1, «CONTRATO ÚNICO DE ELEGIBILIDAD Y ORDEN», proyectado con `python3 tools/adq_doctor.py --selecciona` | La regla que el prompt de §1 traía por su cuenta («las 5 más antiguas con último intento ≥ 7 días»), que divergía del orden por prioridad de la skill. El prompt ahora **cita** el contrato en vez de repetirlo. |
 > | **Vigilante** | `tests/check.py` T31 tras H1 (evidencia fusionada primaria, filtrado por fecha y `run_id`, `SIN-EVIDENCIA-NO-VERIFICABLE` para lecturas fallidas) y `tools/adq_doctor.py` que lo reusa | La lectura por rama `censo/<fecha>` como requisito, y el `COMPLETO` derivado de un cuerpo `[ADQ]` sin comprobar su fecha. |
-> | **Horario** | Lun-vie 07:30, hora de mesa (`America/Mexico_City`). **Este acto NO lo cambia.** | — |
+> | **Horario** | `data/adq-config.yaml:calendario` es la autoridad única: lun-vie 07:30, `America/Mexico_City` / `Central Standard Time (Mexico)`. Instalador, runner, doctor y T31 lo consumen mediante `tools/adq_config.py`. | Las copias literales de 07:30 y la zona local en las secciones históricas inferiores. |
 >
-> **Advertencia de propagación** (revisión del 9/sep, §4, verbatim:
-> «cualquier cambio futuro de hora debe propagarse a los consumidores, no
-> solo al instalador»). La hora 07:30 vive hoy en TRES sitios que no se leen
-> entre sí: el trigger del instalador de Windows, el `date` local del runner
-> (`tools/adquiere_cron.sh`) y la constante de T31
-> (`tests/check.py::t31_cron`, 07:30 + gracia de `data/adq-config.yaml`).
-> `data/adq-config.yaml` **no** es todavía autoridad uniforme del calendario.
-> Quien cambie el horario cambia los tres, o el vigilante empezará a mentir
-> otra vez. Queda **escrito, no ejecutado**: este acto no toca el horario.
+> **Propagación ejecutada por GEN2-SONDA-CRON-PRODUCCION:** la advertencia
+> anterior queda satisfecha sin cambiar la conducta (lun-vie 07:30). Los
+> consumidores leen una sola autoridad. `claude_timeout_segundos`,
+> `claude_kill_after_segundos` y `calendario.ventana_observacion_minutos`
+> son tres límites distintos y se reportan por separado.
 
 **P3** de `ACTO MAESTRA34-N7 · SKILLS-COLA-Y-ADQ`
 (`forense/encargos/2026-09-01-MAESTRA34-N7-SKILLS-COLA-Y-ADQ.md`, SHA de

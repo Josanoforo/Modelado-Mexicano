@@ -9,7 +9,18 @@
 # regenera un bulk) es una decisión de mesa, igual que cuando vivía
 # cableado en el shell -- este archivo no se auto-actualiza.
 
-zona_horaria: America/Mexico_City
+# Calendario autoritativo. Los consumidores no deben volver a codificar
+# 07:30, lunes-viernes ni traducir la zona por la zona local del host.
+# `zona_windows` es el id que devuelve `tzutil /g` para la misma zona IANA;
+# el instalador se rehusa a registrar si el host usa otra zona.
+calendario:
+  hora: "07:30"
+  dias_semana: [lunes, martes, miercoles, jueves, viernes]
+  zona_iana: America/Mexico_City
+  zona_windows: Central Standard Time (Mexico)
+  # Ventana después de la hora programada antes de exigir la huella. No es
+  # el timeout del ejecutor ni la gracia TERM->KILL.
+  ventana_observacion_minutos: 45
 
 sonda_red_url: https://www.inegi.org.mx/
 
@@ -18,13 +29,11 @@ sonda_red_url: https://www.inegi.org.mx/
 # CLAUDE_TIMEOUT_SEGUNDOS, si está fijada, gana sobre este valor.
 claude_timeout_segundos: 1800
 
-runbook: forense/agente-adquisicion-v1_0.md
+# Gracia entre TERM y KILL del proceso del ejecutor. CLAUDE_KILL_AFTER_SEGUNDOS,
+# si está fijada y es válida, gana sobre este valor.
+claude_kill_after_segundos: 60
 
-# Gracia (P5, T-CRON v2): minutos después de las 07:30 America/Mexico_City
-# antes de exigir que el día ya tenga huella. Cubre el tiempo normal de
-# ejecución del runner (~3-5 min medido el 6/sep) más margen para que un
-# scheduler con jitter no dispare un SIN-HUELLA falso a las 07:31.
-t_cron_gracia_minutos: 45
+runbook: forense/agente-adquisicion-v1_0.md
 
 # PDN · re-baja mensual de los cuatro bulk oficiales (ACTO MAESTRA38-A5 /
 # AUTOMATIZA-2-E4). Ventana de días del mes en que corre la re-baja real;
