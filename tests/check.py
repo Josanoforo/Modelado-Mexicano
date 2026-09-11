@@ -4532,6 +4532,10 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # de procedencia ya censados por la fila ENCARGO-E01..ENCARGO-E11; no
     # introduce otro habitante y no se edita para complacer T25.
     "forense/encargos/2026-09-10-GEN2-F5-COMPLETA.md",
+    # Copia A.3 verbatim ejecutada del lote 02: conserva las mismas menciones
+    # bare E01..E11 de su fuente de cola, ya censadas en la fila E del
+    # registro de rótulos. No es un habitante nuevo ni se edita el verbatim.
+    "forense/encargos/2026-09-10-GEN2-MOTOR-USOS-Y-COMPLEMENTOS.md",
 }
 
 
