@@ -75,6 +75,11 @@ set -euo pipefail
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_DIR"
 
+# La fecha y todas las llamadas posteriores a `date` usan la zona del
+# calendario versionado, aunque la zona local del proceso/host sea otra.
+ADQ_ZONA_INICIAL="$(python3 tools/adq_config.py --calendario-json |
+  python3 -c 'import json,sys; print(json.load(sys.stdin)["zona_iana"])')"
+export TZ="$ADQ_ZONA_INICIAL"
 FECHA="$(date +%Y-%m-%d)"
 LOGDIR="forense/adq-log"
 mkdir -p "$LOGDIR"
@@ -85,6 +90,11 @@ mkdir -p "$ESTADO_DIR"
 HEARTBEAT="${ESTADO_DIR}/heartbeat.json"
 LOCKFILE="${ESTADO_DIR}/adquiere_cron.lock"
 RUN_ID="${FECHA}T$(date +%H%M%S)-$$"
+DISPARADOR="${ADQ_DISPARADOR:-manual}"
+case "$DISPARADOR" in
+  windows-task-scheduler|manual|prueba-programada|fixture) ;;
+  *) DISPARADOR="desconocido" ;;
+esac
 FASE="INICIO"
 # Dueño del lock: 0 hasta que `flock` lo conceda. Solo el dueño escribe el
 # heartbeat activo (H6) -- una segunda invocación rechazada no puede
@@ -169,6 +179,23 @@ lee_config() {
   printf '%s' "$respaldo"
 }
 
+# Resuelve override > YAML > respaldo sin que un log emitido desde una
+# sustitución de comando contamine el valor numérico aplicado.
+lee_entero_resuelto() {
+  local clave="$1" env_var="$2" respaldo="$3" json
+  json="$(python3 tools/adq_config.py --entero-json "$clave" "$env_var" "$respaldo")"
+  VALOR_CONFIG_RESUELTO="$(printf '%s' "$json" | python3 -c 'import json,sys; print(json.load(sys.stdin)["valor"])')"
+  FUENTE_CONFIG_RESUELTA="$(printf '%s' "$json" | python3 -c 'import json,sys; print(json.load(sys.stdin)["fuente"])')"
+  DEGRADADA_CONFIG_RESUELTA="$(printf '%s' "$json" | python3 -c 'import json,sys; print("si" if json.load(sys.stdin)["degradada"] else "no")')"
+  CAUSA_CONFIG_RESUELTA="$(printf '%s' "$json" | python3 -c 'import json,sys; print(json.load(sys.stdin)["causa"] or "-")')"
+  if [ "$DEGRADADA_CONFIG_RESUELTA" = "si" ]; then
+    CONFIG_DEGRADADA="${CONFIG_DEGRADADA}${clave} "
+    log "CONFIG-DEGRADADA: ${clave}; causa=${CAUSA_CONFIG_RESUELTA}; valor_aplicado=${VALOR_CONFIG_RESUELTO}; fuente=${FUENTE_CONFIG_RESUELTA}."
+  else
+    log "CONFIG: ${clave}=${VALOR_CONFIG_RESUELTO}; fuente=${FUENTE_CONFIG_RESUELTA}."
+  fi
+}
+
 # escribe_heartbeat <estado> [codigo]
 # JSON pequeño en $HEARTBEAT -- tools/adq_doctor.py (P4) lo lee tal cual.
 #
@@ -191,15 +218,17 @@ escribe_heartbeat() {
     log "heartbeat NO escrito por run_id=${RUN_ID} (estado=${estado}): esta invocación no es dueña del lock y no puede pisar el estado de la que trabaja."
     return 0
   fi
-  python3 - "$HEARTBEAT" "$RUN_ID" "$$" "$estado" "$FASE" "$FECHA" "$codigo" <<'PYEOF'
+  python3 - "$HEARTBEAT" "$RUN_ID" "$$" "$estado" "$FASE" "$FECHA" "$codigo" "$DISPARADOR" "${HEAD_USADO:-desconocido}" <<'PYEOF'
 import json, os, sys, datetime, tempfile
-ruta, run_id, pid, estado, fase, fecha, codigo = sys.argv[1:8]
+ruta, run_id, pid, estado, fase, fecha, codigo, disparador, sha = sys.argv[1:10]
 doc = {
     "run_id": run_id,
     "pid": int(pid),
     "estado": estado,
     "fase": fase,
     "fecha": fecha,
+    "disparador": disparador,
+    "sha": sha,
     "codigo_salida": (int(codigo) if codigo not in ("", "-") else None),
     "actualizado": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
 }
@@ -471,7 +500,7 @@ huella_adq() {
     publicacion="FALLIDA(${fallidas_antes})"
   fi
 
-  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} publicacion=${publicacion} run_id=${RUN_ID}"
+  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} publicacion=${publicacion} disparador=${DISPARADOR} run_id=${RUN_ID}"
   log "${linea}"
   CIERRE_ESCRITO=1
   if ! commit_censo_linea "$linea" "$linea" "[ADQ] ${FECHA}"; then
@@ -513,7 +542,7 @@ if [ -n "${ADQ_CRON_SOLO_DEFINE:-}" ]; then
   return 0 2>/dev/null || exit 0
 fi
 
-log "=== adquiere_cron.sh arrancando en $REPO_DIR (run_id=${RUN_ID}) ==="
+log "=== adquiere_cron.sh arrancando en $REPO_DIR (run_id=${RUN_ID} disparador=${DISPARADOR}) ==="
 
 # Lock de instancia única. No bloqueante: una segunda invocación mientras
 # la primera sigue viva no espera ni encola, se retira de inmediato -- el
@@ -572,12 +601,19 @@ log "HEAD tras pull: $(git log -1 --format='%h %s')"
 # DESPUÉS de sincronizar -- antes se leía al arrancar el script, es decir
 # contra la versión vieja del clon, y cada default entraba en silencio.
 transicion "CONFIG"
-CLAUDE_TIMEOUT_SEGUNDOS="${CLAUDE_TIMEOUT_SEGUNDOS:-$(lee_config claude_timeout_segundos 1800)}"
-# Gracia de escalamiento TERM->KILL. Default de shell, NO clave de
-# config: `data/adq-config.yaml` está fuera del perímetro de este acto, y
-# leerla por `lee_config` emitiría un CONFIG-DEGRADADA en cada corrida
-# por una clave que nadie escribió todavía. Queda como reserva declarada.
-CLAUDE_KILL_AFTER_SEGUNDOS="${CLAUDE_KILL_AFTER_SEGUNDOS:-60}"
+lee_entero_resuelto claude_timeout_segundos CLAUDE_TIMEOUT_SEGUNDOS 1800
+CLAUDE_TIMEOUT_SEGUNDOS="$VALOR_CONFIG_RESUELTO"
+lee_entero_resuelto claude_kill_after_segundos CLAUDE_KILL_AFTER_SEGUNDOS 60
+CLAUDE_KILL_AFTER_SEGUNDOS="$VALOR_CONFIG_RESUELTO"
+CALENDARIO_JSON="$(python3 tools/adq_config.py --calendario-json)"
+ADQ_ZONA_HORARIA="$(printf '%s' "$CALENDARIO_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["zona_iana"])')"
+CALENDARIO_DEGRADADO="$(printf '%s' "$CALENDARIO_JSON" | python3 -c 'import json,sys; print("si" if json.load(sys.stdin)["degradada"] else "no")')"
+CALENDARIO_CAUSA="$(printf '%s' "$CALENDARIO_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["causa"] or "-")')"
+export TZ="$ADQ_ZONA_HORARIA"
+if [ "$CALENDARIO_DEGRADADO" = "si" ]; then
+  CONFIG_DEGRADADA="${CONFIG_DEGRADADA}calendario "
+  log "CONFIG-DEGRADADA: calendario; causa=${CALENDARIO_CAUSA}; valor_aplicado=$(printf '%s' "$CALENDARIO_JSON" | python3 -c 'import json,sys; c=json.load(sys.stdin); print(c["hora"]+" "+c["zona_iana"]+" dias="+",".join(c["dias_semana"]))'); fuente=respaldo-compatible."
+fi
 RUNBOOK="$(lee_config runbook 'forense/agente-adquisicion-v1_0.md')"
 SONDA_URL="$(lee_config sonda_red_url 'https://www.inegi.org.mx/')"
 if [ -n "$CONFIG_DEGRADADA" ]; then
@@ -754,9 +790,10 @@ set +e
 timeout --kill-after="${CLAUDE_KILL_AFTER_SEGUNDOS}s" "${CLAUDE_TIMEOUT_SEGUNDOS}s" claude --add-dir /home/pc0/mm-corpus -p "$PROMPT" >>"$LOGFILE" 2>&1
 CODIGO_SALIDA=$?
 set -e
-if [ "$CODIGO_SALIDA" -eq 124 ]; then
-  log "claude -p agotó el timeout de ${CLAUDE_TIMEOUT_SEGUNDOS}s (timeout(1) lo mató, exit 124)"
-fi
+case "$CODIGO_SALIDA" in
+  124) log "TIMEOUT-PROCESO: límite=${CLAUDE_TIMEOUT_SEGUNDOS}s; terminó durante gracia TERM->KILL=${CLAUDE_KILL_AFTER_SEGUNDOS}s; exit=124" ;;
+  137) log "TIMEOUT-KILL: límite=${CLAUDE_TIMEOUT_SEGUNDOS}s y gracia TERM->KILL=${CLAUDE_KILL_AFTER_SEGUNDOS}s agotados; se aplicó KILL; exit=137" ;;
+esac
 log "claude -p terminó con código ${CODIGO_SALIDA}"
 
 FASE="HUELLA-FINAL"

@@ -146,9 +146,9 @@ serie_descriptiva_propuesta:
   --fuentes`: seco estable, 151/3,466/207 filas en
   `corridas/resultados/usos`.
 - `python3 tests/check.py --baseline`: línea base VERDE, sin fallos nuevos;
-  conserva únicamente los tres `FAIL` históricos T06×2/T08 y 2,757 avisos.
-- `tools/cierre_acto.py`: cascada reconciliada a `ADR-466`; rótulo y L0
-  presentes, `NC` sin huérfanas.
+  conserva únicamente los tres `FAIL` históricos T06×2/T08 y 2,758 avisos.
+- `tools/cierre_acto.py`: cascada reconciliada a `ADR-468` después de integrar
+  PR #702/#704 desde `origin/main`; rótulo y L0 presentes, `NC` sin huérfanas.
 - `git diff --check` es limpio para los cambios manuales. El diff completo
   conserva el tabulador final que el escritor canónico de `resultados.tsv`
   emite para representar el campo sucesor vacío; la vista seca es byte a byte
