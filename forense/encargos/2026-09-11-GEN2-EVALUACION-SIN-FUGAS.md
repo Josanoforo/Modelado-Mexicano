@@ -87,3 +87,14 @@ Continúa entre fases autorizadas. Ante una decisión científica nueva, prepara
 - **qué:** `Fase 4 · A. Uso documental — No ejecutar las 32 posiciones bajo este encargo.` · **por qué:** `DECISIÓN-DE-MESA-PENDIENTE` · **impacto:** no se ejecutan 32 llamadas ni cambia `NC-0152`; la spec sólo deja congelables fuentes, éxito y parada · **sucesor:** `FP-373`.
 - **qué:** `Fase 4 · B. Transferencia o generalización de M — Diseñar un conjunto realmente reservado.` · **por qué:** `DECISIÓN-DE-MESA-PENDIENTE` · **impacto:** no se ejecutan piloto/confirmación, no se abre F6 y no cambia ningún contador o adopción · **sucesor:** `FP-374`.
 - **qué:** `COMPUERTA: integrar 17 y el snapshot de 18 antes de evaluar un M renovado.` · **por qué:** `DECISIÓN-DE-MESA-PENDIENTE` · **impacto:** el reanálisis usa sólo el snapshot histórico y no emite veredicto sobre un M renovado · **sucesor:** `FP-374`.
+
+## CONSUMIDO
+
+Consumido el 11/sep/2026 en la rama
+`acto/gen2-evaluacion-sin-fugas`, PR #713. El reanálisis protegido quedó
+sellado como `CALC-F5-REANALISIS-0001`: 245 inputs directos coinciden,
+`U3=0` y veredicto `NO-ADJUDICABLE-POR-CONTROL`; el resultado histórico
+permanece intacto. Los actos 17 y 18 se integraron por sus interfaces reales,
+sin presentar el snapshot sucesor como evaluación retenida. `FP-373/374` y
+`NC-0159/0160/0161` conservan las decisiones y ejecuciones pendientes.
+`ADR-473`; contador cero. El PR queda abierto y el ejecutor no realizó merge.

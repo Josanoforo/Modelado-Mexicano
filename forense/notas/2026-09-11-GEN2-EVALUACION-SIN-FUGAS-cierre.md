@@ -125,7 +125,8 @@ como permiso de API.
 - `corrida0 preflight`: verde; 245/245 inputs coinciden.
 - `corrida0 verify`: `CONTEXTO=IDENTICO · RESULTADO=REPRODUCE`.
 - Sello: `data/corrida0/CALC-F5-REANALISIS-0001/sello.sha256`.
-- Suite global: se asienta en la cascada final contra el baseline vigente.
+- Suite global: `LÍNEA BASE: VERDE`; conserva sólo tres fallos heredados
+  (`T06`×2 y `T08`×1), sin entradas nuevas ni recifrado de `baseline.json`.
 
 ## Obligaciones y residuales
 
