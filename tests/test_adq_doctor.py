@@ -117,7 +117,8 @@ def prueba_scheduler_contrasta_calendario_y_disparador():
         "State": "Ready", "TaskName": "AdquiereCron",
         "TaskPath": "\\ModeladoMexicano\\", "UserId": "PC0",
         "LogonType": "Interactive", "Execute": "wsl.exe",
-        "Arguments": "-d Ubuntu -- env ADQ_DISPARADOR=windows-task-scheduler bash -lc /x",
+        "Arguments": ("-d Ubuntu -u pc0 -- env ADQ_DISPARADOR=windows-task-scheduler "
+                      "bash -lc /home/pc0/mm-adq/tools/adquiere_launcher.sh"),
         "StartBoundary": "2026-09-07T07:30:00-06:00", "DaysOfWeek": 62,
         "TriggerEnabled": True, "StartWhenAvailable": True,
         "MultipleInstances": "IgnoreNew", "LastRunTime": "2026-09-10T09:05:41-06:00",

@@ -30,9 +30,11 @@ una sola fila:
 
 1. `ls -la data/raw` — si falta, `ln -s /home/pc0/mm-corpus/raw data/raw`
    (gitignorado, un worktree fresco siempre nace sin él — no es PARO).
-2. `echo "${CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE:-<sin_variable>}"` — esperado
-   `<sin_variable>` (CAJA, no NUBE). Esta skill descarga; si el valor no es
-   `<sin_variable>`, PARA y repórtalo — no adquieras desde la nube.
+2. Confirma CAJA por tres señales conjuntas: `/proc/version` detecta WSL,
+   `pwd -P` es el clon productivo `/home/pc0/mm-adq`, y `readlink -f data/raw`
+   cae bajo `/home/pc0/mm-corpus/raw`. La variable
+   `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` se reporta si existe, pero su ausencia
+   ya no es la prueba exclusiva ni una dependencia de Claude.
 3. `curl -s -o /dev/null -w "%{http_code}\n" --max-time 10 https://www.inegi.org.mx/`
    — confirma red real antes de caminar la tabla entera.
 

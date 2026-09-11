@@ -69,6 +69,16 @@
     No tiene por qué coincidir con la cuenta de Windows que registra la
     tarea -- son dos identidades distintas.
 
+.PARAMETER WindowsUser
+    Principal de Windows. Si se omite y la tarea ya existe, conserva su
+    UserId actual; sólo usa la identidad de la consola al crearla por primera
+    vez. Esto evita cambiar el principal si el instalador se lanza con UAC.
+
+.PARAMETER DeploymentRevision
+    SHA publicado que debe conservarse mientras main no lo contenga. El
+    launcher cambia automáticamente a origin/main cuando ese SHA ya es
+    ancestro de main. Vacío significa seguir main.
+
 .PARAMETER ClonPath
     Ruta ABSOLUTA de Linux al clon de mesa dentro de WSL (default:
     /home/pc0/mm-adq).
@@ -86,8 +96,10 @@
 param(
     [string]$Distro = "Ubuntu",
     [string]$LinuxUser = "pc0",
+    [string]$WindowsUser = "",
     [string]$ClonPath = "/home/pc0/mm-adq",
     [string]$NombreTarea = "\ModeladoMexicano\AdquiereCron",
+    [string]$DeploymentRevision = "",
     [ValidateSet("Interactive", "S4U")]
     [string]$LogonType = "Interactive"
 )
@@ -125,16 +137,30 @@ if ($partes.Count -eq 1) {
     $TaskName = $partes[-1]
 }
 
+$Existente = Get-ScheduledTask -TaskName $TaskName -TaskPath $TaskFolder -ErrorAction SilentlyContinue
+if ([string]::IsNullOrWhiteSpace($WindowsUser)) {
+    if ($Existente) {
+        $WindowsUser = $Existente.Principal.UserId
+    } else {
+        $WindowsUser = $env:USERNAME
+    }
+}
+
 Write-Host "Tarea:            $TaskFolder$TaskName"
 Write-Host "Distro WSL:       $Distro"
 Write-Host "Usuario Linux:    $LinuxUser"
 Write-Host "Clon:             $ClonPath"
 Write-Host "Calendario:       $($Calendario.hora) $($Calendario.zona_iana) [$($Calendario.dias_semana -join ',')]"
 Write-Host "Zona Windows:     $ZonaWindowsActual (traducción configurada: $($Calendario.zona_windows))"
-Write-Host "Principal:        $env:USERNAME (LogonType=$LogonType)"
+Write-Host "Principal:        $WindowsUser (LogonType=$LogonType)"
+Write-Host "Revision:         $($DeploymentRevision -replace '^$', 'origin/main')"
 
-$Argumentos = ("-d $Distro -u $LinuxUser -- env ADQ_DISPARADOR=windows-task-scheduler " +
-               "bash -lc $ClonPath/tools/adquiere_cron.sh")
+$Variables = "ADQ_DISPARADOR=windows-task-scheduler"
+if (-not [string]::IsNullOrWhiteSpace($DeploymentRevision)) {
+    $Variables += " ADQ_DEPLOY_REVISION=$DeploymentRevision"
+}
+$Argumentos = ("-d $Distro -u $LinuxUser -- env $Variables " +
+               "bash -lc $ClonPath/tools/adquiere_launcher.sh")
 $Action = New-ScheduledTaskAction -Execute "wsl.exe" -Argument $Argumentos
 
 $HoraParsed = [datetime]::ParseExact($Calendario.hora, "HH:mm", $null)
@@ -150,7 +176,7 @@ $Settings = New-ScheduledTaskSettingsSet `
     -AllowStartIfOnBatteries `
     -DontStopIfGoingOnBatteries
 
-$Principal = New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType $LogonType -RunLevel Limited
+$Principal = New-ScheduledTaskPrincipal -UserId $WindowsUser -LogonType $LogonType -RunLevel Limited
 
 if ($PSCmdlet.ShouldProcess("$TaskFolder$TaskName", "Register-ScheduledTask")) {
     Register-ScheduledTask -TaskName $TaskName -TaskPath $TaskFolder `

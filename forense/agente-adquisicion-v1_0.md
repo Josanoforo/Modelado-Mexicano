@@ -18,11 +18,12 @@
 > | **Selección de filas** | `.claude/commands/adquiere.md` §1, «CONTRATO ÚNICO DE ELEGIBILIDAD Y ORDEN», proyectado con `python3 tools/adq_doctor.py --selecciona` | La regla que el prompt de §1 traía por su cuenta («las 5 más antiguas con último intento ≥ 7 días»), que divergía del orden por prioridad de la skill. El prompt ahora **cita** el contrato en vez de repetirlo. |
 > | **Vigilante** | `tests/check.py` T31 tras H1 (evidencia fusionada primaria, filtrado por fecha y `run_id`, `SIN-EVIDENCIA-NO-VERIFICABLE` para lecturas fallidas) y `tools/adq_doctor.py` que lo reusa | La lectura por rama `censo/<fecha>` como requisito, y el `COMPLETO` derivado de un cuerpo `[ADQ]` sin comprobar su fecha. |
 > | **Horario** | `data/adq-config.yaml:calendario` es la autoridad única: lun-vie 07:30, `America/Mexico_City` / `Central Standard Time (Mexico)`. Instalador, runner, doctor y T31 lo consumen mediante `tools/adq_config.py`. | Las copias literales de 07:30 y la zona local en las secciones históricas inferiores. |
+> | **Ejecutor** | `data/adq-config.yaml:ejecutor = codex`; `tools/adquiere_launcher.sh` resuelve la revisión antes de cargar el runner y `codex exec` corre no interactivo con `workspace-write`, red y raíz adicional acotadas. | Claude y sus límites quedan como antecedente histórico. Sólo `ejecutor: claude` explícito activa compatibilidad; nunca hay fallback silencioso. |
 >
 > **Propagación ejecutada por GEN2-SONDA-CRON-PRODUCCION:** la advertencia
 > anterior queda satisfecha sin cambiar la conducta (lun-vie 07:30). Los
-> consumidores leen una sola autoridad. `claude_timeout_segundos`,
-> `claude_kill_after_segundos` y `calendario.ventana_observacion_minutos`
+> consumidores leen una sola autoridad. `ejecutor_timeout_segundos`,
+> `ejecutor_kill_after_segundos` y `calendario.ventana_observacion_minutos`
 > son tres límites distintos y se reportan por separado.
 
 **P3** de `ACTO MAESTRA34-N7 · SKILLS-COLA-Y-ADQ`
@@ -73,7 +74,8 @@ Pega esto, tal cual, como prompt de la tarea recurrente (o pásalo por
 `tools/adquiere_cron.sh`, que hace exactamente esto):
 
 ```text
-Corre /adquiere en este clon, entorno CAJA (no NUBE): confirma
+Lee completa .claude/commands/adquiere.md y ejecuta ese procedimiento en
+este clon, entorno CAJA (no NUBE): confirma
 /home/pc0/mm-corpus/raw montado y red real a inegi.org.mx antes de
 caminar una sola fila.
 La seleccion NO se re-decide aqui: el contrato unico de elegibilidad y
@@ -97,6 +99,8 @@ es vista generada (tools/vista_cola_adquisicion.py la regenera).
 Toda fila que cierre en NO-OBTENIDO-POR-ESTE-AGENTE o se reclasifique a
 NO-ACCESIBLE va al PAQUETE-RECETAS-<fecha> del dia, un solo bloque.
 Abre UN PR titulado [ADQ] <fecha> para firma de mesa y NO lo fusiones.
+No invoques tools/adquiere_launcher.sh ni tools/adquiere_cron.sh: ya eres el
+unico hijo de la corrida y volver a llamarlos seria recursion.
 Si nada cambio (cero filas elegibles, o las 5 elegibles ya estaban
 resueltas por otro proceso), cero commits -- una caminata vacia tambien
 es informacion y no se fuerza un PR sin contenido.
