@@ -2,8 +2,11 @@
 
 **Fecha:** 10/sep/2026 · **Entorno:** NUBE/WSL2, cero microdato y cero
 llamadas nuevas a modelos · **Base inicial:** `a63fd4c` · **Base integrada:**
-`fd72373` · **Encargo A.3:**
+`7d55234` · **Encargo A.3:**
 `forense/encargos/cola/2026-09-11-GEN2-POST-694/14-GEN2-YA-MEDIDO-SIN-FALSOS-NEGATIVOS.md`.
+
+Al integrar `origin/main=7d55234`, PR #695 ocupó ADR-464 y PR #697 ocupó
+ADR-465; este cierre queda reconciliado como **ADR-466**.
 
 ## 1 · Resultado útil
 
@@ -61,7 +64,7 @@ conteo total del repositorio:
 
 Salida dirigida: `Ran 8 tests ... OK`. La línea base completa terminó con
 código 0 y `LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json`;
-conserva los 3 `FAIL` y 2626 `WARN` ya registrados, sin introducir ninguno
+conserva los 3 `FAIL` y 2625 `WARN` ya registrados, sin introducir ninguno
 nuevo. En particular, T02, T15, T25, T30/T-YAMEDIDO y T30b quedaron `[ok]`.
 El negativo legítimo
 `familia.cortejo.urbano_joven_apps` conserva `NUNCA-MEDIDA`; los positivos
