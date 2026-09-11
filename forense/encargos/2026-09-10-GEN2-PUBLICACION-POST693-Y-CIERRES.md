@@ -71,3 +71,7 @@ Avanza entre fases ya autorizadas sin pedir confirmación. Termina cuando entreg
 ## NO-CORRIDO / RESERVAS
 
 Ninguno. El lote 07 y `NC-0151`/`NC-0152`/`NC-0153`/`NC-0155` no eran piezas a ejecutar en este acto: el encargo ordena expresamente conservarlos pendientes, y así permanecen.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-PUBLICACION-POST693-Y-CIERRES` en PR #696: las tres vistas publican `fuente_replay` para 150 corridas, 3 335 resultados y 207 usos; los tres CALC omitidos quedaron visibles; el negativo C0D se preservó; `NC-0104`/`NC-0154` cerraron y `FP-361`/`FP-363` registran su ejecución exacta. Los lotes POST685 01–06 quedaron conciliados como fusionados; lote 07 y `NC-0151`/`0152`/`0153`/`0155` permanecen pendientes. El ejecutor no fusionó el PR: esa decisión pertenece a mesa.
