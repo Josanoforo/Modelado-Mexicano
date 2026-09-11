@@ -93,3 +93,23 @@ NUNCA-MEDIDA
 
 Este acto incorpora y extrae evidencia descriptiva, pero no crea una medición
 sellada ni cambia esos estados de adopción.
+
+## NO-CORRIDO / RESERVAS
+
+- `NC-0163` cierra mediante la publicación oficial equivalente de Banxico; la
+  exportación R16 CNBV exacta queda como mejora opcional, no como acceso
+  indispensable para el objeto A.
+- `NC-0164` permanece abierta sólo para el mecanismo que ENSAFI no enlaza:
+  producto exacto, exposición/CAT/BNPL o fricción y daño causal en la misma
+  unidad. No se creó spec, CALC ni adopción sin decisión de mesa.
+
+## CONSUMIDO
+
+Ejecutado por **[PR #723](https://github.com/Josanoforo/Modelado-Mexicano/pull/723)**,
+rama `acto/gen2-fuentes-financieras-continuacion-efectiva`, HEAD al abrir el PR
+`a36cc07e311f38592f99074fd353597de7a631c0`, contra
+`origin/main=70c64d9ead92384ece0eaf18cbfb53372bb88a74`. Entrega la serie oficial
+equivalente Banxico, la evidencia ENSAFI consumidor-deudor, nueve tablas
+reproducibles y la conciliación canónica. `ADR-479`; `NC-0163` cierra y
+`NC-0164` conserva el residual causal. Línea base verde sin entradas nuevas;
+la fusión corresponde a Jonás.
