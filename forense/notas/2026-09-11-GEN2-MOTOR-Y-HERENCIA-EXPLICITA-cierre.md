@@ -1,8 +1,8 @@
 # ACTO GEN2-MOTOR-Y-HERENCIA-EXPLICITA · cierre
 
-Fecha: 11/sep/2026  
+Fecha: 11/sep/2026
 Entorno: NUBE, repo y agregados; cero microdatos, cero red científica y cero
-llamadas nuevas a modelos.  
+llamadas nuevas a modelos.
 Encargo:
 `forense/encargos/2026-09-11-GEN2-MOTOR-Y-HERENCIA-EXPLICITA.md`.
 
