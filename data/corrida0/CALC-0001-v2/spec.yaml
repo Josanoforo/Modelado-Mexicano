@@ -1,0 +1,111 @@
+calc_id: CALC-0001-v2
+sucesor_de: CALC-0001
+spec_md: spec.md
+spec_md_sha256: 2f555ba5ce8a1b7607ea0ec2e3db5f8886b6e300690d8b4a636720c21bc1a6a0
+script: data/corrida0/CALC-0001-v2/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: DESCRIPTIVO-ASOCIATIVO-S12-RECEPTORES
+  cuenta_gen2: SI
+  cuenta_gen2_firma: "D14/FP-363, mesa 10/sep/2026: S12 sucesora compara receptores de forma descriptiva/asociativa; objeto CALC-0001-v2 en el encargo GEN2-S6-S12-S13-SUCESORAS"
+  validacion_independiente: PENDIENTE-POST-SELLO
+  spec_sellada: forense/prereg-caja/S12-CSES-spec-v1_2.md
+  spec_sellada_sha256: 1f87834cf41a567eb50ce9da2cdb70ec456e0e32ff910862d7ac4dae72da049e
+  reglas_bajo_prueba: "ninguna: describe composición entre receptores; no mueve R7.3/R7.6"
+
+inputs:
+  - id: cide_cses2015_nacional_poselectoral
+    origen: manifiesto
+  - id: IN-S12-V12-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/S12-CSES-spec-v1_2.md
+    sha256: 1f87834cf41a567eb50ce9da2cdb70ec456e0e32ff910862d7ac4dae72da049e
+
+variables:
+  - {archivo: cide_cses2015_nacional_poselectoral.sav, variable: pcyc13, rol: "receptor de OFERTA", codigos: "1=Sí; 2=No; 9=Ns/NC"}
+  - {archivo: cide_cses2015_nacional_poselectoral.sav, variable: pcyc13_1, rol: "partido oferente", codigos: "1..10/12 partidos; 97=Ninguno; 99=NS/NC"}
+  - {archivo: cide_cses2015_nacional_poselectoral.sav, variable: pcyc14, rol: "receptor de AMENAZA", codigos: "1=Sí; 2=No; 9=Ns/NC"}
+  - {archivo: cide_cses2015_nacional_poselectoral.sav, variable: pcyc14_1, rol: "partido amenazante", codigos: "1..10/12 partidos; 97=Ninguno; 99=NS/NC"}
+  - {archivo: cide_cses2015_nacional_poselectoral.sav, variable: peledip, rol: "desenlace: voto emitido para diputados federales, 7-jun-2015"}
+  - {archivo: cide_cses2015_nacional_poselectoral.sav, variable: PONDFIN, rol: "ponderador global", etiqueta: "Ponderador nacional"}
+  - {archivo: cide_cses2015_nacional_poselectoral.sav, variable: dominio, rol: "estrato de diseño"}
+  - {archivo: cide_cses2015_nacional_poselectoral.sav, variable: upmmn, rol: "UPM"}
+
+universo: >-
+  Adultos de CIDE-CSES 2015 nacional poselectoral que declaran pcyc13=1, para
+  OFERTA, o pcyc14=1, para AMENAZA. Ramas separadas; una persona puede estar
+  en ambas. Fuente completa 1200 filas; cada denominador realizado se publica.
+filtros: >-
+  Receptor=1; partido señalado resoluble; peledip observado; PONDFIN finito y
+  positivo; dominio y upmmn observados. 97/99 en partido y faltantes se excluyen
+  y cuentan. Los votos sin contraparte partidista son NO-ALINEADO, no faltante.
+ponderador: "PONDFIN, etiqueta Ponderador nacional"
+transformacion: >-
+  ALINEADO por crosswalk oferente->voto; coalición peledip=29 acepta PRI o PVEM.
+  NO-ALINEADO es el complemento dentro del universo analítico.
+estimando: >-
+  Por rama: P(ALINEADO), P(NO-ALINEADO), sus IC95 y Delta_comp = P(ALINEADO) -
+  P(NO-ALINEADO), con tamaños brutos y sumas de peso. Descriptivo/asociativo.
+dependencias_materiales: [numpy, pyreadstat]
+
+parametros:
+  fuente_acto: "ACTO GEN2-S6-S12-S13-SUCESORAS"
+  input_id: cide_cses2015_nacional_poselectoral
+  ponderador: PONDFIN
+  estrato: dominio
+  upm: upmmn
+  desenlace: peledip
+  ramas:
+    - [OFERTA, pcyc13, pcyc13_1]
+    - [AMENAZA, pcyc14, pcyc14_1]
+  crosswalk_partido: {1: 1, 2: 2, 3: 4, 4: 8, 5: 9, 6: 19, 7: 34, 8: 35, 9: 36, 10: 37, 12: 10}
+  coaliciones: {29: [2, 9]}
+  bootstrap_replicas: 2000
+  metodo_ic: "bootstrap percentil de UPM upmmn dentro de estrato dominio"
+
+seed: {aplica: true, valor: 20260910, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: "seed y RNG fijados; enteros y textos se comparan exactos"
+
+resultados:
+  - {id: RESULT-OFERTA-N-RECEPTORES, tipo: entero, unidad: "personas con pcyc13=1"}
+  - {id: RESULT-OFERTA-N-ANALITICO, tipo: entero, unidad: "personas con clasificación, peso y diseño válidos"}
+  - {id: RESULT-OFERTA-N-EXCLUIDOS, tipo: entero, unidad: "receptores fuera por insumo faltante/no resoluble"}
+  - {id: RESULT-OFERTA-N-ALINEADO, tipo: entero, unidad: personas}
+  - {id: RESULT-OFERTA-N-NO-ALINEADO, tipo: entero, unidad: personas}
+  - {id: RESULT-OFERTA-W-ALINEADO, tipo: flotante, unidad: "suma PONDFIN"}
+  - {id: RESULT-OFERTA-W-NO-ALINEADO, tipo: flotante, unidad: "suma PONDFIN"}
+  - {id: RESULT-OFERTA-P-ALINEADO, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-OFERTA-P-NO-ALINEADO, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-OFERTA-IC-ALINEADO-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-OFERTA-IC-ALINEADO-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-OFERTA-IC-NO-ALINEADO-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-OFERTA-IC-NO-ALINEADO-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-OFERTA-DELTA-COMP, tipo: flotante, unidad: "P alineado menos P no alineado [-1,1]"}
+  - {id: RESULT-OFERTA-IC-DELTA-LO, tipo: flotante, unidad: "límite inferior IC95 de delta"}
+  - {id: RESULT-OFERTA-IC-DELTA-HI, tipo: flotante, unidad: "límite superior IC95 de delta"}
+  - {id: RESULT-OFERTA-N-UPM, tipo: entero, unidad: "pares estrato-UPM"}
+  - {id: RESULT-OFERTA-N-ESTRATOS, tipo: entero, unidad: estratos}
+  - {id: RESULT-OFERTA-LIMITACION, tipo: texto, unidad: "soporte mínimo por categoría"}
+  - {id: RESULT-AMENAZA-N-RECEPTORES, tipo: entero, unidad: "personas con pcyc14=1"}
+  - {id: RESULT-AMENAZA-N-ANALITICO, tipo: entero, unidad: "personas con clasificación, peso y diseño válidos"}
+  - {id: RESULT-AMENAZA-N-EXCLUIDOS, tipo: entero, unidad: "receptores fuera por insumo faltante/no resoluble"}
+  - {id: RESULT-AMENAZA-N-ALINEADO, tipo: entero, unidad: personas}
+  - {id: RESULT-AMENAZA-N-NO-ALINEADO, tipo: entero, unidad: personas}
+  - {id: RESULT-AMENAZA-W-ALINEADO, tipo: flotante, unidad: "suma PONDFIN"}
+  - {id: RESULT-AMENAZA-W-NO-ALINEADO, tipo: flotante, unidad: "suma PONDFIN"}
+  - {id: RESULT-AMENAZA-P-ALINEADO, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-AMENAZA-P-NO-ALINEADO, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-AMENAZA-IC-ALINEADO-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-AMENAZA-IC-ALINEADO-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-AMENAZA-IC-NO-ALINEADO-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-AMENAZA-IC-NO-ALINEADO-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-AMENAZA-DELTA-COMP, tipo: flotante, unidad: "P alineado menos P no alineado [-1,1]"}
+  - {id: RESULT-AMENAZA-IC-DELTA-LO, tipo: flotante, unidad: "límite inferior IC95 de delta"}
+  - {id: RESULT-AMENAZA-IC-DELTA-HI, tipo: flotante, unidad: "límite superior IC95 de delta"}
+  - {id: RESULT-AMENAZA-N-UPM, tipo: entero, unidad: "pares estrato-UPM"}
+  - {id: RESULT-AMENAZA-N-ESTRATOS, tipo: entero, unidad: estratos}
+  - {id: RESULT-AMENAZA-LIMITACION, tipo: texto, unidad: "soporte mínimo por categoría"}
