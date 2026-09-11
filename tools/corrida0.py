@@ -83,10 +83,12 @@ import hashlib
 import importlib.util
 import json
 import platform
+import posixpath
 import re
 import subprocess
 import sys
-from pathlib import Path
+from functools import lru_cache
+from pathlib import Path, PurePosixPath
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
@@ -100,6 +102,10 @@ from milpa.src.emisor import cargar_reglas  # noqa: E402
 # note. `clases.py` no abre ningun archivo al importarse.
 from milpa.src.clases import EJES as EJES_MODELO  # noqa: E402
 from milpa.src.clases import EJES_HOGAR as EJES_HOGAR_MODELO  # noqa: E402
+from milpa.src.linaje import (  # noqa: E402
+    APTA_LINAJE, NO_APTA, ORIGEN_HEREDADO, ORIGEN_INDETERMINADO,
+    ORIGEN_MIXTO, ORIGEN_NUEVO, aptitud_para_uso, combina_origenes,
+)
 
 RAIZ = Path(__file__).resolve().parents[1]
 TRAMITE = RAIZ / "milpa" / "tramite.yaml"
@@ -2636,7 +2642,8 @@ COLS_VISTA_CORRIDAS = [
     "corrida_id", "origen", "spec_id", "estado", "generacion", "cuenta_gen2",
     # ACTO GEN2-T9 · P1: la marca de la regla E.1, en su propia columna --
     # un corredor envuelto se ve en el TSV sin re-derivar la regla.
-    "envuelto_legacy", "motivo_cuenta_gen2",
+    "envuelto_legacy", "motivo_cuenta_gen2", "origen_numerico",
+    "funciones_dependencia", "camino_linaje",
     "spec_yaml_sha256", "script_path", "script_blob_sha256", "codigo_commit",
     "fecha", "n_resultados", "resultados_ids", "input_ids",
     "input_sha256_efectivos", "sello", "resultado_replay", "contexto_replay",
@@ -2649,14 +2656,17 @@ COLS_VISTA_RESULTADOS = [
     # NC-0069 / FP-365: la vara de ADOPCION, separada de la de
     # reproducibilidad (`tolerancia`). Vacia = defecto (grano del consumidor).
     "tolerancia_adopcion",
-    "validacion_independiente", "valor_legacy", "delta_legacy", "sello",
+    "validacion_independiente", "rol_evaluacion", "origen_numerico",
+    "funciones_dependencia", "camino_linaje",
+    "valor_legacy", "delta_legacy", "sello",
     "fuente_replay",
-    "depende_de", "n_usos", "sucesor",
+    "depende_de", "sucesor", "n_usos",
 ]
 COLS_VISTA_USOS = [
     "resultado_id", "consumidor", "tipo_uso", "activo", "reglas_impacto",
     "generacion_leida", "corrida0_generacion", "corrida0_resultado_id",
-    "fuente_replay",
+    "fuente_replay", "uso_solicitado", "origen_numerico", "aptitud_uso",
+    "motivo_aptitud", "camino_linaje",
     "valor_materializado",
 ]
 
@@ -2701,9 +2711,10 @@ CAMPOS_VALOR_MATERIALIZADO = ["p", "valor_ejecutable", "valor"]
 
 
 def _ids_corrida0_declarados() -> dict[str, dict]:
-    """Consumidores que YA declaran `corrida0_resultado_id` y/o
-    `corrida0_generacion` (plan v1.5 P2; plan v2.0 §2). Devuelve
-    `consumidor -> {resultado_id, generacion, valor}`, con el MISMO formato
+    """Consumidores que declaran identidad, generacion y/o uso corrida0.
+
+    Devuelve ``consumidor -> {resultado_id, generacion, uso, valor}`` con el
+    MISMO formato
     de consumidor que `cmd_demanda` escribe, para que las dos vistas se
     puedan cruzar. El `valor` es la cifra MATERIALIZADA en el archivo del
     consumidor: es lo que `T-REPRO` compara contra el RESULT sellado
@@ -2737,7 +2748,8 @@ def _ids_corrida0_declarados() -> dict[str, dict]:
             if isinstance(nodo, dict):
                 marca_id = nodo.get("corrida0_resultado_id")
                 marca_gen = nodo.get("corrida0_generacion")
-                if marca_id or marca_gen:
+                marca_uso = nodo.get("corrida0_uso")
+                if marca_id or marca_gen or marca_uso:
                     nombre = (nodo.get("conducta") or nodo.get("id")
                               or nodo.get("clave") or "")
                     ruta_c = [c for c in contexto if c] + ([nombre] if nombre else [])
@@ -2746,6 +2758,7 @@ def _ids_corrida0_declarados() -> dict[str, dict]:
                     declarados[f"{rel}:{':'.join(ruta_c)}"] = {
                         "resultado_id": str(marca_id) if marca_id else "",
                         "generacion": str(marca_gen) if marca_gen else "",
+                        "uso": str(marca_uso) if marca_uso else "",
                         "valor": NO_DECLARADO if valor is None else valor,
                     }
                 propio = nodo.get("id")
@@ -3185,70 +3198,348 @@ def _lee_oferta(verifica: bool) -> list[dict]:
 # Se aplica MECANICAMENTE sobre los inputs DECLARADOS de la spec: no se
 # edita ningun `spec.yaml` sellado (E.3), y `decisiones.tsv` es donde mesa
 # firma el caso por caso.
-INSUMOS_LEGACY_GEN1 = (
+FUNCION_DATO = "DATO"
+FUNCION_CODIGO = "CODIGO"
+FUNCION_METADATO = "METADATO"
+FUNCION_CONTROL_HISTORICO = "CONTROL-HISTORICO"
+FUNCION_INDETERMINADA = "INDETERMINADA"
+FUNCIONES_DEPENDENCIA = {
+    FUNCION_DATO, FUNCION_CODIGO, FUNCION_METADATO,
+    FUNCION_CONTROL_HISTORICO,
+}
+
+INSUMOS_LEGACY_ARCHIVO = {
     "milpa/tramite.yaml",
     "milpa/procedencia.yaml",
-    "forense/prereg-duelo-v2/corridas-R/",
-    "forense/prereg-duelo-v2/corridas-M/",
-    "forense/prereg-duelo-v2/corridas-L/",
+}
+INSUMOS_LEGACY_DIRECTORIO = (
+    "forense/prereg-duelo-v2/corridas-R",
+    "forense/prereg-duelo-v2/corridas-M",
+    "forense/prereg-duelo-v2/corridas-L",
 )
+# Estas capturas tienen identidad colectiva sellada por el plan F5-completa y
+# fueron producidas como resultados nuevos el 10/sep. No se generaliza a toda
+# ruta parecida: el directorio exacto es la evidencia acreditada.
+FUENTES_NUEVAS_ACREDITADAS = (
+    "forense/prereg-duelo-v2/corridas-L-completa-v1_0",
+)
+
+RE_CALC_RESULTADOS = re.compile(
+    r"^data/corrida0/(CALC-[A-Za-z0-9_.\-]+)(?:/resultados\.json|/)?$")
+
+
+@lru_cache(maxsize=4096)
+def _normaliza_ruta_repo(ruta: str) -> tuple[str, str]:
+    """Identidad léxica + material de una ruta declarada dentro del repo.
+
+    Los separadores, ``.`` y ``..`` se normalizan primero. Si el objeto existe
+    se resuelven también enlaces; un destino externo, roto o inaccesible nunca
+    se presenta como limpio.
+    """
+    cruda = str(ruta or "").strip().replace("\\", "/")
+    if not cruda:
+        return "", "VACIA"
+    if re.match(r"^[A-Za-z]:/", cruda) or cruda.startswith("/"):
+        candidato = Path(cruda)
+        try:
+            material = candidato.resolve(strict=True)
+            return material.relative_to(RAIZ.resolve()).as_posix(), "MATERIAL"
+        except (OSError, ValueError):
+            return cruda, "EXTERNA-O-IRRESOLUBLE"
+    normal = posixpath.normpath(cruda)
+    if normal == ".." or normal.startswith("../"):
+        return normal, "EXTERNA"
+    candidato = RAIZ / PurePosixPath(normal)
+    if candidato.exists() or candidato.is_symlink():
+        try:
+            material = candidato.resolve(strict=True)
+            return material.relative_to(RAIZ.resolve()).as_posix(), "MATERIAL"
+        except (OSError, ValueError):
+            return normal, "EXTERNA-O-IRRESOLUBLE"
+    return normal, "IRRESOLUBLE"
+
+
+def _bajo_directorio(ruta: str, directorio: str) -> bool:
+    return str(ruta).startswith(str(directorio).rstrip("/") + "/")
+
+
+def _ruta_es_fuente_legacy_numerica(ruta: str) -> bool:
+    if ruta in INSUMOS_LEGACY_ARCHIVO:
+        return True
+    # `correr-R.py` es código estadístico reutilizado, no una tasa copiada.
+    if PurePosixPath(ruta).suffix.lower() == ".py":
+        return False
+    return any(_bajo_directorio(ruta, d) or ruta == d
+               for d in INSUMOS_LEGACY_DIRECTORIO)
+
+
+def _ruta_es_fuente_nueva_acreditada(ruta: str) -> bool:
+    return any(_bajo_directorio(ruta, d) for d in FUENTES_NUEVAS_ACREDITADAS)
+
+
+def _es_referencia_numerica(ruta: str) -> bool:
+    cruda = str(ruta or "").replace("\\", "/").lower()
+    # Un intermediario puede contener cientos de miles de celdas de texto.
+    # Sólo las cadenas que siquiera nombran una familia numérica pasan al
+    # normalizador material; esto no cambia la identidad, evita stat/resolve
+    # sobre prosa, ids, años y valores escalares.
+    pistas = ("data/corrida0", "corridas-r", "corridas-m", "corridas-l",
+              "milpa/tramite", "milpa/procedencia")
+    if not any(pista in cruda for pista in pistas):
+        return False
+    normal, _estado = _normaliza_ruta_repo(ruta)
+    return bool(RE_CALC_RESULTADOS.match(normal)
+                or _ruta_es_fuente_legacy_numerica(normal)
+                or _ruta_es_fuente_nueva_acreditada(normal))
+
+
+@lru_cache(maxsize=256)
+def _referencias_numericas_de_intermediario(ruta: str) -> tuple[tuple[str, ...], str]:
+    """Rutas numéricas citadas por un JSON/YAML/TSV colectivo ya declarado.
+
+    No es un rastreador general de archivos: sólo abre el intermediario que la
+    spec ya selló y sólo conserva referencias a CALC o a las familias numéricas
+    concretas de E.1/F5. Así siguen el snapshot y los manifiestos colectivos sin
+    convertir corrida0 en un motor de grafos del repositorio.
+    """
+    normal, estado = _normaliza_ruta_repo(ruta)
+    if estado != "MATERIAL":
+        return (), estado
+    archivo = RAIZ / normal
+    if not archivo.is_file() or archivo.suffix.lower() not in {".json", ".yaml", ".yml", ".tsv"}:
+        return (), "NO-INTERMEDIARIO"
+    textos: list[str] = []
+
+    def camina(nodo) -> None:
+        if isinstance(nodo, str):
+            textos.append(nodo)
+        elif isinstance(nodo, dict):
+            for valor in nodo.values():
+                camina(valor)
+        elif isinstance(nodo, list):
+            for valor in nodo:
+                camina(valor)
+
+    try:
+        if archivo.suffix.lower() == ".tsv":
+            with archivo.open(encoding="utf-8", newline="") as fh:
+                for fila in csv.DictReader(fh, delimiter="\t"):
+                    textos.extend(str(v) for v in fila.values() if v)
+        else:
+            camina(yaml.safe_load(archivo.read_text(encoding="utf-8")))
+    except (OSError, ValueError, yaml.YAMLError, csv.Error) as exc:
+        return (), f"ILEGIBLE:{type(exc).__name__}"
+    refs = sorted({_normaliza_ruta_repo(t)[0] for t in textos
+                   if _es_referencia_numerica(t)})
+    return tuple(refs), "OK"
+
+
+def _funcion_de_dependencia(entrada: dict) -> str:
+    explicita = str(entrada.get("funcion") or "").upper().replace("_", "-")
+    if explicita:
+        return explicita if explicita in FUNCIONES_DEPENDENCIA else FUNCION_INDETERMINADA
+    if str(entrada.get("origen") or "").lower() == "manifiesto":
+        return FUNCION_DATO
+    iid = str(entrada.get("id") or "").upper()
+    ruta, _estado = _normaliza_ruta_repo(str(entrada.get("ruta") or ""))
+    nombre = PurePosixPath(ruta).name.lower()
+    if ruta and (RE_CALC_RESULTADOS.match(ruta)
+                 or _ruta_es_fuente_legacy_numerica(ruta)
+                 or _ruta_es_fuente_nueva_acreditada(ruta)
+                 or "snapshot" in nombre):
+        return FUNCION_DATO
+    if ruta.endswith(".py") or "CODIGO" in iid or "CALCULADOR" in iid:
+        return FUNCION_CODIGO
+    if "CONTROL" in iid or "BASELINE" in iid:
+        return FUNCION_CONTROL_HISTORICO
+    if any(token in iid or token.lower() in nombre for token in
+           ("SPEC", "PLAN", "MARCO", "CODIFICACION", "MANIFIESTO", "UNIVERSO")):
+        return FUNCION_METADATO
+    return FUNCION_INDETERMINADA
+
+
+def _resumen_funciones(entradas: list[dict]) -> str:
+    pares = [(str(e.get("id") or "?"), _funcion_de_dependencia(e))
+             for e in entradas if isinstance(e, dict)]
+    conteos: dict[str, int] = {}
+    for _iid, funcion in pares:
+        conteos[funcion] = conteos.get(funcion, 0) + 1
+    resumen = ",".join(f"{k}={conteos[k]}" for k in sorted(conteos)) or "SIN-DEPENDENCIAS"
+    muestra = ",".join(f"{iid}:{fn}" for iid, fn in pares[:4])
+    return resumen + (f" · {muestra}" if muestra else "") + (f" · +{len(pares)-4}" if len(pares) > 4 else "")
 
 
 def _inputs_legacy_de(spec: dict) -> list[str]:
-    """Los inputs DECLARADOS de la spec que caen bajo la regla E.1.
-
-    Lee `inputs[].ruta` -- lo que la spec declara --, no el disco: una spec
-    que no declara su insumo ya falla antes, en `_resuelve_inputs`.
-    """
-    malos = []
+    """Inputs numéricos E.1, con identidad normalizada y snapshots seguidos."""
+    malos: list[str] = []
     for entrada in (spec.get("inputs") or []):
         if not isinstance(entrada, dict):
             continue
-        ruta = str(entrada.get("ruta") or "")
-        for patron in INSUMOS_LEGACY_GEN1:
-            if ruta == patron or ruta.startswith(patron):
-                malos.append(f"{entrada.get('id') or '?'}={ruta}")
-                break
+        funcion = _funcion_de_dependencia(entrada)
+        if funcion != FUNCION_DATO:
+            continue
+        iid = str(entrada.get("id") or "?")
+        ruta, _estado = _normaliza_ruta_repo(str(entrada.get("ruta") or ""))
+        if _ruta_es_fuente_legacy_numerica(ruta):
+            malos.append(f"{iid}={ruta}")
+            continue
+        refs, _ = _referencias_numericas_de_intermediario(ruta)
+        heredadas = [r for r in refs if _ruta_es_fuente_legacy_numerica(r)]
+        if heredadas:
+            malos.append(f"{iid}={ruta}->{heredadas[0]}")
     return malos
 
 
-RE_CALC_RESULTADOS = re.compile(
-    r"^data/corrida0/(CALC-[A-Za-z0-9_.\-]+)/resultados\.json$")
-
-
 def _propaga_envuelto(oferta: list[dict]) -> None:
-    """Cierre TRANSITIVO de la regla E.1 sobre la cadena de CALC.
+    """Resuelve origen por RESULT y conserva ``envuelto_legacy`` compatible.
 
-    «...por completa que sea su cadena» no es una figura retorica: un
-    agregado cuyos inputs son `RESULT-*` de un corredor envuelto hereda la
-    procedencia de esos numeros. `CALC-AGG-marco-M-sorteado-v1_3` no nombra
-    `milpa/tramite.yaml` en ningun input -- consume
-    `CALC-M-.../resultados.json` --, y sin este cierre habria pasado por GEN2
-    limpio leyendo cifras del emisor GEN1. Es exactamente el error que D-1
-    manda no repetir.
-
-    Punto fijo sobre el grafo declarado de inputs; termina porque el conjunto
-    de envueltos solo crece y esta acotado por el numero de CALC.
+    La recursión sólo une las specs ya presentes en ``oferta`` y las
+    referencias numéricas de intermediarios declarados. Ciclos, padres
+    ausentes y rutas irresolubles producen INDETERMINADO, nunca limpio.
     """
     por_id = {o["calc_id"]: o for o in oferta}
-    cambio = True
-    while cambio:
-        cambio = False
-        for o in oferta:
-            if o["envuelto_legacy"] == "SI":
-                continue
-            for entrada in (o["spec"].get("inputs") or []):
-                if not isinstance(entrada, dict):
-                    continue
-                m = RE_CALC_RESULTADOS.match(str(entrada.get("ruta") or ""))
-                if not m:
-                    continue
-                padre = por_id.get(m.group(1))
-                if padre is not None and padre["envuelto_legacy"] == "SI":
-                    o["envuelto_legacy"] = "SI"
-                    o["_via_cadena"] = m.group(1)
-                    cambio = True
-                    break
+    memo: dict[tuple[str, str], dict] = {}
+    memo_calc: dict[str, dict] = {}
+
+    def resuelve_calc(calc_id: str, pila: tuple[str, ...]) -> dict:
+        """Origen agregado de un CALC, calculado una sola vez.
+
+        Una referencia a ``resultados.json`` sin ``resultado_id`` es
+        conservadoramente una referencia al conjunto. Cachear ese conjunto
+        evita el producto hijos×RESULT que antes hacía cuadrático al registro.
+        """
+        if calc_id in memo_calc:
+            return memo_calc[calc_id]
+        linajes = [resuelve_resultado(calc_id, rid, pila)
+                   for rid in sorted(por_id[calc_id].get("valores") or {"*": None})]
+        agregado = {
+            "origen": combina_origenes([x["origen"] for x in linajes]),
+            "herencia": any(x["herencia"] for x in linajes),
+            "camino": linajes[0]["camino"],
+        }
+        memo_calc[calc_id] = agregado
+        return agregado
+
+    def origen_ruta(ruta_cruda: str, pila: tuple[str, ...]) -> dict:
+        ruta, estado = _normaliza_ruta_repo(ruta_cruda)
+        m = RE_CALC_RESULTADOS.match(ruta)
+        if m:
+            padre = m.group(1)
+            if padre not in por_id:
+                return {"origen": ORIGEN_INDETERMINADO, "herencia": False,
+                        "camino": f"{ruta} -> CALC-AUSENTE:{padre}"}
+            agregado = resuelve_calc(padre, pila)
+            return {
+                "origen": agregado["origen"],
+                "herencia": agregado["herencia"],
+                "camino": f"{ruta} -> {padre} -> {agregado['camino']}",
+            }
+        if estado in {"EXTERNA", "EXTERNA-O-IRRESOLUBLE"}:
+            return {"origen": ORIGEN_INDETERMINADO, "herencia": False,
+                    "camino": f"{ruta} [{estado}]"}
+        if _ruta_es_fuente_legacy_numerica(ruta):
+            return {"origen": ORIGEN_HEREDADO, "herencia": True,
+                    "camino": f"{ruta} [FUENTE-LEGACY]"}
+        if _ruta_es_fuente_nueva_acreditada(ruta):
+            return {"origen": ORIGEN_NUEVO, "herencia": False,
+                    "camino": f"{ruta} [F5-COMPLETA-SELLADA]"}
+        return {"origen": ORIGEN_INDETERMINADO, "herencia": False,
+                "camino": f"{ruta} [{estado}]"}
+
+    def resuelve_entrada(entrada: dict, pila: tuple[str, ...]) -> list[dict]:
+        iid = str(entrada.get("id") or "?")
+        funcion = _funcion_de_dependencia(entrada)
+        ruta = str(entrada.get("ruta") or "")
+        declarado = str(entrada.get("origen_numerico") or "").upper()
+        if declarado in {ORIGEN_NUEVO, ORIGEN_HEREDADO, ORIGEN_MIXTO, ORIGEN_INDETERMINADO}:
+            return [{"origen": declarado,
+                     "herencia": declarado in {ORIGEN_HEREDADO, ORIGEN_MIXTO},
+                     "camino": f"{iid}:{funcion} -> ORIGEN-DECLARADO:{declarado}"}]
+        if funcion in {FUNCION_CODIGO, FUNCION_METADATO, FUNCION_CONTROL_HISTORICO}:
+            return []
+        if str(entrada.get("origen") or "").lower() == "manifiesto":
+            return [{"origen": ORIGEN_NUEVO, "herencia": False,
+                     "camino": f"{iid}:DATO -> manifiesto:{iid} [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]"}]
+        if funcion == FUNCION_INDETERMINADA:
+            normal, estado = _normaliza_ruta_repo(ruta)
+            return [{"origen": ORIGEN_INDETERMINADO, "herencia": False,
+                     "camino": f"{iid}:FUNCION-INDETERMINADA -> {normal} [{estado}]"}]
+        directo = origen_ruta(ruta, pila)
+        if funcion == FUNCION_DATO:
+            refs, estado_ref = _referencias_numericas_de_intermediario(ruta)
+            if directo["origen"] != ORIGEN_INDETERMINADO or not refs:
+                directo["camino"] = f"{iid}:DATO -> {directo['camino']}"
+                return [directo]
+            if estado_ref.startswith("ILEGIBLE"):
+                return [{"origen": ORIGEN_INDETERMINADO, "herencia": False,
+                         "camino": f"{iid}:DATO -> {ruta} [{estado_ref}]"}]
+            salidas = []
+            for ref in refs:
+                rama = origen_ruta(ref, pila)
+                rama["camino"] = f"{iid}:DATO -> {ruta} -> {rama['camino']}"
+                salidas.append(rama)
+            return salidas
+        return []
+
+    def resuelve_resultado(calc_id: str, rid: str, pila: tuple[str, ...] = ()) -> dict:
+        clave = (calc_id, rid)
+        if clave in memo:
+            return memo[clave]
+        if calc_id in pila:
+            ciclo = " -> ".join((*pila[pila.index(calc_id):], calc_id))
+            return {"origen": ORIGEN_INDETERMINADO, "herencia": False,
+                    "camino": f"CICLO:{ciclo}"}
+        o = por_id[calc_id]
+        spec = o["spec"]
+        if str(o.get("generacion")) == GENERACION_LEGADO:
+            r = {"origen": ORIGEN_HEREDADO, "herencia": True,
+                 "camino": f"{calc_id}/{rid} -> generacion {GENERACION_LEGADO}"}
+            memo[clave] = r
+            return r
+        entradas = [e for e in (spec.get("inputs") or []) if isinstance(e, dict)]
+        decl = next((d for d in (spec.get("resultados") or [])
+                     if isinstance(d, dict) and str(d.get("id")) == rid), {})
+        origen_declarado = str(decl.get("origen_numerico") or "").upper()
+        if origen_declarado in {ORIGEN_NUEVO, ORIGEN_HEREDADO, ORIGEN_MIXTO, ORIGEN_INDETERMINADO}:
+            r = {"origen": origen_declarado,
+                 "herencia": origen_declarado in {ORIGEN_HEREDADO, ORIGEN_MIXTO},
+                 "camino": f"{calc_id}/{rid} -> ORIGEN-DECLARADO:{origen_declarado}"}
+            memo[clave] = r
+            return r
+        seleccion = decl.get("dependencias_numericas")
+        faltantes: list[str] = []
+        if seleccion is not None:
+            ids = {str(x) for x in (seleccion or [])}
+            conocidos = {str(e.get("id") or "") for e in entradas}
+            faltantes = sorted(ids - conocidos)
+            entradas = [e for e in entradas if str(e.get("id") or "") in ids]
+        ramas: list[dict] = []
+        for entrada in entradas:
+            ramas.extend(resuelve_entrada(entrada, (*pila, calc_id)))
+        ramas.extend({"origen": ORIGEN_INDETERMINADO, "herencia": False,
+                      "camino": f"DEPENDENCIA-AUSENTE:{iid}"} for iid in faltantes)
+        origen = combina_origenes([x["origen"] for x in ramas])
+        muestra = " | ".join(x["camino"] for x in ramas[:3])
+        if len(ramas) > 3:
+            muestra += f" | +{len(ramas) - 3} ramas"
+        r = {"origen": origen, "herencia": any(x["herencia"] for x in ramas),
+             "camino": f"{calc_id}/{rid}" + (f" -> {muestra}" if muestra else " -> SIN-INSUMO-NUMERICO")}
+        memo[clave] = r
+        return r
+
+    for o in oferta:
+        ids = sorted((o.get("valores") or {}).keys()) or ["*"]
+        linajes = {rid: resuelve_resultado(o["calc_id"], rid) for rid in ids}
+        o["linajes_resultados"] = linajes
+        o["origen_numerico"] = combina_origenes([x["origen"] for x in linajes.values()])
+        o["funciones_dependencia"] = _resumen_funciones(
+            [e for e in (o["spec"].get("inputs") or []) if isinstance(e, dict)])
+        o["camino_linaje"] = next(iter(linajes.values()))["camino"]
+        hereda = any(x["herencia"] for x in linajes.values())
+        o["envuelto_legacy"] = ("SI" if hereda else
+                                (ORIGEN_INDETERMINADO if o["origen_numerico"] == ORIGEN_INDETERMINADO else "NO"))
+        if hereda and not _inputs_legacy_de(o["spec"]):
+            o["_via_cadena"] = next(x["camino"] for x in linajes.values() if x["herencia"])
 
 
 def _cuenta_gen2_resuelto(calc_id: str, spec: dict,
@@ -3321,6 +3612,9 @@ def _filas_registro(verifica: bool = False) -> dict:
             "envuelto_legacy": "PENDIENTE",
             "motivo_cuenta_gen2": "demanda sin spec: la regla E.1 se evalua "
                                   "cuando la spec declare sus inputs",
+            "origen_numerico": ORIGEN_INDETERMINADO,
+            "funciones_dependencia": "SIN-SPEC",
+            "camino_linaje": f"{c['corrida_id']} -> DEMANDA-PENDIENTE",
             "spec_yaml_sha256": "PENDIENTE", "script_path": "PENDIENTE",
             "script_blob_sha256": "PENDIENTE", "codigo_commit": "PENDIENTE",
             "fecha": "PENDIENTE", "n_resultados": c["n_resultados"],
@@ -3350,6 +3644,10 @@ def _filas_registro(verifica: bool = False) -> dict:
             "cuenta_gen2": "SI", "tolerancia": "PENDIENTE",
             "tolerancia_adopcion": "PENDIENTE",
             "validacion_independiente": r["validacion_independiente"],
+            "rol_evaluacion": NO_DECLARADO,
+            "origen_numerico": ORIGEN_INDETERMINADO,
+            "funciones_dependencia": "SIN-SPEC",
+            "camino_linaje": f"{r['corrida_natural']}/{rid} -> DEMANDA-PENDIENTE",
             "valor_legacy": r["valor_legacy"], "delta_legacy": NO_COMPARABLE,
             "sello": "PENDIENTE", "fuente_replay": "NO-CORRIDA",
             "depende_de": r["depende_de"],
@@ -3372,6 +3670,13 @@ def _filas_registro(verifica: bool = False) -> dict:
             "corrida0_generacion": generacion_declarada,
             "corrida0_resultado_id": marca.get("resultado_id", ""),
             "fuente_replay": "NO-CORRIDA",
+            "uso_solicitado": (marca.get("uso") or
+                               ("MEDICION-GEN2" if generacion_declarada == "GEN2"
+                                else "LEGACY-NO-DECLARADO")),
+            "origen_numerico": ORIGEN_INDETERMINADO,
+            "aptitud_uso": "NO-EVALUADA",
+            "motivo_aptitud": "destino numerico pendiente de resolver",
+            "camino_linaje": f"{r['consumidor']} -> DEMANDA:{rid}",
             "valor_materializado": marca.get("valor", NO_DECLARADO),
         })
 
@@ -3399,6 +3704,9 @@ def _filas_registro(verifica: bool = False) -> dict:
             "cuenta_gen2": o["cuenta_gen2"],
             "envuelto_legacy": o["envuelto_legacy"],
             "motivo_cuenta_gen2": o["motivo_cuenta_gen2"],
+            "origen_numerico": o["origen_numerico"],
+            "funciones_dependencia": o["funciones_dependencia"],
+            "camino_linaje": o["camino_linaje"],
             "spec_yaml_sha256": ejec.get("spec_yaml_sha256") or NO_DECLARADO,
             "script_path": ejec.get("script_path") or str(spec.get("script") or NO_DECLARADO),
             "script_blob_sha256": ejec.get("script_blob_sha256") or NO_DECLARADO,
@@ -3422,6 +3730,7 @@ def _filas_registro(verifica: bool = False) -> dict:
             # corridas SIN cadena de sucesion, que se verifica abajo.
             _unico(vistos_resultado, (corrida_id, rid), "resultados")
             decl = decl_res.get(rid, {})
+            linaje = o["linajes_resultados"][rid]
             filas_resultados.append({
                 "resultado_id": rid, "origen": "OFERTA",
                 "corrida_id": corrida_id, "spec_id": calc_id,
@@ -3436,6 +3745,11 @@ def _filas_registro(verifica: bool = False) -> dict:
                     decl.get("tolerancia_adopcion", tol_adop_spec)),
                 "validacion_independiente": _etiqueta(spec, "validacion_independiente",
                                                       "NO-HECHA"),
+                "rol_evaluacion": str(decl.get("rol_evaluacion") or
+                                      _etiqueta(spec, "rol_evaluacion", NO_DECLARADO)),
+                "origen_numerico": linaje["origen"],
+                "funciones_dependencia": o["funciones_dependencia"],
+                "camino_linaje": linaje["camino"],
                 "valor_legacy": NO_COMPARABLE, "delta_legacy": NO_COMPARABLE,
                 "sello": o["sello"], "fuente_replay": cita_fuente,
                 "depende_de": "", "n_usos": 0,
@@ -3482,6 +3796,7 @@ def _filas_registro(verifica: bool = False) -> dict:
             indice_resultados[f["resultado_id"]] = f
 
     # ── validaciones que PARAN sobre el grafo ya unido ─────────────────────
+    usos_no_aptos: list[str] = []
     for u in filas_usos:
         if u["resultado_id"] not in indice_resultados:
             raise ParoRegistro(f"USO-A-RESULT-INEXISTENTE: {u['consumidor']} "
@@ -3494,12 +3809,29 @@ def _filas_registro(verifica: bool = False) -> dict:
                 raise ParoRegistro(f"USO-A-RESULT-INEXISTENTE: {u['consumidor']} "
                                    f"declara corrida0_resultado_id={marca}, "
                                    f"que no existe")
-            if destino["generacion"] == GENERACION_LEGADO:
-                raise ParoRegistro(f"CONSUMIDOR-ACTIVO-A-LEGACY: {u['consumidor']} "
-                                   f"es GEN2 y resuelve a {marca}, que es "
-                                   f"{GENERACION_LEGADO}")
             destino_fuente = destino
+            if (destino["generacion"] == GENERACION_LEGADO
+                    and u["uso_solicitado"] == "LEGACY-NO-DECLARADO"):
+                raise ParoRegistro(f"CONSUMIDOR-ACTIVO-A-LEGACY: {u['consumidor']} "
+                                   f"cita {marca}, que es {GENERACION_LEGADO}, "
+                                   "sin declarar un uso historico admisible")
         u["fuente_replay"] = destino_fuente["fuente_replay"]
+        u["origen_numerico"] = destino_fuente["origen_numerico"]
+        u["camino_linaje"] = (f"{u['consumidor']} -> "
+                             f"{marca or u['resultado_id']} -> "
+                             f"{destino_fuente['camino_linaje']}")
+        aptitud, motivo = aptitud_para_uso(
+            destino_fuente["origen_numerico"], u["uso_solicitado"],
+            destino_fuente["validacion_independiente"],
+            destino_fuente["rol_evaluacion"])
+        u["aptitud_uso"], u["motivo_aptitud"] = aptitud, motivo
+        if marca and u["corrida0_generacion"] == "GEN2" and aptitud == NO_APTA:
+            usos_no_aptos.append(
+                f"{u['consumidor']} -> {marca} · uso={u['uso_solicitado']} · "
+                f"origen={destino_fuente['origen_numerico']} · "
+                f"impacto={u['reglas_impacto']} · {motivo}")
+    if usos_no_aptos:
+        raise ParoRegistro("USO-NO-APTO:\n  " + "\n  ".join(usos_no_aptos))
     _verifica_ciclos(filas_resultados)
 
     # ── avisos (no paran) ─────────────────────────────────────────────────
@@ -3764,7 +4096,9 @@ def status(imprime: bool = True) -> dict:
                      and f["cuenta_gen2"] == "SI" and sellada(f)]
     ids_sellados_gen2 = {f["resultado_id"] for f in sellados_gen2}
     ids_adoptados = {u["corrida0_resultado_id"] for u in usos_activos
-                     if u["generacion_leida"] == "GEN2" and u["corrida0_resultado_id"]}
+                     if u["generacion_leida"] == "GEN2"
+                     and str(u["aptitud_uso"]).startswith("APTA-")
+                     and u["corrida0_resultado_id"]}
     ids_adoptados &= ids_sellados_gen2
     ids_pendientes = _resultados_citados_en(PROPUESTA) & ids_sellados_gen2
     ids_pendientes -= ids_adoptados
@@ -3796,7 +4130,7 @@ def status(imprime: bool = True) -> dict:
         "replays_legacy_sellados": sum(1 for f in corridas
                                        if f["origen"] == "OFERTA"
                                        and f["cuenta_gen2"] == "NO"
-                                       and f["envuelto_legacy"] != "SI"
+                                       and f["origen_numerico"] == ORIGEN_HEREDADO
                                        and sellada(f)),
         # ACTO GEN2-T9 · P1 · D-1: los corredores ENVUELTOS -- spec GEN2,
         # sello valido, `verify REPRODUCE`, y aun asi cero GEN2 porque su
