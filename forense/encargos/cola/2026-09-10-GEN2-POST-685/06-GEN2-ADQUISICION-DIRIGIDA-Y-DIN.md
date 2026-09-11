@@ -71,3 +71,21 @@ Este archivo es autocontenido. Su fuente de autoridad es la instrucción de mesa
 Cada fase termina con resultado o bloqueo preciso y prueba. Cierre completo: autorización → resultado/cambio → evidencia → consumidor, si aplica → FP/NC → vistas/cola → PR y merge. Una decisión firmada no cierra una ejecución pendiente. Registrar fecha real, cita y universo; nada se borra ni se rejuvenece por traslado. Si falta una pieza, usar el vocabulario vigente y sucesor concreto.
 
 **Formato final del ejecutor:** resultado útil en cinco líneas; fases realizadas/pendientes; PR y SHA; pruebas; tabla `obligación | evidencia | cerrada/residual | siguiente acción`. No parar en un inventario cuando el entorno permite ejecutar. No continuar por inercia después de satisfacer el resultado.
+
+## NO-CORRIDO / RESERVAS
+
+- `NC-0037`: no apareció un ledger mexicano abierto de grupos, turnos y pagos;
+  la ruta comercial permanece diferida por D18.
+- `NC-0151`: DUA ICPSR, formulario OECD, solicitud Reuters, PNT ENJUVE y
+  sesión para SSRN 2014 exigen identidad, firma o respuesta de tercero.
+- `FP-371`: mesa aún debe aceptar o rechazar el uso inferencial concreto; el
+  acto recomienda rechazar constante + `folio` como *ground truth*.
+
+## CONSUMIDO
+
+PR: `#693`, rama `acto/gen2-adquisicion-dirigida`, contra `main`. Ejecutado:
+`ACTO GEN2-ADQUISICION-DIRIGIDA-Y-DIN` (`ADR-456`). Tres documentos públicos
+quedaron en `data_raw`, fuera de Git y registrados por manifiesto; se entregó
+la ruta académica de tandas y el dictamen DIN, se actualizaron cola/FP/NC y se
+preservaron los accesos personales como residuales. Contador: cero. **NO
+fusionado por el ejecutor** — mesa revisa y fusiona.

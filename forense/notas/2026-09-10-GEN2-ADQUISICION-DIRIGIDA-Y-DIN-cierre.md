@@ -1,7 +1,7 @@
 # ACTO GEN2-ADQUISICION-DIRIGIDA-Y-DIN · cierre
 
 Fecha: 10 de septiembre de 2026. Rama:
-`acto/gen2-adquisicion-dirigida`. PR: `PENDIENTE-DE-PUBLICAR`.
+`acto/gen2-adquisicion-dirigida`. PR: `#693`.
 
 ## Resultado útil en cinco líneas
 
