@@ -7,14 +7,16 @@ columnas fijas, `barrido_enoe_*` trae listas de término congeladas en el
 propio código. Este script es el primero pensado para consulta ad hoc,
 repetida con formulaciones distintas (`mapea.md`, P2, corre ≥3 por celda).
 
-Universo: las DOS capas de texto que A.8 confirmó existentes —
+Universo vigente: el overlay acreditado
+`data/inventario-reactivos-contexto-v1_0.tsv` primero y, sin duplicar sus
+identidades, las DOS capas históricas que A.8 confirmó existentes —
 `data/inventario-reactivos-v1_2.tsv` (sucesor de v1_1 citado por el
 encargo; mismas 178 246 filas / mismo payload_id·sha256_12·archivo_miembro·
 variable_id·texto_reactivo·metodo·universo_declarado byte a byte, columna
 `instrumento` más resuelta — ADR-216) y
 `data/inventario-reactivos-ext-v1_0.tsv` (formatos estadísticos .dta/.sav/
 .rdata, 63 345 filas, ADR-228). `--fuente` elige una o ambas (por defecto
-ambas). Nunca se abre microdato: las dos tablas son metadato puro,
+`vigente`). Nunca se abre microdato: las tablas son metadato puro,
 producido por actos anteriores.
 
 Consulta: por palabras (`--palabra`, repetible, OR entre sí — mismo
@@ -82,9 +84,10 @@ FUENTES = {
     "v1_2": REPO_ROOT / "data" / "inventario-reactivos-v1_2.tsv",
     "ext": REPO_ROOT / "data" / "inventario-reactivos-ext-v1_0.tsv",
 }
-# ACTO MAESTRA37-L1: --tablas admite una tercera fuente sin tocar --fuente
-# ni el default de FUENTES. "hoy" == exactamente v1_2+ext, byte a byte,
-# el comportamiento previo a este acto.
+CONTEXTO = REPO_ROOT / "data" / "inventario-reactivos-contexto-v1_0.tsv"
+# ACTO MAESTRA37-L1: --tablas admite fuentes adicionales sin tocar las claves
+# históricas de --fuente. "hoy" == exactamente v1_2+ext, byte a byte, el
+# comportamiento previo al overlay vigente de contexto.
 #
 # ACTO MAESTRA37-A1 (3/sep/2026): 'descargas_mx_v1_1' es una CUARTA clave, no
 # un cambio de la tercera. v1_1 re-indexa la raiz despues de que el portal del
@@ -94,12 +97,16 @@ FUENTES = {
 # y v1_0 es la unica cifra contra la que la regresion de v1_1 se midio.
 TABLAS = {
     **FUENTES,
+    "contexto": CONTEXTO,
     "descargas_mx": REPO_ROOT / "data" / "inventario-reactivos-descargas-mx-v1_0.tsv",
     "descargas_mx_v1_1": REPO_ROOT / "data" / "inventario-reactivos-descargas-mx-v1_1.tsv",
 }
 MANIFIESTO = REPO_ROOT / "data" / "manifiesto.yaml"
 
-COLUMNAS_SALIDA = ["id", "encuesta", "ola", "tabla", "variable", "texto", "tipo", "en_corpus"]
+COLUMNAS_SALIDA = [
+    "id", "encuesta", "ola", "tabla", "variable", "texto", "tipo", "en_corpus",
+    "texto_tipo", "contexto_busqueda", "fuente_texto", "referencia_fuente",
+]
 
 
 def plegar(s: str) -> str:
@@ -139,11 +146,12 @@ def construye_filtro(args: argparse.Namespace):
         if tipo_f and tipo_f not in plegar(row["metodo"]):
             return False
         texto, variable = row["texto_reactivo"] or "", row["variable_id"] or ""
+        contexto = row.get("contexto_busqueda", "") or ""
         if palabras_plegadas:
-            tp, vp = plegar(texto), plegar(variable)
-            return any(p in tp or p in vp for p in palabras_plegadas)
+            tp, vp, cp = plegar(texto), plegar(variable), plegar(contexto)
+            return any(p in tp or p in vp or p in cp for p in palabras_plegadas)
         if regex:
-            return bool(regex.search(texto) or regex.search(variable))
+            return bool(regex.search(texto) or regex.search(variable) or regex.search(contexto))
         return True  # solo filtros, sin consulta de texto
 
     return coincide
@@ -163,12 +171,13 @@ def main(argv=None) -> int:
     ap.add_argument("--ola", help="Substring plegado sobre ola y payload_id (ver docstring).")
     ap.add_argument("--tipo", help="Substring plegado sobre metodo (INSPECT_ZIP/XLSX/CSV/XML/"
                                    "STATA/SPSS/RDATA).")
-    ap.add_argument("--fuente", choices=["v1_2", "ext", "ambas"], default="ambas",
-                    help="Qué tabla(s) examinar (por defecto ambas). Superado por --tablas "
+    ap.add_argument("--fuente", choices=["v1_2", "ext", "ambas", "vigente"], default="vigente",
+                    help="Qué tabla(s) examinar (por defecto: vigente = overlay de contexto + "
+                        "las dos históricas, deduplicadas por identidad). Superado por --tablas "
                         "si se da; se mantiene por compatibilidad con invocaciones existentes.")
     ap.add_argument("--tablas", choices=sorted(TABLAS) + ["hoy", "todas"], action="append",
-                    help="Qué tabla(s) de TABLAS examinar (repetible). 'hoy' (default si no se "
-                        "da --tablas) = v1_2+ext, exactamente --fuente ambas de antes de "
+                    help="Qué tabla(s) de TABLAS examinar (repetible). 'hoy' = v1_2+ext, "
+                        "exactamente --fuente ambas de antes de "
                         "MAESTRA37-L1. 'todas' = hoy + descargas_mx.")
     ap.add_argument("--limite", type=int, default=500,
                     help="Máximo de candidatas a listar (por defecto 500; el total real de "
@@ -192,7 +201,10 @@ def main(argv=None) -> int:
                 claves.add(t)
         fuentes = sorted(claves)
     else:
-        fuentes = list(FUENTES) if args.fuente == "ambas" else [args.fuente]
+        if args.fuente == "vigente":
+            fuentes = ["contexto", "v1_2", "ext"]
+        else:
+            fuentes = list(FUENTES) if args.fuente == "ambas" else [args.fuente]
 
     for f in fuentes:
         if not TABLAS[f].exists():
@@ -205,10 +217,20 @@ def main(argv=None) -> int:
 
     universo_partes = []
     candidatas = []
+    identidades_vistas = set()
+    filas_revisadas = textos_revisados = filas_sombreadas = 0
     for f in fuentes:
         filas = lee_filas(TABLAS[f])
-        universo_partes.append(f"{f}={len(filas)}")
+        con_texto = sum(bool((row.get("texto_reactivo") or "").strip()) for row in filas)
+        universo_partes.append(f"{f}={len(filas)}(texto={con_texto})")
         for n, row in enumerate(filas, start=1):
+            identidad = (row["payload_id"], row["archivo_miembro"], row["variable_id"].lower())
+            if identidad in identidades_vistas:
+                filas_sombreadas += 1
+                continue
+            identidades_vistas.add(identidad)
+            filas_revisadas += 1
+            textos_revisados += bool((row.get("texto_reactivo") or "").strip())
             if coincide(row):
                 candidatas.append((f, n, row))
 
@@ -219,7 +241,8 @@ def main(argv=None) -> int:
         f"# tools/busca_reactivos.py -- {date.today().isoformat()}",
         f"# comando: {' '.join(['busca_reactivos.py'] + (argv if argv is not None else sys.argv[1:]))}",
         f"# universo examinado (A.13): {', '.join(universo_partes)} -- "
-        f"total {sum(int(p.split('=')[1]) for p in universo_partes)} filas",
+        f"{filas_revisadas} identidades revisadas, {textos_revisados} con texto, "
+        f"{filas_sombreadas} filas históricas sombreadas por sucesor",
         f"# candidatas: {total_candidatas} total, mostrando {len(mostradas)} "
         f"(--limite {args.limite})",
     ]
@@ -232,7 +255,7 @@ def main(argv=None) -> int:
         for fuente, n, row in mostradas:
             en_corpus = "SI" if row["payload_id"] in manifiesto else "NO"
             fila_salida = [
-                f"{fuente}:{n}",
+                row.get("id_origen") or f"{fuente}:{n}",
                 row["instrumento"],
                 row["ola"],
                 row["archivo_miembro"],
@@ -240,6 +263,10 @@ def main(argv=None) -> int:
                 row["texto_reactivo"],
                 row["metodo"],
                 en_corpus,
+                row.get("texto_tipo", ""),
+                row.get("contexto_busqueda", ""),
+                row.get("fuente_texto", ""),
+                row.get("referencia_fuente", ""),
             ]
             salida.write("\t".join(fila_salida) + "\n")
     finally:
