@@ -61,6 +61,15 @@ El encargo 30 puede tocar `tools/corrida0.py`. Desarrolla el módulo y ejemplos 
 
 Cierra NC-0091 sólo con la capacidad utilizable. NC-0048 mezcla implementación y correspondencia/materialidad: conciliar únicamente lo acreditado, dejando su decisión histórica pendiente si sigue sin contrato. Entrega resultados y comando listo para la siguiente comparación, con pruebas dirigidas de referencias, cero y rupturas. No agregar una nueva rutina programada.
 
+## NO-CORRIDO / RESERVAS
+
+- No se compararon los 211 RESULT históricos citados por `NC-0048`: no hay
+  correspondencias explícitas y verificables para ese universo. La fila queda
+  ABIERTA con el contrato y la acción sucesora precisos.
+- No se declaró materialidad científica, adopción, firma, F6 ni acceso
+  comercial; tampoco se modificaron `delta_legacy`, motor, tiers, specs,
+  sellos, vistas, contadores o cron.
+
 ## CONSUMIDO
 
 Consumido el 11/sep/2026 por `ACTO GEN2-DELTA-COMPARACION-EXPLICITA` en la
