@@ -1013,7 +1013,9 @@ def valida_resultado_adquisicion(resultado, seleccion, seleccion_investigacion=N
             codigo, out, err = _corre(
                 ["git", "ls-remote", "--exit-code", "origin", ref["ref"]],
                 timeout=20, cwd=raiz)
-            pares = {linea.split()[0]: linea.split()[1]
+            # `git ls-remote` emite ``<sha>\t<ref>``. El índice se consulta
+            # por ref, de modo que la relación correcta es ref -> sha.
+            pares = {linea.split()[1]: linea.split()[0]
                      for linea in out.splitlines() if len(linea.split()) == 2}
             if codigo != 0 or pares.get(ref["ref"]) != ref["commit"]:
                 errores.append(f"publicación remota no comprobada: {ref['ref']}@{ref['commit']} ({(err or out).strip()[:160]})")

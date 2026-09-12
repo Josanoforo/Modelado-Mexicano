@@ -82,20 +82,19 @@ necesidades:
     prioridad_consumidor: 5
     bloqueo_material: 3
     lista: true
-    proxima_revision: "2026-09-12"
-    asignacion: acto/gen2-n34-datos-producto-dano
-    reserva_hasta: "2026-09-13"
+    proxima_revision: "2026-10-11"
+    asignacion: servicio-gen2-38
     modos: [CONSTRUCTO, HERMANAS, LATERAL]
     poblacion: "consumidor/deudor en México"
     unidad: "persona/hogar deudor"
     periodo: "vigente y ventana identificada"
     variables: "producto/lender, costo/condición/fricción, desenlace y denominador"
-    evidencia_disponible: "ENSAFI describe atraso por clase amplia; IMOR y CONDUSEF no enlazan exposición individual con daño causal"
-    brecha: "producto exacto + costo/BNPL/fricción + daño; identificación causal adicional"
-    suficiencia_actual: {identidad: PARCIAL, conceptual: PARCIAL, poblacional: ACREDITADA, seleccion_no_respuesta: ACREDITADA, unidad: PARCIAL, temporalidad: ACREDITADA, diseno: ACREDITADA, identificacion: NO_ACREDITADA, uso_habilitado: APTA_ALCANCE_MENOR, pregunta_original: ABIERTA}
-    investigacion_previa: "#723 y entrega de tarea 36 publicada en PR #734 (abierto al corte)"
-    frontera_previa: "propiedad exclusiva de 36 mientras #734 siga abierto o su reserva esté vigente"
-    siguiente_accion: "consumir #734 después de su merge; no duplicar su búsqueda ni adoptar sus proxies como efecto causal"
+    evidencia_disponible: "#734 fusionado: Banxico enlaza cinco categorías de crédito con costo percibido y daño en 12,408 filas persona-ola mexicanas; SHED enlaza BNPL y daño en 12,934 personas de Estados Unidos; CFPB sólo aporta tabla agregada"
+    brecha: "falta producto/lender mexicano exacto con CAT/tasa/fricción objetiva y estrategia que identifique daño causal"
+    suficiencia_actual: {identidad: PARCIAL, conceptual: PARCIAL, poblacional: PARCIAL, seleccion_no_respuesta: ACREDITADA, unidad: ACREDITADA, temporalidad: ACREDITADA, diseno: ACREDITADA, identificacion: NO_ACREDITADA, uso_habilitado: APTA_ALCANCE_MENOR, pregunta_original: ABIERTA}
+    investigacion_previa: "#723 y #734 fusionado; Banxico/SHED/CFPB adquiridos y mapeados sin adoptar parámetro"
+    frontera_previa: "Making Ends Meet exige términos; panel Di Maggio-Williams-Katz sin réplica pública; reabrir ante fuente mexicana exacta o decisión de preespecificación"
+    siguiente_accion: "no repetir #734; en la próxima revisión buscar fuente mexicana con producto exacto, costo objetivo, daño, negativos y estrategia de identificación"
 
   - id: NC-0136
     version_pregunta: "2026-09-10-indice-reactivos-ciego-v1"
@@ -104,20 +103,19 @@ necesidades:
     prioridad_consumidor: 15
     bloqueo_material: 3
     lista: false
-    proxima_revision: "2026-09-12"
-    asignacion: acto/gen2-reactivos-contexto-busqueda
-    reserva_hasta: "2026-09-13"
+    proxima_revision: "2026-10-11"
+    asignacion: servicio-gen2-38-observa
     modos: [HERMANAS]
     poblacion: "102 instrumentos con texto vacío en el índice"
     unidad: variable/reactivo
     periodo: "todas las olas indexadas"
     variables: "texto de reactivo, variable_id, instrumento, ola"
-    evidencia_disponible: "cobertura de contexto publicada por tarea 34 en PR #737, abierto al corte; aún no integrada en main"
-    brecha: "texto no indexado"
-    suficiencia_actual: {identidad: NO_APLICA, conceptual: NO_APLICA, poblacional: NO_APLICA, seleccion_no_respuesta: NO_APLICA, unidad: NO_APLICA, temporalidad: NO_APLICA, diseno: NO_APLICA, identificacion: NO_APLICA, uso_habilitado: INCOMPATIBLE, pregunta_original: ABIERTA}
-    investigacion_previa: "medición 102/116 en NC-0136 y correctivo publicado en PR #737"
-    frontera_previa: "propiedad exclusiva de 34"
-    siguiente_accion: "consumir #737 después de su merge"
+    evidencia_disponible: "#737 fusionado: overlay acreditado para 22,367/55,895 identidades del lote prioritario; 21/102 grupos históricamente ciegos ganaron texto"
+    brecha: "33,528 identidades del lote y 81 grupos históricamente ciegos aún no tienen cobertura textual"
+    suficiencia_actual: {identidad: PARCIAL, conceptual: PARCIAL, poblacional: NO_APLICA, seleccion_no_respuesta: NO_APLICA, unidad: PARCIAL, temporalidad: PARCIAL, diseno: NO_APLICA, identificacion: NO_APLICA, uso_habilitado: APTA_ALCANCE_MENOR, pregunta_original: ABIERTA}
+    investigacion_previa: "#737 fusionado; búsqueda contextual disponible con cobertura parcial y negativos expresamente acotados"
+    frontera_previa: "metadato nativo/documento oficial con identidad exacta para 81 grupos ciegos y 33,528 identidades residuales"
+    siguiente_accion: "continuar la materialización/indexación por el frente dueño; SONDA consume el overlay y no interpreta sus negativos como ausencia científica"
 
   - id: NC-0037
     version_pregunta: "2026-09-11-tandas-ledger-v1"

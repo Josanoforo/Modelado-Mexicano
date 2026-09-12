@@ -220,6 +220,15 @@ def prueba_wrapper_normaliza_selecciones_sin_redecidir_hallazgos():
            "normalizar selecciones alteró el hallazgo del ejecutor")
 
 
+def prueba_publicacion_remota_interpreta_sha_y_ref_en_orden_git():
+    sha = "a" * 40
+    salida = f"{sha}\trefs/heads/adq/fixture\n"
+    pares = {linea.split()[1]: linea.split()[0]
+             for linea in salida.splitlines() if len(linea.split()) == 2}
+    afirma(pares.get("refs/heads/adq/fixture") == sha,
+           "ls-remote debe interpretarse como ref→sha, no sha→ref")
+
+
 def prueba_vigilante_acredita_cola_vacia_sin_llm():
     linea = ("[ADQ] 2026-09-11 17:10: invocado=no motivo=COLA-VACIA exit=0 "
              "resultado=cola_vacia resultado_trabajo=cola_vacia "
@@ -293,6 +302,7 @@ def main():
     prueba_cola_vacia_mecanica_valida()
     prueba_cola_descargas_vacia_con_investigacion_exige_evidencia()
     prueba_wrapper_normaliza_selecciones_sin_redecidir_hallazgos()
+    prueba_publicacion_remota_interpreta_sha_y_ref_en_orden_git()
     prueba_vigilante_acredita_cola_vacia_sin_llm()
     prueba_h3_fetch_128_deja_identidad_y_cierre()
     prueba_launcher_rechazado_no_pisa_heartbeat()
@@ -301,7 +311,7 @@ def main():
         for fallo in FALLOS:
             print(f"  · {fallo}")
         return 1
-    print("OK -- test_adq_cierre_verificable.py: 9 casos, 0 fallos")
+    print("OK -- test_adq_cierre_verificable.py: 10 casos, 0 fallos")
     return 0
 
 
