@@ -78,7 +78,7 @@ estimando: >-
   poblacional de Mexico, de incumplimiento ni efecto causal.
 dependencias_materiales: [numpy, pandas]
 parametros:
-  codigos_cr04: {si: 1, no: 3}
+  codigos_cr04: {"si": 1, "no": 3}
   codigos_sexo: {hombre: 1, mujer: 3}
   codigos_roster_activo: [1, 4, 6]
   codigos_roster_fuera: [3, 5]
