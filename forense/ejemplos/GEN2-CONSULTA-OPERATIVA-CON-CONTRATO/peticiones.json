@@ -1,0 +1,193 @@
+[
+  {
+    "consumidor": "milpa/tramite.yaml:civico.denuncia.miedo_desconfianza:denuncia_con_miedo_o_desconfianza",
+    "contexto": {
+      "bp1_23_en_01_08": true,
+      "delito_no_denunciado": true,
+      "victima_18_mas": true
+    },
+    "id": "01-CIV-valida",
+    "proposito": "consulta",
+    "uso": "MEDICION-GEN2"
+  },
+  {
+    "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto",
+    "contexto": {},
+    "id": "02-DIN-valida",
+    "proposito": "consulta",
+    "uso": "MEDICION-GEN2"
+  },
+  {
+    "consumidor": "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas",
+    "contexto": {},
+    "id": "03-FAM-valida",
+    "proposito": "consulta",
+    "uso": "MEDICION-GEN2"
+  },
+  {
+    "consumidor": "milpa/tramite.yaml:tramite.mordida.discrecional:paga_mordida_encig2025",
+    "contexto": {},
+    "id": "04-TRA-valida",
+    "proposito": "consulta",
+    "uso": "MEDICION-GEN2"
+  },
+  {
+    "consumidor": "milpa/tramite.yaml:civico.denuncia.miedo_desconfianza:denuncia_con_miedo_o_desconfianza",
+    "contexto": {
+      "bp1_23_en_01_08": true,
+      "delito_no_denunciado": false,
+      "victima_18_mas": true
+    },
+    "id": "05-dominio-falso",
+    "proposito": "consulta",
+    "uso": "MEDICION-GEN2"
+  },
+  {
+    "consumidor": "milpa/tramite.yaml:tramite.mordida.discrecional:paga_mordida",
+    "contexto": {},
+    "id": "06-legacy-en-GEN2",
+    "proposito": "consulta",
+    "uso": "MEDICION-GEN2"
+  },
+  {
+    "consumidor": "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas",
+    "contexto": {},
+    "id": "07-transferencia-ENIGH-previa",
+    "proposito": "transferencia",
+    "seleccion": {
+      "contrato_version": "SELECCION-TEMPORAL-v1",
+      "disponible_desde": "2021-07-28",
+      "estado": "EMITE",
+      "excluidas": [],
+      "fuente": "enigh2020_nc_csv",
+      "metodo": "ultima_ola_publica",
+      "objetivo": {
+        "corte_temporal": "2021-12-31",
+        "estimando": "DESCRIPTIVO, en dos capas. (1) p_ola: proporcion ponderada de hogares con remesas por ola, con IC95. (2) El error de la linea base: para cada objetivo y cada brazo, P_B - P_observada con signo, su valor absoluto, si P_B cae dentro del IC95 de la observada, y el margen con signo al borde mas cercano. NO es una estimacion de regla: ninguna cifra entra a un veredicto (T9) y R5.1 no se mueve.",
+        "periodo": {
+          "fin": "2022-12-31",
+          "inicio": "2022-01-01"
+        },
+        "serie": {
+          "codificacion": "recibe_remesas = 1 si remesas > 0, 0 si remesas == 0",
+          "encuesta": "ENIGH-NS",
+          "reactivo": "concentradohogar.remesas",
+          "segmento": "nacional",
+          "unidad": "proporcion",
+          "universo": "hogares del universo completo de concentradohogar, sin filtro adicional"
+        },
+        "transformacion": "recibe_remesas = 1 si remesas > 0, 0 si remesas == 0. p_ola = suma(factor * recibe_remesas) / suma(factor) sobre el universo valido de la ola. Sobre esa serie corre el selector B sin modificarlo, para tres objetivos (2018, 2020, 2022) y dos brazos que difieren SOLO en el metadato `disponible_desde`: OPERATIVO usa el campo `Modified` de la version en corpus; PERSISTENCIA usa `periodo_fin` de la ola (el contrafactico \"si cada ola hubiera estado disponible el dia que cerro su levantamiento\"). Periodos = ano calendario de la ola; fecha_corte(objetivo) = (objetivo - 1)-12-31."
+      },
+      "p": 0.04377543852935772,
+      "periodo_fin": "2020-12-31",
+      "periodo_inicio": "2020-01-01",
+      "resultado_id": "RESULT-B-ENIGH-2020-P",
+      "seleccion": {
+        "disponibilidad": "2021-07-28",
+        "evidencia_procedencia": {
+          "fuente": "enigh2020_nc_csv",
+          "resultado_id": "RESULT-B-ENIGH-2020-P",
+          "valor": 0.04377543852935772
+        },
+        "periodo": {
+          "fin": "2020-12-31",
+          "inicio": "2020-01-01"
+        },
+        "serie": {
+          "codificacion": "recibe_remesas = 1 si remesas > 0, 0 si remesas == 0",
+          "encuesta": "ENIGH-NS",
+          "reactivo": "concentradohogar.remesas",
+          "segmento": "nacional",
+          "unidad": "proporcion",
+          "universo": "hogares del universo completo de concentradohogar, sin filtro adicional"
+        }
+      }
+    },
+    "uso": "MEDICION-GEN2"
+  },
+  {
+    "consumidor": "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas",
+    "contexto": {},
+    "id": "08-ENVIPE-a-remesas-parametros-sueltos",
+    "proposito": "transferencia",
+    "resultado_id_seleccionado": "RESULT-R-CIV-M-01-P-C1-U1",
+    "uso": "MEDICION-GEN2",
+    "valor_seleccionado": 0.29431298745731216
+  },
+  {
+    "consumidor": "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas",
+    "contexto": {},
+    "id": "09-seleccion-posterior-al-corte",
+    "proposito": "transferencia",
+    "seleccion": {
+      "contrato_version": "SELECCION-TEMPORAL-v1",
+      "disponible_desde": "2021-07-28",
+      "estado": "EMITE",
+      "excluidas": [],
+      "fuente": "enigh2020_nc_csv",
+      "metodo": "ultima_ola_publica",
+      "objetivo": {
+        "corte_temporal": "2021-12-31",
+        "estimando": "DESCRIPTIVO, en dos capas. (1) p_ola: proporcion ponderada de hogares con remesas por ola, con IC95. (2) El error de la linea base: para cada objetivo y cada brazo, P_B - P_observada con signo, su valor absoluto, si P_B cae dentro del IC95 de la observada, y el margen con signo al borde mas cercano. NO es una estimacion de regla: ninguna cifra entra a un veredicto (T9) y R5.1 no se mueve.",
+        "periodo": {
+          "fin": "2022-12-31",
+          "inicio": "2022-01-01"
+        },
+        "serie": {
+          "codificacion": "recibe_remesas = 1 si remesas > 0, 0 si remesas == 0",
+          "encuesta": "ENIGH-NS",
+          "reactivo": "concentradohogar.remesas",
+          "segmento": "nacional",
+          "unidad": "proporcion",
+          "universo": "hogares del universo completo de concentradohogar, sin filtro adicional"
+        },
+        "transformacion": "recibe_remesas = 1 si remesas > 0, 0 si remesas == 0. p_ola = suma(factor * recibe_remesas) / suma(factor) sobre el universo valido de la ola. Sobre esa serie corre el selector B sin modificarlo, para tres objetivos (2018, 2020, 2022) y dos brazos que difieren SOLO en el metadato `disponible_desde`: OPERATIVO usa el campo `Modified` de la version en corpus; PERSISTENCIA usa `periodo_fin` de la ola (el contrafactico \"si cada ola hubiera estado disponible el dia que cerro su levantamiento\"). Periodos = ano calendario de la ola; fecha_corte(objetivo) = (objetivo - 1)-12-31."
+      },
+      "p": 0.04377543852935772,
+      "periodo_fin": "2020-12-31",
+      "periodo_inicio": "2020-01-01",
+      "resultado_id": "RESULT-B-ENIGH-2020-P",
+      "seleccion": {
+        "disponibilidad": "2022-01-01",
+        "evidencia_procedencia": {
+          "fuente": "enigh2020_nc_csv",
+          "resultado_id": "RESULT-B-ENIGH-2020-P",
+          "valor": 0.04377543852935772
+        },
+        "periodo": {
+          "fin": "2020-12-31",
+          "inicio": "2020-01-01"
+        },
+        "serie": {
+          "codificacion": "recibe_remesas = 1 si remesas > 0, 0 si remesas == 0",
+          "encuesta": "ENIGH-NS",
+          "reactivo": "concentradohogar.remesas",
+          "segmento": "nacional",
+          "unidad": "proporcion",
+          "universo": "hogares del universo completo de concentradohogar, sin filtro adicional"
+        }
+      }
+    },
+    "uso": "MEDICION-GEN2"
+  },
+  {
+    "consumidor": "milpa/tramite.yaml:tramite.mordida.discrecional:sin_solicitud_y_sin_entrega_encuci2020",
+    "contexto": {
+      "contacto_funcionario_ultimos_12_meses": true,
+      "respuesta_solicitud_entrega_valida": true
+    },
+    "id": "10-complemento-adoptado",
+    "proposito": "consulta",
+    "uso": "MEDICION-GEN2"
+  },
+  {
+    "consumidor": "milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida_encig2025_digital_r2",
+    "contexto": {
+      "canal_p7_3": "digital_registrado",
+      "p8_4_observado": true
+    },
+    "id": "11-proxy-uso-no-permitido",
+    "proposito": "consulta",
+    "uso": "MEDICION-GEN2"
+  }
+]

@@ -1,0 +1,416 @@
+{
+  "contrato": "GEN2-DELTA-1",
+  "descripcion": "Tres pares reales: equivalencia de representacion del caso #647, delta temporal permitido de credito fintech #706 y ruptura definicional de cuenta. Ningun par trae criterio sustantivo de materialidad.",
+  "entrada": "forense/ejemplos/GEN2-DELTA-COMPARACION-EXPLICITA/pares-v1_0.yaml",
+  "entrada_sha256": "3a26d9f27496a30347f412934c5b74294f61d205420e75780e1bb12b98c5acf6",
+  "lectura_global": "Los veredictos aplican solo a los pares explicitos examinados. Cero materiales no demuestra coincidencia general y la equivalencia de representacion no determina materialidad cientifica.",
+  "pares": [
+    {
+      "comparabilidad": {
+        "causa": "las ocho dimensiones tienen correspondencia acreditada",
+        "dimensiones": {
+          "codigos": {
+            "estado": "COINCIDE",
+            "razon": "remesas mayor que cero es uno y remesas igual a cero es cero; no hay nulos"
+          },
+          "direccion": {
+            "estado": "COINCIDE",
+            "razon": "mayor valor significa mayor proporcion que recibe remesas"
+          },
+          "escala": {
+            "estado": "COINCIDE",
+            "razon": "ambos lados estan en escala 0 a 1"
+          },
+          "evento": {
+            "estado": "COINCIDE",
+            "razon": "recibe_remesas equivale a remesas mayor que cero"
+          },
+          "periodo": {
+            "estado": "COINCIDE",
+            "razon": "ambos valores corresponden a ENIGH 2022"
+          },
+          "poblacion": {
+            "estado": "COINCIDE",
+            "razon": "universo completo de hogares de concentradohogar ENIGH 2022"
+          },
+          "transformacion": {
+            "estado": "COINCIDE",
+            "razon": "suma de factor por indicador dividida entre suma de factor"
+          },
+          "unidad": {
+            "estado": "COINCIDE",
+            "razon": "ambos lados son proporcion ponderada de hogares"
+          }
+        },
+        "estado": "DEMOSTRADA",
+        "evidencias": [
+          {
+            "cita": "universo, transformacion, parametros.serie y parametros.adopcion_p3",
+            "fuente": "data/corrida0/CALC-B-0001/spec.yaml",
+            "sha256": "7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16"
+          }
+        ]
+      },
+      "consumidor": "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas",
+      "diferencia": {
+        "cambio_relativo": 2.178930514908786e-06,
+        "delta": 9.956405094824206e-08,
+        "estado": "CALCULADO",
+        "estado_relativo": "CALCULADO",
+        "magnitud_absoluta": 9.956405094824206e-08,
+        "operacion": "B - A",
+        "puntos_porcentuales": 9.956405094824206e-06,
+        "razon_relativo": "A es una proporcion no nula con origen cero sustantivo",
+        "unidad": "proporcion de hogares"
+      },
+      "id": "DELTA-REMESAS-ENIGH2022-GRANO",
+      "materialidad": {
+        "criterio": null,
+        "estado": "NO-DETERMINABLE",
+        "razon": "el contrato no contiene un criterio sustantivo citado; el grano no lo sustituye"
+      },
+      "referencias": {
+        "a": {
+          "clase_referencia": "FUENTE",
+          "estado": "RESUELTA",
+          "estado_valor": "VALOR",
+          "fuente": "data/corrida0/CALC-B-0001/spec.yaml",
+          "selector": {
+            "formato": "yaml",
+            "ruta": [
+              "parametros",
+              "adopcion_p3",
+              "valor_materializado"
+            ]
+          },
+          "sha256": "7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16",
+          "tipo": "proporcion",
+          "unidad": "proporcion de hogares",
+          "valor": 0.045694,
+          "version": "commit 09f83fca6f195b9f6a22ed1f4e5c2050988b7921; spec congelada antes de abrir microdato"
+        },
+        "b": {
+          "calc_id": "CALC-B-0001",
+          "clase_referencia": "RESULTADO-CORRIDA0",
+          "corrida_id": "CALC-B-0001--098298ca327f",
+          "declaracion": {
+            "id": "RESULT-B-ENIGH-2022-P",
+            "permite_no_estimable": true,
+            "tipo": "proporcion",
+            "unidad": "[2022] proporcion ponderada de hogares con remesas>0, universo completo de concentradohogar [0,1]"
+          },
+          "estado": "RESUELTA",
+          "estado_valor": "VALOR",
+          "git_commit_ejecucion": "098298ca327f60dfe2b396b82ab8ca23063347ea",
+          "resultado_id": "RESULT-B-ENIGH-2022-P",
+          "resultados_sha256": "87e20e5aa2923fcc4b206734fa13ec321d3b036d61edd48eb0efd5bd369f263d",
+          "sello": "COINCIDE",
+          "sello_sha256": "b849d164731d6b90c83316d0d8fa884b91f3fff1a4370ad2c93872e62b3788aa",
+          "spec_sha256": "7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16",
+          "tipo": "proporcion",
+          "tolerancia": {
+            "abs": 1e-10,
+            "razon": "Bootstrap fijado por seed + rng declarados y sumas en orden fijo: la unica diferencia esperable entre dos corridas del mismo arbol es redondeo de float64 al reasociar sumas ponderadas. Los enteros y los textos se comparan EXACTO. NO se afloja para que la adopcion de P3 pase: si el grano de milpa/ (seis decimales) no cabe en esta tolerancia, la cita no se escribe y eso es el hallazgo (§6).",
+            "tipo": "flotante"
+          },
+          "tolerancia_adopcion": null,
+          "unidad": "[2022] proporcion ponderada de hogares con remesas>0, universo completo de concentradohogar [0,1]",
+          "valor": 0.04569409956405095
+        }
+      },
+      "representacion": {
+        "delta_abs": 9.956405094824206e-08,
+        "estado": "IGUAL-AL-GRANO",
+        "modo": "grano del consumidor = 6 decimales",
+        "razon": "comparador canonico de adopcion; no es criterio de materialidad"
+      },
+      "reproducibilidad_referencias": "ACREDITADA",
+      "resultado": "DELTA-CALCULADO · REPRESENTACION-IGUAL-AL-GRANO · MATERIALIDAD-NO-DETERMINABLE",
+      "uso": {
+        "descripcion": "calibracion puntual ENIGH 2022; la serie de olas no se promedia",
+        "evidencias": [
+          {
+            "cita": "parametros.adopcion_p3 congela consumidor, RESULT y valor materializado antes de ejecutar/adoptar",
+            "fuente": "data/corrida0/CALC-B-0001/spec.yaml",
+            "sha256": "7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16"
+          }
+        ]
+      }
+    },
+    {
+      "comparabilidad": {
+        "causa": "las ocho dimensiones tienen correspondencia acreditada",
+        "dimensiones": {
+          "codigos": {
+            "estado": "COINCIDE",
+            "razon": "P6_7 y P6_6 conservan catalogo 1 a 6 y app en codigo 2"
+          },
+          "direccion": {
+            "estado": "COINCIDE",
+            "razon": "mayor valor significa mayor cuota del canal app"
+          },
+          "escala": {
+            "estado": "COINCIDE",
+            "razon": "ambas olas publican proporcion 0 a 1"
+          },
+          "evento": {
+            "estado": "DERIVA-DOCUMENTADA",
+            "razon": "misma categoria de credito por Internet/app; el ejemplo cambia Playbusiness por YoTePresto"
+          },
+          "periodo": {
+            "estado": "DISTINTO-INTENCIONAL",
+            "razon": "el objeto es deliberadamente el cambio descriptivo 2024 menos 2021"
+          },
+          "poblacion": {
+            "estado": "COINCIDE",
+            "razon": "persona elegida de 18 anos y mas con credito fintech y canal valido"
+          },
+          "transformacion": {
+            "estado": "COINCIDE",
+            "razon": "masa ponderada del canal dividida entre masa de canales validos por ola"
+          },
+          "unidad": {
+            "estado": "COINCIDE",
+            "razon": "proporcion ponderada por persona elegida"
+          }
+        },
+        "estado": "DEMOSTRADA",
+        "evidencias": [
+          {
+            "cita": "filas 2021 credito y 2024 credito; COMPARABLE-CON-DERIVA-DE-EJEMPLOS",
+            "fuente": "data/corrida0/enif-fintech-correspondencia-v1_0.tsv",
+            "sha256": "9c61b5588014fc2959cdb0c1abfdab423dd08dae3d0117c3c99fee6636217980"
+          }
+        ]
+      },
+      "consumidor": "dinero.credito.scoring_alternativo (R1.6)",
+      "diferencia": {
+        "cambio_relativo": -0.17625319337820125,
+        "delta": -0.12303002012000008,
+        "estado": "CALCULADO",
+        "estado_relativo": "CALCULADO",
+        "magnitud_absoluta": 0.12303002012000008,
+        "operacion": "B - A",
+        "puntos_porcentuales": -12.303002012000007,
+        "razon_relativo": "A es la proporcion 2021 no nula y el cero de la escala es sustantivo",
+        "unidad": "proporcion ponderada"
+      },
+      "id": "DELTA-ENIF-CREDITO-APP-2024-MENOS-2021",
+      "materialidad": {
+        "criterio": null,
+        "estado": "NO-DETERMINABLE",
+        "razon": "#706 no define umbral sustantivo; el cambio es descriptivo y no causal"
+      },
+      "referencias": {
+        "a": {
+          "calc_id": "CALC-ENIF-FINTECH-0001",
+          "clase_referencia": "RESULTADO-CORRIDA0",
+          "corrida_id": "CALC-ENIF-FINTECH-0001--5b92cee28946",
+          "declaracion": {
+            "id": "RESULT-ENIF-FINTECH-2021-CREDITO-CANAL-APP-CELULAR-P",
+            "tipo": "proporcion",
+            "unidad": "proporcion ponderada"
+          },
+          "estado": "RESUELTA",
+          "estado_valor": "VALOR",
+          "git_commit_ejecucion": "5b92cee28946453c7d9716df632da7089e33e418",
+          "resultado_id": "RESULT-ENIF-FINTECH-2021-CREDITO-CANAL-APP-CELULAR-P",
+          "resultados_sha256": "7a2f14d171bbf9d539337585b7a2dd79d216bd063b6e0d405ec6139afdf060c2",
+          "sello": "COINCIDE",
+          "sello_sha256": "e313b5413f65e7c92a6def2d07b70fb3a8f191851ccb68cea9f0d7aab4753b05",
+          "spec_sha256": "3a5d00ca71bb433af81c30c72d05942ad9dc26930cebb9ec00ae7ddefdaf0a9c",
+          "tipo": "proporcion",
+          "tolerancia": {
+            "abs": 1e-10,
+            "razon": "lectura, orden de suma y formula deterministas; salidas numericas redondeadas a 12 decimales",
+            "tipo": "flotante"
+          },
+          "tolerancia_adopcion": null,
+          "unidad": "proporcion ponderada",
+          "valor": 0.69803002012
+        },
+        "b": {
+          "clase_referencia": "FUENTE",
+          "estado": "RESUELTA",
+          "estado_valor": "VALOR",
+          "fuente": "data/corrida0/enif-fintech-serie-v1_0.tsv",
+          "selector": {
+            "clave": {
+              "canal": "app_celular",
+              "familia": "credito",
+              "ola": "2024"
+            },
+            "columna": "p",
+            "formato": "tsv"
+          },
+          "sha256": "f022ba96c1a38a0c3175038bed71b50dbce8204ad8511a558854baed2fed936a",
+          "tipo": "proporcion",
+          "unidad": "proporcion ponderada",
+          "valor": 0.575,
+          "version": "GEN2-ENIF-FINTECH-SERIE-v1_0; commit 345c497cf2309782bb6e454cbeb80ec0da68f7fd"
+        }
+      },
+      "representacion": {
+        "delta_abs": 0.12303002012000008,
+        "estado": "DISTINTO-AL-GRANO",
+        "modo": "grano del consumidor = 3 decimales",
+        "razon": "comparador canonico de adopcion; no es criterio de materialidad"
+      },
+      "reproducibilidad_referencias": "ACREDITADA",
+      "resultado": "DELTA-CALCULADO · REPRESENTACION-DISTINTO-AL-GRANO · MATERIALIDAD-NO-DETERMINABLE",
+      "uso": {
+        "descripcion": "contexto descriptivo DESCRIPTIVO-NO-CALIBRA sobre canal del ultimo producto; no canal fintech exacto",
+        "evidencias": [
+          {
+            "cita": "filas 2021/2024 credito y decision de comparacion con deriva de ejemplos",
+            "fuente": "data/corrida0/enif-fintech-correspondencia-v1_0.tsv",
+            "sha256": "9c61b5588014fc2959cdb0c1abfdab423dd08dae3d0117c3c99fee6636217980"
+          }
+        ]
+      }
+    },
+    {
+      "comparabilidad": {
+        "causa": "ruptura/incompatibilidad en: poblacion, evento, codigos",
+        "dimensiones": {
+          "codigos": {
+            "estado": "RUPTURA",
+            "razon": "el canal pasa de siete a ocho categorias y se amplia/reordena el catalogo"
+          },
+          "direccion": {
+            "estado": "COINCIDE",
+            "razon": "mayor valor significa mayor cuota del canal app"
+          },
+          "escala": {
+            "estado": "COINCIDE",
+            "razon": "ambas olas publican proporcion 0 a 1"
+          },
+          "evento": {
+            "estado": "RUPTURA",
+            "razon": "cambian la categoria descrita y los proveedores de ejemplo Mercado Pago/Albo a Mercado Pago/Nu/Spin"
+          },
+          "periodo": {
+            "estado": "DISTINTO-INTENCIONAL",
+            "razon": "se examinan 2021 y 2024 deliberadamente para decidir si existe delta"
+          },
+          "poblacion": {
+            "estado": "RUPTURA",
+            "razon": "2024 restringe explicitamente a cuenta no bancaria; 2021 no contiene esa aclaracion"
+          },
+          "transformacion": {
+            "estado": "COINCIDE",
+            "razon": "dentro de cada ola se calcula masa del canal sobre masa de canales validos"
+          },
+          "unidad": {
+            "estado": "COINCIDE",
+            "razon": "proporcion ponderada por persona elegida"
+          }
+        },
+        "estado": "INCOMPATIBILIDAD",
+        "evidencias": [
+          {
+            "cita": "cuenta 2021 RUPTURA-DEFINICIONAL y cuenta 2024 REFERENCIA-CON-RUPTURA",
+            "fuente": "data/corrida0/enif-fintech-correspondencia-v1_0.tsv",
+            "sha256": "9c61b5588014fc2959cdb0c1abfdab423dd08dae3d0117c3c99fee6636217980"
+          }
+        ]
+      },
+      "consumidor": "dinero.credito.scoring_alternativo (R1.6)",
+      "diferencia": {
+        "cambio_relativo": null,
+        "delta": null,
+        "estado": "NO-CALCULADO-COMPARABILIDAD",
+        "estado_relativo": "NO-APLICA-COMPARABILIDAD",
+        "magnitud_absoluta": null,
+        "operacion": "B - A",
+        "puntos_porcentuales": null,
+        "unidad": "proporcion ponderada"
+      },
+      "id": "RECHAZO-ENIF-CUENTA-APP-2024-2021",
+      "materialidad": {
+        "criterio": null,
+        "estado": "NO-DETERMINABLE",
+        "razon": "el delta sustantivo se rechaza antes de preguntar materialidad"
+      },
+      "referencias": {
+        "a": {
+          "calc_id": "CALC-ENIF-FINTECH-0001",
+          "clase_referencia": "RESULTADO-CORRIDA0",
+          "corrida_id": "CALC-ENIF-FINTECH-0001--5b92cee28946",
+          "declaracion": {
+            "id": "RESULT-ENIF-FINTECH-2021-CUENTA-CANAL-APP-CELULAR-P",
+            "tipo": "proporcion",
+            "unidad": "proporcion ponderada"
+          },
+          "estado": "RESUELTA",
+          "estado_valor": "VALOR",
+          "git_commit_ejecucion": "5b92cee28946453c7d9716df632da7089e33e418",
+          "resultado_id": "RESULT-ENIF-FINTECH-2021-CUENTA-CANAL-APP-CELULAR-P",
+          "resultados_sha256": "7a2f14d171bbf9d539337585b7a2dd79d216bd063b6e0d405ec6139afdf060c2",
+          "sello": "COINCIDE",
+          "sello_sha256": "e313b5413f65e7c92a6def2d07b70fb3a8f191851ccb68cea9f0d7aab4753b05",
+          "spec_sha256": "3a5d00ca71bb433af81c30c72d05942ad9dc26930cebb9ec00ae7ddefdaf0a9c",
+          "tipo": "proporcion",
+          "tolerancia": {
+            "abs": 1e-10,
+            "razon": "lectura, orden de suma y formula deterministas; salidas numericas redondeadas a 12 decimales",
+            "tipo": "flotante"
+          },
+          "tolerancia_adopcion": null,
+          "unidad": "proporcion ponderada",
+          "valor": 0.225282724538
+        },
+        "b": {
+          "clase_referencia": "FUENTE",
+          "estado": "RESUELTA",
+          "estado_valor": "VALOR",
+          "fuente": "data/corrida0/enif-fintech-serie-v1_0.tsv",
+          "selector": {
+            "clave": {
+              "canal": "app_celular",
+              "familia": "cuenta",
+              "ola": "2024"
+            },
+            "columna": "p",
+            "formato": "tsv"
+          },
+          "sha256": "f022ba96c1a38a0c3175038bed71b50dbce8204ad8511a558854baed2fed936a",
+          "tipo": "proporcion",
+          "unidad": "proporcion ponderada",
+          "valor": 0.306,
+          "version": "GEN2-ENIF-FINTECH-SERIE-v1_0; commit 345c497cf2309782bb6e454cbeb80ec0da68f7fd"
+        }
+      },
+      "representacion": {
+        "delta_abs": null,
+        "estado": "NO-APLICA",
+        "modo": null,
+        "razon": "una ruptura definicional no se convierte en comparacion de grano"
+      },
+      "reproducibilidad_referencias": "ACREDITADA",
+      "resultado": "DELTA-SUSTANTIVO-RECHAZADO-INCOMPATIBILIDAD",
+      "uso": {
+        "descripcion": "contexto lado a lado, sin delta, del canal de la ultima cuenta entre tenedores del proxy fintech",
+        "evidencias": [
+          {
+            "cita": "filas 2021/2024 cuenta; decision RUPTURA-DEFINICIONAL",
+            "fuente": "data/corrida0/enif-fintech-correspondencia-v1_0.tsv",
+            "sha256": "9c61b5588014fc2959cdb0c1abfdab423dd08dae3d0117c3c99fee6636217980"
+          }
+        ]
+      }
+    }
+  ],
+  "totales": {
+    "comparabilidad_no_determinable": 0,
+    "comparables": 2,
+    "deltas_calculados": 2,
+    "incompatibles": 1,
+    "materiales": 0,
+    "materialidad_no_determinable": 3,
+    "no_materiales": 0,
+    "pares_examinados": 3,
+    "referencias_no_resueltas": 0,
+    "representacion_igual": 1
+  }
+}
