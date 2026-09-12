@@ -74,5 +74,5 @@ añadió un payload mediante 29 líneas YAML, no 29 payloads. La preparación
 repetible queda en `tools/prepara_corpus.py`; tabla, lectores y reservas están
 documentados en
 `forense/notas/2026-09-11-GEN2-CORPUS-COMPARTIDO-UTILIZABLE-cierre.md`.
-ADR-485; contador científico cero. PR pendiente de abrir; fusión reservada a
+ADR-485; contador científico cero. Ejecutado por PR #736; fusión reservada a
 la mesa.
