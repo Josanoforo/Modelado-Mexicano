@@ -1,4 +1,5 @@
 import csv
+import hashlib
 import tempfile
 import unittest
 from pathlib import Path
@@ -57,6 +58,7 @@ class ReactivosContextoTest(unittest.TestCase):
         dirty = "4.10 ¿Dejó de tomar taxi? (Continúa) INEGI. Encuesta Nacional de Victimización"
         self.assertEqual("4.10 ¿Dejó de tomar taxi?", arc.clean_pdf_text(dirty))
         self.assertTrue(arc.valid_data_type("Alfanumérica"))
+        self.assertGreaterEqual(arc.PDF_ROW_TOLERANCE, 3.1)
 
     def test_repeated_verified_variable_is_selected_by_exact_table(self):
         candidates = [
@@ -93,6 +95,18 @@ class ReactivosContextoTest(unittest.TestCase):
             with path.open(encoding="utf-8") as handle:
                 parsed = list(csv.DictReader((line for line in handle if not line.startswith("#")), delimiter="\t"))
             self.assertEqual("línea con tabs", parsed[0]["texto_reactivo"])
+
+    def test_publication_hash_does_not_depend_on_cache_counters(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            row = {field: "" for field in arc.OUT_FIELDS}
+            row["id_origen"] = "v1_2:1"
+            path = root / "out.tsv"
+            arc.write_output(path, [row], {"filas": 1})
+            first = hashlib.sha256(path.read_bytes()).hexdigest()
+            arc.write_output(path, [row], {"filas": 1})
+            second = hashlib.sha256(path.read_bytes()).hexdigest()
+            self.assertEqual(first, second)
 
     def test_search_filter_uses_accredited_context(self):
         args = type("Args", (), {

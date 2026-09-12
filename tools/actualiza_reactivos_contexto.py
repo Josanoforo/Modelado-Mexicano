@@ -31,7 +31,8 @@ SOURCES_PATH = REPO_ROOT / "data" / "reactivos-contexto-fuentes-v1_0.tsv"
 VERIFIED_PATH = REPO_ROOT / "data" / "reactivos-contexto-verificados-v1_0.tsv"
 FD_EXT_PATH = REPO_ROOT / "data" / "inventario-fd-ext-v1_0.tsv"
 CACHE_DIR = REPO_ROOT / "data" / ".reactivos-contexto-cache"
-EXTRACTOR_VERSION = "reactivos-contexto-1.1.4"
+EXTRACTOR_VERSION = "reactivos-contexto-1.1.7"
+PDF_ROW_TOLERANCE = 6.0
 
 METADATA_SOURCES = {
     "v1_2": REPO_ROOT / "data" / "inventario-reactivos-v1_2.tsv",
@@ -374,7 +375,7 @@ def extract_pdf_words(page, variables: set[str], variable_tables: dict[str, set[
 
         item_candidates = [(line[0]["top"], _line_text(line, variable_x - 2))
                            for line in lines
-                           if top - 2 <= line[0]["top"] < next_top - 2
+                           if top - PDF_ROW_TOLERANCE <= line[0]["top"] < next_top - PDF_ROW_TOLERANCE
                            and any(word["x0"] < variable_x - 2 for word in line)]
         item_lines = ([value for _, value in item_candidates]
                       if item_candidates and item_candidates[0][0] <= bottom + 2 else [])
@@ -757,6 +758,9 @@ def main(argv=None) -> int:
                      ("/catalogos/", "/metadatos/", "/diccionario_de_datos/")):
                 reason = "FILA_AUXILIAR_SIN_REACTIVO"
                 action = "acreditar etiqueta tecnica del descriptor; no inventar pregunta"
+            elif instrument.lower().startswith("ennvih"):
+                reason = "PREGUNTA_NO_LOCALIZADA"
+                action = "localizar el reactivo en la guia/cuestionario ENNViH del miembro exacto"
             elif not re.match(r"^(?:[ab]?p)\d", variable, re.I):
                 reason = "ETIQUETA_TECNICA_NO_ACREDITADA"
                 action = "localizar etiqueta de llave/ponderador en el diccionario exacto"
@@ -807,8 +811,12 @@ def main(argv=None) -> int:
         row["instrumento"], row["ola"], row["payload_id"],
         row["archivo_miembro"], row["motivo"]) for row in residual_rows})
     summary["motivos_residuales"] = dict(sorted(reason_counts.items()))
-    write_output(args.salida, output, summary)
-    write_residual(args.reporte_residual, residual_rows, summary)
+    publication_summary = {
+        key: value for key, value in summary.items()
+        if key not in {"cache_hits", "cache_misses"}
+    }
+    write_output(args.salida, output, publication_summary)
+    write_residual(args.reporte_residual, residual_rows, publication_summary)
     print(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True))
     return 0
 

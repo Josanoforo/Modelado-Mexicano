@@ -99,6 +99,8 @@ CONTEXTO = REPO_ROOT / "data" / "inventario-reactivos-contexto-v1_1.tsv"
 TABLAS = {
     **FUENTES,
     "contexto": CONTEXTO,
+    # Comparador explícito del acto 39; nunca entra implícitamente en vigente.
+    "contexto_v1_0": REPO_ROOT / "data" / "inventario-reactivos-contexto-v1_0.tsv",
     "descargas_mx": REPO_ROOT / "data" / "inventario-reactivos-descargas-mx-v1_0.tsv",
     "descargas_mx_v1_1": REPO_ROOT / "data" / "inventario-reactivos-descargas-mx-v1_1.tsv",
 }
@@ -197,7 +199,7 @@ def main(argv=None) -> int:
             if t == "hoy":
                 claves |= set(FUENTES)
             elif t == "todas":
-                claves |= set(TABLAS)
+                claves |= set(TABLAS) - {"contexto_v1_0"}
             else:
                 claves.add(t)
         fuentes = sorted(claves)
