@@ -60,3 +60,20 @@ Integra la entrada `corrida0 delta` sustituyendo únicamente su stub, con ayuda 
 El encargo 30 puede tocar `tools/corrida0.py`. Desarrolla el módulo y ejemplos en paralelo; al integrar el pequeño adaptador CLI consume los cambios de 30 si ya están publicados y conserva su overlay. Si siguen simultáneos, delimitar ese único bloque y conciliarlo por función al merge, sin reemplazar el archivo completo. No demorar el cálculo de 30 por este accesorio.
 
 Cierra NC-0091 sólo con la capacidad utilizable. NC-0048 mezcla implementación y correspondencia/materialidad: conciliar únicamente lo acreditado, dejando su decisión histórica pendiente si sigue sin contrato. Entrega resultados y comando listo para la siguiente comparación, con pruebas dirigidas de referencias, cero y rupturas. No agregar una nueva rutina programada.
+
+## CONSUMIDO
+
+Consumido el 11/sep/2026 por `ACTO GEN2-DELTA-COMPARACION-EXPLICITA` en la
+rama `acto/gen2-delta-comparacion-explicita`, worktree
+`/home/pc0/mm-gen2-delta-comparacion-explicita`. Implementación base en
+`4503dc7`; PR pendiente de registrar al publicarlo.
+
+Resultado: `corrida0 delta` implementa `GEN2-DELTA-1` y ejecuta tres pares
+reales con JSON, TSV y lectura humana: #647 coincide a seis decimales,
+crédito/app ENIF 2024−2021 produce −12.303002012 pp descriptivos y cuenta/app
+se rechaza por ruptura. Tres materialidades quedan `NO-DETERMINABLE` porque el
+acto no inventa criterio. `NC-0091` cierra; `NC-0048` conserva abierto el
+universo histórico sin correspondencia explícita. Cero adopciones, re-sellos,
+cambios a motor o contador científico. Evidencia y límites en
+`forense/notas/2026-09-11-GEN2-DELTA-COMPARACION-EXPLICITA-cierre.md` y
+`ADR-484` candidato.

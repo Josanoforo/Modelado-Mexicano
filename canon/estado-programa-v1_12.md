@@ -12,6 +12,8 @@
 > | **VERIFICAS ASÍ** | §0 lista `modelo` en **v4.0** y `hitoD-R1.1` (sin cambio, heredado de `v1_11`) · §2 re-deriva motor (20), manifiesto (1 281), relaciones/procedencias/utilidad (`baseline.py`), ADR/FP máximos, dominios activos (4), Ola 6 (0/6, `salud` 2/5), las 9 reglas `NO-ENCONTRADO` clasificadas (2/5/2), specs de caja selladas (5), FAIL absorbidos (3) y descargas pendientes de mesa (`PAQUETE-RECETAS-5`/`-6`) — cada cifra con su comando · §9 «Qué espera a la caja» · §10 «Qué no se sabe sin caja» |
 > | **NOMBRE ESTABLE** | **`estado`** — cítalo así, **nunca por nombre de archivo** |
 
+*Anotación L0 (11/sep/2026): `ADR-484`, ACTO GEN2-DELTA-COMPARACION-EXPLICITA — `corrida0 delta` sustituye el stub con pares explícitos, hashes e identidades estrictas, ocho dimensiones de comparabilidad, B−A/pp/relativo protegido, representación canónica y materialidad sólo con criterio citado. #647 coincide a seis decimales; crédito/app ENIF cambia −12.303002012 pp; cuenta/app se rechaza por ruptura. Tres pares examinados, dos comparables y tres materialidades `NO-DETERMINABLE`; `NC-0091` cierra y `NC-0048` conserva abierto el universo histórico sin correspondencias declaradas. Cero adopciones, re-sellos y contador científico.*
+
 *Anotación L0 (11/sep/2026): `ADR-483`, ACTO GEN2-ENSAFI-MEDICION-DESCRIPTIVA-CON-DISENO — `CALC-ENSAFI-DISENO-0001` registra 13 estimandos ENSAFI con factores por unidad, dominio sobre muestra completa, 277 estratos, 2,915 UPM anidadas y 2,638 gl; replay 226/226 `REPRODUCE/IDENTICO` y control independiente coincidente. Los puntos preservan #723 y reproducen 27.3% oficial por redondeo. Uso nacional descriptivo, sin sumar respuestas múltiples ni inferir causalidad o producto exacto; `NC-0164` sigue abierta y N34/R1.7 no se adopta. Contador: una medición GEN2, cero adopciones. Renumerado desde ADR-482 al integrar PR #725.*
 
 *Anotación L0 (11/sep/2026): `ADR-482`, ACTO GEN2-IMOR-CONTEXTO-TEMPORAL-POR-REGIMEN — separa el IMOR Banxico en regímenes pre-IFRS9 e IFRS9, sin calcular el salto de definición; `CALC-IMOR-CONTEXTO-0001` reproduce 615 niveles, 605 cambios mensuales y 495 interanuales con control independiente, tres tablas y dos figuras. Personales presenta el mayor nivel medio y dispersión temporal en ambos regímenes. Uso R1.6 `DESCRIPTIVO-NO-CALIBRA`; Banxico no es R16, NC-0163 permanece cerrada, N34/R1.6 no se adoptan y el contador queda en cero.*
@@ -49,7 +51,7 @@
 |---|---|---|
 | **`modelo`** | `modelo-decision-v4.0.md` | CANÓNICO OPERATIVO. **Se pega íntegro** en las corridas verticales |
 | **`glosario`** | `glosario-v5.6.md` | CANÓNICO. Único punto legítimo de entrada de un tier |
-| **`gobernanza`** | `gobernanza-v1.15.md` | 483 ADR, protocolo de cambio |
+| **`gobernanza`** | `gobernanza-v1.15.md` | 484 ADR, protocolo de cambio |
 | **`estado`** | `estado-programa-v1.12.md` | Este archivo |
 | **`milpa-whitepaper`** | `milpa-whitepaper-v0.1.md` | El **porqué** del simulador |
 | **`milpa-spec`** | `milpa-spec-v0.2.md` | El **cómo** — incluye el gate de ADR-25/37 |
