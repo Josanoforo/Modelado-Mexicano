@@ -189,7 +189,11 @@ def check_scheduler_windows():
     except json.JSONDecodeError:
         return {"estado": "NO-VERIFICABLE", "razon": f"salida de PowerShell no fue JSON: {out.strip()[:200]}"}
     calendario = _calendario_resuelto()
-    mascara_esperada = sum(2 << d for d in calendario["weekdays"])
+    # Task Scheduler usa Sunday=1, Monday=2, ..., Saturday=64, mientras
+    # ``datetime.weekday`` usa Monday=0, ..., Sunday=6. El domingo no es
+    # un octavo bit: vuelve al bit 1 de la enumeración de Windows.
+    mascara_esperada = sum(1 if d == 6 else 2 << d
+                           for d in calendario["weekdays"])
     argumentos = campos.get("Arguments") or ""
     accion_esperada = ("ADQ_DISPARADOR=windows-task-scheduler" in argumentos
                        and "/home/pc0/mm-adq/tools/adquiere_launcher.sh" in argumentos
