@@ -6,7 +6,10 @@ import argparse
 import json
 from pathlib import Path
 
-import adq_investigacion
+try:
+    from tools import adq_investigacion
+except ImportError:  # ejecución directa: python3 tools/adq_suficiencia.py
+    import adq_investigacion
 
 RAIZ = Path(__file__).resolve().parent.parent
 
@@ -41,6 +44,28 @@ def proyecta(necesidad_id: str, cfg: dict | None = None,
         "fuente_estado": ("investigacion-estado" if estado.get("suficiencia")
                           else "contrato-operativo-inicial"),
     }
+
+
+def proyecta_consumidor(consumidor: str, cfg: dict | None = None,
+                        raiz: Path = RAIZ) -> dict | None:
+    """Devuelve la guardia declarada para una identidad exacta de consulta.
+
+    La relación vive en la proyección operativa de necesidades, no en una
+    heurística por nombre. Dos necesidades activas no pueden gobernar la misma
+    emisión sin una decisión explícita: en ese caso se falla cerrado.
+    """
+    cfg = cfg or adq_investigacion.cargar_config()
+    coincidencias = [
+        x["id"] for x in cfg.get("necesidades", [])
+        if consumidor in x.get("consumidores_consulta", [])
+    ]
+    if not coincidencias:
+        return None
+    if len(coincidencias) != 1:
+        raise ValueError(
+            f"{consumidor}: guardia de suficiencia ambigua: "
+            + ", ".join(coincidencias))
+    return proyecta(coincidencias[0], cfg, raiz)
 
 
 def main() -> int:

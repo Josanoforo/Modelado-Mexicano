@@ -10,17 +10,20 @@
     },
     "contrato": {
       "archivos": {
+        "data/adq-investigacion.yaml": "36fb5bccf37a72de2191953c3b3560b45dbac860892e7e8a0d5db434b168345b",
         "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/adq_investigacion.py": "e483fb29fc150ebad628047f10ee5404b1c8a40f1b1d851aa6ccbb7f8572262b",
+        "tools/adq_suficiencia.py": "534f14ae5b42786ca2d12cb6e96691d196a6add9eec56e8d737760d0660327f4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
-        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/consulta_gen2.py": "62d77fbdee693e32582eb18e0db8070121ab4bb6f531e91d10155157c897f43b",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "sha256": "bfc49bcdb7e64e2a29b9ea46afb75a591edf9c9f50a3c10108630329bf745ae4",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -68,6 +71,7 @@
       "uso": "MEDICION-GEN2"
     },
     "referencias": [
+      "data/adq-investigacion.yaml",
       "data/corrida0/CALC-ENVIPE-0001/ejecucion.json",
       "data/corrida0/CALC-ENVIPE-0001/resultados.json",
       "data/corrida0/CALC-ENVIPE-0001/spec.yaml",
@@ -76,6 +80,8 @@
       "milpa/src/emisor.py",
       "milpa/src/linaje.py",
       "milpa/tramite.yaml",
+      "tools/adq_investigacion.py",
+      "tools/adq_suficiencia.py",
       "tools/baseline_temporal.py",
       "tools/consulta_gen2.py",
       "tools/emite_m.py",
@@ -108,17 +114,20 @@
     },
     "contrato": {
       "archivos": {
+        "data/adq-investigacion.yaml": "36fb5bccf37a72de2191953c3b3560b45dbac860892e7e8a0d5db434b168345b",
         "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/adq_investigacion.py": "e483fb29fc150ebad628047f10ee5404b1c8a40f1b1d851aa6ccbb7f8572262b",
+        "tools/adq_suficiencia.py": "534f14ae5b42786ca2d12cb6e96691d196a6add9eec56e8d737760d0660327f4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
-        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/consulta_gen2.py": "62d77fbdee693e32582eb18e0db8070121ab4bb6f531e91d10155157c897f43b",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "sha256": "bfc49bcdb7e64e2a29b9ea46afb75a591edf9c9f50a3c10108630329bf745ae4",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -135,7 +144,7 @@
       "recibido": {},
       "requerido": {}
     },
-    "estado": "EMITE",
+    "estado": "NO_COVERAGE",
     "estimando": {
       "evento": "conducta=horizonte_corto",
       "periodo": {
@@ -146,6 +155,7 @@
       "transformacion": "horizonte_corto",
       "unidad": "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"
     },
+    "motivo_no_cobertura": "NC-0126: evidencia incompatible con el uso solicitado; no puede distinguir horizonte corto de ausencia de ahorro",
     "peticion": {
       "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto",
       "contexto": {},
@@ -154,6 +164,7 @@
       "uso": "MEDICION-GEN2"
     },
     "referencias": [
+      "data/adq-investigacion.yaml",
       "data/corrida0/CALC-ENIF-0001/ejecucion.json",
       "data/corrida0/CALC-ENIF-0001/resultados.json",
       "data/corrida0/CALC-ENIF-0001/spec.yaml",
@@ -162,6 +173,8 @@
       "milpa/src/emisor.py",
       "milpa/src/linaje.py",
       "milpa/tramite.yaml",
+      "tools/adq_investigacion.py",
+      "tools/adq_suficiencia.py",
       "tools/baseline_temporal.py",
       "tools/consulta_gen2.py",
       "tools/emite_m.py",
@@ -177,10 +190,27 @@
       "tipo": "flotante",
       "unidad": "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"
     },
-    "valor": {
-      "categoria": "horizonte_corto",
-      "punto": 0.541343,
-      "tipo_escala": "binaria"
+    "suficiencia_uso": {
+      "accion_consumidor": "NO_EMITIR_RESULTADO_SOLICITADO",
+      "brecha": "no puede distinguir horizonte corto de ausencia de ahorro",
+      "consumidor": "E05 / dinero.ahorro.horizonte",
+      "evidencias": [],
+      "fuente_estado": "contrato-operativo-inicial",
+      "necesidad_id": "NC-0126",
+      "suficiencia": {
+        "conceptual": "NO_ACREDITADA",
+        "diseno": "ACREDITADA",
+        "identidad": "ACREDITADA",
+        "identificacion": "NO_APLICA",
+        "poblacional": "ACREDITADA",
+        "pregunta_original": "ABIERTA",
+        "seleccion_no_respuesta": "ACREDITADA",
+        "temporalidad": "ACREDITADA",
+        "unidad": "ACREDITADA",
+        "uso_habilitado": "INCOMPATIBLE"
+      },
+      "uso_solicitado": "descriptivo",
+      "version_pregunta": "2026-09-09-horizonte-ahorro-descolapsado-v1"
     }
   },
   {
@@ -194,17 +224,20 @@
     },
     "contrato": {
       "archivos": {
+        "data/adq-investigacion.yaml": "36fb5bccf37a72de2191953c3b3560b45dbac860892e7e8a0d5db434b168345b",
         "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/adq_investigacion.py": "e483fb29fc150ebad628047f10ee5404b1c8a40f1b1d851aa6ccbb7f8572262b",
+        "tools/adq_suficiencia.py": "534f14ae5b42786ca2d12cb6e96691d196a6add9eec56e8d737760d0660327f4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
-        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/consulta_gen2.py": "62d77fbdee693e32582eb18e0db8070121ab4bb6f531e91d10155157c897f43b",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "sha256": "bfc49bcdb7e64e2a29b9ea46afb75a591edf9c9f50a3c10108630329bf745ae4",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -240,6 +273,7 @@
       "uso": "MEDICION-GEN2"
     },
     "referencias": [
+      "data/adq-investigacion.yaml",
       "data/corrida0/CALC-B-0001/ejecucion.json",
       "data/corrida0/CALC-B-0001/resultados.json",
       "data/corrida0/CALC-B-0001/spec.yaml",
@@ -248,6 +282,8 @@
       "milpa/src/emisor.py",
       "milpa/src/linaje.py",
       "milpa/tramite.yaml",
+      "tools/adq_investigacion.py",
+      "tools/adq_suficiencia.py",
       "tools/baseline_temporal.py",
       "tools/consulta_gen2.py",
       "tools/emite_m.py",
@@ -280,17 +316,20 @@
     },
     "contrato": {
       "archivos": {
+        "data/adq-investigacion.yaml": "36fb5bccf37a72de2191953c3b3560b45dbac860892e7e8a0d5db434b168345b",
         "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/adq_investigacion.py": "e483fb29fc150ebad628047f10ee5404b1c8a40f1b1d851aa6ccbb7f8572262b",
+        "tools/adq_suficiencia.py": "534f14ae5b42786ca2d12cb6e96691d196a6add9eec56e8d737760d0660327f4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
-        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/consulta_gen2.py": "62d77fbdee693e32582eb18e0db8070121ab4bb6f531e91d10155157c897f43b",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "sha256": "bfc49bcdb7e64e2a29b9ea46afb75a591edf9c9f50a3c10108630329bf745ae4",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -326,6 +365,7 @@
       "uso": "MEDICION-GEN2"
     },
     "referencias": [
+      "data/adq-investigacion.yaml",
       "data/corrida0/CALC-ENCIG-0001/ejecucion.json",
       "data/corrida0/CALC-ENCIG-0001/resultados.json",
       "data/corrida0/CALC-ENCIG-0001/spec.yaml",
@@ -334,6 +374,8 @@
       "milpa/src/emisor.py",
       "milpa/src/linaje.py",
       "milpa/tramite.yaml",
+      "tools/adq_investigacion.py",
+      "tools/adq_suficiencia.py",
       "tools/baseline_temporal.py",
       "tools/consulta_gen2.py",
       "tools/emite_m.py",
@@ -366,17 +408,20 @@
     },
     "contrato": {
       "archivos": {
+        "data/adq-investigacion.yaml": "36fb5bccf37a72de2191953c3b3560b45dbac860892e7e8a0d5db434b168345b",
         "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/adq_investigacion.py": "e483fb29fc150ebad628047f10ee5404b1c8a40f1b1d851aa6ccbb7f8572262b",
+        "tools/adq_suficiencia.py": "534f14ae5b42786ca2d12cb6e96691d196a6add9eec56e8d737760d0660327f4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
-        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/consulta_gen2.py": "62d77fbdee693e32582eb18e0db8070121ab4bb6f531e91d10155157c897f43b",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "sha256": "bfc49bcdb7e64e2a29b9ea46afb75a591edf9c9f50a3c10108630329bf745ae4",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -425,6 +470,7 @@
       "uso": "MEDICION-GEN2"
     },
     "referencias": [
+      "data/adq-investigacion.yaml",
       "data/corrida0/CALC-ENVIPE-0001/ejecucion.json",
       "data/corrida0/CALC-ENVIPE-0001/resultados.json",
       "data/corrida0/CALC-ENVIPE-0001/spec.yaml",
@@ -433,6 +479,8 @@
       "milpa/src/emisor.py",
       "milpa/src/linaje.py",
       "milpa/tramite.yaml",
+      "tools/adq_investigacion.py",
+      "tools/adq_suficiencia.py",
       "tools/baseline_temporal.py",
       "tools/consulta_gen2.py",
       "tools/emite_m.py",
@@ -460,17 +508,20 @@
     },
     "contrato": {
       "archivos": {
+        "data/adq-investigacion.yaml": "36fb5bccf37a72de2191953c3b3560b45dbac860892e7e8a0d5db434b168345b",
         "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/adq_investigacion.py": "e483fb29fc150ebad628047f10ee5404b1c8a40f1b1d851aa6ccbb7f8572262b",
+        "tools/adq_suficiencia.py": "534f14ae5b42786ca2d12cb6e96691d196a6add9eec56e8d737760d0660327f4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
-        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/consulta_gen2.py": "62d77fbdee693e32582eb18e0db8070121ab4bb6f531e91d10155157c897f43b",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "sha256": "bfc49bcdb7e64e2a29b9ea46afb75a591edf9c9f50a3c10108630329bf745ae4",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -507,11 +558,14 @@
       "uso": "MEDICION-GEN2"
     },
     "referencias": [
+      "data/adq-investigacion.yaml",
       "data/corrida0/resultados.tsv",
       "data/corrida0/usos.tsv",
       "milpa/src/emisor.py",
       "milpa/src/linaje.py",
       "milpa/tramite.yaml",
+      "tools/adq_investigacion.py",
+      "tools/adq_suficiencia.py",
       "tools/baseline_temporal.py",
       "tools/consulta_gen2.py",
       "tools/emite_m.py",
@@ -533,17 +587,20 @@
     },
     "contrato": {
       "archivos": {
+        "data/adq-investigacion.yaml": "36fb5bccf37a72de2191953c3b3560b45dbac860892e7e8a0d5db434b168345b",
         "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/adq_investigacion.py": "e483fb29fc150ebad628047f10ee5404b1c8a40f1b1d851aa6ccbb7f8572262b",
+        "tools/adq_suficiencia.py": "534f14ae5b42786ca2d12cb6e96691d196a6add9eec56e8d737760d0660327f4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
-        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/consulta_gen2.py": "62d77fbdee693e32582eb18e0db8070121ab4bb6f531e91d10155157c897f43b",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "sha256": "bfc49bcdb7e64e2a29b9ea46afb75a591edf9c9f50a3c10108630329bf745ae4",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -623,6 +680,7 @@
       "uso": "MEDICION-GEN2"
     },
     "referencias": [
+      "data/adq-investigacion.yaml",
       "data/corrida0/CALC-B-0001/ejecucion.json",
       "data/corrida0/CALC-B-0001/resultados.json",
       "data/corrida0/CALC-B-0001/spec.yaml",
@@ -631,6 +689,8 @@
       "milpa/src/emisor.py",
       "milpa/src/linaje.py",
       "milpa/tramite.yaml",
+      "tools/adq_investigacion.py",
+      "tools/adq_suficiencia.py",
       "tools/baseline_temporal.py",
       "tools/consulta_gen2.py",
       "tools/emite_m.py",
@@ -655,17 +715,20 @@
   {
     "contrato": {
       "archivos": {
+        "data/adq-investigacion.yaml": "36fb5bccf37a72de2191953c3b3560b45dbac860892e7e8a0d5db434b168345b",
         "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/adq_investigacion.py": "e483fb29fc150ebad628047f10ee5404b1c8a40f1b1d851aa6ccbb7f8572262b",
+        "tools/adq_suficiencia.py": "534f14ae5b42786ca2d12cb6e96691d196a6add9eec56e8d737760d0660327f4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
-        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/consulta_gen2.py": "62d77fbdee693e32582eb18e0db8070121ab4bb6f531e91d10155157c897f43b",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "sha256": "bfc49bcdb7e64e2a29b9ea46afb75a591edf9c9f50a3c10108630329bf745ae4",
       "version": "CONSULTA-GEN2-v1"
     },
     "estado": "NO_COVERAGE",
@@ -683,6 +746,8 @@
     },
     "referencias": [
       "tools/consulta_gen2.py",
+      "tools/adq_suficiencia.py",
+      "tools/adq_investigacion.py",
       "tools/snapshot_motor_gen2.py",
       "tools/emite_m.py",
       "tools/baseline_temporal.py",
@@ -690,7 +755,8 @@
       "milpa/src/linaje.py",
       "milpa/tramite.yaml",
       "data/corrida0/usos.tsv",
-      "data/corrida0/resultados.tsv"
+      "data/corrida0/resultados.tsv",
+      "data/adq-investigacion.yaml"
     ],
     "resultado": {
       "fuente": null,
@@ -708,17 +774,20 @@
     },
     "contrato": {
       "archivos": {
+        "data/adq-investigacion.yaml": "36fb5bccf37a72de2191953c3b3560b45dbac860892e7e8a0d5db434b168345b",
         "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/adq_investigacion.py": "e483fb29fc150ebad628047f10ee5404b1c8a40f1b1d851aa6ccbb7f8572262b",
+        "tools/adq_suficiencia.py": "534f14ae5b42786ca2d12cb6e96691d196a6add9eec56e8d737760d0660327f4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
-        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/consulta_gen2.py": "62d77fbdee693e32582eb18e0db8070121ab4bb6f531e91d10155157c897f43b",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "sha256": "bfc49bcdb7e64e2a29b9ea46afb75a591edf9c9f50a3c10108630329bf745ae4",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -799,6 +868,7 @@
       "uso": "MEDICION-GEN2"
     },
     "referencias": [
+      "data/adq-investigacion.yaml",
       "data/corrida0/CALC-B-0001/ejecucion.json",
       "data/corrida0/CALC-B-0001/resultados.json",
       "data/corrida0/CALC-B-0001/spec.yaml",
@@ -807,6 +877,8 @@
       "milpa/src/emisor.py",
       "milpa/src/linaje.py",
       "milpa/tramite.yaml",
+      "tools/adq_investigacion.py",
+      "tools/adq_suficiencia.py",
       "tools/baseline_temporal.py",
       "tools/consulta_gen2.py",
       "tools/emite_m.py",
@@ -834,17 +906,20 @@
     },
     "contrato": {
       "archivos": {
+        "data/adq-investigacion.yaml": "36fb5bccf37a72de2191953c3b3560b45dbac860892e7e8a0d5db434b168345b",
         "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/adq_investigacion.py": "e483fb29fc150ebad628047f10ee5404b1c8a40f1b1d851aa6ccbb7f8572262b",
+        "tools/adq_suficiencia.py": "534f14ae5b42786ca2d12cb6e96691d196a6add9eec56e8d737760d0660327f4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
-        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/consulta_gen2.py": "62d77fbdee693e32582eb18e0db8070121ab4bb6f531e91d10155157c897f43b",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "sha256": "bfc49bcdb7e64e2a29b9ea46afb75a591edf9c9f50a3c10108630329bf745ae4",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -891,6 +966,7 @@
       "uso": "MEDICION-GEN2"
     },
     "referencias": [
+      "data/adq-investigacion.yaml",
       "data/corrida0/CALC-ENCUCI-0001/ejecucion.json",
       "data/corrida0/CALC-ENCUCI-0001/resultados.json",
       "data/corrida0/CALC-ENCUCI-0001/spec.yaml",
@@ -899,6 +975,8 @@
       "milpa/src/emisor.py",
       "milpa/src/linaje.py",
       "milpa/tramite.yaml",
+      "tools/adq_investigacion.py",
+      "tools/adq_suficiencia.py",
       "tools/baseline_temporal.py",
       "tools/consulta_gen2.py",
       "tools/emite_m.py",
@@ -931,17 +1009,20 @@
     },
     "contrato": {
       "archivos": {
+        "data/adq-investigacion.yaml": "36fb5bccf37a72de2191953c3b3560b45dbac860892e7e8a0d5db434b168345b",
         "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/adq_investigacion.py": "e483fb29fc150ebad628047f10ee5404b1c8a40f1b1d851aa6ccbb7f8572262b",
+        "tools/adq_suficiencia.py": "534f14ae5b42786ca2d12cb6e96691d196a6add9eec56e8d737760d0660327f4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
-        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/consulta_gen2.py": "62d77fbdee693e32582eb18e0db8070121ab4bb6f531e91d10155157c897f43b",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "sha256": "bfc49bcdb7e64e2a29b9ea46afb75a591edf9c9f50a3c10108630329bf745ae4",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -987,6 +1068,7 @@
       "uso": "MEDICION-GEN2"
     },
     "referencias": [
+      "data/adq-investigacion.yaml",
       "data/corrida0/CALC-ENCIG-0001/ejecucion.json",
       "data/corrida0/CALC-ENCIG-0001/resultados.json",
       "data/corrida0/CALC-ENCIG-0001/spec.yaml",
@@ -995,6 +1077,8 @@
       "milpa/src/emisor.py",
       "milpa/src/linaje.py",
       "milpa/tramite.yaml",
+      "tools/adq_investigacion.py",
+      "tools/adq_suficiencia.py",
       "tools/baseline_temporal.py",
       "tools/consulta_gen2.py",
       "tools/emite_m.py",

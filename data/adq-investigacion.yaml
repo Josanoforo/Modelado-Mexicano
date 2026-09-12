@@ -32,6 +32,10 @@ necesidades:
   - id: NC-0126
     version_pregunta: "2026-09-09-horizonte-ahorro-descolapsado-v1"
     consumidor: "E05 / dinero.ahorro.horizonte"
+    consumidores_consulta:
+      - "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto"
+      - "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto"
+      - "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto"
     uso: descriptivo
     prioridad_consumidor: 30
     bloqueo_material: 2

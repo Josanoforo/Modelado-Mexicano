@@ -29,7 +29,6 @@ class ConsultaGen2(unittest.TestCase):
     def test_01_cada_familia_directa_emite_su_valor_vigente(self):
         esperados = {
             "01-CIV-valida": 0.29431298745731216,
-            "02-DIN-valida": 0.541343,
             "03-FAM-valida": 0.04569409956405095,
             "04-TRA-valida": 0.08511814556534456,
         }
@@ -43,9 +42,11 @@ class ConsultaGen2(unittest.TestCase):
 
         directos = [
             fila for fila in listar_consumidores()
-            if fila["generacion"] == "GEN2"
+            if (fila["generacion"] == "GEN2" and not
+                fila["consumidor"].startswith(
+                    "milpa/tramite.yaml:dinero.ahorro.horizonte"))
         ]
-        self.assertEqual(len(directos), 16)
+        self.assertEqual(len(directos), 13)
         for fila in directos:
             uso = (
                 "DESCRIPTIVO"
@@ -65,8 +66,32 @@ class ConsultaGen2(unittest.TestCase):
                 self.assertEqual(
                     r["aptitud"]["validacion_independiente"], "PASA")
 
+    def test_01b_guardia_suficiencia_protege_horizonte_colapsado(self):
+        identidades = [
+            fila for fila in listar_consumidores()
+            if (fila["generacion"] == "GEN2" and fila["consumidor"].startswith(
+                "milpa/tramite.yaml:dinero.ahorro.horizonte"))
+        ]
+        self.assertEqual(len(identidades), 3)
+        for fila in identidades:
+            with self.subTest(consumidor=fila["consumidor"]):
+                r = consultar({
+                    "consumidor": fila["consumidor"],
+                    "proposito": "consulta",
+                    "contexto": fila["campos_dominio"],
+                    "uso": "MEDICION-GEN2",
+                })
+                self.assertEqual(r["estado"], "NO_COVERAGE")
+                self.assertNotIn("valor", r)
+                self.assertEqual(r["suficiencia_uso"]["necesidad_id"], "NC-0126")
+                self.assertEqual(
+                    r["suficiencia_uso"]["accion_consumidor"],
+                    "NO_EMITIR_RESULTADO_SOLICITADO")
+                self.assertIn("no puede distinguir", r["motivo_no_cobertura"])
+
     def test_02_fallos_cerrados_no_exponen_valor(self):
         causas = {
+            "02-DIN-valida": "no puede distinguir horizonte corto",
             "05-dominio-falso": "fuera del dominio elegible",
             "06-legacy-en-GEN2": "no se usa el p viejo",
             "08-ENVIPE-a-remesas-parametros-sueltos": "campos no permitidos",
