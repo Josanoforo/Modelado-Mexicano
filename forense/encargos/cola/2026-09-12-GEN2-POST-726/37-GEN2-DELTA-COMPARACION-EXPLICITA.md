@@ -66,7 +66,7 @@ Cierra NC-0091 sólo con la capacidad utilizable. NC-0048 mezcla implementación
 Consumido el 11/sep/2026 por `ACTO GEN2-DELTA-COMPARACION-EXPLICITA` en la
 rama `acto/gen2-delta-comparacion-explicita`, worktree
 `/home/pc0/mm-gen2-delta-comparacion-explicita`. Implementación base en
-`4503dc7`; PR pendiente de registrar al publicarlo.
+`4503dc7`; publicado como PR #733.
 
 Resultado: `corrida0 delta` implementa `GEN2-DELTA-1` y ejecuta tres pares
 reales con JSON, TSV y lectura humana: #647 coincide a seis decimales,
