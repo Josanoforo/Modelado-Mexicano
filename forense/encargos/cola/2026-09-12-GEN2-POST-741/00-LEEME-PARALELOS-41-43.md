@@ -11,7 +11,7 @@ Los tres archivos son encargos autónomos para Codex CLI en CAJA Windows/WSL. Ca
 | Encargo | Trabajo y producto | Insumos | Límite que conserva |
 |---|---|---|---|
 | **41 · Banxico** | Medir comportamiento de pago, problemas, reclamaciones y asociación con costo percibido, por cinco productos y seis olas compatibles | Microdatos, manual e informe ya adquiridos en #734 | Población urbana usuaria; costo percibido no es CAT; asociación no es causalidad |
-| **42 · N35/MOTRAL 2015** | Medir valoración declarada de seguridad social y prioridad de prestaciones; cruce viable ENOE; adquirir el experimento mexicano de elección laboral | MOTRAL 2015 ya registrado; comprobar ENOE 2015-T2 y obtener material específico faltante | Preferir seguridad social aun aportando no prueba que pese más que cualquier salario |
+| **42 · N35/MOTRAL 2015 — despachado, PR #747** | Medir valoración declarada de seguridad social y prioridad de prestaciones; cruce viable ENOE; adquirir el experimento mexicano de elección laboral | Ejecutado en `forense/encargos/2026-09-11-GEN2-N35-PREFERENCIAS-LABORALES-Y-FUENTES.md`; copia de cola retirada | Preferir seguridad social aun aportando no prueba que pese más que cualquier salario |
 | **43 · SHED 2025** | Cinco mediciones de BNPL: uso, atraso, cargo, sobregiro condicional y asequibilidad × atraso | CSV y codebook ya adquiridos en #734; completar cuestionario oficial | Estados Unidos; sin traslado de tasas a México ni mezcla de denominadores |
 
 41 y 43 aprovechan el material de #734 para producir mediciones que ese cierre no ejecutó. 42 responde a un hallazgo nuevo: el [cuestionario oficial MOTRAL 2015](https://www.inegi.org.mx/contenidos/programas/motral/2015/doc/motral2015_cuestionario.pdf) sí pregunta por preferencia de empleo con seguridad social (17) y orden de prestaciones (16). La corrección del registro será fuente-específica y conservará la carencia de comparación salarial estricta.
@@ -71,7 +71,7 @@ No cambiar el scheduler, sus límites ni los selectores para forzar este lote. U
 ## Archivos que entregar
 
 - `41-GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO.md` → una sesión nueva.
-- `42-GEN2-N35-PREFERENCIAS-LABORALES-Y-FUENTES.md` → otra sesión nueva.
+- `forense/encargos/2026-09-11-GEN2-N35-PREFERENCIAS-LABORALES-Y-FUENTES.md` → despachado; PR #747, copia de cola retirada.
 - `43-GEN2-SHED-BNPL-DANO-Y-UNIVERSOS.md` → tercera sesión si hay capacidad.
 
 Cada archivo lleva su prompt de lanzamiento al final. Estas son tareas preparadas; los cálculos y las nuevas adquisiciones se ejecutarán en sus sesiones de CAJA.

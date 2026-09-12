@@ -24155,7 +24155,12 @@
     cuestionario completo, items 1-10 trayectoria + 11-23 AFORE/ahorro). Candidata a comparacion
     derivada (regresion formalidad~salario) para acto sucesor, no decidida aqui. Ademas de
     la tabla motral2012_empleos citada, motral2015_empleos.dbf trae la misma estructura (SALARIO
-    + formalidad por empleo) para la edicion 2015.'
+    + formalidad por empleo) para la edicion 2015. ENMIENDA 2026-09-11, fuente-especifica:
+    la tabla motral2015_cuestionario.dbf SI contiene P16_1..P16_5 (orden de cinco prestaciones)
+    y P17 (preferencia por empleo con seguridad social aun pagando aportaciones), acreditados
+    contra cuestionario y descriptor oficiales 2015 y medidos por CALC-MOTRAL2015-VALORACION-SS-0001.
+    Esto corrige el descarte de toda preferencia en la edicion 2015; la comparacion salarial
+    estricta permanece EXISTE-NO-SATISFACE porque P17 no presenta salarios alternativos.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/motral/2015/microdatos/motral2015_bases_datos_dbf.zip
   url_origen_procedencia: corregida a mano tras --escanea (asignó por --grupo/--url la URL
     de la edición 2012 a las dos ediciones; ésta es la 2015, verificada real por descarga
@@ -29892,6 +29897,75 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: IIEG Jalisco 2024; P6 ahorro institucional separado, pero P14 conserva Menos de una
     semana/No tiene ahorros; hogar estatal, no persona nacional
+
+- id: motral2015_estructura_bd
+  usado_para: 'GEN2-N35: descriptor oficial para P16/P17, llaves, diseño y FAC_MOTRAL'
+  url_origen: https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/702825081133.pdf
+  fecha_descarga: '2026-09-11'
+  descargado_por: Codex GEN2-N35, descarga directa oficial
+  archivo: motral2015_estructura_bd.pdf
+  sha256: 961864548f4561c59f9c6a0303e83c3770c5f1becb9c62a9bd09408a2fce08a6
+  tamano_bytes: 1672971
+  formato: PDF
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: motral2015_documento_metodologico
+  usado_para: 'GEN2-N35: población, diseño, ponderación y precisión MOTRAL 2015'
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/161/download/20128
+  fecha_descarga: '2026-09-11'
+  descargado_por: Codex GEN2-N35, descarga directa oficial
+  archivo: motral2015_documento_metodologico.pdf
+  sha256: d578f9c510dd081fc032a0c9e13bd18a00353b6a48a47f85fc054ba0d3dca4c6
+  tamano_bytes: 1272155
+  formato: PDF
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2015_trim2_dbf
+  usado_para: 'GEN2-N35: cruce descriptivo MOTRAL 2015 con cobertura de seguridad social del
+    empleo actual ENOE 2015-T2'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2015trim2_dbf.zip
+  fecha_descarga: '2026-09-11'
+  descargado_por: Codex GEN2-N35, descarga directa oficial
+  archivo: enoe_2015_trim2_dbf.zip
+  sha256: 956283f7a5b92045ff3b76df61b5c98580f9b5b5cad0822f375f9a9fe45b0ca9
+  tamano_bytes: 25280795
+  formato: ZIP-DBF
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: do_workers_value_formal_jobs_mexico_20260316
+  usado_para: N35/trabajo.prestaciones.formalidad_pesa_mas_que_salario -- evidencia publicada
+    del experimento mexicano DCE; transcripción de resultados publicados, NO microdato ni
+    adopción. El contraste explícito salario-atributos satisface pertinencia de fuente, pero
+    cada WTP corresponde a un cambio definido y no prueba preferencia universal.
+  url_origen: https://eea-congress-files.s3.eu-west-3.amazonaws.com/2026-08/Do%20Workers%20Value%20Formal%20Jobs%2020260316.pdf?VersionId=yV9edU0kfeTYiRWcZvmTkDvts2s1H7yE
+  fecha_descarga: '2026-09-11'
+  descargado_por: Codex, descarga directa pública
+  archivo: do_workers_value_formal_jobs_mexico_20260316.pdf
+  sha256: 8a71718fc15bcb3c77845ee3a926238f1028bc5a5f146fb6cc752b77cc5121b3
+  tamano_bytes: 899285
+  formato: PDF
+  licencia: no declarada en el documento; uso como referencia bibliográfica
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Paper, versión marzo 2026, 48 páginas; URL exacta de EEA-ESEM 2026.
+
+- id: do_workers_value_formal_jobs_mexico_eea2026_slides
+  usado_para: N35/trabajo.prestaciones.formalidad_pesa_mas_que_salario -- evidencia publicada
+    del experimento mexicano DCE; transcripción de resultados publicados, NO microdato ni
+    adopción. El contraste explícito salario-atributos satisface pertinencia de fuente, pero
+    cada WTP corresponde a un cambio definido y no prueba preferencia universal.
+  url_origen: https://eea-congress-files.s3.eu-west-3.amazonaws.com/2026-08/Do%20Workers%20Value%20Formal%20Jobs%20long_0.pdf?VersionId=RvDkVvOz49p0gz6g0zV0AP34ICbF7Al7
+  fecha_descarga: '2026-09-11'
+  descargado_por: Codex, descarga directa pública
+  archivo: do_workers_value_formal_jobs_mexico_eea2026_slides.pdf
+  sha256: 6e49c00fde5fbc1b431e9c4992d9728dd5a00e4985170417d72e399b9b58b275
+  tamano_bytes: 1612137
+  formato: PDF
+  licencia: no declarada en el documento; uso como referencia bibliográfica
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Presentación EEA-ESEM, creada 18/ago/2026, 60 páginas; URL exacta de la sesión.
 
 - id: gen2_federal_reserve_shed_2025_appendix_a_questionnaire
   usado_para: CALC-SHED2025-BNPL-DANO-0001; rutas y universos BNPL SHED 2025
