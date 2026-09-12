@@ -167,47 +167,14 @@ class MotorGen2Explicito(unittest.TestCase):
         actual = construir_snapshot()
         esperado = json.loads((
             RAIZ / "forense" / "prereg-duelo-v2" /
-            "snapshot-M-gen2-explicito-v1_1.json"
+            "snapshot-M-gen2-explicito-v1_2.json"
         ).read_text(encoding="utf-8"))
-        actual_serializado = json.loads(json.dumps(
-            actual, ensure_ascii=False))
-
-        # El snapshot v1.1 es historia sellada. El overlay de validación es una
-        # vista viva y debe cambiar sin obligar a reescribir ese snapshot: se
-        # permiten únicamente su estado por RESULT y los hashes de la vista
-        # resultados.tsv que lo transporta. Todo lo demás sigue comparando
-        # byte a byte después de neutralizar esas diferencias declaradas.
         self.assertEqual(
-            [x["resultado_id"] for x in actual_serializado[
-                "salidas_gen2_directas"]],
-            [x["resultado_id"] for x in esperado[
-                "salidas_gen2_directas"]])
+            json.loads(json.dumps(actual, ensure_ascii=False)), esperado)
+        self.assertEqual(len(actual["salidas_gen2_directas"]), 16)
         self.assertTrue(all(
             x["validacion_independiente"] == "PASA"
-            for x in actual_serializado["salidas_gen2_directas"]))
-        self.assertTrue(all(
-            x["validacion_independiente"] == "NO-HECHA"
-            for x in esperado["salidas_gen2_directas"]))
-        ruta_resultados = "data/corrida0/resultados.tsv"
-        archivos_actual = actual_serializado["contrato_consumido"]["archivos"]
-        archivos_esperado = esperado["contrato_consumido"]["archivos"]
-        self.assertNotEqual(
-            archivos_actual[ruta_resultados],
-            archivos_esperado[ruta_resultados])
-        self.assertEqual(
-            {k: v for k, v in archivos_actual.items()
-             if k != ruta_resultados},
-            {k: v for k, v in archivos_esperado.items()
-             if k != ruta_resultados})
-        for actual_directa, esperada_directa in zip(
-                actual_serializado["salidas_gen2_directas"],
-                esperado["salidas_gen2_directas"], strict=True):
-            actual_directa["validacion_independiente"] = (
-                esperada_directa["validacion_independiente"])
-        actual_serializado["contrato_consumido"] = (
-            esperado["contrato_consumido"])
-        self.assertEqual(
-            actual_serializado, esperado)
+            for x in actual["salidas_gen2_directas"]))
         self.assertEqual(
             actual["cobertura"]["antes"]["registro_activo_total"],
             len(self.indice.usos))
@@ -307,10 +274,12 @@ class MotorGen2Explicito(unittest.TestCase):
         self.assertEqual(r.estado, "NO_COVERAGE")
         self.assertIn("p materializado no identifica al RESULT", r.detalle)
 
-    def test_13_congelados_historicos_y_snapshot_v1_0_no_cambian(self):
+    def test_13_congelados_historicos_y_snapshots_previos_no_cambian(self):
         esperados = {
             "forense/prereg-duelo-v2/snapshot-M-gen2-explicito-v1_0.json":
                 "05350667baa245c79c3ed487aeb1403d74b4612fcae69e16845b8d42f1a5eaa8",
+            "forense/prereg-duelo-v2/snapshot-M-gen2-explicito-v1_1.json":
+                "95d36cef4735f85a22f0346bc04dabdab2f13724c96e9a19179996cb93bca3bb",
             "forense/prereg-duelo-v2/snapshot-M-triada-v1_0.json":
                 "b53ac6d51d1b50ce929fdf1b3e14b124c11db39fb216a15d7073a287ed3f065c",
             "data/corrida0/CALC-TRIADA-0002/resultados.json":

@@ -20,8 +20,8 @@ nueva y el contador científico no aumenta.
 | evidencia | `evidencia-parametros-activos.json` SHA-256 `2c9669f134db034f54c422a114bb8368f55bba7e44e19c0c482ffa172f3e491f`; `resumen-parametros-activos.tsv` SHA-256 `a90512df3dd209adcaf3990bc3b601c6e0d127b00707ce42f67f46d280f4a8da` |
 | informe | `forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-PARAMETROS-ACTIVOS-v1_0/informe-parametros-activos.md` |
 | registro | 16 filas nuevas en `data/corrida0/validaciones-independientes.tsv`; 16 proyecciones `PASA` en `data/corrida0/resultados.tsv` |
-| consumo | construcción en memoria: 16 directas, 16 `EMITE`, 16 `PASA`, 16 identidades únicas |
-| gobierno | `ADR-482`, anotación L0 y rótulo GEN2; ninguna obligación `NC` o firma existente correspondía a este objeto |
+| consumo | `forense/prereg-duelo-v2/snapshot-M-gen2-explicito-v1_2.json`, SHA-256 `2279aaafb4c98b7643780d6a362b5e1802f5c77922781973a9a06eb86cb31c7c`; verificación exacta: 16 directas, 16 `EMITE`, 16 `PASA`, 16 identidades únicas |
+| gobierno | `ADR-483`, anotación L0 y rótulo GEN2; ninguna obligación `NC` o firma existente correspondía a este objeto |
 
 ## Comprobaciones ejecutadas
 
@@ -30,14 +30,17 @@ python3 forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-PARAMETROS-ACTIVOS-v1
   -> 16/16 PASA; max_abs_delta=4.789432163088136e-07
   -> segunda ejecución: hashes idénticos
 
-PYTHONPATH=milpa:. python3 -c "... construir_snapshot() ..."
+python3 -m tools.snapshot_motor_gen2 --verifica \
+  forense/prereg-duelo-v2/snapshot-M-gen2-explicito-v1_2.json
+  -> OK snapshot reproducible
   -> directas=16; EMITE=16; PASA=16; resultado_unico=16
 ```
 
-Las pruebas dirigidas y el gate general se registran en el PR. El snapshot
-sellado v1.1 conserva el hash
-`95d36cef4735f85a22f0346bc04dabdab2f13724c96e9a19179996cb93bca3bb`:
-se comprobó el consumo sin reescribir historia.
+Las pruebas dirigidas y el gate general se registran en el PR. Los snapshots
+históricos permanecen intactos: v1.0 conserva
+`05350667baa245c79c3ed487aeb1403d74b4612fcae69e16845b8d42f1a5eaa8` y v1.1
+conserva `95d36cef4735f85a22f0346bc04dabdab2f13724c96e9a19179996cb93bca3bb`.
+La deriva viva queda representada en v1.2, no neutralizada ni retroescrita.
 
 ## Residuales y límites
 

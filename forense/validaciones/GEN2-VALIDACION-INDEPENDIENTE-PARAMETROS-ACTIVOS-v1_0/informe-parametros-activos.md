@@ -53,9 +53,13 @@ resolver rutas y el contrato común para proyectar el resultado.
 - `resumen-parametros-activos.tsv`: SHA-256
   `a90512df3dd209adcaf3990bc3b601c6e0d127b00707ce42f67f46d280f4a8da`.
 - El segundo `--write` reprodujo ambos hashes byte a byte.
-- El snapshot histórico `snapshot-M-gen2-explicito-v1_1.json` no se reescribió;
-  conserva SHA-256
+- Los snapshots históricos no se reescribieron: v1.0 conserva SHA-256
+  `05350667baa245c79c3ed487aeb1403d74b4612fcae69e16845b8d42f1a5eaa8`
+  y v1.1 conserva SHA-256
   `95d36cef4735f85a22f0346bc04dabdab2f13724c96e9a19179996cb93bca3bb`.
+- El sucesor `snapshot-M-gen2-explicito-v1_2.json` tiene SHA-256
+  `2279aaafb4c98b7643780d6a362b5e1802f5c77922781973a9a06eb86cb31c7c`
+  y pasa la verificación exacta del generador v1.2.
 
 La evidencia agregada conserva por resultado fuente, miembro, hashes,
 definición, contadores, máscaras de exclusión, numerador, denominador, n,
@@ -65,9 +69,10 @@ comparación y consumidor. No incorpora microdatos al repositorio.
 
 `data/corrida0/validaciones-independientes.tsv` añade 16 asientos `PASA` por
 identidad completa `(spec_id, resultado_id)`. El resolvedor vigente los proyecta
-en las tres columnas de validación de `data/corrida0/resultados.tsv`. Una
-construcción en memoria del snapshot devuelve 16 salidas directas, 16 `EMITE`,
-16 `PASA` y 16 `RESULT` únicos.
+en las tres columnas de validación de `data/corrida0/resultados.tsv`. El
+snapshot sucesor v1.2 sellado devuelve 16 salidas directas, 16 `EMITE`, 16
+`PASA` y 16 `RESULT` únicos; su verificación exige igualdad exacta con la
+reconstrucción viva.
 
 La regeneración integral de `corrida0 registro` detectó además un `CALC` F5 ya
 fusionado pero todavía ausente de las vistas publicadas. Como ese cambio no

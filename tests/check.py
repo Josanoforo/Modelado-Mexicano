@@ -4882,12 +4882,19 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
     `PI`) recibieron `nota` nueva vía el mismo `upsert_fila` (glosa de
     cierre + estampa de universo A.10). **18 líneas** (20, 29, 35, 37,
     38, 40, 47, 51, 63, 94, 97, 114, 117, 119, 121, 123, 124, 125).
+
+    Re-medido de nuevo (`ACTO GEN2-CRON-DEMANDA-A-DATO-Y-PRODUCCION`,
+    11/sep/2026): 7 residuales explícitos se escribieron exclusivamente con
+    `tsv_crudo.upsert_fila`; las nuevas notas estructuradas contienen comillas
+    dobles. **29 líneas** (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94,
+    97, 114, 117, 119, 121, 123, 124, 125, 136, 139, 140, 144, 145, 146,
+    147, 148, 149).
     Este test es DOBLE:
 
     (1) CONTROL, documenta que el defecto sigue vivo con `csv`: si algún
         día alguien "arregla" el round-trip corriendo `csv.writer` sobre
         el archivo completo, este control lo hace visible en vez de
-        quedar en silencio -- se espera EXACTAMENTE 13 líneas distintas
+        quedar en silencio -- se esperan EXACTAMENTE 29 líneas distintas
         hoy; si el número cambia (para arriba o para abajo) sin que
         nadie lo haya declarado, falla.
     (2) REGRESIÓN del lector/escritor propio (`tools/curador_registro/
@@ -4913,14 +4920,12 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
         escritor.writerow(fila)
     csv_out_lines = buf.getvalue().split("\r\n")
     diffs_csv = [i for i, (a, b) in enumerate(zip(orig_lines, csv_out_lines)) if a != b]
-    if len(diffs_csv) != 22:
+    if len(diffs_csv) != 29:
         fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv daba "
-                         f"22 líneas distintas (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94, "
-                         f"97, 114, 117, 119, 121, 123, 124, 125, 136, 139) el 8/sep/2026 (ACTO "
-                         f"GEN2-TRAMITE-BANDEJA, tras añadir la fila 41 -- "
-                         f"REGISTRO_OPERATIVO_DE_TANDAS_DIGITALES gana el texto del correo de "
-                         f"tanteo entre comillas dobles -- ver forense/notas/2026-09-08-"
-                         f"GEN2-TRAMITE-BANDEJA-bandeja-mesa.md); hoy da "
+                         f"29 líneas distintas (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94, "
+                         f"97, 114, 117, 119, 121, 123, 124, 125, 136, 139, 140, 144, 145, 146, "
+                         f"147, 148, 149) el 11/sep/2026 (ACTO GEN2-CRON-DEMANDA-A-DATO-Y-"
+                         f"PRODUCCION, tras añadir siete residuales con `tsv_crudo.upsert_fila`); hoy da "
                          f"{len(diffs_csv)} ({[i + 1 for i in diffs_csv]}) -- el archivo cambió "
                          f"de forma que el control ya no describe la realidad, actualiza el número "
                          f"esperado con el hallazgo re-medido, no lo silencies.")
