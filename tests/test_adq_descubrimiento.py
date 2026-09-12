@@ -140,6 +140,10 @@ def prueba_cableado_y_calendario_de_produccion():
     cfg = yaml.safe_load((RAIZ / "data" / "adq-config.yaml").read_text(encoding="utf-8"))
     afirma("NUM_INVESTIGACIONES" in runner and "standalone_web_search" in runner,
            "runner no conecta selección de investigación con búsqueda web real")
+    tramo_prompt = runner.split('PROMPT_EFECTIVO="', 1)[1].split(
+        '"\n\n# set +e/-e:', 1)[0]
+    afirma("\\`python3 tools/adq_investigacion.py" in tramo_prompt,
+           "el prompt dinámico ejecutaría accidentalmente el comando entre backticks")
     afirma(len(cfg["calendario"]["dias_semana"]) == 7,
            "cadencia final debe ser diaria")
     afirma(cfg["descubrimiento_maximo_necesidades"] == 3 and cfg["maximo_filas"] == 5,
