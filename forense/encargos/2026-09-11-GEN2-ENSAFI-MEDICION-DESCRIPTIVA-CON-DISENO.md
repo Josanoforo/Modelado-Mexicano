@@ -82,3 +82,19 @@ NC-0164 conserva el residual producto exacto/costo/fricción/daño causal. No se
 ## Dependencias y convivencia
 
 Requiere #723 fusionado. Puede correr junto con 28, 29 y 30. Escribe su CALC y evidencia; concilia registros compartidos por identidad. No modifica el extractor financiero general salvo una corrección material indispensable y coordinada. No cambia el motor ni las capturas F5.
+
+## NO-CORRIDO / RESERVAS
+
+- `NC-0164` permanece abierta para identificar en la misma unidad producto
+  exacto, exposición/costo/CAT o fricción y daño causal. La medición descriptiva
+  ejecutada no acredita ese mecanismo ni autoriza adopción de N34/R1.7.
+
+## CONSUMIDO
+
+Ejecutado en la rama `acto/gen2-ensafi-medicion-descriptiva-con-diseno`.
+Entrega `CALC-ENSAFI-DISENO-0001`, su spec congelada, 226 RESULT para los 13
+estimandos autorizados, tabla legible, fichas de consumo, control independiente,
+replay `REPRODUCE/IDENTICO` y cierre canónico. Los puntos coinciden con #723 y
+27.2627% redondea al 27.3% oficial. `NC-0164` conserva abierto el residual de
+producto exacto/costo/fricción/daño causal; cero adopciones. `ADR-482`; la
+fusión corresponde a Jonás.

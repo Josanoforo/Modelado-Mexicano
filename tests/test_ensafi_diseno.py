@@ -88,6 +88,18 @@ class EnsafiDisenoTest(unittest.TestCase):
         self.assertEqual(profile["n_psu_cross_strata"], 1)
         self.assertEqual(profile["df"], 2)
 
+    def test_singleton_se_reporta_sin_inventar_pareja(self):
+        rows = [
+            row("A", "1", "1", "1"),
+            row("B", "1", "1", "1"),
+            row("B", "2", "1", "2"),
+        ]
+        profile = MOD._design_profile(rows, "FAC_HOG")
+        result = MOD._estimate(rows, CFG)
+        self.assertEqual(profile["n_singleton"], 1)
+        self.assertEqual(result["df"], 1)
+        self.assertIn("SINGLETON=1", result["precision_status"])
+
 
 if __name__ == "__main__":
     unittest.main()
