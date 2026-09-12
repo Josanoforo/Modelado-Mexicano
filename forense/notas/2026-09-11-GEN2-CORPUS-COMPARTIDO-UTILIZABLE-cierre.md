@@ -46,7 +46,7 @@ recorrieron Descargas personales ni raíces fuera del perímetro físico.
 Worktree nuevo:
 
 ```text
-/home/pc0/mm-gen2-corpus-compartido-utilizable
+worktree nuevo de la tarea
 rama acto/gen2-corpus-compartido-utilizable
 base inicial 9472223f6b463c31b6c9f3129bd26e95bf992b00
 prepara_corpus PREVISUALIZA: 24 DESTINO_IDENTICO, aplicable=SI
@@ -58,7 +58,7 @@ sin_configurar=0, fuera_de_perimetro=0
 Clon operativo de adquisición, leído sin reiniciarlo ni editarlo:
 
 ```text
-/home/pc0/mm-adq
+clon operativo de adquisición
 HEAD 50e693d508b9191047039930f00d886c5d818188
 config SHA-256 7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444
 data/raw -> raiz compartida vigente
