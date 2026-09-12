@@ -1,0 +1,140 @@
+calc_id: CALC-SHED2025-BNPL-DANO-0001
+spec_md: spec.md
+spec_md_sha256: 8fd3e104b7442f4fe74ad83b64d56ee51b7ff2b8f9f60b0fa1b8ef80f9cb0b96
+script: data/corrida0/CALC-SHED2025-BNPL-DANO-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: MEDICION-DESCRIPTIVA-ENCUESTA-TRANSVERSAL
+  cuenta_gen2: SI
+  cuenta_gen2_firma: >-
+    Encargo 43 GEN2-SHED-BNPL-DANO-UNIVERSOS, 11/sep/2026: autoriza
+    explícitamente abrir y congelar la spec de CALC-SHED2025-BNPL-DANO-0001,
+    calcular cinco salidas reales y entregar CALC/RESULT. Cuenta un CALC
+    científico, no cinco muestras ni la descarga documental; el merge de mesa
+    perfecciona la firma.
+  validacion_independiente: VERIFICACION-DIRIGIDA-POST-SELLO
+  demanda_que_releva: >-
+    Extiende la cobertura SHED de #734 con cinco estimandos descriptivos. La
+    evidencia permanece estadounidense y NC-0164 conserva el residual mexicano,
+    contractual y causal.
+  uso_motor: DESCRIPTIVO-NO-CALIBRA-NI-ADOPTA
+  medidor_ejecutado_al_congelar: NO
+
+inputs:
+  - {id: gen2_federal_reserve_shed_2025_public_csv, origen: manifiesto}
+  - {id: gen2_federal_reserve_shed_2025_codebook, origen: manifiesto}
+  - {id: gen2_federal_reserve_shed_2025_appendix_a_questionnaire, origen: manifiesto}
+
+variables:
+  - {archivo: public2025.csv, variable: shedid, rol: llave persona, codigos: texto no vacío y único}
+  - {archivo: public2025.csv, variable: weight, rol: ponderador transversal, codigos: flotante finito positivo}
+  - {archivo: public2025.csv, variable: weight_pop, rol: control de identidad no usado en puntos, codigos: flotante finito positivo}
+  - {archivo: public2025.csv, variable: BK1, rol: filtro de cuenta bancaria, codigos: "Yes=1;No=0"}
+  - {archivo: public2025.csv, variable: BK2_f, rol: sobregiro previo y filtro BNPL1A, codigos: "Yes=1;No=0;vacio=no aplica si BK1=No"}
+  - {archivo: public2025.csv, variable: BNPL1, rol: uso BNPL último año, codigos: "Yes=1;No=0"}
+  - {archivo: public2025.csv, variable: BNPL3, rol: atraso BNPL último año, codigos: "Yes=1;No=0;Refused=rechazo"}
+  - {archivo: public2025.csv, variable: BNPL3A, rol: cargo extra por atraso, codigos: "Yes=1;No=0;vacío=no aplica o falta según ruta"}
+  - {archivo: public2025.csv, variable: BNPL1A, rol: cargo sobregiro o NSF atribuido a BNPL, codigos: "Yes=1;No=0;vacío=no aplica o falta según ruta"}
+  - {archivo: public2025.csv, variable: BNPL4_e, rol: única forma de poder pagar, codigos: "Yes=1;No=0"}
+
+universo: >-
+  Personas adultas de Estados Unidos en SHED 2025; corte transversal de
+  12,934 personas. Cada estimando conserva el subuniverso del cuestionario.
+filtros: >-
+  Uso: BNPL1 válido. Atraso: BNPL1=Yes. Cargo: BNPL1=Yes y BNPL3=Yes; la
+  ruta BNPL3 rechazada se reporta aparte. Sobregiro: BNPL1=Yes, BK1=Yes y
+  BK2_f=Yes. Asociación: BNPL1=Yes y BNPL4_e/BNPL3 válidos. Vacíos no son No.
+ponderador: >-
+  weight, ponderador transversal de postestratificación escalado al tamaño
+  muestral. Punto como razón de masas; weight_pop sólo control de identidad.
+transformacion: >-
+  Traducción exacta de etiquetas CSV Yes/No; Refused, Don't know y vacío se
+  conservan como faltantes distintos. No se crean ceros fuera de ruta.
+estimando: >-
+  Cuatro proporciones ponderadas (uso, atraso, cargo condicional, sobregiro
+  condicional) y una tabla 2x2 con diferencia descriptiva de atraso entre
+  motivo de asequibilidad sí/no. Estados Unidos; ninguna afirmación causal.
+dependencias_materiales: []
+seed: {aplica: false, valor: null, rng: NO-APLICA}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: sumas deterministas redondeadas a 12 decimales; enteros y textos exactos
+parametros:
+  filas_esperadas: 12934
+  columnas_esperadas: 815
+  miembro_csv: public2025.csv
+  periodo: 2025
+  pais: Estados Unidos
+  precision: NO-CALCULADA-SIN-DISENO-COMPLETO-ACREDITADO
+  adopcion: NINGUNA
+  residual: NC-0164-ABIERTO
+
+resultados:
+  - {id: RESULT-SHED-BNPL-G-N-FILAS, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-G-N-COLUMNAS, tipo: entero, unidad: columnas}
+  - {id: RESULT-SHED-BNPL-G-SHEDID-UNICO, tipo: texto, unidad: guardia}
+  - {id: RESULT-SHED-BNPL-G-PESO-INVALIDO-N, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-G-MASA-WEIGHT, tipo: flotante, unidad: masa ponderada muestral}
+  - {id: RESULT-SHED-BNPL-G-MASA-WEIGHT-POP, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-SHED-BNPL-G-CODIFICACION, tipo: texto, unidad: contrato de códigos}
+  - {id: RESULT-SHED-BNPL-G-PONDERADOR, tipo: texto, unidad: método}
+  - {id: RESULT-SHED-BNPL-G-PRECISION, tipo: texto, unidad: frontera de precisión}
+  - {id: RESULT-SHED-BNPL-USO-N-ELEGIBLE, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-USO-N-VALIDO, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-USO-N-POSITIVOS, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-USO-MASA-ELEGIBLE, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-USO-MASA-VALIDA, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-USO-MASA-POSITIVOS, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-USO-PUNTO, tipo: proporcion, unidad: proporción ponderada}
+  - {id: RESULT-SHED-BNPL-USO-FALTANTES, tipo: texto, unidad: conteos por razón}
+  - {id: RESULT-SHED-BNPL-USO-DEFINICION, tipo: texto, unidad: definición exacta}
+  - {id: RESULT-SHED-BNPL-ATRASO-N-ELEGIBLE, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-ATRASO-N-VALIDO, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-ATRASO-N-POSITIVOS, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-ATRASO-MASA-ELEGIBLE, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-ATRASO-MASA-VALIDA, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-ATRASO-MASA-POSITIVOS, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-ATRASO-PUNTO, tipo: proporcion, unidad: proporción ponderada}
+  - {id: RESULT-SHED-BNPL-ATRASO-FALTANTES, tipo: texto, unidad: conteos por razón}
+  - {id: RESULT-SHED-BNPL-ATRASO-DEFINICION, tipo: texto, unidad: definición exacta}
+  - {id: RESULT-SHED-BNPL-CARGO-N-ELEGIBLE, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-CARGO-N-VALIDO, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-CARGO-N-POSITIVOS, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-CARGO-MASA-ELEGIBLE, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-CARGO-MASA-VALIDA, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-CARGO-MASA-POSITIVOS, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-CARGO-PUNTO, tipo: proporcion, unidad: proporción ponderada}
+  - {id: RESULT-SHED-BNPL-CARGO-FALTANTES, tipo: texto, unidad: conteos por razón}
+  - {id: RESULT-SHED-BNPL-CARGO-DEFINICION, tipo: texto, unidad: definición exacta}
+  - {id: RESULT-SHED-BNPL-CARGO-RUTA-RECHAZO-N-ELEGIBLE, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-CARGO-RUTA-RECHAZO-N-VALIDO, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-CARGO-RUTA-RECHAZO-N-POSITIVOS, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-CARGO-RUTA-RECHAZO-MASA-VALIDA, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-SOBREGIRO-N-ELEGIBLE, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-SOBREGIRO-N-VALIDO, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-SOBREGIRO-N-POSITIVOS, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-SOBREGIRO-MASA-ELEGIBLE, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-SOBREGIRO-MASA-VALIDA, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-SOBREGIRO-MASA-POSITIVOS, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-SOBREGIRO-PUNTO, tipo: proporcion, unidad: proporción ponderada}
+  - {id: RESULT-SHED-BNPL-SOBREGIRO-FALTANTES, tipo: texto, unidad: conteos por razón}
+  - {id: RESULT-SHED-BNPL-SOBREGIRO-DEFINICION, tipo: texto, unidad: definición exacta}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-N-ELEGIBLE, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-N-VALIDO, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-MASA-ELEGIBLE, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-MASA-VALIDA, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-CELDA-AF-NO-ATR-NO-N, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-CELDA-AF-NO-ATR-NO-MASA, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-CELDA-AF-NO-ATR-YES-N, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-CELDA-AF-NO-ATR-YES-MASA, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-CELDA-AF-YES-ATR-NO-N, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-CELDA-AF-YES-ATR-NO-MASA, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-CELDA-AF-YES-ATR-YES-N, tipo: entero, unidad: personas}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-CELDA-AF-YES-ATR-YES-MASA, tipo: flotante, unidad: masa weight}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-P-ATRASO-AF-NO, tipo: proporcion, unidad: proporción ponderada}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-P-ATRASO-AF-YES, tipo: proporcion, unidad: proporción ponderada}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-DIF-YES-MENOS-NO, tipo: flotante, unidad: diferencia de proporciones}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-FALTANTES, tipo: texto, unidad: conteos por razón}
+  - {id: RESULT-SHED-BNPL-ASEQ-ATRASO-DEFINICION, tipo: texto, unidad: definición exacta}
