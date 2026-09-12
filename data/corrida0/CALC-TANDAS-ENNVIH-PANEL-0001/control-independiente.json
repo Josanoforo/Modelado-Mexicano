@@ -1,0 +1,57 @@
+{
+  "calc_id": "CALC-TANDAS-ENNVIH-PANEL-0001",
+  "cardinalidad_roster_observada": {
+    "1A2": {
+      "filas_roster": 38223,
+      "ids_roster_duplicados": 1276,
+      "personas_roster": 36947
+    },
+    "2A3": {
+      "filas_roster": 46342,
+      "ids_roster_duplicados": 3139,
+      "personas_roster": 43194
+    }
+  },
+  "cardinalidad_roster_sellada": {
+    "1A2": {
+      "filas_roster": 38223,
+      "ids_roster_duplicados": 1276,
+      "personas_roster": 36947
+    },
+    "2A3": {
+      "filas_roster": 46342,
+      "ids_roster_duplicados": 3139,
+      "personas_roster": 43194
+    }
+  },
+  "control": "RECONSTRUCCION-INDEPENDIENTE-SIN-IMPORTAR-MEDIDOR",
+  "matrices_crudas_observadas": {
+    "1A2": {
+      "NO_A_NO": 12272,
+      "NO_A_SI": 724,
+      "SI_A_NO": 1472,
+      "SI_A_SI": 437
+    },
+    "2A3": {
+      "NO_A_NO": 12973,
+      "NO_A_SI": 1325,
+      "SI_A_NO": 803,
+      "SI_A_SI": 342
+    }
+  },
+  "matrices_crudas_selladas": {
+    "1A2": {
+      "NO_A_NO": 12272,
+      "NO_A_SI": 724,
+      "SI_A_NO": 1472,
+      "SI_A_SI": 437
+    },
+    "2A3": {
+      "NO_A_NO": 12973,
+      "NO_A_SI": 1325,
+      "SI_A_NO": 803,
+      "SI_A_SI": 342
+    }
+  },
+  "veredicto": "REPRODUCE"
+}
