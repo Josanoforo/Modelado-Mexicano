@@ -69,7 +69,7 @@ La fusión del PR permanece reservada a Jonás.
 Ejecutado el 11/sep/2026 por `ACTO GEN2-N34-DATOS-PRODUCTO-Y-DANO` en
 `/home/pc0/mm-gen2-n34-datos-producto-dano`, rama
 `acto/gen2-n34-datos-producto-y-dano`; entrega revisable en **PR #734** y
-gobernanza `ADR-488` con contador científico cero.
+gobernanza `ADR-489` con contador científico cero.
 
 Se adquirieron por doble descarga seis objetos públicos de Banco de México,
 Federal Reserve SHED y CFPB. Los seis coinciden por SHA-256 y tamaño; cuatro

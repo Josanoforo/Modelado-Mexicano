@@ -232,3 +232,8 @@ Antes del cierre se integró `origin/main=7a59c0eb84923e50dcb1a373a9c7d6fd34a34f
 que ya contiene #730/#731. La medición ENSAFI de #730 se conserva intacta:
 este acto sólo añade evidencia distinta por identidad y mantiene su residual.
 Entrega revisable en **PR #734**; la fusión queda reservada a Jonás.
+
+Sincronización final: PR #737 fusionó primero en `main` como
+`8d2be95080c75c11aa50c360e00da9d06cf92e54` y ocupó ADR-488. Este acto
+integra ese merge y se renumera a **ADR-489**, sin modificar los productos de
+#737 ni los de #729/#732/#733.
