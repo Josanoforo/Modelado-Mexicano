@@ -6,7 +6,7 @@ Worktree: `/home/pc0/mm-gen2-delta-comparacion-explicita`
 Rama: `acto/gen2-delta-comparacion-explicita`  
 Base observada al arrancar: `origin/main=d9c251954bce1c08abba6f47696adde9d7a2913a`  
 Primera base integrada: `origin/main=d14d715339227c7de3c8c4d7ef35e0b2a14f7325`.
-Base integrada final: `origin/main=7a59c0eb84923e50dcb1a373a9c7d6fd34a34f04`.
+Base integrada final: `origin/main=8f47fe628b98be0f150d761aa3930a800817d336`.
 Commit de implementación: `4503dc7`  
 PR: #733.
 
@@ -92,5 +92,5 @@ rellenan ni reinterpretan.
 
 No cambian `milpa/`, adopciones, tiers, specs, resultados, sellos, vistas,
 contadores, cron, F6 ni firmas. El contador científico es cero: se comparó
-evidencia existente. ADR-485, renumerado desde el candidato 484 al integrar
-PR #731, que ocupó ADR-484 antes.
+evidencia existente. ADR-486, renumerado desde el candidato 484 al integrar
+PR #731 como ADR-484 y PR #729 como ADR-485, fusionados antes.
