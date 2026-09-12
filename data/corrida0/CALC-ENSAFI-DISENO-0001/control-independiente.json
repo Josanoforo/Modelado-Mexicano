@@ -1,0 +1,68 @@
+{
+  "campos_numericos_comparados": 156,
+  "control": "VALIDACION-INDEPENDIENTE-COINCIDE",
+  "diseno": {
+    "estratos": 277,
+    "grados_libertad": 2638,
+    "singleton": 0,
+    "upm_anidadas": 2915
+  },
+  "estimandos": 13,
+  "implementacion": "separada; no importa medidor.py",
+  "max_delta": 4.718447854656915e-13,
+  "por_estimando": {
+    "HOG-CAJA-FAMILIA": {
+      "campos": 12,
+      "max_delta": 4.022338018216942e-13
+    },
+    "HOG-EMPENO": {
+      "campos": 12,
+      "max_delta": 3.116951141635127e-13
+    },
+    "HOG-FORMAL": {
+      "campos": 12,
+      "max_delta": 1.208460415069723e-13
+    },
+    "HOG-PRESTAMISTA": {
+      "campos": 12,
+      "max_delta": 4.0811798385220754e-13
+    },
+    "PER-AFR-1": {
+      "campos": 12,
+      "max_delta": 1.82576176399607e-13
+    },
+    "PER-AFR-2": {
+      "campos": 12,
+      "max_delta": 4.1303072073617386e-13
+    },
+    "PER-AFR-3": {
+      "campos": 12,
+      "max_delta": 4.718447854656915e-13
+    },
+    "PER-AFR-4": {
+      "campos": 12,
+      "max_delta": 4.574812750846036e-13
+    },
+    "PER-AFR-5": {
+      "campos": 12,
+      "max_delta": 4.42414334334007e-13
+    },
+    "PER-AFR-6": {
+      "campos": 12,
+      "max_delta": 4.077623655396323e-13
+    },
+    "PER-AFR-7": {
+      "campos": 12,
+      "max_delta": 3.65375264765877e-13
+    },
+    "PER-AFR-8": {
+      "campos": 12,
+      "max_delta": 3.1020325197417264e-13
+    },
+    "PER-ATRASO": {
+      "campos": 12,
+      "max_delta": 3.1634937724955847e-13
+    }
+  },
+  "tolerancia_abs": 1e-10
+}

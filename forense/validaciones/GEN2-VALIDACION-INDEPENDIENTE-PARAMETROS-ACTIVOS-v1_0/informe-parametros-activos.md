@@ -58,7 +58,7 @@ resolver rutas y el contrato común para proyectar el resultado.
   y v1.1 conserva SHA-256
   `95d36cef4735f85a22f0346bc04dabdab2f13724c96e9a19179996cb93bca3bb`.
 - El sucesor `snapshot-M-gen2-explicito-v1_2.json` tiene SHA-256
-  `2279aaafb4c98b7643780d6a362b5e1802f5c77922781973a9a06eb86cb31c7c`
+  `ca083554b8cd844b1a54a6147d37e26ff4096f15037e8cae6b4450f64ee763e6`
   y pasa la verificación exacta del generador v1.2.
 
 La evidencia agregada conserva por resultado fuente, miembro, hashes,
