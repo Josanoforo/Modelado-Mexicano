@@ -284,6 +284,12 @@ Todo payload que SÍ llegue se baja **dos veces** y se compara:
    corriendo `python3 tools/vista_cola_adquisicion.py` para que la vista
    quede al día antes del commit — `tests/check.py::T26` falla si no lo
    haces.
+4. Si el objeto incorporado es ENVIPE, ENNViH, ENCUCI, ENIF o ENSAFI y trae
+   metadatos nativos o documentación pública de variables, actualiza sólo ese
+   objeto con `python3 tools/actualiza_reactivos_contexto.py --objeto <familia-o-payload>`.
+   La operación usa caché por hash de fuente + versión de extractor y publica
+   el overlay completo en destino propio; no añade otra tarea periódica ni
+   modifica el cron.
 
 ## 6 · Fallo
 

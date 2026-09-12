@@ -115,6 +115,11 @@ jobs:
         # reproducen en CAJA con tools/extrae_fuentes_financieras.py --verifica.
         run: python3 tests/test_fuentes_financieras.py
 
+      - name: N34 — producto, costo y daño (bloqueante)
+        # Fixtures stdlib: separan asociación/causalidad y prueban la extracción
+        # de la tabla CFPB sin requerir los payloads externos en CI.
+        run: python3 tests/test_n34_producto_dano.py
+
       - name: motor ejecutable — procedencia→B→evaluar() sobre las tres celdas-D (bloqueante)
         # ACTO AUTO-MOTOR-1 · RECUPERA-Y-EJERCITA, NC-0023 (PR #615, ACTO
         # GEN2-T9). El motor matricial sellado por ADR-91 dejó de arrancar
