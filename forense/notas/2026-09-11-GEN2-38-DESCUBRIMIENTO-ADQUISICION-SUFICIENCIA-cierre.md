@@ -11,7 +11,7 @@ Fecha de ejecución: 2026-09-11, `America/Mexico_City`. Encargo canónico:
 - Rama: `acto/gen2-descubrimiento-adquisicion-suficiencia`.
 - Clon productivo: `/home/pc0/mm-adq`.
 - Revisión ejecutable corregida y desplegada al redactar este cierre:
-  `e2cbbc6c625492584716c5ba38ca480e1fb65343`.
+  `6bb4931fe7dc5863175fe6fda5e0a80c74b97907`.
 - `main` consumido: `02110a8b2f501df2a881fc12cf1036c1139735ff`,
   que ya contiene #734 (N34) y #737 (reactivos con contexto), además de
   #735/#736 consumidos antes.
@@ -53,6 +53,10 @@ Componentes materiales:
   hallazgo científico del operador.
 - Los escritores comunes de cola/registro/vista usan locks cortos y reemplazo
   atómico; ningún lock de publicación se retiene durante investigación web.
+- La acción de Task Scheduler usa un PowerShell no interactivo y oculto que
+  espera a `wsl.exe` y propaga su código real; el doctor decodifica la acción
+  sin ejecutarla y acredita `sin_ventana=true` y
+  `espera_y_propaga_resultado=true`.
 - `tools/consulta_gen2.py` consulta la guardia por identidad exacta de
   consumidor. Las tres emisiones de horizonte vinculadas a NC-0126 devuelven
   `NO_COVERAGE`, omiten valor/fallback y explican la incompatibilidad; trece
@@ -156,9 +160,12 @@ recurre a GEN1.
 ## Programación final y siguiente ciclo
 
 Existe una sola tarea `\ModeladoMexicano\AdquiereCron`, estado `Ready`, acción
-`wsl.exe`, principal `PC0`, `Interactive`, `Limited`, `StartWhenAvailable=true`
-y `MultipleInstances=IgnoreNew`. El crontab WSL no contiene un disparador del
-runner. La tarea usa los siete días (`DaysOfWeek=127`) a las 07:30, zona
+PowerShell `-NonInteractive -WindowStyle Hidden -EncodedCommand`, principal
+`PC0`, `Interactive`, `Limited`, `StartWhenAvailable=true` y
+`MultipleInstances=IgnoreNew`. Su comando efectivo espera `wsl.exe`, ejecuta
+`/home/pc0/mm-adq/tools/adquiere_launcher.sh` y devuelve `$LASTEXITCODE`. El
+crontab WSL no contiene un disparador del runner. La tarea usa los siete días
+(`DaysOfWeek=127`) a las 07:30, zona
 `Central Standard Time (Mexico)` ↔ `America/Mexico_City`; el doctor acredita
 `dias_coinciden=true`, `hora_coincide=true` y `disparador_atribuible=true`.
 Próxima ejecución: `2026-09-12 07:30:00-06:00`.
@@ -182,7 +189,7 @@ Pasaron las baterías dirigidas de descubrimiento, autorización, cierre remoto,
 configuración, residuales, cableado, doctor, vigilancia del cron, escritor
 concurrente, corpus y consulta GEN2, además de las pruebas consumidas de N34,
 reactivos y delta. El cierre final incluye 10 casos de recibo, 20 de contrato,
-27 de cableado, 10 de vigilancia y 9 de consulta; `bash -n` y
+27 de cableado, 9 de doctor, 10 de vigilancia y 9 de consulta; `bash -n` y
 `git diff --check` pasan. La prueba real de red dio HTTP 200 y el lock quedó
 libre.
 
