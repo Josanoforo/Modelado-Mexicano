@@ -121,6 +121,13 @@ mecanismo que `/adquiere` ya gobierna (`.claude/commands/adquiere.md`):
    `data/INFRAESTRUCTURA-v1_0.md` Dominio 1 declara para las filas que no
    se pudieron cerrar programáticamente.
 
+Cuando una necesidad nueva queda detrás de un padre parcial u obtenido, el
+alta canónica se hace con `python3 tools/adq_residual.py --help`. No es otra
+cola: usa `tsv_crudo.upsert_fila`, conserva el padre y regenera la vista. El
+selector y el recibo leen su metadata para separar residuales cubiertos,
+accionables, pendientes de acceso, sin vía, en reintento o pendientes de
+decisión; por eso `0 elegidos` ya no se interpreta como `0 necesidades`.
+
 ## §2 · Entorno
 
 **UBUNTU/WSL de mesa, exclusivamente.** No corre en nube, sin excepción.

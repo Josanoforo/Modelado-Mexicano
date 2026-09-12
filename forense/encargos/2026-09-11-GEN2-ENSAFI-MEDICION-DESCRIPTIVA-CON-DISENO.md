@@ -98,5 +98,5 @@ Entrega `CALC-ENSAFI-DISENO-0001`, su spec congelada, 226 RESULT para los 13
 estimandos autorizados, tabla legible, fichas de consumo, control independiente,
 replay `REPRODUCE/IDENTICO` y cierre canónico. Los puntos coinciden con #723 y
 27.2627% redondea al 27.3% oficial. `NC-0164` conserva abierto el residual de
-producto exacto/costo/fricción/daño causal; cero adopciones. `ADR-482`; la
+producto exacto/costo/fricción/daño causal; cero adopciones. `ADR-483`; la
 fusión corresponde a Jonás.

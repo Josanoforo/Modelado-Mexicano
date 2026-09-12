@@ -104,9 +104,15 @@ la autorización cuando el contrato exige ambas.
 
 **No se activan en bloque** `SIN-FETCH`, `OBTENIDO-PARCIAL` ni los negativos.
 Un objeto completo conserva `OBTENIDO`; el residual lleva cobertura y sucesor
-explícitos. El operador puede nombrar por ID (`--nombrada`) cualquiera de los
-estados de arriba salvo `SIN-FETCH` — eso es autoridad humana, no barrido
-automático, pero nunca un salto de estado en el selector.
+explícitos. Nombrar el padre `OBTENIDO-PARCIAL` no habilita su descarga completa.
+Registra el objeto faltante concreto con su autorización y estado accionable
+por el escritor canónico; selecciona ese residual. `--nombrada` selecciona sobre
+estados ya accionables y permite la excepción de antigüedad prevista; no
+convierte `OBTENIDO`, `OBTENIDO-PARCIAL` o `NO-ACCESIBLE` en `PENDIENTE`.
+Para un padre parcial/obtenido usa `python3 tools/adq_residual.py --help`; esa
+operación exige consumidor, cobertura, residual, vía, autoridad y siguiente
+acción, escribe con `tsv_crudo.upsert_fila` y regenera la vista. No edites la
+vista ni rebajes el padre para fabricar elegibilidad.
 
 **`SIN-FETCH` no tiene excepción nominal en el selector** (`ACTO
 GEN2-ADQ-CONTRATO-FIX`, P3/H3): nombrarla por `--nombrada` no la activa. La
@@ -121,22 +127,18 @@ selector (nominal o no) la camina como cualquier otra `PENDIENTE`. Saltarse
 el paso de transformación y solo nombrar la fila no basta — nunca bastó,
 aunque pareciera que sí.
 
-Elegibles para esta caminata, en este orden:
+Elegibles para esta caminata: `PENDIENTE` y
+`NO-OBTENIDO-POR-ESTE-AGENTE(N intentos)` bajo el contrato del selector anterior
+(reintento ≥7 días, sin intento previo o excepción nominal). Conserva sus
+exclusiones por autorización y fecha indeterminada. Usa exactamente el orden
+emitido por `adq_doctor.py --selecciona`: sin intento previo primero, después
+antigüedad del último intento, prioridad numérica y el identificador como
+desempate. No reordenes por prioridad ni por posición en el TSV.
 
-1. `estado_A4A5 == PENDIENTE`, ordenadas por `prioridad` ascendente cuando la
-   prioridad es puramente numérica (filas heredadas de
-   `cola-adquisicion-2026-08-12.tsv`, columna `palanca`); las filas con
-   prioridad prefijada por tabla de origen (`academico-N`, `civil-N`,
-   `general-N`, `oficial-N` — sin escala común con la numérica) van después,
-   en el orden en que aparecen en el archivo.
-2. `estado_A4A5 == NO-OBTENIDO-POR-ESTE-AGENTE(N intentos)` — **solo** si el
-   operador las nombra explícitamente en `$ARGUMENTS` o si han pasado ≥7 días
-   desde la última fecha registrada en su columna `nota`; un anfitrión que
-   falló hace una hora no cambia de estado por reintentarlo de inmediato.
-
-**Nunca** caminan filas `OBTENIDO` (A.8 ya resuelto) ni `NO-ACCESIBLE` (barrera
-declarada — crédito, institucional, comercial — que un `curl` no cambia; si el
-operador quiere reintentar una `NO-ACCESIBLE` específica, tiene que nombrarla).
+**Nunca** caminan filas `OBTENIDO`. Una `NO-ACCESIBLE` mantiene su barrera;
+localiza y documenta una vía permitida y crea o transforma el objeto
+accionable correspondiente antes de seleccionarlo. Nombrarla no supera
+credenciales, acceso institucional o costo.
 
 Si `$ARGUMENTS` trae un número `N`, camina como máximo las primeras `N` filas
 elegibles por el orden de arriba. Vacío = todas las elegibles de esta
@@ -151,21 +153,30 @@ Para cada fila seleccionada, **antes** de la primera petición de red:
 grep -i "<fragmento del nombre>\|<host de url_conocida si lo hay>" data/manifiesto.yaml
 ```
 
-Criterio de acierto (el mismo que `ACTO ADQ-15` fijó y que este acto verificó
-que sigue siendo el correcto): **host exacto de `url_origen` Y al menos un
-patrón de nombre/ruta**. Un acierto de un solo lado se inspecciona a mano
-antes de aceptarlo — ver `forense/notas/2026-08-18-adquisicion-material-15-fuentes.md`
+Criterio para localizar candidatos: **host exacto de `url_origen` Y al menos
+un patrón de nombre/ruta**. La coincidencia localiza evidencia; no demuestra
+que esté obtenido el objeto concreto solicitado. Un acierto de un solo lado
+se inspecciona a mano — ver `forense/notas/2026-08-18-adquisicion-material-15-fuentes.md`
 §2 para el caso `GLOBAL_PREFERENCES_SURVEY` (no cruza por nombre, se habría
 vuelto a bajar entera sin este paso).
 
-- **Coincide** → no descargues nada. Actualiza la fila: `estado_A4A5=OBTENIDO`,
+- **Coincide y cubre el objeto solicitado** → no descargues nada. Comprueba
+  tipo de archivo, periodo, variables y población requeridos, con el archivo
+  accesible en el corpus o la evidencia verificable correspondiente. Un
+  cuestionario, un dossier de acceso o una ficha no acredita microdatos;
+  tampoco un tabulado acredita una variable ausente. Actualiza solo la fila
+  del objeto efectivamente cubierto: `estado_A4A5=OBTENIDO`,
   `ids_manifiesto=<los ids encontrados>`, nota: `A.8: ya estaba en el
   manifiesto, no se repitió (<fecha>)`.
-- **No coincide** → procede al paso 3.
+- **No coincide o no cubre el objeto solicitado** → conserva lo ya obtenido
+  y procede al paso 3 para el residual explícito. Si el faltante requiere
+  credenciales, una solicitud externa o una decisión, registra esa dependencia
+  sin convertirla en descarga obtenida ni intentar eludirla. Usa el escritor
+  canónico para vincular padre y residual; no rebajes el padre completo.
 
 ⚠️ Este paso es el que el encargo llama "no re-sondea lo ya OBTENIDO" — no es
-opcional ni un `try/except` alrededor de la descarga: es un `grep` que corre
-primero.
+opcional ni un `try/except` alrededor de la descarga. La búsqueda corre primero
+y la comprobación de cobertura decide si la adquisición ya está satisfecha.
 
 ## 3 · Intento de descarga programática — protocolo de rutas múltiples (ACTO MAESTRA33-A3, ADR pendiente)
 

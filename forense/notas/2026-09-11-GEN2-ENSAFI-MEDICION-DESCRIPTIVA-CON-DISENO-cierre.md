@@ -11,9 +11,12 @@ Publicación: **[PR #730](https://github.com/Josanoforo/Modelado-Mexicano/pull/7
 HEAD al abrir `4acdbb5a3cfce138743627086e7547755c1f401a`. La fusión corresponde a
 Jonás.
 
-Antes de la validación final se integró sin conflicto
+Antes de la validación final se integró
 `origin/main=e37367581d5186ce4d4cf497377c83ebcd61cf93`; su único cambio frente al
-corte inicial fue el snapshot concurrente del censo, que se conservó.
+corte inicial fue el snapshot concurrente del censo. La sincronización
+posterior al abrir el PR integró `origin/main=9472223f6b463c31b6c9f3129bd26e95bf992b00`
+y conservó ambos lados de los registros compartidos. Como #725 ocupó
+`ADR-482`, este acto se renumeró a `ADR-483` en gobernanza, L0 y rótulo.
 
 ## 1 · Resultado ejecutivo
 
