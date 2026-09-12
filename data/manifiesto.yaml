@@ -24155,7 +24155,12 @@
     cuestionario completo, items 1-10 trayectoria + 11-23 AFORE/ahorro). Candidata a comparacion
     derivada (regresion formalidad~salario) para acto sucesor, no decidida aqui. Ademas de
     la tabla motral2012_empleos citada, motral2015_empleos.dbf trae la misma estructura (SALARIO
-    + formalidad por empleo) para la edicion 2015.'
+    + formalidad por empleo) para la edicion 2015. ENMIENDA 2026-09-11, fuente-especifica:
+    la tabla motral2015_cuestionario.dbf SI contiene P16_1..P16_5 (orden de cinco prestaciones)
+    y P17 (preferencia por empleo con seguridad social aun pagando aportaciones), acreditados
+    contra cuestionario y descriptor oficiales 2015 y medidos por CALC-MOTRAL2015-VALORACION-SS-0001.
+    Esto corrige el descarte de toda preferencia en la edicion 2015; la comparacion salarial
+    estricta permanece EXISTE-NO-SATISFACE porque P17 no presenta salarios alternativos.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/motral/2015/microdatos/motral2015_bases_datos_dbf.zip
   url_origen_procedencia: corregida a mano tras --escanea (asignó por --grupo/--url la URL
     de la edición 2012 a las dos ediciones; ésta es la 2015, verificada real por descarga
@@ -29929,3 +29934,35 @@
   formato: ZIP-DBF
   licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: do_workers_value_formal_jobs_mexico_20260316
+  usado_para: N35/trabajo.prestaciones.formalidad_pesa_mas_que_salario -- evidencia publicada
+    del experimento mexicano DCE; transcripción de resultados publicados, NO microdato ni
+    adopción. El contraste explícito salario-atributos satisface pertinencia de fuente, pero
+    cada WTP corresponde a un cambio definido y no prueba preferencia universal.
+  url_origen: https://eea-congress-files.s3.eu-west-3.amazonaws.com/2026-08/Do%20Workers%20Value%20Formal%20Jobs%2020260316.pdf?VersionId=yV9edU0kfeTYiRWcZvmTkDvts2s1H7yE
+  fecha_descarga: '2026-09-11'
+  descargado_por: Codex, descarga directa pública
+  archivo: do_workers_value_formal_jobs_mexico_20260316.pdf
+  sha256: 8a71718fc15bcb3c77845ee3a926238f1028bc5a5f146fb6cc752b77cc5121b3
+  tamano_bytes: 899285
+  formato: PDF
+  licencia: no declarada en el documento; uso como referencia bibliográfica
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Paper, versión marzo 2026, 48 páginas; URL exacta de EEA-ESEM 2026.
+
+- id: do_workers_value_formal_jobs_mexico_eea2026_slides
+  usado_para: N35/trabajo.prestaciones.formalidad_pesa_mas_que_salario -- evidencia publicada
+    del experimento mexicano DCE; transcripción de resultados publicados, NO microdato ni
+    adopción. El contraste explícito salario-atributos satisface pertinencia de fuente, pero
+    cada WTP corresponde a un cambio definido y no prueba preferencia universal.
+  url_origen: https://eea-congress-files.s3.eu-west-3.amazonaws.com/2026-08/Do%20Workers%20Value%20Formal%20Jobs%20long_0.pdf?VersionId=RvDkVvOz49p0gz6g0zV0AP34ICbF7Al7
+  fecha_descarga: '2026-09-11'
+  descargado_por: Codex, descarga directa pública
+  archivo: do_workers_value_formal_jobs_mexico_eea2026_slides.pdf
+  sha256: 6e49c00fde5fbc1b431e9c4992d9728dd5a00e4985170417d72e399b9b58b275
+  tamano_bytes: 1612137
+  formato: PDF
+  licencia: no declarada en el documento; uso como referencia bibliográfica
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Presentación EEA-ESEM, creada 18/ago/2026, 60 páginas; URL exacta de la sesión.
