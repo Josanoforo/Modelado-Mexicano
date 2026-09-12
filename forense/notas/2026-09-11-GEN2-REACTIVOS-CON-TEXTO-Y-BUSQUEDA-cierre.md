@@ -1,6 +1,6 @@
 # Cierre · GEN2-REACTIVOS-CON-TEXTO-Y-BUSQUEDA
 
-Fecha: 11/sep/2026. PR: **#737**. Entorno: **CAJA Ubuntu/WSL2**. Worktree: `/home/pc0/mm-gen2-reactivos-contexto-busqueda`; rama: `acto/gen2-reactivos-contexto-busqueda`. Arranque efectivo: `origin/main=9472223f6b463c31b6c9f3129bd26e95bf992b00`; sincronización antes del cierre: `origin/main=7a59c0eb84923e50dcb1a373a9c7d6fd34a34f04`. El corpus compartido quedó montado y `numpy`, `pandas`, `pyreadstat`, `dbfread`, `openpyxl`, `pyreadr` y `xlrd` estuvieron disponibles.
+Fecha: 11/sep/2026. PR: **#737**. Entorno: **CAJA Ubuntu/WSL2**. Worktree: `/home/pc0/mm-gen2-reactivos-contexto-busqueda`; rama: `acto/gen2-reactivos-contexto-busqueda`. Arranque efectivo: `origin/main=9472223f6b463c31b6c9f3129bd26e95bf992b00`; sincronización final: `origin/main=ea1ec7c48dd092cc299b97ce32064ee5142e76cd`. El corpus compartido quedó montado y `numpy`, `pandas`, `pyreadstat`, `dbfread`, `openpyxl`, `pyreadr` y `xlrd` estuvieron disponibles.
 
 ## Resultado
 
@@ -57,7 +57,7 @@ Los conteos son candidatos del índice, no afirmaciones de cobertura del univers
 - `python3 -m unittest -v tests.test_reactivos_contexto`: 6/6 OK, incluida la resolución de las 22,367 filas contra identidad/hash histórico.
 - ejecución real repetida del actualizador: 21/21 cache hits, 0 misses, salida byte-estable.
 - búsquedas vigentes de denuncia, tanda, ahorro, corrupción, atraso y afrontamiento: 28/52/280/2/3/1 candidatos.
-- `python3 tests/check.py --baseline`: línea base VERDE, cero fallos nuevos; conserva 3 fallos y 3,115 avisos heredados.
+- `python3 tests/check.py --baseline`: línea base VERDE, cero fallos nuevos; conserva 3 fallos y 3,114 avisos heredados al corte sincronizado.
 - cero llamadas LLM, cero OCR, cero lectura de valores personales, cero cambios en microdatos, motor, CALC, resultados F5 o cron.
 
-Decisión administrativa: `ADR-485`, renumerada desde 484 al sincronizar con `origin/main=7a59c0e`; actualización L0 y rótulo GEN2 en las vistas canónicas. No mueve contador científico ni adopta parámetros.
+Decisión administrativa: `ADR-488`, renumerada desde 485 al sincronizar con `origin/main=ea1ec7c`; actualización L0 y rótulo GEN2 en las vistas canónicas. No mueve contador científico ni adopta parámetros.
