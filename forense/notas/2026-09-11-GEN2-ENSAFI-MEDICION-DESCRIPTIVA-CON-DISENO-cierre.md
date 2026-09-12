@@ -7,6 +7,10 @@ corpus local montado y sin llamadas a modelos. Worktree:
 `origin/main=a6d731db26a90b5b81eb6c5415c01e26c179aef9`, con #723 ya fusionado,
 y árbol inicial limpio.
 
+Antes de la validación final se integró sin conflicto
+`origin/main=e37367581d5186ce4d4cf497377c83ebcd61cf93`; su único cambio frente al
+corte inicial fue el snapshot concurrente del censo, que se conservó.
+
 ## 1 · Resultado ejecutivo
 
 Se congeló y ejecutó `CALC-ENSAFI-DISENO-0001`, una extensión analítica con
@@ -99,7 +103,7 @@ Comprobaciones principales:
 
 ```bash
 python3 -m unittest tests/test_ensafi_diseno.py
-python3 tools/corrida0.py spec-check data/corrida0/CALC-ENSAFI-DISENO-0001/spec.yaml
+python3 tools/corrida0.py spec-check CALC-ENSAFI-DISENO-0001
 python3 tools/corrida0.py verify CALC-ENSAFI-DISENO-0001
 python3 data/corrida0/CALC-ENSAFI-DISENO-0001/control_independiente.py
 python3 tools/corrida0.py registro --lote CALC-ENSAFI-DISENO-0001
