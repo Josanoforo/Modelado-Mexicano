@@ -94,7 +94,7 @@ def integra() -> None:
             "id": "NC-0164",
             "fecha": "2026-09-11",
             "acto": "GEN2-N34-DATOS-PRODUCTO-Y-DANO",
-            "pr": "PENDIENTE",
+            "pr": "#734",
             "pieza": "N34 · producto/costo y dano del lado consumidor",
             "que_no_se_corrio": "estimandos descriptivos/asociativos Banxico y SHED; busqueda con acceso condicionado; cualquier adopcion o inferencia causal nueva",
             "razon": "El acto adquirio y mapeo evidencia sin preespecificacion para estimar. CFPB Making Ends Meet exige aceptar terminos y no se adquirio; el panel de Di Maggio-Williams-Katz no tiene replica publica localizable.",

@@ -231,3 +231,4 @@ del denominador CFPB sin corpus ni red.
 Antes del cierre se integró `origin/main=7a59c0eb84923e50dcb1a373a9c7d6fd34a34f04`,
 que ya contiene #730/#731. La medición ENSAFI de #730 se conserva intacta:
 este acto sólo añade evidencia distinta por identidad y mantiene su residual.
+Entrega revisable en **PR #734**; la fusión queda reservada a Jonás.

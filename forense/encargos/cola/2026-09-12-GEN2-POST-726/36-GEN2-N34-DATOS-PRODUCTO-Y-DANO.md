@@ -53,3 +53,33 @@ Descargar puede hacerse en paralelo desde ya. Integrar manifiesto/registro con e
 ## Cierre
 
 Entregar fuentes realmente obtenidas, receta, evidencia de integridad, tabla por nivel de uso (descriptivo/asociativo/causal acreditado o no), insumo consumible y residual restante. Cerrar NC-0164 sólo si su alcance exacto queda satisfecho; adquirir una asociación útil puede ser avance real sin cerrar todo el mecanismo causal. No convertir «evidencia insuficiente para causalidad» en «archivo inútil».
+
+## NO-CORRIDO / RESERVAS
+
+No se corrieron estimandos Banxico o SHED ni se produjo inferencia causal,
+parámetro, CALC, RESULT o adopción. El microdato CFPB Making Ends Meet no se
+adquirió porque exige aceptar términos de uso; el panel de
+Di Maggio–Williams–Katz no tiene réplica pública localizable. `NC-0164` queda
+ABIERTA para evidencia mexicana que enlace BNPL/crédito digital o lender,
+CAT/tasa o fricción objetiva, daño, negativos y estrategia de identificación.
+La fusión del PR permanece reservada a Jonás.
+
+## CONSUMIDO
+
+Ejecutado el 11/sep/2026 por `ACTO GEN2-N34-DATOS-PRODUCTO-Y-DANO` en
+`/home/pc0/mm-gen2-n34-datos-producto-dano`, rama
+`acto/gen2-n34-datos-producto-y-dano`; entrega revisable en **PR #734** y
+gobernanza `ADR-485` con contador científico cero.
+
+Se adquirieron por doble descarga seis objetos públicos de Banco de México,
+Federal Reserve SHED y CFPB. Los seis coinciden por SHA-256 y tamaño; cuatro
+tablas derivadas se reproducen byte a byte. Banxico habilita asociación
+mexicana por cinco categorías de crédito; SHED/CFPB documentan mecanismo BNPL
+estadounidense sin transporte; Compartamos se reutiliza sin reestimar y la
+medición ENSAFI de #730 permanece intacta.
+
+Validación final contra `origin/main=7a59c0e`: pruebas N34 4/4, alta
+transaccional 5/5, escritor de cola todo OK, seis verificaciones de manifiesto
+`COINCIDE`, extractor 4/4 idéntico y `tests/check.py --baseline` **VERDE** con
+los 3 `FAIL` y 3,115 `WARN` heredados, cero nuevos. Cierre completo:
+`forense/notas/2026-09-11-GEN2-N34-DATOS-PRODUCTO-Y-DANO-cierre.md`.
