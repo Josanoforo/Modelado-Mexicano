@@ -78,3 +78,7 @@ Aceptación: cinco mediciones reales o residual específico por la afectada, fil
 ## Prompt de lanzamiento
 
 > Ejecuta completo el encargo 43 en CAJA y worktree propio. Autorizo abrir/congelar la spec descriptiva SHED 2025, obtener el apéndice oficial que falte, calcular las cinco salidas con sus universos y entregar CALC/RESULT, informe y PR. Resuelve BNPL1A desde BNPL1 y BK2_f; no uses todos los usuarios como denominador ni conviertas faltantes en no. Todo resultado conserva Estados Unidos y uso no causal. 41 posee Banxico y 40 demanda/motor/NC global; tu propiedad es SHED y su relación. El merge queda conmigo.
+
+## NO-CORRIDO / RESERVAS
+
+Ninguno. Las cinco mediciones se ejecutaron. EE/IC era condicional a un procedimiento de diseño acreditado; su condición no se cumplió y, conforme al encargo, se conservaron los puntos descriptivos sin fabricar precisión.
