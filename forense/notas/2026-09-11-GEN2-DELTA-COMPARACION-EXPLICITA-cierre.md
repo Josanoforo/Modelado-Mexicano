@@ -6,7 +6,7 @@ Worktree: `/home/pc0/mm-gen2-delta-comparacion-explicita`
 Rama: `acto/gen2-delta-comparacion-explicita`  
 Base observada al arrancar: `origin/main=d9c251954bce1c08abba6f47696adde9d7a2913a`  
 Primera base integrada: `origin/main=d14d715339227c7de3c8c4d7ef35e0b2a14f7325`.
-Base integrada final: `origin/main=8f47fe628b98be0f150d761aa3930a800817d336`.
+Base integrada final: `origin/main=3aef05de7ff2c7ba1966e55733b45c283b6143b1`.
 Commit de implementación: `4503dc7`  
 PR: #733.
 
