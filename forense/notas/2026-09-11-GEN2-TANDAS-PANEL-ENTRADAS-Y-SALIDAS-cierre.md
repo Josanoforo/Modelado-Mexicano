@@ -85,6 +85,13 @@ Las salidas agregadas son `matrices-transicion.tsv`,
 `flujos-agregados.svg`, junto con `control-independiente.json`. No contienen
 identificadores personales.
 
+El escritor vigente se ejecutó con lote propio en una proyección aislada para
+no absorber las publicaciones concurrentes de F5 e IMOR. Añadió exactamente
+una corrida y 26 resultados; `usos.tsv` quedó byte-idéntico en 207 filas.
+Totales de esta proyección: 153 corridas y 3,531 resultados. Las filas nuevas
+conservan `REPRODUCE/IDENTICO` desde el comprobante estructurado y el
+integrador podrá conciliarlas por identidad contra el árbol conjunto.
+
 ## Uso y residual
 
 El resultado es descriptivo. No mide incumplimiento, default por turno,
