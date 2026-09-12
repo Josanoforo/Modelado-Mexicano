@@ -100,6 +100,19 @@ Ninguno. Se ejecutaron todas las piezas autorizadas. Las exclusiones expresas
 (adopción, causalidad, cierre de `NC-0164` y merge) no son trabajo residual de
 este acto.
 
+## CONSUMIDO
+
+Ejecutado por [PR #746](https://github.com/Josanoforo/Modelado-Mexicano/pull/746),
+rama `acto/gen2-banxico-producto-atraso-costo`, HEAD al abrir el PR
+`6d708d6cdbda80e3ce0501c5d818e5993a6658e0`, contra
+`origin/main=cfa8c516a43952212f945f87f62d342d42010b69`. La spec y el medidor se
+congelaron antes del cálculo; `CALC-BANXICO-PRODUCTO-DANO-0001` reproduce
+35/35 RESULT con contexto idéntico y el control independiente coincide. Se
+publicaron todos los productos/olas viables, sus denominadores y faltantes,
+agregados, gráfico, ficha para 40, actualización exclusiva de la relación
+Banxico N34 y cascada `ADR-491`. Cero adopciones y `NC-0164` permanece abierta.
+El PR no fue fusionado por el ejecutor; la fusión queda con Jonás.
+
 La comprobación se hizo antes de registrar el CALC de este acto. La nueva
 medición es descriptiva/asociativa y no equivale a adopción de R1.7.
 
