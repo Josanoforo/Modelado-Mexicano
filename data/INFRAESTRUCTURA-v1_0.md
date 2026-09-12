@@ -467,6 +467,16 @@ gitignorada, no viaja con el worktree) antes de que `--raiz descargas_mx`
 funcione — mismo defecto de infraestructura documentado arriba para
 LAPOP México/SAT e.firma, encontrado otra vez en este acto.
 
+**Actualización 11/sep/2026, ADR-486.** Ya no es necesario reconstruir esa
+preparación a mano: `tools/prepara_corpus.py --config-desde <config> --id
+<ID>...` previsualiza por defecto y `--aplica` instala sin sustituir la
+configuración gitignorada y el enlace `data/raw`. La operación permanece
+acotada a IDs exactos; para un byte ausente, `--recupera-desde <raíz>` valida
+la identidad y publica atómicamente sin sobreescribir contenido distinto. El
+resolvedor sigue siendo `tests/manifiesto.py`; no se creó una segunda capa de
+raíces. El perímetro congelado y los resultados de ambos lectores están en
+`data/corpus-compartido-perimetro-v1_0.tsv`.
+
 | artefacto | productor | esquema | quién lo lee | advertencia |
 |---|---|---|---|---|
 | `data/inventario-reactivos-descargas-mx-v1_0.tsv` | `tools/inventario_reactivos.py --raiz descargas_mx` + `tools/inventario_reactivos_ext.py --raiz descargas_mx` (unión manual, mismas columnas) | TSV: `payload_id, sha256_12, instrumento, ola, archivo_miembro, variable_id, texto_reactivo, metodo, universo_declarado` — 31 674 filas de dato, 116 `payload_id` distintos con ≥1 fila de sus 138 `DECLARADO-descargas_mx` | `tools/busca_reactivos.py --tablas descargas_mx` (o `todas`), `/mapea` | `instrumento` es casi siempre `(sin-instrumento-derivable)`: los derivadores de `tools/etiqueta_v1_2.py` (`aplica_v1_1`/`aplica_v1_2`) están escritos sobre convenciones de nombre de `data/raw`, no de `descargas_mx` — declarado, no inventado. `universo_declarado` hereda literalmente `PRESENTE_EN_DATA_RAW` de los scripts fuente (no se edita esa columna); en este archivo significa "presente en la raíz indexada por el comando", no en `data/raw` específicamente |

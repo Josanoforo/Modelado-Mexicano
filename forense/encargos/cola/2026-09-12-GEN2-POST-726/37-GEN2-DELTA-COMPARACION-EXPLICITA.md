@@ -85,5 +85,5 @@ acto no inventa criterio. `NC-0091` cierra; `NC-0048` conserva abierto el
 universo histórico sin correspondencia explícita. Cero adopciones, re-sellos,
 cambios a motor o contador científico. Evidencia y límites en
 `forense/notas/2026-09-11-GEN2-DELTA-COMPARACION-EXPLICITA-cierre.md` y
-`ADR-486`, renumerado al integrar primero PR #731 como ADR-484 y después
-PR #729 como ADR-485.
+`ADR-487`, renumerado al integrar PR #731 como ADR-484, PR #729 como ADR-485
+y PR #736 como ADR-486.
