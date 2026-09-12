@@ -1,0 +1,180 @@
+{
+ "corrida_id": "CALC-BANXICO-PRODUCTO-DANO-0001--20ff8eb70fc3",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_firma": "Encargo GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO, 12/sep/2026: autoriza el objeto CALC-BANXICO-PRODUCTO-DANO-0001, su spec y la medicion nueva sobre microdato real. Un CALC cientifico con multiples celdas, no multiples fuentes ni muestras. El merge de mesa perfecciona la firma.",
+  "demanda_que_releva": "Capa descriptiva/asociativa mexicana de N34 y oferta para R1.7; NC-0164 conserva producto/lender exacto, costo objetivo e identificacion causal.",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": false,
+  "regla_contextual": "dinero.credito.baja_friccion_usura_dano_downstream / N34 / R1.7",
+  "spec_sellada": "data/corrida0/CALC-BANXICO-PRODUCTO-DANO-0001/spec.md",
+  "spec_sellada_sha256": "13f7f730ac768822f1c4afc795062852f13ca60f2ab7dd91def5cdbafd3984cc",
+  "tipo": "MEDICION-DESCRIPTIVA-ASOCIATIVA-PRODUCTO-OLA",
+  "uso_motor": "DESCRIPTIVO-NO-CALIBRA-NI-ADOPTA",
+  "validacion_independiente": "PENDIENTE-POST-SELLO"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-12T05:33:12Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 410,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "20ff8eb70fc35ad3196113ec8643bfa45b155c34",
+  "git_rama": "acto/gen2-banxico-producto-atraso-costo",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "20ff8eb70fc35ad3196113ec8643bfa45b155c34",
+ "input_ids": [
+  "gen2_banxico_satisfaccion_usuarios_2019_2024_microdatos",
+  "gen2_banxico_satisfaccion_usuarios_2019_2024_manual",
+  "gen2_banxico_satisfaccion_usuarios_2024_informe"
+ ],
+ "input_sha256": {
+  "gen2_banxico_satisfaccion_usuarios_2019_2024_manual": "07926aca1a9fc7caadafcde7b4399fa1d91452355997ac58a7bb8d8ef1d36b5d",
+  "gen2_banxico_satisfaccion_usuarios_2019_2024_microdatos": "67d4a97b86e635252803a89848dc90b3815a32dd30266f7a7f8511a4f21207c6",
+  "gen2_banxico_satisfaccion_usuarios_2024_informe": "a2ef944695e9c9568fb9debaa32740e668da23f36ffb6b913c86d9641ca050db"
+ },
+ "parametros": {
+  "adopcion": "NINGUNA",
+  "costo_niveles": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "fuente_acto": "ACTO GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO",
+  "no_levantado_2019": [
+   "hip",
+   "nom",
+   "aut"
+  ],
+  "olas": [
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024
+  ],
+  "pago_valido": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "productos": [
+   "tdc",
+   "hip",
+   "per",
+   "nom",
+   "aut"
+  ],
+  "residual": "NC-0164-ABIERTO"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-BANXICO-2024-AUT-ATRASO-P",
+  "RESULT-BANXICO-2024-AUT-DANO-N-VALIDO",
+  "RESULT-BANXICO-2024-AUT-DANO-P",
+  "RESULT-BANXICO-2024-AUT-IMPOSIBILIDAD-P",
+  "RESULT-BANXICO-2024-HIP-ATRASO-P",
+  "RESULT-BANXICO-2024-HIP-DANO-N-VALIDO",
+  "RESULT-BANXICO-2024-HIP-DANO-P",
+  "RESULT-BANXICO-2024-HIP-IMPOSIBILIDAD-P",
+  "RESULT-BANXICO-2024-NOM-ATRASO-P",
+  "RESULT-BANXICO-2024-NOM-DANO-N-VALIDO",
+  "RESULT-BANXICO-2024-NOM-DANO-P",
+  "RESULT-BANXICO-2024-NOM-IMPOSIBILIDAD-P",
+  "RESULT-BANXICO-2024-PER-ATRASO-P",
+  "RESULT-BANXICO-2024-PER-DANO-N-VALIDO",
+  "RESULT-BANXICO-2024-PER-DANO-P",
+  "RESULT-BANXICO-2024-PER-IMPOSIBILIDAD-P",
+  "RESULT-BANXICO-2024-TDC-ATRASO-P",
+  "RESULT-BANXICO-2024-TDC-DANO-N-VALIDO",
+  "RESULT-BANXICO-2024-TDC-DANO-P",
+  "RESULT-BANXICO-2024-TDC-IMPOSIBILIDAD-P",
+  "RESULT-BANXICO-G-CONJUNTA-SHA256",
+  "RESULT-BANXICO-G-COSTO-DANO-2024-SHA256",
+  "RESULT-BANXICO-G-ESTIMANDOS-SHA256",
+  "RESULT-BANXICO-G-GRAFICO-SHA256",
+  "RESULT-BANXICO-G-N-COLUMNAS",
+  "RESULT-BANXICO-G-N-FILAS",
+  "RESULT-BANXICO-G-N-FILAS-CONJUNTA",
+  "RESULT-BANXICO-G-N-FILAS-COSTO-DANO-2024",
+  "RESULT-BANXICO-G-N-FILAS-ESTIMANDOS",
+  "RESULT-BANXICO-G-N-OLAS",
+  "RESULT-BANXICO-G-N-PRODUCTOS",
+  "RESULT-BANXICO-G-PAGO-2019-NO-LEVANTADO",
+  "RESULT-BANXICO-G-PESO-NO-POSITIVO-N",
+  "RESULT-BANXICO-G-PRECISION-ESTADO",
+  "RESULT-BANXICO-G-RESUMEN-SHA256"
+ ],
+ "script_blob_sha256": "20ca7092ea113975f836d49041b182a8187559968dbe1413868a524d4e6277b1",
+ "script_path": "data/corrida0/CALC-BANXICO-PRODUCTO-DANO-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "rng": "NO-APLICA",
+  "valor": null
+ },
+ "spec_id": "CALC-BANXICO-PRODUCTO-DANO-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "13f7f730ac768822f1c4afc795062852f13ca60f2ab7dd91def5cdbafd3984cc",
+ "spec_yaml_sha256": "6e929c1e18c6b7264092668357294eb07533955abb4fc98ee2d69ba14e2759a2",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "salidas deterministas; redondeo tabular a 12 decimales",
+  "tipo": "flotante"
+ }
+}

@@ -81,3 +81,24 @@ Aceptación: medición real de todas las celdas viables del contrato, distinció
 ## Prompt de lanzamiento
 
 > Ejecuta completo el encargo 41 en CAJA y worktree propio. Autorizo abrir/congelar la spec descriptiva Banxico, calcular los estimandos definidos con los datos ya adquiridos, verificar los riesgos materiales, registrar y entregar PR. No es otra adquisición ni adopción automática. 40 lleva la demanda/motor y 43 la medición SHED; tu propiedad es Banxico y su relación N34. Continúa hasta medición e informe consumibles. El merge queda conmigo.
+
+## A.8 · medición previa comprobada antes de fijar estados
+
+```text
+$ python3 tools/ya_medido.py R1.7
+resuelto por canon: R1.7 -> id dinero.credito.baja_friccion_usura_dano_downstream
+milpa/tramite.yaml: sin apariciones
+milpa/tramite-ola5-propuesta-v0.yaml: sin apariciones
+data/corrida0: sin apariciones
+canon/modelo-decision-v4_0.md §7: R1.7, tier [MEDIA], medido No
+NUNCA-MEDIDA
+```
+
+La comprobación se hizo antes de registrar el CALC de este acto. La nueva
+medición es descriptiva/asociativa y no equivale a adopción de R1.7.
+
+## NO-CORRIDO / RESERVAS
+
+Ninguno. Se ejecutaron todas las piezas autorizadas. Las exclusiones expresas
+(adopción, causalidad, cierre de `NC-0164` y merge) no son trabajo residual de
+este acto.
