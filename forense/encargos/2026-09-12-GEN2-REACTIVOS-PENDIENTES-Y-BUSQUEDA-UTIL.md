@@ -1,7 +1,7 @@
 # 39 · GEN2 · Reactivos pendientes y búsqueda útil para SONDA
 
-ENTORNO: CAJA — Codex CLI en Windows/WSL  
-RAMA PROPUESTA: `acto/gen2-reactivos-residuales-busqueda-util`  
+ENTORNO: CAJA — Codex CLI en Windows/WSL
+RAMA PROPUESTA: `acto/gen2-reactivos-residuales-busqueda-util`
 RESULTADO: recuperar texto documental pendiente, publicarlo en el índice vigente y demostrar búsquedas que antes fallaban por falta de metadatos.
 
 ## Autoridad, corte y ejecución

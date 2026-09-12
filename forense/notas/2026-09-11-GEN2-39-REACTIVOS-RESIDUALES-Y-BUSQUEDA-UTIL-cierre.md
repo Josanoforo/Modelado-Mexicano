@@ -1,11 +1,11 @@
 # GEN2-39 · Reactivos residuales y búsqueda útil — cierre
 
-Fecha de ejecución: 11/sep/2026  
-Entorno: CAJA, Windows/WSL2  
-Worktree: `/home/pc0/mm-gen2-reactivos-residuales-busqueda-util`  
-Rama: `acto/gen2-reactivos-residuales-busqueda-util`  
-Base integrada: `origin/main=e4c25385e218e7e30c4cc45ecdff65a6fcaa36a5`  
-PR: #742  
+Fecha de ejecución: 11/sep/2026
+Entorno: CAJA, Windows/WSL2
+Worktree: `/home/pc0/mm-gen2-reactivos-residuales-busqueda-util`
+Rama: `acto/gen2-reactivos-residuales-busqueda-util`
+Base integrada: `origin/main=e4c25385e218e7e30c4cc45ecdff65a6fcaa36a5`
+PR: #742
 Implementación e índice: `de1d2ed6846dfc566c4c78834980810f15b7bb63`
 
 ## Resultado
@@ -98,4 +98,3 @@ Para 40 y el servicio fusionado por #739, la identidad de implementación consum
 
 - `NC-0100`: acreditar las 32 identidades DBF restantes con correspondencia exacta; no copiar texto por nombre entre olas.
 - `NC-0136`: continuar los 81 grupos externos y los 12,875 residuales del lote conforme a su causa explícita.
-
