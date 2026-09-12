@@ -34,6 +34,10 @@ forense/adq-log/
 # MAESTRA37-INFRA-1 Frente B (COMMIT-2): lock runtime de tests/manifiesto.py
 # -- puramente de ejecución local, nunca versionado.
 data/.manifiesto.lock
+# Cache local del extractor incremental de contexto de reactivos. La clave
+# incluye sha256 de la fuente + version del extractor; no es evidencia ni
+# producto publicable.
+data/.reactivos-contexto-cache/
 # MAESTRA37-INFRA-1 Frente C (COMMIT-3): lock runtime de alta_relacion.py
 # sobre data/curacion-registro/ -- puramente de ejecución local.
 data/curacion-registro/.alta-relacion.lock

@@ -1,0 +1,6 @@
+pais,periodo,unidad,variable,concepto,universo_documentado,n_valido,n_si,n_no,masa_muestral_ponderada_valida,masa_muestral_ponderada_si,nivel_uso
+Estados_Unidos,2025,persona,BNPL1,uso_bnpl_ultimo_ano,todas_las_personas,12934,2004,10930,12933.986600,2132.701700,descriptivo_asociativo_no_causal
+Estados_Unidos,2025,persona,BNPL3,atraso_pago_bnpl,usuarios_bnpl,2004,487,1517,2132.701700,549.817400,descriptivo_asociativo_no_causal
+Estados_Unidos,2025,persona,BNPL3A,cargo_extra_por_atraso_bnpl,usuarios_bnpl_con_atraso,487,302,185,549.817400,352.491000,descriptivo_asociativo_no_causal
+Estados_Unidos,2025,persona,BNPL1A,sobregiro_o_nsf_disparado_por_bnpl,subuniverso_del_cuestionario,542,206,336,595.607800,230.977100,descriptivo_asociativo_no_causal
+Estados_Unidos,2025,persona,BNPL4_e,bnpl_unica_forma_de_poder_pagar,usuarios_bnpl,2004,1161,843,2132.701700,1252.091000,descriptivo_asociativo_no_causal

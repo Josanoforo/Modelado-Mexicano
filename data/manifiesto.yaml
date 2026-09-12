@@ -29763,3 +29763,90 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: Publica 27.3% de la población de 18 años y más con deuda que se ha atrasado en algún
     préstamo o crédito; se usa como control de reproducción, no como parámetro adoptado.
+
+- id: gen2_banxico_satisfaccion_usuarios_2019_2024_microdatos
+  usado_para: NC-0164/N34; persona usuaria, producto de credito, percepcion de costo, comportamiento
+    de pago y problema/reclamacion co-observados
+  url_origen: https://www.banxico.org.mx/publicaciones-y-prensa/indicadores-de-satisfaccion-de-los-usuarios-de-ser/microdatos/%7B9C9F2078-7128-7419-B090-BF832F4BD7C2%7D.xlsx
+  fecha_descarga: '2026-09-11'
+  descargado_por: agente; curl dos veces, bytes identicos
+  archivo: GEN2_N34_PRODUCTO_DANO/banxico_satisfaccion_usuarios_2019_2024.xlsx
+  sha256: 67d4a97b86e635252803a89848dc90b3815a32dd30266f7a7f8511a4f21207c6
+  tamano_bytes: 5794893
+  formato: XLSX; 12408 filas persona-ola, 142 columnas, 2019-2024
+  licencia: Banco de Mexico; Uso Publico, informacion de acceso publico
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Encuesta nacional para localidades de 50 mil habitantes o mas, personas mexicanas
+    de 18-70 con producto financiero; ponderador por fila. Categoria de producto inequivoca,
+    no institucion/lender ni CAT contractual.
+
+- id: gen2_banxico_satisfaccion_usuarios_2019_2024_manual
+  usado_para: NC-0164/N34; diccionario y codificacion del microdato Banxico
+  url_origen: https://www.banxico.org.mx/publicaciones-y-prensa/indicadores-de-satisfaccion-de-los-usuarios-de-ser/microdatos/%7B4155D953-A609-9C2C-23AF-C0C6CDC7C6EE%7D.pdf
+  fecha_descarga: '2026-09-11'
+  descargado_por: agente; curl dos veces, bytes identicos
+  archivo: GEN2_N34_PRODUCTO_DANO/banxico_satisfaccion_usuarios_manual_2024.pdf
+  sha256: 07926aca1a9fc7caadafcde7b4399fa1d91452355997ac58a7bb8d8ef1d36b5d
+  tamano_bytes: 281206
+  formato: PDF, 16 paginas; estructura de variables 2019-2024
+  licencia: Banco de Mexico; Uso Publico, informacion de acceso publico
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Fija filtros de tenencia, escalas de costo, pago/atraso, problema, reclamacion y vulnerabilidad
+    por producto.
+
+- id: gen2_banxico_satisfaccion_usuarios_2024_informe
+  usado_para: NC-0164/N34; poblacion, diseno, cobertura y metodologia del microdato Banxico
+  url_origen: https://www.banxico.org.mx/publicaciones-y-prensa/indicadores-de-satisfaccion-de-los-usuarios-de-ser/%7BDF361023-2A25-7E12-7DC9-72B4FDBD53CC%7D.pdf
+  fecha_descarga: '2026-09-11'
+  descargado_por: agente; curl dos veces, bytes identicos
+  archivo: GEN2_N34_PRODUCTO_DANO/banxico_satisfaccion_usuarios_informe_2024.pdf
+  sha256: a2ef944695e9c9568fb9debaa32740e668da23f36ffb6b913c86d9641ca050db
+  tamano_bytes: 1369127
+  formato: PDF, 49 paginas; informe metodologico y resultados 2024
+  licencia: Banco de Mexico; Uso Publico, informacion de acceso publico
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Documenta representatividad nacional en poblaciones de 50 mil habitantes o mas, 18-70
+    anos, factores de expansion y universo por producto.
+
+- id: gen2_federal_reserve_shed_2025_public_csv
+  usado_para: NC-0164/N34; BNPL, atraso, cargo extra, sobregiro y razon de asequibilidad co-observados
+    a nivel persona
+  url_origen: https://www.federalreserve.gov/consumerscommunities/files/SHED_public_use_data_2025_%28CSV%29.zip
+  fecha_descarga: '2026-09-11'
+  descargado_por: agente; curl dos veces, bytes identicos
+  archivo: GEN2_N34_PRODUCTO_DANO/shed_2025_public_csv.zip
+  sha256: a4ab3f7d042f16d63626b1af9aeb6f0b8a0b39e412fa94b87265bc67fe26de14
+  tamano_bytes: 4676794
+  formato: ZIP con public2025.csv; 12934 filas persona, 815 columnas
+  licencia: Board of Governors of the Federal Reserve System; public-use dataset, DOI 10.17016/datasets.002
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Estados Unidos, encuesta web probabilistica KnowledgePanel con weight/weight_pop;
+    evidencia descriptiva/asociativa extranjera, nunca tasa mexicana ni causal.
+
+- id: gen2_federal_reserve_shed_2025_codebook
+  usado_para: NC-0164/N34; diccionario y tabulaciones oficiales de SHED 2025
+  url_origen: https://www.federalreserve.gov/consumerscommunities/files/SHED_2025codebook.pdf
+  fecha_descarga: '2026-09-11'
+  descargado_por: agente; curl dos veces, bytes identicos
+  archivo: GEN2_N34_PRODUCTO_DANO/shed_2025_codebook.pdf
+  sha256: 3094d147be4fe60214b1c2550537d1b9d931559d3f804be7976b24e43e27311e
+  tamano_bytes: 849070
+  formato: PDF, 119 paginas; codebook SHED 2025
+  licencia: Board of Governors of the Federal Reserve System; documentacion publica
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Fija BNPL1, BNPL3, BNPL3A, BNPL1A, BNPL4_e y ponderadores; actualizado 4-sep-2026.
+
+- id: gen2_cfpb_bnpl_unsecured_debt_2025_report
+  usado_para: NC-0164/N34; tabla agregada de originaciones BNPL pay-in-four y default por
+    categoria FICO
+  url_origen: https://files.consumerfinance.gov/f/documents/cfpb_BNPL_Report_2025_01.pdf
+  fecha_descarga: '2026-09-11'
+  descargado_por: agente; curl dos veces, bytes identicos
+  archivo: GEN2_N34_PRODUCTO_DANO/cfpb_bnpl_unsecured_debt_2025.pdf
+  sha256: 785d4f37e98eaacdf79d65de292112c6aa5cb7d827d94eb96fa40ea564e800d2
+  tamano_bytes: 2673179
+  formato: PDF, 35 paginas; informe CFPB 2025
+  licencia: Consumer Financial Protection Bureau; publicacion oficial publica
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Estados Unidos; 892668 originaciones emparejadas 2021-2022, seis grandes firmas; datos
+    subyacentes no publicados. Default=impago a 120 dias; no contiene pagos tardios.
