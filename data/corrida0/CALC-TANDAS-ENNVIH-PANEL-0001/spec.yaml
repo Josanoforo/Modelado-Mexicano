@@ -1,0 +1,124 @@
+calc_id: CALC-TANDAS-ENNVIH-PANEL-0001
+sucesor_de: CALC-TANDAS-ENNVIH-0001
+spec_md: spec.md
+spec_md_sha256: 74c5507c7085722a1a5f5058e9c7d23eb9fc19792cff4ea3f377477685f95181
+script: data/corrida0/CALC-TANDAS-ENNVIH-PANEL-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: MEDICION-DESCRIPTIVA-PANEL
+  cuenta_gen2: NO-SIN-FIRMA-DE-OBJETO
+  validacion_independiente: RECONSTRUCCION-MATRICES-Y-CARDINALIDAD
+  medidor_ejecutado_al_congelar: "NO"
+  regla_relacionada: R8.2
+  adopcion_motor: NO-SIN-FIRMA
+
+inputs:
+  - {id: ennvih1_2002_hogar_dta, origen: manifiesto}
+  - {id: ennvih1_2002_hogar_cb, origen: manifiesto}
+  - {id: ennvih2_2005_hogar_dta, origen: manifiesto}
+  - {id: ennvih2_2005_hogar_cb, origen: manifiesto}
+  - {id: ennvih2_2005_ponderador_longitudinal, origen: manifiesto}
+  - {id: ennvih2_2005_guia, origen: manifiesto}
+  - {id: ennvih3_2009_hogar_dta, origen: manifiesto}
+  - {id: ennvih3_2009_hogar_cb, origen: manifiesto}
+  - {id: ennvih3_2009_ponderador_longitudinal, origen: manifiesto}
+  - {id: ennvih3_2009_guia, origen: manifiesto}
+  - {id: ennvih3_2009_factores_exp, origen: manifiesto}
+
+variables:
+  - {archivo: ehh02dta_all/ehh02dta_b3b/iiib_cr.dta, variable: cr04, rol: participacion inicial 2002, codigos: "1=si; 3=no; otro/falta excluido"}
+  - {archivo: ehh02dta_all/ehh02dta_b3b/iiib_cr.dta, variable: folio, rol: primeros ocho digitos de pid_link oficial, codigos: entero canonizado a 8 digitos}
+  - {archivo: ehh02dta_all/ehh02dta_b3b/iiib_cr.dta, variable: ls, rol: ultimos dos digitos de pid_link oficial, codigos: entero canonizado a 2 digitos}
+  - {archivo: ehh02dta_all/ehh02dta_b3b/iiib_portad.dta, variable: edad, rol: categoria basica inicial, codigos: "15-29;30-49;50+;fuera/faltante"}
+  - {archivo: ehh02dta_all/ehh02dta_bc/c_ls.dta, variable: ls04, rol: sexo inicial, codigos: "1=hombre;3=mujer;otro/falta separado"}
+  - {archivo: ehh05dta_b3b/iiib_cr.dta, variable: cr04, rol: participacion 2005-06, codigos: "1=si; 3=no; otro/falta excluido"}
+  - {archivo: ehh05dta_b3b/iiib_cr.dta, variable: pid_link, rol: identidad oficial 2002/2005, codigos: 10 digitos}
+  - {archivo: ehh05dta_b3b/iiib_portad.dta, variable: edad, rol: categoria basica inicial del par 2a3, codigos: "15-29;30-49;50+;fuera/faltante"}
+  - {archivo: ehh05dta_bc/c_ls.dta, variable: folio, rol: reconstruccion oficial acotada de pid blanco y llave corriente, codigos: 8 digitos}
+  - {archivo: ehh05dta_bc/c_ls.dta, variable: ls, rol: reconstruccion oficial acotada de pid blanco y llave corriente, codigos: 2 digitos}
+  - {archivo: ehh05dta_bc/c_ls.dta, variable: pid_link, rol: identidad oficial y roster de seguimiento, codigos: 10 digitos o blanco acreditado}
+  - {archivo: ehh05dta_bc/c_ls.dta, variable: ls01a, rol: estado en hogar de seguimiento, codigos: "0=murio;1=presente;3=salio;4=nuevo"}
+  - {archivo: ehh05dta_bc/c_ls.dta, variable: ls19d, rol: confirmacion de vida entre quienes salieron, codigos: "1=si;3=no"}
+  - {archivo: ehh05dta_bc/c_ls.dta, variable: ls04, rol: sexo inicial del par 2a3, codigos: "1=hombre;3=mujer"}
+  - {archivo: ehh05lw_all/ehh05_lw_b3b.dta, variable: fac_3bl, rol: masa longitudinal primaria del par 1a2, codigos: finito y positivo}
+  - {archivo: ehh09dta_all/ehh09dta_b3b/iiib_cr.dta, variable: cr04, rol: participacion 2009-12, codigos: "1=si; 3=no; otro/falta excluido"}
+  - {archivo: ehh09dta_all/ehh09dta_b3b/iiib_cr.dta, variable: pid_link, rol: identidad oficial 2002/2005/2009, codigos: 12 caracteres con AP/BP/CP/CH}
+  - {archivo: ehh09dta_all/ehh09dta_bc/c_ls.dta, variable: pid_link, rol: identidad oficial del roster de seguimiento, codigos: 12 caracteres con AP/BP/CP/CH}
+  - {archivo: ehh09dta_all/ehh09dta_bc/c_ls.dta, variable: ls01a, rol: estado en hogar de seguimiento, codigos: "0=murio;1=presente;3=salio;4=nuevo;5=hijo fuera;6=regreso"}
+  - {archivo: ehh09dta_all/ehh09dta_bc/c_ls.dta, variable: ls19d, rol: confirmacion de vida entre quienes salieron, codigos: "1=si;3=no"}
+  - {archivo: ehh09lw_all/ehh09_lw_b3b.dta, variable: fac_3bl, rol: auditoria de cobertura no usada, codigos: factor longitudinal cohorte AP/2002}
+
+universo: >-
+  Por par, cohorte inicial = personas con registro en iiib_cr.dta de la ola
+  inicial, instrumento directo para edad 15+. Matriz = miembros de esa cohorte
+  con cr04 en {1,3} en ambas entrevistas. Entradas al universo de la ola final
+  se cuentan por separado y se excluyen de las tasas.
+filtros: >-
+  cr04 fuera de {1,3} se cuenta y excluye del par valido; nunca se imputa.
+  Edad fuera de 15-120 o faltante forma categoria propia y no borra una
+  respuesta del Libro IIIB. Identidad o formato invalido aborta. Roster
+  duplicado se colapsa por pid_link oficial como estados de una persona. La
+  perdida no se codifica como cr04=3.
+ponderador: >-
+  Par 2002->2005-06: fac_3bl longitudinal del Libro IIIB 2005, finito y
+  positivo; filas validas sin factor permanecen solo en conteos no ponderados.
+  Par 2005-06->2009-12: NO-PONDERADO porque fac_3bl 2009 solo cubre la cohorte
+  original AP/2002 y no la cohorte inicial completa de 2005. No se sustituyen
+  factores transversales.
+transformacion: >-
+  ENNViH-1 pid_link = folio a 8 digitos + ls a 2. ENNViH-2 pid10 se expande a
+  pid12 insertando AP si el folio de primer registro termina 00, BP si no;
+  coincidencia exacta contra pid_link ENNViH-3. Tasas condicionales por fila
+  inicial de la matriz 2x2; masa = suma fac_3bl en 1a2 y suma de unos en 2a3.
+estimando: >-
+  Transiciones descriptivas entre entrevistas: permanencia/salida entre
+  participantes iniciales y entrada/no entrada entre no participantes
+  iniciales, en el panel con respuesta valida observado. No es tasa anual,
+  poblacional de Mexico, de incumplimiento ni efecto causal.
+dependencias_materiales: [numpy, pandas]
+parametros:
+  codigos_cr04: {"si": 1, "no": 3}
+  codigos_sexo: {hombre: 1, mujer: 3}
+  codigos_roster_activo: [1, 4, 6]
+  codigos_roster_fuera: [3, 5]
+  codigo_muerte_roster: 0
+  codigo_no_vivo_ls19d: 3
+  grupos_edad: [15-29, 30-49, 50+, fuera-o-faltante]
+  enlace_1a2: folio08+ls02 == pid_link10
+  enlace_2a3: pid_link10 expandido con AP/BP == pid_link12
+  metodo_1a2: FAC_3BL_LONGITUDINAL_2005
+  metodo_2a3: NO-PONDERADO-PANEL-OBSERVADO
+seed: {aplica: false}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: sumas deterministas en orden de fila; JSON canonico; enteros y textos exactos
+
+resultados:
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-1A2-MATRIZ-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-1A2-COBERTURA-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-1A2-ATTRITION-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-1A2-ENTRADAS-UNIVERSO-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-1A2-IDENTIDAD-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-1A2-PONDERACION, tipo: texto, unidad: metodo}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-1A2-N-PAR-VALIDO, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-1A2-N-PAR-EN-MASA, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-1A2-MASA-PAR, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-1A2-P-PERMANECE, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-1A2-P-SALE, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-1A2-P-ENTRA, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-1A2-P-NO-ENTRA, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-2A3-MATRIZ-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-2A3-COBERTURA-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-2A3-ATTRITION-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-2A3-ENTRADAS-UNIVERSO-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-2A3-IDENTIDAD-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-2A3-PONDERACION, tipo: texto, unidad: metodo}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-2A3-N-PAR-VALIDO, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-2A3-N-PAR-EN-MASA, tipo: entero, unidad: personas}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-2A3-MASA-PAR, tipo: flotante, unidad: personas observadas}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-2A3-P-PERMANECE, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-2A3-P-SALE, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-2A3-P-ENTRA, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-TANDAS-PANEL-ENNVIH-2A3-P-NO-ENTRA, tipo: proporcion, unidad: proporcion}

@@ -54,3 +54,25 @@ Entregar tabla ID → ubicación lógica → hash/estado → consumidor habilita
 ## Concurrencia y término
 
 Puede iniciar ahora, junto a #726, porque no toca scheduler, selector ni `tools/adq_*`. Congela el conjunto de IDs inicial y no persigas altas concurrentes. #728 ya prepara los inputs DIN/TRA de F5: no absorberlos ni alterar sus paquetes en esta tarea. Los encargos 34/35 pueden usar sus archivos existentes sin esperar todo este lote; si necesitan uno reparado, toman el archivo después de su publicación verificada. Termina con inputs utilizables, no sólo con una lista de ausencias.
+
+## NO-CORRIDO / RESERVAS
+
+- `NC-0058` permanece abierta: falta el texto externo original que ordenó
+  #635; este acto sólo corrige y verifica el alcance material de `NC-0059`.
+- No hubo recuperación ni descarga porque los 24 payloads ya coincidían en la
+  raíz compartida; la ruta de recuperación queda probada con fixtures.
+- No se firman FP-371/372/373/374, adopciones, F6, acceso comercial ni cambios
+  al cron, selector o motor.
+
+## CONSUMIDO
+
+Consumido el 11/sep/2026 en la rama
+`acto/gen2-corpus-compartido-utilizable`. El perímetro congelado quedó en 24
+IDs únicos y verifica 24/24 `COINCIDE` desde un worktree nuevo y desde el clon
+operativo de adquisición. `NC-0059` cierra con su premisa corregida: PR #635
+añadió un payload mediante 29 líneas YAML, no 29 payloads. La preparación
+repetible queda en `tools/prepara_corpus.py`; tabla, lectores y reservas están
+documentados en
+`forense/notas/2026-09-11-GEN2-CORPUS-COMPARTIDO-UTILIZABLE-cierre.md`.
+ADR-486; contador científico cero. Ejecutado por PR #736; fusión reservada a
+la mesa.
