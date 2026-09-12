@@ -1,0 +1,71 @@
+calc_id: CALC-IMOR-CONTEXTO-0001
+spec_md: spec.md
+spec_md_sha256: 7fb2aa9bccd1aeaef4c3746e4951ed81a1ef269b4d30e2eff63aba5074815497
+script: data/corrida0/CALC-IMOR-CONTEXTO-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: DERIVACION-TEMPORAL-DESCRIPTIVA-POR-REGIMEN
+  cuenta_gen2: NO-DERIVACION-CONTEXTUAL
+  validacion_independiente: PENDIENTE-POST-SELLO
+  medidor_ejecutado_al_congelar: NO
+  regla_contextual: dinero.credito.scoring_alternativo (R1.6)
+  uso_motor: DESCRIPTIVO-NO-CALIBRA
+  fuente_acto: ACTO GEN2-IMOR-CONTEXTO-TEMPORAL-POR-REGIMEN
+
+inputs:
+  - id: IN-BANXICO-IMOR-CONSUMO-MENSUAL
+    origen: repo
+    ruta: data/fuentes-financieras-20/banxico-imor-consumo-mensual.csv
+    sha256: 772f9d0b9da57b18ef9abdd5824b0824b6191e65668103e3a8329171d3df88e9
+
+variables: []
+universo: >-
+  123 meses, 2016-01..2026-03, de banca comercial; incluye Sofomes ER
+  subsidiarias de instituciones bancarias y grupos financieros; excluye CI
+  Banco. Cinco productos publicados: consumo total, tarjetas de credito,
+  ABCD, nomina y personales. ABCD incluye bienes muebles y automotriz.
+filtros: >-
+  No hay filtros sustantivos. El medidor aborta ante faltantes, duplicados,
+  fechas discontinuas, productos inesperados, valores fuera de 0..100 o
+  inconsistencia entre fecha, regimen y numerador.
+ponderador: >-
+  NO-APLICA a filas. La media temporal da el mismo peso a cada mes y no es un
+  ratio agregado de saldos porque no se publican los denominadores monetarios.
+transformacion: >-
+  Dentro de producto y regimen: cambio mensual en pp contra t-1 consecutivo;
+  cambio interanual en pp contra t-12; relativos en columnas distintas como
+  100*(nivel_t/nivel_previo-1). No se cruza 2021-12 a 2022-01. Resumen con
+  media, mediana, extremos y fechas, y desviacion estandar poblacional ddof=0.
+estimando: >-
+  Estadisticos descriptivos del nivel y cambio del porcentaje mensual de
+  saldos en mora por producto y regimen metodologicamente comparable. No son
+  probabilidad individual, incertidumbre de encuesta, efecto causal ni
+  validacion predictiva.
+dependencias_materiales: [matplotlib]
+parametros:
+  regimen_pre: {id: PRE_IFRS9_CARTERA_VENCIDA, inicio: 2016-01, fin: 2021-12}
+  regimen_ifrs9: {id: IFRS9_ETAPA_3, inicio: 2022-01, fin: 2026-03}
+  dispersión: desviacion_estandar_poblacional_ddof_0
+  output_dir: data/analisis-imor-contexto-temporal
+  ruptura_adicional_documentada: NO
+  fuente_rupturas: >-
+    cierre de PR #723 y notas de la publicacion Banxico preservadas en el CSV
+seed: {aplica: false, valor: null, rng: NO-APLICA}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: calculo determinista con floats sobre valores de entrada a dos decimales
+
+resultados:
+  - {id: RESULT-IMOR-G-INPUT-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-IMOR-G-N-FILAS, tipo: entero, unidad: filas mes-producto}
+  - {id: RESULT-IMOR-G-N-MESES, tipo: entero, unidad: meses}
+  - {id: RESULT-IMOR-G-N-PRODUCTOS, tipo: entero, unidad: productos}
+  - {id: RESULT-IMOR-G-CORTE, tipo: texto, unidad: periodo mensual}
+  - {id: RESULT-IMOR-G-N-CAMBIOS-MENSUALES, tipo: entero, unidad: cambios producto-mes}
+  - {id: RESULT-IMOR-G-N-CAMBIOS-INTERANUALES, tipo: entero, unidad: cambios producto-mes}
+  - {id: RESULT-IMOR-G-RUPTURAS-ADICIONALES, tipo: entero, unidad: rupturas documentadas}
+  - {id: RESULT-IMOR-PRE-RESUMEN-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-IMOR-IFRS9-RESUMEN-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-IMOR-G-USO, tipo: texto, unidad: limitacion de uso}
