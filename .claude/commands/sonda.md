@@ -219,6 +219,13 @@ concreta que vale la pena intentar adquirir:
    `url_conocida`, `ids_manifiesto`, `origen` (cita esta invocación de
    `/sonda`, el código/definición que intentaba cubrir, y la razón candidata),
    `nota`.
+   Cuando el hallazgo es un **objeto residual** de un padre parcial u obtenido,
+   usa `python3 tools/adq_residual.py --help`: obliga a declarar padre,
+   consumidor, objeto exacto, cobertura, residual, vía, autoridad y siguiente
+   acción; llama al mismo `upsert_fila` y regenera la vista en una operación.
+   `PENDIENTE` exige URL ejecutable y token
+   `AUTORIZADA:<quién>/<fecha>/<objeto_id>`; acceso/formulario pendiente queda
+   `SOLICITUD-PREPARADA`, no se cuela al selector.
 4. Regenera la vista: `python3 tools/vista_cola_adquisicion.py` — nunca edites
    `data/cola-adquisicion-v1_0.tsv` a mano.
 5. Si la candidata es una RELACIÓN nueva (necesidad↔fuente↔objeto) y no solo
