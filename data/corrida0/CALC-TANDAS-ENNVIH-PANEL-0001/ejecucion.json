@@ -1,0 +1,171 @@
+{
+ "corrida_id": "CALC-TANDAS-ENNVIH-PANEL-0001--f3d79bb1c4fa",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "adopcion_motor": "NO-SIN-FIRMA",
+  "cuenta_gen2": "NO-SIN-FIRMA-DE-OBJETO",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": "NO",
+  "regla_relacionada": "R8.2",
+  "tipo": "MEDICION-DESCRIPTIVA-PANEL",
+  "validacion_independiente": "RECONSTRUCCION-MATRICES-Y-CARDINALIDAD"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-12T00:48:16Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 406,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "f3d79bb1c4fa5a0bb03da12cbe60d0d421249d1f",
+  "git_rama": "acto/gen2-tandas-panel-entradas-salidas",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "f3d79bb1c4fa5a0bb03da12cbe60d0d421249d1f",
+ "input_ids": [
+  "ennvih1_2002_hogar_dta",
+  "ennvih1_2002_hogar_cb",
+  "ennvih2_2005_hogar_dta",
+  "ennvih2_2005_hogar_cb",
+  "ennvih2_2005_ponderador_longitudinal",
+  "ennvih2_2005_guia",
+  "ennvih3_2009_hogar_dta",
+  "ennvih3_2009_hogar_cb",
+  "ennvih3_2009_ponderador_longitudinal",
+  "ennvih3_2009_guia",
+  "ennvih3_2009_factores_exp"
+ ],
+ "input_sha256": {
+  "ennvih1_2002_hogar_cb": "a3220412505d6684e50548bdd1e01ce816d3af99ed846e4e27f30f35e9b506b2",
+  "ennvih1_2002_hogar_dta": "8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923",
+  "ennvih2_2005_guia": "6d3334e77e1d417bf7be997715c4e38b0c0047e595a948d7bbcd8295255f0ddc",
+  "ennvih2_2005_hogar_cb": "1bbbb7ee97bd8d1273213e0d4d2ee616198405d32bc145df9236efa2940f210b",
+  "ennvih2_2005_hogar_dta": "fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a",
+  "ennvih2_2005_ponderador_longitudinal": "6567bcbf3386b04b3d77c0ac0eb564d5be752b0090bb9caa31ccb1e077a745bf",
+  "ennvih3_2009_factores_exp": "cc297561caa5e963fd5a7cd88a8ab0a45726b997015eafbcdac7bcf088fe214d",
+  "ennvih3_2009_guia": "f5e884eb6d923211ea21bf98c5584d87cb04e7540c62d59d6812bbaa28401ba8",
+  "ennvih3_2009_hogar_cb": "1e23ee82ac16f1f977daa78f017753045a459dc468ba599c1ec4011cc08ef059",
+  "ennvih3_2009_hogar_dta": "00a7649a1839a3523be22612c2fa3555d5e743cf5329d6bcdc432b901e98bd15",
+  "ennvih3_2009_ponderador_longitudinal": "52472e0c648c5c35e00bf11b546c9b60beadec93f01290771b67adece3903833"
+ },
+ "parametros": {
+  "codigo_muerte_roster": 0,
+  "codigo_no_vivo_ls19d": 3,
+  "codigos_cr04": {
+   "no": 3,
+   "si": 1
+  },
+  "codigos_roster_activo": [
+   1,
+   4,
+   6
+  ],
+  "codigos_roster_fuera": [
+   3,
+   5
+  ],
+  "codigos_sexo": {
+   "hombre": 1,
+   "mujer": 3
+  },
+  "enlace_1a2": "folio08+ls02 == pid_link10",
+  "enlace_2a3": "pid_link10 expandido con AP/BP == pid_link12",
+  "grupos_edad": [
+   "15-29",
+   "30-49",
+   "50+",
+   "fuera-o-faltante"
+  ],
+  "metodo_1a2": "FAC_3BL_LONGITUDINAL_2005",
+  "metodo_2a3": "NO-PONDERADO-PANEL-OBSERVADO"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-TANDAS-PANEL-ENNVIH-1A2-ATTRITION-JSON",
+  "RESULT-TANDAS-PANEL-ENNVIH-1A2-COBERTURA-JSON",
+  "RESULT-TANDAS-PANEL-ENNVIH-1A2-ENTRADAS-UNIVERSO-JSON",
+  "RESULT-TANDAS-PANEL-ENNVIH-1A2-IDENTIDAD-JSON",
+  "RESULT-TANDAS-PANEL-ENNVIH-1A2-MASA-PAR",
+  "RESULT-TANDAS-PANEL-ENNVIH-1A2-MATRIZ-JSON",
+  "RESULT-TANDAS-PANEL-ENNVIH-1A2-N-PAR-EN-MASA",
+  "RESULT-TANDAS-PANEL-ENNVIH-1A2-N-PAR-VALIDO",
+  "RESULT-TANDAS-PANEL-ENNVIH-1A2-P-ENTRA",
+  "RESULT-TANDAS-PANEL-ENNVIH-1A2-P-NO-ENTRA",
+  "RESULT-TANDAS-PANEL-ENNVIH-1A2-P-PERMANECE",
+  "RESULT-TANDAS-PANEL-ENNVIH-1A2-P-SALE",
+  "RESULT-TANDAS-PANEL-ENNVIH-1A2-PONDERACION",
+  "RESULT-TANDAS-PANEL-ENNVIH-2A3-ATTRITION-JSON",
+  "RESULT-TANDAS-PANEL-ENNVIH-2A3-COBERTURA-JSON",
+  "RESULT-TANDAS-PANEL-ENNVIH-2A3-ENTRADAS-UNIVERSO-JSON",
+  "RESULT-TANDAS-PANEL-ENNVIH-2A3-IDENTIDAD-JSON",
+  "RESULT-TANDAS-PANEL-ENNVIH-2A3-MASA-PAR",
+  "RESULT-TANDAS-PANEL-ENNVIH-2A3-MATRIZ-JSON",
+  "RESULT-TANDAS-PANEL-ENNVIH-2A3-N-PAR-EN-MASA",
+  "RESULT-TANDAS-PANEL-ENNVIH-2A3-N-PAR-VALIDO",
+  "RESULT-TANDAS-PANEL-ENNVIH-2A3-P-ENTRA",
+  "RESULT-TANDAS-PANEL-ENNVIH-2A3-P-NO-ENTRA",
+  "RESULT-TANDAS-PANEL-ENNVIH-2A3-P-PERMANECE",
+  "RESULT-TANDAS-PANEL-ENNVIH-2A3-P-SALE",
+  "RESULT-TANDAS-PANEL-ENNVIH-2A3-PONDERACION"
+ ],
+ "script_blob_sha256": "0493666c8e4c9750b6ed6704cd41b0be38eef554dae2610b123f2498b25333b6",
+ "script_path": "data/corrida0/CALC-TANDAS-ENNVIH-PANEL-0001/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-TANDAS-ENNVIH-PANEL-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "74c5507c7085722a1a5f5058e9c7d23eb9fc19792cff4ea3f377477685f95181",
+ "spec_yaml_sha256": "58db3d92675eebdc65b43fdf4e7a6a9a31721225add6c79232c80ef83ad1cdc2",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "sumas deterministas en orden de fila; JSON canonico; enteros y textos exactos",
+  "tipo": "flotante"
+ }
+}
