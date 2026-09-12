@@ -68,18 +68,16 @@ def prueba_ultimo_habil():
 
 
 def prueba_fecha_a_evaluar():
-    """P5: un día hábil se evalúa a sí mismo; fin de semana cae al último
-    hábil (viernes)."""
+    """GEN2-38: todo día programado (incluido fin de semana) se evalúa a sí mismo."""
     martes = datetime.date(2026, 9, 8)
     afirma(C._t_cron_fecha_a_evaluar(martes) == martes,
            "un día hábil debe evaluarse a sí mismo, no 'ayer'")
     sabado = datetime.date(2026, 9, 12)
     domingo = datetime.date(2026, 9, 13)
-    viernes = datetime.date(2026, 9, 11)
-    afirma(C._t_cron_fecha_a_evaluar(sabado) == viernes,
-           "sábado debe caer al viernes")
-    afirma(C._t_cron_fecha_a_evaluar(domingo) == viernes,
-           "domingo debe caer al viernes")
+    afirma(C._t_cron_fecha_a_evaluar(sabado) == sabado,
+           "sábado es día programado bajo la cadencia diaria")
+    afirma(C._t_cron_fecha_a_evaluar(domingo) == domingo,
+           "domingo es día programado bajo la cadencia diaria")
 
 
 def prueba_t_cron_estado_sin_huella():

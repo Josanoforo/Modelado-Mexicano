@@ -45,12 +45,15 @@ from tools.snapshot_motor_gen2 import (  # noqa: E402
     _salida_cruda,
     _universo_conducta,
 )
+from tools import adq_suficiencia  # noqa: E402
 
 
 VERSION_CONTRATO = "CONSULTA-GEN2-v1"
 RUTA_TRAMITE = RAIZ / "milpa" / "tramite.yaml"
 RUTAS_CONTRATO = (
     Path("tools/consulta_gen2.py"),
+    Path("tools/adq_suficiencia.py"),
+    Path("tools/adq_investigacion.py"),
     Path("tools/snapshot_motor_gen2.py"),
     Path("tools/emite_m.py"),
     Path("tools/baseline_temporal.py"),
@@ -59,6 +62,7 @@ RUTAS_CONTRATO = (
     Path("milpa/tramite.yaml"),
     Path("data/corrida0/usos.tsv"),
     Path("data/corrida0/resultados.tsv"),
+    Path("data/adq-investigacion.yaml"),
 )
 CLAVES_PETICION = {
     "id", "consumidor", "proposito", "contexto", "uso", "seleccion",
@@ -271,6 +275,28 @@ def consultar(peticion: object) -> dict[str, Any]:
         seleccion_transferencia=seleccion,
     )
 
+    # La aptitud de linaje acredita procedencia y replay, no que el reactivo
+    # responda la necesidad científica. La proyección enlaza sólo
+    # incompatibilidades concretas ya asentadas y falla cerrado antes de
+    # exponer el valor.
+    try:
+        suficiencia_uso = adq_suficiencia.proyecta_consumidor(
+            str(peticion["consumidor"]))
+    except (KeyError, ValueError) as exc:
+        return _no_coverage(
+            peticion, f"guardia de suficiencia no resoluble: {exc}")
+    if (suficiencia_uso and
+            suficiencia_uso["accion_consumidor"] ==
+            "NO_EMITIR_RESULTADO_SOLICITADO"):
+        prediccion = replace(
+            prediccion,
+            estado="NO_COVERAGE",
+            valor_punto=None,
+            detalle=(
+                f"{suficiencia_uso['necesidad_id']}: evidencia incompatible "
+                f"con el uso solicitado; {suficiencia_uso['brecha']}"),
+        )
+
     campos_desconocidos = sorted(
         set(peticion["contexto"]) - set(dict(salida.dominio_elegible)))
     if campos_desconocidos:
@@ -329,6 +355,8 @@ def consultar(peticion: object) -> dict[str, Any]:
         "referencias": sorted(set(
             [str(r) for r in RUTAS_CONTRATO] + referencias_resultado)),
     }
+    if suficiencia_uso:
+        respuesta["suficiencia_uso"] = suficiencia_uso
     if prediccion.estado == "EMITE":
         respuesta["valor"] = {
             "punto": prediccion.valor_punto,

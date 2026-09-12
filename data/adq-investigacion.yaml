@@ -1,0 +1,142 @@
+# Proyección operativa del servicio GEN2-38. No sustituye forense/no-corrido.tsv
+# ni adopta evidencia: cada entrada apunta a la necesidad canónica y sólo
+# añade los campos necesarios para seleccionar y ejecutar investigación.
+version: GEN2-ADQ-INVESTIGACION-V1
+fuente_necesidades: forense/no-corrido.tsv
+estado_dir: data/curacion-registro/investigacion-estado
+reservas_runtime_dir: forense/adq-log/estado/investigacion
+reserva_minutos: 75
+
+necesidades:
+  - id: NC-0122
+    version_pregunta: "2026-09-10-producto-fintech-exacto-v1"
+    consumidor: "R1.6 dinero.credito.scoring_alternativo"
+    uso: descriptivo
+    prioridad_consumidor: 20
+    bloqueo_material: 3
+    lista: true
+    proxima_revision: "2026-09-11"
+    asignacion: servicio-gen2-38
+    modos: [CONSTRUCTO, HERMANAS]
+    poblacion: "personas adultas en México con producto fintech identificable"
+    unidad: persona-producto
+    periodo: "2018-2026; privilegiar edición reciente comparable"
+    variables: "producto/lender inequívoco; canal de alta del mismo producto; ponderador/diseño"
+    evidencia_disponible: "ENIF 2021/2024 identifica tenencia fintech y canal del último producto, no el canal del producto fintech exacto"
+    brecha: "identidad producto↔canal no enlazada; referido no existe como categoría"
+    suficiencia_actual: {identidad: PARCIAL, conceptual: PARCIAL, poblacional: ACREDITADA, seleccion_no_respuesta: ACREDITADA, unidad: PARCIAL, temporalidad: ACREDITADA, diseno: ACREDITADA, identificacion: NO_APLICA, uso_habilitado: APTA_ALCANCE_MENOR, pregunta_original: ABIERTA}
+    investigacion_previa: "ENIF 2018/2021/2024 y cuatro sondeos regulatorios/locales; ver cierre GEN2-ADQ-VERIFICACION-CAJA"
+    frontera_previa: "instrumentos de demanda de fintech/lenders, repositorios académicos y paquetes de replicación fuera del corpus"
+    siguiente_accion: "buscar instrumento o dato de originación que enlace producto fintech exacto con canal; conservar ENIF sólo como proxy"
+
+  - id: NC-0126
+    version_pregunta: "2026-09-09-horizonte-ahorro-descolapsado-v1"
+    consumidor: "E05 / dinero.ahorro.horizonte"
+    consumidores_consulta:
+      - "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto"
+      - "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto"
+      - "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto"
+    uso: descriptivo
+    prioridad_consumidor: 30
+    bloqueo_material: 2
+    lista: true
+    proxima_revision: "2026-09-11"
+    asignacion: servicio-gen2-38
+    modos: [CONSTRUCTO, HERMANAS]
+    poblacion: "personas adultas en México"
+    unidad: persona
+    periodo: "ediciones comparables a ENIF 2024"
+    variables: "tenencia de ahorro separada de horizonte temporal; ponderador y diseño"
+    evidencia_disponible: "ENIF P4_10 colapsa menos de una semana con no tiene ahorros"
+    brecha: "no puede distinguir horizonte corto de ausencia de ahorro"
+    suficiencia_actual: {identidad: ACREDITADA, conceptual: NO_ACREDITADA, poblacional: ACREDITADA, seleccion_no_respuesta: ACREDITADA, unidad: ACREDITADA, temporalidad: ACREDITADA, diseno: ACREDITADA, identificacion: NO_APLICA, uso_habilitado: INCOMPATIBLE, pregunta_original: ABIERTA}
+    investigacion_previa: "descriptor y microdato ENIF revisados; límite estructural documentado en NC-0126"
+    frontera_previa: "otras olas/módulos mexicanos, encuestas de capacidades financieras y replicaciones"
+    siguiente_accion: "localizar reactivo mexicano que separe tenencia y horizonte; no recodificar a posteriori P4_10"
+
+  - id: NC-0153
+    version_pregunta: "2026-09-10-evento-canal-nacional-v1"
+    consumidor: "NC-0111; 07R; trámite.mordida"
+    uso: descriptivo-inferencial
+    prioridad_consumidor: 10
+    bloqueo_material: 3
+    lista: true
+    proxima_revision: "2026-10-10"
+    asignacion: servicio-gen2-38
+    modos: [LATERAL, HERMANAS]
+    poblacion: "población nacional usuaria de trámites/servicios públicos"
+    unidad: "persona-evento de trámite"
+    periodo: "ENCIG vigente"
+    variables: "evento, solicitud/pago, canal, negativos, ponderador, UPM/estrato"
+    evidencia_disponible: "ENEAC 2021 cubre evento×canal en microempresas de Aguascalientes; MCCI/INCBG sólo tasa general; ENCIG no enlaza 8.5 con NT_TIPO/P7_3"
+    brecha: "falta llave o tabulado nacional evento×canal con negativos y diseño"
+    suficiencia_actual: {identidad: PARCIAL, conceptual: ACREDITADA, poblacional: NO_ACREDITADA, seleccion_no_respuesta: PARCIAL, unidad: ACREDITADA, temporalidad: ACREDITADA, diseno: PARCIAL, identificacion: NO_APLICA, uso_habilitado: APTA_ALCANCE_MENOR, pregunta_original: ABIERTA}
+    investigacion_previa: "sonda amplia 2026-09-10 y expediente técnico INEGI preparado 2026-09-11"
+    frontera_previa: "respuesta/folio INEGI o nueva edición/vía concreta; no repetir búsqueda general diaria"
+    siguiente_accion: "esperar folio o nueva vía concreta; mantener abierta sin extrapolar ENEAC"
+
+  - id: NC-0164
+    version_pregunta: "2026-09-11-producto-costo-dano-v1"
+    consumidor: "N34/R1.7"
+    uso: asociativo-causal
+    prioridad_consumidor: 5
+    bloqueo_material: 3
+    lista: true
+    proxima_revision: "2026-09-12"
+    asignacion: acto/gen2-n34-datos-producto-dano
+    reserva_hasta: "2026-09-13"
+    modos: [CONSTRUCTO, HERMANAS, LATERAL]
+    poblacion: "consumidor/deudor en México"
+    unidad: "persona/hogar deudor"
+    periodo: "vigente y ventana identificada"
+    variables: "producto/lender, costo/condición/fricción, desenlace y denominador"
+    evidencia_disponible: "ENSAFI describe atraso por clase amplia; IMOR y CONDUSEF no enlazan exposición individual con daño causal"
+    brecha: "producto exacto + costo/BNPL/fricción + daño; identificación causal adicional"
+    suficiencia_actual: {identidad: PARCIAL, conceptual: PARCIAL, poblacional: ACREDITADA, seleccion_no_respuesta: ACREDITADA, unidad: PARCIAL, temporalidad: ACREDITADA, diseno: ACREDITADA, identificacion: NO_ACREDITADA, uso_habilitado: APTA_ALCANCE_MENOR, pregunta_original: ABIERTA}
+    investigacion_previa: "#723 y entrega de tarea 36 publicada en PR #734 (abierto al corte)"
+    frontera_previa: "propiedad exclusiva de 36 mientras #734 siga abierto o su reserva esté vigente"
+    siguiente_accion: "consumir #734 después de su merge; no duplicar su búsqueda ni adoptar sus proxies como efecto causal"
+
+  - id: NC-0136
+    version_pregunta: "2026-09-10-indice-reactivos-ciego-v1"
+    consumidor: "buscador de reactivos / SONDA"
+    uso: infraestructura
+    prioridad_consumidor: 15
+    bloqueo_material: 3
+    lista: false
+    proxima_revision: "2026-09-12"
+    asignacion: acto/gen2-reactivos-contexto-busqueda
+    reserva_hasta: "2026-09-13"
+    modos: [HERMANAS]
+    poblacion: "102 instrumentos con texto vacío en el índice"
+    unidad: variable/reactivo
+    periodo: "todas las olas indexadas"
+    variables: "texto de reactivo, variable_id, instrumento, ola"
+    evidencia_disponible: "cobertura de contexto publicada por tarea 34 en PR #737, abierto al corte; aún no integrada en main"
+    brecha: "texto no indexado"
+    suficiencia_actual: {identidad: NO_APLICA, conceptual: NO_APLICA, poblacional: NO_APLICA, seleccion_no_respuesta: NO_APLICA, unidad: NO_APLICA, temporalidad: NO_APLICA, diseno: NO_APLICA, identificacion: NO_APLICA, uso_habilitado: INCOMPATIBLE, pregunta_original: ABIERTA}
+    investigacion_previa: "medición 102/116 en NC-0136 y correctivo publicado en PR #737"
+    frontera_previa: "propiedad exclusiva de 34"
+    siguiente_accion: "consumir #737 después de su merge"
+
+  - id: NC-0037
+    version_pregunta: "2026-09-11-tandas-ledger-v1"
+    consumidor: "R8.2/N29"
+    uso: asociativo-causal
+    prioridad_consumidor: 25
+    bloqueo_material: 3
+    lista: false
+    proxima_revision: "2026-10-11"
+    asignacion: acto/gen2-tandas-medicion-academica
+    reserva_hasta: "2026-09-13"
+    modos: [CONSTRUCTO, LATERAL]
+    poblacion: "participantes de tandas en México"
+    unidad: "persona-grupo-turno-pago"
+    periodo: "longitudinal"
+    variables: "turno, pagos esperados/realizados, incumplimiento, reputación, exclusión"
+    evidencia_disponible: "#735 fusionado: CALC-TANDAS-ENNVIH-PANEL-0001 mide entradas/salidas y attrition; no observa turno, pagos esperados/realizados ni impago"
+    brecha: "ledger o instrumento con turno y pagos; identificación del efecto de conocer a organizadora"
+    suficiencia_actual: {identidad: PARCIAL, conceptual: PARCIAL, poblacional: PARCIAL, seleccion_no_respuesta: PARCIAL, unidad: NO_ACREDITADA, temporalidad: PARCIAL, diseno: PARCIAL, identificacion: NO_ACREDITADA, uso_habilitado: APTA_ALCANCE_MENOR, pregunta_original: ABIERTA}
+    investigacion_previa: "búsqueda académica agotada; #735 consumido como panel descriptivo de entradas/salidas; vía comercial diferida por D18"
+    frontera_previa: "reabrir sólo ante candidato concreto o respuesta humana"
+    siguiente_accion: "conservar #735 como alcance menor sin llamarlo ledger; reabrir sólo ante instrumento con turno y pagos"
