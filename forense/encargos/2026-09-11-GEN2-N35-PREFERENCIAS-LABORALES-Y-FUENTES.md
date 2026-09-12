@@ -85,3 +85,19 @@ Aceptación: preguntas/localizadores y columnas acreditados, cálculo MOTRAL rea
 ## Prompt de lanzamiento
 
 > Ejecuta completo el encargo 42 en CAJA y worktree propio. Autorizo abrir/congelar la spec descriptiva de MOTRAL 2015, medir preguntas 16/17 y sus cortes definidos, completar el cruce ENOE viable y adquirir paper/apéndices/replicación pública del experimento mexicano identificado. Corrige sólo el descarte excesivo acreditado: valorar seguridad social no prueba todavía que pese más que cualquier salario. No uses el MOTRAL 2012 como sustituto del 2015. 39 posee índice y 40 demanda/motor; entrega evidencia para ambos sin pisarlos. Continúa hasta resultados, adquisiciones viables y PR. El merge queda conmigo.
+
+## NO-CORRIDO / RESERVAS
+
+- **Qué — `EXPERIMENTO-MEXICANO-PAQUETE-REPRODUCIBLE`:** obtener Appendix
+  C/cuestionario, asignación de los 64 bloques, microdato anonimizado y código
+  que reproduzca las tablas 2–5 de *Do Workers Value Formal Jobs?*
+- **Por qué — `NO-VERIFICABLE-AQUÍ`:** se adquirieron paper y presentación
+  públicos del estudio exacto, pero el PDF termina en Appendix B y no se
+  localizó paquete público en la sesión EEA-ESEM, páginas de autores, OSF,
+  Dataverse, Zenodo o GitHub.
+- **Impacto:** la WTP de 0.240 por seguridad social (EE 0.023) queda como
+  transcripción publicada, no reproducción ni parámetro adoptable; MOTRAL 2015
+  sí se mide independientemente.
+- **Sucesor — `NC-0166`:** titular de N35 solicita —sin envío automático—
+  Appendix C, bloques, microdato y código; congela una spec sucesora y reproduce
+  antes de proponer una regla DCE.

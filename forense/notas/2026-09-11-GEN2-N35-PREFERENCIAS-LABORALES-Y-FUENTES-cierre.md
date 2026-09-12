@@ -56,7 +56,7 @@ La relación `REL-31a794c27eca54d8d773df15` se actualiza por clave, conservando
 la evidencia 2012 y corrigiendo sólo el descarte excesivo de 2015. La
 comparación salarial estricta sigue `EXISTE-NO-SATISFACE`; no hay adopción,
 cambio de tier ni edición de NC-0164/NC-0165. El puente consumible por 40 está
-en la nota hermana `...-puente-a-40.md`.
+en `forense/notas/2026-09-11-GEN2-N35-PREFERENCIAS-LABORALES-Y-FUENTES-puente-a-40.md`.
 
 Worktree: `/home/pc0/mm-gen2-n35-preferencias-laborales-fuentes`.
 Rama: `acto/gen2-n35-preferencias-laborales-fuentes`.
