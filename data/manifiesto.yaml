@@ -29892,3 +29892,40 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: IIEG Jalisco 2024; P6 ahorro institucional separado, pero P14 conserva Menos de una
     semana/No tiene ahorros; hogar estatal, no persona nacional
+
+- id: motral2015_estructura_bd
+  usado_para: 'GEN2-N35: descriptor oficial para P16/P17, llaves, diseño y FAC_MOTRAL'
+  url_origen: https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/702825081133.pdf
+  fecha_descarga: '2026-09-11'
+  descargado_por: Codex GEN2-N35, descarga directa oficial
+  archivo: motral2015_estructura_bd.pdf
+  sha256: 961864548f4561c59f9c6a0303e83c3770c5f1becb9c62a9bd09408a2fce08a6
+  tamano_bytes: 1672971
+  formato: PDF
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: motral2015_documento_metodologico
+  usado_para: 'GEN2-N35: población, diseño, ponderación y precisión MOTRAL 2015'
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/161/download/20128
+  fecha_descarga: '2026-09-11'
+  descargado_por: Codex GEN2-N35, descarga directa oficial
+  archivo: motral2015_documento_metodologico.pdf
+  sha256: d578f9c510dd081fc032a0c9e13bd18a00353b6a48a47f85fc054ba0d3dca4c6
+  tamano_bytes: 1272155
+  formato: PDF
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enoe_2015_trim2_dbf
+  usado_para: 'GEN2-N35: cruce descriptivo MOTRAL 2015 con cobertura de seguridad social del
+    empleo actual ENOE 2015-T2'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2015trim2_dbf.zip
+  fecha_descarga: '2026-09-11'
+  descargado_por: Codex GEN2-N35, descarga directa oficial
+  archivo: enoe_2015_trim2_dbf.zip
+  sha256: 956283f7a5b92045ff3b76df61b5c98580f9b5b5cad0822f375f9a9fe45b0ca9
+  tamano_bytes: 25280795
+  formato: ZIP-DBF
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
