@@ -1,0 +1,183 @@
+{
+  "acto": "GEN2-F5-DOCUMENTAL-EJECUCION",
+  "celdas": {
+    "DIN-M-01": {
+      "contextual": {
+        "bytes": 110533,
+        "chars": 108455,
+        "ruta_logica": "contextual.txt",
+        "sha256": "3b95e8791fd2712451d0239fd6f1a8f658edb5b114ba0fd3cc924e8e5f860590"
+      },
+      "discrepancias_transporte": [
+        "El codebook PDF imprime NS=8; el DTA transportado usa 7 para la categoria no valida. El estimando admite exclusivamente 1=Si y 3=No, por lo que ambos codigos NS quedan fuera."
+      ],
+      "documentos_texto": [
+        {
+          "bytes": 95603,
+          "chars": 94202,
+          "ruta_logica": "cuestionario-book3b.txt",
+          "sha256": "c88a8126254d4599015e67a1c075eb34168a39254aaa2cdb1c6a4579606d1cef"
+        },
+        {
+          "bytes": 95458,
+          "chars": 94538,
+          "ruta_logica": "codebook-book3b.txt",
+          "sha256": "3a02981f7e308cdfe4b8570f8350cb1ed6585d2a81f92af6e92894d53a96b1c5"
+        },
+        {
+          "bytes": 19907,
+          "chars": 19361,
+          "ruta_logica": "diseno-muestral.txt",
+          "sha256": "0cfb4ec9f2823fc2573ce46ab662565a10b009ef372e537eb2c965e74195ab18"
+        }
+      ],
+      "fuentes": [
+        {
+          "archivo": "ennvih/ehh02q_all.zip",
+          "formato": "ZIP con los cuestionarios (PDF) de todos los libros de hogar, ENNViH-1 (2002)",
+          "id": "ennvih1_2002_hogar_q",
+          "licencia": "Dominio público, descarga sin costo (sitio del proyecto, sección Introducción). El sitio declara un procedimiento de registro de usuario que estos enlaces directos a /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.",
+          "sha256": "40af29bd864e967200dbbde2c9744795b33c0a23cdbb19902dd2ecdb7beb3cac",
+          "tamano_bytes": 3750632
+        },
+        {
+          "archivo": "ennvih/ehh02cb_all.zip",
+          "formato": "ZIP con los manuales de codificación (PDF) de todos los libros de hogar, ENNViH-1 (2002)",
+          "id": "ennvih1_2002_hogar_cb",
+          "licencia": "Dominio público, descarga sin costo (sitio del proyecto, sección Introducción). El sitio declara un procedimiento de registro de usuario que estos enlaces directos a /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.",
+          "sha256": "a3220412505d6684e50548bdd1e01ce816d3af99ed846e4e27f30f35e9b506b2",
+          "tamano_bytes": 2195863
+        },
+        {
+          "archivo": "ennvih/ehh02dta_all.zip",
+          "formato": "ZIP con las bases .dta (Stata) de todos los libros del cuestionario de hogar, ENNViH-1 (2002)",
+          "id": "ennvih1_2002_hogar_dta",
+          "licencia": "Dominio público, descarga sin costo (sitio del proyecto, sección Introducción). El sitio declara un procedimiento de registro de usuario que estos enlaces directos a /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.",
+          "sha256": "8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923",
+          "tamano_bytes": 17534918
+        },
+        {
+          "archivo": "ennvih/ehh02w_all.zip",
+          "formato": "ZIP con los ponderadores muestrales por libro, ENNViH-1 (2002)",
+          "id": "ennvih1_2002_ponderador",
+          "licencia": "Dominio público, descarga sin costo (sitio del proyecto, sección Introducción). El sitio declara un procedimiento de registro de usuario que estos enlaces directos a /assets/ NO exigieron (HTTP 200 sin sesión ni cookie; ningún formulario se llenó). Cita obligatoria: Rubalcava, L. y Teruel, G. (2006/2008/2013), Documentos de Trabajo, www.ennvih-mxfls.org.",
+          "sha256": "bbe8006844f715c19b724ebb74f1408c4cfa07e2efdfe7d6748b5182ef214587",
+          "tamano_bytes": 755310
+        },
+        {
+          "archivo": "ennvih_diseno/ennvih-1_muestra.pdf",
+          "formato": "pdf",
+          "id": "ennvih1_muestra_diseno",
+          "licencia": "no declarada por la fuente",
+          "sha256": "9f90df10338c7749cf46f86edc0664fc300c913e4fc4b1eee5e360d2970e91f0",
+          "tamano_bytes": 56225
+        }
+      ],
+      "orden_dirigido": [
+        "tarjeta",
+        "contextual.txt",
+        "cuestionario-book3b.txt",
+        "codebook-book3b.txt",
+        "diseno-muestral.txt",
+        "analysis.tsv (via MCP)"
+      ],
+      "receta_tabla": "union uno-a-uno de iiib_cr.dta y ehh02w_b3b.dta por folio+ls; sin filtrar ni agregar",
+      "tabla_analisis": {
+        "bytes": 353399,
+        "columnas": [
+          "folio",
+          "ls",
+          "cr27",
+          "fac_3b"
+        ],
+        "filas": 19802,
+        "ruta_logica": "analysis.tsv",
+        "sha256": "0a687eebed79f8a8d633436a0d0bbf916e5515368e9eed6289f1d87946861558"
+      }
+    },
+    "TRA-M-07": {
+      "contextual": {
+        "bytes": 55117,
+        "chars": 54023,
+        "ruta_logica": "contextual.txt",
+        "sha256": "765e6c713d938af483d8099a23f867a952b76935d8dbe66bd6db48106e134e04"
+      },
+      "documentos_texto": [
+        {
+          "bytes": 87041,
+          "chars": 85623,
+          "ruta_logica": "cuestionario-encig2021.txt",
+          "sha256": "d5a4891162900a992e08d60f944974331e6ae06c1ee3bd7796b4b0d187615e90"
+        },
+        {
+          "bytes": 115115,
+          "chars": 112561,
+          "ruta_logica": "estructura-encig2021.txt",
+          "sha256": "55d14c8563fc208962b5a43be0434d013e8c94758836869035ca5dabaaec9d7e"
+        }
+      ],
+      "fuentes": [
+        {
+          "archivo": "encig21_cuestionario.pdf",
+          "formato": "PDF (Cuestionario)",
+          "id": "encig2021_cuestionario_pdf",
+          "licencia": "Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)",
+          "sha256": "9ee829815e8dca5ebe562b26afb006dcec475840bf27a206a0b838534041e45a",
+          "tamano_bytes": 1918370
+        },
+        {
+          "archivo": "encig21_estructura_base_datos.pdf",
+          "formato": "PDF (Estructura de la base de datos ENCIG 2021)",
+          "id": "encig2021_estructura_base_datos_pdf",
+          "licencia": "Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)",
+          "sha256": "365c031bf48af4c6d65a8e5422c6cf0362500efd37cd0e924e3c1fe38b965dd2",
+          "tamano_bytes": 2612238
+        },
+        {
+          "archivo": "encig2021/encig21_base_datos_csv.zip",
+          "formato": "ZIP (6 miembros)",
+          "id": "encig_2021_encig21_base_datos_csv",
+          "licencia": "Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html; texto completo no verificado, solo la referencia)",
+          "sha256": "4463e585062961fa1bb200ec830a30d84f1d915f7a3fe4c8454d8198b516b62c",
+          "tamano_bytes": 41216579
+        }
+      ],
+      "orden_dirigido": [
+        "tarjeta",
+        "contextual.txt",
+        "cuestionario-encig2021.txt",
+        "estructura-encig2021.txt",
+        "analysis.tsv (via MCP)"
+      ],
+      "receta_tabla": "seleccion mecanica de seis campos de encig2021_01_sec1_A_3_4_5_8_9_10.csv; todas las filas, sin filtrar ni agregar",
+      "tabla_analisis": {
+        "bytes": 1972351,
+        "columnas": [
+          "ID_PER",
+          "ID_VIV",
+          "P8_3_1",
+          "FAC_P18",
+          "EST_DIS",
+          "UPM_DIS"
+        ],
+        "filas": 39930,
+        "ruta_logica": "analysis.tsv",
+        "sha256": "186d69277395b5a1f2c99ec8255a3149ca2458ab9791d5eb7e441343f0ee5e64"
+      }
+    }
+  },
+  "contrato_720": {
+    "merge": "6cda0282079e9623425529f51c2bea171657b0cf",
+    "seleccion": "SELECCION-TEMPORAL-v1 / seleccionar_transferencia / seleccion_transferencia",
+    "snapshot": "forense/prereg-duelo-v2/snapshot-M-gen2-explicito-v1_1.json",
+    "snapshot_schema_version": "1.1",
+    "snapshot_sha256": "95d36cef4735f85a22f0346bc04dabdab2f13724c96e9a19179996cb93bca3bb"
+  },
+  "dependencia_722_merge": "5f4bfeac2350597c0f66b8f66a14c07befa18a53",
+  "extraccion_pdf": "pypdf 6.16.1; texto completo por pagina en orden",
+  "pandas": "2.3.3",
+  "prohibicion": "No contiene punto R, tabulacion objetivo ni resultados de capturas.",
+  "sha256_manifiesto_contexto": "3196b0cfb16e5d091f6873ae320857e88831d55f446bf592558c8bd878691c45",
+  "sha256_manifiesto_fuentes": "3a548d0cb81b809fb49761b66d9c46cebf7ab73f4c96cb82c337691cf8dc01ce",
+  "version": "v1_0"
+}
