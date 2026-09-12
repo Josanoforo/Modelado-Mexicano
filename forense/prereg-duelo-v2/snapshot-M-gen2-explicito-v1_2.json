@@ -1,0 +1,883 @@
+{
+  "baseline_historico_identificado": {
+    "consumidor": "milpa/tramite.yaml:tramite.mordida.discrecional:paga_mordida",
+    "emision": {
+      "aptitud_uso": null,
+      "camino_linaje": null,
+      "clase": "ASIGNADO",
+      "confianza_declarada": null,
+      "dependencias_estructurales": [
+        "regla:tramite.mordida.discrecional:disparadores",
+        "generadores:G1",
+        "tier:FUERTE",
+        "numero:ASIGNADO-SIN-RESULT"
+      ],
+      "derivado_de": null,
+      "detalle": "",
+      "dominio_elegible": [],
+      "estado": "EMITE",
+      "intervalo_hi": null,
+      "intervalo_lo": null,
+      "modo_emision": "HISTORICO",
+      "origen_numerico": null,
+      "proposito": "baseline",
+      "regla_id": "tramite.mordida.discrecional",
+      "resultado_generacion": null,
+      "resultado_id": null,
+      "rol_seleccion": null,
+      "rol_uso": null,
+      "tipo_escala": "binaria",
+      "uso_motor": null,
+      "uso_solicitado": "BASELINE",
+      "valor_categoria": "paga_mordida",
+      "valor_punto": 0.62
+    }
+  },
+  "cobertura": {
+    "antes": {
+      "alcance_emisor_tramite": {
+        "consumidores_activos": 66,
+        "por_familia": {
+          "CIV": 11,
+          "DIN": 20,
+          "FAM": 7,
+          "SALUD": 2,
+          "TRA": 26
+        },
+        "por_generacion": {
+          "GEN2-DIRECTO": 16,
+          "LEGACY": 50
+        }
+      },
+      "registro_activo_total": 207,
+      "registro_por_generacion": {
+        "GEN2-DIRECTO": 16,
+        "LEGACY": 191
+      }
+    },
+    "despues_modo_gen2_explicito": {
+      "consumidores_directos_evaluados": 16,
+      "criterio": "enlace directo GEN2 + origen apto + RESULT sellado + dominio/uso compatibles; conteos re-derivados, no congelados",
+      "emiten_por_familia": {
+        "CIV": 3,
+        "DIN": 7,
+        "FAM": 1,
+        "TRA": 5
+      },
+      "por_estado": {
+        "EMITE": 16
+      }
+    }
+  },
+  "complemento_dependiente_adoptado": {
+    "consumidor": "milpa/tramite.yaml:tramite.mordida.discrecional:sin_solicitud_y_sin_entrega_encuci2020",
+    "cuenta_como_medicion_independiente": false,
+    "emision": {
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:tramite.mordida.discrecional:sin_solicitud_y_sin_entrega_encuci2020 -> RESULT-ENCUCI-A-P-CUALQUIERA -> CALC-ENCUCI-0001/RESULT-ENCUCI-A-P-CUALQUIERA -> encuci2020_bd_dbf:DATO -> manifiesto:encuci2020_bd_dbf [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "clase": "DERIVADO·q=1-p(unión), mismo universo e incertidumbre",
+      "confianza_declarada": null,
+      "dependencias_estructurales": [
+        "regla:tramite.mordida.discrecional:disparadores",
+        "generadores:G1",
+        "tier:FUERTE",
+        "padre:tramite.mordida.discrecional:solicitud_o_entrega_mordida_encuci2020",
+        "transformacion:1-p"
+      ],
+      "derivado_de": "solicitud_o_entrega_mordida_encuci2020",
+      "detalle": "RESULT-ENCUCI-A-P-CUALQUIERA: origen NUEVO; no certifica compatibilidad semántica del estimando con el parámetro",
+      "dominio_elegible": [
+        [
+          "contacto_funcionario_ultimos_12_meses",
+          true
+        ],
+        [
+          "respuesta_solicitud_entrega_valida",
+          true
+        ]
+      ],
+      "estado": "EMITE",
+      "intervalo_hi": null,
+      "intervalo_lo": null,
+      "modo_emision": "GEN2",
+      "origen_numerico": "NUEVO",
+      "proposito": "consulta",
+      "regla_id": "tramite.mordida.discrecional",
+      "resultado_generacion": "GEN2",
+      "resultado_id": "RESULT-ENCUCI-A-P-CUALQUIERA",
+      "rol_seleccion": null,
+      "rol_uso": null,
+      "tipo_escala": "binaria",
+      "uso_motor": "complemento dependiente; no sortear como confirmación independiente",
+      "uso_solicitado": "MEDICION-GEN2",
+      "valor_categoria": "sin_solicitud_y_sin_entrega_encuci2020",
+      "valor_punto": 0.8739943899100835
+    }
+  },
+  "complemento_envipe_pendiente_de_firma": {
+    "consumidor": "milpa/tramite.yaml:civico.denuncia.miedo_desconfianza:denuncia_por_otra_razon",
+    "contrato": "complemento del padre a nivel persona bajo U1/U4; no es categoría 09 ni 'alguna otra razón'",
+    "cuenta_como_medicion_independiente": false,
+    "emision": {
+      "aptitud_uso": null,
+      "camino_linaje": null,
+      "clase": "DERIVADO·q=1-p(C2,U4), mismo recorte e incertidumbre",
+      "confianza_declarada": null,
+      "dependencias_estructurales": [
+        "regla:civico.denuncia.miedo_desconfianza:disparadores",
+        "generadores:G4",
+        "tier:FUERTE",
+        "padre:civico.denuncia.miedo_desconfianza:denuncia_con_miedo_o_desconfianza",
+        "transformacion:1-p"
+      ],
+      "derivado_de": "denuncia_con_miedo_o_desconfianza",
+      "detalle": "la salida está documentada pero su adopción no fue firmada",
+      "dominio_elegible": [
+        [
+          "bp1_23_en_01_08",
+          true
+        ],
+        [
+          "delito_no_denunciado",
+          true
+        ],
+        [
+          "victima_18_mas",
+          true
+        ]
+      ],
+      "estado": "NO_COVERAGE",
+      "intervalo_hi": null,
+      "intervalo_lo": null,
+      "modo_emision": "GEN2",
+      "origen_numerico": null,
+      "proposito": "consulta",
+      "regla_id": "civico.denuncia.miedo_desconfianza",
+      "resultado_generacion": "GEN2",
+      "resultado_id": "RESULT-ENVIPE-DEN-P-C2-U4",
+      "rol_seleccion": null,
+      "rol_uso": "complemento_dependiente",
+      "tipo_escala": "binaria",
+      "uso_motor": "PROPUESTA-NO-ADOPTADA-NC-0085: complemento del indicador padre a nivel persona bajo U1/U4; una persona con razones padre y resto vale padre=1, complemento=0; no sortear aparte ni llamar categoría Otra",
+      "uso_solicitado": "MEDICION-GEN2",
+      "valor_categoria": "denuncia_por_otra_razon",
+      "valor_punto": null
+    }
+  },
+  "contrato_consumido": {
+    "archivos": {
+      "data/corrida0/CALC-B-0001/ejecucion.json": "dd3013edb4bccd8761b58ef742eab15a410438a3d52f1bc2e53205f7c5b44ae2",
+      "data/corrida0/CALC-B-0001/resultados.json": "87e20e5aa2923fcc4b206734fa13ec321d3b036d61edd48eb0efd5bd369f263d",
+      "data/corrida0/CALC-B-0001/spec.yaml": "7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16",
+      "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
+      "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
+      "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547"
+    },
+    "sha256": "a69731e74c32b2f235435ce230f3869147a94583274396ac1999bda1ab3e8671"
+  },
+  "fecha_corte": "2026-09-11",
+  "modo": "GEN2",
+  "motor": {
+    "archivos": {
+      "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+      "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
+      "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a"
+    },
+    "sha256": "b824d5760524a3fab0112c8e0c05debb6bcb233de68443852a025005eaf56e5a",
+    "version": "GEN2-MOTOR-EXPLICITO-v1.2"
+  },
+  "naturaleza": "snapshot reproducible de consumo; no sello CALC ni firma científica",
+  "salidas_gen2_directas": [
+    {
+      "alcance": "uso declarado por RESULT",
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:civico.denuncia.miedo_desconfianza:denuncia_con_miedo_o_desconfianza -> RESULT-ENVIPE-DEN-P-C2-U4 -> CALC-ENVIPE-0001/RESULT-ENVIPE-DEN-P-C2-U4 -> envipe2025_csv:DATO -> manifiesto:envipe2025_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "condicion_activacion": {
+        "dominio_resultado": {
+          "bp1_23_en_01_08": true,
+          "delito_no_denunciado": true,
+          "victima_18_mas": true
+        },
+        "regla": {}
+      },
+      "consumidor": "milpa/tramite.yaml:civico.denuncia.miedo_desconfianza:denuncia_con_miedo_o_desconfianza",
+      "dependencias_estructurales": [
+        "regla:civico.denuncia.miedo_desconfianza:disparadores",
+        "generadores:G4",
+        "tier:FUERTE"
+      ],
+      "estado": "EMITE",
+      "evento": "algún delito no denunciado en U1 con BP1_23 en {01,02,06,08}",
+      "familia": "CIV",
+      "fuente_replay": "VERIFY-ESTRUCTURADO · forense/replay-evidencia.tsv#CALC-ENVIPE-0001",
+      "ola": {
+        "cita": "milpa/tramite.yaml:623 -- ola_calibracion: \"ENVIPE 2025 (unica ola disponible para este universo)\"",
+        "valor": "ENVIPE 2025 (unica ola disponible para este universo)"
+      },
+      "origen_numerico": "NUEVO",
+      "parametro_regla": "civico.denuncia.miedo_desconfianza:denuncia_con_miedo_o_desconfianza",
+      "resultado_id": "RESULT-ENVIPE-DEN-P-C2-U4",
+      "rol_uso": "medicion_directa",
+      "tipo": "proporcion",
+      "transformacion": "algún delito no denunciado en U1 con BP1_23 en {01,02,06,08}",
+      "unidad": "particion GEN1 a nivel PERSONA con FAC_ELE -- UNICA celda que comparte codificacion Y unidad con la cifra GEN1 sellada, escala [0,1]",
+      "universo": "personas 18+ victimas de AP7_3_XX=1 (XX en 05..15) que no denunciaron (BP1_20=2) -- procedencia.yaml:997, re-verificado contra microdato 2026-08-31",
+      "uso_permitido": "MEDICION-GEN2",
+      "validacion_independiente": "PASA",
+      "valor_resultado_completo": 0.29431298745731216
+    },
+    {
+      "alcance": "uso declarado por RESULT",
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:civico.protesta.agravio_urbano_encuci2020:protesta_alguna_vez_rural_con_agravio_encuci2020 -> RESULT-ENCUCI-B-P-RUR-AGR -> CALC-ENCUCI-0001/RESULT-ENCUCI-B-P-RUR-AGR -> encuci2020_bd_dbf:DATO -> manifiesto:encuci2020_bd_dbf [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "condicion_activacion": {
+        "dominio_resultado": {},
+        "regla": {}
+      },
+      "consumidor": "milpa/tramite.yaml:civico.protesta.agravio_urbano_encuci2020:protesta_alguna_vez_rural_con_agravio_encuci2020",
+      "dependencias_estructurales": [
+        "regla:civico.protesta.agravio_urbano_encuci2020:disparadores",
+        "generadores:G4",
+        "tier:FUERTE"
+      ],
+      "estado": "EMITE",
+      "evento": "conducta=protesta_alguna_vez_rural_con_agravio_encuci2020",
+      "familia": "CIV",
+      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L100 · forense/replay-evidencia.tsv#CALC-ENCUCI-0001",
+      "ola": {
+        "cita": "milpa/tramite.yaml:1273 -- ola_calibracion: \"ENCUCI 2020 (unica ola de ENCUCI en el corpus); segundo instrumento tras LAPOP Mexico 2019 (L9)\"",
+        "valor": "ENCUCI 2020 (unica ola de ENCUCI en el corpus); segundo instrumento tras LAPOP Mexico 2019 (L9)"
+      },
+      "origen_numerico": "NUEVO",
+      "parametro_regla": "civico.protesta.agravio_urbano_encuci2020:protesta_alguna_vez_rural_con_agravio_encuci2020",
+      "resultado_id": "RESULT-ENCUCI-B-P-RUR-AGR",
+      "rol_uso": "medicion_directa",
+      "tipo": "proporcion",
+      "transformacion": "protesta_alguna_vez_rural_con_agravio_encuci2020",
+      "unidad": "[PRIMARIO · candidata de RES-0062] idem en rural({R}) con agravio, escala [0,1]",
+      "universo": "20 187 de 21 519 = 93.80%. Desenlace AP7_3_5==1 (alguna vez protesta) x DOMINIO agrupado (urbano/rural) x AP4_3_2 (agravio percibido en la colonia)",
+      "uso_permitido": "MEDICION-GEN2",
+      "validacion_independiente": "PASA",
+      "valor_resultado_completo": 0.09191244410077362
+    },
+    {
+      "alcance": "uso declarado por RESULT",
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:civico.protesta.agravio_urbano_encuci2020:protesta_alguna_vez_urbano_con_agravio_encuci2020 -> RESULT-ENCUCI-B-P-URB-AGR -> CALC-ENCUCI-0001/RESULT-ENCUCI-B-P-URB-AGR -> encuci2020_bd_dbf:DATO -> manifiesto:encuci2020_bd_dbf [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "condicion_activacion": {
+        "dominio_resultado": {},
+        "regla": {}
+      },
+      "consumidor": "milpa/tramite.yaml:civico.protesta.agravio_urbano_encuci2020:protesta_alguna_vez_urbano_con_agravio_encuci2020",
+      "dependencias_estructurales": [
+        "regla:civico.protesta.agravio_urbano_encuci2020:disparadores",
+        "generadores:G4",
+        "tier:FUERTE"
+      ],
+      "estado": "EMITE",
+      "evento": "conducta=protesta_alguna_vez_urbano_con_agravio_encuci2020",
+      "familia": "CIV",
+      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L100 · forense/replay-evidencia.tsv#CALC-ENCUCI-0001",
+      "ola": {
+        "cita": "milpa/tramite.yaml:1273 -- ola_calibracion: \"ENCUCI 2020 (unica ola de ENCUCI en el corpus); segundo instrumento tras LAPOP Mexico 2019 (L9)\"",
+        "valor": "ENCUCI 2020 (unica ola de ENCUCI en el corpus); segundo instrumento tras LAPOP Mexico 2019 (L9)"
+      },
+      "origen_numerico": "NUEVO",
+      "parametro_regla": "civico.protesta.agravio_urbano_encuci2020:protesta_alguna_vez_urbano_con_agravio_encuci2020",
+      "resultado_id": "RESULT-ENCUCI-B-P-URB-AGR",
+      "rol_uso": "medicion_directa",
+      "tipo": "proporcion",
+      "transformacion": "protesta_alguna_vez_urbano_con_agravio_encuci2020",
+      "unidad": "[PRIMARIO · candidata de RES-0061] proporcion ponderada de protesta alguna vez en la vida en urbano({U,C}) con agravio (problemas declarados de pandillerismo, robos o delincuencia en la colonia), unidad PERSONA 15+, FAC_SEL, escala [0,1]",
+      "universo": "20 187 de 21 519 = 93.80%. Desenlace AP7_3_5==1 (alguna vez protesta) x DOMINIO agrupado (urbano/rural) x AP4_3_2 (agravio percibido en la colonia)",
+      "uso_permitido": "MEDICION-GEN2",
+      "validacion_independiente": "PASA",
+      "valor_resultado_completo": 0.11219151313930475
+    },
+    {
+      "alcance": "uso declarado por RESULT",
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto -> RESULT-ENIF-AHO-A-P-CORTO-SIN-P -> CALC-ENIF-0001/RESULT-ENIF-AHO-A-P-CORTO-SIN-P -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "condicion_activacion": {
+        "dominio_resultado": {},
+        "regla": {
+          "actividad_laboral": true,
+          "seguridad_social_laboral": false
+        }
+      },
+      "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto",
+      "dependencias_estructurales": [
+        "regla:dinero.ahorro.horizonte_corto:disparadores",
+        "generadores:G3",
+        "tier:FUERTE"
+      ],
+      "estado": "EMITE",
+      "evento": "conducta=horizonte_corto",
+      "familia": "DIN",
+      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L101 · forense/replay-evidencia.tsv#CALC-ENIF-0001",
+      "ola": {
+        "cita": "milpa/tramite.yaml:1073 -- ola_calibracion: \"ENIF 2024\"",
+        "valor": "ENIF 2024"
+      },
+      "origen_numerico": "NUEVO",
+      "parametro_regla": "dinero.ahorro.horizonte_corto:horizonte_corto",
+      "resultado_id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+      "rol_uso": "medicion_directa",
+      "tipo": "flotante",
+      "transformacion": "horizonte_corto",
+      "unidad": "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR",
+      "universo": "18+ elegidas que trabajan ∧ P3_13=7 ∧ P4_10∈{1..5}; n=4 973; masa expandida=35 086 918 (37.2388% de toda la población 18+)",
+      "uso_permitido": "MEDICION-GEN2",
+      "validacion_independiente": "PASA",
+      "valor_resultado_completo": 0.541343
+    },
+    {
+      "alcance": "uso declarado por RESULT",
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto -> RESULT-ENIF-AHO-A-P-CORTO-CON-P -> CALC-ENIF-0001/RESULT-ENIF-AHO-A-P-CORTO-CON-P -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "condicion_activacion": {
+        "dominio_resultado": {},
+        "regla": {
+          "actividad_laboral": true,
+          "seguridad_social_laboral": true
+        }
+      },
+      "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto",
+      "dependencias_estructurales": [
+        "regla:dinero.ahorro.horizonte_no_corto_con_seguridad_social:disparadores",
+        "generadores:G3",
+        "tier:FUERTE"
+      ],
+      "estado": "EMITE",
+      "evento": "conducta=horizonte_corto",
+      "familia": "DIN",
+      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L101 · forense/replay-evidencia.tsv#CALC-ENIF-0001",
+      "ola": {
+        "cita": "milpa/tramite.yaml:1103 -- ola_calibracion: \"ENIF 2024\"",
+        "valor": "ENIF 2024"
+      },
+      "origen_numerico": "NUEVO",
+      "parametro_regla": "dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto",
+      "resultado_id": "RESULT-ENIF-AHO-A-P-CORTO-CON-P",
+      "rol_uso": "medicion_directa",
+      "tipo": "flotante",
+      "transformacion": "horizonte_corto",
+      "unidad": "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR",
+      "universo": "18+ elegidas que trabajan ∧ P3_13∈{1,2,3,4} ∧ P4_10∈{1..5}; n=3 969; masa expandida=26 064 281 (27.6628% de toda la población 18+)",
+      "uso_permitido": "MEDICION-GEN2",
+      "validacion_independiente": "PASA",
+      "valor_resultado_completo": 0.37313
+    },
+    {
+      "alcance": "uso declarado por RESULT",
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto -> RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P -> CALC-ENIF-0002/RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE] | IN-CALC-ENIF-0001-RESULTADOS:DATO -> data/corrida0/CALC-ENIF-0001/resultados.json -> CALC-ENIF-0001 -> CALC-ENIF-0001/RESULT-ENIF-AHO-A-C-FALTANTE-P410-CON-N -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "condicion_activacion": {
+        "dominio_resultado": {},
+        "regla": {
+          "actividad_laboral": false
+        }
+      },
+      "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto",
+      "dependencias_estructurales": [
+        "regla:dinero.ahorro.horizonte_no_trabajadores:disparadores",
+        "generadores:G3",
+        "tier:FUERTE"
+      ],
+      "estado": "EMITE",
+      "evento": "conducta=horizonte_corto",
+      "familia": "DIN",
+      "fuente_replay": "VERIFY-ESTRUCTURADO · ACTO GEN2-ENIF-POBLACION-Y-ADOPCION · forense/replay-evidencia.tsv#CALC-ENIF-0002",
+      "ola": {
+        "cita": "milpa/tramite.yaml:1339 -- ola_calibracion: \"ENIF 2024\"",
+        "valor": "ENIF 2024"
+      },
+      "origen_numerico": "NUEVO",
+      "parametro_regla": "dinero.ahorro.horizonte_no_trabajadores:horizonte_corto",
+      "resultado_id": "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P",
+      "rol_uso": "medicion_directa",
+      "tipo": "flotante",
+      "transformacion": "horizonte_corto",
+      "unidad": "proporcion ponderada",
+      "universo": "18+ elegidas que no trabajaron el mes anterior: P3_8=8 o P3_9=7; P4_10∈{1..5}; n=3 462; masa expandida=25 090 350 (26.6291% de toda la población 18+)",
+      "uso_permitido": "MEDICION-GEN2",
+      "validacion_independiente": "PASA",
+      "valor_resultado_completo": 0.632782
+    },
+    {
+      "alcance": "uso declarado por RESULT",
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:dinero.ahorro.seguro_deposito_enif2024:desconfianza_o_mal_servicio_como_razon_principal_conoce_proteccion_enif2024 -> RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-P -> CALC-ENIF-0001/RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-P -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "condicion_activacion": {
+        "dominio_resultado": {
+          "conoce_proteccion_ipab": true,
+          "sin_cuenta": true
+        },
+        "regla": {}
+      },
+      "consumidor": "milpa/tramite.yaml:dinero.ahorro.seguro_deposito_enif2024:desconfianza_o_mal_servicio_como_razon_principal_conoce_proteccion_enif2024",
+      "dependencias_estructurales": [
+        "regla:dinero.ahorro.seguro_deposito_enif2024:disparadores",
+        "generadores:G1",
+        "tier:FUERTE"
+      ],
+      "estado": "EMITE",
+      "evento": "P5_20=03: desconfianza o mal servicio",
+      "familia": "DIN",
+      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L101 · forense/replay-evidencia.tsv#CALC-ENIF-0001",
+      "ola": {
+        "cita": "milpa/tramite.yaml:1251 -- ola_calibracion: \"ENIF 2024 (ENIF es trienal; unica ola censada para este eje)\"",
+        "valor": "ENIF 2024 (ENIF es trienal; unica ola censada para este eje)"
+      },
+      "origen_numerico": "NUEVO",
+      "parametro_regla": "dinero.ahorro.seguro_deposito_enif2024:desconfianza_o_mal_servicio_como_razon_principal_conoce_proteccion_enif2024",
+      "resultado_id": "RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-P",
+      "rol_uso": "medicion_directa",
+      "tipo": "flotante",
+      "transformacion": "P5_20=03: desconfianza o mal servicio",
+      "unidad": "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR",
+      "universo": "las 2 970 personas sin cuenta a las que se pregunta P5_20; moderador P5_23 al universo completo (13 502)",
+      "uso_permitido": "MEDICION-GEN2",
+      "validacion_independiente": "PASA",
+      "valor_resultado_completo": 0.06078
+    },
+    {
+      "alcance": "uso declarado por RESULT",
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:dinero.ahorro.seguro_deposito_enif2024:desconfianza_o_mal_servicio_como_razon_principal_no_conoce_enif2024 -> RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-P -> CALC-ENIF-0001/RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-P -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "condicion_activacion": {
+        "dominio_resultado": {
+          "conoce_proteccion_ipab": false,
+          "sin_cuenta": true
+        },
+        "regla": {}
+      },
+      "consumidor": "milpa/tramite.yaml:dinero.ahorro.seguro_deposito_enif2024:desconfianza_o_mal_servicio_como_razon_principal_no_conoce_enif2024",
+      "dependencias_estructurales": [
+        "regla:dinero.ahorro.seguro_deposito_enif2024:disparadores",
+        "generadores:G1",
+        "tier:FUERTE"
+      ],
+      "estado": "EMITE",
+      "evento": "P5_20=03: desconfianza o mal servicio",
+      "familia": "DIN",
+      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L101 · forense/replay-evidencia.tsv#CALC-ENIF-0001",
+      "ola": {
+        "cita": "milpa/tramite.yaml:1251 -- ola_calibracion: \"ENIF 2024 (ENIF es trienal; unica ola censada para este eje)\"",
+        "valor": "ENIF 2024 (ENIF es trienal; unica ola censada para este eje)"
+      },
+      "origen_numerico": "NUEVO",
+      "parametro_regla": "dinero.ahorro.seguro_deposito_enif2024:desconfianza_o_mal_servicio_como_razon_principal_no_conoce_enif2024",
+      "resultado_id": "RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-P",
+      "rol_uso": "medicion_directa",
+      "tipo": "flotante",
+      "transformacion": "P5_20=03: desconfianza o mal servicio",
+      "unidad": "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR",
+      "universo": "las 2 970 personas sin cuenta a las que se pregunta P5_20; moderador P5_23 al universo completo (13 502)",
+      "uso_permitido": "MEDICION-GEN2",
+      "validacion_independiente": "PASA",
+      "valor_resultado_completo": 0.054767
+    },
+    {
+      "alcance": "uso declarado por RESULT",
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:dinero.ahorro.via_informal:formal_cualquiera -> RESULT-ENIF-AHO-B-P-FORMAL-P -> CALC-ENIF-0001/RESULT-ENIF-AHO-B-P-FORMAL-P -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "condicion_activacion": {
+        "dominio_resultado": {},
+        "regla": {}
+      },
+      "consumidor": "milpa/tramite.yaml:dinero.ahorro.via_informal:formal_cualquiera",
+      "dependencias_estructurales": [
+        "regla:dinero.ahorro.via_informal:disparadores",
+        "generadores:G3",
+        "tier:FUERTE"
+      ],
+      "estado": "EMITE",
+      "evento": "conducta=formal_cualquiera",
+      "familia": "DIN",
+      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L101 · forense/replay-evidencia.tsv#CALC-ENIF-0001",
+      "ola": {
+        "cita": "milpa/tramite.yaml:1219 -- ola_calibracion: \"ENIF 2024 (seccion 5 AHORRO INFORMAL Y FORMAL; periodo de referencia junio 2023 a la fecha de levantamiento)\"",
+        "valor": "ENIF 2024 (seccion 5 AHORRO INFORMAL Y FORMAL; periodo de referencia junio 2023 a la fecha de levantamiento)"
+      },
+      "origen_numerico": "NUEVO",
+      "parametro_regla": "dinero.ahorro.via_informal:formal_cualquiera",
+      "resultado_id": "RESULT-ENIF-AHO-B-P-FORMAL-P",
+      "rol_uso": "medicion_directa",
+      "tipo": "flotante",
+      "transformacion": "formal_cualquiera",
+      "unidad": "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR",
+      "universo": "personas ELEGIDAS de 18 anos y mas en TMODULO.csv (EDAD_V 18-98), las 13502 sin perdida. tiene_ahorros=1 sse alguna de P5_1_1..P5_1_6 (informal) o P5_6_1..P5_6_9 (formal) vale '1'. El blanco por secuencia de P5_6_* cuenta como no-ahorro por esa via. n_con_ahorro=8699, estratos=190, UPM=2164, poblacion expandida=94221441 adultos.",
+      "uso_permitido": "MEDICION-GEN2",
+      "validacion_independiente": "PASA",
+      "valor_resultado_completo": 0.284927
+    },
+    {
+      "alcance": "uso declarado por RESULT",
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:dinero.ahorro.via_informal:informal_cualquiera -> RESULT-ENIF-AHO-B-P-INFORMAL-P -> CALC-ENIF-0001/RESULT-ENIF-AHO-B-P-INFORMAL-P -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "condicion_activacion": {
+        "dominio_resultado": {},
+        "regla": {}
+      },
+      "consumidor": "milpa/tramite.yaml:dinero.ahorro.via_informal:informal_cualquiera",
+      "dependencias_estructurales": [
+        "regla:dinero.ahorro.via_informal:disparadores",
+        "generadores:G3",
+        "tier:FUERTE"
+      ],
+      "estado": "EMITE",
+      "evento": "conducta=informal_cualquiera",
+      "familia": "DIN",
+      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L101 · forense/replay-evidencia.tsv#CALC-ENIF-0001",
+      "ola": {
+        "cita": "milpa/tramite.yaml:1219 -- ola_calibracion: \"ENIF 2024 (seccion 5 AHORRO INFORMAL Y FORMAL; periodo de referencia junio 2023 a la fecha de levantamiento)\"",
+        "valor": "ENIF 2024 (seccion 5 AHORRO INFORMAL Y FORMAL; periodo de referencia junio 2023 a la fecha de levantamiento)"
+      },
+      "origen_numerico": "NUEVO",
+      "parametro_regla": "dinero.ahorro.via_informal:informal_cualquiera",
+      "resultado_id": "RESULT-ENIF-AHO-B-P-INFORMAL-P",
+      "rol_uso": "medicion_directa",
+      "tipo": "flotante",
+      "transformacion": "informal_cualquiera",
+      "unidad": "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR",
+      "universo": "personas ELEGIDAS de 18 anos y mas en TMODULO.csv (EDAD_V 18-98), las 13502 sin perdida. tiene_ahorros=1 sse alguna de P5_1_1..P5_1_6 (informal) o P5_6_1..P5_6_9 (formal) vale '1'. El blanco por secuencia de P5_6_* cuenta como no-ahorro por esa via. n_con_ahorro=8699, estratos=190, UPM=2164, poblacion expandida=94221441 adultos.",
+      "uso_permitido": "MEDICION-GEN2",
+      "validacion_independiente": "PASA",
+      "valor_resultado_completo": 0.56192
+    },
+    {
+      "alcance": "calibración puntual ENIGH 2022; serie_olas se conserva separada y no se promedia",
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas -> RESULT-B-ENIGH-2022-P -> CALC-B-0001/RESULT-B-ENIGH-2022-P -> enigh2016_nc_csv:DATO -> manifiesto:enigh2016_nc_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE] | enigh2018_nc_csv:DATO -> manifiesto:enigh2018_nc_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE] | enigh2020_nc_csv:DATO -> manifiesto:enigh2020_nc_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE] | +1 ramas",
+      "condicion_activacion": {
+        "dominio_resultado": {},
+        "regla": {}
+      },
+      "consumidor": "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas",
+      "dependencias_estructurales": [
+        "regla:familia.seguro.volatilidad_ausencia_estado:disparadores",
+        "generadores:G5",
+        "tier:FUERTE"
+      ],
+      "estado": "EMITE",
+      "evento": "remesas>0 en ENIGH 2022",
+      "familia": "FAM",
+      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@66eed1b4f4a3 · forense/replay-evidencia.tsv#CALC-B-0001",
+      "ola": {
+        "cita": "milpa/tramite.yaml:892 -- ola_calibracion: \"ENIGH 2022 (punto usado por estas dos conductas; las demás olas quedan como serie separada)\"",
+        "valor": "ENIGH 2022 (punto usado por estas dos conductas; las demás olas quedan como serie separada)"
+      },
+      "origen_numerico": "NUEVO",
+      "parametro_regla": "familia.seguro.volatilidad_ausencia_estado:recibe_remesas",
+      "resultado_id": "RESULT-B-ENIGH-2022-P",
+      "rol_uso": "medicion_directa",
+      "tipo": "proporcion",
+      "transformacion": "remesas>0 en ENIGH 2022",
+      "unidad": "[2022] proporcion ponderada de hogares con remesas>0, universo completo de concentradohogar [0,1]",
+      "universo": "hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2022 Nueva Serie, sin filtro adicional (la regla no declara ninguno). Desenlace recibe_remesas = 1 si concentradohogar.remesas > 0, 0 si = 0. La rama NA de la dicotomizacion NO existe: `remesas` trae cero nulos en las 6 olas (verificado, no supuesto).",
+      "uso_permitido": "MEDICION-GEN2",
+      "validacion_independiente": "PASA",
+      "valor_resultado_completo": 0.04569409956405095
+    },
+    {
+      "alcance": "uso declarado por RESULT",
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:tramite.gobierno_digital.util_sin_coercion:adopta_encig2025_luz -> RESULT-ENCIG-MOR-C-P-ADOPTA -> CALC-ENCIG-0001/RESULT-ENCIG-MOR-C-P-ADOPTA -> encig25_base_datos_csv:DATO -> manifiesto:encig25_base_datos_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "condicion_activacion": {
+        "dominio_resultado": {},
+        "regla": {
+          "coercitivo": false,
+          "riesgo_fiscal_percibido": false
+        }
+      },
+      "consumidor": "milpa/tramite.yaml:tramite.gobierno_digital.util_sin_coercion:adopta_encig2025_luz",
+      "dependencias_estructurales": [
+        "regla:tramite.gobierno_digital.util_sin_coercion:disparadores",
+        "regla:tramite.gobierno_digital.util_sin_coercion:palancas",
+        "generadores:G1",
+        "tier:FUERTE"
+      ],
+      "estado": "EMITE",
+      "evento": "conducta=adopta_encig2025_luz",
+      "familia": "TRA",
+      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L99 · forense/replay-evidencia.tsv#CALC-ENCIG-0001",
+      "ola": {
+        "cita": "milpa/tramite.yaml:402 -- ola_calibracion: \"ENCIG 2025 (pago ordinario del servicio de luz, N_TRA=01)\"",
+        "valor": "ENCIG 2025 (pago ordinario del servicio de luz, N_TRA=01)"
+      },
+      "origen_numerico": "NUEVO",
+      "parametro_regla": "tramite.gobierno_digital.util_sin_coercion:adopta_encig2025_luz",
+      "resultado_id": "RESULT-ENCIG-MOR-C-P-ADOPTA",
+      "rol_uso": "medicion_directa",
+      "tipo": "proporcion",
+      "transformacion": "adopta_encig2025_luz",
+      "unidad": "[PRIMARIO · ADOPTABLE RES-0021] proporcion ponderada de pagos de luz por canal digital/autoservicio (P7_3 en {4,5}) sobre U_C, FAC_TRA, escala [0,1], mas alto = mas uso de canal digital",
+      "universo": "tramites (no personas) de tipo N_TRA=01 (pago ordinario del servicio de luz) con P7_3 en {1,2,4,5,6}; adopta = P7_3 en {4,5} (Internet/app, cajero o kiosco inteligente), no adopta = P7_3 en {1,2,6} (instalaciones de gobierno, banco/tienda/farmacia, modulos moviles). Fuera del universo P7_3 en {3,7,8,9,blanco}. SIN deduplicar: la llave de sec_7 es (ID_TRA, NT_TIPO) y se verifico unica (124314 grupos para 124314 filas). n_efectivo=20203 de 20392 del tipo, estratos=441, UPM=8486, poblacion expandida=120445646.",
+      "uso_permitido": "MEDICION-GEN2",
+      "validacion_independiente": "PASA",
+      "valor_resultado_completo": 0.6733930340661712
+    },
+    {
+      "alcance": "PROXY-DESCRIPTIVO de la tabla unida: sólo consulta descriptiva, escenario o baseline dentro del grupo observado por P8_4; no es tasa general ni probabilidad empírica de solicitud atribuida a cada evento",
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida_encig2025_digital_r2 -> RESULT-ENCIG-MOR-B-P-DIG-SD -> CALC-ENCIG-0001/RESULT-ENCIG-MOR-B-P-DIG-SD -> encig25_base_datos_csv:DATO -> manifiesto:encig25_base_datos_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "condicion_activacion": {
+        "dominio_resultado": {
+          "canal_p7_3": "digital_registrado",
+          "p8_4_observado": true
+        },
+        "regla": {
+          "quien_observa": "registro_o_testigos",
+          "sancion_creible": true
+        }
+      },
+      "consumidor": "milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida_encig2025_digital_r2",
+      "dependencias_estructurales": [
+        "regla:tramite.mordida.con_registro:disparadores",
+        "generadores:G1",
+        "tier:FUERTE"
+      ],
+      "estado": "EMITE",
+      "evento": "conducta=paga_mordida_encig2025_digital_r2",
+      "familia": "TRA",
+      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L99 · forense/replay-evidencia.tsv#CALC-ENCIG-0001",
+      "ola": {
+        "cita": "milpa/tramite.yaml:216 -- ola_calibracion: \"ENCIG 2025 (recorrida sin deduplicar, ACTO MAESTRA35-L1)\"",
+        "valor": "ENCIG 2025 (recorrida sin deduplicar, ACTO MAESTRA35-L1)"
+      },
+      "origen_numerico": "NUEVO",
+      "parametro_regla": "tramite.mordida.con_registro:paga_mordida_encig2025_digital_r2",
+      "resultado_id": "RESULT-ENCIG-MOR-B-P-DIG-SD",
+      "rol_uso": "proxy_descriptivo",
+      "tipo": "proporcion",
+      "transformacion": "paga_mordida_encig2025_digital_r2",
+      "unidad": "[PRIMARIO · ADOPTABLE RES-0015] idem canal digital/registrado, rama SD",
+      "universo": "eventos de trámite con P8_4 ∈ {0,1}, ENCIG 2025, SHA 57a365e",
+      "uso_permitido": "DESCRIPTIVO",
+      "validacion_independiente": "PASA",
+      "valor_resultado_completo": 0.029867554626649372
+    },
+    {
+      "alcance": "PROXY-DESCRIPTIVO de la tabla unida: sólo consulta descriptiva, escenario o baseline dentro del grupo observado por P8_4; no es tasa general ni probabilidad empírica de solicitud atribuida a cada evento",
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida_encig2025_presencial_r2 -> RESULT-ENCIG-MOR-B-P-PRE-SD -> CALC-ENCIG-0001/RESULT-ENCIG-MOR-B-P-PRE-SD -> encig25_base_datos_csv:DATO -> manifiesto:encig25_base_datos_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "condicion_activacion": {
+        "dominio_resultado": {
+          "canal_p7_3": "presencial",
+          "p8_4_observado": true
+        },
+        "regla": {
+          "quien_observa": "registro_o_testigos",
+          "sancion_creible": true
+        }
+      },
+      "consumidor": "milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida_encig2025_presencial_r2",
+      "dependencias_estructurales": [
+        "regla:tramite.mordida.con_registro:disparadores",
+        "generadores:G1",
+        "tier:FUERTE"
+      ],
+      "estado": "EMITE",
+      "evento": "conducta=paga_mordida_encig2025_presencial_r2",
+      "familia": "TRA",
+      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L99 · forense/replay-evidencia.tsv#CALC-ENCIG-0001",
+      "ola": {
+        "cita": "milpa/tramite.yaml:216 -- ola_calibracion: \"ENCIG 2025 (recorrida sin deduplicar, ACTO MAESTRA35-L1)\"",
+        "valor": "ENCIG 2025 (recorrida sin deduplicar, ACTO MAESTRA35-L1)"
+      },
+      "origen_numerico": "NUEVO",
+      "parametro_regla": "tramite.mordida.con_registro:paga_mordida_encig2025_presencial_r2",
+      "resultado_id": "RESULT-ENCIG-MOR-B-P-PRE-SD",
+      "rol_uso": "proxy_descriptivo",
+      "tipo": "proporcion",
+      "transformacion": "paga_mordida_encig2025_presencial_r2",
+      "unidad": "[PRIMARIO · ADOPTABLE RES-0013] proporcion ponderada de eventos presenciales con P8_4=1, FAC_TRA, escala [0,1], mas alto = mas mordida",
+      "universo": "eventos de trámite con P8_4 ∈ {0,1}, ENCIG 2025, SHA 57a365e",
+      "uso_permitido": "DESCRIPTIVO",
+      "validacion_independiente": "PASA",
+      "valor_resultado_completo": 0.1410407168724654
+    },
+    {
+      "alcance": "uso declarado por RESULT",
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:tramite.mordida.discrecional:paga_mordida_encig2025 -> RESULT-ENCIG-MOR-A-P-SOL1 -> CALC-ENCIG-0001/RESULT-ENCIG-MOR-A-P-SOL1 -> encig25_base_datos_csv:DATO -> manifiesto:encig25_base_datos_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "condicion_activacion": {
+        "dominio_resultado": {},
+        "regla": {
+          "quien_observa": "nadie",
+          "sancion_creible": false
+        }
+      },
+      "consumidor": "milpa/tramite.yaml:tramite.mordida.discrecional:paga_mordida_encig2025",
+      "dependencias_estructurales": [
+        "regla:tramite.mordida.discrecional:disparadores",
+        "generadores:G1",
+        "tier:FUERTE"
+      ],
+      "estado": "EMITE",
+      "evento": "conducta=paga_mordida_encig2025",
+      "familia": "TRA",
+      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L99 · forense/replay-evidencia.tsv#CALC-ENCIG-0001",
+      "ola": {
+        "cita": "milpa/tramite.yaml:125 -- ola_calibracion: \"ENCIG 2025 (más reciente de 8 olas disponibles; las otras 7 van en serie_olas, NO promediadas)\"",
+        "valor": "ENCIG 2025 (más reciente de 8 olas disponibles; las otras 7 van en serie_olas, NO promediadas)"
+      },
+      "origen_numerico": "NUEVO",
+      "parametro_regla": "tramite.mordida.discrecional:paga_mordida_encig2025",
+      "resultado_id": "RESULT-ENCIG-MOR-A-P-SOL1",
+      "rol_uso": "medicion_directa",
+      "tipo": "proporcion",
+      "transformacion": "paga_mordida_encig2025",
+      "unidad": "[SECUNDARIO · CELDA GEN1 · ADOPTABLE] proporcion ponderada de personas a las que un(a) servidor(a) publico(a) intento apropiarse o solicito de forma directa un beneficio (P8_3_1=1), unidad PERSONA, FAC_P18, escala [0,1], mas alto = mas solicitud",
+      "universo": "sección VIII de ENCIG 2025 (encig2025_01_sec1_A_3_4_5_8_9_10.csv), variable P8_3_1 (y=1 si '1' Sí, y=0 si '2' No, 9 No-sabe y resto fuera); 40136 filas leídas, 94 fuera de universo, n_efectivo=40042.",
+      "uso_permitido": "MEDICION-GEN2",
+      "validacion_independiente": "PASA",
+      "valor_resultado_completo": 0.08511814556534456
+    },
+    {
+      "alcance": "transición unión S∪E entre contactos; para carga poblacional usar RESULT-ENCUCI-A-P-CUALQUIERA-POBLACION, no esta tasa",
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:tramite.mordida.discrecional:solicitud_o_entrega_mordida_encuci2020 -> RESULT-ENCUCI-A-P-CUALQUIERA -> CALC-ENCUCI-0001/RESULT-ENCUCI-A-P-CUALQUIERA -> encuci2020_bd_dbf:DATO -> manifiesto:encuci2020_bd_dbf [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "condicion_activacion": {
+        "dominio_resultado": {
+          "contacto_funcionario_ultimos_12_meses": true,
+          "respuesta_solicitud_entrega_valida": true
+        },
+        "regla": {
+          "quien_observa": "nadie",
+          "sancion_creible": false
+        }
+      },
+      "consumidor": "milpa/tramite.yaml:tramite.mordida.discrecional:solicitud_o_entrega_mordida_encuci2020",
+      "dependencias_estructurales": [
+        "regla:tramite.mordida.discrecional:disparadores",
+        "generadores:G1",
+        "tier:FUERTE"
+      ],
+      "estado": "EMITE",
+      "evento": "AP5_17=1 o AP5_18=1; unión, no solicitud ni entrega por separado",
+      "familia": "TRA",
+      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L100 · forense/replay-evidencia.tsv#CALC-ENCUCI-0001",
+      "ola": {
+        "cita": "milpa/tramite.yaml:107 -- ola_calibracion: \"ENCUCI 2020 (unica ola)\"",
+        "valor": "ENCUCI 2020 (unica ola)"
+      },
+      "origen_numerico": "NUEVO",
+      "parametro_regla": "tramite.mordida.discrecional:solicitud_o_entrega_mordida_encuci2020",
+      "resultado_id": "RESULT-ENCUCI-A-P-CUALQUIERA",
+      "rol_uso": "medicion_directa",
+      "tipo": "proporcion",
+      "transformacion": "AP5_17=1 o AP5_18=1; unión, no solicitud ni entrega por separado",
+      "unidad": "[CELDA ADOPTABLE] proporcion ponderada de U_A con AP5_17 = 1 O AP5_18 = 1 -- la codificacion GEN1 verbatim (desenlace 'AP5_17|AP5_18' de enmienda_encuci2020); escala [0,1]",
+      "universo": "SEC_4_5 con contacto declarado AP5_16_1..10>=1 -- procedencia.yaml:888-889 (n≈13435 de 21519), re-verificado contra microdato 2026-08-31, n exacto reproducido",
+      "uso_permitido": "MEDICION-GEN2",
+      "validacion_independiente": "PASA",
+      "valor_resultado_completo": 0.12600561008991654
+    }
+  ],
+  "schema_version": "1.2",
+  "sucesion": {
+    "consumidores": [
+      "tools/snapshot_motor_gen2.py",
+      "tests/test_motor_gen2_explicito.py"
+    ],
+    "motivo": "incorpora el overlay independiente de los 16 parámetros activos sin reescribir el snapshot v1.1",
+    "reemplaza": "forense/prereg-duelo-v2/snapshot-M-gen2-explicito-v1_1.json"
+  },
+  "transferencia_temporal_operativa": {
+    "consumidor": "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas",
+    "emision": {
+      "aptitud_uso": "APTA-POR-LINAJE",
+      "camino_linaje": "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas -> RESULT-B-ENIGH-2020-P -> CALC-B-0001/RESULT-B-ENIGH-2020-P -> enigh2016_nc_csv:DATO -> manifiesto:enigh2016_nc_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE] | enigh2018_nc_csv:DATO -> manifiesto:enigh2018_nc_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE] | enigh2020_nc_csv:DATO -> manifiesto:enigh2020_nc_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE] | +1 ramas",
+      "clase": "MEDIDO·p(tasa base ponderada)",
+      "confianza_declarada": null,
+      "dependencias_estructurales": [
+        "regla:familia.seguro.volatilidad_ausencia_estado:disparadores",
+        "generadores:G5",
+        "tier:FUERTE"
+      ],
+      "derivado_de": null,
+      "detalle": "RESULT-B-ENIGH-2020-P: origen NUEVO; no certifica compatibilidad semántica del estimando con el parámetro; selección=ultima_ola_publica; rol_resuelto=OBSERVACION-SERIE-PREVIA",
+      "dominio_elegible": [],
+      "estado": "EMITE",
+      "intervalo_hi": null,
+      "intervalo_lo": null,
+      "modo_emision": "GEN2",
+      "origen_numerico": "NUEVO",
+      "proposito": "transferencia",
+      "regla_id": "familia.seguro.volatilidad_ausencia_estado",
+      "resultado_generacion": "GEN2",
+      "resultado_id": "RESULT-B-ENIGH-2020-P",
+      "rol_seleccion": "OBSERVACION-SERIE-PREVIA",
+      "rol_uso": null,
+      "tipo_escala": "binaria",
+      "uso_motor": "calibración puntual ENIGH 2022; serie_olas se conserva separada y no se promedia",
+      "uso_solicitado": "MEDICION-GEN2",
+      "valor_categoria": "recibe_remesas",
+      "valor_punto": 0.04377543852935772
+    },
+    "evaluacion": "NO-EVALUACION-INDEPENDIENTE",
+    "familia": "FAM",
+    "fecha_corte": "2021-12-31",
+    "objetivo": "ENIGH-NS 2022",
+    "rol_seleccionado": "OBSERVACION-SERIE-PREVIA",
+    "selector": {
+      "contrato_version": "SELECCION-TEMPORAL-v1",
+      "disponible_desde": "2021-07-28",
+      "estado": "EMITE",
+      "excluidas": [],
+      "fuente": "enigh2020_nc_csv",
+      "metodo": "ultima_ola_publica",
+      "objetivo": {
+        "corte_temporal": "2021-12-31",
+        "estimando": "DESCRIPTIVO, en dos capas. (1) p_ola: proporcion ponderada de hogares con remesas por ola, con IC95. (2) El error de la linea base: para cada objetivo y cada brazo, P_B - P_observada con signo, su valor absoluto, si P_B cae dentro del IC95 de la observada, y el margen con signo al borde mas cercano. NO es una estimacion de regla: ninguna cifra entra a un veredicto (T9) y R5.1 no se mueve.",
+        "periodo": {
+          "fin": "2022-12-31",
+          "inicio": "2022-01-01"
+        },
+        "serie": {
+          "codificacion": "recibe_remesas = 1 si remesas > 0, 0 si remesas == 0",
+          "encuesta": "ENIGH-NS",
+          "reactivo": "concentradohogar.remesas",
+          "segmento": "nacional",
+          "unidad": "proporcion",
+          "universo": "hogares del universo completo de concentradohogar, sin filtro adicional"
+        },
+        "transformacion": "recibe_remesas = 1 si remesas > 0, 0 si remesas == 0. p_ola = suma(factor * recibe_remesas) / suma(factor) sobre el universo valido de la ola. Sobre esa serie corre el selector B sin modificarlo, para tres objetivos (2018, 2020, 2022) y dos brazos que difieren SOLO en el metadato `disponible_desde`: OPERATIVO usa el campo `Modified` de la version en corpus; PERSISTENCIA usa `periodo_fin` de la ola (el contrafactico \"si cada ola hubiera estado disponible el dia que cerro su levantamiento\"). Periodos = ano calendario de la ola; fecha_corte(objetivo) = (objetivo - 1)-12-31."
+      },
+      "p": 0.04377543852935772,
+      "periodo_fin": "2020-12-31",
+      "periodo_inicio": "2020-01-01",
+      "resultado_id": "RESULT-B-ENIGH-2020-P",
+      "seleccion": {
+        "disponibilidad": "2021-07-28",
+        "evidencia_procedencia": {
+          "fuente": "enigh2020_nc_csv",
+          "resultado_id": "RESULT-B-ENIGH-2020-P",
+          "valor": 0.04377543852935772
+        },
+        "periodo": {
+          "fin": "2020-12-31",
+          "inicio": "2020-01-01"
+        },
+        "serie": {
+          "codificacion": "recibe_remesas = 1 si remesas > 0, 0 si remesas == 0",
+          "encuesta": "ENIGH-NS",
+          "reactivo": "concentradohogar.remesas",
+          "segmento": "nacional",
+          "unidad": "proporcion",
+          "universo": "hogares del universo completo de concentradohogar, sin filtro adicional"
+        }
+      }
+    },
+    "serie_exacta": {
+      "codificacion": "recibe_remesas = 1 si remesas > 0, 0 si remesas == 0",
+      "encuesta": "ENIGH-NS",
+      "reactivo": "concentradohogar.remesas",
+      "segmento": "nacional",
+      "unidad": "proporcion",
+      "universo": "hogares del universo completo de concentradohogar, sin filtro adicional"
+    }
+  }
+}
