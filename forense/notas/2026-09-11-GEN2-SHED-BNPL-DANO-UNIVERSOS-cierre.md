@@ -75,7 +75,7 @@ Artefactos principales:
 
 - `data/corrida0/CALC-SHED2025-BNPL-DANO-0001/`: spec, medidor,
   `ejecucion.json`, `resultados.json` y sello.
-- `data/shed2025-bnpl-dano/estimandos.csv`: numeradores, denominadores,
+- `data/shed2025-bnpl-dano/estimandos-shed.csv`: numeradores, denominadores,
   masas, puntos, faltantes y definiciones.
 - `data/shed2025-bnpl-dano/asequibilidad-atraso-2x2.csv`: las cuatro celdas.
 - `data/shed2025-bnpl-dano/faltantes-por-ruta.csv`: ausencias por razón.

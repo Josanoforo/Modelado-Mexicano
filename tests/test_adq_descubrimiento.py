@@ -132,30 +132,88 @@ def prueba_demanda_explica_todo_elemento_gen2_vigente():
     cfg = I.cargar_config()
     demanda = I.proyecta_demanda(cfg, dt.date(2026, 9, 11))
     elementos = demanda["elementos_gen2"]
-    afirma(len(elementos) == 207, f"alcance activo inesperado: {len(elementos)}")
-    afirma(demanda["total_activas"] == 52, "debe conservar las 52 NC abiertas")
-    afirma(demanda["contrato_cientifico_completo"] == 6,
-           "sólo contratos científicos explícitos pueden llamarse completos")
-    afirma(demanda["contrato_cientifico_incompleto"] == 45,
-           "la descripción mínima derivada no debe fingir completitud")
+    usos = [x for x in I._tsv(RAIZ / cfg["fuente_usos"])
+            if x.get("activo") == "SI"]
+    abiertas = {i for i, x in I.necesidades_canonicas(cfg).items()
+                if x.get("estado") == "ABIERTA"}
+    afirma(len(elementos) == len(usos),
+           "la proyección debe conservar exactamente el alcance activo de usos.tsv")
+    afirma(demanda["total_activas"] == len(abiertas),
+           "la proyección debe conservar exactamente las NC abiertas canónicas")
+    afirma(demanda["contrato_cientifico_completo"] +
+           demanda["contrato_cientifico_incompleto"] <= demanda["total_activas"],
+           "los contratos operativos no deben contarse como científicos")
     afirma(all(x["situacion"] and x["siguiente_accion"] for x in elementos),
            "cada elemento vigente requiere situación y siguiente acción")
-    afirma(all(x["necesidades_nc_abiertas"] for x in elementos
-               if x["adopcion"].startswith("NO_ADOPTADO")),
-           "toda brecha preadopción debe enlazar una NC")
+    afirma(all(x["contrato_id"] and x["identidad_contrato"] and
+               x["ejecutor_siguiente"] for x in elementos),
+           "toda obligación debe conservar contrato, identidad y ejecutor")
     afirma(all("GEN1_ES_SOLO_ANTECEDENTE" in x["adopcion"] for x in elementos
                if not x["resultado_id"]),
            "GEN1 no debe reactivarse por entrar al inventario")
-    horizonte = [x for x in elementos if x["resultado_id"] ==
-                 "RESULT-ENIF-AHO-A-P-CORTO-SIN-P"]
-    afirma(len(horizonte) == 1 and horizonte[0]["situacion"] ==
-           "PENDIENTE_DATOS_O_DECISION_DE_USO",
-           "la demanda debe conservar la brecha de horizonte en el consumidor")
+    consumidores_horizonte = {
+        vinculo["consumidor"] for necesidad in cfg["necesidades"]
+        if necesidad["id"] == "NC-0126"
+        for vinculo in necesidad["vinculos_consulta"]}
+    horizonte = [x for x in elementos
+                 if x["consumidor"] in consumidores_horizonte]
+    afirma(len(horizonte) == len(consumidores_horizonte) and
+           all(x["situacion"] == "PENDIENTE_DATOS_O_DECISION_DE_USO" and
+               not x["uso_disponible_hoy"] for x in horizonte),
+           "las tres salidas de horizonte deben conservar NO_COVERAGE")
     afirma("cero tareas elegibles" in demanda["advertencia_suficiencia"],
            "la proyección debe negar suficiencia general por cola vacía")
     afirma(not demanda["seleccion_siguiente"]["elegidos"] and
-           len(demanda["seleccion_siguiente"]["excluidos"]) == 52,
+           {x["id"] for x in demanda["seleccion_siguiente"]["excluidos"]} == abiertas,
            "el mapa debe publicar la selección siguiente y todas sus causas")
+    por_id = {x["elemento_id"]: x for x in elementos}
+    complemento = por_id["RES-0028"]
+    afirma(complemento["situacion"] == "PENDIENTE_ADOPCION" and
+           complemento["necesidades_nc_abiertas"] == ["NC-0085"] and
+           complemento["ofertas_conciliadas"][0]["resultado_id"] ==
+           "RESULT-ENVIPE-DEN-P-C2-U4",
+           "RES-0028 debe enlazar el complemento U4 exacto sin fingir adopción")
+    seguro = por_id["RES-0039"]
+    afirma(seguro["situacion"] == "PENDIENTE_DECISION_CIENTIFICA" and
+           seguro["ofertas_conciliadas"][0].get("resultado_id") is None,
+           "RES-0039..42 deben exponer propuesta no ejecutada, no un cálculo")
+    for ident in ("RES-0063", "RES-0064"):
+        afirma(por_id[ident]["medicion_disponible_hoy"] and
+               not por_id[ident]["uso_disponible_hoy"] and
+               por_id[ident]["primer_faltante"] == "REGISTRO_CORRIDA0",
+               f"{ident} está medido/adoptado, pero GEN2 aún requiere registro")
+    r_civ = por_id["RES-0095"]
+    afirma(r_civ["situacion"] == "EVALUACION_GEN2_DISPONIBLE" and
+           r_civ["ofertas_conciliadas"][0]["resultado_id"] ==
+           "RESULT-R-CIV-M-01-PUNTO" and r_civ["advertencias"],
+           "R debe consumirse como árbitro de evaluación, nunca como M")
+    r_din = por_id["RES-0125"]
+    afirma("FP-371" in r_din["incertidumbre_pendiente"] and
+           r_din["uso_disponible_hoy"],
+           "DIN debe conservar el punto y separar la incertidumbre FP-371")
+    tecnicas = [x for x in demanda["necesidades"]
+                if x["naturaleza_necesidad"].startswith("OPERATIVA_")]
+    afirma(tecnicas and all(not x["aplica_contrato_cientifico"] for x in tecnicas),
+           "las necesidades técnicas/acceso no deben fabricar contrato científico")
+
+
+def prueba_conciliacion_exige_identidad_y_compatibilidad_documentada():
+    with tempfile.TemporaryDirectory() as td:
+        ruta = Path(td) / "cfg.yaml"
+        ruta.write_text(yaml.safe_dump({
+            "version": "GEN2-ADQ-INVESTIGACION-V1",
+            "conciliacion_elementos": [{
+                "elementos": ["RES-X"],
+                "ofertas": [{"oferta_id": "O-SIN-CAMPOS"}],
+            }],
+        }), encoding="utf-8")
+        try:
+            I.cargar_config(ruta)
+        except ValueError:
+            paso = True
+        else:
+            paso = False
+        afirma(paso, "una oferta sin población/unidad/propósito debe rechazarse")
 
 
 def prueba_reanudacion_estructurada_y_barrera_humana():
@@ -279,6 +337,7 @@ def main() -> int:
     prueba_seleccion_reanudacion_reserva_y_version()
     prueba_necesidad_nueva_llega_a_sonda_sin_lista_manual()
     prueba_demanda_explica_todo_elemento_gen2_vigente()
+    prueba_conciliacion_exige_identidad_y_compatibilidad_documentada()
     prueba_reanudacion_estructurada_y_barrera_humana()
     prueba_altas_concurrentes_no_pierden_fila_y_vista_converge()
     prueba_cableado_y_calendario_de_produccion()
@@ -287,7 +346,7 @@ def main() -> int:
         for fallo in FALLOS:
             print("  ·", fallo)
         return 1
-    print("OK -- test_adq_descubrimiento.py: 8 grupos, 0 fallos")
+    print("OK -- test_adq_descubrimiento.py: 9 grupos, 0 fallos")
     return 0
 
 

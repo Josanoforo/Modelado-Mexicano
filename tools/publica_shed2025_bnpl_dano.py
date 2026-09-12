@@ -52,7 +52,7 @@ def main():
             "geografia": "Estados Unidos",
             "interpretacion": "descriptiva_no_causal_no_transportable_a_Mexico",
         })
-    _write_csv(OUT / "estimandos.csv", estimands, list(estimands[0]))
+    _write_csv(OUT / "estimandos-shed.csv", estimands, list(estimands[0]))
 
     cells = []
     for afford in ("NO", "YES"):
