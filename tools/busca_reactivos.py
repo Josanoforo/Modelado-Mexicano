@@ -23,9 +23,10 @@ Consulta: por palabras (`--palabra`, repetible, OR entre sí — mismo
 convenio que `barrido_enoe_constructos.py::FILAS`, substring plegado a
 minúsculas sin diacríticos) o por regex (`--regex`, `re.IGNORECASE`, sin
 plegar acentos — el operador controla el patrón). Exactamente uno de los
-dos modos, o ninguno si la invocación es solo de filtro. La búsqueda
-corre sobre `texto_reactivo` + `variable_id` — un acierto en cualquiera
-de los dos cuenta.
+dos modos, o ninguno si la invocación es solo de filtro. La búsqueda corre
+sobre `texto_reactivo` + `variable_id` + `contexto_busqueda` — un acierto en
+cualquiera cuenta. El último campo es vocabulario editorial de recuperación
+declarado aparte, nunca una ampliación literal atribuida al instrumento.
 
 Filtros: `--encuesta` (substring plegado sobre `instrumento`), `--ola`
 (substring plegado sobre `ola` **y** sobre `payload_id` — la columna

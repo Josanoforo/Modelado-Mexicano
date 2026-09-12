@@ -255,9 +255,11 @@ def choose_candidate(candidates: list[dict], member: str) -> dict | None:
     return pool[0] if len(same_text) == 1 else None
 
 
-def verified_candidates(path: Path) -> list[dict]:
+def verified_candidates(path: Path, objects: list[str]) -> list[dict]:
     result = []
     for row in read_tsv(path):
+        if not selected(row["instrumento"], row["fuente_texto"], objects):
+            continue
         source_path = RAW_ROOT / row["fuente_texto"]
         if not source_path.exists():
             raise FileNotFoundError(source_path)
@@ -282,6 +284,7 @@ def write_output(path: Path, rows: list[dict], summary: dict) -> None:
                 prefix=f".{path.name}.", suffix=".tmp", delete=False) as handle:
             tmp_path = Path(handle.name)
             handle.write("# data/inventario-reactivos-contexto-v1_0.tsv -- sucesor overlay; no reordena fuentes historicas\n")
+            handle.write("# contexto_busqueda es vocabulario editorial de recuperacion, no texto literal de la fuente\n")
             handle.write("# " + json.dumps(summary, ensure_ascii=False, sort_keys=True) + "\n")
             handle.write("\t".join(OUT_FIELDS) + "\n")
             for row in rows:
@@ -328,10 +331,9 @@ def main(argv=None) -> int:
             item["fuente_sha256_12"] = digest[:12]
             candidates[(source["instrumento"].lower(), item["variable_id"].lower())].append(item)
 
-    for item in verified_candidates(args.verificados):
-        if selected(item["instrumento"], item["fuente_texto"], objects):
-            key = (item["instrumento"].lower(), item["variable_id"].lower())
-            candidates[key].insert(0, item)
+    for item in verified_candidates(args.verificados, objects):
+        key = (item["instrumento"].lower(), item["variable_id"].lower())
+        candidates[key].insert(0, item)
 
     output = []
     unresolved = 0
