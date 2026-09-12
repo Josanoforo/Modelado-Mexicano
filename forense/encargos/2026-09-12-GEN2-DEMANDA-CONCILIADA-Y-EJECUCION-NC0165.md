@@ -158,3 +158,20 @@ Reporta primero: qué consumidores avanzaron y cómo; qué se puede usar hoy; qu
 ## Prompt de lanzamiento
 
 > Ejecuta íntegramente el encargo 40 adjunto en CAJA y worktree propio. Autorizo la conciliación de NC-0165, correcciones de enlace/ruteo, investigación y adquisición públicas pertinentes, ejecución real de recetas ya autorizadas, commits, push y PR; el merge queda conmigo. #739 ya está fusionado. No presentes los 191 elementos preadopción como 191 cálculos ni las 47 etiquetas de mesa como 47 firmas nuevas. Resuelve decisiones y sucesores, completa contratos y lleva el lote viable hasta consumo o ejecución real. El 39 puede correr en paralelo y posee extracción/índice; consume su interfaz. Continúa entre fases sin pedirme otro encargo. Las nuevas definiciones, adopciones y llamadas F5 requieren su autorización específica; termina antes todo lo independiente.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| Adopción de `RES-0028` | DECISIÓN-DE-MESA-PENDIENTE | el complemento U4 queda propuesto y `NO_COVERAGE`; no se altera el motor | `NC-0085`; mesa firma o rechaza la adopción |
+| Cálculo de `RES-0039..0042` | DECISIÓN-DE-MESA-PENDIENTE | no se ejecuta una apertura científica no firmada | `NC-0088`; mesa elige la spec estrecha o una definición nueva |
+| Alta corrida0 de `RES-0063/0064` | DIFERIDO-A:MOTOR_GEN2_REGISTRO | la medición/adopción previa se reconoce, pero consulta GEN2 no emite hasta declarar RESULT | motor-gen2-registro completa el asiento sin volver a medir |
+| Solicitud nacional evento×canal ENCIG | NO-VERIFICABLE-AQUÍ | `RES-0009/0011` siguen sin adopción; no se envía con identidad inventada | titular presenta expediente `NC-0153`; receptor verifica |
+| Búsqueda pública adicional | SUSTITUIDO-POR:SELECTOR-GEN2-38 | cero tareas elegibles al corte; no se reabre una espera para inflar actividad | revisiones/indicios estructurados de cada contrato |
+| Ejecución F5 | FUERA-DE-PERÍMETRO | cero llamadas, transferencias o cambios de presupuesto | `FP-373/FP-374`; requiere autorización específica |
+
+## CONSUMIDO
+
+Ejecutado en `PR #744`, `GEN2-DEMANDA-CONTRATOS-EJECUCION-NC0165`.
+La rama entrega la conciliación 207/207, el cierre acotado de `NC-0165`,
+consultas reales y la nota de cierre; Jonás conserva la fusión.

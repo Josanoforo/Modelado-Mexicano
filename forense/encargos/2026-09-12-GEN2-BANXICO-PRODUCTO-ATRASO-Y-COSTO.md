@@ -110,7 +110,7 @@ congelaron antes del cálculo; `CALC-BANXICO-PRODUCTO-DANO-0001` reproduce
 35/35 RESULT con contexto idéntico y el control independiente coincide. Se
 publicaron todos los productos/olas viables, sus denominadores y faltantes,
 agregados, gráfico, ficha para 40, actualización exclusiva de la relación
-Banxico N34 y cascada `ADR-491`. Cero adopciones y `NC-0164` permanece abierta.
+Banxico N34 y cascada `ADR-492`. Cero adopciones y `NC-0164` permanece abierta.
 El PR no fue fusionado por el ejecutor; la fusión queda con Jonás.
 
 La comprobación se hizo antes de registrar el CALC de este acto. La nueva

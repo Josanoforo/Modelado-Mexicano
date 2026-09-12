@@ -13,6 +13,11 @@ Al cerrar, `origin/main` avanzó a `cfa8c516a43952212f945f87f62d342d42010b69`
 por PR #742. Se integró por merge y el ADR propio se renumeró de 490 a 491;
 los archivos científicos del acto conservaron su identidad sellada.
 
+Durante los checks del PR, `main` avanzó de nuevo a
+`b8693ae6ad21626e74e8bea9bf4d15fb25257362` por #744 y el censo. Se integró
+ese árbol publicado; el ADR propio quedó finalmente en 492 y la verificación
+material volvió a reproducir después de la integración.
+
 Perímetro ejecutado: spec descriptiva, medición real, control independiente,
 agregados, gráfico, registros de la relación Banxico de N34 y oferta para el
 encargo 40. Cero adquisición, motor, adopción, causalidad, F5, cron o cambios a
