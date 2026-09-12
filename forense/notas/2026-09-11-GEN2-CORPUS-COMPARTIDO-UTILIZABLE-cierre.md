@@ -106,5 +106,5 @@ externo original de #635. No hay datos nuevos, adopción, cambio al motor,
 cron, selector, F5, FP-371/372/373/374 ni acceso comercial. Contador
 científico: cero.
 
-La numeración candidata inicial ADR-483 se renumeró a ADR-485 al integrar
-`origin/main=7a59c0eb`, que ya contenía ADR-483/484 por PR #730/#731.
+La numeración candidata inicial ADR-483 se renumeró a ADR-486 al integrar
+`origin/main=8f47fe62`, que ya contenía ADR-483/484/485 por PR #730/#731/#729.

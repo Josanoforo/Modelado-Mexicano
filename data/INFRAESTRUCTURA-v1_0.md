@@ -467,7 +467,7 @@ gitignorada, no viaja con el worktree) antes de que `--raiz descargas_mx`
 funcione — mismo defecto de infraestructura documentado arriba para
 LAPOP México/SAT e.firma, encontrado otra vez en este acto.
 
-**Actualización 11/sep/2026, ADR-485.** Ya no es necesario reconstruir esa
+**Actualización 11/sep/2026, ADR-486.** Ya no es necesario reconstruir esa
 preparación a mano: `tools/prepara_corpus.py --config-desde <config> --id
 <ID>...` previsualiza por defecto y `--aplica` instala sin sustituir la
 configuración gitignorada y el enlace `data/raw`. La operación permanece
