@@ -298,7 +298,7 @@ def calculate(path):
 
 def medir(inputs, contrato):
     del contrato
-    results, _ = calculate(inputs[INPUT_ID])
+    results, _ = calculate(inputs[INPUT_ID]["ruta_absoluta"])
     return results
 
 
