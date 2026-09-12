@@ -101,3 +101,27 @@ Aceptación: preguntas/localizadores y columnas acreditados, cálculo MOTRAL rea
 - **Sucesor — `NC-0166`:** titular de N35 solicita —sin envío automático—
   Appendix C, bloques, microdato y código; congela una spec sucesora y reproduce
   antes de proponer una regla DCE.
+
+## CONSUMIDO
+
+Ejecutado entre el 11 y 12/sep/2026 por
+`ACTO GEN2-N35-PREFERENCIAS-LABORALES-FUENTES` en el worktree
+`/home/pc0/mm-gen2-n35-preferencias-laborales-fuentes`, rama
+`acto/gen2-n35-preferencias-laborales-fuentes`; entrega revisable en **PR
+#747** y gobernanza `ADR-492`.
+
+La spec quedó congelada en `cca8297`; la ejecución real y sus agregados en
+`5158580`; el registro N35 y puente descriptivo en `54ee092`; cierre inicial en
+`461e626` e integración del `main` que contiene #744 en `d323d92`. El cálculo
+publica 32 estimandos y 10 diagnósticos: 42/42 RESULT y 6/6 inputs
+`REPRODUCE/IDENTICO`, con control independiente coincidente. P17 total es
+82.3626705331% (n=5,704), P16 conserva sus cinco primeras prioridades y el
+cruce ENOE tiene 6,564 coincidencias, 436 pérdidas y cero duplicados.
+
+Se adquirieron y registraron paper y presentación del DCE mexicano. Su WTP
+0.240 (EE 0.023) sigue siendo transcripción, no réplica ni adopción; `NC-0166`
+conserva el paquete público no localizado. R2.3 permanece
+`EXISTE-NO-SATISFACE`, sin cambio de motor o tier. Verificación final antes del
+commit de consumo: prueba dirigida y control independiente en OK, baseline del
+curador sin errores, `corrida0 verify` en REPRODUCE/IDENTICO y
+`tests/check.py --baseline` VERDE con los 3 FAIL heredados y cero nuevos.
