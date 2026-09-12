@@ -144,6 +144,9 @@ def prueba_consumidores_no_reintroducen_calendario_propio():
     afirma("--calendario-json" in instalador and "$Calendario.hora" in instalador
            and "$Calendario.dias_windows" in instalador and "HoraLocal" not in instalador,
            "instalador debe derivar hora/días/zona del lector común")
+    afirma("-NonInteractive" in instalador and "-WindowStyle Hidden" in instalador
+           and "& wsl.exe" in instalador and "exit [int]`$LASTEXITCODE" in instalador,
+           "tarea debe ocultar consola, esperar WSL y propagar su código real")
     afirma("--calendario-json" in runner and 'export TZ="$ADQ_ZONA_HORARIA"' in runner,
            "runner debe fijar la zona del calendario común")
     afirma("t_cron_calendario_declarado" in t31 and "datetime.time(7, 30)" not in t31,
