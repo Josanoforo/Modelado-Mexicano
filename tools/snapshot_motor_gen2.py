@@ -35,10 +35,10 @@ from tools.baseline_temporal import (
 from tools.emite_m import cita_ola_calibracion
 
 
-VERSION = "GEN2-MOTOR-EXPLICITO-v1.1"
+VERSION = "GEN2-MOTOR-EXPLICITO-v1.2"
 RUTA_SNAPSHOT = (
     RAIZ / "forense" / "prereg-duelo-v2" /
-    "snapshot-M-gen2-explicito-v1_1.json"
+    "snapshot-M-gen2-explicito-v1_2.json"
 )
 RUTA_SPEC_B = RAIZ / "data" / "corrida0" / "CALC-B-0001" / "spec.yaml"
 RUTA_RESULTADOS_B = (
@@ -288,14 +288,14 @@ def construir_snapshot() -> dict:
         RUTA_RESULTADOS_B,
     ]
     return {
-        "schema_version": "1.1",
+        "schema_version": "1.2",
         "sucesion": {
             "reemplaza": (
                 "forense/prereg-duelo-v2/"
-                "snapshot-M-gen2-explicito-v1_0.json"),
+                "snapshot-M-gen2-explicito-v1_1.json"),
             "motivo": (
-                "la transferencia v1 exige selección estructurada y "
-                "reproducida contra evidencia sellada"),
+                "incorpora el overlay independiente de los 16 parámetros "
+                "activos sin reescribir el snapshot v1.1"),
             "consumidores": [
                 "tools/snapshot_motor_gen2.py",
                 "tests/test_motor_gen2_explicito.py",

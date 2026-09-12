@@ -91,6 +91,10 @@ una corrida y 26 resultados; `usos.tsv` quedó byte-idéntico en 207 filas.
 Totales de esta proyección: 153 corridas y 3,531 resultados. Las filas nuevas
 conservan `REPRODUCE/IDENTICO` desde el comprobante estructurado y el
 integrador podrá conciliarlas por identidad contra el árbol conjunto.
+Antes del PR se integró `origin/main` ya con #730/#731 y se volvió a derivar:
+las tres vistas quedaron sin diferencia contra el escritor, ahora con 156
+corridas, 3,800 resultados y 207 usos. La conciliación preservó las filas
+concurrentes y mantuvo exactamente una corrida/26 resultados de este CALC.
 
 ## Uso y residual
 
