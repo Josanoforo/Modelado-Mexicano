@@ -107,3 +107,12 @@ Para consumo por 40 y por el servicio fusionado en #739, incluye en la nota: SHA
 
 > Ejecuta íntegramente el encargo 39 adjunto en un worktree propio. Autorizo las fases, recuperación de documentación pública pertinente, implementación, ejecución real, commits, push y PR; el merge queda conmigo. #739 ya está fusionado. El encargo 40 lleva en paralelo la conciliación de NC-0165, demanda y ruteo; coordina sólo los registros compartidos. Tu responsabilidad es reducir los puntos ciegos documentales del lote prioritario de #737 y dejar el buscador consumiendo la mejora. Continúa entre fases sin pedir otro encargo; no cierres sólo con diagnóstico, fixtures o ejemplos aislados si puedes completar el resto del lote.
 
+## NO-CORRIDO / RESERVAS
+
+- `NC-0100` — `DIFERIDO-A:NC-0100`: quedan 32 identidades DBF por acreditar con correspondencia exacta: nueve de ENVIPE 2013 y 23 de 2015. No copiar texto por nombre entre olas ni inventar las cinco preguntas no localizadas en el descriptor oficial.
+- `NC-0136` — `DIFERIDO-A:NC-0136`: quedan 12,875 filas del lote prioritario, clasificadas por causa en el residual v1.1, y 81 grupos históricamente ciegos fuera de este lote. Un negativo del índice no demuestra ausencia de variable.
+- El encargo 40 y su rama no fueron incorporados: el solapamiento accidental fue entre dos sesiones del encargo 39 y quedó consolidado en PR #742.
+
+## CONSUMIDO
+
+Consumido por PR #742. La implementación e índice de ambas sesiones accidentales del encargo 39 quedaron consolidados en `de1d2ed`; el cierre administrativo, NC-0100/NC-0136, ADR-490, rótulo e infraestructura quedaron en `54137a0`. La fusión permanece reservada a Jonás.
