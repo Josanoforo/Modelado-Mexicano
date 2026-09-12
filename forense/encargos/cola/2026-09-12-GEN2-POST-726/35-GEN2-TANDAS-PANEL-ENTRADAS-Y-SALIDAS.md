@@ -53,3 +53,14 @@ Registra el CALC con el escritor vigente y lote propio, preservando overlay/repl
 ## Concurrencia
 
 Dueño de una spec/medidor/salidas nuevos de panel tandas. No modifica `CALC-TANDAS-ENNVIH-0001`, motor, consultas de 29, validación de 30 ni diseño de F5. Puede correr ahora; requiere sus archivos accesibles, no el cierre completo del 33. Comparte lectura de ENNViH y usa temporales propios.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-TANDAS-PANEL-ENTRADAS-Y-SALIDAS`, 11/sep/2026,
+en CAJA/Ubuntu WSL2, rama `acto/gen2-tandas-panel-entradas-salidas`, PR #735.
+`CALC-TANDAS-ENNVIH-PANEL-0001` quedó sellado, publicado y verificable como
+`REPRODUCE/IDENTICO` (26/26 resultados, 11/11 insumos); la reconstrucción
+independiente reproduce las ocho celdas y cardinalidades. Se concilió sólo el
+residual panel de NC-0037: la NC conserva abierto el faltante del ledger de
+grupos/pagos. No hubo adopción R8.2, cambio de motor ni incremento del contador
+GEN2. La fusión de PR #735 permanece reservada a Jonás.
