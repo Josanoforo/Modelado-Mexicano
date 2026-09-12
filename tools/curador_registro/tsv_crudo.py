@@ -43,6 +43,11 @@ una sola:
 from __future__ import annotations
 
 import csv
+import fcntl
+import os
+import stat
+import tempfile
+from contextlib import contextmanager
 from pathlib import Path
 
 
@@ -57,12 +62,46 @@ def leer_lineas(path: Path) -> list[str]:
     return lineas
 
 
+def escribir_texto_atomico(path: Path, texto: str) -> None:
+    """Publica texto completo con ``os.replace`` en el mismo filesystem."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    modo = stat.S_IMODE(path.stat().st_mode) if path.exists() else 0o644
+    fd, temporal = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp",
+                                    dir=path.parent)
+    try:
+        os.fchmod(fd, modo)
+        with os.fdopen(fd, "w", encoding="utf-8", newline="") as handle:
+            handle.write(texto)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporal, path)
+    except BaseException:
+        try:
+            os.unlink(temporal)
+        except FileNotFoundError:
+            pass
+        raise
+
+
+@contextmanager
+def bloqueo_escritura(path: Path):
+    """Lock corto común para el read-modify-write de un registro."""
+    lock_path = path.with_name(path.name + ".lock")
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    with lock_path.open("a+", encoding="utf-8") as lock:
+        fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
+
+
 def escribir_lineas(path: Path, lineas: list[str]) -> None:
     """Reescribe `path` a partir de `lineas` (texto opaco, ver `leer_lineas`),
     con un `\n` final. Reescribir la salida de `leer_lineas` sin modificar
     ninguna línea es la identidad byte a byte -- esa es la garantía de
     round-trip que T26-bis mide."""
-    path.write_text("\n".join(lineas) + "\n", encoding="utf-8")
+    escribir_texto_atomico(path, "\n".join(lineas) + "\n")
 
 
 def leer_dicts(path: Path) -> list[dict[str, str]]:
@@ -105,12 +144,16 @@ def upsert_fila(
     valor_clave = fila[clave]
     nueva_linea = "\t".join(fila[c] for c in campos)
 
-    lineas = leer_lineas(path)
-    for i in range(1, len(lineas)):
-        partes = lineas[i].split("\t")
-        if idx < len(partes) and partes[idx] == valor_clave:
-            lineas[i] = nueva_linea
-            break
-    else:
-        lineas.append(nueva_linea)
-    escribir_lineas(path, lineas)
+    # El lock cubre la lectura y el replace. Antes dos procesos podían leer
+    # la misma versión, agregar filas distintas y el último reemplazo perdía
+    # silenciosamente una de ellas.
+    with bloqueo_escritura(path):
+        lineas = leer_lineas(path)
+        for i in range(1, len(lineas)):
+            partes = lineas[i].split("\t")
+            if idx < len(partes) and partes[idx] == valor_clave:
+                lineas[i] = nueva_linea
+                break
+        else:
+            lineas.append(nueva_linea)
+        escribir_lineas(path, lineas)

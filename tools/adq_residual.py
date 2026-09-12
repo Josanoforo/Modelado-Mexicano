@@ -14,6 +14,8 @@ import re
 import sys
 from pathlib import Path
 
+import adq_autorizacion
+
 RAIZ = Path(__file__).resolve().parent.parent
 REGISTRO = RAIZ / "data" / "curacion-registro" / "cola-adquisicion-registro.tsv"
 VISTA = RAIZ / "data" / "cola-adquisicion-v1_0.tsv"
@@ -28,9 +30,6 @@ ESTADOS = {
     "OBTENIDO",
 }
 _ID = re.compile(r"^[A-Z0-9][A-Z0-9_.-]*$")
-_AUTORIZADA = re.compile(
-    r"^AUTORIZADA:(?P<quien>[^/\s]+)/(?P<fecha>\d{4}-\d{2}-\d{2})/(?P<objeto>[^/\s]+)$"
-)
 
 
 def metadata_de_nota(nota: str) -> dict | None:
@@ -72,9 +71,11 @@ def construye_fila(*, objeto_id: str, padre: str, consumidor: str,
     if vacios:
         raise ValueError("campos residuales vacíos: " + ", ".join(vacios))
     if estado.split("(")[0] == "PENDIENTE":
-        m = _AUTORIZADA.fullmatch(autoridad)
-        if not m or m.group("objeto") != objeto_id:
-            raise ValueError("PENDIENTE exige AUTORIZADA:<quien>/<fecha>/<objeto_id>")
+        nota_autorizacion = _nota({"autoridad": autoridad})
+        evaluacion = adq_autorizacion.evalua_autorizacion(nota_autorizacion, objeto_id)
+        if not evaluacion.autorizada:
+            raise ValueError("PENDIENTE exige autorización válida del objeto: " +
+                             evaluacion.razon)
         if not url:
             raise ValueError("PENDIENTE exige una URL ejecutable")
     meta = {"padre": padre, "consumidor": consumidor, "objeto": objeto,
@@ -103,8 +104,7 @@ def upsert_residual(fila: dict[str, str], registro: Path = REGISTRO,
     lineas = tsv_crudo.leer_lineas(registro)
     campos = lineas[0].split("\t")
     tsv_crudo.upsert_fila(registro, fila, campos, clave="fuente_canonica")
-    contenido = vista_cola_adquisicion.render(tsv_crudo.leer_dicts(registro))
-    vista.write_text(contenido, encoding="utf-8")
+    vista_cola_adquisicion.regenera(registro, vista)
 
 
 def main() -> int:

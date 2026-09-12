@@ -15,7 +15,9 @@
 # el instalador se rehusa a registrar si el host usa otra zona.
 calendario:
   hora: "07:30"
-  dias_semana: [lunes, martes, miercoles, jueves, viernes]
+  # GEN2-38 (12/sep/2026): la mesa autorizó cambiar de lunes-viernes a
+  # diario. El instalador y el doctor derivan ambos de esta única lista.
+  dias_semana: [lunes, martes, miercoles, jueves, viernes, sabado, domingo]
   zona_iana: America/Mexico_City
   zona_windows: Central Standard Time (Mexico)
   # Ventana después de la hora programada antes de exigir la huella. No es
@@ -23,6 +25,7 @@ calendario:
   ventana_observacion_minutos: 45
 
 sonda_red_url: https://www.inegi.org.mx/
+sonda_red_url_alternativa: https://api.github.com/
 
 # Ejecutor autoritativo de adquisición. `claude` sigue siendo un valor
 # compatible únicamente cuando se selecciona aquí de forma explícita; nunca es
@@ -30,9 +33,12 @@ sonda_red_url: https://www.inegi.org.mx/
 # ADQ_KILL_AFTER_SEGUNDOS. El lector aún entiende los nombres CLAUDE_* y las
 # claves antiguas sólo como compatibilidad para configuraciones históricas.
 ejecutor: codex
-ejecutor_timeout_segundos: 1800
+ejecutor_timeout_segundos: 3900
 ejecutor_kill_after_segundos: 60
 maximo_filas: 5
+descubrimiento_maximo_necesidades: 3
+descubrimiento_timeout_segundos: 1800
+adquisicion_timeout_segundos: 1800
 
 # Ámbito aislado de la corrida: no modifica ~/.codex/config.toml. El modelo se
 # observó en la configuración real de Jonás el 11/sep/2026 y se fija por
@@ -40,9 +46,14 @@ maximo_filas: 5
 codex:
   binario: /home/pc0/.local/bin/codex
   modelo: gpt-5.6-sol
-  sandbox: workspace-write
+  # El operador debe crear refs/commit/push en este clon dedicado. La prueba
+  # real del 11/sep mostró que workspace-write vuelve .git de sólo lectura.
+  # danger-full-access queda acotado por la tarea única, el clon mm-adq, las
+  # reservas y el prompt; no amplía la autorización a compras/contactos.
+  sandbox: danger-full-access
   aprobaciones: never
   red_workspace_write: true
+  busqueda_web: true
   directorio_adicional: /home/pc0/mm-corpus
   esquema_resultado: tools/adq-resultado.schema.json
 

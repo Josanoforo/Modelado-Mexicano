@@ -470,6 +470,7 @@ _RAZON_FECHA_INDETERMINADA = ("FECHA-INDETERMINADA: la nota trae «intento efect
 FECHA_INDETERMINADA = object()
 
 _RE_INTENTO_EFECTIVO = re.compile(r"intento efectivo (\d{4}-\d{2}-\d{2})")
+_RE_MENCION_INTENTO = re.compile(r"\bintento efectivo\b", re.IGNORECASE)
 
 
 def fecha_intento_efectivo(nota):
@@ -489,7 +490,10 @@ def fecha_intento_efectivo(nota):
     nota = nota or ""
     crudos = _RE_INTENTO_EFECTIVO.findall(nota)
     if not crudos:
-        return None
+        # Una declaración explícita de intento sin fecha determinable no es
+        # lo mismo que ausencia de intento. Se manda a conciliación para que
+        # jamás habilite un reintento automático como si fuera nuevo.
+        return FECHA_INDETERMINADA if _RE_MENCION_INTENTO.search(nota) else None
     validas = []
     for crudo in crudos:
         try:
@@ -505,19 +509,6 @@ def fecha_intento_efectivo(nota):
 # como `AUTORIZADA:<quién>/<AAAA-MM-DD>/<objeto>` -- el objeto tiene que
 # ser la `fuente_canonica` de la fila que se está evaluando, para que una
 # cita ajena a otra fila nunca autorice ésta.
-_RE_TOKEN_AUTORIZADA = re.compile(
-    r"AUTORIZADA:(?P<quien>[^/\s]+)/(?P<fecha>\d{4}-\d{2}-\d{2})/(?P<objeto>[^\s/]+)"
-)
-# Negación explícita, con guion o con espacio -- se comprueba ANTES que el
-# token y manda sobre cualquier coincidencia de éste. H1 (revisión del
-# 9/sep): un regex con límites de palabra no basta por sí solo --
-# "NO-AUTORIZADA" contiene "AUTORIZADA" como palabra completa igual que
-# una autorización afirmativa; lo que distingue el caso es la negación
-# explícita, comprobada aparte y con prioridad, no un límite de palabra
-# más fino.
-_RE_NEGACION_AUTORIZADA = re.compile(r"\bNO[-\s]+AUTORIZAD[AO]S?\b", re.IGNORECASE)
-
-
 def _autorizada(nota, fuente):
     """Un handoff de `/sonda` habilita adquisición solo con los cuatro
     elementos que P2 exige: objeto faltante + vía nueva + autorización/cita
@@ -529,13 +520,8 @@ def _autorizada(nota, fuente):
     Ausencia, negación (`NO-AUTORIZADA` / `NO AUTORIZADA`, con guion o con
     espacio) o una cita que nombra otra fila -> `False`. Una
     `SONDA-LATERAL-RECOMENDADA` sin esto permanece propuesta."""
-    nota = nota or ""
-    if _RE_NEGACION_AUTORIZADA.search(nota):
-        return False
-    m = _RE_TOKEN_AUTORIZADA.search(nota)
-    if not m:
-        return False
-    return m.group("objeto") == fuente
+    import adq_autorizacion
+    return adq_autorizacion.esta_autorizada(nota or "", fuente)
 
 
 def _clave_orden(fila):
@@ -792,6 +778,40 @@ def _exclusion_serializada(fila):
     return f"{fila['id']} [{fila['estado']}] — {fila['razon']}"
 
 
+def normaliza_selecciones_resultado(resultado, seleccion,
+                                     seleccion_investigacion=None):
+    """Inserta en el recibo las selecciones autoritativas del wrapper.
+
+    El modelo no vuelve a decidir ni tiene que copiar cientos de cadenas con
+    exactitud byte a byte. Sus hallazgos permanecen intactos; sólo estas dos
+    proyecciones mecánicas se sustituyen por los JSON calculados antes de
+    invocarlo.
+    """
+    salida = json.loads(json.dumps(resultado))
+    salida["seleccion"] = {
+        "calculada": True,
+        "corte": seleccion.get("corte"),
+        "maximo": seleccion.get("maximo"),
+        "elegidos": [x["id"] for x in seleccion.get("elegidos", [])],
+        "excluidos_con_causa": [
+            _exclusion_serializada(x) for x in seleccion.get("excluidos", [])],
+    }
+    seleccion_investigacion = seleccion_investigacion or {
+        "corte": seleccion.get("corte"), "maximo": 0,
+        "elegidos": [], "excluidos": []}
+    salida["seleccion_investigacion"] = {
+        "calculada": True,
+        "corte": seleccion_investigacion.get("corte"),
+        "maximo": seleccion_investigacion.get("maximo"),
+        "elegidos": [
+            x["id"] for x in seleccion_investigacion.get("elegidos", [])],
+        "excluidos_con_causa": [
+            f'{x["id"]} — {x["razon"]}'
+            for x in seleccion_investigacion.get("excluidos", [])],
+    }
+    return salida
+
+
 def _lee_texto_evidencia(ruta, limite=2_000_000):
     try:
         with open(ruta, encoding="utf-8", errors="replace") as f:
@@ -800,8 +820,8 @@ def _lee_texto_evidencia(ruta, limite=2_000_000):
         return ""
 
 
-def valida_resultado_adquisicion(resultado, seleccion, comprobar_remoto=True,
-                                  raiz=None):
+def valida_resultado_adquisicion(resultado, seleccion, seleccion_investigacion=None,
+                                  comprobar_remoto=True, raiz=None):
     """Valida estructura, coherencia y evidencia del cierre del hijo.
 
     El esquema evita formas vacías; esta función prueba lo que JSON Schema no
@@ -837,10 +857,58 @@ def valida_resultado_adquisicion(resultado, seleccion, comprobar_remoto=True,
     if salida_sel["excluidos_con_causa"] != excluidos:
         errores.append("exclusiones o causas distintas de la selección calculada")
 
+    seleccion_investigacion = seleccion_investigacion or {
+        "corte": seleccion.get("corte"), "maximo": 0, "elegidos": [], "excluidos": []}
+    esperadas_inv = [x["id"] for x in seleccion_investigacion.get("elegidos", [])]
+    versiones_inv = {x["id"]: x.get("version_pregunta")
+                     for x in seleccion_investigacion.get("elegidos", [])}
+    excluidas_inv = [f'{x["id"]} — {x["razon"]}'
+                     for x in seleccion_investigacion.get("excluidos", [])]
+    salida_inv = resultado["seleccion_investigacion"]
+    if salida_inv["corte"] != seleccion_investigacion.get("corte"):
+        errores.append("corte de investigación distinto del calculado")
+    if salida_inv["maximo"] != seleccion_investigacion.get("maximo"):
+        errores.append("máximo de investigación distinto del calculado")
+    if salida_inv["elegidos"] != esperadas_inv:
+        errores.append("necesidades investigadas distintas de la selección calculada")
+    if salida_inv["excluidos_con_causa"] != excluidas_inv:
+        errores.append("exclusiones de investigación distintas de la selección calculada")
+
+    investigaciones = resultado["investigaciones"]
+    ids_inv = [x["necesidad_id"] for x in investigaciones]
+    if ids_inv != esperadas_inv or len(ids_inv) != len(set(ids_inv)):
+        errores.append("debe existir exactamente una investigación, en orden, por necesidad elegida")
+    for item in investigaciones:
+        ident = item["necesidad_id"]
+        if item["version_pregunta"] != versiones_inv.get(ident):
+            errores.append(f"{ident}: versión de pregunta distinta de la seleccionada")
+        for referencia in item["evidencias"]:
+            ruta = referencia if os.path.isabs(referencia) else os.path.join(raiz, referencia)
+            real = os.path.realpath(ruta)
+            permitido = real == raiz or real.startswith(raiz + os.sep)
+            if not permitido or not os.path.exists(real):
+                errores.append(f"{ident}: evidencia de investigación inexistente: {referencia}")
+        estado_path = os.path.join(raiz, "data", "curacion-registro",
+                                   "investigacion-estado", f"{ident}.json")
+        try:
+            with open(estado_path, encoding="utf-8") as f:
+                estado_guardado = json.load(f)
+        except Exception as e:
+            errores.append(f"{ident}: progreso de investigación no persistido: {e}")
+        else:
+            if estado_guardado.get("version_pregunta") != item["version_pregunta"]:
+                errores.append(f"{ident}: progreso persistido pertenece a otra versión")
+
     por_objeto = resultado["resultados_por_objeto"]
     ids_resultado = [x["objeto_id"] for x in por_objeto]
-    if ids_resultado != esperados:
-        errores.append("debe existir exactamente un resultado, en orden, por cada objeto elegido")
+    candidatos_descubiertos = {c["id"] for i in investigaciones for c in i["candidatas"]}
+    if ids_resultado[:len(esperados)] != esperados:
+        errores.append("los objetos preseleccionados deben aparecer primero y en orden")
+    extras = ids_resultado[len(esperados):]
+    if any(x not in candidatos_descubiertos for x in extras):
+        errores.append("una adquisición no preseleccionada debe provenir de candidata descubierta en esta corrida")
+    if len(ids_resultado) > seleccion.get("maximo", 5):
+        errores.append("resultados por objeto exceden el máximo de adquisición del ciclo")
     if len(ids_resultado) != len(set(ids_resultado)):
         errores.append("hay resultados de objeto duplicados")
 
@@ -880,6 +948,10 @@ def valida_resultado_adquisicion(resultado, seleccion, comprobar_remoto=True,
         fila = cola.get(objeto)
         if fila is None:
             errores.append(f"{objeto}: no existe en la cola canónica")
+        if objeto in extras and fila:
+            import adq_autorizacion
+            if not adq_autorizacion.esta_autorizada(fila.get("nota", ""), objeto):
+                errores.append(f"{objeto}: candidata dinámica sin autorización por alcance verificable")
         if item["desenlace"] == "adquirido":
             adquiridos += 1
             if not item["archivos"] or not item["ids_manifiesto"]:
@@ -915,7 +987,11 @@ def valida_resultado_adquisicion(resultado, seleccion, comprobar_remoto=True,
                 if intento["resultado"] not in corpus_evidencia:
                     errores.append(f"{objeto}: resultado de intento no aparece en evidencia: {intento['resultado']}")
 
-    if not esperados:
+    if investigaciones and adquiridos:
+        resultado_trabajo = "descubrimiento_y_adquisicion"
+    elif investigaciones:
+        resultado_trabajo = "descubrimiento_documentado"
+    elif not esperados:
         resultado_trabajo = "cola_vacia"
     elif adquiridos:
         resultado_trabajo = "adquisicion_obtenida"
@@ -926,8 +1002,8 @@ def valida_resultado_adquisicion(resultado, seleccion, comprobar_remoto=True,
     referencias = resultado["publicacion_trabajo"]["referencias"]
     if estado_publicacion == "publicada" and not referencias:
         errores.append("publicación declarada sin referencias remotas")
-    if estado_publicacion == "no_aplica" and esperados:
-        errores.append("con objetos elegidos, publicación del trabajo no puede ser no_aplica")
+    if estado_publicacion == "no_aplica" and (esperados or esperadas_inv):
+        errores.append("con trabajo elegido, publicación no puede ser no_aplica")
     if comprobar_remoto and estado_publicacion == "publicada":
         for ref in referencias:
             if (not re.fullmatch(r"refs/heads/[^\s]+", ref["ref"])
@@ -943,9 +1019,9 @@ def valida_resultado_adquisicion(resultado, seleccion, comprobar_remoto=True,
                 errores.append(f"publicación remota no comprobada: {ref['ref']}@{ref['commit']} ({(err or out).strip()[:160]})")
 
     declarado = resultado["resultado_sustantivo"]
-    if not esperados:
+    if not esperados and not esperadas_inv:
         if declarado != "cola_vacia" or por_objeto or estado_publicacion != "no_aplica":
-            errores.append("cola_vacia exige selección calculada vacía, cero resultados y publicación de trabajo no_aplica")
+            errores.append("cola_vacia exige ambas selecciones vacías, cero resultados y publicación no_aplica")
     elif estado_publicacion == "publicada":
         if declarado != resultado_trabajo:
             errores.append(f"resultado declarado {declarado!r} no coincide con trabajo {resultado_trabajo!r}")
@@ -953,7 +1029,8 @@ def valida_resultado_adquisicion(resultado, seleccion, comprobar_remoto=True,
         errores.append("publicación del trabajo fallida exige resultado_sustantivo=fallo")
 
     cierre_exitoso = (not errores and declarado != "fallo"
-                      and (not esperados or estado_publicacion == "publicada"))
+                      and (not (esperados or esperadas_inv)
+                           or estado_publicacion == "publicada"))
     return {"valido": not errores, "cierre_exitoso": cierre_exitoso,
             "resultado_trabajo": resultado_trabajo,
             "publicacion_trabajo": estado_publicacion, "errores": errores}
@@ -1019,17 +1096,30 @@ def main():
                          "salta ese estado por invocación nominal")
     ap.add_argument("--valida-resultado", metavar="JSON",
                     help="valida un cierre del ejecutor contra evidencia local/remota")
+    ap.add_argument("--normaliza-resultado", metavar="JSON",
+                    help="inyecta en un cierre las selecciones calculadas por el wrapper")
     ap.add_argument("--seleccion-archivo", metavar="JSON",
                     help="selección calculada usada por --valida-resultado")
+    ap.add_argument("--seleccion-investigacion-archivo", metavar="JSON",
+                    help="selección de investigación usada por --valida-resultado")
     a = ap.parse_args()
-    if a.valida_resultado:
+    if a.valida_resultado or a.normaliza_resultado:
         if not a.seleccion_archivo:
-            ap.error("--valida-resultado exige --seleccion-archivo")
-        with open(a.valida_resultado, encoding="utf-8") as f:
+            ap.error("la operación de resultado exige --seleccion-archivo")
+        ruta_resultado = a.valida_resultado or a.normaliza_resultado
+        with open(ruta_resultado, encoding="utf-8") as f:
             resultado = json.load(f)
         with open(a.seleccion_archivo, encoding="utf-8") as f:
             seleccion = json.load(f)
-        informe = valida_resultado_adquisicion(resultado, seleccion)
+        seleccion_inv = None
+        if a.seleccion_investigacion_archivo:
+            with open(a.seleccion_investigacion_archivo, encoding="utf-8") as f:
+                seleccion_inv = json.load(f)
+        if a.normaliza_resultado:
+            print(json.dumps(normaliza_selecciones_resultado(
+                resultado, seleccion, seleccion_inv), ensure_ascii=False, indent=2))
+            return 0
+        informe = valida_resultado_adquisicion(resultado, seleccion, seleccion_inv)
         print(json.dumps(informe, ensure_ascii=False, indent=2))
         return 0 if informe["valido"] else 65
     if a.transforma_sin_fetch:

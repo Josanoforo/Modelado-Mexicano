@@ -72,7 +72,7 @@
 
 set -euo pipefail
 
-RUNNER_VERSION="adq-codex-3"
+RUNNER_VERSION="adq-codex-4"
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_DIR"
@@ -109,6 +109,10 @@ RESULTADO_TRABAJO="no-invocado"
 SELECCION_ELEGIDOS="-"
 SELECCION_EXCLUIDOS="-"
 SELECCION_JSON="null"
+INVESTIGACION_ELEGIDAS="-"
+INVESTIGACION_EXCLUIDAS="-"
+INVESTIGACION_JSON="null"
+INVESTIGACION_RESERVADA=0
 RESIDUALES_TOTAL="-"
 RESIDUALES_CUBIERTOS="-"
 RESIDUALES_ACCIONABLES="-"
@@ -559,11 +563,12 @@ huella_adq() {
   fin_iso="$(date --iso-8601=seconds)"
   cli_token="${CLI_VERSION// /_}"
   MOTIVO_CIERRE="$motivo"
-  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} launcher_sha=${ADQ_DEPLOY_SHA:-legacy} runner_version=${RUNNER_VERSION} ejecutor=${EJECUTOR} cli_version=${cli_token} modelo_configurado=${MODELO_CONFIGURADO} modelo_efectivo=${MODELO_EFECTIVO} resultado=${RESULTADO_SUSTANTIVO} resultado_trabajo=${RESULTADO_TRABAJO} publicacion_trabajo=${PUBLICACION_TRABAJO} seleccion_elegidos=${SELECCION_ELEGIDOS} seleccion_excluidos=${SELECCION_EXCLUIDOS} residuales_total=${RESIDUALES_TOTAL} residuales_cubiertos=${RESIDUALES_CUBIERTOS} residuales_accionables=${RESIDUALES_ACCIONABLES} residuales_acceso=${RESIDUALES_ACCESO} residuales_sin_via=${RESIDUALES_SIN_VIA} residuales_reintento=${RESIDUALES_REINTENTO} residuales_decision=${RESIDUALES_DECISION} inicio=${INICIO_ISO} fin=${fin_iso} publicacion=${publicacion} disparador=${DISPARADOR} causa=${CAUSA_DISPARO} run_id=${RUN_ID}"
+  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} launcher_sha=${ADQ_DEPLOY_SHA:-legacy} runner_version=${RUNNER_VERSION} ejecutor=${EJECUTOR} cli_version=${cli_token} modelo_configurado=${MODELO_CONFIGURADO} modelo_efectivo=${MODELO_EFECTIVO} resultado=${RESULTADO_SUSTANTIVO} resultado_trabajo=${RESULTADO_TRABAJO} publicacion_trabajo=${PUBLICACION_TRABAJO} seleccion_elegidos=${SELECCION_ELEGIDOS} seleccion_excluidos=${SELECCION_EXCLUIDOS} investigacion_elegidas=${INVESTIGACION_ELEGIDAS} investigacion_excluidas=${INVESTIGACION_EXCLUIDAS} residuales_total=${RESIDUALES_TOTAL} residuales_cubiertos=${RESIDUALES_CUBIERTOS} residuales_accionables=${RESIDUALES_ACCIONABLES} residuales_acceso=${RESIDUALES_ACCESO} residuales_sin_via=${RESIDUALES_SIN_VIA} residuales_reintento=${RESIDUALES_REINTENTO} residuales_decision=${RESIDUALES_DECISION} inicio=${INICIO_ISO} fin=${fin_iso} publicacion=${publicacion} disparador=${DISPARADOR} causa=${CAUSA_DISPARO} run_id=${RUN_ID}"
   log "${linea}"
   CIERRE_ESCRITO=1
-  printf -v contenido '[ADQ-SELECCION] run_id=%s %s\n[ADQ-RESULTADO] run_id=%s %s\n%s' \
-    "$RUN_ID" "$SELECCION_JSON" "$RUN_ID" "$RESULTADO_PUBLICO" "$linea"
+  printf -v contenido '[ADQ-SELECCION] run_id=%s %s\n[ADQ-INVESTIGACION] run_id=%s %s\n[ADQ-RESULTADO] run_id=%s %s\n%s' \
+    "$RUN_ID" "$SELECCION_JSON" "$RUN_ID" "$INVESTIGACION_JSON" \
+    "$RUN_ID" "$RESULTADO_PUBLICO" "$linea"
   if commit_censo_linea "$contenido" "$linea" "[ADQ] ${FECHA}"; then
     PUBLICACION_ESTADO="OK"
   else
@@ -647,6 +652,9 @@ finalizar() {
   fi
   log "=== adquiere_cron.sh terminado (run_id=${RUN_ID} fase=${FASE} exit=${codigo}) ==="
   escribe_heartbeat "$estado" "$codigo" 2>>"$LOGFILE" || true
+  if [ "${INVESTIGACION_RESERVADA:-0}" -eq 1 ]; then
+    python3 tools/adq_investigacion.py --libera "$RUN_ID" >>"$LOGFILE" 2>&1 || true
+  fi
   # Restauración segura del contexto: best-effort, nunca deja que un
   # checkout fallido dispare un segundo trap ni cambie el código de salida
   # que ya se reportó arriba.
@@ -682,7 +690,10 @@ EJECUTOR="$(printf '%s' "$EJECUTOR_JSON" | python3 -c 'import json,sys; print(js
 TIMEOUT_EJECUTOR="$(printf '%s' "$EJECUTOR_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["timeout"]["valor"])')"
 KILL_AFTER_EJECUTOR="$(printf '%s' "$EJECUTOR_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["kill_after"]["valor"])')"
 MAXIMO_FILAS="$(printf '%s' "$EJECUTOR_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["maximo_filas"])')"
-log "CONFIG: ejecutor=$EJECUTOR timeout=${TIMEOUT_EJECUTOR}s kill_after=${KILL_AFTER_EJECUTOR}s maximo_filas=$MAXIMO_FILAS"
+MAXIMO_INVESTIGACIONES="$(lee_config descubrimiento_maximo_necesidades 3)"
+TIMEOUT_DESCUBRIMIENTO="$(lee_config descubrimiento_timeout_segundos 1800)"
+TIMEOUT_ADQUISICION="$(lee_config adquisicion_timeout_segundos 1800)"
+log "CONFIG: ejecutor=$EJECUTOR timeout=${TIMEOUT_EJECUTOR}s kill_after=${KILL_AFTER_EJECUTOR}s maximo_filas=$MAXIMO_FILAS investigaciones=$MAXIMO_INVESTIGACIONES presupuestos=${TIMEOUT_DESCUBRIMIENTO}s+${TIMEOUT_ADQUISICION}s"
 CALENDARIO_JSON="$(python3 tools/adq_config.py --calendario-json)"
 ADQ_ZONA_HORARIA="$(printf '%s' "$CALENDARIO_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["zona_iana"])')"
 CALENDARIO_DEGRADADO="$(printf '%s' "$CALENDARIO_JSON" | python3 -c 'import json,sys; print("si" if json.load(sys.stdin)["degradada"] else "no")')"
@@ -694,6 +705,7 @@ if [ "$CALENDARIO_DEGRADADO" = "si" ]; then
 fi
 RUNBOOK="$(lee_config runbook 'forense/agente-adquisicion-v1_0.md')"
 SONDA_URL="$(lee_config sonda_red_url 'https://www.inegi.org.mx/')"
+SONDA_URL_ALTERNATIVA="$(lee_config sonda_red_url_alternativa 'https://api.github.com/')"
 if [ -n "$CONFIG_DEGRADADA" ]; then
   log "CONFIG-DEGRADADA (resumen): claves no leídas de data/adq-config.yaml -> ${CONFIG_DEGRADADA}. La corrida SIGUE con respaldos, pero queda declarado: una config rota no se sustituye en silencio."
 fi
@@ -745,14 +757,48 @@ print("\t".join(str(x) for x in (
  c["pendientes_reintento"]["cantidad"], c["pendientes_decision"]["cantidad"])))')
 log "selección autoritativa: elegidos=${SELECCION_ELEGIDOS} excluidos=${SELECCION_EXCLUIDOS} máximo=${MAXIMO_FILAS}; residuales total=${RESIDUALES_TOTAL} cubiertos=${RESIDUALES_CUBIERTOS} accionables=${RESIDUALES_ACCIONABLES} acceso=${RESIDUALES_ACCESO} sin_via=${RESIDUALES_SIN_VIA} reintento=${RESIDUALES_REINTENTO} decision=${RESIDUALES_DECISION}"
 
-if [ "$NUM_ELEGIDOS" -eq 0 ]; then
+# La demanda de investigación es independiente de la cola de bytes. Se
+# selecciona incluso cuando /adquiere tiene cero elegibles; sólo ambas listas
+# vacías permiten el cierre mecánico sin LLM.
+transicion "SELECCION-INVESTIGACION"
+INVESTIGACION_ARCHIVO="$LOGDIR/${RUN_ID}-investigacion-seleccion.json"
+set +e
+python3 tools/adq_investigacion.py --selecciona --maximo "$MAXIMO_INVESTIGACIONES" \
+  >"$INVESTIGACION_ARCHIVO" 2>>"$LOGFILE"
+CODIGO_SELECTOR_INV=$?
+set -e
+if [ "$CODIGO_SELECTOR_INV" -ne 0 ] || ! python3 -m json.tool "$INVESTIGACION_ARCHIVO" >/dev/null 2>>"$LOGFILE"; then
+  [ "$CODIGO_SELECTOR_INV" -eq 0 ] && CODIGO_SELECTOR_INV=65
+  FASE="PARO-SELECCION-INVESTIGACION"
+  RESULTADO_SUSTANTIVO="fallo"
+  RESULTADO_TRABAJO="fallo_selector_investigacion"
+  MOTIVO_CIERRE="PARO-SELECCION-INVESTIGACION"
+  log "PARO-SELECCION-INVESTIGACION: salida ${CODIGO_SELECTOR_INV} o JSON ilegible."
+  huella_adq "no" "$MOTIVO_CIERRE" "$CODIGO_SELECTOR_INV"
+  exit "$CODIGO_SELECTOR_INV"
+fi
+INVESTIGACION_JSON="$(python3 -c 'import json,sys; print(json.dumps(json.load(open(sys.argv[1], encoding="utf-8")), ensure_ascii=False, separators=(",",":")))' "$INVESTIGACION_ARCHIVO")"
+INVESTIGACION_ELEGIDAS="$(printf '%s' "$INVESTIGACION_JSON" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(",".join(x["id"] for x in d["elegidos"]) or "ninguna")')"
+INVESTIGACION_EXCLUIDAS="$(printf '%s' "$INVESTIGACION_JSON" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)["excluidos"]))')"
+NUM_INVESTIGACIONES="$(printf '%s' "$INVESTIGACION_JSON" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)["elegidos"]))')"
+log "selección investigación: elegidas=${INVESTIGACION_ELEGIDAS} excluidas=${INVESTIGACION_EXCLUIDAS} máximo=${MAXIMO_INVESTIGACIONES}"
+
+if [ "$NUM_INVESTIGACIONES" -gt 0 ]; then
+  python3 tools/adq_investigacion.py --reserva-seleccion "$INVESTIGACION_ARCHIVO" \
+    --owner "$RUN_ID" >>"$LOGFILE" 2>&1
+  INVESTIGACION_RESERVADA=1
+fi
+
+if [ "$NUM_ELEGIDOS" -eq 0 ] && [ "$NUM_INVESTIGACIONES" -eq 0 ]; then
   RESULTADO_SUSTANTIVO="cola_vacia"
   RESULTADO_TRABAJO="cola_vacia"
   PUBLICACION_TRABAJO="no_aplica"
-  RESULTADO_PUBLICO="$(python3 - "$SELECCION_ARCHIVO" <<'PYEOF'
+  RESULTADO_PUBLICO="$(python3 - "$SELECCION_ARCHIVO" "$INVESTIGACION_ARCHIVO" <<'PYEOF'
 import json, sys
 with open(sys.argv[1], encoding="utf-8") as f:
     s = json.load(f)
+with open(sys.argv[2], encoding="utf-8") as f:
+    i = json.load(f)
 r = {
     "ejecutor": "codex",
     "seleccion": {
@@ -762,11 +808,17 @@ r = {
             f'{x["id"]} [{x["estado"]}] — {x["razon"]}' for x in s["excluidos"]
         ],
     },
+    "seleccion_investigacion": {
+        "calculada": True, "corte": i["corte"], "maximo": i["maximo"],
+        "elegidos": [],
+        "excluidos_con_causa": [f'{x["id"]} — {x["razon"]}' for x in i["excluidos"]],
+    },
+    "investigaciones": [],
     "resultado_sustantivo": "cola_vacia",
     "resultados_por_objeto": [],
     "publicacion_trabajo": {"estado": "no_aplica", "referencias": []},
     "resumen": (
-        "Selección determinista completada sin objetos elegidos; cierre sin invocar LLM. "
+        "Selecciones deterministas completadas sin descargas ni investigación; cierre sin invocar LLM. "
         f"Residuales: total={s['resumen_necesidades']['total_residuales']}, "
         f"cubiertos={s['resumen_necesidades']['cubiertas']['cantidad']}, "
         f"pendientes_acceso={s['resumen_necesidades']['pendientes_acceso']['cantidad']}, "
@@ -885,9 +937,9 @@ else
   commit_censo_linea "$LINEA_PDN" "$LINEA_PDN" "[ADQ-PDN] ${FECHA}"
 fi
 
-if [ "$NUM_ELEGIDOS" -eq 0 ]; then
+if [ "$NUM_ELEGIDOS" -eq 0 ] && [ "$NUM_INVESTIGACIONES" -eq 0 ]; then
   FASE="HUELLA-COLA-VACIA"
-  log "COLA-VACIA: selección calculada correctamente con 0 elegidos; se cierra sin invocar Codex ni Claude."
+  log "SIN-TRABAJO: descargas=0 e investigaciones=0; se cierra sin invocar Codex ni Claude."
   huella_adq "no" "COLA-VACIA" "0"
   FASE="FIN"
   if [ "${PUBLICACION_FALLIDA:-0}" -gt 0 ]; then
@@ -901,12 +953,17 @@ fi
 # 3 · sonda de red real, valor crudo (nunca curl -I)
 transicion "SONDA-RED"
 if ! sonda_red "$SONDA_URL"; then
-  FASE="PARO-RED"
-  log "PARO-RED: ${CAUSA_RED}. No se invoca claude -p -- la compuerta corta ANTES de gastar la invocación."
-  huella_adq "no" "PARO-RED" "-"
-  exit 1
+  CAUSA_RED_PRIMARIA="$CAUSA_RED"
+  if ! sonda_red "$SONDA_URL_ALTERNATIVA"; then
+    FASE="PARO-RED"
+    log "PARO-RED: fallaron proveedores independientes: primaria=${CAUSA_RED_PRIMARIA}; alternativa=${CAUSA_RED}."
+    huella_adq "no" "PARO-RED" "-"
+    exit 1
+  fi
+  log "red operativa por proveedor alternativo; fallo de INEGI aislado: ${CAUSA_RED_PRIMARIA}"
+else
+  log "sonda de red primaria superada: ${CAUSA_RED}"
 fi
-log "sonda de red superada: ${CAUSA_RED}"
 
 # 4 · ejecuta el procedimiento con el ejecutor seleccionado.
 #   Extrae solo el bloque ```text ... ``` de §1, no el archivo entero:
@@ -935,10 +992,14 @@ echo "$PROMPT" >>"$LOGFILE"
 PROMPT_EFECTIVO="${PROMPT}
 
 INSTRUCCIÓN DE EJECUCIÓN PARA CODEX CLI:
-Lee completa .claude/commands/adquiere.md y ejecuta ese procedimiento; la frase histórica 'Corre /adquiere' no depende de un slash command registrado. No invoques tools/adquiere_launcher.sh, tools/adquiere_cron.sh, Task Scheduler ni otro agente: ya eres el único hijo de esa corrida. Preserva cualquier modificación ajena, especialmente data/manifiesto-staging.yaml, y nunca la incluyas en un commit. Máximo ${MAXIMO_FILAS} filas.
-Esta es la selección proyectada inmediatamente antes de tu arranque; contrástala y reporta todos los elegidos y excluidos con causa:
+Lee completas .claude/commands/sonda.md y .claude/commands/adquiere.md y ejecuta un único recorrido descubrimiento→adquisición→suficiencia. La frase histórica 'Corre /adquiere' no depende de un slash command registrado. No invoques tools/adquiere_launcher.sh, tools/adquiere_cron.sh, Task Scheduler ni otro agente: ya eres el único hijo de esa corrida. Preserva cualquier modificación ajena, especialmente data/manifiesto-staging.yaml, y nunca la incluyas en un commit.
+Presupuesto: hasta ${MAXIMO_INVESTIGACIONES} necesidades y ${TIMEOUT_DESCUBRIMIENTO}s de descubrimiento; hasta ${MAXIMO_FILAS} objetos y ${TIMEOUT_ADQUISICION}s de adquisición. Son topes de corrida, no umbrales científicos. Usa búsqueda web real y registra mecanismo, consulta y resultado; curl a una URL conocida no sustituye búsqueda. Para cada candidata compara objeto/variables/ola/unidad con manifiesto y corpus, no sólo host. Un HTTP 200, paper o landing no equivale a microdato.
+Esta es la selección de adquisición proyectada inmediatamente antes de tu arranque; respeta elegidos y excluidos:
 ${SELECCION_JSON}
-Tu último mensaje debe cumplir tools/adq-resultado.schema.json. Entrega exactamente un resultados_por_objeto por cada elegido, en el mismo orden. Cada evidencia debe ser una ruta local existente; toda adquisición debe acreditar archivos e ids pertinentes de data/manifiesto.yaml; todo intento debe conservar vía y resultado verificable. Con elegidos, la publicación del trabajo exige refs/heads/<rama> y el SHA remoto exacto: la publicación posterior del recibo por el wrapper no la sustituye. Si el trabajo existe pero su publicación falla, conserva sus resultados por objeto, declara resultado_sustantivo=fallo y publicacion_trabajo=fallida."
+Esta es la selección de investigación; ejecuta exactamente una investigación por elegido, en orden, sin repetir las exclusiones:
+${INVESTIGACION_JSON}
+Una candidata pública nueva y pertinente puede adquirirla en esta misma corrida aunque no estuviera en la selección inicial: crea el residual con adq_residual.py, autoridad AUTORIZADA-POR-ALCANCE:Jonas/2026-09-12/GEN2-38/<objeto>, y cuenta ese objeto dentro del máximo total. No deriva autorización para compra, login, contacto ni adopción científica. Persiste el progreso de cada necesidad con \`python3 tools/adq_investigacion.py --actualiza-desde-resultados <json-temporal>\` antes del commit; un timeout conserva cursor y frontera.
+Tu último mensaje debe cumplir tools/adq-resultado.schema.json. Entrega los objetos inicialmente elegidos primero y después sólo candidatas de esta investigación que hayas adquirido o intentado. Cada evidencia debe ser una ruta local existente; toda adquisición debe acreditar archivos e ids pertinentes de data/manifiesto.yaml; todo intento debe conservar vía y resultado verificable. Evalúa por separado identidad, concepto, población, selección/no respuesta, unidad, temporalidad, diseño e identificación; no uses una nota agregada. Con cualquier trabajo, la publicación exige refs/heads/<rama> y SHA remoto exacto: el recibo posterior del wrapper no la sustituye. Si falla, conserva resultados, declara resultado_sustantivo=fallo y publicacion_trabajo=fallida."
 
 # set +e/-e: la huella [ADQ] tiene que capturar el código real de salida
 # incluso cuando el hijo falla -- bajo `set -e`
@@ -971,9 +1032,9 @@ if [ "$EJECUTOR" = "codex" ]; then
     ULTIMO_MENSAJE="$LOGDIR/${RUN_ID}-codex-final.json"
     PROMPT_LOCAL="$LOGDIR/${RUN_ID}-prompt.txt"
     printf '%s\n' "$PROMPT_EFECTIVO" >"$PROMPT_LOCAL"
-    log "invocando: timeout --kill-after=${KILL_AFTER_EJECUTOR}s ${TIMEOUT_EJECUTOR}s codex exec --json --sandbox ${CODEX_SANDBOX} --model ${MODELO_CONFIGURADO} --add-dir ${CODEX_DIR_ADICIONAL} (aprobaciones=never red=true)"
+    log "invocando: timeout --kill-after=${KILL_AFTER_EJECUTOR}s ${TIMEOUT_EJECUTOR}s codex exec --enable standalone_web_search --json --sandbox ${CODEX_SANDBOX} --model ${MODELO_CONFIGURADO} --add-dir ${CODEX_DIR_ADICIONAL} (aprobaciones=never red=true)"
     timeout --kill-after="${KILL_AFTER_EJECUTOR}s" "${TIMEOUT_EJECUTOR}s" \
-      "$CODEX_BINARIO" exec --ignore-user-config --ephemeral --json --color never \
+      "$CODEX_BINARIO" exec --ignore-user-config --ephemeral --enable standalone_web_search --json --color never \
       --sandbox "$CODEX_SANDBOX" --model "$MODELO_CONFIGURADO" \
       --add-dir "$CODEX_DIR_ADICIONAL" \
       -c 'approval_policy="never"' \
@@ -982,9 +1043,25 @@ if [ "$EJECUTOR" = "codex" ]; then
       - <"$PROMPT_LOCAL" >"$EVENTOS_CODEX" 2>"$STDERR_CODEX"
     CODIGO_SALIDA=$?
     if [ "$CODIGO_SALIDA" -eq 0 ]; then
+      RESULTADO_NORMALIZADO="${ULTIMO_MENSAJE}.normalizado"
+      python3 tools/adq_doctor.py --normaliza-resultado "$ULTIMO_MENSAJE" \
+        --seleccion-archivo "$SELECCION_ARCHIVO" \
+        --seleccion-investigacion-archivo "$INVESTIGACION_ARCHIVO" \
+        >"$RESULTADO_NORMALIZADO" 2>>"$LOGFILE"
+      CODIGO_NORMALIZACION=$?
+      if [ "$CODIGO_NORMALIZACION" -eq 0 ]; then
+        mv "$RESULTADO_NORMALIZADO" "$ULTIMO_MENSAJE"
+      else
+        rm -f "$RESULTADO_NORMALIZADO"
+        CODIGO_SALIDA=65
+        log "PARO-RESULTADO: no se pudieron normalizar las selecciones autoritativas del wrapper."
+      fi
+    fi
+    if [ "$CODIGO_SALIDA" -eq 0 ]; then
       VALIDACION_RESULTADO="$LOGDIR/${RUN_ID}-validacion-resultado.json"
       python3 tools/adq_doctor.py --valida-resultado "$ULTIMO_MENSAJE" \
-        --seleccion-archivo "$SELECCION_ARCHIVO" --json \
+        --seleccion-archivo "$SELECCION_ARCHIVO" \
+        --seleccion-investigacion-archivo "$INVESTIGACION_ARCHIVO" --json \
         >"$VALIDACION_RESULTADO" 2>>"$LOGFILE"
       CODIGO_VALIDACION=$?
       if [ "$CODIGO_VALIDACION" -eq 0 ]; then

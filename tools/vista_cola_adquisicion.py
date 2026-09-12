@@ -29,9 +29,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent / "curador_registro"))
 try:
-    from curador_registro.tsv_crudo import leer_dicts
+    from curador_registro.tsv_crudo import (bloqueo_escritura,
+                                             escribir_texto_atomico, leer_dicts)
 except ImportError:  # ejecución directa, tools/ en sys.path pero no el paquete
-    from tsv_crudo import leer_dicts
+    from tsv_crudo import bloqueo_escritura, escribir_texto_atomico, leer_dicts
 
 REGISTRO = Path("data/curacion-registro/cola-adquisicion-registro.tsv")
 VISTA = Path("data/cola-adquisicion-v1_0.tsv")
@@ -69,9 +70,18 @@ def build(registro_path: Path = REGISTRO) -> str:
     return render(read_tsv(registro_path))
 
 
+def regenera(registro: Path = REGISTRO, vista: Path = VISTA) -> str:
+    # La lectura del registro y la publicación de la vista comparten el lock
+    # del escritor. Así una regeneración lenta no puede sobreescribir con una
+    # instantánea anterior la vista que acaba de producir otro proceso.
+    with bloqueo_escritura(registro):
+        contenido = build(registro)
+        escribir_texto_atomico(vista, contenido)
+    return contenido
+
+
 def main() -> int:
-    contenido = build()
-    VISTA.write_text(contenido, encoding="utf-8")
+    contenido = regenera()
     filas = contenido.count("\n") - 2
     print(f"vista regenerada: {VISTA} ({filas} filas)")
     return 0

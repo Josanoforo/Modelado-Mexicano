@@ -24,9 +24,12 @@ por código/definición en vez de re-redactado cada vez:
 - si NUBE no puede abrir una candidata, eso no se convierte en negativo — pasa
   a `SIN-FETCH`/CAJA con ficha, nunca en "no existe" (`#542`).
 
-**Esta skill propone, no decide.** No sella una candidata, no adopta un
-resultado, no modifica `milpa/**` ni el canon, no descarga por defecto. La
-decisión de adquirir, adoptar o cerrar sigue siendo de mesa/DIRECCIÓN.
+**Esta skill investiga; no adopta científicamente.** En una invocación manual
+aislada sólo propone. Cuando la invoca el ciclo GEN2-38 con el mandato
+`AUTORIZADA-POR-ALCANCE:Jonas/2026-09-12/GEN2-38/<objeto>`, puede entregar el
+residual público como `PENDIENTE` y el mismo ciclo puede adquirirlo. Esa
+autorización cubre investigación y adquisición pública, no adopción, compra,
+contacto, identidad, equivalencia de constructos ni identificación causal.
 
 ---
 
@@ -243,13 +246,18 @@ concreta que vale la pena intentar adquirir:
    efectivo: si `/sonda` escribiera su fecha con ese nombre, sondear
    reiniciaría el plazo de descarga de la fila y la sacaría de la caminata
    durante otros siete días. Descubrir una vía no es haberla intentado.
-7. **Una recomendación no es una autorización.** Para que la candidata pase
+7. **Una recomendación no es una autorización, salvo mandato de alcance
+   explícito.** Para que la candidata pase
    de propuesta a caminable, la nota necesita los cuatro elementos del
    handoff: objeto faltante, vía nueva, **autorización de mesa con su cita**,
    y el modo de invocación por ID. Sin la autorización citada, el selector la
    excluye con esa razón exacta y la fila **permanece propuesta** — que es lo
-   correcto: `/sonda` localiza, mesa autoriza, `/adquiere` camina. No escribas
-   la autorización tú.
+   correcto en uso aislado: `/sonda` localiza, mesa autoriza, `/adquiere`
+   camina. En el ciclo GEN2-38 la mesa ya autorizó por alcance el 12/sep/2026:
+   deriva un token por objeto con el formato anterior y conserva el acto en la
+   metadata. Una marca histórica `SONDA-LATERAL-RECOMENDADA` no revoca ese
+   token vigente; una negación actual, fecha inválida u objeto distinto sí lo
+   bloquean. Nunca derives el mandato fuera de adquisición pública.
 
 **El alta en la cola NO significa** `EXISTE-SATISFACE`, ni relación
 `CONFIRMADA`, ni resultado adoptado — significa únicamente "vale la pena
