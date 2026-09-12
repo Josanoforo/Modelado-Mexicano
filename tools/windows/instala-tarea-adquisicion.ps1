@@ -46,6 +46,11 @@
     instalador traduce días con el lector común y exige que `tzutil /g`
     coincida con el id Windows asociado a la zona IANA antes de registrar.
 
+    La acción usa un único PowerShell oculto y no interactivo como envoltura
+    de `wsl.exe`. La envoltura espera al proceso WSL real y devuelve su código
+    de salida; Task Scheduler no confunde "se creó el proceso" con "terminó
+    bien la adquisición". No cambia el principal ni sus permisos.
+
     `MultipleInstances=IgnoreNew` es una segunda capa sobre el lock
     propio de `flock` que ya trae `tools/adquiere_cron.sh` (P3) -- si
     Task Scheduler mismo intenta lanzar una segunda instancia mientras la
@@ -159,9 +164,25 @@ $Variables = "ADQ_DISPARADOR=windows-task-scheduler"
 if (-not [string]::IsNullOrWhiteSpace($DeploymentRevision)) {
     $Variables += " ADQ_DEPLOY_REVISION=$DeploymentRevision"
 }
-$Argumentos = ("-d $Distro -u $LinuxUser -- env $Variables " +
-               "bash -lc $ClonPath/tools/adquiere_launcher.sh")
-$Action = New-ScheduledTaskAction -Execute "wsl.exe" -Argument $Argumentos
+$ArgumentosWsl = ("-d $Distro -u $LinuxUser -- env $Variables " +
+                  "bash -lc $ClonPath/tools/adquiere_launcher.sh")
+
+# Task Scheduler corre con LogonType=Interactive porque es la identidad ya
+# acreditada de esta caja. Eso no obliga a mostrar una consola: PowerShell se
+# inicia oculto y sin interacción, invoca WSL de forma síncrona y propaga su
+# código real. El operador `&` espera a wsl.exe; no se usa Start-Process sin
+# -Wait ni un cmd /c start que pudiera devolver éxito al mero arranque.
+$ComandoOculto = @"
+& wsl.exe $ArgumentosWsl
+if (`$null -eq `$LASTEXITCODE) { exit 1 }
+exit [int]`$LASTEXITCODE
+"@
+$ComandoCodificado = [Convert]::ToBase64String(
+    [Text.Encoding]::Unicode.GetBytes($ComandoOculto))
+$PowerShellExe = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
+$ArgumentosPowerShell = ("-NoLogo -NoProfile -NonInteractive " +
+                         "-WindowStyle Hidden -EncodedCommand $ComandoCodificado")
+$Action = New-ScheduledTaskAction -Execute $PowerShellExe -Argument $ArgumentosPowerShell
 
 $HoraParsed = [datetime]::ParseExact($Calendario.hora, "HH:mm", $null)
 $DiasWindows = @($Calendario.dias_windows)
@@ -193,7 +214,8 @@ if ($PSCmdlet.ShouldProcess("$TaskFolder$TaskName", "Register-ScheduledTask")) {
 } else {
     Write-Host ""
     Write-Host "-WhatIf: no se registró nada. Argumentos que se habrían usado:"
-    Write-Host "  wsl.exe $Argumentos"
+    Write-Host "  $PowerShellExe -NoLogo -NoProfile -NonInteractive -WindowStyle Hidden -EncodedCommand <omitido>"
+    Write-Host "  comando síncrono codificado: & wsl.exe $ArgumentosWsl; exit `$LASTEXITCODE"
     $existente = Get-ScheduledTask -TaskName $TaskName -TaskPath $TaskFolder -ErrorAction SilentlyContinue
     if ($existente) {
         Write-Host ""

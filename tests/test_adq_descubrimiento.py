@@ -96,6 +96,111 @@ def prueba_seleccion_reanudacion_reserva_y_version():
         afirma(not list((raiz / "reservas").glob("*.json")), "la reserva no se liberó")
 
 
+def prueba_necesidad_nueva_llega_a_sonda_sin_lista_manual():
+    with tempfile.TemporaryDirectory() as td:
+        raiz = Path(td)
+        (raiz / "forense").mkdir(parents=True)
+        (raiz / "forense" / "no-corrido.tsv").write_text(
+            "id\tacto\tpieza\tque_no_se_corrio\trazon\timpacto\tsucesor\testado\n"
+            "NC-NUEVA\tACTO-X\tP1\tbuscar fuente pública con variable X\t"
+            "EVIDENCIA-INSUFICIENTE\tarchivo obtenido no cubre X\t"
+            "localizar microdato público con X\tABIERTA\n"
+            "NC-DIF\tACTO-X\tP2\tbuscar fuente Y\tDIFERIDO-A:OTRO\t"
+            "espera explícita\tOTRO\tABIERTA\n",
+            encoding="utf-8")
+        cfg = {
+            "version": "GEN2-ADQ-INVESTIGACION-V1",
+            "fuente_necesidades": "forense/no-corrido.tsv",
+            "estado_dir": "estado", "reservas_runtime_dir": "reservas",
+            "reserva_minutos": 75, "necesidades": [],
+        }
+        seleccion = I.selecciona(
+            cfg, dt.date(2026, 9, 12), 3, raiz=raiz,
+            ahora=dt.datetime(2026, 9, 12, tzinfo=dt.timezone.utc))
+        afirma([x["id"] for x in seleccion["elegidos"]] == ["NC-NUEVA"],
+               f"una brecha nueva verificable debe llegar automáticamente: {seleccion}")
+        elegida = seleccion["elegidos"][0]
+        afirma(elegida["contrato_operativo"] == "DESCRIPCION_MINIMA_DERIVADA",
+               "la necesidad nueva debe recibir contrato mínimo reproducible")
+        afirma(bool(elegida["responsable"] and elegida["siguiente_accion"]),
+               "el contrato derivado debe tener responsable y siguiente acción")
+        afirma(any(x["id"] == "NC-DIF" for x in seleccion["excluidos"]),
+               "un diferido explícito no debe reactivarse automáticamente")
+
+
+def prueba_demanda_explica_todo_elemento_gen2_vigente():
+    cfg = I.cargar_config()
+    demanda = I.proyecta_demanda(cfg, dt.date(2026, 9, 11))
+    elementos = demanda["elementos_gen2"]
+    afirma(len(elementos) == 207, f"alcance activo inesperado: {len(elementos)}")
+    afirma(demanda["total_activas"] == 52, "debe conservar las 52 NC abiertas")
+    afirma(demanda["contrato_cientifico_completo"] == 6,
+           "sólo contratos científicos explícitos pueden llamarse completos")
+    afirma(demanda["contrato_cientifico_incompleto"] == 45,
+           "la descripción mínima derivada no debe fingir completitud")
+    afirma(all(x["situacion"] and x["siguiente_accion"] for x in elementos),
+           "cada elemento vigente requiere situación y siguiente acción")
+    afirma(all(x["necesidades_nc_abiertas"] for x in elementos
+               if x["adopcion"].startswith("NO_ADOPTADO")),
+           "toda brecha preadopción debe enlazar una NC")
+    afirma(all("GEN1_ES_SOLO_ANTECEDENTE" in x["adopcion"] for x in elementos
+               if not x["resultado_id"]),
+           "GEN1 no debe reactivarse por entrar al inventario")
+    horizonte = [x for x in elementos if x["resultado_id"] ==
+                 "RESULT-ENIF-AHO-A-P-CORTO-SIN-P"]
+    afirma(len(horizonte) == 1 and horizonte[0]["situacion"] ==
+           "PENDIENTE_DATOS_O_DECISION_DE_USO",
+           "la demanda debe conservar la brecha de horizonte en el consumidor")
+    afirma("cero tareas elegibles" in demanda["advertencia_suficiencia"],
+           "la proyección debe negar suficiencia general por cola vacía")
+    afirma(not demanda["seleccion_siguiente"]["elegidos"] and
+           len(demanda["seleccion_siguiente"]["excluidos"]) == 52,
+           "el mapa debe publicar la selección siguiente y todas sus causas")
+
+
+def prueba_reanudacion_estructurada_y_barrera_humana():
+    with tempfile.TemporaryDirectory() as td:
+        raiz = Path(td)
+        (raiz / "forense").mkdir(parents=True)
+        (raiz / "forense" / "no-corrido.tsv").write_text(
+            "id\tque_no_se_corrio\timpacto\testado\n"
+            "NC-W\tbuscar fuente X\tfalta X\tABIERTA\n"
+            "NC-H\tbuscar fuente Y\tfalta Y\tABIERTA\n", encoding="utf-8")
+        base = {"version": "GEN2-ADQ-INVESTIGACION-V1",
+                "fuente_necesidades": "forense/no-corrido.tsv",
+                "estado_dir": "estado", "reservas_runtime_dir": "reservas",
+                "reserva_minutos": 75, "necesidades": [
+                    {"id": "NC-W", "version_pregunta": "v1", "lista": True,
+                     "estado_ruteo": "ESPERA_NUEVA_PISTA",
+                     "proxima_revision": "2026-10-11", "prioridad_consumidor": 1,
+                     "bloqueo_material": 1, "asignacion": "servicio-gen2-38"},
+                    {"id": "NC-H", "version_pregunta": "v1", "lista": True,
+                     "estado_ruteo": "ESPERA_ACCESO_HUMANO",
+                     "proxima_revision": "2026-09-01", "prioridad_consumidor": 0,
+                     "bloqueo_material": 2, "asignacion": "servicio-gen2-38"},
+                ]}
+        antes = I.selecciona(base, dt.date(2026, 10, 10), 3, raiz=raiz)
+        afirma(not antes["elegidos"], "la espera no vencida no debe reanudarse")
+        vencida = I.selecciona(base, dt.date(2026, 10, 11), 3, raiz=raiz)
+        afirma([x["id"] for x in vencida["elegidos"]] == ["NC-W"],
+               f"la fecha vencida debe reanudar NC-W sin liberar NC-H: {vencida}")
+        forzada = I.selecciona(
+            base, dt.date(2026, 10, 11), 3, nombradas={"NC-H"}, raiz=raiz)
+        afirma(all(x["id"] != "NC-H" for x in forzada["elegidos"]),
+               "ni la selección nominal debe atravesar una barrera humana")
+        (raiz / "estado").mkdir()
+        (raiz / "estado" / "NC-W.json").write_text(json.dumps({
+            "necesidad_id": "NC-W", "version_pregunta": "v1",
+            "proxima_revision": "2026-10-11",
+            "evidencia_nueva_identificada": {
+                "identificada": True, "necesidad_id": "NC-W",
+                "version_pregunta": "v1", "evidencias": ["FUENTE-NUEVA"]},
+        }), encoding="utf-8")
+        nueva = I.selecciona(base, dt.date(2026, 9, 12), 3, raiz=raiz)
+        afirma([x["id"] for x in nueva["elegidos"]] == ["NC-W"],
+               "evidencia nueva exacta debe reanudar antes de la fecha")
+
+
 CAMPOS = ["fila_origen", "fuente_canonica", "fuente_canonica_normalizada",
           "discordancia_alias", "estado_A4A5", "prioridad", "url_conocida",
           "ids_manifiesto", "origen", "nota"]
@@ -172,6 +277,9 @@ def main() -> int:
     prueba_autorizacion_json_gana_a_historia_y_detecta_errores()
     prueba_intento_explicito_sin_fecha_no_es_ausencia()
     prueba_seleccion_reanudacion_reserva_y_version()
+    prueba_necesidad_nueva_llega_a_sonda_sin_lista_manual()
+    prueba_demanda_explica_todo_elemento_gen2_vigente()
+    prueba_reanudacion_estructurada_y_barrera_humana()
     prueba_altas_concurrentes_no_pierden_fila_y_vista_converge()
     prueba_cableado_y_calendario_de_produccion()
     if FALLOS:
@@ -179,7 +287,7 @@ def main() -> int:
         for fallo in FALLOS:
             print("  ·", fallo)
         return 1
-    print("OK -- test_adq_descubrimiento.py: 5 grupos, 0 fallos")
+    print("OK -- test_adq_descubrimiento.py: 8 grupos, 0 fallos")
     return 0
 
 

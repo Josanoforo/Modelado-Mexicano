@@ -1,11 +1,12 @@
 {
-  "cursor_continuacion": "Buscar un instrumento público de adultos en México que mida tenencia de ahorro y, sólo entre quienes sí ahorran, duración de cobertura; no repetir ENIF, EACF, ENSAFI ni Findex 2025.",
+  "cursor_continuacion": "Buscar sólo una fuente pública nueva con tenencia primero y duración sólo entre quienes sí ahorran, unidad persona y cobertura nacional; no repetir ENIF, EACF, ENSAFI, Findex, ENFIH ni IIEG Jalisco.",
   "estado": "evidencia_existente",
   "evidencias": [
+    "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md",
     "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md",
     "data/manifiesto.yaml"
   ],
-  "frontera_no_examinada": "Cuestionarios subnacionales, módulos privados, otras ediciones no indexadas y variables internas de ENFIH no anunciadas como duración.",
+  "frontera_no_examinada": "Otras encuestas estatales no indexadas, módulos académicos públicos nacionales y olas posteriores a 2024; módulos privados fuera de alcance.",
   "necesidad_id": "NC-0126",
   "proxima_revision": "2026-10-11",
   "suficiencia": {

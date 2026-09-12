@@ -3,11 +3,46 @@
 # añade los campos necesarios para seleccionar y ejecutar investigación.
 version: GEN2-ADQ-INVESTIGACION-V1
 fuente_necesidades: forense/no-corrido.tsv
+fuente_usos: data/corrida0/usos.tsv
+fuente_resultados: data/corrida0/resultados.tsv
+fuente_demanda_resultados: data/corrida0/demanda-resultados.tsv
+fuente_decisiones: data/corrida0/decisiones.tsv
+fuente_necesidad_modelo: data/curacion-registro/necesidad-objeto-modelo.tsv
+fuente_utilidad_modelo: data/curacion-registro/utilidad-modelo.tsv
 estado_dir: data/curacion-registro/investigacion-estado
 reservas_runtime_dir: forense/adq-log/estado/investigacion
 reserva_minutos: 75
 
 necesidades:
+  - id: NC-0165
+    version_pregunta: "2026-09-11-demanda-activa-preadopcion-v1"
+    consumidor: "alcance activo de data/corrida0/usos.tsv"
+    uso: "conciliacion-operativa; no adopta ni reactiva GEN1"
+    prioridad_consumidor: 40
+    bloqueo_material: 3
+    lista: false
+    estado_ruteo: DELEGADA_A_MOTOR_GEN2
+    asignacion: motor-gen2
+    modos: []
+    poblacion: "todos los elementos con activo=SI, con independencia de corrida0_generacion"
+    unidad: "elemento resultado_id × consumidor"
+    periodo: "corte reproducible de las siete fuentes declaradas"
+    variables: "contrato corriente, oferta, preparación, cálculo, validación, adopción, decisión y NC"
+    evidencia_disponible: "usos/resultados/demanda-resultados/decisiones, necesidad-modelo, utilidad-modelo y no-corrido"
+    brecha: "elementos activos sin resultado GEN2 adoptado ni vínculo anterior en la vista de demanda"
+    investigacion_previa: "GEN1 se conserva sólo como antecedente; las decisiones vigentes estructuradas prevalecen"
+    frontera_previa: "no iniciar búsqueda hasta verificar que el primer faltante es fuente/variable o acceso"
+    siguiente_accion: "motor-gen2: resolver decisión o preparación por RES; despachar automáticamente a SONDA sólo las brechas de datos verificadas"
+    opciones_decision:
+      - APROBAR_CONTRATO_GEN2_Y_PREPARAR
+      - SUSTITUIR_CON_RESULTADO_VIGENTE_EXPLICITO
+      - DECLARAR_HISTORICA_DESCARTADA_O_FUERA_DE_ALCANCE_CON_EVIDENCIA
+    etapa_faltante: PREPARACION
+    responsable: motor-gen2
+    contrato_operativo: COMPLETO_OPERATIVO_NO_CIENTIFICO
+    contrato_cientifico_completo: false
+    aplica_contrato_cientifico: false
+
   - id: NC-0122
     version_pregunta: "2026-09-10-producto-fintech-exacto-v1"
     consumidor: "R1.6 dinero.credito.scoring_alternativo"
@@ -15,6 +50,7 @@ necesidades:
     prioridad_consumidor: 20
     bloqueo_material: 3
     lista: true
+    estado_ruteo: ESPERA_NUEVA_PISTA
     proxima_revision: "2026-09-11"
     asignacion: servicio-gen2-38
     modos: [CONSTRUCTO, HERMANAS]
@@ -28,6 +64,11 @@ necesidades:
     investigacion_previa: "ENIF 2018/2021/2024 y cuatro sondeos regulatorios/locales; ver cierre GEN2-ADQ-VERIFICACION-CAJA"
     frontera_previa: "instrumentos de demanda de fintech/lenders, repositorios académicos y paquetes de replicación fuera del corpus"
     siguiente_accion: "buscar instrumento o dato de originación que enlace producto fintech exacto con canal; conservar ENIF sólo como proxy"
+    condicion_reapertura:
+      clase: FECHA_VENCIDA_O_EVIDENCIA_NUEVA_ESTRUCTURADA
+      fecha: "la proxima_revision del estado vigente; actualmente 2026-10-11"
+      evidencia: "necesidad_id y version_pregunta exactas, identificada=true y lista no vacía de evidencias"
+      exclusiones: "no reabrir por menciones históricas, ENIF ya revisada ni palabras sueltas de la nota"
 
   - id: NC-0126
     version_pregunta: "2026-09-09-horizonte-ahorro-descolapsado-v1"
@@ -36,10 +77,24 @@ necesidades:
       - "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto"
       - "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto"
       - "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto"
+    vinculos_consulta:
+      - consumidor: "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto"
+        resultado_bloqueado_id: "RESULT-ENIF-AHO-A-P-CORTO-SIN-P"
+        uso_requerido: "MEDICION-GEN2"
+      - consumidor: "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto"
+        resultado_bloqueado_id: "RESULT-ENIF-AHO-A-P-CORTO-CON-P"
+        uso_requerido: "MEDICION-GEN2"
+      - consumidor: "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto"
+        resultado_bloqueado_id: "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P"
+        uso_requerido: "MEDICION-GEN2"
+    evidencias_guardia:
+      - "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P"
+      - "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md"
     uso: descriptivo
     prioridad_consumidor: 30
     bloqueo_material: 2
     lista: true
+    estado_ruteo: LISTA_SONDA
     proxima_revision: "2026-09-11"
     asignacion: servicio-gen2-38
     modos: [CONSTRUCTO, HERMANAS]
@@ -53,6 +108,8 @@ necesidades:
     investigacion_previa: "descriptor y microdato ENIF revisados; límite estructural documentado en NC-0126"
     frontera_previa: "otras olas/módulos mexicanos, encuestas de capacidades financieras y replicaciones"
     siguiente_accion: "localizar reactivo mexicano que separe tenencia y horizonte; no recodificar a posteriori P4_10"
+    rutas_agotadas: "ENIF, EACF, ENSAFI y Findex 2025; no repetir las consultas ya registradas"
+    pistas_publicas_pendientes: "ENFIH y cuestionarios públicos subnacionales o ediciones/módulos mexicanos no indexados que separen tenencia de ahorro y duración"
 
   - id: NC-0153
     version_pregunta: "2026-09-10-evento-canal-nacional-v1"
@@ -61,6 +118,7 @@ necesidades:
     prioridad_consumidor: 10
     bloqueo_material: 3
     lista: true
+    estado_ruteo: ESPERA_ACCESO_HUMANO
     proxima_revision: "2026-10-10"
     asignacion: servicio-gen2-38
     modos: [LATERAL, HERMANAS]
@@ -74,6 +132,8 @@ necesidades:
     investigacion_previa: "sonda amplia 2026-09-10 y expediente técnico INEGI preparado 2026-09-11"
     frontera_previa: "respuesta/folio INEGI o nueva edición/vía concreta; no repetir búsqueda general diaria"
     siguiente_accion: "esperar folio o nueva vía concreta; mantener abierta sin extrapolar ENEAC"
+    reglas_motor: [tramite.mordida.discrecional, tramite.mordida.con_registro]
+    sucede_necesidades: [NC-0111]
 
   - id: NC-0164
     version_pregunta: "2026-09-11-producto-costo-dano-v1"
@@ -82,20 +142,25 @@ necesidades:
     prioridad_consumidor: 5
     bloqueo_material: 3
     lista: true
-    proxima_revision: "2026-09-12"
-    asignacion: acto/gen2-n34-datos-producto-dano
-    reserva_hasta: "2026-09-13"
+    estado_ruteo: ESPERA_NUEVA_PISTA
+    proxima_revision: "2026-10-11"
+    asignacion: servicio-gen2-38
     modos: [CONSTRUCTO, HERMANAS, LATERAL]
     poblacion: "consumidor/deudor en México"
     unidad: "persona/hogar deudor"
     periodo: "vigente y ventana identificada"
     variables: "producto/lender, costo/condición/fricción, desenlace y denominador"
-    evidencia_disponible: "ENSAFI describe atraso por clase amplia; IMOR y CONDUSEF no enlazan exposición individual con daño causal"
-    brecha: "producto exacto + costo/BNPL/fricción + daño; identificación causal adicional"
-    suficiencia_actual: {identidad: PARCIAL, conceptual: PARCIAL, poblacional: ACREDITADA, seleccion_no_respuesta: ACREDITADA, unidad: PARCIAL, temporalidad: ACREDITADA, diseno: ACREDITADA, identificacion: NO_ACREDITADA, uso_habilitado: APTA_ALCANCE_MENOR, pregunta_original: ABIERTA}
-    investigacion_previa: "#723 y entrega de tarea 36 publicada en PR #734 (abierto al corte)"
-    frontera_previa: "propiedad exclusiva de 36 mientras #734 siga abierto o su reserva esté vigente"
-    siguiente_accion: "consumir #734 después de su merge; no duplicar su búsqueda ni adoptar sus proxies como efecto causal"
+    evidencia_disponible: "#734 fusionado: Banxico enlaza cinco categorías de crédito con costo percibido y daño en 12,408 filas persona-ola mexicanas; SHED enlaza BNPL y daño en 12,934 personas de Estados Unidos; CFPB sólo aporta tabla agregada"
+    brecha: "falta producto/lender mexicano exacto con CAT/tasa/fricción objetiva y estrategia que identifique daño causal"
+    suficiencia_actual: {identidad: PARCIAL, conceptual: PARCIAL, poblacional: PARCIAL, seleccion_no_respuesta: ACREDITADA, unidad: ACREDITADA, temporalidad: ACREDITADA, diseno: ACREDITADA, identificacion: NO_ACREDITADA, uso_habilitado: APTA_ALCANCE_MENOR, pregunta_original: ABIERTA}
+    investigacion_previa: "#723 y #734 fusionado; Banxico/SHED/CFPB adquiridos y mapeados sin adoptar parámetro"
+    frontera_previa: "Making Ends Meet exige términos; panel Di Maggio-Williams-Katz sin réplica pública; reabrir ante fuente mexicana exacta o decisión de preespecificación"
+    siguiente_accion: "no repetir #734; en la próxima revisión buscar fuente mexicana con producto exacto, costo objetivo, daño, negativos y estrategia de identificación"
+    condicion_reapertura:
+      clase: FECHA_VENCIDA_O_EVIDENCIA_NUEVA_ESTRUCTURADA
+      fecha: "2026-10-11"
+      evidencia: "necesidad_id y version_pregunta exactas, identificada=true y lista no vacía de evidencias"
+      exclusiones: "no repetir #734 ni rutas condicionadas sin intervención humana"
 
   - id: NC-0136
     version_pregunta: "2026-09-10-indice-reactivos-ciego-v1"
@@ -104,20 +169,20 @@ necesidades:
     prioridad_consumidor: 15
     bloqueo_material: 3
     lista: false
-    proxima_revision: "2026-09-12"
-    asignacion: acto/gen2-reactivos-contexto-busqueda
-    reserva_hasta: "2026-09-13"
+    estado_ruteo: DELEGADA_A_FRENTE_DUENO
+    proxima_revision: "2026-10-11"
+    asignacion: servicio-gen2-38-observa
     modos: [HERMANAS]
     poblacion: "102 instrumentos con texto vacío en el índice"
     unidad: variable/reactivo
     periodo: "todas las olas indexadas"
     variables: "texto de reactivo, variable_id, instrumento, ola"
-    evidencia_disponible: "cobertura de contexto publicada por tarea 34 en PR #737, abierto al corte; aún no integrada en main"
-    brecha: "texto no indexado"
-    suficiencia_actual: {identidad: NO_APLICA, conceptual: NO_APLICA, poblacional: NO_APLICA, seleccion_no_respuesta: NO_APLICA, unidad: NO_APLICA, temporalidad: NO_APLICA, diseno: NO_APLICA, identificacion: NO_APLICA, uso_habilitado: INCOMPATIBLE, pregunta_original: ABIERTA}
-    investigacion_previa: "medición 102/116 en NC-0136 y correctivo publicado en PR #737"
-    frontera_previa: "propiedad exclusiva de 34"
-    siguiente_accion: "consumir #737 después de su merge"
+    evidencia_disponible: "#737 fusionado: overlay acreditado para 22,367/55,895 identidades del lote prioritario; 21/102 grupos históricamente ciegos ganaron texto"
+    brecha: "33,528 identidades del lote y 81 grupos históricamente ciegos aún no tienen cobertura textual"
+    suficiencia_actual: {identidad: PARCIAL, conceptual: PARCIAL, poblacional: NO_APLICA, seleccion_no_respuesta: NO_APLICA, unidad: PARCIAL, temporalidad: PARCIAL, diseno: NO_APLICA, identificacion: NO_APLICA, uso_habilitado: APTA_ALCANCE_MENOR, pregunta_original: ABIERTA}
+    investigacion_previa: "#737 fusionado; búsqueda contextual disponible con cobertura parcial y negativos expresamente acotados"
+    frontera_previa: "metadato nativo/documento oficial con identidad exacta para 81 grupos ciegos y 33,528 identidades residuales"
+    siguiente_accion: "continuar la materialización/indexación por el frente dueño; SONDA consume el overlay y no interpreta sus negativos como ausencia científica"
 
   - id: NC-0037
     version_pregunta: "2026-09-11-tandas-ledger-v1"
@@ -126,6 +191,7 @@ necesidades:
     prioridad_consumidor: 25
     bloqueo_material: 3
     lista: false
+    estado_ruteo: DELEGADA_Y_AGOTADA
     proxima_revision: "2026-10-11"
     asignacion: acto/gen2-tandas-medicion-academica
     reserva_hasta: "2026-09-13"

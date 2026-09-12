@@ -48,6 +48,13 @@ el doctor no reutiliza como si fuera actual el éxito de una corrida anterior.
 Una segunda instancia rechazada por el lock sólo escribe en `launcher.log` y no
 pisa el heartbeat del dueño.
 
+La acción registrada no abre una consola: un solo `powershell.exe` con
+`-NonInteractive -WindowStyle Hidden` invoca `wsl.exe` sin desprenderlo, espera
+su terminación y sale con su código real. `Interactive` describe la sesión y el
+principal de la tarea, no una ventana visible ni éxito al mero arranque. El
+timeout de Task Scheduler conserva así el árbol de procesos bajo la tarea; el
+runner mantiene además `flock`, `timeout --kill-after` y los logs locales.
+
 Si el selector determinista devuelve cero elegidos, el runner publica la
 selección, sus exclusiones y el recibo `invocado=no` sin llamar a ningún LLM.
 `publicacion_trabajo` (objetos/intentos del agente) y `publicacion` (recibo del
@@ -144,4 +151,8 @@ fijar un SHA publicado hasta que main lo incorpore.
 
 El calendario efectivo se consulta con `python3 tools/adq_doctor.py --json`
 en `configuracion_operativa`; `scheduler_windows` contrasta hora, máscara de
-días, argumentos atribuibles y `StartWhenAvailable` contra la tarea instalada.
+días, argumentos atribuibles, envoltura oculta, espera/propagación,
+`StartWhenAvailable` y ausencia de triggers temporales contra la tarea
+instalada. Zona, tarea y estado del canal Operational comparten una sola
+consulta PowerShell oculta por ejecución del doctor; para observar progreso se
+lee `forense/adq-log/estado/heartbeat.json`, sin sondear Windows repetidamente.

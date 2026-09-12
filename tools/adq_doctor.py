@@ -17,7 +17,9 @@ propios errores y los reporta como NO-VERIFICABLE, para que un doctor que
 se cuelga a la mitad no oculte los diagnósticos que sí alcanzó a hacer.
 """
 import argparse
+import base64
 import datetime
+import functools
 import json
 import os
 import re
@@ -84,6 +86,87 @@ def _corre(cmd, timeout=10, cwd=None):
         return 1, "", f"{type(e).__name__}: {e}"
 
 
+def _nombre_tarea_windows():
+    return os.environ.get(
+        "ADQ_TASK_SCHEDULER_NOMBRE", "\\ModeladoMexicano\\AdquiereCron")
+
+
+@functools.lru_cache(maxsize=4)
+def _snapshot_windows(nombre_tarea):
+    """Lee zona, tarea y canal Operational con un solo PowerShell oculto.
+
+    El doctor solía abrir tres procesos de consola Windows por recorrido
+    (tzutil + dos PowerShell). En una sesión interactiva de Windows/WSL eso
+    puede manifestarse como una ráfaga de ventanas. Esta huella se comparte
+    entre secciones; el progreso de la corrida sigue leyéndose del heartbeat
+    local y no vuelve a consultar Windows.
+    """
+    powershell = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"
+    if not os.path.exists(powershell):
+        return {"error": f"{powershell} no es legible desde este proceso"}
+    partes = nombre_tarea.strip("\\").split("\\")
+    task_name = partes[-1]
+    task_path = "\\" + "\\".join(partes[:-1]) + "\\" if len(partes) > 1 else "\\"
+    task_name_ps = task_name.replace("'", "''")
+    task_path_ps = task_path.replace("'", "''")
+    canal = "Microsoft-Windows-TaskScheduler/Operational"
+    script_ps = (
+        "$ErrorActionPreference='Stop'; "
+        f"$t=Get-ScheduledTask -TaskName '{task_name_ps}' -TaskPath '{task_path_ps}'; "
+        f"$i=Get-ScheduledTaskInfo -TaskName '{task_name_ps}' -TaskPath '{task_path_ps}'; "
+        f"$l=Get-WinEvent -ListLog '{canal}'; "
+        "$tr=@($t.Triggers|ForEach-Object{[pscustomobject]@{"
+        "Type=$_.CimClass.CimClassName;Id=$_.Id;Enabled=$_.Enabled;"
+        "StartBoundary=$_.StartBoundary;EndBoundary=$_.EndBoundary;"
+        "DaysOfWeek=[int]$_.DaysOfWeek;WeeksInterval=[int]$_.WeeksInterval}}); "
+        "[pscustomobject]@{"
+        "ZoneWindows=[TimeZoneInfo]::Local.Id;"
+        "EventLog=[pscustomobject]@{LogName=$l.LogName;IsEnabled=$l.IsEnabled;"
+        "RecordCount=$l.RecordCount;LastWriteTime=$l.LastWriteTime.ToString('o')};"
+        "Task=[pscustomobject]@{"
+        "State=$t.State.ToString();TaskName=$t.TaskName;TaskPath=$t.TaskPath;"
+        "UserId=$t.Principal.UserId;LogonType=$t.Principal.LogonType.ToString();"
+        "RunLevel=$t.Principal.RunLevel.ToString();"
+        "Execute=$t.Actions[0].Execute;Arguments=$t.Actions[0].Arguments;"
+        "Triggers=$tr;StartWhenAvailable=$t.Settings.StartWhenAvailable;"
+        "MultipleInstances=$t.Settings.MultipleInstances.ToString();"
+        "ExecutionTimeLimit=$t.Settings.ExecutionTimeLimit;"
+        "LastRunTime=$i.LastRunTime.ToString('o');LastTaskResult=$i.LastTaskResult;"
+        "NextRunTime=$i.NextRunTime.ToString('o')}} | ConvertTo-Json -Depth 6 -Compress"
+    )
+    codigo, out, err = _corre([
+        powershell, "-NoLogo", "-NoProfile", "-NonInteractive",
+        "-WindowStyle", "Hidden", "-Command", script_ps], timeout=25)
+    if codigo != 0:
+        return {"error": (err or out).strip()[:400]}
+    try:
+        return json.loads(out)
+    except json.JSONDecodeError:
+        return {"error": f"salida de PowerShell no fue JSON: {out.strip()[:200]}"}
+
+
+def _decodifica_accion_windows(execute, argumentos):
+    """Devuelve el comando efectivo sin ejecutarlo y atributos de seguridad."""
+    nombre = (execute or "").replace("\\", "/").rsplit("/", 1)[-1].lower()
+    argumentos = argumentos or ""
+    if nombre == "wsl.exe":
+        return f"wsl.exe {argumentos}", False, True
+    if nombre not in ("powershell.exe", "pwsh.exe"):
+        return argumentos, False, False
+    oculto = (re.search(r"(?i)(?:^|\s)-WindowStyle\s+Hidden(?:\s|$)", argumentos)
+              and re.search(r"(?i)(?:^|\s)-NonInteractive(?:\s|$)", argumentos))
+    m = re.search(r"(?i)(?:^|\s)-(?:EncodedCommand|enc)\s+([^\s]+)", argumentos)
+    if not m:
+        return argumentos, bool(oculto), False
+    try:
+        comando = base64.b64decode(m.group(1), validate=True).decode("utf-16-le")
+    except (ValueError, UnicodeDecodeError):
+        return "CODIGO-POWERShell-NO-DECODIFICABLE", bool(oculto), False
+    espera = ("& wsl.exe" in comando and "$LASTEXITCODE" in comando
+              and re.search(r"(?i)\bexit\b", comando) is not None)
+    return comando.strip(), bool(oculto), espera
+
+
 def check_entorno():
     """CAJA se prueba por WSL, ubicación y corpus; la variable Claude es auxiliar."""
     tipo = os.environ.get("CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE")
@@ -121,19 +204,14 @@ def check_zona_horaria():
     except Exception:
         ahora_mx = None
         zoneinfo_ok = False
-    # P2: el trigger de Windows Task Scheduler dispara en hora LOCAL del
-    # sistema, sin campo de zona horaria explícito como cron -- si el
-    # reloj de Windows no está en America/Mexico_City, la tarea de
-    # tools/windows/instala-tarea-adquisicion.ps1 dispara a una hora de
-    # mesa distinta de la que dice. `tzutil.exe /g` corre bajo /mnt/c
-    # (mismo límite de sandbox que schtasks.exe -- NO-VERIFICABLE, nunca
-    # un desajuste inventado, si no es legible desde este proceso).
-    tzutil = "/mnt/c/Windows/System32/tzutil.exe"
-    if os.path.exists(tzutil):
-        codigo, out, err = _corre([tzutil, "/g"], timeout=10)
-        tz_windows = out.strip() if codigo == 0 else f"NO-VERIFICABLE: {(err or out).strip()[:120]}"
+    # P2: Task Scheduler usa la hora LOCAL de Windows. La zona se consume de
+    # la misma instantánea oculta que tarea/eventos; no se abre además una
+    # consola tzutil.exe.
+    snapshot = _snapshot_windows(_nombre_tarea_windows())
+    if snapshot.get("error"):
+        tz_windows = f"NO-VERIFICABLE: {snapshot['error'][:120]}"
     else:
-        tz_windows = "NO-VERIFICABLE: tzutil.exe no es legible desde este proceso"
+        tz_windows = snapshot.get("ZoneWindows") or "NO-VERIFICABLE: zona ausente"
     return {
         "zona_iana_configurada": calendario["zona_iana"],
         "zona_windows_configurada": calendario["zona_windows"],
@@ -149,52 +227,39 @@ def check_zona_horaria():
 
 
 def check_scheduler_windows():
-    """Windows Task Scheduler (P2), consultado vía PowerShell bajo
-    /mnt/c. `Get-ScheduledTask*` en vez de `schtasks.exe /FO LIST`: los
-    nombres de propiedad de PowerShell son estables en cualquier locale,
-    las etiquetas de `schtasks.exe` NO -- medido en esta caja (Windows en
-    español): "Last Run Time" no existe, es "Último tiempo de ejecución",
-    y parsear por etiqueta habría dado "?" en todos los campos en
-    silencio. NO-VERIFICABLE si /mnt/c o powershell.exe no son legibles
-    desde este proceso (p.ej. dentro de un sandbox que deniega /mnt) --
-    nunca se asume "no instalado" por eso."""
-    nombre_tarea = os.environ.get("ADQ_TASK_SCHEDULER_NOMBRE", "\\ModeladoMexicano\\AdquiereCron")
-    partes = nombre_tarea.strip("\\").split("\\")
-    task_name = partes[-1]
-    task_path = "\\" + "\\".join(partes[:-1]) + "\\" if len(partes) > 1 else "\\"
-    powershell = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"
-    if not os.path.exists(powershell):
-        return {"estado": "NO-VERIFICABLE", "razon": f"{powershell} no es legible desde este proceso"}
-    script_ps = (
-        f"$ErrorActionPreference='Stop'; "
-        f"$t = Get-ScheduledTask -TaskName '{task_name}' -TaskPath '{task_path}'; "
-        f"$i = Get-ScheduledTaskInfo -TaskName '{task_name}' -TaskPath '{task_path}'; "
-        f"[pscustomobject]@{{"
-        f"State=$t.State.ToString(); TaskName=$t.TaskName; TaskPath=$t.TaskPath; "
-        f"UserId=$t.Principal.UserId; LogonType=$t.Principal.LogonType.ToString(); RunLevel=$t.Principal.RunLevel.ToString(); "
-        f"Execute=$t.Actions[0].Execute; Arguments=$t.Actions[0].Arguments; "
-        f"StartBoundary=$t.Triggers[0].StartBoundary; DaysOfWeek=[int]$t.Triggers[0].DaysOfWeek; "
-        f"TriggerEnabled=$t.Triggers[0].Enabled; StartWhenAvailable=$t.Settings.StartWhenAvailable; "
-        f"MultipleInstances=$t.Settings.MultipleInstances.ToString(); "
-        f"LastRunTime=$i.LastRunTime.ToString('o'); LastTaskResult=$i.LastTaskResult; "
-        f"NextRunTime=$i.NextRunTime.ToString('o')"
-        f"}} | ConvertTo-Json"
-    )
-    codigo, out, err = _corre([powershell, "-NoProfile", "-Command", script_ps], timeout=20)
-    if codigo != 0:
-        return {"estado": "NO-INSTALADO-O-NO-VERIFICABLE", "detalle": (err or out).strip()[:400],
-                "tarea_buscada": nombre_tarea}
-    try:
-        campos = json.loads(out)
-    except json.JSONDecodeError:
-        return {"estado": "NO-VERIFICABLE", "razon": f"salida de PowerShell no fue JSON: {out.strip()[:200]}"}
+    """Contrasta la tarea usando la instantánea Windows común y oculta."""
+    nombre_tarea = _nombre_tarea_windows()
+    snapshot = _snapshot_windows(nombre_tarea)
+    if snapshot.get("error"):
+        return {"estado": "NO-INSTALADO-O-NO-VERIFICABLE",
+                "detalle": snapshot["error"], "tarea_buscada": nombre_tarea}
+    campos = dict(snapshot.get("Task") or {})
+    triggers = campos.pop("Triggers", []) or []
+    semanal = next((t for t in triggers
+                    if t.get("Type") == "MSFT_TaskWeeklyTrigger"), {})
+    comando_efectivo, sin_ventana, espera_real = _decodifica_accion_windows(
+        campos.get("Execute"), campos.get("Arguments"))
+    campos.update({
+        "StartBoundary": semanal.get("StartBoundary"),
+        "DaysOfWeek": semanal.get("DaysOfWeek"),
+        "TriggerEnabled": semanal.get("Enabled"),
+    })
     calendario = _calendario_resuelto()
-    mascara_esperada = sum(2 << d for d in calendario["weekdays"])
-    argumentos = campos.get("Arguments") or ""
-    accion_esperada = ("ADQ_DISPARADOR=windows-task-scheduler" in argumentos
-                       and "/home/pc0/mm-adq/tools/adquiere_launcher.sh" in argumentos
-                       and "-d Ubuntu -u pc0" in argumentos)
+    # Task Scheduler usa Sunday=1, Monday=2, ..., Saturday=64, mientras
+    # ``datetime.weekday`` usa Monday=0, ..., Sunday=6.
+    mascara_esperada = sum(1 if d == 6 else 2 << d
+                           for d in calendario["weekdays"])
+    accion_esperada = ("ADQ_DISPARADOR=windows-task-scheduler" in comando_efectivo
+                       and "/home/pc0/mm-adq/tools/adquiere_launcher.sh" in comando_efectivo
+                       and "-d Ubuntu -u pc0" in comando_efectivo)
+    temporales = [t for t in triggers
+                  if t.get("Enabled") and t.get("Type") != "MSFT_TaskWeeklyTrigger"]
     return {"estado": "INSTALADA", "tarea": nombre_tarea, **campos,
+            "comando_efectivo": comando_efectivo,
+            "sin_ventana": sin_ventana,
+            "espera_y_propaga_resultado": espera_real,
+            "triggers_total": len(triggers),
+            "triggers_temporales_activos": temporales,
             "calendario_esperado": {
                 "hora": calendario["hora"], "dias_mascara": mascara_esperada,
                 "zona_iana": calendario["zona_iana"],
@@ -206,18 +271,12 @@ def check_scheduler_windows():
 
 
 def check_eventos_windows():
-    powershell = "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"
-    if not os.path.exists(powershell):
-        return {"estado": "NO-VERIFICABLE", "razon": "powershell.exe no legible"}
-    canal = "Microsoft-Windows-TaskScheduler/Operational"
-    script = (f"$l=Get-WinEvent -ListLog '{canal}'; "
-              "[pscustomobject]@{LogName=$l.LogName;IsEnabled=$l.IsEnabled;"
-              "RecordCount=$l.RecordCount;LastWriteTime=$l.LastWriteTime.ToString('o')}|ConvertTo-Json")
-    codigo, out, err = _corre([powershell, "-NoProfile", "-Command", script], timeout=20)
-    if codigo != 0:
-        return {"estado": "NO-VERIFICABLE", "razon": (err or out).strip()[:300]}
-    return {"estado": "HABILITADO" if json.loads(out)["IsEnabled"] else "DESHABILITADO",
-            **json.loads(out)}
+    snapshot = _snapshot_windows(_nombre_tarea_windows())
+    if snapshot.get("error"):
+        return {"estado": "NO-VERIFICABLE", "razon": snapshot["error"][:300]}
+    eventos = snapshot.get("EventLog") or {}
+    return {"estado": "HABILITADO" if eventos.get("IsEnabled") else "DESHABILITADO",
+            **eventos}
 
 
 def check_crontab_legado():
@@ -1013,7 +1072,9 @@ def valida_resultado_adquisicion(resultado, seleccion, seleccion_investigacion=N
             codigo, out, err = _corre(
                 ["git", "ls-remote", "--exit-code", "origin", ref["ref"]],
                 timeout=20, cwd=raiz)
-            pares = {linea.split()[0]: linea.split()[1]
+            # `git ls-remote` emite ``<sha>\t<ref>``. El índice se consulta
+            # por ref, de modo que la relación correcta es ref -> sha.
+            pares = {linea.split()[1]: linea.split()[0]
                      for linea in out.splitlines() if len(linea.split()) == 2}
             if codigo != 0 or pares.get(ref["ref"]) != ref["commit"]:
                 errores.append(f"publicación remota no comprobada: {ref['ref']}@{ref['commit']} ({(err or out).strip()[:160]})")

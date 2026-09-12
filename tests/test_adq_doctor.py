@@ -16,6 +16,7 @@ Corre sola:
     python3 tests/test_adq_doctor.py
 """
 import os
+import base64
 import json
 import subprocess
 import sys
@@ -113,35 +114,93 @@ def prueba_lock_tomado_por_otro_proceso():
 
 
 def prueba_scheduler_contrasta_calendario_y_disparador():
+    comando = (
+        "& wsl.exe -d Ubuntu -u pc0 -- env "
+        "ADQ_DISPARADOR=windows-task-scheduler "
+        "bash -lc /home/pc0/mm-adq/tools/adquiere_launcher.sh\n"
+        "exit [int]$LASTEXITCODE")
+    codificado = base64.b64encode(comando.encode("utf-16-le")).decode("ascii")
     campos = {
         "State": "Ready", "TaskName": "AdquiereCron",
         "TaskPath": "\\ModeladoMexicano\\", "UserId": "PC0",
-        "LogonType": "Interactive", "Execute": "wsl.exe",
-        "Arguments": ("-d Ubuntu -u pc0 -- env ADQ_DISPARADOR=windows-task-scheduler "
-                      "bash -lc /home/pc0/mm-adq/tools/adquiere_launcher.sh"),
-        "StartBoundary": "2026-09-07T07:30:00-06:00", "DaysOfWeek": 254,
-        "TriggerEnabled": True, "StartWhenAvailable": True,
+        "LogonType": "Interactive",
+        "Execute": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "Arguments": ("-NoLogo -NoProfile -NonInteractive -WindowStyle Hidden "
+                      f"-EncodedCommand {codificado}"),
+        # Sunday=1 + Monday..Saturday=2..64: los siete días son 127.
+        "Triggers": [{"Type": "MSFT_TaskWeeklyTrigger", "Enabled": True,
+                      "StartBoundary": "2026-09-07T07:30:00-06:00",
+                      "DaysOfWeek": 127}],
+        "StartWhenAvailable": True,
         "MultipleInstances": "IgnoreNew", "LastRunTime": "2026-09-10T09:05:41-06:00",
         "LastTaskResult": 0, "NextRunTime": "2026-09-11T07:30:00-06:00",
     }
+    snapshot = {"ZoneWindows": "Central Standard Time (Mexico)",
+                "EventLog": {"IsEnabled": True}, "Task": campos}
+    D._snapshot_windows.cache_clear()
     with unittest.mock.patch.object(D.os.path, "exists", lambda _: True), \
-         unittest.mock.patch.object(D, "_corre", lambda *a, **kw: (0, json.dumps(campos), "")):
+         unittest.mock.patch.object(D, "_corre", lambda *a, **kw: (0, json.dumps(snapshot), "")):
         r = D.check_scheduler_windows()
+    D._snapshot_windows.cache_clear()
     afirma(r["dias_coinciden"] is True and r["hora_coincide"] is True,
            f"doctor debe contrastar hora y días de la config común, dio {r}")
     afirma(r["disparador_atribuible"] is True and r["StartWhenAvailable"] is True,
            f"doctor debe exigir acción atribuible y recuperación configurada, dio {r}")
+    afirma(r["sin_ventana"] is True and r["espera_y_propaga_resultado"] is True,
+           f"doctor debe acreditar envoltura oculta y espera del proceso real, dio {r}")
+    afirma(r["triggers_temporales_activos"] == [],
+           f"doctor no debe inventar triggers temporales, dio {r}")
 
 
 def prueba_scheduler_detecta_calendario_divergente():
-    campos = {"State": "Ready", "Arguments": "bash -lc /x",
-              "StartBoundary": "2026-09-07T08:00:00-06:00", "DaysOfWeek": 64}
+    campos = {"State": "Ready", "Execute": "wsl.exe", "Arguments": "bash -lc /x",
+              "Triggers": [
+                  {"Type": "MSFT_TaskWeeklyTrigger", "Enabled": True,
+                   "StartBoundary": "2026-09-07T08:00:00-06:00", "DaysOfWeek": 64},
+                  {"Type": "MSFT_TaskTimeTrigger", "Enabled": True,
+                   "StartBoundary": "2026-09-11T20:00:00-06:00", "DaysOfWeek": 0}]}
+    snapshot = {"ZoneWindows": "Central Standard Time (Mexico)",
+                "EventLog": {"IsEnabled": True}, "Task": campos}
+    D._snapshot_windows.cache_clear()
     with unittest.mock.patch.object(D.os.path, "exists", lambda _: True), \
-         unittest.mock.patch.object(D, "_corre", lambda *a, **kw: (0, json.dumps(campos), "")):
+         unittest.mock.patch.object(D, "_corre", lambda *a, **kw: (0, json.dumps(snapshot), "")):
         r = D.check_scheduler_windows()
+    D._snapshot_windows.cache_clear()
     afirma(not r["dias_coinciden"] and not r["hora_coincide"]
            and not r["disparador_atribuible"],
            f"tarea divergente debe quedar explícita, dio {r}")
+    afirma(len(r["triggers_temporales_activos"]) == 1 and not r["sin_ventana"],
+           f"doctor debe hacer visible trigger temporal y acción con ventana, dio {r}")
+
+
+def prueba_snapshot_windows_unico_para_tres_secciones():
+    comando = "& wsl.exe -d Ubuntu -u pc0 -- env ADQ_DISPARADOR=windows-task-scheduler bash -lc /home/pc0/mm-adq/tools/adquiere_launcher.sh; exit $LASTEXITCODE"
+    enc = base64.b64encode(comando.encode("utf-16-le")).decode("ascii")
+    snapshot = {
+        "ZoneWindows": "Central Standard Time (Mexico)",
+        "EventLog": {"LogName": "Operational", "IsEnabled": True},
+        "Task": {"Execute": "powershell.exe",
+                 "Arguments": f"-NonInteractive -WindowStyle Hidden -EncodedCommand {enc}",
+                 "Triggers": [{"Type": "MSFT_TaskWeeklyTrigger", "Enabled": True,
+                               "StartBoundary": "2026-09-07T07:30:00-06:00",
+                               "DaysOfWeek": 127}]}}
+    llamadas = []
+    def corre(*a, **kw):
+        llamadas.append(a)
+        return 0, json.dumps(snapshot), ""
+    D._snapshot_windows.cache_clear()
+    with unittest.mock.patch.object(D.os.path, "exists", lambda _: True), \
+         unittest.mock.patch.object(D, "_corre", corre):
+        D.check_zona_horaria()
+        D.check_scheduler_windows()
+        D.check_eventos_windows()
+    D._snapshot_windows.cache_clear()
+    afirma(len(llamadas) == 1,
+           f"zona/tarea/eventos deben compartir un solo PowerShell, hubo {len(llamadas)}")
+    if llamadas:
+        cmd = llamadas[0][0]
+        afirma("-NonInteractive" in cmd and "-WindowStyle" in cmd and "Hidden" in cmd,
+               f"PowerShell diagnóstico debe ser oculto/no interactivo, dio {cmd}")
 
 
 def main():
@@ -153,12 +212,13 @@ def main():
     prueba_lock_tomado_por_otro_proceso()
     prueba_scheduler_contrasta_calendario_y_disparador()
     prueba_scheduler_detecta_calendario_divergente()
+    prueba_snapshot_windows_unico_para_tres_secciones()
     if FAILS:
         print(f"FALLÓ ({len(FAILS)}):")
         for m in FAILS:
             print(f"  · {m}")
         return 1
-    print("OK -- test_adq_doctor.py: 8 pruebas, 0 fallos")
+    print("OK -- test_adq_doctor.py: 9 pruebas, 0 fallos")
     return 0
 
 
