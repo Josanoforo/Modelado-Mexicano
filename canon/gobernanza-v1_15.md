@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **481 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **482 ADR**
 
 > | | |
 > |---|---|
@@ -7,6 +7,8 @@
 > | **REEMPLAZA A** | `gobernanza-v1.14.md` — **borrar** |
 > | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** · detalle ADR-44 a ADR-58 (más ADR-62) en **§0.1**, abajo — el último es **ADR-65** (§4; ADR-59/60/61/63/64/65 no están detallados en §0.1, solo en §4) |
 > | **NOMBRE ESTABLE** | **`gobernanza`** — cítalo así, **nunca por nombre de archivo** |
+
+**ADR-482 · `ACTO GEN2-IMOR-CONTEXTO-TEMPORAL-POR-REGIMEN · LA RUPTURA DEFINE LA COMPARACIÓN`**, 11/sep/2026, entorno **NUBE/WSL2 con repo y agregados; cero red científica, microdatos o llamadas a modelos** (`forense/encargos/2026-09-11-GEN2-IMOR-CONTEXTO-TEMPORAL-POR-REGIMEN.md`; cierre en `forense/notas/2026-09-11-GEN2-IMOR-CONTEXTO-TEMPORAL-POR-REGIMEN-cierre.md`; PR #725). Consume el CSV Banxico publicado por #723 sin reescribirlo y separa `PRE_IFRS9_CARTERA_VENCIDA` (2016-01..2021-12) de `IFRS9_ETAPA_3` (2022-01..2026-03): nunca calcula ni dibuja como cambio el salto 2021-12→2022-01. `CALC-IMOR-CONTEXTO-0001`, congelado antes del run, verifica 615 niveles, 605 cambios mensuales y 495 interanuales; resume media/mediana/extremos y desviación temporal poblacional por cinco productos×dos regímenes, con control independiente Decimal coincidente. Publica tres CSV y dos SVG byte-estables más ficha y lectura. Personales conserva el mayor nivel medio y dispersión de nivel en ambos regímenes; desde IFRS9 promedia 4.720% (0.412 pp), seguido por Tarjetas 3.121% (0.333 pp). El uso para `R1.6` es `DESCRIPTIVO-NO-CALIBRA`: porcentaje agregado de saldos, no probabilidad individual, CAT, causalidad o validación predictiva. Banxico no se renombra R16; la foto CNBV 2021-12 queda separada. `NC-0163` permanece cerrada, N34 no cierra y R1.6 no se adopta. **CONTADOR: cero; derivación contextual de una serie ya publicada, rotulada `NO-DERIVACION-CONTEXTUAL`.** → **Propuesto; mesa fusiona.**
 
 ### 0.1 Detalle de verificación (ADR-44 a ADR-58, más ADR-62 — ADR-59/60/61/63/64/65 no detallados aquí, ver §4)
 

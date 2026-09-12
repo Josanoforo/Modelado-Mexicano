@@ -2,7 +2,7 @@
 
 - **SHA de redacción:** `a6d731db26a90b5b81eb6c5415c01e26c179aef9` (`origin/main` al lanzamiento).
 - **Entorno asignado:** NUBE.
-- **Estado:** VIVO.
+- **Estado:** CONSUMIDO.
 
 ## VERIFICACIÓN DE EXISTENCIA
 
@@ -96,3 +96,25 @@ Entrega script, tablas, gráficos, ficha contextual, nota y PR. NC-0163 permanec
 ## Dependencias y convivencia
 
 Requiere #723 fusionado. Compatible con 27, 29 y 30. Lee las tablas de #723 sin reescribirlas; usa una carpeta de salida propia. No modifica cron, motor, microdatos ENSAFI ni diseño F5.
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+- `NC-0163` permanece cerrada por la alternativa oficial de #723; no se
+  reabre por no disponer de la historia R16 exacta.
+- N34 permanece sin cierre y R1.6 sin adopción: este análisis es contexto
+  agregado de saldos, no calibración individual.
+- El merge de la PR pertenece a mesa.
+
+## CONSUMIDO
+
+PR #725. Encargo ejecutado en
+`acto/gen2-imor-contexto-temporal-por-regimen`. La spec quedó congelada en
+`ae5153ab1e6bf8d6a8715f572d918f67734f9041` antes del primer cálculo;
+`CALC-IMOR-CONTEXTO-0001` quedó sellado y reproduce 11/11 RESULT con contexto
+idéntico. Se publican tres tablas, dos SVG, ficha contextual, lectura de
+resultados y control independiente coincidente. No se modificaron el CSV de
+#723, R16, cron, motor, ENSAFI ni F5. PR revisable:
+https://github.com/Josanoforo/Modelado-Mexicano/pull/725. No fusionada por el
+ejecutor.
