@@ -1,4 +1,4 @@
-# Consulta operativa GEN2
+# Guía de consulta operativa GEN2
 
 `tools/consulta_gen2.py` consulta una salida del emisor GEN2 por su identidad
 exacta. No genera un snapshot, no modifica capturas y no usa el número

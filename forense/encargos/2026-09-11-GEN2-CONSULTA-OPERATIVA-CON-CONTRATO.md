@@ -40,7 +40,7 @@ Inspecciona sólo:
 - Usos/resultados y dominios adoptados.
 - Snapshot GEN2 v1.1 o sucesor vigente.
 
-Si ya existe un comando que cumple el objetivo, amplíalo. Si no, añade un wrapper pequeño —nombre sugerido `tools/consulta_gen2.py`— sobre la interfaz vigente. No sustituir el motor E0 histórico ni convertir una herramienta de replay histórico en la ruta GEN2.
+Si ya existe un comando que cumple el objetivo, amplíalo. Si no, añade un wrapper pequeño —nombre sugerido `tools/consulta_gen2.py`— sobre la interfaz vigente. No sustituir el motor ADV1-E0 histórico ni convertir una herramienta de replay histórico en la ruta GEN2.
 
 ## Fase 2 · Implementar la consulta real
 

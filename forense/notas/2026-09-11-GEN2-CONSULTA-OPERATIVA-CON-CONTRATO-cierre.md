@@ -56,6 +56,8 @@ existente salvo `--sobrescribir` explícito; ningún camino escribe snapshots.
 - `python3 tools/consulta_gen2.py --lote .../peticiones.json --verifica .../respuestas.json`:
   `OK`.
 - `git diff --check`: limpio.
+- `python3 tests/check.py`: ningún fallo introducido; permanecen tres `FAIL`
+  heredados (`T06` ×2 y `T08` ×1), fuera del perímetro de esta consulta.
 
 El snapshot v1.0 conserva SHA-256
 `05350667baa245c79c3ed487aeb1403d74b4612fcae69e16845b8d42f1a5eaa8`; el
