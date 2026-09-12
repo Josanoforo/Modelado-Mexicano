@@ -2,7 +2,7 @@
 
 Fecha: 11/sep/2026
 Entorno: NUBE, Codex CLI
-PR: por abrir
+PR: #729
 ADR: ADR-482
 
 ## Resultado
