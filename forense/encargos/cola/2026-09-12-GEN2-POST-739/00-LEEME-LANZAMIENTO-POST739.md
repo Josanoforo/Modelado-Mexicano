@@ -28,7 +28,7 @@ Evidencia: [`tools/adq_investigacion.py`](https://github.com/Josanoforo/Modelado
 
 | Prioridad | Archivo | Producto exigido | Dependencia |
 |---|---|---|---|
-| Principal | `40-GEN2-DEMANDA-CONCILIADA-Y-EJECUCION-NC0165.md` | Contratos y etapas conciliados, decisiones existentes reconocidas, ofertas enlazadas y lote disponible llevado a consumo/ejecución real. | Parte de main con #739. No espera a 39. |
+| Principal | `forense/encargos/2026-09-12-GEN2-DEMANDA-CONCILIADA-Y-EJECUCION-NC0165.md` (despachado; copia de cola retirada) | Contratos y etapas conciliados, decisiones existentes reconocidas, ofertas enlazadas y lote disponible llevado a consumo/ejecución real. | Parte de main con #739. No espera a 39. |
 | En paralelo | `39-GEN2-REACTIVOS-PENDIENTES-Y-BUSQUEDA-UTIL.md` | Texto documental residual recuperado, índice/buscador operativo y búsquedas antes/después sobre documentos reales. | Continúa #737, actualizado a #739 fusionado. No espera a 40. |
 
 Si sólo hay una sesión libre, lanza 40 primero. Si hay dos, lanza ambos. Cada archivo incluye su prompt de lanzamiento y puede entregarse por separado. La autoridad se activa al despacharlo.
