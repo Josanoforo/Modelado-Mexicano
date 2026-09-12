@@ -1,6 +1,6 @@
 # Cierre · GEN2-REACTIVOS-CON-TEXTO-Y-BUSQUEDA
 
-Fecha: 11/sep/2026. Entorno: **CAJA Ubuntu/WSL2**. Worktree: `/home/pc0/mm-gen2-reactivos-contexto-busqueda`; rama: `acto/gen2-reactivos-contexto-busqueda`. Arranque efectivo: `origin/main=9472223f6b463c31b6c9f3129bd26e95bf992b00`; sincronización antes del cierre: `origin/main=7a59c0eb84923e50dcb1a373a9c7d6fd34a34f04`. El corpus compartido quedó montado y `numpy`, `pandas`, `pyreadstat`, `dbfread`, `openpyxl`, `pyreadr` y `xlrd` estuvieron disponibles.
+Fecha: 11/sep/2026. PR: **#737**. Entorno: **CAJA Ubuntu/WSL2**. Worktree: `/home/pc0/mm-gen2-reactivos-contexto-busqueda`; rama: `acto/gen2-reactivos-contexto-busqueda`. Arranque efectivo: `origin/main=9472223f6b463c31b6c9f3129bd26e95bf992b00`; sincronización antes del cierre: `origin/main=7a59c0eb84923e50dcb1a373a9c7d6fd34a34f04`. El corpus compartido quedó montado y `numpy`, `pandas`, `pyreadstat`, `dbfread`, `openpyxl`, `pyreadr` y `xlrd` estuvieron disponibles.
 
 ## Resultado
 

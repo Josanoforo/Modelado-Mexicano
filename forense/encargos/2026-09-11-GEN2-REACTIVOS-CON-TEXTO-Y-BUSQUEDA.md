@@ -2,7 +2,7 @@
 
 SHA de redacción: `e37367581d5186ce4d4cf497377c83ebcd61cf93` (corte declarado en el encargo; ejecución iniciada desde `origin/main=9472223f6b463c31b6c9f3129bd26e95bf992b00`).
 Entorno asignado: **CAJA Windows/WSL2**, con corpus compartido montado.
-Estado: **CONSUMIDO** (PR pendiente al archivar; la fusión queda con Jonás).
+Estado: **CONSUMIDO** por PR #737 (la fusión queda con Jonás).
 
 ## VERIFICACIÓN DE EXISTENCIA
 
