@@ -1,0 +1,174 @@
+{
+ "corrida_id": "CALC-SHED2025-BNPL-DANO-0001--6c160f8586f8",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_firma": "Encargo 43 GEN2-SHED-BNPL-DANO-UNIVERSOS, 11/sep/2026: autoriza explícitamente abrir y congelar la spec de CALC-SHED2025-BNPL-DANO-0001, calcular cinco salidas reales y entregar CALC/RESULT. Cuenta un CALC científico, no cinco muestras ni la descarga documental; el merge de mesa perfecciona la firma.",
+  "demanda_que_releva": "Extiende la cobertura SHED de #734 con cinco estimandos descriptivos. La evidencia permanece estadounidense y NC-0164 conserva el residual mexicano, contractual y causal.",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": false,
+  "tipo": "MEDICION-DESCRIPTIVA-ENCUESTA-TRANSVERSAL",
+  "uso_motor": "DESCRIPTIVO-NO-CALIBRA-NI-ADOPTA",
+  "validacion_independiente": "VERIFICACION-DIRIGIDA-POST-SELLO"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-12T05:34:24Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 410,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "6c160f8586f867590dac57597bff0256400aee9e",
+  "git_rama": "acto/gen2-shed-bnpl-dano-universos",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "6c160f8586f867590dac57597bff0256400aee9e",
+ "input_ids": [
+  "gen2_federal_reserve_shed_2025_public_csv",
+  "gen2_federal_reserve_shed_2025_codebook",
+  "gen2_federal_reserve_shed_2025_appendix_a_questionnaire"
+ ],
+ "input_sha256": {
+  "gen2_federal_reserve_shed_2025_appendix_a_questionnaire": "219658415e2aee6abf6f480be83e4faeb54d2c439f447cb61662514db1982864",
+  "gen2_federal_reserve_shed_2025_codebook": "3094d147be4fe60214b1c2550537d1b9d931559d3f804be7976b24e43e27311e",
+  "gen2_federal_reserve_shed_2025_public_csv": "a4ab3f7d042f16d63626b1af9aeb6f0b8a0b39e412fa94b87265bc67fe26de14"
+ },
+ "parametros": {
+  "adopcion": "NINGUNA",
+  "columnas_esperadas": 815,
+  "filas_esperadas": 12934,
+  "miembro_csv": "public2025.csv",
+  "pais": "Estados Unidos",
+  "periodo": 2025,
+  "precision": "NO-CALCULADA-SIN-DISENO-COMPLETO-ACREDITADO",
+  "residual": "NC-0164-ABIERTO"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-CELDA-AF-NO-ATR-NO-MASA",
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-CELDA-AF-NO-ATR-NO-N",
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-CELDA-AF-NO-ATR-YES-MASA",
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-CELDA-AF-NO-ATR-YES-N",
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-CELDA-AF-YES-ATR-NO-MASA",
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-CELDA-AF-YES-ATR-NO-N",
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-CELDA-AF-YES-ATR-YES-MASA",
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-CELDA-AF-YES-ATR-YES-N",
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-DEFINICION",
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-DIF-YES-MENOS-NO",
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-FALTANTES",
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-MASA-ELEGIBLE",
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-MASA-VALIDA",
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-N-ELEGIBLE",
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-N-VALIDO",
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-P-ATRASO-AF-NO",
+  "RESULT-SHED-BNPL-ASEQ-ATRASO-P-ATRASO-AF-YES",
+  "RESULT-SHED-BNPL-ATRASO-DEFINICION",
+  "RESULT-SHED-BNPL-ATRASO-FALTANTES",
+  "RESULT-SHED-BNPL-ATRASO-MASA-ELEGIBLE",
+  "RESULT-SHED-BNPL-ATRASO-MASA-POSITIVOS",
+  "RESULT-SHED-BNPL-ATRASO-MASA-VALIDA",
+  "RESULT-SHED-BNPL-ATRASO-N-ELEGIBLE",
+  "RESULT-SHED-BNPL-ATRASO-N-POSITIVOS",
+  "RESULT-SHED-BNPL-ATRASO-N-VALIDO",
+  "RESULT-SHED-BNPL-ATRASO-PUNTO",
+  "RESULT-SHED-BNPL-CARGO-DEFINICION",
+  "RESULT-SHED-BNPL-CARGO-FALTANTES",
+  "RESULT-SHED-BNPL-CARGO-MASA-ELEGIBLE",
+  "RESULT-SHED-BNPL-CARGO-MASA-POSITIVOS",
+  "RESULT-SHED-BNPL-CARGO-MASA-VALIDA",
+  "RESULT-SHED-BNPL-CARGO-N-ELEGIBLE",
+  "RESULT-SHED-BNPL-CARGO-N-POSITIVOS",
+  "RESULT-SHED-BNPL-CARGO-N-VALIDO",
+  "RESULT-SHED-BNPL-CARGO-PUNTO",
+  "RESULT-SHED-BNPL-CARGO-RUTA-RECHAZO-MASA-VALIDA",
+  "RESULT-SHED-BNPL-CARGO-RUTA-RECHAZO-N-ELEGIBLE",
+  "RESULT-SHED-BNPL-CARGO-RUTA-RECHAZO-N-POSITIVOS",
+  "RESULT-SHED-BNPL-CARGO-RUTA-RECHAZO-N-VALIDO",
+  "RESULT-SHED-BNPL-G-CODIFICACION",
+  "RESULT-SHED-BNPL-G-MASA-WEIGHT",
+  "RESULT-SHED-BNPL-G-MASA-WEIGHT-POP",
+  "RESULT-SHED-BNPL-G-N-COLUMNAS",
+  "RESULT-SHED-BNPL-G-N-FILAS",
+  "RESULT-SHED-BNPL-G-PESO-INVALIDO-N",
+  "RESULT-SHED-BNPL-G-PONDERADOR",
+  "RESULT-SHED-BNPL-G-PRECISION",
+  "RESULT-SHED-BNPL-G-SHEDID-UNICO",
+  "RESULT-SHED-BNPL-SOBREGIRO-DEFINICION",
+  "RESULT-SHED-BNPL-SOBREGIRO-FALTANTES",
+  "RESULT-SHED-BNPL-SOBREGIRO-MASA-ELEGIBLE",
+  "RESULT-SHED-BNPL-SOBREGIRO-MASA-POSITIVOS",
+  "RESULT-SHED-BNPL-SOBREGIRO-MASA-VALIDA",
+  "RESULT-SHED-BNPL-SOBREGIRO-N-ELEGIBLE",
+  "RESULT-SHED-BNPL-SOBREGIRO-N-POSITIVOS",
+  "RESULT-SHED-BNPL-SOBREGIRO-N-VALIDO",
+  "RESULT-SHED-BNPL-SOBREGIRO-PUNTO",
+  "RESULT-SHED-BNPL-USO-DEFINICION",
+  "RESULT-SHED-BNPL-USO-FALTANTES",
+  "RESULT-SHED-BNPL-USO-MASA-ELEGIBLE",
+  "RESULT-SHED-BNPL-USO-MASA-POSITIVOS",
+  "RESULT-SHED-BNPL-USO-MASA-VALIDA",
+  "RESULT-SHED-BNPL-USO-N-ELEGIBLE",
+  "RESULT-SHED-BNPL-USO-N-POSITIVOS",
+  "RESULT-SHED-BNPL-USO-N-VALIDO",
+  "RESULT-SHED-BNPL-USO-PUNTO"
+ ],
+ "script_blob_sha256": "254f04cfbbbc2f8facc3071ff792773ee7cbc238927b5a30588cc8432c15070f",
+ "script_path": "data/corrida0/CALC-SHED2025-BNPL-DANO-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "rng": "NO-APLICA",
+  "valor": null
+ },
+ "spec_id": "CALC-SHED2025-BNPL-DANO-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "8fd3e104b7442f4fe74ad83b64d56ee51b7ff2b8f9f60b0fa1b8ef80f9cb0b96",
+ "spec_yaml_sha256": "70fc2ffce638de4869ded041e9272639c852c1da4236ada4d86066a819dfa216",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "sumas deterministas redondeadas a 12 decimales; enteros y textos exactos",
+  "tipo": "flotante"
+ }
+}
