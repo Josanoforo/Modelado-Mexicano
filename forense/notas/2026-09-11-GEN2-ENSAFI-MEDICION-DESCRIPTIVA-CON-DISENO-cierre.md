@@ -7,6 +7,10 @@ corpus local montado y sin llamadas a modelos. Worktree:
 `origin/main=a6d731db26a90b5b81eb6c5415c01e26c179aef9`, con #723 ya fusionado,
 y árbol inicial limpio.
 
+Publicación: **[PR #730](https://github.com/Josanoforo/Modelado-Mexicano/pull/730)**;
+HEAD al abrir `4acdbb5a3cfce138743627086e7547755c1f401a`. La fusión corresponde a
+Jonás.
+
 Antes de la validación final se integró sin conflicto
 `origin/main=e37367581d5186ce4d4cf497377c83ebcd61cf93`; su único cambio frente al
 corte inicial fue el snapshot concurrente del censo, que se conservó.

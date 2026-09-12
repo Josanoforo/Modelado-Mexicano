@@ -91,7 +91,9 @@ Requiere #723 fusionado. Puede correr junto con 28, 29 y 30. Escribe su CALC y e
 
 ## CONSUMIDO
 
-Ejecutado en la rama `acto/gen2-ensafi-medicion-descriptiva-con-diseno`.
+Ejecutado por **[PR #730](https://github.com/Josanoforo/Modelado-Mexicano/pull/730)**,
+rama `acto/gen2-ensafi-medicion-descriptiva-con-diseno`, HEAD al abrir
+`4acdbb5a3cfce138743627086e7547755c1f401a`.
 Entrega `CALC-ENSAFI-DISENO-0001`, su spec congelada, 226 RESULT para los 13
 estimandos autorizados, tabla legible, fichas de consumo, control independiente,
 replay `REPRODUCE/IDENTICO` y cierre canónico. Los puntos coinciden con #723 y
