@@ -169,8 +169,45 @@ class MotorGen2Explicito(unittest.TestCase):
             RAIZ / "forense" / "prereg-duelo-v2" /
             "snapshot-M-gen2-explicito-v1_1.json"
         ).read_text(encoding="utf-8"))
+        actual_serializado = json.loads(json.dumps(
+            actual, ensure_ascii=False))
+
+        # El snapshot v1.1 es historia sellada. El overlay de validación es una
+        # vista viva y debe cambiar sin obligar a reescribir ese snapshot: se
+        # permiten únicamente su estado por RESULT y los hashes de la vista
+        # resultados.tsv que lo transporta. Todo lo demás sigue comparando
+        # byte a byte después de neutralizar esas diferencias declaradas.
         self.assertEqual(
-            json.loads(json.dumps(actual, ensure_ascii=False)), esperado)
+            [x["resultado_id"] for x in actual_serializado[
+                "salidas_gen2_directas"]],
+            [x["resultado_id"] for x in esperado[
+                "salidas_gen2_directas"]])
+        self.assertTrue(all(
+            x["validacion_independiente"] == "PASA"
+            for x in actual_serializado["salidas_gen2_directas"]))
+        self.assertTrue(all(
+            x["validacion_independiente"] == "NO-HECHA"
+            for x in esperado["salidas_gen2_directas"]))
+        ruta_resultados = "data/corrida0/resultados.tsv"
+        archivos_actual = actual_serializado["contrato_consumido"]["archivos"]
+        archivos_esperado = esperado["contrato_consumido"]["archivos"]
+        self.assertNotEqual(
+            archivos_actual[ruta_resultados],
+            archivos_esperado[ruta_resultados])
+        self.assertEqual(
+            {k: v for k, v in archivos_actual.items()
+             if k != ruta_resultados},
+            {k: v for k, v in archivos_esperado.items()
+             if k != ruta_resultados})
+        for actual_directa, esperada_directa in zip(
+                actual_serializado["salidas_gen2_directas"],
+                esperado["salidas_gen2_directas"], strict=True):
+            actual_directa["validacion_independiente"] = (
+                esperada_directa["validacion_independiente"])
+        actual_serializado["contrato_consumido"] = (
+            esperado["contrato_consumido"])
+        self.assertEqual(
+            actual_serializado, esperado)
         self.assertEqual(
             actual["cobertura"]["antes"]["registro_activo_total"],
             len(self.indice.usos))

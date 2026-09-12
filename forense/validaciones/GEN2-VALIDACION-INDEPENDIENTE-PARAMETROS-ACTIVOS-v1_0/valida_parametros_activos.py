@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Valida desde microdatos los 16 RESULT GEN2 directos activos.
 
-La implementación sigue PROTOCOLO.md. No importa ni lee los medidores
+La implementación sigue protocolo-parametros-activos.md. No importa ni lee los medidores
 productores para calcular. Los resultados congelados se abren solamente tras
 autocontroles, verificación de identidad y medición completa del corpus.
 """
@@ -611,7 +611,7 @@ def main(argv=None) -> int:
     evidence = {
         "acto": "GEN2-VALIDACION-INDEPENDIENTE-PARAMETROS-ACTIVOS",
         "fecha": "2026-09-11",
-        "protocolo": "forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-PARAMETROS-ACTIVOS-v1_0/PROTOCOLO.md",
+        "protocolo": "forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-PARAMETROS-ACTIVOS-v1_0/protocolo-parametros-activos.md",
         "independencia": {
             "implementacion": "SI",
             "cegamiento_a_cifras": "NO",
@@ -636,8 +636,9 @@ def main(argv=None) -> int:
     }
     rendered = json.dumps(evidence, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
     if args.write:
-        (HERE / "evidencia.json").write_text(rendered, encoding="utf-8")
-        write_tsv(HERE / "resumen.tsv", comparisons)
+        (HERE / "evidencia-parametros-activos.json").write_text(
+            rendered, encoding="utf-8")
+        write_tsv(HERE / "resumen-parametros-activos.tsv", comparisons)
     else:
         print(rendered, end="")
     return 0 if comparison_summary["por_veredicto"] == {"PASA": 16} else 1
