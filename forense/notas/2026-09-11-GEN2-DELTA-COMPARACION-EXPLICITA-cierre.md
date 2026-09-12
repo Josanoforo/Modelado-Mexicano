@@ -90,6 +90,5 @@ rellenan ni reinterpretan.
 
 No cambian `milpa/`, adopciones, tiers, specs, resultados, sellos, vistas,
 contadores, cron, F6 ni firmas. El contador científico es cero: se comparó
-evidencia existente. ADR candidato 484; PR #731 declaró en paralelo el mismo
-candidato, de modo que quien fusione segundo deberá renumerar ADR y sus tres
-anclas administrativas.
+evidencia existente. ADR-485, renumerado desde el candidato 484 al integrar
+PR #731, que ocupó ADR-484 antes.
