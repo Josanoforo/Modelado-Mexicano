@@ -73,8 +73,9 @@ atómica. La guía terminal documenta ambos modos y los códigos de salida.
 - `python3 -m unittest tests/test_delta_comparacion.py`: 11/11 OK.
 - `python3 tests/test_corrida0.py`: 91/91 OK.
 - `python3 -m py_compile tools/delta_comparacion.py tools/corrida0.py`: OK.
-- `python3 tests/check.py --baseline`: se asienta al cierre.
-- `git diff --check`: se asienta al cierre.
+- `python3 tests/check.py --baseline`: LÍNEA BASE VERDE; 3 FAIL y 3114 WARN
+  heredados, cero novedad frente a `tests/baseline.json`.
+- `git diff --check`: OK.
 
 Las pruebas dirigidas incluyen #647, comparación temporal, ruptura, base
 cero, faltante, resultado ausente sin fallback, TSV ambiguo, hash discordante,
