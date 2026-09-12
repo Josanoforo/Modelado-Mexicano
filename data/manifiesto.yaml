@@ -29966,3 +29966,18 @@
   licencia: no declarada en el documento; uso como referencia bibliográfica
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: Presentación EEA-ESEM, creada 18/ago/2026, 60 páginas; URL exacta de la sesión.
+
+- id: gen2_federal_reserve_shed_2025_appendix_a_questionnaire
+  usado_para: CALC-SHED2025-BNPL-DANO-0001; rutas y universos BNPL SHED 2025
+  url_origen: https://www.federalreserve.gov/publications/2026-supplemental-appendixes-report-economic-well-being-us-households-2025-appendix-a.htm
+  fecha_descarga: '2026-09-11'
+  descargado_por: agente; dos descargas con cuerpo idéntico y token Cloudflare dinámico; se
+    conserva primera instantánea completa
+  archivo: GEN2_N34_PRODUCTO_DANO/shed_2025_appendix_a.html
+  sha256: 219658415e2aee6abf6f480be83e4faeb54d2c439f447cb61662514db1982864
+  tamano_bytes: 159382
+  formato: HTML oficial; cuestionario SHED 2025 Appendix A
+  licencia: Board of Governors of the Federal Reserve System; publicación oficial pública
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Fija BNPL1, BNPL3, BNPL3A, BNPL1A, BNPL4_e y BK2_f; BNPL1A se pregunta si BNPL1=1
+    y BK2_f=1; BNPL3A si BNPL3=1 o rechazo.
