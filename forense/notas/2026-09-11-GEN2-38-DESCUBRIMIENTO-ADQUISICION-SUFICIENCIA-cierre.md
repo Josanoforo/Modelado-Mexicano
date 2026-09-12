@@ -10,11 +10,12 @@ Fecha de ejecución: 2026-09-11, `America/Mexico_City`. Encargo canónico:
   `/home/pc0/mm-gen2-descubrimiento-adquisicion-suficiencia`.
 - Rama: `acto/gen2-descubrimiento-adquisicion-suficiencia`.
 - Clon productivo: `/home/pc0/mm-adq`.
-- Revisión ejecutable corregida y desplegada al redactar este cierre:
-  `6bb4931fe7dc5863175fe6fda5e0a80c74b97907`.
-- `main` consumido: `02110a8b2f501df2a881fc12cf1036c1139735ff`,
-  que ya contiene #734 (N34) y #737 (reactivos con contexto), además de
-  #735/#736 consumidos antes.
+- Revisión ejecutada por el ciclo real:
+  `8a44e6b5faf690ceeb9c916bcb91fd699e4b3251`; revisión final corregida y
+  desplegada después de integrar el recibo y los bytes:
+  `2b2c6e742e98c6f6847cb834ea26760101d6782b`.
+- `main` consumido: `7fc287e3`, que además de #734/#737/#735/#736 ya contiene
+  #738 y la materialización documental F5 de #728.
 
 El staging ajeno de `data/manifiesto-staging.yaml` en `mm-adq` se conservó.
 No se cambió F5, FP-373/374/F6 ni configuración global de otro CLI.
@@ -181,6 +182,8 @@ crontab WSL no contiene un disparador del runner. La tarea usa los siete días
 `Central Standard Time (Mexico)` ↔ `America/Mexico_City`; el doctor acredita
 `dias_coinciden=true`, `hora_coincide=true` y `disparador_atribuible=true`.
 Próxima ejecución: `2026-09-12 07:30:00-06:00`.
+El diagnóstico posterior acredita `LastTaskResult=0`, lock libre y comando
+efectivo con `ADQ_DEPLOY_REVISION=2b2c6e742e98c6f6847cb834ea26760101d6782b`.
 
 Limitación explícita: `Interactive` requiere una sesión de Windows `PC0`
 iniciada. `StartWhenAvailable` recupera retraso cuando Windows vuelve a poder
