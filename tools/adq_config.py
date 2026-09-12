@@ -245,8 +245,10 @@ def ejecutor_resuelto(cfg=None, config_path=None, entorno=None):
         faltan = [k for k in requeridas if k not in codex]
         if faltan:
             raise ConfiguracionError(f"codex: faltan {', '.join(faltan)}")
-        if codex["sandbox"] != "workspace-write":
-            raise ConfiguracionError("codex.sandbox debe ser workspace-write")
+        if codex["sandbox"] != "danger-full-access":
+            raise ConfiguracionError(
+                "codex.sandbox debe ser danger-full-access: workspace-write "
+                "no permite publicar refs en .git")
         if codex["aprobaciones"] != "never":
             raise ConfiguracionError("codex.aprobaciones debe ser never para el job no interactivo")
         if codex["red_workspace_write"] is not True:

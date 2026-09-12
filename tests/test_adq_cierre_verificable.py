@@ -192,6 +192,34 @@ def prueba_cola_descargas_vacia_con_investigacion_exige_evidencia():
         td.cleanup()
 
 
+def prueba_wrapper_normaliza_selecciones_sin_redecidir_hallazgos():
+    seleccion = _seleccion([])
+    seleccion["excluidos"] = [{
+        "id": "OBJ-X", "estado": "OBTENIDO",
+        "razon": "A.8 ya resuelto"}]
+    seleccion_inv = {
+        "corte": "2026-09-11", "maximo": 3,
+        "elegidos": [{"id": "NC-X", "version_pregunta": "v1"}],
+        "excluidos": [{"id": "NC-Y", "razon": "reserva vigente"}],
+    }
+    caso = _resultado([], estado="descubrimiento_documentado",
+                      publicacion="no_aplica")
+    caso["resumen"] = "hallazgo que no debe cambiar"
+    caso["seleccion"]["excluidos_con_causa"] = ["resumen del modelo"]
+    caso["seleccion_investigacion"]["elegidos"] = []
+    normalizado = D.normaliza_selecciones_resultado(
+        caso, seleccion, seleccion_inv)
+    afirma(normalizado["seleccion"]["excluidos_con_causa"] == [
+        "OBJ-X [OBTENIDO] — A.8 ya resuelto"],
+        f"no se insertó la exclusión autoritativa: {normalizado['seleccion']}")
+    afirma(normalizado["seleccion_investigacion"]["elegidos"] == ["NC-X"]
+           and normalizado["seleccion_investigacion"]["excluidos_con_causa"] == [
+               "NC-Y — reserva vigente"],
+           "no se insertó la selección de investigación autoritativa")
+    afirma(normalizado["resumen"] == caso["resumen"],
+           "normalizar selecciones alteró el hallazgo del ejecutor")
+
+
 def prueba_vigilante_acredita_cola_vacia_sin_llm():
     linea = ("[ADQ] 2026-09-11 17:10: invocado=no motivo=COLA-VACIA exit=0 "
              "resultado=cola_vacia resultado_trabajo=cola_vacia "
@@ -264,6 +292,7 @@ def main():
     prueba_adquisicion_exige_archivo_manifiesto_pertinente()
     prueba_cola_vacia_mecanica_valida()
     prueba_cola_descargas_vacia_con_investigacion_exige_evidencia()
+    prueba_wrapper_normaliza_selecciones_sin_redecidir_hallazgos()
     prueba_vigilante_acredita_cola_vacia_sin_llm()
     prueba_h3_fetch_128_deja_identidad_y_cierre()
     prueba_launcher_rechazado_no_pisa_heartbeat()
@@ -272,7 +301,7 @@ def main():
         for fallo in FALLOS:
             print(f"  · {fallo}")
         return 1
-    print("OK -- test_adq_cierre_verificable.py: 8 casos, 0 fallos")
+    print("OK -- test_adq_cierre_verificable.py: 9 casos, 0 fallos")
     return 0
 
 

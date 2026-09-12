@@ -1043,6 +1043,21 @@ if [ "$EJECUTOR" = "codex" ]; then
       - <"$PROMPT_LOCAL" >"$EVENTOS_CODEX" 2>"$STDERR_CODEX"
     CODIGO_SALIDA=$?
     if [ "$CODIGO_SALIDA" -eq 0 ]; then
+      RESULTADO_NORMALIZADO="${ULTIMO_MENSAJE}.normalizado"
+      python3 tools/adq_doctor.py --normaliza-resultado "$ULTIMO_MENSAJE" \
+        --seleccion-archivo "$SELECCION_ARCHIVO" \
+        --seleccion-investigacion-archivo "$INVESTIGACION_ARCHIVO" \
+        >"$RESULTADO_NORMALIZADO" 2>>"$LOGFILE"
+      CODIGO_NORMALIZACION=$?
+      if [ "$CODIGO_NORMALIZACION" -eq 0 ]; then
+        mv "$RESULTADO_NORMALIZADO" "$ULTIMO_MENSAJE"
+      else
+        rm -f "$RESULTADO_NORMALIZADO"
+        CODIGO_SALIDA=65
+        log "PARO-RESULTADO: no se pudieron normalizar las selecciones autoritativas del wrapper."
+      fi
+    fi
+    if [ "$CODIGO_SALIDA" -eq 0 ]; then
       VALIDACION_RESULTADO="$LOGDIR/${RUN_ID}-validacion-resultado.json"
       python3 tools/adq_doctor.py --valida-resultado "$ULTIMO_MENSAJE" \
         --seleccion-archivo "$SELECCION_ARCHIVO" \

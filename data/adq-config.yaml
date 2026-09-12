@@ -46,7 +46,11 @@ adquisicion_timeout_segundos: 1800
 codex:
   binario: /home/pc0/.local/bin/codex
   modelo: gpt-5.6-sol
-  sandbox: workspace-write
+  # El operador debe crear refs/commit/push en este clon dedicado. La prueba
+  # real del 11/sep mostró que workspace-write vuelve .git de sólo lectura.
+  # danger-full-access queda acotado por la tarea única, el clon mm-adq, las
+  # reservas y el prompt; no amplía la autorización a compras/contactos.
+  sandbox: danger-full-access
   aprobaciones: never
   red_workspace_write: true
   busqueda_web: true

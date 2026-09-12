@@ -778,6 +778,40 @@ def _exclusion_serializada(fila):
     return f"{fila['id']} [{fila['estado']}] — {fila['razon']}"
 
 
+def normaliza_selecciones_resultado(resultado, seleccion,
+                                     seleccion_investigacion=None):
+    """Inserta en el recibo las selecciones autoritativas del wrapper.
+
+    El modelo no vuelve a decidir ni tiene que copiar cientos de cadenas con
+    exactitud byte a byte. Sus hallazgos permanecen intactos; sólo estas dos
+    proyecciones mecánicas se sustituyen por los JSON calculados antes de
+    invocarlo.
+    """
+    salida = json.loads(json.dumps(resultado))
+    salida["seleccion"] = {
+        "calculada": True,
+        "corte": seleccion.get("corte"),
+        "maximo": seleccion.get("maximo"),
+        "elegidos": [x["id"] for x in seleccion.get("elegidos", [])],
+        "excluidos_con_causa": [
+            _exclusion_serializada(x) for x in seleccion.get("excluidos", [])],
+    }
+    seleccion_investigacion = seleccion_investigacion or {
+        "corte": seleccion.get("corte"), "maximo": 0,
+        "elegidos": [], "excluidos": []}
+    salida["seleccion_investigacion"] = {
+        "calculada": True,
+        "corte": seleccion_investigacion.get("corte"),
+        "maximo": seleccion_investigacion.get("maximo"),
+        "elegidos": [
+            x["id"] for x in seleccion_investigacion.get("elegidos", [])],
+        "excluidos_con_causa": [
+            f'{x["id"]} — {x["razon"]}'
+            for x in seleccion_investigacion.get("excluidos", [])],
+    }
+    return salida
+
+
 def _lee_texto_evidencia(ruta, limite=2_000_000):
     try:
         with open(ruta, encoding="utf-8", errors="replace") as f:
@@ -1062,15 +1096,18 @@ def main():
                          "salta ese estado por invocación nominal")
     ap.add_argument("--valida-resultado", metavar="JSON",
                     help="valida un cierre del ejecutor contra evidencia local/remota")
+    ap.add_argument("--normaliza-resultado", metavar="JSON",
+                    help="inyecta en un cierre las selecciones calculadas por el wrapper")
     ap.add_argument("--seleccion-archivo", metavar="JSON",
                     help="selección calculada usada por --valida-resultado")
     ap.add_argument("--seleccion-investigacion-archivo", metavar="JSON",
                     help="selección de investigación usada por --valida-resultado")
     a = ap.parse_args()
-    if a.valida_resultado:
+    if a.valida_resultado or a.normaliza_resultado:
         if not a.seleccion_archivo:
-            ap.error("--valida-resultado exige --seleccion-archivo")
-        with open(a.valida_resultado, encoding="utf-8") as f:
+            ap.error("la operación de resultado exige --seleccion-archivo")
+        ruta_resultado = a.valida_resultado or a.normaliza_resultado
+        with open(ruta_resultado, encoding="utf-8") as f:
             resultado = json.load(f)
         with open(a.seleccion_archivo, encoding="utf-8") as f:
             seleccion = json.load(f)
@@ -1078,6 +1115,10 @@ def main():
         if a.seleccion_investigacion_archivo:
             with open(a.seleccion_investigacion_archivo, encoding="utf-8") as f:
                 seleccion_inv = json.load(f)
+        if a.normaliza_resultado:
+            print(json.dumps(normaliza_selecciones_resultado(
+                resultado, seleccion, seleccion_inv), ensure_ascii=False, indent=2))
+            return 0
         informe = valida_resultado_adquisicion(resultado, seleccion, seleccion_inv)
         print(json.dumps(informe, ensure_ascii=False, indent=2))
         return 0 if informe["valido"] else 65
