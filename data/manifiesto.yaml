@@ -29850,3 +29850,45 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: Estados Unidos; 892668 originaciones emparejadas 2021-2022, seis grandes firmas; datos
     subyacentes no publicados. Default=impago a 120 dias; no contiene pagos tardios.
+
+- id: iieg_inclusion_financiera_jalisco_2022_xlsx
+  usado_para: 'NC-0126: evidencia pública insuficiente, no habilita emisión'
+  url_origen: https://iieg.gob.mx/ns/wp-content/uploads/2022/10/ds_inclusi%C3%B3n_financiera_2022.xlsx
+  fecha_descarga: '2026-09-11'
+  descargado_por: Codex, directamente de iieg.gob.mx durante ciclo GEN2-38
+  archivo: iieg_inclusion_financiera_jalisco/iieg_inclusion_financiera_jalisco_2022.xlsx
+  sha256: 09a60f56b3031d8317bf85b2b67ff55b1913c9d0ea229211cf05e34b108a622f
+  tamano_bytes: 80389
+  formato: xlsx
+  licencia: no determinada; acceso público
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: IIEG Jalisco 2022; ahorro institucional separado, pero cubrir_gastos conserva Menos
+    de una semana/No tiene ahorros; hogar estatal, no persona nacional
+
+- id: iieg_inclusion_financiera_jalisco_2023_xlsx
+  usado_para: 'NC-0126: evidencia pública insuficiente, no habilita emisión'
+  url_origen: https://iieg.gob.mx/ns/wp-content/uploads/2023/11/Base-Inclusi%C3%B3n-Financiera-2023.xlsx
+  fecha_descarga: '2026-09-11'
+  descargado_por: Codex, directamente de iieg.gob.mx durante ciclo GEN2-38
+  archivo: iieg_inclusion_financiera_jalisco/iieg_inclusion_financiera_jalisco_2023.xlsx
+  sha256: d86673ceb06fdd5b497e6aa1df4e519f83ea892d20578cb45cf6f477312066b7
+  tamano_bytes: 117962
+  formato: xlsx
+  licencia: no determinada; acceso público
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: IIEG Jalisco 2023; P6 ahorro institucional separado, pero P14 conserva Menos de una
+    semana/No tiene ahorros; hogar estatal, no persona nacional
+
+- id: iieg_inclusion_financiera_jalisco_2024_xlsx
+  usado_para: 'NC-0126: evidencia pública insuficiente, no habilita emisión'
+  url_origen: https://iieg.gob.mx/ns/wp-content/uploads/2024/11/Base-Inclusi%C3%B3n-Financiera-2024.xlsx
+  fecha_descarga: '2026-09-11'
+  descargado_por: Codex, directamente de iieg.gob.mx durante ciclo GEN2-38
+  archivo: iieg_inclusion_financiera_jalisco/iieg_inclusion_financiera_jalisco_2024.xlsx
+  sha256: 236f885980eb10648dff7e3c129c87368d469abb92b15c2190ae9d9a1cd2c7fe
+  tamano_bytes: 119644
+  formato: xlsx
+  licencia: no determinada; acceso público
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: IIEG Jalisco 2024; P6 ahorro institucional separado, pero P14 conserva Menos de una
+    semana/No tiene ahorros; hogar estatal, no persona nacional

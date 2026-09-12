@@ -25,7 +25,8 @@ Modos ejecutados: `CONSTRUCTO` y `HERMANAS`.
   Jalisco del IIEG, además del reactivo ENIF ya agotado.
 - Búsqueda web real: `site:iieg.gob.mx "Encuesta inclusión financiera 2022"
   microdatos base de datos`. Localizó la página pública de estudios del IIEG y
-  sus microdatos XLSX de 2021, 2022, 2023 y 2024.
+  sus microdatos XLSX de 2022, 2023 y 2024. La página enlaza un informe
+  2021, pero no una base 2021; no se cuenta como microdato descargable.
 - Control local: `python3 tools/busca_reactivos.py --palabra ahorro --limite 50`.
   El índice local contiene tenencia, monto y frecuencia en las familias ya
   examinadas; no mostró una secuencia tenencia→duración que resolviera la
@@ -33,28 +34,45 @@ Modos ejecutados: `CONSTRUCTO` y `HERMANAS`.
 - A.8: `rg -in "iieg|inclusión financiera.*jalisco|Base-Inclusión-Financiera|
   ds_inclusión" data/manifiesto.yaml
   data/curacion-registro/cola-adquisicion-registro.tsv` no produjo coincidencias.
-- Verificación de contenido: se descargó dos veces a temporal el XLSX público
-  2024 desde `https://iieg.gob.mx/ns/wp-content/uploads/2024/11/Base-Inclusi%C3%B3n-Financiera-2024.xlsx`.
-  Ambas copias dieron SHA-256
-  `236f885980eb10648dff7e3c129c87368d469abb92b15c2190ae9d9a1cd2c7fe` y
-  abrieron como XLSX. La hoja `Datos` tiene 735 registros más encabezado; `P14`
-  es tenencia de ahorro (Sí/No) y `P15` conserva literalmente la categoría
-  `Menos de una semana/ No tiene ahorros`.
+- Verificación de contenido: se descargaron dos veces los tres XLSX públicos
+  2022–2024. Cada par fue idéntico y los tres contenedores pasaron
+  `python3 -m zipfile -t`. En 2022 `ahorro` pregunta si la persona o algún
+  miembro del hogar ahorra en una institución financiera y `cubrir_gastos`
+  conserva «Menos de una semana/ No tiene ahorros». En 2023–2024 las
+  equivalentes son `P6` y `P14`; `P15` no es horizonte (en 2024 es sexo).
+
+## Descarga, corpus y lectura
+
+Los tres pares estables se incorporaron al corpus compartido bajo
+`data/raw/iieg_inclusion_financiera_jalisco/` y se registraron con procedencia
+en `data/manifiesto.yaml`:
+
+| ola | id de manifiesto | bytes | SHA-256 |
+|---:|---|---:|---|
+| 2022 | `iieg_inclusion_financiera_jalisco_2022_xlsx` | 80,389 | `09a60f56b3031d8317bf85b2b67ff55b1913c9d0ea229211cf05e34b108a622f` |
+| 2023 | `iieg_inclusion_financiera_jalisco_2023_xlsx` | 117,962 | `d86673ceb06fdd5b497e6aa1df4e519f83ea892d20578cb45cf6f477312066b7` |
+| 2024 | `iieg_inclusion_financiera_jalisco_2024_xlsx` | 119,644 | `236f885980eb10648dff7e3c129c87368d469abb92b15c2190ae9d9a1cd2c7fe` |
+
+La incorporación acredita que la fuente fue obtenida y leída; no que la
+necesidad esté cubierta. La evaluación de uso falla por concepto, población y
+unidad, de modo que los bytes quedan como evidencia negativa versionada y no
+como sucesor calculado o adoptado.
 
 ## Candidata y clasificación
 
-`IIEG_EIF_JALISCO_2021_2024` es una fuente pública nueva respecto del corpus y
+`IIEG_EIF_JALISCO_2022_2024` es una fuente pública nueva respecto del corpus y
 queda enlazada al mandato `GEN2-38` bajo el alcance
-`AUTORIZADA-POR-ALCANCE:Jonas/2026-09-12/GEN2-38/IIEG_EIF_JALISCO_2021_2024`.
+`AUTORIZADA-POR-ALCANCE:Jonas/2026-09-11/GEN2-38/IIEG_EIF_JALISCO_2022_2024`.
 El IIEG publica informes y microdatos por ola en su página de estudios. La ola
 2024 acredita hogar en Jalisco, levantamiento telefónico y una base pública.
 
-Clasificación: `EXISTE-NO-SATISFACE`. Aunque `P14` permite saber si el hogar
-declara ahorrar, `P15` sigue colapsando ausencia y menos de una semana; además,
-la unidad es hogar, la cobertura es Jalisco y el diseño es muestra aleatoria
-simple telefónica, no persona adulta nacional con diseño ENIF. Por ello no se
-creó residual ni se adquirió: los bytes no habilitarían el uso declarado y su
-adquisición no corregiría la brecha conceptual.
+Clasificación: `EXISTE-NO-SATISFACE`. `ahorro`/`P6` sólo identifica ahorro
+institucional de algún integrante del hogar, mientras `cubrir_gastos`/`P14`
+sigue colapsando ausencia y menos de una semana; además, la unidad es hogar,
+la cobertura es Jalisco y el diseño es muestra aleatoria simple telefónica,
+no persona adulta nacional con diseño ENIF. Se adquirió como evidencia
+pertinente, pero no se registra como cobertura de NC-0126 ni habilita una
+emisión.
 
 ## Suficiencia y frontera
 

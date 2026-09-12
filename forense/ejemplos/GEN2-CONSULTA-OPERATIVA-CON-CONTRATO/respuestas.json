@@ -137,6 +137,7 @@
         "evidencias": [
           "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
           "data/manifiesto.yaml",
+          "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md",
           "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md"
         ],
         "fuente_estado": "data/curacion-registro/investigacion-estado/NC-0126.json",
@@ -144,11 +145,12 @@
           "descarte": null,
           "identidad_valida": true,
           "ruta_observada": "data/curacion-registro/investigacion-estado/NC-0126.json",
-          "sha256_observado": "d55eaa44ac4868ed1cd03d5878ac67c66735676ed10645438006d17b3e9708f9"
+          "sha256_observado": "589cc6896085475cf283592a7d03c8ef27c557ab72bebe43add240e8bd640666"
         },
         "integridad_evidencias": {
           "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "b8317110739fec4ac0c6bf56567f6b6962624f994bbce8c60e481cf7f8ffeb74",
-          "data/manifiesto.yaml": "9eb91ebeee3f083e31b3b947d7019c94a2b38d73c26ae679e27e0ef8f8a514d0",
+          "data/manifiesto.yaml": "cbfeb14a44dc8300cb357bfe79dcb048bcbe9bd1109dca5331f28629d99075f8",
+          "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md": "caacb984673f5c553060de60293d708a9e0aa972b7cc536dcca7c1e4ef028214",
           "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md": "a0cca9edc107d6cca994dd20538986b6d4a09d461a7fa9dc2bdf3aaae8746666"
         },
         "motivo_bloqueo": "no puede distinguir horizonte corto de ausencia de ahorro",
@@ -175,7 +177,7 @@
           "uso_solicitado": "MEDICION-GEN2"
         }
       },
-      "sha256": "4e48bb35f8efe089b19ba9a465e7faaf8e28f0959bfc969cae5a73484f543e51",
+      "sha256": "345d7b9d4f5a751095216648edaa6ad4ababb74b9dd7cf460f8e83cb4c7c7b6a",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -248,6 +250,7 @@
       "evidencias": [
         "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
         "data/manifiesto.yaml",
+        "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md",
         "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md"
       ],
       "fuente_estado": "data/curacion-registro/investigacion-estado/NC-0126.json",
@@ -255,11 +258,12 @@
         "descarte": null,
         "identidad_valida": true,
         "ruta_observada": "data/curacion-registro/investigacion-estado/NC-0126.json",
-        "sha256_observado": "d55eaa44ac4868ed1cd03d5878ac67c66735676ed10645438006d17b3e9708f9"
+        "sha256_observado": "589cc6896085475cf283592a7d03c8ef27c557ab72bebe43add240e8bd640666"
       },
       "integridad_evidencias": {
         "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "b8317110739fec4ac0c6bf56567f6b6962624f994bbce8c60e481cf7f8ffeb74",
-        "data/manifiesto.yaml": "9eb91ebeee3f083e31b3b947d7019c94a2b38d73c26ae679e27e0ef8f8a514d0",
+        "data/manifiesto.yaml": "cbfeb14a44dc8300cb357bfe79dcb048bcbe9bd1109dca5331f28629d99075f8",
+        "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md": "caacb984673f5c553060de60293d708a9e0aa972b7cc536dcca7c1e4ef028214",
         "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md": "a0cca9edc107d6cca994dd20538986b6d4a09d461a7fa9dc2bdf3aaae8746666"
       },
       "motivo_bloqueo": "no puede distinguir horizonte corto de ausencia de ahorro",

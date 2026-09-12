@@ -73,6 +73,30 @@ tareas elegibles nunca se traduce en suficiencia general.
 
 ## Ciclo productivo
 
-Pendiente de completar después del despliegue de esta revisión. No se repetirá
-la búsqueda anterior ni se fabricará una descarga si las pistas resultan
-incompatibles.
+La tarea `\ModeladoMexicano\AdquiereCron` ejecutó manualmente un ciclo real
+con `run_id=2026-09-11T212121-2241921` sobre la revisión desplegada
+`8a44e6b5faf690ceeb9c916bcb91fd699e4b3251`. Terminó con exit `0`, resultado
+`descubrimiento_documentado` y publicación `OK`:
+
+- la cola de adquisición tuvo cero objetos elegibles y 151 exclusiones; eso no
+  se interpretó como suficiencia porque el selector científico eligió
+  `NC-0126` y explicó las otras 50 NC;
+- SONDA continuó desde ENFIH/subnacionales, sin repetir ENIF, EACF, ENSAFI ni
+  Findex, y encontró la Encuesta de Inclusión Financiera IIEG Jalisco;
+- se descargaron por duplicado y se incorporaron al corpus las tres bases
+  públicas 2022–2024, se abrieron sus hojas de datos/descriptor y se registraron
+  en `data/manifiesto.yaml`;
+- la lectura mostró ahorro institucional del hogar separado en `ahorro`/`P6`,
+  pero `cubrir_gastos`/`P14` conserva «Menos de una semana/ No tiene ahorros».
+  La fuente es estatal y de hogar: `EXISTE-NO-SATISFACE`, no cobertura;
+- el recibo productivo fue publicado en PR #740, commit `4b3c5264`, e
+  integrado por avance rápido en este PR.
+
+Avanzaron los tres elementos de horizonte (`RES-0046`, `RES-0048`,
+`RES-0065`) en evidencia y descarte de una pista, no en aptitud: siguen sin
+emitir. Los otros 13 elementos conservan su situación previa. El próximo ciclo
+recalculará todo el universo; mientras no llegue el 11/oct o aparezca una
+fuente/versión nueva, `NC-0126` conserva la espera y el cursor hacia una
+secuencia tenencia→duración de persona con cobertura nacional. Que entonces
+haya cero elegibles seguirá publicándose como agenda sin trabajo listo, nunca
+como suficiencia general.

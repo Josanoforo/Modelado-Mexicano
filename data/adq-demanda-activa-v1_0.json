@@ -2033,14 +2033,14 @@
       "brecha": "no puede distinguir horizonte corto de ausencia de ahorro",
       "consumidor": "E05 / dinero.ahorro.horizonte",
       "contrato_operativo": "COMPLETO_EXPLICITO",
-      "cursor_continuacion": "Continuar por ENFIH y cuestionarios públicos subnacionales u otras ediciones/módulos mexicanos no indexados que midan tenencia de ahorro y, sólo entre quienes sí ahorran, duración de cobertura; no repetir ENIF, EACF, ENSAFI ni Findex 2025.",
+      "cursor_continuacion": "Buscar sólo una fuente pública nueva con tenencia primero y duración sólo entre quienes sí ahorran, unidad persona y cobertura nacional; no repetir ENIF, EACF, ENSAFI, Findex, ENFIH ni IIEG Jalisco.",
       "estado_ruteo": "LISTA_SONDA",
       "etapa_faltante": "FUENTE_O_VARIABLE",
       "evidencia_disponible": "ENIF P4_10 colapsa menos de una semana con no tiene ahorros",
       "evidencias": [
         "forense/no-corrido.tsv#NC-0126"
       ],
-      "frontera": "Pistas públicas todavía no examinadas: ENFIH, cuestionarios subnacionales públicos y otras ediciones/módulos mexicanos no indexados. Módulos privados permanecen fuera de la adquisición pública autorizada.",
+      "frontera": "Otras encuestas estatales no indexadas, módulos académicos públicos nacionales y olas posteriores a 2024; módulos privados fuera de alcance.",
       "id": "NC-0126",
       "investigacion_previa": "descriptor y microdato ENIF revisados; límite estructural documentado en NC-0126",
       "motivo_ruteo": "contrato explícito vigente",

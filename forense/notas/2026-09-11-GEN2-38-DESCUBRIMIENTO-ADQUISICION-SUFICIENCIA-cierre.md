@@ -142,12 +142,13 @@ no se lanzó otra corrida cara para fabricar un último exit 0.
 | NC-0037 | ledger de tanda con turno, pagos e impago | #735 ya fusionado mide panel/attrition, no ledger | sólo alcance menor; unidad e identificación pedidas siguen no acreditadas. |
 | NC-0153 | evento×canal nacional con negativos y diseño | expediente INEGI ya preparado; revisión 2026-10-10 | alcance subnacional menor; la tasa nacional exacta permanece abierta. |
 
-No se descargó una fuente nueva para NC-0122/NC-0126: la única candidata nueva
-no era mexicana y Findex ya estaba en `data/manifiesto.yaml`. Por tanto, el
-caso de aceptación «candidata pública nueva y pertinente → bytes nuevos» queda
-pendiente por objeto; se evitó aprobar el acto con una descarga irrelevante o
-duplicada. Los artefactos nuevos de esta corrida son evidencia/estado, no se
-cuentan como microdatos.
+La continuación real de NC-0126 encontró microdatos públicos IIEG Jalisco
+2022–2024. Los tres XLSX se descargaron por duplicado, pasaron identidad de
+bytes y estructura, entraron al corpus y quedaron registrados en
+`data/manifiesto.yaml`. La lectura no los confunde con cobertura: ahorro
+institucional del hogar está separado, pero la duración conserva la categoría
+colapsada y la población/unidad son Jalisco/hogar. Son evidencia pertinente
+`EXISTE-NO-SATISFACE`; NC-0126 y los tres RESULT vinculados siguen bloqueados.
 
 Los bytes concurrentes de N34 sí están en el corpus compartido y son legibles
 desde otra sesión mediante `data/raw -> /home/pc0/mm-corpus/raw`; #734 publica
@@ -187,12 +188,12 @@ evaluar la tarea, pero un equipo apagado no ejecuta. Operar con sesión cerrada
 requiere conceder «Log on as a batch job» y reinstalar/verificar `S4U`; no se
 afirma que hoy funcione.
 
-Con los estados publicados incorporados, la proyección del 12/sep elige cero
-investigaciones: NC-0122/0126/0164 esperan 11/oct, NC-0153 espera 10/oct y
-NC-0136/0037 no están listas para SONDA automática. Si tampoco aparece un
-residual de descarga elegible, el próximo ciclo cerrará sin LLM y publicará
-las exclusiones; si main introduce una necesidad/edición/vía elegible, la
-seleccionará dentro de los límites configurados.
+Con el estado productivo incorporado, la proyección del 12/sep elige cero
+investigaciones listas: NC-0122/0126/0164 esperan 11/oct, NC-0153 espera
+10/oct y NC-0136/0037 continúan con sus dueños. Ese cero sólo describe trabajo
+listo en ese corte; el JSON sigue publicando las 51 NC y los 16 elementos con
+situación y siguiente acción. Una necesidad o vía nueva elegible entra por
+derivación sin editar una lista fija.
 
 ## Verificación
 
@@ -200,11 +201,11 @@ Pasaron las baterías dirigidas de descubrimiento, autorización, cierre remoto,
 configuración, residuales, cableado, doctor, vigilancia del cron, escritor
 concurrente, corpus y consulta GEN2, además de las pruebas consumidas de N34,
 reactivos y delta. El cierre final incluye 10 casos de recibo, 20 de contrato,
-27 de cableado, 9 de doctor, 10 de vigilancia y 9 de consulta; `bash -n` y
+27 de cableado, 9 de doctor, 10 de vigilancia y 13 de consulta; `bash -n` y
 `git diff --check` pasan. La prueba real de red dio HTTP 200 y el lock quedó
 libre.
 
-Quedan abiertas, por diseño y no por fallo del servicio, las 45 necesidades
-sin contrato operativo completo, los seis accesos humanos y una necesidad sin
-vía heredados de #726, las fronteras científicas descritas arriba y el primer
-caso futuro en que una candidata pública nueva y pertinente produzca bytes.
+Quedan abiertas, por diseño y no por fallo del servicio, 45 NC con contrato
+mínimo derivado (no incompleto), los seis accesos humanos y una necesidad sin
+vía heredados de #726, y las fronteras científicas descritas arriba. La
+candidata pública nueva ya produjo bytes y evidencia; no produjo suficiencia.
