@@ -6,7 +6,7 @@ Se ejecutó `CALC-MOTRAL2015-VALORACION-SS-0001` sobre los bytes reales de
 MOTRAL 2015 y ENOE 2015-T2. La corrida quedó sellada y `verify` devolvió
 `REPRODUCE` con `CONTEXTO=IDENTICO` para 42/42 RESULT y 6/6 inputs. El punto
 P17 total es 0.823626705331; los 32 estimandos, denominadores y precisión se
-publican en `data/motral2015-valoracion-ss/estimandos.csv`.
+publican en `data/motral2015-valoracion-ss/estimandos-motral2015.csv`.
 
 El control independiente con `dbfread` reconstruyó P17 total (masas
 17,498,432 / 21,245,586), el tratamiento de P16 (5,696 rankings completos,

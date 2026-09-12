@@ -9,7 +9,7 @@
   n=5,704).
 - Prioridad principal: `RESULT-MOTRAL15-P16-FIRST-TOTAL-MEDICO-P` =
   0.474489899955; las otras cuatro partes y todos los cortes están en
-  `data/motral2015-valoracion-ss/estimandos.csv`.
+  `data/motral2015-valoracion-ss/estimandos-motral2015.csv`.
 - Cruce actual: `RESULT-MOTRAL15-ENOE-P17-CON-ACCESO-P` = 0.832233738000
   y `RESULT-MOTRAL15-ENOE-P17-SIN-ACCESO-P` = 0.790530962253.
 

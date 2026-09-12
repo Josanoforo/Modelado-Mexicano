@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULT = ROOT / "data/corrida0/CALC-MOTRAL2015-VALORACION-SS-0001/resultados.json"
-CSV = ROOT / "data/motral2015-valoracion-ss/estimandos.csv"
+CSV = ROOT / "data/motral2015-valoracion-ss/estimandos-motral2015.csv"
 
 
 def main() -> int:

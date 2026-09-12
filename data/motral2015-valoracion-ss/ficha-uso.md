@@ -2,7 +2,7 @@
 
 ## Producto
 
-`estimandos.csv` publica 32 estimandos descriptivos de
+`estimandos-motral2015.csv` publica 32 estimandos descriptivos de
 `CALC-MOTRAL2015-VALORACION-SS-0001`: P17 afirmativa (total, sexo y edad),
 primer lugar de P16 para cada una de cinco prestaciones en esos mismos
 cortes, y P17 por acceso a seguridad social del empleo actual entre personas
