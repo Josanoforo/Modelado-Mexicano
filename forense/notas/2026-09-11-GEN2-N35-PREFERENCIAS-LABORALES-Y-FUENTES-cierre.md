@@ -60,4 +60,5 @@ en `forense/notas/2026-09-11-GEN2-N35-PREFERENCIAS-LABORALES-Y-FUENTES-puente-a-
 
 Worktree: `/home/pc0/mm-gen2-n35-preferencias-laborales-fuentes`.
 Rama: `acto/gen2-n35-preferencias-laborales-fuentes`.
-Entrega revisable: PR #747; gobernanza: `ADR-492`.
+Entrega revisable: PR #747; gobernanza: `ADR-493` (renumerado tras fusionarse
+PR #746 como `ADR-492`).

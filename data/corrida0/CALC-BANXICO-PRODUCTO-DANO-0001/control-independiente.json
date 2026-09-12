@@ -1,0 +1,101 @@
+{
+  "calc_id": "CALC-BANXICO-PRODUCTO-DANO-0001",
+  "comprobaciones": {
+    "cobertura_2024_vs_734": [
+      {
+        "coincide": true,
+        "delta_masa": 4.5821070671081543e-07,
+        "masa": 9852061.856285458,
+        "n": 562,
+        "producto": "tarjeta_credito"
+      },
+      {
+        "coincide": true,
+        "delta_masa": -2.728775143623352e-07,
+        "masa": 5496821.773288727,
+        "n": 428,
+        "producto": "credito_hipotecario"
+      },
+      {
+        "coincide": true,
+        "delta_masa": -4.731118679046631e-07,
+        "masa": 2390314.081291527,
+        "n": 421,
+        "producto": "credito_personal"
+      },
+      {
+        "coincide": true,
+        "delta_masa": -3.702007234096527e-08,
+        "masa": 1804287.005151963,
+        "n": 415,
+        "producto": "credito_nomina"
+      },
+      {
+        "coincide": true,
+        "delta_masa": -4.3981708586215973e-07,
+        "masa": 1718380.4377745602,
+        "n": 128,
+        "producto": "credito_automotriz"
+      }
+    ],
+    "cociente_tdc_dano_2024": {
+      "coincide": true,
+      "estimacion": 0.04250528705569016,
+      "masa_positiva": 412344.6325620307,
+      "masa_valida": 9701019.828939853,
+      "n_elegible": 562,
+      "n_positivo": 31,
+      "n_valido": 554
+    },
+    "filtro_reclamacion_hipotecario_2024": {
+      "coincide": true,
+      "estimacion": 0.5378334295385668,
+      "masa_positiva": 300391.4271059219,
+      "masa_valida": 558521.3015926551,
+      "n_elegible": 40,
+      "n_positivo": 20,
+      "n_valido": 40
+    },
+    "hashes_artefactos_vs_result": [
+      {
+        "archivo": "estimandos.csv",
+        "coincide": true,
+        "result_id": "RESULT-BANXICO-G-ESTIMANDOS-SHA256",
+        "sha256": "fa2c665080b2969321db1fe11dab4604140e6923421d061e15fe8bbf5e29890d"
+      },
+      {
+        "archivo": "conjunta-costo-pago.csv",
+        "coincide": true,
+        "result_id": "RESULT-BANXICO-G-CONJUNTA-SHA256",
+        "sha256": "2b5546e2b28b20cf27ac75f3671fe7cb0ca25c47e8bd75d1a9cd02508491f541"
+      },
+      {
+        "archivo": "costo-dano-2024.csv",
+        "coincide": true,
+        "result_id": "RESULT-BANXICO-G-COSTO-DANO-2024-SHA256",
+        "sha256": "dc15a94c54e0c05ffd89608a22d3b02ad5609048e38d39afa3b2f62008dd1eeb"
+      },
+      {
+        "archivo": "resumen-producto-ola.csv",
+        "coincide": true,
+        "result_id": "RESULT-BANXICO-G-RESUMEN-SHA256",
+        "sha256": "82ee15bbb3edbf30b8f16443a7cb1520a9c3727c4407578cd25ba4f4dc5319e5"
+      },
+      {
+        "archivo": "atraso-por-producto-ola.svg",
+        "coincide": true,
+        "result_id": "RESULT-BANXICO-G-GRAFICO-SHA256",
+        "sha256": "9a3dac6c46c1a4804561d2f11ac9fedd6baf70530f2f2ab1788465f2bf7d7df5"
+      }
+    ],
+    "no_levantado_hipotecario_2019": {
+      "codigos_observados": [
+        ""
+      ],
+      "coincide": true,
+      "n_tenedores": 422
+    }
+  },
+  "estado": "COINCIDE",
+  "lector": "openpyxl-3.1.5; independiente del lector XML stdlib"
+}

@@ -1,0 +1,133 @@
+calc_id: CALC-BANXICO-PRODUCTO-DANO-0001
+spec_md: spec.md
+spec_md_sha256: 13f7f730ac768822f1c4afc795062852f13ca60f2ab7dd91def5cdbafd3984cc
+script: data/corrida0/CALC-BANXICO-PRODUCTO-DANO-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: MEDICION-DESCRIPTIVA-ASOCIATIVA-PRODUCTO-OLA
+  cuenta_gen2: SI
+  cuenta_gen2_firma: >-
+    Encargo GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO, 12/sep/2026:
+    autoriza el objeto CALC-BANXICO-PRODUCTO-DANO-0001, su spec y la medicion
+    nueva sobre microdato real. Un CALC cientifico con multiples celdas, no
+    multiples fuentes ni muestras. El merge de mesa perfecciona la firma.
+  validacion_independiente: PENDIENTE-POST-SELLO
+  spec_sellada: data/corrida0/CALC-BANXICO-PRODUCTO-DANO-0001/spec.md
+  spec_sellada_sha256: 13f7f730ac768822f1c4afc795062852f13ca60f2ab7dd91def5cdbafd3984cc
+  demanda_que_releva: >-
+    Capa descriptiva/asociativa mexicana de N34 y oferta para R1.7; NC-0164
+    conserva producto/lender exacto, costo objetivo e identificacion causal.
+  regla_contextual: dinero.credito.baja_friccion_usura_dano_downstream / N34 / R1.7
+  uso_motor: DESCRIPTIVO-NO-CALIBRA-NI-ADOPTA
+  medidor_ejecutado_al_congelar: NO
+
+inputs:
+  - {id: gen2_banxico_satisfaccion_usuarios_2019_2024_microdatos, origen: manifiesto}
+  - {id: gen2_banxico_satisfaccion_usuarios_2019_2024_manual, origen: manifiesto}
+  - {id: gen2_banxico_satisfaccion_usuarios_2024_informe, origen: manifiesto}
+
+payloads:
+  - {id: gen2_banxico_satisfaccion_usuarios_2019_2024_microdatos, archivo: GEN2_N34_PRODUCTO_DANO/banxico_satisfaccion_usuarios_2019_2024.xlsx, sha256: 67d4a97b86e635252803a89848dc90b3815a32dd30266f7a7f8511a4f21207c6, hoja: 1, rol: MEDICION}
+  - {id: gen2_banxico_satisfaccion_usuarios_2019_2024_manual, archivo: GEN2_N34_PRODUCTO_DANO/banxico_satisfaccion_usuarios_manual_2024.pdf, sha256: 07926aca1a9fc7caadafcde7b4399fa1d91452355997ac58a7bb8d8ef1d36b5d, rol: CODIGOS-Y-PERIODOS}
+  - {id: gen2_banxico_satisfaccion_usuarios_2024_informe, archivo: GEN2_N34_PRODUCTO_DANO/banxico_satisfaccion_usuarios_informe_2024.pdf, sha256: a2ef944695e9c9568fb9debaa32740e668da23f36ffb6b913c86d9641ca050db, rol: POBLACION-Y-METODO}
+
+variables:
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: fecha, rol: ola, codigos: "2019..2024"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: ponderador, rol: peso, codigos: "finito y >0"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: tdc_filtro, rol: tenencia, codigos: "1=tenedor;0=no"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: hip_filtro, rol: tenencia, codigos: "1=tenedor;0=no"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: per_filtro, rol: tenencia, codigos: "1=tenedor;0=no"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: nom_filtro, rol: tenencia, codigos: "1=tenedor;0=no"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: aut_filtro, rol: tenencia, codigos: "1=tenedor;0=no"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: tdc_intereses, rol: costo percibido, codigos: "0..10 valido;-1 salto;99 NS/NC"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: hip_intereses, rol: costo percibido, codigos: "0..10 valido;-1 salto;99 NS/NC"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: per_intereses, rol: costo percibido, codigos: "0..10 valido;-1 salto;99 NS/NC"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: nom_intereses, rol: costo percibido, codigos: "0..10 valido;-1 salto;99 NS/NC"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: aut_intereses, rol: costo percibido, codigos: "0..10 valido;-1 salto;99 NS/NC"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: tdc_comp_pago, rol: pago, codigos: "1 total;2 minimo sin atraso;3 atraso;4 no pago;5 NS/NC;-1 salto"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: hip_comp_pago, rol: pago, codigos: "1 puntual;2 atraso a veces;3 casi siempre;4 imposibilidad;5 NS/NC;-1 salto"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: per_comp_pago, rol: pago, codigos: "1 puntual;2 atraso a veces;3 casi siempre;4 imposibilidad;5 NS/NC;-1 salto"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: nom_comp_pago, rol: pago, codigos: "1 puntual;2 atraso a veces;3 casi siempre;4 imposibilidad;5 NS/NC;-1 salto"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: aut_comp_pago, rol: pago, codigos: "1 puntual;2 atraso a veces;3 casi siempre;4 imposibilidad;5 NS/NC;-1 salto"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: tdc_problemas, rol: problema, codigos: "1 si;2 no;-1 salto"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: hip_problemas, rol: problema, codigos: "1 si;2 no;-1 salto"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: per_problemas, rol: problema, codigos: "1 si;2 no;-1 salto"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: nom_problemas, rol: problema, codigos: "1 si;2 no;-1 salto"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: aut_problemas, rol: problema, codigos: "1 si;2 no;-1 salto"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: tdc_reclamacion, rol: reclamacion filtrada, codigos: "1 si;2 no;-1 salto"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: hip_reclamacion, rol: reclamacion filtrada, codigos: "1 si;2 no;-1 salto"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: per_reclamacion, rol: reclamacion filtrada, codigos: "1 si;2 no;-1 salto"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: nom_reclamacion, rol: reclamacion filtrada, codigos: "1 si;2 no;-1 salto"}
+  - {archivo: banxico_satisfaccion_usuarios_2019_2024.xlsx, variable: aut_reclamacion, rol: reclamacion filtrada, codigos: "1 si;2 no;-1 salto"}
+
+universo: >-
+  Por ola, tenedores del producto con filtro=1; reclamacion condicionada a
+  problema=1. Personas mexicanas de 18-70 en localidades de 50 mil o mas.
+filtros: >-
+  Codigos validos exactos de spec.md. Faltantes, saltos, NS/NC, codigos
+  invalidos y pesos no positivos se separan; no hay imputacion.
+ponderador: ponderador finito y positivo; punto como razon de masas por celda.
+transformacion: >-
+  Atraso e imposibilidad se conservan separados y tambien se ofrece su union.
+  Costo 0..10 no se colapsa; olas y productos no se suman.
+estimando: >-
+  Distribucion de pago, atraso/imposibilidad, problemas, reclamacion filtrada,
+  conjunta costo-pago y dano 2024 por cada nivel de costo; descriptivos.
+precision: >-
+  No disponible: los insumos no acreditan UPM, estrato o procedimiento de
+  varianza. No se inventan EE/IC a partir del ponderador solo.
+
+dependencias_materiales: []
+seed: {aplica: false, valor: null, rng: NO-APLICA}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: salidas deterministas; redondeo tabular a 12 decimales
+
+parametros:
+  fuente_acto: ACTO GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO
+  productos: [tdc, hip, per, nom, aut]
+  olas: [2019, 2020, 2021, 2022, 2023, 2024]
+  costo_niveles: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  pago_valido: [1, 2, 3, 4]
+  no_levantado_2019: [hip, nom, aut]
+  adopcion: NINGUNA
+  residual: NC-0164-ABIERTO
+
+resultados:
+  - {id: RESULT-BANXICO-G-N-FILAS, tipo: entero, unidad: filas persona-ola}
+  - {id: RESULT-BANXICO-G-N-COLUMNAS, tipo: entero, unidad: columnas}
+  - {id: RESULT-BANXICO-G-N-OLAS, tipo: entero, unidad: cortes transversales}
+  - {id: RESULT-BANXICO-G-N-PRODUCTOS, tipo: entero, unidad: categorias producto}
+  - {id: RESULT-BANXICO-G-PESO-NO-POSITIVO-N, tipo: entero, unidad: filas}
+  - {id: RESULT-BANXICO-G-PRECISION-ESTADO, tipo: texto, unidad: estado precision}
+  - {id: RESULT-BANXICO-G-PAGO-2019-NO-LEVANTADO, tipo: texto, unidad: guardia}
+  - {id: RESULT-BANXICO-G-N-FILAS-ESTIMANDOS, tipo: entero, unidad: estimandos tabulares}
+  - {id: RESULT-BANXICO-G-N-FILAS-CONJUNTA, tipo: entero, unidad: celdas tabulares}
+  - {id: RESULT-BANXICO-G-N-FILAS-COSTO-DANO-2024, tipo: entero, unidad: celdas tabulares}
+  - {id: RESULT-BANXICO-G-ESTIMANDOS-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-BANXICO-G-CONJUNTA-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-BANXICO-G-COSTO-DANO-2024-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-BANXICO-G-RESUMEN-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-BANXICO-G-GRAFICO-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-BANXICO-2024-TDC-ATRASO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-BANXICO-2024-TDC-IMPOSIBILIDAD-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-BANXICO-2024-TDC-DANO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-BANXICO-2024-TDC-DANO-N-VALIDO, tipo: entero, unidad: denominador muestral}
+  - {id: RESULT-BANXICO-2024-HIP-ATRASO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-BANXICO-2024-HIP-IMPOSIBILIDAD-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-BANXICO-2024-HIP-DANO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-BANXICO-2024-HIP-DANO-N-VALIDO, tipo: entero, unidad: denominador muestral}
+  - {id: RESULT-BANXICO-2024-PER-ATRASO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-BANXICO-2024-PER-IMPOSIBILIDAD-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-BANXICO-2024-PER-DANO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-BANXICO-2024-PER-DANO-N-VALIDO, tipo: entero, unidad: denominador muestral}
+  - {id: RESULT-BANXICO-2024-NOM-ATRASO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-BANXICO-2024-NOM-IMPOSIBILIDAD-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-BANXICO-2024-NOM-DANO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-BANXICO-2024-NOM-DANO-N-VALIDO, tipo: entero, unidad: denominador muestral}
+  - {id: RESULT-BANXICO-2024-AUT-ATRASO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-BANXICO-2024-AUT-IMPOSIBILIDAD-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-BANXICO-2024-AUT-DANO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-BANXICO-2024-AUT-DANO-N-VALIDO, tipo: entero, unidad: denominador muestral}

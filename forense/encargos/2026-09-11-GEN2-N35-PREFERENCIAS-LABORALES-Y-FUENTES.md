@@ -108,7 +108,7 @@ Ejecutado entre el 11 y 12/sep/2026 por
 `ACTO GEN2-N35-PREFERENCIAS-LABORALES-FUENTES` en el worktree
 `/home/pc0/mm-gen2-n35-preferencias-laborales-fuentes`, rama
 `acto/gen2-n35-preferencias-laborales-fuentes`; entrega revisable en **PR
-#747** y gobernanza `ADR-492`.
+#747** y gobernanza `ADR-493`.
 
 La spec quedó congelada en `cca8297`; la ejecución real y sus agregados en
 `5158580`; el registro N35 y puente descriptivo en `54ee092`; cierre inicial en
