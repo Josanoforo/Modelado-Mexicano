@@ -17,6 +17,9 @@ corte inicial fue el snapshot concurrente del censo. La sincronización
 posterior al abrir el PR integró `origin/main=9472223f6b463c31b6c9f3129bd26e95bf992b00`
 y conservó ambos lados de los registros compartidos. Como #725 ocupó
 `ADR-482`, este acto se renumeró a `ADR-483` en gobernanza, L0 y rótulo.
+Una última actualización integró además
+`origin/main=d9c251954bce1c08abba6f47696adde9d7a2913a`, limitado a la cola
+POST-726; no cambió resultados, registros ni decisiones de este acto.
 
 ## 1 · Resultado ejecutivo
 
