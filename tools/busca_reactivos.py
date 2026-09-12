@@ -8,7 +8,7 @@ propio código. Este script es el primero pensado para consulta ad hoc,
 repetida con formulaciones distintas (`mapea.md`, P2, corre ≥3 por celda).
 
 Universo vigente: el overlay acreditado
-`data/inventario-reactivos-contexto-v1_0.tsv` primero y, sin duplicar sus
+`data/inventario-reactivos-contexto-v1_1.tsv` primero y, sin duplicar sus
 identidades, las DOS capas históricas que A.8 confirmó existentes —
 `data/inventario-reactivos-v1_2.tsv` (sucesor de v1_1 citado por el
 encargo; mismas 178 246 filas / mismo payload_id·sha256_12·archivo_miembro·
@@ -85,7 +85,7 @@ FUENTES = {
     "v1_2": REPO_ROOT / "data" / "inventario-reactivos-v1_2.tsv",
     "ext": REPO_ROOT / "data" / "inventario-reactivos-ext-v1_0.tsv",
 }
-CONTEXTO = REPO_ROOT / "data" / "inventario-reactivos-contexto-v1_0.tsv"
+CONTEXTO = REPO_ROOT / "data" / "inventario-reactivos-contexto-v1_1.tsv"
 # ACTO MAESTRA37-L1: --tablas admite fuentes adicionales sin tocar las claves
 # históricas de --fuente. "hoy" == exactamente v1_2+ext, byte a byte, el
 # comportamiento previo al overlay vigente de contexto.
