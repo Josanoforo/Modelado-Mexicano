@@ -447,8 +447,8 @@ DIAS_REINTENTO = 7
 # única puerta hacia PENDIENTE.
 _RAZON_POR_ESTADO = {
     "OBTENIDO": "OBTENIDO: A.8 ya resuelto, un objeto completo conserva OBTENIDO",
-    "NO-ACCESIBLE": ("NO-ACCESIBLE: barrera declarada; solo camina si el operador "
-                     "la nombra por ID"),
+    "NO-ACCESIBLE": ("NO-ACCESIBLE: barrera declarada; nombrarla no supera acceso, "
+                     "credenciales o costo; requiere otro residual accionable"),
     "OBTENIDO-PARCIAL": ("OBTENIDO-PARCIAL: el residual necesita cobertura y sucesor "
                          "explícitos; no se activa en bloque"),
 }
@@ -599,7 +599,7 @@ def selecciona_filas(filas, corte, maximo=5, nombradas=None):
             excluidos.append({"id": fuente, "estado": estado, "razon": razon})
             continue
 
-        if base in _RAZON_POR_ESTADO and not pedida:
+        if base in _RAZON_POR_ESTADO:
             excluidos.append({"id": fuente, "estado": estado,
                               "razon": _RAZON_POR_ESTADO[base]})
             continue
@@ -683,6 +683,63 @@ def lee_cola(ruta=RUTA_COLA):
             filas.append((d.get("fuente_canonica", ""), d.get("estado_A4A5", ""),
                           d.get("prioridad", ""), d.get("nota", "")))
     return filas
+
+
+def lee_cola_dicts(ruta=RUTA_COLA):
+    """Filas completas para el cierre de cobertura; misma fuente canónica."""
+    import csv
+    with open(ruta, encoding="utf-8", newline="") as f:
+        return list(csv.DictReader(f, delimiter="\t"))
+
+
+def resumen_necesidades(filas, seleccion):
+    """Distingue cola sin elegibles de cobertura y barreras reales.
+
+    Sólo cuenta filas marcadas por ``adq_residual``: los estados históricos de
+    fuentes padre no tienen grano suficiente para afirmar una necesidad.
+    """
+    import adq_residual
+
+    elegidos = {x["id"] for x in seleccion.get("elegidos", [])}
+    grupos = {
+        "accionables": [], "cubiertas": [], "pendientes_acceso": [],
+        "pendientes_sin_via": [], "pendientes_reintento": [],
+        "pendientes_decision": [], "otras": [],
+    }
+    detalle = []
+    for fila in filas:
+        meta = adq_residual.metadata_de_nota(fila.get("nota", ""))
+        if not meta:
+            continue
+        objeto_id = fila.get("fuente_canonica", "")
+        base = (fila.get("estado_A4A5") or "").split("(")[0].strip()
+        if base == "OBTENIDO":
+            categoria = "cubiertas"
+        elif base == "PENDIENTE":
+            categoria = "accionables"
+        elif base in {"SOLICITUD-PREPARADA", "NO-ACCESIBLE"}:
+            categoria = "pendientes_acceso"
+        elif base == "NO-ENCONTRADO":
+            categoria = "pendientes_sin_via"
+        elif base == "NO-OBTENIDO-POR-ESTE-AGENTE":
+            categoria = "pendientes_reintento"
+        elif base == "SIN-FETCH":
+            categoria = "pendientes_decision"
+        else:
+            categoria = "otras"
+        grupos[categoria].append(objeto_id)
+        detalle.append({
+            "id": objeto_id, "padre": meta.get("padre"),
+            "consumidor": meta.get("consumidor"), "estado": fila.get("estado_A4A5"),
+            "categoria": categoria, "seleccionado_ahora": objeto_id in elegidos,
+            "siguiente_accion": meta.get("siguiente_accion"),
+        })
+    return {
+        "total_residuales": len(detalle),
+        "seleccionados_ahora": sorted(elegidos.intersection({x["id"] for x in detalle})),
+        **{k: {"cantidad": len(v), "ids": v} for k, v in grupos.items()},
+        "detalle": detalle,
+    }
 
 
 def transforma_sin_fetch_autorizada(fuente, ruta=RUTA_COLA):
@@ -983,8 +1040,15 @@ def main():
             print(("OK: " if ok else "NO: ") + razon)
         return 0 if ok else 1
     if a.selecciona:
-        r = selecciona_filas(lee_cola(), corte=datetime.date.today(),
+        filas_completas = lee_cola_dicts()
+        filas_selector = [
+            (f.get("fuente_canonica", ""), f.get("estado_A4A5", ""),
+             f.get("prioridad", ""), f.get("nota", ""))
+            for f in filas_completas
+        ]
+        r = selecciona_filas(filas_selector, corte=datetime.date.today(),
                              maximo=a.maximo, nombradas=a.nombrada)
+        r["resumen_necesidades"] = resumen_necesidades(filas_completas, r)
         if a.json:
             print(json.dumps(r, ensure_ascii=False, indent=2))
         else:
@@ -996,6 +1060,15 @@ def main():
             print(f"\nEXCLUIDOS ({len(r['excluidos'])}):")
             for e in r["excluidos"]:
                 print(f"  {e['id']} [{e['estado']}] -- {e['razon']}")
+            c = r["resumen_necesidades"]
+            print("\nCOBERTURA DE RESIDUALES:")
+            print(f"  total={c['total_residuales']} "
+                  f"cubiertas={c['cubiertas']['cantidad']} "
+                  f"accionables={c['accionables']['cantidad']} "
+                  f"pendientes_acceso={c['pendientes_acceso']['cantidad']} "
+                  f"pendientes_sin_via={c['pendientes_sin_via']['cantidad']} "
+                  f"pendientes_reintento={c['pendientes_reintento']['cantidad']} "
+                  f"pendientes_decision={c['pendientes_decision']['cantidad']}")
         return 0
     reporte = recolecta()
     if a.json:

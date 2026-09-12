@@ -3,7 +3,7 @@
 Fecha: 11/sep/2026
 Entorno: NUBE, Codex CLI
 PR: #729
-ADR: ADR-482
+ADR: ADR-485
 
 ## Resultado
 
@@ -25,6 +25,12 @@ RESULT adoptado. Transferencia exige el objeto `SELECCION-TEMPORAL-v1`
 completo y lo entrega a la autenticación incorporada por #720; el wrapper no
 acepta parámetros sueltos como selección. No hay fallback numérico legacy,
 cero, imputación ni sustitución por R.
+
+Después del merge de #731, el comando consume sin recalcular la proyección de
+`data/corrida0/resultados.tsv` que entrega `cargar_indice_linaje_emision()`. La
+verificación exhaustiva de las identidades publicadas por
+`listar_consumidores()` confirma 16 RESULT directos: 16 `EMITE` y 16 `PASA`.
+No se importó ni ejecutó el validador independiente de #731.
 
 ## Recorrido demostrado
 
@@ -48,10 +54,12 @@ existente salvo `--sobrescribir` explícito; ningún camino escribe snapshots.
 ## Evidencia dirigida
 
 - `python3 -m unittest tests.test_consulta_gen2 -v`: 8/8 después de publicar
-  la respuesta dorada.
+  la respuesta dorada; su primer caso recorre además las 16 identidades GEN2
+  directas y exige `EMITE`, RESULT exacto y `PASA`.
 - `python3 -m unittest tests.test_motor_gen2_explicito tests.test_motor_usos_complementos -v`:
   pruebas de regresión del emisor y complementos.
-- `python3 -m tools.snapshot_motor_gen2 --verifica forense/prereg-duelo-v2/snapshot-M-gen2-explicito-v1_1.json`:
+- Las tres suites juntas: 37/37.
+- `python3 -m tools.snapshot_motor_gen2 --verifica forense/prereg-duelo-v2/snapshot-M-gen2-explicito-v1_2.json`:
   `OK`.
 - `python3 tools/consulta_gen2.py --lote .../peticiones.json --verifica .../respuestas.json`:
   `OK`.
@@ -63,13 +71,22 @@ El snapshot v1.0 conserva SHA-256
 `05350667baa245c79c3ed487aeb1403d74b4612fcae69e16845b8d42f1a5eaa8`; el
 v1.1 conserva
 `95d36cef4735f85a22f0346bc04dabdab2f13724c96e9a19179996cb93bca3bb`.
-Ninguno fue modificado.
+Ninguno fue modificado. El snapshot vigente v1.2, recibido de #731, verifica
+con SHA-256
+`ca083554b8cd844b1a54a6147d37e26ff4096f15037e8cae6b4450f64ee763e6`.
+
+Las respuestas reproducibles fueron actualizadas contra el estado vivo: los
+RESULT directos que antes declaraban `NO-HECHA` ahora declaran `PASA`. La única
+`NO-HECHA` restante es `RESULT-B-ENIGH-2020-P` en la transferencia histórica;
+no pertenece al conjunto directo validado por #731 y coincide con la vista
+vigente, por lo que no contradice el overlay.
 
 ## Alcance y residual
 
-No se modifican `milpa/src/emisor.py`, criterios científicos, RESULT, usos,
-capturas, specs, snapshots ni overlay de validación. El comando consume el
-estado de validación que publique la interfaz vigente; no exige que todo sea
-`PASA` ni fija totales. No abre F6, no calibra, no adopta, no evalúa
+No se modifican por este acto `milpa/src/emisor.py`, criterios científicos,
+RESULT, usos, capturas, specs, snapshots ni overlay de validación. El comando
+consume el estado de validación que publique la interfaz vigente y la regresión
+fija la cardinalidad contractual actual en 16 RESULT directos con `PASA`. No
+abre F6, no calibra, no adopta, no evalúa
 generalización y no incrementa el contador científico. No queda residual
 técnico dentro del encargo; sólo falta la revisión y fusión del PR por Jonás.

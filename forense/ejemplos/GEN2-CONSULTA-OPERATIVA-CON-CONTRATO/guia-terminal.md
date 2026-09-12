@@ -36,7 +36,8 @@ python3 tools/consulta_gen2.py \
 ```
 
 Resultado esperado: `estado: EMITE`,
-`RESULT-B-ENIGH-2022-P` y punto `0.04569409956405095`.
+`RESULT-B-ENIGH-2022-P`, punto `0.04569409956405095` y
+`validación independiente: PASA`.
 
 Para salida máquina, añadir `--json`. También se puede guardar una petición
 individual como objeto JSON y pasarla con `--peticion ruta.json`.
@@ -87,6 +88,11 @@ Resultado esperado:
 ```text
 OK respuestas reproducibles: forense/ejemplos/GEN2-CONSULTA-OPERATIVA-CON-CONTRATO/respuestas.json
 ```
+
+Este dorado fue regenerado después de #731 desde la misma vista común que usa
+la consulta. Los 16 RESULT directos devuelven `PASA`; `RESULT-B-ENIGH-2020-P`
+conserva `NO-HECHA` únicamente en el recorrido de transferencia histórica,
+porque no forma parte de esos 16 RESULT ni del overlay nuevo.
 
 Para persistir otro recorrido, usar un destino propio con `--salida`. Si el
 archivo ya existe, el comando se niega a reemplazarlo salvo que se añada

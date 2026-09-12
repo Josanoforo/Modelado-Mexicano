@@ -41,6 +41,30 @@ class ConsultaGen2(unittest.TestCase):
                 self.assertEqual(r["resultado"]["generacion"], "GEN2")
                 self.assertEqual(r["aptitud"]["estado"], "APTA-POR-LINAJE")
 
+        directos = [
+            fila for fila in listar_consumidores()
+            if fila["generacion"] == "GEN2"
+        ]
+        self.assertEqual(len(directos), 16)
+        for fila in directos:
+            uso = (
+                "DESCRIPTIVO"
+                if fila["rol_uso"] == "proxy_descriptivo"
+                else "MEDICION-GEN2"
+            )
+            with self.subTest(consumidor=fila["consumidor"]):
+                r = consultar({
+                    "consumidor": fila["consumidor"],
+                    "proposito": "consulta",
+                    "contexto": fila["campos_dominio"],
+                    "uso": uso,
+                })
+                self.assertEqual(r["estado"], "EMITE")
+                self.assertEqual(
+                    r["resultado"]["id"], fila["resultado_id"])
+                self.assertEqual(
+                    r["aptitud"]["validacion_independiente"], "PASA")
+
     def test_02_fallos_cerrados_no_exponen_valor(self):
         causas = {
             "05-dominio-falso": "fuera del dominio elegible",

@@ -6,11 +6,11 @@
       "estado": "APTA-POR-LINAJE",
       "rol_uso": null,
       "uso_solicitado": "MEDICION-GEN2",
-      "validacion_independiente": "NO-HECHA"
+      "validacion_independiente": "PASA"
     },
     "contrato": {
       "archivos": {
-        "data/corrida0/resultados.tsv": "0518dfc198ae83c558d4a31c05ae71014d23c66a80145f33a705f56a0c39dbf0",
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
@@ -18,9 +18,9 @@
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
-        "tools/snapshot_motor_gen2.py": "e791afc3858809076400e34d112cd810a51c80af3e94890a4861ca2f65e9eeaf"
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "1e1043652429d52d291408a00be607d340a7c955e3c1ff911bac80e9bff705d2",
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -104,11 +104,11 @@
       "estado": "APTA-POR-LINAJE",
       "rol_uso": null,
       "uso_solicitado": "MEDICION-GEN2",
-      "validacion_independiente": "NO-HECHA"
+      "validacion_independiente": "PASA"
     },
     "contrato": {
       "archivos": {
-        "data/corrida0/resultados.tsv": "0518dfc198ae83c558d4a31c05ae71014d23c66a80145f33a705f56a0c39dbf0",
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
@@ -116,9 +116,9 @@
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
-        "tools/snapshot_motor_gen2.py": "e791afc3858809076400e34d112cd810a51c80af3e94890a4861ca2f65e9eeaf"
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "1e1043652429d52d291408a00be607d340a7c955e3c1ff911bac80e9bff705d2",
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -190,11 +190,11 @@
       "estado": "APTA-POR-LINAJE",
       "rol_uso": null,
       "uso_solicitado": "MEDICION-GEN2",
-      "validacion_independiente": "NO-HECHA"
+      "validacion_independiente": "PASA"
     },
     "contrato": {
       "archivos": {
-        "data/corrida0/resultados.tsv": "0518dfc198ae83c558d4a31c05ae71014d23c66a80145f33a705f56a0c39dbf0",
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
@@ -202,9 +202,9 @@
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
-        "tools/snapshot_motor_gen2.py": "e791afc3858809076400e34d112cd810a51c80af3e94890a4861ca2f65e9eeaf"
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "1e1043652429d52d291408a00be607d340a7c955e3c1ff911bac80e9bff705d2",
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -276,11 +276,11 @@
       "estado": "APTA-POR-LINAJE",
       "rol_uso": null,
       "uso_solicitado": "MEDICION-GEN2",
-      "validacion_independiente": "NO-HECHA"
+      "validacion_independiente": "PASA"
     },
     "contrato": {
       "archivos": {
-        "data/corrida0/resultados.tsv": "0518dfc198ae83c558d4a31c05ae71014d23c66a80145f33a705f56a0c39dbf0",
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
@@ -288,9 +288,9 @@
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
-        "tools/snapshot_motor_gen2.py": "e791afc3858809076400e34d112cd810a51c80af3e94890a4861ca2f65e9eeaf"
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "1e1043652429d52d291408a00be607d340a7c955e3c1ff911bac80e9bff705d2",
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -362,11 +362,11 @@
       "estado": null,
       "rol_uso": null,
       "uso_solicitado": "MEDICION-GEN2",
-      "validacion_independiente": "NO-HECHA"
+      "validacion_independiente": "PASA"
     },
     "contrato": {
       "archivos": {
-        "data/corrida0/resultados.tsv": "0518dfc198ae83c558d4a31c05ae71014d23c66a80145f33a705f56a0c39dbf0",
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
@@ -374,9 +374,9 @@
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
-        "tools/snapshot_motor_gen2.py": "e791afc3858809076400e34d112cd810a51c80af3e94890a4861ca2f65e9eeaf"
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "1e1043652429d52d291408a00be607d340a7c955e3c1ff911bac80e9bff705d2",
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -460,7 +460,7 @@
     },
     "contrato": {
       "archivos": {
-        "data/corrida0/resultados.tsv": "0518dfc198ae83c558d4a31c05ae71014d23c66a80145f33a705f56a0c39dbf0",
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
@@ -468,9 +468,9 @@
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
-        "tools/snapshot_motor_gen2.py": "e791afc3858809076400e34d112cd810a51c80af3e94890a4861ca2f65e9eeaf"
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "1e1043652429d52d291408a00be607d340a7c955e3c1ff911bac80e9bff705d2",
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -533,7 +533,7 @@
     },
     "contrato": {
       "archivos": {
-        "data/corrida0/resultados.tsv": "0518dfc198ae83c558d4a31c05ae71014d23c66a80145f33a705f56a0c39dbf0",
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
@@ -541,9 +541,9 @@
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
-        "tools/snapshot_motor_gen2.py": "e791afc3858809076400e34d112cd810a51c80af3e94890a4861ca2f65e9eeaf"
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "1e1043652429d52d291408a00be607d340a7c955e3c1ff911bac80e9bff705d2",
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -655,7 +655,7 @@
   {
     "contrato": {
       "archivos": {
-        "data/corrida0/resultados.tsv": "0518dfc198ae83c558d4a31c05ae71014d23c66a80145f33a705f56a0c39dbf0",
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
@@ -663,9 +663,9 @@
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
-        "tools/snapshot_motor_gen2.py": "e791afc3858809076400e34d112cd810a51c80af3e94890a4861ca2f65e9eeaf"
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "1e1043652429d52d291408a00be607d340a7c955e3c1ff911bac80e9bff705d2",
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
       "version": "CONSULTA-GEN2-v1"
     },
     "estado": "NO_COVERAGE",
@@ -704,11 +704,11 @@
       "estado": null,
       "rol_uso": null,
       "uso_solicitado": "MEDICION-GEN2",
-      "validacion_independiente": "NO-HECHA"
+      "validacion_independiente": "PASA"
     },
     "contrato": {
       "archivos": {
-        "data/corrida0/resultados.tsv": "0518dfc198ae83c558d4a31c05ae71014d23c66a80145f33a705f56a0c39dbf0",
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
@@ -716,9 +716,9 @@
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
-        "tools/snapshot_motor_gen2.py": "e791afc3858809076400e34d112cd810a51c80af3e94890a4861ca2f65e9eeaf"
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "1e1043652429d52d291408a00be607d340a7c955e3c1ff911bac80e9bff705d2",
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -830,11 +830,11 @@
       "estado": "APTA-POR-LINAJE",
       "rol_uso": null,
       "uso_solicitado": "MEDICION-GEN2",
-      "validacion_independiente": "NO-HECHA"
+      "validacion_independiente": "PASA"
     },
     "contrato": {
       "archivos": {
-        "data/corrida0/resultados.tsv": "0518dfc198ae83c558d4a31c05ae71014d23c66a80145f33a705f56a0c39dbf0",
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
@@ -842,9 +842,9 @@
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
-        "tools/snapshot_motor_gen2.py": "e791afc3858809076400e34d112cd810a51c80af3e94890a4861ca2f65e9eeaf"
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "1e1043652429d52d291408a00be607d340a7c955e3c1ff911bac80e9bff705d2",
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {
@@ -927,11 +927,11 @@
       "estado": null,
       "rol_uso": "proxy_descriptivo",
       "uso_solicitado": "MEDICION-GEN2",
-      "validacion_independiente": "NO-HECHA"
+      "validacion_independiente": "PASA"
     },
     "contrato": {
       "archivos": {
-        "data/corrida0/resultados.tsv": "0518dfc198ae83c558d4a31c05ae71014d23c66a80145f33a705f56a0c39dbf0",
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
@@ -939,9 +939,9 @@
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
-        "tools/snapshot_motor_gen2.py": "e791afc3858809076400e34d112cd810a51c80af3e94890a4861ca2f65e9eeaf"
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "1e1043652429d52d291408a00be607d340a7c955e3c1ff911bac80e9bff705d2",
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
       "version": "CONSULTA-GEN2-v1"
     },
     "dependencia": {

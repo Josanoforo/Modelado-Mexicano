@@ -1,0 +1,337 @@
+calc_id: CALC-ENSAFI-DISENO-0001
+spec_md: spec.md
+spec_md_sha256: a247234c5bc7c1290d52d2545e6d585c3f747786b6fad716d7c0d8765a669797
+script: data/corrida0/CALC-ENSAFI-DISENO-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: MEDICION-DESCRIPTIVA-ENCUESTA-CON-DISENO
+  cuenta_gen2: SI
+  cuenta_gen2_firma: >-
+    Encargo GEN2-ENSAFI-MEDICION-DESCRIPTIVA-CON-DISENO, 11/sep/2026:
+    formaliza y extiende trece puntos conocidos con denominadores e
+    incertidumbre; un CALC cientifico, no trece fuentes ni muestras.
+    El merge de mesa perfecciona la firma.
+  validacion_independiente: PENDIENTE-POST-SELLO
+  spec_sellada: forense/prereg-caja/ENSAFI-ATRASO-AFRONTAMIENTO-DISENO-spec-v1_0.md
+  spec_sellada_sha256: 794e672bcf86cb12657a95f88f060c106f0978bc8ea0d078f6cf0585692e657c
+  demanda_que_releva: >-
+    Extension analitica autorizada de ENSAFI 2023 tras #723; NC-0164
+    conserva el residual producto exacto, costo, friccion y dano causal.
+  regla_contextual: dinero.credito.scoring_alternativo (R1.6) / N34-R1.7
+  uso_motor: DESCRIPTIVO-NO-CALIBRA-NI-ADOPTA
+  medidor_ejecutado_al_congelar: NO
+
+inputs:
+  - {id: ensafi2023_bd_csv_zip, origen: manifiesto}
+  - {id: ensafi2023_fd_xlsx_zip, origen: manifiesto}
+  - {id: ensafi2023_cuestionario_pdf, origen: manifiesto}
+  - {id: gen2_ensafi2023_diseno_muestral, origen: manifiesto}
+  - {id: gen2_ensafi2023_presentacion_resultados, origen: manifiesto}
+
+payloads:
+  - {id: ensafi2023_bd_csv_zip, archivo: ensafi2023/ensafi_2023_bd_csv.zip, sha256: c0594079ddf4733d4f574d00f5e84290c62c5330eab0567dd867c26d42fafacd, miembros_usados: "THOGAR.csv;TMODULO.csv", rol: MEDICION}
+  - {id: ensafi2023_fd_xlsx_zip, archivo: ensafi2023/ensafi_2023_fd_xlsx.zip, sha256: 37bd0cb6dd54ddb8d8962114971e60e06d2628e97eeb8b4e32269129d556ff4b, rol: CODIGOS-Y-DISENO}
+  - {id: ensafi2023_cuestionario_pdf, archivo: ensafi2023/ensafi_2023_cuestionario.pdf, sha256: d86c69f26d8b77de1d00b94d794b1e2ac01bd26aa101d3fca9e17287380c85fb, rol: TEXTO-REACTIVOS}
+  - {id: gen2_ensafi2023_diseno_muestral, archivo: GEN2_FUENTES_FINANCIERAS_CONTINUACION/ensafi_2023_diseno_muestral.pdf, sha256: 80a097b28f55cf5b8282f8d0a656d52e0d9b21693663c4f52803f55985a0fb31, rol: DISENO-OFICIAL}
+  - {id: gen2_ensafi2023_presentacion_resultados, archivo: GEN2_FUENTES_FINANCIERAS_CONTINUACION/ensafi_2023_presentacion_resultados.pdf, sha256: 4ad641dff0c90b389044d85efb975ced2dc21fd6a820bab6903b560a32d802ef, rol: CONTRASTE-OFICIAL}
+
+variables:
+  - {archivo: THOGAR.csv, variable: LLAVEHOG, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: THOGAR.csv, variable: FAC_HOG, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: THOGAR.csv, variable: EST_DIS, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: THOGAR.csv, variable: UPM_DIS, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: THOGAR.csv, variable: P4_7_1, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: THOGAR.csv, variable: P4_7_2, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: THOGAR.csv, variable: P4_7_3, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: THOGAR.csv, variable: P4_7_4, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: THOGAR.csv, variable: P4_8_1, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: THOGAR.csv, variable: P4_8_2, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: THOGAR.csv, variable: P4_8_3, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: THOGAR.csv, variable: P4_8_4, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: TMODULO.csv, variable: LLAVEMOD, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: TMODULO.csv, variable: FAC_ELE, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: TMODULO.csv, variable: EST_DIS, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: TMODULO.csv, variable: UPM_DIS, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: TMODULO.csv, variable: P6_7, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: TMODULO.csv, variable: P6_8, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: TMODULO.csv, variable: P6_9, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: TMODULO.csv, variable: P6_10_1, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: TMODULO.csv, variable: P6_10_2, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: TMODULO.csv, variable: P6_10_3, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: TMODULO.csv, variable: P6_10_4, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: TMODULO.csv, variable: P6_10_5, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: TMODULO.csv, variable: P6_10_6, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: TMODULO.csv, variable: P6_10_7, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+  - {archivo: TMODULO.csv, variable: P6_10_8, rol: columna fisica verificada, codigos: segun descriptor y spec sellada}
+
+universo: >-
+  ENSAFI 2023. Hogar para cuatro clases amplias de deuda y persona elegida
+  de 18 anos y mas para atraso general y afrontamiento. Dominios y codigos
+  exactos en la spec sellada; no hay segmentaciones exploratorias.
+filtros: >-
+  Respuesta 1/2 valida; cualquier otro codigo se reporta desconocido y sale
+  del denominador. P6_8=1..4 define deuda; P6_9=2 define insuficiencia.
+  Peso ausente, no finito o no positivo sale y se cuenta.
+ponderador: >-
+  FAC_HOG en THOGAR; FAC_ELE en TMODULO. Punto como razon de totales.
+transformacion: >-
+  Trece indicadores binarios. Estrategias y clases permanecen respuestas
+  multiples/no excluyentes. No se suman ni se recodifican a una particion.
+estimando: >-
+  Cuatro prevalencias de atraso de hogar por clase, una prevalencia general
+  de atraso de persona con deuda y ocho prevalencias de estrategias ante
+  insuficiencia, todas descriptivas y con respuesta valida.
+precision: >-
+  Linealizacion de razon por UPM_DIS anidada en EST_DIS sobre muestra completa;
+  varianza WR por estrato, IC95 t con gl=sum_h(m_h-1), truncado [0,1], sin FPC.
+  Singleton no se agrupa ni aporta varianza/gl. Frontera, diseno incompleto o
+  denominador nulo producen precision null con causa, nunca cero inventado.
+
+dependencias_materiales:
+  - scipy
+seed: {aplica: false, valor: null, rng: NO-APLICA}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: salidas deterministas; redondeo numerico a 12 decimales
+
+parametros:
+  fuente_acto: ACTO GEN2-ENSAFI-MEDICION-DESCRIPTIVA-CON-DISENO
+  estimandos_nominales: 13
+  intervalo: T-STUDENT-95-BILATERAL
+  dominio: MUESTRA-COMPLETA
+  singleton: SIN-APORTE-NI-AGRUPACION
+  frontera: PRECISION-NO-DISPONIBLE
+  contraste_723_tolerancia_abs: 1.0e-10
+  contraste_oficial_atraso_persona_pct_1d: 27.3
+  adopcion: NINGUNA
+  residual: NC-0164-ABIERTO
+
+resultados:
+  - {id: RESULT-ENSAFI-DIS-G-N-ESTIMANDOS, tipo: entero, unidad: "estimandos nominales"}
+  - {id: RESULT-ENSAFI-DIS-G-METODO-DOMINIO, tipo: texto, unidad: "metodo"}
+  - {id: RESULT-ENSAFI-DIS-G-ANIDAMIENTO, tipo: texto, unidad: "identidad de diseno"}
+  - {id: RESULT-ENSAFI-DIS-G-SINGLETON-REGLA, tipo: texto, unidad: "regla de precision"}
+  - {id: RESULT-ENSAFI-DIS-G-FRONTERA-REGLA, tipo: texto, unidad: "regla de precision"}
+  - {id: RESULT-ENSAFI-DIS-G-INTERVALO, tipo: texto, unidad: "metodo de intervalo"}
+  - {id: RESULT-ENSAFI-DIS-G-CONTRASTE-723-MAX-DELTA, tipo: flotante, unidad: "proporcion absoluta", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-G-CONTRASTE-723, tipo: texto, unidad: "guardia"}
+  - {id: RESULT-ENSAFI-DIS-G-CONTRASTE-OFICIAL-27_3, tipo: texto, unidad: "guardia"}
+  - {id: RESULT-ENSAFI-DIS-HOG-N-FILAS, tipo: entero, unidad: "filas de tabla"}
+  - {id: RESULT-ENSAFI-DIS-HOG-N-COLUMNAS, tipo: entero, unidad: "columnas de tabla"}
+  - {id: RESULT-ENSAFI-DIS-HOG-COLUMNAS-AUSENTES, tipo: texto, unidad: "guardia"}
+  - {id: RESULT-ENSAFI-DIS-HOG-LLAVE-UNICA, tipo: texto, unidad: "guardia"}
+  - {id: RESULT-ENSAFI-DIS-HOG-PESO-INVALIDO-N, tipo: entero, unidad: "filas"}
+  - {id: RESULT-ENSAFI-DIS-HOG-DISENO-FALTANTE-N, tipo: entero, unidad: "filas"}
+  - {id: RESULT-ENSAFI-DIS-HOG-N-ESTRATOS, tipo: entero, unidad: "estratos"}
+  - {id: RESULT-ENSAFI-DIS-HOG-N-UPM-ANIDADAS, tipo: entero, unidad: "UPM anidadas"}
+  - {id: RESULT-ENSAFI-DIS-HOG-N-UPM-CRUZA-ESTRATOS, tipo: entero, unidad: "UPM"}
+  - {id: RESULT-ENSAFI-DIS-HOG-N-ESTRATOS-SINGLETON, tipo: entero, unidad: "estratos"}
+  - {id: RESULT-ENSAFI-DIS-HOG-GL, tipo: entero, unidad: "grados de libertad de diseno"}
+  - {id: RESULT-ENSAFI-DIS-PER-N-FILAS, tipo: entero, unidad: "filas de tabla"}
+  - {id: RESULT-ENSAFI-DIS-PER-N-COLUMNAS, tipo: entero, unidad: "columnas de tabla"}
+  - {id: RESULT-ENSAFI-DIS-PER-COLUMNAS-AUSENTES, tipo: texto, unidad: "guardia"}
+  - {id: RESULT-ENSAFI-DIS-PER-LLAVE-UNICA, tipo: texto, unidad: "guardia"}
+  - {id: RESULT-ENSAFI-DIS-PER-PESO-INVALIDO-N, tipo: entero, unidad: "filas"}
+  - {id: RESULT-ENSAFI-DIS-PER-DISENO-FALTANTE-N, tipo: entero, unidad: "filas"}
+  - {id: RESULT-ENSAFI-DIS-PER-N-ESTRATOS, tipo: entero, unidad: "estratos"}
+  - {id: RESULT-ENSAFI-DIS-PER-N-UPM-ANIDADAS, tipo: entero, unidad: "UPM anidadas"}
+  - {id: RESULT-ENSAFI-DIS-PER-N-UPM-CRUZA-ESTRATOS, tipo: entero, unidad: "UPM"}
+  - {id: RESULT-ENSAFI-DIS-PER-N-ESTRATOS-SINGLETON, tipo: entero, unidad: "estratos"}
+  - {id: RESULT-ENSAFI-DIS-PER-GL, tipo: entero, unidad: "grados de libertad de diseno"}
+  - {id: RESULT-ENSAFI-DIS-HOG-FORMAL-N-EXPUESTO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-FORMAL-N-VALIDO, tipo: entero, unidad: "denominador muestral"}
+  - {id: RESULT-ENSAFI-DIS-HOG-FORMAL-N-DESCONOCIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-FORMAL-MASA-DESCONOCIDO, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-HOG-FORMAL-N-NUMERADOR, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-FORMAL-MASA-NUMERADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-HOG-FORMAL-MASA-DENOMINADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-HOG-FORMAL-P, tipo: proporcion, unidad: "proporcion ponderada", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-HOG-FORMAL-EE, tipo: flotante, unidad: "error estandar", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-HOG-FORMAL-IC95-LO, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-HOG-FORMAL-IC95-HI, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-HOG-FORMAL-GL, tipo: entero, unidad: "grados de libertad de diseno"}
+  - {id: RESULT-ENSAFI-DIS-HOG-FORMAL-N-SIN-DISENO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-FORMAL-N-PESO-INVALIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-FORMAL-PRECISION-ESTADO, tipo: texto, unidad: "estado de precision"}
+  - {id: RESULT-ENSAFI-DIS-HOG-CAJA-FAMILIA-N-EXPUESTO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-CAJA-FAMILIA-N-VALIDO, tipo: entero, unidad: "denominador muestral"}
+  - {id: RESULT-ENSAFI-DIS-HOG-CAJA-FAMILIA-N-DESCONOCIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-CAJA-FAMILIA-MASA-DESCONOCIDO, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-HOG-CAJA-FAMILIA-N-NUMERADOR, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-CAJA-FAMILIA-MASA-NUMERADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-HOG-CAJA-FAMILIA-MASA-DENOMINADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-HOG-CAJA-FAMILIA-P, tipo: proporcion, unidad: "proporcion ponderada", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-HOG-CAJA-FAMILIA-EE, tipo: flotante, unidad: "error estandar", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-HOG-CAJA-FAMILIA-IC95-LO, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-HOG-CAJA-FAMILIA-IC95-HI, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-HOG-CAJA-FAMILIA-GL, tipo: entero, unidad: "grados de libertad de diseno"}
+  - {id: RESULT-ENSAFI-DIS-HOG-CAJA-FAMILIA-N-SIN-DISENO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-CAJA-FAMILIA-N-PESO-INVALIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-CAJA-FAMILIA-PRECISION-ESTADO, tipo: texto, unidad: "estado de precision"}
+  - {id: RESULT-ENSAFI-DIS-HOG-EMPENO-N-EXPUESTO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-EMPENO-N-VALIDO, tipo: entero, unidad: "denominador muestral"}
+  - {id: RESULT-ENSAFI-DIS-HOG-EMPENO-N-DESCONOCIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-EMPENO-MASA-DESCONOCIDO, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-HOG-EMPENO-N-NUMERADOR, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-EMPENO-MASA-NUMERADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-HOG-EMPENO-MASA-DENOMINADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-HOG-EMPENO-P, tipo: proporcion, unidad: "proporcion ponderada", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-HOG-EMPENO-EE, tipo: flotante, unidad: "error estandar", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-HOG-EMPENO-IC95-LO, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-HOG-EMPENO-IC95-HI, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-HOG-EMPENO-GL, tipo: entero, unidad: "grados de libertad de diseno"}
+  - {id: RESULT-ENSAFI-DIS-HOG-EMPENO-N-SIN-DISENO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-EMPENO-N-PESO-INVALIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-EMPENO-PRECISION-ESTADO, tipo: texto, unidad: "estado de precision"}
+  - {id: RESULT-ENSAFI-DIS-HOG-PRESTAMISTA-N-EXPUESTO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-PRESTAMISTA-N-VALIDO, tipo: entero, unidad: "denominador muestral"}
+  - {id: RESULT-ENSAFI-DIS-HOG-PRESTAMISTA-N-DESCONOCIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-PRESTAMISTA-MASA-DESCONOCIDO, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-HOG-PRESTAMISTA-N-NUMERADOR, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-PRESTAMISTA-MASA-NUMERADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-HOG-PRESTAMISTA-MASA-DENOMINADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-HOG-PRESTAMISTA-P, tipo: proporcion, unidad: "proporcion ponderada", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-HOG-PRESTAMISTA-EE, tipo: flotante, unidad: "error estandar", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-HOG-PRESTAMISTA-IC95-LO, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-HOG-PRESTAMISTA-IC95-HI, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-HOG-PRESTAMISTA-GL, tipo: entero, unidad: "grados de libertad de diseno"}
+  - {id: RESULT-ENSAFI-DIS-HOG-PRESTAMISTA-N-SIN-DISENO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-PRESTAMISTA-N-PESO-INVALIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-HOG-PRESTAMISTA-PRECISION-ESTADO, tipo: texto, unidad: "estado de precision"}
+  - {id: RESULT-ENSAFI-DIS-PER-ATRASO-N-EXPUESTO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-ATRASO-N-VALIDO, tipo: entero, unidad: "denominador muestral"}
+  - {id: RESULT-ENSAFI-DIS-PER-ATRASO-N-DESCONOCIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-ATRASO-MASA-DESCONOCIDO, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-ATRASO-N-NUMERADOR, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-ATRASO-MASA-NUMERADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-ATRASO-MASA-DENOMINADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-ATRASO-P, tipo: proporcion, unidad: "proporcion ponderada", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-ATRASO-EE, tipo: flotante, unidad: "error estandar", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-ATRASO-IC95-LO, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-ATRASO-IC95-HI, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-ATRASO-GL, tipo: entero, unidad: "grados de libertad de diseno"}
+  - {id: RESULT-ENSAFI-DIS-PER-ATRASO-N-SIN-DISENO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-ATRASO-N-PESO-INVALIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-ATRASO-PRECISION-ESTADO, tipo: texto, unidad: "estado de precision"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-1-N-EXPUESTO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-1-N-VALIDO, tipo: entero, unidad: "denominador muestral"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-1-N-DESCONOCIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-1-MASA-DESCONOCIDO, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-1-N-NUMERADOR, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-1-MASA-NUMERADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-1-MASA-DENOMINADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-1-P, tipo: proporcion, unidad: "proporcion ponderada", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-1-EE, tipo: flotante, unidad: "error estandar", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-1-IC95-LO, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-1-IC95-HI, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-1-GL, tipo: entero, unidad: "grados de libertad de diseno"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-1-N-SIN-DISENO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-1-N-PESO-INVALIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-1-PRECISION-ESTADO, tipo: texto, unidad: "estado de precision"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-2-N-EXPUESTO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-2-N-VALIDO, tipo: entero, unidad: "denominador muestral"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-2-N-DESCONOCIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-2-MASA-DESCONOCIDO, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-2-N-NUMERADOR, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-2-MASA-NUMERADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-2-MASA-DENOMINADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-2-P, tipo: proporcion, unidad: "proporcion ponderada", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-2-EE, tipo: flotante, unidad: "error estandar", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-2-IC95-LO, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-2-IC95-HI, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-2-GL, tipo: entero, unidad: "grados de libertad de diseno"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-2-N-SIN-DISENO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-2-N-PESO-INVALIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-2-PRECISION-ESTADO, tipo: texto, unidad: "estado de precision"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-3-N-EXPUESTO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-3-N-VALIDO, tipo: entero, unidad: "denominador muestral"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-3-N-DESCONOCIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-3-MASA-DESCONOCIDO, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-3-N-NUMERADOR, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-3-MASA-NUMERADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-3-MASA-DENOMINADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-3-P, tipo: proporcion, unidad: "proporcion ponderada", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-3-EE, tipo: flotante, unidad: "error estandar", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-3-IC95-LO, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-3-IC95-HI, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-3-GL, tipo: entero, unidad: "grados de libertad de diseno"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-3-N-SIN-DISENO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-3-N-PESO-INVALIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-3-PRECISION-ESTADO, tipo: texto, unidad: "estado de precision"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-4-N-EXPUESTO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-4-N-VALIDO, tipo: entero, unidad: "denominador muestral"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-4-N-DESCONOCIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-4-MASA-DESCONOCIDO, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-4-N-NUMERADOR, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-4-MASA-NUMERADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-4-MASA-DENOMINADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-4-P, tipo: proporcion, unidad: "proporcion ponderada", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-4-EE, tipo: flotante, unidad: "error estandar", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-4-IC95-LO, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-4-IC95-HI, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-4-GL, tipo: entero, unidad: "grados de libertad de diseno"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-4-N-SIN-DISENO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-4-N-PESO-INVALIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-4-PRECISION-ESTADO, tipo: texto, unidad: "estado de precision"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-5-N-EXPUESTO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-5-N-VALIDO, tipo: entero, unidad: "denominador muestral"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-5-N-DESCONOCIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-5-MASA-DESCONOCIDO, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-5-N-NUMERADOR, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-5-MASA-NUMERADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-5-MASA-DENOMINADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-5-P, tipo: proporcion, unidad: "proporcion ponderada", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-5-EE, tipo: flotante, unidad: "error estandar", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-5-IC95-LO, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-5-IC95-HI, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-5-GL, tipo: entero, unidad: "grados de libertad de diseno"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-5-N-SIN-DISENO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-5-N-PESO-INVALIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-5-PRECISION-ESTADO, tipo: texto, unidad: "estado de precision"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-6-N-EXPUESTO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-6-N-VALIDO, tipo: entero, unidad: "denominador muestral"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-6-N-DESCONOCIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-6-MASA-DESCONOCIDO, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-6-N-NUMERADOR, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-6-MASA-NUMERADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-6-MASA-DENOMINADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-6-P, tipo: proporcion, unidad: "proporcion ponderada", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-6-EE, tipo: flotante, unidad: "error estandar", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-6-IC95-LO, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-6-IC95-HI, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-6-GL, tipo: entero, unidad: "grados de libertad de diseno"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-6-N-SIN-DISENO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-6-N-PESO-INVALIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-6-PRECISION-ESTADO, tipo: texto, unidad: "estado de precision"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-7-N-EXPUESTO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-7-N-VALIDO, tipo: entero, unidad: "denominador muestral"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-7-N-DESCONOCIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-7-MASA-DESCONOCIDO, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-7-N-NUMERADOR, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-7-MASA-NUMERADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-7-MASA-DENOMINADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-7-P, tipo: proporcion, unidad: "proporcion ponderada", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-7-EE, tipo: flotante, unidad: "error estandar", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-7-IC95-LO, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-7-IC95-HI, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-7-GL, tipo: entero, unidad: "grados de libertad de diseno"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-7-N-SIN-DISENO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-7-N-PESO-INVALIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-7-PRECISION-ESTADO, tipo: texto, unidad: "estado de precision"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-8-N-EXPUESTO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-8-N-VALIDO, tipo: entero, unidad: "denominador muestral"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-8-N-DESCONOCIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-8-MASA-DESCONOCIDO, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-8-N-NUMERADOR, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-8-MASA-NUMERADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-8-MASA-DENOMINADOR, tipo: flotante, unidad: "unidades expandidas"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-8-P, tipo: proporcion, unidad: "proporcion ponderada", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-8-EE, tipo: flotante, unidad: "error estandar", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-8-IC95-LO, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-8-IC95-HI, tipo: proporcion, unidad: "proporcion", permite_no_estimable: true}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-8-GL, tipo: entero, unidad: "grados de libertad de diseno"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-8-N-SIN-DISENO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-8-N-PESO-INVALIDO, tipo: entero, unidad: "unidades muestrales"}
+  - {id: RESULT-ENSAFI-DIS-PER-AFR-8-PRECISION-ESTADO, tipo: texto, unidad: "estado de precision"}

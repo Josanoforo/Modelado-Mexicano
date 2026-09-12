@@ -72,7 +72,7 @@
 
 set -euo pipefail
 
-RUNNER_VERSION="adq-codex-2"
+RUNNER_VERSION="adq-codex-3"
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_DIR"
@@ -109,6 +109,13 @@ RESULTADO_TRABAJO="no-invocado"
 SELECCION_ELEGIDOS="-"
 SELECCION_EXCLUIDOS="-"
 SELECCION_JSON="null"
+RESIDUALES_TOTAL="-"
+RESIDUALES_CUBIERTOS="-"
+RESIDUALES_ACCIONABLES="-"
+RESIDUALES_ACCESO="-"
+RESIDUALES_SIN_VIA="-"
+RESIDUALES_REINTENTO="-"
+RESIDUALES_DECISION="-"
 RESULTADO_PUBLICO="null"
 PUBLICACION_ESTADO="pendiente"
 PUBLICACION_TRABAJO="no_aplica"
@@ -552,7 +559,7 @@ huella_adq() {
   fin_iso="$(date --iso-8601=seconds)"
   cli_token="${CLI_VERSION// /_}"
   MOTIVO_CIERRE="$motivo"
-  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} launcher_sha=${ADQ_DEPLOY_SHA:-legacy} runner_version=${RUNNER_VERSION} ejecutor=${EJECUTOR} cli_version=${cli_token} modelo_configurado=${MODELO_CONFIGURADO} modelo_efectivo=${MODELO_EFECTIVO} resultado=${RESULTADO_SUSTANTIVO} resultado_trabajo=${RESULTADO_TRABAJO} publicacion_trabajo=${PUBLICACION_TRABAJO} seleccion_elegidos=${SELECCION_ELEGIDOS} seleccion_excluidos=${SELECCION_EXCLUIDOS} inicio=${INICIO_ISO} fin=${fin_iso} publicacion=${publicacion} disparador=${DISPARADOR} causa=${CAUSA_DISPARO} run_id=${RUN_ID}"
+  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} launcher_sha=${ADQ_DEPLOY_SHA:-legacy} runner_version=${RUNNER_VERSION} ejecutor=${EJECUTOR} cli_version=${cli_token} modelo_configurado=${MODELO_CONFIGURADO} modelo_efectivo=${MODELO_EFECTIVO} resultado=${RESULTADO_SUSTANTIVO} resultado_trabajo=${RESULTADO_TRABAJO} publicacion_trabajo=${PUBLICACION_TRABAJO} seleccion_elegidos=${SELECCION_ELEGIDOS} seleccion_excluidos=${SELECCION_EXCLUIDOS} residuales_total=${RESIDUALES_TOTAL} residuales_cubiertos=${RESIDUALES_CUBIERTOS} residuales_accionables=${RESIDUALES_ACCIONABLES} residuales_acceso=${RESIDUALES_ACCESO} residuales_sin_via=${RESIDUALES_SIN_VIA} residuales_reintento=${RESIDUALES_REINTENTO} residuales_decision=${RESIDUALES_DECISION} inicio=${INICIO_ISO} fin=${fin_iso} publicacion=${publicacion} disparador=${DISPARADOR} causa=${CAUSA_DISPARO} run_id=${RUN_ID}"
   log "${linea}"
   CIERRE_ESCRITO=1
   printf -v contenido '[ADQ-SELECCION] run_id=%s %s\n[ADQ-RESULTADO] run_id=%s %s\n%s' \
@@ -727,7 +734,16 @@ SELECCION_JSON="$(python3 -c 'import json,sys; print(json.dumps(json.load(open(s
 SELECCION_ELEGIDOS="$(printf '%s' "$SELECCION_JSON" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(",".join(x["id"] for x in d["elegidos"]) or "ninguno")')"
 SELECCION_EXCLUIDOS="$(printf '%s' "$SELECCION_JSON" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)["excluidos"]))')"
 NUM_ELEGIDOS="$(printf '%s' "$SELECCION_JSON" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)["elegidos"]))')"
-log "selección autoritativa: elegidos=${SELECCION_ELEGIDOS} excluidos=${SELECCION_EXCLUIDOS} máximo=${MAXIMO_FILAS}"
+IFS=$'\t' read -r RESIDUALES_TOTAL RESIDUALES_CUBIERTOS RESIDUALES_ACCIONABLES \
+  RESIDUALES_ACCESO RESIDUALES_SIN_VIA RESIDUALES_REINTENTO RESIDUALES_DECISION \
+  < <(printf '%s' "$SELECCION_JSON" | python3 -c '
+import json,sys
+c=json.load(sys.stdin)["resumen_necesidades"]
+print("\t".join(str(x) for x in (
+ c["total_residuales"], c["cubiertas"]["cantidad"], c["accionables"]["cantidad"],
+ c["pendientes_acceso"]["cantidad"], c["pendientes_sin_via"]["cantidad"],
+ c["pendientes_reintento"]["cantidad"], c["pendientes_decision"]["cantidad"])))')
+log "selección autoritativa: elegidos=${SELECCION_ELEGIDOS} excluidos=${SELECCION_EXCLUIDOS} máximo=${MAXIMO_FILAS}; residuales total=${RESIDUALES_TOTAL} cubiertos=${RESIDUALES_CUBIERTOS} accionables=${RESIDUALES_ACCIONABLES} acceso=${RESIDUALES_ACCESO} sin_via=${RESIDUALES_SIN_VIA} reintento=${RESIDUALES_REINTENTO} decision=${RESIDUALES_DECISION}"
 
 if [ "$NUM_ELEGIDOS" -eq 0 ]; then
   RESULTADO_SUSTANTIVO="cola_vacia"
@@ -749,7 +765,15 @@ r = {
     "resultado_sustantivo": "cola_vacia",
     "resultados_por_objeto": [],
     "publicacion_trabajo": {"estado": "no_aplica", "referencias": []},
-    "resumen": "Selección determinista completada sin objetos elegidos; cierre sin invocar LLM.",
+    "resumen": (
+        "Selección determinista completada sin objetos elegidos; cierre sin invocar LLM. "
+        f"Residuales: total={s['resumen_necesidades']['total_residuales']}, "
+        f"cubiertos={s['resumen_necesidades']['cubiertas']['cantidad']}, "
+        f"pendientes_acceso={s['resumen_necesidades']['pendientes_acceso']['cantidad']}, "
+        f"pendientes_sin_via={s['resumen_necesidades']['pendientes_sin_via']['cantidad']}, "
+        f"pendientes_reintento={s['resumen_necesidades']['pendientes_reintento']['cantidad']}, "
+        f"pendientes_decision={s['resumen_necesidades']['pendientes_decision']['cantidad']}."
+    ),
 }
 print(json.dumps(r, ensure_ascii=False, separators=(",", ":")))
 PYEOF
