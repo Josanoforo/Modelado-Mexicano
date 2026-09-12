@@ -136,7 +136,7 @@ necesidades:
       exclusiones: "no repetir #734 ni rutas condicionadas sin intervención humana"
 
   - id: NC-0136
-    version_pregunta: "2026-09-10-indice-reactivos-ciego-v1"
+    version_pregunta: "2026-09-11-indice-reactivos-contexto-v1.1"
     consumidor: "buscador de reactivos / SONDA"
     uso: infraestructura
     prioridad_consumidor: 15
@@ -150,11 +150,11 @@ necesidades:
     unidad: variable/reactivo
     periodo: "todas las olas indexadas"
     variables: "texto de reactivo, variable_id, instrumento, ola"
-    evidencia_disponible: "#737 fusionado: overlay acreditado para 22,367/55,895 identidades del lote prioritario; 21/102 grupos históricamente ciegos ganaron texto"
-    brecha: "33,528 identidades del lote y 81 grupos históricamente ciegos aún no tienen cobertura textual"
+    evidencia_disponible: "#742 fusionado: índice v1.1 con texto acreditado para 43,020/55,895 filas del lote prioritario; 20,653 identidades ganadas respecto de v1.0"
+    brecha: "12,875 filas del lote y 81 grupos históricamente ciegos externos aún no tienen cobertura textual"
     suficiencia_actual: {identidad: PARCIAL, conceptual: PARCIAL, poblacional: NO_APLICA, seleccion_no_respuesta: NO_APLICA, unidad: PARCIAL, temporalidad: PARCIAL, diseno: NO_APLICA, identificacion: NO_APLICA, uso_habilitado: APTA_ALCANCE_MENOR, pregunta_original: ABIERTA}
-    investigacion_previa: "#737 fusionado; búsqueda contextual disponible con cobertura parcial y negativos expresamente acotados"
-    frontera_previa: "metadato nativo/documento oficial con identidad exacta para 81 grupos ciegos y 33,528 identidades residuales"
+    investigacion_previa: "#737 y su sucesor #742 fusionados; búsqueda contextual v1.1 disponible con cobertura parcial y negativos expresamente acotados"
+    frontera_previa: "metadato nativo/documento oficial con identidad exacta para 81 grupos ciegos externos y 12,875 filas residuales del lote"
     siguiente_accion: "continuar la materialización/indexación por el frente dueño; SONDA consume el overlay y no interpreta sus negativos como ausencia científica"
     naturaleza_necesidad: OPERATIVA_TECNICA_O_DOCUMENTAL
     contrato_operativo: COMPLETO_OPERATIVO_NO_CIENTIFICO

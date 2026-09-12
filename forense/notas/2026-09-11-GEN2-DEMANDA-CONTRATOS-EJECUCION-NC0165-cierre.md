@@ -7,6 +7,13 @@ Corte: 11 de septiembre de 2026
 Entorno: CAJA Ubuntu/WSL2, corpus compartido; cero descargas, llamadas a
 modelos, nuevas mediciones, adopciones o ejecuciones F5.
 
+Sincronización posterior: `main` hasta PR #742. GEN2-39 se consume por las
+claves `NC-0100`/`NC-0136`, sin restaurar el corte histórico de #737. El índice
+v1.1 acredita 43,020/55,895 filas con texto, gana 20,653 identidades y deja
+12,875 residuales. `NC-0100` queda ABIERTA en 1,272/1,304, con 32 pendientes;
+`NC-0136` conserva además los 81 grupos ciegos externos al lote. La
+conciliación 207/207 y el cierre de `NC-0165` permanecen invariantes.
+
 ## Resultado para consumidores
 
 La proyección conserva los 207 usos activos y ahora da a cada uno identidad,

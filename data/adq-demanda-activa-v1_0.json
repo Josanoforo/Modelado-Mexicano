@@ -7,7 +7,7 @@
   "contrato_minimo_derivado": 26,
   "contrato_operativo_explicito_no_cientifico": 1,
   "contrato_operativo_no_cientifico": 20,
-  "corte": "2026-09-11",
+  "corte": "2026-09-12",
   "descripcion_minima_derivada": 26,
   "elementos_con_brecha_abierta": 24,
   "elementos_gen2": [
@@ -16045,7 +16045,7 @@
     "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
     "data/curacion-registro/necesidad-objeto-modelo.tsv": "09062d3c7878651870ee429ce6cf6c86f73579b61916976718c8544209b20981",
     "data/curacion-registro/utilidad-modelo.tsv": "1c3884bd26a233541154eb730102b369f9bdcbe6c35640ee724616110fad4ce7",
-    "forense/no-corrido.tsv": "c89a4b4a481fc6b25ad11fd5339f0ad1d1d79e0772eea927f640fc37e0e594b4",
+    "forense/no-corrido.tsv": "c22749125f8455cb706e152c1327ce9d5a4b1d2afff38b358789085a304d1ac8",
     "forense/prereg-duelo-v2/codificacion-R-v1_2.tsv": "41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e",
     "forense/prereg-duelo-v2/universo-triada-v1_4.tsv": "840fc68ce7261686426221effbf9df313ef17e2876fa6345b3c00589bab80f80"
   },
@@ -17060,35 +17060,35 @@
     },
     {
       "aplica_contrato_cientifico": false,
-      "brecha": "llenar texto_reactivo del inventario de reactivos para las olas DBF",
+      "brecha": "acreditar texto para las 32 identidades DBF todavía residuales de ENVIPE 2013/2015",
       "condicion_reapertura": null,
-      "consumidor": "GEN2-R-SERIE-DBF/P1 (insumo)",
+      "consumidor": "GEN2-REACTIVOS-RESIDUALES-BUSQUEDA-UTIL/P1 (insumo)",
       "contrato_cientifico_completo": false,
       "contrato_operativo": "OPERATIVO_DERIVADO_SIN_CAMPOS_CIENTIFICOS_FICTICIOS",
       "cursor_continuacion": null,
       "estado_ruteo": "NO_SONDA",
-      "etapa_faltante": "PREPARACION",
-      "evidencia_disponible": "ACTO GEN2-REACTIVOS-CON-TEXTO-Y-BUSQUEDA publica un overlay acreditado sin reordenar la historia: envipe2012 212/400, envipe2013 245/419 y envipe2015 24/485, total 481/1304 filas con texto y fuente. Quedan 823 sin texto; por eso la NC no cierra. El buscador vigente ya consume las cubiertas y conserva id_origen para las citas por fila.",
+      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
+      "evidencia_disponible": "El buscador vigente cubre 1272/1304 filas DBF: ENVIPE 2012 400/400, 2013 410/419 y 2015 462/485. Las 32 restantes siguen explícitas y el negativo de búsqueda no demuestra ausencia científica.",
       "evidencias": [
         "forense/no-corrido.tsv#NC-0100"
       ],
-      "frontera": "ACTO GEN2-REACTIVOS-CON-TEXTO-Y-BUSQUEDA publica un overlay acreditado sin reordenar la historia: envipe2012 212/400, envipe2013 245/419 y envipe2015 24/485, total 481/1304 filas con texto y fuente. Quedan 823 sin texto; por eso la NC no cierra. El buscador vigente ya consume las cubiertas y conserva id_origen para las citas por fila.",
+      "frontera": "El buscador vigente cubre 1272/1304 filas DBF: ENVIPE 2012 400/400, 2013 410/419 y 2015 462/485. Las 32 restantes siguen explícitas y el negativo de búsqueda no demuestra ausencia científica.",
       "id": "NC-0100",
-      "investigacion_previa": "EJECUTADA-PARCIAL-CON-RESIDUAL",
-      "motivo_ruteo": "etapa vigente PREPARACION; no corresponde investigación externa",
+      "investigacion_previa": "EJECUTADA-PARCIAL-CON-RESIDUAL: GEN2-39 acreditó 791 de las 823 filas que faltaban; no inventa texto para variables ausentes del descriptor ni para correspondencias técnicas o ambiguas",
+      "motivo_ruteo": "etapa vigente DECISION_O_IMPLEMENTACION; no corresponde investigación externa",
       "naturaleza_necesidad": "OPERATIVA_TECNICA_O_DOCUMENTAL",
       "opciones_decision": [],
       "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
-      "pregunta": "llenar texto_reactivo del inventario de reactivos para las olas DBF",
+      "pregunta": "acreditar texto para las 32 identidades DBF todavía residuales de ENVIPE 2013/2015",
       "prioridad": 60,
-      "responsable": "completar las 823 identidades DBF residuales mediante correspondencia exacta tabla-variable contra cada codebook",
-      "siguiente_accion": "completar las 823 identidades DBF residuales mediante correspondencia exacta tabla-variable contra cada codebook; no copiar por nombre entre olas",
+      "responsable": "NC-0100: acreditar 9 identidades de 2013 (2 EST_SOC técnicas y 7 documentales) y 23 de 2015 (18 técnicas/ambiguas y AP5_3_02, AP5_4_02, AP5_5_02, AP5_6_02, AP5_7_1 no localizadas en el descriptor oficial)",
+      "siguiente_accion": "NC-0100: acreditar 9 identidades de 2013 (2 EST_SOC técnicas y 7 documentales) y 23 de 2015 (18 técnicas/ambiguas y AP5_3_02, AP5_4_02, AP5_5_02, AP5_6_02, AP5_7_1 no localizadas en el descriptor oficial)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
-      "variables": "llenar texto_reactivo del inventario de reactivos para las olas DBF",
-      "version_pregunta": "AUTO-NC-v1-c473df06226d"
+      "variables": "acreditar texto para las 32 identidades DBF todavía residuales de ENVIPE 2013/2015",
+      "version_pregunta": "AUTO-NC-v1-0893033201f5"
     },
     {
       "aplica_contrato_cientifico": false,
@@ -17375,27 +17375,27 @@
     },
     {
       "aplica_contrato_cientifico": false,
-      "brecha": "33,528 identidades del lote y 81 grupos históricamente ciegos aún no tienen cobertura textual",
+      "brecha": "12,875 filas del lote y 81 grupos históricamente ciegos externos aún no tienen cobertura textual",
       "condicion_reapertura": null,
       "consumidor": "buscador de reactivos / SONDA",
       "contrato_cientifico_completo": false,
       "contrato_operativo": "COMPLETO_OPERATIVO_NO_CIENTIFICO",
       "cursor_continuacion": null,
       "estado_ruteo": "DELEGADA_A_FRENTE_DUENO",
-      "etapa_faltante": "PREPARACION",
-      "evidencia_disponible": "#737 fusionado: overlay acreditado para 22,367/55,895 identidades del lote prioritario; 21/102 grupos históricamente ciegos ganaron texto",
+      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
+      "evidencia_disponible": "#742 fusionado: índice v1.1 con texto acreditado para 43,020/55,895 filas del lote prioritario; 20,653 identidades ganadas respecto de v1.0",
       "evidencias": [
         "forense/no-corrido.tsv#NC-0136"
       ],
-      "frontera": "metadato nativo/documento oficial con identidad exacta para 81 grupos ciegos y 33,528 identidades residuales",
+      "frontera": "metadato nativo/documento oficial con identidad exacta para 81 grupos ciegos externos y 12,875 filas residuales del lote",
       "id": "NC-0136",
-      "investigacion_previa": "#737 fusionado; búsqueda contextual disponible con cobertura parcial y negativos expresamente acotados",
+      "investigacion_previa": "#737 y su sucesor #742 fusionados; búsqueda contextual v1.1 disponible con cobertura parcial y negativos expresamente acotados",
       "motivo_ruteo": "contrato explícito vigente",
       "naturaleza_necesidad": "OPERATIVA_TECNICA_O_DOCUMENTAL",
       "opciones_decision": [],
       "periodo": "todas las olas indexadas",
       "poblacion": "102 instrumentos con texto vacío en el índice",
-      "pregunta": "indexar texto_reactivo para los 102 de 116 instrumentos (241591 filas de universo) que hoy tienen esa columna VACIA en el 100% de sus filas -- no solo ENIF (NC-0123), sino tambien ENOE, ENDIREH2011/2006/2003, ENVIPE (casi todas las olas), ENCIG, ENASEM, ENASIC, ENESTYC, ENUT y otros",
+      "pregunta": "acreditar las 12875 filas residuales del lote prioritario y cubrir los 81 grupos históricamente ciegos que quedan fuera de ese lote",
       "prioridad": 15,
       "responsable": "servicio-gen2-38-observa",
       "siguiente_accion": "continuar la materialización/indexación por el frente dueño; SONDA consume el overlay y no interpreta sus negativos como ausencia científica",
@@ -17414,7 +17414,7 @@
       "unidad": "variable/reactivo",
       "uso": "infraestructura",
       "variables": "texto de reactivo, variable_id, instrumento, ola",
-      "version_pregunta": "2026-09-10-indice-reactivos-ciego-v1"
+      "version_pregunta": "2026-09-11-indice-reactivos-contexto-v1.1"
     },
     {
       "aplica_contrato_cientifico": false,
@@ -17765,7 +17765,7 @@
     }
   ],
   "seleccion_siguiente": {
-    "corte": "2026-09-11",
+    "corte": "2026-09-12",
     "demanda_activa_total": 51,
     "demanda_con_contrato_operativo": 51,
     "demanda_configurada": 6,
@@ -17897,7 +17897,7 @@
       },
       {
         "id": "NC-0100",
-        "razon": "ruteo=NO_SONDA: etapa vigente PREPARACION; no corresponde investigación externa; responsable=completar las 823 identidades DBF residuales mediante correspondencia exacta tabla-variable contra cada codebook; siguiente=completar las 823 identidades DBF residuales mediante correspondencia exacta tabla-variable contra cada codebook; no copiar por nombre entre olas"
+        "razon": "ruteo=NO_SONDA: etapa vigente DECISION_O_IMPLEMENTACION; no corresponde investigación externa; responsable=NC-0100: acreditar 9 identidades de 2013 (2 EST_SOC técnicas y 7 documentales) y 23 de 2015 (18 técnicas/ambiguas y AP5_3_02, AP5_4_02, AP5_5_02, AP5_6_02, AP5_7_1 no localizadas en el descriptor oficial); siguiente=NC-0100: acreditar 9 identidades de 2013 (2 EST_SOC técnicas y 7 documentales) y 23 de 2015 (18 técnicas/ambiguas y AP5_3_02, AP5_4_02, AP5_5_02, AP5_6_02, AP5_7_1 no localizadas en el descriptor oficial)"
       },
       {
         "id": "NC-0106",
@@ -17979,8 +17979,8 @@
     "maximo": 3,
     "version": "GEN2-ADQ-INVESTIGACION-V1"
   },
-  "sha256_fuente": "c89a4b4a481fc6b25ad11fd5339f0ad1d1d79e0772eea927f640fc37e0e594b4",
-  "sha256_insumos_demanda": "d77d98aa2eed3155f89497b18b1a7c755f9685f7a54e0902f8a398ae984b54e5",
+  "sha256_fuente": "c22749125f8455cb706e152c1327ce9d5a4b1d2afff38b358789085a304d1ac8",
+  "sha256_insumos_demanda": "8373b605edb81a26a5234b222f751341142ae43477bc78581aec58df678924b8",
   "situaciones_elementos": {
     "CUBIERTA": 9,
     "EVALUACION_GEN2_DISPONIBLE": 70,
