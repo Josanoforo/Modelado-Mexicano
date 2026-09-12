@@ -4243,11 +4243,18 @@ def cmd_status(args) -> int:
     return 0
 
 
+# ── B-7 · delta explicito (ACTO GEN2-DELTA-COMPARACION-EXPLICITA) ─────────
+
+def cmd_delta(args) -> int:
+    """Adaptador pequeno; la implementacion vive en su modulo propio."""
+    from delta_comparacion import ejecuta_cli
+    return ejecuta_cli(args, sys.modules[__name__])
+
+
 # ── subcomandos que siguen declarados y vacios (los llena GEN2-E7) ─────────
 
 PENDIENTES_E3 = [
     ("vigencia", "B-6 · CANDIDATO-VENCIDO por fecha e instrumento"),
-    ("delta", "B-7 · valor_legacy vs valor_gen2 y su materialidad"),
 ]
 
 
@@ -4324,6 +4331,21 @@ def construye_parser() -> argparse.ArgumentParser:
                          "para distinguir PRE-FLIGHT-VERDE de SPEC-FIJADA")
     es.add_argument("--json", action="store_true", help="mismo contenido, JSON")
     es.set_defaults(func=cmd_estado)
+
+    de = subs.add_parser(
+        "delta",
+        help="B-7 · compara unicamente pares e identidades explicitamente declarados")
+    de.add_argument(
+        "--entrada", required=True, metavar="PARES.yaml",
+        help="contrato GEN2-DELTA-1 con ambos objetos, uso y comparabilidad")
+    de.add_argument(
+        "--formato", choices=("humano", "json", "tsv"), default="humano",
+        help="formato que se imprime en stdout; por defecto lectura humana")
+    de.add_argument(
+        "--salida-dir", default=None, metavar="DIRECTORIO",
+        help="destino explicito para escribir atomicamente delta.json/tsv/md; "
+             "sin esta opcion no se escribe nada")
+    de.set_defaults(func=cmd_delta)
 
     for nombre, ayuda in PENDIENTES_E3:
         s = subs.add_parser(nombre, help=f"[NO-IMPLEMENTADO] {ayuda}")
