@@ -154,6 +154,18 @@ def prueba_cableado_y_calendario_de_produccion():
            "ENIF no debe cerrar el canal del producto fintech exacto")
     afirma(incompatible["accion_consumidor"] == "NO_EMITIR_RESULTADO_SOLICITADO",
            "la categoría colapsada no debe emitir el horizonte solicitado")
+    esquema = json.loads(
+        (RAIZ / "tools" / "adq-resultado.schema.json").read_text(encoding="utf-8"))
+    pendientes = [("$", esquema)]
+    while pendientes:
+        ruta, nodo = pendientes.pop()
+        if isinstance(nodo, dict):
+            if "enum" in nodo or "const" in nodo:
+                afirma("type" in nodo,
+                       f"Structured Outputs exige type junto a enum/const: {ruta}")
+            pendientes.extend((f"{ruta}.{k}", v) for k, v in nodo.items())
+        elif isinstance(nodo, list):
+            pendientes.extend((f"{ruta}[{i}]", v) for i, v in enumerate(nodo))
 
 
 def main() -> int:

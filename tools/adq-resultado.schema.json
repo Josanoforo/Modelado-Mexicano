@@ -4,13 +4,13 @@
   "additionalProperties": false,
   "required": ["ejecutor", "seleccion", "seleccion_investigacion", "investigaciones", "resultado_sustantivo", "resultados_por_objeto", "publicacion_trabajo", "resumen"],
   "properties": {
-    "ejecutor": {"const": "codex"},
+    "ejecutor": {"type": "string", "const": "codex"},
     "seleccion": {
       "type": "object",
       "additionalProperties": false,
       "required": ["calculada", "corte", "maximo", "elegidos", "excluidos_con_causa"],
       "properties": {
-        "calculada": {"const": true},
+        "calculada": {"type": "boolean", "const": true},
         "corte": {"type": "string"},
         "maximo": {"type": "integer", "minimum": 0},
         "elegidos": {"type": "array", "items": {"type": "string"}},
@@ -26,7 +26,7 @@
       "additionalProperties": false,
       "required": ["calculada", "corte", "maximo", "elegidos", "excluidos_con_causa"],
       "properties": {
-        "calculada": {"const": true},
+        "calculada": {"type": "boolean", "const": true},
         "corte": {"type": "string"},
         "maximo": {"type": "integer", "minimum": 0},
         "elegidos": {"type": "array", "items": {"type": "string"}},
@@ -43,7 +43,7 @@
           "necesidad_id": {"type": "string", "minLength": 1},
           "version_pregunta": {"type": "string", "minLength": 1},
           "estado": {"type": "string", "enum": ["candidata_publica", "continua", "barrera", "sin_hallazgo_acotado", "evidencia_existente"]},
-          "modos_ejecutados": {"type": "array", "minItems": 1, "items": {"enum": ["CONSTRUCTO", "HERMANAS", "LATERAL"]}},
+          "modos_ejecutados": {"type": "array", "minItems": 1, "items": {"type": "string", "enum": ["CONSTRUCTO", "HERMANAS", "LATERAL"]}},
           "consultas": {
             "type": "array", "minItems": 1,
             "items": {
@@ -76,21 +76,21 @@
           "evidencias": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
           "frontera_no_examinada": {"type": "string", "minLength": 1},
           "cursor_continuacion": {"type": "string", "minLength": 1},
-          "proxima_revision": {"type": "string", "format": "date"},
+          "proxima_revision": {"type": "string"},
           "suficiencia": {
             "type": "object", "additionalProperties": false,
             "required": ["identidad", "conceptual", "poblacional", "seleccion_no_respuesta", "unidad", "temporalidad", "diseno", "identificacion", "uso_habilitado", "pregunta_original"],
             "properties": {
-              "identidad": {"enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
-              "conceptual": {"enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
-              "poblacional": {"enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
-              "seleccion_no_respuesta": {"enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
-              "unidad": {"enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
-              "temporalidad": {"enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
-              "diseno": {"enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
-              "identificacion": {"enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
-              "uso_habilitado": {"enum": ["APTA_USO_DECLARADO", "APTA_ALCANCE_MENOR", "INCOMPATIBLE"]},
-              "pregunta_original": {"enum": ["ABIERTA", "CUBIERTA"]}
+              "identidad": {"type": "string", "enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
+              "conceptual": {"type": "string", "enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
+              "poblacional": {"type": "string", "enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
+              "seleccion_no_respuesta": {"type": "string", "enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
+              "unidad": {"type": "string", "enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
+              "temporalidad": {"type": "string", "enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
+              "diseno": {"type": "string", "enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
+              "identificacion": {"type": "string", "enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
+              "uso_habilitado": {"type": "string", "enum": ["APTA_USO_DECLARADO", "APTA_ALCANCE_MENOR", "INCOMPATIBLE"]},
+              "pregunta_original": {"type": "string", "enum": ["ABIERTA", "CUBIERTA"]}
             }
           }
         }
