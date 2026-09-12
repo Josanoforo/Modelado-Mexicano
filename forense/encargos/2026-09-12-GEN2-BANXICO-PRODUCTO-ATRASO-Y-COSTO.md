@@ -94,6 +94,12 @@ canon/modelo-decision-v4_0.md §7: R1.7, tier [MEDIA], medido No
 NUNCA-MEDIDA
 ```
 
+## NO-CORRIDO / RESERVAS
+
+Ninguno. Se ejecutaron todas las piezas autorizadas. Las exclusiones expresas
+(adopción, causalidad, cierre de `NC-0164` y merge) no son trabajo residual de
+este acto.
+
 La comprobación se hizo antes de registrar el CALC de este acto. La nueva
 medición es descriptiva/asociativa y no equivale a adopción de R1.7.
 
