@@ -1,0 +1,25 @@
+{
+  "cursor_continuacion": "Buscar un instrumento público de adultos en México que mida tenencia de ahorro y, sólo entre quienes sí ahorran, duración de cobertura; no repetir ENIF, EACF, ENSAFI ni Findex 2025.",
+  "estado": "evidencia_existente",
+  "evidencias": [
+    "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md",
+    "data/manifiesto.yaml"
+  ],
+  "frontera_no_examinada": "Cuestionarios subnacionales, módulos privados, otras ediciones no indexadas y variables internas de ENFIH no anunciadas como duración.",
+  "necesidad_id": "NC-0126",
+  "proxima_revision": "2026-10-11",
+  "suficiencia": {
+    "conceptual": "NO_ACREDITADA",
+    "diseno": "ACREDITADA",
+    "identidad": "ACREDITADA",
+    "identificacion": "NO_APLICA",
+    "poblacional": "ACREDITADA",
+    "pregunta_original": "ABIERTA",
+    "seleccion_no_respuesta": "ACREDITADA",
+    "temporalidad": "ACREDITADA",
+    "unidad": "ACREDITADA",
+    "uso_habilitado": "INCOMPATIBLE"
+  },
+  "ultima_exploracion": "2026-09-11",
+  "version_pregunta": "2026-09-09-horizonte-ahorro-descolapsado-v1"
+}
