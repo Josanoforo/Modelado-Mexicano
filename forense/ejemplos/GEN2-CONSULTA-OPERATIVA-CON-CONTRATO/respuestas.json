@@ -1,0 +1,1014 @@
+[
+  {
+    "advertencia_interpretacion": "Proporción poblacional del universo declarado; no es diagnóstico ni probabilidad personalizada validada.",
+    "aptitud": {
+      "alcance": "uso declarado por RESULT",
+      "estado": "APTA-POR-LINAJE",
+      "rol_uso": null,
+      "uso_solicitado": "MEDICION-GEN2",
+      "validacion_independiente": "PASA"
+    },
+    "contrato": {
+      "archivos": {
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
+        "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
+        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
+        "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
+        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
+      },
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "version": "CONSULTA-GEN2-v1"
+    },
+    "dependencia": {
+      "camino_linaje": "milpa/tramite.yaml:civico.denuncia.miedo_desconfianza:denuncia_con_miedo_o_desconfianza -> RESULT-ENVIPE-DEN-P-C2-U4 -> CALC-ENVIPE-0001/RESULT-ENVIPE-DEN-P-C2-U4 -> envipe2025_csv:DATO -> manifiesto:envipe2025_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "estructurales": [
+        "regla:civico.denuncia.miedo_desconfianza:disparadores",
+        "generadores:G4",
+        "tier:FUERTE"
+      ],
+      "padre": null,
+      "rol_seleccion": null
+    },
+    "dominio": {
+      "recibido": {
+        "bp1_23_en_01_08": true,
+        "delito_no_denunciado": true,
+        "victima_18_mas": true
+      },
+      "requerido": {
+        "bp1_23_en_01_08": true,
+        "delito_no_denunciado": true,
+        "victima_18_mas": true
+      }
+    },
+    "estado": "EMITE",
+    "estimando": {
+      "evento": "algún delito no denunciado en U1 con BP1_23 en {01,02,06,08}",
+      "periodo": {
+        "cita": "milpa/tramite.yaml:623 -- ola_calibracion: \"ENVIPE 2025 (unica ola disponible para este universo)\"",
+        "valor": "ENVIPE 2025 (unica ola disponible para este universo)"
+      },
+      "poblacion": "personas 18+ victimas de AP7_3_XX=1 (XX en 05..15) que no denunciaron (BP1_20=2) -- procedencia.yaml:997, re-verificado contra microdato 2026-08-31",
+      "transformacion": "algún delito no denunciado en U1 con BP1_23 en {01,02,06,08}",
+      "unidad": "particion GEN1 a nivel PERSONA con FAC_ELE -- UNICA celda que comparte codificacion Y unidad con la cifra GEN1 sellada, escala [0,1]"
+    },
+    "peticion": {
+      "consumidor": "milpa/tramite.yaml:civico.denuncia.miedo_desconfianza:denuncia_con_miedo_o_desconfianza",
+      "contexto": {
+        "bp1_23_en_01_08": true,
+        "delito_no_denunciado": true,
+        "victima_18_mas": true
+      },
+      "id": "01-CIV-valida",
+      "proposito": "consulta",
+      "uso": "MEDICION-GEN2"
+    },
+    "referencias": [
+      "data/corrida0/CALC-ENVIPE-0001/ejecucion.json",
+      "data/corrida0/CALC-ENVIPE-0001/resultados.json",
+      "data/corrida0/CALC-ENVIPE-0001/spec.yaml",
+      "data/corrida0/resultados.tsv",
+      "data/corrida0/usos.tsv",
+      "milpa/src/emisor.py",
+      "milpa/src/linaje.py",
+      "milpa/tramite.yaml",
+      "tools/baseline_temporal.py",
+      "tools/consulta_gen2.py",
+      "tools/emite_m.py",
+      "tools/snapshot_motor_gen2.py"
+    ],
+    "resultado": {
+      "corrida_id": "CALC-ENVIPE-0001--06223f3dc02d",
+      "fuente": "VERIFY-ESTRUCTURADO · forense/replay-evidencia.tsv#CALC-ENVIPE-0001",
+      "generacion": "GEN2",
+      "id": "RESULT-ENVIPE-DEN-P-C2-U4",
+      "origen_numerico": "NUEVO",
+      "spec_id": "CALC-ENVIPE-0001",
+      "tipo": "proporcion",
+      "unidad": "particion GEN1 a nivel PERSONA con FAC_ELE -- UNICA celda que comparte codificacion Y unidad con la cifra GEN1 sellada, escala [0,1]"
+    },
+    "valor": {
+      "categoria": "denuncia_con_miedo_o_desconfianza",
+      "punto": 0.29431298745731216,
+      "tipo_escala": "binaria"
+    }
+  },
+  {
+    "advertencia_interpretacion": "Proporción poblacional del universo declarado; no es diagnóstico ni probabilidad personalizada validada.",
+    "aptitud": {
+      "alcance": "uso declarado por RESULT",
+      "estado": "APTA-POR-LINAJE",
+      "rol_uso": null,
+      "uso_solicitado": "MEDICION-GEN2",
+      "validacion_independiente": "PASA"
+    },
+    "contrato": {
+      "archivos": {
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
+        "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
+        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
+        "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
+        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
+      },
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "version": "CONSULTA-GEN2-v1"
+    },
+    "dependencia": {
+      "camino_linaje": "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto -> RESULT-ENIF-AHO-A-P-CORTO-SIN-P -> CALC-ENIF-0001/RESULT-ENIF-AHO-A-P-CORTO-SIN-P -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "estructurales": [
+        "regla:dinero.ahorro.horizonte_corto:disparadores",
+        "generadores:G3",
+        "tier:FUERTE"
+      ],
+      "padre": null,
+      "rol_seleccion": null
+    },
+    "dominio": {
+      "recibido": {},
+      "requerido": {}
+    },
+    "estado": "EMITE",
+    "estimando": {
+      "evento": "conducta=horizonte_corto",
+      "periodo": {
+        "cita": "milpa/tramite.yaml:1073 -- ola_calibracion: \"ENIF 2024\"",
+        "valor": "ENIF 2024"
+      },
+      "poblacion": "18+ elegidas que trabajan ∧ P3_13=7 ∧ P4_10∈{1..5}; n=4 973; masa expandida=35 086 918 (37.2388% de toda la población 18+)",
+      "transformacion": "horizonte_corto",
+      "unidad": "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"
+    },
+    "peticion": {
+      "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto",
+      "contexto": {},
+      "id": "02-DIN-valida",
+      "proposito": "consulta",
+      "uso": "MEDICION-GEN2"
+    },
+    "referencias": [
+      "data/corrida0/CALC-ENIF-0001/ejecucion.json",
+      "data/corrida0/CALC-ENIF-0001/resultados.json",
+      "data/corrida0/CALC-ENIF-0001/spec.yaml",
+      "data/corrida0/resultados.tsv",
+      "data/corrida0/usos.tsv",
+      "milpa/src/emisor.py",
+      "milpa/src/linaje.py",
+      "milpa/tramite.yaml",
+      "tools/baseline_temporal.py",
+      "tools/consulta_gen2.py",
+      "tools/emite_m.py",
+      "tools/snapshot_motor_gen2.py"
+    ],
+    "resultado": {
+      "corrida_id": "CALC-ENIF-0001--afbf3c76d71b",
+      "fuente": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L101 · forense/replay-evidencia.tsv#CALC-ENIF-0001",
+      "generacion": "GEN2",
+      "id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+      "origen_numerico": "NUEVO",
+      "spec_id": "CALC-ENIF-0001",
+      "tipo": "flotante",
+      "unidad": "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"
+    },
+    "valor": {
+      "categoria": "horizonte_corto",
+      "punto": 0.541343,
+      "tipo_escala": "binaria"
+    }
+  },
+  {
+    "advertencia_interpretacion": "Proporción poblacional del universo declarado; no es diagnóstico ni probabilidad personalizada validada.",
+    "aptitud": {
+      "alcance": "calibración puntual ENIGH 2022; serie_olas se conserva separada y no se promedia",
+      "estado": "APTA-POR-LINAJE",
+      "rol_uso": null,
+      "uso_solicitado": "MEDICION-GEN2",
+      "validacion_independiente": "PASA"
+    },
+    "contrato": {
+      "archivos": {
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
+        "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
+        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
+        "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
+        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
+      },
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "version": "CONSULTA-GEN2-v1"
+    },
+    "dependencia": {
+      "camino_linaje": "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas -> RESULT-B-ENIGH-2022-P -> CALC-B-0001/RESULT-B-ENIGH-2022-P -> enigh2016_nc_csv:DATO -> manifiesto:enigh2016_nc_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE] | enigh2018_nc_csv:DATO -> manifiesto:enigh2018_nc_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE] | enigh2020_nc_csv:DATO -> manifiesto:enigh2020_nc_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE] | +1 ramas",
+      "estructurales": [
+        "regla:familia.seguro.volatilidad_ausencia_estado:disparadores",
+        "generadores:G5",
+        "tier:FUERTE"
+      ],
+      "padre": null,
+      "rol_seleccion": null
+    },
+    "dominio": {
+      "recibido": {},
+      "requerido": {}
+    },
+    "estado": "EMITE",
+    "estimando": {
+      "evento": "remesas>0 en ENIGH 2022",
+      "periodo": {
+        "cita": "milpa/tramite.yaml:892 -- ola_calibracion: \"ENIGH 2022 (punto usado por estas dos conductas; las demás olas quedan como serie separada)\"",
+        "valor": "ENIGH 2022 (punto usado por estas dos conductas; las demás olas quedan como serie separada)"
+      },
+      "poblacion": "hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2022 Nueva Serie, sin filtro adicional (la regla no declara ninguno). Desenlace recibe_remesas = 1 si concentradohogar.remesas > 0, 0 si = 0. La rama NA de la dicotomizacion NO existe: `remesas` trae cero nulos en las 6 olas (verificado, no supuesto).",
+      "transformacion": "remesas>0 en ENIGH 2022",
+      "unidad": "[2022] proporcion ponderada de hogares con remesas>0, universo completo de concentradohogar [0,1]"
+    },
+    "peticion": {
+      "consumidor": "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas",
+      "contexto": {},
+      "id": "03-FAM-valida",
+      "proposito": "consulta",
+      "uso": "MEDICION-GEN2"
+    },
+    "referencias": [
+      "data/corrida0/CALC-B-0001/ejecucion.json",
+      "data/corrida0/CALC-B-0001/resultados.json",
+      "data/corrida0/CALC-B-0001/spec.yaml",
+      "data/corrida0/resultados.tsv",
+      "data/corrida0/usos.tsv",
+      "milpa/src/emisor.py",
+      "milpa/src/linaje.py",
+      "milpa/tramite.yaml",
+      "tools/baseline_temporal.py",
+      "tools/consulta_gen2.py",
+      "tools/emite_m.py",
+      "tools/snapshot_motor_gen2.py"
+    ],
+    "resultado": {
+      "corrida_id": "CALC-B-0001--098298ca327f",
+      "fuente": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@66eed1b4f4a3 · forense/replay-evidencia.tsv#CALC-B-0001",
+      "generacion": "GEN2",
+      "id": "RESULT-B-ENIGH-2022-P",
+      "origen_numerico": "NUEVO",
+      "spec_id": "CALC-B-0001",
+      "tipo": "proporcion",
+      "unidad": "[2022] proporcion ponderada de hogares con remesas>0, universo completo de concentradohogar [0,1]"
+    },
+    "valor": {
+      "categoria": "recibe_remesas",
+      "punto": 0.04569409956405095,
+      "tipo_escala": "binaria"
+    }
+  },
+  {
+    "advertencia_interpretacion": "Proporción poblacional del universo declarado; no es diagnóstico ni probabilidad personalizada validada.",
+    "aptitud": {
+      "alcance": "uso declarado por RESULT",
+      "estado": "APTA-POR-LINAJE",
+      "rol_uso": null,
+      "uso_solicitado": "MEDICION-GEN2",
+      "validacion_independiente": "PASA"
+    },
+    "contrato": {
+      "archivos": {
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
+        "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
+        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
+        "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
+        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
+      },
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "version": "CONSULTA-GEN2-v1"
+    },
+    "dependencia": {
+      "camino_linaje": "milpa/tramite.yaml:tramite.mordida.discrecional:paga_mordida_encig2025 -> RESULT-ENCIG-MOR-A-P-SOL1 -> CALC-ENCIG-0001/RESULT-ENCIG-MOR-A-P-SOL1 -> encig25_base_datos_csv:DATO -> manifiesto:encig25_base_datos_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "estructurales": [
+        "regla:tramite.mordida.discrecional:disparadores",
+        "generadores:G1",
+        "tier:FUERTE"
+      ],
+      "padre": null,
+      "rol_seleccion": null
+    },
+    "dominio": {
+      "recibido": {},
+      "requerido": {}
+    },
+    "estado": "EMITE",
+    "estimando": {
+      "evento": "conducta=paga_mordida_encig2025",
+      "periodo": {
+        "cita": "milpa/tramite.yaml:125 -- ola_calibracion: \"ENCIG 2025 (más reciente de 8 olas disponibles; las otras 7 van en serie_olas, NO promediadas)\"",
+        "valor": "ENCIG 2025 (más reciente de 8 olas disponibles; las otras 7 van en serie_olas, NO promediadas)"
+      },
+      "poblacion": "sección VIII de ENCIG 2025 (encig2025_01_sec1_A_3_4_5_8_9_10.csv), variable P8_3_1 (y=1 si '1' Sí, y=0 si '2' No, 9 No-sabe y resto fuera); 40136 filas leídas, 94 fuera de universo, n_efectivo=40042.",
+      "transformacion": "paga_mordida_encig2025",
+      "unidad": "[SECUNDARIO · CELDA GEN1 · ADOPTABLE] proporcion ponderada de personas a las que un(a) servidor(a) publico(a) intento apropiarse o solicito de forma directa un beneficio (P8_3_1=1), unidad PERSONA, FAC_P18, escala [0,1], mas alto = mas solicitud"
+    },
+    "peticion": {
+      "consumidor": "milpa/tramite.yaml:tramite.mordida.discrecional:paga_mordida_encig2025",
+      "contexto": {},
+      "id": "04-TRA-valida",
+      "proposito": "consulta",
+      "uso": "MEDICION-GEN2"
+    },
+    "referencias": [
+      "data/corrida0/CALC-ENCIG-0001/ejecucion.json",
+      "data/corrida0/CALC-ENCIG-0001/resultados.json",
+      "data/corrida0/CALC-ENCIG-0001/spec.yaml",
+      "data/corrida0/resultados.tsv",
+      "data/corrida0/usos.tsv",
+      "milpa/src/emisor.py",
+      "milpa/src/linaje.py",
+      "milpa/tramite.yaml",
+      "tools/baseline_temporal.py",
+      "tools/consulta_gen2.py",
+      "tools/emite_m.py",
+      "tools/snapshot_motor_gen2.py"
+    ],
+    "resultado": {
+      "corrida_id": "CALC-ENCIG-0001--c3ae00e62e59",
+      "fuente": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L99 · forense/replay-evidencia.tsv#CALC-ENCIG-0001",
+      "generacion": "GEN2",
+      "id": "RESULT-ENCIG-MOR-A-P-SOL1",
+      "origen_numerico": "NUEVO",
+      "spec_id": "CALC-ENCIG-0001",
+      "tipo": "proporcion",
+      "unidad": "[SECUNDARIO · CELDA GEN1 · ADOPTABLE] proporcion ponderada de personas a las que un(a) servidor(a) publico(a) intento apropiarse o solicito de forma directa un beneficio (P8_3_1=1), unidad PERSONA, FAC_P18, escala [0,1], mas alto = mas solicitud"
+    },
+    "valor": {
+      "categoria": "paga_mordida_encig2025",
+      "punto": 0.08511814556534456,
+      "tipo_escala": "binaria"
+    }
+  },
+  {
+    "advertencia_interpretacion": "Proporción poblacional del universo declarado; no es diagnóstico ni probabilidad personalizada validada.",
+    "aptitud": {
+      "alcance": "uso declarado por RESULT",
+      "estado": null,
+      "rol_uso": null,
+      "uso_solicitado": "MEDICION-GEN2",
+      "validacion_independiente": "PASA"
+    },
+    "contrato": {
+      "archivos": {
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
+        "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
+        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
+        "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
+        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
+      },
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "version": "CONSULTA-GEN2-v1"
+    },
+    "dependencia": {
+      "camino_linaje": null,
+      "estructurales": [
+        "regla:civico.denuncia.miedo_desconfianza:disparadores",
+        "generadores:G4",
+        "tier:FUERTE"
+      ],
+      "padre": null,
+      "rol_seleccion": null
+    },
+    "dominio": {
+      "recibido": {
+        "bp1_23_en_01_08": true,
+        "delito_no_denunciado": false,
+        "victima_18_mas": true
+      },
+      "requerido": {
+        "bp1_23_en_01_08": true,
+        "delito_no_denunciado": true,
+        "victima_18_mas": true
+      }
+    },
+    "estado": "NO_COVERAGE",
+    "estimando": {
+      "evento": "algún delito no denunciado en U1 con BP1_23 en {01,02,06,08}",
+      "periodo": {
+        "cita": "milpa/tramite.yaml:623 -- ola_calibracion: \"ENVIPE 2025 (unica ola disponible para este universo)\"",
+        "valor": "ENVIPE 2025 (unica ola disponible para este universo)"
+      },
+      "poblacion": "personas 18+ victimas de AP7_3_XX=1 (XX en 05..15) que no denunciaron (BP1_20=2) -- procedencia.yaml:997, re-verificado contra microdato 2026-08-31",
+      "transformacion": "algún delito no denunciado en U1 con BP1_23 en {01,02,06,08}",
+      "unidad": "particion GEN1 a nivel PERSONA con FAC_ELE -- UNICA celda que comparte codificacion Y unidad con la cifra GEN1 sellada, escala [0,1]"
+    },
+    "motivo_no_cobertura": "fuera del dominio elegible: requiere {'delito_no_denunciado': True}; el dominio o propósito de la salida no está cubierto",
+    "peticion": {
+      "consumidor": "milpa/tramite.yaml:civico.denuncia.miedo_desconfianza:denuncia_con_miedo_o_desconfianza",
+      "contexto": {
+        "bp1_23_en_01_08": true,
+        "delito_no_denunciado": false,
+        "victima_18_mas": true
+      },
+      "id": "05-dominio-falso",
+      "proposito": "consulta",
+      "uso": "MEDICION-GEN2"
+    },
+    "referencias": [
+      "data/corrida0/CALC-ENVIPE-0001/ejecucion.json",
+      "data/corrida0/CALC-ENVIPE-0001/resultados.json",
+      "data/corrida0/CALC-ENVIPE-0001/spec.yaml",
+      "data/corrida0/resultados.tsv",
+      "data/corrida0/usos.tsv",
+      "milpa/src/emisor.py",
+      "milpa/src/linaje.py",
+      "milpa/tramite.yaml",
+      "tools/baseline_temporal.py",
+      "tools/consulta_gen2.py",
+      "tools/emite_m.py",
+      "tools/snapshot_motor_gen2.py"
+    ],
+    "resultado": {
+      "corrida_id": "CALC-ENVIPE-0001--06223f3dc02d",
+      "fuente": "VERIFY-ESTRUCTURADO · forense/replay-evidencia.tsv#CALC-ENVIPE-0001",
+      "generacion": "GEN2",
+      "id": "RESULT-ENVIPE-DEN-P-C2-U4",
+      "origen_numerico": "NUEVO",
+      "spec_id": "CALC-ENVIPE-0001",
+      "tipo": "proporcion",
+      "unidad": "particion GEN1 a nivel PERSONA con FAC_ELE -- UNICA celda que comparte codificacion Y unidad con la cifra GEN1 sellada, escala [0,1]"
+    }
+  },
+  {
+    "advertencia_interpretacion": "Interpretar sólo dentro del universo, evento, periodo y uso declarados.",
+    "aptitud": {
+      "alcance": "uso declarado por RESULT",
+      "estado": null,
+      "rol_uso": null,
+      "uso_solicitado": "MEDICION-GEN2",
+      "validacion_independiente": null
+    },
+    "contrato": {
+      "archivos": {
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
+        "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
+        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
+        "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
+        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
+      },
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "version": "CONSULTA-GEN2-v1"
+    },
+    "dependencia": {
+      "camino_linaje": null,
+      "estructurales": [
+        "regla:tramite.mordida.discrecional:disparadores",
+        "generadores:G1",
+        "tier:FUERTE"
+      ],
+      "padre": null,
+      "rol_seleccion": null
+    },
+    "dominio": {
+      "recibido": {},
+      "requerido": {}
+    },
+    "estado": "NO_COVERAGE",
+    "estimando": {
+      "evento": "conducta=paga_mordida",
+      "periodo": {
+        "cita": "milpa/tramite.yaml:100 -- fuente: [\"ENCIG2023\", ...]; fijada como ola_calibracion=ENCIG 2023 por forense/notas/2026-08-31-marco-M-v1_1-spec.md §(a), confirmada por milpa/procedencia.yaml:782-786 (asignados_probabilidad, 'el 0.62 NO corresponde a ninguna categoria medida -- es ASIGNADO, confirmado')",
+        "valor": "ENCIG 2023"
+      },
+      "poblacion": "NO-DECLARADO-EN-REGLA; consultar unidad del RESULT",
+      "transformacion": "paga_mordida",
+      "unidad": null
+    },
+    "motivo_no_cobertura": "la salida numérica no declara RESULT; no se usa el p viejo",
+    "peticion": {
+      "consumidor": "milpa/tramite.yaml:tramite.mordida.discrecional:paga_mordida",
+      "contexto": {},
+      "id": "06-legacy-en-GEN2",
+      "proposito": "consulta",
+      "uso": "MEDICION-GEN2"
+    },
+    "referencias": [
+      "data/corrida0/resultados.tsv",
+      "data/corrida0/usos.tsv",
+      "milpa/src/emisor.py",
+      "milpa/src/linaje.py",
+      "milpa/tramite.yaml",
+      "tools/baseline_temporal.py",
+      "tools/consulta_gen2.py",
+      "tools/emite_m.py",
+      "tools/snapshot_motor_gen2.py"
+    ],
+    "resultado": {
+      "fuente": null,
+      "id": null
+    }
+  },
+  {
+    "advertencia_interpretacion": "Proporción poblacional del universo declarado; no es diagnóstico ni probabilidad personalizada validada.",
+    "aptitud": {
+      "alcance": "calibración puntual ENIGH 2022; serie_olas se conserva separada y no se promedia",
+      "estado": "APTA-POR-LINAJE",
+      "rol_uso": null,
+      "uso_solicitado": "MEDICION-GEN2",
+      "validacion_independiente": "NO-HECHA"
+    },
+    "contrato": {
+      "archivos": {
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
+        "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
+        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
+        "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
+        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
+      },
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "version": "CONSULTA-GEN2-v1"
+    },
+    "dependencia": {
+      "camino_linaje": "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas -> RESULT-B-ENIGH-2020-P -> CALC-B-0001/RESULT-B-ENIGH-2020-P -> enigh2016_nc_csv:DATO -> manifiesto:enigh2016_nc_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE] | enigh2018_nc_csv:DATO -> manifiesto:enigh2018_nc_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE] | enigh2020_nc_csv:DATO -> manifiesto:enigh2020_nc_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE] | +1 ramas",
+      "estructurales": [
+        "regla:familia.seguro.volatilidad_ausencia_estado:disparadores",
+        "generadores:G5",
+        "tier:FUERTE"
+      ],
+      "padre": null,
+      "rol_seleccion": "OBSERVACION-SERIE-PREVIA"
+    },
+    "dominio": {
+      "recibido": {},
+      "requerido": {}
+    },
+    "estado": "EMITE",
+    "estimando": {
+      "evento": "remesas>0 en ENIGH 2022",
+      "periodo": {
+        "corte_temporal": "2021-12-31",
+        "objetivo": {
+          "fin": "2022-12-31",
+          "inicio": "2022-01-01"
+        },
+        "seleccion": {
+          "fin": "2020-12-31",
+          "inicio": "2020-01-01"
+        }
+      },
+      "poblacion": "hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2022 Nueva Serie, sin filtro adicional (la regla no declara ninguno). Desenlace recibe_remesas = 1 si concentradohogar.remesas > 0, 0 si = 0. La rama NA de la dicotomizacion NO existe: `remesas` trae cero nulos en las 6 olas (verificado, no supuesto).",
+      "transformacion": "remesas>0 en ENIGH 2022",
+      "unidad": "[2020] proporcion ponderada de hogares con remesas>0, universo completo de concentradohogar [0,1]"
+    },
+    "peticion": {
+      "consumidor": "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas",
+      "contexto": {},
+      "id": "07-transferencia-ENIGH-previa",
+      "proposito": "transferencia",
+      "seleccion": {
+        "contrato_version": "SELECCION-TEMPORAL-v1",
+        "estado": "EMITE",
+        "metodo": "ultima_ola_publica",
+        "objetivo": {
+          "corte_temporal": "2021-12-31",
+          "periodo": {
+            "fin": "2022-12-31",
+            "inicio": "2022-01-01"
+          },
+          "serie": {
+            "codificacion": "recibe_remesas = 1 si remesas > 0, 0 si remesas == 0",
+            "encuesta": "ENIGH-NS",
+            "reactivo": "concentradohogar.remesas",
+            "segmento": "nacional",
+            "unidad": "proporcion",
+            "universo": "hogares del universo completo de concentradohogar, sin filtro adicional"
+          }
+        },
+        "observacion": {
+          "disponibilidad": "2021-07-28",
+          "fuente": "enigh2020_nc_csv",
+          "periodo": {
+            "fin": "2020-12-31",
+            "inicio": "2020-01-01"
+          },
+          "resultado_id": "RESULT-B-ENIGH-2020-P",
+          "serie": {
+            "codificacion": "recibe_remesas = 1 si remesas > 0, 0 si remesas == 0",
+            "encuesta": "ENIGH-NS",
+            "reactivo": "concentradohogar.remesas",
+            "segmento": "nacional",
+            "unidad": "proporcion",
+            "universo": "hogares del universo completo de concentradohogar, sin filtro adicional"
+          }
+        }
+      },
+      "uso": "MEDICION-GEN2"
+    },
+    "referencias": [
+      "data/corrida0/CALC-B-0001/ejecucion.json",
+      "data/corrida0/CALC-B-0001/resultados.json",
+      "data/corrida0/CALC-B-0001/spec.yaml",
+      "data/corrida0/resultados.tsv",
+      "data/corrida0/usos.tsv",
+      "milpa/src/emisor.py",
+      "milpa/src/linaje.py",
+      "milpa/tramite.yaml",
+      "tools/baseline_temporal.py",
+      "tools/consulta_gen2.py",
+      "tools/emite_m.py",
+      "tools/snapshot_motor_gen2.py"
+    ],
+    "resultado": {
+      "corrida_id": "CALC-B-0001--098298ca327f",
+      "fuente": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@66eed1b4f4a3 · forense/replay-evidencia.tsv#CALC-B-0001",
+      "generacion": "GEN2",
+      "id": "RESULT-B-ENIGH-2020-P",
+      "origen_numerico": "NUEVO",
+      "spec_id": "CALC-B-0001",
+      "tipo": "proporcion",
+      "unidad": "[2020] proporcion ponderada de hogares con remesas>0, universo completo de concentradohogar [0,1]"
+    },
+    "valor": {
+      "categoria": "recibe_remesas",
+      "punto": 0.04377543852935772,
+      "tipo_escala": "binaria"
+    }
+  },
+  {
+    "contrato": {
+      "archivos": {
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
+        "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
+        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
+        "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
+        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
+      },
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "version": "CONSULTA-GEN2-v1"
+    },
+    "estado": "NO_COVERAGE",
+    "motivo_no_cobertura": "campos no permitidos en la petición: resultado_id_seleccionado, valor_seleccionado",
+    "peticion": {
+      "campos_adicionales": [
+        "resultado_id_seleccionado",
+        "valor_seleccionado"
+      ],
+      "consumidor": "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas",
+      "contexto": {},
+      "id": "08-ENVIPE-a-remesas-parametros-sueltos",
+      "proposito": "transferencia",
+      "uso": "MEDICION-GEN2"
+    },
+    "referencias": [
+      "tools/consulta_gen2.py",
+      "tools/snapshot_motor_gen2.py",
+      "tools/emite_m.py",
+      "tools/baseline_temporal.py",
+      "milpa/src/emisor.py",
+      "milpa/src/linaje.py",
+      "milpa/tramite.yaml",
+      "data/corrida0/usos.tsv",
+      "data/corrida0/resultados.tsv"
+    ],
+    "resultado": {
+      "fuente": null,
+      "id": null
+    }
+  },
+  {
+    "advertencia_interpretacion": "Proporción poblacional del universo declarado; no es diagnóstico ni probabilidad personalizada validada.",
+    "aptitud": {
+      "alcance": "calibración puntual ENIGH 2022; serie_olas se conserva separada y no se promedia",
+      "estado": null,
+      "rol_uso": null,
+      "uso_solicitado": "MEDICION-GEN2",
+      "validacion_independiente": "PASA"
+    },
+    "contrato": {
+      "archivos": {
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
+        "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
+        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
+        "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
+        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
+      },
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "version": "CONSULTA-GEN2-v1"
+    },
+    "dependencia": {
+      "camino_linaje": null,
+      "estructurales": [
+        "regla:familia.seguro.volatilidad_ausencia_estado:disparadores",
+        "generadores:G5",
+        "tier:FUERTE"
+      ],
+      "padre": null,
+      "rol_seleccion": null
+    },
+    "dominio": {
+      "recibido": {},
+      "requerido": {}
+    },
+    "estado": "NO_COVERAGE",
+    "estimando": {
+      "evento": "remesas>0 en ENIGH 2022",
+      "periodo": {
+        "corte_temporal": "2021-12-31",
+        "objetivo": {
+          "fin": "2022-12-31",
+          "inicio": "2022-01-01"
+        },
+        "seleccion": {
+          "fin": "2020-12-31",
+          "inicio": "2020-01-01"
+        }
+      },
+      "poblacion": "hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2022 Nueva Serie, sin filtro adicional (la regla no declara ninguno). Desenlace recibe_remesas = 1 si concentradohogar.remesas > 0, 0 si = 0. La rama NA de la dicotomizacion NO existe: `remesas` trae cero nulos en las 6 olas (verificado, no supuesto).",
+      "transformacion": "remesas>0 en ENIGH 2022",
+      "unidad": "[2022] proporcion ponderada de hogares con remesas>0, universo completo de concentradohogar [0,1]"
+    },
+    "motivo_no_cobertura": "selección no acreditada: la selección es posterior al corte temporal",
+    "peticion": {
+      "consumidor": "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas",
+      "contexto": {},
+      "id": "09-seleccion-posterior-al-corte",
+      "proposito": "transferencia",
+      "seleccion": {
+        "contrato_version": "SELECCION-TEMPORAL-v1",
+        "estado": "EMITE",
+        "metodo": "ultima_ola_publica",
+        "objetivo": {
+          "corte_temporal": "2021-12-31",
+          "periodo": {
+            "fin": "2022-12-31",
+            "inicio": "2022-01-01"
+          },
+          "serie": {
+            "codificacion": "recibe_remesas = 1 si remesas > 0, 0 si remesas == 0",
+            "encuesta": "ENIGH-NS",
+            "reactivo": "concentradohogar.remesas",
+            "segmento": "nacional",
+            "unidad": "proporcion",
+            "universo": "hogares del universo completo de concentradohogar, sin filtro adicional"
+          }
+        },
+        "observacion": {
+          "disponibilidad": "2022-01-01",
+          "fuente": "enigh2020_nc_csv",
+          "periodo": {
+            "fin": "2020-12-31",
+            "inicio": "2020-01-01"
+          },
+          "resultado_id": "RESULT-B-ENIGH-2020-P",
+          "serie": {
+            "codificacion": "recibe_remesas = 1 si remesas > 0, 0 si remesas == 0",
+            "encuesta": "ENIGH-NS",
+            "reactivo": "concentradohogar.remesas",
+            "segmento": "nacional",
+            "unidad": "proporcion",
+            "universo": "hogares del universo completo de concentradohogar, sin filtro adicional"
+          }
+        }
+      },
+      "uso": "MEDICION-GEN2"
+    },
+    "referencias": [
+      "data/corrida0/CALC-B-0001/ejecucion.json",
+      "data/corrida0/CALC-B-0001/resultados.json",
+      "data/corrida0/CALC-B-0001/spec.yaml",
+      "data/corrida0/resultados.tsv",
+      "data/corrida0/usos.tsv",
+      "milpa/src/emisor.py",
+      "milpa/src/linaje.py",
+      "milpa/tramite.yaml",
+      "tools/baseline_temporal.py",
+      "tools/consulta_gen2.py",
+      "tools/emite_m.py",
+      "tools/snapshot_motor_gen2.py"
+    ],
+    "resultado": {
+      "corrida_id": "CALC-B-0001--098298ca327f",
+      "fuente": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@66eed1b4f4a3 · forense/replay-evidencia.tsv#CALC-B-0001",
+      "generacion": "GEN2",
+      "id": "RESULT-B-ENIGH-2022-P",
+      "origen_numerico": "NUEVO",
+      "spec_id": "CALC-B-0001",
+      "tipo": "proporcion",
+      "unidad": "[2022] proporcion ponderada de hogares con remesas>0, universo completo de concentradohogar [0,1]"
+    }
+  },
+  {
+    "advertencia_interpretacion": "Proporción poblacional del universo declarado; no es diagnóstico ni probabilidad personalizada validada.",
+    "aptitud": {
+      "alcance": "complemento dependiente; no sortear como confirmación independiente",
+      "estado": "APTA-POR-LINAJE",
+      "rol_uso": null,
+      "uso_solicitado": "MEDICION-GEN2",
+      "validacion_independiente": "PASA"
+    },
+    "contrato": {
+      "archivos": {
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
+        "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
+        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
+        "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
+        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
+      },
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "version": "CONSULTA-GEN2-v1"
+    },
+    "dependencia": {
+      "camino_linaje": "milpa/tramite.yaml:tramite.mordida.discrecional:sin_solicitud_y_sin_entrega_encuci2020 -> RESULT-ENCUCI-A-P-CUALQUIERA -> CALC-ENCUCI-0001/RESULT-ENCUCI-A-P-CUALQUIERA -> encuci2020_bd_dbf:DATO -> manifiesto:encuci2020_bd_dbf [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "estructurales": [
+        "regla:tramite.mordida.discrecional:disparadores",
+        "generadores:G1",
+        "tier:FUERTE",
+        "padre:tramite.mordida.discrecional:solicitud_o_entrega_mordida_encuci2020",
+        "transformacion:1-p"
+      ],
+      "padre": "solicitud_o_entrega_mordida_encuci2020",
+      "rol_seleccion": null
+    },
+    "dominio": {
+      "recibido": {
+        "contacto_funcionario_ultimos_12_meses": true,
+        "respuesta_solicitud_entrega_valida": true
+      },
+      "requerido": {
+        "contacto_funcionario_ultimos_12_meses": true,
+        "respuesta_solicitud_entrega_valida": true
+      }
+    },
+    "estado": "EMITE",
+    "estimando": {
+      "evento": "AP5_17=2 y AP5_18=2 dentro del mismo recorte válido",
+      "periodo": {
+        "cita": "milpa/tramite.yaml:107 -- ola_calibracion: \"ENCUCI 2020 (unica ola)\"",
+        "valor": "ENCUCI 2020 (unica ola)"
+      },
+      "poblacion": "SEC_4_5 con contacto declarado AP5_16_1..10>=1 -- procedencia.yaml:888-889 (n≈13435 de 21519), re-verificado contra microdato 2026-08-31, n exacto reproducido",
+      "transformacion": "1-p(solicitud_o_entrega_mordida_encuci2020)",
+      "unidad": "[CELDA ADOPTABLE] proporcion ponderada de U_A con AP5_17 = 1 O AP5_18 = 1 -- la codificacion GEN1 verbatim (desenlace 'AP5_17|AP5_18' de enmienda_encuci2020); escala [0,1]"
+    },
+    "peticion": {
+      "consumidor": "milpa/tramite.yaml:tramite.mordida.discrecional:sin_solicitud_y_sin_entrega_encuci2020",
+      "contexto": {
+        "contacto_funcionario_ultimos_12_meses": true,
+        "respuesta_solicitud_entrega_valida": true
+      },
+      "id": "10-complemento-adoptado",
+      "proposito": "consulta",
+      "uso": "MEDICION-GEN2"
+    },
+    "referencias": [
+      "data/corrida0/CALC-ENCUCI-0001/ejecucion.json",
+      "data/corrida0/CALC-ENCUCI-0001/resultados.json",
+      "data/corrida0/CALC-ENCUCI-0001/spec.yaml",
+      "data/corrida0/resultados.tsv",
+      "data/corrida0/usos.tsv",
+      "milpa/src/emisor.py",
+      "milpa/src/linaje.py",
+      "milpa/tramite.yaml",
+      "tools/baseline_temporal.py",
+      "tools/consulta_gen2.py",
+      "tools/emite_m.py",
+      "tools/snapshot_motor_gen2.py"
+    ],
+    "resultado": {
+      "corrida_id": "CALC-ENCUCI-0001--18d21cdff449",
+      "fuente": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L100 · forense/replay-evidencia.tsv#CALC-ENCUCI-0001",
+      "generacion": "GEN2",
+      "id": "RESULT-ENCUCI-A-P-CUALQUIERA",
+      "origen_numerico": "NUEVO",
+      "spec_id": "CALC-ENCUCI-0001",
+      "tipo": "proporcion",
+      "unidad": "[CELDA ADOPTABLE] proporcion ponderada de U_A con AP5_17 = 1 O AP5_18 = 1 -- la codificacion GEN1 verbatim (desenlace 'AP5_17|AP5_18' de enmienda_encuci2020); escala [0,1]"
+    },
+    "valor": {
+      "categoria": "sin_solicitud_y_sin_entrega_encuci2020",
+      "punto": 0.8739943899100835,
+      "tipo_escala": "binaria"
+    }
+  },
+  {
+    "advertencia_interpretacion": "Proporción poblacional del universo declarado; no es diagnóstico ni probabilidad personalizada validada.",
+    "aptitud": {
+      "alcance": "PROXY-DESCRIPTIVO de la tabla unida: sólo consulta descriptiva, escenario o baseline dentro del grupo observado por P8_4; no es tasa general ni probabilidad empírica de solicitud atribuida a cada evento",
+      "estado": null,
+      "rol_uso": "proxy_descriptivo",
+      "uso_solicitado": "MEDICION-GEN2",
+      "validacion_independiente": "PASA"
+    },
+    "contrato": {
+      "archivos": {
+        "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
+        "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
+        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
+        "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
+        "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
+        "tools/consulta_gen2.py": "9d6b583d6ee93dc45d7ea5bdcfada2365cfd5a46bbcbf4d38decd546eb6f48ff",
+        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
+      },
+      "sha256": "4408fc7135dfb0f4a40710f543bc10003fa064c95a6b288c8073a7290078508d",
+      "version": "CONSULTA-GEN2-v1"
+    },
+    "dependencia": {
+      "camino_linaje": null,
+      "estructurales": [
+        "regla:tramite.mordida.con_registro:disparadores",
+        "generadores:G1",
+        "tier:FUERTE"
+      ],
+      "padre": null,
+      "rol_seleccion": null
+    },
+    "dominio": {
+      "recibido": {
+        "canal_p7_3": "digital_registrado",
+        "p8_4_observado": true
+      },
+      "requerido": {
+        "canal_p7_3": "digital_registrado",
+        "p8_4_observado": true
+      }
+    },
+    "estado": "NO_COVERAGE",
+    "estimando": {
+      "evento": "conducta=paga_mordida_encig2025_digital_r2",
+      "periodo": {
+        "cita": "milpa/tramite.yaml:216 -- ola_calibracion: \"ENCIG 2025 (recorrida sin deduplicar, ACTO MAESTRA35-L1)\"",
+        "valor": "ENCIG 2025 (recorrida sin deduplicar, ACTO MAESTRA35-L1)"
+      },
+      "poblacion": "eventos de trámite con P8_4 ∈ {0,1}, ENCIG 2025, SHA 57a365e",
+      "transformacion": "paga_mordida_encig2025_digital_r2",
+      "unidad": "[PRIMARIO · ADOPTABLE RES-0015] idem canal digital/registrado, rama SD"
+    },
+    "motivo_no_cobertura": "uso 'probabilidad_evento' no permitido para rol_uso='proxy_descriptivo'; permitidos=['baseline', 'consulta_descriptiva', 'escenario']; el dominio o propósito de la salida no está cubierto",
+    "peticion": {
+      "consumidor": "milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida_encig2025_digital_r2",
+      "contexto": {
+        "canal_p7_3": "digital_registrado",
+        "p8_4_observado": true
+      },
+      "id": "11-proxy-uso-no-permitido",
+      "proposito": "consulta",
+      "uso": "MEDICION-GEN2"
+    },
+    "referencias": [
+      "data/corrida0/CALC-ENCIG-0001/ejecucion.json",
+      "data/corrida0/CALC-ENCIG-0001/resultados.json",
+      "data/corrida0/CALC-ENCIG-0001/spec.yaml",
+      "data/corrida0/resultados.tsv",
+      "data/corrida0/usos.tsv",
+      "milpa/src/emisor.py",
+      "milpa/src/linaje.py",
+      "milpa/tramite.yaml",
+      "tools/baseline_temporal.py",
+      "tools/consulta_gen2.py",
+      "tools/emite_m.py",
+      "tools/snapshot_motor_gen2.py"
+    ],
+    "resultado": {
+      "corrida_id": "CALC-ENCIG-0001--c3ae00e62e59",
+      "fuente": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L99 · forense/replay-evidencia.tsv#CALC-ENCIG-0001",
+      "generacion": "GEN2",
+      "id": "RESULT-ENCIG-MOR-B-P-DIG-SD",
+      "origen_numerico": "NUEVO",
+      "spec_id": "CALC-ENCIG-0001",
+      "tipo": "proporcion",
+      "unidad": "[PRIMARIO · ADOPTABLE RES-0015] idem canal digital/registrado, rama SD"
+    }
+  }
+]

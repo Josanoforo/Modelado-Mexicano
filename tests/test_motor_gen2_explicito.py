@@ -167,10 +167,14 @@ class MotorGen2Explicito(unittest.TestCase):
         actual = construir_snapshot()
         esperado = json.loads((
             RAIZ / "forense" / "prereg-duelo-v2" /
-            "snapshot-M-gen2-explicito-v1_1.json"
+            "snapshot-M-gen2-explicito-v1_2.json"
         ).read_text(encoding="utf-8"))
         self.assertEqual(
             json.loads(json.dumps(actual, ensure_ascii=False)), esperado)
+        self.assertEqual(len(actual["salidas_gen2_directas"]), 16)
+        self.assertTrue(all(
+            x["validacion_independiente"] == "PASA"
+            for x in actual["salidas_gen2_directas"]))
         self.assertEqual(
             actual["cobertura"]["antes"]["registro_activo_total"],
             len(self.indice.usos))
@@ -270,10 +274,12 @@ class MotorGen2Explicito(unittest.TestCase):
         self.assertEqual(r.estado, "NO_COVERAGE")
         self.assertIn("p materializado no identifica al RESULT", r.detalle)
 
-    def test_13_congelados_historicos_y_snapshot_v1_0_no_cambian(self):
+    def test_13_congelados_historicos_y_snapshots_previos_no_cambian(self):
         esperados = {
             "forense/prereg-duelo-v2/snapshot-M-gen2-explicito-v1_0.json":
                 "05350667baa245c79c3ed487aeb1403d74b4612fcae69e16845b8d42f1a5eaa8",
+            "forense/prereg-duelo-v2/snapshot-M-gen2-explicito-v1_1.json":
+                "95d36cef4735f85a22f0346bc04dabdab2f13724c96e9a19179996cb93bca3bb",
             "forense/prereg-duelo-v2/snapshot-M-triada-v1_0.json":
                 "b53ac6d51d1b50ce929fdf1b3e14b124c11db39fb216a15d7073a287ed3f065c",
             "data/corrida0/CALC-TRIADA-0002/resultados.json":

@@ -1,0 +1,18 @@
+{
+  "controles": {
+    "abcd_ifrs9_minimo": "1.36@2024-05",
+    "cambios_interanuales": 495,
+    "cambios_mensuales": 605,
+    "filas_llaves": 615,
+    "media_ifrs9_tarjetas": "3.1211764705882352941176470588235",
+    "media_pre_consumo_total": "4.2108333333333333333333333333333",
+    "meses": 123,
+    "personales_pre_maximo": "7.60@2021-01",
+    "productos": 5,
+    "tarjetas_2022_02_mensual_pp": "0.14",
+    "tarjetas_2023_01_interanual_pp": "0.22"
+  },
+  "estado": "VALIDACION-INDEPENDIENTE-COINCIDE",
+  "input_sha256": "772f9d0b9da57b18ef9abdd5824b0824b6191e65668103e3a8329171d3df88e9",
+  "metodo": "csv+Decimal; no importa el medidor sellado"
+}

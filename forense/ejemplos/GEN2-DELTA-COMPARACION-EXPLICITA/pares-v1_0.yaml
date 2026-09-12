@@ -1,0 +1,217 @@
+version: GEN2-DELTA-1
+descripcion: >-
+  Tres pares reales: equivalencia de representacion del caso #647, delta
+  temporal permitido de credito fintech #706 y ruptura definicional de cuenta.
+  Ningun par trae criterio sustantivo de materialidad.
+
+pares:
+  - id: DELTA-REMESAS-ENIGH2022-GRANO
+    consumidor: milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:recibe_remesas
+    uso:
+      descripcion: calibracion puntual ENIGH 2022; la serie de olas no se promedia
+      evidencias:
+        - fuente: data/corrida0/CALC-B-0001/spec.yaml
+          sha256: 7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16
+          cita: parametros.adopcion_p3 congela consumidor, RESULT y valor materializado antes de ejecutar/adoptar
+    a:
+      clase: fuente
+      fuente: data/corrida0/CALC-B-0001/spec.yaml
+      sha256: 7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16
+      version: commit 09f83fca6f195b9f6a22ed1f4e5c2050988b7921; spec congelada antes de abrir microdato
+      tipo: proporcion
+      unidad: proporcion de hogares
+      selector:
+        formato: yaml
+        ruta: [parametros, adopcion_p3, valor_materializado]
+    b:
+      clase: resultado
+      calc_id: CALC-B-0001
+      corrida_id: CALC-B-0001--098298ca327f
+      resultado_id: RESULT-B-ENIGH-2022-P
+      spec_sha256: 7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16
+      resultados_sha256: 87e20e5aa2923fcc4b206734fa13ec321d3b036d61edd48eb0efd5bd369f263d
+      sello_sha256: b849d164731d6b90c83316d0d8fa884b91f3fff1a4370ad2c93872e62b3788aa
+    comparabilidad:
+      dimensiones:
+        unidad:
+          estado: COINCIDE
+          razon: ambos lados son proporcion ponderada de hogares
+        escala:
+          estado: COINCIDE
+          razon: ambos lados estan en escala 0 a 1
+        direccion:
+          estado: COINCIDE
+          razon: mayor valor significa mayor proporcion que recibe remesas
+        poblacion:
+          estado: COINCIDE
+          razon: universo completo de hogares de concentradohogar ENIGH 2022
+        evento:
+          estado: COINCIDE
+          razon: recibe_remesas equivale a remesas mayor que cero
+        codigos:
+          estado: COINCIDE
+          razon: remesas mayor que cero es uno y remesas igual a cero es cero; no hay nulos
+        periodo:
+          estado: COINCIDE
+          razon: ambos valores corresponden a ENIGH 2022
+        transformacion:
+          estado: COINCIDE
+          razon: suma de factor por indicador dividida entre suma de factor
+      evidencias:
+        - fuente: data/corrida0/CALC-B-0001/spec.yaml
+          sha256: 7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16
+          cita: universo, transformacion, parametros.serie y parametros.adopcion_p3
+    diferencia:
+      escala: proporcion
+      unidad: proporcion de hogares
+      relativo:
+        permitido: true
+        razon: A es una proporcion no nula con origen cero sustantivo
+    representacion:
+      aplica: true
+      publicado: a
+      preciso: b
+    materialidad:
+      criterio: null
+      razon: el contrato no contiene un criterio sustantivo citado; el grano no lo sustituye
+
+  - id: DELTA-ENIF-CREDITO-APP-2024-MENOS-2021
+    consumidor: dinero.credito.scoring_alternativo (R1.6)
+    uso:
+      descripcion: contexto descriptivo DESCRIPTIVO-NO-CALIBRA sobre canal del ultimo producto; no canal fintech exacto
+      evidencias:
+        - fuente: data/corrida0/enif-fintech-correspondencia-v1_0.tsv
+          sha256: 9c61b5588014fc2959cdb0c1abfdab423dd08dae3d0117c3c99fee6636217980
+          cita: filas 2021/2024 credito y decision de comparacion con deriva de ejemplos
+    a:
+      clase: resultado
+      calc_id: CALC-ENIF-FINTECH-0001
+      corrida_id: CALC-ENIF-FINTECH-0001--5b92cee28946
+      resultado_id: RESULT-ENIF-FINTECH-2021-CREDITO-CANAL-APP-CELULAR-P
+      spec_sha256: 3a5d00ca71bb433af81c30c72d05942ad9dc26930cebb9ec00ae7ddefdaf0a9c
+      resultados_sha256: 7a2f14d171bbf9d539337585b7a2dd79d216bd063b6e0d405ec6139afdf060c2
+      sello_sha256: e313b5413f65e7c92a6def2d07b70fb3a8f191851ccb68cea9f0d7aab4753b05
+    b:
+      clase: fuente
+      fuente: data/corrida0/enif-fintech-serie-v1_0.tsv
+      sha256: f022ba96c1a38a0c3175038bed71b50dbce8204ad8511a558854baed2fed936a
+      version: GEN2-ENIF-FINTECH-SERIE-v1_0; commit 345c497cf2309782bb6e454cbeb80ec0da68f7fd
+      tipo: proporcion
+      unidad: proporcion ponderada
+      selector:
+        formato: tsv
+        clave: {ola: '2024', familia: credito, canal: app_celular}
+        columna: p
+    comparabilidad:
+      dimensiones:
+        unidad:
+          estado: COINCIDE
+          razon: proporcion ponderada por persona elegida
+        escala:
+          estado: COINCIDE
+          razon: ambas olas publican proporcion 0 a 1
+        direccion:
+          estado: COINCIDE
+          razon: mayor valor significa mayor cuota del canal app
+        poblacion:
+          estado: COINCIDE
+          razon: persona elegida de 18 anos y mas con credito fintech y canal valido
+        evento:
+          estado: DERIVA-DOCUMENTADA
+          razon: misma categoria de credito por Internet/app; el ejemplo cambia Playbusiness por YoTePresto
+        codigos:
+          estado: COINCIDE
+          razon: P6_7 y P6_6 conservan catalogo 1 a 6 y app en codigo 2
+        periodo:
+          estado: DISTINTO-INTENCIONAL
+          razon: el objeto es deliberadamente el cambio descriptivo 2024 menos 2021
+        transformacion:
+          estado: COINCIDE
+          razon: masa ponderada del canal dividida entre masa de canales validos por ola
+      evidencias:
+        - fuente: data/corrida0/enif-fintech-correspondencia-v1_0.tsv
+          sha256: 9c61b5588014fc2959cdb0c1abfdab423dd08dae3d0117c3c99fee6636217980
+          cita: filas 2021 credito y 2024 credito; COMPARABLE-CON-DERIVA-DE-EJEMPLOS
+    diferencia:
+      escala: proporcion
+      unidad: proporcion ponderada
+      relativo:
+        permitido: true
+        razon: A es la proporcion 2021 no nula y el cero de la escala es sustantivo
+    representacion:
+      aplica: true
+      publicado: b
+      preciso: a
+    materialidad:
+      criterio: null
+      razon: "#706 no define umbral sustantivo; el cambio es descriptivo y no causal"
+
+  - id: RECHAZO-ENIF-CUENTA-APP-2024-2021
+    consumidor: dinero.credito.scoring_alternativo (R1.6)
+    uso:
+      descripcion: contexto lado a lado, sin delta, del canal de la ultima cuenta entre tenedores del proxy fintech
+      evidencias:
+        - fuente: data/corrida0/enif-fintech-correspondencia-v1_0.tsv
+          sha256: 9c61b5588014fc2959cdb0c1abfdab423dd08dae3d0117c3c99fee6636217980
+          cita: filas 2021/2024 cuenta; decision RUPTURA-DEFINICIONAL
+    a:
+      clase: resultado
+      calc_id: CALC-ENIF-FINTECH-0001
+      corrida_id: CALC-ENIF-FINTECH-0001--5b92cee28946
+      resultado_id: RESULT-ENIF-FINTECH-2021-CUENTA-CANAL-APP-CELULAR-P
+      spec_sha256: 3a5d00ca71bb433af81c30c72d05942ad9dc26930cebb9ec00ae7ddefdaf0a9c
+      resultados_sha256: 7a2f14d171bbf9d539337585b7a2dd79d216bd063b6e0d405ec6139afdf060c2
+      sello_sha256: e313b5413f65e7c92a6def2d07b70fb3a8f191851ccb68cea9f0d7aab4753b05
+    b:
+      clase: fuente
+      fuente: data/corrida0/enif-fintech-serie-v1_0.tsv
+      sha256: f022ba96c1a38a0c3175038bed71b50dbce8204ad8511a558854baed2fed936a
+      version: GEN2-ENIF-FINTECH-SERIE-v1_0; commit 345c497cf2309782bb6e454cbeb80ec0da68f7fd
+      tipo: proporcion
+      unidad: proporcion ponderada
+      selector:
+        formato: tsv
+        clave: {ola: '2024', familia: cuenta, canal: app_celular}
+        columna: p
+    comparabilidad:
+      dimensiones:
+        unidad:
+          estado: COINCIDE
+          razon: proporcion ponderada por persona elegida
+        escala:
+          estado: COINCIDE
+          razon: ambas olas publican proporcion 0 a 1
+        direccion:
+          estado: COINCIDE
+          razon: mayor valor significa mayor cuota del canal app
+        poblacion:
+          estado: RUPTURA
+          razon: 2024 restringe explicitamente a cuenta no bancaria; 2021 no contiene esa aclaracion
+        evento:
+          estado: RUPTURA
+          razon: cambian la categoria descrita y los proveedores de ejemplo Mercado Pago/Albo a Mercado Pago/Nu/Spin
+        codigos:
+          estado: RUPTURA
+          razon: el canal pasa de siete a ocho categorias y se amplia/reordena el catalogo
+        periodo:
+          estado: DISTINTO-INTENCIONAL
+          razon: se examinan 2021 y 2024 deliberadamente para decidir si existe delta
+        transformacion:
+          estado: COINCIDE
+          razon: dentro de cada ola se calcula masa del canal sobre masa de canales validos
+      evidencias:
+        - fuente: data/corrida0/enif-fintech-correspondencia-v1_0.tsv
+          sha256: 9c61b5588014fc2959cdb0c1abfdab423dd08dae3d0117c3c99fee6636217980
+          cita: cuenta 2021 RUPTURA-DEFINICIONAL y cuenta 2024 REFERENCIA-CON-RUPTURA
+    diferencia:
+      escala: proporcion
+      unidad: proporcion ponderada
+      relativo:
+        permitido: false
+        razon: sin correspondencia cientifica no hay base sustantiva para cambio relativo
+    representacion:
+      aplica: false
+      razon: una ruptura definicional no se convierte en comparacion de grano
+    materialidad:
+      criterio: null
+      razon: el delta sustantivo se rechaza antes de preguntar materialidad
