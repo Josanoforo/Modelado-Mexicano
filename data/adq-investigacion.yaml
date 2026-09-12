@@ -14,6 +14,35 @@ reservas_runtime_dir: forense/adq-log/estado/investigacion
 reserva_minutos: 75
 
 necesidades:
+  - id: NC-0165
+    version_pregunta: "2026-09-11-demanda-activa-preadopcion-v1"
+    consumidor: "alcance activo de data/corrida0/usos.tsv"
+    uso: "conciliacion-operativa; no adopta ni reactiva GEN1"
+    prioridad_consumidor: 40
+    bloqueo_material: 3
+    lista: false
+    estado_ruteo: DELEGADA_A_MOTOR_GEN2
+    asignacion: motor-gen2
+    modos: []
+    poblacion: "todos los elementos con activo=SI, con independencia de corrida0_generacion"
+    unidad: "elemento resultado_id × consumidor"
+    periodo: "corte reproducible de las siete fuentes declaradas"
+    variables: "contrato corriente, oferta, preparación, cálculo, validación, adopción, decisión y NC"
+    evidencia_disponible: "usos/resultados/demanda-resultados/decisiones, necesidad-modelo, utilidad-modelo y no-corrido"
+    brecha: "elementos activos sin resultado GEN2 adoptado ni vínculo anterior en la vista de demanda"
+    investigacion_previa: "GEN1 se conserva sólo como antecedente; las decisiones vigentes estructuradas prevalecen"
+    frontera_previa: "no iniciar búsqueda hasta verificar que el primer faltante es fuente/variable o acceso"
+    siguiente_accion: "motor-gen2: resolver decisión o preparación por RES; despachar automáticamente a SONDA sólo las brechas de datos verificadas"
+    opciones_decision:
+      - APROBAR_CONTRATO_GEN2_Y_PREPARAR
+      - SUSTITUIR_CON_RESULTADO_VIGENTE_EXPLICITO
+      - DECLARAR_HISTORICA_DESCARTADA_O_FUERA_DE_ALCANCE_CON_EVIDENCIA
+    etapa_faltante: PREPARACION
+    responsable: motor-gen2
+    contrato_operativo: COMPLETO_OPERATIVO_NO_CIENTIFICO
+    contrato_cientifico_completo: false
+    aplica_contrato_cientifico: false
+
   - id: NC-0122
     version_pregunta: "2026-09-10-producto-fintech-exacto-v1"
     consumidor: "R1.6 dinero.credito.scoring_alternativo"
@@ -35,6 +64,11 @@ necesidades:
     investigacion_previa: "ENIF 2018/2021/2024 y cuatro sondeos regulatorios/locales; ver cierre GEN2-ADQ-VERIFICACION-CAJA"
     frontera_previa: "instrumentos de demanda de fintech/lenders, repositorios académicos y paquetes de replicación fuera del corpus"
     siguiente_accion: "buscar instrumento o dato de originación que enlace producto fintech exacto con canal; conservar ENIF sólo como proxy"
+    condicion_reapertura:
+      clase: FECHA_VENCIDA_O_EVIDENCIA_NUEVA_ESTRUCTURADA
+      fecha: "la proxima_revision del estado vigente; actualmente 2026-10-11"
+      evidencia: "necesidad_id y version_pregunta exactas, identificada=true y lista no vacía de evidencias"
+      exclusiones: "no reabrir por menciones históricas, ENIF ya revisada ni palabras sueltas de la nota"
 
   - id: NC-0126
     version_pregunta: "2026-09-09-horizonte-ahorro-descolapsado-v1"
@@ -122,6 +156,11 @@ necesidades:
     investigacion_previa: "#723 y #734 fusionado; Banxico/SHED/CFPB adquiridos y mapeados sin adoptar parámetro"
     frontera_previa: "Making Ends Meet exige términos; panel Di Maggio-Williams-Katz sin réplica pública; reabrir ante fuente mexicana exacta o decisión de preespecificación"
     siguiente_accion: "no repetir #734; en la próxima revisión buscar fuente mexicana con producto exacto, costo objetivo, daño, negativos y estrategia de identificación"
+    condicion_reapertura:
+      clase: FECHA_VENCIDA_O_EVIDENCIA_NUEVA_ESTRUCTURADA
+      fecha: "2026-10-11"
+      evidencia: "necesidad_id y version_pregunta exactas, identificada=true y lista no vacía de evidencias"
+      exclusiones: "no repetir #734 ni rutas condicionadas sin intervención humana"
 
   - id: NC-0136
     version_pregunta: "2026-09-10-indice-reactivos-ciego-v1"

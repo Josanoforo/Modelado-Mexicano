@@ -40,7 +40,8 @@ def _accion_reportada(suficiencia: dict) -> str:
 
 def _evalua_decision(estado: dict, contrato: dict, vinculo: dict,
                      consumidor: str, resultado_id: str | None,
-                     uso_solicitado: str | None, raiz: Path
+                     uso_solicitado: str | None, raiz: Path, *,
+                     alcance_menor: bool = False
                      ) -> tuple[bool, str, dict | None]:
     """Una suficiencia de investigación nunca equivale a adopción de emisión."""
     decision = estado.get("decision_emision")
@@ -54,6 +55,11 @@ def _evalua_decision(estado: dict, contrato: dict, vinculo: dict,
         "resultado_id": resultado_id,
         "uso_aprobado": uso_solicitado,
     }
+    if alcance_menor:
+        esperados.update({
+            "uso_menor": vinculo.get("uso_menor"),
+            "uso_original": vinculo.get("uso_original"),
+        })
     discrepantes = [
         clave for clave, esperado in esperados.items()
         if not esperado or decision.get(clave) != esperado
@@ -74,7 +80,12 @@ def _evalua_decision(estado: dict, contrato: dict, vinculo: dict,
 
     clase = decision.get("clase")
     bloqueado = vinculo["resultado_bloqueado_id"]
-    if clase == "AUTORIZA_RESULTADO_EXISTENTE":
+    if alcance_menor:
+        if clase != "AUTORIZA_ALCANCE_MENOR_RESULTADO_EXISTENTE":
+            return False, "decisión no autoriza el alcance menor exacto", decision
+        if resultado_id != bloqueado:
+            return False, "decisión de alcance menor no corresponde al RESULT", decision
+    elif clase == "AUTORIZA_RESULTADO_EXISTENTE":
         if resultado_id != bloqueado:
             return False, "decisión para resultado existente no corresponde al RESULT", decision
     elif clase == "ADOPTA_SUCESOR_CALCULADO":
@@ -128,12 +139,14 @@ def proyecta(necesidad_id: str, cfg: dict | None = None,
         contrato.get("evidencias_guardia", []) + estado.get("evidencias", [])))
     vinculos = contrato.get("vinculos_consulta", [])
     vinculo = next((x for x in vinculos if x.get("consumidor") == consumidor), None)
+    vinculo_menor = None
     if consumidor is not None:
         if vinculo is None:
             accion = "NO_EMITIR_RESULTADO_SOLICITADO"
             estado_efectivo = "BLOQUEADA_SIN_VINCULO_RESULTADO_USO"
             motivo_bloqueo = "consumidor sin vínculo explícito a RESULT y uso"
-        elif uso_solicitado != vinculo.get("uso_requerido"):
+        elif (accion_reportada != "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO" and
+              uso_solicitado != vinculo.get("uso_requerido")):
             accion = "NO_EMITIR_RESULTADO_SOLICITADO"
             estado_efectivo = "BLOQUEADA_USO_NO_APROBADO"
             motivo_bloqueo = "el uso solicitado no coincide con el vínculo aprobado"
@@ -149,7 +162,29 @@ def proyecta(necesidad_id: str, cfg: dict | None = None,
         elif accion_reportada == "NO_EMITIR_RESULTADO_SOLICITADO":
             estado_efectivo = "BLOQUEADA_POR_INCOMPATIBILIDAD"
         else:
-            estado_efectivo = "LIMITADA_A_ALCANCE_MENOR"
+            menores = contrato.get("vinculos_alcance_menor", [])
+            vinculo_menor = next((x for x in menores if all((
+                x.get("consumidor") == consumidor,
+                x.get("resultado_bloqueado_id") == resultado_id,
+                x.get("uso_menor") == uso_solicitado,
+                x.get("uso_original") == vinculo.get("uso_requerido"),
+            ))), None)
+            if vinculo_menor is None:
+                accion = "NO_EMITIR_RESULTADO_SOLICITADO"
+                estado_efectivo = "BLOQUEADA_SIN_VINCULO_ALCANCE_MENOR"
+                motivo_bloqueo = (
+                    "la aptitud de alcance menor no enlaza explícitamente "
+                    "RESULT, uso menor y uso original")
+            else:
+                habilita, motivo, decision = _evalua_decision(
+                    estado, contrato, vinculo_menor, consumidor, resultado_id,
+                    uso_solicitado, raiz, alcance_menor=True)
+                accion = ("SOLO_EMITIR_ALCANCE_MENOR_ROTULADO" if habilita else
+                          "NO_EMITIR_RESULTADO_SOLICITADO")
+                estado_efectivo = (
+                    "HABILITADA_POR_DECISION_DE_ALCANCE_MENOR_APLICABLE"
+                    if habilita else "BLOQUEADA_SIN_DECISION_APLICABLE")
+                motivo_bloqueo = motivo
     return {
         "necesidad_id": necesidad_id, "version_pregunta": contrato["version_pregunta"],
         "consumidor": contrato["consumidor"], "uso_solicitado": contrato["uso"],
@@ -168,6 +203,9 @@ def proyecta(necesidad_id: str, cfg: dict | None = None,
             "resultado_bloqueado_id": (
                 vinculo.get("resultado_bloqueado_id") if vinculo else None),
             "uso_requerido": vinculo.get("uso_requerido") if vinculo else None,
+            "vinculo_alcance_menor": (
+                vinculo_menor if accion_reportada ==
+                "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO" else None),
         } if consumidor is not None else None,
         "fuente_estado": (str(ruta_estado) if estado.get("suficiencia")
                           else "data/adq-investigacion.yaml"),

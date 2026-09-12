@@ -39,11 +39,13 @@ Componentes materiales:
   `forense/no-corrido.tsv` y cruza usos/RESULT, antecedente GEN1, decisiones,
   necesidad→objeto y utilidad-modelo. Selecciona por prioridad/bloqueo/fecha,
   reserva con vencimiento y persiste cursor, frontera y próxima revisión por
-  versión de pregunta. La vista derivada acredita 51 activas: 6 con contrato
-  científico completo y 45 con contrato mínimo derivado, responsable y acción;
-  ninguna desaparece por quedar fuera del selector. También explica los 16
-  consumidores GEN2 vigentes y distingue datos, preparación, cálculo,
-  validación, adopción y decisión.
+  versión de pregunta. La vista derivada final acredita 52 activas: 6 con
+  contrato científico completo, 45 con descripción mínima derivada que sigue
+  contando como científicamente incompleta, y NC-0165 como contrato operativo
+  no científico. Ninguna desaparece por quedar fuera del selector. Explica los
+  207 elementos activos del alcance aprobado —incluidos 191 anteriores a la
+  adopción— y distingue datos, preparación, cálculo, validación, adopción y
+  decisión sin reactivar sus valores GEN1.
 - `tools/adq_suficiencia.py` decide por identidad, concepto, población,
   selección/no respuesta, unidad, temporalidad, diseño e identificación. No
   produce un porcentaje único de suficiencia ni convierte por sí sola una
@@ -67,7 +69,8 @@ Componentes materiales:
   consumidor. La versión v2 enlaza necesidad, versión de pregunta, consumidor,
   RESULT, uso y evidencia. Descarta estados de otra necesidad o versión y
   mantiene `NO_COVERAGE` aunque el JSON de investigación diga
-  `APTA_USO_DECLARADO`, salvo que exista una decisión evidenciada que adopte un
+  `APTA_USO_DECLARADO` ni `APTA_ALCANCE_MENOR`, salvo que exista una decisión
+  evidenciada y vínculo exacto del uso aplicable que adopte un
   sucesor calculado o autorice explícitamente el RESULT existente. El estado
   efectivo, el SHA del JSON observado y el vínculo evaluado forman parte del
   hash reproducible del contrato. Las tres emisiones de horizonte vinculadas a
@@ -191,12 +194,13 @@ evaluar la tarea, pero un equipo apagado no ejecuta. Operar con sesión cerrada
 requiere conceder «Log on as a batch job» y reinstalar/verificar `S4U`; no se
 afirma que hoy funcione.
 
-Con el estado productivo incorporado, la proyección del 12/sep elige cero
-investigaciones listas: NC-0122/0126/0164 esperan 11/oct, NC-0153 espera
-10/oct y NC-0136/0037 continúan con sus dueños. Ese cero sólo describe trabajo
-listo en ese corte; el JSON sigue publicando las 51 NC y los 16 elementos con
-situación y siguiente acción. Una necesidad o vía nueva elegible entra por
-derivación sin editar una lista fija.
+Con el estado productivo incorporado, la proyección corregida elige cero
+investigaciones listas: NC-0122/0126/0164 esperan 11/oct, NC-0153 conserva la
+barrera humana y NC-0136/0037 continúan con sus dueños. Ese cero sólo describe
+trabajo listo en ese corte; el JSON sigue publicando las 52 NC y los 207
+elementos con situación y siguiente acción. Una necesidad o vía nueva elegible
+entra por derivación sin editar una lista fija. Al corte simulado 11/oct,
+NC-0164 transita desde `ESPERA_NUEVA_PISTA` y queda primera por prioridad.
 
 ## Verificación
 
@@ -208,7 +212,8 @@ reactivos y delta. El cierre final incluye 10 casos de recibo, 20 de contrato,
 `git diff --check` pasan. La prueba real de red dio HTTP 200 y el lock quedó
 libre.
 
-Quedan abiertas, por diseño y no por fallo del servicio, 45 NC con contrato
-mínimo derivado (no incompleto), los seis accesos humanos y una necesidad sin
-vía heredados de #726, y las fronteras científicas descritas arriba. La
+Quedan abiertas, por diseño y no por fallo del servicio, 45 NC con descripción
+mínima derivada —no contrato científico completo—, los accesos humanos y una
+necesidad sin vía heredados de #726, y las fronteras científicas descritas
+arriba. La
 candidata pública nueva ya produjo bytes y evidencia; no produjo suficiencia.

@@ -143,6 +143,34 @@ def _ruteo_automatico(base: dict, etapa: str) -> tuple[str, str]:
     return "NO_SONDA", f"etapa vigente {etapa}; no corresponde investigación externa"
 
 
+def _evidencia_nueva_aplicable(estado: dict, item: dict) -> bool:
+    """Acepta sólo la señal estructurada de la versión vigente, nunca prosa suelta."""
+    nueva = estado.get("evidencia_nueva_identificada")
+    return bool(isinstance(nueva, dict) and all((
+        nueva.get("identificada") is True,
+        nueva.get("necesidad_id") == item.get("id"),
+        nueva.get("version_pregunta") == item.get("version_pregunta"),
+        isinstance(nueva.get("evidencias"), list),
+        nueva.get("evidencias"),
+    )))
+
+
+def _ruteo_efectivo(item: dict, estado: dict, corte: dt.date) -> tuple[str, str]:
+    """Reanuda espera por fecha/evidencia; conserva barreras humanas."""
+    ruteo = item.get("estado_ruteo") or "NO_SONDA"
+    if ruteo in {"ESPERA_ACCESO_HUMANO", "BARRERA_HUMANA"}:
+        return ruteo, str(item.get("motivo_ruteo") or "barrera humana vigente")
+    if ruteo != "ESPERA_NUEVA_PISTA":
+        return ruteo, str(item.get("motivo_ruteo") or "ruteo estructurado vigente")
+    if _evidencia_nueva_aplicable(estado, item):
+        return "LISTA_SONDA", "reanudada por evidencia nueva estructurada y aplicable"
+    proxima = _fecha(estado.get("proxima_revision") or item.get("proxima_revision"))
+    if proxima and corte >= proxima:
+        return "LISTA_SONDA", f"reanudada al vencer revisión {proxima}"
+    return ruteo, (f"espera nueva pista; revisión {proxima}" if proxima else
+                    "espera nueva pista sin fecha vencida")
+
+
 def _contrato_derivado(base: dict) -> dict:
     etapa = _etapa_faltante(base)
     responsable = _responsable(base, etapa)
@@ -172,13 +200,31 @@ def _contrato_derivado(base: dict) -> dict:
         "responsable": responsable,
         "estado_ruteo": ruteo,
         "motivo_ruteo": motivo,
-        "contrato_operativo": "MINIMO_DERIVADO_DE_NC",
+        "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+        "contrato_cientifico_completo": False,
+        "aplica_contrato_cientifico": True,
         "opciones_decision": ([
             "MANTENER_ESTADO_VIGENTE",
             "APROBAR_SIGUIENTE_ACCION_DESCRITA",
             "DESCARTAR_O_DIFERIR_CON_CAUSA",
         ] if etapa == "DECISION_CIENTIFICA" else []),
     }
+
+
+def _contrato_cientifico_explicito_completo(item: dict) -> bool:
+    """No confunde placeholders ni prosa genérica con un contrato científico."""
+    requeridos = (
+        "version_pregunta", "consumidor", "uso", "poblacion", "unidad",
+        "periodo", "variables", "evidencia_disponible", "brecha",
+        "investigacion_previa", "frontera_previa", "siguiente_accion",
+    )
+    prohibidos = ("NO_ESPECIFIC", "EL_DECLARADO_POR", "brecha vigente",
+                  "sin evidencia resumida", "no asentada")
+    return bool(
+        item.get("modos") and
+        all(isinstance(item.get(k), str) and item[k].strip() for k in requeridos) and
+        not any(str(item[k]).startswith(prohibidos) for k in requeridos)
+    )
 
 
 def contratos_vigentes(cfg: dict, raiz: Path = RAIZ) -> dict[str, dict]:
@@ -201,7 +247,16 @@ def contratos_vigentes(cfg: dict, raiz: Path = RAIZ) -> dict[str, dict]:
             item.setdefault("estado_ruteo", "LISTA_SONDA" if item.get("lista") else
                             "NO_SONDA")
             item.setdefault("motivo_ruteo", "contrato explícito vigente")
-            item.setdefault("contrato_operativo", "COMPLETO_EXPLICITO")
+            item.setdefault("aplica_contrato_cientifico", True)
+            completo = (
+                item.get("aplica_contrato_cientifico") is True and
+                item.get("contrato_cientifico_completo", True) is not False and
+                _contrato_cientifico_explicito_completo(item))
+            item["contrato_cientifico_completo"] = completo
+            item.setdefault(
+                "contrato_operativo",
+                "COMPLETO_CIENTIFICO_EXPLICITO" if completo else
+                "EXPLICITO_INCOMPLETO")
             item.setdefault("opciones_decision", [])
         else:
             item = _contrato_derivado(base)
@@ -256,12 +311,17 @@ def selecciona(cfg: dict, corte: dt.date, maximo: int = 3,
         if base.get("estado") != "ABIERTA":
             excluidos.append({"id": ident, "razon": f"estado canónico {base.get('estado')}"})
             continue
-        if item.get("estado_ruteo") != "LISTA_SONDA" and ident not in nombradas:
+        estado = _lee_json(estado_dir / f"{ident}.json")
+        if estado.get("version_pregunta") not in (None, item["version_pregunta"]):
+            estado = {}  # pregunta nueva: no hereda agotamiento de la versión anterior
+        ruteo, motivo_ruteo = _ruteo_efectivo(item, estado, corte)
+        barrera_humana = ruteo in {"ESPERA_ACCESO_HUMANO", "BARRERA_HUMANA"}
+        if ruteo != "LISTA_SONDA" and (barrera_humana or ident not in nombradas):
             excluidos.append({
                 "id": ident,
                 "razon": (
-                    f"ruteo={item.get('estado_ruteo')}: "
-                    f"{item.get('motivo_ruteo')}; responsable={item.get('responsable')}; "
+                    f"ruteo={ruteo}: {motivo_ruteo}; "
+                    f"responsable={item.get('responsable')}; "
                     f"siguiente={item.get('siguiente_accion')}")})
             continue
         reserva_cfg = _fecha(item.get("reserva_hasta"))
@@ -275,14 +335,15 @@ def selecciona(cfg: dict, corte: dt.date, maximo: int = 3,
             excluidos.append({"id": ident, "razon":
                               f"reserva runtime de {reserva.get('owner')} hasta {reserva.get('vence')}"})
             continue
-        estado = _lee_json(estado_dir / f"{ident}.json")
-        if estado.get("version_pregunta") not in (None, item["version_pregunta"]):
-            estado = {}  # pregunta nueva: no hereda agotamiento de la versión anterior
         proxima = _fecha(estado.get("proxima_revision") or item.get("proxima_revision"))
-        if proxima and corte < proxima and ident not in nombradas:
+        if (proxima and corte < proxima and ident not in nombradas and
+                not _evidencia_nueva_aplicable(estado, item)):
             excluidos.append({"id": ident, "razon": f"revisión no vence hasta {proxima}"})
             continue
         elegido = dict(item)
+        elegido["estado_ruteo_declarado"] = item.get("estado_ruteo")
+        elegido["estado_ruteo"] = ruteo
+        elegido["motivo_ruteo"] = motivo_ruteo
         elegido["pregunta"] = base.get("que_no_se_corrio", "")
         elegido["impacto_canonico"] = base.get("impacto", "")
         elegido["estado_previo"] = estado
@@ -305,7 +366,7 @@ def selecciona(cfg: dict, corte: dt.date, maximo: int = 3,
 
 def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
                        raiz: Path = RAIZ) -> list[dict]:
-    """Cruza cada adopción GEN2 viva con oferta, decisiones, NC y utilidad."""
+    """Concilia todo el alcance activo, incluso antes de cálculo/adopción."""
     usos = _tsv(raiz / cfg["fuente_usos"])
     resultados = {x["resultado_id"]: x for x in _tsv(
         raiz / cfg["fuente_resultados"])}
@@ -321,9 +382,16 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
     for fila in utilidad:
         utilidad_por_n.setdefault(fila["necesidad_id"], []).append(fila)
 
+    ofertas_por_elemento: dict[str, list[dict]] = {}
+    for fila in resultados.values():
+        if fila.get("origen") == "DEMANDA":
+            continue
+        for ident in set(re.findall(r"RES-\d{4}", fila.get("resultado_id") or "")):
+            ofertas_por_elemento.setdefault(ident, []).append(fila)
+
     elementos = []
     for uso in usos:
-        if uso.get("activo") != "SI" or uso.get("corrida0_generacion") != "GEN2":
+        if uso.get("activo") != "SI":
             continue
         resultado_id = uso.get("corrida0_resultado_id") or ""
         resultado = resultados.get(resultado_id, {})
@@ -335,21 +403,37 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
             por_regla = regla in contrato.get("reglas_motor", [])
             if por_consumidor or por_regla:
                 necesidades.append(ident)
-        bloqueada = any(
+        adoptada = uso.get("corrida0_generacion") == "GEN2" and bool(resultado_id)
+        bloqueada = adoptada and any(
             any(v.get("consumidor") == consumidor
                 for v in contratos[n].get("vinculos_consulta", []))
             for n in necesidades)
-        faltantes = []
-        if not resultado_id or not resultado:
-            faltantes.append("CALCULO")
-        elif resultado.get("estado") != "SELLADA":
-            faltantes.append("CALCULO_O_SELLO")
-        if resultado and resultado.get("validacion_independiente") != "PASA":
-            faltantes.append("VALIDACION")
+        anterior = demanda.get(uso["resultado_id"], {})
+        ofertas = ofertas_por_elemento.get(uso["resultado_id"], [])
+        faltantes: list[str] = []
+        if adoptada:
+            if not resultado or resultado.get("estado") != "SELLADA":
+                faltantes.append("CALCULO")
+            elif resultado.get("validacion_independiente") != "PASA":
+                faltantes.append("VALIDACION")
+        else:
+            veredictos = " ".join(x.get("valor") or "" for x in ofertas)
+            if "ADOPTABLE" in veredictos and "NO-ADOPTABLE" not in veredictos:
+                faltantes.append("ADOPCION")
+            elif ofertas:
+                faltantes.append("DECISION_CIENTIFICA")
+            elif anterior.get("receta_legacy") == "SIN-RECETA":
+                faltantes.append("DECISION_CIENTIFICA")
+            else:
+                faltantes.append("PREPARACION")
         for ident in necesidades:
             etapa = contratos[ident].get("etapa_faltante")
             if etapa and etapa not in faltantes:
                 faltantes.append(etapa)
+        if not adoptada and not necesidades:
+            # Alta canónica creada por el conciliador: agrupa el déficit de
+            # contrato GEN2 sin convertir automáticamente el valor GEN1 en tarea.
+            necesidades.append("NC-0165")
         modelo = n_por_objeto.get(regla, [])
         necesidades_modelo = sorted({x["necesidad_id"] for x in modelo})
         utilidad_modelo = [
@@ -366,40 +450,50 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
         decisiones_resultado = [
             {"objeto": x["objeto"], "decision": x["decision"],
              "fuente": x["fuente"], "fecha": x["fecha"]}
-            for x in decisiones if x.get("objeto") == resultado.get("spec_id")]
-        anterior = demanda.get(uso["resultado_id"], {})
+            for x in decisiones if x.get("objeto") in {
+                resultado.get("spec_id"), consumidor, regla,
+                *(x.get("spec_id") for x in ofertas),
+            }]
         evidencias = sorted(set(filter(None, (
             f"{cfg['fuente_usos']}#{uso['resultado_id']}",
             f"{cfg['fuente_resultados']}#{resultado_id}" if resultado_id else None,
+            *[f"{cfg['fuente_resultados']}#{x.get('resultado_id')}" for x in ofertas],
             resultado.get("validacion_ref"), uso.get("fuente_replay"),
             *[x.get("fuentes_verificacion") for x in modelo],
             *[f"{cfg['fuente_necesidades']}#{n}" for n in necesidades],
             *[x["fuente"] for x in decisiones_resultado],
         ))))
         if bloqueada:
-            situacion = "ADOPTADO_EN_REGISTRO_PERO_BLOQUEADO_PARA_EMISION"
-        elif necesidades:
-            situacion = "ADOPTADO_PARA_USO_ACOTADO_CON_BRECHA_PROSPECTIVA"
+            situacion = "PENDIENTE_DATOS_O_DECISION_DE_USO"
+        elif not adoptada:
+            situacion = f"PENDIENTE_{faltantes[0]}"
         elif resultado.get("estado") == "SELLADA" and resultado.get(
-                "validacion_independiente") == "PASA":
-            situacion = "ADOPTADO_Y_VALIDADO_PARA_USO_VIGENTE"
+                "validacion_independiente") == "PASA" and not necesidades:
+            situacion = "CUBIERTA"
+        elif faltantes:
+            situacion = f"PENDIENTE_{faltantes[0]}"
         else:
-            situacion = "ADOPTADO_CON_TRABAJO_PENDIENTE"
-        siguientes = [contratos[n]["siguiente_accion"] for n in necesidades]
+            situacion = "CUBIERTA"
+        siguientes = [contratos[n]["siguiente_accion"] for n in necesidades
+                      if n in contratos]
         if not siguientes:
-            siguientes = [
-                "mantener el contrato vigente; reabrir sólo ante nueva versión, "
-                "evidencia contradictoria o cambio de uso"]
+            if adoptada and faltantes == ["VALIDACION"]:
+                siguientes = ["ejecutor-validacion: validar el RESULT sellado antes de ampliar su uso"]
+            elif not adoptada:
+                siguientes = ["motor-gen2: completar el contrato de cálculo vigente sin reutilizar el valor GEN1"]
+            else:
+                siguientes = ["mantener adopción; reabrir sólo por evidencia o decisión nueva aplicable"]
         elementos.append({
             "elemento_id": uso["resultado_id"],
             "consumidor": consumidor,
             "regla": regla,
             "uso_vigente": uso.get("uso_solicitado"),
             "resultado_id": resultado_id,
-            "resultado_estado": resultado.get("estado") or "AUSENTE",
+            "resultado_estado": resultado.get("estado") or "SIN_RESULTADO_ADOPTADO",
             "validacion_independiente": resultado.get("validacion_independiente") or
             "NO_HECHA",
-            "adopcion": "ADOPTADO_EN_CONSUMIDOR_VIGENTE",
+            "adopcion": ("ADOPTADO_EN_CONSUMIDOR_VIGENTE" if adoptada else
+                         "NO_ADOPTADO; GEN1_ES_SOLO_ANTECEDENTE"),
             "antecedente_gen1": {
                 "valor": anterior.get("valor_legacy") or "NO_DECLARADO",
                 "estado": anterior.get("estado") or "NO_DECLARADO",
@@ -407,6 +501,10 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
             },
             "situacion": situacion,
             "faltantes": faltantes,
+            "ejecutor_siguiente": (
+                "SONDA" if faltantes and faltantes[0] in {"FUENTE_O_VARIABLE", "ACCESO_O_DESCARGA"}
+                else "MESA" if faltantes and faltantes[0] == "DECISION_CIENTIFICA"
+                else "MOTOR_GEN2"),
             "necesidades_nc_abiertas": necesidades,
             "necesidades_utilidad_modelo": necesidades_modelo,
             "cruce_utilidad_modelo": (
@@ -414,6 +512,7 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
                 "SIN_RELACION_EXACTA_POR_REGLA; no equivale a ausencia de datos"),
             "utilidad_modelo": utilidad_modelo,
             "decisiones_posteriores": decisiones_resultado,
+            "ofertas_no_adoptadas": [x.get("resultado_id") for x in ofertas],
             "dependencias": {
                 "resultado": resultado.get("depende_de") or None,
                 "funciones": resultado.get("funciones_dependencia") or None,
@@ -459,13 +558,19 @@ def proyecta_demanda(cfg: dict, corte: dt.date, raiz: Path = RAIZ) -> dict:
             "siguiente_accion": contrato["siguiente_accion"],
             "estado_ruteo": contrato["estado_ruteo"],
             "motivo_ruteo": contrato["motivo_ruteo"],
+            "condicion_reapertura": contrato.get("condicion_reapertura"),
             "opciones_decision": contrato["opciones_decision"],
             "suficiencia": estado.get("suficiencia") or
             contrato.get("suficiencia_actual"),
             "contrato_operativo": contrato["contrato_operativo"],
+            "contrato_cientifico_completo": contrato[
+                "contrato_cientifico_completo"],
+            "aplica_contrato_cientifico": contrato[
+                "aplica_contrato_cientifico"],
             "evidencias": [f"{cfg['fuente_necesidades']}#{ident}"],
         })
     elementos = proyecta_elementos(cfg, contratos, raiz)
+    seleccion_siguiente = selecciona(cfg, corte, maximo=3, raiz=raiz)
     fuente = raiz / cfg["fuente_necesidades"]
     fuentes = [cfg[k] for k in (
         "fuente_necesidades", "fuente_usos", "fuente_resultados",
@@ -488,14 +593,40 @@ def proyecta_demanda(cfg: dict, corte: dt.date, raiz: Path = RAIZ) -> dict:
             "cero tareas elegibles sólo describe el selector; nunca acredita "
             "suficiencia general ni cierra necesidades"),
         "total_activas": len(filas),
+        "contrato_cientifico_completo": sum(
+            x["contrato_cientifico_completo"] for x in filas),
+        "descripcion_minima_derivada": sum(
+            x["contrato_operativo"] == "DESCRIPCION_MINIMA_DERIVADA" for x in filas),
+        "contrato_operativo_explicito_no_cientifico": sum(
+            x["contrato_operativo"] == "COMPLETO_OPERATIVO_NO_CIENTIFICO"
+            for x in filas),
+        "contrato_cientifico_incompleto": sum(
+            x["aplica_contrato_cientifico"] and
+            not x["contrato_cientifico_completo"] for x in filas),
+        # Alias conservados para consumidores del JSON v1; ya no equiparan una
+        # descripción genérica con completitud científica.
         "contrato_completo": sum(
-            x["contrato_operativo"] == "COMPLETO_EXPLICITO" for x in filas),
+            x["contrato_cientifico_completo"] for x in filas),
         "contrato_minimo_derivado": sum(
-            x["contrato_operativo"] == "MINIMO_DERIVADO_DE_NC" for x in filas),
-        "contrato_incompleto": 0,
+            x["contrato_operativo"] == "DESCRIPCION_MINIMA_DERIVADA" for x in filas),
+        "contrato_incompleto": sum(
+            x["aplica_contrato_cientifico"] and
+            not x["contrato_cientifico_completo"] for x in filas),
         "elementos_gen2_vigentes_total": len(elementos),
         "elementos_con_brecha_abierta": sum(
             bool(x["necesidades_nc_abiertas"]) for x in elementos),
+        "situaciones_elementos": {
+            estado: sum(x["situacion"] == estado for x in elementos)
+            for estado in (
+                "CUBIERTA", "PENDIENTE_FUENTE_O_VARIABLE",
+                "PENDIENTE_ACCESO_O_DESCARGA", "PENDIENTE_PREPARACION",
+                "PENDIENTE_CALCULO", "PENDIENTE_VALIDACION",
+                "PENDIENTE_ADOPCION", "PENDIENTE_DECISION_CIENTIFICA",
+                "SUSTITUIDA", "HISTORICA", "DESCARTADA", "FUERA_DE_ALCANCE",
+                "PENDIENTE_DATOS_O_DECISION_DE_USO",
+            )
+        },
+        "seleccion_siguiente": seleccion_siguiente,
         "elementos_gen2": elementos,
         "necesidades": filas,
     }

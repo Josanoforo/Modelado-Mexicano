@@ -10,20 +10,20 @@
     },
     "contrato": {
       "archivos": {
-        "data/adq-investigacion.yaml": "f9cffd59dc79f140182ab6dd355ec0b851effeb7b83685a8231f233f772d2832",
+        "data/adq-investigacion.yaml": "5a93dfd04925f030612841a221c85240ce301c1e7c0a36c9f3cddecb957148fc",
         "data/corrida0/resultados.tsv": "b8317110739fec4ac0c6bf56567f6b6962624f994bbce8c60e481cf7f8ffeb74",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
-        "tools/adq_investigacion.py": "c4a61cb3167937213c6a43911b8aea65d81f81fe3e8ca70be3d69b5a5092fe7e",
-        "tools/adq_suficiencia.py": "44df50911b90c1bd7dda81f9fb9d1b3c2407ad9f4b5d03bb4747a4485501cf85",
+        "tools/adq_investigacion.py": "57b71c794424bdeb59247c4052fa142f435526e3485eb9a63a39bf5a39663ebd",
+        "tools/adq_suficiencia.py": "af88bf538f568086dc14219917ed97a13e79dbe293e20ce1b91f8093419fe4de",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "d7f4de66bd6aa6b5dc7880d0dc97c3d21142afed8204ce760bc8953cb8613ec4",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "b55a39296f12f545cc240c3cf6f1c2933e9e05699a29cd845ca97a643bfb60c8",
+      "sha256": "c347126663e03c2b30d47f8379265a33adb5096bb5f66ca8c5e099e01d77f2e1",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -114,14 +114,14 @@
     },
     "contrato": {
       "archivos": {
-        "data/adq-investigacion.yaml": "f9cffd59dc79f140182ab6dd355ec0b851effeb7b83685a8231f233f772d2832",
+        "data/adq-investigacion.yaml": "5a93dfd04925f030612841a221c85240ce301c1e7c0a36c9f3cddecb957148fc",
         "data/corrida0/resultados.tsv": "b8317110739fec4ac0c6bf56567f6b6962624f994bbce8c60e481cf7f8ffeb74",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
-        "tools/adq_investigacion.py": "c4a61cb3167937213c6a43911b8aea65d81f81fe3e8ca70be3d69b5a5092fe7e",
-        "tools/adq_suficiencia.py": "44df50911b90c1bd7dda81f9fb9d1b3c2407ad9f4b5d03bb4747a4485501cf85",
+        "tools/adq_investigacion.py": "57b71c794424bdeb59247c4052fa142f435526e3485eb9a63a39bf5a39663ebd",
+        "tools/adq_suficiencia.py": "af88bf538f568086dc14219917ed97a13e79dbe293e20ce1b91f8093419fe4de",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "d7f4de66bd6aa6b5dc7880d0dc97c3d21142afed8204ce760bc8953cb8613ec4",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
@@ -174,10 +174,11 @@
           "resultado_bloqueado_id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
           "resultado_id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
           "uso_requerido": "MEDICION-GEN2",
-          "uso_solicitado": "MEDICION-GEN2"
+          "uso_solicitado": "MEDICION-GEN2",
+          "vinculo_alcance_menor": null
         }
       },
-      "sha256": "345d7b9d4f5a751095216648edaa6ad4ababb74b9dd7cf460f8e83cb4c7c7b6a",
+      "sha256": "a377ba6ec300d18e5e1e6789134fa5e925245e81d1b8c986c7da67df011fca42",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -287,7 +288,8 @@
         "resultado_bloqueado_id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
         "resultado_id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
         "uso_requerido": "MEDICION-GEN2",
-        "uso_solicitado": "MEDICION-GEN2"
+        "uso_solicitado": "MEDICION-GEN2",
+        "vinculo_alcance_menor": null
       }
     }
   },
@@ -302,20 +304,20 @@
     },
     "contrato": {
       "archivos": {
-        "data/adq-investigacion.yaml": "f9cffd59dc79f140182ab6dd355ec0b851effeb7b83685a8231f233f772d2832",
+        "data/adq-investigacion.yaml": "5a93dfd04925f030612841a221c85240ce301c1e7c0a36c9f3cddecb957148fc",
         "data/corrida0/resultados.tsv": "b8317110739fec4ac0c6bf56567f6b6962624f994bbce8c60e481cf7f8ffeb74",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
-        "tools/adq_investigacion.py": "c4a61cb3167937213c6a43911b8aea65d81f81fe3e8ca70be3d69b5a5092fe7e",
-        "tools/adq_suficiencia.py": "44df50911b90c1bd7dda81f9fb9d1b3c2407ad9f4b5d03bb4747a4485501cf85",
+        "tools/adq_investigacion.py": "57b71c794424bdeb59247c4052fa142f435526e3485eb9a63a39bf5a39663ebd",
+        "tools/adq_suficiencia.py": "af88bf538f568086dc14219917ed97a13e79dbe293e20ce1b91f8093419fe4de",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "d7f4de66bd6aa6b5dc7880d0dc97c3d21142afed8204ce760bc8953cb8613ec4",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "b55a39296f12f545cc240c3cf6f1c2933e9e05699a29cd845ca97a643bfb60c8",
+      "sha256": "c347126663e03c2b30d47f8379265a33adb5096bb5f66ca8c5e099e01d77f2e1",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -394,20 +396,20 @@
     },
     "contrato": {
       "archivos": {
-        "data/adq-investigacion.yaml": "f9cffd59dc79f140182ab6dd355ec0b851effeb7b83685a8231f233f772d2832",
+        "data/adq-investigacion.yaml": "5a93dfd04925f030612841a221c85240ce301c1e7c0a36c9f3cddecb957148fc",
         "data/corrida0/resultados.tsv": "b8317110739fec4ac0c6bf56567f6b6962624f994bbce8c60e481cf7f8ffeb74",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
-        "tools/adq_investigacion.py": "c4a61cb3167937213c6a43911b8aea65d81f81fe3e8ca70be3d69b5a5092fe7e",
-        "tools/adq_suficiencia.py": "44df50911b90c1bd7dda81f9fb9d1b3c2407ad9f4b5d03bb4747a4485501cf85",
+        "tools/adq_investigacion.py": "57b71c794424bdeb59247c4052fa142f435526e3485eb9a63a39bf5a39663ebd",
+        "tools/adq_suficiencia.py": "af88bf538f568086dc14219917ed97a13e79dbe293e20ce1b91f8093419fe4de",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "d7f4de66bd6aa6b5dc7880d0dc97c3d21142afed8204ce760bc8953cb8613ec4",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "b55a39296f12f545cc240c3cf6f1c2933e9e05699a29cd845ca97a643bfb60c8",
+      "sha256": "c347126663e03c2b30d47f8379265a33adb5096bb5f66ca8c5e099e01d77f2e1",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -486,20 +488,20 @@
     },
     "contrato": {
       "archivos": {
-        "data/adq-investigacion.yaml": "f9cffd59dc79f140182ab6dd355ec0b851effeb7b83685a8231f233f772d2832",
+        "data/adq-investigacion.yaml": "5a93dfd04925f030612841a221c85240ce301c1e7c0a36c9f3cddecb957148fc",
         "data/corrida0/resultados.tsv": "b8317110739fec4ac0c6bf56567f6b6962624f994bbce8c60e481cf7f8ffeb74",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
-        "tools/adq_investigacion.py": "c4a61cb3167937213c6a43911b8aea65d81f81fe3e8ca70be3d69b5a5092fe7e",
-        "tools/adq_suficiencia.py": "44df50911b90c1bd7dda81f9fb9d1b3c2407ad9f4b5d03bb4747a4485501cf85",
+        "tools/adq_investigacion.py": "57b71c794424bdeb59247c4052fa142f435526e3485eb9a63a39bf5a39663ebd",
+        "tools/adq_suficiencia.py": "af88bf538f568086dc14219917ed97a13e79dbe293e20ce1b91f8093419fe4de",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "d7f4de66bd6aa6b5dc7880d0dc97c3d21142afed8204ce760bc8953cb8613ec4",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "b55a39296f12f545cc240c3cf6f1c2933e9e05699a29cd845ca97a643bfb60c8",
+      "sha256": "c347126663e03c2b30d47f8379265a33adb5096bb5f66ca8c5e099e01d77f2e1",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -586,20 +588,20 @@
     },
     "contrato": {
       "archivos": {
-        "data/adq-investigacion.yaml": "f9cffd59dc79f140182ab6dd355ec0b851effeb7b83685a8231f233f772d2832",
+        "data/adq-investigacion.yaml": "5a93dfd04925f030612841a221c85240ce301c1e7c0a36c9f3cddecb957148fc",
         "data/corrida0/resultados.tsv": "b8317110739fec4ac0c6bf56567f6b6962624f994bbce8c60e481cf7f8ffeb74",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
-        "tools/adq_investigacion.py": "c4a61cb3167937213c6a43911b8aea65d81f81fe3e8ca70be3d69b5a5092fe7e",
-        "tools/adq_suficiencia.py": "44df50911b90c1bd7dda81f9fb9d1b3c2407ad9f4b5d03bb4747a4485501cf85",
+        "tools/adq_investigacion.py": "57b71c794424bdeb59247c4052fa142f435526e3485eb9a63a39bf5a39663ebd",
+        "tools/adq_suficiencia.py": "af88bf538f568086dc14219917ed97a13e79dbe293e20ce1b91f8093419fe4de",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "d7f4de66bd6aa6b5dc7880d0dc97c3d21142afed8204ce760bc8953cb8613ec4",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "b55a39296f12f545cc240c3cf6f1c2933e9e05699a29cd845ca97a643bfb60c8",
+      "sha256": "c347126663e03c2b30d47f8379265a33adb5096bb5f66ca8c5e099e01d77f2e1",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -665,20 +667,20 @@
     },
     "contrato": {
       "archivos": {
-        "data/adq-investigacion.yaml": "f9cffd59dc79f140182ab6dd355ec0b851effeb7b83685a8231f233f772d2832",
+        "data/adq-investigacion.yaml": "5a93dfd04925f030612841a221c85240ce301c1e7c0a36c9f3cddecb957148fc",
         "data/corrida0/resultados.tsv": "b8317110739fec4ac0c6bf56567f6b6962624f994bbce8c60e481cf7f8ffeb74",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
-        "tools/adq_investigacion.py": "c4a61cb3167937213c6a43911b8aea65d81f81fe3e8ca70be3d69b5a5092fe7e",
-        "tools/adq_suficiencia.py": "44df50911b90c1bd7dda81f9fb9d1b3c2407ad9f4b5d03bb4747a4485501cf85",
+        "tools/adq_investigacion.py": "57b71c794424bdeb59247c4052fa142f435526e3485eb9a63a39bf5a39663ebd",
+        "tools/adq_suficiencia.py": "af88bf538f568086dc14219917ed97a13e79dbe293e20ce1b91f8093419fe4de",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "d7f4de66bd6aa6b5dc7880d0dc97c3d21142afed8204ce760bc8953cb8613ec4",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "b55a39296f12f545cc240c3cf6f1c2933e9e05699a29cd845ca97a643bfb60c8",
+      "sha256": "c347126663e03c2b30d47f8379265a33adb5096bb5f66ca8c5e099e01d77f2e1",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -793,20 +795,20 @@
   {
     "contrato": {
       "archivos": {
-        "data/adq-investigacion.yaml": "f9cffd59dc79f140182ab6dd355ec0b851effeb7b83685a8231f233f772d2832",
+        "data/adq-investigacion.yaml": "5a93dfd04925f030612841a221c85240ce301c1e7c0a36c9f3cddecb957148fc",
         "data/corrida0/resultados.tsv": "b8317110739fec4ac0c6bf56567f6b6962624f994bbce8c60e481cf7f8ffeb74",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
-        "tools/adq_investigacion.py": "c4a61cb3167937213c6a43911b8aea65d81f81fe3e8ca70be3d69b5a5092fe7e",
-        "tools/adq_suficiencia.py": "44df50911b90c1bd7dda81f9fb9d1b3c2407ad9f4b5d03bb4747a4485501cf85",
+        "tools/adq_investigacion.py": "57b71c794424bdeb59247c4052fa142f435526e3485eb9a63a39bf5a39663ebd",
+        "tools/adq_suficiencia.py": "af88bf538f568086dc14219917ed97a13e79dbe293e20ce1b91f8093419fe4de",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "d7f4de66bd6aa6b5dc7880d0dc97c3d21142afed8204ce760bc8953cb8613ec4",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "b55a39296f12f545cc240c3cf6f1c2933e9e05699a29cd845ca97a643bfb60c8",
+      "sha256": "c347126663e03c2b30d47f8379265a33adb5096bb5f66ca8c5e099e01d77f2e1",
       "version": "CONSULTA-GEN2-v2"
     },
     "estado": "NO_COVERAGE",
@@ -852,20 +854,20 @@
     },
     "contrato": {
       "archivos": {
-        "data/adq-investigacion.yaml": "f9cffd59dc79f140182ab6dd355ec0b851effeb7b83685a8231f233f772d2832",
+        "data/adq-investigacion.yaml": "5a93dfd04925f030612841a221c85240ce301c1e7c0a36c9f3cddecb957148fc",
         "data/corrida0/resultados.tsv": "b8317110739fec4ac0c6bf56567f6b6962624f994bbce8c60e481cf7f8ffeb74",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
-        "tools/adq_investigacion.py": "c4a61cb3167937213c6a43911b8aea65d81f81fe3e8ca70be3d69b5a5092fe7e",
-        "tools/adq_suficiencia.py": "44df50911b90c1bd7dda81f9fb9d1b3c2407ad9f4b5d03bb4747a4485501cf85",
+        "tools/adq_investigacion.py": "57b71c794424bdeb59247c4052fa142f435526e3485eb9a63a39bf5a39663ebd",
+        "tools/adq_suficiencia.py": "af88bf538f568086dc14219917ed97a13e79dbe293e20ce1b91f8093419fe4de",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "d7f4de66bd6aa6b5dc7880d0dc97c3d21142afed8204ce760bc8953cb8613ec4",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "b55a39296f12f545cc240c3cf6f1c2933e9e05699a29cd845ca97a643bfb60c8",
+      "sha256": "c347126663e03c2b30d47f8379265a33adb5096bb5f66ca8c5e099e01d77f2e1",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -984,20 +986,20 @@
     },
     "contrato": {
       "archivos": {
-        "data/adq-investigacion.yaml": "f9cffd59dc79f140182ab6dd355ec0b851effeb7b83685a8231f233f772d2832",
+        "data/adq-investigacion.yaml": "5a93dfd04925f030612841a221c85240ce301c1e7c0a36c9f3cddecb957148fc",
         "data/corrida0/resultados.tsv": "b8317110739fec4ac0c6bf56567f6b6962624f994bbce8c60e481cf7f8ffeb74",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
-        "tools/adq_investigacion.py": "c4a61cb3167937213c6a43911b8aea65d81f81fe3e8ca70be3d69b5a5092fe7e",
-        "tools/adq_suficiencia.py": "44df50911b90c1bd7dda81f9fb9d1b3c2407ad9f4b5d03bb4747a4485501cf85",
+        "tools/adq_investigacion.py": "57b71c794424bdeb59247c4052fa142f435526e3485eb9a63a39bf5a39663ebd",
+        "tools/adq_suficiencia.py": "af88bf538f568086dc14219917ed97a13e79dbe293e20ce1b91f8093419fe4de",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "d7f4de66bd6aa6b5dc7880d0dc97c3d21142afed8204ce760bc8953cb8613ec4",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "b55a39296f12f545cc240c3cf6f1c2933e9e05699a29cd845ca97a643bfb60c8",
+      "sha256": "c347126663e03c2b30d47f8379265a33adb5096bb5f66ca8c5e099e01d77f2e1",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -1087,20 +1089,20 @@
     },
     "contrato": {
       "archivos": {
-        "data/adq-investigacion.yaml": "f9cffd59dc79f140182ab6dd355ec0b851effeb7b83685a8231f233f772d2832",
+        "data/adq-investigacion.yaml": "5a93dfd04925f030612841a221c85240ce301c1e7c0a36c9f3cddecb957148fc",
         "data/corrida0/resultados.tsv": "b8317110739fec4ac0c6bf56567f6b6962624f994bbce8c60e481cf7f8ffeb74",
         "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
         "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
         "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547",
-        "tools/adq_investigacion.py": "c4a61cb3167937213c6a43911b8aea65d81f81fe3e8ca70be3d69b5a5092fe7e",
-        "tools/adq_suficiencia.py": "44df50911b90c1bd7dda81f9fb9d1b3c2407ad9f4b5d03bb4747a4485501cf85",
+        "tools/adq_investigacion.py": "57b71c794424bdeb59247c4052fa142f435526e3485eb9a63a39bf5a39663ebd",
+        "tools/adq_suficiencia.py": "af88bf538f568086dc14219917ed97a13e79dbe293e20ce1b91f8093419fe4de",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "d7f4de66bd6aa6b5dc7880d0dc97c3d21142afed8204ce760bc8953cb8613ec4",
         "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "b55a39296f12f545cc240c3cf6f1c2933e9e05699a29cd845ca97a643bfb60c8",
+      "sha256": "c347126663e03c2b30d47f8379265a33adb5096bb5f66ca8c5e099e01d77f2e1",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {

@@ -164,7 +164,20 @@ class ConsultaGen2(unittest.TestCase):
                 self.assertIn(
                     "estado descartado", guardia["integridad_estado"]["descarte"])
 
-    def test_01e_decision_exacta_es_la_unica_excepcion_para_resultado_viejo(self):
+    def test_01e_alcance_menor_sin_vinculo_no_emite_el_result_viejo(self):
+        estado = self._estado_nc0126()
+        estado["suficiencia"]["uso_habilitado"] = "APTA_ALCANCE_MENOR"
+        r = self._con_estado_nc0126(estado)
+        self.assertEqual(r["estado"], "NO_COVERAGE")
+        self.assertNotIn("valor", r)
+        self.assertEqual(
+            r["resultado"]["id"], "RESULT-ENIF-AHO-A-P-CORTO-SIN-P")
+        self.assertNotEqual(r.get("valor", {}).get("punto"), 0.541343)
+        self.assertEqual(
+            r["suficiencia_uso"]["estado_efectivo"],
+            "BLOQUEADA_SIN_VINCULO_ALCANCE_MENOR")
+
+    def test_01f_decision_exacta_es_la_unica_excepcion_para_resultado_viejo(self):
         estado = self._estado_nc0126()
         estado["suficiencia"]["uso_habilitado"] = "APTA_USO_DECLARADO"
         estado["evidencias"].append("forense/decision-sintetica.md")
@@ -186,7 +199,7 @@ class ConsultaGen2(unittest.TestCase):
             r["suficiencia_uso"]["estado_efectivo"],
             "HABILITADA_POR_DECISION_APLICABLE")
 
-    def test_01f_sucesor_exige_calculo_y_adopcion(self):
+    def test_01g_sucesor_exige_calculo_y_adopcion(self):
         estado = self._estado_nc0126()
         estado["suficiencia"]["uso_habilitado"] = "APTA_USO_DECLARADO"
         estado["evidencias"].append("forense/sucesor-sintetico.md")
