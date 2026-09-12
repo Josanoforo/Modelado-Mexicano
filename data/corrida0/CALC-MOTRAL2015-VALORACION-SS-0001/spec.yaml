@@ -1,0 +1,139 @@
+calc_id: CALC-MOTRAL2015-VALORACION-SS-0001
+spec_md: spec.md
+spec_md_sha256: 094d1458860e9d2aac93df1520388212908cab42b4c24905a19a14fef86503c4
+script: data/corrida0/CALC-MOTRAL2015-VALORACION-SS-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: MEDICION-DESCRIPTIVA-ENCUESTA-CON-DISENO-Y-ENLACE
+  cuenta_gen2: SI
+  cuenta_gen2_firma: >-
+    ACTO GEN2-N35, 11/sep/2026: primera medicion de P16/P17 MOTRAL 2015 y
+    cruce descriptivo con cobertura actual ENOE; un CALC cientifico.
+    El merge de mesa perfecciona la firma.
+  validacion_independiente: PENDIENTE-POST-SELLO
+  spec_sellada: forense/prereg-caja/MOTRAL2015-VALORACION-SS-spec-v1_0.md
+  spec_sellada_sha256: abdcb0470fe16cedfa9e2a3bd0553da4a4e573fbcb945a36f3480623d465c0c7
+  demanda_que_releva: N35 / REL-31a794c27eca54d8d773df15
+  regla_contextual: trabajo.prestaciones.formalidad_pesa_mas_que_salario (R2.3)
+  uso_motor: DESCRIPTIVO-NO-CALIBRA-NI-ADOPTA
+  medidor_ejecutado_al_congelar: NO
+
+inputs:
+  - {id: motral2015_bases_datos_dbf, origen: manifiesto}
+  - {id: motral2015_cuestionario, origen: manifiesto}
+  - {id: motral2015_estructura_bd, origen: manifiesto}
+  - {id: motral2015_documento_metodologico, origen: manifiesto}
+  - {id: enoe_2015_trim2_dbf, origen: manifiesto}
+  - {id: enoe_fd_c_bas_amp_15ymas_pdf, origen: manifiesto}
+
+payloads:
+  - {id: motral2015_bases_datos_dbf, archivo: UNIVERSO-2026-09/MOTRAL/motral2015_bases_datos_dbf.zip, sha256: e86e4e6b350914276bd57a8354f145364c999f35c08c041ee4c5559f9c82741d, miembros_usados: "motral2015_cuestionario.dbf", rol: MEDICION}
+  - {id: motral2015_cuestionario, archivo: UNIVERSO-2026-09/MOTRAL/motral2015_cuestionario.pdf, sha256: e21a28f0f38c1727d40d4efbae01c8bb1190fe088bfe1cb75e4101b415f9e731, rol: TEXTO-REACTIVOS}
+  - {id: motral2015_estructura_bd, archivo: motral2015_estructura_bd.pdf, sha256: 961864548f4561c59f9c6a0303e83c3770c5f1becb9c62a9bd09408a2fce08a6, rol: CODIGOS-LLAVES-DISENO}
+  - {id: motral2015_documento_metodologico, archivo: motral2015_documento_metodologico.pdf, sha256: d578f9c510dd081fc032a0c9e13bd18a00353b6a48a47f85fc054ba0d3dca4c6, rol: POBLACION-PESO-PRECISION}
+  - {id: enoe_2015_trim2_dbf, archivo: enoe_2015_trim2_dbf.zip, sha256: 956283f7a5b92045ff3b76df61b5c98580f9b5b5cad0822f375f9a9fe45b0ca9, miembros_usados: "SDEMT215.DBF", rol: ENLACE-EMPLEO-ACTUAL}
+  - {id: enoe_fd_c_bas_amp_15ymas_pdf, archivo: fd_c_bas_amp_15ymas.pdf, sha256: f2f6cc39d88a10c89a819727f371150e1981940fb162c5563338debee0b01224, rol: CODIGOS-ENOE}
+
+variables:
+  - {archivo: motral2015_cuestionario.dbf, variable: P17, rol: respuesta binaria, codigos: "1=Si;2=No;blanco=No aplica"}
+  - {archivo: motral2015_cuestionario.dbf, variable: P16_1, rol: rango seguro medico, codigos: "1..5=rango;9=No especificado"}
+  - {archivo: motral2015_cuestionario.dbf, variable: P16_2, rol: rango seguro de vida, codigos: "1..5=rango;9=No especificado"}
+  - {archivo: motral2015_cuestionario.dbf, variable: P16_3, rol: rango accidentes de trabajo, codigos: "1..5=rango;9=No especificado"}
+  - {archivo: motral2015_cuestionario.dbf, variable: P16_4, rol: rango pension, codigos: "1..5=rango;9=No especificado"}
+  - {archivo: motral2015_cuestionario.dbf, variable: P16_5, rol: rango credito de vivienda, codigos: "1..5=rango;9=No especificado"}
+  - {archivo: motral2015_cuestionario.dbf, variable: FAC_MOTRAL, rol: factor final, codigos: positivo}
+  - {archivo: motral2015_cuestionario.dbf, variable: CD_A, rol: ciudad de diseño y llave, codigos: descriptor oficial}
+  - {archivo: motral2015_cuestionario.dbf, variable: EST_D, rol: estrato de diseño, codigos: descriptor oficial}
+  - {archivo: motral2015_cuestionario.dbf, variable: UPM, rol: conglomerado de diseño, codigos: descriptor oficial}
+  - {archivo: motral2015_cuestionario.dbf, variable: R_DEF, rol: entrevista completa, codigos: "00=Completa"}
+  - {archivo: motral2015_cuestionario.dbf, variable: EDA, rol: edad y elegibilidad, codigos: 18..54}
+  - {archivo: motral2015_cuestionario.dbf, variable: C_TRA, rol: experiencia laboral, codigos: "1=Trabajo;2=No trabajo en periodo"}
+  - {archivo: motral2015_cuestionario.dbf, variable: SEX, rol: corte sexo, codigos: "1=Hombre;2=Mujer"}
+  - {archivo: motral2015_cuestionario.dbf, variable: ENT, rol: llave ENOE, codigos: caracter}
+  - {archivo: motral2015_cuestionario.dbf, variable: CON, rol: llave ENOE, codigos: caracter}
+  - {archivo: motral2015_cuestionario.dbf, variable: V_SEL, rol: llave ENOE, codigos: caracter}
+  - {archivo: motral2015_cuestionario.dbf, variable: N_HOG, rol: llave ENOE, codigos: caracter}
+  - {archivo: motral2015_cuestionario.dbf, variable: H_MUD, rol: llave ENOE, codigos: caracter}
+  - {archivo: motral2015_cuestionario.dbf, variable: N_REN, rol: llave ENOE, codigos: caracter}
+  - {archivo: SDEMT215.DBF, variable: CD_A, rol: llave estandar ENOE, codigos: caracter}
+  - {archivo: SDEMT215.DBF, variable: ENT, rol: llave estandar ENOE, codigos: caracter}
+  - {archivo: SDEMT215.DBF, variable: CON, rol: llave estandar ENOE, codigos: caracter}
+  - {archivo: SDEMT215.DBF, variable: V_SEL, rol: llave estandar ENOE, codigos: caracter}
+  - {archivo: SDEMT215.DBF, variable: N_HOG, rol: llave estandar ENOE, codigos: caracter}
+  - {archivo: SDEMT215.DBF, variable: H_MUD, rol: llave estandar ENOE, codigos: caracter}
+  - {archivo: SDEMT215.DBF, variable: N_REN, rol: llave estandar ENOE, codigos: caracter}
+  - {archivo: SDEMT215.DBF, variable: CLASE2, rol: poblacion ocupada, codigos: "1=Ocupada"}
+  - {archivo: SDEMT215.DBF, variable: SEG_SOC, rol: cobertura empleo actual, codigos: "1=Con acceso;2=Sin acceso;3=No especificado"}
+
+universo: >-
+  MOTRAL 2015, persona seleccionada 18-54 con experiencia laboral, entrevista
+  completa, nacional urbana (32 ciudades autorrepresentadas).
+filtros: >-
+  R_DEF=00; EDA 18..54; C_TRA in {1,2}. P17 valido 1/2. P16 requiere un
+  primer lugar unico; calidad del ranking se cuantifica. Cruce: llave unica,
+  enlace SDEM, CLASE2=1 y SEG_SOC 1/2.
+ponderador: FAC_MOTRAL; FAC de ENOE no se usa.
+transformacion: >-
+  P17=1 binaria. P16 primer lugar por columna con rango 1; cinco opciones
+  separadas, sin promedio cardinal. Cortes sexo y edad son dominios separados.
+estimando: >-
+  Cinco tasas P17, 25 participaciones P16 de primer lugar y dos tasas P17 por
+  cobertura actual ENOE; 32 celdas descriptivas en una operacion.
+precision: >-
+  Conglomerados ultimos y Taylor: UPM anidada en CD_AxEST_D sobre muestra
+  completa; IC95 normal bilateral truncado [0,1], sin FPC.
+
+dependencias_materiales: []
+seed: {aplica: false, valor: null, rng: NO-APLICA}
+tolerancia: {tipo: flotante, abs: 1.0e-10, razon: salidas deterministas redondeadas a 12 decimales}
+parametros:
+  fuente_acto: ACTO GEN2-N35-PREFERENCIAS-LABORALES-Y-FUENTES
+  estimandos_nominales: 32
+  enlace: CD_A+ENT+CON+V_SEL+N_HOG+H_MUD+N_REN
+  adopcion: NINGUNA
+  alcance: VALORACION-DECLARADA-NO-COMPARACION-SALARIAL-ESTRICTA
+
+resultados:
+  - {id: RESULT-MOTRAL15-G-N-ESTIMANDOS, tipo: entero, unidad: celdas descriptivas}
+  - {id: RESULT-MOTRAL15-G-DIAGNOSTICOS-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-MOTRAL15-G-ESTIMANDOS-JSON, tipo: texto, unidad: JSON canonico con n masas punto EE IC}
+  - {id: RESULT-MOTRAL15-G-JOIN-COINCIDENCIAS, tipo: entero, unidad: personas}
+  - {id: RESULT-MOTRAL15-G-JOIN-PERDIDAS, tipo: entero, unidad: personas}
+  - {id: RESULT-MOTRAL15-G-JOIN-DUPLICADOS, tipo: entero, unidad: llaves}
+  - {id: RESULT-MOTRAL15-G-ELEGIBLES, tipo: entero, unidad: personas}
+  - {id: RESULT-MOTRAL15-G-RANKING-COMPLETO, tipo: entero, unidad: personas}
+  - {id: RESULT-MOTRAL15-G-RANKING-INCOMPLETO-CON-PRIMERO, tipo: entero, unidad: personas}
+  - {id: RESULT-MOTRAL15-G-RANKING-INCONSISTENTE, tipo: entero, unidad: personas}
+  - {id: RESULT-MOTRAL15-P17-TOTAL-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P17-HOMBRE-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P17-MUJER-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P17-EDAD18_34-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P17-EDAD35_54-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-ENOE-P17-CON-ACCESO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-ENOE-P17-SIN-ACCESO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-TOTAL-MEDICO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-TOTAL-VIDA-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-TOTAL-ACCIDENTES-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-TOTAL-PENSION-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-TOTAL-VIVIENDA-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-HOMBRE-MEDICO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-HOMBRE-VIDA-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-HOMBRE-ACCIDENTES-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-HOMBRE-PENSION-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-HOMBRE-VIVIENDA-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-MUJER-MEDICO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-MUJER-VIDA-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-MUJER-ACCIDENTES-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-MUJER-PENSION-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-MUJER-VIVIENDA-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-EDAD18_34-MEDICO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-EDAD18_34-VIDA-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-EDAD18_34-ACCIDENTES-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-EDAD18_34-PENSION-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-EDAD18_34-VIVIENDA-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-EDAD35_54-MEDICO-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-EDAD35_54-VIDA-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-EDAD35_54-ACCIDENTES-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-EDAD35_54-PENSION-P, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-MOTRAL15-P16-FIRST-EDAD35_54-VIVIENDA-P, tipo: proporcion, unidad: proporcion ponderada}

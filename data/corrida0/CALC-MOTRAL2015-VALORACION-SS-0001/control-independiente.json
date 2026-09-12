@@ -1,0 +1,28 @@
+{
+  "control_id": "CONTROL-MOTRAL2015-VALORACION-SS-DBFREAD-0001",
+  "fecha": "2026-09-11",
+  "implementacion": "tools/control_motral2015_valoracion.py",
+  "independencia": "dbfread con extracción temporal; no importa medidor.py ni su lector DBF",
+  "resultado": "COINCIDE",
+  "comprobaciones": {
+    "p17_total": {
+      "p": 0.823626705331,
+      "masa_numerador": 17498432,
+      "masa_denominador": 21245586,
+      "n_valido": 5704
+    },
+    "ranking": {
+      "COMPLETO": 5696,
+      "INCOMPLETO-CON-PRIMERO": 2,
+      "INCOMPLETO-SIN-PRIMERO": 6,
+      "INCONSISTENTE": 0,
+      "primeros_validos": 5698
+    },
+    "join_enoe": {
+      "coincidencias": 6564,
+      "perdidas": 436,
+      "duplicados": 0
+    }
+  },
+  "alcance": "punto y masas P17 total; manejo de primer lugar P16; cardinalidad de cruce. No valida errores estándar, IC ni otros cortes."
+}
