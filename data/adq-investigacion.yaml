@@ -93,9 +93,9 @@ necesidades:
     evidencia_disponible: "ENSAFI describe atraso por clase amplia; IMOR y CONDUSEF no enlazan exposición individual con daño causal"
     brecha: "producto exacto + costo/BNPL/fricción + daño; identificación causal adicional"
     suficiencia_actual: {identidad: PARCIAL, conceptual: PARCIAL, poblacional: ACREDITADA, seleccion_no_respuesta: ACREDITADA, unidad: PARCIAL, temporalidad: ACREDITADA, diseno: ACREDITADA, identificacion: NO_ACREDITADA, uso_habilitado: APTA_ALCANCE_MENOR, pregunta_original: ABIERTA}
-    investigacion_previa: "#723 y tarea 36 en curso"
-    frontera_previa: "propiedad exclusiva de 36 mientras su reserva esté vigente"
-    siguiente_accion: "consumir la entrega de 36; no duplicar su búsqueda"
+    investigacion_previa: "#723 y entrega de tarea 36 publicada en PR #734 (abierto al corte)"
+    frontera_previa: "propiedad exclusiva de 36 mientras #734 siga abierto o su reserva esté vigente"
+    siguiente_accion: "consumir #734 después de su merge; no duplicar su búsqueda ni adoptar sus proxies como efecto causal"
 
   - id: NC-0136
     version_pregunta: "2026-09-10-indice-reactivos-ciego-v1"
@@ -112,12 +112,12 @@ necesidades:
     unidad: variable/reactivo
     periodo: "todas las olas indexadas"
     variables: "texto de reactivo, variable_id, instrumento, ola"
-    evidencia_disponible: "ceguera declarada y tarea 34 en curso"
+    evidencia_disponible: "cobertura de contexto publicada por tarea 34 en PR #737, abierto al corte; aún no integrada en main"
     brecha: "texto no indexado"
     suficiencia_actual: {identidad: NO_APLICA, conceptual: NO_APLICA, poblacional: NO_APLICA, seleccion_no_respuesta: NO_APLICA, unidad: NO_APLICA, temporalidad: NO_APLICA, diseno: NO_APLICA, identificacion: NO_APLICA, uso_habilitado: INCOMPATIBLE, pregunta_original: ABIERTA}
-    investigacion_previa: "medición 102/116 en NC-0136"
+    investigacion_previa: "medición 102/116 en NC-0136 y correctivo publicado en PR #737"
     frontera_previa: "propiedad exclusiva de 34"
-    siguiente_accion: "consumir la actualización de 34"
+    siguiente_accion: "consumir #737 después de su merge"
 
   - id: NC-0037
     version_pregunta: "2026-09-11-tandas-ledger-v1"
@@ -134,9 +134,9 @@ necesidades:
     unidad: "persona-grupo-turno-pago"
     periodo: "longitudinal"
     variables: "turno, pagos esperados/realizados, incumplimiento, reputación, exclusión"
-    evidencia_disponible: "ENSAFI/ENNViH miden participación; panel 35 mide entrada/salida, no impago"
+    evidencia_disponible: "#735 fusionado: CALC-TANDAS-ENNVIH-PANEL-0001 mide entradas/salidas y attrition; no observa turno, pagos esperados/realizados ni impago"
     brecha: "ledger o instrumento con turno y pagos; identificación del efecto de conocer a organizadora"
     suficiencia_actual: {identidad: PARCIAL, conceptual: PARCIAL, poblacional: PARCIAL, seleccion_no_respuesta: PARCIAL, unidad: NO_ACREDITADA, temporalidad: PARCIAL, diseno: PARCIAL, identificacion: NO_ACREDITADA, uso_habilitado: APTA_ALCANCE_MENOR, pregunta_original: ABIERTA}
-    investigacion_previa: "búsqueda académica agotada; vía comercial diferida por D18"
+    investigacion_previa: "búsqueda académica agotada; #735 consumido como panel descriptivo de entradas/salidas; vía comercial diferida por D18"
     frontera_previa: "reabrir sólo ante candidato concreto o respuesta humana"
-    siguiente_accion: "consumir 35 sin llamarlo ledger; conservar barrera"
+    siguiente_accion: "conservar #735 como alcance menor sin llamarlo ledger; reabrir sólo ante instrumento con turno y pagos"
