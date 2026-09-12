@@ -3,7 +3,7 @@
 Fecha de ejecución: 11/sep/2026. Entorno: CAJA, Ubuntu/WSL2, Python 3.14.4,
 corpus compartido y red pública. Worktree propio:
 `/home/pc0/mm-gen2-n34-datos-producto-dano`; rama:
-`acto/gen2-n34-datos-producto-dano`; base efectiva:
+`acto/gen2-n34-datos-producto-y-dano`; base inicial efectiva:
 `origin/main=d9c251954bce1c08abba6f47696adde9d7a2913a`, que ya contiene el merge
 de #726/#732. El árbol inicial estaba limpio. El worktree principal ajeno
 tenía un `error.log` sin seguimiento y no se tocó.
@@ -227,3 +227,7 @@ exclusión de no-aplica/no-respuesta, la tabla de candidatos y la transcripción
 del denominador CFPB sin corpus ni red.
 
 **Contador científico:** cero. **Parámetros/adopciones:** cero.
+
+Antes del cierre se integró `origin/main=7a59c0eb84923e50dcb1a373a9c7d6fd34a34f04`,
+que ya contiene #730/#731. La medición ENSAFI de #730 se conserva intacta:
+este acto sólo añade evidencia distinta por identidad y mantiene su residual.
