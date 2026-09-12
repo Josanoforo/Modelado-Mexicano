@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Da de alta idempotente la NC que enlaza demanda activa preadopción."""
+"""Da de alta o cierra idempotentemente la NC de demanda preadopción."""
 from __future__ import annotations
 
+import argparse
 import sys
 from pathlib import Path
 
@@ -12,6 +13,9 @@ from curador_registro.tsv_crudo import leer_lineas, upsert_fila  # noqa: E402
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cierra", action="store_true")
+    args = parser.parse_args()
     ruta = RAIZ / "forense" / "no-corrido.tsv"
     campos = leer_lineas(ruta)[0].split("\t")
     upsert_fila(ruta, {
@@ -27,17 +31,20 @@ def main() -> int:
             "la vista anterior entraba por corrida0_generacion=GEN2 y ocultaba "
             "la demanda todavía no adoptada"),
         "impacto": (
-            "el valor GEN1 queda histórico y no se reactiva; cada elemento conserva "
-            "situación, evidencia, dependencia, responsable y siguiente acción"),
+            "el valor GEN1 queda histórico y no se reactiva; los 207 elementos "
+            "conservan identidad, propósito, contrato, estado, ejecutor y acción"),
         "sucesor": (
-            "MOTOR_GEN2 concilia por RES y completa primero decisión/preparación; "
-            "cuando verifique una brecha de fuente o acceso, el proyector la entrega "
-            "a SONDA; validación y adopción permanecen en sus ejecutores"),
-        "estado": "ABIERTA",
-        "cerrado_por": "NO-APLICA-MIENTRAS-ABIERTA",
-        "fecha_cierre": "NO-APLICA-MIENTRAS-ABIERTA",
+            "data/adq-demanda-activa-v1_0.json#elementos_gen2; cada pendiente "
+            "continúa por su contrato_id, primer_faltante y ejecutor_siguiente"),
+        "estado": "CERRADA" if args.cierra else "ABIERTA",
+        "cerrado_por": (
+            "ACTO GEN2-DEMANDA-CONCILIADA-Y-EJECUCION-NC0165"
+            if args.cierra else "NO-APLICA-MIENTRAS-ABIERTA"),
+        "fecha_cierre": "2026-09-11" if args.cierra else
+        "NO-APLICA-MIENTRAS-ABIERTA",
     }, campos, clave="id")
-    print("NC-0165 enlazada idempotentemente a la demanda activa preadopción")
+    print("NC-0165 cerrada por conciliación total" if args.cierra else
+          "NC-0165 enlazada idempotentemente a la demanda activa preadopción")
     return 0
 
 
