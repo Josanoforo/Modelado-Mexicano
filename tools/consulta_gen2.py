@@ -48,7 +48,7 @@ from tools.snapshot_motor_gen2 import (  # noqa: E402
 from tools import adq_suficiencia  # noqa: E402
 
 
-VERSION_CONTRATO = "CONSULTA-GEN2-v1"
+VERSION_CONTRATO = "CONSULTA-GEN2-v2"
 RUTA_TRAMITE = RAIZ / "milpa" / "tramite.yaml"
 RUTAS_CONTRATO = (
     Path("tools/consulta_gen2.py"),
@@ -69,17 +69,24 @@ CLAVES_PETICION = {
 }
 
 
-def _hash_contrato() -> dict[str, Any]:
+def _hash_contrato(guardia: dict[str, Any] | None = None) -> dict[str, Any]:
     archivos = {
         str(ruta): hashlib.sha256((RAIZ / ruta).read_bytes()).hexdigest()
         for ruta in RUTAS_CONTRATO
     }
+    identidad_guardia = guardia or None
     canon = "".join(f"{ruta}\t{sha}\n" for ruta, sha in sorted(archivos.items()))
-    return {
+    canon += json.dumps(
+        identidad_guardia, ensure_ascii=False, sort_keys=True,
+        separators=(",", ":"))
+    contrato = {
         "version": VERSION_CONTRATO,
         "sha256": hashlib.sha256(canon.encode("utf-8")).hexdigest(),
         "archivos": archivos,
     }
+    if identidad_guardia is not None:
+        contrato["guardia_suficiencia_efectiva"] = identidad_guardia
+    return contrato
 
 
 def _partes_consumidor(consumidor: object) -> tuple[str, str]:
@@ -155,15 +162,19 @@ def _resumen_peticion(peticion: object) -> object:
     return resumen
 
 
-def _no_coverage(peticion: object, motivo: str) -> dict[str, Any]:
-    return {
-        "contrato": _hash_contrato(),
+def _no_coverage(peticion: object, motivo: str,
+                 guardia: dict[str, Any] | None = None) -> dict[str, Any]:
+    respuesta = {
+        "contrato": _hash_contrato(guardia),
         "peticion": _resumen_peticion(peticion),
         "estado": "NO_COVERAGE",
         "motivo_no_cobertura": motivo,
         "resultado": {"id": None, "fuente": None},
         "referencias": [str(r) for r in RUTAS_CONTRATO],
     }
+    if guardia is not None:
+        respuesta["suficiencia_uso"] = guardia
+    return respuesta
 
 
 def _metadatos_resultado(indice, prediccion: PrediccionM) -> tuple[dict, list[str]]:
@@ -281,7 +292,9 @@ def consultar(peticion: object) -> dict[str, Any]:
     # exponer el valor.
     try:
         suficiencia_uso = adq_suficiencia.proyecta_consumidor(
-            str(peticion["consumidor"]))
+            str(peticion["consumidor"]),
+            resultado_id=prediccion.resultado_id,
+            uso_solicitado=prediccion.uso_solicitado)
     except (KeyError, ValueError) as exc:
         return _no_coverage(
             peticion, f"guardia de suficiencia no resoluble: {exc}")
@@ -293,8 +306,9 @@ def consultar(peticion: object) -> dict[str, Any]:
             estado="NO_COVERAGE",
             valor_punto=None,
             detalle=(
-                f"{suficiencia_uso['necesidad_id']}: evidencia incompatible "
-                f"con el uso solicitado; {suficiencia_uso['brecha']}"),
+                f"{suficiencia_uso['necesidad_id']}: guardia de suficiencia "
+                f"bloqueada; {suficiencia_uso['motivo_bloqueo']}; "
+                f"brecha: {suficiencia_uso['brecha']}"),
         )
 
     campos_desconocidos = sorted(
@@ -319,7 +333,7 @@ def consultar(peticion: object) -> dict[str, Any]:
         if salida.complemento_de else
         (salida_cruda.get("evento") or conducta))
     respuesta: dict[str, Any] = {
-        "contrato": _hash_contrato(),
+        "contrato": _hash_contrato(suficiencia_uso),
         "peticion": _resumen_peticion(peticion),
         "estado": prediccion.estado,
         "resultado": resultado,

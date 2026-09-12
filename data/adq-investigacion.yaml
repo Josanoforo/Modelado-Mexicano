@@ -3,6 +3,12 @@
 # añade los campos necesarios para seleccionar y ejecutar investigación.
 version: GEN2-ADQ-INVESTIGACION-V1
 fuente_necesidades: forense/no-corrido.tsv
+fuente_usos: data/corrida0/usos.tsv
+fuente_resultados: data/corrida0/resultados.tsv
+fuente_demanda_resultados: data/corrida0/demanda-resultados.tsv
+fuente_decisiones: data/corrida0/decisiones.tsv
+fuente_necesidad_modelo: data/curacion-registro/necesidad-objeto-modelo.tsv
+fuente_utilidad_modelo: data/curacion-registro/utilidad-modelo.tsv
 estado_dir: data/curacion-registro/investigacion-estado
 reservas_runtime_dir: forense/adq-log/estado/investigacion
 reserva_minutos: 75
@@ -15,6 +21,7 @@ necesidades:
     prioridad_consumidor: 20
     bloqueo_material: 3
     lista: true
+    estado_ruteo: ESPERA_NUEVA_PISTA
     proxima_revision: "2026-09-11"
     asignacion: servicio-gen2-38
     modos: [CONSTRUCTO, HERMANAS]
@@ -36,10 +43,24 @@ necesidades:
       - "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto"
       - "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto"
       - "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto"
+    vinculos_consulta:
+      - consumidor: "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto"
+        resultado_bloqueado_id: "RESULT-ENIF-AHO-A-P-CORTO-SIN-P"
+        uso_requerido: "MEDICION-GEN2"
+      - consumidor: "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto"
+        resultado_bloqueado_id: "RESULT-ENIF-AHO-A-P-CORTO-CON-P"
+        uso_requerido: "MEDICION-GEN2"
+      - consumidor: "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto"
+        resultado_bloqueado_id: "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P"
+        uso_requerido: "MEDICION-GEN2"
+    evidencias_guardia:
+      - "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P"
+      - "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md"
     uso: descriptivo
     prioridad_consumidor: 30
     bloqueo_material: 2
     lista: true
+    estado_ruteo: LISTA_SONDA
     proxima_revision: "2026-09-11"
     asignacion: servicio-gen2-38
     modos: [CONSTRUCTO, HERMANAS]
@@ -53,6 +74,8 @@ necesidades:
     investigacion_previa: "descriptor y microdato ENIF revisados; límite estructural documentado en NC-0126"
     frontera_previa: "otras olas/módulos mexicanos, encuestas de capacidades financieras y replicaciones"
     siguiente_accion: "localizar reactivo mexicano que separe tenencia y horizonte; no recodificar a posteriori P4_10"
+    rutas_agotadas: "ENIF, EACF, ENSAFI y Findex 2025; no repetir las consultas ya registradas"
+    pistas_publicas_pendientes: "ENFIH y cuestionarios públicos subnacionales o ediciones/módulos mexicanos no indexados que separen tenencia de ahorro y duración"
 
   - id: NC-0153
     version_pregunta: "2026-09-10-evento-canal-nacional-v1"
@@ -61,6 +84,7 @@ necesidades:
     prioridad_consumidor: 10
     bloqueo_material: 3
     lista: true
+    estado_ruteo: ESPERA_ACCESO_HUMANO
     proxima_revision: "2026-10-10"
     asignacion: servicio-gen2-38
     modos: [LATERAL, HERMANAS]
@@ -74,6 +98,8 @@ necesidades:
     investigacion_previa: "sonda amplia 2026-09-10 y expediente técnico INEGI preparado 2026-09-11"
     frontera_previa: "respuesta/folio INEGI o nueva edición/vía concreta; no repetir búsqueda general diaria"
     siguiente_accion: "esperar folio o nueva vía concreta; mantener abierta sin extrapolar ENEAC"
+    reglas_motor: [tramite.mordida.discrecional, tramite.mordida.con_registro]
+    sucede_necesidades: [NC-0111]
 
   - id: NC-0164
     version_pregunta: "2026-09-11-producto-costo-dano-v1"
@@ -82,6 +108,7 @@ necesidades:
     prioridad_consumidor: 5
     bloqueo_material: 3
     lista: true
+    estado_ruteo: ESPERA_NUEVA_PISTA
     proxima_revision: "2026-10-11"
     asignacion: servicio-gen2-38
     modos: [CONSTRUCTO, HERMANAS, LATERAL]
@@ -103,6 +130,7 @@ necesidades:
     prioridad_consumidor: 15
     bloqueo_material: 3
     lista: false
+    estado_ruteo: DELEGADA_A_FRENTE_DUENO
     proxima_revision: "2026-10-11"
     asignacion: servicio-gen2-38-observa
     modos: [HERMANAS]
@@ -124,6 +152,7 @@ necesidades:
     prioridad_consumidor: 25
     bloqueo_material: 3
     lista: false
+    estado_ruteo: DELEGADA_Y_AGOTADA
     proxima_revision: "2026-10-11"
     asignacion: acto/gen2-tandas-medicion-academica
     reserva_hasta: "2026-09-13"

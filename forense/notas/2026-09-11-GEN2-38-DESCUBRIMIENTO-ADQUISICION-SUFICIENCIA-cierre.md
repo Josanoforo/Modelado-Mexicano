@@ -35,13 +35,18 @@ por dimensión → consumidor`.
 Componentes materiales:
 
 - `tools/adq_investigacion.py` proyecta las necesidades ABIERTAS desde
-  `forense/no-corrido.tsv`, selecciona por prioridad/bloqueo/fecha, reserva con
-  vencimiento y persiste cursor, frontera y próxima revisión por versión de
-  pregunta. La vista derivada acredita 51 activas: 6 con contrato completo y
-  45 incompletas explícitas; no inventa campos para estas últimas.
+  `forense/no-corrido.tsv` y cruza usos/RESULT, antecedente GEN1, decisiones,
+  necesidad→objeto y utilidad-modelo. Selecciona por prioridad/bloqueo/fecha,
+  reserva con vencimiento y persiste cursor, frontera y próxima revisión por
+  versión de pregunta. La vista derivada acredita 51 activas: 6 con contrato
+  científico completo y 45 con contrato mínimo derivado, responsable y acción;
+  ninguna desaparece por quedar fuera del selector. También explica los 16
+  consumidores GEN2 vigentes y distingue datos, preparación, cálculo,
+  validación, adopción y decisión.
 - `tools/adq_suficiencia.py` decide por identidad, concepto, población,
   selección/no respuesta, unidad, temporalidad, diseño e identificación. No
-  produce un porcentaje único de suficiencia.
+  produce un porcentaje único de suficiencia ni convierte por sí sola una
+  aptitud reportada por investigación en autorización de emisión.
 - `tools/adq_autorizacion.py` separa JSON e historia, y reconoce el mandato
   `AUTORIZADA-POR-ALCANCE` sólo para el objeto público vinculado. Rechaza
   negación, objeto distinto, fecha inválida y ambigüedad. Un intento efectivo
@@ -58,9 +63,15 @@ Componentes materiales:
   sin ejecutarla y acredita `sin_ventana=true` y
   `espera_y_propaga_resultado=true`.
 - `tools/consulta_gen2.py` consulta la guardia por identidad exacta de
-  consumidor. Las tres emisiones de horizonte vinculadas a NC-0126 devuelven
-  `NO_COVERAGE`, omiten valor/fallback y explican la incompatibilidad; trece
-  emisiones no afectadas conservan su ruta GEN2.
+  consumidor. La versión v2 enlaza necesidad, versión de pregunta, consumidor,
+  RESULT, uso y evidencia. Descarta estados de otra necesidad o versión y
+  mantiene `NO_COVERAGE` aunque el JSON de investigación diga
+  `APTA_USO_DECLARADO`, salvo que exista una decisión evidenciada que adopte un
+  sucesor calculado o autorice explícitamente el RESULT existente. El estado
+  efectivo, el SHA del JSON observado y el vínculo evaluado forman parte del
+  hash reproducible del contrato. Las tres emisiones de horizonte vinculadas a
+  NC-0126 omiten valor/fallback; trece emisiones no afectadas conservan su ruta
+  GEN2.
 
 La configuración efectiva es Codex CLI `gpt-5.6-sol`, búsqueda web habilitada,
 máximo 3 investigaciones y 5 objetos por ciclo, presupuestos nominales de

@@ -96,6 +96,57 @@ def prueba_seleccion_reanudacion_reserva_y_version():
         afirma(not list((raiz / "reservas").glob("*.json")), "la reserva no se liberó")
 
 
+def prueba_necesidad_nueva_llega_a_sonda_sin_lista_manual():
+    with tempfile.TemporaryDirectory() as td:
+        raiz = Path(td)
+        (raiz / "forense").mkdir(parents=True)
+        (raiz / "forense" / "no-corrido.tsv").write_text(
+            "id\tacto\tpieza\tque_no_se_corrio\trazon\timpacto\tsucesor\testado\n"
+            "NC-NUEVA\tACTO-X\tP1\tbuscar fuente pública con variable X\t"
+            "EVIDENCIA-INSUFICIENTE\tarchivo obtenido no cubre X\t"
+            "localizar microdato público con X\tABIERTA\n"
+            "NC-DIF\tACTO-X\tP2\tbuscar fuente Y\tDIFERIDO-A:OTRO\t"
+            "espera explícita\tOTRO\tABIERTA\n",
+            encoding="utf-8")
+        cfg = {
+            "version": "GEN2-ADQ-INVESTIGACION-V1",
+            "fuente_necesidades": "forense/no-corrido.tsv",
+            "estado_dir": "estado", "reservas_runtime_dir": "reservas",
+            "reserva_minutos": 75, "necesidades": [],
+        }
+        seleccion = I.selecciona(
+            cfg, dt.date(2026, 9, 12), 3, raiz=raiz,
+            ahora=dt.datetime(2026, 9, 12, tzinfo=dt.timezone.utc))
+        afirma([x["id"] for x in seleccion["elegidos"]] == ["NC-NUEVA"],
+               f"una brecha nueva verificable debe llegar automáticamente: {seleccion}")
+        elegida = seleccion["elegidos"][0]
+        afirma(elegida["contrato_operativo"] == "MINIMO_DERIVADO_DE_NC",
+               "la necesidad nueva debe recibir contrato mínimo reproducible")
+        afirma(bool(elegida["responsable"] and elegida["siguiente_accion"]),
+               "el contrato derivado debe tener responsable y siguiente acción")
+        afirma(any(x["id"] == "NC-DIF" for x in seleccion["excluidos"]),
+               "un diferido explícito no debe reactivarse automáticamente")
+
+
+def prueba_demanda_explica_todo_elemento_gen2_vigente():
+    cfg = I.cargar_config()
+    demanda = I.proyecta_demanda(cfg, dt.date(2026, 9, 11))
+    elementos = demanda["elementos_gen2"]
+    afirma(len(elementos) == 16, f"universo GEN2 vigente inesperado: {len(elementos)}")
+    afirma(demanda["total_activas"] == 51, "debe conservar las 51 NC abiertas")
+    afirma(demanda["contrato_incompleto"] == 0,
+           "ninguna NC puede desaparecer como 'sin contrato'")
+    afirma(all(x["situacion"] and x["siguiente_accion"] for x in elementos),
+           "cada elemento vigente requiere situación y siguiente acción")
+    horizonte = [x for x in elementos if x["resultado_id"] ==
+                 "RESULT-ENIF-AHO-A-P-CORTO-SIN-P"]
+    afirma(len(horizonte) == 1 and horizonte[0]["situacion"] ==
+           "ADOPTADO_EN_REGISTRO_PERO_BLOQUEADO_PARA_EMISION",
+           "la demanda debe conservar la brecha de horizonte en el consumidor")
+    afirma("cero tareas elegibles" in demanda["advertencia_suficiencia"],
+           "la proyección debe negar suficiencia general por cola vacía")
+
+
 CAMPOS = ["fila_origen", "fuente_canonica", "fuente_canonica_normalizada",
           "discordancia_alias", "estado_A4A5", "prioridad", "url_conocida",
           "ids_manifiesto", "origen", "nota"]
@@ -172,6 +223,8 @@ def main() -> int:
     prueba_autorizacion_json_gana_a_historia_y_detecta_errores()
     prueba_intento_explicito_sin_fecha_no_es_ausencia()
     prueba_seleccion_reanudacion_reserva_y_version()
+    prueba_necesidad_nueva_llega_a_sonda_sin_lista_manual()
+    prueba_demanda_explica_todo_elemento_gen2_vigente()
     prueba_altas_concurrentes_no_pierden_fila_y_vista_converge()
     prueba_cableado_y_calendario_de_produccion()
     if FALLOS:
@@ -179,7 +232,7 @@ def main() -> int:
         for fallo in FALLOS:
             print("  ·", fallo)
         return 1
-    print("OK -- test_adq_descubrimiento.py: 5 grupos, 0 fallos")
+    print("OK -- test_adq_descubrimiento.py: 7 grupos, 0 fallos")
     return 0
 
 
