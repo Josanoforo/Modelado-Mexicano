@@ -59,6 +59,7 @@ def construye_fila(*, objeto_id: str, padre: str, consumidor: str,
         raise ValueError("objeto_id debe ser un identificador estable A-Z/0-9/_.-")
     if estado.split("(")[0] not in ESTADOS:
         raise ValueError(f"estado residual no permitido: {estado}")
+    previa = existente or {}
     obligatorios = {
         "padre": padre, "consumidor": consumidor, "objeto": objeto,
         "cobertura": cobertura, "residual": residual, "via": via,
@@ -79,7 +80,6 @@ def construye_fila(*, objeto_id: str, padre: str, consumidor: str,
     meta = {"padre": padre, "consumidor": consumidor, "objeto": objeto,
             "cobertura": cobertura, "residual": residual, "via": via,
             "autoridad": autoridad, "siguiente_accion": siguiente_accion}
-    previa = existente or {}
     return {
         "fila_origen": previa.get("fila_origen") or f"residual:{objeto_id}",
         "fuente_canonica": objeto_id,
@@ -89,7 +89,7 @@ def construye_fila(*, objeto_id: str, padre: str, consumidor: str,
         "prioridad": prioridad,
         "url_conocida": url,
         "ids_manifiesto": previa.get("ids_manifiesto", ""),
-        "origen": origen,
+        "origen": previa.get("origen") or origen,
         "nota": _nota(meta, nota or previa.get("nota", "")),
     }
 
