@@ -82,3 +82,7 @@ Aceptación: cinco mediciones reales o residual específico por la afectada, fil
 ## NO-CORRIDO / RESERVAS
 
 Ninguno. Las cinco mediciones se ejecutaron. EE/IC era condicional a un procedimiento de diseño acreditado; su condición no se cumplió y, conforme al encargo, se conservaron los puntos descriptivos sin fabricar precisión.
+
+## CONSUMIDO
+
+PR: `#745`, rama `acto/gen2-shed-bnpl-dano-universos`, contra `main`. Ejecutado: `ACTO GEN2-SHED-BNPL-DANO-UNIVERSOS` (`ADR-490`, candidato sujeto a renumeración al integrar). `CALC-SHED2025-BNPL-DANO-0001` queda sellado y registrado con 66 RESULT, cinco estimandos de SHED 2025, agregados legibles, ficha estadounidense y control independiente coincidente. Sólo se actualiza la relación SHED de N34; no hay adopción, tasa mexicana ni cierre de `NC-0164`. Contador: una medición GEN2 por objeto. El PR queda abierto; el ejecutor no realizó el merge.
