@@ -53,6 +53,19 @@ def cargar_config(path: Path = CONFIG) -> dict:
     dato = yaml.safe_load(path.read_text(encoding="utf-8"))
     if not isinstance(dato, dict) or dato.get("version") != "GEN2-ADQ-INVESTIGACION-V1":
         raise ValueError("configuración de investigación ausente o versión inválida")
+    for grupo in dato.get("conciliacion_elementos", []):
+        if not grupo.get("elementos"):
+            raise ValueError("grupo de conciliación sin elementos exactos")
+        for oferta in grupo.get("ofertas", []):
+            requeridos = (
+                "oferta_id", "fuente", "ola", "estimando", "unidad",
+                "poblacion", "transformacion", "proposito", "compatibilidad",
+                "evidencia",
+            )
+            if any(not oferta.get(k) for k in requeridos):
+                raise ValueError(
+                    f"oferta {oferta.get('oferta_id', '<sin-id>')} sin "
+                    "compatibilidad documental completa")
     return dato
 
 
@@ -73,6 +86,25 @@ def _tsv(path: Path) -> list[dict[str, str]]:
 def _texto_nc(base: dict) -> str:
     return " ".join(str(base.get(k) or "") for k in (
         "que_no_se_corrio", "razon", "impacto", "sucesor"))
+
+
+def _naturaleza_nc(base: dict) -> str:
+    """Separa ciencia, acceso y operación sin inventar campos científicos."""
+    ident = str(base.get("id") or "")
+    acceso = {
+        "NC-0056", "NC-0061", "NC-0090", "NC-0151", "NC-0153", "NC-0156",
+        "NC-0159",
+    }
+    operativas = {
+        "NC-0007", "NC-0012", "NC-0033", "NC-0038", "NC-0039", "NC-0050",
+        "NC-0054", "NC-0055", "NC-0058", "NC-0100", "NC-0106", "NC-0120",
+        "NC-0130", "NC-0136", "NC-0165",
+    }
+    if ident in acceso:
+        return "OPERATIVA_ACCESO_HUMANO"
+    if ident in operativas:
+        return "OPERATIVA_TECNICA_O_DOCUMENTAL"
+    return "CIENTIFICA_O_DE_ADOPCION"
 
 
 def _etapa_faltante(base: dict) -> str:
@@ -175,6 +207,11 @@ def _contrato_derivado(base: dict) -> dict:
     etapa = _etapa_faltante(base)
     responsable = _responsable(base, etapa)
     ruteo, motivo = _ruteo_automatico(base, etapa)
+    naturaleza = _naturaleza_nc(base)
+    aplica_ciencia = naturaleza == "CIENTIFICA_O_DE_ADOPCION"
+    if not aplica_ciencia and ruteo == "LISTA_SONDA":
+        ruteo = "NO_SONDA"
+        motivo = f"{naturaleza}; no es una búsqueda científica pública"
     identidad = "\t".join(str(base.get(k) or "") for k in (
         "id", "que_no_se_corrio", "impacto", "sucesor", "estado"))
     return {
@@ -200,9 +237,12 @@ def _contrato_derivado(base: dict) -> dict:
         "responsable": responsable,
         "estado_ruteo": ruteo,
         "motivo_ruteo": motivo,
-        "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+        "naturaleza_necesidad": naturaleza,
+        "contrato_operativo": (
+            "DESCRIPCION_MINIMA_DERIVADA" if aplica_ciencia else
+            "OPERATIVO_DERIVADO_SIN_CAMPOS_CIENTIFICOS_FICTICIOS"),
         "contrato_cientifico_completo": False,
-        "aplica_contrato_cientifico": True,
+        "aplica_contrato_cientifico": aplica_ciencia,
         "opciones_decision": ([
             "MANTENER_ESTADO_VIGENTE",
             "APROBAR_SIGUIENTE_ACCION_DESCRITA",
@@ -248,6 +288,9 @@ def contratos_vigentes(cfg: dict, raiz: Path = RAIZ) -> dict[str, dict]:
                             "NO_SONDA")
             item.setdefault("motivo_ruteo", "contrato explícito vigente")
             item.setdefault("aplica_contrato_cientifico", True)
+            item.setdefault("naturaleza_necesidad", (
+                "CIENTIFICA_O_DE_ADOPCION" if item["aplica_contrato_cientifico"]
+                else "OPERATIVA_TECNICA_O_DOCUMENTAL"))
             completo = (
                 item.get("aplica_contrato_cientifico") is True and
                 item.get("contrato_cientifico_completo", True) is not False and
@@ -364,9 +407,102 @@ def selecciona(cfg: dict, corte: dt.date, maximo: int = 3,
     }
 
 
+def _naturaleza_elemento(tipo: str) -> str:
+    if tipo.startswith("celda_"):
+        return "EVALUACION_O_DIAGNOSTICO"
+    if tipo.startswith("coeficiente"):
+        return "COEFICIENTE_DEL_MOTOR"
+    if tipo == "momento":
+        return "MOMENTO_O_TRANSFORMACION"
+    if tipo == "corte_pi":
+        return "CORTE_ESTRUCTURAL"
+    return "PROBABILIDAD_O_CONDUCTA"
+
+
+def _proposito_elemento(tipo: str) -> str:
+    if tipo == "celda_R":
+        return "ARBITRO_EMPIRICO_DE_EVALUACION; NO_PARAMETRO_M"
+    if tipo in {"celda_L", "celda_M", "celda_AGREGADO", "celda_D"}:
+        return "EVALUACION_DEL_MODELO; NO_ADOPCION_AUTOMATICA"
+    if tipo.startswith("coeficiente"):
+        return "PARAMETRIZACION_DEL_MOTOR"
+    if tipo == "momento":
+        return "CALIBRACION_O_HOLDOUT_SEGUN_CATALOGO"
+    if tipo == "corte_pi":
+        return "DECISION_ESTRUCTURAL_DEL_MODELO"
+    return "USO_DIRECTO_POR_CONSUMIDOR_DECLARADO"
+
+
+def _indice_conciliacion(cfg: dict) -> dict[str, dict]:
+    indice: dict[str, dict] = {}
+    for grupo in cfg.get("conciliacion_elementos", []):
+        for ident in grupo["elementos"]:
+            if ident in indice:
+                raise ValueError(f"elemento repetido en conciliación: {ident}")
+            indice[ident] = grupo
+    return indice
+
+
+def _oferta_resultado(fila: dict, proposito: str, evidencia: str) -> dict:
+    return {
+        "oferta_id": fila["resultado_id"],
+        "resultado_id": fila["resultado_id"],
+        "corrida_id": fila.get("corrida_id"),
+        "spec_id": fila.get("spec_id"),
+        "valor": fila.get("valor"),
+        "fuente": fila.get("fuente_replay") or evidencia,
+        "ola": "SEGUN_SPEC_SELLADA",
+        "estimando": fila.get("unidad"),
+        "unidad": fila.get("unidad"),
+        "poblacion": "SEGUN_SPEC_SELLADA_Y_CODIFICACION_CONGELADA",
+        "transformacion": "NINGUNA; valor leído del RESULT exacto",
+        "proposito": proposito,
+        "compatibilidad": "EXACTA_POR_REGLA_TIPO_Y_ARTEFACTO; NO_POR_SUBCADENA_RES",
+        "evidencia": evidencia,
+        "estado": fila.get("estado"),
+        "validacion_independiente": fila.get("validacion_independiente"),
+    }
+
+
+def _oferta_evaluacion(uso: dict, resultados: dict[str, dict], cfg: dict) -> dict | None:
+    tipo = uso.get("tipo_uso") or ""
+    regla = uso.get("reglas_impacto") or ""
+    consumidor = uso.get("consumidor") or ""
+    rid = None
+    if tipo == "celda_R":
+        rid = f"RESULT-R-{regla}-PUNTO"
+    elif tipo == "celda_M":
+        rid = f"RESULT-M-{regla}-P"
+    elif tipo == "celda_L":
+        sufijo = "L-CORPUS" if consumidor.endswith("L:L+corpus") else "L-SOLO"
+        rid = f"RESULT-TRIADA-{regla.replace('-', '_')}-{sufijo}"
+    elif tipo == "celda_AGREGADO":
+        rid = f"RESULT-TRIADA-{regla.replace('-', '_')}-EN-U3"
+    if not rid or rid not in resultados:
+        return None
+    evidencia = (cfg.get("fuente_codificacion_r") if tipo == "celda_R" else
+                 cfg.get("fuente_universo_triada")) or cfg["fuente_resultados"]
+    oferta = _oferta_resultado(
+        resultados[rid], _proposito_elemento(tipo), evidencia)
+    oferta["autoridad"] = (
+        "FP-370_FIRMADA_EJECUTADA" if tipo == "celda_R" else
+        "SPEC_Y_CORRIDA_DE_EVALUACION_SELLADAS")
+    return oferta
+
+
+def _campos_receta_faltantes(anterior: dict) -> list[str]:
+    mapa = {
+        "payload_ids": "payload_ids_legacy", "sha256": "sha256_legacy",
+        "script": "script_legacy", "spec": "spec_legacy",
+        "spec_sha": "spec_sha_legacy",
+    }
+    return [nombre for nombre, campo in mapa.items()
+            if str(anterior.get(campo) or "").startswith("NO-DECLARADO")]
+
+
 def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
                        raiz: Path = RAIZ) -> list[dict]:
-    """Concilia todo el alcance activo, incluso antes de cálculo/adopción."""
+    """Concilia el alcance por identidad y propósito, nunca por parecido textual."""
     usos = _tsv(raiz / cfg["fuente_usos"])
     resultados = {x["resultado_id"]: x for x in _tsv(
         raiz / cfg["fuente_resultados"])}
@@ -382,12 +518,7 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
     for fila in utilidad:
         utilidad_por_n.setdefault(fila["necesidad_id"], []).append(fila)
 
-    ofertas_por_elemento: dict[str, list[dict]] = {}
-    for fila in resultados.values():
-        if fila.get("origen") == "DEMANDA":
-            continue
-        for ident in set(re.findall(r"RES-\d{4}", fila.get("resultado_id") or "")):
-            ofertas_por_elemento.setdefault(ident, []).append(fila)
+    conciliacion = _indice_conciliacion(cfg)
 
     elementos = []
     for uso in usos:
@@ -397,27 +528,46 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
         resultado = resultados.get(resultado_id, {})
         regla = uso.get("reglas_impacto") or ""
         consumidor = uso["consumidor"]
-        necesidades = []
+        grupo = conciliacion.get(uso["resultado_id"], {})
+        necesidades = list(grupo.get("necesidades_nc", []))
         for ident, contrato in contratos.items():
             por_consumidor = consumidor in contrato.get("consumidores_consulta", [])
             por_regla = regla in contrato.get("reglas_motor", [])
             if por_consumidor or por_regla:
-                necesidades.append(ident)
+                if ident not in necesidades:
+                    necesidades.append(ident)
         adoptada = uso.get("corrida0_generacion") == "GEN2" and bool(resultado_id)
         bloqueada = adoptada and any(
             any(v.get("consumidor") == consumidor
                 for v in contratos[n].get("vinculos_consulta", []))
             for n in necesidades)
         anterior = demanda.get(uso["resultado_id"], {})
-        ofertas = ofertas_por_elemento.get(uso["resultado_id"], [])
+        ofertas = [dict(x) for x in grupo.get("ofertas", [])]
+        oferta_eval = _oferta_evaluacion(uso, resultados, cfg)
+        if oferta_eval:
+            ofertas.append(oferta_eval)
+        for oferta in ofertas:
+            rid = oferta.get("resultado_id")
+            if rid and rid in resultados:
+                fila = resultados[rid]
+                oferta.setdefault("valor", fila.get("valor"))
+                oferta.setdefault("corrida_id", fila.get("corrida_id"))
+                oferta.setdefault("spec_id", fila.get("spec_id"))
+                oferta.setdefault("estado", fila.get("estado"))
+                oferta.setdefault("validacion_independiente",
+                                  fila.get("validacion_independiente"))
         faltantes: list[str] = []
-        if adoptada:
+        if grupo:
+            faltantes.extend(grupo.get("faltantes", []))
+        elif oferta_eval:
+            faltantes = []
+        elif adoptada:
             if not resultado or resultado.get("estado") != "SELLADA":
                 faltantes.append("CALCULO")
             elif resultado.get("validacion_independiente") != "PASA":
                 faltantes.append("VALIDACION")
         else:
-            veredictos = " ".join(x.get("valor") or "" for x in ofertas)
+            veredictos = " ".join(str(x.get("valor") or "") for x in ofertas)
             if "ADOPTABLE" in veredictos and "NO-ADOPTABLE" not in veredictos:
                 faltantes.append("ADOPCION")
             elif ofertas:
@@ -428,12 +578,8 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
                 faltantes.append("PREPARACION")
         for ident in necesidades:
             etapa = contratos[ident].get("etapa_faltante")
-            if etapa and etapa not in faltantes:
+            if not grupo and etapa and etapa not in faltantes:
                 faltantes.append(etapa)
-        if not adoptada and not necesidades:
-            # Alta canónica creada por el conciliador: agrupa el déficit de
-            # contrato GEN2 sin convertir automáticamente el valor GEN1 en tarea.
-            necesidades.append("NC-0165")
         modelo = n_por_objeto.get(regla, [])
         necesidades_modelo = sorted({x["necesidad_id"] for x in modelo})
         utilidad_modelo = [
@@ -452,18 +598,27 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
              "fuente": x["fuente"], "fecha": x["fecha"]}
             for x in decisiones if x.get("objeto") in {
                 resultado.get("spec_id"), consumidor, regla,
+                uso["resultado_id"], anterior.get("corrida_natural"),
                 *(x.get("spec_id") for x in ofertas),
+                *(x.get("resultado_id") for x in ofertas),
+                *(grupo.get("autoridades", [])),
             }]
         evidencias = sorted(set(filter(None, (
             f"{cfg['fuente_usos']}#{uso['resultado_id']}",
             f"{cfg['fuente_resultados']}#{resultado_id}" if resultado_id else None,
-            *[f"{cfg['fuente_resultados']}#{x.get('resultado_id')}" for x in ofertas],
+            *[f"{cfg['fuente_resultados']}#{x.get('resultado_id')}"
+              for x in ofertas if x.get("resultado_id")],
+            *[x.get("evidencia") for x in ofertas],
             resultado.get("validacion_ref"), uso.get("fuente_replay"),
             *[x.get("fuentes_verificacion") for x in modelo],
             *[f"{cfg['fuente_necesidades']}#{n}" for n in necesidades],
             *[x["fuente"] for x in decisiones_resultado],
         ))))
-        if bloqueada:
+        if grupo.get("situacion"):
+            situacion = grupo["situacion"]
+        elif oferta_eval:
+            situacion = "EVALUACION_GEN2_DISPONIBLE"
+        elif bloqueada:
             situacion = "PENDIENTE_DATOS_O_DECISION_DE_USO"
         elif not adoptada:
             situacion = f"PENDIENTE_{faltantes[0]}"
@@ -474,20 +629,39 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
             situacion = f"PENDIENTE_{faltantes[0]}"
         else:
             situacion = "CUBIERTA"
-        siguientes = [contratos[n]["siguiente_accion"] for n in necesidades
-                      if n in contratos]
+        siguientes = list(grupo.get("siguiente_accion", []))
+        siguientes.extend(contratos[n]["siguiente_accion"] for n in necesidades
+                           if n in contratos)
         if not siguientes:
             if adoptada and faltantes == ["VALIDACION"]:
                 siguientes = ["ejecutor-validacion: validar el RESULT sellado antes de ampliar su uso"]
+            elif oferta_eval:
+                siguientes = ["consumir como evaluación bajo su spec; no trasladar R a M ni adoptar automáticamente"]
             elif not adoptada:
-                siguientes = ["motor-gen2: completar el contrato de cálculo vigente sin reutilizar el valor GEN1"]
+                campos = _campos_receta_faltantes(anterior)
+                detalle = ", ".join(campos) if campos else "definición, método y uso"
+                siguientes = [
+                    f"motor-gen2: completar {detalle} para "
+                    f"{anterior.get('corrida_natural') or uso['resultado_id']} "
+                    f"({uso['resultado_id']}, {uso.get('tipo_uso')}, {consumidor}); "
+                    "no reutilizar el valor GEN1"]
             else:
                 siguientes = ["mantener adopción; reabrir sólo por evidencia o decisión nueva aplicable"]
         elementos.append({
             "elemento_id": uso["resultado_id"],
             "consumidor": consumidor,
             "regla": regla,
+            "naturaleza": _naturaleza_elemento(uso.get("tipo_uso") or ""),
+            "proposito": _proposito_elemento(uso.get("tipo_uso") or ""),
             "uso_vigente": uso.get("uso_solicitado"),
+            "contrato_id": (grupo.get("contrato_id") or resultado.get("spec_id") or
+                            anterior.get("corrida_natural") or uso["resultado_id"]),
+            "identidad_contrato": {
+                "elemento_id": uso["resultado_id"],
+                "tipo": uso.get("tipo_uso"),
+                "consumidor": consumidor,
+                "regla": regla,
+            },
             "resultado_id": resultado_id,
             "resultado_estado": resultado.get("estado") or "SIN_RESULTADO_ADOPTADO",
             "validacion_independiente": resultado.get("validacion_independiente") or
@@ -501,7 +675,21 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
             },
             "situacion": situacion,
             "faltantes": faltantes,
-            "ejecutor_siguiente": (
+            "primer_faltante": faltantes[0] if faltantes else None,
+            "campos_contrato_faltantes": _campos_receta_faltantes(anterior),
+            "uso_disponible_hoy": bool(
+                grupo.get("uso_disponible_hoy", oferta_eval is not None or
+                          situacion == "CUBIERTA")),
+            "medicion_disponible_hoy": bool(
+                grupo.get("medicion_disponible_hoy", adoptada and
+                          not (uso.get("tipo_uso") or "").startswith("celda_"))),
+            "incertidumbre_pendiente": (
+                grupo.get("incertidumbre_pendiente") or
+                ("FP-371 sigue abierta sólo para EE/IC con diseño aproximado; "
+                 "el punto descriptivo de R está disponible"
+                 if uso.get("tipo_uso") == "celda_R" and regla == "DIN-M-01"
+                 else None)),
+            "ejecutor_siguiente": grupo.get("ejecutor") or (
                 "SONDA" if faltantes and faltantes[0] in {"FUENTE_O_VARIABLE", "ACCESO_O_DESCARGA"}
                 else "MESA" if faltantes and faltantes[0] == "DECISION_CIENTIFICA"
                 else "MOTOR_GEN2"),
@@ -512,7 +700,11 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
                 "SIN_RELACION_EXACTA_POR_REGLA; no equivale a ausencia de datos"),
             "utilidad_modelo": utilidad_modelo,
             "decisiones_posteriores": decisiones_resultado,
-            "ofertas_no_adoptadas": [x.get("resultado_id") for x in ofertas],
+            "ofertas_conciliadas": ofertas,
+            "ofertas_no_adoptadas": [x.get("resultado_id") or x["oferta_id"]
+                                      for x in ofertas],
+            "advertencias": (["R_ES_ARBITRO_DE_EVALUACION; NO_ES_PARAMETRO_M"]
+                              if uso.get("tipo_uso") == "celda_R" else []),
             "dependencias": {
                 "resultado": resultado.get("depende_de") or None,
                 "funciones": resultado.get("funciones_dependencia") or None,
@@ -567,6 +759,7 @@ def proyecta_demanda(cfg: dict, corte: dt.date, raiz: Path = RAIZ) -> dict:
                 "contrato_cientifico_completo"],
             "aplica_contrato_cientifico": contrato[
                 "aplica_contrato_cientifico"],
+            "naturaleza_necesidad": contrato["naturaleza_necesidad"],
             "evidencias": [f"{cfg['fuente_necesidades']}#{ident}"],
         })
     elementos = proyecta_elementos(cfg, contratos, raiz)
@@ -575,7 +768,8 @@ def proyecta_demanda(cfg: dict, corte: dt.date, raiz: Path = RAIZ) -> dict:
     fuentes = [cfg[k] for k in (
         "fuente_necesidades", "fuente_usos", "fuente_resultados",
         "fuente_demanda_resultados", "fuente_decisiones",
-        "fuente_necesidad_modelo", "fuente_utilidad_modelo")]
+        "fuente_necesidad_modelo", "fuente_utilidad_modelo",
+        "fuente_codificacion_r", "fuente_universo_triada")]
     fuentes_sha = {
         ruta: hashlib.sha256((raiz / ruta).read_bytes()).hexdigest()
         for ruta in fuentes
@@ -600,6 +794,8 @@ def proyecta_demanda(cfg: dict, corte: dt.date, raiz: Path = RAIZ) -> dict:
         "contrato_operativo_explicito_no_cientifico": sum(
             x["contrato_operativo"] == "COMPLETO_OPERATIVO_NO_CIENTIFICO"
             for x in filas),
+        "contrato_operativo_no_cientifico": sum(
+            not x["aplica_contrato_cientifico"] for x in filas),
         "contrato_cientifico_incompleto": sum(
             x["aplica_contrato_cientifico"] and
             not x["contrato_cientifico_completo"] for x in filas),
@@ -617,14 +813,7 @@ def proyecta_demanda(cfg: dict, corte: dt.date, raiz: Path = RAIZ) -> dict:
             bool(x["necesidades_nc_abiertas"]) for x in elementos),
         "situaciones_elementos": {
             estado: sum(x["situacion"] == estado for x in elementos)
-            for estado in (
-                "CUBIERTA", "PENDIENTE_FUENTE_O_VARIABLE",
-                "PENDIENTE_ACCESO_O_DESCARGA", "PENDIENTE_PREPARACION",
-                "PENDIENTE_CALCULO", "PENDIENTE_VALIDACION",
-                "PENDIENTE_ADOPCION", "PENDIENTE_DECISION_CIENTIFICA",
-                "SUSTITUIDA", "HISTORICA", "DESCARTADA", "FUERA_DE_ALCANCE",
-                "PENDIENTE_DATOS_O_DECISION_DE_USO",
-            )
+            for estado in sorted({x["situacion"] for x in elementos})
         },
         "seleccion_siguiente": seleccion_siguiente,
         "elementos_gen2": elementos,

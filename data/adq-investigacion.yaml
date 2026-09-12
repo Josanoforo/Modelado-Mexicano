@@ -9,40 +9,13 @@ fuente_demanda_resultados: data/corrida0/demanda-resultados.tsv
 fuente_decisiones: data/corrida0/decisiones.tsv
 fuente_necesidad_modelo: data/curacion-registro/necesidad-objeto-modelo.tsv
 fuente_utilidad_modelo: data/curacion-registro/utilidad-modelo.tsv
+fuente_codificacion_r: forense/prereg-duelo-v2/codificacion-R-v1_2.tsv
+fuente_universo_triada: forense/prereg-duelo-v2/universo-triada-v1_4.tsv
 estado_dir: data/curacion-registro/investigacion-estado
 reservas_runtime_dir: forense/adq-log/estado/investigacion
 reserva_minutos: 75
 
 necesidades:
-  - id: NC-0165
-    version_pregunta: "2026-09-11-demanda-activa-preadopcion-v1"
-    consumidor: "alcance activo de data/corrida0/usos.tsv"
-    uso: "conciliacion-operativa; no adopta ni reactiva GEN1"
-    prioridad_consumidor: 40
-    bloqueo_material: 3
-    lista: false
-    estado_ruteo: DELEGADA_A_MOTOR_GEN2
-    asignacion: motor-gen2
-    modos: []
-    poblacion: "todos los elementos con activo=SI, con independencia de corrida0_generacion"
-    unidad: "elemento resultado_id × consumidor"
-    periodo: "corte reproducible de las siete fuentes declaradas"
-    variables: "contrato corriente, oferta, preparación, cálculo, validación, adopción, decisión y NC"
-    evidencia_disponible: "usos/resultados/demanda-resultados/decisiones, necesidad-modelo, utilidad-modelo y no-corrido"
-    brecha: "elementos activos sin resultado GEN2 adoptado ni vínculo anterior en la vista de demanda"
-    investigacion_previa: "GEN1 se conserva sólo como antecedente; las decisiones vigentes estructuradas prevalecen"
-    frontera_previa: "no iniciar búsqueda hasta verificar que el primer faltante es fuente/variable o acceso"
-    siguiente_accion: "motor-gen2: resolver decisión o preparación por RES; despachar automáticamente a SONDA sólo las brechas de datos verificadas"
-    opciones_decision:
-      - APROBAR_CONTRATO_GEN2_Y_PREPARAR
-      - SUSTITUIR_CON_RESULTADO_VIGENTE_EXPLICITO
-      - DECLARAR_HISTORICA_DESCARTADA_O_FUERA_DE_ALCANCE_CON_EVIDENCIA
-    etapa_faltante: PREPARACION
-    responsable: motor-gen2
-    contrato_operativo: COMPLETO_OPERATIVO_NO_CIENTIFICO
-    contrato_cientifico_completo: false
-    aplica_contrato_cientifico: false
-
   - id: NC-0122
     version_pregunta: "2026-09-10-producto-fintech-exacto-v1"
     consumidor: "R1.6 dinero.credito.scoring_alternativo"
@@ -183,6 +156,10 @@ necesidades:
     investigacion_previa: "#737 fusionado; búsqueda contextual disponible con cobertura parcial y negativos expresamente acotados"
     frontera_previa: "metadato nativo/documento oficial con identidad exacta para 81 grupos ciegos y 33,528 identidades residuales"
     siguiente_accion: "continuar la materialización/indexación por el frente dueño; SONDA consume el overlay y no interpreta sus negativos como ausencia científica"
+    naturaleza_necesidad: OPERATIVA_TECNICA_O_DOCUMENTAL
+    contrato_operativo: COMPLETO_OPERATIVO_NO_CIENTIFICO
+    contrato_cientifico_completo: false
+    aplica_contrato_cientifico: false
 
   - id: NC-0037
     version_pregunta: "2026-09-11-tandas-ledger-v1"
@@ -206,3 +183,147 @@ necesidades:
     investigacion_previa: "búsqueda académica agotada; #735 consumido como panel descriptivo de entradas/salidas; vía comercial diferida por D18"
     frontera_previa: "reabrir sólo ante candidato concreto o respuesta humana"
     siguiente_accion: "conservar #735 como alcance menor sin llamarlo ledger; reabrir sólo ante instrumento con turno y pagos"
+
+# Los vínculos siguientes son deliberadamente exactos. Una coincidencia textual
+# de `RES-xxxx` dentro de un RESULT no constituye compatibilidad.
+conciliacion_elementos:
+  - elementos: [RES-0009]
+    contrato_id: CALC-ENCIG-0001/RES-0009
+    necesidades_nc: [NC-0107, NC-0153]
+    situacion: PENDIENTE_ACCESO_O_DESCARGA
+    faltantes: [ACCESO_O_DESCARGA]
+    ejecutor: TITULAR_ACCESO_Y_RECEPTOR_TECNICO
+    uso_disponible_hoy: false
+    autoridades: [MESA-10SEP:D07, MESA-10SEP:D08]
+    siguiente_accion:
+      - "titular: presentar expediente NC-0153; receptor: verificar enlace evento×canal y no adoptar la tasa discrepante"
+    incertidumbre_pendiente: "la regla de desempate de ID_TRA no está escrita; la oferta medida no reproduce el grano publicado"
+    ofertas:
+      - oferta_id: OFERTA-ENCIG-PRESENCIAL-NO-ADOPTABLE
+        resultado_id: RESULT-ENCIG-MOR-ADOPCION-P3-RES-0009
+        fuente: encig25_base_datos_csv
+        ola: ENCIG-2025
+        estimando: "tasa ponderada de solicitud/pago en rama presencial CD"
+        unidad: persona-evento
+        poblacion: "usuarios elegibles de trámites presenciales según spec CALC-ENCIG-0001"
+        transformacion: "deduplicación declarada en CALC-ENCIG-0001"
+        proposito: "evaluar reproducción de RES-0009, no sustituirla"
+        compatibilidad: "misma rama, pero NO-ADOPTABLE-POR-GRANO"
+        evidencia: data/corrida0/resultados.tsv#RESULT-ENCIG-MOR-ADOPCION-P3-RES-0009
+
+  - elementos: [RES-0011]
+    contrato_id: CALC-ENCIG-0001/RES-0011
+    necesidades_nc: [NC-0107, NC-0153]
+    situacion: PENDIENTE_ACCESO_O_DESCARGA
+    faltantes: [ACCESO_O_DESCARGA]
+    ejecutor: TITULAR_ACCESO_Y_RECEPTOR_TECNICO
+    uso_disponible_hoy: false
+    autoridades: [MESA-10SEP:D07, MESA-10SEP:D08]
+    siguiente_accion:
+      - "titular: presentar expediente NC-0153; receptor: verificar enlace evento×canal y no adoptar la tasa discrepante"
+    incertidumbre_pendiente: "la regla de desempate de ID_TRA no está escrita; la oferta medida no reproduce el grano publicado"
+    ofertas:
+      - oferta_id: OFERTA-ENCIG-DIGITAL-NO-ADOPTABLE
+        resultado_id: RESULT-ENCIG-MOR-ADOPCION-P3-RES-0011
+        fuente: encig25_base_datos_csv
+        ola: ENCIG-2025
+        estimando: "tasa ponderada de solicitud/pago en rama digital CD"
+        unidad: persona-evento
+        poblacion: "usuarios elegibles de trámites digitales según spec CALC-ENCIG-0001"
+        transformacion: "deduplicación declarada en CALC-ENCIG-0001"
+        proposito: "evaluar reproducción de RES-0011, no sustituirla"
+        compatibilidad: "misma rama, pero NO-ADOPTABLE-POR-GRANO"
+        evidencia: data/corrida0/resultados.tsv#RESULT-ENCIG-MOR-ADOPCION-P3-RES-0011
+
+  - elementos: [RES-0028]
+    contrato_id: PROPUESTA-RES-0028-COMPLEMENTO-U4
+    necesidades_nc: [NC-0085]
+    situacion: PENDIENTE_ADOPCION
+    faltantes: [ADOPCION]
+    ejecutor: MESA
+    uso_disponible_hoy: false
+    autoridades: [MESA-10SEP:D11:NC-0085]
+    siguiente_accion:
+      - "mesa: decidir si adopta 1 − RESULT-ENVIPE-DEN-P-C2-U4 para el consumidor U4; D11 autorizó la propuesta, no la adopción"
+    incertidumbre_pendiente: "el complemento es exhaustivo sólo dentro de U4; no representa 'otra razón' sobre U3 completo"
+    ofertas:
+      - oferta_id: PROPUESTA-RES-0028-COMPLEMENTO-U4
+        resultado_id: RESULT-ENVIPE-DEN-P-C2-U4
+        valor: 0.7056870125426878
+        fuente: envipe2025_csv
+        ola: ENVIPE-2025
+        estimando: "1 menos la proporción ponderada de miedo/desconfianza entre respuestas válidas U4"
+        unidad: delito
+        poblacion: "delitos no denunciados con BP1_23 en {01,02,03,04,05,06,07,08,09}; U4"
+        transformacion: "q = 1 - p sobre el mismo dominio U4"
+        proposito: "propuesta de adopción para denuncia_por_otra_razon"
+        compatibilidad: "unidad, población, ola y complemento exactos; no se extrapola a U3"
+        evidencia: data/corrida0/resultados.tsv#RESULT-ENVIPE-DEN-P-C2-U4
+
+  - elementos: [RES-0039, RES-0040, RES-0041, RES-0042]
+    contrato_id: PROPUESTA-ENVIPE-DENUNCIA-SEGURO-v1_0
+    necesidades_nc: [NC-0088]
+    situacion: PENDIENTE_DECISION_CIENTIFICA
+    faltantes: [DECISION_CIENTIFICA]
+    ejecutor: MESA
+    uso_disponible_hoy: false
+    siguiente_accion:
+      - "mesa: elegir entre la apertura estrecha descriptiva propuesta y una definición nueva; sólo después sellar y ejecutar la spec"
+    incertidumbre_pendiente: "la medición histórica exige dos capas (seguro y denuncia) que no tienen spec firmada"
+    ofertas:
+      - oferta_id: PROPUESTA-ENVIPE25-ROBO-VEHICULO-SEGURO-DENUNCIA
+        fuente: envipe2025_csv
+        ola: ENVIPE-2025
+        estimando: "P(denuncia | BPCOD=01, cobertura de seguro) y complementos por estrato de seguro"
+        unidad: delito
+        poblacion: "delitos de robo total de vehículo, BPCOD=01"
+        transformacion: "estratificar por BP2_1 y medir BP1_20 con FAC_DEL; diseño EST_DIS/UPM_DIS"
+        proposito: "medición descriptiva estrecha para RES-0039..0042"
+        compatibilidad: "coincide con la apertura legacy documentada; no mide razones de no denuncia"
+        evidencia: forense/prereg-caja/ENVIPE-DENUNCIA-SEGURO-propuesta-v1_0.md
+
+  - elementos: [RES-0063]
+    contrato_id: S7-L17-spec-v1_0/RAMA-B-LOGISTICA
+    necesidades_nc: []
+    situacion: MEDICION_ADOPTADA_SIN_COBERTURA_CONTRATO_GEN2
+    faltantes: [REGISTRO_CORRIDA0]
+    ejecutor: MOTOR_GEN2_REGISTRO
+    uso_disponible_hoy: false
+    medicion_disponible_hoy: true
+    siguiente_accion:
+      - "motor-gen2: registrar en corrida0 la medición ya adoptada; no volver a medir ni pedir decisión científica"
+    incertidumbre_pendiente: "sólo falta la representación registral; el motor ya consume 0.777762"
+    ofertas:
+      - oferta_id: ENSANUT2024-RAZON-NO-VACUNACION-LOGISTICA
+        fuente: ENSANUT2024-v2026-09-01/adultos_ensanut2024_w.stata.stata.zip
+        ola: ENSANUT-Continua-2024
+        estimando: "proporción ponderada de menciones logísticas entre razones de no vacunación"
+        unidad: mención de persona
+        poblacion: "12,924 adultos; 254 menciones sí, 179 personas distintas"
+        transformacion: "agrupación preespecificada de a0927; ponderador ponde_f"
+        proposito: "parámetro ya adoptado razon_no_vacunacion_logistica"
+        compatibilidad: "identidad exacta con la rama B cargada en milpa/tramite.yaml"
+        evidencia: forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md
+
+  - elementos: [RES-0064]
+    contrato_id: S7-L17-spec-v1_0/RAMA-B-NO-LOGISTICA
+    necesidades_nc: []
+    situacion: MEDICION_ADOPTADA_SIN_COBERTURA_CONTRATO_GEN2
+    faltantes: [REGISTRO_CORRIDA0]
+    ejecutor: MOTOR_GEN2_REGISTRO
+    uso_disponible_hoy: false
+    medicion_disponible_hoy: true
+    siguiente_accion:
+      - "motor-gen2: registrar en corrida0 el complemento ya adoptado; no volver a medir ni pedir decisión científica"
+    incertidumbre_pendiente: "sólo falta la representación registral; el motor ya consume 0.222238"
+    ofertas:
+      - oferta_id: ENSANUT2024-RAZON-NO-VACUNACION-NO-LOGISTICA
+        fuente: ENSANUT2024-v2026-09-01/adultos_ensanut2024_w.stata.stata.zip
+        ola: ENSANUT-Continua-2024
+        estimando: "complemento de la proporción logística entre razones de no vacunación"
+        unidad: mención de persona
+        poblacion: "12,924 adultos; 254 menciones sí, 179 personas distintas"
+        transformacion: "1 menos la agrupación logística preespecificada; ponderador ponde_f"
+        proposito: "parámetro ya adoptado razon_no_vacunacion_no_logistica"
+        compatibilidad: "identidad exacta con la rama B cargada en milpa/tramite.yaml"
+        evidencia: forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md
