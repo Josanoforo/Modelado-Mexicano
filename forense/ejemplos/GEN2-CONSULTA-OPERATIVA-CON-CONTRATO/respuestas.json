@@ -194,8 +194,11 @@
       "accion_consumidor": "NO_EMITIR_RESULTADO_SOLICITADO",
       "brecha": "no puede distinguir horizonte corto de ausencia de ahorro",
       "consumidor": "E05 / dinero.ahorro.horizonte",
-      "evidencias": [],
-      "fuente_estado": "contrato-operativo-inicial",
+      "evidencias": [
+        "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md",
+        "data/manifiesto.yaml"
+      ],
+      "fuente_estado": "investigacion-estado",
       "necesidad_id": "NC-0126",
       "suficiencia": {
         "conceptual": "NO_ACREDITADA",
