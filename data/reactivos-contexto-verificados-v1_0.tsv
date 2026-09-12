@@ -5,3 +5,17 @@ encuci2020	AP5_17	5.17 De esos contactos, en los últimos 12 meses, es decir de 
 encuci2020	AP5_18	5.18 En los últimos 12 meses, es decir de agosto a la fecha ¿hubo alguna ocasión en la que tuvo que darle a alguno de ellos una dádiva, un favor o dinero extra (que no sea la tarifa oficial) por un asunto o trámite?	PREGUNTA_COMPLETA	corrupción dádiva soborno	FD_ENCUCI2020.pdf	35	Sección 5, corrupción
 ensafi2023	P6_7	6.7 ¿Usted se ha atrasado en el pago de uno de estos préstamos o créditos?	PREGUNTA_COMPLETA	atraso deuda	ensafi2023/ensafi_2023_fd_xlsx.zip		miembro=ensafi_2023_fd.xlsx;hoja=TMODULO;fila=350
 ensafi2023	P6_10_2	6.10 Durante el último mes, para cubrir sus gastos, ¿usted utilizó el dinero que tenía ahorrado?	PREGUNTA_COMPLETA	afrontamiento ahorro	ensafi2023/ensafi_2023_fd_xlsx.zip		miembro=ensafi_2023_fd.xlsx;hoja=TMODULO;fila=365
+envipe2015	ID_HOG	Identificador del hogar	DESCRIPCION_ADMINISTRATIVA	identificador hogar	envipe2015/fd_envipe2015.pdf	12	THogar
+envipe2015	RESUL_H	Resultado de la visita al hogar	DESCRIPCION_ADMINISTRATIVA	resultado visita hogar	envipe2015/fd_envipe2015.pdf	12	THogar
+envipe2015	N_INF	Número de renglón del informante	DESCRIPCION_ADMINISTRATIVA	informante hogar	envipe2015/fd_envipe2015.pdf	12	THogar
+envipe2015	TOT_PER	Total de personas en el hogar	DESCRIPCION_ADMINISTRATIVA	tamaño hogar	envipe2015/fd_envipe2015.pdf	12	THogar
+envipe2015	PAREN	3.3 ¿Qué es (NOMBRE) del jefe(a) del hogar?	PREGUNTA_DICCIONARIO	parentesco jefe hogar	envipe2015/fd_envipe2015.pdf	13	TSDem
+envipe2015	SEXO	3.4 (NOMBRE) es hombre (NOMBRE) es mujer	PREGUNTA_DICCIONARIO	sexo integrante hogar	envipe2015/fd_envipe2015.pdf	13	TSDem
+envipe2015	EDAD	3.5 ¿Cuántos años cumplidos tiene (NOMBRE)?	PREGUNTA_DICCIONARIO	edad integrante hogar	envipe2015/fd_envipe2015.pdf	13	TSDem
+envipe2015	FAC_ELE	Ponderador requerido para estimar resultados de las preguntas de percepción de la seguridad pública y la victimización de la población de 18 años y más.	DESCRIPCION_ADMINISTRATIVA	factor expansión persona elegida	envipe2015/fd_envipe2015.pdf	31	TPer_Vic1
+envipe2015	FAC_ELE_AM	Ponderador requerido para estimar resultados de las preguntas de percepción de la seguridad pública y la victimización de la población de 18 años y más, ajustado para las 32 áreas metropolitanas.	DESCRIPCION_ADMINISTRATIVA	factor expansión persona elegida área metropolitana	envipe2015/fd_envipe2015.pdf	32	TPer_Vic1
+envipe2015	FAC_ELE	Ponderador requerido para estimar resultados de las preguntas de percepción de la seguridad pública y la victimización de la población de 18 años y más.	DESCRIPCION_ADMINISTRATIVA	factor expansión persona elegida	envipe2015/fd_envipe2015.pdf	49	TPer_Vic2
+envipe2015	FAC_ELE_AM	Ponderador requerido para estimar resultados de las preguntas de percepción de la seguridad pública y la victimización de la población de 18 años y más, ajustado para las 32 áreas metropolitanas.	DESCRIPCION_ADMINISTRATIVA	factor expansión persona elegida área metropolitana	envipe2015/fd_envipe2015.pdf	50	TPer_Vic2
+envipe2015	TD_TIPO	Total de delitos por tipo	DESCRIPCION_ADMINISTRATIVA	total delitos tipo	envipe2015/fd_envipe2015.pdf	50	TMod_Vic
+envipe2015	AREAM_OCU	Área Metropolitana	DESCRIPCION_ADMINISTRATIVA	área metropolitana	envipe2015/fd_envipe2015.pdf	51	TMod_Vic
+envipe2015	RESUL_H	Resultado de la visita al hogar	DESCRIPCION_ADMINISTRATIVA	resultado visita hogar	envipe2015/fd_envipe2015.pdf	52	TMod_Vic
