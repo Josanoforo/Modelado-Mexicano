@@ -38,6 +38,10 @@ def _resultado(ids, estado="intentos_documentados", resultados=None,
         "ejecutor": "codex",
         "seleccion": {"calculada": True, "corte": "2026-09-11", "maximo": 5,
                       "elegidos": ids, "excluidos_con_causa": []},
+        "seleccion_investigacion": {
+            "calculada": True, "corte": "2026-09-11", "maximo": 0,
+            "elegidos": [], "excluidos_con_causa": []},
+        "investigaciones": [],
         "resultado_sustantivo": estado,
         "resultados_por_objeto": resultados or [],
         "publicacion_trabajo": {
@@ -147,6 +151,47 @@ def prueba_cola_vacia_mecanica_valida():
         td.cleanup()
 
 
+def prueba_cola_descargas_vacia_con_investigacion_exige_evidencia():
+    td, raiz = _raiz_fixture()
+    try:
+        evidencia = raiz / "forense" / "sonda.md"
+        evidencia.write_text("consulta web y frontera verificables\n", encoding="utf-8")
+        estado_dir = raiz / "data" / "curacion-registro" / "investigacion-estado"
+        estado_dir.mkdir()
+        (estado_dir / "NC-X.json").write_text(json.dumps({
+            "version_pregunta": "v1", "evidencias": ["forense/sonda.md"]}), encoding="utf-8")
+        (raiz / "data" / "manifiesto.yaml").write_text("[]\n", encoding="utf-8")
+        (raiz / "data" / "curacion-registro" / "cola-adquisicion-registro.tsv").write_text(
+            "fuente_canonica\testado_A4A5\tnota\n", encoding="utf-8")
+        sel_inv = {"corte": "2026-09-11", "maximo": 3,
+                   "elegidos": [{"id": "NC-X", "version_pregunta": "v1"}],
+                   "excluidos": []}
+        caso = _resultado([], estado="descubrimiento_documentado", publicacion="publicada")
+        caso["seleccion_investigacion"] = {
+            "calculada": True, "corte": "2026-09-11", "maximo": 3,
+            "elegidos": ["NC-X"], "excluidos_con_causa": []}
+        caso["investigaciones"] = [{
+            "necesidad_id": "NC-X", "version_pregunta": "v1",
+            "estado": "sin_hallazgo_acotado", "modos_ejecutados": ["CONSTRUCTO"],
+            "consultas": [{"mecanismo": "web_search", "consulta": "objeto X México",
+                           "resultado": "sin candidato exacto"}],
+            "candidatas": [], "evidencias": ["forense/sonda.md"],
+            "frontera_no_examinada": "repositorios con acceso institucional",
+            "cursor_continuacion": "reanudar ante nueva edición", "proxima_revision": "2026-10-11",
+            "suficiencia": {"identidad": "NO_ACREDITADA", "conceptual": "NO_ACREDITADA",
+                            "poblacional": "NO_ACREDITADA", "seleccion_no_respuesta": "NO_ACREDITADA",
+                            "unidad": "NO_ACREDITADA", "temporalidad": "NO_ACREDITADA",
+                            "diseno": "NO_ACREDITADA", "identificacion": "NO_APLICA",
+                            "uso_habilitado": "INCOMPATIBLE", "pregunta_original": "ABIERTA"},
+        }]
+        r = D.valida_resultado_adquisicion(caso, _seleccion([]), sel_inv,
+                                            comprobar_remoto=False, raiz=raiz)
+        afirma(r["valido"] and r["resultado_trabajo"] == "descubrimiento_documentado",
+               f"investigación real con cola de bytes vacía fue rechazada: {r}")
+    finally:
+        td.cleanup()
+
+
 def prueba_vigilante_acredita_cola_vacia_sin_llm():
     linea = ("[ADQ] 2026-09-11 17:10: invocado=no motivo=COLA-VACIA exit=0 "
              "resultado=cola_vacia resultado_trabajo=cola_vacia "
@@ -218,6 +263,7 @@ def main():
     prueba_resultado_parcial_y_publicacion_separada()
     prueba_adquisicion_exige_archivo_manifiesto_pertinente()
     prueba_cola_vacia_mecanica_valida()
+    prueba_cola_descargas_vacia_con_investigacion_exige_evidencia()
     prueba_vigilante_acredita_cola_vacia_sin_llm()
     prueba_h3_fetch_128_deja_identidad_y_cierre()
     prueba_launcher_rechazado_no_pisa_heartbeat()
@@ -226,7 +272,7 @@ def main():
         for fallo in FALLOS:
             print(f"  · {fallo}")
         return 1
-    print("OK -- test_adq_cierre_verificable.py: 7 casos, 0 fallos")
+    print("OK -- test_adq_cierre_verificable.py: 8 casos, 0 fallos")
     return 0
 
 

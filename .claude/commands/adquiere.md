@@ -90,16 +90,21 @@ inválida es `FECHA-INDETERMINADA` (va a conciliación de mesa) — no se
 descarta como "sin intento" ni se infiere como "hoy".
 
 **Handoff autorizado — cuatro elementos, no tres, y la autorización es un
-TOKEN, no prosa** (`ACTO GEN2-ADQ-CONTRATO-FIX`, P1/H1). Una candidata que
+TOKEN, no prosa** (`ACTO GEN2-ADQ-CONTRATO-FIX`, P1/H1; ampliado por GEN2-38).
+Una candidata que
 llega de `/sonda` habilita adquisición solo si la nota trae: (a) el objeto
 faltante, (b) la vía nueva, (c) la **autorización con su cita**, y (d) el
 modo de invocación por ID. La cita de (c) se escribe
-`AUTORIZADA:<quién>/<AAAA-MM-DD>/<objeto>`, con `<objeto>` igual a la
+`AUTORIZADA:<quién>/<AAAA-MM-DD>/<objeto>` o, dentro del mandato GEN2-38,
+`AUTORIZADA-POR-ALCANCE:Jonas/2026-09-12/GEN2-38/<objeto>`, con `<objeto>` igual a la
 `fuente_canonica` de ESA fila — una cita que nombra otra fila no la
 autoriza. Ausencia, negación (`NO-AUTORIZADA` / `NO AUTORIZADA`, con guion o
 con espacio) o ambigüedad → `SONDA-LATERAL-RECOMENDADA` **permanece
 propuesta** y el selector la excluye con esa razón — recomendar no es
-autorizar (ver §6-bis). La invocación nominal (`--nombrada`) **no sustituye**
+autorizar (ver §6-bis). La metadata `RESIDUAL-ADQ-V1.autoridad` se interpreta
+como JSON y manda sobre historia anterior: una recomendación vieja no borra
+un token vigente. Negación actual, objeto distinto o fecha inválida bloquean.
+La invocación nominal (`--nombrada`) **no sustituye**
 la autorización cuando el contrato exige ambas.
 
 **No se activan en bloque** `SIN-FETCH`, `OBTENIDO-PARCIAL` ni los negativos.

@@ -78,6 +78,12 @@ Lee completa .claude/commands/adquiere.md y ejecuta ese procedimiento en
 este clon, entorno CAJA (no NUBE): confirma
 /home/pc0/mm-corpus/raw montado y red real a inegi.org.mx antes de
 caminar una sola fila.
+Lee también completa .claude/commands/sonda.md. Antes de cerrar por cero
+descargas, ejecuta la selección de investigación que entrega el wrapper. Para
+cada necesidad elegida busca realmente fuera del corpus, persiste progreso y
+frontera por versión, y enlaza toda candidata pública al mandato GEN2-38. Si
+ambas selecciones están vacías, cierra sin LLM; si hay investigación aunque
+no haya descarga, no cierres como cola vacía.
 La seleccion NO se re-decide aqui: el contrato unico de elegibilidad y
 orden vive en .claude/commands/adquiere.md seccion 1, y se proyecta con
 `python3 tools/adq_doctor.py --selecciona --maximo 5`. Pega su salida

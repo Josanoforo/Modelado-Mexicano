@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "additionalProperties": false,
-  "required": ["ejecutor", "seleccion", "resultado_sustantivo", "resultados_por_objeto", "publicacion_trabajo", "resumen"],
+  "required": ["ejecutor", "seleccion", "seleccion_investigacion", "investigaciones", "resultado_sustantivo", "resultados_por_objeto", "publicacion_trabajo", "resumen"],
   "properties": {
     "ejecutor": {"const": "codex"},
     "seleccion": {
@@ -19,7 +19,82 @@
     },
     "resultado_sustantivo": {
       "type": "string",
-      "enum": ["adquisicion_obtenida", "intentos_documentados", "cola_vacia", "fallo"]
+      "enum": ["adquisicion_obtenida", "intentos_documentados", "descubrimiento_documentado", "descubrimiento_y_adquisicion", "cola_vacia", "fallo"]
+    },
+    "seleccion_investigacion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["calculada", "corte", "maximo", "elegidos", "excluidos_con_causa"],
+      "properties": {
+        "calculada": {"const": true},
+        "corte": {"type": "string"},
+        "maximo": {"type": "integer", "minimum": 0},
+        "elegidos": {"type": "array", "items": {"type": "string"}},
+        "excluidos_con_causa": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "investigaciones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["necesidad_id", "version_pregunta", "estado", "modos_ejecutados", "consultas", "candidatas", "evidencias", "frontera_no_examinada", "cursor_continuacion", "proxima_revision", "suficiencia"],
+        "properties": {
+          "necesidad_id": {"type": "string", "minLength": 1},
+          "version_pregunta": {"type": "string", "minLength": 1},
+          "estado": {"type": "string", "enum": ["candidata_publica", "continua", "barrera", "sin_hallazgo_acotado", "evidencia_existente"]},
+          "modos_ejecutados": {"type": "array", "minItems": 1, "items": {"enum": ["CONSTRUCTO", "HERMANAS", "LATERAL"]}},
+          "consultas": {
+            "type": "array", "minItems": 1,
+            "items": {
+              "type": "object", "additionalProperties": false,
+              "required": ["mecanismo", "consulta", "resultado"],
+              "properties": {
+                "mecanismo": {"type": "string", "minLength": 1},
+                "consulta": {"type": "string", "minLength": 1},
+                "resultado": {"type": "string", "minLength": 1}
+              }
+            }
+          },
+          "candidatas": {
+            "type": "array",
+            "items": {
+              "type": "object", "additionalProperties": false,
+              "required": ["id", "url", "objeto", "verificacion_contenido", "nuevo_respecto_corpus", "cobertura", "acceso", "siguiente_accion"],
+              "properties": {
+                "id": {"type": "string", "minLength": 1},
+                "url": {"type": "string", "minLength": 1},
+                "objeto": {"type": "string", "minLength": 1},
+                "verificacion_contenido": {"type": "string", "minLength": 1},
+                "nuevo_respecto_corpus": {"type": "boolean"},
+                "cobertura": {"type": "string", "minLength": 1},
+                "acceso": {"type": "string", "minLength": 1},
+                "siguiente_accion": {"type": "string", "minLength": 1}
+              }
+            }
+          },
+          "evidencias": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+          "frontera_no_examinada": {"type": "string", "minLength": 1},
+          "cursor_continuacion": {"type": "string", "minLength": 1},
+          "proxima_revision": {"type": "string", "format": "date"},
+          "suficiencia": {
+            "type": "object", "additionalProperties": false,
+            "required": ["identidad", "conceptual", "poblacional", "seleccion_no_respuesta", "unidad", "temporalidad", "diseno", "identificacion", "uso_habilitado", "pregunta_original"],
+            "properties": {
+              "identidad": {"enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
+              "conceptual": {"enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
+              "poblacional": {"enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
+              "seleccion_no_respuesta": {"enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
+              "unidad": {"enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
+              "temporalidad": {"enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
+              "diseno": {"enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
+              "identificacion": {"enum": ["ACREDITADA", "PARCIAL", "NO_ACREDITADA", "NO_APLICA"]},
+              "uso_habilitado": {"enum": ["APTA_USO_DECLARADO", "APTA_ALCANCE_MENOR", "INCOMPATIBLE"]},
+              "pregunta_original": {"enum": ["ABIERTA", "CUBIERTA"]}
+            }
+          }
+        }
+      }
     },
     "resultados_por_objeto": {
       "type": "array",

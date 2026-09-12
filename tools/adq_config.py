@@ -240,7 +240,7 @@ def ejecutor_resuelto(cfg=None, config_path=None, entorno=None):
         if not isinstance(codex, dict):
             raise ConfiguracionError("codex debe ser un mapa cuando ejecutor=codex")
         requeridas = ("binario", "modelo", "sandbox", "aprobaciones",
-                      "red_workspace_write", "directorio_adicional",
+                      "red_workspace_write", "busqueda_web", "directorio_adicional",
                       "esquema_resultado")
         faltan = [k for k in requeridas if k not in codex]
         if faltan:
@@ -251,6 +251,8 @@ def ejecutor_resuelto(cfg=None, config_path=None, entorno=None):
             raise ConfiguracionError("codex.aprobaciones debe ser never para el job no interactivo")
         if codex["red_workspace_write"] is not True:
             raise ConfiguracionError("codex.red_workspace_write debe ser true")
+        if codex["busqueda_web"] is not True:
+            raise ConfiguracionError("codex.busqueda_web debe ser true para descubrimiento externo")
         resultado["codex"] = dict(codex)
     return resultado
 
