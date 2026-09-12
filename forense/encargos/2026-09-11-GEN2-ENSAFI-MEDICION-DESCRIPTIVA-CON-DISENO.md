@@ -1,8 +1,8 @@
 # 27 · GEN2 · ENSAFI: medición descriptiva con diseño
 
-ACTO: GEN2-ENSAFI-MEDICION-DESCRIPTIVA-CON-DISENO  
-ENTORNO: CAJA  
-Estado de despacho: **EJECUTABLE TRAS MERGE DE #723**.  
+ACTO: GEN2-ENSAFI-MEDICION-DESCRIPTIVA-CON-DISENO
+ENTORNO: CAJA
+Estado de despacho: **EJECUTABLE TRAS MERGE DE #723**.
 Resultado: cálculo registrado de atraso y afrontamiento, con denominadores explícitos e incertidumbre acreditada donde el diseño lo permita.
 
 
