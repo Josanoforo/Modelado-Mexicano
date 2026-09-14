@@ -1,0 +1,225 @@
+{
+ "corrida_id": "CALC-B-MARCO-ENCIG-0001--3be11ba6cd7e",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "ADR-46 -- contaminacion TOTAL declarada por el encargo y re-declarada aqui: los valores R/M/L de las 14 celdas estan en el repo y esta sesion pudo verlos; el medidor y las reglas se congelaron SIN abrir corridas-R/*.json ni L-extraido ni M-*.json (solo se leyo su ESTRUCTURA: llaves, variable, universo, codificacion). Por eso la regla es fija, tonta y pre-declarada por serie, heredada de CALC-B-0001, y ninguna decision de esta spec depende de un valor observado.",
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_firma": "FIRMA DE MESA, 14/sep/2026, verbatim en el encargo archivado forense/encargos/2026-09-14-GEN2-B-MARCO.md: «FIRMA DE CONTADOR con OBJETO, incluida (patron de la casa): cuenta_gen2 = SI para los CALC-B que este acto selle; el acto la escribe citando este parrafo, el merge la perfecciona.» Objeto: este CALC-B. El merge de mesa perfecciona la firma.",
+  "familia": "B-MARCO",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": "NO -- escrito y congelado en el COMMIT-1 (probado solo sobre datos SINTETICOS), corrido en el COMMIT-2 del mismo acto",
+  "reglas_bajo_prueba": "NINGUNA. Ninguna cifra de este CALC entra a un veredicto de regla (T9). No re-corre la triada ni toca su veredicto.",
+  "spec_sellada": "forense/prereg-caja/B-MARCO-spec-v1_0.md",
+  "spec_sellada_sha256": "e61969b9cbf302004fd6b3bf04f2b3785edda331d1165dac6603acd404d1ab38",
+  "sucesora_de": "CALC-B-0001 (prereg-caja-B-REMESAS) -- sucesion de familia por extension, no reescritura: CALC-B-0001 no se toca",
+  "tipo": "LINEA-BASE-TEMPORAL-B-POR-SERIE",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-14T18:18:58Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 412,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "3be11ba6cd7ed7f83ef13b8358dd30e00f76419f",
+  "git_rama": "acto/gen2-b-marco",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "3be11ba6cd7ed7f83ef13b8358dd30e00f76419f",
+ "input_ids": [
+  "encig2019_csv",
+  "encig2021_csv",
+  "IN-B-SELECTOR",
+  "IN-B-MARCO-SPEC-SELLADA"
+ ],
+ "input_sha256": {
+  "IN-B-MARCO-SPEC-SELLADA": "e61969b9cbf302004fd6b3bf04f2b3785edda331d1165dac6603acd404d1ab38",
+  "IN-B-SELECTOR": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
+  "encig2019_csv": "61f49f6149729a7f22c4a64310dd894ec645ebe8b40110cac3fb32125a6ed979",
+  "encig2021_csv": "c92ea34c7c57237c49ca3d8d99382e340b5939c371ce820332876f7c4c62c56a"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "brazos": [
+   "OPERATIVO",
+   "PERSISTENCIA"
+  ],
+  "codificacion": {
+   "cero": [
+    2
+   ],
+   "tipo": "codigos",
+   "uno": [
+    1
+   ]
+  },
+  "firma_que_lo_autoriza": "FIRMA DE MESA 14/sep/2026 (en el encargo archivado) -- «ya tenemos caja disponible»; sucesor declarado de NC-0079",
+  "fuente_acto": "ACTO GEN2-B-MARCO · CALC-B-MARCO-ENCIG-0001",
+  "metodo_ic": "bootstrap de UPM CON REEMPLAZO dentro de estrato, conservando el numero de UPM por estrato; percentiles 2.5/97.5 -- implementacion VERBATIM de CALC-B-0001",
+  "n_minimo_celda": 10,
+  "objetivos": [
+   {
+    "celda": "TRA-M-07",
+    "ola": "2021"
+   }
+  ],
+  "olas": [
+   {
+    "basename_csv": "conjunto_de_datos_encig2019_01_sec1_3_4_5_8_9_10.csv",
+    "columnas": {
+     "desenlace": "P8_3_1",
+     "estrato": "EST_DIS",
+     "ponderador": "FAC_P18",
+     "upm": "UPM_DIS"
+    },
+    "directorio": "conjunto_de_datos_encig2019_01_sec1_3_4_5_8_9_10",
+    "disponible_desde_operativo": "2020-05-21",
+    "formato": "CSV",
+    "metadato_version_verbatim": "metadatos_ENCIG_2019.txt: Identifier=DDI-MEX-INEGI-ENCIG-2019-V01; Modified=2020-05-21",
+    "ola": "2019",
+    "payload_id": "encig2019_csv",
+    "temporal_verbatim": "2019-01-01-2019-12-31"
+   },
+   {
+    "basename_csv": "conjunto_de_datos_encig2021_01_sec1_A_3_4_5_8_9_10.csv",
+    "columnas": {
+     "desenlace": "P8_3_1",
+     "estrato": "EST_DIS",
+     "ponderador": "FAC_P18",
+     "upm": "UPM_DIS"
+    },
+    "directorio": "conjunto_de_datos_encig2021_01_sec1_A_3_4_5_8_9_10",
+    "disponible_desde_operativo": "2022-05-24",
+    "formato": "CSV",
+    "metadato_version_verbatim": "metadatos_encig_2021.txt: Identifier=DDI-MEX-INEGI-ENCIG-2021-V01; Modified=2022-05-24. (con punto final, verbatim del payload)",
+    "ola": "2021",
+    "payload_id": "encig2021_csv",
+    "temporal_verbatim": "2021-01-01-2021-12-31."
+   }
+  ],
+  "ranura_no_preregistrada": "Nadie pre-registro el metodo de IC para estas series bajo B. Se hereda el de CALC-B-0001 (misma implementacion, misma semilla) y se declara; no se espera coincidencia digito a digito con los IC de corridas-R (otra implementacion: ultimate cluster analitico).",
+  "selector_sha256": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
+  "serie": {
+   "codificacion": "y=1 si P8_3_1=='1' (Si); y=0 si '2' (No); 9 (No sabe/no responde) y blanco FUERA",
+   "encuesta": "ENCIG",
+   "reactivo": "seccion VIII P8_3_1 -- Durante <anio>, para agilizar, realizar, evitar procedimientos o multas en alguno de estos tramites, pagos o solicitudes: ¿un servidor publico o empleado del gobierno intento apropiarse o le solicito de forma directa algun beneficio (dinero, regalos o favores) que usted pudiera otorgarle?",
+   "segmento": "nacional",
+   "unidad": "proporcion",
+   "universo": "personas de 18 anios y mas de la tabla sec1_..._8_9_10 (la tabla ya es el universo de la seccion VIII), sin filtro adicional"
+  },
+  "serie_rotulo": "ENCIG",
+  "umbral_roza_el_borde": 0.0001
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-BM-ENCIG-2019-EXPANDIDOS",
+  "RESULT-BM-ENCIG-2019-IC-HI",
+  "RESULT-BM-ENCIG-2019-IC-LO",
+  "RESULT-BM-ENCIG-2019-METADATO-TEMPORAL",
+  "RESULT-BM-ENCIG-2019-METADATO-VERSION",
+  "RESULT-BM-ENCIG-2019-N",
+  "RESULT-BM-ENCIG-2019-N-FILAS-LEIDAS",
+  "RESULT-BM-ENCIG-2019-N-FUERA-CODIGO",
+  "RESULT-BM-ENCIG-2019-N-SIN-DISENO",
+  "RESULT-BM-ENCIG-2019-N-SIN-PONDERADOR",
+  "RESULT-BM-ENCIG-2019-P",
+  "RESULT-BM-ENCIG-2019-VEREDICTO",
+  "RESULT-BM-ENCIG-2021-CELDA",
+  "RESULT-BM-ENCIG-2021-EXPANDIDOS",
+  "RESULT-BM-ENCIG-2021-IC-HI",
+  "RESULT-BM-ENCIG-2021-IC-LO",
+  "RESULT-BM-ENCIG-2021-METADATO-TEMPORAL",
+  "RESULT-BM-ENCIG-2021-METADATO-VERSION",
+  "RESULT-BM-ENCIG-2021-N",
+  "RESULT-BM-ENCIG-2021-N-FILAS-LEIDAS",
+  "RESULT-BM-ENCIG-2021-N-FUERA-CODIGO",
+  "RESULT-BM-ENCIG-2021-N-SIN-DISENO",
+  "RESULT-BM-ENCIG-2021-N-SIN-PONDERADOR",
+  "RESULT-BM-ENCIG-2021-P",
+  "RESULT-BM-ENCIG-2021-VEREDICTO",
+  "RESULT-BM-ENCIG-BIS-LECTURA-OPERATIVO",
+  "RESULT-BM-ENCIG-BIS-LECTURA-PERSISTENCIA",
+  "RESULT-BM-ENCIG-N-PREDICCIONES-OPERATIVO",
+  "RESULT-BM-ENCIG-N-PREDICCIONES-PERSISTENCIA",
+  "RESULT-BM-ENCIG-OPERATIVO-2021-DENTRO-IC",
+  "RESULT-BM-ENCIG-OPERATIVO-2021-ERROR",
+  "RESULT-BM-ENCIG-OPERATIVO-2021-ERROR-ABS",
+  "RESULT-BM-ENCIG-OPERATIVO-2021-ESTADO",
+  "RESULT-BM-ENCIG-OPERATIVO-2021-FUENTE",
+  "RESULT-BM-ENCIG-OPERATIVO-2021-MARGEN-AL-BORDE",
+  "RESULT-BM-ENCIG-OPERATIVO-2021-METODO",
+  "RESULT-BM-ENCIG-OPERATIVO-2021-P",
+  "RESULT-BM-ENCIG-PERSISTENCIA-2021-DENTRO-IC",
+  "RESULT-BM-ENCIG-PERSISTENCIA-2021-ERROR",
+  "RESULT-BM-ENCIG-PERSISTENCIA-2021-ERROR-ABS",
+  "RESULT-BM-ENCIG-PERSISTENCIA-2021-ESTADO",
+  "RESULT-BM-ENCIG-PERSISTENCIA-2021-FUENTE",
+  "RESULT-BM-ENCIG-PERSISTENCIA-2021-MARGEN-AL-BORDE",
+  "RESULT-BM-ENCIG-PERSISTENCIA-2021-METODO",
+  "RESULT-BM-ENCIG-PERSISTENCIA-2021-P"
+ ],
+ "script_blob_sha256": "b384af24f00b39326d2faff73ee41e2ac9e5cc8f484aa7504b8deecff3f1378d",
+ "script_path": "data/corrida0/CALC-B-MARCO-ENCIG-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "nota": "semilla HEREDADA de CALC-B-0001 a proposito: la ola ENIGH 2016 debe reproducir punto E IC del ensayo original",
+  "rng": "numpy.PCG64",
+  "valor": 20260908
+ },
+ "spec_id": "CALC-B-MARCO-ENCIG-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "8056c32e667d1c582dbfd8f2595d5e0c1847f09a0e86ee189e6297b23dc34b70",
+ "spec_yaml_sha256": "df331521f1089c2e8776a8af3e5f20ad2dbfb6782651f2bab50b5a8ca1090f9a",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "Bootstrap fijado por seed + rng declarados y sumas en orden fijo: la unica diferencia esperable entre dos corridas del mismo arbol es redondeo de float64 al reasociar sumas ponderadas. Enteros y textos EXACTO.",
+  "tipo": "flotante"
+ }
+}

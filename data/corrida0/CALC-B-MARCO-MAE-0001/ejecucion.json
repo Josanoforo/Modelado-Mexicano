@@ -1,0 +1,436 @@
+{
+ "corrida_id": "CALC-B-MARCO-MAE-0001--ca4a57db30d6",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "ADR-46 -- contaminacion TOTAL declarada por el encargo y re-declarada aqui: los valores R/M/L de las 14 celdas estan en el repo y esta sesion pudo verlos; el medidor y las reglas se congelaron SIN abrir corridas-R/*.json ni L-extraido ni M-*.json (solo se leyo su ESTRUCTURA: llaves, variable, universo, codificacion). Por eso la regla es fija, tonta y pre-declarada por serie, heredada de CALC-B-0001, y ninguna decision de esta spec depende de un valor observado.",
+  "cuenta_gen2": "NO",
+  "cuenta_gen2_nota": "Consume corridas-R (arbitros GEN1): la regla E.1 lo resuelve sola como envuelto_legacy; no se le escribe firma de contador (sellada §7.7).",
+  "familia": "B-MARCO",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": "NO -- medidor.py y spec.md congelados en el COMMIT-1 (probados sobre datos SINTETICOS); spec.yaml instanciado tras sellar las tres series, porque declara sus resultados.json por sha256",
+  "reglas_bajo_prueba": "NINGUNA. No lee M ni L, no ordena corredores, no adjudica: el veredicto de la triada no se toca (T9).",
+  "spec_sellada": "forense/prereg-caja/B-MARCO-spec-v1_0.md",
+  "spec_sellada_sha256": "e61969b9cbf302004fd6b3bf04f2b3785edda331d1165dac6603acd404d1ab38",
+  "tipo": "ASIENTO-LINEA-BASE-B-SOBRE-MARCO",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-14T18:19:47Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 412,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "ca4a57db30d6a03cdce223b38b72be2dbe6c0eaf",
+  "git_rama": "acto/gen2-b-marco",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "ca4a57db30d6a03cdce223b38b72be2dbe6c0eaf",
+ "input_ids": [
+  "IN-BM-ENVIPE",
+  "IN-BM-ENCIG",
+  "IN-BM-ENIGH",
+  "IN-B-0001",
+  "IN-MARCO",
+  "IN-B-MARCO-SPEC-SELLADA",
+  "IN-R-CIV-M-01",
+  "IN-R-CIV-M-02",
+  "IN-R-CIV-M-04",
+  "IN-R-CIV-M-10",
+  "IN-R-CIV-M-12",
+  "IN-R-CIV-M-13",
+  "IN-R-FAM-M-05",
+  "IN-R-FAM-M-06",
+  "IN-R-FAM-M-07",
+  "IN-R-TRA-M-07"
+ ],
+ "input_sha256": {
+  "IN-B-0001": "87e20e5aa2923fcc4b206734fa13ec321d3b036d61edd48eb0efd5bd369f263d",
+  "IN-B-MARCO-SPEC-SELLADA": "e61969b9cbf302004fd6b3bf04f2b3785edda331d1165dac6603acd404d1ab38",
+  "IN-BM-ENCIG": "e5f2e22c6ea9d56b6af242e896772fa3efefe40d2c5096caeedad2da10386b9b",
+  "IN-BM-ENIGH": "f3583bfc78981e44fde88c4a9410bfa8169e17764a1efd9a74a78ff43fa77791",
+  "IN-BM-ENVIPE": "55de801476ad35ccaf9dfbc56a49a3d9533762d45d274ea9cc323027d0fe88cf",
+  "IN-MARCO": "f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a",
+  "IN-R-CIV-M-01": "919fb4e2ffe1e2ff73c84616420c9635b59a4d79a6cb37042fae5a29e9f70cfe",
+  "IN-R-CIV-M-02": "d9c6926e421ea7dd6048d6f04d5f10914e32566cb07ce13b000dc37b222e7073",
+  "IN-R-CIV-M-04": "b5c49fd6c6ff8afa0ca4df86f5e4be955d4a566aab5a4100c903f4041c981906",
+  "IN-R-CIV-M-10": "4b7605de396efcf959feb79643e65956e08bfb313169a3447036de861dff4522",
+  "IN-R-CIV-M-12": "93c859420ff8d610fbc41c5868b739be6e5fcc99a8750b046e1be53e017c86cd",
+  "IN-R-CIV-M-13": "5268c05cff446609f82e4148625516da58687af5b89d10b88012397d43d51193",
+  "IN-R-FAM-M-05": "a345af93306b6b81c40ef710561ae28c01a51422553a19865603afb87a36487d",
+  "IN-R-FAM-M-06": "0cb55334eed344f71838656e25ef714fa40ec9d2949ad0a799e75ebe406da55a",
+  "IN-R-FAM-M-07": "289d4d697da66bba305db21ab5d201caf0ef1578cfa1c944841fdc71a17556b6",
+  "IN-R-TRA-M-07": "633e0a3445c11d93dfcde42f871e96c46f891448b40397f89a1add1b11c3b897"
+ },
+ "parametros": {
+  "brazos": [
+   "OPERATIVO",
+   "PERSISTENCIA"
+  ],
+  "celdas": [
+   {
+    "b": {
+     "OPERATIVO": "RESULT-BM-ENVIPE-OPERATIVO-2012-P",
+     "PERSISTENCIA": "RESULT-BM-ENVIPE-PERSISTENCIA-2012-P"
+    },
+    "celda": "CIV-M-01",
+    "fuente": "IN-BM-ENVIPE",
+    "input_r": "IN-R-CIV-M-01",
+    "obs": "RESULT-BM-ENVIPE-2012-P",
+    "ola": "2012",
+    "origen_b": "CALC-B-MARCO-ENVIPE-0001"
+   },
+   {
+    "b": {
+     "OPERATIVO": "RESULT-BM-ENVIPE-OPERATIVO-2013-P",
+     "PERSISTENCIA": "RESULT-BM-ENVIPE-PERSISTENCIA-2013-P"
+    },
+    "celda": "CIV-M-02",
+    "fuente": "IN-BM-ENVIPE",
+    "input_r": "IN-R-CIV-M-02",
+    "obs": "RESULT-BM-ENVIPE-2013-P",
+    "ola": "2013",
+    "origen_b": "CALC-B-MARCO-ENVIPE-0001"
+   },
+   {
+    "b": {
+     "OPERATIVO": "RESULT-BM-ENVIPE-OPERATIVO-2015-P",
+     "PERSISTENCIA": "RESULT-BM-ENVIPE-PERSISTENCIA-2015-P"
+    },
+    "celda": "CIV-M-04",
+    "fuente": "IN-BM-ENVIPE",
+    "input_r": "IN-R-CIV-M-04",
+    "obs": "RESULT-BM-ENVIPE-2015-P",
+    "ola": "2015",
+    "origen_b": "CALC-B-MARCO-ENVIPE-0001"
+   },
+   {
+    "b": {
+     "OPERATIVO": "RESULT-BM-ENVIPE-OPERATIVO-2021-P",
+     "PERSISTENCIA": "RESULT-BM-ENVIPE-PERSISTENCIA-2021-P"
+    },
+    "celda": "CIV-M-10",
+    "fuente": "IN-BM-ENVIPE",
+    "input_r": "IN-R-CIV-M-10",
+    "obs": "RESULT-BM-ENVIPE-2021-P",
+    "ola": "2021",
+    "origen_b": "CALC-B-MARCO-ENVIPE-0001"
+   },
+   {
+    "b": {
+     "OPERATIVO": "RESULT-BM-ENVIPE-OPERATIVO-2023-P",
+     "PERSISTENCIA": "RESULT-BM-ENVIPE-PERSISTENCIA-2023-P"
+    },
+    "celda": "CIV-M-12",
+    "fuente": "IN-BM-ENVIPE",
+    "input_r": "IN-R-CIV-M-12",
+    "obs": "RESULT-BM-ENVIPE-2023-P",
+    "ola": "2023",
+    "origen_b": "CALC-B-MARCO-ENVIPE-0001"
+   },
+   {
+    "b": {
+     "OPERATIVO": "RESULT-BM-ENVIPE-OPERATIVO-2024-P",
+     "PERSISTENCIA": "RESULT-BM-ENVIPE-PERSISTENCIA-2024-P"
+    },
+    "celda": "CIV-M-13",
+    "fuente": "IN-BM-ENVIPE",
+    "input_r": "IN-R-CIV-M-13",
+    "obs": "RESULT-BM-ENVIPE-2024-P",
+    "ola": "2024",
+    "origen_b": "CALC-B-MARCO-ENVIPE-0001"
+   },
+   {
+    "celda": "DIN-M-01",
+    "fuente": null,
+    "razon_sin_b": "NO-CONSTRUIBLE-PRIMERA-OLA (ENNViH-1 2002 es la primera ola del panel; sellada §1)"
+   },
+   {
+    "celda": "FAM-M-01",
+    "fuente": null,
+    "razon_sin_b": "NO-CONSTRUIBLE-REACTIVO-AUSENTE-EN-OLA-PREVIA (la bateria 9.9 de ENIF nace en 2018; 2015 y 2012 no la traen; sellada §1)"
+   },
+   {
+    "b": {
+     "OPERATIVO": "RESULT-BM-ENIGH-OPERATIVO-2016-P",
+     "PERSISTENCIA": "RESULT-BM-ENIGH-PERSISTENCIA-2016-P"
+    },
+    "celda": "FAM-M-05",
+    "fuente": "IN-BM-ENIGH",
+    "input_r": "IN-R-FAM-M-05",
+    "obs": "RESULT-BM-ENIGH-2016-P",
+    "ola": "2016",
+    "origen_b": "CALC-B-MARCO-ENIGH-0001"
+   },
+   {
+    "b": {
+     "OPERATIVO": "RESULT-B-OPERATIVO-2018-P",
+     "PERSISTENCIA": "RESULT-B-PERSISTENCIA-2018-P"
+    },
+    "celda": "FAM-M-06",
+    "fuente": "IN-B-0001",
+    "input_r": "IN-R-FAM-M-06",
+    "obs": "RESULT-B-ENIGH-2018-P",
+    "ola": "2018",
+    "origen_b": "CALC-B-0001"
+   },
+   {
+    "b": {
+     "OPERATIVO": "RESULT-B-OPERATIVO-2020-P",
+     "PERSISTENCIA": "RESULT-B-PERSISTENCIA-2020-P"
+    },
+    "celda": "FAM-M-07",
+    "fuente": "IN-B-0001",
+    "input_r": "IN-R-FAM-M-07",
+    "obs": "RESULT-B-ENIGH-2020-P",
+    "ola": "2020",
+    "origen_b": "CALC-B-0001"
+   },
+   {
+    "celda": "TRA-M-02",
+    "fuente": null,
+    "razon_sin_b": "NO-CONSTRUIBLE-SIN-SERIE (ENCUCI tiene una sola ola, 2020; sellada §1)"
+   },
+   {
+    "celda": "TRA-M-03",
+    "fuente": null,
+    "razon_sin_b": "NO-CONSTRUIBLE-REACTIVO-AUSENTE-EN-OLA-PREVIA (ENCIG 2011 no trae la seccion VIII a nivel persona; sellada §1)"
+   },
+   {
+    "b": {
+     "OPERATIVO": "RESULT-BM-ENCIG-OPERATIVO-2021-P",
+     "PERSISTENCIA": "RESULT-BM-ENCIG-PERSISTENCIA-2021-P"
+    },
+    "celda": "TRA-M-07",
+    "fuente": "IN-BM-ENCIG",
+    "input_r": "IN-R-TRA-M-07",
+    "obs": "RESULT-BM-ENCIG-2021-P",
+    "ola": "2021",
+    "origen_b": "CALC-B-MARCO-ENCIG-0001"
+   }
+  ],
+  "cobertura_antes": 2,
+  "control_r": {
+   "umbral_exacto": 1e-10,
+   "umbral_grano": 1e-06
+  },
+  "fuente_acto": "ACTO GEN2-B-MARCO · CALC-B-MARCO-MAE-0001",
+  "input_marco": "IN-MARCO",
+  "n_celdas_marco": 14
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-BM-MAE-CIV-M-01-CONTROL-R-DELTA",
+  "RESULT-BM-MAE-CIV-M-01-CONTROL-R-RAMA",
+  "RESULT-BM-MAE-CIV-M-01-OPERATIVO-ERR-PP",
+  "RESULT-BM-MAE-CIV-M-01-OPERATIVO-ESTADO",
+  "RESULT-BM-MAE-CIV-M-01-OPERATIVO-P-B",
+  "RESULT-BM-MAE-CIV-M-01-ORIGEN-B",
+  "RESULT-BM-MAE-CIV-M-01-PERSISTENCIA-ERR-PP",
+  "RESULT-BM-MAE-CIV-M-01-PERSISTENCIA-ESTADO",
+  "RESULT-BM-MAE-CIV-M-01-PERSISTENCIA-P-B",
+  "RESULT-BM-MAE-CIV-M-01-R",
+  "RESULT-BM-MAE-CIV-M-02-CONTROL-R-DELTA",
+  "RESULT-BM-MAE-CIV-M-02-CONTROL-R-RAMA",
+  "RESULT-BM-MAE-CIV-M-02-OPERATIVO-ERR-PP",
+  "RESULT-BM-MAE-CIV-M-02-OPERATIVO-ESTADO",
+  "RESULT-BM-MAE-CIV-M-02-OPERATIVO-P-B",
+  "RESULT-BM-MAE-CIV-M-02-ORIGEN-B",
+  "RESULT-BM-MAE-CIV-M-02-PERSISTENCIA-ERR-PP",
+  "RESULT-BM-MAE-CIV-M-02-PERSISTENCIA-ESTADO",
+  "RESULT-BM-MAE-CIV-M-02-PERSISTENCIA-P-B",
+  "RESULT-BM-MAE-CIV-M-02-R",
+  "RESULT-BM-MAE-CIV-M-04-CONTROL-R-DELTA",
+  "RESULT-BM-MAE-CIV-M-04-CONTROL-R-RAMA",
+  "RESULT-BM-MAE-CIV-M-04-OPERATIVO-ERR-PP",
+  "RESULT-BM-MAE-CIV-M-04-OPERATIVO-ESTADO",
+  "RESULT-BM-MAE-CIV-M-04-OPERATIVO-P-B",
+  "RESULT-BM-MAE-CIV-M-04-ORIGEN-B",
+  "RESULT-BM-MAE-CIV-M-04-PERSISTENCIA-ERR-PP",
+  "RESULT-BM-MAE-CIV-M-04-PERSISTENCIA-ESTADO",
+  "RESULT-BM-MAE-CIV-M-04-PERSISTENCIA-P-B",
+  "RESULT-BM-MAE-CIV-M-04-R",
+  "RESULT-BM-MAE-CIV-M-10-CONTROL-R-DELTA",
+  "RESULT-BM-MAE-CIV-M-10-CONTROL-R-RAMA",
+  "RESULT-BM-MAE-CIV-M-10-OPERATIVO-ERR-PP",
+  "RESULT-BM-MAE-CIV-M-10-OPERATIVO-ESTADO",
+  "RESULT-BM-MAE-CIV-M-10-OPERATIVO-P-B",
+  "RESULT-BM-MAE-CIV-M-10-ORIGEN-B",
+  "RESULT-BM-MAE-CIV-M-10-PERSISTENCIA-ERR-PP",
+  "RESULT-BM-MAE-CIV-M-10-PERSISTENCIA-ESTADO",
+  "RESULT-BM-MAE-CIV-M-10-PERSISTENCIA-P-B",
+  "RESULT-BM-MAE-CIV-M-10-R",
+  "RESULT-BM-MAE-CIV-M-12-CONTROL-R-DELTA",
+  "RESULT-BM-MAE-CIV-M-12-CONTROL-R-RAMA",
+  "RESULT-BM-MAE-CIV-M-12-OPERATIVO-ERR-PP",
+  "RESULT-BM-MAE-CIV-M-12-OPERATIVO-ESTADO",
+  "RESULT-BM-MAE-CIV-M-12-OPERATIVO-P-B",
+  "RESULT-BM-MAE-CIV-M-12-ORIGEN-B",
+  "RESULT-BM-MAE-CIV-M-12-PERSISTENCIA-ERR-PP",
+  "RESULT-BM-MAE-CIV-M-12-PERSISTENCIA-ESTADO",
+  "RESULT-BM-MAE-CIV-M-12-PERSISTENCIA-P-B",
+  "RESULT-BM-MAE-CIV-M-12-R",
+  "RESULT-BM-MAE-CIV-M-13-CONTROL-R-DELTA",
+  "RESULT-BM-MAE-CIV-M-13-CONTROL-R-RAMA",
+  "RESULT-BM-MAE-CIV-M-13-OPERATIVO-ERR-PP",
+  "RESULT-BM-MAE-CIV-M-13-OPERATIVO-ESTADO",
+  "RESULT-BM-MAE-CIV-M-13-OPERATIVO-P-B",
+  "RESULT-BM-MAE-CIV-M-13-ORIGEN-B",
+  "RESULT-BM-MAE-CIV-M-13-PERSISTENCIA-ERR-PP",
+  "RESULT-BM-MAE-CIV-M-13-PERSISTENCIA-ESTADO",
+  "RESULT-BM-MAE-CIV-M-13-PERSISTENCIA-P-B",
+  "RESULT-BM-MAE-CIV-M-13-R",
+  "RESULT-BM-MAE-COBERTURA-ANTES",
+  "RESULT-BM-MAE-DIN-M-01-CONTROL-R-DELTA",
+  "RESULT-BM-MAE-DIN-M-01-CONTROL-R-RAMA",
+  "RESULT-BM-MAE-DIN-M-01-OPERATIVO-ERR-PP",
+  "RESULT-BM-MAE-DIN-M-01-OPERATIVO-ESTADO",
+  "RESULT-BM-MAE-DIN-M-01-OPERATIVO-P-B",
+  "RESULT-BM-MAE-DIN-M-01-ORIGEN-B",
+  "RESULT-BM-MAE-DIN-M-01-PERSISTENCIA-ERR-PP",
+  "RESULT-BM-MAE-DIN-M-01-PERSISTENCIA-ESTADO",
+  "RESULT-BM-MAE-DIN-M-01-PERSISTENCIA-P-B",
+  "RESULT-BM-MAE-DIN-M-01-R",
+  "RESULT-BM-MAE-FAM-M-01-CONTROL-R-DELTA",
+  "RESULT-BM-MAE-FAM-M-01-CONTROL-R-RAMA",
+  "RESULT-BM-MAE-FAM-M-01-OPERATIVO-ERR-PP",
+  "RESULT-BM-MAE-FAM-M-01-OPERATIVO-ESTADO",
+  "RESULT-BM-MAE-FAM-M-01-OPERATIVO-P-B",
+  "RESULT-BM-MAE-FAM-M-01-ORIGEN-B",
+  "RESULT-BM-MAE-FAM-M-01-PERSISTENCIA-ERR-PP",
+  "RESULT-BM-MAE-FAM-M-01-PERSISTENCIA-ESTADO",
+  "RESULT-BM-MAE-FAM-M-01-PERSISTENCIA-P-B",
+  "RESULT-BM-MAE-FAM-M-01-R",
+  "RESULT-BM-MAE-FAM-M-05-CONTROL-R-DELTA",
+  "RESULT-BM-MAE-FAM-M-05-CONTROL-R-RAMA",
+  "RESULT-BM-MAE-FAM-M-05-OPERATIVO-ERR-PP",
+  "RESULT-BM-MAE-FAM-M-05-OPERATIVO-ESTADO",
+  "RESULT-BM-MAE-FAM-M-05-OPERATIVO-P-B",
+  "RESULT-BM-MAE-FAM-M-05-ORIGEN-B",
+  "RESULT-BM-MAE-FAM-M-05-PERSISTENCIA-ERR-PP",
+  "RESULT-BM-MAE-FAM-M-05-PERSISTENCIA-ESTADO",
+  "RESULT-BM-MAE-FAM-M-05-PERSISTENCIA-P-B",
+  "RESULT-BM-MAE-FAM-M-05-R",
+  "RESULT-BM-MAE-FAM-M-06-CONTROL-R-DELTA",
+  "RESULT-BM-MAE-FAM-M-06-CONTROL-R-RAMA",
+  "RESULT-BM-MAE-FAM-M-06-OPERATIVO-ERR-PP",
+  "RESULT-BM-MAE-FAM-M-06-OPERATIVO-ESTADO",
+  "RESULT-BM-MAE-FAM-M-06-OPERATIVO-P-B",
+  "RESULT-BM-MAE-FAM-M-06-ORIGEN-B",
+  "RESULT-BM-MAE-FAM-M-06-PERSISTENCIA-ERR-PP",
+  "RESULT-BM-MAE-FAM-M-06-PERSISTENCIA-ESTADO",
+  "RESULT-BM-MAE-FAM-M-06-PERSISTENCIA-P-B",
+  "RESULT-BM-MAE-FAM-M-06-R",
+  "RESULT-BM-MAE-FAM-M-07-CONTROL-R-DELTA",
+  "RESULT-BM-MAE-FAM-M-07-CONTROL-R-RAMA",
+  "RESULT-BM-MAE-FAM-M-07-OPERATIVO-ERR-PP",
+  "RESULT-BM-MAE-FAM-M-07-OPERATIVO-ESTADO",
+  "RESULT-BM-MAE-FAM-M-07-OPERATIVO-P-B",
+  "RESULT-BM-MAE-FAM-M-07-ORIGEN-B",
+  "RESULT-BM-MAE-FAM-M-07-PERSISTENCIA-ERR-PP",
+  "RESULT-BM-MAE-FAM-M-07-PERSISTENCIA-ESTADO",
+  "RESULT-BM-MAE-FAM-M-07-PERSISTENCIA-P-B",
+  "RESULT-BM-MAE-FAM-M-07-R",
+  "RESULT-BM-MAE-N-CELDAS-MARCO",
+  "RESULT-BM-MAE-N-NO-CONSTRUIBLES",
+  "RESULT-BM-MAE-OPERATIVO-CELDA-MAX-ABS",
+  "RESULT-BM-MAE-OPERATIVO-CELDAS",
+  "RESULT-BM-MAE-OPERATIVO-COBERTURA-DESPUES",
+  "RESULT-BM-MAE-OPERATIVO-MAE-PP",
+  "RESULT-BM-MAE-OPERATIVO-MAX-ABS-ERR-PP",
+  "RESULT-BM-MAE-OPERATIVO-N-CELDAS",
+  "RESULT-BM-MAE-PERSISTENCIA-CELDA-MAX-ABS",
+  "RESULT-BM-MAE-PERSISTENCIA-CELDAS",
+  "RESULT-BM-MAE-PERSISTENCIA-COBERTURA-DESPUES",
+  "RESULT-BM-MAE-PERSISTENCIA-MAE-PP",
+  "RESULT-BM-MAE-PERSISTENCIA-MAX-ABS-ERR-PP",
+  "RESULT-BM-MAE-PERSISTENCIA-N-CELDAS",
+  "RESULT-BM-MAE-TRA-M-02-CONTROL-R-DELTA",
+  "RESULT-BM-MAE-TRA-M-02-CONTROL-R-RAMA",
+  "RESULT-BM-MAE-TRA-M-02-OPERATIVO-ERR-PP",
+  "RESULT-BM-MAE-TRA-M-02-OPERATIVO-ESTADO",
+  "RESULT-BM-MAE-TRA-M-02-OPERATIVO-P-B",
+  "RESULT-BM-MAE-TRA-M-02-ORIGEN-B",
+  "RESULT-BM-MAE-TRA-M-02-PERSISTENCIA-ERR-PP",
+  "RESULT-BM-MAE-TRA-M-02-PERSISTENCIA-ESTADO",
+  "RESULT-BM-MAE-TRA-M-02-PERSISTENCIA-P-B",
+  "RESULT-BM-MAE-TRA-M-02-R",
+  "RESULT-BM-MAE-TRA-M-03-CONTROL-R-DELTA",
+  "RESULT-BM-MAE-TRA-M-03-CONTROL-R-RAMA",
+  "RESULT-BM-MAE-TRA-M-03-OPERATIVO-ERR-PP",
+  "RESULT-BM-MAE-TRA-M-03-OPERATIVO-ESTADO",
+  "RESULT-BM-MAE-TRA-M-03-OPERATIVO-P-B",
+  "RESULT-BM-MAE-TRA-M-03-ORIGEN-B",
+  "RESULT-BM-MAE-TRA-M-03-PERSISTENCIA-ERR-PP",
+  "RESULT-BM-MAE-TRA-M-03-PERSISTENCIA-ESTADO",
+  "RESULT-BM-MAE-TRA-M-03-PERSISTENCIA-P-B",
+  "RESULT-BM-MAE-TRA-M-03-R",
+  "RESULT-BM-MAE-TRA-M-07-CONTROL-R-DELTA",
+  "RESULT-BM-MAE-TRA-M-07-CONTROL-R-RAMA",
+  "RESULT-BM-MAE-TRA-M-07-OPERATIVO-ERR-PP",
+  "RESULT-BM-MAE-TRA-M-07-OPERATIVO-ESTADO",
+  "RESULT-BM-MAE-TRA-M-07-OPERATIVO-P-B",
+  "RESULT-BM-MAE-TRA-M-07-ORIGEN-B",
+  "RESULT-BM-MAE-TRA-M-07-PERSISTENCIA-ERR-PP",
+  "RESULT-BM-MAE-TRA-M-07-PERSISTENCIA-ESTADO",
+  "RESULT-BM-MAE-TRA-M-07-PERSISTENCIA-P-B",
+  "RESULT-BM-MAE-TRA-M-07-R"
+ ],
+ "script_blob_sha256": "8ab213addb9a493083453ccd19822de40f1fc94e61dde79a81197209db3dd0e3",
+ "script_path": "data/corrida0/CALC-B-MARCO-MAE-0001/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-B-MARCO-MAE-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "4068259a133a73431619fc2d1d16ce909259d99096efbf9b6c3cb7bedadeb6b0",
+ "spec_yaml_sha256": "36fc9b0b870668ccc79fd5e41e204ee3619e36c85d768a3cd91b039afee62afb",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "aritmetica determinista sobre RESULT sellados; enteros y textos EXACTO.",
+  "tipo": "flotante"
+ }
+}
