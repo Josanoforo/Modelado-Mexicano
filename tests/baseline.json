@@ -1,5 +1,5 @@
 {
-  "head": "10935fea898f672408782edebf82fb9373be5cc2",
+  "head": "5e2ad5ce8daac333b03f344c578a9ae292fdc9db",
   "fails": [
     [
       "T06",
@@ -497,8 +497,8 @@
     "fecha_de_clasificacion": "2026-08-17",
     "conteo_por_bucket": {
       "T-ALTA-RELACION_sin_clasificar": 1,
-      "T-NO-CORRIDO_sin_clasificar": 45,
-      "T-REPRO_sin_clasificar": 315,
+      "T-NO-CORRIDO_sin_clasificar": 61,
+      "T-REPRO_sin_clasificar": 2624,
       "T03_TRANSFER-9_cita_ilustrativa_del_propio_falso_positivo__mismo_patron_benigno_ya_reconocido": 2,
       "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 3,
       "T03_encargo_archivado_cita_nombre_corto_verbatim__A.3_prohibe_editar__patron_M6-sello": 2,
@@ -511,7 +511,7 @@
       "T08_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
       "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7": 65,
       "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 3,
-      "T22_sin_clasificar": 52
+      "T22_sin_clasificar": 51
     }
   }
 }
