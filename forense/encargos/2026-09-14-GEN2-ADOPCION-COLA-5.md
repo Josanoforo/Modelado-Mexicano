@@ -42,7 +42,7 @@ adoptada; no volver a medir ni pedir decisión científica"]` ya declarado en
 el propio contrato.
 
 **(3) ¿La estructura es posterior al trabajo que va a tocar?**
-`data/corrida0/resultados.tsv` nació con `ACTO GEN2-E2/E3` (7/sep/2026);
+`data/corrida0/resultados.tsv` nació con `ACTO GEN2-E2` / `ACTO GEN2-E3` (7/sep/2026);
 `CALC-0001`/`CALC-0002` (los 5 de P1-P3) se sellaron el 8/sep/2026,
 **posteriores** a la estructura — sin hueco de cobertura retroactiva. Para
 P4: el contrato de `data/adq-demanda-activa-v1_0.json` nació de `PR #739`/
