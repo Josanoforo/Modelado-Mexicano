@@ -23,7 +23,8 @@ Ejecutado en `PR #758`, `ACTO GEN2-F5-DOC-CONTRATO-V1_1`. Entrega única:
 resueltas dentro del propio contrato, cada una con su evidencia cruda
 citada. `NC-0177` pasa de `SIN-ASIGNAR` a token (este PR); sigue `ABIERTA`
 — las 32 posiciones siguen sin correr hasta que `GEN2-F5-DOCUMENTAL-RUN` se
-relance apuntando a v1.1. `NC-0178` sin tocar. Cascada: `ADR-499`, L0 y
+relance apuntando a v1.1. `NC-0178` sin tocar. Cascada: `ADR-500`
+(renumerado de `ADR-499`: `GEN2-B-MARCO`, PR #757, fusionó primero), L0 y
 tres contadores reconciliados (`cierre_acto.py --aplica`), rótulo censado
 en `canon/registro-rotulos.tsv`, suite `--baseline` VERDE (3 FAIL
 preexistentes iguales al baseline).
