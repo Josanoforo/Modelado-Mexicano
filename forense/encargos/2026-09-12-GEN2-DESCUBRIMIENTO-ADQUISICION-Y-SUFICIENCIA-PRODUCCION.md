@@ -186,3 +186,15 @@ Actualizar registro/vistas/relaciones y cierre con los escritores vigentes; cons
 - [#730 · ENSAFI](https://github.com/Josanoforo/Modelado-Mexicano/pull/730).
 - [#731 · Validación independiente](https://github.com/Josanoforo/Modelado-Mexicano/pull/731), alcance declarado en el PR abierto al corte.
 - `.claude/commands/sonda.md`, `tools/adquiere_cron.sh`, `tools/adq_residual.py`, `tools/adq_doctor.py`, `data/adq-config.yaml`, `data/curacion-registro/utilidad-modelo.tsv` y contratos GEN2 vigentes.
+
+## NO-CORRIDO / RESERVAS
+
+| nota de cierre | universo examinado | resultado |
+|---|---|---|
+| NO-ENCONTRADA | `forense/notas/` 12–13/sep, términos descubrimiento/suficiencia/servicio (A.4/A.13) | la evidencia de ejecución es el PR fusionado y el servicio operando en los censos diarios |
+
+Sin abrir NC nueva: la fila ES el registro (regla de señal — se anota, no se instrumenta).
+
+## CONSUMIDO · PR #739
+
+Ejecutado y cerrado por `ACTO GEN2-CONSUMIDO-RETRO-3` (`forense/encargos/2026-09-14-GEN2-CONSUMIDO-RETRO-3.md`), firma de mesa 14/sep/2026.
