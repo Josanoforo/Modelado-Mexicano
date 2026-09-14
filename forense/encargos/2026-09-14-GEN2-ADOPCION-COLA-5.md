@@ -73,3 +73,13 @@ CONTADOR: no mide — mueve adopción, que es su propio contador, y se dice en u
 ### ADENDA (dirección, 14/sep, recibida mientras el acto ya corría)
 
 ADENDA al ACTO GEN2-ADOPCION-COLA-5 (dirección, 12/sep): pieza nueva P4 — registro ENSANUT (RES-0063/0064): registrar la evidencia existente de medición/adopción previa y probar AMBOS consumidores hasta emisión GEN2, sin re-medir ni pedir otra decisión científica (contrato en data/adq-demanda-activa-v1_0.json, responsable MOTOR_GEN2_REGISTRO); enlaza las NC históricas al contrato preservando antecedente. Es exactamente la clase de este acto: cadena hasta el emisor, no ciencia nueva.
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| Adopción de `RESULT-CTX-2019-P-ALTO`/`RESULT-CTX-2023-P-ALTO`/`RESULT-CTX-2021-P-ALTO` como estimando descriptivo nuevo (contexto institucional alto entre víctimas de extorsión, LAPOP) | `DECISIÓN-DE-MESA-PENDIENTE` | Los 3 `RESULT` siguen sin consumidor en `milpa/tramite.yaml`; `N_resultados_gen2_pendientes_adopcion` no baja por estos 3. `R10.3`/`D2-h` no se tocan. | `NC-0167`; mesa decide si "contexto institucional alto" es un estimando propio con consumidor nuevo |
+| Distinguir en `tools/corrida0.py::status()` "pendiente de adopción" de "excluido por decisión vigente" | `DECISIÓN-DE-MESA-PENDIENTE` | `N_resultados_gen2_pendientes_adopcion` sigue contando `RESULT-C1-POSEL-AMENAZA/OFERTA-VEREDICTO` como pendientes pese a quedar `NO-ADOPTABLE-POR-DECISIÓN` en este acto — el contador sobreestima la cola real | `NC-0168`; mesa autoriza el vocabulario/categoría nueva antes de escribirlo |
+| Registro en `corrida0` (preflight/run/verify + `registro --escribe`) del `CALC` ENSANUT L17 para `RES-0063`/`RES-0064`, y cita `corrida0_resultado_id`+`corrida0_generacion:GEN2` en `milpa/tramite.yaml:1303-1304` (P4, adenda) | `PARO-ENTORNO` | `dependencias_numericas_legacy_activas` no baja por estas 2 filas; el motor ya consume los valores adoptados pero siguen `LEGACY-NO-DECLARADO` | `NC-0169`; acto en CAJA con corpus ENSANUT montado, sin volver a decidir nada científico |
