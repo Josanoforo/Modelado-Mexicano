@@ -1,11 +1,11 @@
 <!-- TABLERO-DERIVADO:BEGIN -->
 ## Estado vivo derivado
 
-- **Procedencia.** SHA `86294db` · fecha del commit `2026-09-09` · ¿árbol == origin/main? `False`.
-- **Motor.** reglas totales `21` · reglas con dato (>=1 conducta MEDIDO*) `20` · reglas sin dato `1` · conductas MEDIDO* `50` · tiers `{'FUERTE': 19, 'MEDIA': 2}`.
+- **Procedencia.** SHA `2a4e0a4` · fecha del commit `2026-09-14` · ¿árbol == origin/main? `False`.
+- **Motor.** reglas totales `22` · reglas con dato (>=1 conducta MEDIDO*) `21` · reglas sin dato `1` · conductas MEDIDO* `45` · tiers `{'FUERTE': 20, 'MEDIA': 2}`.
 - **Corredor.** marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
-- **Corpus lógico.** entradas del manifiesto `1572` · filas de registro de curación `139` · filas de relaciones `228` · filas del inventario de reactivos v1.2 `178247`.
-- **Gobernanza operativa.** ADR máximo `436` · FP máximo `370` · FP abiertas: FP-361, FP-363, FP-370 · encargos archivados `414` (consumidos `396`) · cola de encargos:
+- **Corpus lógico.** entradas del manifiesto `1608` · filas de registro de curación `152` · filas de relaciones `231` · filas del inventario de reactivos v1.2 `178247`.
+- **Gobernanza operativa.** ADR máximo `497` · FP máximo `374` · FP abiertas: FP-371, FP-372, FP-373, FP-374 · encargos archivados `471` (consumidos `447`) · cola de encargos:
   - `2026-08-31-MAESTRA33-B2-MARCO-M-SORTEA-v1_1.md`: CONSUMIDO
   - `2026-09-01-MAESTRA34-L2-ARBITRA-v1_2.md`: CONSUMIDO
   - `2026-09-01-MAESTRA34-N2-MARCO-M-v1_2.md`: CONSUMIDO
@@ -24,8 +24,55 @@
   - `2026-09-07-GEN2-E7-READINESS-2.md`: CONSUMIDO
   - `2026-09-08-GEN2-SONDA-3-PILOTO-CAJA.md`: LISTO
   - `2026-09-08-MAESTRA34-E1-REVISION-FALSADORES.md`: CONSUMIDO
-- **GEN2 (derivado de `corrida0 status`).** corridas selladas `14` / requeridas `82` · resultados sellados `1021` / activos `205` · pendientes `205` · dependencias numéricas legacy activas `203` · validación independiente `0` · diferencias materiales `0` · NC- abiertas `60` · replays LEGACY-GEN1 sellados `2` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
-- **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** sellados `751` · pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) `5` · adoptados por un consumidor activo `2`. Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: solo el consumidor activo que lo adopta la baja.
+  - `2026-09-10-GEN2-POST-685/00-LEEME-LANZAMIENTO-POST-685.md`: GATED
+  - `2026-09-10-GEN2-POST-685/01-GEN2-F5-COMPLETA.md`: GATED
+  - `2026-09-10-GEN2-POST-685/02-GEN2-MOTOR-USOS-Y-COMPLEMENTOS.md`: GATED
+  - `2026-09-10-GEN2-POST-685/03-GEN2-ENIF-POBLACION-Y-ADOPCION.md`: GATED
+  - `2026-09-10-GEN2-POST-685/04-GEN2-S6-S12-S13-SUCESORAS.md`: GATED
+  - `2026-09-10-GEN2-POST-685/05-GEN2-ENVIPE-SERIE-COMPLETA.md`: CONSUMIDO
+  - `2026-09-10-GEN2-POST-685/06-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md`: CONSUMIDO
+  - `2026-09-10-GEN2-POST-685/07-GEN2-SONDA-CRON-PRODUCCION.md`: GATED
+  - `2026-09-11-GEN2-F5-DOCUMENTAL-EJECUCION-PENDIENTE.md`: GATED
+  - `2026-09-11-GEN2-POST-693/00-LEEME-LANZAMIENTO-POST693.md`: GATED
+  - `2026-09-11-GEN2-POST-693/09-GEN2-PUBLICACION-POST693-Y-CIERRES.md`: GATED
+  - `2026-09-11-GEN2-POST-693/10-GEN2-ENVIPE-VALIDACION-Y-LECTURA.md`: GATED
+  - `2026-09-11-GEN2-POST-693/11-GEN2-CORRUPCION-UNIDAD-Y-FUENTE-GENERAL.md`: GATED
+  - `2026-09-11-GEN2-POST-693/13-GEN2-F5-APRENDIZAJES-Y-SUCESOR.md`: GATED
+  - `2026-09-11-GEN2-POST-694/00-DECISIONES-Y-PARALELOS-POST694.md`: GATED
+  - `2026-09-11-GEN2-POST-694/14-GEN2-YA-MEDIDO-SIN-FALSOS-NEGATIVOS.md`: CONSUMIDO
+  - `2026-09-11-GEN2-POST-694/15-GEN2-ENIF-FINTECH-SERIE-DESCRIPTIVA.md`: GATED
+  - `2026-09-11-GEN2-POST-694/16-GEN2-S6-DISENO-Y-ALCANCE-INFERENCIAL.md`: CONSUMIDO
+  - `2026-09-11-GEN2-POST-694/ADENDA-09-CIERRES-YA-ACREDITADOS.md`: CONSUMIDO
+  - `2026-09-11-GEN2-POST-701/00-LEEME-LANZAMIENTO-POST701.md`: GATED
+  - `2026-09-11-GEN2-POST-701/17-GEN2-LINAJE-Y-ADOPCION.md`: GATED
+  - `2026-09-11-GEN2-POST-701/18-GEN2-MOTOR-Y-HERENCIA-EXPLICITA.md`: GATED
+  - `2026-09-11-GEN2-POST-701/19-GEN2-EVALUACION-SIN-FUGAS.md`: GATED
+  - `2026-09-11-GEN2-POST-701/REVISION-CANDADOS-GEN1-GEN2-2026-09-11.md`: GATED
+  - `2026-09-11-GEN2-POST-707/00-LEEME-PARALELOS-POST707.md`: GATED
+  - `2026-09-11-GEN2-POST-707/07R-GEN2-PRODUCCION-Y-FALLO-POST707.md`: GATED
+  - `2026-09-11-GEN2-POST-707/20-GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES.md`: GATED
+  - `2026-09-11-GEN2-POST-707/21-GEN2-EXPEDIENTES-ACCESO-LISTOS.md`: GATED
+  - `2026-09-11-GEN2-POST-707/22-GEN2-VALIDACION-R-ENVIPE-CSV.md`: GATED
+  - `2026-09-11-GEN2-POST-707/ADENDA-18-CONSUMOS-Y-BENCHMARK.md`: GATED
+  - `2026-09-11-GEN2-POST-723/00-LEEME-LANZAMIENTO-POST723.md`: GATED
+  - `2026-09-11-GEN2-POST-723/27-GEN2-ENSAFI-MEDICION-DESCRIPTIVA-CON-DISENO.md`: GATED
+  - `2026-09-11-GEN2-POST-723/28-GEN2-IMOR-CONTEXTO-TEMPORAL-POR-REGIMEN.md`: GATED
+  - `2026-09-11-GEN2-POST-723/29-GEN2-CONSULTA-OPERATIVA-CON-CONTRATO.md`: GATED
+  - `2026-09-11-GEN2-POST-723/30-GEN2-VALIDACION-INDEPENDIENTE-PARAMETROS-ACTIVOS.md`: GATED
+  - `2026-09-11-GEN2-POST-723/31-GEN2-F5-DOCUMENTAL-EJECUCION-PARA-FIRMA.md`: GATED
+  - `2026-09-12-GEN2-POST-726/00-LEEME-PARALELOS-POST726.md`: GATED
+  - `2026-09-12-GEN2-POST-726/33-GEN2-CORPUS-COMPARTIDO-UTILIZABLE.md`: CONSUMIDO
+  - `2026-09-12-GEN2-POST-726/34-GEN2-REACTIVOS-CON-TEXTO-Y-BUSQUEDA.md`: GATED
+  - `2026-09-12-GEN2-POST-726/35-GEN2-TANDAS-PANEL-ENTRADAS-Y-SALIDAS.md`: CONSUMIDO
+  - `2026-09-12-GEN2-POST-726/36-GEN2-N34-DATOS-PRODUCTO-Y-DANO.md`: CONSUMIDO
+  - `2026-09-12-GEN2-POST-726/37-GEN2-DELTA-COMPARACION-EXPLICITA.md`: CONSUMIDO
+  - `2026-09-12-GEN2-POST-739/00-LEEME-LANZAMIENTO-POST739.md`: GATED
+  - `2026-09-12-GEN2-POST-739/39-GEN2-REACTIVOS-PENDIENTES-Y-BUSQUEDA-UTIL.md`: GATED
+  - `2026-09-12-GEN2-POST-741/00-LEEME-PARALELOS-41-43.md`: GATED
+  - `2026-09-12-GEN2-POST-741/41-GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO.md`: GATED
+  - `2026-09-12-GEN2-POST-741/43-GEN2-SHED-BNPL-DANO-Y-UNIVERSOS.md`: GATED
+- **GEN2 (derivado de `corrida0 status`).** corridas selladas `59` / requeridas `82` · resultados sellados `3039` / activos `207` · pendientes `207` · dependencias numéricas legacy activas `191` · validación independiente `199` · diferencias materiales `0` · NC- abiertas `61` · replays LEGACY-GEN1 sellados `4` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
+- **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** sellados `2497` · pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) `5` · adoptados por un consumidor activo `16`. Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: solo el consumidor activo que lo adopta la baja.
 - **Fuentes.** `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, `forense/prereg-duelo-v2/` (marcos y corridas M/R/L), `data/manifiesto.yaml`, `data/curacion-registro/cola-adquisicion-registro.tsv`, `data/curacion-registro/relaciones.tsv`, `data/inventario-reactivos-v1_2.tsv`, `canon/gobernanza-v1_15.md`, `forense/firmas-pendientes.tsv`, `forense/encargos/*.md`, `forense/encargos/cola/*.md`.
 
 **Protocolo vigente.** La actualización factual de este bloque se hace con:
@@ -152,6 +199,8 @@ El humano solo actualiza la interpretación (las tablas curadas §2.1-2.5 y la n
 | **G3** | **Cuatro filas `DECISION-DE-MESA-PENDIENTE`** en la deuda declarada | mesa | resolver por fila |
 | **G4** | **Una rama viva contra la política de cero**, y el verificador no puede comprobar el punto D sin `gh` | mesa | fusionar o borrar; instalar `gh` donde corra el reporte |
 | **G5** | **Cuatro firmas ABIERTA** (FP-349 a FP-352) | mesa | firma por fila |
+| **G6** | **NUEVA (14/sep, ACTO GEN2-DOCS-ALINEACION-2).** Fila de cita, no bloqueo — los cuatro hitos mayores de la semana del 9–12/sep, para que este tablero deje de describir solo el mundo del 9/sep: **triada, veredicto citado** — `CALC-TRIADA-0002` termina `SIN-GANADOR-UNICO` sobre `U3=12/14` (`forense/notas/2026-09-10-GEN2-F5-COMPLETA-cierre.md`, `PR #690`); **R-completa** — `UR=14/14` congelado, ocho `CALC-R` nuevos sellados (`forense/encargos/2026-09-09-GEN2-R-COMPLETA-MARCO.md`, `PR #690`); **validación independiente** — 16/16 PASA sobre parámetros activos, implementación separada (`forense/notas/2026-09-11-GEN2-VALIDACION-INDEPENDIENTE-PARAMETROS-ACTIVOS-cierre.md`, `PR #731`; el acumulado vivo `resultados_con_validacion_independiente=199` es del bloque derivado de arriba, no de este acto solo); **delta implementado** — `corrida0.py delta` deja de ser `NO-IMPLEMENTADO` (`delta_comparacion.py`, `PR #733`); `vigencia` sigue declarado y vacío | dirección | ninguno — es registro, no pendiente |
+| **G7** | **NUEVA (14/sep, ACTO GEN2-DOCS-ALINEACION-2).** El mapa `31/39/40/41/42/43` que la ADENDA de dirección pidió, con triple distinción — verificado contra el árbol, no contra la prosa del despacho del 12/sep (`forense/encargos/cola/2026-09-12-GEN2-POST-741/00-LEEME-PARALELOS-41-43.md`): **31** (F5 documental, `DIN-M-01`/`TRA-M-07`) — **pausado**, `LISTO PARA FIRMA; NO AUTORIZA LLAMADAS POR SU MERA ENTREGA` (`forense/encargos/cola/2026-09-11-GEN2-POST-723/31-GEN2-F5-DOCUMENTAL-EJECUCION-PARA-FIRMA.md`); **39** (reactivos pendientes/búsqueda útil) — **fusionado**, `PR #742` (`forense/encargos/2026-09-12-GEN2-REACTIVOS-PENDIENTES-Y-BUSQUEDA-UTIL.md` `## CONSUMIDO`); **40** (conciliación NC-0165/demanda/ruteo) — **NO-VERIFICABLE-AQUÍ**: el propio `39` declara «el encargo 40 y su rama no fueron incorporados»; existe un acto temático afín fechado ANTES del despacho de `40` (`ACTO GEN2-DEMANDA-CONTRATOS-EJECUCION-NC0165`, 11/sep, `ADR-491`, cierra `NC-0165` 207/207) que pudo o no ser el mismo objeto — no se afirma la identidad sin una cita que la confirme; **41** (Banxico) — **fusionado**, `PR #744` (`ADR-492`); **42** (MOTRAL 2015/N35, "despachado, PR #747" según el propio LEEME) — **fusionado**, `PR #747` (`ADR-493`); **43** (SHED 2025 BNPL) — **fusionado**, `PR #745` (`canon/registro-rotulos.tsv`, `ADR-494`). `NC-0166` (falta el paquete reproducible del DCE mexicano de N35) se conserva con su vía propia — no se duplica aquí | dirección | 40 pendiente de identidad confirmada; el resto es registro |
 
 ---
 

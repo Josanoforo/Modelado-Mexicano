@@ -294,6 +294,15 @@ HISTORICOS = {
     # (canon/gobernanza-v1_15.md, canon/registro-rotulos.tsv, forense/notas,
     # forense/encargos) no se reescriben.
     "estado-programa-v1_11.md",
+    # canon/estado-programa-v1_12.md — mismo mecanismo, mismo precedente
+    # (ACTO GEN2-DOCS-ALINEACION-2, 14/sep/2026, fusión con T01 sobre el
+    # mismo artefacto): `git rm canon/estado-programa-v1_12.md` en la misma
+    # rama que crea v1_13, historia recuperable por SHA del commit de A.3
+    # de este acto. Las citas históricas que quedan (canon/gobernanza-v1_15.md,
+    # forense/notas, forense/encargos, forense/tablero/TABLERO-PROGRAMA-v1_1.md)
+    # no se reescriben — registro append-only correcto para su fecha.
+    "estado-programa-v1_12.md",
+    "estado-programa-v1.12.md",
     # forense/encargos/2026-09-07-MAESTRA38-TRAMITE-3.md (A.3, VERBATIM):
     # el encargo cita `TABLERO-PROGRAMA-v1_5.md` como el adjunto de mesa que
     # debía traer el contenido del tablero consolidado -- nunca llego ni al
@@ -1474,6 +1483,10 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # resuelto -- lo cita `FP-301`, sólo que con un estado que el filtro no
     # cubre.
     "canon/estado-programa-v1_12.md",
+    # canon/estado-programa-v1_13.md hereda verbatim el mismo marcador
+    # (cabecera "PROPUESTA -- se sella con el merge de mesa") que v1_12
+    # ya traía -- ACTO GEN2-DOCS-ALINEACION-2, 14/sep/2026, mismo FP-301.
+    "canon/estado-programa-v1_13.md",
     "forense/encargos/2026-09-04-MAESTRA38-N8-ESTADO-PROGRAMA-v1_12.md",
     # ACTO MAESTRA37-A2 · REVISA-COLA-A-DETALLE, 3/sep/2026. Dispara
     # `_T22_MARCADOR_RANURA` (`RANURA`) tres veces, todas por CITA de
@@ -3450,6 +3463,11 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # verbatim de la v1_11 retirada (§3 L5) el token "ENCARGO M-4"/"MESA-M4",
     # ya censado antes en esa version, ningun rotulo nuevo.
     "canon/estado-programa-v1_12.md",
+    # canon/estado-programa-v1_13.md, ACTO GEN2-DOCS-ALINEACION-2, 14/sep/2026:
+    # retira v1_12 del arbol por T01 (mismo mecanismo que v1_10/v1_11) y
+    # hereda verbatim el mismo token "M-4" ya censado en v1_12; ningun
+    # rotulo nuevo. Historia recuperable por SHA del commit de A.3 de este acto.
+    "canon/estado-programa-v1_13.md",
     "canon/gobernanza-v1_15.md",
     "canon/modelo-decision-v4_0.md",
     "canon/protocolo-sesion-v1_0.md",
