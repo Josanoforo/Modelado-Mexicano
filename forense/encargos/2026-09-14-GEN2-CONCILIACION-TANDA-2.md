@@ -4,7 +4,7 @@
 **Entorno asignado:** NUBE (Claude Code) — NO se lanza en CAJA
 **Rama:** `claude/vigilant-ptolemy-cyjuiq` (asignación de sesión; sustituye a `acto/gen2-conciliacion-tanda-2` por instrucción de entorno — ver nota de arranque en la nota de cierre)
 **Compuerta:** ninguna
-**Estado:** VIVO
+**Estado:** CONSUMIDO (PR #752)
 
 ## Texto del encargo, verbatim tal como se lanzó
 
@@ -28,3 +28,13 @@ CONTADOR: no, y se dice. LO QUE NO HACE: no firma FP · no retro-sella · no cie
 - Firma de mesa sobre las 9 filas que P1 dejó con pregunta exacta (`NC-0073`, `NC-0077`, `NC-0086`, `NC-0088`, `NC-0106`, `NC-0125`, `NC-0160`, `NC-0161`, `NC-0162`) · DECISIÓN-DE-MESA-PENDIENTE · impacto: esas 9 NC siguen `ABIERTA` hasta la firma · sucesor: `NC-0168` — mesa.
 - Borrar (o investigar antes de borrar) la rama huérfana `claude/tramite-2026-09-14`, que nunca produjo PR · FUERA-DE-PERÍMETRO (el propio encargo declara "no borra ramas") · impacto: 1 rama `fuera_de_politica` sigue viva en el remoto · sucesor: `NC-0169` — clic de mesa.
 - T13 (`tests/check.py`) empieza a advertir sobre `canon/estado-programa-v1_12.md`: la lista de anotaciones L0 ya no deja margen (46 caracteres antes de este acto) bajo la ventana de 2500 que T13 revisa para el bloque de cabecera ARCHIVO/NOMBRE ESTABLE — cualquier anotación L0 nueva de cualquier acto lo hubiera roto igual · NO-VERIFICABLE-AQUÍ (WARN, no FAIL; no bloquea esta cascada) · impacto: `tests/check.py --baseline` ensucia su línea base declarada con un WARN nuevo en cada corrida hasta que el archivo se reestructure · sucesor: `NC-0170` — acto de mantenimiento que mueva el bloque de cabecera antes de la lista de anotaciones L0, o versione a v1_13.
+
+## CONSUMIDO
+
+Ejecutado en `PR #752`, `ACTO GEN2-CONCILIACION-TANDA-2`. Jonás conserva la fusión.
+
+- **P1** (`forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P1-tabla.md`): tabla de candidatas sobre las 52 NC ABIERTA. 1 `CERRAR-CON-CITA` (`NC-0007`), 9 `DECISIÓN-DE-MESA` con pregunta exacta citada, 42 `SIGUE-CON-SUCESOR` — varias con evidencia nueva de que su sucesor ya corrió sin cerrar la obligación. Cero cierres por coincidencia de nombre.
+- **P2** (`forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P2-NC0007.md`): `NC-0007` cerrada con verificación end-to-end real contra GitHub vía MCP (sin `gh` instalado en NUBE), re-derivada al cierre tras `git merge origin/main`: 0 fusionada-sin-borrar, 1 huérfana (`claude/tramite-2026-09-14`). `NC-0012` queda `ABIERTA` por su propia declaración previa (el residual es del TOOL, no de la verificación).
+- **P3** (`forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P3-censo.md`): censo de fichaje `cc1cfe2c..HEAD` (194 merges, 78 PR reales a `main`): 54 fichados, 6 exentos `censo`/`trámite`, 18 excepciones (10 entregas `[COLA]`/`[ADQ]`, 8 actos GEN2 reales sin `## CONSUMIDO` citando su PR) — no cero, con precedente `#632`/`#635` para el retro-sello de mesa.
+- Cascada: `ADR-495`, L0 y los tres contadores mecánicos reconciliados (`tools/cierre_acto.py --aplica`), `canon/registro-rotulos.tsv` censado. `tests/check.py --baseline`: 3 FAIL pre-existentes sin cambio, 1 WARN nuevo (`NC-0170`, T13 sobre `canon/estado-programa-v1_12.md`).
+- Cuatro reservas nuevas en `forense/no-corrido.tsv`: `NC-0167` (retro-sello de las 18 excepciones de P3), `NC-0168` (firma de mesa sobre las 9 `DECISIÓN-DE-MESA` de P1), `NC-0169` (borrado de la rama huérfana de P2), `NC-0170` (T13 sin margen en `canon/estado-programa-v1_12.md`).
