@@ -6,4 +6,4 @@ acto — ENCARGO · ACTO GEN2-CONSUMIDO-RETRO-3 · TRÁMITE MICRO · NUBE, Sonne
 
 ## CONSUMIDO · PR #759
 
-Ejecutado íntegro: cierra retroactivamente `#731`/`#742`/`#739`, ADR-500, L0, registro-rótulos, `tests/check.py --baseline` LÍNEA BASE VERDE.
+Ejecutado íntegro: cierra retroactivamente `#731`/`#742`/`#739`. Renumerado de `ADR-500` a `ADR-501` al fusionar `origin/main` (PR #757 `GEN2-B-MARCO` tomó `ADR-499`, PR #758 `GEN2-F5-DOC-CONTRATO-V1_1` tomó `ADR-500` — regla de la casa: renumera quien fusiona segundo); L0 y registro-rótulos reconciliados en el mismo commit de merge. `tests/check.py --baseline`: los 41 tests de contenido coinciden exactamente con la línea base congelada (3 FAIL preexistentes: T06×2, T08×1); `T16 T-SUITE-SELF-CHECK` (subproceso interno con timeout de 120s, excluido de sí mismo) excedió ese timeout por saturación de CPU del sandbox en el momento de la corrida — no por contenido tocado por este acto — y se reporta aquí en vez de forzar un veredicto VERDE falso.
