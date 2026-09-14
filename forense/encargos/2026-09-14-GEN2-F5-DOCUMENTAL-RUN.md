@@ -27,3 +27,14 @@ CONTADOR: condicional al contrato — si sella CALC, cuenta con la firma de arri
 - **P3 (c) · «NC-0160 → CERRADA con el desenlace real»** · `PARO-PREMISA`: el desenlace real es que las 32 posiciones siguen sin correr, que es exactamente lo que `NC-0160` registra; cerrarla lo desmentiría · impacto: `NC-0160` sigue `ABIERTA`, con enmienda fechada en su fila (decisión de mesa ya tomada, sucesor `NC-0177`); `FP-373 → FIRMADA` sí se ejecutó · sucesor: `NC-0177`.
 - **P1 · «verifica que el CLI opera con el modelo que el contrato nombra»** · reserva: opera (`claude-opus-5` respondió), pero acompañado de `claude-haiku-4-5` auxiliar en `modelUsage` (91 703 in / 22 out), causa no identificada sin gastar más solicitudes · impacto: la identidad «un solo modelo» que la sonda exige no se acredita · sucesor: `NC-0177`.
 - **Concurrencia declarada con DOCS-ALINEACION-2** · sin colisión: PR #754 ya fusionado al arrancar y su adenda de PAUSA no llegó a `F5-documental-ejecucion-v1_0.md` (`NC-0173`, `PARO-PREMISA`); la enmienda de REANUDACIÓN Y PARO de este acto es la única en el archivo y cita `NC-0173` en vez de reconstruir el asiento · sucesor: `NC-0173`.
+
+## CONSUMIDO
+
+Ejecutado en `PR #756`, `ACTO GEN2-F5-DOCUMENTAL-RUN`. La fusión queda con Jonás; **su merge perfecciona la firma de FP-373.**
+
+- **P1** (arranque y sonda): ARRANQUE completo (base `11c8783`, worktree propio, `data/raw` enlazada, entorno `sin_variable`/red 200/corpus 412); firma de mesa archivada en `F5-documental-firma-v1_0.md` (aceptada por el verificador sellado; `FP-373 → FIRMADA`, token A.16); `--freeze-plan` congeló 32 posiciones (`2.1.270`, `claude-opus-5`); `--transport-probe` corrió una vez (contada: **2/96**) — la cuota responde, el contrato dictamina `TRANSPORTE-NO-VALIDADO` (MCP denegada, Haiku auxiliar, `num_turns=3`).
+- **P2/P3(a)(b)**: NO ejecutados por regla del contrato — ver `## NO-CORRIDO / RESERVAS` (`NC-0177`). Secundaria SIN VEREDICTO; contador cero; primaria intacta.
+- **P3(c)**: `FP-373 → FIRMADA` hecho; `NC-0160` sigue ABIERTA con enmienda en fila (desenlace real: posiciones sin correr; sucesor `NC-0177`).
+- **P3(d)**: enmienda fechada de REANUDACIÓN Y PARO en `F5-documental-ejecucion-v1_0.md`, original intacto; asiento de la PAUSA citado como `NC-0173`, no reconstruido.
+- **P3(e)**: la lectura conjunta no se escribió, como pide el encargo.
+- Cascada: `ADR-498`, L0 y tres contadores reconciliados (`cierre_acto.py --aplica`), rótulo censado, `NC-0177`/`NC-0178` con `#756`, suite `--baseline` VERDE (3 FAIL preexistentes iguales al baseline).
