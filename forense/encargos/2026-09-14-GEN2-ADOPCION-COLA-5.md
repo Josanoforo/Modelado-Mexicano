@@ -41,6 +41,23 @@ data/adq-demanda-activa-v1_0.json` → EXISTE-SATISFACE, con
 adoptada; no volver a medir ni pedir decisión científica"]` ya declarado en
 el propio contrato.
 
+**A.8 contra medición ya corrida (ADR-340).** Este encargo cita `R10.3` al
+clasificar `RESULT-CTX-2019/2021/2023-P-ALTO` como antecedente, no como la
+regla. `python3 tools/ya_medido.py R10.3`:
+
+```
+=== ya_medido: R10.3 ===
+  resuelto por canon: R10.3 -> id `comunicacion.inseguridad.ver_oir_callar`
+...
+MEDIDA-EN: tramite-ola5-propuesta-v0.yaml
+```
+
+`R10.3` **no es** `SIN-INSTRUMENTO` ni territorio virgen: ya trae su
+primera falsación (`ACTO MAESTRA38-L18`, LAPOP 2004, `NO-DISCRIMINA`,
+`[FUERTE]` sin mover) y su cláusula de movimiento `D2-h` sigue
+`NO-CONSTRUIBLE` con 2019/2021/2023 — exactamente lo que P1/P2 de este
+acto ya declaran, sin re-medir ni reclasificar nada.
+
 **(3) ¿La estructura es posterior al trabajo que va a tocar?**
 `data/corrida0/resultados.tsv` nació con `ACTO GEN2-E2` / `ACTO GEN2-E3` (7/sep/2026);
 `CALC-0001`/`CALC-0002` (los 5 de P1-P3) se sellaron el 8/sep/2026,
