@@ -32,3 +32,7 @@ CONTADOR: sí, condicional — cada CALC sucesor que nazca lleva cadena E.2 y la
 | Registro: `registro --verifica --escribe` sin `--lote` | Reserva (no es pieza no corrida): `CALC-M-marco-M-sorteado-v1_3` proyectó `NO-REPRODUCE` en el dry-run y `REPLICA-RESULTADO` en dos `verify` aislados y en la escritura (`NC-0182`, veredicto inestable in-process); la escritura salió sin transiciones y con cero pisadas | ninguno | `NC-0182` (ya abierta por `GEN2-B-MARCO`) |
 
 A.8 / ADR-340 (`tools/ya_medido.py`, `TZ=UTC`, salida traducida): `dinero.ahorro.tiene_ahorros` — `MEDIDA-EN: milpa/tramite.yaml:631` (SELLADA, tier FUERTE, p=0.174804, ENNViH ola 2, bootstrap simple; **no re-estimada aquí**, `NC-0156`) · `familia.corresidencia.adulto_familiar` — `MEDIDA-EN: milpa/tramite-ola5-propuesta-v0.yaml:110` (SELLADA-SIN-CARGA, tier MEDIA, p=0.996086; **sucesor GEN2 con diseño: `CALC-EDER-0001`**, sin cita en `milpa/`, `NC-0183`).
+
+## CONSUMIDO
+
+Ejecutado en **PR #760** (`acto/gen2-diseno-fase1-cierre`, 14/sep/2026, CAJA Ubuntu/WSL2). Commits: `4c6e914` (0-bis) · `0cbaba6` (COMMIT-1: auditoría + spec sellada + CALC congelado) · `d393edd` (COMMIT-2: corrida sellada, firma de contador, registro) · cascada (`ADR-501`, L0, rótulo, `NC-0086` CERRADA, `NC-0183`/`NC-0184`, hallazgo, nota de cierre). El merge es de mesa.
