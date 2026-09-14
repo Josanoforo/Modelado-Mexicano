@@ -1,0 +1,1228 @@
+# CALC-B-MARCO-ENVIPE-0001 -- cara mecanica de spec.md (ACTO GEN2-B-MARCO).
+# Gobierna spec.md y, sobre el, la spec SELLADA forense/prereg-caja/B-MARCO-spec-v1_0.md (`prereg-caja-B-MARCO`).
+# Linea base temporal B, serie ENVIPE, para las celdas del marco-M que esta serie sirve.
+# NINGUNA cifra suya entra a un veredicto de regla (T9). CONGELADO en el COMMIT-1, antes de abrir microdato.
+calc_id: CALC-B-MARCO-ENVIPE-0001
+spec_md: spec.md
+spec_md_sha256: e1420f25ecc8b50c3ec29b0366a50675d2f9c9082b49929f5138ee8180d2057b
+script: data/corrida0/CALC-B-MARCO-ENVIPE-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: LINEA-BASE-TEMPORAL-B-POR-SERIE
+  familia: B-MARCO
+  cuenta_gen2: SI
+  cuenta_gen2_firma: >-
+    FIRMA DE MESA, 14/sep/2026, verbatim en el encargo archivado forense/encargos/2026-09-14-GEN2-B-MARCO.md: «FIRMA
+    DE CONTADOR con OBJETO, incluida (patron de la casa): cuenta_gen2 = SI para los CALC-B que este acto selle;
+    el acto la escribe citando este parrafo, el merge la perfecciona.» Objeto: este CALC-B. El merge de mesa perfecciona
+    la firma.
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/B-MARCO-spec-v1_0.md
+  spec_sellada_sha256: e61969b9cbf302004fd6b3bf04f2b3785edda331d1165dac6603acd404d1ab38
+  sucesora_de: >-
+    CALC-B-0001 (prereg-caja-B-REMESAS) -- sucesion de familia por extension, no reescritura: CALC-B-0001 no se
+    toca
+  reglas_bajo_prueba: >-
+    NINGUNA. Ninguna cifra de este CALC entra a un veredicto de regla (T9). No re-corre la triada ni toca su veredicto.
+  contaminacion_declarada: >-
+    ADR-46 -- contaminacion TOTAL declarada por el encargo y re-declarada aqui: los valores R/M/L de las 14 celdas
+    estan en el repo y esta sesion pudo verlos; el medidor y las reglas se congelaron SIN abrir corridas-R/*.json
+    ni L-extraido ni M-*.json (solo se leyo su ESTRUCTURA: llaves, variable, universo, codificacion). Por eso la
+    regla es fija, tonta y pre-declarada por serie, heredada de CALC-B-0001, y ninguna decision de esta spec depende
+    de un valor observado.
+  medidor_ejecutado_al_congelar: >-
+    NO -- escrito y congelado en el COMMIT-1 (probado solo sobre datos SINTETICOS), corrido en el COMMIT-2 del mismo
+    acto
+inputs:
+- id: envipe_2011_base_de_datos_envipe_2011_dbf
+  origen: manifiesto
+- id: envipe_2012_base_de_datos_envipe_2012_dbf
+  origen: manifiesto
+- id: envipe_2013_bd_envipe13_dbf
+  origen: manifiesto
+- id: envipe_2014_bd_envipe2014_dbf
+  origen: manifiesto
+- id: envipe_2015_bd_envipe2015_dbf
+  origen: manifiesto
+- id: envipe2020_csv
+  origen: manifiesto
+- id: envipe2021_csv
+  origen: manifiesto
+- id: envipe2022_csv
+  origen: manifiesto
+- id: envipe2023_csv
+  origen: manifiesto
+- id: envipe2024_csv
+  origen: manifiesto
+- id: IN-B-SELECTOR
+  origen: repo
+  ruta: tools/baseline_temporal.py
+  sha256: 83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a
+- id: IN-B-MARCO-SPEC-SELLADA
+  origen: repo
+  ruta: forense/prereg-caja/B-MARCO-spec-v1_0.md
+  sha256: e61969b9cbf302004fd6b3bf04f2b3785edda331d1165dac6603acd404d1ab38
+variables:
+- archivo: tmod_vic.DBF
+  variable: BP1_21
+  rol: >-
+    [2011] desenlace -- razon principal de no denuncia; 01/02/06 = 1; 03/04/05/07/08/09 = 0; NS/NR y blanco FUERA
+- archivo: tmod_vic.DBF
+  variable: FAC_DEL
+  rol: '[2011] ponderador de delito'
+- archivo: tmod_vic.DBF
+  variable: EST
+  rol: '[2011] estrato de diseno -- llave opaca (bootstrap)'
+- archivo: tmod_vic.DBF
+  variable: UPM
+  rol: '[2011] UPM -- llave opaca (conglomerado re-muestreado)'
+- archivo: Tmod_Vic.DBF
+  variable: BP1_23
+  rol: >-
+    [2012] desenlace -- razon principal de no denuncia; 01/02/06 = 1; 03/04/05/07/08/09 = 0; NS/NR y blanco FUERA
+- archivo: Tmod_Vic.DBF
+  variable: FAC_DEL
+  rol: '[2012] ponderador de delito'
+- archivo: Tmod_Vic.DBF
+  variable: EST
+  rol: '[2012] estrato de diseno -- llave opaca (bootstrap)'
+- archivo: Tmod_Vic.DBF
+  variable: UPM
+  rol: '[2012] UPM -- llave opaca (conglomerado re-muestreado)'
+- archivo: tmod_vic.dbf
+  variable: BP1_23
+  rol: >-
+    [2013] desenlace -- razon principal de no denuncia; 01/02/06 = 1; 03/04/05/07/08/09 = 0; NS/NR y blanco FUERA
+- archivo: tmod_vic.dbf
+  variable: FAC_DEL
+  rol: '[2013] ponderador de delito'
+- archivo: tmod_vic.dbf
+  variable: EST
+  rol: '[2013] estrato de diseno -- llave opaca (bootstrap)'
+- archivo: tmod_vic.dbf
+  variable: UPM
+  rol: '[2013] UPM -- llave opaca (conglomerado re-muestreado)'
+- archivo: TMod_Vic.dbf
+  variable: BP1_23
+  rol: >-
+    [2014] desenlace -- razon principal de no denuncia; 01/02/06 = 1; 03/04/05/07/08/09 = 0; NS/NR y blanco FUERA
+- archivo: TMod_Vic.dbf
+  variable: FAC_DEL
+  rol: '[2014] ponderador de delito'
+- archivo: TMod_Vic.dbf
+  variable: EST
+  rol: '[2014] estrato de diseno -- llave opaca (bootstrap)'
+- archivo: TMod_Vic.dbf
+  variable: UPM
+  rol: '[2014] UPM -- llave opaca (conglomerado re-muestreado)'
+- archivo: TMod_Vic.dbf
+  variable: BP1_23
+  rol: >-
+    [2015] desenlace -- razon principal de no denuncia; 01/02/06 = 1; 03/04/05/07/08/09 = 0; NS/NR y blanco FUERA
+- archivo: TMod_Vic.dbf
+  variable: FAC_DEL
+  rol: '[2015] ponderador de delito'
+- archivo: TMod_Vic.dbf
+  variable: EST_DIS
+  rol: '[2015] estrato de diseno -- llave opaca (bootstrap)'
+- archivo: TMod_Vic.dbf
+  variable: UPM_DIS
+  rol: '[2015] UPM -- llave opaca (conglomerado re-muestreado)'
+- archivo: conjunto_de_datos_TMod_Vic_ENVIPE_2020.csv
+  variable: BP1_23
+  rol: >-
+    [2020] desenlace -- razon principal de no denuncia; 01/02/06 = 1; 03/04/05/07/08/09 = 0; NS/NR y blanco FUERA
+- archivo: conjunto_de_datos_TMod_Vic_ENVIPE_2020.csv
+  variable: FAC_DEL
+  rol: '[2020] ponderador de delito'
+- archivo: conjunto_de_datos_TMod_Vic_ENVIPE_2020.csv
+  variable: EST_DIS
+  rol: '[2020] estrato de diseno -- llave opaca (bootstrap)'
+- archivo: conjunto_de_datos_TMod_Vic_ENVIPE_2020.csv
+  variable: UPM_DIS
+  rol: '[2020] UPM -- llave opaca (conglomerado re-muestreado)'
+- archivo: conjunto_de_datos_TMod_Vic_ENVIPE_2021.csv
+  variable: BP1_23
+  rol: >-
+    [2021] desenlace -- razon principal de no denuncia; 01/02/06 = 1; 03/04/05/07/08/09 = 0; NS/NR y blanco FUERA
+- archivo: conjunto_de_datos_TMod_Vic_ENVIPE_2021.csv
+  variable: FAC_DEL
+  rol: '[2021] ponderador de delito'
+- archivo: conjunto_de_datos_TMod_Vic_ENVIPE_2021.csv
+  variable: EST_DIS
+  rol: '[2021] estrato de diseno -- llave opaca (bootstrap)'
+- archivo: conjunto_de_datos_TMod_Vic_ENVIPE_2021.csv
+  variable: UPM_DIS
+  rol: '[2021] UPM -- llave opaca (conglomerado re-muestreado)'
+- archivo: conjunto_de_datos_TMod_Vic_ENVIPE_2022.csv
+  variable: BP1_23
+  rol: >-
+    [2022] desenlace -- razon principal de no denuncia; 01/02/06 = 1; 03/04/05/07/08/09 = 0; NS/NR y blanco FUERA
+- archivo: conjunto_de_datos_TMod_Vic_ENVIPE_2022.csv
+  variable: FAC_DEL
+  rol: '[2022] ponderador de delito'
+- archivo: conjunto_de_datos_TMod_Vic_ENVIPE_2022.csv
+  variable: EST_DIS
+  rol: '[2022] estrato de diseno -- llave opaca (bootstrap)'
+- archivo: conjunto_de_datos_TMod_Vic_ENVIPE_2022.csv
+  variable: UPM_DIS
+  rol: '[2022] UPM -- llave opaca (conglomerado re-muestreado)'
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: BP1_23
+  rol: >-
+    [2023] desenlace -- razon principal de no denuncia; 01/02/06 = 1; 03/04/05/07/08/09 = 0; NS/NR y blanco FUERA
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: FAC_DEL
+  rol: '[2023] ponderador de delito'
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: EST_DIS
+  rol: '[2023] estrato de diseno -- llave opaca (bootstrap)'
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: UPM_DIS
+  rol: '[2023] UPM -- llave opaca (conglomerado re-muestreado)'
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: BP1_23
+  rol: >-
+    [2024] desenlace -- razon principal de no denuncia; 01/02/06 = 1; 03/04/05/07/08/09 = 0; NS/NR y blanco FUERA
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: FAC_DEL
+  rol: '[2024] ponderador de delito'
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: EST_DIS
+  rol: '[2024] estrato de diseno -- llave opaca (bootstrap)'
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: UPM_DIS
+  rol: '[2024] UPM -- llave opaca (conglomerado re-muestreado)'
+universo: >-
+  Delitos: TODAS las filas de TMod_Vic de cada ola (todos los tipos de delito), sin filtro adicional mas alla de
+  la codificacion -- identico al universo que corridas-R declara para las seis celdas CIV-M del marco, deliberadamente,
+  para que la observada de cada ola objetivo sea comparable contra su R (control positivo). UNA OLA A LA VEZ, jamas
+  agrupadas ni promediadas. Universo de la serie B: olas 2011, 2012, 2013, 2014, 2015, 2020, 2021, 2022, 2023, 2024
+  (las seis objetivo y sus predecesoras inmediatas). 2016-2019 y 2025 existen en corpus y quedan FUERA: no son objetivo
+  ni predecesora de ningun objetivo y B no las necesita.
+filtros: >-
+  Entran las filas con FAC_DEL finito y > 0 y con codigo de desenlace en {01..09}. NS/NR (99; 88/98 en 2011) y blanco
+  (quien SI denuncio) quedan FUERA y se cuentan en N-FUERA-CODIGO. Si alguna fila valida carece de estrato o de
+  UPM, el IC de esa ola sale null y el veredicto es NO-ESTIMABLE-DISENO-INCOMPLETO. Guardia de producto: p exactamente
+  0.0 o 1.0 -> NO-ESTIMABLE-P-DEGENERADA.
+ponderador: FAC_DEL en las diez olas.
+transformacion: >-
+  Dicotomizacion pre-registrada de dos ramas (ver `codificacion`); p_ola = suma(w*y)/suma(w) sobre el universo valido
+  de la ola, una ola a la vez. Sobre esa serie corre el selector B (tools/baseline_temporal.py) sin modificarlo,
+  para cada ola objetivo y dos brazos que difieren SOLO en `disponible_desde`: OPERATIVO usa la fecha de version
+  de la ola en corpus (Modified del CSV; mtime del miembro DBF cuando el payload no trae metadatos/); PERSISTENCIA
+  usa periodo_fin de la ola (el contrafactico «si cada ola hubiera estado disponible el dia que cerro su levantamiento»).
+  Periodos = anio calendario de la ola (anio de encuesta, que es el `ola` del marco); fecha_corte(objetivo) = (objetivo
+  - 1)-12-31. Regla fija, tonta y pre-declarada: persistencia de la ULTIMA ola de la MISMA serie disponible al corte.
+  Nada de promediar, ajustar tendencia, interpolar ni imputar.
+estimando: >-
+  DESCRIPTIVO, en dos capas -- las mismas de CALC-B-0001. (1) p_ola por ola con IC95. (2) La linea base: por objetivo
+  y brazo, P_B (la prediccion de B para la celda) y su contraste contra la observada propia de la ola objetivo (ERROR
+  con signo, ERROR-ABS, DENTRO-IC, MARGEN-AL-BORDE), escala [0,1]. Este CALC NO lee R: el error frente al arbitro
+  de la celda (err_pp, A-bis.3) y el control positivo viven en CALC-B-MARCO-MAE-0001. NO es una estimacion de regla:
+  ninguna cifra entra a un veredicto (T9).
+dependencias_materiales:
+- numpy
+- pandas
+parametros:
+  fuente_acto: ACTO GEN2-B-MARCO · CALC-B-MARCO-ENVIPE-0001
+  firma_que_lo_autoriza: >-
+    FIRMA DE MESA 14/sep/2026 (en el encargo archivado) -- «ya tenemos caja disponible»; sucesor declarado de NC-0079
+  serie_rotulo: ENVIPE
+  selector_sha256: 83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a
+  bootstrap_replicas: 2000
+  n_minimo_celda: 10
+  metodo_ic: >-
+    bootstrap de UPM CON REEMPLAZO dentro de estrato, conservando el numero de UPM por estrato; percentiles 2.5/97.5
+    -- implementacion VERBATIM de CALC-B-0001
+  ranura_no_preregistrada: >-
+    Nadie pre-registro el metodo de IC para estas series bajo B. Se hereda el de CALC-B-0001 (misma implementacion,
+    misma semilla) y se declara; no se espera coincidencia digito a digito con los IC de corridas-R (otra implementacion:
+    ultimate cluster analitico).
+  umbral_roza_el_borde: 0.0001
+  codificacion:
+    tipo: codigos
+    uno:
+    - 1
+    - 2
+    - 6
+    cero:
+    - 3
+    - 4
+    - 5
+    - 7
+    - 8
+    - 9
+  serie:
+    encuesta: ENVIPE
+    reactivo: >-
+      TMod_Vic.BP1_23 -- razon principal por la que NO denuncio (BP1_21 en la ola 2011: cambio nominal, mismos nueve
+      codigos sustantivos 01..09)
+    universo: >-
+      delitos captados en TMod_Vic, seccion I (todos los tipos de delito), sin filtro adicional mas alla de la codificacion
+    codificacion: >-
+      y=1 si codigo en {01,02,06} (miedo al agresor / miedo a extorsion / desconfianza en la autoridad); y=0 si
+      codigo en {03,04,05,07,08,09}; NS/NR (99; 88/98 en 2011) y blanco FUERA
+    segmento: nacional
+    unidad: proporcion
+  brazos:
+  - OPERATIVO
+  - PERSISTENCIA
+  olas:
+  - ola: '2011'
+    payload_id: envipe_2011_base_de_datos_envipe_2011_dbf
+    formato: DBF
+    miembro: tmod_vic.DBF
+    columnas:
+      desenlace: BP1_21
+      ponderador: FAC_DEL
+      estrato: EST
+      upm: UPM
+    disponible_desde_operativo: '2013-08-12'
+    metadato_version_verbatim: >-
+      DBF sin metadatos/: fecha de version = mtime del miembro tmod_vic.DBF dentro del zip = 2013-08-12T11:31:44
+    temporal_verbatim: SIN-METADATO-TEMPORAL-EN-PAYLOAD
+  - ola: '2012'
+    payload_id: envipe_2012_base_de_datos_envipe_2012_dbf
+    formato: DBF
+    miembro: Tmod_Vic.DBF
+    columnas:
+      desenlace: BP1_23
+      ponderador: FAC_DEL
+      estrato: EST
+      upm: UPM
+    disponible_desde_operativo: '2013-08-06'
+    metadato_version_verbatim: >-
+      DBF sin metadatos/: fecha de version = mtime del miembro Tmod_Vic.DBF dentro del zip = 2013-08-06T09:33:12
+    temporal_verbatim: SIN-METADATO-TEMPORAL-EN-PAYLOAD
+  - ola: '2013'
+    payload_id: envipe_2013_bd_envipe13_dbf
+    formato: DBF
+    miembro: tmod_vic.dbf
+    columnas:
+      desenlace: BP1_23
+      ponderador: FAC_DEL
+      estrato: EST
+      upm: UPM
+    disponible_desde_operativo: '2013-09-24'
+    metadato_version_verbatim: >-
+      DBF sin metadatos/: fecha de version = mtime del miembro tmod_vic.dbf dentro del zip = 2013-09-24T11:01:42
+    temporal_verbatim: SIN-METADATO-TEMPORAL-EN-PAYLOAD
+  - ola: '2014'
+    payload_id: envipe_2014_bd_envipe2014_dbf
+    formato: DBF
+    miembro: TMod_Vic.dbf
+    columnas:
+      desenlace: BP1_23
+      ponderador: FAC_DEL
+      estrato: EST
+      upm: UPM
+    disponible_desde_operativo: '2015-06-24'
+    metadato_version_verbatim: >-
+      DBF sin metadatos/: fecha de version = mtime del miembro bd_envipe2014/bd_envipe2014/TMod_Vic.dbf dentro del
+      zip = 2015-06-24T10:06:42
+    temporal_verbatim: SIN-METADATO-TEMPORAL-EN-PAYLOAD
+  - ola: '2015'
+    payload_id: envipe_2015_bd_envipe2015_dbf
+    formato: DBF
+    miembro: TMod_Vic.dbf
+    columnas:
+      desenlace: BP1_23
+      ponderador: FAC_DEL
+      estrato: EST_DIS
+      upm: UPM_DIS
+    disponible_desde_operativo: '2015-09-09'
+    metadato_version_verbatim: >-
+      DBF sin metadatos/: fecha de version = mtime del miembro TMod_Vic.dbf dentro del zip = 2015-09-09T12:03:04
+    temporal_verbatim: SIN-METADATO-TEMPORAL-EN-PAYLOAD
+  - ola: '2020'
+    payload_id: envipe2020_csv
+    formato: CSV
+    directorio: conjunto_de_datos_TMod_Vic_ENVIPE_2020
+    basename_csv: conjunto_de_datos_TMod_Vic_ENVIPE_2020.csv
+    columnas:
+      desenlace: BP1_23
+      ponderador: FAC_DEL
+      estrato: EST_DIS
+      upm: UPM_DIS
+    disponible_desde_operativo: '2020-12-10'
+    metadato_version_verbatim: 'metadatos_ENVIPE_2020.txt: Identifier=DDI-MEX-INEGI-ENVIPE-2020-V01; Modified=2020-12-10'
+    temporal_verbatim: 2019-01-01-2019-12-31
+  - ola: '2021'
+    payload_id: envipe2021_csv
+    formato: CSV
+    directorio: conjunto_de_datos_TMod_Vic_ENVIPE_2021
+    basename_csv: conjunto_de_datos_TMod_Vic_ENVIPE_2021.csv
+    columnas:
+      desenlace: BP1_23
+      ponderador: FAC_DEL
+      estrato: EST_DIS
+      upm: UPM_DIS
+    disponible_desde_operativo: '2021-09-22'
+    metadato_version_verbatim: 'metadatos_ENVIPE_2021.txt: Identifier=DDI-MEX-INEGI-ENVIPE-2021-V01; Modified=2021-09-22'
+    temporal_verbatim: 2020-01-01-2020-12-31
+  - ola: '2022'
+    payload_id: envipe2022_csv
+    formato: CSV
+    directorio: conjunto_de_datos_TMod_Vic_ENVIPE_2022
+    basename_csv: conjunto_de_datos_TMod_Vic_ENVIPE_2022.csv
+    columnas:
+      desenlace: BP1_23
+      ponderador: FAC_DEL
+      estrato: EST_DIS
+      upm: UPM_DIS
+    disponible_desde_operativo: '2022-09-08'
+    metadato_version_verbatim: 'metadatos_ENVIPE_2022.txt: Identifier=DDI-MEX-INEGI-ENVIPE-2022-V01; Modified=2022-09-08'
+    temporal_verbatim: 2021-01-01-2021-12-31
+  - ola: '2023'
+    payload_id: envipe2023_csv
+    formato: CSV
+    directorio: tmod_vic_envipe2023
+    basename_csv: conjunto_de_datos_tmod_vic_envipe2023.csv
+    columnas:
+      desenlace: BP1_23
+      ponderador: FAC_DEL
+      estrato: EST_DIS
+      upm: UPM_DIS
+    disponible_desde_operativo: '2023-09-11'
+    metadato_version_verbatim: 'metadatos_envipe2023.txt: Identifier=MEX-INEGI.EGS3.02-ENVIPE-2023; Modified=2023-09-11'
+    temporal_verbatim: 2022-01-01-2022-12-31, 2023-03-01-2023-04-30 y 2023-03-01-2023-12-31
+  - ola: '2024'
+    payload_id: envipe2024_csv
+    formato: CSV
+    directorio: tmod_vic_envipe2024
+    basename_csv: conjunto_de_datos_tmod_vic_envipe2024.csv
+    columnas:
+      desenlace: BP1_23
+      ponderador: FAC_DEL
+      estrato: EST_DIS
+      upm: UPM_DIS
+    disponible_desde_operativo: '2024-09-19'
+    metadato_version_verbatim: 'metadatos_envipe2024.txt: Identifier=MEX-INEGI.EGS3.02-ENVIPE-2024; Modified=2024-09-19'
+    temporal_verbatim: 2023-01-01-2023-12-31, 2024-03-01-2024-04-30 y 2024-03-01-2024-12-31
+  objetivos:
+  - ola: '2012'
+    celda: CIV-M-01
+  - ola: '2013'
+    celda: CIV-M-02
+  - ola: '2015'
+    celda: CIV-M-04
+  - ola: '2021'
+    celda: CIV-M-10
+  - ola: '2023'
+    celda: CIV-M-12
+  - ola: '2024'
+    celda: CIV-M-13
+seed:
+  aplica: true
+  valor: 20260908
+  rng: numpy.PCG64
+  nota: >-
+    semilla HEREDADA de CALC-B-0001 a proposito: la ola ENIGH 2016 debe reproducir punto E IC del ensayo original
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Bootstrap fijado por seed + rng declarados y sumas en orden fijo: la unica diferencia esperable entre dos corridas
+    del mismo arbol es redondeo de float64 al reasociar sumas ponderadas. Enteros y textos EXACTO.
+resultados:
+- id: RESULT-BM-ENVIPE-2011-P
+  tipo: proporcion
+  unidad: '[2011] proporcion ponderada (estimando de la serie) [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2011-IC-LO
+  tipo: flotante
+  unidad: '[2011] limite inferior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2011-IC-HI
+  tipo: flotante
+  unidad: '[2011] limite superior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2011-N
+  tipo: entero
+  unidad: '[2011] filas con ponderador finito >0 y desenlace codificable (n efectivo)'
+- id: RESULT-BM-ENVIPE-2011-N-FILAS-LEIDAS
+  tipo: entero
+  unidad: '[2011] filas leidas de la tabla (registros vivos)'
+- id: RESULT-BM-ENVIPE-2011-N-FUERA-CODIGO
+  tipo: entero
+  unidad: '[2011] filas con desenlace fuera de las dos ramas (NS/NR, blanco, nulo) -- embudo'
+- id: RESULT-BM-ENVIPE-2011-N-SIN-PONDERADOR
+  tipo: entero
+  unidad: '[2011] filas codificables sin ponderador finito >0 -- embudo'
+- id: RESULT-BM-ENVIPE-2011-N-SIN-DISENO
+  tipo: entero
+  unidad: '[2011] filas validas sin estrato o sin UPM -- guardia: >0 anula el IC'
+- id: RESULT-BM-ENVIPE-2011-EXPANDIDOS
+  tipo: flotante
+  unidad: '[2011] suma del ponderador sobre el universo valido (unidades expandidas)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2011-VEREDICTO
+  tipo: texto
+  unidad: >-
+    [2011] SERIE-REPORTADA / NO-ESTIMABLE / NO-ESTIMABLE-NULOS-INESPERADOS / NO-ESTIMABLE-DISENO-INCOMPLETO / NO-ESTIMABLE-P-DEGENERADA
+- id: RESULT-BM-ENVIPE-2011-METADATO-VERSION
+  tipo: texto
+  unidad: '[2011] metadato de version de la ola en corpus, VERBATIM (Modified del CSV o mtime del miembro DBF)'
+- id: RESULT-BM-ENVIPE-2011-METADATO-TEMPORAL
+  tipo: texto
+  unidad: '[2011] campo Temporal del metadato del payload, VERBATIM (sellado, no usado)'
+- id: RESULT-BM-ENVIPE-2012-P
+  tipo: proporcion
+  unidad: '[2012] proporcion ponderada (estimando de la serie) [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2012-IC-LO
+  tipo: flotante
+  unidad: '[2012] limite inferior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2012-IC-HI
+  tipo: flotante
+  unidad: '[2012] limite superior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2012-N
+  tipo: entero
+  unidad: '[2012] filas con ponderador finito >0 y desenlace codificable (n efectivo)'
+- id: RESULT-BM-ENVIPE-2012-N-FILAS-LEIDAS
+  tipo: entero
+  unidad: '[2012] filas leidas de la tabla (registros vivos)'
+- id: RESULT-BM-ENVIPE-2012-N-FUERA-CODIGO
+  tipo: entero
+  unidad: '[2012] filas con desenlace fuera de las dos ramas (NS/NR, blanco, nulo) -- embudo'
+- id: RESULT-BM-ENVIPE-2012-N-SIN-PONDERADOR
+  tipo: entero
+  unidad: '[2012] filas codificables sin ponderador finito >0 -- embudo'
+- id: RESULT-BM-ENVIPE-2012-N-SIN-DISENO
+  tipo: entero
+  unidad: '[2012] filas validas sin estrato o sin UPM -- guardia: >0 anula el IC'
+- id: RESULT-BM-ENVIPE-2012-EXPANDIDOS
+  tipo: flotante
+  unidad: '[2012] suma del ponderador sobre el universo valido (unidades expandidas)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2012-VEREDICTO
+  tipo: texto
+  unidad: >-
+    [2012] SERIE-REPORTADA / NO-ESTIMABLE / NO-ESTIMABLE-NULOS-INESPERADOS / NO-ESTIMABLE-DISENO-INCOMPLETO / NO-ESTIMABLE-P-DEGENERADA
+- id: RESULT-BM-ENVIPE-2012-METADATO-VERSION
+  tipo: texto
+  unidad: '[2012] metadato de version de la ola en corpus, VERBATIM (Modified del CSV o mtime del miembro DBF)'
+- id: RESULT-BM-ENVIPE-2012-METADATO-TEMPORAL
+  tipo: texto
+  unidad: '[2012] campo Temporal del metadato del payload, VERBATIM (sellado, no usado)'
+- id: RESULT-BM-ENVIPE-2013-P
+  tipo: proporcion
+  unidad: '[2013] proporcion ponderada (estimando de la serie) [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2013-IC-LO
+  tipo: flotante
+  unidad: '[2013] limite inferior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2013-IC-HI
+  tipo: flotante
+  unidad: '[2013] limite superior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2013-N
+  tipo: entero
+  unidad: '[2013] filas con ponderador finito >0 y desenlace codificable (n efectivo)'
+- id: RESULT-BM-ENVIPE-2013-N-FILAS-LEIDAS
+  tipo: entero
+  unidad: '[2013] filas leidas de la tabla (registros vivos)'
+- id: RESULT-BM-ENVIPE-2013-N-FUERA-CODIGO
+  tipo: entero
+  unidad: '[2013] filas con desenlace fuera de las dos ramas (NS/NR, blanco, nulo) -- embudo'
+- id: RESULT-BM-ENVIPE-2013-N-SIN-PONDERADOR
+  tipo: entero
+  unidad: '[2013] filas codificables sin ponderador finito >0 -- embudo'
+- id: RESULT-BM-ENVIPE-2013-N-SIN-DISENO
+  tipo: entero
+  unidad: '[2013] filas validas sin estrato o sin UPM -- guardia: >0 anula el IC'
+- id: RESULT-BM-ENVIPE-2013-EXPANDIDOS
+  tipo: flotante
+  unidad: '[2013] suma del ponderador sobre el universo valido (unidades expandidas)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2013-VEREDICTO
+  tipo: texto
+  unidad: >-
+    [2013] SERIE-REPORTADA / NO-ESTIMABLE / NO-ESTIMABLE-NULOS-INESPERADOS / NO-ESTIMABLE-DISENO-INCOMPLETO / NO-ESTIMABLE-P-DEGENERADA
+- id: RESULT-BM-ENVIPE-2013-METADATO-VERSION
+  tipo: texto
+  unidad: '[2013] metadato de version de la ola en corpus, VERBATIM (Modified del CSV o mtime del miembro DBF)'
+- id: RESULT-BM-ENVIPE-2013-METADATO-TEMPORAL
+  tipo: texto
+  unidad: '[2013] campo Temporal del metadato del payload, VERBATIM (sellado, no usado)'
+- id: RESULT-BM-ENVIPE-2014-P
+  tipo: proporcion
+  unidad: '[2014] proporcion ponderada (estimando de la serie) [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2014-IC-LO
+  tipo: flotante
+  unidad: '[2014] limite inferior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2014-IC-HI
+  tipo: flotante
+  unidad: '[2014] limite superior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2014-N
+  tipo: entero
+  unidad: '[2014] filas con ponderador finito >0 y desenlace codificable (n efectivo)'
+- id: RESULT-BM-ENVIPE-2014-N-FILAS-LEIDAS
+  tipo: entero
+  unidad: '[2014] filas leidas de la tabla (registros vivos)'
+- id: RESULT-BM-ENVIPE-2014-N-FUERA-CODIGO
+  tipo: entero
+  unidad: '[2014] filas con desenlace fuera de las dos ramas (NS/NR, blanco, nulo) -- embudo'
+- id: RESULT-BM-ENVIPE-2014-N-SIN-PONDERADOR
+  tipo: entero
+  unidad: '[2014] filas codificables sin ponderador finito >0 -- embudo'
+- id: RESULT-BM-ENVIPE-2014-N-SIN-DISENO
+  tipo: entero
+  unidad: '[2014] filas validas sin estrato o sin UPM -- guardia: >0 anula el IC'
+- id: RESULT-BM-ENVIPE-2014-EXPANDIDOS
+  tipo: flotante
+  unidad: '[2014] suma del ponderador sobre el universo valido (unidades expandidas)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2014-VEREDICTO
+  tipo: texto
+  unidad: >-
+    [2014] SERIE-REPORTADA / NO-ESTIMABLE / NO-ESTIMABLE-NULOS-INESPERADOS / NO-ESTIMABLE-DISENO-INCOMPLETO / NO-ESTIMABLE-P-DEGENERADA
+- id: RESULT-BM-ENVIPE-2014-METADATO-VERSION
+  tipo: texto
+  unidad: '[2014] metadato de version de la ola en corpus, VERBATIM (Modified del CSV o mtime del miembro DBF)'
+- id: RESULT-BM-ENVIPE-2014-METADATO-TEMPORAL
+  tipo: texto
+  unidad: '[2014] campo Temporal del metadato del payload, VERBATIM (sellado, no usado)'
+- id: RESULT-BM-ENVIPE-2015-P
+  tipo: proporcion
+  unidad: '[2015] proporcion ponderada (estimando de la serie) [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2015-IC-LO
+  tipo: flotante
+  unidad: '[2015] limite inferior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2015-IC-HI
+  tipo: flotante
+  unidad: '[2015] limite superior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2015-N
+  tipo: entero
+  unidad: '[2015] filas con ponderador finito >0 y desenlace codificable (n efectivo)'
+- id: RESULT-BM-ENVIPE-2015-N-FILAS-LEIDAS
+  tipo: entero
+  unidad: '[2015] filas leidas de la tabla (registros vivos)'
+- id: RESULT-BM-ENVIPE-2015-N-FUERA-CODIGO
+  tipo: entero
+  unidad: '[2015] filas con desenlace fuera de las dos ramas (NS/NR, blanco, nulo) -- embudo'
+- id: RESULT-BM-ENVIPE-2015-N-SIN-PONDERADOR
+  tipo: entero
+  unidad: '[2015] filas codificables sin ponderador finito >0 -- embudo'
+- id: RESULT-BM-ENVIPE-2015-N-SIN-DISENO
+  tipo: entero
+  unidad: '[2015] filas validas sin estrato o sin UPM -- guardia: >0 anula el IC'
+- id: RESULT-BM-ENVIPE-2015-EXPANDIDOS
+  tipo: flotante
+  unidad: '[2015] suma del ponderador sobre el universo valido (unidades expandidas)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2015-VEREDICTO
+  tipo: texto
+  unidad: >-
+    [2015] SERIE-REPORTADA / NO-ESTIMABLE / NO-ESTIMABLE-NULOS-INESPERADOS / NO-ESTIMABLE-DISENO-INCOMPLETO / NO-ESTIMABLE-P-DEGENERADA
+- id: RESULT-BM-ENVIPE-2015-METADATO-VERSION
+  tipo: texto
+  unidad: '[2015] metadato de version de la ola en corpus, VERBATIM (Modified del CSV o mtime del miembro DBF)'
+- id: RESULT-BM-ENVIPE-2015-METADATO-TEMPORAL
+  tipo: texto
+  unidad: '[2015] campo Temporal del metadato del payload, VERBATIM (sellado, no usado)'
+- id: RESULT-BM-ENVIPE-2020-P
+  tipo: proporcion
+  unidad: '[2020] proporcion ponderada (estimando de la serie) [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2020-IC-LO
+  tipo: flotante
+  unidad: '[2020] limite inferior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2020-IC-HI
+  tipo: flotante
+  unidad: '[2020] limite superior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2020-N
+  tipo: entero
+  unidad: '[2020] filas con ponderador finito >0 y desenlace codificable (n efectivo)'
+- id: RESULT-BM-ENVIPE-2020-N-FILAS-LEIDAS
+  tipo: entero
+  unidad: '[2020] filas leidas de la tabla (registros vivos)'
+- id: RESULT-BM-ENVIPE-2020-N-FUERA-CODIGO
+  tipo: entero
+  unidad: '[2020] filas con desenlace fuera de las dos ramas (NS/NR, blanco, nulo) -- embudo'
+- id: RESULT-BM-ENVIPE-2020-N-SIN-PONDERADOR
+  tipo: entero
+  unidad: '[2020] filas codificables sin ponderador finito >0 -- embudo'
+- id: RESULT-BM-ENVIPE-2020-N-SIN-DISENO
+  tipo: entero
+  unidad: '[2020] filas validas sin estrato o sin UPM -- guardia: >0 anula el IC'
+- id: RESULT-BM-ENVIPE-2020-EXPANDIDOS
+  tipo: flotante
+  unidad: '[2020] suma del ponderador sobre el universo valido (unidades expandidas)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2020-VEREDICTO
+  tipo: texto
+  unidad: >-
+    [2020] SERIE-REPORTADA / NO-ESTIMABLE / NO-ESTIMABLE-NULOS-INESPERADOS / NO-ESTIMABLE-DISENO-INCOMPLETO / NO-ESTIMABLE-P-DEGENERADA
+- id: RESULT-BM-ENVIPE-2020-METADATO-VERSION
+  tipo: texto
+  unidad: '[2020] metadato de version de la ola en corpus, VERBATIM (Modified del CSV o mtime del miembro DBF)'
+- id: RESULT-BM-ENVIPE-2020-METADATO-TEMPORAL
+  tipo: texto
+  unidad: '[2020] campo Temporal del metadato del payload, VERBATIM (sellado, no usado)'
+- id: RESULT-BM-ENVIPE-2021-P
+  tipo: proporcion
+  unidad: '[2021] proporcion ponderada (estimando de la serie) [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2021-IC-LO
+  tipo: flotante
+  unidad: '[2021] limite inferior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2021-IC-HI
+  tipo: flotante
+  unidad: '[2021] limite superior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2021-N
+  tipo: entero
+  unidad: '[2021] filas con ponderador finito >0 y desenlace codificable (n efectivo)'
+- id: RESULT-BM-ENVIPE-2021-N-FILAS-LEIDAS
+  tipo: entero
+  unidad: '[2021] filas leidas de la tabla (registros vivos)'
+- id: RESULT-BM-ENVIPE-2021-N-FUERA-CODIGO
+  tipo: entero
+  unidad: '[2021] filas con desenlace fuera de las dos ramas (NS/NR, blanco, nulo) -- embudo'
+- id: RESULT-BM-ENVIPE-2021-N-SIN-PONDERADOR
+  tipo: entero
+  unidad: '[2021] filas codificables sin ponderador finito >0 -- embudo'
+- id: RESULT-BM-ENVIPE-2021-N-SIN-DISENO
+  tipo: entero
+  unidad: '[2021] filas validas sin estrato o sin UPM -- guardia: >0 anula el IC'
+- id: RESULT-BM-ENVIPE-2021-EXPANDIDOS
+  tipo: flotante
+  unidad: '[2021] suma del ponderador sobre el universo valido (unidades expandidas)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2021-VEREDICTO
+  tipo: texto
+  unidad: >-
+    [2021] SERIE-REPORTADA / NO-ESTIMABLE / NO-ESTIMABLE-NULOS-INESPERADOS / NO-ESTIMABLE-DISENO-INCOMPLETO / NO-ESTIMABLE-P-DEGENERADA
+- id: RESULT-BM-ENVIPE-2021-METADATO-VERSION
+  tipo: texto
+  unidad: '[2021] metadato de version de la ola en corpus, VERBATIM (Modified del CSV o mtime del miembro DBF)'
+- id: RESULT-BM-ENVIPE-2021-METADATO-TEMPORAL
+  tipo: texto
+  unidad: '[2021] campo Temporal del metadato del payload, VERBATIM (sellado, no usado)'
+- id: RESULT-BM-ENVIPE-2022-P
+  tipo: proporcion
+  unidad: '[2022] proporcion ponderada (estimando de la serie) [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2022-IC-LO
+  tipo: flotante
+  unidad: '[2022] limite inferior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2022-IC-HI
+  tipo: flotante
+  unidad: '[2022] limite superior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2022-N
+  tipo: entero
+  unidad: '[2022] filas con ponderador finito >0 y desenlace codificable (n efectivo)'
+- id: RESULT-BM-ENVIPE-2022-N-FILAS-LEIDAS
+  tipo: entero
+  unidad: '[2022] filas leidas de la tabla (registros vivos)'
+- id: RESULT-BM-ENVIPE-2022-N-FUERA-CODIGO
+  tipo: entero
+  unidad: '[2022] filas con desenlace fuera de las dos ramas (NS/NR, blanco, nulo) -- embudo'
+- id: RESULT-BM-ENVIPE-2022-N-SIN-PONDERADOR
+  tipo: entero
+  unidad: '[2022] filas codificables sin ponderador finito >0 -- embudo'
+- id: RESULT-BM-ENVIPE-2022-N-SIN-DISENO
+  tipo: entero
+  unidad: '[2022] filas validas sin estrato o sin UPM -- guardia: >0 anula el IC'
+- id: RESULT-BM-ENVIPE-2022-EXPANDIDOS
+  tipo: flotante
+  unidad: '[2022] suma del ponderador sobre el universo valido (unidades expandidas)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2022-VEREDICTO
+  tipo: texto
+  unidad: >-
+    [2022] SERIE-REPORTADA / NO-ESTIMABLE / NO-ESTIMABLE-NULOS-INESPERADOS / NO-ESTIMABLE-DISENO-INCOMPLETO / NO-ESTIMABLE-P-DEGENERADA
+- id: RESULT-BM-ENVIPE-2022-METADATO-VERSION
+  tipo: texto
+  unidad: '[2022] metadato de version de la ola en corpus, VERBATIM (Modified del CSV o mtime del miembro DBF)'
+- id: RESULT-BM-ENVIPE-2022-METADATO-TEMPORAL
+  tipo: texto
+  unidad: '[2022] campo Temporal del metadato del payload, VERBATIM (sellado, no usado)'
+- id: RESULT-BM-ENVIPE-2023-P
+  tipo: proporcion
+  unidad: '[2023] proporcion ponderada (estimando de la serie) [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2023-IC-LO
+  tipo: flotante
+  unidad: '[2023] limite inferior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2023-IC-HI
+  tipo: flotante
+  unidad: '[2023] limite superior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2023-N
+  tipo: entero
+  unidad: '[2023] filas con ponderador finito >0 y desenlace codificable (n efectivo)'
+- id: RESULT-BM-ENVIPE-2023-N-FILAS-LEIDAS
+  tipo: entero
+  unidad: '[2023] filas leidas de la tabla (registros vivos)'
+- id: RESULT-BM-ENVIPE-2023-N-FUERA-CODIGO
+  tipo: entero
+  unidad: '[2023] filas con desenlace fuera de las dos ramas (NS/NR, blanco, nulo) -- embudo'
+- id: RESULT-BM-ENVIPE-2023-N-SIN-PONDERADOR
+  tipo: entero
+  unidad: '[2023] filas codificables sin ponderador finito >0 -- embudo'
+- id: RESULT-BM-ENVIPE-2023-N-SIN-DISENO
+  tipo: entero
+  unidad: '[2023] filas validas sin estrato o sin UPM -- guardia: >0 anula el IC'
+- id: RESULT-BM-ENVIPE-2023-EXPANDIDOS
+  tipo: flotante
+  unidad: '[2023] suma del ponderador sobre el universo valido (unidades expandidas)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2023-VEREDICTO
+  tipo: texto
+  unidad: >-
+    [2023] SERIE-REPORTADA / NO-ESTIMABLE / NO-ESTIMABLE-NULOS-INESPERADOS / NO-ESTIMABLE-DISENO-INCOMPLETO / NO-ESTIMABLE-P-DEGENERADA
+- id: RESULT-BM-ENVIPE-2023-METADATO-VERSION
+  tipo: texto
+  unidad: '[2023] metadato de version de la ola en corpus, VERBATIM (Modified del CSV o mtime del miembro DBF)'
+- id: RESULT-BM-ENVIPE-2023-METADATO-TEMPORAL
+  tipo: texto
+  unidad: '[2023] campo Temporal del metadato del payload, VERBATIM (sellado, no usado)'
+- id: RESULT-BM-ENVIPE-2024-P
+  tipo: proporcion
+  unidad: '[2024] proporcion ponderada (estimando de la serie) [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2024-IC-LO
+  tipo: flotante
+  unidad: '[2024] limite inferior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2024-IC-HI
+  tipo: flotante
+  unidad: '[2024] limite superior IC95 de P (bootstrap de UPM dentro de estrato)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2024-N
+  tipo: entero
+  unidad: '[2024] filas con ponderador finito >0 y desenlace codificable (n efectivo)'
+- id: RESULT-BM-ENVIPE-2024-N-FILAS-LEIDAS
+  tipo: entero
+  unidad: '[2024] filas leidas de la tabla (registros vivos)'
+- id: RESULT-BM-ENVIPE-2024-N-FUERA-CODIGO
+  tipo: entero
+  unidad: '[2024] filas con desenlace fuera de las dos ramas (NS/NR, blanco, nulo) -- embudo'
+- id: RESULT-BM-ENVIPE-2024-N-SIN-PONDERADOR
+  tipo: entero
+  unidad: '[2024] filas codificables sin ponderador finito >0 -- embudo'
+- id: RESULT-BM-ENVIPE-2024-N-SIN-DISENO
+  tipo: entero
+  unidad: '[2024] filas validas sin estrato o sin UPM -- guardia: >0 anula el IC'
+- id: RESULT-BM-ENVIPE-2024-EXPANDIDOS
+  tipo: flotante
+  unidad: '[2024] suma del ponderador sobre el universo valido (unidades expandidas)'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2024-VEREDICTO
+  tipo: texto
+  unidad: >-
+    [2024] SERIE-REPORTADA / NO-ESTIMABLE / NO-ESTIMABLE-NULOS-INESPERADOS / NO-ESTIMABLE-DISENO-INCOMPLETO / NO-ESTIMABLE-P-DEGENERADA
+- id: RESULT-BM-ENVIPE-2024-METADATO-VERSION
+  tipo: texto
+  unidad: '[2024] metadato de version de la ola en corpus, VERBATIM (Modified del CSV o mtime del miembro DBF)'
+- id: RESULT-BM-ENVIPE-2024-METADATO-TEMPORAL
+  tipo: texto
+  unidad: '[2024] campo Temporal del metadato del payload, VERBATIM (sellado, no usado)'
+- id: RESULT-BM-ENVIPE-2012-CELDA
+  tipo: texto
+  unidad: '[2012] id de la celda del marco-M que esta ola objetivo sirve (CIV-M-01)'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2012-ESTADO
+  tipo: texto
+  unidad: '[OPERATIVO/2012] estado que devuelve el selector: EMITE o SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2012-METODO
+  tipo: texto
+  unidad: '[OPERATIVO/2012] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2012-FUENTE
+  tipo: texto
+  unidad: '[OPERATIVO/2012] resultado_id de la ola seleccionada, o SIN-BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2012-P
+  tipo: proporcion
+  unidad: '[OPERATIVO/2012/CIV-M-01] prediccion de B para la celda [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2012-ERROR
+  tipo: flotante
+  unidad: '[OPERATIVO/2012] P_B menos P observada por este medidor, CON SIGNO (escala [0,1])'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2012-ERROR-ABS
+  tipo: flotante
+  unidad: '[OPERATIVO/2012] valor absoluto del error'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2012-DENTRO-IC
+  tipo: texto
+  unidad: '[OPERATIVO/2012] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2012-MARGEN-AL-BORDE
+  tipo: flotante
+  unidad: >-
+    [OPERATIVO/2012] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo =
+    dentro
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2012-ESTADO
+  tipo: texto
+  unidad: '[PERSISTENCIA/2012] estado que devuelve el selector: EMITE o SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2012-METODO
+  tipo: texto
+  unidad: '[PERSISTENCIA/2012] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2012-FUENTE
+  tipo: texto
+  unidad: '[PERSISTENCIA/2012] resultado_id de la ola seleccionada, o SIN-BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2012-P
+  tipo: proporcion
+  unidad: '[PERSISTENCIA/2012/CIV-M-01] prediccion de B para la celda [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2012-ERROR
+  tipo: flotante
+  unidad: '[PERSISTENCIA/2012] P_B menos P observada por este medidor, CON SIGNO (escala [0,1])'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2012-ERROR-ABS
+  tipo: flotante
+  unidad: '[PERSISTENCIA/2012] valor absoluto del error'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2012-DENTRO-IC
+  tipo: texto
+  unidad: '[PERSISTENCIA/2012] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2012-MARGEN-AL-BORDE
+  tipo: flotante
+  unidad: >-
+    [PERSISTENCIA/2012] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo
+    = dentro
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2013-CELDA
+  tipo: texto
+  unidad: '[2013] id de la celda del marco-M que esta ola objetivo sirve (CIV-M-02)'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2013-ESTADO
+  tipo: texto
+  unidad: '[OPERATIVO/2013] estado que devuelve el selector: EMITE o SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2013-METODO
+  tipo: texto
+  unidad: '[OPERATIVO/2013] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2013-FUENTE
+  tipo: texto
+  unidad: '[OPERATIVO/2013] resultado_id de la ola seleccionada, o SIN-BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2013-P
+  tipo: proporcion
+  unidad: '[OPERATIVO/2013/CIV-M-02] prediccion de B para la celda [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2013-ERROR
+  tipo: flotante
+  unidad: '[OPERATIVO/2013] P_B menos P observada por este medidor, CON SIGNO (escala [0,1])'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2013-ERROR-ABS
+  tipo: flotante
+  unidad: '[OPERATIVO/2013] valor absoluto del error'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2013-DENTRO-IC
+  tipo: texto
+  unidad: '[OPERATIVO/2013] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2013-MARGEN-AL-BORDE
+  tipo: flotante
+  unidad: >-
+    [OPERATIVO/2013] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo =
+    dentro
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2013-ESTADO
+  tipo: texto
+  unidad: '[PERSISTENCIA/2013] estado que devuelve el selector: EMITE o SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2013-METODO
+  tipo: texto
+  unidad: '[PERSISTENCIA/2013] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2013-FUENTE
+  tipo: texto
+  unidad: '[PERSISTENCIA/2013] resultado_id de la ola seleccionada, o SIN-BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2013-P
+  tipo: proporcion
+  unidad: '[PERSISTENCIA/2013/CIV-M-02] prediccion de B para la celda [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2013-ERROR
+  tipo: flotante
+  unidad: '[PERSISTENCIA/2013] P_B menos P observada por este medidor, CON SIGNO (escala [0,1])'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2013-ERROR-ABS
+  tipo: flotante
+  unidad: '[PERSISTENCIA/2013] valor absoluto del error'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2013-DENTRO-IC
+  tipo: texto
+  unidad: '[PERSISTENCIA/2013] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2013-MARGEN-AL-BORDE
+  tipo: flotante
+  unidad: >-
+    [PERSISTENCIA/2013] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo
+    = dentro
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2015-CELDA
+  tipo: texto
+  unidad: '[2015] id de la celda del marco-M que esta ola objetivo sirve (CIV-M-04)'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2015-ESTADO
+  tipo: texto
+  unidad: '[OPERATIVO/2015] estado que devuelve el selector: EMITE o SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2015-METODO
+  tipo: texto
+  unidad: '[OPERATIVO/2015] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2015-FUENTE
+  tipo: texto
+  unidad: '[OPERATIVO/2015] resultado_id de la ola seleccionada, o SIN-BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2015-P
+  tipo: proporcion
+  unidad: '[OPERATIVO/2015/CIV-M-04] prediccion de B para la celda [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2015-ERROR
+  tipo: flotante
+  unidad: '[OPERATIVO/2015] P_B menos P observada por este medidor, CON SIGNO (escala [0,1])'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2015-ERROR-ABS
+  tipo: flotante
+  unidad: '[OPERATIVO/2015] valor absoluto del error'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2015-DENTRO-IC
+  tipo: texto
+  unidad: '[OPERATIVO/2015] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2015-MARGEN-AL-BORDE
+  tipo: flotante
+  unidad: >-
+    [OPERATIVO/2015] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo =
+    dentro
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2015-ESTADO
+  tipo: texto
+  unidad: '[PERSISTENCIA/2015] estado que devuelve el selector: EMITE o SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2015-METODO
+  tipo: texto
+  unidad: '[PERSISTENCIA/2015] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2015-FUENTE
+  tipo: texto
+  unidad: '[PERSISTENCIA/2015] resultado_id de la ola seleccionada, o SIN-BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2015-P
+  tipo: proporcion
+  unidad: '[PERSISTENCIA/2015/CIV-M-04] prediccion de B para la celda [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2015-ERROR
+  tipo: flotante
+  unidad: '[PERSISTENCIA/2015] P_B menos P observada por este medidor, CON SIGNO (escala [0,1])'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2015-ERROR-ABS
+  tipo: flotante
+  unidad: '[PERSISTENCIA/2015] valor absoluto del error'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2015-DENTRO-IC
+  tipo: texto
+  unidad: '[PERSISTENCIA/2015] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2015-MARGEN-AL-BORDE
+  tipo: flotante
+  unidad: >-
+    [PERSISTENCIA/2015] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo
+    = dentro
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2021-CELDA
+  tipo: texto
+  unidad: '[2021] id de la celda del marco-M que esta ola objetivo sirve (CIV-M-10)'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2021-ESTADO
+  tipo: texto
+  unidad: '[OPERATIVO/2021] estado que devuelve el selector: EMITE o SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2021-METODO
+  tipo: texto
+  unidad: '[OPERATIVO/2021] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2021-FUENTE
+  tipo: texto
+  unidad: '[OPERATIVO/2021] resultado_id de la ola seleccionada, o SIN-BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2021-P
+  tipo: proporcion
+  unidad: '[OPERATIVO/2021/CIV-M-10] prediccion de B para la celda [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2021-ERROR
+  tipo: flotante
+  unidad: '[OPERATIVO/2021] P_B menos P observada por este medidor, CON SIGNO (escala [0,1])'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2021-ERROR-ABS
+  tipo: flotante
+  unidad: '[OPERATIVO/2021] valor absoluto del error'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2021-DENTRO-IC
+  tipo: texto
+  unidad: '[OPERATIVO/2021] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2021-MARGEN-AL-BORDE
+  tipo: flotante
+  unidad: >-
+    [OPERATIVO/2021] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo =
+    dentro
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2021-ESTADO
+  tipo: texto
+  unidad: '[PERSISTENCIA/2021] estado que devuelve el selector: EMITE o SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2021-METODO
+  tipo: texto
+  unidad: '[PERSISTENCIA/2021] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2021-FUENTE
+  tipo: texto
+  unidad: '[PERSISTENCIA/2021] resultado_id de la ola seleccionada, o SIN-BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2021-P
+  tipo: proporcion
+  unidad: '[PERSISTENCIA/2021/CIV-M-10] prediccion de B para la celda [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2021-ERROR
+  tipo: flotante
+  unidad: '[PERSISTENCIA/2021] P_B menos P observada por este medidor, CON SIGNO (escala [0,1])'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2021-ERROR-ABS
+  tipo: flotante
+  unidad: '[PERSISTENCIA/2021] valor absoluto del error'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2021-DENTRO-IC
+  tipo: texto
+  unidad: '[PERSISTENCIA/2021] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2021-MARGEN-AL-BORDE
+  tipo: flotante
+  unidad: >-
+    [PERSISTENCIA/2021] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo
+    = dentro
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2023-CELDA
+  tipo: texto
+  unidad: '[2023] id de la celda del marco-M que esta ola objetivo sirve (CIV-M-12)'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2023-ESTADO
+  tipo: texto
+  unidad: '[OPERATIVO/2023] estado que devuelve el selector: EMITE o SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2023-METODO
+  tipo: texto
+  unidad: '[OPERATIVO/2023] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2023-FUENTE
+  tipo: texto
+  unidad: '[OPERATIVO/2023] resultado_id de la ola seleccionada, o SIN-BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2023-P
+  tipo: proporcion
+  unidad: '[OPERATIVO/2023/CIV-M-12] prediccion de B para la celda [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2023-ERROR
+  tipo: flotante
+  unidad: '[OPERATIVO/2023] P_B menos P observada por este medidor, CON SIGNO (escala [0,1])'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2023-ERROR-ABS
+  tipo: flotante
+  unidad: '[OPERATIVO/2023] valor absoluto del error'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2023-DENTRO-IC
+  tipo: texto
+  unidad: '[OPERATIVO/2023] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2023-MARGEN-AL-BORDE
+  tipo: flotante
+  unidad: >-
+    [OPERATIVO/2023] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo =
+    dentro
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2023-ESTADO
+  tipo: texto
+  unidad: '[PERSISTENCIA/2023] estado que devuelve el selector: EMITE o SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2023-METODO
+  tipo: texto
+  unidad: '[PERSISTENCIA/2023] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2023-FUENTE
+  tipo: texto
+  unidad: '[PERSISTENCIA/2023] resultado_id de la ola seleccionada, o SIN-BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2023-P
+  tipo: proporcion
+  unidad: '[PERSISTENCIA/2023/CIV-M-12] prediccion de B para la celda [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2023-ERROR
+  tipo: flotante
+  unidad: '[PERSISTENCIA/2023] P_B menos P observada por este medidor, CON SIGNO (escala [0,1])'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2023-ERROR-ABS
+  tipo: flotante
+  unidad: '[PERSISTENCIA/2023] valor absoluto del error'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2023-DENTRO-IC
+  tipo: texto
+  unidad: '[PERSISTENCIA/2023] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2023-MARGEN-AL-BORDE
+  tipo: flotante
+  unidad: >-
+    [PERSISTENCIA/2023] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo
+    = dentro
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-2024-CELDA
+  tipo: texto
+  unidad: '[2024] id de la celda del marco-M que esta ola objetivo sirve (CIV-M-13)'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2024-ESTADO
+  tipo: texto
+  unidad: '[OPERATIVO/2024] estado que devuelve el selector: EMITE o SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2024-METODO
+  tipo: texto
+  unidad: '[OPERATIVO/2024] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2024-FUENTE
+  tipo: texto
+  unidad: '[OPERATIVO/2024] resultado_id de la ola seleccionada, o SIN-BASELINE'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2024-P
+  tipo: proporcion
+  unidad: '[OPERATIVO/2024/CIV-M-13] prediccion de B para la celda [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2024-ERROR
+  tipo: flotante
+  unidad: '[OPERATIVO/2024] P_B menos P observada por este medidor, CON SIGNO (escala [0,1])'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2024-ERROR-ABS
+  tipo: flotante
+  unidad: '[OPERATIVO/2024] valor absoluto del error'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-OPERATIVO-2024-DENTRO-IC
+  tipo: texto
+  unidad: '[OPERATIVO/2024] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC'
+- id: RESULT-BM-ENVIPE-OPERATIVO-2024-MARGEN-AL-BORDE
+  tipo: flotante
+  unidad: >-
+    [OPERATIVO/2024] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo =
+    dentro
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2024-ESTADO
+  tipo: texto
+  unidad: '[PERSISTENCIA/2024] estado que devuelve el selector: EMITE o SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2024-METODO
+  tipo: texto
+  unidad: '[PERSISTENCIA/2024] metodo del selector: ultima_ola_publica / persistencia / SIN_BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2024-FUENTE
+  tipo: texto
+  unidad: '[PERSISTENCIA/2024] resultado_id de la ola seleccionada, o SIN-BASELINE'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2024-P
+  tipo: proporcion
+  unidad: '[PERSISTENCIA/2024/CIV-M-13] prediccion de B para la celda [0,1]'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2024-ERROR
+  tipo: flotante
+  unidad: '[PERSISTENCIA/2024] P_B menos P observada por este medidor, CON SIGNO (escala [0,1])'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2024-ERROR-ABS
+  tipo: flotante
+  unidad: '[PERSISTENCIA/2024] valor absoluto del error'
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2024-DENTRO-IC
+  tipo: texto
+  unidad: '[PERSISTENCIA/2024] SI / NO / SIN-BASELINE / SIN-OBSERVADA / SIN-IC'
+- id: RESULT-BM-ENVIPE-PERSISTENCIA-2024-MARGEN-AL-BORDE
+  tipo: flotante
+  unidad: >-
+    [PERSISTENCIA/2024] distancia con signo de la prediccion al extremo mas cercano del IC95 observado; positivo
+    = dentro
+  permite_no_estimable: true
+- id: RESULT-BM-ENVIPE-N-PREDICCIONES-OPERATIVO
+  tipo: entero
+  unidad: '[OPERATIVO] objetivos en que el selector EMITE y hay observada comparable'
+- id: RESULT-BM-ENVIPE-BIS-LECTURA-OPERATIVO
+  tipo: texto
+  unidad: '[OPERATIVO] lectura B-bis agregada: PISO-ALTO / PISO-BAJO / MIXTO / SIN-PREDICCIONES'
+- id: RESULT-BM-ENVIPE-N-PREDICCIONES-PERSISTENCIA
+  tipo: entero
+  unidad: '[PERSISTENCIA] objetivos en que el selector EMITE y hay observada comparable'
+- id: RESULT-BM-ENVIPE-BIS-LECTURA-PERSISTENCIA
+  tipo: texto
+  unidad: '[PERSISTENCIA] lectura B-bis agregada: PISO-ALTO / PISO-BAJO / MIXTO / SIN-PREDICCIONES'
