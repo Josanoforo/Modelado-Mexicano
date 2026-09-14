@@ -14,3 +14,16 @@
 - **Correr las 32 posiciones bajo el techo de 96** · `FUERA-DE-PERÍMETRO`: mismo LO QUE NO HACE ("no ejecuta ninguna solicitud") · impacto: `cuenta_gen2` no se mueve, la secundaria del duelo sigue sin veredicto (ni `≥6/8` ni `<6/8`) · sucesor: el mismo relanzamiento de `GEN2-F5-DOCUMENTAL-RUN` apuntando a v1_1.
 - **`NC-0178` (`--verify` / `sha256_manifiesto_fuentes`)** · `FUERA-DE-PERÍMETRO`: no es una de las piezas (a)-(e) que este encargo pide, aunque `NC-0178` anticipaba "el mismo sucesor de NC-0177" — el texto verbatim de este encargo no lo cubre y no se absorbe por inercia · impacto: `NC-0178` sigue `ABIERTA` sin cambio, el verificador sigue comparando contra un manifiesto que crece · sucesor: `SIN-ASIGNAR` — un acto que ajuste `sha256_manifiesto_fuentes` a las 8 filas del contrato, no al archivo entero.
 - **Re-abrir la escala del criterio (`≥6/8`, cero sustituciones, mejora de cobertura `≥4/8`)** · `FUERA-DE-PERÍMETRO`: LO QUE NO HACE explícito del encargo · impacto: ninguno — la escala de v1.0 sigue vigente sin cambio · sucesor: `SIN-ASIGNAR`.
+
+## CONSUMIDO
+
+Ejecutado en `PR #758`, `ACTO GEN2-F5-DOC-CONTRATO-V1_1`. Entrega única:
+`forense/prereg-duelo-v2/F5-documental-v1_0/F5-documental-ejecucion-v1_1.md`
+(sucesión fechada, v1.0 intacto), con las cinco piezas (a)-(e) del encargo
+resueltas dentro del propio contrato, cada una con su evidencia cruda
+citada. `NC-0177` pasa de `SIN-ASIGNAR` a token (este PR); sigue `ABIERTA`
+— las 32 posiciones siguen sin correr hasta que `GEN2-F5-DOCUMENTAL-RUN` se
+relance apuntando a v1.1. `NC-0178` sin tocar. Cascada: `ADR-499`, L0 y
+tres contadores reconciliados (`cierre_acto.py --aplica`), rótulo censado
+en `canon/registro-rotulos.tsv`, suite `--baseline` VERDE (3 FAIL
+preexistentes iguales al baseline).
