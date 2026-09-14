@@ -191,7 +191,7 @@ Actualizar registro/vistas/relaciones y cierre con los escritores vigentes; cons
 
 | nota de cierre | universo examinado | resultado |
 |---|---|---|
-| NO-ENCONTRADA | `forense/notas/` 12–13/sep, términos descubrimiento/suficiencia/servicio (A.4/A.13) | la evidencia de ejecución es el PR fusionado y el servicio operando en los censos diarios |
+| NO-ENCONTRADA | `forense/notas/` 12–13/sep, términos descubrimiento/suficiencia/servicio (A.4/A.13) — 1 archivo examinado (`2026-09-12-GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO-cierre.md`), 0 coincidencias | la evidencia de ejecución es el PR fusionado y el servicio operando en los censos diarios |
 
 Sin abrir NC nueva: la fila ES el registro (regla de señal — se anota, no se instrumenta).
 
