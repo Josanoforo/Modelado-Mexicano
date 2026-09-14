@@ -65,3 +65,14 @@ Entregar índices sucesores utilizables y el buscador conectado, no sólo un rep
 ## Concurrencia y término
 
 Dueño de herramientas/tablas de inventario de reactivos y del buscador. No modifica motor, CALC, fuentes crudas, cron ni resultados F5. Puede correr con 27–32, 33, 35–37. Consume sólo fuentes conocidas; no indexar ni exponer paquetes retenidos de experimentos prospectivos. Leer el corpus compartido; temporales por tarea y escritura del índice en destino propio antes de publicación.
+
+## NO-CORRIDO / RESERVAS
+
+Transcrito, verbatim, de `forense/notas/2026-09-11-GEN2-39-REACTIVOS-RESIDUALES-Y-BUSQUEDA-UTIL-cierre.md` § NO-CORRIDO / RESERVAS:
+
+- `NC-0100`: acreditar las 32 identidades DBF restantes con correspondencia exacta; no copiar texto por nombre entre olas.
+- `NC-0136`: continuar los 81 grupos externos y los 12,875 residuales del lote conforme a su causa explícita.
+
+## CONSUMIDO · PR #742
+
+Ejecutado y cerrado por `ACTO GEN2-CONSUMIDO-RETRO-3` (`forense/encargos/2026-09-14-GEN2-CONSUMIDO-RETRO-3.md`), firma de mesa 14/sep/2026.
