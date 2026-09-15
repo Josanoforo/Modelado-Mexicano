@@ -90,3 +90,29 @@ PR [#775](https://github.com/Josanoforo/Modelado-Mexicano/pull/775), abierto con
 **Tanda 2** — PR [#776](https://github.com/Josanoforo/Modelado-Mexicano/pull/776), abierto contra `main` el 15/sep/2026 y **no fusionado por el ejecutor**. Mesa fusionó el PR #775 (`da9b47a`) mientras la tanda 2 corría: un PR fusionado está terminado y no puede seguir el trabajo posterior, así que la tanda 2 va en un PR **nuevo** sobre la misma rama, rebasada por **merge** —no por rebase— a propósito: `origin/claude/amazing-noether-l1iegk` es de donde el `ACTO GEN2-MEDICION-DEMANDA-1` (CAJA) consume las specs tanda tras tanda, y un force-push le movería el suelo. **Sin ADR nuevo:** la tanda 2 es continuación del mismo acto, así que extiende el texto de `ADR-510` en vez de abrir un `ADR-511` que contaría el acto dos veces; los tres contadores mecánicos siguen en 510. Congela `CORR-0017` (`CALC-ENSANUT-0001`) y `CORR-0016` (`CALC-L8-CONVERSION-0001`), y deja el registro entero al día en **6 de 19**.
 
 **Este encargo NO queda agotado.** Es multi-día por diseño del lanzamiento: la **tanda 1** congeló cuatro specs (`CORR-0011`, `CORR-0012`, `CORR-0013`, `CORR-0014`) y entregó el mapa completo de las 19; la **tanda 2** congeló dos más (`CORR-0017` y `CORR-0016`); la **tanda 3** (`NC-0193`) tiene dos más construibles y sin bloqueo material — los residuos de `CORR-0009` y de `CORR-0007`.
+
+## ENMIENDA FECHADA — 15/sep/2026, por FIRMA DE MESA
+
+Se añade al pie por adición. **No edita una sola línea del texto anterior** (`E.3`): lo que arriba dice «Este encargo NO queda agotado» queda archivado como lo que la mesa leyó al firmar, y es esta enmienda —posterior y fechada— la que rige.
+
+**FIRMA DE MESA, mesa, 15 de septiembre de 2026 — verbatim:**
+
+> FIRMA DE MESA, mesa, 15 de septiembre de 2026 — OBJETO: ACTO GEN2-SPECS-DEMANDA-1 queda AGOTADO-CON-REMANENTE-BLOQUEADO; no se abre tanda 3.
+
+**Qué cambia de estado.** El encargo pasa de `NO AGOTADO (multi-día)` a **`AGOTADO-CON-REMANENTE-BLOQUEADO`**. No se abre **tanda 3** y este acto no vuelve a la nube.
+
+**Cuál es el remanente, exactamente.** Las **tres `BLOQUEADAS` que dependen de la hoja de firmas 2**, todas ya rastreadas en el tablero — esta enmienda **no abre filas nuevas** en `forense/no-corrido.tsv`:
+
+| remanente | fila del tablero | estado verificado al firmar |
+|---|---|---|
+| `CORR-0004` (`tramite.gobierno_digital.coercitivo:adopta`) — precedencia del MEDIDO / prior | `NC-0206` | `CERRADA` por `ACTO GEN2-FIRMAS-MESA-2`, 15/sep/2026; la salida la firma mesa |
+| la spec ENADID para `familia.union.libre` (hallazgo `A.15` sobre `CORR-0013`) | `NC-0194` | `ABIERTA`; sucesor ya escrito: MESA (decide si la celda ENADID se sucede) + el acto que toque `milpa/` |
+| las cuatro celdas sin `B` del marco (`DIN-M-01`, `FAM-M-01`, `TRA-M-02`, `TRA-M-03`) | `NC-0179` | `CERRADA` por `ACTO GEN2-FIRMAS-MESA-2`, 15/sep/2026; el crosswalk entre instrumentos es decisión de mesa |
+
+**Quién las escribe.** Al firmarse la hoja 2, las specs de ese remanente las escribe **MANTENIMIENTO-Y-ARCHIVO-2 como pieza** —ya tiene permiso sobre `milpa/` donde una firma lo autorice—, no un tercer acto de nube. Su corrida va a una **MEDICION-DEMANDA-3 corta**.
+
+**Por qué no hay tanda 3 que reclamar.** `NC-0193` —la fila que reservaba «dos más construibles» para una tanda 3— ya está **`CERRADA`** por `ACTO GEN2-MEDICION-DEMANDA-2` (PR [#789](https://github.com/Josanoforo/Modelado-Mexicano/pull/789)), 15/sep/2026, **por producto**: los residuos de `CORR-0009` y de `CORR-0007` tuvieron spec congelada en el PR [#781](https://github.com/Josanoforo/Modelado-Mexicano/pull/781) y quedaron SELLADOS vía sus sucesoras `v1_1`. Esa fila lo dice con todas sus letras: «la tanda 3 de `GEN2-SPECS-DEMANDA-1` ya no tiene objeto». La firma de mesa y el tablero coinciden; esta enmienda sólo lo asienta.
+
+**CONTADOR:** cero mediciones. Una enmienda de asiento no produce números, no congela specs, no corre ningún `CALC` y no adopta ninguna cifra a ningún consumidor. Ningún `milpa/`, ningún `CALC` sellado y ningún microdato se tocan.
+
+**Cierre (A.14):** cascada mínima —este archivo y nada más— y **rama fusionada o borrada al cerrar**.

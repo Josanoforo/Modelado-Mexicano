@@ -47,7 +47,7 @@ data/inventario-reactivos-descargas-mx-v1_2.tsv   (ZA6980_v2-0-0.dta, 357 variab
   SEX · URBRURAL · AGE · CASEID · MX_INC · MX_REG · MX_RELIG …
 ```
 
-Con eso quedan fijados **reactivo** (`v26`), **universo** (Mexico por `c_alphan`, `N = 1002` verificado el 31/ago/2026 en `data/cola-adquisicion-v1_0.tsv`), **ponderador** (`WEIGHT`) y **dominios** de las dos celdas (`SEX`, precedente literal de `TIC-10`/`TIC-11`, que declaran su universo *«por sexo»*). Falta **una sola cosa**: las categorías de respuesta de `v26` — etiquetas de **valor**, que el inventario no guarda —, y el `PDF` que las trae (`ZA6980_q_mx.pdf`) **ya está adquirido**. `NC-0226`.
+Con eso quedan fijados **reactivo** (`v26`), **universo** (Mexico por `c_alphan`, `N = 1002` verificado el 31/ago/2026 en `data/cola-adquisicion-v1_0.tsv`), **ponderador** (`WEIGHT`) y **dominios** de las dos celdas (`SEX`, precedente literal de `TIC-10`/`TIC-11`, que declaran su universo *«por sexo»*). Falta **una sola cosa**: las categorías de respuesta de `v26` — etiquetas de **valor**, que el inventario no guarda —, y el `PDF` que las trae (`ZA6980_q_mx.pdf`) **ya está adquirido**. `NC-0227`.
 
 La transferencia es de **constructo**: `familia.apoyo.recibe_dinero_familiares` está calibrada en `ENIF 2024` sobre recepción **efectiva** de dinero de familiares; `v26` pregunta a **quién acudiría** para pedir prestada una suma grande. No es la misma cantidad y no se disfraza de serlo: es exactamente el tipo de transferencia que el panel busca.
 Reserva: `ZA5900` (ISSP 2012 Family, México) intacta, y dentro de la propia ola 2017 las otras nueve situaciones de apoyo (`v21`–`v25`, `v27`–`v30`) sin tocar.
@@ -56,12 +56,12 @@ Reserva: `ZA5900` (ISSP 2012 Family, México) intacta, y dentro de la propia ola
 
 `ENCRIGE` es a las unidades económicas lo que `ENCIG` a las personas: mismo INEGI, mismo concepto de trámite. **Limpia en las cuatro superficies** (`grep -ril -F encrige`: 0 en `milpa/`, 0 en el corpus de `L`, 0 en `traza-motor.tsv`, 0 en `data/corrida0` + `prereg-caja` + `corridas-*`, 0 en marcos y crosswalk). Los tabulados 2020 ya adquiridos traen los cuadros que la regla necesita (*«Trámites, pagos o actos de autoridad»*, *«Percepción sobre la frecuencia de actos de corrupción»*, *«Causas del desinterés: es necesario dar sobornos»*), y el precedente `EMP-01…EMP-04` del marco piloto ya construye celdas como razones por dominio sobre tabulados.
 
-**Y por eso mismo no cuenta todavía:** su unidad es el establecimiento — la **misma** pregunta que `R02 · WBES`. El encargo ordena dejarla planteada y no resolverla, y no se resolvió. Lo que `v1_2` añade es que **la firma ahora vale por dos familias**, y que la versión nacional es más barata que la del Banco Mundial. `NC-0228`.
+**Y por eso mismo no cuenta todavía:** su unidad es el establecimiento — la **misma** pregunta que `R02 · WBES`. El encargo ordena dejarla planteada y no resolverla, y no se resolvió. Lo que `v1_2` añade es que **la firma ahora vale por dos familias**, y que la versión nacional es más barata que la del Banco Mundial. `NC-0229`.
 
 ### 2.3 · `R10 · ENCO` (DIN) — la única puerta que le queda al dominio vacío
 
 El dominio `DIN` perdió a `Global Findex` por exposición (el corpus de `L` lo cita **con cifra**) y a la `ENCF` de Banxico/CNBV porque ya es universo de evaluación (cinco celdas `DIN-07…DIN-12` del marco piloto y `payload_id` en `corridas-R/DIN-07.json`). Queda `ENCO`: mensual desde 2001 —reserva prácticamente infinita—, con `FACTOR` en el archivo y **limpia en las cuatro superficies**. El único hit fue la frase *«confianza del consumidor»* en prosa sobre marcas, adjudicado a mano como **falso positivo**.
-Falta lo barato primero: leer el cuestionario ya adquirido y ver si alguno de los 15 ítems pregunta por **posibilidad de ahorrar**. Sólo si eso devuelve `EXISTE-SATISFACE` se pide adquisición. `NC-0227`.
+Falta lo barato primero: leer el cuestionario ya adquirido y ver si alguno de los 15 ítems pregunta por **posibilidad de ahorrar**. Sólo si eso devuelve `EXISTE-SATISFACE` se pide adquisición. `NC-0228`.
 
 ### 2.4 · `R11 · ENPOL` (TRA) — limpia en desarrollo, comprometida en el marco
 
@@ -106,7 +106,7 @@ No lanzó llamadas · no abrió microdato ni ningún payload · no escribió en 
 
 ## 6 · Perímetro
 
-Escritos: `forense/prereg-duelo-v2/F5-panel-candidatos-v1_2.tsv` (27 filas × 17 columnas, sucesor de `v1_1`), `forense/prereg-duelo-v2/F6-falta-conseguir-v1_0.tsv` (9 filas, entrega a adquisición **fuera** de su cola), cinco filas `NC-0225…NC-0229` en `forense/no-corrido.tsv`, el encargo archivado (0-bis A.3), esta nota y la cascada administrativa de costumbre.
+Escritos: `forense/prereg-duelo-v2/F5-panel-candidatos-v1_2.tsv` (27 filas × 17 columnas, sucesor de `v1_1`), `forense/prereg-duelo-v2/F6-falta-conseguir-v1_0.tsv` (9 filas, entrega a adquisición **fuera** de su cola), cinco filas `NC-0226…NC-0230` en `forense/no-corrido.tsv`, el encargo archivado (0-bis A.3), esta nota y la cascada administrativa de costumbre.
 
 ---
 
@@ -118,11 +118,11 @@ El encargo pide entregar la tabla *«sin escribir en su cola»*. Se cumplió en 
 2. **El ruteo** se hace donde el propio servicio lo lee: `forense/no-corrido.tsv`. Verificado, no supuesto — importando `tools/adq_investigacion.py` y llamando sus funciones sobre las cinco filas reales:
 
 ```
-NC-0225  FUENTE_O_VARIABLE        LISTA_SONDA        servicio-gen2-38
-NC-0226  PREPARACION              NO_SONDA           CAJA/Ubuntu con la raiz montada
-NC-0227  DECISION_O_IMPLEMENTACION NO_SONDA          CAJA/Ubuntu
-NC-0228  DECISION_CIENTIFICA      ESPERA_O_DELEGADA  mesa
-NC-0229  DECISION_O_IMPLEMENTACION ESPERA_O_DELEGADA FP-374 + NC-0225/0226/0227
+NC-0226  FUENTE_O_VARIABLE        LISTA_SONDA        servicio-gen2-38
+NC-0227  PREPARACION              NO_SONDA           CAJA/Ubuntu con la raiz montada
+NC-0228  DECISION_O_IMPLEMENTACION NO_SONDA          CAJA/Ubuntu
+NC-0229  DECISION_CIENTIFICA      ESPERA_O_DELEGADA  mesa
+NC-0230  DECISION_O_IMPLEMENTACION ESPERA_O_DELEGADA FP-374 + NC-0226/0226/0227
 ```
 
 Las tres clases caen donde deben: lo que es adquisición va al servicio, lo que es lectura de un documento ya adquirido va a CAJA, y la firma va a mesa.
