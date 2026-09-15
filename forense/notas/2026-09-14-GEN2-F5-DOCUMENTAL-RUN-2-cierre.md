@@ -1,4 +1,4 @@
-# ACTO GEN2-F5-DOCUMENTAL-RUN-2 · la secundaria corre bajo v1.1 y el techo la para en 22/32
+# ACTO GEN2-F5-DOCUMENTAL-RUN-2 · la secundaria corre entera bajo v1.1: 16/16 puntos trazables con fuente nativa, 0/16 con contexto
 
 Fecha: 14 de septiembre de 2026 (CST; 15/sep en UTC — la firma de mesa dice 15/sep).
 
@@ -20,39 +20,30 @@ paquete**: `DIN-M-01` y `TRA-M-07`, brazos `CONTEXTUAL-v2` y
 de `forense/prereg-duelo-v2/F5-panel-viabilidad-presupuesto-spec-v1_0.md` §4.3:
 «Éxito por celda: dirigido con >=6/8 puntos válidos y trazables, cero
 sustituciones y mejora de cobertura >=4/8 contra su control contemporáneo.»
-Corrieron **22 de 32 posiciones**; las 10 restantes quedaron `NO-CORRIDA`
-porque el techo sellado de 96 solicitudes se agotó (ledger 94/96, sin margen
-para la reserva de 4 que el contrato v1.1 exige antes de cada invocación).
-Con lo observado:
+Corrieron las **32 posiciones** (22 en la primera pasada, que paró por techo
+en 94/96; las 10 restantes tras la firma de mesa que re-dimensionó el techo —
+ver §«El hueco en la escala»). Resultado, celda por celda:
 
-- **`TRA-M-07` — criterio ALCANZADO en lo observado, y robusto a las cuatro
-  posiciones de la celda que no corrieron.** Dirigido: 7 de 8 réplicas
-  corridas, **7/7 `PUNTO` válidos y trazables** (7.18 % las siete;
-  `fuente_documental` ⊆ paquete; derivación nombra `P8_3_1` y `FAC_P18`;
-  el punto reproduce al centésimo la distribución mecánica de `analysis.tsv`,
-  Sí/(Sí+No) = 3 671 036 / 51 117 793 = 7.1815 %), `sustitucion_semantica=false`
-  en las siete. Control: 5 de 8 corridas, **0/5 puntos** (5 `ABSTENCION`).
-  `≥6/8` se cumple con 7 aunque la réplica 5 no corrió; la mejora de
-  cobertura es 7 − 0 = 7 con lo observado y ≥ 7 − 3 = 4 bajo cualquier
-  desenlace de las tres réplicas de control no corridas. La cláusula «cero
-  sustituciones» está verificada en 7 de 8 réplicas dirigidas; la octava no
-  se observó.
-- **`DIN-M-01` — SIN VEREDICTO: ni `≥6/8` ni `<6/8`.** Dirigido: 5 de 8
-  corridas, **5/5 `PUNTO` válidos y trazables** (15.56 % las cinco; punto
-  mecánico Sí/(Sí+No) = 10 579 946 / 68 002 840 = 15.5581 %; derivación
-  nombra `cr27` y `fac_3b`, excluye el código 7/8 «NS» como fija el
-  contrato), cero sustituciones. Control: 5 de 8 corridas, 0/5 puntos.
-  Con tres réplicas dirigidas sin correr, 5 no alcanza 6 y tampoco lo
-  refuta; la mejora de cobertura observada es 5 − 0 = 5, y bajo las
-  completaciones posibles va de 2 a 8. **No se gastó ninguna solicitud extra
-  para completarla: el techo es el techo.**
+- **`TRA-M-07` — ÉXITO.** Dirigido: **8/8 `PUNTO` válidos y trazables**
+  (7.18 % las ocho; `fuente_documental` ⊆ paquete; derivación nombra `P8_3_1`
+  y `FAC_P18`; el punto reproduce al centésimo la distribución mecánica de
+  `analysis.tsv`, Sí/(Sí+No) = 3 671 036 / 51 117 793 = 7.1815 %),
+  `sustitucion_semantica=false` en las ocho. Control: **0/8 puntos** (8
+  `ABSTENCION`). `≥6/8`: 8 ✓ · cero sustituciones ✓ · mejora de cobertura
+  8 − 0 = 8 ≥ 4 ✓.
+- **`DIN-M-01` — ÉXITO.** Dirigido: **8/8 `PUNTO` válidos y trazables**
+  (15.56 % las ocho; punto mecánico Sí/(Sí+No) = 10 579 946 / 68 002 840 =
+  15.5581 %; derivación nombra `cr27` y `fac_3b` y excluye el código 7/8 «NS»
+  como fija el contrato), cero sustituciones. Control: **0/8 puntos** (8
+  `ABSTENCION`). `≥6/8`: 8 ✓ · cero sustituciones ✓ · mejora 8 − 0 = 8 ≥ 4 ✓.
 
-En una línea: **el acceso a la fuente nativa produjo puntos trazables en
-12/12 réplicas dirigidas corridas y el contexto contemporáneo en 0/10; una
-celda cumple el criterio con robustez, la otra queda sin veredicto por
-posiciones no corridas.** Este párrafo no toca la primaria
-(`CALC-TRIADA-0002`, `SIN-GANADOR-UNICO`) ni la re-adjudica, y no se lee
-junto con ella — esa lectura es de mesa y dirección.
+En una línea: **el acceso a la fuente nativa produjo un punto trazable en
+16/16 réplicas dirigidas y el contexto contemporáneo en 0/16; las dos celdas
+cumplen el criterio §4.3 con margen máximo.** Lo que esto mide es
+recuperación/análisis documental sobre el paquete, no generalización (§4.1
+de la spec); no prueba transferencia, no abre `FP-374` ni `F6`. Este párrafo
+no toca la primaria (`CALC-TRIADA-0002`, `SIN-GANADOR-UNICO`) ni la
+re-adjudica, y no se lee junto con ella — esa lectura es de mesa y dirección.
 
 **Contador: no se mueve.** El contrato no sella CALC; no hay cadena E.2 ni
 `cuenta_gen2`. Se dice en una línea, como pide el encargo.
@@ -65,19 +56,20 @@ junto con ella — esa lectura es de mesa y dirección.
 | `--verify` | FALLA sólo por `sha256_manifiesto_fuentes` (mismo único campo que en #756; `data/manifiesto.yaml` sigue creciendo por commits ajenos); fuentes, paquetes y ancestros reproducen | 0 (local) |
 | `--freeze-plan` (v1.1) | `F5-documental-plan-v1_1.json`: 32 posiciones, cliente `2.1.272`, `claude-opus-5`, HEAD `2897970`; mismo orden, mismos `sha256_prompt` y materialización que v1.0 (sólo cambian las identidades por la versión del cliente) | 0 (local) |
 | `--transport-probe` (v1.1) | **`TRANSPORTE-VALIDADO`**, 5/5 condiciones del contrato (marcador en `nota`; `usage` reconcilia exacto con `modelUsage.claude-opus-5` en los cuatro campos; `permission_denials=[]`; `total_cost_usd=1.355 ≤ 2.00`; cargo real 3) — auxiliar `claude-haiku-4-5` presente con 15 tokens de salida, admitido bajo `AUX_TOPE_SALIDA=200` | 2 + 3 = **5** |
-| `--run` | 22 posiciones resueltas (12 `PUNTO`, 10 `ABSTENCION`, 0 `MALFORMADA`, 0 `ERROR_TECNICO`, 0 `ERROR_IDENTIDAD`); 1 reintento técnico (posición 2, `error_max_budget_usd`: caché fría de 316 601 tokens de creación → `total_cost_usd=3.31 > 2.00`; el segundo intento con caché tibia costó 1.81 y resolvió); parada por `TECHO-SOLICITUDES` al intentar la posición 23 | 5 + 89 = **94** |
-| posiciones 23–32 | **NO-CORRIDAS** por techo | 0 |
+| `--run` (1.ª pasada, techo 96) | 22 posiciones resueltas (12 `PUNTO`, 10 `ABSTENCION`, 0 `MALFORMADA`, 0 `ERROR_TECNICO`, 0 `ERROR_IDENTIDAD`); 1 reintento técnico (posición 2, `error_max_budget_usd`: caché fría de 316 601 tokens de creación → `total_cost_usd=3.31 > 2.00`; el segundo intento con caché tibia costó 1.81 y resolvió); parada por `TECHO-SOLICITUDES` al intentar la posición 23 | 5 + 89 = **94** |
+| firma de mesa en sesión | «termina el encargo entonces, ese techo es un estimado» → techo re-dimensionado a **288 turnos** (32 × 3 intentos × 3 turnos mínimos), ledger arrastrado; plan v1.2 (identidades idénticas a v1.1) | 0 (local) |
+| `--run` (2.ª pasada, techo 288) | 22 reanudadas por identidad (no se repiten), **10 nuevas resueltas** (5 `PUNTO`, 5 `ABSTENCION`, 0 errores, 0 reintentos) | 94 + 36 = **130** |
 
-Total contra el techo: **94 / 96**. Invocaciones reales en este acto: 24 (1 sonda
-+ 23 intentos de posición). Turnos reales cargados por posición: 3 en las 12
-dirigidas; 3–8 en las 10 contextuales (el brazo control intenta la herramienta
+Total contra el techo: **130 / 288** (94 de los cuales contra el 96 original). Invocaciones reales en este acto: 34 (1 sonda
++ 33 intentos de posición). Turnos reales cargados por posición: 3 en las 16
+dirigidas; 3–8 en las 16 contextuales (el brazo control intenta la herramienta
 sobre rutas inexistentes en su raíz aislada, que sólo contiene
 `contextual.txt` — exactamente lo que el contrato v1.0 fija: «el mismo
 conjunto de capacidades se ofrece a ambos brazos»). Coste de lista acumulado
-(`modelUsage.costUSD`, base de lista, no cargo observado): 9.14 USD.
-Ventana: `2026-09-15T00:59Z`–`01:07Z`.
+(`modelUsage.costUSD`, base de lista, no cargo observado): 11.00 USD.
+Ventana: `2026-09-15T00:59Z`–`01:07Z` (1.ª pasada) y `01:26Z`–`01:31Z` (2.ª).
 
-## Revisión de trazabilidad de las 12 derivaciones `PUNTO`
+## Revisión de trazabilidad de las 16 derivaciones `PUNTO`
 
 `revision-traza-v1_1.json` (en el directorio del contrato) la registra por
 posición. Criterio mecánico, aplicado sin excepción: (1) `fuente_documental`
@@ -85,8 +77,8 @@ posición. Criterio mecánico, aplicado sin excepción: (1) `fuente_documental`
 (3) la derivación nombra la variable y el ponderador de la tarjeta; (4) el
 punto reproduce, con tolerancia 0.01 pp, la distribución ponderada mecánica
 de `analysis.tsv` por `weighted_distribution` (`DIN-M-01`: `cr27`×`fac_3b`,
-válidos {1,3}; `TRA-M-07`: `P8_3_1`×`FAC_P18`, válidos {1,2}). **12/12
-cumplen los cuatro.** Las 10 `ABSTENCION` del control declaran que el
+válidos {1,3}; `TRA-M-07`: `P8_3_1`×`FAC_P18`, válidos {1,2}). **16/16
+cumplen los cuatro.** Las 16 `ABSTENCION` del control declaran que el
 paquete contextual no contiene ENNViH-1 2002/`cr27` ni ENCIG 2021/`P8_3_1` y
 no emiten cifra «para evitar una sustitución» — abstención correcta según el
 prompt sellado, no fallo.
@@ -115,20 +107,20 @@ prompt sellado, no fallo.
 | 20 | DIN-M-01 | CONTEXTUAL-v2 | 5 | ABSTENCION | null | false | 1 | 7 | 0.18 |
 | 21 | DIN-M-01 | FUENTE-DIRIGIDA-v1 | 1 | PUNTO · trazable | 15.56 | false | 1 | 3 | 0.32 |
 | 22 | DIN-M-01 | FUENTE-DIRIGIDA-v1 | 8 | PUNTO · trazable | 15.56 | false | 1 | 3 | 0.31 |
-| 23 | DIN-M-01 | FUENTE-DIRIGIDA-v1 | 3 | NO-CORRIDA (techo) | — | — | 0 | 0 | 0 |
-| 24 | DIN-M-01 | FUENTE-DIRIGIDA-v1 | 6 | NO-CORRIDA (techo) | — | — | 0 | 0 | 0 |
-| 25 | TRA-M-07 | CONTEXTUAL-v2 | 1 | NO-CORRIDA (techo) | — | — | 0 | 0 | 0 |
-| 26 | DIN-M-01 | CONTEXTUAL-v2 | 6 | NO-CORRIDA (techo) | — | — | 0 | 0 | 0 |
-| 27 | TRA-M-07 | CONTEXTUAL-v2 | 6 | NO-CORRIDA (techo) | — | — | 0 | 0 | 0 |
-| 28 | DIN-M-01 | CONTEXTUAL-v2 | 3 | NO-CORRIDA (techo) | — | — | 0 | 0 | 0 |
-| 29 | TRA-M-07 | FUENTE-DIRIGIDA-v1 | 5 | NO-CORRIDA (techo) | — | — | 0 | 0 | 0 |
-| 30 | DIN-M-01 | FUENTE-DIRIGIDA-v1 | 7 | NO-CORRIDA (techo) | — | — | 0 | 0 | 0 |
-| 31 | DIN-M-01 | CONTEXTUAL-v2 | 1 | NO-CORRIDA (techo) | — | — | 0 | 0 | 0 |
-| 32 | TRA-M-07 | CONTEXTUAL-v2 | 8 | NO-CORRIDA (techo) | — | — | 0 | 0 | 0 |
+| 23 | DIN-M-01 | FUENTE-DIRIGIDA-v1 | 3 | PUNTO · trazable | 15.56 | false | 1 | 3 | 0.31 |
+| 24 | DIN-M-01 | FUENTE-DIRIGIDA-v1 | 6 | PUNTO · trazable | 15.56 | false | 1 | 3 | 0.32 |
+| 25 | TRA-M-07 | CONTEXTUAL-v2 | 1 | ABSTENCION | null | false | 1 | 3 | 0.08 |
+| 26 | DIN-M-01 | CONTEXTUAL-v2 | 6 | ABSTENCION | null | false | 1 | 4 | 0.13 |
+| 27 | TRA-M-07 | CONTEXTUAL-v2 | 6 | ABSTENCION | null | false | 1 | 4 | 0.08 |
+| 28 | DIN-M-01 | CONTEXTUAL-v2 | 3 | ABSTENCION | null | false | 1 | 3 | 0.13 |
+| 29 | TRA-M-07 | FUENTE-DIRIGIDA-v1 | 5 | PUNTO · trazable | 7.18 | false | 1 | 3 | 0.24 |
+| 30 | DIN-M-01 | FUENTE-DIRIGIDA-v1 | 7 | PUNTO · trazable | 15.56 | false | 1 | 3 | 0.31 |
+| 31 | DIN-M-01 | CONTEXTUAL-v2 | 1 | ABSTENCION | null | false | 1 | 6 | 0.18 |
+| 32 | TRA-M-07 | CONTEXTUAL-v2 | 8 | ABSTENCION | null | false | 1 | 4 | 0.09 |
 
-(Orden = orden congelado del plan, semilla 20260911.)
+(Orden = orden congelado del plan, semilla 20260911. Posiciones 1–22: 1.ª pasada; 23–32: 2.ª pasada tras la firma de mesa.)
 
-## El hueco en la escala del contrato — se reporta, no se enmienda
+## El hueco en la escala del contrato — se reportó, y mesa lo resolvió en sesión
 
 El techo de 96 nació en §4.4 de la spec como 32 llamadas lógicas × (1 + 2
 reintentos) **solicitudes facturables**, a razón de una por llamada. El
@@ -139,9 +131,18 @@ modelo tantea la herramienta. Con ese cargo, 96 alcanza para ~20 posiciones,
 no para 32: el techo no fue re-dimensionado cuando cambió la unidad de
 cuenta. El encargo lo dice: «si encuentras un hueco en su escala o sus pasos,
 PARA y repórtalo: es entregable, no licencia para improvisar». Se paró donde
-el runner paró, se reporta aquí, y la decisión (¿contrato v1.2 con techo en
-turnos para las 10 posiciones restantes, o veredicto con lo observado?) es de
-mesa: `NC-0186`.
+el runner paró (94/96, 22/32) y se reportó a mesa con las dos salidas
+(contrato con techo en turnos, o veredicto con lo observado). **Mesa firmó en
+sesión, verbatim: «termina el encargo entonces, ese techo es un estimado».**
+Efecto: el mismo diseño de §4.4 se re-dimensiona en la unidad que v1.1
+cuenta —32 llamadas × 3 intentos × 3 turnos mínimos = **288 turnos**—, el
+ledger se arrastra (94 ya gastados), el plan se re-congela como v1.2 con
+identidades idénticas a v1.1 (sólo cambia el hash del runner por la
+constante), y el runner reanuda las 22 capturas por identidad y corre sólo
+las 10 faltantes. Terminó en 130/288 sin un solo reintento. La firma queda
+archivada en el encargo (`## Firma de mesa en sesión`) y en el ledger
+(`techo_historia`). `NC-0186` se abre y se cierra en este mismo acto, para
+que el hueco quede registrado con su resolución.
 
 Otras dos observaciones del transporte, ambas dentro del contrato:
 
@@ -158,22 +159,22 @@ Otras dos observaciones del transporte, ambas dentro del contrato:
 ## Tokens de tablero (P3 c)
 
 - `FP-373`: sigue `FIRMADA`; `ejecutada_en` pasa de `NO-EJECUTADA` a
-  `EJECUTADA-PARCIAL` con este acto (22/32, 94/96).
+  `EJECUTADA` con este acto (32/32, 130/288).
 - `NC-0160` → `CERRADA`: su pregunta a mesa (tabla P1 de TANDA-2: «¿Autoriza
   mesa el texto de firma del encargo 31…?») quedó contestada por la firma
-  archivada y ejecutada; el desenlace real son las 22 posiciones corridas y
-  las 10 que `NC-0186` recoge.
+  archivada y ejecutada; el desenlace real son las 32 posiciones corridas
+  y las dos celdas en ÉXITO.
 - `NC-0177` → `CERRADA`: el transporte que denunciaba valida bajo v1.1 (5/5) y
-  las posiciones corrieron; lo que no corrió no es ya ese defecto sino el
-  techo (`NC-0186`).
+  las 32 posiciones corrieron.
 - `NC-0178` sin tocar: `--verify` volvió a fallar por el mismo único campo;
   fuera de perímetro por letra del contrato v1.1 (e).
-- `NC-0186` (nueva): las 10 posiciones `NO-CORRIDA` por techo; hueco de escala
-  del contrato; decisión de mesa.
+- `NC-0186` (nueva, abierta y `CERRADA` en este acto): las 10 posiciones que
+  el techo de 96 dejó sin correr; hueco de escala del contrato resuelto por la
+  firma de mesa en sesión (techo re-dimensionado a 288 turnos).
 
 ## Lo que este acto no hace
 
-No toca la primaria ni su veredicto; no abre `FP-374` ni `F6`; no excede el
-techo ni negocia con él (paró en 94/96 con dos solicitudes que ninguna
-reserva de 4 puede usar); no enmienda la escala del criterio; no escribe la
-lectura estratégica conjunta.
+No toca la primaria ni su veredicto; no abre `FP-374` ni `F6`; no negoció el
+techo desde el ejecutor (paró en 94/96 y lo re-dimensionó sólo con la firma
+de mesa, archivada verbatim); no enmienda la escala del criterio; no escribe
+la lectura estratégica conjunta.

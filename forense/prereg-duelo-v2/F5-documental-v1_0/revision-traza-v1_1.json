@@ -289,80 +289,130 @@
   "id_celda": "DIN-M-01",
   "brazo": "FUENTE-DIRIGIDA-v1",
   "replica": 3,
-  "estado": "NO-CORRIDA",
-  "trazable": null,
-  "motivo": "techo"
+  "estado": "PUNTO",
+  "punto": 15.56,
+  "sustitucion": false,
+  "intentos": 1,
+  "turns": 3,
+  "cost": 0.314227,
+  "trazable": true,
+  "motivo": ""
  },
  {
   "id_celda": "DIN-M-01",
   "brazo": "FUENTE-DIRIGIDA-v1",
   "replica": 6,
-  "estado": "NO-CORRIDA",
-  "trazable": null,
-  "motivo": "techo"
+  "estado": "PUNTO",
+  "punto": 15.56,
+  "sustitucion": false,
+  "intentos": 1,
+  "turns": 3,
+  "cost": 0.315452,
+  "trazable": true,
+  "motivo": ""
  },
  {
   "id_celda": "TRA-M-07",
   "brazo": "CONTEXTUAL-v2",
   "replica": 1,
-  "estado": "NO-CORRIDA",
-  "trazable": null,
-  "motivo": "techo"
+  "estado": "ABSTENCION",
+  "punto": null,
+  "sustitucion": false,
+  "intentos": 1,
+  "turns": 3,
+  "cost": 0.08333099999999999,
+  "trazable": false,
+  "motivo": ""
  },
  {
   "id_celda": "DIN-M-01",
   "brazo": "CONTEXTUAL-v2",
   "replica": 6,
-  "estado": "NO-CORRIDA",
-  "trazable": null,
-  "motivo": "techo"
+  "estado": "ABSTENCION",
+  "punto": null,
+  "sustitucion": false,
+  "intentos": 1,
+  "turns": 4,
+  "cost": 0.125442,
+  "trazable": false,
+  "motivo": ""
  },
  {
   "id_celda": "TRA-M-07",
   "brazo": "CONTEXTUAL-v2",
   "replica": 6,
-  "estado": "NO-CORRIDA",
-  "trazable": null,
-  "motivo": "techo"
+  "estado": "ABSTENCION",
+  "punto": null,
+  "sustitucion": false,
+  "intentos": 1,
+  "turns": 4,
+  "cost": 0.075596,
+  "trazable": false,
+  "motivo": ""
  },
  {
   "id_celda": "DIN-M-01",
   "brazo": "CONTEXTUAL-v2",
   "replica": 3,
-  "estado": "NO-CORRIDA",
-  "trazable": null,
-  "motivo": "techo"
+  "estado": "ABSTENCION",
+  "punto": null,
+  "sustitucion": false,
+  "intentos": 1,
+  "turns": 3,
+  "cost": 0.128332,
+  "trazable": false,
+  "motivo": ""
  },
  {
   "id_celda": "TRA-M-07",
   "brazo": "FUENTE-DIRIGIDA-v1",
   "replica": 5,
-  "estado": "NO-CORRIDA",
-  "trazable": null,
-  "motivo": "techo"
+  "estado": "PUNTO",
+  "punto": 7.18,
+  "sustitucion": false,
+  "intentos": 1,
+  "turns": 3,
+  "cost": 0.24241600000000002,
+  "trazable": true,
+  "motivo": ""
  },
  {
   "id_celda": "DIN-M-01",
   "brazo": "FUENTE-DIRIGIDA-v1",
   "replica": 7,
-  "estado": "NO-CORRIDA",
-  "trazable": null,
-  "motivo": "techo"
+  "estado": "PUNTO",
+  "punto": 15.56,
+  "sustitucion": false,
+  "intentos": 1,
+  "turns": 3,
+  "cost": 0.3106335,
+  "trazable": true,
+  "motivo": ""
  },
  {
   "id_celda": "DIN-M-01",
   "brazo": "CONTEXTUAL-v2",
   "replica": 1,
-  "estado": "NO-CORRIDA",
-  "trazable": null,
-  "motivo": "techo"
+  "estado": "ABSTENCION",
+  "punto": null,
+  "sustitucion": false,
+  "intentos": 1,
+  "turns": 6,
+  "cost": 0.1764775,
+  "trazable": false,
+  "motivo": ""
  },
  {
   "id_celda": "TRA-M-07",
   "brazo": "CONTEXTUAL-v2",
   "replica": 8,
-  "estado": "NO-CORRIDA",
-  "trazable": null,
-  "motivo": "techo"
+  "estado": "ABSTENCION",
+  "punto": null,
+  "sustitucion": false,
+  "intentos": 1,
+  "turns": 4,
+  "cost": 0.086111,
+  "trazable": false,
+  "motivo": ""
  }
 ]

@@ -1,0 +1,206 @@
+{
+  "brazo": "FUENTE-DIRIGIDA-v1",
+  "cargo_real_turnos": 3,
+  "cliente_version": "2.1.272 (Claude Code)",
+  "estado_captura": "PUNTO",
+  "id_celda": "DIN-M-01",
+  "identidad": "43b6de8522e7d8c7e15718e454c7ac1a7f451c5938e68d2f01957cc91265d41e",
+  "intentos": [
+    {
+      "fin_utc": "2026-09-15T01:30:23.717193+00:00",
+      "inicio_utc": "2026-09-15T01:30:07.420187+00:00",
+      "numero": 1,
+      "returncode": 0,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":16550,\"stop_reason\":\"tool_use\",\"session_id\":\"e909e0a8-593c-443e-aff2-490ec7f579ae\",\"total_cost_usd\":0.3106335,\"usage\":{\"input_tokens\":4,\"cache_creation_input_tokens\":0,\"cache_read_input_tokens\":317523,\"output_tokens\":1119,\"output_tokens_details\":{\"thinking_tokens\":196},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":0,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":965,\"cache_read_input_tokens\":159023,\"cache_creation_input_tokens\":0,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":0},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":123802,\"outputTokens\":15,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.123877,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":4,\"outputTokens\":1119,\"cacheReadInputTokens\":317523,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.1867565,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":196,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"{\\\"estado\\\":\\\"PUNTO\\\",\\\"punto_porcentaje\\\":15.56,\\\"fuente_documental\\\":[\\\"analysis.tsv\\\",\\\"codebook-book3b.txt\\\",\\\"cuestionario-book3b.txt\\\",\\\"diseno-muestral.txt\\\"],\\\"derivacion\\\":\\\"Reactivo cr27 ('¿Tiene ahorros?', Sección CR, Libro IIIB, ENNViH-1 2002; codebook: 1=Si, 3=No, NS). Se corrió weighted_distribution sobre analysis.tsv (19,802 filas, sha256 0a687eeb...) con value_column=cr27 y weight_column=fac_3b (factor de expansión individual del libro 3B, conforme al diseño probabilístico documentado en diseno-muestral.txt). Resultado: cr27=1 n=2,665, suma ponderada 10,579,946; cr27=3 n=17,074, suma ponderada 57,422,894; cr27=7 (NS en el DTA transportado, NS=8 en el codebook impreso) n=60, suma ponderada 265,567, excluido; 3 filas omitidas por faltante/inválido. Proporción Sí sobre el universo válido Sí+No = 10,579,946 / (10,579,946 + 57,422,894) = 10,579,946 / 68,002,840 = 0.15558 → 15.56 %. Los recuentos sin ponderar coinciden con el codebook (cr27: 2665 Si, 17074 No, 60 NS, total 19,799).\\\",\\\"sustitucion_semantica\\\":false,\\\"nota\\\":\\\"Estimación ponderada con fac_3b; sin ponderar la proporción sería 2665/19739 = 13.50 %. La categoría NS aparece codificada como 7 en el TSV (discrepancia documentada frente al 8 del codebook); en cualquier caso queda fuera del universo. El contexto contemporáneo (ENIF 2024, fintech, etc.) no se usó: corresponde a otras encuestas, olas y reactivos.\\\"}\",\"structured_output\":{\"estado\":\"PUNTO\",\"punto_porcentaje\":15.56,\"fuente_documental\":[\"analysis.tsv\",\"codebook-book3b.txt\",\"cuestionario-book3b.txt\",\"diseno-muestral.txt\"],\"derivacion\":\"Reactivo cr27 ('¿Tiene ahorros?', Sección CR, Libro IIIB, ENNViH-1 2002; codebook: 1=Si, 3=No, NS). Se corrió weighted_distribution sobre analysis.tsv (19,802 filas, sha256 0a687eeb...) con value_column=cr27 y weight_column=fac_3b (factor de expansión individual del libro 3B, conforme al diseño probabilístico documentado en diseno-muestral.txt). Resultado: cr27=1 n=2,665, suma ponderada 10,579,946; cr27=3 n=17,074, suma ponderada 57,422,894; cr27=7 (NS en el DTA transportado, NS=8 en el codebook impreso) n=60, suma ponderada 265,567, excluido; 3 filas omitidas por faltante/inválido. Proporción Sí sobre el universo válido Sí+No = 10,579,946 / (10,579,946 + 57,422,894) = 10,579,946 / 68,002,840 = 0.15558 → 15.56 %. Los recuentos sin ponderar coinciden con el codebook (cr27: 2665 Si, 17074 No, 60 NS, total 19,799).\",\"sustitucion_semantica\":false,\"nota\":\"Estimación ponderada con fac_3b; sin ponderar la proporción sería 2665/19739 = 13.50 %. La categoría NS aparece codificada como 7 en el TSV (discrepancia documentada frente al 8 del codebook); en cualquier caso queda fuera del universo. El contexto contemporáneo (ENIF 2024, fintech, etc.) no se usó: corresponde a otras encuestas, olas y reactivos.\"},\"ttft_ms\":2291,\"type\":\"result\",\"duration_ms\":14970,\"uuid\":\"3e6bdb5b-6e10-4f4c-81f1-1aa7729b4a64\",\"ttft_stream_ms\":1501,\"time_to_request_ms\":35,\"first_content_frame_ms\":1853,\"queued_turn_count\":0,\"result_index\":0}\n"
+    }
+  ],
+  "modelo_exacto": "claude-opus-5",
+  "modelos_auxiliares": [
+    {
+      "admitido": true,
+      "modelo": "claude-haiku-4-5",
+      "outputTokens": 15,
+      "tope": 200
+    }
+  ],
+  "modelos_reportados": [
+    "claude-haiku-4-5",
+    "claude-opus-5"
+  ],
+  "prompt_bytes": 323655,
+  "prompt_chars": 318689,
+  "reconciliacion_usage_modelo": {
+    "modelo": "claude-opus-5",
+    "ok": true,
+    "pares": [
+      {
+        "campo_modelUsage": "inputTokens",
+        "campo_usage": "input_tokens",
+        "modelUsage": 4,
+        "usage": 4
+      },
+      {
+        "campo_modelUsage": "outputTokens",
+        "campo_usage": "output_tokens",
+        "modelUsage": 1119,
+        "usage": 1119
+      },
+      {
+        "campo_modelUsage": "cacheCreationInputTokens",
+        "campo_usage": "cache_creation_input_tokens",
+        "modelUsage": 0,
+        "usage": 0
+      },
+      {
+        "campo_modelUsage": "cacheReadInputTokens",
+        "campo_usage": "cache_read_input_tokens",
+        "modelUsage": 317523,
+        "usage": 317523
+      }
+    ]
+  },
+  "replica": 7,
+  "respuesta_estructurada": {
+    "derivacion": "Reactivo cr27 ('¿Tiene ahorros?', Sección CR, Libro IIIB, ENNViH-1 2002; codebook: 1=Si, 3=No, NS). Se corrió weighted_distribution sobre analysis.tsv (19,802 filas, sha256 0a687eeb...) con value_column=cr27 y weight_column=fac_3b (factor de expansión individual del libro 3B, conforme al diseño probabilístico documentado en diseno-muestral.txt). Resultado: cr27=1 n=2,665, suma ponderada 10,579,946; cr27=3 n=17,074, suma ponderada 57,422,894; cr27=7 (NS en el DTA transportado, NS=8 en el codebook impreso) n=60, suma ponderada 265,567, excluido; 3 filas omitidas por faltante/inválido. Proporción Sí sobre el universo válido Sí+No = 10,579,946 / (10,579,946 + 57,422,894) = 10,579,946 / 68,002,840 = 0.15558 → 15.56 %. Los recuentos sin ponderar coinciden con el codebook (cr27: 2665 Si, 17074 No, 60 NS, total 19,799).",
+    "estado": "PUNTO",
+    "fuente_documental": [
+      "analysis.tsv",
+      "codebook-book3b.txt",
+      "cuestionario-book3b.txt",
+      "diseno-muestral.txt"
+    ],
+    "nota": "Estimación ponderada con fac_3b; sin ponderar la proporción sería 2665/19739 = 13.50 %. La categoría NS aparece codificada como 7 en el TSV (discrepancia documentada frente al 8 del codebook); en cualquier caso queda fuera del universo. El contexto contemporáneo (ENIF 2024, fintech, etc.) no se usó: corresponde a otras encuestas, olas y reactivos.",
+    "punto_porcentaje": 15.56,
+    "sustitucion_semantica": false
+  },
+  "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__FUENTE-DIRIGIDA-v1__07.json",
+  "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+  "sha256_prompt": "deb913ae3b5a363e48beeee3821d0f01f03fa4cddd7373ba9f809d29af783d46",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 16550,
+    "duration_ms": 14970,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 1853,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.123877,
+        "inputTokens": 123802,
+        "maxOutputTokens": 32000,
+        "outputTokens": 15,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 317523,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 0.1867565,
+        "inputTokens": 4,
+        "maxOutputTokens": 64000,
+        "outputTokens": 1119,
+        "provider": "firstParty",
+        "thinkingTokens": 196,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 3,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "{\"estado\":\"PUNTO\",\"punto_porcentaje\":15.56,\"fuente_documental\":[\"analysis.tsv\",\"codebook-book3b.txt\",\"cuestionario-book3b.txt\",\"diseno-muestral.txt\"],\"derivacion\":\"Reactivo cr27 ('¿Tiene ahorros?', Sección CR, Libro IIIB, ENNViH-1 2002; codebook: 1=Si, 3=No, NS). Se corrió weighted_distribution sobre analysis.tsv (19,802 filas, sha256 0a687eeb...) con value_column=cr27 y weight_column=fac_3b (factor de expansión individual del libro 3B, conforme al diseño probabilístico documentado en diseno-muestral.txt). Resultado: cr27=1 n=2,665, suma ponderada 10,579,946; cr27=3 n=17,074, suma ponderada 57,422,894; cr27=7 (NS en el DTA transportado, NS=8 en el codebook impreso) n=60, suma ponderada 265,567, excluido; 3 filas omitidas por faltante/inválido. Proporción Sí sobre el universo válido Sí+No = 10,579,946 / (10,579,946 + 57,422,894) = 10,579,946 / 68,002,840 = 0.15558 → 15.56 %. Los recuentos sin ponderar coinciden con el codebook (cr27: 2665 Si, 17074 No, 60 NS, total 19,799).\",\"sustitucion_semantica\":false,\"nota\":\"Estimación ponderada con fac_3b; sin ponderar la proporción sería 2665/19739 = 13.50 %. La categoría NS aparece codificada como 7 en el TSV (discrepancia documentada frente al 8 del codebook); en cualquier caso queda fuera del universo. El contexto contemporáneo (ENIF 2024, fintech, etc.) no se usó: corresponde a otras encuestas, olas y reactivos.\"}",
+    "result_index": 0,
+    "session_id": "e909e0a8-593c-443e-aff2-490ec7f579ae",
+    "stop_reason": "tool_use",
+    "structured_output": {
+      "derivacion": "Reactivo cr27 ('¿Tiene ahorros?', Sección CR, Libro IIIB, ENNViH-1 2002; codebook: 1=Si, 3=No, NS). Se corrió weighted_distribution sobre analysis.tsv (19,802 filas, sha256 0a687eeb...) con value_column=cr27 y weight_column=fac_3b (factor de expansión individual del libro 3B, conforme al diseño probabilístico documentado en diseno-muestral.txt). Resultado: cr27=1 n=2,665, suma ponderada 10,579,946; cr27=3 n=17,074, suma ponderada 57,422,894; cr27=7 (NS en el DTA transportado, NS=8 en el codebook impreso) n=60, suma ponderada 265,567, excluido; 3 filas omitidas por faltante/inválido. Proporción Sí sobre el universo válido Sí+No = 10,579,946 / (10,579,946 + 57,422,894) = 10,579,946 / 68,002,840 = 0.15558 → 15.56 %. Los recuentos sin ponderar coinciden con el codebook (cr27: 2665 Si, 17074 No, 60 NS, total 19,799).",
+      "estado": "PUNTO",
+      "fuente_documental": [
+        "analysis.tsv",
+        "codebook-book3b.txt",
+        "cuestionario-book3b.txt",
+        "diseno-muestral.txt"
+      ],
+      "nota": "Estimación ponderada con fac_3b; sin ponderar la proporción sería 2665/19739 = 13.50 %. La categoría NS aparece codificada como 7 en el TSV (discrepancia documentada frente al 8 del codebook); en cualquier caso queda fuera del universo. El contexto contemporáneo (ENIF 2024, fintech, etc.) no se usó: corresponde a otras encuestas, olas y reactivos.",
+      "punto_porcentaje": 15.56,
+      "sustitucion_semantica": false
+    },
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 35,
+    "total_cost_usd": 0.3106335,
+    "ttft_ms": 2291,
+    "ttft_stream_ms": 1501,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 317523,
+      "inference_geo": "not_available",
+      "input_tokens": 4,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 159023,
+          "input_tokens": 2,
+          "output_tokens": 965,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1119,
+      "output_tokens_details": {
+        "thinking_tokens": 196
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "3e6bdb5b-6e10-4f4c-81f1-1aa7729b4a64"
+  },
+  "timestamp_utc": "2026-09-15T01:30:23.717923+00:00",
+  "total_cost_usd": 0.3106335
+}

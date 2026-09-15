@@ -311,3 +311,26 @@ contrato que gobernó la corrida (declarado en el encargo archivado).
   Decisión de mesa (`NC-0186`).
 - **Estado tras esta enmienda: FIRMADA; PLAN CONGELADO v1.1; TRANSPORTE
   VALIDADO; 94/96; 22/32 CORRIDAS, 10 NO-CORRIDAS POR TECHO.**
+
+## Enmienda fechada · CONTINUACIÓN POR FIRMA DE MESA: TECHO RE-DIMENSIONADO, 32/32 (2026-09-14, `ACTO GEN2-F5-DOCUMENTAL-RUN-2`)
+
+Original y enmienda anterior intactos; esta se añade. Ante el PARO por techo
+(94/96, 22/32) mesa firmó en sesión, verbatim: **«termina el encargo entonces,
+ese techo es un estimado»** (archivada en el encargo del acto y en
+`solicitudes-ledger-v1_0.json::techo_historia`).
+
+- **Techo:** el diseño de §4.4 (32 llamadas × 3 intentos) se re-dimensiona en
+  la unidad que (c) carga — 3 turnos por invocación mínima —: **288 turnos**.
+  `TECHO_SOLICITUDES = 288` en el runner; el ledger sigue arrastrado (94 al
+  reanudar). Nada más del contrato cambia.
+- **Plan v1.2** (`F5-documental-plan-v1_2.json`): identidades idénticas a
+  v1.1 (sólo cambia `sha256_parser_runner` por la constante); las 22 capturas
+  se reanudan por identidad, no se repiten. La sonda v1.1 sigue vigente (el
+  transporte no cambió).
+- **`--run` 2.ª pasada:** `2026-09-15T01:26Z`–`01:31Z`, 10 nuevas resueltas
+  (5 `PUNTO` trazables 5/5, 5 `ABSTENCION`), 0 errores, 0 reintentos; ledger
+  **130/288**.
+- **Estado tras esta enmienda: FIRMADA; PLAN CONGELADO v1.2; TRANSPORTE
+  VALIDADO; 130/288; 32/32 CORRIDAS. Veredicto §4.3: `DIN-M-01` ÉXITO (8/8
+  vs 0/8), `TRA-M-07` ÉXITO (8/8 vs 0/8).** Nota:
+  `forense/notas/2026-09-14-GEN2-F5-DOCUMENTAL-RUN-2-cierre.md`.
