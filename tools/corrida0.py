@@ -118,6 +118,10 @@ SALIDA = RAIZ / "data" / "corrida0"
 
 CABECERA_DERIVADO = "# DERIVADO — NO EDITAR"
 NO_DECLARADO = "NO-DECLARADO-EN-EL-REGISTRO"
+# FIRMA DE MESA 15/sep/2026 (OBJETO 5, D3 de NC-0197): rotulo de
+# procedencia, no de calidad. Lo aplica `cmd_demanda` a los consumidores que
+# `decisiones.tsv` marque; ningun TSV `# DERIVADO` se edita a mano.
+ROTULO_SIN_PROCEDENCIA = "SIN-PROCEDENCIA-VERIFICABLE"
 
 # El registro abre cientos de documentos YAML en una sola derivación. La
 # variante C conserva el contrato seguro de SafeLoader y evita que T16 dependa
@@ -940,6 +944,20 @@ def cmd_demanda(args) -> int:
     for fila in filas:
         if decisiones.get(fila["consumidor"]) == "receta_legacy=SIN-RECETA":
             fila["receta_legacy"] = "SIN-RECETA"
+
+    # FIRMA DE MESA 15/sep/2026 (OBJETO 5, D3 de NC-0197): el rotulo
+    # SIN-PROCEDENCIA-VERIFICABLE se ESCRIBE AQUI, por el escritor canonico,
+    # y nunca a mano sobre un TSV `# DERIVADO`. Marca que la `fuente` del
+    # coeficiente es prosa que no resuelve a una corrida verificable -- no
+    # dice que el coeficiente este mal, dice que su procedencia no se puede
+    # seguir. El rotulo previo se CONSERVA y el nuevo se antepone: ningun
+    # sello se reescribe.
+    for fila in filas:
+        if decisiones.get(fila["consumidor"], "").startswith(
+                "procedencia=SIN-PROCEDENCIA-VERIFICABLE"):
+            previo = fila["clase_legacy"]
+            if not str(previo).startswith(ROTULO_SIN_PROCEDENCIA):
+                fila["clase_legacy"] = f"{ROTULO_SIN_PROCEDENCIA}·{previo}"
 
     _verifica_grafo(filas)
 
