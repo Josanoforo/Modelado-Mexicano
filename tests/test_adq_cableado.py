@@ -615,6 +615,103 @@ def prueba_h3_texto_original_del_piloto_intacto():
 
 
 # ───────────────────────────────────────────────────────────────
+# GEN2-ADQUISICION-CONTINUA-2 · cableado presupuesto end-to-end
+# ───────────────────────────────────────────────────────────────
+
+def prueba_presupuesto_se_recupera_antes_de_comprobar_despacho():
+    launcher = (RAIZ / "tools" / "adquiere_launcher.sh").read_text(
+        encoding="utf-8")
+    recupera = launcher.find("--recupera-presupuesto")
+    comprueba = launcher.find("--comprueba-despacho")
+    afirma(0 <= recupera < comprueba,
+           "E2E: el launcher debe recuperar bajo lock antes de que una reserva "
+           "huérfana pueda impedir para siempre la comprobación de despacho")
+    afirma("--lock-exclusivo" in launcher[recupera:comprueba],
+           "E2E: la recuperación previa al despacho no acredita el lock único")
+
+
+def prueba_liquidacion_precede_recibo_y_es_defensa_en_exit():
+    fuente = RUNNER.read_text(encoding="utf-8")
+    inicio_huella = fuente.index("huella_adq()")
+    fin_huella = fuente.index("# ── Seam", inicio_huella)
+    cuerpo_huella = fuente[inicio_huella:fin_huella]
+    afirma(cuerpo_huella.find("liquida_presupuesto_run") <
+           cuerpo_huella.find("if commit_censo_linea"),
+           "E2E: la huella publica remanente antes de liquidar")
+    inicio_exit = fuente.index("finalizar()")
+    cuerpo_exit = fuente[inicio_exit:fuente.index("trap finalizar EXIT", inicio_exit)]
+    afirma("liquida_presupuesto_run" in cuerpo_exit,
+           "E2E: una salida inesperada no intenta liquidación idempotente en EXIT")
+
+
+def prueba_duracion_del_hijo_es_monotonica_y_gracia_separada():
+    fuente = RUNNER.read_text(encoding="utf-8")
+    afirma("time.monotonic_ns()" in fuente,
+           "E2E: la duración del ejecutor no usa reloj monotónico externo")
+    afirma("duracion_ejecutor=" in fuente and "gracia_terminacion=" in fuente,
+           "E2E: recibo no separa duración acreditada y gracia TERM→KILL")
+    afirma("DURACION_HIJO_SEGUNDOS" in fuente and "--segundos" in fuente,
+           "E2E: duración monotónica no llega a la liquidación")
+
+
+def prueba_checkpoint_y_conteo_de_intentos_llegan_al_ledger():
+    fuente = RUNNER.read_text(encoding="utf-8")
+    afirma("--checkpoint-presupuesto" in fuente and
+           "--tipo-checkpoint necesidades" in fuente and
+           "--tipo-checkpoint objetos" in fuente,
+           "E2E: el hijo no recibe comandos de checkpoint por trabajo iniciado")
+    afirma("OBJETOS_INTENTADOS" in fuente and "objetos_intentados=" in fuente,
+           "E2E: el cierre no distingue objetos intentados de objetos nuevos")
+    afirma("PARO-CONTABILIDAD" in fuente and
+           "no se acreditó el inicio del ejecutor" in fuente,
+           "E2E: el hijo puede arrancar aunque falle su checkpoint de ejecutor")
+
+
+def prueba_doctor_expone_ledger_y_pendientes():
+    fuente = (RAIZ / "tools" / "adq_doctor.py").read_text(encoding="utf-8")
+    afirma("check_presupuesto" in fuente and '("presupuesto", check_presupuesto)' in fuente,
+           "E2E: el doctor no conecta consumo/reserva/disponible del ledger")
+    afirma("recuperacion_pendiente" in fuente,
+           "E2E: el doctor oculta reservas materiales pendientes")
+
+
+def prueba_cierre_runtime_evitar_repetir_estado_publicado_sin_merge():
+    fuente = RUNNER.read_text(encoding="utf-8")
+    investigacion = (RAIZ / "tools" / "adq_investigacion.py").read_text(
+        encoding="utf-8")
+    afirma("--resultado-ciclo" in fuente,
+           "E2E: el cierre no entrega el resultado al checkpoint runtime")
+    afirma("investigaciones_atendidas" in investigacion and
+           "atendida por" in investigacion,
+           "E2E: la siguiente activación repite una rama publicada sin merge")
+
+
+def prueba_censo_repetido_no_fabrica_archivo_nuevo():
+    with tempfile.TemporaryDirectory() as d:
+        censo = Path(d) / "censo"
+        censo.mkdir()
+        previo = censo / "2026-09-15-cron-1047.txt"
+        candidato = censo / "2026-09-15-cron-1217.txt"
+        previo.write_bytes(b"inventario-identico\n")
+        candidato.write_bytes(previo.read_bytes())
+        rc, salida = _corre_bash(
+            f'CENSO_DIR="{censo}"; FECHA=2026-09-15; '
+            f'if censo_duplicado_del_dia "{candidato}"; then '
+            f'echo "rc=0"; else echo "rc=$?"; fi',
+            entorno={"LOGFILE": "/dev/null"})
+        afirma(rc == 0 and "rc=0" in salida,
+               "E2E: dos censos byte a byte iguales no se detectaron como duplicado")
+        candidato.write_bytes(b"inventario-distinto\n")
+        rc, salida = _corre_bash(
+            f'CENSO_DIR="{censo}"; FECHA=2026-09-15; '
+            f'if censo_duplicado_del_dia "{candidato}"; then '
+            f'echo "rc=0"; else echo "rc=$?"; fi',
+            entorno={"LOGFILE": "/dev/null"})
+        afirma("rc=1" in salida,
+               "E2E: un censo distinto se descartaría como duplicado")
+
+
+# ───────────────────────────────────────────────────────────────
 
 PRUEBAS = [v for k, v in sorted(globals().items()) if k.startswith("prueba_")]
 
