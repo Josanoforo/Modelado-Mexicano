@@ -1,0 +1,350 @@
+# CALC-ENCIG-2023-0001 -- cara mecanica de spec.md (ACTO GEN2-FIRMAS-MESA-1, OBJETO 4).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/ENCIG-MORDIDA-2023-spec-v1_0.md (`prereg-caja-ENCIG-MORDIDA-2023`).
+# SUCESORA de CALC-ENCIG-0001 (familia B): MISMO estimando, otra ola. No reescribe su sello.
+# CONGELADO en el COMMIT-1, en NUBE, antes de abrir un solo byte de microdato.
+calc_id: CALC-ENCIG-2023-0001
+spec_md: spec.md
+spec_md_sha256: 1b832ce674a743d8a0ecaa8cbb25ace1c5c49d3b4c9fcef78b07d5eccd5b0a16
+
+script: data/corrida0/CALC-ENCIG-2023-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: TASA-BASE-DE-REGLA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENCIG-MORDIDA-2023-spec-v1_0.md
+  spec_sellada_sha256: ea4379e5d659e5b103b6d8d20db2a166bdbfc93caa27a3408efe771c6b76bda6
+  demanda_que_releva: "CANDIDATURA PARA MESA, NO RELEVO CONSUMADO. CORR-0001 (ENCIG2023, payload encig23_base_datos_csv) lista 4 RESULT: RES-0001/RES-0002 (tramite.mordida.discrecional:paga_mordida / :tramite_normal, 0.62/0.38, ASIGNADO) y RES-0007/RES-0008 (tramite.mordida.con_registro:tramite_normal / :paga_mordida, 0.88/0.12, ASIGNADO). Esta spec NO mide la familia A, asi que RES-0001/RES-0002 quedan intactos. RES-0007/RES-0008 son ASIGNADO SIN PARTIR POR CANAL y lo que esta spec produce SI esta partido por canal: cual brazo (o que agregacion) sustituye a un ASIGNADO sin canal es decision de mesa y esta spec NO la toma. Decirlo es el entregable; darlo por concedido seria el error. NO releva CORR-0002 (ENCIG2025, ya relevada por CALC-ENCIG-0001) ni ninguna otra corrida."
+  reglas_bajo_prueba: "NINGUNA cambia de cifra por esta corrida. tramite.mordida.con_registro (R3.2) conserva TODAS sus cifras selladas en milpa/tramite.yaml:170-188 (paga_mordida 0.12 ASIGNADO; _encig2025_presencial 0.116000; _digital 0.027358; _presencial_r2 0.141041; _digital_r2 0.029868) y tramite.mordida.discrecional (R3.1) no se toca en absoluto. Este CALC monta la cadena E.2 sobre la ola 2023, que hoy no tiene MEDIDO. La adopcion la decide mesa por merge, no este acto: esta spec NO escribe cita en milpa/ bajo ninguna rama y NO crea conducta nueva."
+  firma_de_contador: "NO-FIRMADA. La firma de mesa del 15/sep/2026 («Si a todas.», OBJETO 4 de la HOJA DE FIRMAS DE MESA 2026-09-15) autoriza MEDIR ENCIG 2023 con spec sucesora -- «Spec aqui; corrida en caja» -- y NO declara OBJETO sobre el contador GEN2. El OBJETO 1 de la misma hoja SI declara cuenta_gen2 = SI, pero solo para las corridas que MEDICION-DEMANDA selle sobre CORR-0011/0012/0013/0014, y este CALC no es ninguna de ellas. Estandar FP-367/368 (autoridad + fecha + OBJETO explicito sobre el contador) NO satisfecho aqui -> cuenta_gen2 queda PENDIENTE-DE-MESA, y se dice en vez de darselo por concedido."
+  contaminacion_declarada: "ADR-46 -- al congelar, la sesion YA conocia (a) los dos puntos GEN2 de la ola 2025 con toda su precision: RESULT-ENCIG-MOR-B-P-PRE-SD = 0.1410407168724654 (n=11167 eventos, 381 estratos, 2996 UPM) y RESULT-ENCIG-MOR-B-P-DIG-SD = 0.029867554626649372 (n=7219, 362 estratos, 2518 UPM), con su lectura «razon ~4.2x, IC95 sin traslape» (milpa/tramite.yaml:185,187,216); (b) las cifras GEN1 selladas de milpa/tramite.yaml reglas tramite.mordida.*: 0.116000/0.884000, 0.027358/0.972642, 0.141041/0.858959, 0.029868/0.970132, 0.085118/0.914882, y los ASIGNADO de CORR-0001 (0.62/0.38, 0.88/0.12); (c) la codificacion completa de 2025: P8_4 en {0,1} con el 'no' en 0, presencial={1}, digital={3,4,5}, FAC_TRA como ponderador de evento, la distincion SD/CD y el papel de NT_TIPO; (d) los rotulos rol_uso: proxy_descriptivo y NO-ADOPTAR-NC-0107 sobre esas celdas. NO es ciega, y aqui la coincidencia de codificacion es DELIBERADA Y OBLIGATORIA: el OBJETO 4 pide una SUCESORA -- el mismo estimando sobre otra ola -- y elegir otra codificacion convertiria la sucesora en un estimando nuevo, que la firma no autoriza. Lo genuinamente desconocido al congelar: cuantos estratos y cuantas UPM hay en U_B de 2023 y cuantos estratos quedan con UPM unica; el soporte observado de P8_4 en 2023 (si el 'no' sigue siendo 0 y no 2, y cuanto pesa el blanco); el soporte observado de P7_3 en 2023 y el peso del residuo de canal; si ID_TRA es unica en sec_8 de 2023 y si la llave de control empareja el mismo conjunto de filas, es decir SI EL JOIN ES SIQUIERA EXACTO; la cobertura del join sec_7 x sec_8 en esta ola; y la anchura del IC bajo esta semilla. Ninguno de los seis aparece en fuente alguna leida: el inventario indexa nombres de columna, no valores, y declara ademas que ENCIG esta entre los 102 instrumentos con texto_reactivo vacio al 100%."
+  medidor_ejecutado_al_congelar: "NO -- y el medidor tampoco se escribe aqui. El OBJETO 4 dice, verbatim, «Spec aqui; corrida en caja»; el encargo pide las dos capas (D-15: md humana + spec.yaml) abriendo SOLO codebook y metadato -- E.5 lo permite en nube, microdato jamas, y en esta sesion data/raw/ NO EXISTE y numpy/pandas/pyreadstat estan AUSENTES. Consecuencia declarada: `python3 tools/corrida0.py preflight CALC-ENCIG-2023-0001` reporta BLOQUEADO:script_ausente hasta que CAJA escriba el medidor, y eso es CORRECTO, no un defecto de esta spec."
+
+inputs:
+  - id: encig23_base_datos_csv
+    origen: manifiesto
+  - id: IN-ENCIG-2023-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/ENCIG-MORDIDA-2023-spec-v1_0.md
+    sha256: ea4379e5d659e5b103b6d8d20db2a166bdbfc93caa27a3408efe771c6b76bda6
+  - id: IN-ENCIG-2025-SPEC-BASE-INMUTABLE
+    origen: repo
+    ruta: forense/prereg-caja/ENCIG-MORDIDA-spec-v1_0.md
+    sha256: 00c7c4a67a4a579fff8a64c01979deefe2d458c75cfbaa630de21fa05d37cf8a
+
+variables:
+  - {archivo: "encig2023_04_sec_7.csv", variable: P7_3, rol: "CANAL -- reactivo 7.3, tipo de lugar o medio al que acudio/recurrio para el tramite; vive SOLO en sec_7, y por eso la medicion exige el join", codigos: "Numerico(1), mapa heredado verbatim de prereg-caja-ENCIG-MORDIDA v1.0 §2.2: 1=Instalaciones de gobierno, 2=Banco/supermercado/tienda/farmacia, 3=Lineas de atencion telefonica, 4=Internet (web/app), 5=Cajero automatico o kiosco inteligente, 6=Modulos/clinicas/oficinas temporales o moviles, 7=No se ha podido concluir, 8=Otro, 9=NS/NR, b=blanco. El mapa es del descriptor de 2025: si 2023 exhibe soporte fuera de {1..9,blanco} -> NO-ESTIMABLE-CODIGO-FUERA-DE-MAPA:P7_3, NO se reinterpreta", direccion: "presencial={1}, digital_registrado={3,4,5}, residuo={2,6,7,8,9,b} contado y pesado, NUNCA reasignado"}
+  - {archivo: "encig2023_04_sec_7.csv", variable: FAC_TRA, rol: "PONDERADOR de evento de tramite -- se toma de ESTE archivo, no de sec_8, donde el ponderador que existe es FAC_P18 sobre OTRO universo (A.15(c)). Ver parametros.archivo_de_ponderador: es PARAMETRO, no detalle", codigos: "Numerico; flotante tal cual, sin normalizar ni redondear ni truncar"}
+  - {archivo: "encig2023_04_sec_7.csv", variable: EST_DIS, rol: "ESTRATO de diseno -- estratificacion del bootstrap (LLAVE DE TEXTO OPACA); se toma del lado sec_7, el que corresponde a la unidad del ponderador", codigos: "Alfanumerico -- cadena cruda (dtype=str), nunca a entero ni re-rellenada"}
+  - {archivo: "encig2023_04_sec_7.csv", variable: UPM_DIS, rol: "UPM -- conglomerado que se re-muestrea (LLAVE DE TEXTO OPACA); lado sec_7", codigos: "Alfanumerico -- cadena cruda"}
+  - {archivo: "encig2023_04_sec_7.csv", variable: ID_TRA, rol: "LLAVE PRIMARIA DEL JOIN hacia sec_8 -- la misma que uso CALC-ENCIG-0001 sobre 2025, elegida por CONTINUIDAD DEL ESTIMANDO", codigos: "Alfanumerico -- cadena cruda"}
+  - {archivo: "encig2023_04_sec_7.csv", variable: NT_TIPO, rol: "numero de evento del tramite -- lo que distingue la rama SD de la CD; existe en sec_7 de 2023 (verificado en el inventario) y NO existe en sec_8", codigos: "Alfanumerico"}
+  - {archivo: "encig2023_04_sec_7.csv", variable: ID_VIV, rol: "componente 1/4 de la LLAVE DE CONTROL del join (guardia G-5)", codigos: "Alfanumerico"}
+  - {archivo: "encig2023_04_sec_7.csv", variable: ID_PER, rol: "componente 2/4 de la LLAVE DE CONTROL del join (guardia G-5)", codigos: "Alfanumerico"}
+  - {archivo: "encig2023_04_sec_7.csv", variable: N_TRA, rol: "componente 4/4 de la LLAVE DE CONTROL y componente de la llave declarada (guardia G-2). NO se usa como filtro: la familia C (N_TRA=01) NO se mide en esta spec", codigos: "Numerico(2)", direccion: "NO-APLICA (nominal)"}
+  - {archivo: "encig2023_04_sec_7.csv", variable: CVE_ENT, rol: "componente de la llave primaria DECLARADA por el descriptor (guardia G-2, no bloqueante)", codigos: "Numerico(2) 01..32"}
+  - {archivo: "encig2023_04_sec_7.csv", variable: UPM, rol: "componente de la llave primaria DECLARADA (guardia G-2). NO es UPM_DIS y NO se usa para el bootstrap", codigos: "Alfanumerico"}
+  - {archivo: "encig2023_04_sec_7.csv", variable: V_SEL, rol: "componente de la llave primaria DECLARADA (guardia G-2)", codigos: "Numerico"}
+  - {archivo: "encig2023_04_sec_7.csv", variable: R_ELE, rol: "componente de la llave primaria DECLARADA (guardia G-2)", codigos: "Alfanumerico"}
+  - {archivo: "encig2023_05_sec_8.csv", variable: P8_4, rol: "DESENLACE -- reactivo 8.4, en cual de los tramites se suscitaron las anteriores circunstancias; vive SOLO en sec_8", codigos: "Numerico(1), mapa heredado de la v1.0 §2.2: 1=Si, 0=No, b=blanco. OJO: el 'no' es 0, NO 2. Soporte fuera de {0,1,blanco} -> NO-ESTIMABLE-CODIGO-FUERA-DE-MAPA:P8_4", direccion: "1 si P8_4=1; 0 si P8_4=0. MAS ALTO = MAS MORDIDA DECLARADA EN ESE TRAMITE"}
+  - {archivo: "encig2023_05_sec_8.csv", variable: ID_TRA, rol: "LLAVE PRIMARIA DEL JOIN desde sec_7 (guardia G-4: de su unicidad depende que el join sea uno-a-muchos exacto)", codigos: "Alfanumerico -- cadena cruda"}
+  - {archivo: "encig2023_05_sec_8.csv", variable: ID_VIV, rol: "componente 1/4 de la LLAVE DE CONTROL (guardia G-5)", codigos: "Alfanumerico"}
+  - {archivo: "encig2023_05_sec_8.csv", variable: ID_PER, rol: "componente 2/4 de la LLAVE DE CONTROL (guardia G-5)", codigos: "Alfanumerico"}
+  - {archivo: "encig2023_05_sec_8.csv", variable: N_TRA, rol: "componente 4/4 de la LLAVE DE CONTROL (guardia G-5)", codigos: "Numerico(2)", direccion: "NO-APLICA (nominal)"}
+  - {archivo: "encig2023_05_sec_8.csv", variable: FAC_P18, rol: "NO-USADA, DECLARADA A PROPOSITO -- es el ponderador que SI trae sec_8, sobre el universo de persona 18+, y es EXACTAMENTE el que un medidor que resuelva el ponderador por nombre sobre la tabla unida tomaria sin avisar. La guardia G-6 comprueba que quedo sin usar", codigos: "Numerico", direccion: "NO-APLICA (no entra en ningun estimando)"}
+
+universo: >-
+  ENCIG 2023 (INEGI), payload encig23_base_datos_csv
+  (sha256 af733d867a568cbb0dadef4a5a793b02488a71728d1157860f14501f3d4c393d,
+  38309647 bytes, manifiesto 29/jul/2026), miembros encig2023_04_sec_7.csv y
+  encig2023_05_sec_8.csv. NINGUN otro miembro del ZIP se abre, y ninguno de los
+  cuatro gemelos RData/DBF/DTA/SAV entra, ni como respaldo ni como contraste.
+  U_B, unidad EVENTO DE TRAMITE: filas de sec_7 emparejadas con sec_8 por
+  ID_TRA, con P8_4 en {0,1} y FAC_TRA finito > 0.
+  Rama SD (PRIMARIA), sin deduplicar: cada fila de sec_7 es un evento y entra
+  una vez -- NT_TIPO existe en sec_7 de 2023 precisamente para distinguir
+  eventos repetidos del mismo tipo, y colapsarlos borra lo que el instrumento
+  capto a proposito. Rama CD (SECUNDARIA), deduplicando sec_7 por ID_TRA y
+  conservando la primera fila en orden de archivo: existe SOLO para que el par
+  2023 sea comparable con el par CD de 2025; no es primaria y no se adopta.
+  Canal presencial = P7_3=1; digital_registrado = P7_3 en {3,4,5}; el residuo
+  P7_3 en {2,6,7,8,9,blanco} se cuenta y se pesa, NO se reasigna.
+  RESERVA HEREDADA Y NO RESUELTA: P8_4 pregunta por «las anteriores
+  circunstancias» (las del reactivo 8.3) y por lo tanto se plantea sobre un
+  subconjunto AUTO-SELECCIONADO. Se cuenta (B-COBERTURA, B-N-SEC7-SIN-PAREJA) y
+  se declara; NO se corrige, porque corregirlo exigiria un universo que el
+  instrumento no da. Si la cobertura es baja, el estimando no es
+  p(mordida|canal) sobre el universo de tramites sino p(este tramite fue el
+  senalado | tramite de alguien que ya declaro en 8.3), y se rotula asi.
+  La estampa de universo del payload 2025 (82 areas urbanas de 100 mil
+  habitantes o mas) NO se transporta a 2023: el manifiesto no la declara para
+  este payload y esta spec NO la afirma. El RESULT G-UNIVERSO-DECLARADO emite
+  lo que el propio microdato permita censar, sin heredar la frase de otra ola.
+
+filtros: >-
+  Sale de U_B, CONTADO y no imputado: fila con P8_4 blanco o no numerico
+  (B-N-P84-BLANCO); fila con FAC_TRA vacio, no finito o <= 0
+  (B-N-SIN-PONDERADOR); fila de sec_7 sin pareja en sec_8 (B-N-SEC7-SIN-PAREJA).
+  Sale del brazo pero NO del universo, contado y pesado: P7_3 fuera del par de
+  canal (B-N-RESIDUO-CANAL / B-P-RESIDUO-CANAL).
+  Se cuenta pero NO sale del punto: fila sin EST_DIS o sin UPM_DIS
+  (B-N-SIN-DISENO) -- afecta al IC, no al estimador.
+  CERO NUNCA SUSTITUYE FALTA DE DATO. Blanco, 9 y no numerico se cuentan aparte
+  y salen del denominador; no se imputan. NO-APLICA es un valor y se escribe.
+  Guardias que producen NO-ESTIMABLE en vez de una cifra: miembro ausente del
+  ZIP -> NO-ESTIMABLE-MIEMBRO-AUSENTE:<m>; columna declarada ausente ->
+  NO-ESTIMABLE-COLUMNA-AUSENTE:<col> (incluida FAC_TRA, que NO tiene sustituto:
+  FAC_P18 de sec_8 jamas la reemplaza); columna existente sin ningun valor
+  valido -> NO-ESTIMABLE-COLUMNA-VACIA:<col>; P8_4 o P7_3 con soporte fuera de
+  su mapa -> NO-ESTIMABLE-CODIGO-FUERA-DE-MAPA:<col>; ID_TRA NO UNICA en sec_8,
+  o desacuerdo entre la llave primaria y la llave de control ->
+  NO-ESTIMABLE-LLAVE-NO-UNICA y las ramas de B NO se estiman (no se deduplica
+  sobre la marcha, no se toma la primera fila, no se elige otra llave);
+  universo o brazo vacio -> NO-ESTIMABLE-UNIVERSO-VACIO. Si TODA fila carece de
+  diseno -> B-METODO-IC = NO-ESTIMABLE-DISENO-INCOMPLETO, los IC salen null y
+  el punto se reporta igual.
+
+ponderador: >-
+  FAC_TRA leido de encig2023_04_sec_7.csv -- POR ARCHIVO, NO POR NOMBRE. Es el
+  hecho central 1 de la spec sellada y no un detalle de implementacion: sec_8
+  NO trae FAC_TRA, trae FAC_P18, que es otro ponderador sobre otro universo
+  (persona de 18 anos y mas seleccionada). Un medidor que resolviera el
+  ponderador por nombre de variable sobre la tabla unida tomaria el equivocado
+  SIN AVISAR y produciria una cifra plausible, del orden correcto y falsa.
+  Flotante tal cual: sin normalizar, sin redondear, sin truncar. Ningun otro
+  ponderador entra en ningun estimando de esta spec, y si FAC_TRA falta el
+  RESULT sale NO-ESTIMABLE-COLUMNA-AUSENTE:FAC_TRA -- NO hay sustituto.
+
+transformacion: >-
+  Lectura de los dos miembros con el lector declarado; EST_DIS, UPM_DIS, ID_TRA,
+  ID_VIV, ID_PER y NT_TIPO con dtype=str. Join sec_7 x sec_8 por ID_TRA
+  (llave primaria), con la llave de control (ID_VIV, ID_PER, ID_TRA, N_TRA)
+  computada EN PARALELO: su desacuerdo es un RESULT, no una correccion.
+  d = 1 si P8_4=1, 0 si P8_4=0.
+  p(U) = suma(w*d)/suma(w) sobre cada brazo, w = FAC_TRA, sumas en ORDEN FIJO
+  DE FILA. Los complementos (B-P-NORMAL-*) se cuentan DIRECTAMENTE sobre d == 0
+  sobre el MISMO denominador, NUNCA como 1 - p, y B-SUMA-* emite la suma como
+  prueba mecanica de que el brazo se parte en dos bloques disjuntos que lo
+  agotan.
+  Bootstrap: clave de conglomerado = (EST_DIS, UPM_DIS) como cadenas; UPM con
+  reemplazo dentro de EST_DIS conservando el numero de UPM por estrato; estrato
+  con UPM unica se re-muestrea a si mismo. IC = percentiles 2.5/97.5 de las
+  replicas.
+  NO se promedia entre olas, no se ajusta tendencia, no se extrapola, no se
+  imputa, no se re-escala, no se construye serie.
+
+estimando: >-
+  DESCRIPTIVO, y es EL MISMO ESTIMANDO de la familia B de CALC-ENCIG-0001
+  medido sobre la ola 2023 -- no un estimando nuevo. (1) PRIMARIOS: B-P-PRE-SD
+  y B-P-DIG-SD, proporcion ponderada de eventos de tramite con P8_4 = 1 en el
+  canal presencial y en el digital/registrado, unidad EVENTO DE TRAMITE,
+  ponderador FAC_TRA, escala [0,1], rama SD (sin deduplicar), con sus IC95 de
+  diseno. (2) SECUNDARIOS DECLARADOS, NO adoptables: la rama CD (deduplicada
+  por ID_TRA), que existe solo para comparabilidad con el par CD de 2025; los
+  complementos contados con su denominador escrito; el peso residual de canal,
+  que contesta si el par presencial/digital agota P7_3 o solo lo parece bajo el
+  recorte; y la cobertura del join. (3) CONTRASTE DE OLA, rotulado
+  CONTRASTE-DE-OLA-NO-SERIE: B-DELTA-2023-VS-2025-PRE-SD y -DIG-SD, con signo,
+  contra 0.1410407168724654 y 0.029867554626649372. Dos olas del mismo
+  instrumento NO son una serie y esta spec no la construye: su lectura correcta
+  es «cuanto difiere esta ola de aquella», nunca «cuanto cambio la mordida».
+  NINGUN RESULT ES CAUSAL: B-DIFERENCIA-PRE-DIG-SD y B-RAZON-PRE-DIG-SD van
+  rotuladas ASOCIACION -- la eleccion de canal y la elegibilidad por canal
+  confunden la comparacion, y la falsable_si de tramite.mordida.con_registro NO
+  se declara probada por esta corrida.
+
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  fuente_acto: "ACTO GEN2-FIRMAS-MESA-1 · OBJETO 4 · CALC-ENCIG-2023-0001 · sucesora de CALC-ENCIG-0001 (familia B) sobre la ola 2023"
+  firma_que_lo_autoriza: "FIRMA DE MESA 15/sep/2026, verbatim: «Si a todas.» -- HOJA DE FIRMAS DE MESA 2026-09-15, archivada por A.3 en forense/encargos/2026-09-15-GEN2-FIRMAS-MESA-1.md, OBJETO 4 transcrito integro: «D1 / NC-0197 -- opcion (b): medir ENCIG 2023 con spec sucesora de CALC-ENCIG-0001. Spec aqui; corrida en caja.» La firma autoriza MEDIR y ordena congelar la spec en nube; NO declara OBJETO sobre el contador GEN2: por eso cuenta_gen2 queda PENDIENTE-DE-MESA."
+  correccion_sin_reescribir_el_sello: >-
+    NC-0197 (forense/no-corrido.tsv:193) registra que la frase «CORR-0001
+    (ENCIG2023, sin payload, 4 RESULT)» de
+    forense/prereg-caja/ENCIG-MORDIDA-spec-v1_0.md:142 es FALSA EN LA LETRA
+    desde el 29/jul/2026 -- el payload esta en data/manifiesto.yaml desde esa
+    fecha en cinco formatos (CSV, RData, DBF, DTA, SAV) -- y que NO se edita
+    (E.3: lo sellado no se reescribe). ESTA SPEC SUCESORA ES EL VEHICULO
+    CORRECTO de esa correccion, y se dice explicitamente: mide lo que la frase
+    declaro no medible SIN TOCAR UN BYTE del sello. La v1.0 conserva su letra,
+    su sha256 (00c7c4a6…) y su identidad de input; la v1.1 tampoco cambia. Lo
+    que estaba mal no era el juicio del ejecutor de septiembre, que no tenia el
+    payload en su perimetro: era un hecho que caduco, y un hecho que caduca se
+    corrige con una sucesora fechada, no con un sed sobre un sello.
+  bootstrap_replicas: 2000
+  metodo_ic: "bootstrap de UPM_DIS CON REEMPLAZO dentro de EST_DIS, conservando el numero de UPM por estrato; percentiles 2.5/97.5."
+  metodo_ic_heredado_no_elegido: >-
+    El metodo NO lo elige el ejecutor de este acto: lo HEREDA.
+    prereg-caja-ENCIG-MORDIDA v1.1 (enmienda fechada 9/sep/2026, que cierra
+    NC-0112) elevo el metodo de §3.7 de la v1.0 a ESTANDAR PRE-REGISTRADO DE LA
+    FAMILIA para toda ranura sin metodo propio. Esta spec es una de esas
+    ranuras y lo toma sin volver a elegirlo. Lo unico propio es la semilla del
+    acto (20260915). Por lo tanto NO aplica aqui la clausula de
+    «ranura_no_preregistrada» que la v1.0 declaraba.
+  regla_estrato_upm_unica: >-
+    Un estrato con exactamente una UPM se re-muestrea a si mismo: aporta
+    varianza cero. NO se colapsa (decision de diseno que esta spec no esta
+    autorizada a tomar) y NO se descarta (sesgaria el punto). Si el conteo es
+    > 0, B-METODO-IC sale IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como
+    LIMITE INFERIOR de la anchura verdadera, nunca como IC exacto.
+  llaves_opacas: >-
+    EST_DIS y UPM_DIS se agrupan como CADENA CRUDA (dtype=str). Nunca se
+    convierten a entero ni se re-rellenan a un ancho tomado de un descriptor:
+    normalizarlas partiria o fusionaria estratos en silencio (leccion de ACTO
+    GEN2-LOTE-ENVIPE-1 §3.4, donde el descriptor iba desfasado respecto de su
+    propio microdato). Se toman del lado sec_7 de la tabla unida, el que
+    corresponde a la unidad del ponderador.
+  archivo_de_ponderador: "encig2023_04_sec_7.csv -- declarado como PARAMETRO y no como detalle. FAC_TRA existe SOLO en sec_7; sec_8 trae FAC_P18, otro ponderador sobre otro universo. Resolver el ponderador por nombre de variable sobre la tabla unida tomaria el equivocado SIN AVISO (A.15(c)) y la cifra resultante seria plausible y falsa. La guardia G-6 comprueba, y emite como RESULT, que FAC_TRA salio de sec_7 y que FAC_P18 quedo sin usar."
+  llave_del_join:
+    primaria: "ID_TRA -- presente en los DOS miembros de 2023 (verificado en data/inventario-reactivos-v1_2.tsv). Es la misma llave que uso CALC-ENCIG-0001 sobre 2025 y se elige POR CONTINUIDAD DEL ESTIMANDO: cambiar la llave cambiaria que filas se emparejan y, con ello, el estimando -- justo lo que una sucesora tiene prohibido cambiar."
+    control: "(ID_VIV, ID_PER, ID_TRA, N_TRA) -- las cuatro estan en los dos miembros. Se computa TAMBIEN, y su resultado es un RESULT (G-JOIN-LLAVE-CONTROL-COINCIDE), NO una correccion."
+    razon_de_existir: "P7_3 (canal) vive en sec_7 y P8_4 (desenlace) en sec_8; NINGUN miembro del ZIP trae los dos. El estimando NO es construible sin unir las dos tablas, y por eso la llave es parte del contrato y no del medidor."
+    si_no_es_unica: >-
+      Si ID_TRA NO es unica en sec_8 -- es decir, si el join no es uno-a-muchos
+      exacto -- el estimando sale NO-ESTIMABLE-LLAVE-NO-UNICA. Si la llave
+      primaria y la llave de control emparejan conjuntos DISTINTOS de filas, el
+      join se declara JOIN-NO-EXACTO y las ramas de B salen tambien
+      NO-ESTIMABLE-LLAVE-NO-UNICA. NO se deduplica sobre la marcha, NO se toma
+      la primera fila, NO se promedia y NO se elige la llave que de mas filas.
+      Esa decision es de mesa, no del medidor.
+    no_se_usan_para_unir: "UPM y V_SEL existen en ambos miembros y sirven SOLO a la guardia de llave declarada (G-2), nunca para unir."
+  miembros_zip_declarados:
+  - "encig2023_04_sec_7.csv"
+  - "encig2023_05_sec_8.csv"
+  miembros_zip_no_abiertos:
+  - "encig2023_01_sec1_A_3_4_5_8_9_10.csv"
+  - "encig2023_01_sec_11.csv"
+  - "encig2023_02_residentes_sec_2.csv"
+  - "encig2023_03_sec_6.csv"
+  tablas:
+    tramites_calidad: "encig2023_04_sec_7.csv"
+    tramites_corrupcion: "encig2023_05_sec_8.csv"
+  codificacion:
+    B_uno: [1]
+    B_cero: [0]
+    B_canal_presencial: [1]
+    B_canal_digital: [3, 4, 5]
+    B_canal_residuo: [2, 6, 7, 8, 9]
+    llave_join_primaria: [ID_TRA]
+    llave_join_control: [ID_VIV, ID_PER, ID_TRA, N_TRA]
+    llave_declarada_sec7: [CVE_ENT, UPM, V_SEL, R_ELE, N_TRA]
+  hipotesis_preregistrada:
+    H1: >-
+      DIRECCION, con signo pre-registrado: la mordida presencial de 2023 sera
+      MAYOR que la digital de 2023 (B-P-PRE-SD > B-P-DIG-SD). Es la direccion
+      que predice tramite.mordida.con_registro («el registro rompe la trampa
+      social») y la que 2025 exhibio. H1-VEREDICTO sale H1-SOSTENIDA /
+      H1-NO-SOSTENIDA / H1-NO-EVALUABLE. H1-NO-SOSTENIDA no invalida la
+      corrida, no autoriza tocar el medidor y no se ajusta hacia atras.
+    H2: >-
+      NIVEL, SIN signo pre-registrado y a proposito: el contraste contra 2025 se
+      emite rotulado CONTRASTE-DE-OLA-NO-SERIE, con los IC de las dos olas al
+      lado. No se pre-registra ningun valor puntual esperado para 2023 porque
+      NADA EN EL ARBOL LO DICE, y fabricar una expectativa numerica seria
+      contaminar el pre-registro con la ola equivocada.
+    H3: >-
+      EXHAUSTIVIDAD: el residuo de canal pesara > 0, es decir B-VEREDICTO-CANAL
+      = DICOTOMIA-ES-PROPIEDAD-DEL-RECORTE. P7_3 tiene ocho categorias
+      sustantivas y el par {1}/{3,4,5} usa cuatro. Si el residuo pesa
+      exactamente 0, la hipotesis cae y se dice.
+  valores_2025_referencia:
+    B-P-PRE-SD: 0.1410407168724654
+    B-P-DIG-SD: 0.029867554626649372
+  n_2025_referencia:
+    B-PRE-SD: 11167
+    B-DIG-SD: 7219
+    B-ESTRATOS-PRE-SD: 381
+    B-UPM-PRE-SD: 2996
+    B-ESTRATOS-DIG-SD: 362
+    B-UPM-DIG-SD: 2518
+  grano_milpa_decimales: 6
+  criterio_adopcion: >-
+    B-ADOPCION sale LISTADO-PARA-MESA-ESTIMABLE si los dos primarios de la rama
+    SD tienen punto y el join quedo exacto; LISTADO-PARA-MESA-CON-RESERVA si el
+    punto existe pero B-COBERTURA o el residuo de canal obligan a rotular el
+    estimando como condicional al grupo observado por P8_4;
+    NO-ADOPTABLE-NO-ESTIMABLE si no hay punto. NO se declara REPRODUCE contra
+    nada: NO EXISTE valor GEN1 de la ola 2023 contra el cual reproducir, y el
+    valor de 2025 es OTRA OLA -- compararse contra el seria fabricar un falso
+    NO-REPRODUCE. ESTE ACTO NO ESCRIBE CITA EN milpa/ BAJO NINGUNA RAMA, no
+    crea conducta nueva y no cambia ninguna cifra vigente. La adopcion, y la
+    correspondencia entre un medido POR CANAL y los ASIGNADO SIN CANAL de
+    RES-0007/RES-0008, las decide mesa por merge.
+
+seed:
+  aplica: true
+  valor: 20260915
+  rng: numpy.PCG64
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Bootstrap fijado por seed + rng declarados y sumas en orden fijo de fila: la
+    unica diferencia esperable entre dos corridas del mismo arbol es redondeo de
+    float64 al reasociar sumas ponderadas. Los enteros y los textos se comparan
+    EXACTO. NO se afloja: aqui no hay ninguna cifra que deba «cuadrar» con nada
+    previo, porque la ola 2023 no tiene sellado propio.
+
+resultados:
+  - {id: RESULT-ENCIG23-MOR-G-N-MIEMBROS-ZIP, tipo: entero, unidad: "miembros del ZIP (el manifiesto declara 6 CSV)"}
+  - {id: RESULT-ENCIG23-MOR-G-N-FILAS-SEC7, tipo: entero, unidad: "filas de encig2023_04_sec_7.csv, antes de todo filtro"}
+  - {id: RESULT-ENCIG23-MOR-G-N-FILAS-SEC8, tipo: entero, unidad: "filas de encig2023_05_sec_8.csv, antes de todo filtro"}
+  - {id: RESULT-ENCIG23-MOR-G-N-COLUMNAS-SEC7, tipo: entero, unidad: "columnas de sec_7 (el inventario indexa 51)"}
+  - {id: RESULT-ENCIG23-MOR-G-N-COLUMNAS-SEC8, tipo: entero, unidad: "columnas de sec_8 (el inventario indexa 25)"}
+  - {id: RESULT-ENCIG23-MOR-G-COLUMNAS-AUSENTES, tipo: texto, unidad: "NINGUNA / lista de las columnas declaradas que faltan, con su archivo"}
+  - {id: RESULT-ENCIG23-MOR-G-PONDERADOR-POR-ARCHIVO, tipo: texto, unidad: "FAC-TRA-DE-SEC7-Y-FAC-P18-SIN-USAR / FAC-TRA-AUSENTE:<archivo> -- guardia G-6, el hecho central 1"}
+  - {id: RESULT-ENCIG23-MOR-G-LLAVE-SEC7-DECLARADA-UNICA, tipo: texto, unidad: "UNICA / NO-UNICA:<grupos>/<filas> -- (CVE_ENT,UPM,V_SEL,R_ELE,N_TRA) en sec_7; informativa, no bloquea"}
+  - {id: RESULT-ENCIG23-MOR-G-LLAVE-SEC7-IDTRA-NTTIPO-UNICA, tipo: texto, unidad: "UNICA / NO-UNICA:<grupos>/<filas> -- (ID_TRA,NT_TIPO) en sec_7; informativa, no bloquea"}
+  - {id: RESULT-ENCIG23-MOR-G-LLAVE-SEC7-IDTRA-UNICA, tipo: texto, unidad: "UNICA / NO-UNICA:<grupos>/<filas> -- ID_TRA solo en sec_7; si NO-UNICA, la rama CD borra eventos reales"}
+  - {id: RESULT-ENCIG23-MOR-G-N-IDTRA-REPETIDOS-SEC7, tipo: entero, unidad: "valores de ID_TRA con mas de una fila en sec_7"}
+  - {id: RESULT-ENCIG23-MOR-G-LLAVE-SEC8-IDTRA-UNICA, tipo: texto, unidad: "UNICA / NO-UNICA:<grupos>/<filas> -- guardia G-4: de esto depende que el join sea uno-a-muchos exacto; NO-UNICA -> NO-ESTIMABLE-LLAVE-NO-UNICA"}
+  - {id: RESULT-ENCIG23-MOR-G-JOIN-LLAVE-CONTROL-COINCIDE, tipo: texto, unidad: "COINCIDE / DIFIERE:<filas_primaria>/<filas_control> -- guardia G-5: (ID_VIV,ID_PER,ID_TRA,N_TRA) frente a ID_TRA; DIFIERE -> JOIN-NO-EXACTO"}
+  - {id: RESULT-ENCIG23-MOR-G-VEREDICTO-JOIN, tipo: texto, unidad: "JOIN-EXACTO / JOIN-NO-EXACTO / NO-ESTIMABLE-LLAVE-NO-UNICA / COLUMNAS-AUSENTES:<cols>"}
+  - {id: RESULT-ENCIG23-MOR-G-SOPORTE-P84, tipo: texto, unidad: "soporte observado de P8_4, ordenado: 'v:n;v:n' -- contesta si el 'no' de 2023 sigue siendo 0 y no 2"}
+  - {id: RESULT-ENCIG23-MOR-G-SOPORTE-P73, tipo: texto, unidad: "soporte observado de P7_3, ordenado: 'v:n;v:n' -- contesta si el mapa de ocho categorias de 2025 vale en 2023"}
+  - {id: RESULT-ENCIG23-MOR-G-UNIVERSO-DECLARADO, tipo: texto, unidad: "censo del universo que el propio microdato permite (entidades y areas distintas observadas); la estampa de 82 areas urbanas de 2025 NO se transporta a esta ola"}
+  - {id: RESULT-ENCIG23-MOR-B-N-EMPAREJADAS, tipo: entero, unidad: "filas de sec_7 con pareja en sec_8 por ID_TRA"}
+  - {id: RESULT-ENCIG23-MOR-B-N-SEC7-SIN-PAREJA, tipo: entero, unidad: "filas de sec_7 SIN pareja en sec_8 -- la auto-seleccion por 8.3, contada"}
+  - {id: RESULT-ENCIG23-MOR-B-COBERTURA, tipo: flotante, unidad: "B-N-EMPAREJADAS / G-N-FILAS-SEC7, escala [0,1] -- si es baja, el estimando NO es p(mordida|canal) sobre el universo de tramites", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-B-N-U, tipo: entero, unidad: "U_B: eventos emparejados con P8_4 en {0,1} y FAC_TRA valido, rama SD"}
+  - {id: RESULT-ENCIG23-MOR-B-N-P84-BLANCO, tipo: entero, unidad: "filas emparejadas con P8_4 blanco o no numerico -- fuera de U_B, contadas, no imputadas"}
+  - {id: RESULT-ENCIG23-MOR-B-N-SIN-PONDERADOR, tipo: entero, unidad: "filas emparejadas con FAC_TRA vacio, no finito o <= 0"}
+  - {id: RESULT-ENCIG23-MOR-B-N-SIN-DISENO, tipo: entero, unidad: "filas de U_B sin EST_DIS o sin UPM_DIS -- afectan al IC, no al punto"}
+  - {id: RESULT-ENCIG23-MOR-B-N-RESIDUO-CANAL, tipo: entero, unidad: "filas de U_B con P7_3 en {2,6,7,8,9,blanco} -- categorias reales de canal que el par presencial/digital NO usa"}
+  - {id: RESULT-ENCIG23-MOR-B-P-RESIDUO-CANAL, tipo: proporcion, unidad: "peso ponderado de ese residuo sobre U_B, escala [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-B-VEREDICTO-CANAL, tipo: texto, unidad: "CANAL-DICOTOMICO-EN-EL-INSTRUMENTO / DICOTOMIA-ES-PROPIEDAD-DEL-RECORTE -- prueba de H3"}
+  - {id: RESULT-ENCIG23-MOR-B-N-EVENTOS-DESCARTADOS-POR-DEDUP, tipo: entero, unidad: "filas de U_B que la rama CD borra al deduplicar por ID_TRA -- eventos que NT_TIPO existe para distinguir"}
+  - {id: RESULT-ENCIG23-MOR-B-MASA-FAC-TRA-U, tipo: flotante, unidad: "suma de FAC_TRA sobre U_B (eventos de tramite expandidos)", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-B-N-PRE-SD, tipo: entero, unidad: "eventos de U_B con P7_3=1 (presencial), rama SD"}
+  - {id: RESULT-ENCIG23-MOR-B-N-DIG-SD, tipo: entero, unidad: "eventos de U_B con P7_3 en {3,4,5} (digital/registrado), rama SD"}
+  - {id: RESULT-ENCIG23-MOR-B-N-PRE-CD, tipo: entero, unidad: "idem presencial, rama CD (deduplicada por ID_TRA)"}
+  - {id: RESULT-ENCIG23-MOR-B-N-DIG-CD, tipo: entero, unidad: "idem digital, rama CD"}
+  - {id: RESULT-ENCIG23-MOR-B-P-PRE-SD, tipo: proporcion, unidad: "[PRIMARIO] proporcion ponderada de eventos presenciales con P8_4=1, ENCIG 2023, FAC_TRA de sec_7, escala [0,1], mas alto = mas mordida declarada", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-B-IC-LO-PRE-SD, tipo: flotante, unidad: "percentil 2.5 del bootstrap de diseno de B-P-PRE-SD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-B-IC-HI-PRE-SD, tipo: flotante, unidad: "percentil 97.5 de B-P-PRE-SD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-B-P-DIG-SD, tipo: proporcion, unidad: "[PRIMARIO] idem canal digital/registrado, rama SD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-B-IC-LO-DIG-SD, tipo: flotante, unidad: "percentil 2.5 de B-P-DIG-SD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-B-IC-HI-DIG-SD, tipo: flotante, unidad: "percentil 97.5 de B-P-DIG-SD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-B-P-PRE-CD, tipo: proporcion, unidad: "[SECUNDARIO, NO adoptable] idem presencial, rama CD -- existe solo para comparabilidad con el par CD de 2025", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-B-P-DIG-CD, tipo: proporcion, unidad: "[SECUNDARIO, NO adoptable] idem digital, rama CD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-B-P-NORMAL-PRE-SD, tipo: proporcion, unidad: "proporcion ponderada de eventos presenciales con P8_4=0, CONTADA (nunca 1 - p), denominador U_B-presencial escrito", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-B-P-NORMAL-DIG-SD, tipo: proporcion, unidad: "idem digital, CONTADA", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-B-SUMA-PRE-SD, tipo: texto, unidad: "SI / NO:<residuo> -- B-P-PRE-SD + B-P-NORMAL-PRE-SD dentro de tolerancia"}
+  - {id: RESULT-ENCIG23-MOR-B-SUMA-DIG-SD, tipo: texto, unidad: "SI / NO:<residuo> -- idem digital"}
+  - {id: RESULT-ENCIG23-MOR-B-DIFERENCIA-PRE-DIG-SD, tipo: flotante, unidad: "[ASOCIACION, NO CAUSAL] B-P-PRE-SD menos B-P-DIG-SD, CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-B-RAZON-PRE-DIG-SD, tipo: flotante, unidad: "[ASOCIACION, NO CAUSAL] B-P-PRE-SD / B-P-DIG-SD", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-B-N-ESTRATOS-PRE-SD, tipo: entero, unidad: "estratos EST_DIS distintos en el brazo presencial (2025 conto 381; NO es expectativa para 2023)"}
+  - {id: RESULT-ENCIG23-MOR-B-N-UPM-PRE-SD, tipo: entero, unidad: "pares (EST_DIS,UPM_DIS) distintos en ese brazo (2025 conto 2996)"}
+  - {id: RESULT-ENCIG23-MOR-B-N-ESTRATOS-UPM-UNICA-PRE-SD, tipo: entero, unidad: "estratos con una sola UPM en ese brazo -- si es > 0 el IC es limite inferior de la anchura verdadera"}
+  - {id: RESULT-ENCIG23-MOR-B-N-ESTRATOS-DIG-SD, tipo: entero, unidad: "estratos EST_DIS distintos en el brazo digital (2025 conto 362)"}
+  - {id: RESULT-ENCIG23-MOR-B-N-UPM-DIG-SD, tipo: entero, unidad: "pares (EST_DIS,UPM_DIS) distintos en ese brazo (2025 conto 2518)"}
+  - {id: RESULT-ENCIG23-MOR-B-N-ESTRATOS-UPM-UNICA-DIG-SD, tipo: entero, unidad: "estratos con una sola UPM en el brazo digital"}
+  - {id: RESULT-ENCIG23-MOR-B-METODO-IC, tipo: texto, unidad: "IC-BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-DISENO-INCOMPLETO"}
+  - {id: RESULT-ENCIG23-MOR-B-DELTA-2023-VS-2025-PRE-SD, tipo: flotante, unidad: "[CONTRASTE-DE-OLA-NO-SERIE] B-P-PRE-SD menos 0.1410407168724654, CON SIGNO -- «cuanto difiere esta ola de aquella», NUNCA «cuanto cambio la mordida»", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-B-DELTA-2023-VS-2025-DIG-SD, tipo: flotante, unidad: "[CONTRASTE-DE-OLA-NO-SERIE] B-P-DIG-SD menos 0.029867554626649372, CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-MOR-H1-VEREDICTO, tipo: texto, unidad: "H1-SOSTENIDA / H1-NO-SOSTENIDA / H1-NO-EVALUABLE -- hipotesis de direccion pre-registrada ANTES de abrir el dato: B-P-PRE-SD > B-P-DIG-SD"}
+  - {id: RESULT-ENCIG23-MOR-B-VEREDICTO, tipo: texto, unidad: "TASA-REPORTADA / NO-ESTIMABLE-COLUMNA-AUSENTE:<col> / NO-ESTIMABLE-COLUMNA-VACIA:<col> / NO-ESTIMABLE-CODIGO-FUERA-DE-MAPA:<col> / NO-ESTIMABLE-LLAVE-NO-UNICA / NO-ESTIMABLE-UNIVERSO-VACIO"}
+  - {id: RESULT-ENCIG23-MOR-B-ADOPCION, tipo: texto, unidad: "LISTADO-PARA-MESA-ESTIMABLE / LISTADO-PARA-MESA-CON-RESERVA / NO-ADOPTABLE-NO-ESTIMABLE -- este acto NO escribe cita en milpa/ bajo ninguna rama"}
