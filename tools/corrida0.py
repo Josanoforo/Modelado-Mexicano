@@ -4185,6 +4185,17 @@ def status(imprime: bool = True) -> dict:
     ids_adoptados &= ids_sellados_gen2
     ids_pendientes = _resultados_citados_en(PROPUESTA) & ids_sellados_gen2
     ids_pendientes -= ids_adoptados
+    # VETADO_POR_DECISION: tercera categoria, autorizada por la FIRMA DE
+    # MESA del 15/sep/2026 (OBJETO 2, `NC-0168`). Un RESULT sellado que una
+    # decision vigente prohibe adoptar no esta "pendiente de adopcion": no
+    # hay cola que camine hacia el. Contarlo como pendiente sobreestima la
+    # cola real -- defecto medido sobre RESULT-C1-POSEL-*. Es CONTABILIDAD,
+    # no adopcion: el veto se lee de `decisiones.tsv` (firma de mesa, D-1),
+    # nunca se infiere de prosa.
+    ids_vetados = {objeto for objeto, decision in _lee_decisiones().items()
+                   if decision.startswith("adopcion=VETADA-POR-DECISION")}
+    ids_vetados &= ids_sellados_gen2
+    ids_pendientes -= ids_vetados
 
     c = {
         "N_corridas_requeridas": sum(1 for f in corridas if f["origen"] == "DEMANDA"),
@@ -4198,6 +4209,7 @@ def status(imprime: bool = True) -> dict:
             1 for u in usos_activos if u["generacion_leida"] == GENERACION_LEGADO),
         "N_resultados_gen2_sellados": len(ids_sellados_gen2),
         "N_resultados_gen2_pendientes_adopcion": len(ids_pendientes),
+        "N_resultados_gen2_vetados_por_decision": len(ids_vetados),
         "N_resultados_gen2_adoptados_activos": len(ids_adoptados),
         "resultados_con_validacion_independiente": sum(
             1 for f in resultados if f["validacion_independiente"] == "PASA"),
