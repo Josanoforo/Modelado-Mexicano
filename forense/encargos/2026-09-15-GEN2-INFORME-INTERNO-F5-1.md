@@ -84,3 +84,21 @@ reserva. Precede a `## CONSUMIDO` y nunca va después.)
 `#764` es el merge de `acto/gen2-f5-documental-run-2` antes de escribir el
 cierre, y el alcance del cierre (cobertura residual, **no** generalización) queda
 declarado en la propia fila.
+
+---
+
+## CONSUMIDO — PR #790
+
+`ACTO GEN2-INFORME-INTERNO-F5-1`, ejecutado el 15/sep/2026 en NUBE (Opus,
+`cloud_default`, sin corpus, sin red, sin microdato), sobre base
+`origin/main = 5973f12`. PR: https://github.com/Josanoforo/Modelado-Mexicano/pull/790
+(**NO FUSIONAR sin mesa** — el merge es la autorización, no un trámite del
+ejecutor). Sello del acto: `ADR-514`, re-derivado por `tools/cierre_acto.py`;
+renumera quien fusiona segundo.
+
+Entregado: `canon/informe-programa-v1_0.md` + `canon/informe-programa-v1_0-ANEXO.md`
+(A.10 por cifra, dos derivaciones propias con control positivo, ninguna cifra
+nueva) · la fila que le faltaba al índice de infraestructura (`ADR-70(c)`) ·
+`NC-0152` CERRADA citando `#764` · `NC-0211`/`NC-0212` abiertas ·
+`forense/notas/2026-09-15-GEN2-INFORME-INTERNO-F5-1-cierre.md`.
+**Contadores de medición movidos: cero.**
