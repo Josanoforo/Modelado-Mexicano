@@ -17,3 +17,9 @@
 - `forense/no-corrido.tsv` fila `NC-0126` EXISTE, `estado = ABIERTA`, razón `NO-VERIFICABLE-AQUI`, sucesor `SIN-ASIGNAR`, pieza SEMANTICA (P4_10 = 1 colapsada según el descriptor).
 - `forense/replay-evidencia.tsv` línea 24, `CALC-B-0001`: `resultado_replay = REPRODUCE`, `contexto_replay = IDENTICO`, procedencia `HEREDADO-DEL-REGISTRO-PUBLICADO` — el asiento que NC-0181 declara desfasado. Líneas 32-33 (`CALC-MOTOR-celdas-semilla`, `-v2`) ya dicen `DISTINTO` (SANEA, 15/sep).
 - `data/raw` enlazada a `/home/pc0/mm-corpus/raw` (worktree nuevo; `tools/entorno.py` reporta `corpus=SI(examinados=413)`).
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| «(Sonnet, lote D-11 chico; …)» — el modelo que el encargo sugiere para la sesión | DECISIÓN-DE-MESA-PENDIENTE — la sesión que tomó el encargo corre en Opus 5 y no puede cambiar de modelo; se ejecutó igual porque el lote es mecánico (verify, lectura de archivo, asientos con cita) y la asignación material del encargo —CAJA con corpus— sí se cumplió. Se declara como desviación de lo pedido, no como error de contenido | Ninguno sobre contadores: cero mediciones en ambos casos; ambas colas cerradas con la evidencia que el encargo pedía. Sin fila `NC` nueva (mismo criterio que la fila «contador» de `GEN2-SANEA-REGISTRO-Y-RESCATE`: reserva sin sucesor ni impacto no abre cola) | Ninguno — si mesa quiere que los lotes D-11 chicos corran en Sonnet, es una instrucción de despacho, no una pieza pendiente |
