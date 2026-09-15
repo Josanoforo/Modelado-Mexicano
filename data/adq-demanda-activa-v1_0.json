@@ -18758,6 +18758,108 @@
     "demandas_independientes_vigentes": 1,
     "elegidos": [
       {
+        "antecedentes_nc": [
+          "NC-0126"
+        ],
+        "aplica_contrato_cientifico": true,
+        "asignacion": "servicio-gen2-38",
+        "bloqueo_material": 3,
+        "brecha": "los tres consumidores siguen rotulados como horizonte_corto y no pueden usar P4_10 como horizonte puro",
+        "consumidor": "dinero.ahorro / tres consumidores GEN2 de horizonte",
+        "consumidores_consulta": [
+          "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto",
+          "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto",
+          "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto"
+        ],
+        "contrato_cientifico_completo": true,
+        "contrato_operativo": "COMPLETO_CIENTIFICO_EXPLICITO",
+        "estado_previo": {
+          "alternativa_requerida": false,
+          "alternativas": [],
+          "ciclos_sin_avance": 1,
+          "continuacion_pendiente": true,
+          "cursor_continuacion": "Localizar cuestionario o catálogo de variables público del MEX_2012_FCS y comprobar secuencia tenencia positiva -> meses/días financiables sólo con ese ahorro; no repetir familias ni consultas agotadas. Tras otro ciclo sin avance, presentar relabel acotado de #772 a mesa sin decidirlo.",
+          "estado": "continua",
+          "evidencias": [
+            "forense/notas/2026-09-15-GEN2-38-DEM-AHORRO-STOCK-DURACION-01.md"
+          ],
+          "frontera_no_examinada": "Cuestionario y catálogo variable-por-variable del MEX_2012_FCS si aparecen en otro repositorio público; encuestas estatales distintas de IIEG y módulos académicos mexicanos no indexados; fuera login, compra y contacto.",
+          "necesidad_id": "DEM-AHORRO-STOCK-DURACION-01",
+          "proxima_revision": "2026-09-15",
+          "reprogramaciones": [
+            {
+              "fecha_decision": "2026-09-15",
+              "fecha_efectiva": "2026-09-15",
+              "motivo": "continuacion anticipada y unica autorizada por ACTO GEN2-ADQUISICION-CONTINUA-2 dentro del remanente acreditado; conserva NC-0126 cerrada y la version de pregunta vigente"
+            }
+          ],
+          "suficiencia": {
+            "conceptual": "NO_ACREDITADA",
+            "diseno": "ACREDITADA",
+            "identidad": "PARCIAL",
+            "identificacion": "NO_APLICA",
+            "poblacional": "ACREDITADA",
+            "pregunta_original": "ABIERTA",
+            "seleccion_no_respuesta": "ACREDITADA",
+            "temporalidad": "PARCIAL",
+            "unidad": "ACREDITADA",
+            "uso_habilitado": "INCOMPATIBLE"
+          },
+          "ultima_exploracion": "2026-09-15",
+          "version_pregunta": "2026-09-15-stock-ausencia-y-duracion-separados-v1"
+        },
+        "estado_ruteo": "LISTA_SONDA",
+        "estado_ruteo_declarado": "LISTA_SONDA",
+        "etapa_faltante": "FUENTE_O_VARIABLE",
+        "evidencia_disponible": "P4_10 de ENIF 2024 mezcla menos de una semana y no tiene ahorros; #772 autoriza únicamente el corte acotado, no horizonte puro",
+        "evidencias_guardia": [
+          "forense/no-corrido.tsv#NC-0126",
+          "data/corrida0/usos.tsv#RES-0046",
+          "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md"
+        ],
+        "frontera_previa": "encuestas públicas mexicanas nacionales o subnacionales, módulos académicos y descriptores que separen stock/ausencia de duración",
+        "id": "DEM-AHORRO-STOCK-DURACION-01",
+        "impacto_canonico": "los tres consumidores siguen rotulados como horizonte_corto y no pueden usar P4_10 como horizonte puro",
+        "investigacion_previa": "ENIF, EACF, ENSAFI, Findex, ENFIH e IIEG Jalisco examinados; no volver a descargar los tres XLSX IIEG",
+        "lista": true,
+        "modos": [
+          "CONSTRUCTO",
+          "HERMANAS",
+          "LATERAL"
+        ],
+        "motivo_ruteo": "contrato explícito vigente",
+        "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+        "opciones_decision": [
+          "MANTENER_BLOQUEO_Y_CONTINUAR_INSTRUMENTO",
+          "RELABEL_USO_ACOTADO_AUTORIZADO_POR_772",
+          "APROBAR_PROXY_NUEVO_CON_ALCANCE_EXPLICITO"
+        ],
+        "origen_demanda": "CONSUMIDOR_Y_USO",
+        "periodo": "vigente o comparable con ENIF 2024; no inventar equivalencia temporal",
+        "poblacion": "personas adultas en México; desagregaciones sólo si el instrumento las acredita",
+        "pregunta": "¿Existe un instrumento público mexicano que observe por separado tenencia/ausencia de ahorro y duración suficiente del stock?",
+        "prioridad_consumidor": 4,
+        "responsable": "servicio-gen2-38",
+        "siguiente_accion": "examinar una ruta pública no agotada; si no existe candidata material, proponer relabel del uso acotado de #772 o decisión humana explícita",
+        "suficiencia_actual": {
+          "conceptual": "NO_ACREDITADA",
+          "diseno": "ACREDITADA",
+          "identidad": "ACREDITADA",
+          "identificacion": "NO_APLICA",
+          "poblacional": "ACREDITADA",
+          "pregunta_original": "ABIERTA",
+          "seleccion_no_respuesta": "ACREDITADA",
+          "temporalidad": "ACREDITADA",
+          "unidad": "ACREDITADA",
+          "uso_habilitado": "INCOMPATIBLE"
+        },
+        "unidad": "persona",
+        "uso": "mejora descriptiva; no autoriza el antiguo horizonte puro",
+        "variables": "indicador de tenencia/stock de ahorro y duración/cobertura del mismo stock en campos separados; ponderador y diseño si existen",
+        "version_pregunta": "2026-09-15-stock-ausencia-y-duracion-separados-v1",
+        "vigente": true
+      },
+      {
         "antecedentes_nc": [],
         "aplica_contrato_cientifico": true,
         "asignacion": "servicio-gen2-38",
@@ -19045,10 +19147,6 @@
       {
         "id": "NC-0210",
         "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=acto de mantenimiento de milpa/tramite-ola5-propuesta-v0.yaml que reconcilie esa cifra o declare por que se conserva; siguiente=acto de mantenimiento de milpa/tramite-ola5-propuesta-v0.yaml que reconcilie esa cifra o declare por que se conserva"
-      },
-      {
-        "id": "DEM-AHORRO-STOCK-DURACION-01",
-        "razon": "revisión no vence hasta 2026-09-16"
       }
     ],
     "maximo": 3,
