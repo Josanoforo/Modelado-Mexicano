@@ -51,3 +51,28 @@ y sin tocar (es la única FP abierta que queda); `NC-0180` y `NC-0187` sólo se
 leyeron; ninguna tasa de SHED se adoptó; ningún sello se reescribió —todo fue
 sucesión o enmienda fechada—; y la evidencia de sonda de #781 se conserva
 íntegra.
+
+## CONSUMIDO
+
+Ejecutado por **`PR #785`** (`ACTO GEN2-FIRMAS-MESA-1`, 15/sep/2026, NUBE,
+Opus), rama `claude/epic-thompson-wbbmg7`, sobre `origin/main = 582d4e9`.
+**ADR-513.** Cierre en
+`forense/notas/2026-09-15-GEN2-FIRMAS-MESA-1-cierre.md`.
+
+De los 15 OBJETOS: **13 propagados completos**, **1 ya cumplido por
+`PR #779`** y no duplicado (OBJETO 1 / `NC-0198`), **1 inaplicable tal como
+está escrito** (`CORR-0004` del OBJETO 3) que fue a `NO-CORRIDO` sin
+reinterpretarse. La compuerta se verificó y **mordió**: la sesión se negó
+con cero commits mientras `#779` seguía abierta, y arrancó sólo tras su
+merge.
+
+**Contador, como el encargo lo prometió: cero mediciones propias.**
+`N_corridas_selladas` 72→72 · `N_resultados_gen2_sellados` 3 255→3 255 ·
+`N_resultados_gen2_adoptados_activos` 16→16 ·
+`dependencias_numericas_legacy_activas` 191→191. Se movieron: 14 NC a
+CERRADA (69→60 abiertas, con 5 nuevas `NC-0206..0210`), 2 FP a FIRMADA
+(abiertas 3→1, sólo queda `FP-374`), 2 specs congeladas como munición, y los
+2 RESULT vetados salieron de la cola aparente (`pendientes_adopcion` 5→3,
+`vetados_por_decision` 0→2).
+
+`tests/check.py --baseline`: **LÍNEA BASE VERDE**.
