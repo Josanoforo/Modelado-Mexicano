@@ -2770,6 +2770,16 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-E11-RES0028-PARTICION, 15/sep/2026: el encargo cita el
+    # rótulo pelado `E11` porque es exactamente cómo la propia fila de
+    # `NC-0085` (`forense/no-corrido.tsv`) nombra al acto responsable --
+    # no es un rótulo nuevo que se esté reclamando. `E11` ya está CENSADO
+    # Y NO RECLAMADO por `MAESTRA32-E11` (colisión declarada, ninguno
+    # gana). Este acto censa su propio rótulo `GEN2-E11` en
+    # `canon/registro-rotulos.tsv`, con la misma colisión declarada
+    # explícitamente ahí, y no reclama el token bare.
+    "forense/encargos/2026-09-15-GEN2-E11-RES0028-PARTICION.md",
+    "forense/notas/2026-09-15-GEN2-E11-RES0028-PARTICION-cierre.md",
     # Paquete GEN2-POST-723, 11/sep/2026: el encargo 29 se carga verbatim y
     # cita "motor E0 historico" como procedencia. No crea otro rotulo: E0
     # ya es el habitante MOTOR-3-E0 censado en canon/registro-rotulos.tsv.
@@ -5401,6 +5411,19 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # tramite.mordida.discrecional` (corrido, ultima linea): `NUNCA-MEDIDA`
     # -- consistente con que este acto no mide nada ni toca el motor.
     "forense/encargos/2026-09-09-GEN2-PREP-LOTE.md",
+    # ACTO GEN2-E11-RES0028-PARTICION, 15/sep/2026: encargo archivado
+    # VERBATIM (A.3), que no se edita para complacer un test (misma regla
+    # que rige T25). Cita `civico.denuncia.miedo_desconfianza` como el
+    # consumidor de `RES-0028` que el acto va a fichar -- no lo
+    # reclasifica ni lo resella: propone, sin ejecutar, un
+    # `corrida0_resultado_id` propio para el derivado, que ya está
+    # `MEDIDA-EN:` en el motor por la corrida padre. `tools/ya_medido.py`
+    # SÍ se corrió en A.8 de este acto (última línea): `MEDIDA-EN:
+    # CALC-ENVIPE-0001, tramite-ola5-propuesta-v0.yaml, tramite.yaml`; la
+    # salida vive en
+    # `forense/notas/2026-09-15-GEN2-E11-RES0028-PARTICION-cierre.md`, no
+    # en el archivo verbatim del encargo.
+    "forense/encargos/2026-09-15-GEN2-E11-RES0028-PARTICION.md",
 }
 
 
