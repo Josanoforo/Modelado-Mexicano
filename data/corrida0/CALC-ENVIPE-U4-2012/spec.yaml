@@ -11,7 +11,7 @@ script: data/corrida0/CALC-ENVIPE-U4-2012/medidor.py
 etiquetas:
   generacion: GEN2
   tipo: RUTA-DECLARADA-U4-PERSONA
-  cuenta_gen2: PENDIENTE-DE-MESA
+  cuenta_gen2: SI
   validacion_independiente: NO-HECHA
   spec_sellada: forense/prereg-caja/ENVIPE-2012-U4-spec-v1_0.md
   spec_sellada_sha256: 4742880b0218b8fb95bb5efdeb8ce98bc86dd9fde439f5925db6e5e46846cde8
@@ -20,7 +20,7 @@ etiquetas:
   spec_familia_dbf_editada: NO -- sucesion por extension (su §5 dejo la ruta como fila NC con sucesor; este CALC es ese sucesor)
   demanda_que_releva: "NINGUNA. U4 en 2012 no tiene RES-* ni CORR-*; NC-0098 registra que ningun dictamen GEN1 del trio viejo es de unidad persona."
   reglas_bajo_prueba: NINGUNA. No toca milpa/, no mueve tier, no adopta.
-  firma_de_contador: "NO HAY FIRMA DE MESA CON OBJETO sobre el contador en el encargo de este lote (brief sin FIRMAS DE MESA). Estandar FP-367/368 no satisfecho -> cuenta_gen2 = PENDIENTE-DE-MESA; fila FP abierta por el acto."
+  firma_de_contador: "FP-375, FIRMA DE MESA 15/sep/2026, verbatim: «Mesa, 15/sep/2026 · OBJETO: cuenta_gen2 = SI para las cuatro corridas selladas por el lote; no adopta al motor.» Estandar FP-367/368 satisfecho (autoridad + fecha + OBJETO) -> cuenta_gen2 = SI; fila FP-375 cerrada, ver forense/firmas-pendientes.tsv y data/corrida0/decisiones.tsv."
   contaminacion_declarada: "ADR-46 -- al congelar, la sesion YA habia leido los RESULT sellados de CALC-R-CIV-M-01 (misma ola, unidad delito: P-C1-U1 = 0.2955724, N-U1 = 14532, PERFIL-BPCOD, 358 estratos, 9129 UPM) y el p(C2,U4) = 0.294313 de GEN1 para 2025 (otra ola, no se compara). NO habia leido ningun valor de tper_vic.dbf ni de tsdem.DBF: cuantas filas por hogar, si FAC_ELE es constante dentro del hogar, cuantas personas calzan en tsdem y el punto de U4 en 2012 son desconocidos."
   medidor_ejecutado_al_congelar: "NO -- escrito y congelado en el COMMIT-1, corrido en el COMMIT-2. Probado antes del COMMIT-1 SOLO contra DBF sinteticos (descriptores reales de 32 bytes por campo, valores aleatorios), nunca contra el corpus."
 

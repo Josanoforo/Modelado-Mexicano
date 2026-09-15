@@ -10,7 +10,7 @@ script: data/corrida0/CALC-ENIF-0003/medidor.py
 etiquetas:
   generacion: GEN2
   tipo: RECONCILIACION-Y-DESCOMPOSICION
-  cuenta_gen2: PENDIENTE-DE-MESA
+  cuenta_gen2: SI
   validacion_independiente: NO-HECHA
   spec_sellada: forense/prereg-caja/ENIF-COBERTURA-Y-P410-spec-v1_0.md
   spec_sellada_sha256: c1a32b5126c42d6814b8675ddf659ccb3bf0bbe4cd01450f12b2cb564cfbf575
@@ -19,7 +19,7 @@ etiquetas:
   spec_lote_enif_1_editada: NO
   demanda_que_releva: "NINGUNA. P3 reconcilia una cifra de cobertura (no un RESULT del motor); P4 acota una categoria colapsada. Ningun RES-* cambia."
   reglas_bajo_prueba: "NINGUNA cambia de cifra. dinero.ahorro.horizonte_corto / horizonte_no_corto_con_seguridad_social (milpa/tramite.yaml) conservan sus RESULT de CALC-ENIF-0001; este CALC solo produce cotas para la adjudicacion de mesa."
-  firma_de_contador: "NO HAY FIRMA DE MESA CON OBJETO sobre el contador en el encargo de este lote (brief sin FIRMAS DE MESA). Estandar FP-367/368 no satisfecho -> cuenta_gen2 = PENDIENTE-DE-MESA; fila FP abierta por el acto."
+  firma_de_contador: "FP-375, FIRMA DE MESA 15/sep/2026, verbatim: «Mesa, 15/sep/2026 · OBJETO: cuenta_gen2 = SI para las cuatro corridas selladas por el lote; no adopta al motor.» Estandar FP-367/368 satisfecho (autoridad + fecha + OBJETO) -> cuenta_gen2 = SI; fila FP-375 cerrada, ver forense/firmas-pendientes.tsv y data/corrida0/decisiones.tsv."
   contaminacion_declarada: "ADR-46 -- al congelar, la sesion YA habia leido todos los RESULT de CALC-ENIF-0001/0002 (incluida A-C-SIN-EJE-BLANCO-FRACCION = 0.319422 y los denominadores 4973/3969) y el log GEN1 de L7 (P4_10 por codigo 4275/2443/3405/1328/1479/74/498; 9312 de 13502; universo triple 9031). H1 se formulo desde esos numeros del ARBOL, no del dato. Lo desconocido al congelar: todo P4 (cuantos P4_10 = 1 no ahorraron por ninguna via, y las cotas en los universos del lote) y la sexta cifra de las fracciones ponderadas."
   medidor_ejecutado_al_congelar: "NO -- escrito y congelado en el COMMIT-1, corrido en el COMMIT-2. Probado antes del COMMIT-1 SOLO contra un ZIP sintetico, nunca contra el corpus."
 

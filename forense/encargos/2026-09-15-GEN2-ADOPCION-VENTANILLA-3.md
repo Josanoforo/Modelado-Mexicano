@@ -8,22 +8,27 @@ redactar, se re-deriva y se lanza cuando la compuerta cierre.
 tools/entorno.py` al arranque, re-derivar contra el commit real de apertura
 (no confiar en el de esta redacción).
 
-**COMPUERTA (obligatoria, verifícala tú mismo al abrir, no la asumas):**
-1. Los tres minis fusionados en `origin/main` — **YA CUMPLIDO** al momento
-   de redactar este encargo: `GEN2-LOTE-MEDICION-PENDIENTE-1` (PR #766),
+**COMPUERTA:**
+1. Los tres minis fusionados en `origin/main` — **CUMPLIDO**:
+   `GEN2-LOTE-MEDICION-PENDIENTE-1` (PR #766),
    `GEN2-SANEA-REGISTRO-Y-RESCATE` (PR #767), `GEN2-F5-DOCUMENTAL-RUN-2`
-   (PR #764). Confirma que siguen fusionados en la base que uses (no
-   deberían haberse revertido).
-2. **`FP-375` con `estado: FIRMADA`** en `forense/firmas-pendientes.tsv`
-   (`firmada_en` con fecha) — **PENDIENTE** al momento de redactar
-   (`estado: ABIERTA`, creada 2026-09-14). Esta es la única pieza que
-   falta. Si sigue `ABIERTA`, este acto **no corre**: repórtalo y espera,
-   no censes sobre compuerta abierta — el costo de censar en sucio ya se
-   pagó una vez y no se repite.
+   (PR #764).
+2. **`FP-375` con `estado: FIRMADA`** en `forense/firmas-pendientes.tsv` —
+   **CUMPLIDO 15/sep/2026** (`firmada_en`/`ejecutada_en` = 2026-09-15).
+   Mesa, 15/sep/2026 · OBJETO: `cuenta_gen2 = SI` para las cuatro corridas
+   selladas por el lote; no adopta al motor. Escrita en
+   `data/corrida0/decisiones.tsv`, registro re-derivado
+   (`N_corridas_selladas` 63→67, `N_resultados_gen2_sellados` 2882→3142).
+   Detalle: `forense/notas/2026-09-14-GEN2-LOTE-MEDICION-PENDIENTE-1-cierre.md`
+   §5, actualización 15/sep.
 
-Solo con las dos condiciones cumplidas simultáneamente se abre este acto.
+**Ambas condiciones cumplidas — compuerta cerrada.** Re-deriva de todos
+modos contra el commit real de apertura antes de correr `/acto` (no
+confíes en este SHA de redacción); relee `firmas-pendientes.tsv` para
+confirmar que nadie revirtió la firma entre esta actualización y la
+apertura.
 
-**Estado:** GATEADO — no lanzar hasta que la compuerta cierre.
+**Estado:** LISTO — compuerta cerrada, listo para lanzar con `/acto`.
 
 ---
 
