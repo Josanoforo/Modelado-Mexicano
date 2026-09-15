@@ -1,0 +1,194 @@
+{
+  "acto": "GEN2-F5-DOCUMENTAL-EJECUCION",
+  "cargo_real_turnos": 3,
+  "condiciones": {
+    "1_marcador_en_nota": true,
+    "2_identidad_modelo": true,
+    "3_herramienta_no_denegada": true,
+    "4_coste_bajo_presupuesto": true,
+    "5_cargo_real_registrado": true
+  },
+  "consumidas_conservadoras_tras_sonda": 5,
+  "estado": "TRANSPORTE-VALIDADO",
+  "intento": {
+    "fin_utc": "2026-09-15T01:00:06.569092+00:00",
+    "inicio_utc": "2026-09-15T00:59:53.378966+00:00",
+    "returncode": 0,
+    "stderr_original": "",
+    "stdout_original": "{\"duration_api_ms\":13964,\"stop_reason\":\"tool_use\",\"session_id\":\"6458c880-58a6-494c-968f-41ea656fe095\",\"total_cost_usd\":1.3550245,\"usage\":{\"input_tokens\":4,\"cache_creation_input_tokens\":118407,\"cache_read_input_tokens\":117763,\"output_tokens\":811,\"output_tokens_details\":{\"thinking_tokens\":135},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":118407,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":552,\"cache_read_input_tokens\":117763,\"cache_creation_input_tokens\":644,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":644},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":91703,\"outputTokens\":15,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.09177800000000001,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":4,\"outputTokens\":811,\"cacheReadInputTokens\":117763,\"cacheCreationInputTokens\":118407,\"webSearchRequests\":0,\"costUSD\":1.2632465000000002,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":135,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"{\\\"estado\\\":\\\"ABSTENCION\\\",\\\"punto_porcentaje\\\":null,\\\"fuente_documental\\\":[\\\"analysis.tsv\\\",\\\"cuestionario-encig2021.txt\\\",\\\"estructura-encig2021.txt\\\"],\\\"derivacion\\\":\\\"Sonda ejecutada según instrucción de la tarea: weighted_distribution sobre analysis.tsv con value_column=P8_3_1 (códigos 1=Sí, 2=No, 9=No sabe/no responde, según estructura-encig2021.txt, tabla encig2021_01_sec1_A_3_4_5_8_9_10, cons. 227) y weight_column=FAC_P18 (factor de expansión para población de 18 años y más). Resultado bruto: 1=Sí suma ponderada 3,671,036 (n=2,595); 2=No 47,446,757 (n=37,168); 9=NS/NR 184,217 (n=167); 39,930 filas leídas, 0 omitidas. La tarea indica explícitamente que esta corrida es una sonda y no una réplica, por lo que no se emite punto.\\\",\\\"sustitucion_semantica\\\":false,\\\"nota\\\":\\\"63ae53fadd993a52dbf8e32c197d97dc29dabfefbdbefe6cc762f5c38cdc2bd2\\\"}\",\"structured_output\":{\"estado\":\"ABSTENCION\",\"punto_porcentaje\":null,\"fuente_documental\":[\"analysis.tsv\",\"cuestionario-encig2021.txt\",\"estructura-encig2021.txt\"],\"derivacion\":\"Sonda ejecutada según instrucción de la tarea: weighted_distribution sobre analysis.tsv con value_column=P8_3_1 (códigos 1=Sí, 2=No, 9=No sabe/no responde, según estructura-encig2021.txt, tabla encig2021_01_sec1_A_3_4_5_8_9_10, cons. 227) y weight_column=FAC_P18 (factor de expansión para población de 18 años y más). Resultado bruto: 1=Sí suma ponderada 3,671,036 (n=2,595); 2=No 47,446,757 (n=37,168); 9=NS/NR 184,217 (n=167); 39,930 filas leídas, 0 omitidas. La tarea indica explícitamente que esta corrida es una sonda y no una réplica, por lo que no se emite punto.\",\"sustitucion_semantica\":false,\"nota\":\"63ae53fadd993a52dbf8e32c197d97dc29dabfefbdbefe6cc762f5c38cdc2bd2\"},\"ttft_ms\":4364,\"type\":\"result\",\"duration_ms\":11810,\"uuid\":\"5a54b272-8e5b-4eb4-98b0-0086837f966c\",\"ttft_stream_ms\":2580,\"time_to_request_ms\":46,\"first_content_frame_ms\":3332,\"queued_turn_count\":0,\"result_index\":0}\n"
+  },
+  "marcador": "63ae53fadd993a52dbf8e32c197d97dc29dabfefbdbefe6cc762f5c38cdc2bd2",
+  "max_budget_usd": 2.0,
+  "modelos_auxiliares": [
+    {
+      "admitido": true,
+      "modelo": "claude-haiku-4-5",
+      "outputTokens": 15,
+      "tope": 200
+    }
+  ],
+  "modelos_reportados": [
+    "claude-haiku-4-5",
+    "claude-opus-5"
+  ],
+  "num_turns": 3,
+  "permission_denials": [],
+  "reconciliacion_usage_modelo": {
+    "modelo": "claude-opus-5",
+    "ok": true,
+    "pares": [
+      {
+        "campo_modelUsage": "inputTokens",
+        "campo_usage": "input_tokens",
+        "modelUsage": 4,
+        "usage": 4
+      },
+      {
+        "campo_modelUsage": "outputTokens",
+        "campo_usage": "output_tokens",
+        "modelUsage": 811,
+        "usage": 811
+      },
+      {
+        "campo_modelUsage": "cacheCreationInputTokens",
+        "campo_usage": "cache_creation_input_tokens",
+        "modelUsage": 118407,
+        "usage": 118407
+      },
+      {
+        "campo_modelUsage": "cacheReadInputTokens",
+        "campo_usage": "cache_read_input_tokens",
+        "modelUsage": 117763,
+        "usage": 117763
+      }
+    ]
+  },
+  "sha256_tabla": "186d69277395b5a1f2c99ec8255a3149ca2458ab9791d5eb7e441343f0ee5e64",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 13964,
+    "duration_ms": 11810,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 3332,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.09177800000000001,
+        "inputTokens": 91703,
+        "maxOutputTokens": 32000,
+        "outputTokens": 15,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 118407,
+        "cacheReadInputTokens": 117763,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 1.2632465000000002,
+        "inputTokens": 4,
+        "maxOutputTokens": 64000,
+        "outputTokens": 811,
+        "provider": "firstParty",
+        "thinkingTokens": 135,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 3,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "{\"estado\":\"ABSTENCION\",\"punto_porcentaje\":null,\"fuente_documental\":[\"analysis.tsv\",\"cuestionario-encig2021.txt\",\"estructura-encig2021.txt\"],\"derivacion\":\"Sonda ejecutada según instrucción de la tarea: weighted_distribution sobre analysis.tsv con value_column=P8_3_1 (códigos 1=Sí, 2=No, 9=No sabe/no responde, según estructura-encig2021.txt, tabla encig2021_01_sec1_A_3_4_5_8_9_10, cons. 227) y weight_column=FAC_P18 (factor de expansión para población de 18 años y más). Resultado bruto: 1=Sí suma ponderada 3,671,036 (n=2,595); 2=No 47,446,757 (n=37,168); 9=NS/NR 184,217 (n=167); 39,930 filas leídas, 0 omitidas. La tarea indica explícitamente que esta corrida es una sonda y no una réplica, por lo que no se emite punto.\",\"sustitucion_semantica\":false,\"nota\":\"63ae53fadd993a52dbf8e32c197d97dc29dabfefbdbefe6cc762f5c38cdc2bd2\"}",
+    "result_index": 0,
+    "session_id": "6458c880-58a6-494c-968f-41ea656fe095",
+    "stop_reason": "tool_use",
+    "structured_output": {
+      "derivacion": "Sonda ejecutada según instrucción de la tarea: weighted_distribution sobre analysis.tsv con value_column=P8_3_1 (códigos 1=Sí, 2=No, 9=No sabe/no responde, según estructura-encig2021.txt, tabla encig2021_01_sec1_A_3_4_5_8_9_10, cons. 227) y weight_column=FAC_P18 (factor de expansión para población de 18 años y más). Resultado bruto: 1=Sí suma ponderada 3,671,036 (n=2,595); 2=No 47,446,757 (n=37,168); 9=NS/NR 184,217 (n=167); 39,930 filas leídas, 0 omitidas. La tarea indica explícitamente que esta corrida es una sonda y no una réplica, por lo que no se emite punto.",
+      "estado": "ABSTENCION",
+      "fuente_documental": [
+        "analysis.tsv",
+        "cuestionario-encig2021.txt",
+        "estructura-encig2021.txt"
+      ],
+      "nota": "63ae53fadd993a52dbf8e32c197d97dc29dabfefbdbefe6cc762f5c38cdc2bd2",
+      "punto_porcentaje": null,
+      "sustitucion_semantica": false
+    },
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 46,
+    "total_cost_usd": 1.3550245,
+    "ttft_ms": 4364,
+    "ttft_stream_ms": 2580,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 118407,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 118407,
+      "cache_read_input_tokens": 117763,
+      "inference_geo": "not_available",
+      "input_tokens": 4,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 644,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 644,
+          "cache_read_input_tokens": 117763,
+          "input_tokens": 2,
+          "output_tokens": 552,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 811,
+      "output_tokens_details": {
+        "thinking_tokens": 135
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "5a54b272-8e5b-4eb4-98b0-0086837f966c"
+  },
+  "techo": 96,
+  "timestamp_utc": "2026-09-15T01:00:06.569441+00:00",
+  "total_cost_usd": 1.3550245,
+  "version": "v1_1"
+}

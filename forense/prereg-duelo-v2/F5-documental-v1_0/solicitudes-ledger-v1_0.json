@@ -1,6 +1,6 @@
 {
   "acto": "GEN2-F5-DOCUMENTAL-EJECUCION",
-  "consumidas_conservadoras": 2,
+  "consumidas_conservadoras": 5,
   "eventos": [
     {
       "cargo": 2,
@@ -10,6 +10,17 @@
       "num_turns_reportado": 3,
       "timestamp_cierre_utc": "2026-09-14T18:34:24.828156+00:00",
       "timestamp_reserva_utc": "2026-09-14T18:34:09.243429+00:00"
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "SONDA_TRANSPORTE",
+      "estado": "CERRADA",
+      "identidad": "63ae53fadd993a52dbf8e32c197d97dc29dabfefbdbefe6cc762f5c38cdc2bd2",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:00:06.569190+00:00",
+      "timestamp_reserva_utc": "2026-09-15T00:59:53.378768+00:00",
+      "total_cost_usd": 1.3550245
     }
   ],
   "techo": 96
