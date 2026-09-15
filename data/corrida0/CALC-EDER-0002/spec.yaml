@@ -14,7 +14,7 @@ script: data/corrida0/CALC-EDER-0002/medidor.py
 etiquetas:
   generacion: GEN2
   tipo: TASA-BASE-DE-REGLA
-  cuenta_gen2: SI
+  cuenta_gen2: PENDIENTE-DE-MESA
   validacion_independiente: NO-HECHA
   spec_sellada: forense/prereg-caja/EDER-CORRESIDENCIA-ACTUAL-DISENO-spec-v1_0.md
   spec_sellada_sha256: 97254a0f8f8440ad4dd41ba293bada845ffb97c76a37b33b6ffca9a223c69449
@@ -23,7 +23,7 @@ etiquetas:
   sucesor_de: "familia.corresidencia.adulto_familiar_actual -- re-especificacion de ventana ACTUAL (ACTO MAESTRA33-C1 · RESPEC-CORRESIDENCIA, 31/ago/2026, FP-204): p=0.057531, ic95=[0.051297,0.063913] (bootstrap simple de filas, seed 42), n=9397, ponderador factor. Sellada SIN CARGA en milpa/tramite-ola5-propuesta-v0.yaml:192-210 (MAESTRA38-SELLO-3). Producida por tools/tasas_base_corresidencia_actual.py bajo forense/notas/2026-08-31-c1-respec-corresidencia-spec.md. Los sellos viejos quedan intactos (E.3)."
   demanda_que_releva: "NINGUNA. La regla nunca entro al motor (SELLADA-SIN-CARGA) y no tiene RES-* en demanda-resultados.tsv."
   reglas_bajo_prueba: "NINGUNA cambia de cifra por esta corrida. El unico consumidor (propuesta-v0:192) no tiene cita GEN2 vigente: queda LISTADO PARA ADOPCION DE MESA; este acto no escribe cita en milpa/."
-  firma_de_contador: "FP-375, FIRMA DE MESA 15/sep/2026, verbatim: «Mesa, 15/sep/2026 · OBJETO: cuenta_gen2 = SI para las cuatro corridas selladas por el lote; no adopta al motor.» Estandar FP-367/368 satisfecho (autoridad + fecha + OBJETO) -> cuenta_gen2 = SI; fila FP-375 cerrada, ver forense/firmas-pendientes.tsv y data/corrida0/decisiones.tsv."
+  firma_de_contador: "NO HAY FIRMA DE MESA CON OBJETO sobre el contador en el encargo de este lote (forense/encargos/2026-09-14-GEN2-LOTE-MEDICION-PENDIENTE-1.md llego como brief sin FIRMAS DE MESA). Estandar FP-367/368 (autoridad + fecha + OBJETO) NO satisfecho -> cuenta_gen2 = PENDIENTE-DE-MESA; fila FP abierta por el acto para que mesa firme o niegue."
   contaminacion_declarada: "ADR-46 -- al congelar, la sesion YA habia leido: p=0.057531, ic95, n=9397, universo y embudo de C1 (94101/23831/16687/9397, distribucion de parentesco propio) y su reserva sobre factor_per; y todos los RESULT de CALC-EDER-0001 (291 est_dis, 3780 upm, 3 estratos de UPM unica, perfil est_dis ancho 3, factor_per +0.07 pp sobre la tasa de fase 1). Lo genuinamente desconocido al congelar: estratos y UPM que cubre el universo Jefe/Conyuge, cuantos quedan con UPM unica, la anchura del IC de diseno, el signo y tamano de factor_per - factor sobre ESTE estimando, cuantos ego carecen de factor_per."
   medidor_ejecutado_al_congelar: "NO -- escrito y congelado en el COMMIT-1, corrido en el COMMIT-2 del mismo acto. Probado antes del COMMIT-1 SOLO contra un ZIP sintetico (columnas declaradas, valores aleatorios), nunca contra el corpus."
 

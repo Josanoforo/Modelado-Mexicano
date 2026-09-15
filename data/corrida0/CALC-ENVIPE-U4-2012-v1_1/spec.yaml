@@ -13,7 +13,7 @@ etiquetas:
   tipo: RUTA-DECLARADA-U4-PERSONA
   repite_de: CALC-ENVIPE-U4-2012
   version_spec: v1.1 -- sucesora de v1.0 (intacta); cambia SOLO la fuente del par (EST, UPM) para el IC
-  cuenta_gen2: SI
+  cuenta_gen2: PENDIENTE-DE-MESA
   validacion_independiente: NO-HECHA
   spec_sellada: forense/prereg-caja/ENVIPE-2012-U4-spec-v1_1.md
   spec_sellada_sha256: 15f3894a8986aabad9d8558d5c63035df6c2208d129f3d6dbcde2203b0a62c63
@@ -22,7 +22,7 @@ etiquetas:
   spec_familia_dbf_editada: NO -- sucesion por extension (su §5 dejo la ruta como fila NC con sucesor; este CALC es ese sucesor)
   demanda_que_releva: "NINGUNA. U4 en 2012 no tiene RES-* ni CORR-*; NC-0098 registra que ningun dictamen GEN1 del trio viejo es de unidad persona."
   reglas_bajo_prueba: NINGUNA. No toca milpa/, no mueve tier, no adopta.
-  firma_de_contador: "FP-375, FIRMA DE MESA 15/sep/2026, verbatim: «Mesa, 15/sep/2026 · OBJETO: cuenta_gen2 = SI para las cuatro corridas selladas por el lote; no adopta al motor.» Estandar FP-367/368 satisfecho (autoridad + fecha + OBJETO) -> cuenta_gen2 = SI; fila FP-375 cerrada, ver forense/firmas-pendientes.tsv y data/corrida0/decisiones.tsv."
+  firma_de_contador: "NO HAY FIRMA DE MESA CON OBJETO sobre el contador en el encargo de este lote (brief sin FIRMAS DE MESA). Estandar FP-367/368 no satisfecho -> cuenta_gen2 = PENDIENTE-DE-MESA; fila FP abierta por el acto."
   contaminacion_declarada: "ADR-46 -- al congelar la v1.1 la sesion YA habia leido TODOS los RESULT de CALC-ENVIPE-U4-2012 (v1.0: N-U4 9854, P-C2-U4 0.338397, N-ESTRATOS 4) y la distribucion de EST en las tres tablas. Lo desconocido: la anchura del IC bajo el estrato de diseno. Ademas, como en v1.0: los RESULT sellados de CALC-R-CIV-M-01 (misma ola, unidad delito: P-C1-U1 = 0.2955724, N-U1 = 14532, PERFIL-BPCOD, 358 estratos, 9129 UPM) y el p(C2,U4) = 0.294313 de GEN1 para 2025 (otra ola, no se compara). NO habia leido ningun valor de tper_vic.dbf ni de tsdem.DBF: cuantas filas por hogar, si FAC_ELE es constante dentro del hogar, cuantas personas calzan en tsdem y el punto de U4 en 2012 son desconocidos."
   medidor_ejecutado_al_congelar: "NO -- derivado del medidor v1.0 sellado (diff: fuente del par de diseno + tres guardias + control v1.0), congelado en el COMMIT-3 de la pieza y corrido despues. Probado contra los mismos DBF sinteticos."
 
