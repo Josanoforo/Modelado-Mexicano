@@ -15,28 +15,41 @@ De las 19 corridas que `data/corrida0/demanda-corridas.tsv` marca
 
 | estado | n | qué significa |
 |---|---|---|
-| **`SPEC-CONGELADA`** | **4** | este acto escribió y congeló las dos capas de `D-15`; falta el medidor, que es de CAJA |
+| **`SPEC-CONGELADA`** | **6** | este acto escribió y congeló la capa ejecutable de `D-15` (y la humana, salvo `CORR-0017`, que ya la tenía); falta el medidor, que es de CAJA |
 | `EXISTE-SATISFACE` | 2 | ya relevadas por spec congelada anterior — **no se re-especifican** |
-| `EXISTE-NO-SATISFACE` | 3 | hay spec o `CALC`, pero no releva esta corrida (o la releva en parte) |
-| `BLOQUEADA` | 10 | bloqueador nombrado; 6 de ellas esperan una **decisión**, no una descarga |
+| `EXISTE-NO-SATISFACE` | 2 | hay spec o `CALC`, pero releva esta corrida sólo en parte |
+| `BLOQUEADA` | 9 | bloqueador nombrado; 6 de ellas esperan una **decisión**, no una descarga |
 
-Las cuatro congeladas:
+Las seis congeladas — cuatro en la **tanda 1**, dos en la **tanda 2**:
 
-| `CORR` | instrumento | `CALC` | spec humana sellada |
-|---|---|---|---|
-| `CORR-0011` | ENIGH 2022 · remesas | `CALC-ENIGH-0001` | `prereg-caja-ENIGH-REMESAS-R51` |
-| `CORR-0012` | ENFIH 2019 · Afore | `CALC-ENFIH-0001` | `prereg-caja-ENFIH-AFORE` |
-| `CORR-0013` | EDER 2017 · primera unión | `CALC-EDER-0003` | `prereg-caja-EDER-UNION-LIBRE` |
-| `CORR-0014` | ENUT 2024 · reparto del cuidado | `CALC-ENUT-0001` | `prereg-caja-ENUT-CUIDADO` |
+| `CORR` | instrumento | `CALC` | spec humana sellada | tanda |
+|---|---|---|---|---|
+| `CORR-0011` | ENIGH 2022 · remesas | `CALC-ENIGH-0001` | `prereg-caja-ENIGH-REMESAS-R51` | 1 |
+| `CORR-0012` | ENFIH 2019 · Afore | `CALC-ENFIH-0001` | `prereg-caja-ENFIH-AFORE` | 1 |
+| `CORR-0013` | EDER 2017 · primera unión | `CALC-EDER-0003` | `prereg-caja-EDER-UNION-LIBRE` | 1 |
+| `CORR-0014` | ENUT 2024 · reparto del cuidado | `CALC-ENUT-0001` | `prereg-caja-ENUT-CUIDADO` | 1 |
+| `CORR-0017` | ENSANUT 2024 · razón de no vacunación | `CALC-ENSANUT-0001` | `prereg-caja-S7-L17` **(ya sellada, no se duplica)** | 2 |
+| `CORR-0016` | L8 · conversión presidencial | `CALC-L8-CONVERSION-0001` | `prereg-caja-L8-CONVERSION-PRESIDENCIAL` | 2 |
 
-Estado mecánico de las cuatro, con el comando a la vista — el **único**
-bloqueo en las cuatro es el medidor, que este acto deliberadamente no escribe:
+Estado mecánico de las seis, con el comando a la vista. En **cinco** el único
+bloqueo es el medidor, que este acto deliberadamente no escribe; la sexta trae
+un segundo bloqueo que es del **entorno**, no de la spec:
 
 ```
 $ python3 tools/corrida0.py preflight CALC-ENIGH-0001 | tail -1
 PRE-FLIGHT: BLOQUEADO script_ausente=data/corrida0/CALC-ENIGH-0001/medidor.py
-    (idem CALC-ENFIH-0001, CALC-EDER-0003, CALC-ENUT-0001)
+    (idem CALC-ENFIH-0001, CALC-EDER-0003, CALC-ENUT-0001, CALC-L8-CONVERSION-0001)
+
+$ python3 tools/corrida0.py preflight CALC-ENSANUT-0001 | tail -1
+PRE-FLIGHT: BLOQUEADO script_ausente=… input_manifiesto_RAIZ_NO_CONFIGURADA=adultos_ensanut2024_w_stata_stata__v2026_09_01
 ```
+
+El segundo bloqueo de `CALC-ENSANUT-0001` es que su payload vive bajo la raíz
+lógica `descargas_mx`, **que este clon de nube no declara**. `RAIZ-NO-CONFIGURADA`
+no es `AUSENTE` ni `NO-VISIBLE-EN-ESTE-CONTEXTO`: son tres respuestas con tres
+remedios distintos (`A.1`), y ésta se resuelve **enlazando**
+`data/raices.local.yaml` desde el clon padre, no descargando nada. La CAJA que
+corra el contrato ya la tiene (`corpus=SI`, 413 archivos examinados).
 
 Todo lo demás pasa: esquema **`ENDURECIDO`** reconocido, `seed` con `rng`
 declarado, `tolerancia` con tipo, `inputs` de repo `COINCIDE` por `sha256`,
@@ -118,6 +131,65 @@ ya corrigió para ENNViH. **Ninguno de los dos va a cola de adquisición.**
 
 Ninguna spec sellada se edita por esto (`E.3`): el defecto se asienta con su
 comando y la corrección de `milpa/` es de mesa o del acto de CAJA que la tome.
+
+---
+
+### 2.5 · `CORR-0017` — la única que no necesitaba spec humana nueva
+
+Es la única de las 19 cuya **capa humana de `D-15` ya estaba sellada**
+(`prereg-caja-S7-L17`, `v1.0` del 5/sep y `v1.1` del 7/sep). Escribir una
+segunda duplicaría un sellado, que `E.3` prohíbe: se cabla su **Rama B** y nada
+más. Dos hallazgos:
+
+1. **La unidad de observación es la MENCIÓN, no la persona.**
+   `milpa/tramite.yaml` declara el universo como *«254 menciones "Sí" (179
+   personas distintas)»* — verificado, las cinco razones suman 254 exactas — y
+   `ponde_f` es un ponderador **de persona**. Aplicado a filas de mención, una
+   persona con dos menciones entra con su peso **dos veces**. La primaria
+   conserva ese universo (es el de la cifra GEN1, y el control positivo tiene
+   que ser sobre la misma cantidad); `B-P-PERSONA` mide lo mismo colapsado a
+   persona, con delta con signo.
+2. **La sellada verificó contra un inventario superado.** La `v1.1` cita
+   `inventario-reactivos-descargas-mx-**v1_1**`; `A.15(a)` exige el vigente,
+   *«nunca versiones superadas del mismo inventario, que rescatan por
+   accidente»*. Re-verificado contra **`v1_2`**: las 20 variables
+   `a0927{a..e}{1..4}` existen en `adultos_ensanut2024_w.dta` con `sha256_12
+   0fa8f4436fa4` —el del manifiesto— y su `texto_reactivo` confirma el mapeo
+   letra=razón / dígito=vacuna de `ADR-357`/`FP-326`. **El negativo no cambia
+   de signo; lo que cambia es que ahora está verificado contra el inventario
+   que manda.**
+
+### 2.6 · `CORR-0016` — cuatro decimales deciden si reproduce
+
+Es la única de las 19 que **no necesita `data/raw`**: su insumo es un artefacto
+versionado del repo (`data/l8-resultados-tipo-boleta-v1_0.json`, `sha256
+30f3e16d…`, 43 545 bytes), resuelto por `origen: repo`. Puede correr en nube.
+
+La regla publica la fórmula `p = clip(p0(municipio) + 0.040167, 0, 1)`. Lo que
+**no** publica —y sin lo cual no reproduce— es el **grano del ancla**:
+
+| celda | sin redondear `p0` | con `p0` a 4 decimales | GEN1 |
+|---|---|---|---|
+| `participa_p0_minimo` | `0.345263` | **`0.345267`** | `0.345267` |
+| `participa_p0_maximo` | `0.750605` | **`0.750567`** | `0.750567` |
+| `participa_p0_media` | `0.619830` | **`0.619867`** | `0.619867` |
+
+La diferencia llega a `3.8 · 10⁻⁵`: **tres órdenes de magnitud por encima** de
+la tolerancia de flotante declarada (`1e-10`). Un medidor con precisión
+completa reportaría `NO-REPRODUCE` en las tres celdas **por el redondeo, no por
+la cifra**, y quien lo leyera buscaría un defecto donde no lo hay. El grano va
+en el contrato (`parametros.grano_ancla_decimales: 4`), no en la cabeza de
+quien escriba el medidor, y `A-GRANO-VERIFICADO` emite **las dos** variantes
+para que el hallazgo sea auditable sin recalcularlo.
+
+Verificado y **no supuesto**, además: los cuatro derivados del JSON —rango
+`[0.3051, 0.7104]`, media `0.5797`, mediana `0.6094`, `n = 40`— **coinciden**
+con los que la regla publica.
+
+Lo que esta corrida **no** arregla y no finge arreglar: la regla declara
+`escala: ecologica` — `beta_pres` se estimó sobre agregados municipales y se
+aplica como probabilidad individual. Los tres `RESULT` salen rotulados
+`DERIVADO-ECOLOGICO` y ninguno es causal.
 
 ---
 
@@ -224,21 +296,17 @@ algún resultado.
 
 ## 4 · Qué sigue, sin decisión de mesa de por medio
 
-Cuatro corridas se pueden congelar en una tanda 2 **en nube**, sin esperar
-ninguna firma, y en este orden de coste creciente:
+La **tanda 2 de este mismo acto** ya cerró las dos más baratas —`CORR-0017` y
+`CORR-0016`— y dejó dos hallazgos que valían el viaje (§2.5 y §2.6). Quedan
+**dos** corridas congelables en nube, sin esperar ninguna firma:
 
-1. **`CORR-0017`** — la capa humana ya está sellada (`prereg-caja-S7-L17`,
-   v1.0 y v1.1). Falta sólo el `spec.yaml`. No hay reactivos que resolver.
-2. **`CORR-0016`** — el «payload» es un artefacto del repo
-   (`data/l8-resultados-tipo-boleta-v1_0.json`, 43 545 B, versionado): la spec
-   se construye entera con `inputs: origen: repo`, **sin tocar `data/raw`**.
-3. **`CORR-0009` (residuo)** — `RES-0031`, `RES-0032`, `RES-0065`: mismo
-   payload que la spec ya sellada, otros tres desenlaces.
-4. **`CORR-0007` (residuo)** — `RES-0025`/`RES-0026` (evasión) no tienen nada;
-   `RES-0039`…`RES-0042` tienen propuesta no firmada (`NC-0088`), que es
+1. **`CORR-0009` (residuo)** — `RES-0031`, `RES-0032`, `RES-0065`: mismo payload
+   que la spec ya sellada (`prereg-caja-ENIF-AHORRO`), otros tres desenlaces.
+2. **`CORR-0007` (residuo)** — `RES-0025`/`RES-0026` (evasión) no tienen nada;
+   `RES-0039`…`RES-0042` tienen propuesta **no firmada** (`NC-0088`), que es
    decisión, no spec.
 
-Y dos quedan condicionadas a algo que no es una decisión de alcance:
+Y dos siguen condicionadas a algo que no es una decisión de alcance:
 **`CORR-0008`** espera `NC-0156` (sin diseño muestral publicado, el punto es
 especificable pero el IC de diseño no — congelar una spec hoy fijaría un
 método de varianza que mesa no ha elegido) y **`CORR-0015`** espera a que su
@@ -249,19 +317,25 @@ complementos y particiones de ella.
 
 ## 5 · Reservas de este acto
 
-- **Los cuatro medidores no se escriben aquí.** El encargo pide *«md humana +
+- **Los seis medidores no se escriben aquí.** El encargo pide *«md humana +
   `spec.yaml`»*, que son las dos capas de `D-15`; el medidor es del acto de
-  CAJA. Consecuencia declarada en cada `spec.yaml` y verificada arriba:
-  `preflight` reporta `BLOQUEADO:script_ausente` en los cuatro. Es el estado
-  correcto de una spec congelada sin corrida, no un defecto.
-- **`cuenta_gen2 = PENDIENTE-DE-MESA` en los cuatro.** El encargo autoriza
+  CAJA, que además declara en su propio perímetro que lo congela cuando una
+  spec llegue sin él. Consecuencia declarada en cada `spec.yaml` y verificada
+  arriba: `preflight` reporta `BLOQUEADO:script_ausente` en los seis. Es el
+  estado correcto de una spec congelada sin corrida, no un defecto.
+- **`CALC-ENSANUT-0001` trae un segundo bloqueo, y es del entorno.**
+  `RAIZ_NO_CONFIGURADA=descargas_mx`: este clon de nube no declara esa raíz
+  lógica. Se resuelve enlazando `data/raices.local.yaml` desde el clon padre,
+  no descargando nada, y la CAJA que corra el contrato ya la tiene.
+- **`cuenta_gen2 = PENDIENTE-DE-MESA` en los seis.** El encargo autoriza
   **congelar**, no contar; `FP-367`/`FP-368` piden OBJETO explícito sobre el
   contador y el encargo no lo trae. Se dice aquí en vez de darlo por concedido.
-- **Ninguna de las cuatro specs es ciega**, y las cuatro lo declaran bajo
+- **Ninguna de las seis specs es ciega**, y las seis lo declaran bajo
   `ADR-46` con lo que se había leído y lo que quedaba genuinamente desconocido.
-  En dos casos (`CORR-0011` y `CORR-0014`) la contaminación es **inevitable
-  por construcción**: leer `CALC-B-0001` y leer `tools/medidor_cuidado_enut.py`
+  En tres casos (`CORR-0011`, `CORR-0014` y `CORR-0016`) la contaminación es
+  **inevitable por construcción**: leer `CALC-B-0001`, leer
+  `tools/medidor_cuidado_enut.py` y leer la fórmula que la propia regla publica
   es lo que `A.8` obliga a hacer antes de escribir la spec, y es también lo que
-  produjo los hallazgos de §2.1 y §2.3.
+  produjo los hallazgos de §2.1, §2.3 y §2.6.
 - **Ninguna cifra de `milpa/` se movió, ningún `CALC` sellado se tocó, ningún
   byte de microdato se abrió.**
