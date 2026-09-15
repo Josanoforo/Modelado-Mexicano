@@ -14,7 +14,7 @@
 
 ## 1 · Lo que el lanzamiento suponía y lo que el árbol tenía (A.8)
 
-**(a) Cuatro specs, no tres.** `awk '$4=="SPEC-FIJADA"' corridas.tsv` devolvió `CALC-DINERO-FAMILIARES-VEJEZ-0001`, `CALC-EVASION-NORMA-0001`, `CALC-HORIZONTE-VIA-DERIVADOS-0001`, `CALC-TIENE-AHORROS-0001`. El lanzamiento nombra tres; `EVASION-NORMA` (`CORR-0007`, `RES-0025/0026`) es del mismo `PR #781`, de la misma clase (registro D-15 de una medición ya sellada en `milpa/`) y es fila del mapa-19. El OBJETO de la firma dice «toda corrida que este acto selle sobre spec congelada del mapa-19»: **se corrió también**, como lectura del ejecutor, declarada en el encargo (2.a) y aquí, y con reserva para mesa (`NC-0222`). Si mesa la excluye, se retira su fila de `decisiones.tsv`; el sello queda.
+**(a) Cuatro specs, no tres.** `awk '$4=="SPEC-FIJADA"' corridas.tsv` devolvió `CALC-DINERO-FAMILIARES-VEJEZ-0001`, `CALC-EVASION-NORMA-0001`, `CALC-HORIZONTE-VIA-DERIVADOS-0001`, `CALC-TIENE-AHORROS-0001`. El lanzamiento nombra tres; `EVASION-NORMA` (`CORR-0007`, `RES-0025/0026`) es del mismo `PR #781`, de la misma clase (registro D-15 de una medición ya sellada en `milpa/`) y es fila del mapa-19. El OBJETO de la firma dice «toda corrida que este acto selle sobre spec congelada del mapa-19»: **se corrió también**, como lectura del ejecutor, declarada en el encargo (2.a) y aquí, y con reserva para mesa (`NC-0223`). Si mesa la excluye, se retira su fila de `decisiones.tsv`; el sello queda.
 
 **(b) Ninguna de las cuatro podía correr tal como estaba congelada.** Tres defectos de cableado, ninguno de contenido: (1) las cuatro carpetas venían **sin `spec.md`** (el `spec.yaml` lo nombra por sha256 = el de la spec humana en `prereg-caja/`, pero no lo trae) → `preflight` `BLOQUEADO ausente=…/spec.md` 4/4; (2) tres `script:` apuntan a **scripts legados de `tools/` que no exponen `medir(inputs, contrato)`** (`medidor_ahorro_enif24.py`, `tasas_base_fase1.py`, `medidor_evasion_norma_envipe25.py`; el mapa-19 decía «CAJA · escribir medidor.py», pero un `medidor.py` en la carpeta no corre si `script:` no lo nombra); (3) `HORIZONTE-VIA-DERIVADOS` declaraba `sha256: LEER-AL-EJECUTAR -- …` en sus dos inputs `repo`, que `preflight` lee como `DISCORDA` y bloquea siempre.
 
@@ -77,7 +77,7 @@ Los 4.3e-07 son el redondeo de `milpa/` a 6 decimales: la `v1_1` toma `tiene_aho
 | `SIN-P-NO-DENUNCIA` (contada) | 0.3279855630709918; suma `SI` |
 | `DELTA-CON-MENOS-SIN` | **+0.1189**, IC95 **[0.0637, 0.1716]** (descriptivo, no causal; GEN1 declaró 11.9 pp) |
 | diseño | 368 estratos / 909 UPM en U, **191 con UPM única** → `IC-CON-ESTRATOS-DE-UPM-UNICA` (límite inferior de anchura); `G-REPLAY-INDEPENDIENTE = REPLICA` |
-| `REPRODUCE-GEN1` | **`NO-REPRODUCE`** → `ADOPCION = LISTADO-PARA-MESA-NO-REPRODUCE`. **Atribuido, no aceptado:** `DELTA-VS-GEN1 = RES-0039:+0.000006445; RES-0040:−0.000006445; RES-0041:+0.000014437; RES-0042:−0.000014437`. La spec fija `grano_gen1_decimales: 6` sobre valores legacy que sólo tienen **4** (0.7909 / 0.672, rellenados a 0.790900 / 0.672000 en `demanda-resultados.tsv`); al grano 4 los cuatro `round(p, 4)` coinciden (0.7909 / 0.2091 / 0.6720 / 0.3280) y los `n` son exactos. Es un `NO-REPRODUCE` de grano, no de cifra. El medidor no se tocó («NO-REPRODUCE no autoriza tocar el medidor»); la decisión es de mesa (`NC-0220`). |
+| `REPRODUCE-GEN1` | **`NO-REPRODUCE`** → `ADOPCION = LISTADO-PARA-MESA-NO-REPRODUCE`. **Atribuido, no aceptado:** `DELTA-VS-GEN1 = RES-0039:+0.000006445; RES-0040:−0.000006445; RES-0041:+0.000014437; RES-0042:−0.000014437`. La spec fija `grano_gen1_decimales: 6` sobre valores legacy que sólo tienen **4** (0.7909 / 0.672, rellenados a 0.790900 / 0.672000 en `demanda-resultados.tsv`); al grano 4 los cuatro `round(p, 4)` coinciden (0.7909 / 0.2091 / 0.6720 / 0.3280) y los `n` son exactos. Es un `NO-REPRODUCE` de grano, no de cifra. El medidor no se tocó («NO-REPRODUCE no autoriza tocar el medidor»); la decisión es de mesa (`NC-0221`). |
 
 ### 2.6 · `CALC-ENCIG-2023-0001` (v1_0) — primer resultado: **`NO-ESTIMABLE-CODIGO-FUERA-DE-MAPA:P8_4`**
 
@@ -97,7 +97,7 @@ Los 4.3e-07 son el redondeo de `milpa/` a 6 decimales: la `v1_1` toma `tiene_aho
 | rama CD (secundaria) | `B-P-PRE-CD` 0.1095 (n 9 680) · `B-P-DIG-CD` 0.0223 (n 5 259); 1 918 eventos descartados por dedup |
 | canal | `B-N-RESIDUO-CANAL = 6 243`, `B-P-RESIDUO-CANAL = 0.2547` → `DICOTOMIA-ES-PROPIEDAD-DEL-RECORTE` (H3 sostenida) |
 | universo | `G-UNIVERSO-DECLARADO = ENTIDADES:32;EST_DIS:347;UPM_DIS:8900;AREAS:NO-DECLARADA-EN-SPEC` (la estampa «82 áreas urbanas» de 2025 no se transporta) |
-| `B-ADOPCION` | `LISTADO-PARA-MESA-ESTIMABLE` — **con reserva que la spec no pudo prever (`NC-0221`):** `B-COBERTURA = 1.0` porque el `sec_8` de 2023 trae fila (con `P8_4 = NA`) para **todo** trámite, así que «emparejadas/filas de sec_7» ya no mide la autoselección de 8.3; ésta se ve en `B-N-P84-BLANCO = 100 086` → cobertura efectiva `B-N-U / G-N-FILAS-SEC7 = 23 100 / 123 186 = 0.19`, la misma que 2025 (0.20). Por la regla del código (umbral 0.5 sobre `B-COBERTURA`) salió `ESTIMABLE`; leído con la cobertura efectiva sería `CON-RESERVA`. El estimando es condicional al grupo observado por 8.3, como en 2025. |
+| `B-ADOPCION` | `LISTADO-PARA-MESA-ESTIMABLE` — **con reserva que la spec no pudo prever (`NC-0222`):** `B-COBERTURA = 1.0` porque el `sec_8` de 2023 trae fila (con `P8_4 = NA`) para **todo** trámite, así que «emparejadas/filas de sec_7» ya no mide la autoselección de 8.3; ésta se ve en `B-N-P84-BLANCO = 100 086` → cobertura efectiva `B-N-U / G-N-FILAS-SEC7 = 23 100 / 123 186 = 0.19`, la misma que 2025 (0.20). Por la regla del código (umbral 0.5 sobre `B-COBERTURA`) salió `ESTIMABLE`; leído con la cobertura efectiva sería `CON-RESERVA`. El estimando es condicional al grupo observado por 8.3, como en 2025. |
 
 ## 3 · Verify, sello, firma y registro
 
@@ -114,13 +114,13 @@ Cada corrida: `preflight VERDE` → `run` exit 0 → `sella_sha256 SELLADO` → 
 | contador | `origin/main` | este acto | Δ |
 |---|---|---|---|
 | `N_corridas_requeridas` | 82 | 82 | 0 |
-| **`N_corridas_selladas`** | **72** | **79** | **+7**: 6 vigentes con cifra (`TIENE-AHORROS-v1_1`, `EVASION-NORMA-v1_1`, `DINERO-FAMILIARES-VEJEZ-v1_1`, `HORIZONTE-VIA-DERIVADOS-v1_1`, `ENVIPE-DENUNCIA-SEGURO-0001`, `ENCIG-2023-0001-v1_1`) **+ 1 sellada `NO-ESTIMABLE` y superada** (`ENCIG-2023-0001` v1_0): el contador de la casa cuenta `SUPERADO` sellado con firma; si mesa prefiere no contarla, se retira su fila de `decisiones.tsv` y queda 78 (`NC-0223`) |
+| **`N_corridas_selladas`** | **72** | **79** | **+7**: 6 vigentes con cifra (`TIENE-AHORROS-v1_1`, `EVASION-NORMA-v1_1`, `DINERO-FAMILIARES-VEJEZ-v1_1`, `HORIZONTE-VIA-DERIVADOS-v1_1`, `ENVIPE-DENUNCIA-SEGURO-0001`, `ENCIG-2023-0001-v1_1`) **+ 1 sellada `NO-ESTIMABLE` y superada** (`ENCIG-2023-0001` v1_0): el contador de la casa cuenta `SUPERADO` sellado con firma; si mesa prefiere no contarla, se retira su fila de `decisiones.tsv` y queda 78 (`NC-0224`) |
 | **`N_resultados_gen2_sellados`** | **3 255** | **3 405** | **+150** ids únicos |
 | `N_resultados_gen2_pendientes_adopcion` | 5 | 12 | +7 (los `RESULT` de estas corridas que la propuesta ya cita; adoptar es de mesa) |
 | `N_resultados_gen2_adoptados_activos` | 16 (`5973f12`) → **18** (`48cb08c`, por `#788`) | 18 | 0 de este acto (sellar no es adoptar, E.2; el +2 es de `#788`, materializado al re-derivar, ver §3) |
 | `N_resultados_gen2_vetados_por_decision` | 2 | 2 | 0 |
 | `corredores_envueltos_legacy` | 18 | 18 | 0 |
-| `no_corrido_abiertas` | — | — | −5 +4 (cierra `NC-0193`/`0200`/`0201`/`0204`/`0207`; abre `NC-0220..0223`) |
+| `no_corrido_abiertas` | — | — | −5 +4 (cierra `NC-0193`/`0200`/`0201`/`0204`/`0207`; abre `NC-0221..0224`) |
 
 El lanzamiento decía «+3 a +5»: son **+7 en el contador, +6 corridas con cifra**, porque las specs eran cuatro y no tres (§1.a) y porque el primer resultado de `ENCIG-2023` se selló antes de sucederse. Demanda relevada: **`CORR-0007`, `CORR-0009`, `CORR-0010` y `CORR-0015` AGOTADAS** (2 + 2 + 2 + 7 = 13 `RESULT` de demanda, más los 4 de `RES-0039..0042` de `CORR-0007`: **17 de los 94** sin candidato al arrancar el día), y `CORR-0001` con **candidatura** medida por canal (los `RES-0001/0002` son ASIGNADO sin canal; la correspondencia la decide mesa, como la spec declara). Ninguna cifra de `milpa/` se movió.
 
@@ -130,6 +130,6 @@ El lanzamiento decía «+3 a +5»: son **+7 en el contador, +6 corridas con cifr
 - **No adoptó nada**: `milpa/` intocado; `usos.tsv` idéntico a la base.
 - **No corrigió hacia atrás**: `ENCIG-2023-0001` v1_0 se selló `NO-ESTIMABLE` y se sucedió; el `NO-REPRODUCE` de grano de `DENUNCIA-SEGURO` se atribuyó y se dejó a mesa.
 - **No descargó nada**; cero llamadas a modelos; cero cambios al motor.
-- **Redactó `ADR-514` y `NC-0211..0214`** sabiendo que `PR #788` (`GEN2-RELEVO-USOS-1`) los usaba en su rama; `#788` (ADR-514, NC-0211..0217) y `#790` (ADR-515, NC-0218/0219) fusionaron primero → renumerado a **`ADR-516`** y **`NC-0220..0223`** (sólo en texto propio; las menciones a rangos ajenos se conservan).
+- **Redactó `ADR-514` y `NC-0211..0214`** sabiendo que `PR #788` (`GEN2-RELEVO-USOS-1`) los usaba en su rama; `#788` (ADR-514, NC-0211..0217) y `#790` (ADR-515, NC-0218/0219) fusionaron primero → renumerado a **`ADR-516`** y **`NC-0221..0224`** (sólo en texto propio; las menciones a rangos ajenos se conservan).
 
 D-6 aplicado: el acto se declara `ACTO GEN2-MEDICION-DEMANDA-2` en todo archivo que escribe.
