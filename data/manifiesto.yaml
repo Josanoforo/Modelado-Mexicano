@@ -94,6 +94,25 @@
     de ENNViH como "reporta el valor" (sin verificar en esa sesión). No cambia el estado del
     payload: ningún archivo de ENNViH se ha descargado ni se registra aquí -- CAL-G3 sigue
     sin ejecutarse.
+    CORRECCIÓN DE LETRA FECHADA (15/sep/2026, ACTO GEN2-ADOPCION-VENTANILLA-2, P4).
+    La frase anterior queda como registro y NO se reescribe: era cierta el 30/jul/2026
+    y es FALSA EN LA LETRA desde PR #703 (commit 2bd228c). Este mismo archivo registra
+    hoy 28 payloads de ENNViH con id, archivo, sha256 y tamano_bytes -- entre ellos los
+    cinco ehh05*.zip de la ola 2 que el ACTO GEN2-DISENO-FASE1-CIERRE (PR #760) abrió
+    por cabecera: ennvih2_2005_hogar_dta (ennvih/ehh05dta_all.zip, sha256
+    fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a),
+    ennvih2_2005_hogar_cb (ehh05cb_all.zip), ennvih2_2005_hogar_q (ehh05q_all.zip),
+    ennvih2_2005_ponderador_transversal (ehh05w_all.zip, de donde sale fac_3b) y
+    ennvih2_2005_ponderador_longitudinal (ehh05lw_all.zip); más las olas 1 y 3 y
+    ennvih1_muestra_diseno. Corrige la premisa citada en
+    forense/notas/2026-09-14-GEN2-DISENO-FASE1-CIERRE-cierre.md:23 («manifiesto.yaml
+    sigue sin id: para ehh05*.zip»): los id SÍ existen. Esta entrada sigue siendo lo que
+    siempre fue -- una nota de LICENCIA, sin archivo ni sha propios -- y ninguna cifra,
+    hash ni byte se toca aquí: la corrección es de letra y se verifica dentro de este
+    mismo archivo. Lo que NO cambia: ENNViH ola 2 sigue EXISTE-NO-SATISFACE por falta de
+    estrato/UPM públicos (NC-0156), y la copia de esta misma frase falsa que vive en
+    data/corrida0/demanda-corridas.tsv (fila CORR-0008) NO se toca desde aquí -- queda
+    en NC-0185.
 
 - id: encig2015_csv
   usado_para: candidata para R3.1 (trámite/mordida, misma familia que R3.2) -- serie histórica
