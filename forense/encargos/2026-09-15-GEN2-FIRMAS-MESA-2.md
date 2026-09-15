@@ -40,9 +40,9 @@ F-12 · NC-0179 — B para las 4 celdas sin serie propia solo sería posible por
 
 Acotar y cerrar:
 
-F-13 · NC-0107 — RES-0009/0011 (mordida presencial/digital) sin cita de adopción por tasas discrepantes. Recomendación: mantener sin adopción y formular la regla prospectiva por unidad — como su sucesor E04 propone.
+F-13 · NC-0107 — RES-0009/0011 (mordida presencial/digital) sin cita de adopción por tasas discrepantes. Recomendación: mantener sin adopción y formular la regla prospectiva por unidad — como su sucesor ENCARGO-E04 propone.
 
-F-14 · NC-0122 — fintech: medir canal del último producto, no del producto en sí. Recomendación: aceptar como proxy descriptivo con rótulo literal (E04).
+F-14 · NC-0122 — fintech: medir canal del último producto, no del producto en sí. Recomendación: aceptar como proxy descriptivo con rótulo literal (ENCARGO-E04).
 
 F-15 · NC-0172 — borrar la rama huérfana claude/tramite-2026-09-14 (evidencia lista). Recomendación: borrar. Es un clic.
 
@@ -65,3 +65,43 @@ P5 · F-16 aparte (consume cuota): registro de la decisión de alcance acotado y
 PERÍMETRO Y CONCURRENCIA: forense/no-corrido.tsv · forense/firmas-pendientes.tsv (fila FP-374) · notas de dirección en forense/notas/ · esta hoja de firmas. Ningún archivo sellado (specs con sha256/RES-xxxx) se edita; toda corrección va por sucesión fechada.
 
 CONTADOR: cero mediciones propias. Mueve puntos F-1..F-15 a declarados/cerrados según corresponda; F-16 queda con alcance acotado registrado y sin ejecutar el piloto. CIERRE: cascada + ## NO-CORRIDO / RESERVAS + ## CONSUMIDO.
+
+## NO-CORRIDO / RESERVAS
+
+Ocho filas. De los 16 puntos, **10 se propagaron cerrando la NC**, **4 se
+propagaron dejando la NC ABIERTA** (la decisión de mesa quedó registrada,
+pero requiere un acto sucesor de edición para materializarse en
+`milpa/tramite.yaml`, `milpa/procedencia.yaml` o una spec sucesora), y
+**F-15 y F-16 se resolvieron ambos sin corrida material** (uno porque no
+había nada que borrar, el otro porque el cómputo es explícitamente de
+otro acto). Nada se reinterpretó (SELLA-3).
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| **F-2 · NC-0217** — retirar/confirmar la cita de RES-0005 según el valor vigente de GEN2 y el grano de F-1 | `DIFERIDO-A:sucesor-que-edite-milpa` | La regla de gobierno queda firmada; comparar el valor vigente contra el grano del consumidor exige leer y potencialmente editar `milpa/tramite.yaml`, fuera del perímetro declarativo de este acto de firmas | acto sucesor de motor/usos |
+| **F-3 · NC-0216** — marcar SUPERADO el veredicto más antiguo en el registro derivado | `FUERA-DE-PERÍMETRO` | El registro derivado (`# DERIVADO`) nunca se edita a mano; requiere el escritor canónico | acto sucesor con `corrida0`/escritor canónico |
+| **F-10 · NC-0194** — redactar la spec sucesora ENADID 2023 | `DIFERIDO-A:spec-sucesora` | Redactar y sellar una spec nueva es trabajo sustantivo de CAJA/prereg, no una firma declarativa | acto sucesor de specs (prereg-caja) |
+| **F-13 · NC-0107** — formular la regla prospectiva por unidad | `DIFERIDO-A:ENCARGO-E04` | El propio punto cita a su sucesor `ENCARGO-E04` como quien la propone; esta firma solo ratifica mantener sin adopción | `ENCARGO-E04` (ya en curso, ver `forense/encargos/2026-09-10-MESA-CONCILIACION-E01.md`) |
+| **F-15 · NC-0172** — borrar la rama huérfana `claude/tramite-2026-09-14` | `SUSTITUIDO-POR:limpieza-previa` | Verificado 15/sep/2026: `git ls-remote --heads origin` no trae la rama y `git push origin --delete claude/tramite-2026-09-14` responde `remote ref does not exist`. Ya no existe en origin — no queda nada que borrar; la decisión de mesa se cumple por estado ya alcanzado, no por acción de este acto | ninguno — cumplido |
+| **F-16 · NC-0161/0162 + FP-374** — ejecutar el piloto acotado de 6 (tabla d_f por familia con IC, parada en el primer resultado que decida H0) | `PARO-ENTORNO` | Es cómputo estadístico de CAJA/adquisición dirigida, explícitamente fuera del alcance de un acto de firmas de mesa (NUBE); la decisión de alcance queda registrada en `FP-374` (`FIRMADA-CON-ALCANCE-ACOTADO`) y NC-0161/0162 siguen ABIERTAS colgando de esa FP, como la propia FP ya preveía | acto sucesor de CAJA que ejecute el piloto de 6 |
+| **F-1/F-2/F-3 · verificación puntual del valor vigente de GEN2 contra el grano del consumidor** | `NO-VERIFICABLE-AQUÍ` | Requiere leer las cifras vigentes en `milpa/tramite.yaml` y compararlas — trabajo de motor/usos, no de esta hoja de firmas | acto sucesor de motor/usos |
+| **F-11 · NC-0203** — formalizar `payload_id/sha256/script` de las 7 candidatas en `milpa/procedencia.yaml` | `FUERA-DE-PERÍMETRO` | El propio punto lo dice explícitamente: "no formalizar ahora"; se cierra la NC porque la decisión (mantener D3(b)) es completa, no porque la formalización se haya hecho | el acto que toque `milpa/` cuando un consumidor lo necesite |
+
+**Lo que el acto declaró y no movió, como prometió:** ningún archivo
+sellado (spec con sha256/RES-xxxx) fue editado; toda corrección citada
+arriba va por sucesión fechada o acto posterior; el piloto de F-16 no se
+ejecutó.
+
+## CONSUMIDO
+
+Ejecutado en esta sesión sobre `origin/main = 0cdbd72`, rama
+`claude/intelligent-newton-s1qe1c`. Cambios: `forense/no-corrido.tsv`
+(15 NC actualizadas: F-1, F-4..F-9, F-11, F-12, F-14, F-15 → `CERRADA`;
+F-2, F-3, F-10, F-13 → permanecen `ABIERTA` con la decisión citada en
+`razon`), `forense/firmas-pendientes.tsv` (`FP-374` →
+`FIRMADA-CON-ALCANCE-ACOTADO`), y este mismo encargo (0-bis A.3 +
+cierre). `tests/check.py --baseline`: sin `FAIL` nuevo atribuible a este
+acto salvo los corregidos en el mismo commit (rótulo bare de una cita ilustrativa prefijado a
+`ENCARGO-E04`, cita de `familia.union.libre` verificada con
+`tools/ya_medido.py` → `MEDIDA-EN: tramite.yaml`). PR abierto contra
+`main`; no se fusiona desde aquí — el merge es autorización de mesa.
