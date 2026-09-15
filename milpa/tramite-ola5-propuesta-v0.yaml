@@ -3921,7 +3921,23 @@ reglas_propuestas:
         C4_secundaria: {delta: RESULT-C4-B3B-FAC3B-DELTA, ic_lo: RESULT-C4-B3B-FAC3B-IC-LO, ic_hi: RESULT-C4-B3B-FAC3B-IC-HI, veredicto_Bbis_historico: CORROBORADA}
       tier_regla_referida: MEDIA
       decision_inferencial: "FP-372 ABIERTA; esta enmienda no firma opción A ni B"
-      residual: "NC-0156 conserva la vía oficial de pesos replicados o servicio de varianza; FP-371 de DIN-M-01 es otro objeto"
+      decision_inferencial_enmienda_fechada: >
+        15/sep/2026, ACTO GEN2-FIRMAS-MESA-1 (OBJETO 15 de la HOJA DE FIRMAS
+        DE MESA 2026-09-15, firma verbatim «Si a todas.»). La línea de arriba
+        se conserva como registro y NO se reescribe, pero su premisa caducó:
+        FP-372 YA NO ESTÁ ABIERTA. Mesa firmó la **opción (a)** y esa es
+        ahora la decisión vigente para S6/R4.4: los puntos y las asociaciones
+        descriptivas se conservan; los IC por localidad quedan SÓLO como
+        sensibilidad; no se promueven conclusiones nuevas basadas en que un
+        IC cruce o deje de cruzar cero; los veredictos condicionados de
+        CALC-0003-v4 NO se reescriben; y R4.4 sigue MEDIA. Es decir: el
+        `uso_motor`, la `incertidumbre`, la `receta` y el `tier_regla_referida`
+        de esta misma enmienda no cambian ni una letra -- la firma los
+        ratifica, no los mueve. Lo único que cambia es que ya no se espera a
+        nadie. `residual` sigue vigente sin tocar: NC-0156 conserva la vía
+        oficial de pesos replicados o servicio de varianza y esta firma NO la
+        cierra; FP-371 de DIN-M-01 es otro objeto y se firmó por separado
+        (OBJETO 14, rechazando el uso inferencial de constante+folio).
 
   # ══════════════════════════════════════════════════════════════════
   # ACTO GEN2-E5 · CALC-0001..0003 — primeras cifras GEN2 selladas
