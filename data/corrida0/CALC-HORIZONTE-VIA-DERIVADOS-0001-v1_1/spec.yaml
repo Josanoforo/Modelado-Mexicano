@@ -1,0 +1,151 @@
+# CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1 -- SUCESION v1.1 de CALC-HORIZONTE-VIA-DERIVADOS-0001 (ACTO GEN2-MEDICION-DEMANDA-2, CAJA, 15/sep/2026).
+# La v1_0 (ACTO GEN2-SPECS-DEMANDA-2, PR #781) queda INTACTA y SUPERADA: E.3 prohibe editarla.
+# Por que hay v1_1: la v1_0 era INEJECUTABLE por construccion -- declaraba
+#   `sha256: LEER-AL-EJECUTAR -- ...` en sus dos inputs `origen: repo` (preflight lo lee como DISCORDA
+#   y bloquea siempre) y `script:` a un medidor.py que no existia. Lo que cambia respecto a la v1_0:
+#   (1) sha256 REALES de los resultados.json sellados de CALC-ENIF-0001 y CALC-ENIF-0002;
+#   (2) los tres insumos que la v1_0 leia de milpa/tramite.yaml (tiene_ahorros_enif2024, A_solo_formal,
+#       B_solo_informal) se toman de RESULT SELLADOS en corrida0 con el MISMO valor: tiene_ahorros y su
+#       complemento de CALC-TIENE-AHORROS-0001-v1_1 (el padre CORR-0009, sellado en este acto ANTES de
+#       congelar esta spec -- el encadenamiento DEPENDE-DE-CORRIDA-PADRE queda mecanico, por sha256),
+#       y A_solo_formal/B_solo_informal de CALC-ENIF-0001 (RESULT-ENIF-AHO-B-P-FORMAL-P / -INFORMAL-P,
+#       que milpa/tramite.yaml:1214-1215 cita como su propia fuente corrida0). milpa/ no es input: no se
+#       puede pinear por sha (cambia acto a acto) y E.3 manda leer sellados;
+#   (3) `parametros.insumos_esperados` hace explicitos los seis valores que la v1_0 escribia en prosa
+#       («esperado …») para que la guardia NO-ESTIMABLE-INSUMO-CAMBIO sea mecanica (tolerancia 1e-6:
+#       tiene_ahorros sellado sin redondear = 0.6420795666 vs 0.642080 en milpa/, |delta| 4.3e-7);
+#   (4) `script:` al medidor.py de esta carpeta, `spec.md` presente, `repite_de` en la raiz, etiquetas
+#       de proceso. Transformacion, estimando, tolerancia e ids de RESULT: VERBATIM de la v1_0.
+# CALC-HORIZONTE-VIA-DERIVADOS-0001 -- cara mecanica de spec.md (ACTO GEN2-SPECS-DEMANDA-2).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/ENIF-HORIZONTE-VIA-DERIVADOS-spec-v1_0.md
+# (`prereg-caja-ENIF-HORIZONTE-VIA-DERIVADOS`).
+# Releva CORR-0015 COMPLETA (7 RESULT) bajo el registro GEN2, por
+# aritmetica exacta sobre insumos ya sellados -- CORR-0015 dependia de que
+# CORR-0009 (padre) estuviera relevada entera; lo esta, en este mismo acto.
+calc_id: CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1
+repite_de: CALC-HORIZONTE-VIA-DERIVADOS-0001
+spec_md: spec.md
+spec_md_sha256: 8c04222fb218fe928f92d63bb380e9a88b226217f050836ebdc32f00e88e8f43
+
+script: data/corrida0/CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: DERIVADO-DETERMINISTA-SOBRE-SELLADOS
+  cuenta_gen2: SI
+  cuenta_gen2_firma: "FIRMA DE MESA, mesa, 15 de septiembre de 2026 -- OBJETO: cuenta_gen2 = SI para toda corrida que este acto selle sobre spec congelada del mapa-19; no adopta al motor. (lanzamiento verbatim, forense/encargos/2026-09-15-GEN2-MEDICION-DEMANDA-2.md; fila propia en data/corrida0/decisiones.tsv, precedencia 1 del registro)"
+  version_spec: "v1.1 -- sucesora de CALC-HORIZONTE-VIA-DERIVADOS-0001 (intacta, SUPERADA por repite_de). Cambia el cableado que hacia inejecutable la v1_0 (sha reales, insumos desde sellados de corrida0, medidor.py, spec.md); transformacion y RESULT verbatim."
+  padre_verificado: "CORR-0009 AGOTADA 9/9 en este acto: CALC-TIENE-AHORROS-0001-v1_1 sellado (RESULT-TIENEAHORROS-A-P-TIENE = 0.6420795665818781, verify REPRODUCE x2) ANTES de congelar esta spec; su resultados.json entra como input por sha256."
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENIF-HORIZONTE-VIA-DERIVADOS-spec-v1_0.md
+  spec_sellada_sha256: 8c04222fb218fe928f92d63bb380e9a88b226217f050836ebdc32f00e88e8f43
+  demanda_que_releva: "CORR-0015 (7 RESULT, DERIVADOS peldano 3 de CORR-0009) -> COMPLETA: RES-0047, RES-0049, RES-0053, RES-0054, RES-0055, RES-0056, RES-0066. Condicion de encadenamiento (DEPENDE-DE-CORRIDA-PADRE) verificada cumplida: CORR-0009 quedo agotada en este mismo acto (ver spec.md §0)."
+  repite_de: "NINGUNO -- primer CALC sobre estos 7 RESULT. No repite CALC-ENIF-0001 ni CALC-ENIF-0002: LEE sus RESULT sellados como insumo, no los re-ejecuta."
+  por_que_no_es_duplicado: "Los 7 RESULT no tenian CALC propio (0 filas en data/corrida0/CALC-*/spec.yaml antes de este acto) -- el mapa-19 los marcaba BLOQUEADA/DEPENDE-DE-CORRIDA-PADRE, no EXISTE-SATISFACE."
+  reglas_bajo_prueba: "NINGUNA cambia de cifra. Las cuatro reglas consumidoras (dinero.ahorro.horizonte_corto, .horizonte_no_corto_con_seguridad_social, .via_informal, .horizonte_no_trabajadores) conservan sus valores ASIGNADOS/DERIVADOS legacy exactos. Este CALC les da cadena E.2."
+  firma_de_contador: "FIRMADA por el lanzamiento de ACTO GEN2-MEDICION-DEMANDA-2 (mesa, 15/sep/2026), verbatim en cuenta_gen2_firma; OBJETO = toda corrida que ese acto selle sobre spec congelada del mapa-19. La v1_0 decia NO-FIRMADA porque su encargo (GEN2-SPECS-DEMANDA-2) no traia OBJETO."
+  contaminacion_declarada: "ADR-46 -- al congelar, la sesion ya habia leido milpa/tramite.yaml:1062-1113 (horizonte_corto sin/con seguridad social), :1328-1353 (horizonte_no_trabajadores), :631-684 (tiene_ahorros con sensibilidades A_solo_formal/B_solo_informal), y data/corrida0/CALC-ENIF-0001/resultados.json + CALC-ENIF-0002/resultados.json completos. NO es ciega: leerlos es lo que permite verificar la condicion de encadenamiento de P3 antes de congelar."
+  medidor_ejecutado_al_congelar: "NO sobre los insumos reales: el medidor.py se congela en este COMMIT-1 probado SOLO contra JSON sinteticos (valores fabricados que cumplen la identidad; y un caso de insumo cambiado que dispara la guardia). El primer valor real lo produce corrida0 run en el COMMIT-2. Lo que la v1_0 declaraba: NO -- y el medidor tampoco se escribe aqui. Aunque esta derivacion es aritmetica pura (sin numpy/pandas/microdato, verificable en NUBE con la libreria estandar), el encargo de este acto declara en su propio perimetro CONTADOR: cero mediciones propias y no corre ningun CALC -- misma disciplina que CALC-L8-CONVERSION-0001, sin excepcion por facilidad tecnica. `corrida0.py preflight CALC-HORIZONTE-VIA-DERIVADOS-0001` reportara BLOQUEADO:script_ausente hasta que un acto posterior lo escriba y corra."
+
+inputs:
+  - id: IN-CALC-ENIF-0001-RESULTADOS
+    origen: repo
+    ruta: data/corrida0/CALC-ENIF-0001/resultados.json
+    sha256: 2a90c52e532e0c8f17ff87f31c70567f7810f337274f895f3a4623d08f4c57e6
+  - id: IN-CALC-ENIF-0002-RESULTADOS
+    origen: repo
+    ruta: data/corrida0/CALC-ENIF-0002/resultados.json
+    sha256: 2f9bdd564c9c460c2f775b9f1f08890e1c61414fca8222d33f400de051481dbb
+  - id: IN-CALC-TIENE-AHORROS-0001-V1-1-RESULTADOS
+    origen: repo
+    ruta: data/corrida0/CALC-TIENE-AHORROS-0001-v1_1/resultados.json
+    sha256: 5b5f231c676e070d7d12518151bf03d89f362f6cf3d2261752b57039a2baea7a
+  - id: IN-HORIZONTEVIA-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/ENIF-HORIZONTE-VIA-DERIVADOS-spec-v1_0.md
+    sha256: 8c04222fb218fe928f92d63bb380e9a88b226217f050836ebdc32f00e88e8f43
+  - id: IN-TIENEAHORROS-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/ENIF-TIENE-AHORROS-spec-v1_0.md
+    sha256: b2add081fff0abe02d60ac38bf9bb3ee08b151f24d7336a1d7344365c8fbf6a1
+
+variables:
+  - {archivo: "data/corrida0/CALC-ENIF-0001/resultados.json", variable: "RESULT-ENIF-AHO-A-P-CORTO-SIN-P", rol: "insumo -- horizonte_corto, trabaja sin seguridad social", codigos: "flotante tal cual (esperado 0.541343)"}
+  - {archivo: "data/corrida0/CALC-ENIF-0001/resultados.json", variable: "RESULT-ENIF-AHO-A-P-CORTO-CON-P", rol: "insumo -- horizonte_corto, trabaja con seguridad social", codigos: "flotante tal cual (esperado 0.373130)"}
+  - {archivo: "data/corrida0/CALC-ENIF-0002/resultados.json", variable: "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P", rol: "insumo -- horizonte_corto, no trabaja", codigos: "flotante tal cual (esperado 0.632782)"}
+  - {archivo: "data/corrida0/CALC-TIENE-AHORROS-0001-v1_1/resultados.json", variable: "RESULT-TIENEAHORROS-A-P-TIENE", rol: "insumo -- P(tiene ahorros) = tiene_ahorros_enif2024, sellado sin redondear (la v1_0 lo leia de milpa/tramite.yaml redondeado a 0.642080)", codigos: "flotante tal cual (esperado 0.642080 +- 1e-6)"}
+  - {archivo: "data/corrida0/CALC-TIENE-AHORROS-0001-v1_1/resultados.json", variable: "RESULT-TIENEAHORROS-A-P-NO-TIENE", rol: "insumo -- no_tiene_ahorros_enif2024, complemento CONTADO en el padre (no se re-cuenta aqui)", codigos: "flotante tal cual (esperado 0.357920 +- 1e-6)"}
+  - {archivo: "data/corrida0/CALC-ENIF-0001/resultados.json", variable: "RESULT-ENIF-AHO-B-P-FORMAL-P", rol: "insumo -- P(ahorra formal, total) = A_solo_formal (milpa/tramite.yaml:1214 cita este RESULT como su fuente)", codigos: "flotante tal cual (esperado 0.284927)"}
+  - {archivo: "data/corrida0/CALC-ENIF-0001/resultados.json", variable: "RESULT-ENIF-AHO-B-P-INFORMAL-P", rol: "insumo -- P(ahorra informal, total) = B_solo_informal (milpa/tramite.yaml:1215 cita este RESULT como su fuente)", codigos: "flotante tal cual (esperado 0.561920)"}
+
+universo: >-
+  No aplica universo de microdato propio: los 7 RESULT son funciones de
+  puntos ya medidos sobre sus propios universos (declarados en
+  CALC-ENIF-0001, CALC-ENIF-0002 y milpa/tramite.yaml respectivamente).
+
+filtros: "Ninguno. Guardia unica: si alguno de los 6 insumos de §variables cambia de valor respecto al declarado aqui, la corrida sale NO-ESTIMABLE-INSUMO-CAMBIO -- senal de que un CALC sellado se modifico, lo cual E.3 prohibe."
+
+ponderador: "No aplica -- sin microdato propio."
+
+transformacion: >-
+  Complemento simple: horizonte_no_corto_X = 1 - horizonte_corto_X, para
+  X en {sin_ss, con_ss, no_trabajadores}. Inclusion-exclusion sobre la
+  particion via_informal: ambas = A_solo_formal + B_solo_informal -
+  tiene_ahorros_enif2024; solo_formal = A_solo_formal - ambas;
+  solo_informal = B_solo_informal - ambas; no_ahorra =
+  no_tiene_ahorros_enif2024 (= 1 - tiene_ahorros_enif2024, ya contado en
+  CALC-TIENE-AHORROS-0001, no re-contado aqui). Guardia de identidad:
+  ambas + solo_formal + solo_informal + no_ahorra debe sumar 1 dentro de
+  tolerancia (A-SUMA-UNO-VIA); si no, NO-ESTIMABLE-PARTICION-INCONSISTENTE.
+
+estimando: >-
+  DESCRIPTIVO, sin incertidumbre nueva -- ningun RESULT lleva IC95 propio
+  (declararlo exigiria la covarianza entre las corridas originales, no
+  disponible sin re-correr un bootstrap conjunto; fuera de perimetro).
+  Verificacion de no-independencia declarada: P(F)*P(I) = 0.160096 !=
+  P(F∩I) = 0.204767 -- el dato real correlaciona mas que la independencia,
+  la formula usada es la identidad exacta de conjuntos, no una
+  aproximacion.
+
+dependencias_materiales: []
+
+parametros:
+  fuente_acto: "ACTO GEN2-SPECS-DEMANDA-2 · CALC-HORIZONTE-VIA-DERIVADOS-0001 · P3, encadenamiento de CORR-0015 a su padre CORR-0009"
+  firma_que_lo_autoriza: "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-2.md, P3: «CORR-0015 (DEPENDE-DE-CORRIDA-PADRE) se encadena a su padre con la condicion escrita». La condicion (CORR-0009 agotada) se escribe y se verifica en spec.md §0 de esta misma pieza, dentro del mismo acto que agota al padre."
+  identidad_verificada:
+    ambas: 0.204767
+    solo_formal: 0.080160
+    solo_informal: 0.357153
+    no_ahorra: 0.357920
+    suma: 1.000000
+  no_independencia: {p_f_veces_p_i: 0.160096, p_f_interseccion_p_i: 0.204767}
+  insumos_esperados:
+    RESULT-ENIF-AHO-A-P-CORTO-SIN-P: 0.541343
+    RESULT-ENIF-AHO-A-P-CORTO-CON-P: 0.373130
+    RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P: 0.632782
+    RESULT-TIENEAHORROS-A-P-TIENE: 0.642080
+    RESULT-TIENEAHORROS-A-P-NO-TIENE: 0.357920
+    RESULT-ENIF-AHO-B-P-FORMAL-P: 0.284927
+    RESULT-ENIF-AHO-B-P-INFORMAL-P: 0.561920
+  tolerancia_guardia_insumos: 1.0e-6
+
+seed:
+  aplica: false
+  valor: null
+  rng: null
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-6
+  razon: "Aritmetica exacta sobre floats ya redondeados a 6 decimales en milpa/ y en los resultados.json de origen; unica fuente de diferencia es redondeo de float64 en la resta/suma."
+
+resultados:
+  - {id: RESULT-HVD-A-HORIZONTE-NO-CORTO-SIN-SS, tipo: proporcion, unidad: "1 - RESULT-ENIF-AHO-A-P-CORTO-SIN-P -- releva RES-0047 (esperado 0.458657)"}
+  - {id: RESULT-HVD-A-HORIZONTE-NO-CORTO-CON-SS, tipo: proporcion, unidad: "1 - RESULT-ENIF-AHO-A-P-CORTO-CON-P -- releva RES-0049 (esperado 0.626870)"}
+  - {id: RESULT-HVD-A-HORIZONTE-NO-CORTO-NO-TRABAJA, tipo: proporcion, unidad: "1 - RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P -- releva RES-0066 (esperado 0.367218)"}
+  - {id: RESULT-HVD-A-AMBAS-VIAS, tipo: proporcion, unidad: "A_solo_formal + B_solo_informal - tiene_ahorros_enif2024 -- releva RES-0054 (esperado 0.204767)"}
+  - {id: RESULT-HVD-A-SOLO-FORMAL, tipo: proporcion, unidad: "A_solo_formal - AMBAS-VIAS -- releva RES-0055 (esperado 0.080160)"}
+  - {id: RESULT-HVD-A-SOLO-INFORMAL, tipo: proporcion, unidad: "B_solo_informal - AMBAS-VIAS -- releva RES-0053 (esperado 0.357153)"}
+  - {id: RESULT-HVD-A-NO-AHORRA, tipo: proporcion, unidad: "no_tiene_ahorros_enif2024, sin transformar -- releva RES-0056 (esperado 0.357920)"}
+  - {id: RESULT-HVD-A-SUMA-UNO-VIA, tipo: texto, unidad: "SI/NO:<residuo> -- AMBAS+SOLO-FORMAL+SOLO-INFORMAL+NO-AHORRA dentro de tolerancia"}
