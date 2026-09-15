@@ -9,7 +9,7 @@ Sobre la **FIRMA DE MESA del 15 de septiembre de 2026** (`D-1`…`D-5`), la **LE
 |---|---|---|
 | **P1** | corrida de registro que congele la tabla común, spec en dos capas, `B-bis` declarado, `COMMIT-1` + `COMMIT-2` | **HECHO.** `CALC-TRIADA-B-PISO-0001` sellado, `verify REPRODUCE`. Los cuatro `MAE` reproducen al centésimo lo que dirección verificó |
 | **P2** | lista corta de familias candidatas con los cuatro campos de la firma, auditada por exposición | **HECHO, Y NO ALCANZA.** 13 filas: 7 `RETENIDA`, 5 `EXPUESTA`, 1 `INDETERMINADA`. **Sólo 2 retenidas realistas para piloto**, no 6 |
-| **P3** | ruteo de `NC-0161/0162`, cierre de `NC-0152`/`0180`/`0187`, enmienda in situ de `FP-374` | **HECHO**, con una salvedad mecánica: la vista derivada de adquisición no se puede regenerar por un defecto **preexistente** (`NC-0218`) |
+| **P3** | ruteo de `NC-0161/0162`, cierre de `NC-0152`/`0180`/`0187`, enmienda in situ de `FP-374` | **HECHO**, con una salvedad mecánica: la vista derivada de adquisición no se puede regenerar por un defecto **preexistente** (`NC-0220`) |
 
 **El titular honesto:** el producto que decide `F6` dice que `F6` todavía no puede empezar. La lista nominal existe, está auditada y tiene nombres y citas — y precisamente por eso se puede afirmar, por primera vez con causa y no con un hueco, que **las 18 familias disjuntas que `FP-374` exige no existen hoy**.
 
@@ -128,7 +128,7 @@ Contra **cuatro** superficies, no tres: `milpa/` (qué fuentes calibraron reglas
 
 **`NC` abiertas: 60 → 58** (tres cerradas, una nueva).
 
-### 3.1 · `adq-demanda-activa`: bloqueada, luego desbloqueada por `main` (`NC-0218`, abierta y cerrada en el mismo acto)
+### 3.1 · `adq-demanda-activa`: bloqueada, luego desbloqueada por `main` (`NC-0220`, abierta y cerrada en el mismo acto)
 
 El JSON declara `"generado": true` y `"fuente": "forense/no-corrido.tsv"`. **Es derivado**, así que el ruteo se hizo en su fuente. Regenerarlo aborta:
 
@@ -143,7 +143,7 @@ KeyError: 'NC-0088'   —   tools/adq_investigacion.py:649
 | `NC-0161` | `DECISION_O_IMPLEMENTACION` · **`ESPERA_O_DELEGADA`** · resp. `FP-374` | `FUENTE_O_VARIABLE` · **`LISTA_SONDA`** · resp. `servicio-gen2-38` |
 | `NC-0162` | `DECISION_O_IMPLEMENTACION` · **`ESPERA_O_DELEGADA`** · resp. `FP-374` | `FUENTE_O_VARIABLE` · **`LISTA_SONDA`** · resp. `servicio-gen2-38` |
 
-Es decir: la fuente ya dice lo que debe decir y la proyección lo recogerá sola en cuanto el generador corra. Queda en `NC-0218`, con el agravante de que **cada cierre agranda el defecto** — este acto cerró tres más.
+Es decir: la fuente ya dice lo que debe decir y la proyección lo recogerá sola en cuanto el generador corra. Queda en `NC-0220`, con el agravante de que **cada cierre agranda el defecto** — este acto cerró tres más.
 
 **Y entonces `main` lo arregló.** Al resolver el conflicto de `PR #791` se trajo `origin/main`, que ya traía el trabajo de adquisición con **exactamente el guard diagnosticado**:
 
@@ -155,7 +155,7 @@ necesidades = [ident for ident in grupo.get("necesidades_nc", []) if ident in co
 
 El dueño del generador llegó a la misma corrección por su cuenta, que es la mejor prueba de que no tocaba arreglarlo desde aquí. Con eso **la proyección se regeneró y el ruteo quedó materializado, no sólo declarado en la fuente**: `NC-0161` y `NC-0162` salen ahora en `data/adq-demanda-activa-v1_0.json` con `estado_ruteo = LISTA_SONDA`, `etapa_faltante = FUENTE_O_VARIABLE` y `responsable = servicio-gen2-38`. `NC-0162` queda fuera de `seleccion_siguiente` sólo por *«lista, fuera del tope máximo=3»* — que es estar **en** la lista, no fuera de ella.
 
-El diff de la proyección toca 13 necesidades y las 13 se explican: las dos ruteadas, las tres que este acto cerró (`NC-0152`, `NC-0180`, `NC-0187`) que dejan de ser necesidad, y las siete de `GEN2-RELEVO-USOS-1` (`NC-0211`…`NC-0217`) cuya proyección en `main` era anterior a ellas. Ninguna se editó a mano. **`NC-0218` nació y murió dentro del mismo acto** y el perímetro queda completo.
+El diff de la proyección toca 13 necesidades y las 13 se explican: las dos ruteadas, las tres que este acto cerró (`NC-0152`, `NC-0180`, `NC-0187`) que dejan de ser necesidad, y las siete de `GEN2-RELEVO-USOS-1` (`NC-0211`…`NC-0217`) cuya proyección en `main` era anterior a ellas. Ninguna se editó a mano. **`NC-0220` nació y murió dentro del mismo acto** y el perímetro queda completo.
 
 ---
 
@@ -188,12 +188,23 @@ No lanzó llamadas · no abrió microdato · no adoptó nada al motor · no re-c
 
 **El perímetro queda completo.** `adq-demanda-activa` estuvo sin tocar mientras su generador estaba roto; al desbloquearse con `main` se regeneró, y las dos filas de ruteo que el encargo pedía están materializadas (§3.1).
 
-**Lo que este acto NO cubre, y no le tocaba:** `D-5` de la FIRMA DE MESA pide además **un documento del programa, breve y legible para un externo, con detalles en anexo, iniciado ahora y sin esperar al sello de D-A**. El encargo de este acto sólo recoge de `D-5` el cierre de `NC-0152`; el informe no aparece en `P1`/`P2`/`P3` ni en el perímetro. **Sigue pendiente y sin acto asignado.**
+**Lo que este acto NO cubre, y no le tocaba:** `D-5` de la FIRMA DE MESA pide además **un documento del programa, breve y legible para un externo, con detalles en anexo, iniciado ahora y sin esperar al sello de D-A**. El encargo de este acto sólo recoge de `D-5` el cierre de `NC-0152`; el informe no aparece en `P1`/`P2`/`P3` ni en el perímetro. No lo cubre este acto — pero **ya tiene dueño**: el segundo sync trajo `GEN2-INFORME-INTERNO-F5-1`, que es ese informe (§8).
 
 ---
 
 ## 8 · Cascada de renumeración y merge de `main` (`PR #791`)
 
-`GEN2-RELEVO-USOS-1` fusionó primero y tomó `NC-0211`…`NC-0217`. La fila de este acto, creada como `NC-0211`, **se renumera a `NC-0218`**; el lado de `main` queda intacto. Es la cascada de costumbre del programa, la misma que renumeró `ADR-504`→`ADR-507` y `NC-0186`→`NC-0190`.
+La fila de este acto se renumeró **dos veces**, y las dos por la misma razón: otro acto fusionó antes.
 
-El merge de `origin/main` (`eba9fd2`) trajo `RELEVO-USOS-1`, `ADQUISICION-CONTINUA-2` y `EVIDENCIA-HABILITACION`. **Conflicto único:** `forense/no-corrido.tsv`, y sólo por esa colisión de identificador. Las cinco filas que este acto tocó (`NC-0152`, `NC-0161`, `NC-0162`, `NC-0180`, `NC-0187`) sobrevivieron intactas, verificado tras el merge. `no-corrido.tsv`: 213 registros, sin identificadores duplicados.
+| sync | quién llegó primero | qué tomó | mi fila pasa a |
+|---|---|---|---|
+| 1º (`eba9fd2`) | `GEN2-RELEVO-USOS-1` | `NC-0211`…`NC-0217` | `NC-0211` → **`NC-0218`** |
+| 2º (`4acdae2`) | `GEN2-INFORME-INTERNO-F5-1` | `NC-0218`, `NC-0219` | `NC-0218` → **`NC-0220`** |
+
+En los dos casos el lado de `main` queda **intacto** y se mueve el mío. Es la cascada de costumbre del programa, la misma que renumeró `ADR-504`→`ADR-507` y `NC-0186`→`NC-0190`, y la misma que `GEN2-INFORME-INTERNO-F5-1` aplicó a su propia fila (`ff2e679`: «renumera ADR-514→515 y NC-0211/0212→0218/0219»).
+
+**Segundo sync — el otro choque, que no era de numeración.** `main` también cerró `NC-0152`, citando `#764` como mesa ordenó en `D-5`: la **misma decisión** que este acto, con otra redacción. No es un caso de «cada lado cambió la misma lógica»: los dos coinciden en `CERRADA`, misma fecha y misma cita. Se conserva **el texto de `main`**, que es el canónico y cita a mesa verbatim, y se le **anexa** la referencia cruzada de este acto — que consume el mismo residual desde el otro lado, dejando las dos celdas fuera de `U_COMUN` con razón nominal. Nada se pierde y nada se duplica.
+
+**Y una nota que cierra un pendiente de §7:** el acto que tomó `NC-0218`/`NC-0219` es `GEN2-INFORME-INTERNO-F5-1`. Es decir, **el informe del programa de `D-5` ya tiene acto asignado** y está en marcha; este acto lo dejó anotado como pendiente sin dueño y ese pendiente queda resuelto por otra vía.
+
+El primer merge de `origin/main` (`eba9fd2`) trajo `RELEVO-USOS-1`, `ADQUISICION-CONTINUA-2` y `EVIDENCIA-HABILITACION`; el segundo (`4acdae2`, 25 commits más) trajo `GEN2-INFORME-INTERNO-F5-1` y la investigación de ahorro. **Conflicto del primero:** `forense/no-corrido.tsv`, y sólo por esa colisión de identificador. Las cinco filas que este acto tocó (`NC-0152`, `NC-0161`, `NC-0162`, `NC-0180`, `NC-0187`) sobrevivieron intactas, verificado tras el merge. Tras el segundo: **215 registros, sin identificadores duplicados**, y las mismas cinco filas intactas.

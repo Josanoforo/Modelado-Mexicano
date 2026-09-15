@@ -1,14 +1,14 @@
 {
   "advertencia_suficiencia": "cero tareas elegibles sólo describe el selector; nunca acredita suficiencia general ni cierra necesidades",
   "contrato_cientifico_completo": 6,
-  "contrato_cientifico_incompleto": 46,
+  "contrato_cientifico_incompleto": 47,
   "contrato_completo": 6,
-  "contrato_incompleto": 46,
-  "contrato_minimo_derivado": 46,
+  "contrato_incompleto": 47,
+  "contrato_minimo_derivado": 47,
   "contrato_operativo_explicito_no_cientifico": 1,
   "contrato_operativo_no_cientifico": 14,
   "corte": "2026-09-15",
-  "descripcion_minima_derivada": 46,
+  "descripcion_minima_derivada": 47,
   "elementos_con_alcance_menor_disponible": 3,
   "elementos_con_brecha_abierta": 20,
   "elementos_gen2": [
@@ -16561,7 +16561,7 @@
     "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
     "data/curacion-registro/necesidad-objeto-modelo.tsv": "09062d3c7878651870ee429ce6cf6c86f73579b61916976718c8544209b20981",
     "data/curacion-registro/utilidad-modelo.tsv": "ed9b4055bdbe6d7963570df7a1e57c4ba8ab05319ab96a30cd972cf291003de2",
-    "forense/no-corrido.tsv": "c1ef486bca851b84ec1ed97ba26a3b7a3051807d8d647ccb9278d29d0dda8755",
+    "forense/no-corrido.tsv": "b0f07b7f230c17cc589f7d2c64f0608de9d16f60d1aa44e30e1b0e807307983a",
     "forense/prereg-duelo-v2/codificacion-R-v1_2.tsv": "41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e",
     "forense/prereg-duelo-v2/universo-triada-v1_4.tsv": "840fc68ce7261686426221effbf9df313ef17e2876fa6345b3c00589bab80f80"
   },
@@ -16577,7 +16577,7 @@
       "consumidor": "dinero.ahorro / tres consumidores GEN2 de horizonte",
       "contrato_cientifico_completo": true,
       "contrato_operativo": "COMPLETO_CIENTIFICO_EXPLICITO",
-      "cursor_continuacion": "Localizar cuestionario o catálogo de variables público del MEX_2012_FCS y comprobar secuencia tenencia positiva -> meses/días financiables sólo con ese ahorro; no repetir familias ni consultas agotadas. Tras otro ciclo sin avance, presentar relabel acotado de #772 a mesa sin decidirlo.",
+      "cursor_continuacion": "Examinar archivos web públicos de CNBV/CONDUSEF y un repositorio académico mexicano no recorrido, sin repetir el buscador exacto del Banco Mundial ni ENIF, EACF, ENSAFI, Findex, ENFIH o IIEG. Alternativa para mesa tras dos ciclos: relabel acotado de #772, sin decidirlo.",
       "estado_ruteo": "LISTA_SONDA",
       "etapa_faltante": "FUENTE_O_VARIABLE",
       "evidencia_disponible": "P4_10 de ENIF 2024 mezcla menos de una semana y no tiene ahorros; #772 autoriza únicamente el corte acotado, no horizonte puro",
@@ -16586,7 +16586,7 @@
         "data/corrida0/usos.tsv#RES-0046",
         "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md"
       ],
-      "frontera": "Cuestionario y catálogo variable-por-variable del MEX_2012_FCS si aparecen en otro repositorio público; encuestas estatales distintas de IIEG y módulos académicos mexicanos no indexados; fuera login, compra y contacto.",
+      "frontera": "Archivos web públicos de CNBV/CONDUSEF o repositorios institucionales que pudieran conservar el cuestionario no indexado; encuestas estatales distintas de IIEG; módulos académicos mexicanos con catálogo de variables; fuera login, compra y contacto.",
       "id": "DEM-AHORRO-STOCK-DURACION-01",
       "investigacion_previa": "ENIF, EACF, ENSAFI, Findex, ENFIH e IIEG Jalisco examinados; no volver a descargar los tres XLSX IIEG",
       "motivo_ruteo": "contrato explícito vigente",
@@ -18887,152 +18887,80 @@
     {
       "antecedentes_nc": [],
       "aplica_contrato_cientifico": true,
-      "brecha": "regenerar la proyeccion derivada data/adq-demanda-activa-v1_0.json para que NC-0161 y NC-0162 salgan de estado_ruteo=ESPERA_O_DELEGADA",
+      "brecha": "incorporar al informe el sello de D-A (la comparacion descriptiva de 9 celdas comunes registrada como corrida de registro, D2 de la firma del 15/sep)",
       "condicion_reapertura": null,
-      "consumidor": "GEN2-F5-CIERRE-Y-PANEL-1/P3 -- reflejar el ruteo de NC-0161/0162 en data/adq-demanda-activa-v1_0.json",
+      "consumidor": "GEN2-INFORME-INTERNO-F5-1/incorpora el sello de D-A cuando exista, sin esperarlo",
       "contrato_cientifico_completo": false,
       "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
       "cursor_continuacion": null,
-      "estado_ruteo": "NO_SONDA",
-      "etapa_faltante": "DECISION_CIENTIFICA",
-      "evidencia_disponible": "NINGUNO sobre el ruteo en si: la fuente de verdad es forense/no-corrido.tsv (el propio JSON declara \"generado\": true y \"fuente\": \"forense/no-corrido.tsv\"), y ahi NC-0161 y NC-0162 YA quedaron ruteadas por este acto: razon=ADQUISICION-DIRIGIDA-AUTORIZADA-CON-RESERVA-PREVIA y sucesor con la accion acotada y nominal. Lo unico pendiente es que la vista derivada lo refleje, y lo hara sola en la primera proyeccion que corra. ESO YA NO ES UN SUPUESTO: se simulo el ruteador sobre las filas reales importando tools/adq_investigacion.py y llamando _etapa_faltante / _ruteo_automatico / _responsable sobre NC-0161 y NC-0162, antes (git show HEAD~1) y despues. ANTES: etapa=DECISION_O_IMPLEMENTACION, ruteo=ESPERA_O_DELEGADA, responsable=FP-374, motivo 'precedencia explicita impide reactivacion automatica'. DESPUES: etapa=FUENTE_O_VARIABLE, ruteo=LISTA_SONDA, responsable=servicio-gen2-38, motivo 'brecha de datos explicita sin compuerta posterior'. Las dos filas, identico. El ruteo esta hecho y es correcto en la fuente; lo unico roto es la proyeccion. El JSON queda SIN TOCAR a proposito: editar a mano un artefacto generado fabricaria un estado que ningun generador derivo, que es justo lo que el encargo evita al decir que el ruteo se coordina por la tabla y no editando la cola. Ademas, cada NC que se cierre agranda el defecto: este acto cerro tres mas (NC-0152, NC-0180, NC-0187).",
+      "estado_ruteo": "ESPERA_O_DELEGADA",
+      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
+      "evidencia_disponible": "canon/informe-programa-v1_0-ANEXO.md §A.3 entrega la tabla de 9 celdas como DERIVACION PROPIA con procedencia declarada y control positivo (recalculada sobre 10 celdas reproduce 0.9229/4.3073/11.9400/21.3226 de B-MARCO §3 al cuarto decimal), NO como el sello. Ninguna cifra cambia cuando D-A selle; lo que cambia es la procedencia. D-A verificado AUSENTE con universo (git ls-remote --heads origin sobre 1 remoto = 0 coincidencias; ls forense/encargos/ sobre 336 archivos = 0). Ningun contador se mueve por esta fila.",
       "evidencias": [
         "forense/no-corrido.tsv#NC-0218"
       ],
-      "frontera": "NINGUNO sobre el ruteo en si: la fuente de verdad es forense/no-corrido.tsv (el propio JSON declara \"generado\": true y \"fuente\": \"forense/no-corrido.tsv\"), y ahi NC-0161 y NC-0162 YA quedaron ruteadas por este acto: razon=ADQUISICION-DIRIGIDA-AUTORIZADA-CON-RESERVA-PREVIA y sucesor con la accion acotada y nominal. Lo unico pendiente es que la vista derivada lo refleje, y lo hara sola en la primera proyeccion que corra. ESO YA NO ES UN SUPUESTO: se simulo el ruteador sobre las filas reales importando tools/adq_investigacion.py y llamando _etapa_faltante / _ruteo_automatico / _responsable sobre NC-0161 y NC-0162, antes (git show HEAD~1) y despues. ANTES: etapa=DECISION_O_IMPLEMENTACION, ruteo=ESPERA_O_DELEGADA, responsable=FP-374, motivo 'precedencia explicita impide reactivacion automatica'. DESPUES: etapa=FUENTE_O_VARIABLE, ruteo=LISTA_SONDA, responsable=servicio-gen2-38, motivo 'brecha de datos explicita sin compuerta posterior'. Las dos filas, identico. El ruteo esta hecho y es correcto en la fuente; lo unico roto es la proyeccion. El JSON queda SIN TOCAR a proposito: editar a mano un artefacto generado fabricaria un estado que ningun generador derivo, que es justo lo que el encargo evita al decir que el ruteo se coordina por la tabla y no editando la cola. Ademas, cada NC que se cierre agranda el defecto: este acto cerro tres mas (NC-0152, NC-0180, NC-0187).",
+      "frontera": "canon/informe-programa-v1_0-ANEXO.md §A.3 entrega la tabla de 9 celdas como DERIVACION PROPIA con procedencia declarada y control positivo (recalculada sobre 10 celdas reproduce 0.9229/4.3073/11.9400/21.3226 de B-MARCO §3 al cuarto decimal), NO como el sello. Ninguna cifra cambia cuando D-A selle; lo que cambia es la procedencia. D-A verificado AUSENTE con universo (git ls-remote --heads origin sobre 1 remoto = 0 coincidencias; ls forense/encargos/ sobre 336 archivos = 0). Ningun contador se mueve por esta fila.",
       "id": "NC-0218",
-      "investigacion_previa": "DEFECTO-PREEXISTENTE-EN-EL-GENERADOR. `python3 tools/adq_investigacion.py --escribe-proyeccion ...` aborta con KeyError: 'NC-0088' en tools/adq_investigacion.py:649 (`etapa = contratos[ident].get(\"etapa_faltante\")`). `contratos` se arma solo con NC ABIERTAS, pero el bucle recorre `necesidades`, que todavia referencia NC ya cerradas. NC-0088 la cerro ACTO GEN2-FIRMAS-MESA-1 (PR #785) el mismo 15/sep/2026. VERIFICADO QUE ES PREEXISTENTE Y NO LO CAUSA ESTE ACTO: el mismo comando aborta con el mismo KeyError sobre el arbol sin los cambios de este acto (probado con `git stash`). El defecto NO se arregla aqui: tools/adq_investigacion.py esta fuera del perimetro declarado, lo comparte el servicio adq concurrente, y un `.get(ident, {})` cambiaria la etapa proyectada de TODAS las filas, no solo de las dos.",
-      "motivo_ruteo": "etapa vigente DECISION_CIENTIFICA; no corresponde investigación externa",
+      "investigacion_previa": "DIFERIDO-A: ACTO D-A",
+      "motivo_ruteo": "precedencia explícita impide reactivación automática",
       "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
-      "opciones_decision": [
-        "MANTENER_ESTADO_VIGENTE",
-        "APROBAR_SIGUIENTE_ACCION_DESCRITA",
-        "DESCARTAR_O_DIFERIR_CON_CAUSA"
-      ],
+      "opciones_decision": [],
       "origen_demanda": "NC_ABIERTA",
       "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
-      "pregunta": "regenerar la proyeccion derivada data/adq-demanda-activa-v1_0.json para que NC-0161 y NC-0162 salgan de estado_ruteo=ESPERA_O_DELEGADA",
+      "pregunta": "incorporar al informe el sello de D-A (la comparacion descriptiva de 9 celdas comunes registrada como corrida de registro, D2 de la firma del 15/sep)",
       "prioridad": 60,
-      "responsable": "mesa",
-      "siguiente_accion": "servicio adq / duenio de tools/adq_investigacion.py: tolerar identificadores de NC ya cerradas en el bucle de necesidades (linea 649) y volver a proyectar",
+      "responsable": "ACTO D-A (D2 de la firma de mesa 15/sep/2026): al sellar, §A.3 queda VENCIDA EN ALCANCE y se RE-SELLA contra el universo nuevo -- nunca editando la tabla actual (A.10 corolario 1)",
+      "siguiente_accion": "ACTO D-A (D2 de la firma de mesa 15/sep/2026): al sellar, §A.3 queda VENCIDA EN ALCANCE y se RE-SELLA contra el universo nuevo -- nunca editando la tabla actual (A.10 corolario 1)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
-      "variables": "regenerar la proyeccion derivada data/adq-demanda-activa-v1_0.json para que NC-0161 y NC-0162 salgan de estado_ruteo=ESPERA_O_DELEGADA",
-      "version_pregunta": "AUTO-NC-v1-943110c930c1"
+      "variables": "incorporar al informe el sello de D-A (la comparacion descriptiva de 9 celdas comunes registrada como corrida de registro, D2 de la firma del 15/sep)",
+      "version_pregunta": "AUTO-NC-v1-99a780d977fc"
+    },
+    {
+      "antecedentes_nc": [],
+      "aplica_contrato_cientifico": true,
+      "brecha": "archivar verbatim, con cabecera de procedencia, los dos documentos de mesa sobre los que la FIRMA DE MESA del 15/sep se pronuncia",
+      "condicion_reapertura": null,
+      "consumidor": "GEN2-INFORME-INTERNO-F5-1/la LECTURA ESTRATEGICA F5 v1.1 y el adversarial de Astra que la firma de mesa cita",
+      "contrato_cientifico_completo": false,
+      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+      "cursor_continuacion": null,
+      "estado_ruteo": "ESPERA_O_DELEGADA",
+      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
+      "evidencia_disponible": "NO LLEGARON: no venian en el mensaje que lanzo el acto y no existen en el arbol (grep -rl \"LECTURA ESTRAT\" sobre canon/ + forense/, 2174 archivos examinados, 0 coincidencias; las notas *-astra.md del arbol son OTRAS, de 8-9/sep). El informe NO los reconstruye ni los cita como leidos: un texto verbatim no se rehace de parafrasis -- escribirlo seria fabricar la procedencia que el paso existe para asentar (mismo criterio que NC-0082 y NC-0134, ambas CERRADAS al recibir el texto despues). Consecuencia acotada y declarada en §7 del informe: la tabla de §A.3 tiene procedencia de derivacion propia y no de la lectura. Ninguna cifra del informe depende de esos dos documentos.",
+      "evidencias": [
+        "forense/no-corrido.tsv#NC-0219"
+      ],
+      "frontera": "NO LLEGARON: no venian en el mensaje que lanzo el acto y no existen en el arbol (grep -rl \"LECTURA ESTRAT\" sobre canon/ + forense/, 2174 archivos examinados, 0 coincidencias; las notas *-astra.md del arbol son OTRAS, de 8-9/sep). El informe NO los reconstruye ni los cita como leidos: un texto verbatim no se rehace de parafrasis -- escribirlo seria fabricar la procedencia que el paso existe para asentar (mismo criterio que NC-0082 y NC-0134, ambas CERRADAS al recibir el texto despues). Consecuencia acotada y declarada en §7 del informe: la tabla de §A.3 tiene procedencia de derivacion propia y no de la lectura. Ninguna cifra del informe depende de esos dos documentos.",
+      "id": "NC-0219",
+      "investigacion_previa": "PARO-PREMISA",
+      "motivo_ruteo": "precedencia explícita impide reactivación automática",
+      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+      "opciones_decision": [],
+      "origen_demanda": "NC_ABIERTA",
+      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+      "pregunta": "archivar verbatim, con cabecera de procedencia, los dos documentos de mesa sobre los que la FIRMA DE MESA del 15/sep se pronuncia",
+      "prioridad": 60,
+      "responsable": "mesa o direccion pega el texto verbatim y un acto de tramite lo commitea en forense/notas/ con cabecera de procedencia y sha256 re-derivado",
+      "siguiente_accion": "mesa o direccion pega el texto verbatim y un acto de tramite lo commitea en forense/notas/ con cabecera de procedencia y sha256 re-derivado; precedente exacto: NC-0082 (PR posterior, sha256 MATCH) y NC-0134 (PR #671)",
+      "suficiencia": null,
+      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+      "variables": "archivar verbatim, con cabecera de procedencia, los dos documentos de mesa sobre los que la FIRMA DE MESA del 15/sep se pronuncia",
+      "version_pregunta": "AUTO-NC-v1-1efa9c2c8687"
     }
   ],
   "seleccion_siguiente": {
     "corte": "2026-09-15",
-    "demanda_activa_total": 65,
-    "demanda_con_contrato_operativo": 66,
+    "demanda_activa_total": 66,
+    "demanda_con_contrato_operativo": 67,
     "demanda_configurada": 7,
-    "demanda_vigente_total": 66,
+    "demanda_vigente_total": 67,
     "demandas_independientes_vigentes": 1,
     "elegidos": [
-      {
-        "antecedentes_nc": [
-          "NC-0126"
-        ],
-        "aplica_contrato_cientifico": true,
-        "asignacion": "servicio-gen2-38",
-        "bloqueo_material": 3,
-        "brecha": "los tres consumidores siguen rotulados como horizonte_corto y no pueden usar P4_10 como horizonte puro",
-        "consumidor": "dinero.ahorro / tres consumidores GEN2 de horizonte",
-        "consumidores_consulta": [
-          "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto",
-          "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto",
-          "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto"
-        ],
-        "contrato_cientifico_completo": true,
-        "contrato_operativo": "COMPLETO_CIENTIFICO_EXPLICITO",
-        "estado_previo": {
-          "alternativa_requerida": false,
-          "alternativas": [],
-          "ciclos_sin_avance": 1,
-          "continuacion_pendiente": true,
-          "cursor_continuacion": "Localizar cuestionario o catálogo de variables público del MEX_2012_FCS y comprobar secuencia tenencia positiva -> meses/días financiables sólo con ese ahorro; no repetir familias ni consultas agotadas. Tras otro ciclo sin avance, presentar relabel acotado de #772 a mesa sin decidirlo.",
-          "estado": "continua",
-          "evidencias": [
-            "forense/notas/2026-09-15-GEN2-38-DEM-AHORRO-STOCK-DURACION-01.md"
-          ],
-          "frontera_no_examinada": "Cuestionario y catálogo variable-por-variable del MEX_2012_FCS si aparecen en otro repositorio público; encuestas estatales distintas de IIEG y módulos académicos mexicanos no indexados; fuera login, compra y contacto.",
-          "necesidad_id": "DEM-AHORRO-STOCK-DURACION-01",
-          "proxima_revision": "2026-09-15",
-          "reprogramaciones": [
-            {
-              "fecha_decision": "2026-09-15",
-              "fecha_efectiva": "2026-09-15",
-              "motivo": "continuacion anticipada y unica autorizada por ACTO GEN2-ADQUISICION-CONTINUA-2 dentro del remanente acreditado; conserva NC-0126 cerrada y la version de pregunta vigente"
-            }
-          ],
-          "suficiencia": {
-            "conceptual": "NO_ACREDITADA",
-            "diseno": "ACREDITADA",
-            "identidad": "PARCIAL",
-            "identificacion": "NO_APLICA",
-            "poblacional": "ACREDITADA",
-            "pregunta_original": "ABIERTA",
-            "seleccion_no_respuesta": "ACREDITADA",
-            "temporalidad": "PARCIAL",
-            "unidad": "ACREDITADA",
-            "uso_habilitado": "INCOMPATIBLE"
-          },
-          "ultima_exploracion": "2026-09-15",
-          "version_pregunta": "2026-09-15-stock-ausencia-y-duracion-separados-v1"
-        },
-        "estado_ruteo": "LISTA_SONDA",
-        "estado_ruteo_declarado": "LISTA_SONDA",
-        "etapa_faltante": "FUENTE_O_VARIABLE",
-        "evidencia_disponible": "P4_10 de ENIF 2024 mezcla menos de una semana y no tiene ahorros; #772 autoriza únicamente el corte acotado, no horizonte puro",
-        "evidencias_guardia": [
-          "forense/no-corrido.tsv#NC-0126",
-          "data/corrida0/usos.tsv#RES-0046",
-          "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md"
-        ],
-        "frontera_previa": "encuestas públicas mexicanas nacionales o subnacionales, módulos académicos y descriptores que separen stock/ausencia de duración",
-        "id": "DEM-AHORRO-STOCK-DURACION-01",
-        "impacto_canonico": "los tres consumidores siguen rotulados como horizonte_corto y no pueden usar P4_10 como horizonte puro",
-        "investigacion_previa": "ENIF, EACF, ENSAFI, Findex, ENFIH e IIEG Jalisco examinados; no volver a descargar los tres XLSX IIEG",
-        "lista": true,
-        "modos": [
-          "CONSTRUCTO",
-          "HERMANAS",
-          "LATERAL"
-        ],
-        "motivo_ruteo": "contrato explícito vigente",
-        "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
-        "opciones_decision": [
-          "MANTENER_BLOQUEO_Y_CONTINUAR_INSTRUMENTO",
-          "RELABEL_USO_ACOTADO_AUTORIZADO_POR_772",
-          "APROBAR_PROXY_NUEVO_CON_ALCANCE_EXPLICITO"
-        ],
-        "origen_demanda": "CONSUMIDOR_Y_USO",
-        "periodo": "vigente o comparable con ENIF 2024; no inventar equivalencia temporal",
-        "poblacion": "personas adultas en México; desagregaciones sólo si el instrumento las acredita",
-        "pregunta": "¿Existe un instrumento público mexicano que observe por separado tenencia/ausencia de ahorro y duración suficiente del stock?",
-        "prioridad_consumidor": 4,
-        "responsable": "servicio-gen2-38",
-        "siguiente_accion": "examinar una ruta pública no agotada; si no existe candidata material, proponer relabel del uso acotado de #772 o decisión humana explícita",
-        "suficiencia_actual": {
-          "conceptual": "NO_ACREDITADA",
-          "diseno": "ACREDITADA",
-          "identidad": "ACREDITADA",
-          "identificacion": "NO_APLICA",
-          "poblacional": "ACREDITADA",
-          "pregunta_original": "ABIERTA",
-          "seleccion_no_respuesta": "ACREDITADA",
-          "temporalidad": "ACREDITADA",
-          "unidad": "ACREDITADA",
-          "uso_habilitado": "INCOMPATIBLE"
-        },
-        "unidad": "persona",
-        "uso": "mejora descriptiva; no autoriza el antiguo horizonte puro",
-        "variables": "indicador de tenencia/stock de ahorro y duración/cobertura del mismo stock en campos separados; ponderador y diseño si existen",
-        "version_pregunta": "2026-09-15-stock-ausencia-y-duracion-separados-v1",
-        "vigente": true
-      },
       {
         "antecedentes_nc": [],
         "aplica_contrato_cientifico": true,
@@ -19121,6 +19049,44 @@
         "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
         "variables": "Diseno de conjunto realmente reservado entregado; piloto y confirmacion no ejecutados.",
         "version_pregunta": "AUTO-NC-v1-4ddf510d939f"
+      },
+      {
+        "antecedentes_nc": [],
+        "aplica_contrato_cientifico": true,
+        "asignacion": "servicio-gen2-38",
+        "bloqueo_material": 1,
+        "brecha": "Integrar 17 y el snapshot de 18 antes de evaluar un M renovado.",
+        "consumidor": "GEN2-EVALUACION-SIN-FUGAS/Evaluacion de un M renovado",
+        "contrato_cientifico_completo": false,
+        "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+        "estado_previo": {},
+        "estado_ruteo": "LISTA_SONDA",
+        "estado_ruteo_declarado": "LISTA_SONDA",
+        "etapa_faltante": "FUENTE_O_VARIABLE",
+        "evidencia_disponible": "El reanalisis usa solo el snapshot historico y no emite veredicto sobre un M renovado.",
+        "frontera_previa": "El reanalisis usa solo el snapshot historico y no emite veredicto sobre un M renovado.",
+        "id": "NC-0162",
+        "impacto_canonico": "El reanalisis usa solo el snapshot historico y no emite veredicto sobre un M renovado.",
+        "investigacion_previa": "ADQUISICION-DIRIGIDA-AUTORIZADA-CON-RESERVA-PREVIA",
+        "modos": [
+          "CONSTRUCTO",
+          "HERMANAS",
+          "LATERAL"
+        ],
+        "motivo_ruteo": "brecha de datos explícita sin compuerta posterior",
+        "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+        "opciones_decision": [],
+        "origen_demanda": "NC_ABIERTA",
+        "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+        "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+        "pregunta": "Integrar 17 y el snapshot de 18 antes de evaluar un M renovado.",
+        "prioridad_consumidor": 60,
+        "responsable": "servicio-gen2-38",
+        "siguiente_accion": "Mesa resolvio el 15/sep/2026 (D-4): se autoriza preparacion y adquisicion dirigida de familias RETENIDAS con reserva previa, y sacar esta fila de espera es CONSECUENCIA de la lista nominal, no sustituto de ella. La lista existe y es forense/prereg-duelo-v2/F5-panel-candidatos-v1_1.tsv (13 filas: 7 RETENIDA, 5 EXPUESTA, 1 INDETERMINADA), auditada contra milpa/, el corpus de L y traza-motor.tsv. RESULTADO QUE NO SE MAQUILLA: solo 2 de las 7 retenidas son realistas para piloto (R01-MOCIBA, y R02-WBES condicionada a que mesa firme un cambio de unidad persona->establecimiento), muy lejos de las 6 piloto + 12 confirmatorias que exige FP-374. SIGUIENTE ACCION, ACOTADA: la evaluacion de un M renovado sigue sin conjunto reservado suficiente, y ahora con causa nominal en vez de con un hueco. No se integra 17 ni el snapshot de 18 contra familias EXPUESTAS: la auditoria de exposicion descalifico ENGASTO (milpa/procedencia.yaml:1434), ENASEM (milpa/tramite-ola5-propuesta-v0.yaml:2465), ICPSR 35024 Mexico Panel (milpa/tramite-ola5-propuesta-v0.yaml:2842-2866) y ENVE (el corpus de L cita su cifra negra de 2024), ademas del bloque de 19 familias con huella en milpa o en el corpus. Queda en espera de que NC-0161 entregue al menos una familia retenida con reactivo confirmado; mientras tanto no se evalua ningun M renovado y no se abre F6.",
+        "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+        "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+        "variables": "Integrar 17 y el snapshot de 18 antes de evaluar un M renovado.",
+        "version_pregunta": "AUTO-NC-v1-32c70b700f7f"
       }
     ],
     "excluidos": [
@@ -19370,18 +19336,22 @@
       },
       {
         "id": "NC-0218",
-        "razon": "ruteo=NO_SONDA: etapa vigente DECISION_CIENTIFICA; no corresponde investigación externa; responsable=mesa; siguiente=servicio adq / duenio de tools/adq_investigacion.py: tolerar identificadores de NC ya cerradas en el bucle de necesidades (linea 649) y volver a proyectar"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=ACTO D-A (D2 de la firma de mesa 15/sep/2026): al sellar, §A.3 queda VENCIDA EN ALCANCE y se RE-SELLA contra el universo nuevo -- nunca editando la tabla actual (A.10 corolario 1); siguiente=ACTO D-A (D2 de la firma de mesa 15/sep/2026): al sellar, §A.3 queda VENCIDA EN ALCANCE y se RE-SELLA contra el universo nuevo -- nunca editando la tabla actual (A.10 corolario 1)"
       },
       {
-        "id": "NC-0162",
-        "razon": "lista, fuera del tope maximo=3"
+        "id": "NC-0219",
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa o direccion pega el texto verbatim y un acto de tramite lo commitea en forense/notas/ con cabecera de procedencia y sha256 re-derivado; siguiente=mesa o direccion pega el texto verbatim y un acto de tramite lo commitea en forense/notas/ con cabecera de procedencia y sha256 re-derivado; precedente exacto: NC-0082 (PR posterior, sha256 MATCH) y NC-0134 (PR #671)"
+      },
+      {
+        "id": "DEM-AHORRO-STOCK-DURACION-01",
+        "razon": "revisión no vence hasta 2026-09-16"
       }
     ],
     "maximo": 3,
     "version": "GEN2-ADQ-INVESTIGACION-V1"
   },
-  "sha256_fuente": "c1ef486bca851b84ec1ed97ba26a3b7a3051807d8d647ccb9278d29d0dda8755",
-  "sha256_insumos_demanda": "c1200ee6ec93b24a16816b3392533dfcccfb5d745f9a85f511b722c88790f313",
+  "sha256_fuente": "b0f07b7f230c17cc589f7d2c64f0608de9d16f60d1aa44e30e1b0e807307983a",
+  "sha256_insumos_demanda": "39db19220f7ce822c3c91f90fff53b8e9842b7295f625eaa8f8ecad716d873df",
   "situaciones_elementos": {
     "CUBIERTA": 9,
     "EVALUACION_GEN2_DISPONIBLE": 70,
@@ -19392,8 +19362,8 @@
     "PENDIENTE_DECISION_CIENTIFICA": 49,
     "PENDIENTE_PREPARACION": 67
   },
-  "total_activas": 66,
+  "total_activas": 67,
   "total_demandas_independientes": 1,
-  "total_nc_abiertas": 65,
+  "total_nc_abiertas": 66,
   "version": "GEN2-ADQ-INVESTIGACION-V1"
 }
