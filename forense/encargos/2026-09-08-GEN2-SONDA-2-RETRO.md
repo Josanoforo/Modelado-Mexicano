@@ -1,4 +1,4 @@
-ENCARGO-ORIGINAL-NO-RECUPERADO — redactado en conversación externa (ChatGPT), procedencia tipo (3) de v2.1: reportado, no verificado. Este expediente ficha el ACTO, no reconstruye el encargo.
+RECUPERADO 15/sep/2026 — el encargo original fue rescatado por mesa de su conversación ChatGPT de origen y archivado, verbatim, en `forense/encargos/2026-09-08-GEN2-SONDA-2-OPERACIONALIZA-SONDA-LATERAL.md` (ACTO GEN2-SANEA-REGISTRO-Y-RESCATE, cierra NC-0054). Procedencia tipo (3) de v2.1 originalmente: reportado, no verificado; hoy verificado por dirección contra los SHAs declarados. Este expediente ficha el ACTO, no reconstruye el encargo.
 
 # ACTO GEN2-RETRO-SELLO-SONDA-2 · FICHA-PR632-HACIA-ATRAS
 
