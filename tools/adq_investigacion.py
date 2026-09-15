@@ -597,8 +597,47 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
             consumidor, cfg, raiz,
             resultado_id=resultado_id or None,
             uso_solicitado=uso.get("uso_solicitado") or None)
+        usos_alcance_menor = []
+        # Los vínculos de uso pueden sobrevivir al cierre histórico de una NC
+        # (p. ej. NC-0126); se leen del registro configurado completo, no sólo
+        # de la selección de investigación vigente.
+        for contrato in cfg.get("necesidades", []):
+            for vinculo_menor in contrato.get("vinculos_alcance_menor", []):
+                if not all((
+                    vinculo_menor.get("consumidor") == consumidor,
+                    vinculo_menor.get("resultado_bloqueado_id") == resultado_id,
+                )):
+                    continue
+                uso_menor = vinculo_menor.get("uso_menor")
+                guardia_menor = adq_suficiencia.proyecta_consumidor(
+                    consumidor, cfg, raiz,
+                    resultado_id=resultado_id or None,
+                    uso_solicitado=uso_menor)
+                usos_alcance_menor.append({
+                    "uso": uso_menor,
+                    "categoria": vinculo_menor.get("categoria"),
+                    "evento": vinculo_menor.get("evento"),
+                    "transformacion": vinculo_menor.get("transformacion"),
+                    "limites": vinculo_menor.get("limites"),
+                    "disponible_hoy": bool(
+                        guardia_menor and guardia_menor[
+                            "accion_consumidor"] ==
+                        "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO"),
+                    "guardia": ({
+                        "necesidad_id": guardia_menor["necesidad_id"],
+                        "estado_efectivo": guardia_menor["estado_efectivo"],
+                        "accion_consumidor": guardia_menor[
+                            "accion_consumidor"],
+                        "motivo": guardia_menor["motivo_bloqueo"],
+                    } if guardia_menor else None),
+                })
         grupo = conciliacion.get(uso["resultado_id"], {})
-        necesidades = list(grupo.get("necesidades_nc", []))
+        # La conciliación conserva referencias históricas aunque una NC cierre.
+        # Sólo los contratos todavía vigentes entran a faltantes y ruteo.
+        necesidades = [
+            ident for ident in grupo.get("necesidades_nc", [])
+            if ident in contratos
+        ]
         for ident, contrato in contratos.items():
             por_consumidor = consumidor in contrato.get("consumidores_consulta", [])
             por_regla = regla in contrato.get("reglas_motor", [])
@@ -759,6 +798,7 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
                 "accion_consumidor": guardia["accion_consumidor"],
                 "motivo": guardia["motivo_bloqueo"],
             } if guardia else None),
+            "usos_alcance_menor": usos_alcance_menor,
             "medicion_disponible_hoy": bool(
                 grupo.get("medicion_disponible_hoy", adoptada and
                           not (uso.get("tipo_uso") or "").startswith("celda_"))),
@@ -898,6 +938,9 @@ def proyecta_demanda(cfg: dict, corte: dt.date, raiz: Path = RAIZ) -> dict:
         "elementos_gen2_vigentes_total": len(elementos),
         "elementos_con_brecha_abierta": sum(
             bool(x["necesidades_nc_abiertas"]) for x in elementos),
+        "elementos_con_alcance_menor_disponible": sum(
+            any(u["disponible_hoy"] for u in x["usos_alcance_menor"])
+            for x in elementos),
         "situaciones_elementos": {
             estado: sum(x["situacion"] == estado for x in elementos)
             for estado in sorted({x["situacion"] for x in elementos})
