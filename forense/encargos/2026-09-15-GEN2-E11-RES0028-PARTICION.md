@@ -54,3 +54,10 @@ Aceptación: ficha sucesora con partición completa y uso concreto propuesto, fi
 ## Prompt de lanzamiento
 
 > Ejecuta el encargo E11 sobre `RES-0028`/`NC-0085`. La reconstrucción de partición/universo ya existe en `forense/notas/2026-09-10-GEN2-MOTOR-USOS-Y-COMPLEMENTOS-cierre.md` §F3 y en la spec `ENVIPE-DENUNCIA-spec-v1_0.md`; no vuelvas a medir. Redacta la ficha sucesora que cite esa base, proponga el uso concreto del derivado (incluyendo la entrada de registro que `RES-0028` tendría con `corrida0_resultado_id` propio, sin escribirla en el TSV real) y una recomendación a mesa. Enlaza la fila de `NC-0085` al documento nuevo, sin cambiar su estado `ABIERTA`. Cero motor, cero milpa, cero microdato nuevo — si hace falta abrir alguno, PARA y repórtalo como hallazgo. Commit, push, PR propio; el merge queda con mesa.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| Adopción de `RES-0028` (escribir `corrida0_resultado_id` real en `data/corrida0/demanda-resultados.tsv`, cambiar consumidor en `milpa/tramite.yaml`) | `DECISIÓN-DE-MESA-PENDIENTE` — `D11` autoriza desarrollar la propuesta, no adoptarla; la firma de adopción de `NC-0085` sigue pendiente | `RES-0028` sigue sin `corrida0_resultado_id` propio; el motor sigue citando el alias actual (`denuncia_por_otra_razon`) | Firma de mesa sobre `forense/notas/2026-09-15-GEN2-E11-RES0028-PARTICION-cierre.md` §2.3; si adopta, un acto posterior ejecuta §2.1 |
+| Estimando sucesor sobre `U3` («otras razones» de la población completa, incluyendo `09` y `99`) | `DECISIÓN-DE-MESA-PENDIENTE` — camino 2 de §2.3 de la ficha sucesora, objeto nuevo fuera del perímetro de este acto | Ninguno mientras mesa no elige entre los dos caminos | Acto nuevo, sólo si mesa prefiere ese camino sobre adoptar el residual acotado |
