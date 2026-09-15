@@ -4,7 +4,7 @@
 **Entorno asignado:** NUBE — el encargo lo dice en su primera palabra
 **Modelo:** Opus, integral
 **Rama:** `claude/ecstatic-curie-70hpwk` (rama de sesión asignada por el entorno remoto)
-**Estado:** EN CURSO
+**Estado:** CONSUMIDO (PR #798)
 **Compuerta:** ninguna declarada en el texto
 **Llamadas a modelo:** cero, por instrucción explícita («Sin llamadas»)
 
@@ -21,3 +21,7 @@ NUBE · ACTO GEN2-PANEL-F6-EXPANSION-1 (Opus, integral) — el alimentador de F6
 | «deja la Enterprise Survey como pregunta a mesa sin resolverla» | Cumplido tal cual: **no se resolvió**. Se registra aquí porque el acto encontró que la misma pregunta ahora gobierna **dos** familias (`R02 · WBES` y `R08 · ENCRIGE`), lo que cambia su precio, no su contenido | Dos familias del dominio TRA, no una, esperan la misma firma | `NC-0228` → mesa |
 | Regeneración de `data/adq-demanda-activa-v1_0.json` (proyección derivada del servicio de adquisición) | `FUERA-DE-PERÍMETRO` — el generador corre, pero su salida difiere del árbol en 403/238 líneas y el grueso es deriva de otros actos. Regenerarla atribuiría a este acto trabajo ajeno | Ninguno sobre el ruteo: se hizo en la fuente (`forense/no-corrido.tsv`) y se verificó importando `tools/adq_investigacion.py` — `NC-0225` sale `LISTA_SONDA` / `servicio-gen2-38` | quien regenere la proyección a continuación (cualquier acto del servicio `adq`) |
 | Cuestionario de ENCO y segunda ola de ENPOL/ENCRIGE/ENAPROCE | `NO-VERIFICABLE-AQUÍ` (el cuestionario, ya adquirido) y `DIFERIDO-A:` adquisición (las olas) | El dominio `DIN` se queda sin ninguna familia limpia ejecutable | `NC-0227` y `forense/prereg-duelo-v2/F6-falta-conseguir-v1_0.tsv`, filas `R10`, `R11`, `R08`, `R03` |
+
+## CONSUMIDO
+
+PR [#798](https://github.com/Josanoforo/Modelado-Mexicano/pull/798), rama `claude/ecstatic-curie-70hpwk`, abierto el 15/sep/2026 contra `main` — ejecutado por `ACTO GEN2-PANEL-F6-EXPANSION-1` (`ADR-517`; nota `forense/notas/2026-09-15-GEN2-PANEL-F6-EXPANSION-1-cierre.md`). Productos sustantivos: `forense/prereg-duelo-v2/F5-panel-candidatos-v1_2.tsv` (27 filas) y `forense/prereg-duelo-v2/F6-falta-conseguir-v1_0.tsv` (9 filas). Contador de medición: cero. `FP-374` intocada y `F6` sin abrir. El merge pertenece a mesa.
