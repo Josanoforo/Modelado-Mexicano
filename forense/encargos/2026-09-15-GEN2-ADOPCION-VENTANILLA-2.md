@@ -74,3 +74,11 @@ brazos del duelo ni complementos vetados · no cerró `NC-0164`/`NC-0166` ·
 no hasheó ningún payload desde NUBE · no repitió lo que el `#753` ya dejó
 propuesto · no tocó `ENSANUT` (`RES-0063`/`RES-0064`, `EXISTE-SATISFACE`,
 contratado por `NC-0169` en CAJA).
+
+## CONSUMIDO · PR #762
+
+`https://github.com/Josanoforo/Modelado-Mexicano/pull/762` — `ACTO
+GEN2-ADOPCION-VENTANILLA-2`. Cierre en
+`forense/notas/2026-09-15-GEN2-ADOPCION-VENTANILLA-2-cierre.md`;
+`ADR-503` (candidato, re-derivado al cierre — quien fusione segundo
+renumera).

@@ -381,3 +381,11 @@ cascada. `N_resultados_gen2_adoptados_activos` **16 → 16**;
 `N_resultados_gen2_pendientes_adopcion` **5 → 5**;
 `dependencias_numericas_legacy_activas` **191 → 191**; `no_corrido_abiertas`
 **66 → 69**.
+
+## CONSUMIDO · PR #762
+
+`https://github.com/Josanoforo/Modelado-Mexicano/pull/762`. La adopción por
+lote es firma de mesa **POR MERGE**; lo que este acto dejó como
+`DECISIÓN-DE-MESA` (los tres `CTX-*`, el paquete EDER de `NC-0183`, las
+fichas de `NC-0186`, el destino de `B-MARCO` en `NC-0187`) **no** se sella
+con este merge: se propone, y espera firma distinta.
