@@ -1,0 +1,291 @@
+# CALC-ENVIPE-DENUNCIA-SEGURO-0001 -- cara mecanica de spec.md (ACTO GEN2-FIRMAS-MESA-1, OBJETO 10).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/ENVIPE-DENUNCIA-SEGURO-spec-v1_0.md (`prereg-caja-ENVIPE-DENUNCIA-SEGURO`).
+# Releva la demanda CORR-0007 (4 RESULT: RES-0039..0042) bajo el registro GEN2.
+# CONGELADO en el COMMIT-1, en NUBE, antes de abrir un solo byte de microdato.
+calc_id: CALC-ENVIPE-DENUNCIA-SEGURO-0001
+spec_md: spec.md
+spec_md_sha256: 1cd6737fd39b0296ff4dfc8a355100d66fa34b4b301a24f89beaccfe8872c2a1
+
+script: data/corrida0/CALC-ENVIPE-DENUNCIA-SEGURO-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: TASA-BASE-DE-REGLA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENVIPE-DENUNCIA-SEGURO-spec-v1_0.md
+  spec_sellada_sha256: 1ccb0d92949ede925be8d976d4e0cd6f962901b4e76a84fbeaaf29b403b51c36
+  demanda_que_releva: "CORR-0007 (ENVIPE2025, payload envipe2025_csv) -> los 4 RESULT que restaban: RES-0039 (civico.denuncia.con_seguro:denuncia), RES-0040 (con_seguro:no_denuncia), RES-0041 (sin_seguro:denuncia), RES-0042 (sin_seguro:no_denuncia). NO releva RES-0025/0026/0027/0028 de la misma CORR-0007 ni ninguna otra corrida. La cita CORR-0009 de prereg-caja-ENVIPE-DENUNCIA quedo corregida a CORR-0007 por la sucesion fechada ENVIPE-DENUNCIA-spec-v1_0-CORRECCION-2026-09-15.md; esta spec nace con la cita corregida."
+  reglas_bajo_prueba: "NINGUNA cambia de cifra por esta corrida. civico.denuncia.con_seguro y civico.denuncia.sin_seguro estan SELLADAS en milpa/tramite.yaml:987 y :1009 con p=0.790900/0.209100 y 0.672000/0.328000 (GEN1, tier FUERTE) y conservan su cifra: este CALC monta la cadena E.2 sobre esas cantidades. La adopcion la decide mesa por merge, no este acto."
+  firma_de_contador: "NO-FIRMADA. La firma de mesa del 15/sep/2026 («Si a todas.», HOJA DE FIRMAS DE MESA 2026-09-15, forense/encargos/2026-09-15-GEN2-FIRMAS-MESA-1.md) trae el OBJETO 10 verbatim: «NC-0088 -- apertura estrecha ENVIPE-DENUNCIA-SEGURO-v1_0 para RES-0039..0042. Spec aqui; corrida en caja.» Ese OBJETO autoriza LA APERTURA Y SU SPEC, y NO declara OBJETO sobre el contador GEN2. Estandar FP-367/368 pide autoridad + fecha + OBJETO explicito: hay autoridad y hay fecha, FALTA el OBJETO -> cuenta_gen2 queda PENDIENTE-DE-MESA, y se dice aqui en vez de darselo por concedido."
+  contaminacion_declarada: "ADR-46 -- al congelar, la sesion YA habia leido: de data/corrida0/demanda-resultados.tsv los cuatro valores legacy RES-0039..0042 (0.7909 / 0.2091 / 0.672 / 0.328) con su payload_sha256; de milpa/tramite.yaml:987-1007 y :1009-1029 los puntos, ic95=[0.752301,0.827811] y [0.642490,0.701624], n=402 y n=614 (de 1016), estratos=200 y 289, upm=377 y 567, ponderador FAC_DEL, el universo verbatim `BPCOD='01' ... BP2_1 en {1,2}` y la nota_hito_d «79.1/67.2/11.9 pp»; de tools/medidor_denuncia_seguro_envipe25.py:11-28 y :48-130 la premisa de degeneracion de BP2_1 fuera de BPCOD=01 («1 028 de 40 280 filas»), el mapa de codigos BP2_1/BP1_20 y el diseno EST_DIS x UPM_DIS con bootstrap; y de la propuesta la opcion A entera con sus controles minimos. NO es ciega: la hipotesis pre-registrada (sellada §4) se declara como derivacion de metadato leido, no como pronostico ciego, y el veredicto NO cuelga de ella. Lo genuinamente desconocido al congelar: si ID_DEL es unica por si sola o hay que componerla; el soporte observado real de BP2_1/BP1_20/BPCOD y cuantas filas caen fuera por BP2_1=9, por BP1_20 invalido o por blanco (ninguna fuente leida trae esos conteos); si catalogos/bp2_1.csv y bp1_20.csv confirman el mapa; cuantas filas tiene el archivo de victimas de 2025 y cuantas caen en BPCOD=01; el numero real de estratos y UPM y cuantos estratos quedan con UPM unica; si FAC_DEL es finito y positivo en todas las filas; y si el IC de diseno reproduce la anchura de los ic95 sellados, que no declaran metodo verificable desde aqui."
+  medidor_ejecutado_al_congelar: "NO -- y el medidor tampoco se escribe aqui. El OBJETO 10 dice «Spec aqui; corrida en caja»; el medidor es del acto de CAJA que consuma este contrato. Consecuencia declarada: `corrida0.py preflight CALC-ENVIPE-DENUNCIA-SEGURO-0001` reporta BLOQUEADO:script_ausente hasta que CAJA lo escriba, y eso es correcto, no un defecto de esta spec. OJO: tools/medidor_denuncia_seguro_envipe25.py existe y la propuesta lo llama verbatim «cobertura tecnica localizada, no autoridad para correr ni adoptar» -- NO es el script de esta spec, NO se edita y NO gobierna nada aqui; de el se cita solo el mapa de codigos, marcado como pendiente de contraste contra el catalogo."
+
+inputs:
+  - id: envipe2025_csv
+    origen: manifiesto
+  - id: IN-ENVIPE-SEG-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/ENVIPE-DENUNCIA-SEGURO-spec-v1_0.md
+    sha256: 1ccb0d92949ede925be8d976d4e0cd6f962901b4e76a84fbeaaf29b403b51c36
+
+variables:
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: BPCOD, rol: "FILTRO de clase de delito -- restringe el universo a robo total de vehiculo", codigos: "CADENA CRUDA (dtype=str), comparada literalmente contra '01'. Nunca a entero: '01' entero es 1 y deja de cotejar contra el catalogo, que lleva cero a la izquierda. Catalogo citable en el mismo ZIP: tmod_vic_envipe2025/catalogos/bpcod.csv (columnas BPCOD, descrip). Codigo en U ausente del catalogo -> NO-ESTIMABLE-CODIGO-FUERA-DE-MAPA:BPCOD", direccion: "NO-APLICA (filtro)"}
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: BP2_1, rol: "CAPA -- define con seguro / sin seguro (los dos estratos del estimando)", codigos: "CADENA CRUDA. '1' = con seguro -> U_CON; '2' = sin seguro -> U_SIN; cualquier otro (incl. '9', vacio, nulo) SALE del universo y se CUENTA como G-N-SEGURO-INVALIDO -- nunca se imputa ni se reparte entre estratos. PROCEDENCIA HONESTA: el mapa se cita de tools/medidor_denuncia_seguro_envipe25.py:59,:111-115 y milpa/tramite.yaml:1004, NO de una lectura del catalogo (no se abrio el ZIP). El medidor DEBE contrastarlo contra tmod_vic_envipe2025/catalogos/bp2_1.csv; si el catalogo lo contradice -> NO-ESTIMABLE-CODIGO-FUERA-DE-MAPA:BP2_1", direccion: "NO-APLICA (capa)"}
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: BP1_20, rol: "DESENLACE -- denuncia / no denuncia del delito", codigos: "CADENA CRUDA. '1' = denuncia; '2' = no denuncia; cualquier otro SALE del universo y se CUENTA como G-N-DENUNCIA-INVALIDA. Misma procedencia y misma guardia que BP2_1 (tools/medidor_denuncia_seguro_envipe25.py:106), con contraste obligatorio contra tmod_vic_envipe2025/catalogos/bp1_20.csv", direccion: "MAS ALTO = MENOS DENUNCIA (1 denuncia, 2 no denuncia): el RESULT se construye por indicador explicito, no por orden del codigo"}
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: FAC_DEL, rol: "PONDERADOR de DELITO -- el que corresponde al grano de esta unidad", codigos: "flotante tal cual, sin normalizar, sin redondear, sin truncar, sin re-escalar. NO se usa FAC_DEL_AM, que existe en el MISMO archivo (A.15(c)): resolver el ponderador por nombre parecido tomaria uno u otro sin aviso. Catalogo: tmod_vic_envipe2025/catalogos/fac_del.csv"}
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: EST_DIS, rol: "ESTRATO de diseno -- estratificacion del bootstrap (LLAVE DE TEXTO OPACA)", codigos: "VERIFICADO PRESENTE con ese nombre exacto en data/inventario-reactivos-v1_2.tsv (INSPECT_ZIP) -- la tarea de verificacion del encargo sale POSITIVA, no hizo falta inventar nombre ni declarar guardia de renombre. Cadena cruda (dtype=str), nunca a entero ni re-rellenada. NO confundir con ESTRATO, que existe en el mismo archivo y NO es esto"}
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: UPM_DIS, rol: "UPM -- conglomerado que se re-muestrea (LLAVE DE TEXTO OPACA)", codigos: "VERIFICADO PRESENTE con ese nombre exacto en el mismo inventario. Cadena cruda. NO confundir con UPM, que existe en el mismo archivo y NO es esto"}
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: ID_DEL, rol: "llave de DELITO (grano de la unidad) -- candidata primaria", codigos: "VERIFICADA PRESENTE en el inventario. Su UNICIDAD no es verificable en nube (el inventario lista columnas, no cardinalidades): el medidor prueba ID_DEL sola y, si no es unica, ID_DEL+ID_VIV+ID_HOG+ID_PER, y reporta cual resulto en G-LLAVE-DELITO. Si NINGUNA es unica -> NO-ESTIMABLE-LLAVE-NO-UNICA"}
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: ID_VIV, rol: "llave compuesta de respaldo (1/3)", codigos: "presente en el inventario; solo entra si ID_DEL no es unica"}
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: ID_HOG, rol: "llave compuesta de respaldo (2/3)", codigos: "presente en el inventario; solo entra si ID_DEL no es unica"}
+  - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: ID_PER, rol: "llave compuesta de respaldo (3/3)", codigos: "presente en el inventario; solo entra si ID_DEL no es unica"}
+
+universo: >-
+  Delitos: filas de
+  tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv,
+  miembro de envipe2025_csv.zip, que cumplen LAS TRES condiciones de la opcion A
+  firmada: (1) BPCOD == '01' (robo total de vehiculo), (2) BP2_1 en el mapa de
+  estratos, (3) BP1_20 en el mapa de desenlaces; y ademas FAC_DEL finito y > 0.
+  Nada mas: NO hay filtro de edad, sexo, entidad, dominio ni ano de ocurrencia
+  -- la opcion A no declara ninguno y esta spec no anade los que mesa no firmo.
+  U se parte en DOS subuniversos disjuntos y exhaustivos dentro de U:
+  U_CON (BP2_1 == '1') y U_SIN (BP2_1 == '2'). Que U_CON union U_SIN == U se
+  COMPRUEBA contando (G-PARTICION-ESTRATOS), no se da por hecho.
+  Unidad = DELITO: una misma persona puede aportar mas de una fila, y por eso
+  el ponderador es FAC_DEL. ENVIPE 2025 es la UNICA ola de esta corrida: no hay
+  serie que promediar y no se construye ninguna.
+  Queda fuera todo BPCOD != 01, DELIBERADAMENTE: el OBJETO 10 la llama
+  «apertura estrecha». Eso no es un defecto; es el estimando.
+
+filtros: >-
+  Sale de U, CONTADO y no imputado: fila con BPCOD != '01'
+  (G-N-FUERA-DE-BPCOD-01); fila con BP2_1 fuera de {'1','2'}
+  (G-N-SEGURO-INVALIDO, incluye el '9'); fila con BP1_20 fuera de {'1','2'}
+  (G-N-DENUNCIA-INVALIDA); fila con FAC_DEL vacio, no finito o <= 0
+  (G-N-SIN-PONDERADOR / G-N-PESOS-NO-POSITIVOS).
+  Se cuenta pero NO sale del punto: fila del universo sin EST_DIS o sin UPM_DIS
+  (G-N-SIN-DISENO) -- afecta al IC y al EE, no al estimador.
+  CERO NUNCA SUSTITUYE FALTA DE DATO.
+  Guardias que producen NO-ESTIMABLE en vez de una cifra: miembro ausente del
+  ZIP con esa ruta exacta -> NO-ESTIMABLE-MIEMBRO-AUSENTE:<m> (y NO se cae al
+  gemelo envipe2025/bd_envipe_2025_csv.zip); columna declarada ausente ->
+  NO-ESTIMABLE-COLUMNA-AUSENTE:<col>; codigo en U ausente del catalogo del
+  propio ZIP, o catalogo que contradice el mapa -> NO-ESTIMABLE-CODIGO-FUERA-DE-MAPA:<col>;
+  ni ID_DEL ni ID_DEL+ID_VIV+ID_HOG+ID_PER unicas -> NO-ESTIMABLE-LLAVE-NO-UNICA;
+  U, U_CON o U_SIN vacio -> NO-ESTIMABLE-UNIVERSO-VACIO:<subuniverso>.
+  Si TODA fila del universo carece de diseno -> METODO-IC =
+  NO-ESTIMABLE-DISENO-INCOMPLETO, los IC y EE salen null y los puntos se
+  reportan igual. Un universo mas chico de lo esperado NO es una guardia: es un
+  hallazgo y se reporta con su conteo.
+
+ponderador: >-
+  FAC_DEL leido de conjunto_de_datos_tmod_vic_envipe2025.csv. Flotante tal cual:
+  sin normalizar, sin redondear, sin truncar. Ningun otro ponderador entra; en
+  particular NO entra FAC_DEL_AM, que vive en el mismo archivo. El denominador
+  de cada punto es la suma de pesos DE SU PROPIO ESTRATO, nunca la de U entero.
+
+transformacion: >-
+  Lectura con pandas.read_csv(encoding='latin-1', low_memory=False); BPCOD,
+  BP2_1, BP1_20, EST_DIS y UPM_DIS con dtype=str. Los cuatro puntos, con
+  w = FAC_DEL y sumas en orden fijo de llave:
+  CON-P-DENUNCIA    = suma(w*[BP1_20=='1'])/suma(w) sobre U_CON;
+  CON-P-NO-DENUNCIA = suma(w*[BP1_20=='2'])/suma(w) sobre U_CON;
+  SIN-P-DENUNCIA    = suma(w*[BP1_20=='1'])/suma(w) sobre U_SIN;
+  SIN-P-NO-DENUNCIA = suma(w*[BP1_20=='2'])/suma(w) sobre U_SIN.
+  LOS COMPLEMENTOS SE CUENTAN DIRECTAMENTE, DENTRO DEL MISMO ESTRATO, NUNCA
+  COMO 1 - p. Prohibido derivarlos: derivarlos haria que CON-SUMA-UNO y
+  SIN-SUMA-UNO se cumplieran POR CONSTRUCCION y el control de particion no
+  comprobaria nada; contandolos, un residuo fuera de tolerancia es un hallazgo
+  (tipicamente un tercer codigo que se colo) en vez de un error invisible.
+  Bootstrap: clave de conglomerado = (EST_DIS, UPM_DIS) como cadenas; UPM con
+  reemplazo dentro de EST_DIS conservando el numero de UPM por estrato; estrato
+  con UPM unica se re-muestrea a si mismo. IC = percentiles 2.5/97.5 de las
+  replicas; EE = desviacion estandar de las replicas.
+  NO se promedia entre estratos, no se imputa, no se re-escala, no se extrapola.
+
+estimando: >-
+  DESCRIPTIVO. (1) ADOPTABLE POR MESA: los CUATRO puntos con sus IC/EE de
+  diseno -- CON-P-DENUNCIA (releva RES-0039), CON-P-NO-DENUNCIA (RES-0040),
+  SIN-P-DENUNCIA (RES-0041), SIN-P-NO-DENUNCIA (RES-0042); es decir las dos
+  probabilidades de denuncia por estrato de seguro Y SUS COMPLEMENTOS EXACTOS
+  CONTADOS DENTRO DEL MISMO ESTRATO. (2) SECUNDARIO DECLARADO, NO adoptable:
+  DELTA-CON-MENOS-SIN con signo y su IC de diseno.
+  PROPOSITO, verbatim de la opcion A firmada: describir la asociacion
+  seguro-denuncia en esa apertura, SIN INTERPRETACION CAUSAL Y SIN EXTRAPOLAR A
+  OTROS DELITOS. Esto es normativo, no una nota al pie:
+  (a) PROHIBIDO LEER CAUSALMENTE -- ningun RESULT esta rotulado causal y
+  ninguno puede citarse como evidencia de que el seguro CAUSA la denuncia;
+  DELTA-CON-MENOS-SIN es una diferencia descriptiva entre dos estratos
+  observados, no un efecto: quien tiene seguro difiere de quien no en vehiculo,
+  ingreso, lugar y mil cosas que esta corrida no mide ni ajusta.
+  (b) PROHIBIDO EXTRAPOLAR FUERA DE BPCOD=01 -- ningun RESULT puede citarse
+  como tasa de denuncia de «los delitos asegurables», del robo en general ni de
+  Mexico; la restriccion es parte del estimando, no una limitacion que se supere
+  promediando. (c) PROHIBIDO TRANSPORTAR ENTRE OLAS -- vale solo para 2025.
+  (d) PROHIBIDO CRUZAR CON LA OTRA APERTURA -- estos cuatro RESULT no se suman,
+  promedian ni comparan con los de prereg-caja-ENVIPE-DENUNCIA (razones de no
+  denuncia): otra unidad, otro denominador, otra codificacion.
+  Esta spec implementa la OPCION A de la propuesta y SOLO la A; la opcion B
+  (redefinicion de motor: poblacion, unidad, tratamiento de cobertura,
+  desenlace y uso en el motor) NO fue firmada por mesa y NO se toca. Si A
+  resultara no medible, la consecuencia es NO-ESTIMABLE, nunca una migracion
+  silenciosa a B.
+
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  fuente_acto: "ACTO GEN2-FIRMAS-MESA-1 · OBJETO 10 · CALC-ENVIPE-DENUNCIA-SEGURO-0001 · apertura estrecha seguro-denuncia sobre ENVIPE 2025 con IC de diseno"
+  firma_que_lo_autoriza: "Firma de mesa verbatim «Si a todas.», 15 de septiembre de 2026, sobre la HOJA DE FIRMAS DE MESA 2026-09-15 archivada en forense/encargos/2026-09-15-GEN2-FIRMAS-MESA-1.md. OBJETO 10 verbatim: «NC-0088 -- apertura estrecha ENVIPE-DENUNCIA-SEGURO-v1_0 para RES-0039..0042. Spec aqui; corrida en caja.» La firma autoriza CONGELAR la spec y correrla EN CAJA; no autoriza contar el GEN2 (ver firma_de_contador) ni adoptar."
+  entorno_de_congelamiento: "NUBE. data/raw NO existe, corpus no montado, numpy/pandas/pyreadstat AUSENTES. Regla de la casa E.5: en nube solo codebook y metadato. Toda afirmacion sobre el dato en esta spec esta anclada a un archivo del repo (data/inventario-reactivos-v1_2.tsv, data/manifiesto.yaml, milpa/, tools/) y se dice de donde sale."
+  bootstrap_replicas: 2000
+  metodo_ic: "bootstrap de UPM_DIS CON REEMPLAZO dentro de EST_DIS, conservando el numero de UPM por estrato; percentiles 2.5/97.5; EE = sd de las replicas."
+  regla_estrato_upm_unica: >-
+    Un estrato con exactamente una UPM se re-muestrea a si mismo: aporta
+    varianza cero. NO se colapsa (decision de diseno que esta spec no esta
+    autorizada a tomar) y NO se descarta (sesgaria el punto). Si el conteo es
+    > 0, METODO-IC sale IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como
+    LIMITE INFERIOR de la anchura verdadera, nunca como IC exacto.
+  llaves_opacas: >-
+    EST_DIS y UPM_DIS se agrupan como CADENA CRUDA (dtype=str). Nunca se
+    convierten a entero ni se re-rellenan: normalizarlas partiria o fusionaria
+    estratos en silencio. El perfil observado de anchos sale como RESULT de
+    texto pre-declarado.
+  archivo_de_ponderador: "conjunto_de_datos_tmod_vic_envipe2025.csv -- declarado como PARAMETRO y no como detalle: FAC_DEL_AM vive en el MISMO archivo y EST_DIS/UPM_DIS tienen homonimos cercanos (ESTRATO, UPM). Todo se resuelve por nombre LITERAL (A.15(c))."
+  payload_homonimo_sellado: >-
+    ENVIPE 2025 esta registrada DOS VECES en el manifiesto con payloads
+    distintos. Esta corrida usa envipe2025_csv
+    (sha256 8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa,
+    el mismo que declaran las cuatro filas RES-0039..0042 del registro), y solo
+    ese, resuelto por id de manifiesto. El gemelo
+    envipe2025/bd_envipe_2025_csv.zip trae TMod_Vic.csv con las MISMAS cuatro
+    variables y con EST_DIS/UPM_DIS, y NO SE ABRE: el inventario prueba que
+    trae las mismas columnas, no que traiga las mismas filas.
+  miembros_zip_declarados:
+  - "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv"
+  - "tmod_vic_envipe2025/catalogos/bpcod.csv"
+  - "tmod_vic_envipe2025/catalogos/bp1_20.csv"
+  - "tmod_vic_envipe2025/catalogos/bp2_1.csv"
+  - "tmod_vic_envipe2025/catalogos/fac_del.csv"
+  tablas:
+    victimas: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv"
+  codificacion:
+    bpcod_universo: "01"
+    bp2_1_con_seguro: "1"
+    bp2_1_sin_seguro: "2"
+    bp1_20_denuncia: "1"
+    bp1_20_no_denuncia: "2"
+    llave_delito_primaria: [ID_DEL]
+    llave_delito_respaldo: [ID_DEL, ID_VIV, ID_HOG, ID_PER]
+  replay_independiente: >-
+    Segunda pasada sobre el MISMO payload, recorriendo el universo por orden de
+    llave en lugar del orden de lectura, recalculando los cuatro puntos y las
+    cuatro sumas de pesos con acumulacion independiente.
+    G-REPLAY-INDEPENDIENTE sale REPLICA si los ocho valores coinciden dentro de
+    la tolerancia, y NO-REPLICA:<peor residuo> si no. NO-REPLICA NO autoriza
+    tocar el medidor para que replique: es un hallazgo que se reporta a mesa.
+  valores_gen1_referencia:
+    RES_0039_CON_P_DENUNCIA: 0.790900
+    RES_0040_CON_P_NO_DENUNCIA: 0.209100
+    RES_0041_SIN_P_DENUNCIA: 0.672000
+    RES_0042_SIN_P_NO_DENUNCIA: 0.328000
+    CON_IC95: [0.752301, 0.827811]
+    SIN_IC95: [0.642490, 0.701624]
+  n_gen1_referencia:
+    U_CON: 402
+    U_SIN: 614
+    U_TOTAL: 1016
+    CON_ESTRATOS: 200
+    CON_UPM: 377
+    SIN_ESTRATOS: 289
+    SIN_UPM: 567
+  grano_gen1_decimales: 6
+  no_son_filtro: >-
+    n=402, n=614, n=1016 y los conteos de estratos/UPM entran SOLO como
+    referencia de contraste. NO son filtro, NO son criterio de parada y NO se
+    fuerza el universo para alcanzarlos: si el medidor cuenta otra cosa, MANDA
+    LO CONTADO y la discrepancia se reporta como hallazgo.
+  criterio_adopcion: >-
+    ADOPCION = LISTADO-PARA-MESA-REPRODUCE si REPRODUCE-GEN1 = REPRODUCE, es
+    decir si los cuatro round(p, 6) igualan 0.790900 / 0.209100 / 0.672000 /
+    0.328000; LISTADO-PARA-MESA-NO-REPRODUCE en otro caso estimable;
+    NO-ADOPTABLE-NO-ESTIMABLE si falta cualquiera de los cuatro puntos.
+    NO-REPRODUCE no autoriza tocar el medidor. Este acto NO escribe cita en
+    milpa/ bajo NINGUNA rama: las entradas civico.denuncia.con_seguro y
+    civico.denuncia.sin_seguro quedan intactas y la adopcion la decide mesa por
+    merge.
+
+seed:
+  aplica: true
+  valor: 20260915
+  rng: numpy.PCG64
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Bootstrap fijado por seed + rng declarados y sumas en orden fijo de llave:
+    la unica diferencia esperable entre dos corridas del mismo arbol es
+    redondeo de float64 al reasociar sumas ponderadas. La misma tolerancia rige
+    las particiones que suman uno y el replay independiente. Los enteros y los
+    textos se comparan EXACTO.
+
+resultados:
+  - {id: RESULT-ENVIPE-SEG-G-SHA256-PAYLOAD, tipo: texto, unidad: "sha256 del ZIP abierto -- debe igualar 8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"}
+  - {id: RESULT-ENVIPE-SEG-G-SHA256-SPEC-SELLADA, tipo: texto, unidad: "sha256 de forense/prereg-caja/ENVIPE-DENUNCIA-SEGURO-spec-v1_0.md al correr"}
+  - {id: RESULT-ENVIPE-SEG-G-SHA256-SPEC-YAML, tipo: texto, unidad: "sha256 de este spec.yaml al correr"}
+  - {id: RESULT-ENVIPE-SEG-G-SHA256-SCRIPT, tipo: texto, unidad: "sha256 del medidor.py que ejecuta"}
+  - {id: RESULT-ENVIPE-SEG-G-N-MIEMBROS-ZIP, tipo: entero, unidad: "miembros del ZIP"}
+  - {id: RESULT-ENVIPE-SEG-G-N-FILAS-VICTIMAS, tipo: entero, unidad: "filas del archivo de victimas (el script antecedente reporto 40 280 en SU corrida: referencia, no dato de este acto)"}
+  - {id: RESULT-ENVIPE-SEG-G-N-COLUMNAS-VICTIMAS, tipo: entero, unidad: "columnas del archivo de victimas (el inventario declara 137)"}
+  - {id: RESULT-ENVIPE-SEG-G-LLAVE-DELITO, tipo: texto, unidad: "ID_DEL / ID_DEL+ID_VIV+ID_HOG+ID_PER / NO-UNICA -- cual resulto unica"}
+  - {id: RESULT-ENVIPE-SEG-G-CATALOGO-BPCOD, tipo: texto, unidad: "CONFIRMA / CONTRADICE:<detalle> -- contraste del mapa contra catalogos/bpcod.csv"}
+  - {id: RESULT-ENVIPE-SEG-G-CATALOGO-BP2-1, tipo: texto, unidad: "CONFIRMA / CONTRADICE:<detalle> -- contraste contra catalogos/bp2_1.csv"}
+  - {id: RESULT-ENVIPE-SEG-G-CATALOGO-BP1-20, tipo: texto, unidad: "CONFIRMA / CONTRADICE:<detalle> -- contraste contra catalogos/bp1_20.csv"}
+  - {id: RESULT-ENVIPE-SEG-G-SOPORTE-BPCOD, tipo: texto, unidad: "soporte observado de BPCOD, ordenado: 'v:n;v:n'"}
+  - {id: RESULT-ENVIPE-SEG-G-SOPORTE-BP2-1, tipo: texto, unidad: "soporte observado de BP2_1 dentro de BPCOD=01, ordenado"}
+  - {id: RESULT-ENVIPE-SEG-G-SOPORTE-BP1-20, tipo: texto, unidad: "soporte observado de BP1_20 dentro de BPCOD=01, ordenado"}
+  - {id: RESULT-ENVIPE-SEG-G-N-FUERA-DE-BPCOD-01, tipo: entero, unidad: "filas con BPCOD != '01' (fuera del universo, CONTADAS)"}
+  - {id: RESULT-ENVIPE-SEG-G-N-SEGURO-INVALIDO, tipo: entero, unidad: "filas de BPCOD=01 con BP2_1 fuera de {1,2}, incluido el 9 -- NUNCA imputadas ni repartidas"}
+  - {id: RESULT-ENVIPE-SEG-G-N-DENUNCIA-INVALIDA, tipo: entero, unidad: "filas de BPCOD=01 con BP1_20 fuera de {1,2}"}
+  - {id: RESULT-ENVIPE-SEG-G-N-SIN-PONDERADOR, tipo: entero, unidad: "filas excluidas por FAC_DEL vacio o no finito"}
+  - {id: RESULT-ENVIPE-SEG-G-N-PESOS-NO-POSITIVOS, tipo: entero, unidad: "filas excluidas por FAC_DEL <= 0 (negativos y ceros, contados aparte)"}
+  - {id: RESULT-ENVIPE-SEG-G-N-SIN-DISENO, tipo: entero, unidad: "filas del universo sin EST_DIS o sin UPM_DIS (cuentan al punto, no al IC)"}
+  - {id: RESULT-ENVIPE-SEG-G-N-U, tipo: entero, unidad: "delitos del universo U (GEN1 conto 1016)"}
+  - {id: RESULT-ENVIPE-SEG-G-SUMA-PESOS-U, tipo: flotante, unidad: "suma de FAC_DEL en U -- delitos expandidos"}
+  - {id: RESULT-ENVIPE-SEG-G-PARTICION-ESTRATOS, tipo: texto, unidad: "SI / NO:<residuo> -- CON-N-U + SIN-N-U == G-N-U (los dos estratos parten U)"}
+  - {id: RESULT-ENVIPE-SEG-G-PERFIL-EST-DIS, tipo: texto, unidad: "perfil de anchos del texto crudo de EST_DIS: 'ancho=k:n_filas;...'"}
+  - {id: RESULT-ENVIPE-SEG-G-PERFIL-UPM-DIS, tipo: texto, unidad: "perfil de anchos del texto crudo de UPM_DIS"}
+  - {id: RESULT-ENVIPE-SEG-G-N-EST-DIS-DISTINTOS, tipo: entero, unidad: "estratos distintos en U (GEN1 declaro 200 en CON y 289 en SIN)"}
+  - {id: RESULT-ENVIPE-SEG-G-N-UPM-DISTINTAS, tipo: entero, unidad: "conglomerados (EST_DIS,UPM_DIS) distintos en U"}
+  - {id: RESULT-ENVIPE-SEG-G-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "estratos con exactamente una UPM"}
+  - {id: RESULT-ENVIPE-SEG-G-REPLAY-INDEPENDIENTE, tipo: texto, unidad: "REPLICA / NO-REPLICA:<peor residuo> -- segunda pasada por orden de llave"}
+  - {id: RESULT-ENVIPE-SEG-CON-N-U, tipo: entero, unidad: "delitos de U_CON, SIN ponderar (GEN1 conto 402)"}
+  - {id: RESULT-ENVIPE-SEG-CON-N-DENUNCIA, tipo: entero, unidad: "celda sin ponderar: U_CON con BP1_20='1'"}
+  - {id: RESULT-ENVIPE-SEG-CON-N-NO-DENUNCIA, tipo: entero, unidad: "celda sin ponderar: U_CON con BP1_20='2'"}
+  - {id: RESULT-ENVIPE-SEG-CON-SUMA-PESOS, tipo: flotante, unidad: "suma de FAC_DEL en U_CON -- denominador propio del estrato"}
+  - {id: RESULT-ENVIPE-SEG-CON-P-DENUNCIA, tipo: proporcion, unidad: "RELEVA RES-0039 (milpa/tramite.yaml:civico.denuncia.con_seguro:denuncia) -- proporcion ponderada de denuncia en U_CON; legacy 0.7909", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-SEG-CON-P-NO-DENUNCIA, tipo: proporcion, unidad: "RELEVA RES-0040 (civico.denuncia.con_seguro:no_denuncia) -- complemento CONTADO sobre BP1_20='2' dentro de U_CON, NUNCA 1 - p; legacy 0.2091", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-SEG-CON-SUMA-UNO, tipo: texto, unidad: "SI / NO:<residuo> -- CON-P-DENUNCIA + CON-P-NO-DENUNCIA dentro de tolerancia"}
+  - {id: RESULT-ENVIPE-SEG-CON-EE-DENUNCIA, tipo: flotante, unidad: "EE de diseno de CON-P-DENUNCIA (sd de las replicas)", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-SEG-CON-IC-LO, tipo: flotante, unidad: "percentil 2.5 del bootstrap de diseno, U_CON", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-SEG-CON-IC-HI, tipo: flotante, unidad: "percentil 97.5 del bootstrap de diseno, U_CON", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-SEG-SIN-N-U, tipo: entero, unidad: "delitos de U_SIN, SIN ponderar (GEN1 conto 614)"}
+  - {id: RESULT-ENVIPE-SEG-SIN-N-DENUNCIA, tipo: entero, unidad: "celda sin ponderar: U_SIN con BP1_20='1'"}
+  - {id: RESULT-ENVIPE-SEG-SIN-N-NO-DENUNCIA, tipo: entero, unidad: "celda sin ponderar: U_SIN con BP1_20='2'"}
+  - {id: RESULT-ENVIPE-SEG-SIN-SUMA-PESOS, tipo: flotante, unidad: "suma de FAC_DEL en U_SIN -- denominador propio del estrato"}
+  - {id: RESULT-ENVIPE-SEG-SIN-P-DENUNCIA, tipo: proporcion, unidad: "RELEVA RES-0041 (civico.denuncia.sin_seguro:denuncia) -- proporcion ponderada de denuncia en U_SIN; legacy 0.672", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-SEG-SIN-P-NO-DENUNCIA, tipo: proporcion, unidad: "RELEVA RES-0042 (civico.denuncia.sin_seguro:no_denuncia) -- complemento CONTADO sobre BP1_20='2' dentro de U_SIN, NUNCA 1 - p; legacy 0.328", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-SEG-SIN-SUMA-UNO, tipo: texto, unidad: "SI / NO:<residuo> -- SIN-P-DENUNCIA + SIN-P-NO-DENUNCIA dentro de tolerancia"}
+  - {id: RESULT-ENVIPE-SEG-SIN-EE-DENUNCIA, tipo: flotante, unidad: "EE de diseno de SIN-P-DENUNCIA (sd de las replicas)", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-SEG-SIN-IC-LO, tipo: flotante, unidad: "percentil 2.5 del bootstrap de diseno, U_SIN", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-SEG-SIN-IC-HI, tipo: flotante, unidad: "percentil 97.5 del bootstrap de diseno, U_SIN", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-SEG-METODO-IC, tipo: texto, unidad: "IC-DE-DISENO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-DISENO-INCOMPLETO"}
+  - {id: RESULT-ENVIPE-SEG-DELTA-CON-MENOS-SIN, tipo: flotante, unidad: "SECUNDARIO NO ADOPTABLE: CON-P-DENUNCIA menos SIN-P-DENUNCIA, CON SIGNO -- diferencia DESCRIPTIVA entre estratos observados, NO un efecto causal (GEN1 declaro 11.9 pp)", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-SEG-DELTA-IC-LO, tipo: flotante, unidad: "percentil 2.5 del bootstrap de la diferencia -- sensibilidad, no autoriza conclusion causal", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-SEG-DELTA-IC-HI, tipo: flotante, unidad: "percentil 97.5 del bootstrap de la diferencia", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-SEG-DELTA-VS-GEN1, tipo: texto, unidad: "los cuatro deltas CON SIGNO contra 0.790900/0.209100/0.672000/0.328000, formato 'RES-0039:<d>;RES-0040:<d>;RES-0041:<d>;RES-0042:<d>'", permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-SEG-REPRODUCE-GEN1, tipo: texto, unidad: "REPRODUCE / NO-REPRODUCE / NO-ESTIMABLE -- los cuatro round(p,6) contra los cuatro valores legacy"}
+  - {id: RESULT-ENVIPE-SEG-DELTA-N-VS-GEN1, tipo: texto, unidad: "'U:<d>;CON:<d>;SIN:<d>' CON SIGNO contra 1016/402/614 -- hallazgo a reportar, nunca motivo para forzar el universo"}
+  - {id: RESULT-ENVIPE-SEG-ADOPCION, tipo: texto, unidad: "LISTADO-PARA-MESA-REPRODUCE / LISTADO-PARA-MESA-NO-REPRODUCE / NO-ADOPTABLE-NO-ESTIMABLE -- en los tres casos este acto NO escribe cita en milpa/"}
