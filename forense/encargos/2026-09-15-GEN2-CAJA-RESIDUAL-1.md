@@ -4,7 +4,7 @@
 **Entorno asignado:** CAJA (Ubuntu/WSL2, corpus montado) — el encargo lo dice en su primera palabra
 **Modelo sugerido por el encargo:** Sonnet — la sesión que lo ejecuta corre en Opus 5; se declara aquí y no se disfraza
 **Rama:** `acto/gen2-caja-residual-1`
-**Estado:** VIVO
+**Estado:** CONSUMIDO (PR #772)
 **Compuerta:** ninguna declarada en el texto
 
 ## ENCARGO (verbatim, tal como se lanzó)
@@ -23,3 +23,7 @@
 | qué | por qué | impacto | sucesor |
 |---|---|---|---|
 | «(Sonnet, lote D-11 chico; …)» — el modelo que el encargo sugiere para la sesión | DECISIÓN-DE-MESA-PENDIENTE — la sesión que tomó el encargo corre en Opus 5 y no puede cambiar de modelo; se ejecutó igual porque el lote es mecánico (verify, lectura de archivo, asientos con cita) y la asignación material del encargo —CAJA con corpus— sí se cumplió. Se declara como desviación de lo pedido, no como error de contenido | Ninguno sobre contadores: cero mediciones en ambos casos; ambas colas cerradas con la evidencia que el encargo pedía. Sin fila `NC` nueva (mismo criterio que la fila «contador» de `GEN2-SANEA-REGISTRO-Y-RESCATE`: reserva sin sucesor ni impacto no abre cola) | Ninguno — si mesa quiere que los lotes D-11 chicos corran en Sonnet, es una instrucción de despacho, no una pieza pendiente |
+
+## CONSUMIDO
+
+PR [#772](https://github.com/Josanoforo/Modelado-Mexicano/pull/772), rama `acto/gen2-caja-residual-1`, abierto el 15/sep/2026 contra `main` — ejecutado por `ACTO GEN2-CAJA-RESIDUAL-1` (ADR-508; nota `forense/notas/2026-09-15-GEN2-CAJA-RESIDUAL-1-cierre.md`). El merge es de mesa.
