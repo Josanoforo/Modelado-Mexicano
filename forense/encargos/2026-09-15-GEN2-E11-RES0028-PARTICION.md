@@ -61,3 +61,7 @@ Aceptación: ficha sucesora con partición completa y uso concreto propuesto, fi
 |---|---|---|---|
 | Adopción de `RES-0028` (escribir `corrida0_resultado_id` real en `data/corrida0/demanda-resultados.tsv`, cambiar consumidor en `milpa/tramite.yaml`) | `DECISIÓN-DE-MESA-PENDIENTE` — `D11` autoriza desarrollar la propuesta, no adoptarla; la firma de adopción de `NC-0085` sigue pendiente | `RES-0028` sigue sin `corrida0_resultado_id` propio; el motor sigue citando el alias actual (`denuncia_por_otra_razon`) | Firma de mesa sobre `forense/notas/2026-09-15-GEN2-E11-RES0028-PARTICION-cierre.md` §2.3; si adopta, un acto posterior ejecuta §2.1 |
 | Estimando sucesor sobre `U3` («otras razones» de la población completa, incluyendo `09` y `99`) | `DECISIÓN-DE-MESA-PENDIENTE` — camino 2 de §2.3 de la ficha sucesora, objeto nuevo fuera del perímetro de este acto | Ninguno mientras mesa no elige entre los dos caminos | Acto nuevo, sólo si mesa prefiere ese camino sobre adoptar el residual acotado |
+
+## CONSUMIDO
+
+`PR #773` (rama `claude/adoring-euler-jxeoud`). Ejecutado íntegro: ficha sucesora (`forense/notas/2026-09-15-GEN2-E11-RES0028-PARTICION-cierre.md`), fila `NC-0085` enlazada al documento (estado sin cambio, `ABIERTA`), `ADR-508` (`canon/gobernanza-v1_15.md`), L0 y contadores reconciliados (`canon/estado-programa-v1_13.md`), rótulo `GEN2-E11` censado (`canon/registro-rotulos.tsv`). Cero cambios a `milpa/`, cero `RESULT` nuevo, cero microdato abierto. `python3 tests/check.py --baseline` en VERDE. **NO FUSIONAR** — el merge queda con mesa.
