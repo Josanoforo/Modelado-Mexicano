@@ -42,6 +42,33 @@ def es_abierta(estado):
     return bool(re.match(r"^ABIERTA(\s|$)", estado or ""))
 
 
+# Tokens de cierre admitidos en la columna `estado` de
+# `forense/no-corrido.tsv`. `CERRADA-POR-DISEÑO` la autoriza la FIRMA DE
+# MESA del 15/sep/2026 (OBJETO 11 de la HOJA DE FIRMAS DE MESA 2026-09-15,
+# `NC-0073`): una NC cuyo sucesor es `n/a -- por diseño` no está diferida
+# ni desistida ni declinada -- nunca hubo trabajo pendiente que hacer, y
+# escribirla como `CERRADA` a secas borra esa distinción. El token se
+# admite aquí ANTES de usarse en el TSV para que ninguna receta lo lea
+# como estado desconocido.
+CIERRES_ADMITIDOS = (
+    "CERRADA",
+    "CERRADA-DESISTIDA",
+    "CERRADA-DECLINADA",
+    "CERRADA-POR-DISEÑO",
+)
+
+
+def es_cerrada(estado):
+    """`estado` es uno de los cierres admitidos, con o sin glosa. Contraparte
+    exacta de `es_abierta`: mismo anclaje `^TOKEN(\\s|$)`, por las mismas
+    razones (una glosa no cambia el estado, y `startswith` pelado haría que
+    `CERRADA-POR-DISEÑO` contara también como `CERRADA`, duplicándola)."""
+    for token in CIERRES_ADMITIDOS:
+        if re.match(rf"^{re.escape(token)}(\s|$)", estado or ""):
+            return True
+    return False
+
+
 def lee_tablero(raiz):
     """(ruta, filas, n_lineas). TSV con cabecera, sin comillas -- el
     tablero se lee, no se parsea con `csv`, porque sus celdas ya traen
