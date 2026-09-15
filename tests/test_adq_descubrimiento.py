@@ -176,10 +176,10 @@ def prueba_demanda_explica_todo_elemento_gen2_vigente():
     afirma("cero tareas elegibles" in demanda["advertencia_suficiencia"],
            "la proyección debe negar suficiencia general por cola vacía")
     elegidos = [x["id"] for x in demanda["seleccion_siguiente"]["elegidos"]]
-    afirma(elegidos == ["NC-0202"] and
+    afirma(elegidos == ["DEM-AHORRO-STOCK-DURACION-01", "NC-0202"] and
            {x["id"] for x in demanda["seleccion_siguiente"]["excluidos"]} ==
-           (abiertas - {"NC-0202"}) | {"DEM-AHORRO-STOCK-DURACION-01"},
-           "el mapa debe enrutar NC-0202 y respetar la revisión de la demanda independiente")
+           (abiertas - {"NC-0202"}),
+           "el mapa debe enrutar NC-0202 y la continuación anticipada independiente")
     demanda_ahorro = next(x for x in demanda["necesidades"]
                           if x["id"] == "DEM-AHORRO-STOCK-DURACION-01")
     afirma(demanda_ahorro["antecedentes_nc"] == ["NC-0126"] and
