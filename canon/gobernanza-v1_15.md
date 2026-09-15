@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **517 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **518 ADR**
 
 > | | |
 > |---|---|
