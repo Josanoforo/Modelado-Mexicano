@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Prepara, congela, ejecuta y resume FP-373 sin abrir FP-374/F6."""
+"""Prepara, congela, ejecuta y resume FP-373 sin abrir FP-374/F6.
+
+Contrato vigente: F5-documental-ejecucion-v1_1.md (sucesion de v1_0; transporte
+corregido por (a)-(d)). El ledger v1_0 se arrastra sin reiniciar; plan y sonda
+se escriben como v1_1 y los archivos v1_0 quedan intactos."""
 from __future__ import annotations
 
 import argparse
@@ -28,9 +32,9 @@ SPEC_ESTUDIO = DIR / "F5-panel-viabilidad-presupuesto-spec-v1_0.md"
 MANIFIESTO_CONTEXTO = DIR / "paquete-corpus-F5-v2_0/manifiesto-F5-v2_0.json"
 MANIFIESTO_FUENTES = ROOT / "data/manifiesto.yaml"
 MANIFIESTO_TRANSPORTE = ACTO_DIR / "F5-documental-materializacion-v1_0.json"
-PLAN = ACTO_DIR / "F5-documental-plan-v1_0.json"
+PLAN = ACTO_DIR / "F5-documental-plan-v1_1.json"
 SALIDAS = ACTO_DIR / "capturas"
-SONDA = ACTO_DIR / "sonda-transporte-v1_0.json"
+SONDA = ACTO_DIR / "sonda-transporte-v1_1.json"
 LEDGER = ACTO_DIR / "solicitudes-ledger-v1_0.json"
 MCP = ROOT / "tools/f5_documental_mcp.py"
 
@@ -43,7 +47,13 @@ SEMILLA = 20260911
 MODELO = "claude-opus-5"
 PROVEEDOR = "Anthropic firstParty"
 MAX_REINTENTOS = 2
-MAX_TURNS = 2
+# (c) v1_1: --max-turns no existe en el cliente (2.1.270 y 2.1.272); el freno tecnico es --max-budget-usd.
+MAX_BUDGET_USD = 2.00
+# (c) v1_1: reserva contable previa a cada invocacion (3 turnos observados + 1 de margen); no es flag del CLI.
+CARGO_RESERVA = 4
+# (a) v1_1: tope de salida admitido a cualquier modelo auxiliar distinto de MODELO en modelUsage.
+AUX_TOPE_SALIDA = 200
+HERRAMIENTA = "mcp__f5docs__weighted_distribution"
 TECHO_SOLICITUDES = 96
 TIMEOUT = 600
 MERGE_720 = "6cda0282079e9623425529f51c2bea171657b0cf"
@@ -365,13 +375,15 @@ def congelar_plan(paquete: Path, autorizacion: Path) -> dict:
     cliente = version_cliente()
     ps = posiciones(cliente, paquete, manifest)
     plan = {
-        "acto": "GEN2-F5-DOCUMENTAL-EJECUCION", "version": "v1_0", "firma": firma,
+        "acto": "GEN2-F5-DOCUMENTAL-EJECUCION", "version": "v1_1", "firma": firma,
         "repo_head_precongelacion": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
         "cliente_version": cliente, "proveedor": PROVEEDOR, "cuenta": "claude.ai Max; firstParty; sin identificador personal",
         "modelo_exacto": MODELO, "endpoint_modalidad": "Claude Code CLI print sobre claude.ai; stdin + MCP stdio local aislado",
-        "herramientas": ["mcp__f5docs__weighted_distribution"], "web": False,
+        "herramientas": [HERRAMIENTA], "web": False,
         "parametros": {"temperatura": "no expuesta por CLI", "top_p": "no expuesto por CLI", "seed_modelo": "no expuesta",
-                       "max_turns": MAX_TURNS, "output_schema": ESQUEMA, "timeout_s": TIMEOUT},
+                       "max_turns": "no expuesto por el cliente (v1_1 c)", "max_budget_usd": MAX_BUDGET_USD,
+                       "cargo_reserva": CARGO_RESERVA, "aux_tope_salida": AUX_TOPE_SALIDA,
+                       "output_schema": ESQUEMA, "timeout_s": TIMEOUT},
         "k": K, "semilla_orden": SEMILLA, "max_reintentos_tecnicos": MAX_REINTENTOS,
         "techo_solicitudes_proveedor": TECHO_SOLICITUDES, "n_posiciones": len(ps), "posiciones": ps,
         "coste": "suscripcion Max; modelUsage.costUSD se registra como base de lista, no como cargo monetario observado",
@@ -386,8 +398,8 @@ def comando_mcp(paquete_celda: Path) -> list[str]:
     config = {"mcpServers": {"f5docs": {"type": "stdio", "command": sys.executable,
                                           "args": [str(MCP), "--root", str(paquete_celda)]}}}
     return ["claude", "-p", "--model", MODELO, "--output-format", "json", "--json-schema", json.dumps(ESQUEMA),
-            "--system-prompt", SISTEMA, "--tools", "mcp__f5docs__weighted_distribution", "--max-turns", str(MAX_TURNS),
-            "--strict-mcp-config", "--mcp-config", json.dumps(config), "--disable-slash-commands",
+            "--system-prompt", SISTEMA, "--tools", HERRAMIENTA, "--allowedTools", HERRAMIENTA,
+            "--max-budget-usd", f"{MAX_BUDGET_USD:.2f}", "--strict-mcp-config", "--mcp-config", json.dumps(config), "--disable-slash-commands",
             "--no-session-persistence", "--prompt-suggestions", "false", "--permission-prompts", "none", "--restricted"]
 
 
@@ -396,12 +408,44 @@ def modelos(sobre: dict | None) -> set[str]:
     return {str(v.get("canonicalModel") or k) for k, v in uso.items() if isinstance(v, dict)}
 
 
+def uso_modelo(sobre: dict | None, modelo: str) -> dict | None:
+    uso = sobre.get("modelUsage", {}) if isinstance(sobre, dict) else {}
+    for k, v in uso.items():
+        if isinstance(v, dict) and (v.get("canonicalModel") or k) == modelo:
+            return v
+    return None
+
+
+def identidad_modelo(sobre: dict | None) -> dict:
+    """Regla (a) v1_1: usage de nivel superior reconcilia exacto con modelUsage[MODELO]; auxiliares <= AUX_TOPE_SALIDA."""
+    pares = (("input_tokens", "inputTokens"), ("output_tokens", "outputTokens"),
+             ("cache_creation_input_tokens", "cacheCreationInputTokens"), ("cache_read_input_tokens", "cacheReadInputTokens"))
+    usage = sobre.get("usage", {}) if isinstance(sobre, dict) else {}
+    primario = uso_modelo(sobre, MODELO)
+    comparados = [{"campo_usage": a, "campo_modelUsage": b, "usage": usage.get(a) if isinstance(usage, dict) else None,
+                   "modelUsage": primario.get(b) if primario else None} for a, b in pares]
+    reconcilia = primario is not None and isinstance(usage, dict) and all(
+        x["usage"] is not None and x["usage"] == x["modelUsage"] for x in comparados)
+    auxiliares = []
+    uso = sobre.get("modelUsage", {}) if isinstance(sobre, dict) else {}
+    for k, v in uso.items():
+        if isinstance(v, dict) and (v.get("canonicalModel") or k) != MODELO:
+            salida = v.get("outputTokens")
+            auxiliares.append({"modelo": v.get("canonicalModel") or k, "outputTokens": salida,
+                               "tope": AUX_TOPE_SALIDA, "admitido": isinstance(salida, int) and salida <= AUX_TOPE_SALIDA})
+    return {"reconciliacion_usage_modelo": {"ok": reconcilia, "modelo": MODELO, "pares": comparados},
+            "modelos_auxiliares": auxiliares,
+            "ok": reconcilia and all(a["admitido"] for a in auxiliares)}
+
+
 def cargo_solicitudes(sobre: dict | None) -> int:
+    """(c) v1_1: carga el num_turns real, sin recorte hacia abajo. Sin sobre (invocacion fallida) se conserva la
+    reserva; con sobre pero num_turns invalido o ausente se sanea hacia arriba a 1."""
     if not isinstance(sobre, dict):
-        return MAX_TURNS
+        return CARGO_RESERVA
     turnos = sobre.get("num_turns")
-    if not isinstance(turnos, int) or not 1 <= turnos <= MAX_TURNS:
-        return MAX_TURNS
+    if not isinstance(turnos, int) or turnos < 1:
+        return 1
     return turnos
 
 
@@ -413,9 +457,9 @@ def leer_ledger() -> dict:
 
 def reservar_invocacion(ledger: dict, clase: str, ident: str) -> int:
     reservar_o_parar(ledger)
-    ledger["consumidas_conservadoras"] += MAX_TURNS
+    ledger["consumidas_conservadoras"] += CARGO_RESERVA
     ledger["eventos"].append({"timestamp_reserva_utc": datetime.now(timezone.utc).isoformat(), "clase": clase,
-                              "identidad": ident, "cargo": MAX_TURNS, "estado": "RESERVADA-SIN-SOBRE"})
+                              "identidad": ident, "cargo": CARGO_RESERVA, "estado": "RESERVADA-SIN-SOBRE"})
     json_publico(LEDGER, ledger)
     return len(ledger["eventos"]) - 1
 
@@ -425,15 +469,16 @@ def cerrar_reserva(ledger: dict, indice: int, sobre: dict | None) -> int:
     evento = ledger["eventos"][indice]
     if evento.get("estado") != "RESERVADA-SIN-SOBRE":
         raise RuntimeError("reserva de solicitudes ya cerrada")
-    ledger["consumidas_conservadoras"] -= MAX_TURNS - cargo
+    ledger["consumidas_conservadoras"] -= CARGO_RESERVA - cargo
     evento.update({"timestamp_cierre_utc": datetime.now(timezone.utc).isoformat(), "cargo": cargo,
-                   "num_turns_reportado": (sobre or {}).get("num_turns"), "estado": "CERRADA"})
+                   "num_turns_reportado": (sobre or {}).get("num_turns"), "cargo_real_turnos": cargo,
+                   "total_cost_usd": (sobre or {}).get("total_cost_usd"), "estado": "CERRADA"})
     json_publico(LEDGER, ledger)
     return cargo
 
 
 def reservar_o_parar(ledger: dict) -> None:
-    if ledger["consumidas_conservadoras"] + MAX_TURNS > TECHO_SOLICITUDES:
+    if ledger["consumidas_conservadoras"] + CARGO_RESERVA > TECHO_SOLICITUDES:
         raise RuntimeError("TECHO-SOLICITUDES: no hay margen para reservar una invocacion")
 
 
@@ -471,14 +516,29 @@ def sonda_transporte(paquete: Path, autorizacion: Path) -> dict:
     verificar_plan_integridad(plan, paquete, manifest)
     ledger = leer_ledger(); reserva = reservar_invocacion(ledger, "SONDA_TRANSPORTE", marcador)
     sobre, intento = invocar(texto, paquete / cid / "FUENTE-DIRIGIDA-v1")
-    cerrar_reserva(ledger, reserva, sobre)
+    cargo = cerrar_reserva(ledger, reserva, sobre)
     estructurada = (sobre or {}).get("structured_output")
-    ok = (isinstance(estructurada, dict) and marcador in estructurada.get("nota", "") and
-          modelos(sobre) == {MODELO} and cargo_solicitudes(sobre) <= MAX_TURNS)
-    registro = {"acto": "GEN2-F5-DOCUMENTAL-EJECUCION", "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+    identidad = identidad_modelo(sobre)
+    denegadas = [d.get("tool_name") for d in ((sobre or {}).get("permission_denials") or []) if isinstance(d, dict)]
+    coste = (sobre or {}).get("total_cost_usd")
+    condiciones = {
+        "1_marcador_en_nota": isinstance(estructurada, dict) and marcador in estructurada.get("nota", ""),
+        "2_identidad_modelo": identidad["ok"],
+        "3_herramienta_no_denegada": sobre is not None and HERRAMIENTA not in denegadas,
+        "4_coste_bajo_presupuesto": isinstance(coste, (int, float)) and coste <= MAX_BUDGET_USD,
+        "5_cargo_real_registrado": sobre is not None and cargo == cargo_solicitudes(sobre) and cargo >= 1,
+    }
+    ok = all(condiciones.values())
+    registro = {"acto": "GEN2-F5-DOCUMENTAL-EJECUCION", "version": "v1_1",
+                "timestamp_utc": datetime.now(timezone.utc).isoformat(),
                 "estado": "TRANSPORTE-VALIDADO" if ok else "TRANSPORTE-NO-VALIDADO", "marcador": marcador,
-                "sha256_tabla": tabla["sha256"], "modelos_reportados": sorted(modelos(sobre)),
-                "num_turns": (sobre or {}).get("num_turns"), "sobre_cli_original": sobre, "intento": intento}
+                "sha256_tabla": tabla["sha256"], "condiciones": condiciones, "modelos_reportados": sorted(modelos(sobre)),
+                "reconciliacion_usage_modelo": identidad["reconciliacion_usage_modelo"],
+                "modelos_auxiliares": identidad["modelos_auxiliares"], "permission_denials": denegadas,
+                "total_cost_usd": coste, "max_budget_usd": MAX_BUDGET_USD,
+                "num_turns": (sobre or {}).get("num_turns"), "cargo_real_turnos": cargo,
+                "consumidas_conservadoras_tras_sonda": ledger["consumidas_conservadoras"], "techo": TECHO_SOLICITUDES,
+                "sobre_cli_original": sobre, "intento": intento}
     json_publico(SONDA, registro)
     if not ok:
         raise RuntimeError("TRANSPORTE-NO-VALIDADO")
@@ -527,9 +587,10 @@ def ejecutar(paquete: Path, autorizacion: Path) -> dict:
             else:
                 consecutivos_sistemicos = 0
         estructura = (sobre or {}).get("structured_output")
+        identidad = identidad_modelo(sobre)
         if sobre is None:
             estado = "ERROR_TECNICO"
-        elif modelos(sobre) != {MODELO}:
+        elif not identidad["ok"]:
             estado = "ERROR_IDENTIDAD"
         elif not isinstance(estructura, dict):
             estado = "MALFORMADA"
@@ -539,6 +600,10 @@ def ejecutar(paquete: Path, autorizacion: Path) -> dict:
                 estado = "MALFORMADA"
         registro = {**pos, "timestamp_utc": datetime.now(timezone.utc).isoformat(), "estado_captura": estado,
                     "respuesta_estructurada": estructura, "modelos_reportados": sorted(modelos(sobre)),
+                    "reconciliacion_usage_modelo": identidad["reconciliacion_usage_modelo"],
+                    "modelos_auxiliares": identidad["modelos_auxiliares"],
+                    "cargo_real_turnos": sum(e["cargo"] for e in ledger["eventos"] if e["identidad"] == pos["identidad"]),
+                    "total_cost_usd": (sobre or {}).get("total_cost_usd"),
                     "sobre_cli_original": sobre, "intentos": intentos}
         json_publico(ruta, registro)
         if estado in {"ERROR_TECNICO", "ERROR_IDENTIDAD"}: errores += 1
