@@ -61,7 +61,7 @@ umbral razonable — el propio `A-REPRODUCE-GEN1` sellado de cada CALC ya lo
 certifica). Bajo la regla de bloque de `RELEVO-USOS-1` («los NO-MATERIALES
 entran en bloque»), estos 9 son candidatos limpios de adopción en bloque —
 pero **este acto no adopta**: el encargo lo excluye del perímetro
-(«no toca milpa ni cola»). Queda para el sucesor `NC-0225`.
+(«no toca milpa ni cola»). Queda para el sucesor `NC-0226`.
 
 **2 de 11 (RES-0043/0044, `CALC-EDER-0003`) NO son comparables.** El propio
 CALC lo declara: `RESULT-EDER-UNION-A-DELTA-VS-GEN1 = NO-APLICA-ESTIMANDO-
@@ -81,7 +81,7 @@ no se calla.
 
 (Rótulo consistente: los sucesores de este párrafo — adopción en bloque de
 los 9 `REPRODUCE` y disposición de mesa sobre los 2 `NO-COMPARABLE` — van
-al mismo `NC-0225`, no a filas separadas, porque son la misma acción de
+al mismo `NC-0226`, no a filas separadas, porque son la misma acción de
 sucesor: escribir/decidir sobre `milpa/`.)
 
 **Hallazgo nuevo, no pedido por este encargo:** `RES-0047`/`RES-0049` — YA
@@ -94,7 +94,7 @@ slots. Las cifras **no discrepan** (`RESULT-HVD-A-HORIZONTE-NO-CORTO-SIN-SS`
 las ya adoptadas), así que la cita vigente en `milpa/tramite.yaml` no está
 mal. Es un conflicto de **procedencia** (dos CALC independientes se
 adjudican el mismo relevo), y el propio registro dice que la decisión es de
-mesa, no de este canal. Sucesor: `NC-0226`.
+mesa, no de este canal. Sucesor: `NC-0227`.
 
 `tools/relevo_usos.py --escribe` corrido (sin tocar `spec.yaml` de ningún
 CALC): `data/corrida0/relevo-usos-v1_0.tsv` refleja el árbol post-`#789`
@@ -111,7 +111,7 @@ exigiría teclear un contrato a mano — exactamente lo que
 sellado (tabla de arriba) cumple el mismo objeto con más rigor (es el
 propio CALC verificándose contra GEN1, no una segunda vía externa).
 
-**CERRADA** (el pin queda declarado y evidenciado). Sucesores: `NC-0225`
+**CERRADA** (el pin queda declarado y evidenciado). Sucesores: `NC-0226`
 (adopción en bloque de los 9 `REPRODUCE`) y `NC-0227` (conflicto de
 procedencia RES-0047/0049).
 
@@ -148,7 +148,7 @@ milpa»): escribir `corrida0_resultado_id`/`corrida0_generacion: GEN2` en
 `milpa/tramite.yaml` (hoy ~línea 1406-1407, desplazada desde la 1303-1304
 que `NC-0169` citaba). Los dos `RESULT` a citar son exactamente los que P2
 pineó arriba (`RESULT-ENSANUT-A-P-LOGISTICA` / `-A-P-NO-LOGISTICA`).
-**CERRADA** (la emisión). Sucesor `NC-0225` (la cita en `milpa/`, junto con
+**CERRADA** (la emisión). Sucesor `NC-0226` (la cita en `milpa/`, junto con
 el resto del bloque `REPRODUCE` de P2 — mismo acto, mismo perímetro).
 
 ## P4 · NC-0208 — verificador F5 bajo el contrato v1.2
