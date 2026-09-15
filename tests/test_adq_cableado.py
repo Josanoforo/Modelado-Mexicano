@@ -675,6 +675,17 @@ def prueba_doctor_expone_ledger_y_pendientes():
            "E2E: el doctor oculta reservas materiales pendientes")
 
 
+def prueba_cierre_runtime_evitar_repetir_estado_publicado_sin_merge():
+    fuente = RUNNER.read_text(encoding="utf-8")
+    investigacion = (RAIZ / "tools" / "adq_investigacion.py").read_text(
+        encoding="utf-8")
+    afirma("--resultado-ciclo" in fuente,
+           "E2E: el cierre no entrega el resultado al checkpoint runtime")
+    afirma("investigaciones_atendidas" in investigacion and
+           "atendida por" in investigacion,
+           "E2E: la siguiente activación repite una rama publicada sin merge")
+
+
 # ───────────────────────────────────────────────────────────────
 
 PRUEBAS = [v for k, v in sorted(globals().items()) if k.startswith("prueba_")]

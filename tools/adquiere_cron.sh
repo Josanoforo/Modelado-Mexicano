@@ -720,6 +720,7 @@ SOY_DUENO_DEL_LOCK=1
 finalizar() {
   local codigo=$?
   local estado="TERMINADO"
+  local resultado_ciclo=()
   [ "$codigo" -ne 0 ] && estado="FAILED"
   # H6: un proceso muerto sin haber escrito su cierre queda INCOMPLETO --
   # no se inventa un éxito ni una causa de muerte. `CIERRE_ESCRITO` solo
@@ -736,8 +737,11 @@ finalizar() {
     python3 tools/adq_investigacion.py --libera "$RUN_ID" >>"$LOGFILE" 2>&1 || true
   fi
   if [ "${CIERRE_ESCRITO:-0}" -eq 1 ]; then
+    if [ -n "${ULTIMO_MENSAJE:-}" ] && [ -f "${ULTIMO_MENSAJE:-}" ]; then
+      resultado_ciclo=(--resultado-ciclo "$ULTIMO_MENSAJE")
+    fi
     python3 tools/adq_investigacion.py --registra-ciclo --owner "$RUN_ID" \
-      --corte "$FECHA" >>"$LOGFILE" 2>&1 || true
+      --corte "$FECHA" "${resultado_ciclo[@]}" >>"$LOGFILE" 2>&1 || true
   fi
   # Restauración segura del contexto: best-effort, nunca deja que un
   # checkout fallido dispare un segundo trap ni cambie el código de salida

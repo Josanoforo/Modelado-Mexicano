@@ -266,6 +266,36 @@ def prueba_migracion_legacy_con_evidencia_no_inventa_credito():
                "repetir la migración legacy devolvió o cobró dos veces")
 
 
+def prueba_checkpoint_runtime_no_repite_rama_sin_fusionar():
+    with tempfile.TemporaryDirectory() as td:
+        raiz = Path(td)
+        cfg = _cfg(raiz)
+        fecha = dt.date(2026, 9, 15)
+        resultado = raiz / "resultado.json"
+        resultado.write_text(json.dumps({"investigaciones": [{
+            "necesidad_id": "DEM-X", "version_pregunta": "v1",
+            "estado": "continua", "proxima_revision": "2026-09-16",
+        }]}), encoding="utf-8")
+        ciclo = I.registra_ciclo(
+            cfg, fecha, "RUN-PUBLICADO-SIN-MERGE", raiz, resultado)
+        marca = ciclo["investigaciones_atendidas"]["DEM-X"]
+        afirma(marca["run_id"] == "RUN-PUBLICADO-SIN-MERGE" and
+               marca["proxima_revision"] == "2026-09-16",
+               "el cierre no preservó la investigación publicada sin merge")
+        seleccion = {"elegidos": [{"id": "DEM-X", "version_pregunta": "v1"}],
+                     "excluidos": []}
+        filtrada = I._excluye_atendidas_runtime(
+            seleccion, ciclo, fecha, set())
+        afirma(not filtrada["elegidos"] and
+               "RUN-PUBLICADO-SIN-MERGE" in filtrada["excluidos"][0]["razon"],
+               "la segunda activación repetiría la misma versión antes del merge")
+        reactivada = I._excluye_atendidas_runtime(
+            {"elegidos": [{"id": "DEM-X", "version_pregunta": "v1"}],
+             "excluidos": []}, ciclo, fecha, {"DEM-X"})
+        afirma(len(reactivada["elegidos"]) == 1,
+               "un cambio material no reactivó la investigación atendida")
+
+
 def main():
     prueba_cierre_nc_no_borra_demanda_y_reserva_vence()
     prueba_continuacion_y_alerta_dos_ciclos()
@@ -274,12 +304,13 @@ def main():
     prueba_checkpoints_fallos_timeout_y_publicacion()
     prueba_huerfanas_y_dimensiones_independientes()
     prueba_migracion_legacy_con_evidencia_no_inventa_credito()
+    prueba_checkpoint_runtime_no_repite_rama_sin_fusionar()
     if FALLOS:
         print(f"FALLÓ ({len(FALLOS)}):")
         for fallo in FALLOS:
             print("  ·", fallo)
         return 1
-    print("OK -- test_adq_continua.py: 7 grupos, 0 fallos")
+    print("OK -- test_adq_continua.py: 8 grupos, 0 fallos")
     return 0
 
 

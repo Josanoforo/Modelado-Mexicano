@@ -1288,6 +1288,33 @@ def _huellas_contratos(cfg: dict, raiz: Path = RAIZ) -> dict[str, str]:
     return salida
 
 
+def _excluye_atendidas_runtime(investigacion: dict, previo: dict,
+                               corte: dt.date, cambiadas: set[str]) -> dict:
+    # El hijo publica el estado científico en una rama que mesa todavía no
+    # fusionó y el launcher restaura después el SHA desplegado. El checkpoint
+    # runtime evita volver a cobrar/repetir esa misma versión durante la
+    # espera; una revisión vencida o un cambio material la habilitan otra vez.
+    atendidas = previo.get("investigaciones_atendidas", {})
+    elegibles_investigacion = []
+    for item in investigacion["elegidos"]:
+        ident = item["id"]
+        marca = atendidas.get(ident, {})
+        proxima = _fecha(marca.get("proxima_revision"))
+        misma_version = marca.get("version_pregunta") == item.get("version_pregunta")
+        atendida_hoy = marca.get("fecha_imputacion") == corte.isoformat()
+        if (misma_version and ident not in cambiadas and
+                ((proxima and corte < proxima) or (not proxima and atendida_hoy))):
+            investigacion["excluidos"].append({
+                "id": ident,
+                "razon": (f"atendida por {marca.get('run_id')} para esta versión; "
+                          f"próxima revisión {marca.get('proxima_revision') or 'después del día'}"),
+            })
+        else:
+            elegibles_investigacion.append(item)
+    investigacion["elegidos"] = elegibles_investigacion
+    return investigacion
+
+
 def comprueba_despacho(cfg: dict, corte: dt.date, raiz: Path = RAIZ,
                        ahora: dt.datetime | None = None) -> dict:
     """Chequeo determinista para el único scheduler; nunca invoca un LLM."""
@@ -1311,9 +1338,9 @@ def comprueba_despacho(cfg: dict, corte: dt.date, raiz: Path = RAIZ,
     cambiadas = ({ident for ident, valor in huellas_contratos.items()
                   if ident in anteriores and anteriores[ident] != valor}
                  if anteriores else set())
-    investigacion = selecciona(
+    investigacion = _excluye_atendidas_runtime(selecciona(
         cfg, corte, 3, raiz=raiz, ahora=ahora,
-        cambios_materiales=cambiadas)
+        cambios_materiales=cambiadas), previo, corte, cambiadas)
     hora_diaria = (yaml.safe_load((raiz / "data/adq-config.yaml").read_text(
         encoding="utf-8")) or {}).get("calendario", {}).get("hora", "07:30")
     hora, minuto = map(int, hora_diaria.split(":"))
@@ -1372,12 +1399,29 @@ def comprueba_despacho(cfg: dict, corte: dt.date, raiz: Path = RAIZ,
 
 
 def registra_ciclo(cfg: dict, fecha: dt.date, run_id: str,
-                   raiz: Path = RAIZ) -> dict:
+                   raiz: Path = RAIZ,
+                   resultado: Path | None = None) -> dict:
     path = raiz / cfg.get(
         "comprobacion_runtime", "forense/adq-log/estado/comprobacion.json")
     doc = _lee_json(path)
+    marcas = dict(doc.get("investigaciones_atendidas", {}))
+    if resultado and resultado.is_file():
+        dato = _lee_json(resultado)
+        for item in dato.get("investigaciones", []):
+            ident = item.get("necesidad_id")
+            version = item.get("version_pregunta")
+            if ident and version:
+                marcas[ident] = {
+                    "version_pregunta": version,
+                    "fecha_imputacion": fecha.isoformat(),
+                    "run_id": run_id,
+                    "estado": item.get("estado"),
+                    "proxima_revision": item.get("proxima_revision"),
+                    "registrada": _ahora().isoformat(),
+                }
     doc.update({"ultima_corrida": fecha.isoformat(),
                 "ultimo_run_id": run_id, "registrada": _ahora().isoformat(),
+                "investigaciones_atendidas": marcas,
                 # La comprobación previa no conoce todavía la reserva del hijo.
                 # Persistir una foto nueva evita anunciar cupo ya consumido.
                 "presupuesto": presupuesto_diario(cfg, fecha, raiz)})
@@ -1413,6 +1457,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--lock-exclusivo", action="store_true")
     ap.add_argument("--comprueba-despacho", action="store_true")
     ap.add_argument("--registra-ciclo", action="store_true")
+    ap.add_argument("--resultado-ciclo", type=Path)
     args = ap.parse_args(argv)
     cfg = cargar_config(args.config)
     corte = _fecha(args.corte) or dt.date.today()
@@ -1456,7 +1501,9 @@ def main(argv: list[str] | None = None) -> int:
     if args.registra_ciclo:
         if not args.owner:
             ap.error("--registra-ciclo exige --owner")
-        print(json.dumps(registra_ciclo(cfg, corte, args.owner), ensure_ascii=False))
+        print(json.dumps(registra_ciclo(
+            cfg, corte, args.owner, resultado=args.resultado_ciclo),
+            ensure_ascii=False))
         return 0
     if args.selecciona:
         print(json.dumps(selecciona(cfg, corte, args.maximo, set(args.nombrada)),
