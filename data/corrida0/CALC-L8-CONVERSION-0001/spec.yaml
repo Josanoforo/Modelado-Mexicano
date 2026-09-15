@@ -1,0 +1,130 @@
+# CALC-L8-CONVERSION-0001 -- cara mecanica de spec.md (ACTO GEN2-SPECS-DEMANDA-2).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/L8-CONCURRENCIA-CONVERSION-spec-v1_0.md
+# (`prereg-caja-L8-CONCURRENCIA-CONVERSION`).
+# Releva la demanda CORR-0016 (3 RESULT) bajo el registro GEN2.
+# CONGELADO en NUBE, sobre un payload que es artefacto de repo (no microdato).
+calc_id: CALC-L8-CONVERSION-0001
+spec_md: spec.md
+spec_md_sha256: 33134f3c9a549379ae35b38536462c1d9ceef387963c017487810e7edeb9ee59
+
+script: data/corrida0/CALC-L8-CONVERSION-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: CONVERSION-DETERMINISTA-DE-PANEL
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/L8-CONCURRENCIA-CONVERSION-spec-v1_0.md
+  spec_sellada_sha256: 33134f3c9a549379ae35b38536462c1d9ceef387963c017487810e7edeb9ee59
+  demanda_que_releva: "CORR-0016 (payload data/l8-resultados-tipo-boleta-v1_0.json) -> los 3 RESULT: RES-0050 (civico.participacion.concurrencia_presidencial_conversion:participa_p0_minimo), RES-0051 (:participa_p0_maximo), RES-0052 (:participa_p0_media). Sin residuo: CORR-0016 tiene exactamente 3 RESULT y los tres quedan relevados."
+  repite_de: "NINGUNO -- primer CALC que releva esta regla con cadena E.2 trazable. La cifra legacy (milpa/tramite.yaml:1138-1140) ya existia como transformacion de motor sin CALC propio; este contrato no cambia la formula ni los valores, les da procedencia por archivo+comando."
+  por_que_no_es_duplicado: "No hay CALC previo sobre esta regla (0 filas en data/corrida0/CALC-*/spec.yaml antes de este acto). El unico antecedente es la cita en prosa de milpa/tramite.yaml:1147-1158, que declara la formula pero no trae comando reproducible."
+  reglas_bajo_prueba: "NINGUNA cambia de cifra por esta corrida. civico.participacion.concurrencia_presidencial_conversion (tier MEDIA, ADR-321) conserva sus tres valores legacy exactos (0.345267 / 0.750567 / 0.619867): este CALC los releva, no los reestima. La adopcion (si aplica) la decide mesa."
+  firma_de_contador: "NO-FIRMADA. El encargo de mesa (15/sep/2026, forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-2.md) pide congelar specs ejecutables y no declara OBJETO sobre el contador GEN2. FP-367/368 no satisfecho -> cuenta_gen2 queda PENDIENTE-DE-MESA."
+  contaminacion_declarada: "ADR-46 -- al congelar, la sesion ya habia leido: milpa/tramite.yaml:1122-1162 completo (la regla, su formula de conversion, su rango p0 y su media, la nota sobre beta_int con IC que contiene cero), y el JSON de L8 entero via el comando de 0.3. NO es ciega: leer ambos es lo que A.8 obliga antes de escribir esta spec. Lo genuinamente nuevo de esta pieza: el comando que reproduce p0_min/p0_max/p0_media con codigo a la vista, que no existia antes."
+  medidor_ejecutado_al_congelar: "NO -- y el medidor tampoco se escribe aqui. Aunque esta transformacion NO requiere numpy/pandas/microdato (aritmetica pura sobre JSON con libreria estandar, verificable en NUBE), el encargo de este acto declara en su propio perimetro CONTADOR: cero mediciones propias y no corre ningun CALC -- no se hace una excepcion por facilidad tecnica. Consecuencia declarada: `corrida0.py preflight CALC-L8-CONVERSION-0001` reportara BLOQUEADO:script_ausente hasta que un acto posterior (caja o nube) lo escriba y corra."
+
+inputs:
+  - id: l8_resultados_tipo_boleta_v1_0
+    origen: repo
+    ruta: data/l8-resultados-tipo-boleta-v1_0.json
+    sha256: 30f3e16dd6ea770ad72ab957547159c5427788a97a24a0ef30f2765752ef8f99
+  - id: IN-L8-CONVERSION-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/L8-CONCURRENCIA-CONVERSION-spec-v1_0.md
+    sha256: 33134f3c9a549379ae35b38536462c1d9ceef387963c017487810e7edeb9ee59
+
+variables:
+  - {archivo: "data/l8-resultados-tipo-boleta-v1_0.json", variable: "por_transicion[].y_de_media", rol: "p0 de la pata 'de' de cada transicion municipal (puntos porcentuales, 100*votos/lista_nominal)", codigos: "flotante tal cual, sin normalizar; 20 valores"}
+  - {archivo: "data/l8-resultados-tipo-boleta-v1_0.json", variable: "por_transicion[].y_a_media", rol: "p0 de la pata 'a' de cada transicion municipal", codigos: "flotante tal cual; 20 valores -- junto con y_de_media, 40 medias totales"}
+  - {archivo: "data/l8-resultados-tipo-boleta-v1_0.json", variable: "estimador.beta_pres_pp", rol: "efecto puntual wild-cluster del panel L8, en puntos porcentuales -- es el `delta` de conversion_A_aditiva", codigos: "flotante tal cual, un solo escalar"}
+
+universo: >-
+  Las 20 filas de `por_transicion` del panel L8 (municipios con transicion de
+  tipo de boleta entre 2016 y 2024, panel ya cerrado y sellado por el acto que
+  produjo el JSON) -- 40 medias municipales (y_de_media + y_a_media). SIN
+  filtro adicional: se leen las 20 filas completas, tal como estan, sin
+  excluir ninguna transicion por tamano de n ni por entidad.
+
+filtros: >-
+  Ninguno. El panel de origen (L8) ya aplico sus propios filtros al
+  producir el JSON (`n_transiciones_municipio`, `municipios_perdidos`,
+  `fuera_de_rango`); esta corrida no re-filtra ni re-pondera: LEE el
+  resultado publicado. Guardia unica: si `len(por_transicion) != 20` o si
+  `estimador.beta_pres_pp` no existe o no es finito -> NO-ESTIMABLE-PANEL-L8-CAMBIO,
+  senal de que el JSON en disco ya no es la version que esta spec congelo.
+
+ponderador: >-
+  Ninguno propio. Las 40 medias de `por_transicion` son YA medias
+  municipales (no se re-ponderan por poblacion ni por lista nominal en esta
+  corrida): la unidad de analisis es "transicion municipal", igual que la
+  definio `L8` originalmente.
+
+transformacion: >-
+  Lectura con json.load (libreria estandar, sin pandas/numpy). ys = lista de
+  40 flotantes (y_de_media, y_a_media de las 20 filas de por_transicion).
+  p0_min = round(min(ys)/100, 4); p0_max = round(max(ys)/100, 4); p0_mean =
+  round(sum(ys)/len(ys)/100, 4). delta = round(estimador['beta_pres_pp']/100, 6).
+  p_minimo = min(max(p0_min+delta, 0.0), 1.0); p_maximo = min(max(p0_max+delta, 0.0), 1.0);
+  p_media = min(max(p0_mean+delta, 0.0), 1.0). Orden de redondeo FIJO (p0 a 4
+  decimales ANTES de sumar delta a 6 decimales): invertirlo cambia la cifra
+  en la sexta decimal y dejaria de coincidir con el legacy citado en
+  milpa/tramite.yaml. Sin bootstrap, sin re-muestreo, sin ajuste de
+  tendencia.
+
+estimando: >-
+  DESCRIPTIVO, conversion determinista sin incertidumbre nueva. (1)
+  ADOPTABLE POR MESA: los tres puntos p_minimo/p_maximo/p_media, cada uno
+  con cadena E.2 completa (archivo+linea+comando) por primera vez. (2)
+  SECUNDARIOS: n_transiciones leidas, n_medias leidas, y el delta aplicado.
+  NINGUN RESULT lleva IC95 propio -- la incertidumbre del panel L8 vive en
+  `estimador.wild_cluster_beta_pres.ic95` del JSON original y no se
+  re-calcula aqui (declararia precision que esta conversion no produce).
+  NINGUN RESULT ES CAUSAL: son puntos ilustrativos de una formula de
+  conversion agregado->individual, no una medicion de la regla en si.
+
+dependencias_materiales: []
+
+parametros:
+  fuente_acto: "ACTO GEN2-SPECS-DEMANDA-2 · CALC-L8-CONVERSION-0001 · conversion municipal->individual de civico.participacion.concurrencia_presidencial_conversion"
+  firma_que_lo_autoriza: "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-2.md, P1: «CORR-0016 (SIN-CAPA-2) -> spec.yaml D-15 congelado, abriendo solo codebook/metadato». La firma autoriza CONGELAR, no contar."
+  formula_de_conversion: "milpa/tramite.yaml:1142-1146, conversion_A_aditiva, firma de mesa D1/FP-255 (2/sep/2026): p = clip(p0 + 0.040167, 0, 1)"
+  orden_de_redondeo: "p0 a 4 decimales, luego + delta a 6 decimales, sin redondeo final adicional -- fijado por coincidencia exacta con el legacy citado (ver spec.md §0.3)"
+  valores_legacy_referencia:
+    participa_p0_minimo: 0.345267
+    participa_p0_maximo: 0.750567
+    participa_p0_media: 0.619867
+  p0_legacy_referencia:
+    p0_minimo: 0.3051
+    p0_maximo: 0.7104
+    p0_media: 0.5797
+  criterio_replica: "RESULT = valor legacy dentro de tolerancia (abs<=5e-7). NUNCA se rotula REPRODUCE (E.3): milpa/tramite.yaml no es un CALC sellado que este CALC reproduzca, es una regla del motor que este CALC releva por primera vez."
+
+seed:
+  aplica: false
+  valor: null
+  rng: null
+
+tolerancia:
+  tipo: flotante
+  abs: 5.0e-7
+  razon: >-
+    Transformacion determinista sin aleatoriedad: la unica fuente de
+    diferencia entre dos corridas es redondeo de float64 en la division por
+    100 y en la suma. n_transiciones y n_medias se comparan EXACTO (enteros).
+
+resultados:
+  - {id: RESULT-L8CONV-G-N-TRANSICIONES, tipo: entero, unidad: "filas de por_transicion leidas (esperado 20)"}
+  - {id: RESULT-L8CONV-G-N-MEDIAS, tipo: entero, unidad: "y_de_media + y_a_media leidas (esperado 40)"}
+  - {id: RESULT-L8CONV-G-DELTA-PP, tipo: flotante, unidad: "estimador.beta_pres_pp leido tal cual, puntos porcentuales"}
+  - {id: RESULT-L8CONV-P0-MINIMO, tipo: proporcion, unidad: "min(ys)/100 redondeado a 4 decimales (esperado 0.3051)"}
+  - {id: RESULT-L8CONV-P0-MAXIMO, tipo: proporcion, unidad: "max(ys)/100 redondeado a 4 decimales (esperado 0.7104)"}
+  - {id: RESULT-L8CONV-P0-MEDIA, tipo: proporcion, unidad: "mean(ys)/100 redondeado a 4 decimales (esperado 0.5797)"}
+  - {id: RESULT-L8CONV-PARTICIPA-P0-MINIMO, tipo: proporcion, unidad: "p_minimo = clip(P0-MINIMO + delta, 0, 1) -- releva RES-0050 (esperado 0.345267)"}
+  - {id: RESULT-L8CONV-PARTICIPA-P0-MAXIMO, tipo: proporcion, unidad: "p_maximo = clip(P0-MAXIMO + delta, 0, 1) -- releva RES-0051 (esperado 0.750567)"}
+  - {id: RESULT-L8CONV-PARTICIPA-P0-MEDIA, tipo: proporcion, unidad: "p_media = clip(P0-MEDIA + delta, 0, 1) -- releva RES-0052 (esperado 0.619867)"}
+  - {id: RESULT-L8CONV-DELTA-VS-LEGACY-MINIMO, tipo: flotante, unidad: "PARTICIPA-P0-MINIMO menos 0.345267, CON SIGNO"}
+  - {id: RESULT-L8CONV-DELTA-VS-LEGACY-MAXIMO, tipo: flotante, unidad: "PARTICIPA-P0-MAXIMO menos 0.750567, CON SIGNO"}
+  - {id: RESULT-L8CONV-DELTA-VS-LEGACY-MEDIA, tipo: flotante, unidad: "PARTICIPA-P0-MEDIA menos 0.619867, CON SIGNO"}
+  - {id: RESULT-L8CONV-RELEVA-LEGACY, tipo: texto, unidad: "SI / NO -- los tres deltas dentro de tolerancia"}

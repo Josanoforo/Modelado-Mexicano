@@ -1,0 +1,141 @@
+# CALC-S7-L17-0001 -- cara mecanica de la capa 2 (D-15) que faltaba sobre
+# la spec humana YA SELLADA forense/prereg-caja/S7-L17-spec-v1_1.md
+# (`prereg-caja-S7-L17`). NO edita esa spec (E.3): la capa 2 se escribe
+# aparte y la cita por sha256.
+# Releva la demanda CORR-0017 (2 RESULT, Rama B primaria) bajo el registro GEN2.
+# CONGELADO en NUBE (ACTO GEN2-SPECS-DEMANDA-2), sobre una MEDICION QUE YA
+# CORRIO en CAJA (ACTO MAESTRA38-LOTE-ENSANUT, L17, 6/sep/2026) -- este
+# contrato le da al RESULT existente la cadena E.2/D-15 que nunca tuvo en
+# el registro GEN2, no re-mide nada.
+calc_id: CALC-S7-L17-0001
+spec_md: N/A -- capa 1 humana vive en forense/prereg-caja/S7-L17-spec-v1_1.md (sellada, no duplicada aqui)
+spec_md_sha256: 5b9b6055122b1ea14a1bd82503fd84889c7a064a08c04e443c07ae6866ac59d2
+
+script: tools/medidor_l17_vacunacion_disponible.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: FALSADOR-B-BIS-YA-EJECUTADO
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/S7-L17-spec-v1_1.md
+  spec_sellada_sha256: 5b9b6055122b1ea14a1bd82503fd84889c7a064a08c04e443c07ae6866ac59d2
+  spec_sellada_previa_v1_0_sha256: f3aea086cee60e59fa3858334eaa6e00218e30a0b19c67fb37ae806fd586830f
+  demanda_que_releva: "CORR-0017 (payload forense/prereg-caja/S7-L17-spec-v1_0.md como instrumento nominal del registro; payload real de medicion adultos_ensanut2024_w) -> los 2 RESULT: RES-0063 (salud.vacunacion.disponible_ensanut2024:razon_no_vacunacion_logistica), RES-0064 (:razon_no_vacunacion_no_logistica). Cobertura completa: CORR-0017 tiene exactamente 2 RESULT en el registro GEN2 y los dos quedan relevados."
+  repite_de: "NINGUN CALC previo -- es el mismo script y la misma corrida que YA selló milpa/tramite.yaml (ACTO MAESTRA38-LOTE-ENSANUT L17, 6/sep/2026, tools/medidor_l17_vacunacion_disponible.py; cargada al motor por ACTO MAESTRA38-SELLO-2, 7/sep/2026, ADR-D2i). Este CALC NO re-ejecuta: registra esa misma corrida en el esquema D-15/GEN2, que no existia el 6/sep."
+  por_que_no_es_duplicado: "milpa/tramite.yaml:1297-1325 ya trae la cifra sellada (situacion: SELLADA, veredicto CORROBORADA) pero SIN spec.yaml ni corrida0_resultado_id: es exactamente el hueco FALTA-CAPA-2 que data/corrida0/mapa-demanda-19-corr-v1_0.tsv nombra para CORR-0017. Este contrato no compite con esa cifra -- la releva."
+  reglas_bajo_prueba: "NINGUNA cambia de cifra. salud.vacunacion.disponible_ensanut2024 (R9.2, tier FUERTE) conserva razon_no_vacunacion_logistica=0.777762 y razon_no_vacunacion_no_logistica=0.222238 exactos, con su IC95=[0.672777,0.857561] y n=254 intactos (milpa/tramite.yaml:1311-1312). Este CALC solo les da cadena E.2 en el registro GEN2."
+  firma_de_contador: "NO-FIRMADA. El encargo de mesa (15/sep/2026, forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-2.md) pide congelar specs ejecutables y no declara OBJETO sobre el contador GEN2. FP-367/368 no satisfecho -> cuenta_gen2 queda PENDIENTE-DE-MESA -- aunque la medicion ya este SELLADA en milpa/ desde el 7/sep, el contador GEN2 es un tally distinto (D-15/corrida0), y este acto no lo firma por sí mismo."
+  contaminacion_declarada: "ADR-46 -- al congelar esta capa 2, la sesion ya habia leido: milpa/tramite.yaml:1297-1325 completo (la carga SELLO-2, los dos valores, el IC95, el universo, el sha256_payload), forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md completo (salida cruda de la corrida real, ambas ramas B y C, y el PARO parcial de Rama A), y tools/medidor_l17_vacunacion_disponible.py completo. NO es ciega y no puede serlo: la corrida ya paso y leerla es lo que A.8 exige antes de registrar su capa 2. Lo unico que esta pieza aporta de nuevo es el contrato D-15/GEN2 que faltaba, no ningun numero."
+  medidor_ejecutado_al_congelar: "SI, PERO NO EN ESTA SESION. El medidor (tools/medidor_l17_vacunacion_disponible.py) corrio en CAJA el 6/sep/2026 contra el payload real (adultos_ensanut2024_w.dta, sha256(dta)=4bb4ceeb97005d77466d9bb3329f8b0528e3df5f534925fc6f3b659646096efc, dentro del ZIP adultos_ensanut2024_w_stata_stata__v2026_09_01 sha256=0fa8f4436fa427cc23d1d43164d449462c09eb787cb45ad20961576cb095a6c4). Esta sesion (NUBE, sin corpus, sin pandas/pyreadstat) NO lo re-corre -- lee la salida ya archivada en forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md. `corrida0.py preflight CALC-S7-L17-0001` reportara BLOQUEADO:resultados_ausente (no script_ausente: el script SI existe) hasta que un acto de registro (nube o caja) transcriba resultados.json desde la nota citada -- transcripcion mecanica de numeros ya producidos, no medicion nueva; deliberadamente NO se hace en este mismo commit para no mezclar 'congelar contrato' con 'escribir resultados' (misma disciplina de dos-commits-minimo que el resto de este acto)."
+
+inputs:
+  - id: adultos_ensanut2024_w_stata_stata__v2026_09_01
+    origen: manifiesto
+  - id: adolescentes_ensanut2024_w_stata_stata__v2026_09_01
+    origen: manifiesto
+  - id: IN-S7L17-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/S7-L17-spec-v1_1.md
+    sha256: 5b9b6055122b1ea14a1bd82503fd84889c7a064a08c04e443c07ae6866ac59d2
+  - id: IN-S7L17-NOTA-RESULTADOS
+    origen: repo
+    ruta: forense/notas/2026-09-06-MAESTRA38-LOTE-ENSANUT-resultados.md
+    sha256: NO-CALCULADO-AQUI -- citar con sha256sum al transcribir resultados.json
+
+variables:
+  - {archivo: "adultos_ensanut2024_w.dta", variable: "a0927{a..e}{1..4}", rol: "DISPARADOR/DESENLACE -- bloque de razon de no vacunacion por vacuna nombrada; letra=razon (a=no_habia_vacunas,b=no_derechohabiente,c=no_estaba_quien_aplica,d=enfermo,e=otra_razon), digito=vacuna (1=Influenza,2=Neumococo,3=Tetanos,4=Otra) -- CONFIRMADO CONTRA ETIQUETAS DEL .dta, invierte el supuesto de S7-L17-spec-v1_0 §2 (v1.1 ya lo registra)", codigos: "1=Si marcado, resto=no marcado; una fila de RESULT = una mencion persona x vacuna x razon"}
+  - {archivo: "adultos_ensanut2024_w.dta", variable: ponde_f, rol: "PONDERADOR de persona", codigos: "flotante tal cual"}
+  - {archivo: "adultos_ensanut2024_w.dta", variable: estrato, rol: "ESTRATO de diseno", codigos: "llave de conglomerado, ver wprop_ic_conglomerado"}
+  - {archivo: "adultos_ensanut2024_w.dta", variable: upm, rol: "UPM de diseno", codigos: "llave de conglomerado"}
+  - {archivo: "adultos_ensanut2024_w.dta", variable: FOLIO_I, rol: "llave de persona", codigos: "cadena/entero cruda, usada para contar personas distintas"}
+
+universo: >-
+  Menciones (persona x vacuna x razon) del bloque a0927 en adultos_ensanut2024_w.dta
+  (12 924 personas en el .dta) con valor 1 (razon marcada) en cualquiera de
+  las 20 columnas a0927{a..e}{1..4}. 254 menciones de 179 personas distintas.
+  RAZON_LOGISTICA = 1 si la letra es 'a' (no habia vacunas) o 'c' (no estaba
+  quien aplica); 0 si es 'b' (no derechohabiente), 'd' (enfermo) o 'e' (otra
+  razon) -- dicotomizacion de S7-L17-spec-v1_1 §3, sin cambio.
+
+filtros: >-
+  Guardia de tamano minimo (spec §3, "Cota de n minima por celda"): si
+  n_total < 20 o min(n_logistica, n_no_logistica) < 10 -> NO-ESTIMABLE. No
+  se activo: n=254, n_logistica=198 (77.7762% de 254), min=56 (no_logistica).
+  Rama A (ENNVIH) queda fuera de este CALC -- no corrida, PARO parcial
+  declarado en la nota de cierre por ponderador ambiguo del libro bx/2002 y
+  reserva de diseno §0.3 no resuelta; no bloquea esta Rama B.
+
+ponderador: >-
+  ponde_f, mismo diseno muestral que el resto de modulos de persona de
+  ENSANUT2024 (S6 §2.3, no re-derivado).
+
+transformacion: >-
+  wprop_ic_conglomerado (tools/medidor_l17_vacunacion_disponible.py,
+  verbatim de tools/calibracion_mordida_encig_serie.py): bootstrap de
+  conglomerado (estrato,upm) con reemplazo, 10000 replicas, semilla 42,
+  p_hat = suma(w*d)/suma(w) sobre las menciones, IC = percentiles 2.5/97.5.
+  d = 1 si razon es logistica (a o c), 0 si no (b, d o e). Sin ajuste, sin
+  imputacion: "el primer resultado que produzca este procedimiento es el
+  que se reporta" (spec §, frase de sello del acto que lo corrio).
+
+estimando: >-
+  FALSADOR B-bis, primaria de S7-L17. (1) ADOPTABLE POR MESA vía carga ya
+  sellada en milpa/: p(RAZON_LOGISTICA)=0.777762, IC95=[0.672777,0.857561],
+  n=254 -- VEREDICTO CORROBORADA (IC95 excluye 50% por arriba). (2)
+  SECUNDARIOS: desglose de las 254 menciones por razon (no_habia_vacunas=152,
+  enfermo=47, no_estaba_quien_aplica=28, no_derechohabiente=16,
+  otra_razon=11), n_personas_distintas=179. Rama C (adolescentes,
+  descriptiva sin antecedente propio) queda fuera de los RESULT consumidos
+  por RES-0063/0064 -- se cita como diagnostico en parametros, no como
+  RESULT nuevo, para no inflar el contrato mas alla de lo que la demanda
+  pide. NINGUN RESULT ES CAUSAL: es composicion de razones declaradas, no
+  una comparacion de grupos con y sin vacuna.
+
+dependencias_materiales: [numpy, pandas, pyreadstat]
+
+parametros:
+  fuente_acto: "ACTO GEN2-SPECS-DEMANDA-2 · CALC-S7-L17-0001 · registro D-15/GEN2 de una medicion YA CORRIDA por ACTO MAESTRA38-LOTE-ENSANUT (L17)"
+  firma_que_lo_autoriza: "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-2.md, P1: «CORR-0017 (FALTA-CAPA-2) -> spec.yaml D-15 congelado». La firma autoriza CONGELAR el contrato, no re-medir."
+  bootstrap_replicas: 10000
+  seed_original: 42
+  metodo_ic: "wprop_ic_conglomerado -- bootstrap de conglomerado (estrato,upm) con reemplazo, percentiles 2.5/97.5, verbatim de tools/calibracion_mordida_encig_serie.py"
+  criterio_veredicto: "CORROBORADA si IC95_lo > 0.5; CONTRARIA si IC95_hi < 0.5; NO-DISCRIMINA si el IC95 contiene 0.5 -- spec S7-L17-spec-v1_1 §4"
+  rama_c_diagnostico_no_consumido: >-
+    adolescentes_ensanut2024_w (n=3730): d0321j NO-ESTIMABLE (n=69,
+    numerador<10 tras filtro), d0321p p=0.562390 IC95=[0.399606,0.719754]
+    n=66 NO-DISCRIMINA, d0508 p=0.371580 IC95=[0.333836,0.410952] n=3094
+    CONTRARIA, d05041 p=0.593244 IC95=[0.555192,0.631826] n=2974
+    CORROBORADA, d05051 p=0.346854 IC95=[0.316861,0.377482] n=2941
+    CONTRARIA. Citados por transparencia del script ya corrido; NINGUNO
+    tiene RES-id en demanda-resultados.tsv y este CALC no les asigna uno
+    -- CORR-0017 solo pide los 2 de Rama B.
+  rama_a_no_corrida: "ENNVIH, mismo pendiente de ponderador ambiguo (bx/2002, tres candidatos fac_3a_px/fac_3b_px/fac_4_px) que L16, mas la reserva de diseno §0.3 (ce19d_2/hs16d_2 posiblemente post-tratamiento). PARO parcial declarado por el acto original, no re-abierto aqui (FUERA-DE-PERIMETRO de este CALC)."
+
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.random.default_rng (verbatim del estimador de la casa)
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-6
+  razon: >-
+    El RESULT no se re-calcula en este acto (transcripcion, no medicion).
+    La tolerancia fijada aqui es la que aplicaria a una re-ejecucion futura
+    del mismo script sobre el mismo payload y semilla: unica diferencia
+    esperable es redondeo de float64 en la suma ponderada del bootstrap.
+
+resultados:
+  - {id: RESULT-S7L17-G-N-PERSONAS-ADULTOS, tipo: entero, unidad: "personas en adultos_ensanut2024_w.dta (esperado 12924)"}
+  - {id: RESULT-S7L17-G-N-MENCIONES, tipo: entero, unidad: "menciones persona x vacuna x razon con valor 1 (esperado 254)"}
+  - {id: RESULT-S7L17-G-N-PERSONAS-DISTINTAS, tipo: entero, unidad: "personas distintas entre las 254 menciones (esperado 179)"}
+  - {id: RESULT-S7L17-G-DESGLOSE-RAZON, tipo: texto, unidad: "conteo crudo por razon: 'no_habia_vacunas=152;enfermo=47;no_estaba_quien_aplica=28;no_derechohabiente=16;otra_razon=11'"}
+  - {id: RESULT-S7L17-A-N-LOGISTICA, tipo: entero, unidad: "menciones con razon logistica (a o c), esperado 180 (152+28)"}
+  - {id: RESULT-S7L17-A-P-LOGISTICA, tipo: proporcion, unidad: "p ponderado de RAZON_LOGISTICA sobre las 254 menciones -- releva RES-0063 (esperado 0.777762)", permite_no_estimable: true}
+  - {id: RESULT-S7L17-A-P-NO-LOGISTICA, tipo: proporcion, unidad: "1 - A-P-LOGISTICA, CONTADA via el complemento del mismo bootstrap (no recalculada aparte) -- releva RES-0064 (esperado 0.222238)", permite_no_estimable: true}
+  - {id: RESULT-S7L17-A-IC-LO, tipo: flotante, unidad: "percentil 2.5 del bootstrap de conglomerado (esperado 0.672777)", permite_no_estimable: true}
+  - {id: RESULT-S7L17-A-IC-HI, tipo: flotante, unidad: "percentil 97.5 del bootstrap de conglomerado (esperado 0.857561)", permite_no_estimable: true}
+  - {id: RESULT-S7L17-A-VEREDICTO-BBIS, tipo: texto, unidad: "CORROBORADA / CONTRARIA / NO-DISCRIMINA / NO-ESTIMABLE (esperado CORROBORADA)"}
+  - {id: RESULT-S7L17-A-DELTA-VS-SELLADO, tipo: flotante, unidad: "A-P-LOGISTICA menos 0.777762 (valor sellado en milpa/tramite.yaml), CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-S7L17-A-RELEVA-SELLADO, tipo: texto, unidad: "SI / NO -- delta dentro de tolerancia (esperado SI, es transcripcion de la misma corrida)"}
