@@ -1,0 +1,45 @@
+ENCARGO · ACTO GEN2-MEDICION-DEMANDA-1
+Corre en CAJA, tanda tras tanda, las corridas cuya spec el ACTO GEN2-SPECS-DEMANDA-1 (encargo 1, NUBE) vaya congelando: COMMIT-2 con resultados, verify y sello por corrida
+
+CABECERA · redactado contra `2e25e6c` (merge de #772 — base verificada en el ARRANQUE, 0 commits detrás de `origin/main`) · ENTORNO: **CAJA** Ubuntu/WSL2 con corpus compartido montado (`data/raw` enlazado a `/home/pc0/mm-corpus/raw`, `data/raices.local.yaml` copiado del clon padre; `tools/entorno.py`: `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE=sin_variable`, `corpus=SI(examinados=413)`, red no ejecutada — este acto no descarga) · COMPUERTA: ninguna de merge — el insumo son las specs que el encargo 1 vaya congelando en su rama (`origin/claude/amazing-noether-l1iegk`, 0-bis `f98b777`), consumidas por tanda, no al cierre de ese acto · MODELO: Opus (integral) · Estado: VIVO · candidatos FP/ADR: deriva al cierre.
+LANZAMIENTO, verbatim (mesa, 15/sep/2026): el texto de PIEZAS de abajo es el mensaje de lanzamiento tal como llegó; este archivo lo fija por A.3 porque llegó pegado en el mensaje que invocó `/acto`, no como archivo del repo. Todo lo que sigue a PIEZAS (PERÍMETRO, CONTADOR, LO QUE NO HACE, CIERRE) lo deriva el ejecutor del lanzamiento y de la casa; no es texto de mesa.
+
+VERIFICACIÓN DE EXISTENCIA (A.8, contestada por el ejecutor contra `2e25e6c` — el lanzamiento llegó sin el bloque y A.8 manda pararse o contestarlo con comando, no suponerlo):
+
+(1) ¿Existe ya la estructura? SÍ. `data/corrida0/demanda-corridas.tsv` (derivado, `tools/corrida0.py demanda`) gobierna las 82 corridas requeridas; `data/corrida0/corridas.tsv`/`resultados.tsv`/`usos.tsv` son el registro GEN2 que `tools/registro.py --verifica --escribe` re-deriva; `data/corrida0/decisiones.tsv` es el artefacto de mesa donde vive la firma de contador; `data/corrida0/CALC-*/` es la caja de cada corrida (`spec.yaml` + `spec.md` + `medidor.py` en COMMIT-1; `ejecucion.json` + `resultados.json` + `sello.json` + `sello.sha256` en COMMIT-2). Ningún hueco de índice que reportar.
+
+(2) ¿Existe ya el contenido? Parcialmente, y la parte que falta es exactamente el insumo que este acto espera:
+```
+$ python3 tools/corrida0.py status | grep corridas
+N_corridas_requeridas=82
+N_corridas_selladas=63
+$ awk -F'\t' 'NR>2 && $4 ~ /SIN-CANDIDATO/' data/corrida0/demanda-corridas.tsv | wc -l
+19
+$ awk -F'\t' 'NR>2 && $4 ~ /SIN-CANDIDATO/ {s+=$5} END{print s}' data/corrida0/demanda-corridas.tsv
+94
+```
+(las tres cifras del lanzamiento —63, 82, ~94— se confirman contra el árbol: 19 CORR sin candidato que suman 94 RESULT). Specs congeladas por el encargo 1 disponibles al arrancar:
+```
+$ git fetch -q origin && git diff --stat origin/main...origin/claude/amazing-noether-l1iegk
+ forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-1.md | 43 ++++
+ 1 file changed, 43 insertions(+)
+```
+**Cero specs todavía** — la rama del encargo 1 sólo trae su 0-bis (`f98b777`, 15:36 UTC). Esto no es PARO: el lanzamiento dice «arranca con la primera tanda de specs del 1, no espera a que termine entero», y la primera tanda aún no existe; el acto arranca (0-bis, caja lista) y consume cada tanda cuando aparezca en esa rama. Lo que el propio encargo 1 ya asentó en su A.8 y este acto NO re-mide: `CORR-0002` (`CALC-ENCIG-0001`) y `CORR-0003` (`CALC-ENCUCI-0001`) ya están relevadas por CALC sellados; `CORR-0007` y `CORR-0009` tienen spec parcial (`EXISTE-NO-SATISFACE`); las 15 restantes, `NO-ENCONTRADO`.
+
+(3) ¿La estructura es posterior al trabajo? SÍ, misma brecha que declaró el encargo 1: `demanda-corridas.tsv` nació el 7/sep/2026 y `SIN-CANDIDATO-EN-EL-REGISTRO` describe el registro legado, no el mundo. Este acto no clasifica reglas del motor ni cita ids de regla o `R-n`: `tools/ya_medido.py` no aplica (T-YAMEDIDO no se dispara).
+
+PIEZAS (texto de mesa, verbatim)
+
+> 2 · CAJA — ACTO GEN2-MEDICION-DEMANDA-1 (Opus, integral; arranca con la primera tanda de specs del 1, no espera a que termine entero)
+>
+> Correr en caja todas las corridas cuya spec el encargo 1 vaya congelando: dos commits por corrida (spec sellada ya viene del 1; COMMIT-2 con resultados, verify, sello), tanda tras tanda, D-11 leído como GEN2 (un lote = una corrida coherente aunque dé diez resultados). Firma de contador con OBJETO embebida desde el lanzamiento — para no repetir el hueco de FP-375. Esto mueve N_corridas_selladas de 63 hacia 82 y se come los ~94 pendientes: es EL contador, no ruido.
+
+FIRMA DE CONTADOR con OBJETO (lectura del ejecutor del párrafo anterior, que es el que se cita): autoridad = mesa; fecha = 15/sep/2026 (lanzamiento); texto = «Firma de contador con OBJETO embebida desde el lanzamiento — para no repetir el hueco de FP-375. Esto mueve N_corridas_selladas de 63 hacia 82 y se come los ~94 pendientes: es EL contador, no ruido.»; OBJETO = cada corrida que este acto selle sobre una spec congelada por el ACTO GEN2-SPECS-DEMANDA-1 (las que relevan las 19 CORR / 94 RESULT sin candidato del registro). Cada `spec.yaml` corrido aquí lleva `etiquetas.cuenta_gen2: SI` y `cuenta_gen2_firma` citando este párrafo; cada corrida sellada escribe su fila en `data/corrida0/decisiones.tsv`; el merge de mesa perfecciona la firma (patrón `FP-367`/`FP-368`, como en `CALC-B-MARCO-*` y `CALC-EDER-0001`). Un `spec.yaml` que llegue del encargo 1 sin esa etiqueta no se edita en su COMMIT-1: la etiqueta se declara en `decisiones.tsv` y en la nota, y el registro la lee de ahí.
+
+PERÍMETRO (derivado por el ejecutor): `forense/encargos/2026-09-15-GEN2-MEDICION-DEMANDA-1.md` (este archivo) · `data/corrida0/CALC-*/{ejecucion.json,resultados.json,sello.json,sello.sha256}` de cada corrida corrida aquí (COMMIT-2; `spec.yaml`/`spec.md`/`medidor.py` llegan del encargo 1 y no se editan — si una spec llega sin `medidor.py`, el medidor se congela en un commit propio ANTES de abrir un solo valor, probado sólo contra payload sintético) · `data/corrida0/decisiones.tsv` (una fila por corrida sellada, firma de arriba) · `data/corrida0/{corridas,resultados,usos}.tsv` (re-derivados por `tools/registro.py --verifica --escribe`) · `forense/notas/2026-09-15-GEN2-MEDICION-DEMANDA-1-cierre.md` · `forense/no-corrido.tsv` · `forense/firmas-pendientes.tsv` (si nace alguna) · `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_13.md`, `canon/registro-rotulos.tsv`, `tests/check.py` (`_T25_ARCHIVOS_CONOCIDOS`) (cascada). NO toca: `milpa/` (ninguna adopción: sellar no es adoptar, E.2) · `data/manifiesto.yaml` · ninguna spec sellada (ni las del encargo 1 ni las anteriores: una spec que resulte mal se sucede con `v1_1` en archivo propio, nunca se edita) · ningún CALC ya sellado · ningún payload (cero descargas).
+
+CONTADOR: `N_corridas_selladas` (63 al arrancar) y `N_resultados_gen2_sellados` (2 882 al arrancar) — es el contador declarado por mesa; se reporta al cierre con los dos valores `status` antes/después y con la lista de corridas selladas y `cuenta_gen2 = SI`. Si el encargo 1 no llega a congelar ninguna spec en la ventana de este acto, el contador queda en 63 y se dice así.
+
+LO QUE NO HACE: no redacta specs (las consume) · no edita ninguna spec ni `medidor.py` que llegue congelado · no adopta ninguna cifra a ningún consumidor · no descarga · no decide por mesa las clasificaciones A.4 del encargo 1 (payload faltante, decisión) · no fusiona el PR del encargo 1 ni el propio.
+
+CIERRE: cascada completa (`tools/cierre_acto.py` preflight → ADR → L0 → `--aplica` → rótulos → T25 → suite → push → UN PR) + `## NO-CORRIDO / RESERVAS` + `## CONSUMIDO` con el PR.
