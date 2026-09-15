@@ -39,3 +39,23 @@ viaja igual y ningún número de este acto depende de esa escritura.
 grave — sin el arreglo, una sucesora que repita ids de RESULT hace **PARAR** a
 `registro` con `ID-DUPLICADO`, verificado por reversión del parche. En el árbol
 real no ocurría sólo porque las 6 sucesoras renombraron sus RESULT.
+
+## CONSUMIDO · PR #795
+
+Ejecutado por `ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2` (`ADR-517`), 15/sep/2026,
+NUBE Sonnet, **contador cero**. Cierra por producto `NC-0050`, `NC-0176`,
+`NC-0191`, `NC-0199` y `NC-0209`; deja anotadas con medición nueva `NC-0170`,
+`NC-0218` y `NC-0219`; abre `NC-0225`, `NC-0226`, `NC-0227` y `NC-0228`.
+
+**Lo que este acto NO hizo, y por qué está arriba y no escondido aquí:** la
+**hoja de firmas 2 no viajó** — el mensaje termina en la línea del perímetro, y
+el texto verbatim de este mismo archivo es la prueba —, así que
+`data/corrida0/decisiones.tsv` **no gana ninguna fila** y `NC-0210` cae con ella.
+Los adjuntos de `NC-0219` tampoco llegaron y su propia cláusula manda PARAR.
+Ninguna de las dos se rodeó: una firma de mesa no se infiere y un verbatim no se
+reconstruye de paráfrasis.
+
+`tests/check.py --baseline`: `3 FAIL · 4350 WARN`, **LÍNEA BASE VERDE** — los 3
+FAIL son los congelados (`T06`×2, `T08`×1), ninguna entrada nueva. `T16` corrió
+en 166 s sin topar el límite que este mismo acto subió. El ejecutor no fusiona el
+PR: esa decisión es de mesa.
