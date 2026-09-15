@@ -1,0 +1,204 @@
+{
+  "brazo": "CONTEXTUAL-v2",
+  "cargo_real_turnos": 7,
+  "cliente_version": "2.1.272 (Claude Code)",
+  "estado_captura": "ABSTENCION",
+  "id_celda": "DIN-M-01",
+  "identidad": "9609e783ee9e986a1d26a4f6a52b049e0de0142789520f9c71d3200b24a8d5de",
+  "intentos": [
+    {
+      "fin_utc": "2026-09-15T01:07:07.052443+00:00",
+      "inicio_utc": "2026-09-15T01:06:39.767471+00:00",
+      "numero": 1,
+      "returncode": 0,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":27444,\"stop_reason\":\"tool_use\",\"session_id\":\"e132c963-23ee-47d7-804e-8fabe8c3e1c1\",\"total_cost_usd\":0.1781725,\"usage\":{\"input_tokens\":6,\"cache_creation_input_tokens\":1418,\"cache_read_input_tokens\":152907,\"output_tokens\":1949,\"output_tokens_details\":{\"thinking_tokens\":548},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":1418,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":913,\"cache_read_input_tokens\":51511,\"cache_creation_input_tokens\":605,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":605},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":38709,\"outputTokens\":15,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.038784,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":6,\"outputTokens\":1949,\"cacheReadInputTokens\":152907,\"cacheCreationInputTokens\":1418,\"webSearchRequests\":0,\"costUSD\":0.1393885,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":548,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":7,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"{\\\"estado\\\":\\\"ABSTENCION\\\",\\\"punto_porcentaje\\\":null,\\\"fuente_documental\\\":[\\\"DIN-M-01-X012 (Resumen ejecutivo, cifras ENIF 2024 de ahorro formal/informal — no aplicable)\\\",\\\"DIN-M-01-X014 (Patrón 1 ahorro formal vs informal — no aplicable)\\\",\\\"Intentos de lectura del TSV de ENNViH-1 sección CR (iiib_cr.tsv y variantes de ruta) — inexistentes en el paquete\\\"],\\\"derivacion\\\":\\\"Se buscó en el paquete aislado un TSV con la sección CR del libro 3B de ENNViH-1 2002 (rutas iiib_cr.tsv, hh02dta_b3b/iiib_cr.tsv, DIN-M-01/iiib_cr.tsv, data/iiib_cr.tsv, ennvih_2002_iiib_cr.tsv) para calcular la distribución ponderada de cr27; ninguno existe. El contexto contemporáneo autorizado (X001–X040) no contiene ninguna tabulación de ENNViH/MxFLS 2002 ni del reactivo cr27; solo reporta cifras de ENIF 2024 (36.6% ahorro solo informal, 21.6% ambos, 8.2% solo formal, 33.6% sin ahorro), que corresponden a otra encuesta, otra ola, otro reactivo y otro universo. No hay base documental trazable para derivar el punto sin sustituir el objeto.\\\",\\\"sustitucion_semantica\\\":false,\\\"nota\\\":\\\"No conozco el dato a partir del paquete. Usar las cifras de ENIF 2024 (p. ej. 66.4% con algún ahorro) implicaría sustituir encuesta, ola, reactivo y universo, por lo que se abstiene explícitamente en lugar de ofrecer una cifra plausible.\\\"}\",\"structured_output\":{\"estado\":\"ABSTENCION\",\"punto_porcentaje\":null,\"fuente_documental\":[\"DIN-M-01-X012 (Resumen ejecutivo, cifras ENIF 2024 de ahorro formal/informal — no aplicable)\",\"DIN-M-01-X014 (Patrón 1 ahorro formal vs informal — no aplicable)\",\"Intentos de lectura del TSV de ENNViH-1 sección CR (iiib_cr.tsv y variantes de ruta) — inexistentes en el paquete\"],\"derivacion\":\"Se buscó en el paquete aislado un TSV con la sección CR del libro 3B de ENNViH-1 2002 (rutas iiib_cr.tsv, hh02dta_b3b/iiib_cr.tsv, DIN-M-01/iiib_cr.tsv, data/iiib_cr.tsv, ennvih_2002_iiib_cr.tsv) para calcular la distribución ponderada de cr27; ninguno existe. El contexto contemporáneo autorizado (X001–X040) no contiene ninguna tabulación de ENNViH/MxFLS 2002 ni del reactivo cr27; solo reporta cifras de ENIF 2024 (36.6% ahorro solo informal, 21.6% ambos, 8.2% solo formal, 33.6% sin ahorro), que corresponden a otra encuesta, otra ola, otro reactivo y otro universo. No hay base documental trazable para derivar el punto sin sustituir el objeto.\",\"sustitucion_semantica\":false,\"nota\":\"No conozco el dato a partir del paquete. Usar las cifras de ENIF 2024 (p. ej. 66.4% con algún ahorro) implicaría sustituir encuesta, ola, reactivo y universo, por lo que se abstiene explícitamente en lugar de ofrecer una cifra plausible.\"},\"ttft_ms\":7876,\"type\":\"result\",\"duration_ms\":25957,\"uuid\":\"678e9519-37aa-4174-8ab6-c9a6c47cd2a1\",\"ttft_stream_ms\":1598,\"time_to_request_ms\":33,\"first_content_frame_ms\":2292,\"queued_turn_count\":0,\"result_index\":0}\n"
+    }
+  ],
+  "modelo_exacto": "claude-opus-5",
+  "modelos_auxiliares": [
+    {
+      "admitido": true,
+      "modelo": "claude-haiku-4-5",
+      "outputTokens": 15,
+      "tope": 200
+    }
+  ],
+  "modelos_reportados": [
+    "claude-haiku-4-5",
+    "claude-opus-5"
+  ],
+  "prompt_bytes": 111947,
+  "prompt_chars": 109848,
+  "reconciliacion_usage_modelo": {
+    "modelo": "claude-opus-5",
+    "ok": true,
+    "pares": [
+      {
+        "campo_modelUsage": "inputTokens",
+        "campo_usage": "input_tokens",
+        "modelUsage": 6,
+        "usage": 6
+      },
+      {
+        "campo_modelUsage": "outputTokens",
+        "campo_usage": "output_tokens",
+        "modelUsage": 1949,
+        "usage": 1949
+      },
+      {
+        "campo_modelUsage": "cacheCreationInputTokens",
+        "campo_usage": "cache_creation_input_tokens",
+        "modelUsage": 1418,
+        "usage": 1418
+      },
+      {
+        "campo_modelUsage": "cacheReadInputTokens",
+        "campo_usage": "cache_read_input_tokens",
+        "modelUsage": 152907,
+        "usage": 152907
+      }
+    ]
+  },
+  "replica": 5,
+  "respuesta_estructurada": {
+    "derivacion": "Se buscó en el paquete aislado un TSV con la sección CR del libro 3B de ENNViH-1 2002 (rutas iiib_cr.tsv, hh02dta_b3b/iiib_cr.tsv, DIN-M-01/iiib_cr.tsv, data/iiib_cr.tsv, ennvih_2002_iiib_cr.tsv) para calcular la distribución ponderada de cr27; ninguno existe. El contexto contemporáneo autorizado (X001–X040) no contiene ninguna tabulación de ENNViH/MxFLS 2002 ni del reactivo cr27; solo reporta cifras de ENIF 2024 (36.6% ahorro solo informal, 21.6% ambos, 8.2% solo formal, 33.6% sin ahorro), que corresponden a otra encuesta, otra ola, otro reactivo y otro universo. No hay base documental trazable para derivar el punto sin sustituir el objeto.",
+    "estado": "ABSTENCION",
+    "fuente_documental": [
+      "DIN-M-01-X012 (Resumen ejecutivo, cifras ENIF 2024 de ahorro formal/informal — no aplicable)",
+      "DIN-M-01-X014 (Patrón 1 ahorro formal vs informal — no aplicable)",
+      "Intentos de lectura del TSV de ENNViH-1 sección CR (iiib_cr.tsv y variantes de ruta) — inexistentes en el paquete"
+    ],
+    "nota": "No conozco el dato a partir del paquete. Usar las cifras de ENIF 2024 (p. ej. 66.4% con algún ahorro) implicaría sustituir encuesta, ola, reactivo y universo, por lo que se abstiene explícitamente en lugar de ofrecer una cifra plausible.",
+    "punto_porcentaje": null,
+    "sustitucion_semantica": false
+  },
+  "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__CONTEXTUAL-v2__05.json",
+  "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+  "sha256_prompt": "132e0254cb20dbf307045661bfb8b8d7ecd0a7e7b9d9c3aa5a5177adf03d9fce",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 27444,
+    "duration_ms": 25957,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 2292,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.038784,
+        "inputTokens": 38709,
+        "maxOutputTokens": 32000,
+        "outputTokens": 15,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 1418,
+        "cacheReadInputTokens": 152907,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 0.1393885,
+        "inputTokens": 6,
+        "maxOutputTokens": 64000,
+        "outputTokens": 1949,
+        "provider": "firstParty",
+        "thinkingTokens": 548,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 7,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "{\"estado\":\"ABSTENCION\",\"punto_porcentaje\":null,\"fuente_documental\":[\"DIN-M-01-X012 (Resumen ejecutivo, cifras ENIF 2024 de ahorro formal/informal — no aplicable)\",\"DIN-M-01-X014 (Patrón 1 ahorro formal vs informal — no aplicable)\",\"Intentos de lectura del TSV de ENNViH-1 sección CR (iiib_cr.tsv y variantes de ruta) — inexistentes en el paquete\"],\"derivacion\":\"Se buscó en el paquete aislado un TSV con la sección CR del libro 3B de ENNViH-1 2002 (rutas iiib_cr.tsv, hh02dta_b3b/iiib_cr.tsv, DIN-M-01/iiib_cr.tsv, data/iiib_cr.tsv, ennvih_2002_iiib_cr.tsv) para calcular la distribución ponderada de cr27; ninguno existe. El contexto contemporáneo autorizado (X001–X040) no contiene ninguna tabulación de ENNViH/MxFLS 2002 ni del reactivo cr27; solo reporta cifras de ENIF 2024 (36.6% ahorro solo informal, 21.6% ambos, 8.2% solo formal, 33.6% sin ahorro), que corresponden a otra encuesta, otra ola, otro reactivo y otro universo. No hay base documental trazable para derivar el punto sin sustituir el objeto.\",\"sustitucion_semantica\":false,\"nota\":\"No conozco el dato a partir del paquete. Usar las cifras de ENIF 2024 (p. ej. 66.4% con algún ahorro) implicaría sustituir encuesta, ola, reactivo y universo, por lo que se abstiene explícitamente en lugar de ofrecer una cifra plausible.\"}",
+    "result_index": 0,
+    "session_id": "e132c963-23ee-47d7-804e-8fabe8c3e1c1",
+    "stop_reason": "tool_use",
+    "structured_output": {
+      "derivacion": "Se buscó en el paquete aislado un TSV con la sección CR del libro 3B de ENNViH-1 2002 (rutas iiib_cr.tsv, hh02dta_b3b/iiib_cr.tsv, DIN-M-01/iiib_cr.tsv, data/iiib_cr.tsv, ennvih_2002_iiib_cr.tsv) para calcular la distribución ponderada de cr27; ninguno existe. El contexto contemporáneo autorizado (X001–X040) no contiene ninguna tabulación de ENNViH/MxFLS 2002 ni del reactivo cr27; solo reporta cifras de ENIF 2024 (36.6% ahorro solo informal, 21.6% ambos, 8.2% solo formal, 33.6% sin ahorro), que corresponden a otra encuesta, otra ola, otro reactivo y otro universo. No hay base documental trazable para derivar el punto sin sustituir el objeto.",
+      "estado": "ABSTENCION",
+      "fuente_documental": [
+        "DIN-M-01-X012 (Resumen ejecutivo, cifras ENIF 2024 de ahorro formal/informal — no aplicable)",
+        "DIN-M-01-X014 (Patrón 1 ahorro formal vs informal — no aplicable)",
+        "Intentos de lectura del TSV de ENNViH-1 sección CR (iiib_cr.tsv y variantes de ruta) — inexistentes en el paquete"
+      ],
+      "nota": "No conozco el dato a partir del paquete. Usar las cifras de ENIF 2024 (p. ej. 66.4% con algún ahorro) implicaría sustituir encuesta, ola, reactivo y universo, por lo que se abstiene explícitamente en lugar de ofrecer una cifra plausible.",
+      "punto_porcentaje": null,
+      "sustitucion_semantica": false
+    },
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 33,
+    "total_cost_usd": 0.1781725,
+    "ttft_ms": 7876,
+    "ttft_stream_ms": 1598,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1418,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 1418,
+      "cache_read_input_tokens": 152907,
+      "inference_geo": "not_available",
+      "input_tokens": 6,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 605,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 605,
+          "cache_read_input_tokens": 51511,
+          "input_tokens": 2,
+          "output_tokens": 913,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1949,
+      "output_tokens_details": {
+        "thinking_tokens": 548
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "678e9519-37aa-4174-8ab6-c9a6c47cd2a1"
+  },
+  "timestamp_utc": "2026-09-15T01:07:07.053121+00:00",
+  "total_cost_usd": 0.1781725
+}

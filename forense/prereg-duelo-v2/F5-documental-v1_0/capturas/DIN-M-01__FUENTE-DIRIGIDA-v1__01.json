@@ -1,0 +1,206 @@
+{
+  "brazo": "FUENTE-DIRIGIDA-v1",
+  "cargo_real_turnos": 3,
+  "cliente_version": "2.1.272 (Claude Code)",
+  "estado_captura": "PUNTO",
+  "id_celda": "DIN-M-01",
+  "identidad": "a50823194a74d7e9b8e021828d680587080ef643892b58b4fd9c9cb6b497a531",
+  "intentos": [
+    {
+      "fin_utc": "2026-09-15T01:07:25.225759+00:00",
+      "inicio_utc": "2026-09-15T01:07:07.053771+00:00",
+      "numero": 1,
+      "returncode": 0,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":19405,\"stop_reason\":\"tool_use\",\"session_id\":\"a1914cfe-ee4f-4f4a-b46b-5e6c8cc6ac3f\",\"total_cost_usd\":0.316112,\"usage\":{\"input_tokens\":4,\"cache_creation_input_tokens\":539,\"cache_read_input_tokens\":317000,\"output_tokens\":1133,\"output_tokens_details\":{\"thinking_tokens\":147},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":539,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":963,\"cache_read_input_tokens\":158500,\"cache_creation_input_tokens\":539,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":539},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":123802,\"outputTokens\":15,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.123877,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":4,\"outputTokens\":1133,\"cacheReadInputTokens\":317000,\"cacheCreationInputTokens\":539,\"webSearchRequests\":0,\"costUSD\":0.192235,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":147,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"{\\\"estado\\\":\\\"PUNTO\\\",\\\"punto_porcentaje\\\":15.56,\\\"fuente_documental\\\":[\\\"analysis.tsv\\\",\\\"codebook-book3b.txt\\\",\\\"cuestionario-book3b.txt\\\",\\\"diseno-muestral.txt\\\"],\\\"derivacion\\\":\\\"El cuestionario del Libro IIIB, sección CR, define el reactivo CR27 \\\\\\\"¿Tiene ahorros?\\\\\\\" con códigos 1=Si, 3=No, NR=7 (el codebook imprime 8=NS; el DTA transportado usa 7; ambos quedan fuera del estimando). El codebook confirma la variable cr27 en iiib_cr con 2665 Sí, 17074 No y 60 NS (n=19799). Se recorrió analysis.tsv (19802 filas, sha256 0a687eeb…) con weighted_distribution sobre cr27 ponderando por fac_3b (factor de expansión del libro 3B, consistente con el diseño probabilístico descrito en diseno-muestral.txt). Resultado: valor 1 → suma ponderada 10,579,946 (n=2665); valor 3 → 57,422,894 (n=17074); valor 7 → 265,567 (n=60, excluido); 3 filas faltantes omitidas. Proporción = 10,579,946 / (10,579,946 + 57,422,894) = 10,579,946 / 68,002,840 = 0.15558 → 15.56%. Sin ponderar, 2665/19739 = 13.50% (referencia; el punto reportado es el ponderado).\\\",\\\"sustitucion_semantica\\\":false,\\\"nota\\\":\\\"Encuesta, ola, reactivo (cr27), universo (respuestas válidas Sí/No del libro 3B sección CR, ENNViH-1 2002) y ponderador (fac_3b) corresponden exactamente a la tarjeta. El contexto contemporáneo (ENIF 2024 y reportes de finanzas conductuales) no se usó para el punto por tratarse de otra encuesta y otro estimando. Código NS: el codebook imprime 8 pero el TSV contiene 7 (60 casos), coincidiendo con la discrepancia documentada; se excluyeron en ambos casos.\\\"}\",\"structured_output\":{\"estado\":\"PUNTO\",\"punto_porcentaje\":15.56,\"fuente_documental\":[\"analysis.tsv\",\"codebook-book3b.txt\",\"cuestionario-book3b.txt\",\"diseno-muestral.txt\"],\"derivacion\":\"El cuestionario del Libro IIIB, sección CR, define el reactivo CR27 \\\"¿Tiene ahorros?\\\" con códigos 1=Si, 3=No, NR=7 (el codebook imprime 8=NS; el DTA transportado usa 7; ambos quedan fuera del estimando). El codebook confirma la variable cr27 en iiib_cr con 2665 Sí, 17074 No y 60 NS (n=19799). Se recorrió analysis.tsv (19802 filas, sha256 0a687eeb…) con weighted_distribution sobre cr27 ponderando por fac_3b (factor de expansión del libro 3B, consistente con el diseño probabilístico descrito en diseno-muestral.txt). Resultado: valor 1 → suma ponderada 10,579,946 (n=2665); valor 3 → 57,422,894 (n=17074); valor 7 → 265,567 (n=60, excluido); 3 filas faltantes omitidas. Proporción = 10,579,946 / (10,579,946 + 57,422,894) = 10,579,946 / 68,002,840 = 0.15558 → 15.56%. Sin ponderar, 2665/19739 = 13.50% (referencia; el punto reportado es el ponderado).\",\"sustitucion_semantica\":false,\"nota\":\"Encuesta, ola, reactivo (cr27), universo (respuestas válidas Sí/No del libro 3B sección CR, ENNViH-1 2002) y ponderador (fac_3b) corresponden exactamente a la tarjeta. El contexto contemporáneo (ENIF 2024 y reportes de finanzas conductuales) no se usó para el punto por tratarse de otra encuesta y otro estimando. Código NS: el codebook imprime 8 pero el TSV contiene 7 (60 casos), coincidiendo con la discrepancia documentada; se excluyeron en ambos casos.\"},\"ttft_ms\":3943,\"type\":\"result\",\"duration_ms\":16848,\"uuid\":\"a01b7352-3e21-42e0-b5ed-db12c893192f\",\"ttft_stream_ms\":2780,\"time_to_request_ms\":38,\"first_content_frame_ms\":3424,\"queued_turn_count\":0,\"result_index\":0}\n"
+    }
+  ],
+  "modelo_exacto": "claude-opus-5",
+  "modelos_auxiliares": [
+    {
+      "admitido": true,
+      "modelo": "claude-haiku-4-5",
+      "outputTokens": 15,
+      "tope": 200
+    }
+  ],
+  "modelos_reportados": [
+    "claude-haiku-4-5",
+    "claude-opus-5"
+  ],
+  "prompt_bytes": 323655,
+  "prompt_chars": 318689,
+  "reconciliacion_usage_modelo": {
+    "modelo": "claude-opus-5",
+    "ok": true,
+    "pares": [
+      {
+        "campo_modelUsage": "inputTokens",
+        "campo_usage": "input_tokens",
+        "modelUsage": 4,
+        "usage": 4
+      },
+      {
+        "campo_modelUsage": "outputTokens",
+        "campo_usage": "output_tokens",
+        "modelUsage": 1133,
+        "usage": 1133
+      },
+      {
+        "campo_modelUsage": "cacheCreationInputTokens",
+        "campo_usage": "cache_creation_input_tokens",
+        "modelUsage": 539,
+        "usage": 539
+      },
+      {
+        "campo_modelUsage": "cacheReadInputTokens",
+        "campo_usage": "cache_read_input_tokens",
+        "modelUsage": 317000,
+        "usage": 317000
+      }
+    ]
+  },
+  "replica": 1,
+  "respuesta_estructurada": {
+    "derivacion": "El cuestionario del Libro IIIB, sección CR, define el reactivo CR27 \"¿Tiene ahorros?\" con códigos 1=Si, 3=No, NR=7 (el codebook imprime 8=NS; el DTA transportado usa 7; ambos quedan fuera del estimando). El codebook confirma la variable cr27 en iiib_cr con 2665 Sí, 17074 No y 60 NS (n=19799). Se recorrió analysis.tsv (19802 filas, sha256 0a687eeb…) con weighted_distribution sobre cr27 ponderando por fac_3b (factor de expansión del libro 3B, consistente con el diseño probabilístico descrito en diseno-muestral.txt). Resultado: valor 1 → suma ponderada 10,579,946 (n=2665); valor 3 → 57,422,894 (n=17074); valor 7 → 265,567 (n=60, excluido); 3 filas faltantes omitidas. Proporción = 10,579,946 / (10,579,946 + 57,422,894) = 10,579,946 / 68,002,840 = 0.15558 → 15.56%. Sin ponderar, 2665/19739 = 13.50% (referencia; el punto reportado es el ponderado).",
+    "estado": "PUNTO",
+    "fuente_documental": [
+      "analysis.tsv",
+      "codebook-book3b.txt",
+      "cuestionario-book3b.txt",
+      "diseno-muestral.txt"
+    ],
+    "nota": "Encuesta, ola, reactivo (cr27), universo (respuestas válidas Sí/No del libro 3B sección CR, ENNViH-1 2002) y ponderador (fac_3b) corresponden exactamente a la tarjeta. El contexto contemporáneo (ENIF 2024 y reportes de finanzas conductuales) no se usó para el punto por tratarse de otra encuesta y otro estimando. Código NS: el codebook imprime 8 pero el TSV contiene 7 (60 casos), coincidiendo con la discrepancia documentada; se excluyeron en ambos casos.",
+    "punto_porcentaje": 15.56,
+    "sustitucion_semantica": false
+  },
+  "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__FUENTE-DIRIGIDA-v1__01.json",
+  "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+  "sha256_prompt": "deb913ae3b5a363e48beeee3821d0f01f03fa4cddd7373ba9f809d29af783d46",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 19405,
+    "duration_ms": 16848,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 3424,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.123877,
+        "inputTokens": 123802,
+        "maxOutputTokens": 32000,
+        "outputTokens": 15,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 539,
+        "cacheReadInputTokens": 317000,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 0.192235,
+        "inputTokens": 4,
+        "maxOutputTokens": 64000,
+        "outputTokens": 1133,
+        "provider": "firstParty",
+        "thinkingTokens": 147,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 3,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "{\"estado\":\"PUNTO\",\"punto_porcentaje\":15.56,\"fuente_documental\":[\"analysis.tsv\",\"codebook-book3b.txt\",\"cuestionario-book3b.txt\",\"diseno-muestral.txt\"],\"derivacion\":\"El cuestionario del Libro IIIB, sección CR, define el reactivo CR27 \\\"¿Tiene ahorros?\\\" con códigos 1=Si, 3=No, NR=7 (el codebook imprime 8=NS; el DTA transportado usa 7; ambos quedan fuera del estimando). El codebook confirma la variable cr27 en iiib_cr con 2665 Sí, 17074 No y 60 NS (n=19799). Se recorrió analysis.tsv (19802 filas, sha256 0a687eeb…) con weighted_distribution sobre cr27 ponderando por fac_3b (factor de expansión del libro 3B, consistente con el diseño probabilístico descrito en diseno-muestral.txt). Resultado: valor 1 → suma ponderada 10,579,946 (n=2665); valor 3 → 57,422,894 (n=17074); valor 7 → 265,567 (n=60, excluido); 3 filas faltantes omitidas. Proporción = 10,579,946 / (10,579,946 + 57,422,894) = 10,579,946 / 68,002,840 = 0.15558 → 15.56%. Sin ponderar, 2665/19739 = 13.50% (referencia; el punto reportado es el ponderado).\",\"sustitucion_semantica\":false,\"nota\":\"Encuesta, ola, reactivo (cr27), universo (respuestas válidas Sí/No del libro 3B sección CR, ENNViH-1 2002) y ponderador (fac_3b) corresponden exactamente a la tarjeta. El contexto contemporáneo (ENIF 2024 y reportes de finanzas conductuales) no se usó para el punto por tratarse de otra encuesta y otro estimando. Código NS: el codebook imprime 8 pero el TSV contiene 7 (60 casos), coincidiendo con la discrepancia documentada; se excluyeron en ambos casos.\"}",
+    "result_index": 0,
+    "session_id": "a1914cfe-ee4f-4f4a-b46b-5e6c8cc6ac3f",
+    "stop_reason": "tool_use",
+    "structured_output": {
+      "derivacion": "El cuestionario del Libro IIIB, sección CR, define el reactivo CR27 \"¿Tiene ahorros?\" con códigos 1=Si, 3=No, NR=7 (el codebook imprime 8=NS; el DTA transportado usa 7; ambos quedan fuera del estimando). El codebook confirma la variable cr27 en iiib_cr con 2665 Sí, 17074 No y 60 NS (n=19799). Se recorrió analysis.tsv (19802 filas, sha256 0a687eeb…) con weighted_distribution sobre cr27 ponderando por fac_3b (factor de expansión del libro 3B, consistente con el diseño probabilístico descrito en diseno-muestral.txt). Resultado: valor 1 → suma ponderada 10,579,946 (n=2665); valor 3 → 57,422,894 (n=17074); valor 7 → 265,567 (n=60, excluido); 3 filas faltantes omitidas. Proporción = 10,579,946 / (10,579,946 + 57,422,894) = 10,579,946 / 68,002,840 = 0.15558 → 15.56%. Sin ponderar, 2665/19739 = 13.50% (referencia; el punto reportado es el ponderado).",
+      "estado": "PUNTO",
+      "fuente_documental": [
+        "analysis.tsv",
+        "codebook-book3b.txt",
+        "cuestionario-book3b.txt",
+        "diseno-muestral.txt"
+      ],
+      "nota": "Encuesta, ola, reactivo (cr27), universo (respuestas válidas Sí/No del libro 3B sección CR, ENNViH-1 2002) y ponderador (fac_3b) corresponden exactamente a la tarjeta. El contexto contemporáneo (ENIF 2024 y reportes de finanzas conductuales) no se usó para el punto por tratarse de otra encuesta y otro estimando. Código NS: el codebook imprime 8 pero el TSV contiene 7 (60 casos), coincidiendo con la discrepancia documentada; se excluyeron en ambos casos.",
+      "punto_porcentaje": 15.56,
+      "sustitucion_semantica": false
+    },
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 38,
+    "total_cost_usd": 0.316112,
+    "ttft_ms": 3943,
+    "ttft_stream_ms": 2780,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 539,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 539,
+      "cache_read_input_tokens": 317000,
+      "inference_geo": "not_available",
+      "input_tokens": 4,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 539,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 539,
+          "cache_read_input_tokens": 158500,
+          "input_tokens": 2,
+          "output_tokens": 963,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1133,
+      "output_tokens_details": {
+        "thinking_tokens": 147
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "a01b7352-3e21-42e0-b5ed-db12c893192f"
+  },
+  "timestamp_utc": "2026-09-15T01:07:25.226245+00:00",
+  "total_cost_usd": 0.316112
+}

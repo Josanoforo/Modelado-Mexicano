@@ -271,3 +271,43 @@ Este contrato gatea exclusivamente la corrección de transporte descrita en
 (a)-(d) y la redacción de v1.1; no reabre `TRIADA-0002` ni la re-adjudica,
 no autoriza `FP-374` ni `F6`, y no cambia la escala del criterio (`≥6/8`,
 cero sustituciones, mejora de cobertura `≥4/8`) sellada en v1.0.
+
+---
+
+## Enmienda fechada · EJECUCIÓN BAJO v1.1 Y PARO POR TECHO (2026-09-14, `ACTO GEN2-F5-DOCUMENTAL-RUN-2`)
+
+Original intacto arriba; esta enmienda se añade, no edita. El encargo pedía
+la enmienda de reanudación en `F5-documental-ejecucion-v1_0.md`; este contrato
+manda que v1.0 «no se edita, no se enmienda», así que se asienta aquí, en el
+contrato que gobernó la corrida (declarado en el encargo archivado).
+
+- **Runner ajustado a (a)-(d)** (`tools/f5_documental.py`, commit `2897970`):
+  `--allowedTools mcp__f5docs__weighted_distribution`; `--max-turns` retirado y
+  `--max-budget-usd 2.00` instalado; `identidad_modelo()` reconcilia `usage`
+  contra `modelUsage[claude-opus-5]` en los cuatro campos y admite auxiliares
+  con `outputTokens ≤ AUX_TOPE_SALIDA=200`; `cargo_solicitudes()` carga el
+  `num_turns` real sin recorte (sobre ausente → reserva conservada;
+  `num_turns` inválido → 1); `CARGO_RESERVA=4`; sonda de cinco condiciones con
+  `reconciliacion_usage_modelo`, `modelos_auxiliares` y `cargo_real_turnos`
+  registrados. Plan y sonda escritos como `v1_1`; ledger `v1_0` arrastrado.
+- **Cliente:** `2.1.272 (Claude Code)`; `claude -p --help` re-verificado: sin
+  `--max-turns`, con `--max-budget-usd` y `--allowedTools`.
+- **`--verify`:** falla por el mismo único campo (`sha256_manifiesto_fuentes`);
+  `NC-0178` sin cambio (fuera de alcance por (e)).
+- **`--freeze-plan`:** `F5-documental-plan-v1_1.json`, 32 posiciones, HEAD
+  `2897970`, firma `aa7135c8…`; orden, prompts y materialización idénticos a v1.0.
+- **`--transport-probe`:** `2026-09-15T00:59Z`, **`TRANSPORTE-VALIDADO`** 5/5;
+  `claude-haiku-4-5` auxiliar con 15 tokens de salida, admitido; 3 turnos
+  reales; ledger 2 → **5/96**.
+- **`--run`:** 22 de 32 posiciones (12 `PUNTO` trazables 12/12, 10
+  `ABSTENCION`, 0 errores de identidad); 1 reintento técnico por
+  `error_max_budget_usd` (caché fría); parada por `TECHO-SOLICITUDES` en la
+  posición 23 con el ledger en **94/96**. Los 10 restantes: `NO-CORRIDA`
+  (`NC-0186`). Veredicto y revisión de trazabilidad en
+  `forense/notas/2026-09-14-GEN2-F5-DOCUMENTAL-RUN-2-cierre.md`.
+- **Hueco de escala, reportado y no enmendado:** el techo 96 está
+  dimensionado a una solicitud por llamada lógica (§4.4 de la spec) y (c) carga
+  turnos reales (3–8 por invocación); con esa unidad 96 cubre ~20 posiciones.
+  Decisión de mesa (`NC-0186`).
+- **Estado tras esta enmienda: FIRMADA; PLAN CONGELADO v1.1; TRANSPORTE
+  VALIDADO; 94/96; 22/32 CORRIDAS, 10 NO-CORRIDAS POR TECHO.**
