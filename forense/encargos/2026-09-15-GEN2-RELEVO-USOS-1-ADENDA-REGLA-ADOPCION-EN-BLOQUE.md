@@ -73,3 +73,20 @@ Falsador y caducidad (mismo criterio que A.3/A.8/A.9/A.10/A.12/A.13). Si en tres
 2 · ADR derivado por el comando de la casa en tu cascada, y una entrada `PARA-v2.14` en `forense/hallazgos.md` con el texto de la regla: las instrucciones se entregan por versión íntegra (firma de mesa del 2/sep), no se pegan enmiendas.
 3 · Tus tres listas al cierre, con conteos derivados y no tecleados: bin 1 (adoptados por este merge), bin 2 (a mesa, uno por uno), bin 3 (bloque a mesa con tabla). `## NO-CORRIDO / RESERVAS` declara todo slot que no cupo en ningún bin y por qué.
 ════════════════════════════════════════════════════════════════════════════════
+
+---
+
+ENMIENDA FECHADA (15/sep/2026, mismo día, tras el merge de `PR #785`) — **la compuerta abrió**. Append puro: nada por encima de esta línea se edita, y el texto de dirección de arriba queda íntegro en su sitio. Verificación del bloque verbatim, ahora que ya no es el pie del archivo: `sed -n '45,75p' <este archivo> | sha256sum` debe dar `23ad347ecaffb2bc9dde008837c478cc7e939549676ce487a366f3fb774b31aa`.
+
+Re-verificado contra `5973f12` (`origin/main`, merge de `PR #785`). De las tres inexistencias que el bloque A.8 contestó contra `582d4e9`, **una cayó y dos siguen en pie**:
+
+- **`FIRMAS-MESA-1` YA EXISTE y YA FUSIONÓ.** `PR #785` **es** el `ACTO GEN2-FIRMAS-MESA-1` (`forense/encargos/2026-09-15-GEN2-FIRMAS-MESA-1.md`, cierre en `forense/notas/2026-09-15-GEN2-FIRMAS-MESA-1-cierre.md`, `ADR-513`). Es exactamente la compuerta que esta adenda nombra: «aplica en cuanto abra tu compuerta de `P4`, el merge de `FIRMAS-MESA-1`». **La regla de adopción en bloque está vigente desde este merge.** El «NO» de A.8 (2) era cierto contra `582d4e9` y se conserva ahí por su valor de auditoría — no se reescribe, se fecha.
+- **`ACTO GEN2-RELEVO-USOS-1` sigue sin existir** (`git grep -l "RELEVO-USOS" 5973f12` → 0 líneas). La compuerta abrió sobre un `P4` que todavía no tiene encargo: la regla está vigente y **no hay quién la propague**. Éste es hoy el único bloqueo real; lo levanta dirección lanzando el acto.
+- **`PARA-v2.14` sigue sin existir** (0 líneas en `forense/hallazgos.md`): seguiría siendo la primera entrada de su serie.
+
+Lo que `PR #785` movió y que la regla tendrá que leer cuando su `P4` corra:
+
+- **`corrida0 delta` intacto y sigue implementado.** Los `+30` de `tools/corrida0.py` tocan `cmd_demanda` y `status`, no `delta`; el contrato `--entrada PARES.yaml` es el mismo.
+- **El universo no cambió de tamaño: siguen 207 slots, los 207 en `estado = PENDIENTE`**, y siguen 58 con `escala_legacy = NO-DECLARADO-EN-EL-REGISTRO`. La cuenta de «legacy sin IC propio» subió de **14 a 18**.
+- **Los 7 coeficientes del generador ya vienen rotulados.** `OBJETO 5` (D3 de `NC-0197`) hace que `cmd_demanda` anteponga `SIN-PROCEDENCIA-VERIFICABLE·` al `clase_legacy` de los 7 `milpa/procedencia.yaml:coeficientes_generador_sellados:*` que `decisiones.tsv` marca. Son bin 2 por el inciso (iii) de la regla, y ahora se pueden seleccionar por rótulo en vez de a ojo.
+- **Aparece un estado que los tres bins no cubren.** `OBJETO 2` (`NC-0168`) autoriza `adopcion=VETADA-POR-DECISION` en `decisiones.tsv`, hoy sobre `RESULT-C1-POSEL-AMENAZA-VEREDICTO` y `RESULT-C1-POSEL-OFERTA-VEREDICTO`, y `corrida0 status` los cuenta aparte precisamente para que dejen de leerse como cola de adopción. Un slot vetado no es bin 1 (lo adoptaría el merge), ni bin 2 (no se firma uno por uno lo que mesa ya prohibió adoptar), ni bin 3 (no es falta de criterio: es criterio en contra). La regla dice «ningún relevo queda fuera de ellos»; con el veto vigente eso ya no se sostiene sin una cuarta salida. Mientras dirección no la escriba, el `P4` los declara en `## NO-CORRIDO / RESERVAS`, que es lo que el propio paso 3 de PROPAGACIÓN manda para «todo slot que no cupo en ningún bin y por qué». **Decisión de dirección, no del ejecutor.**
