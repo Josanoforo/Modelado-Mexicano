@@ -14,6 +14,58 @@ fuente_universo_triada: forense/prereg-duelo-v2/universo-triada-v1_4.tsv
 estado_dir: data/curacion-registro/investigacion-estado
 reservas_runtime_dir: forense/adq-log/estado/investigacion
 reserva_minutos: 75
+presupuesto_runtime_dir: forense/adq-log/estado
+comprobacion_runtime: forense/adq-log/estado/comprobacion.json
+presupuesto_diario:
+  necesidades: 3
+  objetos: 5
+  segundos_ejecutor: 3900
+
+# Demanda que nace del uso vigente, no del estado documental de una NC.  La
+# NC-0126 conserva su cierre acotado en no-corrido.tsv; esta identidad nueva
+# conserva el antecedente sin heredar ese cierre como suficiencia científica.
+demandas_instrumento:
+  - id: DEM-AHORRO-STOCK-DURACION-01
+    vigente: true
+    version_pregunta: "2026-09-15-stock-ausencia-y-duracion-separados-v1"
+    pregunta: "¿Existe un instrumento público mexicano que observe por separado tenencia/ausencia de ahorro y duración suficiente del stock?"
+    consumidor: "dinero.ahorro / tres consumidores GEN2 de horizonte"
+    consumidores_consulta:
+      - "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto"
+      - "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto"
+      - "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto"
+    uso: "mejora descriptiva; no autoriza el antiguo horizonte puro"
+    prioridad_consumidor: 4
+    bloqueo_material: 3
+    lista: true
+    estado_ruteo: LISTA_SONDA
+    asignacion: servicio-gen2-38
+    modos: [CONSTRUCTO, HERMANAS, LATERAL]
+    poblacion: "personas adultas en México; desagregaciones sólo si el instrumento las acredita"
+    unidad: persona
+    periodo: "vigente o comparable con ENIF 2024; no inventar equivalencia temporal"
+    variables: "indicador de tenencia/stock de ahorro y duración/cobertura del mismo stock en campos separados; ponderador y diseño si existen"
+    evidencia_disponible: "P4_10 de ENIF 2024 mezcla menos de una semana y no tiene ahorros; #772 autoriza únicamente el corte acotado, no horizonte puro"
+    brecha: "los tres consumidores siguen rotulados como horizonte_corto y no pueden usar P4_10 como horizonte puro"
+    suficiencia_actual: {identidad: ACREDITADA, conceptual: NO_ACREDITADA, poblacional: ACREDITADA, seleccion_no_respuesta: ACREDITADA, unidad: ACREDITADA, temporalidad: ACREDITADA, diseno: ACREDITADA, identificacion: NO_APLICA, uso_habilitado: INCOMPATIBLE, pregunta_original: ABIERTA}
+    investigacion_previa: "ENIF, EACF, ENSAFI, Findex, ENFIH e IIEG Jalisco examinados; no volver a descargar los tres XLSX IIEG"
+    frontera_previa: "encuestas públicas mexicanas nacionales o subnacionales, módulos académicos y descriptores que separen stock/ausencia de duración"
+    siguiente_accion: "examinar una ruta pública no agotada; si no existe candidata material, proponer relabel del uso acotado de #772 o decisión humana explícita"
+    etapa_faltante: FUENTE_O_VARIABLE
+    responsable: servicio-gen2-38
+    naturaleza_necesidad: CIENTIFICA_O_DE_ADOPCION
+    contrato_operativo: COMPLETO_CIENTIFICO_EXPLICITO
+    contrato_cientifico_completo: true
+    aplica_contrato_cientifico: true
+    antecedentes_nc: [NC-0126]
+    evidencias_guardia:
+      - "forense/no-corrido.tsv#NC-0126"
+      - "data/corrida0/usos.tsv#RES-0046"
+      - "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md"
+    opciones_decision:
+      - "MANTENER_BLOQUEO_Y_CONTINUAR_INSTRUMENTO"
+      - "RELABEL_USO_ACOTADO_AUTORIZADO_POR_772"
+      - "APROBAR_PROXY_NUEVO_CON_ALCANCE_EXPLICITO"
 
 necesidades:
   - id: NC-0122

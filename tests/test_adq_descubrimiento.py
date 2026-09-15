@@ -138,8 +138,9 @@ def prueba_demanda_explica_todo_elemento_gen2_vigente():
                 if x.get("estado") == "ABIERTA"}
     afirma(len(elementos) == len(usos),
            "la proyección debe conservar exactamente el alcance activo de usos.tsv")
-    afirma(demanda["total_activas"] == len(abiertas),
-           "la proyección debe conservar exactamente las NC abiertas canónicas")
+    afirma(demanda["total_nc_abiertas"] == len(abiertas) and
+           demanda["total_activas"] == len(abiertas) + 1,
+           "la proyección debe separar NC abiertas de demanda independiente")
     afirma(demanda["contrato_cientifico_completo"] +
            demanda["contrato_cientifico_incompleto"] <= demanda["total_activas"],
            "los contratos operativos no deben contarse como científicos")
@@ -163,9 +164,15 @@ def prueba_demanda_explica_todo_elemento_gen2_vigente():
            "las tres salidas de horizonte deben conservar NO_COVERAGE")
     afirma("cero tareas elegibles" in demanda["advertencia_suficiencia"],
            "la proyección debe negar suficiencia general por cola vacía")
-    afirma(not demanda["seleccion_siguiente"]["elegidos"] and
+    afirma([x["id"] for x in demanda["seleccion_siguiente"]["elegidos"]] ==
+           ["DEM-AHORRO-STOCK-DURACION-01"] and
            {x["id"] for x in demanda["seleccion_siguiente"]["excluidos"]} == abiertas,
-           "el mapa debe publicar la selección siguiente y todas sus causas")
+           "el mapa debe conservar la demanda de instrumento aunque NC-0126 cerró")
+    demanda_ahorro = next(x for x in demanda["necesidades"]
+                          if x["id"] == "DEM-AHORRO-STOCK-DURACION-01")
+    afirma(demanda_ahorro["antecedentes_nc"] == ["NC-0126"] and
+           demanda_ahorro["origen_demanda"] == "CONSUMIDOR_Y_USO",
+           "la demanda independiente debe enlazar la NC cerrada sin reabrirla")
     por_id = {x["elemento_id"]: x for x in elementos}
     complemento = por_id["RES-0028"]
     afirma(complemento["situacion"] == "PENDIENTE_ADOPCION" and
