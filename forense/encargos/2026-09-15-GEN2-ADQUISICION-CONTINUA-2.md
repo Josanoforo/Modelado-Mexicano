@@ -2,7 +2,7 @@
 
 **SHA de redacción:** `e8d44b78e7817724767febd945f4e6431708b01a`, después de #777, #780 y #778.
 **Entorno asignado:** CAJA, Codex CLI, Windows/WSL, corpus montado; no requiere Claude Opus.
-**Estado:** VIVO.
+**Estado:** CONSUMIDO por PR #782 (sin fusionar al cierre operativo).
 **CONTADOR:** cero mediciones previstas; adquisiciones y reducción de brechas se reportan por separado. Ninguna adopción científica nueva autorizada.
 
 ## ARRANQUE
@@ -115,3 +115,9 @@ La respuesta a «¿quedó más cerca de producir una explicación, medición, de
 > Ejecuta íntegramente ENCARGO-GEN2-ADQUISICION-CONTINUA-2.md en CAJA como continuación del servicio existente. Autorizo las decisiones operativas del encargo: liquidación del presupuesto sin elevar sus techos, recuperación sustentada del cupo no usado y una continuación anticipada de la frontera pendiente de ahorro dentro del remanente. Autorizo cambios delimitados, pruebas dirigidas, commits, push, PR, despliegue del SHA publicado y activaciones de la tarea existente para demostrar continuidad. Los merges quedan conmigo. No detengas el trabajo por firmas de tareas reversibles ya cubiertas; eleva sólo decisiones científicas nuevas o accesos realmente no autorizados. Conserva el trabajo ajeno y entrega evidencia del consumo real, la siguiente activación y la brecha atendida. No autoriza compras, contacto a terceros, privilegios nuevos ni cambios a evaluaciones o resultados sellados.
 
 Referencias del corte: implementación #777; investigación/continuación #780; recibo/corrección de presupuesto; reserva/despacho; wrapper ejecutor; cursor vigente de ahorro.
+
+## CONSUMIDO
+
+Ejecutado el 15 de septiembre de 2026 por el PR principal #782. La evidencia
+de liquidación y primera continuación está separada en #783 y #784; la mesa
+conserva la decisión de fusión.
