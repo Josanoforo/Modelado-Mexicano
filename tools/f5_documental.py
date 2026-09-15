@@ -32,7 +32,7 @@ SPEC_ESTUDIO = DIR / "F5-panel-viabilidad-presupuesto-spec-v1_0.md"
 MANIFIESTO_CONTEXTO = DIR / "paquete-corpus-F5-v2_0/manifiesto-F5-v2_0.json"
 MANIFIESTO_FUENTES = ROOT / "data/manifiesto.yaml"
 MANIFIESTO_TRANSPORTE = ACTO_DIR / "F5-documental-materializacion-v1_0.json"
-PLAN = ACTO_DIR / "F5-documental-plan-v1_1.json"
+PLAN = ACTO_DIR / "F5-documental-plan-v1_2.json"
 SALIDAS = ACTO_DIR / "capturas"
 SONDA = ACTO_DIR / "sonda-transporte-v1_1.json"
 LEDGER = ACTO_DIR / "solicitudes-ledger-v1_0.json"
@@ -54,7 +54,10 @@ CARGO_RESERVA = 4
 # (a) v1_1: tope de salida admitido a cualquier modelo auxiliar distinto de MODELO en modelUsage.
 AUX_TOPE_SALIDA = 200
 HERRAMIENTA = "mcp__f5docs__weighted_distribution"
-TECHO_SOLICITUDES = 96
+# Firma de mesa (14/sep/2026, ACTO GEN2-F5-DOCUMENTAL-RUN-2): «termina el encargo entonces, ese techo es un estimado».
+# El techo de 96 (spec 4.4: 32 llamadas x 3 intentos, una solicitud por llamada) se re-dimensiona en la unidad que
+# v1_1 (c) carga -- turnos reales, 3 por invocacion minima --: 32 x 3 x 3 = 288. El ledger v1_0 sigue arrastrado.
+TECHO_SOLICITUDES = 288
 TIMEOUT = 600
 MERGE_720 = "6cda0282079e9623425529f51c2bea171657b0cf"
 MERGE_722 = "5f4bfeac2350597c0f66b8f66a14c07befa18a53"
@@ -375,7 +378,7 @@ def congelar_plan(paquete: Path, autorizacion: Path) -> dict:
     cliente = version_cliente()
     ps = posiciones(cliente, paquete, manifest)
     plan = {
-        "acto": "GEN2-F5-DOCUMENTAL-EJECUCION", "version": "v1_1", "firma": firma,
+        "acto": "GEN2-F5-DOCUMENTAL-EJECUCION", "version": "v1_2", "firma": firma,
         "repo_head_precongelacion": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
         "cliente_version": cliente, "proveedor": PROVEEDOR, "cuenta": "claude.ai Max; firstParty; sin identificador personal",
         "modelo_exacto": MODELO, "endpoint_modalidad": "Claude Code CLI print sobre claude.ai; stdin + MCP stdio local aislado",

@@ -13,6 +13,14 @@ Compuerta cumplida por producto: #761 fusionado — arranca sobre ese merge (7de
 
 *(Nota del ejecutor: la firma dice 15/sep; el reloj de la caja marcaba 14/sep 18:56 CST al archivarla — 15/sep en UTC. El archivo se fecha por el reloj local, como los demás encargos del día.)*
 
+## Firma de mesa en sesión, verbatim (continuación tras el PARO por techo)
+
+Tras el reporte del ejecutor («22 de las 32 posiciones; el runner paró solo por `TECHO-SOLICITUDES` en 94/96 … las 10 posiciones restantes están en NC-0186 esperando tu decisión»), mesa contestó:
+
+«termina el encargo entonces, ese techo es un estimado»
+
+Efecto operativo: el techo de 96 (spec §4.4, solicitudes facturables) se re-dimensiona en la unidad que el contrato v1_1 (c) carga —turnos reales, 3 por invocación mínima—: 32 × 3 × 3 = **288**, con el ledger arrastrado (94 ya gastados). Se corren únicamente las 10 posiciones `NO-CORRIDA`; las 22 capturas existentes se reanudan por identidad, no se repiten.
+
 ## NO-CORRIDO / RESERVAS
 
 - **P2 · «Las 32 posiciones bajo el techo de 96»** — 10 de 32 posiciones `NO-CORRIDA` (`DIN-M-01` dirigidas 3, 6, 7 y contextuales 1, 3, 6; `TRA-M-07` dirigida 5 y contextuales 1, 6, 8) · `PARO-PREMISA`: el runner paró por `TECHO-SOLICITUDES` al intentar la posición 23 con el ledger en 94/96 — hueco de escala del contrato: el techo 96 está dimensionado a una solicitud facturable por llamada lógica (spec §4.4, 32×3) y el contrato v1.1 (c) carga el `num_turns` real de cada invocación (3 en las dirigidas, 3–8 en las contextuales), con lo que 96 cubre ~20 posiciones; se reporta, no se enmienda ni se negocia · impacto: `DIN-M-01` sin veredicto (5/5 `PUNTO` trazables corridas, 3 dirigidas sin correr: ni `≥6/8` ni `<6/8`); `TRA-M-07` alcanza el criterio con lo observado (7/7, robusto a sus 4 no corridas salvo «cero sustituciones» en la réplica dirigida 5); `cuenta_gen2` no se mueve · sucesor: `NC-0186` — decisión de mesa (contrato v1.2 con el techo en la unidad que se cuenta y reanudación sobre las capturas existentes, o veredicto con lo observado).
