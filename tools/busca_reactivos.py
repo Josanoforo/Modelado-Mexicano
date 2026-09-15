@@ -105,7 +105,7 @@ TABLAS = {
     "descargas_mx_v1_1": REPO_ROOT / "data" / "inventario-reactivos-descargas-mx-v1_1.tsv",
     # ACTO GEN2-REACTIVOS-RESIDUALES-2 (15/sep/2026, NC-0136): la capa FD existe
     # desde ADR-215/ADR-216 y este buscador NUNCA la consultaba por ninguna clave.
-    # Son 27 729 filas con `texto_reactivo` no vacío en el 99% de ellas, y cubren
+    # Son 27 729 filas, el 100% con `texto_reactivo` no vacío, y cubren
     # 26 de los 81 grupos históricamente ciegos que NC-0136 dejó abiertos (36 707
     # filas ciegas del universo) -- entre ellos MOCIBA, ENASEM, ENUT, ENFIH,
     # ENADID, ENASIC, ENDUTIH y las dos tablas CNBV. Recuperar ese texto no exigía
