@@ -354,8 +354,14 @@ produce **registro**: una verificación `A.8`, tres derivaciones medidas (§4,
 
 | | FAIL | WARN |
 |---|---:|---:|
-| línea base (`origin/main = 0cdbd72`) | 3 | 4351 |
-| cierre | **3** | **4355** |
+| línea base al arrancar (`origin/main = 0cdbd72`) | 3 | 4351 |
+| línea base refrescada (`origin/main = 8fadc3b`, árbol limpio) | 3 | 4339 |
+| cierre | **3** | **4343** |
+
+La base se refrescó a mitad de acto: `PR #792`/`#793` fusionaron y
+`GEN2-FIRMAS-MESA-2` cerró `NC-0221..0224`, lo que baja el WARN por causa
+ajena a este acto. Por eso la comparación válida es contra la base
+**refrescada**, medida en árbol limpio y no inferida restando.
 
 **Cero FAIL nuevos.** Los tres son heredados del corpus documental (`T06` ×2,
 `T08`) y ajenos a este perímetro. Los **+4 WARN** son exactamente las cuatro
