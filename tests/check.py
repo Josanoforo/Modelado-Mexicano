@@ -5720,6 +5720,11 @@ def t_cron_huellas_adq(texto, fecha):
             "exit": _campo("exit"),
             "resultado": _campo("resultado"),
             "resultado_trabajo": _campo("resultado_trabajo"),
+            "salud_trabajo": _campo("salud_trabajo"),
+            "demanda_atendible": _campo("demanda_atendible"),
+            "necesidades_atendidas": _campo("necesidades_atendidas"),
+            "objetos_nuevos": _campo("objetos_nuevos"),
+            "bytes_nuevos": _campo("bytes_nuevos"),
             "publicacion_trabajo": _campo("publicacion_trabajo"),
             "publicacion": _campo("publicacion"),
             "disparador": _campo("disparador"),
@@ -5909,6 +5914,17 @@ def t_cron_estado(fecha, prefijos, cuerpo_adq,
         historico = any(h["run_id"] is None for h in huellas)
         nota_hist = " (acreditado por huella histórica sin run_id)" if historico else ""
         if exitosas and _t_cron_exitosa(ultimo):
+            if ultimo.get("salud_trabajo") == "EJECUCION_SIN_EVIDENCIA_NUEVA":
+                return ("EJECUCION-SIN-AVANCE-MATERIAL",
+                        f"censo del {dia}: ejecución técnica correcta, pero "
+                        f"demanda_atendible={ultimo.get('demanda_atendible')} y "
+                        f"objetos_nuevos={ultimo.get('objetos_nuevos')} "
+                        f"[{_t_cron_rotula(ultimo)}]")
+            if ultimo.get("salud_trabajo") == "SIN_TRABAJO_ATENDIBLE":
+                return ("COMPLETO-SIN-TRABAJO-ATENDIBLE",
+                        f"censo del {dia}: ejecución mecánica correcta; toda la "
+                        f"demanda está satisfecha, diferida o espera acción "
+                        f"identificada [{_t_cron_rotula(ultimo)}]")
             return ("COMPLETO",
                     f"censo del {dia}: [ADQ] invocado={ultimo['invocado']} "
                     f"motivo={ultimo['motivo']} resultado={ultimo['resultado']} "

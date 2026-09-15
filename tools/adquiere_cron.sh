@@ -72,7 +72,7 @@
 
 set -euo pipefail
 
-RUNNER_VERSION="adq-codex-4"
+RUNNER_VERSION="adq-codex-5"
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_DIR"
@@ -132,6 +132,15 @@ SOY_DUENO_DEL_LOCK=0
 # secas. `PUBLICACION_FALLIDA` cuenta los recibos que quedaron locales.
 PUBLICACION_FALLIDA=0
 CIERRE_ESCRITO=0
+PRESUPUESTO_JSON="null"
+PRESUPUESTO_NECESIDADES="-"
+PRESUPUESTO_OBJETOS="-"
+PRESUPUESTO_SEGUNDOS="-"
+DEMANDA_ATENDIBLE=0
+NECESIDADES_ATENDIDAS=0
+OBJETOS_NUEVOS=0
+BYTES_NUEVOS=0
+SALUD_TRABAJO="INDETERMINADA"
 
 log() {
   echo "[$(date '+%Y-%m-%d %H:%M:%S%z')] $*" | tee -a "$LOGFILE"
@@ -563,7 +572,7 @@ huella_adq() {
   fin_iso="$(date --iso-8601=seconds)"
   cli_token="${CLI_VERSION// /_}"
   MOTIVO_CIERRE="$motivo"
-  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} launcher_sha=${ADQ_DEPLOY_SHA:-legacy} runner_version=${RUNNER_VERSION} ejecutor=${EJECUTOR} cli_version=${cli_token} modelo_configurado=${MODELO_CONFIGURADO} modelo_efectivo=${MODELO_EFECTIVO} resultado=${RESULTADO_SUSTANTIVO} resultado_trabajo=${RESULTADO_TRABAJO} publicacion_trabajo=${PUBLICACION_TRABAJO} seleccion_elegidos=${SELECCION_ELEGIDOS} seleccion_excluidos=${SELECCION_EXCLUIDOS} investigacion_elegidas=${INVESTIGACION_ELEGIDAS} investigacion_excluidas=${INVESTIGACION_EXCLUIDAS} residuales_total=${RESIDUALES_TOTAL} residuales_cubiertos=${RESIDUALES_CUBIERTOS} residuales_accionables=${RESIDUALES_ACCIONABLES} residuales_acceso=${RESIDUALES_ACCESO} residuales_sin_via=${RESIDUALES_SIN_VIA} residuales_reintento=${RESIDUALES_REINTENTO} residuales_decision=${RESIDUALES_DECISION} inicio=${INICIO_ISO} fin=${fin_iso} publicacion=${publicacion} disparador=${DISPARADOR} causa=${CAUSA_DISPARO} run_id=${RUN_ID}"
+  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} launcher_sha=${ADQ_DEPLOY_SHA:-legacy} runner_version=${RUNNER_VERSION} ejecutor=${EJECUTOR} cli_version=${cli_token} modelo_configurado=${MODELO_CONFIGURADO} modelo_efectivo=${MODELO_EFECTIVO} resultado=${RESULTADO_SUSTANTIVO} resultado_trabajo=${RESULTADO_TRABAJO} salud_trabajo=${SALUD_TRABAJO} demanda_atendible=${DEMANDA_ATENDIBLE} necesidades_atendidas=${NECESIDADES_ATENDIDAS} objetos_nuevos=${OBJETOS_NUEVOS} bytes_nuevos=${BYTES_NUEVOS} publicacion_trabajo=${PUBLICACION_TRABAJO} seleccion_elegidos=${SELECCION_ELEGIDOS} seleccion_excluidos=${SELECCION_EXCLUIDOS} investigacion_elegidas=${INVESTIGACION_ELEGIDAS} investigacion_excluidas=${INVESTIGACION_EXCLUIDAS} residuales_total=${RESIDUALES_TOTAL} residuales_cubiertos=${RESIDUALES_CUBIERTOS} residuales_accionables=${RESIDUALES_ACCIONABLES} residuales_acceso=${RESIDUALES_ACCESO} residuales_sin_via=${RESIDUALES_SIN_VIA} residuales_reintento=${RESIDUALES_REINTENTO} residuales_decision=${RESIDUALES_DECISION} presupuesto_disponible=${PRESUPUESTO_NECESIDADES}/${PRESUPUESTO_OBJETOS}/${PRESUPUESTO_SEGUNDOS}s inicio=${INICIO_ISO} fin=${fin_iso} publicacion=${publicacion} disparador=${DISPARADOR} causa=${CAUSA_DISPARO} run_id=${RUN_ID}"
   log "${linea}"
   CIERRE_ESCRITO=1
   printf -v contenido '[ADQ-SELECCION] run_id=%s %s\n[ADQ-INVESTIGACION] run_id=%s %s\n[ADQ-RESULTADO] run_id=%s %s\n%s' \
@@ -655,6 +664,10 @@ finalizar() {
   if [ "${INVESTIGACION_RESERVADA:-0}" -eq 1 ]; then
     python3 tools/adq_investigacion.py --libera "$RUN_ID" >>"$LOGFILE" 2>&1 || true
   fi
+  if [ "${CIERRE_ESCRITO:-0}" -eq 1 ]; then
+    python3 tools/adq_investigacion.py --registra-ciclo --owner "$RUN_ID" \
+      --corte "$FECHA" >>"$LOGFILE" 2>&1 || true
+  fi
   # Restauración segura del contexto: best-effort, nunca deja que un
   # checkout fallido dispare un segundo trap ni cambie el código de salida
   # que ya se reportó arriba.
@@ -693,7 +706,18 @@ MAXIMO_FILAS="$(printf '%s' "$EJECUTOR_JSON" | python3 -c 'import json,sys; prin
 MAXIMO_INVESTIGACIONES="$(lee_config descubrimiento_maximo_necesidades 3)"
 TIMEOUT_DESCUBRIMIENTO="$(lee_config descubrimiento_timeout_segundos 1800)"
 TIMEOUT_ADQUISICION="$(lee_config adquisicion_timeout_segundos 1800)"
-log "CONFIG: ejecutor=$EJECUTOR timeout=${TIMEOUT_EJECUTOR}s kill_after=${KILL_AFTER_EJECUTOR}s maximo_filas=$MAXIMO_FILAS investigaciones=$MAXIMO_INVESTIGACIONES presupuestos=${TIMEOUT_DESCUBRIMIENTO}s+${TIMEOUT_ADQUISICION}s"
+PRESUPUESTO_JSON="$(python3 tools/adq_investigacion.py --presupuesto --corte "$FECHA")"
+PRESUPUESTO_NECESIDADES="$(printf '%s' "$PRESUPUESTO_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["disponible"]["necesidades"])')"
+PRESUPUESTO_OBJETOS="$(printf '%s' "$PRESUPUESTO_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["disponible"]["objetos"])')"
+PRESUPUESTO_SEGUNDOS="$(printf '%s' "$PRESUPUESTO_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["disponible"]["segundos_ejecutor"])')"
+[ "$MAXIMO_INVESTIGACIONES" -gt "$PRESUPUESTO_NECESIDADES" ] && MAXIMO_INVESTIGACIONES="$PRESUPUESTO_NECESIDADES"
+[ "$MAXIMO_FILAS" -gt "$PRESUPUESTO_OBJETOS" ] && MAXIMO_FILAS="$PRESUPUESTO_OBJETOS"
+[ "$TIMEOUT_EJECUTOR" -gt "$PRESUPUESTO_SEGUNDOS" ] && TIMEOUT_EJECUTOR="$PRESUPUESTO_SEGUNDOS"
+if [ "$PRESUPUESTO_SEGUNDOS" -le 0 ]; then
+  MAXIMO_INVESTIGACIONES=0
+  MAXIMO_FILAS=0
+fi
+log "CONFIG: ejecutor=$EJECUTOR timeout=${TIMEOUT_EJECUTOR}s kill_after=${KILL_AFTER_EJECUTOR}s maximo_filas=$MAXIMO_FILAS investigaciones=$MAXIMO_INVESTIGACIONES presupuesto_diario_disponible=${PRESUPUESTO_NECESIDADES}/${PRESUPUESTO_OBJETOS}/${PRESUPUESTO_SEGUNDOS}s"
 CALENDARIO_JSON="$(python3 tools/adq_config.py --calendario-json)"
 ADQ_ZONA_HORARIA="$(printf '%s' "$CALENDARIO_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["zona_iana"])')"
 CALENDARIO_DEGRADADO="$(printf '%s' "$CALENDARIO_JSON" | python3 -c 'import json,sys; print("si" if json.load(sys.stdin)["degradada"] else "no")')"
@@ -781,6 +805,7 @@ INVESTIGACION_JSON="$(python3 -c 'import json,sys; print(json.dumps(json.load(op
 INVESTIGACION_ELEGIDAS="$(printf '%s' "$INVESTIGACION_JSON" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(",".join(x["id"] for x in d["elegidos"]) or "ninguna")')"
 INVESTIGACION_EXCLUIDAS="$(printf '%s' "$INVESTIGACION_JSON" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)["excluidos"]))')"
 NUM_INVESTIGACIONES="$(printf '%s' "$INVESTIGACION_JSON" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)["elegidos"]))')"
+DEMANDA_ATENDIBLE=$((NUM_ELEGIDOS + NUM_INVESTIGACIONES))
 log "selección investigación: elegidas=${INVESTIGACION_ELEGIDAS} excluidas=${INVESTIGACION_EXCLUIDAS} máximo=${MAXIMO_INVESTIGACIONES}"
 
 if [ "$NUM_INVESTIGACIONES" -gt 0 ]; then
@@ -793,6 +818,7 @@ if [ "$NUM_ELEGIDOS" -eq 0 ] && [ "$NUM_INVESTIGACIONES" -eq 0 ]; then
   RESULTADO_SUSTANTIVO="cola_vacia"
   RESULTADO_TRABAJO="cola_vacia"
   PUBLICACION_TRABAJO="no_aplica"
+  SALUD_TRABAJO="SIN_TRABAJO_ATENDIBLE"
   RESULTADO_PUBLICO="$(python3 - "$SELECCION_ARCHIVO" "$INVESTIGACION_ARCHIVO" <<'PYEOF'
 import json, sys
 with open(sys.argv[1], encoding="utf-8") as f:
@@ -1001,6 +1027,14 @@ ${INVESTIGACION_JSON}
 Una candidata pública nueva y pertinente puede adquirirla en esta misma corrida aunque no estuviera en la selección inicial: crea el residual con adq_residual.py, autoridad AUTORIZADA-POR-ALCANCE:Jonas/2026-09-12/GEN2-38/<objeto>, y cuenta ese objeto dentro del máximo total. No deriva autorización para compra, login, contacto ni adopción científica. Persiste el progreso de cada necesidad con \`python3 tools/adq_investigacion.py --actualiza-desde-resultados <json-temporal>\` antes del commit; un timeout conserva cursor y frontera.
 Tu último mensaje debe cumplir tools/adq-resultado.schema.json. Entrega los objetos inicialmente elegidos primero y después sólo candidatas de esta investigación que hayas adquirido o intentado. Cada evidencia debe ser una ruta local existente; toda adquisición debe acreditar archivos e ids pertinentes de data/manifiesto.yaml; todo intento debe conservar vía y resultado verificable. Evalúa por separado identidad, concepto, población, selección/no respuesta, unidad, temporalidad, diseño e identificación; no uses una nota agregada. Con cualquier trabajo, la publicación exige refs/heads/<rama> y SHA remoto exacto: el recibo posterior del wrapper no la sustituye. Si falla, conserva resultados, declara resultado_sustantivo=fallo y publicacion_trabajo=fallida."
 
+# Reserva el consumo agregado antes de iniciar el único hijo.  La reserva es
+# idempotente por run_id y vive fuera de Git; otra activación horaria del mismo
+# día ve el remanente antes de volver a seleccionar.
+python3 tools/adq_investigacion.py --reserva-presupuesto --owner "$RUN_ID" \
+  --corte "$FECHA" --necesidades "$NUM_INVESTIGACIONES" \
+  --objetos "$MAXIMO_FILAS" --segundos "$TIMEOUT_EJECUTOR" \
+  >>"$LOGFILE" 2>&1
+
 # set +e/-e: la huella [ADQ] tiene que capturar el código real de salida
 # incluso cuando el hijo falla -- bajo `set -e`
 # 13) un `cmd; CODIGO=$?` normal aborta el script en `cmd` mismo, antes
@@ -1070,6 +1104,16 @@ if [ "$EJECUTOR" = "codex" ]; then
         RESULTADO_TRABAJO="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["resultado_trabajo"])' "$VALIDACION_RESULTADO")"
         PUBLICACION_TRABAJO="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["publicacion_trabajo"])' "$VALIDACION_RESULTADO")"
         CIERRE_HIJO="$(python3 -c 'import json,sys; print("si" if json.load(open(sys.argv[1], encoding="utf-8"))["cierre_exitoso"] else "no")' "$VALIDACION_RESULTADO")"
+        NECESIDADES_ATENDIDAS="$(printf '%s' "$RESULTADO_PUBLICO" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)["investigaciones"]))')"
+        OBJETOS_NUEVOS="$(printf '%s' "$RESULTADO_PUBLICO" | python3 -c 'import json,sys; print(sum(x["desenlace"]=="adquirido" for x in json.load(sys.stdin)["resultados_por_objeto"]))')"
+        BYTES_NUEVOS="$(printf '%s' "$RESULTADO_PUBLICO" | python3 -c 'import json,os,sys; d=json.load(sys.stdin); print(sum(os.path.getsize(p) for x in d["resultados_por_objeto"] if x["desenlace"]=="adquirido" for p in x["archivos"] if os.path.isfile(p)))')"
+        if [ "$OBJETOS_NUEVOS" -gt 0 ]; then
+          SALUD_TRABAJO="AVANCE_MATERIAL"
+        elif [ "$DEMANDA_ATENDIBLE" -gt 0 ]; then
+          SALUD_TRABAJO="EJECUCION_SIN_EVIDENCIA_NUEVA"
+        else
+          SALUD_TRABAJO="SIN_TRABAJO_ATENDIBLE"
+        fi
         if [ "$CIERRE_HIJO" != "si" ]; then
           if [ "$PUBLICACION_TRABAJO" = "fallida" ]; then
             CODIGO_SALIDA=4

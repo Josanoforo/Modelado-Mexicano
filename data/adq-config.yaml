@@ -23,6 +23,10 @@ calendario:
   # Ventana después de la hora programada antes de exigir la huella. No es
   # el timeout del ejecutor ni la gracia TERM->KILL.
   ventana_observacion_minutos: 45
+  # La comprobación no invoca al modelo si no hay trabajo nuevo o vencido.
+  # Comparte tarea, lock y presupuesto con la ejecución diaria.
+  comprobacion_intervalo_minutos: 60
+  recuperar_al_iniciar_sesion: true
 
 sonda_red_url: https://www.inegi.org.mx/
 sonda_red_url_alternativa: https://api.github.com/

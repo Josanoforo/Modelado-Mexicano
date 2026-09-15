@@ -69,6 +69,52 @@ def cargar_config(path: Path = CONFIG) -> dict:
     return dato
 
 
+def _demandas_independientes(cfg: dict) -> dict[str, dict]:
+    """Demandas científicas cuyo ciclo de vida no depende de una NC.
+
+    Una NC conserva el historial de un acto.  Una pregunta todavía requerida
+    por un consumidor puede sobrevivir a ese cierre sin reabrir la NC.  La
+    configuración es la ampliación mínima del registro operativo existente;
+    no crea una segunda tabla de autoridad.
+    """
+    demandas: dict[str, dict] = {}
+    for item in cfg.get("demandas_instrumento", []):
+        ident = str(item.get("id") or "")
+        if not ident or ident in demandas:
+            raise ValueError(f"demanda de instrumento sin identidad única: {ident!r}")
+        if item.get("vigente", True):
+            demandas[ident] = dict(item)
+    return demandas
+
+
+def _base_demanda_independiente(item: dict) -> dict:
+    return {
+        "id": item["id"],
+        "acto": "DEMANDA-INDEPENDIENTE",
+        "pieza": item.get("consumidor", ""),
+        "que_no_se_corrio": item.get("pregunta") or item.get("brecha", ""),
+        "razon": item.get("investigacion_previa", ""),
+        "impacto": item.get("brecha", ""),
+        "sucesor": item.get("siguiente_accion", ""),
+        "estado": "VIGENTE",
+        "origen_demanda": "CONSUMIDOR_Y_USO",
+    }
+
+
+def fuentes_demanda_vigente(cfg: dict, raiz: Path = RAIZ) -> dict[str, dict]:
+    """Une NC abiertas y demandas independientes, sin equiparar sus estados."""
+    fuentes = {
+        ident: {**base, "origen_demanda": "NC_ABIERTA"}
+        for ident, base in necesidades_canonicas(cfg, raiz).items()
+        if base.get("estado") == "ABIERTA"
+    }
+    for ident, item in _demandas_independientes(cfg).items():
+        if ident in fuentes:
+            raise ValueError(f"identidad repetida entre NC y demanda: {ident}")
+        fuentes[ident] = _base_demanda_independiente(item)
+    return fuentes
+
+
 def necesidades_canonicas(cfg: dict, raiz: Path = RAIZ) -> dict[str, dict]:
     ruta = raiz / cfg["fuente_necesidades"]
     with ruta.open(encoding="utf-8", newline="") as f:
@@ -187,11 +233,14 @@ def _evidencia_nueva_aplicable(estado: dict, item: dict) -> bool:
     )))
 
 
-def _ruteo_efectivo(item: dict, estado: dict, corte: dt.date) -> tuple[str, str]:
+def _ruteo_efectivo(item: dict, estado: dict, corte: dt.date, *,
+                    cambio_material: bool = False) -> tuple[str, str]:
     """Reanuda espera por fecha/evidencia; conserva barreras humanas."""
     ruteo = item.get("estado_ruteo") or "NO_SONDA"
     if ruteo in {"ESPERA_ACCESO_HUMANO", "BARRERA_HUMANA"}:
         return ruteo, str(item.get("motivo_ruteo") or "barrera humana vigente")
+    if cambio_material:
+        return "LISTA_SONDA", "reanudada por cambio material de consumidor/uso/contrato"
     if ruteo != "ESPERA_NUEVA_PISTA":
         return ruteo, str(item.get("motivo_ruteo") or "ruteo estructurado vigente")
     if _evidencia_nueva_aplicable(estado, item):
@@ -268,17 +317,17 @@ def _contrato_cientifico_explicito_completo(item: dict) -> bool:
 
 
 def contratos_vigentes(cfg: dict, raiz: Path = RAIZ) -> dict[str, dict]:
-    canonicas = necesidades_canonicas(cfg, raiz)
+    fuentes = fuentes_demanda_vigente(cfg, raiz)
+    independientes = _demandas_independientes(cfg)
     explicitos = {x["id"]: x for x in cfg.get("necesidades", [])}
+    explicitos.update(independientes)
     sucesoras = {
         anterior: item["id"]
         for item in cfg.get("necesidades", [])
         for anterior in item.get("sucede_necesidades", [])
     }
     contratos: dict[str, dict] = {}
-    for ident, base in canonicas.items():
-        if base.get("estado") != "ABIERTA":
-            continue
+    for ident, base in fuentes.items():
         if ident in explicitos:
             item = dict(explicitos[ident])
             item.setdefault("etapa_faltante", _etapa_faltante(base))
@@ -310,6 +359,8 @@ def contratos_vigentes(cfg: dict, raiz: Path = RAIZ) -> dict[str, dict]:
             item["responsable"] = sucesoras[ident]
             item["siguiente_accion"] = (
                 f"seguir el estado y la siguiente acción de {sucesoras[ident]}")
+        item["origen_demanda"] = base.get("origen_demanda", "NC_ABIERTA")
+        item.setdefault("antecedentes_nc", [])
         contratos[ident] = item
     return contratos
 
@@ -333,31 +384,35 @@ def _reserva_activa(path: Path, ahora: dt.datetime) -> dict | None:
 
 def selecciona(cfg: dict, corte: dt.date, maximo: int = 3,
                nombradas: set[str] | None = None, raiz: Path = RAIZ,
-               ahora: dt.datetime | None = None) -> dict:
+               ahora: dt.datetime | None = None,
+               cambios_materiales: set[str] | None = None) -> dict:
     nombradas = nombradas or set()
+    cambios_materiales = cambios_materiales or set()
     ahora = ahora or _ahora()
-    canonicas = necesidades_canonicas(cfg, raiz)
+    fuentes = fuentes_demanda_vigente(cfg, raiz)
     estado_dir = raiz / cfg["estado_dir"]
     reserva_dir = raiz / cfg["reservas_runtime_dir"]
     configuradas = {n["id"] for n in cfg.get("necesidades", [])}
-    abiertas = {i for i, r in canonicas.items() if r.get("estado") == "ABIERTA"}
+    abiertas = {i for i, r in necesidades_canonicas(cfg, raiz).items()
+               if r.get("estado") == "ABIERTA"}
     contratos = contratos_vigentes(cfg, raiz)
     excluidos: list[dict] = []
     candidatas: list[tuple[tuple, dict]] = []
 
     for item in contratos.values():
         ident = item["id"]
-        base = canonicas.get(ident)
+        base = fuentes.get(ident)
         if base is None:
             excluidos.append({"id": ident, "razon": "no existe en la fuente canónica"})
             continue
-        if base.get("estado") != "ABIERTA":
+        if base.get("estado") not in {"ABIERTA", "VIGENTE"}:
             excluidos.append({"id": ident, "razon": f"estado canónico {base.get('estado')}"})
             continue
         estado = _lee_json(estado_dir / f"{ident}.json")
         if estado.get("version_pregunta") not in (None, item["version_pregunta"]):
             estado = {}  # pregunta nueva: no hereda agotamiento de la versión anterior
-        ruteo, motivo_ruteo = _ruteo_efectivo(item, estado, corte)
+        ruteo, motivo_ruteo = _ruteo_efectivo(
+            item, estado, corte, cambio_material=ident in cambios_materiales)
         barrera_humana = ruteo in {"ESPERA_ACCESO_HUMANO", "BARRERA_HUMANA"}
         if ruteo != "LISTA_SONDA" and (barrera_humana or ident not in nombradas):
             excluidos.append({
@@ -380,6 +435,7 @@ def selecciona(cfg: dict, corte: dt.date, maximo: int = 3,
             continue
         proxima = _fecha(estado.get("proxima_revision") or item.get("proxima_revision"))
         if (proxima and corte < proxima and ident not in nombradas and
+                ident not in cambios_materiales and
                 not _evidencia_nueva_aplicable(estado, item)):
             excluidos.append({"id": ident, "razon": f"revisión no vence hasta {proxima}"})
             continue
@@ -402,6 +458,8 @@ def selecciona(cfg: dict, corte: dt.date, maximo: int = 3,
     return {
         "version": cfg["version"], "corte": corte.isoformat(), "maximo": maximo,
         "demanda_activa_total": len(abiertas), "demanda_configurada": len(configuradas),
+        "demandas_independientes_vigentes": len(_demandas_independientes(cfg)),
+        "demanda_vigente_total": len(fuentes),
         "demanda_con_contrato_operativo": len(contratos),
         "elegidos": elegidos, "excluidos": excluidos,
     }
@@ -528,6 +586,17 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
         resultado = resultados.get(resultado_id, {})
         regla = uso.get("reglas_impacto") or ""
         consumidor = uso["consumidor"]
+        # La proyección no interpreta suficiencia por segunda vez.  Consulta
+        # exactamente la misma guardia usada por consulta_gen2 y después sólo
+        # refleja su decisión para esta identidad RESULT+uso.
+        try:
+            from tools import adq_suficiencia
+        except ImportError:
+            import adq_suficiencia
+        guardia = adq_suficiencia.proyecta_consumidor(
+            consumidor, cfg, raiz,
+            resultado_id=resultado_id or None,
+            uso_solicitado=uso.get("uso_solicitado") or None)
         grupo = conciliacion.get(uso["resultado_id"], {})
         necesidades = list(grupo.get("necesidades_nc", []))
         for ident, contrato in contratos.items():
@@ -614,7 +683,9 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
             *[f"{cfg['fuente_necesidades']}#{n}" for n in necesidades],
             *[x["fuente"] for x in decisiones_resultado],
         ))))
-        if grupo.get("situacion"):
+        if guardia and guardia["accion_consumidor"] == "NO_EMITIR_RESULTADO_SOLICITADO":
+            situacion = "PENDIENTE_DATOS_O_DECISION_DE_USO"
+        elif grupo.get("situacion"):
             situacion = grupo["situacion"]
         elif oferta_eval:
             situacion = "EVALUACION_GEN2_DISPONIBLE"
@@ -677,9 +748,17 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
             "faltantes": faltantes,
             "primer_faltante": faltantes[0] if faltantes else None,
             "campos_contrato_faltantes": _campos_receta_faltantes(anterior),
-            "uso_disponible_hoy": bool(
-                grupo.get("uso_disponible_hoy", oferta_eval is not None or
-                          situacion == "CUBIERTA")),
+            "uso_disponible_hoy": (
+                guardia["accion_consumidor"] != "NO_EMITIR_RESULTADO_SOLICITADO"
+                if guardia else bool(grupo.get(
+                    "uso_disponible_hoy", oferta_eval is not None or
+                    situacion == "CUBIERTA"))),
+            "guardia_uso": ({
+                "necesidad_id": guardia["necesidad_id"],
+                "estado_efectivo": guardia["estado_efectivo"],
+                "accion_consumidor": guardia["accion_consumidor"],
+                "motivo": guardia["motivo_bloqueo"],
+            } if guardia else None),
             "medicion_disponible_hoy": bool(
                 grupo.get("medicion_disponible_hoy", adoptada and
                           not (uso.get("tipo_uso") or "").startswith("celda_"))),
@@ -719,12 +798,11 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
 def proyecta_demanda(cfg: dict, corte: dt.date, raiz: Path = RAIZ) -> dict:
     """Vista total: ninguna NC ni adopción GEN2 desaparece fuera del selector."""
     canonicas = necesidades_canonicas(cfg, raiz)
+    fuentes = fuentes_demanda_vigente(cfg, raiz)
     contratos = contratos_vigentes(cfg, raiz)
     filas = []
-    for ident, base in sorted(canonicas.items()):
-        if base.get("estado") != "ABIERTA":
-            continue
-        contrato = contratos[ident]
+    for ident, contrato in sorted(contratos.items()):
+        base = fuentes[ident]
         estado = _lee_json(raiz / cfg["estado_dir"] / f"{ident}.json")
         if estado.get("version_pregunta") != contrato["version_pregunta"]:
             estado = {}
@@ -760,20 +838,26 @@ def proyecta_demanda(cfg: dict, corte: dt.date, raiz: Path = RAIZ) -> dict:
             "aplica_contrato_cientifico": contrato[
                 "aplica_contrato_cientifico"],
             "naturaleza_necesidad": contrato["naturaleza_necesidad"],
-            "evidencias": [f"{cfg['fuente_necesidades']}#{ident}"],
+            "origen_demanda": contrato["origen_demanda"],
+            "antecedentes_nc": contrato.get("antecedentes_nc", []),
+            "evidencias": ([f"{cfg['fuente_necesidades']}#{ident}"]
+                           if contrato["origen_demanda"] == "NC_ABIERTA" else
+                           list(contrato.get("evidencias_guardia", []))),
         })
     elementos = proyecta_elementos(cfg, contratos, raiz)
     seleccion_siguiente = selecciona(cfg, corte, maximo=3, raiz=raiz)
     fuente = raiz / cfg["fuente_necesidades"]
-    fuentes = [cfg[k] for k in (
+    rutas_fuente = [cfg[k] for k in (
         "fuente_necesidades", "fuente_usos", "fuente_resultados",
         "fuente_demanda_resultados", "fuente_decisiones",
         "fuente_necesidad_modelo", "fuente_utilidad_modelo",
         "fuente_codificacion_r", "fuente_universo_triada")]
     fuentes_sha = {
         ruta: hashlib.sha256((raiz / ruta).read_bytes()).hexdigest()
-        for ruta in fuentes
+        for ruta in rutas_fuente
     }
+    fuentes_sha[str(CONFIG.relative_to(RAIZ))] = hashlib.sha256(
+        (raiz / CONFIG.relative_to(RAIZ)).read_bytes()).hexdigest()
     canon_fuentes = "".join(
         f"{ruta}\t{sha}\n" for ruta, sha in sorted(fuentes_sha.items()))
     return {
@@ -787,6 +871,9 @@ def proyecta_demanda(cfg: dict, corte: dt.date, raiz: Path = RAIZ) -> dict:
             "cero tareas elegibles sólo describe el selector; nunca acredita "
             "suficiencia general ni cierra necesidades"),
         "total_activas": len(filas),
+        "total_nc_abiertas": sum(
+            x.get("estado") == "ABIERTA" for x in canonicas.values()),
+        "total_demandas_independientes": len(_demandas_independientes(cfg)),
         "contrato_cientifico_completo": sum(
             x["contrato_cientifico_completo"] for x in filas),
         "descripcion_minima_derivada": sum(
@@ -864,17 +951,210 @@ def actualiza_desde_resultados(path: Path, cfg: dict, raiz: Path = RAIZ) -> list
         ident = r["necesidad_id"]
         if ident not in validas or r["version_pregunta"] != validas[ident]["version_pregunta"]:
             raise ValueError(f"resultado de investigación no corresponde al contrato vigente: {ident}")
+        anterior = _lee_json(estado_dir / f"{ident}.json")
+        hubo_avance = bool(r.get("candidatas"))
+        ciclos_sin_avance = (0 if hubo_avance else
+                             int(anterior.get("ciclos_sin_avance", 0)) + 1)
+        corte = _fecha(dato.get("seleccion_investigacion", {}).get("corte"))
+        proxima_revision = r["proxima_revision"]
+        continuacion = r.get("estado") == "continua"
+        if continuacion and corte:
+            # Una frontera concreta se retoma en el ciclo siguiente, no se
+            # manda a una pausa general de treinta días.
+            proxima_revision = (corte + dt.timedelta(days=1)).isoformat()
         estado = {
             "necesidad_id": ident, "version_pregunta": r["version_pregunta"],
             "ultima_exploracion": dato.get("seleccion_investigacion", {}).get("corte"),
-            "estado": r["estado"], "proxima_revision": r["proxima_revision"],
+            "estado": r["estado"], "proxima_revision": proxima_revision,
             "cursor_continuacion": r["cursor_continuacion"],
             "frontera_no_examinada": r["frontera_no_examinada"],
             "evidencias": r["evidencias"], "suficiencia": r["suficiencia"],
+            "continuacion_pendiente": continuacion,
+            "ciclos_sin_avance": ciclos_sin_avance,
+            "alternativa_requerida": (
+                ciclos_sin_avance >= 2 and not hubo_avance),
+            "alternativas": validas[ident].get("opciones_decision", [])
+            if ciclos_sin_avance >= 2 and not hubo_avance else [],
         }
         _json_atomico(estado_dir / f"{ident}.json", estado)
         escritas.append(ident)
     return escritas
+
+
+def _ruta_presupuesto(cfg: dict, fecha: dt.date, raiz: Path) -> Path:
+    directorio = cfg.get("presupuesto_runtime_dir", "forense/adq-log/estado")
+    return raiz / directorio / f"presupuesto-{fecha.isoformat()}.json"
+
+
+def presupuesto_diario(cfg: dict, fecha: dt.date, raiz: Path = RAIZ) -> dict:
+    limites = cfg.get("presupuesto_diario", {})
+    techo = {
+        "necesidades": int(limites.get("necesidades", 3)),
+        "objetos": int(limites.get("objetos", 5)),
+        "segundos_ejecutor": int(limites.get("segundos_ejecutor", 3900)),
+    }
+    path = _ruta_presupuesto(cfg, fecha, raiz)
+    dato = _lee_json(path)
+    usado = dato.get("usado", {}) if dato.get("fecha") == fecha.isoformat() else {}
+    usado = {k: int(usado.get(k, 0)) for k in techo}
+    return {
+        "fecha": fecha.isoformat(), "ruta": str(path), "techo": techo,
+        "usado": usado,
+        "disponible": {k: max(0, techo[k] - usado[k]) for k in techo},
+        "reservas": dato.get("reservas", []) if dato.get("fecha") == fecha.isoformat() else [],
+    }
+
+
+def reserva_presupuesto(cfg: dict, fecha: dt.date, run_id: str, necesidades: int,
+                        objetos: int, segundos: int, raiz: Path = RAIZ,
+                        ahora: dt.datetime | None = None) -> dict:
+    actual = presupuesto_diario(cfg, fecha, raiz)
+    pedido = {"necesidades": necesidades, "objetos": objetos,
+              "segundos_ejecutor": segundos}
+    if any(r.get("run_id") == run_id for r in actual["reservas"]):
+        return actual
+    excede = [k for k, n in pedido.items() if n > actual["disponible"][k]]
+    if excede:
+        raise RuntimeError("presupuesto diario insuficiente: " + ", ".join(excede))
+    ahora = ahora or _ahora()
+    usado = {k: actual["usado"][k] + pedido[k] for k in pedido}
+    doc = {
+        "fecha": fecha.isoformat(), "techo": actual["techo"], "usado": usado,
+        "reservas": [*actual["reservas"], {
+            "run_id": run_id, "registrada": ahora.isoformat(), **pedido}],
+    }
+    _json_atomico(Path(actual["ruta"]), doc)
+    return presupuesto_diario(cfg, fecha, raiz)
+
+
+def _huella_material(cfg: dict, raiz: Path = RAIZ) -> str:
+    rutas = [Path(cfg[k]) for k in (
+        "fuente_necesidades", "fuente_usos", "fuente_resultados",
+        "fuente_demanda_resultados", "fuente_decisiones",
+        "fuente_necesidad_modelo", "fuente_utilidad_modelo",
+    )]
+    canon = ("config\t" + hashlib.sha256(json.dumps(
+        cfg, ensure_ascii=False, sort_keys=True,
+        separators=(",", ":")).encode("utf-8")).hexdigest() + "\n" + "".join(
+        f"{ruta}\t{hashlib.sha256((raiz / ruta).read_bytes()).hexdigest()}\n"
+        for ruta in sorted(rutas, key=str)))
+    return hashlib.sha256(canon.encode("utf-8")).hexdigest()
+
+
+def _huellas_contratos(cfg: dict, raiz: Path = RAIZ) -> dict[str, str]:
+    usos = _tsv(raiz / cfg["fuente_usos"])
+    contratos = contratos_vigentes(cfg, raiz)
+    elementos = proyecta_elementos(cfg, contratos, raiz)
+    salida = {}
+    for ident, contrato in contratos.items():
+        consumidores = {contrato.get("consumidor"),
+                        *contrato.get("consumidores_consulta", [])}
+        reglas = set(contrato.get("reglas_motor", []))
+        usos_afectados = [x for x in usos if (
+            x.get("consumidor") in consumidores or
+            x.get("reglas_impacto") in reglas)]
+        elementos_afectados = [{
+            "elemento_id": x.get("elemento_id"),
+            "consumidor": x.get("consumidor"),
+            "uso_vigente": x.get("uso_vigente"),
+            "situacion": x.get("situacion"),
+            "uso_disponible_hoy": x.get("uso_disponible_hoy"),
+            "guardia_uso": x.get("guardia_uso"),
+        } for x in elementos if (
+            ident in x.get("necesidades_nc_abiertas", []) or
+            x.get("consumidor") in consumidores or
+            x.get("regla") in reglas)]
+        material = {
+            "contrato": {k: v for k, v in contrato.items()
+                         if k not in {"motivo_ruteo"}},
+            "usos": usos_afectados,
+            "elementos": elementos_afectados,
+        }
+        canon = json.dumps(material, ensure_ascii=False, sort_keys=True,
+                           separators=(",", ":"))
+        salida[ident] = hashlib.sha256(canon.encode("utf-8")).hexdigest()
+    return salida
+
+
+def comprueba_despacho(cfg: dict, corte: dt.date, raiz: Path = RAIZ,
+                       ahora: dt.datetime | None = None) -> dict:
+    """Chequeo determinista para el único scheduler; nunca invoca un LLM."""
+    ahora = ahora or _ahora()
+    presupuesto = presupuesto_diario(cfg, corte, raiz)
+    try:
+        from tools import adq_doctor
+    except ImportError:
+        import adq_doctor
+    filas = _tsv(raiz / "data/curacion-registro/cola-adquisicion-registro.tsv")
+    selector = adq_doctor.selecciona_filas(
+        [(f.get("fuente_canonica", ""), f.get("estado_A4A5", ""),
+          f.get("prioridad", ""), f.get("nota", "")) for f in filas],
+        corte=corte, maximo=5)
+    ruta_estado = raiz / cfg.get(
+        "comprobacion_runtime", "forense/adq-log/estado/comprobacion.json")
+    previo = _lee_json(ruta_estado)
+    huella = _huella_material(cfg, raiz)
+    huellas_contratos = _huellas_contratos(cfg, raiz)
+    anteriores = previo.get("huellas_contratos", {})
+    cambiadas = ({ident for ident, valor in huellas_contratos.items()
+                  if ident in anteriores and anteriores[ident] != valor}
+                 if anteriores else set())
+    investigacion = selecciona(
+        cfg, corte, 3, raiz=raiz, ahora=ahora,
+        cambios_materiales=cambiadas)
+    hora_diaria = (yaml.safe_load((raiz / "data/adq-config.yaml").read_text(
+        encoding="utf-8")) or {}).get("calendario", {}).get("hora", "07:30")
+    hora, minuto = map(int, hora_diaria.split(":"))
+    from zoneinfo import ZoneInfo
+    zona = (yaml.safe_load((raiz / "data/adq-config.yaml").read_text(
+        encoding="utf-8")) or {}).get("calendario", {}).get(
+            "zona_iana", "America/Mexico_City")
+    ahora_local = ahora.astimezone(ZoneInfo(zona))
+    ciclo_diario_pendiente = (
+        previo.get("ultima_corrida") != corte.isoformat() and
+        (ahora_local.hour, ahora_local.minute) >= (hora, minuto))
+    trabajo = bool(selector["elegidos"] or investigacion["elegidos"])
+    trabajo_con_cupo = bool(
+        (selector["elegidos"] and presupuesto["disponible"]["objetos"] > 0) or
+        (investigacion["elegidos"] and
+         presupuesto["disponible"]["necesidades"] > 0))
+    presupuesto_agotado = presupuesto["disponible"]["segundos_ejecutor"] <= 0
+    despachar = not presupuesto_agotado and (trabajo_con_cupo or ciclo_diario_pendiente)
+    razones = []
+    if selector["elegidos"]:
+        razones.append("adquisicion_atendible")
+    if investigacion["elegidos"]:
+        razones.append("investigacion_atendible")
+    if ciclo_diario_pendiente:
+        razones.append("ciclo_diario_pendiente_o_recuperacion")
+    if previo.get("huella_material") not in (None, huella):
+        razones.append("insumos_materiales_cambiaron")
+    if presupuesto_agotado or (trabajo and not trabajo_con_cupo):
+        razones.append("presupuesto_diario_agotado")
+    doc = {
+        **previo, "ultima_comprobacion": ahora.isoformat(),
+        "fecha_corte": corte.isoformat(), "huella_material": huella,
+        "huellas_contratos": huellas_contratos,
+        "identidades_afectadas": sorted(cambiadas),
+        "cambio_material": previo.get("huella_material") not in (None, huella),
+        "despachar": despachar, "razones": razones,
+        "elegibles": {"objetos": [x["id"] for x in selector["elegidos"]],
+                       "necesidades": [x["id"] for x in investigacion["elegidos"]]},
+        "presupuesto": presupuesto,
+    }
+    _json_atomico(ruta_estado, doc)
+    return doc
+
+
+def registra_ciclo(cfg: dict, fecha: dt.date, run_id: str,
+                   raiz: Path = RAIZ) -> dict:
+    path = raiz / cfg.get(
+        "comprobacion_runtime", "forense/adq-log/estado/comprobacion.json")
+    doc = _lee_json(path)
+    doc.update({"ultima_corrida": fecha.isoformat(),
+                "ultimo_run_id": run_id, "registrada": _ahora().isoformat()})
+    _json_atomico(path, doc)
+    return doc
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -889,10 +1169,36 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--libera")
     ap.add_argument("--actualiza-desde-resultados", type=Path)
     ap.add_argument("--escribe-proyeccion", type=Path)
+    ap.add_argument("--presupuesto", action="store_true")
+    ap.add_argument("--reserva-presupuesto", action="store_true")
+    ap.add_argument("--necesidades", type=int, default=0)
+    ap.add_argument("--objetos", type=int, default=0)
+    ap.add_argument("--segundos", type=int, default=0)
+    ap.add_argument("--comprueba-despacho", action="store_true")
+    ap.add_argument("--registra-ciclo", action="store_true")
     args = ap.parse_args(argv)
     cfg = cargar_config(args.config)
+    corte = _fecha(args.corte) or dt.date.today()
+    if args.presupuesto:
+        print(json.dumps(presupuesto_diario(cfg, corte), ensure_ascii=False, indent=2))
+        return 0
+    if args.reserva_presupuesto:
+        if not args.owner:
+            ap.error("--reserva-presupuesto exige --owner")
+        print(json.dumps(reserva_presupuesto(
+            cfg, corte, args.owner, args.necesidades, args.objetos,
+            args.segundos), ensure_ascii=False, indent=2))
+        return 0
+    if args.comprueba_despacho:
+        dato = comprueba_despacho(cfg, corte)
+        print(json.dumps(dato, ensure_ascii=False, indent=2))
+        return 0 if dato["despachar"] else 10
+    if args.registra_ciclo:
+        if not args.owner:
+            ap.error("--registra-ciclo exige --owner")
+        print(json.dumps(registra_ciclo(cfg, corte, args.owner), ensure_ascii=False))
+        return 0
     if args.selecciona:
-        corte = _fecha(args.corte) or dt.date.today()
         print(json.dumps(selecciona(cfg, corte, args.maximo, set(args.nombrada)),
                          ensure_ascii=False, indent=2))
         return 0
@@ -911,7 +1217,6 @@ def main(argv: list[str] | None = None) -> int:
             args.actualiza_desde_resultados, cfg)}, ensure_ascii=False))
         return 0
     if args.escribe_proyeccion:
-        corte = _fecha(args.corte) or dt.date.today()
         dato = proyecta_demanda(cfg, corte)
         _json_atomico(args.escribe_proyeccion, dato)
         print(json.dumps({"ruta": str(args.escribe_proyeccion),
