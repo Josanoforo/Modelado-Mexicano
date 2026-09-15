@@ -87,6 +87,33 @@ adjudicado.
 
 ---
 
+## Enmienda fechada · PAUSA OPERATIVA POR CUOTA (2026-09-12, mesa central)
+
+Original intacto arriba; esta enmienda se añade, no edita. Registro histórico
+de lo que era cierto el 12/sep/2026 — no firma FP-373 ni la mueve de su
+estado de esa fecha; el token del tablero manda sobre el estado vigente
+(A.16). Archivada bajo `ACTO GEN2-SANEA-REGISTRO-Y-RESCATE` (cierra NC-0173),
+rescatando el texto preparado en el cierre de mesa del 12/sep/2026
+(`forense/notas/2026-09-12-MESA-CIERRE-Y-CONTINUIDAD.md`).
+
+> 12/sep/2026 · Mesa central: Jonás informa agotamiento temporal del uso de
+> Claude y difiere la ejecución documental del encargo 31 / FP-373 hasta que
+> se restablezca. La preparación fusionada en #728 se conserva; no repetirla
+> ni confundirla con #738, que corresponde a adquisición. Al retomar,
+> recuperar y archivar la autorización explícita aplicable, verificar
+> identidad del competidor y modalidad de uso, congelar el plan, acreditar
+> transporte y completar las 32 posiciones dentro del techo de 96
+> solicitudes. Esta anotación registra la pausa; no firma FP-373 ni autoriza
+> FP-374/F6. No se fija una hora ni se programa un disparo automático.
+
+⚠️ Concurrencia declarada: la reanudación (enmienda de 14/sep, abajo) llegó a
+este mismo archivo antes que esta pausa, en `ACTO GEN2-F5-DOCUMENTAL-RUN`;
+ambos asientos se conservan en orden cronológico (pausa 12/sep → reanudación
+14-15/sep). FP-373 hoy está FIRMADA por el lanzamiento del RUN — este asiento
+no toca ese token.
+
+---
+
 ## Enmienda fechada · REANUDACIÓN Y PARO DE TRANSPORTE (2026-09-14, `ACTO GEN2-F5-DOCUMENTAL-RUN`)
 
 Original intacto arriba; esta enmienda se añade, no edita. El asiento de la
