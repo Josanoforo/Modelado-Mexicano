@@ -686,6 +686,31 @@ def prueba_cierre_runtime_evitar_repetir_estado_publicado_sin_merge():
            "E2E: la siguiente activación repite una rama publicada sin merge")
 
 
+def prueba_censo_repetido_no_fabrica_archivo_nuevo():
+    with tempfile.TemporaryDirectory() as d:
+        censo = Path(d) / "censo"
+        censo.mkdir()
+        previo = censo / "2026-09-15-cron-1047.txt"
+        candidato = censo / "2026-09-15-cron-1217.txt"
+        previo.write_bytes(b"inventario-identico\n")
+        candidato.write_bytes(previo.read_bytes())
+        rc, salida = _corre_bash(
+            f'CENSO_DIR="{censo}"; FECHA=2026-09-15; '
+            f'if censo_duplicado_del_dia "{candidato}"; then '
+            f'echo "rc=0"; else echo "rc=$?"; fi',
+            entorno={"LOGFILE": "/dev/null"})
+        afirma(rc == 0 and "rc=0" in salida,
+               "E2E: dos censos byte a byte iguales no se detectaron como duplicado")
+        candidato.write_bytes(b"inventario-distinto\n")
+        rc, salida = _corre_bash(
+            f'CENSO_DIR="{censo}"; FECHA=2026-09-15; '
+            f'if censo_duplicado_del_dia "{candidato}"; then '
+            f'echo "rc=0"; else echo "rc=$?"; fi',
+            entorno={"LOGFILE": "/dev/null"})
+        afirma("rc=1" in salida,
+               "E2E: un censo distinto se descartaría como duplicado")
+
+
 # ───────────────────────────────────────────────────────────────
 
 PRUEBAS = [v for k, v in sorted(globals().items()) if k.startswith("prueba_")]

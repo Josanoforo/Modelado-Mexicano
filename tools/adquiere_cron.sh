@@ -477,6 +477,19 @@ ${resumen}" >>"$LOGFILE" 2>&1
   return 0
 }
 
+# Devuelve éxito si otro censo del día ya contiene exactamente los mismos
+# bytes. Los nombres por hora sirven para intentos distintos, no para convertir
+# el mismo inventario en archivos supuestamente nuevos.
+censo_duplicado_del_dia() {
+  local candidato="$1" previo
+  shopt -s nullglob
+  for previo in "${CENSO_DIR}/${FECHA}"*.txt; do
+    [ "$previo" = "$candidato" ] && continue
+    cmp -s "$candidato" "$previo" && return 0
+  done
+  return 1
+}
+
 # publica_censo_manual -- paso 2.5: censo diario de la raíz manual +
 # commit + push a censo/${FECHA}, dado que $CENSO_DIR ya existe y la raíz
 # ya resolvió (comprobado por el llamador, cuerpo principal). Extraída a
@@ -511,6 +524,12 @@ publica_censo_manual() {
     echo
     echo "$SALIDA_CENSO"
   } >"$CENSO_FILE"
+  if censo_duplicado_del_dia "$CENSO_FILE"; then
+    rm -f "$CENSO_FILE"
+    log "[CENSO] ${FECHA}: inventario idéntico a un censo previo del día; no se conserva ni publica un archivo duplicado."
+    restaura_arbol_operativo || true
+    return 0
+  fi
   log "[CENSO] ${FECHA}: ${RESUMEN}"
 
   # main está protegida (status check "check" requerido) -- no se puede
