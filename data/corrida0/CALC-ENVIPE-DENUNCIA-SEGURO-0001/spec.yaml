@@ -15,7 +15,7 @@ etiquetas:
   cuenta_gen2: PENDIENTE-DE-MESA
   validacion_independiente: NO-HECHA
   spec_sellada: forense/prereg-caja/ENVIPE-DENUNCIA-SEGURO-spec-v1_0.md
-  spec_sellada_sha256: dc700571dd1770903e0b75dc7b68656d605aa9b84b3a561f2e31fcd305463463
+  spec_sellada_sha256: 1ccb0d92949ede925be8d976d4e0cd6f962901b4e76a84fbeaaf29b403b51c36
   demanda_que_releva: "CORR-0007 (ENVIPE2025, payload envipe2025_csv) -> los 4 RESULT que restaban: RES-0039 (civico.denuncia.con_seguro:denuncia), RES-0040 (con_seguro:no_denuncia), RES-0041 (sin_seguro:denuncia), RES-0042 (sin_seguro:no_denuncia). NO releva RES-0025/0026/0027/0028 de la misma CORR-0007 ni ninguna otra corrida. La cita CORR-0009 de prereg-caja-ENVIPE-DENUNCIA quedo corregida a CORR-0007 por la sucesion fechada ENVIPE-DENUNCIA-spec-v1_0-CORRECCION-2026-09-15.md; esta spec nace con la cita corregida."
   reglas_bajo_prueba: "NINGUNA cambia de cifra por esta corrida. civico.denuncia.con_seguro y civico.denuncia.sin_seguro estan SELLADAS en milpa/tramite.yaml:987 y :1009 con p=0.790900/0.209100 y 0.672000/0.328000 (GEN1, tier FUERTE) y conservan su cifra: este CALC monta la cadena E.2 sobre esas cantidades. La adopcion la decide mesa por merge, no este acto."
   firma_de_contador: "NO-FIRMADA. La firma de mesa del 15/sep/2026 («Si a todas.», HOJA DE FIRMAS DE MESA 2026-09-15, forense/encargos/2026-09-15-GEN2-FIRMAS-MESA-1.md) trae el OBJETO 10 verbatim: «NC-0088 -- apertura estrecha ENVIPE-DENUNCIA-SEGURO-v1_0 para RES-0039..0042. Spec aqui; corrida en caja.» Ese OBJETO autoriza LA APERTURA Y SU SPEC, y NO declara OBJETO sobre el contador GEN2. Estandar FP-367/368 pide autoridad + fecha + OBJETO explicito: hay autoridad y hay fecha, FALTA el OBJETO -> cuenta_gen2 queda PENDIENTE-DE-MESA, y se dice aqui en vez de darselo por concedido."
@@ -28,7 +28,7 @@ inputs:
   - id: IN-ENVIPE-SEG-SPEC-SELLADA
     origen: repo
     ruta: forense/prereg-caja/ENVIPE-DENUNCIA-SEGURO-spec-v1_0.md
-    sha256: dc700571dd1770903e0b75dc7b68656d605aa9b84b3a561f2e31fcd305463463
+    sha256: 1ccb0d92949ede925be8d976d4e0cd6f962901b4e76a84fbeaaf29b403b51c36
 
 variables:
   - {archivo: "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv", variable: BPCOD, rol: "FILTRO de clase de delito -- restringe el universo a robo total de vehiculo", codigos: "CADENA CRUDA (dtype=str), comparada literalmente contra '01'. Nunca a entero: '01' entero es 1 y deja de cotejar contra el catalogo, que lleva cero a la izquierda. Catalogo citable en el mismo ZIP: tmod_vic_envipe2025/catalogos/bpcod.csv (columnas BPCOD, descrip). Codigo en U ausente del catalogo -> NO-ESTIMABLE-CODIGO-FUERA-DE-MAPA:BPCOD", direccion: "NO-APLICA (filtro)"}

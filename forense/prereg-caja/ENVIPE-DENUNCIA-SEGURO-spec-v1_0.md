@@ -363,7 +363,7 @@ Tolerancia de flotante `1e-10` para suma-uno y para el replay; enteros y textos 
 - **`medidor_ejecutado_al_congelar: NO`**, y el medidor **tampoco se escribe aquí**: es del acto de CAJA. Consecuencia declarada: `preflight` reporta `BLOQUEADO:script_ausente`, y **eso es correcto**.
 - **`cuenta_gen2: PENDIENTE-DE-MESA`.** El OBJETO 10 autoriza **la apertura estrecha y su spec**, y dice «*corrida en caja*»; **no declara OBJETO sobre el contador GEN2**. El estándar `FP-367/368` exige autoridad + fecha + OBJETO explícito sobre el contador: hay autoridad y hay fecha, **falta el OBJETO**. Se dice aquí en vez de darlo por concedido.
 - **Cero adopción.** Esta spec **no escribe cita en `milpa/` bajo ninguna rama**, ni en la rama `REPRODUCE`. Las entradas `civico.denuncia.con_seguro` / `sin_seguro` de `milpa/tramite.yaml` **no se tocan**. Si la corrida reproduce, sale `LISTADO-PARA-MESA-REPRODUCE`; si no, `LISTADO-PARA-MESA-NO-REPRODUCE`. En ambos casos **decide mesa por merge**, no este acto y no el de CAJA.
-- **Nada sellado se edita.** `ENVIPE-DENUNCIA-spec-v1_0.md`, su `CORRECCION-2026-09-15.md`, la propuesta y `tools/medidor_denuncia_seguro_envipe25.py` quedan **intactos**.
+- **Nada sellado se edita.** `ENVIPE-DENUNCIA-spec-v1_0.md`, su sucesión `forense/prereg-caja/ENVIPE-DENUNCIA-spec-v1_0-CORRECCION-2026-09-15.md`, la propuesta y `tools/medidor_denuncia_seguro_envipe25.py` quedan **intactos**.
 
 ---
 

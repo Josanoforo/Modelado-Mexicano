@@ -23,3 +23,31 @@ P4 · milpa y cierres (OBJETOS 12, 13, 14, 15 + NC-0171): las cuatro glosas con 
 PERÍMETRO Y CONCURRENCIA: data/corrida0/decisiones.tsv · tools/corrida0.py (solo status) · tools/estado_comun.py (solo el token nuevo) · registro derivado vía escritor · milpa/tramite.yaml (solo las 4 glosas) · propuesta/consumidores (milpa/tramite-ola5-propuesta-v0.yaml y donde vivan CTX/Banxico) · forense/prereg-caja/ (2 specs nuevas + sidecars) · forense/prereg-duelo-v2/F5-documental-v1_0/ (solo la sucesión v1.2 del verificador) · data/corrida0/mapa-demanda-19-corr-v1_0.tsv · forense/firmas-pendientes.tsv · forense/no-corrido.tsv. Actos en paralelo: el servicio de adquisición (ramas adq/*, cron: cola, manifiesto, adq-demanda-activa, corpus — no compartimos archivo) · censo/trámite diarios. «Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.»
 
 CONTADOR: cero mediciones propias, dicho sin disfraz; mueve ~15 NC a CERRADA, 2 FP a FIRMADA, congela 2 specs (munición) y quita 2 RESULT vetados de la cola aparente. LO QUE NO HACE: no corre nada en caja · no toca FP-374, NC-0180, NC-0187 (lectura) · no adopta tasas de SHED · no reescribe ningún sello (todo es sucesión o enmienda fechada) · no borra la evidencia de sonda de #781. SUCESOR: MEDICION-DEMANDA-2 (caja) con las specs de P3 + la tanda 3 de SPECS. CIERRE: cascada + ## NO-CORRIDO / RESERVAS + ## CONSUMIDO.
+
+## NO-CORRIDO / RESERVAS
+
+Seis filas. El encargo pedía 15 OBJETOS; **13 se propagaron completos, 1 ya
+estaba cumplido por otro acto y 1 no pudo aplicarse tal como está escrito**.
+Nada se reinterpretó (SELLA-3).
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| **OBJETO 1 · NC-0198** — «cuenta_gen2 = SI para las corridas que MEDICION-DEMANDA sella sobre las specs congeladas de CORR-0011, CORR-0012, CORR-0013 y CORR-0014» | `SUSTITUIDO-POR:PR #779` | **Ninguno — no queda nada huérfano.** La cabecera de este encargo mandaba re-verificar NC-0198 tras la compuerta, y así se hizo: #779 ya escribió las cuatro filas de `decisiones.tsv` (`CALC-ENIGH-0001`, `CALC-ENFIH-0001`, `CALC-EDER-0003`, `CALC-ENUT-0001`, las cuatro `cuenta_gen2=SI`, fecha 2026-09-15) y NC-0198 ya está `CERRADA` citando ese acto. «El OBJETO 1 solo aplica a lo que falte» y no falta nada: no se duplica la fila ni se reescribe la autoridad ajena. | ninguno — cumplido |
+| **OBJETO 3 · CORR-0004** — «opción (a) … Aplica a CORR-0004/0005/0006/0019» | `DECISIÓN-DE-MESA-PENDIENTE` | La opción (a) **no puede aplicarse** a CORR-0004: exige un MEDIDO de la misma regla y `tramite.gobierno_digital.coercitivo:adopta` no tiene ninguno — la propia nota de mesa que armó D2 lo dice. La segunda casilla que esa nota abrió para esta fila no viene firmada. CORR-0004 sigue `BLOQUEADA`; 2 RESULT sin resolver. CORR-0005, CORR-0006 y CORR-0019 **sí** se propagaron. | `NC-0206` |
+| **OBJETOS 4 y 10 · la corrida** — «Spec aquí; corrida en caja» | `PARO-ENTORNO` | Declarado por el propio encargo. Las dos specs quedan congeladas y **sin correr**; sin `medidor.py` (es de CAJA, D-15). `preflight` dirá `BLOQUEADO:script_ausente` para ambas y eso es correcto. Cero RESULT nuevos sellados. | `NC-0207` · `ACTO GEN2-MEDICION-DEMANDA-2` |
+| **OBJETO 6 · el runner F5** | `FUERA-DE-PERÍMETRO` | El perímetro autoriza `F5-documental-v1_0/` sólo para la sucesión v1.2. `tools/f5_documental.py` no está en la lista, así que sigue hasheando el manifiesto entero y **`--verify` sigue sin imprimir OK**. NC-0178 cierra por el **contrato** —que es lo que su sucesor pedía literalmente— no por la ejecución. Se dice para que su cierre no se lea como más de lo que es. | `NC-0208` |
+| **OBJETOS 14 y 15 · texto contradictorio** | `FUERA-DE-PERÍMETRO` | Firmar FP-371/372 caduca premisas en dos archivos fuera de perímetro: `data/diseno-muestral.yaml:504-515` («mientras FP-371 siga ABIERTA») y `forense/prereg-caja/S6-L16-spec-v1_5.md`, que además está **sellada** y pediría sucesora v1_6. Lo que sí estaba en perímetro ya se enmendó. Mientras tanto el árbol dice dos cosas sobre el mismo objeto. | `NC-0209` |
+| **OBJETO 13 · la otra mitad de NC-0189** | `FUERA-DE-PERÍMETRO` | NC-0189 nombraba las dos glosas de `tramite.yaml` (**hechas**) y además la cifra `0.668937` de `milpa/tramite-ola5-propuesta-v0.yaml:2169`. El OBJETO 13 enumera las **cuatro** glosas autorizadas y esa cifra no es una. NC-0189 cierra por su parte hecha; esta fila recoge la que falta para que el cierre no absorba deuda en silencio. | `NC-0210` |
+
+**Reserva sin fila propia:** `NC-0164` **no cierra**. El OBJETO 9 cumple sólo
+su cara de pre-registro (los estimandos Banxico quedan pre-registrados); su
+otra mitad —fuente mexicana con producto BNPL/digital o lender, costo
+objetivo, daño, negativos e identificación causal— sigue viva, y así se
+declara por enmienda fechada en su propia fila. SHED no la cierra: es
+referencia extranjera sin transporte de tasas.
+
+**Lo que el acto declaró y no movió, como prometió:** `FP-374` sigue ABIERTA
+y sin tocar (es la única FP abierta que queda); `NC-0180` y `NC-0187` sólo se
+leyeron; ninguna tasa de SHED se adoptó; ningún sello se reescribió —todo fue
+sucesión o enmienda fechada—; y la evidencia de sonda de #781 se conserva
+íntegra.
