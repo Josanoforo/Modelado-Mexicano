@@ -355,8 +355,8 @@ produce **registro**: una verificación `A.8`, tres derivaciones medidas (§4,
 | | FAIL | WARN |
 |---|---:|---:|
 | línea base al arrancar (`origin/main = 0cdbd72`) | 3 | 4351 |
-| línea base refrescada (`origin/main = 3f73688`, árbol limpio) | 3 | 4341 |
-| cierre | **3** | **4345** |
+| línea base refrescada (`origin/main = 1fac27a`, árbol limpio) | 3 | 4344 |
+| cierre | **3** | **4348** |
 
 La base se movió tres veces durante el acto (`PR #792`/`#793`, luego
 `#794`/`#795`/`#798`/`#799`), y cada vez el WARN cambió por causa ajena: un
@@ -366,7 +366,7 @@ limpio (`git worktree` sobre `origin/main`) y **no inferida restando**.
 
 **Cero FAIL nuevos.** Los tres son heredados del corpus documental (`T06` ×2,
 `T08`) y ajenos a este perímetro. Los **+4 WARN** son exactamente las cuatro
-filas `NC-0235..0238` que este acto abre, gritando por `A.12` como deben — que
+filas `NC-0239..0242` que este acto abre, gritando por `A.12` como deben — que
 es el defecto que `A.12` existe para hacer visible, no uno nuevo.
 
 **Un tercer defecto, y el más instructivo: el instrumento estaba
@@ -391,4 +391,4 @@ $ python3 tests/gonogo_marcador.py    -> GO-MARCADOR (6/6)
 
 ## 11 · `A.14` · NO-CORRIDO / RESERVAS
 
-Ver `forense/no-corrido.tsv`, filas `NC-0235`–`NC-0238`.
+Ver `forense/no-corrido.tsv`, filas `NC-0239`–`NC-0242`.
