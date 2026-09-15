@@ -1,0 +1,181 @@
+{
+ "corrida_id": "CALC-ENSANUT-0001--f055cc418fb6",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "ADR-46 -- al congelar, la sesion YA habia leido: p=0.777762 y 0.222238, ic95=[0.672777,0.857561], n=254, ponderador ponde_f y el desglose completo de las cinco razones (milpa/tramite.yaml); y la spec sellada S7-L17 v1.1 entera, incluidas sus secciones 2, 2.1, 3 y 5. NO es ciega, y leer la sellada es exactamente lo que este contrato tiene que hacer para cablearla. Lo genuinamente desconocido al congelar: la proporcion ponderada colapsada a PERSONA, cuantas personas declaran mas de una mencion, cuantos estratos quedan con UPM unica, y la anchura del IC bajo esta semilla.",
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "demanda_que_releva": "CORR-0017 (payload declarado por el registro legado como `forense/prereg-caja/S7-L17-spec-v1_0.md`, que es la SPEC y no el payload -- el payload real es ENSANUT 2024 adultos) -> los 2 RESULT: RES-0063 (salud.vacunacion.disponible_ensanut2024:razon_no_vacunacion_logistica) y RES-0064 (:razon_no_vacunacion_no_logistica). NO releva la Rama A (ENNViH) ni la Rama C (adolescentes) de la misma spec sellada: ninguna de las dos tiene RESULT en CORR-0017.",
+  "firma_de_contador": "NO-FIRMADA. El encargo de mesa (15/sep/2026) pide congelar specs ejecutables y NO declara OBJETO sobre el contador GEN2. Estandar FP-367/368 NO satisfecho -> cuenta_gen2 queda PENDIENTE-DE-MESA.",
+  "generacion": "GEN2",
+  "hallazgo_a15_del_acto": "MATERIAL para quien escriba el medidor, y son DOS. (1) UNIDAD DE OBSERVACION: milpa/tramite.yaml declara el universo como «254 menciones Si (179 personas distintas) en el bloque a0927», desglosadas no_habia_vacunas=152, enfermo=47, no_estaba_quien_aplica=28, no_derechohabiente=16, otra_razon=11 (suman 254, verificado). `ponde_f` es un ponderador DE PERSONA: aplicado a filas de mencion, una persona con dos menciones entra con su peso dos veces. La primaria reproduce ese universo porque es el de la cifra GEN1, y B-P-PERSONA mide la misma proporcion colapsando a persona, con delta con signo. (2) INVENTARIO SUPERADO: la spec sellada v1.1 verifica el bloque a0927 contra data/inventario-reactivos-descargas-mx-v1_1.tsv; A.15(a) exige el VIGENTE (v1_2, «nunca versiones superadas del mismo inventario, que rescatan por accidente»). Re-verificado aqui contra v1_2: las 20 variables a0927{a..e}{1..4} existen en adultos_ensanut2024_w.dta con sha256_12 0fa8f4436fa4 -- el mismo del manifiesto -- y su texto_reactivo confirma el mapeo letra=razon/digito=vacuna de ADR-357/FP-326. El negativo NO cambia de signo; lo que cambia es que ahora esta verificado contra el inventario que manda.",
+  "medidor_ejecutado_al_congelar": "NO -- y el medidor tampoco se escribe aqui. El encargo pide `md humana + spec.yaml` (D-15, dos capas; aqui la humana ya existe sellada); el medidor es del acto de CAJA que consuma este contrato. Consecuencia declarada, con sus DOS bloqueos y sin colapsarlos: `corrida0.py preflight CALC-ENSANUT-0001` reporta (a) `script_ausente` -- el medidor, que CAJA escribe -- y (b) `input_manifiesto_RAIZ_NO_CONFIGURADA=adultos_ensanut2024_w_stata_stata__v2026_09_01`, porque este payload vive bajo la raiz logica `descargas_mx` y ESA RAIZ NO ESTA CONFIGURADA en este clon de nube (el unico que `tools/entorno.py` conoce aqui es `data_raw`, y tambien sin configurar). RAIZ-NO-CONFIGURADA no es AUSENTE ni NO-VISIBLE-EN-ESTE-CONTEXTO: son tres respuestas distintas con tres remedios distintos (A.1), y esta es la de «el clon no declara esa raiz», que se resuelve enlazando `data/raices.local.yaml` desde el clon padre, no descargando nada. La CAJA que corra este contrato ya la tiene (su A.8 reporta corpus=SI con 413 archivos examinados). Se declara aqui en vez de descubrirse al correr.",
+  "nota_de_inventario": "El bloque a0927 aparece bajo CUATRO payload_id en inventario-reactivos-descargas-mx-v1_2.tsv, que son DOS archivos: adultos_ensanut2024_w.dta (sha256_12 0fa8f4436fa4) y adultos_ensanut2024_w.csv (80c255f88242), cada uno indexado con y sin el prefijo de carpeta `ENSANUT2024-v2026-09-01/`. Es un artefacto de dos corridas del extractor sobre dos disposiciones de raiz, NO una entrada duplicada del manifiesto: verificado, el manifiesto trae EXACTAMENTE UNA entrada por ese sha256 (adultos_ensanut2024_w_stata_stata__v2026_09_01) y CERO sha256 con mas de una entrada en todo el archivo. Este contrato fija el .dta, que es el unico de los dos que trae texto_reactivo (la extraccion CSV solo da nombres de columna).",
+  "por_que_no_hay_spec_humana_nueva": "CORR-0017 es el unico de las 19 cuya capa HUMANA de D-15 ya estaba sellada (prereg-caja-S7-L17, v1.0 del 5/sep y v1.1 del 7/sep). Lo que faltaba era la capa EJECUTABLE. Escribir una segunda spec humana duplicaria un sellado, que E.3 prohibe. Este contrato cablea la Rama B de la v1.1 y nada mas.",
+  "reglas_bajo_prueba": "NINGUNA cambia de cifra por esta corrida. salud.vacunacion.disponible_ensanut2024 (R9.2) esta SELLADA en milpa/tramite.yaml con p=0.777762 (GEN1) y conserva su cifra. La adopcion la decide mesa por merge.",
+  "spec_sellada": "forense/prereg-caja/S7-L17-spec-v1_1.md",
+  "spec_sellada_sha256": "5b9b6055122b1ea14a1bd82503fd84889c7a064a08c04e443c07ae6866ac59d2",
+  "tipo": "TASA-BASE-DE-REGLA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-15T17:40:31Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 413,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "f055cc418fb62d4198646a7cf32cf8d286d072a0",
+  "git_rama": "acto/gen2-medicion-demanda-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "86286af969a9589add0c449f597efe82516a36ea00a910114fdde59dd6167686",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "86286af969a9589add0c449f597efe82516a36ea00a910114fdde59dd6167686",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "f055cc418fb62d4198646a7cf32cf8d286d072a0",
+ "input_ids": [
+  "adultos_ensanut2024_w_stata_stata__v2026_09_01",
+  "IN-ENSANUT-SPEC-SELLADA"
+ ],
+ "input_sha256": {
+  "IN-ENSANUT-SPEC-SELLADA": "5b9b6055122b1ea14a1bd82503fd84889c7a064a08c04e443c07ae6866ac59d2",
+  "adultos_ensanut2024_w_stata_stata__v2026_09_01": "0fa8f4436fa427cc23d1d43164d449462c09eb787cb45ad20961576cb095a6c4"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "cota_n_minima": 10,
+  "criterio_adopcion": "A-ADOPCION = LISTADO-PARA-MESA-REPRODUCE si A-REPRODUCE-GEN1 = REPRODUCE; LISTADO-PARA-MESA-NO-REPRODUCE en otro caso estimable; NO-ADOPTABLE-NO-ESTIMABLE si no hay punto. Este acto NO escribe cita en milpa/ bajo ninguna rama.",
+  "firma_que_lo_autoriza": "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-1.md: «redactar y CONGELAR la spec ejecutable (md humana + spec.yaml, D-15, abriendo SOLO codebook y metadato -- E.5 lo permite en nube, microdato jamas)». La firma autoriza CONGELAR, no contar.",
+  "fuente_acto": "ACTO GEN2-SPECS-DEMANDA-1 (tanda 2) · CALC-ENSANUT-0001 · capa ejecutable de la Rama B de prereg-caja-S7-L17 v1.1",
+  "grano_gen1_decimales": 6,
+  "llaves_opacas": "estrato, est_sel y upm se agrupan como CADENA CRUDA: normalizarlas partiria o fusionaria estratos en silencio.",
+  "mapa_razones": {
+   "ACTITUDINAL": "NO EXISTE EN EL INSTRUMENTO -- restriccion declarada, no inventada",
+   "LOGISTICA": [
+    "a0927a? -- no habia vacunas (suministro)",
+    "a0927c? -- no estaba la persona que aplica (personal)"
+   ],
+   "NO_LOGISTICA": [
+    "a0927b? -- no ser derechohabiente (institucional)",
+    "a0927d? -- estaba enfermo (contraindicacion)",
+    "a0927e? -- otra razon (residual)"
+   ]
+  },
+  "metodo_ic": "bootstrap de upm CON REEMPLAZO dentro de est_sel, conservando el numero de UPM por estrato; percentiles 2.5/97.5. est_sel (Estrato de seleccion) es el estrato de DISENO; `estrato` (urbanidad/ruralidad) es descriptivo y NO estratifica el bootstrap -- se emite su perfil como RESULT para que la eleccion sea auditable.",
+  "miembros_zip_declarados": [
+   "adultos_ensanut2024_w.dta"
+  ],
+  "n_gen1_referencia": {
+   "enfermo": 47,
+   "menciones": 254,
+   "no_derechohabiente": 16,
+   "no_estaba_quien_aplica": 28,
+   "no_habia_vacunas": 152,
+   "otra_razon": 11,
+   "personas": 179
+  },
+  "regla_estrato_upm_unica": "Un estrato con exactamente una UPM se re-muestrea a si mismo: aporta varianza cero. NO se colapsa y NO se descarta. Si el conteo es > 0, A-METODO-IC sale IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como LIMITE INFERIOR de la anchura verdadera.",
+  "vacunas": {
+   "1": "Influenza",
+   "2": "Neumococo",
+   "3": "Tetanos",
+   "4": "Otra"
+  },
+  "valores_gen1_referencia": {
+   "A_IC_HI": 0.857561,
+   "A_IC_LO": 0.672777,
+   "A_P_LOGISTICA": 0.777762,
+   "A_P_NO_LOGISTICA": 0.222238
+  }
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENSANUT-A-ADOPCION",
+  "RESULT-ENSANUT-A-DELTA-VS-GEN1",
+  "RESULT-ENSANUT-A-DESGLOSE-COINCIDE-GEN1",
+  "RESULT-ENSANUT-A-DESGLOSE-RAZONES",
+  "RESULT-ENSANUT-A-IC-HI",
+  "RESULT-ENSANUT-A-IC-LO",
+  "RESULT-ENSANUT-A-METODO-IC",
+  "RESULT-ENSANUT-A-N-MENCION-AUSENTE",
+  "RESULT-ENSANUT-A-N-MENCIONES",
+  "RESULT-ENSANUT-A-N-PERSONAS",
+  "RESULT-ENSANUT-A-N-PERSONAS-MULTIMENCION",
+  "RESULT-ENSANUT-A-N-SIN-DISENO",
+  "RESULT-ENSANUT-A-N-SIN-PONDERADOR",
+  "RESULT-ENSANUT-A-P-LOGISTICA",
+  "RESULT-ENSANUT-A-P-NO-LOGISTICA",
+  "RESULT-ENSANUT-A-REPRODUCE-GEN1",
+  "RESULT-ENSANUT-A-SUMA-UNO",
+  "RESULT-ENSANUT-B-DELTA-MENCION-VS-PERSONA",
+  "RESULT-ENSANUT-B-P-PERSONA",
+  "RESULT-ENSANUT-C-P-POR-VACUNA",
+  "RESULT-ENSANUT-G-N-COLUMNAS-A0927",
+  "RESULT-ENSANUT-G-N-ESTRATOS-UPM-UNICA",
+  "RESULT-ENSANUT-G-N-FILAS-ADULTOS",
+  "RESULT-ENSANUT-G-N-MIEMBROS-ZIP",
+  "RESULT-ENSANUT-G-PERFIL-EST-SEL",
+  "RESULT-ENSANUT-G-PERFIL-ESTRATO",
+  "RESULT-ENSANUT-G-PERFIL-UPM",
+  "RESULT-ENSANUT-G-SOPORTE-A0927"
+ ],
+ "script_blob_sha256": "183891c78baa05e1d27a630a5dc411a81301e1c7ecbf418035a19ad9c9a65010",
+ "script_path": "data/corrida0/CALC-ENSANUT-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260915
+ },
+ "spec_id": "CALC-ENSANUT-0001",
+ "spec_md_estado": "EN-MAIN-COINCIDE",
+ "spec_md_sha256": "fa33e9f14dffd8d24c53dc01f158172cea2f5d4238030cd445b9e6b66a8b0443",
+ "spec_yaml_sha256": "c7da2ef338a84c796805b507ebf198234b734c31254d57abfbfe0e3de668c6b2",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "Bootstrap fijado por seed + rng declarados y sumas en orden fijo de llave: la unica diferencia esperable entre dos corridas del mismo arbol es redondeo de float64 al reasociar sumas ponderadas. Los enteros y los textos se comparan EXACTO -- incluidos los siete conteos de embudo que se cotejan contra el desglose que milpa/ declara.",
+  "tipo": "flotante"
+ }
+}
