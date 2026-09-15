@@ -652,7 +652,7 @@ reglas:
     sha256_payload_ola2: "fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a"
     sha256_payload_ola3: "00a7649a1839a3523be22612c2fa3555d5e743cf5329d6bcdc432b901e98bd15"
     sha256_payload_peso: "34ee12b0c0d71e76676197089b5fd6048c0fdaa590a220f440d95526b1f4713b"
-    payload_manifiesto_id: "NO-LOCALIZADO -- data/manifiesto.yaml declara 'ningun archivo de ENNViH se ha descargado ni se registra aqui' (id ennvih_mxfls_licencia, procedencia.yaml:84-95) pese a que el ZIP fisico existe en data/raw/ennvih/ y ya fue usado por CAL-G3-PUNTUAL"
+    payload_manifiesto_id: "ola2=ennvih2_2005_hogar_dta; ola3=ennvih3_2009_hogar_dta; peso=ennvih2_2005_ponderador_transversal (data/manifiesto.yaml, corregido NC-0188/ACTO GEN2-ADOPCION-VENTANILLA-2 P4). El payload SI esta localizado (id, archivo, sha256 y tamano_bytes desde PR #703); la nota historica 'ningun archivo de ENNViH se ha descargado ni se registra aqui' (id ennvih_mxfls_licencia) era cierta el 30/jul/2026 y quedo FALSA EN LA LETRA desde entonces -- no se borra, se corrige aqui la copia. Lo que sigue sin publicarse es el diseno muestral (NC-0156), que es otra cosa."
     enmienda_enif2024:
       sellada_por: "firma c1 (2/sep/2026, mesa) -- ACTO MAESTRA35-N1 · SELLA-L5-Y-RECIBOS"
       origen: "milpa/tramite-ola5-propuesta-v0.yaml:803-853 (id dinero.ahorro.tiene_ahorros_enif2024), copiada verbatim"
