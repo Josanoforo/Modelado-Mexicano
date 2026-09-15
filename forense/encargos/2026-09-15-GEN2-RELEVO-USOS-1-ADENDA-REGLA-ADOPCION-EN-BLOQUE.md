@@ -113,3 +113,25 @@ $ for SHA in 582d4e9 5973f12 15423d0; do \
 **Qué cambia para la regla.** La dirección del hallazgo: la carga del bin 3 **no creció con `PR #785`**. Sigue siendo la misma de antes — 58 slots con `escala_legacy = NO-DECLARADO-EN-EL-REGISTRO` más 18 sin IC propio, sobre 207. Lo que la enmienda decía sobre el tamaño del problema se sostiene; lo que decía sobre su *movimiento*, no.
 
 **Las demás cifras se re-verificaron contra `15423d0`** (`origin/main` tras `PR #787` y `PR #782`, que no tocan `demanda-resultados.tsv`, `decisiones.tsv` ni `tools/corrida0.py`) y **todas siguen exactas**: 207 slots, los 207 en `estado = PENDIENTE`, 58 con `escala_legacy = NO-DECLARADO-EN-EL-REGISTRO`, 7 con `SIN-PROCEDENCIA-VERIFICABLE` en `clase_legacy`. `ACTO GEN2-RELEVO-USOS-1` y `PARA-v2.14` siguen sin existir en `15423d0` (0 líneas cada uno).
+
+---
+
+SEGUNDA CORRECCIÓN FECHADA (15/sep/2026) — **el `ACTO GEN2-RELEVO-USOS-1` existe, fusionó, y su `P4` YA CORRIÓ — sin esta regla.** Append puro; el bloque verbatim de mesa sigue siendo `sed -n '45,75p'` → `23ad347ecaffb2bc9dde008837c478cc7e939549676ce487a366f3fb774b31aa`.
+
+Queda retirado lo que la enmienda anterior daba por cierto: «`ACTO GEN2-RELEVO-USOS-1` sigue sin existir … la compuerta abrió sobre un `P4` que todavía no tiene encargo … éste es hoy el único bloqueo real». Era cierto contra `15423d0` y dejó de serlo con el merge de `PR #788` (`eba9fd2`): `forense/encargos/2026-09-15-GEN2-RELEVO-USOS-1.md`, `forense/notas/2026-09-15-GEN2-RELEVO-USOS-1-cierre.md`, `ADR-514`, `forense/relevo-usos/`.
+
+**Por qué corrió sin la regla.** Esta adenda nunca estuvo en el árbol: vive en `PR #786`, sin fusionar. El acto no podía leerla. Ejecutó la regla **inline de su propio encargo** (línea 13): «los NO-MATERIALES entran en bloque al PR; los MATERIALES se sirven a mesa como lista, uno por uno, con su delta» — dos bins, no tres. No es defecto del ejecutor.
+
+**Lo que el acto SÍ cumplió de esta regla, sin conocerla.** El delta salió por script con el contrato que la regla exige: `forense/relevo-usos/relevo-usos-pares-v1_0.yaml` declara `version: GEN2-DELTA-1` y dice, verbatim, «ni los pares ni los hashes ni las citas se teclean» (`tools/relevo_usos.py --contrato`) — la invariante «nunca a mano» se respetó. Y el inciso (iii) del bin 2 también: «coeficiente central — entra a mesa aunque el delta sea cero».
+
+**Los tres pasos de PROPAGACIÓN, verificados contra `origin/main`:**
+
+| paso | qué pedía | estado |
+|---|---|---|
+| 1 | fila en `decisiones.tsv` con la firma verbatim y esta regla como OBJETO | **NO HECHO** — `git diff --stat 15423d0 origin/main -- data/corrida0/decisiones.tsv` vacío; la firma da 0 líneas en todo el árbol |
+| 2 | ADR derivado **y** entrada `PARA-v2.14` en `forense/hallazgos.md` con el texto de la regla | **PARCIAL** — `ADR-514` existe, pero por el acto, no con esta regla como OBJETO; `PARA-v2.14` da 0 líneas |
+| 3 | tres listas al cierre, con conteos derivados | **HECHO EN FORMA, NO EN DEFINICIÓN** — la nota cierra con «4 MATERIAL · 20 NO-MATERIAL · 3 NO-DETERMINABLE» (27 slots, 2 adoptados) |
+
+**`NO-DETERMINABLE` no es el bin 3.** El bin 3 (`SIN-CRITERIO`) es «el consumidor no declara `se_mueve_si` y el legacy no trae IC: no hay con qué decir *no material*», y se firma **en bloque, de una vez, o se devuelve**. El `NO-DETERMINABLE` del acto es otra cosa: el delta no se puede calcular por falta de identidad de universo o por veredictos en conflicto (`RES-0005`, `RES-0028`, `RES-0035`). Hay solape —`RES-0028` compara `U1` contra `U4`, que por la invariante de escala/universo de esta regla iría a bin 3 con la razón escrita— pero los tres acabaron en filas `NC` individuales (`NC-0214`, `NC-0216`, `NC-0217`), es decir **degradados uno por uno**: exactamente el «modo de falla de transacción que esta regla existe para cerrar».
+
+**Y el acto refuta el bin 1 tal como está escrito.** Su `P4` dice, verbatim: «De los 7 NO-MATERIAL pendientes, 5 tienen un sellado o una firma que prohíbe la cita … Adoptarlos por ser inmateriales habría violado `E.3` y una decisión firmada: **la materialidad no es la única compuerta.**» El bin 1 de esta regla presenta sus tres condiciones como suficientes para que el merge adopte. No lo son: un veredicto sellado (`COMPLEMENTO-CON-DENOMINADOR-RECORTADO`, `SIN CITA` de D1/`NC-0108`) prohíbe la cita con independencia de la materialidad. De 7 NO-MATERIAL pendientes se adoptaron **2**. Esto es un falsador cumplido antes de los tres meses, y por la propia cláusula de caducidad de la regla corresponde **estrecharla, no retirarla**: el bin 1 necesita una cuarta condición — que ningún sellado ni firma vigente prohíba la cita. **Decisión de dirección; aquí sólo se deja escrito.**
