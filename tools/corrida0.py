@@ -3256,7 +3256,17 @@ def _lee_oferta(verifica: bool) -> list[dict]:
             "replay": replay, "contexto": contexto,
             "fuente_replay": fuente_replay, "avisos_replay": avisos_replay,
             "hashes_faltantes": faltan,
-            "repite_de": str(spec.get("repite_de") or ""),
+            # ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2 (NC-0199), 15/sep/2026.
+            # Antes esta linea leia `repite_de` SOLO a nivel raiz, asi que
+            # una spec que lo declara bajo `etiquetas:` no alimentaba
+            # `sucesor_de` y su predecesora se quedaba en `SELLADA` en vez
+            # de `SUPERADO-><id>`. Medido sobre las 104 specs del arbol: 31
+            # lo traen en raiz y 6 SOLO bajo `etiquetas` (no solo la
+            # CALC-ENVIPE-U4-2012-v1_1 que NC-0199 nombraba). La raiz
+            # conserva precedencia; `etiquetas` es el respaldo, por el
+            # mismo helper `_etiqueta()` que el resto del campo usa. Las
+            # specs selladas NO se tocan (E.3): se corrige el LECTOR.
+            "repite_de": str(spec.get("repite_de") or _etiqueta(spec, "repite_de", "")),
         })
 
     # ACTO GEN2-T9 · P1: el cierre transitivo corre DESPUES de leer todas

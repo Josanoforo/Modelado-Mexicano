@@ -360,6 +360,25 @@ _T03_DEPENDENCIAS_PENDIENTES = {
     "forense/encargos/cola/2026-09-11-GEN2-POST-723/27-GEN2-ENSAFI-MEDICION-DESCRIPTIVA-CON-DISENO.md": {
         "2026-09-11-GEN2-FUENTES-FINANCIERAS-CONTINUACION-EFECTIVA-cierre.md",
     },
+    # ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2, 15/sep/2026. Encargo archivado
+    # VERBATIM por A.3, que por regla de `/acto` §4.5 nunca se edita para
+    # complacer al test. Sus dos citas, una por una:
+    #
+    #  · `ADVERSARIAL-ASTRA-1-LECTURA-F5-2026-09-15.md` -- el adjunto que el
+    #    encargo declara «viaja adjunto» y que NO llegó. Es exactamente la
+    #    dependencia pendiente que `NC-0219` asienta (`PARO-PREMISA`): el
+    #    archivo se creará cuando mesa pegue el texto verbatim, y hasta
+    #    entonces la cita cuelga a propósito. No se fabrica el archivo para
+    #    cerrar la cita -- sería inventar la procedencia que el paso existe
+    #    para asentar.
+    #  · `acto.md` -- SÍ existe, en `.claude/commands/acto.md`; el glob de
+    #    este test (`**/*.*`) no desciende a directorios que empiezan con
+    #    punto, así que no lo ve. Falso positivo de cobertura del glob, no
+    #    referencia colgante: verificado con `ls .claude/commands/acto.md`.
+    "forense/encargos/2026-09-15-GEN2-MANTENIMIENTO-Y-ARCHIVO-2.md": {
+        "ADVERSARIAL-ASTRA-1-LECTURA-F5-2026-09-15.md",
+        "acto.md",
+    },
 }
 
 def _normalize_version_dots(name):
@@ -814,8 +833,23 @@ def _suite_real():
         # el registro real abre cientos de specs. Conservamos un límite duro,
         # pero con margen para el arranque frío del runner de CI: 60 s llegó a
         # cortar una suite que termina verde localmente, no un ciclo real.
+        #
+        # ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2 (`NC-0191`), 15/sep/2026:
+        # 120 s -> 300 s, PISO MEDIDO, no estimado. NC-0191 abrió fila tras
+        # dos ocurrencias consecutivas (2026-09-14 rutinas.tsv · 2026-09-15
+        # digesto) en que ESTE subproceso topó el límite y dejó el ciclo sin
+        # 3.1/3.2/3.3/3.6. Medición bajo carga real de NUBE, tres corridas
+        # consecutivas del hijo (`CHECK_SELFCHECK_CHILD=1 python3
+        # tests/check.py`), en este mismo árbol: 82.9 s · 83.0 s · 82.0 s
+        # (mediana 82.9 s), las tres con la MISMA salida `3 FAIL · 4353
+        # WARN` -- o sea el límite cortaba una suite estable, no una
+        # regresión de contenido. Con 120 s el margen era 1.45x, que la
+        # contención de CPU del sandbox se come (el propio cierre de
+        # `GEN2-CONSUMIDO-RETRO-3` ya lo atribuyó a "saturación de CPU").
+        # 300 s deja ~3.6x sobre la mediana medida. NO se toca la lógica de
+        # comparación FAIL/WARN, que es lo que NC-0191 excluye del perímetro.
         r = subprocess.run([sys.executable, os.path.join(ROOT, "tests", "check.py")],
-                            cwd=ROOT, capture_output=True, text=True, env=env, timeout=120)
+                            cwd=ROOT, capture_output=True, text=True, env=env, timeout=300)
     except Exception as e:
         return None, None, str(e)
     m = re.search(r"(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN", r.stdout)
