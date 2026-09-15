@@ -1127,7 +1127,14 @@ reglas:
       disparadores: {actividad_laboral: true, seguridad_social_laboral: false}
     entonces:
       - {conducta: horizonte_corto, evento: "P4_10∈{1,2}: sin ahorro suficiente para cubrir al menos un mes, incluidas personas sin ahorros", p: 0.541343, clase: "MEDIDO·p(tasa base ponderada; trabaja sin seguridad social; P4_10∈{1,2})", corrida0_resultado_id: RESULT-ENIF-AHO-A-P-CORTO-SIN-P, corrida0_generacion: GEN2, uso_motor: "DESCRIPTIVO como sin_colchon_un_mes dentro del dominio sellado; no duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual"}
-      - {conducta: horizonte_no_corto, p: 0.458657, clase: "DERIVADO·p(1-horizonte_corto sobre el mismo dominio)", derivado_de: RESULT-ENIF-AHO-A-P-CORTO-SIN-P}
+      # ACTO GEN2-RELEVO-USOS-1 · P4 (15/sep/2026): el `p` NO se mueve -- la cifra que ya estaba
+      # aqui ES la medida por CALC-ENIF-0001 (RESULT-ENIF-AHO-A-P-NOCORTO-SIN-P = 0.458657,
+      # delta 0.0 exacto, `corrida0 delta` sobre forense/relevo-usos/relevo-usos-pares-v1_0.yaml).
+      # Lo que se escribe es la CITA que faltaba. `adopcion_p3.nota` de la spec sellada: esta celda
+      # «se cuenta DIRECTAMENTE (P4_10 en {3,4,5}), no como 1 menos el otro», asi que satisface el
+      # criterio (1) y SI es cantidad medida. `derivado_de` se conserva: describe la relacion
+      # aritmetica con la celda hermana, no la procedencia del numero.
+      - {conducta: horizonte_no_corto, p: 0.458657, clase: "DERIVADO·p(1-horizonte_corto sobre el mismo dominio)", derivado_de: RESULT-ENIF-AHO-A-P-CORTO-SIN-P, corrida0_resultado_id: RESULT-ENIF-AHO-A-P-NOCORTO-SIN-P, corrida0_generacion: GEN2}
     porque: {generador: [G3], mecanismo: "ingreso volátil/informal -- horizonte corto, ahorro informal (tanda, 'guardado en casa'), foco en emergencia -- canon/modelo-decision-v4_0.md:499 verbatim. Dominio agrícola INEJECUTABLE por hueco de mercado (hitoD-R1.1, D archivado, 28/jul/2026) -- no bloquea esta tasa base nacional"}
     tier: FUERTE # firma d1
     falsable_si: "R1.1 en forense/hitoD-preregistro-v2_0.md:25-... (Nota 5, veredicto D archivado 28/jul/2026, hueco de mercado no de dato) y forense/hitoD-R1_1-veredicto-v1_0.md -- cita, no reescribas"
@@ -1172,7 +1179,9 @@ reglas:
       disparadores: {actividad_laboral: true, seguridad_social_laboral: true}
     entonces:
       - {conducta: horizonte_corto, evento: "P4_10∈{1,2}: sin ahorro suficiente para cubrir al menos un mes, incluidas personas sin ahorros", p: 0.373130, clase: "MEDIDO·p(tasa base ponderada; trabaja con seguridad social; P4_10∈{1,2})", corrida0_resultado_id: RESULT-ENIF-AHO-A-P-CORTO-CON-P, corrida0_generacion: GEN2, uso_motor: "DESCRIPTIVO como sin_colchon_un_mes dentro del dominio sellado; no duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual"}
-      - {conducta: horizonte_no_corto, p: 0.626870, clase: "DERIVADO·p(1-horizonte_corto sobre el mismo dominio)", derivado_de: RESULT-ENIF-AHO-A-P-CORTO-CON-P}
+      # ACTO GEN2-RELEVO-USOS-1 · P4 (15/sep/2026): misma operacion que en la celda hermana sin
+      # seguridad social. `p` intacto; RESULT-ENIF-AHO-A-P-NOCORTO-CON-P = 0.62687, delta 0.0.
+      - {conducta: horizonte_no_corto, p: 0.626870, clase: "DERIVADO·p(1-horizonte_corto sobre el mismo dominio)", derivado_de: RESULT-ENIF-AHO-A-P-CORTO-CON-P, corrida0_resultado_id: RESULT-ENIF-AHO-A-P-NOCORTO-CON-P, corrida0_generacion: GEN2}
     porque: {generador: [G3], mecanismo: "ingreso estable/formal -- horizonte no corto, contraste directo con la celda sin seguridad social de dinero.ahorro.horizonte_corto -- canon/modelo-decision-v4_0.md:499 verbatim"}
     tier: FUERTE # firma d1
     falsable_si: "R1.1 en forense/hitoD-preregistro-v2_0.md:25-... (Nota 5, veredicto D archivado 28/jul/2026, hueco de mercado no de dato) y forense/hitoD-R1_1-veredicto-v1_0.md -- cita, no reescribas"
