@@ -1,130 +1,170 @@
-# CALC-L8-CONVERSION-0001 -- cara mecanica de spec.md (ACTO GEN2-SPECS-DEMANDA-2).
+# CALC-L8-CONVERSION-0001 -- cara mecanica de spec.md (ACTO GEN2-SPECS-DEMANDA-1, tanda 2).
 # Gobierna spec.md y, sobre el, la spec SELLADA
-# forense/prereg-caja/L8-CONCURRENCIA-CONVERSION-spec-v1_0.md
-# (`prereg-caja-L8-CONCURRENCIA-CONVERSION`).
+# forense/prereg-caja/L8-CONVERSION-PRESIDENCIAL-spec-v1_0.md
+# (`prereg-caja-L8-CONVERSION-PRESIDENCIAL`).
 # Releva la demanda CORR-0016 (3 RESULT) bajo el registro GEN2.
-# CONGELADO en NUBE, sobre un payload que es artefacto de repo (no microdato).
+# CONGELADO en el COMMIT-1, antes de correr nada.
 calc_id: CALC-L8-CONVERSION-0001
 spec_md: spec.md
-spec_md_sha256: 33134f3c9a549379ae35b38536462c1d9ceef387963c017487810e7edeb9ee59
+spec_md_sha256: 42d21a8e5bd4e2ae01d6bf92de63067e41978eb333c17db92615330e0cb14888
 
 script: data/corrida0/CALC-L8-CONVERSION-0001/medidor.py
 
 etiquetas:
   generacion: GEN2
-  tipo: CONVERSION-DETERMINISTA-DE-PANEL
+  tipo: DERIVACION-DETERMINISTA-DE-REGLA
   cuenta_gen2: PENDIENTE-DE-MESA
   validacion_independiente: NO-HECHA
-  spec_sellada: forense/prereg-caja/L8-CONCURRENCIA-CONVERSION-spec-v1_0.md
-  spec_sellada_sha256: 33134f3c9a549379ae35b38536462c1d9ceef387963c017487810e7edeb9ee59
-  demanda_que_releva: "CORR-0016 (payload data/l8-resultados-tipo-boleta-v1_0.json) -> los 3 RESULT: RES-0050 (civico.participacion.concurrencia_presidencial_conversion:participa_p0_minimo), RES-0051 (:participa_p0_maximo), RES-0052 (:participa_p0_media). Sin residuo: CORR-0016 tiene exactamente 3 RESULT y los tres quedan relevados."
-  repite_de: "NINGUNO -- primer CALC que releva esta regla con cadena E.2 trazable. La cifra legacy (milpa/tramite.yaml:1138-1140) ya existia como transformacion de motor sin CALC propio; este contrato no cambia la formula ni los valores, les da procedencia por archivo+comando."
-  por_que_no_es_duplicado: "No hay CALC previo sobre esta regla (0 filas en data/corrida0/CALC-*/spec.yaml antes de este acto). El unico antecedente es la cita en prosa de milpa/tramite.yaml:1147-1158, que declara la formula pero no trae comando reproducible."
-  reglas_bajo_prueba: "NINGUNA cambia de cifra por esta corrida. civico.participacion.concurrencia_presidencial_conversion (tier MEDIA, ADR-321) conserva sus tres valores legacy exactos (0.345267 / 0.750567 / 0.619867): este CALC los releva, no los reestima. La adopcion (si aplica) la decide mesa."
-  firma_de_contador: "NO-FIRMADA. El encargo de mesa (15/sep/2026, forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-2.md) pide congelar specs ejecutables y no declara OBJETO sobre el contador GEN2. FP-367/368 no satisfecho -> cuenta_gen2 queda PENDIENTE-DE-MESA."
-  contaminacion_declarada: "ADR-46 -- al congelar, la sesion ya habia leido: milpa/tramite.yaml:1122-1162 completo (la regla, su formula de conversion, su rango p0 y su media, la nota sobre beta_int con IC que contiene cero), y el JSON de L8 entero via el comando de 0.3. NO es ciega: leer ambos es lo que A.8 obliga antes de escribir esta spec. Lo genuinamente nuevo de esta pieza: el comando que reproduce p0_min/p0_max/p0_media con codigo a la vista, que no existia antes."
-  medidor_ejecutado_al_congelar: "NO -- y el medidor tampoco se escribe aqui. Aunque esta transformacion NO requiere numpy/pandas/microdato (aritmetica pura sobre JSON con libreria estandar, verificable en NUBE), el encargo de este acto declara en su propio perimetro CONTADOR: cero mediciones propias y no corre ningun CALC -- no se hace una excepcion por facilidad tecnica. Consecuencia declarada: `corrida0.py preflight CALC-L8-CONVERSION-0001` reportara BLOQUEADO:script_ausente hasta que un acto posterior (caja o nube) lo escriba y corra."
+  spec_sellada: forense/prereg-caja/L8-CONVERSION-PRESIDENCIAL-spec-v1_0.md
+  spec_sellada_sha256: 9a873e92a75e3f514f5890d63f30c377d28245ae07f5259c7393533264be1a6d
+  demanda_que_releva: "CORR-0016 (instrumento declarado por el registro legado como `data/l8-resultados-tipo-boleta-v1_0.json`, que es literalmente el insumo) -> los 3 RESULT: RES-0050 (civico.participacion.concurrencia_presidencial_conversion:participa_p0_minimo), RES-0051 (:participa_p0_maximo) y RES-0052 (:participa_p0_media). NO releva ninguna otra corrida."
+  entorno_requerido_real: "NUBE. Es la UNICA de las 19 CORR que no necesita data/raw: su insumo es un artefacto versionado del repo, resuelto por origen: repo + sha256, no por manifiesto + raiz logica. demanda-corridas.tsv la marca INDECIDIBLE-SIN-PAYLOAD-DECLARADO porque el registro legado no declara payload de manifiesto -- correcto para el registro, engañoso para la planeacion: esta corrida corre donde sea. Que este acto no la corra es decision del acto (contador cero declarado), no restriccion del entorno."
+  reglas_bajo_prueba: "NINGUNA cambia de cifra por esta corrida. civico.participacion.concurrencia_presidencial_conversion esta SELLADA en milpa/tramite.yaml con sus tres celdas y conserva su cifra, su tier MEDIA y su veredicto_heredado ACOTADA. La adopcion la decide mesa por merge."
+  firma_de_contador: "NO-FIRMADA. El encargo de mesa (15/sep/2026) pide congelar specs ejecutables y NO declara OBJETO sobre el contador GEN2. Estandar FP-367/368 NO satisfecho -> cuenta_gen2 queda PENDIENTE-DE-MESA."
+  hallazgo_del_acto: "MATERIAL, y decide si la corrida reproduce. Los tres valores GEN1 se reproducen EXACTAMENTE solo si el ancla p0 se redondea a CUATRO decimales ANTES de sumar delta. Verificado al congelar, con las dos variantes: minimo 0.345263 (sin redondear) vs 0.345267 (con ancla a 4) -- GEN1 dice 0.345267; maximo 0.750605 vs 0.750567 -- GEN1 dice 0.750567; media 0.619830 vs 0.619867 -- GEN1 dice 0.619867. La diferencia llega a 3.8e-5, TRES ORDENES DE MAGNITUD por encima de la tolerancia de flotante de esta spec (1e-10). Un medidor que usara precision completa reportaria NO-REPRODUCE en las tres celdas POR EL REDONDEO y no por la cifra, y quien lo leyera buscaria un defecto donde no lo hay. Por eso el grano va en parametros.grano_ancla_decimales y no en la cabeza de quien escriba el medidor; A-GRANO-VERIFICADO emite las dos variantes para que el hallazgo sea auditable sin recalcularlo."
+  verificado_al_congelar: "Los cuatro derivados del JSON COINCIDEN con lo que la regla publica, verificado y no supuesto: p0_rango_observado [0.3051, 0.7104] = derivado; p0_media 0.5797 = derivado; p0_mediana 0.6094 = derivado; p0_n_medias 40 = derivado (20 transiciones x 2 patas y_de_media/y_a_media). Esto NO es la corrida: es la comprobacion de que las claves del JSON que este contrato nombra son las que producen los escalares que la regla declara."
+  contaminacion_declarada: "ADR-46 -- al congelar, la sesion YA habia leido los tres valores GEN1 (0.345267, 0.750567, 0.619867), la formula conversion_A_aditiva entera, el delta 0.040167, el rango, la media y la mediana de p0, y n=40. NO es ciega y NO PODRIA SERLO: la corrida ES la formula que la regla publica, y el objeto de este contrato es cablearla con cadena E.2, no descubrirla. Lo genuinamente desconocido al congelar era si las 40 medias del JSON reproducian el rango declarado y con que grano -- y es justo lo que verificado_al_congelar y hallazgo_del_acto contestan."
+  medidor_ejecutado_al_congelar: "NO -- y el medidor tampoco se escribe aqui. El encargo pide `md humana + spec.yaml` (D-15, dos capas); el medidor es del acto que consuma este contrato. Consecuencia declarada: `corrida0.py preflight CALC-L8-CONVERSION-0001` reporta BLOQUEADO:script_ausente hasta entonces."
 
 inputs:
-  - id: l8_resultados_tipo_boleta_v1_0
+  - id: IN-L8-JSON
     origen: repo
     ruta: data/l8-resultados-tipo-boleta-v1_0.json
     sha256: 30f3e16dd6ea770ad72ab957547159c5427788a97a24a0ef30f2765752ef8f99
-  - id: IN-L8-CONVERSION-SPEC-SELLADA
+  - id: IN-L8-SPEC-SELLADA
     origen: repo
-    ruta: forense/prereg-caja/L8-CONCURRENCIA-CONVERSION-spec-v1_0.md
-    sha256: 33134f3c9a549379ae35b38536462c1d9ceef387963c017487810e7edeb9ee59
+    ruta: forense/prereg-caja/L8-CONVERSION-PRESIDENCIAL-spec-v1_0.md
+    sha256: 9a873e92a75e3f514f5890d63f30c377d28245ae07f5259c7393533264be1a6d
 
 variables:
-  - {archivo: "data/l8-resultados-tipo-boleta-v1_0.json", variable: "por_transicion[].y_de_media", rol: "p0 de la pata 'de' de cada transicion municipal (puntos porcentuales, 100*votos/lista_nominal)", codigos: "flotante tal cual, sin normalizar; 20 valores"}
-  - {archivo: "data/l8-resultados-tipo-boleta-v1_0.json", variable: "por_transicion[].y_a_media", rol: "p0 de la pata 'a' de cada transicion municipal", codigos: "flotante tal cual; 20 valores -- junto con y_de_media, 40 medias totales"}
-  - {archivo: "data/l8-resultados-tipo-boleta-v1_0.json", variable: "estimador.beta_pres_pp", rol: "efecto puntual wild-cluster del panel L8, en puntos porcentuales -- es el `delta` de conversion_A_aditiva", codigos: "flotante tal cual, un solo escalar"}
+  - {archivo: "data/l8-resultados-tipo-boleta-v1_0.json", variable: "estimador.beta_pres_pp", rol: "EFECTO -- coeficiente de concurrencia presidencial, en PUNTOS PORCENTUALES", codigos: "valor crudo 4.016715486813227; delta = round(beta_pres_pp/100, 6) = 0.040167. La conversion pp -> proporcion es division entre 100, no reescalado de ningun otro tipo", direccion: "MAS ALTO = MAS PARTICIPACION BAJO CONCURRENCIA PRESIDENCIAL"}
+  - {archivo: "data/l8-resultados-tipo-boleta-v1_0.json", variable: "estimador.wild_cluster_beta_pres.ic95", rol: "PRECISION del efecto -- NO entra al punto; se emite como RESULT para que el riesgo declarado por la regla quede a la vista junto a la cifra", codigos: "[0.04917010866182059, 7.887405629522231] en pp, p = 0.0413, B = 10000, n_conglomerados = 9. ROZA CERO: cargar el punto es cargar el centro de un intervalo que casi contiene el nulo", direccion: "NO-APLICA (precision)"}
+  - {archivo: "data/l8-resultados-tipo-boleta-v1_0.json", variable: "por_transicion[].y_de_media", rol: "ANCLA p0 (1/2) -- participacion municipal base, pata `de` de cada transicion", codigos: "en puntos porcentuales; 20 valores"}
+  - {archivo: "data/l8-resultados-tipo-boleta-v1_0.json", variable: "por_transicion[].y_a_media", rol: "ANCLA p0 (2/2) -- pata `a` de cada transicion", codigos: "en puntos porcentuales; 20 valores. Junto con y_de_media dan las 40 medias que la regla declara en p0_n_medias"}
+  - {archivo: "data/l8-resultados-tipo-boleta-v1_0.json", variable: "estimador.beta_int_pp", rol: "NO ENTRA -- la via INTERMEDIA fue descartada por la propia regla (beta_int = +0.2864 pp, IC95 [-1.2216, +1.7945], CONTIENE CERO). Se lee solo para emitir A-VIA-INTERMEDIA-DESCARTADA y dejar constancia de que no se reabre", codigos: "0.2864456182033299 pp", direccion: "NO-APLICA (descartada)"}
 
 universo: >-
-  Las 20 filas de `por_transicion` del panel L8 (municipios con transicion de
-  tipo de boleta entre 2016 y 2024, panel ya cerrado y sellado por el acto que
-  produjo el JSON) -- 40 medias municipales (y_de_media + y_a_media). SIN
-  filtro adicional: se leen las 20 filas completas, tal como estan, sin
-  excluir ninguna transicion por tamano de n ni por entidad.
+  Las 40 medias municipales por transicion del panel de L8
+  (por_transicion[].y_de_media y por_transicion[].y_a_media sobre las 20
+  transiciones, 2 patas cada una), de las que se toman TRES anclas: minimo,
+  maximo y media. NO es un universo de personas ni de municipios individuales:
+  el JSON de L8 no publica la serie municipio a municipio, solo estas 40
+  medias, y la regla lo declara asi. La unidad del EFECTO es el municipio; la
+  unidad a la que la regla lo APLICA es el individuo, y esa brecha es la
+  inferencia ecologica de estimando, no un defecto de este contrato.
 
 filtros: >-
-  Ninguno. El panel de origen (L8) ya aplico sus propios filtros al
-  producir el JSON (`n_transiciones_municipio`, `municipios_perdidos`,
-  `fuera_de_rango`); esta corrida no re-filtra ni re-pondera: LEE el
-  resultado publicado. Guardia unica: si `len(por_transicion) != 20` o si
-  `estimador.beta_pres_pp` no existe o no es finito -> NO-ESTIMABLE-PANEL-L8-CAMBIO,
-  senal de que el JSON en disco ya no es la version que esta spec congelo.
+  Entran las 40 medias con valor no nulo. Se cuentan y se declaran, sin
+  imputar: transicion sin y_de_media o sin y_a_media (A-N-MEDIA-AUSENTE).
+  CERO NUNCA SUSTITUYE FALTA DE DATO.
+  Guardias que producen NO-ESTIMABLE en vez de una cifra: JSON ausente o con
+  sha256 distinto del declarado -> NO-ESTIMABLE-INSUMO-DISCORDA (es un insumo
+  de repo: su hash es parte de la identidad de la corrida, no una comodidad);
+  clave ausente -> NO-ESTIMABLE-CLAVE-AUSENTE:<clave>;
+  n de medias distinto de 40 -> NO-ESTIMABLE-UNIVERSO-CAMBIO:<n> (la regla
+  declara 40 y un cambio significa que el JSON no es el que la regla leyo);
+  ningun ancla estimable -> NO-ESTIMABLE-UNIVERSO-VACIO.
 
-ponderador: >-
-  Ninguno propio. Las 40 medias de `por_transicion` son YA medias
-  municipales (no se re-ponderan por poblacion ni por lista nominal en esta
-  corrida): la unidad de analisis es "transicion municipal", igual que la
-  definio `L8` originalmente.
+ponderador: NO-APLICA -- las tres celdas son una derivacion aritmetica de cuatro escalares ya publicados; no hay filas que ponderar. El ponderador del panel que produjo beta_pres vive en ACTO MAESTRA35-L8 y no se re-aplica aqui.
 
 transformacion: >-
-  Lectura con json.load (libreria estandar, sin pandas/numpy). ys = lista de
-  40 flotantes (y_de_media, y_a_media de las 20 filas de por_transicion).
-  p0_min = round(min(ys)/100, 4); p0_max = round(max(ys)/100, 4); p0_mean =
-  round(sum(ys)/len(ys)/100, 4). delta = round(estimador['beta_pres_pp']/100, 6).
-  p_minimo = min(max(p0_min+delta, 0.0), 1.0); p_maximo = min(max(p0_max+delta, 0.0), 1.0);
-  p_media = min(max(p0_mean+delta, 0.0), 1.0). Orden de redondeo FIJO (p0 a 4
-  decimales ANTES de sumar delta a 6 decimales): invertirlo cambia la cifra
-  en la sexta decimal y dejaria de coincidir con el legacy citado en
-  milpa/tramite.yaml. Sin bootstrap, sin re-muestreo, sin ajuste de
-  tendencia.
+  delta = round(beta_pres_pp / 100, 6).
+  Para cada ancla a in {minimo, maximo, media} de las 40 medias (en pp),
+  p0_a = a / 100; p_a = clip(round(p0_a, 4) + delta, 0, 1).
+  EL REDONDEO DEL ANCLA A CUATRO DECIMALES VA ANTES DE LA SUMA y es
+  normativo: ver hallazgo_del_acto. clip no esta activo en el rango observado
+  (la regla lo declara: recorte_activo_en_rango_observado false) y se conserva
+  porque la formula sellada lo trae; A-CLIP-ACTIVO lo REPORTA en vez de
+  asumirlo. NO se promedia, no se imputa, no se re-escala, no se extrapola, y
+  no se re-estima beta_pres.
 
 estimando: >-
-  DESCRIPTIVO, conversion determinista sin incertidumbre nueva. (1)
-  ADOPTABLE POR MESA: los tres puntos p_minimo/p_maximo/p_media, cada uno
-  con cadena E.2 completa (archivo+linea+comando) por primera vez. (2)
-  SECUNDARIOS: n_transiciones leidas, n_medias leidas, y el delta aplicado.
-  NINGUN RESULT lleva IC95 propio -- la incertidumbre del panel L8 vive en
-  `estimador.wild_cluster_beta_pres.ic95` del JSON original y no se
-  re-calcula aqui (declararia precision que esta conversion no produce).
-  NINGUN RESULT ES CAUSAL: son puntos ilustrativos de una formula de
-  conversion agregado->individual, no una medicion de la regla en si.
+  DESCRIPTIVO-DERIVADO. (1) ADOPTABLE POR MESA: A-P-MINIMO, A-P-MAXIMO y
+  A-P-MEDIA, las tres celdas de la regla. (2) SECUNDARIOS DECLARADOS: los
+  cuatro escalares de origen, el cotejo de los cuatro derivados contra lo que
+  la regla publica, las dos variantes de grano, el IC de beta_pres y la via
+  intermedia descartada.
+  NINGUN RESULT ES CAUSAL, y los tres van rotulados DERIVADO-ECOLOGICO: la
+  regla declara escala: ecologica y esta corrida HEREDA ESA LIMITACION ENTERA
+  -- beta_pres se estimo sobre agregados municipales (votos totales / lista
+  nominal) y se aplica como probabilidad individual, lo que solo identifica el
+  efecto individual bajo homogeneidad dentro del municipio, supuesto que NO se
+  verifica y NO se asume. Los otros tres riesgos que la regla declara (regimen
+  casi universalmente concurrente, precision fragil, heterogeneidad por tamano
+  +2.60 pp chicos vs +6.16 pp grandes) tampoco se resuelven aqui.
 
-dependencias_materiales: []
+dependencias_materiales: [NO-APLICA -- solo biblioteca estandar (json, statistics)]
 
 parametros:
-  fuente_acto: "ACTO GEN2-SPECS-DEMANDA-2 · CALC-L8-CONVERSION-0001 · conversion municipal->individual de civico.participacion.concurrencia_presidencial_conversion"
-  firma_que_lo_autoriza: "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-2.md, P1: «CORR-0016 (SIN-CAPA-2) -> spec.yaml D-15 congelado, abriendo solo codebook/metadato». La firma autoriza CONGELAR, no contar."
-  formula_de_conversion: "milpa/tramite.yaml:1142-1146, conversion_A_aditiva, firma de mesa D1/FP-255 (2/sep/2026): p = clip(p0 + 0.040167, 0, 1)"
-  orden_de_redondeo: "p0 a 4 decimales, luego + delta a 6 decimales, sin redondeo final adicional -- fijado por coincidencia exacta con el legacy citado (ver spec.md §0.3)"
-  valores_legacy_referencia:
+  fuente_acto: "ACTO GEN2-SPECS-DEMANDA-1 (tanda 2) · CALC-L8-CONVERSION-0001 · las tres celdas de la conversion presidencial como derivacion determinista"
+  firma_que_lo_autoriza: "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-1.md: «redactar y CONGELAR la spec ejecutable (md humana + spec.yaml, D-15, abriendo SOLO codebook y metadato -- E.5 lo permite en nube, microdato jamas)». La firma autoriza CONGELAR, no contar."
+  grano_ancla_decimales: 4
+  grano_delta_decimales: 6
+  formula: "p = clip(round(p0, 4) + round(beta_pres_pp/100, 6), 0, 1)"
+  formula_procedencia: "milpa/tramite.yaml:civico.participacion.concurrencia_presidencial_conversion.conversion_propuesta.conversion_A_aditiva.formula, verbatim: `p = clip(p0(municipio) + 0.040167, 0, 1)`. Este contrato anade UNA cosa que la formula sellada no dice y sin la cual no reproduce: el grano del ancla."
+  claves_json:
+    beta: "estimador.beta_pres_pp"
+    ic_beta: "estimador.wild_cluster_beta_pres.ic95"
+    beta_intermedia: "estimador.beta_int_pp"
+    medias: "por_transicion[].y_de_media + por_transicion[].y_a_media"
+  anclas: [minimo, maximo, media]
+  valores_gen1_referencia:
     participa_p0_minimo: 0.345267
     participa_p0_maximo: 0.750567
     participa_p0_media: 0.619867
-  p0_legacy_referencia:
-    p0_minimo: 0.3051
-    p0_maximo: 0.7104
+    delta: 0.040167
+    p0_rango_observado: [0.3051, 0.7104]
     p0_media: 0.5797
-  criterio_replica: "RESULT = valor legacy dentro de tolerancia (abs<=5e-7). NUNCA se rotula REPRODUCE (E.3): milpa/tramite.yaml no es un CALC sellado que este CALC reproduzca, es una regla del motor que este CALC releva por primera vez."
+    p0_mediana: 0.6094
+    p0_n_medias: 40
+  variantes_de_grano_verificadas_al_congelar:
+    con_ancla_a_4_decimales: [0.345267, 0.750567, 0.619867]
+    sin_redondear_el_ancla: [0.345263, 0.750605, 0.619830]
+    diferencia_maxima: 3.8e-05
+  grano_gen1_decimales: 6
+  criterio_adopcion: >-
+    A-ADOPCION = LISTADO-PARA-MESA-REPRODUCE si A-REPRODUCE-GEN1 = REPRODUCE
+    (las TRES celdas a seis decimales); LISTADO-PARA-MESA-NO-REPRODUCE en otro
+    caso estimable; NO-ADOPTABLE-NO-ESTIMABLE si no hay punto. Como la
+    derivacion es determinista y sin RNG, un NO-REPRODUCE aqui NO es ruido:
+    significa que el JSON cambio, que el grano no es el declarado, o que la
+    formula aplicada no es la sellada. Este acto NO escribe cita en milpa/.
 
 seed:
   aplica: false
-  valor: null
-  rng: null
 
 tolerancia:
   tipo: flotante
-  abs: 5.0e-7
+  abs: 1.0e-10
   razon: >-
-    Transformacion determinista sin aleatoriedad: la unica fuente de
-    diferencia entre dos corridas es redondeo de float64 en la division por
-    100 y en la suma. n_transiciones y n_medias se comparan EXACTO (enteros).
+    La derivacion es determinista y sin RNG (seed.aplica: false): dos corridas
+    del mismo arbol sobre el mismo JSON deben dar los mismos bits salvo
+    reasociacion de float64. Se declara 1e-10 por consistencia con el resto de
+    la serie, y se subraya que el hallazgo de grano (3.8e-5) esta TRES ORDENES
+    por encima de ella: no es un problema de tolerancia y no se arregla
+    aflojandola.
 
 resultados:
-  - {id: RESULT-L8CONV-G-N-TRANSICIONES, tipo: entero, unidad: "filas de por_transicion leidas (esperado 20)"}
-  - {id: RESULT-L8CONV-G-N-MEDIAS, tipo: entero, unidad: "y_de_media + y_a_media leidas (esperado 40)"}
-  - {id: RESULT-L8CONV-G-DELTA-PP, tipo: flotante, unidad: "estimador.beta_pres_pp leido tal cual, puntos porcentuales"}
-  - {id: RESULT-L8CONV-P0-MINIMO, tipo: proporcion, unidad: "min(ys)/100 redondeado a 4 decimales (esperado 0.3051)"}
-  - {id: RESULT-L8CONV-P0-MAXIMO, tipo: proporcion, unidad: "max(ys)/100 redondeado a 4 decimales (esperado 0.7104)"}
-  - {id: RESULT-L8CONV-P0-MEDIA, tipo: proporcion, unidad: "mean(ys)/100 redondeado a 4 decimales (esperado 0.5797)"}
-  - {id: RESULT-L8CONV-PARTICIPA-P0-MINIMO, tipo: proporcion, unidad: "p_minimo = clip(P0-MINIMO + delta, 0, 1) -- releva RES-0050 (esperado 0.345267)"}
-  - {id: RESULT-L8CONV-PARTICIPA-P0-MAXIMO, tipo: proporcion, unidad: "p_maximo = clip(P0-MAXIMO + delta, 0, 1) -- releva RES-0051 (esperado 0.750567)"}
-  - {id: RESULT-L8CONV-PARTICIPA-P0-MEDIA, tipo: proporcion, unidad: "p_media = clip(P0-MEDIA + delta, 0, 1) -- releva RES-0052 (esperado 0.619867)"}
-  - {id: RESULT-L8CONV-DELTA-VS-LEGACY-MINIMO, tipo: flotante, unidad: "PARTICIPA-P0-MINIMO menos 0.345267, CON SIGNO"}
-  - {id: RESULT-L8CONV-DELTA-VS-LEGACY-MAXIMO, tipo: flotante, unidad: "PARTICIPA-P0-MAXIMO menos 0.750567, CON SIGNO"}
-  - {id: RESULT-L8CONV-DELTA-VS-LEGACY-MEDIA, tipo: flotante, unidad: "PARTICIPA-P0-MEDIA menos 0.619867, CON SIGNO"}
-  - {id: RESULT-L8CONV-RELEVA-LEGACY, tipo: texto, unidad: "SI / NO -- los tres deltas dentro de tolerancia"}
+  - {id: RESULT-L8CONV-G-SHA256-INSUMO, tipo: texto, unidad: "COINCIDE / DISCORDA:<sha> -- sha256 del JSON contra 30f3e16dd6ea770ad72ab957547159c5427788a97a24a0ef30f2765752ef8f99"}
+  - {id: RESULT-L8CONV-G-N-MEDIAS, tipo: entero, unidad: "medias municipales leidas (la regla declara 40: 20 transiciones x 2 patas)"}
+  - {id: RESULT-L8CONV-G-N-MEDIA-AUSENTE, tipo: entero, unidad: "patas de transicion sin media (esperado 0)"}
+  - {id: RESULT-L8CONV-G-BETA-PRES-PP, tipo: flotante, unidad: "estimador.beta_pres_pp crudo, en puntos porcentuales"}
+  - {id: RESULT-L8CONV-G-DELTA, tipo: flotante, unidad: "round(beta_pres_pp/100, 6) -- el delta en proporcion (la regla declara 0.040167)"}
+  - {id: RESULT-L8CONV-G-P0-MINIMO, tipo: proporcion, unidad: "ancla minima derivada de las 40 medias (la regla declara 0.3051)"}
+  - {id: RESULT-L8CONV-G-P0-MAXIMO, tipo: proporcion, unidad: "ancla maxima derivada (la regla declara 0.7104)"}
+  - {id: RESULT-L8CONV-G-P0-MEDIA, tipo: proporcion, unidad: "ancla media derivada (la regla declara 0.5797)"}
+  - {id: RESULT-L8CONV-G-P0-MEDIANA, tipo: proporcion, unidad: "mediana derivada -- NO entra a ninguna celda; coteja contra el 0.6094 que la regla declara"}
+  - {id: RESULT-L8CONV-G-ANCLAS-COINCIDEN-GEN1, tipo: texto, unidad: "COINCIDE / DIFIERE:<detalle> -- rango, media, mediana y n de medias contra lo que milpa declara"}
+  - {id: RESULT-L8CONV-A-P-MINIMO, tipo: proporcion, unidad: "participa_p0_minimo = clip(round(p0_min,4) + delta, 0, 1) -- DERIVADO-ECOLOGICO, no causal", permite_no_estimable: true}
+  - {id: RESULT-L8CONV-A-P-MAXIMO, tipo: proporcion, unidad: "participa_p0_maximo -- DERIVADO-ECOLOGICO, no causal", permite_no_estimable: true}
+  - {id: RESULT-L8CONV-A-P-MEDIA, tipo: proporcion, unidad: "participa_p0_media -- DERIVADO-ECOLOGICO, no causal", permite_no_estimable: true}
+  - {id: RESULT-L8CONV-A-CLIP-ACTIVO, tipo: texto, unidad: "NO / SI:<celdas> -- si clip(.,0,1) recorto alguna celda (la regla declara que no lo hace en el rango observado)"}
+  - {id: RESULT-L8CONV-A-GRANO-VERIFICADO, tipo: texto, unidad: "las DOS variantes, para que el hallazgo sea auditable sin recalcularlo: 'con_ancla_r4=a;b;c | sin_redondear=a;b;c | diferencia_max=<x>'"}
+  - {id: RESULT-L8CONV-A-DELTA-VS-GEN1-MINIMO, tipo: flotante, unidad: "A-P-MINIMO menos 0.345267, CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-L8CONV-A-DELTA-VS-GEN1-MAXIMO, tipo: flotante, unidad: "A-P-MAXIMO menos 0.750567, CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-L8CONV-A-DELTA-VS-GEN1-MEDIA, tipo: flotante, unidad: "A-P-MEDIA menos 0.619867, CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-L8CONV-A-REPRODUCE-GEN1, tipo: texto, unidad: "REPRODUCE / NO-REPRODUCE:<celdas> / NO-ESTIMABLE -- las TRES celdas a seis decimales. Sin RNG, un NO-REPRODUCE no es ruido"}
+  - {id: RESULT-L8CONV-A-ADOPCION, tipo: texto, unidad: "LISTADO-PARA-MESA-REPRODUCE / LISTADO-PARA-MESA-NO-REPRODUCE / NO-ADOPTABLE-NO-ESTIMABLE"}
+  - {id: RESULT-L8CONV-C-IC-BETA-PRES, tipo: texto, unidad: "SECUNDARIO: 'ic95=[lo,hi] pp; p=<p>; B=<B>; n_conglomerados=<n>' del wild cluster -- se emite junto al punto porque ROZA CERO (p=0.0413) y la regla lo declara riesgo"}
+  - {id: RESULT-L8CONV-C-IC-BETA-ROZA-CERO, tipo: texto, unidad: "SI / NO -- el IC95 de beta_pres contiene o casi contiene el nulo"}
+  - {id: RESULT-L8CONV-C-VIA-INTERMEDIA-DESCARTADA, tipo: texto, unidad: "SECUNDARIO, constancia: 'beta_int=<pp>; ic95=[lo,hi]; CONTIENE-CERO=SI/NO' -- la regla ya la descarto y esta corrida no la reabre"}
