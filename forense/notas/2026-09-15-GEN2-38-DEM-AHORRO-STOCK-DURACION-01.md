@@ -45,7 +45,10 @@ web se contrastaron con población, unidad, variable, temporalidad y diseño. Un
 informe y una landing no se trataron como microdato. No quedó una URL de payload
 pertinente que justificara handoff GEN2-38.
 
-Resultado: `sin_hallazgo_acotado`. Suficiencia: identidad PARCIAL (instrumento
+Resultado operativo corregido: `continua`, sin hallazgo material en este
+ciclo. La frontera pública concreta descrita abajo obliga a reanudar el
+2026-09-16; no corresponde la espera general hasta el 11/oct. Suficiencia:
+identidad PARCIAL (instrumento
 identificado, variable exacta no), concepto NO_ACREDITADA, población ACREDITADA,
 selección/no respuesta ACREDITADA, unidad ACREDITADA, temporalidad PARCIAL,
 diseño ACREDITADA, identificación NO_APLICA; uso INCOMPATIBLE y pregunta
