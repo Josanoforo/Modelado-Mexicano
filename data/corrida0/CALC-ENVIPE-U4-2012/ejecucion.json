@@ -1,0 +1,288 @@
+{
+ "corrida_id": "CALC-ENVIPE-U4-2012--059c6aec3e18",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "ADR-46 -- al congelar, la sesion YA habia leido los RESULT sellados de CALC-R-CIV-M-01 (misma ola, unidad delito: P-C1-U1 = 0.2955724, N-U1 = 14532, PERFIL-BPCOD, 358 estratos, 9129 UPM) y el p(C2,U4) = 0.294313 de GEN1 para 2025 (otra ola, no se compara). NO habia leido ningun valor de tper_vic.dbf ni de tsdem.DBF: cuantas filas por hogar, si FAC_ELE es constante dentro del hogar, cuantas personas calzan en tsdem y el punto de U4 en 2012 son desconocidos.",
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "demanda_que_releva": "NINGUNA. U4 en 2012 no tiene RES-* ni CORR-*; NC-0098 registra que ningun dictamen GEN1 del trio viejo es de unidad persona.",
+  "firma_de_contador": "NO HAY FIRMA DE MESA CON OBJETO sobre el contador en el encargo de este lote (brief sin FIRMAS DE MESA). Estandar FP-367/368 no satisfecho -> cuenta_gen2 = PENDIENTE-DE-MESA; fila FP abierta por el acto.",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": "NO -- escrito y congelado en el COMMIT-1, corrido en el COMMIT-2. Probado antes del COMMIT-1 SOLO contra DBF sinteticos (descriptores reales de 32 bytes por campo, valores aleatorios), nunca contra el corpus.",
+  "reglas_bajo_prueba": "NINGUNA. No toca milpa/, no mueve tier, no adopta.",
+  "spec_familia_dbf": "forense/prereg-caja/R-ENVIPE-SERIE-DBF-spec-v1_0.md",
+  "spec_familia_dbf_editada": "NO -- sucesion por extension (su §5 dejo la ruta como fila NC con sucesor; este CALC es ese sucesor)",
+  "spec_familia_dbf_sha256": "f5ce91e16cfd3ad0ae8a5a90ed8bbb74e7b7618cbe9a361002e1cf16d0e4d063",
+  "spec_sellada": "forense/prereg-caja/ENVIPE-2012-U4-spec-v1_0.md",
+  "spec_sellada_sha256": "4742880b0218b8fb95bb5efdeb8ce98bc86dd9fde439f5925db6e5e46846cde8",
+  "tipo": "RUTA-DECLARADA-U4-PERSONA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-15T01:20:38Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 413,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "059c6aec3e18705617e4b03701da8861dafb7c65",
+  "git_rama": "acto/gen2-lote-medicion-pendiente-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "059c6aec3e18705617e4b03701da8861dafb7c65",
+ "input_ids": [
+  "envipe_2012_base_de_datos_envipe_2012_dbf",
+  "IN-U4-2012-SPEC-SELLADA"
+ ],
+ "input_sha256": {
+  "IN-U4-2012-SPEC-SELLADA": "4742880b0218b8fb95bb5efdeb8ce98bc86dd9fde439f5925db6e5e46846cde8",
+  "envipe_2012_base_de_datos_envipe_2012_dbf": "d7caa74ea4264d59fecfc1d1959824051adfe43613514e2e5ca22f24f31548f5"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "codificacion": {
+   "C1_cero": [
+    3,
+    4,
+    5,
+    7,
+    8
+   ],
+   "C1_uno": [
+    1,
+    2,
+    6
+   ],
+   "C2_cero": [
+    3,
+    4,
+    5,
+    7
+   ],
+   "C2_uno": [
+    1,
+    2,
+    6,
+    8
+   ],
+   "bpcod_hogar": [
+    1,
+    2,
+    3
+   ],
+   "bpcod_personales": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+   ],
+   "codigo_nsnr": 99
+  },
+  "control_u1_referencia": {
+   "N_FILAS_TABLA": 32493,
+   "N_U1": 14532,
+   "P_C1_U1": 0.29557241046799515,
+   "fuente": "data/corrida0/CALC-R-CIV-M-01/resultados.json (sellado, PR"
+  },
+  "firma_que_lo_autoriza": "NINGUNA firma de mesa viaja en el encargo (brief). Ejecuta la fila NC-0099 tal como la dejo GEN2-R-SERIE-DBF; contador PENDIENTE-DE-MESA.",
+  "fuente_acto": "ACTO GEN2-LOTE-MEDICION-PENDIENTE-1 · P2 (NC-0099) · CALC-ENVIPE-U4-2012",
+  "llaves_opacas": "EST y UPM como texto strip, nunca int() ni zfill(); perfil observado en G-PERFIL-DISENO-PERSONAS.",
+  "payload_id": "envipe_2012_base_de_datos_envipe_2012_dbf",
+  "regla_estrato_upm_unica": "Un estrato con una sola UPM se re-muestrea a si mismo, no se colapsa ni se descarta; si el conteo es > 0, METODO-IC = IC-CON-ESTRATOS-DE-UPM-UNICA y el IC es LIMITE INFERIOR.",
+  "regla_resolucion_fac_ele": "Por hogar de tper_vic, en este orden y sin cuarta rama: (1) todas las filas traen el mismo FAC_ELE (texto) -> ese; (2) exactamente una fila trae FAC_ELE finito > 0 -> ese, contado en N-HOGARES-FAC-ELE-RESUELTO-POR-UNICA-VALIDA; (3) ambiguo -> fuera de U4, contado en N-U4-FAC-ELE-AMBIGUO. EST/UPM: solo la rama (1); si hay mas de un par, la persona entra al punto sin diseno (N-U4-DISENO-AMBIGUO).",
+  "sufijos_result": [
+   "G-N-MIEMBROS-ZIP",
+   "PERFIL-DBF-MODULO",
+   "PERFIL-DBF-PERSONAS",
+   "PERFIL-DBF-SOCIODEM",
+   "N-FILAS-MODULO",
+   "PERFIL-BPCOD",
+   "N-BP1-23-BLANCO",
+   "N-BP1-23-99",
+   "N-BP1-23-FUERA-DE-CATALOGO",
+   "N-U1-SIN-PONDERADOR",
+   "N-U1",
+   "P-C1-U1",
+   "MASA-FAC-DEL-U1",
+   "G-CONTROL-U1",
+   "N-U1-R-SEL-BLANCO",
+   "N-FILAS-PERSONAS",
+   "G-PER-N-HOGARES",
+   "G-PER-N-HOGARES-FILAS-NE-TOT-PER",
+   "G-PER-N-HOGARES-R-SEL-MULTI",
+   "G-PER-N-HOGARES-FAC-ELE-MULTI",
+   "G-PER-N-HOGARES-EST-UPM-MULTI",
+   "G-PERFIL-DISENO-PERSONAS",
+   "N-HOGARES-FAC-ELE-RESUELTO-POR-UNICA-VALIDA",
+   "N-FILAS-SOCIODEM",
+   "G-TSDEM-PERFIL-N-REN",
+   "G-TSDEM-N-HOGARES",
+   "G-TSDEM-N-HOGARES-FILAS-NE-TPER",
+   "N-DELITOS-HOGAR-SIN-TPER-VIC",
+   "N-DELITOS-R-SEL-DISCORDA",
+   "N-DELITOS-R-SEL-BLANCO",
+   "N-U4-CANDIDATAS",
+   "N-U4-FAC-ELE-AMBIGUO",
+   "N-U4-TSDEM-0",
+   "N-U4-TSDEM-1",
+   "N-U4-TSDEM-MULTI",
+   "N-U4-EDAD-MENOR-18",
+   "N-U4-EDAD-NO-ESPECIFICADA",
+   "N-U4-DISENO-AMBIGUO",
+   "N-U4",
+   "N-U4-D2-UNO",
+   "N-U4-SIN-DISENO",
+   "MASA-FAC-ELE-U4",
+   "P-C2-U4",
+   "P-C1-U4",
+   "P-C2-U4-COMPLEMENTO",
+   "N-ESTRATOS",
+   "N-UPM",
+   "N-ESTRATOS-UPM-UNICA",
+   "IC-LO-C2-U4",
+   "IC-HI-C2-U4",
+   "IC-LO-C1-U4",
+   "IC-HI-C1-U4",
+   "METODO-IC",
+   "EE-TAYLOR-C2-U4",
+   "IC-LO-TAYLOR-C2-U4",
+   "IC-HI-TAYLOR-C2-U4",
+   "ESTADO"
+  ],
+  "tablas": {
+   "modulo": "Tmod_Vic.DBF",
+   "personas": "tper_vic.dbf",
+   "sociodem": "tsdem.DBF"
+  },
+  "tolerancia_control_u1": 1e-09,
+  "z_95": 1.959964
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENVIPE-U4-12-EE-TAYLOR-C2-U4",
+  "RESULT-ENVIPE-U4-12-ESTADO",
+  "RESULT-ENVIPE-U4-12-G-CONTROL-U1",
+  "RESULT-ENVIPE-U4-12-G-N-MIEMBROS-ZIP",
+  "RESULT-ENVIPE-U4-12-G-PER-N-HOGARES",
+  "RESULT-ENVIPE-U4-12-G-PER-N-HOGARES-EST-UPM-MULTI",
+  "RESULT-ENVIPE-U4-12-G-PER-N-HOGARES-FAC-ELE-MULTI",
+  "RESULT-ENVIPE-U4-12-G-PER-N-HOGARES-FILAS-NE-TOT-PER",
+  "RESULT-ENVIPE-U4-12-G-PER-N-HOGARES-R-SEL-MULTI",
+  "RESULT-ENVIPE-U4-12-G-PERFIL-DISENO-PERSONAS",
+  "RESULT-ENVIPE-U4-12-G-TSDEM-N-HOGARES",
+  "RESULT-ENVIPE-U4-12-G-TSDEM-N-HOGARES-FILAS-NE-TPER",
+  "RESULT-ENVIPE-U4-12-G-TSDEM-PERFIL-N-REN",
+  "RESULT-ENVIPE-U4-12-IC-HI-C1-U4",
+  "RESULT-ENVIPE-U4-12-IC-HI-C2-U4",
+  "RESULT-ENVIPE-U4-12-IC-HI-TAYLOR-C2-U4",
+  "RESULT-ENVIPE-U4-12-IC-LO-C1-U4",
+  "RESULT-ENVIPE-U4-12-IC-LO-C2-U4",
+  "RESULT-ENVIPE-U4-12-IC-LO-TAYLOR-C2-U4",
+  "RESULT-ENVIPE-U4-12-MASA-FAC-DEL-U1",
+  "RESULT-ENVIPE-U4-12-MASA-FAC-ELE-U4",
+  "RESULT-ENVIPE-U4-12-METODO-IC",
+  "RESULT-ENVIPE-U4-12-N-BP1-23-99",
+  "RESULT-ENVIPE-U4-12-N-BP1-23-BLANCO",
+  "RESULT-ENVIPE-U4-12-N-BP1-23-FUERA-DE-CATALOGO",
+  "RESULT-ENVIPE-U4-12-N-DELITOS-HOGAR-SIN-TPER-VIC",
+  "RESULT-ENVIPE-U4-12-N-DELITOS-R-SEL-BLANCO",
+  "RESULT-ENVIPE-U4-12-N-DELITOS-R-SEL-DISCORDA",
+  "RESULT-ENVIPE-U4-12-N-ESTRATOS",
+  "RESULT-ENVIPE-U4-12-N-ESTRATOS-UPM-UNICA",
+  "RESULT-ENVIPE-U4-12-N-FILAS-MODULO",
+  "RESULT-ENVIPE-U4-12-N-FILAS-PERSONAS",
+  "RESULT-ENVIPE-U4-12-N-FILAS-SOCIODEM",
+  "RESULT-ENVIPE-U4-12-N-HOGARES-FAC-ELE-RESUELTO-POR-UNICA-VALIDA",
+  "RESULT-ENVIPE-U4-12-N-U1",
+  "RESULT-ENVIPE-U4-12-N-U1-R-SEL-BLANCO",
+  "RESULT-ENVIPE-U4-12-N-U1-SIN-PONDERADOR",
+  "RESULT-ENVIPE-U4-12-N-U4",
+  "RESULT-ENVIPE-U4-12-N-U4-CANDIDATAS",
+  "RESULT-ENVIPE-U4-12-N-U4-D2-UNO",
+  "RESULT-ENVIPE-U4-12-N-U4-DISENO-AMBIGUO",
+  "RESULT-ENVIPE-U4-12-N-U4-EDAD-MENOR-18",
+  "RESULT-ENVIPE-U4-12-N-U4-EDAD-NO-ESPECIFICADA",
+  "RESULT-ENVIPE-U4-12-N-U4-FAC-ELE-AMBIGUO",
+  "RESULT-ENVIPE-U4-12-N-U4-SIN-DISENO",
+  "RESULT-ENVIPE-U4-12-N-U4-TSDEM-0",
+  "RESULT-ENVIPE-U4-12-N-U4-TSDEM-1",
+  "RESULT-ENVIPE-U4-12-N-U4-TSDEM-MULTI",
+  "RESULT-ENVIPE-U4-12-N-UPM",
+  "RESULT-ENVIPE-U4-12-P-C1-U1",
+  "RESULT-ENVIPE-U4-12-P-C1-U4",
+  "RESULT-ENVIPE-U4-12-P-C2-U4",
+  "RESULT-ENVIPE-U4-12-P-C2-U4-COMPLEMENTO",
+  "RESULT-ENVIPE-U4-12-PERFIL-BPCOD",
+  "RESULT-ENVIPE-U4-12-PERFIL-DBF-MODULO",
+  "RESULT-ENVIPE-U4-12-PERFIL-DBF-PERSONAS",
+  "RESULT-ENVIPE-U4-12-PERFIL-DBF-SOCIODEM"
+ ],
+ "script_blob_sha256": "3ab6b61631f3de34669c7b9bde092db41ff8990ee22d9fe10428431bacba95d3",
+ "script_path": "data/corrida0/CALC-ENVIPE-U4-2012/medidor.py",
+ "seed": {
+  "aplica": true,
+  "nota": "La semilla solo gobierna el bootstrap. Punto, Taylor y conteos son deterministas. Misma semilla que la serie ENVIPE.",
+  "rng": "numpy.PCG64",
+  "valor": 20260909
+ },
+ "spec_id": "CALC-ENVIPE-U4-2012",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "dfc9b2c614055055143e1713e47795c465de5de6c0731a52a808efc56f8ba901",
+ "spec_yaml_sha256": "d1613a561514c79ebc80a249c119eccee81823ac9421862d6c59d53c9d671e83",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "Punto y varianza deterministas, bootstrap fijado por seed y rng, sumas en orden fijo. Enteros y textos EXACTO. No se afloja para que el control de lectura pase.",
+  "tipo": "flotante"
+ }
+}
