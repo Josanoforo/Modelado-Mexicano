@@ -66,3 +66,54 @@ no repetir ENIF, EACF, ENSAFI, Findex, ENFIH, IIEG ni las consultas generales de
 este ciclo. Si un segundo ciclo de esta versión tampoco avanza materialmente,
 presentar a mesa la alternativa concreta ya configurada: relabel del uso
 acotado autorizado por #772, sin ejecutarlo por clasificación.
+
+## Continuación del segundo ciclo · 2026-09-15T12:17:36-06:00
+
+Checkpoint de necesidad: owner `2026-09-15T121736-152735`. Se ejecutaron los
+tres modos sobre la frontera heredada, sin repetir las consultas generales del
+primer ciclo:
+
+- CONSTRUCTO/HERMANAS, buscador web: `"MEX_2012_FCS" questionnaire`,
+  `"Mexico Financial Capability Survey" 2012 questionnaire pdf`,
+  `"MEX_2012_FCS" variables savings` y
+  `site:microdata.worldbank.org "MEX_2012_FCS"`. El resultado indexado fue el
+  informe público ya examinado y estudios mexicanos distintos; no apareció un
+  cuestionario ni diccionario del objeto exacto.
+- LATERAL, buscador web: `microdata library Mexico 2012 Financial Capability
+  Survey MEX FCS catalog`, `site:microdata.worldbank.org/index.php/catalog
+  Mexico Financial Capability Survey 2012`,
+  `site:microdata.worldbank.org/index.php/catalog/ "Financial Capability
+  Survey" Mexico` y `site:microdata.worldbank.org/index.php/catalog/
+  "MEX_2012"`. El catálogo indexó ENIF 2012 y otros estudios, no el cuestionario
+  de `MEX_2012_FCS`.
+- LATERAL, consulta directa del buscador público del catálogo:
+  `curl -L -A 'Mozilla/5.0' --max-time 30
+  'https://microdata.worldbank.org/index.php/catalog/?sk=MEX_2012_FCS&sort_by=rank'`.
+  Resultado crudo: HTTP/2 200, 388422 bytes; la página conserva el término de
+  búsqueda pero muestra cero estudios. El `200` acredita la consulta, no la
+  existencia de un payload.
+
+No se localizó candidata pública nueva y pertinente, por lo que no hubo objeto
+de descarga, checkpoint de objeto, residual ni relación. El resultado sigue
+siendo `continua`: quedan como frontera concreta archivos públicos de
+CNBV/CONDUSEF o repositorios institucionales que pudieran conservar el
+cuestionario no indexado, encuestas estatales distintas de IIEG y módulos
+académicos mexicanos con catálogo de variables. Quedan fuera login, compra y
+contacto.
+
+Cursor siguiente: examinar archivos web públicos de CNBV/CONDUSEF y un
+repositorio académico mexicano no recorrido, sin repetir el buscador exacto del
+Banco Mundial ni las familias ya agotadas. Evento de reactivación alterno: que
+aparezca un cuestionario/diccionario público nuevo del levantamiento 2012.
+
+Este es el segundo ciclo sin avance material. Alternativa concreta para firma
+de mesa: cambiar los tres consumidores rotulados `horizonte_corto` a un uso
+acotado que refleje exactamente el corte autorizado por #772 (P4_10: categoría
+mezclada de menos de una semana o ausencia de ahorro), manteniendo explícito
+que no estima duración pura del stock. Esta sonda no ejecuta ni adopta ese
+relabel.
+
+Suficiencia separada tras este ciclo: identidad PARCIAL; concepto
+NO_ACREDITADA; población ACREDITADA; selección/no respuesta ACREDITADA; unidad
+ACREDITADA; temporalidad PARCIAL; diseño ACREDITADA; identificación NO_APLICA;
+uso INCOMPATIBLE; pregunta ABIERTA.
