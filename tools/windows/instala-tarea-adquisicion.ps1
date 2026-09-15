@@ -156,11 +156,13 @@ Write-Host "Distro WSL:       $Distro"
 Write-Host "Usuario Linux:    $LinuxUser"
 Write-Host "Clon:             $ClonPath"
 Write-Host "Calendario:       $($Calendario.hora) $($Calendario.zona_iana) [$($Calendario.dias_semana -join ',')]"
+Write-Host "Comprobación:     cada $($Calendario.comprobacion_intervalo_minutos) min; inicio_sesión=$($Calendario.recuperar_al_iniciar_sesion)"
 Write-Host "Zona Windows:     $ZonaWindowsActual (traducción configurada: $($Calendario.zona_windows))"
 Write-Host "Principal:        $WindowsUser (LogonType=$LogonType)"
 Write-Host "Revision:         $($DeploymentRevision -replace '^$', 'origin/main')"
 
-$Variables = "ADQ_DISPARADOR=windows-task-scheduler"
+$Variables = ("ADQ_DISPARADOR=windows-task-scheduler " +
+              "ADQ_COMPROBACION_LIGERA=1")
 if (-not [string]::IsNullOrWhiteSpace($DeploymentRevision)) {
     $Variables += " ADQ_DEPLOY_REVISION=$DeploymentRevision"
 }
@@ -186,9 +188,16 @@ $Action = New-ScheduledTaskAction -Execute $PowerShellExe -Argument $ArgumentosP
 
 $HoraParsed = [datetime]::ParseExact($Calendario.hora, "HH:mm", $null)
 $DiasWindows = @($Calendario.dias_windows)
-$Trigger = New-ScheduledTaskTrigger -Weekly `
+$TriggerDiario = New-ScheduledTaskTrigger -Weekly `
     -DaysOfWeek $DiasWindows `
     -At $HoraParsed
+$TriggerHorario = New-ScheduledTaskTrigger -Once `
+    -At ([datetime]::Today) `
+    -RepetitionInterval (New-TimeSpan -Minutes $Calendario.comprobacion_intervalo_minutos)
+$Triggers = @($TriggerDiario, $TriggerHorario)
+if ($Calendario.recuperar_al_iniciar_sesion) {
+    $Triggers += New-ScheduledTaskTrigger -AtLogOn -User $WindowsUser
+}
 
 $Settings = New-ScheduledTaskSettingsSet `
     -StartWhenAvailable `
@@ -201,10 +210,12 @@ $Principal = New-ScheduledTaskPrincipal -UserId $WindowsUser -LogonType $LogonTy
 
 if ($PSCmdlet.ShouldProcess("$TaskFolder$TaskName", "Register-ScheduledTask")) {
     Register-ScheduledTask -TaskName $TaskName -TaskPath $TaskFolder `
-        -Action $Action -Trigger $Trigger -Settings $Settings -Principal $Principal `
+        -Action $Action -Trigger $Triggers -Settings $Settings -Principal $Principal `
         -Description ("Runner de adquisicion (tools/adquiere_cron.sh). Calendario autoritativo " +
                        "data/adq-config.yaml: $($Calendario.hora) $($Calendario.zona_iana), " +
-                       "dias=$($Calendario.dias_semana -join ','). StartWhenAvailable habilitado.") `
+                       "dias=$($Calendario.dias_semana -join ','). Comprobacion horaria y " +
+                       "recuperacion al iniciar sesion; solo despacha si corresponde. " +
+                       "StartWhenAvailable habilitado.") `
         -Force | Out-Null
     Write-Host ""
     Write-Host "Tarea registrada/actualizada: $TaskFolder$TaskName"

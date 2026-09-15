@@ -20,6 +20,7 @@ import argparse
 import base64
 import datetime
 import functools
+import hashlib
 import json
 import os
 import re
@@ -118,7 +119,8 @@ def _snapshot_windows(nombre_tarea):
         "$tr=@($t.Triggers|ForEach-Object{[pscustomobject]@{"
         "Type=$_.CimClass.CimClassName;Id=$_.Id;Enabled=$_.Enabled;"
         "StartBoundary=$_.StartBoundary;EndBoundary=$_.EndBoundary;"
-        "DaysOfWeek=[int]$_.DaysOfWeek;WeeksInterval=[int]$_.WeeksInterval}}); "
+        "DaysOfWeek=[int]$_.DaysOfWeek;WeeksInterval=[int]$_.WeeksInterval;"
+        "RepetitionInterval=$_.Repetition.Interval;UserId=$_.UserId}}); "
         "[pscustomobject]@{"
         "ZoneWindows=[TimeZoneInfo]::Local.Id;"
         "EventLog=[pscustomobject]@{LogName=$l.LogName;IsEnabled=$l.IsEnabled;"
@@ -235,8 +237,21 @@ def check_scheduler_windows():
                 "detalle": snapshot["error"], "tarea_buscada": nombre_tarea}
     campos = dict(snapshot.get("Task") or {})
     triggers = campos.pop("Triggers", []) or []
+    calendario = _calendario_resuelto()
+    intervalo = calendario["comprobacion_intervalo_minutos"]
+    patron_intervalo = re.compile(r"^PT(?:(\d+)H)?(?:(\d+)M)?$")
+    def minutos_intervalo(valor):
+        encontrado = patron_intervalo.fullmatch(valor or "")
+        if not encontrado:
+            return None
+        return int(encontrado.group(1) or 0) * 60 + int(encontrado.group(2) or 0)
     semanal = next((t for t in triggers
                     if t.get("Type") == "MSFT_TaskWeeklyTrigger"), {})
+    horario = next((t for t in triggers
+                    if (t.get("Type") == "MSFT_TaskTimeTrigger" and
+                        minutos_intervalo(t.get("RepetitionInterval")) == intervalo)), {})
+    logon = next((t for t in triggers
+                  if t.get("Type") == "MSFT_TaskLogonTrigger"), {})
     comando_efectivo, sin_ventana, espera_real = _decodifica_accion_windows(
         campos.get("Execute"), campos.get("Arguments"))
     campos.update({
@@ -244,24 +259,28 @@ def check_scheduler_windows():
         "DaysOfWeek": semanal.get("DaysOfWeek"),
         "TriggerEnabled": semanal.get("Enabled"),
     })
-    calendario = _calendario_resuelto()
     # Task Scheduler usa Sunday=1, Monday=2, ..., Saturday=64, mientras
     # ``datetime.weekday`` usa Monday=0, ..., Sunday=6.
     mascara_esperada = sum(1 if d == 6 else 2 << d
                            for d in calendario["weekdays"])
     accion_esperada = ("ADQ_DISPARADOR=windows-task-scheduler" in comando_efectivo
+                       and "ADQ_COMPROBACION_LIGERA=1" in comando_efectivo
                        and "/home/pc0/mm-adq/tools/adquiere_launcher.sh" in comando_efectivo
                        and "-d Ubuntu -u pc0" in comando_efectivo)
-    temporales = [t for t in triggers
-                  if t.get("Enabled") and t.get("Type") != "MSFT_TaskWeeklyTrigger"]
+    esperados = {id(semanal), id(horario), id(logon)}
+    temporales = [t for t in triggers if t.get("Enabled") and id(t) not in esperados]
     return {"estado": "INSTALADA", "tarea": nombre_tarea, **campos,
             "comando_efectivo": comando_efectivo,
             "sin_ventana": sin_ventana,
             "espera_y_propaga_resultado": espera_real,
             "triggers_total": len(triggers),
             "triggers_temporales_activos": temporales,
+            "comprobacion_horaria": bool(horario and horario.get("Enabled")),
+            "recuperacion_inicio_sesion": bool(logon and logon.get("Enabled")),
             "calendario_esperado": {
                 "hora": calendario["hora"], "dias_mascara": mascara_esperada,
+                "comprobacion_intervalo_minutos": intervalo,
+                "recuperar_al_iniciar_sesion": calendario["recuperar_al_iniciar_sesion"],
                 "zona_iana": calendario["zona_iana"],
                 "zona_windows": calendario["zona_windows"],
             },
@@ -1015,7 +1034,7 @@ def valida_resultado_adquisicion(resultado, seleccion, seleccion_investigacion=N
             adquiridos += 1
             if not item["archivos"] or not item["ids_manifiesto"]:
                 errores.append(f"{objeto}: adquisición sin archivos o ids de manifiesto")
-            archivos_manifiesto = set()
+            entradas_manifiesto = {}
             for mid in item["ids_manifiesto"]:
                 entrada = manifiesto_por_id.get(mid)
                 if not entrada:
@@ -1025,13 +1044,31 @@ def valida_resultado_adquisicion(resultado, seleccion, seleccion_investigacion=N
                 if objeto not in usado:
                     errores.append(f"{objeto}: manifiesto {mid} no acredita pertinencia en usado_para")
                 if entrada.get("archivo"):
-                    archivos_manifiesto.add(str(entrada["archivo"]))
+                    nombre_archivo = str(entrada["archivo"])
+                    entradas_manifiesto[nombre_archivo] = entrada
             for archivo in item["archivos"]:
                 ruta = archivo if os.path.isabs(archivo) else os.path.join(raiz, archivo)
-                if not os.path.isfile(os.path.realpath(ruta)):
+                real = os.path.realpath(ruta)
+                if not os.path.isfile(real):
                     errores.append(f"{objeto}: archivo adquirido inexistente: {archivo}")
-                if os.path.basename(archivo) not in archivos_manifiesto:
+                declarado = str(archivo).replace("\\", "/")
+                if declarado.startswith("data/raw/"):
+                    declarado = declarado[len("data/raw/"):]
+                entrada = entradas_manifiesto.get(declarado)
+                if entrada is None:
+                    coincidencias = [e for nombre, e in entradas_manifiesto.items()
+                                     if os.path.basename(nombre) == os.path.basename(archivo)]
+                    entrada = coincidencias[0] if len(coincidencias) == 1 else None
+                if entrada is None:
                     errores.append(f"{objeto}: archivo {archivo} no corresponde a sus ids de manifiesto")
+                    continue
+                if os.path.isfile(real):
+                    with open(real, "rb") as f:
+                        sha_real = hashlib.file_digest(f, "sha256").hexdigest()
+                    if entrada.get("sha256") != sha_real:
+                        errores.append(f"{objeto}: sha256 de {archivo} no coincide con manifiesto")
+                    if entrada.get("tamano_bytes") != os.path.getsize(real):
+                        errores.append(f"{objeto}: tamaño de {archivo} no coincide con manifiesto")
             if fila and not (fila.get("estado_A4A5") or "").startswith("OBTENIDO"):
                 errores.append(f"{objeto}: la cola no conserva el desenlace OBTENIDO")
         else:

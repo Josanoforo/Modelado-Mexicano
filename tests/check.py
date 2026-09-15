@@ -1448,6 +1448,18 @@ _T22_MARCADOR_PENDIENTE = re.compile(
 # cualquiera de los dos marcadores es exactamente el defecto que (b)
 # existe para atrapar.
 _T22_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-SPECS-DEMANDA-2, 15/sep/2026: prereg-caja-ENVIPE-EVASION-NORMA
+    # (capa 2 de D-15 sobre una medición YA sellada, CORR-0007/RES-0025-0026).
+    # Dispara `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`) por CITA, no por
+    # uso: §3 transcribe verbatim la cabecera de
+    # `forense/prereg-caja/ENVIPE-DENUNCIA-SEGURO-propuesta-v1_0.md`
+    # («Estado: PROPUESTA; NO FIRMADA; NO EJECUTAR NI ADOPTAR») al declarar
+    # por qué este acto NO elige entre sus opciones A/B en nombre de mesa
+    # (RES-0039..0042, NC-0088, ya `ABIERTA` desde antes de este acto). No
+    # abre ranura nueva: es la MISMA decisión pendiente que NC-0088 ya
+    # nombra, citada para no perder de vista el residuo, no una propuesta
+    # nueva sin resolver.
+    "forense/prereg-caja/ENVIPE-EVASION-NORMA-spec-v1_0.md",
     # ACTO GEN2-REGISTRO-REPLAY, 9/sep/2026: encargo archivado VERBATIM
     # (0-bis A.3). Dispara `_T22_MARCADOR_PENDIENTE` por MENCION, no por uso:
     # la palabra sale al DESCRIBIR el insumo externo que el acto archiva --
@@ -5720,6 +5732,11 @@ def t_cron_huellas_adq(texto, fecha):
             "exit": _campo("exit"),
             "resultado": _campo("resultado"),
             "resultado_trabajo": _campo("resultado_trabajo"),
+            "salud_trabajo": _campo("salud_trabajo"),
+            "demanda_atendible": _campo("demanda_atendible"),
+            "necesidades_atendidas": _campo("necesidades_atendidas"),
+            "objetos_nuevos": _campo("objetos_nuevos"),
+            "bytes_nuevos": _campo("bytes_nuevos"),
             "publicacion_trabajo": _campo("publicacion_trabajo"),
             "publicacion": _campo("publicacion"),
             "disparador": _campo("disparador"),
@@ -5909,6 +5926,17 @@ def t_cron_estado(fecha, prefijos, cuerpo_adq,
         historico = any(h["run_id"] is None for h in huellas)
         nota_hist = " (acreditado por huella histórica sin run_id)" if historico else ""
         if exitosas and _t_cron_exitosa(ultimo):
+            if ultimo.get("salud_trabajo") == "EJECUCION_SIN_EVIDENCIA_NUEVA":
+                return ("EJECUCION-SIN-AVANCE-MATERIAL",
+                        f"censo del {dia}: ejecución técnica correcta, pero "
+                        f"demanda_atendible={ultimo.get('demanda_atendible')} y "
+                        f"objetos_nuevos={ultimo.get('objetos_nuevos')} "
+                        f"[{_t_cron_rotula(ultimo)}]")
+            if ultimo.get("salud_trabajo") == "SIN_TRABAJO_ATENDIBLE":
+                return ("COMPLETO-SIN-TRABAJO-ATENDIBLE",
+                        f"censo del {dia}: ejecución mecánica correcta; toda la "
+                        f"demanda está satisfecha, diferida o espera acción "
+                        f"identificada [{_t_cron_rotula(ultimo)}]")
             return ("COMPLETO",
                     f"censo del {dia}: [ADQ] invocado={ultimo['invocado']} "
                     f"motivo={ultimo['motivo']} resultado={ultimo['resultado']} "
