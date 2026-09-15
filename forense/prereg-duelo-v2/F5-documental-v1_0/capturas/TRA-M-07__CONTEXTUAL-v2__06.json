@@ -1,0 +1,196 @@
+{
+  "brazo": "CONTEXTUAL-v2",
+  "cargo_real_turnos": 4,
+  "cliente_version": "2.1.272 (Claude Code)",
+  "estado_captura": "ABSTENCION",
+  "id_celda": "TRA-M-07",
+  "identidad": "33e748ae41e10435cab621fb81cea2a1961b4c5a5ed74efe888e0abad0ae3990",
+  "intentos": [
+    {
+      "fin_utc": "2026-09-15T01:29:31.343605+00:00",
+      "inicio_utc": "2026-09-15T01:29:15.260405+00:00",
+      "numero": 1,
+      "returncode": 0,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":16268,\"stop_reason\":\"tool_use\",\"session_id\":\"04bcb7e4-065e-4f22-ba8a-4c37ca92b7e0\",\"total_cost_usd\":0.075596,\"usage\":{\"input_tokens\":4,\"cache_creation_input_tokens\":654,\"cache_read_input_tokens\":50060,\"output_tokens\":1004,\"output_tokens_details\":{\"thinking_tokens\":226},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":654,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":512,\"cache_read_input_tokens\":25030,\"cache_creation_input_tokens\":654,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":654},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":18801,\"outputTokens\":21,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.018906,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":4,\"outputTokens\":1004,\"cacheReadInputTokens\":50060,\"cacheCreationInputTokens\":654,\"webSearchRequests\":0,\"costUSD\":0.05669,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":226,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":4,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"{\\\"estado\\\":\\\"ABSTENCION\\\",\\\"punto_porcentaje\\\":null,\\\"fuente_documental\\\":[],\\\"derivacion\\\":\\\"No se localizó en el paquete aislado ningún TSV de la sección VIII de ENCIG 2021 con el reactivo P8_3_1 (se intentaron rutas plausibles y la herramienta reportó que no existen). El contexto contemporáneo autorizado (TRA-M-07-X001 a X021) contiene análisis cualitativos sobre clientelismo, confianza institucional, informalidad y cultura, sin ninguna tabulación del inciso P8_3_1 ni del universo definido (18+ con respuesta Sí/No). No hay base documental para derivar la proporción.\\\",\\\"sustitucion_semantica\\\":false,\\\"nota\\\":\\\"Cifras del contexto sobre corrupción (p. ej., IPC 27/100, 85% percepción de corrupción electoral 2020, 27% cree que funcionarios rechazan sobornos) corresponden a otras fuentes, reactivos y universos; no se usan para evitar sustitución de encuesta/reactivo. Se abstiene en lugar de aproximar.\\\"}\",\"structured_output\":{\"estado\":\"ABSTENCION\",\"punto_porcentaje\":null,\"fuente_documental\":[],\"derivacion\":\"No se localizó en el paquete aislado ningún TSV de la sección VIII de ENCIG 2021 con el reactivo P8_3_1 (se intentaron rutas plausibles y la herramienta reportó que no existen). El contexto contemporáneo autorizado (TRA-M-07-X001 a X021) contiene análisis cualitativos sobre clientelismo, confianza institucional, informalidad y cultura, sin ninguna tabulación del inciso P8_3_1 ni del universo definido (18+ con respuesta Sí/No). No hay base documental para derivar la proporción.\",\"sustitucion_semantica\":false,\"nota\":\"Cifras del contexto sobre corrupción (p. ej., IPC 27/100, 85% percepción de corrupción electoral 2020, 27% cree que funcionarios rechazan sobornos) corresponden a otras fuentes, reactivos y universos; no se usan para evitar sustitución de encuesta/reactivo. Se abstiene en lugar de aproximar.\"},\"ttft_ms\":5704,\"type\":\"result\",\"duration_ms\":14663,\"uuid\":\"7788bb3f-0570-4f33-91ba-1624d10f96de\",\"ttft_stream_ms\":1646,\"time_to_request_ms\":36,\"first_content_frame_ms\":2591,\"queued_turn_count\":0,\"result_index\":0}\n"
+    }
+  ],
+  "modelo_exacto": "claude-opus-5",
+  "modelos_auxiliares": [
+    {
+      "admitido": true,
+      "modelo": "claude-haiku-4-5",
+      "outputTokens": 21,
+      "tope": 200
+    }
+  ],
+  "modelos_reportados": [
+    "claude-haiku-4-5",
+    "claude-opus-5"
+  ],
+  "prompt_bytes": 57033,
+  "prompt_chars": 55898,
+  "reconciliacion_usage_modelo": {
+    "modelo": "claude-opus-5",
+    "ok": true,
+    "pares": [
+      {
+        "campo_modelUsage": "inputTokens",
+        "campo_usage": "input_tokens",
+        "modelUsage": 4,
+        "usage": 4
+      },
+      {
+        "campo_modelUsage": "outputTokens",
+        "campo_usage": "output_tokens",
+        "modelUsage": 1004,
+        "usage": 1004
+      },
+      {
+        "campo_modelUsage": "cacheCreationInputTokens",
+        "campo_usage": "cache_creation_input_tokens",
+        "modelUsage": 654,
+        "usage": 654
+      },
+      {
+        "campo_modelUsage": "cacheReadInputTokens",
+        "campo_usage": "cache_read_input_tokens",
+        "modelUsage": 50060,
+        "usage": 50060
+      }
+    ]
+  },
+  "replica": 6,
+  "respuesta_estructurada": {
+    "derivacion": "No se localizó en el paquete aislado ningún TSV de la sección VIII de ENCIG 2021 con el reactivo P8_3_1 (se intentaron rutas plausibles y la herramienta reportó que no existen). El contexto contemporáneo autorizado (TRA-M-07-X001 a X021) contiene análisis cualitativos sobre clientelismo, confianza institucional, informalidad y cultura, sin ninguna tabulación del inciso P8_3_1 ni del universo definido (18+ con respuesta Sí/No). No hay base documental para derivar la proporción.",
+    "estado": "ABSTENCION",
+    "fuente_documental": [],
+    "nota": "Cifras del contexto sobre corrupción (p. ej., IPC 27/100, 85% percepción de corrupción electoral 2020, 27% cree que funcionarios rechazan sobornos) corresponden a otras fuentes, reactivos y universos; no se usan para evitar sustitución de encuesta/reactivo. Se abstiene en lugar de aproximar.",
+    "punto_porcentaje": null,
+    "sustitucion_semantica": false
+  },
+  "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__CONTEXTUAL-v2__06.json",
+  "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+  "sha256_prompt": "8d87d58debbb88edd18a0a0561e9cfc639f0ff45df12387a30d76130c6f93466",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 16268,
+    "duration_ms": 14663,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 2591,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.018906,
+        "inputTokens": 18801,
+        "maxOutputTokens": 32000,
+        "outputTokens": 21,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 654,
+        "cacheReadInputTokens": 50060,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 0.05669,
+        "inputTokens": 4,
+        "maxOutputTokens": 64000,
+        "outputTokens": 1004,
+        "provider": "firstParty",
+        "thinkingTokens": 226,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 4,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "{\"estado\":\"ABSTENCION\",\"punto_porcentaje\":null,\"fuente_documental\":[],\"derivacion\":\"No se localizó en el paquete aislado ningún TSV de la sección VIII de ENCIG 2021 con el reactivo P8_3_1 (se intentaron rutas plausibles y la herramienta reportó que no existen). El contexto contemporáneo autorizado (TRA-M-07-X001 a X021) contiene análisis cualitativos sobre clientelismo, confianza institucional, informalidad y cultura, sin ninguna tabulación del inciso P8_3_1 ni del universo definido (18+ con respuesta Sí/No). No hay base documental para derivar la proporción.\",\"sustitucion_semantica\":false,\"nota\":\"Cifras del contexto sobre corrupción (p. ej., IPC 27/100, 85% percepción de corrupción electoral 2020, 27% cree que funcionarios rechazan sobornos) corresponden a otras fuentes, reactivos y universos; no se usan para evitar sustitución de encuesta/reactivo. Se abstiene en lugar de aproximar.\"}",
+    "result_index": 0,
+    "session_id": "04bcb7e4-065e-4f22-ba8a-4c37ca92b7e0",
+    "stop_reason": "tool_use",
+    "structured_output": {
+      "derivacion": "No se localizó en el paquete aislado ningún TSV de la sección VIII de ENCIG 2021 con el reactivo P8_3_1 (se intentaron rutas plausibles y la herramienta reportó que no existen). El contexto contemporáneo autorizado (TRA-M-07-X001 a X021) contiene análisis cualitativos sobre clientelismo, confianza institucional, informalidad y cultura, sin ninguna tabulación del inciso P8_3_1 ni del universo definido (18+ con respuesta Sí/No). No hay base documental para derivar la proporción.",
+      "estado": "ABSTENCION",
+      "fuente_documental": [],
+      "nota": "Cifras del contexto sobre corrupción (p. ej., IPC 27/100, 85% percepción de corrupción electoral 2020, 27% cree que funcionarios rechazan sobornos) corresponden a otras fuentes, reactivos y universos; no se usan para evitar sustitución de encuesta/reactivo. Se abstiene en lugar de aproximar.",
+      "punto_porcentaje": null,
+      "sustitucion_semantica": false
+    },
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 36,
+    "total_cost_usd": 0.075596,
+    "ttft_ms": 5704,
+    "ttft_stream_ms": 1646,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 654,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 654,
+      "cache_read_input_tokens": 50060,
+      "inference_geo": "not_available",
+      "input_tokens": 4,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 654,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 654,
+          "cache_read_input_tokens": 25030,
+          "input_tokens": 2,
+          "output_tokens": 512,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1004,
+      "output_tokens_details": {
+        "thinking_tokens": 226
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "7788bb3f-0570-4f33-91ba-1624d10f96de"
+  },
+  "timestamp_utc": "2026-09-15T01:29:31.344365+00:00",
+  "total_cost_usd": 0.075596
+}

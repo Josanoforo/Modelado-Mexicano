@@ -1,0 +1,501 @@
+{
+  "acto": "GEN2-F5-DOCUMENTAL-EJECUCION",
+  "cliente_version": "2.1.272 (Claude Code)",
+  "coste": "suscripcion Max; modelUsage.costUSD se registra como base de lista, no como cargo monetario observado",
+  "cuenta": "claude.ai Max; firstParty; sin identificador personal",
+  "endpoint_modalidad": "Claude Code CLI print sobre claude.ai; stdin + MCP stdio local aislado",
+  "fecha_congelacion_utc": "2026-09-15T00:59:29.791274+00:00",
+  "firma": {
+    "bytes": 1496,
+    "ruta_archivada": "forense/prereg-duelo-v2/F5-documental-v1_0/F5-documental-firma-v1_0.md",
+    "sha256": "aa7135c8ad53053592798141d1ea91f4c37d467cd10f640522578e5298583f60"
+  },
+  "herramientas": [
+    "mcp__f5docs__weighted_distribution"
+  ],
+  "k": 8,
+  "max_reintentos_tecnicos": 2,
+  "modelo_exacto": "claude-opus-5",
+  "n_posiciones": 32,
+  "parametros": {
+    "aux_tope_salida": 200,
+    "cargo_reserva": 4,
+    "max_budget_usd": 2.0,
+    "max_turns": "no expuesto por el cliente (v1_1 c)",
+    "output_schema": {
+      "additionalProperties": false,
+      "properties": {
+        "derivacion": {
+          "type": "string"
+        },
+        "estado": {
+          "enum": [
+            "PUNTO",
+            "ABSTENCION"
+          ],
+          "type": "string"
+        },
+        "fuente_documental": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "nota": {
+          "type": "string"
+        },
+        "punto_porcentaje": {
+          "maximum": 100,
+          "minimum": 0,
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "sustitucion_semantica": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "estado",
+        "punto_porcentaje",
+        "fuente_documental",
+        "derivacion",
+        "sustitucion_semantica",
+        "nota"
+      ],
+      "type": "object"
+    },
+    "seed_modelo": "no expuesta",
+    "temperatura": "no expuesta por CLI",
+    "timeout_s": 600,
+    "top_p": "no expuesto por CLI"
+  },
+  "posiciones": [
+    {
+      "brazo": "FUENTE-DIRIGIDA-v1",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "TRA-M-07",
+      "identidad": "089f4e21d49ca67a1b55b4e6f5a934870d525cc93d57ed04e743ae59b9c47029",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 259723,
+      "prompt_chars": 254616,
+      "replica": 3,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__FUENTE-DIRIGIDA-v1__03.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "cab5df51d58ae3c2b66c065deb516ea675df335ed936bcaf3117d039e8cbc514"
+    },
+    {
+      "brazo": "FUENTE-DIRIGIDA-v1",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "DIN-M-01",
+      "identidad": "066d2dcdcf595fc34c7413d9b4b3ac6a1a768dce82d8d1a3a9a73f98d6a44407",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 323655,
+      "prompt_chars": 318689,
+      "replica": 4,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__FUENTE-DIRIGIDA-v1__04.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "deb913ae3b5a363e48beeee3821d0f01f03fa4cddd7373ba9f809d29af783d46"
+    },
+    {
+      "brazo": "CONTEXTUAL-v2",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "TRA-M-07",
+      "identidad": "58fe511ad953fc29d2841f33693d9e8253e85e1cb8c6bdc8699f26e828834216",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 57033,
+      "prompt_chars": 55898,
+      "replica": 4,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__CONTEXTUAL-v2__04.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "8d87d58debbb88edd18a0a0561e9cfc639f0ff45df12387a30d76130c6f93466"
+    },
+    {
+      "brazo": "FUENTE-DIRIGIDA-v1",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "DIN-M-01",
+      "identidad": "32c46d3ba7a0ca57018fe4e788ee40dc44d5b1c9ba4d1eb98e59f6635754e2d6",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 323655,
+      "prompt_chars": 318689,
+      "replica": 5,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__FUENTE-DIRIGIDA-v1__05.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "deb913ae3b5a363e48beeee3821d0f01f03fa4cddd7373ba9f809d29af783d46"
+    },
+    {
+      "brazo": "FUENTE-DIRIGIDA-v1",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "TRA-M-07",
+      "identidad": "a5de658fb671eba3ee58f710f52960dc8e6c4d2b76cbe1856d3717ac671dd395",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 259723,
+      "prompt_chars": 254616,
+      "replica": 8,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__FUENTE-DIRIGIDA-v1__08.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "cab5df51d58ae3c2b66c065deb516ea675df335ed936bcaf3117d039e8cbc514"
+    },
+    {
+      "brazo": "FUENTE-DIRIGIDA-v1",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "TRA-M-07",
+      "identidad": "13f0f79f3cf4c39a335824066b673d1a94b994d517f9dfeeaaf2ba5a8e093a3a",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 259723,
+      "prompt_chars": 254616,
+      "replica": 7,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__FUENTE-DIRIGIDA-v1__07.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "cab5df51d58ae3c2b66c065deb516ea675df335ed936bcaf3117d039e8cbc514"
+    },
+    {
+      "brazo": "CONTEXTUAL-v2",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "DIN-M-01",
+      "identidad": "dade485b04171954b70856ea9e6208cb8fe597e4994b04185ad62efc3b91b6ca",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 111947,
+      "prompt_chars": 109848,
+      "replica": 4,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__CONTEXTUAL-v2__04.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "132e0254cb20dbf307045661bfb8b8d7ecd0a7e7b9d9c3aa5a5177adf03d9fce"
+    },
+    {
+      "brazo": "FUENTE-DIRIGIDA-v1",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "TRA-M-07",
+      "identidad": "720df865bc64b3643dfa126a71a24f44ccb969b1f7168d1d4dca129a59190859",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 259723,
+      "prompt_chars": 254616,
+      "replica": 2,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__FUENTE-DIRIGIDA-v1__02.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "cab5df51d58ae3c2b66c065deb516ea675df335ed936bcaf3117d039e8cbc514"
+    },
+    {
+      "brazo": "CONTEXTUAL-v2",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "DIN-M-01",
+      "identidad": "fb14f39afe768fc97fe8b735e8239f9124ef00fe10efc1249377013590649307",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 111947,
+      "prompt_chars": 109848,
+      "replica": 8,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__CONTEXTUAL-v2__08.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "132e0254cb20dbf307045661bfb8b8d7ecd0a7e7b9d9c3aa5a5177adf03d9fce"
+    },
+    {
+      "brazo": "CONTEXTUAL-v2",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "TRA-M-07",
+      "identidad": "09578c1eaddfd749660788ee139abf8e6d190bed5acf19af5be47cbb345ec666",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 57033,
+      "prompt_chars": 55898,
+      "replica": 7,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__CONTEXTUAL-v2__07.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "8d87d58debbb88edd18a0a0561e9cfc639f0ff45df12387a30d76130c6f93466"
+    },
+    {
+      "brazo": "CONTEXTUAL-v2",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "TRA-M-07",
+      "identidad": "8a995d4944fa8064334197beb722506a5f5c1f82b6d45f35cf950bec6dfeb783",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 57033,
+      "prompt_chars": 55898,
+      "replica": 2,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__CONTEXTUAL-v2__02.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "8d87d58debbb88edd18a0a0561e9cfc639f0ff45df12387a30d76130c6f93466"
+    },
+    {
+      "brazo": "FUENTE-DIRIGIDA-v1",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "DIN-M-01",
+      "identidad": "7f1fc2ec11739a6b0313755829de75c591172a427fa981fb2c9deb76c0482e9d",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 323655,
+      "prompt_chars": 318689,
+      "replica": 2,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__FUENTE-DIRIGIDA-v1__02.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "deb913ae3b5a363e48beeee3821d0f01f03fa4cddd7373ba9f809d29af783d46"
+    },
+    {
+      "brazo": "CONTEXTUAL-v2",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "DIN-M-01",
+      "identidad": "138ef89e741721c624d96e01b3d2f591bc0db353748170a1e08ce61073707240",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 111947,
+      "prompt_chars": 109848,
+      "replica": 2,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__CONTEXTUAL-v2__02.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "132e0254cb20dbf307045661bfb8b8d7ecd0a7e7b9d9c3aa5a5177adf03d9fce"
+    },
+    {
+      "brazo": "FUENTE-DIRIGIDA-v1",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "TRA-M-07",
+      "identidad": "f8d5307aba33b4bea51783a0aad9d21bab8958c9f62cba45e1c8ca4fba4a0e8b",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 259723,
+      "prompt_chars": 254616,
+      "replica": 6,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__FUENTE-DIRIGIDA-v1__06.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "cab5df51d58ae3c2b66c065deb516ea675df335ed936bcaf3117d039e8cbc514"
+    },
+    {
+      "brazo": "CONTEXTUAL-v2",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "DIN-M-01",
+      "identidad": "36355136f067294048b38f98cc8546332f779629b726c91418a55a4e5649260a",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 111947,
+      "prompt_chars": 109848,
+      "replica": 7,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__CONTEXTUAL-v2__07.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "132e0254cb20dbf307045661bfb8b8d7ecd0a7e7b9d9c3aa5a5177adf03d9fce"
+    },
+    {
+      "brazo": "FUENTE-DIRIGIDA-v1",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "TRA-M-07",
+      "identidad": "166adc4b0e05a7dfe6295387ff289c1cf8519785de648ad3aa381a2b5a7a8f67",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 259723,
+      "prompt_chars": 254616,
+      "replica": 4,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__FUENTE-DIRIGIDA-v1__04.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "cab5df51d58ae3c2b66c065deb516ea675df335ed936bcaf3117d039e8cbc514"
+    },
+    {
+      "brazo": "FUENTE-DIRIGIDA-v1",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "TRA-M-07",
+      "identidad": "fff3731d95ac1db450a03a5737c7749cb16152628915d4769cb59153f938a6aa",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 259723,
+      "prompt_chars": 254616,
+      "replica": 1,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__FUENTE-DIRIGIDA-v1__01.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "cab5df51d58ae3c2b66c065deb516ea675df335ed936bcaf3117d039e8cbc514"
+    },
+    {
+      "brazo": "CONTEXTUAL-v2",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "TRA-M-07",
+      "identidad": "48fa45207d109bffd3bb58eb34206f114bbd8a9b9c10833718fc65b88f2d9846",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 57033,
+      "prompt_chars": 55898,
+      "replica": 5,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__CONTEXTUAL-v2__05.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "8d87d58debbb88edd18a0a0561e9cfc639f0ff45df12387a30d76130c6f93466"
+    },
+    {
+      "brazo": "CONTEXTUAL-v2",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "TRA-M-07",
+      "identidad": "c6a751e852876d8cc4abcb85a1e664d4678c9dcc0c604e3c2dd65a6335165508",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 57033,
+      "prompt_chars": 55898,
+      "replica": 3,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__CONTEXTUAL-v2__03.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "8d87d58debbb88edd18a0a0561e9cfc639f0ff45df12387a30d76130c6f93466"
+    },
+    {
+      "brazo": "CONTEXTUAL-v2",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "DIN-M-01",
+      "identidad": "9609e783ee9e986a1d26a4f6a52b049e0de0142789520f9c71d3200b24a8d5de",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 111947,
+      "prompt_chars": 109848,
+      "replica": 5,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__CONTEXTUAL-v2__05.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "132e0254cb20dbf307045661bfb8b8d7ecd0a7e7b9d9c3aa5a5177adf03d9fce"
+    },
+    {
+      "brazo": "FUENTE-DIRIGIDA-v1",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "DIN-M-01",
+      "identidad": "a50823194a74d7e9b8e021828d680587080ef643892b58b4fd9c9cb6b497a531",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 323655,
+      "prompt_chars": 318689,
+      "replica": 1,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__FUENTE-DIRIGIDA-v1__01.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "deb913ae3b5a363e48beeee3821d0f01f03fa4cddd7373ba9f809d29af783d46"
+    },
+    {
+      "brazo": "FUENTE-DIRIGIDA-v1",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "DIN-M-01",
+      "identidad": "f4c57ec13b336d77d29baa72d1e225a2889affabab0f9a11cb5d49aa53b283f0",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 323655,
+      "prompt_chars": 318689,
+      "replica": 8,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__FUENTE-DIRIGIDA-v1__08.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "deb913ae3b5a363e48beeee3821d0f01f03fa4cddd7373ba9f809d29af783d46"
+    },
+    {
+      "brazo": "FUENTE-DIRIGIDA-v1",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "DIN-M-01",
+      "identidad": "843544d97c097d6667fd869c1c525260672ec4979926278795bfac70e6774fa0",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 323655,
+      "prompt_chars": 318689,
+      "replica": 3,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__FUENTE-DIRIGIDA-v1__03.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "deb913ae3b5a363e48beeee3821d0f01f03fa4cddd7373ba9f809d29af783d46"
+    },
+    {
+      "brazo": "FUENTE-DIRIGIDA-v1",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "DIN-M-01",
+      "identidad": "4964576ddd5c13c001439ec6b8059cce477abb51c166cb161ec096aa26c1b588",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 323655,
+      "prompt_chars": 318689,
+      "replica": 6,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__FUENTE-DIRIGIDA-v1__06.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "deb913ae3b5a363e48beeee3821d0f01f03fa4cddd7373ba9f809d29af783d46"
+    },
+    {
+      "brazo": "CONTEXTUAL-v2",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "TRA-M-07",
+      "identidad": "fc4560d5d4641f6023def3689e20b9bf78ce62ccac5df208ca652c36652f3feb",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 57033,
+      "prompt_chars": 55898,
+      "replica": 1,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__CONTEXTUAL-v2__01.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "8d87d58debbb88edd18a0a0561e9cfc639f0ff45df12387a30d76130c6f93466"
+    },
+    {
+      "brazo": "CONTEXTUAL-v2",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "DIN-M-01",
+      "identidad": "3a447f9f5b13cb4a3aa187f08a21b93535b64d8b58f854ae3dc81a0efdb59b80",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 111947,
+      "prompt_chars": 109848,
+      "replica": 6,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__CONTEXTUAL-v2__06.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "132e0254cb20dbf307045661bfb8b8d7ecd0a7e7b9d9c3aa5a5177adf03d9fce"
+    },
+    {
+      "brazo": "CONTEXTUAL-v2",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "TRA-M-07",
+      "identidad": "33e748ae41e10435cab621fb81cea2a1961b4c5a5ed74efe888e0abad0ae3990",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 57033,
+      "prompt_chars": 55898,
+      "replica": 6,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__CONTEXTUAL-v2__06.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "8d87d58debbb88edd18a0a0561e9cfc639f0ff45df12387a30d76130c6f93466"
+    },
+    {
+      "brazo": "CONTEXTUAL-v2",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "DIN-M-01",
+      "identidad": "aa858e00ea4e5af6085d8b4bbeea1323201edc7eee5796546f6fbb308d6f94c8",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 111947,
+      "prompt_chars": 109848,
+      "replica": 3,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__CONTEXTUAL-v2__03.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "132e0254cb20dbf307045661bfb8b8d7ecd0a7e7b9d9c3aa5a5177adf03d9fce"
+    },
+    {
+      "brazo": "FUENTE-DIRIGIDA-v1",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "TRA-M-07",
+      "identidad": "909bf4a3b43ab0493fb32210d6566870f0520c6fa4aa1b5117eb5ecd4a363107",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 259723,
+      "prompt_chars": 254616,
+      "replica": 5,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__FUENTE-DIRIGIDA-v1__05.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "cab5df51d58ae3c2b66c065deb516ea675df335ed936bcaf3117d039e8cbc514"
+    },
+    {
+      "brazo": "FUENTE-DIRIGIDA-v1",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "DIN-M-01",
+      "identidad": "43b6de8522e7d8c7e15718e454c7ac1a7f451c5938e68d2f01957cc91265d41e",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 323655,
+      "prompt_chars": 318689,
+      "replica": 7,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__FUENTE-DIRIGIDA-v1__07.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "deb913ae3b5a363e48beeee3821d0f01f03fa4cddd7373ba9f809d29af783d46"
+    },
+    {
+      "brazo": "CONTEXTUAL-v2",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "DIN-M-01",
+      "identidad": "ce56f9bd24538da8906ed527c069506dc984f9e8ea0268dd7d9d7c10290e49c3",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 111947,
+      "prompt_chars": 109848,
+      "replica": 1,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/DIN-M-01__CONTEXTUAL-v2__01.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "132e0254cb20dbf307045661bfb8b8d7ecd0a7e7b9d9c3aa5a5177adf03d9fce"
+    },
+    {
+      "brazo": "CONTEXTUAL-v2",
+      "cliente_version": "2.1.272 (Claude Code)",
+      "id_celda": "TRA-M-07",
+      "identidad": "bf9a4ee096175e6e931a580211150e4c2877c76578a8184048bbe33791e1a714",
+      "modelo_exacto": "claude-opus-5",
+      "prompt_bytes": 57033,
+      "prompt_chars": 55898,
+      "replica": 8,
+      "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__CONTEXTUAL-v2__08.json",
+      "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+      "sha256_prompt": "8d87d58debbb88edd18a0a0561e9cfc639f0ff45df12387a30d76130c6f93466"
+    }
+  ],
+  "proveedor": "Anthropic firstParty",
+  "repo_head_precongelacion": "2897970eaf417de2267e0a4355f98a9f1471f1c0",
+  "semilla_orden": 20260911,
+  "sha256_mcp": "5ca41d17d312603d5aeba2e7c8858ef76d3adc83af5349b755ef9cd6212cf89d",
+  "sha256_parser_runner": "542c0560bd7ce074f50bbf177b22eb7a86550e4129719ddc95c2c7382974b1e8",
+  "sha256_spec_estudio": "755b7ff677acd85d9ef7f28c3da0008e981e1cfabbb8ebe3d3a66b4156709e2f",
+  "techo_solicitudes_proveedor": 96,
+  "version": "v1_1",
+  "web": false
+}

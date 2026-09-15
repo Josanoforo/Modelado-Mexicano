@@ -1,0 +1,204 @@
+{
+  "brazo": "FUENTE-DIRIGIDA-v1",
+  "cargo_real_turnos": 3,
+  "cliente_version": "2.1.272 (Claude Code)",
+  "estado_captura": "PUNTO",
+  "id_celda": "TRA-M-07",
+  "identidad": "a5de658fb671eba3ee58f710f52960dc8e6c4d2b76cbe1856d3717ac671dd395",
+  "intentos": [
+    {
+      "fin_utc": "2026-09-15T01:02:13.894791+00:00",
+      "inicio_utc": "2026-09-15T01:01:59.621651+00:00",
+      "numero": 1,
+      "returncode": 0,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":15564,\"stop_reason\":\"tool_use\",\"session_id\":\"0795e8c7-b343-4818-91cf-8df184a907a1\",\"total_cost_usd\":0.23958100000000002,\"usage\":{\"input_tokens\":4,\"cache_creation_input_tokens\":571,\"cache_read_input_tokens\":235250,\"output_tokens\":982,\"output_tokens_details\":{\"thinking_tokens\":164},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":571,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":793,\"cache_read_input_tokens\":117625,\"cache_creation_input_tokens\":571,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":571},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":91601,\"outputTokens\":15,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.09167600000000001,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":4,\"outputTokens\":982,\"cacheReadInputTokens\":235250,\"cacheCreationInputTokens\":571,\"webSearchRequests\":0,\"costUSD\":0.147905,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":164,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"{\\\"estado\\\":\\\"PUNTO\\\",\\\"punto_porcentaje\\\":7.18,\\\"fuente_documental\\\":[\\\"analysis.tsv\\\",\\\"cuestionario-encig2021.txt\\\",\\\"estructura-encig2021.txt\\\"],\\\"derivacion\\\":\\\"Variable P8_3_1 (estructura-encig2021.txt, tabla encig2021_01_sec1_A_3_4_5_8_9_10, cons. 227; cuestionario ENCIG 2021 sección VIII, pregunta 8.3 inciso 1): códigos 1=Sí, 2=No, 9=No sabe/no responde. Ponderador FAC_P18 (factor de expansión para población de 18 años y más). Con weighted_distribution sobre analysis.tsv (39,930 filas, sha256 186d69...): código 1 → n=2,595, suma ponderada 3,671,036; código 2 → n=37,168, suma ponderada 47,446,757; código 9 → n=167, suma ponderada 184,217 (excluido conforme al universo). Proporción = 3,671,036 / (3,671,036 + 47,446,757) = 3,671,036 / 51,117,793 = 0.07182 → 7.18 %.\\\",\\\"sustitucion_semantica\\\":false,\\\"nota\\\":\\\"Misma encuesta (ENCIG), ola (2021), reactivo (P8_3_1), universo (18+ con respuesta válida Sí/No, excluyendo código 9) y ponderador (FAC_P18) que los especificados en la tarjeta. Sin ajuste por diseño muestral (EST_DIS/UPM_DIS no afectan la estimación puntual). El contexto contemporáneo autorizado no se usó para la cifra.\\\"}\",\"structured_output\":{\"estado\":\"PUNTO\",\"punto_porcentaje\":7.18,\"fuente_documental\":[\"analysis.tsv\",\"cuestionario-encig2021.txt\",\"estructura-encig2021.txt\"],\"derivacion\":\"Variable P8_3_1 (estructura-encig2021.txt, tabla encig2021_01_sec1_A_3_4_5_8_9_10, cons. 227; cuestionario ENCIG 2021 sección VIII, pregunta 8.3 inciso 1): códigos 1=Sí, 2=No, 9=No sabe/no responde. Ponderador FAC_P18 (factor de expansión para población de 18 años y más). Con weighted_distribution sobre analysis.tsv (39,930 filas, sha256 186d69...): código 1 → n=2,595, suma ponderada 3,671,036; código 2 → n=37,168, suma ponderada 47,446,757; código 9 → n=167, suma ponderada 184,217 (excluido conforme al universo). Proporción = 3,671,036 / (3,671,036 + 47,446,757) = 3,671,036 / 51,117,793 = 0.07182 → 7.18 %.\",\"sustitucion_semantica\":false,\"nota\":\"Misma encuesta (ENCIG), ola (2021), reactivo (P8_3_1), universo (18+ con respuesta válida Sí/No, excluyendo código 9) y ponderador (FAC_P18) que los especificados en la tarjeta. Sin ajuste por diseño muestral (EST_DIS/UPM_DIS no afectan la estimación puntual). El contexto contemporáneo autorizado no se usó para la cifra.\"},\"ttft_ms\":2563,\"type\":\"result\",\"duration_ms\":13001,\"uuid\":\"1974faf5-9d18-4773-8db8-3d4cc93da056\",\"ttft_stream_ms\":1449,\"time_to_request_ms\":32,\"first_content_frame_ms\":1939,\"queued_turn_count\":0,\"result_index\":0}\n"
+    }
+  ],
+  "modelo_exacto": "claude-opus-5",
+  "modelos_auxiliares": [
+    {
+      "admitido": true,
+      "modelo": "claude-haiku-4-5",
+      "outputTokens": 15,
+      "tope": 200
+    }
+  ],
+  "modelos_reportados": [
+    "claude-haiku-4-5",
+    "claude-opus-5"
+  ],
+  "prompt_bytes": 259723,
+  "prompt_chars": 254616,
+  "reconciliacion_usage_modelo": {
+    "modelo": "claude-opus-5",
+    "ok": true,
+    "pares": [
+      {
+        "campo_modelUsage": "inputTokens",
+        "campo_usage": "input_tokens",
+        "modelUsage": 4,
+        "usage": 4
+      },
+      {
+        "campo_modelUsage": "outputTokens",
+        "campo_usage": "output_tokens",
+        "modelUsage": 982,
+        "usage": 982
+      },
+      {
+        "campo_modelUsage": "cacheCreationInputTokens",
+        "campo_usage": "cache_creation_input_tokens",
+        "modelUsage": 571,
+        "usage": 571
+      },
+      {
+        "campo_modelUsage": "cacheReadInputTokens",
+        "campo_usage": "cache_read_input_tokens",
+        "modelUsage": 235250,
+        "usage": 235250
+      }
+    ]
+  },
+  "replica": 8,
+  "respuesta_estructurada": {
+    "derivacion": "Variable P8_3_1 (estructura-encig2021.txt, tabla encig2021_01_sec1_A_3_4_5_8_9_10, cons. 227; cuestionario ENCIG 2021 sección VIII, pregunta 8.3 inciso 1): códigos 1=Sí, 2=No, 9=No sabe/no responde. Ponderador FAC_P18 (factor de expansión para población de 18 años y más). Con weighted_distribution sobre analysis.tsv (39,930 filas, sha256 186d69...): código 1 → n=2,595, suma ponderada 3,671,036; código 2 → n=37,168, suma ponderada 47,446,757; código 9 → n=167, suma ponderada 184,217 (excluido conforme al universo). Proporción = 3,671,036 / (3,671,036 + 47,446,757) = 3,671,036 / 51,117,793 = 0.07182 → 7.18 %.",
+    "estado": "PUNTO",
+    "fuente_documental": [
+      "analysis.tsv",
+      "cuestionario-encig2021.txt",
+      "estructura-encig2021.txt"
+    ],
+    "nota": "Misma encuesta (ENCIG), ola (2021), reactivo (P8_3_1), universo (18+ con respuesta válida Sí/No, excluyendo código 9) y ponderador (FAC_P18) que los especificados en la tarjeta. Sin ajuste por diseño muestral (EST_DIS/UPM_DIS no afectan la estimación puntual). El contexto contemporáneo autorizado no se usó para la cifra.",
+    "punto_porcentaje": 7.18,
+    "sustitucion_semantica": false
+  },
+  "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__FUENTE-DIRIGIDA-v1__08.json",
+  "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+  "sha256_prompt": "cab5df51d58ae3c2b66c065deb516ea675df335ed936bcaf3117d039e8cbc514",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 15564,
+    "duration_ms": 13001,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 1939,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.09167600000000001,
+        "inputTokens": 91601,
+        "maxOutputTokens": 32000,
+        "outputTokens": 15,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 571,
+        "cacheReadInputTokens": 235250,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 0.147905,
+        "inputTokens": 4,
+        "maxOutputTokens": 64000,
+        "outputTokens": 982,
+        "provider": "firstParty",
+        "thinkingTokens": 164,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 3,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "{\"estado\":\"PUNTO\",\"punto_porcentaje\":7.18,\"fuente_documental\":[\"analysis.tsv\",\"cuestionario-encig2021.txt\",\"estructura-encig2021.txt\"],\"derivacion\":\"Variable P8_3_1 (estructura-encig2021.txt, tabla encig2021_01_sec1_A_3_4_5_8_9_10, cons. 227; cuestionario ENCIG 2021 sección VIII, pregunta 8.3 inciso 1): códigos 1=Sí, 2=No, 9=No sabe/no responde. Ponderador FAC_P18 (factor de expansión para población de 18 años y más). Con weighted_distribution sobre analysis.tsv (39,930 filas, sha256 186d69...): código 1 → n=2,595, suma ponderada 3,671,036; código 2 → n=37,168, suma ponderada 47,446,757; código 9 → n=167, suma ponderada 184,217 (excluido conforme al universo). Proporción = 3,671,036 / (3,671,036 + 47,446,757) = 3,671,036 / 51,117,793 = 0.07182 → 7.18 %.\",\"sustitucion_semantica\":false,\"nota\":\"Misma encuesta (ENCIG), ola (2021), reactivo (P8_3_1), universo (18+ con respuesta válida Sí/No, excluyendo código 9) y ponderador (FAC_P18) que los especificados en la tarjeta. Sin ajuste por diseño muestral (EST_DIS/UPM_DIS no afectan la estimación puntual). El contexto contemporáneo autorizado no se usó para la cifra.\"}",
+    "result_index": 0,
+    "session_id": "0795e8c7-b343-4818-91cf-8df184a907a1",
+    "stop_reason": "tool_use",
+    "structured_output": {
+      "derivacion": "Variable P8_3_1 (estructura-encig2021.txt, tabla encig2021_01_sec1_A_3_4_5_8_9_10, cons. 227; cuestionario ENCIG 2021 sección VIII, pregunta 8.3 inciso 1): códigos 1=Sí, 2=No, 9=No sabe/no responde. Ponderador FAC_P18 (factor de expansión para población de 18 años y más). Con weighted_distribution sobre analysis.tsv (39,930 filas, sha256 186d69...): código 1 → n=2,595, suma ponderada 3,671,036; código 2 → n=37,168, suma ponderada 47,446,757; código 9 → n=167, suma ponderada 184,217 (excluido conforme al universo). Proporción = 3,671,036 / (3,671,036 + 47,446,757) = 3,671,036 / 51,117,793 = 0.07182 → 7.18 %.",
+      "estado": "PUNTO",
+      "fuente_documental": [
+        "analysis.tsv",
+        "cuestionario-encig2021.txt",
+        "estructura-encig2021.txt"
+      ],
+      "nota": "Misma encuesta (ENCIG), ola (2021), reactivo (P8_3_1), universo (18+ con respuesta válida Sí/No, excluyendo código 9) y ponderador (FAC_P18) que los especificados en la tarjeta. Sin ajuste por diseño muestral (EST_DIS/UPM_DIS no afectan la estimación puntual). El contexto contemporáneo autorizado no se usó para la cifra.",
+      "punto_porcentaje": 7.18,
+      "sustitucion_semantica": false
+    },
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 32,
+    "total_cost_usd": 0.23958100000000002,
+    "ttft_ms": 2563,
+    "ttft_stream_ms": 1449,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 571,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 571,
+      "cache_read_input_tokens": 235250,
+      "inference_geo": "not_available",
+      "input_tokens": 4,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 571,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 571,
+          "cache_read_input_tokens": 117625,
+          "input_tokens": 2,
+          "output_tokens": 793,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 982,
+      "output_tokens_details": {
+        "thinking_tokens": 164
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "1974faf5-9d18-4773-8db8-3d4cc93da056"
+  },
+  "timestamp_utc": "2026-09-15T01:02:13.895480+00:00",
+  "total_cost_usd": 0.23958100000000002
+}

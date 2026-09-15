@@ -1,0 +1,240 @@
+{
+  "brazo": "CONTEXTUAL-v2",
+  "cargo_real_turnos": 4,
+  "cliente_version": "2.1.272 (Claude Code)",
+  "estado_captura": "ABSTENCION",
+  "id_celda": "TRA-M-07",
+  "identidad": "bf9a4ee096175e6e931a580211150e4c2877c76578a8184048bbe33791e1a714",
+  "intentos": [
+    {
+      "fin_utc": "2026-09-15T01:31:09.899581+00:00",
+      "inicio_utc": "2026-09-15T01:30:50.440958+00:00",
+      "numero": 1,
+      "returncode": 0,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":19311,\"stop_reason\":\"tool_use\",\"session_id\":\"ee3d0a98-4234-4c18-b738-602024edd1f0\",\"total_cost_usd\":0.086111,\"usage\":{\"input_tokens\":4,\"cache_creation_input_tokens\":666,\"cache_read_input_tokens\":50060,\"output_tokens\":1421,\"output_tokens_details\":{\"thinking_tokens\":225},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":666,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":917,\"cache_read_input_tokens\":25030,\"cache_creation_input_tokens\":666,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":666},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":18801,\"outputTokens\":15,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.018875999999999997,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":4,\"outputTokens\":1421,\"cacheReadInputTokens\":50060,\"cacheCreationInputTokens\":666,\"webSearchRequests\":0,\"costUSD\":0.06723499999999999,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":225,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":4,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"{\\\"estado\\\":\\\"ABSTENCION\\\",\\\"punto_porcentaje\\\":null,\\\"fuente_documental\\\":[\\\"TRA-M-07-X001\\\",\\\"TRA-M-07-X002\\\",\\\"TRA-M-07-X003\\\",\\\"TRA-M-07-X004\\\",\\\"TRA-M-07-X005\\\",\\\"TRA-M-07-X006\\\",\\\"TRA-M-07-X007\\\",\\\"TRA-M-07-X008\\\",\\\"TRA-M-07-X009\\\",\\\"TRA-M-07-X010\\\",\\\"TRA-M-07-X011\\\",\\\"TRA-M-07-X012\\\",\\\"TRA-M-07-X013\\\",\\\"TRA-M-07-X014\\\",\\\"TRA-M-07-X015\\\",\\\"TRA-M-07-X016\\\",\\\"TRA-M-07-X017\\\",\\\"TRA-M-07-X018\\\",\\\"TRA-M-07-X019\\\",\\\"TRA-M-07-X020\\\",\\\"TRA-M-07-X021\\\"],\\\"derivacion\\\":\\\"Se revisaron los 21 extractos del contexto autorizado (TRA-M-07-X001 a X021). Ninguno contiene la tabla de la sección VIII de ENCIG 2021 ni la distribución ponderada del inciso P8_3_1 (Sí/No) para personas de 18 años o más. Los extractos tratan clientelismo electoral, cultura de autoridad, consumo, humor y confianza institucional; las cifras de corrupción que aparecen (IPC 27/100, '27% cree que funcionarios rechazan sobornos', '85% percibió corrupción electoral en 2020', '79% cree que la compra de voto es común') corresponden a otras encuestas, olas, reactivos y universos, y no son sustituibles. Se intentó leer un TSV de microdatos ENCIG 2021 en el paquete aislado (dos rutas plausibles) y la herramienta reportó que el archivo no existe. Sin tabla ni tabulado documental de P8_3_1, no es posible derivar la proporción de forma trazable.\\\",\\\"sustitucion_semantica\\\":false,\\\"nota\\\":\\\"Abstención: el paquete no incluye la tabla ENCIG 2021 sección VIII ni un tabulado del reactivo P8_3_1 con ponderador. No se sustituyó encuesta, ola, reactivo, universo ni ponderador; se evitó usar cifras de corrupción de otras fuentes presentes en el contexto porque miden objetos distintos.\\\"}\",\"structured_output\":{\"estado\":\"ABSTENCION\",\"punto_porcentaje\":null,\"fuente_documental\":[\"TRA-M-07-X001\",\"TRA-M-07-X002\",\"TRA-M-07-X003\",\"TRA-M-07-X004\",\"TRA-M-07-X005\",\"TRA-M-07-X006\",\"TRA-M-07-X007\",\"TRA-M-07-X008\",\"TRA-M-07-X009\",\"TRA-M-07-X010\",\"TRA-M-07-X011\",\"TRA-M-07-X012\",\"TRA-M-07-X013\",\"TRA-M-07-X014\",\"TRA-M-07-X015\",\"TRA-M-07-X016\",\"TRA-M-07-X017\",\"TRA-M-07-X018\",\"TRA-M-07-X019\",\"TRA-M-07-X020\",\"TRA-M-07-X021\"],\"derivacion\":\"Se revisaron los 21 extractos del contexto autorizado (TRA-M-07-X001 a X021). Ninguno contiene la tabla de la sección VIII de ENCIG 2021 ni la distribución ponderada del inciso P8_3_1 (Sí/No) para personas de 18 años o más. Los extractos tratan clientelismo electoral, cultura de autoridad, consumo, humor y confianza institucional; las cifras de corrupción que aparecen (IPC 27/100, '27% cree que funcionarios rechazan sobornos', '85% percibió corrupción electoral en 2020', '79% cree que la compra de voto es común') corresponden a otras encuestas, olas, reactivos y universos, y no son sustituibles. Se intentó leer un TSV de microdatos ENCIG 2021 en el paquete aislado (dos rutas plausibles) y la herramienta reportó que el archivo no existe. Sin tabla ni tabulado documental de P8_3_1, no es posible derivar la proporción de forma trazable.\",\"sustitucion_semantica\":false,\"nota\":\"Abstención: el paquete no incluye la tabla ENCIG 2021 sección VIII ni un tabulado del reactivo P8_3_1 con ponderador. No se sustituyó encuesta, ola, reactivo, universo ni ponderador; se evitó usar cifras de corrupción de otras fuentes presentes en el contexto porque miden objetos distintos.\"},\"ttft_ms\":4577,\"type\":\"result\",\"duration_ms\":18146,\"uuid\":\"39e80224-6d32-4767-9d6c-699921c92894\",\"ttft_stream_ms\":1048,\"time_to_request_ms\":31,\"first_content_frame_ms\":1719,\"queued_turn_count\":0,\"result_index\":0}\n"
+    }
+  ],
+  "modelo_exacto": "claude-opus-5",
+  "modelos_auxiliares": [
+    {
+      "admitido": true,
+      "modelo": "claude-haiku-4-5",
+      "outputTokens": 15,
+      "tope": 200
+    }
+  ],
+  "modelos_reportados": [
+    "claude-haiku-4-5",
+    "claude-opus-5"
+  ],
+  "prompt_bytes": 57033,
+  "prompt_chars": 55898,
+  "reconciliacion_usage_modelo": {
+    "modelo": "claude-opus-5",
+    "ok": true,
+    "pares": [
+      {
+        "campo_modelUsage": "inputTokens",
+        "campo_usage": "input_tokens",
+        "modelUsage": 4,
+        "usage": 4
+      },
+      {
+        "campo_modelUsage": "outputTokens",
+        "campo_usage": "output_tokens",
+        "modelUsage": 1421,
+        "usage": 1421
+      },
+      {
+        "campo_modelUsage": "cacheCreationInputTokens",
+        "campo_usage": "cache_creation_input_tokens",
+        "modelUsage": 666,
+        "usage": 666
+      },
+      {
+        "campo_modelUsage": "cacheReadInputTokens",
+        "campo_usage": "cache_read_input_tokens",
+        "modelUsage": 50060,
+        "usage": 50060
+      }
+    ]
+  },
+  "replica": 8,
+  "respuesta_estructurada": {
+    "derivacion": "Se revisaron los 21 extractos del contexto autorizado (TRA-M-07-X001 a X021). Ninguno contiene la tabla de la sección VIII de ENCIG 2021 ni la distribución ponderada del inciso P8_3_1 (Sí/No) para personas de 18 años o más. Los extractos tratan clientelismo electoral, cultura de autoridad, consumo, humor y confianza institucional; las cifras de corrupción que aparecen (IPC 27/100, '27% cree que funcionarios rechazan sobornos', '85% percibió corrupción electoral en 2020', '79% cree que la compra de voto es común') corresponden a otras encuestas, olas, reactivos y universos, y no son sustituibles. Se intentó leer un TSV de microdatos ENCIG 2021 en el paquete aislado (dos rutas plausibles) y la herramienta reportó que el archivo no existe. Sin tabla ni tabulado documental de P8_3_1, no es posible derivar la proporción de forma trazable.",
+    "estado": "ABSTENCION",
+    "fuente_documental": [
+      "TRA-M-07-X001",
+      "TRA-M-07-X002",
+      "TRA-M-07-X003",
+      "TRA-M-07-X004",
+      "TRA-M-07-X005",
+      "TRA-M-07-X006",
+      "TRA-M-07-X007",
+      "TRA-M-07-X008",
+      "TRA-M-07-X009",
+      "TRA-M-07-X010",
+      "TRA-M-07-X011",
+      "TRA-M-07-X012",
+      "TRA-M-07-X013",
+      "TRA-M-07-X014",
+      "TRA-M-07-X015",
+      "TRA-M-07-X016",
+      "TRA-M-07-X017",
+      "TRA-M-07-X018",
+      "TRA-M-07-X019",
+      "TRA-M-07-X020",
+      "TRA-M-07-X021"
+    ],
+    "nota": "Abstención: el paquete no incluye la tabla ENCIG 2021 sección VIII ni un tabulado del reactivo P8_3_1 con ponderador. No se sustituyó encuesta, ola, reactivo, universo ni ponderador; se evitó usar cifras de corrupción de otras fuentes presentes en el contexto porque miden objetos distintos.",
+    "punto_porcentaje": null,
+    "sustitucion_semantica": false
+  },
+  "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__CONTEXTUAL-v2__08.json",
+  "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+  "sha256_prompt": "8d87d58debbb88edd18a0a0561e9cfc639f0ff45df12387a30d76130c6f93466",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 19311,
+    "duration_ms": 18146,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 1719,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.018875999999999997,
+        "inputTokens": 18801,
+        "maxOutputTokens": 32000,
+        "outputTokens": 15,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 666,
+        "cacheReadInputTokens": 50060,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 0.06723499999999999,
+        "inputTokens": 4,
+        "maxOutputTokens": 64000,
+        "outputTokens": 1421,
+        "provider": "firstParty",
+        "thinkingTokens": 225,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 4,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "{\"estado\":\"ABSTENCION\",\"punto_porcentaje\":null,\"fuente_documental\":[\"TRA-M-07-X001\",\"TRA-M-07-X002\",\"TRA-M-07-X003\",\"TRA-M-07-X004\",\"TRA-M-07-X005\",\"TRA-M-07-X006\",\"TRA-M-07-X007\",\"TRA-M-07-X008\",\"TRA-M-07-X009\",\"TRA-M-07-X010\",\"TRA-M-07-X011\",\"TRA-M-07-X012\",\"TRA-M-07-X013\",\"TRA-M-07-X014\",\"TRA-M-07-X015\",\"TRA-M-07-X016\",\"TRA-M-07-X017\",\"TRA-M-07-X018\",\"TRA-M-07-X019\",\"TRA-M-07-X020\",\"TRA-M-07-X021\"],\"derivacion\":\"Se revisaron los 21 extractos del contexto autorizado (TRA-M-07-X001 a X021). Ninguno contiene la tabla de la sección VIII de ENCIG 2021 ni la distribución ponderada del inciso P8_3_1 (Sí/No) para personas de 18 años o más. Los extractos tratan clientelismo electoral, cultura de autoridad, consumo, humor y confianza institucional; las cifras de corrupción que aparecen (IPC 27/100, '27% cree que funcionarios rechazan sobornos', '85% percibió corrupción electoral en 2020', '79% cree que la compra de voto es común') corresponden a otras encuestas, olas, reactivos y universos, y no son sustituibles. Se intentó leer un TSV de microdatos ENCIG 2021 en el paquete aislado (dos rutas plausibles) y la herramienta reportó que el archivo no existe. Sin tabla ni tabulado documental de P8_3_1, no es posible derivar la proporción de forma trazable.\",\"sustitucion_semantica\":false,\"nota\":\"Abstención: el paquete no incluye la tabla ENCIG 2021 sección VIII ni un tabulado del reactivo P8_3_1 con ponderador. No se sustituyó encuesta, ola, reactivo, universo ni ponderador; se evitó usar cifras de corrupción de otras fuentes presentes en el contexto porque miden objetos distintos.\"}",
+    "result_index": 0,
+    "session_id": "ee3d0a98-4234-4c18-b738-602024edd1f0",
+    "stop_reason": "tool_use",
+    "structured_output": {
+      "derivacion": "Se revisaron los 21 extractos del contexto autorizado (TRA-M-07-X001 a X021). Ninguno contiene la tabla de la sección VIII de ENCIG 2021 ni la distribución ponderada del inciso P8_3_1 (Sí/No) para personas de 18 años o más. Los extractos tratan clientelismo electoral, cultura de autoridad, consumo, humor y confianza institucional; las cifras de corrupción que aparecen (IPC 27/100, '27% cree que funcionarios rechazan sobornos', '85% percibió corrupción electoral en 2020', '79% cree que la compra de voto es común') corresponden a otras encuestas, olas, reactivos y universos, y no son sustituibles. Se intentó leer un TSV de microdatos ENCIG 2021 en el paquete aislado (dos rutas plausibles) y la herramienta reportó que el archivo no existe. Sin tabla ni tabulado documental de P8_3_1, no es posible derivar la proporción de forma trazable.",
+      "estado": "ABSTENCION",
+      "fuente_documental": [
+        "TRA-M-07-X001",
+        "TRA-M-07-X002",
+        "TRA-M-07-X003",
+        "TRA-M-07-X004",
+        "TRA-M-07-X005",
+        "TRA-M-07-X006",
+        "TRA-M-07-X007",
+        "TRA-M-07-X008",
+        "TRA-M-07-X009",
+        "TRA-M-07-X010",
+        "TRA-M-07-X011",
+        "TRA-M-07-X012",
+        "TRA-M-07-X013",
+        "TRA-M-07-X014",
+        "TRA-M-07-X015",
+        "TRA-M-07-X016",
+        "TRA-M-07-X017",
+        "TRA-M-07-X018",
+        "TRA-M-07-X019",
+        "TRA-M-07-X020",
+        "TRA-M-07-X021"
+      ],
+      "nota": "Abstención: el paquete no incluye la tabla ENCIG 2021 sección VIII ni un tabulado del reactivo P8_3_1 con ponderador. No se sustituyó encuesta, ola, reactivo, universo ni ponderador; se evitó usar cifras de corrupción de otras fuentes presentes en el contexto porque miden objetos distintos.",
+      "punto_porcentaje": null,
+      "sustitucion_semantica": false
+    },
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 31,
+    "total_cost_usd": 0.086111,
+    "ttft_ms": 4577,
+    "ttft_stream_ms": 1048,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 666,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 666,
+      "cache_read_input_tokens": 50060,
+      "inference_geo": "not_available",
+      "input_tokens": 4,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 666,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 666,
+          "cache_read_input_tokens": 25030,
+          "input_tokens": 2,
+          "output_tokens": 917,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1421,
+      "output_tokens_details": {
+        "thinking_tokens": 225
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "39e80224-6d32-4767-9d6c-699921c92894"
+  },
+  "timestamp_utc": "2026-09-15T01:31:09.900708+00:00",
+  "total_cost_usd": 0.086111
+}

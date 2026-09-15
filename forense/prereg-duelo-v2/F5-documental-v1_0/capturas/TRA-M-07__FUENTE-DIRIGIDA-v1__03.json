@@ -1,0 +1,204 @@
+{
+  "brazo": "FUENTE-DIRIGIDA-v1",
+  "cargo_real_turnos": 3,
+  "cliente_version": "2.1.272 (Claude Code)",
+  "estado_captura": "PUNTO",
+  "id_celda": "TRA-M-07",
+  "identidad": "089f4e21d49ca67a1b55b4e6f5a934870d525cc93d57ed04e743ae59b9c47029",
+  "intentos": [
+    {
+      "fin_utc": "2026-09-15T01:00:46.333375+00:00",
+      "inicio_utc": "2026-09-15T01:00:31.967471+00:00",
+      "numero": 1,
+      "returncode": 0,
+      "stderr_original": "",
+      "stdout_original": "{\"duration_api_ms\":15684,\"stop_reason\":\"tool_use\",\"session_id\":\"7149ecdc-f044-4a02-8e84-8949f476e157\",\"total_cost_usd\":1.3481075,\"usage\":{\"input_tokens\":4,\"cache_creation_input_tokens\":117267,\"cache_read_input_tokens\":118543,\"output_tokens\":977,\"output_tokens_details\":{\"thinking_tokens\":121},\"server_tool_use\":{\"web_search_requests\":0,\"web_fetch_requests\":0},\"service_tier\":\"standard\",\"cache_creation\":{\"ephemeral_1h_input_tokens\":117267,\"ephemeral_5m_input_tokens\":0},\"inference_geo\":\"not_available\",\"iterations\":[{\"input_tokens\":2,\"output_tokens\":794,\"cache_read_input_tokens\":117625,\"cache_creation_input_tokens\":560,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":560},\"type\":\"message\"}],\"speed\":\"standard\"},\"modelUsage\":{\"claude-haiku-4-5-20251001\":{\"inputTokens\":91601,\"outputTokens\":24,\"cacheReadInputTokens\":0,\"cacheCreationInputTokens\":0,\"webSearchRequests\":0,\"costUSD\":0.091721,\"contextWindow\":200000,\"maxOutputTokens\":32000,\"thinkingTokens\":0,\"canonicalModel\":\"claude-haiku-4-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"},\"claude-opus-5\":{\"inputTokens\":4,\"outputTokens\":977,\"cacheReadInputTokens\":118543,\"cacheCreationInputTokens\":117267,\"webSearchRequests\":0,\"costUSD\":1.2563865,\"contextWindow\":1000000,\"maxOutputTokens\":64000,\"thinkingTokens\":121,\"canonicalModel\":\"claude-opus-5\",\"provider\":\"firstParty\",\"costBasis\":\"list\"}},\"permission_denials\":[],\"terminal_reason\":\"completed\",\"fast_mode_state\":\"off\",\"fast_mode_disabled_reason\":\"sdk_opt_in_required\",\"subagent_stats\":{\"spawned\":0,\"requested\":{\"background\":0,\"foreground\":0,\"unset\":0},\"started_in_background\":0,\"max_depth\":0,\"spawned_by_subagents\":0,\"completed\":0,\"failed\":0,\"killed\":{\"parent\":0,\"user\":0,\"system\":0},\"refused\":{\"depth_limit\":0,\"concurrency_limit\":0,\"budget\":0},\"by_type\":{}},\"is_error\":false,\"num_turns\":3,\"subtype\":\"success\",\"api_error_status\":null,\"result\":\"{\\\"estado\\\":\\\"PUNTO\\\",\\\"punto_porcentaje\\\":7.18,\\\"fuente_documental\\\":[\\\"analysis.tsv\\\",\\\"estructura-encig2021.txt\\\",\\\"cuestionario-encig2021.txt\\\"],\\\"derivacion\\\":\\\"Reactivo P8_3_1 (sección VIII, pregunta 8.3 inciso 1 del cuestionario ENCIG 2021: '¿Un servidor público o empleado de gobierno intentó apropiarse o le solicitó de forma directa algún beneficio (dinero, regalos o favores) que usted pudiera otorgarle?'), códigos válidos 1=Sí, 2=No, 9=No sabe/no responde según estructura-encig2021.txt (cons. 227). Ponderador FAC_P18 (factor de expansión para población de 18 años y más). weighted_distribution sobre analysis.tsv (39,930 filas, sha256 186d69...): Sí=1 → n=2,595, suma ponderada 3,671,036; No=2 → n=37,168, suma ponderada 47,446,757; 9 → n=167, suma ponderada 184,217 (excluido por definición del universo). Proporción = 3,671,036 / (3,671,036 + 47,446,757) = 3,671,036 / 51,117,793 = 0.07182 → 7.18 %.\\\",\\\"sustitucion_semantica\\\":false,\\\"nota\\\":\\\"Mismo reactivo, ola, universo, evento y ponderador que la tarjeta; no se usó conocimiento externo ni el contexto contemporáneo (irrelevante para la derivación). El universo es la tabla de sección VIII con respuesta válida Sí/No a P8_3_1 (código 9 excluido del denominador). Si se incluyera el código 9 en el denominador la cifra sería 7.16 %.\\\"}\",\"structured_output\":{\"estado\":\"PUNTO\",\"punto_porcentaje\":7.18,\"fuente_documental\":[\"analysis.tsv\",\"estructura-encig2021.txt\",\"cuestionario-encig2021.txt\"],\"derivacion\":\"Reactivo P8_3_1 (sección VIII, pregunta 8.3 inciso 1 del cuestionario ENCIG 2021: '¿Un servidor público o empleado de gobierno intentó apropiarse o le solicitó de forma directa algún beneficio (dinero, regalos o favores) que usted pudiera otorgarle?'), códigos válidos 1=Sí, 2=No, 9=No sabe/no responde según estructura-encig2021.txt (cons. 227). Ponderador FAC_P18 (factor de expansión para población de 18 años y más). weighted_distribution sobre analysis.tsv (39,930 filas, sha256 186d69...): Sí=1 → n=2,595, suma ponderada 3,671,036; No=2 → n=37,168, suma ponderada 47,446,757; 9 → n=167, suma ponderada 184,217 (excluido por definición del universo). Proporción = 3,671,036 / (3,671,036 + 47,446,757) = 3,671,036 / 51,117,793 = 0.07182 → 7.18 %.\",\"sustitucion_semantica\":false,\"nota\":\"Mismo reactivo, ola, universo, evento y ponderador que la tarjeta; no se usó conocimiento externo ni el contexto contemporáneo (irrelevante para la derivación). El universo es la tabla de sección VIII con respuesta válida Sí/No a P8_3_1 (código 9 excluido del denominador). Si se incluyera el código 9 en el denominador la cifra sería 7.16 %.\"},\"ttft_ms\":2792,\"type\":\"result\",\"duration_ms\":13084,\"uuid\":\"28f843de-3cc0-4a86-9300-4ba1d7656371\",\"ttft_stream_ms\":1756,\"time_to_request_ms\":34,\"first_content_frame_ms\":2223,\"queued_turn_count\":0,\"result_index\":0}\n"
+    }
+  ],
+  "modelo_exacto": "claude-opus-5",
+  "modelos_auxiliares": [
+    {
+      "admitido": true,
+      "modelo": "claude-haiku-4-5",
+      "outputTokens": 24,
+      "tope": 200
+    }
+  ],
+  "modelos_reportados": [
+    "claude-haiku-4-5",
+    "claude-opus-5"
+  ],
+  "prompt_bytes": 259723,
+  "prompt_chars": 254616,
+  "reconciliacion_usage_modelo": {
+    "modelo": "claude-opus-5",
+    "ok": true,
+    "pares": [
+      {
+        "campo_modelUsage": "inputTokens",
+        "campo_usage": "input_tokens",
+        "modelUsage": 4,
+        "usage": 4
+      },
+      {
+        "campo_modelUsage": "outputTokens",
+        "campo_usage": "output_tokens",
+        "modelUsage": 977,
+        "usage": 977
+      },
+      {
+        "campo_modelUsage": "cacheCreationInputTokens",
+        "campo_usage": "cache_creation_input_tokens",
+        "modelUsage": 117267,
+        "usage": 117267
+      },
+      {
+        "campo_modelUsage": "cacheReadInputTokens",
+        "campo_usage": "cache_read_input_tokens",
+        "modelUsage": 118543,
+        "usage": 118543
+      }
+    ]
+  },
+  "replica": 3,
+  "respuesta_estructurada": {
+    "derivacion": "Reactivo P8_3_1 (sección VIII, pregunta 8.3 inciso 1 del cuestionario ENCIG 2021: '¿Un servidor público o empleado de gobierno intentó apropiarse o le solicitó de forma directa algún beneficio (dinero, regalos o favores) que usted pudiera otorgarle?'), códigos válidos 1=Sí, 2=No, 9=No sabe/no responde según estructura-encig2021.txt (cons. 227). Ponderador FAC_P18 (factor de expansión para población de 18 años y más). weighted_distribution sobre analysis.tsv (39,930 filas, sha256 186d69...): Sí=1 → n=2,595, suma ponderada 3,671,036; No=2 → n=37,168, suma ponderada 47,446,757; 9 → n=167, suma ponderada 184,217 (excluido por definición del universo). Proporción = 3,671,036 / (3,671,036 + 47,446,757) = 3,671,036 / 51,117,793 = 0.07182 → 7.18 %.",
+    "estado": "PUNTO",
+    "fuente_documental": [
+      "analysis.tsv",
+      "estructura-encig2021.txt",
+      "cuestionario-encig2021.txt"
+    ],
+    "nota": "Mismo reactivo, ola, universo, evento y ponderador que la tarjeta; no se usó conocimiento externo ni el contexto contemporáneo (irrelevante para la derivación). El universo es la tabla de sección VIII con respuesta válida Sí/No a P8_3_1 (código 9 excluido del denominador). Si se incluyera el código 9 en el denominador la cifra sería 7.16 %.",
+    "punto_porcentaje": 7.18,
+    "sustitucion_semantica": false
+  },
+  "ruta": "forense/prereg-duelo-v2/F5-documental-v1_0/capturas/TRA-M-07__FUENTE-DIRIGIDA-v1__03.json",
+  "sha256_materializacion": "6507fa324e512e9a9e9d8b46d18211509210cff38bff6b1daba1217fea9570fd",
+  "sha256_prompt": "cab5df51d58ae3c2b66c065deb516ea675df335ed936bcaf3117d039e8cbc514",
+  "sobre_cli_original": {
+    "api_error_status": null,
+    "duration_api_ms": 15684,
+    "duration_ms": 13084,
+    "fast_mode_disabled_reason": "sdk_opt_in_required",
+    "fast_mode_state": "off",
+    "first_content_frame_ms": 2223,
+    "is_error": false,
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "cacheCreationInputTokens": 0,
+        "cacheReadInputTokens": 0,
+        "canonicalModel": "claude-haiku-4-5",
+        "contextWindow": 200000,
+        "costBasis": "list",
+        "costUSD": 0.091721,
+        "inputTokens": 91601,
+        "maxOutputTokens": 32000,
+        "outputTokens": 24,
+        "provider": "firstParty",
+        "thinkingTokens": 0,
+        "webSearchRequests": 0
+      },
+      "claude-opus-5": {
+        "cacheCreationInputTokens": 117267,
+        "cacheReadInputTokens": 118543,
+        "canonicalModel": "claude-opus-5",
+        "contextWindow": 1000000,
+        "costBasis": "list",
+        "costUSD": 1.2563865,
+        "inputTokens": 4,
+        "maxOutputTokens": 64000,
+        "outputTokens": 977,
+        "provider": "firstParty",
+        "thinkingTokens": 121,
+        "webSearchRequests": 0
+      }
+    },
+    "num_turns": 3,
+    "permission_denials": [],
+    "queued_turn_count": 0,
+    "result": "{\"estado\":\"PUNTO\",\"punto_porcentaje\":7.18,\"fuente_documental\":[\"analysis.tsv\",\"estructura-encig2021.txt\",\"cuestionario-encig2021.txt\"],\"derivacion\":\"Reactivo P8_3_1 (sección VIII, pregunta 8.3 inciso 1 del cuestionario ENCIG 2021: '¿Un servidor público o empleado de gobierno intentó apropiarse o le solicitó de forma directa algún beneficio (dinero, regalos o favores) que usted pudiera otorgarle?'), códigos válidos 1=Sí, 2=No, 9=No sabe/no responde según estructura-encig2021.txt (cons. 227). Ponderador FAC_P18 (factor de expansión para población de 18 años y más). weighted_distribution sobre analysis.tsv (39,930 filas, sha256 186d69...): Sí=1 → n=2,595, suma ponderada 3,671,036; No=2 → n=37,168, suma ponderada 47,446,757; 9 → n=167, suma ponderada 184,217 (excluido por definición del universo). Proporción = 3,671,036 / (3,671,036 + 47,446,757) = 3,671,036 / 51,117,793 = 0.07182 → 7.18 %.\",\"sustitucion_semantica\":false,\"nota\":\"Mismo reactivo, ola, universo, evento y ponderador que la tarjeta; no se usó conocimiento externo ni el contexto contemporáneo (irrelevante para la derivación). El universo es la tabla de sección VIII con respuesta válida Sí/No a P8_3_1 (código 9 excluido del denominador). Si se incluyera el código 9 en el denominador la cifra sería 7.16 %.\"}",
+    "result_index": 0,
+    "session_id": "7149ecdc-f044-4a02-8e84-8949f476e157",
+    "stop_reason": "tool_use",
+    "structured_output": {
+      "derivacion": "Reactivo P8_3_1 (sección VIII, pregunta 8.3 inciso 1 del cuestionario ENCIG 2021: '¿Un servidor público o empleado de gobierno intentó apropiarse o le solicitó de forma directa algún beneficio (dinero, regalos o favores) que usted pudiera otorgarle?'), códigos válidos 1=Sí, 2=No, 9=No sabe/no responde según estructura-encig2021.txt (cons. 227). Ponderador FAC_P18 (factor de expansión para población de 18 años y más). weighted_distribution sobre analysis.tsv (39,930 filas, sha256 186d69...): Sí=1 → n=2,595, suma ponderada 3,671,036; No=2 → n=37,168, suma ponderada 47,446,757; 9 → n=167, suma ponderada 184,217 (excluido por definición del universo). Proporción = 3,671,036 / (3,671,036 + 47,446,757) = 3,671,036 / 51,117,793 = 0.07182 → 7.18 %.",
+      "estado": "PUNTO",
+      "fuente_documental": [
+        "analysis.tsv",
+        "estructura-encig2021.txt",
+        "cuestionario-encig2021.txt"
+      ],
+      "nota": "Mismo reactivo, ola, universo, evento y ponderador que la tarjeta; no se usó conocimiento externo ni el contexto contemporáneo (irrelevante para la derivación). El universo es la tabla de sección VIII con respuesta válida Sí/No a P8_3_1 (código 9 excluido del denominador). Si se incluyera el código 9 en el denominador la cifra sería 7.16 %.",
+      "punto_porcentaje": 7.18,
+      "sustitucion_semantica": false
+    },
+    "subagent_stats": {
+      "by_type": {},
+      "completed": 0,
+      "failed": 0,
+      "killed": {
+        "parent": 0,
+        "system": 0,
+        "user": 0
+      },
+      "max_depth": 0,
+      "refused": {
+        "budget": 0,
+        "concurrency_limit": 0,
+        "depth_limit": 0
+      },
+      "requested": {
+        "background": 0,
+        "foreground": 0,
+        "unset": 0
+      },
+      "spawned": 0,
+      "spawned_by_subagents": 0,
+      "started_in_background": 0
+    },
+    "subtype": "success",
+    "terminal_reason": "completed",
+    "time_to_request_ms": 34,
+    "total_cost_usd": 1.3481075,
+    "ttft_ms": 2792,
+    "ttft_stream_ms": 1756,
+    "type": "result",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 117267,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 117267,
+      "cache_read_input_tokens": 118543,
+      "inference_geo": "not_available",
+      "input_tokens": 4,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 560,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 560,
+          "cache_read_input_tokens": 117625,
+          "input_tokens": 2,
+          "output_tokens": 794,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 977,
+      "output_tokens_details": {
+        "thinking_tokens": 121
+      },
+      "server_tool_use": {
+        "web_fetch_requests": 0,
+        "web_search_requests": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "uuid": "28f843de-3cc0-4a86-9300-4ba1d7656371"
+  },
+  "timestamp_utc": "2026-09-15T01:00:46.333690+00:00",
+  "total_cost_usd": 1.3481075
+}

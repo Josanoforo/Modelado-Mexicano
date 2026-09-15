@@ -1,6 +1,6 @@
 {
   "acto": "GEN2-F5-DOCUMENTAL-EJECUCION",
-  "consumidas_conservadoras": 2,
+  "consumidas_conservadoras": 130,
   "eventos": [
     {
       "cargo": 2,
@@ -10,7 +10,394 @@
       "num_turns_reportado": 3,
       "timestamp_cierre_utc": "2026-09-14T18:34:24.828156+00:00",
       "timestamp_reserva_utc": "2026-09-14T18:34:09.243429+00:00"
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "SONDA_TRANSPORTE",
+      "estado": "CERRADA",
+      "identidad": "63ae53fadd993a52dbf8e32c197d97dc29dabfefbdbefe6cc762f5c38cdc2bd2",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:00:06.569190+00:00",
+      "timestamp_reserva_utc": "2026-09-15T00:59:53.378768+00:00",
+      "total_cost_usd": 1.3550245
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "089f4e21d49ca67a1b55b4e6f5a934870d525cc93d57ed04e743ae59b9c47029",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:00:46.333454+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:00:31.967304+00:00",
+      "total_cost_usd": 1.3481075
+    },
+    {
+      "cargo": 4,
+      "cargo_real_turnos": 4,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "066d2dcdcf595fc34c7413d9b4b3ac6a1a768dce82d8d1a3a9a73f98d6a44407",
+      "num_turns_reportado": null,
+      "timestamp_cierre_utc": "2026-09-15T01:01:06.121312+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:00:46.334389+00:00",
+      "total_cost_usd": null
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "066d2dcdcf595fc34c7413d9b4b3ac6a1a768dce82d8d1a3a9a73f98d6a44407",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:01:22.750008+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:01:06.121578+00:00",
+      "total_cost_usd": 1.811581
+    },
+    {
+      "cargo": 4,
+      "cargo_real_turnos": 4,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "58fe511ad953fc29d2841f33693d9e8253e85e1cb8c6bdc8699f26e828834216",
+      "num_turns_reportado": 4,
+      "timestamp_cierre_utc": "2026-09-15T01:01:42.221962+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:01:22.750632+00:00",
+      "total_cost_usd": 0.317965
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "32c46d3ba7a0ca57018fe4e788ee40dc44d5b1c9ba4d1eb98e59f6635754e2d6",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:01:59.620713+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:01:42.222542+00:00",
+      "total_cost_usd": 0.31507150000000006
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "a5de658fb671eba3ee58f710f52960dc8e6c4d2b76cbe1856d3717ac671dd395",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:02:13.894975+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:01:59.621494+00:00",
+      "total_cost_usd": 0.23958100000000002
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "13f0f79f3cf4c39a335824066b673d1a94b994d517f9dfeeaaf2ba5a8e093a3a",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:02:28.524923+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:02:13.895751+00:00",
+      "total_cost_usd": 0.239836
+    },
+    {
+      "cargo": 8,
+      "cargo_real_turnos": 8,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "dade485b04171954b70856ea9e6208cb8fe597e4994b04185ad62efc3b91b6ca",
+      "num_turns_reportado": 8,
+      "timestamp_cierre_utc": "2026-09-15T01:02:54.212109+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:02:28.525448+00:00",
+      "total_cost_usd": 0.648201
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "720df865bc64b3643dfa126a71a24f44ccb969b1f7168d1d4dca129a59190859",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:03:09.198827+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:02:54.212907+00:00",
+      "total_cost_usd": 0.239196
+    },
+    {
+      "cargo": 6,
+      "cargo_real_turnos": 6,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "fb14f39afe768fc97fe8b735e8239f9124ef00fe10efc1249377013590649307",
+      "num_turns_reportado": 6,
+      "timestamp_cierre_utc": "2026-09-15T01:03:33.984253+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:03:09.199531+00:00",
+      "total_cost_usd": 0.1690335
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "09578c1eaddfd749660788ee139abf8e6d190bed5acf19af5be47cbb345ec666",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:03:50.262636+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:03:33.985051+00:00",
+      "total_cost_usd": 0.074041
+    },
+    {
+      "cargo": 4,
+      "cargo_real_turnos": 4,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "8a995d4944fa8064334197beb722506a5f5c1f82b6d45f35cf950bec6dfeb783",
+      "num_turns_reportado": 4,
+      "timestamp_cierre_utc": "2026-09-15T01:04:10.312500+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:03:50.263282+00:00",
+      "total_cost_usd": 0.091186
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "7f1fc2ec11739a6b0313755829de75c591172a427fa981fb2c9deb76c0482e9d",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:04:27.307311+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:04:10.313183+00:00",
+      "total_cost_usd": 0.315527
+    },
+    {
+      "cargo": 4,
+      "cargo_real_turnos": 4,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "138ef89e741721c624d96e01b3d2f591bc0db353748170a1e08ce61073707240",
+      "num_turns_reportado": 4,
+      "timestamp_cierre_utc": "2026-09-15T01:04:46.437949+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:04:27.308428+00:00",
+      "total_cost_usd": 0.130407
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "f8d5307aba33b4bea51783a0aad9d21bab8958c9f62cba45e1c8ca4fba4a0e8b",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:05:01.321345+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:04:46.438784+00:00",
+      "total_cost_usd": 0.240146
+    },
+    {
+      "cargo": 4,
+      "cargo_real_turnos": 4,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "36355136f067294048b38f98cc8546332f779629b726c91418a55a4e5649260a",
+      "num_turns_reportado": 4,
+      "timestamp_cierre_utc": "2026-09-15T01:05:22.866753+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:05:01.322039+00:00",
+      "total_cost_usd": 0.13514700000000002
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "166adc4b0e05a7dfe6295387ff289c1cf8519785de648ad3aa381a2b5a7a8f67",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:05:38.106095+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:05:22.867400+00:00",
+      "total_cost_usd": 0.23983100000000002
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "fff3731d95ac1db450a03a5737c7749cb16152628915d4769cb59153f938a6aa",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:05:54.196664+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:05:38.107092+00:00",
+      "total_cost_usd": 0.24045100000000003
+    },
+    {
+      "cargo": 5,
+      "cargo_real_turnos": 5,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "48fa45207d109bffd3bb58eb34206f114bbd8a9b9c10833718fc65b88f2d9846",
+      "num_turns_reportado": 5,
+      "timestamp_cierre_utc": "2026-09-15T01:06:18.873010+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:05:54.197243+00:00",
+      "total_cost_usd": 0.100206
+    },
+    {
+      "cargo": 4,
+      "cargo_real_turnos": 4,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "c6a751e852876d8cc4abcb85a1e664d4678c9dcc0c604e3c2dd65a6335165508",
+      "num_turns_reportado": 4,
+      "timestamp_cierre_utc": "2026-09-15T01:06:39.766225+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:06:18.873611+00:00",
+      "total_cost_usd": 0.083111
+    },
+    {
+      "cargo": 7,
+      "cargo_real_turnos": 7,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "9609e783ee9e986a1d26a4f6a52b049e0de0142789520f9c71d3200b24a8d5de",
+      "num_turns_reportado": 7,
+      "timestamp_cierre_utc": "2026-09-15T01:07:07.052613+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:06:39.767023+00:00",
+      "total_cost_usd": 0.1781725
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "a50823194a74d7e9b8e021828d680587080ef643892b58b4fd9c9cb6b497a531",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:07:25.225881+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:07:07.053498+00:00",
+      "total_cost_usd": 0.316112
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "f4c57ec13b336d77d29baa72d1e225a2889affabab0f9a11cb5d49aa53b283f0",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:07:40.390968+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:07:25.226619+00:00",
+      "total_cost_usd": 0.311482
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "843544d97c097d6667fd869c1c525260672ec4979926278795bfac70e6774fa0",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:28:23.588397+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:28:05.615544+00:00",
+      "total_cost_usd": 0.314227
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "4964576ddd5c13c001439ec6b8059cce477abb51c166cb161ec096aa26c1b588",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:28:39.959560+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:28:23.589009+00:00",
+      "total_cost_usd": 0.315452
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "fc4560d5d4641f6023def3689e20b9bf78ce62ccac5df208ca652c36652f3feb",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:28:58.375636+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:28:39.960225+00:00",
+      "total_cost_usd": 0.08333099999999999
+    },
+    {
+      "cargo": 4,
+      "cargo_real_turnos": 4,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "3a447f9f5b13cb4a3aa187f08a21b93535b64d8b58f854ae3dc81a0efdb59b80",
+      "num_turns_reportado": 4,
+      "timestamp_cierre_utc": "2026-09-15T01:29:15.258059+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:28:58.376142+00:00",
+      "total_cost_usd": 0.125442
+    },
+    {
+      "cargo": 4,
+      "cargo_real_turnos": 4,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "33e748ae41e10435cab621fb81cea2a1961b4c5a5ed74efe888e0abad0ae3990",
+      "num_turns_reportado": 4,
+      "timestamp_cierre_utc": "2026-09-15T01:29:31.343745+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:29:15.260061+00:00",
+      "total_cost_usd": 0.075596
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "aa858e00ea4e5af6085d8b4bbeea1323201edc7eee5796546f6fbb308d6f94c8",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:29:50.850084+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:29:31.344702+00:00",
+      "total_cost_usd": 0.128332
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "909bf4a3b43ab0493fb32210d6566870f0520c6fa4aa1b5117eb5ecd4a363107",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:30:07.418981+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:29:50.850760+00:00",
+      "total_cost_usd": 0.24241600000000002
+    },
+    {
+      "cargo": 3,
+      "cargo_real_turnos": 3,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "43b6de8522e7d8c7e15718e454c7ac1a7f451c5938e68d2f01957cc91265d41e",
+      "num_turns_reportado": 3,
+      "timestamp_cierre_utc": "2026-09-15T01:30:23.717301+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:30:07.419815+00:00",
+      "total_cost_usd": 0.3106335
+    },
+    {
+      "cargo": 6,
+      "cargo_real_turnos": 6,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "ce56f9bd24538da8906ed527c069506dc984f9e8ea0268dd7d9d7c10290e49c3",
+      "num_turns_reportado": 6,
+      "timestamp_cierre_utc": "2026-09-15T01:30:50.439797+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:30:23.718362+00:00",
+      "total_cost_usd": 0.1764775
+    },
+    {
+      "cargo": 4,
+      "cargo_real_turnos": 4,
+      "clase": "POSICION",
+      "estado": "CERRADA",
+      "identidad": "bf9a4ee096175e6e931a580211150e4c2877c76578a8184048bbe33791e1a714",
+      "num_turns_reportado": 4,
+      "timestamp_cierre_utc": "2026-09-15T01:31:09.899943+00:00",
+      "timestamp_reserva_utc": "2026-09-15T01:30:50.440679+00:00",
+      "total_cost_usd": 0.086111
     }
   ],
-  "techo": 96
+  "techo": 288,
+  "techo_historia": [
+    {
+      "techo": 96,
+      "unidad": "solicitudes facturables (spec 4.4: 32 x 3)",
+      "vigente_hasta": "2026-09-15T01:07Z, PARO por TECHO-SOLICITUDES en 94/96 (22/32 posiciones)"
+    },
+    {
+      "desde": "ACTO GEN2-F5-DOCUMENTAL-RUN-2, continuacion",
+      "firma_de_mesa_verbatim": "termina el encargo entonces, ese techo es un estimado",
+      "techo": 288,
+      "unidad": "turnos reales (v1_1 c): 32 x 3 x 3"
+    }
+  ]
 }
