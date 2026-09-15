@@ -1,6 +1,6 @@
 # Informe de delta explicito
 
-Entrada: `forense/relevo-usos/relevo-usos-pares-v1_0.yaml` (`905df1f6e4a95acc56a1426ee2cb14812d09d32123b45d4fdacbec9cb6738507`).
+Entrada: `forense/relevo-usos/relevo-usos-pares-v1_0.yaml` (`d55b838e61dbdacdac3afe74858c492f00c65305837a78d08da5e23b4fcc3b37`).
 
 Pares examinados: **27** · comparables: **24** · incompatibles: **0** · comparabilidad no determinable: **3**.
 Deltas calculados: **24** · materiales: **4** · materialidad no determinable: **3**.

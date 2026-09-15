@@ -1,0 +1,23 @@
+[
+  {
+    "id": "AHO-DESC-SIN-SEGURIDAD-01",
+    "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto",
+    "proposito": "consulta",
+    "contexto": {},
+    "uso": "DESCRIPTIVO"
+  },
+  {
+    "id": "AHO-DESC-CON-SEGURIDAD",
+    "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto",
+    "proposito": "consulta",
+    "contexto": {},
+    "uso": "DESCRIPTIVO"
+  },
+  {
+    "id": "AHO-DESC-NO-TRABAJA",
+    "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto",
+    "proposito": "consulta",
+    "contexto": {},
+    "uso": "DESCRIPTIVO"
+  }
+]

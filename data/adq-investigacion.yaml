@@ -112,6 +112,31 @@ necesidades:
       - consumidor: "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto"
         resultado_bloqueado_id: "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P"
         uso_requerido: "MEDICION-GEN2"
+    vinculos_alcance_menor:
+      - consumidor: "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto"
+        resultado_bloqueado_id: "RESULT-ENIF-AHO-A-P-CORTO-SIN-P"
+        uso_original: "MEDICION-GEN2"
+        uso_menor: "DESCRIPTIVO"
+        categoria: sin_colchon_un_mes
+        evento: "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros"
+        transformacion: "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado"
+        limites: "no es duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual"
+      - consumidor: "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto"
+        resultado_bloqueado_id: "RESULT-ENIF-AHO-A-P-CORTO-CON-P"
+        uso_original: "MEDICION-GEN2"
+        uso_menor: "DESCRIPTIVO"
+        categoria: sin_colchon_un_mes
+        evento: "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros"
+        transformacion: "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado"
+        limites: "no es duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual"
+      - consumidor: "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto"
+        resultado_bloqueado_id: "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P"
+        uso_original: "MEDICION-GEN2"
+        uso_menor: "DESCRIPTIVO"
+        categoria: sin_colchon_un_mes
+        evento: "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros"
+        transformacion: "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado"
+        limites: "no es duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual"
     evidencias_guardia:
       - "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P"
       - "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md"
@@ -235,6 +260,34 @@ necesidades:
     investigacion_previa: "búsqueda académica agotada; #735 consumido como panel descriptivo de entradas/salidas; vía comercial diferida por D18"
     frontera_previa: "reabrir sólo ante candidato concreto o respuesta humana"
     siguiente_accion: "conservar #735 como alcance menor sin llamarlo ledger; reabrir sólo ante instrumento con turno y pagos"
+
+  - id: NC-0202
+    version_pregunta: "2026-09-15-ennvih-diseno-publico-v1"
+    consumidor: "CORR-0008 / ENNViH olas 2 y 3"
+    uso: "incertidumbre de diseño; no cambia puntos"
+    prioridad_consumidor: 6
+    bloqueo_material: 2
+    lista: true
+    estado_ruteo: LISTA_SONDA
+    proxima_revision: "2026-09-15"
+    asignacion: servicio-gen2-38
+    modos: [LATERAL, HERMANAS]
+    poblacion: "muestras transversal y longitudinal ENNViH/MxFLS"
+    unidad: "persona u hogar según el estimando sellado"
+    periodo: "olas 2 (2005-06) y 3 (2009-12)"
+    variables: "identificador público de UPM/estrato o réplicas/pesos para varianza; referencia Berumen (2007)"
+    evidencia_disponible: "guías oficiales inglesas de olas 2 y 3 adquiridas; distinguen panel/transversal y remiten a Berumen (2007), pero no aportan diseño ejecutable"
+    brecha: "faltan réplicas o identificación pública de UPM/estrato para los IC afectados"
+    suficiencia_actual: {identidad: PARCIAL, conceptual: ACREDITADA, poblacional: ACREDITADA, seleccion_no_respuesta: PARCIAL, unidad: ACREDITADA, temporalidad: ACREDITADA, diseno: NO_ACREDITADA, identificacion: NO_APLICA, uso_habilitado: INCOMPATIBLE, pregunta_original: ABIERTA}
+    investigacion_previa: "ruta general antigua y RAND 404; guías oficiales por ola 2/3 verificadas; ICPSR 118971 sólo candidata indexada, lectura directa 403"
+    frontera_previa: "documentación del depósito ICPSR 118971 y referencia Berumen (2007); solicitud humana permanece en NC-0156"
+    siguiente_accion: "comprobar documentación pública de ICPSR 118971 y Berumen (2007), sin repetir las guías ni automatizar contacto"
+    etapa_faltante: FUENTE_O_VARIABLE
+    responsable: servicio-gen2-38
+    naturaleza_necesidad: CIENTIFICA_O_DE_ADOPCION
+    contrato_operativo: COMPLETO_CIENTIFICO_EXPLICITO
+    contrato_cientifico_completo: true
+    aplica_contrato_cientifico: true
 
 # Los vínculos siguientes son deliberadamente exactos. Una coincidencia textual
 # de `RES-xxxx` dentro de un RESULT no constituye compatibilidad.
