@@ -5,7 +5,7 @@
 **Modelo:** Opus
 **Rama:** `acto/gen2-lote-medicion-pendiente-1`
 **Compuerta:** ninguna declarada (`GATED a` / `COMPUERTA:` ausentes). «corre detrás del RUN» se lee como carril: `ACTO GEN2-F5-DOCUMENTAL-RUN` (PR #756) `MERGED` 2026-09-14T19:11Z, `## CONSUMIDO` en su encargo archivado — la secuencia se cumple.
-**Estado:** VIVO
+**Estado:** CONSUMIDO (PR #766)
 
 ## Texto del encargo, verbatim tal como se lanzó
 
@@ -27,3 +27,7 @@ P3/P4 (opcionales) = NC-0125 + NC-0126: reconciliar la cobertura ENIF (fase 1 de
 | Reserva: `registro --verifica --escribe` pisó `fuente_replay` en 163 filas de 4 corridas ajenas (`CALC-0001`, `CALC-0001-v2`, `CALC-0002`, `CALC-MOTRAL2015-VALORACION-SS-0001`): `VERIFY-EN-ESTA-SESION` → `VERIFY-ESTRUCTURADO · ACTO GEN2-VERIFICACION-CAJA-2` (recibo de #761 ya en `main`) | Reserva (no es pieza no corrida): refresco hacia la fuente más autoritativa, cero transiciones de veredicto, `usos.tsv` idéntico | ninguno | — |
 
 A.8 / ADR-340 (`tools/ya_medido.py`, `TZ=UTC`): `familia.corresidencia.adulto_familiar_actual` — `MEDIDA-EN: milpa/tramite-ola5-propuesta-v0.yaml:192` (SELLADA-SIN-CARGA, p=0.057531; **sucesor GEN2 con diseño: `CALC-EDER-0002`**, sin cita en `milpa/`, adopción de mesa).
+
+## CONSUMIDO
+
+Ejecutado en **PR #766** (`acto/gen2-lote-medicion-pendiente-1`, 14/sep/2026, CAJA Ubuntu/WSL2 con corpus compartido, Opus). Commits: `01dab9a` (0-bis) · `e99aa21` (COMMIT-1: tres specs + tres CALC congelados) · `059c6ae`/`6868630`/`84f38fc` (COMMIT-2 a/b/c: `CALC-EDER-0002`, `CALC-ENVIPE-U4-2012`, `CALC-ENIF-0003` sellados) · `eedceca`+`4481986` (COMMIT-3 de P2: spec v1.1 + `CALC-ENVIPE-U4-2012-v1_1`) · `d21840e` (registro) · `351b5fe` (cascada: `ADR-504`→`ADR-505` tras fusionar `main`, L0, rótulo, `NC-0184`/`NC-0099`/`NC-0125` CERRADAS, `NC-0189`, `FP-375`, hallazgo, nota de cierre, `## NO-CORRIDO / RESERVAS`) · `40b9df9` (merge de `main`, PR #762). El merge es de mesa.
