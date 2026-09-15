@@ -303,12 +303,12 @@ contrato que gobernó la corrida (declarado en el encargo archivado).
   `ABSTENCION`, 0 errores de identidad); 1 reintento técnico por
   `error_max_budget_usd` (caché fría); parada por `TECHO-SOLICITUDES` en la
   posición 23 con el ledger en **94/96**. Los 10 restantes: `NO-CORRIDA`
-  (`NC-0189`). Veredicto y revisión de trazabilidad en
+  (`NC-0190`). Veredicto y revisión de trazabilidad en
   `forense/notas/2026-09-14-GEN2-F5-DOCUMENTAL-RUN-2-cierre.md`.
 - **Hueco de escala, reportado y no enmendado:** el techo 96 está
   dimensionado a una solicitud por llamada lógica (§4.4 de la spec) y (c) carga
   turnos reales (3–8 por invocación); con esa unidad 96 cubre ~20 posiciones.
-  Decisión de mesa (`NC-0189`).
+  Decisión de mesa (`NC-0190`).
 - **Estado tras esta enmienda: FIRMADA; PLAN CONGELADO v1.1; TRANSPORTE
   VALIDADO; 94/96; 22/32 CORRIDAS, 10 NO-CORRIDAS POR TECHO.**
 

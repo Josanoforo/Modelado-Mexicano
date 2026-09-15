@@ -141,7 +141,7 @@ identidades idénticas a v1.1 (sólo cambia el hash del runner por la
 constante), y el runner reanuda las 22 capturas por identidad y corre sólo
 las 10 faltantes. Terminó en 130/288 sin un solo reintento. La firma queda
 archivada en el encargo (`## Firma de mesa en sesión`) y en el ledger
-(`techo_historia`). `NC-0189` se abre y se cierra en este mismo acto, para
+(`techo_historia`). `NC-0190` se abre y se cierra en este mismo acto, para
 que el hueco quede registrado con su resolución.
 
 Otras dos observaciones del transporte, ambas dentro del contrato:
@@ -168,7 +168,7 @@ Otras dos observaciones del transporte, ambas dentro del contrato:
   las 32 posiciones corrieron.
 - `NC-0178` sin tocar: `--verify` volvió a fallar por el mismo único campo;
   fuera de perímetro por letra del contrato v1.1 (e).
-- `NC-0189` (nueva, abierta y `CERRADA` en este acto): las 10 posiciones que
+- `NC-0190` (nueva, abierta y `CERRADA` en este acto): las 10 posiciones que
   el techo de 96 dejó sin correr; hueco de escala del contrato resuelto por la
   firma de mesa en sesión (techo re-dimensionado a 288 turnos).
 
