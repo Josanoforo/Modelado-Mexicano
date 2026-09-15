@@ -399,6 +399,9 @@ fila, no se asume cubierto.
    publica el wrapper es otra publicación y nunca sustituye ésta. Si el push
    del trabajo falla, se conservan los resultados por objeto y se declara
    `resultado_sustantivo=fallo` con `publicacion_trabajo=fallida`.
+   Si una investigación deja una ruta pública concreta sin examinar, su
+   `estado` es `continua` y vuelve al siguiente ciclo; no se puede rotular
+   `sin_hallazgo_acotado` para mandarla a una espera calendaria general.
 
 El runner calcula la selección antes de invocar al ejecutor. Si termina
 correctamente con cero elegidos, genera este cierre de manera determinista con

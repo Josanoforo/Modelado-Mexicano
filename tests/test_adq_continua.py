@@ -121,6 +121,14 @@ def prueba_presupuesto_diario_es_agregado_e_idempotente():
         else:
             paso = False
         afirma(paso, "una segunda activación excedió el techo agregado diario")
+        comprobacion = raiz / "forense/adq-log/estado/comprobacion.json"
+        comprobacion.parent.mkdir(parents=True)
+        comprobacion.write_text(json.dumps({"presupuesto": {"obsoleto": True}}),
+                                 encoding="utf-8")
+        ciclo = I.registra_ciclo(cfg, fecha, "RUN-1", raiz)
+        afirma(ciclo["presupuesto"]["disponible"] == {
+            "necesidades": 1, "objetos": 2, "segundos_ejecutor": 0},
+            "el cierre persistió el presupuesto anterior a la reserva")
 
 
 def main():

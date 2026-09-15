@@ -1152,7 +1152,10 @@ def registra_ciclo(cfg: dict, fecha: dt.date, run_id: str,
         "comprobacion_runtime", "forense/adq-log/estado/comprobacion.json")
     doc = _lee_json(path)
     doc.update({"ultima_corrida": fecha.isoformat(),
-                "ultimo_run_id": run_id, "registrada": _ahora().isoformat()})
+                "ultimo_run_id": run_id, "registrada": _ahora().isoformat(),
+                # La comprobación previa no conoce todavía la reserva del hijo.
+                # Persistir una foto nueva evita anunciar cupo ya consumido.
+                "presupuesto": presupuesto_diario(cfg, fecha, raiz)})
     _json_atomico(path, doc)
     return doc
 

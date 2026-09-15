@@ -524,7 +524,7 @@ ${RESUMEN}" >>"$LOGFILE" 2>&1
 # la lee de data/manifiesto.yaml y de la cola, no de aquí.
 huella_adq() {
   local invocado="$1" motivo="$2" exit_cod="$3"
-  local hhmm t1 duracion head_despues commits_nuevos ramas_despues ramas_nuevas archivos_modificados linea publicacion contenido fin_iso cli_token
+  local hhmm t1 duracion head_despues commits_nuevos ramas_despues ramas_nuevas archivos_modificados linea publicacion contenido fin_iso cli_token presupuesto_actual presupuesto_reanuda codigo_presupuesto
   hhmm="$(date +%H:%M)"
   t1="$(date +%s)"
   duracion=$((t1 - T0))
@@ -571,8 +571,25 @@ huella_adq() {
 
   fin_iso="$(date --iso-8601=seconds)"
   cli_token="${CLI_VERSION// /_}"
+  # La reserva se escribe antes de arrancar el hijo. Releerla al cerrar evita
+  # publicar como disponible el cupo que esta misma corrida ya consumió.
+  set +e
+  presupuesto_actual="$(python3 tools/adq_investigacion.py --presupuesto --corte "$FECHA" 2>>"$LOGFILE")"
+  codigo_presupuesto=$?
+  set -e
+  if [ "$codigo_presupuesto" -eq 0 ] && printf '%s' "$presupuesto_actual" | python3 -m json.tool >/dev/null 2>&1; then
+    PRESUPUESTO_NECESIDADES="$(printf '%s' "$presupuesto_actual" | python3 -c 'import json,sys; print(json.load(sys.stdin)["disponible"]["necesidades"])')"
+    PRESUPUESTO_OBJETOS="$(printf '%s' "$presupuesto_actual" | python3 -c 'import json,sys; print(json.load(sys.stdin)["disponible"]["objetos"])')"
+    PRESUPUESTO_SEGUNDOS="$(printf '%s' "$presupuesto_actual" | python3 -c 'import json,sys; print(json.load(sys.stdin)["disponible"]["segundos_ejecutor"])')"
+  else
+    log "DEGRADACION-PRESUPUESTO: no se pudo releer el remanente al cerrar; conserva la última lectura conocida"
+  fi
+  presupuesto_reanuda="-"
+  if [ "$PRESUPUESTO_NECESIDADES" -le 0 ] || [ "$PRESUPUESTO_OBJETOS" -le 0 ] || [ "$PRESUPUESTO_SEGUNDOS" -le 0 ]; then
+    presupuesto_reanuda="$(date -d "$FECHA +1 day" +%F)"
+  fi
   MOTIVO_CIERRE="$motivo"
-  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} launcher_sha=${ADQ_DEPLOY_SHA:-legacy} runner_version=${RUNNER_VERSION} ejecutor=${EJECUTOR} cli_version=${cli_token} modelo_configurado=${MODELO_CONFIGURADO} modelo_efectivo=${MODELO_EFECTIVO} resultado=${RESULTADO_SUSTANTIVO} resultado_trabajo=${RESULTADO_TRABAJO} salud_trabajo=${SALUD_TRABAJO} demanda_atendible=${DEMANDA_ATENDIBLE} necesidades_atendidas=${NECESIDADES_ATENDIDAS} objetos_nuevos=${OBJETOS_NUEVOS} bytes_nuevos=${BYTES_NUEVOS} publicacion_trabajo=${PUBLICACION_TRABAJO} seleccion_elegidos=${SELECCION_ELEGIDOS} seleccion_excluidos=${SELECCION_EXCLUIDOS} investigacion_elegidas=${INVESTIGACION_ELEGIDAS} investigacion_excluidas=${INVESTIGACION_EXCLUIDAS} residuales_total=${RESIDUALES_TOTAL} residuales_cubiertos=${RESIDUALES_CUBIERTOS} residuales_accionables=${RESIDUALES_ACCIONABLES} residuales_acceso=${RESIDUALES_ACCESO} residuales_sin_via=${RESIDUALES_SIN_VIA} residuales_reintento=${RESIDUALES_REINTENTO} residuales_decision=${RESIDUALES_DECISION} presupuesto_disponible=${PRESUPUESTO_NECESIDADES}/${PRESUPUESTO_OBJETOS}/${PRESUPUESTO_SEGUNDOS}s inicio=${INICIO_ISO} fin=${fin_iso} publicacion=${publicacion} disparador=${DISPARADOR} causa=${CAUSA_DISPARO} run_id=${RUN_ID}"
+  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} launcher_sha=${ADQ_DEPLOY_SHA:-legacy} runner_version=${RUNNER_VERSION} ejecutor=${EJECUTOR} cli_version=${cli_token} modelo_configurado=${MODELO_CONFIGURADO} modelo_efectivo=${MODELO_EFECTIVO} resultado=${RESULTADO_SUSTANTIVO} resultado_trabajo=${RESULTADO_TRABAJO} salud_trabajo=${SALUD_TRABAJO} demanda_atendible=${DEMANDA_ATENDIBLE} necesidades_atendidas=${NECESIDADES_ATENDIDAS} objetos_nuevos=${OBJETOS_NUEVOS} bytes_nuevos=${BYTES_NUEVOS} publicacion_trabajo=${PUBLICACION_TRABAJO} seleccion_elegidos=${SELECCION_ELEGIDOS} seleccion_excluidos=${SELECCION_EXCLUIDOS} investigacion_elegidas=${INVESTIGACION_ELEGIDAS} investigacion_excluidas=${INVESTIGACION_EXCLUIDAS} residuales_total=${RESIDUALES_TOTAL} residuales_cubiertos=${RESIDUALES_CUBIERTOS} residuales_accionables=${RESIDUALES_ACCIONABLES} residuales_acceso=${RESIDUALES_ACCESO} residuales_sin_via=${RESIDUALES_SIN_VIA} residuales_reintento=${RESIDUALES_REINTENTO} residuales_decision=${RESIDUALES_DECISION} presupuesto_disponible=${PRESUPUESTO_NECESIDADES}/${PRESUPUESTO_OBJETOS}/${PRESUPUESTO_SEGUNDOS}s presupuesto_reanuda=${presupuesto_reanuda} inicio=${INICIO_ISO} fin=${fin_iso} publicacion=${publicacion} disparador=${DISPARADOR} causa=${CAUSA_DISPARO} run_id=${RUN_ID}"
   log "${linea}"
   CIERRE_ESCRITO=1
   printf -v contenido '[ADQ-SELECCION] run_id=%s %s\n[ADQ-INVESTIGACION] run_id=%s %s\n[ADQ-RESULTADO] run_id=%s %s\n%s' \
@@ -1024,7 +1041,7 @@ Esta es la selección de adquisición proyectada inmediatamente antes de tu arra
 ${SELECCION_JSON}
 Esta es la selección de investigación; ejecuta exactamente una investigación por elegido, en orden, sin repetir las exclusiones:
 ${INVESTIGACION_JSON}
-Una candidata pública nueva y pertinente puede adquirirla en esta misma corrida aunque no estuviera en la selección inicial: crea el residual con adq_residual.py, autoridad AUTORIZADA-POR-ALCANCE:Jonas/2026-09-12/GEN2-38/<objeto>, y cuenta ese objeto dentro del máximo total. No deriva autorización para compra, login, contacto ni adopción científica. Persiste el progreso de cada necesidad con \`python3 tools/adq_investigacion.py --actualiza-desde-resultados <json-temporal>\` antes del commit; un timeout conserva cursor y frontera.
+Una candidata pública nueva y pertinente puede adquirirla en esta misma corrida aunque no estuviera en la selección inicial: crea el residual con adq_residual.py, autoridad AUTORIZADA-POR-ALCANCE:Jonas/2026-09-12/GEN2-38/<objeto>, y cuenta ese objeto dentro del máximo total. No deriva autorización para compra, login, contacto ni adopción científica. Persiste el progreso de cada necesidad con \`python3 tools/adq_investigacion.py --actualiza-desde-resultados <json-temporal>\` antes del commit; un timeout conserva cursor y frontera. Si \`frontera_no_examinada\` o \`cursor_continuacion\` nombra una ruta pública concreta todavía plausible, \`estado\` DEBE ser \`continua\`; \`sin_hallazgo_acotado\` sólo aplica cuando no queda ninguna ruta pública plausible y debe nombrar el evento externo que reactivaría la búsqueda.
 Tu último mensaje debe cumplir tools/adq-resultado.schema.json. Entrega los objetos inicialmente elegidos primero y después sólo candidatas de esta investigación que hayas adquirido o intentado. Cada evidencia debe ser una ruta local existente; toda adquisición debe acreditar archivos e ids pertinentes de data/manifiesto.yaml; todo intento debe conservar vía y resultado verificable. Evalúa por separado identidad, concepto, población, selección/no respuesta, unidad, temporalidad, diseño e identificación; no uses una nota agregada. Con cualquier trabajo, la publicación exige refs/heads/<rama> y SHA remoto exacto: el recibo posterior del wrapper no la sustituye. Si falla, conserva resultados, declara resultado_sustantivo=fallo y publicacion_trabajo=fallida."
 
 # Reserva el consumo agregado antes de iniciar el único hijo.  La reserva es
