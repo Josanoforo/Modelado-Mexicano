@@ -14,8 +14,8 @@ Acompaña a `canon/informe-programa-v1_0.md`.
 universo** (A.10) y **el comando que la produce** (A.13: todo negativo declara
 cuántos archivos examinó el comando que lo produjo).
 
-> **Estampa global.** Derivado contra `origin/main = 5973f12` (merge de
-> `PR #785`), NUBE, `corpus=NO(examinados=0)`, sin red, sin microdato, sin
+> **Estampa global.** Derivado contra `origin/main = eba9fd2` (merge de
+> `PR #788`), NUBE, `corpus=NO(examinados=0)`, sin red, sin microdato, sin
 > llamadas a modelos. Todas las cifras del duelo se **copian** de notas y
 > artefactos sellados; ninguna se re-mide aquí. Las dos derivaciones propias
 > (§A.2 y §A.3) llevan control positivo.
@@ -33,15 +33,26 @@ N_corridas_requeridas=82
 N_corridas_selladas=72
 N_resultados_sellados=3797
 N_resultados_gen2_sellados=3255
-N_resultados_gen2_adoptados_activos=16
+N_resultados_gen2_adoptados_activos=18
 N_resultados_gen2_pendientes_adopcion=12
 N_resultados_gen2_vetados_por_decision=2
 resultados_con_validacion_independiente=199
 diferencias_materiales=0
-no_corrido_abiertas=60
+no_corrido_abiertas=68
 corredores_envueltos_legacy=18
 # derivado de 180 corridas · 4913 resultados · 207 usos
 ```
+
+**Re-sello por crecimiento del universo (A.10, corolario 1).** Estas cifras se
+derivaron primero contra `5973f12`. Al integrar `origin/main = eba9fd2`, tres se
+movieron por `PR #788` (`ACTO GEN2-RELEVO-USOS-1`) y **se re-derivaron, no se
+editaron a mano**: `adoptados_activos` **16 → 18**, `no_corrido_abiertas`
+**60 → 68** (67 de `main` + las 2 de este acto − `NC-0152`, que este acto cierra),
+y `dependencias_numericas_legacy_activas` **191 → 189**, la primera bajada de ese
+contador en el programa. Las demás no se movieron. **Ninguna cifra del duelo
+cambió:** los tres insumos sellados que §A.2–§A.4 citan están intactos entre las
+dos bases (`git diff --quiet 5973f12..eba9fd2 -- <ruta>` → INTACTO en los tres) y
+el comando de §A.2 reproduce su salida al dígito sobre el árbol fusionado.
 
 **Lectura, y su límite.** `diferencias_materiales=0` dice que ninguna corrida
 re-verificada difiere materialmente de su asiento; **no** dice que las 72 estén
@@ -284,7 +295,7 @@ contexto temático no convertible — que es la respuesta correcta, no un fallo.
 | `NC-0179` | las 4 celdas no construibles para `B` | requiere autorizar un `B` por crosswalk — fuera de la familia, decisión de mesa |
 | `FP-374` | decisión sobre el experimento de transferencia | ABIERTA. La mueve la lista nominal, no este documento |
 
-**Contexto:** `no_corrido_abiertas = 60` al fecharse esto.
+**Contexto:** `no_corrido_abiertas = 68` tras integrar `main` (ver §A.1).
 
 ---
 

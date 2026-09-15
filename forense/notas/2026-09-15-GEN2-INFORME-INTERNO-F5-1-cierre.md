@@ -20,7 +20,7 @@
 | **Secundaria** | éxito local en dos celdas con paquetes preparados | **HECHO.** §A.4, con la frontera «local, no generalización» y la razón por la que el control abstuvo correctamente |
 | **F6** | propuesta pendiente con su gate (lista nominal) | **HECHO.** §A.5: `FP-374` ABIERTA, 0 familias retenidas ejecutables, faltan 18/18, presupuesto **no** autorizado |
 | **Cierre** | reglas de decisión + módulo de auditoría contestado, incluida la pregunta v2.3 | **HECHO.** §5 (nueve reglas SI-ENTONCES) y §6 (módulo contestado; v2.3 en una línea al inicio: **cero**) |
-| **D-A** | «incorpora el sello cuando exista, **sin esperarlo**» | **NO EXISTE** — verificado con universo. Se entregó la tabla como derivación propia con procedencia declarada y re-sello previsto. `NC-0211` |
+| **D-A** | «incorpora el sello cuando exista, **sin esperarlo**» | **NO EXISTE** — verificado con universo. Se entregó la tabla como derivación propia con procedencia declarada y re-sello previsto. `NC-0218` |
 
 ## 1 · La cifra que el informe existe para no dejar circular sola
 
@@ -66,7 +66,7 @@ selladas. Sobre las **9 celdas comunes**: `B = 0.6750`, `M = 4.2232`,
 Declarado tres veces, en el informe, en el anexo y aquí: **esto no es el sello
 de D-A.** Cuando D-A selle, `§A.3` queda `VENCIDA EN ALCANCE` y se **re-sella
 contra el universo nuevo, nunca editando la tabla actual** (`A.10`, corolario 1).
-Fila `NC-0211`.
+Fila `NC-0218`.
 
 ## 3 · El hueco del índice, cobrado
 
@@ -93,11 +93,21 @@ ADR por existir y no mueve ningún contador.**
 |---|---:|---:|---|
 | `N_corridas_selladas` | 72 | 72 | este acto no sella corridas |
 | `N_resultados_gen2_sellados` | 3 255 | 3 255 | no emite RESULT |
-| `N_resultados_gen2_adoptados_activos` | 16 | 16 | cero adopciones |
-| `dependencias_numericas_legacy_activas` | 191 | 191 | no toca `milpa/` |
-| `no_corrido_abiertas` | 60 | 61 | `NC-0152` CERRADA · `NC-0211`/`NC-0212` nuevas |
-| ADR | 513 | 514 | `ADR-514`, re-derivado por `tools/cierre_acto.py` |
+| `N_resultados_gen2_adoptados_activos` | 18 | 18 | cero adopciones (16→18 lo movió `PR #788`, no este acto) |
+| `dependencias_numericas_legacy_activas` | 189 | 189 | no toca `milpa/` (191→189 lo movió `PR #788`) |
+| `no_corrido_abiertas` | 67 | 68 | `NC-0152` CERRADA · `NC-0218`/`NC-0219` nuevas |
+| ADR | 514 | 515 | `ADR-515`, renumerado de `ADR-514` al integrar `main` |
 | FP abiertas | 1 | 1 | `FP-374` intocada |
+
+**Re-derivado, no heredado.** Las cifras de «antes» son las de
+`origin/main = eba9fd2`, no las de la base original `5973f12`: al integrar
+`main`, `PR #788` (`ACTO GEN2-RELEVO-USOS-1`) había movido `adoptados` 16→18 y
+`legacy` 191→189 —la primera bajada de ese contador en el programa— y se tomó
+`NC-0211`..`NC-0217` y el `ADR-514`. Este acto renumeró lo suyo (`ADR-515`,
+`NC-0218`/`NC-0219`), re-corrió `corrida0 status` en vez de heredar números, y
+volvió a comprobar que **ninguna cifra del duelo cambia**: los tres insumos
+sellados de §A.2–§A.4 están intactos entre las dos bases y el comando de §A.2
+reproduce su salida al dígito sobre el árbol fusionado.
 
 **Contadores de medición movidos: cero.** Dicho en una línea, sin justificarlo,
 al inicio del módulo de auditoría del propio informe — que es donde la pregunta
@@ -144,7 +154,7 @@ sello ni corrida · `forense/firmas-pendientes.tsv` · `tools/` · `tests/` ·
 |---|---|---|---|
 | el índice no cubre «documento del programa» | `grep -c "documento del programa\|informe del programa\|lector externo" data/INFRAESTRUCTURA-v1_0.md` | 1 (866 líneas) | `0` |
 | `D-A` no existe | `git ls-remote --heads origin \| grep -icE "d-a\|informe"` · `ls forense/encargos/ \| grep -c "GEN2-D-A"` | 1 remoto · 336 encargos | `0` y `0` |
-| la *LECTURA ESTRATÉGICA F5 v1.1* no está en el árbol | `grep -rl "LECTURA ESTRAT" canon/ forense/` | 2 174 | `0` — documento de mesa; `NC-0212` |
+| la *LECTURA ESTRATÉGICA F5 v1.1* no está en el árbol | `grep -rl "LECTURA ESTRAT" canon/ forense/` | 2 174 | `0` — documento de mesa; `NC-0219` |
 
 Positivos verificados: `tools/corrida0.py status` y `tools/tablero_programa.py --json`
 corridos en este acto sobre 180 corridas · 4 913 resultados · 207 usos; el comando
@@ -167,7 +177,7 @@ tres lecturas que estaban circulando sin candado — la primaria no se cita sin 
 composición, la secundaria no se lee junto a la primaria, y B no se lee como
 tesis.
 
-**Falta:** el sello de `D-A` (`NC-0211`), los dos documentos de mesa
-(`NC-0212`), y —el bloqueo real del programa, no de este acto— la **lista nominal
+**Falta:** el sello de `D-A` (`NC-0218`), los dos documentos de mesa
+(`NC-0219`), y —el bloqueo real del programa, no de este acto— la **lista nominal
 de 6 + 12 familias reservadas** que `D4` pide y sin la cual `FP-374` no se mueve
 ni una línea.

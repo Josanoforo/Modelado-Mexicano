@@ -12,8 +12,10 @@ Documento del programa, escrito para un lector externo. 15 de septiembre de 2026
 > | **VERIFICAS ASÍ** | cada cifra del cuerpo tiene su fila en `canon/informe-programa-v1_0-ANEXO.md`, con universo (`A.10`) y comando; las dos derivaciones propias del anexo (§A.2, §A.3) llevan control positivo que reproduce cifras ya selladas; el módulo de auditoría de rigor extremo va contestado en §6, incluida la pregunta [NUEVO v2.3] |
 > | **NOMBRE ESTABLE** | **`informe-programa`** — cítalo así, **nunca por nombre de archivo** |
 
-> **Estampa de universo (A.10), global.** Derivado contra `origin/main = 5973f12`
-> (merge de `PR #785`, 15/sep/2026), en un acto de NUBE sin corpus montado
+> **Estampa de universo (A.10), global.** Derivado contra `origin/main = eba9fd2`
+> (merge de `PR #788`, 15/sep/2026) — **re-derivado** desde `5973f12`, la base
+> original, al integrar `main`: ver la nota de re-sello del anexo §A.1. En un
+> acto de NUBE sin corpus montado
 > (`tools/entorno.py`: `corpus=NO(examinados=0)`, `data_raw:NO`, red no ejecutada).
 > **Fuentes: solo registro derivado y notas selladas.** Este informe no abre
 > microdato, no hace llamadas a ningún modelo, no sella ninguna corrida y no

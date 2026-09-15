@@ -74,8 +74,8 @@ reserva. Precede a `## CONSUMIDO` y nunca va después.)
 
 | qué (verbatim del encargo) | por qué | impacto | sucesor |
 |---|---|---|---|
-| «incorpora el sello de D-A cuando exista, sin esperarlo» | `DIFERIDO-A: ACTO D-A` | El sello **no existe** (verificado con universo: `git ls-remote --heads origin` sobre 1 remoto → 0; `ls forense/encargos/` sobre 336 archivos → 0). `§A.3` del anexo entrega la tabla de 9 celdas comunes como **derivación propia con procedencia declarada y control positivo**, no como el sello. Ninguna cifra cambia cuando D-A selle; lo que cambia es la procedencia. **Ningún contador se mueve por esta fila.** | `ACTO D-A` (`D2`). Al sellar, `§A.3` queda `VENCIDA EN ALCANCE` y se **re-sella** contra el universo nuevo, nunca editando la tabla actual (`A.10` corolario 1). Fila `NC-0211` |
-| «su tabla ya está en la lectura v1.1 con procedencia» — la *LECTURA ESTRATÉGICA F5 v1.1* y el adversarial de Astra | `PARO-PREMISA` | Los dos documentos **no llegaron** y no están en el árbol (`grep -rl "LECTURA ESTRAT"` sobre `canon/` + `forense/`, **2 174 archivos examinados**, 0 coincidencias). El informe **no los reconstruye ni los cita como leídos**: rehacer un verbatim de paráfrasis sería fabricar la procedencia que el paso existe para asentar (mismo criterio que `NC-0082` y `NC-0134`). Consecuencia acotada y declarada en `§7` del informe. **Ninguna cifra del informe depende de ellos.** | mesa o dirección pega el texto verbatim y un acto de trámite lo commitea con cabecera de procedencia y `sha256` re-derivado. Fila `NC-0212` |
+| «incorpora el sello de D-A cuando exista, sin esperarlo» | `DIFERIDO-A: ACTO D-A` | El sello **no existe** (verificado con universo: `git ls-remote --heads origin` sobre 1 remoto → 0; `ls forense/encargos/` sobre 336 archivos → 0). `§A.3` del anexo entrega la tabla de 9 celdas comunes como **derivación propia con procedencia declarada y control positivo**, no como el sello. Ninguna cifra cambia cuando D-A selle; lo que cambia es la procedencia. **Ningún contador se mueve por esta fila.** | `ACTO D-A` (`D2`). Al sellar, `§A.3` queda `VENCIDA EN ALCANCE` y se **re-sella** contra el universo nuevo, nunca editando la tabla actual (`A.10` corolario 1). Fila `NC-0218` |
+| «su tabla ya está en la lectura v1.1 con procedencia» — la *LECTURA ESTRATÉGICA F5 v1.1* y el adversarial de Astra | `PARO-PREMISA` | Los dos documentos **no llegaron** y no están en el árbol (`grep -rl "LECTURA ESTRAT"` sobre `canon/` + `forense/`, **2 174 archivos examinados**, 0 coincidencias). El informe **no los reconstruye ni los cita como leídos**: rehacer un verbatim de paráfrasis sería fabricar la procedencia que el paso existe para asentar (mismo criterio que `NC-0082` y `NC-0134`). Consecuencia acotada y declarada en `§7` del informe. **Ninguna cifra del informe depende de ellos.** | mesa o dirección pega el texto verbatim y un acto de trámite lo commitea con cabecera de procedencia y `sha256` re-derivado. Fila `NC-0219` |
 | «Primer producto: lista corta de candidatas…» / «Lista nominal de 6 piloto + 12 confirmatorias» (`D4`) | `FUERA-DE-PERÍMETRO` | Este acto es `D5`, no `D4`. El perímetro del encargo es «el documento nuevo, su anexo, índice de infraestructura si hace falta». El informe **documenta** la compuerta en `§A.5` (0 familias retenidas ejecutables, faltan 18/18, presupuesto no autorizado) pero **no produce la lista**. `FP-374` sigue `ABIERTA` e intocada; `NC-0161`/`NC-0162` siguen en espera | acto propio de `D4`, que mesa lance. No lo absorbe este informe ni lo sustituye |
 | `NC-0180` y `NC-0187` (que `D2` declara cerradas por consumo de B-MARCO) | `FUERA-DE-PERÍMETRO` | Las cierra **D-A** al consumir B-MARCO, no un informe: un documento que no sella corridas no puede cerrar por consumo una fila cuyo cierre es exactamente ese consumo. Ambas siguen `ABIERTA`. El informe las lista en `§A.6` con esa razón explícita | `ACTO D-A` |
 
@@ -93,12 +93,12 @@ declarado en la propia fila.
 `cloud_default`, sin corpus, sin red, sin microdato), sobre base
 `origin/main = 5973f12`. PR: https://github.com/Josanoforo/Modelado-Mexicano/pull/790
 (**NO FUSIONAR sin mesa** — el merge es la autorización, no un trámite del
-ejecutor). Sello del acto: `ADR-514`, re-derivado por `tools/cierre_acto.py`;
+ejecutor). Sello del acto: `ADR-515`, re-derivado por `tools/cierre_acto.py`;
 renumera quien fusiona segundo.
 
 Entregado: `canon/informe-programa-v1_0.md` + `canon/informe-programa-v1_0-ANEXO.md`
 (A.10 por cifra, dos derivaciones propias con control positivo, ninguna cifra
 nueva) · la fila que le faltaba al índice de infraestructura (`ADR-70(c)`) ·
-`NC-0152` CERRADA citando `#764` · `NC-0211`/`NC-0212` abiertas ·
+`NC-0152` CERRADA citando `#764` · `NC-0218`/`NC-0219` abiertas ·
 `forense/notas/2026-09-15-GEN2-INFORME-INTERNO-F5-1-cierre.md`.
 **Contadores de medición movidos: cero.**

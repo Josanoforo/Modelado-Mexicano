@@ -127,6 +127,25 @@ fi
 SHA_RESUELTO="$(git rev-parse HEAD)"
 launcher_log "DESPLIEGUE: modo=$MODO solicitado=${REVISION_SOLICITADA:--} resuelto=$SHA_RESUELTO"
 
+# El launcher ya posee el lock único y ya cargó el SHA que entiende el ledger.
+# Recuperar aquí, antes de la comprobación ligera, evita el ciclo muerto
+# «reserva huérfana agota presupuesto → no despacho → nunca llega al runner».
+FASE="RECUPERA-PRESUPUESTO"
+launcher_heartbeat "EN-CURSO" "-" || true
+RECUPERACION_LOG="forense/adq-log/estado/${RUN_ID}-recuperacion-presupuesto.json"
+set +e
+python3 tools/adq_investigacion.py --recupera-presupuesto --owner "$RUN_ID" \
+  --corte "$FECHA" --lock-exclusivo >"$RECUPERACION_LOG" 2>>"$LAUNCH_LOG"
+CODIGO_RECUPERACION=$?
+set -e
+if [ "$CODIGO_RECUPERACION" -ne 0 ]; then
+  MOTIVO_CIERRE="recuperacion-presupuesto-fallida"
+  launcher_log "PARO-RECUPERACION: exit=${CODIGO_RECUPERACION}; la reserva se conserva; evidencia=${RECUPERACION_LOG}"
+  exit "$CODIGO_RECUPERACION"
+fi
+PENDIENTES_RECUPERACION="$(python3 -c 'import json,sys; print(",".join(json.load(open(sys.argv[1], encoding="utf-8"))["recuperacion_pendiente"]) or "-")' "$RECUPERACION_LOG")"
+launcher_log "RECUPERACION-PRESUPUESTO: pendientes=${PENDIENTES_RECUPERACION}; evidencia=${RECUPERACION_LOG}"
+
 # Las activaciones horarias y de inicio de sesión sólo ejecutan esta
 # comprobación determinista.  El mismo launcher continúa al runner únicamente
 # cuando hay trabajo atendible, vence la recuperación diaria o cambió una
