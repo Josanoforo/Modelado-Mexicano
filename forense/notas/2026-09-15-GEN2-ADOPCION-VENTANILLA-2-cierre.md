@@ -16,9 +16,12 @@ git_commit=a29d873b5a662d154604df4d110b32bbc6df29d9  git_status=LIMPIO
 ```
 
 **COMPUERTA: ninguna** — el encargo lo declara; no dispara verificación.
-Corrió en paralelo con `VERIFICACION-CAJA-2` (caja); **cero pisadas**: el
-único archivo compartido posible era `forense/no-corrido.tsv`, y este acto
-sólo **appendea** (`NC-0186`/`NC-0187`/`NC-0188`), no reescribe filas ajenas.
+Corrió en paralelo con `VERIFICACION-CAJA-2` (caja). **Cero filas ajenas
+reescritas**, pero **sí hubo una pisada, y fue la previsible**: el único
+archivo compartido era `forense/no-corrido.tsv` y las dos ramas appendearon
+una fila `NC-0185` distinta. `#761` fusionó primero; este acto movió **sólo
+la que choca** (`NC-0185` → `NC-0188`), dejó `NC-0186`/`NC-0187` donde
+estaban, y corrió su ADR a `ADR-504`. Detalle en §«Renumeración por merge».
 
 ---
 
@@ -129,7 +132,7 @@ $ grep -n RESULT-B- milpa/tramite.yaml
 Es `CALC-B-0001`, no `B-MARCO`, y está adoptada **como tasa medida ENIGH
 2022** para `recibe_remesas` — no como línea base de duelo. Que un `CALC-B`
 haya producido un número adoptable por otro concepto no convierte a `B` en
-adoptable. Queda asentado en `NC-0188` para que nadie lo lea al revés.
+adoptable. Queda asentado en `NC-0187` para que nadie lo lea al revés.
 
 ---
 
@@ -141,8 +144,8 @@ adoptable. Queda asentado en `NC-0188` para que nadie lo lea al revés.
 | `RESULT-CTX-2019-P-ALTO` · `RESULT-CTX-2023-P-ALTO` · `RESULT-CTX-2021-P-ALTO` | **DECISIÓN-DE-MESA** (ya propuesta) | `GEN2-E5-0` + `D15`/`ADR-456`; pregunta exacta en `ADR-495`. **No se re-ejecuta ni se re-propone.** |
 | `RESULT-EDER-A-P` (+ `A-P-COMPLEMENTO`, + los 6 de la cláusula `B`) | **DECISIÓN-DE-MESA** (ya propuesta) | `NC-0183`, abierta: *«mesa: firma sobre (a) cita `corrida0_*` de `RESULT-EDER-A-P` en la propuesta y (b) la consecuencia literal de `se_mueve_si`»*. |
 | los otros 61 `RESULT` de EDER | **descriptivos, sin consumidor** | sonda: 0 citas en `milpa/`, 0 en `usos.tsv`. |
-| los 471 `RESULT` de `CALC-B-MARCO-*` | **NO-ADOPTABLE-POR-DECISIÓN** | `prereg-caja-B-MARCO` «QUÉ NO ES» (`T9`), congelada antes de medir; `SIN-GANADOR-UNICO` de la tríada intacto. `NC-0188`. |
-| las 143 de Banxico/MOTRAL/SHED | **NO-ADOPTABLE — sin consumidor** | ver P3; `NC-0187`. |
+| los 471 `RESULT` de `CALC-B-MARCO-*` | **NO-ADOPTABLE-POR-DECISIÓN** | `prereg-caja-B-MARCO` «QUÉ NO ES» (`T9`), congelada antes de medir; `SIN-GANADOR-UNICO` de la tríada intacto. `NC-0187`. |
+| las 143 de Banxico/MOTRAL/SHED | **NO-ADOPTABLE — sin consumidor** | ver P3; `NC-0186`. |
 
 ### 2.1 · La sonda de consumo, en solo-lectura (el árbol no se tocó)
 
@@ -180,7 +183,7 @@ coartada.
 | `N_resultados_gen2_pendientes_adopcion` | 5 | **5** | los cinco son los mismos; el índice sigue sin tercera categoría para «vetado por decisión» (`NC-0168`, abierta). |
 | `dependencias_numericas_legacy_activas` | 191 | **191** | ninguna cita nueva; `RES-0063`/`RES-0064` siguen `LEGACY-NO-DECLARADO` por `NC-0169`, que es de CAJA. |
 | `N_resultados_gen2_sellados` | 2882 | **2882** | este acto no mide. |
-| `no_corrido_abiertas` | 66 | **69** | `NC-0186` + `NC-0187` + `NC-0188`. |
+| `no_corrido_abiertas` | 65 | **68** | `NC-0186` + `NC-0187` + `NC-0188`. Cifras **re-derivadas contra la base nueva** (`origin/main = 7de3acb`, tras el merge del `#761`, que cerró `NC-0100`/`NC-0062` y abrió `NC-0185`); contra la base vieja (`a29d873`) eran 66 → 69. |
 
 Ningún otro contador de `status` se mueve.
 
@@ -219,7 +222,7 @@ las **50 reglas propuestas** en `milpa/tramite-ola5-propuesta-v0.yaml`.
 `milpa/tramite-ola5-propuesta-v0.yaml` quedan **sin una sola línea tocada**
 (`git diff --numstat milpa/` → vacío). `NC-0164` y `NC-0166` conservan sus
 vías; este acto no las cierra ni las toca. La pregunta para mesa queda en
-`NC-0187`.
+`NC-0186`.
 
 Un matiz que se declara porque cambia la lectura: que las tres fichas no
 tengan consumidor **no es un defecto de las fichas**. Las tres se midieron
@@ -311,7 +314,7 @@ ejecutada aquí.** Ningún byte se hasheó desde NUBE.
     ... Lo que NO cambia: ENNViH ola 2 sigue EXISTE-NO-SATISFACE por falta de
     estrato/UPM públicos (NC-0156), y la copia de esta misma frase falsa que vive en
     data/corrida0/demanda-corridas.tsv (fila CORR-0008) NO se toca desde aquí -- queda
-    en NC-0186.
+    en NC-0188.
 ```
 
 (El bloque completo, con los `sha256` largos, está en el archivo; aquí se
@@ -333,7 +336,7 @@ exit=0                                <-- sin hashes movidos; los AUSENTE son da
 la misma frase que vive en `data/corrida0/demanda-corridas.tsv` (fila
 `CORR-0008`) y en su eco de `RES-0029`/`RES-0030`: ese archivo **no está en
 el perímetro** que el encargo acota para P4 (*«`data/manifiesto.yaml` SOLO
-bajo la rama de letra-pura»*). Queda en **`NC-0186`** con el paso exacto.
+bajo la rama de letra-pura»*). Queda en **`NC-0188`** con el paso exacto.
 
 ---
 
@@ -341,48 +344,65 @@ bajo la rama de letra-pura»*). Queda en **`NC-0186`** con el paso exacto.
 
 `ACTO GEN2-VERIFICACION-CAJA-2` (`PR #761`) —que corría en paralelo en caja—
 **fusionó primero** y tomó `ADR-503` y `NC-0185`. Al traer `origin/main =
-7de3acb` este acto renumera, sin re-abrir nada:
+7de3acb` este acto renumera **sólo lo que de verdad colisiona**, sin
+re-abrir nada y sin correr ids que nadie disputa:
 
-| antes | después | por qué |
-|---|---|---|
-| `ADR-503` | **`ADR-504`** | `#761` tomó el 503 |
-| `NC-0185` (copia de la frase falsa en `demanda-corridas.tsv`) | **`NC-0186`** | `#761` tomó el `NC-0185` |
-| `NC-0186` (fichas sin consumidor) | **`NC-0187`** | corrimiento |
-| `NC-0187` (destino de `B-MARCO`) | **`NC-0188`** | corrimiento |
+| fila | antes | después | por qué |
+|---|---|---|---|
+| ADR del acto | `ADR-503` | **`ADR-504`** | `#761` tomó el 503 |
+| copia de la frase falsa en `demanda-corridas.tsv` | `NC-0185` | **`NC-0188`** | **colisiona**: `#761` ya fusionó su propia `NC-0185`; va al siguiente libre |
+| fichas sin consumidor | `NC-0186` | **`NC-0186`** | no colisiona — **queda** |
+| destino de `B-MARCO` | `NC-0187` | **`NC-0187`** | no colisiona — **queda** |
 
-El conteo de ADR de la cascada sube en consecuencia (`503 → 504` en
-`gobernanza-v1_15.md:2`, `estado-programa-v1_13.md:79` y `:164`). La
-referencia interna de la corrección de `data/manifiesto.yaml` se corrigió
-junto con las demás: apunta a `NC-0186`, no a un número que ahora es de otro
-acto. Los merges trajeron además `data/corrida0/{corridas,resultados}.tsv`,
-`forense/replay-evidencia.tsv` y `forense/hallazgos.md` del `#761`: son
-suyos, no se tocaron.
+Un corrimiento en bloque (`0185→0186→0187→0188`) habría movido dos filas que
+nadie disputaba y roto sus referencias por gusto; el criterio es *el
+siguiente libre para la que choca*, no *empujar a todas*. El conteo de ADR de
+la cascada sube en consecuencia (`503 → 504` en `gobernanza-v1_15.md:2`,
+`estado-programa-v1_13.md:80` y `:164`). La referencia interna de la
+corrección de `data/manifiesto.yaml` apunta ahora a `NC-0188`, no a un número
+que hoy es de otro acto. Los merges trajeron además
+`data/corrida0/{corridas,resultados}.tsv`, `forense/replay-evidencia.tsv` y
+`forense/hallazgos.md` del `#761`: son suyos, no se tocaron.
 
 **Pisada declarada, y era la previsible:** el encargo anticipaba que el único
 archivo compartido con `VERIFICACION-CAJA-2` sería `forense/no-corrido.tsv`.
 Lo fue — y por colisión de **número**, no de contenido: las dos ramas
 appendearon una fila `NC-0185` distinta. Se resolvió conservando la del
-`#761` (fusionó primero) y corriendo las tres de este acto. Cero filas
-ajenas reescritas.
+`#761` (fusionó primero) y moviendo **una** de las tres de este acto. Cero
+filas ajenas reescritas, verificado por diferencia de ids contra
+`origin/main`.
 
-## Suite, antes y después
+## Suite, antes y después (re-derivada contra la base nueva)
+
+Las cifras se **re-derivan al cierre, no se heredan**: la corrida de línea
+base se rehízo sobre `origin/main = 7de3acb` (post-`#761`) en un *worktree*
+limpio, no se reutilizó la de la base vieja.
 
 ```
-$ python3 tests/check.py     # línea base, antes de tocar nada
-3 FAIL · 3656 WARN           # T06 (2) · T08 (1) -- las tres preexistentes en main
+$ git worktree add --detach <tmp> origin/main && cd <tmp> && python3 tests/check.py
+3 FAIL · 3655 WARN          # T06 (2) · T08 (1) -- las tres preexistentes en main
 
-$ python3 tests/check.py     # con todos los cambios de este acto
-3 FAIL · 3659 WARN           # T06 (2) · T08 (1) -- las MISMAS tres; T15 T-ADR-COUNT [ok]
+$ python3 tests/check.py    # rama de este acto, main ya fusionado
+3 FAIL · 3658 WARN          # las MISMAS tres; T15 T-ADR-COUNT [ok]
 ```
 
-**Cero fallas nuevas.** El delta de `+3 WARN` es exactamente `T34
-T-NO-CORRIDO`, que emite un `warn` por fila `ABIERTA`: 66 → 69, las tres que
-este acto abre. Intermedio declarado, no escondido: `T15 T-ADR-COUNT` **sí
-falló** en la corrida previa al cerrar la cascada (`«cita 502 ADR; gobernanza
-tiene 503 únicos»`, 3 fallas en `estado-programa-v1_13.md:79`, `:163` y
-`gobernanza-v1_15.md:2`); es el paso de cascada que faltaba —los tres
-encabezados de conteo— y se corrigió en la misma sesión, con la suite
-re-corrida hasta verlo `[ok]`.
+**Cero fallas nuevas.** El delta `+3 WARN` es exactamente `T34 T-NO-CORRIDO`,
+que emite un `warn` por fila `ABIERTA`: **65 → 68**, las tres que este acto
+abre.
+
+Dos intermedios declarados, no escondidos, los dos de la misma clase
+(`T15 T-ADR-COUNT`, el conteo de ADR de la cascada):
+
+1. Antes del merge, al cerrar la cascada por primera vez: *«cita 502 ADR;
+   gobernanza tiene 503 únicos»* (3 fallas, en `estado-programa-v1_13.md:79`,
+   `:163` y `gobernanza-v1_15.md:2`).
+2. Después del merge, porque `#761` también movió el contador a 503 y el
+   *merge* resolvió a ese valor: *«cita 503 ADR; gobernanza tiene 504
+   únicos»* (1 falla, `estado-programa-v1_13.md:80`).
+
+Los dos eran el mismo paso de cascada pendiente —los encabezados de conteo—,
+se corrigieron en la sesión y la suite se re-corrió hasta ver `T15 [ok]`. La
+cifra final de la cascada es **504 ADR**.
 
 ## Perímetro cumplido
 
@@ -395,9 +415,12 @@ P4, única entrada) · `canon/gobernanza-v1_15.md` (ADR de cierre) ·
 **No toca:** `milpa/*.yaml` (cero adopciones ejecutadas ⇒ cero citas nuevas)
 · `data/corrida0/decisiones.tsv` · ningún TSV derivado (nada que re-derivar:
 `status` idéntico salvo `no_corrido_abiertas`) · ningún `CALC` sellado ·
-`data/corrida0/demanda-corridas.tsv` (`NC-0186`).
+`data/corrida0/demanda-corridas.tsv` (`NC-0188`).
 
-Pisadas con `VERIFICACION-CAJA-2`: **cero** — verificado por archivo.
+Pisadas con `VERIFICACION-CAJA-2`: **una, de número y no de contenido** —
+colisión de `NC-0185` y de `ADR-503` en `forense/no-corrido.tsv` y la
+cascada, resuelta renumerando lo propio al traer `origin/main = 7de3acb`.
+Cero filas ajenas reescritas. Ver §«Renumeración por merge».
 
 ## Contador
 
@@ -408,12 +431,12 @@ de **letra** en una entrada de licencia de `data/manifiesto.yaml`, y la
 cascada. `N_resultados_gen2_adoptados_activos` **16 → 16**;
 `N_resultados_gen2_pendientes_adopcion` **5 → 5**;
 `dependencias_numericas_legacy_activas` **191 → 191**; `no_corrido_abiertas`
-**66 → 69**.
+**65 → 68** (re-derivado contra la base nueva tras el merge del `#761`).
 
 ## CONSUMIDO · PR #762
 
 `https://github.com/Josanoforo/Modelado-Mexicano/pull/762`. La adopción por
 lote es firma de mesa **POR MERGE**; lo que este acto dejó como
 `DECISIÓN-DE-MESA` (los tres `CTX-*`, el paquete EDER de `NC-0183`, las
-fichas de `NC-0187`, el destino de `B-MARCO` en `NC-0188`) **no** se sella
+fichas de `NC-0186`, el destino de `B-MARCO` en `NC-0187`) **no** se sella
 con este merge: se propone, y espera firma distinta.

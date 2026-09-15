@@ -36,18 +36,9 @@ CONTADOR: no mide — mueve adopción y enlaces, sus propios registros, y se dic
 ## NO-CORRIDO / RESERVAS
 
 Tres filas, todas `ABIERTA`, escritas en `forense/no-corrido.tsv`
-(`no_corrido_abiertas` 66 → 69):
+(`no_corrido_abiertas` **65 → 68**, re-derivado contra la base nueva `origin/main = 7de3acb`, post-`#761`):
 
-- **`NC-0186`** — *P4, ruteo del manifiesto ENNViH, copia fuera de
-  `manifiesto.yaml`.* La misma frase que este acto corrigió vive también en
-  `data/corrida0/demanda-corridas.tsv` (fila `CORR-0008`) y en su eco de
-  `RES-0029`/`RES-0030`. **FUERA-DE-PERÍMETRO**: el encargo acota P4 a
-  *«`data/manifiesto.yaml` SOLO bajo la rama de letra-pura»*, y esa celda es
-  campo de registro de la DEMANDA, no prosa de nota. Sucesor: acto con
-  perímetro que la incluya, separando «payload no localizado» de «diseño no
-  público». `SIN-ASIGNAR`.
-
-- **`NC-0187`** — *P3, enlace de las tres fichas desde la demanda.*
+- **`NC-0186`** — *P3, enlace de las tres fichas desde la demanda.*
   **NO-HAY-CONSUMIDOR**: 143 `RESULT` sellados entre Banxico/MOTRAL/SHED, 0
   citas en `milpa/tramite.yaml`, 0 en `milpa/tramite-ola5-propuesta-v0.yaml`,
   0 en `data/corrida0/usos.tsv`. Las tres quedan **evidencia disponible**;
@@ -55,13 +46,22 @@ Tres filas, todas `ABIERTA`, escritas en `forense/no-corrido.tsv`
   Sucesor: mesa decide si alguno se abre como consumidor **descriptivo**
   nuevo (patrón `rol_uso: proxy_descriptivo`) o siguen sin consumidor.
 
-- **`NC-0188`** — *P1/P2, destino de los `CALC-B-MARCO-*`.*
+- **`NC-0187`** — *P1/P2, destino de los `CALC-B-MARCO-*`.*
   **NO-ADOPTABLE-POR-DECISIÓN** por `prereg-caja-B-MARCO` §«QUÉ NO ES»
   (`T9`), congelada antes de abrir microdato. Se declara el precedente que
   **no** se generaliza: `RESULT-B-ENIGH-2022-P` de `CALC-B-0001` sí está
   adoptado (`milpa/tramite.yaml:869`), pero como tasa medida ENIGH 2022 para
   `recibe_remesas`, no como línea base de duelo. Sucesor: el próximo duelo /
   acto de tríada que consuma `MAE_pp(B)`. `SIN-ASIGNAR`.
+
+- **`NC-0188`** — *P4, ruteo del manifiesto ENNViH, copia fuera de
+  `manifiesto.yaml`.* La misma frase que este acto corrigió vive también en
+  `data/corrida0/demanda-corridas.tsv` (fila `CORR-0008`) y en su eco de
+  `RES-0029`/`RES-0030`. **FUERA-DE-PERÍMETRO**: el encargo acota P4 a
+  *«`data/manifiesto.yaml` SOLO bajo la rama de letra-pura»*, y esa celda es
+  campo de registro de la DEMANDA, no prosa de nota. Sucesor: acto con
+  perímetro que la incluya, separando «payload no localizado» de «diseño no
+  público». `SIN-ASIGNAR`.
 
 **Reserva declarada, no fila nueva:** `NC-0168` (el contador no distingue
 «vetado por decisión» de «pendiente de mesa») sigue `ABIERTA` desde el
