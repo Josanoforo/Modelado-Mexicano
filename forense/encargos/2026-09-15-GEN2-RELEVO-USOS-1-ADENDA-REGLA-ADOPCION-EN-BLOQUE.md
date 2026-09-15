@@ -90,3 +90,26 @@ Lo que `PR #785` movió y que la regla tendrá que leer cuando su `P4` corra:
 - **El universo no cambió de tamaño: siguen 207 slots, los 207 en `estado = PENDIENTE`**, y siguen 58 con `escala_legacy = NO-DECLARADO-EN-EL-REGISTRO`. La cuenta de «legacy sin IC propio» subió de **14 a 18**.
 - **Los 7 coeficientes del generador ya vienen rotulados.** `OBJETO 5` (D3 de `NC-0197`) hace que `cmd_demanda` anteponga `SIN-PROCEDENCIA-VERIFICABLE·` al `clase_legacy` de los 7 `milpa/procedencia.yaml:coeficientes_generador_sellados:*` que `decisiones.tsv` marca. Son bin 2 por el inciso (iii) de la regla, y ahora se pueden seleccionar por rótulo en vez de a ojo.
 - **Aparece un estado que los tres bins no cubren.** `OBJETO 2` (`NC-0168`) autoriza `adopcion=VETADA-POR-DECISION` en `decisiones.tsv`, hoy sobre `RESULT-C1-POSEL-AMENAZA-VEREDICTO` y `RESULT-C1-POSEL-OFERTA-VEREDICTO`, y `corrida0 status` los cuenta aparte precisamente para que dejen de leerse como cola de adopción. Un slot vetado no es bin 1 (lo adoptaría el merge), ni bin 2 (no se firma uno por uno lo que mesa ya prohibió adoptar), ni bin 3 (no es falta de criterio: es criterio en contra). La regla dice «ningún relevo queda fuera de ellos»; con el veto vigente eso ya no se sostiene sin una cuarta salida. Mientras dirección no la escriba, el `P4` los declara en `## NO-CORRIDO / RESERVAS`, que es lo que el propio paso 3 de PROPAGACIÓN manda para «todo slot que no cupo en ningún bin y por qué». **Decisión de dirección, no del ejecutor.**
+
+---
+
+CORRECCIÓN FECHADA (15/sep/2026, mismo día) — **la cifra «sin IC propio: 14 → 18» de la enmienda de arriba es FALSA y queda retirada.** Append puro, como la anterior: nada por encima se edita, y el bloque verbatim de mesa sigue siendo `sed -n '45,75p'` → `23ad347ecaffb2bc9dde008837c478cc7e939549676ce487a366f3fb774b31aa`.
+
+La levanta la RESERVA de la revisión adversarial de `PR #786` (`VEREDICTO: FUSIONABLE-CON-RESERVA`, 0 BLOQUEA · 1 RESERVA, punto 2.5): la cifra no era re-derivable con un comando. Al buscarle el comando resultó que además **no era cierta**.
+
+**No hubo alza. La cuenta es 18 en las tres bases**, y el comando que la re-deriva es:
+
+```
+$ for SHA in 582d4e9 5973f12 15423d0; do \
+    git show $SHA:data/corrida0/demanda-resultados.tsv \
+    | awk -F'\t' 'NR>2{print $6}' | grep -c "sin IC propio"; done
+18
+18
+18
+```
+
+**De dónde salió el «14».** De un `awk … | sort | uniq -c | sort -rn | head -6` sobre `clase_legacy`: ese `14` es el conteo de **un solo** valor, `DERIVADO de R, M y L -- sin IC propio`. Hay un **segundo** valor que también dice `sin IC propio` — `DERIVADO de A, B y A∪B de MAESTRA34-L5 P4 -- sin IC propio; no es MEDIDO`, 4 slots — que el `head -6` dejó fuera del cuadro. Se comparó un conteo por valor contra un total y se leyó como movimiento lo que era un artefacto del truncamiento. El defecto es de quien archiva, no del texto de mesa, que no cita ninguna cifra.
+
+**Qué cambia para la regla.** La dirección del hallazgo: la carga del bin 3 **no creció con `PR #785`**. Sigue siendo la misma de antes — 58 slots con `escala_legacy = NO-DECLARADO-EN-EL-REGISTRO` más 18 sin IC propio, sobre 207. Lo que la enmienda decía sobre el tamaño del problema se sostiene; lo que decía sobre su *movimiento*, no.
+
+**Las demás cifras se re-verificaron contra `15423d0`** (`origin/main` tras `PR #787` y `PR #782`, que no tocan `demanda-resultados.tsv`, `decisiones.tsv` ni `tools/corrida0.py`) y **todas siguen exactas**: 207 slots, los 207 en `estado = PENDIENTE`, 58 con `escala_legacy = NO-DECLARADO-EN-EL-REGISTRO`, 7 con `SIN-PROCEDENCIA-VERIFICABLE` en `clase_legacy`. `ACTO GEN2-RELEVO-USOS-1` y `PARA-v2.14` siguen sin existir en `15423d0` (0 líneas cada uno).
