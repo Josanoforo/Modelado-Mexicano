@@ -104,3 +104,11 @@ No fabriques una reserva masiva si una sola familia carece de archivo: resuelve 
 ## Dependencias y convivencia
 
 Requiere #720 fusionado y corpus CAJA. Puede correr con 27/28/29. Su perímetro numérico se congela al inicio; no absorbe nuevas adopciones concurrentes para perseguir un total cambiante. Mantiene separadas las reservas DIN/S6, complementos pendientes y evaluación retenida.
+
+## NO-CORRIDO / RESERVAS
+
+Ninguno.
+
+## CONSUMIDO · PR #731
+
+Ejecutado y cerrado por `ACTO GEN2-CONSUMIDO-RETRO-3` (`forense/encargos/2026-09-14-GEN2-CONSUMIDO-RETRO-3.md`), firma de mesa 14/sep/2026.

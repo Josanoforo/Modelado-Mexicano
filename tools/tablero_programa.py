@@ -258,10 +258,16 @@ def derivar_indicadores() -> dict[str, dict]:
     put("encargos_archivados", len(enc), "ls forense/encargos/*.md | wc -l")
     put("encargos_consumidos", cons, "grep -l '## CONSUMIDO' forense/encargos/*.md | wc -l")
     cola = {}
-    for f in sorted(glob.glob("forense/encargos/cola/*.md")):
+    # ACTO GEN2-DOCS-ALINEACION-2, 14/sep/2026: el glob plano no recorria
+    # los subdirectorios de paquetes (p.ej. forense/encargos/cola/2026-09-11-
+    # GEN2-POST-693/*.md) -- se corrige SOLO esa omision (recursive=True +
+    # clave por ruta relativa, para no colisionar basenames entre paquetes),
+    # cero refactorizacion del resto de la funcion.
+    for f in sorted(glob.glob("forense/encargos/cola/**/*.md", recursive=True)):
         tt = leer(f)
-        cola[os.path.basename(f)] = "CONSUMIDO" if "## CONSUMIDO" in tt else ("LISTO" if "LISTO-" in tt else "GATED")
-    put("cola_encargos", cola, "forense/encargos/cola/*.md: '## CONSUMIDO' / 'LISTO-' / otro=GATED")
+        clave = os.path.relpath(f, "forense/encargos/cola")
+        cola[clave] = "CONSUMIDO" if "## CONSUMIDO" in tt else ("LISTO" if "LISTO-" in tt else "GATED")
+    put("cola_encargos", cola, "forense/encargos/cola/**/*.md (recursivo): '## CONSUMIDO' / 'LISTO-' / otro=GATED")
     put("skills", sorted(os.path.basename(f)[:-3] for f in glob.glob(".claude/commands/*.md")), "ls .claude/commands/")
     vers = sorted(int(m) for m in re.findall(r"instrucciones-proyecto-v2_(\d+)\.md", " ".join(glob.glob("instrucciones-proyecto-v2_*.md"))))
     put("instrucciones_vigentes", f"v2.{vers[-1]}" if vers else None, "ls instrucciones-proyecto-v2_*.md | version maxima numerica")
