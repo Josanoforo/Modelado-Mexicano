@@ -103,6 +103,25 @@ TABLAS = {
     "contexto_v1_0": REPO_ROOT / "data" / "inventario-reactivos-contexto-v1_0.tsv",
     "descargas_mx": REPO_ROOT / "data" / "inventario-reactivos-descargas-mx-v1_0.tsv",
     "descargas_mx_v1_1": REPO_ROOT / "data" / "inventario-reactivos-descargas-mx-v1_1.tsv",
+    # ACTO GEN2-REACTIVOS-RESIDUALES-2 (15/sep/2026, NC-0136): la capa FD existe
+    # desde ADR-215/ADR-216 y este buscador NUNCA la consultaba por ninguna clave.
+    # Son 27 729 filas con `texto_reactivo` no vacío en el 99% de ellas, y cubren
+    # 26 de los 81 grupos históricamente ciegos que NC-0136 dejó abiertos (36 707
+    # filas ciegas del universo) -- entre ellos MOCIBA, ENASEM, ENUT, ENFIH,
+    # ENADID, ENASIC, ENDUTIH y las dos tablas CNBV. Recuperar ese texto no exigía
+    # corpus ni extractor nuevo: exigía cablear lo ya escrito.
+    # MISMO CONVENIO que `contexto_v1_0`/`descargas_mx`: claves EXPLÍCITAS de
+    # `--tablas`, nunca implícitas en `vigente` ni en `--fuente` -- reapuntar
+    # `vigente` cambiaría en silencio lo que ya lee quien no pidió esta capa, y
+    # el censo de NC-0136 está medido contra el universo sin ella.
+    # El grano NO es el mismo: la capa FD indexa el DESCRIPTOR de archivo, no el
+    # payload, así que su `archivo_miembro` es la tabla del FD y no trae la
+    # columna `contexto_busqueda` del overlay acreditado. Un acierto aquí es un
+    # enunciado publicado por el instrumento, no una identidad acreditada del
+    # lote: el censo de `tools/censa_reactivos_ciegos.py` lo llama
+    # CABLEAR-CAPA-FD-YA-EN-REPO y no lo suma a la cobertura del overlay.
+    "fd": REPO_ROOT / "data" / "inventario-fd-v1_1.tsv",
+    "fd_ext": REPO_ROOT / "data" / "inventario-fd-ext-v1_0.tsv",
 }
 MANIFIESTO = REPO_ROOT / "data" / "manifiesto.yaml"
 
