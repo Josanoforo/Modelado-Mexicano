@@ -51,12 +51,31 @@ UNIVERSO = [
     REPO_ROOT / "data" / "inventario-reactivos-v1_2.tsv",
     REPO_ROOT / "data" / "inventario-reactivos-ext-v1_0.tsv",
 ]
-CAPA_FD = [
-    REPO_ROOT / "data" / "inventario-fd-v1_1.tsv",
-    REPO_ROOT / "data" / "inventario-fd-ext-v1_0.tsv",
-]
+# Las DOS capas FD no son del mismo grano, y el censo no las mezcla en silencio.
+# `fd` (v1_1) viene de descriptores XLSX y da pares `variable -> enunciado` limpios.
+# `fd_ext` (v1_0) viene de PDF/XLS y arrastra encabezados de tabla como si fueran
+# reactivos (medido: 6 745 de sus 10 635 filas caen en tripletas
+# (instrumento, variable_id, texto) repetidas; `elcos2012` es el caso extremo, con
+# sus 29 filas iguales al encabezado «(2) | (1)» y CERO enunciados utilizables).
+# Por eso un grupo cuya única ruta viene de `fd_ext` se rotula CANDIDATA-POR-VERIFICAR
+# y no se promete como resuelto.
+CAPA_FD_LIMPIA = REPO_ROOT / "data" / "inventario-fd-v1_1.tsv"
+CAPA_FD_EXT = REPO_ROOT / "data" / "inventario-fd-ext-v1_0.tsv"
+CAPA_FD = [CAPA_FD_LIMPIA, CAPA_FD_EXT]
 MAPA19 = REPO_ROOT / "data" / "corrida0" / "mapa-demanda-19-corr-v1_0.tsv"
-PANEL_F6 = REPO_ROOT / "forense" / "prereg-duelo-v2" / "F5-panel-candidatos-v1_1.tsv"
+# El panel se sucede por versión (v1.0 -> v1.1 -> v1.2 -> …) y el censo debe leer
+# la VIGENTE, no la que existía cuando se escribió este tool: apuntar a una versión
+# fija haría que el censo declarara "NINGUNA-DECLARADA-HOY" sobre familias que el
+# panel nuevo ya reclama, en silencio. Se resuelve por orden de nombre y se declara
+# cuál se leyó (A.13). ACTO GEN2-PANEL-F6-EXPANSION-1 (ADR-518) publicó v1.2 con 27
+# familias mientras este acto estaba en vuelo: ese es el caso que esta regla evita.
+_PANEL_DIR = REPO_ROOT / "forense" / "prereg-duelo-v2"
+
+
+def panel_f6_vigente() -> Path | None:
+    """La versión más alta de F5-panel-candidatos-*.tsv presente en el árbol."""
+    candidatos = sorted(_PANEL_DIR.glob("F5-panel-candidatos-v*.tsv"))
+    return candidatos[-1] if candidatos else None
 
 # Prefijos de `instrumento` de las cinco familias del lote prioritario.
 LOTE = ("envipe", "enif", "encuci", "ensafi", "ennvih")
@@ -116,9 +135,10 @@ def demanda_panel_f6() -> dict[str, list[str]]:
     panel declaró retenidas — una familia EXPUESTA no es demanda: está descartada.
     """
     out: dict[str, list[str]] = defaultdict(list)
-    if not PANEL_F6.exists():
+    panel = panel_f6_vigente()
+    if panel is None:
         return out
-    for r in lee_filas(PANEL_F6):
+    for r in lee_filas(panel):
         if not (r.get("scope") or "").upper().startswith("RETENIDA"):
             continue
         token = ""
@@ -135,8 +155,10 @@ def demanda_panel_f6() -> dict[str, list[str]]:
 def censa() -> dict:
     uni, filas_uni, ex_uni = cuenta(UNIVERSO)
     fd, filas_fd, ex_fd = cuenta(CAPA_FD)
+    fd_limpia, _, _ = cuenta([CAPA_FD_LIMPIA])
     d19 = demanda_mapa19()
     df6 = demanda_panel_f6()
+    panel = panel_f6_vigente()
 
     ciegos = {k: v for k, v in uni.items() if v[1] == 0}
     fuera = {k: v for k, v in ciegos.items() if not k.lower().startswith(LOTE)}
@@ -144,12 +166,15 @@ def censa() -> dict:
     filas_out = []
     for k in sorted(fuera):
         fd_texto = fd.get(k, [0, 0])[1]
+        fd_texto_limpio = fd_limpia.get(k, [0, 0])[1]
         reclama = list(d19.get(k.lower(), []))
         for pref, fams in df6.items():
             if k.lower().startswith(pref):
                 reclama += fams
-        if fd_texto > 0:
+        if fd_texto_limpio > 0:
             ruta = "CABLEAR-CAPA-FD-YA-EN-REPO"
+        elif fd_texto > 0:
+            ruta = "CANDIDATA-FD-EXT-POR-VERIFICAR"
         else:
             ruta = "REQUIERE-FD-EN-CORPUS"
         filas_out.append({
@@ -157,6 +182,7 @@ def censa() -> dict:
             "filas_ciegas": uni[k][0],
             "fd_filas_con_texto": fd_texto,
             "fd_filas_totales": fd.get(k, [0, 0])[0],
+            "fd_filas_capa_limpia": fd_texto_limpio,
             "ruta_recuperacion": ruta,
             "demanda_hoy": ",".join(reclama) if reclama else "NINGUNA-DECLARADA-HOY",
         })
@@ -169,6 +195,7 @@ def censa() -> dict:
         "fd_archivos": ex_fd,
         "ciegos": len(ciegos),
         "ciegos_en_lote": len(ciegos) - len(fuera),
+        "panel_f6_leido": panel.name if panel else "AUSENTE",
     }
 
 
@@ -178,12 +205,19 @@ CABECERA = """# data/reactivos-ciegos-81-v1_0.tsv -- DERIVADO por tools/censa_re
 # Una fila por grupo ciego (texto_reactivo vacio en el 100% de sus filas) FUERA de las cinco
 # familias del lote prioritario (ENVIPE/ENIF/ENCUCI/ENSAFI/ENNViH). Es el objeto que NC-0136
 # nombra como "los 81 grupos historicamente ciegos que quedan fuera del lote" -- aqui derivado.
+# DOS CAPAS, DOS GRADOS DE PROMESA: `fd_filas_capa_limpia` cuenta solo el descriptor XLSX
+# (data/inventario-fd-v1_1.tsv), que da pares variable->enunciado limpios. `fd_filas_con_texto`
+# incluye ademas data/inventario-fd-ext-v1_0.tsv (PDF/XLS), que arrastra encabezados de tabla
+# como si fueran reactivos: 6745 de sus 10635 filas caen en tripletas (instrumento, variable_id,
+# texto) repetidas, y elcos2012 tiene sus 29 filas iguales al encabezado "(2) | (1)", con CERO
+# enunciados utilizables. Por eso un grupo cuya unica ruta viene de esa capa sale
+# CANDIDATA-FD-EXT-POR-VERIFICAR y no se presenta como resuelto.
 # ALCANCE DEL NEGATIVO (A.15): `filas_ciegas` mide que el enunciado del reactivo no esta
 # indexado en el universo del buscador; NO certifica que el reactivo no exista en la fuente real,
 # ni suficiencia o insuficiencia cientifica de nada. La busqueda por variable_id SI cubre estos
 # grupos. `demanda_hoy` se deriva por IGUALDAD de `instrumento` contra la columna homonima de
 # data/corrida0/mapa-demanda-19-corr-v1_0.tsv y por prefijo contra las filas RETENIDA* de
-# forense/prereg-duelo-v2/F5-panel-candidatos-v1_1.tsv: NINGUNA-DECLARADA-HOY dice que ninguno de
+# forense/prereg-duelo-v2/F5-panel-candidatos-v<N>.tsv (la version mas alta presente): NINGUNA-DECLARADA-HOY dice que ninguno de
 # esos dos consumidores lo reclama hoy, no que el grupo sea prescindible.
 """
 
@@ -195,7 +229,7 @@ def main(argv=None) -> int:
 
     c = censa()
     cols = ["instrumento", "filas_ciegas", "fd_filas_con_texto", "fd_filas_totales",
-            "ruta_recuperacion", "demanda_hoy"]
+            "fd_filas_capa_limpia", "ruta_recuperacion", "demanda_hoy"]
 
     if args.salida:
         args.salida.parent.mkdir(parents=True, exist_ok=True)
@@ -206,16 +240,20 @@ def main(argv=None) -> int:
             for r in c["filas"]:
                 w.writerow(r)
 
-    con_fd = [r for r in c["filas"] if r["fd_filas_con_texto"] > 0]
+    con_fd = [r for r in c["filas"] if r["ruta_recuperacion"] == "CABLEAR-CAPA-FD-YA-EN-REPO"]
+    por_verificar = [r for r in c["filas"] if r["ruta_recuperacion"] == "CANDIDATA-FD-EXT-POR-VERIFICAR"]
     con_dem = [r for r in c["filas"] if r["demanda_hoy"] != "NINGUNA-DECLARADA-HOY"]
     print(f"UNIVERSO · {c['universo_filas']} filas · {c['universo_instrumentos']} instrumentos "
           f"· archivos examinados = {c['universo_archivos']} (A.13)")
     print(f"CAPA FD  · {c['fd_filas']} filas · archivos examinados = {c['fd_archivos']} (A.13)")
+    print(f"PANEL F6 · leido: {c['panel_f6_leido']} (vigente por version, no fijado en el codigo)")
     print(f"CIEGOS   · {c['ciegos']} instrumentos ({c['ciegos_en_lote']} del lote prioritario)")
     print(f"GRUPOS FUERA DEL LOTE · {len(c['filas'])} · "
           f"{sum(r['filas_ciegas'] for r in c['filas'])} filas ciegas")
-    print(f"  con texto FD ya en el repo · {len(con_fd)} grupos · "
+    print(f"  con texto FD limpio ya en el repo · {len(con_fd)} grupos · "
           f"{sum(r['filas_ciegas'] for r in con_fd)} filas ciegas con ruta sin corpus")
+    print(f"  candidatas por fd_ext (PDF/XLS, con artefactos de encabezado) · "
+          f"{len(por_verificar)} grupos · {sum(r['filas_ciegas'] for r in por_verificar)} filas ciegas")
     print(f"  reclamados hoy por mapa-19 o panel F6 · {len(con_dem)} grupos")
     for r in con_dem:
         print(f"    {r['instrumento']:<28} {r['demanda_hoy']:<22} "

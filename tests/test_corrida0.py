@@ -1680,6 +1680,31 @@ def t_registro_estado_superado():
             f"estado={por_spec['CALC-FIX-B']['estado']}")
 
 
+def t_registro_superado_por_repite_de_en_etiquetas():
+    """T-REGISTRO-SUPERADO-ETIQUETAS (`NC-0199`, ACTO
+    GEN2-MANTENIMIENTO-Y-ARCHIVO-2, 15/sep/2026). Una spec que declara
+    `repite_de` DENTRO de `etiquetas:` -- y no a nivel raiz -- tiene que
+    alimentar `sucesor_de` igual que la forma de raiz. Antes del arreglo,
+    `registro` leia el campo solo en la raiz y dejaba a la predecesora en
+    `SELLADA` en vez de `SUPERADO->`: defecto real medido en 6 de las 104
+    specs del arbol (entre ellas CALC-ENVIPE-U4-2012-v1_1, la unica que
+    NC-0199 nombraba). Este caso es el falsador de esa lectura."""
+    caso = "T-REGISTRO-SUPERADO-ETIQUETAS"
+    calcs = [{"calc_id": "CALC-FIX-A", "valores": {"RESULT-A": 1.0},
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}},
+             {"calc_id": "CALC-FIX-B", "valores": {"RESULT-A": 1.0},
+              # `repite_de` SOLO aqui dentro -- nunca en la raiz de la spec.
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2",
+                            "repite_de": "CALC-FIX-A"}}]
+    with _arbol_registro(calcs=calcs):
+        v = C.registro(escribe=False, imprime=False)
+    por_spec = {f["spec_id"]: f for f in v["corridas"] if f["origen"] == "OFERTA"}
+    _afirma(por_spec["CALC-FIX-A"]["estado"] == "SUPERADO\u2192CALC-FIX-B", caso,
+            f"estado={por_spec['CALC-FIX-A']['estado']}")
+    _afirma(por_spec["CALC-FIX-B"]["estado"] == "SELLADA", caso,
+            f"estado={por_spec['CALC-FIX-B']['estado']}")
+
+
 def t_status_cifras_derivadas():
     """T-STATUS. Los contadores de §9 salen de las vistas, no de un TSV en
     disco, y un replay LEGACY-GEN1 NUNCA incrementa `N_resultados_sellados`

@@ -107,7 +107,9 @@ TABLAS = {
     # desde ADR-215/ADR-216 y este buscador NUNCA la consultaba por ninguna clave.
     # Son 27 729 filas, el 100% con `texto_reactivo` no vacío, y cubren
     # 26 de los 81 grupos históricamente ciegos que NC-0136 dejó abiertos (36 707
-    # filas ciegas del universo) -- entre ellos MOCIBA, ENASEM, ENUT, ENFIH,
+    # filas ciegas del universo) -- 18 de ellos con el descriptor XLSX limpio y 8
+    # sólo por `fd_ext` (PDF/XLS), que arrastra encabezados de tabla y por eso el
+    # censo los deja CANDIDATA-FD-EXT-POR-VERIFICAR -- entre ellos MOCIBA, ENASEM, ENUT, ENFIH,
     # ENADID, ENASIC, ENDUTIH y las dos tablas CNBV. Recuperar ese texto no exigía
     # corpus ni extractor nuevo: exigía cablear lo ya escrito.
     # MISMO CONVENIO que `contexto_v1_0`/`descargas_mx`: claves EXPLÍCITAS de

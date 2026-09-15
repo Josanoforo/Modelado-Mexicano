@@ -20,10 +20,12 @@ No era un problema de adquisición ni de extractor: era un cable que faltaba. La
 $ python3 tools/censa_reactivos_ciegos.py --salida data/reactivos-ciegos-81-v1_0.tsv
 UNIVERSO · 241591 filas · 116 instrumentos · archivos examinados = 2 (A.13)
 CAPA FD  · 27729 filas · archivos examinados = 2 (A.13)
+PANEL F6 · leido: F5-panel-candidatos-v1_2.tsv (vigente por version, no fijado en el codigo)
 CIEGOS   · 102 instrumentos (21 del lote prioritario)
 GRUPOS FUERA DEL LOTE · 81 · 129648 filas ciegas
-  con texto FD ya en el repo · 26 grupos · 36707 filas ciegas con ruta sin corpus
-  reclamados hoy por mapa-19 o panel F6 · 15 grupos
+  con texto FD limpio ya en el repo · 18 grupos · 16815 filas ciegas con ruta sin corpus
+  candidatas por fd_ext (PDF/XLS, con artefactos de encabezado) · 8 grupos · 19892 filas ciegas
+  reclamados hoy por mapa-19 o panel F6 · 18 grupos
 ```
 
 **El 81 sale exacto**, y sale de la misma definición que la cabecera de `data/inventario-reactivos-v1_2.tsv` ya había publicado (102 instrumentos ciegos de 116): 102 − 21 del lote = 81. Que reproduzca un número heredado sin haberlo mirado antes es el control de que el grano es el mismo y no uno nuevo con el mismo rótulo.
@@ -33,8 +35,11 @@ GRUPOS FUERA DEL LOTE · 81 · 129648 filas ciegas
 | ciegos totales | 102 | 164 656 |
 | del lote prioritario (`ENVIPE`/`ENIF`/`ENCUCI`/`ENSAFI`/`ENNViH`) | 21 | 35 008 |
 | **fuera del lote — los 81 de `NC-0136`** | **81** | **129 648** |
-| de esos, con texto FD **ya en el repo** | 26 | 36 707 |
+| de esos, con texto FD **limpio** ya en el repo (descriptor XLSX) | 18 | 16 815 |
+| de esos, **candidatos** por `fd_ext` (PDF/XLS, por verificar) | 8 | 19 892 |
 | de esos, que exigen FD en corpus | 55 | 92 941 |
+
+**Las dos capas FD no prometen lo mismo, y el censo dejó de mezclarlas.** `fd` (`inventario-fd-v1_1.tsv`, descriptores XLSX) da pares `variable → enunciado` limpios. `fd_ext` (`inventario-fd-ext-v1_0.tsv`, PDF/XLS) arrastra **encabezados de tabla como si fueran reactivos**: 6 745 de sus 10 635 filas caen en tripletas `(instrumento, variable_id, texto)` repetidas, y `elcos2012` es el caso extremo — sus 29 filas son el encabezado «(2) | (1)», con **cero** enunciados utilizables. Por eso los 26 se parten en **18 resueltos** y **8 `CANDIDATA-FD-EXT-POR-VERIFICAR`**, y el censo no promete texto que no existe. Esto se descubrió al reconciliar con el panel v1.2 (§7), no antes: la primera versión del censo habría rotulado `elcos2012` como resuelto.
 
 **Lo que el censo NO dice (A.15), declarado antes de que alguien lo lea al revés:** `filas_ciegas` mide que el enunciado no está indexado en el universo del buscador. No certifica que el reactivo no exista en la fuente, ni suficiencia ni insuficiencia científica de nada. La búsqueda por `variable_id` sí cubre estos grupos, y siempre lo hizo.
 
@@ -134,4 +139,17 @@ No re-extrajo texto de ninguna fuente (no hay corpus en NUBE) · no publicó `co
 
 ## 6 · Concurrencia declarada
 
-Al arrancar, `git ls-remote --heads origin` mostraba una rama viva ajena (`claude/gracious-turing-6v83oj`, sin PR verificable desde este entorno). Ninguna coincidencia con este rótulo en las tres superficies del guard 0.c (rama remota, worktree, PR). Si esa rama toma `ADR-517` primero, renumera quien fusione segundo — regla de la casa.
+Al arrancar, `git ls-remote --heads origin` mostraba una rama viva ajena (`claude/gracious-turing-6v83oj`, sin PR verificable desde este entorno). Ninguna coincidencia con este rótulo en las tres superficies del guard 0.c (rama remota, worktree, PR). Si esa rama toma `ADR-519` primero, renumera quien fusione segundo — regla de la casa.
+
+## 7 · Reconciliación con `main` (cuarta sincronización) — y lo que obligó a corregir
+
+Mientras este acto estaba en vuelo, `main` avanzó 15 commits y fusionó, entre otros, `ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2` (`ADR-517`, `NC-0225..0228`) y **`ACTO GEN2-PANEL-F6-EXPANSION-1`** (`ADR-518`, `NC-0230..0234`). Renumera quien fusiona segundo: este acto pasa a **`ADR-519`** y **`NC-0235`/`NC-0236`/`NC-0237`**. En `forense/no-corrido.tsv`, `canon/registro-rotulos.tsv` y `canon/gobernanza-v1_15.md` las entradas de `origin` van primero; en `L0`, la anotación propia se inserta delante de la ajena sin reescribirla.
+
+**Y la reconciliación no fue sólo de texto — encontró dos defectos propios:**
+
+1. **El censo leía un panel superado.** `tools/censa_reactivos_ciegos.py` apuntaba a `F5-panel-candidatos-v1_1.tsv` fijo en el código. `GEN2-PANEL-F6-EXPANSION-1` publicó **v1.2 con 27 familias** (14 retenidas), así que el censo habría declarado `NINGUNA-DECLARADA-HOY` sobre familias que el panel nuevo **sí** reclama — en silencio, que es la clase de defecto que esta casa persigue. Ahora resuelve la **versión más alta presente** y **declara cuál leyó** (A.13). Efecto inmediato: los grupos reclamados suben de **15 a 18**, y aparecen dos con texto FD ya en el repo que antes no figuraban — `enpol2021` (`R11-TRA-ENPOL-MORDIDA`) y `elcos2012` (`R13-FAM-ELCOS`).
+2. **`fd_filas_con_texto > 0` no era lo mismo que «hay enunciados utilizables».** Al mirar esos dos grupos nuevos se vio que la capa `fd_ext` (PDF/XLS) arrastra encabezados de tabla como filas: `elcos2012` tiene **29 filas y cero reactivos** (las 29 son «(2) | (1)»), y `enpol2021` mezcla reactivos reales (`P4_1_01`, *«¿El agente del Ministerio Público se identificó como autoridad?»*) con decenas de `Nemónico | Pregunta`. El censo separaba mal y **prometía de más**. Corregido con una distinción medida, no inventada: 6 745 de las 10 635 filas de `fd_ext` caen en tripletas repetidas, así que un grupo cuya única ruta viene de esa capa sale `CANDIDATA-FD-EXT-POR-VERIFICAR`. Los 26 se parten en **18 + 8**.
+
+**Lo que esto NO cambia:** los 81 grupos, las 129 648 filas ciegas, las 27 729 filas de la capa FD, el hallazgo de MOCIBA (§3.1, que viene de la capa `fd` limpia) y las corroboraciones de §3.2. La suite sigue **VERDE** y las pruebas propias pasan **10/10** — dos nuevas, una por cada defecto de arriba, para que ninguno vuelva en silencio.
+
+**Lo que queda dicho y no hecho:** verificar `enpol2021` y `elcos2012` contra su FD real es trabajo de CAJA, y `R11`/`R13` del panel v1.2 no reciben de este acto ninguna compuerta contestada — sólo la ruta y su grado de promesa. Va en `NC-0235`.

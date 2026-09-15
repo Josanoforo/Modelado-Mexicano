@@ -75,3 +75,5 @@ Ninguno. El lote 07 y `NC-0151`/`NC-0152`/`NC-0153`/`NC-0155` no eran piezas a e
 ## CONSUMIDO
 
 Ejecutado por `ACTO GEN2-PUBLICACION-POST693-Y-CIERRES` en PR #696: las tres vistas publican `fuente_replay` para 150 corridas, 3 335 resultados y 207 usos; los tres CALC omitidos quedaron visibles; el negativo C0D se preservó; `NC-0104`/`NC-0154` cerraron y `FP-361`/`FP-363` registran su ejecución exacta. Los lotes POST685 01–06 quedaron conciliados como fusionados; lote 07 y `NC-0151`/`0152`/`0153`/`0155` permanecen pendientes. El ejecutor no fusionó el PR: esa decisión pertenece a mesa.
+
+*Enmienda fechada — retro-sello de la adenda (`ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2`, 15/sep/2026, `NC-0170`). El párrafo de arriba queda **intacto**; no se reescribe. Se añade el dígito que faltaba: además de `PR #696` (base, ya citado), este encargo fue también ejecutado por **`PR #701`** (`acto/gen2-publicacion-post693`), la adenda que el censo de `2026-09-14-GEN2-CONCILIACION-TANDA-2-P3-censo.md` encontró sin ficha canónica citando su número. Verificado contra el PR real: `merged=true`.*

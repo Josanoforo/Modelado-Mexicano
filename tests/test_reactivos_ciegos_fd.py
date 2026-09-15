@@ -36,9 +36,31 @@ class CensoCiegosTest(unittest.TestCase):
 
     def test_ruta_de_recuperacion_es_consecuencia_del_conteo(self):
         for r in self.c["filas"]:
-            esperada = ("CABLEAR-CAPA-FD-YA-EN-REPO" if r["fd_filas_con_texto"] > 0
-                        else "REQUIERE-FD-EN-CORPUS")
+            if r["fd_filas_capa_limpia"] > 0:
+                esperada = "CABLEAR-CAPA-FD-YA-EN-REPO"
+            elif r["fd_filas_con_texto"] > 0:
+                esperada = "CANDIDATA-FD-EXT-POR-VERIFICAR"
+            else:
+                esperada = "REQUIERE-FD-EN-CORPUS"
             self.assertEqual(r["ruta_recuperacion"], esperada, r["instrumento"])
+
+    def test_la_capa_pdf_no_se_promete_como_resuelta(self):
+        """`elcos2012` tiene 29 filas en fd_ext y CERO enunciados utilizables: sus
+        29 textos son el encabezado «(1)» de la tabla. Si el censo lo rotulara
+        CABLEAR-CAPA-FD-YA-EN-REPO estaría prometiendo texto que no existe."""
+        fila = {r["instrumento"]: r for r in self.c["filas"]}["elcos2012"]
+        self.assertEqual(fila["fd_filas_capa_limpia"], 0)
+        self.assertGreater(fila["fd_filas_con_texto"], 0)
+        self.assertEqual(fila["ruta_recuperacion"], "CANDIDATA-FD-EXT-POR-VERIFICAR")
+
+    def test_el_panel_f6_leido_es_el_vigente_por_version(self):
+        """Apuntar a una versión fija haría que el censo declarara
+        NINGUNA-DECLARADA-HOY sobre familias que un panel nuevo ya reclama."""
+        panel = censa.panel_f6_vigente()
+        self.assertIsNotNone(panel)
+        candidatos = sorted(censa._PANEL_DIR.glob("F5-panel-candidatos-v*.tsv"))
+        self.assertEqual(panel, candidatos[-1])
+        self.assertEqual(self.c["panel_f6_leido"], panel.name)
 
     def test_demanda_no_se_inventa_por_subcadena(self):
         # `enif2024` es del lote (no está en el censo) y `encig2011` NO lo
