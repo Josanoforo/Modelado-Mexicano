@@ -1,0 +1,181 @@
+# CALC-ENFIH-0001 -- cara mecanica de spec.md (ACTO GEN2-SPECS-DEMANDA-1).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/ENFIH-AFORE-spec-v1_0.md (`prereg-caja-ENFIH-AFORE`).
+# Releva la demanda CORR-0012 (2 RESULT) bajo el registro GEN2.
+# CONGELADO en el COMMIT-1, en NUBE, antes de abrir un solo byte de microdato.
+calc_id: CALC-ENFIH-0001
+spec_md: spec.md
+spec_md_sha256: af6388d2bbccb1f2c7b86c58f9d4967220e5067a814d2a2f6cad0b3a686d8c67
+
+script: data/corrida0/CALC-ENFIH-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: TASA-BASE-DE-REGLA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENFIH-AFORE-spec-v1_0.md
+  spec_sellada_sha256: 5c5a4981bfeff29aaf98d7738e6d98dd88a1628cc9c0e356514aae880cc55c7e
+  demanda_que_releva: "CORR-0012 (ENFIH2019, payload enfih2019_bd_csv_zip) -> los 2 RESULT: RES-0037 (dinero.planeacion.formal_estable:tiene_afore) y RES-0038 (:no_tiene_afore). NO releva ninguna otra corrida."
+  reglas_bajo_prueba: "NINGUNA cambia de cifra por esta corrida. dinero.planeacion.formal_estable (R1.2) esta SELLADA en milpa/tramite.yaml:897 con p=0.538502 (GEN1) y conserva su cifra: este CALC monta la cadena E.2 sobre esa cantidad. La adopcion la decide mesa por merge, no este acto."
+  firma_de_contador: "NO-FIRMADA. El encargo de mesa (ACTO GEN2-SPECS-DEMANDA-1, 15/sep/2026) pide congelar specs ejecutables y NO declara OBJETO sobre el contador GEN2. Estandar FP-367/368 NO satisfecho -> cuenta_gen2 queda PENDIENTE-DE-MESA, y se dice aqui en vez de darselo por concedido."
+  contaminacion_declarada: "ADR-46 -- al congelar, la sesion YA habia leido de milpa/tramite.yaml:897-930: p=0.538502, ic95=[0.5267,0.550616], n=17765, ponderador FAC_HOG, universo `los 17765 de TCONCENTRADORA.csv`, la variante de robustez H_PPAL=1 (p=0.540091) y la tabla descriptiva por CAT_POS; y de forense/notas/2026-09-01-MAESTRA33-E18-P3-L1-spec.md el mapa de codigos de C_AFORE y la correccion C_AFORE-vs-V_AFORE. NO es ciega. Lo genuinamente desconocido al congelar: numero real de estratos y UPM, cuantos estratos quedan con UPM unica, la anchura del IC de diseno frente al de GEN1, el soporte observado de C_AFORE, y si FAC_HOG de TCONCENTRADORA.csv coincide con el de THOGAR.csv (no se comprueba: THOGAR.csv no se abre)."
+  medidor_ejecutado_al_congelar: "NO -- y el medidor tampoco se escribe aqui. El encargo pide `md humana + spec.yaml` (D-15, dos capas); el medidor es del acto de CAJA que consuma este contrato. Consecuencia declarada: `corrida0.py preflight CALC-ENFIH-0001` reporta BLOQUEADO:script_ausente hasta que CAJA lo escriba, y eso es correcto, no un defecto de esta spec."
+
+inputs:
+  - id: enfih2019_bd_csv_zip
+    origen: manifiesto
+  - id: enfih2019_fd_xlsx
+    origen: manifiesto
+  - id: IN-ENFIH-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/ENFIH-AFORE-spec-v1_0.md
+    sha256: 5c5a4981bfeff29aaf98d7738e6d98dd88a1628cc9c0e356514aae880cc55c7e
+
+variables:
+  - {archivo: "TCONCENTRADORA.csv", variable: C_AFORE, rol: "DESENLACE -- tenencia de cuenta de ahorro para el retiro o Afore", codigos: "FD hoja TConcentradora, etiqueta verbatim `Condicion de tenencia de cuenta de ahorro para el retiro o Afore`; 0 = No tiene, 1 = Si tiene (catalogo verificado contra FD y contra dato por ACTO MAESTRA33-E18-P3, forense/notas/2026-09-01-MAESTRA33-E18-P3-L1-spec.md:254). YA ES DICOTOMICA: no se recodifica. Soporte fuera de {0,1} o nulos -> NO-ESTIMABLE-CODIGO-FUERA-DE-MAPA", direccion: "MAS ALTO = MAS TENENCIA DE AFORE"}
+  - {archivo: "TCONCENTRADORA.csv", variable: FAC_HOG, rol: "PONDERADOR de hogar -- se toma de ESTE archivo, no de THOGAR.csv, donde la misma etiqueta existe sobre otro universo (A.15(c))", codigos: "FD: `FACTOR DE EXPANSION`; flotante tal cual, sin normalizar ni redondear"}
+  - {archivo: "TCONCENTRADORA.csv", variable: EDIS, rol: "ESTRATO de diseno -- estratificacion del bootstrap (LLAVE DE TEXTO OPACA)", codigos: "FD: `ESTRATO DE DISENO`; cadena cruda (dtype=str), nunca a entero ni re-rellenada"}
+  - {archivo: "TCONCENTRADORA.csv", variable: UPM_DIS, rol: "UPM -- conglomerado que se re-muestrea (LLAVE DE TEXTO OPACA)", codigos: "FD: `UNIDAD PRIMARIA DE MUESTREO DE DISENO`; cadena cruda"}
+  - {archivo: "TCONCENTRADORA.csv", variable: H_PPAL, rol: "FILTRO de la rama de robustez B (secundaria, no adoptable)", codigos: "FD: `Condicion de hogar principal`; B usa H_PPAL == 1"}
+  - {archivo: "TCONCENTRADORA.csv", variable: CAT_POS, rol: "DESCRIPTIVO NO SELLADO (familia C) -- categoria de posicion en el trabajo de la persona de referencia; NO es formalidad laboral y NO se sella como condicional", codigos: "FD: `Categoria de posicion en el trabajo`; se emite el perfil observado, no un mapa supuesto", direccion: "NO-APLICA (descriptivo)"}
+  - {archivo: "TCONCENTRADORA.csv", variable: FOLIO, rol: "llave de hogar (1/3)", codigos: "FD: `Numero de folio`"}
+  - {archivo: "TCONCENTRADORA.csv", variable: VIV_SEL, rol: "llave de hogar (2/3)", codigos: "FD: `Numero de vivienda seleccionada`"}
+  - {archivo: "TCONCENTRADORA.csv", variable: HOGAR, rol: "llave de hogar (3/3)", codigos: "FD: `Numero de Hogar`"}
+
+universo: >-
+  Hogares: TODAS las filas de TCONCENTRADORA.csv, miembro de
+  enfih2019/enfih_2019_base_de_datos_csv.zip, llave FOLIO+VIV_SEL+HOGAR, SIN
+  filtro adicional -- la regla no declara ninguno. Entran las filas con
+  FAC_HOG finito y > 0. ENFIH 2019 es la UNICA ola de ENFIH en el corpus: no
+  hay serie que promediar y no se construye ninguna.
+  U_B (robustez, secundaria): U_A restringido a H_PPAL == 1.
+
+filtros: >-
+  Sale de U_A, CONTADO y no imputado: fila con FAC_HOG vacio, no finito o <= 0
+  (A-N-SIN-PONDERADOR). Se cuenta pero NO sale del punto: fila sin EDIS o sin
+  UPM_DIS (A-N-SIN-DISENO) -- afecta al IC, no al estimador.
+  CERO NUNCA SUSTITUYE FALTA DE DATO.
+  Guardias que producen NO-ESTIMABLE en vez de una cifra: miembro ausente del
+  ZIP -> NO-ESTIMABLE-MIEMBRO-AUSENTE:<m>; columna declarada ausente ->
+  NO-ESTIMABLE-COLUMNA-AUSENTE:<col>; C_AFORE con nulos o soporte fuera de
+  {0,1} -> NO-ESTIMABLE-CODIGO-FUERA-DE-MAPA; llave FOLIO+VIV_SEL+HOGAR no
+  unica -> NO-ESTIMABLE-LLAVE-NO-UNICA; universo vacio ->
+  NO-ESTIMABLE-UNIVERSO-VACIO. Si TODA fila carece de diseno ->
+  A-METODO-IC = NO-ESTIMABLE-DISENO-INCOMPLETO, los IC salen null y el punto
+  se reporta igual.
+
+ponderador: >-
+  FAC_HOG leido de TCONCENTRADORA.csv (NO de THOGAR.csv, que no se abre en
+  esta corrida). Flotante tal cual: sin normalizar, sin redondear, sin
+  truncar. Ningun otro ponderador entra.
+
+transformacion: >-
+  Lectura con pandas.read_csv(encoding='latin-1', low_memory=False); EDIS y
+  UPM_DIS con dtype=str. d = C_AFORE como flotante 0/1 crudo (sin recodificar).
+  A-P = suma(w*d)/suma(w) sobre U_A, sumas en orden fijo de llave.
+  A-P-COMPLEMENTO se cuenta DIRECTAMENTE sobre d == 0, nunca como 1 - A-P.
+  Bootstrap: clave de conglomerado = (EDIS, UPM_DIS) como cadenas; UPM con
+  reemplazo dentro de EDIS conservando el numero de UPM por estrato; estrato
+  con UPM unica se re-muestrea a si mismo. IC = percentiles 2.5/97.5 de las
+  replicas. NO se promedia, no se imputa, no se re-escala, no se extrapola.
+
+estimando: >-
+  DESCRIPTIVO. (1) ADOPTABLE POR MESA: A-P, proporcion ponderada de hogares
+  con C_AFORE = 1, con A-IC-LO/A-IC-HI de diseno; y A-P-COMPLEMENTO contado.
+  (2) SECUNDARIOS DECLARADOS, NO adoptables: la familia B (sensibilidad de
+  universo H_PPAL=1, con B-DELTA-VS-A con signo) y la familia C (perfil
+  descriptivo de tenencia por CAT_POS). NINGUN RESULT ES CAUSAL: R1.2 afirma
+  `empleo formal estable -> planeacion larga` y esta corrida mide la tasa base
+  incondicional, no la condicional, que NO es construible en ENFIH 2019
+  (0 aciertos de formalidad laboral en las 664 columnas de las 16 tablas;
+  universo del negativo declarado en la sellada, seccion 2.4).
+
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  fuente_acto: "ACTO GEN2-SPECS-DEMANDA-1 · CALC-ENFIH-0001 · celda de R1.2 sobre ENFIH 2019 con IC de diseno"
+  firma_que_lo_autoriza: "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-1.md: «redactar y CONGELAR la spec ejecutable (md humana + spec.yaml, D-15, abriendo SOLO codebook y metadato -- E.5 lo permite en nube, microdato jamas)». La firma autoriza CONGELAR, no contar: por eso cuenta_gen2 queda PENDIENTE-DE-MESA."
+  bootstrap_replicas: 2000
+  metodo_ic: "bootstrap de UPM_DIS CON REEMPLAZO dentro de EDIS, conservando el numero de UPM por estrato; percentiles 2.5/97.5."
+  regla_estrato_upm_unica: >-
+    Un estrato con exactamente una UPM se re-muestrea a si mismo: aporta
+    varianza cero. NO se colapsa (decision de diseno que esta spec no esta
+    autorizada a tomar) y NO se descarta (sesgaria el punto). Si el conteo es
+    > 0, A-METODO-IC sale IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como
+    LIMITE INFERIOR de la anchura verdadera, nunca como IC exacto.
+  llaves_opacas: >-
+    EDIS y UPM_DIS se agrupan como CADENA CRUDA (dtype=str). Nunca se
+    convierten a entero ni se re-rellenan: normalizarlas partiria o fusionaria
+    estratos en silencio. El perfil observado de anchos sale como RESULT de
+    texto pre-declarado.
+  archivo_de_ponderador: "TCONCENTRADORA.csv -- declarado como PARAMETRO y no como detalle: FAC_HOG existe tambien en THOGAR.csv del mismo ZIP, sobre otro universo, y resolver el ponderador por nombre de variable tomaria uno u otro sin aviso (A.15(c))."
+  miembros_zip_declarados:
+  - "TCONCENTRADORA.csv"
+  tablas:
+    concentradora: "TCONCENTRADORA.csv"
+  codificacion:
+    c_afore_soporte_esperado: [0, 1]
+    llave_hogar: [FOLIO, VIV_SEL, HOGAR]
+    h_ppal_robustez: 1
+  valores_gen1_referencia:
+    A_P: 0.538502
+    A_IC_LO: 0.5267
+    A_IC_HI: 0.550616
+    B_P_H_PPAL: 0.540091
+  n_gen1_referencia:
+    U_A: 17765
+    U_B: 17386
+  grano_gen1_decimales: 6
+  criterio_adopcion: >-
+    A-ADOPCION = LISTADO-PARA-MESA-REPRODUCE si A-REPRODUCE-GEN1 = REPRODUCE y
+    round(A-P, 6) == 0.538502; LISTADO-PARA-MESA-NO-REPRODUCE en otro caso
+    estimable; NO-ADOPTABLE-NO-ESTIMABLE si no hay punto. Este acto NO escribe
+    cita en milpa/ bajo ninguna rama.
+
+seed:
+  aplica: true
+  valor: 20260915
+  rng: numpy.PCG64
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Bootstrap fijado por seed + rng declarados y sumas en orden fijo de llave:
+    la unica diferencia esperable entre dos corridas del mismo arbol es
+    redondeo de float64 al reasociar sumas ponderadas. Los enteros y los textos
+    se comparan EXACTO.
+
+resultados:
+  - {id: RESULT-ENFIH-G-N-MIEMBROS-ZIP, tipo: entero, unidad: "miembros del ZIP (el inventario declara 16)"}
+  - {id: RESULT-ENFIH-G-N-FILAS-CONCENTRADORA, tipo: entero, unidad: "filas de TCONCENTRADORA.csv"}
+  - {id: RESULT-ENFIH-G-N-COLUMNAS-CONCENTRADORA, tipo: entero, unidad: "columnas de TCONCENTRADORA.csv (el FD declara 88 para TConcentradora)"}
+  - {id: RESULT-ENFIH-G-LLAVE-HOGAR-UNICA, tipo: texto, unidad: "SI / NO -- FOLIO+VIV_SEL+HOGAR unica en TCONCENTRADORA.csv"}
+  - {id: RESULT-ENFIH-G-SOPORTE-C-AFORE, tipo: texto, unidad: "soporte observado de C_AFORE, ordenado: 'v:n;v:n'"}
+  - {id: RESULT-ENFIH-G-N-NULOS-C-AFORE, tipo: entero, unidad: "filas con C_AFORE nulo (esperado 0)"}
+  - {id: RESULT-ENFIH-G-PERFIL-EDIS, tipo: texto, unidad: "perfil de anchos del texto crudo de EDIS: 'ancho=k:n_filas;...'"}
+  - {id: RESULT-ENFIH-G-PERFIL-UPM-DIS, tipo: texto, unidad: "perfil de anchos del texto crudo de UPM_DIS"}
+  - {id: RESULT-ENFIH-G-N-EDIS-DISTINTOS, tipo: entero, unidad: "estratos distintos en el universo"}
+  - {id: RESULT-ENFIH-G-N-UPM-DISTINTAS, tipo: entero, unidad: "conglomerados (EDIS,UPM_DIS) distintos en el universo"}
+  - {id: RESULT-ENFIH-G-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "estratos con exactamente una UPM"}
+  - {id: RESULT-ENFIH-A-N-U, tipo: entero, unidad: "hogares del universo A (GEN1 conto 17765)"}
+  - {id: RESULT-ENFIH-A-N-SIN-PONDERADOR, tipo: entero, unidad: "filas excluidas por FAC_HOG vacio, no finito o <= 0"}
+  - {id: RESULT-ENFIH-A-N-SIN-DISENO, tipo: entero, unidad: "filas del universo sin EDIS o sin UPM_DIS (cuentan al punto, no al IC)"}
+  - {id: RESULT-ENFIH-A-P, tipo: proporcion, unidad: "proporcion ponderada de hogares con C_AFORE = 1", permite_no_estimable: true}
+  - {id: RESULT-ENFIH-A-P-COMPLEMENTO, tipo: proporcion, unidad: "proporcion ponderada de hogares con C_AFORE = 0, CONTADA (nunca 1 - p)", permite_no_estimable: true}
+  - {id: RESULT-ENFIH-A-SUMA-UNO, tipo: texto, unidad: "SI / NO:<residuo> -- A-P + A-P-COMPLEMENTO dentro de tolerancia"}
+  - {id: RESULT-ENFIH-A-IC-LO, tipo: flotante, unidad: "percentil 2.5 del bootstrap de diseno", permite_no_estimable: true}
+  - {id: RESULT-ENFIH-A-IC-HI, tipo: flotante, unidad: "percentil 97.5 del bootstrap de diseno", permite_no_estimable: true}
+  - {id: RESULT-ENFIH-A-METODO-IC, tipo: texto, unidad: "IC-DE-DISENO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-DISENO-INCOMPLETO"}
+  - {id: RESULT-ENFIH-A-HOGARES-EXPANDIDOS, tipo: flotante, unidad: "suma de FAC_HOG en el universo A"}
+  - {id: RESULT-ENFIH-A-DELTA-VS-GEN1, tipo: flotante, unidad: "A-P menos 0.538502, CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-ENFIH-A-REPRODUCE-GEN1, tipo: texto, unidad: "REPRODUCE / NO-REPRODUCE / NO-ESTIMABLE -- round(A-P,6) == 0.538502"}
+  - {id: RESULT-ENFIH-A-DELTA-IC-VS-GEN1, tipo: flotante, unidad: "(A-IC-HI - A-IC-LO) menos (0.550616 - 0.5267), CON SIGNO: cuanto cambia la anchura al usar diseno", permite_no_estimable: true}
+  - {id: RESULT-ENFIH-A-ADOPCION, tipo: texto, unidad: "LISTADO-PARA-MESA-REPRODUCE / LISTADO-PARA-MESA-NO-REPRODUCE / NO-ADOPTABLE-NO-ESTIMABLE"}
+  - {id: RESULT-ENFIH-B-N-U, tipo: entero, unidad: "hogares con H_PPAL = 1 (GEN1 conto 17386)"}
+  - {id: RESULT-ENFIH-B-P, tipo: proporcion, unidad: "A-P restringido a hogar principal -- SENSIBILIDAD, no adoptable", permite_no_estimable: true}
+  - {id: RESULT-ENFIH-B-IC-LO, tipo: flotante, unidad: "percentil 2.5 de la rama B", permite_no_estimable: true}
+  - {id: RESULT-ENFIH-B-IC-HI, tipo: flotante, unidad: "percentil 97.5 de la rama B", permite_no_estimable: true}
+  - {id: RESULT-ENFIH-B-DELTA-VS-A, tipo: flotante, unidad: "B-P menos A-P, CON SIGNO: lo que vale la eleccion de universo", permite_no_estimable: true}
+  - {id: RESULT-ENFIH-C-PERFIL-CAT-POS, tipo: texto, unidad: "DESCRIPTIVO NO SELLADO: 'cat_pos=v:n=<n>:p=<tasa ponderada>;...' -- CAT_POS NO es formalidad laboral"}
