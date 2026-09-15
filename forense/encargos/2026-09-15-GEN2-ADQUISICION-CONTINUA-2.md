@@ -116,6 +116,12 @@ La respuesta a «¿quedó más cerca de producir una explicación, medición, de
 
 Referencias del corte: implementación #777; investigación/continuación #780; recibo/corrección de presupuesto; reserva/despacho; wrapper ejecutor; cursor vigente de ahorro.
 
+## NO-CORRIDO / RESERVAS
+
+Ninguna parte material quedó sin correr. La observación del próximo disparo
+horario automático permanece puntual y no condiciona el cierre: la continuidad
+ya se demostró con dos activaciones de la tarea existente.
+
 ## CONSUMIDO
 
 Ejecutado el 15 de septiembre de 2026 por el PR principal #782. La evidencia
