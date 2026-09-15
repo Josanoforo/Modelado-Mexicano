@@ -72,7 +72,7 @@
 
 set -euo pipefail
 
-RUNNER_VERSION="adq-codex-6"
+RUNNER_VERSION="adq-codex-5"
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_DIR"
@@ -141,59 +141,9 @@ NECESIDADES_ATENDIDAS=0
 OBJETOS_NUEVOS=0
 BYTES_NUEVOS=0
 SALUD_TRABAJO="INDETERMINADA"
-PRESUPUESTO_RESERVADO=0
-PRESUPUESTO_LIQUIDADO=0
-EJECUTOR_INICIADO=0
-DURACION_HIJO_SEGUNDOS=0
-GRACIA_TERMINACION_SEGUNDOS=0
-OBJETOS_INTENTADOS=0
-PRESUPUESTO_RESERVA_REAL="-"
-PRESUPUESTO_CONSUMO_REAL="-"
-PRESUPUESTO_DEVUELTO_REAL="-"
-RECUPERACION_PENDIENTE="-"
 
 log() {
   echo "[$(date '+%Y-%m-%d %H:%M:%S%z')] $*" | tee -a "$LOGFILE"
-}
-
-# Liquida antes de publicar el remanente y vuelve a intentarlo en EXIT. El
-# ledger hace idempotente el segundo llamado: un fallo de publicación no
-# repite ni devuelve dos veces el trabajo ya acreditado.
-liquida_presupuesto_run() {
-  [ "${PRESUPUESTO_RESERVADO:-0}" -eq 1 ] || return 0
-  [ "${PRESUPUESTO_LIQUIDADO:-0}" -eq 0 ] || return 0
-  local salida codigo asegura=()
-  if [ "${EJECUTOR_INICIADO:-0}" -eq 1 ]; then
-    asegura=(--asegura-investigacion-iniciada)
-  fi
-  set +e
-  salida="$(python3 tools/adq_investigacion.py --liquida-presupuesto \
-    --owner "$RUN_ID" --corte "$FECHA" \
-    --necesidades "${NECESIDADES_ATENDIDAS:-0}" \
-    --objetos "${OBJETOS_INTENTADOS:-0}" \
-    --segundos "${DURACION_HIJO_SEGUNDOS:-0}" \
-    "${asegura[@]}" \
-    --evidencia-liquidacion "wrapper-monotonic; exit=${CODIGO_SALIDA:--}; fase=${FASE}" \
-    2>>"$LOGFILE")"
-  codigo=$?
-  set -e
-  if [ "$codigo" -ne 0 ]; then
-    RECUPERACION_PENDIENTE="$RUN_ID"
-    log "PARO-LIQUIDACION: run_id=${RUN_ID} exit=${codigo}; la reserva se conserva para recuperación acreditada."
-    return "$codigo"
-  fi
-  IFS=$'\t' read -r PRESUPUESTO_CONSUMO_REAL PRESUPUESTO_DEVUELTO_REAL \
-    PRESUPUESTO_NECESIDADES PRESUPUESTO_OBJETOS PRESUPUESTO_SEGUNDOS \
-    < <(printf '%s' "$salida" | python3 -c '
-import json,sys
-d=json.load(sys.stdin); rid=sys.argv[1]
-r=next(x for x in d["reservas"] if x["run_id"] == rid)
-def f(x): return "%s/%s/%ss" % (x["necesidades"], x["objetos"], x["segundos_ejecutor"])
-print("\t".join((f(r["consumido"]), f(r["devuelto"]),
- str(d["disponible"]["necesidades"]), str(d["disponible"]["objetos"]),
- str(d["disponible"]["segundos_ejecutor"]))))' "$RUN_ID")
-  PRESUPUESTO_LIQUIDADO=1
-  log "PRESUPUESTO-LIQUIDADO: run_id=${RUN_ID} reservado=${PRESUPUESTO_RESERVA_REAL} consumido=${PRESUPUESTO_CONSUMO_REAL} devuelto=${PRESUPUESTO_DEVUELTO_REAL} disponible=${PRESUPUESTO_NECESIDADES}/${PRESUPUESTO_OBJETOS}/${PRESUPUESTO_SEGUNDOS}s duracion_hijo_monotonica=${DURACION_HIJO_SEGUNDOS}s gracia_terminacion=${GRACIA_TERMINACION_SEGUNDOS}s."
 }
 
 # Regresa al árbol que el launcher resolvió. En el camino heredado conserva
@@ -575,9 +525,6 @@ ${RESUMEN}" >>"$LOGFILE" 2>&1
 huella_adq() {
   local invocado="$1" motivo="$2" exit_cod="$3"
   local hhmm t1 duracion head_despues commits_nuevos ramas_despues ramas_nuevas archivos_modificados linea publicacion contenido fin_iso cli_token presupuesto_actual presupuesto_reanuda codigo_presupuesto
-  # La publicación siempre observa el ledger ya consolidado. Si falla esta
-  # llamada, se conserva la reserva y el recibo lo declara pendiente.
-  liquida_presupuesto_run || true
   hhmm="$(date +%H:%M)"
   t1="$(date +%s)"
   duracion=$((t1 - T0))
@@ -638,11 +585,11 @@ huella_adq() {
     log "DEGRADACION-PRESUPUESTO: no se pudo releer el remanente al cerrar; conserva la última lectura conocida"
   fi
   presupuesto_reanuda="-"
-  if [ "$PRESUPUESTO_SEGUNDOS" -le 0 ] || { [ "$PRESUPUESTO_NECESIDADES" -le 0 ] && [ "$PRESUPUESTO_OBJETOS" -le 0 ]; }; then
+  if [ "$PRESUPUESTO_NECESIDADES" -le 0 ] || [ "$PRESUPUESTO_OBJETOS" -le 0 ] || [ "$PRESUPUESTO_SEGUNDOS" -le 0 ]; then
     presupuesto_reanuda="$(date -d "$FECHA +1 day" +%F)"
   fi
   MOTIVO_CIERRE="$motivo"
-  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s duracion_ejecutor=${DURACION_HIJO_SEGUNDOS}s gracia_terminacion=${GRACIA_TERMINACION_SEGUNDOS}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} launcher_sha=${ADQ_DEPLOY_SHA:-legacy} runner_version=${RUNNER_VERSION} ejecutor=${EJECUTOR} cli_version=${cli_token} modelo_configurado=${MODELO_CONFIGURADO} modelo_efectivo=${MODELO_EFECTIVO} resultado=${RESULTADO_SUSTANTIVO} resultado_trabajo=${RESULTADO_TRABAJO} salud_trabajo=${SALUD_TRABAJO} demanda_atendible=${DEMANDA_ATENDIBLE} necesidades_atendidas=${NECESIDADES_ATENDIDAS} objetos_intentados=${OBJETOS_INTENTADOS} objetos_nuevos=${OBJETOS_NUEVOS} bytes_nuevos=${BYTES_NUEVOS} publicacion_trabajo=${PUBLICACION_TRABAJO} seleccion_elegidos=${SELECCION_ELEGIDOS} seleccion_excluidos=${SELECCION_EXCLUIDOS} investigacion_elegidas=${INVESTIGACION_ELEGIDAS} investigacion_excluidas=${INVESTIGACION_EXCLUIDAS} residuales_total=${RESIDUALES_TOTAL} residuales_cubiertos=${RESIDUALES_CUBIERTOS} residuales_accionables=${RESIDUALES_ACCIONABLES} residuales_acceso=${RESIDUALES_ACCESO} residuales_sin_via=${RESIDUALES_SIN_VIA} residuales_reintento=${RESIDUALES_REINTENTO} residuales_decision=${RESIDUALES_DECISION} presupuesto_reservado=${PRESUPUESTO_RESERVA_REAL} presupuesto_consumido=${PRESUPUESTO_CONSUMO_REAL} presupuesto_devuelto=${PRESUPUESTO_DEVUELTO_REAL} presupuesto_disponible=${PRESUPUESTO_NECESIDADES}/${PRESUPUESTO_OBJETOS}/${PRESUPUESTO_SEGUNDOS}s recuperacion_pendiente=${RECUPERACION_PENDIENTE} presupuesto_reanuda=${presupuesto_reanuda} inicio=${INICIO_ISO} fin=${fin_iso} publicacion=${publicacion} disparador=${DISPARADOR} causa=${CAUSA_DISPARO} run_id=${RUN_ID}"
+  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} launcher_sha=${ADQ_DEPLOY_SHA:-legacy} runner_version=${RUNNER_VERSION} ejecutor=${EJECUTOR} cli_version=${cli_token} modelo_configurado=${MODELO_CONFIGURADO} modelo_efectivo=${MODELO_EFECTIVO} resultado=${RESULTADO_SUSTANTIVO} resultado_trabajo=${RESULTADO_TRABAJO} salud_trabajo=${SALUD_TRABAJO} demanda_atendible=${DEMANDA_ATENDIBLE} necesidades_atendidas=${NECESIDADES_ATENDIDAS} objetos_nuevos=${OBJETOS_NUEVOS} bytes_nuevos=${BYTES_NUEVOS} publicacion_trabajo=${PUBLICACION_TRABAJO} seleccion_elegidos=${SELECCION_ELEGIDOS} seleccion_excluidos=${SELECCION_EXCLUIDOS} investigacion_elegidas=${INVESTIGACION_ELEGIDAS} investigacion_excluidas=${INVESTIGACION_EXCLUIDAS} residuales_total=${RESIDUALES_TOTAL} residuales_cubiertos=${RESIDUALES_CUBIERTOS} residuales_accionables=${RESIDUALES_ACCIONABLES} residuales_acceso=${RESIDUALES_ACCESO} residuales_sin_via=${RESIDUALES_SIN_VIA} residuales_reintento=${RESIDUALES_REINTENTO} residuales_decision=${RESIDUALES_DECISION} presupuesto_disponible=${PRESUPUESTO_NECESIDADES}/${PRESUPUESTO_OBJETOS}/${PRESUPUESTO_SEGUNDOS}s presupuesto_reanuda=${presupuesto_reanuda} inicio=${INICIO_ISO} fin=${fin_iso} publicacion=${publicacion} disparador=${DISPARADOR} causa=${CAUSA_DISPARO} run_id=${RUN_ID}"
   log "${linea}"
   CIERRE_ESCRITO=1
   printf -v contenido '[ADQ-SELECCION] run_id=%s %s\n[ADQ-INVESTIGACION] run_id=%s %s\n[ADQ-RESULTADO] run_id=%s %s\n%s' \
@@ -729,7 +676,6 @@ finalizar() {
     [ "$MOTIVO_CIERRE" = "-" ] && MOTIVO_CIERRE="salida-inesperada-en-${FASE}"
     log "INCOMPLETO: run_id=${RUN_ID} terminó en fase=${FASE} sin haber escrito su huella [ADQ]. No se infiere ni éxito ni causa de muerte."
   fi
-  liquida_presupuesto_run || true
   log "=== adquiere_cron.sh terminado (run_id=${RUN_ID} fase=${FASE} exit=${codigo}) ==="
   escribe_heartbeat "$estado" "$codigo" 2>>"$LOGFILE" || true
   if [ "${INVESTIGACION_RESERVADA:-0}" -eq 1 ]; then
@@ -777,9 +723,6 @@ MAXIMO_FILAS="$(printf '%s' "$EJECUTOR_JSON" | python3 -c 'import json,sys; prin
 MAXIMO_INVESTIGACIONES="$(lee_config descubrimiento_maximo_necesidades 3)"
 TIMEOUT_DESCUBRIMIENTO="$(lee_config descubrimiento_timeout_segundos 1800)"
 TIMEOUT_ADQUISICION="$(lee_config adquisicion_timeout_segundos 1800)"
-RECUPERACION_JSON="$(python3 tools/adq_investigacion.py --recupera-presupuesto \
-  --owner "$RUN_ID" --corte "$FECHA" --lock-exclusivo)"
-RECUPERACION_PENDIENTE="$(printf '%s' "$RECUPERACION_JSON" | python3 -c 'import json,sys; print(",".join(json.load(sys.stdin)["recuperacion_pendiente"]) or "-")')"
 PRESUPUESTO_JSON="$(python3 tools/adq_investigacion.py --presupuesto --corte "$FECHA")"
 PRESUPUESTO_NECESIDADES="$(printf '%s' "$PRESUPUESTO_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["disponible"]["necesidades"])')"
 PRESUPUESTO_OBJETOS="$(printf '%s' "$PRESUPUESTO_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["disponible"]["objetos"])')"
@@ -1098,7 +1041,6 @@ Esta es la selección de adquisición proyectada inmediatamente antes de tu arra
 ${SELECCION_JSON}
 Esta es la selección de investigación; ejecuta exactamente una investigación por elegido, en orden, sin repetir las exclusiones:
 ${INVESTIGACION_JSON}
-Antes de iniciar cada investigación elegida registra una sola vez: \`python3 tools/adq_investigacion.py --checkpoint-presupuesto --owner ${RUN_ID} --corte ${FECHA} --tipo-checkpoint necesidades --checkpoint-id <necesidad_id>\`. Antes de intentar descargar cada objeto registra: \`python3 tools/adq_investigacion.py --checkpoint-presupuesto --owner ${RUN_ID} --corte ${FECHA} --tipo-checkpoint objetos --checkpoint-id <objeto_id>\`. El mismo objeto en otro run_id vuelve a consumir unidad si de verdad se reintenta; no uses la idempotencia del checkpoint para habilitar reintentos ilimitados.
 Una candidata pública nueva y pertinente puede adquirirla en esta misma corrida aunque no estuviera en la selección inicial: crea el residual con adq_residual.py, autoridad AUTORIZADA-POR-ALCANCE:Jonas/2026-09-12/GEN2-38/<objeto>, y cuenta ese objeto dentro del máximo total. No deriva autorización para compra, login, contacto ni adopción científica. Persiste el progreso de cada necesidad con \`python3 tools/adq_investigacion.py --actualiza-desde-resultados <json-temporal>\` antes del commit; un timeout conserva cursor y frontera. Si \`frontera_no_examinada\` o \`cursor_continuacion\` nombra una ruta pública concreta todavía plausible, \`estado\` DEBE ser \`continua\`; \`sin_hallazgo_acotado\` sólo aplica cuando no queda ninguna ruta pública plausible y debe nombrar el evento externo que reactivaría la búsqueda.
 Tu último mensaje debe cumplir tools/adq-resultado.schema.json. Entrega los objetos inicialmente elegidos primero y después sólo candidatas de esta investigación que hayas adquirido o intentado. Cada evidencia debe ser una ruta local existente; toda adquisición debe acreditar archivos e ids pertinentes de data/manifiesto.yaml; todo intento debe conservar vía y resultado verificable. Evalúa por separado identidad, concepto, población, selección/no respuesta, unidad, temporalidad, diseño e identificación; no uses una nota agregada. Con cualquier trabajo, la publicación exige refs/heads/<rama> y SHA remoto exacto: el recibo posterior del wrapper no la sustituye. Si falla, conserva resultados, declara resultado_sustantivo=fallo y publicacion_trabajo=fallida."
 
@@ -1108,10 +1050,7 @@ Tu último mensaje debe cumplir tools/adq-resultado.schema.json. Entrega los obj
 python3 tools/adq_investigacion.py --reserva-presupuesto --owner "$RUN_ID" \
   --corte "$FECHA" --necesidades "$NUM_INVESTIGACIONES" \
   --objetos "$MAXIMO_FILAS" --segundos "$TIMEOUT_EJECUTOR" \
-  --pid "$$" \
   >>"$LOGFILE" 2>&1
-PRESUPUESTO_RESERVADO=1
-PRESUPUESTO_RESERVA_REAL="${NUM_INVESTIGACIONES}/${MAXIMO_FILAS}/${TIMEOUT_EJECUTOR}s"
 
 # set +e/-e: la huella [ADQ] tiene que capturar el código real de salida
 # incluso cuando el hijo falla -- bajo `set -e`
@@ -1144,17 +1083,8 @@ if [ "$EJECUTOR" = "codex" ]; then
     ULTIMO_MENSAJE="$LOGDIR/${RUN_ID}-codex-final.json"
     PROMPT_LOCAL="$LOGDIR/${RUN_ID}-prompt.txt"
     printf '%s\n' "$PROMPT_EFECTIVO" >"$PROMPT_LOCAL"
-    if ! python3 tools/adq_investigacion.py --checkpoint-presupuesto \
-      --owner "$RUN_ID" --corte "$FECHA" --tipo-checkpoint ejecutor \
-      --checkpoint-id proceso >>"$LOGFILE" 2>&1; then
-      CODIGO_SALIDA=70
-      RESULTADO_SUSTANTIVO="fallo_contabilidad"
-      log "PARO-CONTABILIDAD: no se acreditó el inicio del ejecutor; no se invoca Codex."
-    else
-      EJECUTOR_INICIADO=1
-      EJECUTOR_MONO_INICIO="$(python3 -c 'import time; print(time.monotonic_ns())')"
-      log "invocando: timeout --kill-after=${KILL_AFTER_EJECUTOR}s ${TIMEOUT_EJECUTOR}s codex exec --enable standalone_web_search --json --sandbox ${CODEX_SANDBOX} --model ${MODELO_CONFIGURADO} --add-dir ${CODEX_DIR_ADICIONAL} (aprobaciones=never red=true)"
-      timeout --kill-after="${KILL_AFTER_EJECUTOR}s" "${TIMEOUT_EJECUTOR}s" \
+    log "invocando: timeout --kill-after=${KILL_AFTER_EJECUTOR}s ${TIMEOUT_EJECUTOR}s codex exec --enable standalone_web_search --json --sandbox ${CODEX_SANDBOX} --model ${MODELO_CONFIGURADO} --add-dir ${CODEX_DIR_ADICIONAL} (aprobaciones=never red=true)"
+    timeout --kill-after="${KILL_AFTER_EJECUTOR}s" "${TIMEOUT_EJECUTOR}s" \
       "$CODEX_BINARIO" exec --ignore-user-config --ephemeral --enable standalone_web_search --json --color never \
       --sandbox "$CODEX_SANDBOX" --model "$MODELO_CONFIGURADO" \
       --add-dir "$CODEX_DIR_ADICIONAL" \
@@ -1162,17 +1092,8 @@ if [ "$EJECUTOR" = "codex" ]; then
       -c 'sandbox_workspace_write.network_access=true' \
       --output-schema "$CODEX_ESQUEMA" --output-last-message "$ULTIMO_MENSAJE" \
       - <"$PROMPT_LOCAL" >"$EVENTOS_CODEX" 2>"$STDERR_CODEX"
-      CODIGO_SALIDA=$?
-      EJECUTOR_MONO_FIN="$(python3 -c 'import time; print(time.monotonic_ns())')"
-      IFS=$'\t' read -r DURACION_HIJO_SEGUNDOS GRACIA_TERMINACION_SEGUNDOS \
-      < <(python3 - "$EJECUTOR_MONO_INICIO" "$EJECUTOR_MONO_FIN" "$TIMEOUT_EJECUTOR" <<'PYEOF'
-import math, sys
-transcurrido = max(0, math.ceil((int(sys.argv[2]) - int(sys.argv[1])) / 1_000_000_000))
-limite = int(sys.argv[3])
-print(f"{min(transcurrido, limite)}\t{max(0, transcurrido - limite)}")
-PYEOF
-)
-      if [ "$CODIGO_SALIDA" -eq 0 ]; then
+    CODIGO_SALIDA=$?
+    if [ "$CODIGO_SALIDA" -eq 0 ]; then
       RESULTADO_NORMALIZADO="${ULTIMO_MENSAJE}.normalizado"
       python3 tools/adq_doctor.py --normaliza-resultado "$ULTIMO_MENSAJE" \
         --seleccion-archivo "$SELECCION_ARCHIVO" \
@@ -1185,7 +1106,6 @@ PYEOF
         rm -f "$RESULTADO_NORMALIZADO"
         CODIGO_SALIDA=65
         log "PARO-RESULTADO: no se pudieron normalizar las selecciones autoritativas del wrapper."
-      fi
       fi
     fi
     if [ "$CODIGO_SALIDA" -eq 0 ]; then
@@ -1202,7 +1122,6 @@ PYEOF
         PUBLICACION_TRABAJO="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["publicacion_trabajo"])' "$VALIDACION_RESULTADO")"
         CIERRE_HIJO="$(python3 -c 'import json,sys; print("si" if json.load(open(sys.argv[1], encoding="utf-8"))["cierre_exitoso"] else "no")' "$VALIDACION_RESULTADO")"
         NECESIDADES_ATENDIDAS="$(printf '%s' "$RESULTADO_PUBLICO" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)["investigaciones"]))')"
-        OBJETOS_INTENTADOS="$(printf '%s' "$RESULTADO_PUBLICO" | python3 -c 'import json,sys; print(len({x["objeto_id"] for x in json.load(sys.stdin)["resultados_por_objeto"]}))')"
         OBJETOS_NUEVOS="$(printf '%s' "$RESULTADO_PUBLICO" | python3 -c 'import json,sys; print(sum(x["desenlace"]=="adquirido" for x in json.load(sys.stdin)["resultados_por_objeto"]))')"
         BYTES_NUEVOS="$(printf '%s' "$RESULTADO_PUBLICO" | python3 -c 'import json,os,sys; d=json.load(sys.stdin); print(sum(os.path.getsize(p) for x in d["resultados_por_objeto"] if x["desenlace"]=="adquirido" for p in x["archivos"] if os.path.isfile(p)))')"
         if [ "$OBJETOS_NUEVOS" -gt 0 ]; then
@@ -1236,29 +1155,10 @@ else
   FASE="CLAUDE-COMPAT"
   CLI_VERSION="$(claude --version 2>&1 | head -1)"
   log "ejecutor=claude seleccionado explícitamente; invocando compatibilidad"
-  if ! python3 tools/adq_investigacion.py --checkpoint-presupuesto \
-    --owner "$RUN_ID" --corte "$FECHA" --tipo-checkpoint ejecutor \
-    --checkpoint-id proceso >>"$LOGFILE" 2>&1; then
-    CODIGO_SALIDA=70
-    RESULTADO_SUSTANTIVO="fallo_contabilidad"
-    log "PARO-CONTABILIDAD: no se acreditó el inicio del ejecutor; no se invoca Claude."
-  else
-    EJECUTOR_INICIADO=1
-    EJECUTOR_MONO_INICIO="$(python3 -c 'import time; print(time.monotonic_ns())')"
-    timeout --kill-after="${KILL_AFTER_EJECUTOR}s" "${TIMEOUT_EJECUTOR}s" \
-      claude --add-dir /home/pc0/mm-corpus -p "$PROMPT"
-    CODIGO_SALIDA=$?
-    EJECUTOR_MONO_FIN="$(python3 -c 'import time; print(time.monotonic_ns())')"
-    IFS=$'\t' read -r DURACION_HIJO_SEGUNDOS GRACIA_TERMINACION_SEGUNDOS \
-    < <(python3 - "$EJECUTOR_MONO_INICIO" "$EJECUTOR_MONO_FIN" "$TIMEOUT_EJECUTOR" <<'PYEOF'
-import math, sys
-transcurrido = max(0, math.ceil((int(sys.argv[2]) - int(sys.argv[1])) / 1_000_000_000))
-limite = int(sys.argv[3])
-print(f"{min(transcurrido, limite)}\t{max(0, transcurrido - limite)}")
-PYEOF
-)
-    RESULTADO_SUSTANTIVO="compatibilidad_claude"
-  fi
+  timeout --kill-after="${KILL_AFTER_EJECUTOR}s" "${TIMEOUT_EJECUTOR}s" \
+    claude --add-dir /home/pc0/mm-corpus -p "$PROMPT"
+  CODIGO_SALIDA=$?
+  RESULTADO_SUSTANTIVO="compatibilidad_claude"
 fi
 set -e
 if [ "$CODIGO_SALIDA" -ne 0 ] && [ "$RESULTADO_SUSTANTIVO" = "no-invocado" ]; then

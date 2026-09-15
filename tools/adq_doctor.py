@@ -436,26 +436,6 @@ def check_heartbeat():
         return {"estado": "NO-LEGIBLE", "razon": str(e)}
 
 
-def check_presupuesto():
-    """Foto de solo lectura del ledger compartido y liquidaciones pendientes."""
-    from pathlib import Path
-    from zoneinfo import ZoneInfo
-    import adq_investigacion
-    cal = _calendario_resuelto()
-    fecha = datetime.datetime.now(ZoneInfo(cal["zona_iana"])).date()
-    cfg = adq_investigacion.cargar_config()
-    dato = adq_investigacion.presupuesto_diario(cfg, fecha, Path(RAIZ))
-    activas = [r["run_id"] for r in dato["reservas"]
-               if r.get("estado") == "activa"]
-    return {
-        "fecha_imputacion": dato["fecha"], "ruta": dato["ruta"],
-        "techo": dato["techo"], "consumido": dato["consumido"],
-        "reservado_activo": dato["reservado_activo"],
-        "disponible": dato["disponible"], "reservas_activas": activas,
-        "recuperacion_pendiente": dato["recuperacion_pendiente"],
-    }
-
-
 def check_t_cron():
     """Reusa tests/check.py -- una sola fuente de verdad para "¿corrió el
     cron?", no una segunda implementación que pueda divergir."""
@@ -1168,7 +1148,6 @@ SECCIONES = [
     ("red", check_red),
     ("lock", check_lock),
     ("heartbeat", check_heartbeat),
-    ("presupuesto", check_presupuesto),
     ("t_cron", check_t_cron),
     ("ultimo_censo_local", check_ultimo_censo_local),
 ]

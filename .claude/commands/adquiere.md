@@ -33,11 +33,6 @@ Preparación, cálculo y adopción siguen siendo etapas distintas de adquisició
 
 Una ruta fallida o en espera afecta sólo a su objeto: conserva el resultado y
 continúa con la siguiente vía legítima y con las demás necesidades elegidas.
-Cuando el wrapper entregue un `run_id`, registra su checkpoint antes de iniciar
-cada investigación y antes de cada intento real de objeto usando el comando que
-incluye en el prompt. Selección o capacidad máxima no son intento. El mismo
-objeto reintentado en otra activación consume otra unidad; la idempotencia sólo
-evita duplicar el mismo checkpoint dentro del mismo `run_id`.
 No repitas una URL o consulta agotada para completar una cuota. El repertorio
 de cuatro rutas de §3 es una lista de alternativas aplicables, no la obligación
 de fingir cuatro intentos cuando alguno no existe o ya fue examinado. Una

@@ -17,7 +17,6 @@ import yaml
 
 RAIZ = Path(__file__).resolve().parent.parent
 CONFIG = RAIZ / "data" / "adq-investigacion.yaml"
-DIMENSIONES_PRESUPUESTO = ("necesidades", "objetos", "segundos_ejecutor")
 
 
 def _fecha(valor: object) -> dt.date | None:
@@ -977,11 +976,6 @@ def actualiza_desde_resultados(path: Path, cfg: dict, raiz: Path = RAIZ) -> list
             "alternativas": validas[ident].get("opciones_decision", [])
             if ciclos_sin_avance >= 2 and not hubo_avance else [],
         }
-        # Una reprogramación de mesa es historia de la misma pregunta, no una
-        # versión nueva ni una reapertura de su NC antecedente. El escritor de
-        # resultados conserva esa historia cuando avanza el cursor.
-        if anterior.get("reprogramaciones"):
-            estado["reprogramaciones"] = anterior["reprogramaciones"]
         _json_atomico(estado_dir / f"{ident}.json", estado)
         escritas.append(ident)
     return escritas
@@ -992,109 +986,28 @@ def _ruta_presupuesto(cfg: dict, fecha: dt.date, raiz: Path) -> Path:
     return raiz / directorio / f"presupuesto-{fecha.isoformat()}.json"
 
 
-def _cantidades(dato: dict | None) -> dict[str, int]:
-    dato = dato or {}
-    return {k: max(0, int(dato.get(k, 0))) for k in DIMENSIONES_PRESUPUESTO}
-
-
-def _reserva_normalizada(reserva: dict) -> dict:
-    """Lee tanto el ledger v2 como la reserva plana publicada por #777."""
-    salida = dict(reserva)
-    reservada = _cantidades(reserva.get("reservada") or reserva)
-    salida["reservada"] = reservada
-    salida["estado"] = reserva.get("estado") or "activa"
-    salida["consumido"] = _cantidades(reserva.get("consumido"))
-    salida["devuelto"] = _cantidades(reserva.get("devuelto"))
-    salida["checkpoints"] = list(reserva.get("checkpoints") or [])
-    # Campos planos: compatibilidad para lectores y recibos ya desplegados.
-    salida.update(reservada)
-    return salida
-
-
-def _componentes_presupuesto(cfg: dict, fecha: dt.date,
-                             raiz: Path) -> tuple[Path, dict, dict, list[dict]]:
+def presupuesto_diario(cfg: dict, fecha: dt.date, raiz: Path = RAIZ) -> dict:
     limites = cfg.get("presupuesto_diario", {})
-    defaults = {"necesidades": 3, "objetos": 5, "segundos_ejecutor": 3900}
-    techo = {k: int(limites.get(k, defaults[k]))
-             for k in DIMENSIONES_PRESUPUESTO}
+    techo = {
+        "necesidades": int(limites.get("necesidades", 3)),
+        "objetos": int(limites.get("objetos", 5)),
+        "segundos_ejecutor": int(limites.get("segundos_ejecutor", 3900)),
+    }
     path = _ruta_presupuesto(cfg, fecha, raiz)
     dato = _lee_json(path)
-    if dato.get("fecha") != fecha.isoformat():
-        return path, techo, _cantidades({}), []
-    reservas = [_reserva_normalizada(r) for r in dato.get("reservas", [])]
-    activas = [r for r in reservas if r["estado"] in {
-        "activa", "recuperacion_pendiente"}]
-    if "consumido" in dato:
-        consumido = _cantidades(dato["consumido"])
-    else:
-        # Migración sin reset: en v1 `usado` mezclaba consumo y reservas. Lo
-        # que no está explicado por una reserva sigue siendo consumo firme.
-        usado_legacy = _cantidades(dato.get("usado"))
-        reservado = {k: sum(r["reservada"][k] for r in activas)
-                     for k in DIMENSIONES_PRESUPUESTO}
-        consumido = {k: max(0, usado_legacy[k] - reservado[k])
-                     for k in DIMENSIONES_PRESUPUESTO}
-    return path, techo, consumido, reservas
-
-
-def _guarda_presupuesto(path: Path, fecha: dt.date, techo: dict,
-                        consumido: dict, reservas: list[dict]) -> None:
-    activas = [r for r in reservas if r["estado"] in {
-        "activa", "recuperacion_pendiente"}]
-    reservado_activo = {k: sum(r["reservada"][k] for r in activas)
-                        for k in DIMENSIONES_PRESUPUESTO}
-    usado = {k: consumido[k] + reservado_activo[k]
-             for k in DIMENSIONES_PRESUPUESTO}
-    _json_atomico(path, {
-        "version": "GEN2-ADQ-PRESUPUESTO-V2",
-        "fecha": fecha.isoformat(), "techo": techo,
-        "consumido": consumido, "reservado_activo": reservado_activo,
-        "usado": usado, "reservas": reservas,
-    })
-
-
-def _token_proceso(pid: int) -> str | None:
-    try:
-        texto = Path(f"/proc/{pid}/stat").read_text(encoding="utf-8")
-        # starttime es el campo 22; después del último ')' quedan campos 3+.
-        return texto.rsplit(")", 1)[1].split()[19]
-    except (FileNotFoundError, PermissionError, IndexError, ValueError):
-        return None
-
-
-def _proceso_reserva_vivo(reserva: dict) -> bool:
-    try:
-        pid = int(reserva["pid"])
-    except (KeyError, TypeError, ValueError):
-        return False
-    esperado = reserva.get("proceso_inicio")
-    actual = _token_proceso(pid)
-    return bool(actual and esperado and actual == esperado)
-
-
-def presupuesto_diario(cfg: dict, fecha: dt.date, raiz: Path = RAIZ) -> dict:
-    path, techo, consumido, reservas = _componentes_presupuesto(cfg, fecha, raiz)
-    activas = [r for r in reservas if r["estado"] in {
-        "activa", "recuperacion_pendiente"}]
-    reservado_activo = {k: sum(r["reservada"][k] for r in activas)
-                        for k in DIMENSIONES_PRESUPUESTO}
-    usado = {k: consumido[k] + reservado_activo[k]
-             for k in DIMENSIONES_PRESUPUESTO}
+    usado = dato.get("usado", {}) if dato.get("fecha") == fecha.isoformat() else {}
+    usado = {k: int(usado.get(k, 0)) for k in techo}
     return {
         "fecha": fecha.isoformat(), "ruta": str(path), "techo": techo,
-        "consumido": consumido, "reservado_activo": reservado_activo,
         "usado": usado,
         "disponible": {k: max(0, techo[k] - usado[k]) for k in techo},
-        "reservas": reservas,
-        "recuperacion_pendiente": [r["run_id"] for r in activas
-                                    if r["estado"] == "recuperacion_pendiente"],
+        "reservas": dato.get("reservas", []) if dato.get("fecha") == fecha.isoformat() else [],
     }
 
 
 def reserva_presupuesto(cfg: dict, fecha: dt.date, run_id: str, necesidades: int,
                         objetos: int, segundos: int, raiz: Path = RAIZ,
-                        ahora: dt.datetime | None = None,
-                        pid: int | None = None) -> dict:
+                        ahora: dt.datetime | None = None) -> dict:
     actual = presupuesto_diario(cfg, fecha, raiz)
     pedido = {"necesidades": necesidades, "objetos": objetos,
               "segundos_ejecutor": segundos}
@@ -1104,138 +1017,13 @@ def reserva_presupuesto(cfg: dict, fecha: dt.date, run_id: str, necesidades: int
     if excede:
         raise RuntimeError("presupuesto diario insuficiente: " + ", ".join(excede))
     ahora = ahora or _ahora()
-    pid = pid or os.getpid()
-    reserva = {
-        "run_id": run_id, "estado": "activa",
-        "registrada": ahora.isoformat(), "fecha_imputacion": fecha.isoformat(),
-        "pid": pid, "proceso_inicio": _token_proceso(pid),
-        "reservada": pedido, "consumido": _cantidades({}),
-        "devuelto": _cantidades({}), "checkpoints": [], **pedido,
+    usado = {k: actual["usado"][k] + pedido[k] for k in pedido}
+    doc = {
+        "fecha": fecha.isoformat(), "techo": actual["techo"], "usado": usado,
+        "reservas": [*actual["reservas"], {
+            "run_id": run_id, "registrada": ahora.isoformat(), **pedido}],
     }
-    _guarda_presupuesto(Path(actual["ruta"]), fecha, actual["techo"],
-                        actual["consumido"], [*actual["reservas"], reserva])
-    return presupuesto_diario(cfg, fecha, raiz)
-
-
-def checkpoint_presupuesto(cfg: dict, fecha: dt.date, run_id: str,
-                           tipo: str, clave: str, raiz: Path = RAIZ,
-                           ahora: dt.datetime | None = None) -> dict:
-    """Checkpoint idempotente antes de iniciar una investigación/objeto."""
-    if tipo not in {"necesidades", "objetos", "ejecutor"}:
-        raise ValueError(f"tipo de checkpoint inválido: {tipo}")
-    path, techo, consumido, reservas = _componentes_presupuesto(cfg, fecha, raiz)
-    indice = next((i for i, r in enumerate(reservas)
-                   if r.get("run_id") == run_id), None)
-    if indice is None or reservas[indice]["estado"] != "activa":
-        raise RuntimeError(f"reserva activa no encontrada: {run_id}")
-    reserva = reservas[indice]
-    identidad = f"{tipo}:{clave}"
-    if not any(c.get("id") == identidad for c in reserva["checkpoints"]):
-        if tipo in {"necesidades", "objetos"}:
-            actuales = sum(c.get("tipo") == tipo for c in reserva["checkpoints"])
-            if actuales >= reserva["reservada"][tipo]:
-                raise RuntimeError(f"checkpoint excede reserva de {tipo}")
-        ahora = ahora or _ahora()
-        reserva["checkpoints"].append({
-            "id": identidad, "tipo": tipo, "clave": clave,
-            "registrado": ahora.isoformat(),
-        })
-        if tipo == "ejecutor":
-            reserva["ejecutor_iniciado"] = ahora.isoformat()
-        reservas[indice] = reserva
-        _guarda_presupuesto(path, fecha, techo, consumido, reservas)
-    return presupuesto_diario(cfg, fecha, raiz)
-
-
-def liquida_presupuesto(cfg: dict, fecha: dt.date, run_id: str,
-                        necesidades: int, objetos: int, segundos: int,
-                        raiz: Path = RAIZ, ahora: dt.datetime | None = None,
-                        asegurar_investigacion_iniciada: bool = False,
-                        evidencia: str = "cierre-wrapper") -> dict:
-    """Consolida trabajo real y devuelve una sola vez la reserva restante."""
-    path, techo, consumido_total, reservas = _componentes_presupuesto(
-        cfg, fecha, raiz)
-    indice = next((i for i, r in enumerate(reservas)
-                   if r.get("run_id") == run_id), None)
-    if indice is None:
-        raise RuntimeError(f"reserva no encontrada: {run_id}")
-    reserva = reservas[indice]
-    if reserva["estado"] == "liquidada":
-        return presupuesto_diario(cfg, fecha, raiz)
-    checkpoints = reserva.get("checkpoints", [])
-    acreditado = {
-        "necesidades": max(necesidades, sum(
-            c.get("tipo") == "necesidades" for c in checkpoints)),
-        "objetos": max(objetos, sum(
-            c.get("tipo") == "objetos" for c in checkpoints)),
-        "segundos_ejecutor": segundos,
-    }
-    if (asegurar_investigacion_iniciada and reserva.get("ejecutor_iniciado")
-            and reserva["reservada"]["necesidades"] > 0
-            and acreditado["necesidades"] == 0):
-        # Una salida incompleta del LLM no vuelve cero un trabajo que el
-        # wrapper sí acredita que arrancó. Sólo se imputa la primera unidad.
-        acreditado["necesidades"] = 1
-    acreditado = {k: min(max(0, int(acreditado[k])), reserva["reservada"][k])
-                  for k in DIMENSIONES_PRESUPUESTO}
-    devuelto = {k: reserva["reservada"][k] - acreditado[k]
-                for k in DIMENSIONES_PRESUPUESTO}
-    ahora = ahora or _ahora()
-    reserva.update({
-        "estado": "liquidada", "consumido": acreditado,
-        "devuelto": devuelto, "liquidada": ahora.isoformat(),
-        "evidencia_liquidacion": evidencia,
-    })
-    reservas[indice] = reserva
-    consumido_total = {k: consumido_total[k] + acreditado[k]
-                       for k in DIMENSIONES_PRESUPUESTO}
-    _guarda_presupuesto(path, fecha, techo, consumido_total, reservas)
-    return presupuesto_diario(cfg, fecha, raiz)
-
-
-def recupera_reservas_huerfanas(cfg: dict, fecha: dt.date, run_id_actual: str,
-                                lock_exclusivo: bool,
-                                raiz: Path = RAIZ) -> dict:
-    """Libera sólo reservas sin trabajo; deja incertidumbre material visible."""
-    path, techo, consumido, reservas = _componentes_presupuesto(cfg, fecha, raiz)
-    cambiadas = False
-    ahora = _ahora()
-    for reserva in reservas:
-        if reserva["estado"] not in {"activa", "recuperacion_pendiente"}:
-            continue
-        if reserva.get("run_id") == run_id_actual or _proceso_reserva_vivo(reserva):
-            continue
-        checkpoints = reserva.get("checkpoints", [])
-        inicio_ejecutor = reserva.get("ejecutor_iniciado") or any(
-            c.get("tipo") == "ejecutor" for c in checkpoints)
-        evidencia_proceso = bool(reserva.get("pid") and reserva.get("proceso_inicio"))
-        if not lock_exclusivo or inicio_ejecutor or not evidencia_proceso:
-            reserva["estado"] = "recuperacion_pendiente"
-            reserva["motivo_recuperacion"] = (
-                "falta evidencia suficiente para devolver: proceso no acreditado "
-                "vivo y ejecutor iniciado o identidad de proceso ausente; liquidar "
-                "con logs/eventos")
-            cambiadas = True
-            continue
-        acreditado = {
-            "necesidades": sum(c.get("tipo") == "necesidades" for c in checkpoints),
-            "objetos": sum(c.get("tipo") == "objetos" for c in checkpoints),
-            "segundos_ejecutor": 0,
-        }
-        acreditado = {k: min(acreditado[k], reserva["reservada"][k])
-                      for k in DIMENSIONES_PRESUPUESTO}
-        devuelto = {k: reserva["reservada"][k] - acreditado[k]
-                    for k in DIMENSIONES_PRESUPUESTO}
-        reserva.update({
-            "estado": "liquidada", "consumido": acreditado,
-            "devuelto": devuelto, "liquidada": ahora.isoformat(),
-            "evidencia_liquidacion": "recuperación: lock exclusivo; proceso no vivo; ejecutor no inició",
-        })
-        consumido = {k: consumido[k] + acreditado[k]
-                     for k in DIMENSIONES_PRESUPUESTO}
-        cambiadas = True
-    if cambiadas:
-        _guarda_presupuesto(path, fecha, techo, consumido, reservas)
+    _json_atomico(Path(actual["ruta"]), doc)
     return presupuesto_diario(cfg, fecha, raiz)
 
 
@@ -1341,28 +1129,15 @@ def comprueba_despacho(cfg: dict, corte: dt.date, raiz: Path = RAIZ,
         razones.append("ciclo_diario_pendiente_o_recuperacion")
     if previo.get("huella_material") not in (None, huella):
         razones.append("insumos_materiales_cambiaron")
-    if presupuesto["recuperacion_pendiente"]:
-        razones.append("reserva_pendiente_recuperacion")
-    if not trabajo:
-        razones.append("sin_trabajo_elegible")
     if presupuesto_agotado or (trabajo and not trabajo_con_cupo):
         razones.append("presupuesto_diario_agotado")
-    if trabajo and not trabajo_con_cupo and not presupuesto_agotado:
-        razones.append("dimensiones_requeridas_sin_cupo")
-    estado_despacho = (
-        "DESPACHAR" if despachar else
-        "RESERVA_PENDIENTE_RECUPERACION" if presupuesto["recuperacion_pendiente"] else
-        "PRESUPUESTO_REALMENTE_AGOTADO" if presupuesto_agotado else
-        "DIMENSION_REQUERIDA_AGOTADA" if trabajo and not trabajo_con_cupo else
-        "SIN_TRABAJO_ELEGIBLE")
     doc = {
         **previo, "ultima_comprobacion": ahora.isoformat(),
         "fecha_corte": corte.isoformat(), "huella_material": huella,
         "huellas_contratos": huellas_contratos,
         "identidades_afectadas": sorted(cambiadas),
         "cambio_material": previo.get("huella_material") not in (None, huella),
-        "despachar": despachar, "estado_despacho": estado_despacho,
-        "razones": razones,
+        "despachar": despachar, "razones": razones,
         "elegibles": {"objetos": [x["id"] for x in selector["elegidos"]],
                        "necesidades": [x["id"] for x in investigacion["elegidos"]]},
         "presupuesto": presupuesto,
@@ -1399,18 +1174,9 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--escribe-proyeccion", type=Path)
     ap.add_argument("--presupuesto", action="store_true")
     ap.add_argument("--reserva-presupuesto", action="store_true")
-    ap.add_argument("--checkpoint-presupuesto", action="store_true")
-    ap.add_argument("--liquida-presupuesto", action="store_true")
-    ap.add_argument("--recupera-presupuesto", action="store_true")
     ap.add_argument("--necesidades", type=int, default=0)
     ap.add_argument("--objetos", type=int, default=0)
     ap.add_argument("--segundos", type=int, default=0)
-    ap.add_argument("--pid", type=int)
-    ap.add_argument("--tipo-checkpoint", choices=("necesidades", "objetos", "ejecutor"))
-    ap.add_argument("--checkpoint-id")
-    ap.add_argument("--asegura-investigacion-iniciada", action="store_true")
-    ap.add_argument("--evidencia-liquidacion", default="cierre-wrapper")
-    ap.add_argument("--lock-exclusivo", action="store_true")
     ap.add_argument("--comprueba-despacho", action="store_true")
     ap.add_argument("--registra-ciclo", action="store_true")
     args = ap.parse_args(argv)
@@ -1424,30 +1190,7 @@ def main(argv: list[str] | None = None) -> int:
             ap.error("--reserva-presupuesto exige --owner")
         print(json.dumps(reserva_presupuesto(
             cfg, corte, args.owner, args.necesidades, args.objetos,
-            args.segundos, pid=args.pid), ensure_ascii=False, indent=2))
-        return 0
-    if args.checkpoint_presupuesto:
-        if not args.owner or not args.tipo_checkpoint or not args.checkpoint_id:
-            ap.error("--checkpoint-presupuesto exige --owner, --tipo-checkpoint y --checkpoint-id")
-        print(json.dumps(checkpoint_presupuesto(
-            cfg, corte, args.owner, args.tipo_checkpoint, args.checkpoint_id),
-            ensure_ascii=False, indent=2))
-        return 0
-    if args.liquida_presupuesto:
-        if not args.owner:
-            ap.error("--liquida-presupuesto exige --owner")
-        print(json.dumps(liquida_presupuesto(
-            cfg, corte, args.owner, args.necesidades, args.objetos,
-            args.segundos,
-            asegurar_investigacion_iniciada=args.asegura_investigacion_iniciada,
-            evidencia=args.evidencia_liquidacion), ensure_ascii=False, indent=2))
-        return 0
-    if args.recupera_presupuesto:
-        if not args.owner:
-            ap.error("--recupera-presupuesto exige --owner")
-        print(json.dumps(recupera_reservas_huerfanas(
-            cfg, corte, args.owner, args.lock_exclusivo),
-            ensure_ascii=False, indent=2))
+            args.segundos), ensure_ascii=False, indent=2))
         return 0
     if args.comprueba_despacho:
         dato = comprueba_despacho(cfg, corte)
