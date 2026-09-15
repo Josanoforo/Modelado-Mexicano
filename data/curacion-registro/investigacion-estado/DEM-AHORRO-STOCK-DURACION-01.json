@@ -1,0 +1,28 @@
+{
+  "alternativa_requerida": false,
+  "alternativas": [],
+  "ciclos_sin_avance": 1,
+  "continuacion_pendiente": true,
+  "cursor_continuacion": "Localizar cuestionario o catálogo de variables público del MEX_2012_FCS y comprobar secuencia tenencia positiva -> meses/días financiables sólo con ese ahorro; no repetir familias ni consultas agotadas. Tras otro ciclo sin avance, presentar relabel acotado de #772 a mesa sin decidirlo.",
+  "estado": "continua",
+  "evidencias": [
+    "forense/notas/2026-09-15-GEN2-38-DEM-AHORRO-STOCK-DURACION-01.md"
+  ],
+  "frontera_no_examinada": "Cuestionario y catálogo variable-por-variable del MEX_2012_FCS si aparecen en otro repositorio público; encuestas estatales distintas de IIEG y módulos académicos mexicanos no indexados; fuera login, compra y contacto.",
+  "necesidad_id": "DEM-AHORRO-STOCK-DURACION-01",
+  "proxima_revision": "2026-09-16",
+  "suficiencia": {
+    "conceptual": "NO_ACREDITADA",
+    "diseno": "ACREDITADA",
+    "identidad": "PARCIAL",
+    "identificacion": "NO_APLICA",
+    "poblacional": "ACREDITADA",
+    "pregunta_original": "ABIERTA",
+    "seleccion_no_respuesta": "ACREDITADA",
+    "temporalidad": "PARCIAL",
+    "unidad": "ACREDITADA",
+    "uso_habilitado": "INCOMPATIBLE"
+  },
+  "ultima_exploracion": "2026-09-15",
+  "version_pregunta": "2026-09-15-stock-ausencia-y-duracion-separados-v1"
+}
