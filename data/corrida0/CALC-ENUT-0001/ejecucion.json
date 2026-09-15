@@ -1,0 +1,177 @@
+{
+ "corrida_id": "CALC-ENUT-0001--5ec25496b9cc",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "ADR-46 -- al congelar, la sesion YA habia leido de milpa/tramite.yaml:1024-1100: p=0.2215, ic95=[0.213145,0.229966], n=29181, upm=4200, el contexto share poblacional 0.2657, el veredicto_acotado de mesa y las diez celdas de eje_sexo_edad con sus medias de horas; y tools/medidor_cuidado_enut.py entero, incluida la definicion de horas_cuidado del precedente Y1, el mapa SEXO 1=hombre/2=mujer y el join de FAC_HOG desde tsdem.csv. NO es ciega, y en el caso del medidor tampoco podria serlo: leerlo es lo que permitio encontrar el hallazgo_a15_del_acto. Lo genuinamente desconocido al congelar: si FAC_HOG de tsdem.csv y de thogar.csv coinciden hogar por hogar, el peso del residuo CUID_INT_15A59, la distancia entre la rama CON_CP y la SIN_CP, la anchura del IC bajo esta semilla y cuantos estratos quedan con UPM unica.",
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "demanda_que_releva": "CORR-0014 (ENUT2024, payload enut2024_bd_csv) -> el unico RESULT: RES-0045 (familia.cuidado.recae_mujeres_40mas:share_horas_mujeres_40mas). NO releva ninguna otra corrida.",
+  "firma_de_contador": "NO-FIRMADA. El encargo de mesa (15/sep/2026) pide congelar specs ejecutables y NO declara OBJETO sobre el contador GEN2. Estandar FP-367/368 NO satisfecho -> cuenta_gen2 queda PENDIENTE-DE-MESA.",
+  "generacion": "GEN2",
+  "hallazgo_a15_del_acto": "MATERIAL para quien escriba el medidor. milpa/tramite.yaml:1036 declara el ponderador `FAC_HOG (D2, razon)` y :1038 sitúa el universo en `los 29181 hogares de tvar_crea.csv`. Verificado por archivo contra data/inventario-reactivos-v1_2.tsv: tvar_crea.csv trae 60 columnas -- las mismas 60 que el FD declara para la hoja TVAR_CREA -- y FAC_HOG NO es una de ellas (tiene FAC_PER). FAC_HOG vive en tsdem.csv Y en thogar.csv, en ninguno de los cuales estan las horas. Un medidor que siguiera la letra de la regla falla en la primera linea; uno que resolviera FAC_HOG por nombre tomaria el de cualquiera de los dos sin aviso (A.15(c)). Esta spec fija el archivo (tsdem.csv, precedente de tools/medidor_cuidado_enut.py, ACTO MAESTRA35-L7, que verifico que FAC_PER NO es constante dentro del hogar y FAC_HOG SI) y anade la guarda que nadie habia corrido: G-FAC-HOG-TSDEM-IGUAL-THOGAR.",
+  "medidor_ejecutado_al_congelar": "NO -- y el medidor tampoco se escribe aqui. El encargo pide `md humana + spec.yaml` (D-15, dos capas); el medidor es del acto de CAJA que consuma este contrato. Consecuencia declarada: `corrida0.py preflight CALC-ENUT-0001` reporta BLOQUEADO:script_ausente hasta que CAJA lo escriba.",
+  "reglas_bajo_prueba": "NINGUNA cambia de cifra por esta corrida. familia.cuidado.recae_mujeres_40mas (R5.2) conserva su p=0.2215, su veredicto DISCRIMINA por eje y su alcance ACOTADA-EN-EDAD (firma c1 de mesa, 2/sep/2026), que esta corrida NO re-abre.",
+  "spec_sellada": "forense/prereg-caja/ENUT-CUIDADO-spec-v1_0.md",
+  "spec_sellada_sha256": "6ee6cb62d5e7da6bf1fb750ec44fb25474cca7c8d37869d7faeab9ac6f6177bb",
+  "tipo": "RAZON-DE-REGLA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-15T16:24:37Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 413,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "5ec25496b9cc3fbde6bc7f863ed649f5643f25aa",
+  "git_rama": "acto/gen2-medicion-demanda-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "5ec25496b9cc3fbde6bc7f863ed649f5643f25aa",
+ "input_ids": [
+  "enut2024_bd_csv",
+  "enut2024_fd_xlsx",
+  "IN-ENUT-SPEC-SELLADA"
+ ],
+ "input_sha256": {
+  "IN-ENUT-SPEC-SELLADA": "6ee6cb62d5e7da6bf1fb750ec44fb25474cca7c8d37869d7faeab9ac6f6177bb",
+  "enut2024_bd_csv": "25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba",
+  "enut2024_fd_xlsx": "4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58"
+ },
+ "parametros": {
+  "archivo_de_ponderador": "tsdem.csv -- declarado como PARAMETRO y no como detalle. FAC_HOG NO existe en tvar_crea.csv (donde estan las horas) y SI existe en tsdem.csv y en thogar.csv. La guarda G-FAC-HOG-TSDEM-IGUAL-THOGAR decide si la eleccion es inocua o material.",
+  "bootstrap_replicas": 2000,
+  "codificacion": {
+   "corte_edad": 40,
+   "llave_hogar": "LLAVEHOG",
+   "sexo_hombre": "1",
+   "sexo_mujer": "2"
+  },
+  "criterio_adopcion": "A-ADOPCION = LISTADO-PARA-MESA-REPRODUCE si A-REPRODUCE-GEN1 = REPRODUCE; LISTADO-PARA-MESA-NO-REPRODUCE en otro caso estimable; NO-ADOPTABLE-NO-ESTIMABLE si no hay punto. Este acto NO escribe cita en milpa/ bajo ninguna rama, y no re-abre el veredicto_acotado de mesa.",
+  "firma_que_lo_autoriza": "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-1.md: «redactar y CONGELAR la spec ejecutable (md humana + spec.yaml, D-15, abriendo SOLO codebook y metadato -- E.5 lo permite en nube, microdato jamas)». La firma autoriza CONGELAR, no contar.",
+  "fuente_acto": "ACTO GEN2-SPECS-DEMANDA-1 · CALC-ENUT-0001 · celda de R5.2 sobre ENUT 2024, estimador de razon con IC de diseno",
+  "grano_declarado": "El grano de la cifra GEN1 es de CUATRO decimales (0.2215), no seis. La comparacion A-REPRODUCE-GEN1 se hace a cuatro y A-GRANO-GEN1 lo declara, en vez de fabricar un NO-REPRODUCE por redondear a un grano que la cifra vieja nunca tuvo.",
+  "grano_gen1_decimales": 4,
+  "horas_cuidado_definicion": {
+   "columnas": [
+    "CUID_ESP_INT_HOG_CON_CP",
+    "CUID_INT_0A5_CON_CP",
+    "CUID_INT_6A14_CON_CP",
+    "CUID_INT_60MAS_CON_CP"
+   ],
+   "fuera_del_recorte": "CUID_INT_15A59 (sin variante CON_CP en el FD) y los cuidados a OTROS hogares (CUID_ESP_DISC_ENF, CUID_PER_OTROS_HOG): la regla habla del hogar",
+   "procedencia": "identica a la definicion del precedente Y1 (forense/notas/2026-08-04-y1-operacionalizacion-r5-2-enut.md), REUSADA, no redefinida; misma que tools/medidor_cuidado_enut.py::CUID_COLS"
+  },
+  "llaves_opacas": "EST_DIS, UPM_DIS y LLAVEHOG se manejan como CADENA CRUDA (dtype=str): normalizarlas partiria o fusionaria estratos u hogares en silencio.",
+  "metodo_ic": "bootstrap de UPM_DIS CON REEMPLAZO dentro de EST_DIS, conservando el numero de UPM por estrato; en CADA replica se recalcula la razon con numerador y denominador de esa misma replica; percentiles 2.5/97.5. El bootstrap de una RAZON no es el de una proporcion y por eso se declara aparte.",
+  "miembros_zip_declarados": [
+   "tvar_crea.csv",
+   "tsdem.csv",
+   "thogar.csv"
+  ],
+  "n_gen1_referencia": {
+   "hogares": 29181,
+   "upm": 4200
+  },
+  "regla_estrato_upm_unica": "Un estrato con exactamente una UPM se re-muestrea a si mismo: aporta varianza cero. NO se colapsa y NO se descarta. Si el conteo es > 0, A-METODO-IC sale IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como LIMITE INFERIOR de la anchura verdadera.",
+  "valores_gen1_referencia": {
+   "A_IC_HI": 0.229966,
+   "A_IC_LO": 0.213145,
+   "A_R": 0.2215,
+   "SHARE_POBLACIONAL_MUJERES_40MAS": 0.2657
+  }
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENUT-A-ADOPCION",
+  "RESULT-ENUT-A-DELTA-VS-GEN1",
+  "RESULT-ENUT-A-GRANO-GEN1",
+  "RESULT-ENUT-A-IC-HI",
+  "RESULT-ENUT-A-IC-LO",
+  "RESULT-ENUT-A-METODO-IC",
+  "RESULT-ENUT-A-N-HOGARES",
+  "RESULT-ENUT-A-N-HOGARES-COINCIDE-GEN1",
+  "RESULT-ENUT-A-N-HOGARES-CON-CARGA",
+  "RESULT-ENUT-A-N-HOGARES-SIN-FAC-HOG",
+  "RESULT-ENUT-A-N-HOGARES-SIN-MUJER-40MAS",
+  "RESULT-ENUT-A-N-PERSONAS",
+  "RESULT-ENUT-A-N-UPM",
+  "RESULT-ENUT-A-R",
+  "RESULT-ENUT-A-R-MENOS-SHARE-POBLACIONAL",
+  "RESULT-ENUT-A-REPRODUCE-GEN1",
+  "RESULT-ENUT-A-SHARE-POBLACIONAL-MUJERES-40MAS",
+  "RESULT-ENUT-C-DELTA-CON-CP-VS-SIN-CP",
+  "RESULT-ENUT-C-P-RESIDUO-15A59",
+  "RESULT-ENUT-C-P-SIN-CP",
+  "RESULT-ENUT-G-DISENO-CONSTANTE-EN-HOGAR",
+  "RESULT-ENUT-G-FAC-HOG-EN-TVAR-CREA",
+  "RESULT-ENUT-G-FAC-HOG-TSDEM-IGUAL-THOGAR",
+  "RESULT-ENUT-G-FAC-PER-NO-CONSTANTE-EN-HOGAR",
+  "RESULT-ENUT-G-N-COLUMNAS-TVAR-CREA",
+  "RESULT-ENUT-G-N-ESTRATOS-UPM-UNICA",
+  "RESULT-ENUT-G-N-FILAS-TVAR-CREA",
+  "RESULT-ENUT-G-N-MIEMBROS-ZIP",
+  "RESULT-ENUT-G-N-NULOS-HORAS"
+ ],
+ "script_blob_sha256": "042455cb591527fa7ed9f02e0bb4de69f798e3e4d15088f743bf06c2cefe4080",
+ "script_path": "data/corrida0/CALC-ENUT-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260915
+ },
+ "spec_id": "CALC-ENUT-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "b14a52f76559af4d1d3b231f46f83a4d057205737e4066e2ef4b4de2d89e723a",
+ "spec_yaml_sha256": "ff594c20f643011c8d29e9ce947684386bb4838f89cd34fab7e330eed5f1e20e",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "Bootstrap fijado por seed + rng declarados y sumas en orden fijo de LLAVEHOG: la unica diferencia esperable entre dos corridas del mismo arbol es redondeo de float64 al reasociar sumas ponderadas. Los enteros y los textos se comparan EXACTO. La comparacion contra GEN1 es aparte y usa el grano de cuatro decimales que GEN1 publico (grano_declarado).",
+  "tipo": "flotante"
+ }
+}
