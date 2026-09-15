@@ -1,0 +1,435 @@
+# CALC-ENVIPE-U4-2012-v1_1 -- COMMIT-3 de la pieza P2 (v1.1: estrato de diseno desde Tmod_Vic). Cara mecanica de spec.md (ACTO GEN2-LOTE-MEDICION-PENDIENTE-1, pieza P2 / NC-0099).
+# Gobierna spec.md y, sobre el, la spec SELLADA forense/prereg-caja/ENVIPE-2012-U4-spec-v1_1.md
+# (`prereg-caja-ENVIPE-2012-U4`), sucesora por extension de R-ENVIPE-SERIE-DBF-spec-v1_0 (§5)
+# y de ENVIPE-DENUNCIA-spec-v1_0 (U4). Ninguna spec previa se edita.
+# CONGELADO en el COMMIT-1, antes de leer un solo VALOR del microdato.
+calc_id: CALC-ENVIPE-U4-2012-v1_1
+spec_md: spec.md
+spec_md_sha256: a105f9bce09ed7c6674c58560f602c91d8f254af2f446e61c3e7cb8585e3281c
+script: data/corrida0/CALC-ENVIPE-U4-2012-v1_1/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: RUTA-DECLARADA-U4-PERSONA
+  repite_de: CALC-ENVIPE-U4-2012
+  version_spec: v1.1 -- sucesora de v1.0 (intacta); cambia SOLO la fuente del par (EST, UPM) para el IC
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENVIPE-2012-U4-spec-v1_1.md
+  spec_sellada_sha256: 15f3894a8986aabad9d8558d5c63035df6c2208d129f3d6dbcde2203b0a62c63
+  spec_familia_dbf: forense/prereg-caja/R-ENVIPE-SERIE-DBF-spec-v1_0.md
+  spec_familia_dbf_sha256: f5ce91e16cfd3ad0ae8a5a90ed8bbb74e7b7618cbe9a361002e1cf16d0e4d063
+  spec_familia_dbf_editada: NO -- sucesion por extension (su §5 dejo la ruta como fila NC con sucesor; este CALC es ese sucesor)
+  demanda_que_releva: "NINGUNA. U4 en 2012 no tiene RES-* ni CORR-*; NC-0098 registra que ningun dictamen GEN1 del trio viejo es de unidad persona."
+  reglas_bajo_prueba: NINGUNA. No toca milpa/, no mueve tier, no adopta.
+  firma_de_contador: "NO HAY FIRMA DE MESA CON OBJETO sobre el contador en el encargo de este lote (brief sin FIRMAS DE MESA). Estandar FP-367/368 no satisfecho -> cuenta_gen2 = PENDIENTE-DE-MESA; fila FP abierta por el acto."
+  contaminacion_declarada: "ADR-46 -- al congelar la v1.1 la sesion YA habia leido TODOS los RESULT de CALC-ENVIPE-U4-2012 (v1.0: N-U4 9854, P-C2-U4 0.338397, N-ESTRATOS 4) y la distribucion de EST en las tres tablas. Lo desconocido: la anchura del IC bajo el estrato de diseno. Ademas, como en v1.0: los RESULT sellados de CALC-R-CIV-M-01 (misma ola, unidad delito: P-C1-U1 = 0.2955724, N-U1 = 14532, PERFIL-BPCOD, 358 estratos, 9129 UPM) y el p(C2,U4) = 0.294313 de GEN1 para 2025 (otra ola, no se compara). NO habia leido ningun valor de tper_vic.dbf ni de tsdem.DBF: cuantas filas por hogar, si FAC_ELE es constante dentro del hogar, cuantas personas calzan en tsdem y el punto de U4 en 2012 son desconocidos."
+  medidor_ejecutado_al_congelar: "NO -- derivado del medidor v1.0 sellado (diff: fuente del par de diseno + tres guardias + control v1.0), congelado en el COMMIT-3 de la pieza y corrido despues. Probado contra los mismos DBF sinteticos."
+
+inputs:
+  - id: envipe_2012_base_de_datos_envipe_2012_dbf
+    origen: manifiesto
+  - id: IN-U4-2012-SPEC-SELLADA-V1-1
+    origen: repo
+    ruta: forense/prereg-caja/ENVIPE-2012-U4-spec-v1_1.md
+    sha256: 15f3894a8986aabad9d8558d5c63035df6c2208d129f3d6dbcde2203b0a62c63
+
+variables:
+  - {archivo: "Tmod_Vic.DBF", variable: CONTROL, rol: "llave de hogar (1/3) -- texto strip", codigos: "C6, 010001..329999"}
+  - {archivo: "Tmod_Vic.DBF", variable: VIV_SEL, rol: "llave de hogar (2/3)", codigos: "C2, 01..99"}
+  - {archivo: "Tmod_Vic.DBF", variable: HOGAR, rol: "llave de hogar (3/3)", codigos: "C1, 1..9"}
+  - {archivo: "Tmod_Vic.DBF", variable: R_SEL, rol: "renglon de la persona seleccionada -- identidad de la persona a la que se atribuye el delito (FD hoja TMod_Vic fila 40-41)", codigos: "C2, 01..30; comparacion numerica"}
+  - {archivo: "Tmod_Vic.DBF", variable: BPCOD, rol: "tipo de delito -- bloque PERSONAL de esta ola = {04..14} (catorce codigos; corrimiento sellado en R-ENVIPE-SERIE-DBF §3.1)", codigos: "C2, 01..14"}
+  - {archivo: "Tmod_Vic.DBF", variable: BP1_20, rol: "denuncio ante MP -- U1 exige 2", codigos: "C1: 1=Si, 2=No"}
+  - {archivo: "Tmod_Vic.DBF", variable: BP1_23, rol: "DESENLACE -- razon principal de la no denuncia", codigos: "C2: 01 miedo al agresor - 02 miedo a extorsion - 03 poca importancia - 04 perdida de tiempo - 05 tramites - 06 desconfianza en la autoridad - 07 sin pruebas - 08 actitud hostil - 09 Otra - 99 NS/NR - b blanco", direccion: "C1 = 1 si en {01,02,06}; C2 = 1 si en {01,02,06,08}. Colapso a persona: max sobre sus delitos de U1. MAS ALTO = MAS PESO DEL MIEDO/DESCONFIANZA."}
+  - {archivo: "Tmod_Vic.DBF", variable: EST, rol: "ESTRATO DE DISENO de la persona (v1.1) -- por hogar; LLAVE OPACA", codigos: "C3, 001..303 segun el FD; 361 valores en el archivo"}
+  - {archivo: "Tmod_Vic.DBF", variable: UPM, rol: "UPM de la persona (v1.1) -- por hogar; LLAVE OPACA", codigos: "C5"}
+  - {archivo: "Tmod_Vic.DBF", variable: FAC_DEL, rol: "ponderador del delito -- solo para el control P-C1-U1 (unidad delito)", codigos: "C6, texto crudo convertido despues"}
+  - {archivo: "tper_vic.dbf", variable: CONTROL, rol: "llave de hogar (1/3)", codigos: "C6"}
+  - {archivo: "tper_vic.dbf", variable: VIV_SEL, rol: "llave de hogar (2/3)", codigos: "C2"}
+  - {archivo: "tper_vic.dbf", variable: HOGAR, rol: "llave de hogar (3/3)", codigos: "C1"}
+  - {archivo: "tper_vic.dbf", variable: N_INF, rol: "numero de renglon del informante -- solo leido para dejar constancia de que NO es la identidad de la fila (no se usa)", codigos: "C2"}
+  - {archivo: "tper_vic.dbf", variable: R_SEL, rol: "renglon de la persona seleccionada del hogar -- debe coincidir con el R_SEL del delito", codigos: "C2, 01..30"}
+  - {archivo: "tper_vic.dbf", variable: TOT_PER, rol: "total de personas del hogar -- guardia de cardinalidad (filas por hogar == TOT_PER)", codigos: "C2, 01..21"}
+  - {archivo: "tper_vic.dbf", variable: FAC_ELE, rol: "PONDERADOR de U4 -- 'Factor de personas elegidas ... poblacion de 18 anios y mas' (FD hoja TPer_Viv fila 975-976); resuelto POR HOGAR por la regla §3.1", codigos: "C6, 000001..999999, texto crudo convertido despues"}
+  - {archivo: "tper_vic.dbf", variable: EST, rol: "EST de tper_vic -- v1.1: SOLO se perfila (4 valores, NO es el estrato de diseno pese al FD); no entra al IC", codigos: "C3 segun la cabecera; el archivo trae un digito con espacios"}
+  - {archivo: "tper_vic.dbf", variable: UPM, rol: "UPM de tper_vic -- v1.1: guardia de coincidencia con el UPM de Tmod_Vic por hogar", codigos: "C5 segun la cabecera del DBF"}
+  - {archivo: "tsdem.DBF", variable: CONTROL, rol: "llave de hogar (1/3)", codigos: "C6"}
+  - {archivo: "tsdem.DBF", variable: VIV_SEL, rol: "llave de hogar (2/3)", codigos: "C2"}
+  - {archivo: "tsdem.DBF", variable: HOGAR, rol: "llave de hogar (3/3)", codigos: "C1"}
+  - {archivo: "tsdem.DBF", variable: N_REN, rol: "numero de renglon del integrante -- el join declarado: N_REN == R_SEL (FD hoja TSDem fila 21-22)", codigos: "C2, 01..30; comparacion numerica"}
+  - {archivo: "tsdem.DBF", variable: EDAD, rol: "edad del integrante que calzo -- SOLO contada (< 18 es hallazgo, no filtro)", codigos: "C2: 00..96 anios, 97 = 97 o mas, 98/99 = no especificada"}
+
+universo: >-
+  ENVIPE 2012 (delitos de 2011). U1 (delito), homologado a ENVIPE-DENUNCIA con
+  el bloque personal de esta ola: filas de Tmod_Vic.DBF con BPCOD en {04..14},
+  BP1_20 = 2, BP1_23 en {01..08} y FAC_DEL finito > 0. U4 (PERSONA): personas
+  seleccionadas (CONTROL, VIV_SEL, HOGAR, R_SEL) con >= 1 delito en U1 cuyo
+  R_SEL coincide con el del hogar en tper_vic, con FAC_ELE resuelto por hogar
+  (regla §3.1: valor unico; si no, unica fila valida; si no, ambiguo -> fuera)
+  finito > 0, y con EXACTAMENTE UNA fila de tsdem.DBF con N_REN == R_SEL en su
+  hogar. Colapso GEN1: d(persona) = max de d(delito) sobre sus delitos de U1.
+
+filtros: >-
+  Sale de U1, CONTADO: BP1_23 blanco / 99 / fuera de catalogo, BPCOD fuera del
+  bloque personal, BP1_20 != 2, FAC_DEL no valido. Sale de U4, CONTADO y no
+  imputado: delito con R_SEL blanco (N-DELITOS-R-SEL-BLANCO), hogar ausente en
+  tper_vic (N-DELITOS-HOGAR-SIN-TPER-VIC), R_SEL discordante
+  (N-DELITOS-R-SEL-DISCORDA), FAC_ELE ambiguo (N-U4-FAC-ELE-AMBIGUO), cero o
+  mas de una fila en tsdem con N_REN == R_SEL (N-U4-TSDEM-0 / -MULTI). Se
+  cuenta pero NO sale: EDAD < 18 o no especificada; sin diseno (entra al punto,
+  no al IC). CERO NUNCA SUSTITUYE FALTA DE DATO. Miembro o columna ausente ->
+  ESTADO NO-ESTIMABLE-*; sin candidatas -> NO-ESTIMABLE-UNIVERSO-VACIO; con
+  candidatas y ninguna que calce en tsdem -> NO-ESTIMABLE-JOIN-VACIO.
+
+ponderador: >-
+  FAC_ELE (tper_vic.dbf) para U4, resuelto por hogar. FAC_DEL (Tmod_Vic.DBF)
+  solo para el control de lectura P-C1-U1. Texto crudo convertido a flotante
+  despues. NO se usa FAC_VIV.
+
+transformacion: >-
+  Lector DBF inline (cabecera + descriptores del propio archivo, latin-1,
+  borrados excluidos y contados). Llaves de hogar como texto strip en las tres
+  tablas; R_SEL y N_REN comparados como enteros; EST/UPM como texto strip
+  (nunca int). d(C1) = 1 si BP1_23 en {01,02,06}; d(C2) = 1 si en {01,02,06,08};
+  colapso max por persona. p = suma(w*d)/suma(w) en orden fijo de fila.
+  Bootstrap de UPM con reemplazo dentro de EST conservando el numero de UPM
+  por estrato, 2000 replicas, percentiles 2.5/97.5; estrato de UPM unica se
+  re-muestrea a si mismo. Taylor de cotejo con aproximacion declarada de
+  lonely.psu=adjust. NO se promedia, no se imputa, no se extrapola.
+
+estimando: >-
+  DESCRIPTIVO. PRIMARIO DE LA PIEZA: P-C2-U4 con IC de diseno (la particion
+  GEN1 en unidad persona, 2012). SECUNDARIOS: P-C1-U4, complemento, P-C1-U1 de
+  control, el embudo entero de la ruta (cardinalidades del join). NINGUN RESULT
+  ES CAUSAL. No hay valor GEN1 de 2012 en unidad persona: no se declara
+  REPRODUCE-GEN1 para U4 y no se compara con el 0.294313 de 2025.
+
+dependencias_materiales: [numpy]
+
+parametros:
+  fuente_acto: "ACTO GEN2-LOTE-MEDICION-PENDIENTE-1 · P2 (NC-0099) · CALC-ENVIPE-U4-2012"
+  firma_que_lo_autoriza: "NINGUNA firma de mesa viaja en el encargo (brief). Ejecuta la fila NC-0099 tal como la dejo GEN2-R-SERIE-DBF; contador PENDIENTE-DE-MESA."
+  payload_id: envipe_2012_base_de_datos_envipe_2012_dbf
+  tablas:
+    modulo: Tmod_Vic.DBF
+    personas: tper_vic.dbf
+    sociodem: tsdem.DBF
+  bootstrap_replicas: 2000
+  z_95: 1.959964
+  tolerancia_control_u1: 1.0e-9
+  control_u1_referencia:
+    fuente: data/corrida0/CALC-R-CIV-M-01/resultados.json (sellado, PR #661)
+    P_C1_U1: 0.29557241046799515
+    N_U1: 14532
+    N_FILAS_TABLA: 32493
+  regla_resolucion_fac_ele: >-
+    Por hogar de tper_vic, en este orden y sin cuarta rama: (1) todas las filas
+    traen el mismo FAC_ELE (texto) -> ese; (2) exactamente una fila trae
+    FAC_ELE finito > 0 -> ese, contado en
+    N-HOGARES-FAC-ELE-RESUELTO-POR-UNICA-VALIDA; (3) ambiguo -> fuera de U4,
+    contado en N-U4-FAC-ELE-AMBIGUO. EST/UPM: solo la rama (1); si hay mas de
+    un par, la persona entra al punto sin diseno (N-U4-DISENO-AMBIGUO).
+  control_v1_0:
+    fuente: data/corrida0/CALC-ENVIPE-U4-2012/resultados.json (sellado en este mismo acto, COMMIT-2b)
+    P_C2_U4: 0.33839682673243365
+    P_C1_U4: 0.3069703002189534
+    N_U4: 9854
+    MASA_FAC_ELE_U4: 9959198.0
+  fuente_del_par_de_diseno: "v1.1: (EST, UPM) por hogar desde Tmod_Vic.DBF (todas las filas del hogar); si el hogar trae mas de un par, la persona entra al punto sin diseno (N-U4-DISENO-AMBIGUO). tper_vic solo aporta FAC_ELE y la guardia de UPM."
+  regla_estrato_upm_unica: >-
+    Un estrato con una sola UPM se re-muestrea a si mismo, no se colapsa ni se
+    descarta; si el conteo es > 0, METODO-IC = IC-CON-ESTRATOS-DE-UPM-UNICA y
+    el IC es LIMITE INFERIOR.
+  llaves_opacas: EST y UPM como texto strip, nunca int() ni zfill(); perfil observado en G-PERFIL-DISENO-PERSONAS.
+  codificacion:
+    C1_uno: [1, 2, 6]
+    C1_cero: [3, 4, 5, 7, 8]
+    C2_uno: [1, 2, 6, 8]
+    C2_cero: [3, 4, 5, 7]
+    bpcod_personales: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    bpcod_hogar: [1, 2, 3]
+    codigo_nsnr: 99
+  sufijos_result:
+  - G-MOD-N-HOGARES
+  - G-MOD-N-HOGARES-EST-UPM-MULTI
+  - G-N-EST-DISTINTOS-MODULO
+  - G-N-EST-DISTINTOS-PERSONAS
+  - G-PERFIL-DISENO-MODULO
+  - G-N-HOGARES-UPM-DISCORDA-MOD-VS-PER
+  - G-CONTROL-V1-0
+  - G-N-MIEMBROS-ZIP
+  - PERFIL-DBF-MODULO
+  - PERFIL-DBF-PERSONAS
+  - PERFIL-DBF-SOCIODEM
+  - N-FILAS-MODULO
+  - PERFIL-BPCOD
+  - N-BP1-23-BLANCO
+  - N-BP1-23-99
+  - N-BP1-23-FUERA-DE-CATALOGO
+  - N-U1-SIN-PONDERADOR
+  - N-U1
+  - P-C1-U1
+  - MASA-FAC-DEL-U1
+  - G-CONTROL-U1
+  - N-U1-R-SEL-BLANCO
+  - N-FILAS-PERSONAS
+  - G-PER-N-HOGARES
+  - G-PER-N-HOGARES-FILAS-NE-TOT-PER
+  - G-PER-N-HOGARES-R-SEL-MULTI
+  - G-PER-N-HOGARES-FAC-ELE-MULTI
+  - G-PER-N-HOGARES-EST-UPM-MULTI
+  - G-PERFIL-DISENO-PERSONAS
+  - N-HOGARES-FAC-ELE-RESUELTO-POR-UNICA-VALIDA
+  - N-FILAS-SOCIODEM
+  - G-TSDEM-PERFIL-N-REN
+  - G-TSDEM-N-HOGARES
+  - G-TSDEM-N-HOGARES-FILAS-NE-TPER
+  - N-DELITOS-HOGAR-SIN-TPER-VIC
+  - N-DELITOS-R-SEL-DISCORDA
+  - N-DELITOS-R-SEL-BLANCO
+  - N-U4-CANDIDATAS
+  - N-U4-FAC-ELE-AMBIGUO
+  - N-U4-TSDEM-0
+  - N-U4-TSDEM-1
+  - N-U4-TSDEM-MULTI
+  - N-U4-EDAD-MENOR-18
+  - N-U4-EDAD-NO-ESPECIFICADA
+  - N-U4-DISENO-AMBIGUO
+  - N-U4
+  - N-U4-D2-UNO
+  - N-U4-SIN-DISENO
+  - MASA-FAC-ELE-U4
+  - P-C2-U4
+  - P-C1-U4
+  - P-C2-U4-COMPLEMENTO
+  - N-ESTRATOS
+  - N-UPM
+  - N-ESTRATOS-UPM-UNICA
+  - IC-LO-C2-U4
+  - IC-HI-C2-U4
+  - IC-LO-C1-U4
+  - IC-HI-C1-U4
+  - METODO-IC
+  - EE-TAYLOR-C2-U4
+  - IC-LO-TAYLOR-C2-U4
+  - IC-HI-TAYLOR-C2-U4
+  - ESTADO
+
+seed:
+  aplica: true
+  valor: 20260909
+  rng: numpy.PCG64
+  nota: La semilla solo gobierna el bootstrap. Punto, Taylor y conteos son deterministas. Misma semilla que la serie ENVIPE.
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'Punto y varianza deterministas, bootstrap fijado por seed y rng, sumas en orden fijo. Enteros y textos EXACTO. No se afloja para que el control de lectura pase.'
+
+resultados:
+  - id: RESULT-ENVIPE-U4-12-V11-G-MOD-N-HOGARES
+    tipo: entero
+    unidad: "hogares distintos en Tmod_Vic.DBF (con al menos un delito)"
+  - id: RESULT-ENVIPE-U4-12-V11-G-MOD-N-HOGARES-EST-UPM-MULTI
+    tipo: entero
+    unidad: "hogares de Tmod_Vic con mas de un par (EST, UPM) entre sus delitos -- esperado 0"
+  - id: RESULT-ENVIPE-U4-12-V11-G-N-EST-DISTINTOS-MODULO
+    tipo: entero
+    unidad: "valores distintos de EST en Tmod_Vic.DBF (esperado 361: estrato de diseno)"
+  - id: RESULT-ENVIPE-U4-12-V11-G-N-EST-DISTINTOS-PERSONAS
+    tipo: entero
+    unidad: "valores distintos de EST en tper_vic.dbf (esperado 4: NO es el estrato de diseno)"
+  - id: RESULT-ENVIPE-U4-12-V11-G-PERFIL-DISENO-MODULO
+    tipo: texto
+    unidad: "perfil observado de EST y UPM en Tmod_Vic (anchos y bordes con espacio)"
+  - id: RESULT-ENVIPE-U4-12-V11-G-N-HOGARES-UPM-DISCORDA-MOD-VS-PER
+    tipo: entero
+    unidad: "hogares cuyo UPM difiere entre Tmod_Vic y tper_vic -- esperado 0"
+  - id: RESULT-ENVIPE-U4-12-V11-G-CONTROL-V1-0
+    tipo: texto
+    unidad: "REPRODUCE / NO-REPRODUCE -- P-C2-U4, P-C1-U4, N-U4 y MASA-FAC-ELE-U4 identicos a la corrida v1.0"
+  - id: RESULT-ENVIPE-U4-12-V11-G-N-MIEMBROS-ZIP
+    tipo: entero
+    unidad: "miembros del ZIP del payload (se esperan 6)"
+  - id: RESULT-ENVIPE-U4-12-V11-PERFIL-DBF-MODULO
+    tipo: texto
+    unidad: "perfil de la cabecera de Tmod_Vic.DBF (registros declarados, rlen, hlen, campos, codepage, borrados, truncados, leidos)"
+  - id: RESULT-ENVIPE-U4-12-V11-PERFIL-DBF-PERSONAS
+    tipo: texto
+    unidad: "perfil de la cabecera de tper_vic.dbf"
+  - id: RESULT-ENVIPE-U4-12-V11-PERFIL-DBF-SOCIODEM
+    tipo: texto
+    unidad: "perfil de la cabecera de tsdem.DBF"
+  - id: RESULT-ENVIPE-U4-12-V11-N-FILAS-MODULO
+    tipo: entero
+    unidad: "filas activas de Tmod_Vic.DBF, unidad DELITO (CALC-R-CIV-M-01: 32493)"
+  - id: RESULT-ENVIPE-U4-12-V11-PERFIL-BPCOD
+    tipo: texto
+    unidad: "distribucion de BPCOD codigo por codigo, sin ponderador y antes de todo filtro -- falsa el corrimiento de catalogo de 2012 (no puede haber 15)"
+  - id: RESULT-ENVIPE-U4-12-V11-N-BP1-23-BLANCO
+    tipo: entero
+    unidad: "filas del modulo con BP1_23 en blanco"
+  - id: RESULT-ENVIPE-U4-12-V11-N-BP1-23-99
+    tipo: entero
+    unidad: "filas del modulo con BP1_23 = 99"
+  - id: RESULT-ENVIPE-U4-12-V11-N-BP1-23-FUERA-DE-CATALOGO
+    tipo: entero
+    unidad: "filas con un codigo de BP1_23 que el catalogo no declara"
+  - id: RESULT-ENVIPE-U4-12-V11-N-U1-SIN-PONDERADOR
+    tipo: entero
+    unidad: "delitos que cumplen U1 salvo FAC_DEL finito > 0 -- excluidos y contados"
+  - id: RESULT-ENVIPE-U4-12-V11-N-U1
+    tipo: entero
+    unidad: "n NO ponderado de U1: BPCOD en {04..14}, BP1_20 = 2, BP1_23 en {01..08}, FAC_DEL valido (CALC-R-CIV-M-01: 14532)"
+  - id: RESULT-ENVIPE-U4-12-V11-P-C1-U1
+    tipo: proporcion
+    unidad: "[CONTROL DE LECTURA] proporcion ponderada (FAC_DEL) de U1 con BP1_23 en {01,02,06} -- debe reproducir CALC-R-CIV-M-01 P-C1-U1 = 0.29557241046799515"
+    permite_no_estimable: true
+  - id: RESULT-ENVIPE-U4-12-V11-MASA-FAC-DEL-U1
+    tipo: flotante
+    unidad: "suma de FAC_DEL sobre U1"
+    permite_no_estimable: true
+  - id: RESULT-ENVIPE-U4-12-V11-G-CONTROL-U1
+    tipo: texto
+    unidad: "REPRODUCE (|delta| <= 1e-9, N-U1 y N-FILAS-MODULO exactos) / NO-REPRODUCE / NO-COMPARABLE -- control interno: mismo lector y mismo universo que la corrida sellada de la misma ola"
+  - id: RESULT-ENVIPE-U4-12-V11-N-U1-R-SEL-BLANCO
+    tipo: entero
+    unidad: "delitos de U1 con R_SEL en blanco o no numerico -- no atribuibles a persona"
+  - id: RESULT-ENVIPE-U4-12-V11-N-FILAS-PERSONAS
+    tipo: entero
+    unidad: "filas activas de tper_vic.dbf (cabecera: 311436 -- una por integrante del hogar)"
+  - id: RESULT-ENVIPE-U4-12-V11-G-PER-N-HOGARES
+    tipo: entero
+    unidad: "hogares (CONTROL, VIV_SEL, HOGAR) distintos en tper_vic.dbf"
+  - id: RESULT-ENVIPE-U4-12-V11-G-PER-N-HOGARES-FILAS-NE-TOT-PER
+    tipo: entero
+    unidad: "hogares de tper_vic cuyo numero de filas no coincide con TOT_PER (o con TOT_PER no unico)"
+  - id: RESULT-ENVIPE-U4-12-V11-G-PER-N-HOGARES-R-SEL-MULTI
+    tipo: entero
+    unidad: "hogares de tper_vic con mas de un R_SEL distinto entre sus filas"
+  - id: RESULT-ENVIPE-U4-12-V11-G-PER-N-HOGARES-FAC-ELE-MULTI
+    tipo: entero
+    unidad: "hogares de tper_vic con mas de un FAC_ELE distinto (texto) entre sus filas -- si es 0, la rama 1 de la regla de resolucion cubre todo"
+  - id: RESULT-ENVIPE-U4-12-V11-G-PER-N-HOGARES-EST-UPM-MULTI
+    tipo: entero
+    unidad: "hogares de tper_vic con mas de un par (EST, UPM)"
+  - id: RESULT-ENVIPE-U4-12-V11-G-PERFIL-DISENO-PERSONAS
+    tipo: texto
+    unidad: "perfil observado de EST y UPM en tper_vic (anchos y bordes con espacio)"
+  - id: RESULT-ENVIPE-U4-12-V11-N-HOGARES-FAC-ELE-RESUELTO-POR-UNICA-VALIDA
+    tipo: entero
+    unidad: "hogares cuyo FAC_ELE se resolvio por la rama 2 (unica fila con FAC_ELE finito > 0)"
+  - id: RESULT-ENVIPE-U4-12-V11-N-FILAS-SOCIODEM
+    tipo: entero
+    unidad: "filas activas de tsdem.DBF (cabecera: 311436)"
+  - id: RESULT-ENVIPE-U4-12-V11-G-TSDEM-PERFIL-N-REN
+    tipo: texto
+    unidad: "perfil de espacios en N_REN (izq / der / sin_espacio) -- delata si la comparacion numerica era necesaria"
+  - id: RESULT-ENVIPE-U4-12-V11-G-TSDEM-N-HOGARES
+    tipo: entero
+    unidad: "hogares distintos en tsdem.DBF"
+  - id: RESULT-ENVIPE-U4-12-V11-G-TSDEM-N-HOGARES-FILAS-NE-TPER
+    tipo: entero
+    unidad: "hogares con distinto numero de filas en tsdem y tper_vic, mas hogares de tsdem ausentes en tper_vic"
+  - id: RESULT-ENVIPE-U4-12-V11-N-DELITOS-HOGAR-SIN-TPER-VIC
+    tipo: entero
+    unidad: "delitos de U1 cuyo hogar no existe en tper_vic.dbf -- fuera de U4, contados"
+  - id: RESULT-ENVIPE-U4-12-V11-N-DELITOS-R-SEL-DISCORDA
+    tipo: entero
+    unidad: "delitos de U1 cuyo R_SEL difiere del R_SEL del hogar en tper_vic -- no atribuibles, fuera de U4, contados"
+  - id: RESULT-ENVIPE-U4-12-V11-N-DELITOS-R-SEL-BLANCO
+    tipo: entero
+    unidad: "delitos de U1 con R_SEL no numerico -- fuera de U4, contados"
+  - id: RESULT-ENVIPE-U4-12-V11-N-U4-CANDIDATAS
+    tipo: entero
+    unidad: "personas (hogar, R_SEL) con >= 1 delito en U1 atribuible, antes de ponderador y de tsdem"
+  - id: RESULT-ENVIPE-U4-12-V11-N-U4-FAC-ELE-AMBIGUO
+    tipo: entero
+    unidad: "candidatas cuyo hogar no resuelve FAC_ELE por las ramas 1 ni 2 (o resuelve un valor no finito o <= 0) -- fuera, contadas"
+  - id: RESULT-ENVIPE-U4-12-V11-N-U4-TSDEM-0
+    tipo: entero
+    unidad: "candidatas sin ninguna fila de tsdem con N_REN == R_SEL en su hogar -- fuera, contadas"
+  - id: RESULT-ENVIPE-U4-12-V11-N-U4-TSDEM-1
+    tipo: entero
+    unidad: "candidatas con exactamente una fila de tsdem con N_REN == R_SEL -- entran"
+  - id: RESULT-ENVIPE-U4-12-V11-N-U4-TSDEM-MULTI
+    tipo: entero
+    unidad: "candidatas con mas de una fila de tsdem con N_REN == R_SEL -- llave no unica, fuera, contadas"
+  - id: RESULT-ENVIPE-U4-12-V11-N-U4-EDAD-MENOR-18
+    tipo: entero
+    unidad: "personas de U4 cuya EDAD en tsdem es < 18 -- hallazgo, SOLO contado, no filtra"
+  - id: RESULT-ENVIPE-U4-12-V11-N-U4-EDAD-NO-ESPECIFICADA
+    tipo: entero
+    unidad: "personas de U4 con EDAD en {98, 99} o no numerica -- solo contado"
+  - id: RESULT-ENVIPE-U4-12-V11-N-U4-DISENO-AMBIGUO
+    tipo: entero
+    unidad: "personas de U4 cuyo hogar trae mas de un par (EST, UPM) en tper_vic -- entran al punto sin diseno"
+  - id: RESULT-ENVIPE-U4-12-V11-N-U4
+    tipo: entero
+    unidad: "n NO ponderado de U4"
+  - id: RESULT-ENVIPE-U4-12-V11-N-U4-D2-UNO
+    tipo: entero
+    unidad: "personas de U4 con d(C2) = 1"
+  - id: RESULT-ENVIPE-U4-12-V11-N-U4-SIN-DISENO
+    tipo: entero
+    unidad: "personas de U4 sin EST o sin UPM -- afectan al IC, no al punto"
+  - id: RESULT-ENVIPE-U4-12-V11-MASA-FAC-ELE-U4
+    tipo: flotante
+    unidad: "suma de FAC_ELE sobre U4"
+    permite_no_estimable: true
+  - id: RESULT-ENVIPE-U4-12-V11-P-C2-U4
+    tipo: proporcion
+    unidad: "[PRIMARIO DE LA PIEZA, v1.1 con estrato de diseno] proporcion ponderada (FAC_ELE) de U4 con d(C2) = 1 -- la particion GEN1 en unidad persona; escala [0,1]; MAS ALTO = MAS PESO DEL MIEDO/DESCONFIANZA"
+    permite_no_estimable: true
+  - id: RESULT-ENVIPE-U4-12-V11-P-C1-U4
+    tipo: proporcion
+    unidad: "[SECUNDARIO HOMOLOGADO] proporcion ponderada de U4 con d(C1) = 1"
+    permite_no_estimable: true
+  - id: RESULT-ENVIPE-U4-12-V11-P-C2-U4-COMPLEMENTO
+    tipo: proporcion
+    unidad: "proporcion ponderada de U4 con d(C2) = 0, contada directamente"
+    permite_no_estimable: true
+  - id: RESULT-ENVIPE-U4-12-V11-N-ESTRATOS
+    tipo: entero
+    unidad: "EST distintos en U4 con diseno"
+  - id: RESULT-ENVIPE-U4-12-V11-N-UPM
+    tipo: entero
+    unidad: "pares (EST, UPM) distintos en U4 con diseno"
+  - id: RESULT-ENVIPE-U4-12-V11-N-ESTRATOS-UPM-UNICA
+    tipo: entero
+    unidad: "estratos de U4 con una sola UPM -- si > 0 el IC es LIMITE INFERIOR"
+  - id: RESULT-ENVIPE-U4-12-V11-IC-LO-C2-U4
+    tipo: flotante
+    unidad: "limite inferior IC95 de P-C2-U4 por bootstrap de UPM dentro de EST (2000 replicas, seed 20260909)"
+    permite_no_estimable: true
+  - id: RESULT-ENVIPE-U4-12-V11-IC-HI-C2-U4
+    tipo: flotante
+    unidad: "limite superior IC95 de P-C2-U4"
+    permite_no_estimable: true
+  - id: RESULT-ENVIPE-U4-12-V11-IC-LO-C1-U4
+    tipo: flotante
+    unidad: "limite inferior IC95 de P-C1-U4, mismo bootstrap"
+    permite_no_estimable: true
+  - id: RESULT-ENVIPE-U4-12-V11-IC-HI-C1-U4
+    tipo: flotante
+    unidad: "limite superior IC95 de P-C1-U4"
+    permite_no_estimable: true
+  - id: RESULT-ENVIPE-U4-12-V11-METODO-IC
+    tipo: texto
+    unidad: "IC-BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-DISENO-INCOMPLETO"
+  - id: RESULT-ENVIPE-U4-12-V11-EE-TAYLOR-C2-U4
+    tipo: flotante
+    unidad: "[SECUNDARIO] EE de P-C2-U4 por Taylor con aproximacion declarada de lonely.psu=adjust"
+    permite_no_estimable: true
+  - id: RESULT-ENVIPE-U4-12-V11-IC-LO-TAYLOR-C2-U4
+    tipo: flotante
+    unidad: "P-C2-U4 - 1.959964*EE"
+    permite_no_estimable: true
+  - id: RESULT-ENVIPE-U4-12-V11-IC-HI-TAYLOR-C2-U4
+    tipo: flotante
+    unidad: "P-C2-U4 + 1.959964*EE"
+    permite_no_estimable: true
+  - id: RESULT-ENVIPE-U4-12-V11-ESTADO
+    tipo: texto
+    unidad: "CALCULADO / NO-ESTIMABLE-MIEMBRO-AUSENTE:<m> / NO-ESTIMABLE-COLUMNA-AUSENTE:<tabla>:<col> / NO-ESTIMABLE-UNIVERSO-VACIO / NO-ESTIMABLE-JOIN-VACIO"
