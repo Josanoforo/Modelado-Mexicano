@@ -1,4 +1,10 @@
-<!-- RESCATADO POR MESA 15/sep/2026, verbatim de su conversación ChatGPT de origen («Revisar integración GitHub», 8/sep/2026, encargo ~20:02 UTC). Verificado por dirección contra base d48014ed y merge a800f299 (PR #632), que existen y coinciden. sha256 del adjunto: 2e8cab983ea935da00ddd29011902d6bd5f04c6ec820658023f93d0ca61c3c42. Archivado bajo ACTO GEN2-SANEA-REGISTRO-Y-RESCATE, cierra NC-0054. -->
+<!-- RESCATADO POR MESA 15/sep/2026, verbatim de su conversación ChatGPT de origen («Revisar integración GitHub», 8/sep/2026, encargo ~20:02 UTC). Verificado por dirección contra base d48014ed y merge a800f299 (PR #632), que existen y coinciden. sha256 del adjunto: 2e8cab983ea935da00ddd29011902d6bd5f04c6ec820658023f93d0ca61c3c42. Archivado bajo ACTO GEN2-SANEA-REGISTRO-Y-RESCATE, cierra NC-0054. Sufijo
+`-ENCARGO` en el nombre de archivo por T02 (tests/check.py): el nombre
+limpio sin sufijo colisiona por normalización de nombre con la nota de
+ejecución `forense/notas/2026-09-08-GEN2-SONDA-2-operacionaliza-sonda-lateral.md`,
+ya viva en el árbol; son documentos distintos (encargo vs. nota de cierre
+de #632) y el contenido de este archivo, tras esta cabecera, es verbatim
+del adjunto rescatado. -->
 # ACTO GEN2-SONDA-2 · OPERACIONALIZA-SONDA-LATERAL
 
 **ESTADO:** CONSUMIDO — PR #632  
