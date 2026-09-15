@@ -1,0 +1,480 @@
+# CALC-EDER-0002 -- cara mecanica de spec.md (ACTO GEN2-LOTE-MEDICION-PENDIENTE-1, pieza P1 / NC-0184).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/EDER-CORRESIDENCIA-ACTUAL-DISENO-spec-v1_0.md
+# (`prereg-caja-EDER-CORRESIDENCIA-ACTUAL-DISENO`).
+# Sucesor con diseno de familia.corresidencia.adulto_familiar_actual (MAESTRA33-C1, FP-204).
+# Hermano de CALC-EDER-0001 (mismo lector y misma varianza; otro estimando).
+# CONGELADO en el COMMIT-1, antes de leer un solo VALOR del microdato.
+calc_id: CALC-EDER-0002
+spec_md: spec.md
+spec_md_sha256: 7b3eb279bfa39fb2b0d03fe9e91c450c338716b6eb0b1a5ae291931d6a6cbb57
+
+script: data/corrida0/CALC-EDER-0002/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: TASA-BASE-DE-REGLA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/EDER-CORRESIDENCIA-ACTUAL-DISENO-spec-v1_0.md
+  spec_sellada_sha256: 97254a0f8f8440ad4dd41ba293bada845ffb97c76a37b33b6ffca9a223c69449
+  spec_hermana: forense/prereg-caja/EDER-CORRESIDENCIA-DISENO-spec-v1_0.md
+  spec_hermana_sha256: b6c755447c0ad33b40e44efe44c593725539a2dd51a4727a498dd82d91eb5a41
+  sucesor_de: "familia.corresidencia.adulto_familiar_actual -- re-especificacion de ventana ACTUAL (ACTO MAESTRA33-C1 · RESPEC-CORRESIDENCIA, 31/ago/2026, FP-204): p=0.057531, ic95=[0.051297,0.063913] (bootstrap simple de filas, seed 42), n=9397, ponderador factor. Sellada SIN CARGA en milpa/tramite-ola5-propuesta-v0.yaml:192-210 (MAESTRA38-SELLO-3). Producida por tools/tasas_base_corresidencia_actual.py bajo forense/notas/2026-08-31-c1-respec-corresidencia-spec.md. Los sellos viejos quedan intactos (E.3)."
+  demanda_que_releva: "NINGUNA. La regla nunca entro al motor (SELLADA-SIN-CARGA) y no tiene RES-* en demanda-resultados.tsv."
+  reglas_bajo_prueba: "NINGUNA cambia de cifra por esta corrida. El unico consumidor (propuesta-v0:192) no tiene cita GEN2 vigente: queda LISTADO PARA ADOPCION DE MESA; este acto no escribe cita en milpa/."
+  firma_de_contador: "NO HAY FIRMA DE MESA CON OBJETO sobre el contador en el encargo de este lote (forense/encargos/2026-09-14-GEN2-LOTE-MEDICION-PENDIENTE-1.md llego como brief sin FIRMAS DE MESA). Estandar FP-367/368 (autoridad + fecha + OBJETO) NO satisfecho -> cuenta_gen2 = PENDIENTE-DE-MESA; fila FP abierta por el acto para que mesa firme o niegue."
+  contaminacion_declarada: "ADR-46 -- al congelar, la sesion YA habia leido: p=0.057531, ic95, n=9397, universo y embudo de C1 (94101/23831/16687/9397, distribucion de parentesco propio) y su reserva sobre factor_per; y todos los RESULT de CALC-EDER-0001 (291 est_dis, 3780 upm, 3 estratos de UPM unica, perfil est_dis ancho 3, factor_per +0.07 pp sobre la tasa de fase 1). Lo genuinamente desconocido al congelar: estratos y UPM que cubre el universo Jefe/Conyuge, cuantos quedan con UPM unica, la anchura del IC de diseno, el signo y tamano de factor_per - factor sobre ESTE estimando, cuantos ego carecen de factor_per."
+  medidor_ejecutado_al_congelar: "NO -- escrito y congelado en el COMMIT-1, corrido en el COMMIT-2 del mismo acto. Probado antes del COMMIT-1 SOLO contra un ZIP sintetico (columnas declaradas, valores aleatorios), nunca contra el corpus."
+
+inputs:
+  - id: eder_2017_eder2017_bases_csv
+    origen: manifiesto
+  - id: IN-EDER-ACT-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/EDER-CORRESIDENCIA-ACTUAL-DISENO-spec-v1_0.md
+    sha256: 97254a0f8f8440ad4dd41ba293bada845ffb97c76a37b33b6ffca9a223c69449
+
+variables:
+  - {archivo: "vivienda.csv", variable: folioviv, rol: "llave de la vivienda -- join ego->vivienda; el nombre llega con BOM y se resuelve por sufijo", codigos: "entero de 10 digitos en el CSV"}
+  - {archivo: "vivienda.csv", variable: tipo_adqui, rol: "FILTRO de universo heredado de fase 1 y de C1: no nulo y no blanco", codigos: "FD: forma de adquisicion de la vivienda; blanco = no aplica", direccion: "NO-APLICA (filtro)"}
+  - {archivo: "vivienda.csv", variable: factor, rol: "PONDERADOR del estimando sucesor (A) -- el que C1 uso por instruccion de su encargo; FD #109, N (5)", codigos: "flotante tal cual"}
+  - {archivo: "vivienda.csv", variable: est_dis, rol: "ESTRATO de diseno (LLAVE DE TEXTO OPACA)", codigos: "FD #107 C (4); el archivo lo trae de ancho 3 -- cadena cruda"}
+  - {archivo: "vivienda.csv", variable: upm, rol: "UPM -- conglomerado que se re-muestrea (LLAVE DE TEXTO OPACA)", codigos: "FD #108 C (5) -- cadena cruda"}
+  - {archivo: "persona.csv", variable: folioviv, rol: "llave persona (1/3) y llave de hogar (1/2) -- con BOM, por sufijo", codigos: "entero de 10 digitos"}
+  - {archivo: "persona.csv", variable: foliohog, rol: "llave persona (2/3) y de hogar (2/2)", codigos: "1..5"}
+  - {archivo: "persona.csv", variable: id_pobla, rol: "llave persona (3/3): renglon del roster", codigos: "entero"}
+  - {archivo: "persona.csv", variable: parentesco, rol: "UNIVERSO (ego con 1 o 2) y DESENLACE (otros integrantes del hogar con 6 o 7, invertidos si ego = 2) -- pregunta B5 del cuestionario basico, relativa al JEFE del hogar", codigos: "1=Jefe(a) 2=Esposa(o)/companera(o) 3=Hija(o) 4=Nieta(o) 5=Nuera o yerno 6=Madre o padre 7=Suegra(o) 8=Otro 9=Sin parentesco (eder2017_fd.pdf #8, p.37); se lee como texto strip", direccion: "d = 1 si existe otro integrante del hogar con el codigo que, traducido segun la posicion del ego, es su ascendiente o su suegro. MAS ALTO = MAS CORRESIDENCIA ACTUAL."}
+  - {archivo: "historiavida.csv", variable: folioviv, rol: "llave (1/3) del universo respondiente EDER -- solo se leen las tres columnas de llave", codigos: "entero de 10 digitos"}
+  - {archivo: "historiavida.csv", variable: foliohog, rol: "llave (2/3)", codigos: "1..5"}
+  - {archivo: "historiavida.csv", variable: id_pobla, rol: "llave (3/3)", codigos: "entero"}
+  - {archivo: "antecedentes.csv", variable: folioviv, rol: "llave (1/3) para la sensibilidad B", codigos: "entero de 10 digitos"}
+  - {archivo: "antecedentes.csv", variable: foliohog, rol: "llave (2/3), B", codigos: "1..5"}
+  - {archivo: "antecedentes.csv", variable: id_pobla, rol: "llave (3/3), B", codigos: "entero"}
+  - {archivo: "antecedentes.csv", variable: factor_per, rol: "PONDERADOR de la sensibilidad B -- FD #52, ponderador oficial de las personas de 20-54 (FD §1.1.3, receta R weights=~factor_per); la reserva que C1 declaro y no ejecuto", codigos: "flotante tal cual; 0 = fuera de la poblacion objetivo"}
+
+universo: >-
+  EDER 2017 (INEGI), UNA sola ola. U_A (sucesor, identico al de C1): ego =
+  filas de persona.csv cuya terna (folioviv, foliohog, id_pobla) esta en
+  historiavida.csv (respondientes EDER, 20-54) y cuyo parentesco propio es '1'
+  (Jefe) o '2' (Conyuge), en vivienda (join por folioviv) con tipo_adqui no
+  nulo y no blanco y factor finito > 0. U_B (sensibilidad de ponderador): U_A
+  con factor_per de antecedentes.csv (join por la terna) finito y > 0.
+
+filtros: >-
+  Sale de U_A, CONTADO y no imputado: vivienda con tipo_adqui nulo/blanco
+  (A-N-VIVIENDAS-EXCLUIDAS-TIPO-ADQUI-BLANCO) y ego sin ponderador
+  (A-N-SIN-PONDERADOR). Sale de U_B, contado: ego sin fila en antecedentes.csv
+  (B-N-SIN-FACTOR-PER), con factor_per = 0 (B-N-FACTOR-PER-CERO) o no
+  finito/negativo (B-N-FACTOR-PER-INVALIDO). Se cuenta pero NO sale del punto:
+  ego sin est_dis o sin upm (*-N-SIN-DISENO). parentesco fuera de catalogo se
+  cuenta (G-N-PARENTESCO-FUERA-DE-CATALOGO) y no se imputa. CERO NUNCA
+  SUSTITUYE FALTA DE DATO. Miembro o columna ausente -> NO-ESTIMABLE-*;
+  folioviv no unico en vivienda.csv o terna no unica en persona.csv ->
+  NO-ESTIMABLE-LLAVE-NO-UNICA (A y B); terna no unica en antecedentes.csv ->
+  solo B; universo vacio -> NO-ESTIMABLE-UNIVERSO-VACIO. El embudo de C1 es
+  guardia con valor esperado (A-EMBUDO-C1): si discuerda se reporta, nunca se
+  ajusta.
+
+ponderador: >-
+  A: factor (vivienda.csv), el que C1 uso -- por E.3 el sucesor conserva el
+  estimando. B: factor_per (antecedentes.csv), ponderador oficial de persona
+  de EDER 2017. Ambos flotante tal cual, sin normalizar.
+
+transformacion: >-
+  Lectura con pandas.read_csv(encoding='latin-1', low_memory=False) como C1;
+  est_dis, upm y parentesco con dtype=str y strip. ids_eder = ternas de
+  historiavida.csv como texto strip. Por hogar (folioviv, foliohog), sobre el
+  roster COMPLETO de persona.csv: hay6 = algun parentesco == '6'; hay7 = algun
+  parentesco == '7'. Ego jefe: d = 1 si hay6 (ascendiente) o hay7 (suegro).
+  Ego conyuge: d = 1 si hay7 (ascendiente, invertido) o hay6 (suegro,
+  invertido). p(U) = suma(w*d)/suma(w). Complemento contado directamente.
+  Bootstrap: clave (est_dis, upm); upm con reemplazo dentro de est_dis, mismo
+  numero de UPM por estrato; estrato con UPM unica se re-muestrea a si mismo.
+  Taylor con aproximacion declarada de survey.lonely.psu='adjust'; IC = p +/-
+  1.959964 EE. NO se promedia, no se imputa, no se re-escala, no se extrapola.
+
+estimando: >-
+  DESCRIPTIVO. (1) SUCESOR (adoptable por mesa): A-P con A-IC-LO/A-IC-HI de
+  diseno. (2) SECUNDARIOS DECLARADOS: A-P-COMPLEMENTO, la Taylor de cotejo,
+  toda la familia B (sensibilidad factor_per, NO adoptable como sucesor porque
+  cambia el estimando), perfiles y embudo. NINGUN RESULT ES CAUSAL. El IC de
+  C1 NO se compara con ninguno de esta corrida (A-bis.3). No existe clausula
+  se_mueve_si escrita por mesa para esta regla: no se emite ninguna.
+
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  fuente_acto: "ACTO GEN2-LOTE-MEDICION-PENDIENTE-1 · P1 (NC-0184) · CALC-EDER-0002 · sucesor con diseno de familia.corresidencia.adulto_familiar_actual"
+  firma_que_lo_autoriza: "NINGUNA firma de mesa viaja en el encargo (brief de despacho, ver etiquetas.firma_de_contador). El acto ejecuta la fila NC-0184 tal como la dejo GEN2-DISENO-FASE1-CIERRE (PR #760); el contador queda PENDIENTE-DE-MESA."
+  bootstrap_replicas: 2000
+  z_95: 1.959964
+  umbral_replica_gen1: 1.0e-6
+  grano_milpa_decimales: 6
+  metodo_ic: "bootstrap de upm CON REEMPLAZO dentro de est_dis, conservando el numero de UPM por estrato; percentiles 2.5/97.5. Taylor de cotejo con aproximacion declarada de lonely.psu=adjust, secundaria. Identico a CALC-EDER-0001."
+  regla_estrato_upm_unica: >-
+    Un estrato con exactamente una UPM se re-muestrea a si mismo: aporta
+    varianza cero. NO se colapsa y NO se descarta. Si el conteo es > 0,
+    METODO-IC sale IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como LIMITE
+    INFERIOR de la anchura verdadera.
+  llaves_opacas: >-
+    est_dis y upm se agrupan como CADENA CRUDA (dtype=str). Nunca int() ni
+    zfill(). El perfil observado de anchos se emite como RESULT.
+  tablas:
+    vivienda: "vivienda.csv"
+    persona: "persona.csv"
+    historiavida: "historiavida.csv"
+    antecedentes: "antecedentes.csv"
+  miembros_zip_declarados: ["persona.csv", "vivienda.csv", "antecedentes.csv", "historiavida.csv", "hogar.csv"]
+  codificacion:
+    jefe: "1"
+    conyuge: "2"
+    ascendiente: "6"
+    suegro: "7"
+    catalogo_parentesco: ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    llave_persona: [folioviv, foliohog, id_pobla]
+    llave_hogar: [folioviv, foliohog]
+    llave_vivienda: folioviv
+  valores_gen1_referencia:
+    A_P: 0.057531
+    N_U: 9397
+  embudo_c1_esperado:
+    n_filas_persona: 94101
+    n_personas_historiavida: 23831
+    n_ego_jefe_o_conyuge: 16687
+    n_u: 9397
+  criterio_adopcion: >-
+    El unico consumidor (milpa/tramite-ola5-propuesta-v0.yaml:192,
+    SELLADA-SIN-CARGA) no tiene cita GEN2 vigente. A-ADOPCION =
+    LISTADO-PARA-MESA-REPRODUCE si A-REPRODUCE-GEN1 = REPRODUCE y round(A-P, 6)
+    == 0.057531; LISTADO-PARA-MESA-NO-REPRODUCE en otro caso estimable;
+    NO-ADOPTABLE-NO-ESTIMABLE si no hay punto. Este acto NO escribe en milpa/.
+  sufijos_result:
+  - G-N-MIEMBROS-ZIP
+  - G-N-COLUMNAS-VIVIENDA
+  - G-N-COLUMNAS-PERSONA
+  - G-N-COLUMNAS-HISTORIAVIDA
+  - G-N-COLUMNAS-ANTECEDENTES
+  - G-N-FILAS-VIVIENDA
+  - G-N-FILAS-PERSONA
+  - G-N-FILAS-HISTORIAVIDA
+  - G-N-FILAS-ANTECEDENTES
+  - G-N-PERSONAS-HISTORIAVIDA
+  - G-LLAVE-VIVIENDA-FOLIOVIV-UNICA
+  - G-LLAVE-PERSONA-TERNA-UNICA
+  - G-LLAVE-ANTECEDENTES-TERNA-UNICA
+  - G-N-VIVIENDA-SIN-EST-DIS
+  - G-N-VIVIENDA-SIN-UPM
+  - G-N-VIVIENDA-SIN-FACTOR
+  - G-PERFIL-EST-DIS
+  - G-PERFIL-UPM
+  - G-N-UPM-QUE-CRUZAN-ESTRATO
+  - G-UPM-ANIDA-EN-EST-DIS
+  - G-N-PARENTESCO-FUERA-DE-CATALOGO
+  - G-VEREDICTO-ESTRUCTURA
+  - G-VEREDICTO-DISENO
+  - A-N-VIVIENDAS-TIPO-ADQUI-NO-BLANCO
+  - A-N-VIVIENDAS-EXCLUIDAS-TIPO-ADQUI-BLANCO
+  - A-N-PERSONAS-ROSTER-EN-EDER
+  - A-N-EGO-JEFE-O-CONYUGE
+  - A-N-EGO-JEFE
+  - A-N-EGO-CONYUGE
+  - A-N-EGO-CON-ASCENDIENTE
+  - A-N-EGO-CON-SUEGRO
+  - A-N-SIN-PONDERADOR
+  - A-N-U
+  - A-EMBUDO-C1
+  - A-N-SIN-DISENO
+  - A-N-D-UNO
+  - A-N-D-CERO
+  - A-MASA-FACTOR-U
+  - A-P
+  - A-P-COMPLEMENTO
+  - A-SUMA
+  - A-VEREDICTO
+  - A-N-ESTRATOS
+  - A-N-UPM
+  - A-N-ESTRATOS-UPM-UNICA
+  - A-IC-LO
+  - A-IC-HI
+  - A-METODO-IC
+  - A-EE-TAYLOR
+  - A-IC-LO-TAYLOR
+  - A-IC-HI-TAYLOR
+  - A-DELTA-VS-GEN1
+  - A-REPRODUCE-GEN1
+  - A-DELTA-N-VS-GEN1
+  - A-ADOPCION-DELTA
+  - A-ADOPCION
+  - B-N-SIN-FACTOR-PER
+  - B-N-FACTOR-PER-CERO
+  - B-N-FACTOR-PER-INVALIDO
+  - B-N-U
+  - B-N-SIN-DISENO
+  - B-MASA-FACTOR-PER-U
+  - B-P
+  - B-VEREDICTO
+  - B-N-ESTRATOS
+  - B-N-UPM
+  - B-N-ESTRATOS-UPM-UNICA
+  - B-IC-LO
+  - B-IC-HI
+  - B-METODO-IC
+  - B-EE-TAYLOR
+  - B-IC-LO-TAYLOR
+  - B-IC-HI-TAYLOR
+  - B-DELTA-VS-A
+
+seed:
+  aplica: true
+  valor: 20260914
+  rng: numpy.PCG64
+  nota: La semilla solo gobierna el bootstrap de UPM (A y B). El punto, la Taylor y todos los conteos son deterministas. Misma semilla que CALC-EDER-0001.
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: 'Punto y Taylor deterministas; bootstrap fijado por seed y rng; sumas en orden fijo. Enteros y textos se comparan EXACTO. NO se afloja para que el control contra C1 pase: si no reproduce, eso es el hallazgo.'
+
+resultados:
+  - id: RESULT-EDER-ACT-G-N-MIEMBROS-ZIP
+    tipo: entero
+    unidad: "miembros del ZIP del payload (se esperan 5)"
+  - id: RESULT-EDER-ACT-G-N-COLUMNAS-VIVIENDA
+    tipo: entero
+    unidad: "columnas de la cabecera de vivienda.csv (metadato)"
+  - id: RESULT-EDER-ACT-G-N-COLUMNAS-PERSONA
+    tipo: entero
+    unidad: "columnas de la cabecera de persona.csv"
+  - id: RESULT-EDER-ACT-G-N-COLUMNAS-HISTORIAVIDA
+    tipo: entero
+    unidad: "columnas de la cabecera de historiavida.csv"
+  - id: RESULT-EDER-ACT-G-N-COLUMNAS-ANTECEDENTES
+    tipo: entero
+    unidad: "columnas de la cabecera de antecedentes.csv (0 si el miembro falta)"
+  - id: RESULT-EDER-ACT-G-N-FILAS-VIVIENDA
+    tipo: entero
+    unidad: "filas de vivienda.csv"
+  - id: RESULT-EDER-ACT-G-N-FILAS-PERSONA
+    tipo: entero
+    unidad: "filas de persona.csv -- roster completo, todas las edades (C1: 94101)"
+  - id: RESULT-EDER-ACT-G-N-FILAS-HISTORIAVIDA
+    tipo: entero
+    unidad: "filas de historiavida.csv (panel retrospectivo, una por anio-persona)"
+  - id: RESULT-EDER-ACT-G-N-FILAS-ANTECEDENTES
+    tipo: entero
+    unidad: "filas de antecedentes.csv (0 si falta)"
+  - id: RESULT-EDER-ACT-G-N-PERSONAS-HISTORIAVIDA
+    tipo: entero
+    unidad: "ternas (folioviv, foliohog, id_pobla) distintas en historiavida.csv = universo respondiente EDER 20-54 (C1: 23831)"
+  - id: RESULT-EDER-ACT-G-LLAVE-VIVIENDA-FOLIOVIV-UNICA
+    tipo: texto
+    unidad: "SI / NO -- folioviv unico en vivienda.csv"
+  - id: RESULT-EDER-ACT-G-LLAVE-PERSONA-TERNA-UNICA
+    tipo: texto
+    unidad: "SI / NO -- terna unica en persona.csv"
+  - id: RESULT-EDER-ACT-G-LLAVE-ANTECEDENTES-TERNA-UNICA
+    tipo: texto
+    unidad: "SI / NO / NO-ESTIMABLE -- terna unica en antecedentes.csv"
+  - id: RESULT-EDER-ACT-G-N-VIVIENDA-SIN-EST-DIS
+    tipo: entero
+    unidad: "filas de vivienda.csv con est_dis vacio"
+  - id: RESULT-EDER-ACT-G-N-VIVIENDA-SIN-UPM
+    tipo: entero
+    unidad: "filas de vivienda.csv con upm vacio"
+  - id: RESULT-EDER-ACT-G-N-VIVIENDA-SIN-FACTOR
+    tipo: entero
+    unidad: "filas de vivienda.csv con factor no finito o <= 0"
+  - id: RESULT-EDER-ACT-G-PERFIL-EST-DIS
+    tipo: texto
+    unidad: "perfil de anchos de est_dis como texto crudo (ancho=k:n;...)"
+  - id: RESULT-EDER-ACT-G-PERFIL-UPM
+    tipo: texto
+    unidad: "perfil de anchos de upm como texto crudo"
+  - id: RESULT-EDER-ACT-G-N-UPM-QUE-CRUZAN-ESTRATO
+    tipo: entero
+    unidad: "upm que aparecen bajo mas de un est_dis en vivienda.csv"
+  - id: RESULT-EDER-ACT-G-UPM-ANIDA-EN-EST-DIS
+    tipo: texto
+    unidad: "SI / NO"
+  - id: RESULT-EDER-ACT-G-N-PARENTESCO-FUERA-DE-CATALOGO
+    tipo: entero
+    unidad: "filas de persona.csv con parentesco fuera de {1..9} -- se cuentan, no se imputan"
+  - id: RESULT-EDER-ACT-G-VEREDICTO-ESTRUCTURA
+    tipo: texto
+    unidad: "ESTRUCTURA-OK / ESTRUCTURA-OK-SIN-ANTECEDENTES / NO-ESTIMABLE-MIEMBRO-AUSENTE:<m> / NO-ESTIMABLE-COLUMNA-AUSENTE:<col>"
+  - id: RESULT-EDER-ACT-G-VEREDICTO-DISENO
+    tipo: texto
+    unidad: "DISENO-PRESENTE / DISENO-PARCIAL:<n viviendas del universo sin est_dis o upm> / NO-ESTIMABLE-DISENO-AUSENTE"
+  - id: RESULT-EDER-ACT-A-N-VIVIENDAS-TIPO-ADQUI-NO-BLANCO
+    tipo: entero
+    unidad: "viviendas del universo heredado (C1/fase 1: 14690)"
+  - id: RESULT-EDER-ACT-A-N-VIVIENDAS-EXCLUIDAS-TIPO-ADQUI-BLANCO
+    tipo: entero
+    unidad: "viviendas con tipo_adqui nulo o blanco, excluidas y contadas"
+  - id: RESULT-EDER-ACT-A-N-PERSONAS-ROSTER-EN-EDER
+    tipo: entero
+    unidad: "filas de persona.csv cuya terna esta en historiavida.csv (respondientes EDER con fila en el roster)"
+  - id: RESULT-EDER-ACT-A-N-EGO-JEFE-O-CONYUGE
+    tipo: entero
+    unidad: "de las anteriores, parentesco propio en {1,2} -- universo evaluable de C1 antes del ponderador (C1: 16687)"
+  - id: RESULT-EDER-ACT-A-N-EGO-JEFE
+    tipo: entero
+    unidad: "ego con parentesco = 1 (Jefe)"
+  - id: RESULT-EDER-ACT-A-N-EGO-CONYUGE
+    tipo: entero
+    unidad: "ego con parentesco = 2 (Conyuge)"
+  - id: RESULT-EDER-ACT-A-N-EGO-CON-ASCENDIENTE
+    tipo: entero
+    unidad: "ego (antes del ponderador) con ascendiente presente en el hogar segun la traduccion de C1"
+  - id: RESULT-EDER-ACT-A-N-EGO-CON-SUEGRO
+    tipo: entero
+    unidad: "ego (antes del ponderador) con suegro/a presente segun la traduccion de C1"
+  - id: RESULT-EDER-ACT-A-N-SIN-PONDERADOR
+    tipo: entero
+    unidad: "ego cuya vivienda esta fuera del universo o sin factor finito > 0 -- salen de U_A, contados"
+  - id: RESULT-EDER-ACT-A-N-U
+    tipo: entero
+    unidad: "n NO ponderado de U_A (C1: 9397)"
+  - id: RESULT-EDER-ACT-A-EMBUDO-C1
+    tipo: texto
+    unidad: "EMBUDO-COINCIDE / EMBUDO-DISCORDA:<result=valor!=esperado;...> -- guardia con valor esperado sobre el embudo de C1; nunca ajusta el estimando"
+  - id: RESULT-EDER-ACT-A-N-SIN-DISENO
+    tipo: entero
+    unidad: "ego de U_A sin est_dis o sin upm -- afectan al IC, no al punto"
+  - id: RESULT-EDER-ACT-A-N-D-UNO
+    tipo: entero
+    unidad: "ego de U_A con d = 1 (co-reside hoy con ascendiente o suegro)"
+  - id: RESULT-EDER-ACT-A-N-D-CERO
+    tipo: entero
+    unidad: "ego de U_A con d = 0"
+  - id: RESULT-EDER-ACT-A-MASA-FACTOR-U
+    tipo: flotante
+    unidad: "suma de factor sobre U_A"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-A-P
+    tipo: proporcion
+    unidad: "[SUCESOR] proporcion ponderada (factor) de U_A con d = 1; escala [0,1]; MAS ALTO = MAS CORRESIDENCIA ACTUAL con ascendiente o suegro"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-A-P-COMPLEMENTO
+    tipo: proporcion
+    unidad: "proporcion ponderada de U_A con d = 0, contada directamente (nunca 1 - p)"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-A-SUMA
+    tipo: flotante
+    unidad: "A-P + A-P-COMPLEMENTO (exhaustividad; se espera 1.0)"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-A-VEREDICTO
+    tipo: texto
+    unidad: "TASA-REPORTADA / NO-ESTIMABLE-*"
+  - id: RESULT-EDER-ACT-A-N-ESTRATOS
+    tipo: entero
+    unidad: "est_dis distintos presentes en U_A con diseno"
+  - id: RESULT-EDER-ACT-A-N-UPM
+    tipo: entero
+    unidad: "pares (est_dis, upm) distintos en U_A con diseno"
+  - id: RESULT-EDER-ACT-A-N-ESTRATOS-UPM-UNICA
+    tipo: entero
+    unidad: "estratos de U_A con una sola UPM -- si > 0 el IC es LIMITE INFERIOR"
+  - id: RESULT-EDER-ACT-A-IC-LO
+    tipo: flotante
+    unidad: "[SUCESOR] limite inferior IC95 de A-P, bootstrap de upm dentro de est_dis (2000 replicas, seed 20260914)"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-A-IC-HI
+    tipo: flotante
+    unidad: "[SUCESOR] limite superior IC95 de A-P, mismo bootstrap"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-A-METODO-IC
+    tipo: texto
+    unidad: "IC-BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-DISENO-INCOMPLETO"
+  - id: RESULT-EDER-ACT-A-EE-TAYLOR
+    tipo: flotante
+    unidad: "[SECUNDARIO] EE de A-P por linealizacion de Taylor con aproximacion declarada de lonely.psu=adjust"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-A-IC-LO-TAYLOR
+    tipo: flotante
+    unidad: "[SECUNDARIO] A-P - 1.959964*EE"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-A-IC-HI-TAYLOR
+    tipo: flotante
+    unidad: "[SECUNDARIO] A-P + 1.959964*EE"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-A-DELTA-VS-GEN1
+    tipo: flotante
+    unidad: "A-P menos 0.057531 (C1), CON SIGNO -- control positivo del punto"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-A-REPRODUCE-GEN1
+    tipo: texto
+    unidad: "REPRODUCE (|delta| <= 1e-6) / NO-REPRODUCE / NO-ESTIMABLE"
+  - id: RESULT-EDER-ACT-A-DELTA-N-VS-GEN1
+    tipo: entero
+    unidad: "A-N-U menos 9397"
+  - id: RESULT-EDER-ACT-A-ADOPCION-DELTA
+    tipo: flotante
+    unidad: "round(A-P, 6) menos 0.057531 -- lo que cambiaria la cifra al grano de milpa"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-A-ADOPCION
+    tipo: texto
+    unidad: "LISTADO-PARA-MESA-REPRODUCE / LISTADO-PARA-MESA-NO-REPRODUCE / NO-ADOPTABLE-NO-ESTIMABLE -- este acto no escribe cita en milpa/"
+  - id: RESULT-EDER-ACT-B-N-SIN-FACTOR-PER
+    tipo: entero
+    unidad: "ego de U_A sin fila en antecedentes.csv (sin factor_per)"
+  - id: RESULT-EDER-ACT-B-N-FACTOR-PER-CERO
+    tipo: entero
+    unidad: "ego de U_A con factor_per = 0 (fuera de la poblacion objetivo segun la receta R)"
+  - id: RESULT-EDER-ACT-B-N-FACTOR-PER-INVALIDO
+    tipo: entero
+    unidad: "ego de U_A con factor_per no finito o negativo"
+  - id: RESULT-EDER-ACT-B-N-U
+    tipo: entero
+    unidad: "n NO ponderado de U_B (U_A con factor_per finito > 0)"
+  - id: RESULT-EDER-ACT-B-N-SIN-DISENO
+    tipo: entero
+    unidad: "ego de U_B sin est_dis o sin upm"
+  - id: RESULT-EDER-ACT-B-MASA-FACTOR-PER-U
+    tipo: flotante
+    unidad: "suma de factor_per sobre U_B"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-B-P
+    tipo: proporcion
+    unidad: "[SENSIBILIDAD, NO SUCESOR] proporcion ponderada (factor_per) de U_B con d = 1"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-B-VEREDICTO
+    tipo: texto
+    unidad: "TASA-REPORTADA / NO-ESTIMABLE-*"
+  - id: RESULT-EDER-ACT-B-N-ESTRATOS
+    tipo: entero
+    unidad: "est_dis distintos en U_B con diseno"
+  - id: RESULT-EDER-ACT-B-N-UPM
+    tipo: entero
+    unidad: "pares (est_dis, upm) distintos en U_B con diseno"
+  - id: RESULT-EDER-ACT-B-N-ESTRATOS-UPM-UNICA
+    tipo: entero
+    unidad: "estratos de U_B con una sola UPM"
+  - id: RESULT-EDER-ACT-B-IC-LO
+    tipo: flotante
+    unidad: "limite inferior IC95 de B-P, mismo bootstrap que A"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-B-IC-HI
+    tipo: flotante
+    unidad: "limite superior IC95 de B-P"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-B-METODO-IC
+    tipo: texto
+    unidad: "IC-BOOTSTRAP-UPM-EN-ESTRATO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-DISENO-INCOMPLETO"
+  - id: RESULT-EDER-ACT-B-EE-TAYLOR
+    tipo: flotante
+    unidad: "EE de B-P por Taylor (secundario)"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-B-IC-LO-TAYLOR
+    tipo: flotante
+    unidad: "B-P - 1.959964*EE"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-B-IC-HI-TAYLOR
+    tipo: flotante
+    unidad: "B-P + 1.959964*EE"
+    permite_no_estimable: true
+  - id: RESULT-EDER-ACT-B-DELTA-VS-A
+    tipo: flotante
+    unidad: "B-P menos A-P, CON SIGNO -- lo que vale el ponderador oficial de persona sobre este estimando; la lectura es de mesa"
+    permite_no_estimable: true
