@@ -355,8 +355,8 @@ produce **registro**: una verificación `A.8`, tres derivaciones medidas (§4,
 | | FAIL | WARN |
 |---|---:|---:|
 | línea base al arrancar (`origin/main = 0cdbd72`) | 3 | 4351 |
-| línea base refrescada (`origin/main = 3f73688`, árbol limpio) | 3 | 4342 |
-| cierre | **3** | **4346** |
+| línea base refrescada (`origin/main = 3f73688`, árbol limpio) | 3 | 4341 |
+| cierre | **3** | **4345** |
 
 La base se movió tres veces durante el acto (`PR #792`/`#793`, luego
 `#794`/`#795`/`#798`/`#799`), y cada vez el WARN cambió por causa ajena: un
@@ -369,7 +369,17 @@ limpio (`git worktree` sobre `origin/main`) y **no inferida restando**.
 filas `NC-0235..0238` que este acto abre, gritando por `A.12` como deben — que
 es el defecto que `A.12` existe para hacer visible, no uno nuevo.
 
-Dos FAIL propios se cometieron y se corrigieron dentro del acto: `T25` (la nota
+**Un tercer defecto, y el más instructivo: el instrumento estaba
+descalibrado.** Las cifras de arriba se declararon primero como `4346` /
+`4342`, medidas en esta sandbox. `T16` las rechazó **en CI** (rojo en el head
+`838c430`): el runner medía `4345`. La diferencia era exactamente 1 WARN y no
+era del repo — esta sandbox **no tenía `jsonschema`**, que `requirements.txt`
+declara, así que `T38 T-ALTA-RELACION` emitía aquí un `NO-CORRIDO` que en el
+runner no ocurre. Se corrigió **el instrumento, no el número**: se instaló la
+dependencia y se re-midió todo, base y cierre. La cifra que vale es la del
+runner, porque `verify.yml` es la compuerta.
+
+Dos FAIL propios más se cometieron y se corrigieron dentro del acto: `T25` (la nota
 escribía un rótulo pelado al citar la fase de calibración; se reescribió sin el
 token, sin pedir exención de archivo) y `T16` (el `ADR` declaraba la cifra de la
 línea base como si fuera la del cierre; ahora declara la medida). Además, en
