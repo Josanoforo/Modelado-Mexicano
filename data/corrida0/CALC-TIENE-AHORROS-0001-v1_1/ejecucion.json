@@ -1,0 +1,144 @@
+{
+ "corrida_id": "CALC-TIENE-AHORROS-0001-v1_1--fb43c8bab410",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "pandas": "2.3.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "ADR-46 -- al congelar, la sesion ya habia leido milpa/tramite.yaml:631-684 completo (la regla, disparadores_estado PENDIENTE-DE-MESA, la enmienda_enif2024 con universo/ponderador/IC95/n/estratos/UPM, las sensibilidades A_solo_formal/B_solo_informal, la reserva de no-comparabilidad con 2005-06) y tools/medidor_ahorro_enif24.py (cabecera). NO es ciega: leerlos es lo que A.8 exige. Tambien se leyo data/corrida0/CALC-ENIF-0002/ completo (spec.yaml, resultados.json, sello.json) para verificar RES-0065 -- ese CALC no se toca ni se re-sella.",
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_firma": "FIRMA DE MESA, mesa, 15 de septiembre de 2026 -- OBJETO: cuenta_gen2 = SI para toda corrida que este acto selle sobre spec congelada del mapa-19; no adopta al motor. (lanzamiento verbatim, forense/encargos/2026-09-15-GEN2-MEDICION-DEMANDA-2.md; fila propia en data/corrida0/decisiones.tsv, precedencia 1 del registro)",
+  "demanda_que_releva": "CORR-0009 (payload enif_2024_enif_2024_bd_csv) -> 2 de 9 RESULT: RES-0031 (dinero.ahorro.tiene_ahorros:tiene_ahorros_enif2024), RES-0032 (:no_tiene_ahorros_enif2024). Con esta pieza CORR-0009 queda AGOTADA (9/9): 6 via CALC-ENIF-0001, 1 (RES-0065) via CALC-ENIF-0002 (ya sellado, no tocado), 2 via este CALC.",
+  "firma_de_contador": "FIRMADA por el lanzamiento de ACTO GEN2-MEDICION-DEMANDA-2 (mesa, 15/sep/2026), verbatim en cuenta_gen2_firma; OBJETO = toda corrida que ese acto selle sobre spec congelada del mapa-19. La v1_0 decia NO-FIRMADA porque su encargo (GEN2-SPECS-DEMANDA-2) no traia OBJETO.",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": "NO en esta sesion sobre microdato: el medidor.py se congela en el COMMIT-1 de la sucesion probado SOLO contra un ZIP sintetico con la forma de TMODULO.csv (columnas declaradas, valores fabricados); el primer valor real lo produce corrida0 run en el COMMIT-2. Lo que la v1_0 declaraba sigue siendo cierto para la medicion legada: SI, PERO NO EN ESTA SESION. Corrio en CAJA (ACTO MAESTRA34-L5 P4) contra enif_2024_enif_2024_bd_csv (sha256=00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039). Esta sesion (NUBE, sin corpus) NO lo re-corre -- lee milpa/tramite.yaml y forense/notas/2026-09-02-MAESTRA34-L5-P4-spec.md. `corrida0.py preflight CALC-TIENE-AHORROS-0001` reportara BLOQUEADO:resultados_ausente (no script_ausente) hasta que un acto de registro transcriba resultados.json -- transcripcion, no medicion nueva.",
+  "por_que_no_es_duplicado": "milpa/tramite.yaml:631-684 trae la cifra sellada (tier FUERTE) pero SIN spec.yaml/corrida0_resultado_id para tiene_ahorros_enif2024/no_tiene_ahorros_enif2024 -- mismo hueco FALTA-CAPA-2 que CORR-0017/CORR-0007-evasion. CALC-ENIF-0002 (RES-0065) es una regla DISTINTA (dinero.ahorro.horizonte_no_trabajadores) y ya tiene su propio CALC completo -- no se duplica.",
+  "reglas_bajo_prueba": "NINGUNA cambia de cifra. dinero.ahorro.tiene_ahorros conserva tiene_ahorros_enif2024=0.642080 y no_tiene_ahorros_enif2024=0.357920 exactos, IC95=[0.630602,0.653440], n=13502 (milpa/tramite.yaml:641-642,661-665). Este CALC solo les da cadena E.2 en el registro GEN2.",
+  "repite_de": "NINGUN CALC previo -- mismo script y misma corrida que YA sello milpa/tramite.yaml (ACTO MAESTRA34-L5 P4, tools/medidor_ahorro_enif24.py; cargada por ACTO MAESTRA35-N1, firma c1, 2/sep/2026). Este CALC no re-ejecuta: registra esa corrida en D-15/GEN2.",
+  "script_legado_reutilizado": "tools/medidor_ahorro_enif24.py -- el medidor.py de esta carpeta importa su cargador y su estimador sin modificarlo; tools/ no se toca.",
+  "spec_sellada": "forense/prereg-caja/ENIF-TIENE-AHORROS-spec-v1_0.md",
+  "spec_sellada_sha256": "b2add081fff0abe02d60ac38bf9bb3ee08b151f24d7336a1d7344365c8fbf6a1",
+  "tipo": "TASA-BASE-DE-REGLA-YA-EJECUTADA",
+  "validacion_independiente": "NO-HECHA",
+  "version_spec": "v1.1 -- sucesora de CALC-TIENE-AHORROS-0001 (intacta, SUPERADA por repite_de). Cambia SOLO el cableado que impedia correr: script con interfaz medir(), spec.md presente, repite_de en la raiz. Contrato verbatim."
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-15T19:15:53Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 413,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "fb43c8bab4106c3a66cfff50c364a6fa9809f692",
+  "git_rama": "acto/gen2-medicion-demanda-2",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "86286af969a9589add0c449f597efe82516a36ea00a910114fdde59dd6167686",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "86286af969a9589add0c449f597efe82516a36ea00a910114fdde59dd6167686",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "fb43c8bab4106c3a66cfff50c364a6fa9809f692",
+ "input_ids": [
+  "enif_2024_enif_2024_bd_csv",
+  "IN-TIENEAHORROS-SPEC-SELLADA"
+ ],
+ "input_sha256": {
+  "IN-TIENEAHORROS-SPEC-SELLADA": "b2add081fff0abe02d60ac38bf9bb3ee08b151f24d7336a1d7344365c8fbf6a1",
+  "enif_2024_enif_2024_bd_csv": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+ },
+ "parametros": {
+  "bootstrap_replicas": 10000,
+  "estratos": 190,
+  "firma_que_lo_autoriza": "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-2.md, P2: «CORR-0009 (EXISTE-NO-SATISFACE) -> sucesion que releve la corrida entera, o declaracion explicita de que parte no puede y por que». Esta pieza, junto con la correccion de RES-0065 (spec.md §0.3, ya sellado por otro CALC), deja CORR-0009 AGOTADA -- la corrida entera queda relevada.",
+  "fuente_acto": "ACTO GEN2-SPECS-DEMANDA-2 · CALC-TIENE-AHORROS-0001 · registro D-15/GEN2 de una medicion YA CORRIDA por ACTO MAESTRA34-L5 P4",
+  "numerador": 8699,
+  "poblacion_expandida": 94221441,
+  "res_0065_ya_relevado": "CALC-ENIF-0002 (sellado, ADR-459), RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P=0.632782 -- no se toca ni se re-sella aqui, ver spec.md §0.3.",
+  "seed_original": 42,
+  "sensibilidades_no_releadas": {
+   "A_solo_formal": {
+    "ic95": [
+     0.273502,
+     0.296342
+    ],
+    "n_con_ahorro": 4078,
+    "p": 0.284927
+   },
+   "B_solo_informal": {
+    "ic95": [
+     0.549922,
+     0.573502
+    ],
+    "n_con_ahorro": 7590,
+    "p": 0.56192
+   }
+  },
+  "upm": 2164
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-TIENEAHORROS-A-DELTA-VS-SELLADO",
+  "RESULT-TIENEAHORROS-A-IC-HI",
+  "RESULT-TIENEAHORROS-A-IC-LO",
+  "RESULT-TIENEAHORROS-A-P-NO-TIENE",
+  "RESULT-TIENEAHORROS-A-P-TIENE",
+  "RESULT-TIENEAHORROS-A-RELEVA-SELLADO",
+  "RESULT-TIENEAHORROS-A-SUMA-UNO",
+  "RESULT-TIENEAHORROS-G-N-PERSONAS",
+  "RESULT-TIENEAHORROS-G-NUMERADOR"
+ ],
+ "script_blob_sha256": "6d9ac6d602dbd6f8b9a7a5013188a6ab8a6893a96e6a620db906f88ddce5f3da",
+ "script_path": "data/corrida0/CALC-TIENE-AHORROS-0001-v1_1/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.random.default_rng (wprop_ic_conglomerado, verbatim del estimador de la casa)",
+  "valor": 42
+ },
+ "spec_id": "CALC-TIENE-AHORROS-0001-v1_1",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "b2add081fff0abe02d60ac38bf9bb3ee08b151f24d7336a1d7344365c8fbf6a1",
+ "spec_yaml_sha256": "5d57bfec2aef0fab1ba3cc7baf14844ab7e25c157e0e83808cb4644da798994b",
+ "tolerancia": {
+  "abs": 1e-06,
+  "razon": "Transcripcion, no re-medicion. Tolerancia para una eventual re-ejecucion futura del mismo script/payload/semilla.",
+  "tipo": "flotante"
+ }
+}
