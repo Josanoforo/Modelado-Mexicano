@@ -355,17 +355,18 @@ produce **registro**: una verificación `A.8`, tres derivaciones medidas (§4,
 | | FAIL | WARN |
 |---|---:|---:|
 | línea base al arrancar (`origin/main = 0cdbd72`) | 3 | 4351 |
-| línea base refrescada (`origin/main = 8fadc3b`, árbol limpio) | 3 | 4339 |
-| cierre | **3** | **4343** |
+| línea base refrescada (`origin/main = 3f73688`, árbol limpio) | 3 | 4342 |
+| cierre | **3** | **4346** |
 
-La base se refrescó a mitad de acto: `PR #792`/`#793` fusionaron y
-`GEN2-FIRMAS-MESA-2` cerró `NC-0221..0224`, lo que baja el WARN por causa
-ajena a este acto. Por eso la comparación válida es contra la base
-**refrescada**, medida en árbol limpio y no inferida restando.
+La base se movió tres veces durante el acto (`PR #792`/`#793`, luego
+`#794`/`#795`/`#798`/`#799`), y cada vez el WARN cambió por causa ajena: un
+acto que cierra filas lo baja, uno que las abre lo sube. Por eso la
+comparación válida es contra la base **vigente al cierre**, medida en árbol
+limpio (`git worktree` sobre `origin/main`) y **no inferida restando**.
 
 **Cero FAIL nuevos.** Los tres son heredados del corpus documental (`T06` ×2,
 `T08`) y ajenos a este perímetro. Los **+4 WARN** son exactamente las cuatro
-filas `NC-0225..0228` que este acto abre, gritando por `A.12` como deben — que
+filas `NC-0235..0238` que este acto abre, gritando por `A.12` como deben — que
 es el defecto que `A.12` existe para hacer visible, no uno nuevo.
 
 Dos FAIL propios se cometieron y se corrigieron dentro del acto: `T25` (la nota
@@ -380,4 +381,4 @@ $ python3 tests/gonogo_marcador.py    -> GO-MARCADOR (6/6)
 
 ## 11 · `A.14` · NO-CORRIDO / RESERVAS
 
-Ver `forense/no-corrido.tsv`, filas `NC-0225`–`NC-0228`.
+Ver `forense/no-corrido.tsv`, filas `NC-0235`–`NC-0238`.

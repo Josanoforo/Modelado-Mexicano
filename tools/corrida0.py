@@ -3256,7 +3256,17 @@ def _lee_oferta(verifica: bool) -> list[dict]:
             "replay": replay, "contexto": contexto,
             "fuente_replay": fuente_replay, "avisos_replay": avisos_replay,
             "hashes_faltantes": faltan,
-            "repite_de": str(spec.get("repite_de") or ""),
+            # ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2 (NC-0199), 15/sep/2026.
+            # Antes esta linea leia `repite_de` SOLO a nivel raiz, asi que
+            # una spec que lo declara bajo `etiquetas:` no alimentaba
+            # `sucesor_de` y su predecesora se quedaba en `SELLADA` en vez
+            # de `SUPERADO-><id>`. Medido sobre las 104 specs del arbol: 31
+            # lo traen en raiz y 6 SOLO bajo `etiquetas` (no solo la
+            # CALC-ENVIPE-U4-2012-v1_1 que NC-0199 nombraba). La raiz
+            # conserva precedencia; `etiquetas` es el respaldo, por el
+            # mismo helper `_etiqueta()` que el resto del campo usa. Las
+            # specs selladas NO se tocan (E.3): se corrige el LECTOR.
+            "repite_de": str(spec.get("repite_de") or _etiqueta(spec, "repite_de", "")),
         })
 
     # ACTO GEN2-T9 · P1: el cierre transitivo corre DESPUES de leer todas
@@ -3661,6 +3671,53 @@ def _cuenta_gen2_resuelto(calc_id: str, spec: dict,
     return ("NO" if generacion == GENERACION_LEGADO else "SI"), "default por generacion"
 
 
+def _validacion_independiente_resuelta(calc_id: str, rid: str, spec: dict,
+                                       decisiones: dict) -> tuple[str, str, str]:
+    """`(validacion_independiente, validacion_ref, alcance_validacion)`.
+
+    `spec.yaml` esta SELLADO (E.3: "spec.yaml forma parte de la identidad
+    sellada") -- editarlo despues del sello rompe el sello (medido por
+    T-CORRIDA0/T-REPRO en `fcddf9a`, revirtiendo exactamente ese intento
+    sobre `cuenta_gen2`). Esta funcion es el mismo remedio que
+    `_cuenta_gen2_resuelto` ya aplica para `cuenta_gen2`, extendido a
+    `validacion_independiente`, con una diferencia deliberada: la
+    precedencia es POR RESULT (objeto `<calc_id>:<rid>`), no por CALC
+    entero, porque E.2 reserva la validacion a los RESULT que pueden
+    cambiar signo/tier/clasificacion/marcador/coeficiente -- no a cada fila
+    diagnostica (`G-`/conteos) de la corrida. Declarar PASA a nivel de
+    CALC completo cuando solo se re-derivo el punto primario seria
+    sobre-declarar cobertura.
+
+    Precedencia:
+      1. decision especifica por RESULT en `decisiones.tsv`, objeto
+         `<calc_id>:<rid>`;
+      2. la etiqueta de la propia spec (normalmente `NO-HECHA`, el default
+         de autor);
+      3. `NO-HECHA`.
+
+    A diferencia de `cuenta_gen2` (D-1, reservado a firma de mesa), E.2
+    declara la validacion independiente "instrumentable" -- una sesion la
+    ejecuta y la cita, no espera firma de mesa para *registrar* que corrio
+    (la ADOPCION del resultado si sigue siendo de mesa, y este registro no
+    la otorga).
+    """
+    especifica = decisiones.get(f"{calc_id}:{rid}", "")
+    if especifica.startswith("validacion_independiente="):
+        partes = especifica.split("·")
+        estado = partes[0].split("=", 1)[1].strip()
+        ref, alcance = NO_DECLARADO, NO_DECLARADO
+        for p in partes[1:]:
+            if p.startswith("ref="):
+                ref = p.split("=", 1)[1].strip()
+            elif p.startswith("alcance="):
+                alcance = p.split("=", 1)[1].strip()
+        return estado, ref, alcance
+    etiqueta = _etiqueta(spec, "validacion_independiente", None)
+    if etiqueta is not None:
+        return etiqueta, NO_DECLARADO, NO_DECLARADO
+    return "NO-HECHA", NO_DECLARADO, NO_DECLARADO
+
+
 def _filas_registro(verifica: bool = False) -> dict:
     """Deriva las tres vistas. Devuelve `{corridas, resultados, usos,
     avisos}`; levanta `ParoRegistro` sin escribir nada si una validacion
@@ -3775,6 +3832,7 @@ def _filas_registro(verifica: bool = False) -> dict:
         })
 
     # ── lado OFERTA ───────────────────────────────────────────────────────
+    decisiones_validacion = _lee_decisiones()
     for o in oferta:
         calc_id, ejec, spec = o["calc_id"], o["ejec"], o["spec"]
         sucesor = sucesor_de.get(calc_id, "")
@@ -3825,6 +3883,8 @@ def _filas_registro(verifica: bool = False) -> dict:
             _unico(vistos_resultado, (corrida_id, rid), "resultados")
             decl = decl_res.get(rid, {})
             linaje = o["linajes_resultados"][rid]
+            val_indep, val_ref, val_alcance = _validacion_independiente_resuelta(
+                calc_id, rid, spec, decisiones_validacion)
             filas_resultados.append({
                 "resultado_id": rid, "origen": "OFERTA",
                 "corrida_id": corrida_id, "spec_id": calc_id,
@@ -3837,10 +3897,9 @@ def _filas_registro(verifica: bool = False) -> dict:
                                          default=str) if tol else NO_DECLARADO,
                 "tolerancia_adopcion": _texto_tol_adopcion(
                     decl.get("tolerancia_adopcion", tol_adop_spec)),
-                "validacion_independiente": _etiqueta(spec, "validacion_independiente",
-                                                      "NO-HECHA"),
-                "validacion_ref": NO_DECLARADO,
-                "alcance_validacion": NO_DECLARADO,
+                "validacion_independiente": val_indep,
+                "validacion_ref": val_ref,
+                "alcance_validacion": val_alcance,
                 "rol_evaluacion": str(decl.get("rol_evaluacion") or
                                       _etiqueta(spec, "rol_evaluacion", NO_DECLARADO)),
                 "origen_numerico": linaje["origen"],
