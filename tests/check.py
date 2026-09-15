@@ -2816,6 +2816,16 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2, 15/sep/2026: la nota de cierre
+    # cita los rotulos pelados `E5-0` y `E5` porque son las CLAVES LITERALES
+    # que `tools/verifica_encargos_gen2.py::secciones_maestras()` devuelve
+    # para las dos secciones del ENCARGO maestro -- se transcriben tal cual
+    # para que la verificacion de NC-0050 sea reproducible con el comando a
+    # la vista. No son rotulos nuevos ni se reclaman: los habitantes reales
+    # son `GEN2-E5-0` y `GEN2-E5`, ya censados en canon/registro-rotulos.tsv.
+    # Reescribirlos con prefijo falsearia lo que el comando de verificacion
+    # imprime, que es justo lo que la nota existe para hacer auditable.
+    "forense/notas/2026-09-15-GEN2-MANTENIMIENTO-Y-ARCHIVO-2-cierre.md",
     # ACTO GEN2-E11-RES0028-PARTICION, 15/sep/2026: el encargo cita el
     # rótulo pelado `E11` porque es exactamente cómo la propia fila de
     # `NC-0085` (`forense/no-corrido.tsv`) nombra al acto responsable --
