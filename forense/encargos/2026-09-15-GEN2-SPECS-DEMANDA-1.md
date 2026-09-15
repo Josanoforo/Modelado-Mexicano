@@ -28,6 +28,23 @@ El encargo pide «recorrer las 19»: dos de ellas (`CORR-0002`, `CORR-0003`) ya 
 
 (3) ¿La estructura es posterior al trabajo? SÍ, y la brecha se declara: `demanda-corridas.tsv` nació el 7/sep/2026 (`tools/corrida0.py demanda`, GEN2); las conductas que puebla son de GEN1 (jul–sep/2026) y sus `script_legacy`/`spec_legacy` están vacíos **por construcción** — `SIN-CANDIDATO-EN-EL-REGISTRO` describe el registro legado, no el mundo. Que una corrida no tenga candidato ahí no implica que no exista una spec GEN2 posterior que la releve: la lista de (2) es exactamente ese cruce, y por eso se hace con comando y no de memoria.
 
+
+(2-bis) ¿Las reglas que este acto PRE-REGISTRA ya se midieron? `tools/ya_medido.py`, una invocación por regla (ADR-340, exigido por `T-YAMEDIDO` a todo acto que clasifique, pre-registre, cargue o selle una regla del motor). Salida verbatim de la última línea de cada una:
+
+```
+$ python3 tools/ya_medido.py familia.seguro.volatilidad_ausencia_estado
+  MEDIDA-EN: CALC-B-0001, tramite-ola5-propuesta-v0.yaml, tramite.yaml
+  (CALC en data/corrida0) data/corrida0/CALC-B-0001/resultados.json:41  resultado_id=RESULT-B-ENIGH-2022-P ejecutado=SI sello=VALIDO  [TASA-EJECUTADA]
+$ python3 tools/ya_medido.py dinero.planeacion.formal_estable
+  MEDIDA-EN: tramite-ola5-propuesta-v0.yaml, tramite.yaml
+$ python3 tools/ya_medido.py familia.union.libre
+  MEDIDA-EN: tramite.yaml
+$ python3 tools/ya_medido.py familia.cuidado.recae_mujeres_40mas
+  MEDIDA-EN: tramite.yaml
+```
+
+Las cuatro están MEDIDAS en `milpa/` (GEN1) y **ninguna tiene `CALC` propio** — salvo `familia.seguro.volatilidad_ausencia_estado`, cuyo único `CALC` (`CALC-B-0001`) declara `reglas_bajo_prueba: NINGUNA` bajo la firma `T9` y por tanto **no la releva**. Eso es exactamente lo que este acto congela: no falta el número, falta la cadena (`E.2`). Ninguna de las cuatro cambia de cifra por este acto.
+
 PIEZAS (texto de mesa, verbatim)
 
 > 1 · NUBE — ACTO GEN2-SPECS-DEMANDA-1 (Opus, integral, multi-día)
@@ -41,3 +58,15 @@ CONTADOR: **cero mediciones** — se dice en esta línea y no se disfraza (regla
 LO QUE NO HACE: no corre ningún `CALC` · no abre un solo byte de microdato · no adopta ninguna cifra a ningún consumidor · no edita specs selladas (las sucede, si hiciera falta) · no decide por mesa ninguna de las adjudicaciones que arma.
 
 CIERRE: cascada completa + `## NO-CORRIDO / RESERVAS` + `## CONSUMIDO` con el PR.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| «redactar y CONGELAR la spec ejecutable (**md humana + `spec.yaml`**, `D-15`)» — el `medidor.py` de las cuatro corridas congeladas (`NC-0192`) | `DIFERIDO-A:ACTO GEN2-MEDICION-DEMANDA-1`. El encargo enumera las **dos** capas de `D-15` y el acto de CAJA declara en su propio perímetro que congela el medidor cuando una spec llegue sin él. Se declara como **se hizo distinto**, no como omisión: el precedente de la casa (`CALC-ENCIG-0001`, `CALC-B-0001`) sí lo escribe en `COMMIT-1`, pero en actos que además lo corrían. Éste no puede correrlo (NUBE, sin corpus, `numpy`/`pandas` AUSENTES) y un medidor no probado contra ningún payload sería peor insumo que ninguno | `preflight` reporta `BLOQUEADO:script_ausente` en las cuatro — **único** bloqueo; todo lo demás pasa. Las cuatro corridas no pueden correr y `N_corridas_selladas` no se mueve de 63 | `ACTO GEN2-MEDICION-DEMANDA-1` (CAJA, en vuelo) |
+| «Recorrer las 19 `CORR` … y entonces redactar y CONGELAR la spec ejecutable» — 4 de 19 congeladas (`NC-0193`) | `DIFERIDO-A:tanda 2`. Cuatro más son **construibles y no están bloqueadas por nada material**: `CORR-0017` (capa humana sellada desde el 5/sep, falta sólo el `spec.yaml`), `CORR-0016` (el payload es un artefacto del repo: spec entera en nube, sin `data/raw`) y los residuos de `CORR-0009` (`RES-0031`/`0032`/`0065`) y `CORR-0007` (`RES-0025`/`0026`). Es presupuesto de sesión | Cuatro contratos menos para el acto de CAJA en esta tanda. Las 11 restantes **sí** tienen bloqueador nombrado en el mapa y no son deuda de este acto | tanda 2 de `ACTO GEN2-SPECS-DEMANDA-1` (nube) |
+| Hallazgo `A.15` sobre `CORR-0013` **no corregido** (`NC-0194`) | `FUERA-DE-PERÍMETRO`. `milpa/` no se toca en este acto y el derivado no se edita a mano | Un `verify` resolvería el ZIP de EDER (`bcc7eb90…`) como INPUT de una cifra calculada sobre ENADID 2023, **y el hash coincidiría**: la cadena `E.2` sería falsa sin que nada la contradiga. ENADID está en el manifiesto y no aparece en ninguna corrida | MESA (si la celda ENADID se sucede) + el acto que toque `milpa/` |
+| Hallazgo `A.8` sobre `CORR-0010` **no corregido** (`NC-0195`) | `FUERA-DE-PERÍMETRO` | `CORR-0010` queda `BLOQUEADA` por identidad cuando su payload está en disco y verificado por hash (`00e4b0b4…f039` = `enif_2024_enif_2024_bd_csv`). **No va a cola de adquisición** | el acto que toque `milpa/`; la tanda 2 congela la spec en cuanto la identidad esté escrita |
+| Hallazgo `A.15` sobre `CORR-0014` **no corregido** (`NC-0196`) | `FUERA-DE-PERÍMETRO` | El texto de `milpa/` sigue diciendo que el ponderador `FAC_HOG` está en `tvar_crea.csv`, donde no está. No bloquea la corrida (la spec fija `tsdem.csv` y añade la guarda); bloquea la lectura | el acto que toque `milpa/` |
+| «decisión → propuesta armada para tu firma» — las tres quedan **armadas y sin firmar** (`NC-0197`) | `DECISIÓN-DE-MESA-PENDIENTE`. Armarlas es lo que el encargo pide; firmarlas no es del ejecutor | **6 de las 10 `CORR` bloqueadas** esperan una de estas tres firmas, no trabajo. Premisa de **D1** corregida en este acto: el encargo la planteaba como «adquirir vs. celda sin fuente» y el payload ENCIG 2023 está en el manifiesto desde el 29/jul/2026 en cinco formatos — la frase «ENCIG2023, sin payload» de `ENCIG-MORDIDA-spec-v1_0.md:142` es falsa en la letra desde entonces y **no se edita** (`E.3`) | MESA |
+| Firma de contador con OBJETO para las cuatro specs (`NC-0198`) | `DECISIÓN-DE-MESA-PENDIENTE`. El lanzamiento autoriza **congelar** y no declara OBJETO sobre el contador; `FP-367`/`FP-368` piden autoridad + fecha + OBJETO y no se satisface | Las cuatro llevan `cuenta_gen2 = PENDIENTE-DE-MESA`: cuando CAJA las selle **no incrementan el contador GEN2** salvo que la firma llegue. `ACTO GEN2-MEDICION-DEMANDA-1` sí trae firma con OBJETO y prevé declararla en `data/corrida0/decisiones.tsv` sin editar el `COMMIT-1` — esa es la vía; esta fila existe para que no se pierda si no se recorre | MESA o `ACTO GEN2-MEDICION-DEMANDA-1` (vía `decisiones.tsv`) |
