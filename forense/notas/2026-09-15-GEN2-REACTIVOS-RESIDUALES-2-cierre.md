@@ -129,7 +129,7 @@ No re-extrajo texto de ninguna fuente (no hay corpus en NUBE) · no publicó `co
 - `python3 -m unittest tests.test_reactivos_ciegos_fd`: **8/8**.
 - Control de conservación del buscador: 5/5 consultas con cifra idéntica al archivo anterior (§2).
 - Censo idempotente: dos corridas seguidas escriben el mismo archivo byte a byte.
-- `python3 tests/check.py --baseline`: sin `FAIL` nuevo contra `tests/baseline.json`.
+- `python3 tests/check.py --baseline`: **LÍNEA BASE VERDE**, 3 FAIL · 4 354 WARN, nada nuevo contra `tests/baseline.json`. La primera corrida sí trajo un `FAIL` nuevo — `T27`: un archivo nuevo bajo `data/` sin cita en `data/INFRAESTRUCTURA-v1_0.md` — y se reparó por la vía que el propio test nombra (fila nueva en el índice, dominio de reactivos, no `_T_INFRA_ARCHIVOS_CONOCIDOS`), no silenciándolo.
 - Contador científico: **cero**. Ninguna corrida, ningún `RESULT`, ninguna adopción.
 
 ## 6 · Concurrencia declarada
