@@ -47,7 +47,7 @@ data/inventario-reactivos-descargas-mx-v1_2.tsv   (ZA6980_v2-0-0.dta, 357 variab
   SEX · URBRURAL · AGE · CASEID · MX_INC · MX_REG · MX_RELIG …
 ```
 
-Con eso quedan fijados **reactivo** (`v26`), **universo** (Mexico por `c_alphan`, `N = 1002` verificado el 31/ago/2026 en `data/cola-adquisicion-v1_0.tsv`), **ponderador** (`WEIGHT`) y **dominios** de las dos celdas (`SEX`, precedente literal de `TIC-10`/`TIC-11`, que declaran su universo *«por sexo»*). Falta **una sola cosa**: las categorías de respuesta de `v26` — etiquetas de **valor**, que el inventario no guarda —, y el `PDF` que las trae (`ZA6980_q_mx.pdf`) **ya está adquirido**. `NC-0227`.
+Con eso quedan fijados **reactivo** (`v26`), **universo** (Mexico por `c_alphan`, `N = 1002` verificado el 31/ago/2026 en `data/cola-adquisicion-v1_0.tsv`), **ponderador** (`WEIGHT`) y **dominios** de las dos celdas (`SEX`, precedente literal de `TIC-10`/`TIC-11`, que declaran su universo *«por sexo»*). Falta **una sola cosa**: las categorías de respuesta de `v26` — etiquetas de **valor**, que el inventario no guarda —, y el `PDF` que las trae (`ZA6980_q_mx.pdf`) **ya está adquirido**. `NC-0231`.
 
 La transferencia es de **constructo**: `familia.apoyo.recibe_dinero_familiares` está calibrada en `ENIF 2024` sobre recepción **efectiva** de dinero de familiares; `v26` pregunta a **quién acudiría** para pedir prestada una suma grande. No es la misma cantidad y no se disfraza de serlo: es exactamente el tipo de transferencia que el panel busca.
 Reserva: `ZA5900` (ISSP 2012 Family, México) intacta, y dentro de la propia ola 2017 las otras nueve situaciones de apoyo (`v21`–`v25`, `v27`–`v30`) sin tocar.
@@ -56,12 +56,12 @@ Reserva: `ZA5900` (ISSP 2012 Family, México) intacta, y dentro de la propia ola
 
 `ENCRIGE` es a las unidades económicas lo que `ENCIG` a las personas: mismo INEGI, mismo concepto de trámite. **Limpia en las cuatro superficies** (`grep -ril -F encrige`: 0 en `milpa/`, 0 en el corpus de `L`, 0 en `traza-motor.tsv`, 0 en `data/corrida0` + `prereg-caja` + `corridas-*`, 0 en marcos y crosswalk). Los tabulados 2020 ya adquiridos traen los cuadros que la regla necesita (*«Trámites, pagos o actos de autoridad»*, *«Percepción sobre la frecuencia de actos de corrupción»*, *«Causas del desinterés: es necesario dar sobornos»*), y el precedente `EMP-01…EMP-04` del marco piloto ya construye celdas como razones por dominio sobre tabulados.
 
-**Y por eso mismo no cuenta todavía:** su unidad es el establecimiento — la **misma** pregunta que `R02 · WBES`. El encargo ordena dejarla planteada y no resolverla, y no se resolvió. Lo que `v1_2` añade es que **la firma ahora vale por dos familias**, y que la versión nacional es más barata que la del Banco Mundial. `NC-0229`.
+**Y por eso mismo no cuenta todavía:** su unidad es el establecimiento — la **misma** pregunta que `R02 · WBES`. El encargo ordena dejarla planteada y no resolverla, y no se resolvió. Lo que `v1_2` añade es que **la firma ahora vale por dos familias**, y que la versión nacional es más barata que la del Banco Mundial. `NC-0233`.
 
 ### 2.3 · `R10 · ENCO` (DIN) — la única puerta que le queda al dominio vacío
 
 El dominio `DIN` perdió a `Global Findex` por exposición (el corpus de `L` lo cita **con cifra**) y a la `ENCF` de Banxico/CNBV porque ya es universo de evaluación (cinco celdas `DIN-07…DIN-12` del marco piloto y `payload_id` en `corridas-R/DIN-07.json`). Queda `ENCO`: mensual desde 2001 —reserva prácticamente infinita—, con `FACTOR` en el archivo y **limpia en las cuatro superficies**. El único hit fue la frase *«confianza del consumidor»* en prosa sobre marcas, adjudicado a mano como **falso positivo**.
-Falta lo barato primero: leer el cuestionario ya adquirido y ver si alguno de los 15 ítems pregunta por **posibilidad de ahorrar**. Sólo si eso devuelve `EXISTE-SATISFACE` se pide adquisición. `NC-0228`.
+Falta lo barato primero: leer el cuestionario ya adquirido y ver si alguno de los 15 ítems pregunta por **posibilidad de ahorrar**. Sólo si eso devuelve `EXISTE-SATISFACE` se pide adquisición. `NC-0232`.
 
 ### 2.4 · `R11 · ENPOL` (TRA) — limpia en desarrollo, comprometida en el marco
 
@@ -108,7 +108,7 @@ No lanzó llamadas · no abrió microdato ni ningún payload · no escribió en 
 
 ## 6 · Perímetro
 
-Escritos: `forense/prereg-duelo-v2/F5-panel-candidatos-v1_2.tsv` (27 filas × 17 columnas, sucesor de `v1_1`), `forense/prereg-duelo-v2/F6-falta-conseguir-v1_0.tsv` (9 filas, entrega a adquisición **fuera** de su cola), cinco filas `NC-0226…NC-0230` en `forense/no-corrido.tsv`, el encargo archivado (0-bis A.3), esta nota y la cascada administrativa de costumbre.
+Escritos: `forense/prereg-duelo-v2/F5-panel-candidatos-v1_2.tsv` (27 filas × 17 columnas, sucesor de `v1_1`), `forense/prereg-duelo-v2/F6-falta-conseguir-v1_0.tsv` (9 filas, entrega a adquisición **fuera** de su cola), cinco filas `NC-0230…NC-0234` en `forense/no-corrido.tsv`, el encargo archivado (0-bis A.3), esta nota y la cascada administrativa de costumbre.
 
 ---
 
@@ -120,13 +120,28 @@ El encargo pide entregar la tabla *«sin escribir en su cola»*. Se cumplió en 
 2. **El ruteo** se hace donde el propio servicio lo lee: `forense/no-corrido.tsv`. Verificado, no supuesto — importando `tools/adq_investigacion.py` y llamando sus funciones sobre las cinco filas reales:
 
 ```
-NC-0226  FUENTE_O_VARIABLE        LISTA_SONDA        servicio-gen2-38
-NC-0227  PREPARACION              NO_SONDA           CAJA/Ubuntu con la raiz montada
-NC-0228  DECISION_O_IMPLEMENTACION NO_SONDA          CAJA/Ubuntu
-NC-0229  DECISION_CIENTIFICA      ESPERA_O_DELEGADA  mesa
-NC-0230  DECISION_O_IMPLEMENTACION ESPERA_O_DELEGADA FP-374 + NC-0226/0227/0228
+NC-0230  FUENTE_O_VARIABLE        LISTA_SONDA        servicio-gen2-38
+NC-0231  PREPARACION              NO_SONDA           CAJA/Ubuntu con la raiz montada
+NC-0232  DECISION_O_IMPLEMENTACION NO_SONDA          CAJA/Ubuntu
+NC-0233  DECISION_CIENTIFICA      ESPERA_O_DELEGADA  mesa
+NC-0234  DECISION_O_IMPLEMENTACION ESPERA_O_DELEGADA FP-374 + NC-0230/0231/0232
 ```
 
 Las tres clases caen donde deben: lo que es adquisición va al servicio, lo que es lectura de un documento ya adquirido va a CAJA, y la firma va a mesa.
 
 **La proyección derivada (`data/adq-demanda-activa-v1_0.json`) NO se regeneró.** Se probó: el generador corre sin error (el `KeyError` de `NC-0220` ya está arreglado en `main`), pero su salida difiere de la versión en el árbol en **403 inserciones y 238 borrados**, y el grueso no es de este acto — es deriva acumulada de otros actos entre la última regeneración y hoy (cambios de `adopcion`, `contrato_id`, `camino_linaje` de objetos ajenos). Regenerarla desde aquí atribuiría a este acto el trabajo de otros; se revirtió y la fuente queda diciendo lo que debe decir, que es de donde la proyección lo tomará sola.
+
+---
+
+## 8 · Cascada de renumeración (renumera quien fusiona segundo)
+
+La fila de este acto se renumeró **dos veces**, y las dos por la misma razón de siempre: otro acto fusionó antes.
+
+| sync | quién llegó primero | qué tomó | lo mío pasa a |
+|---|---|---|---|
+| 1º (`ce79136`) | `GEN2-ARCHIVO-LECTURA-F5-1` (`PR #794`) | `NC-0225` | `NC-0225…0229` → **`NC-0226…0230`**; `ADR-517` seguía libre (máximo real 516) |
+| 2º (`3880cf4`) | `GEN2-MANTENIMIENTO-Y-ARCHIVO-2` (`PR #795`) | **`ADR-517`** y `NC-0226…0229` | `ADR-517` → **`ADR-518`** y `NC-0226…0230` → **`NC-0230…0234`** |
+
+En los dos casos el lado de `main` queda **intacto** y se mueve el mío. Los cuatro conflictos del segundo sync (`no-corrido.tsv`, `registro-rotulos.tsv`, `gobernanza-v1_15.md`, `estado-programa-v1_13.md`) se resolvieron igual: se toma el archivo de `main` **entero** y se le añade encima sólo la pieza propia, ya renumerada — cero filas y cero entradas ajenas alteradas.
+
+El primer sync trajo además la **Hoja de firmas 2** (§4, el cambio de premisa de `FP-374`); el segundo trajo `GEN2-VALIDACION-INDEPENDIENTE-2` (`PR #799`) y `GEN2-MANTENIMIENTO-Y-ARCHIVO-2`, ninguno de los cuales toca el panel, el marco piloto ni las superficies de la auditoría de exposición: **ninguna cifra ni clasificación de este acto cambia por los dos merges**, sólo sus identificadores.
