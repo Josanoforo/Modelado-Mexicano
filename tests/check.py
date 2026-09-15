@@ -1448,6 +1448,18 @@ _T22_MARCADOR_PENDIENTE = re.compile(
 # cualquiera de los dos marcadores es exactamente el defecto que (b)
 # existe para atrapar.
 _T22_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-SPECS-DEMANDA-2, 15/sep/2026: prereg-caja-ENVIPE-EVASION-NORMA
+    # (capa 2 de D-15 sobre una medición YA sellada, CORR-0007/RES-0025-0026).
+    # Dispara `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`) por CITA, no por
+    # uso: §3 transcribe verbatim la cabecera de
+    # `forense/prereg-caja/ENVIPE-DENUNCIA-SEGURO-propuesta-v1_0.md`
+    # («Estado: PROPUESTA; NO FIRMADA; NO EJECUTAR NI ADOPTAR») al declarar
+    # por qué este acto NO elige entre sus opciones A/B en nombre de mesa
+    # (RES-0039..0042, NC-0088, ya `ABIERTA` desde antes de este acto). No
+    # abre ranura nueva: es la MISMA decisión pendiente que NC-0088 ya
+    # nombra, citada para no perder de vista el residuo, no una propuesta
+    # nueva sin resolver.
+    "forense/prereg-caja/ENVIPE-EVASION-NORMA-spec-v1_0.md",
     # ACTO GEN2-REGISTRO-REPLAY, 9/sep/2026: encargo archivado VERBATIM
     # (0-bis A.3). Dispara `_T22_MARCADOR_PENDIENTE` por MENCION, no por uso:
     # la palabra sale al DESCRIBIR el insumo externo que el acto archiva --
