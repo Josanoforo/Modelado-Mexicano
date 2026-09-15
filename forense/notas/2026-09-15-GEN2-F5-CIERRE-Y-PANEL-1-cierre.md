@@ -136,7 +136,14 @@ El JSON declara `"generado": true` y `"fuente": "forense/no-corrido.tsv"`. **Es 
 KeyError: 'NC-0088'   —   tools/adq_investigacion.py:649
 ```
 
-`contratos` se arma sólo con `NC` **abiertas**, pero el bucle recorre `necesidades`, que todavía referencia `NC` cerradas; `NC-0088` la cerró `GEN2-FIRMAS-MESA-1` (`PR #785`) **hoy mismo**. **Verificado que es preexistente:** el mismo comando aborta con el mismo `KeyError` sobre el árbol sin los cambios de este acto (probado con `git stash`). **No se arregla aquí**: `tools/adq_investigacion.py` está fuera del perímetro, lo comparte el servicio `adq` concurrente, y un `.get(ident, {})` cambiaría la etapa proyectada de **todas** las filas. Tampoco se edita el JSON a mano: fabricaría un estado que ningún generador derivó, justo lo que el encargo evita al decir que *el ruteo se coordina por la tabla, no editando su cola*. Queda en `NC-0211`, con el agravante de que **cada cierre agranda el defecto** — este acto cerró tres más.
+`contratos` se arma sólo con `NC` **abiertas**, pero el bucle recorre `necesidades`, que todavía referencia `NC` cerradas; `NC-0088` la cerró `GEN2-FIRMAS-MESA-1` (`PR #785`) **hoy mismo**. **Verificado que es preexistente:** el mismo comando aborta con el mismo `KeyError` sobre el árbol sin los cambios de este acto (probado con `git stash`). **No se arregla aquí**: `tools/adq_investigacion.py` está fuera del perímetro, lo comparte el servicio `adq` concurrente, y un `.get(ident, {})` cambiaría la etapa proyectada de **todas** las filas. Tampoco se edita el JSON a mano: fabricaría un estado que ningún generador derivó, justo lo que el encargo evita al decir que *el ruteo se coordina por la tabla, no editando su cola*. **El ruteo en sí está hecho y verificado, no supuesto.** Se simuló el ruteador sobre las filas reales, importando `tools/adq_investigacion.py` y llamando `_etapa_faltante` / `_ruteo_automatico` / `_responsable` antes (`git show HEAD~1`) y después:
+
+| fila | antes | después |
+|---|---|---|
+| `NC-0161` | `DECISION_O_IMPLEMENTACION` · **`ESPERA_O_DELEGADA`** · resp. `FP-374` | `FUENTE_O_VARIABLE` · **`LISTA_SONDA`** · resp. `servicio-gen2-38` |
+| `NC-0162` | `DECISION_O_IMPLEMENTACION` · **`ESPERA_O_DELEGADA`** · resp. `FP-374` | `FUENTE_O_VARIABLE` · **`LISTA_SONDA`** · resp. `servicio-gen2-38` |
+
+Es decir: la fuente ya dice lo que debe decir y la proyección lo recogerá sola en cuanto el generador corra. Queda en `NC-0211`, con el agravante de que **cada cierre agranda el defecto** — este acto cerró tres más.
 
 ---
 
@@ -156,3 +163,15 @@ KeyError: 'NC-0088'   —   tools/adq_investigacion.py:649
 ## 6 · Lo que este acto NO hizo
 
 No lanzó llamadas · no abrió microdato · no adoptó nada al motor · no re-corrió la tríada ni tocó `SIN-GANADOR-UNICO` · no corrió pareadas ni IC nuevos · no usó el brazo `OPERATIVO` de `B` · no diseñó la recuperación documental · no abrió `F6` · no re-selló `FP-374` · no editó la cola del servicio `adq` · no escribió las vistas derivadas del registro · y **no estiró la lista de familias para llegar a seis**.
+
+---
+
+## 7 · Del perímetro: lo que se escribió fuera, y lo que este acto no cubre
+
+**Tres archivos fuera del perímetro literal, los tres necesarios y ninguno silencioso:**
+
+1. `data/corrida0/decisiones.tsv` — una fila. Es *donde vive* la «firma de contador embebida» que el lanzamiento ordena: la precedencia 1 de `_cuenta_gen2_resuelto` lee ese archivo y ningún otro. Sin la fila, `cuenta_gen2` se resolvería `NO`.
+2. `forense/prereg-duelo-v2/F5-panel-candidatos-v1_1.tsv` — el entregable de `P2`, que el encargo pide sin darle ruta. Se puso como sucesor de `F5-panel-candidatos-v1_0.tsv`, junto a su antecesor.
+3. `forense/notas/2026-09-15-…-cierre.md` — esta nota, por convención del programa.
+
+**Lo que este acto NO cubre, y no le tocaba:** `D-5` de la FIRMA DE MESA pide además **un documento del programa, breve y legible para un externo, con detalles en anexo, iniciado ahora y sin esperar al sello de D-A**. El encargo de este acto sólo recoge de `D-5` el cierre de `NC-0152`; el informe no aparece en `P1`/`P2`/`P3` ni en el perímetro. **Sigue pendiente y sin acto asignado.**
