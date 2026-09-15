@@ -1,0 +1,170 @@
+{
+ "corrida_id": "CALC-ENIGH-0001--d13529e2e3e9",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "ADR-46 -- al congelar, la sesion YA habia leido: la serie GEN1 completa de las seis olas con sus IC95 y n (milpa/tramite.yaml:850-900, incluida la fila 2022: p=0.045694, ic95=[0.043754,0.047711], n=90102, ponderador factor); los RESULT de CALC-B-0001 para 2022 (punto, IC, n, nulos=0, sin-diseno=0); y la spec sellada prereg-caja-B-REMESAS entera, incluida su seccion 0.2 de contaminacion. NO es ciega, y en el caso de CALC-B-0001 ni siquiera podria serlo: leerlo es lo que A.8 obliga a hacer antes de escribir esta spec. Lo genuinamente desconocido al congelar: cuantos estratos con UPM unica hay en 2022, la anchura del IC bajo ESTA semilla (2000 replicas, seed 20260915, distinta de la del ensayo), el valor contado del complemento, y si A-P replica el punto del ensayo en la decima cifra o solo en la sexta.",
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "demanda_que_releva": "CORR-0011 (ENIGH2022, payload enigh2022_nc_csv) -> los 2 RESULT: RES-0035 (familia.seguro.volatilidad_ausencia_estado:recibe_remesas) y RES-0036 (:no_recibe_remesas). NO releva ninguna otra ola ni ninguna otra corrida.",
+  "firma_de_contador": "NO-FIRMADA. El encargo de mesa (15/sep/2026) pide congelar specs ejecutables y NO declara OBJETO sobre el contador GEN2. Estandar FP-367/368 NO satisfecho -> cuenta_gen2 queda PENDIENTE-DE-MESA. Nota adicional: aunque mesa lo firmara, T9 sigue siendo suya y este CALC no la interpreta.",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": "NO -- y el medidor tampoco se escribe aqui. El encargo pide `md humana + spec.yaml` (D-15, dos capas); el medidor es del acto de CAJA que consuma este contrato. Consecuencia declarada: `corrida0.py preflight CALC-ENIGH-0001` reporta BLOQUEADO:script_ausente hasta que CAJA lo escriba.",
+  "por_que_no_es_duplicado": "CALC-B-0001 declara `tipo: ENSAYO-LINEA-BASE-TEMPORAL-B`, `cuenta_gen2: PENDIENTE-DE-MESA` y `reglas_bajo_prueba: NINGUNA ... T9, verbatim: es modelo nuevo y ninguna cifra suya entra a un veredicto`. El numero existe y NO puede usarse: el bloqueo de CORR-0011 es de AUTORIZACION, no de medicion. Esta spec no levanta T9 -- nace del lado de la regla, que es donde CALC-B-0001 declaro NO estar, y anade el complemento contado (que el ensayo no emite) y la via de adopcion (que el ensayo no puede tener).",
+  "reglas_bajo_prueba": "NINGUNA cambia de cifra por esta corrida. familia.seguro.volatilidad_ausencia_estado (R5.1) esta SELLADA en milpa/tramite.yaml:863 con p=0.045694 (GEN1) y conserva su cifra, su ic95 y su serie_olas intactos. La adopcion la decide mesa por merge.",
+  "repite_de": "CALC-B-0001 (ACTO GEN2-C0-B, spec sellada prereg-caja-B-REMESAS) para el PUNTO de la ola 2022: mismo payload, mismo miembro, mismo universo, mismo desenlace, mismo ponderador. RESULT-B-ENIGH-2022-P = 0.04569409956405095, IC95 = [0.043772848428537396, 0.047770249605883566], n = 90102, sello VALIDO. Los bytes de CALC-B-0001 no se tocan (E.3): esta corrida es un CALC nuevo, no una reescritura.",
+  "spec_sellada": "forense/prereg-caja/ENIGH-REMESAS-R51-spec-v1_0.md",
+  "spec_sellada_sha256": "e58b3901cc49e25500b01df19752ba57e46e862b925141d7a9714a22fc9a59e0",
+  "tipo": "TASA-BASE-DE-REGLA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-15T16:23:22Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 413,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "d13529e2e3e927be2b93c05a57c35f0a57b90293",
+  "git_rama": "acto/gen2-medicion-demanda-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "d13529e2e3e927be2b93c05a57c35f0a57b90293",
+ "input_ids": [
+  "enigh2022_nc_csv",
+  "IN-ENIGH-SPEC-SELLADA"
+ ],
+ "input_sha256": {
+  "IN-ENIGH-SPEC-SELLADA": "e58b3901cc49e25500b01df19752ba57e46e862b925141d7a9714a22fc9a59e0",
+  "enigh2022_nc_csv": "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "codebook_y_metadato_del_mismo_zip": [
+   "conjunto_de_datos_concentradohogar_enigh2022_ns/diccionario_de_datos/diccionario_datos_concentradohogar_enigh2022_ns.csv",
+   "conjunto_de_datos_concentradohogar_enigh2022_ns/metadatos/metadatos_enigh_2022_ns.txt"
+  ],
+  "codificacion": {
+   "llave_hogar": [
+    "folioviv",
+    "foliohog"
+   ],
+   "recibe_remesas_si": "remesas > 0"
+  },
+  "criterio_adopcion": "A-ADOPCION = LISTADO-PARA-MESA-REPRODUCE si A-REPRODUCE-GEN1 = REPRODUCE; LISTADO-PARA-MESA-NO-REPRODUCE en otro caso estimable; NO-ADOPTABLE-NO-ESTIMABLE si no hay punto. Este acto NO escribe cita en milpa/ bajo ninguna rama, y la restriccion T9 sobre CALC-B-0001 queda intacta: esta corrida no la invoca ni la levanta.",
+  "firma_que_lo_autoriza": "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-1.md: «redactar y CONGELAR la spec ejecutable (md humana + spec.yaml, D-15, abriendo SOLO codebook y metadato -- E.5 lo permite en nube, microdato jamas)». La firma autoriza CONGELAR, no contar.",
+  "fuente_acto": "ACTO GEN2-SPECS-DEMANDA-1 · CALC-ENIGH-0001 · celda de R5.1 sobre ENIGH 2022, del lado de la regla",
+  "grano_gen1_decimales": 6,
+  "llaves_opacas": "est_dis y upm se agrupan como CADENA CRUDA (dtype=str): normalizarlas partiria o fusionaria estratos en silencio. El perfil de anchos sale como RESULT de texto.",
+  "metodo_ic": "bootstrap de upm CON REEMPLAZO dentro de est_dis, conservando el numero de UPM por estrato; percentiles 2.5/97.5.",
+  "miembros_zip_declarados": [
+   "conjunto_de_datos_concentradohogar_enigh2022_ns/conjunto_de_datos/conjunto_de_datos_concentradohogar_enigh2022_ns.csv"
+  ],
+  "n_gen1_referencia": {
+   "U_A": 90102
+  },
+  "regla_estrato_upm_unica": "Un estrato con exactamente una UPM se re-muestrea a si mismo: aporta varianza cero. NO se colapsa y NO se descarta. Si el conteo es > 0, A-METODO-IC sale IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como LIMITE INFERIOR de la anchura verdadera.",
+  "replica_solo_sobre_el_punto": "La semilla (20260915) y el numero de replicas (2000) de esta spec DIFIEREN de las del ensayo B (42 y 10000). Por eso A-REPLICA-B0001 se juega SOBRE EL PUNTO y nunca sobre los extremos del IC: dos bootstraps con semillas distintas no tienen por que coincidir en el quinto decimal del IC, y exigirlo fabricaria un falso NO-REPRODUCE.",
+  "valores_b0001_referencia": {
+   "IC_HI": 0.047770249605883566,
+   "IC_LO": 0.043772848428537396,
+   "N": 90102,
+   "P": 0.04569409956405095
+  },
+  "valores_gen1_referencia": {
+   "A_IC_HI": 0.047711,
+   "A_IC_LO": 0.043754,
+   "A_P": 0.045694
+  },
+  "vocabulario_de_ejes": "E.3, verbatim en su consecuencia: el mismo resultado con OTRO codigo es REPLICA-RESULTADO, no reproduccion. A-REPLICA-B0001 usa ese vocabulario y NUNCA `REPRODUCE`. A-REPRODUCE-GEN1, en cambio, compara contra una cifra GEN1 al grano que GEN1 publico (seis decimales)."
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENIGH-A-ADOPCION",
+  "RESULT-ENIGH-A-DELTA-IC-VS-B0001",
+  "RESULT-ENIGH-A-DELTA-VS-B0001",
+  "RESULT-ENIGH-A-DELTA-VS-GEN1",
+  "RESULT-ENIGH-A-HOGARES-EXPANDIDOS",
+  "RESULT-ENIGH-A-IC-HI",
+  "RESULT-ENIGH-A-IC-LO",
+  "RESULT-ENIGH-A-METODO-IC",
+  "RESULT-ENIGH-A-N-SIN-DISENO",
+  "RESULT-ENIGH-A-N-SIN-PONDERADOR",
+  "RESULT-ENIGH-A-N-U",
+  "RESULT-ENIGH-A-P",
+  "RESULT-ENIGH-A-P-COMPLEMENTO",
+  "RESULT-ENIGH-A-REPLICA-B0001",
+  "RESULT-ENIGH-A-REPRODUCE-GEN1",
+  "RESULT-ENIGH-A-SUMA-UNO",
+  "RESULT-ENIGH-G-LLAVE-HOGAR-UNICA",
+  "RESULT-ENIGH-G-N-COLUMNAS-CONCENTRADOHOGAR",
+  "RESULT-ENIGH-G-N-EST-DIS-DISTINTOS",
+  "RESULT-ENIGH-G-N-ESTRATOS-UPM-UNICA",
+  "RESULT-ENIGH-G-N-FILAS-CONCENTRADOHOGAR",
+  "RESULT-ENIGH-G-N-MIEMBROS-ZIP",
+  "RESULT-ENIGH-G-N-NULOS-REMESAS",
+  "RESULT-ENIGH-G-N-UPM-DISTINTAS",
+  "RESULT-ENIGH-G-PERFIL-EST-DIS",
+  "RESULT-ENIGH-G-PERFIL-UPM"
+ ],
+ "script_blob_sha256": "ac61ec62b1b14e90d556b7e0e8bb906582c894680b863749dc72377ec85fd211",
+ "script_path": "data/corrida0/CALC-ENIGH-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260915
+ },
+ "spec_id": "CALC-ENIGH-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "d3700dc054e8408108b9ff380d520c75a7b26866cf3cd00a8f4480f19006b413",
+ "spec_yaml_sha256": "1555d052cf0c9ebbf91d1080c6be976b64191fb932dfa04083d7804bc0ce4566",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "Bootstrap fijado por seed + rng declarados y sumas en orden fijo de llave: la unica diferencia esperable entre dos corridas del mismo arbol es redondeo de float64 al reasociar sumas ponderadas. Los enteros y los textos se comparan EXACTO. Es tambien la tolerancia con la que A-REPLICA-B0001 compara contra el punto de CALC-B-0001.",
+  "tipo": "flotante"
+ }
+}
