@@ -20,7 +20,7 @@ raices=data_raw:NO · corpus=NO(examinados=0)
 Sonda de red **no ejecutada a propósito**: este acto no toca microdato ni red,
 y una sonda que nadie pidió es I/O que nadie declaró. `data/raw` ausente es lo
 esperado en NUBE y no es PARO para lo que aquí se hizo — pero **sí** es la causa
-del `PARO-ENTORNO` de `NC-0227` (ver §5).
+del `PARO-ENTORNO` de `NC-0228` (ver §5).
 
 Guard de arranque, las cuatro: base `0` commits detrás de `origin/main` ·
 árbol limpio · duplicado `0` coincidencias del rótulo en remoto y worktrees ·
@@ -36,7 +36,7 @@ Las dos son del propio encargo, y las dos se declaran en vez de rodearse.
 La copia verbatim de A.3 es la prueba. No se infiere: una firma de mesa es la
 autorización del árbol, y escribirla sin haberla recibido sería fabricar
 autoridad — el único defecto que `decisiones.tsv` existe para impedir.
-`decisiones.tsv` **no gana ninguna fila** en este acto. → `NC-0225`.
+`decisiones.tsv` **no gana ninguna fila** en este acto. → `NC-0226`.
 
 Contraste que lo hace verificable, no una excusa: la hoja de firmas **1** sí
 existe, archivada en `forense/encargos/2026-09-15-GEN2-FIRMAS-MESA-1.md` con su
@@ -123,7 +123,7 @@ Censo nuevo, PR por PR contra el PR real y contra los **497** encargos de
 | `#739` · `#737`(→`#742`) | sí | **ya sellados** por `GEN2-CONSUMIDO-RETRO-3` (`PR #759`) |
 | `#680` | `2026-09-09-GEN2-R-COMPLETA-MARCO.md` | **retro-sellado aquí** — sólo faltaba el dígito, como la fila decía; sección existente **intacta**, se le añade `· PR #680` |
 | `#701` | `2026-09-10-GEN2-PUBLICACION-POST693-Y-CIERRES.md` | **retro-sellado aquí** — su `## CONSUMIDO` citaba el PR base `#696` y no la adenda `#701`; enmienda fechada, párrafo original sin reescribir |
-| `#682` `#719` `#726` `#728` | **ninguno** (0 coincidencias del rótulo sobre 497) | **no retro-sellables** → `NC-0226` |
+| `#682` `#719` `#726` `#728` | **ninguno** (0 coincidencias del rótulo sobre 497) | **no retro-sellables** → `NC-0227` |
 
 Los 4 últimos fallan por una razón **distinta** de la que `NC-0170` suponía: no
 les falta la sección, les falta el archivo `A.3` entero. Y `A.3` no se rellena
@@ -131,7 +131,7 @@ hacia atrás sin el texto original del encargo, que nadie tiene — escribir uno
 ahora sería redactar hacia atrás lo que ese paso existe para hacer auditable.
 `#728` es además un PR de **preparación** («Estado: PENDIENTE DE FIRMA; cero
 llamadas al proveedor», verbatim de su cuerpo) cuyo encargo sigue legítimamente
-en cola: sellarlo como consumido sería **falso**. Mesa decide (`NC-0226`); este
+en cola: sellarlo como consumido sería **falso**. Mesa decide (`NC-0227`); este
 acto no elige por ella. La segunda mitad de `NC-0170` (¿`[COLA]`/`[ADQ]` como
 cuarta categoría exenta?) sigue sin decidir.
 
@@ -151,7 +151,7 @@ lo que el encargo pedía: S6-L16 **sí necesita** sucesora `v1_6` (FP-372 ya est
 firmada y la `v1_5` sigue remitiéndola como pendiente en su línea 52). No se abre
 aquí por regla, no por olvido: `S6-L16-spec-v1_5.md` está **sellada** con sidecar
 `.sha256`, E.3 prohíbe editarla, y una sucesora de `prereg-caja` no cabe en el
-perímetro de este acto. → `NC-0228`. La contradicción del árbol pasa de **dos
+perímetro de este acto. → `NC-0229`. La contradicción del árbol pasa de **dos
 sitios a uno**.
 
 **`NC-0218` — no hay sello que incorporar.** La fila decía «sin esperarlo», y no
@@ -194,7 +194,7 @@ al test** (`/acto` §4.5).
 **Reserva.** `NC-0199` se cierra, pero su efecto en las vistas derivadas no se
 publica aquí: exige `registro --escribe` con corpus montado, y `--verifica` sin
 corpus degradaría a `NO-VERIFICADO` veredictos de corridas ajenas ya publicadas
-— el mismo limbo exacto que `NC-0145` declaró y que sigue ABIERTA. → `NC-0227`,
+— el mismo limbo exacto que `NC-0145` declaró y que sigue ABIERTA. → `NC-0228`,
 que conviene que absorba también `NC-0145`. Ningún número de este acto depende de
 esa escritura.
 
@@ -204,4 +204,31 @@ esa escritura.
 adopciones, cero reglas del motor tocadas, cero filas nuevas en
 `data/corrida0/decisiones.tsv` (§1a). Cierra `NC-0050`, `NC-0176`, `NC-0191`,
 `NC-0199`, `NC-0209`; deja anotadas `NC-0170`, `NC-0218`, `NC-0219`; abre
-`NC-0225`, `NC-0226`, `NC-0227`, `NC-0228`.
+`NC-0226`, `NC-0227`, `NC-0228`, `NC-0229`.
+
+## §7 · Enmienda al integrar `origin/main` (mismo acto, 15/sep/2026)
+
+`main` avanzó de `0cdbd72` a `ce79136` durante el acto y dos premisas de §1
+cambiaron de estado. **Ninguna de las dos invalida lo que esta sesión hizo, y las
+dos se declaran:**
+
+**(a) La hoja de firmas 2 sí existía.** `PR #792` la registró y propagó
+(`def4176`, `56ee620`), fusionado mientras esto corría. Lo que §1a dice sigue
+siendo cierto *de esta sesión*: no viajó en el mensaje que lanzó el acto, y por
+eso no se infirió — que era la decisión correcta con la información disponible.
+`NC-0226` (antes `NC-0225`) se abre y se cierra en el acto con `SUSTITUIDO-POR`
+el acto de `PR #792`, para que la secuencia quede auditable. **Enumerado
+explícitamente, que es lo que un `SUSTITUIDO-POR` debe traer:** el sustituto
+absorbe la propagación a `decisiones.tsv` y el cierre de las NC que la hoja
+resuelve, íntegro; **queda huérfana `NC-0210`**, porque
+`2026-09-15-GEN2-FIRMAS-MESA-2.md` **no la menciona** ni menciona `0.668937`
+(0 coincidencias, verificado) — sigue ABIERTA y sin autorizar.
+
+**(b) `NC-0219` ya está CERRADA** por `ACTO GEN2-ARCHIVO-LECTURA-F5-1`
+(`PR #794`), que recibió los textos de mesa y los commiteó verbatim. Lo que §1b
+dice sigue siendo cierto de esta sesión. La fila cerrada de `origin` se conserva
+**intacta** y este acto **no la re-anota**: su medición ya no describe el árbol.
+
+**Renumeración** (regla de la casa, renumera quien fusiona segundo): `NC-0225..0228`
+→ **`NC-0226..0229`**, porque `PR #794` tomó `NC-0225`. `ADR-517` no colisiona
+(máximo real en `origin/main` = `516`).
