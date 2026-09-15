@@ -96,13 +96,15 @@ Cero huella en `milpa/`, corpus y `traza-motor`. Pero la única ola adquirida (2
 - **En qué fecha.** 15/sep/2026, contra `origin/main = 0cdbd72`.
 - **Qué NO se examinó, dicho sin disfraz.** Ningún payload: `data/raw` no está montada (`tools/entorno.py` → `corpus=NO(examinados=0)`), así que **ninguna** afirmación de este acto sobre contenido de microdato existe; todas son sobre manifiesto, inventario y documentación versionada. Y no se buscó fuera del repo: un instrumento que nadie haya registrado nunca queda fuera de este universo por construcción, y eso es una **cota del censo, no del mundo**.
 
-**Conclusión del A.4:** dentro de ese universo, las familias limpias en las tres superficies de desarrollo están **enumeradas y agotadas**; ninguna de las no enumeradas sobrevive a los tres filtros (dos olas libres · unidad persona · regla de `M` que emita a ciegas). La lista nominal de **6+12** que `FP-374` exige **no existe hoy**, por segunda vez y ahora con el doble de nombres.
+**Conclusión del A.4:** dentro de ese universo, las familias limpias en las tres superficies de desarrollo están **enumeradas y agotadas**; ninguna de las no enumeradas sobrevive a los tres filtros (dos olas libres · unidad persona · regla de `M` que emita a ciegas). La lista nominal de **6+12** que `FP-374` exigía **no existe hoy**, por segunda vez y ahora con el doble de nombres.
+
+**Y una premisa que cambió mientras el acto corría, declarada y no escondida.** Al integrar `origin/main` para cerrar (`PR #794`) entró la **Hoja de firmas 2**: `FP-374` ya **no está ABIERTA** — quedó `FIRMADA-CON-ALCANCE-ACOTADO` por `F-16` (15/sep/2026), que autoriza *«con 7 retenidas, factibilidad acotada AHORA (piloto de 6, producto = tabla `d_f` por familia con IC, parada = primer resultado que decida H0), en vez de seguir adquiriendo»*. Este acto **no la toca y no la re-propaga** (`forense/firmas-pendientes.tsv` sin tocar; la firma sobre `R02`/`R08` viaja en el acto de caja que sigue). Pero su producto es **insumo directo** de esa firma y le corrige dos cosas, que es justo para lo que servía: las retenidas son **10**, no 7 — y **sólo 2 son ejecutables con reserva**, ninguna congelable desde la nube. Un piloto de 6 sobre este panel tendría hoy **2 familias con material y reactivo**, dos colgadas de la firma de unidad y el resto sin segunda ola.
 
 ---
 
 ## 5 · Lo que este acto NO hizo
 
-No lanzó llamadas · no abrió microdato ni ningún payload · no escribió en `data/cola-adquisicion-v1_0.tsv` ni en `data/curacion-registro/` · no reescribió `F5-panel-candidatos-v1_1.tsv` · no resolvió la pregunta de unidad (`R02`/`R08`) · no congeló ninguna spec · no tocó `marco-congelado-piloto-v1_0.tsv` ni ninguna celda · no re-selló `FP-374` · no abrió `F6` · y **no estiró la lista para llegar a seis** — por segunda vez, con el doble de nombres y la misma respuesta.
+No lanzó llamadas · no abrió microdato ni ningún payload · no escribió en `data/cola-adquisicion-v1_0.tsv` ni en `data/curacion-registro/` · no reescribió `F5-panel-candidatos-v1_1.tsv` · no resolvió la pregunta de unidad (`R02`/`R08`) · no congeló ninguna spec · no tocó `marco-congelado-piloto-v1_0.tsv` ni ninguna celda · no tocó `FP-374` ni propagó ninguna firma · no abrió `F6` · y **no estiró la lista para llegar a seis** — por segunda vez, con el doble de nombres y la misma respuesta.
 
 ## 6 · Perímetro
 
@@ -122,7 +124,7 @@ NC-0226  FUENTE_O_VARIABLE        LISTA_SONDA        servicio-gen2-38
 NC-0227  PREPARACION              NO_SONDA           CAJA/Ubuntu con la raiz montada
 NC-0228  DECISION_O_IMPLEMENTACION NO_SONDA          CAJA/Ubuntu
 NC-0229  DECISION_CIENTIFICA      ESPERA_O_DELEGADA  mesa
-NC-0230  DECISION_O_IMPLEMENTACION ESPERA_O_DELEGADA FP-374 + NC-0226/0226/0227
+NC-0230  DECISION_O_IMPLEMENTACION ESPERA_O_DELEGADA FP-374 + NC-0226/0227/0228
 ```
 
 Las tres clases caen donde deben: lo que es adquisición va al servicio, lo que es lectura de un documento ya adquirido va a CAJA, y la firma va a mesa.
