@@ -27,3 +27,22 @@ completo en `forense/notas/2026-09-16-GEN2-PINS-REPRODUCE-1-cierre.md`.
 | Disposición de mesa sobre `RES-0043`/`RES-0044` (`CALC-EDER-0003`, `NO-APLICA-ESTIMANDO-DISTINTO`) | `DECISIÓN-DE-MESA-PENDIENTE` — no son bin 1; `milpa/` ya los cita como eje de corroboración, no de reemplazo | `RES-0043/0044` siguen `LISTADO-PARA-MESA` (bare) hasta que mesa decida | `NC-0254` |
 | P2 del encargo — bin 1/2/3 sobre "los 78 slots con oferta (89 menos los 11)" | `PARO-PREMISA` — "89"/"11" son la cifra de `RELEVO-USOS-1` sobre 23/82 corridas selladas; hoy son 80/82 y ninguna combinación de las categorías vivas de `data/corrida0/relevo-usos-v1_0.tsv` (`YA-ADOPTADO=22 · LISTADO-PARA-MESA=9 · CANDIDATO-GEN2=12 · NO-ADOPTABLE-POR-VEREDICTO-SELLADO=8 · CONFLICTO-ENTRE-CANALES=2 · VETADO-POR-DECISION=1 · SIN-CANDIDATO=153`) reconstruye 89 ni 78 | los 12 `CANDIDATO-GEN2` (el análogo vivo más cercano) siguen sin delta por script ni bin | `NC-0255` |
 | P3 del encargo — diagnóstico de "los 118 sin oferta" y la demanda real que `MEDICION-DEMANDA-3` debe correr | `DECISIÓN-DE-MESA-PENDIENTE` — hoy son 153 `SIN-CANDIDATO`, no 118; `MEDICION-DEMANDA-3` ya tiene alcance reservado (y mucho más chico) por la ENMIENDA FECHADA de `GEN2-SPECS-DEMANDA-1` — ejecutar P3 tal cual lo redefiniría sin que mesa lo decidiera | la demanda real de medición para los 153 slots sin oferta sigue sin diagnosticar | `NC-0256` |
+
+## CONSUMIDO
+
+Ejecutado por **`PR #809`** (`ACTO GEN2-PINS-REPRODUCE-1`, 16/sep/2026,
+NUBE), rama `claude/materializar-pins-reproduce-81y60v` (fijada por el
+arnés de la sesión — desviación declarada, el rótulo del acto se censa
+igual en `canon/registro-rotulos.tsv`), sobre `origin/main = 9fd59d0` al
+arrancar (merge de `PR #806`). **ADR-524.** Cierre completo en
+`forense/notas/2026-09-16-GEN2-PINS-REPRODUCE-1-cierre.md`.
+
+`NC-0243` cierra parcial (6/9 del bloque `REPRODUCE` adoptados en bloque);
+`NC-0253`/`NC-0254`/`NC-0255`/`NC-0256` nuevas, las cuatro `ABIERTA`.
+Perímetro respetado: cero edición de `spec.yaml` sellado, cero adopción
+fuera de bin 1, cero re-escritura de las tres vistas canónicas de
+`corrida0.py registro` (deriva NUBE-vs-CAJA preexistente y ajena, ver nota
+de cierre §Entorno).
+
+`tests/check.py --baseline`: **LÍNEA BASE VERDE**, 3 FAIL (heredados del
+corpus documental, `T06`×2/`T08`, ajenos a este perímetro) · 4357 WARN.
