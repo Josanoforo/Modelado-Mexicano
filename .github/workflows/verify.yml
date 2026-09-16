@@ -110,6 +110,15 @@ jobs:
         # preguntar", y detección de lock tomado por otro proceso.
         run: python3 tests/test_adq_doctor.py
 
+      - name: adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)
+        # ENCARGO GEN2-DEMANDA-VIGENTE-ANTES-DESPACHO (15/sep/2026). Fixture
+        # propia con un `origin` bare local desechable (nunca GitHub, nunca
+        # el corpus real): cierra una NC, corre `publica_proyeccion_demanda`
+        # y comprueba que se publica con SHA correcto, que repetirlo sin
+        # cambios no genera un segundo commit, y que un fallo del escritor
+        # no deja el árbol sucio.
+        run: python3 tests/test_adq_demanda_vigente.py
+
       - name: Fuentes financieras — unidades, faltantes y duplicados (bloqueante)
         # Fixtures puras: no requieren corpus ni red. Las tablas reales se
         # reproducen en CAJA con tools/extrae_fuentes_financieras.py --verifica.
