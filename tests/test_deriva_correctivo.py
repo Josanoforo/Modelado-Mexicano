@@ -89,6 +89,22 @@ class ResumenTest(unittest.TestCase):
 
 
 class RamaYFallosTest(unittest.TestCase):
+    def test_resumen_revisionado_es_la_referencia_mas_reciente(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            derivados = Path(td)
+            (derivados / "universo-2026-09-16.json").touch()
+            revision = derivados / "universo-2026-09-16-r02.json"
+            revision.touch()
+            script = textwrap.dedent(f"""\
+                export DERIVA_CRON_SOLO_DEFINE=1 DERIVA_LOG_ROOT=$(mktemp -d)
+                source '{RUNNER}'
+                DERIVADOS_DIR='{derivados}'
+                ultimo_resumen_universo
+            """)
+            result = run("bash", "-c", script, cwd=ROOT)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(Path(result.stdout.strip()), revision)
+
     def test_rama_diaria_antigua_absorbe_main_y_repeticion_conserva_commit(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td); bare = root / "origin.git"; work = root / "work"

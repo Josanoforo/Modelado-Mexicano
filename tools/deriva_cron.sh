@@ -190,6 +190,11 @@ siguiente_salida_universo() {
   printf '%s\n' "${DERIVADOS_DIR}/universo-${FECHA}-r$(printf '%02d' "$n").json"
 }
 
+ultimo_resumen_universo() {
+  find "$DERIVADOS_DIR" -maxdepth 1 -type f -name 'universo-*.json' -print \
+    | sort -V | tail -1
+}
+
 deriva_universo() {
   local scratch anterior salida rc
   scratch="$(mktemp -d)"
@@ -205,7 +210,7 @@ deriva_universo() {
     return "$rc"
   fi
   mkdir -p "$DERIVADOS_DIR"
-  anterior="$(find "$DERIVADOS_DIR" -maxdepth 1 -type f -name 'universo-*.json' -print | sort | tail -1)"
+  anterior="$(ultimo_resumen_universo)"
   [ -n "$anterior" ] || anterior="data/curacion-universo/snapshot-t0.json"
   salida="$(siguiente_salida_universo)"
   set +e

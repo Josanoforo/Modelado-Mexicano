@@ -1,0 +1,49 @@
+{
+  "conteos": {
+    "candidatos_reconciliacion": 8461,
+    "cobertura_adquisicion_puntual": "NO_DETERMINADO",
+    "componentes_declarados_conservadores": 38364,
+    "contenidos_locales_sha256_unicos": 1274,
+    "cota_superior_activos_declarados": 38364,
+    "declaraciones_parseadas": 40599,
+    "denominador_activos_declarados": "NO_DETERMINADO",
+    "discrepancias_hash_local": 2,
+    "duplicados_locales_reales": 3,
+    "hashes_representaciones_locales_verificados": 1277,
+    "identidades_locales_verificadas": 1274,
+    "inputs": 81,
+    "inputs_con_error": 0,
+    "numerador_adquirido_identidades_locales_verificadas": 1274,
+    "representaciones_locales": 1277
+  },
+  "conteos_operativos": {
+    "activos_declarados_cota_superior_conservadora": 38364,
+    "adquiridos_identidades_sha256": 1274,
+    "inspeccionados_identidades_sha256": 549,
+    "inspecciones_arrastradas_por": "interseccion_sha256_universo_vigente_con_ledgers",
+    "ledgers": [
+      {
+        "identidades_sha256": 509,
+        "ruta": "data/curacion-universo/ledger-inspecciones-t0.tsv"
+      },
+      {
+        "identidades_sha256": 662,
+        "ruta": "data/curacion-universo/ledger-inspecciones-barrido2.tsv"
+      }
+    ],
+    "reserva_denominador": "El universo sólo ofrece una cota superior conservadora mientras haya candidatos de reconciliación; no se publica porcentaje de inspección. Las cifras de adquiridos e inspeccionados son identidades de contenido SHA-256 y sí son comparables entre sí."
+  },
+  "deltas": {
+    "declaraciones_parseadas": {
+      "anterior": 40597,
+      "delta": 2,
+      "nuevo": 40599
+    }
+  },
+  "fecha": "2026-09-16",
+  "hash_anterior": "d0cb2d8a64354ed8ccaa69c59a13655f58e224adf328a0ee41badcbdf2f9aaec",
+  "hash_cambio": true,
+  "material": false,
+  "motivo_material": [],
+  "snapshot_sha256_del_dia": "5a3526bd3c0e8891b9641684a904d614413f6b0afb1b255a4cc224f4754fda7b"
+}

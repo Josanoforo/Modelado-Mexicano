@@ -5112,13 +5112,14 @@ def t27_infraestructura():
             continue
         # ACTO GEN2-RUTINA-DERIVADOS-1 (16/sep/2026). Mismo razonamiento que la
         # exención de `data/corrida0/CALC-*/` de arriba: `tools/deriva_cron.sh`
-        # escribe un archivo NUEVO por corrida (una fecha por día que produce
-        # cambio versionable), y exigir una fila de INFRAESTRUCTURA por fecha
+        # escribe un archivo NUEVO por cambio versionable (fecha base y, si
+        # aparece otro cambio el mismo día, revisión `-rNN`), y exigir una fila
+        # de INFRAESTRUCTURA por versión
         # convertiría ese archivo en un registro de corridas. La custodia no se
         # pierde: cada archivo trae su propio `comparado_contra`/`deltas`/
         # `snapshot_sha256_del_dia`, y la familia entera está descrita una vez
         # en el Dominio 3 (`data/INFRAESTRUCTURA-v1_0.md`).
-        if re.match(r"^data/curacion-universo/derivados/universo-\d{4}-\d{2}-\d{2}\.json$", relp):
+        if re.match(r"^data/curacion-universo/derivados/universo-\d{4}-\d{2}-\d{2}(?:-r\d{2})?\.json$", relp):
             continue
         base = os.path.basename(p)
         if base in infra_text or relp in infra_text:
