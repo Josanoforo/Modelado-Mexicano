@@ -27,6 +27,14 @@ RUN_ID="${FECHA}T$(TZ=America/Mexico_City date +%H%M%S)-$$"
 INICIO_ISO="$(TZ=America/Mexico_City date --iso-8601=seconds)"
 DISPARADOR="${ADQ_DISPARADOR:-manual}"
 CAUSA_DISPARO="${ADQ_CAUSA_DISPARO:-$DISPARADOR}"
+MM_TRAMO="${MM_TRAMO:-ambos}"
+case "$MM_TRAMO" in
+  ambos|adquisicion|derivacion) ;;
+  *)
+    launcher_log "PARO-TRAMO: MM_TRAMO=${MM_TRAMO} no es ambos|adquisicion|derivacion"
+    exit 6
+    ;;
+esac
 FASE="LAUNCHER-INICIO"
 MOTIVO_CIERRE="-"
 SHA_PREVIO="$(git rev-parse HEAD 2>/dev/null || printf desconocido)"
@@ -98,6 +106,23 @@ fi
 OBJETIVO="origin/main"
 MODO="main"
 if [ -n "$REVISION_SOLICITADA" ]; then
+  # La tarea puede dispararse inmediatamente después de ser actualizada. El
+  # SHA ya está publicado, pero un clon que sólo sigue `main` aún puede no
+  # tener su objeto. Resolverlo aquí evita una carrera entre instalación y un
+  # fetch manual de la rama del despliegue.
+  if ! git cat-file -e "${REVISION_SOLICITADA}^{commit}" 2>/dev/null; then
+    FASE="LAUNCHER-FETCH-REVISION"
+    launcher_heartbeat "EN-CURSO" "-" || true
+    launcher_log "DESPLIEGUE: revisión ausente localmente; obteniendo ${REVISION_SOLICITADA}"
+    set +e
+    git fetch origin "$REVISION_SOLICITADA" >>"$LAUNCH_LOG" 2>&1
+    CODIGO_FETCH_REVISION=$?
+    set -e
+    if [ "$CODIGO_FETCH_REVISION" -ne 0 ]; then
+      MOTIVO_CIERRE="git-fetch-revision-autorizada"
+      exit "$CODIGO_FETCH_REVISION"
+    fi
+  fi
   if git merge-base --is-ancestor "$REVISION_SOLICITADA" origin/main 2>/dev/null; then
     MODO="main-contiene-revision"
   else
@@ -126,6 +151,28 @@ if [ "$CODIGO_CHECKOUT" -ne 0 ]; then
 fi
 SHA_RESUELTO="$(git rev-parse HEAD)"
 launcher_log "DESPLIEGUE: modo=$MODO solicitado=${REVISION_SOLICITADA:--} resuelto=$SHA_RESUELTO"
+
+# El mismo scheduler y el mismo launcher disparan el tramo determinista, pero
+# éste conserva lock y worktree propios. Va antes de cualquier decisión de
+# presupuesto/despacho: una cola de adquisición vacía nunca puede impedir la
+# derivación diaria. MM_TRAMO=derivacion permite una activación controlada sin
+# modelo, descarga ni escritura en el ledger de adquisición.
+CODIGO_DERIVA=0
+if [ "$MM_TRAMO" != "adquisicion" ]; then
+  FASE="DERIVACION-DIARIA"
+  launcher_heartbeat "EN-CURSO" "-" || true
+  set +e
+  env DERIVA_DISPARADOR="$DISPARADOR" \
+      DERIVA_DEPLOY_REVISION="$SHA_RESUELTO" \
+      bash "$REPO_DIR/tools/deriva_cron.sh" >>"$LAUNCH_LOG" 2>&1
+  CODIGO_DERIVA=$?
+  set -e
+  launcher_log "DERIVACION-DIARIA: exit=${CODIGO_DERIVA} sha=${SHA_RESUELTO}"
+fi
+if [ "$MM_TRAMO" = "derivacion" ]; then
+  MOTIVO_CIERRE="tramo-derivacion-exit-${CODIGO_DERIVA}"
+  exit "$CODIGO_DERIVA"
+fi
 
 # El launcher ya posee el lock único y ya cargó el SHA que entiende el ledger.
 # Recuperar aquí, antes de la comprobación ligera, evita el ciclo muerto
@@ -160,9 +207,9 @@ if [ "${ADQ_COMPROBACION_LIGERA:-0}" = "1" ]; then
   CODIGO_COMPROBACION=$?
   set -e
   if [ "$CODIGO_COMPROBACION" -eq 10 ]; then
-    MOTIVO_CIERRE="comprobacion-sin-despacho"
+    MOTIVO_CIERRE="comprobacion-sin-despacho;derivacion-exit-${CODIGO_DERIVA}"
     launcher_log "COMPROBACION: sin despacho; evidencia=${COMPROBACION_LOG}"
-    exit 0
+    exit "$CODIGO_DERIVA"
   fi
   if [ "$CODIGO_COMPROBACION" -ne 0 ]; then
     MOTIVO_CIERRE="comprobacion-fallida"
@@ -182,4 +229,17 @@ export ADQ_DEPLOY_MODE="$MODO"
 export ADQ_LOCK_FD_INHERITED=1
 export ADQ_RUN_ID="$RUN_ID"
 export ADQ_INICIO_ISO="$INICIO_ISO"
-exec bash "$REPO_DIR/tools/adquiere_cron.sh"
+set +e
+bash "$REPO_DIR/tools/adquiere_cron.sh"
+CODIGO_ADQUISICION=$?
+set -e
+if [ "$CODIGO_ADQUISICION" -ne 0 ]; then
+  MOTIVO_CIERRE="adquisicion-exit-${CODIGO_ADQUISICION};derivacion-exit-${CODIGO_DERIVA}"
+  exit "$CODIGO_ADQUISICION"
+fi
+if [ "$CODIGO_DERIVA" -ne 0 ]; then
+  MOTIVO_CIERRE="adquisicion-exit-0;derivacion-exit-${CODIGO_DERIVA}"
+  exit "$CODIGO_DERIVA"
+fi
+MOTIVO_CIERRE="adquisicion-exit-0;derivacion-exit-0"
+exit 0

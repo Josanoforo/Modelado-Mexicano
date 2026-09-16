@@ -36,7 +36,11 @@ powershell -ExecutionPolicy Bypass -File tools\windows\instala-tarea-adquisicion
 ```
 
 La tarea llama `tools/adquiere_launcher.sh`. El launcher toma el mismo lock,
-actualiza referencias y sólo entonces carga el runner de ese SHA. Cuando
+actualiza referencias y sólo entonces carga el runner de ese SHA. Antes de
+consultar presupuesto o despacho ejecuta la derivación diaria determinista con
+lock y worktree propios; el gate evita repetirla sin cambios pertinentes. El
+selector `MM_TRAMO=derivacion` permite comprobar sólo ese tramo sin modelo ni
+descargas. Cuando
 `origin/main` ya contiene la revisión fijada, cambia automáticamente a main;
 no hay descenso a una versión Claude entre ambos pasos. Un checkout que
 choque con trabajo ajeno aborta sin `reset` ni `clean`.
