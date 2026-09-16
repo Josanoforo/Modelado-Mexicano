@@ -75,8 +75,15 @@ def lee_filas(path: Path) -> list[dict]:
 
 
 def pliega_miembro(miembro: str) -> str:
-    """Paso (a) del puente: minúsculas sin extensión conocida."""
+    """Paso (a) del puente: minúsculas, sin ruta interna del zip y sin extensión conocida.
+
+    La ruta se quita porque el índice a veces guarda el camino DENTRO del
+    paquete (`enut_2019/THOGAR.csv`) y el descriptor nunca lo lleva: es una
+    diferencia de cómo se escribió el miembro, no de qué tabla es. La extensión,
+    igual. Ninguno de los dos pasos decide identidad — sólo normaliza ortografía.
+    """
     m = (miembro or "").strip().lower()
+    m = m.rsplit("/", 1)[-1].rsplit("\\", 1)[-1]
     raiz, ext = os.path.splitext(m)
     return raiz if ext in EXTENSIONES else m
 

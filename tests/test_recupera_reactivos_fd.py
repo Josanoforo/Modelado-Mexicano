@@ -18,6 +18,10 @@ class PuenteDeTablaTest(unittest.TestCase):
         self.assertEqual(rec.pliega_miembro("mod_2017_ciberacoso.dbf"), "mod_2017_ciberacoso")
         self.assertEqual(rec.pliega_miembro("TMOCIBA"), "tmociba")
 
+    def test_quita_la_ruta_interna_del_paquete(self):
+        # El índice guarda a veces el camino dentro del zip; el descriptor nunca.
+        self.assertEqual(rec.pliega_miembro("enut_2019/THOGAR.csv"), "thogar")
+
     def test_no_quita_lo_que_no_es_extension_conocida(self):
         # Un punto en el nombre no es una extensión: quitarlo perdería la tabla.
         self.assertEqual(rec.pliega_miembro("tic_2023.usuarios"), "tic_2023.usuarios")
