@@ -75,6 +75,17 @@ Usa `tools/cierre_acto.py` primero en seco y luego `--aplica` cuando corresponda
 
 Avanza entre fases ya autorizadas sin pedir confirmación. Termina cuando entregues el resultado suficiente o un residual externo concreto. Cadena de cierre: autorización → producto → evidencia → consumidor cuando aplique → obligaciones → vistas/cola → PR → merge de mesa. Una fila mixta conserva su parte pendiente. No cerrar por palabra coincidente ni por recomendación. Respuesta final del ejecutor: resultado útil, fases cumplidas/pendientes, PR/SHA, pruebas, y tabla `obligación | evidencia | cerrada/residual | siguiente acción`.
 
+## NO-CORRIDO / RESERVAS
+
+Ninguna nueva. `FP-372` ABIERTA y `NC-0156` como vía oficial residual (ambas
+citadas en `## CONSUMIDO` abajo) son el residuo que el propio acto ya
+declaró en su texto. Sección `## NO-CORRIDO / RESERVAS` ausente del archivo
+original (predata la disciplina A.14 tal como quedó formalizada después);
+añadida aquí retroactivamente por `ACTO GEN2-MANTENIMIENTO-3` (16/sep/2026)
+al archivar este encargo desde `cola/` — este acto sólo relocaliza el
+archivo, no re-ejecuta ni reconstruye reservas que el archivo original no
+registró bajo este encabezado.
+
 ## CONSUMIDO
 
 ACTO `GEN2-S6-DISENO-Y-ALCANCE-INFERENCIAL` ejecutado por PR #702 sobre la rama

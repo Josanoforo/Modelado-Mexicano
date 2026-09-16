@@ -46,6 +46,14 @@ renombrar a una fecha anterior lo adelantaría en la cola, no lo dejaría
 al final; la condición para renombrar (dejarlo al final indebidamente)
 no se cumple.
 
+## NO-CORRIDO / RESERVAS
+
+Ninguna. Sección ausente del archivo original (predata A.14, sellado por
+`ADR-285` antes de que ese gate existiera); añadida aquí retroactivamente
+por `ACTO GEN2-MANTENIMIENTO-3` (16/sep/2026) al archivar este encargo
+desde `cola/` — este acto sólo relocaliza el archivo, no re-ejecuta ni
+reconstruye reservas que el archivo original no registró.
+
 ## CONSUMIDO
 
 Ejecutado por `ACTO MAESTRA34-E1 · REVISION-FALSADORES` (`ADR-285`), rama

@@ -57,6 +57,16 @@ Registra el CALC con el escritor vigente y lote propio, preservando overlay/repl
 
 Dueño de una spec/medidor/salidas nuevos de panel tandas. No modifica `CALC-TANDAS-ENNVIH-0001`, motor, consultas de 29, validación de 30 ni diseño de F5. Puede correr ahora; requiere sus archivos accesibles, no el cierre completo del 33. Comparte lectura de ENNViH y usa temporales propios.
 
+## NO-CORRIDO / RESERVAS
+
+Ninguna nueva. El residual panel de `NC-0037` (el faltante del ledger de
+grupos/pagos, citado en `## CONSUMIDO` abajo) es el residuo que el propio
+acto ya declaró. Sección `## NO-CORRIDO / RESERVAS` ausente del archivo
+original; añadida aquí retroactivamente por `ACTO GEN2-MANTENIMIENTO-3`
+(16/sep/2026) al archivar este encargo desde `cola/` — este acto sólo
+relocaliza el archivo, no re-ejecuta ni reconstruye reservas que el
+archivo original no registró bajo este encabezado.
+
 ## CONSUMIDO
 
 Ejecutado por `ACTO GEN2-TANDAS-PANEL-ENTRADAS-Y-SALIDAS`, 11/sep/2026,
