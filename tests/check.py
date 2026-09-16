@@ -4988,12 +4988,15 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
     dobles. **29 líneas** (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94,
     97, 114, 117, 119, 121, 123, 124, 125, 136, 139, 140, 144, 145, 146,
     147, 148, 149).
+    Re-medido el 16/sep/2026 al consolidar los residuales públicos IHSN y
+    ENPOL por la misma vía canónica: **31 líneas**; las líneas 153 y 154
+    contienen metadata JSON con comillas dobles.
     Este test es DOBLE:
 
     (1) CONTROL, documenta que el defecto sigue vivo con `csv`: si algún
         día alguien "arregla" el round-trip corriendo `csv.writer` sobre
         el archivo completo, este control lo hace visible en vez de
-        quedar en silencio -- se esperan EXACTAMENTE 29 líneas distintas
+        quedar en silencio -- se esperan EXACTAMENTE 31 líneas distintas
         hoy; si el número cambia (para arriba o para abajo) sin que
         nadie lo haya declarado, falla.
     (2) REGRESIÓN del lector/escritor propio (`tools/curador_registro/
@@ -5019,12 +5022,12 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
         escritor.writerow(fila)
     csv_out_lines = buf.getvalue().split("\r\n")
     diffs_csv = [i for i, (a, b) in enumerate(zip(orig_lines, csv_out_lines)) if a != b]
-    if len(diffs_csv) != 29:
-        fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv daba "
-                         f"29 líneas distintas (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94, "
+    if len(diffs_csv) != 31:
+        fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv debe dar "
+                         f"31 líneas distintas (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94, "
                          f"97, 114, 117, 119, 121, 123, 124, 125, 136, 139, 140, 144, 145, 146, "
-                         f"147, 148, 149) el 11/sep/2026 (ACTO GEN2-CRON-DEMANDA-A-DATO-Y-"
-                         f"PRODUCCION, tras añadir siete residuales con `tsv_crudo.upsert_fila`); hoy da "
+                         f"147, 148, 149, 153, 154), re-medidas el 16/sep/2026 tras consolidar "
+                         f"IHSN y ENPOL en el registro canónico; hoy da "
                          f"{len(diffs_csv)} ({[i + 1 for i in diffs_csv]}) -- el archivo cambió "
                          f"de forma que el control ya no describe la realidad, actualiza el número "
                          f"esperado con el hallazgo re-medido, no lo silencies.")

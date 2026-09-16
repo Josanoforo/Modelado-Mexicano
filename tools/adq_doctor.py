@@ -1055,14 +1055,20 @@ def valida_resultado_adquisicion(resultado, seleccion, seleccion_investigacion=N
             if not item["archivos"] or not item["ids_manifiesto"]:
                 errores.append(f"{objeto}: adquisición sin archivos o ids de manifiesto")
             entradas_manifiesto = {}
+            ids_fila = {
+                x.strip() for x in str((fila or {}).get("ids_manifiesto", "")).split(";")
+                if x.strip()
+            }
             for mid in item["ids_manifiesto"]:
                 entrada = manifiesto_por_id.get(mid)
                 if not entrada:
                     errores.append(f"{objeto}: id de manifiesto inexistente: {mid}")
                     continue
                 usado = str(entrada.get("usado_para", ""))
-                if objeto not in usado:
-                    errores.append(f"{objeto}: manifiesto {mid} no acredita pertinencia en usado_para")
+                if objeto not in usado and mid not in ids_fila:
+                    errores.append(
+                        f"{objeto}: manifiesto {mid} no acredita pertinencia en "
+                        "usado_para ni en ids_manifiesto de su fila canónica")
                 if entrada.get("archivo"):
                     nombre_archivo = str(entrada["archivo"])
                     entradas_manifiesto[nombre_archivo] = entrada
@@ -1121,20 +1127,30 @@ def valida_resultado_adquisicion(resultado, seleccion, seleccion_investigacion=N
     if estado_publicacion == "no_aplica" and (esperados or esperadas_inv):
         errores.append("con trabajo elegido, publicación no puede ser no_aplica")
     if comprobar_remoto and estado_publicacion == "publicada":
+        referencias_git = []
         for ref in referencias:
-            if (not re.fullmatch(r"refs/heads/[^\s]+", ref["ref"])
-                    or not re.fullmatch(r"[0-9a-f]{40}", ref["commit"])):
+            nombre_ref = ref["ref"]
+            commit_ref = ref["commit"]
+            if re.fullmatch(r"https://github\.com/[^\s]+", nombre_ref):
+                if not re.fullmatch(r"[0-9a-f]{40}", commit_ref):
+                    errores.append(f"referencia de publicación mal formada: {ref}")
+                continue
+            if (not re.fullmatch(r"refs/heads/[^\s]+", nombre_ref)
+                    or not re.fullmatch(r"[0-9a-f]{40}", commit_ref)):
                 errores.append(f"referencia de publicación mal formada: {ref}")
                 continue
+            referencias_git.append(ref)
             codigo, out, err = _corre(
-                ["git", "ls-remote", "--exit-code", "origin", ref["ref"]],
+                ["git", "ls-remote", "--exit-code", "origin", nombre_ref],
                 timeout=20, cwd=raiz)
             # `git ls-remote` emite ``<sha>\t<ref>``. El índice se consulta
             # por ref, de modo que la relación correcta es ref -> sha.
             pares = {linea.split()[1]: linea.split()[0]
                      for linea in out.splitlines() if len(linea.split()) == 2}
-            if codigo != 0 or pares.get(ref["ref"]) != ref["commit"]:
-                errores.append(f"publicación remota no comprobada: {ref['ref']}@{ref['commit']} ({(err or out).strip()[:160]})")
+            if codigo != 0 or pares.get(nombre_ref) != commit_ref:
+                errores.append(f"publicación remota no comprobada: {nombre_ref}@{commit_ref} ({(err or out).strip()[:160]})")
+        if not referencias_git:
+            errores.append("publicación declarada sin refs/heads/<rama> verificable")
 
     declarado = resultado["resultado_sustantivo"]
     if not esperados and not esperadas_inv:

@@ -17,7 +17,7 @@ deja congelada.
 
 ## 1 · Por qué `procedencia.yaml` no basta tal como está
 
-`milpa/procedencia.yaml` (1475 líneas, 144 números censados desde
+`milpa/procedencia.yaml` (1474 líneas, 144 números censados desde
 v0.1.0) ya trae, disperso y con vocabulario distinto según la sección en
 que se escribió, gran parte de lo que un cargador necesitaría:
 
@@ -31,7 +31,7 @@ que se escribió, gran parte de lo que un cargador necesitaría:
   probabilidades de rama SI-ENTONCES, `[0,1]`), pero A-bis regla 3 exige
   que la escala se **declare**, no que se infiera.
 - **`universo`** aparece explícito en las secciones `condicionales_*` (los
-  siete componentes de confianza institucional, `radio_confianza`,
+  seis componentes de confianza institucional, `radio_confianza`,
   `familismo_apoyo`, `confianza_institucional_generico_servidores_publicos`,
   `exposicion_violencia`, `norma_de_género`, `obligación_medida`) y en
   las dos entradas de `coeficientes_generador_medidos` con universo
@@ -150,17 +150,18 @@ ninguna forma reconocible hoy.
 | `condicionales_escalares_exposicion_violencia.exposicion_violencia` | implícita | presente | presente ("ninguna lectura causal ni de intervención (A-bis 2)") | `FALTA-ESCALA` (token) |
 | `condicionales_escalares_medido_nacional.{norma_de_género,obligación_medida}` (2) | implícita (marginal, `x=∅`) | ausente como campo propio — `fuente` da instrumento/tabla pero no filtro de elegibilidad completo | presente ("no se declara EXISTE-SATISFACE"; cita A-bis regla 3 verbatim en `obligación_medida`) | `FALTA-ESCALA`, `FALTA-UNIVERSO` (filtro) |
 | `medidos` (7 entradas `donde:`) | ausente como campo | parcial: 3 de 7 traen `universo:` (líneas 707-726), 4 no | ausente — solo `reserva` textual, sin declarar identificado/no-identificado | `FALTA-ESCALA`, `FALTA-UNIVERSO` (parcial), `FALTA-IDENTIFICACION` |
-| `derivados` (8 entradas, complementos aritméticos) | ausente | ausente (heredaría del `medido`/`asignado` del que derivan, no declarado explícitamente) | ausente — `DERIVADO` es aritmética sobre otra clase, no mide nada por sí mismo; el esquema hereda la identificación de su origen, no declarado hoy | `FALTA-ESCALA`, `FALTA-UNIVERSO`, `FALTA-IDENTIFICACION` (herencia sin declarar) |
+| `derivados` (9 ítems de lista; 8 declaran `donde:` y el noveno, `{valor: 0.11, de: 0.89, tipo: complemento}`, ni siquiera dice a qué regla pertenece — re-contado contra el archivo por este acto, que corrige el «8 entradas» de su propio borrador) | ausente | ausente (heredaría del `medido`/`asignado` del que derivan, no declarado explícitamente) | ausente — `DERIVADO` es aritmética sobre otra clase, no mide nada por sí mismo; el esquema hereda la identificación de su origen, no declarado hoy | `FALTA-ESCALA`, `FALTA-UNIVERSO`, `FALTA-IDENTIFICACION` (herencia sin declarar) |
 | `asignados_probabilidad` (13 reglas, ~29 valores) | ausente (implícita `[0,1]` de rama SI-ENTONCES) | ausente como campo — "calibrable_con" nombra instrumento pero no universo/filtro | ausencia declarada de facto en cada `que_sostiene_de_verdad` ("sostiene la dirección, no la magnitud") pero sin token | `FALTA-ESCALA`, `FALTA-UNIVERSO`, `FALTA-IDENTIFICACION` (token) |
 | `evidencia_experimental_terceros.dinero.credito.baja_friccion_usura_dano_downstream` | presente (`escala:`, con advertencia de no-comparabilidad ya citando A-bis regla 3) | presente, con A.10 explícito | presente — identificación real, pero **del experimento de terceros**, no de la θ propia del modelo (el propio archivo lo aísla: "NO calibra ni sustituye la magnitud... de esta regla") | `LISTO` (como evidencia externa; no como θ propia calibrable) |
 | `asignados_coeficiente.detalle` (15 pares gen×coef) | ausente como campo en esta sección (sí existe, redundante, en `rutas_estimabilidad_coeficiente.detalle` para los mismos 15 pares) | ausente | ausencia declarada de facto (`diagnostico`: "todos ASIGNADO... el corpus es transversal, da estados no ritmos") | `FALTA-ESCALA` (aquí; existe en la sección hermana), `FALTA-UNIVERSO`, `FALTA-IDENTIFICACION` (token) |
 | `rutas_estimabilidad_coeficiente.detalle` (mismos 15 pares) | presente y ya normalizado (`escala_asignado`/`escala_fuente`/`escala_derivada`, `ACTO ESCALAS-COMPLETAS-P1`) | ausente | ausente como campo (la `ruta` RUTA-A/RUTA-I/RUTA-C/SIN-RUTA es un proxy de "hay intento de medir", no de "está identificado") | `LISTO` (escala), `FALTA-UNIVERSO`, `FALTA-IDENTIFICACION` (token) |
-| `coeficientes_generador_medidos.{G1_radio_confianza,G1_confianza_institucional,G3_familismo_apoyo,G4_exposicion_violencia,G4_confianza_institucional_justicia,G5_familismo_apoyo}` (6, todas `MEDIDO·β̂`) | presente (`clase` describe la escala en prosa: "diferencia de proporciones") | presente (universo declarado, con colisionador/selección nombrado cuando aplica) | **presente y ya con el vocabulario correcto**: cada una cita `adr57_a`/`marca_c2`/`marca_c3` con "asociar ≠ identificar" — es la sección más cerca de `LISTO` de todo el archivo | `FALTA-ESCALA` (token cerrado; el texto ya basta para derivarlo) |
+| `coeficientes_generador_medidos.{G1_radio_confianza,G1_confianza_institucional,G3_familismo_apoyo,G4_exposicion_violencia,G4_confianza_institucional_justicia}` (5, todas `MEDIDO·β̂`; la sexta llave de la sección es `G3_horizonte_temporal`, censada en su propia fila abajo. `G5_familismo_apoyo` **no está en esta sección** — ver la última fila) | presente (`clase` describe la escala en prosa: "diferencia de proporciones") | presente (universo declarado, con colisionador/selección nombrado cuando aplica) | **presente y ya con el vocabulario correcto**: cada una cita `adr57_a`/`marca_c2`/`marca_c3` con "asociar ≠ identificar" — es la sección más cerca de `LISTO` de todo el archivo | `FALTA-ESCALA` (token cerrado; el texto ya basta para derivarlo) |
 | `coeficientes_generador_medidos.G3_horizonte_temporal` (GATE·ID-X) | presente ("no aplica — no hay estimando que escalar") | presente | presente — el único intento de `ARGUMENTO_EXPLICITO` del archivo, **sin potencia**: no produjo identificación, solo confirmó que la llave (i) no alcanza con este panel | `LISTO` (como registro del intento fallido; no produce una θ calibrable) |
 | `coeficientes_generador_sellados` (7 pares, override que `matriz.py` consulta) | presente (`escala:` explícito, enlace identidad o lineal según ADR) | heredado de `coeficientes_generador_medidos` (no repetido aquí, pero rastreable por `fuente:`) | presente (`reserva:` repite "asociar ≠ identificar" por entrada; `rotulo: ASOCIACION-MEDIDA·*` es ya, de hecho, un token cerrado) | `LISTO` — la sección más madura del archivo para este esquema; solo falta renombrar `rotulo` a `identificacion` con el vocabulario de §2.3 |
 | `candidatas_theta_citadas_fp190.{TIC-01,EMP-05}` | presente (`escala:`, cita A-bis regla 3 verbatim) | ausente como campo propio (el "universo" es el archivo/ola citados, sin filtro de elegibilidad declarado) | ausente — son citas sin generador ("cita, no medición"), el esquema no aplica identificación a algo que no se usa en el motor | `FALTA-UNIVERSO`; identificación `N/A` (declarado, no un hueco) |
 | `thetas_informativas.corresidencia_actual` | presente (`escala:`) | presente (`universo:`, con el detalle del catálogo de parentesco) | `N/A` declarado — "clasificación INFORMATIVA... no genera regla, no se le asigna generador" (mesa ya decidió que no compite por identificación) | `LISTO` |
 | `params_base_de_perfil` (90, valores en `canon/modelo-decision-v4_0.md`, no en este archivo) | `ORDINAL_CARDINALIZADO` de facto (`hallazgo_ordinal_cardinal` ya lo dice: "la ficha dice horizonte mixto→largo; el YAML dice 0.70") pero sin token | `TIPOLOGIA_NO_MUESTRAL(perfil)` — nuevo en este documento, ningún universo muestral existe hoy | ausencia declarada de facto (`hallazgo_ordinal_cardinal.implicacion`: "ninguna salida... debe reportarse con precisión decimal") pero sin token, y **sin fuente numérica en este archivo** — la deuda de fondo (`deuda_dispersion`, 90 parámetros de dispersión) sigue `ABIERTA`, S2, y bloquea incluso escribir el censo completo de esta fila | `FALTA-ESCALA` (token), `FALTA-IDENTIFICACION` (token), y una `PARO-PREMISA` propia: no se puede congelar universo/escala por valor individual mientras `deuda_dispersion` no liste los 90 con su familia de distribución |
+| `propuesta_de_esquema.G5_familismo_apoyo` (1, `MEDIDO·β̂`) — **entrada real alojada en la sección equivocada** | presente en prosa (`clase`/`nota`: "diferencia de proporciones… NO la escala del índice del generador", cita A-bis regla 3) sin token | presente (`n_util` por base, EDER 2017 y ENDIREH 2016 como robustez) | presente (`nota` declara circularidad y contaminación de constructo; nunca se llama identificado) | `FALTA-ESCALA` (token) y, antes que eso, `FUERA-DE-SECCION`: `milpa/procedencia.yaml:1244` la escribe como llave hija de `propuesta_de_esquema:` (línea 1228), no de `coeficientes_generador_medidos:` — `yaml.safe_load` la devuelve fuera de esa sección, así que ningún cargador que recorra `coeficientes_generador_medidos` la vería. Defecto de colocación **preexistente**, ajeno a este acto, que no edita `procedencia.yaml`: declarado aquí, no corregido |
 
 ## 4 · Lo que queda congelado hoy
 
@@ -178,6 +179,27 @@ ninguna forma reconocible hoy.
    lea la prosa.
 4. El caso especial de los `params_base_de_perfil` (universo tipológico,
    no muestral) y su dependencia dura de `deuda_dispersion` (S2, ABIERTA).
+5. Un defecto de **colocación** encontrado al censar, y medido, no
+   supuesto: `G5_familismo_apoyo` es una entrada `MEDIDO·β̂` completa
+   (β̂, IC por bootstrap de conglomerados, `n_util` por base, reserva de
+   circularidad escrita) que vive en `milpa/procedencia.yaml:1244` como
+   llave hija de `propuesta_de_esquema:` (línea 1228), **no** de
+   `coeficientes_generador_medidos:`. Comando:
+   `python3 -c "import yaml;print(list(yaml.safe_load(open('milpa/procedencia.yaml'))['coeficientes_generador_medidos']))"`
+   → seis llaves, y `G5_familismo_apoyo` no está entre ellas
+   (`G3_horizonte_temporal` sí). Un cargador que recorriera la sección
+   perdería esa medición entera sin emitir un solo error. Es exactamente
+   la clase de defecto que el esquema de §2 existe para volver visible —
+   y la razón de que el censo se haga contra el árbol cargado
+   (`yaml.safe_load`), no contra la lectura visual del archivo. Es
+   **preexistente y ajeno a este acto**: la llave ya está así en la base
+   (`git show origin/main:milpa/procedencia.yaml | sed -n '1228p;1244p'`
+   → `propuesta_de_esquema:` / `  G5_familismo_apoyo:`). La medición en sí
+   es de `ACTO MAESTRA32-E16`, 31/ago/2026, según el `fuente:` de la
+   propia entrada; este acto no le atribuye la colocación, que no
+   verificó. Y no lo corrige: `procedencia.yaml` no se toca en el diseño
+   (mandato de `F-18`); queda declarado, con su fila propia en §3 y su
+   `NC-0263`.
 
 ## 5 · Huecos abiertos para mesa (no se cierran aquí)
 
@@ -202,7 +224,13 @@ ninguna forma reconocible hoy.
 
 ## 6 · Contador
 
-Cero. Ninguna corrida, ningún `RESULT`, ninguna adopción, ningún cambio a
+Cero mediciones nuevas del modelo. Tres correcciones al propio censo, todas
+re-contadas contra el árbol cargado y no contra el borrador (`derivados`
+8→9 ítems de lista; `coeficientes_generador_medidos` 6→5 entradas
+`MEDIDO·β̂` más `G3_horizonte_temporal` en su fila; `G5_familismo_apoyo`
+movida a fila propia con su defecto de colocación declarado): corrigen lo
+que este documento dice de sí mismo, no un número del modelo. Ninguna
+corrida, ningún `RESULT`, ninguna adopción, ningún cambio a
 `milpa/src/theta.py` ni `milpa/src/motor.py`, ningún número nuevo en
 `milpa/procedencia.yaml` (no se editó). Este documento es diseño puro:
 un esquema y un censo de qué le falta a cada nombre para cumplirlo.

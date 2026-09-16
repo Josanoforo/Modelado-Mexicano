@@ -398,10 +398,16 @@ fila, no se asume cubierto.
 5. Cuando el runner pide `tools/adq-resultado.schema.json`, el cierre entrega
    exactamente un `resultados_por_objeto` por cada ID elegido, en el mismo
    orden. Una adquisición cita archivos presentes en `data/raw/` e IDs
-   pertinentes de `data/manifiesto.yaml`; una barrera conserva cada vía y su
-   resultado verificable en rutas de evidencia existentes. Con elegidos, la
+   pertinentes de `data/manifiesto.yaml`. La vinculación objeto–manifiesto se
+   declara estructuradamente en `ids_manifiesto` de la fila canónica exacta del
+   objeto; `usado_para` describe el uso humano y puede conservar el ID literal
+   del objeto como compatibilidad, pero no necesita repetirlo. Una barrera
+   conserva cada vía y su resultado verificable en rutas de evidencia
+   existentes. Con elegidos, la
    rama y el SHA del trabajo deben existir en el remoto. El recibo `[ADQ]` que
-   publica el wrapper es otra publicación y nunca sustituye ésta. Si el push
+   publica el wrapper es otra publicación y nunca sustituye ésta. Un enlace de
+   GitHub puede acompañar la referencia como contexto, pero tampoco sustituye
+   el par exacto `refs/heads/<rama>` + SHA remoto. Si el push
    del trabajo falla, se conservan los resultados por objeto y se declara
    `resultado_sustantivo=fallo` con `publicacion_trabajo=fallida`.
    Si una investigación deja una ruta pública concreta sin examinar, su
