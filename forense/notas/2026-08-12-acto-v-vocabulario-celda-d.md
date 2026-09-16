@@ -43,3 +43,8 @@ El coeficiente `familismo_obligacion` de G5 está clasificado **`ASIGNADO`** en 
 ## 5 · Qué no se tocó
 
 `propuesta-motor-adaptativo-celda-v0_3.md` no se edita (gana banner de una línea). Ninguna otra decisión de v0.3 se reabre — M1 sigue abierta, ninguna celda-D corre, ningún contador de canon se mueve. `tools/`, `canon/`, `milpa/` intactos.
+
+
+---
+
+**ENMIENDA FECHADA — 16/sep/2026, `ACTO GEN2-M1-ALCANCE-1` (ADR-531).** M1 se firmó el 17/ago/2026 (`ADR-91`) y se **precisó** el 17/sep/2026 (ADR-531, firma de mesa de esa fecha); esta línea quedó vencida el 17/ago y no se edita. Líneas afectadas en este archivo: :45. La firma del 17/ago adoptó *«M1 cómputo matricial como definición del ejecutable»*; la precisión del 17/sep acota su alcance sin revocarla: *«el cómputo matricial es la forma de composición del ejecutable, no el estimador de ninguna celda. La estimación de cada insumo la gobierna el contrato celda-D (`ADR-68`); la matriz compite en él como candidato, nunca por defecto.»* Texto original arriba **intacto** (A.10 corolario 1): corregir hacia atrás borraría el registro de qué se dijo, que es lo que permite auditar la corrección.
