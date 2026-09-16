@@ -677,18 +677,47 @@ publica_proyeccion_demanda() {
   local PROYECCION="data/adq-demanda-activa-v1_0.json"
   local rama_censo="censo/${FECHA}"
 
-  # `checkout_o_crea_censo` PRIMERO: "antes" tiene que leerse de lo que ya
-  # está en censo/${FECHA} (lo que esta MISMA rama ya publicó hoy, si
-  # alguna corrida previa del día lo hizo), no de `main` -- `main` no
-  # recibe este commit hasta que mesa fusiona el PR, así que comparar
-  # contra `main` volvería a ver "cambio" en cada corrida del mismo día
-  # aunque censo/${FECHA} ya llevara la foto fresca (repetiría publicación
-  # por una comparación contra la rama equivocada, no por falta de cambio
-  # real -- exactamente lo que el encargo pide evitar).
-  checkout_o_crea_censo
+  # El "antes" sigue leyéndose de censo/${FECHA} -- lo que esta MISMA rama
+  # ya publicó hoy, no `main`, que no recibe el commit hasta que mesa
+  # fusiona el PR (comparar contra `main` repetiría la publicación en cada
+  # corrida del día). Lo que cambia es CÓMO se lee.
+  #
+  # H7 · ACTO GEN2-DESPLIEGUE-CAJA-Y-CIERRE-OPERATIVO (15/sep/2026).
+  # Antes esto hacía `checkout_o_crea_censo` PRIMERO y leía el "antes" del
+  # árbol de trabajo. Cambiar de árbol no sustituye sólo esa vista:
+  # sustituye también las HERRAMIENTAS y los INSUMOS por los de
+  # censo/${FECHA}, que es una rama de publicación y va POR DETRÁS del SHA
+  # desplegado. Medido en CAJA en la primera corrida en que esta función
+  # llegó a ejecutarse de verdad (run_id 2026-09-15T222751-201668): con el
+  # árbol en la punta del censo (5e2e87e8, de las 12:28),
+  #
+  #   - `tools/adq_investigacion.py` era la versión ANTERIOR a #801 y no
+  #     conocía `--compara-proyeccion`:
+  #       «error: unrecognized arguments: --compara-proyeccion»
+  #     El fallo se tragaba en la rama "sin cambio pertinente" (la
+  #     sustitución de comando devuelve vacío, y vacío != "si"), así que la
+  #     corrida DECLARABA "regenerada, sin cambio pertinente" y no
+  #     publicaba nada;
+  #   - `forense/no-corrido.tsv` y `data/adq-investigacion.yaml` también
+  #     eran los de esa punta vieja, de modo que la vista se regeneraba
+  #     desde insumos de OTRO corte -- justo la fotografía desfasada que
+  #     #801 venía a eliminar.
+  #
+  # Corrección: el "antes" se lee de la rama con `git show`, SIN cambiar de
+  # árbol, y la regeneración y la comparación corren sobre el árbol
+  # DESPLEGADO (herramientas e insumos del SHA que mesa autorizó). Sólo se
+  # cambia de árbol para commitear, ya con la vista nueva calculada.
   local ANTES_TMP
   ANTES_TMP="$(mktemp)"
-  cp "$PROYECCION" "$ANTES_TMP" 2>/dev/null || echo '{}' >"$ANTES_TMP"
+  if git show "${rama_censo}:${PROYECCION}" >"$ANTES_TMP" 2>/dev/null; then
+    :
+  elif git show "origin/${rama_censo}:${PROYECCION}" >"$ANTES_TMP" 2>/dev/null; then
+    :
+  elif [ -f "$PROYECCION" ]; then
+    cp "$PROYECCION" "$ANTES_TMP"
+  else
+    echo '{}' >"$ANTES_TMP"
+  fi
 
   set +e
   RESUMEN_PROYECCION="$(python3 tools/adq_investigacion.py --escribe-proyeccion "$PROYECCION" --corte "$FECHA" 2>>"$LOGFILE")"
@@ -705,8 +734,20 @@ publica_proyeccion_demanda() {
 
   set +e
   CAMBIO_PERTINENTE="$(python3 tools/adq_investigacion.py --compara-proyeccion "$ANTES_TMP" "$PROYECCION" 2>>"$LOGFILE")"
+  CODIGO_COMPARA=$?
   set -e
   rm -f "$ANTES_TMP"
+
+  # H7: un fallo del comparador NO puede seguir leyéndose como "no hubo
+  # cambio". Eso es lo que convirtió un error de herramienta en un
+  # silencio, con la vista sin publicar y el log declarando normalidad.
+  if [ "$CODIGO_COMPARA" -ne 0 ]; then
+    PUBLICACION_FALLIDA=$((PUBLICACION_FALLIDA + 1))
+    log "PARO-COMPARA-PROYECCION: --compara-proyeccion salió ${CODIGO_COMPARA}; NO se infiere 'sin cambio'. ${PROYECCION} conserva su contenido publicado y la vista regenerada se descarta. ${RESUMEN_PROYECCION}"
+    git checkout -- "$PROYECCION" >>"$LOGFILE" 2>&1 || true
+    restaura_arbol_operativo || true
+    return 0
+  fi
 
   if [ "$CAMBIO_PERTINENTE" != "si" ]; then
     log "PROYECCION-DEMANDA ${FECHA}: regenerada, sin cambio pertinente respecto a la publicada (sólo corte); no se publica de nuevo. ${RESUMEN_PROYECCION}"
@@ -714,6 +755,17 @@ publica_proyeccion_demanda() {
     restaura_arbol_operativo || true
     return 0
   fi
+
+  # H7: hasta aquí no se ha tocado el árbol. La vista nueva viaja aparte
+  # mientras se cambia de rama, porque el cambio de árbol la sobrescribiría
+  # (o abortaría por conflicto) al venir de una punta con otro contenido.
+  local NUEVA_TMP
+  NUEVA_TMP="$(mktemp)"
+  cp "$PROYECCION" "$NUEVA_TMP"
+  git checkout -- "$PROYECCION" >>"$LOGFILE" 2>&1 || true
+  checkout_o_crea_censo
+  cp "$NUEVA_TMP" "$PROYECCION"
+  rm -f "$NUEVA_TMP"
 
   git add "$PROYECCION" >>"$LOGFILE" 2>&1
   if ! git diff --cached --quiet -- "$PROYECCION"; then

@@ -474,6 +474,154 @@ def prueba_e2e_rama_censo_tomada_por_otro_worktree():
         _run(["git", "worktree", "remove", "--force", str(hermano)], work, check=False)
 
 
+
+# Stub que imita al `tools/adq_investigacion.py` ANTERIOR a #801: sabe
+# `--escribe-proyeccion` pero NO `--compara-proyeccion`, y sale 2 con el
+# mismo mensaje de argparse que se vio en CAJA.
+_TOOL_VIEJO = """#!/usr/bin/env python3
+import sys
+if "--compara-proyeccion" in sys.argv:
+    sys.stderr.write("adq_investigacion.py: error: unrecognized arguments: "
+                     "--compara-proyeccion\\n")
+    sys.exit(2)
+if "--escribe-proyeccion" in sys.argv:
+    i = sys.argv.index("--escribe-proyeccion")
+    open(sys.argv[i + 1], "w", encoding="utf-8").write(
+        '{"corte": "VIEJO", "total_nc_abiertas": -1}\\n')
+    print('{"ruta": "VIEJO"}')
+    sys.exit(0)
+sys.exit(2)
+"""
+
+
+def prueba_e2e_proyeccion_usa_el_arbol_desplegado_no_el_del_censo():
+    """REGRESIÓN H7 -- ACTO GEN2-DESPLIEGUE-CAJA-Y-CIERRE-OPERATIVO.
+
+    Defecto MEDIDO en CAJA en la primera corrida en que
+    `publica_proyeccion_demanda` llegó a ejecutarse de verdad (run_id
+    2026-09-15T222751-201668, tras levantar H6). La función hacía
+    `checkout_o_crea_censo` ANTES de regenerar, y cambiar de árbol no
+    sustituye sólo la vista: sustituye las HERRAMIENTAS y los INSUMOS por
+    los de `censo/<fecha>`, que es una rama de publicación y va por detrás
+    del SHA desplegado. En producción eso produjo
+
+        error: unrecognized arguments: --compara-proyeccion
+
+    (la herramienta de esa punta era anterior a #801) y el fallo se tragó
+    en la rama "sin cambio pertinente": el log declaró normalidad y la
+    proyección NO se publicó, que es exactamente la fotografía desfasada
+    que #801 venía a eliminar.
+
+    La prueba monta una rama `censo/<fecha>` con herramienta vieja e
+    insumos viejos y exige que la vista se regenere con el árbol
+    DESPLEGADO y se publique con los insumos de ESTE corte.
+    """
+    if not _seam_disponible():
+        FALLOS.append("tools/adquiere_cron.sh no expone ADQ_CRON_SOLO_DEFINE")
+        return
+    with tempfile.TemporaryDirectory(prefix="adq-arbol-viejo-") as d:
+        tmp = Path(d)
+        try:
+            work, bare = _crea_fixture(tmp)
+        except Exception as e:
+            FALLOS.append(f"H7: no se pudo construir el fixture: {e}")
+            return
+        fecha = "2026-09-20"
+        rama = f"censo/{fecha}"
+        logfile = tmp / "log-h7.txt"
+        no_corrido = work / "forense" / "no-corrido.tsv"
+        proyeccion = work / "data" / "adq-demanda-activa-v1_0.json"
+        herramienta = work / "tools" / "adq_investigacion.py"
+        herramienta_buena = herramienta.read_text(encoding="utf-8")
+
+        # 1 · la rama del día lleva herramienta VIEJA y una vista VIEJA.
+        _run(["git", "checkout", "-q", "-b", rama], work)
+        herramienta.write_text(_TOOL_VIEJO, encoding="utf-8")
+        proyeccion.write_text('{"corte": "2026-09-19", "total_nc_abiertas": 999}\n',
+                              encoding="utf-8")
+        _run(["git", "add", "-A"], work)
+        _run(["git", "commit", "-q", "-m", "punta vieja del censo"], work)
+        _run(["git", "push", "-q", "origin", rama], work)
+        _run(["git", "checkout", "-q", "main"], work)
+
+        # 2 · el árbol DESPLEGADO (main) tiene la herramienta buena y los
+        #     insumos de ESTE corte, ya commiteados (el árbol debe quedar
+        #     limpio para que el cambio de rama sea posible).
+        afirma(herramienta.read_text(encoding="utf-8") == herramienta_buena,
+               "H7: main debe conservar la herramienta canónica")
+        _cierra_una_nc(no_corrido)
+        abiertas_del_corte = _cuenta_abiertas(no_corrido)
+        _run(["git", "add", "-A"], work)
+        _run(["git", "commit", "-q", "-m", "insumos de este corte"], work)
+
+        rc, salida = _publica(work, fecha, logfile)
+        log_texto = logfile.read_text(encoding="utf-8") if logfile.exists() else ""
+
+        afirma(rc == 0, f"H7: publica_proyeccion_demanda debe salir 0; salió {rc}\n{salida}")
+        afirma("unrecognized arguments" not in log_texto,
+               f"H7: la herramienta VIEJA de la rama del día no debe llegar a "
+               f"ejecutarse; log:\n{log_texto}")
+        afirma("sin cambio pertinente" not in salida + log_texto,
+               f"H7: con insumos distintos NO puede declararse 'sin cambio "
+               f"pertinente'; salida={salida!r}")
+        afirma("RC_FALLIDA=0" in salida,
+               f"H7: la publicación debe ocurrir sin fallo; salida={salida!r}")
+
+        r_vista = _run(["git", "show", f"{rama}:data/adq-demanda-activa-v1_0.json"],
+                       bare, check=False)
+        if r_vista.returncode != 0:
+            FALLOS.append(
+                f"H7: la vista no llegó a origin/{rama}; git show -> "
+                f"{r_vista.returncode} {r_vista.stderr.strip()!r}")
+            return
+        publicado = json.loads(r_vista.stdout)
+        afirma(publicado.get("corte") != "VIEJO",
+               "H7: la vista publicada la escribió la herramienta VIEJA de la "
+               "rama del día, no el escritor canónico del árbol desplegado")
+        afirma(publicado.get("total_nc_abiertas") == abiertas_del_corte,
+               f"H7: la vista publicada debe venir de los insumos de ESTE corte "
+               f"({abiertas_del_corte}); publicado="
+               f"{publicado.get('total_nc_abiertas')!r}")
+
+
+def prueba_e2e_fallo_del_comparador_no_se_lee_como_sin_cambio():
+    """REGRESIÓN H7-b: un `--compara-proyeccion` que falla no puede
+    declararse "sin cambio pertinente". En CAJA ese silencio convirtió un
+    error de herramienta en una corrida aparentemente normal que no
+    publicaba nada."""
+    if not _seam_disponible():
+        FALLOS.append("tools/adquiere_cron.sh no expone ADQ_CRON_SOLO_DEFINE")
+        return
+    with tempfile.TemporaryDirectory(prefix="adq-comparador-roto-") as d:
+        tmp = Path(d)
+        try:
+            work, _bare = _crea_fixture(tmp)
+        except Exception as e:
+            FALLOS.append(f"H7-b: no se pudo construir el fixture: {e}")
+            return
+        fecha = "2026-09-20"
+        logfile = tmp / "log-h7b.txt"
+        # Misma forma exacta que en CAJA: el escritor funciona y sólo el
+        # comparador falla (`_TOOL_VIEJO` sale 2 con el error de argparse).
+        # Sabotear el flag dentro de la herramienta real rompería también
+        # `--escribe-proyeccion` y la prueba mediría otro fallo.
+        (work / "tools" / "adq_investigacion.py").write_text(
+            _TOOL_VIEJO, encoding="utf-8")
+        rc, salida = _publica(work, fecha, logfile)
+        log_texto = logfile.read_text(encoding="utf-8") if logfile.exists() else ""
+        afirma(rc == 0,
+               f"H7-b: un comparador roto no debe tumbar el resto del cron; "
+               f"salió {rc}\n{salida}")
+        afirma("RC_FALLIDA=1" in salida,
+               f"H7-b: debe contarse como publicación fallida, no como "
+               f"normalidad; salida={salida!r}")
+        afirma("PARO-COMPARA-PROYECCION" in log_texto,
+               f"H7-b: debe DECLARAR el fallo del comparador; log:\n{log_texto}")
+        afirma("sin cambio pertinente" not in log_texto,
+               f"H7-b: un fallo del comparador NO puede leerse como 'sin "
+               f"cambio pertinente'; log:\n{log_texto}")
+
+
 # ───────────────────────────────────────────────────────────────
 
 PRUEBAS = [v for k, v in sorted(globals().items()) if k.startswith("prueba_")]
