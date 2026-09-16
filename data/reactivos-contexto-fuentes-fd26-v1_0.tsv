@@ -1,0 +1,41 @@
+# data/reactivos-contexto-fuentes-fd26-v1_0.tsv -- DERIVADO. NO se edita a mano.
+# ACTO GEN2-CAJA-REACTIVOS-FD-1 (15/sep/2026, CAJA). NC-0235: extiende la cobertura de
+# tools/actualiza_reactivos_contexto.py a los 26 grupos con FD en el repo (18 CABLEAR-CAPA-FD-YA-EN-REPO
+# + 8 CANDIDATA-FD-EXT-POR-VERIFICAR de data/reactivos-ciegos-81-v1_0.tsv, ADR-519).
+# Mismo esquema que data/reactivos-contexto-fuentes-v1_0.tsv (instrumento/fuente_texto/formato), que
+# NO se edita: el acto hermano GEN2-F6-PANEL-CAJA-1 lo tiene abierto. Se pasan las dos con --fuentes.
+# Las 30 rutas se verificaron presentes en la raiz montada al derivar esta tabla.
+# formato: vocabulario de extract_source() -- xlsx | xls | fd_pdf_index. Los 6 PDF van por
+# fd_pdf_index porque los 6 estan en data/inventario-fd-ext-v1_0.tsv: ese extractor VERIFICA
+# la capa ext localizando cada variable en una pagina real, que es lo que CANDIDATA-FD-EXT-POR-VERIFICAR pide.
+instrumento	fuente_texto	formato	ruta_recuperacion
+ADQ15_CNBV_AhorroFinanciero_Financiamiento	ADQ15_CNBV_AhorroFinanciero_Financiamiento/Diccionario_DGEE.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+ADQ15_CNBV_AhorroFinanciero_Financiamiento	ADQ15_CNBV_AhorroFinanciero_Financiamiento/Glosario_Base_de_Ahorro_Financiero_y_Financiamiento.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+ADQ15_CNBV_BDIF_inclusion_financiera	ADQ15_CNBV_BDIF_inclusion_financiera/Diccionario_DGPASF.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+ADQ15_CNBV_BDIF_inclusion_financiera	ADQ15_CNBV_BDIF_inclusion_financiera/Glosario_Datos_Abiertos_DGASF.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+censo2020	Censo2020_CAAS_descriptor_bd.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+censo2020	Censo2020_CEU_descriptor_bd.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+cpv2020	diccionario_cuestionario_ampliado_cpv2020.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+cpv2020	fd_iter_cpv2020.pdf	fd_pdf_index	CABLEAR-CAPA-FD-YA-EN-REPO
+elcos2012	elcos2012/elcos_fd.xls	xls	CANDIDATA-FD-EXT-POR-VERIFICAR
+enadid2023	fd_enadid23.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+enasem2018	enasem2018/enasem_2018_fd.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+enasem2021	enasem2021/enasem_2021_fd.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+enasem2024	enasem2024/enasem_2024_fd.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+enasic2022	enasic2022/enasic_2022_fd.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+enbiare2021	enbiare2021/enbiare_2021_fd.pdf	fd_pdf_index	CANDIDATA-FD-EXT-POR-VERIFICAR
+encig2011	encig2011/fd_encig2011.pdf	fd_pdf_index	CANDIDATA-FD-EXT-POR-VERIFICAR
+endireh2006	endireh2006/fd_endireh06.xls	xls	CANDIDATA-FD-EXT-POR-VERIFICAR
+endireh2011	endireh2011/fd_endireh11.xls	xls	CANDIDATA-FD-EXT-POR-VERIFICAR
+endutih2023	endutih2023/FD_ENDUTIH2023.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+endutih2024	endutih2024/fd_endutih2024.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+endutih2025	endutih2025/fd_endutih2025.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+enfih2019	enfih2019/enfih_2019_fd.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+enpol2021	enpol2021/fd_enpol2021.pdf	fd_pdf_index	CANDIDATA-FD-EXT-POR-VERIFICAR
+enti2022	enti2022/enti_2022_fd.pdf	fd_pdf_index	CANDIDATA-FD-EXT-POR-VERIFICAR
+enut2009	enut2009_fd.pdf	fd_pdf_index	CANDIDATA-FD-EXT-POR-VERIFICAR
+enut2019	enut2019_fd.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+enut2024	enut2024_fd.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+mociba2015	mociba2015/mociba2015_fd.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+mociba2016	mociba2016/mociba2016_fd.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
+mociba2017	mociba2017/mociba2017_fd.xlsx	xlsx	CABLEAR-CAPA-FD-YA-EN-REPO
