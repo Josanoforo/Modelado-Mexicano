@@ -1,0 +1,87 @@
+calc_id: CALC-ENCRIGE-CORRUPCION-DESCRIPTIVA-0001
+spec_md: spec.md
+spec_md_sha256: 72dd3bf3fd7444480d16c2d67c9a673bc4eed4247fdd6567b7d44aa1e3a7f4fa
+script: data/corrida0/CALC-ENCRIGE-CORRUPCION-DESCRIPTIVA-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: EXTRACCION-DESCRIPTIVA-TABULADOS-OFICIALES
+  unidad_transferencia: UNIDAD-DISTINTA-NO-TRANSFERENCIA
+  uso_motor: CONTEXTO-INFORME-NO-CALIBRA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: DOBLE-LECTURA-LOCAL-Y-FORMULA
+  fuente_acto: GEN2-ENCRIGE-DESCRIPTIVA-1
+  medidor_ejecutado_al_congelar: NO
+
+inputs:
+  - {id: conjunto_de_datos_encrige_2020_csv, origen: manifiesto}
+  - {id: encrige2020_cuestionario, origen: manifiesto}
+  - {id: gen2_encrige2020_diseno_muestral, origen: manifiesto}
+
+variables: []
+universo: >-
+  Empresas del pais con instalaciones fijas, del sector privado, en industria,
+  comercio y servicios cubiertos por ENCRIGE 2020. Excluye agricultura, cria
+  y explotacion de animales, aprovechamiento forestal, pesca, caza y gobierno.
+  Unidad empresa, que puede integrar uno o mas establecimientos.
+filtros: >-
+  Filas oficiales Estados Unidos Mexicanos, Micro, Pequena, Mediana y Grande
+  de t6_33, t6_36 y t6_41. Denominador publicado: unidades economicas que
+  realizaron por lo menos un tramite o fueron sujetas a una inspeccion.
+ponderador: >-
+  NO-REESTIMADO. Numeradores y denominadores son estimaciones expandidas
+  oficiales de INEGI; no son n muestral.
+transformacion: >-
+  La tasa oficial por 10 000 se divide entre 10 000. En prevalencia produce
+  proporcion de unidades expuestas; en incidencia produce experiencias por
+  unidad expuesta. El porcentaje de prevalencia es proporcion por 100.
+estimando: >-
+  Primario: proporcion de unidades economicas expuestas que experimentaron al
+  menos un acto de corrupcion. Secundario: numero de tramites o inspecciones
+  con experiencia de corrupcion por unidad economica expuesta. Descriptivos,
+  no causales y no comparables directamente con tasas de personas.
+precision: >-
+  Los CSV no publican EE, CV, IC ni n muestral. Los ODT describen umbrales de
+  semaforizacion por CV pero no asocian un nivel recuperable a cada celda; se
+  declara incertidumbre no disponible y no se construye IC binomial.
+
+dependencias_materiales: []
+seed: {aplica: false, valor: null, rng: NO-APLICA}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: extraccion determinista; tasa oficial y normalizacion decimal
+
+parametros:
+  pregunta_consumidora: >-
+    Como se distribuye la corrupcion experimentada en unidades economicas por
+    tamano en el universo ENCRIGE 2020?
+  consumidor: anexo descriptivo TRA previsto en F-19
+  periodo: Durante 2020 (enero a la fecha de entrevista)
+  tabla_primaria: t6_33.csv
+  tabla_contraste: t6_36.csv
+  tabla_secundaria: t6_41.csv
+  dominios: [Estados Unidos Mexicanos, Micro, Pequena, Mediana, Grande]
+  unidad_original: por 10 000 unidades economicas expuestas
+  tolerancia_formula_tasa_abs: 1.0e-9
+  output: forense/analisis/encrige-descriptiva-1/encrige-corrupcion-por-tamano.csv
+  incertidumbre: NO-DISPONIBLE-EN-REPRESENTACION-CSV
+  n_muestral: NO-PUBLICADO
+  adopcion: NINGUNA
+
+resultados:
+  - {id: RESULT-ENCRIGE-DES-G-INPUT-TABULADOS-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENCRIGE-DES-G-INPUT-CUESTIONARIO-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENCRIGE-DES-G-INPUT-DISENO-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENCRIGE-DES-G-N-INDICADORES, tipo: entero, unidad: indicadores}
+  - {id: RESULT-ENCRIGE-DES-G-N-DOMINIOS, tipo: entero, unidad: dominios}
+  - {id: RESULT-ENCRIGE-DES-G-N-FILAS-SALIDA, tipo: entero, unidad: filas indicador-dominio}
+  - {id: RESULT-ENCRIGE-DES-G-MAX-DELTA-FORMULA, tipo: flotante, unidad: tasa por 10000}
+  - {id: RESULT-ENCRIGE-DES-G-MAX-DELTA-DOBLE-LECTURA, tipo: flotante, unidad: tasa por 10000}
+  - {id: RESULT-ENCRIGE-DES-G-CSV-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENCRIGE-DES-PREVALENCIA-TOTAL-PROPORCION, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ENCRIGE-DES-INCIDENCIA-TOTAL-POR-UNIDAD, tipo: flotante, unidad: experiencias por unidad expuesta}
+  - {id: RESULT-ENCRIGE-DES-G-N-MUESTRAL, tipo: texto, unidad: estado}
+  - {id: RESULT-ENCRIGE-DES-G-INCERTIDUMBRE, tipo: texto, unidad: estado}
+  - {id: RESULT-ENCRIGE-DES-G-USO, tipo: texto, unidad: limitacion de uso}
+  - {id: RESULT-ENCRIGE-DES-G-SALIDA, tipo: texto, unidad: ruta relativa}
