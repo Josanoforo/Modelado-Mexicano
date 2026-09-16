@@ -4662,6 +4662,21 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # referencia de procedencia al habitante ENCARGO-E05 ya censado; no es
     # un rótulo nuevo y el cuerpo recibido no se edita para complacer T25.
     "forense/encargos/2026-09-10-GEN2-ENIF-POBLACION-Y-ADOPCION.md",
+    # ACTO GEN2-E1-DISENO-CALIBRACION-1, 16/sep/2026: el rótulo propio de
+    # este acto ("GEN2-E1-DISENO-CALIBRACION-1") COLISIONA por la forma
+    # corta "GEN2-E1" con el habitante ya censado GEN2-E1 · LIMPIEZA-C1
+    # (7/sep/2026, canon/registro-rotulos.tsv fila E). Colisión declarada
+    # aquí y en el registro (mismo patrón que la fila E11/MAESTRA32-E11:
+    # ninguno de los dos gana la forma pelada). Los tres archivos de abajo
+    # citan "E1" pelado -- el encargo archivado verbatim (0-bis A.3) trae
+    # la firma de mesa F-18 tal como llegó ("Abrir el diseño de E1" y
+    # "la calibración E1 de Θ(x)"), y el documento de diseño repite esa
+    # misma cita al describir el objeto del acto. No se edita ninguno de
+    # los dos para complacer el test (A.3 sobre el primero; el segundo
+    # nombra su propio acto, no reclama un rótulo nuevo).
+    "forense/encargos/2026-09-16-GEN2-FIRMAS-MESA-3.md",
+    "forense/encargos/2026-09-16-GEN2-E1-DISENO-CALIBRACION-1.md",
+    "forense/theta-cargable-por-celda-diseno-e1-v1_0.md",
 }
 
 
