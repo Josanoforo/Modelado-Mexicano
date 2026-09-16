@@ -44,8 +44,14 @@ def _evalua_decision(estado: dict, contrato: dict, vinculo: dict,
                      alcance_menor: bool = False
                      ) -> tuple[bool, str, dict | None]:
     """Una suficiencia de investigación nunca equivale a adopción de emisión."""
-    decision = estado.get("decision_emision")
-    if not isinstance(decision, dict):
+    decisiones = []
+    singular = estado.get("decision_emision")
+    if isinstance(singular, dict):
+        decisiones.append(singular)
+    multiples = estado.get("decisiones_emision")
+    if isinstance(multiples, list):
+        decisiones.extend(x for x in multiples if isinstance(x, dict))
+    if not decisiones:
         return False, "sin decisión explícita de emisión aplicable", None
 
     esperados = {
@@ -60,14 +66,23 @@ def _evalua_decision(estado: dict, contrato: dict, vinculo: dict,
             "uso_menor": vinculo.get("uso_menor"),
             "uso_original": vinculo.get("uso_original"),
         })
-    discrepantes = [
-        clave for clave, esperado in esperados.items()
-        if not esperado or decision.get(clave) != esperado
+    aplicables = [
+        decision for decision in decisiones
+        if all(esperado and decision.get(clave) == esperado
+               for clave, esperado in esperados.items())
     ]
-    if discrepantes:
+    if len(aplicables) != 1:
+        discrepantes = [
+            clave for clave, esperado in esperados.items()
+            if not esperado or not any(
+                decision.get(clave) == esperado for decision in decisiones)
+        ]
         return (False,
-                "decisión de emisión no aplicable a " + ", ".join(discrepantes),
-                decision)
+                ("decisión de emisión ambigua" if len(aplicables) > 1 else
+                 "decisión de emisión no aplicable a " +
+                 ", ".join(discrepantes or esperados)),
+                None)
+    decision = aplicables[0]
 
     evidencias = decision.get("evidencias")
     evidencias_estado = estado.get("evidencias") or []
@@ -163,19 +178,24 @@ def proyecta(necesidad_id: str, cfg: dict | None = None,
             estado_efectivo = "BLOQUEADA_POR_INCOMPATIBILIDAD"
         else:
             menores = contrato.get("vinculos_alcance_menor", [])
-            vinculo_menor = next((x for x in menores if all((
+            coincidencias_menores = [x for x in menores if all((
                 x.get("consumidor") == consumidor,
                 x.get("resultado_bloqueado_id") == resultado_id,
                 x.get("uso_menor") == uso_solicitado,
                 x.get("uso_original") == vinculo.get("uso_requerido"),
-            ))), None)
-            if vinculo_menor is None:
+            ))]
+            if len(coincidencias_menores) != 1:
                 accion = "NO_EMITIR_RESULTADO_SOLICITADO"
-                estado_efectivo = "BLOQUEADA_SIN_VINCULO_ALCANCE_MENOR"
-                motivo_bloqueo = (
-                    "la aptitud de alcance menor no enlaza explícitamente "
-                    "RESULT, uso menor y uso original")
+                if coincidencias_menores:
+                    estado_efectivo = "BLOQUEADA_VINCULO_ALCANCE_MENOR_AMBIGUO"
+                    motivo_bloqueo = "múltiples vínculos de alcance menor aplicables"
+                else:
+                    estado_efectivo = "BLOQUEADA_SIN_VINCULO_ALCANCE_MENOR"
+                    motivo_bloqueo = (
+                        "la aptitud de alcance menor no enlaza explícitamente "
+                        "RESULT, uso menor y uso original")
             else:
+                vinculo_menor = coincidencias_menores[0]
                 habilita, motivo, decision = _evalua_decision(
                     estado, contrato, vinculo_menor, consumidor, resultado_id,
                     uso_solicitado, raiz, alcance_menor=True)
@@ -187,7 +207,8 @@ def proyecta(necesidad_id: str, cfg: dict | None = None,
                 motivo_bloqueo = motivo
     return {
         "necesidad_id": necesidad_id, "version_pregunta": contrato["version_pregunta"],
-        "consumidor": contrato["consumidor"], "uso_solicitado": contrato["uso"],
+        "consumidor": contrato["consumidor"],
+        "uso_solicitado": uso_solicitado or contrato["uso"],
         "accion_consumidor": accion, "suficiencia": suficiencia,
         "accion_reportada_investigacion": accion_reportada,
         "estado_efectivo": estado_efectivo,

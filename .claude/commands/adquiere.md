@@ -22,6 +22,32 @@ directamente.
 
 ---
 
+## Enmienda vigente · adquisición por contribución y fallos aislados
+
+El ciclo GEN2-38 selecciona desde consumidores/usos y demandas científicas
+vigentes, no sólo desde el estado de una NC. Para explorar bastan consumidor o
+finalidad, brecha concreta y ámbito conocido; los campos científicos ausentes
+se investigan, no se inventan. Una fuente pública pertinente puede adquirirse
+y prepararse con cobertura parcial si se declara qué uso permite y cuál no.
+Preparación, cálculo y adopción siguen siendo etapas distintas de adquisición.
+
+Una ruta fallida o en espera afecta sólo a su objeto: conserva el resultado y
+continúa con la siguiente vía legítima y con las demás necesidades elegidas.
+Cuando el wrapper entregue un `run_id`, registra su checkpoint antes de iniciar
+cada investigación y antes de cada intento real de objeto usando el comando que
+incluye en el prompt. Selección o capacidad máxima no son intento. El mismo
+objeto reintentado en otra activación consume otra unidad; la idempotencia sólo
+evita duplicar el mismo checkpoint dentro del mismo `run_id`.
+No repitas una URL o consulta agotada para completar una cuota. El repertorio
+de cuatro rutas de §3 es una lista de alternativas aplicables, no la obligación
+de fingir cuatro intentos cuando alguno no existe o ya fue examinado. Una
+frontera concreta no examinada se persiste como `continua` para el ciclo
+siguiente; una espera sin frontera debe nombrar qué evento la reactiva. Tras
+dos ciclos sin avance material entrega una alternativa concreta o una decisión
+humana necesaria, sin bloquear los otros frentes.
+
+---
+
 ## 0 · Arranque mínimo
 
 Si esta invocación corre dentro de un `/acto` que ya hizo su propio ARRANQUE
@@ -185,12 +211,8 @@ y la comprobación de cobertura decide si la adquisición ya está satisfecha.
 
 ## 3 · Intento de descarga programática — protocolo de rutas múltiples (ACTO MAESTRA33-A3, ADR pendiente)
 
-Por fila, **al menos 4 rutas** se intentan (con comando y código de respuesta
-crudo, cada una) antes de que la fila pueda cerrar en
-`NO-OBTENIDO-POR-ESTE-AGENTE`. Ninguna ruta se salta en silencio — si una no
-aplica al payload (p.ej. no existe formato alterno conocido), la nota lo dice
-explícitamente («(iii) no aplica: solo hay SAV publicado»), no se omite sin
-mención:
+Por fila se intentan las rutas pertinentes todavía no agotadas (con comando y
+código de respuesta crudo). El repertorio es:
 
 1. **(i) URL directa** del payload conocido o localizado, con UA de navegador
    real (ver reglas de abajo).
@@ -208,7 +230,7 @@ mención:
    `SIN-FETCH` en la nota — es evidencia de que la ruta existe, no un
    `OBTENIDO`.
 
-Solo después de agotar las 4 rutas (o de anotar por qué una no aplica) la fila
+Solo después de agotar las rutas plausibles (y citar las ya agotadas) la fila
 puede cerrar en `NO-OBTENIDO-POR-ESTE-AGENTE(N intentos)` con su receta de
 navegador (§6).
 
@@ -376,12 +398,21 @@ fila, no se asume cubierto.
 5. Cuando el runner pide `tools/adq-resultado.schema.json`, el cierre entrega
    exactamente un `resultados_por_objeto` por cada ID elegido, en el mismo
    orden. Una adquisición cita archivos presentes en `data/raw/` e IDs
-   pertinentes de `data/manifiesto.yaml`; una barrera conserva cada vía y su
-   resultado verificable en rutas de evidencia existentes. Con elegidos, la
+   pertinentes de `data/manifiesto.yaml`. La vinculación objeto–manifiesto se
+   declara estructuradamente en `ids_manifiesto` de la fila canónica exacta del
+   objeto; `usado_para` describe el uso humano y puede conservar el ID literal
+   del objeto como compatibilidad, pero no necesita repetirlo. Una barrera
+   conserva cada vía y su resultado verificable en rutas de evidencia
+   existentes. Con elegidos, la
    rama y el SHA del trabajo deben existir en el remoto. El recibo `[ADQ]` que
-   publica el wrapper es otra publicación y nunca sustituye ésta. Si el push
+   publica el wrapper es otra publicación y nunca sustituye ésta. Un enlace de
+   GitHub puede acompañar la referencia como contexto, pero tampoco sustituye
+   el par exacto `refs/heads/<rama>` + SHA remoto. Si el push
    del trabajo falla, se conservan los resultados por objeto y se declara
    `resultado_sustantivo=fallo` con `publicacion_trabajo=fallida`.
+   Si una investigación deja una ruta pública concreta sin examinar, su
+   `estado` es `continua` y vuelve al siguiente ciclo; no se puede rotular
+   `sin_hallazgo_acotado` para mandarla a una espera calendaria general.
 
 El runner calcula la selección antes de invocar al ejecutor. Si termina
 correctamente con cero elegidos, genera este cierre de manera determinista con

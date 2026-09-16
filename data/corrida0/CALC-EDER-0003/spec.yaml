@@ -1,0 +1,213 @@
+# CALC-EDER-0003 -- cara mecanica de spec.md (ACTO GEN2-SPECS-DEMANDA-1).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/EDER-UNION-LIBRE-spec-v1_0.md
+# (`prereg-caja-EDER-UNION-LIBRE`).
+# Releva el PAYLOAD de la demanda CORR-0013 bajo el registro GEN2.
+# CONGELADO en el COMMIT-1, en NUBE, antes de abrir un solo byte de microdato.
+calc_id: CALC-EDER-0003
+spec_md: spec.md
+spec_md_sha256: 664e995d977173393526b66b17b1adb1a4cf372266ea3ed2442ebfecdd26af89
+
+script: data/corrida0/CALC-EDER-0003/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: TASA-BASE-DE-REGLA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/EDER-UNION-LIBRE-spec-v1_0.md
+  spec_sellada_sha256: 5901271777b1d6b6e0d86e9ebc521afcdcacb45db8deac02ae195308d7217abd
+  demanda_que_releva: "CORR-0013 (EDER2017, payload eder_2017_eder2017_bases_csv) -> RES-0043 (familia.union.libre:union_libre) y RES-0044 (:matrimonio_directo), EN EL SENTIDO ACOTADO de su PAYLOAD: esta corrida mide EDER 2017, que es el archivo que la demanda declara. NO reproduce los valores 0.1905 / 0.8095, que salieron de ENADID 2023 (ver defecto_de_identidad). NO releva CALC-EDER-0001 ni CALC-EDER-0002, que miden otra regla sobre el mismo ZIP."
+  defecto_de_identidad: "MATERIAL, asentado y no corregido aqui. demanda-resultados.tsv filas RES-0043/RES-0044: payload = eder_2017_eder2017_bases_csv (sha bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3) y clase = `MEDIDO·p(prevalencia bruta ponderada 15+, tasa base; ENADID 2023, p3_27_ag)`; milpa/tramite.yaml:1005 confirma n=152950, que es el n de ENADID (EDER aporta 18687). El payload declarado NO produjo el numero. Tres consecuencias: (1) un verify resolveria el ZIP de EDER como INPUT de una cifra calculada sobre ENADID y el hash COINCIDIRIA; (2) `grep ENADID data/corrida0/demanda-corridas.tsv` -> 0 aciertos: enadid2023_base_datos_csv esta en el manifiesto y no aparece en ninguna corrida; (3) no hay control positivo posible para esta corrida. Corregir milpa/ y la celda ENADID es de mesa, no de esta spec: el derivado no se edita a mano y el sellado no se reescribe (E.3)."
+  reglas_bajo_prueba: "NINGUNA cambia de cifra por esta corrida. familia.union.libre (R5.3) conserva su p, su veredicto CORROBORADA y su segmentacion por cohorte sellada. La celda ENADID que hoy ocupa RES-0043/RES-0044 NO se toca."
+  firma_de_contador: "NO-FIRMADA. El encargo de mesa (15/sep/2026) pide congelar specs ejecutables y NO declara OBJETO sobre el contador GEN2. Estandar FP-367/368 NO satisfecho -> cuenta_gen2 queda PENDIENTE-DE-MESA."
+  contaminacion_declarada: "ADR-46 -- al congelar, la sesion YA habia leido: p=0.1905 y 0.8095 (GEN1, de ENADID), n=152950, la segmentacion por cohorte sellada de EDER con sus cuatro celdas e IC; y del censo de ACTO MAESTRA35-L7 (forense/notas/2026-09-02-MAESTRA35-L7-P0-censo.md:125-155) los conteos SIN PONDERAR (18689 primer-no-cero de 23831; union_libre 9044; matrimonio_directo 9643; sin clasificar 2), el mapa de 27 codigos, y la verificacion de 0 huerfanos en ambos joins. NO es ciega. Lo genuinamente desconocido al congelar: el p PONDERADO por factor_per de esta particion (el censo de L7 publica proporciones sobre conteos crudos, 48.4%/51.6%, que NO son el estimando de esta spec), la anchura del IC de diseno, cuantos estratos quedan con UPM unica en el universo de personas, y si los codigos llegan como '1' o '1.0' bajo pandas."
+  medidor_ejecutado_al_congelar: "NO -- y el medidor tampoco se escribe aqui. El encargo pide `md humana + spec.yaml` (D-15, dos capas); el medidor es del acto de CAJA que consuma este contrato. Consecuencia declarada: `corrida0.py preflight CALC-EDER-0003` reporta BLOQUEADO:script_ausente hasta que CAJA lo escriba."
+
+inputs:
+  - id: eder_2017_eder2017_bases_csv
+    origen: manifiesto
+  - id: eder_2017_eder2017_fd
+    origen: manifiesto
+  - id: IN-EDER-UNION-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/EDER-UNION-LIBRE-spec-v1_0.md
+    sha256: 5901271777b1d6b6e0d86e9ebc521afcdcacb45db8deac02ae195308d7217abd
+
+variables:
+  - {archivo: "historiavida.csv", variable: edo_civil1, rol: "DESENLACE -- estado civil de la PRIMERA union; se toma el PRIMER codigo no-cero por persona en orden ascendente de anio_retro", codigos: "FD eder2017_fd.pdf, etiqueta verbatim `Estado civil primera union`; catalogo de 27 codigos verificado linea por linea contra el PDF por ACTO MAESTRA35-L7. LIBRE = {1,12,13,14,17,18,126} (inicio de union libre y transiciones posteriores a inicio de union libre). DIRECTO = {2,3,4,26,27,28,46,47,48} (matrimonio civil/religioso/ambos, inicio o transicion). El codigo 37 queda SIN CLASIFICAR y CONTADO, no se adjudica. Disolucion pura {6,7,8,60,70,80}: 0 casos como primer-no-cero (verificado); si aparece, A-CENSURA-IZQUIERDA = DETECTADA. Se lee como CADENA CRUDA: '1' y '1.0' no son el mismo texto", direccion: "A-P-LIBRE MAS ALTO = MAS PRIMERAS UNIONES LIBRES"}
+  - {archivo: "historiavida.csv", variable: anio_retro, rol: "ORDEN del panel retrospectivo -- define cual es el `primer` codigo no-cero de la persona", codigos: "entero; orden ascendente"}
+  - {archivo: "historiavida.csv", variable: anio_nac, rol: "EJE de cohorte (familia B, secundaria y no adoptable)", codigos: "FD: `Ano de nacimiento`; tramos <=1970 / 1971-1980 / 1981-1990 / 1991+"}
+  - {archivo: "historiavida.csv", variable: folioviv, rol: "llave de persona (1/3) y de vivienda", codigos: "FD: `Identificador de la vivienda`; cadena cruda"}
+  - {archivo: "historiavida.csv", variable: foliohog, rol: "llave de persona (2/3)", codigos: "FD: `Identificador del hogar`"}
+  - {archivo: "historiavida.csv", variable: id_pobla, rol: "llave de persona (3/3)", codigos: "FD: `Identificador de la persona`"}
+  - {archivo: "antecedentes.csv", variable: factor_per, rol: "PONDERADOR de persona -- NO esta en historiavida.csv; se une por (folioviv, foliohog, id_pobla)", codigos: "FD: `Factor de expansion`; flotante tal cual; 0 = fuera de la poblacion objetivo (receta R oficial de INEGI)"}
+  - {archivo: "antecedentes.csv", variable: folioviv, rol: "llave del join de ponderador (1/3)", codigos: "cadena cruda"}
+  - {archivo: "antecedentes.csv", variable: foliohog, rol: "llave del join de ponderador (2/3)", codigos: "cadena cruda"}
+  - {archivo: "antecedentes.csv", variable: id_pobla, rol: "llave del join de ponderador (3/3)", codigos: "cadena cruda"}
+  - {archivo: "vivienda.csv", variable: est_dis, rol: "ESTRATO de diseno -- NO esta ni en historiavida.csv ni en antecedentes.csv; se une por folioviv (LLAVE DE TEXTO OPACA)", codigos: "FD: `Estrato de diseno muestral`; cadena cruda, nunca a entero ni re-rellenada"}
+  - {archivo: "vivienda.csv", variable: upm, rol: "UPM -- conglomerado que se re-muestrea; se une por folioviv (LLAVE DE TEXTO OPACA)", codigos: "FD: `Unidad primaria de muestreo`; cadena cruda"}
+  - {archivo: "vivienda.csv", variable: folioviv, rol: "llave del join de diseno", codigos: "cadena cruda"}
+
+universo: >-
+  Personas de EDER 2017 (unidad declarada por el FD seccion 1.1.2: persona de
+  20 a 54 anos del hogar). U_A = grupos (folioviv, foliohog, id_pobla) de
+  historiavida.csv con al menos un edo_civil1 distinto de '0', cuyo primer
+  codigo no-cero en orden de anio_retro cae en LIBRE o en DIRECTO o es 37, y
+  que tienen factor_per finito y > 0 en antecedentes.csv. UNA SOLA OLA.
+  Referencia del censo de ACTO MAESTRA35-L7, que esta corrida VUELVE A CONTAR
+  en vez de heredar: 23831 personas en antecedentes.csv, 18689 con primer
+  codigo no-cero, 18687 clasificables.
+
+filtros: >-
+  Sale de U_A, CONTADO y no imputado: persona sin ningun edo_civil1 no-cero
+  (A-N-SIN-PRIMER-CODIGO); persona sin fila en antecedentes.csv
+  (A-N-SIN-FACTOR-PER); persona con factor_per = 0 (A-N-FACTOR-PER-CERO) o no
+  finito/negativo (A-N-FACTOR-PER-INVALIDO). Se cuenta pero NO sale del punto:
+  persona cuya folioviv no resuelve en vivienda.csv (A-N-SIN-VIVIENDA) o cuya
+  vivienda carece de est_dis o upm (A-N-SIN-DISENO) -- afectan al IC, no al
+  estimador. El codigo 37 ENTRA al universo y sale del numerador de ambas
+  ramas: A-N-SIN-CLASIFICAR lo cuenta y A-SUMA-PARTICION lo cierra.
+  CERO NUNCA SUSTITUYE FALTA DE DATO.
+  Guardias que producen NO-ESTIMABLE: miembro ausente del ZIP ->
+  NO-ESTIMABLE-MIEMBRO-AUSENTE:<m>; columna declarada ausente ->
+  NO-ESTIMABLE-COLUMNA-AUSENTE:<col>; terna no unica en antecedentes.csv o
+  folioviv no unica en vivienda.csv -> NO-ESTIMABLE-LLAVE-NO-UNICA; universo
+  vacio -> NO-ESTIMABLE-UNIVERSO-VACIO. Si TODA fila carece de diseno ->
+  A-METODO-IC = NO-ESTIMABLE-DISENO-INCOMPLETO y los IC salen null.
+
+ponderador: >-
+  factor_per de antecedentes.csv, el ponderador oficial de persona de EDER
+  2017 (FD seccion 1.1.3 y receta R de INEGI). NO se usa `factor` de
+  vivienda.csv, que es el ponderador de vivienda/hogar y corresponde a otra
+  unidad. Flotante tal cual, sin normalizar.
+
+transformacion: >-
+  Lectura con pandas.read_csv(encoding='latin-1', low_memory=False, dtype=str)
+  para edo_civil1, folioviv, foliohog, id_pobla, est_dis y upm; anio_retro y
+  anio_nac a numerico. Por persona: se ordena por anio_retro ascendente y se
+  toma el PRIMER edo_civil1 cuyo texto strip() no sea '0' ni vacio.
+  d_libre = 1 si ese codigo esta en LIBRE; d_directo = 1 si esta en DIRECTO.
+  A-P-LIBRE = suma(w*d_libre)/suma(w); A-P-DIRECTO = suma(w*d_directo)/suma(w),
+  CONTADA DIRECTAMENTE y nunca como 1 - A-P-LIBRE (el codigo 37 esta fuera de
+  las dos ramas y el complemento lo borraria). Sumas en orden fijo de llave.
+  Bootstrap: clave de conglomerado = (est_dis, upm) como cadenas; upm con
+  reemplazo dentro de est_dis conservando el numero de UPM por estrato;
+  estrato con UPM unica se re-muestrea a si mismo. IC = percentiles 2.5/97.5.
+  NO se promedia, no se imputa, no se re-escala, no se extrapola.
+
+estimando: >-
+  DESCRIPTIVO. (1) ADOPTABLE POR MESA: A-P-LIBRE y A-P-DIRECTO, proporciones
+  ponderadas del tipo de PRIMERA union, con sus IC de diseno. (2) SECUNDARIOS
+  DECLARADOS, NO adoptables: la familia B (eje de cohorte por anio_nac en
+  cuatro tramos, con IC por celda) -- milpa/ ya trae una segmentacion por
+  cohorte sellada y esta corrida NO la sucede: la emite para que mesa vea si
+  la direccion se sostiene bajo este ponderador y este diseno. NINGUN RESULT
+  ES CAUSAL: R5.3 afirma `baja garantia institucional -> union libre como
+  opcion racional` y el disparador `baja garantia institucional` NO esta
+  medido en ningun instrumento del corpus; esto es la tasa base del desenlace.
+
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  fuente_acto: "ACTO GEN2-SPECS-DEMANDA-1 · CALC-EDER-0003 · celda de R5.3 sobre el PAYLOAD que CORR-0013 declara (EDER 2017)"
+  firma_que_lo_autoriza: "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-1.md: «redactar y CONGELAR la spec ejecutable (md humana + spec.yaml, D-15, abriendo SOLO codebook y metadato -- E.5 lo permite en nube, microdato jamas)». La firma autoriza CONGELAR, no contar."
+  bootstrap_replicas: 2000
+  metodo_ic: "bootstrap de upm CON REEMPLAZO dentro de est_dis, conservando el numero de UPM por estrato; percentiles 2.5/97.5. milpa/tramite.yaml:1007 declara ic95 NO-APLICA para esta regla: el IC nace en esta corrida."
+  regla_estrato_upm_unica: >-
+    Un estrato con exactamente una UPM se re-muestrea a si mismo: aporta
+    varianza cero. NO se colapsa y NO se descarta. Si el conteo es > 0,
+    A-METODO-IC sale IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como LIMITE
+    INFERIOR. Precedente sobre este mismo instrumento: CALC-EDER-0001
+    (ADR-501) reporto 3 estratos de UPM unica.
+  llaves_opacas: >-
+    est_dis y upm se agrupan como CADENA CRUDA (dtype=str). edo_civil1 tambien
+    se compara como texto: el mapa de codigos es de cadenas, no de enteros, y
+    '1' distinto de '1.0'. G-VEREDICTO-TIPO-CODIGO declara el tipo observado
+    ANTES de aplicar el mapa.
+  sin_control_positivo: >-
+    A-DELTA-VS-GEN1 = NO-APLICA-ESTIMANDO-DISTINTO, DECLARADO y no calculado.
+    GEN1 mide situacion conyugal ACTUAL en ENADID 2023 (15+, p3_27_ag, n
+    152950); esta corrida mide tipo de PRIMERA union en EDER 2017
+    (retrospectivo, n ~18687). milpa/tramite.yaml:1003 lo dice de las dos
+    fuentes: `no se promedian, miden preguntas distintas`. La unica
+    comparacion autorizada es contra los CONTEOS SIN PONDERAR del censo de
+    ACTO MAESTRA35-L7, y es de conteos, no de p.
+  mapa_codigos:
+    LIBRE: ["1", "12", "13", "14", "17", "18", "126"]
+    DIRECTO: ["2", "3", "4", "26", "27", "28", "46", "47", "48"]
+    DISOLUCION_NUNCA_PRIMERA: ["6", "7", "8", "60", "70", "80"]
+    SIN_CLASIFICAR_DECLARADO: ["37"]
+    CERO_ES_AUSENCIA_DE_UNION: "0"
+  llave_persona: [folioviv, foliohog, id_pobla]
+  llave_vivienda: folioviv
+  tramos_cohorte: ["<=1970", "1971-1980", "1981-1990", "1991+"]
+  miembros_zip_declarados:
+  - "historiavida.csv"
+  - "antecedentes.csv"
+  - "vivienda.csv"
+  conteos_l7_referencia:
+    primer_no_cero: 18689
+    union_libre_sin_ponderar: 9044
+    matrimonio_directo_sin_ponderar: 9643
+    sin_clasificar_37: 2
+    personas_antecedentes: 23831
+  valores_gen1_referencia_no_comparables:
+    union_libre_ENADID: 0.1905
+    matrimonio_directo_ENADID: 0.8095
+    n_ENADID: 152950
+  criterio_adopcion: >-
+    A-ADOPCION = LISTADO-PARA-MESA si A-P-LIBRE y A-P-DIRECTO son estimables;
+    NO-ADOPTABLE-NO-ESTIMABLE si no. No hay rama REPRODUCE: no existe cifra
+    GEN1 comparable (sin_control_positivo). Este acto NO escribe cita en
+    milpa/ y NO sustituye la celda ENADID: sustituirla es decision de mesa.
+
+seed:
+  aplica: true
+  valor: 20260915
+  rng: numpy.PCG64
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Bootstrap fijado por seed + rng declarados y sumas en orden fijo de llave:
+    la unica diferencia esperable entre dos corridas del mismo arbol es
+    redondeo de float64 al reasociar sumas ponderadas. Los enteros y los textos
+    se comparan EXACTO -- incluidos los conteos que se cotejan contra el censo
+    de ACTO MAESTRA35-L7.
+
+resultados:
+  - {id: RESULT-EDER-UNION-G-N-MIEMBROS-ZIP, tipo: entero, unidad: "miembros del ZIP (el inventario declara 5)"}
+  - {id: RESULT-EDER-UNION-G-N-FILAS-HISTORIAVIDA, tipo: entero, unidad: "filas persona-ano de historiavida.csv"}
+  - {id: RESULT-EDER-UNION-G-N-FILAS-ANTECEDENTES, tipo: entero, unidad: "filas de antecedentes.csv (el censo de L7 conto 23831)"}
+  - {id: RESULT-EDER-UNION-G-N-FILAS-VIVIENDA, tipo: entero, unidad: "filas de vivienda.csv"}
+  - {id: RESULT-EDER-UNION-G-LLAVE-ANTECEDENTES-TERNA-UNICA, tipo: texto, unidad: "SI / NO -- (folioviv,foliohog,id_pobla) unica en antecedentes.csv"}
+  - {id: RESULT-EDER-UNION-G-LLAVE-VIVIENDA-UNICA, tipo: texto, unidad: "SI / NO -- folioviv unica en vivienda.csv"}
+  - {id: RESULT-EDER-UNION-G-VEREDICTO-TIPO-CODIGO, tipo: texto, unidad: "forma del texto crudo de edo_civil1: CADENA-ENTERA / CADENA-DECIMAL / MIXTA -- declarado ANTES de aplicar el mapa"}
+  - {id: RESULT-EDER-UNION-G-SOPORTE-PRIMER-CODIGO, tipo: texto, unidad: "soporte observado del primer codigo no-cero, ordenado: 'codigo:n;...'"}
+  - {id: RESULT-EDER-UNION-G-PERFIL-EST-DIS, tipo: texto, unidad: "perfil de anchos del texto crudo de est_dis"}
+  - {id: RESULT-EDER-UNION-G-PERFIL-UPM, tipo: texto, unidad: "perfil de anchos del texto crudo de upm"}
+  - {id: RESULT-EDER-UNION-G-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "estratos con exactamente una UPM en el universo de personas"}
+  - {id: RESULT-EDER-UNION-A-N-PRIMER-NO-CERO, tipo: entero, unidad: "personas con al menos un edo_civil1 no-cero (censo L7: 18689)"}
+  - {id: RESULT-EDER-UNION-A-N-COINCIDE-L7, tipo: texto, unidad: "COINCIDE / DIFIERE:<delta> -- A-N-PRIMER-NO-CERO contra 18689"}
+  - {id: RESULT-EDER-UNION-A-N-U, tipo: entero, unidad: "personas del universo A tras el join de ponderador"}
+  - {id: RESULT-EDER-UNION-A-N-SIN-FACTOR-PER, tipo: entero, unidad: "personas sin fila en antecedentes.csv (censo L7: 0 huerfanos)"}
+  - {id: RESULT-EDER-UNION-A-N-FACTOR-PER-CERO, tipo: entero, unidad: "personas con factor_per = 0 (fuera de la poblacion objetivo)"}
+  - {id: RESULT-EDER-UNION-A-N-SIN-VIVIENDA, tipo: entero, unidad: "personas cuya folioviv no resuelve en vivienda.csv (censo L7: 0 huerfanos)"}
+  - {id: RESULT-EDER-UNION-A-N-SIN-DISENO, tipo: entero, unidad: "personas del universo cuya vivienda carece de est_dis o upm"}
+  - {id: RESULT-EDER-UNION-A-N-LIBRE-SIN-PONDERAR, tipo: entero, unidad: "personas con primer codigo en LIBRE (censo L7: 9044)"}
+  - {id: RESULT-EDER-UNION-A-N-DIRECTO-SIN-PONDERAR, tipo: entero, unidad: "personas con primer codigo en DIRECTO (censo L7: 9643)"}
+  - {id: RESULT-EDER-UNION-A-N-SIN-CLASIFICAR, tipo: entero, unidad: "personas cuyo primer codigo esta fuera de LIBRE y de DIRECTO, codigo 37 incluido (censo L7: 2)"}
+  - {id: RESULT-EDER-UNION-A-CONTEOS-COINCIDEN-L7, tipo: texto, unidad: "COINCIDE / DIFIERE:<detalle> -- los tres conteos sin ponderar contra el censo de ACTO MAESTRA35-L7"}
+  - {id: RESULT-EDER-UNION-A-CENSURA-IZQUIERDA, tipo: texto, unidad: "AUSENTE / DETECTADA:<n> -- primer codigo no-cero en {6,7,8,60,70,80} (censo L7: 0 casos)"}
+  - {id: RESULT-EDER-UNION-A-P-LIBRE, tipo: proporcion, unidad: "proporcion ponderada de personas cuya primera union fue union libre", permite_no_estimable: true}
+  - {id: RESULT-EDER-UNION-A-P-DIRECTO, tipo: proporcion, unidad: "proporcion ponderada de personas cuya primera union fue matrimonio directo, CONTADA (nunca 1 - p)", permite_no_estimable: true}
+  - {id: RESULT-EDER-UNION-A-SUMA-PARTICION, tipo: texto, unidad: "SI / NO:<residuo> -- A-P-LIBRE + A-P-DIRECTO + peso de los sin clasificar dentro de tolerancia"}
+  - {id: RESULT-EDER-UNION-A-IC-LIBRE-LO, tipo: flotante, unidad: "percentil 2.5 del bootstrap de diseno para A-P-LIBRE", permite_no_estimable: true}
+  - {id: RESULT-EDER-UNION-A-IC-LIBRE-HI, tipo: flotante, unidad: "percentil 97.5 del bootstrap de diseno para A-P-LIBRE", permite_no_estimable: true}
+  - {id: RESULT-EDER-UNION-A-METODO-IC, tipo: texto, unidad: "IC-DE-DISENO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-DISENO-INCOMPLETO"}
+  - {id: RESULT-EDER-UNION-A-PERSONAS-EXPANDIDAS, tipo: flotante, unidad: "suma de factor_per en el universo A"}
+  - {id: RESULT-EDER-UNION-A-DELTA-VS-GEN1, tipo: texto, unidad: "NO-APLICA-ESTIMANDO-DISTINTO -- constante declarada, NO se calcula: GEN1 mide ENADID 2023 (situacion conyugal actual), esta corrida mide EDER 2017 (tipo de primera union)"}
+  - {id: RESULT-EDER-UNION-A-ADOPCION, tipo: texto, unidad: "LISTADO-PARA-MESA / NO-ADOPTABLE-NO-ESTIMABLE"}
+  - {id: RESULT-EDER-UNION-B-COHORTE-P-LIBRE, tipo: texto, unidad: "SECUNDARIO, no adoptable: 'tramo=p:ic_lo:ic_hi:n;...' por tramo de anio_nac"}

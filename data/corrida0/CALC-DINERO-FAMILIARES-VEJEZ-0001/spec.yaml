@@ -1,0 +1,90 @@
+# CALC-DINERO-FAMILIARES-VEJEZ-0001 -- cara mecanica de spec.md (ACTO GEN2-SPECS-DEMANDA-2).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/ENIF-DINERO-FAMILIARES-VEJEZ-spec-v1_0.md
+# (`prereg-caja-ENIF-DINERO-FAMILIARES-VEJEZ`).
+# Releva CORR-0010 COMPLETA (2 RESULT) resolviendo IDENTIDAD-DE-PAYLOAD
+# por hash de contenido (A.7), sin tocar milpa/ (NC-0195, FUERA-DE-PERIMETRO).
+calc_id: CALC-DINERO-FAMILIARES-VEJEZ-0001
+spec_md: spec.md
+spec_md_sha256: e46cac7a2a717c93713ba2a5223383614bd7a2951e7a0f62deccc1347eb55746
+
+script: tools/tasas_base_fase1.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: TASA-BASE-DE-REGLA-YA-EJECUTADA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENIF-DINERO-FAMILIARES-VEJEZ-spec-v1_0.md
+  spec_sellada_sha256: e46cac7a2a717c93713ba2a5223383614bd7a2951e7a0f62deccc1347eb55746
+  demanda_que_releva: "CORR-0010 (payload originalmente NO-LOCALIZADO por nombre, resuelto por hash a enif_2024_enif_2024_bd_csv) -> los 2 RESULT: RES-0033 (familia.apoyo.recibe_dinero_familiares:recibe_dinero_familiares_para_vejez), RES-0034 (:no_recibe_dinero_familiares_para_vejez). CORR-0010 queda AGOTADA (2/2)."
+  repite_de: "NINGUN CALC previo -- mismo script (tools/tasas_base_fase1.py, uno de 5 reglas de ACTO MAESTRA32-E18) y misma corrida que YA sello milpa/tramite.yaml. Este CALC no re-ejecuta: registra esa corrida en D-15/GEN2 con la identidad de payload resuelta por A.7."
+  por_que_no_es_duplicado: "milpa/tramite.yaml:827-845 trae la cifra sellada (tier FUERTE) pero SIN spec.yaml/corrida0_resultado_id y con payload_manifiesto_id=NO-LOCALIZADO sin resolver -- el hueco es capa 2 MAS identidad no resuelta (NC-0195), distinto de CORR-0017/0007/0009 que solo tenian el hueco de capa 2."
+  reglas_bajo_prueba: "NINGUNA cambia de cifra. familia.apoyo.recibe_dinero_familiares conserva recibe_dinero_familiares_para_vejez=0.457707 y no_recibe_dinero_familiares_para_vejez=0.542293 exactos, IC95=[0.444232,0.470782], n=11895 (milpa/tramite.yaml:833-834,840-841). Este CALC solo les da cadena E.2 y resuelve la identidad de payload por hash."
+  firma_de_contador: "NO-FIRMADA. FP-367/368 no satisfecho -> cuenta_gen2 PENDIENTE-DE-MESA."
+  contaminacion_declarada: "ADR-46 -- al congelar, la sesion ya habia leido milpa/tramite.yaml:827-845 completo, data/manifiesto.yaml:5543-5550 (entrada enif_2024_enif_2024_bd_csv), tools/tasas_base_fase1.py (cabecera), y forense/notas/2026-08-31-reglas-fase1-spec.md (celda de esta regla). NO es ciega: leerlos es lo que A.7/A.8 exigen antes de resolver la identidad y registrar la capa 2."
+  medidor_ejecutado_al_congelar: "SI, PERO NO EN ESTA SESION. Corrio en CAJA (ACTO MAESTRA32-E18, 31/ago/2026) contra enif_2024_bd_csv.zip (sha256=00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039). Esta sesion (NUBE, sin corpus) NO lo re-corre -- lee milpa/tramite.yaml y forense/notas/2026-08-31-reglas-fase1-spec.md. `corrida0.py preflight CALC-DINERO-FAMILIARES-VEJEZ-0001` reportara BLOQUEADO:resultados_ausente (no script_ausente) hasta que un acto de registro transcriba resultados.json."
+  identidad_de_payload_resuelta: "A.7 -- sha256_payload declarado por la regla (00e4b0b4...f039) COINCIDE EXACTO con data/manifiesto.yaml:5550 (id enif_2024_enif_2024_bd_csv, archivo enif_2024_bd_csv.zip, 3131148 bytes, descargado 5/ago/2026). El id textual que la regla buscaba (enif2024_csv) resuelve a OTRO zip (data/raw/enif2024_csv.zip, 45 bytes... verificar aparte, no confirmado en este acto) -- la resolucion es POR HASH, no por nombre, mismo patron que NC-0188 (ENNViH). milpa/tramite.yaml:845 NO se edita (E.3 + FUERA-DE-PERIMETRO, NC-0195 permanece ABIERTA para el acto que toque milpa/)."
+
+inputs:
+  - id: enif_2024_enif_2024_bd_csv
+    origen: manifiesto
+  - id: IN-DINEROFAMVEJEZ-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/ENIF-DINERO-FAMILIARES-VEJEZ-spec-v1_0.md
+    sha256: e46cac7a2a717c93713ba2a5223383614bd7a2951e7a0f62deccc1347eb55746
+
+variables:
+  - {archivo: "TMODULO.csv", variable: FILTRO_S9_1, rol: "filtro de universo -- aplica modulo vejez", codigos: "universo = FILTRO_S9_1==2"}
+  - {archivo: "TMODULO.csv", variable: EDAD_V, rol: "filtro de universo -- edad", codigos: "universo = EDAD_V<71"}
+  - {archivo: "TMODULO.csv", variable: P9_9_4, rol: "DESENLACE -- recibe dinero de familiares para la vejez", codigos: "ver forense/notas/2026-08-31-reglas-fase1-spec.md para la codificacion exacta de la celda (no re-derivada en esta pieza)"}
+  - {archivo: "TMODULO.csv", variable: FAC_PER, rol: "PONDERADOR de persona", codigos: "flotante tal cual"}
+
+universo: "FILTRO_S9_1=2 (aplica modulo vejez) y EDAD_V<71 -- 11895 personas."
+
+filtros: "Ninguno adicional al universo declarado."
+
+ponderador: "FAC_PER"
+
+transformacion: >-
+  Bootstrap ponderado simple (SIN conglomerado UPM/estrato -- declarado por
+  el acto original como fuera de su perimetro reproducir un diseno
+  completo para las 5 reglas de ese lote), n_boot=10000, seed=42.
+  recibe_dinero_familiares_para_vejez = p ponderado del desenlace=1 sobre
+  n=11895. no_recibe_dinero_familiares_para_vejez = complemento CONTADO.
+
+estimando: >-
+  DESCRIPTIVO. (1) ADOPTABLE POR MESA via carga ya sellada:
+  recibe_dinero_familiares_para_vejez=0.457707, IC95=[0.444232,0.470782];
+  no_recibe_dinero_familiares_para_vejez=0.542293 (complemento). (2) Sin
+  secundarios adicionales declarados por el acto original.
+
+dependencias_materiales: [pandas]
+
+parametros:
+  fuente_acto: "ACTO GEN2-SPECS-DEMANDA-2 · CALC-DINERO-FAMILIARES-VEJEZ-0001 · P3, resolucion de identidad por hash (A.7) y registro D-15/GEN2 de una medicion YA CORRIDA por ACTO MAESTRA32-E18"
+  firma_que_lo_autoriza: "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-2.md, P3: «la CORR con IDENTIDAD-DE-PAYLOAD se resuelve contra el manifiesto por hash de contenido (A.7)»."
+  bootstrap_replicas: 10000
+  seed_original: 42
+  sin_diseno_de_conglomerado: "Declarado por el acto original (tools/tasas_base_fase1.py, docstring): sin campo UPM/estrato reproducible dentro de su perimetro para ninguna de las 5 reglas de ese lote."
+  nc_0195_no_cerrada: "milpa/tramite.yaml:845 sigue diciendo payload_manifiesto_id=NO-LOCALIZADO en la letra -- FUERA-DE-PERIMETRO de este CALC (NC-0195 permanece ABIERTA, ver spec.md §0.3)."
+
+seed:
+  aplica: true
+  valor: 42
+  rng: "bootstrap ponderado simple, semilla 42 (tools/tasas_base_fase1.py)"
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-6
+  razon: "Transcripcion, no re-medicion. Tolerancia para una eventual re-ejecucion futura del mismo script/payload/semilla."
+
+resultados:
+  - {id: RESULT-DFVEJEZ-G-N-PERSONAS, tipo: entero, unidad: "personas del universo FILTRO_S9_1=2 y EDAD_V<71 (esperado 11895)"}
+  - {id: RESULT-DFVEJEZ-A-P-RECIBE, tipo: proporcion, unidad: "p ponderado de recibe_dinero_familiares_para_vejez -- releva RES-0033 (esperado 0.457707)", permite_no_estimable: true}
+  - {id: RESULT-DFVEJEZ-A-P-NO-RECIBE, tipo: proporcion, unidad: "complemento contado, 1-A-P-RECIBE -- releva RES-0034 (esperado 0.542293)", permite_no_estimable: true}
+  - {id: RESULT-DFVEJEZ-A-SUMA-UNO, tipo: texto, unidad: "SI/NO:<residuo> -- A-P-RECIBE + A-P-NO-RECIBE dentro de tolerancia"}
+  - {id: RESULT-DFVEJEZ-A-IC-LO, tipo: flotante, unidad: "percentil 2.5 del bootstrap (esperado 0.444232)", permite_no_estimable: true}
+  - {id: RESULT-DFVEJEZ-A-IC-HI, tipo: flotante, unidad: "percentil 97.5 del bootstrap (esperado 0.470782)", permite_no_estimable: true}
+  - {id: RESULT-DFVEJEZ-A-DELTA-VS-SELLADO, tipo: flotante, unidad: "A-P-RECIBE menos 0.457707 (valor sellado en milpa/tramite.yaml), CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-DFVEJEZ-A-RELEVA-SELLADO, tipo: texto, unidad: "SI / NO -- delta dentro de tolerancia (esperado SI)"}

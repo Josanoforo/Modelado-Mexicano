@@ -1,0 +1,740 @@
+[
+  {
+    "advertencia_interpretacion": "Proporción poblacional del universo declarado; no es diagnóstico ni probabilidad personalizada validada.",
+    "alcance_menor": {
+      "categoria": "sin_colchon_un_mes",
+      "evento": "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros",
+      "limites": "no es duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual",
+      "transformacion": "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado"
+    },
+    "aptitud": {
+      "alcance": "DESCRIPTIVO como sin_colchon_un_mes dentro del dominio sellado; no duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual",
+      "estado": "APTA-POR-LINAJE",
+      "rol_uso": null,
+      "uso_solicitado": "DESCRIPTIVO",
+      "validacion_independiente": "PASA"
+    },
+    "contrato": {
+      "archivos": {
+        "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
+        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
+        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
+        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
+        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
+        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
+        "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
+        "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
+        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
+      },
+      "guardia_suficiencia_efectiva": {
+        "accion_consumidor": "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO",
+        "accion_reportada_investigacion": "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO",
+        "brecha": "no puede distinguir horizonte corto de ausencia de ahorro",
+        "consumidor": "E05 / dinero.ahorro.horizonte",
+        "decision_emision": {
+          "clase": "AUTORIZA_ALCANCE_MENOR_RESULTADO_EXISTENTE",
+          "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto",
+          "evidencias": [
+            "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md"
+          ],
+          "necesidad_id": "NC-0126",
+          "resultado_id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+          "uso_aprobado": "DESCRIPTIVO",
+          "uso_menor": "DESCRIPTIVO",
+          "uso_original": "MEDICION-GEN2",
+          "version_pregunta": "2026-09-09-horizonte-ahorro-descolapsado-v1"
+        },
+        "estado_efectivo": "HABILITADA_POR_DECISION_DE_ALCANCE_MENOR_APLICABLE",
+        "evidencias": [
+          "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+          "data/manifiesto.yaml",
+          "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md",
+          "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md",
+          "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md"
+        ],
+        "fuente_estado": "data/curacion-registro/investigacion-estado/NC-0126.json",
+        "integridad_estado": {
+          "descarte": null,
+          "identidad_valida": true,
+          "ruta_observada": "data/curacion-registro/investigacion-estado/NC-0126.json",
+          "sha256_observado": "46fab34285752b76cfa0efbbcb7b080276bd758018f84dcfc766fbdf370fe9d4"
+        },
+        "integridad_evidencias": {
+          "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
+          "data/manifiesto.yaml": "d3433b7366f5b0d6e60043137c82ee25daaad74f3fa04a0f8abb8ec6dd115d77",
+          "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md": "caacb984673f5c553060de60293d708a9e0aa972b7cc536dcca7c1e4ef028214",
+          "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md": "a0cca9edc107d6cca994dd20538986b6d4a09d461a7fa9dc2bdf3aaae8746666",
+          "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md": "fb95588ff5630bcd00e916f5e026523f04bae247cba7c03473a3ba919fd0e710"
+        },
+        "motivo_bloqueo": "decisión explícita y evidencia aplicables",
+        "necesidad_id": "NC-0126",
+        "suficiencia": {
+          "conceptual": "NO_ACREDITADA",
+          "diseno": "ACREDITADA",
+          "identidad": "ACREDITADA",
+          "identificacion": "NO_APLICA",
+          "poblacional": "ACREDITADA",
+          "pregunta_original": "ABIERTA",
+          "seleccion_no_respuesta": "ACREDITADA",
+          "temporalidad": "ACREDITADA",
+          "unidad": "ACREDITADA",
+          "uso_habilitado": "APTA_ALCANCE_MENOR"
+        },
+        "uso_solicitado": "DESCRIPTIVO",
+        "version_pregunta": "2026-09-09-horizonte-ahorro-descolapsado-v1",
+        "vinculo_evaluado": {
+          "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto",
+          "resultado_bloqueado_id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+          "resultado_id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+          "uso_requerido": "MEDICION-GEN2",
+          "uso_solicitado": "DESCRIPTIVO",
+          "vinculo_alcance_menor": {
+            "categoria": "sin_colchon_un_mes",
+            "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto",
+            "evento": "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros",
+            "limites": "no es duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual",
+            "resultado_bloqueado_id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+            "transformacion": "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado",
+            "uso_menor": "DESCRIPTIVO",
+            "uso_original": "MEDICION-GEN2"
+          }
+        }
+      },
+      "sha256": "f1cea6d0d2f1c82730d5153770074a24b257cfa4f0e2eea11e4996a113dacdd6",
+      "version": "CONSULTA-GEN2-v2"
+    },
+    "dependencia": {
+      "camino_linaje": "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto -> RESULT-ENIF-AHO-A-P-CORTO-SIN-P -> CALC-ENIF-0001/RESULT-ENIF-AHO-A-P-CORTO-SIN-P -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "estructurales": [
+        "regla:dinero.ahorro.horizonte_corto:disparadores",
+        "generadores:G3",
+        "tier:FUERTE"
+      ],
+      "padre": null,
+      "rol_seleccion": null
+    },
+    "dominio": {
+      "recibido": {},
+      "requerido": {}
+    },
+    "estado": "EMITE",
+    "estimando": {
+      "evento": "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros",
+      "periodo": {
+        "cita": "milpa/tramite.yaml:1135 -- ola_calibracion: \"ENIF 2024\"",
+        "valor": "ENIF 2024"
+      },
+      "poblacion": "18+ elegidas que trabajan ∧ P3_13=7 ∧ P4_10∈{1..5}; n=4 973; masa expandida=35 086 918 (37.2388% de toda la población 18+)",
+      "transformacion": "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado",
+      "unidad": "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"
+    },
+    "peticion": {
+      "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto",
+      "contexto": {},
+      "id": "AHO-DESC-SIN-SEGURIDAD-01",
+      "proposito": "consulta",
+      "uso": "DESCRIPTIVO"
+    },
+    "referencias": [
+      "data/adq-investigacion.yaml",
+      "data/corrida0/CALC-ENIF-0001/ejecucion.json",
+      "data/corrida0/CALC-ENIF-0001/resultados.json",
+      "data/corrida0/CALC-ENIF-0001/spec.yaml",
+      "data/corrida0/resultados.tsv",
+      "data/corrida0/usos.tsv",
+      "milpa/src/emisor.py",
+      "milpa/src/linaje.py",
+      "milpa/tramite.yaml",
+      "tools/adq_investigacion.py",
+      "tools/adq_suficiencia.py",
+      "tools/baseline_temporal.py",
+      "tools/consulta_gen2.py",
+      "tools/emite_m.py",
+      "tools/snapshot_motor_gen2.py"
+    ],
+    "resultado": {
+      "corrida_id": "CALC-ENIF-0001--afbf3c76d71b",
+      "fuente": "VERIFY-EN-ESTA-SESION · verify(CALC-ENIF-0001)",
+      "generacion": "GEN2",
+      "id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+      "origen_numerico": "NUEVO",
+      "spec_id": "CALC-ENIF-0001",
+      "tipo": "flotante",
+      "unidad": "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"
+    },
+    "suficiencia_uso": {
+      "accion_consumidor": "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO",
+      "accion_reportada_investigacion": "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO",
+      "brecha": "no puede distinguir horizonte corto de ausencia de ahorro",
+      "consumidor": "E05 / dinero.ahorro.horizonte",
+      "decision_emision": {
+        "clase": "AUTORIZA_ALCANCE_MENOR_RESULTADO_EXISTENTE",
+        "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto",
+        "evidencias": [
+          "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md"
+        ],
+        "necesidad_id": "NC-0126",
+        "resultado_id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+        "uso_aprobado": "DESCRIPTIVO",
+        "uso_menor": "DESCRIPTIVO",
+        "uso_original": "MEDICION-GEN2",
+        "version_pregunta": "2026-09-09-horizonte-ahorro-descolapsado-v1"
+      },
+      "estado_efectivo": "HABILITADA_POR_DECISION_DE_ALCANCE_MENOR_APLICABLE",
+      "evidencias": [
+        "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+        "data/manifiesto.yaml",
+        "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md",
+        "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md",
+        "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md"
+      ],
+      "fuente_estado": "data/curacion-registro/investigacion-estado/NC-0126.json",
+      "integridad_estado": {
+        "descarte": null,
+        "identidad_valida": true,
+        "ruta_observada": "data/curacion-registro/investigacion-estado/NC-0126.json",
+        "sha256_observado": "46fab34285752b76cfa0efbbcb7b080276bd758018f84dcfc766fbdf370fe9d4"
+      },
+      "integridad_evidencias": {
+        "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
+        "data/manifiesto.yaml": "d3433b7366f5b0d6e60043137c82ee25daaad74f3fa04a0f8abb8ec6dd115d77",
+        "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md": "caacb984673f5c553060de60293d708a9e0aa972b7cc536dcca7c1e4ef028214",
+        "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md": "a0cca9edc107d6cca994dd20538986b6d4a09d461a7fa9dc2bdf3aaae8746666",
+        "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md": "fb95588ff5630bcd00e916f5e026523f04bae247cba7c03473a3ba919fd0e710"
+      },
+      "motivo_bloqueo": "decisión explícita y evidencia aplicables",
+      "necesidad_id": "NC-0126",
+      "suficiencia": {
+        "conceptual": "NO_ACREDITADA",
+        "diseno": "ACREDITADA",
+        "identidad": "ACREDITADA",
+        "identificacion": "NO_APLICA",
+        "poblacional": "ACREDITADA",
+        "pregunta_original": "ABIERTA",
+        "seleccion_no_respuesta": "ACREDITADA",
+        "temporalidad": "ACREDITADA",
+        "unidad": "ACREDITADA",
+        "uso_habilitado": "APTA_ALCANCE_MENOR"
+      },
+      "uso_solicitado": "DESCRIPTIVO",
+      "version_pregunta": "2026-09-09-horizonte-ahorro-descolapsado-v1",
+      "vinculo_evaluado": {
+        "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto",
+        "resultado_bloqueado_id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+        "resultado_id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+        "uso_requerido": "MEDICION-GEN2",
+        "uso_solicitado": "DESCRIPTIVO",
+        "vinculo_alcance_menor": {
+          "categoria": "sin_colchon_un_mes",
+          "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto",
+          "evento": "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros",
+          "limites": "no es duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual",
+          "resultado_bloqueado_id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+          "transformacion": "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado",
+          "uso_menor": "DESCRIPTIVO",
+          "uso_original": "MEDICION-GEN2"
+        }
+      }
+    },
+    "valor": {
+      "categoria": "sin_colchon_un_mes",
+      "punto": 0.541343,
+      "tipo_escala": "binaria"
+    }
+  },
+  {
+    "advertencia_interpretacion": "Proporción poblacional del universo declarado; no es diagnóstico ni probabilidad personalizada validada.",
+    "alcance_menor": {
+      "categoria": "sin_colchon_un_mes",
+      "evento": "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros",
+      "limites": "no es duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual",
+      "transformacion": "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado"
+    },
+    "aptitud": {
+      "alcance": "DESCRIPTIVO como sin_colchon_un_mes dentro del dominio sellado; no duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual",
+      "estado": "APTA-POR-LINAJE",
+      "rol_uso": null,
+      "uso_solicitado": "DESCRIPTIVO",
+      "validacion_independiente": "PASA"
+    },
+    "contrato": {
+      "archivos": {
+        "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
+        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
+        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
+        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
+        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
+        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
+        "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
+        "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
+        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
+      },
+      "guardia_suficiencia_efectiva": {
+        "accion_consumidor": "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO",
+        "accion_reportada_investigacion": "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO",
+        "brecha": "no puede distinguir horizonte corto de ausencia de ahorro",
+        "consumidor": "E05 / dinero.ahorro.horizonte",
+        "decision_emision": {
+          "clase": "AUTORIZA_ALCANCE_MENOR_RESULTADO_EXISTENTE",
+          "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto",
+          "evidencias": [
+            "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md"
+          ],
+          "necesidad_id": "NC-0126",
+          "resultado_id": "RESULT-ENIF-AHO-A-P-CORTO-CON-P",
+          "uso_aprobado": "DESCRIPTIVO",
+          "uso_menor": "DESCRIPTIVO",
+          "uso_original": "MEDICION-GEN2",
+          "version_pregunta": "2026-09-09-horizonte-ahorro-descolapsado-v1"
+        },
+        "estado_efectivo": "HABILITADA_POR_DECISION_DE_ALCANCE_MENOR_APLICABLE",
+        "evidencias": [
+          "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+          "data/manifiesto.yaml",
+          "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md",
+          "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md",
+          "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md"
+        ],
+        "fuente_estado": "data/curacion-registro/investigacion-estado/NC-0126.json",
+        "integridad_estado": {
+          "descarte": null,
+          "identidad_valida": true,
+          "ruta_observada": "data/curacion-registro/investigacion-estado/NC-0126.json",
+          "sha256_observado": "46fab34285752b76cfa0efbbcb7b080276bd758018f84dcfc766fbdf370fe9d4"
+        },
+        "integridad_evidencias": {
+          "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
+          "data/manifiesto.yaml": "d3433b7366f5b0d6e60043137c82ee25daaad74f3fa04a0f8abb8ec6dd115d77",
+          "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md": "caacb984673f5c553060de60293d708a9e0aa972b7cc536dcca7c1e4ef028214",
+          "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md": "a0cca9edc107d6cca994dd20538986b6d4a09d461a7fa9dc2bdf3aaae8746666",
+          "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md": "fb95588ff5630bcd00e916f5e026523f04bae247cba7c03473a3ba919fd0e710"
+        },
+        "motivo_bloqueo": "decisión explícita y evidencia aplicables",
+        "necesidad_id": "NC-0126",
+        "suficiencia": {
+          "conceptual": "NO_ACREDITADA",
+          "diseno": "ACREDITADA",
+          "identidad": "ACREDITADA",
+          "identificacion": "NO_APLICA",
+          "poblacional": "ACREDITADA",
+          "pregunta_original": "ABIERTA",
+          "seleccion_no_respuesta": "ACREDITADA",
+          "temporalidad": "ACREDITADA",
+          "unidad": "ACREDITADA",
+          "uso_habilitado": "APTA_ALCANCE_MENOR"
+        },
+        "uso_solicitado": "DESCRIPTIVO",
+        "version_pregunta": "2026-09-09-horizonte-ahorro-descolapsado-v1",
+        "vinculo_evaluado": {
+          "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto",
+          "resultado_bloqueado_id": "RESULT-ENIF-AHO-A-P-CORTO-CON-P",
+          "resultado_id": "RESULT-ENIF-AHO-A-P-CORTO-CON-P",
+          "uso_requerido": "MEDICION-GEN2",
+          "uso_solicitado": "DESCRIPTIVO",
+          "vinculo_alcance_menor": {
+            "categoria": "sin_colchon_un_mes",
+            "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto",
+            "evento": "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros",
+            "limites": "no es duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual",
+            "resultado_bloqueado_id": "RESULT-ENIF-AHO-A-P-CORTO-CON-P",
+            "transformacion": "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado",
+            "uso_menor": "DESCRIPTIVO",
+            "uso_original": "MEDICION-GEN2"
+          }
+        }
+      },
+      "sha256": "3d5cdc472fcaa9044757a5031f1d73ab0340dc16c8d5d9d7659a0d721d853ef2",
+      "version": "CONSULTA-GEN2-v2"
+    },
+    "dependencia": {
+      "camino_linaje": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto -> RESULT-ENIF-AHO-A-P-CORTO-CON-P -> CALC-ENIF-0001/RESULT-ENIF-AHO-A-P-CORTO-CON-P -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "estructurales": [
+        "regla:dinero.ahorro.horizonte_no_corto_con_seguridad_social:disparadores",
+        "generadores:G3",
+        "tier:FUERTE"
+      ],
+      "padre": null,
+      "rol_seleccion": null
+    },
+    "dominio": {
+      "recibido": {},
+      "requerido": {}
+    },
+    "estado": "EMITE",
+    "estimando": {
+      "evento": "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros",
+      "periodo": {
+        "cita": "milpa/tramite.yaml:1180 -- ola_calibracion: \"ENIF 2024\"",
+        "valor": "ENIF 2024"
+      },
+      "poblacion": "18+ elegidas que trabajan ∧ P3_13∈{1,2,3,4} ∧ P4_10∈{1..5}; n=3 969; masa expandida=26 064 281 (27.6628% de toda la población 18+)",
+      "transformacion": "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado",
+      "unidad": "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"
+    },
+    "peticion": {
+      "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto",
+      "contexto": {},
+      "id": "AHO-DESC-CON-SEGURIDAD",
+      "proposito": "consulta",
+      "uso": "DESCRIPTIVO"
+    },
+    "referencias": [
+      "data/adq-investigacion.yaml",
+      "data/corrida0/CALC-ENIF-0001/ejecucion.json",
+      "data/corrida0/CALC-ENIF-0001/resultados.json",
+      "data/corrida0/CALC-ENIF-0001/spec.yaml",
+      "data/corrida0/resultados.tsv",
+      "data/corrida0/usos.tsv",
+      "milpa/src/emisor.py",
+      "milpa/src/linaje.py",
+      "milpa/tramite.yaml",
+      "tools/adq_investigacion.py",
+      "tools/adq_suficiencia.py",
+      "tools/baseline_temporal.py",
+      "tools/consulta_gen2.py",
+      "tools/emite_m.py",
+      "tools/snapshot_motor_gen2.py"
+    ],
+    "resultado": {
+      "corrida_id": "CALC-ENIF-0001--afbf3c76d71b",
+      "fuente": "VERIFY-EN-ESTA-SESION · verify(CALC-ENIF-0001)",
+      "generacion": "GEN2",
+      "id": "RESULT-ENIF-AHO-A-P-CORTO-CON-P",
+      "origen_numerico": "NUEVO",
+      "spec_id": "CALC-ENIF-0001",
+      "tipo": "flotante",
+      "unidad": "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR"
+    },
+    "suficiencia_uso": {
+      "accion_consumidor": "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO",
+      "accion_reportada_investigacion": "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO",
+      "brecha": "no puede distinguir horizonte corto de ausencia de ahorro",
+      "consumidor": "E05 / dinero.ahorro.horizonte",
+      "decision_emision": {
+        "clase": "AUTORIZA_ALCANCE_MENOR_RESULTADO_EXISTENTE",
+        "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto",
+        "evidencias": [
+          "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md"
+        ],
+        "necesidad_id": "NC-0126",
+        "resultado_id": "RESULT-ENIF-AHO-A-P-CORTO-CON-P",
+        "uso_aprobado": "DESCRIPTIVO",
+        "uso_menor": "DESCRIPTIVO",
+        "uso_original": "MEDICION-GEN2",
+        "version_pregunta": "2026-09-09-horizonte-ahorro-descolapsado-v1"
+      },
+      "estado_efectivo": "HABILITADA_POR_DECISION_DE_ALCANCE_MENOR_APLICABLE",
+      "evidencias": [
+        "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+        "data/manifiesto.yaml",
+        "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md",
+        "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md",
+        "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md"
+      ],
+      "fuente_estado": "data/curacion-registro/investigacion-estado/NC-0126.json",
+      "integridad_estado": {
+        "descarte": null,
+        "identidad_valida": true,
+        "ruta_observada": "data/curacion-registro/investigacion-estado/NC-0126.json",
+        "sha256_observado": "46fab34285752b76cfa0efbbcb7b080276bd758018f84dcfc766fbdf370fe9d4"
+      },
+      "integridad_evidencias": {
+        "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
+        "data/manifiesto.yaml": "d3433b7366f5b0d6e60043137c82ee25daaad74f3fa04a0f8abb8ec6dd115d77",
+        "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md": "caacb984673f5c553060de60293d708a9e0aa972b7cc536dcca7c1e4ef028214",
+        "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md": "a0cca9edc107d6cca994dd20538986b6d4a09d461a7fa9dc2bdf3aaae8746666",
+        "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md": "fb95588ff5630bcd00e916f5e026523f04bae247cba7c03473a3ba919fd0e710"
+      },
+      "motivo_bloqueo": "decisión explícita y evidencia aplicables",
+      "necesidad_id": "NC-0126",
+      "suficiencia": {
+        "conceptual": "NO_ACREDITADA",
+        "diseno": "ACREDITADA",
+        "identidad": "ACREDITADA",
+        "identificacion": "NO_APLICA",
+        "poblacional": "ACREDITADA",
+        "pregunta_original": "ABIERTA",
+        "seleccion_no_respuesta": "ACREDITADA",
+        "temporalidad": "ACREDITADA",
+        "unidad": "ACREDITADA",
+        "uso_habilitado": "APTA_ALCANCE_MENOR"
+      },
+      "uso_solicitado": "DESCRIPTIVO",
+      "version_pregunta": "2026-09-09-horizonte-ahorro-descolapsado-v1",
+      "vinculo_evaluado": {
+        "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto",
+        "resultado_bloqueado_id": "RESULT-ENIF-AHO-A-P-CORTO-CON-P",
+        "resultado_id": "RESULT-ENIF-AHO-A-P-CORTO-CON-P",
+        "uso_requerido": "MEDICION-GEN2",
+        "uso_solicitado": "DESCRIPTIVO",
+        "vinculo_alcance_menor": {
+          "categoria": "sin_colchon_un_mes",
+          "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto",
+          "evento": "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros",
+          "limites": "no es duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual",
+          "resultado_bloqueado_id": "RESULT-ENIF-AHO-A-P-CORTO-CON-P",
+          "transformacion": "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado",
+          "uso_menor": "DESCRIPTIVO",
+          "uso_original": "MEDICION-GEN2"
+        }
+      }
+    },
+    "valor": {
+      "categoria": "sin_colchon_un_mes",
+      "punto": 0.37313,
+      "tipo_escala": "binaria"
+    }
+  },
+  {
+    "advertencia_interpretacion": "Proporción poblacional del universo declarado; no es diagnóstico ni probabilidad personalizada validada.",
+    "alcance_menor": {
+      "categoria": "sin_colchon_un_mes",
+      "evento": "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros",
+      "limites": "no es duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual",
+      "transformacion": "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado"
+    },
+    "aptitud": {
+      "alcance": "DESCRIPTIVO como sin_colchon_un_mes dentro del dominio sellado; no duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual",
+      "estado": "APTA-POR-LINAJE",
+      "rol_uso": null,
+      "uso_solicitado": "DESCRIPTIVO",
+      "validacion_independiente": "PASA"
+    },
+    "contrato": {
+      "archivos": {
+        "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
+        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
+        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
+        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
+        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
+        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
+        "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
+        "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
+        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
+      },
+      "guardia_suficiencia_efectiva": {
+        "accion_consumidor": "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO",
+        "accion_reportada_investigacion": "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO",
+        "brecha": "no puede distinguir horizonte corto de ausencia de ahorro",
+        "consumidor": "E05 / dinero.ahorro.horizonte",
+        "decision_emision": {
+          "clase": "AUTORIZA_ALCANCE_MENOR_RESULTADO_EXISTENTE",
+          "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto",
+          "evidencias": [
+            "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md"
+          ],
+          "necesidad_id": "NC-0126",
+          "resultado_id": "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P",
+          "uso_aprobado": "DESCRIPTIVO",
+          "uso_menor": "DESCRIPTIVO",
+          "uso_original": "MEDICION-GEN2",
+          "version_pregunta": "2026-09-09-horizonte-ahorro-descolapsado-v1"
+        },
+        "estado_efectivo": "HABILITADA_POR_DECISION_DE_ALCANCE_MENOR_APLICABLE",
+        "evidencias": [
+          "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+          "data/manifiesto.yaml",
+          "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md",
+          "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md",
+          "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md"
+        ],
+        "fuente_estado": "data/curacion-registro/investigacion-estado/NC-0126.json",
+        "integridad_estado": {
+          "descarte": null,
+          "identidad_valida": true,
+          "ruta_observada": "data/curacion-registro/investigacion-estado/NC-0126.json",
+          "sha256_observado": "46fab34285752b76cfa0efbbcb7b080276bd758018f84dcfc766fbdf370fe9d4"
+        },
+        "integridad_evidencias": {
+          "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
+          "data/manifiesto.yaml": "d3433b7366f5b0d6e60043137c82ee25daaad74f3fa04a0f8abb8ec6dd115d77",
+          "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md": "caacb984673f5c553060de60293d708a9e0aa972b7cc536dcca7c1e4ef028214",
+          "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md": "a0cca9edc107d6cca994dd20538986b6d4a09d461a7fa9dc2bdf3aaae8746666",
+          "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md": "fb95588ff5630bcd00e916f5e026523f04bae247cba7c03473a3ba919fd0e710"
+        },
+        "motivo_bloqueo": "decisión explícita y evidencia aplicables",
+        "necesidad_id": "NC-0126",
+        "suficiencia": {
+          "conceptual": "NO_ACREDITADA",
+          "diseno": "ACREDITADA",
+          "identidad": "ACREDITADA",
+          "identificacion": "NO_APLICA",
+          "poblacional": "ACREDITADA",
+          "pregunta_original": "ABIERTA",
+          "seleccion_no_respuesta": "ACREDITADA",
+          "temporalidad": "ACREDITADA",
+          "unidad": "ACREDITADA",
+          "uso_habilitado": "APTA_ALCANCE_MENOR"
+        },
+        "uso_solicitado": "DESCRIPTIVO",
+        "version_pregunta": "2026-09-09-horizonte-ahorro-descolapsado-v1",
+        "vinculo_evaluado": {
+          "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto",
+          "resultado_bloqueado_id": "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P",
+          "resultado_id": "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P",
+          "uso_requerido": "MEDICION-GEN2",
+          "uso_solicitado": "DESCRIPTIVO",
+          "vinculo_alcance_menor": {
+            "categoria": "sin_colchon_un_mes",
+            "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto",
+            "evento": "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros",
+            "limites": "no es duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual",
+            "resultado_bloqueado_id": "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P",
+            "transformacion": "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado",
+            "uso_menor": "DESCRIPTIVO",
+            "uso_original": "MEDICION-GEN2"
+          }
+        }
+      },
+      "sha256": "e02caf192d222dfa9e1e54fcc7684df21eebc5dadda14295d02f1e1600eb1996",
+      "version": "CONSULTA-GEN2-v2"
+    },
+    "dependencia": {
+      "camino_linaje": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto -> RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P -> CALC-ENIF-0002/RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE] | IN-CALC-ENIF-0001-RESULTADOS:DATO -> data/corrida0/CALC-ENIF-0001/resultados.json -> CALC-ENIF-0001 -> CALC-ENIF-0001/RESULT-ENIF-AHO-A-C-FALTANTE-P410-CON-N -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
+      "estructurales": [
+        "regla:dinero.ahorro.horizonte_no_trabajadores:disparadores",
+        "generadores:G3",
+        "tier:FUERTE"
+      ],
+      "padre": null,
+      "rol_seleccion": null
+    },
+    "dominio": {
+      "recibido": {},
+      "requerido": {}
+    },
+    "estado": "EMITE",
+    "estimando": {
+      "evento": "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros",
+      "periodo": {
+        "cita": "milpa/tramite.yaml:1433 -- ola_calibracion: \"ENIF 2024\"",
+        "valor": "ENIF 2024"
+      },
+      "poblacion": "18+ elegidas que no trabajaron el mes anterior: P3_8=8 o P3_9=7; P4_10∈{1..5}; n=3 462; masa expandida=25 090 350 (26.6291% de toda la población 18+)",
+      "transformacion": "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado",
+      "unidad": "proporcion ponderada"
+    },
+    "peticion": {
+      "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto",
+      "contexto": {},
+      "id": "AHO-DESC-NO-TRABAJA",
+      "proposito": "consulta",
+      "uso": "DESCRIPTIVO"
+    },
+    "referencias": [
+      "data/adq-investigacion.yaml",
+      "data/corrida0/CALC-ENIF-0002/ejecucion.json",
+      "data/corrida0/CALC-ENIF-0002/resultados.json",
+      "data/corrida0/CALC-ENIF-0002/spec.yaml",
+      "data/corrida0/resultados.tsv",
+      "data/corrida0/usos.tsv",
+      "milpa/src/emisor.py",
+      "milpa/src/linaje.py",
+      "milpa/tramite.yaml",
+      "tools/adq_investigacion.py",
+      "tools/adq_suficiencia.py",
+      "tools/baseline_temporal.py",
+      "tools/consulta_gen2.py",
+      "tools/emite_m.py",
+      "tools/snapshot_motor_gen2.py"
+    ],
+    "resultado": {
+      "corrida_id": "CALC-ENIF-0002--5f5469b5e95b",
+      "fuente": "VERIFY-EN-ESTA-SESION · verify(CALC-ENIF-0002)",
+      "generacion": "GEN2",
+      "id": "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P",
+      "origen_numerico": "NUEVO",
+      "spec_id": "CALC-ENIF-0002",
+      "tipo": "flotante",
+      "unidad": "proporcion ponderada"
+    },
+    "suficiencia_uso": {
+      "accion_consumidor": "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO",
+      "accion_reportada_investigacion": "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO",
+      "brecha": "no puede distinguir horizonte corto de ausencia de ahorro",
+      "consumidor": "E05 / dinero.ahorro.horizonte",
+      "decision_emision": {
+        "clase": "AUTORIZA_ALCANCE_MENOR_RESULTADO_EXISTENTE",
+        "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto",
+        "evidencias": [
+          "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md"
+        ],
+        "necesidad_id": "NC-0126",
+        "resultado_id": "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P",
+        "uso_aprobado": "DESCRIPTIVO",
+        "uso_menor": "DESCRIPTIVO",
+        "uso_original": "MEDICION-GEN2",
+        "version_pregunta": "2026-09-09-horizonte-ahorro-descolapsado-v1"
+      },
+      "estado_efectivo": "HABILITADA_POR_DECISION_DE_ALCANCE_MENOR_APLICABLE",
+      "evidencias": [
+        "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+        "data/manifiesto.yaml",
+        "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md",
+        "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md",
+        "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md"
+      ],
+      "fuente_estado": "data/curacion-registro/investigacion-estado/NC-0126.json",
+      "integridad_estado": {
+        "descarte": null,
+        "identidad_valida": true,
+        "ruta_observada": "data/curacion-registro/investigacion-estado/NC-0126.json",
+        "sha256_observado": "46fab34285752b76cfa0efbbcb7b080276bd758018f84dcfc766fbdf370fe9d4"
+      },
+      "integridad_evidencias": {
+        "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
+        "data/manifiesto.yaml": "d3433b7366f5b0d6e60043137c82ee25daaad74f3fa04a0f8abb8ec6dd115d77",
+        "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md": "caacb984673f5c553060de60293d708a9e0aa972b7cc536dcca7c1e4ef028214",
+        "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md": "a0cca9edc107d6cca994dd20538986b6d4a09d461a7fa9dc2bdf3aaae8746666",
+        "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md": "fb95588ff5630bcd00e916f5e026523f04bae247cba7c03473a3ba919fd0e710"
+      },
+      "motivo_bloqueo": "decisión explícita y evidencia aplicables",
+      "necesidad_id": "NC-0126",
+      "suficiencia": {
+        "conceptual": "NO_ACREDITADA",
+        "diseno": "ACREDITADA",
+        "identidad": "ACREDITADA",
+        "identificacion": "NO_APLICA",
+        "poblacional": "ACREDITADA",
+        "pregunta_original": "ABIERTA",
+        "seleccion_no_respuesta": "ACREDITADA",
+        "temporalidad": "ACREDITADA",
+        "unidad": "ACREDITADA",
+        "uso_habilitado": "APTA_ALCANCE_MENOR"
+      },
+      "uso_solicitado": "DESCRIPTIVO",
+      "version_pregunta": "2026-09-09-horizonte-ahorro-descolapsado-v1",
+      "vinculo_evaluado": {
+        "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto",
+        "resultado_bloqueado_id": "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P",
+        "resultado_id": "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P",
+        "uso_requerido": "MEDICION-GEN2",
+        "uso_solicitado": "DESCRIPTIVO",
+        "vinculo_alcance_menor": {
+          "categoria": "sin_colchon_un_mes",
+          "consumidor": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto",
+          "evento": "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros",
+          "limites": "no es duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual",
+          "resultado_bloqueado_id": "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P",
+          "transformacion": "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado",
+          "uso_menor": "DESCRIPTIVO",
+          "uso_original": "MEDICION-GEN2"
+        }
+      }
+    },
+    "valor": {
+      "categoria": "sin_colchon_un_mes",
+      "punto": 0.632782,
+      "tipo_escala": "binaria"
+    }
+  }
+]

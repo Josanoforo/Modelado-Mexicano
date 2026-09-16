@@ -1,0 +1,123 @@
+# CALC-TIENE-AHORROS-0001-v1_1 -- SUCESION v1.1 de CALC-TIENE-AHORROS-0001 (ACTO GEN2-MEDICION-DEMANDA-2, CAJA, 15/sep/2026).
+# La v1_0 (ACTO GEN2-SPECS-DEMANDA-2, PR #781) queda INTACTA y SUPERADA: E.3 prohibe editarla.
+# Lo UNICO que cambia respecto a la v1_0: (1) `script:` apunta al medidor.py de esta carpeta,
+#   porque el script legado que la v1_0 nombra no expone `medir(inputs, contrato)` y el runner lo
+#   declara NO-EJECUTABLE; el medidor REUTILIZA por import el cargador y el estimador de ese mismo
+#   script legado (mismo codigo, misma semilla 42) y solo redirige la ruta al payload que preflight
+#   resolvio (P1); (2) `spec.md` existe en la carpeta (la v1_0 lo declaraba por sha256 sin traerlo);
+#   (3) `repite_de` en la raiz; (4) etiquetas de proceso (firma de contador del lanzamiento,
+#   medidor congelado aqui). Universo, variables, ponderador, transformacion, estimando, parametros,
+#   tolerancia e ids de RESULT: VERBATIM de la v1_0.
+# CALC-TIENE-AHORROS-0001 -- cara mecanica de spec.md (ACTO GEN2-SPECS-DEMANDA-2).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/ENIF-TIENE-AHORROS-spec-v1_0.md
+# (`prereg-caja-ENIF-TIENE-AHORROS`).
+# Releva 2 de los 9 RESULT de CORR-0009 (RES-0031/RES-0032) bajo el registro GEN2.
+# CORR-0009 queda AGOTADA tras esta pieza (los otros 7 ya estaban relevados:
+# 6 por CALC-ENIF-0001, 1 -- RES-0065 -- por CALC-ENIF-0002, ya sellado).
+calc_id: CALC-TIENE-AHORROS-0001-v1_1
+repite_de: CALC-TIENE-AHORROS-0001
+spec_md: spec.md
+spec_md_sha256: b2add081fff0abe02d60ac38bf9bb3ee08b151f24d7336a1d7344365c8fbf6a1
+
+script: data/corrida0/CALC-TIENE-AHORROS-0001-v1_1/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: TASA-BASE-DE-REGLA-YA-EJECUTADA
+  cuenta_gen2: SI
+  cuenta_gen2_firma: "FIRMA DE MESA, mesa, 15 de septiembre de 2026 -- OBJETO: cuenta_gen2 = SI para toda corrida que este acto selle sobre spec congelada del mapa-19; no adopta al motor. (lanzamiento verbatim, forense/encargos/2026-09-15-GEN2-MEDICION-DEMANDA-2.md; fila propia en data/corrida0/decisiones.tsv, precedencia 1 del registro)"
+  version_spec: "v1.1 -- sucesora de CALC-TIENE-AHORROS-0001 (intacta, SUPERADA por repite_de). Cambia SOLO el cableado que impedia correr: script con interfaz medir(), spec.md presente, repite_de en la raiz. Contrato verbatim."
+  script_legado_reutilizado: "tools/medidor_ahorro_enif24.py -- el medidor.py de esta carpeta importa su cargador y su estimador sin modificarlo; tools/ no se toca."
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENIF-TIENE-AHORROS-spec-v1_0.md
+  spec_sellada_sha256: b2add081fff0abe02d60ac38bf9bb3ee08b151f24d7336a1d7344365c8fbf6a1
+  demanda_que_releva: "CORR-0009 (payload enif_2024_enif_2024_bd_csv) -> 2 de 9 RESULT: RES-0031 (dinero.ahorro.tiene_ahorros:tiene_ahorros_enif2024), RES-0032 (:no_tiene_ahorros_enif2024). Con esta pieza CORR-0009 queda AGOTADA (9/9): 6 via CALC-ENIF-0001, 1 (RES-0065) via CALC-ENIF-0002 (ya sellado, no tocado), 2 via este CALC."
+  repite_de: "NINGUN CALC previo -- mismo script y misma corrida que YA sello milpa/tramite.yaml (ACTO MAESTRA34-L5 P4, tools/medidor_ahorro_enif24.py; cargada por ACTO MAESTRA35-N1, firma c1, 2/sep/2026). Este CALC no re-ejecuta: registra esa corrida en D-15/GEN2."
+  por_que_no_es_duplicado: "milpa/tramite.yaml:631-684 trae la cifra sellada (tier FUERTE) pero SIN spec.yaml/corrida0_resultado_id para tiene_ahorros_enif2024/no_tiene_ahorros_enif2024 -- mismo hueco FALTA-CAPA-2 que CORR-0017/CORR-0007-evasion. CALC-ENIF-0002 (RES-0065) es una regla DISTINTA (dinero.ahorro.horizonte_no_trabajadores) y ya tiene su propio CALC completo -- no se duplica."
+  reglas_bajo_prueba: "NINGUNA cambia de cifra. dinero.ahorro.tiene_ahorros conserva tiene_ahorros_enif2024=0.642080 y no_tiene_ahorros_enif2024=0.357920 exactos, IC95=[0.630602,0.653440], n=13502 (milpa/tramite.yaml:641-642,661-665). Este CALC solo les da cadena E.2 en el registro GEN2."
+  firma_de_contador: "FIRMADA por el lanzamiento de ACTO GEN2-MEDICION-DEMANDA-2 (mesa, 15/sep/2026), verbatim en cuenta_gen2_firma; OBJETO = toda corrida que ese acto selle sobre spec congelada del mapa-19. La v1_0 decia NO-FIRMADA porque su encargo (GEN2-SPECS-DEMANDA-2) no traia OBJETO."
+  contaminacion_declarada: "ADR-46 -- al congelar, la sesion ya habia leido milpa/tramite.yaml:631-684 completo (la regla, disparadores_estado PENDIENTE-DE-MESA, la enmienda_enif2024 con universo/ponderador/IC95/n/estratos/UPM, las sensibilidades A_solo_formal/B_solo_informal, la reserva de no-comparabilidad con 2005-06) y tools/medidor_ahorro_enif24.py (cabecera). NO es ciega: leerlos es lo que A.8 exige. Tambien se leyo data/corrida0/CALC-ENIF-0002/ completo (spec.yaml, resultados.json, sello.json) para verificar RES-0065 -- ese CALC no se toca ni se re-sella."
+  medidor_ejecutado_al_congelar: "NO en esta sesion sobre microdato: el medidor.py se congela en el COMMIT-1 de la sucesion probado SOLO contra un ZIP sintetico con la forma de TMODULO.csv (columnas declaradas, valores fabricados); el primer valor real lo produce corrida0 run en el COMMIT-2. Lo que la v1_0 declaraba sigue siendo cierto para la medicion legada: SI, PERO NO EN ESTA SESION. Corrio en CAJA (ACTO MAESTRA34-L5 P4) contra enif_2024_enif_2024_bd_csv (sha256=00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039). Esta sesion (NUBE, sin corpus) NO lo re-corre -- lee milpa/tramite.yaml y forense/notas/2026-09-02-MAESTRA34-L5-P4-spec.md. `corrida0.py preflight CALC-TIENE-AHORROS-0001` reportara BLOQUEADO:resultados_ausente (no script_ausente) hasta que un acto de registro transcriba resultados.json -- transcripcion, no medicion nueva."
+
+inputs:
+  - id: enif_2024_enif_2024_bd_csv
+    origen: manifiesto
+  - id: IN-TIENEAHORROS-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/ENIF-TIENE-AHORROS-spec-v1_0.md
+    sha256: b2add081fff0abe02d60ac38bf9bb3ee08b151f24d7336a1d7344365c8fbf6a1
+
+variables:
+  - {archivo: "TMODULO.csv", variable: "EDAD_V", rol: "filtro de universo -- 18 a 98 anios (elegida)", codigos: "entero, 18-98"}
+  - {archivo: "TMODULO.csv", variable: "P5_1_1..P5_1_6", rol: "DESENLACE -- ahorro informal, seis reactivos", codigos: "'1'=si en al menos uno -> tiene_ahorros=1 por esta via"}
+  - {archivo: "TMODULO.csv", variable: "P5_6_1..P5_6_9", rol: "DESENLACE -- ahorro formal, nueve reactivos", codigos: "'1'=si en al menos uno -> tiene_ahorros=1 por esta via; blanco por secuencia = no-ahorro por esta via"}
+  - {archivo: "TMODULO.csv", variable: FAC_PER, rol: "PONDERADOR de persona", codigos: "flotante tal cual"}
+  - {archivo: "TMODULO.csv", variable: EST_DIS, rol: "ESTRATO de diseno", codigos: "llave de conglomerado"}
+  - {archivo: "TMODULO.csv", variable: UPM_DIS, rol: "UPM de diseno", codigos: "llave de conglomerado"}
+
+universo: >-
+  Personas ELEGIDAS de 18 anios y mas en TMODULO.csv (EDAD_V 18-98), las
+  13502 sin perdida.
+
+filtros: >-
+  Ninguno mas alla del universo declarado. tiene_ahorros=1 sse alguna de
+  P5_1_1..P5_1_6 (informal) o P5_6_1..P5_6_9 (formal) vale '1'; blanco por
+  secuencia en P5_6_* cuenta como no-ahorro por esa via (declarado, no
+  imputado).
+
+ponderador: "FAC_PER"
+
+transformacion: >-
+  wprop_ic_conglomerado (tools/calibracion_mordida_encig_serie.py,
+  reutilizada por tools/medidor_ahorro_enif24.py): bootstrap de conglomerado
+  (EST_DIS,UPM_DIS) con reemplazo, n_boot=10000, seed=42.
+  tiene_ahorros_enif2024 = p ponderado del numerador (8699) sobre n=13502.
+  no_tiene_ahorros_enif2024 = complemento CONTADO (1-p).
+
+estimando: >-
+  DESCRIPTIVO, sin causalidad. (1) ADOPTABLE POR MESA via carga ya sellada:
+  tiene_ahorros_enif2024=0.642080, IC95=[0.630602,0.653440];
+  no_tiene_ahorros_enif2024=0.357920 (complemento). (2) SECUNDARIOS citados
+  en milpa/ pero NO releados por este CALC (sin RES-id bajo CORR-0009): las
+  sensibilidades A_solo_formal (p=0.284927) y B_solo_informal (p=0.561920),
+  y la segmentacion por ejes (via_informal_ejes_enif2024).
+
+dependencias_materiales: [pandas]
+
+parametros:
+  fuente_acto: "ACTO GEN2-SPECS-DEMANDA-2 · CALC-TIENE-AHORROS-0001 · registro D-15/GEN2 de una medicion YA CORRIDA por ACTO MAESTRA34-L5 P4"
+  firma_que_lo_autoriza: "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-2.md, P2: «CORR-0009 (EXISTE-NO-SATISFACE) -> sucesion que releve la corrida entera, o declaracion explicita de que parte no puede y por que». Esta pieza, junto con la correccion de RES-0065 (spec.md §0.3, ya sellado por otro CALC), deja CORR-0009 AGOTADA -- la corrida entera queda relevada."
+  bootstrap_replicas: 10000
+  seed_original: 42
+  numerador: 8699
+  estratos: 190
+  upm: 2164
+  poblacion_expandida: 94221441
+  sensibilidades_no_releadas:
+    A_solo_formal: {p: 0.284927, ic95: [0.273502, 0.296342], n_con_ahorro: 4078}
+    B_solo_informal: {p: 0.561920, ic95: [0.549922, 0.573502], n_con_ahorro: 7590}
+  res_0065_ya_relevado: "CALC-ENIF-0002 (sellado, ADR-459), RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P=0.632782 -- no se toca ni se re-sella aqui, ver spec.md §0.3."
+
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.random.default_rng (wprop_ic_conglomerado, verbatim del estimador de la casa)
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-6
+  razon: >-
+    Transcripcion, no re-medicion. Tolerancia para una eventual
+    re-ejecucion futura del mismo script/payload/semilla.
+
+resultados:
+  - {id: RESULT-TIENEAHORROS-G-N-PERSONAS, tipo: entero, unidad: "personas 18+ elegidas en TMODULO.csv (esperado 13502)"}
+  - {id: RESULT-TIENEAHORROS-G-NUMERADOR, tipo: entero, unidad: "personas con tiene_ahorros=1 (esperado 8699)"}
+  - {id: RESULT-TIENEAHORROS-A-P-TIENE, tipo: proporcion, unidad: "p ponderado de tiene_ahorros -- releva RES-0031 (esperado 0.642080)", permite_no_estimable: true}
+  - {id: RESULT-TIENEAHORROS-A-P-NO-TIENE, tipo: proporcion, unidad: "complemento contado, 1-A-P-TIENE -- releva RES-0032 (esperado 0.357920)", permite_no_estimable: true}
+  - {id: RESULT-TIENEAHORROS-A-SUMA-UNO, tipo: texto, unidad: "SI/NO:<residuo> -- A-P-TIENE + A-P-NO-TIENE dentro de tolerancia"}
+  - {id: RESULT-TIENEAHORROS-A-IC-LO, tipo: flotante, unidad: "percentil 2.5 del bootstrap (esperado 0.630602)", permite_no_estimable: true}
+  - {id: RESULT-TIENEAHORROS-A-IC-HI, tipo: flotante, unidad: "percentil 97.5 del bootstrap (esperado 0.653440)", permite_no_estimable: true}
+  - {id: RESULT-TIENEAHORROS-A-DELTA-VS-SELLADO, tipo: flotante, unidad: "A-P-TIENE menos 0.642080 (valor sellado en milpa/tramite.yaml), CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-TIENEAHORROS-A-RELEVA-SELLADO, tipo: texto, unidad: "SI / NO -- delta dentro de tolerancia (esperado SI)"}

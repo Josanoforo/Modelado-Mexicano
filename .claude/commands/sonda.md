@@ -31,6 +31,24 @@ residual público como `PENDIENTE` y el mismo ciclo puede adquirirlo. Esa
 autorización cubre investigación y adquisición pública, no adopción, compra,
 contacto, identidad, equivalencia de constructos ni identificación causal.
 
+En el ciclo continuo la identidad operativa es consumidor + uso/pregunta +
+versión. Una NC cerrada puede seguir como antecedente de una demanda de
+instrumento sin reabrirse. Para empezar a explorar bastan una finalidad o
+consumidor, una brecha concreta y un ámbito conocido: si falta población,
+periodo o equivalencia, busca primero instrumento/descriptores y conserva esos
+campos como desconocidos. Una candidata parcialmente útil sí se entrega, con
+el uso menor permitido y la brecha que permanece.
+
+No repitas consultas agotadas. Si `frontera_no_examinada` o
+`cursor_continuacion` nombra una ruta pública concreta todavía plausible,
+`estado` **DEBE** ser `continua`, aunque esta corrida no haya producido bytes,
+y deja cursor para el ciclo siguiente. `sin_hallazgo_acotado` sólo aplica
+cuando no queda ninguna ruta pública plausible; si se espera, nombra evento de
+reactivación. Un fallo de proveedor se aísla y la sonda continúa por las otras
+vías y necesidades. Después de dos ciclos sin avance material presenta otra
+fuente/ruta, un uso menor permitido, un proxy propuesto o la decisión humana
+exacta necesaria; el clasificador no toma esa decisión científica.
+
 ---
 
 ## 0 · Qué NO es esta skill

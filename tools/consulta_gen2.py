@@ -328,10 +328,17 @@ def consultar(peticion: object) -> dict[str, Any]:
     salida_cruda = _salida_cruda(regla_cruda, conducta)
     dominio = dict(salida.dominio_elegible)
     resultado, referencias_resultado = _metadatos_resultado(indice, prediccion)
+    vinculo_menor = (
+        suficiencia_uso.get("vinculo_evaluado", {}).get(
+            "vinculo_alcance_menor")
+        if suficiencia_uso else None
+    )
     transformacion = (
         f"1-p({salida.complemento_de})"
         if salida.complemento_de else
         (salida_cruda.get("evento") or conducta))
+    if isinstance(vinculo_menor, Mapping):
+        transformacion = vinculo_menor.get("transformacion") or transformacion
     respuesta: dict[str, Any] = {
         "contrato": _hash_contrato(suficiencia_uso),
         "peticion": _resumen_peticion(peticion),
@@ -340,7 +347,10 @@ def consultar(peticion: object) -> dict[str, Any]:
         "estimando": {
             "poblacion": _universo_conducta(regla_cruda, conducta, dominio),
             "unidad": resultado.get("unidad"),
-            "evento": salida_cruda.get("evento") or f"conducta={conducta}",
+            "evento": (
+                vinculo_menor.get("evento")
+                if isinstance(vinculo_menor, Mapping) else
+                salida_cruda.get("evento") or f"conducta={conducta}"),
             "periodo": _periodo(
                 prediccion, seleccion, regla_id, conducta, lineas),
             "transformacion": transformacion,
@@ -375,8 +385,16 @@ def consultar(peticion: object) -> dict[str, Any]:
         respuesta["valor"] = {
             "punto": prediccion.valor_punto,
             "tipo_escala": prediccion.tipo_escala,
-            "categoria": prediccion.valor_categoria,
+            "categoria": (
+                vinculo_menor.get("categoria")
+                if isinstance(vinculo_menor, Mapping) else
+                prediccion.valor_categoria),
         }
+        if isinstance(vinculo_menor, Mapping):
+            respuesta["alcance_menor"] = {
+                clave: vinculo_menor.get(clave)
+                for clave in ("categoria", "evento", "transformacion", "limites")
+            }
     else:
         respuesta["motivo_no_cobertura"] = prediccion.detalle
     return respuesta

@@ -60,6 +60,18 @@ selección, sus exclusiones y el recibo `invocado=no` sin llamar a ningún LLM.
 `publicacion_trabajo` (objetos/intentos del agente) y `publicacion` (recibo del
 wrapper) son cierres distintos.
 
+La misma tarea realiza una comprobación ligera cada hora y al iniciar sesión.
+Primero actualiza referencias, recupera bajo el lock sólo reservas huérfanas
+con evidencia suficiente y compara únicamente insumos materiales de cada
+demanda; si nada cambió ni venció, termina sin modelo, descarga ni PR. Si hay
+trabajo atendible, despacha el runner con el presupuesto diario restante. El
+intervalo y la recuperación se configuran junto al calendario; no existe un
+segundo programador. El presupuesto se comparte entre activaciones: la reserva
+activa bloquea el máximo y el cierre la liquida antes del recibo contra trabajo
+iniciado y segundos monotónicos, de modo que una ejecución corta devuelve su
+remanente. `python3 tools/adq_doctor.py` muestra consumo, reserva activa,
+disponibilidad y cualquier recuperación pendiente por separado.
+
 El script es idempotente (`Register-ScheduledTask ... -Force`): correrlo
 de nuevo actualiza la tarea existente, no la duplica.
 
@@ -68,7 +80,7 @@ cuenta elevada distinta. `-WindowsUser` permite declararlo explícitamente; en
 esta caja productiva es `PC0`, `Interactive`, `Limited`, y el usuario WSL es
 independientemente `pc0`.
 
-Hora, días y traducción de zona se leen únicamente de
+Hora, días, intervalo de comprobación, recuperación y traducción de zona se leen únicamente de
 `data/adq-config.yaml:calendario` mediante `tools/adq_config.py`. El
 instalador compara `tzutil /g` con `calendario.zona_windows` y se detiene
 si no coincide: no registra 07:30 en la zona accidental del host.

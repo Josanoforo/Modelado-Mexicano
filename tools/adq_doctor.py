@@ -20,6 +20,7 @@ import argparse
 import base64
 import datetime
 import functools
+import hashlib
 import json
 import os
 import re
@@ -118,7 +119,8 @@ def _snapshot_windows(nombre_tarea):
         "$tr=@($t.Triggers|ForEach-Object{[pscustomobject]@{"
         "Type=$_.CimClass.CimClassName;Id=$_.Id;Enabled=$_.Enabled;"
         "StartBoundary=$_.StartBoundary;EndBoundary=$_.EndBoundary;"
-        "DaysOfWeek=[int]$_.DaysOfWeek;WeeksInterval=[int]$_.WeeksInterval}}); "
+        "DaysOfWeek=[int]$_.DaysOfWeek;WeeksInterval=[int]$_.WeeksInterval;"
+        "RepetitionInterval=$_.Repetition.Interval;UserId=$_.UserId}}); "
         "[pscustomobject]@{"
         "ZoneWindows=[TimeZoneInfo]::Local.Id;"
         "EventLog=[pscustomobject]@{LogName=$l.LogName;IsEnabled=$l.IsEnabled;"
@@ -235,8 +237,21 @@ def check_scheduler_windows():
                 "detalle": snapshot["error"], "tarea_buscada": nombre_tarea}
     campos = dict(snapshot.get("Task") or {})
     triggers = campos.pop("Triggers", []) or []
+    calendario = _calendario_resuelto()
+    intervalo = calendario["comprobacion_intervalo_minutos"]
+    patron_intervalo = re.compile(r"^PT(?:(\d+)H)?(?:(\d+)M)?$")
+    def minutos_intervalo(valor):
+        encontrado = patron_intervalo.fullmatch(valor or "")
+        if not encontrado:
+            return None
+        return int(encontrado.group(1) or 0) * 60 + int(encontrado.group(2) or 0)
     semanal = next((t for t in triggers
                     if t.get("Type") == "MSFT_TaskWeeklyTrigger"), {})
+    horario = next((t for t in triggers
+                    if (t.get("Type") == "MSFT_TaskTimeTrigger" and
+                        minutos_intervalo(t.get("RepetitionInterval")) == intervalo)), {})
+    logon = next((t for t in triggers
+                  if t.get("Type") == "MSFT_TaskLogonTrigger"), {})
     comando_efectivo, sin_ventana, espera_real = _decodifica_accion_windows(
         campos.get("Execute"), campos.get("Arguments"))
     campos.update({
@@ -244,24 +259,28 @@ def check_scheduler_windows():
         "DaysOfWeek": semanal.get("DaysOfWeek"),
         "TriggerEnabled": semanal.get("Enabled"),
     })
-    calendario = _calendario_resuelto()
     # Task Scheduler usa Sunday=1, Monday=2, ..., Saturday=64, mientras
     # ``datetime.weekday`` usa Monday=0, ..., Sunday=6.
     mascara_esperada = sum(1 if d == 6 else 2 << d
                            for d in calendario["weekdays"])
     accion_esperada = ("ADQ_DISPARADOR=windows-task-scheduler" in comando_efectivo
+                       and "ADQ_COMPROBACION_LIGERA=1" in comando_efectivo
                        and "/home/pc0/mm-adq/tools/adquiere_launcher.sh" in comando_efectivo
                        and "-d Ubuntu -u pc0" in comando_efectivo)
-    temporales = [t for t in triggers
-                  if t.get("Enabled") and t.get("Type") != "MSFT_TaskWeeklyTrigger"]
+    esperados = {id(semanal), id(horario), id(logon)}
+    temporales = [t for t in triggers if t.get("Enabled") and id(t) not in esperados]
     return {"estado": "INSTALADA", "tarea": nombre_tarea, **campos,
             "comando_efectivo": comando_efectivo,
             "sin_ventana": sin_ventana,
             "espera_y_propaga_resultado": espera_real,
             "triggers_total": len(triggers),
             "triggers_temporales_activos": temporales,
+            "comprobacion_horaria": bool(horario and horario.get("Enabled")),
+            "recuperacion_inicio_sesion": bool(logon and logon.get("Enabled")),
             "calendario_esperado": {
                 "hora": calendario["hora"], "dias_mascara": mascara_esperada,
+                "comprobacion_intervalo_minutos": intervalo,
+                "recuperar_al_iniciar_sesion": calendario["recuperar_al_iniciar_sesion"],
                 "zona_iana": calendario["zona_iana"],
                 "zona_windows": calendario["zona_windows"],
             },
@@ -415,6 +434,26 @@ def check_heartbeat():
             return json.load(f)
     except (OSError, json.JSONDecodeError) as e:
         return {"estado": "NO-LEGIBLE", "razon": str(e)}
+
+
+def check_presupuesto():
+    """Foto de solo lectura del ledger compartido y liquidaciones pendientes."""
+    from pathlib import Path
+    from zoneinfo import ZoneInfo
+    import adq_investigacion
+    cal = _calendario_resuelto()
+    fecha = datetime.datetime.now(ZoneInfo(cal["zona_iana"])).date()
+    cfg = adq_investigacion.cargar_config()
+    dato = adq_investigacion.presupuesto_diario(cfg, fecha, Path(RAIZ))
+    activas = [r["run_id"] for r in dato["reservas"]
+               if r.get("estado") == "activa"]
+    return {
+        "fecha_imputacion": dato["fecha"], "ruta": dato["ruta"],
+        "techo": dato["techo"], "consumido": dato["consumido"],
+        "reservado_activo": dato["reservado_activo"],
+        "disponible": dato["disponible"], "reservas_activas": activas,
+        "recuperacion_pendiente": dato["recuperacion_pendiente"],
+    }
 
 
 def check_t_cron():
@@ -1015,23 +1054,47 @@ def valida_resultado_adquisicion(resultado, seleccion, seleccion_investigacion=N
             adquiridos += 1
             if not item["archivos"] or not item["ids_manifiesto"]:
                 errores.append(f"{objeto}: adquisición sin archivos o ids de manifiesto")
-            archivos_manifiesto = set()
+            entradas_manifiesto = {}
+            ids_fila = {
+                x.strip() for x in str((fila or {}).get("ids_manifiesto", "")).split(";")
+                if x.strip()
+            }
             for mid in item["ids_manifiesto"]:
                 entrada = manifiesto_por_id.get(mid)
                 if not entrada:
                     errores.append(f"{objeto}: id de manifiesto inexistente: {mid}")
                     continue
                 usado = str(entrada.get("usado_para", ""))
-                if objeto not in usado:
-                    errores.append(f"{objeto}: manifiesto {mid} no acredita pertinencia en usado_para")
+                if objeto not in usado and mid not in ids_fila:
+                    errores.append(
+                        f"{objeto}: manifiesto {mid} no acredita pertinencia en "
+                        "usado_para ni en ids_manifiesto de su fila canónica")
                 if entrada.get("archivo"):
-                    archivos_manifiesto.add(str(entrada["archivo"]))
+                    nombre_archivo = str(entrada["archivo"])
+                    entradas_manifiesto[nombre_archivo] = entrada
             for archivo in item["archivos"]:
                 ruta = archivo if os.path.isabs(archivo) else os.path.join(raiz, archivo)
-                if not os.path.isfile(os.path.realpath(ruta)):
+                real = os.path.realpath(ruta)
+                if not os.path.isfile(real):
                     errores.append(f"{objeto}: archivo adquirido inexistente: {archivo}")
-                if os.path.basename(archivo) not in archivos_manifiesto:
+                declarado = str(archivo).replace("\\", "/")
+                if declarado.startswith("data/raw/"):
+                    declarado = declarado[len("data/raw/"):]
+                entrada = entradas_manifiesto.get(declarado)
+                if entrada is None:
+                    coincidencias = [e for nombre, e in entradas_manifiesto.items()
+                                     if os.path.basename(nombre) == os.path.basename(archivo)]
+                    entrada = coincidencias[0] if len(coincidencias) == 1 else None
+                if entrada is None:
                     errores.append(f"{objeto}: archivo {archivo} no corresponde a sus ids de manifiesto")
+                    continue
+                if os.path.isfile(real):
+                    with open(real, "rb") as f:
+                        sha_real = hashlib.file_digest(f, "sha256").hexdigest()
+                    if entrada.get("sha256") != sha_real:
+                        errores.append(f"{objeto}: sha256 de {archivo} no coincide con manifiesto")
+                    if entrada.get("tamano_bytes") != os.path.getsize(real):
+                        errores.append(f"{objeto}: tamaño de {archivo} no coincide con manifiesto")
             if fila and not (fila.get("estado_A4A5") or "").startswith("OBTENIDO"):
                 errores.append(f"{objeto}: la cola no conserva el desenlace OBTENIDO")
         else:
@@ -1064,20 +1127,30 @@ def valida_resultado_adquisicion(resultado, seleccion, seleccion_investigacion=N
     if estado_publicacion == "no_aplica" and (esperados or esperadas_inv):
         errores.append("con trabajo elegido, publicación no puede ser no_aplica")
     if comprobar_remoto and estado_publicacion == "publicada":
+        referencias_git = []
         for ref in referencias:
-            if (not re.fullmatch(r"refs/heads/[^\s]+", ref["ref"])
-                    or not re.fullmatch(r"[0-9a-f]{40}", ref["commit"])):
+            nombre_ref = ref["ref"]
+            commit_ref = ref["commit"]
+            if re.fullmatch(r"https://github\.com/[^\s]+", nombre_ref):
+                if not re.fullmatch(r"[0-9a-f]{40}", commit_ref):
+                    errores.append(f"referencia de publicación mal formada: {ref}")
+                continue
+            if (not re.fullmatch(r"refs/heads/[^\s]+", nombre_ref)
+                    or not re.fullmatch(r"[0-9a-f]{40}", commit_ref)):
                 errores.append(f"referencia de publicación mal formada: {ref}")
                 continue
+            referencias_git.append(ref)
             codigo, out, err = _corre(
-                ["git", "ls-remote", "--exit-code", "origin", ref["ref"]],
+                ["git", "ls-remote", "--exit-code", "origin", nombre_ref],
                 timeout=20, cwd=raiz)
             # `git ls-remote` emite ``<sha>\t<ref>``. El índice se consulta
             # por ref, de modo que la relación correcta es ref -> sha.
             pares = {linea.split()[1]: linea.split()[0]
                      for linea in out.splitlines() if len(linea.split()) == 2}
-            if codigo != 0 or pares.get(ref["ref"]) != ref["commit"]:
-                errores.append(f"publicación remota no comprobada: {ref['ref']}@{ref['commit']} ({(err or out).strip()[:160]})")
+            if codigo != 0 or pares.get(nombre_ref) != commit_ref:
+                errores.append(f"publicación remota no comprobada: {nombre_ref}@{commit_ref} ({(err or out).strip()[:160]})")
+        if not referencias_git:
+            errores.append("publicación declarada sin refs/heads/<rama> verificable")
 
     declarado = resultado["resultado_sustantivo"]
     if not esperados and not esperadas_inv:
@@ -1111,6 +1184,7 @@ SECCIONES = [
     ("red", check_red),
     ("lock", check_lock),
     ("heartbeat", check_heartbeat),
+    ("presupuesto", check_presupuesto),
     ("t_cron", check_t_cron),
     ("ultimo_censo_local", check_ultimo_censo_local),
 ]

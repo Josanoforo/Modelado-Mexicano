@@ -29,6 +29,8 @@ calendario:
   zona_iana: America/Mexico_City
   zona_windows: Central Standard Time (Mexico)
   ventana_observacion_minutos: 45
+  comprobacion_intervalo_minutos: 60
+  recuperar_al_iniciar_sesion: true
 claude_timeout_segundos: 900
 claude_kill_after_segundos: 60
 pdn:
@@ -98,6 +100,9 @@ def prueba_calendario_normaliza_consumidores_y_proxima_hora():
            f"días Python deben derivarse del YAML, dio {cal['weekdays']!r}")
     afirma(cal["dias_windows"] == ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
            f"días Windows deben derivarse del mismo YAML, dio {cal['dias_windows']!r}")
+    afirma(cal["comprobacion_intervalo_minutos"] == 60
+           and cal["recuperar_al_iniciar_sesion"] is True,
+           "intervalo ligero y recuperación deben salir de la autoridad común")
     # Viernes 08:00 de México: la siguiente es lunes 07:30, aunque el
     # instante de entrada venga en UTC y la zona del host sea irrelevante.
     ahora = datetime.datetime(2026, 9, 11, 14, 0, tzinfo=datetime.timezone.utc)
@@ -142,7 +147,10 @@ def prueba_consumidores_no_reintroducen_calendario_propio():
     runner = (raiz / "tools/adquiere_cron.sh").read_text(encoding="utf-8")
     t31 = (raiz / "tests/check.py").read_text(encoding="utf-8")
     afirma("--calendario-json" in instalador and "$Calendario.hora" in instalador
-           and "$Calendario.dias_windows" in instalador and "HoraLocal" not in instalador,
+           and "$Calendario.dias_windows" in instalador
+           and "$Calendario.comprobacion_intervalo_minutos" in instalador
+           and "$Calendario.recuperar_al_iniciar_sesion" in instalador
+           and "HoraLocal" not in instalador,
            "instalador debe derivar hora/días/zona del lector común")
     afirma("-NonInteractive" in instalador and "-WindowStyle Hidden" in instalador
            and "& wsl.exe" in instalador and "exit [int]`$LASTEXITCODE" in instalador,

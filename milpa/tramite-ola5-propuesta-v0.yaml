@@ -63,7 +63,7 @@ reglas_propuestas:
     sha256_payload_ola2: "fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a"
     sha256_payload_ola3: "00a7649a1839a3523be22612c2fa3555d5e743cf5329d6bcdc432b901e98bd15"
     sha256_payload_peso: "34ee12b0c0d71e76676197089b5fd6048c0fdaa590a220f440d95526b1f4713b"
-    payload_manifiesto_id: "NO-LOCALIZADO -- data/manifiesto.yaml declara 'ningun archivo de ENNViH se ha descargado ni se registra aqui' (id ennvih_mxfls_licencia, procedencia.yaml:84-95) pese a que el ZIP fisico existe en data/raw/ennvih/ y ya fue usado por CAL-G3-PUNTUAL"
+    payload_manifiesto_id: "ola2=ennvih2_2005_hogar_dta; ola3=ennvih3_2009_hogar_dta; peso=ennvih2_2005_ponderador_transversal (data/manifiesto.yaml, corregido NC-0188/ACTO GEN2-ADOPCION-VENTANILLA-2 P4). El payload SI esta localizado (id, archivo, sha256 y tamano_bytes desde PR #703); la nota historica 'ningun archivo de ENNViH se ha descargado ni se registra aqui' (id ennvih_mxfls_licencia) era cierta el 30/jul/2026 y quedo FALSA EN LA LETRA desde entonces -- no se borra, se corrige aqui la copia. Lo que sigue sin publicarse es el diseno muestral (NC-0156), que es otra cosa."
 
   - id: familia.apoyo.recibe_dinero_familiares
     situacion: PENDIENTE-DE-MESA
@@ -113,10 +113,12 @@ reglas_propuestas:
     si:
       disparadores: PENDIENTE-DE-MESA
     entonces:
-      - {conducta: coreside_con_ascendiente_o_suegro_en_algun_momento_de_vida, p: 0.996086, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: coreside_con_ascendiente_o_suegro_en_algun_momento_de_vida, p: 0.996086, clase: "MEDIDO·p(tasa base ponderada)",
+         corrida0_resultado_id: RESULT-EDER-A-P, corrida0_generacion: GEN2}
       - {conducta: nunca_coreside_con_ascendiente_o_suegro, p: 0.003914, clase: "MEDIDO·p(tasa base ponderada)"}
     porque: {generador: [G5], mecanismo: PENDIENTE-DE-MESA}
-    tier: MEDIA  # D2-b (firmas de mesa 3/sep/2026): SELLADA-SIN-CARGA, tier MEDIA -- cuerpo intacto, ni p/ic95/n/ponderador/universo/fuente/hallazgo se tocan
+    se_mueve_si_cumplido: "FIRMA DE MESA 15/sep/2026 (OBJETO 7, NC-0183), verbatim «Si a todas.»: RESULT-EDER-B-CLAUSULA-SE-MUEVE-SI = DENTRO-DEL-IC-FASE1 (factor_per 0.996806 dentro de [0.994794, 0.997250]) -- la consecuencia LITERAL de la cláusula es «carga tier FUERTE», y eso es lo que se aplica. La cláusula no se borra: se declara cumplida y se deja a la vista quién la cumplió."
+    tier: FUERTE  # OBJETO 7 de la HOJA DE FIRMAS DE MESA 2026-09-15 (NC-0183 (b)): sube de MEDIA por la consecuencia literal de se_mueve_si, ya cumplida. Enmienda fechada sobre D2-b (3/sep/2026), que no se reescribe. El cuerpo sigue intacto: ni p/ic95/n/ponderador/universo/fuente/hallazgo se tocan, y `situacion` sigue SELLADA-SIN-CARGA -- el motor no carga este archivo, así que esto no adopta nada: el tier es la firma, la adopción sería otro acto
     falsable_si: PENDIENTE-DE-MESA
     fuente: ["EDER2017", "ACTO MAESTRA32-E16", "coeficientes_generador_medidos.G5_familismo_apoyo"]
     ola_calibracion: "EDER 2017 (unica ola)"
@@ -3919,7 +3921,23 @@ reglas_propuestas:
         C4_secundaria: {delta: RESULT-C4-B3B-FAC3B-DELTA, ic_lo: RESULT-C4-B3B-FAC3B-IC-LO, ic_hi: RESULT-C4-B3B-FAC3B-IC-HI, veredicto_Bbis_historico: CORROBORADA}
       tier_regla_referida: MEDIA
       decision_inferencial: "FP-372 ABIERTA; esta enmienda no firma opción A ni B"
-      residual: "NC-0156 conserva la vía oficial de pesos replicados o servicio de varianza; FP-371 de DIN-M-01 es otro objeto"
+      decision_inferencial_enmienda_fechada: >
+        15/sep/2026, ACTO GEN2-FIRMAS-MESA-1 (OBJETO 15 de la HOJA DE FIRMAS
+        DE MESA 2026-09-15, firma verbatim «Si a todas.»). La línea de arriba
+        se conserva como registro y NO se reescribe, pero su premisa caducó:
+        FP-372 YA NO ESTÁ ABIERTA. Mesa firmó la **opción (a)** y esa es
+        ahora la decisión vigente para S6/R4.4: los puntos y las asociaciones
+        descriptivas se conservan; los IC por localidad quedan SÓLO como
+        sensibilidad; no se promueven conclusiones nuevas basadas en que un
+        IC cruce o deje de cruzar cero; los veredictos condicionados de
+        CALC-0003-v4 NO se reescriben; y R4.4 sigue MEDIA. Es decir: el
+        `uso_motor`, la `incertidumbre`, la `receta` y el `tier_regla_referida`
+        de esta misma enmienda no cambian ni una letra -- la firma los
+        ratifica, no los mueve. Lo único que cambia es que ya no se espera a
+        nadie. `residual` sigue vigente sin tocar: NC-0156 conserva la vía
+        oficial de pesos replicados o servicio de varianza y esta firma NO la
+        cierra; FP-371 de DIN-M-01 es otro objeto y se firmó por separado
+        (OBJETO 14, rechazando el uso inferencial de constante+folio).
 
   # ══════════════════════════════════════════════════════════════════
   # ACTO GEN2-E5 · CALC-0001..0003 — primeras cifras GEN2 selladas
@@ -3965,6 +3983,14 @@ reglas_propuestas:
     medido_en: "ACTO GEN2-E5 · CALC-0001, 8/sep/2026 — corrida sellada CALC-0001--174c269a07b6, data/corrida0/CALC-0001/resultados.json"
 
   - id: civico.contexto_institucional_victimas.lapop
+    # OBJETO 8 de la HOJA DE FIRMAS DE MESA 2026-09-15 (NC-0167), firma
+    # verbatim «Si a todas.»: mesa abre "contexto institucional alto entre
+    # víctimas" como estimando DESCRIPTIVO propio, con patrón
+    # `rol_uso: proxy_descriptivo` y `uso_motor` no-inferencial declarado en
+    # cada salida. R10.3 y D2-h NO se tocan: siguen NO-CONSTRUIBLE
+    # (E5-0 / D15-ADR-456). `situacion` y `tier` NO se mueven -- el OBJETO
+    # autoriza el consumidor descriptivo, no la carga al motor, y el motor
+    # no lee este archivo. Cero adopción: `usos.tsv` no cambia por esto.
     situacion: PENDIENTE-DE-MESA
     si:
       disparadores: PENDIENTE-DE-MESA  # marginal del ANTECEDENTE de R10.3, no la
@@ -3976,11 +4002,14 @@ reglas_propuestas:
         # sigue NO-CONSTRUIBLE, decidido en E5-0 y NO tocado aquí.
     entonces:
       - {conducta: contexto_institucional_alto_2019, p: 0.7862745098039216, clase: "MEDIDO·p(proporcion ponderada)",
-         corrida0_resultado_id: RESULT-CTX-2019-P-ALTO, corrida0_generacion: GEN2}
+         corrida0_resultado_id: RESULT-CTX-2019-P-ALTO, corrida0_generacion: GEN2,
+         rol_uso: proxy_descriptivo, uso_motor: "PROXY-DESCRIPTIVO del contexto institucional entre víctimas de extorsión (vic1ext=1) en la ola LAPOP 2019: sólo consulta descriptiva, escenario o baseline dentro de ese universo; no es tasa general de la población, no es probabilidad empírica por evento, no falsa R10.3 ni construye el veredicto D2-h, y no se compara ni se agrupa entre olas"}
       - {conducta: contexto_institucional_alto_2023, p: 0.7341176470588235, clase: "MEDIDO·p(proporcion ponderada)",
-         corrida0_resultado_id: RESULT-CTX-2023-P-ALTO, corrida0_generacion: GEN2}
+         corrida0_resultado_id: RESULT-CTX-2023-P-ALTO, corrida0_generacion: GEN2,
+         rol_uso: proxy_descriptivo, uso_motor: "PROXY-DESCRIPTIVO del contexto institucional entre víctimas de extorsión (vic1ext=1) en la ola LAPOP 2023: sólo consulta descriptiva, escenario o baseline dentro de ese universo; no es tasa general de la población, no es probabilidad empírica por evento, no falsa R10.3 ni construye el veredicto D2-h, y no se compara ni se agrupa entre olas"}
       - {conducta: contexto_institucional_alto_2021, p: null, clase: "NO-ESTIMABLE·indice-incompleto",
-         corrida0_resultado_id: RESULT-CTX-2021-P-ALTO, corrida0_generacion: GEN2}
+         corrida0_resultado_id: RESULT-CTX-2021-P-ALTO, corrida0_generacion: GEN2,
+         rol_uso: proxy_descriptivo, uso_motor: "PROXY-DESCRIPTIVO sin estimación: la ola LAPOP 2021 no entrega el índice (falta `aoj12`, NO-ESTIMABLE-INDICE-INCOMPLETO). Se declara para que el hueco quede a la vista y nadie lo rellene por interpolación entre 2019 y 2023; no es tasa, no es probabilidad por evento, no falsa R10.3 ni construye el veredicto D2-h"}
     porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
     tier: PENDIENTE-DE-MESA
     falsable_si: PENDIENTE-DE-MESA
@@ -3994,3 +4023,89 @@ reglas_propuestas:
     payload_manifiesto_id: mexico_lapop_americasbarometer_2019_v1_0_w
     spec: "prereg-caja-S13 — forense/prereg-caja/S13-R10-3-spec-v1_0.md, sha256 c41235b804b0834881b7d3467e25ab0b74946fc03ba14245918e9c7a2e69a515; cara local data/corrida0/CALC-0002/spec.yaml"
     medido_en: "ACTO GEN2-E5 · CALC-0002, 8/sep/2026 — corrida sellada CALC-0002--f57ad1cd8f96, data/corrida0/CALC-0002/resultados.json"
+
+  # ══════════════════════════════════════════════════════════════════
+  # OBJETO 9 de la HOJA DE FIRMAS DE MESA 2026-09-15 (NC-0186 + NC-0164),
+  # firma verbatim «Si a todas.» — ACTO GEN2-FIRMAS-MESA-1, 15/sep/2026.
+  # Las tres fichas que NC-0186 dejó como EVIDENCIA DISPONIBLE («cero
+  # consumidor compatible entre 22 reglas cargadas y 50 propuestas»)
+  # reciben aquí su vehículo: consumidores DESCRIPTIVOS con
+  # `rol_uso: proxy_descriptivo` y `uso_motor` no-inferencial declarado.
+  # El motor NO carga este archivo: esto hace visible el estimando y lo
+  # deja a decisión de mesa — no adopta nada, no mueve `usos.tsv` ni
+  # `dependencias_numericas_legacy_activas`, y no cambia ningún tier.
+  # SHED (#745) NO recibe consumidor: entra como REFERENCIA con la
+  # cláusula de no-transporte escrita, que es exactamente lo que el
+  # OBJETO firma («SHED #745 referencia sin transporte de tasas»).
+  # ══════════════════════════════════════════════════════════════════
+  - id: dinero.credito.atraso_y_dano_por_producto_banxico
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: PENDIENTE-DE-MESA
+    entonces:
+      - {conducta: atraso_credito_hipotecario_2024, p: 0.18510485270103624, clase: "MEDIDO·p(proporcion ponderada)",
+         corrida0_resultado_id: RESULT-BANXICO-2024-HIP-ATRASO-P, corrida0_generacion: GEN2,
+         rol_uso: proxy_descriptivo, uso_motor: "PROXY-DESCRIPTIVO por categoría de producto de crédito (Banxico 2024): sólo consulta descriptiva, escenario o baseline. No es probabilidad empírica por evento, no calibra ninguna p del motor, no identifica un efecto causal y no construye «cualquier daño». Son cambios entre cortes, no transiciones de las mismas personas, y no traen EE/IC porque el diseño necesario no quedó acreditado"}
+      - {conducta: atraso_tarjeta_credito_2024, p: 0.04235936236062071, clase: "MEDIDO·p(proporcion ponderada)",
+         corrida0_resultado_id: RESULT-BANXICO-2024-TDC-ATRASO-P, corrida0_generacion: GEN2,
+         rol_uso: proxy_descriptivo, uso_motor: "PROXY-DESCRIPTIVO por categoría de producto de crédito (Banxico 2024): sólo consulta descriptiva, escenario o baseline. No es probabilidad empírica por evento, no calibra ninguna p del motor, no identifica un efecto causal y no construye «cualquier daño». Son cambios entre cortes, no transiciones de las mismas personas, y no traen EE/IC porque el diseño necesario no quedó acreditado"}
+      - {conducta: atraso_credito_nomina_2024, p: 0.1035233151033609, clase: "MEDIDO·p(proporcion ponderada)",
+         corrida0_resultado_id: RESULT-BANXICO-2024-NOM-ATRASO-P, corrida0_generacion: GEN2,
+         rol_uso: proxy_descriptivo, uso_motor: "PROXY-DESCRIPTIVO por categoría de producto de crédito (Banxico 2024): sólo consulta descriptiva, escenario o baseline. No es probabilidad empírica por evento, no calibra ninguna p del motor, no identifica un efecto causal y no construye «cualquier daño». Son cambios entre cortes, no transiciones de las mismas personas, y no traen EE/IC porque el diseño necesario no quedó acreditado"}
+      - {conducta: atraso_credito_personal_2024, p: 0.08031777453105593, clase: "MEDIDO·p(proporcion ponderada)",
+         corrida0_resultado_id: RESULT-BANXICO-2024-PER-ATRASO-P, corrida0_generacion: GEN2,
+         rol_uso: proxy_descriptivo, uso_motor: "PROXY-DESCRIPTIVO por categoría de producto de crédito (Banxico 2024): sólo consulta descriptiva, escenario o baseline. No es probabilidad empírica por evento, no calibra ninguna p del motor, no identifica un efecto causal y no construye «cualquier daño». Son cambios entre cortes, no transiciones de las mismas personas, y no traen EE/IC porque el diseño necesario no quedó acreditado"}
+      - {conducta: atraso_credito_automotriz_2024, p: 0.04309263821900375, clase: "MEDIDO·p(proporcion ponderada)",
+         corrida0_resultado_id: RESULT-BANXICO-2024-AUT-ATRASO-P, corrida0_generacion: GEN2,
+         rol_uso: proxy_descriptivo, uso_motor: "PROXY-DESCRIPTIVO por categoría de producto de crédito (Banxico 2024): sólo consulta descriptiva, escenario o baseline. No es probabilidad empírica por evento, no calibra ninguna p del motor, no identifica un efecto causal y no construye «cualquier daño». Son cambios entre cortes, no transiciones de las mismas personas, y no traen EE/IC porque el diseño necesario no quedó acreditado"}
+    porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
+    tier: PENDIENTE-DE-MESA
+    falsable_si: PENDIENTE-DE-MESA
+    fuente: ["Banxico-2024", "data/banxico-producto-dano-medicion/ficha-consumo-banxico.md"]
+    escala_costo_percibido: "0-10 percibido (0=bajo, 10=alto) -- NO es CAT, tasa contractual ni monto"
+    preregistro_estimandos: "OBJETO 9 (NC-0164): mesa acepta y PRE-REGISTRA los estimandos Banxico como descriptivos/asociativos por categoría de producto -- cinco categorías de crédito, atraso y daño, corte 2024. Esto cierra el «si la mesa los acepta» del sucesor de NC-0164 en su cara de pre-registro. Lo que NC-0164 deja vivo y este OBJETO no cierra: localizar fuente mexicana con producto BNPL/digital o lender, CAT/tasa/fricción objetiva, daño, negativos y estrategia de identificación causal."
+    medido_en: "ACTO GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO (PR #746) — CALC-BANXICO-PRODUCTO-DANO-0001, 35 RESULT sellados; data/corrida0/CALC-BANXICO-PRODUCTO-DANO-0001/spec.yaml declara uso_motor: DESCRIPTIVO-NO-CALIBRA-NI-ADOPTA"
+
+  - id: trabajo.prestaciones.valoracion_seguridad_social_motral
+    situacion: PENDIENTE-DE-MESA
+    si:
+      disparadores: PENDIENTE-DE-MESA
+    entonces:
+      - {conducta: valora_afirmativamente_seguridad_social_total, p: 0.823626705331, clase: "MEDIDO·p(proporcion ponderada)",
+         corrida0_resultado_id: RESULT-MOTRAL15-P17-TOTAL-P, corrida0_generacion: GEN2,
+         rol_uso: proxy_descriptivo, uso_motor: "PROXY-DESCRIPTIVO de preferencia DECLARADA por seguridad social (MOTRAL 2015, reactivo P17): sólo consulta descriptiva, escenario o baseline. Es una comparación descriptiva, NO una clasificación de informalidad voluntaria; no es probabilidad empírica por evento y no calibra ninguna p del motor. R2.3 trabajo.prestaciones.formalidad_pesa_mas_que_salario SIGUE SIN MEDIRSE de forma estricta y este proxy no la mide"}
+      - {conducta: valora_afirmativamente_seguridad_social_con_acceso, p: 0.832233738, clase: "MEDIDO·p(proporcion ponderada)",
+         corrida0_resultado_id: RESULT-MOTRAL15-ENOE-P17-CON-ACCESO-P, corrida0_generacion: GEN2,
+         rol_uso: proxy_descriptivo, uso_motor: "PROXY-DESCRIPTIVO de preferencia DECLARADA por seguridad social (MOTRAL 2015, reactivo P17) en el subgrupo CON acceso: sólo consulta descriptiva, escenario o baseline. Comparación descriptiva, NO clasificación de informalidad voluntaria; el contraste con/sin acceso no identifica ningún efecto causal y no falsa R2.3"}
+      - {conducta: valora_afirmativamente_seguridad_social_sin_acceso, p: 0.790530962253, clase: "MEDIDO·p(proporcion ponderada)",
+         corrida0_resultado_id: RESULT-MOTRAL15-ENOE-P17-SIN-ACCESO-P, corrida0_generacion: GEN2,
+         rol_uso: proxy_descriptivo, uso_motor: "PROXY-DESCRIPTIVO de preferencia DECLARADA por seguridad social (MOTRAL 2015, reactivo P17) en el subgrupo SIN acceso: sólo consulta descriptiva, escenario o baseline. Comparación descriptiva, NO clasificación de informalidad voluntaria; el contraste con/sin acceso no identifica ningún efecto causal y no falsa R2.3"}
+    porque: {generador: PENDIENTE-DE-MESA, mecanismo: PENDIENTE-DE-MESA}
+    tier: PENDIENTE-DE-MESA
+    falsable_si: PENDIENTE-DE-MESA
+    fuente: ["MOTRAL2015", "data/motral2015-valoracion-ss/ficha-uso.md", "data/motral2015-valoracion-ss/ficha-experimento-mexicano.md"]
+    ic95: [0.796632270795, 0.850621139866]
+    n: 5704
+    medido_en: "ACTO GEN2-N35 / MOTRAL (PR #747) — CALC-MOTRAL2015-VALORACION-SS-0001, 42 RESULT sellados; data/corrida0/CALC-MOTRAL2015-VALORACION-SS-0001/spec.yaml declara uso_motor: DESCRIPTIVO-NO-CALIBRA-NI-ADOPTA"
+
+  - id: referencia_sin_consumidor.shed2025_bnpl
+    objeto: "OBJETO 9 de la HOJA DE FIRMAS DE MESA 2026-09-15: «SHED #745 referencia sin transporte de tasas»."
+    situacion: REFERENCIA-SIN-CONSUMIDOR
+    por_que_no_hay_consumidor: >
+      SHED 2025 mide población adulta de ESTADOS UNIDOS. A diferencia de
+      Banxico (#746) y MOTRAL (#747), que sí reciben consumidor descriptivo
+      en este mismo acto, SHED no lo recibe: el OBJETO la firma como
+      referencia, no como estimando propio. Sus 66 RESULT siguen sellados y
+      disponibles; cero citas en `milpa/`, cero en `data/corrida0/usos.tsv`.
+    clausula_no_transporte: >
+      PROHIBIDO transportar tasas a México, llamar causal a la asociación,
+      construir "cualquier daño", mezclar con default CFPB a 120 días o
+      adoptar un parámetro del motor. El aporte permitido es, y sólo es,
+      descripción de uso, atraso, cargo y sobregiro/NSF, y asociación
+      descriptiva entre motivo de asequibilidad y atraso, dentro de la
+      población estadounidense. Sólo puntos: no se publican EE/IC sin
+      diseño completo acreditado. Copiada sin reinterpretar de
+      `data/shed2025-bnpl-dano/ficha-uso-extranjero.md`, que sigue siendo
+      la fuente y no se edita.
+    residual: "NC-0164 conserva su vía viva: falta evidencia MEXICANA de BNPL/crédito digital o lender, con costo/fricción objetiva, daño, negativos y estrategia causal. Este OBJETO no la cierra."
+    medido_en: "ACTO GEN2-SHED-BNPL-DANO-UNIVERSOS (PR #745) — CALC-SHED2025-BNPL-DANO-0001, 66 RESULT sellados; spec.yaml declara uso_motor: DESCRIPTIVO-NO-CALIBRA-NI-ADOPTA"

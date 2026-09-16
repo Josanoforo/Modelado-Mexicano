@@ -17,6 +17,11 @@ personales y cualquier dato restringido permanecen fuera de Git.
 | ENCIG / NC-0153 | [`04-INEGI-ENCIG-NC-0153.md`](04-INEGI-ENCIG-NC-0153.md) | datos mínimos del formulario y envío | tasa nacional evento × canal con negativos y diseño, si INEGI entrega enlace, microdato o tabulado válido |
 | ENJUVE 2000/2005/2010 | [`05-IMJUVE-ENJUVE.md`](05-IMJUVE-ENJUVE.md) | cuenta/medio de notificación de PNT y presentación | microdatos y documentación por ola reconocida |
 | Reuters DNR individual | [`06-REUTERS-DNR-DIFERIDO.md`](06-REUTERS-DNR-DIFERIDO.md) | primero fijar consumidor/reactivo/año; hoy no enviar | nada vigente; alcance mínimo propuesto para una eventual reapertura |
+| INEGI / ENVIPE 2013+2015 / NC-0185 | [`07-INEGI-ENVIPE-NC-0185.md`](07-INEGI-ENVIPE-NC-0185.md) | datos mínimos del formulario y envío | texto oficial (pregunta y códigos) de las siete identidades `NO-LOCALIZADA-EN-DESCRIPTOR-OFICIAL` de `NC-0100`, si INEGI lo confirma |
+
+Expediente 07 añadido el 15 de septiembre de 2026 por firma de mesa sobre el
+sucesor de `NC-0185`; no se repite ninguna comprobación pública de los seis
+expedientes anteriores.
 
 ## Secuencia del titular
 

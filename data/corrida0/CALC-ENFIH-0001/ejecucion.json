@@ -1,0 +1,174 @@
+{
+ "corrida_id": "CALC-ENFIH-0001--13d303a577ed",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "ADR-46 -- al congelar, la sesion YA habia leido de milpa/tramite.yaml:897-930: p=0.538502, ic95=[0.5267,0.550616], n=17765, ponderador FAC_HOG, universo `los 17765 de TCONCENTRADORA.csv`, la variante de robustez H_PPAL=1 (p=0.540091) y la tabla descriptiva por CAT_POS; y de forense/notas/2026-09-01-MAESTRA33-E18-P3-L1-spec.md el mapa de codigos de C_AFORE y la correccion C_AFORE-vs-V_AFORE. NO es ciega. Lo genuinamente desconocido al congelar: numero real de estratos y UPM, cuantos estratos quedan con UPM unica, la anchura del IC de diseno frente al de GEN1, el soporte observado de C_AFORE, y si FAC_HOG de TCONCENTRADORA.csv coincide con el de THOGAR.csv (no se comprueba: THOGAR.csv no se abre).",
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "demanda_que_releva": "CORR-0012 (ENFIH2019, payload enfih2019_bd_csv_zip) -> los 2 RESULT: RES-0037 (dinero.planeacion.formal_estable:tiene_afore) y RES-0038 (:no_tiene_afore). NO releva ninguna otra corrida.",
+  "firma_de_contador": "NO-FIRMADA. El encargo de mesa (ACTO GEN2-SPECS-DEMANDA-1, 15/sep/2026) pide congelar specs ejecutables y NO declara OBJETO sobre el contador GEN2. Estandar FP-367/368 NO satisfecho -> cuenta_gen2 queda PENDIENTE-DE-MESA, y se dice aqui en vez de darselo por concedido.",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": "NO -- y el medidor tampoco se escribe aqui. El encargo pide `md humana + spec.yaml` (D-15, dos capas); el medidor es del acto de CAJA que consuma este contrato. Consecuencia declarada: `corrida0.py preflight CALC-ENFIH-0001` reporta BLOQUEADO:script_ausente hasta que CAJA lo escriba, y eso es correcto, no un defecto de esta spec.",
+  "reglas_bajo_prueba": "NINGUNA cambia de cifra por esta corrida. dinero.planeacion.formal_estable (R1.2) esta SELLADA en milpa/tramite.yaml:897 con p=0.538502 (GEN1) y conserva su cifra: este CALC monta la cadena E.2 sobre esa cantidad. La adopcion la decide mesa por merge, no este acto.",
+  "spec_sellada": "forense/prereg-caja/ENFIH-AFORE-spec-v1_0.md",
+  "spec_sellada_sha256": "5c5a4981bfeff29aaf98d7738e6d98dd88a1628cc9c0e356514aae880cc55c7e",
+  "tipo": "TASA-BASE-DE-REGLA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-15T16:23:40Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 413,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "13d303a577ed968749394f0c3806a928f3875aea",
+  "git_rama": "acto/gen2-medicion-demanda-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "13d303a577ed968749394f0c3806a928f3875aea",
+ "input_ids": [
+  "enfih2019_bd_csv_zip",
+  "enfih2019_fd_xlsx",
+  "IN-ENFIH-SPEC-SELLADA"
+ ],
+ "input_sha256": {
+  "IN-ENFIH-SPEC-SELLADA": "5c5a4981bfeff29aaf98d7738e6d98dd88a1628cc9c0e356514aae880cc55c7e",
+  "enfih2019_bd_csv_zip": "be372533d5043920892142e8bf792b7293a5f20ab466a6441bc89925b42ef4d5",
+  "enfih2019_fd_xlsx": "326b68b342797de45a7a4eb3dbf04f3790d11035df2611d7f9153d1ae12a48e1"
+ },
+ "parametros": {
+  "archivo_de_ponderador": "TCONCENTRADORA.csv -- declarado como PARAMETRO y no como detalle: FAC_HOG existe tambien en THOGAR.csv del mismo ZIP, sobre otro universo, y resolver el ponderador por nombre de variable tomaria uno u otro sin aviso (A.15(c)).",
+  "bootstrap_replicas": 2000,
+  "codificacion": {
+   "c_afore_soporte_esperado": [
+    0,
+    1
+   ],
+   "h_ppal_robustez": 1,
+   "llave_hogar": [
+    "FOLIO",
+    "VIV_SEL",
+    "HOGAR"
+   ]
+  },
+  "criterio_adopcion": "A-ADOPCION = LISTADO-PARA-MESA-REPRODUCE si A-REPRODUCE-GEN1 = REPRODUCE y round(A-P, 6) == 0.538502; LISTADO-PARA-MESA-NO-REPRODUCE en otro caso estimable; NO-ADOPTABLE-NO-ESTIMABLE si no hay punto. Este acto NO escribe cita en milpa/ bajo ninguna rama.",
+  "firma_que_lo_autoriza": "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-1.md: «redactar y CONGELAR la spec ejecutable (md humana + spec.yaml, D-15, abriendo SOLO codebook y metadato -- E.5 lo permite en nube, microdato jamas)». La firma autoriza CONGELAR, no contar: por eso cuenta_gen2 queda PENDIENTE-DE-MESA.",
+  "fuente_acto": "ACTO GEN2-SPECS-DEMANDA-1 · CALC-ENFIH-0001 · celda de R1.2 sobre ENFIH 2019 con IC de diseno",
+  "grano_gen1_decimales": 6,
+  "llaves_opacas": "EDIS y UPM_DIS se agrupan como CADENA CRUDA (dtype=str). Nunca se convierten a entero ni se re-rellenan: normalizarlas partiria o fusionaria estratos en silencio. El perfil observado de anchos sale como RESULT de texto pre-declarado.",
+  "metodo_ic": "bootstrap de UPM_DIS CON REEMPLAZO dentro de EDIS, conservando el numero de UPM por estrato; percentiles 2.5/97.5.",
+  "miembros_zip_declarados": [
+   "TCONCENTRADORA.csv"
+  ],
+  "n_gen1_referencia": {
+   "U_A": 17765,
+   "U_B": 17386
+  },
+  "regla_estrato_upm_unica": "Un estrato con exactamente una UPM se re-muestrea a si mismo: aporta varianza cero. NO se colapsa (decision de diseno que esta spec no esta autorizada a tomar) y NO se descarta (sesgaria el punto). Si el conteo es > 0, A-METODO-IC sale IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como LIMITE INFERIOR de la anchura verdadera, nunca como IC exacto.",
+  "tablas": {
+   "concentradora": "TCONCENTRADORA.csv"
+  },
+  "valores_gen1_referencia": {
+   "A_IC_HI": 0.550616,
+   "A_IC_LO": 0.5267,
+   "A_P": 0.538502,
+   "B_P_H_PPAL": 0.540091
+  }
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENFIH-A-ADOPCION",
+  "RESULT-ENFIH-A-DELTA-IC-VS-GEN1",
+  "RESULT-ENFIH-A-DELTA-VS-GEN1",
+  "RESULT-ENFIH-A-HOGARES-EXPANDIDOS",
+  "RESULT-ENFIH-A-IC-HI",
+  "RESULT-ENFIH-A-IC-LO",
+  "RESULT-ENFIH-A-METODO-IC",
+  "RESULT-ENFIH-A-N-SIN-DISENO",
+  "RESULT-ENFIH-A-N-SIN-PONDERADOR",
+  "RESULT-ENFIH-A-N-U",
+  "RESULT-ENFIH-A-P",
+  "RESULT-ENFIH-A-P-COMPLEMENTO",
+  "RESULT-ENFIH-A-REPRODUCE-GEN1",
+  "RESULT-ENFIH-A-SUMA-UNO",
+  "RESULT-ENFIH-B-DELTA-VS-A",
+  "RESULT-ENFIH-B-IC-HI",
+  "RESULT-ENFIH-B-IC-LO",
+  "RESULT-ENFIH-B-N-U",
+  "RESULT-ENFIH-B-P",
+  "RESULT-ENFIH-C-PERFIL-CAT-POS",
+  "RESULT-ENFIH-G-LLAVE-HOGAR-UNICA",
+  "RESULT-ENFIH-G-N-COLUMNAS-CONCENTRADORA",
+  "RESULT-ENFIH-G-N-EDIS-DISTINTOS",
+  "RESULT-ENFIH-G-N-ESTRATOS-UPM-UNICA",
+  "RESULT-ENFIH-G-N-FILAS-CONCENTRADORA",
+  "RESULT-ENFIH-G-N-MIEMBROS-ZIP",
+  "RESULT-ENFIH-G-N-NULOS-C-AFORE",
+  "RESULT-ENFIH-G-N-UPM-DISTINTAS",
+  "RESULT-ENFIH-G-PERFIL-EDIS",
+  "RESULT-ENFIH-G-PERFIL-UPM-DIS",
+  "RESULT-ENFIH-G-SOPORTE-C-AFORE"
+ ],
+ "script_blob_sha256": "171e0f14a986245f2891c3c2d5f3ef38d83b87679d2460a9ba4c4441db05eb16",
+ "script_path": "data/corrida0/CALC-ENFIH-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260915
+ },
+ "spec_id": "CALC-ENFIH-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "af6388d2bbccb1f2c7b86c58f9d4967220e5067a814d2a2f6cad0b3a686d8c67",
+ "spec_yaml_sha256": "cd015005d3ebb3857340b8c40d5eb349b69664e2a4d22226a9f2ee8a299d6b3c",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "Bootstrap fijado por seed + rng declarados y sumas en orden fijo de llave: la unica diferencia esperable entre dos corridas del mismo arbol es redondeo de float64 al reasociar sumas ponderadas. Los enteros y los textos se comparan EXACTO.",
+  "tipo": "flotante"
+ }
+}

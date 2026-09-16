@@ -1,0 +1,173 @@
+{
+ "corrida_id": "CALC-L8-CONVERSION-0001--dc996ed84d13",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "NO-APLICA -- solo biblioteca estandar (json": "AUSENTE",
+  "statistics)": "AUSENTE"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "ADR-46 -- al congelar, la sesion YA habia leido los tres valores GEN1 (0.345267, 0.750567, 0.619867), la formula conversion_A_aditiva entera, el delta 0.040167, el rango, la media y la mediana de p0, y n=40. NO es ciega y NO PODRIA SERLO: la corrida ES la formula que la regla publica, y el objeto de este contrato es cablearla con cadena E.2, no descubrirla. Lo genuinamente desconocido al congelar era si las 40 medias del JSON reproducian el rango declarado y con que grano -- y es justo lo que verificado_al_congelar y hallazgo_del_acto contestan.",
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "demanda_que_releva": "CORR-0016 (instrumento declarado por el registro legado como `data/l8-resultados-tipo-boleta-v1_0.json`, que es literalmente el insumo) -> los 3 RESULT: RES-0050 (civico.participacion.concurrencia_presidencial_conversion:participa_p0_minimo), RES-0051 (:participa_p0_maximo) y RES-0052 (:participa_p0_media). NO releva ninguna otra corrida.",
+  "entorno_requerido_real": "NUBE. Es la UNICA de las 19 CORR que no necesita data/raw: su insumo es un artefacto versionado del repo, resuelto por origen: repo + sha256, no por manifiesto + raiz logica. demanda-corridas.tsv la marca INDECIDIBLE-SIN-PAYLOAD-DECLARADO porque el registro legado no declara payload de manifiesto -- correcto para el registro, engañoso para la planeacion: esta corrida corre donde sea. Que este acto no la corra es decision del acto (contador cero declarado), no restriccion del entorno.",
+  "firma_de_contador": "NO-FIRMADA. El encargo de mesa (15/sep/2026) pide congelar specs ejecutables y NO declara OBJETO sobre el contador GEN2. Estandar FP-367/368 NO satisfecho -> cuenta_gen2 queda PENDIENTE-DE-MESA.",
+  "generacion": "GEN2",
+  "hallazgo_del_acto": "MATERIAL, y decide si la corrida reproduce. Los tres valores GEN1 se reproducen EXACTAMENTE solo si el ancla p0 se redondea a CUATRO decimales ANTES de sumar delta. Verificado al congelar, con las dos variantes: minimo 0.345263 (sin redondear) vs 0.345267 (con ancla a 4) -- GEN1 dice 0.345267; maximo 0.750605 vs 0.750567 -- GEN1 dice 0.750567; media 0.619830 vs 0.619867 -- GEN1 dice 0.619867. La diferencia llega a 3.8e-5, TRES ORDENES DE MAGNITUD por encima de la tolerancia de flotante de esta spec (1e-10). Un medidor que usara precision completa reportaria NO-REPRODUCE en las tres celdas POR EL REDONDEO y no por la cifra, y quien lo leyera buscaria un defecto donde no lo hay. Por eso el grano va en parametros.grano_ancla_decimales y no en la cabeza de quien escriba el medidor; A-GRANO-VERIFICADO emite las dos variantes para que el hallazgo sea auditable sin recalcularlo.",
+  "medidor_ejecutado_al_congelar": "NO -- y el medidor tampoco se escribe aqui. El encargo pide `md humana + spec.yaml` (D-15, dos capas); el medidor es del acto que consuma este contrato. Consecuencia declarada: `corrida0.py preflight CALC-L8-CONVERSION-0001` reporta BLOQUEADO:script_ausente hasta entonces.",
+  "reglas_bajo_prueba": "NINGUNA cambia de cifra por esta corrida. civico.participacion.concurrencia_presidencial_conversion esta SELLADA en milpa/tramite.yaml con sus tres celdas y conserva su cifra, su tier MEDIA y su veredicto_heredado ACOTADA. La adopcion la decide mesa por merge.",
+  "spec_sellada": "forense/prereg-caja/L8-CONVERSION-PRESIDENCIAL-spec-v1_0.md",
+  "spec_sellada_sha256": "9a873e92a75e3f514f5890d63f30c377d28245ae07f5259c7393533264be1a6d",
+  "tipo": "DERIVACION-DETERMINISTA-DE-REGLA",
+  "validacion_independiente": "NO-HECHA",
+  "verificado_al_congelar": "Los cuatro derivados del JSON COINCIDEN con lo que la regla publica, verificado y no supuesto: p0_rango_observado [0.3051, 0.7104] = derivado; p0_media 0.5797 = derivado; p0_mediana 0.6094 = derivado; p0_n_medias 40 = derivado (20 transiciones x 2 patas y_de_media/y_a_media). Esto NO es la corrida: es la comprobacion de que las claves del JSON que este contrato nombra son las que producen los escalares que la regla declara."
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-15T17:42:39Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 413,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "dc996ed84d13305edefea1cf514cca05ce052c8e",
+  "git_rama": "acto/gen2-medicion-demanda-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "86286af969a9589add0c449f597efe82516a36ea00a910114fdde59dd6167686",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "86286af969a9589add0c449f597efe82516a36ea00a910114fdde59dd6167686",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "dc996ed84d13305edefea1cf514cca05ce052c8e",
+ "input_ids": [
+  "IN-L8-JSON",
+  "IN-L8-SPEC-SELLADA"
+ ],
+ "input_sha256": {
+  "IN-L8-JSON": "30f3e16dd6ea770ad72ab957547159c5427788a97a24a0ef30f2765752ef8f99",
+  "IN-L8-SPEC-SELLADA": "9a873e92a75e3f514f5890d63f30c377d28245ae07f5259c7393533264be1a6d"
+ },
+ "parametros": {
+  "anclas": [
+   "minimo",
+   "maximo",
+   "media"
+  ],
+  "claves_json": {
+   "beta": "estimador.beta_pres_pp",
+   "beta_intermedia": "estimador.beta_int_pp",
+   "ic_beta": "estimador.wild_cluster_beta_pres.ic95",
+   "medias": "por_transicion[].y_de_media + por_transicion[].y_a_media"
+  },
+  "criterio_adopcion": "A-ADOPCION = LISTADO-PARA-MESA-REPRODUCE si A-REPRODUCE-GEN1 = REPRODUCE (las TRES celdas a seis decimales); LISTADO-PARA-MESA-NO-REPRODUCE en otro caso estimable; NO-ADOPTABLE-NO-ESTIMABLE si no hay punto. Como la derivacion es determinista y sin RNG, un NO-REPRODUCE aqui NO es ruido: significa que el JSON cambio, que el grano no es el declarado, o que la formula aplicada no es la sellada. Este acto NO escribe cita en milpa/.",
+  "firma_que_lo_autoriza": "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-1.md: «redactar y CONGELAR la spec ejecutable (md humana + spec.yaml, D-15, abriendo SOLO codebook y metadato -- E.5 lo permite en nube, microdato jamas)». La firma autoriza CONGELAR, no contar.",
+  "formula": "p = clip(round(p0, 4) + round(beta_pres_pp/100, 6), 0, 1)",
+  "formula_procedencia": "milpa/tramite.yaml:civico.participacion.concurrencia_presidencial_conversion.conversion_propuesta.conversion_A_aditiva.formula, verbatim: `p = clip(p0(municipio) + 0.040167, 0, 1)`. Este contrato anade UNA cosa que la formula sellada no dice y sin la cual no reproduce: el grano del ancla.",
+  "fuente_acto": "ACTO GEN2-SPECS-DEMANDA-1 (tanda 2) · CALC-L8-CONVERSION-0001 · las tres celdas de la conversion presidencial como derivacion determinista",
+  "grano_ancla_decimales": 4,
+  "grano_delta_decimales": 6,
+  "grano_gen1_decimales": 6,
+  "valores_gen1_referencia": {
+   "delta": 0.040167,
+   "p0_media": 0.5797,
+   "p0_mediana": 0.6094,
+   "p0_n_medias": 40,
+   "p0_rango_observado": [
+    0.3051,
+    0.7104
+   ],
+   "participa_p0_maximo": 0.750567,
+   "participa_p0_media": 0.619867,
+   "participa_p0_minimo": 0.345267
+  },
+  "variantes_de_grano_verificadas_al_congelar": {
+   "con_ancla_a_4_decimales": [
+    0.345267,
+    0.750567,
+    0.619867
+   ],
+   "diferencia_maxima": 3.8e-05,
+   "sin_redondear_el_ancla": [
+    0.345263,
+    0.750605,
+    0.61983
+   ]
+  }
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-L8CONV-A-ADOPCION",
+  "RESULT-L8CONV-A-CLIP-ACTIVO",
+  "RESULT-L8CONV-A-DELTA-VS-GEN1-MAXIMO",
+  "RESULT-L8CONV-A-DELTA-VS-GEN1-MEDIA",
+  "RESULT-L8CONV-A-DELTA-VS-GEN1-MINIMO",
+  "RESULT-L8CONV-A-GRANO-VERIFICADO",
+  "RESULT-L8CONV-A-P-MAXIMO",
+  "RESULT-L8CONV-A-P-MEDIA",
+  "RESULT-L8CONV-A-P-MINIMO",
+  "RESULT-L8CONV-A-REPRODUCE-GEN1",
+  "RESULT-L8CONV-C-IC-BETA-PRES",
+  "RESULT-L8CONV-C-IC-BETA-ROZA-CERO",
+  "RESULT-L8CONV-C-VIA-INTERMEDIA-DESCARTADA",
+  "RESULT-L8CONV-G-ANCLAS-COINCIDEN-GEN1",
+  "RESULT-L8CONV-G-BETA-PRES-PP",
+  "RESULT-L8CONV-G-DELTA",
+  "RESULT-L8CONV-G-N-MEDIA-AUSENTE",
+  "RESULT-L8CONV-G-N-MEDIAS",
+  "RESULT-L8CONV-G-P0-MAXIMO",
+  "RESULT-L8CONV-G-P0-MEDIA",
+  "RESULT-L8CONV-G-P0-MEDIANA",
+  "RESULT-L8CONV-G-P0-MINIMO",
+  "RESULT-L8CONV-G-SHA256-INSUMO"
+ ],
+ "script_blob_sha256": "491139723a4115a544ebde1b027a114cbef051f79893d8d1eb03eb9e29035cf9",
+ "script_path": "data/corrida0/CALC-L8-CONVERSION-0001/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-L8-CONVERSION-0001",
+ "spec_md_estado": "EN-MAIN-COINCIDE",
+ "spec_md_sha256": "42d21a8e5bd4e2ae01d6bf92de63067e41978eb333c17db92615330e0cb14888",
+ "spec_yaml_sha256": "4b2bc4bb439a27185a7d206e073416cabea6b994a08bf1f0d36d1780837525e8",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "La derivacion es determinista y sin RNG (seed.aplica: false): dos corridas del mismo arbol sobre el mismo JSON deben dar los mismos bits salvo reasociacion de float64. Se declara 1e-10 por consistencia con el resto de la serie, y se subraya que el hallazgo de grano (3.8e-5) esta TRES ORDENES por encima de ella: no es un problema de tolerancia y no se arregla aflojandola.",
+  "tipo": "flotante"
+ }
+}

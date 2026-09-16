@@ -31,6 +31,10 @@ data/catalogo_unico.json
 # ACTO MAESTRA34-N7 · SKILLS-COLA-Y-ADQ: log fechado del cron de
 # adquisición (tools/adquiere_cron.sh) -- de la caja, no del repo.
 forense/adq-log/
+# ACTO GEN2-RUTINA-DERIVADOS-1: log/heartbeat/lock del cron de
+# derivación (tools/deriva_cron.sh) -- directorio propio, nunca
+# forense/adq-log/, para no colisionar con el lock de adquisición.
+forense/deriva-log/
 # MAESTRA37-INFRA-1 Frente B (COMMIT-2): lock runtime de tests/manifiesto.py
 # -- puramente de ejecución local, nunca versionado.
 data/.manifiesto.lock

@@ -14,6 +14,58 @@ fuente_universo_triada: forense/prereg-duelo-v2/universo-triada-v1_4.tsv
 estado_dir: data/curacion-registro/investigacion-estado
 reservas_runtime_dir: forense/adq-log/estado/investigacion
 reserva_minutos: 75
+presupuesto_runtime_dir: forense/adq-log/estado
+comprobacion_runtime: forense/adq-log/estado/comprobacion.json
+presupuesto_diario:
+  necesidades: 3
+  objetos: 5
+  segundos_ejecutor: 3900
+
+# Demanda que nace del uso vigente, no del estado documental de una NC.  La
+# NC-0126 conserva su cierre acotado en no-corrido.tsv; esta identidad nueva
+# conserva el antecedente sin heredar ese cierre como suficiencia científica.
+demandas_instrumento:
+  - id: DEM-AHORRO-STOCK-DURACION-01
+    vigente: true
+    version_pregunta: "2026-09-15-stock-ausencia-y-duracion-separados-v1"
+    pregunta: "¿Existe un instrumento público mexicano que observe por separado tenencia/ausencia de ahorro y duración suficiente del stock?"
+    consumidor: "dinero.ahorro / tres consumidores GEN2 de horizonte"
+    consumidores_consulta:
+      - "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto"
+      - "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto"
+      - "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto"
+    uso: "mejora descriptiva; no autoriza el antiguo horizonte puro"
+    prioridad_consumidor: 4
+    bloqueo_material: 3
+    lista: true
+    estado_ruteo: LISTA_SONDA
+    asignacion: servicio-gen2-38
+    modos: [CONSTRUCTO, HERMANAS, LATERAL]
+    poblacion: "personas adultas en México; desagregaciones sólo si el instrumento las acredita"
+    unidad: persona
+    periodo: "vigente o comparable con ENIF 2024; no inventar equivalencia temporal"
+    variables: "indicador de tenencia/stock de ahorro y duración/cobertura del mismo stock en campos separados; ponderador y diseño si existen"
+    evidencia_disponible: "P4_10 de ENIF 2024 mezcla menos de una semana y no tiene ahorros; #772 autoriza únicamente el corte acotado, no horizonte puro"
+    brecha: "los tres consumidores siguen rotulados como horizonte_corto y no pueden usar P4_10 como horizonte puro"
+    suficiencia_actual: {identidad: ACREDITADA, conceptual: NO_ACREDITADA, poblacional: ACREDITADA, seleccion_no_respuesta: ACREDITADA, unidad: ACREDITADA, temporalidad: ACREDITADA, diseno: ACREDITADA, identificacion: NO_APLICA, uso_habilitado: INCOMPATIBLE, pregunta_original: ABIERTA}
+    investigacion_previa: "ENIF, EACF, ENSAFI, Findex, ENFIH e IIEG Jalisco examinados; no volver a descargar los tres XLSX IIEG"
+    frontera_previa: "encuestas públicas mexicanas nacionales o subnacionales, módulos académicos y descriptores que separen stock/ausencia de duración"
+    siguiente_accion: "examinar una ruta pública no agotada; si no existe candidata material, proponer relabel del uso acotado de #772 o decisión humana explícita"
+    etapa_faltante: FUENTE_O_VARIABLE
+    responsable: servicio-gen2-38
+    naturaleza_necesidad: CIENTIFICA_O_DE_ADOPCION
+    contrato_operativo: COMPLETO_CIENTIFICO_EXPLICITO
+    contrato_cientifico_completo: true
+    aplica_contrato_cientifico: true
+    antecedentes_nc: [NC-0126]
+    evidencias_guardia:
+      - "forense/no-corrido.tsv#NC-0126"
+      - "data/corrida0/usos.tsv#RES-0046"
+      - "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md"
+    opciones_decision:
+      - "MANTENER_BLOQUEO_Y_CONTINUAR_INSTRUMENTO"
+      - "RELABEL_USO_ACOTADO_AUTORIZADO_POR_772"
+      - "APROBAR_PROXY_NUEVO_CON_ALCANCE_EXPLICITO"
 
 necesidades:
   - id: NC-0122
@@ -60,6 +112,31 @@ necesidades:
       - consumidor: "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto"
         resultado_bloqueado_id: "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P"
         uso_requerido: "MEDICION-GEN2"
+    vinculos_alcance_menor:
+      - consumidor: "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto"
+        resultado_bloqueado_id: "RESULT-ENIF-AHO-A-P-CORTO-SIN-P"
+        uso_original: "MEDICION-GEN2"
+        uso_menor: "DESCRIPTIVO"
+        categoria: sin_colchon_un_mes
+        evento: "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros"
+        transformacion: "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado"
+        limites: "no es duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual"
+      - consumidor: "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto"
+        resultado_bloqueado_id: "RESULT-ENIF-AHO-A-P-CORTO-CON-P"
+        uso_original: "MEDICION-GEN2"
+        uso_menor: "DESCRIPTIVO"
+        categoria: sin_colchon_un_mes
+        evento: "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros"
+        transformacion: "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado"
+        limites: "no es duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual"
+      - consumidor: "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto"
+        resultado_bloqueado_id: "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P"
+        uso_original: "MEDICION-GEN2"
+        uso_menor: "DESCRIPTIVO"
+        categoria: sin_colchon_un_mes
+        evento: "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros"
+        transformacion: "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado"
+        limites: "no es duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual"
     evidencias_guardia:
       - "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P"
       - "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md"
@@ -183,6 +260,34 @@ necesidades:
     investigacion_previa: "búsqueda académica agotada; #735 consumido como panel descriptivo de entradas/salidas; vía comercial diferida por D18"
     frontera_previa: "reabrir sólo ante candidato concreto o respuesta humana"
     siguiente_accion: "conservar #735 como alcance menor sin llamarlo ledger; reabrir sólo ante instrumento con turno y pagos"
+
+  - id: NC-0202
+    version_pregunta: "2026-09-15-ennvih-diseno-publico-v1"
+    consumidor: "CORR-0008 / ENNViH olas 2 y 3"
+    uso: "incertidumbre de diseño; no cambia puntos"
+    prioridad_consumidor: 6
+    bloqueo_material: 2
+    lista: true
+    estado_ruteo: LISTA_SONDA
+    proxima_revision: "2026-09-15"
+    asignacion: servicio-gen2-38
+    modos: [LATERAL, HERMANAS]
+    poblacion: "muestras transversal y longitudinal ENNViH/MxFLS"
+    unidad: "persona u hogar según el estimando sellado"
+    periodo: "olas 2 (2005-06) y 3 (2009-12)"
+    variables: "identificador público de UPM/estrato o réplicas/pesos para varianza; referencia Berumen (2007)"
+    evidencia_disponible: "guías oficiales inglesas de olas 2 y 3 adquiridas; distinguen panel/transversal y remiten a Berumen (2007), pero no aportan diseño ejecutable"
+    brecha: "faltan réplicas o identificación pública de UPM/estrato para los IC afectados"
+    suficiencia_actual: {identidad: PARCIAL, conceptual: ACREDITADA, poblacional: ACREDITADA, seleccion_no_respuesta: PARCIAL, unidad: ACREDITADA, temporalidad: ACREDITADA, diseno: NO_ACREDITADA, identificacion: NO_APLICA, uso_habilitado: INCOMPATIBLE, pregunta_original: ABIERTA}
+    investigacion_previa: "ruta general antigua y RAND 404; guías oficiales por ola 2/3 verificadas; ICPSR 118971 sólo candidata indexada, lectura directa 403"
+    frontera_previa: "documentación del depósito ICPSR 118971 y referencia Berumen (2007); solicitud humana permanece en NC-0156"
+    siguiente_accion: "comprobar documentación pública de ICPSR 118971 y Berumen (2007), sin repetir las guías ni automatizar contacto"
+    etapa_faltante: FUENTE_O_VARIABLE
+    responsable: servicio-gen2-38
+    naturaleza_necesidad: CIENTIFICA_O_DE_ADOPCION
+    contrato_operativo: COMPLETO_CIENTIFICO_EXPLICITO
+    contrato_cientifico_completo: true
+    aplica_contrato_cientifico: true
 
 # Los vínculos siguientes son deliberadamente exactos. Una coincidencia textual
 # de `RES-xxxx` dentro de un RESULT no constituye compatibilidad.

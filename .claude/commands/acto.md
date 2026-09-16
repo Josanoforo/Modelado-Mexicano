@@ -242,8 +242,8 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
    SHA de redacción) y, si aplica, el bloque **Gate verificado**. Esto lo
    redacta el ejecutor — el tool no entiende semántica de ADR.
 3. **Recifrado L0.** La ÚNICA FUENTE DE ESTADO vigente
-   (`canon/estado-programa-v1_12.md`; `v1_11` retirada del árbol por `T01`,
-   ver `ADR-339`): la anotación nueva se inserta a mano en la línea `L0`,
+   (`canon/estado-programa-v1_13.md`; `v1_12` retirada del árbol por `T01`,
+   ver `ADR-497`): la anotación nueva se inserta a mano en la línea `L0`,
    antes de la anterior — nunca reescribiendo la que ya estaba (es
    semántica, el tool no la escribe). Hecho esto, los TRES contadores
    puramente mecánicos — el conteo de ADR de la propia línea `L0`, la
@@ -254,7 +254,7 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
    (aborta con `APLICACION_ABORTADA · 0 archivos escritos` si alguna de
    las tres anclas no es única, nunca reescribe a mano ni a medias),
    idempotente (una segunda corrida sin cambios en el árbol reporta
-   `sin cambios`). `canon/estado-programa-v1_12.md` se lee y se escribe
+   `sin cambios`). `canon/estado-programa-v1_13.md` se lee y se escribe
    una sola vez — las correcciones de `L0` y de la tabla llegan juntas en
    ese mismo archivo, no en dos pasadas independientes (`ACTO
    AUTOMATIZA-2-B · CIERRA-TERCER-CONTADOR`, 7/sep/2026).

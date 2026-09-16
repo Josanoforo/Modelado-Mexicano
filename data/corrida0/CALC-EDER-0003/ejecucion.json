@@ -1,0 +1,211 @@
+{
+ "corrida_id": "CALC-EDER-0003--ea469c10a67d",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "ADR-46 -- al congelar, la sesion YA habia leido: p=0.1905 y 0.8095 (GEN1, de ENADID), n=152950, la segmentacion por cohorte sellada de EDER con sus cuatro celdas e IC; y del censo de ACTO MAESTRA35-L7 (forense/notas/2026-09-02-MAESTRA35-L7-P0-censo.md:125-155) los conteos SIN PONDERAR (18689 primer-no-cero de 23831; union_libre 9044; matrimonio_directo 9643; sin clasificar 2), el mapa de 27 codigos, y la verificacion de 0 huerfanos en ambos joins. NO es ciega. Lo genuinamente desconocido al congelar: el p PONDERADO por factor_per de esta particion (el censo de L7 publica proporciones sobre conteos crudos, 48.4%/51.6%, que NO son el estimando de esta spec), la anchura del IC de diseno, cuantos estratos quedan con UPM unica en el universo de personas, y si los codigos llegan como '1' o '1.0' bajo pandas.",
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "defecto_de_identidad": "MATERIAL, asentado y no corregido aqui. demanda-resultados.tsv filas RES-0043/RES-0044: payload = eder_2017_eder2017_bases_csv (sha bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3) y clase = `MEDIDO·p(prevalencia bruta ponderada 15+, tasa base; ENADID 2023, p3_27_ag)`; milpa/tramite.yaml:1005 confirma n=152950, que es el n de ENADID (EDER aporta 18687). El payload declarado NO produjo el numero. Tres consecuencias: (1) un verify resolveria el ZIP de EDER como INPUT de una cifra calculada sobre ENADID y el hash COINCIDIRIA; (2) `grep ENADID data/corrida0/demanda-corridas.tsv` -> 0 aciertos: enadid2023_base_datos_csv esta en el manifiesto y no aparece en ninguna corrida; (3) no hay control positivo posible para esta corrida. Corregir milpa/ y la celda ENADID es de mesa, no de esta spec: el derivado no se edita a mano y el sellado no se reescribe (E.3).",
+  "demanda_que_releva": "CORR-0013 (EDER2017, payload eder_2017_eder2017_bases_csv) -> RES-0043 (familia.union.libre:union_libre) y RES-0044 (:matrimonio_directo), EN EL SENTIDO ACOTADO de su PAYLOAD: esta corrida mide EDER 2017, que es el archivo que la demanda declara. NO reproduce los valores 0.1905 / 0.8095, que salieron de ENADID 2023 (ver defecto_de_identidad). NO releva CALC-EDER-0001 ni CALC-EDER-0002, que miden otra regla sobre el mismo ZIP.",
+  "firma_de_contador": "NO-FIRMADA. El encargo de mesa (15/sep/2026) pide congelar specs ejecutables y NO declara OBJETO sobre el contador GEN2. Estandar FP-367/368 NO satisfecho -> cuenta_gen2 queda PENDIENTE-DE-MESA.",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": "NO -- y el medidor tampoco se escribe aqui. El encargo pide `md humana + spec.yaml` (D-15, dos capas); el medidor es del acto de CAJA que consuma este contrato. Consecuencia declarada: `corrida0.py preflight CALC-EDER-0003` reporta BLOQUEADO:script_ausente hasta que CAJA lo escriba.",
+  "reglas_bajo_prueba": "NINGUNA cambia de cifra por esta corrida. familia.union.libre (R5.3) conserva su p, su veredicto CORROBORADA y su segmentacion por cohorte sellada. La celda ENADID que hoy ocupa RES-0043/RES-0044 NO se toca.",
+  "spec_sellada": "forense/prereg-caja/EDER-UNION-LIBRE-spec-v1_0.md",
+  "spec_sellada_sha256": "5901271777b1d6b6e0d86e9ebc521afcdcacb45db8deac02ae195308d7217abd",
+  "tipo": "TASA-BASE-DE-REGLA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-15T16:24:06Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 413,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "ea469c10a67deab5330dce43d20dc28a2a128b05",
+  "git_rama": "acto/gen2-medicion-demanda-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "ea469c10a67deab5330dce43d20dc28a2a128b05",
+ "input_ids": [
+  "eder_2017_eder2017_bases_csv",
+  "eder_2017_eder2017_fd",
+  "IN-EDER-UNION-SPEC-SELLADA"
+ ],
+ "input_sha256": {
+  "IN-EDER-UNION-SPEC-SELLADA": "5901271777b1d6b6e0d86e9ebc521afcdcacb45db8deac02ae195308d7217abd",
+  "eder_2017_eder2017_bases_csv": "bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3",
+  "eder_2017_eder2017_fd": "dd4d93114a38e80192bbc29a4a4ab7fba6e4bce0067ecfcdbb4540ada5890541"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "conteos_l7_referencia": {
+   "matrimonio_directo_sin_ponderar": 9643,
+   "personas_antecedentes": 23831,
+   "primer_no_cero": 18689,
+   "sin_clasificar_37": 2,
+   "union_libre_sin_ponderar": 9044
+  },
+  "criterio_adopcion": "A-ADOPCION = LISTADO-PARA-MESA si A-P-LIBRE y A-P-DIRECTO son estimables; NO-ADOPTABLE-NO-ESTIMABLE si no. No hay rama REPRODUCE: no existe cifra GEN1 comparable (sin_control_positivo). Este acto NO escribe cita en milpa/ y NO sustituye la celda ENADID: sustituirla es decision de mesa.",
+  "firma_que_lo_autoriza": "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-1.md: «redactar y CONGELAR la spec ejecutable (md humana + spec.yaml, D-15, abriendo SOLO codebook y metadato -- E.5 lo permite en nube, microdato jamas)». La firma autoriza CONGELAR, no contar.",
+  "fuente_acto": "ACTO GEN2-SPECS-DEMANDA-1 · CALC-EDER-0003 · celda de R5.3 sobre el PAYLOAD que CORR-0013 declara (EDER 2017)",
+  "llave_persona": [
+   "folioviv",
+   "foliohog",
+   "id_pobla"
+  ],
+  "llave_vivienda": "folioviv",
+  "llaves_opacas": "est_dis y upm se agrupan como CADENA CRUDA (dtype=str). edo_civil1 tambien se compara como texto: el mapa de codigos es de cadenas, no de enteros, y '1' distinto de '1.0'. G-VEREDICTO-TIPO-CODIGO declara el tipo observado ANTES de aplicar el mapa.",
+  "mapa_codigos": {
+   "CERO_ES_AUSENCIA_DE_UNION": "0",
+   "DIRECTO": [
+    "2",
+    "3",
+    "4",
+    "26",
+    "27",
+    "28",
+    "46",
+    "47",
+    "48"
+   ],
+   "DISOLUCION_NUNCA_PRIMERA": [
+    "6",
+    "7",
+    "8",
+    "60",
+    "70",
+    "80"
+   ],
+   "LIBRE": [
+    "1",
+    "12",
+    "13",
+    "14",
+    "17",
+    "18",
+    "126"
+   ],
+   "SIN_CLASIFICAR_DECLARADO": [
+    "37"
+   ]
+  },
+  "metodo_ic": "bootstrap de upm CON REEMPLAZO dentro de est_dis, conservando el numero de UPM por estrato; percentiles 2.5/97.5. milpa/tramite.yaml:1007 declara ic95 NO-APLICA para esta regla: el IC nace en esta corrida.",
+  "miembros_zip_declarados": [
+   "historiavida.csv",
+   "antecedentes.csv",
+   "vivienda.csv"
+  ],
+  "regla_estrato_upm_unica": "Un estrato con exactamente una UPM se re-muestrea a si mismo: aporta varianza cero. NO se colapsa y NO se descarta. Si el conteo es > 0, A-METODO-IC sale IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como LIMITE INFERIOR. Precedente sobre este mismo instrumento: CALC-EDER-0001 (ADR-501) reporto 3 estratos de UPM unica.",
+  "sin_control_positivo": "A-DELTA-VS-GEN1 = NO-APLICA-ESTIMANDO-DISTINTO, DECLARADO y no calculado. GEN1 mide situacion conyugal ACTUAL en ENADID 2023 (15+, p3_27_ag, n 152950); esta corrida mide tipo de PRIMERA union en EDER 2017 (retrospectivo, n ~18687). milpa/tramite.yaml:1003 lo dice de las dos fuentes: `no se promedian, miden preguntas distintas`. La unica comparacion autorizada es contra los CONTEOS SIN PONDERAR del censo de ACTO MAESTRA35-L7, y es de conteos, no de p.",
+  "tramos_cohorte": [
+   "<=1970",
+   "1971-1980",
+   "1981-1990",
+   "1991+"
+  ],
+  "valores_gen1_referencia_no_comparables": {
+   "matrimonio_directo_ENADID": 0.8095,
+   "n_ENADID": 152950,
+   "union_libre_ENADID": 0.1905
+  }
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-EDER-UNION-A-ADOPCION",
+  "RESULT-EDER-UNION-A-CENSURA-IZQUIERDA",
+  "RESULT-EDER-UNION-A-CONTEOS-COINCIDEN-L7",
+  "RESULT-EDER-UNION-A-DELTA-VS-GEN1",
+  "RESULT-EDER-UNION-A-IC-LIBRE-HI",
+  "RESULT-EDER-UNION-A-IC-LIBRE-LO",
+  "RESULT-EDER-UNION-A-METODO-IC",
+  "RESULT-EDER-UNION-A-N-COINCIDE-L7",
+  "RESULT-EDER-UNION-A-N-DIRECTO-SIN-PONDERAR",
+  "RESULT-EDER-UNION-A-N-FACTOR-PER-CERO",
+  "RESULT-EDER-UNION-A-N-LIBRE-SIN-PONDERAR",
+  "RESULT-EDER-UNION-A-N-PRIMER-NO-CERO",
+  "RESULT-EDER-UNION-A-N-SIN-CLASIFICAR",
+  "RESULT-EDER-UNION-A-N-SIN-DISENO",
+  "RESULT-EDER-UNION-A-N-SIN-FACTOR-PER",
+  "RESULT-EDER-UNION-A-N-SIN-VIVIENDA",
+  "RESULT-EDER-UNION-A-N-U",
+  "RESULT-EDER-UNION-A-P-DIRECTO",
+  "RESULT-EDER-UNION-A-P-LIBRE",
+  "RESULT-EDER-UNION-A-PERSONAS-EXPANDIDAS",
+  "RESULT-EDER-UNION-A-SUMA-PARTICION",
+  "RESULT-EDER-UNION-B-COHORTE-P-LIBRE",
+  "RESULT-EDER-UNION-G-LLAVE-ANTECEDENTES-TERNA-UNICA",
+  "RESULT-EDER-UNION-G-LLAVE-VIVIENDA-UNICA",
+  "RESULT-EDER-UNION-G-N-ESTRATOS-UPM-UNICA",
+  "RESULT-EDER-UNION-G-N-FILAS-ANTECEDENTES",
+  "RESULT-EDER-UNION-G-N-FILAS-HISTORIAVIDA",
+  "RESULT-EDER-UNION-G-N-FILAS-VIVIENDA",
+  "RESULT-EDER-UNION-G-N-MIEMBROS-ZIP",
+  "RESULT-EDER-UNION-G-PERFIL-EST-DIS",
+  "RESULT-EDER-UNION-G-PERFIL-UPM",
+  "RESULT-EDER-UNION-G-SOPORTE-PRIMER-CODIGO",
+  "RESULT-EDER-UNION-G-VEREDICTO-TIPO-CODIGO"
+ ],
+ "script_blob_sha256": "41c0e75dd38a36fa4405c941e4fbd0d35c79a9b37829274ced78debfb4818736",
+ "script_path": "data/corrida0/CALC-EDER-0003/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260915
+ },
+ "spec_id": "CALC-EDER-0003",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "664e995d977173393526b66b17b1adb1a4cf372266ea3ed2442ebfecdd26af89",
+ "spec_yaml_sha256": "0ee8b5658eb86bbfa22c05db2fab85e7abe9a4e4cd4c634de02c99966f62d3c3",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "Bootstrap fijado por seed + rng declarados y sumas en orden fijo de llave: la unica diferencia esperable entre dos corridas del mismo arbol es redondeo de float64 al reasociar sumas ponderadas. Los enteros y los textos se comparan EXACTO -- incluidos los conteos que se cotejan contra el censo de ACTO MAESTRA35-L7.",
+  "tipo": "flotante"
+ }
+}

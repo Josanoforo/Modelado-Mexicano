@@ -139,17 +139,70 @@ def prueba_ancla_invalida_end_antes_de_begin():
         afirma(despues == contenido, "END antes de BEGIN no debe escribir nada")
 
 
+def prueba_estado_cola_lee_cabecera_no_substring():
+    """NC-0252: `_estado_cola` debe leer `ESTADO:` real, no colarse por un
+    substring que la BITACORA solo *menciona* (p.ej. "seguía LISTO-CAJA con
+    el PR ya fusionado" dentro de un renglón `ESTADO: CONSUMIDO`)."""
+    afirma(TP._estado_cola("ESTADO: CONSUMIDO — PR #602. Sincronizado: "
+                            "seguía LISTO-CAJA con el PR ya fusionado.\n") == "CONSUMIDO",
+           "ESTADO: CONSUMIDO no debe leerse LISTO por mencionar LISTO-CAJA en la glosa")
+    afirma(TP._estado_cola("ESTADO: CONSUMIDO — PR #600. Sincronizado: "
+                            "seguía GATEADO con el PR ya fusionado.\n") == "CONSUMIDO",
+           "ESTADO: CONSUMIDO no debe leerse GATED por mencionar GATEADO en la glosa")
+    afirma(TP._estado_cola("ESTADO: LISTO-NUBE\n") == "LISTO", "LISTO-<ENTORNO> -> LISTO")
+    afirma(TP._estado_cola("ESTADO: GATEADO\nCOMPUERTA: X\n") == "GATED", "GATEADO -> GATED")
+    afirma(TP._estado_cola("ESTADO: EN-CURSO\n") == "GATED", "EN-CURSO no es ni CONSUMIDO ni LISTO")
+    afirma(TP._estado_cola("ESTADO: PARO-REPORTADO\n") == "GATED", "PARO-REPORTADO -> GATED")
+    # formato viejo, sin cabecera ESTADO: -- cae al heurístico por substring.
+    afirma(TP._estado_cola("texto libre\n## CONSUMIDO · PR #1\n") == "CONSUMIDO",
+           "sin cabecera ESTADO:, el heurístico viejo sigue vigente")
+    afirma(TP._estado_cola("texto libre, LISTO-NUBE mencionado\n") == "LISTO",
+           "sin cabecera ESTADO:, el heurístico viejo sigue vigente (LISTO-)")
+    afirma(TP._estado_cola("texto libre sin marcas\n") == "GATED",
+           "sin cabecera ESTADO: ni substrings conocidos -> GATED")
+
+
+def prueba_estado_cola_contra_arbol_real():
+    """Cruza `_estado_cola` contra la cabecera `ESTADO:` real de
+    `forense/encargos/cola/` -- el desfase que NC-0252 midió (GEN2-E1/E2/E4
+    con `ESTADO: CONSUMIDO` reportados LISTO/GATED) no puede volver a pasar
+    silencioso."""
+    base = os.path.join(ROOT, "forense", "encargos", "cola")
+    if not os.path.isdir(base):
+        return
+    revisados = 0
+    for dirpath, _, nombres in os.walk(base):
+        for nombre in nombres:
+            if not nombre.endswith(".md"):
+                continue
+            ruta = os.path.join(dirpath, nombre)
+            texto = TP.leer(ruta)
+            m = TP._ESTADO_CABECERA.search(texto)
+            if not m:
+                continue
+            revisados += 1
+            estado = m.group(1).rstrip(".,;:")
+            calculado = TP._estado_cola(texto)
+            if estado.startswith("CONSUMIDO"):
+                afirma(calculado == "CONSUMIDO", f"{ruta}: ESTADO: {estado} debe leerse CONSUMIDO, leyó {calculado}")
+            elif estado.startswith("LISTO"):
+                afirma(calculado == "LISTO", f"{ruta}: ESTADO: {estado} debe leerse LISTO, leyó {calculado}")
+    afirma(revisados > 0, "debe haber al menos un archivo con cabecera ESTADO: en forense/encargos/cola/")
+
+
 def main():
     prueba_idempotencia_y_preservacion()
     prueba_ancla_invalida_sin_marcadores()
     prueba_ancla_invalida_doble_begin()
     prueba_ancla_invalida_end_antes_de_begin()
+    prueba_estado_cola_lee_cabecera_no_substring()
+    prueba_estado_cola_contra_arbol_real()
     if FAILS:
         print(f"FALLÓ ({len(FAILS)}):")
         for m in FAILS:
             print(f"  · {m}")
         return 1
-    print("OK -- test_tablero_programa.py: 4 pruebas, 0 fallos")
+    print("OK -- test_tablero_programa.py: 6 pruebas, 0 fallos")
     return 0
 
 

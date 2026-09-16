@@ -117,6 +117,7 @@ def prueba_scheduler_contrasta_calendario_y_disparador():
     comando = (
         "& wsl.exe -d Ubuntu -u pc0 -- env "
         "ADQ_DISPARADOR=windows-task-scheduler "
+        "ADQ_COMPROBACION_LIGERA=1 "
         "bash -lc /home/pc0/mm-adq/tools/adquiere_launcher.sh\n"
         "exit [int]$LASTEXITCODE")
     codificado = base64.b64encode(comando.encode("utf-16-le")).decode("ascii")
@@ -130,7 +131,12 @@ def prueba_scheduler_contrasta_calendario_y_disparador():
         # Sunday=1 + Monday..Saturday=2..64: los siete días son 127.
         "Triggers": [{"Type": "MSFT_TaskWeeklyTrigger", "Enabled": True,
                       "StartBoundary": "2026-09-07T07:30:00-06:00",
-                      "DaysOfWeek": 127}],
+                      "DaysOfWeek": 127},
+                     {"Type": "MSFT_TaskTimeTrigger", "Enabled": True,
+                      "StartBoundary": "2026-09-07T00:00:00-06:00",
+                      "DaysOfWeek": 0, "RepetitionInterval": "PT1H"},
+                     {"Type": "MSFT_TaskLogonTrigger", "Enabled": True,
+                      "StartBoundary": None, "DaysOfWeek": 0}],
         "StartWhenAvailable": True,
         "MultipleInstances": "IgnoreNew", "LastRunTime": "2026-09-10T09:05:41-06:00",
         "LastTaskResult": 0, "NextRunTime": "2026-09-11T07:30:00-06:00",
@@ -150,6 +156,8 @@ def prueba_scheduler_contrasta_calendario_y_disparador():
            f"doctor debe acreditar envoltura oculta y espera del proceso real, dio {r}")
     afirma(r["triggers_temporales_activos"] == [],
            f"doctor no debe inventar triggers temporales, dio {r}")
+    afirma(r["comprobacion_horaria"] and r["recuperacion_inicio_sesion"],
+           f"doctor debe acreditar comprobación horaria y recuperación: {r}")
 
 
 def prueba_scheduler_detecta_calendario_divergente():
@@ -174,7 +182,7 @@ def prueba_scheduler_detecta_calendario_divergente():
 
 
 def prueba_snapshot_windows_unico_para_tres_secciones():
-    comando = "& wsl.exe -d Ubuntu -u pc0 -- env ADQ_DISPARADOR=windows-task-scheduler bash -lc /home/pc0/mm-adq/tools/adquiere_launcher.sh; exit $LASTEXITCODE"
+    comando = "& wsl.exe -d Ubuntu -u pc0 -- env ADQ_DISPARADOR=windows-task-scheduler ADQ_COMPROBACION_LIGERA=1 bash -lc /home/pc0/mm-adq/tools/adquiere_launcher.sh; exit $LASTEXITCODE"
     enc = base64.b64encode(comando.encode("utf-16-le")).decode("ascii")
     snapshot = {
         "ZoneWindows": "Central Standard Time (Mexico)",
@@ -183,7 +191,10 @@ def prueba_snapshot_windows_unico_para_tres_secciones():
                  "Arguments": f"-NonInteractive -WindowStyle Hidden -EncodedCommand {enc}",
                  "Triggers": [{"Type": "MSFT_TaskWeeklyTrigger", "Enabled": True,
                                "StartBoundary": "2026-09-07T07:30:00-06:00",
-                               "DaysOfWeek": 127}]}}
+                               "DaysOfWeek": 127},
+                              {"Type": "MSFT_TaskTimeTrigger", "Enabled": True,
+                               "RepetitionInterval": "PT1H"},
+                              {"Type": "MSFT_TaskLogonTrigger", "Enabled": True}]}}
     llamadas = []
     def corre(*a, **kw):
         llamadas.append(a)

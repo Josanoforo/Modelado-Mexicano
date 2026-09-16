@@ -72,7 +72,7 @@
 
 set -euo pipefail
 
-RUNNER_VERSION="adq-codex-4"
+RUNNER_VERSION="adq-codex-6"
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_DIR"
@@ -132,9 +132,68 @@ SOY_DUENO_DEL_LOCK=0
 # secas. `PUBLICACION_FALLIDA` cuenta los recibos que quedaron locales.
 PUBLICACION_FALLIDA=0
 CIERRE_ESCRITO=0
+PRESUPUESTO_JSON="null"
+PRESUPUESTO_NECESIDADES="-"
+PRESUPUESTO_OBJETOS="-"
+PRESUPUESTO_SEGUNDOS="-"
+DEMANDA_ATENDIBLE=0
+NECESIDADES_ATENDIDAS=0
+OBJETOS_NUEVOS=0
+BYTES_NUEVOS=0
+SALUD_TRABAJO="INDETERMINADA"
+PRESUPUESTO_RESERVADO=0
+PRESUPUESTO_LIQUIDADO=0
+EJECUTOR_INICIADO=0
+DURACION_HIJO_SEGUNDOS=0
+GRACIA_TERMINACION_SEGUNDOS=0
+OBJETOS_INTENTADOS=0
+PRESUPUESTO_RESERVA_REAL="-"
+PRESUPUESTO_CONSUMO_REAL="-"
+PRESUPUESTO_DEVUELTO_REAL="-"
+RECUPERACION_PENDIENTE="-"
 
 log() {
   echo "[$(date '+%Y-%m-%d %H:%M:%S%z')] $*" | tee -a "$LOGFILE"
+}
+
+# Liquida antes de publicar el remanente y vuelve a intentarlo en EXIT. El
+# ledger hace idempotente el segundo llamado: un fallo de publicación no
+# repite ni devuelve dos veces el trabajo ya acreditado.
+liquida_presupuesto_run() {
+  [ "${PRESUPUESTO_RESERVADO:-0}" -eq 1 ] || return 0
+  [ "${PRESUPUESTO_LIQUIDADO:-0}" -eq 0 ] || return 0
+  local salida codigo asegura=()
+  if [ "${EJECUTOR_INICIADO:-0}" -eq 1 ]; then
+    asegura=(--asegura-investigacion-iniciada)
+  fi
+  set +e
+  salida="$(python3 tools/adq_investigacion.py --liquida-presupuesto \
+    --owner "$RUN_ID" --corte "$FECHA" \
+    --necesidades "${NECESIDADES_ATENDIDAS:-0}" \
+    --objetos "${OBJETOS_INTENTADOS:-0}" \
+    --segundos "${DURACION_HIJO_SEGUNDOS:-0}" \
+    "${asegura[@]}" \
+    --evidencia-liquidacion "wrapper-monotonic; exit=${CODIGO_SALIDA:--}; fase=${FASE}" \
+    2>>"$LOGFILE")"
+  codigo=$?
+  set -e
+  if [ "$codigo" -ne 0 ]; then
+    RECUPERACION_PENDIENTE="$RUN_ID"
+    log "PARO-LIQUIDACION: run_id=${RUN_ID} exit=${codigo}; la reserva se conserva para recuperación acreditada."
+    return "$codigo"
+  fi
+  IFS=$'\t' read -r PRESUPUESTO_CONSUMO_REAL PRESUPUESTO_DEVUELTO_REAL \
+    PRESUPUESTO_NECESIDADES PRESUPUESTO_OBJETOS PRESUPUESTO_SEGUNDOS \
+    < <(printf '%s' "$salida" | python3 -c '
+import json,sys
+d=json.load(sys.stdin); rid=sys.argv[1]
+r=next(x for x in d["reservas"] if x["run_id"] == rid)
+def f(x): return "%s/%s/%ss" % (x["necesidades"], x["objetos"], x["segundos_ejecutor"])
+print("\t".join((f(r["consumido"]), f(r["devuelto"]),
+ str(d["disponible"]["necesidades"]), str(d["disponible"]["objetos"]),
+ str(d["disponible"]["segundos_ejecutor"]))))' "$RUN_ID")
+  PRESUPUESTO_LIQUIDADO=1
+  log "PRESUPUESTO-LIQUIDADO: run_id=${RUN_ID} reservado=${PRESUPUESTO_RESERVA_REAL} consumido=${PRESUPUESTO_CONSUMO_REAL} devuelto=${PRESUPUESTO_DEVUELTO_REAL} disponible=${PRESUPUESTO_NECESIDADES}/${PRESUPUESTO_OBJETOS}/${PRESUPUESTO_SEGUNDOS}s duracion_hijo_monotonica=${DURACION_HIJO_SEGUNDOS}s gracia_terminacion=${GRACIA_TERMINACION_SEGUNDOS}s."
 }
 
 # Regresa al árbol que el launcher resolvió. En el camino heredado conserva
@@ -318,6 +377,66 @@ transicion() {
   escribe_heartbeat "EN-CURSO" "-" 2>>"$LOGFILE" || true
 }
 
+# ── H6 · colisión de `censo/<fecha>` entre worktrees hermanos ────
+# ACTO GEN2-DESPLIEGUE-CAJA-Y-CIERRE-OPERATIVO (15/sep/2026). Defecto
+# REPRODUCIDO en producción, no hipotético: las cinco corridas horarias
+# del 15/sep entre las 18:00 y las 22:00 murieron con `exit=128` sin
+# publicar absolutamente nada, todas con el mismo error de git:
+#
+#   fatal: 'censo/2026-09-15' is already used by worktree at
+#          '/home/pc0/mm-adq-censo-correction'
+#
+# `censo/<fecha>` es un nombre COMPARTIDO: cualquier otro worktree del
+# mismo repositorio (un acto de corrección, una sesión de mesa) puede
+# tenerlo tomado. Cuando eso pasa, `git checkout <rama>` aborta con 128
+# y, bajo el `set -euo pipefail` de arriba, se lleva por delante al
+# runner ENTERO -- incluida `publica_proyeccion_demanda()`, cuya propia
+# documentación promete justo lo contrario ("su fallo NUNCA bloquea la
+# selección ni la investigación"). Esa promesa era falsa: la función
+# moría en su primera línea, antes de regenerar la proyección.
+#
+# Corrección: poseer el NOMBRE local de la rama no es requisito para
+# publicar en ella. Si otro worktree la tiene tomada, esta corrida
+# trabaja con HEAD desprendido sobre la misma punta y empuja por
+# refspec explícito (`HEAD:refs/heads/<rama>`). El árbol ajeno no se
+# toca NUNCA: ni checkout, ni detach, ni borrado de rama -- exactamente
+# la regla de no tocar trabajo ajeno.
+
+# worktree_ajeno_con_rama <rama> -- imprime la ruta del OTRO worktree
+# que tiene tomada <rama>, o nada. El propio worktree no cuenta: tener
+# uno mismo la rama activa no es colisión, el checkout es un no-op.
+worktree_ajeno_con_rama() {
+  local rama="$1" propio
+  propio="$(git rev-parse --show-toplevel 2>/dev/null || printf '')"
+  git worktree list --porcelain 2>/dev/null | awk \
+    -v ref="branch refs/heads/${rama}" -v propio="$propio" '
+      /^worktree /{ wt = substr($0, 10); next }
+      $0 == ref { if (wt != propio) { print wt; exit } }'
+}
+
+# empuja_censo <rama> -- empuja el commit recién hecho a origin/<rama>.
+# Desprendido no hay rama local que rastrear, así que `-u` no aplica y
+# el destino se nombra por refspec explícito.
+empuja_censo() {
+  local rama="$1"
+  if [ "${CENSO_DESPRENDIDO:-0}" = "1" ]; then
+    git push origin "HEAD:refs/heads/${rama}" >>"$LOGFILE" 2>&1
+  else
+    git push -u origin "$rama" >>"$LOGFILE" 2>&1
+  fi
+}
+
+# crea_pr_censo <rama> -- `gh pr create --fill` deduce la rama del HEAD
+# actual; desprendido no hay ninguna, así que se nombra explícitamente.
+crea_pr_censo() {
+  local rama="$1"
+  if [ "${CENSO_DESPRENDIDO:-0}" = "1" ]; then
+    gh pr create --fill --head "$rama" >>"$LOGFILE" 2>&1
+  else
+    gh pr create --fill >>"$LOGFILE" 2>&1
+  fi
+}
+
 # checkout_o_crea_censo -- cambia a censo/${FECHA}, creándola SOLO si no
 # existe todavía (local o remota). Nunca `checkout -B`: reiniciar el
 # puntero de una rama del día que YA tiene commits (locales o empujados)
@@ -327,6 +446,36 @@ transicion() {
 # continuarla.
 checkout_o_crea_censo() {
   local rama_censo="censo/${FECHA}"
+  local ajeno base
+  CENSO_DESPRENDIDO=0
+  ajeno="$(worktree_ajeno_con_rama "$rama_censo")"
+  if [ -n "$ajeno" ]; then
+    # H6: la rama del día está tomada por otro worktree. No se toca ese
+    # árbol; se replica su punta en HEAD desprendido y se publica por
+    # refspec. Aquí la base se toma del ORIGEN primero (al revés que en
+    # el camino normal de abajo, que prefiere la ref local): desprendido
+    # la ref local nunca avanza, así que sólo el origen refleja lo que
+    # esta rama ya lleva publicado hoy.
+    base=""
+    if git ls-remote --exit-code --heads origin "$rama_censo" >/dev/null 2>&1; then
+      # Desprendido se publica por refspec y la ref LOCAL no avanza, así
+      # que una segunda corrida del mismo día que partiera de ella
+      # empujaría un commit sin la punta ya publicada (non-fast-forward).
+      # El origen manda: es el destino del push.
+      git fetch origin "$rama_censo" >>"$LOGFILE" 2>&1 || true
+      base="FETCH_HEAD"
+    elif git show-ref --verify --quiet "refs/heads/${rama_censo}"; then
+      base="refs/heads/${rama_censo}"
+    fi
+    if [ -n "$base" ]; then
+      git checkout --detach "$base" >>"$LOGFILE" 2>&1
+    else
+      git checkout --detach HEAD >>"$LOGFILE" 2>&1
+    fi
+    CENSO_DESPRENDIDO=1
+    log "CENSO-RAMA-TOMADA: ${rama_censo} la tiene tomada el worktree ${ajeno}; esta corrida publica con HEAD desprendido y refspec explícito. Ese árbol ajeno NO se modifica."
+    return 0
+  fi
   if git show-ref --verify --quiet "refs/heads/${rama_censo}"; then
     git checkout "$rama_censo" >>"$LOGFILE" 2>&1
   elif git ls-remote --exit-code --heads origin "$rama_censo" >/dev/null 2>&1; then
@@ -377,7 +526,7 @@ commit_censo_linea() {
 
 ${resumen}" >>"$LOGFILE" 2>&1
 
-  if git push -u origin "$rama_censo" >>"$LOGFILE" 2>&1; then
+  if empuja_censo "$rama_censo"; then
     publicado=1
   else
     # Un push rechazado puede ser divergencia (otra corrida del mismo día
@@ -387,7 +536,7 @@ ${resumen}" >>"$LOGFILE" 2>&1
     log "PUBLICACION-FALLIDA (intento 1): ${mensaje} no se pudo empujar a ${rama_censo}; se intenta reconciliar sin reescribir historia."
     if git pull --no-rebase --no-edit origin "$rama_censo" >>"$LOGFILE" 2>&1; then
       log "reconciliado con origin/${rama_censo} por merge (sin force-push); reintentando push."
-      if git push origin "$rama_censo" >>"$LOGFILE" 2>&1; then
+      if empuja_censo "$rama_censo"; then
         publicado=1
         log "publicado tras reconciliar: ${mensaje} en ${rama_censo}."
       fi
@@ -416,6 +565,19 @@ ${resumen}" >>"$LOGFILE" 2>&1
     fi
   fi
   return 0
+}
+
+# Devuelve éxito si otro censo del día ya contiene exactamente los mismos
+# bytes. Los nombres por hora sirven para intentos distintos, no para convertir
+# el mismo inventario en archivos supuestamente nuevos.
+censo_duplicado_del_dia() {
+  local candidato="$1" previo
+  shopt -s nullglob
+  for previo in "${CENSO_DIR}/${FECHA}"*.txt; do
+    [ "$previo" = "$candidato" ] && continue
+    cmp -s "$candidato" "$previo" && return 0
+  done
+  return 1
 }
 
 # publica_censo_manual -- paso 2.5: censo diario de la raíz manual +
@@ -452,6 +614,12 @@ publica_censo_manual() {
     echo
     echo "$SALIDA_CENSO"
   } >"$CENSO_FILE"
+  if censo_duplicado_del_dia "$CENSO_FILE"; then
+    rm -f "$CENSO_FILE"
+    log "[CENSO] ${FECHA}: inventario idéntico a un censo previo del día; no se conserva ni publica un archivo duplicado."
+    restaura_arbol_operativo || true
+    return 0
+  fi
   log "[CENSO] ${FECHA}: ${RESUMEN}"
 
   # main está protegida (status check "check" requerido) -- no se puede
@@ -466,7 +634,7 @@ publica_censo_manual() {
     git commit -m "[CENSO] ${FECHA}
 
 ${RESUMEN}" >>"$LOGFILE" 2>&1
-    if git push -u origin "$RAMA_CENSO" >>"$LOGFILE" 2>&1; then
+    if empuja_censo "$RAMA_CENSO"; then
       log "[CENSO] ${FECHA} commiteado y empujado a ${RAMA_CENSO}"
       # H5 (GEN2-ADQ-CONTRATO-FIX): "push-sin-PR" -- rama empujada, PR NO
       # creado (gh ausente o `gh pr create` falló) -- NO es publicación
@@ -474,7 +642,7 @@ ${RESUMEN}" >>"$LOGFILE" 2>&1
       # mesa, no parte de esta señal, así que esto nunca toca
       # PUBLICACION_FALLIDA.
       if command -v gh >/dev/null 2>&1; then
-        if gh pr create --fill >>"$LOGFILE" 2>&1; then
+        if crea_pr_censo "$RAMA_CENSO"; then
           log "[CENSO] ${FECHA}: PR abierto para ${RAMA_CENSO}"
         else
           log "[CENSO] ${FECHA}: gh pr create falló, ver arriba. Compara manualmente: https://github.com/Josanoforo/Modelado-Mexicano/compare/main...${RAMA_CENSO}"
@@ -488,6 +656,143 @@ ${RESUMEN}" >>"$LOGFILE" 2>&1
     fi
   else
     log "[CENSO] ${FECHA}: sin cambios respecto al censo previo, no se commitea de nuevo."
+  fi
+  restaura_arbol_operativo || true
+}
+
+# publica_proyeccion_demanda -- regenera data/adq-demanda-activa-v1_0.json
+# con el escritor canónico (`adq_investigacion.py --escribe-proyeccion`,
+# mecánico, sin LLM) y lo publica por el mismo canal que el censo
+# (censo/${FECHA} + PR) sólo cuando el cambio es pertinente.
+# ENCARGO GEN2-DEMANDA-VIGENTE-ANTES-DESPACHO (15/sep/2026,
+# forense/encargos/2026-09-15-GEN2-DEMANDA-VIGENTE-ANTES-DESPACHO.md): la
+# fotografía publicada se quedaba con SHA/conteos de corridas anteriores
+# porque nada la regeneraba. El SELECTOR de arriba (SELECCION-INVESTIGACION)
+# ya calcula desde `forense/no-corrido.tsv` en vivo -- esta función sólo
+# mantiene fresca la evidencia para consulta humana; su fallo NUNCA bloquea
+# la selección ni la investigación, que ya corrieron independientemente.
+# `cambio_pertinente_proyeccion` (tools/adq_investigacion.py) ignora `corte`
+# al comparar, para no commitear/PR-ear solo porque avanzó la fecha.
+publica_proyeccion_demanda() {
+  local PROYECCION="data/adq-demanda-activa-v1_0.json"
+  local rama_censo="censo/${FECHA}"
+
+  # El "antes" sigue leyéndose de censo/${FECHA} -- lo que esta MISMA rama
+  # ya publicó hoy, no `main`, que no recibe el commit hasta que mesa
+  # fusiona el PR (comparar contra `main` repetiría la publicación en cada
+  # corrida del día). Lo que cambia es CÓMO se lee.
+  #
+  # H7 · ACTO GEN2-DESPLIEGUE-CAJA-Y-CIERRE-OPERATIVO (15/sep/2026).
+  # Antes esto hacía `checkout_o_crea_censo` PRIMERO y leía el "antes" del
+  # árbol de trabajo. Cambiar de árbol no sustituye sólo esa vista:
+  # sustituye también las HERRAMIENTAS y los INSUMOS por los de
+  # censo/${FECHA}, que es una rama de publicación y va POR DETRÁS del SHA
+  # desplegado. Medido en CAJA en la primera corrida en que esta función
+  # llegó a ejecutarse de verdad (run_id 2026-09-15T222751-201668): con el
+  # árbol en la punta del censo (5e2e87e8, de las 12:28),
+  #
+  #   - `tools/adq_investigacion.py` era la versión ANTERIOR a #801 y no
+  #     conocía `--compara-proyeccion`:
+  #       «error: unrecognized arguments: --compara-proyeccion»
+  #     El fallo se tragaba en la rama "sin cambio pertinente" (la
+  #     sustitución de comando devuelve vacío, y vacío != "si"), así que la
+  #     corrida DECLARABA "regenerada, sin cambio pertinente" y no
+  #     publicaba nada;
+  #   - `forense/no-corrido.tsv` y `data/adq-investigacion.yaml` también
+  #     eran los de esa punta vieja, de modo que la vista se regeneraba
+  #     desde insumos de OTRO corte -- justo la fotografía desfasada que
+  #     #801 venía a eliminar.
+  #
+  # Corrección: el "antes" se lee de la rama con `git show`, SIN cambiar de
+  # árbol, y la regeneración y la comparación corren sobre el árbol
+  # DESPLEGADO (herramientas e insumos del SHA que mesa autorizó). Sólo se
+  # cambia de árbol para commitear, ya con la vista nueva calculada.
+  local ANTES_TMP
+  ANTES_TMP="$(mktemp)"
+  if git show "${rama_censo}:${PROYECCION}" >"$ANTES_TMP" 2>/dev/null; then
+    :
+  elif git show "origin/${rama_censo}:${PROYECCION}" >"$ANTES_TMP" 2>/dev/null; then
+    :
+  elif [ -f "$PROYECCION" ]; then
+    cp "$PROYECCION" "$ANTES_TMP"
+  else
+    echo '{}' >"$ANTES_TMP"
+  fi
+
+  set +e
+  RESUMEN_PROYECCION="$(python3 tools/adq_investigacion.py --escribe-proyeccion "$PROYECCION" --corte "$FECHA" 2>>"$LOGFILE")"
+  CODIGO_PROYECCION=$?
+  set -e
+  if [ "$CODIGO_PROYECCION" -ne 0 ]; then
+    PUBLICACION_FALLIDA=$((PUBLICACION_FALLIDA + 1))
+    log "PARO-PROYECCION-DEMANDA: --escribe-proyeccion salió ${CODIGO_PROYECCION}; ${PROYECCION} conserva su contenido anterior (escritor atómico: nunca escribe parcial). No se publica una vista sin regenerar -- la selección de esta corrida ya se calculó arriba desde fuentes vigentes y no depende de este archivo."
+    git checkout -- "$PROYECCION" >>"$LOGFILE" 2>&1 || true
+    rm -f "$ANTES_TMP"
+    restaura_arbol_operativo || true
+    return 0
+  fi
+
+  set +e
+  CAMBIO_PERTINENTE="$(python3 tools/adq_investigacion.py --compara-proyeccion "$ANTES_TMP" "$PROYECCION" 2>>"$LOGFILE")"
+  CODIGO_COMPARA=$?
+  set -e
+  rm -f "$ANTES_TMP"
+
+  # H7: un fallo del comparador NO puede seguir leyéndose como "no hubo
+  # cambio". Eso es lo que convirtió un error de herramienta en un
+  # silencio, con la vista sin publicar y el log declarando normalidad.
+  if [ "$CODIGO_COMPARA" -ne 0 ]; then
+    PUBLICACION_FALLIDA=$((PUBLICACION_FALLIDA + 1))
+    log "PARO-COMPARA-PROYECCION: --compara-proyeccion salió ${CODIGO_COMPARA}; NO se infiere 'sin cambio'. ${PROYECCION} conserva su contenido publicado y la vista regenerada se descarta. ${RESUMEN_PROYECCION}"
+    git checkout -- "$PROYECCION" >>"$LOGFILE" 2>&1 || true
+    restaura_arbol_operativo || true
+    return 0
+  fi
+
+  if [ "$CAMBIO_PERTINENTE" != "si" ]; then
+    log "PROYECCION-DEMANDA ${FECHA}: regenerada, sin cambio pertinente respecto a la publicada (sólo corte); no se publica de nuevo. ${RESUMEN_PROYECCION}"
+    git checkout -- "$PROYECCION" >>"$LOGFILE" 2>&1 || true
+    restaura_arbol_operativo || true
+    return 0
+  fi
+
+  # H7: hasta aquí no se ha tocado el árbol. La vista nueva viaja aparte
+  # mientras se cambia de rama, porque el cambio de árbol la sobrescribiría
+  # (o abortaría por conflicto) al venir de una punta con otro contenido.
+  local NUEVA_TMP
+  NUEVA_TMP="$(mktemp)"
+  cp "$PROYECCION" "$NUEVA_TMP"
+  git checkout -- "$PROYECCION" >>"$LOGFILE" 2>&1 || true
+  checkout_o_crea_censo
+  cp "$NUEVA_TMP" "$PROYECCION"
+  rm -f "$NUEVA_TMP"
+
+  git add "$PROYECCION" >>"$LOGFILE" 2>&1
+  if ! git diff --cached --quiet -- "$PROYECCION"; then
+    git commit -m "[ADQ-DEMANDA] ${FECHA}
+
+${RESUMEN_PROYECCION}" >>"$LOGFILE" 2>&1
+    if empuja_censo "$rama_censo"; then
+      log "[ADQ-DEMANDA] ${FECHA}: proyección regenerada y publicada en ${rama_censo}. ${RESUMEN_PROYECCION}"
+      if command -v gh >/dev/null 2>&1; then
+        local pr_abierto
+        pr_abierto="$(gh pr list --head "$rama_censo" --state open --json number --jq '.[0].number' 2>/dev/null || true)"
+        if [ -n "$pr_abierto" ]; then
+          log "[ADQ-DEMANDA] ${FECHA}: PR diario ya abierto para ${rama_censo}: #${pr_abierto} -- se reutiliza."
+        elif crea_pr_censo "$rama_censo"; then
+          log "[ADQ-DEMANDA] ${FECHA}: PR abierto para ${rama_censo}"
+        else
+          log "[ADQ-DEMANDA] ${FECHA}: gh pr create falló, ver arriba. Compara manualmente: https://github.com/Josanoforo/Modelado-Mexicano/compare/main...${rama_censo}"
+        fi
+      else
+        log "[ADQ-DEMANDA] ${FECHA}: gh no disponible. Compara manualmente: https://github.com/Josanoforo/Modelado-Mexicano/compare/main...${rama_censo}"
+      fi
+    else
+      PUBLICACION_FALLIDA=$((PUBLICACION_FALLIDA + 1))
+      log "PARO-PROYECCION-PUSH: el commit [ADQ-DEMANDA] ${FECHA} quedó local en ${rama_censo}, no se pudo empujar. Fallo operativo, no éxito."
+    fi
+  else
+    log "[ADQ-DEMANDA] ${FECHA}: sin diferencia de bytes tras regenerar, no se commitea de nuevo."
   fi
   restaura_arbol_operativo || true
 }
@@ -515,7 +820,10 @@ ${RESUMEN}" >>"$LOGFILE" 2>&1
 # la lee de data/manifiesto.yaml y de la cola, no de aquí.
 huella_adq() {
   local invocado="$1" motivo="$2" exit_cod="$3"
-  local hhmm t1 duracion head_despues commits_nuevos ramas_despues ramas_nuevas archivos_modificados linea publicacion contenido fin_iso cli_token
+  local hhmm t1 duracion head_despues commits_nuevos ramas_despues ramas_nuevas archivos_modificados linea publicacion contenido fin_iso cli_token presupuesto_actual presupuesto_reanuda codigo_presupuesto
+  # La publicación siempre observa el ledger ya consolidado. Si falla esta
+  # llamada, se conserva la reserva y el recibo lo declara pendiente.
+  liquida_presupuesto_run || true
   hhmm="$(date +%H:%M)"
   t1="$(date +%s)"
   duracion=$((t1 - T0))
@@ -562,8 +870,25 @@ huella_adq() {
 
   fin_iso="$(date --iso-8601=seconds)"
   cli_token="${CLI_VERSION// /_}"
+  # La reserva se escribe antes de arrancar el hijo. Releerla al cerrar evita
+  # publicar como disponible el cupo que esta misma corrida ya consumió.
+  set +e
+  presupuesto_actual="$(python3 tools/adq_investigacion.py --presupuesto --corte "$FECHA" 2>>"$LOGFILE")"
+  codigo_presupuesto=$?
+  set -e
+  if [ "$codigo_presupuesto" -eq 0 ] && printf '%s' "$presupuesto_actual" | python3 -m json.tool >/dev/null 2>&1; then
+    PRESUPUESTO_NECESIDADES="$(printf '%s' "$presupuesto_actual" | python3 -c 'import json,sys; print(json.load(sys.stdin)["disponible"]["necesidades"])')"
+    PRESUPUESTO_OBJETOS="$(printf '%s' "$presupuesto_actual" | python3 -c 'import json,sys; print(json.load(sys.stdin)["disponible"]["objetos"])')"
+    PRESUPUESTO_SEGUNDOS="$(printf '%s' "$presupuesto_actual" | python3 -c 'import json,sys; print(json.load(sys.stdin)["disponible"]["segundos_ejecutor"])')"
+  else
+    log "DEGRADACION-PRESUPUESTO: no se pudo releer el remanente al cerrar; conserva la última lectura conocida"
+  fi
+  presupuesto_reanuda="-"
+  if [ "$PRESUPUESTO_SEGUNDOS" -le 0 ] || { [ "$PRESUPUESTO_NECESIDADES" -le 0 ] && [ "$PRESUPUESTO_OBJETOS" -le 0 ]; }; then
+    presupuesto_reanuda="$(date -d "$FECHA +1 day" +%F)"
+  fi
   MOTIVO_CIERRE="$motivo"
-  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} launcher_sha=${ADQ_DEPLOY_SHA:-legacy} runner_version=${RUNNER_VERSION} ejecutor=${EJECUTOR} cli_version=${cli_token} modelo_configurado=${MODELO_CONFIGURADO} modelo_efectivo=${MODELO_EFECTIVO} resultado=${RESULTADO_SUSTANTIVO} resultado_trabajo=${RESULTADO_TRABAJO} publicacion_trabajo=${PUBLICACION_TRABAJO} seleccion_elegidos=${SELECCION_ELEGIDOS} seleccion_excluidos=${SELECCION_EXCLUIDOS} investigacion_elegidas=${INVESTIGACION_ELEGIDAS} investigacion_excluidas=${INVESTIGACION_EXCLUIDAS} residuales_total=${RESIDUALES_TOTAL} residuales_cubiertos=${RESIDUALES_CUBIERTOS} residuales_accionables=${RESIDUALES_ACCIONABLES} residuales_acceso=${RESIDUALES_ACCESO} residuales_sin_via=${RESIDUALES_SIN_VIA} residuales_reintento=${RESIDUALES_REINTENTO} residuales_decision=${RESIDUALES_DECISION} inicio=${INICIO_ISO} fin=${fin_iso} publicacion=${publicacion} disparador=${DISPARADOR} causa=${CAUSA_DISPARO} run_id=${RUN_ID}"
+  linea="[ADQ] ${FECHA} ${hhmm}: invocado=${invocado} motivo=${motivo} exit=${exit_cod} duracion=${duracion}s duracion_ejecutor=${DURACION_HIJO_SEGUNDOS}s gracia_terminacion=${GRACIA_TERMINACION_SEGUNDOS}s commits_nuevos=${commits_nuevos} ramas_nuevas=${ramas_nuevas} archivos_modificados=${archivos_modificados} sha=${HEAD_USADO:-${HEAD_ANTES:-desconocido}} launcher_sha=${ADQ_DEPLOY_SHA:-legacy} runner_version=${RUNNER_VERSION} ejecutor=${EJECUTOR} cli_version=${cli_token} modelo_configurado=${MODELO_CONFIGURADO} modelo_efectivo=${MODELO_EFECTIVO} resultado=${RESULTADO_SUSTANTIVO} resultado_trabajo=${RESULTADO_TRABAJO} salud_trabajo=${SALUD_TRABAJO} demanda_atendible=${DEMANDA_ATENDIBLE} necesidades_atendidas=${NECESIDADES_ATENDIDAS} objetos_intentados=${OBJETOS_INTENTADOS} objetos_nuevos=${OBJETOS_NUEVOS} bytes_nuevos=${BYTES_NUEVOS} publicacion_trabajo=${PUBLICACION_TRABAJO} seleccion_elegidos=${SELECCION_ELEGIDOS} seleccion_excluidos=${SELECCION_EXCLUIDOS} investigacion_elegidas=${INVESTIGACION_ELEGIDAS} investigacion_excluidas=${INVESTIGACION_EXCLUIDAS} residuales_total=${RESIDUALES_TOTAL} residuales_cubiertos=${RESIDUALES_CUBIERTOS} residuales_accionables=${RESIDUALES_ACCIONABLES} residuales_acceso=${RESIDUALES_ACCESO} residuales_sin_via=${RESIDUALES_SIN_VIA} residuales_reintento=${RESIDUALES_REINTENTO} residuales_decision=${RESIDUALES_DECISION} presupuesto_reservado=${PRESUPUESTO_RESERVA_REAL} presupuesto_consumido=${PRESUPUESTO_CONSUMO_REAL} presupuesto_devuelto=${PRESUPUESTO_DEVUELTO_REAL} presupuesto_disponible=${PRESUPUESTO_NECESIDADES}/${PRESUPUESTO_OBJETOS}/${PRESUPUESTO_SEGUNDOS}s recuperacion_pendiente=${RECUPERACION_PENDIENTE} presupuesto_reanuda=${presupuesto_reanuda} inicio=${INICIO_ISO} fin=${fin_iso} publicacion=${publicacion} disparador=${DISPARADOR} causa=${CAUSA_DISPARO} run_id=${RUN_ID}"
   log "${linea}"
   CIERRE_ESCRITO=1
   printf -v contenido '[ADQ-SELECCION] run_id=%s %s\n[ADQ-INVESTIGACION] run_id=%s %s\n[ADQ-RESULTADO] run_id=%s %s\n%s' \
@@ -641,6 +966,7 @@ SOY_DUENO_DEL_LOCK=1
 finalizar() {
   local codigo=$?
   local estado="TERMINADO"
+  local resultado_ciclo=()
   [ "$codigo" -ne 0 ] && estado="FAILED"
   # H6: un proceso muerto sin haber escrito su cierre queda INCOMPLETO --
   # no se inventa un éxito ni una causa de muerte. `CIERRE_ESCRITO` solo
@@ -650,10 +976,18 @@ finalizar() {
     [ "$MOTIVO_CIERRE" = "-" ] && MOTIVO_CIERRE="salida-inesperada-en-${FASE}"
     log "INCOMPLETO: run_id=${RUN_ID} terminó en fase=${FASE} sin haber escrito su huella [ADQ]. No se infiere ni éxito ni causa de muerte."
   fi
+  liquida_presupuesto_run || true
   log "=== adquiere_cron.sh terminado (run_id=${RUN_ID} fase=${FASE} exit=${codigo}) ==="
   escribe_heartbeat "$estado" "$codigo" 2>>"$LOGFILE" || true
   if [ "${INVESTIGACION_RESERVADA:-0}" -eq 1 ]; then
     python3 tools/adq_investigacion.py --libera "$RUN_ID" >>"$LOGFILE" 2>&1 || true
+  fi
+  if [ "${CIERRE_ESCRITO:-0}" -eq 1 ]; then
+    if [ -n "${ULTIMO_MENSAJE:-}" ] && [ -f "${ULTIMO_MENSAJE:-}" ]; then
+      resultado_ciclo=(--resultado-ciclo "$ULTIMO_MENSAJE")
+    fi
+    python3 tools/adq_investigacion.py --registra-ciclo --owner "$RUN_ID" \
+      --corte "$FECHA" "${resultado_ciclo[@]}" >>"$LOGFILE" 2>&1 || true
   fi
   # Restauración segura del contexto: best-effort, nunca deja que un
   # checkout fallido dispare un segundo trap ni cambie el código de salida
@@ -693,7 +1027,21 @@ MAXIMO_FILAS="$(printf '%s' "$EJECUTOR_JSON" | python3 -c 'import json,sys; prin
 MAXIMO_INVESTIGACIONES="$(lee_config descubrimiento_maximo_necesidades 3)"
 TIMEOUT_DESCUBRIMIENTO="$(lee_config descubrimiento_timeout_segundos 1800)"
 TIMEOUT_ADQUISICION="$(lee_config adquisicion_timeout_segundos 1800)"
-log "CONFIG: ejecutor=$EJECUTOR timeout=${TIMEOUT_EJECUTOR}s kill_after=${KILL_AFTER_EJECUTOR}s maximo_filas=$MAXIMO_FILAS investigaciones=$MAXIMO_INVESTIGACIONES presupuestos=${TIMEOUT_DESCUBRIMIENTO}s+${TIMEOUT_ADQUISICION}s"
+RECUPERACION_JSON="$(python3 tools/adq_investigacion.py --recupera-presupuesto \
+  --owner "$RUN_ID" --corte "$FECHA" --lock-exclusivo)"
+RECUPERACION_PENDIENTE="$(printf '%s' "$RECUPERACION_JSON" | python3 -c 'import json,sys; print(",".join(json.load(sys.stdin)["recuperacion_pendiente"]) or "-")')"
+PRESUPUESTO_JSON="$(python3 tools/adq_investigacion.py --presupuesto --corte "$FECHA")"
+PRESUPUESTO_NECESIDADES="$(printf '%s' "$PRESUPUESTO_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["disponible"]["necesidades"])')"
+PRESUPUESTO_OBJETOS="$(printf '%s' "$PRESUPUESTO_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["disponible"]["objetos"])')"
+PRESUPUESTO_SEGUNDOS="$(printf '%s' "$PRESUPUESTO_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["disponible"]["segundos_ejecutor"])')"
+[ "$MAXIMO_INVESTIGACIONES" -gt "$PRESUPUESTO_NECESIDADES" ] && MAXIMO_INVESTIGACIONES="$PRESUPUESTO_NECESIDADES"
+[ "$MAXIMO_FILAS" -gt "$PRESUPUESTO_OBJETOS" ] && MAXIMO_FILAS="$PRESUPUESTO_OBJETOS"
+[ "$TIMEOUT_EJECUTOR" -gt "$PRESUPUESTO_SEGUNDOS" ] && TIMEOUT_EJECUTOR="$PRESUPUESTO_SEGUNDOS"
+if [ "$PRESUPUESTO_SEGUNDOS" -le 0 ]; then
+  MAXIMO_INVESTIGACIONES=0
+  MAXIMO_FILAS=0
+fi
+log "CONFIG: ejecutor=$EJECUTOR timeout=${TIMEOUT_EJECUTOR}s kill_after=${KILL_AFTER_EJECUTOR}s maximo_filas=$MAXIMO_FILAS investigaciones=$MAXIMO_INVESTIGACIONES presupuesto_diario_disponible=${PRESUPUESTO_NECESIDADES}/${PRESUPUESTO_OBJETOS}/${PRESUPUESTO_SEGUNDOS}s"
 CALENDARIO_JSON="$(python3 tools/adq_config.py --calendario-json)"
 ADQ_ZONA_HORARIA="$(printf '%s' "$CALENDARIO_JSON" | python3 -c 'import json,sys; print(json.load(sys.stdin)["zona_iana"])')"
 CALENDARIO_DEGRADADO="$(printf '%s' "$CALENDARIO_JSON" | python3 -c 'import json,sys; print("si" if json.load(sys.stdin)["degradada"] else "no")')"
@@ -781,7 +1129,12 @@ INVESTIGACION_JSON="$(python3 -c 'import json,sys; print(json.dumps(json.load(op
 INVESTIGACION_ELEGIDAS="$(printf '%s' "$INVESTIGACION_JSON" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(",".join(x["id"] for x in d["elegidos"]) or "ninguna")')"
 INVESTIGACION_EXCLUIDAS="$(printf '%s' "$INVESTIGACION_JSON" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)["excluidos"]))')"
 NUM_INVESTIGACIONES="$(printf '%s' "$INVESTIGACION_JSON" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)["elegidos"]))')"
+DEMANDA_ATENDIBLE=$((NUM_ELEGIDOS + NUM_INVESTIGACIONES))
 log "selección investigación: elegidas=${INVESTIGACION_ELEGIDAS} excluidas=${INVESTIGACION_EXCLUIDAS} máximo=${MAXIMO_INVESTIGACIONES}"
+
+# Mecánico, sin LLM, y ANTES de cualquier PARO (CORPUS/RED) que corte el
+# resto del recorrido sin invocar el modelo -- ver publica_proyeccion_demanda.
+publica_proyeccion_demanda
 
 if [ "$NUM_INVESTIGACIONES" -gt 0 ]; then
   python3 tools/adq_investigacion.py --reserva-seleccion "$INVESTIGACION_ARCHIVO" \
@@ -793,6 +1146,7 @@ if [ "$NUM_ELEGIDOS" -eq 0 ] && [ "$NUM_INVESTIGACIONES" -eq 0 ]; then
   RESULTADO_SUSTANTIVO="cola_vacia"
   RESULTADO_TRABAJO="cola_vacia"
   PUBLICACION_TRABAJO="no_aplica"
+  SALUD_TRABAJO="SIN_TRABAJO_ATENDIBLE"
   RESULTADO_PUBLICO="$(python3 - "$SELECCION_ARCHIVO" "$INVESTIGACION_ARCHIVO" <<'PYEOF'
 import json, sys
 with open(sys.argv[1], encoding="utf-8") as f:
@@ -998,8 +1352,20 @@ Esta es la selección de adquisición proyectada inmediatamente antes de tu arra
 ${SELECCION_JSON}
 Esta es la selección de investigación; ejecuta exactamente una investigación por elegido, en orden, sin repetir las exclusiones:
 ${INVESTIGACION_JSON}
-Una candidata pública nueva y pertinente puede adquirirla en esta misma corrida aunque no estuviera en la selección inicial: crea el residual con adq_residual.py, autoridad AUTORIZADA-POR-ALCANCE:Jonas/2026-09-12/GEN2-38/<objeto>, y cuenta ese objeto dentro del máximo total. No deriva autorización para compra, login, contacto ni adopción científica. Persiste el progreso de cada necesidad con \`python3 tools/adq_investigacion.py --actualiza-desde-resultados <json-temporal>\` antes del commit; un timeout conserva cursor y frontera.
+Antes de iniciar cada investigación elegida registra una sola vez: \`python3 tools/adq_investigacion.py --checkpoint-presupuesto --owner ${RUN_ID} --corte ${FECHA} --tipo-checkpoint necesidades --checkpoint-id <necesidad_id>\`. Antes de intentar descargar cada objeto registra: \`python3 tools/adq_investigacion.py --checkpoint-presupuesto --owner ${RUN_ID} --corte ${FECHA} --tipo-checkpoint objetos --checkpoint-id <objeto_id>\`. El mismo objeto en otro run_id vuelve a consumir unidad si de verdad se reintenta; no uses la idempotencia del checkpoint para habilitar reintentos ilimitados.
+Una candidata pública nueva y pertinente puede adquirirla en esta misma corrida aunque no estuviera en la selección inicial: crea el residual con adq_residual.py, autoridad AUTORIZADA-POR-ALCANCE:Jonas/2026-09-12/GEN2-38/<objeto>, y cuenta ese objeto dentro del máximo total. No deriva autorización para compra, login, contacto ni adopción científica. Persiste el progreso de cada necesidad con \`python3 tools/adq_investigacion.py --actualiza-desde-resultados <json-temporal>\` antes del commit; un timeout conserva cursor y frontera. Si \`frontera_no_examinada\` o \`cursor_continuacion\` nombra una ruta pública concreta todavía plausible, \`estado\` DEBE ser \`continua\`; \`sin_hallazgo_acotado\` sólo aplica cuando no queda ninguna ruta pública plausible y debe nombrar el evento externo que reactivaría la búsqueda.
 Tu último mensaje debe cumplir tools/adq-resultado.schema.json. Entrega los objetos inicialmente elegidos primero y después sólo candidatas de esta investigación que hayas adquirido o intentado. Cada evidencia debe ser una ruta local existente; toda adquisición debe acreditar archivos e ids pertinentes de data/manifiesto.yaml; todo intento debe conservar vía y resultado verificable. Evalúa por separado identidad, concepto, población, selección/no respuesta, unidad, temporalidad, diseño e identificación; no uses una nota agregada. Con cualquier trabajo, la publicación exige refs/heads/<rama> y SHA remoto exacto: el recibo posterior del wrapper no la sustituye. Si falla, conserva resultados, declara resultado_sustantivo=fallo y publicacion_trabajo=fallida."
+
+# Reserva el consumo agregado antes de iniciar el único hijo.  La reserva es
+# idempotente por run_id y vive fuera de Git; otra activación horaria del mismo
+# día ve el remanente antes de volver a seleccionar.
+python3 tools/adq_investigacion.py --reserva-presupuesto --owner "$RUN_ID" \
+  --corte "$FECHA" --necesidades "$NUM_INVESTIGACIONES" \
+  --objetos "$MAXIMO_FILAS" --segundos "$TIMEOUT_EJECUTOR" \
+  --pid "$$" \
+  >>"$LOGFILE" 2>&1
+PRESUPUESTO_RESERVADO=1
+PRESUPUESTO_RESERVA_REAL="${NUM_INVESTIGACIONES}/${MAXIMO_FILAS}/${TIMEOUT_EJECUTOR}s"
 
 # set +e/-e: la huella [ADQ] tiene que capturar el código real de salida
 # incluso cuando el hijo falla -- bajo `set -e`
@@ -1032,8 +1398,17 @@ if [ "$EJECUTOR" = "codex" ]; then
     ULTIMO_MENSAJE="$LOGDIR/${RUN_ID}-codex-final.json"
     PROMPT_LOCAL="$LOGDIR/${RUN_ID}-prompt.txt"
     printf '%s\n' "$PROMPT_EFECTIVO" >"$PROMPT_LOCAL"
-    log "invocando: timeout --kill-after=${KILL_AFTER_EJECUTOR}s ${TIMEOUT_EJECUTOR}s codex exec --enable standalone_web_search --json --sandbox ${CODEX_SANDBOX} --model ${MODELO_CONFIGURADO} --add-dir ${CODEX_DIR_ADICIONAL} (aprobaciones=never red=true)"
-    timeout --kill-after="${KILL_AFTER_EJECUTOR}s" "${TIMEOUT_EJECUTOR}s" \
+    if ! python3 tools/adq_investigacion.py --checkpoint-presupuesto \
+      --owner "$RUN_ID" --corte "$FECHA" --tipo-checkpoint ejecutor \
+      --checkpoint-id proceso >>"$LOGFILE" 2>&1; then
+      CODIGO_SALIDA=70
+      RESULTADO_SUSTANTIVO="fallo_contabilidad"
+      log "PARO-CONTABILIDAD: no se acreditó el inicio del ejecutor; no se invoca Codex."
+    else
+      EJECUTOR_INICIADO=1
+      EJECUTOR_MONO_INICIO="$(python3 -c 'import time; print(time.monotonic_ns())')"
+      log "invocando: timeout --kill-after=${KILL_AFTER_EJECUTOR}s ${TIMEOUT_EJECUTOR}s codex exec --enable standalone_web_search --json --sandbox ${CODEX_SANDBOX} --model ${MODELO_CONFIGURADO} --add-dir ${CODEX_DIR_ADICIONAL} (aprobaciones=never red=true)"
+      timeout --kill-after="${KILL_AFTER_EJECUTOR}s" "${TIMEOUT_EJECUTOR}s" \
       "$CODEX_BINARIO" exec --ignore-user-config --ephemeral --enable standalone_web_search --json --color never \
       --sandbox "$CODEX_SANDBOX" --model "$MODELO_CONFIGURADO" \
       --add-dir "$CODEX_DIR_ADICIONAL" \
@@ -1041,8 +1416,17 @@ if [ "$EJECUTOR" = "codex" ]; then
       -c 'sandbox_workspace_write.network_access=true' \
       --output-schema "$CODEX_ESQUEMA" --output-last-message "$ULTIMO_MENSAJE" \
       - <"$PROMPT_LOCAL" >"$EVENTOS_CODEX" 2>"$STDERR_CODEX"
-    CODIGO_SALIDA=$?
-    if [ "$CODIGO_SALIDA" -eq 0 ]; then
+      CODIGO_SALIDA=$?
+      EJECUTOR_MONO_FIN="$(python3 -c 'import time; print(time.monotonic_ns())')"
+      IFS=$'\t' read -r DURACION_HIJO_SEGUNDOS GRACIA_TERMINACION_SEGUNDOS \
+      < <(python3 - "$EJECUTOR_MONO_INICIO" "$EJECUTOR_MONO_FIN" "$TIMEOUT_EJECUTOR" <<'PYEOF'
+import math, sys
+transcurrido = max(0, math.ceil((int(sys.argv[2]) - int(sys.argv[1])) / 1_000_000_000))
+limite = int(sys.argv[3])
+print(f"{min(transcurrido, limite)}\t{max(0, transcurrido - limite)}")
+PYEOF
+)
+      if [ "$CODIGO_SALIDA" -eq 0 ]; then
       RESULTADO_NORMALIZADO="${ULTIMO_MENSAJE}.normalizado"
       python3 tools/adq_doctor.py --normaliza-resultado "$ULTIMO_MENSAJE" \
         --seleccion-archivo "$SELECCION_ARCHIVO" \
@@ -1055,6 +1439,7 @@ if [ "$EJECUTOR" = "codex" ]; then
         rm -f "$RESULTADO_NORMALIZADO"
         CODIGO_SALIDA=65
         log "PARO-RESULTADO: no se pudieron normalizar las selecciones autoritativas del wrapper."
+      fi
       fi
     fi
     if [ "$CODIGO_SALIDA" -eq 0 ]; then
@@ -1070,6 +1455,17 @@ if [ "$EJECUTOR" = "codex" ]; then
         RESULTADO_TRABAJO="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["resultado_trabajo"])' "$VALIDACION_RESULTADO")"
         PUBLICACION_TRABAJO="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["publicacion_trabajo"])' "$VALIDACION_RESULTADO")"
         CIERRE_HIJO="$(python3 -c 'import json,sys; print("si" if json.load(open(sys.argv[1], encoding="utf-8"))["cierre_exitoso"] else "no")' "$VALIDACION_RESULTADO")"
+        NECESIDADES_ATENDIDAS="$(printf '%s' "$RESULTADO_PUBLICO" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)["investigaciones"]))')"
+        OBJETOS_INTENTADOS="$(printf '%s' "$RESULTADO_PUBLICO" | python3 -c 'import json,sys; print(len({x["objeto_id"] for x in json.load(sys.stdin)["resultados_por_objeto"]}))')"
+        OBJETOS_NUEVOS="$(printf '%s' "$RESULTADO_PUBLICO" | python3 -c 'import json,sys; print(sum(x["desenlace"]=="adquirido" for x in json.load(sys.stdin)["resultados_por_objeto"]))')"
+        BYTES_NUEVOS="$(printf '%s' "$RESULTADO_PUBLICO" | python3 -c 'import json,os,sys; d=json.load(sys.stdin); print(sum(os.path.getsize(p) for x in d["resultados_por_objeto"] if x["desenlace"]=="adquirido" for p in x["archivos"] if os.path.isfile(p)))')"
+        if [ "$OBJETOS_NUEVOS" -gt 0 ]; then
+          SALUD_TRABAJO="AVANCE_MATERIAL"
+        elif [ "$DEMANDA_ATENDIBLE" -gt 0 ]; then
+          SALUD_TRABAJO="EJECUCION_SIN_EVIDENCIA_NUEVA"
+        else
+          SALUD_TRABAJO="SIN_TRABAJO_ATENDIBLE"
+        fi
         if [ "$CIERRE_HIJO" != "si" ]; then
           if [ "$PUBLICACION_TRABAJO" = "fallida" ]; then
             CODIGO_SALIDA=4
@@ -1094,10 +1490,29 @@ else
   FASE="CLAUDE-COMPAT"
   CLI_VERSION="$(claude --version 2>&1 | head -1)"
   log "ejecutor=claude seleccionado explícitamente; invocando compatibilidad"
-  timeout --kill-after="${KILL_AFTER_EJECUTOR}s" "${TIMEOUT_EJECUTOR}s" \
-    claude --add-dir /home/pc0/mm-corpus -p "$PROMPT"
-  CODIGO_SALIDA=$?
-  RESULTADO_SUSTANTIVO="compatibilidad_claude"
+  if ! python3 tools/adq_investigacion.py --checkpoint-presupuesto \
+    --owner "$RUN_ID" --corte "$FECHA" --tipo-checkpoint ejecutor \
+    --checkpoint-id proceso >>"$LOGFILE" 2>&1; then
+    CODIGO_SALIDA=70
+    RESULTADO_SUSTANTIVO="fallo_contabilidad"
+    log "PARO-CONTABILIDAD: no se acreditó el inicio del ejecutor; no se invoca Claude."
+  else
+    EJECUTOR_INICIADO=1
+    EJECUTOR_MONO_INICIO="$(python3 -c 'import time; print(time.monotonic_ns())')"
+    timeout --kill-after="${KILL_AFTER_EJECUTOR}s" "${TIMEOUT_EJECUTOR}s" \
+      claude --add-dir /home/pc0/mm-corpus -p "$PROMPT"
+    CODIGO_SALIDA=$?
+    EJECUTOR_MONO_FIN="$(python3 -c 'import time; print(time.monotonic_ns())')"
+    IFS=$'\t' read -r DURACION_HIJO_SEGUNDOS GRACIA_TERMINACION_SEGUNDOS \
+    < <(python3 - "$EJECUTOR_MONO_INICIO" "$EJECUTOR_MONO_FIN" "$TIMEOUT_EJECUTOR" <<'PYEOF'
+import math, sys
+transcurrido = max(0, math.ceil((int(sys.argv[2]) - int(sys.argv[1])) / 1_000_000_000))
+limite = int(sys.argv[3])
+print(f"{min(transcurrido, limite)}\t{max(0, transcurrido - limite)}")
+PYEOF
+)
+    RESULTADO_SUSTANTIVO="compatibilidad_claude"
+  fi
 fi
 set -e
 if [ "$CODIGO_SALIDA" -ne 0 ] && [ "$RESULTADO_SUSTANTIVO" = "no-invocado" ]; then

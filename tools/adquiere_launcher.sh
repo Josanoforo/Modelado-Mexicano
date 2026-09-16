@@ -127,6 +127,53 @@ fi
 SHA_RESUELTO="$(git rev-parse HEAD)"
 launcher_log "DESPLIEGUE: modo=$MODO solicitado=${REVISION_SOLICITADA:--} resuelto=$SHA_RESUELTO"
 
+# El launcher ya posee el lock único y ya cargó el SHA que entiende el ledger.
+# Recuperar aquí, antes de la comprobación ligera, evita el ciclo muerto
+# «reserva huérfana agota presupuesto → no despacho → nunca llega al runner».
+FASE="RECUPERA-PRESUPUESTO"
+launcher_heartbeat "EN-CURSO" "-" || true
+RECUPERACION_LOG="forense/adq-log/estado/${RUN_ID}-recuperacion-presupuesto.json"
+set +e
+python3 tools/adq_investigacion.py --recupera-presupuesto --owner "$RUN_ID" \
+  --corte "$FECHA" --lock-exclusivo >"$RECUPERACION_LOG" 2>>"$LAUNCH_LOG"
+CODIGO_RECUPERACION=$?
+set -e
+if [ "$CODIGO_RECUPERACION" -ne 0 ]; then
+  MOTIVO_CIERRE="recuperacion-presupuesto-fallida"
+  launcher_log "PARO-RECUPERACION: exit=${CODIGO_RECUPERACION}; la reserva se conserva; evidencia=${RECUPERACION_LOG}"
+  exit "$CODIGO_RECUPERACION"
+fi
+PENDIENTES_RECUPERACION="$(python3 -c 'import json,sys; print(",".join(json.load(open(sys.argv[1], encoding="utf-8"))["recuperacion_pendiente"]) or "-")' "$RECUPERACION_LOG")"
+launcher_log "RECUPERACION-PRESUPUESTO: pendientes=${PENDIENTES_RECUPERACION}; evidencia=${RECUPERACION_LOG}"
+
+# Las activaciones horarias y de inicio de sesión sólo ejecutan esta
+# comprobación determinista.  El mismo launcher continúa al runner únicamente
+# cuando hay trabajo atendible, vence la recuperación diaria o cambió una
+# entrada pertinente; nunca se crea otro scheduler ni se invoca un modelo para
+# preguntar si hay trabajo.
+if [ "${ADQ_COMPROBACION_LIGERA:-0}" = "1" ]; then
+  FASE="COMPROBACION-LIGERA"
+  launcher_heartbeat "EN-CURSO" "-" || true
+  COMPROBACION_LOG="forense/adq-log/estado/${RUN_ID}-comprobacion.json"
+  set +e
+  python3 tools/adq_investigacion.py --comprueba-despacho >"$COMPROBACION_LOG" 2>>"$LAUNCH_LOG"
+  CODIGO_COMPROBACION=$?
+  set -e
+  if [ "$CODIGO_COMPROBACION" -eq 10 ]; then
+    MOTIVO_CIERRE="comprobacion-sin-despacho"
+    launcher_log "COMPROBACION: sin despacho; evidencia=${COMPROBACION_LOG}"
+    exit 0
+  fi
+  if [ "$CODIGO_COMPROBACION" -ne 0 ]; then
+    MOTIVO_CIERRE="comprobacion-fallida"
+    launcher_log "PARO-COMPROBACION: exit=${CODIGO_COMPROBACION}; evidencia=${COMPROBACION_LOG}"
+    exit "$CODIGO_COMPROBACION"
+  fi
+  CAUSA_DISPARO="$(python3 -c 'import json,sys; print(",".join(json.load(open(sys.argv[1], encoding="utf-8"))["razones"]))' "$COMPROBACION_LOG")"
+  export ADQ_CAUSA_DISPARO="$CAUSA_DISPARO"
+  launcher_log "COMPROBACION: despacho requerido; causa=${CAUSA_DISPARO}; evidencia=${COMPROBACION_LOG}"
+fi
+
 FASE="LAUNCHER-HANDOFF"
 MOTIVO_CIERRE="handoff-runner"
 launcher_heartbeat "EN-CURSO" "-" || true

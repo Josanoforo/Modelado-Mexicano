@@ -1,4 +1,6 @@
-ESTADO: CONSUMIDO — PR #712 abierto; cierre entregado, merge reservado a mesa.
+ESTADO: CONSUMIDO — PR #712 (FUSIONADO a main, merge commit 4aa91622, 2026-09-11T15:56:35Z).
+BITACORA:
+- 2026-09-16 · CONSUMIDO · corregido por auditoría ACTO GEN2-VIGENCIA-DEUDA-1: la redacción "PR #712 abierto; merge reservado a mesa" (repetida también en el `## CONSUMIDO` del homónimo archivado) ya no es cierta — `mcp__github__pull_request_read` (pullNumber=712) confirma `state: closed, merged: true, merged_at: 2026-09-11T15:56:35Z`, y `git merge-base --is-ancestor 4aa91622 HEAD` confirma que el merge ya es ancestro de HEAD. Homónimo: `forense/encargos/2026-09-11-GEN2-MOTOR-Y-HERENCIA-EXPLICITA.md` (su propio texto "PR queda abierto y no se fusionó" también quedó vencido y no se edita aquí — corresponde a un acto de mantenimiento aparte).
 
 # ENCARGO 18 · GEN2-MOTOR-Y-HERENCIA-EXPLICITA
 

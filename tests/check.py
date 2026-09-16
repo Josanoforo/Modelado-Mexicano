@@ -360,6 +360,25 @@ _T03_DEPENDENCIAS_PENDIENTES = {
     "forense/encargos/cola/2026-09-11-GEN2-POST-723/27-GEN2-ENSAFI-MEDICION-DESCRIPTIVA-CON-DISENO.md": {
         "2026-09-11-GEN2-FUENTES-FINANCIERAS-CONTINUACION-EFECTIVA-cierre.md",
     },
+    # ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2, 15/sep/2026. Encargo archivado
+    # VERBATIM por A.3, que por regla de `/acto` §4.5 nunca se edita para
+    # complacer al test. Sus dos citas, una por una:
+    #
+    #  · `ADVERSARIAL-ASTRA-1-LECTURA-F5-2026-09-15.md` -- el adjunto que el
+    #    encargo declara «viaja adjunto» y que NO llegó. Es exactamente la
+    #    dependencia pendiente que `NC-0219` asienta (`PARO-PREMISA`): el
+    #    archivo se creará cuando mesa pegue el texto verbatim, y hasta
+    #    entonces la cita cuelga a propósito. No se fabrica el archivo para
+    #    cerrar la cita -- sería inventar la procedencia que el paso existe
+    #    para asentar.
+    #  · `acto.md` -- SÍ existe, en `.claude/commands/acto.md`; el glob de
+    #    este test (`**/*.*`) no desciende a directorios que empiezan con
+    #    punto, así que no lo ve. Falso positivo de cobertura del glob, no
+    #    referencia colgante: verificado con `ls .claude/commands/acto.md`.
+    "forense/encargos/2026-09-15-GEN2-MANTENIMIENTO-Y-ARCHIVO-2.md": {
+        "ADVERSARIAL-ASTRA-1-LECTURA-F5-2026-09-15.md",
+        "acto.md",
+    },
 }
 
 def _normalize_version_dots(name):
@@ -814,8 +833,23 @@ def _suite_real():
         # el registro real abre cientos de specs. Conservamos un límite duro,
         # pero con margen para el arranque frío del runner de CI: 60 s llegó a
         # cortar una suite que termina verde localmente, no un ciclo real.
+        #
+        # ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2 (`NC-0191`), 15/sep/2026:
+        # 120 s -> 300 s, PISO MEDIDO, no estimado. NC-0191 abrió fila tras
+        # dos ocurrencias consecutivas (2026-09-14 rutinas.tsv · 2026-09-15
+        # digesto) en que ESTE subproceso topó el límite y dejó el ciclo sin
+        # 3.1/3.2/3.3/3.6. Medición bajo carga real de NUBE, tres corridas
+        # consecutivas del hijo (`CHECK_SELFCHECK_CHILD=1 python3
+        # tests/check.py`), en este mismo árbol: 82.9 s · 83.0 s · 82.0 s
+        # (mediana 82.9 s), las tres con la MISMA salida `3 FAIL · 4353
+        # WARN` -- o sea el límite cortaba una suite estable, no una
+        # regresión de contenido. Con 120 s el margen era 1.45x, que la
+        # contención de CPU del sandbox se come (el propio cierre de
+        # `GEN2-CONSUMIDO-RETRO-3` ya lo atribuyó a "saturación de CPU").
+        # 300 s deja ~3.6x sobre la mediana medida. NO se toca la lógica de
+        # comparación FAIL/WARN, que es lo que NC-0191 excluye del perímetro.
         r = subprocess.run([sys.executable, os.path.join(ROOT, "tests", "check.py")],
-                            cwd=ROOT, capture_output=True, text=True, env=env, timeout=120)
+                            cwd=ROOT, capture_output=True, text=True, env=env, timeout=300)
     except Exception as e:
         return None, None, str(e)
     m = re.search(r"(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN", r.stdout)
@@ -1448,6 +1482,18 @@ _T22_MARCADOR_PENDIENTE = re.compile(
 # cualquiera de los dos marcadores es exactamente el defecto que (b)
 # existe para atrapar.
 _T22_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-SPECS-DEMANDA-2, 15/sep/2026: prereg-caja-ENVIPE-EVASION-NORMA
+    # (capa 2 de D-15 sobre una medición YA sellada, CORR-0007/RES-0025-0026).
+    # Dispara `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`) por CITA, no por
+    # uso: §3 transcribe verbatim la cabecera de
+    # `forense/prereg-caja/ENVIPE-DENUNCIA-SEGURO-propuesta-v1_0.md`
+    # («Estado: PROPUESTA; NO FIRMADA; NO EJECUTAR NI ADOPTAR») al declarar
+    # por qué este acto NO elige entre sus opciones A/B en nombre de mesa
+    # (RES-0039..0042, NC-0088, ya `ABIERTA` desde antes de este acto). No
+    # abre ranura nueva: es la MISMA decisión pendiente que NC-0088 ya
+    # nombra, citada para no perder de vista el residuo, no una propuesta
+    # nueva sin resolver.
+    "forense/prereg-caja/ENVIPE-EVASION-NORMA-spec-v1_0.md",
     # ACTO GEN2-REGISTRO-REPLAY, 9/sep/2026: encargo archivado VERBATIM
     # (0-bis A.3). Dispara `_T22_MARCADOR_PENDIENTE` por MENCION, no por uso:
     # la palabra sale al DESCRIBIR el insumo externo que el acto archiva --
@@ -2770,6 +2816,26 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2, 15/sep/2026: la nota de cierre
+    # cita los rotulos pelados `E5-0` y `E5` porque son las CLAVES LITERALES
+    # que `tools/verifica_encargos_gen2.py::secciones_maestras()` devuelve
+    # para las dos secciones del ENCARGO maestro -- se transcriben tal cual
+    # para que la verificacion de NC-0050 sea reproducible con el comando a
+    # la vista. No son rotulos nuevos ni se reclaman: los habitantes reales
+    # son `GEN2-E5-0` y `GEN2-E5`, ya censados en canon/registro-rotulos.tsv.
+    # Reescribirlos con prefijo falsearia lo que el comando de verificacion
+    # imprime, que es justo lo que la nota existe para hacer auditable.
+    "forense/notas/2026-09-15-GEN2-MANTENIMIENTO-Y-ARCHIVO-2-cierre.md",
+    # ACTO GEN2-E11-RES0028-PARTICION, 15/sep/2026: el encargo cita el
+    # rótulo pelado `E11` porque es exactamente cómo la propia fila de
+    # `NC-0085` (`forense/no-corrido.tsv`) nombra al acto responsable --
+    # no es un rótulo nuevo que se esté reclamando. `E11` ya está CENSADO
+    # Y NO RECLAMADO por `MAESTRA32-E11` (colisión declarada, ninguno
+    # gana). Este acto censa su propio rótulo `GEN2-E11` en
+    # `canon/registro-rotulos.tsv`, con la misma colisión declarada
+    # explícitamente ahí, y no reclama el token bare.
+    "forense/encargos/2026-09-15-GEN2-E11-RES0028-PARTICION.md",
+    "forense/notas/2026-09-15-GEN2-E11-RES0028-PARTICION-cierre.md",
     # Paquete GEN2-POST-723, 11/sep/2026: el encargo 29 se carga verbatim y
     # cita "motor E0 historico" como procedencia. No crea otro rotulo: E0
     # ya es el habitante MOTOR-3-E0 censado en canon/registro-rotulos.tsv.
@@ -4596,6 +4662,21 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # referencia de procedencia al habitante ENCARGO-E05 ya censado; no es
     # un rótulo nuevo y el cuerpo recibido no se edita para complacer T25.
     "forense/encargos/2026-09-10-GEN2-ENIF-POBLACION-Y-ADOPCION.md",
+    # ACTO GEN2-E1-DISENO-CALIBRACION-1, 16/sep/2026: el rótulo propio de
+    # este acto ("GEN2-E1-DISENO-CALIBRACION-1") COLISIONA por la forma
+    # corta "GEN2-E1" con el habitante ya censado GEN2-E1 · LIMPIEZA-C1
+    # (7/sep/2026, canon/registro-rotulos.tsv fila E). Colisión declarada
+    # aquí y en el registro (mismo patrón que la fila E11/MAESTRA32-E11:
+    # ninguno de los dos gana la forma pelada). Los tres archivos de abajo
+    # citan "E1" pelado -- el encargo archivado verbatim (0-bis A.3) trae
+    # la firma de mesa F-18 tal como llegó ("Abrir el diseño de E1" y
+    # "la calibración E1 de Θ(x)"), y el documento de diseño repite esa
+    # misma cita al describir el objeto del acto. No se edita ninguno de
+    # los dos para complacer el test (A.3 sobre el primero; el segundo
+    # nombra su propio acto, no reclama un rótulo nuevo).
+    "forense/encargos/2026-09-16-GEN2-FIRMAS-MESA-3.md",
+    "forense/encargos/2026-09-16-GEN2-E1-DISENO-CALIBRACION-1.md",
+    "forense/theta-cargable-por-celda-diseno-e1-v1_0.md",
 }
 
 
@@ -4907,12 +4988,15 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
     dobles. **29 líneas** (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94,
     97, 114, 117, 119, 121, 123, 124, 125, 136, 139, 140, 144, 145, 146,
     147, 148, 149).
+    Re-medido el 16/sep/2026 al consolidar los residuales públicos IHSN y
+    ENPOL por la misma vía canónica: **31 líneas**; las líneas 153 y 154
+    contienen metadata JSON con comillas dobles.
     Este test es DOBLE:
 
     (1) CONTROL, documenta que el defecto sigue vivo con `csv`: si algún
         día alguien "arregla" el round-trip corriendo `csv.writer` sobre
         el archivo completo, este control lo hace visible en vez de
-        quedar en silencio -- se esperan EXACTAMENTE 29 líneas distintas
+        quedar en silencio -- se esperan EXACTAMENTE 31 líneas distintas
         hoy; si el número cambia (para arriba o para abajo) sin que
         nadie lo haya declarado, falla.
     (2) REGRESIÓN del lector/escritor propio (`tools/curador_registro/
@@ -4938,12 +5022,12 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
         escritor.writerow(fila)
     csv_out_lines = buf.getvalue().split("\r\n")
     diffs_csv = [i for i, (a, b) in enumerate(zip(orig_lines, csv_out_lines)) if a != b]
-    if len(diffs_csv) != 29:
-        fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv daba "
-                         f"29 líneas distintas (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94, "
+    if len(diffs_csv) != 31:
+        fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv debe dar "
+                         f"31 líneas distintas (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94, "
                          f"97, 114, 117, 119, 121, 123, 124, 125, 136, 139, 140, 144, 145, 146, "
-                         f"147, 148, 149) el 11/sep/2026 (ACTO GEN2-CRON-DEMANDA-A-DATO-Y-"
-                         f"PRODUCCION, tras añadir siete residuales con `tsv_crudo.upsert_fila`); hoy da "
+                         f"147, 148, 149, 153, 154), re-medidas el 16/sep/2026 tras consolidar "
+                         f"IHSN y ENPOL en el registro canónico; hoy da "
                          f"{len(diffs_csv)} ({[i + 1 for i in diffs_csv]}) -- el archivo cambió "
                          f"de forma que el control ya no describe la realidad, actualiza el número "
                          f"esperado con el hallazgo re-medido, no lo silencies.")
@@ -5025,6 +5109,16 @@ def t27_infraestructura():
         # `input_sha256`. La familia `data/corrida0/demanda-*.tsv` NO está
         # exenta: sigue citada en INFRAESTRUCTURA §`data/corrida0/` (GEN2-E2).
         if re.match(r"^data/corrida0/CALC-[A-Za-z0-9_.-]+/", relp):
+            continue
+        # ACTO GEN2-RUTINA-DERIVADOS-1 (16/sep/2026). Mismo razonamiento que la
+        # exención de `data/corrida0/CALC-*/` de arriba: `tools/deriva_cron.sh`
+        # escribe un archivo NUEVO por corrida (una fecha por día que produce
+        # cambio versionable), y exigir una fila de INFRAESTRUCTURA por fecha
+        # convertiría ese archivo en un registro de corridas. La custodia no se
+        # pierde: cada archivo trae su propio `comparado_contra`/`deltas`/
+        # `snapshot_sha256_del_dia`, y la familia entera está descrita una vez
+        # en el Dominio 3 (`data/INFRAESTRUCTURA-v1_0.md`).
+        if re.match(r"^data/curacion-universo/derivados/universo-\d{4}-\d{2}-\d{2}\.json$", relp):
             continue
         base = os.path.basename(p)
         if base in infra_text or relp in infra_text:
@@ -5149,6 +5243,17 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-FIRMAS-MESA-1, 15/sep/2026: encargo A.3 archivado VERBATIM,
+    # que no se edita para complacer un test (misma regla que rige T25). El
+    # acto NO MIDE NADA -- su contador declara «cero mediciones propias» y
+    # corre en NUBE sin microdato. Los ids que cita
+    # (familia.apoyo.recibe_dinero_familiares,
+    # familia.cuidado.recae_mujeres_40mas, tramite.mordida.*,
+    # dinero.ahorro.*) son los CONSUMIDORES cuyas glosas de prosa enmienda
+    # por firma de mesa, no reglas que vaya a medir, cargar o sellar. A.8 sí
+    # se ejecutó: las siete devolvieron `MEDIDA-EN:` (ninguna NUNCA-MEDIDA)
+    # y la salida se conserva en la nota de cierre §A.8.
+    "forense/encargos/2026-09-15-GEN2-FIRMAS-MESA-1.md",
     # ACTO GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES, 11/sep/2026: encargo A.3
     # archivado VERBATIM. Los dos ids aparecen como consumidores que se deben
     # localizar, no como tasas que el acto vaya a medir o adoptar. A.8 sí se
@@ -5401,6 +5506,19 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # tramite.mordida.discrecional` (corrido, ultima linea): `NUNCA-MEDIDA`
     # -- consistente con que este acto no mide nada ni toca el motor.
     "forense/encargos/2026-09-09-GEN2-PREP-LOTE.md",
+    # ACTO GEN2-E11-RES0028-PARTICION, 15/sep/2026: encargo archivado
+    # VERBATIM (A.3), que no se edita para complacer un test (misma regla
+    # que rige T25). Cita `civico.denuncia.miedo_desconfianza` como el
+    # consumidor de `RES-0028` que el acto va a fichar -- no lo
+    # reclasifica ni lo resella: propone, sin ejecutar, un
+    # `corrida0_resultado_id` propio para el derivado, que ya está
+    # `MEDIDA-EN:` en el motor por la corrida padre. `tools/ya_medido.py`
+    # SÍ se corrió en A.8 de este acto (última línea): `MEDIDA-EN:
+    # CALC-ENVIPE-0001, tramite-ola5-propuesta-v0.yaml, tramite.yaml`; la
+    # salida vive en
+    # `forense/notas/2026-09-15-GEN2-E11-RES0028-PARTICION-cierre.md`, no
+    # en el archivo verbatim del encargo.
+    "forense/encargos/2026-09-15-GEN2-E11-RES0028-PARTICION.md",
 }
 
 
@@ -5697,6 +5815,11 @@ def t_cron_huellas_adq(texto, fecha):
             "exit": _campo("exit"),
             "resultado": _campo("resultado"),
             "resultado_trabajo": _campo("resultado_trabajo"),
+            "salud_trabajo": _campo("salud_trabajo"),
+            "demanda_atendible": _campo("demanda_atendible"),
+            "necesidades_atendidas": _campo("necesidades_atendidas"),
+            "objetos_nuevos": _campo("objetos_nuevos"),
+            "bytes_nuevos": _campo("bytes_nuevos"),
             "publicacion_trabajo": _campo("publicacion_trabajo"),
             "publicacion": _campo("publicacion"),
             "disparador": _campo("disparador"),
@@ -5886,6 +6009,17 @@ def t_cron_estado(fecha, prefijos, cuerpo_adq,
         historico = any(h["run_id"] is None for h in huellas)
         nota_hist = " (acreditado por huella histórica sin run_id)" if historico else ""
         if exitosas and _t_cron_exitosa(ultimo):
+            if ultimo.get("salud_trabajo") == "EJECUCION_SIN_EVIDENCIA_NUEVA":
+                return ("EJECUCION-SIN-AVANCE-MATERIAL",
+                        f"censo del {dia}: ejecución técnica correcta, pero "
+                        f"demanda_atendible={ultimo.get('demanda_atendible')} y "
+                        f"objetos_nuevos={ultimo.get('objetos_nuevos')} "
+                        f"[{_t_cron_rotula(ultimo)}]")
+            if ultimo.get("salud_trabajo") == "SIN_TRABAJO_ATENDIBLE":
+                return ("COMPLETO-SIN-TRABAJO-ATENDIBLE",
+                        f"censo del {dia}: ejecución mecánica correcta; toda la "
+                        f"demanda está satisfecha, diferida o espera acción "
+                        f"identificada [{_t_cron_rotula(ultimo)}]")
             return ("COMPLETO",
                     f"censo del {dia}: [ADQ] invocado={ultimo['invocado']} "
                     f"motivo={ultimo['motivo']} resultado={ultimo['resultado']} "
@@ -6414,6 +6548,65 @@ def t34_no_corrido():
 
 
 # ───────────────────────────────────────────────────────────────
+# T43 · T-SUCESOR-EXISTE -- ACTO GEN2-VIGENCIA-DEUDA-1 (16/sep/2026),
+# gate D-14 contestado en el propio encargo: defecto real medido en
+# NC-0024 (su enmienda fechada del 15/sep, ACTO GEN2-MARCADOR-C0-D, apunta
+# a NC-0236/NC-0225 como sucesores; dos renumeraciones de merge después
+# esos ids son OTRAS filas -- "residual del lote" y "el SEGUNDO documento
+# de Astra", no el crosswalk ni el marcador que la enmienda quería citar)
+# y en NC-0218 (`sucesor` cita `ACTO D-A`, que la propia fila declara
+# AUSENTE). Cambia a qué fila mira quien lea el sucesor, y se resuelve con
+# una regex. WARN, no FAIL: es señal para quien redacta el sucesor, no
+# bloqueo de commit -- una cita puede ser deliberadamente aspiracional (un
+# acto o archivo que el propio sucesor propone crear).
+#
+# WARN (vía `senal()`, vigía fuera de línea base -- dispara por diseño
+# mientras el sucesor cite algo que no está) por cada fila `estado =
+# ABIERTA` cuyo `sucesor` nombre:
+#   (a) un `ACTO <RÓTULO>` (RÓTULO con al menos un guión -- un rótulo
+#       pelado sin guión es ambiguo por regla propia de `/acto` y no se
+#       resuelve aquí) sin ningún archivo en `forense/encargos/**/*.md`
+#       cuyo nombre termine en `-<RÓTULO>.md` -- mismo cotejo por rótulo
+#       que usa el 2-ter de `despacha.md`, no uno nuevo.
+#   (b) una ruta de archivo con extensión reconocida (py/md/tsv/yaml/yml/
+#       json/csv/txt/sha256) que no existe en el árbol de trabajo.
+#
+# No resuelve identificadores pelados (`NC-nnnn`, `CALC-*`, `RESULT-*`):
+# no son "un acto o archivo" en el sentido del encargo, y su universo de
+# validación es distinto -- fuera del perímetro de este WARN.
+# ───────────────────────────────────────────────────────────────
+_T43_ACTO_RE = re.compile(r"\bACTO\s+([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+)")
+_T43_ARCHIVO_RE = re.compile(
+    r"\b((?:[\w.\-]+/)+[\w.\-]+\.(?:py|md|tsv|ya?ml|json|csv|txt|sha256))\b"
+)
+
+
+def t43_sucesor_existe():
+    filas = _t34_leer_no_corrido()
+    if not filas:
+        return
+    nombres = [os.path.basename(p) for p in
+               glob.glob(os.path.join(ROOT, "forense", "encargos", "**", "*.md"), recursive=True)]
+    for i, fila in enumerate(filas, start=2):
+        if (fila.get("estado") or "").strip() != "ABIERTA":
+            continue
+        fid = (fila.get("id") or "?").strip()
+        sucesor = (fila.get("sucesor") or "").strip()
+        if not sucesor:
+            continue
+        for rotulo in _T43_ACTO_RE.findall(sucesor):
+            sufijo = f"-{rotulo}.md"
+            if not any(n.endswith(sufijo) for n in nombres):
+                senal("T-SUCESOR-EXISTE", f"forense/no-corrido.tsv:{i} {fid}: "
+                      f"sucesor cita `ACTO {rotulo}`, sin archivo en "
+                      f"forense/encargos/**/*.md terminado en {sufijo!r}")
+        for ruta in _T43_ARCHIVO_RE.findall(sucesor):
+            if not os.path.exists(os.path.join(ROOT, ruta)):
+                senal("T-SUCESOR-EXISTE", f"forense/no-corrido.tsv:{i} {fid}: "
+                      f"sucesor cita el archivo `{ruta}`, ausente del árbol")
+
+
+# ───────────────────────────────────────────────────────────────
 # T35 · T-REPRO -- ACTO GEN2-E6 · AUTOMATIZA-GEN2-2 (8/sep/2026),
 # plan v2.0 §2 y §7. **MODO FAIL desde `ACTO GEN2-E5 · CALC-0001..0003`
 # (8/sep/2026)**, que es donde E6 dejó programado el cambio.
@@ -6714,6 +6907,7 @@ def main():
         ("T35 T-REPRO",                                t35_repro),
         ("T41 T-DIGESTO-MESA",                          t41_digesto_mesa),
         ("T42 T-CANDIDATAS",                            t42_digesto_candidatas),
+        ("T43 T-SUCESOR-EXISTE",                        t43_sucesor_existe),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))

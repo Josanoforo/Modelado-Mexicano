@@ -2,8 +2,18 @@ ESTADO: CONSUMIDO — PR #693; documentos públicos y dictamen DIN entregados;
 NC-0151 y FP-371 preservan las acciones externas y la decisión de mesa.
 
 BITÁCORA: ejecución y cierre en
-`forense/encargos/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md` y
-`forense/notas/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-Y-DIN-cierre.md`.
+`forense/notas/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-Y-DIN-cierre.md`
+(existe, verificado). La ruta antes citada aquí,
+`forense/encargos/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md`, NO EXISTE
+en el árbol (`git cat-file -e` falla) — a diferencia de sus 4 hermanos del
+lote (01-04), este ítem nunca recibió su homónimo archivado con
+`## CONSUMIDO`. DEFECTO REAL para mesa, corregido por auditoría ACTO
+GEN2-VIGENCIA-DEUDA-1 (2026-09-16): PR #693 sí es real y está fusionado
+(`git log --all --oneline --grep="pull request #693"` → `e76f3a1d`), la
+nota de cierre sí existe y trae la tabla de obligaciones/pruebas — falta
+únicamente completar el archivado (crear el homónimo faltante o decidir
+que la nota de cierre basta como registro), decisión que no toma esta
+auditoría.
 
 ──── CUERPO VERBATIM RECIBIDO DE DIRECCIÓN ────
 

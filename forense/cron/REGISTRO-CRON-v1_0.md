@@ -299,3 +299,43 @@ lunes-viernes 07:30, siguiente corrida `2026-09-14T07:30:00-06:00`,
 `Operational=True`. `ADQ_DEPLOY_REVISION=1e880f05…` impide que un pull de
 `main` restaure Claude mientras PR #718 siga abierto; el launcher cambia solo
 a `main` cuando esa revisión ya sea ancestro de `origin/main`.
+
+## §11 · Segunda tarea, independiente: derivación diaria (16/sep/2026)
+
+`ACTO GEN2-RUTINA-DERIVADOS-1`
+(`forense/encargos/2026-09-16-GEN2-RUTINA-DERIVADOS-1.md`) añade una
+**tarea nueva e independiente** al mismo Windows Task Scheduler — no una
+entrada dentro de §1/§9 de este documento, que son de adquisición.
+
+**Por qué no comparte `tools/adquiere_launcher.sh`.** Verificado contra
+el árbol antes de escribir: ese launcher resuelve presupuesto
+(`tools/adq_investigacion.py --recupera-presupuesto`) y una revisión
+fijada específicos de adquisición (líneas 130-175) y corre contra el
+clon dedicado `/home/pc0/mm-adq` de §1. La rutina de derivación no tiene
+concepto de presupuesto, corre siempre (nunca condicional a "hay trabajo
+atendible"), y no invoca ningún ejecutor de lenguaje — encadenarla ahí
+acoplaría dos semánticas de disparo distintas sin necesidad. Es su
+propio lock (`forense/deriva-log/estado/deriva_cron.lock`, nunca
+`forense/adq-log/`) y su propio script es su propio lanzador.
+
+| campo | valor |
+|---|---|
+| script | `tools/deriva_cron.sh` (autocontenido; sin separación launcher/runner porque no invoca ningún ejecutor de lenguaje) |
+| caja | la caja donde viva el clon que aloje esta rutina — corpus compartido montado (`data/raw`), `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` sin definir |
+| horario sugerido | diaria en día hábil, 08:30 hora de mesa (una hora después del disparo de adquisición de §1, para que el corpus del día haya tenido oportunidad de asentarse) — **no instalado por este acto**, ver abajo |
+| log | `forense/deriva-log/<AAAA-MM-DD>.log` (gitignorado), heartbeat en `forense/deriva-log/estado/heartbeat.json` |
+| huella mínima esperada por corrida | una línea `[DERIVADOS] <fecha> <HH:MM>: invocado=<si\|no> motivo=<-\|PARO-ENTORNO\|PARO-CORPUS\|PARO-SUITE-ROJA\|PARO-PUSH\|NADA-QUE-HACER> exit=<código\|-> duracion=<s> disparador=<...> run_id=<...>`, escrita siempre en el log local; si hubo commit, la misma huella (con las cuatro deltas) va en el cuerpo del commit `[DERIVADOS] <fecha>` y del PR |
+| commit/PR | rama `derivados/<AAAA-MM-DD>`, PR `[DERIVADOS] <AAAA-MM-DD>` (main protegida, check `check` requerido) — **cero PR** si `NADA-QUE-HACER` |
+| runbook | `forense/agente-derivacion-v1_0.md` — **sin prompt**, porque esta rutina no invoca ningún modelo |
+| ejecutor | ninguno — cuatro pasos deterministas (`snapshot_universe.py`, `tablero_programa.py --actualiza`, `corrida0.py registro --verifica` + `status`, `tests/check.py --baseline`) |
+| instalación | **manual por mesa, no instalada por este acto** — mismo criterio que `forense/encargos/2026-09-01-MAESTRA34-N7-SKILLS-COLA-Y-ADQ.md` fijó para el primer cron de adquisición: este acto corre en CAJA/WSL, sin acceso al Task Scheduler del host Windows |
+
+Línea sugerida para que mesa la registre (mismo patrón que §9, tarea
+independiente, sin launcher intermedio):
+
+```text
+wsl.exe -d Ubuntu -u pc0 -- env DERIVA_DISPARADOR=windows-task-scheduler bash -lc <RUTA_DEL_CLON>/tools/deriva_cron.sh
+```
+
+Actualiza este §11, datado, cuando mesa instale la tarea (exportación,
+ventana siguiente) — mismo formato que §9/§10 arriba.

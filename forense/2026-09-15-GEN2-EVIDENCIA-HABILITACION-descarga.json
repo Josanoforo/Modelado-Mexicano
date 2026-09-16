@@ -1,0 +1,39 @@
+{
+  "acto": "GEN2-EVIDENCIA-HABILITACION",
+  "fecha": "2026-09-15",
+  "entorno": "CAJA-WSL2",
+  "objetos_intentados": 2,
+  "objetos_nuevos": 2,
+  "bytes_nuevos": 1093715,
+  "microdatos_nuevos": 0,
+  "mediciones_nuevas": 0,
+  "paquete_transferencia": {
+    "archivo": "ENNVIH-DOCUMENTACION-2026-09-15.zip",
+    "tamano_bytes": 951278,
+    "sha256": "1ba92400a2d3b044d60adffe2cf31eb5afdbdca88f3f6459196906964263eddd",
+    "miembros_validos": true
+  },
+  "objetos": [
+    {
+      "id": "ennvih2_2005_guia_usuario_ingles",
+      "archivo": "ennvih/usersguidev2-en.pdf",
+      "url": "https://www.ennvih-mxfls.org/english/assets/usersguidev2.pdf",
+      "http": 200,
+      "tamano_bytes": 385292,
+      "sha256": "63e98081cfb4c0556909be2890d73b7d0000784e880cb9118bf2c21fd4e42fcc",
+      "legible": true,
+      "paginas": 37
+    },
+    {
+      "id": "ennvih3_2009_guia_usuario_ingles",
+      "archivo": "ennvih/usersguidemxfls-3-en.pdf",
+      "url": "https://www.ennvih-mxfls.org/english/assets/usersguidemxfls-3.pdf",
+      "http": 200,
+      "tamano_bytes": 708423,
+      "sha256": "747a9a0f33ec73166a62ebfc0ddca752dcc48ec14976100c124e4d204d6d10a8",
+      "legible": true,
+      "paginas": 45
+    }
+  ],
+  "limite": "documentación complementaria; no aporta réplicas ni identificación ejecutable de UPM/estrato"
+}

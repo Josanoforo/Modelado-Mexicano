@@ -19,6 +19,7 @@
 > | **Vigilante** | `tests/check.py` T31 tras H1 (evidencia fusionada primaria, filtrado por fecha y `run_id`, `SIN-EVIDENCIA-NO-VERIFICABLE` para lecturas fallidas) y `tools/adq_doctor.py` que lo reusa | La lectura por rama `censo/<fecha>` como requisito, y el `COMPLETO` derivado de un cuerpo `[ADQ]` sin comprobar su fecha. |
 > | **Horario** | `data/adq-config.yaml:calendario` es la autoridad única: diario 07:30, `America/Mexico_City` / `Central Standard Time (Mexico)`, por GEN2-38. Instalador, runner, doctor y T31 lo consumen mediante `tools/adq_config.py`. | Las copias históricas de lunes–viernes, 07:30 y la zona local en las secciones inferiores. |
 > | **Ejecutor** | `data/adq-config.yaml:ejecutor = codex`; `tools/adquiere_launcher.sh` resuelve la revisión antes de cargar el runner y `codex exec` corre no interactivo con `danger-full-access` en el clon dedicado. La corrida real del 11/sep demostró que `workspace-write` deja `.git` de sólo lectura e impide commit/push. | Claude y sus límites quedan como antecedente histórico. Sólo `ejecutor: claude` explícito activa compatibilidad; nunca hay fallback silencioso. El acceso pleno no autoriza compras, contacto, identidad inventada ni cambios fuera del encargo. |
+> | **Comprobación y presupuesto** | La misma tarea comprueba determinísticamente cada hora y al iniciar sesión; bajo el lock recupera sólo reservas huérfanas acreditadas y el launcher entrega al runner si hay trabajo o recuperación diaria. Techo agregado diario: 3 investigaciones, 5 objetos y 3,900 s. La reserva protege el techo; antes del recibo se liquida una vez por `run_id` contra investigaciones/objetos realmente iniciados y duración monotónica externa, devolviendo lo no usado. Cada dimensión puede continuar si conserva su propio cupo y tiempo. | Reservar los máximos como consumo final, reiniciar cupo por activación y paralizar investigación porque no quedan objetos (o viceversa). |
 >
 > **Propagación ejecutada por GEN2-SONDA-CRON-PRODUCCION:** la advertencia
 > anterior queda satisfecha sin cambiar la conducta (lun-vie 07:30). Los
@@ -84,6 +85,12 @@ cada necesidad elegida busca realmente fuera del corpus, persiste progreso y
 frontera por versión, y enlaza toda candidata pública al mandato GEN2-38. Si
 ambas selecciones están vacías, cierra sin LLM; si hay investigación aunque
 no haya descarga, no cierres como cola vacía.
+Continua por otras vias y necesidades cuando una falle. No repitas rutas
+agotadas: una frontera concreta queda enlazada al ciclo siguiente; una espera
+nombra su evento de reactivacion. Una candidata publica pertinente puede
+adquirirse aunque cubra solo una dimension, dejando explicitos el uso permitido
+y la brecha. Tras dos ciclos sin avance material presenta una alternativa
+concreta; no tomes una decision cientifica nueva por clasificacion.
 La seleccion NO se re-decide aqui: el contrato unico de elegibilidad y
 orden vive en .claude/commands/adquiere.md seccion 1, y se proyecta con
 `python3 tools/adq_doctor.py --selecciona --maximo 5`. Pega su salida

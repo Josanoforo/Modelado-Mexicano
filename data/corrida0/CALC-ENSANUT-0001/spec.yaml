@@ -1,0 +1,202 @@
+# CALC-ENSANUT-0001 -- cara mecanica de spec.md (ACTO GEN2-SPECS-DEMANDA-1, tanda 2).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/S7-L17-spec-v1_1.md (`prereg-caja-S7-L17`), RAMA B.
+# Releva la demanda CORR-0017 (2 RESULT) bajo el registro GEN2.
+# CONGELADO en el COMMIT-1, en NUBE, antes de abrir un solo byte de microdato.
+calc_id: CALC-ENSANUT-0001
+spec_md: spec.md
+spec_md_sha256: fa33e9f14dffd8d24c53dc01f158172cea2f5d4238030cd445b9e6b66a8b0443
+
+script: data/corrida0/CALC-ENSANUT-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: TASA-BASE-DE-REGLA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/S7-L17-spec-v1_1.md
+  spec_sellada_sha256: 5b9b6055122b1ea14a1bd82503fd84889c7a064a08c04e443c07ae6866ac59d2
+  demanda_que_releva: "CORR-0017 (payload declarado por el registro legado como `forense/prereg-caja/S7-L17-spec-v1_0.md`, que es la SPEC y no el payload -- el payload real es ENSANUT 2024 adultos) -> los 2 RESULT: RES-0063 (salud.vacunacion.disponible_ensanut2024:razon_no_vacunacion_logistica) y RES-0064 (:razon_no_vacunacion_no_logistica). NO releva la Rama A (ENNViH) ni la Rama C (adolescentes) de la misma spec sellada: ninguna de las dos tiene RESULT en CORR-0017."
+  por_que_no_hay_spec_humana_nueva: "CORR-0017 es el unico de las 19 cuya capa HUMANA de D-15 ya estaba sellada (prereg-caja-S7-L17, v1.0 del 5/sep y v1.1 del 7/sep). Lo que faltaba era la capa EJECUTABLE. Escribir una segunda spec humana duplicaria un sellado, que E.3 prohibe. Este contrato cablea la Rama B de la v1.1 y nada mas."
+  reglas_bajo_prueba: "NINGUNA cambia de cifra por esta corrida. salud.vacunacion.disponible_ensanut2024 (R9.2) esta SELLADA en milpa/tramite.yaml con p=0.777762 (GEN1) y conserva su cifra. La adopcion la decide mesa por merge."
+  firma_de_contador: "NO-FIRMADA. El encargo de mesa (15/sep/2026) pide congelar specs ejecutables y NO declara OBJETO sobre el contador GEN2. Estandar FP-367/368 NO satisfecho -> cuenta_gen2 queda PENDIENTE-DE-MESA."
+  hallazgo_a15_del_acto: "MATERIAL para quien escriba el medidor, y son DOS. (1) UNIDAD DE OBSERVACION: milpa/tramite.yaml declara el universo como «254 menciones Si (179 personas distintas) en el bloque a0927», desglosadas no_habia_vacunas=152, enfermo=47, no_estaba_quien_aplica=28, no_derechohabiente=16, otra_razon=11 (suman 254, verificado). `ponde_f` es un ponderador DE PERSONA: aplicado a filas de mencion, una persona con dos menciones entra con su peso dos veces. La primaria reproduce ese universo porque es el de la cifra GEN1, y B-P-PERSONA mide la misma proporcion colapsando a persona, con delta con signo. (2) INVENTARIO SUPERADO: la spec sellada v1.1 verifica el bloque a0927 contra data/inventario-reactivos-descargas-mx-v1_1.tsv; A.15(a) exige el VIGENTE (v1_2, «nunca versiones superadas del mismo inventario, que rescatan por accidente»). Re-verificado aqui contra v1_2: las 20 variables a0927{a..e}{1..4} existen en adultos_ensanut2024_w.dta con sha256_12 0fa8f4436fa4 -- el mismo del manifiesto -- y su texto_reactivo confirma el mapeo letra=razon/digito=vacuna de ADR-357/FP-326. El negativo NO cambia de signo; lo que cambia es que ahora esta verificado contra el inventario que manda."
+  nota_de_inventario: "El bloque a0927 aparece bajo CUATRO payload_id en inventario-reactivos-descargas-mx-v1_2.tsv, que son DOS archivos: adultos_ensanut2024_w.dta (sha256_12 0fa8f4436fa4) y adultos_ensanut2024_w.csv (80c255f88242), cada uno indexado con y sin el prefijo de carpeta `ENSANUT2024-v2026-09-01/`. Es un artefacto de dos corridas del extractor sobre dos disposiciones de raiz, NO una entrada duplicada del manifiesto: verificado, el manifiesto trae EXACTAMENTE UNA entrada por ese sha256 (adultos_ensanut2024_w_stata_stata__v2026_09_01) y CERO sha256 con mas de una entrada en todo el archivo. Este contrato fija el .dta, que es el unico de los dos que trae texto_reactivo (la extraccion CSV solo da nombres de columna)."
+  contaminacion_declarada: "ADR-46 -- al congelar, la sesion YA habia leido: p=0.777762 y 0.222238, ic95=[0.672777,0.857561], n=254, ponderador ponde_f y el desglose completo de las cinco razones (milpa/tramite.yaml); y la spec sellada S7-L17 v1.1 entera, incluidas sus secciones 2, 2.1, 3 y 5. NO es ciega, y leer la sellada es exactamente lo que este contrato tiene que hacer para cablearla. Lo genuinamente desconocido al congelar: la proporcion ponderada colapsada a PERSONA, cuantas personas declaran mas de una mencion, cuantos estratos quedan con UPM unica, y la anchura del IC bajo esta semilla."
+  medidor_ejecutado_al_congelar: "NO -- y el medidor tampoco se escribe aqui. El encargo pide `md humana + spec.yaml` (D-15, dos capas; aqui la humana ya existe sellada); el medidor es del acto de CAJA que consuma este contrato. Consecuencia declarada, con sus DOS bloqueos y sin colapsarlos: `corrida0.py preflight CALC-ENSANUT-0001` reporta (a) `script_ausente` -- el medidor, que CAJA escribe -- y (b) `input_manifiesto_RAIZ_NO_CONFIGURADA=adultos_ensanut2024_w_stata_stata__v2026_09_01`, porque este payload vive bajo la raiz logica `descargas_mx` y ESA RAIZ NO ESTA CONFIGURADA en este clon de nube (el unico que `tools/entorno.py` conoce aqui es `data_raw`, y tambien sin configurar). RAIZ-NO-CONFIGURADA no es AUSENTE ni NO-VISIBLE-EN-ESTE-CONTEXTO: son tres respuestas distintas con tres remedios distintos (A.1), y esta es la de «el clon no declara esa raiz», que se resuelve enlazando `data/raices.local.yaml` desde el clon padre, no descargando nada. La CAJA que corra este contrato ya la tiene (su A.8 reporta corpus=SI con 413 archivos examinados). Se declara aqui en vez de descubrirse al correr."
+
+inputs:
+  - id: adultos_ensanut2024_w_stata_stata__v2026_09_01
+    origen: manifiesto
+  - id: IN-ENSANUT-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/S7-L17-spec-v1_1.md
+    sha256: 5b9b6055122b1ea14a1bd82503fd84889c7a064a08c04e443c07ae6866ac59d2
+
+variables:
+  - {archivo: "adultos_ensanut2024_w.dta", variable: "a0927a1..a0927a4", rol: "DESENLACE, rama LOGISTICA (1/2) -- «no habia vacunas», por vacuna (1=Influenza, 2=Neumococo, 3=Tetanos, 4=Otra)", codigos: "texto_reactivo verbatim del .dta: «A0927A1 Que vacuna fue la que no le aplicaron porque no habia vacunas, fue Influenza...». Mapeo letra=razon / digito=vacuna confirmado por ADR-357/FP-326 contra el .dta real; la v1.0 de la sellada lo tenia INVERTIDO. Marca de mencion = codigo de respuesta afirmativa; el soporte observado se emite como RESULT antes de aplicar el mapa", direccion: "MAS ALTO = LA RAZON DECLARADA ES MAS LOGISTICA"}
+  - {archivo: "adultos_ensanut2024_w.dta", variable: "a0927c1..a0927c4", rol: "DESENLACE, rama LOGISTICA (2/2) -- «no estaba la persona que aplica»", codigos: "idem; barrera de personal", direccion: "idem"}
+  - {archivo: "adultos_ensanut2024_w.dta", variable: "a0927b1..a0927b4", rol: "DESENLACE, rama NO-LOGISTICA (1/3) -- «por no ser derechohabiente»", codigos: "idem; barrera INSTITUCIONAL: se reporta APARTE y no se suma a logistica ni a actitudinal, por decision de la sellada seccion 3", direccion: "NO-APLICA (categoria declarada)"}
+  - {archivo: "adultos_ensanut2024_w.dta", variable: "a0927d1..a0927d4", rol: "DESENLACE, rama NO-LOGISTICA (2/3) -- «estaba enfermo»", codigos: "idem; contraindicacion medica, ni logistica ni actitudinal", direccion: "NO-APLICA"}
+  - {archivo: "adultos_ensanut2024_w.dta", variable: "a0927e1..a0927e4", rol: "DESENLACE, rama NO-LOGISTICA (3/3) -- «por otra razon»", codigos: "idem; RESIDUAL sin discriminar", direccion: "NO-APLICA"}
+  - {archivo: "adultos_ensanut2024_w.dta", variable: ponde_f, rol: "PONDERADOR -- etiqueta verbatim `Ponderador`. ES DE PERSONA: ver hallazgo_a15_del_acto (1)", codigos: "flotante tal cual, sin normalizar"}
+  - {archivo: "adultos_ensanut2024_w.dta", variable: estrato, rol: "ESTRATO de urbanidad/ruralidad -- etiqueta verbatim `Estrato urbanidad/ruralidad` (LLAVE DE TEXTO OPACA)", codigos: "cadena cruda"}
+  - {archivo: "adultos_ensanut2024_w.dta", variable: est_sel, rol: "ESTRATO DE SELECCION -- etiqueta verbatim `Estrato de seleccion`; es el estrato de DISENO y es el que estratifica el bootstrap (LLAVE DE TEXTO OPACA)", codigos: "cadena cruda"}
+  - {archivo: "adultos_ensanut2024_w.dta", variable: upm, rol: "UPM -- etiqueta verbatim `Unidad primaria de muestreo`; conglomerado que se re-muestrea (LLAVE DE TEXTO OPACA)", codigos: "cadena cruda"}
+  - {archivo: "adultos_ensanut2024_w.dta", variable: "a0904 / a0906 / a0917 / a0919a", rol: "FILTRO de universo -- identifican a quien NO recibio una vacuna nombrada y por tanto responde el bloque a0927", codigos: "texto verbatim del .dta: a0904 «Desde sus 20 anos de edad, le han aplicado la vacuna contra el Sarampion...», a0906 y a0919a «En los ultimos 10 anos, le han aplicado la vacuna contra el Tetanos?», a0917 «Le han aplicado la vacuna contra el Neumococo?». El filtro OPERATIVO es responder el bloque a0927 (la sellada seccion 2.1 lo define asi); estas cuatro se leen para CONTAR el embudo, no para re-derivarlo", direccion: "NO-APLICA (filtro)"}
+
+universo: >-
+  PRIMARIA (unidad = MENCION): las menciones afirmativas del bloque a0927 en
+  adultos_ensanut2024_w.dta, personas de 20 anos o mas. Es el universo que la
+  cifra GEN1 declara -- «254 menciones Si (179 personas distintas)» -- y se
+  conserva para que el control positivo sea sobre la misma cantidad.
+  SECUNDARIA DECLARADA (unidad = PERSONA): las personas distintas con al menos
+  una mencion, colapsadas por folio de persona. NO se promedian entre si: son
+  dos estimandos sobre dos unidades, y B-DELTA-MENCION-VS-PERSONA mide la
+  distancia. Entran las filas con ponde_f finito y > 0.
+  La Rama A (ENNViH) y la Rama C (adolescentes) de la spec sellada quedan
+  FUERA: no tienen RESULT en CORR-0017.
+
+filtros: >-
+  Sale del universo, CONTADO y no imputado: mencion sin ponde_f finito y > 0
+  (A-N-SIN-PONDERADOR). Se cuenta pero NO sale del punto: mencion sin est_sel
+  o sin upm (A-N-SIN-DISENO) -- afecta al IC, no al estimador.
+  CERO NUNCA SUSTITUYE FALTA DE DATO: una respuesta ausente en a0927 NO se lee
+  como «no fue esa razon» -- se cuenta en A-N-MENCION-AUSENTE y queda fuera del
+  numerador Y del denominador.
+  COTA DE n (guardia de la serie, sellada seccion 3): numerador < 10 ->
+  NO-ESTIMABLE-N-INSUFICIENTE.
+  Guardias que producen NO-ESTIMABLE en vez de una cifra: miembro ausente del
+  ZIP -> NO-ESTIMABLE-MIEMBRO-AUSENTE:<m>; alguna de las 20 columnas a0927
+  ausente -> NO-ESTIMABLE-COLUMNA-AUSENTE:<col>; soporte de a0927 fuera del
+  mapa observado -> NO-ESTIMABLE-CODIGO-FUERA-DE-MAPA; universo vacio ->
+  NO-ESTIMABLE-UNIVERSO-VACIO. Si TODA fila carece de diseno ->
+  A-METODO-IC = NO-ESTIMABLE-DISENO-INCOMPLETO y los IC salen null.
+
+ponderador: >-
+  ponde_f, del mismo archivo. Se declara explicitamente que es ponderador DE
+  PERSONA aplicado, en la primaria, a filas de MENCION -- no es un descuido
+  heredado: es el universo de la cifra GEN1 y por eso la primaria lo conserva,
+  con la rama de persona al lado para medir lo que esa eleccion vale.
+  Flotante tal cual, sin normalizar.
+
+transformacion: >-
+  Lectura del .dta con pyreadstat (metadatos incluidos); estrato, est_sel y upm
+  con dtype str. Por cada una de las 20 columnas a0927{a..e}{1..4} se marca la
+  mencion afirmativa segun el soporte observado (emitido antes como RESULT, no
+  supuesto). d_logistica = 1 si la mencion viene de a0927a? o a0927c?;
+  d_no_logistica = 1 si viene de a0927b?, a0927d? o a0927e?.
+  A-P-LOGISTICA = suma(w*d_logistica)/suma(w) sobre las menciones;
+  A-P-NO-LOGISTICA se cuenta DIRECTAMENTE sobre d_no_logistica, nunca como
+  1 - A-P-LOGISTICA. Sumas en orden fijo de (folio, columna).
+  B (persona): se colapsa a persona con la regla `alguna mencion logistica` y
+  se repite el estimador con el mismo ponderador, una fila por persona.
+  Bootstrap: clave de conglomerado = (est_sel, upm) como cadenas; upm con
+  reemplazo dentro de est_sel conservando el numero de UPM por estrato;
+  estrato con UPM unica se re-muestrea a si mismo. IC = percentiles 2.5/97.5.
+  NO se promedia, no se imputa, no se re-escala, no se extrapola.
+
+estimando: >-
+  DESCRIPTIVO. (1) ADOPTABLE POR MESA: A-P-LOGISTICA, proporcion ponderada de
+  menciones cuya razon de no vacunacion es logistica (suministro o personal),
+  con A-IC-LO/A-IC-HI de diseno, y A-P-NO-LOGISTICA contada. (2) SECUNDARIOS
+  DECLARADOS, NO adoptables: la familia B (misma proporcion colapsada a
+  PERSONA, con delta con signo) y el desglose por las cinco razones y por las
+  cuatro vacunas. NINGUN RESULT ES CAUSAL. Lectura acotada que la sellada ya
+  declara y este contrato conserva: NINGUNA de las cinco categorias de a0927
+  es explicitamente ACTITUDINAL, de modo que esta corrida NO puede falsar
+  «logistico vs. actitudinal» -- solo «logistico vs. el resto de lo que
+  ENSANUT ofrece». Que el instrumento no ofrezca una categoria de rechazo es
+  una restriccion a DECLARAR, no a inventar.
+
+dependencias_materiales: [numpy, pandas, pyreadstat]
+
+parametros:
+  fuente_acto: "ACTO GEN2-SPECS-DEMANDA-1 (tanda 2) · CALC-ENSANUT-0001 · capa ejecutable de la Rama B de prereg-caja-S7-L17 v1.1"
+  firma_que_lo_autoriza: "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-1.md: «redactar y CONGELAR la spec ejecutable (md humana + spec.yaml, D-15, abriendo SOLO codebook y metadato -- E.5 lo permite en nube, microdato jamas)». La firma autoriza CONGELAR, no contar."
+  bootstrap_replicas: 2000
+  metodo_ic: "bootstrap de upm CON REEMPLAZO dentro de est_sel, conservando el numero de UPM por estrato; percentiles 2.5/97.5. est_sel (Estrato de seleccion) es el estrato de DISENO; `estrato` (urbanidad/ruralidad) es descriptivo y NO estratifica el bootstrap -- se emite su perfil como RESULT para que la eleccion sea auditable."
+  regla_estrato_upm_unica: >-
+    Un estrato con exactamente una UPM se re-muestrea a si mismo: aporta
+    varianza cero. NO se colapsa y NO se descarta. Si el conteo es > 0,
+    A-METODO-IC sale IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como LIMITE
+    INFERIOR de la anchura verdadera.
+  llaves_opacas: >-
+    estrato, est_sel y upm se agrupan como CADENA CRUDA: normalizarlas partiria
+    o fusionaria estratos en silencio.
+  cota_n_minima: 10
+  mapa_razones:
+    LOGISTICA: ["a0927a? -- no habia vacunas (suministro)", "a0927c? -- no estaba la persona que aplica (personal)"]
+    NO_LOGISTICA: ["a0927b? -- no ser derechohabiente (institucional)", "a0927d? -- estaba enfermo (contraindicacion)", "a0927e? -- otra razon (residual)"]
+    ACTITUDINAL: "NO EXISTE EN EL INSTRUMENTO -- restriccion declarada, no inventada"
+  vacunas:
+    "1": Influenza
+    "2": Neumococo
+    "3": Tetanos
+    "4": Otra
+  miembros_zip_declarados:
+  - "adultos_ensanut2024_w.dta"
+  valores_gen1_referencia:
+    A_P_LOGISTICA: 0.777762
+    A_P_NO_LOGISTICA: 0.222238
+    A_IC_LO: 0.672777
+    A_IC_HI: 0.857561
+  n_gen1_referencia:
+    menciones: 254
+    personas: 179
+    no_habia_vacunas: 152
+    enfermo: 47
+    no_estaba_quien_aplica: 28
+    no_derechohabiente: 16
+    otra_razon: 11
+  grano_gen1_decimales: 6
+  criterio_adopcion: >-
+    A-ADOPCION = LISTADO-PARA-MESA-REPRODUCE si A-REPRODUCE-GEN1 = REPRODUCE;
+    LISTADO-PARA-MESA-NO-REPRODUCE en otro caso estimable;
+    NO-ADOPTABLE-NO-ESTIMABLE si no hay punto. Este acto NO escribe cita en
+    milpa/ bajo ninguna rama.
+
+seed:
+  aplica: true
+  valor: 20260915
+  rng: numpy.PCG64
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Bootstrap fijado por seed + rng declarados y sumas en orden fijo de llave:
+    la unica diferencia esperable entre dos corridas del mismo arbol es
+    redondeo de float64 al reasociar sumas ponderadas. Los enteros y los textos
+    se comparan EXACTO -- incluidos los siete conteos de embudo que se cotejan
+    contra el desglose que milpa/ declara.
+
+resultados:
+  - {id: RESULT-ENSANUT-G-N-MIEMBROS-ZIP, tipo: entero, unidad: "miembros del ZIP adultos_ensanut2024_w.stata.stata.zip"}
+  - {id: RESULT-ENSANUT-G-N-FILAS-ADULTOS, tipo: entero, unidad: "filas (personas) de adultos_ensanut2024_w.dta (milpa declara 12924)"}
+  - {id: RESULT-ENSANUT-G-N-COLUMNAS-A0927, tipo: entero, unidad: "columnas del bloque a0927 presentes (se esperan 20: a0927{a..e}{1..4})"}
+  - {id: RESULT-ENSANUT-G-SOPORTE-A0927, tipo: texto, unidad: "soporte observado del bloque a0927, ordenado: 'v:n;v:n' -- emitido ANTES de aplicar el mapa de mencion"}
+  - {id: RESULT-ENSANUT-G-PERFIL-EST-SEL, tipo: texto, unidad: "perfil de anchos del texto crudo de est_sel"}
+  - {id: RESULT-ENSANUT-G-PERFIL-ESTRATO, tipo: texto, unidad: "perfil de valores de `estrato` (urbanidad/ruralidad) -- DESCRIPTIVO: no estratifica el bootstrap"}
+  - {id: RESULT-ENSANUT-G-PERFIL-UPM, tipo: texto, unidad: "perfil de anchos del texto crudo de upm"}
+  - {id: RESULT-ENSANUT-G-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "estratos est_sel con exactamente una UPM"}
+  - {id: RESULT-ENSANUT-A-N-MENCIONES, tipo: entero, unidad: "menciones afirmativas del bloque a0927 (milpa declara 254)"}
+  - {id: RESULT-ENSANUT-A-N-PERSONAS, tipo: entero, unidad: "personas distintas con al menos una mencion (milpa declara 179)"}
+  - {id: RESULT-ENSANUT-A-N-PERSONAS-MULTIMENCION, tipo: entero, unidad: "personas con mas de una mencion -- cuantifica el doble conteo de ponde_f en la primaria"}
+  - {id: RESULT-ENSANUT-A-DESGLOSE-RAZONES, tipo: texto, unidad: "'no_habia_vacunas:n;no_estaba_quien_aplica:n;no_derechohabiente:n;enfermo:n;otra_razon:n' (milpa declara 152;28;16;47;11)"}
+  - {id: RESULT-ENSANUT-A-DESGLOSE-COINCIDE-GEN1, tipo: texto, unidad: "COINCIDE / DIFIERE:<detalle> -- los cinco conteos y el total contra lo que milpa declara"}
+  - {id: RESULT-ENSANUT-A-N-SIN-PONDERADOR, tipo: entero, unidad: "menciones excluidas por ponde_f vacio, no finito o <= 0"}
+  - {id: RESULT-ENSANUT-A-N-SIN-DISENO, tipo: entero, unidad: "menciones del universo sin est_sel o sin upm"}
+  - {id: RESULT-ENSANUT-A-N-MENCION-AUSENTE, tipo: entero, unidad: "celdas del bloque a0927 con respuesta ausente -- NO se leen como «no fue esa razon»"}
+  - {id: RESULT-ENSANUT-A-P-LOGISTICA, tipo: proporcion, unidad: "proporcion ponderada de menciones con razon logistica (a0927a? o a0927c?)", permite_no_estimable: true}
+  - {id: RESULT-ENSANUT-A-P-NO-LOGISTICA, tipo: proporcion, unidad: "proporcion ponderada de menciones con razon no logistica, CONTADA (nunca 1 - p)", permite_no_estimable: true}
+  - {id: RESULT-ENSANUT-A-SUMA-UNO, tipo: texto, unidad: "SI / NO:<residuo> -- las dos proporciones dentro de tolerancia"}
+  - {id: RESULT-ENSANUT-A-IC-LO, tipo: flotante, unidad: "percentil 2.5 del bootstrap de diseno", permite_no_estimable: true}
+  - {id: RESULT-ENSANUT-A-IC-HI, tipo: flotante, unidad: "percentil 97.5 del bootstrap de diseno", permite_no_estimable: true}
+  - {id: RESULT-ENSANUT-A-METODO-IC, tipo: texto, unidad: "IC-DE-DISENO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-DISENO-INCOMPLETO / NO-ESTIMABLE-N-INSUFICIENTE"}
+  - {id: RESULT-ENSANUT-A-DELTA-VS-GEN1, tipo: flotante, unidad: "A-P-LOGISTICA menos 0.777762, CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-ENSANUT-A-REPRODUCE-GEN1, tipo: texto, unidad: "REPRODUCE / NO-REPRODUCE / NO-ESTIMABLE -- round(A-P-LOGISTICA,6) == 0.777762"}
+  - {id: RESULT-ENSANUT-A-ADOPCION, tipo: texto, unidad: "LISTADO-PARA-MESA-REPRODUCE / LISTADO-PARA-MESA-NO-REPRODUCE / NO-ADOPTABLE-NO-ESTIMABLE"}
+  - {id: RESULT-ENSANUT-B-P-PERSONA, tipo: proporcion, unidad: "SECUNDARIO, no adoptable: la misma proporcion colapsada a PERSONA (una fila por persona, regla `alguna mencion logistica`)", permite_no_estimable: true}
+  - {id: RESULT-ENSANUT-B-DELTA-MENCION-VS-PERSONA, tipo: flotante, unidad: "A-P-LOGISTICA menos B-P-PERSONA, CON SIGNO: lo que vale la eleccion de unidad de observacion", permite_no_estimable: true}
+  - {id: RESULT-ENSANUT-C-P-POR-VACUNA, tipo: texto, unidad: "SECUNDARIO: 'vacuna=p:n;...' para las cuatro vacunas (1 Influenza, 2 Neumococo, 3 Tetanos, 4 Otra), con NO-ESTIMABLE-N-INSUFICIENTE donde el numerador sea < 10"}

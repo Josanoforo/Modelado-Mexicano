@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Casos dirigidos de GEN2-ADQUISICION-CIERRE-VERIFICABLE-Y-PRODUCCION."""
 import fcntl
+import hashlib
 import json
 import os
 import shutil
@@ -118,8 +119,10 @@ def prueba_adquisicion_exige_archivo_manifiesto_pertinente():
     try:
         payload = raiz / "data" / "raw" / "obj.zip"
         payload.write_bytes(b"PK fixture")
+        sha = hashlib.sha256(payload.read_bytes()).hexdigest()
         (raiz / "data" / "manifiesto.yaml").write_text(
-            "- id: obj_2026\n  usado_para: OBJ\n  archivo: obj.zip\n", encoding="utf-8")
+            f"- id: obj_2026\n  usado_para: OBJ\n  archivo: obj.zip\n"
+            f"  sha256: {sha}\n  tamano_bytes: 10\n", encoding="utf-8")
         (raiz / "data" / "curacion-registro" / "cola-adquisicion-registro.tsv").write_text(
             "fuente_canonica\testado_A4A5\tnota\nOBJ\tOBTENIDO\tregistrado\n", encoding="utf-8")
         por_objeto = [{"objeto_id": "OBJ", "desenlace": "adquirido",
@@ -129,10 +132,146 @@ def prueba_adquisicion_exige_archivo_manifiesto_pertinente():
         r = D.valida_resultado_adquisicion(caso, _seleccion(["OBJ"]),
                                             comprobar_remoto=False, raiz=raiz)
         afirma(r["valido"] and r["cierre_exitoso"], f"adquisición acreditada fue rechazada: {r}")
+        caso["publicacion_trabajo"]["referencias"].append({
+            "ref": "https://github.com/Josanoforo/Modelado-Mexicano/pull/805",
+            "commit": "a" * 40,
+        })
+        with mock.patch.object(D, "_corre", return_value=(
+                0, f"{'a' * 40}\trefs/heads/adq/fixture\n", "")):
+            r_url = D.valida_resultado_adquisicion(
+                caso, _seleccion(["OBJ"]), comprobar_remoto=True, raiz=raiz)
+        afirma(r_url["valido"],
+               f"enlace informativo invalidó la ref Git exacta que sí estaba presente: {r_url}")
+        caso["publicacion_trabajo"]["referencias"] = [
+            caso["publicacion_trabajo"]["referencias"][-1]]
+        r_solo_url = D.valida_resultado_adquisicion(
+            caso, _seleccion(["OBJ"]), comprobar_remoto=True, raiz=raiz)
+        afirma(not r_solo_url["valido"] and any(
+            "refs/heads" in e for e in r_solo_url["errores"]),
+            f"URL sin ref Git exacta acreditó publicación: {r_solo_url}")
+        caso["publicacion_trabajo"]["referencias"] = [{
+            "ref": "refs/heads/adq/fixture", "commit": "a" * 40}]
         caso["resultados_por_objeto"][0]["ids_manifiesto"] = []
         r2 = D.valida_resultado_adquisicion(caso, _seleccion(["OBJ"]),
                                              comprobar_remoto=False, raiz=raiz)
         afirma(not r2["valido"], f"adquisición sin manifiesto fue aceptada: {r2}")
+    finally:
+        td.cleanup()
+
+
+def prueba_vinculo_estructurado_exacto_ihsn_enpol():
+    td, raiz = _raiz_fixture()
+    try:
+        objetos = [
+            ("IHSN_MEX_2009_ENNVIH3_METADATA",
+             "ihsn_mex_2009_ennvih3_metadata", "ihsn.json", b"{\"metadata\": true}"),
+            ("ENPOL_2016_MICRODATOS_CSV",
+             "enpol2016_bd_csv_zip", "enpol.zip", b"PK ENPOL fixture"),
+        ]
+        manifiesto = []
+        resultados = []
+        filas = ["fuente_canonica\testado_A4A5\tids_manifiesto\tnota"]
+        for objeto, mid, archivo, contenido in objetos:
+            payload = raiz / "data" / "raw" / archivo
+            payload.write_bytes(contenido)
+            sha = hashlib.sha256(contenido).hexdigest()
+            manifiesto.append(
+                f"- id: {mid}\n  usado_para: descripción humana sin repetir el objeto\n"
+                f"  archivo: {archivo}\n  sha256: {sha}\n"
+                f"  tamano_bytes: {len(contenido)}\n")
+            filas.append(f"{objeto}\tOBTENIDO\t{mid}\tregistrado")
+            resultados.append({
+                "objeto_id": objeto, "desenlace": "adquirido",
+                "evidencias": ["data/manifiesto.yaml"], "intentos": [],
+                "archivos": [f"data/raw/{archivo}"], "ids_manifiesto": [mid],
+            })
+        (raiz / "data" / "manifiesto.yaml").write_text(
+            "".join(manifiesto), encoding="utf-8")
+        cola = raiz / "data" / "curacion-registro" / "cola-adquisicion-registro.tsv"
+        cola.write_text("\n".join(filas) + "\n", encoding="utf-8")
+        seleccion = _seleccion([x[0] for x in objetos])
+        caso = _resultado([x[0] for x in objetos], estado="adquisicion_obtenida",
+                           resultados=resultados)
+        r = D.valida_resultado_adquisicion(
+            caso, seleccion, comprobar_remoto=False, raiz=raiz)
+        afirma(r["valido"] and r["cierre_exitoso"],
+               f"IHSN/ENPOL con relación canónica exacta fueron rechazados: {r}")
+
+        filas[1] = (f"{objetos[0][0]}\tOBTENIDO\t"
+                    f"prefijo_{objetos[0][1]}_distinto\tregistrado")
+        filas.append(f"OTRO_OBJETO\tOBTENIDO\t{objetos[0][1]}\tregistrado")
+        cola.write_text("\n".join(filas) + "\n", encoding="utf-8")
+        r2 = D.valida_resultado_adquisicion(
+            caso, seleccion, comprobar_remoto=False, raiz=raiz)
+        afirma(not r2["valido"] and any(
+            objetos[0][0] in e and objetos[0][1] in e for e in r2["errores"]),
+            f"ID presente sólo en otra fila canónica fue aceptado: {r2}")
+    finally:
+        td.cleanup()
+
+
+def prueba_candidata_publica_recorre_descubrimiento_y_adquisicion():
+    td, raiz = _raiz_fixture()
+    try:
+        objeto = "OBJ-PUBLICO-NUEVO"
+        payload = raiz / "data" / "raw" / "instrumento.csv"
+        payload.write_text("variable,descripcion\nahorro_stock,Ahorro actual\n", encoding="utf-8")
+        sha = hashlib.sha256(payload.read_bytes()).hexdigest()
+        (raiz / "data" / "manifiesto.yaml").write_text(
+            f"- id: instrumento_publico_2026\n  usado_para: '{objeto}: alcance descriptivo'\n"
+            f"  archivo: instrumento.csv\n  sha256: {sha}\n"
+            f"  tamano_bytes: {payload.stat().st_size}\n", encoding="utf-8")
+        (raiz / "data" / "curacion-registro" / "cola-adquisicion-registro.tsv").write_text(
+            "fuente_canonica\testado_A4A5\tnota\n"
+            f"{objeto}\tOBTENIDO\tAUTORIZADA-POR-ALCANCE:Jonas/2026-09-15/GEN2-38/{objeto}\n",
+            encoding="utf-8")
+        evidencia = raiz / "forense" / "instrumento.md"
+        evidencia.write_text("Descarga pública; CSV abierto y columnas leídas.\n", encoding="utf-8")
+        estado_dir = raiz / "data" / "curacion-registro" / "investigacion-estado"
+        estado_dir.mkdir()
+        (estado_dir / "DEM-X.json").write_text(json.dumps({
+            "version_pregunta": "v1", "evidencias": ["forense/instrumento.md"]}),
+            encoding="utf-8")
+        seleccion_inv = {"corte": "2026-09-15", "maximo": 3,
+                         "elegidos": [{"id": "DEM-X", "version_pregunta": "v1"}],
+                         "excluidos": []}
+        investigacion = {
+            "necesidad_id": "DEM-X", "version_pregunta": "v1",
+            "estado": "candidata_publica", "modos_ejecutados": ["CONSTRUCTO"],
+            "consultas": [{"mecanismo": "web_search", "consulta": "instrumento ahorro México",
+                           "resultado": "CSV oficial público localizado"}],
+            "candidatas": [{"id": objeto, "url": "https://example.org/instrumento.csv",
+                            "objeto": "descriptor de stock de ahorro", "verificacion_contenido": "CSV legible",
+                            "nuevo_respecto_corpus": True, "cobertura": "parcial descriptiva",
+                            "acceso": "público", "siguiente_accion": "registrar y preparar"}],
+            "evidencias": ["forense/instrumento.md"], "frontera_no_examinada": "duración",
+            "cursor_continuacion": "buscar duración", "proxima_revision": "2026-09-16",
+            "suficiencia": {"identidad": "ACREDITADA", "conceptual": "PARCIAL",
+                            "poblacional": "NO_ACREDITADA", "seleccion_no_respuesta": "NO_ACREDITADA",
+                            "unidad": "ACREDITADA", "temporalidad": "PARCIAL", "diseno": "PARCIAL",
+                            "identificacion": "NO_APLICA", "uso_habilitado": "APTA_ALCANCE_MENOR",
+                            "pregunta_original": "ABIERTA"}}
+        caso = _resultado([], estado="descubrimiento_y_adquisicion",
+                           resultados=[{"objeto_id": objeto, "desenlace": "adquirido",
+                                        "evidencias": ["forense/instrumento.md"], "intentos": [],
+                                        "archivos": ["data/raw/instrumento.csv"],
+                                        "ids_manifiesto": ["instrumento_publico_2026"]}])
+        caso["seleccion"]["corte"] = "2026-09-15"
+        caso["seleccion_investigacion"] = {"calculada": True, "corte": "2026-09-15",
+                                            "maximo": 3, "elegidos": ["DEM-X"],
+                                            "excluidos_con_causa": []}
+        caso["investigaciones"] = [investigacion]
+        seleccion_obj = _seleccion([])
+        seleccion_obj["corte"] = "2026-09-15"
+        r = D.valida_resultado_adquisicion(caso, seleccion_obj, seleccion_inv,
+                                            comprobar_remoto=False, raiz=raiz)
+        afirma(r["valido"] and r["resultado_trabajo"] == "descubrimiento_y_adquisicion",
+               f"candidata pública íntegra no completó el recorrido: {r}")
+        payload.write_text("contenido alterado\n", encoding="utf-8")
+        r2 = D.valida_resultado_adquisicion(caso, seleccion_obj, seleccion_inv,
+                                             comprobar_remoto=False, raiz=raiz)
+        afirma(not r2["valido"] and any("sha256" in e for e in r2["errores"]),
+               f"alteración de bytes no fue detectada: {r2}")
     finally:
         td.cleanup()
 
@@ -245,6 +384,19 @@ def prueba_vigilante_acredita_cola_vacia_sin_llm():
            f"cola vacía sin publicación no debe acreditar: {estado2}")
 
 
+def prueba_vigilante_no_confunde_exit_cero_con_avance():
+    linea = ("[ADQ] 2026-09-11 17:10: invocado=si motivo=- exit=0 "
+             "resultado=descubrimiento_documentado "
+             "salud_trabajo=EJECUCION_SIN_EVIDENCIA_NUEVA "
+             "demanda_atendible=1 necesidades_atendidas=1 objetos_nuevos=0 "
+             "bytes_nuevos=0 publicacion=OK run_id=RUN-SIN-AVANCE\n")
+    estado, detalle = C.t_cron_estado(__import__("datetime").date(2026, 9, 11),
+                                      {"[ADQ]"}, linea)
+    afirma(estado == "EJECUCION-SIN-AVANCE-MATERIAL" and
+           "objetos_nuevos=0" in detalle,
+           f"exit 0 sin evidencia nueva fue presentado como salud completa: {estado} {detalle}")
+
+
 def _launcher_fixture(raiz):
     (raiz / "tools").mkdir()
     shutil.copy2(RAIZ / "tools" / "adquiere_launcher.sh", raiz / "tools" / "adquiere_launcher.sh")
@@ -299,11 +451,14 @@ def main():
     prueba_h2_rechaza_tres_falsos_positivos()
     prueba_resultado_parcial_y_publicacion_separada()
     prueba_adquisicion_exige_archivo_manifiesto_pertinente()
+    prueba_vinculo_estructurado_exacto_ihsn_enpol()
+    prueba_candidata_publica_recorre_descubrimiento_y_adquisicion()
     prueba_cola_vacia_mecanica_valida()
     prueba_cola_descargas_vacia_con_investigacion_exige_evidencia()
     prueba_wrapper_normaliza_selecciones_sin_redecidir_hallazgos()
     prueba_publicacion_remota_interpreta_sha_y_ref_en_orden_git()
     prueba_vigilante_acredita_cola_vacia_sin_llm()
+    prueba_vigilante_no_confunde_exit_cero_con_avance()
     prueba_h3_fetch_128_deja_identidad_y_cierre()
     prueba_launcher_rechazado_no_pisa_heartbeat()
     if FALLOS:
@@ -311,7 +466,7 @@ def main():
         for fallo in FALLOS:
             print(f"  · {fallo}")
         return 1
-    print("OK -- test_adq_cierre_verificable.py: 10 casos, 0 fallos")
+    print("OK -- test_adq_cierre_verificable.py: 13 casos, 0 fallos")
     return 0
 
 

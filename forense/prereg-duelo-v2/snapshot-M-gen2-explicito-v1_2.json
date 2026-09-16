@@ -169,11 +169,11 @@
       "data/corrida0/CALC-B-0001/ejecucion.json": "dd3013edb4bccd8761b58ef742eab15a410438a3d52f1bc2e53205f7c5b44ae2",
       "data/corrida0/CALC-B-0001/resultados.json": "87e20e5aa2923fcc4b206734fa13ec321d3b036d61edd48eb0efd5bd369f263d",
       "data/corrida0/CALC-B-0001/spec.yaml": "7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16",
-      "data/corrida0/resultados.tsv": "29c83bd6fa55de6ed2b7a33ae8779e4038454d0dee311228d1c14c4598008036",
-      "data/corrida0/usos.tsv": "b8b985c49f1d176de763976da858bb076466022a5e6411d4d600241d187914f2",
-      "milpa/tramite.yaml": "85c7f73b4740ba28502c492ffc78585a782c029a09076b06ea403cfddbe72547"
+      "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
+      "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
+      "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b"
     },
-    "sha256": "a69731e74c32b2f235435ce230f3869147a94583274396ac1999bda1ab3e8671"
+    "sha256": "ebbb2c94130466be9b41e56e7f65135992d3aaa45c42d11661137408d3c0721c"
   },
   "fecha_corte": "2026-09-11",
   "modo": "GEN2",
@@ -209,9 +209,9 @@
       "estado": "EMITE",
       "evento": "algún delito no denunciado en U1 con BP1_23 en {01,02,06,08}",
       "familia": "CIV",
-      "fuente_replay": "VERIFY-ESTRUCTURADO · forense/replay-evidencia.tsv#CALC-ENVIPE-0001",
+      "fuente_replay": "VERIFY-EN-ESTA-SESION · verify(CALC-ENVIPE-0001)",
       "ola": {
-        "cita": "milpa/tramite.yaml:623 -- ola_calibracion: \"ENVIPE 2025 (unica ola disponible para este universo)\"",
+        "cita": "milpa/tramite.yaml:646 -- ola_calibracion: \"ENVIPE 2025 (unica ola disponible para este universo)\"",
         "valor": "ENVIPE 2025 (unica ola disponible para este universo)"
       },
       "origen_numerico": "NUEVO",
@@ -243,9 +243,9 @@
       "estado": "EMITE",
       "evento": "conducta=protesta_alguna_vez_rural_con_agravio_encuci2020",
       "familia": "CIV",
-      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L100 · forense/replay-evidencia.tsv#CALC-ENCUCI-0001",
+      "fuente_replay": "VERIFY-EN-ESTA-SESION · verify(CALC-ENCUCI-0001)",
       "ola": {
-        "cita": "milpa/tramite.yaml:1273 -- ola_calibracion: \"ENCUCI 2020 (unica ola de ENCUCI en el corpus); segundo instrumento tras LAPOP Mexico 2019 (L9)\"",
+        "cita": "milpa/tramite.yaml:1367 -- ola_calibracion: \"ENCUCI 2020 (unica ola de ENCUCI en el corpus); segundo instrumento tras LAPOP Mexico 2019 (L9)\"",
         "valor": "ENCUCI 2020 (unica ola de ENCUCI en el corpus); segundo instrumento tras LAPOP Mexico 2019 (L9)"
       },
       "origen_numerico": "NUEVO",
@@ -277,9 +277,9 @@
       "estado": "EMITE",
       "evento": "conducta=protesta_alguna_vez_urbano_con_agravio_encuci2020",
       "familia": "CIV",
-      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L100 · forense/replay-evidencia.tsv#CALC-ENCUCI-0001",
+      "fuente_replay": "VERIFY-EN-ESTA-SESION · verify(CALC-ENCUCI-0001)",
       "ola": {
-        "cita": "milpa/tramite.yaml:1273 -- ola_calibracion: \"ENCUCI 2020 (unica ola de ENCUCI en el corpus); segundo instrumento tras LAPOP Mexico 2019 (L9)\"",
+        "cita": "milpa/tramite.yaml:1367 -- ola_calibracion: \"ENCUCI 2020 (unica ola de ENCUCI en el corpus); segundo instrumento tras LAPOP Mexico 2019 (L9)\"",
         "valor": "ENCUCI 2020 (unica ola de ENCUCI en el corpus); segundo instrumento tras LAPOP Mexico 2019 (L9)"
       },
       "origen_numerico": "NUEVO",
@@ -295,7 +295,7 @@
       "valor_resultado_completo": 0.11219151313930475
     },
     {
-      "alcance": "uso declarado por RESULT",
+      "alcance": "DESCRIPTIVO como sin_colchon_un_mes dentro del dominio sellado; no duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual",
       "aptitud_uso": "APTA-POR-LINAJE",
       "camino_linaje": "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto -> RESULT-ENIF-AHO-A-P-CORTO-SIN-P -> CALC-ENIF-0001/RESULT-ENIF-AHO-A-P-CORTO-SIN-P -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
       "condicion_activacion": {
@@ -312,11 +312,11 @@
         "tier:FUERTE"
       ],
       "estado": "EMITE",
-      "evento": "conducta=horizonte_corto",
+      "evento": "P4_10∈{1,2}: sin ahorro suficiente para cubrir al menos un mes, incluidas personas sin ahorros",
       "familia": "DIN",
-      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L101 · forense/replay-evidencia.tsv#CALC-ENIF-0001",
+      "fuente_replay": "VERIFY-EN-ESTA-SESION · verify(CALC-ENIF-0001)",
       "ola": {
-        "cita": "milpa/tramite.yaml:1073 -- ola_calibracion: \"ENIF 2024\"",
+        "cita": "milpa/tramite.yaml:1135 -- ola_calibracion: \"ENIF 2024\"",
         "valor": "ENIF 2024"
       },
       "origen_numerico": "NUEVO",
@@ -324,7 +324,7 @@
       "resultado_id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
       "rol_uso": "medicion_directa",
       "tipo": "flotante",
-      "transformacion": "horizonte_corto",
+      "transformacion": "P4_10∈{1,2}: sin ahorro suficiente para cubrir al menos un mes, incluidas personas sin ahorros",
       "unidad": "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR",
       "universo": "18+ elegidas que trabajan ∧ P3_13=7 ∧ P4_10∈{1..5}; n=4 973; masa expandida=35 086 918 (37.2388% de toda la población 18+)",
       "uso_permitido": "MEDICION-GEN2",
@@ -332,7 +332,7 @@
       "valor_resultado_completo": 0.541343
     },
     {
-      "alcance": "uso declarado por RESULT",
+      "alcance": "DESCRIPTIVO como sin_colchon_un_mes dentro del dominio sellado; no duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual",
       "aptitud_uso": "APTA-POR-LINAJE",
       "camino_linaje": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto -> RESULT-ENIF-AHO-A-P-CORTO-CON-P -> CALC-ENIF-0001/RESULT-ENIF-AHO-A-P-CORTO-CON-P -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
       "condicion_activacion": {
@@ -349,11 +349,11 @@
         "tier:FUERTE"
       ],
       "estado": "EMITE",
-      "evento": "conducta=horizonte_corto",
+      "evento": "P4_10∈{1,2}: sin ahorro suficiente para cubrir al menos un mes, incluidas personas sin ahorros",
       "familia": "DIN",
-      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L101 · forense/replay-evidencia.tsv#CALC-ENIF-0001",
+      "fuente_replay": "VERIFY-EN-ESTA-SESION · verify(CALC-ENIF-0001)",
       "ola": {
-        "cita": "milpa/tramite.yaml:1103 -- ola_calibracion: \"ENIF 2024\"",
+        "cita": "milpa/tramite.yaml:1180 -- ola_calibracion: \"ENIF 2024\"",
         "valor": "ENIF 2024"
       },
       "origen_numerico": "NUEVO",
@@ -361,7 +361,7 @@
       "resultado_id": "RESULT-ENIF-AHO-A-P-CORTO-CON-P",
       "rol_uso": "medicion_directa",
       "tipo": "flotante",
-      "transformacion": "horizonte_corto",
+      "transformacion": "P4_10∈{1,2}: sin ahorro suficiente para cubrir al menos un mes, incluidas personas sin ahorros",
       "unidad": "p (proporcion ponderada) sobre el denominador que declara su -DENOMINADOR",
       "universo": "18+ elegidas que trabajan ∧ P3_13∈{1,2,3,4} ∧ P4_10∈{1..5}; n=3 969; masa expandida=26 064 281 (27.6628% de toda la población 18+)",
       "uso_permitido": "MEDICION-GEN2",
@@ -369,7 +369,7 @@
       "valor_resultado_completo": 0.37313
     },
     {
-      "alcance": "uso declarado por RESULT",
+      "alcance": "DESCRIPTIVO como sin_colchon_un_mes dentro del dominio sellado; no duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual",
       "aptitud_uso": "APTA-POR-LINAJE",
       "camino_linaje": "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto -> RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P -> CALC-ENIF-0002/RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE] | IN-CALC-ENIF-0001-RESULTADOS:DATO -> data/corrida0/CALC-ENIF-0001/resultados.json -> CALC-ENIF-0001 -> CALC-ENIF-0001/RESULT-ENIF-AHO-A-C-FALTANTE-P410-CON-N -> enif_2024_enif_2024_bd_csv:DATO -> manifiesto:enif_2024_enif_2024_bd_csv [REESTIMACION; NO IMPLICA MUESTRA INDEPENDIENTE]",
       "condicion_activacion": {
@@ -385,11 +385,11 @@
         "tier:FUERTE"
       ],
       "estado": "EMITE",
-      "evento": "conducta=horizonte_corto",
+      "evento": "P4_10∈{1,2}: sin ahorro suficiente para cubrir al menos un mes, incluidas personas sin ahorros",
       "familia": "DIN",
-      "fuente_replay": "VERIFY-ESTRUCTURADO · ACTO GEN2-ENIF-POBLACION-Y-ADOPCION · forense/replay-evidencia.tsv#CALC-ENIF-0002",
+      "fuente_replay": "VERIFY-EN-ESTA-SESION · verify(CALC-ENIF-0002)",
       "ola": {
-        "cita": "milpa/tramite.yaml:1339 -- ola_calibracion: \"ENIF 2024\"",
+        "cita": "milpa/tramite.yaml:1433 -- ola_calibracion: \"ENIF 2024\"",
         "valor": "ENIF 2024"
       },
       "origen_numerico": "NUEVO",
@@ -397,7 +397,7 @@
       "resultado_id": "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P",
       "rol_uso": "medicion_directa",
       "tipo": "flotante",
-      "transformacion": "horizonte_corto",
+      "transformacion": "P4_10∈{1,2}: sin ahorro suficiente para cubrir al menos un mes, incluidas personas sin ahorros",
       "unidad": "proporcion ponderada",
       "universo": "18+ elegidas que no trabajaron el mes anterior: P3_8=8 o P3_9=7; P4_10∈{1..5}; n=3 462; masa expandida=25 090 350 (26.6291% de toda la población 18+)",
       "uso_permitido": "MEDICION-GEN2",
@@ -424,9 +424,9 @@
       "estado": "EMITE",
       "evento": "P5_20=03: desconfianza o mal servicio",
       "familia": "DIN",
-      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L101 · forense/replay-evidencia.tsv#CALC-ENIF-0001",
+      "fuente_replay": "VERIFY-EN-ESTA-SESION · verify(CALC-ENIF-0001)",
       "ola": {
-        "cita": "milpa/tramite.yaml:1251 -- ola_calibracion: \"ENIF 2024 (ENIF es trienal; unica ola censada para este eje)\"",
+        "cita": "milpa/tramite.yaml:1345 -- ola_calibracion: \"ENIF 2024 (ENIF es trienal; unica ola censada para este eje)\"",
         "valor": "ENIF 2024 (ENIF es trienal; unica ola censada para este eje)"
       },
       "origen_numerico": "NUEVO",
@@ -461,9 +461,9 @@
       "estado": "EMITE",
       "evento": "P5_20=03: desconfianza o mal servicio",
       "familia": "DIN",
-      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L101 · forense/replay-evidencia.tsv#CALC-ENIF-0001",
+      "fuente_replay": "VERIFY-EN-ESTA-SESION · verify(CALC-ENIF-0001)",
       "ola": {
-        "cita": "milpa/tramite.yaml:1251 -- ola_calibracion: \"ENIF 2024 (ENIF es trienal; unica ola censada para este eje)\"",
+        "cita": "milpa/tramite.yaml:1345 -- ola_calibracion: \"ENIF 2024 (ENIF es trienal; unica ola censada para este eje)\"",
         "valor": "ENIF 2024 (ENIF es trienal; unica ola censada para este eje)"
       },
       "origen_numerico": "NUEVO",
@@ -495,9 +495,9 @@
       "estado": "EMITE",
       "evento": "conducta=formal_cualquiera",
       "familia": "DIN",
-      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L101 · forense/replay-evidencia.tsv#CALC-ENIF-0001",
+      "fuente_replay": "VERIFY-EN-ESTA-SESION · verify(CALC-ENIF-0001)",
       "ola": {
-        "cita": "milpa/tramite.yaml:1219 -- ola_calibracion: \"ENIF 2024 (seccion 5 AHORRO INFORMAL Y FORMAL; periodo de referencia junio 2023 a la fecha de levantamiento)\"",
+        "cita": "milpa/tramite.yaml:1313 -- ola_calibracion: \"ENIF 2024 (seccion 5 AHORRO INFORMAL Y FORMAL; periodo de referencia junio 2023 a la fecha de levantamiento)\"",
         "valor": "ENIF 2024 (seccion 5 AHORRO INFORMAL Y FORMAL; periodo de referencia junio 2023 a la fecha de levantamiento)"
       },
       "origen_numerico": "NUEVO",
@@ -529,9 +529,9 @@
       "estado": "EMITE",
       "evento": "conducta=informal_cualquiera",
       "familia": "DIN",
-      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L101 · forense/replay-evidencia.tsv#CALC-ENIF-0001",
+      "fuente_replay": "VERIFY-EN-ESTA-SESION · verify(CALC-ENIF-0001)",
       "ola": {
-        "cita": "milpa/tramite.yaml:1219 -- ola_calibracion: \"ENIF 2024 (seccion 5 AHORRO INFORMAL Y FORMAL; periodo de referencia junio 2023 a la fecha de levantamiento)\"",
+        "cita": "milpa/tramite.yaml:1313 -- ola_calibracion: \"ENIF 2024 (seccion 5 AHORRO INFORMAL Y FORMAL; periodo de referencia junio 2023 a la fecha de levantamiento)\"",
         "valor": "ENIF 2024 (seccion 5 AHORRO INFORMAL Y FORMAL; periodo de referencia junio 2023 a la fecha de levantamiento)"
       },
       "origen_numerico": "NUEVO",
@@ -563,9 +563,9 @@
       "estado": "EMITE",
       "evento": "remesas>0 en ENIGH 2022",
       "familia": "FAM",
-      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@66eed1b4f4a3 · forense/replay-evidencia.tsv#CALC-B-0001",
+      "fuente_replay": "VERIFY-EN-ESTA-SESION · verify(CALC-B-0001)",
       "ola": {
-        "cita": "milpa/tramite.yaml:892 -- ola_calibracion: \"ENIGH 2022 (punto usado por estas dos conductas; las demás olas quedan como serie separada)\"",
+        "cita": "milpa/tramite.yaml:933 -- ola_calibracion: \"ENIGH 2022 (punto usado por estas dos conductas; las demás olas quedan como serie separada)\"",
         "valor": "ENIGH 2022 (punto usado por estas dos conductas; las demás olas quedan como serie separada)"
       },
       "origen_numerico": "NUEVO",
@@ -601,9 +601,9 @@
       "estado": "EMITE",
       "evento": "conducta=adopta_encig2025_luz",
       "familia": "TRA",
-      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L99 · forense/replay-evidencia.tsv#CALC-ENCIG-0001",
+      "fuente_replay": "VERIFY-EN-ESTA-SESION · verify(CALC-ENCIG-0001)",
       "ola": {
-        "cita": "milpa/tramite.yaml:402 -- ola_calibracion: \"ENCIG 2025 (pago ordinario del servicio de luz, N_TRA=01)\"",
+        "cita": "milpa/tramite.yaml:425 -- ola_calibracion: \"ENCIG 2025 (pago ordinario del servicio de luz, N_TRA=01)\"",
         "valor": "ENCIG 2025 (pago ordinario del servicio de luz, N_TRA=01)"
       },
       "origen_numerico": "NUEVO",
@@ -641,9 +641,9 @@
       "estado": "EMITE",
       "evento": "conducta=paga_mordida_encig2025_digital_r2",
       "familia": "TRA",
-      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L99 · forense/replay-evidencia.tsv#CALC-ENCIG-0001",
+      "fuente_replay": "VERIFY-EN-ESTA-SESION · verify(CALC-ENCIG-0001)",
       "ola": {
-        "cita": "milpa/tramite.yaml:216 -- ola_calibracion: \"ENCIG 2025 (recorrida sin deduplicar, ACTO MAESTRA35-L1)\"",
+        "cita": "milpa/tramite.yaml:239 -- ola_calibracion: \"ENCIG 2025 (recorrida sin deduplicar, ACTO MAESTRA35-L1)\"",
         "valor": "ENCIG 2025 (recorrida sin deduplicar, ACTO MAESTRA35-L1)"
       },
       "origen_numerico": "NUEVO",
@@ -681,9 +681,9 @@
       "estado": "EMITE",
       "evento": "conducta=paga_mordida_encig2025_presencial_r2",
       "familia": "TRA",
-      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L99 · forense/replay-evidencia.tsv#CALC-ENCIG-0001",
+      "fuente_replay": "VERIFY-EN-ESTA-SESION · verify(CALC-ENCIG-0001)",
       "ola": {
-        "cita": "milpa/tramite.yaml:216 -- ola_calibracion: \"ENCIG 2025 (recorrida sin deduplicar, ACTO MAESTRA35-L1)\"",
+        "cita": "milpa/tramite.yaml:239 -- ola_calibracion: \"ENCIG 2025 (recorrida sin deduplicar, ACTO MAESTRA35-L1)\"",
         "valor": "ENCIG 2025 (recorrida sin deduplicar, ACTO MAESTRA35-L1)"
       },
       "origen_numerico": "NUEVO",
@@ -718,9 +718,9 @@
       "estado": "EMITE",
       "evento": "conducta=paga_mordida_encig2025",
       "familia": "TRA",
-      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L99 · forense/replay-evidencia.tsv#CALC-ENCIG-0001",
+      "fuente_replay": "VERIFY-EN-ESTA-SESION · verify(CALC-ENCIG-0001)",
       "ola": {
-        "cita": "milpa/tramite.yaml:125 -- ola_calibracion: \"ENCIG 2025 (más reciente de 8 olas disponibles; las otras 7 van en serie_olas, NO promediadas)\"",
+        "cita": "milpa/tramite.yaml:136 -- ola_calibracion: \"ENCIG 2025 (más reciente de 8 olas disponibles; las otras 7 van en serie_olas, NO promediadas)\"",
         "valor": "ENCIG 2025 (más reciente de 8 olas disponibles; las otras 7 van en serie_olas, NO promediadas)"
       },
       "origen_numerico": "NUEVO",
@@ -758,9 +758,9 @@
       "estado": "EMITE",
       "evento": "AP5_17=1 o AP5_18=1; unión, no solicitud ni entrega por separado",
       "familia": "TRA",
-      "fuente_replay": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L100 · forense/replay-evidencia.tsv#CALC-ENCUCI-0001",
+      "fuente_replay": "VERIFY-EN-ESTA-SESION · verify(CALC-ENCUCI-0001)",
       "ola": {
-        "cita": "milpa/tramite.yaml:107 -- ola_calibracion: \"ENCUCI 2020 (unica ola)\"",
+        "cita": "milpa/tramite.yaml:118 -- ola_calibracion: \"ENCUCI 2020 (unica ola)\"",
         "valor": "ENCUCI 2020 (unica ola)"
       },
       "origen_numerico": "NUEVO",

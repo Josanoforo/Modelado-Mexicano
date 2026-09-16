@@ -19,6 +19,9 @@ EJEMPLOS = (
     RAIZ / "forense" / "ejemplos" /
     "GEN2-CONSULTA-OPERATIVA-CON-CONTRATO"
 )
+EJEMPLOS_AHORRO = (
+    RAIZ / "forense" / "ejemplos" / "GEN2-AHORRO-ALCANCE-MENOR"
+)
 
 
 class ConsultaGen2(unittest.TestCase):
@@ -242,6 +245,85 @@ class ConsultaGen2(unittest.TestCase):
                 habilitada["accion_consumidor"],
                 "PUEDE_EMITIR_USO_DECLARADO")
 
+    def test_01h_alcance_menor_emite_tres_dominios_con_decision_propia(self):
+        esperados = {
+            "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto":
+                ("RESULT-ENIF-AHO-A-P-CORTO-SIN-P", 0.541343),
+            "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto":
+                ("RESULT-ENIF-AHO-A-P-CORTO-CON-P", 0.373130),
+            "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto":
+                ("RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P", 0.632782),
+        }
+        for consumidor, (resultado_id, punto) in esperados.items():
+            with self.subTest(consumidor=consumidor):
+                r = consultar({
+                    "consumidor": consumidor,
+                    "proposito": "consulta",
+                    "contexto": {},
+                    "uso": "DESCRIPTIVO",
+                })
+                self.assertEqual(r["estado"], "EMITE")
+                self.assertEqual(r["resultado"]["id"], resultado_id)
+                self.assertEqual(r["valor"]["punto"], punto)
+                self.assertEqual(r["valor"]["categoria"], "sin_colchon_un_mes")
+                self.assertEqual(r["aptitud"]["uso_solicitado"], "DESCRIPTIVO")
+                self.assertEqual(
+                    r["suficiencia_uso"]["uso_solicitado"], "DESCRIPTIVO")
+                self.assertIn("sin_colchon_un_mes", r["aptitud"]["alcance"])
+                self.assertIn("ahorros suficientes", r["estimando"]["evento"])
+                self.assertEqual(
+                    r["estimando"]["transformacion"],
+                    "1 - p(P4_10 en {3,4,5}) dentro del dominio sellado")
+                self.assertEqual(
+                    r["suficiencia_uso"]["estado_efectivo"],
+                    "HABILITADA_POR_DECISION_DE_ALCANCE_MENOR_APLICABLE")
+                self.assertEqual(
+                    r["suficiencia_uso"]["decision_emision"]["resultado_id"],
+                    resultado_id)
+                self.assertIn(
+                    "probabilidad individual", r["alcance_menor"]["limites"])
+
+    def test_01i_decisiones_multiples_ambiguas_fallan_cerrado(self):
+        estado = self._estado_nc0126()
+        estado["decisiones_emision"].append(dict(estado["decisiones_emision"][0]))
+        with tempfile.TemporaryDirectory() as tmp:
+            raiz = Path(tmp)
+            ruta = (raiz / "data" / "curacion-registro" /
+                    "investigacion-estado" / "NC-0126.json")
+            ruta.parent.mkdir(parents=True)
+            ruta.write_text(json.dumps(estado), encoding="utf-8")
+            evidencia = (raiz / "forense" / "notas" /
+                         "2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md")
+            evidencia.parent.mkdir(parents=True)
+            evidencia.write_text("evidencia sintética", encoding="utf-8")
+            with mock.patch.object(adq_suficiencia, "RAIZ", raiz):
+                r = consultar({
+                    "consumidor": estado["decisiones_emision"][0]["consumidor"],
+                    "proposito": "consulta", "contexto": {},
+                    "uso": "DESCRIPTIVO",
+                })
+        self.assertEqual(r["estado"], "NO_COVERAGE")
+        self.assertIn("ambigua", r["motivo_no_cobertura"])
+
+    def test_01j_vinculos_menores_duplicados_fallan_cerrado(self):
+        import yaml
+
+        cfg = yaml.safe_load((RAIZ / "data" / "adq-investigacion.yaml").read_text(
+            encoding="utf-8"))
+        contrato = next(x for x in cfg["necesidades"] if x["id"] == "NC-0126")
+        vinculo = dict(contrato["vinculos_alcance_menor"][0])
+        contrato["vinculos_alcance_menor"].append(vinculo)
+        r = adq_suficiencia.proyecta(
+            "NC-0126", cfg, RAIZ,
+            consumidor=vinculo["consumidor"],
+            resultado_id=vinculo["resultado_bloqueado_id"],
+            uso_solicitado=vinculo["uso_menor"])
+        self.assertEqual(
+            r["estado_efectivo"],
+            "BLOQUEADA_VINCULO_ALCANCE_MENOR_AMBIGUO")
+        self.assertEqual(
+            r["accion_consumidor"], "NO_EMITIR_RESULTADO_SOLICITADO")
+
     def test_02_fallos_cerrados_no_exponen_valor(self):
         causas = {
             "02-DIN-valida": "no puede distinguir horizonte corto",
@@ -325,6 +407,24 @@ class ConsultaGen2(unittest.TestCase):
                 sys.executable,
                 "tools/consulta_gen2.py",
                 "--lote", str(EJEMPLOS / "peticiones.json"),
+                "--verifica", str(respuestas),
+            ],
+            cwd=RAIZ,
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        self.assertEqual(corrida.returncode, 0, corrida.stderr)
+        self.assertIn("OK respuestas reproducibles", corrida.stdout)
+
+    def test_09_cli_verifica_alcance_menor_reproducible(self):
+        peticiones = EJEMPLOS_AHORRO / "peticiones-ahorro-alcance-menor.json"
+        respuestas = EJEMPLOS_AHORRO / "respuestas-ahorro-alcance-menor.json"
+        corrida = subprocess.run(
+            [
+                sys.executable,
+                "tools/consulta_gen2.py",
+                "--lote", str(peticiones),
                 "--verifica", str(respuestas),
             ],
             cwd=RAIZ,

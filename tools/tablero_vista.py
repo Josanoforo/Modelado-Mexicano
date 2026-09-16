@@ -84,6 +84,7 @@ HUMANO_GEN2 = {
     "dependencias_numericas_legacy_activas": "Dependencias legacy activas",
     "N_resultados_gen2_sellados": "Resultados Gen 2 sellados",
     "N_resultados_gen2_pendientes_adopcion": "Esperando adopción de mesa",
+    "N_resultados_gen2_vetados_por_decision": "Vetados por decisión vigente",
     "N_resultados_gen2_adoptados_activos": "Adoptados y en uso",
     "resultados_con_validacion_independiente": "Con validación independiente",
     "diferencias_materiales": "Diferencias materiales contra legacy",

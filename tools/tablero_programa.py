@@ -52,6 +52,32 @@ def tsv_rows(path: str):
             if r and not r[0].startswith("#")]
 
 
+_ESTADO_CABECERA = re.compile(r"(?m)^ESTADO:\s*(\S+)")
+
+
+def _estado_cola(texto: str) -> str:
+    """Clasifica un archivo de `forense/encargos/cola/` para el tablero.
+
+    NC-0252 (medido por `ACTO GEN2-VIGENCIA-DEUDA-1`, corregido por `ACTO
+    GEN2-MANTENIMIENTO-3`): el vocabulario real es el de la cabecera
+    `ESTADO:` (`.claude/commands/despacha.md`) -- CONSUMIDO / LISTO-<ENTORNO>
+    / EN-CURSO / GATEADO / PARO-REPORTADO / INDICE-DE-COLA -- no el substring
+    literal `"## CONSUMIDO"` en el cuerpo crudo, que un renglon de BITACORA
+    que solo *menciona* un estado anterior (p.ej. "seguia LISTO-CAJA con el
+    PR ya fusionado") puede falsear. Los archivos en formato viejo (pre
+    patron 2-ter, sin cabecera `ESTADO:`) caen al heuristico anterior.
+    """
+    m = _ESTADO_CABECERA.search(texto)
+    if m:
+        estado = m.group(1).rstrip(".,;:")
+        if estado.startswith("CONSUMIDO"):
+            return "CONSUMIDO"
+        if estado.startswith("LISTO"):
+            return "LISTO"
+        return "GATED"
+    return "CONSUMIDO" if "## CONSUMIDO" in texto else ("LISTO" if "LISTO-" in texto else "GATED")
+
+
 def find_rules(o):
     if isinstance(o, dict):
         for v in o.values():
@@ -266,8 +292,11 @@ def derivar_indicadores() -> dict[str, dict]:
     for f in sorted(glob.glob("forense/encargos/cola/**/*.md", recursive=True)):
         tt = leer(f)
         clave = os.path.relpath(f, "forense/encargos/cola")
-        cola[clave] = "CONSUMIDO" if "## CONSUMIDO" in tt else ("LISTO" if "LISTO-" in tt else "GATED")
-    put("cola_encargos", cola, "forense/encargos/cola/**/*.md (recursivo): '## CONSUMIDO' / 'LISTO-' / otro=GATED")
+        cola[clave] = _estado_cola(tt)
+    put("cola_encargos", cola, "forense/encargos/cola/**/*.md (recursivo): cabecera 'ESTADO:' real "
+        "(CONSUMIDO / LISTO-* / EN-CURSO / GATEADO / PARO-REPORTADO), y solo si el archivo no trae "
+        "esa cabecera (formato viejo, pre patron 2-ter) cae al heuristico por substring "
+        "'## CONSUMIDO' / 'LISTO-' / otro=GATED -- NC-0252, ACTO GEN2-MANTENIMIENTO-3")
     put("skills", sorted(os.path.basename(f)[:-3] for f in glob.glob(".claude/commands/*.md")), "ls .claude/commands/")
     vers = sorted(int(m) for m in re.findall(r"instrucciones-proyecto-v2_(\d+)\.md", " ".join(glob.glob("instrucciones-proyecto-v2_*.md"))))
     put("instrucciones_vigentes", f"v2.{vers[-1]}" if vers else None, "ls instrucciones-proyecto-v2_*.md | version maxima numerica")
@@ -369,6 +398,8 @@ def render_bloque_vivo(I: dict[str, dict]) -> str:
         f"sellados `{_v(I, 'gen2_N_resultados_gen2_sellados')}` · "
         f"pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) "
         f"`{_v(I, 'gen2_N_resultados_gen2_pendientes_adopcion')}` · "
+        f"vetados por decisión vigente (sellados, pero una firma prohíbe adoptarlos: "
+        f"no son cola) `{_v(I, 'gen2_N_resultados_gen2_vetados_por_decision')}` · "
         f"adoptados por un consumidor activo `{_v(I, 'gen2_N_resultados_gen2_adoptados_activos')}`. "
         f"Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: "
         f"solo el consumidor activo que lo adopta la baja."

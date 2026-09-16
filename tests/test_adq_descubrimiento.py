@@ -130,7 +130,7 @@ def prueba_necesidad_nueva_llega_a_sonda_sin_lista_manual():
 
 def prueba_demanda_explica_todo_elemento_gen2_vigente():
     cfg = I.cargar_config()
-    demanda = I.proyecta_demanda(cfg, dt.date(2026, 9, 11))
+    demanda = I.proyecta_demanda(cfg, dt.date(2026, 9, 15))
     elementos = demanda["elementos_gen2"]
     usos = [x for x in I._tsv(RAIZ / cfg["fuente_usos"])
             if x.get("activo") == "SI"]
@@ -138,8 +138,9 @@ def prueba_demanda_explica_todo_elemento_gen2_vigente():
                 if x.get("estado") == "ABIERTA"}
     afirma(len(elementos) == len(usos),
            "la proyección debe conservar exactamente el alcance activo de usos.tsv")
-    afirma(demanda["total_activas"] == len(abiertas),
-           "la proyección debe conservar exactamente las NC abiertas canónicas")
+    afirma(demanda["total_nc_abiertas"] == len(abiertas) and
+           demanda["total_activas"] == len(abiertas) + 1,
+           "la proyección debe separar NC abiertas de demanda independiente")
     afirma(demanda["contrato_cientifico_completo"] +
            demanda["contrato_cientifico_incompleto"] <= demanda["total_activas"],
            "los contratos operativos no deben contarse como científicos")
@@ -148,6 +149,9 @@ def prueba_demanda_explica_todo_elemento_gen2_vigente():
     afirma(all(x["contrato_id"] and x["identidad_contrato"] and
                x["ejecutor_siguiente"] for x in elementos),
            "toda obligación debe conservar contrato, identidad y ejecutor")
+    vigentes = set(I.contratos_vigentes(cfg))
+    afirma(all(set(x["necesidades_nc_abiertas"]) <= vigentes for x in elementos),
+           "una referencia histórica cerrada no debe reaparecer como necesidad abierta")
     afirma(all("GEN1_ES_SOLO_ANTECEDENTE" in x["adopcion"] for x in elementos
                if not x["resultado_id"]),
            "GEN1 no debe reactivarse por entrar al inventario")
@@ -159,13 +163,28 @@ def prueba_demanda_explica_todo_elemento_gen2_vigente():
                  if x["consumidor"] in consumidores_horizonte]
     afirma(len(horizonte) == len(consumidores_horizonte) and
            all(x["situacion"] == "PENDIENTE_DATOS_O_DECISION_DE_USO" and
-               not x["uso_disponible_hoy"] for x in horizonte),
-           "las tres salidas de horizonte deben conservar NO_COVERAGE")
+               not x["uso_disponible_hoy"] and
+               len(x["usos_alcance_menor"]) == 1 and
+               x["usos_alcance_menor"][0]["uso"] == "DESCRIPTIVO" and
+               x["usos_alcance_menor"][0]["categoria"] ==
+               "sin_colchon_un_mes" and
+               x["usos_alcance_menor"][0]["disponible_hoy"]
+               for x in horizonte),
+           "el uso original debe seguir bloqueado y el descriptivo quedar separado")
+    afirma(demanda["elementos_con_alcance_menor_disponible"] == 3,
+           "la proyección debe contar los tres alcances menores habilitados")
     afirma("cero tareas elegibles" in demanda["advertencia_suficiencia"],
            "la proyección debe negar suficiencia general por cola vacía")
-    afirma(not demanda["seleccion_siguiente"]["elegidos"] and
-           {x["id"] for x in demanda["seleccion_siguiente"]["excluidos"]} == abiertas,
-           "el mapa debe publicar la selección siguiente y todas sus causas")
+    elegidos = [x["id"] for x in demanda["seleccion_siguiente"]["elegidos"]]
+    afirma(elegidos == ["DEM-AHORRO-STOCK-DURACION-01", "NC-0202"] and
+           {x["id"] for x in demanda["seleccion_siguiente"]["excluidos"]} ==
+           (abiertas - {"NC-0202"}),
+           "el mapa debe enrutar NC-0202 y la continuación anticipada independiente")
+    demanda_ahorro = next(x for x in demanda["necesidades"]
+                          if x["id"] == "DEM-AHORRO-STOCK-DURACION-01")
+    afirma(demanda_ahorro["antecedentes_nc"] == ["NC-0126"] and
+           demanda_ahorro["origen_demanda"] == "CONSUMIDOR_Y_USO",
+           "la demanda independiente debe enlazar la NC cerrada sin reabrirla")
     por_id = {x["elemento_id"]: x for x in elementos}
     complemento = por_id["RES-0028"]
     afirma(complemento["situacion"] == "PENDIENTE_ADOPCION" and
@@ -315,8 +334,18 @@ def prueba_cableado_y_calendario_de_produccion():
     incompatible = S.proyecta("NC-0126")
     afirma(proxy["accion_consumidor"] == "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO",
            "ENIF no debe cerrar el canal del producto fintech exacto")
-    afirma(incompatible["accion_consumidor"] == "NO_EMITIR_RESULTADO_SOLICITADO",
-           "la categoría colapsada no debe emitir el horizonte solicitado")
+    afirma(incompatible["accion_consumidor"] ==
+           "SOLO_EMITIR_ALCANCE_MENOR_ROTULADO",
+           "la suficiencia general debe declarar sólo el alcance menor")
+    necesidades = I.cargar_config()["necesidades"]
+    nc0126 = next(x for x in necesidades if x["id"] == "NC-0126")
+    vinculo = nc0126["vinculos_consulta"][0]
+    original = S.proyecta(
+        "NC-0126", consumidor=vinculo["consumidor"],
+        resultado_id=vinculo["resultado_bloqueado_id"],
+        uso_solicitado=vinculo["uso_requerido"])
+    afirma(original["accion_consumidor"] == "NO_EMITIR_RESULTADO_SOLICITADO",
+           "la categoría colapsada no debe emitir MEDICION-GEN2")
     esquema = json.loads(
         (RAIZ / "tools" / "adq-resultado.schema.json").read_text(encoding="utf-8"))
     pendientes = [("$", esquema)]

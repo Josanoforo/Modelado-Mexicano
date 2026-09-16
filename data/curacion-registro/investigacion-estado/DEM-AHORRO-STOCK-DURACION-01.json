@@ -1,0 +1,40 @@
+{
+  "alternativa_requerida": true,
+  "alternativas": [
+    "MANTENER_BLOQUEO_Y_CONTINUAR_INSTRUMENTO",
+    "RELABEL_USO_ACOTADO_AUTORIZADO_POR_772",
+    "APROBAR_PROXY_NUEVO_CON_ALCANCE_EXPLICITO"
+  ],
+  "ciclos_sin_avance": 4,
+  "continuacion_pendiente": true,
+  "cursor_continuacion": "Examinar una encuesta estatal con catálogo variable por variable; no repetir ENIF, EACF, ENSAFI, Findex, ENFIH, IIEG ni Banco Mundial. Alternativa para mesa: relabel acotado autorizado por #772, sin decidirlo aquí.",
+  "estado": "continua",
+  "evidencias": [
+    "forense/notas/2026-09-15-GEN2-38-DEM-AHORRO-STOCK-DURACION-01.md",
+    "forense/notas/2026-09-16-GEN2-38-investigacion-adq.md"
+  ],
+  "frontera_no_examinada": "Repositorios académicos estatales distintos de UNAM/IIEG y archivos no indexados de cuestionarios CNBV/CONDUSEF.",
+  "necesidad_id": "DEM-AHORRO-STOCK-DURACION-01",
+  "proxima_revision": "2026-09-17",
+  "reprogramaciones": [
+    {
+      "fecha_decision": "2026-09-15",
+      "fecha_efectiva": "2026-09-15",
+      "motivo": "continuacion anticipada y unica autorizada por ACTO GEN2-ADQUISICION-CONTINUA-2 dentro del remanente acreditado; conserva NC-0126 cerrada y la version de pregunta vigente"
+    }
+  ],
+  "suficiencia": {
+    "conceptual": "NO_ACREDITADA",
+    "diseno": "ACREDITADA",
+    "identidad": "PARCIAL",
+    "identificacion": "NO_APLICA",
+    "poblacional": "ACREDITADA",
+    "pregunta_original": "ABIERTA",
+    "seleccion_no_respuesta": "ACREDITADA",
+    "temporalidad": "PARCIAL",
+    "unidad": "ACREDITADA",
+    "uso_habilitado": "INCOMPATIBLE"
+  },
+  "ultima_exploracion": "2026-09-16",
+  "version_pregunta": "2026-09-15-stock-ausencia-y-duracion-separados-v1"
+}

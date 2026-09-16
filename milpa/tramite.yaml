@@ -98,6 +98,17 @@ reglas:
     tier: FUERTE
     falsable_si: "Si al digitalizar y agregar testigos la mordida no baja, no es trampa social sino otra cosa"
     fuente: ["ENCIG2023", "Rothstein_trampa_social", "report:politica"]
+    fuente_enmienda_fechada: >
+      15/sep/2026, ACTO GEN2-FIRMAS-MESA-1 (OBJETO 13 de la HOJA DE FIRMAS
+      DE MESA 2026-09-15, cierra NC-0106). La lista `fuente:` de arriba es
+      PROSA HISTORICA y ya no es autoridad: desde que `_instrumento()` lee
+      el payload, la derivacion no consulta este campo para conductas con
+      payload propio -- por eso NC-0106 declara impacto «Ninguno». La
+      autoridad real de esta regla es la `enmienda_encuci2020` de abajo
+      (ENCUCI 2020, FAC_SEL, n=13435) y no «ENCIG2023», que quedo aqui de
+      una version anterior. Se enmienda por escrito y NO se reescribe la
+      lista: ni tier, ni `p`, ni `ic95`, ni `n`, ni ponderador, ni
+      `sha256_payload` se tocan. Texto previo no se edita ni se borra.
     enmienda_encuci2020:
       sellada_por: "FP-200=b (mesa, 31/ago/2026) -- ACTO MAESTRA32-E20 · LOTE-NUBE-1"
       origen: "milpa/tramite-ola5-propuesta-v0.yaml:107-138 (ADR-236), copiada verbatim"
@@ -179,6 +190,18 @@ reglas:
     tier: FUERTE
     falsable_si: "Si la digitalización no reduce la mordida, la hipótesis de trampa social falla"
     fuente: ["ENCIG2023", "report:politica"]
+    fuente_enmienda_fechada: >
+      15/sep/2026, ACTO GEN2-FIRMAS-MESA-1 (OBJETO 13 de la HOJA DE FIRMAS
+      DE MESA 2026-09-15, cierra NC-0106). Mismo caso que la regla
+      `tramite.mordida.discrecional`: la lista `fuente:` de arriba es PROSA
+      HISTORICA y ya no es autoridad -- `_instrumento()` lee el payload, no
+      este campo, para conductas con payload propio (NC-0106, impacto
+      «Ninguno»). La autoridad real de esta regla es la
+      `enmienda_encig2025` de abajo (ENCIG 2025, FAC_TRA,
+      `payload_manifiesto_id: encig25_base_datos_csv`), no «ENCIG2023». Se
+      enmienda por escrito y NO se reescribe la lista: ni tier, ni `p`, ni
+      `ic95`, ni `n`, ni estratos/upm, ni `sha256_payload` se tocan. Texto
+      previo no se edita ni se borra.
     enmienda_encig2025:
       sellada_por: "firma DM (1/sep/2026, «Si eso da eso da») -- ACTO MAESTRA34-N4 · PLOMERIA-v1_2"
       origen: "milpa/tramite-ola5-propuesta-v0.yaml:551-576 (id tramite.mordida.con_registro_encig2025), copiada verbatim"
@@ -652,7 +675,7 @@ reglas:
     sha256_payload_ola2: "fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a"
     sha256_payload_ola3: "00a7649a1839a3523be22612c2fa3555d5e743cf5329d6bcdc432b901e98bd15"
     sha256_payload_peso: "34ee12b0c0d71e76676197089b5fd6048c0fdaa590a220f440d95526b1f4713b"
-    payload_manifiesto_id: "NO-LOCALIZADO -- data/manifiesto.yaml declara 'ningun archivo de ENNViH se ha descargado ni se registra aqui' (id ennvih_mxfls_licencia, procedencia.yaml:84-95) pese a que el ZIP fisico existe en data/raw/ennvih/ y ya fue usado por CAL-G3-PUNTUAL"
+    payload_manifiesto_id: "ola2=ennvih2_2005_hogar_dta; ola3=ennvih3_2009_hogar_dta; peso=ennvih2_2005_ponderador_transversal (data/manifiesto.yaml, corregido NC-0188/ACTO GEN2-ADOPCION-VENTANILLA-2 P4). El payload SI esta localizado (id, archivo, sha256 y tamano_bytes desde PR #703); la nota historica 'ningun archivo de ENNViH se ha descargado ni se registra aqui' (id ennvih_mxfls_licencia) era cierta el 30/jul/2026 y quedo FALSA EN LA LETRA desde entonces -- no se borra, se corrige aqui la copia. Lo que sigue sin publicarse es el diseno muestral (NC-0156), que es otra cosa."
     enmienda_enif2024:
       sellada_por: "firma c1 (2/sep/2026, mesa) -- ACTO MAESTRA35-N1 · SELLA-L5-Y-RECIBOS"
       origen: "milpa/tramite-ola5-propuesta-v0.yaml:803-853 (id dinero.ahorro.tiene_ahorros_enif2024), copiada verbatim"
@@ -843,6 +866,24 @@ reglas:
     universo: "FILTRO_S9_1=2 (aplica modulo vejez) y EDAD_V<71 -- procedencia.yaml:304, re-verificado contra microdato 2026-08-31"
     sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
     payload_manifiesto_id: "NO-LOCALIZADO -- se uso data/raw/enif_2024_bd_csv.zip (trae TMODULO.csv con FILTRO_S9_1/P9_9_4/FAC_PER/EDAD_V); el id de manifiesto enif2024_csv apunta a un ZIP distinto (data/raw/enif2024_csv.zip) sin estas columnas confirmadas en este acto"
+    payload_manifiesto_id_enmienda_fechada: >
+      15/sep/2026, ACTO GEN2-FIRMAS-MESA-1 (OBJETO 13 de la HOJA DE FIRMAS
+      DE MESA 2026-09-15, cierra NC-0195). El «NO-LOCALIZADO» de arriba es
+      FALSO EN LA LETRA y se enmienda aquí sin reescribirlo: el
+      `sha256_payload` de esta misma regla
+      (00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039)
+      coincide EXACTO con la entrada de manifiesto
+      `enif_2024_enif_2024_bd_csv` -- que es, literalmente, el id que las
+      dos reglas ENIF de `dinero.ahorro.*` ya declaran con ese mismo hash.
+      LA IDENTIDAD ES: `enif_2024_enif_2024_bd_csv`. El acto que escribió
+      «NO-LOCALIZADO» buscó el id `enif2024_csv`, que es otro ZIP, y
+      concluyó bien dado lo que buscó; el defecto es de búsqueda, no de
+      corpus. Resoluble sin descargar nada -- NO va a cola de adquisición.
+      Mismo patrón que NC-0188 (ENNViH) ya corrigió. Esto desbloquea
+      CORR-0010 por identidad de payload. Ni tier (FUERTE, firma DS1), ni
+      `p` (0.457707 / 0.542293), ni `ic95`, ni `n`, ni ponderador, ni
+      universo, ni `sha256_payload` se tocan. Texto previo no se edita ni
+      se borra.
 
   # ══════════════════════════════════════════════════════════════════
   # CARGA OLA-5 FASE 1 · SEGUNDO LOTE · FP-222/D1-a (mesa, 1/sep/2026)
@@ -867,7 +908,7 @@ reglas:
       disparadores_estado: "el SI de §3.5 (segsoc=2 ∨ residencia ∈ {EUA, Otro país} ∨ hogar con remesas P041) es circular con el desenlace medido (recibe_remesas) y sus mitades no circulares no existen en concentradohogar; tasa base incondicional sobre universo completo de hogares, declarado en #447"
     entonces:
       - {conducta: recibe_remesas, evento: "remesas>0 en ENIGH 2022", p: 0.045694, clase: "MEDIDO·p(tasa base ponderada)", corrida0_resultado_id: RESULT-B-ENIGH-2022-P, corrida0_generacion: GEN2, uso_motor: "calibración puntual ENIGH 2022; serie_olas se conserva separada y no se promedia"}  # ACTO GEN2-PRIMERA-SILLA P4 (FIRMA 2 de mesa, 8/sep/2026): la PRIMERA cita de un consumidor de milpa/ a un RESULT GEN2. CALC-B-0001 remidio esta tasa bajo GEN2 (RESULT-B-ENIGH-2022-P = 0.04569409956405095) y reproduce el 0.045694 publicado al grano de seis decimales con que milpa/ materializa (delta +9.956e-08). El merge de este PR es la adopcion (E.2). El `p` NO se movio: se declara de donde viene.
-      - {conducta: no_recibe_remesas, evento: "remesas=0 en ENIGH 2022", p: 0.954306, clase: "DERIVADO·q=1-p(recibe_remesas), misma ola y universo", complemento_de: recibe_remesas, uso_motor: "calibración puntual ENIGH 2022; comparte incertidumbre con el padre y no es una segunda medición"}
+      - {conducta: no_recibe_remesas, evento: "remesas=0 en ENIGH 2022", p: 0.954306, clase: "DERIVADO·q=1-p(recibe_remesas), misma ola y universo", complemento_de: recibe_remesas, corrida0_resultado_id: RESULT-ENIGH-A-P-COMPLEMENTO, corrida0_generacion: GEN2, uso_motor: "calibración puntual ENIGH 2022; comparte incertidumbre con el padre y no es una segunda medición"}  # ACTO GEN2-PINS-REPRODUCE-1 (NC-0215/NC-0243, bin 1 · regla de bloque de RELEVO-USOS-1): CALC-ENIGH-0001 remidió este complemento bajo GEN2 (RESULT-ENIGH-A-P-COMPLEMENTO = 0.9543059004359491) y reproduce el 0.954306 publicado al grano de seis decimales con que milpa/ materializa (delta -9.956e-08). El merge de este PR es la adopción en bloque — sin firma individual (bin 1). El `p` NO se movió: se declara de dónde viene.
     porque: {generador: [G5], mecanismo: "la familia opera como seguro (corresidencia, pooling, remesas) ante ingreso volátil / ausencia de Estado — §3.5 verbatim"}
     tier: FUERTE
     falsable_si: "falsador pre-registrado de R5.1 en forense/hitoD-preregistro-v2_0.md (cita la ficha, no la reescribas)"
@@ -900,8 +941,8 @@ reglas:
       disparadores: {}
       disparadores_estado: "la condicional de §3.1 (segsoc=1 ∧ contrato ∧ pres_8) no es construible en ENFIH 2019 — barrido 16 tablas / 664 columnas, 0 hits de formalidad laboral, control positivo AFORE 2 hits (#447); tasa base incondicional sobre hogares"
     entonces:
-      - {conducta: tiene_afore, p: 0.538502, clase: "MEDIDO·p(tasa base ponderada)"}
-      - {conducta: no_tiene_afore, p: 0.461498, clase: "MEDIDO·p(tasa base ponderada)"}
+      - {conducta: tiene_afore, p: 0.538502, clase: "MEDIDO·p(tasa base ponderada)", corrida0_resultado_id: RESULT-ENFIH-A-P, corrida0_generacion: GEN2}  # ACTO GEN2-PINS-REPRODUCE-1 (NC-0215/NC-0243, bin 1 · regla de bloque de RELEVO-USOS-1): CALC-ENFIH-0001 remidió esta tasa bajo GEN2 (RESULT-ENFIH-A-P = 0.5385022873715912) y reproduce el 0.538502 publicado al grano de seis decimales con que milpa/ materializa (delta +2.874e-07). El merge de este PR es la adopción en bloque — sin firma individual (bin 1). El `p` NO se movió: se declara de dónde viene.
+      - {conducta: no_tiene_afore, p: 0.461498, clase: "MEDIDO·p(tasa base ponderada)", corrida0_resultado_id: RESULT-ENFIH-A-P-COMPLEMENTO, corrida0_generacion: GEN2}  # ACTO GEN2-PINS-REPRODUCE-1 (NC-0215/NC-0243, bin 1 · regla de bloque de RELEVO-USOS-1): CALC-ENFIH-0001 remidió esta tasa bajo GEN2 (RESULT-ENFIH-A-P-COMPLEMENTO = 0.46149771262840883) y reproduce el 0.461498 publicado al grano de seis decimales con que milpa/ materializa (delta -2.874e-07). El merge de este PR es la adopción en bloque — sin firma individual (bin 1). El `p` NO se movió: se declara de dónde viene.
     porque: {generador: NO-DECLARADO-EN-§3.1, mecanismo: "el ingreso estable baja el costo esperado de comprometerse a un instrumento de horizonte largo: cae la probabilidad de incumplir y perder lo aportado — §3.1 verbatim (D-01)"}
     tier: FUERTE
     falsable_si: "R1.2 en hitoD-preregistro-v2_0.md; §3.1 declara que si sale A la regla se PARTE: sobrevive 'la estabilidad permite' como capacidad, cae 'produce' — cita, no reescribas"
@@ -1026,7 +1067,7 @@ reglas:
     si:
       disparadores: {sexo: mujer}
     entonces:
-      - {conducta: share_horas_mujeres_40mas, p: 0.221500, clase: "MEDIDO·razón(horas de mujeres 40+ / horas totales de cuidado del hogar; ENUT 2024, n 29 181 hogares)"}
+      - {conducta: share_horas_mujeres_40mas, p: 0.221500, clase: "MEDIDO·razón(horas de mujeres 40+ / horas totales de cuidado del hogar; ENUT 2024, n 29 181 hogares)", corrida0_resultado_id: RESULT-ENUT-A-R, corrida0_generacion: GEN2}  # ACTO GEN2-PINS-REPRODUCE-1 (NC-0215/NC-0243, bin 1 · regla de bloque de RELEVO-USOS-1): CALC-ENUT-0001 remidió esta razón bajo GEN2 (RESULT-ENUT-A-R = 0.22148146779116093) y reproduce el 0.221500 publicado al grano de seis decimales con que milpa/ materializa (delta -1.853e-05). El merge de este PR es la adopción en bloque — sin firma individual (bin 1). El `p` NO se movió: se declara de dónde viene.
     contexto_share_poblacional_mujeres_40mas: 0.265700  # menor que su peso poblacional, IC95 sin traslape -- ENUT 2024, universo 12+
     porque: {generador: NO-DECLARADO-EN-§3.5, mecanismo: "estructura + guion marianista, no 'cultura del cuidado' -- canon/modelo-decision-v4_0.md:536 verbatim, texto canónico del modelo sin editar en este acto (P9-bis queda para dirección/RH)"}
     tier: FUERTE # firma c1
@@ -1038,6 +1079,27 @@ reglas:
     estratos: NO-DECLARADO-EN-CELDA-DE-RAZON
     upm: 4200
     ponderador: "FAC_HOG (D2, razón) / FAC_PER (D1, descriptivo por sexo × edad)"
+    ponderador_enmienda_fechada: >
+      15/sep/2026, ACTO GEN2-FIRMAS-MESA-1 (OBJETO 13 de la HOJA DE FIRMAS
+      DE MESA 2026-09-15, cierra NC-0196). El `ponderador` de arriba nombra
+      FAC_HOG sin decir DÓNDE vive, y el `universo` vecino dice «los 29 181
+      hogares de tvar_crea.csv»: `tvar_crea.csv` NO TIENE FAC_HOG (trae 60
+      columnas, las 60 del FD, entre ellas FAC_PER). FAC_HOG vive en
+      `tsdem.csv` Y en `thogar.csv`. Un medidor que siguiera la letra falla
+      en la primera línea; uno que resolviera FAC_HOG por nombre tomaría el
+      de cualquiera de los dos archivos sin avisar. LA LECTURA CORRECTA,
+      fijada por CALC-ENUT-0001 y que gobierna: FAC_HOG se toma de
+      `tsdem.csv`, con la guarda `G-FAC-HOG-TSDEM-IGUAL-THOGAR` que
+      verifica que tsdem y thogar coincidan antes de usarlo (la guarda dio
+      IGUAL al correrse). NC-0196 lo dice exacto: «No bloquea la corrida;
+      bloquea la lectura» -- esta enmienda desbloquea la lectura. El
+      `universo:` de la línea siguiente conserva su redacción: el OBJETO 13
+      autoriza esta glosa, no aquélla, y reescribir de más sería decidir en
+      vez de propagar. Ni tier (FUERTE, firma c1), ni `p` (0.221500), ni el
+      contexto poblacional (0.265700), ni `ic95`, ni `n` (29 181), ni upm
+      (4 200), ni `veredicto_acotado`/`alcance`, ni las celdas de
+      `segmentacion_ejes_enut2024` se tocan. Texto previo no se edita ni se
+      borra.
     universo: "D2: los 29 181 hogares de tvar_crea.csv (hogares sin carga aportan 0/0, no se excluyen); D1: las 74 053 personas 12+ -- copiado de la entrada familia.cuidado.reparto_mujeres40_ejes_enut2024 de la propuesta"
     veredicto_acotado: "ACOTADA-EN-EDAD (firma c1, mesa 2/sep/2026): 'recae en mujeres' CORROBORADA en los cinco tramos; '40+ (hijas/nueras)' CONTRARIA — locus 18-39"
     alcance: "ACOTADA-EN-EDAD (firma c1, mesa 2/sep/2026): 'recae en mujeres' CORROBORADA en los cinco tramos; '40+ (hijas/nueras)' CONTRARIA — locus 18-39"
@@ -1064,8 +1126,15 @@ reglas:
     si:
       disparadores: {actividad_laboral: true, seguridad_social_laboral: false}
     entonces:
-      - {conducta: horizonte_corto, p: 0.541343, clase: "MEDIDO·p(tasa base ponderada; trabaja sin seguridad social; P4_10∈{1,2})", corrida0_resultado_id: RESULT-ENIF-AHO-A-P-CORTO-SIN-P, corrida0_generacion: GEN2}
-      - {conducta: horizonte_no_corto, p: 0.458657, clase: "DERIVADO·p(1-horizonte_corto sobre el mismo dominio)", derivado_de: RESULT-ENIF-AHO-A-P-CORTO-SIN-P}
+      - {conducta: horizonte_corto, evento: "P4_10∈{1,2}: sin ahorro suficiente para cubrir al menos un mes, incluidas personas sin ahorros", p: 0.541343, clase: "MEDIDO·p(tasa base ponderada; trabaja sin seguridad social; P4_10∈{1,2})", corrida0_resultado_id: RESULT-ENIF-AHO-A-P-CORTO-SIN-P, corrida0_generacion: GEN2, uso_motor: "DESCRIPTIVO como sin_colchon_un_mes dentro del dominio sellado; no duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual"}
+      # ACTO GEN2-RELEVO-USOS-1 · P4 (15/sep/2026): el `p` NO se mueve -- la cifra que ya estaba
+      # aqui ES la medida por CALC-ENIF-0001 (RESULT-ENIF-AHO-A-P-NOCORTO-SIN-P = 0.458657,
+      # delta 0.0 exacto, `corrida0 delta` sobre forense/relevo-usos/relevo-usos-pares-v1_0.yaml).
+      # Lo que se escribe es la CITA que faltaba. `adopcion_p3.nota` de la spec sellada: esta celda
+      # «se cuenta DIRECTAMENTE (P4_10 en {3,4,5}), no como 1 menos el otro», asi que satisface el
+      # criterio (1) y SI es cantidad medida. `derivado_de` se conserva: describe la relacion
+      # aritmetica con la celda hermana, no la procedencia del numero.
+      - {conducta: horizonte_no_corto, p: 0.458657, clase: "DERIVADO·p(1-horizonte_corto sobre el mismo dominio)", derivado_de: RESULT-ENIF-AHO-A-P-CORTO-SIN-P, corrida0_resultado_id: RESULT-ENIF-AHO-A-P-NOCORTO-SIN-P, corrida0_generacion: GEN2}
     porque: {generador: [G3], mecanismo: "ingreso volátil/informal -- horizonte corto, ahorro informal (tanda, 'guardado en casa'), foco en emergencia -- canon/modelo-decision-v4_0.md:499 verbatim. Dominio agrícola INEJECUTABLE por hueco de mercado (hitoD-R1.1, D archivado, 28/jul/2026) -- no bloquea esta tasa base nacional"}
     tier: FUERTE # firma d1
     falsable_si: "R1.1 en forense/hitoD-preregistro-v2_0.md:25-... (Nota 5, veredicto D archivado 28/jul/2026, hueco de mercado no de dato) y forense/hitoD-R1_1-veredicto-v1_0.md -- cita, no reescribas"
@@ -1080,6 +1149,21 @@ reglas:
     historico_gen1:
       estado: "CONSERVADO-NO-VIGENTE · D04 A/A"
       definicion: "P4_10={1}; agrupación heredada de P3_13 distinta de A/A; cobertura declarada 66.89%"
+      definicion_enmienda_fechada: >
+        15/sep/2026, ACTO GEN2-FIRMAS-MESA-1 (OBJETO 13 de la HOJA DE
+        FIRMAS DE MESA 2026-09-15, cierra NC-0189). La glosa «cobertura
+        declarada 66.89%» de arriba es imprecisa en la letra y se enmienda
+        aquí sin reescribirla. Lo que la cifra ES, medido por
+        CALC-ENIF-0003 (corrida sellada `CALC-ENIF-0003--68686304a371`):
+        cobertura del UNIVERSO TRIPLE SIN PONDERAR -- 9 031 de 13 502,
+        P3_13 in {1..7} Y P4_10 in {1..5} --, y NO cobertura del reactivo
+        P3_13. Citas: `RESULT-ENIF-COB-C-VEREDICTO-66-89 =
+        LOCALIZADA:UNIVERSO-TRIPLE-NO-PONDERADA` y
+        `RESULT-ENIF-COB-C-VEREDICTO-H1 = REPRODUCIDA`. Sólo cambia prosa:
+        los valores sellados de `historico_gen1.valores` (0.330600 /
+        0.669400 y su ic95), el `tier: FUERTE` de la firma d1, el `p`
+        vigente, `ic95`, `n`, estratos, upm, ponderador, universo y
+        `sha256_payload` NO se tocan. Texto previo no se edita ni se borra.
       valores: {horizonte_corto: 0.330600, horizonte_no_corto: 0.669400, ic95_corto: [0.312154, 0.349156]}
       fuente: "milpa/tramite.yaml anterior a D04; ACTO MAESTRA35-L7"
     sensibilidad_legacy_pre_declarada:
@@ -1094,8 +1178,10 @@ reglas:
     si:
       disparadores: {actividad_laboral: true, seguridad_social_laboral: true}
     entonces:
-      - {conducta: horizonte_corto, p: 0.373130, clase: "MEDIDO·p(tasa base ponderada; trabaja con seguridad social; P4_10∈{1,2})", corrida0_resultado_id: RESULT-ENIF-AHO-A-P-CORTO-CON-P, corrida0_generacion: GEN2}
-      - {conducta: horizonte_no_corto, p: 0.626870, clase: "DERIVADO·p(1-horizonte_corto sobre el mismo dominio)", derivado_de: RESULT-ENIF-AHO-A-P-CORTO-CON-P}
+      - {conducta: horizonte_corto, evento: "P4_10∈{1,2}: sin ahorro suficiente para cubrir al menos un mes, incluidas personas sin ahorros", p: 0.373130, clase: "MEDIDO·p(tasa base ponderada; trabaja con seguridad social; P4_10∈{1,2})", corrida0_resultado_id: RESULT-ENIF-AHO-A-P-CORTO-CON-P, corrida0_generacion: GEN2, uso_motor: "DESCRIPTIVO como sin_colchon_un_mes dentro del dominio sellado; no duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual"}
+      # ACTO GEN2-RELEVO-USOS-1 · P4 (15/sep/2026): misma operacion que en la celda hermana sin
+      # seguridad social. `p` intacto; RESULT-ENIF-AHO-A-P-NOCORTO-CON-P = 0.62687, delta 0.0.
+      - {conducta: horizonte_no_corto, p: 0.626870, clase: "DERIVADO·p(1-horizonte_corto sobre el mismo dominio)", derivado_de: RESULT-ENIF-AHO-A-P-CORTO-CON-P, corrida0_resultado_id: RESULT-ENIF-AHO-A-P-NOCORTO-CON-P, corrida0_generacion: GEN2}
     porque: {generador: [G3], mecanismo: "ingreso estable/formal -- horizonte no corto, contraste directo con la celda sin seguridad social de dinero.ahorro.horizonte_corto -- canon/modelo-decision-v4_0.md:499 verbatim"}
     tier: FUERTE # firma d1
     falsable_si: "R1.1 en forense/hitoD-preregistro-v2_0.md:25-... (Nota 5, veredicto D archivado 28/jul/2026, hueco de mercado no de dato) y forense/hitoD-R1_1-veredicto-v1_0.md -- cita, no reescribas"
@@ -1110,6 +1196,23 @@ reglas:
     historico_gen1:
       estado: "CONSERVADO-NO-VIGENTE · D04 A/A"
       definicion: "P4_10={1}; P3_13∈{1..6}; cobertura declarada 66.89%"
+      definicion_enmienda_fechada: >
+        15/sep/2026, ACTO GEN2-FIRMAS-MESA-1 (OBJETO 13 de la HOJA DE
+        FIRMAS DE MESA 2026-09-15, cierra NC-0189). Misma enmienda que en
+        `dinero.ahorro.horizonte_corto`: la glosa «cobertura declarada
+        66.89%» de arriba es imprecisa en la letra y se enmienda aquí sin
+        reescribirla. Lo que la cifra ES, medido por CALC-ENIF-0003
+        (corrida sellada `CALC-ENIF-0003--68686304a371`): cobertura del
+        UNIVERSO TRIPLE SIN PONDERAR -- 9 031 de 13 502, P3_13 in {1..7} Y
+        P4_10 in {1..5} --, y NO cobertura del reactivo P3_13. Citas:
+        `RESULT-ENIF-COB-C-VEREDICTO-66-89 =
+        LOCALIZADA:UNIVERSO-TRIPLE-NO-PONDERADA` y
+        `RESULT-ENIF-COB-C-VEREDICTO-H1 = REPRODUCIDA`. Sólo cambia prosa:
+        los valores sellados de `historico_gen1.valores` (0.173400 /
+        0.826600, su ic95, n 4058, upm 1806), el `tier: FUERTE` de la
+        firma d1, el `p` vigente, `ic95`, `n`, estratos, upm, ponderador,
+        universo y `sha256_payload` NO se tocan. Texto previo no se edita
+        ni se borra.
       valores: {horizonte_corto: 0.173400, horizonte_no_corto: 0.826600, ic95_corto: [0.157108, 0.190722], n: 4058, upm: 1806}
       fuente: "milpa/tramite.yaml anterior a D04; ACTO MAESTRA35-L7"
     sensibilidad_legacy_pre_declarada:
@@ -1300,8 +1403,8 @@ reglas:
     si:
       disparadores: {}  # NO-APLICA (verbatim del acumulador) -- mapping vacio, mismo patron que civico.denuncia.miedo_desconfianza:577
     entonces:
-      - {conducta: razon_no_vacunacion_logistica, p: 0.777762, clase: "MEDIDO·p(ponderado, bootstrap conglomerado)"}
-      - {conducta: razon_no_vacunacion_no_logistica, p: 0.222238, clase: "MEDIDO·p(ponderado, bootstrap conglomerado)"}
+      - {conducta: razon_no_vacunacion_logistica, p: 0.777762, clase: "MEDIDO·p(ponderado, bootstrap conglomerado)", corrida0_resultado_id: RESULT-ENSANUT-A-P-LOGISTICA, corrida0_generacion: GEN2}  # ACTO GEN2-PINS-REPRODUCE-1 (NC-0215/NC-0243, bin 1 · regla de bloque de RELEVO-USOS-1): CALC-ENSANUT-0001 remidió esta tasa bajo GEN2, verificada contra corpus real (`corrida0 verify CALC-ENSANUT-0001` → REPRODUCE, ACTO GEN2-CAJA-SUCESORES-1 P3) — RESULT-ENSANUT-A-P-LOGISTICA = 0.7777616409222661, reproduce el 0.777762 publicado al grano de seis decimales (delta -3.591e-07). El merge de este PR es la adopción en bloque — sin firma individual (bin 1). El `p` NO se movió: se declara de dónde viene.
+      - {conducta: razon_no_vacunacion_no_logistica, p: 0.222238, clase: "MEDIDO·p(ponderado, bootstrap conglomerado)", corrida0_resultado_id: RESULT-ENSANUT-A-P-NO-LOGISTICA, corrida0_generacion: GEN2}  # ACTO GEN2-PINS-REPRODUCE-1 (NC-0215/NC-0243, bin 1 · regla de bloque de RELEVO-USOS-1): CALC-ENSANUT-0001 remidió esta tasa bajo GEN2, verificada contra corpus real (`corrida0 verify CALC-ENSANUT-0001` → REPRODUCE, ACTO GEN2-CAJA-SUCESORES-1 P3) — RESULT-ENSANUT-A-P-NO-LOGISTICA = 0.22223835907773398, reproduce el 0.222238 publicado al grano de seis decimales (delta +3.591e-07). El merge de este PR es la adopción en bloque — sin firma individual (bin 1). El `p` NO se movió: se declara de dónde viene.
     porque: {generador: [], mecanismo: "el default es aceptación y el hueco es logístico (no actitudinal)"}  # PORQUE de R9.2 verbatim (canon/modelo-decision-v4_0.md:575); la propuesta trae generador: [] -- no se inventa G#
     falsable_si: NO-APLICA
     fuente: ["forense/prereg-caja/S7-L17-spec-v1_0.md", "ENSANUT2024-v2026-09-01/adultos_ensanut2024_w.stata.stata.zip", "ENSANUT2024-v2026-09-01/adolescentes_ensanut2024_w.stata.stata.zip"]
@@ -1330,7 +1433,7 @@ reglas:
     si:
       disparadores: {actividad_laboral: false}
     entonces:
-      - {conducta: horizonte_corto, p: 0.632782, clase: "MEDIDO·p(tasa base ponderada; no trabaja; P4_10∈{1,2})", corrida0_resultado_id: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P, corrida0_generacion: GEN2}
+      - {conducta: horizonte_corto, evento: "P4_10∈{1,2}: sin ahorro suficiente para cubrir al menos un mes, incluidas personas sin ahorros", p: 0.632782, clase: "MEDIDO·p(tasa base ponderada; no trabaja; P4_10∈{1,2})", corrida0_resultado_id: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P, corrida0_generacion: GEN2, uso_motor: "DESCRIPTIVO como sin_colchon_un_mes dentro del dominio sellado; no duración condicionada a tener ahorro, preferencia temporal, causalidad ni probabilidad individual"}
       - {conducta: horizonte_no_corto, p: 0.367218, clase: "DERIVADO·p(1-horizonte_corto sobre el mismo dominio)", derivado_de: RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P}
     porque: {generador: [G3], mecanismo: "celda poblacional autorizada por D05; describe el colchón de ahorro cuando no hay trabajo actual, sin imputar seguridad social laboral"}
     tier: FUERTE

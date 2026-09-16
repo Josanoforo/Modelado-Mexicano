@@ -50,6 +50,8 @@ CIERRE: tabla de 14 celdas con estado R y UR final; cascada; NC; CONSUMIDO.
 - El IC de `DIN-M-01` queda rotulado como aproximación/cota inferior porque estrato y UPM reales no se publican en el payload. `TRA-M-02` y `TRA-M-03` declaran un estrato con UPM única.
 - No se calculó U3 ni se comparó contendiente alguno. `NC-0143` permanece abierta para `ENCARGO 5/5`, que debe consumir el UR congelado en 14/14.
 
-## CONSUMIDO
+## CONSUMIDO · PR #680
 
 Ejecutado por `ACTO GEN2-R-COMPLETA-MARCO`: 14/14 árbitros R sellados, `UR=14` congelado; ocho CALC-R nuevos con `cuenta_gen2=SI`; cero NC nuevas. Cierre en `forense/notas/2026-09-09-GEN2-R-COMPLETA-MARCO-cierre.md`.
+
+*Retro-sello del dígito del PR (`ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2`, 15/sep/2026, `NC-0170`). El texto de arriba queda **intacto**: solo se añade el número real del PR que ya lo ejecutó, que la sección omitía. Verificado contra el PR real: `#680` «GEN2-R: completa árbitros del marco de 14 celdas», rama `acto/gen2-r-completa-marco`, `merged_at` 2026-09-10T17:36:31Z, `merged=true`, 200 archivos.*

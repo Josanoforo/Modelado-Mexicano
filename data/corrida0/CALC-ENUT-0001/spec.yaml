@@ -1,0 +1,208 @@
+# CALC-ENUT-0001 -- cara mecanica de spec.md (ACTO GEN2-SPECS-DEMANDA-1).
+# Gobierna spec.md y, sobre el, la spec SELLADA
+# forense/prereg-caja/ENUT-CUIDADO-spec-v1_0.md (`prereg-caja-ENUT-CUIDADO`).
+# Releva la demanda CORR-0014 (1 RESULT) bajo el registro GEN2.
+# CONGELADO en el COMMIT-1, en NUBE, antes de abrir un solo byte de microdato.
+calc_id: CALC-ENUT-0001
+spec_md: spec.md
+spec_md_sha256: b14a52f76559af4d1d3b231f46f83a4d057205737e4066e2ef4b4de2d89e723a
+
+script: data/corrida0/CALC-ENUT-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: RAZON-DE-REGLA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENUT-CUIDADO-spec-v1_0.md
+  spec_sellada_sha256: 6ee6cb62d5e7da6bf1fb750ec44fb25474cca7c8d37869d7faeab9ac6f6177bb
+  demanda_que_releva: "CORR-0014 (ENUT2024, payload enut2024_bd_csv) -> el unico RESULT: RES-0045 (familia.cuidado.recae_mujeres_40mas:share_horas_mujeres_40mas). NO releva ninguna otra corrida."
+  reglas_bajo_prueba: "NINGUNA cambia de cifra por esta corrida. familia.cuidado.recae_mujeres_40mas (R5.2) conserva su p=0.2215, su veredicto DISCRIMINA por eje y su alcance ACOTADA-EN-EDAD (firma c1 de mesa, 2/sep/2026), que esta corrida NO re-abre."
+  firma_de_contador: "NO-FIRMADA. El encargo de mesa (15/sep/2026) pide congelar specs ejecutables y NO declara OBJETO sobre el contador GEN2. Estandar FP-367/368 NO satisfecho -> cuenta_gen2 queda PENDIENTE-DE-MESA."
+  hallazgo_a15_del_acto: "MATERIAL para quien escriba el medidor. milpa/tramite.yaml:1036 declara el ponderador `FAC_HOG (D2, razon)` y :1038 sitúa el universo en `los 29181 hogares de tvar_crea.csv`. Verificado por archivo contra data/inventario-reactivos-v1_2.tsv: tvar_crea.csv trae 60 columnas -- las mismas 60 que el FD declara para la hoja TVAR_CREA -- y FAC_HOG NO es una de ellas (tiene FAC_PER). FAC_HOG vive en tsdem.csv Y en thogar.csv, en ninguno de los cuales estan las horas. Un medidor que siguiera la letra de la regla falla en la primera linea; uno que resolviera FAC_HOG por nombre tomaria el de cualquiera de los dos sin aviso (A.15(c)). Esta spec fija el archivo (tsdem.csv, precedente de tools/medidor_cuidado_enut.py, ACTO MAESTRA35-L7, que verifico que FAC_PER NO es constante dentro del hogar y FAC_HOG SI) y anade la guarda que nadie habia corrido: G-FAC-HOG-TSDEM-IGUAL-THOGAR."
+  contaminacion_declarada: "ADR-46 -- al congelar, la sesion YA habia leido de milpa/tramite.yaml:1024-1100: p=0.2215, ic95=[0.213145,0.229966], n=29181, upm=4200, el contexto share poblacional 0.2657, el veredicto_acotado de mesa y las diez celdas de eje_sexo_edad con sus medias de horas; y tools/medidor_cuidado_enut.py entero, incluida la definicion de horas_cuidado del precedente Y1, el mapa SEXO 1=hombre/2=mujer y el join de FAC_HOG desde tsdem.csv. NO es ciega, y en el caso del medidor tampoco podria serlo: leerlo es lo que permitio encontrar el hallazgo_a15_del_acto. Lo genuinamente desconocido al congelar: si FAC_HOG de tsdem.csv y de thogar.csv coinciden hogar por hogar, el peso del residuo CUID_INT_15A59, la distancia entre la rama CON_CP y la SIN_CP, la anchura del IC bajo esta semilla y cuantos estratos quedan con UPM unica."
+  medidor_ejecutado_al_congelar: "NO -- y el medidor tampoco se escribe aqui. El encargo pide `md humana + spec.yaml` (D-15, dos capas); el medidor es del acto de CAJA que consuma este contrato. Consecuencia declarada: `corrida0.py preflight CALC-ENUT-0001` reporta BLOQUEADO:script_ausente hasta que CAJA lo escriba."
+
+inputs:
+  - id: enut2024_bd_csv
+    origen: manifiesto
+  - id: enut2024_fd_xlsx
+    origen: manifiesto
+  - id: IN-ENUT-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/ENUT-CUIDADO-spec-v1_0.md
+    sha256: 6ee6cb62d5e7da6bf1fb750ec44fb25474cca7c8d37869d7faeab9ac6f6177bb
+
+variables:
+  - {archivo: "tvar_crea.csv", variable: CUID_ESP_INT_HOG_CON_CP, rol: "SUMANDO 1/4 de horas_cuidado", codigos: "FD hoja TVAR_CREA, etiqueta verbatim `Cuidados especiales a integrantes del hogar por enfermedad cronica, temporal o discapacidad, con cuidados pasivos`; numerica, horas/semana", direccion: "MAS ALTO = MAS HORAS DE CUIDADO"}
+  - {archivo: "tvar_crea.csv", variable: CUID_INT_0A5_CON_CP, rol: "SUMANDO 2/4 de horas_cuidado", codigos: "FD: `Cuidado a integrantes del hogar de 0 a 5 anos, con cuidados pasivos`; numerica", direccion: "idem"}
+  - {archivo: "tvar_crea.csv", variable: CUID_INT_6A14_CON_CP, rol: "SUMANDO 3/4 de horas_cuidado", codigos: "FD: `Cuidado a integrantes del hogar de 6 a 14 anos, con cuidados pasivos`; numerica", direccion: "idem"}
+  - {archivo: "tvar_crea.csv", variable: CUID_INT_60MAS_CON_CP, rol: "SUMANDO 4/4 de horas_cuidado", codigos: "FD: `Cuidado a integrantes del hogar de 60 anos y mas, con cuidados pasivos`; numerica", direccion: "idem"}
+  - {archivo: "tvar_crea.csv", variable: CUID_INT_15A59, rol: "RESIDUO DECLARADO -- queda FUERA de horas_cuidado por no tener variante CON_CP en el FD; su peso se mide en C-P-RESIDUO-15A59", codigos: "FD: `Cuidado a integrantes del hogar de 15 a 59 anos`; numerica", direccion: "NO-APLICA (residuo)"}
+  - {archivo: "tvar_crea.csv", variable: SEXO, rol: "NUMERADOR (1/2) -- define quien es mujer", codigos: "FD: `3.4 (NOMBRE) es hombre (NOMBRE) es mujer`; '1' = hombre, '2' = mujer (mapa ya usado y verificado por tools/ejes_maestra35_l1.py y tools/medidor_cuidado_enut.py). Se compara como CADENA", direccion: "NO-APLICA (clasificador)"}
+  - {archivo: "tvar_crea.csv", variable: EDAD, rol: "NUMERADOR (2/2) -- corte 40+", codigos: "FD: `3.5 Cuantos anos cumplidos tiene (NOMBRE)?`; numerica; corte EDAD >= 40", direccion: "NO-APLICA (clasificador)"}
+  - {archivo: "tvar_crea.csv", variable: LLAVEHOG, rol: "AGREGACION a hogar y llave del join de ponderador", codigos: "FD: `Llave de identificacion del hogar`; cadena cruda"}
+  - {archivo: "tvar_crea.csv", variable: EST_DIS, rol: "ESTRATO de diseno (LLAVE DE TEXTO OPACA); se verifica CONSTANTE dentro de LLAVEHOG antes de usarlo", codigos: "FD: `Estrato de Diseno Muestral`; cadena cruda"}
+  - {archivo: "tvar_crea.csv", variable: UPM_DIS, rol: "UPM -- conglomerado que se re-muestrea (LLAVE DE TEXTO OPACA); se verifica CONSTANTE dentro de LLAVEHOG", codigos: "FD: `Unidad Primaria de Muestreo`; cadena cruda"}
+  - {archivo: "tvar_crea.csv", variable: FAC_PER, rol: "NO es el ponderador de esta razon. Se lee solo para la guarda G-FAC-PER-NO-CONSTANTE-EN-HOGAR, que re-verifica el motivo por el que la unidad es hogar y no persona", codigos: "FD: `Factor`; flotante"}
+  - {archivo: "tsdem.csv", variable: FAC_HOG, rol: "PONDERADOR de hogar de la razon -- NO esta en tvar_crea.csv; se une por LLAVEHOG. El archivo se fija aqui a proposito (A.15(c))", codigos: "FD hoja TSDEM; flotante tal cual"}
+  - {archivo: "tsdem.csv", variable: LLAVEHOG, rol: "llave del join de ponderador", codigos: "cadena cruda"}
+  - {archivo: "thogar.csv", variable: FAC_HOG, rol: "SOLO GUARDA -- no entra al estimador. Se compara hogar por hogar contra el de tsdem.csv en G-FAC-HOG-TSDEM-IGUAL-THOGAR", codigos: "FD hoja THOGAR, etiqueta `Factor`; flotante"}
+  - {archivo: "thogar.csv", variable: LLAVEHOG, rol: "llave de la guarda", codigos: "cadena cruda"}
+
+universo: >-
+  Hogares: TODOS los de tvar_crea.csv (agrupados por LLAVEHOG), incluidos los
+  que no registran ninguna hora de cuidado -- aportan 0/0 y NO se excluyen:
+  excluirlos cambiaria la pregunta de `como se reparte el cuidado que hay` a
+  `como se reparte en los hogares que cuidan`. Los hogares sin ninguna mujer
+  40+ aportan 0 al numerador, correctamente, y NO salen del denominador.
+  Referencia GEN1, que esta corrida vuelve a contar: 29181 hogares, 4200 UPM.
+  UNA SOLA OLA: ENUT 2024. ENUT 2019 y 2009 NO entran (sin tabla tvar_crea;
+  reconstruir CON_CP desde ~40 items crudos no tiene precedente validado).
+
+filtros: >-
+  Sale del universo, CONTADO y no imputado: hogar sin FAC_HOG en tsdem.csv
+  (A-N-HOGARES-SIN-FAC-HOG) o con FAC_HOG no finito o <= 0
+  (A-N-FAC-HOG-INVALIDO). NO sale del universo, pero se cuenta: hogar sin
+  carga de cuidado (A-N-HOGARES-CON-CARGA lo reporta por complemento) y hogar
+  sin mujer 40+ (A-N-HOGARES-SIN-MUJER-40MAS).
+  CERO NUNCA SUSTITUYE FALTA DE DATO: una hora nula NO se lee como 0 -- si
+  alguna de las cuatro columnas CON_CP trae nulos, sale
+  NO-ESTIMABLE-HORAS-NULAS:<col>:<n>.
+  Guardias que producen NO-ESTIMABLE en vez de una cifra: miembro ausente del
+  ZIP -> NO-ESTIMABLE-MIEMBRO-AUSENTE:<m>; columna declarada ausente ->
+  NO-ESTIMABLE-COLUMNA-AUSENTE:<col>; EST_DIS o UPM_DIS NO constantes dentro
+  de LLAVEHOG -> NO-ESTIMABLE-DISENO-NO-CONSTANTE (el conglomerado del hogar
+  no estaria definido); denominador ponderado igual a 0 ->
+  NO-ESTIMABLE-DENOMINADOR-CERO; universo vacio -> NO-ESTIMABLE-UNIVERSO-VACIO.
+
+ponderador: >-
+  FAC_HOG leido de tsdem.csv y unido por LLAVEHOG. NO se usa FAC_PER (no es
+  constante dentro del hogar, verificado por ACTO MAESTRA35-L7, y la unidad de
+  esta razon es el hogar). NO se usa el FAC_HOG de thogar.csv, que solo entra
+  como guarda de igualdad. Flotante tal cual, sin normalizar.
+
+transformacion: >-
+  Lectura con pandas.read_csv(dtype=str, low_memory=False); las cuatro
+  columnas CON_CP, CUID_INT_15A59, EDAD, FAC_PER y FAC_HOG a numerico con
+  errors='coerce' y guarda de nulos. Por persona:
+  horas_cuidado = suma de las CUATRO columnas CON_CP;
+  mujer40 = (SEXO == '2') y (EDAD >= 40);
+  horas_mujer40 = horas_cuidado donde mujer40, 0 en otro caso.
+  Por hogar (LLAVEHOG): num = suma(horas_mujer40), den = suma(horas_cuidado),
+  w = FAC_HOG del hogar, est_dis y upm = el valor constante del hogar.
+  A-R = suma(w*num) / suma(w*den) sobre los hogares, sumas en orden fijo de
+  LLAVEHOG. ES UNA RAZON, no una proporcion de un binario.
+  Bootstrap: clave de conglomerado = (EST_DIS, UPM_DIS) como cadenas; UPM con
+  reemplazo dentro de EST_DIS conservando el numero de UPM por estrato; EN
+  CADA REPLICA se recalcula suma(w*num)/suma(w*den) con numerador y
+  denominador DE LA MISMA REPLICA. IC = percentiles 2.5/97.5.
+  NO se promedia, no se imputa, no se re-escala, no se extrapola.
+
+estimando: >-
+  DESCRIPTIVO. (1) ADOPTABLE POR MESA: A-R, razon ponderada de las horas de
+  cuidado del hogar que aportan las mujeres 40+, con A-IC-LO/A-IC-HI de
+  diseno; junto a ella, OBLIGATORIAMENTE, A-SHARE-POBLACIONAL-MUJERES-40MAS,
+  porque sin ese contexto la cifra se lee al reves: la regla se lee comparando
+  A-R contra la participacion poblacional, no contra cero.
+  (2) SECUNDARIOS DECLARADOS, NO adoptables: C-P-RESIDUO-15A59 (peso del
+  recorte), C-P-SIN-CP (la razon con las variantes SIN_CP y su delta con
+  signo) y las guardas de ponderador. NINGUN RESULT ES CAUSAL: R5.2 afirma que
+  el cuidado `recae sobre mujeres 40+` y esta corrida mide REPARTO, no la
+  flecha; el alcance ACOTADA-EN-EDAD que mesa firmo el 2/sep/2026 no se
+  re-abre aqui.
+
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  fuente_acto: "ACTO GEN2-SPECS-DEMANDA-1 · CALC-ENUT-0001 · celda de R5.2 sobre ENUT 2024, estimador de razon con IC de diseno"
+  firma_que_lo_autoriza: "Encargo de mesa del 15/sep/2026, verbatim en forense/encargos/2026-09-15-GEN2-SPECS-DEMANDA-1.md: «redactar y CONGELAR la spec ejecutable (md humana + spec.yaml, D-15, abriendo SOLO codebook y metadato -- E.5 lo permite en nube, microdato jamas)». La firma autoriza CONGELAR, no contar."
+  bootstrap_replicas: 2000
+  metodo_ic: "bootstrap de UPM_DIS CON REEMPLAZO dentro de EST_DIS, conservando el numero de UPM por estrato; en CADA replica se recalcula la razon con numerador y denominador de esa misma replica; percentiles 2.5/97.5. El bootstrap de una RAZON no es el de una proporcion y por eso se declara aparte."
+  regla_estrato_upm_unica: >-
+    Un estrato con exactamente una UPM se re-muestrea a si mismo: aporta
+    varianza cero. NO se colapsa y NO se descarta. Si el conteo es > 0,
+    A-METODO-IC sale IC-CON-ESTRATOS-DE-UPM-UNICA y el IC se lee como LIMITE
+    INFERIOR de la anchura verdadera.
+  llaves_opacas: >-
+    EST_DIS, UPM_DIS y LLAVEHOG se manejan como CADENA CRUDA (dtype=str):
+    normalizarlas partiria o fusionaria estratos u hogares en silencio.
+  archivo_de_ponderador: "tsdem.csv -- declarado como PARAMETRO y no como detalle. FAC_HOG NO existe en tvar_crea.csv (donde estan las horas) y SI existe en tsdem.csv y en thogar.csv. La guarda G-FAC-HOG-TSDEM-IGUAL-THOGAR decide si la eleccion es inocua o material."
+  horas_cuidado_definicion:
+    columnas: [CUID_ESP_INT_HOG_CON_CP, CUID_INT_0A5_CON_CP, CUID_INT_6A14_CON_CP, CUID_INT_60MAS_CON_CP]
+    procedencia: "identica a la definicion del precedente Y1 (forense/notas/2026-08-04-y1-operacionalizacion-r5-2-enut.md), REUSADA, no redefinida; misma que tools/medidor_cuidado_enut.py::CUID_COLS"
+    fuera_del_recorte: "CUID_INT_15A59 (sin variante CON_CP en el FD) y los cuidados a OTROS hogares (CUID_ESP_DISC_ENF, CUID_PER_OTROS_HOG): la regla habla del hogar"
+  codificacion:
+    sexo_mujer: "2"
+    sexo_hombre: "1"
+    corte_edad: 40
+    llave_hogar: LLAVEHOG
+  miembros_zip_declarados:
+  - "tvar_crea.csv"
+  - "tsdem.csv"
+  - "thogar.csv"
+  valores_gen1_referencia:
+    A_R: 0.2215
+    A_IC_LO: 0.213145
+    A_IC_HI: 0.229966
+    SHARE_POBLACIONAL_MUJERES_40MAS: 0.2657
+  n_gen1_referencia:
+    hogares: 29181
+    upm: 4200
+  grano_gen1_decimales: 4
+  grano_declarado: >-
+    El grano de la cifra GEN1 es de CUATRO decimales (0.2215), no seis. La
+    comparacion A-REPRODUCE-GEN1 se hace a cuatro y A-GRANO-GEN1 lo declara,
+    en vez de fabricar un NO-REPRODUCE por redondear a un grano que la cifra
+    vieja nunca tuvo.
+  criterio_adopcion: >-
+    A-ADOPCION = LISTADO-PARA-MESA-REPRODUCE si A-REPRODUCE-GEN1 = REPRODUCE;
+    LISTADO-PARA-MESA-NO-REPRODUCE en otro caso estimable;
+    NO-ADOPTABLE-NO-ESTIMABLE si no hay punto. Este acto NO escribe cita en
+    milpa/ bajo ninguna rama, y no re-abre el veredicto_acotado de mesa.
+
+seed:
+  aplica: true
+  valor: 20260915
+  rng: numpy.PCG64
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: >-
+    Bootstrap fijado por seed + rng declarados y sumas en orden fijo de
+    LLAVEHOG: la unica diferencia esperable entre dos corridas del mismo arbol
+    es redondeo de float64 al reasociar sumas ponderadas. Los enteros y los
+    textos se comparan EXACTO. La comparacion contra GEN1 es aparte y usa el
+    grano de cuatro decimales que GEN1 publico (grano_declarado).
+
+resultados:
+  - {id: RESULT-ENUT-G-N-MIEMBROS-ZIP, tipo: entero, unidad: "miembros del ZIP enut2024_bd_csv.zip"}
+  - {id: RESULT-ENUT-G-N-FILAS-TVAR-CREA, tipo: entero, unidad: "filas (personas) de tvar_crea.csv"}
+  - {id: RESULT-ENUT-G-N-COLUMNAS-TVAR-CREA, tipo: entero, unidad: "columnas de tvar_crea.csv (el FD declara 60 para TVAR_CREA)"}
+  - {id: RESULT-ENUT-G-FAC-HOG-EN-TVAR-CREA, tipo: texto, unidad: "AUSENTE / PRESENTE -- se espera AUSENTE; PRESENTE invalidaria el hallazgo A.15 de esta spec y debe reportarse, no taparse"}
+  - {id: RESULT-ENUT-G-FAC-HOG-TSDEM-IGUAL-THOGAR, tipo: texto, unidad: "IGUAL / DIFIERE:<n_hogares> -- FAC_HOG de tsdem.csv contra el de thogar.csv, hogar por hogar. Guarda nueva de este acto"}
+  - {id: RESULT-ENUT-G-FAC-PER-NO-CONSTANTE-EN-HOGAR, tipo: texto, unidad: "CONFIRMADO / REFUTADO:<n> -- re-verifica el motivo por el que la unidad es hogar y el ponderador no es FAC_PER"}
+  - {id: RESULT-ENUT-G-DISENO-CONSTANTE-EN-HOGAR, tipo: texto, unidad: "SI / NO:<n_hogares> -- EST_DIS y UPM_DIS constantes dentro de LLAVEHOG"}
+  - {id: RESULT-ENUT-G-N-NULOS-HORAS, tipo: texto, unidad: "'columna:n;...' de nulos en las cuatro columnas CON_CP (esperado todas 0)"}
+  - {id: RESULT-ENUT-G-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "estratos con exactamente una UPM"}
+  - {id: RESULT-ENUT-A-N-HOGARES, tipo: entero, unidad: "hogares del universo (GEN1 conto 29181)"}
+  - {id: RESULT-ENUT-A-N-HOGARES-COINCIDE-GEN1, tipo: texto, unidad: "COINCIDE / DIFIERE:<delta> -- contra 29181"}
+  - {id: RESULT-ENUT-A-N-PERSONAS, tipo: entero, unidad: "personas de tvar_crea.csv en el universo"}
+  - {id: RESULT-ENUT-A-N-HOGARES-CON-CARGA, tipo: entero, unidad: "hogares con den > 0 (alguna hora de cuidado registrada)"}
+  - {id: RESULT-ENUT-A-N-HOGARES-SIN-MUJER-40MAS, tipo: entero, unidad: "hogares sin ninguna mujer 40+ (aportan 0 al numerador, sin salir del denominador)"}
+  - {id: RESULT-ENUT-A-N-HOGARES-SIN-FAC-HOG, tipo: entero, unidad: "hogares de tvar_crea.csv sin FAC_HOG en tsdem.csv (ACTO MAESTRA35-L7 conto 0)"}
+  - {id: RESULT-ENUT-A-N-UPM, tipo: entero, unidad: "conglomerados (EST_DIS,UPM_DIS) distintos (GEN1 conto 4200)"}
+  - {id: RESULT-ENUT-A-R, tipo: proporcion, unidad: "razon ponderada: horas de cuidado de mujeres 40+ sobre horas de cuidado totales del hogar", permite_no_estimable: true}
+  - {id: RESULT-ENUT-A-IC-LO, tipo: flotante, unidad: "percentil 2.5 del bootstrap de diseno de la razon", permite_no_estimable: true}
+  - {id: RESULT-ENUT-A-IC-HI, tipo: flotante, unidad: "percentil 97.5 del bootstrap de diseno de la razon", permite_no_estimable: true}
+  - {id: RESULT-ENUT-A-METODO-IC, tipo: texto, unidad: "IC-DE-DISENO / IC-CON-ESTRATOS-DE-UPM-UNICA / NO-ESTIMABLE-DISENO-INCOMPLETO"}
+  - {id: RESULT-ENUT-A-SHARE-POBLACIONAL-MUJERES-40MAS, tipo: proporcion, unidad: "participacion ponderada de las mujeres 40+ en la poblacion del universo -- CONTEXTO OBLIGATORIO: la regla se lee comparando A-R contra esto, no contra cero (GEN1 publica 0.2657)", permite_no_estimable: true}
+  - {id: RESULT-ENUT-A-R-MENOS-SHARE-POBLACIONAL, tipo: flotante, unidad: "A-R menos A-SHARE-POBLACIONAL-MUJERES-40MAS, CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-ENUT-A-DELTA-VS-GEN1, tipo: flotante, unidad: "A-R menos 0.2215, CON SIGNO", permite_no_estimable: true}
+  - {id: RESULT-ENUT-A-REPRODUCE-GEN1, tipo: texto, unidad: "REPRODUCE / NO-REPRODUCE / NO-ESTIMABLE -- round(A-R,4) == 0.2215, al grano que GEN1 publico"}
+  - {id: RESULT-ENUT-A-GRANO-GEN1, tipo: entero, unidad: "decimales al que se compara contra GEN1 (4, declarado)"}
+  - {id: RESULT-ENUT-A-ADOPCION, tipo: texto, unidad: "LISTADO-PARA-MESA-REPRODUCE / LISTADO-PARA-MESA-NO-REPRODUCE / NO-ADOPTABLE-NO-ESTIMABLE"}
+  - {id: RESULT-ENUT-C-P-RESIDUO-15A59, tipo: proporcion, unidad: "SECUNDARIO: peso de CUID_INT_15A59 sobre el total de horas de cuidado si se incluyera -- mide el recorte por su tamano, no por su nombre", permite_no_estimable: true}
+  - {id: RESULT-ENUT-C-P-SIN-CP, tipo: proporcion, unidad: "SECUNDARIO: la misma razon con las variantes SIN_CP disponibles", permite_no_estimable: true}
+  - {id: RESULT-ENUT-C-DELTA-CON-CP-VS-SIN-CP, tipo: flotante, unidad: "A-R menos C-P-SIN-CP, CON SIGNO: lo que vale la eleccion de cuidado pasivo", permite_no_estimable: true}

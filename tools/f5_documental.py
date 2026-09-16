@@ -3,7 +3,13 @@
 
 Contrato vigente: F5-documental-ejecucion-v1_1.md (sucesion de v1_0; transporte
 corregido por (a)-(d)). El ledger v1_0 se arrastra sin reiniciar; plan y sonda
-se escriben como v1_1 y los archivos v1_0 quedan intactos."""
+se escriben como v1_1 y los archivos v1_0 quedan intactos.
+
+NC-0208 (ACTO GEN2-CAJA-SUCESORES-1, 15/sep/2026): `sha256_manifiesto_fuentes`
+sucede a F5-documental-ejecucion-v1_2.md (`sha256_manifiesto_fuentes_v1_2`,
+A.7) -- acota el hash a las 8 entradas de `data/manifiesto.yaml` que el duelo
+usa, no al archivo entero. No reabre ningun veredicto ni la firma
+(F5-documental-firma-v1_0.md sigue vigente)."""
 from __future__ import annotations
 
 import argparse
@@ -87,6 +93,20 @@ def sha_bytes(data: bytes) -> str:
 
 def sha_archivo(path: Path) -> str:
     return sha_bytes(path.read_bytes())
+
+
+def sha256_manifiesto_fuentes_v1_2(fuentes: dict[str, dict], ids_del_duelo: list[str]) -> str:
+    """FP-373 v1.2 (`F5-documental-ejecucion-v1_2.md`, A.7): acota el hash a
+    las entradas de `data/manifiesto.yaml` que el duelo usa, no al archivo
+    entero -- que crece con cada adquisicion ajena. Un id ausente es PARO,
+    no una fila que se salta. Serializacion canonica declarada en el
+    contrato: orden por `id` ascendente, `json.dumps(sort_keys=True,
+    ensure_ascii=False, separators=(',', ':'))`, sha256 en UTF-8."""
+    sel = [fuentes[i] for i in ids_del_duelo]
+    assert len(sel) == len(ids_del_duelo)
+    canon = json.dumps(sorted(sel, key=lambda e: e["id"]),
+                        sort_keys=True, ensure_ascii=False, separators=(",", ":"))
+    return sha_bytes(canon.encode("utf-8"))
 
 
 def json_publico(path: Path, datos: dict) -> None:
@@ -247,7 +267,8 @@ def materializar(raw: Path, paquete: Path, escribir_manifiesto: bool = True) -> 
         "celdas": celdas,
         "extraccion_pdf": f"pypdf {__import__('pypdf').__version__}; texto completo por pagina en orden",
         "pandas": pd.__version__,
-        "sha256_manifiesto_fuentes": sha_archivo(MANIFIESTO_FUENTES),
+        "sha256_manifiesto_fuentes": sha256_manifiesto_fuentes_v1_2(
+            fuentes, sorted({i for grupo in ids.values() for i in grupo})),
         "sha256_manifiesto_contexto": sha_archivo(MANIFIESTO_CONTEXTO),
         "contrato_720": {
             "merge": MERGE_720,

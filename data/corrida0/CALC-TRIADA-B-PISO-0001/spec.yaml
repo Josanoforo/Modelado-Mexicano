@@ -1,0 +1,560 @@
+# CALC-TRIADA-B-PISO-0001 -- cara mecanica de spec.md (ACTO GEN2-F5-CIERRE-Y-PANEL-1).
+# Gobierna spec.md y, sobre el, la spec SELLADA forense/prereg-caja/TRIADA-B-PISO-spec-v1_0.md
+# (`prereg-caja-TRIADA-B-PISO`). Las dos capas y medidor.py se congelan en el COMMIT-1;
+# el COMMIT-2 sella. Los cuatro insumos YA existen al congelar, por eso spec.yaml se
+# instancia aqui y no despues (a diferencia de CALC-B-MARCO-MAE-0001).
+calc_id: CALC-TRIADA-B-PISO-0001
+spec_md: spec.md
+spec_md_sha256: e83615afc8d5b87085059c456847df28a51212930015c3aab38db9b766071f76
+script: data/corrida0/CALC-TRIADA-B-PISO-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: CORRIDA-DE-REGISTRO-TABLA-COMUN-TRIADA-CON-B
+  familia: TRIADA-B-PISO
+  cuenta_gen2: 'SI'
+  cuenta_gen2_nota: >-
+    Firma de contador con OBJETO embebida en el lanzamiento y escrita en data/corrida0/decisiones.tsv
+    (precedencia 1 de _cuenta_gen2_resuelto). SE DECLARA lo que la firma pasa por encima: la regla E.1
+    marca esta corrida envuelto_legacy = SI POR CADENA -- consume RESULT de CALC-B-MARCO-MAE-0001 y de
+    CALC-TRIADA-0002, ambos lectores de corridas-R/ -- y sin firma el registro la resolveria NO.
+    prereg-caja-B-MARCO §7.7 declino firmar sobre un envuelto; esta spec se aparta de ese precedente
+    por decision explicita y mas reciente de mesa, y lo registra (sellada §5.10). Contar NO adopta.
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/TRIADA-B-PISO-spec-v1_0.md
+  spec_sellada_sha256: a1043b48b538fd6a4bfb76e5c80fb71cc55c920dabe9d423652b6c65bf09a256
+  reglas_bajo_prueba: >-
+    NINGUNA. No mueve ninguna regla del motor, no adjudica, no corona y no toca el veredicto de la
+    triada (T9). El resultado es descriptivo: no refuta ni corrobora nada (sellada §4.2).
+  contaminacion_declarada: >-
+    ADR-46 -- contaminacion TOTAL declarada por el lanzamiento y re-declarada aqui: el propio encargo
+    trae los cuatro MAE de la tabla comun (B 0.885 / L_CORPUS 1.223 / L_SOLO 1.481 / M 4.638) porque
+    direccion los verifico antes de encargar, y esta sesion pudo ver y vio los cuatro insumos. No se
+    finge ceguera. Lo que sostiene la corrida es que la regla NO admite alternativas: universo por
+    interseccion, estadistico heredado (media simple de abs(err_pp)), brazo PERSISTENCIA por cobertura,
+    columnas preexistentes. Ninguna decision de la spec depende de un valor observado (sellada §0.2).
+  medidor_ejecutado_al_congelar: >-
+    NO sobre datos reales -- medidor.py, spec.md, spec.yaml y la spec sellada congelados en el COMMIT-1;
+    probado SOLO sobre datos SINTETICOS (pruebas-sinteticas.py, 18 aserciones: tres ramas del control,
+    U_COMUN vacio, guardia de identidad, MAE sobre el universo recortado y contadores en cero)
+inputs:
+- id: IN-CELDAS
+  origen: repo
+  ruta: forense/prereg-duelo-v2/F5-aprendizajes-sucesor-v1_0/celdas.tsv
+  sha256: c45c6cb5871fbfd6c47b3ef5b2f1af439cc719e12b28ccbd81c5a1a6375ca178
+- id: IN-B-MAE
+  origen: repo
+  ruta: data/corrida0/CALC-B-MARCO-MAE-0001/resultados.json
+  sha256: 50efbc12573d748ea3d6c86c812631301db37aed1079b80d400bce08c6814dcf
+- id: IN-TRIADA-0002
+  origen: repo
+  ruta: data/corrida0/CALC-TRIADA-0002/resultados.json
+  sha256: e2d0adc2a9fb9722d50a9479916129b3524cb87ce9021359ebfe755ec0e9e22a
+- id: IN-MARCO
+  origen: repo
+  ruta: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
+  sha256: f4e298d763ab06ea8e3954b687d99b23ef232bd2a3dda44f8db39b65da69022a
+variables:
+- archivo: forense/prereg-duelo-v2/F5-aprendizajes-sucesor-v1_0/celdas.tsv
+  variable: error_abs_l_solo_pp, error_abs_l_corpus_pp, error_abs_m_pp, en_u3
+  rol: error absoluto por celda de los tres corredores de la triada, y pertenencia a U3
+- archivo: data/corrida0/CALC-B-MARCO-MAE-0001/resultados.json
+  variable: RESULT-BM-MAE-<celda>-PERSISTENCIA-ERR-PP
+  rol: error con signo de B bajo el brazo PERSISTENCIA (se toma en valor absoluto)
+- archivo: data/corrida0/CALC-TRIADA-0002/resultados.json
+  variable: RESULT-F5C-MAE-{L-SOLO,L-CORPUS,M}-PP, RESULT-F5C-VEREDICTO-GLOBAL
+  rol: los MAE sellados sobre U3 (control de derivacion) y el veredicto vigente, citado intacto
+- archivo: forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv
+  variable: id
+  rol: las 14 celdas del marco (guardia de identidad)
+universo: >-
+  U_COMUN = U3 interseccion {celdas con B bajo PERSISTENCIA} = 9 de las 14 celdas del marco. Las cinco
+  ausentes se reportan con razon nominal (FUERA-DE-U3, SIN-B-PERSISTENCIA, FUERA-DE-U3-Y-SIN-B) y no se
+  rellenan. Todo MAE se publica con su n y su lista: NO es comparable con el MAE de la 0002 (n=12) ni
+  con el del asiento de B (n=10).
+filtros: >-
+  Una celda entra a U_COMUN si y solo si tiene punto en LOS CUATRO corredores: en_u3 = SI en celdas.tsv
+  Y RESULT-BM-MAE-<celda>-PERSISTENCIA-ERR-PP no nulo. Nada se imputa, nada se sustituye.
+ponderador: NO-APLICA (media simple de abs(err_pp) sobre celdas, como el MAE_pp del duelo).
+transformacion: >-
+  MAE_pp(corredor) = media de abs(err_pp) sobre las 9 celdas de U_COMUN, en orden fijo de id. Control de
+  derivacion: los tres MAE de la 0002 recalculados sobre U3 desde celdas.tsv, contra los sellados, en
+  tres ramas (1e-9 inclusivo, 0.005 estricto).
+estimando: >-
+  DESCRIPTIVO: cuanto yerra cada corredor sobre el universo donde los cuatro compiten, con su n y su
+  lista. No es una estimacion de regla, no adjudica, no corona y no refuta ni corrobora nada (A-bis.4,
+  B-bis §4.2). La ordenacion sale rotulada ORDEN-DESCRIPTIVA y el veredicto es NO-ADJUDICA-POR-DISENO.
+dependencias_materiales: []
+parametros:
+  fuente_acto: ACTO GEN2-F5-CIERRE-Y-PANEL-1 · CALC-TRIADA-B-PISO-0001
+  input_marco: IN-MARCO
+  input_celdas: IN-CELDAS
+  input_b_mae: IN-B-MAE
+  input_triada_0002: IN-TRIADA-0002
+  n_celdas_marco: 14
+  brazo_b: PERSISTENCIA
+  patron_b: RESULT-BM-MAE-{celda}-{brazo}-ERR-PP
+  corredores:
+  - B
+  - L_CORPUS
+  - L_SOLO
+  - M
+  columnas_err:
+    L_SOLO: error_abs_l_solo_pp
+    L_CORPUS: error_abs_l_corpus_pp
+    M: error_abs_m_pp
+  rid_veredicto_0002: RESULT-F5C-VEREDICTO-GLOBAL
+  control:
+    umbral_exacto: 1.0e-09
+    umbral_centesimo: 0.005
+    sellado:
+      L_SOLO: RESULT-F5C-MAE-L-SOLO-PP
+      L_CORPUS: RESULT-F5C-MAE-L-CORPUS-PP
+      M: RESULT-F5C-MAE-M-PP
+seed:
+  aplica: false
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-09
+  razon: aritmetica determinista sobre RESULT sellados y sobre un TSV sellado; enteros y textos EXACTO.
+resultados:
+- id: RESULT-TBP-N-CELDAS-MARCO
+  tipo: entero
+  unidad: 'celdas del marco-M sorteado v1.3 (guardia de identidad: 14)'
+- id: RESULT-TBP-U3-N
+  tipo: entero
+  unidad: celdas de U3 re-derivadas de celdas.tsv (en_u3 = SI)
+- id: RESULT-TBP-U3-IDS
+  tipo: texto
+  unidad: lista de U3, separada por comas, en orden de id
+- id: RESULT-TBP-U3-CONTROL-L_CORPUS-DERIVADO-PP
+  tipo: flotante
+  unidad: '[control] MAE_pp de L_CORPUS sobre U3 RECALCULADO desde celdas.tsv, en pp'
+- id: RESULT-TBP-U3-CONTROL-L_CORPUS-SELLADO-PP
+  tipo: flotante
+  unidad: '[control] MAE_pp de L_CORPUS sobre U3 SELLADO por CALC-TRIADA-0002, en pp'
+- id: RESULT-TBP-U3-CONTROL-L_CORPUS-DELTA-PP
+  tipo: flotante
+  unidad: '[control] derivado menos sellado para L_CORPUS, CON SIGNO, en pp'
+- id: RESULT-TBP-U3-CONTROL-L_CORPUS-RAMA
+  tipo: texto
+  unidad: '[control] L_CORPUS: REPRODUCE-EXACTO (abs<=1e-9) / REPRODUCE-AL-CENTESIMO (abs<0.005) / NO-REPRODUCE'
+- id: RESULT-TBP-U3-CONTROL-L_SOLO-DERIVADO-PP
+  tipo: flotante
+  unidad: '[control] MAE_pp de L_SOLO sobre U3 RECALCULADO desde celdas.tsv, en pp'
+- id: RESULT-TBP-U3-CONTROL-L_SOLO-SELLADO-PP
+  tipo: flotante
+  unidad: '[control] MAE_pp de L_SOLO sobre U3 SELLADO por CALC-TRIADA-0002, en pp'
+- id: RESULT-TBP-U3-CONTROL-L_SOLO-DELTA-PP
+  tipo: flotante
+  unidad: '[control] derivado menos sellado para L_SOLO, CON SIGNO, en pp'
+- id: RESULT-TBP-U3-CONTROL-L_SOLO-RAMA
+  tipo: texto
+  unidad: '[control] L_SOLO: REPRODUCE-EXACTO (abs<=1e-9) / REPRODUCE-AL-CENTESIMO (abs<0.005) / NO-REPRODUCE'
+- id: RESULT-TBP-U3-CONTROL-M-DERIVADO-PP
+  tipo: flotante
+  unidad: '[control] MAE_pp de M sobre U3 RECALCULADO desde celdas.tsv, en pp'
+- id: RESULT-TBP-U3-CONTROL-M-SELLADO-PP
+  tipo: flotante
+  unidad: '[control] MAE_pp de M sobre U3 SELLADO por CALC-TRIADA-0002, en pp'
+- id: RESULT-TBP-U3-CONTROL-M-DELTA-PP
+  tipo: flotante
+  unidad: '[control] derivado menos sellado para M, CON SIGNO, en pp'
+- id: RESULT-TBP-U3-CONTROL-M-RAMA
+  tipo: texto
+  unidad: '[control] M: REPRODUCE-EXACTO (abs<=1e-9) / REPRODUCE-AL-CENTESIMO (abs<0.005) / NO-REPRODUCE'
+- id: RESULT-TBP-U3-CONTROL-N-RAMAS
+  tipo: entero
+  unidad: 'corredores controlados contra la 0002 (3: B no corrio alli)'
+- id: RESULT-TBP-U3-CONTROL-VEREDICTO
+  tipo: texto
+  unidad: DERIVA si ninguna rama es NO-REPRODUCE; NO-DERIVA en otro caso (sellada §4.1)
+- id: RESULT-TBP-COBERTURA-B-PERSISTENCIA
+  tipo: entero
+  unidad: celdas del marco con B bajo el brazo PERSISTENCIA
+- id: RESULT-TBP-COBERTURA-B-IDS
+  tipo: texto
+  unidad: lista de esas celdas, en orden de id
+- id: RESULT-TBP-UCOMUN-N
+  tipo: entero
+  unidad: 'celdas de U_COMUN = U3 interseccion {celdas con B}: el n de TODO MAE de esta spec'
+- id: RESULT-TBP-UCOMUN-IDS
+  tipo: texto
+  unidad: lista de U_COMUN, en orden de id (A-bis.4)
+- id: RESULT-TBP-CIV-M-01-EN-UCOMUN
+  tipo: texto
+  unidad: '[CIV-M-01] SI / NO'
+- id: RESULT-TBP-CIV-M-01-RAZON-EXCLUSION
+  tipo: texto
+  unidad: '[CIV-M-01] EN-UCOMUN / FUERA-DE-U3 / SIN-B-PERSISTENCIA / FUERA-DE-U3-Y-SIN-B'
+- id: RESULT-TBP-CIV-M-01-ERR-ABS-B-PP
+  tipo: flotante
+  unidad: '[CIV-M-01] error absoluto de B frente a R, en pp; null si B no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-01-ERR-ABS-L_CORPUS-PP
+  tipo: flotante
+  unidad: '[CIV-M-01] error absoluto de L_CORPUS frente a R, en pp; null si L_CORPUS no tiene punto en
+    la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-01-ERR-ABS-L_SOLO-PP
+  tipo: flotante
+  unidad: '[CIV-M-01] error absoluto de L_SOLO frente a R, en pp; null si L_SOLO no tiene punto en la
+    celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-01-ERR-ABS-M-PP
+  tipo: flotante
+  unidad: '[CIV-M-01] error absoluto de M frente a R, en pp; null si M no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-02-EN-UCOMUN
+  tipo: texto
+  unidad: '[CIV-M-02] SI / NO'
+- id: RESULT-TBP-CIV-M-02-RAZON-EXCLUSION
+  tipo: texto
+  unidad: '[CIV-M-02] EN-UCOMUN / FUERA-DE-U3 / SIN-B-PERSISTENCIA / FUERA-DE-U3-Y-SIN-B'
+- id: RESULT-TBP-CIV-M-02-ERR-ABS-B-PP
+  tipo: flotante
+  unidad: '[CIV-M-02] error absoluto de B frente a R, en pp; null si B no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-02-ERR-ABS-L_CORPUS-PP
+  tipo: flotante
+  unidad: '[CIV-M-02] error absoluto de L_CORPUS frente a R, en pp; null si L_CORPUS no tiene punto en
+    la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-02-ERR-ABS-L_SOLO-PP
+  tipo: flotante
+  unidad: '[CIV-M-02] error absoluto de L_SOLO frente a R, en pp; null si L_SOLO no tiene punto en la
+    celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-02-ERR-ABS-M-PP
+  tipo: flotante
+  unidad: '[CIV-M-02] error absoluto de M frente a R, en pp; null si M no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-04-EN-UCOMUN
+  tipo: texto
+  unidad: '[CIV-M-04] SI / NO'
+- id: RESULT-TBP-CIV-M-04-RAZON-EXCLUSION
+  tipo: texto
+  unidad: '[CIV-M-04] EN-UCOMUN / FUERA-DE-U3 / SIN-B-PERSISTENCIA / FUERA-DE-U3-Y-SIN-B'
+- id: RESULT-TBP-CIV-M-04-ERR-ABS-B-PP
+  tipo: flotante
+  unidad: '[CIV-M-04] error absoluto de B frente a R, en pp; null si B no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-04-ERR-ABS-L_CORPUS-PP
+  tipo: flotante
+  unidad: '[CIV-M-04] error absoluto de L_CORPUS frente a R, en pp; null si L_CORPUS no tiene punto en
+    la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-04-ERR-ABS-L_SOLO-PP
+  tipo: flotante
+  unidad: '[CIV-M-04] error absoluto de L_SOLO frente a R, en pp; null si L_SOLO no tiene punto en la
+    celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-04-ERR-ABS-M-PP
+  tipo: flotante
+  unidad: '[CIV-M-04] error absoluto de M frente a R, en pp; null si M no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-10-EN-UCOMUN
+  tipo: texto
+  unidad: '[CIV-M-10] SI / NO'
+- id: RESULT-TBP-CIV-M-10-RAZON-EXCLUSION
+  tipo: texto
+  unidad: '[CIV-M-10] EN-UCOMUN / FUERA-DE-U3 / SIN-B-PERSISTENCIA / FUERA-DE-U3-Y-SIN-B'
+- id: RESULT-TBP-CIV-M-10-ERR-ABS-B-PP
+  tipo: flotante
+  unidad: '[CIV-M-10] error absoluto de B frente a R, en pp; null si B no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-10-ERR-ABS-L_CORPUS-PP
+  tipo: flotante
+  unidad: '[CIV-M-10] error absoluto de L_CORPUS frente a R, en pp; null si L_CORPUS no tiene punto en
+    la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-10-ERR-ABS-L_SOLO-PP
+  tipo: flotante
+  unidad: '[CIV-M-10] error absoluto de L_SOLO frente a R, en pp; null si L_SOLO no tiene punto en la
+    celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-10-ERR-ABS-M-PP
+  tipo: flotante
+  unidad: '[CIV-M-10] error absoluto de M frente a R, en pp; null si M no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-12-EN-UCOMUN
+  tipo: texto
+  unidad: '[CIV-M-12] SI / NO'
+- id: RESULT-TBP-CIV-M-12-RAZON-EXCLUSION
+  tipo: texto
+  unidad: '[CIV-M-12] EN-UCOMUN / FUERA-DE-U3 / SIN-B-PERSISTENCIA / FUERA-DE-U3-Y-SIN-B'
+- id: RESULT-TBP-CIV-M-12-ERR-ABS-B-PP
+  tipo: flotante
+  unidad: '[CIV-M-12] error absoluto de B frente a R, en pp; null si B no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-12-ERR-ABS-L_CORPUS-PP
+  tipo: flotante
+  unidad: '[CIV-M-12] error absoluto de L_CORPUS frente a R, en pp; null si L_CORPUS no tiene punto en
+    la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-12-ERR-ABS-L_SOLO-PP
+  tipo: flotante
+  unidad: '[CIV-M-12] error absoluto de L_SOLO frente a R, en pp; null si L_SOLO no tiene punto en la
+    celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-12-ERR-ABS-M-PP
+  tipo: flotante
+  unidad: '[CIV-M-12] error absoluto de M frente a R, en pp; null si M no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-13-EN-UCOMUN
+  tipo: texto
+  unidad: '[CIV-M-13] SI / NO'
+- id: RESULT-TBP-CIV-M-13-RAZON-EXCLUSION
+  tipo: texto
+  unidad: '[CIV-M-13] EN-UCOMUN / FUERA-DE-U3 / SIN-B-PERSISTENCIA / FUERA-DE-U3-Y-SIN-B'
+- id: RESULT-TBP-CIV-M-13-ERR-ABS-B-PP
+  tipo: flotante
+  unidad: '[CIV-M-13] error absoluto de B frente a R, en pp; null si B no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-13-ERR-ABS-L_CORPUS-PP
+  tipo: flotante
+  unidad: '[CIV-M-13] error absoluto de L_CORPUS frente a R, en pp; null si L_CORPUS no tiene punto en
+    la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-13-ERR-ABS-L_SOLO-PP
+  tipo: flotante
+  unidad: '[CIV-M-13] error absoluto de L_SOLO frente a R, en pp; null si L_SOLO no tiene punto en la
+    celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-CIV-M-13-ERR-ABS-M-PP
+  tipo: flotante
+  unidad: '[CIV-M-13] error absoluto de M frente a R, en pp; null si M no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-DIN-M-01-EN-UCOMUN
+  tipo: texto
+  unidad: '[DIN-M-01] SI / NO'
+- id: RESULT-TBP-DIN-M-01-RAZON-EXCLUSION
+  tipo: texto
+  unidad: '[DIN-M-01] EN-UCOMUN / FUERA-DE-U3 / SIN-B-PERSISTENCIA / FUERA-DE-U3-Y-SIN-B'
+- id: RESULT-TBP-DIN-M-01-ERR-ABS-B-PP
+  tipo: flotante
+  unidad: '[DIN-M-01] error absoluto de B frente a R, en pp; null si B no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-DIN-M-01-ERR-ABS-L_CORPUS-PP
+  tipo: flotante
+  unidad: '[DIN-M-01] error absoluto de L_CORPUS frente a R, en pp; null si L_CORPUS no tiene punto en
+    la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-DIN-M-01-ERR-ABS-L_SOLO-PP
+  tipo: flotante
+  unidad: '[DIN-M-01] error absoluto de L_SOLO frente a R, en pp; null si L_SOLO no tiene punto en la
+    celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-DIN-M-01-ERR-ABS-M-PP
+  tipo: flotante
+  unidad: '[DIN-M-01] error absoluto de M frente a R, en pp; null si M no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-FAM-M-01-EN-UCOMUN
+  tipo: texto
+  unidad: '[FAM-M-01] SI / NO'
+- id: RESULT-TBP-FAM-M-01-RAZON-EXCLUSION
+  tipo: texto
+  unidad: '[FAM-M-01] EN-UCOMUN / FUERA-DE-U3 / SIN-B-PERSISTENCIA / FUERA-DE-U3-Y-SIN-B'
+- id: RESULT-TBP-FAM-M-01-ERR-ABS-B-PP
+  tipo: flotante
+  unidad: '[FAM-M-01] error absoluto de B frente a R, en pp; null si B no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-FAM-M-01-ERR-ABS-L_CORPUS-PP
+  tipo: flotante
+  unidad: '[FAM-M-01] error absoluto de L_CORPUS frente a R, en pp; null si L_CORPUS no tiene punto en
+    la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-FAM-M-01-ERR-ABS-L_SOLO-PP
+  tipo: flotante
+  unidad: '[FAM-M-01] error absoluto de L_SOLO frente a R, en pp; null si L_SOLO no tiene punto en la
+    celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-FAM-M-01-ERR-ABS-M-PP
+  tipo: flotante
+  unidad: '[FAM-M-01] error absoluto de M frente a R, en pp; null si M no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-FAM-M-05-EN-UCOMUN
+  tipo: texto
+  unidad: '[FAM-M-05] SI / NO'
+- id: RESULT-TBP-FAM-M-05-RAZON-EXCLUSION
+  tipo: texto
+  unidad: '[FAM-M-05] EN-UCOMUN / FUERA-DE-U3 / SIN-B-PERSISTENCIA / FUERA-DE-U3-Y-SIN-B'
+- id: RESULT-TBP-FAM-M-05-ERR-ABS-B-PP
+  tipo: flotante
+  unidad: '[FAM-M-05] error absoluto de B frente a R, en pp; null si B no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-FAM-M-05-ERR-ABS-L_CORPUS-PP
+  tipo: flotante
+  unidad: '[FAM-M-05] error absoluto de L_CORPUS frente a R, en pp; null si L_CORPUS no tiene punto en
+    la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-FAM-M-05-ERR-ABS-L_SOLO-PP
+  tipo: flotante
+  unidad: '[FAM-M-05] error absoluto de L_SOLO frente a R, en pp; null si L_SOLO no tiene punto en la
+    celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-FAM-M-05-ERR-ABS-M-PP
+  tipo: flotante
+  unidad: '[FAM-M-05] error absoluto de M frente a R, en pp; null si M no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-FAM-M-06-EN-UCOMUN
+  tipo: texto
+  unidad: '[FAM-M-06] SI / NO'
+- id: RESULT-TBP-FAM-M-06-RAZON-EXCLUSION
+  tipo: texto
+  unidad: '[FAM-M-06] EN-UCOMUN / FUERA-DE-U3 / SIN-B-PERSISTENCIA / FUERA-DE-U3-Y-SIN-B'
+- id: RESULT-TBP-FAM-M-06-ERR-ABS-B-PP
+  tipo: flotante
+  unidad: '[FAM-M-06] error absoluto de B frente a R, en pp; null si B no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-FAM-M-06-ERR-ABS-L_CORPUS-PP
+  tipo: flotante
+  unidad: '[FAM-M-06] error absoluto de L_CORPUS frente a R, en pp; null si L_CORPUS no tiene punto en
+    la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-FAM-M-06-ERR-ABS-L_SOLO-PP
+  tipo: flotante
+  unidad: '[FAM-M-06] error absoluto de L_SOLO frente a R, en pp; null si L_SOLO no tiene punto en la
+    celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-FAM-M-06-ERR-ABS-M-PP
+  tipo: flotante
+  unidad: '[FAM-M-06] error absoluto de M frente a R, en pp; null si M no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-FAM-M-07-EN-UCOMUN
+  tipo: texto
+  unidad: '[FAM-M-07] SI / NO'
+- id: RESULT-TBP-FAM-M-07-RAZON-EXCLUSION
+  tipo: texto
+  unidad: '[FAM-M-07] EN-UCOMUN / FUERA-DE-U3 / SIN-B-PERSISTENCIA / FUERA-DE-U3-Y-SIN-B'
+- id: RESULT-TBP-FAM-M-07-ERR-ABS-B-PP
+  tipo: flotante
+  unidad: '[FAM-M-07] error absoluto de B frente a R, en pp; null si B no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-FAM-M-07-ERR-ABS-L_CORPUS-PP
+  tipo: flotante
+  unidad: '[FAM-M-07] error absoluto de L_CORPUS frente a R, en pp; null si L_CORPUS no tiene punto en
+    la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-FAM-M-07-ERR-ABS-L_SOLO-PP
+  tipo: flotante
+  unidad: '[FAM-M-07] error absoluto de L_SOLO frente a R, en pp; null si L_SOLO no tiene punto en la
+    celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-FAM-M-07-ERR-ABS-M-PP
+  tipo: flotante
+  unidad: '[FAM-M-07] error absoluto de M frente a R, en pp; null si M no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-TRA-M-02-EN-UCOMUN
+  tipo: texto
+  unidad: '[TRA-M-02] SI / NO'
+- id: RESULT-TBP-TRA-M-02-RAZON-EXCLUSION
+  tipo: texto
+  unidad: '[TRA-M-02] EN-UCOMUN / FUERA-DE-U3 / SIN-B-PERSISTENCIA / FUERA-DE-U3-Y-SIN-B'
+- id: RESULT-TBP-TRA-M-02-ERR-ABS-B-PP
+  tipo: flotante
+  unidad: '[TRA-M-02] error absoluto de B frente a R, en pp; null si B no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-TRA-M-02-ERR-ABS-L_CORPUS-PP
+  tipo: flotante
+  unidad: '[TRA-M-02] error absoluto de L_CORPUS frente a R, en pp; null si L_CORPUS no tiene punto en
+    la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-TRA-M-02-ERR-ABS-L_SOLO-PP
+  tipo: flotante
+  unidad: '[TRA-M-02] error absoluto de L_SOLO frente a R, en pp; null si L_SOLO no tiene punto en la
+    celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-TRA-M-02-ERR-ABS-M-PP
+  tipo: flotante
+  unidad: '[TRA-M-02] error absoluto de M frente a R, en pp; null si M no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-TRA-M-03-EN-UCOMUN
+  tipo: texto
+  unidad: '[TRA-M-03] SI / NO'
+- id: RESULT-TBP-TRA-M-03-RAZON-EXCLUSION
+  tipo: texto
+  unidad: '[TRA-M-03] EN-UCOMUN / FUERA-DE-U3 / SIN-B-PERSISTENCIA / FUERA-DE-U3-Y-SIN-B'
+- id: RESULT-TBP-TRA-M-03-ERR-ABS-B-PP
+  tipo: flotante
+  unidad: '[TRA-M-03] error absoluto de B frente a R, en pp; null si B no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-TRA-M-03-ERR-ABS-L_CORPUS-PP
+  tipo: flotante
+  unidad: '[TRA-M-03] error absoluto de L_CORPUS frente a R, en pp; null si L_CORPUS no tiene punto en
+    la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-TRA-M-03-ERR-ABS-L_SOLO-PP
+  tipo: flotante
+  unidad: '[TRA-M-03] error absoluto de L_SOLO frente a R, en pp; null si L_SOLO no tiene punto en la
+    celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-TRA-M-03-ERR-ABS-M-PP
+  tipo: flotante
+  unidad: '[TRA-M-03] error absoluto de M frente a R, en pp; null si M no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-TRA-M-07-EN-UCOMUN
+  tipo: texto
+  unidad: '[TRA-M-07] SI / NO'
+- id: RESULT-TBP-TRA-M-07-RAZON-EXCLUSION
+  tipo: texto
+  unidad: '[TRA-M-07] EN-UCOMUN / FUERA-DE-U3 / SIN-B-PERSISTENCIA / FUERA-DE-U3-Y-SIN-B'
+- id: RESULT-TBP-TRA-M-07-ERR-ABS-B-PP
+  tipo: flotante
+  unidad: '[TRA-M-07] error absoluto de B frente a R, en pp; null si B no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-TRA-M-07-ERR-ABS-L_CORPUS-PP
+  tipo: flotante
+  unidad: '[TRA-M-07] error absoluto de L_CORPUS frente a R, en pp; null si L_CORPUS no tiene punto en
+    la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-TRA-M-07-ERR-ABS-L_SOLO-PP
+  tipo: flotante
+  unidad: '[TRA-M-07] error absoluto de L_SOLO frente a R, en pp; null si L_SOLO no tiene punto en la
+    celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-TRA-M-07-ERR-ABS-M-PP
+  tipo: flotante
+  unidad: '[TRA-M-07] error absoluto de M frente a R, en pp; null si M no tiene punto en la celda'
+  permite_no_estimable: true
+- id: RESULT-TBP-UCOMUN-MAE-B-PP
+  tipo: flotante
+  unidad: MAE_pp de B sobre U_COMUN (media simple de abs(err_pp)); null si la tabla no se emite
+  permite_no_estimable: true
+- id: RESULT-TBP-UCOMUN-MAE-L_CORPUS-PP
+  tipo: flotante
+  unidad: MAE_pp de L_CORPUS sobre U_COMUN (media simple de abs(err_pp)); null si la tabla no se emite
+  permite_no_estimable: true
+- id: RESULT-TBP-UCOMUN-MAE-L_SOLO-PP
+  tipo: flotante
+  unidad: MAE_pp de L_SOLO sobre U_COMUN (media simple de abs(err_pp)); null si la tabla no se emite
+  permite_no_estimable: true
+- id: RESULT-TBP-UCOMUN-MAE-M-PP
+  tipo: flotante
+  unidad: MAE_pp de M sobre U_COMUN (media simple de abs(err_pp)); null si la tabla no se emite
+  permite_no_estimable: true
+- id: RESULT-TBP-UCOMUN-ORDEN-DESCRIPTIVA
+  tipo: texto
+  unidad: corredores por MAE ascendente, DESCRIPTIVA y sin consecuencia; NO-EMITIDA si la tabla no se
+    emite
+- id: RESULT-TBP-UCOMUN-N-CELDAS-B-MENOR-QUE-M
+  tipo: entero
+  unidad: celdas de U_COMUN donde abs(err) de B < abs(err) de M; null si la tabla no se emite
+  permite_no_estimable: true
+- id: RESULT-TBP-VEREDICTO
+  tipo: texto
+  unidad: NO-ADJUDICA-POR-DISENO / NO-DERIVA-CONTROL-FALLA / NO-EMITE-UCOMUN-VACIO (sellada §4.1, §5.1)
+- id: RESULT-TBP-TRIADA-VEREDICTO-VIGENTE
+  tipo: texto
+  unidad: 'RESULT-F5C-VEREDICTO-GLOBAL de CALC-TRIADA-0002, citado INTACTO: esta corrida no lo toca'
+- id: RESULT-TBP-PAREADAS-NUEVAS
+  tipo: entero
+  unidad: 'pareadas corridas por este acto: 0 por construccion'
+- id: RESULT-TBP-IC-NUEVOS
+  tipo: entero
+  unidad: 'IC calculados por este acto: 0 por construccion'
+- id: RESULT-TBP-ADOPCIONES
+  tipo: entero
+  unidad: 'adopciones al motor por este acto: 0 por construccion (T9)'
+- id: RESULT-TBP-LLAMADAS-A-MODELO
+  tipo: entero
+  unidad: 'llamadas a modelo por este acto: 0 por construccion'

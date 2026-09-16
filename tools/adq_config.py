@@ -39,6 +39,8 @@ CALENDARIO_RESPALDO = {
     "zona_iana": "America/Mexico_City",
     "zona_windows": "Central Standard Time (Mexico)",
     "ventana_observacion_minutos": 45,
+    "comprobacion_intervalo_minutos": 60,
+    "recuperar_al_iniciar_sesion": True,
 }
 _DIA_A_WEEKDAY = {
     "lunes": 0, "martes": 1, "miercoles": 2, "jueves": 3,
@@ -131,6 +133,12 @@ def calendario(cfg=None, config_path=None):
         raise ConfiguracionError(f"calendario.zona_iana={zona_iana!r}: no disponible ({e})") from None
     ventana = _entero_positivo(crudo["ventana_observacion_minutos"],
                                "calendario.ventana_observacion_minutos", 0, 1440)
+    intervalo = _entero_positivo(crudo["comprobacion_intervalo_minutos"],
+                                 "calendario.comprobacion_intervalo_minutos", 15, 1440)
+    recuperar = crudo["recuperar_al_iniciar_sesion"]
+    if not isinstance(recuperar, bool):
+        raise ConfiguracionError(
+            "calendario.recuperar_al_iniciar_sesion debe ser booleano")
     return {
         "hora": hora,
         "dias_semana": list(dias),
@@ -139,6 +147,8 @@ def calendario(cfg=None, config_path=None):
         "zona_iana": zona_iana,
         "zona_windows": zona_windows,
         "ventana_observacion_minutos": ventana,
+        "comprobacion_intervalo_minutos": intervalo,
+        "recuperar_al_iniciar_sesion": recuperar,
     }
 
 
