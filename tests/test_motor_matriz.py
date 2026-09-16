@@ -49,6 +49,36 @@ def main():
     def test_sin_magnitud_no_se_computa_como_cero():
         lanza(SinMagnitud, M.g, B, object(), None)
 
+    def test_g_acotada_a_generadores_computa_g1_pese_a_g5():
+        # `ADR-531` (`ACTO GEN2-M1-ALCANCE-1`, firma de mesa del 17/sep/2026
+        # sobre `M1`): el estimador es de la celda; la matriz COMPONE. `G1` no
+        # depende de `G5 × familismo_obligacion` en ninguna lectura del modelo,
+        # así que pedir `G1` no puede quedar bloqueado por la celda sin
+        # magnitud de `G5`. Antes de este ADR sí lo quedaba: el docstring
+        # prometía "celda participante" y el código recorría `B` entera.
+        class ThetaUno:
+            """θ(x) = 1 para todo nombre — el cómputo se verifica, no se mide."""
+
+            def valor(self, nombre, celda):
+                return 1.0
+
+        salida = M.g(B, ThetaUno(), None, generadores=("G1",))
+        igual(sorted(salida), ["G1"], "generadores en la salida acotada:")
+        esperado = sum(
+            c.valor for c in B.puntuales if c.generador == "G1"
+        )
+        igual(salida["G1"], esperado, "g(G1) con θ≡1:")
+
+    def test_g_acotada_a_g5_sigue_lanzando():
+        # La acotación no es un interruptor para apagar el contrato: si el
+        # generador PEDIDO es el que tiene la celda sin magnitud, lanza igual.
+        lanza(SinMagnitud, M.g, B, object(), None, ("G5",))
+
+    def test_g_con_generador_inexistente_es_error_no_computo_vacio():
+        # Devolver `{}` ante un nombre mal escrito sería la misma mentira
+        # silenciosa que el cero de `SinMagnitud`, un piso más arriba.
+        lanza(KeyError, M.g, B, object(), None, ("G99",))
+
     def test_denominador_22_con_su_assert():
         igual(M.verificar_denominador([]), 22, "grados de libertad:")
         lanza(AssertionError, M.verificar_denominador, ["forma_h_r_alpha"])
