@@ -377,6 +377,66 @@ transicion() {
   escribe_heartbeat "EN-CURSO" "-" 2>>"$LOGFILE" || true
 }
 
+# ── H6 · colisión de `censo/<fecha>` entre worktrees hermanos ────
+# ACTO GEN2-DESPLIEGUE-CAJA-Y-CIERRE-OPERATIVO (15/sep/2026). Defecto
+# REPRODUCIDO en producción, no hipotético: las cinco corridas horarias
+# del 15/sep entre las 18:00 y las 22:00 murieron con `exit=128` sin
+# publicar absolutamente nada, todas con el mismo error de git:
+#
+#   fatal: 'censo/2026-09-15' is already used by worktree at
+#          '/home/pc0/mm-adq-censo-correction'
+#
+# `censo/<fecha>` es un nombre COMPARTIDO: cualquier otro worktree del
+# mismo repositorio (un acto de corrección, una sesión de mesa) puede
+# tenerlo tomado. Cuando eso pasa, `git checkout <rama>` aborta con 128
+# y, bajo el `set -euo pipefail` de arriba, se lleva por delante al
+# runner ENTERO -- incluida `publica_proyeccion_demanda()`, cuya propia
+# documentación promete justo lo contrario ("su fallo NUNCA bloquea la
+# selección ni la investigación"). Esa promesa era falsa: la función
+# moría en su primera línea, antes de regenerar la proyección.
+#
+# Corrección: poseer el NOMBRE local de la rama no es requisito para
+# publicar en ella. Si otro worktree la tiene tomada, esta corrida
+# trabaja con HEAD desprendido sobre la misma punta y empuja por
+# refspec explícito (`HEAD:refs/heads/<rama>`). El árbol ajeno no se
+# toca NUNCA: ni checkout, ni detach, ni borrado de rama -- exactamente
+# la regla de no tocar trabajo ajeno.
+
+# worktree_ajeno_con_rama <rama> -- imprime la ruta del OTRO worktree
+# que tiene tomada <rama>, o nada. El propio worktree no cuenta: tener
+# uno mismo la rama activa no es colisión, el checkout es un no-op.
+worktree_ajeno_con_rama() {
+  local rama="$1" propio
+  propio="$(git rev-parse --show-toplevel 2>/dev/null || printf '')"
+  git worktree list --porcelain 2>/dev/null | awk \
+    -v ref="branch refs/heads/${rama}" -v propio="$propio" '
+      /^worktree /{ wt = substr($0, 10); next }
+      $0 == ref { if (wt != propio) { print wt; exit } }'
+}
+
+# empuja_censo <rama> -- empuja el commit recién hecho a origin/<rama>.
+# Desprendido no hay rama local que rastrear, así que `-u` no aplica y
+# el destino se nombra por refspec explícito.
+empuja_censo() {
+  local rama="$1"
+  if [ "${CENSO_DESPRENDIDO:-0}" = "1" ]; then
+    git push origin "HEAD:refs/heads/${rama}" >>"$LOGFILE" 2>&1
+  else
+    git push -u origin "$rama" >>"$LOGFILE" 2>&1
+  fi
+}
+
+# crea_pr_censo <rama> -- `gh pr create --fill` deduce la rama del HEAD
+# actual; desprendido no hay ninguna, así que se nombra explícitamente.
+crea_pr_censo() {
+  local rama="$1"
+  if [ "${CENSO_DESPRENDIDO:-0}" = "1" ]; then
+    gh pr create --fill --head "$rama" >>"$LOGFILE" 2>&1
+  else
+    gh pr create --fill >>"$LOGFILE" 2>&1
+  fi
+}
+
 # checkout_o_crea_censo -- cambia a censo/${FECHA}, creándola SOLO si no
 # existe todavía (local o remota). Nunca `checkout -B`: reiniciar el
 # puntero de una rama del día que YA tiene commits (locales o empujados)
@@ -386,6 +446,36 @@ transicion() {
 # continuarla.
 checkout_o_crea_censo() {
   local rama_censo="censo/${FECHA}"
+  local ajeno base
+  CENSO_DESPRENDIDO=0
+  ajeno="$(worktree_ajeno_con_rama "$rama_censo")"
+  if [ -n "$ajeno" ]; then
+    # H6: la rama del día está tomada por otro worktree. No se toca ese
+    # árbol; se replica su punta en HEAD desprendido y se publica por
+    # refspec. Aquí la base se toma del ORIGEN primero (al revés que en
+    # el camino normal de abajo, que prefiere la ref local): desprendido
+    # la ref local nunca avanza, así que sólo el origen refleja lo que
+    # esta rama ya lleva publicado hoy.
+    base=""
+    if git ls-remote --exit-code --heads origin "$rama_censo" >/dev/null 2>&1; then
+      # Desprendido se publica por refspec y la ref LOCAL no avanza, así
+      # que una segunda corrida del mismo día que partiera de ella
+      # empujaría un commit sin la punta ya publicada (non-fast-forward).
+      # El origen manda: es el destino del push.
+      git fetch origin "$rama_censo" >>"$LOGFILE" 2>&1 || true
+      base="FETCH_HEAD"
+    elif git show-ref --verify --quiet "refs/heads/${rama_censo}"; then
+      base="refs/heads/${rama_censo}"
+    fi
+    if [ -n "$base" ]; then
+      git checkout --detach "$base" >>"$LOGFILE" 2>&1
+    else
+      git checkout --detach HEAD >>"$LOGFILE" 2>&1
+    fi
+    CENSO_DESPRENDIDO=1
+    log "CENSO-RAMA-TOMADA: ${rama_censo} la tiene tomada el worktree ${ajeno}; esta corrida publica con HEAD desprendido y refspec explícito. Ese árbol ajeno NO se modifica."
+    return 0
+  fi
   if git show-ref --verify --quiet "refs/heads/${rama_censo}"; then
     git checkout "$rama_censo" >>"$LOGFILE" 2>&1
   elif git ls-remote --exit-code --heads origin "$rama_censo" >/dev/null 2>&1; then
@@ -436,7 +526,7 @@ commit_censo_linea() {
 
 ${resumen}" >>"$LOGFILE" 2>&1
 
-  if git push -u origin "$rama_censo" >>"$LOGFILE" 2>&1; then
+  if empuja_censo "$rama_censo"; then
     publicado=1
   else
     # Un push rechazado puede ser divergencia (otra corrida del mismo día
@@ -446,7 +536,7 @@ ${resumen}" >>"$LOGFILE" 2>&1
     log "PUBLICACION-FALLIDA (intento 1): ${mensaje} no se pudo empujar a ${rama_censo}; se intenta reconciliar sin reescribir historia."
     if git pull --no-rebase --no-edit origin "$rama_censo" >>"$LOGFILE" 2>&1; then
       log "reconciliado con origin/${rama_censo} por merge (sin force-push); reintentando push."
-      if git push origin "$rama_censo" >>"$LOGFILE" 2>&1; then
+      if empuja_censo "$rama_censo"; then
         publicado=1
         log "publicado tras reconciliar: ${mensaje} en ${rama_censo}."
       fi
@@ -544,7 +634,7 @@ publica_censo_manual() {
     git commit -m "[CENSO] ${FECHA}
 
 ${RESUMEN}" >>"$LOGFILE" 2>&1
-    if git push -u origin "$RAMA_CENSO" >>"$LOGFILE" 2>&1; then
+    if empuja_censo "$RAMA_CENSO"; then
       log "[CENSO] ${FECHA} commiteado y empujado a ${RAMA_CENSO}"
       # H5 (GEN2-ADQ-CONTRATO-FIX): "push-sin-PR" -- rama empujada, PR NO
       # creado (gh ausente o `gh pr create` falló) -- NO es publicación
@@ -552,7 +642,7 @@ ${RESUMEN}" >>"$LOGFILE" 2>&1
       # mesa, no parte de esta señal, así que esto nunca toca
       # PUBLICACION_FALLIDA.
       if command -v gh >/dev/null 2>&1; then
-        if gh pr create --fill >>"$LOGFILE" 2>&1; then
+        if crea_pr_censo "$RAMA_CENSO"; then
           log "[CENSO] ${FECHA}: PR abierto para ${RAMA_CENSO}"
         else
           log "[CENSO] ${FECHA}: gh pr create falló, ver arriba. Compara manualmente: https://github.com/Josanoforo/Modelado-Mexicano/compare/main...${RAMA_CENSO}"
@@ -630,14 +720,14 @@ publica_proyeccion_demanda() {
     git commit -m "[ADQ-DEMANDA] ${FECHA}
 
 ${RESUMEN_PROYECCION}" >>"$LOGFILE" 2>&1
-    if git push -u origin "$rama_censo" >>"$LOGFILE" 2>&1; then
+    if empuja_censo "$rama_censo"; then
       log "[ADQ-DEMANDA] ${FECHA}: proyección regenerada y publicada en ${rama_censo}. ${RESUMEN_PROYECCION}"
       if command -v gh >/dev/null 2>&1; then
         local pr_abierto
         pr_abierto="$(gh pr list --head "$rama_censo" --state open --json number --jq '.[0].number' 2>/dev/null || true)"
         if [ -n "$pr_abierto" ]; then
           log "[ADQ-DEMANDA] ${FECHA}: PR diario ya abierto para ${rama_censo}: #${pr_abierto} -- se reutiliza."
-        elif gh pr create --fill >>"$LOGFILE" 2>&1; then
+        elif crea_pr_censo "$rama_censo"; then
           log "[ADQ-DEMANDA] ${FECHA}: PR abierto para ${rama_censo}"
         else
           log "[ADQ-DEMANDA] ${FECHA}: gh pr create falló, ver arriba. Compara manualmente: https://github.com/Josanoforo/Modelado-Mexicano/compare/main...${rama_censo}"

@@ -345,6 +345,135 @@ def prueba_e2e_publica_regenera_y_no_repite():
                f"status={estado_proyeccion3!r}")
 
 
+
+def prueba_e2e_rama_censo_tomada_por_otro_worktree():
+    """REGRESIÓN H6 -- ACTO GEN2-DESPLIEGUE-CAJA-Y-CIERRE-OPERATIVO.
+
+    Defecto REPRODUCIDO en producción el 15/sep/2026: las cinco corridas
+    horarias entre 18:00 y 22:00 murieron con `exit=128` en la fase
+    SELECCION-INVESTIGACION, justo dentro de `publica_proyeccion_demanda`,
+    con `fatal: 'censo/2026-09-15' is already used by worktree at
+    '/home/pc0/mm-adq-censo-correction'`. Otro worktree hermano tenía
+    tomada la rama del día; `git checkout` abortó y, bajo
+    `set -euo pipefail`, se llevó al runner entero -- contradiciendo la
+    promesa documentada de la propia función ("su fallo NUNCA bloquea la
+    selección ni la investigación").
+
+    La prueba monta esa colisión exacta y exige que (a) la publicación
+    ocurra igualmente, por HEAD desprendido y refspec explícito, y (b) el
+    worktree ajeno quede intacto.
+    """
+    if not _seam_disponible():
+        FALLOS.append("tools/adquiere_cron.sh no expone ADQ_CRON_SOLO_DEFINE")
+        return
+    with tempfile.TemporaryDirectory(prefix="adq-colision-worktree-") as d:
+        tmp = Path(d)
+        try:
+            work, bare = _crea_fixture(tmp)
+        except Exception as e:
+            FALLOS.append(f"H6: no se pudo construir el fixture: {e}")
+            return
+        fecha = "2026-09-20"
+        rama = f"censo/{fecha}"
+        logfile = tmp / "log-h6.txt"
+
+        # El worktree hermano toma la rama del día, igual que
+        # /home/pc0/mm-adq-censo-correction el 15/sep.
+        hermano = tmp / "hermano"
+        _run(["git", "branch", rama], work)
+        _run(["git", "worktree", "add", str(hermano), rama], work)
+        hermano_sha_antes = _run(["git", "rev-parse", "HEAD"], hermano).stdout.strip()
+
+        # CONTROL POSITIVO: sin él la prueba podría pasar por vacuidad (si
+        # la colisión no existiera de verdad, cualquier código pasaría).
+        # Se exige que el `git checkout` crudo SÍ falle con 128 y con el
+        # mensaje real -- esto es lo que mataba al runner.
+        control = _run(["git", "checkout", rama], work, check=False)
+        afirma(control.returncode == 128,
+               f"H6 control: `git checkout {rama}` con la rama tomada por otro "
+               f"worktree debe salir 128; salió {control.returncode}")
+        afirma("already used by worktree" in (control.stderr + control.stdout),
+               f"H6 control: el error debe ser el de colisión de worktree; "
+               f"stderr={control.stderr!r}")
+
+        antes_abiertas = _cuenta_abiertas(work / "forense" / "no-corrido.tsv")
+        _cierra_una_nc(work / "forense" / "no-corrido.tsv")
+        despues_abiertas = _cuenta_abiertas(work / "forense" / "no-corrido.tsv")
+        afirma(despues_abiertas == antes_abiertas - 1,
+               "H6: la fixture debe cerrar exactamente una NC para forzar "
+               "un cambio pertinente que obligue a publicar")
+
+        rc, salida = _publica(work, fecha, logfile)
+
+        # (a) el runner SOBREVIVE -- éste es el corazón de la regresión.
+        afirma(rc != 128,
+               f"H6: publica_proyeccion_demanda NO debe morir con 128 por una "
+               f"colisión de worktree (defecto del 15/sep); salida:\n{salida}")
+        afirma(rc == 0,
+               f"H6: publica_proyeccion_demanda debe terminar en 0; salió {rc}"
+               f"\n{salida}")
+        log_texto = logfile.read_text(encoding="utf-8") if logfile.exists() else ""
+        afirma("CENSO-RAMA-TOMADA" in log_texto,
+               f"H6: el log debe DECLARAR que la rama estaba tomada, no callarlo; "
+               f"log:\n{log_texto}")
+        afirma("RC_FALLIDA=0" in salida,
+               f"H6: la publicación sí ocurrió, no debe contarse como fallida; "
+               f"salida={salida!r}")
+
+        # (b) la publicación llegó de verdad al remoto, por refspec.
+        r_origen = _run(["git", "log", rama, "--format=%s", "-1"], bare, check=False)
+        afirma(r_origen.returncode == 0
+               and r_origen.stdout.strip() == f"[ADQ-DEMANDA] {fecha}",
+               f"H6: el commit debe haber llegado a origin/{rama} pese a la "
+               f"colisión; encontrado={r_origen.stdout!r}/{r_origen.stderr!r}")
+        # `check=False`: con el defecto vivo la rama ni siquiera existe en el
+        # origen, y eso debe reportarse como FALLO de la prueba, no como una
+        # excepción que aborte el resto de las comprobaciones.
+        r_vista = _run(["git", "show", f"{rama}:data/adq-demanda-activa-v1_0.json"],
+                       bare, check=False)
+        if r_vista.returncode != 0:
+            FALLOS.append(
+                f"H6: no se pudo leer la proyección publicada en origin/{rama} "
+                f"(la publicación no ocurrió); git show -> {r_vista.returncode} "
+                f"{r_vista.stderr.strip()!r}")
+        else:
+            publicado = json.loads(r_vista.stdout)
+            afirma(publicado["total_nc_abiertas"] == despues_abiertas,
+                   f"H6: la proyección publicada debe venir de los insumos de ESTE "
+                   f"corte ({despues_abiertas}), no heredada; "
+                   f"publicado={publicado['total_nc_abiertas']}")
+
+        # (c) el árbol AJENO queda intacto: ni checkout, ni detach, ni borrado.
+        hermano_sha_despues = _run(["git", "rev-parse", "HEAD"], hermano).stdout.strip()
+        afirma(hermano_sha_antes == hermano_sha_despues,
+               f"H6: el worktree ajeno no debe moverse; "
+               f"{hermano_sha_antes} -> {hermano_sha_despues}")
+        hermano_rama = _run(["git", "branch", "--show-current"], hermano).stdout.strip()
+        afirma(hermano_rama == rama,
+               f"H6: el worktree ajeno debe conservar su rama tomada; "
+               f"quedó en {hermano_rama!r}")
+        sucio = _run(["git", "status", "--porcelain"], hermano).stdout.strip()
+        afirma(sucio == "",
+               f"H6: el worktree ajeno no debe quedar sucio; status={sucio!r}")
+
+        # (d) una SEGUNDA corrida del mismo día, con la rama aún tomada y un
+        #     cambio nuevo, debe seguir publicando: la ref local no avanza,
+        #     así que la base tiene que tomarse del origen o el push sería
+        #     non-fast-forward.
+        _cierra_una_nc(work / "forense" / "no-corrido.tsv")
+        rc2, salida2 = _publica(work, fecha, logfile)
+        afirma(rc2 == 0, f"H6 segunda corrida: salió {rc2}\n{salida2}")
+        afirma("RC_FALLIDA=0" in salida2,
+               f"H6 segunda corrida: debe publicar, no declarar fallo de push; "
+               f"salida={salida2!r}")
+        n = _run(["git", "rev-list", "--count", rama], bare, check=False).stdout.strip()
+        afirma(n == "3",
+               f"H6 segunda corrida: origin/{rama} debe llevar fixture+2 "
+               f"publicaciones; commits={n}")
+
+        _run(["git", "worktree", "remove", "--force", str(hermano)], work, check=False)
+
+
 # ───────────────────────────────────────────────────────────────
 
 PRUEBAS = [v for k, v in sorted(globals().items()) if k.startswith("prueba_")]
