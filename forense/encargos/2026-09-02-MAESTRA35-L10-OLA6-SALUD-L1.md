@@ -1,3 +1,6 @@
+## HISTÓRICO — NO EJECUTADO
+Origen: ACTO MAESTRA35-L10 · OLA6-SALUD-L1, redacción de dirección (Fable) 2/sep/2026 contra v2.12, SHA 9cbd8d8; encolado 2026-09-03 por ACTO MAESTRA37-N1. RETIRADO el 2026-09-07 por D12 (ACTO MAESTRA38-TRAMITE-3): la compuerta (OLA 6 ABIERTA para salud, ≥3 EXISTE-SATISFACE de ADR-265) nunca se cumplió — ADR-327 (MAESTRA37-L3-BIS) deja salud en 2 de 5 con la vía de adquisición agotada, y MAESTRA38-N10 confirma 0 de 6 dominios de Ola 6 medibles con lo disponible hoy. Jamás se ejecutó con este ni otro nombre: sin PR, sin homónimo con `## CONSUMIDO` en ningún punto del árbol (`git log --all -S "MAESTRA35-L10"`, grep recursivo sobre forense/encargos/ y forense/firmas-pendientes.tsv — FP-327 lo confirma verbatim: "D12 (MAESTRA35-L10 -> RETIRADO, ADR-327)"). Movido fuera de `forense/encargos/cola/` por ACTO GEN2-VIGENCIA-DEUDA-1 (16/sep/2026), patrón A.14 (mismo criterio que `forense/encargos/2026-09-03-MAESTRA37-L2-MPS-CODEBOOK-Y-P3.md`). Cuerpo verbatim y cabecera ESTADO/ENTORNO/ENCOLADO/BITACORA existentes se conservan sin editar debajo (A.3).
+
 ESTADO: RETIRADO — premisa muerta (ADR-327), D12 (ACTO MAESTRA38-TRAMITE-3, 7/sep/2026)
 ENTORNO: UBUNTU (abre microdato ENSANUT 2024, raíz descargas_mx)
 ENCOLADO: 2026-09-03 · ACTO MAESTRA37-N1
