@@ -53,3 +53,32 @@
 | **`A.8`** de la cabecera — «`grep -rln "localidad × edad\|reserva por interacci"` sobre **2 262 archivos** → 2 coincidencias» | **EL VEREDICTO REPRODUCE; EL DENOMINADOR NO.** Re-derivado en este acto sobre `9dffd64`: **2 coincidencias**, las mismas dos, ambas del 12/ago sobre clustering de `R5.1` y ninguna sobre reserva de evaluación — pero el árbol tiene **5 256** archivos rastreados, no 2 262. La cabecera **no se reescribe**: se enmienda aquí, con fecha. | Ninguno sobre el hallazgo: la reserva por interacción sigue siendo `NO-ENCONTRADO` en el árbol, que es lo que el criterio (g) necesitaba. Lo que queda corregido es el A.13 del encargo — **un negativo declara cuántos archivos examinó el comando que lo produjo, y ese número tiene que ser el real**. | `SIN-ASIGNAR` — corrección de cabecera, no deuda; queda dicha para quien audite el encargo |
 | **`PERÍMETRO`** — «cascada de `/acto` (`gobernanza`, cabeceras, `registro-rotulos`, **`tests/check.py` sólo T25**)» | `FUERA-DE-PERÍMETRO`, **y se para a decirlo en vez de tomar el atajo.** El acto tuvo que tocar además `_T_YAMEDIDO_ARCHIVOS_CONOCIDOS` (**T30**), porque el encargo archivado verbatim cita `R5.1` una vez —dentro de su propio bloque A.8, nombrando lo que un grep **encontró**— y `T30` exige la salida de `tools/ya_medido.py` para toda cita id/R-n. Las dos salidas eran editar un encargo verbatim (prohibido por A.3 y por el paso 5 de `/acto`) o usar la exención que el propio test documenta. Se usó la exención, con la razón escrita y la salida de `python3 tools/ya_medido.py R5.1` pegada en el comentario. **El perímetro estaba mal calculado:** predijo un test de cascada y el acto disparó cuatro (`T02`, `T22`, `T25`, `T30`), que es la cascada real de archivar cuatro adjuntos verbatim y abrir una fila de mesa. | Ningún contador del programa. `tests/check.py` crece 47 líneas —comentarios y cinco rutas de exención—, **cero lógica de test cambiada**: mismos umbrales, mismos patrones, mismas reglas. `T25` y `T30` vuelven a verde por exención documentada, no por relajación. | `NC-0280` · `SIN-ASIGNAR` — es una observación sobre cómo se calcula el perímetro de un acto que archiva texto de terceros; `GEN2-CELDA-D-PILOTO-1` hereda la lección |
 | **`CIERRE` paso 6** — «`python3 tests/check.py --baseline` en VERDE (sin `FAIL` nuevo contra `tests/baseline.json`), o PARO-reporta con la salida cruda» | `DECISIÓN-DE-MESA-PENDIENTE`. **Se PARO-reporta, y el ejecutor NO congela.** La corrida de cierre da **3 `FAIL` · 4370 `WARN`** y **LÍNEA BASE ROJO con 9 entradas nuevas**. **Cero `FAIL` nuevos** —los 3 son los heredados del corpus documental (`T06`×2, `T08`)—; las 9 son de `T03` y son **la misma cosa**: referencias colgantes a `ADVERSARIAL-D-THETA-v1_0.md` (×5) y a `D-THETA-DOCUMENTO-v1_1-post-adversarial.md` (×4), **los dos documentos que mesa iba a cargar y no llegaron** — 4 desde texto archivado **verbatim** que A.3 prohíbe editar, y **5 desde la prosa propia de este acto, que los nombra para reportar que no llegaron**: reportar una ausencia crea la referencia colgante que se reporta, y se midió al chocar con el punto fijo. Recongelar no es del ejecutor: los **siete** recongelados que la nota de `tests/baseline.json` documenta llevan la misma fórmula — «*autorizada explícitamente por mesa tras que el ejecutor PARARA y reportara*» —, y el precedente exacto es `ACTO GEN2-E0 · ENCOLA`. | El CI de este PR sale rojo **por línea base, no por `FAIL` nuevo**. Es la medida exacta de lo que cuesta `NC-0277`: **si los dos adjuntos llegan, las 9 desaparecen solas y no hay nada que congelar**. Los otros 2 `FAIL` que la corrida trajo sí eran de este acto y sí se corrigieron (`T16`: las cifras de `ADR-531`/`ADR-532` quedan `{cita-historica}`). | `NC-0281` · **DECISIÓN DE MESA**, dos opciones: **(a)** mesa carga los dos adjuntos, un acto los archiva y las 9 se cierran solas —vía preferida, cierra también `NC-0277` y `NC-0271`—; o **(b)** mesa autoriza el recongelado de esas 9 en su propio bucket, mismo mecanismo que `GEN2-E0` |
+
+## CONSUMIDO
+
+Ejecutado por [`PR #827`](https://github.com/Josanoforo/Modelado-Mexicano/pull/827)
+(`ACTO GEN2-CELDA-D-CAREO-1`, rama `claude/nice-cerf-jpywyo`, 17/sep/2026 nominal —
+ejecución del entorno 2026-09-16 —, NUBE `cloud_default`, Opus, sin corpus montado).
+`ADR-533`.
+
+**Entregables.** `forense/notas/2026-09-17-GEN2-CELDA-D-CAREO-1.md` (P1, P2, P4 y el
+módulo de auditoría de rigor extremo) · los cuatro adjuntos que llegaron, archivados
+verbatim en `forense/notas/insumos-externos/celda-d-piloto/` y
+`forense/notas/insumos-direccion/` (P0; el quinto PARA, `NC-0277`) ·
+`data/curacion-registro/celdas-d/DIN.ahorro_solo_informal.enif2024.localidad_x_edad.yaml`
+(P3, la primera celda-D del piloto: `celdas-d/` pasa de 3 a 4 archivos) · `FP-378`
+nacida FIRMADA · fila en `data/corrida0/decisiones.tsv` · `NC-0275`…`NC-0281` ·
+tres líneas en `forense/hallazgos.md` · enmiendas fechadas a
+`data/INFRAESTRUCTURA-v1_0.md:159` y a `NC-0239`.
+
+**Cascada.** `canon/gobernanza-v1_15.md` `ADR-533` · `canon/estado-programa-v1_13.md`
+L0 · `canon/registro-rotulos.tsv` (`GEN2 · GEN2-CELDA-D-CAREO-1`) · `tests/check.py`
+por `T25` y —fuera del perímetro declarado, y por eso con fila propia (`NC-0280`)— por
+`T30`.
+
+**Suite:** `3 FAIL · 4370 WARN`, **cero `FAIL` nuevos**; `LÍNEA BASE ROJO` con 9
+entradas nuevas de `T03` que **este acto no congela** — es decisión de mesa
+(`NC-0281`), y las nueve se cierran solas si los dos adjuntos que no llegaron llegan.
+
+**Sucesor:** `GEN2-CELDA-D-PILOTO-1` (CAJA, Opus, tres commits en orden), redactado por
+dirección tras este merge; su esqueleto está al pie de la nota.
