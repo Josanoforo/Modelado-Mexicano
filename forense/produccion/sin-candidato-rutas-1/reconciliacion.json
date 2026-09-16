@@ -1,0 +1,55 @@
+{
+  "n_sin_candidato": 153,
+  "por_tipo_uso": {
+    "asignado_probabilidad": 13,
+    "celda_AGREGADO": 14,
+    "celda_D": 3,
+    "celda_L": 28,
+    "celda_M": 14,
+    "celda_R": 14,
+    "coeficiente_asignado": 8,
+    "coeficiente_ejecutable": 7,
+    "condicional_theta": 12,
+    "conducta_p_asignado": 10,
+    "conducta_p_medido": 2,
+    "corte_pi": 6,
+    "momento": 22
+  },
+  "por_causa_principal": {
+    "DATO-O-DOCUMENTACION-FALTANTE": 2,
+    "DECISION-O-ESTIMANDO-PENDIENTE": 34,
+    "RESERVADO-O-YA-ENCARGADO": 117
+  },
+  "por_compuerta": {
+    "DECISION-REQUERIDA": 36,
+    "ESPERA-MERGE": 101,
+    "YA-DECIDIDO": 16
+  },
+  "por_grupo_dependencia": {
+    "CELDA-D-PILOTO": 3,
+    "COEFICIENTES-CORR-0018": 7,
+    "CORTES-PI-PILOTO": 6,
+    "D-THETA-PILOTO": 12,
+    "DECISION-D2A-CONSUMIDA": 9,
+    "ENCIG2023-CORRESPONDENCIA": 4,
+    "ENNVIH-DISENO": 2,
+    "MARCADOR-CIV-M-01": 5,
+    "MARCADOR-CIV-M-02": 5,
+    "MARCADOR-CIV-M-04": 5,
+    "MARCADOR-CIV-M-10": 5,
+    "MARCADOR-CIV-M-12": 5,
+    "MARCADOR-CIV-M-13": 5,
+    "MARCADOR-DIN-M-01": 5,
+    "MARCADOR-FAM-M-01": 5,
+    "MARCADOR-FAM-M-05": 5,
+    "MARCADOR-FAM-M-06": 5,
+    "MARCADOR-FAM-M-07": 5,
+    "MARCADOR-TRA-M-02": 5,
+    "MARCADOR-TRA-M-03": 5,
+    "MARCADOR-TRA-M-07": 5,
+    "MEDICION-DEMANDA-3": 2,
+    "MOMENTOS-AJUSTE-PILOTO": 8,
+    "MOMENTOS-HOLDOUT": 14,
+    "PRIORS-CORR-0019": 16
+  }
+}
