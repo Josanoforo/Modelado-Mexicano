@@ -118,3 +118,28 @@ sucesor, sin ejecutar.
 
 Ningún otro punto de este acto (`NC-0250`, `NC-0252`, `NC-0229`, `NC-0241`,
 `NC-0242`, `NC-0210`, `NC-0212`) queda tocado por esta firma.
+
+## CONSUMIDO · PR #810
+
+Ejecutado por `ACTO GEN2-MANTENIMIENTO-3` (`ADR-525`), 16/sep/2026, NUBE
+Sonnet 5. Cierra `NC-0158`, `NC-0174`, `NC-0248`, `NC-0249`, `NC-0250`,
+`NC-0252`, `NC-0229`, `NC-0241`, `NC-0242`, `NC-0078` y `NC-0251`; deja
+`NC-0210`/`NC-0212` genuinamente `ABIERTA` (ver `NO-CORRIDO / RESERVAS`);
+abre `NC-0257` (registro diferido a CAJA) y registra `NC-0246` verbatim
+sin ejecutar.
+
+**Renumeración por fusión concurrente** (`PR #809`/`ACTO GEN2-PINS-
+REPRODUCE-1`, misma base `origin/main = 9fd59d0`, fusionado primero):
+`ADR-524` de este acto pasa a `ADR-525`; `NC-0253` (registro diferido)
+pasa a `NC-0257` — `PR #809` tomó `NC-0253..0256` primero. Merge conflict
+en `canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_13.md`,
+`canon/registro-rotulos.tsv` y `forense/no-corrido.tsv` resuelto
+preservando ambos actos íntegros (`git merge origin/main`, commit
+`90276a4`); `python3 tools/cierre_acto.py --aplica` reconcilió los tres
+contadores mecánicos (524→525) después.
+
+`tests/check.py --baseline`: **3 FAIL · 4347 WARN**, LÍNEA BASE VERDE
+(confirmado en CI, `check_run 104697019983`, commit `8df958c`) — los 3
+FAIL son los heredados (`T06`×2, `T08`), ajenos a este perímetro.
+`tools/verifica_head_remoto.py` → `PR_HEAD_SINCRONIZADO`. El ejecutor no
+fusiona el PR: esa decisión es de mesa.
