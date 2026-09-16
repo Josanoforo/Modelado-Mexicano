@@ -4662,6 +4662,21 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # referencia de procedencia al habitante ENCARGO-E05 ya censado; no es
     # un rótulo nuevo y el cuerpo recibido no se edita para complacer T25.
     "forense/encargos/2026-09-10-GEN2-ENIF-POBLACION-Y-ADOPCION.md",
+    # ACTO GEN2-E1-DISENO-CALIBRACION-1, 16/sep/2026: el rótulo propio de
+    # este acto ("GEN2-E1-DISENO-CALIBRACION-1") COLISIONA por la forma
+    # corta "GEN2-E1" con el habitante ya censado GEN2-E1 · LIMPIEZA-C1
+    # (7/sep/2026, canon/registro-rotulos.tsv fila E). Colisión declarada
+    # aquí y en el registro (mismo patrón que la fila E11/MAESTRA32-E11:
+    # ninguno de los dos gana la forma pelada). Los tres archivos de abajo
+    # citan "E1" pelado -- el encargo archivado verbatim (0-bis A.3) trae
+    # la firma de mesa F-18 tal como llegó ("Abrir el diseño de E1" y
+    # "la calibración E1 de Θ(x)"), y el documento de diseño repite esa
+    # misma cita al describir el objeto del acto. No se edita ninguno de
+    # los dos para complacer el test (A.3 sobre el primero; el segundo
+    # nombra su propio acto, no reclama un rótulo nuevo).
+    "forense/encargos/2026-09-16-GEN2-FIRMAS-MESA-3.md",
+    "forense/encargos/2026-09-16-GEN2-E1-DISENO-CALIBRACION-1.md",
+    "forense/theta-cargable-por-celda-diseno-e1-v1_0.md",
 }
 
 
@@ -5094,6 +5109,16 @@ def t27_infraestructura():
         # `input_sha256`. La familia `data/corrida0/demanda-*.tsv` NO está
         # exenta: sigue citada en INFRAESTRUCTURA §`data/corrida0/` (GEN2-E2).
         if re.match(r"^data/corrida0/CALC-[A-Za-z0-9_.-]+/", relp):
+            continue
+        # ACTO GEN2-RUTINA-DERIVADOS-1 (16/sep/2026). Mismo razonamiento que la
+        # exención de `data/corrida0/CALC-*/` de arriba: `tools/deriva_cron.sh`
+        # escribe un archivo NUEVO por corrida (una fecha por día que produce
+        # cambio versionable), y exigir una fila de INFRAESTRUCTURA por fecha
+        # convertiría ese archivo en un registro de corridas. La custodia no se
+        # pierde: cada archivo trae su propio `comparado_contra`/`deltas`/
+        # `snapshot_sha256_del_dia`, y la familia entera está descrita una vez
+        # en el Dominio 3 (`data/INFRAESTRUCTURA-v1_0.md`).
+        if re.match(r"^data/curacion-universo/derivados/universo-\d{4}-\d{2}-\d{2}\.json$", relp):
             continue
         base = os.path.basename(p)
         if base in infra_text or relp in infra_text:

@@ -1,56 +1,55 @@
 <!-- TABLERO-DERIVADO:BEGIN -->
 ## Estado vivo derivado
 
-- **Procedencia.** SHA `fca99c3` · fecha del commit `2026-09-14` · ¿árbol == origin/main? `False`.
+- **Procedencia.** SHA `95fcc08` · fecha del commit `2026-09-16` · ¿árbol == origin/main? `False`.
 - **Motor.** reglas totales `22` · reglas con dato (>=1 conducta MEDIDO*) `21` · reglas sin dato `1` · conductas MEDIDO* `45` · tiers `{'FUERTE': 20, 'MEDIA': 2}`.
 - **Corredor.** marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
-- **Corpus lógico.** entradas del manifiesto `1608` · filas de registro de curación `152` · filas de relaciones `231` · filas del inventario de reactivos v1.2 `178247`.
-- **Gobernanza operativa.** ADR máximo `497` · FP máximo `374` · FP abiertas: FP-371, FP-372, FP-373, FP-374 · encargos archivados `471` (consumidos `447`) · cola de encargos:
+- **Corpus lógico.** entradas del manifiesto `1610` · filas de registro de curación `152` · filas de relaciones `231` · filas del inventario de reactivos v1.2 `178247`.
+- **Gobernanza operativa.** ADR máximo `525` · FP máximo `375` · FP abiertas: (ninguna) · encargos archivados `510` (consumidos `480`) · cola de encargos:
   - `2026-08-31-MAESTRA33-B2-MARCO-M-SORTEA-v1_1.md`: CONSUMIDO
   - `2026-09-01-MAESTRA34-L2-ARBITRA-v1_2.md`: CONSUMIDO
   - `2026-09-01-MAESTRA34-N2-MARCO-M-v1_2.md`: CONSUMIDO
-  - `2026-09-01-MAESTRA34-N3-AGREGA-2.md`: LISTO
+  - `2026-09-01-MAESTRA34-N3-AGREGA-2.md`: CONSUMIDO
   - `2026-09-01-MAESTRA34-N5-RE-EVALUA-OLA6.md`: CONSUMIDO
-  - `2026-09-02-MAESTRA35-L10-OLA6-SALUD-L1.md`: LISTO
-  - `2026-09-07-ENCARGOS-GEN2-en-orden.md`: LISTO
-  - `2026-09-07-GEN2-E1-LIMPIEZA-C1.md`: LISTO
-  - `2026-09-07-GEN2-E2-C0-A-DEMANDA.md`: GATED
+  - `2026-09-07-ENCARGOS-GEN2-en-orden.md`: GATED
+  - `2026-09-07-GEN2-E1-LIMPIEZA-C1.md`: CONSUMIDO
+  - `2026-09-07-GEN2-E2-C0-A-DEMANDA.md`: CONSUMIDO
   - `2026-09-07-GEN2-E3-1-ENDURECE-CALC.md`: CONSUMIDO
   - `2026-09-07-GEN2-E3-AUTOMATIZA-GEN2-1.md`: CONSUMIDO
-  - `2026-09-07-GEN2-E4-LIMPIEZA-C2-PODA.md`: GATED
-  - `2026-09-07-GEN2-E5-0-SPECS-EJECUTABLES.md`: GATED
-  - `2026-09-07-GEN2-E5-CALC-0001-0003.md`: GATED
+  - `2026-09-07-GEN2-E4-LIMPIEZA-C2-PODA.md`: CONSUMIDO
+  - `2026-09-07-GEN2-E5-0-SPECS-EJECUTABLES.md`: CONSUMIDO
+  - `2026-09-07-GEN2-E5-CALC-0001-0003.md`: CONSUMIDO
   - `2026-09-07-GEN2-E6-AUTOMATIZA-GEN2-2.md`: CONSUMIDO
   - `2026-09-07-GEN2-E7-READINESS-2.md`: CONSUMIDO
   - `2026-09-08-GEN2-SONDA-3-PILOTO-CAJA.md`: LISTO
   - `2026-09-08-MAESTRA34-E1-REVISION-FALSADORES.md`: CONSUMIDO
   - `2026-09-10-GEN2-POST-685/00-LEEME-LANZAMIENTO-POST-685.md`: GATED
-  - `2026-09-10-GEN2-POST-685/01-GEN2-F5-COMPLETA.md`: GATED
-  - `2026-09-10-GEN2-POST-685/02-GEN2-MOTOR-USOS-Y-COMPLEMENTOS.md`: GATED
-  - `2026-09-10-GEN2-POST-685/03-GEN2-ENIF-POBLACION-Y-ADOPCION.md`: GATED
-  - `2026-09-10-GEN2-POST-685/04-GEN2-S6-S12-S13-SUCESORAS.md`: GATED
+  - `2026-09-10-GEN2-POST-685/01-GEN2-F5-COMPLETA.md`: CONSUMIDO
+  - `2026-09-10-GEN2-POST-685/02-GEN2-MOTOR-USOS-Y-COMPLEMENTOS.md`: CONSUMIDO
+  - `2026-09-10-GEN2-POST-685/03-GEN2-ENIF-POBLACION-Y-ADOPCION.md`: CONSUMIDO
+  - `2026-09-10-GEN2-POST-685/04-GEN2-S6-S12-S13-SUCESORAS.md`: CONSUMIDO
   - `2026-09-10-GEN2-POST-685/05-GEN2-ENVIPE-SERIE-COMPLETA.md`: CONSUMIDO
   - `2026-09-10-GEN2-POST-685/06-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md`: CONSUMIDO
   - `2026-09-10-GEN2-POST-685/07-GEN2-SONDA-CRON-PRODUCCION.md`: GATED
   - `2026-09-11-GEN2-F5-DOCUMENTAL-EJECUCION-PENDIENTE.md`: GATED
   - `2026-09-11-GEN2-POST-693/00-LEEME-LANZAMIENTO-POST693.md`: GATED
-  - `2026-09-11-GEN2-POST-693/09-GEN2-PUBLICACION-POST693-Y-CIERRES.md`: GATED
+  - `2026-09-11-GEN2-POST-693/09-GEN2-PUBLICACION-POST693-Y-CIERRES.md`: CONSUMIDO
   - `2026-09-11-GEN2-POST-693/10-GEN2-ENVIPE-VALIDACION-Y-LECTURA.md`: GATED
   - `2026-09-11-GEN2-POST-693/11-GEN2-CORRUPCION-UNIDAD-Y-FUENTE-GENERAL.md`: GATED
-  - `2026-09-11-GEN2-POST-693/13-GEN2-F5-APRENDIZAJES-Y-SUCESOR.md`: GATED
+  - `2026-09-11-GEN2-POST-693/13-GEN2-F5-APRENDIZAJES-Y-SUCESOR.md`: CONSUMIDO
   - `2026-09-11-GEN2-POST-694/00-DECISIONES-Y-PARALELOS-POST694.md`: GATED
   - `2026-09-11-GEN2-POST-694/14-GEN2-YA-MEDIDO-SIN-FALSOS-NEGATIVOS.md`: CONSUMIDO
-  - `2026-09-11-GEN2-POST-694/15-GEN2-ENIF-FINTECH-SERIE-DESCRIPTIVA.md`: GATED
+  - `2026-09-11-GEN2-POST-694/15-GEN2-ENIF-FINTECH-SERIE-DESCRIPTIVA.md`: CONSUMIDO
   - `2026-09-11-GEN2-POST-694/16-GEN2-S6-DISENO-Y-ALCANCE-INFERENCIAL.md`: CONSUMIDO
   - `2026-09-11-GEN2-POST-694/ADENDA-09-CIERRES-YA-ACREDITADOS.md`: CONSUMIDO
   - `2026-09-11-GEN2-POST-701/00-LEEME-LANZAMIENTO-POST701.md`: GATED
-  - `2026-09-11-GEN2-POST-701/17-GEN2-LINAJE-Y-ADOPCION.md`: GATED
-  - `2026-09-11-GEN2-POST-701/18-GEN2-MOTOR-Y-HERENCIA-EXPLICITA.md`: GATED
-  - `2026-09-11-GEN2-POST-701/19-GEN2-EVALUACION-SIN-FUGAS.md`: GATED
+  - `2026-09-11-GEN2-POST-701/17-GEN2-LINAJE-Y-ADOPCION.md`: CONSUMIDO
+  - `2026-09-11-GEN2-POST-701/18-GEN2-MOTOR-Y-HERENCIA-EXPLICITA.md`: CONSUMIDO
+  - `2026-09-11-GEN2-POST-701/19-GEN2-EVALUACION-SIN-FUGAS.md`: CONSUMIDO
   - `2026-09-11-GEN2-POST-701/REVISION-CANDADOS-GEN1-GEN2-2026-09-11.md`: GATED
   - `2026-09-11-GEN2-POST-707/00-LEEME-PARALELOS-POST707.md`: GATED
   - `2026-09-11-GEN2-POST-707/07R-GEN2-PRODUCCION-Y-FALLO-POST707.md`: GATED
-  - `2026-09-11-GEN2-POST-707/20-GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES.md`: GATED
+  - `2026-09-11-GEN2-POST-707/20-GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES.md`: CONSUMIDO
   - `2026-09-11-GEN2-POST-707/21-GEN2-EXPEDIENTES-ACCESO-LISTOS.md`: GATED
   - `2026-09-11-GEN2-POST-707/22-GEN2-VALIDACION-R-ENVIPE-CSV.md`: GATED
   - `2026-09-11-GEN2-POST-707/ADENDA-18-CONSUMOS-Y-BENCHMARK.md`: GATED
@@ -62,7 +61,7 @@
   - `2026-09-11-GEN2-POST-723/31-GEN2-F5-DOCUMENTAL-EJECUCION-PARA-FIRMA.md`: GATED
   - `2026-09-12-GEN2-POST-726/00-LEEME-PARALELOS-POST726.md`: GATED
   - `2026-09-12-GEN2-POST-726/33-GEN2-CORPUS-COMPARTIDO-UTILIZABLE.md`: CONSUMIDO
-  - `2026-09-12-GEN2-POST-726/34-GEN2-REACTIVOS-CON-TEXTO-Y-BUSQUEDA.md`: GATED
+  - `2026-09-12-GEN2-POST-726/34-GEN2-REACTIVOS-CON-TEXTO-Y-BUSQUEDA.md`: CONSUMIDO
   - `2026-09-12-GEN2-POST-726/35-GEN2-TANDAS-PANEL-ENTRADAS-Y-SALIDAS.md`: CONSUMIDO
   - `2026-09-12-GEN2-POST-726/36-GEN2-N34-DATOS-PRODUCTO-Y-DANO.md`: CONSUMIDO
   - `2026-09-12-GEN2-POST-726/37-GEN2-DELTA-COMPARACION-EXPLICITA.md`: CONSUMIDO
@@ -71,8 +70,8 @@
   - `2026-09-12-GEN2-POST-741/00-LEEME-PARALELOS-41-43.md`: GATED
   - `2026-09-12-GEN2-POST-741/41-GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO.md`: GATED
   - `2026-09-12-GEN2-POST-741/43-GEN2-SHED-BNPL-DANO-Y-UNIVERSOS.md`: GATED
-- **GEN2 (derivado de `corrida0 status`).** corridas selladas `59` / requeridas `82` · resultados sellados `3039` / activos `207` · pendientes `207` · dependencias numéricas legacy activas `191` · validación independiente `199` · diferencias materiales `0` · NC- abiertas `60` · replays LEGACY-GEN1 sellados `4` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
-- **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** sellados `2497` · pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) `5` · adoptados por un consumidor activo `16`. Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: solo el consumidor activo que lo adopta la baja.
+- **GEN2 (derivado de `corrida0 status`).** corridas selladas `80` / requeridas `82` · resultados sellados `4123` / activos `207` · pendientes `207` · dependencias numéricas legacy activas `183` · validación independiente `215` · diferencias materiales `0` · NC- abiertas `64` · replays LEGACY-GEN1 sellados `5` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
+- **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** sellados `3522` · pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) `12` · vetados por decisión vigente (sellados, pero una firma prohíbe adoptarlos: no son cola) `2` · adoptados por un consumidor activo `24`. Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: solo el consumidor activo que lo adopta la baja.
 - **Fuentes.** `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, `forense/prereg-duelo-v2/` (marcos y corridas M/R/L), `data/manifiesto.yaml`, `data/curacion-registro/cola-adquisicion-registro.tsv`, `data/curacion-registro/relaciones.tsv`, `data/inventario-reactivos-v1_2.tsv`, `canon/gobernanza-v1_15.md`, `forense/firmas-pendientes.tsv`, `forense/encargos/*.md`, `forense/encargos/cola/*.md`.
 
 **Protocolo vigente.** La actualización factual de este bloque se hace con:
