@@ -81,3 +81,11 @@ CIERRE: cascada completa (preflight de `tools/cierre_acto.py` → ADR → L0 →
 | Retirar del censo de filas ciegas las **2 368** que este acto acreditó como sin enunciado posible (`EJE-TRANSPUESTO` 2 172 · `MIEMBRO-ES-EL-PROPIO-FD` 150 · `NO-ES-TABLA-DE-DATOS` 46) | `FUERA-DE-PERÍMETRO`. `data/reactivos-ciegos-81-v1_0.tsv` y `tools/censa_reactivos_ciegos.py` están en la lista **NO toca** de este encargo y no se tocaron | El censo de `NC-0136` sigue contando como ciegas 2 368 filas que no pueden dejar de serlo. Sobreestima la deuda y puede desviar adquisición hacia donde no hay nada que adquirir | `NC-0260` · acto que re-derive el censo leyendo `data/crosswalk-tablas-fd-residual-v1_0.tsv`, o MESA si decide que el denominador no se recorta ni por motivo acreditado |
 | `NC-0202` (sonda `CORR-0008`, tres candidatas web) | `SUSTITUIDO-POR:adq/2026-09-15-nc-0202` (`PR #805`). Instrucción explícita de mesa en el lanzamiento: «`NC-0202` no va: el servicio ya la tomó». **Qué absorbe el sustituto:** la fila completa. **Qué queda huérfano:** nada de `NC-0202` — este acto no la toca, no la cierra y no la cita como propia | Ninguno para este acto; `NC-0202` sigue en manos del servicio | `adq/2026-09-15-nc-0202` / `PR #805` |
 | Que `T03` deje de dar un WARN distinto según si `data/raices.local.yaml` (gitignorado) está presente en el worktree | `FUERA-DE-PERÍMETRO`. Es un defecto de la suite, no de este perímetro: hace que la misma corrida sobre el mismo árbol dé `4355` en CAJA y `4356` en CI, y con ello un `T16` rojo en local que no existe en CI. Medido con control positivo (§6.3 de la nota) y asentado en `forense/hallazgos.md`; **no** se abrió `NC` para no inflar el ledger con una fila que ninguna compuerta espera | Todo acto de CAJA verá un `T16` rojo espurio y puede «corregir» la cifra vigente a la de local, poniendo CI en rojo — que es exactamente el defecto que `T16` existe para atrapar | SIN-ASIGNAR (candidato a acto de mantenimiento de `tests/check.py`) |
+
+## CONSUMIDO
+
+`PR #812` (`acto/gen2-caja-reactivos-fd-1` → `main`), abierto el 16/sep/2026 por la sesión que
+ejecutó este encargo. `ADR-526` (renumerado dos veces: `ADR-524` lo tomó `GEN2-PINS-REPRODUCE-1` y
+`ADR-525` `GEN2-MANTENIMIENTO-3`). Cierre en
+`forense/notas/2026-09-15-GEN2-CAJA-REACTIVOS-FD-1-cierre.md`. **No fusionado por el ejecutor**: el
+merge es de mesa.
