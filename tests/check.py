@@ -2816,6 +2816,34 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-CELDA-D-DISENO-CIEGO-1, 17/sep/2026. Dos archivos, una sola
+    # causa: el encargo esta archivado VERBATIM (0-bis A.3) y no se edita para
+    # complacer un test, y la nota lo cita verbatim. Sus menciones, una por una:
+    #   `M1`  -- (i) el acto en paralelo, que el encargo nombra dos veces como
+    #            "M1-ALCANCE-1" sin el prefijo `GEN2-` que su rotulo real SI
+    #            lleva (`GEN2-M1-ALCANCE-1`, la forma que la nota usa en todas
+    #            sus menciones propias); y (ii) el marcador de firma de mesa
+    #            "[FIRMA M1 -- A o B]", que mesa lanzo sin sustituir y que la
+    #            nota cita verbatim en su reserva §0.3 -- ahi `M1` es el nombre
+    #            del acto cuya firma falta, no un rotulo nuevo. Tampoco es el
+    #            `M1` de `RONDA-M`/`ADV1-M1`: son espacios distintos, y la nota
+    #            escribe ese SIEMPRE con prefijo (`ADV1-M1`).
+    #   `M3`  -- el mecanismo de scoring del careo, que el encargo cita como
+    #            "§B (M3)" y la nota como `ADV1-M3` salvo en la transcripcion
+    #            del propio encargo. Habitante ya existente de la serie de fixes
+    #            de `RONDA-M` (misma serie que `S1`/`S2`/`M2`/`M5`/`M10`, ya
+    #            exenta arriba por ACTO GEN2-CROSSWALK-EJES-1). No es nuevo.
+    #   `M10` -- el fix `M10` de esa misma serie de `RONDA-M`, citado en P4 al
+    #            enumerar las tres desviaciones que `milpa/catalogo-momentos-
+    #            v0_1.md:86-90` declara respecto de la propuesta. No es nuevo.
+    #   `M01`, `M22` -- los extremos del rango de ids del catalogo de momentos
+    #            (`milpa/catalogo-momentos-v0_1.tsv`, 22 filas `M01`..`M22`).
+    #            Son ids de FILA de un TSV, no rotulos de acto ni habitantes de
+    #            un espacio de rotulos; el regex no los distingue.
+    # El rotulo propio de este acto, `D · GEN2-CELDA-D-DISENO-CIEGO-1`, SI va
+    # censado en `canon/registro-rotulos.tsv`.
+    "forense/encargos/2026-09-17-GEN2-CELDA-D-DISENO-CIEGO-1-SEGUNDO-DISENO-INDEPENDIENTE.md",
+    "forense/notas/2026-09-17-GEN2-CELDA-D-DISENO-CIEGO-1.md",
     # ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2, 15/sep/2026: la nota de cierre
     # cita los rotulos pelados `E5-0` y `E5` porque son las CLAVES LITERALES
     # que `tools/verifica_encargos_gen2.py::secciones_maestras()` devuelve
