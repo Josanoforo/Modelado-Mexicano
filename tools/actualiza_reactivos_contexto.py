@@ -30,6 +30,12 @@ RESIDUAL_PATH = REPO_ROOT / "data" / "reactivos-contexto-residual-v1_1.tsv"
 SOURCES_PATH = REPO_ROOT / "data" / "reactivos-contexto-fuentes-v1_0.tsv"
 VERIFIED_PATH = REPO_ROOT / "data" / "reactivos-contexto-verificados-v1_0.tsv"
 FD_EXT_PATH = REPO_ROOT / "data" / "inventario-fd-ext-v1_0.tsv"
+# NC-0235 (ACTO GEN2-CAJA-REACTIVOS-FD-1, 15/sep/2026): segunda tabla de fuentes,
+# con los 26 grupos cuyo FD ya esta en el repo. Se pasa ADEMAS de la de arriba
+# (--fuentes es repetible); no la sustituye y no la edita.
+SOURCES_FD26_PATH = REPO_ROOT / "data" / "reactivos-contexto-fuentes-fd26-v1_0.tsv"
+# Crosswalk miembro-de-payload <-> hoja-del-FD leido del FD REAL (NC-0245).
+CROSSWALK_PATH = REPO_ROOT / "data" / "crosswalk-tablas-fd-v1_0.tsv"
 CACHE_DIR = REPO_ROOT / "data" / ".reactivos-contexto-cache"
 EXTRACTOR_VERSION = "reactivos-contexto-1.1.7"
 PDF_ROW_TOLERANCE = 6.0
@@ -129,6 +135,34 @@ def sha256_file(path: Path) -> str:
 def read_tsv(path: Path) -> list[dict]:
     with path.open(encoding="utf-8") as handle:
         return list(csv.DictReader((line for line in handle if not line.startswith("#")), delimiter="\t"))
+
+
+def read_tsv_many(paths: list[Path]) -> list[dict]:
+    """Lee varias tablas del mismo esquema, en orden, sin fusionarlas en disco."""
+    return [row for path in paths for row in read_tsv(path)]
+
+
+# ── crosswalk de tablas (NC-0245) ──────────────────────────────────────────
+# `table_matches` resolvia la identidad de tabla con `TABLE_IDENTITIES`, una
+# lista escrita a mano. El crosswalk la sustituye alli donde existe: es la
+# misma pregunta, contestada contra el FD real y con evidencia por fila. Donde
+# el crosswalk no dice nada, el comportamiento historico queda intacto.
+_CROSSWALK: dict[str, dict[str, str]] = {}
+
+
+def carga_crosswalk(path: Path) -> None:
+    global _CROSSWALK
+    _CROSSWALK = {}
+    if not path.exists():
+        return
+    mapa: dict[str, dict[str, str]] = defaultdict(dict)
+    for row in read_tsv(path):
+        mapa[row["instrumento"].lower()][compact(row["archivo_miembro"])] = row["hoja_fd"]
+    _CROSSWALK = dict(mapa)
+
+
+def crosswalk_hoja(instrument: str, member: str) -> str | None:
+    return _CROSSWALK.get(instrument.lower(), {}).get(compact(member))
 
 
 def instrument_for(row: dict) -> str:
@@ -577,12 +611,18 @@ def cached_extract(path: Path, row: dict, cache_dir: Path) -> tuple[list[dict], 
     return extracted, False, digest
 
 
-def compatible_table(member: str, documented: str) -> bool:
+def compatible_table(member: str, documented: str, instrument: str = "") -> bool:
+    hoja = crosswalk_hoja(instrument, member) if instrument else None
+    if hoja is not None:
+        # El crosswalk acredito ESTA tabla contra el FD real: la hoja que nombra
+        # empareja y ninguna otra. Un acierto por parecido no la sustituye.
+        return compact(documented) == compact(hoja)
     return table_matches(member, documented)
 
 
-def choose_candidate(candidates: list[dict], member: str) -> dict | None:
-    compatible = [item for item in candidates if compatible_table(member, item["tabla_documental"])]
+def choose_candidate(candidates: list[dict], member: str, instrument: str = "") -> dict | None:
+    compatible = [item for item in candidates
+                  if compatible_table(member, item["tabla_documental"], instrument)]
     distinct = {(item["texto_reactivo"], item["fuente_texto"], item["referencia_fuente"]): item
                 for item in compatible}
     if len(distinct) == 1:
@@ -591,9 +631,9 @@ def choose_candidate(candidates: list[dict], member: str) -> dict | None:
     return compatible[0] if compatible and len(same_text) == 1 else None
 
 
-def verified_candidates(path: Path, objects: list[str]) -> list[dict]:
+def verified_candidates(paths: list[Path], objects: list[str]) -> list[dict]:
     result = []
-    for row in read_tsv(path):
+    for row in read_tsv_many(paths):
         if not selected(row["instrumento"], row["fuente_texto"], objects):
             continue
         source_path = RAW_ROOT / row["fuente_texto"]
@@ -681,12 +721,23 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--objeto", action="append", help="Instrumento/familia o payload; repetible")
     parser.add_argument("--salida", type=Path, default=OUT_PATH)
-    parser.add_argument("--fuentes", type=Path, default=SOURCES_PATH)
-    parser.add_argument("--verificados", type=Path, default=VERIFIED_PATH)
+    parser.add_argument("--fuentes", type=Path, action="append",
+                        help=f"Tabla de fuentes; repetible (por defecto {SOURCES_PATH.name}). "
+                             f"NC-0235: pasar ademas {SOURCES_FD26_PATH.name} cubre los 26 "
+                             "grupos con FD en el repo sin editar la tabla historica.")
+    parser.add_argument("--verificados", type=Path, action="append",
+                        help=f"Tabla de candidatas verificadas a mano; repetible "
+                             f"(por defecto {VERIFIED_PATH.name})")
     parser.add_argument("--cache-dir", type=Path, default=CACHE_DIR)
     parser.add_argument("--reporte-residual", type=Path, default=RESIDUAL_PATH)
+    parser.add_argument("--crosswalk", type=Path, default=CROSSWALK_PATH,
+                        help="Crosswalk miembro<->hoja del FD real (NC-0245). Donde dice algo, "
+                             "manda sobre la identidad de tabla escrita a mano.")
     args = parser.parse_args(argv)
     objects = args.objeto or list(PRIORITY)
+    fuentes = args.fuentes or [SOURCES_PATH]
+    verificados = args.verificados or [VERIFIED_PATH]
+    carga_crosswalk(args.crosswalk)
 
     metadata = []
     for source_key, path in METADATA_SOURCES.items():
@@ -704,7 +755,7 @@ def main(argv=None) -> int:
     candidates: dict[tuple[str, str], list[dict]] = defaultdict(list)
     cache_hits = cache_misses = 0
     source_hashes = {}
-    source_specs = read_tsv(args.fuentes)
+    source_specs = read_tsv_many(fuentes)
     configured_instruments = {row["instrumento"].lower() for row in source_specs}
     for source in source_specs:
         if not selected(source["instrumento"], source["fuente_texto"], objects):
@@ -720,7 +771,7 @@ def main(argv=None) -> int:
             item["fuente_sha256_12"] = digest[:12]
             candidates[(source["instrumento"].lower(), item["variable_id"].lower())].append(item)
 
-    for item in verified_candidates(args.verificados, objects):
+    for item in verified_candidates(verificados, objects):
         key = (item["instrumento"].lower(), item["variable_id"].lower())
         candidates[key].insert(0, item)
 
@@ -746,7 +797,7 @@ def main(argv=None) -> int:
             pool = candidates.get((instrument.lower(), row["variable_id"].lower()), [])
             manual = [item for item in pool if item.get("manual")]
             candidate = choose_candidate(
-                manual if manual else pool, row["archivo_miembro"])
+                manual if manual else pool, row["archivo_miembro"], instrument)
         if candidate is None:
             unresolved += 1
             member_folded = fold(row["archivo_miembro"])

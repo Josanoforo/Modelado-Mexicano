@@ -1,6 +1,8 @@
 # ENCARGO · GEN2-ENIF-FINTECH-SERIE-DESCRIPTIVA
 
-ESTADO: CONSUMIDO — PR #706 abierto; resultados sellados y cierre entregado, merge reservado a mesa.
+ESTADO: CONSUMIDO — PR #706 (FUSIONADO a main, merge commit 0d8e0560, 2026-09-11T05:49:02Z).
+BITACORA:
+- 2026-09-16 · CONSUMIDO · corregido por auditoría ACTO GEN2-VIGENCIA-DEUDA-1: la redacción "PR #706 abierto; merge reservado a mesa" era cierta al escribirse pero quedó vencida el mismo 11/sep/2026; `mcp__github__pull_request_read` (owner=Josanoforo, repo=Modelado-Mexicano, pullNumber=706) confirma `state: closed, merged: true, merged_at: 2026-09-11T05:49:02Z`, y `git merge-base --is-ancestor 0d8e0560 HEAD` confirma que el merge ya es ancestro de HEAD. Homónimo archivado `forense/encargos/2026-09-10-GEN2-ENIF-FINTECH-SERIE-DESCRIPTIVA.md` ya trae `## CONSUMIDO` citando el mismo PR; NC-0121 ya CERRADA (forense/no-corrido.tsv, 2026-09-10).
 
 ENTORNO: CAJA
 COMPUERTA: PR #689 y #694 fusionados; comprobar corpus ENIF y ausencia de tarea duplicada.

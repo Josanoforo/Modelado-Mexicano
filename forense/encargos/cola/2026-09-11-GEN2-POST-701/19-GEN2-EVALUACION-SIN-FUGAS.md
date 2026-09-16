@@ -1,4 +1,6 @@
-ESTADO: CONSUMIDO — PR #713 abierto; cierre entregado, merge reservado a mesa.
+ESTADO: CONSUMIDO — PR #713 (FUSIONADO a main, merge commit 36e6b3f3, 2026-09-11T17:00:37Z).
+BITACORA:
+- 2026-09-16 · CONSUMIDO · corregido por auditoría ACTO GEN2-VIGENCIA-DEUDA-1: la redacción "PR #713 abierto; merge reservado a mesa" (escrita 1h33min antes del propio merge, commit 72976d40) quedó vencida el mismo 11/sep/2026 y se repite sin corregir en el `## CONSUMIDO` del homónimo. `mcp__github__pull_request_read` (pullNumber=713) confirma `state: closed, merged: true, merged_at: 2026-09-11T17:00:37Z`; `git merge-base --is-ancestor 36e6b3f3 HEAD` confirma que el merge ya es ancestro de HEAD. Homónimo: `forense/encargos/2026-09-11-GEN2-EVALUACION-SIN-FUGAS.md` (su propio texto no se edita aquí).
 
 # ENCARGO 19 · GEN2-EVALUACION-SIN-FUGAS
 

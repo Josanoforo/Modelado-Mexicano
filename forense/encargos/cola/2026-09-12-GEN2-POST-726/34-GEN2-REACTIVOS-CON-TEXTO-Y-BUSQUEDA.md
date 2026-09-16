@@ -1,5 +1,9 @@
 # 34 · Hacer encontrables los reactivos que ya tenemos
 
+ESTADO: CONSUMIDO — PR #737 (rama acto/gen2-reactivos-con-texto-y-busqueda; NO PR #742).
+BITACORA:
+- 2026-09-16 · CONSUMIDO · sincronizado por auditoría ACTO GEN2-VIGENCIA-DEUDA-1. El homónimo archivado `forense/encargos/2026-09-11-GEN2-REACTIVOS-CON-TEXTO-Y-BUSQUEDA.md` fue creado por PR #737 (`git diff <primer-padre-737> --stat` añade este archivo y su nota de cierre; cabecera original propia "Estado: CONSUMIDO por PR #737"), pero su sección `## CONSUMIDO · PR #742` es un TRASPLANTE ERRÓNEO cometido por `ACTO GEN2-CONSUMIDO-RETRO-3` (PR #759): ese PR #742 nunca tocó este archivo (`git diff <primer-padre-742> --stat` no lo incluye) — sí trajo, en cambio, el encargo distinto `forense/encargos/2026-09-12-GEN2-REACTIVOS-PENDIENTES-Y-BUSQUEDA-UTIL.md` (Encargo 39), confundido por nombre parecido. DEFECTO REAL para mesa: corregir `## CONSUMIDO · PR #742` → `PR #737` en el homónimo archivado (no se toca aquí — fuera del perímetro de esta auditoría, que es cola/).
+
 ENTORNO: CAJA
 
 ## Contrato de ejecución autónomo

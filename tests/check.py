@@ -4973,12 +4973,15 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
     dobles. **29 líneas** (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94,
     97, 114, 117, 119, 121, 123, 124, 125, 136, 139, 140, 144, 145, 146,
     147, 148, 149).
+    Re-medido el 16/sep/2026 al consolidar los residuales públicos IHSN y
+    ENPOL por la misma vía canónica: **31 líneas**; las líneas 153 y 154
+    contienen metadata JSON con comillas dobles.
     Este test es DOBLE:
 
     (1) CONTROL, documenta que el defecto sigue vivo con `csv`: si algún
         día alguien "arregla" el round-trip corriendo `csv.writer` sobre
         el archivo completo, este control lo hace visible en vez de
-        quedar en silencio -- se esperan EXACTAMENTE 29 líneas distintas
+        quedar en silencio -- se esperan EXACTAMENTE 31 líneas distintas
         hoy; si el número cambia (para arriba o para abajo) sin que
         nadie lo haya declarado, falla.
     (2) REGRESIÓN del lector/escritor propio (`tools/curador_registro/
@@ -5004,12 +5007,12 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
         escritor.writerow(fila)
     csv_out_lines = buf.getvalue().split("\r\n")
     diffs_csv = [i for i, (a, b) in enumerate(zip(orig_lines, csv_out_lines)) if a != b]
-    if len(diffs_csv) != 29:
-        fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv daba "
-                         f"29 líneas distintas (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94, "
+    if len(diffs_csv) != 31:
+        fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv debe dar "
+                         f"31 líneas distintas (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94, "
                          f"97, 114, 117, 119, 121, 123, 124, 125, 136, 139, 140, 144, 145, 146, "
-                         f"147, 148, 149) el 11/sep/2026 (ACTO GEN2-CRON-DEMANDA-A-DATO-Y-"
-                         f"PRODUCCION, tras añadir siete residuales con `tsv_crudo.upsert_fila`); hoy da "
+                         f"147, 148, 149, 153, 154), re-medidas el 16/sep/2026 tras consolidar "
+                         f"IHSN y ENPOL en el registro canónico; hoy da "
                          f"{len(diffs_csv)} ({[i + 1 for i in diffs_csv]}) -- el archivo cambió "
                          f"de forma que el control ya no describe la realidad, actualiza el número "
                          f"esperado con el hallazgo re-medido, no lo silencies.")
@@ -6520,6 +6523,65 @@ def t34_no_corrido():
 
 
 # ───────────────────────────────────────────────────────────────
+# T43 · T-SUCESOR-EXISTE -- ACTO GEN2-VIGENCIA-DEUDA-1 (16/sep/2026),
+# gate D-14 contestado en el propio encargo: defecto real medido en
+# NC-0024 (su enmienda fechada del 15/sep, ACTO GEN2-MARCADOR-C0-D, apunta
+# a NC-0236/NC-0225 como sucesores; dos renumeraciones de merge después
+# esos ids son OTRAS filas -- "residual del lote" y "el SEGUNDO documento
+# de Astra", no el crosswalk ni el marcador que la enmienda quería citar)
+# y en NC-0218 (`sucesor` cita `ACTO D-A`, que la propia fila declara
+# AUSENTE). Cambia a qué fila mira quien lea el sucesor, y se resuelve con
+# una regex. WARN, no FAIL: es señal para quien redacta el sucesor, no
+# bloqueo de commit -- una cita puede ser deliberadamente aspiracional (un
+# acto o archivo que el propio sucesor propone crear).
+#
+# WARN (vía `senal()`, vigía fuera de línea base -- dispara por diseño
+# mientras el sucesor cite algo que no está) por cada fila `estado =
+# ABIERTA` cuyo `sucesor` nombre:
+#   (a) un `ACTO <RÓTULO>` (RÓTULO con al menos un guión -- un rótulo
+#       pelado sin guión es ambiguo por regla propia de `/acto` y no se
+#       resuelve aquí) sin ningún archivo en `forense/encargos/**/*.md`
+#       cuyo nombre termine en `-<RÓTULO>.md` -- mismo cotejo por rótulo
+#       que usa el 2-ter de `despacha.md`, no uno nuevo.
+#   (b) una ruta de archivo con extensión reconocida (py/md/tsv/yaml/yml/
+#       json/csv/txt/sha256) que no existe en el árbol de trabajo.
+#
+# No resuelve identificadores pelados (`NC-nnnn`, `CALC-*`, `RESULT-*`):
+# no son "un acto o archivo" en el sentido del encargo, y su universo de
+# validación es distinto -- fuera del perímetro de este WARN.
+# ───────────────────────────────────────────────────────────────
+_T43_ACTO_RE = re.compile(r"\bACTO\s+([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+)")
+_T43_ARCHIVO_RE = re.compile(
+    r"\b((?:[\w.\-]+/)+[\w.\-]+\.(?:py|md|tsv|ya?ml|json|csv|txt|sha256))\b"
+)
+
+
+def t43_sucesor_existe():
+    filas = _t34_leer_no_corrido()
+    if not filas:
+        return
+    nombres = [os.path.basename(p) for p in
+               glob.glob(os.path.join(ROOT, "forense", "encargos", "**", "*.md"), recursive=True)]
+    for i, fila in enumerate(filas, start=2):
+        if (fila.get("estado") or "").strip() != "ABIERTA":
+            continue
+        fid = (fila.get("id") or "?").strip()
+        sucesor = (fila.get("sucesor") or "").strip()
+        if not sucesor:
+            continue
+        for rotulo in _T43_ACTO_RE.findall(sucesor):
+            sufijo = f"-{rotulo}.md"
+            if not any(n.endswith(sufijo) for n in nombres):
+                senal("T-SUCESOR-EXISTE", f"forense/no-corrido.tsv:{i} {fid}: "
+                      f"sucesor cita `ACTO {rotulo}`, sin archivo en "
+                      f"forense/encargos/**/*.md terminado en {sufijo!r}")
+        for ruta in _T43_ARCHIVO_RE.findall(sucesor):
+            if not os.path.exists(os.path.join(ROOT, ruta)):
+                senal("T-SUCESOR-EXISTE", f"forense/no-corrido.tsv:{i} {fid}: "
+                      f"sucesor cita el archivo `{ruta}`, ausente del árbol")
+
+
+# ───────────────────────────────────────────────────────────────
 # T35 · T-REPRO -- ACTO GEN2-E6 · AUTOMATIZA-GEN2-2 (8/sep/2026),
 # plan v2.0 §2 y §7. **MODO FAIL desde `ACTO GEN2-E5 · CALC-0001..0003`
 # (8/sep/2026)**, que es donde E6 dejó programado el cambio.
@@ -6820,6 +6882,7 @@ def main():
         ("T35 T-REPRO",                                t35_repro),
         ("T41 T-DIGESTO-MESA",                          t41_digesto_mesa),
         ("T42 T-CANDIDATAS",                            t42_digesto_candidatas),
+        ("T43 T-SUCESOR-EXISTE",                        t43_sucesor_existe),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
