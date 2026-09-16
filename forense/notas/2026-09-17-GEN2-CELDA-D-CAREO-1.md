@@ -309,4 +309,43 @@ CITAS `archivo:linea` DISTINTAS EN LA NOTA: 34 sobre 12 archivos -- 34 resuelven
 
 **SHA:** `9dffd64`. **Instrumentos:** ninguno abierto — este acto no toca microdato. **Celdas:** las 8 de cruce, **no derivadas**. **Archivos leídos con comando y citados:** 22 del árbol fijo `b881ee6` (P1) + `data/inventario-reactivos-v1_2.tsv` (178 256 líneas), `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `data/corrida0/demanda-resultados.tsv` (209), `forense/hallazgos.md`, `forense/no-corrido.tsv`, `forense/firmas-pendientes.tsv`, `tests/test_celdas_d.py`, `data/INFRAESTRUCTURA-v1_0.md`.
 
-**CONTADOR.** Mediciones: **0**. Corridas: **0**. Adopciones: **0**. Microdato: **0**. Red efectiva: **0** (5 intentos, 5 rechazos de política). Celdas-D registradas: **3 → 4**. `no_corrido_abiertas`: **+6** (`NC-0275`…`NC-0280`) — **el encargo previó +2**, y la diferencia son las cuatro filas A.14 propias de este acto: adjunto que no llegó, fuentes `SIN-FETCH`, enmienda que ya existía, y **el perímetro mal calculado** (`NC-0280`: el encargo autorizaba tocar `tests/check.py` sólo por `T25` y el acto disparó cuatro tests de cascada — `T02`, `T22`, `T25`, `T30` —, que es lo que archivar cuatro adjuntos verbatim y abrir una fila de mesa dispara por construcción). Se reporta, no se ajusta el conteo al pronóstico. `FP` abiertas: sin cambio (`FP-378` **nace FIRMADA**). Filas de `decisiones.tsv`: **+1**.
+**CONTADOR.** Mediciones: **0**. Corridas: **0**. Adopciones: **0**. Microdato: **0**. Red efectiva: **0** (5 intentos, 5 rechazos de política). Celdas-D registradas: **3 → 4**. `no_corrido_abiertas`: **+7** (`NC-0275`…`NC-0281`) — **el encargo previó +2**, y la diferencia son las cuatro filas A.14 propias de este acto: adjunto que no llegó, fuentes `SIN-FETCH`, enmienda que ya existía, **el perímetro mal calculado** (`NC-0280`: el encargo autorizaba tocar `tests/check.py` sólo por `T25` y el acto disparó cuatro tests de cascada — `T02`, `T22`, `T25`, `T30` —, que es lo que archivar cuatro adjuntos verbatim y abrir una fila de mesa dispara por construcción), y **la línea base en rojo sin congelar** (`NC-0281`, §10: es decisión de mesa, no del ejecutor). Se reporta, no se ajusta el conteo al pronóstico. `FP` abiertas: sin cambio (`FP-378` **nace FIRMADA**). Filas de `decisiones.tsv`: **+1**.
+
+---
+
+## 10 · Suite de cierre · PARO-REPORTA, y la decisión es de mesa
+
+**Salida cruda**, `python3 tests/check.py --baseline` sobre el árbol de cierre de este acto:
+
+```
+════════════════════════════════════════════════════════════════════════
+  3 FAIL · 4364 WARN
+════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────
+  LÍNEA BASE: ROJO — 5 entradas nuevas frente a tests/baseline.json (HEAD congelado 5e2ad5ce…)
+  · T03: forense/encargos/2026-09-17-GEN2-CELDA-D-CAREO-1-TRES-DISENOS-UN-CAREO.md: cita `D-THETA-DOCUMENTO-v1_1-post-a…
+  · T03: forense/notas/insumos-externos/celda-d-piloto/ASTRA-…-b881ee6-v1_0.md: cita `ADVERSARIAL-D-THETA-v1_0.md`…
+  · T03: forense/notas/insumos-externos/celda-d-piloto/ASTRA-…-b881ee6-v1_0.md: cita `D-THETA-DOCUMENTO-v1_1-post-a…
+  · T03: forense/notas/insumos-externos/celda-d-piloto/ENCARGO-EXTERNO-ASTRA-…-2026-09-17.md: cita `ADVERSARIAL-D-THETA…
+  · T03: forense/notas/insumos-externos/celda-d-piloto/ENCARGO-EXTERNO-ASTRA-…-2026-09-17.md: cita `D-THETA-DOCUMENTO…
+────────────────────────────────────────────────────────────────────────
+```
+
+**Cero `FAIL` nuevos.** Los 3 son los heredados del corpus documental — `T06`×2 (12 valores distintos de «confianza interpersonal», 7 de Gini) y `T08` (7 reports sin mapa de evidencia) —, ajenos a este perímetro y presentes en `tests/baseline.json`.
+
+**Los dos `FAIL` que la corrida de cierre sí trajo eran de este acto, y se corrigieron antes de escribir esta sección.** `T16` marcaba **vencidas** las cifras `**3 FAIL · 4351 WARN**` que declaran `ADR-531` y `ADR-532`: ahora llevan `{cita-historica}` con la fecha y el número que las vence, que es el mecanismo de la casa (`MARCA_HISTORICA`, `ACTO T16-HISTÓRICAS`, 18/ago/2026), y `ADR-533` declara la suya.
+
+**Las 5 entradas nuevas son de `T03` y son la misma cosa, dicha una vez:** referencias colgantes a `D-THETA-DOCUMENTO-v1_1-post-adversarial.md` (×3) y a `ADVERSARIAL-D-THETA-v1_0.md` (×2) — **los dos documentos que mesa iba a cargar y que no llegaron** —, citadas desde texto archivado **verbatim** que A.3 prohíbe editar: el encargo (1), el retorno de Astra (2) y el brief externo (2).
+
+**Esto es la medida exacta de lo que cuesta `NC-0277`.** El adjunto que no viaja no es un detalle de intendencia: cuesta 5 `WARN` y pone la línea base en rojo. **Si los dos adjuntos llegan y se archivan, las cinco desaparecen solas y no hay nada que congelar.**
+
+**Y por eso este acto no congela.** El recongelado de `tests/baseline.json` **no es del ejecutor**: los **siete** recongelados que la nota del propio `baseline.json` documenta llevan todos la misma fórmula — *«autorizada explícitamente por mesa en la sesión tras que el ejecutor PARARA y reportara las entradas nuevas»* —, y el precedente exacto de este caso es `ACTO GEN2-E0 · ENCOLA` (7/sep/2026), que absorbió 8 `WARN` de `T03` del bucket `pieza_GEN2_verbatim`, todas sobre texto de dirección archivado verbatim, y sólo después de que mesa lo autorizara.
+
+**Decisión de mesa, dos opciones, ninguna del ejecutor:**
+
+- **(a) — vía preferida.** Mesa carga `D-THETA-DOCUMENTO-v1_1-post-adversarial.md` y `ADVERSARIAL-D-THETA-v1_0.md`; un acto los archiva por A.3 y las 5 entradas **se cierran solas**. Cierra además `NC-0277` y su hermana `NC-0271`, que llevan dos actos abiertas por lo mismo.
+- **(b).** Mesa autoriza el recongelado de esas 5 en su propio bucket —`T03_adjunto_de_mesa_no_entregado__citado_desde_texto_verbatim`—, mismo mecanismo que `GEN2-E0`.
+
+Fila: `NC-0281`. **El CI de este PR sale rojo por línea base, no por `FAIL` nuevo**, y eso es lo que mesa audita al fusionar.
+
