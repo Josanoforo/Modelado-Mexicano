@@ -347,10 +347,15 @@ La nota de cierre del correctivo registra por separado el SHA publicado, el
 SHA cargado y si la activación fue manual o nació de un trigger real.
 
 **Comprobación efectiva del correctivo.** El 16/sep la tarea existente se
-actualizó con revisión `0fb94cbac6e0b3f8455404ddf5b30d859b6b590c`; quedó
+actualizó finalmente con revisión `3f759e5e2feee0d5b42892b88bb19b2b0b8542e6`; quedó
 `Ready`, principal `PC0`/`Interactive`/`Limited`, tres triggers y acción al
 launcher de `/home/pc0/mm-adq`. La activación de validación fue **manual** con
 `MM_TRAMO=derivacion DERIVA_PUBLICAR=0`, no un trigger programado: cuatro
 fases terminaron en exit 0 sobre el árbol efectivo `f0a9fba…` y la repetición
-inmediata terminó `NADA-QUE-HACER-YA-COMPLETADO` en 1 s. Detalle y cifras en
+inmediata terminó `NADA-QUE-HACER-YA-COMPLETADO` en 1 s. El trigger real de
+las 11:00 midió una carrera intermedia (SHA citado pero objeto aún ausente en
+el clon) y propagó exit 5 antes de derivar o adquirir; `3f759e5…` la corrige
+obteniendo de `origin` cualquier revisión autorizada ausente, con regresión en
+un clon que sólo sigue `main`. La comprobación final cargó ese SHA y repitió
+el gate con exit 0. Detalle y cifras en
 `forense/notas/2026-09-16-GEN2-DERIVADOS-CORRECTIVO-Y-DESPLIEGUE-cierre.md`.
