@@ -1,7 +1,8 @@
 # P01 · ENCIG 2023: fijar estimando y consumidor antes de enlazar
 
-**Compuerta:** `DECISION-REQUERIDA`.  
-**Prioridad:** 1 entre los paquetes propuestos: el dato ya está medido y sellado; falta una decisión pequeña pero material.  
+**Compuerta:** `DECISION-REQUERIDA`.
+
+**Prioridad:** 1 entre los paquetes propuestos: el dato ya está medido y sellado; falta una decisión pequeña pero material.
 **No es:** adopción automática ni reapertura de MEDICION-DEMANDA-3.
 
 ## 1. Resultado y consumidor

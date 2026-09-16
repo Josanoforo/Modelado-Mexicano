@@ -2,9 +2,11 @@
 
 **Resultado:** NC-0256 queda convertido en un mapa accionable de 153 slots y dos paquetes siguientes concretos. No se lanzó ninguno, no se tocó la cola y no se redefinió MEDICION-DEMANDA-3.
 
-**Base:** `origin/main = 9dffd6455c67e2ca99740e79f90be59a13f250e1`.  
-**Rama:** `acto/gen2-sin-candidato-rutas-1`.  
-**Worktree:** `/home/pc0/mm-gen2-sin-candidato-rutas-1`.  
+**Base:** `origin/main = 9dffd6455c67e2ca99740e79f90be59a13f250e1`.
+
+**Rama:** `acto/gen2-sin-candidato-rutas-1`.
+
+**Worktree:** `/home/pc0/mm-gen2-sin-candidato-rutas-1`.
 **Entorno:** repo-only; no corpus, microdato, adquisición, correo ni llamada experimental.
 
 ## 1 · Decisión de producción

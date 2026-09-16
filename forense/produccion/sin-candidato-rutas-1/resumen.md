@@ -1,7 +1,8 @@
 # GEN2-SIN-CANDIDATO-RUTAS-1 · decisión de producción
 
-**Corte:** `origin/main = 9dffd6455c67e2ca99740e79f90be59a13f250e1`, 16/sep/2026.  
-**Derivación:** `python3 tools/relevo_usos.py --json`, sin `--escribe`.  
+**Corte:** `origin/main = 9dffd6455c67e2ca99740e79f90be59a13f250e1`, 16/sep/2026.
+
+**Derivación:** `python3 tools/relevo_usos.py --json`, sin `--escribe`.
 **Universo:** 153 slots `SIN-CANDIDATO`, sin duplicados ni omisiones.
 
 ## Qué puede producirse ahora

@@ -1,7 +1,8 @@
 # P02 · ENNViH: obtener diseño oficial para cerrar RES-0029/0030
 
-**Compuerta:** `DECISION-REQUERIDA` (titular/envío) y después respuesta externa.  
-**Prioridad:** 2: reutiliza un expediente y payloads existentes; el bloqueo es documental, no de microdato.  
+**Compuerta:** `DECISION-REQUERIDA` (titular/envío) y después respuesta externa.
+
+**Prioridad:** 2: reutiliza un expediente y payloads existentes; el bloqueo es documental, no de microdato.
 **No es:** adquisición de un paquete ni autorización para enviar correo desde este acto.
 
 ## 1. Resultado y consumidor
