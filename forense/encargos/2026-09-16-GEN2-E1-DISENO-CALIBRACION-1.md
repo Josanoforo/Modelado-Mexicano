@@ -30,4 +30,6 @@ Mesa respondió en el mismo canal con el texto verbatim de `F-18` (y, en el mism
 
 ## CONSUMIDO
 
-Pendiente — se añade en el commit de cierre de esta sesión, citando el PR real.
+Ejecutado en [PR #811](https://github.com/Josanoforo/Modelado-Mexicano/pull/811), abierto contra `main` el 16/sep/2026 y **no fusionado por el ejecutor** (el merge es de mesa). Cascada de cierre completa: `ADR-524` en `canon/gobernanza-v1_15.md` (con enmienda histórica sobre el `Suite:` de `ADR-523`, cuyo conteo de WARN quedó vencido por `NC-0253`/`NC-0254`), anotación `L0` en `canon/estado-programa-v1_13.md`, los tres contadores mecánicos reconciliados por `tools/cierre_acto.py --aplica` (523→524), rótulo `GEN2-E1-DISENO-CALIBRACION-1` censado en `canon/registro-rotulos.tsv` con la colisión `GEN2-E1` declarada, exención T25 para los tres archivos propios que citan `E1` pelado (verbatim de `F-18`), y `NC-0253`/`NC-0254` nuevas en `forense/no-corrido.tsv` (ver `## NO-CORRIDO / RESERVAS` arriba) más la enmienda fechada sobre `NC-0239` (no se cierra: diseño ejecutado, corrida pendiente).
+
+**Suite:** `tests/check.py --baseline` → **3 FAIL · 4362 WARN**, LÍNEA BASE VERDE contra `tests/baseline.json`. Los 3 FAIL (`T06`×2, `T08`) son heredados del corpus documental, ajenos a este perímetro; los +2 WARN son `NC-0253`/`NC-0254`.

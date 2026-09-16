@@ -39,4 +39,4 @@ CONTADOR: cero mediciones propias, cero adopciones. Ambos puntos quedan registra
 
 ## CONSUMIDO
 
-Pendiente — se añade en el commit de cierre de `ACTO GEN2-E1-DISENO-CALIBRACION-1`, que es el acto que consume `F-18` de esta hoja.
+`F-18` consumido por `ACTO GEN2-E1-DISENO-CALIBRACION-1` en [PR #811](https://github.com/Josanoforo/Modelado-Mexicano/pull/811) (`forense/encargos/2026-09-16-GEN2-E1-DISENO-CALIBRACION-1.md`, `forense/theta-cargable-por-celda-diseno-e1-v1_0.md`), no fusionado por el ejecutor. `F-18` fue la compuerta verificada de ese acto; el diseño mismo vive en los archivos citados, no en esta hoja. `F-17` sigue sin consumir — ver `## NO-CORRIDO / RESERVAS` arriba y `NC-0254`.
