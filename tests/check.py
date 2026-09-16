@@ -2888,6 +2888,22 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # censó `ACTO GEN2-T7-CIERRE` al encolarlo), y `E5-0` ya figura por la
     # misma razón en las exenciones de `AUTO-MOTOR-1` y `GEN2-T9` de arriba.
     "forense/encargos/2026-09-08-GEN2-E5-0-SPECS-EJECUTABLES.md",
+    # ACTO GEN2-CROSSWALK-EJES-1, 16/sep/2026: encargo archivado VERBATIM
+    # (0-bis A.3), que no se edita para complacer un test (misma regla que
+    # rige el resto de esta lista). El token pelado que trae es `M2`, y NO es
+    # un rotulo de acto ni un habitante de espacio: es la etiqueta de uno de
+    # los fixes de `RONDA-M` (la misma serie que `S1`/`S2`/`M3`/`M5`/`M10`),
+    # y aparece porque el encargo cita la firma del sello de los cortes --
+    # "Firma M2: ADR-100(2)". Ese nombre esta CABLEADO en el codigo desde el
+    # sello: `milpa/src/celdas.py:41` declara el campo `firma_m2` del
+    # dataclass `Cortes`, `:83` lo puebla con "ADR-100(2) · ACTO LANE-A-E0-E5
+    # C1 · catalogo-momentos v0.1 §3", `milpa/src/pi.py:58` lo exige, y
+    # `milpa/catalogo-momentos-v0_1.md:111` lo usa en prosa ("como manda M2").
+    # No se censa en `canon/registro-rotulos.tsv` porque ese registro es de
+    # habitantes de espacio (actos), no de etiquetas de fix; darle prefijo
+    # aqui inventaria un rotulo que nadie reclama y, peor, rompería la cita
+    # literal del campo que el codigo sellado lleva.
+    "forense/encargos/2026-09-16-GEN2-CROSSWALK-EJES-1.md",
     # ACTO GEN2-CIERRES-CON-CITA, 9/sep/2026: encargo archivado VERBATIM
     # (0-bis A.3), que no se edita para complacer un test. Cita "el encargo
     # E5-0" al pedir sincronizar su token de cola -- procedencia del mismo
