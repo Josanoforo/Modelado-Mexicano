@@ -225,10 +225,28 @@ caso y lo acotó: *«P5 PARA y no tumba el lote»*. `NC-0271`.
 Todo lo escrito cae dentro del perímetro declarado. No se tocaron
 `milpa/src/theta.py`, `milpa/src/motor.py`, `milpa/procedencia.yaml`,
 `milpa/tramite.yaml`, `milpa/src/celdas.py` (`CORTES_C1`), specs, resultados ni
-el marcador — verificable en el diff del PR. `tests/check.py` se tocó
-**sólo** para la exención `T25` (el token pelado `M1`, precedente `ADR-530` con
-`M2`, misma serie y misma razón), con el comentario que explica de dónde sale
-cada mención.
+el marcador — verificable en el diff del PR. `tests/check.py` se tocó en dos
+sitios, los dos por la misma regla de `/acto` (un encargo archivado por A.3 no
+se edita para complacer un test), y ninguno cambia lo que la suite mide:
+
+- **`T25`** — el token pelado `M1`. Precedente exacto e inmediato: `ADR-530`
+  con `M2`, misma serie y misma razón. Se añaden el encargo y esta nota a
+  `_T25_ARCHIVOS_CONOCIDOS`, con el comentario que explica de dónde sale cada
+  mención y por qué `M1` no se censa en `canon/registro-rotulos.tsv`.
+- **`T03`** — dos citas colgantes, previstas en la primera corrida y **no
+  descubiertas tarde**. Precedente exacto: `GEN2-MANTENIMIENTO-Y-ARCHIVO-2`
+  (`NC-0219`), que resolvió este caso palabra por palabra. **(i)**
+  `D-THETA-DOCUMENTO-v1_1-post-adversarial.md` cuelga **a propósito**: es el
+  adjunto que no llegó, y fabricarlo para cerrar la cita sería inventar la
+  procedencia que P5 existe para registrar (`NC-0271`); esta nota lo cita por
+  la misma razón — decir que un adjunto no llegó exige nombrarlo. **(ii)**
+  `propuesta-motor-adaptativo-celda-v0_1` … `v0_5` **no es un nombre de
+  archivo** sino la notación de rango del encargo: los cinco existen y los
+  cinco reciben enmienda aquí. Falso positivo de forma.
+
+Sin estas dos exenciones la línea base queda **ROJA por 3 entradas `T03`**, que
+es el estado en que la primera corrida completa la dejó y que se corrigió antes
+de declarar nada.
 
 ## 5 · Lo que este acto NO hizo
 

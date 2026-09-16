@@ -379,6 +379,37 @@ _T03_DEPENDENCIAS_PENDIENTES = {
         "ADVERSARIAL-ASTRA-1-LECTURA-F5-2026-09-15.md",
         "acto.md",
     },
+    # ACTO GEN2-M1-ALCANCE-1, 16/sep/2026. Encargo archivado VERBATIM por A.3
+    # (no se edita para complacer al test) y su nota de cierre. Dos citas:
+    #
+    #  · `D-THETA-DOCUMENTO-v1_1-post-adversarial.md` -- el adjunto que el
+    #    encargo declara «viaja adjunto» (sha256 `8a6472a72631dfdc...`) y que
+    #    NO llego. Caso identico, palabra por palabra, al de
+    #    `GEN2-MANTENIMIENTO-Y-ARCHIVO-2` de arriba: la cita cuelga A
+    #    PROPOSITO y `NC-0271` la asienta como `PARO-PREMISA`. Fabricar el
+    #    archivo para cerrar la cita seria inventar la procedencia que P5
+    #    existe para registrar. La nota de cierre lo cita por la misma razon
+    #    -- decir que un adjunto no llego exige nombrarlo.
+    #  · `propuesta-motor-adaptativo-celda-v0_1..v0_5.md` -- NO es un nombre
+    #    de archivo sino la NOTACION DE RANGO con que el encargo nombra a los
+    #    cinco documentos de la serie. Los cinco existen (`v0_1`, `v0_2`,
+    #    `v0_3`, `v0_4`, `v0_5`) y los cinco reciben enmienda fechada en este
+    #    mismo acto; lo que no existe es el rango escrito como si fuera un
+    #    archivo. Falso positivo de forma, no referencia colgante.
+    "forense/encargos/2026-09-16-GEN2-M1-ALCANCE-1.md": {
+        "D-THETA-DOCUMENTO-v1_1-post-adversarial.md",
+        "propuesta-motor-adaptativo-celda-v0_1..v0_5.md",
+    },
+    "forense/notas/2026-09-16-GEN2-M1-ALCANCE-1-cierre.md": {
+        "D-THETA-DOCUMENTO-v1_1-post-adversarial.md",
+    },
+    # Misma causa, un piso arriba: `ADR-531` NOMBRA el adjunto que no llego
+    # -- es su pieza P5 y la razon de `NC-0271`. Un ADR que dijera «el
+    # adjunto no llego» sin decir cual seria un registro inauditable, que es
+    # exactamente lo contrario de para lo que existe la entrada.
+    "canon/gobernanza-v1_15.md": {
+        "D-THETA-DOCUMENTO-v1_1-post-adversarial.md",
+    },
 }
 
 def _normalize_version_dots(name):
