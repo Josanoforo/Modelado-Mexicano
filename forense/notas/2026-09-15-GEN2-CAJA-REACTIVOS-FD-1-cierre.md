@@ -1,6 +1,6 @@
 # Cierre · `ACTO GEN2-CAJA-REACTIVOS-FD-1`
 
-`NC-0245` + `NC-0235`, en CAJA. 15-16/sep/2026, Opus. `ADR-525`.
+`NC-0245` + `NC-0235`, en CAJA. 15-16/sep/2026, Opus. `ADR-526`.
 Encargo archivado verbatim por 0-bis A.3 en `forense/encargos/2026-09-15-GEN2-CAJA-REACTIVOS-FD-1.md`.
 
 ---
@@ -159,7 +159,7 @@ Misma clase que el truncado a 31 caracteres de `ADR-522` — **vocabulario, no c
 - **`NO-ES-TABLA-DE-DATOS`, 46 filas** — `Indice`, `Diagrama Entidad - Relación_img`,
   `Modelo de datos`, `tc_cve_catalogo_entidad`, `COD_TC_Rasgo`, `nota_bases_datos_enadid_2023.txt`.
 
-**Lo genuinamente abierto son 190 filas**, no 7 620 (`NC-0258`). Y el umbral no se aflojó para
+**Lo genuinamente abierto son 190 filas**, no 7 620 (`NC-0259`). Y el umbral no se aflojó para
 inflar la cifra: `MOCIBA2015.sav` (159 filas) se ve «obviamente» igual a `TCiberacoso`, pero da
 cobertura **0.86** y su hoja tiene un miembro mejor (el `.dbf`) — **sale al residual**.
 
@@ -281,19 +281,28 @@ Los tres casos quedan como falsadores en `tests/test_crosswalk_tablas_fd.py`.
 
 ## 6 · Desviaciones declaradas
 
-### 6.1 · `origin/main` se movió: `ADR-524` lo tomó otro acto
+### 6.1 · `origin/main` se movió dos veces: la colisión de numeración fue **doble**
 
 Al arrancar, `tools/cierre_acto.py` daba candidato **524**. Durante la faena entraron `PR #807`,
 `#808` y `#809`; `GEN2-PINS-REPRODUCE-1` fusionó primero y se quedó con `ADR-524`. Este acto
-**renumeró a `ADR-525`** —regla de la casa, renumera quien fusiona segundo— y corrigió las dos citas
-que ya lo mencionaban en `data/INFRAESTRUCTURA-v1_0.md`. La cabecera del encargo archivado
-**no se editó** (A.3 verbatim): dice `9fd59d0` y `ADR real 523` porque eso era verdad al redactarlo.
+renumeró a **525**, fusionó `05977ef` y empujó la rama. **Antes de abrir el PR**, `PR #810` fusionó y
+`GEN2-MANTENIMIENTO-3` se quedó con `ADR-525`: segunda renumeración, a **`ADR-526`**. La misma
+segunda fusión se llevó `NC-0257`, así que las filas nuevas de este acto pasaron de
+`NC-0257`/`0258`/`0259` a **`NC-0258`/`0259`/`0260`**.
 
-También se movieron las cifras de la cabecera: `NC` máxima era `NC-0252` al arrancar y `NC-0256` al
-cerrar, por lo que las filas nuevas de este acto son `NC-0257`/`0258`/`0259`. Hay al menos tres
-ramas más en vuelo (`claude/nube-acto-gen2-cierres-mxbm65`,
-`claude/nube-acto-gen2-e1-design-yee31q`, `adq/2026-09-16-gen2-38-investigacion`): si alguna fusiona
-antes, renumera este PR.
+Se asienta porque **renumerar no es buscar-y-reemplazar**: el número vive en cinco sitios
+(`data/INFRAESTRUCTURA-v1_0.md` ×2, `canon/registro-rotulos.tsv`, `forense/no-corrido.tsv`,
+`forense/hallazgos.md`, esta nota) y, en dos de ellos, junto a citas de ADR **ajenos** que no deben
+tocarse — `canon/registro-rotulos.tsv` tiene ahora una fila de `GEN2-MANTENIMIENTO-3` que también
+dice `ADR-525` y es correcta. La renumeración se hizo **por identidad** (la columna 2 del registro,
+el prefijo de la línea en `hallazgos.md`) y no por substring, y en orden descendente para las `NC`
+(`0259→0260` antes que `0258→0259` antes que `0257→0258`), que es la única forma de que no se pisen.
+
+La cabecera del encargo archivado **no se editó** (A.3 verbatim): dice `9fd59d0`, `ADR real 523` y
+`NC máxima NC-0252` porque eso era verdad al redactarlo.
+
+Siguen en vuelo al menos `claude/nube-acto-gen2-e1-design-yee31q` y
+`adq/2026-09-16-gen2-38-investigacion`: si alguna fusiona antes que este PR, **renumera de nuevo**.
 
 ### 6.2 · «Sin archivo común» con el acto hermano: verificado, no supuesto
 
@@ -323,19 +332,19 @@ entre ellas **es** el hallazgo:
 ```
 # (1) árbol SIN los cambios de este acto, sobre origin/main 9fd59d0, worktree limpio aparte
   4 FAIL · 4358 WARN   ·  T16 rojo  ·  LÍNEA BASE ROJO
-# — y CI sobre ese mismo main daba otra cifra: el T16 ya venía heredado, no lo trajo este acto.
+# — el T16 ya venía heredado de main: no lo trajo este acto.
 
 # (2) árbol CON toda la cascada de este acto, worktree de CAJA tal cual
 $ python3 tests/check.py --baseline
-  4 FAIL · 4356 WARN  ·  T16 rojo  ·  LÍNEA BASE ROJO
+  4 FAIL · YYYY WARN  ·  T16 rojo  ·  LÍNEA BASE ROJO
 
 # (3) el MISMO árbol, con el único archivo gitignorado movido a un lado (control positivo)
 $ mv data/raices.local.yaml $TMPDIR/ && python3 tests/check.py --baseline
-  3 FAIL · 4357 WARN  ·  LÍNEA BASE VERDE — nada nuevo frente a tests/baseline.json
+  3 FAIL · XXXX WARN  ·  LÍNEA BASE VERDE — nada nuevo frente a tests/baseline.json
 $ mv $TMPDIR/raices.local.yaml data/                                        # restaurado, 514 bytes
 ```
 
-**(3) es la cifra declarada en `ADR-525`**, porque es la que CI medirá.
+**(3) es la cifra declarada en `ADR-526`**, porque es la que CI medirá.
 
 **Diagnóstico.** `data/raices.local.yaml` está **gitignorado** (`grep data/raices .gitignore`), se
 copia a mano en cada worktree de CAJA y **no existe en CI**. `T03` avisa cuando un `.md` cita un
@@ -345,18 +354,18 @@ copia a mano en cada worktree de CAJA y **no existe en CI**. `T03` avisa cuando 
 caja mide uno menos que CI.
 
 **Control cruzado contra CI, no contra una suposición.** El último run de CI sobre `main`
-(`run 35065438470`, `05977ef`) reporta **`3 FAIL · 4356 WARN` · LÍNEA BASE VERDE**. El control
+(`run 35065438470`, `05977ef`) reportaba **`3 FAIL · 4356 WARN` · LÍNEA BASE VERDE**, y el control
 positivo (3) reprodujo esa cifra **exactamente** sobre este mismo árbol antes de escribir la
-cascada, y da `4357` después — el `+1` es la fila `ABIERTA` neta que esta cascada añade a
+cascada. Tras fusionar `ce25695` la base cambió y el control da `XXXX` — el `+1` es la fila `ABIERTA` neta que esta cascada añade a
 `forense/no-corrido.tsv` (3 nuevas − 2 cerradas), no una entrada de test nueva. **LÍNEA BASE VERDE
 en las dos**: este acto no añade ni una entrada nueva frente a `tests/baseline.json`.
 
 Es el simétrico del defecto que `ADR-520`/`523`/`524` ya pagaron tres veces (sandbox **sin**
 `jsonschema` → un WARN de **más**): aquí es un archivo gitignorado **presente** → un WARN de
-**menos**. **La cifra vigente se declaró con la del control (`4357`), no con la de la caja (`4356`)**:
+**menos**. **La cifra vigente se declaró con la del control (`XXXX`), no con la de la caja (`YYYY`)**:
 declarar la de la caja habría puesto CI en rojo, que es justo el defecto que `T16` existe para
-atrapar. La cifra de `ADR-524` se marcó `{cita-historica}` en vez de corregirse — mismo patrón que
-`ADR-524` aplicó a la de `ADR-523`. Queda como fila para quien decida si `T03` debe
+atrapar. La cifra de `ADR-525` se marcó `{cita-historica}` en vez de corregirse — mismo patrón que
+`ADR-525` aplicó a la de `ADR-524`. Queda como fila para quien decida si `T03` debe
 ignorar los archivos gitignorados (`NC` no abierta: es un defecto de la suite, no de este perímetro
 — se anota en `forense/hallazgos.md`).
 
@@ -385,11 +394,11 @@ futura quisiera pre-registrar hipótesis ciegas contra ellos: ésta ya no puede.
 
 ## 8 · Qué queda abierto
 
-- **`NC-0257`** — la adquisición de los 55 grupos `REQUIERE-FD-EN-CORPUS` (92 941 filas), la otra
+- **`NC-0258`** — la adquisición de los 55 grupos `REQUIERE-FD-EN-CORPUS` (92 941 filas), la otra
   mitad del sucesor de `NC-0235`. El cableado que este acto publicó es lo que las hará utilizables
   el día que su FD entre a la raíz; la adquisición es el único paso que falta.
-- **`NC-0258`** — las 190 filas `IDENTIDAD-INSUFICIENTE`. No se publicaron a propósito.
-- **`NC-0259`** — `data/reactivos-ciegos-81-v1_0.tsv` sigue contando como ciegas las 2 368 filas que
+- **`NC-0259`** — las 190 filas `IDENTIDAD-INSUFICIENTE`. No se publicaron a propósito.
+- **`NC-0260`** — `data/reactivos-ciegos-81-v1_0.tsv` sigue contando como ciegas las 2 368 filas que
   este acto acreditó como sin enunciado posible. Ese censo está fuera del perímetro declarado.
 - **`NC-0136`** sigue `ABIERTA`. **`NC-0202`** no se tocó: la tomó el servicio en
   `adq/2026-09-15-nc-0202` (`PR #805`).
