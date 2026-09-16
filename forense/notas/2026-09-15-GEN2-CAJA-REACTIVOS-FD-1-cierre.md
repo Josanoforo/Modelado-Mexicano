@@ -298,6 +298,8 @@ dice `ADR-525` y es correcta. La renumeración se hizo **por identidad** (la col
 el prefijo de la línea en `hallazgos.md`) y no por substring, y en orden descendente para las `NC`
 (`0259→0260` antes que `0258→0259` antes que `0257→0258`), que es la única forma de que no se pisen.
 
+Y la misma lección se cobró **dos veces en este acto**: al rellenar los marcadores `XXXX`/`YYYY` que sostenían la cifra de suite pendiente de medir, un reemplazo global sobre `canon/gobernanza-v1_15.md` pisó dos líneas ajenas que los usaban como **plantilla legítima** — `enoe_YYYY_...` en `ADR` de `MAESTRA31-E7` y `<0.XXXX>` en el de sesión ciega, que quedaron como `enoe_4347_...` y `<0.4348>`. Se detectó comparando el `diff` línea por línea contra `HEAD` antes de commitear —no después— y se revirtieron las dos. Un marcador de relleno tiene que ser **único en el archivo**, o no es marcador.
+
 La cabecera del encargo archivado **no se editó** (A.3 verbatim): dice `9fd59d0`, `ADR real 523` y
 `NC máxima NC-0252` porque eso era verdad al redactarlo.
 
@@ -336,11 +338,11 @@ entre ellas **es** el hallazgo:
 
 # (2) árbol CON toda la cascada de este acto, worktree de CAJA tal cual
 $ python3 tests/check.py --baseline
-  4 FAIL · YYYY WARN  ·  T16 rojo  ·  LÍNEA BASE ROJO
+  4 FAIL · 4347 WARN  ·  T16 rojo  ·  LÍNEA BASE ROJO
 
 # (3) el MISMO árbol, con el único archivo gitignorado movido a un lado (control positivo)
 $ mv data/raices.local.yaml $TMPDIR/ && python3 tests/check.py --baseline
-  3 FAIL · XXXX WARN  ·  LÍNEA BASE VERDE — nada nuevo frente a tests/baseline.json
+  3 FAIL · 4348 WARN  ·  LÍNEA BASE VERDE — nada nuevo frente a tests/baseline.json
 $ mv $TMPDIR/raices.local.yaml data/                                        # restaurado, 514 bytes
 ```
 
@@ -356,13 +358,13 @@ caja mide uno menos que CI.
 **Control cruzado contra CI, no contra una suposición.** El último run de CI sobre `main`
 (`run 35065438470`, `05977ef`) reportaba **`3 FAIL · 4356 WARN` · LÍNEA BASE VERDE**, y el control
 positivo (3) reprodujo esa cifra **exactamente** sobre este mismo árbol antes de escribir la
-cascada. Tras fusionar `ce25695` la base cambió y el control da `XXXX` — el `+1` es la fila `ABIERTA` neta que esta cascada añade a
+cascada. Tras fusionar `ce25695` la base cambió y el control da `4348` — el `+1` es la fila `ABIERTA` neta que esta cascada añade a
 `forense/no-corrido.tsv` (3 nuevas − 2 cerradas), no una entrada de test nueva. **LÍNEA BASE VERDE
 en las dos**: este acto no añade ni una entrada nueva frente a `tests/baseline.json`.
 
 Es el simétrico del defecto que `ADR-520`/`523`/`524` ya pagaron tres veces (sandbox **sin**
 `jsonschema` → un WARN de **más**): aquí es un archivo gitignorado **presente** → un WARN de
-**menos**. **La cifra vigente se declaró con la del control (`XXXX`), no con la de la caja (`YYYY`)**:
+**menos**. **La cifra vigente se declaró con la del control (`4348`), no con la de la caja (`4347`)**:
 declarar la de la caja habría puesto CI en rojo, que es justo el defecto que `T16` existe para
 atrapar. La cifra de `ADR-525` se marcó `{cita-historica}` en vez de corregirse — mismo patrón que
 `ADR-525` aplicó a la de `ADR-524`. Queda como fila para quien decida si `T03` debe
