@@ -1,0 +1,21 @@
+{
+  "naturaleza": "SINTETICO-NO-MEDICION",
+  "prohibido_interpretar_como_resultado": true,
+  "mociba": [
+    {"id": "elegible-si", "elegible": true, "respuesta": 1, "peso": 2.0},
+    {"id": "elegible-no", "elegible": true, "respuesta": 2, "peso": 1.0},
+    {"id": "missing", "elegible": true, "respuesta": "b", "peso": 100.0},
+    {"id": "salto", "elegible": false, "respuesta": null, "peso": 100.0}
+  ],
+  "issp": [
+    {"respuesta": 1, "significado": "familiares_o_amigos_cercanos"},
+    {"respuesta": 2, "significado": "otras_personas"},
+    {"respuesta": 8, "significado": "no_puede_elegir"}
+  ],
+  "familias": [
+    {"familia_id": "R01", "id_celda": "ola-1", "error_pp": 2.0},
+    {"familia_id": "R01", "id_celda": "ola-2", "error_pp": 4.0},
+    {"familia_id": "R09", "id_celda": "sexo-1", "error_pp": null},
+    {"familia_id": "R09", "id_celda": "sexo-2", "error_pp": 3.0}
+  ]
+}
