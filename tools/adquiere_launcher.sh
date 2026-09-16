@@ -106,6 +106,23 @@ fi
 OBJETIVO="origin/main"
 MODO="main"
 if [ -n "$REVISION_SOLICITADA" ]; then
+  # La tarea puede dispararse inmediatamente después de ser actualizada. El
+  # SHA ya está publicado, pero un clon que sólo sigue `main` aún puede no
+  # tener su objeto. Resolverlo aquí evita una carrera entre instalación y un
+  # fetch manual de la rama del despliegue.
+  if ! git cat-file -e "${REVISION_SOLICITADA}^{commit}" 2>/dev/null; then
+    FASE="LAUNCHER-FETCH-REVISION"
+    launcher_heartbeat "EN-CURSO" "-" || true
+    launcher_log "DESPLIEGUE: revisión ausente localmente; obteniendo ${REVISION_SOLICITADA}"
+    set +e
+    git fetch origin "$REVISION_SOLICITADA" >>"$LAUNCH_LOG" 2>&1
+    CODIGO_FETCH_REVISION=$?
+    set -e
+    if [ "$CODIGO_FETCH_REVISION" -ne 0 ]; then
+      MOTIVO_CIERRE="git-fetch-revision-autorizada"
+      exit "$CODIGO_FETCH_REVISION"
+    fi
+  fi
   if git merge-base --is-ancestor "$REVISION_SOLICITADA" origin/main 2>/dev/null; then
     MODO="main-contiene-revision"
   else

@@ -149,6 +149,37 @@ class RamaYFallosTest(unittest.TestCase):
 
 
 class LauncherTest(unittest.TestCase):
+    def test_revision_publicada_ausente_se_obtiene_antes_del_checkout(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td); bare = root / "origin.git"; seed = root / "seed"; clone = root / "clone"
+            marker = root / "deriva-ejecutada"
+            self.assertEqual(run("git", "init", "--bare", str(bare)).returncode, 0)
+            self.assertEqual(run("git", "clone", str(bare), str(seed)).returncode, 0)
+            run("git", "config", "user.email", "fixture@example.invalid", cwd=seed)
+            run("git", "config", "user.name", "Fixture", cwd=seed)
+            (seed / "tools").mkdir(); (seed / "forense/adq-log/estado").mkdir(parents=True)
+            shutil.copy2(LAUNCHER, seed / "tools/adquiere_launcher.sh")
+            (seed / "tools/deriva_cron.sh").write_text(
+                f"#!/bin/sh\ntouch '{marker}'\nexit 0\n", encoding="utf-8")
+            (seed / "tools/deriva_cron.sh").chmod(0o755)
+            run("git", "add", ".", cwd=seed); run("git", "commit", "-m", "main", cwd=seed)
+            run("git", "branch", "-M", "main", cwd=seed); run("git", "push", "-u", "origin", "main", cwd=seed)
+            run("git", "switch", "-c", "despliegue", cwd=seed)
+            (seed / "revision").write_text("publicada\n", encoding="utf-8")
+            run("git", "add", "revision", cwd=seed); run("git", "commit", "-m", "revision", cwd=seed)
+            revision = run("git", "rev-parse", "HEAD", cwd=seed).stdout.strip()
+            run("git", "push", "origin", "despliegue", cwd=seed)
+            self.assertEqual(run("git", "clone", "--no-local", "--single-branch", "--branch", "main",
+                                 str(bare), str(clone)).returncode, 0)
+            self.assertNotEqual(run("git", "cat-file", "-e", f"{revision}^{{commit}}", cwd=clone).returncode, 0)
+            result = run("bash", "tools/adquiere_launcher.sh", cwd=clone, env={
+                "ADQ_DEPLOY_REVISION": revision, "MM_TRAMO": "derivacion",
+                "ADQ_DISPARADOR": "prueba",
+            })
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(run("git", "rev-parse", "HEAD", cwd=clone).stdout.strip(), revision)
+            self.assertTrue(marker.exists())
+
     def test_derivacion_corre_aunque_adquisicion_no_tenga_despacho(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td); (root / "tools").mkdir(); (root / "forense/adq-log/estado").mkdir(parents=True)
