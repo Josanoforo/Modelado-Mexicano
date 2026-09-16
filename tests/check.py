@@ -377,9 +377,11 @@ _T03_DEPENDENCIAS_PENDIENTES = {
     "forense/notas/2026-09-17-GEN2-CELDA-D-CAREO-1.md": {
         "D-THETA-DOCUMENTO-PARA-ADVERSARIAL-v1_0.md",
     },
-    "canon/gobernanza-v1_15.md": {
-        "D-THETA-DOCUMENTO-PARA-ADVERSARIAL-v1_0.md",
-    },
+    # (la entrada de `canon/gobernanza-v1_15.md` NO va aqui: ya existe una mas
+    #  abajo, de ACTO GEN2-M1-ALCANCE-1, y una segunda clave igual en un dict
+    #  literal SOMBREA a la primera en silencio. Se fusiona alli, no aqui --
+    #  defecto real, medido en este acto: la clave duplicada se escribio, la
+    #  suite siguió reportando el T03 de gobernanza, y solo `ast` lo delato.)
     "forense/encargos/cola/2026-09-11-GEN2-POST-723/27-GEN2-ENSAFI-MEDICION-DESCRIPTIVA-CON-DISENO.md": {
         "2026-09-11-GEN2-FUENTES-FINANCIERAS-CONTINUACION-EFECTIVA-cierre.md",
     },
@@ -430,8 +432,19 @@ _T03_DEPENDENCIAS_PENDIENTES = {
     # -- es su pieza P5 y la razon de `NC-0271`. Un ADR que dijera «el
     # adjunto no llego» sin decir cual seria un registro inauditable, que es
     # exactamente lo contrario de para lo que existe la entrada.
+    # ENMIENDA FECHADA 2026-09-16, ACTO GEN2-CELDA-D-CAREO-1 (ADR-533): el
+    # adjunto que `ADR-531` nombraba SI llego -- mesa lo cargo y este acto lo
+    # archivo en forense/notas/insumos-direccion/, con su sha verificado --, asi
+    # que esa primera cita ya NO cuelga y podria retirarse; se conserva porque
+    # retirarla es del acto que cierre NC-0271 entera, no de este. Se anade la
+    # que si cuelga hoy: `D-THETA-DOCUMENTO-PARA-ADVERSARIAL-v1_0.md`, la v1.0
+    # que el adversarial de Astra REVISA, derogada por su propia sucesora («la
+    # v1.0 se conserva como historia; esta v1.1 la sucede»). ADR-533 la nombra
+    # para explicar por que cuelga, y nombrar un archivo ausente para reportar
+    # su ausencia es justo lo que T03 no distingue de citarlo esperando leerlo.
     "canon/gobernanza-v1_15.md": {
         "D-THETA-DOCUMENTO-v1_1-post-adversarial.md",
+        "D-THETA-DOCUMENTO-PARA-ADVERSARIAL-v1_0.md",
     },
 }
 

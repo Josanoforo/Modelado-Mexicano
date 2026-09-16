@@ -324,7 +324,7 @@ CITAS `archivo:linea` DISTINTAS EN LA NOTA: 34 sobre 12 archivos -- 34 resuelven
 | cierre (1ª) | `3 FAIL · 4364 WARN` | ROJO, 5 nuevas | el acto archivó 4 adjuntos verbatim que citan dos documentos ausentes |
 | tras escribir el reporte | `3 FAIL · 4373 WARN` | ROJO, 9 nuevas | **nombrar los dos ausentes para reportarlos** creó 5 referencias colgantes más |
 | tras compactar la cita cruda | `3 FAIL · 4370 WARN` | ROJO, 9 nuevas | los nombres **truncados** que la salida imprime tampoco existen |
-| **mesa carga los dos adjuntos** | **`3 FAIL · 4360 WARN`** | **VERDE** | 8 de las 9 se cierran solas; la novena era otra cosa (§10.3) |
+| **mesa carga los dos adjuntos** | **`3 FAIL · 4358 WARN`** | **VERDE** | 8 de las 9 se cierran solas; la novena era otra cosa (§10.3) |
 
 ### 10.2 · Los dos adjuntos, archivados con su sha verificado
 
@@ -343,17 +343,27 @@ Archivar los dos cerró **8** de las 9. La novena apareció al hacerlo: el adver
 
 Pedírsela a mesa sería pedir historia derogada para cerrar una cita; fabricarla sería inventar procedencia. Se usa el mecanismo que el propio test documenta —`_T03_DEPENDENCIAS_PENDIENTES`, con la razón escrita, mismo patrón que `NC-0219`— para el adversarial (archivado **verbatim**, que no se edita) **y para los dos archivos donde este acto la nombra al explicar por qué cuelga**. Nombrar un archivo ausente para reportar su ausencia es lo que `T03` no sabe distinguir de citarlo esperando leerlo, y ése es el hallazgo reflexivo de §10.4: se usa el mecanismo documentado en vez de callar el nombre.
 
-### 10.4 · El hallazgo reflexivo, que sobrevive al cierre en verde
+### 10.4 · Un defecto silencioso, atrapado por `ast` y no por la suite
+
+Al declarar la dependencia pendiente de §10.3, la entrada de `canon/gobernanza-v1_15.md` **no tuvo efecto**: ya existía una clave con ese mismo nombre más abajo en el dict literal de `_T03_DEPENDENCIAS_PENDIENTES` (la que `ACTO GEN2-M1-ALCANCE-1` escribió), y **en un dict literal de Python una segunda clave igual sombrea a la primera en silencio**. La suite siguió reportando el `T03` de `gobernanza` sin decir por qué, y `python3 -c "import ast"` sobre el propio archivo fue lo que lo delató:
+
+```
+claves: 8 | duplicadas: ['canon/gobernanza-v1_15.md']
+```
+
+Corregido fusionando en la entrada que ya existía —no añadiendo una segunda—, con la enmienda fechada al lado. **Vale como falsador del propio mecanismo:** `_T03_DEPENDENCIAS_PENDIENTES` no avisa cuando alguien duplica una clave, y el modo de fallo es exactamente el peor —una exención escrita que no exime—. Queda dicho aquí, sin abrir fila: es una observación sobre el instrumento, y el instrumento no es de este perímetro.
+
+### 10.5 · El hallazgo reflexivo, que sobrevive al cierre en verde
 
 **Reportar una ausencia crea la referencia colgante que se está reportando.** `T03` no distingue «cita un archivo que esperaba leer» de «nombra un archivo para decir que nunca llegó». Se midió al chocar con el punto fijo, dos veces (tabla de §10.1). La salida no es callar el nombre —escribir un informe de ausencia sin nombrar lo ausente, para que un test no lo cuente, es escribir para complacer al test, justo lo que la regla de los encargos verbatim protege— sino nombrarlo y declarar la dependencia con su razón.
 
 **Y hay una segunda lección, más barata:** el adjunto que no viaja no es intendencia. Costó **9 `WARN`**, puso la línea base en rojo, obligó a un PARO-reporte y estuvo a punto de gastar una autorización de recongelado de mesa. Llegó, y se disolvió solo. `NC-0277` lo dice con fecha.
 
-### 10.5 · Cifra final
+### 10.6 · Cifra final
 
 ```
 ════════════════════════════════════════════════════════════════════════
-  3 FAIL · 4360 WARN
+  3 FAIL · 4358 WARN
 ════════════════════════════════════════════════════════════════════════
   LÍNEA BASE: VERDE contra tests/baseline.json (HEAD congelado 5e2ad5ce…)
 ```
