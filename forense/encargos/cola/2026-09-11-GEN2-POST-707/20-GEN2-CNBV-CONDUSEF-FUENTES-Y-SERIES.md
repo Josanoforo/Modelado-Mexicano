@@ -1,4 +1,6 @@
-ESTADO: CONSUMIDO — PR #717 abierto; ejecución y cierre archivados, merge reservado a mesa.
+ESTADO: CONSUMIDO — PR #717 (FUSIONADO a main, merge commit 7afe5352, 2026-09-11T21:29:29Z).
+BITACORA:
+- 2026-09-16 · CONSUMIDO · corregido por auditoría ACTO GEN2-VIGENCIA-DEUDA-1: la redacción "PR #717 abierto; merge reservado a mesa" ya no es cierta. `mcp__github__pull_request_read` (pullNumber=717) confirma `state: closed, merged: true, merged_at: 2026-09-11T21:29:29Z`; `git merge-base --is-ancestor 7afe5352 HEAD` confirma que el merge ya es ancestro de HEAD. Homónimo: `forense/encargos/2026-09-11-GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES.md`, NC-0163 (forense/no-corrido.tsv) corrobora.
 
 # Encargo 20 · fuentes financieras y series utilizables
 
