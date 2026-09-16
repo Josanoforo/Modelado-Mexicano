@@ -155,8 +155,8 @@ Cómo se neutraliza, y por qué así:
     eso sería decidir a qué espacio pertenece el rótulo, y decidir es de
     mesa (D-6/ADR-128).
   · Marcadores de `T22(b)` → `«marcador-T22-a»` / `«marcador-T22-b»`.
-    Aquí no hay forma de conservar el texto sin conservar el marcador,
-    así que se sustituye y se declara.
+    Se sustituye y se declara; para la alternativa que empieza por
+    `PROPUESTA`, se cambia sólo ese token y se conserva el resto del texto.
 
 Toda sustitución se CUENTA y se reporta en el pie del digesto: si un día
 son muchas, mesa lo ve. Y `--verifica-marcadores` (encendido por
@@ -250,6 +250,13 @@ def neutraliza(texto, cuenta):
 
     def _pen(m):
         cuenta.pendiente += 1
+        # `PROPUESTA.*mesa` puede nacer al ensamblar fragmentos ya
+        # neutralizados por separado (p. ej. dos columnas de una tabla).
+        # Si ocurre, conserva todo el contenido y sustituye solo el token
+        # que activa T22(b); para las otras alternativas se mantiene la
+        # representación histórica del marcador completo.
+        if m.group(0).startswith("PROPUESTA"):
+            return "«marcador-T22-b»" + m.group(0)[len("PROPUESTA"):]
         return "«marcador-T22-b»"
 
     texto = RE_MARCADOR_PENDIENTE.sub(_pen, texto)
@@ -2273,7 +2280,13 @@ def seccion_h(raiz, fecha, cuenta=None, base_nc_ref=None, tope_filas=25, tope_te
                 "| `id` | cambio | antes | después | sucesor | campos modificados (antes → después) |",
                 "|---|---|---|---|---|---|"]
         for rid, cambio, antes_e, despues_e, sucesor, detalle in filas_tabla[:tope]:
-            out.append(f"| `{rid}` | {cambio} | {antes_e} | {despues_e} | {sucesor} | {detalle} |")
+            # La unión puede crear un marcador que no existía dentro de
+            # ninguna celda: `PROPUESTA` al final de `sucesor` + `mesa` en
+            # el valor anterior repetido por `detalle`. Neutraliza también
+            # el producto ensamblado, sin borrar la fila ni su procedencia.
+            fila = (f"| `{rid}` | {cambio} | {antes_e} | {despues_e} | "
+                    f"{sucesor} | {detalle} |")
+            out.append(neutraliza(fila, cuenta))
         if len(filas_tabla) > tope:
             out.append(f"| … | **{len(filas_tabla) - tope} fila(s) más, omitidas por el "
                        f"tope de presentación (`--tope-lista`)** | | | | |")
