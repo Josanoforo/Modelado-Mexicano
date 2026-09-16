@@ -135,18 +135,53 @@ def cargar_B(procedencia):
     return Matriz(celdas=celdas)
 
 
-def g(matriz, theta, celda):
+def g(matriz, theta, celda, generadores=None):
     """`g(x) = B·θ(x)`, por generador.
 
     Lanza `SinMagnitud` si una celda participante no tiene número. NO la trata
     como cero: un parámetro sin magnitud no es un parámetro nulo, y hacerlo
     pasar por cero es la manera silenciosa de que el modelo produzca un número
     que nadie sostiene.
+
+    `generadores` acota QUIÉN PARTICIPA. Con `None` participa `B` entera y el
+    contrato es el de siempre, letra por letra: `G5 × familismo_obligacion` sin
+    magnitud vuelve inejecutable cualquier llamada. Con un subconjunto,
+    "participante" quiere decir lo que la palabra dice — las celdas de esos
+    generadores y nada más —, y una celda sin magnitud de un generador que
+    nadie pidió no bloquea un cómputo en el que no entra.
+
+    Por qué el argumento existe (`ADR-531`, `ACTO GEN2-M1-ALCANCE-1`, firma de
+    mesa del 17/sep/2026 sobre `M1`): el estimador es de la celda, y el cómputo
+    matricial es la forma de composición del ejecutable, no el estimador de
+    ninguna celda. Un `g()` que exige `B` completa para responder por `G1`
+    convierte la composición en precondición global — que es justo lo que la
+    firma niega. El defecto era además visible sin la firma: el docstring
+    prometía "celda participante" en singular y el código recorría toda `B`.
+
+    Un generador que no está en `B` es un error, no un cómputo vacío: devolver
+    `{}` ante un nombre mal escrito sería la misma mentira silenciosa que el
+    cero de `SinMagnitud`, un piso más arriba.
     """
+    if generadores is None:
+        participantes = matriz.celdas
+    else:
+        pedidos = frozenset(generadores)
+        ausentes = pedidos - set(matriz.generadores)
+        if ausentes:
+            raise KeyError(
+                f"generador(es) que no existen en `B`: {sorted(ausentes)}. "
+                f"`B` tiene {list(matriz.generadores)}. Un cómputo vacío no "
+                f"es una respuesta a una pregunta mal escrita."
+            )
+        participantes = {
+            clave: celda_B for clave, celda_B in matriz.celdas.items()
+            if clave[0] in pedidos
+        }
+
     # La comprobación de contrato va ANTES de tocar θ, no entremezclada con
     # el cómputo: si depende del orden de iteración, es una comprobación que
     # a veces no ocurre.
-    for celda_B in matriz.celdas.values():
+    for celda_B in participantes.values():
         if isinstance(celda_B, CoeficienteSinMagnitud):
             raise SinMagnitud(
                 f"`{celda_B.generador} × {celda_B.nombre}`: "
@@ -154,7 +189,7 @@ def g(matriz, theta, celda):
                 f"forma es acto propio."
             )
     salida = {}
-    for (gen, nombre), celda_B in matriz.celdas.items():
+    for (gen, nombre), celda_B in participantes.items():
         valor_theta = theta.valor(nombre, celda)
         salida[gen] = salida.get(gen, 0.0) + celda_B.valor * valor_theta
     return salida
