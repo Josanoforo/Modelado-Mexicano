@@ -124,6 +124,17 @@ TABLAS = {
     # CABLEAR-CAPA-FD-YA-EN-REPO y no lo suma a la cobertura del overlay.
     "fd": REPO_ROOT / "data" / "inventario-fd-v1_1.tsv",
     "fd_ext": REPO_ROOT / "data" / "inventario-fd-ext-v1_0.tsv",
+    # ACTO GEN2-RESIDUAL-81-1 (16/sep/2026, NC-0235): las claves `fd`/`fd_ext` de
+    # arriba exponen el DESCRIPTOR (una fila por hoja y variable del FD). Esta
+    # expone las IDENTIDADES DEL ÍNDICE que ese descriptor resuelve por identidad
+    # exacta instrumento+tabla+variable: 7 892 de las 16 815 filas ciegas de los 18
+    # grupos con FD limpio, con `id_origen` al índice histórico y el vocabulario de
+    # `contexto-v1_1`. Buscar aquí devuelve la fila del payload, no la del FD.
+    # MISMO CONVENIO: clave EXPLÍCITA, nunca implícita en `vigente` ni en `--fuente`.
+    # No entra en el overlay del lote y no mueve su cobertura (43 020/55 895): son
+    # otros instrumentos y su `texto_tipo` es ETIQUETA_VARIABLE, nunca la pregunta
+    # literal del cuestionario.
+    "fd_recuperado": REPO_ROOT / "data" / "inventario-reactivos-fd-recuperado-v1_0.tsv",
 }
 MANIFIESTO = REPO_ROOT / "data" / "manifiesto.yaml"
 
