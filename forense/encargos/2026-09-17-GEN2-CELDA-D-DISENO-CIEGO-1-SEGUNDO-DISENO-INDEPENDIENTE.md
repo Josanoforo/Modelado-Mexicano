@@ -29,3 +29,26 @@ CONTADOR: cero mediciones, dicho sin disfraz; produce diseño. LO QUE NO HACE: n
 | **Dos citas del árbol encontradas vencidas y NO corregidas** | `FUERA-DE-PERÍMETRO`. (a) `data/INFRAESTRUCTURA-v1_0.md:159` dice que `celdas-d/` tiene «hoy **2 archivos**»; hay **3** desde el 13/ago. (b) `milpa/tramite.yaml:712` cita el origen de la segmentación como `milpa/tramite-ola5-propuesta-v0.yaml:1162-1346`; la entrada vive hoy en `:1415-1599` — resuelve por `id`, no por línea. Ninguno de los dos archivos está en la lista de este acto | Dos negativos falsos en potencia para quien derive de esas líneas. Ninguno afecta a `P1`–`P4`: ambas se re-derivaron por comando aquí | `SIN-ASIGNAR` — se asientan en la nota (§0.2, módulo de auditoría v2.1) para que un acto de mantenimiento las tome |
 | **`P1`, la pieza «una sola ganadora»** | **DISTINTO DE LO PEDIDO porque el propio `P1` lo previó.** Se entrega la tabla de eliminación completa (12 grupos × 7 criterios) y **cero ganadoras**, más las dos más cercanas nombradas con qué les falta exactamente | Quien esperara una celda para lanzar no la tiene. Quien quiera lanzarla sabe hoy, por comando, las cuatro cosas que faltan y quién las cierra (nota §1.7) | `DIFERIDO-A: GEN2-CELDA-D-CAREO-1` |
 | **El guion de las 185 anclas de la pasada 2 de re-verificación** | `FUERA-DE-PERÍMETRO` — vive en el scratchpad de la sesión; `tools/` no está en la lista de este acto | La pasada 1 (**78/78** citas) **sí** es reproducible desde la nota, con el comando inline. La pasada 2 se puede reconstruir leyendo la nota, que cita cada ancla en su sitio | `SIN-ASIGNAR` — si mesa quiere el verificador de citas como herramienta del árbol, es acto propio |
+
+## CONSUMIDO
+
+Ejecutado por [`PR #823`](https://github.com/Josanoforo/Modelado-Mexicano/pull/823)
+(`ACTO GEN2-CELDA-D-DISENO-CIEGO-1`, rama `claude/admiring-meitner-yghskh`, 17/sep/2026,
+NUBE `cloud_default`, Opus, sin corpus montado). `ADR-532`.
+
+Entregable: `forense/notas/2026-09-17-GEN2-CELDA-D-DISENO-CIEGO-1.md` (P1, P3 y P4; **P2
+no se escribe**, por la instrucción literal de P1 — ninguna candidata pasa los siete
+criterios). Cascada: `canon/gobernanza-v1_15.md` `ADR-532` · `canon/estado-programa-v1_13.md`
+L0 · `canon/registro-rotulos.tsv` (`GEN2 · GEN2-CELDA-D-DISENO-CIEGO-1`) ·
+`tests/check.py` sólo por `T25`. Suite: **3 FAIL · 4351 WARN**, línea base **VERDE**, neto
+del acto cero `FAIL` y cero `WARN` nuevos.
+
+Sync a mitad del acto: `GEN2-M1-ALCANCE-1` fusionó (`PR #822`, `ADR-531`), este acto
+renumeró `531` → `532` — renumera quien fusiona segundo — y aplicó la otra mitad de la
+instrucción del encargo (citar su ADR y leer las propuestas con sus enmiendas). La firma
+verbatim de `M1` llegó al árbol y coincide en sustancia con la paráfrasis contra la que
+este diseño se escribió.
+
+Sucesor: `GEN2-CELDA-D-CAREO-1` — archiva el diseño de dirección (sha256 `c7d55e61…`, A.3)
+junto a éste, carea fila por fila y escribe la hoja de decisión para mesa. **Ahí nacen las
+filas FP/NC.**
