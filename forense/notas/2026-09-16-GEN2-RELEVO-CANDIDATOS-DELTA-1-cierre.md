@@ -42,7 +42,8 @@ anclan a specs, consumidores y notas publicadas con hash.
 `corrida0 delta` examinó 12 parejas: **11 comparables, 1 incompatible; 11
 deltas calculados y 1 delta sustantivo rechazado**. Referencias legacy y GEN2,
 CALC/RESULT, hashes de spec/resultados/sello, generación y comparabilidad
-quedan en `contrato-gen2-delta-1.yaml` y `delta.{json,tsv,md}`.
+quedan en `contrato-gen2-delta-1.yaml` y
+`relevo-candidatos-delta-1.{json,tsv,md}`.
 
 La exclusión material es `RES-0028`: el legacy `0.705687` es
 `1-p(C2,U4)` tras colapso a **persona**; el candidato automático
@@ -89,7 +90,8 @@ Directorio `forense/relevo-usos/candidatos-delta-1/`:
 - `relevo-usos-lectura.json`, `seleccion-candidatos.{json,tsv}` y
   `seleccion-meta.json`;
 - `contrato-gen2-delta-1.yaml`;
-- `delta.{json,tsv,md}`, escritos por el CLI canónico;
+- `relevo-candidatos-delta-1.{json,tsv,md}`, escritos por el CLI canónico en
+  un destino temporal e importados byte a byte bajo el rótulo propio;
 - `tabla-decision.tsv` y `decisiones-propuestas.md`.
 
 Envoltorio: `tools/relevo_candidatos_delta.py`. Regresión material:
@@ -103,8 +105,8 @@ Comandos ejecutados:
 ```bash
 python3 tools/relevo_usos.py --json
 python3 tools/relevo_candidatos_delta.py --destino forense/relevo-usos/candidatos-delta-1
-python3 tools/corrida0.py delta --entrada forense/relevo-usos/candidatos-delta-1/contrato-gen2-delta-1.yaml --formato humano --salida-dir forense/relevo-usos/candidatos-delta-1
-python3 tools/relevo_candidatos_delta.py --destino forense/relevo-usos/candidatos-delta-1 --delta-json forense/relevo-usos/candidatos-delta-1/delta.json
+python3 tools/corrida0.py delta --entrada forense/relevo-usos/candidatos-delta-1/contrato-gen2-delta-1.yaml --formato humano --salida-dir forense/relevo-usos/candidatos-delta-1/_corrida0_delta
+python3 tools/relevo_candidatos_delta.py --destino forense/relevo-usos/candidatos-delta-1 --delta-json forense/relevo-usos/candidatos-delta-1/_corrida0_delta/delta.json
 python3 tests/test_relevo_candidatos_delta.py
 ```
 

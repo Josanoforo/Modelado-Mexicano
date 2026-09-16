@@ -486,6 +486,24 @@ def escribe_decisiones(destino: Path, seleccion: list[dict], familias: dict[str,
     return tabla
 
 
+def importa_delta(destino: Path, delta_json: Path) -> Path:
+    """Copia los outputs bajo nombres únicos y retira el staging propio."""
+    fuentes = {ext: delta_json.with_suffix(f".{ext}")
+               for ext in ("json", "tsv", "md")}
+    faltan = [str(r) for r in fuentes.values() if not r.is_file()]
+    if faltan:
+        raise RuntimeError("faltan outputs hermanos de corrida0 delta: " + ", ".join(faltan))
+    for ext, fuente in fuentes.items():
+        (destino / f"relevo-candidatos-delta-1.{ext}").write_bytes(
+            fuente.read_bytes())
+    staging = destino / "_corrida0_delta"
+    if delta_json.parent.resolve() == staging.resolve():
+        for fuente in fuentes.values():
+            fuente.unlink()
+        staging.rmdir()
+    return destino / "relevo-candidatos-delta-1.json"
+
+
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--destino", required=True, type=Path,
@@ -498,8 +516,10 @@ def main(argv=None) -> int:
     print("ids=" + ",".join(f["resultado_id"] for f in seleccion))
     print(f"contrato={args.destino / 'contrato-gen2-delta-1.yaml'}")
     if args.delta_json:
+        delta_publicado = importa_delta(
+            args.destino.resolve(), args.delta_json.resolve())
         tabla = escribe_decisiones(args.destino.resolve(), seleccion, familias,
-                                   args.delta_json.resolve())
+                                   delta_publicado)
         print("bins=" + ",".join(
             f"{b}:{sum(1 for f in tabla if f['bin'] == b)}" for b in ("1", "2", "3")))
     return 0
