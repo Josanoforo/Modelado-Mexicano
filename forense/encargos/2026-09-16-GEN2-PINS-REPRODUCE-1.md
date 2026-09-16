@@ -45,4 +45,7 @@ fuera de bin 1, cero re-escritura de las tres vistas canónicas de
 de cierre §Entorno).
 
 `tests/check.py --baseline`: **LÍNEA BASE VERDE**, 3 FAIL (heredados del
-corpus documental, `T06`×2/`T08`, ajenos a este perímetro) · 4357 WARN.
+corpus documental, `T06`×2/`T08`, ajenos a este perímetro) · 4356 WARN. La
+primera medición local dio 4357 porque el sandbox de esta sesión no tenía
+`jsonschema` (declarada en `requirements.txt`); CI lo atrapó (`PR #809`),
+se instaló la dependencia y se re-midió hasta reproducir al runner exacto.
