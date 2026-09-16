@@ -73,6 +73,8 @@ Transcrito, verbatim, de `forense/notas/2026-09-11-GEN2-39-REACTIVOS-RESIDUALES-
 - `NC-0100`: acreditar las 32 identidades DBF restantes con correspondencia exacta; no copiar texto por nombre entre olas.
 - `NC-0136`: continuar los 81 grupos externos y los 12,875 residuales del lote conforme a su causa explícita.
 
-## CONSUMIDO · PR #742
+## CONSUMIDO · PR #737
 
 Ejecutado y cerrado por `ACTO GEN2-CONSUMIDO-RETRO-3` (`forense/encargos/2026-09-14-GEN2-CONSUMIDO-RETRO-3.md`), firma de mesa 14/sep/2026.
+
+**Corrección fechada 2026-09-16 (`ACTO GEN2-MANTENIMIENTO-3`, `NC-0250`):** esta sección citaba `PR #742` — trasplante erróneo del retro-sello en lote: `PR #742` nunca tocó este archivo (trajo, en cambio, el Encargo 39, de nombre parecido); el PR real es `#737`, confirmado por diff contra primer padre y por la cabecera original del archivo, arriba (`Estado: CONSUMIDO por PR #737`). Medido y corregido primero en la copia de cola (`forense/encargos/cola/2026-09-11-GEN2-POST-726/34-GEN2-REACTIVOS-CON-TEXTO-Y-BUSQUEDA.md`) por `ACTO GEN2-VIGENCIA-DEUDA-1` (nota de cierre §3.1 punto 5, `NC-0250`); este acto completa la corrección en el archivado, que era la mitad fuera de su perímetro.
