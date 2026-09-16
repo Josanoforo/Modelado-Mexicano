@@ -108,12 +108,12 @@ class RamaYFallosTest(unittest.TestCase):
                 source '{RUNNER}'
                 cd '{work}'
                 RAMA='derivados/2026-09-16'; LOGFILE='{root / 'sync.log'}'
-                sincroniza_rama_diaria '{main}'
+                sincroniza_rama_diaria '{main}' origin/main
                 git merge-base --is-ancestor '{daily}' HEAD
                 git merge-base --is-ancestor '{main}' HEAD
                 git push origin HEAD:refs/heads/derivados/2026-09-16
                 first=$(git rev-parse HEAD)
-                sincroniza_rama_diaria '{main}'
+                sincroniza_rama_diaria '{main}' origin/main
                 test "$first" = "$(git rev-parse HEAD)"
             """)
             result = run("bash", "-c", script, cwd=ROOT)

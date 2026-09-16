@@ -117,7 +117,7 @@ PYEOF
 }
 
 sincroniza_rama_diaria() {
-  local objetivo="$1" existe_rc
+  local objetivo="$1" main_ref="${2:-origin/main}" existe_rc
   set +e
   git ls-remote --exit-code --heads origin "$RAMA" >>"$LOGFILE" 2>&1
   existe_rc=$?
@@ -125,9 +125,11 @@ sincroniza_rama_diaria() {
   if [ "$existe_rc" -eq 0 ]; then
     git fetch origin "+refs/heads/${RAMA}:refs/remotes/origin/${RAMA}" >>"$LOGFILE" 2>&1 || return 1
     git checkout --detach "origin/${RAMA}" >>"$LOGFILE" 2>&1 || return 1
+    git merge --no-edit "$main_ref" >>"$LOGFILE" 2>&1 || return 1
     git merge --no-edit "$objetivo" >>"$LOGFILE" 2>&1 || return 1
   elif [ "$existe_rc" -eq 2 ]; then
     git checkout --detach "$objetivo" >>"$LOGFILE" 2>&1 || return 1
+    git merge --no-edit "$main_ref" >>"$LOGFILE" 2>&1 || return 1
   else
     return "$existe_rc"
   fi
@@ -143,8 +145,8 @@ prepara_worktree_aislado() {
   git -C "$SOURCE_REPO_DIR" cat-file -e "${objetivo}^{commit}" 2>/dev/null || {
     log "PARO-REVISION: no existe ${objetivo}."; return 1;
   }
-  git -C "$SOURCE_REPO_DIR" merge-base --is-ancestor "$MAIN_SHA" "$objetivo" || {
-    log "PARO-REVISION: ${objetivo} no contiene origin/main=${MAIN_SHA}."; return 1;
+  git -C "$SOURCE_REPO_DIR" merge-base "$MAIN_SHA" "$objetivo" >/dev/null 2>&1 || {
+    log "PARO-REVISION: ${objetivo} no comparte historia con origin/main=${MAIN_SHA}."; return 1;
   }
   corpus="${DERIVA_CORPUS_ROOT:-$(readlink -f "$SOURCE_REPO_DIR/data/raw" 2>/dev/null || true)}"
   [ -d "$corpus" ] && [ -n "$(find "$corpus" -mindepth 1 -maxdepth 1 -print -quit 2>/dev/null)" ] || {
@@ -163,7 +165,7 @@ prepara_worktree_aislado() {
   ln -s "$corpus" "$REPO_DIR/data/raw"
   cd "$REPO_DIR"
 
-  if ! sincroniza_rama_diaria "$objetivo"; then
+  if ! sincroniza_rama_diaria "$objetivo" origin/main; then
     CONSERVA_WORKTREE=1
     log "PARO-SINCRONIZACION: no se pudo combinar ${RAMA} con ${objetivo}; worktree conservado en ${WORKTREE_TEMP}."
     return 1
