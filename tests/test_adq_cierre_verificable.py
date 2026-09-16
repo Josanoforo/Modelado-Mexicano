@@ -132,10 +132,80 @@ def prueba_adquisicion_exige_archivo_manifiesto_pertinente():
         r = D.valida_resultado_adquisicion(caso, _seleccion(["OBJ"]),
                                             comprobar_remoto=False, raiz=raiz)
         afirma(r["valido"] and r["cierre_exitoso"], f"adquisición acreditada fue rechazada: {r}")
+        caso["publicacion_trabajo"]["referencias"].append({
+            "ref": "https://github.com/Josanoforo/Modelado-Mexicano/pull/805",
+            "commit": "a" * 40,
+        })
+        with mock.patch.object(D, "_corre", return_value=(
+                0, f"{'a' * 40}\trefs/heads/adq/fixture\n", "")):
+            r_url = D.valida_resultado_adquisicion(
+                caso, _seleccion(["OBJ"]), comprobar_remoto=True, raiz=raiz)
+        afirma(r_url["valido"],
+               f"enlace informativo invalidó la ref Git exacta que sí estaba presente: {r_url}")
+        caso["publicacion_trabajo"]["referencias"] = [
+            caso["publicacion_trabajo"]["referencias"][-1]]
+        r_solo_url = D.valida_resultado_adquisicion(
+            caso, _seleccion(["OBJ"]), comprobar_remoto=True, raiz=raiz)
+        afirma(not r_solo_url["valido"] and any(
+            "refs/heads" in e for e in r_solo_url["errores"]),
+            f"URL sin ref Git exacta acreditó publicación: {r_solo_url}")
+        caso["publicacion_trabajo"]["referencias"] = [{
+            "ref": "refs/heads/adq/fixture", "commit": "a" * 40}]
         caso["resultados_por_objeto"][0]["ids_manifiesto"] = []
         r2 = D.valida_resultado_adquisicion(caso, _seleccion(["OBJ"]),
                                              comprobar_remoto=False, raiz=raiz)
         afirma(not r2["valido"], f"adquisición sin manifiesto fue aceptada: {r2}")
+    finally:
+        td.cleanup()
+
+
+def prueba_vinculo_estructurado_exacto_ihsn_enpol():
+    td, raiz = _raiz_fixture()
+    try:
+        objetos = [
+            ("IHSN_MEX_2009_ENNVIH3_METADATA",
+             "ihsn_mex_2009_ennvih3_metadata", "ihsn.json", b"{\"metadata\": true}"),
+            ("ENPOL_2016_MICRODATOS_CSV",
+             "enpol2016_bd_csv_zip", "enpol.zip", b"PK ENPOL fixture"),
+        ]
+        manifiesto = []
+        resultados = []
+        filas = ["fuente_canonica\testado_A4A5\tids_manifiesto\tnota"]
+        for objeto, mid, archivo, contenido in objetos:
+            payload = raiz / "data" / "raw" / archivo
+            payload.write_bytes(contenido)
+            sha = hashlib.sha256(contenido).hexdigest()
+            manifiesto.append(
+                f"- id: {mid}\n  usado_para: descripción humana sin repetir el objeto\n"
+                f"  archivo: {archivo}\n  sha256: {sha}\n"
+                f"  tamano_bytes: {len(contenido)}\n")
+            filas.append(f"{objeto}\tOBTENIDO\t{mid}\tregistrado")
+            resultados.append({
+                "objeto_id": objeto, "desenlace": "adquirido",
+                "evidencias": ["data/manifiesto.yaml"], "intentos": [],
+                "archivos": [f"data/raw/{archivo}"], "ids_manifiesto": [mid],
+            })
+        (raiz / "data" / "manifiesto.yaml").write_text(
+            "".join(manifiesto), encoding="utf-8")
+        cola = raiz / "data" / "curacion-registro" / "cola-adquisicion-registro.tsv"
+        cola.write_text("\n".join(filas) + "\n", encoding="utf-8")
+        seleccion = _seleccion([x[0] for x in objetos])
+        caso = _resultado([x[0] for x in objetos], estado="adquisicion_obtenida",
+                           resultados=resultados)
+        r = D.valida_resultado_adquisicion(
+            caso, seleccion, comprobar_remoto=False, raiz=raiz)
+        afirma(r["valido"] and r["cierre_exitoso"],
+               f"IHSN/ENPOL con relación canónica exacta fueron rechazados: {r}")
+
+        filas[1] = (f"{objetos[0][0]}\tOBTENIDO\t"
+                    f"prefijo_{objetos[0][1]}_distinto\tregistrado")
+        filas.append(f"OTRO_OBJETO\tOBTENIDO\t{objetos[0][1]}\tregistrado")
+        cola.write_text("\n".join(filas) + "\n", encoding="utf-8")
+        r2 = D.valida_resultado_adquisicion(
+            caso, seleccion, comprobar_remoto=False, raiz=raiz)
+        afirma(not r2["valido"] and any(
+            objetos[0][0] in e and objetos[0][1] in e for e in r2["errores"]),
+            f"ID presente sólo en otra fila canónica fue aceptado: {r2}")
     finally:
         td.cleanup()
 
@@ -381,6 +451,7 @@ def main():
     prueba_h2_rechaza_tres_falsos_positivos()
     prueba_resultado_parcial_y_publicacion_separada()
     prueba_adquisicion_exige_archivo_manifiesto_pertinente()
+    prueba_vinculo_estructurado_exacto_ihsn_enpol()
     prueba_candidata_publica_recorre_descubrimiento_y_adquisicion()
     prueba_cola_vacia_mecanica_valida()
     prueba_cola_descargas_vacia_con_investigacion_exige_evidencia()
@@ -395,7 +466,7 @@ def main():
         for fallo in FALLOS:
             print(f"  · {fallo}")
         return 1
-    print("OK -- test_adq_cierre_verificable.py: 12 casos, 0 fallos")
+    print("OK -- test_adq_cierre_verificable.py: 13 casos, 0 fallos")
     return 0
 
 
