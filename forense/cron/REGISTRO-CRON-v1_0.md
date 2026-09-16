@@ -300,42 +300,48 @@ lunes-viernes 07:30, siguiente corrida `2026-09-14T07:30:00-06:00`,
 `main` restaure Claude mientras PR #718 siga abierto; el launcher cambia solo
 a `main` cuando esa revisión ya sea ancestro de `origin/main`.
 
-## §11 · Segunda tarea, independiente: derivación diaria (16/sep/2026)
+## §11 · Derivación en la tarea y launcher existentes (corregido 16/sep/2026)
 
-`ACTO GEN2-RUTINA-DERIVADOS-1`
-(`forense/encargos/2026-09-16-GEN2-RUTINA-DERIVADOS-1.md`) añade una
-**tarea nueva e independiente** al mismo Windows Task Scheduler — no una
-entrada dentro de §1/§9 de este documento, que son de adquisición.
+`GEN2-DERIVADOS-CORRECTIVO-Y-DESPLIEGUE` sucede y corrige el asiento del
+primer acto: **no se registra una segunda tarea**. La tarea ya instalada
+`\ModeladoMexicano\AdquiereCron` conserva principal, calendario, triggers,
+presupuesto y política de adquisición, y su acción sigue apuntando al mismo
+`tools/adquiere_launcher.sh`. El launcher carga primero la revisión autorizada
+y ejecuta el tramo determinista antes de recuperar presupuesto o comprobar si
+hay despacho adquisitivo. Una cola vacía, una reserva o presupuesto agotado no
+condicionan la derivación.
 
-**Por qué no comparte `tools/adquiere_launcher.sh`.** Verificado contra
-el árbol antes de escribir: ese launcher resuelve presupuesto
-(`tools/adq_investigacion.py --recupera-presupuesto`) y una revisión
-fijada específicos de adquisición (líneas 130-175) y corre contra el
-clon dedicado `/home/pc0/mm-adq` de §1. La rutina de derivación no tiene
-concepto de presupuesto, corre siempre (nunca condicional a "hay trabajo
-atendible"), y no invoca ningún ejecutor de lenguaje — encadenarla ahí
-acoplaría dos semánticas de disparo distintas sin necesidad. Es su
-propio lock (`forense/deriva-log/estado/deriva_cron.lock`, nunca
-`forense/adq-log/`) y su propio script es su propio lanzador.
+La independencia operativa vive dentro del mismo disparo: derivados mantiene
+su lock en `forense/deriva-log/estado/deriva_cron.lock`, crea un worktree
+temporal desde la revisión efectiva, combina allí una rama diaria remota
+existente con ese corte y nunca cambia de rama en `/home/pc0/mm-adq`. El gate
+`ultima-exitosa.json` evita repetir el recorrido el mismo día cuando no cambió
+la firma pertinente de `origin/main` + corpus. No se invoca Codex ni Claude.
 
 | campo | valor |
 |---|---|
-| script | `tools/deriva_cron.sh` (autocontenido; sin separación launcher/runner porque no invoca ningún ejecutor de lenguaje) |
-| caja | la caja donde viva el clon que aloje esta rutina — corpus compartido montado (`data/raw`), `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` sin definir |
-| horario sugerido | diaria en día hábil, 08:30 hora de mesa (una hora después del disparo de adquisición de §1, para que el corpus del día haya tenido oportunidad de asentarse) — **no instalado por este acto**, ver abajo |
+| script | `tools/adquiere_launcher.sh` → `tools/deriva_cron.sh`; `MM_TRAMO=derivacion` selecciona sólo este tramo para una prueba controlada |
+| caja | `/home/pc0/mm-adq`, con `data/raw` enlazado al corpus compartido; cálculo en worktree temporal aislado |
+| horario | los triggers ya instalados de `\ModeladoMexicano\AdquiereCron`; el gate diario vuelve baratas las activaciones horarias repetidas |
 | log | `forense/deriva-log/<AAAA-MM-DD>.log` (gitignorado), heartbeat en `forense/deriva-log/estado/heartbeat.json` |
-| huella mínima esperada por corrida | una línea `[DERIVADOS] <fecha> <HH:MM>: invocado=<si\|no> motivo=<-\|PARO-ENTORNO\|PARO-CORPUS\|PARO-SUITE-ROJA\|PARO-PUSH\|NADA-QUE-HACER> exit=<código\|-> duracion=<s> disparador=<...> run_id=<...>`, escrita siempre en el log local; si hubo commit, la misma huella (con las cuatro deltas) va en el cuerpo del commit `[DERIVADOS] <fecha>` y del PR |
+| huella mínima esperada por corrida | `[DERIVADOS] ... motivo=<resultado o PARO-fase> exit=<código> ... sha=<SHA efectivo>`; errores de cálculo, push o PR llegan como salida distinta de cero al launcher y a Windows |
 | commit/PR | rama `derivados/<AAAA-MM-DD>`, PR `[DERIVADOS] <AAAA-MM-DD>` (main protegida, check `check` requerido) — **cero PR** si `NADA-QUE-HACER` |
 | runbook | `forense/agente-derivacion-v1_0.md` — **sin prompt**, porque esta rutina no invoca ningún modelo |
 | ejecutor | ninguno — cuatro pasos deterministas (`snapshot_universe.py`, `tablero_programa.py --actualiza`, `corrida0.py registro --verifica` + `status`, `tests/check.py --baseline`) |
-| instalación | **manual por mesa, no instalada por este acto** — mismo criterio que `forense/encargos/2026-09-01-MAESTRA34-N7-SKILLS-COLA-Y-ADQ.md` fijó para el primer cron de adquisición: este acto corre en CAJA/WSL, sin acceso al Task Scheduler del host Windows |
+| instalación | la tarea existente se actualiza con `tools/windows/instala-tarea-adquisicion.ps1 -DeploymentRevision <SHA-publicado>`; el launcher vuelve solo a `origin/main` cuando éste contenga el SHA |
 
-Línea sugerida para que mesa la registre (mismo patrón que §9, tarea
-independiente, sin launcher intermedio):
+Comando de la acción compartida (el `EncodedCommand` de PowerShell lo envuelve
+sin cambiar su semántica):
 
 ```text
-wsl.exe -d Ubuntu -u pc0 -- env DERIVA_DISPARADOR=windows-task-scheduler bash -lc <RUTA_DEL_CLON>/tools/deriva_cron.sh
+wsl.exe -d Ubuntu -u pc0 -- env ADQ_DISPARADOR=windows-task-scheduler ADQ_COMPROBACION_LIGERA=1 ADQ_DEPLOY_REVISION=<SHA-publicado> bash -lc /home/pc0/mm-adq/tools/adquiere_launcher.sh
 ```
 
-Actualiza este §11, datado, cuando mesa instale la tarea (exportación,
-ventana siguiente) — mismo formato que §9/§10 arriba.
+Para comprobar sólo derivados, sin adquisiciones ni descargas:
+
+```bash
+MM_TRAMO=derivacion ADQ_DISPARADOR=manual ADQ_DEPLOY_REVISION=<SHA-publicado> /home/pc0/mm-adq/tools/adquiere_launcher.sh
+```
+
+La nota de cierre del correctivo registra por separado el SHA publicado, el
+SHA cargado y si la activación fue manual o nació de un trigger real.
