@@ -1,0 +1,1147 @@
+version: GEN2-DELTA-1
+descripcion: GEN2-RELEVO-CANDIDATOS-DELTA-1. Contrato filtrado por veredicto CANDIDATO-GEN2 vigente. Las
+  correspondencias propias completan las familias que el generador compartido deja prudentemente indeterminadas;
+  RES-0028 conserva la ruptura U4-persona/U1-delito. Cero adopciones.
+pares:
+- id: RELEVO-RES-0025-VS-RESULT-EVASIONNORMA-A-P-EVADE
+  consumidor: milpa/tramite.yaml:tramite.evasion_norma:evade_norma_envipe2025
+  uso:
+    descripcion: 'RES-0025: p ponderada por delito de evade/cumple norma; ENVIPE 2025, n=40 280. Consumidor
+      milpa/tramite.yaml:tramite.evasion_norma:evade_norma_envipe2025; legacy en el archivo del consumidor
+      frente a CALC-EVASION-NORMA-0001-v1_1::RESULT-EVASIONNORMA-A-P-EVADE. Esta comparación no adopta
+      ni edita el consumidor.'
+    evidencias: &id001
+    - fuente: data/corrida0/CALC-EVASION-NORMA-0001-v1_1/spec.md
+      sha256: 69605ea4c355b480acef91fe2419ac6b6223468e71e528e2769097b12817cefa
+      cita: '§1: unidad DELITO, universo BP1_20∈{1,2}, FAC_DEL, desenlace y complemento contado directamente
+        para RES-0025/0026.'
+    - fuente: milpa/tramite.yaml
+      sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+      cita: regla tramite.evasion_norma, enmienda_envipe2025 y conductas materializadas.
+  a:
+    clase: fuente
+    fuente: milpa/tramite.yaml
+    sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+    version: archivo del consumidor en la base de este acto; el valor es la cifra GEN1 que el motor lee
+      HOY, antes de toda adopcion
+    tipo: proporcion
+    unidad: proporcion en escala [0,1]
+    selector:
+      formato: yaml
+      ruta:
+      - reglas
+      - 4
+      - entonces
+      - 2
+      - p
+  b:
+    clase: resultado
+    calc_id: CALC-EVASION-NORMA-0001-v1_1
+    corrida_id: CALC-EVASION-NORMA-0001-v1_1--67cedcba44a5
+    resultado_id: RESULT-EVASIONNORMA-A-P-EVADE
+    spec_sha256: 814c372616f64f6af4ce78aee4d12c04e7f20ad02c9aadd50d14bbd02172eb72
+    resultados_sha256: 85a726c1326b01c0d166ff962be8e2d7e2d201eecefd1a248ae5e32e37c5e815
+    sello_sha256: 8076d9ff1e18ab1fe6ac7168600810580cabe99c1df9373ee21c8b40e9d2abe8
+  comparabilidad:
+    dimensiones:
+      unidad:
+        estado: COINCIDE
+        razon: EVASION-NORMA-DIRECTA · DELITO en ambos lados; la spec excluye expresamente la unidad persona.
+      escala:
+        estado: COINCIDE
+        razon: EVASION-NORMA-DIRECTA · Proporción ponderada en [0,1] en ambos lados.
+      direccion:
+        estado: COINCIDE
+        razon: EVASION-NORMA-DIRECTA · El RESULT conserva la conducta exacta evade/cumple; más alto significa
+          más peso de esa conducta.
+      poblacion:
+        estado: COINCIDE
+        razon: EVASION-NORMA-DIRECTA · Los mismos 40 280 delitos con BP1_20 en {1,2}, sin pérdida, ponderados
+          por FAC_DEL.
+      evento:
+        estado: COINCIDE
+        razon: EVASION-NORMA-DIRECTA · La pareja enlaza la conducta legacy exacta con el RESULT que la
+          spec declara que releva al slot.
+      codigos:
+        estado: COINCIDE
+        razon: EVASION-NORMA-DIRECTA · Evade usa BP1_20=2 y BP1_23 en {04,05,06,08}; cumple es el complemento
+          binario contado directamente.
+      periodo:
+        estado: COINCIDE
+        razon: EVASION-NORMA-DIRECTA · ENVIPE 2025, con delitos del periodo de referencia 2024 en ambos
+          lados.
+      transformacion:
+        estado: COINCIDE
+        razon: EVASION-NORMA-DIRECTA · Misma proporción FAC_DEL; el complemento se cuenta directamente
+          y agota la partición de dos celdas.
+    evidencias: *id001
+  diferencia:
+    escala: proporcion
+    unidad: proporcion en escala [0,1]
+    relativo:
+      permitido: false
+      razon: el cero de una p de conducta no es una base sustantiva para cambio relativo; el grano del
+        consumidor se mide en magnitud absoluta
+  representacion:
+    aplica: true
+    publicado: a
+    preciso: b
+  materialidad:
+    criterio:
+      metrica: magnitud_absoluta
+      umbral: 1.0e-06
+      evidencias:
+      - fuente: data/corrida0/CALC-B-0001/spec.yaml
+        sha256: 7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16
+        cita: parametros.adopcion_p3.umbral_grano_milpa = 1e-06 -- «la tolerancia con que T35 (c) compara
+          el valor materializado por el consumidor contra el RESULT»; es el grano del CONSUMIDOR, no de
+          una spec, y por eso vale para los cuatro CALC de estos pares
+    razon: 'materialidad POR CONSUMIDOR (E.4): el umbral es el grano con que el consumidor materializa
+      la cifra, no una tolerancia de spec. Por encima de el, el motor leeria un numero distinto del que
+      lee hoy.'
+- id: RELEVO-RES-0026-VS-RESULT-EVASIONNORMA-A-P-CUMPLE
+  consumidor: milpa/tramite.yaml:tramite.evasion_norma:cumple_norma_envipe2025
+  uso:
+    descripcion: 'RES-0026: p ponderada por delito de evade/cumple norma; ENVIPE 2025, n=40 280. Consumidor
+      milpa/tramite.yaml:tramite.evasion_norma:cumple_norma_envipe2025; legacy en el archivo del consumidor
+      frente a CALC-EVASION-NORMA-0001-v1_1::RESULT-EVASIONNORMA-A-P-CUMPLE. Esta comparación no adopta
+      ni edita el consumidor.'
+    evidencias: &id002
+    - fuente: data/corrida0/CALC-EVASION-NORMA-0001-v1_1/spec.md
+      sha256: 69605ea4c355b480acef91fe2419ac6b6223468e71e528e2769097b12817cefa
+      cita: '§1: unidad DELITO, universo BP1_20∈{1,2}, FAC_DEL, desenlace y complemento contado directamente
+        para RES-0025/0026.'
+    - fuente: milpa/tramite.yaml
+      sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+      cita: regla tramite.evasion_norma, enmienda_envipe2025 y conductas materializadas.
+  a:
+    clase: fuente
+    fuente: milpa/tramite.yaml
+    sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+    version: archivo del consumidor en la base de este acto; el valor es la cifra GEN1 que el motor lee
+      HOY, antes de toda adopcion
+    tipo: proporcion
+    unidad: proporcion en escala [0,1]
+    selector:
+      formato: yaml
+      ruta:
+      - reglas
+      - 4
+      - entonces
+      - 3
+      - p
+  b:
+    clase: resultado
+    calc_id: CALC-EVASION-NORMA-0001-v1_1
+    corrida_id: CALC-EVASION-NORMA-0001-v1_1--67cedcba44a5
+    resultado_id: RESULT-EVASIONNORMA-A-P-CUMPLE
+    spec_sha256: 814c372616f64f6af4ce78aee4d12c04e7f20ad02c9aadd50d14bbd02172eb72
+    resultados_sha256: 85a726c1326b01c0d166ff962be8e2d7e2d201eecefd1a248ae5e32e37c5e815
+    sello_sha256: 8076d9ff1e18ab1fe6ac7168600810580cabe99c1df9373ee21c8b40e9d2abe8
+  comparabilidad:
+    dimensiones:
+      unidad:
+        estado: COINCIDE
+        razon: EVASION-NORMA-DIRECTA · DELITO en ambos lados; la spec excluye expresamente la unidad persona.
+      escala:
+        estado: COINCIDE
+        razon: EVASION-NORMA-DIRECTA · Proporción ponderada en [0,1] en ambos lados.
+      direccion:
+        estado: COINCIDE
+        razon: EVASION-NORMA-DIRECTA · El RESULT conserva la conducta exacta evade/cumple; más alto significa
+          más peso de esa conducta.
+      poblacion:
+        estado: COINCIDE
+        razon: EVASION-NORMA-DIRECTA · Los mismos 40 280 delitos con BP1_20 en {1,2}, sin pérdida, ponderados
+          por FAC_DEL.
+      evento:
+        estado: COINCIDE
+        razon: EVASION-NORMA-DIRECTA · La pareja enlaza la conducta legacy exacta con el RESULT que la
+          spec declara que releva al slot.
+      codigos:
+        estado: COINCIDE
+        razon: EVASION-NORMA-DIRECTA · Evade usa BP1_20=2 y BP1_23 en {04,05,06,08}; cumple es el complemento
+          binario contado directamente.
+      periodo:
+        estado: COINCIDE
+        razon: EVASION-NORMA-DIRECTA · ENVIPE 2025, con delitos del periodo de referencia 2024 en ambos
+          lados.
+      transformacion:
+        estado: COINCIDE
+        razon: EVASION-NORMA-DIRECTA · Misma proporción FAC_DEL; el complemento se cuenta directamente
+          y agota la partición de dos celdas.
+    evidencias: *id002
+  diferencia:
+    escala: proporcion
+    unidad: proporcion en escala [0,1]
+    relativo:
+      permitido: false
+      razon: el cero de una p de conducta no es una base sustantiva para cambio relativo; el grano del
+        consumidor se mide en magnitud absoluta
+  representacion:
+    aplica: true
+    publicado: a
+    preciso: b
+  materialidad:
+    criterio:
+      metrica: magnitud_absoluta
+      umbral: 1.0e-06
+      evidencias:
+      - fuente: data/corrida0/CALC-B-0001/spec.yaml
+        sha256: 7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16
+        cita: parametros.adopcion_p3.umbral_grano_milpa = 1e-06 -- «la tolerancia con que T35 (c) compara
+          el valor materializado por el consumidor contra el RESULT»; es el grano del CONSUMIDOR, no de
+          una spec, y por eso vale para los cuatro CALC de estos pares
+    razon: 'materialidad POR CONSUMIDOR (E.4): el umbral es el grano con que el consumidor materializa
+      la cifra, no una tolerancia de spec. Por encima de el, el motor leeria un numero distinto del que
+      lee hoy.'
+- id: RELEVO-RES-0028-VS-RESULT-ENVIPE-DEN-P-COMPLEMENTO-C2-U1
+  consumidor: milpa/tramite.yaml:civico.denuncia.miedo_desconfianza:denuncia_por_otra_razon
+  uso:
+    descripcion: 'RES-0028: legacy q=1-p(C2,U4) persona vs candidato p(C2 complementario,U1) delito. Consumidor
+      milpa/tramite.yaml:civico.denuncia.miedo_desconfianza:denuncia_por_otra_razon; legacy en el archivo
+      del consumidor frente a CALC-ENVIPE-0001::RESULT-ENVIPE-DEN-P-COMPLEMENTO-C2-U1. Esta comparación
+      no adopta ni edita el consumidor.'
+    evidencias: &id003
+    - fuente: data/corrida0/CALC-ENVIPE-0001/spec.md
+      sha256: 9b9e090863c35292cd3c8eb8081c3ebafc61f0bd2e3c066848b89876d001f223
+      cita: 'Unidad de observación y codificación: U1=delito, U4=persona con colapso máximo; C2 explícita.'
+    - fuente: forense/notas/2026-09-15-GEN2-E11-RES0028-PARTICION-cierre.md
+      sha256: c58289871ad1b164ca6b09b3b20750ca365eefd8fe3fa6c57ed5bd6864c8d6ee
+      cita: '§1-2: partición/universo de RES-0028 y prohibición de rebautizar el residual como categoría
+        09 Otra.'
+    - fuente: milpa/tramite.yaml
+      sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+      cita: 'regla civico.denuncia.miedo_desconfianza: complemento dependiente legacy sobre U1/U4.'
+  a:
+    clase: fuente
+    fuente: milpa/tramite.yaml
+    sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+    version: archivo del consumidor en la base de este acto; el valor es la cifra GEN1 que el motor lee
+      HOY, antes de toda adopcion
+    tipo: proporcion
+    unidad: proporcion en escala [0,1]
+    selector:
+      formato: yaml
+      ruta:
+      - reglas
+      - 5
+      - entonces
+      - 1
+      - p
+  b:
+    clase: resultado
+    calc_id: CALC-ENVIPE-0001
+    corrida_id: CALC-ENVIPE-0001--06223f3dc02d
+    resultado_id: RESULT-ENVIPE-DEN-P-COMPLEMENTO-C2-U1
+    spec_sha256: 06fcd2a260dccbabe958867c93ca3239d45c9b160ff90a823c5b3a206d4a0c8b
+    resultados_sha256: 225bbaa1dd12eab410d838e3d6f7080a876c2353f8bc9ba466afb2eaa98f0e3b
+    sello_sha256: 18310f8adb6fb5963038d67c2e8a7eaba50e09c062dddbc579e918f090cbde16
+  comparabilidad:
+    dimensiones:
+      unidad:
+        estado: RUPTURA
+        razon: 'ENVIPE-U4-VS-U1-NO-COMPARABLE · RUPTURA: legacy U4 usa PERSONA; el candidato usa DELITO
+          U1.'
+      escala:
+        estado: COINCIDE
+        razon: ENVIPE-U4-VS-U1-NO-COMPARABLE · Ambos son proporciones en [0,1].
+      direccion:
+        estado: COINCIDE
+        razon: ENVIPE-U4-VS-U1-NO-COMPARABLE · Ambos crecen hacia el bloque residual, aunque no representan
+          el mismo evento agregado.
+      poblacion:
+        estado: RUPTURA
+        razon: 'ENVIPE-U4-VS-U1-NO-COMPARABLE · RUPTURA: legacy es persona con al menos un delito U1 y
+          colapso máximo; candidato es el conjunto de delitos U1.'
+      evento:
+        estado: RUPTURA
+        razon: 'ENVIPE-U4-VS-U1-NO-COMPARABLE · RUPTURA: legacy es ninguna razón padre en la persona;
+          candidato es un delito cuya razón principal cae en {03,04,05,07}.'
+      codigos:
+        estado: DERIVA-DOCUMENTADA
+        razon: 'ENVIPE-U4-VS-U1-NO-COMPARABLE · DERIVA-DOCUMENTADA: comparten la partición C2 {01,02,06,08}/{03,04,05,07},
+          pero la agregación cambia el evento.'
+      periodo:
+        estado: COINCIDE
+        razon: ENVIPE-U4-VS-U1-NO-COMPARABLE · ENVIPE 2025, delitos de referencia 2024 en ambos lados.
+      transformacion:
+        estado: RUPTURA
+        razon: 'ENVIPE-U4-VS-U1-NO-COMPARABLE · RUPTURA: 1-p(C2,U4) tras colapso a persona no equivale
+          a contar el complemento C2 sobre delitos U1.'
+    evidencias: *id003
+  diferencia:
+    escala: proporcion
+    unidad: proporcion en escala [0,1]
+    relativo:
+      permitido: false
+      razon: el cero de una p de conducta no es una base sustantiva para cambio relativo; el grano del
+        consumidor se mide en magnitud absoluta
+  representacion:
+    aplica: true
+    publicado: a
+    preciso: b
+  materialidad:
+    criterio:
+      metrica: magnitud_absoluta
+      umbral: 1.0e-06
+      evidencias:
+      - fuente: data/corrida0/CALC-B-0001/spec.yaml
+        sha256: 7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16
+        cita: parametros.adopcion_p3.umbral_grano_milpa = 1e-06 -- «la tolerancia con que T35 (c) compara
+          el valor materializado por el consumidor contra el RESULT»; es el grano del CONSUMIDOR, no de
+          una spec, y por eso vale para los cuatro CALC de estos pares
+    razon: 'materialidad POR CONSUMIDOR (E.4): el umbral es el grano con que el consumidor materializa
+      la cifra, no una tolerancia de spec. Por encima de el, el motor leeria un numero distinto del que
+      lee hoy.'
+- id: RELEVO-RES-0031-VS-RESULT-TIENEAHORROS-A-P-TIENE
+  consumidor: milpa/tramite.yaml:dinero.ahorro.tiene_ahorros:tiene_ahorros_enif2024
+  uso:
+    descripcion: 'RES-0031: p ponderada de persona 18+ con/sin ahorro; ENIF 2024, n=13 502. Consumidor
+      milpa/tramite.yaml:dinero.ahorro.tiene_ahorros:tiene_ahorros_enif2024; legacy en el archivo del
+      consumidor frente a CALC-TIENE-AHORROS-0001-v1_1::RESULT-TIENEAHORROS-A-P-TIENE. Esta comparación
+      no adopta ni edita el consumidor.'
+    evidencias: &id004
+    - fuente: data/corrida0/CALC-TIENE-AHORROS-0001-v1_1/spec.md
+      sha256: b2add081fff0abe02d60ac38bf9bb3ee08b151f24d7336a1d7344365c8fbf6a1
+      cita: '§1: unidad, universo, desenlace, códigos, FAC_PER y complemento para RES-0031/0032.'
+    - fuente: milpa/tramite.yaml
+      sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+      cita: regla dinero.ahorro.tiene_ahorros y enmienda_enif2024 materializada.
+  a:
+    clase: fuente
+    fuente: milpa/tramite.yaml
+    sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+    version: archivo del consumidor en la base de este acto; el valor es la cifra GEN1 que el motor lee
+      HOY, antes de toda adopcion
+    tipo: proporcion
+    unidad: proporcion en escala [0,1]
+    selector:
+      formato: yaml
+      ruta:
+      - reglas
+      - 6
+      - entonces
+      - 2
+      - p
+  b:
+    clase: resultado
+    calc_id: CALC-TIENE-AHORROS-0001-v1_1
+    corrida_id: CALC-TIENE-AHORROS-0001-v1_1--fb43c8bab410
+    resultado_id: RESULT-TIENEAHORROS-A-P-TIENE
+    spec_sha256: 5d57bfec2aef0fab1ba3cc7baf14844ab7e25c157e0e83808cb4644da798994b
+    resultados_sha256: 5b5f231c676e070d7d12518151bf03d89f362f6cf3d2261752b57039a2baea7a
+    sello_sha256: 73a703d55efb8752605dcb0997fa8ac229c3f951dba1dc305cf7f512e3b880e3
+  comparabilidad:
+    dimensiones:
+      unidad:
+        estado: COINCIDE
+        razon: TIENE-AHORROS-DIRECTA · PERSONA elegida de 18 años y más en ambos lados.
+      escala:
+        estado: COINCIDE
+        razon: TIENE-AHORROS-DIRECTA · Proporción ponderada en [0,1] en ambos lados.
+      direccion:
+        estado: COINCIDE
+        razon: TIENE-AHORROS-DIRECTA · La pareja conserva tiene/no tiene ahorros sin invertir la polaridad.
+      poblacion:
+        estado: COINCIDE
+        razon: TIENE-AHORROS-DIRECTA · Las mismas 13 502 personas elegidas, EDAD_V 18-98, sin pérdida,
+          FAC_PER.
+      evento:
+        estado: COINCIDE
+        razon: TIENE-AHORROS-DIRECTA · Alguna vía informal o formal de ahorro frente a su complemento,
+          exactamente como en la enmienda legacy.
+      codigos:
+        estado: COINCIDE
+        razon: TIENE-AHORROS-DIRECTA · Alguna P5_1_1..P5_1_6 o P5_6_1..P5_6_9 vale 1; el blanco de secuencia
+          formal cuenta como no ahorro por esa vía.
+      periodo:
+        estado: COINCIDE
+        razon: TIENE-AHORROS-DIRECTA · ENIF 2024 y su periodo de referencia de ahorro en ambos lados.
+      transformacion:
+        estado: COINCIDE
+        razon: TIENE-AHORROS-DIRECTA · Misma proporción FAC_PER; no_tiene_ahorros es el complemento contado
+          directamente.
+    evidencias: *id004
+  diferencia:
+    escala: proporcion
+    unidad: proporcion en escala [0,1]
+    relativo:
+      permitido: false
+      razon: el cero de una p de conducta no es una base sustantiva para cambio relativo; el grano del
+        consumidor se mide en magnitud absoluta
+  representacion:
+    aplica: true
+    publicado: a
+    preciso: b
+  materialidad:
+    criterio:
+      metrica: magnitud_absoluta
+      umbral: 1.0e-06
+      evidencias:
+      - fuente: data/corrida0/CALC-B-0001/spec.yaml
+        sha256: 7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16
+        cita: parametros.adopcion_p3.umbral_grano_milpa = 1e-06 -- «la tolerancia con que T35 (c) compara
+          el valor materializado por el consumidor contra el RESULT»; es el grano del CONSUMIDOR, no de
+          una spec, y por eso vale para los cuatro CALC de estos pares
+    razon: 'materialidad POR CONSUMIDOR (E.4): el umbral es el grano con que el consumidor materializa
+      la cifra, no una tolerancia de spec. Por encima de el, el motor leeria un numero distinto del que
+      lee hoy.'
+- id: RELEVO-RES-0032-VS-RESULT-TIENEAHORROS-A-P-NO-TIENE
+  consumidor: milpa/tramite.yaml:dinero.ahorro.tiene_ahorros:no_tiene_ahorros_enif2024
+  uso:
+    descripcion: 'RES-0032: p ponderada de persona 18+ con/sin ahorro; ENIF 2024, n=13 502. Consumidor
+      milpa/tramite.yaml:dinero.ahorro.tiene_ahorros:no_tiene_ahorros_enif2024; legacy en el archivo del
+      consumidor frente a CALC-TIENE-AHORROS-0001-v1_1::RESULT-TIENEAHORROS-A-P-NO-TIENE. Esta comparación
+      no adopta ni edita el consumidor.'
+    evidencias: &id005
+    - fuente: data/corrida0/CALC-TIENE-AHORROS-0001-v1_1/spec.md
+      sha256: b2add081fff0abe02d60ac38bf9bb3ee08b151f24d7336a1d7344365c8fbf6a1
+      cita: '§1: unidad, universo, desenlace, códigos, FAC_PER y complemento para RES-0031/0032.'
+    - fuente: milpa/tramite.yaml
+      sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+      cita: regla dinero.ahorro.tiene_ahorros y enmienda_enif2024 materializada.
+  a:
+    clase: fuente
+    fuente: milpa/tramite.yaml
+    sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+    version: archivo del consumidor en la base de este acto; el valor es la cifra GEN1 que el motor lee
+      HOY, antes de toda adopcion
+    tipo: proporcion
+    unidad: proporcion en escala [0,1]
+    selector:
+      formato: yaml
+      ruta:
+      - reglas
+      - 6
+      - entonces
+      - 3
+      - p
+  b:
+    clase: resultado
+    calc_id: CALC-TIENE-AHORROS-0001-v1_1
+    corrida_id: CALC-TIENE-AHORROS-0001-v1_1--fb43c8bab410
+    resultado_id: RESULT-TIENEAHORROS-A-P-NO-TIENE
+    spec_sha256: 5d57bfec2aef0fab1ba3cc7baf14844ab7e25c157e0e83808cb4644da798994b
+    resultados_sha256: 5b5f231c676e070d7d12518151bf03d89f362f6cf3d2261752b57039a2baea7a
+    sello_sha256: 73a703d55efb8752605dcb0997fa8ac229c3f951dba1dc305cf7f512e3b880e3
+  comparabilidad:
+    dimensiones:
+      unidad:
+        estado: COINCIDE
+        razon: TIENE-AHORROS-DIRECTA · PERSONA elegida de 18 años y más en ambos lados.
+      escala:
+        estado: COINCIDE
+        razon: TIENE-AHORROS-DIRECTA · Proporción ponderada en [0,1] en ambos lados.
+      direccion:
+        estado: COINCIDE
+        razon: TIENE-AHORROS-DIRECTA · La pareja conserva tiene/no tiene ahorros sin invertir la polaridad.
+      poblacion:
+        estado: COINCIDE
+        razon: TIENE-AHORROS-DIRECTA · Las mismas 13 502 personas elegidas, EDAD_V 18-98, sin pérdida,
+          FAC_PER.
+      evento:
+        estado: COINCIDE
+        razon: TIENE-AHORROS-DIRECTA · Alguna vía informal o formal de ahorro frente a su complemento,
+          exactamente como en la enmienda legacy.
+      codigos:
+        estado: COINCIDE
+        razon: TIENE-AHORROS-DIRECTA · Alguna P5_1_1..P5_1_6 o P5_6_1..P5_6_9 vale 1; el blanco de secuencia
+          formal cuenta como no ahorro por esa vía.
+      periodo:
+        estado: COINCIDE
+        razon: TIENE-AHORROS-DIRECTA · ENIF 2024 y su periodo de referencia de ahorro en ambos lados.
+      transformacion:
+        estado: COINCIDE
+        razon: TIENE-AHORROS-DIRECTA · Misma proporción FAC_PER; no_tiene_ahorros es el complemento contado
+          directamente.
+    evidencias: *id005
+  diferencia:
+    escala: proporcion
+    unidad: proporcion en escala [0,1]
+    relativo:
+      permitido: false
+      razon: el cero de una p de conducta no es una base sustantiva para cambio relativo; el grano del
+        consumidor se mide en magnitud absoluta
+  representacion:
+    aplica: true
+    publicado: a
+    preciso: b
+  materialidad:
+    criterio:
+      metrica: magnitud_absoluta
+      umbral: 1.0e-06
+      evidencias:
+      - fuente: data/corrida0/CALC-B-0001/spec.yaml
+        sha256: 7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16
+        cita: parametros.adopcion_p3.umbral_grano_milpa = 1e-06 -- «la tolerancia con que T35 (c) compara
+          el valor materializado por el consumidor contra el RESULT»; es el grano del CONSUMIDOR, no de
+          una spec, y por eso vale para los cuatro CALC de estos pares
+    razon: 'materialidad POR CONSUMIDOR (E.4): el umbral es el grano con que el consumidor materializa
+      la cifra, no una tolerancia de spec. Por encima de el, el motor leeria un numero distinto del que
+      lee hoy.'
+- id: RELEVO-RES-0033-VS-RESULT-DFVEJEZ-A-P-RECIBE
+  consumidor: milpa/tramite.yaml:familia.apoyo.recibe_dinero_familiares:recibe_dinero_familiares_para_vejez
+  uso:
+    descripcion: 'RES-0033: p ponderada de persona que recibe/no recibe dinero familiar para vejez; ENIF
+      2024, n=11 895. Consumidor milpa/tramite.yaml:familia.apoyo.recibe_dinero_familiares:recibe_dinero_familiares_para_vejez;
+      legacy en el archivo del consumidor frente a CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1::RESULT-DFVEJEZ-A-P-RECIBE.
+      Esta comparación no adopta ni edita el consumidor.'
+    evidencias: &id006
+    - fuente: data/corrida0/CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1/spec.md
+      sha256: e46cac7a2a717c93713ba2a5223383614bd7a2951e7a0f62deccc1347eb55746
+      cita: '§1-2: unidad, universo, punto y complemento de RES-0033/0034.'
+    - fuente: forense/notas/2026-08-31-reglas-fase1-spec.md
+      sha256: 567cba5a819782bc040a2dbd36bd8828febcdd278aeca8ccf17657aa71832d3a
+      cita: '§3: P9_9_4, filtro, códigos, ponderador y estimador de la medición legacy.'
+    - fuente: milpa/tramite.yaml
+      sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+      cita: regla familia.apoyo.recibe_dinero_familiares materializada.
+  a:
+    clase: fuente
+    fuente: milpa/tramite.yaml
+    sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+    version: archivo del consumidor en la base de este acto; el valor es la cifra GEN1 que el motor lee
+      HOY, antes de toda adopcion
+    tipo: proporcion
+    unidad: proporcion en escala [0,1]
+    selector:
+      formato: yaml
+      ruta:
+      - reglas
+      - 7
+      - entonces
+      - 0
+      - p
+  b:
+    clase: resultado
+    calc_id: CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1
+    corrida_id: CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1--c6c9c957012e
+    resultado_id: RESULT-DFVEJEZ-A-P-RECIBE
+    spec_sha256: 02b33c1fc5a2f0f80f73b29971b3e6cba60e350886bba800d6cce68646651fe8
+    resultados_sha256: d2c89529a84bf5fd0dd14455b93f78bec1b5e20999d3ce138f303724e872158d
+    sello_sha256: b9586ca8e41d042de895ad3258e119a8fedb68a35b2fa616e02ccc89ac8c381b
+  comparabilidad:
+    dimensiones:
+      unidad:
+        estado: COINCIDE
+        razon: APOYO-FAMILIAR-DIRECTA · PERSONA en ambos lados.
+      escala:
+        estado: COINCIDE
+        razon: APOYO-FAMILIAR-DIRECTA · Proporción ponderada en [0,1] en ambos lados.
+      direccion:
+        estado: COINCIDE
+        razon: APOYO-FAMILIAR-DIRECTA · La pareja conserva recibe/no recibe dinero familiar para la vejez.
+      poblacion:
+        estado: COINCIDE
+        razon: APOYO-FAMILIAR-DIRECTA · Mismo filtro FILTRO_S9_1=2 y EDAD_V<71, 11 895 personas con respuesta
+          válida y FAC_PER.
+      evento:
+        estado: COINCIDE
+        razon: APOYO-FAMILIAR-DIRECTA · P9_9_4=1 (dinero de familiares para cubrir la vejez) frente a
+          su complemento.
+      codigos:
+        estado: COINCIDE
+        razon: APOYO-FAMILIAR-DIRECTA · P9_9_4 en {1,2}; 1 es el evento y 2 su complemento.
+      periodo:
+        estado: COINCIDE
+        razon: APOYO-FAMILIAR-DIRECTA · ENIF 2024 en ambos lados.
+      transformacion:
+        estado: COINCIDE
+        razon: APOYO-FAMILIAR-DIRECTA · Misma proporción FAC_PER; el no-recibe se cuenta directamente
+          como complemento.
+    evidencias: *id006
+  diferencia:
+    escala: proporcion
+    unidad: proporcion en escala [0,1]
+    relativo:
+      permitido: false
+      razon: el cero de una p de conducta no es una base sustantiva para cambio relativo; el grano del
+        consumidor se mide en magnitud absoluta
+  representacion:
+    aplica: true
+    publicado: a
+    preciso: b
+  materialidad:
+    criterio:
+      metrica: magnitud_absoluta
+      umbral: 1.0e-06
+      evidencias:
+      - fuente: data/corrida0/CALC-B-0001/spec.yaml
+        sha256: 7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16
+        cita: parametros.adopcion_p3.umbral_grano_milpa = 1e-06 -- «la tolerancia con que T35 (c) compara
+          el valor materializado por el consumidor contra el RESULT»; es el grano del CONSUMIDOR, no de
+          una spec, y por eso vale para los cuatro CALC de estos pares
+    razon: 'materialidad POR CONSUMIDOR (E.4): el umbral es el grano con que el consumidor materializa
+      la cifra, no una tolerancia de spec. Por encima de el, el motor leeria un numero distinto del que
+      lee hoy.'
+- id: RELEVO-RES-0034-VS-RESULT-DFVEJEZ-A-P-NO-RECIBE
+  consumidor: milpa/tramite.yaml:familia.apoyo.recibe_dinero_familiares:no_recibe_dinero_familiares_para_vejez
+  uso:
+    descripcion: 'RES-0034: p ponderada de persona que recibe/no recibe dinero familiar para vejez; ENIF
+      2024, n=11 895. Consumidor milpa/tramite.yaml:familia.apoyo.recibe_dinero_familiares:no_recibe_dinero_familiares_para_vejez;
+      legacy en el archivo del consumidor frente a CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1::RESULT-DFVEJEZ-A-P-NO-RECIBE.
+      Esta comparación no adopta ni edita el consumidor.'
+    evidencias: &id007
+    - fuente: data/corrida0/CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1/spec.md
+      sha256: e46cac7a2a717c93713ba2a5223383614bd7a2951e7a0f62deccc1347eb55746
+      cita: '§1-2: unidad, universo, punto y complemento de RES-0033/0034.'
+    - fuente: forense/notas/2026-08-31-reglas-fase1-spec.md
+      sha256: 567cba5a819782bc040a2dbd36bd8828febcdd278aeca8ccf17657aa71832d3a
+      cita: '§3: P9_9_4, filtro, códigos, ponderador y estimador de la medición legacy.'
+    - fuente: milpa/tramite.yaml
+      sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+      cita: regla familia.apoyo.recibe_dinero_familiares materializada.
+  a:
+    clase: fuente
+    fuente: milpa/tramite.yaml
+    sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+    version: archivo del consumidor en la base de este acto; el valor es la cifra GEN1 que el motor lee
+      HOY, antes de toda adopcion
+    tipo: proporcion
+    unidad: proporcion en escala [0,1]
+    selector:
+      formato: yaml
+      ruta:
+      - reglas
+      - 7
+      - entonces
+      - 1
+      - p
+  b:
+    clase: resultado
+    calc_id: CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1
+    corrida_id: CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1--c6c9c957012e
+    resultado_id: RESULT-DFVEJEZ-A-P-NO-RECIBE
+    spec_sha256: 02b33c1fc5a2f0f80f73b29971b3e6cba60e350886bba800d6cce68646651fe8
+    resultados_sha256: d2c89529a84bf5fd0dd14455b93f78bec1b5e20999d3ce138f303724e872158d
+    sello_sha256: b9586ca8e41d042de895ad3258e119a8fedb68a35b2fa616e02ccc89ac8c381b
+  comparabilidad:
+    dimensiones:
+      unidad:
+        estado: COINCIDE
+        razon: APOYO-FAMILIAR-DIRECTA · PERSONA en ambos lados.
+      escala:
+        estado: COINCIDE
+        razon: APOYO-FAMILIAR-DIRECTA · Proporción ponderada en [0,1] en ambos lados.
+      direccion:
+        estado: COINCIDE
+        razon: APOYO-FAMILIAR-DIRECTA · La pareja conserva recibe/no recibe dinero familiar para la vejez.
+      poblacion:
+        estado: COINCIDE
+        razon: APOYO-FAMILIAR-DIRECTA · Mismo filtro FILTRO_S9_1=2 y EDAD_V<71, 11 895 personas con respuesta
+          válida y FAC_PER.
+      evento:
+        estado: COINCIDE
+        razon: APOYO-FAMILIAR-DIRECTA · P9_9_4=1 (dinero de familiares para cubrir la vejez) frente a
+          su complemento.
+      codigos:
+        estado: COINCIDE
+        razon: APOYO-FAMILIAR-DIRECTA · P9_9_4 en {1,2}; 1 es el evento y 2 su complemento.
+      periodo:
+        estado: COINCIDE
+        razon: APOYO-FAMILIAR-DIRECTA · ENIF 2024 en ambos lados.
+      transformacion:
+        estado: COINCIDE
+        razon: APOYO-FAMILIAR-DIRECTA · Misma proporción FAC_PER; el no-recibe se cuenta directamente
+          como complemento.
+    evidencias: *id007
+  diferencia:
+    escala: proporcion
+    unidad: proporcion en escala [0,1]
+    relativo:
+      permitido: false
+      razon: el cero de una p de conducta no es una base sustantiva para cambio relativo; el grano del
+        consumidor se mide en magnitud absoluta
+  representacion:
+    aplica: true
+    publicado: a
+    preciso: b
+  materialidad:
+    criterio:
+      metrica: magnitud_absoluta
+      umbral: 1.0e-06
+      evidencias:
+      - fuente: data/corrida0/CALC-B-0001/spec.yaml
+        sha256: 7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16
+        cita: parametros.adopcion_p3.umbral_grano_milpa = 1e-06 -- «la tolerancia con que T35 (c) compara
+          el valor materializado por el consumidor contra el RESULT»; es el grano del CONSUMIDOR, no de
+          una spec, y por eso vale para los cuatro CALC de estos pares
+    razon: 'materialidad POR CONSUMIDOR (E.4): el umbral es el grano con que el consumidor materializa
+      la cifra, no una tolerancia de spec. Por encima de el, el motor leeria un numero distinto del que
+      lee hoy.'
+- id: RELEVO-RES-0053-VS-RESULT-HVD-A-SOLO-INFORMAL
+  consumidor: milpa/tramite.yaml:dinero.ahorro.via_informal:ahorra_solo_informal
+  uso:
+    descripcion: 'RES-0053: partición F/I de ahorro (solo informal, ambas, solo formal, ninguno); ENIF
+      2024, n=13 502. Consumidor milpa/tramite.yaml:dinero.ahorro.via_informal:ahorra_solo_informal; legacy
+      en el archivo del consumidor frente a CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1::RESULT-HVD-A-SOLO-INFORMAL.
+      Esta comparación no adopta ni edita el consumidor.'
+    evidencias: &id008
+    - fuente: data/corrida0/CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1/spec.md
+      sha256: 8c04222fb218fe928f92d63bb380e9a88b226217f050836ebdc32f00e88e8f43
+      cita: '§2: fórmulas de inclusión-exclusión, dependencia de insumos sellados y suma exacta de las
+        cuatro celdas.'
+    - fuente: milpa/tramite.yaml
+      sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+      cita: regla dinero.ahorro.via_informal, nota_l1 y cuatro conductas derivadas sin IC propio.
+  a:
+    clase: fuente
+    fuente: milpa/tramite.yaml
+    sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+    version: archivo del consumidor en la base de este acto; el valor es la cifra GEN1 que el motor lee
+      HOY, antes de toda adopcion
+    tipo: proporcion
+    unidad: proporcion en escala [0,1]
+    selector:
+      formato: yaml
+      ruta:
+      - reglas
+      - 17
+      - entonces
+      - 0
+      - p
+  b:
+    clase: resultado
+    calc_id: CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1
+    corrida_id: CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1--6c9a26566130
+    resultado_id: RESULT-HVD-A-SOLO-INFORMAL
+    spec_sha256: d3d06053aefc5f6886ba2098ecfc50f911591fa51586bbffec08b7860e8b24cf
+    resultados_sha256: 16a03f136bf70db92ad0031230e1e5191f317f32c0e9181c18a9be61109364bd
+    sello_sha256: 1c8b329fb2088d24298acb3081e9bb2d2366dce05c6e238d282271d251d92609
+  comparabilidad:
+    dimensiones:
+      unidad:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · PERSONA elegida de 18 años y más en las cuatro celdas.
+      escala:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · Proporción en [0,1] en legacy y RESULT.
+      direccion:
+        estado: COINCIDE
+        razon: 'VIAS-AHORRO-PARTICION · Cada RESULT conserva la celda exacta: solo informal, ambas, solo
+          formal o no ahorra.'
+      poblacion:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · Mismas 13 502 personas de ENIF 2024; las cuatro celdas forman una
+          partición completa.
+      evento:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · La celda legacy y el RESULT usan la misma combinación de pertenencia
+          a ahorro formal F e informal I.
+      codigos:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · F e I vienen de los mismos bloques P5_6_* y P5_1_*; no se supone
+          independencia.
+      periodo:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · ENIF 2024 y el mismo periodo de referencia de ahorro.
+      transformacion:
+        estado: COINCIDE
+        razon: 'VIAS-AHORRO-PARTICION · Misma inclusión-exclusión: ambas=F+I-(F∪I), exclusivas por resta
+          y no_ahorra=1-(F∪I).'
+    evidencias: *id008
+  diferencia:
+    escala: proporcion
+    unidad: proporcion en escala [0,1]
+    relativo:
+      permitido: false
+      razon: el cero de una p de conducta no es una base sustantiva para cambio relativo; el grano del
+        consumidor se mide en magnitud absoluta
+  representacion:
+    aplica: true
+    publicado: a
+    preciso: b
+  materialidad:
+    criterio:
+      metrica: magnitud_absoluta
+      umbral: 1.0e-06
+      evidencias:
+      - fuente: data/corrida0/CALC-B-0001/spec.yaml
+        sha256: 7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16
+        cita: parametros.adopcion_p3.umbral_grano_milpa = 1e-06 -- «la tolerancia con que T35 (c) compara
+          el valor materializado por el consumidor contra el RESULT»; es el grano del CONSUMIDOR, no de
+          una spec, y por eso vale para los cuatro CALC de estos pares
+    razon: 'materialidad POR CONSUMIDOR (E.4): el umbral es el grano con que el consumidor materializa
+      la cifra, no una tolerancia de spec. Por encima de el, el motor leeria un numero distinto del que
+      lee hoy.'
+- id: RELEVO-RES-0054-VS-RESULT-HVD-A-AMBAS-VIAS
+  consumidor: milpa/tramite.yaml:dinero.ahorro.via_informal:ahorra_ambas_vias
+  uso:
+    descripcion: 'RES-0054: partición F/I de ahorro (solo informal, ambas, solo formal, ninguno); ENIF
+      2024, n=13 502. Consumidor milpa/tramite.yaml:dinero.ahorro.via_informal:ahorra_ambas_vias; legacy
+      en el archivo del consumidor frente a CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1::RESULT-HVD-A-AMBAS-VIAS.
+      Esta comparación no adopta ni edita el consumidor.'
+    evidencias: &id009
+    - fuente: data/corrida0/CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1/spec.md
+      sha256: 8c04222fb218fe928f92d63bb380e9a88b226217f050836ebdc32f00e88e8f43
+      cita: '§2: fórmulas de inclusión-exclusión, dependencia de insumos sellados y suma exacta de las
+        cuatro celdas.'
+    - fuente: milpa/tramite.yaml
+      sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+      cita: regla dinero.ahorro.via_informal, nota_l1 y cuatro conductas derivadas sin IC propio.
+  a:
+    clase: fuente
+    fuente: milpa/tramite.yaml
+    sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+    version: archivo del consumidor en la base de este acto; el valor es la cifra GEN1 que el motor lee
+      HOY, antes de toda adopcion
+    tipo: proporcion
+    unidad: proporcion en escala [0,1]
+    selector:
+      formato: yaml
+      ruta:
+      - reglas
+      - 17
+      - entonces
+      - 1
+      - p
+  b:
+    clase: resultado
+    calc_id: CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1
+    corrida_id: CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1--6c9a26566130
+    resultado_id: RESULT-HVD-A-AMBAS-VIAS
+    spec_sha256: d3d06053aefc5f6886ba2098ecfc50f911591fa51586bbffec08b7860e8b24cf
+    resultados_sha256: 16a03f136bf70db92ad0031230e1e5191f317f32c0e9181c18a9be61109364bd
+    sello_sha256: 1c8b329fb2088d24298acb3081e9bb2d2366dce05c6e238d282271d251d92609
+  comparabilidad:
+    dimensiones:
+      unidad:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · PERSONA elegida de 18 años y más en las cuatro celdas.
+      escala:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · Proporción en [0,1] en legacy y RESULT.
+      direccion:
+        estado: COINCIDE
+        razon: 'VIAS-AHORRO-PARTICION · Cada RESULT conserva la celda exacta: solo informal, ambas, solo
+          formal o no ahorra.'
+      poblacion:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · Mismas 13 502 personas de ENIF 2024; las cuatro celdas forman una
+          partición completa.
+      evento:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · La celda legacy y el RESULT usan la misma combinación de pertenencia
+          a ahorro formal F e informal I.
+      codigos:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · F e I vienen de los mismos bloques P5_6_* y P5_1_*; no se supone
+          independencia.
+      periodo:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · ENIF 2024 y el mismo periodo de referencia de ahorro.
+      transformacion:
+        estado: COINCIDE
+        razon: 'VIAS-AHORRO-PARTICION · Misma inclusión-exclusión: ambas=F+I-(F∪I), exclusivas por resta
+          y no_ahorra=1-(F∪I).'
+    evidencias: *id009
+  diferencia:
+    escala: proporcion
+    unidad: proporcion en escala [0,1]
+    relativo:
+      permitido: false
+      razon: el cero de una p de conducta no es una base sustantiva para cambio relativo; el grano del
+        consumidor se mide en magnitud absoluta
+  representacion:
+    aplica: true
+    publicado: a
+    preciso: b
+  materialidad:
+    criterio:
+      metrica: magnitud_absoluta
+      umbral: 1.0e-06
+      evidencias:
+      - fuente: data/corrida0/CALC-B-0001/spec.yaml
+        sha256: 7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16
+        cita: parametros.adopcion_p3.umbral_grano_milpa = 1e-06 -- «la tolerancia con que T35 (c) compara
+          el valor materializado por el consumidor contra el RESULT»; es el grano del CONSUMIDOR, no de
+          una spec, y por eso vale para los cuatro CALC de estos pares
+    razon: 'materialidad POR CONSUMIDOR (E.4): el umbral es el grano con que el consumidor materializa
+      la cifra, no una tolerancia de spec. Por encima de el, el motor leeria un numero distinto del que
+      lee hoy.'
+- id: RELEVO-RES-0055-VS-RESULT-HVD-A-SOLO-FORMAL
+  consumidor: milpa/tramite.yaml:dinero.ahorro.via_informal:ahorra_solo_formal
+  uso:
+    descripcion: 'RES-0055: partición F/I de ahorro (solo informal, ambas, solo formal, ninguno); ENIF
+      2024, n=13 502. Consumidor milpa/tramite.yaml:dinero.ahorro.via_informal:ahorra_solo_formal; legacy
+      en el archivo del consumidor frente a CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1::RESULT-HVD-A-SOLO-FORMAL.
+      Esta comparación no adopta ni edita el consumidor.'
+    evidencias: &id010
+    - fuente: data/corrida0/CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1/spec.md
+      sha256: 8c04222fb218fe928f92d63bb380e9a88b226217f050836ebdc32f00e88e8f43
+      cita: '§2: fórmulas de inclusión-exclusión, dependencia de insumos sellados y suma exacta de las
+        cuatro celdas.'
+    - fuente: milpa/tramite.yaml
+      sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+      cita: regla dinero.ahorro.via_informal, nota_l1 y cuatro conductas derivadas sin IC propio.
+  a:
+    clase: fuente
+    fuente: milpa/tramite.yaml
+    sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+    version: archivo del consumidor en la base de este acto; el valor es la cifra GEN1 que el motor lee
+      HOY, antes de toda adopcion
+    tipo: proporcion
+    unidad: proporcion en escala [0,1]
+    selector:
+      formato: yaml
+      ruta:
+      - reglas
+      - 17
+      - entonces
+      - 2
+      - p
+  b:
+    clase: resultado
+    calc_id: CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1
+    corrida_id: CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1--6c9a26566130
+    resultado_id: RESULT-HVD-A-SOLO-FORMAL
+    spec_sha256: d3d06053aefc5f6886ba2098ecfc50f911591fa51586bbffec08b7860e8b24cf
+    resultados_sha256: 16a03f136bf70db92ad0031230e1e5191f317f32c0e9181c18a9be61109364bd
+    sello_sha256: 1c8b329fb2088d24298acb3081e9bb2d2366dce05c6e238d282271d251d92609
+  comparabilidad:
+    dimensiones:
+      unidad:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · PERSONA elegida de 18 años y más en las cuatro celdas.
+      escala:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · Proporción en [0,1] en legacy y RESULT.
+      direccion:
+        estado: COINCIDE
+        razon: 'VIAS-AHORRO-PARTICION · Cada RESULT conserva la celda exacta: solo informal, ambas, solo
+          formal o no ahorra.'
+      poblacion:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · Mismas 13 502 personas de ENIF 2024; las cuatro celdas forman una
+          partición completa.
+      evento:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · La celda legacy y el RESULT usan la misma combinación de pertenencia
+          a ahorro formal F e informal I.
+      codigos:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · F e I vienen de los mismos bloques P5_6_* y P5_1_*; no se supone
+          independencia.
+      periodo:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · ENIF 2024 y el mismo periodo de referencia de ahorro.
+      transformacion:
+        estado: COINCIDE
+        razon: 'VIAS-AHORRO-PARTICION · Misma inclusión-exclusión: ambas=F+I-(F∪I), exclusivas por resta
+          y no_ahorra=1-(F∪I).'
+    evidencias: *id010
+  diferencia:
+    escala: proporcion
+    unidad: proporcion en escala [0,1]
+    relativo:
+      permitido: false
+      razon: el cero de una p de conducta no es una base sustantiva para cambio relativo; el grano del
+        consumidor se mide en magnitud absoluta
+  representacion:
+    aplica: true
+    publicado: a
+    preciso: b
+  materialidad:
+    criterio:
+      metrica: magnitud_absoluta
+      umbral: 1.0e-06
+      evidencias:
+      - fuente: data/corrida0/CALC-B-0001/spec.yaml
+        sha256: 7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16
+        cita: parametros.adopcion_p3.umbral_grano_milpa = 1e-06 -- «la tolerancia con que T35 (c) compara
+          el valor materializado por el consumidor contra el RESULT»; es el grano del CONSUMIDOR, no de
+          una spec, y por eso vale para los cuatro CALC de estos pares
+    razon: 'materialidad POR CONSUMIDOR (E.4): el umbral es el grano con que el consumidor materializa
+      la cifra, no una tolerancia de spec. Por encima de el, el motor leeria un numero distinto del que
+      lee hoy.'
+- id: RELEVO-RES-0056-VS-RESULT-HVD-A-NO-AHORRA
+  consumidor: milpa/tramite.yaml:dinero.ahorro.via_informal:no_ahorra
+  uso:
+    descripcion: 'RES-0056: partición F/I de ahorro (solo informal, ambas, solo formal, ninguno); ENIF
+      2024, n=13 502. Consumidor milpa/tramite.yaml:dinero.ahorro.via_informal:no_ahorra; legacy en el
+      archivo del consumidor frente a CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1::RESULT-HVD-A-NO-AHORRA.
+      Esta comparación no adopta ni edita el consumidor.'
+    evidencias: &id011
+    - fuente: data/corrida0/CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1/spec.md
+      sha256: 8c04222fb218fe928f92d63bb380e9a88b226217f050836ebdc32f00e88e8f43
+      cita: '§2: fórmulas de inclusión-exclusión, dependencia de insumos sellados y suma exacta de las
+        cuatro celdas.'
+    - fuente: milpa/tramite.yaml
+      sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+      cita: regla dinero.ahorro.via_informal, nota_l1 y cuatro conductas derivadas sin IC propio.
+  a:
+    clase: fuente
+    fuente: milpa/tramite.yaml
+    sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+    version: archivo del consumidor en la base de este acto; el valor es la cifra GEN1 que el motor lee
+      HOY, antes de toda adopcion
+    tipo: proporcion
+    unidad: proporcion en escala [0,1]
+    selector:
+      formato: yaml
+      ruta:
+      - reglas
+      - 17
+      - entonces
+      - 3
+      - p
+  b:
+    clase: resultado
+    calc_id: CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1
+    corrida_id: CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1--6c9a26566130
+    resultado_id: RESULT-HVD-A-NO-AHORRA
+    spec_sha256: d3d06053aefc5f6886ba2098ecfc50f911591fa51586bbffec08b7860e8b24cf
+    resultados_sha256: 16a03f136bf70db92ad0031230e1e5191f317f32c0e9181c18a9be61109364bd
+    sello_sha256: 1c8b329fb2088d24298acb3081e9bb2d2366dce05c6e238d282271d251d92609
+  comparabilidad:
+    dimensiones:
+      unidad:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · PERSONA elegida de 18 años y más en las cuatro celdas.
+      escala:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · Proporción en [0,1] en legacy y RESULT.
+      direccion:
+        estado: COINCIDE
+        razon: 'VIAS-AHORRO-PARTICION · Cada RESULT conserva la celda exacta: solo informal, ambas, solo
+          formal o no ahorra.'
+      poblacion:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · Mismas 13 502 personas de ENIF 2024; las cuatro celdas forman una
+          partición completa.
+      evento:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · La celda legacy y el RESULT usan la misma combinación de pertenencia
+          a ahorro formal F e informal I.
+      codigos:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · F e I vienen de los mismos bloques P5_6_* y P5_1_*; no se supone
+          independencia.
+      periodo:
+        estado: COINCIDE
+        razon: VIAS-AHORRO-PARTICION · ENIF 2024 y el mismo periodo de referencia de ahorro.
+      transformacion:
+        estado: COINCIDE
+        razon: 'VIAS-AHORRO-PARTICION · Misma inclusión-exclusión: ambas=F+I-(F∪I), exclusivas por resta
+          y no_ahorra=1-(F∪I).'
+    evidencias: *id011
+  diferencia:
+    escala: proporcion
+    unidad: proporcion en escala [0,1]
+    relativo:
+      permitido: false
+      razon: el cero de una p de conducta no es una base sustantiva para cambio relativo; el grano del
+        consumidor se mide en magnitud absoluta
+  representacion:
+    aplica: true
+    publicado: a
+    preciso: b
+  materialidad:
+    criterio:
+      metrica: magnitud_absoluta
+      umbral: 1.0e-06
+      evidencias:
+      - fuente: data/corrida0/CALC-B-0001/spec.yaml
+        sha256: 7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16
+        cita: parametros.adopcion_p3.umbral_grano_milpa = 1e-06 -- «la tolerancia con que T35 (c) compara
+          el valor materializado por el consumidor contra el RESULT»; es el grano del CONSUMIDOR, no de
+          una spec, y por eso vale para los cuatro CALC de estos pares
+    razon: 'materialidad POR CONSUMIDOR (E.4): el umbral es el grano con que el consumidor materializa
+      la cifra, no una tolerancia de spec. Por encima de el, el motor leeria un numero distinto del que
+      lee hoy.'
+- id: RELEVO-RES-0066-VS-RESULT-HVD-A-HORIZONTE-NO-CORTO-NO-TRABAJA
+  consumidor: milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_no_corto
+  uso:
+    descripcion: 'RES-0066: 1-p(horizonte corto) entre no trabajadores; ENIF 2024, n=3 462. Consumidor
+      milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_no_corto; legacy en el archivo
+      del consumidor frente a CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1::RESULT-HVD-A-HORIZONTE-NO-CORTO-NO-TRABAJA.
+      Esta comparación no adopta ni edita el consumidor.'
+    evidencias: &id012
+    - fuente: data/corrida0/CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1/spec.md
+      sha256: 8c04222fb218fe928f92d63bb380e9a88b226217f050836ebdc32f00e88e8f43
+      cita: '§2: RES-0066=1-RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P y dependencia explícita.'
+    - fuente: milpa/tramite.yaml
+      sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+      cita: regla dinero.ahorro.horizonte_no_trabajadores, IC95 propio del complemento y derivado_de.
+  a:
+    clase: fuente
+    fuente: milpa/tramite.yaml
+    sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+    version: archivo del consumidor en la base de este acto; el valor es la cifra GEN1 que el motor lee
+      HOY, antes de toda adopcion
+    tipo: proporcion
+    unidad: proporcion en escala [0,1]
+    selector:
+      formato: yaml
+      ruta:
+      - reglas
+      - 21
+      - entonces
+      - 1
+      - p
+  b:
+    clase: resultado
+    calc_id: CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1
+    corrida_id: CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1--6c9a26566130
+    resultado_id: RESULT-HVD-A-HORIZONTE-NO-CORTO-NO-TRABAJA
+    spec_sha256: d3d06053aefc5f6886ba2098ecfc50f911591fa51586bbffec08b7860e8b24cf
+    resultados_sha256: 16a03f136bf70db92ad0031230e1e5191f317f32c0e9181c18a9be61109364bd
+    sello_sha256: 1c8b329fb2088d24298acb3081e9bb2d2366dce05c6e238d282271d251d92609
+  comparabilidad:
+    dimensiones:
+      unidad:
+        estado: COINCIDE
+        razon: HORIZONTE-DERIVADO-DEPENDIENTE · PERSONA no trabajadora elegida de 18 años y más en ambos
+          lados.
+      escala:
+        estado: COINCIDE
+        razon: HORIZONTE-DERIVADO-DEPENDIENTE · Proporción en [0,1] en ambos lados.
+      direccion:
+        estado: COINCIDE
+        razon: HORIZONTE-DERIVADO-DEPENDIENTE · Más alto significa mayor proporción con horizonte no corto
+          en el mismo dominio.
+      poblacion:
+        estado: COINCIDE
+        razon: HORIZONTE-DERIVADO-DEPENDIENTE · Mismas 3 462 personas que no trabajaron el mes anterior
+          y tienen P4_10 válido.
+      evento:
+        estado: COINCIDE
+        razon: HORIZONTE-DERIVADO-DEPENDIENTE · El evento exacto es el complemento de horizonte_corto
+          dentro del dominio no trabajador.
+      codigos:
+        estado: COINCIDE
+        razon: HORIZONTE-DERIVADO-DEPENDIENTE · Actividad por P3_8/P3_9 y horizonte corto por P4_10∈{1,2};
+          el RESULT conserva esos códigos por dependencia explícita.
+      periodo:
+        estado: COINCIDE
+        razon: HORIZONTE-DERIVADO-DEPENDIENTE · ENIF 2024 en ambos lados.
+      transformacion:
+        estado: COINCIDE
+        razon: HORIZONTE-DERIVADO-DEPENDIENTE · Mismo 1 - RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P; no se
+          trata como medición independiente.
+    evidencias: *id012
+  diferencia:
+    escala: proporcion
+    unidad: proporcion en escala [0,1]
+    relativo:
+      permitido: false
+      razon: el cero de una p de conducta no es una base sustantiva para cambio relativo; el grano del
+        consumidor se mide en magnitud absoluta
+  representacion:
+    aplica: true
+    publicado: a
+    preciso: b
+  materialidad:
+    criterio:
+      metrica: magnitud_absoluta
+      umbral: 1.0e-06
+      evidencias:
+      - fuente: data/corrida0/CALC-B-0001/spec.yaml
+        sha256: 7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16
+        cita: parametros.adopcion_p3.umbral_grano_milpa = 1e-06 -- «la tolerancia con que T35 (c) compara
+          el valor materializado por el consumidor contra el RESULT»; es el grano del CONSUMIDOR, no de
+          una spec, y por eso vale para los cuatro CALC de estos pares
+    razon: 'materialidad POR CONSUMIDOR (E.4): el umbral es el grano con que el consumidor materializa
+      la cifra, no una tolerancia de spec. Por encima de el, el motor leeria un numero distinto del que
+      lee hoy.'
