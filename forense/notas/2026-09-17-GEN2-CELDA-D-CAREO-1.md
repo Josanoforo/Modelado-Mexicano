@@ -319,7 +319,7 @@ CITAS `archivo:linea` DISTINTAS EN LA NOTA: 34 sobre 12 archivos -- 34 resuelven
 
 ```
 ════════════════════════════════════════════════════════════════════════
-  3 FAIL · 4373 WARN
+  3 FAIL · 4370 WARN
 ════════════════════════════════════════════════════════════════════════
 
 ────────────────────────────────────────────────────────────────────────
@@ -339,7 +339,7 @@ CITAS `archivo:linea` DISTINTAS EN LA NOTA: 34 sobre 12 archivos -- 34 resuelven
 
 **Las 9 entradas nuevas son de `T03` y son la misma cosa, dicha nueve veces:** referencias colgantes a `ADVERSARIAL-D-THETA-v1_0.md` (×5) y a `D-THETA-DOCUMENTO-v1_1-post-adversarial.md` (×4) — **los dos documentos que mesa iba a cargar y que no llegaron**.
 
-**Y aquí hay un hallazgo reflexivo que conviene no tragarse.** Cuatro de las nueve vienen de texto archivado **verbatim** que A.3 prohíbe editar: el encargo, el retorno de Astra y el brief externo los citan porque **esperaban leerlos**. Pero **cinco vienen de la prosa propia de este acto** —`ADR-533` y esta misma sección—, que los nombra **precisamente para reportar que no llegaron**. `T03` no distingue «cita un archivo que esperaba leer» de «nombra un archivo para decir que nunca llegó»: **reportar una ausencia crea la referencia colgante que se está reportando**. Es un punto fijo, y se midió al chocar con él — la primera redacción de esta sección declaró `4364 WARN`, y escribirla movió la cifra a `4373`.
+**Y aquí hay un hallazgo reflexivo que conviene no tragarse.** Cuatro de las nueve vienen de texto archivado **verbatim** que A.3 prohíbe editar: el encargo, el retorno de Astra y el brief externo los citan porque **esperaban leerlos**. Pero **cinco vienen de la prosa propia de este acto** —`ADR-533` y esta misma sección—, que los nombra **precisamente para reportar que no llegaron**. `T03` no distingue «cita un archivo que esperaba leer» de «nombra un archivo para decir que nunca llegó»: **reportar una ausencia crea la referencia colgante que se está reportando**. Es un punto fijo, y se midió al chocar con él **dos veces**: la primera redacción de esta sección declaró `4364 WARN` y escribirla movió la cifra a `4373`; compactar después la cita cruda —que reproducía los nombres **truncados** que la propia salida imprime, y un nombre truncado tampoco existe— la dejó en **`4370`**, que es donde se estabiliza. **La cifra es sensible a cómo el informe cita la salida**, y eso se dice en vez de presentarla como si fuera una constante del árbol.
 
 No se evita callando el nombre. Escribir un informe de ausencia sin nombrar lo ausente, para que un test no lo cuente, es escribir para complacer al test — exactamente lo que este programa prohíbe y lo que la regla de los encargos verbatim protege. Se nombra, se mide, se dice, y mesa decide.
 
