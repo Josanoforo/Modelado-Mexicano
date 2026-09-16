@@ -283,7 +283,7 @@ Este artefacto **afirma sobre el modelo** y sobre un estimando de conducta de po
 
 **El falsador del propio piloto, escrito antes de correrlo:** un `R` derivado antes del `COMMIT-2` **no anula** el piloto — lo **degrada a factibilidad**, y eso se declara, no se esconde.
 
-**Lo que el sucesor hereda abierto:** `NC-0275` (emisor = árbitro, sucesor `SIN-ASIGNAR`) · `NC-0276` (15 filas sin escala, entre ellas su propio consumidor) · `NC-0278` (tres fuentes `SIN-FETCH`) · la fila 3 de la tabla de §5 (`parametro_compartido_id`, sin dueño) · `FP-376` abierta.
+**Lo que el sucesor hereda abierto:** `NC-0275` (emisor = árbitro, sucesor `SIN-ASIGNAR`) · `NC-0276` (15 filas sin escala, entre ellas su propio consumidor) · `NC-0278` (tres fuentes `SIN-FETCH`) · `NC-0280` (la lección de perímetro: un acto que archiva texto de terceros dispara `T02`/`T22`/`T25`/`T30`, y su perímetro debería decirlo) · la fila 3 de la tabla de §5 (`parametro_compartido_id`, sin dueño) · `FP-376` abierta.
 
 ---
 
@@ -309,4 +309,4 @@ CITAS `archivo:linea` DISTINTAS EN LA NOTA: 34 sobre 12 archivos -- 34 resuelven
 
 **SHA:** `9dffd64`. **Instrumentos:** ninguno abierto — este acto no toca microdato. **Celdas:** las 8 de cruce, **no derivadas**. **Archivos leídos con comando y citados:** 22 del árbol fijo `b881ee6` (P1) + `data/inventario-reactivos-v1_2.tsv` (178 256 líneas), `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `data/corrida0/demanda-resultados.tsv` (209), `forense/hallazgos.md`, `forense/no-corrido.tsv`, `forense/firmas-pendientes.tsv`, `tests/test_celdas_d.py`, `data/INFRAESTRUCTURA-v1_0.md`.
 
-**CONTADOR.** Mediciones: **0**. Corridas: **0**. Adopciones: **0**. Microdato: **0**. Red efectiva: **0** (5 intentos, 5 rechazos de política). Celdas-D registradas: **3 → 4**. `no_corrido_abiertas`: **+5** (`NC-0275`…`NC-0279`) — **el encargo previó +2**, y la diferencia son las tres filas A.14 propias de este acto (adjunto que no llegó, fuentes `SIN-FETCH`, enmienda ya existente). Se reporta, no se ajusta el conteo al pronóstico. `FP` abiertas: sin cambio (`FP-378` **nace FIRMADA**). Filas de `decisiones.tsv`: **+1**.
+**CONTADOR.** Mediciones: **0**. Corridas: **0**. Adopciones: **0**. Microdato: **0**. Red efectiva: **0** (5 intentos, 5 rechazos de política). Celdas-D registradas: **3 → 4**. `no_corrido_abiertas`: **+6** (`NC-0275`…`NC-0280`) — **el encargo previó +2**, y la diferencia son las cuatro filas A.14 propias de este acto: adjunto que no llegó, fuentes `SIN-FETCH`, enmienda que ya existía, y **el perímetro mal calculado** (`NC-0280`: el encargo autorizaba tocar `tests/check.py` sólo por `T25` y el acto disparó cuatro tests de cascada — `T02`, `T22`, `T25`, `T30` —, que es lo que archivar cuatro adjuntos verbatim y abrir una fila de mesa dispara por construcción). Se reporta, no se ajusta el conteo al pronóstico. `FP` abiertas: sin cambio (`FP-378` **nace FIRMADA**). Filas de `decisiones.tsv`: **+1**.
