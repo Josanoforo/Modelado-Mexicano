@@ -199,3 +199,8 @@ Sin cambio respecto a v0.1: no elige el estimador de ninguna celda-D real; no fi
 **Contadores movidos por el trabajo que produjo esta versión: 0.**
 
 **(v2.4) Cantidades y escalas:** sin cambio respecto a v0.1 — ninguna cantidad estimada nueva se transcribe en esta versión.
+
+
+---
+
+**ENMIENDA FECHADA — 16/sep/2026, `ACTO GEN2-M1-ALCANCE-1` (ADR-531).** M1 se firmó el 17/ago/2026 (`ADR-91`) y se **precisó** el 17/sep/2026 (ADR-531, firma de mesa de esa fecha); esta línea quedó vencida el 17/ago y no se edita. Líneas afectadas en este archivo: :11, :123, :179, :187. La firma del 17/ago adoptó *«M1 cómputo matricial como definición del ejecutable»*; la precisión del 17/sep acota su alcance sin revocarla: *«el cómputo matricial es la forma de composición del ejecutable, no el estimador de ninguna celda. La estimación de cada insumo la gobierna el contrato celda-D (`ADR-68`); la matriz compite en él como candidato, nunca por defecto.»* Texto original arriba **intacto** (A.10 corolario 1): corregir hacia atrás borraría el registro de qué se dijo, que es lo que permite auditar la corrección.

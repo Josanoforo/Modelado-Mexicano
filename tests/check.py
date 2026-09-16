@@ -379,6 +379,37 @@ _T03_DEPENDENCIAS_PENDIENTES = {
         "ADVERSARIAL-ASTRA-1-LECTURA-F5-2026-09-15.md",
         "acto.md",
     },
+    # ACTO GEN2-M1-ALCANCE-1, 16/sep/2026. Encargo archivado VERBATIM por A.3
+    # (no se edita para complacer al test) y su nota de cierre. Dos citas:
+    #
+    #  · `D-THETA-DOCUMENTO-v1_1-post-adversarial.md` -- el adjunto que el
+    #    encargo declara «viaja adjunto» (sha256 `8a6472a72631dfdc...`) y que
+    #    NO llego. Caso identico, palabra por palabra, al de
+    #    `GEN2-MANTENIMIENTO-Y-ARCHIVO-2` de arriba: la cita cuelga A
+    #    PROPOSITO y `NC-0271` la asienta como `PARO-PREMISA`. Fabricar el
+    #    archivo para cerrar la cita seria inventar la procedencia que P5
+    #    existe para registrar. La nota de cierre lo cita por la misma razon
+    #    -- decir que un adjunto no llego exige nombrarlo.
+    #  · `propuesta-motor-adaptativo-celda-v0_1..v0_5.md` -- NO es un nombre
+    #    de archivo sino la NOTACION DE RANGO con que el encargo nombra a los
+    #    cinco documentos de la serie. Los cinco existen (`v0_1`, `v0_2`,
+    #    `v0_3`, `v0_4`, `v0_5`) y los cinco reciben enmienda fechada en este
+    #    mismo acto; lo que no existe es el rango escrito como si fuera un
+    #    archivo. Falso positivo de forma, no referencia colgante.
+    "forense/encargos/2026-09-16-GEN2-M1-ALCANCE-1.md": {
+        "D-THETA-DOCUMENTO-v1_1-post-adversarial.md",
+        "propuesta-motor-adaptativo-celda-v0_1..v0_5.md",
+    },
+    "forense/notas/2026-09-16-GEN2-M1-ALCANCE-1-cierre.md": {
+        "D-THETA-DOCUMENTO-v1_1-post-adversarial.md",
+    },
+    # Misma causa, un piso arriba: `ADR-531` NOMBRA el adjunto que no llego
+    # -- es su pieza P5 y la razon de `NC-0271`. Un ADR que dijera «el
+    # adjunto no llego» sin decir cual seria un registro inauditable, que es
+    # exactamente lo contrario de para lo que existe la entrada.
+    "canon/gobernanza-v1_15.md": {
+        "D-THETA-DOCUMENTO-v1_1-post-adversarial.md",
+    },
 }
 
 def _normalize_version_dots(name):
@@ -2916,6 +2947,27 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # censó `ACTO GEN2-T7-CIERRE` al encolarlo), y `E5-0` ya figura por la
     # misma razón en las exenciones de `AUTO-MOTOR-1` y `GEN2-T9` de arriba.
     "forense/encargos/2026-09-08-GEN2-E5-0-SPECS-EJECUTABLES.md",
+    # ACTO GEN2-M1-ALCANCE-1, 16/sep/2026: encargo archivado VERBATIM (0-bis
+    # A.3) y su nota de cierre. El token pelado es `M1`, y el acto entero es
+    # SOBRE `M1`: no puede nombrarlo de otra forma sin dejar de nombrarlo.
+    # Precedente exacto e inmediato: la exencion de `GEN2-CROSSWALK-EJES-1`
+    # de abajo, por `M2`, misma serie y misma razon (ADR-530, 16/sep/2026).
+    # `M1` NO es un rotulo de acto ni un habitante de espacio: es la primera
+    # de las seis ranuras del sello del motor (`M1`..`M6` del esqueleto
+    # `forense/ADR-MOTOR-2-esqueleto-2026-08-14.md`), firmada por mesa el
+    # 17/ago/2026 en `ADR-91` y ejecutada en `ADR-100`. Como `M2`, el nombre
+    # esta cableado fuera de la prosa: `forense/firmas-pendientes.tsv:FP-01`
+    # lo lleva como objeto de la fila, `data/corrida0/decisiones.tsv` lo
+    # lleva como `objeto` en las dos filas que este acto asienta, y
+    # `canon/gobernanza-v1_15.md` lo cita verbatim dentro de la firma de
+    # mesa. Darle prefijo aqui inventaria un rotulo que nadie reclama y
+    # rompería la cita literal de la firma, que es justo lo que el encargo
+    # archivado existe para hacer auditable. No se censa en
+    # `canon/registro-rotulos.tsv` porque ese registro es de habitantes de
+    # espacio (actos), no de etiquetas de ranura de sello -- el rotulo de
+    # acto que SI se censa ahi es `GEN2-M1-ALCANCE-1`.
+    "forense/encargos/2026-09-16-GEN2-M1-ALCANCE-1.md",
+    "forense/notas/2026-09-16-GEN2-M1-ALCANCE-1-cierre.md",
     # ACTO GEN2-CROSSWALK-EJES-1, 16/sep/2026: encargo archivado VERBATIM
     # (0-bis A.3), que no se edita para complacer un test (misma regla que
     # rige el resto de esta lista). El token pelado que trae es `M2`, y NO es

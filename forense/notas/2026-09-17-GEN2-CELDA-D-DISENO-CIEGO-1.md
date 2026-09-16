@@ -17,13 +17,14 @@
 | | |
 |---|---|
 | **SHA real al abrir** | `10afea15e19efabc6ef41b3d67d34b1cba8b4f0a` (`10afea1`, `Merge pull request #821 from Josanoforo/derivados/2026-09-16`). El encargo se redactó contra `b881ee6`. |
-| **Diferencia `b881ee6..10afea1`** | **1 archivo, +2/−2**: `forense/tablero/TABLERO-PROGRAMA.md` (`git diff --stat b881ee6..HEAD`). Ningún archivo del universo de este acto se movió. **`main` se movió por `[DERIVADOS] 2026-09-16` (`PR #821`), no por `GEN2-M1-ALCANCE-1`** — corrección a la previsión de la cabecera del encargo. |
+| **Diferencia `b881ee6..10afea1`** | **1 archivo, +2/−2**: `forense/tablero/TABLERO-PROGRAMA.md` (`git diff --stat b881ee6..HEAD`). Ningún archivo del universo de este acto se movió. **Al abrir, `main` se había movido por `[DERIVADOS] 2026-09-16` (`PR #821`), no por `GEN2-M1-ALCANCE-1`** — la previsión de la cabecera del encargo era correcta pero prematura: `GEN2-M1-ALCANCE-1` fusionó **durante** el acto, no antes (ver la fila de concurrencia). |
+| **Sync a mitad del acto** | `origin/main` pasó de `10afea1` a `d69eed1` (`PR #822`, `GEN2-M1-ALCANCE-1`, 7 commits) mientras esta sesión escribía. Merge con tres conflictos, los tres del cierre y ninguno sustantivo (`canon/gobernanza-v1_15.md`, `canon/estado-programa-v1_13.md`, `canon/registro-rotulos.tsv`): resueltos conservando **las dos** entradas, la suya primero. Las enmiendas que trajo se **añadieron al final** de cada propuesta, así que **ninguna cita `archivo:línea` de esta nota se desplazó** salvo una, `milpa/src/matriz.py`, re-derivada y corregida (ver `F3`). |
 | **Rama** | `claude/admiring-meitner-yghskh` |
 | **Entorno** | `python3 tools/entorno.py` → `commit=10afea15e19e · git_status=LIMPIO(0) · python=3.11.15 · numpy=AUSENTE pandas=AUSENTE scipy=AUSENTE yaml=6.0.1 pyreadstat=AUSENTE · CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE=cloud_default · red=no-ejecutada · raices=data_raw:NO · corpus=NO(examinados=0)`. |
 | **Microdato** | **Cero payloads abiertos.** `data/raw` ausente (normal en nube) y el encargo lo declara irrelevante: A.15b — la construibilidad se lee de inventarios, FD y catálogos del repo. Sonda de red no ejecutada: este acto no toca red. |
 | **Compuerta** | `ninguna` (declaración explícita del encargo; no dispara verificación). |
 | **Contador de mediciones** | **Cero, dicho sin disfraz.** Este acto no mide nada sobre México. Produce diseño. |
-| **Concurrencia observada** | `GEN2-M1-ALCANCE-1` vive en `origin/claude/affectionate-sagan-u8484q` (4 commits, `CIERRE · GEN2-M1-ALCANCE-1 · ADR-531`), **sin fusionar y sin PR abierto** (`mcp github list_pull_requests state=open` → `[]`). Por tanto: **no se tocó ninguno de sus archivos** (`canon/gobernanza-v1_15.md` §4 sólo recibe el ADR de cascada de este acto, que el perímetro autoriza; `forense/tablero/`, `milpa/src/matriz.py`, `propuesta-motor-*.md` y `forense/hallazgos.md` quedan intactos), y las propuestas se leyeron **como están en `main`**, sin sus enmiendas. |
+| **Concurrencia observada, y cómo cambió a mitad del acto** | **Al abrir:** `GEN2-M1-ALCANCE-1` vivía en `origin/claude/affectionate-sagan-u8484q` (4 commits, `CIERRE · … · ADR-531`), **sin fusionar y sin PR abierto** (`list_pull_requests state=open` → `[]`); por eso no se tocó ninguno de sus archivos y las propuestas se leyeron **como están en `main`**, sin sus enmiendas. **Al cerrar: ya había fusionado** (`PR #822` → `d69eed1`, 7 commits, `ADR-531`). Se aplicó entonces la otra mitad de la instrucción del encargo —«*si al abrir ya fusionó, cita su ADR y lee las propuestas con sus enmiendas*»—: se sincronizó, se **renumeró este ADR de `531` a `532`** (regla de la casa: renumera quien fusiona segundo), y se releyeron las enmiendas. **Dos cosas cambiaron y las dos están asentadas**, con la fecha en que se leyeron: la firma verbatim de `M1` llegó al árbol (§0.3) y `milpa/src/matriz.py::g()` quedó corregida (`F3`, `P4 §4.1`). Ninguna mueve `P1`. |
 
 ### 0.1 · Archivos examinados por pieza, con conteo (A.13)
 
@@ -77,9 +78,28 @@ escribe en la línea siguiente:
 > nunca el estimador por defecto.»
 
 No es PARO: los dos PARO que el encargo declara son (i) que mesa pegue el diseño de
-dirección y (ii) escribir fuera del perímetro. Ninguno ocurrió. Pero **el careo debe
-saber que el verbatim A-o-B no está en el árbol ni en esta sesión**, y que todo P3 se
-escribió contra la paráfrasis, no contra la firma. Fila de reserva al cierre.
+dirección y (ii) escribir fuera del perímetro. Ninguno ocurrió. Todo `P1`–`P4` se escribió
+contra esa paráfrasis, no contra la firma.
+
+> **RESERVA RESUELTA A MITAD DEL ACTO, y se dice cómo.** `GEN2-M1-ALCANCE-1` fusionó
+> (`PR #822`, `ADR-531`) mientras este acto corría, y **trajo el verbatim al árbol**. La
+> firma de mesa del 17/sep/2026 sobre `M1`, citada verbatim en la enmienda fechada que ese
+> acto estampó sobre las propuestas
+> (`propuesta-motor-adaptativo-celda-v0_5.md:164`, `propuesta-motor-matriz-v0_1.md:236`) y
+> asentada en `forense/hallazgos.md:847` como `PARA-v2.14`, dice:
+>
+> > «*el cómputo matricial es la forma de **composición** del ejecutable, no el estimador
+> > de ninguna celda. La estimación de cada insumo la gobierna el contrato celda-D
+> > (`ADR-68`); la matriz compite en él como **candidato**, nunca por defecto.*»
+>
+> **Coincide en sustancia con la paráfrasis contra la que se escribió este diseño** — «la
+> matriz compone y, donde compita, es un candidato más — nunca el estimador por defecto».
+> `ADR-91` **no se revoca**: la firma del 17/ago (*«cómputo matricial como definición del
+> ejecutable»*) sigue en pie y lo que se precisa es su **alcance**. Nada de `P1`–`P4`
+> cambia por esta lectura, y se declara que se hizo **después** de escribirlos: el orden
+> importa para el careo. La reserva sobrevive sólo en su forma débil — el marcador
+> `[FIRMA M1 — A o B]` del encargo sigue sin decir cuál de las dos opciones («A» o «B»)
+> eligió mesa, y este acto **no lo infiere**.
 
 ---
 
@@ -447,8 +467,15 @@ Convención de estado: `YA-PREVISTO` (con cita a v0.3 / v0.5 / el veredicto Fabl
   (`milpa/procedencia.yaml:629-632`). Bajo la matriz «se vuelve un test de una línea sobre
   signos de columna». Hoy `G5 × familismo_obligacion` carga como
   `CoeficienteSinMagnitud` (`milpa/src/matriz.py:95`, `:119`) y `g()` levanta
-  `SinMagnitud` (`:151`) — es decir: **el test de coherencia no puede correr sobre la
+  `SinMagnitud` (`:186`) — es decir: **el test de coherencia no puede correr sobre la
   única columna que lo motivó.**
+  *(Enmienda propia, 17/sep, tras el merge de `PR #822` a mitad de este acto: `ADR-531`
+  corrigió `g()` a `g(matriz, theta, celda, generadores=None)`
+  (`milpa/src/matriz.py:138`), de modo que una celda sin magnitud **de un generador que
+  nadie pidió** ya no bloquea un cómputo en el que no entra — el defecto era que el
+  docstring prometía «celda participante» en singular y el código recorría `B` entera.
+  Eso levanta el bloqueo para `G1`, `G2`, `G3`, `G4` y `G6`; **no** lo levanta para `G5`,
+  que es la columna que motiva el test de ADR-30. El ejemplo se sostiene, acotado a `G5`.)*
 - **Síntoma observable.** Dos champions cuyos signos de columna se contradicen, sin que
   ninguna corrida falle.
 - **Mecanismo mínimo.** `D8` con `momentos_holdout_refs` **globales** sellados en el
@@ -744,7 +771,7 @@ Medido hoy, los tres factores del producto:
 | factor | estado, por comando | cita |
 |---|---|---|
 | **`π(x)`** | **sin fuente cargable.** `construir_pi()` levanta `FuentePiPendiente` con el texto «π(x) no tiene hoy fuente cargable: `tasa_informalidad` aparece 0 veces…» | `milpa/src/pi.py:68-69`; `milpa/catalogo-momentos-v0_1.md:113` |
-| **`B·θ(x)`** | **parcial.** `g()` levanta `SinMagnitud` si una celda participante no tiene número; `G5 × familismo_obligacion` carga como `CoeficienteSinMagnitud` | `milpa/src/matriz.py:151`, `:95`, `:119`; `propuesta-motor-matriz-v0_1.md:62` («**SIN MAGNITUD**») |
+| **`B·θ(x)`** | **parcial.** `g()` levanta `SinMagnitud` si una celda **participante** no tiene número, y desde `ADR-531` (`PR #822`, fusionado a mitad de este acto) «participante» quiere decir lo que la palabra dice: `g(matriz, theta, celda, generadores=None)` acota quién entra. `G5 × familismo_obligacion` sigue cargando como `CoeficienteSinMagnitud`, así que la columna que motiva el test de ADR-30 sigue sin poder componerse | `milpa/src/matriz.py:138`, `:186`, `:95`, `:119`; `propuesta-motor-matriz-v0_1.md:62` («**SIN MAGNITUD**») |
 | **`h_r`** | **no escrito.** `valor_de()` levanta `NotImplementedError`; el módulo del emisor declaró al correr que «un `C` no-trivial exige el enlace índice→adopción (`h_r`) — OLA futura» | `milpa/src/momentos.py:130`; `forense/hallazgos.md:480` |
 
 **Consecuencia para P4, dicha antes de proponer campos:** la interfaz no se está
@@ -1028,7 +1055,7 @@ PY
 Salida cruda, contra `HEAD` de este acto:
 
 ```
-CITAS `archivo:linea` DISTINTAS EN LA NOTA: 74 -- 74 resuelven, 0 no
+CITAS `archivo:linea` DISTINTAS EN LA NOTA: 78 -- 78 resuelven, 0 no
 ```
 
 Nota de método: la primera corrida devolvió **14 FALLA**, todas de la misma clase — citas
@@ -1043,11 +1070,11 @@ entrada vive hoy en `:1415-1599` — resuelve por `id`, no por línea (reserva a
 
 La pasada 1 comprueba que la línea existe; no que sea la línea correcta. La pasada 2 fija
 una **subcadena ancla** por cita y verifica que aparezca en esa línea exacta —
-**178 anclas** sobre **23 archivos** (las 74 citas de la nota más las de rango interior y
+**185 anclas** sobre **24 archivos** (las 78 citas de la nota más las de rango interior y
 las de los tres módulos de `milpa/src/`). Salida cruda:
 
 ```
-TOTAL 178 citas re-verificadas: 178 PASA, 0 FALLA
+TOTAL 185 citas re-verificadas: 185 PASA, 0 FALLA
 ```
 
 Esa pasada corrigió **9** citas antes de cerrar, todas por desplazamiento de una a cuatro
@@ -1058,7 +1085,7 @@ matriz (128-130, no 130), las tres desviaciones declaradas del catálogo de mome
 no 86-88), las cuatro del validador de celdas-D (106-121 / 200-207 / 237, no 107-117 / 199 /
 236) y la entrada del módulo de rigor extremo (117-119, no 119).
 El guion de anclas vive en el scratchpad de la sesión, no en el repo: **no entra al
-perímetro** (`tools/` no está en la lista de este acto). Las 178 anclas son reproducibles
+perímetro** (`tools/` no está en la lista de este acto). Las 185 anclas son reproducibles
 leyendo la nota, que cita cada una en su sitio.
 
 ---
@@ -1099,9 +1126,10 @@ para mesa. Ahí nacen las filas FP/NC — **este acto no abre ninguna**.
 
 ## Apéndice · Cascada y suite, con la salida cruda
 
-**`ADR-531`**, candidato contiguo (máximo real en `main`: `530`). El mismo `531` está **ya
-redactado** en `origin/claude/affectionate-sagan-u8484q` (`GEN2-M1-ALCANCE-1`, cierre
-escrito, **sin fusionar y sin PR abierto**), verificado por `tools/cierre_acto.py`:
+**`ADR-532`** — y el camino hasta ese número es en sí un registro. Al abrir el cierre, el
+máximo real en `main` era `530` y el candidato contiguo `531` estaba **ya redactado** en
+`origin/claude/affectionate-sagan-u8484q` (`GEN2-M1-ALCANCE-1`, cierre escrito, **sin
+fusionar y sin PR abierto**), verificado por `tools/cierre_acto.py`:
 
 ```
 ADR
@@ -1112,10 +1140,14 @@ ADR
     claude/affectionate-sagan-u8484q: SI
 ```
 
-Se toma igual, y se declara. **Primera redacción de este acto tomó `532` para esquivarlo, y
-estaba mal**: `T15 T-ADR-COUNT` lo rechazó con **4 `FAIL`** — `huecos en la secuencia de
-ADR: [531]`, más los tres contadores, que cuentan **ADR únicos** y no el máximo. Rige la
-regla de la casa sin excepción: **renumera quien fusiona segundo**.
+**Tres intentos, y los dos primeros están mal por razones distintas — se dejan escritos
+porque el error es el registro.** (1) La primera redacción tomó **`532`** para esquivar el
+`531` de la rama en vuelo: `T15 T-ADR-COUNT` lo rechazó con **4 `FAIL`** — `huecos en la
+secuencia de ADR: [531]`, más los tres contadores, que cuentan **ADR únicos** y no el
+máximo. (2) La segunda tomó **`531`**, el contiguo, aceptando de antemano renumerar si esa
+rama fusionaba primero. (3) **Fusionó primero** (`PR #822`, 17/sep), así que este acto
+renumera a **`532`** — que ahora no abre hueco, porque `531` ya está ocupado en `main`.
+Rige la regla de la casa sin excepción y sin atajo: **renumera quien fusiona segundo**.
 
 **Suite.** Primera corrida tras el 0-bis: **ROJA**, 4 entradas nuevas frente a
 `tests/baseline.json`.
@@ -1124,9 +1156,9 @@ regla de la casa sin excepción: **renumera quien fusiona segundo**.
 |---|---|---|
 | `T02` nombre normalizado colisiona: encargo ↔ nota | **Sí** | La nota tiene nombre fijado por el encargo. El archivo de encargo lleva **sufijo de tema**, que es lo que `forense/encargos/convencion.md` ya prescribía: «*El archivo de encargo lleva el código del acto como prefijo tras la fecha …; su nota no. T02 normaliza sin distinguir directorio … ha ocurrido en cinco actos*» |
 | `T25` ×2, rótulo pelado `M1` en encargo y nota | **Sí** | Paso 5 de `/acto`. **Un encargo verbatim (A.3) nunca se edita para complacer un test**: los dos archivos entran a `_T25_ARCHIVOS_CONOCIDOS` con el comentario que enumera cada mención (`M1` ×2 orígenes, `M3`, `M10` de `RONDA-M`, y `M01`/`M22`, que son **ids de fila** del catálogo de momentos, no rótulos). El rótulo propio, `GEN2-CELDA-D-DISENO-CIEGO-1`, sí se censa en `canon/registro-rotulos.tsv` |
-| `T16` declara 3 FAIL · 4347 WARN, la corrida da 3 FAIL · **4348** WARN | **No — defecto del instrumento, por tercera vez** | Este sandbox de nube no tenía `jsonschema`, **declarada en `requirements.txt`**, así que `T38 T-ALTA-RELACION` emitía aquí un WARN `NO-CORRIDO` que el runner no tiene. Mismo defecto que `ADR-520` y `ADR-530` ya pagaron y documentaron. **Se corrigió el instrumento, no el número**: instalada la dependencia, `T38` pasa a `[ ok ]` |
+| `T16` declara 3 FAIL · 4347 WARN, la corrida da 3 FAIL · **4348** WARN | **No — defecto del instrumento, por tercera vez** (y una cuarta, simétrica, ya medida en el árbol: `forense/hallazgos.md:846` documenta el mismo `T16` rojo en CAJA por `data/raices.local.yaml`, gitignorado, «*cuya "corrección" pondría CI en rojo*») | Este sandbox de nube no tenía `jsonschema`, **declarada en `requirements.txt`**, así que `T38 T-ALTA-RELACION` emitía aquí un WARN `NO-CORRIDO` que el runner no tiene. Mismo defecto que `ADR-520` y `ADR-530` ya pagaron y documentaron. **Se corrigió el instrumento, no el número**: instalada la dependencia, `T38` pasa a `[ ok ]` |
 
-Corrida final, salida cruda:
+Corrida tras corregir el instrumento, **contra la base `10afea1`** (antes del sync):
 
 ```
   3 FAIL · 4347 WARN
@@ -1134,11 +1166,20 @@ Corrida final, salida cruda:
   LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado 5e2ad5ce8daac333b03f344c578a9ae292fdc9db)
 ```
 
+Corrida final, **contra la base `d69eed1`** (después del sync con `PR #822`):
+
+```
+  3 FAIL · 4351 WARN
+
+  LÍNEA BASE: VERDE — nada nuevo frente a tests/baseline.json (HEAD congelado 5e2ad5ce8daac333b03f344c578a9ae292fdc9db)
+```
+
 Los **3 `FAIL`** son los heredados del corpus documental (`T06`×2 —Gini y confianza
 interpersonal con valores múltiples— y `T08` —7 reports sin mapa de evidencia—), ajenos a
 este perímetro y ya en la línea base. **Neto de este acto: cero `FAIL` nuevos y cero
-`WARN` nuevos**, así que la cifra de `ADR-530` sigue vigente y **no** se marca
-`{cita-historica}`.
+`WARN` nuevos, medido dos veces contra dos bases distintas.** Los **+4 `WARN`** entran con
+`PR #822` y los declara `ADR-531`; aquí se reproduce su cifra sin moverla. La de `ADR-530`
+(`3 FAIL · 4347 WARN`) queda vencida — **por `ADR-531`, no por este acto**.
 
 **Perímetro, verificado por `git status` y no por memoria.** Archivos tocados:
 

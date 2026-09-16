@@ -146,3 +146,8 @@ La única pregunta que esta versión responde es la que `ADR-71(d)` ya adjudicó
 2. §3: campo `vocabulario_version` nuevo, obligatorio.
 3. `data/curacion-registro/celdas-d/G5.familismo_obligacion.actitud.yaml` y `G5.radio_confianza.encuci_vs_enbiare.yaml` reescritas con el vocabulario nuevo, reservas verbatim conservadas — ver los propios archivos.
 4. Ningún otro cambio: M1 sigue abierta, ninguna celda-D corre, ningún contador de canon se mueve.
+
+
+---
+
+**ENMIENDA FECHADA — 16/sep/2026, `ACTO GEN2-M1-ALCANCE-1` (ADR-531).** M1 se firmó el 17/ago/2026 (`ADR-91`) y se **precisó** el 17/sep/2026 (ADR-531, firma de mesa de esa fecha); esta línea quedó vencida el 17/ago y no se edita. Líneas afectadas en este archivo: :13, :148. La firma del 17/ago adoptó *«M1 cómputo matricial como definición del ejecutable»*; la precisión del 17/sep acota su alcance sin revocarla: *«el cómputo matricial es la forma de composición del ejecutable, no el estimador de ninguna celda. La estimación de cada insumo la gobierna el contrato celda-D (`ADR-68`); la matriz compite en él como candidato, nunca por defecto.»* Texto original arriba **intacto** (A.10 corolario 1): corregir hacia atrás borraría el registro de qué se dijo, que es lo que permite auditar la corrección.

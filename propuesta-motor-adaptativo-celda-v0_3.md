@@ -222,3 +222,8 @@ Ninguna pregunta queda abierta en v0.3. Preguntas nuevas que surjan de ejecutar 
 6. §8: las diez preguntas de mesa (M0/M7/M8/M9/M10 de v0.2, más las heredadas) quedan todas resueltas con fecha.
 
 **v0.1 → v0.2 · 11/ago/2026 (Ronda 1):** ver changelog de v0.2.
+
+
+---
+
+**ENMIENDA FECHADA — 16/sep/2026, `ACTO GEN2-M1-ALCANCE-1` (ADR-531).** M1 se firmó el 17/ago/2026 (`ADR-91`) y se **precisó** el 17/sep/2026 (ADR-531, firma de mesa de esa fecha); esta línea quedó vencida el 17/ago y no se edita. Líneas afectadas en este archivo: :13, :96, :184. La firma del 17/ago adoptó *«M1 cómputo matricial como definición del ejecutable»*; la precisión del 17/sep acota su alcance sin revocarla: *«el cómputo matricial es la forma de composición del ejecutable, no el estimador de ninguna celda. La estimación de cada insumo la gobierna el contrato celda-D (`ADR-68`); la matriz compite en él como candidato, nunca por defecto.»* Texto original arriba **intacto** (A.10 corolario 1): corregir hacia atrás borraría el registro de qué se dijo, que es lo que permite auditar la corrección.

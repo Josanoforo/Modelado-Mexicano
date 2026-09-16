@@ -238,3 +238,8 @@ Esto ilustra, con un caso real: (i) que "dato faltante" y "transporte inviable" 
 **Contadores movidos por el trabajo que produjo este artefacto: 0.** Es un acto de diseño; ningún `production-spec` corrió, ninguna celda-D real fue evaluada más allá del ejemplo ya sellado de §6.
 
 **(v2.4) Cantidades y escalas:** este documento no transcribe ninguna cantidad estimada nueva; las cifras citadas viajan con su archivo dueño y su fecha, y §6 usa explícitamente solo lo que un veredicto ya sellado contiene.
+
+
+---
+
+**ENMIENDA FECHADA — 16/sep/2026, `ACTO GEN2-M1-ALCANCE-1` (ADR-531).** M1 se firmó el 17/ago/2026 (`ADR-91`) y se **precisó** el 17/sep/2026 (ADR-531, firma de mesa de esa fecha); esta línea quedó vencida el 17/ago y no se edita. Líneas afectadas en este archivo: :12, :164, :217. La firma del 17/ago adoptó *«M1 cómputo matricial como definición del ejecutable»*; la precisión del 17/sep acota su alcance sin revocarla: *«el cómputo matricial es la forma de composición del ejecutable, no el estimador de ninguna celda. La estimación de cada insumo la gobierna el contrato celda-D (`ADR-68`); la matriz compite en él como candidato, nunca por defecto.»* Texto original arriba **intacto** (A.10 corolario 1): corregir hacia atrás borraría el registro de qué se dijo, que es lo que permite auditar la corrección.
