@@ -1,6 +1,6 @@
 # ACTO `GEN2-CELDA-D-CAREO-1` · tres diseños ciegos, un careo, una celda registrada con su reserva intacta
 
-**Encargo:** `forense/encargos/2026-09-17-GEN2-CELDA-D-CAREO-1-TRES-DISENOS-UN-CAREO.md` (archivado verbatim, A.3, sha256 `f582ad38232e547d706e2ee6020184f2ddcccdb13fdddbc3ffc58f0ea78404f3`).
+**Encargo:** `forense/encargos/2026-09-17-GEN2-CELDA-D-CAREO-1-TRES-DISENOS-UN-CAREO.md` (archivado verbatim, A.3, sha256 del texto **tal como llegó** `f582ad38232e547d706e2ee6020184f2ddcccdb13fdddbc3ffc58f0ea78404f3`; las secciones `## NO-CORRIDO / RESERVAS` y `## CONSUMIDO` las añade la cascada después, por A.14, y el archivo lleva sufijo de tema por `forense/encargos/convencion.md` — encargo y nota del mismo tema colisionan en `T02`).
 **Fecha nominal:** 17/sep/2026 (la de la firma de mesa y la del encargo) · **fecha de ejecución del entorno:** 2026-09-16. Las dos se conservan; no se infiere una firma futura ni se corrige una fecha que no es del ejecutor editar. Mismo tratamiento que `FP-377` y `NC-0274`.
 **Base:** `9dffd64` (merge de `PR #823`), re-derivada al abrir — el encargo la declara y coincide: `git rev-list --count HEAD..origin/main` → `0`.
 **Entorno (A.2, tres partes de una sola invocación):** `python3 tools/entorno.py --sonda-red` → `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE=cloud_default` · `red=000` (el proxy de egreso responde 403 al CONNECT) · `corpus=NO(examinados=0)`, `data/raw` ausente. **Cero microdato, cero descargas, cero red efectiva.**
