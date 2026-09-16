@@ -1,14 +1,14 @@
 {
   "advertencia_suficiencia": "cero tareas elegibles sólo describe el selector; nunca acredita suficiencia general ni cierra necesidades",
   "contrato_cientifico_completo": 5,
-  "contrato_cientifico_incompleto": 47,
+  "contrato_cientifico_incompleto": 53,
   "contrato_completo": 5,
-  "contrato_incompleto": 47,
-  "contrato_minimo_derivado": 47,
+  "contrato_incompleto": 53,
+  "contrato_minimo_derivado": 53,
   "contrato_operativo_explicito_no_cientifico": 1,
   "contrato_operativo_no_cientifico": 13,
-  "corte": "2026-09-15",
-  "descripcion_minima_derivada": 47,
+  "corte": "2026-09-16",
+  "descripcion_minima_derivada": 53,
   "elementos_con_alcance_menor_disponible": 3,
   "elementos_con_brecha_abierta": 20,
   "elementos_gen2": [
@@ -16565,7 +16565,7 @@
     "data/corrida0/usos.tsv": "3006b8c80d4e0c9837724f45f5be160b7e3ecf17e9653e2cdb0f9826f5c68787",
     "data/curacion-registro/necesidad-objeto-modelo.tsv": "09062d3c7878651870ee429ce6cf6c86f73579b61916976718c8544209b20981",
     "data/curacion-registro/utilidad-modelo.tsv": "ed9b4055bdbe6d7963570df7a1e57c4ba8ab05319ab96a30cd972cf291003de2",
-    "forense/no-corrido.tsv": "16d99b635ca02737341130d19cd2d93789344c1636a7c8c8159f2ce10a9d35dd",
+    "forense/no-corrido.tsv": "d42064a29d48a92fbe191559b6b6c1f64c2457854053b608d6dff040a77459a9",
     "forense/prereg-duelo-v2/codificacion-R-v1_2.tsv": "41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e",
     "forense/prereg-duelo-v2/universo-triada-v1_4.tsv": "840fc68ce7261686426221effbf9df313ef17e2876fa6345b3c00589bab80f80"
   },
@@ -16739,8 +16739,8 @@
       "contrato_cientifico_completo": false,
       "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
       "cursor_continuacion": null,
-      "estado_ruteo": "NO_SONDA",
-      "etapa_faltante": "ADOPCION",
+      "estado_ruteo": "ESPERA_O_DELEGADA",
+      "etapa_faltante": "VALIDACION",
       "evidencia_disponible": "NC-0018/NC-0019 sin cambio; el selector no mueve ninguna cifra de R, L ni E",
       "evidencias": [
         "forense/no-corrido.tsv#NC-0029"
@@ -16748,7 +16748,7 @@
       "frontera": "NC-0018/NC-0019 sin cambio; el selector no mueve ninguna cifra de R, L ni E",
       "id": "NC-0029",
       "investigacion_previa": "EJECUCION-AUTORIZADA-PARCIAL-POR-MESA-10SEP",
-      "motivo_ruteo": "etapa vigente ADOPCION; no corresponde investigación externa",
+      "motivo_ruteo": "precedencia explícita impide reactivación automática",
       "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
       "opciones_decision": [],
       "origen_demanda": "NC_ABIERTA",
@@ -16757,12 +16757,12 @@
       "pregunta": "ningun corredor R/L nuevo, ningun ensamble E, ninguna adopcion de parametros",
       "prioridad": 60,
       "responsable": "E03 para L y E04 para motor/adopciones",
-      "siguiente_accion": "E03 para L y E04 para motor/adopciones; descomponer cada residual antes de cerrar",
+      "siguiente_accion": "E03 para L y E04 para motor/adopciones; descomponer cada residual antes de cerrar || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. E03 (cobertura vía ENCARGO GEN2-F5-COMPLETA) y E04 (cobertura vía ENCARGO GEN2-MOTOR-USOS-Y-COMPLEMENTOS) ya corrieron y se fusionaron: `grep -n \"CONSUMIDO\" forense/encargos/2026-09-10-GEN2-F5-COMPLETA.md` -> \"Estado: CONSUMIDO en PR #687\" (CALC-TRIADA-0002 sellado, 224/224, REPRODUCE/IDENTICO -- pieza L resuelta); `tail -20 forense/encargos/2026-09-10-GEN2-MOTOR-USOS-Y-COMPLEMENTOS.md` -> \"## CONSUMIDO ... PR #689\" (ADR-458 -- pieza motor resuelta). El corredor R también cerró por otra vía: NC-0018 = CERRADA (verificado hoy con `python3 -c` sobre `forense/no-corrido.tsv`). Lo que NO corrió y sigue sin producto: \"ensamble E\" -- `git grep -in \"ensamble\" -- '*.md' '*.py'` fuera de esta misma fila no encuentra ningún CALC/RESULT/acto que lo entregue. Y \"adopción de parámetros\" sigue con residuales propios y ABIERTOS hoy: NC-0085, NC-0107, NC-0111, NC-0153 (verificado con `python3 -c` sobre `forense/no-corrido.tsv`, 16/sep/2026). Esto coincide con la medición ya hecha por `forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P1-tabla.md:38`, vigente sin cambios desde entonces. Sucesor propuesto: `ensamble E` (sin dueño -- abrir acto o declarar explícitamente fuera de alcance) + `NC-0085`/`NC-0107`/`NC-0111`/`NC-0153` (adopciones concretas pendientes). NC-0018/NC-0019 (corredores R/L) ya no son sucesor de esta fila -- están CERRADA.",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "ningun corredor R/L nuevo, ningun ensamble E, ninguna adopcion de parametros",
-      "version_pregunta": "AUTO-NC-v1-c1dc92d52fe7"
+      "version_pregunta": "AUTO-NC-v1-ed3384fcfbb2"
     },
     {
       "antecedentes_nc": [],
@@ -16938,12 +16938,12 @@
       "pregunta": "El componente mecanico queda resuelto por ACTO GEN2-DELTA-COMPARACION-EXPLICITA: `corrida0 delta` ejecuta B-7 con parejas, hashes, uso y contrato cientifico explicitos. El componente historico de esta fila sigue sin poder correrse sobre «los 211»: no existe correspondencia declarada por identidad para ese universo y `valor_legacy`/`delta_legacy` siguen siendo NO-COMPARABLE por contrato; el comando no infiere parejas ni rellena esas columnas.",
       "prioridad": 60,
       "responsable": "servicio-gen2-38",
-      "siguiente_accion": "Declarar, por cada comparacion historica adicional, consumidor/uso, fuente legacy anterior a adopcion, CALC+RESULT sellado y correspondencia de ocho dimensiones; correr el contrato GEN2-DELTA-1. La materialidad requiere ademas criterio sustantivo citado.",
+      "siguiente_accion": "Declarar, por cada comparacion historica adicional, consumidor/uso, fuente legacy anterior a adopcion, CALC+RESULT sellado y correspondencia de ocho dimensiones; correr el contrato GEN2-DELTA-1. La materialidad requiere ademas criterio sustantivo citado. || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy: ACTO GEN2-RELEVO-USOS-1 (commit a7255e0, 15/sep/2026) ya corrio el contrato GEN2-DELTA-1 (tools/relevo_usos.py, VERSION_CONTRATO en tools/delta_comparacion.py:28) exactamente en la forma que este sucesor pedia -- `wc -l forense/relevo-usos/relevo-usos-delta.tsv` = 28 filas = 27 pares con consumidor/uso, fuente legacy, CALC+RESULT sellado y las ocho dimensiones (comparabilidad DEMOSTRADA en 24, INFORMACION-INSUFICIENTE en 3; 4 con MATERIALIDAD-MATERIAL). Pero son 27 de los 211 RESULT historicos (confirmado por la propia nota de cierre, forense/notas/2026-09-15-GEN2-RELEVO-USOS-1-cierre.md, seccion \"## NC-0048\"), y `data/corrida0/resultados.tsv` sigue con `delta_legacy`='NO-COMPARABLE' en las 5239 filas de datos hoy (Counter verificado por script), sin escritura de vuelta. El bloqueador original (\"no existe correspondencia declarada por identidad para ese universo\") ya NO es cierto en general -- el generador existe, corre y reproduce -- pero si sigue vigente para el resto del universo y para la columna valor_legacy/delta_legacy. Sucesor propuesto: extender tools/relevo_usos.py --escribe / corrida0 delta al resto de los pares declarando pin de RESULT o identidad de poblacion (continuando la linea de NC-0215/NC-0243/NC-0244), y solo entonces escribir valor_legacy/delta_legacy en data/corrida0/resultados.tsv para los pares resueltos.",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "El componente mecanico queda resuelto por ACTO GEN2-DELTA-COMPARACION-EXPLICITA: `corrida0 delta` ejecuta B-7 con parejas, hashes, uso y contrato cientifico explicitos. El componente historico de esta fila sigue sin poder correrse sobre «los 211»: no existe correspondencia declarada por identidad para ese universo y `valor_legacy`/`delta_legacy` siguen siendo NO-COMPARABLE por contrato; el comando no infiere parejas ni rellena esas columnas.",
-      "version_pregunta": "AUTO-NC-v1-35c10d165e6a"
+      "version_pregunta": "AUTO-NC-v1-21b3129c4320"
     },
     {
       "antecedentes_nc": [],
@@ -17023,7 +17023,7 @@
       "contrato_operativo": "OPERATIVO_DERIVADO_SIN_CAMPOS_CIENTIFICOS_FICTICIOS",
       "cursor_continuacion": null,
       "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
+      "etapa_faltante": "ACCESO_O_DESCARGA",
       "evidencia_disponible": "ninguno de los dos microdatos cierra un veredicto vigente hoy; ambos robustecerian huecos ya cubiertos parcialmente por otra via",
       "evidencias": [
         "forense/no-corrido.tsv#NC-0061"
@@ -17039,13 +17039,13 @@
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
       "pregunta": "el envio fisico de los dos correos ya redactados (OECD a govtrustinfo@oecd.org, tandas a equipo@tandamas.mx)",
       "prioridad": 60,
-      "responsable": "E09: reutilizar borradores",
-      "siguiente_accion": "E09: reutilizar borradores; el operador envia con identidad/cuenta y aporta comprobante",
+      "responsable": "titular-acceso-y-receptor-tecnico",
+      "siguiente_accion": "E09: reutilizar borradores; el operador envia con identidad/cuenta y aporta comprobante || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy: forense/encargos/2026-09-10-MESA-CONCILIACION-E01.md (lineas 42-44, 73-74) trae D17 y D18 verbatim de la misma sesion de mesa (10/sep/2026) -- D17 autoriza avanzar obtencion (la que esta fila cita), pero D18 dice explicitamente \"ahorita no invertiremos\" y la tabla operativa lo traduce como \"FP-286/343 y tandas | diferir inversion comercial\". La fila hermana de la cola (REGISTRO_DE_TANDAS_Y_REPUTACION, cola-adquisicion-v1_0.tsv:40 en data/curacion-registro/cola-adquisicion-registro.tsv) ya quedo reconciliada por ACTO GEN2-ADQUISICION-DIRIGIDA-Y-DIN (10/sep/2026) con la glosa \"via comercial diferida por D18\". La fila que esta NC pide enviar (REGISTRO_OPERATIVO_DE_TANDAS_DIGITALES, cola-adquisicion-v1_0.tsv:41, misma tabla) sigue en SOLICITUD-PREPARADA con la nota vieja de ACTO GEN2-TRAMITE-BANDEJA (8/sep/2026), sin ninguna glosa que la reconcilie contra D18 -- la unica de las dos \"hermanas\" sin actualizar. El correo OECD no esta tocado por D18 (que nombra solo \"tandas\") y su bloqueador si sigue de pie: forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/02-OECD-TRUST-PUM.md dice hoy \"LISTO-PARA-TITULAR; NO ENVIADO\" y REGISTRO-RECEPCION.tsv no trae acuse ni fecha_respuesta; ningun commit desde el 11/sep toca ese expediente. Sucesor propuesto: (a) correo OECD -- sin cambio, sigue E09 (titular completa identidad/firma, envia 02-OECD-TRUST-PUM-TECHNICAL-DRAFT.docx, aporta acuse, tal como cita el residual OECD_TRUST_PUM_2021_2023_2025 de cola-adquisicion-registro.tsv); (b) correo a equipo@tandamas.mx -- mesa decide explicitamente si el envio exploratorio sin costo sigue autorizado pese a D18 (y entonces se envia con identidad) o si esta via tambien queda diferida igual que su fila hermana, reconciliando la nota de REGISTRO_OPERATIVO_DE_TANDAS_DIGITALES con la misma glosa \"via comercial diferida por D18\"; de paso, auditar NC-0090 (PR #656, 9/sep/2026) como probable DUPLICADA de esta fila.",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "el envio fisico de los dos correos ya redactados (OECD a govtrustinfo@oecd.org, tandas a equipo@tandamas.mx)",
-      "version_pregunta": "AUTO-NC-v1-4878a1db2ed9"
+      "version_pregunta": "AUTO-NC-v1-acd427c1c94b"
     },
     {
       "antecedentes_nc": [],
@@ -17074,12 +17074,12 @@
       "pregunta": "ningun CALC de modulacion corrio: P2 entrega las DOS specs congeladas y ninguna cifra, que es lo que T9 exige (spec antes que cifra) y lo que el encargo autoriza explicitamente. Ademas, prereg-caja-S18 declara TRA-M-02 NO-CONSTRUIBLE-SIN-CROSSWALK: su arbitro es ENCUCI 2020 y la serie es ENCIG, de modo que modularla seria un crosswalk entre instrumentos -- justo lo que el selector hermano prohibe por escrito",
       "prioridad": 60,
       "responsable": "servicio-gen2-38",
-      "siguiente_accion": "C0-D, o acto sucesor con perimetro de modulacion",
+      "siguiente_accion": "C0-D, o acto sucesor con perimetro de modulacion || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. El acto que el plan define como C0-D (PLAN-FINAL-GEN2-v2_0 §4: \"corre el marcador por segmento\") ya corrio -- ACTO GEN2-MARCADOR-C0-D, 15/sep/2026, citado por su propio encargo como el sucesor que NC-0070 nombra -- pero no tenia perimetro de modulacion (se quedo bloqueado por theta antes de llegar ahi) y su propia nota de cierre re-midio esta fila y la dejo ABIERTA: \"6 celdas modulan por ola en CALC-...-ola-v2, pero con cuenta_gen2: NO; las 6 celdas con serie de C0-B siguen sin CALC sellado\" (forense/notas/2026-09-15-GEN2-MARCADOR-C0-D-A8-hueco.md §3). Verificado hoy en el arbol: data/corrida0/CALC-M-marco-M-sorteado-v1_3-ola-v2/spec.yaml linea 19 y ejecucion.json linea 13 siguen declarando cuenta_gen2: NO/false para esas 6 celdas (FAM-M-05/06/07, TRA-M-02/03/07); y para TRA-M-02 el crosswalk ENCUCI<->ENCIG que forense/prereg-caja/S18-MODULACION-OLA-R3-1-spec-v1_0.md §4.2 exige (NO-CONSTRUIBLE-SIN-CROSSWALK) sigue sin registrarse (awk sobre canon/registro-rotulos.tsv por \"crosswalk\"+\"encuci\": cero filas), confirmado por ACTO GEN2-B-MARCO (14/sep/2026, registro-rotulos.tsv): \"TRA-M-02, TRA-M-03 ... sin crosswalk ni relleno\". La premisa \"esperamos a que corra C0-D\" ya no es cierta -- C0-D corrio -- pero no cerro nada de esto. Sucesor propuesto: acto GEN2 con perimetro de modulacion explicito que produzca CALC(s) sellado(s) con cuenta_gen2: SI para FAM-M-05/06/07 y TRA-M-02/03/07 sobre fuente que no resuelva a milpa/tramite.yaml (regla E.1/D-1); TRA-M-02 queda ademas condicionado a un crosswalk ENCUCI<->ENCIG firmado por mesa (distinto del crosswalk de ejes arbitro<->CORTES_C1 que NC-0240 ya pide para el marcador por segmento -- no lo cubre ni lo sustituye).",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "ningun CALC de modulacion corrio: P2 entrega las DOS specs congeladas y ninguna cifra, que es lo que T9 exige (spec antes que cifra) y lo que el encargo autoriza explicitamente. Ademas, prereg-caja-S18 declara TRA-M-02 NO-CONSTRUIBLE-SIN-CROSSWALK: su arbitro es ENCUCI 2020 y la serie es ENCIG, de modo que modularla seria un crosswalk entre instrumentos -- justo lo que el selector hermano prohibe por escrito",
-      "version_pregunta": "AUTO-NC-v1-da83641e6275"
+      "version_pregunta": "AUTO-NC-v1-890319a3e40a"
     },
     {
       "antecedentes_nc": [],
@@ -17091,7 +17091,7 @@
       "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
       "cursor_continuacion": null,
       "estado_ruteo": "NO_SONDA",
-      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
+      "etapa_faltante": "VALIDACION",
       "evidencia_disponible": "442 RESULT GEN2 sellados siguen SIN adoptar y el WARN sigue gritando por todos ellos. El encargo pedia una silla, no la fila entera, y S5.2 de C0-B ya midio por que: los otros CALC producen deltas, marginales y veredictos -- ninguno es una probabilidad de conducta del motor, y esa es la unica ranura que el registro reconoce. La segunda silla necesita un CALC nuevo, no otra cita.",
       "evidencias": [
         "forense/no-corrido.tsv#NC-0072"
@@ -17099,7 +17099,7 @@
       "frontera": "442 RESULT GEN2 sellados siguen SIN adoptar y el WARN sigue gritando por todos ellos. El encargo pedia una silla, no la fila entera, y S5.2 de C0-B ya midio por que: los otros CALC producen deltas, marginales y veredictos -- ninguno es una probabilidad de conducta del motor, y esa es la unica ranura que el registro reconoce. La segunda silla necesita un CALC nuevo, no otra cita.",
       "id": "NC-0072",
       "investigacion_previa": "DECLARADO -- fuera de lo que el encargo pidio",
-      "motivo_ruteo": "etapa vigente DECISION_O_IMPLEMENTACION; no corresponde investigación externa",
+      "motivo_ruteo": "etapa vigente VALIDACION; no corresponde investigación externa",
       "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
       "opciones_decision": [],
       "origen_demanda": "NC_ABIERTA",
@@ -17107,13 +17107,13 @@
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
       "pregunta": "Se escribio UNA cita, la que la derivacion de C0-B S5 dejo documentada, y ninguna mas.",
       "prioridad": 60,
-      "responsable": "C0-D (patron de cita ya probado de punta a punta)",
-      "siguiente_accion": "C0-D (patron de cita ya probado de punta a punta)",
+      "responsable": "C0-D (patron de cita ya probado de punta a punta) || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy: `grep -rn \"SELLADA-SIN-ADOPTAR\" tools/corrida0.py` -> sin resultados, la etiqueta que esta fila cita ya no la emite el registro. `python3 tools/corrida0.py status` -> N_resultados_gen2_sellados=3522, N_resultados_gen2_adoptados_activos=18 (era 1 el 8/sep/2026, fecha de esta fila), N_resultados_gen2_pendientes_adopcion=12, N_resultados_gen2_vetados_por_decision=2. Los 17 activos nuevos no son otra cita del mismo CALC: `grep -o \"CALC-[A-Za-z0-9_-]*\" milpa/tramite.yaml milpa/procedencia.yaml | sort -u` lista, junto a CALC-B-0001, a CALC-ENCIG-0001, CALC-ENCUCI-0001, CALC-ENIF-0001/0002/0003 y CALC-ENVIPE-0001 -- CUATRO CALC nuevos con `p` de conducta, adoptados via `corrida0_generacion: GEN2`, censados en canon/registro-rotulos.tsv bajo GEN2-LOTE-ENCIG-1/ENCUCI-1/ENIF-1/ENVIPE-1 (los cuatro del 9/sep/2026, un dia despues de esta fila, cada uno declarando el contador adoptados_activos subiendo). La premisa de esta fila -- que solo existe una ranura, la de CALC-B-0001, y que la segunda silla necesita un CALC que hoy no existe -- vencio: el CALC nuevo existe, no uno sino cuatro, y ya estan adoptados. El sucesor que esta fila nombraba, C0-D, SI se ejecuto (GEN2-C0-D, GEN2-MARCADOR-C0-D) pero se topo con un bloqueador distinto y ajeno a esta fila -- theta.valor() lanza ThetaNoDisponible en 43 de 43 entradas, ver NC-0024/NC-0076/NC-0239 -- mientras la cartera GEN2-LOTE-* resolvio la necesidad real de esta fila por una via que el sucesor nunca nombro. Lo que sigue vigente, verificado hoy sobre `corrida0._filas_registro()`: 12 RESULT GEN2 sellados y aun sin adoptar -- RESULT-BANXICO-2024-{AUT,HIP,NOM,PER,TDC}-ATRASO-P, RESULT-CTX-{2019,2021,2023}-P-ALTO, RESULT-EDER-A-P, RESULT-MOTRAL15-{ENOE-P17-CON-ACCESO,ENOE-P17-SIN-ACCESO,P17-TOTAL}-P. Sucesor propuesto: acto de adopcion, con el patron ya probado por GEN2-LOTE-ENCIG-1/ENCUCI-1/ENIF-1/ENVIPE-1 (no C0-D, bloqueado por theta y ajeno a esta fila), que escriba en milpa/tramite.yaml y milpa/procedencia.yaml las citas de esos 12 RESULT GEN2 sellados y pendientes de adopcion.",
+      "siguiente_accion": "C0-D (patron de cita ya probado de punta a punta) || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy: `grep -rn \"SELLADA-SIN-ADOPTAR\" tools/corrida0.py` -> sin resultados, la etiqueta que esta fila cita ya no la emite el registro. `python3 tools/corrida0.py status` -> N_resultados_gen2_sellados=3522, N_resultados_gen2_adoptados_activos=18 (era 1 el 8/sep/2026, fecha de esta fila), N_resultados_gen2_pendientes_adopcion=12, N_resultados_gen2_vetados_por_decision=2. Los 17 activos nuevos no son otra cita del mismo CALC: `grep -o \"CALC-[A-Za-z0-9_-]*\" milpa/tramite.yaml milpa/procedencia.yaml | sort -u` lista, junto a CALC-B-0001, a CALC-ENCIG-0001, CALC-ENCUCI-0001, CALC-ENIF-0001/0002/0003 y CALC-ENVIPE-0001 -- CUATRO CALC nuevos con `p` de conducta, adoptados via `corrida0_generacion: GEN2`, censados en canon/registro-rotulos.tsv bajo GEN2-LOTE-ENCIG-1/ENCUCI-1/ENIF-1/ENVIPE-1 (los cuatro del 9/sep/2026, un dia despues de esta fila, cada uno declarando el contador adoptados_activos subiendo). La premisa de esta fila -- que solo existe una ranura, la de CALC-B-0001, y que la segunda silla necesita un CALC que hoy no existe -- vencio: el CALC nuevo existe, no uno sino cuatro, y ya estan adoptados. El sucesor que esta fila nombraba, C0-D, SI se ejecuto (GEN2-C0-D, GEN2-MARCADOR-C0-D) pero se topo con un bloqueador distinto y ajeno a esta fila -- theta.valor() lanza ThetaNoDisponible en 43 de 43 entradas, ver NC-0024/NC-0076/NC-0239 -- mientras la cartera GEN2-LOTE-* resolvio la necesidad real de esta fila por una via que el sucesor nunca nombro. Lo que sigue vigente, verificado hoy sobre `corrida0._filas_registro()`: 12 RESULT GEN2 sellados y aun sin adoptar -- RESULT-BANXICO-2024-{AUT,HIP,NOM,PER,TDC}-ATRASO-P, RESULT-CTX-{2019,2021,2023}-P-ALTO, RESULT-EDER-A-P, RESULT-MOTRAL15-{ENOE-P17-CON-ACCESO,ENOE-P17-SIN-ACCESO,P17-TOTAL}-P. Sucesor propuesto: acto de adopcion, con el patron ya probado por GEN2-LOTE-ENCIG-1/ENCUCI-1/ENIF-1/ENVIPE-1 (no C0-D, bloqueado por theta y ajeno a esta fila), que escriba en milpa/tramite.yaml y milpa/procedencia.yaml las citas de esos 12 RESULT GEN2 sellados y pendientes de adopcion.",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "Se escribio UNA cita, la que la derivacion de C0-B S5 dejo documentada, y ninguna mas.",
-      "version_pregunta": "AUTO-NC-v1-3e74d3ae2313"
+      "version_pregunta": "AUTO-NC-v1-a6190111edb5"
     },
     {
       "antecedentes_nc": [],
@@ -17125,7 +17125,7 @@
       "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
       "cursor_continuacion": null,
       "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
+      "etapa_faltante": "VALIDACION",
       "evidencia_disponible": "NC-0024 (marcador por segmento, M por motor matricial) declara depender de C0-C, que NO existe en el arbol (gh pr list --state all sin ningun acto C0-C; git ls-remote solo main y esta rama), y las capturas del duelo no traen segmentacion: las 14 celdas tienen x = vacio. NC-0026 (envoltura de tools/emite_m.py cableada a emite_celda) dice en su propia fila que hacerlo «seria salirse del perimetro» y cambiaria las corridas-M ya selladas. Cerrarlas con cita sin ejecutar su objeto seria cerrar deuda por decreto.",
       "evidencias": [
         "forense/no-corrido.tsv#NC-0075"
@@ -17142,12 +17142,12 @@
       "pregunta": "No se cierran. Las dos filas nombran a C0-D como sucesor pero su objeto esta fuera del perimetro que este mismo encargo declara («No toca capturas L, motor M, CALC previos ni sus sellos»).",
       "prioridad": 60,
       "responsable": "ACTO C0-C primero (motor y emisor limpios) y despues un acto de marcador por segmento",
-      "siguiente_accion": "ACTO C0-C primero (motor y emisor limpios) y despues un acto de marcador por segmento; NC-0024 y NC-0026 siguen ABIERTAS con ese sucesor re-apuntado",
+      "siguiente_accion": "ACTO C0-C primero (motor y emisor limpios) y despues un acto de marcador por segmento; NC-0024 y NC-0026 siguen ABIERTAS con ese sucesor re-apuntado || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Re-verificado hoy con los mismos comandos de la fila: `cut -f2 canon/registro-rotulos.tsv | grep -c \"C0-C\"` -> 0; `ls forense/encargos forense/encargos/cola | grep -c \"C0-C\"` -> 0; `ls forense/notas | grep -c \"C0-C\"` -> 0; `grep -c \"ACTO GEN2-C0-C\\|ACTO C0-C\" canon/gobernanza-v1_15.md` -> 1, pero ese unico hit es la propia ADR-520 citando la frase «C0-C» al explicar que nunca se redacto -- no un registro del acto. C0-C sigue sin existir como pieza con perimetro. Pero lo que C0-C prometia -- «motor y emisor limpios» -- ya esta entregado de hecho por AUTO-MOTOR-1, GEN2-MOTOR-SEMANTICA y GEN2-MOTOR-Y-HERENCIA-EXPLICITA (los tres rotulos censados hoy en canon/registro-rotulos.tsv), y esa entrega no desbloqueo nada: `milpa/src/theta.py` (linea 50) lanza `ThetaNoDisponible` incondicionalmente por diseno («eso es calibracion (E1+), que espera el cierre de BARRIDO-2. Ley de mesa vigente»), y NC-0225/NC-0236/NC-0239/NC-0240 -- la cadena real -- siguen ABIERTA hoy. El propio ACTO GEN2-MARCADOR-C0-D (15/sep/2026, ADR-520) ya hizo esta misma medicion y ya re-apunto en este sentido el sucesor de NC-0024, fila hermana con el mismo bloqueador. Sucesor propuesto: theta computable (E1+, BARRIDO-2) -> crosswalk de ejes firmado (NC-0240) -> columna de segmento del marco -> marcador por segmento (NC-0239); NC-0026 sigue con su propio re-apuntado pendiente (senalado en ADR-520 §7, no aplicado aun en su fila) porque ya tiene consumidor sellado (CALC-M-marco-M-sorteado-v1_3-ola-v2, via tools/emite_m.py) y su razon de \"codigo muerto\" quedo vencida; ninguna de las dos filas se cierra con cita.",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "No se cierran. Las dos filas nombran a C0-D como sucesor pero su objeto esta fuera del perimetro que este mismo encargo declara («No toca capturas L, motor M, CALC previos ni sus sellos»).",
-      "version_pregunta": "AUTO-NC-v1-fbd4e32f970c"
+      "version_pregunta": "AUTO-NC-v1-79305a09d87c"
     },
     {
       "antecedentes_nc": [],
@@ -17210,12 +17210,12 @@
       "pregunta": "El RESULT salio pobre y NO se retoca: dice fecha_congelacion=sin-params y modelo=None porque muestrea UNA captura, y la primera celda del marco (CIV-M-01) pertenece a la familia de archivos que trae modelo_real (nulo) en vez de params.",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "un acto sucesor del marcador que derive el metadato de alcance de las DOS familias de esquema (params y modelo_real) en vez de muestrear una captura",
+      "siguiente_accion": "un acto sucesor del marcador que derive el metadato de alcance de las DOS familias de esquema (params y modelo_real) en vez de muestrear una captura || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. El acto que este texto pedia SI corrio: ACTO GEN2-MARCADOR-C0-D (15/sep/2026, ADR-520, forense/notas/2026-09-15-GEN2-MARCADOR-C0-D-A8-hueco.md §4) derivo el metadato de alcance sobre las 648 capturas de corridas-L y encontro que las familias de esquema son TRES, no dos (solo params 120, solo modelo_real 176, ambas 352); sobre las 424 que el marcador consumio, params.modelo_id declarado en 248 (58.49%) y ausente en 176; y modelo_real esta en None en las 528 capturas que traen ese campo, 0 no nulas -- el modelo=None del RESULT sellado no era artefacto de muestreo, como esta fila supuso de buena fe. Ese mismo acto abrio NC-0242 declarando \"No se cierra\": el objeto de este sucesor tambien incluia que el RESULT sellado quedara bien escrito, y el RESULT esta fuera de perimetro (no se retoca, misma clausula de esta fila). Verificado hoy (2026-09-16, grep -rn \"RESULT-C0D-ALCANCE-CORPUS-CAPTURA\" sobre .md/.tsv/.json/.py/.yaml): sigue sin existir ningun RESULT sucesor emitido con esta derivacion -- solo prosa en notas y en el ledger. El hueco real hoy no es \"derivar el metadato\" (ya derivado y citado en ADR-520) sino emitir el RESULT que lo incorpore. Sucesor propuesto: acto que emita el RESULT-C0D-ALCANCE-CORPUS-CAPTURA-SUCESOR citando la derivacion de tres familias de forense/notas/2026-09-15-GEN2-MARCADOR-C0-D-A8-hueco.md §4 -- el mismo sucesor que NC-0242 ya pide; hasta entonces NC-0078 y NC-0242 comparten el mismo bloqueador y ambas siguen ABIERTAS.",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "El RESULT salio pobre y NO se retoca: dice fecha_congelacion=sin-params y modelo=None porque muestrea UNA captura, y la primera celda del marco (CIV-M-01) pertenece a la familia de archivos que trae modelo_real (nulo) en vez de params.",
-      "version_pregunta": "AUTO-NC-v1-bcfdabcf9bc9"
+      "version_pregunta": "AUTO-NC-v1-3fef87e57fc3"
     },
     {
       "antecedentes_nc": [],
@@ -17261,7 +17261,7 @@
       "contrato_operativo": "OPERATIVO_DERIVADO_SIN_CAMPOS_CIENTIFICOS_FICTICIOS",
       "cursor_continuacion": null,
       "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
+      "etapa_faltante": "ACCESO_O_DESCARGA",
       "evidencia_disponible": "ninguno sobre los contadores de este acto",
       "evidencias": [
         "forense/no-corrido.tsv#NC-0090"
@@ -17277,13 +17277,13 @@
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
       "pregunta": "Correspondencia OCDE/tandas",
       "prioridad": 60,
-      "responsable": "E09: correspondencia y busqueda academica dirigida de OCDE/tandas",
-      "siguiente_accion": "E09: correspondencia y busqueda academica dirigida de OCDE/tandas",
+      "responsable": "titular-acceso-y-receptor-tecnico",
+      "siguiente_accion": "E09: correspondencia y busqueda academica dirigida de OCDE/tandas || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. E–09 (PR #693, GEN2-ADQUISICION-DIRIGIDA-Y-DIN) ya corrió y fusionó, pero solo cubre la mitad de lo que este sucesor pedía: su nota de cierre declara la pata académica de tandas cerrada, con residual propio (`grep -n \"ruta académica cerrada\" forense/notas/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-Y-DIN-cierre.md` -> línea 55: \"ruta académica cerrada; `NC-0037` residual sin ledger\"). La pata de correspondencia OCDE NO corrió: el expediente técnico que E–09 preparó sigue \"NO ENVIADO\" (`grep -n \"Estado:\" forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/02-OECD-TRUST-PUM.md` -> \"FORMULARIO TÉCNICO COMPLETO; LISTO-PARA-TITULAR; NO ENVIADO\"), sin commit posterior que lo toque (`git log -1 --format=\"%H %ad\" -- forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/02-OECD-TRUST-PUM.md` -> 3aef05d, 11/sep/2026; `git log --all --oneline --grep=\"OECD\" -i --since=\"2026-09-11\"` -> vacío). Esa correspondencia ya tiene fila propia, más exacta y ya ABIERTA: `awk -F'\\t' '$1==\"NC-0151\"' forense/no-corrido.tsv` -> NC-0151 (\"presentar con identidad y compromisos reales los expedientes técnicos ya listos de ICPSR 35024, OECD Trust PUM y ENJUVE; recibir acceso o respuesta\"). Sucesor propuesto: NC-0151 (correspondencia OCDE, ya trackeada bajo D17/D18 con el mismo expediente); la pata académica de tandas se da por cerrada dentro de E–09, con su residual propio viviendo ya en NC-0037 (ledger de incumplimiento, no correspondencia) -- no en esta fila.",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "Correspondencia OCDE/tandas",
-      "version_pregunta": "AUTO-NC-v1-ed05905cc7f5"
+      "version_pregunta": "AUTO-NC-v1-1d849df406ab"
     },
     {
       "antecedentes_nc": [],
@@ -17312,12 +17312,12 @@
       "pregunta": "medir U4 (unidad PERSONA, ID_PER, FAC_ELE, tper_vic2) en las tres olas DBF",
       "prioridad": 60,
       "responsable": "acto que necesite U4 en olas anteriores a 2021",
-      "siguiente_accion": "acto que necesite U4 en olas anteriores a 2021; ver NC-0099 para el caso 2012",
+      "siguiente_accion": "acto que necesite U4 en olas anteriores a 2021; ver NC-0099 para el caso 2012 || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. NC-0099 (el caso 2012 al que este sucesor remitia) esta CERRADA desde 2026-09-14, cerrado_por GEN2-LOTE-MEDICION-PENDIENTE-1: CALC-ENVIPE-U4-2012 y CALC-ENVIPE-U4-2012-v1_1 existen sellados en data/corrida0/ (sello.json, sello.sha256, resultados.json; P-C2-U4 = 0.338397, IC [0.322115, 0.355328]) y firmados por mesa (forense/firmas-pendientes.tsv, FP-375, FIRMADA 2026-09-15). Medido hoy: `find data/corrida0 -maxdepth 1 -iname \"*U4*\"` solo devuelve CALC-ENVIPE-U4-2012 y CALC-ENVIPE-U4-2012-v1_1 -- ningun CALC-ENVIPE-U4-2013 ni -2015 existe, y un barrido de las filas ABIERTA del ledger por 'U4' en pieza/que_no_se_corrio/sucesor solo devuelve esta misma NC-0098 (no hay otra fila persiguiendo el mismo hueco). El bloqueador para el caso 2012 vencio por producto sellado y firmado; el bloqueador para 2013/2015 sigue de pie, sin acto que lo tome. Sucesor propuesto: acto que necesite U4 en ENVIPE 2013 y 2015 (unidad PERSONA, ID_PER, FAC_ELE, tper_vic2) -- 2012 ya resuelto y sellado (CALC-ENVIPE-U4-2012 / -v1_1), no repetir esa ola.",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "medir U4 (unidad PERSONA, ID_PER, FAC_ELE, tper_vic2) en las tres olas DBF",
-      "version_pregunta": "AUTO-NC-v1-a250303d35f9"
+      "version_pregunta": "AUTO-NC-v1-f9ef86f64cbc"
     },
     {
       "antecedentes_nc": [],
@@ -17363,7 +17363,7 @@
       "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
       "cursor_continuacion": null,
       "estado_ruteo": "ABSORBIDA_POR_SUCESORA_VIGENTE",
-      "etapa_faltante": "FUENTE_O_VARIABLE",
+      "etapa_faltante": "ACCESO_O_DESCARGA",
       "evidencia_disponible": "B-COBERTURA = 0.200895: P8_4 solo se pregunta a quien ya declaro algo en 8.3 (1062533 de 1083672 filas de sec_8 traen P8_4 en blanco), asi que el estimando es p(este tramite fue el senalado | tramite de alguien que ya declaro corrupcion), no p(mordida|canal). Reserva que GEN1 declaro en prosa y que este acto CUENTA por primera vez. Corregirla exigiria un universo que el instrumento no da.",
       "evidencias": [
         "forense/no-corrido.tsv#NC-0111"
@@ -17385,7 +17385,7 @@
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "El denominador de la familia B no es el universo de tramites, y no es reparable con ENCIG",
-      "version_pregunta": "AUTO-NC-v1-86ee391d173a"
+      "version_pregunta": "AUTO-NC-v1-8281cb01beb8"
     },
     {
       "antecedentes_nc": [],
@@ -17656,7 +17656,7 @@
       "contrato_cientifico_completo": false,
       "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
       "cursor_continuacion": null,
-      "estado_ruteo": "LISTA_SONDA",
+      "estado_ruteo": "ESPERA_O_DELEGADA",
       "etapa_faltante": "FUENTE_O_VARIABLE",
       "evidencia_disponible": "No se ejecutan piloto/confirmacion, no se abre F6 y no cambia ningun contador o adopcion.",
       "evidencias": [
@@ -17665,7 +17665,7 @@
       "frontera": "No se ejecutan piloto/confirmacion, no se abre F6 y no cambia ningun contador o adopcion.",
       "id": "NC-0161",
       "investigacion_previa": "ADQUISICION-DIRIGIDA-AUTORIZADA-CON-RESERVA-PREVIA",
-      "motivo_ruteo": "brecha de datos explícita sin compuerta posterior",
+      "motivo_ruteo": "precedencia explícita impide reactivación automática",
       "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
       "opciones_decision": [],
       "origen_demanda": "NC_ABIERTA",
@@ -17673,13 +17673,13 @@
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
       "pregunta": "Diseno de conjunto realmente reservado entregado; piloto y confirmacion no ejecutados.",
       "prioridad": 60,
-      "responsable": "servicio-gen2-38",
-      "siguiente_accion": "Mesa resolvio el 15/sep/2026 (D-4): se autoriza preparacion y adquisicion dirigida de familias RETENIDAS con reserva previa, y sacar esta fila de espera es CONSECUENCIA de la lista nominal, no sustituto de ella. La lista existe y es forense/prereg-duelo-v2/F5-panel-candidatos-v1_1.tsv (13 filas: 7 RETENIDA, 5 EXPUESTA, 1 INDETERMINADA), auditada contra milpa/, el corpus de L y traza-motor.tsv. RESULTADO QUE NO SE MAQUILLA: solo 2 de las 7 retenidas son realistas para piloto (R01-MOCIBA, y R02-WBES condicionada a que mesa firme un cambio de unidad persona->establecimiento), muy lejos de las 6 piloto + 12 confirmatorias que exige FP-374. SIGUIENTE ACCION, ACOTADA: adquirir y leer el descriptor de archivos (FD) de MOCIBA 2021 y 2023 -- microdato y FD ya registrados en data/manifiesto.yaml con sha256, data/raw/ vacio en la sesion nube -- para localizar el reactivo de denuncia ante autoridad y fijar variable, universo, codificacion y ponderador. Se lee SOLO estructura, nunca la base, y MOCIBA 2024/2025 no se tocan ni en FD: asi se preserva la reserva. Si el FD confirma la bateria, la familia pasa a factibilidad NO CONFIRMATORIA de una sola familia con producto y parada definidos; si no la trae, MOCIBA cae y no queda ninguna familia retenida ejecutable, lo que se declara en vez de estirar la lista.",
+      "responsable": "mesa",
+      "siguiente_accion": "Mesa resolvio el 15/sep/2026 (D-4): se autoriza preparacion y adquisicion dirigida de familias RETENIDAS con reserva previa, y sacar esta fila de espera es CONSECUENCIA de la lista nominal, no sustituto de ella. La lista existe y es forense/prereg-duelo-v2/F5-panel-candidatos-v1_1.tsv (13 filas: 7 RETENIDA, 5 EXPUESTA, 1 INDETERMINADA), auditada contra milpa/, el corpus de L y traza-motor.tsv. RESULTADO QUE NO SE MAQUILLA: solo 2 de las 7 retenidas son realistas para piloto (R01-MOCIBA, y R02-WBES condicionada a que mesa firme un cambio de unidad persona->establecimiento), muy lejos de las 6 piloto + 12 confirmatorias que exige FP-374. SIGUIENTE ACCION, ACOTADA: adquirir y leer el descriptor de archivos (FD) de MOCIBA 2021 y 2023 -- microdato y FD ya registrados en data/manifiesto.yaml con sha256, data/raw/ vacio en la sesion nube -- para localizar el reactivo de denuncia ante autoridad y fijar variable, universo, codificacion y ponderador. Se lee SOLO estructura, nunca la base, y MOCIBA 2024/2025 no se tocan ni en FD: asi se preserva la reserva. Si el FD confirma la bateria, la familia pasa a factibilidad NO CONFIRMATORIA de una sola familia con producto y parada definidos; si no la trae, MOCIBA cae y no queda ninguna familia retenida ejecutable, lo que se declara en vez de estirar la lista. || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. MEDIDO HOY: `python3 tools/busca_reactivos.py --tablas fd --regex \"Denunciar ante el Ministerio\"` reproduce las mismas 7 filas que forense/notas/2026-09-15-GEN2-REACTIVOS-RESIDUALES-2-cierre.md SS3.1 declaro (mociba2021/TMOCIBA/P12_5, mociba2023/TMociba/P12_05, con desdoble en P12_11 en 2023): la localizacion del reactivo que esta fila pedia como SIGUIENTE ACCION ya la hizo ACTO GEN2-REACTIVOS-RESIDUALES-2 (PR #796, fusionado en main), sin adquirir microdato. Esa misma nota declara, verbatim, que \"no cierra NC-0161: fijar universo, codificacion y ponderador sigue exigiendo el FD completo y la decision de mesa\", y esa decision ya tiene fila propia y vigente hoy: `grep -F NC-0237 forense/no-corrido.tsv` -> ABIERTA, razon=DECISION-DE-MESA-PENDIENTE, citando la misma numeracion P12_5/P12_05/P12_11. Ademas, `git branch -a --contains 246bbfa` muestra que un trabajo MAS completo (FD real de mociba2021/2022 leido en CAJA: variable P12_5, ponderador FACTOR, dominios SEXO/EDAD, universo P4_01-P4_13, R01 declarado CONGELABLE, nota forense/notas/2026-09-15-GEN2-F6-PANEL-CAJA-1-cierre.md) existe SOLO en la rama remota huerfana origin/acto/gen2-f6-panel-caja-1 -- `git merge-base --is-ancestor 246bbfa HEAD` confirma que NO es ancestro de origin/main, y una busqueda de PR (repo:Josanoforo/Modelado-Mexicano head:acto/gen2-f6-panel-caja-1) devuelve 0 resultados, abierto o cerrado: ese trabajo nunca se propuso a mesa. Por eso hoy NO califica como RESUELTA-POR-PRODUCTO (no esta en main), pero la premisa original -- \"hay que adquirir y leer el FD para localizar el reactivo\" -- si vencio: ya se localizo, en main, sin adquisicion. Sucesor propuesto: NC-0237 (decision de mesa sobre si 2021 y 2023 comparten codificacion de denuncia) primero; si mesa la resuelve, recuperar y fusionar el trabajo ya hecho en la rama sin PR origin/acto/gen2-f6-panel-caja-1 (FD real de mociba2021/2022, R01 CONGELABLE) en vez de repetirlo desde cero.",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "Diseno de conjunto realmente reservado entregado; piloto y confirmacion no ejecutados.",
-      "version_pregunta": "AUTO-NC-v1-4ddf510d939f"
+      "version_pregunta": "AUTO-NC-v1-e98eb3846eb0"
     },
     {
       "antecedentes_nc": [],
@@ -17802,40 +17802,6 @@
     {
       "antecedentes_nc": [],
       "aplica_contrato_cientifico": true,
-      "brecha": "Registro en corrida0 (preflight/run/verify + registro --escribe) del CALC ENSANUT L17 para RES-0063/RES-0064, y cita corrida0_resultado_id + corrida0_generacion:GEN2 en milpa/tramite.yaml:1303-1304",
-      "condicion_reapertura": null,
-      "consumidor": "GEN2-ADOPCION-COLA-5/P4 (ADENDA)",
-      "contrato_cientifico_completo": false,
-      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
-      "cursor_continuacion": null,
-      "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "PREPARACION",
-      "evidencia_disponible": "dependencias_numericas_legacy_activas no baja por estas 2 filas; RES-0063/RES-0064 siguen LEGACY-NO-DECLARADO pese a que el motor ya consume los valores ya adoptados (0.777762/0.222238)",
-      "evidencias": [
-        "forense/no-corrido.tsv#NC-0169"
-      ],
-      "frontera": "dependencias_numericas_legacy_activas no baja por estas 2 filas; RES-0063/RES-0064 siguen LEGACY-NO-DECLARADO pese a que el motor ya consume los valores ya adoptados (0.777762/0.222238)",
-      "id": "NC-0169",
-      "investigacion_previa": "PARO-ENTORNO",
-      "motivo_ruteo": "precedencia explícita impide reactivación automática",
-      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
-      "opciones_decision": [],
-      "origen_demanda": "NC_ABIERTA",
-      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
-      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
-      "pregunta": "Registro en corrida0 (preflight/run/verify + registro --escribe) del CALC ENSANUT L17 para RES-0063/RES-0064, y cita corrida0_resultado_id + corrida0_generacion:GEN2 en milpa/tramite.yaml:1303-1304",
-      "prioridad": 60,
-      "responsable": "acto en CAJA con corpus ENSANUT montado (numpy/pandas/pyreadstat presentes) que corra corrida0.py sobre tools/medidor_l17_vacunacion_disponible.py (spec sellada S7-L17-spec-v1_0.md), sin volver a decidir nada científico — continúa la cadena de NC-0165",
-      "siguiente_accion": "acto en CAJA con corpus ENSANUT montado (numpy/pandas/pyreadstat presentes) que corra corrida0.py sobre tools/medidor_l17_vacunacion_disponible.py (spec sellada S7-L17-spec-v1_0.md), sin volver a decidir nada científico — continúa la cadena de NC-0165",
-      "suficiencia": null,
-      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
-      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
-      "variables": "Registro en corrida0 (preflight/run/verify + registro --escribe) del CALC ENSANUT L17 para RES-0063/RES-0064, y cita corrida0_resultado_id + corrida0_generacion:GEN2 en milpa/tramite.yaml:1303-1304",
-      "version_pregunta": "AUTO-NC-v1-e527b98bb4eb"
-    },
-    {
-      "antecedentes_nc": [],
-      "aplica_contrato_cientifico": true,
       "brecha": "retro-sello de las 18 EXCEPCIONES que P3 encontro: 8 actos GEN2 reales fusionados sin ## CONSUMIDO citando su PR (#680,#682,#701,#719,#726,#728,#737,#739) + 10 PR de entrega [COLA]/[ADQ] sin obligacion propia que fichar",
       "condicion_reapertura": null,
       "consumidor": "GEN2-CONCILIACION-TANDA-2/P3 (censo de fichaje)",
@@ -17843,7 +17809,7 @@
       "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
       "cursor_continuacion": null,
       "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "DECISION_CIENTIFICA",
+      "etapa_faltante": "FUENTE_O_VARIABLE",
       "evidencia_disponible": "18/78 PR de la semana codex (~23%) sin ficha canonica citando su numero; el registro de que se pidio exactamente en esos 8 actos reales sigue sin verificarse contra su PR real || PARCIAL por ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2 (15/sep/2026) y RE-DERIVADA, porque la lista de 8 de esta fila quedo vieja. Censo nuevo, PR por PR contra el PR real de GitHub y contra los 497 encargos de forense/encargos/ (nivel 1): (a) YA SELLADOS antes de este acto por ACTO GEN2-CONSUMIDO-RETRO-3 (PR #759): #739 y el acto de #737 (sellado como PR #742). (b) RETRO-SELLADOS AQUI, 2 de 8: #680 -> 2026-09-09-GEN2-R-COMPLETA-MARCO.md (solo faltaba el digito, como esta fila decia; seccion existente INTACTA, se le anade `· PR #680`) y #701 -> 2026-09-10-GEN2-PUBLICACION-POST693-Y-CIERRES.md (su ## CONSUMIDO citaba el PR base #696 y no la adenda #701; enmienda fechada, sin reescribir el parrafo). (c) NO RETRO-SELLABLES, 4 de 8, por una razon DISTINTA de la que esta fila suponia: #682, #719, #726 y #728 NO TIENEN ENCARGO ARCHIVADO (0 coincidencias de su rotulo en los 497), asi que lo que falta no es la seccion `## CONSUMIDO` sino el archivo A.3 mismo -- y A.3 no se rellena hacia atras sin el texto original, que nadie tiene. Reasentado en NC-0227. La segunda mitad de esta fila (decision de mesa sobre [COLA]/[ADQ] como cuarta categoria exenta) SIGUE SIN DECIDIR.",
       "evidencias": [
         "forense/no-corrido.tsv#NC-0170"
@@ -17853,23 +17819,19 @@
       "investigacion_previa": "FUERA-DE-PERIMETRO",
       "motivo_ruteo": "precedencia explícita impide reactivación automática",
       "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
-      "opciones_decision": [
-        "MANTENER_ESTADO_VIGENTE",
-        "APROBAR_SIGUIENTE_ACCION_DESCRITA",
-        "DESCARTAR_O_DIFERIR_CON_CAUSA"
-      ],
+      "opciones_decision": [],
       "origen_demanda": "NC_ABIERTA",
       "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
       "pregunta": "retro-sello de las 18 EXCEPCIONES que P3 encontro: 8 actos GEN2 reales fusionados sin ## CONSUMIDO citando su PR (#680,#682,#701,#719,#726,#728,#737,#739) + 10 PR de entrega [COLA]/[ADQ] sin obligacion propia que fichar",
       "prioridad": 60,
-      "responsable": "mesa",
-      "siguiente_accion": "acto de retro-sello que anada ## CONSUMIDO (PR #N) a los 8 encargos reales listados en forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P3-censo.md; y decision de mesa sobre si [COLA]/[ADQ] se suman como cuarta categoria exenta junto a censo/tramite/merge-intermedio",
+      "responsable": "servicio-gen2-38",
+      "siguiente_accion": "acto de retro-sello que anada ## CONSUMIDO (PR #N) a los 8 encargos reales listados en forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P3-censo.md; y decision de mesa sobre si [COLA]/[ADQ] se suman como cuarta categoria exenta junto a censo/tramite/merge-intermedio || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy contra el arbol real: 6/8 de los actos citados ya tienen ## CONSUMIDO con su PR real -- forense/encargos/2026-09-14-GEN2-CONSUMIDO-RETRO-3.md linea 7 (`## CONSUMIDO · PR #759`) y forense/encargos/2026-09-11-GEN2-REACTIVOS-CON-TEXTO-Y-BUSQUEDA.md linea 76 (`## CONSUMIDO · PR #742`) confirman #739 y el acto de #737 (sellado como PR #742) por ACTO GEN2-CONSUMIDO-RETRO-3; forense/encargos/2026-09-09-GEN2-R-COMPLETA-MARCO.md linea 53 (`## CONSUMIDO · PR #680`) y forense/encargos/2026-09-10-GEN2-PUBLICACION-POST693-Y-CIERRES.md lineas 75-79 (parrafo CONSUMIDO original intacto + enmienda que agrega PR #701) confirman #680 y #701, ambos por ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2 (PR #795, 15/sep/2026). Los 4 restantes (#682, #719, #726, #728) siguen en 0 coincidencias de su rotulo sobre los 505 encargos de forense/encargos/*.md de hoy (grep -rl \"<rotulo>\" forense/encargos/*.md), y #728 sigue legitimamente en forense/encargos/cola/ sin A.3 fusionado: nunca tuvieron encargo archivado que retro-sellar. Esa deuda no es un pendiente de esta fila -- ya esta reasentada, medida y ABIERTA por su cuenta en NC-0227. La primera mitad de este sucesor (el acto de retro-sello a los 8) por tanto ya no es un bloqueador vigente: esta EJECUTADA (6/8, PR #759 y PR #795) o REASENTADA (4/8, NC-0227). La segunda mitad SI sigue de pie: grep -rn \"cuarta categoria exenta\" forense/ --include=*.md --include=*.tsv a 2026-09-16 no devuelve ninguna firma de mesa ni acto que la resuelva, solo la fila misma, el digesto que la reproduce y la nota de GEN2-MANTENIMIENTO-Y-ARCHIVO-2 confirmando \"sigue sin decidir\". Sucesor propuesto: unicamente la decision de mesa pendiente sobre si [COLA]/[ADQ] se suman como cuarta categoria exenta junto a censo/tramite/merge-intermedio; el resto del sucesor original (retro-sello de los 8) queda satisfecho por PR #759 + PR #795 + NC-0227 y no se re-persigue bajo NC-0170.",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "retro-sello de las 18 EXCEPCIONES que P3 encontro: 8 actos GEN2 reales fusionados sin ## CONSUMIDO citando su PR (#680,#682,#701,#719,#726,#728,#737,#739) + 10 PR de entrega [COLA]/[ADQ] sin obligacion propia que fichar",
-      "version_pregunta": "AUTO-NC-v1-fbd240e1898c"
+      "version_pregunta": "AUTO-NC-v1-6b700d157a36"
     },
     {
       "antecedentes_nc": [],
@@ -17932,12 +17894,12 @@
       "pregunta": "obtener de INEGI el texto oficial (pregunta, codigos) de las 7 identidades NO-LOCALIZADA-EN-DESCRIPTOR-OFICIAL: ENVIPE 2015 TPer_Vic1 AP5_3_02, AP5_4_02, AP5_5_02, AP5_6_02, AP5_7_1 (el fd_envipe2015.pdf oficial omite la seccion entre pp. 26 y 27; el DBF las trae con codigos coherentes con las preguntas vecinas) y ENVIPE 2013 tmod_vic/tper_vic EST_SOC (el fd_envipe2013.xlsx documenta EST, no EST_SOC; codigos observados 1-4). El acto no abre la solicitud: el encargo lo prohibe",
       "prioridad": 60,
       "responsable": "titular-acceso-y-receptor-tecnico",
-      "siguiente_accion": "si mesa la firma: expediente hermano en forense/expedientes-acceso/ por la via comprobada del expediente 04-INEGI-ENCIG-NC-0153 (Contacto INEGI, atencion.usuarios@inegi.org.mx); si no la firma, queda como negativo declarado y se cierra con esa decision",
+      "siguiente_accion": "si mesa la firma: expediente hermano en forense/expedientes-acceso/ por la via comprobada del expediente 04-INEGI-ENCIG-NC-0153 (Contacto INEGI, atencion.usuarios@inegi.org.mx); si no la firma, queda como negativo declarado y se cierra con esa decision || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Mesa ya firmó (15/sep/2026, commit d487805 \"Añade expediente hermano NC-0185 (INEGI/ENVIPE 2013-2015)\", en origin/main; nota forense/notas/2026-09-15-GEN2-EXPEDIENTE-HERMANO-NC-0185.md): el expediente hermano forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/07-INEGI-ENVIPE-NC-0185.md existe hoy, registrado en REGISTRO-RECEPCION.tsv como LISTO-PARA-TITULAR con fecha_presentacion y fecha_respuesta vacías (cat REGISTRO-RECEPCION.tsv, hoy). El bloqueador \"DECISIÓN-DE-MESA-PENDIENTE\" ya no es cierto. Sucesor propuesto: titular presenta 07-INEGI-ENVIPE-NC-0185.md por Contacto INEGI (atencion.usuarios@inegi.org.mx); si INEGI responde con texto útil, el buscador de reactivos sube el veredicto de cada identidad por enmienda fechada sobre NC-0100; si no hay respuesta útil o es negativa, se cierra NC-0185 con ese negativo declarado (segunda rama del texto original, ya vigente sin cambios).",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "obtener de INEGI el texto oficial (pregunta, codigos) de las 7 identidades NO-LOCALIZADA-EN-DESCRIPTOR-OFICIAL: ENVIPE 2015 TPer_Vic1 AP5_3_02, AP5_4_02, AP5_5_02, AP5_6_02, AP5_7_1 (el fd_envipe2015.pdf oficial omite la seccion entre pp. 26 y 27; el DBF las trae con codigos coherentes con las preguntas vecinas) y ENVIPE 2013 tmod_vic/tper_vic EST_SOC (el fd_envipe2013.xlsx documenta EST, no EST_SOC; codigos observados 1-4). El acto no abre la solicitud: el encargo lo prohibe",
-      "version_pregunta": "AUTO-NC-v1-f9871149d47f"
+      "version_pregunta": "AUTO-NC-v1-361dc9802aed"
     },
     {
       "antecedentes_nc": [],
@@ -17949,7 +17911,7 @@
       "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
       "cursor_continuacion": null,
       "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
+      "etapa_faltante": "PREPARACION",
       "evidencia_disponible": "Un `verify` resolveria el ZIP de EDER (bcc7eb90...) como INPUT de una cifra calculada sobre ENADID 2023, y el hash COINCIDIRIA -- la cadena E.2 seria falsa sin que nada la contradiga. Ademas enadid2023_base_datos_csv esta en el manifiesto y no aparece en NINGUNA corrida (grep ENADID demanda-corridas.tsv -> 0). CALC-EDER-0003 lo asienta y declara A-DELTA-VS-GEN1 = NO-APLICA-ESTIMANDO-DISTINTO, pero no corrige milpa/ (este acto no lo toca) ni el derivado (no se edita a mano).",
       "evidencias": [
         "forense/no-corrido.tsv#NC-0194"
@@ -17965,13 +17927,13 @@
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
       "pregunta": "milpa/tramite.yaml:familia.union.libre y las filas RES-0043/RES-0044 del derivado declaran payload eder_2017_eder2017_bases_csv con clase «ENADID 2023, p3_27_ag»: el payload declarado no produjo el numero",
       "prioridad": 60,
-      "responsable": "MESA (decide si la celda ENADID se sucede) + el acto que toque milpa/",
-      "siguiente_accion": "MESA (decide si la celda ENADID se sucede) + el acto que toque milpa/",
+      "responsable": "MESA (decide si la celda ENADID se sucede) + el acto que toque milpa/ || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy: `grep -n \"F-10\" forense/encargos/2026-09-15-GEN2-FIRMAS-MESA-2.md` muestra que MESA YA DECIDIO F-10 el 15/sep/2026 (firma verbatim \"Si a todos.\" -- mesa), recomendando \"suceder la celda a ENADID 2023 (spec nueva)",
+      "siguiente_accion": "MESA (decide si la celda ENADID se sucede) + el acto que toque milpa/ || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy: `grep -n \"F-10\" forense/encargos/2026-09-15-GEN2-FIRMAS-MESA-2.md` muestra que MESA YA DECIDIO F-10 el 15/sep/2026 (firma verbatim \"Si a todos.\" -- mesa), recomendando \"suceder la celda a ENADID 2023 (spec nueva); mientras, rotulo SIN-PROCEDENCIA-VERIFICABLE\", y el propio encargo deja el sucesor operativo escrito como \"acto sucesor de specs (prereg-caja)\" bajo DIFERIDO-A:spec-sucesora -- no como decision pendiente. `ls forense/prereg-caja/ | grep -i enadid` -> vacio y `python3 tools/ya_medido.py familia.union.libre` -> milpa/tramite.yaml:1031 sigue con clase \"ENADID 2023, p3_27_ag\" y CORROBORADA p=0.1905, sin spec sellada nueva en el registro. La mitad \"MESA decide\" del bloqueador vencio (mesa ya decidio); la mitad \"el acto que toque milpa/\" sigue de pie porque la spec sucesora aun no existe. Sucesor propuesto: acto sucesor de specs (prereg-caja) que redacte y selle la spec ENADID 2023 para familia.union.libre (F-10, GEN2-FIRMAS-MESA-2, 15/sep/2026), y despues el acto que toque milpa/tramite.yaml para citarla y retirar el rotulo SIN-PROCEDENCIA-VERIFICABLE.",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "milpa/tramite.yaml:familia.union.libre y las filas RES-0043/RES-0044 del derivado declaran payload eder_2017_eder2017_bases_csv con clase «ENADID 2023, p3_27_ag»: el payload declarado no produjo el numero",
-      "version_pregunta": "AUTO-NC-v1-192dfe23458c"
+      "version_pregunta": "AUTO-NC-v1-c3f75b30df65"
     },
     {
       "antecedentes_nc": [],
@@ -18021,40 +17983,6 @@
     {
       "antecedentes_nc": [],
       "aplica_contrato_cientifico": true,
-      "brecha": "ajustar tools/f5_documental.py al contrato v1.2 y volver a correr --verify hasta que imprima OK",
-      "condicion_reapertura": null,
-      "consumidor": "GEN2-FIRMAS-MESA-1/P3 · OBJETO 6 -- el verificador F5 bajo v1.2",
-      "contrato_cientifico_completo": false,
-      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
-      "cursor_continuacion": null,
-      "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
-      "evidencia_disponible": "El perimetro del acto autoriza forense/prereg-duelo-v2/F5-documental-v1_0/ SOLO para la sucesion v1.2 del verificador; tools/f5_documental.py no esta en la lista. El contrato v1.2 dice QUE debe hacer el runner (sha256_manifiesto_fuentes sobre las 8 entradas del duelo, con serializacion canonica declarada); el runner sigue implementando la version de archivo completo, asi que --verify sigue sin imprimir OK. NC-0178 cierra por el contrato, que era lo que su sucesor pedia literalmente, NO por la ejecucion. Esto se dice para que el cierre de NC-0178 no se lea como mas de lo que es.",
-      "evidencias": [
-        "forense/no-corrido.tsv#NC-0208"
-      ],
-      "frontera": "El perimetro del acto autoriza forense/prereg-duelo-v2/F5-documental-v1_0/ SOLO para la sucesion v1.2 del verificador; tools/f5_documental.py no esta en la lista. El contrato v1.2 dice QUE debe hacer el runner (sha256_manifiesto_fuentes sobre las 8 entradas del duelo, con serializacion canonica declarada); el runner sigue implementando la version de archivo completo, asi que --verify sigue sin imprimir OK. NC-0178 cierra por el contrato, que era lo que su sucesor pedia literalmente, NO por la ejecucion. Esto se dice para que el cierre de NC-0178 no se lea como mas de lo que es.",
-      "id": "NC-0208",
-      "investigacion_previa": "FUERA-DE-PERIMETRO",
-      "motivo_ruteo": "precedencia explícita impide reactivación automática",
-      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
-      "opciones_decision": [],
-      "origen_demanda": "NC_ABIERTA",
-      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
-      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
-      "pregunta": "ajustar tools/f5_documental.py al contrato v1.2 y volver a correr --verify hasta que imprima OK",
-      "prioridad": 60,
-      "responsable": "el acto de CAJA que relance el runner F5 apuntando a v1.2, igual que v1.1 hizo con v1.0",
-      "siguiente_accion": "el acto de CAJA que relance el runner F5 apuntando a v1.2, igual que v1.1 hizo con v1.0",
-      "suficiencia": null,
-      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
-      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
-      "variables": "ajustar tools/f5_documental.py al contrato v1.2 y volver a correr --verify hasta que imprima OK",
-      "version_pregunta": "AUTO-NC-v1-435270dd3884"
-    },
-    {
-      "antecedentes_nc": [],
-      "aplica_contrato_cientifico": true,
       "brecha": "corregir la cifra 0.668937 de milpa/tramite-ola5-propuesta-v0.yaml:2169, que NC-0189 nombraba junto a las dos glosas de tramite.yaml",
       "condicion_reapertura": null,
       "consumidor": "GEN2-FIRMAS-MESA-1/P4 · OBJETO 13 -- la mitad de NC-0189 que no cabe en el perimetro",
@@ -18085,40 +18013,6 @@
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "corregir la cifra 0.668937 de milpa/tramite-ola5-propuesta-v0.yaml:2169, que NC-0189 nombraba junto a las dos glosas de tramite.yaml",
       "version_pregunta": "AUTO-NC-v1-41d6a9f24ab7"
-    },
-    {
-      "antecedentes_nc": [],
-      "aplica_contrato_cientifico": true,
-      "brecha": "`corrida0 registro --escribe` se NEGO y no se forzo: escribir aqui bajaria `resultado_replay`/`contexto_replay` de REPRODUCE/IDENTICO a NO-VERIFICADO en 17 corridas publicadas AJENAS a este acto, porque este clon de nube no puede reejecutar `verify` (numpy/pandas/scipy AUSENTES, `data/raw` ausente -- `tools/entorno.py`). El propio comando lo dice: «No existe `--force`: un veredicto ajeno no se mueve sin razon explicita».",
-      "condicion_reapertura": null,
-      "consumidor": "GEN2-RELEVO-USOS-1/P3/P4 · re-derivar las tres vistas canonicas tras la adopcion",
-      "contrato_cientifico_completo": false,
-      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
-      "cursor_continuacion": null,
-      "estado_ruteo": "NO_SONDA",
-      "etapa_faltante": "CALCULO",
-      "evidencia_disponible": "Las tres vistas quedan sin re-derivar por exactamente las 2 filas que P4 adopto (RES-0047/RES-0049 siguen alli con generacion_leida=LEGACY-GEN1). NO afecta a los contadores: `corrida0 status` deriva en memoria y ya reporta dependencias_numericas_legacy_activas=189 y N_resultados_gen2_adoptados_activos=18. `data/corrida0/relevo-usos-v1_0.tsv` tampoco depende de la vista: lee la adopcion del archivo del consumidor.",
-      "evidencias": [
-        "forense/no-corrido.tsv#NC-0211"
-      ],
-      "frontera": "Las tres vistas quedan sin re-derivar por exactamente las 2 filas que P4 adopto (RES-0047/RES-0049 siguen alli con generacion_leida=LEGACY-GEN1). NO afecta a los contadores: `corrida0 status` deriva en memoria y ya reporta dependencias_numericas_legacy_activas=189 y N_resultados_gen2_adoptados_activos=18. `data/corrida0/relevo-usos-v1_0.tsv` tampoco depende de la vista: lee la adopcion del archivo del consumidor.",
-      "id": "NC-0211",
-      "investigacion_previa": "BLOQUEADO-POR-ENTORNO",
-      "motivo_ruteo": "etapa vigente CALCULO; no corresponde investigación externa",
-      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
-      "opciones_decision": [],
-      "origen_demanda": "NC_ABIERTA",
-      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
-      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
-      "pregunta": "`corrida0 registro --escribe` se NEGO y no se forzo: escribir aqui bajaria `resultado_replay`/`contexto_replay` de REPRODUCE/IDENTICO a NO-VERIFICADO en 17 corridas publicadas AJENAS a este acto, porque este clon de nube no puede reejecutar `verify` (numpy/pandas/scipy AUSENTES, `data/raw` ausente -- `tools/entorno.py`). El propio comando lo dice: «No existe `--force`: un veredicto ajeno no se mueve sin razon explicita».",
-      "prioridad": 60,
-      "responsable": "Sesion de CAJA: `python3 tools/corrida0.py registro --verifica --escribe`",
-      "siguiente_accion": "Sesion de CAJA: `python3 tools/corrida0.py registro --verifica --escribe`",
-      "suficiencia": null,
-      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
-      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
-      "variables": "`corrida0 registro --escribe` se NEGO y no se forzo: escribir aqui bajaria `resultado_replay`/`contexto_replay` de REPRODUCE/IDENTICO a NO-VERIFICADO en 17 corridas publicadas AJENAS a este acto, porque este clon de nube no puede reejecutar `verify` (numpy/pandas/scipy AUSENTES, `data/raw` ausente -- `tools/entorno.py`). El propio comando lo dice: «No existe `--force`: un veredicto ajeno no se mueve sin razon explicita».",
-      "version_pregunta": "AUTO-NC-v1-e62479d70bf8"
     },
     {
       "antecedentes_nc": [],
@@ -18191,47 +18085,13 @@
     {
       "antecedentes_nc": [],
       "aplica_contrato_cientifico": true,
-      "brecha": "Seis CALC selladas (`CALC-ENIGH-0001`, `CALC-ENFIH-0001`, `CALC-EDER-0003`, `CALC-ENUT-0001`, `CALC-L8-CONVERSION-0001`, `CALC-ENSANUT-0001`) sellaron la rama `LISTADO-PARA-MESA*` para sus 11 slots (CORR-0011/0012/0013/0014/0016/0017) pero ninguna declara cual de sus RESULT releva a cual slot: ni mapa `adopcion*.consumidores`, ni frase de enlace en `resultados[].unidad`. La corrida esta hecha; falta el pin.",
-      "condicion_reapertura": null,
-      "consumidor": "GEN2-RELEVO-USOS-1/P1 · fijar QUE RESULT releva a cada uno de los 11 slots LISTADO-PARA-MESA",
-      "contrato_cientifico_completo": false,
-      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
-      "cursor_continuacion": null,
-      "estado_ruteo": "NO_SONDA",
-      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
-      "evidencia_disponible": "Son 11 de los 189 consumidores que siguen leyendo GEN1 y cuya medicion GEN2 YA EXISTE y reproduce. No entran al contrato de P2 -- un par sin RESULT no es un par -- y por eso no tienen delta ni materialidad. Es el lote mas barato que queda: no hay que medir nada, hay que declarar el enlace.",
-      "evidencias": [
-        "forense/no-corrido.tsv#NC-0215"
-      ],
-      "frontera": "Son 11 de los 189 consumidores que siguen leyendo GEN1 y cuya medicion GEN2 YA EXISTE y reproduce. No entran al contrato de P2 -- un par sin RESULT no es un par -- y por eso no tienen delta ni materialidad. Es el lote mas barato que queda: no hay que medir nada, hay que declarar el enlace.",
-      "id": "NC-0215",
-      "investigacion_previa": "COBERTURA-SIN-PIN-DE-RESULT",
-      "motivo_ruteo": "etapa vigente DECISION_O_IMPLEMENTACION; no corresponde investigación externa",
-      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
-      "opciones_decision": [],
-      "origen_demanda": "NC_ABIERTA",
-      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
-      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
-      "pregunta": "Seis CALC selladas (`CALC-ENIGH-0001`, `CALC-ENFIH-0001`, `CALC-EDER-0003`, `CALC-ENUT-0001`, `CALC-L8-CONVERSION-0001`, `CALC-ENSANUT-0001`) sellaron la rama `LISTADO-PARA-MESA*` para sus 11 slots (CORR-0011/0012/0013/0014/0016/0017) pero ninguna declara cual de sus RESULT releva a cual slot: ni mapa `adopcion*.consumidores`, ni frase de enlace en `resultados[].unidad`. La corrida esta hecha; falta el pin.",
-      "prioridad": 60,
-      "responsable": "Acto de adopcion sucesor: declarar el pin por CALC y correr `tools/relevo_usos.py` + `corrida0 delta`",
-      "siguiente_accion": "Acto de adopcion sucesor: declarar el pin por CALC y correr `tools/relevo_usos.py` + `corrida0 delta`",
-      "suficiencia": null,
-      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
-      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
-      "variables": "Seis CALC selladas (`CALC-ENIGH-0001`, `CALC-ENFIH-0001`, `CALC-EDER-0003`, `CALC-ENUT-0001`, `CALC-L8-CONVERSION-0001`, `CALC-ENSANUT-0001`) sellaron la rama `LISTADO-PARA-MESA*` para sus 11 slots (CORR-0011/0012/0013/0014/0016/0017) pero ninguna declara cual de sus RESULT releva a cual slot: ni mapa `adopcion*.consumidores`, ni frase de enlace en `resultados[].unidad`. La corrida esta hecha; falta el pin.",
-      "version_pregunta": "AUTO-NC-v1-beeefaad0085"
-    },
-    {
-      "antecedentes_nc": [],
-      "aplica_contrato_cientifico": true,
       "brecha": "`CALC-B-0001/RESULT-B-ADOPCION-P3 = NO-ADOPTABLE-POR-GRANO` y `CALC-ENIGH-0001/RESULT-ENIGH-A-ADOPCION = LISTADO-PARA-MESA-REPRODUCE` describen el mismo consumidor (`familia.seguro.volatilidad_ausencia_estado:recibe_remesas`), y el consumidor YA cita a `RESULT-B-ENIGH-2022-P` con `corrida0_generacion: GEN2`.",
       "condicion_reapertura": null,
       "consumidor": "GEN2-RELEVO-USOS-1/P1 · resolver los dos veredictos sellados que chocan sobre RES-0035",
       "contrato_cientifico_completo": false,
       "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
       "cursor_continuacion": null,
-      "estado_ruteo": "NO_SONDA",
+      "estado_ruteo": "ESPERA_O_DELEGADA",
       "etapa_faltante": "ADOPCION",
       "evidencia_disponible": "La adopcion vigente convive con un veredicto sellado que decia NO-ADOPTABLE. No se toca ninguno de los dos sellados ni la cita: se declara. `relevo-usos-v1_0.tsv` lo marca `veredicto_sellado=CONFLICTO-ENTRE-VEREDICTOS` con las dos referencias, y el par sale del delta como INFORMACION-INSUFICIENTE.",
       "evidencias": [
@@ -18240,7 +18100,7 @@
       "frontera": "La adopcion vigente convive con un veredicto sellado que decia NO-ADOPTABLE. No se toca ninguno de los dos sellados ni la cita: se declara. `relevo-usos-v1_0.tsv` lo marca `veredicto_sellado=CONFLICTO-ENTRE-VEREDICTOS` con las dos referencias, y el par sale del delta como INFORMACION-INSUFICIENTE.",
       "id": "NC-0216",
       "investigacion_previa": "VEREDICTOS-SELLADOS-EN-CONFLICTO | F-3 (mesa 15/sep/2026): gobierna el veredicto sellado mas reciente aplicando el grano de F-1 (recibe_remesas); el veredicto mas antiguo (CALC-B-0001/RESULT-B-ADOPCION-P3) queda SUPERADO en el registro derivado. La escritura del rotulo SUPERADO en el registro derivado va por el escritor canonico, no a mano -- pendiente para el acto sucesor.",
-      "motivo_ruteo": "etapa vigente ADOPCION; no corresponde investigación externa",
+      "motivo_ruteo": "precedencia explícita impide reactivación automática",
       "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
       "opciones_decision": [],
       "origen_demanda": "NC_ABIERTA",
@@ -18248,13 +18108,13 @@
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
       "pregunta": "`CALC-B-0001/RESULT-B-ADOPCION-P3 = NO-ADOPTABLE-POR-GRANO` y `CALC-ENIGH-0001/RESULT-ENIGH-A-ADOPCION = LISTADO-PARA-MESA-REPRODUCE` describen el mismo consumidor (`familia.seguro.volatilidad_ausencia_estado:recibe_remesas`), y el consumidor YA cita a `RESULT-B-ENIGH-2022-P` con `corrida0_generacion: GEN2`.",
       "prioridad": 60,
-      "responsable": "MESA · decidir cual veredicto gobierna, o declarar que miden estimandos distintos",
-      "siguiente_accion": "MESA · decidir cual veredicto gobierna, o declarar que miden estimandos distintos",
+      "responsable": "MESA · decidir cual veredicto gobierna, o declarar que miden estimandos distintos || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. La premisa vencio: MESA ya decidio F-3 (HOJA DE FIRMAS DE MESA 2, 15/sep/2026, firma verbatim «Si a todos.», archivada en forense/encargos/2026-09-15-GEN2-FIRMAS-MESA-2.md) -- \"gobierna el mas reciente sellado con el grano de F-1",
+      "siguiente_accion": "MESA · decidir cual veredicto gobierna, o declarar que miden estimandos distintos || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. La premisa vencio: MESA ya decidio F-3 (HOJA DE FIRMAS DE MESA 2, 15/sep/2026, firma verbatim «Si a todos.», archivada en forense/encargos/2026-09-15-GEN2-FIRMAS-MESA-2.md) -- \"gobierna el mas reciente sellado con el grano de F-1; el otro queda SUPERADO en el registro derivado\" -- y F-1 (el mismo acto) ya cerro NC-0214 con esa misma regla de grano. Medido hoy: CALC-B-0001 sello 2026-09-09T02:01:48Z (data/corrida0/CALC-B-0001/ejecucion.json:27) y CALC-ENIGH-0001 sello 2026-09-15T16:23:22Z (data/corrida0/CALC-ENIGH-0001/ejecucion.json:31) -- ENIGH-0001 es el mas reciente, el que F-3 manda gobernar. Pero `grep -F RES-0035 data/corrida0/relevo-usos-v1_0.tsv` hoy sigue devolviendo `veredicto_sellado=CONFLICTO-ENTRE-VEREDICTOS` con las dos referencias intactas, y `tools/relevo_usos.py` (lineas 406-409) confirma que el escritor canonico no tiene logica de \"mas reciente\"/SUPERADO -- solo emite CONFLICTO-ENTRE-VEREDICTOS cuando hay mas de un valor sellado distinto, exactamente como el propio FIRMAS-MESA-2 lo dejo registrado (\"FUERA-DE-PERIMETRO ... requiere el escritor canonico\"). El bloqueador ya no es una decision de mesa pendiente: es una implementacion pendiente en el escritor canonico. Sucesor propuesto: acto sucesor que edite tools/relevo_usos.py (o el escritor canonico equivalente de data/corrida0/relevo-usos-v1_0.tsv) para aplicar la regla F-1/F-3 -- el veredicto sellado mas reciente por CALC gobierna al grano del consumidor -- y escriba CALC-B-0001/RESULT-B-ADOPCION-P3 = SUPERADO->CALC-ENIGH-0001/RESULT-ENIGH-A-ADOPCION en relevo-usos-v1_0.tsv.",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "`CALC-B-0001/RESULT-B-ADOPCION-P3 = NO-ADOPTABLE-POR-GRANO` y `CALC-ENIGH-0001/RESULT-ENIGH-A-ADOPCION = LISTADO-PARA-MESA-REPRODUCE` describen el mismo consumidor (`familia.seguro.volatilidad_ausencia_estado:recibe_remesas`), y el consumidor YA cita a `RESULT-B-ENIGH-2022-P` con `corrida0_generacion: GEN2`.",
-      "version_pregunta": "AUTO-NC-v1-05d4ffb6a614"
+      "version_pregunta": "AUTO-NC-v1-7d45dbe9fbf7"
     },
     {
       "antecedentes_nc": [],
@@ -18402,7 +18262,7 @@
       "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
       "cursor_continuacion": null,
       "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "VALIDACION",
+      "etapa_faltante": "PREPARACION",
       "evidencia_disponible": "El LECTOR ya esta arreglado y probado (NC-0199, falsador verde), pero publicar el efecto exige `python3 tools/corrida0.py registro --escribe`, y esta sesion es NUBE SIN CORPUS: tools/entorno.py da acceso_corpus.montado=NO con archivos_examinados=0, de modo que `--verifica` no puede llenar las columnas de replay sin degradar a NO-VERIFICADO veredictos de corridas ajenas ya publicadas -- el mismo limbo exacto que NC-0145 ya declaro y que sigue ABIERTA. Ningun numero de este acto depende de esa escritura y ningun contador se mueve por esta fila: el arreglo es del lector y viaja igual.",
       "evidencias": [
         "forense/no-corrido.tsv#NC-0228"
@@ -18419,12 +18279,12 @@
       "pregunta": "re-derivar data/corrida0/corridas.tsv y resultados.tsv para que el campo `estado` de las 6 predecesoras pase de SELLADA a SUPERADO-><id>, que es el efecto que NC-0199 perseguia",
       "prioridad": 60,
       "responsable": "acto de cascada en CAJA/Ubuntu con data/raw montada que corra `registro --verifica --escribe` y publique las dos vistas",
-      "siguiente_accion": "acto de cascada en CAJA/Ubuntu con data/raw montada que corra `registro --verifica --escribe` y publique las dos vistas; conviene que absorba tambien NC-0145, que PARA por la misma causa",
+      "siguiente_accion": "acto de cascada en CAJA/Ubuntu con data/raw montada que corra `registro --verifica --escribe` y publique las dos vistas; conviene que absorba tambien NC-0145, que PARA por la misma causa || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. MEDIDO hoy: `python3 tools/entorno.py` confirma que el bloqueador propio de esta fila sigue de pie (acceso_corpus.montado=NO, archivos_examinados=0); pero sobre forense/no-corrido.tsv (csv.DictReader), NC-0145 -- la fila que este sucesor proponia absorber por \"PARAR por la misma causa\" -- tiene estado=CERRADA, cerrado_por=GEN2-CORRIDA0-CASCADA-POST-682, fecha_cierre=2026-09-10: se cerro CINCO DIAS ANTES de que esta misma fila (NC-0228, fecha 2026-09-15) se escribiera diciendo que NC-0145 \"sigue ABIERTA\"; su propio cierre declara \"cascada publicada sin recalculo ni resellado\", o sea que no necesita corpus ni este acto sucesor. Ademas, sobre los 104 spec.yaml del arbol (glob + parseo de bloque `etiquetas:`), de las 6 specs que declaran `repite_de` solo bajo etiquetas, 5 lo declaran en PROSA (\"NINGUN CALC previo -- ...\", no un calc_id) y solo CALC-ENVIPE-U4-2012-v1_1 apunta a un predecesor real (CALC-ENVIPE-U4-2012, hoy en estado=SELLADA en data/corrida0/corridas.tsv linea 133, todavia no SUPERADO). Sucesor propuesto: acto de cascada en CAJA/Ubuntu con data/raw montada que corra `python3 tools/corrida0.py registro --verifica --escribe` y publique data/corrida0/corridas.tsv y resultados.tsv, dirigido solo al efecto real pendiente -- CALC-ENVIPE-U4-2012 pasando a SUPERADO→CALC-ENVIPE-U4-2012-v1_1 -- sin absorber NC-0145 (ya CERRADA, sin pendiente) y sin esperar movimiento en las otras 5 specs (su repite_de es prosa, no produce SUPERADO-> nuevo).",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "re-derivar data/corrida0/corridas.tsv y resultados.tsv para que el campo `estado` de las 6 predecesoras pase de SELLADA a SUPERADO-><id>, que es el efecto que NC-0199 perseguia",
-      "version_pregunta": "AUTO-NC-v1-e1bd5537b0b2"
+      "version_pregunta": "AUTO-NC-v1-7be3ba21fd0e"
     },
     {
       "antecedentes_nc": [],
@@ -18521,12 +18381,12 @@
       "pregunta": "fijar la codificacion de las categorias de respuesta de ZA6980 v26 (Q8a, a quien acudiria para pedir prestada una suma grande de dinero) leyendo ZA6980_q_mx.pdf o el codebook, ambos ya adquiridos",
       "prioridad": 60,
       "responsable": "CAJA/Ubuntu con la raiz montada",
-      "siguiente_accion": "CAJA/Ubuntu con la raiz montada; ruta de salida: data/reactivos-contexto-*.tsv",
+      "siguiente_accion": "CAJA/Ubuntu con la raiz montada; ruta de salida: data/reactivos-contexto-*.tsv || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy: `git log --all --oneline -i --grep=\"ZA6980\"` encuentra el commit 698f958a3d43c936ac25eb5663914292c3e6b24d (\"P1-P4: MOCIBA/ISSP/ENCO leidos en CAJA...\"), que declara verbatim \"P2 · ISSP R09 (NC-0231 CERRADA): codificacion de v26 leida en ZA6980_q_mx.pdf p.3 (Pregunta 8a), 8 categorias\" y que en `git show 698f958a -- forense/no-corrido.tsv` escribe esas 8 categorias en data/reactivos-contexto-verificados-v1_0.tsv y cierra esta misma fila. Esa rama (`origin/acto/gen2-f6-panel-caja-1`, con nota de cierre en el commit 246bbfa9) nunca se fusiono: `git merge-base --is-ancestor origin/acto/gen2-f6-panel-caja-1 HEAD` -> no ancestro; `mcp__github__list_pull_requests(head=\"Josanoforo:acto/gen2-f6-panel-caja-1\", state=all)` -> cero PR jamas abierto (viola A.14, rama sin fusion ni borrado); y hoy en HEAD `git grep -n \"R09\\|ZA6980\\|Q8a\" HEAD -- data/reactivos-contexto-verificados-v1_0.tsv` sigue sin resultados y F5-panel-candidatos-v1_3.tsv \"does not exist in HEAD\". El bloqueador de ESTA sesion (sin corpus, `ls \"/mnt/c/Users/PC0/Descargas MX/\"` -> No such file or directory; data/raices.local.yaml no existe, gitignored) sigue de pie para el ejecutor actual, pero la premisa de la fila -- que el paso documental esta por hacerse -- vencio: ya se hizo, en un acto real, y quedo varado sin fusionar. Sucesor propuesto: mesa decide entre (a) recuperar/fusionar origin/acto/gen2-f6-panel-caja-1 (commit 698f958a + nota de cierre 246bbfa9) a main, reconciliando F5-panel-candidatos-v1_2 vigente contra la v1_3 de esa rama -- cierra NC-0230/0231/0232/0233 de un solo acto; o (b) si se juzga no confiable, repetir la lectura de ZA6980_q_mx.pdf p.3 en una sesion CAJA/Ubuntu fresca y escribir el resultado en main.",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "fijar la codificacion de las categorias de respuesta de ZA6980 v26 (Q8a, a quien acudiria para pedir prestada una suma grande de dinero) leyendo ZA6980_q_mx.pdf o el codebook, ambos ya adquiridos",
-      "version_pregunta": "AUTO-NC-v1-b1a7b457c4b8"
+      "version_pregunta": "AUTO-NC-v1-ce00988dea67"
     },
     {
       "antecedentes_nc": [],
@@ -18537,8 +18397,8 @@
       "contrato_cientifico_completo": false,
       "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
       "cursor_continuacion": null,
-      "estado_ruteo": "NO_SONDA",
-      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
+      "estado_ruteo": "LISTA_SONDA",
+      "etapa_faltante": "FUENTE_O_VARIABLE",
       "evidencia_disponible": "El dominio DIN se queda sin ninguna familia limpia ejecutable: Global Findex cayo por exposicion en el corpus de L y la ENCF (Banxico/CNBV) ya es universo de evaluacion en el marco piloto",
       "evidencias": [
         "forense/no-corrido.tsv#NC-0232"
@@ -18546,7 +18406,7 @@
       "frontera": "El dominio DIN se queda sin ninguna familia limpia ejecutable: Global Findex cayo por exposicion en el corpus de L y la ENCF (Banxico/CNBV) ya es universo de evaluacion en el marco piloto",
       "id": "NC-0232",
       "investigacion_previa": "NO-VERIFICABLE-AQUI",
-      "motivo_ruteo": "etapa vigente DECISION_O_IMPLEMENTACION; no corresponde investigación externa",
+      "motivo_ruteo": "brecha de datos explícita sin compuerta posterior",
       "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
       "opciones_decision": [],
       "origen_demanda": "NC_ABIERTA",
@@ -18554,13 +18414,13 @@
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
       "pregunta": "leer c_enco_b_v4.pdf (cuestionario basico ENCO, ya adquirido) y decidir si alguno de los items P1-P15 pregunta por posibilidad de ahorrar",
       "prioridad": 60,
-      "responsable": "CAJA/Ubuntu",
-      "siguiente_accion": "CAJA/Ubuntu; si devuelve EXISTE-SATISFACE, adquisicion de dos olas ENCO (fila R10 de forense/prereg-duelo-v2/F6-falta-conseguir-v1_0.tsv)",
+      "responsable": "servicio-gen2-38",
+      "siguiente_accion": "CAJA/Ubuntu; si devuelve EXISTE-SATISFACE, adquisicion de dos olas ENCO (fila R10 de forense/prereg-duelo-v2/F6-falta-conseguir-v1_0.tsv) || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. El paso de CAJA/Ubuntu que este sucesor pedia YA CORRIO, en otro arbol: commit 698f958a (rama origin/acto/gen2-f6-panel-caja-1, hallado con `git log --oneline --all --grep=\"ENCO\" -i`) leyo c_enco_b_v4.pdf (sha256 f7e9d6b9... contra manifiesto, `pdftotext -layout`, 2 paginas/15 items) y la nota de cierre (commit 246bbfa9) registra EXISTE-SATISFACE verbatim: pagina 1, item 10, \"¿ACTUALMENTE USTED tiene posibilidades de AHORRAR alguna parte de sus ingresos?\" (1=Si/2=No/3=No sabe/4=No tiene ingresos). Esa rama NO esta fusionada: `git merge-base --is-ancestor 698f958a origin/main` -> NO; `git show origin/main:forense/no-corrido.tsv | grep -F NC-0232` (tip real hoy 622fae2a) sigue devolviendo la fila ABIERTA/NO-VERIFICABLE-AQUI identica a la original. Y `python3 tools/entorno.py` en esta sesion confirma que, para quien audita desde NUBE, el corpus sigue sin montar (acceso_corpus.montado=NO) -- por eso esta auditoria no puede re-verificar el hallazgo por si misma, solo constatar que ya existe, sellado, en otro arbol. Sucesor propuesto: fusionar (o cherry-pickear) origin/acto/gen2-f6-panel-caja-1 (commits 698f958a + 246bbfa9) a main; hecho eso, NC-0232 cierra citando esa integracion y el unico pendiente que sobrevive es (b) -- adquisicion de dos olas de microdato ENCO -- ya rastreada en forense/prereg-duelo-v2/F6-falta-conseguir-v1_0.tsv fila R10, fuera de perimetro de este acto (servicio adq).",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "leer c_enco_b_v4.pdf (cuestionario basico ENCO, ya adquirido) y decidir si alguno de los items P1-P15 pregunta por posibilidad de ahorrar",
-      "version_pregunta": "AUTO-NC-v1-fc82a8730f7b"
+      "version_pregunta": "AUTO-NC-v1-5421eae7fd26"
     },
     {
       "antecedentes_nc": [],
@@ -18678,7 +18538,7 @@
       "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
       "cursor_continuacion": null,
       "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
+      "etapa_faltante": "PREPARACION",
       "evidencia_disponible": "NUBE sin corpus: acreditar una correspondencia ambigua exige releer el descriptor de la fuente, que no esta montado (corpus=NO, archivos_examinados=0). Este acto las ORDENA por demanda y no mueve ninguna cifra de cobertura",
       "evidencias": [
         "forense/no-corrido.tsv#NC-0236"
@@ -18694,13 +18554,13 @@
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
       "pregunta": "acreditar las 643+451 correspondencias ambiguas y etiquetas tecnicas de envipe2025, las 26+32 de encuci2020 y la etiqueta tecnica de enif2024 que hoy reclaman CORR-0007, CORR-0003 y CORR-0009/0010/0015",
       "prioridad": 60,
-      "responsable": "CAJA: acto sucesor de NC-0136 que ataque primero las 1153 filas con consumidor declarado, y solo despues las 10182 sin demanda hoy",
-      "siguiente_accion": "CAJA: acto sucesor de NC-0136 que ataque primero las 1153 filas con consumidor declarado, y solo despues las 10182 sin demanda hoy",
+      "responsable": "CAJA: acto sucesor de NC-0136 que ataque primero las 1153 filas con consumidor declarado, y solo despues las 10182 sin demanda hoy || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy contra data/corrida0/mapa-demanda-19-corr-v1_0.tsv (vigente: ultimo commit b6ca8f92, 2026-09-15T18:32:19Z, ancestro de HEAD por `git merge-base --is-ancestor`) -- de los cinco CORR citados, CORR-0003 (encuci2020, 26+32=58 filas) esta EXISTE-SATISFACE con sucesor \"NINGUNO\" (\"Relevada entera por ACTO GEN2-LOTE-ENCUCI-1\") y CORR-0009/CORR-0010/CORR-0015 (enif2024, 1 fila) estan SPEC-CONGELADA con nota \"AGOTADA\" (9/9, 2/2 y 7/7, releadas por CALC ya sellados) -- ninguno de estos cuatro necesita ya la correspondencia ambigua ni la etiqueta tecnica que este residual le atribuye. Solo CORR-0007 (envipe2025, 643+451=1094 filas) sigue EXISTE-NO-SATISFACE (6/8)",
+      "siguiente_accion": "CAJA: acto sucesor de NC-0136 que ataque primero las 1153 filas con consumidor declarado, y solo despues las 10182 sin demanda hoy || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy contra data/corrida0/mapa-demanda-19-corr-v1_0.tsv (vigente: ultimo commit b6ca8f92, 2026-09-15T18:32:19Z, ancestro de HEAD por `git merge-base --is-ancestor`) -- de los cinco CORR citados, CORR-0003 (encuci2020, 26+32=58 filas) esta EXISTE-SATISFACE con sucesor \"NINGUNO\" (\"Relevada entera por ACTO GEN2-LOTE-ENCUCI-1\") y CORR-0009/CORR-0010/CORR-0015 (enif2024, 1 fila) estan SPEC-CONGELADA con nota \"AGOTADA\" (9/9, 2/2 y 7/7, releadas por CALC ya sellados) -- ninguno de estos cuatro necesita ya la correspondencia ambigua ni la etiqueta tecnica que este residual le atribuye. Solo CORR-0007 (envipe2025, 643+451=1094 filas) sigue EXISTE-NO-SATISFACE (6/8); y su bloqueador citado en el mapa (\"MESA · decision sobre RES-0039..0042, NC-0088\") ya se resolvio: NC-0088 esta CERRADA (fecha_cierre 2026-09-15) por ACTO GEN2-FIRMAS-MESA-1 (PR #785), que congela la spec en dos capas y deja pendiente solo una corrida en CAJA (NO-CORRIDO propio de ese acto), no otra decision de mesa. El corpus sigue sin montar hoy (`python3 tools/entorno.py --json` -> acceso_corpus.montado=NO, archivos_examinados=0), asi que el PARO-ENTORNO de esta fila no vencio; lo que vencio es la cuenta de \"1153 filas con consumidor declarado\": hoy son, cuando mucho, 1094 (las de CORR-0007/envipe2025), no 1153, y las 59 restantes (58 de encuci2020 + 1 de enif2024) ya no tienen consumidor vivo que las reclame. Sucesor propuesto: acto de CAJA (corpus montado) que ataque solo las ~1094 filas de envipe2025/CORR-0007, coordinado con la corrida pendiente de RES-0039..0042 que NO-CORRIDO de GEN2-FIRMAS-MESA-1 ya dejo lista para CAJA, sin gastar prioridad en las 58 filas de encuci2020/CORR-0003 ni en la 1 de enif2024/CORR-0009-0010-0015 (consumidor ya satisfecho por otra via); las 10182 sin demanda hoy siguen despues de eso, sin cambio.",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "acreditar las 643+451 correspondencias ambiguas y etiquetas tecnicas de envipe2025, las 26+32 de encuci2020 y la etiqueta tecnica de enif2024 que hoy reclaman CORR-0007, CORR-0003 y CORR-0009/0010/0015",
-      "version_pregunta": "AUTO-NC-v1-83f62c19d4a6"
+      "version_pregunta": "AUTO-NC-v1-0272bbf2ab5e"
     },
     {
       "antecedentes_nc": [],
@@ -18712,7 +18572,7 @@
       "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
       "cursor_continuacion": null,
       "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "PREPARACION",
+      "etapa_faltante": "FUENTE_O_VARIABLE",
       "evidencia_disponible": "La compuerta material de ACTO GEN2-F5-CIERRE-Y-PANEL-1 queda contestada en positivo (la bateria existe y esta citada), pero NC-0161 sigue ABIERTA y FP-374 no se mueve: sin esta decision no hay spec congelable. No se abre F6, no se autoriza piloto ni llamadas",
       "evidencias": [
         "forense/no-corrido.tsv#NC-0237"
@@ -18729,12 +18589,12 @@
       "pregunta": "fijar universo, codificacion y ponderador de la bateria de denuncia de MOCIBA 2021 y 2023 sabiendo que la numeracion cambia (P12_5 vs P12_05), que la redaccion cambia (Ministerio Publico o policia vs o Fiscalia Estatal) y que 2023 desdobla el reporte a la policia en P12_11",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "MESA (decide si la union de opciones de 2021 y la de 2023 son el mismo estimando) + CAJA/NUBE: spec congelable despues de esa decision",
+      "siguiente_accion": "MESA (decide si la union de opciones de 2021 y la de 2023 son el mismo estimando) + CAJA/NUBE: spec congelable despues de esa decision || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. MEDIDO hoy contra origin/main=f89591c3: NC-0230 (misma familia R01, ABIERTA) ya fija el par POR DEFECTO de R01 en 2021+2022 (`awk -F'\\t' '$3==\"GEN2-PANEL-F6-EXPANSION-1\"' forense/no-corrido.tsv`; sellado en canon/registro-rotulos.tsv, ADR-518: \"Corrige la linea de exposicion de R01 MOCIBA ... y mueve su par a 2021+2022\", fusionado en main y reconciliado por la propia nota de cierre de este acto, §7), y 2022 codifica identico a 2021 (P12_5 en las dos olas; forense/notas/2026-09-15-GEN2-REACTIVOS-RESIDUALES-2-cierre.md, fila mociba2022). NC-0230 solo condiciona 2023 a que \"mesa mueva el par\" -- no lo exige para el piloto. El bloqueador vigente de R01 hoy es de entorno (NC-0230: falta CAJA/Ubuntu con la raiz montada para leer el xlsx), no esta decision de pooling: \"no se autoriza piloto\" ya no es una consecuencia de esta fila. Lo que SI sigue exigiendo la decision 2021-vs-2023 es el alcance mas amplio de NC-0161 (Fase 4B, que pide expresamente el par 2021+2023 y sigue ABIERTA hoy: grep -F NC-0161 forense/no-corrido.tsv) y cualquier extension futura del par mas alla del piloto (confirmatoria bajo FP-374, hoy FIRMADA-CON-ALCANCE-ACOTADO, no FIRMADA plena: forense/firmas-pendientes.tsv). Sucesor propuesto: CAJA ejecuta NC-0230 (par 2021+2022) para el piloto de F6 sin esperar esta fila; MESA resuelve la union de opciones 2021/2023 solo si y cuando se busque anadir 2023 al par, como insumo de NC-0161/confirmatoria bajo FP-374 -- no como precondicion del piloto.",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "fijar universo, codificacion y ponderador de la bateria de denuncia de MOCIBA 2021 y 2023 sabiendo que la numeracion cambia (P12_5 vs P12_05), que la redaccion cambia (Ministerio Publico o policia vs o Fiscalia Estatal) y que 2023 desdobla el reporte a la policia en P12_11",
-      "version_pregunta": "AUTO-NC-v1-d88324529bce"
+      "version_pregunta": "AUTO-NC-v1-5c125bff2ec2"
     },
     {
       "antecedentes_nc": [],
@@ -18875,16 +18735,474 @@
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "No se cierra. El sucesor que la fila pide SI se ejecuto (metadato de alcance derivado de las dos familias de esquema, nota de cierre §4), pero su objeto incluye que el RESULT sellado quede bien escrito, y ese RESULT esta fuera de perimetro y la propia fila manda no retocarlo.",
       "version_pregunta": "AUTO-NC-v1-09c3c8eaa995"
+    },
+    {
+      "antecedentes_nc": [],
+      "aplica_contrato_cientifico": true,
+      "brecha": "los 9 slots RES-0036/0037/0038/0045/0050/0051/0052/0063/0064 pinearon a un RESULT sellado con REPRODUCE (delta~0) contra GEN1; RES-0043/0044 (CALC-EDER-0003) pinean a un RESULT que el propio CALC declara NO-APLICA-ESTIMANDO-DISTINTO (GEN1=ENADID2023 situacion actual, CALC=EDER2017 tipo de primera union) -- no se adopta, se le presenta a mesa",
+      "condicion_reapertura": null,
+      "consumidor": "GEN2-CAJA-SUCESORES-1/P2/P3 -- adopcion en bloque del pin declarado",
+      "contrato_cientifico_completo": false,
+      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+      "cursor_continuacion": null,
+      "estado_ruteo": "ESPERA_O_DELEGADA",
+      "etapa_faltante": "ADOPCION",
+      "evidencia_disponible": "los 9 REPRODUCE no entran a milpa/tramite.yaml -- dependencias_numericas_legacy_activas se queda en 189 hasta que un acto con milpa/ en su perimetro escriba las 9 citas (corrida0_resultado_id + corrida0_generacion:GEN2), y mesa decida que hacer con los 2 NO-APLICA-ESTIMANDO-DISTINTO de EDER",
+      "evidencias": [
+        "forense/no-corrido.tsv#NC-0243"
+      ],
+      "frontera": "los 9 REPRODUCE no entran a milpa/tramite.yaml -- dependencias_numericas_legacy_activas se queda en 189 hasta que un acto con milpa/ en su perimetro escriba las 9 citas (corrida0_resultado_id + corrida0_generacion:GEN2), y mesa decida que hacer con los 2 NO-APLICA-ESTIMANDO-DISTINTO de EDER",
+      "id": "NC-0243",
+      "investigacion_previa": "FUERA-DE-PERIMETRO",
+      "motivo_ruteo": "precedencia explícita impide reactivación automática",
+      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+      "opciones_decision": [],
+      "origen_demanda": "NC_ABIERTA",
+      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+      "pregunta": "los 9 slots RES-0036/0037/0038/0045/0050/0051/0052/0063/0064 pinearon a un RESULT sellado con REPRODUCE (delta~0) contra GEN1; RES-0043/0044 (CALC-EDER-0003) pinean a un RESULT que el propio CALC declara NO-APLICA-ESTIMANDO-DISTINTO (GEN1=ENADID2023 situacion actual, CALC=EDER2017 tipo de primera union) -- no se adopta, se le presenta a mesa",
+      "prioridad": 60,
+      "responsable": "acto de adopcion sucesor (perimetro: milpa/tramite.yaml) que escriba las 9 citas del bloque REPRODUCE (pines y RESULT en forense/notas/2026-09-15-GEN2-CAJA-SUCESORES-1-cierre.md P2/P3) y presente a mesa la disposicion de RES-0043/0044",
+      "siguiente_accion": "acto de adopcion sucesor (perimetro: milpa/tramite.yaml) que escriba las 9 citas del bloque REPRODUCE (pines y RESULT en forense/notas/2026-09-15-GEN2-CAJA-SUCESORES-1-cierre.md P2/P3) y presente a mesa la disposicion de RES-0043/0044",
+      "suficiencia": null,
+      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+      "variables": "los 9 slots RES-0036/0037/0038/0045/0050/0051/0052/0063/0064 pinearon a un RESULT sellado con REPRODUCE (delta~0) contra GEN1; RES-0043/0044 (CALC-EDER-0003) pinean a un RESULT que el propio CALC declara NO-APLICA-ESTIMANDO-DISTINTO (GEN1=ENADID2023 situacion actual, CALC=EDER2017 tipo de primera union) -- no se adopta, se le presenta a mesa",
+      "version_pregunta": "AUTO-NC-v1-e758f73a3aa0"
+    },
+    {
+      "antecedentes_nc": [],
+      "aplica_contrato_cientifico": true,
+      "brecha": "la re-derivacion de tools/relevo_usos.py --escribe marca RES-0047/RES-0049 (ya adoptados por RELEVO-USOS-1 P4 citando CALC-ENIF-0001) como CONFLICTO-ENTRE-CANALES: CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1 (sellada por MEDICION-DEMANDA-1, posterior a la adopcion) declara por C2-RESULTADO el mismo relevo para los mismos dos slots",
+      "condicion_reapertura": null,
+      "consumidor": "GEN2-CAJA-SUCESORES-1/conflicto de procedencia sobre RES-0047/RES-0049",
+      "contrato_cientifico_completo": false,
+      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+      "cursor_continuacion": null,
+      "estado_ruteo": "LISTA_SONDA",
+      "etapa_faltante": "FUENTE_O_VARIABLE",
+      "evidencia_disponible": "las cifras no discrepan (RESULT-HVD-A-HORIZONTE-NO-CORTO-SIN-SS=0.458657, -CON-SS=0.62687, identicas a lo ya citado) asi que la cita vigente en milpa/tramite.yaml no esta mal -- pero dos CALC independientes se adjudican el mismo relevo y el registro no decide cual es la fuente canonica",
+      "evidencias": [
+        "forense/no-corrido.tsv#NC-0244"
+      ],
+      "frontera": "las cifras no discrepan (RESULT-HVD-A-HORIZONTE-NO-CORTO-SIN-SS=0.458657, -CON-SS=0.62687, identicas a lo ya citado) asi que la cita vigente en milpa/tramite.yaml no esta mal -- pero dos CALC independientes se adjudican el mismo relevo y el registro no decide cual es la fuente canonica",
+      "id": "NC-0244",
+      "investigacion_previa": "CONFLICTO-DE-PROCEDENCIA-SIN-DISCREPANCIA-NUMERICA",
+      "motivo_ruteo": "brecha de datos explícita sin compuerta posterior",
+      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+      "opciones_decision": [],
+      "origen_demanda": "NC_ABIERTA",
+      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+      "pregunta": "la re-derivacion de tools/relevo_usos.py --escribe marca RES-0047/RES-0049 (ya adoptados por RELEVO-USOS-1 P4 citando CALC-ENIF-0001) como CONFLICTO-ENTRE-CANALES: CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1 (sellada por MEDICION-DEMANDA-1, posterior a la adopcion) declara por C2-RESULTADO el mismo relevo para los mismos dos slots",
+      "prioridad": 60,
+      "responsable": "servicio-gen2-38",
+      "siguiente_accion": "mesa decide cual CALC es la fuente canonica del pin de RES-0047/RES-0049 (CALC-ENIF-0001, ya citado, o CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1) -- no cambia el p adoptado, solo la procedencia declarada",
+      "suficiencia": null,
+      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+      "variables": "la re-derivacion de tools/relevo_usos.py --escribe marca RES-0047/RES-0049 (ya adoptados por RELEVO-USOS-1 P4 citando CALC-ENIF-0001) como CONFLICTO-ENTRE-CANALES: CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1 (sellada por MEDICION-DEMANDA-1, posterior a la adopcion) declara por C2-RESULTADO el mismo relevo para los mismos dos slots",
+      "version_pregunta": "AUTO-NC-v1-2fbd85423ec2"
+    },
+    {
+      "antecedentes_nc": [],
+      "aplica_contrato_cientifico": true,
+      "brecha": "acreditar las 5482 TABLA_SIN_FD y 2138 VARIABLE_SIN_FD: son diferencia MATERIAL, no de ortografia -- endutih2025 escribe ti25hog.dbf donde el FD dice tic_2025_hogares (mapeo semantico, no normalizable), y censo2020/cpv2020/las dos CNBV tienen tablas de payload sin hoja correspondiente en el descriptor indexado",
+      "condicion_reapertura": null,
+      "consumidor": "GEN2-RESIDUAL-81-1/residual del residual · 7620 filas ciegas que el puente no resuelve",
+      "contrato_cientifico_completo": false,
+      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+      "cursor_continuacion": null,
+      "estado_ruteo": "LISTA_SONDA",
+      "etapa_faltante": "FUENTE_O_VARIABLE",
+      "evidencia_disponible": "NUBE resuelve ortografia, no semantica: emparejar ti25hog con tic_2025_hogares exige leer el FD real o una decision humana, y adivinarlo publicaria identidad falsa -- justo lo que este acto rechazo al no publicar las 10765 filas que emparejarian por nombre de variable. La cobertura recuperada se queda en 9195/16815",
+      "evidencias": [
+        "forense/no-corrido.tsv#NC-0245"
+      ],
+      "frontera": "NUBE resuelve ortografia, no semantica: emparejar ti25hog con tic_2025_hogares exige leer el FD real o una decision humana, y adivinarlo publicaria identidad falsa -- justo lo que este acto rechazo al no publicar las 10765 filas que emparejarian por nombre de variable. La cobertura recuperada se queda en 9195/16815",
+      "id": "NC-0245",
+      "investigacion_previa": "NO-VERIFICABLE-AQUI",
+      "motivo_ruteo": "brecha de datos explícita sin compuerta posterior",
+      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+      "opciones_decision": [],
+      "origen_demanda": "NC_ABIERTA",
+      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+      "pregunta": "acreditar las 5482 TABLA_SIN_FD y 2138 VARIABLE_SIN_FD: son diferencia MATERIAL, no de ortografia -- endutih2025 escribe ti25hog.dbf donde el FD dice tic_2025_hogares (mapeo semantico, no normalizable), y censo2020/cpv2020/las dos CNBV tienen tablas de payload sin hoja correspondiente en el descriptor indexado",
+      "prioridad": 60,
+      "responsable": "servicio-gen2-38",
+      "siguiente_accion": "CAJA: acto que lea el FD real de endutih2025/censo2020/CNBV y publique el crosswalk de tablas por instrumento, o MESA si decide que un emparejamiento revisado a mano es acreditable",
+      "suficiencia": null,
+      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+      "variables": "acreditar las 5482 TABLA_SIN_FD y 2138 VARIABLE_SIN_FD: son diferencia MATERIAL, no de ortografia -- endutih2025 escribe ti25hog.dbf donde el FD dice tic_2025_hogares (mapeo semantico, no normalizable), y censo2020/cpv2020/las dos CNBV tienen tablas de payload sin hoja correspondiente en el descriptor indexado",
+      "version_pregunta": "AUTO-NC-v1-25ae171392f0"
+    },
+    {
+      "antecedentes_nc": [],
+      "aplica_contrato_cientifico": true,
+      "brecha": "que un acto consumidor use las 9195 identidades recuperadas donde ya hacen falta: enut2024 y enfih2019 quedaron completos (CORR-0014 y CORR-0012), enadid2023 trae el P3_27_AG que CORR-0013 necesitaba localizar, y mociba2015/2016/2017 completan la serie del panel F6",
+      "condicion_reapertura": null,
+      "consumidor": "GEN2-RESIDUAL-81-1/consumo del overlay recuperado · ninguna celda ni CORR lo usa todavia",
+      "contrato_cientifico_completo": false,
+      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+      "cursor_continuacion": null,
+      "estado_ruteo": "ESPERA_O_DELEGADA",
+      "etapa_faltante": "FUENTE_O_VARIABLE",
+      "evidencia_disponible": "Este acto publica y cablea; no edita data/corrida0/mapa-demanda-19-corr-v1_0.tsv (lo escriben a mano los actos de la serie SPEC-DEMANDA) ni congela spec alguna. Ninguna fila del mapa-19 cambia de estado y ninguna compuerta de F6 se contesta por este acto",
+      "evidencias": [
+        "forense/no-corrido.tsv#NC-0246"
+      ],
+      "frontera": "Este acto publica y cablea; no edita data/corrida0/mapa-demanda-19-corr-v1_0.tsv (lo escriben a mano los actos de la serie SPEC-DEMANDA) ni congela spec alguna. Ninguna fila del mapa-19 cambia de estado y ninguna compuerta de F6 se contesta por este acto",
+      "id": "NC-0246",
+      "investigacion_previa": "FUERA-DE-PERIMETRO",
+      "motivo_ruteo": "precedencia explícita impide reactivación automática",
+      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+      "opciones_decision": [],
+      "origen_demanda": "NC_ABIERTA",
+      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+      "pregunta": "que un acto consumidor use las 9195 identidades recuperadas donde ya hacen falta: enut2024 y enfih2019 quedaron completos (CORR-0014 y CORR-0012), enadid2023 trae el P3_27_AG que CORR-0013 necesitaba localizar, y mociba2015/2016/2017 completan la serie del panel F6",
+      "prioridad": 60,
+      "responsable": "servicio-gen2-38",
+      "siguiente_accion": "El proximo acto de la serie SPEC-DEMANDA o MEDICION-DEMANDA para CORR-0012/0013/0014; MESA para la serie MOCIBA del panel (NC-0237 sigue ABIERTA)",
+      "suficiencia": null,
+      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+      "variables": "que un acto consumidor use las 9195 identidades recuperadas donde ya hacen falta: enut2024 y enfih2019 quedaron completos (CORR-0014 y CORR-0012), enadid2023 trae el P3_27_AG que CORR-0013 necesitaba localizar, y mociba2015/2016/2017 completan la serie del panel F6",
+      "version_pregunta": "AUTO-NC-v1-d78ae675075b"
+    },
+    {
+      "antecedentes_nc": [],
+      "aplica_contrato_cientifico": true,
+      "brecha": "la enmienda fechada propuesta para esas seis filas, tras fallar verificacion adversarial de su evidencia de primera mano",
+      "condicion_reapertura": null,
+      "consumidor": "GEN2-VIGENCIA-DEUDA-1/P1 -- re-verificar NC-0012/0024/0026/0213/0230/0233",
+      "contrato_cientifico_completo": false,
+      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+      "cursor_continuacion": null,
+      "estado_ruteo": "NO_SONDA",
+      "etapa_faltante": "VALIDACION",
+      "evidencia_disponible": "las seis siguen ABIERTA con su sucesor original intacto, sin la enmienda que su re-medicion (probablemente correcta en el fondo) hubiera escrito",
+      "evidencias": [
+        "forense/no-corrido.tsv#NC-0247"
+      ],
+      "frontera": "las seis siguen ABIERTA con su sucesor original intacto, sin la enmienda que su re-medicion (probablemente correcta en el fondo) hubiera escrito",
+      "id": "NC-0247",
+      "investigacion_previa": "NO-VERIFICABLE-AQUI",
+      "motivo_ruteo": "etapa vigente VALIDACION; no corresponde investigación externa",
+      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+      "opciones_decision": [],
+      "origen_demanda": "NC_ABIERTA",
+      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+      "pregunta": "la enmienda fechada propuesta para esas seis filas, tras fallar verificacion adversarial de su evidencia de primera mano",
+      "prioridad": 60,
+      "responsable": "direccion-programa",
+      "siguiente_accion": "direccion-programa: asignar y ejecutar el sucesor de: la enmienda fechada propuesta para esas seis filas, tras fallar verificacion adversarial de su evidencia de primera mano",
+      "suficiencia": null,
+      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+      "variables": "la enmienda fechada propuesta para esas seis filas, tras fallar verificacion adversarial de su evidencia de primera mano",
+      "version_pregunta": "AUTO-NC-v1-8e4e04040d55"
+    },
+    {
+      "antecedentes_nc": [],
+      "aplica_contrato_cientifico": true,
+      "brecha": "decidir y aplicar el cierre (NC-0158 DUPLICADA de NC-0161; NC-0174 RESUELTA-POR-PRODUCTO)",
+      "condicion_reapertura": null,
+      "consumidor": "GEN2-VIGENCIA-DEUDA-1/P1 -- cierre propuesto de NC-0158 y NC-0174",
+      "contrato_cientifico_completo": false,
+      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+      "cursor_continuacion": null,
+      "estado_ruteo": "ESPERA_O_DELEGADA",
+      "etapa_faltante": "DECISION_CIENTIFICA",
+      "evidencia_disponible": "NC-0158 y NC-0174 siguen ABIERTA hasta la firma",
+      "evidencias": [
+        "forense/no-corrido.tsv#NC-0248"
+      ],
+      "frontera": "NC-0158 y NC-0174 siguen ABIERTA hasta la firma",
+      "id": "NC-0248",
+      "investigacion_previa": "DECISION-DE-MESA-PENDIENTE",
+      "motivo_ruteo": "precedencia explícita impide reactivación automática",
+      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+      "opciones_decision": [
+        "MANTENER_ESTADO_VIGENTE",
+        "APROBAR_SIGUIENTE_ACCION_DESCRITA",
+        "DESCARTAR_O_DIFERIR_CON_CAUSA"
+      ],
+      "origen_demanda": "NC_ABIERTA",
+      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+      "pregunta": "decidir y aplicar el cierre (NC-0158 DUPLICADA de NC-0161; NC-0174 RESUELTA-POR-PRODUCTO)",
+      "prioridad": 60,
+      "responsable": "mesa",
+      "siguiente_accion": "MESA + acto de tramite que escriba estado=CERRADA* citando forense/notas/2026-09-16-GEN2-VIGENCIA-DEUDA-1-cierre.md",
+      "suficiencia": null,
+      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+      "variables": "decidir y aplicar el cierre (NC-0158 DUPLICADA de NC-0161; NC-0174 RESUELTA-POR-PRODUCTO)",
+      "version_pregunta": "AUTO-NC-v1-d850b47020f4"
+    },
+    {
+      "antecedentes_nc": [],
+      "aplica_contrato_cientifico": true,
+      "brecha": "decidir si los 52 items ya ejecutados salen fisicamente de cola/ a historico o permanecen con ESTADO corregido en sitio (patron 2-ter ya establecido y probado por T37/tools/cierre_acto.py)",
+      "condicion_reapertura": null,
+      "consumidor": "GEN2-VIGENCIA-DEUDA-1/P2 -- disposicion fisica de los 52 LANZADO-COMO en cola/",
+      "contrato_cientifico_completo": false,
+      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+      "cursor_continuacion": null,
+      "estado_ruteo": "ESPERA_O_DELEGADA",
+      "etapa_faltante": "DECISION_CIENTIFICA",
+      "evidencia_disponible": "cola/ queda con ESTADO correcto (6 correcciones factuales aplicadas) pero no fisicamente reducida a solo lo lanzable",
+      "evidencias": [
+        "forense/no-corrido.tsv#NC-0249"
+      ],
+      "frontera": "cola/ queda con ESTADO correcto (6 correcciones factuales aplicadas) pero no fisicamente reducida a solo lo lanzable",
+      "id": "NC-0249",
+      "investigacion_previa": "DECISION-DE-MESA-PENDIENTE",
+      "motivo_ruteo": "precedencia explícita impide reactivación automática",
+      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+      "opciones_decision": [
+        "MANTENER_ESTADO_VIGENTE",
+        "APROBAR_SIGUIENTE_ACCION_DESCRITA",
+        "DESCARTAR_O_DIFERIR_CON_CAUSA"
+      ],
+      "origen_demanda": "NC_ABIERTA",
+      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+      "pregunta": "decidir si los 52 items ya ejecutados salen fisicamente de cola/ a historico o permanecen con ESTADO corregido en sitio (patron 2-ter ya establecido y probado por T37/tools/cierre_acto.py)",
+      "prioridad": 60,
+      "responsable": "mesa",
+      "siguiente_accion": "MESA decide; si autoriza el barrido fisico, acto sucesor con la lista completa (nota SS3.5) y perimetro para reconciliar los indices 00-LEEME de cada lote",
+      "suficiencia": null,
+      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+      "variables": "decidir si los 52 items ya ejecutados salen fisicamente de cola/ a historico o permanecen con ESTADO corregido en sitio (patron 2-ter ya establecido y probado por T37/tools/cierre_acto.py)",
+      "version_pregunta": "AUTO-NC-v1-c20b491ed534"
+    },
+    {
+      "antecedentes_nc": [],
+      "aplica_contrato_cientifico": true,
+      "brecha": "corregir `## CONSUMIDO . PR #742` -> `PR #737` (trasplante erroneo de ACTO GEN2-CONSUMIDO-RETRO-3, medido en la nota SS3.1 punto 5)",
+      "condicion_reapertura": null,
+      "consumidor": "GEN2-VIGENCIA-DEUDA-1/P2 -- defecto en forense/encargos/2026-09-11-GEN2-REACTIVOS-CON-TEXTO-Y-BUSQUEDA.md",
+      "contrato_cientifico_completo": false,
+      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+      "cursor_continuacion": null,
+      "estado_ruteo": "ESPERA_O_DELEGADA",
+      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
+      "evidencia_disponible": "el registro canonico de ese encargo sigue citando el PR equivocado; la copia de cola ya se corrigio a PR #737",
+      "evidencias": [
+        "forense/no-corrido.tsv#NC-0250"
+      ],
+      "frontera": "el registro canonico de ese encargo sigue citando el PR equivocado; la copia de cola ya se corrigio a PR #737",
+      "id": "NC-0250",
+      "investigacion_previa": "FUERA-DE-PERIMETRO",
+      "motivo_ruteo": "precedencia explícita impide reactivación automática",
+      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+      "opciones_decision": [],
+      "origen_demanda": "NC_ABIERTA",
+      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+      "pregunta": "corregir `## CONSUMIDO . PR #742` -> `PR #737` (trasplante erroneo de ACTO GEN2-CONSUMIDO-RETRO-3, medido en la nota SS3.1 punto 5)",
+      "prioridad": 60,
+      "responsable": "acto de mantenimiento con forense/encargos/ (fuera de cola/) en su perimetro",
+      "siguiente_accion": "acto de mantenimiento con forense/encargos/ (fuera de cola/) en su perimetro",
+      "suficiencia": null,
+      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+      "variables": "corregir `## CONSUMIDO . PR #742` -> `PR #737` (trasplante erroneo de ACTO GEN2-CONSUMIDO-RETRO-3, medido en la nota SS3.1 punto 5)",
+      "version_pregunta": "AUTO-NC-v1-efa0f9427808"
+    },
+    {
+      "antecedentes_nc": [],
+      "aplica_contrato_cientifico": true,
+      "brecha": "completar el archivado externo con ## CONSUMIDO, o decidir que la nota de cierre real basta",
+      "condicion_reapertura": null,
+      "consumidor": "GEN2-VIGENCIA-DEUDA-1/P2 -- archivado faltante de 2026-09-10-GEN2-POST-685/06-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md",
+      "contrato_cientifico_completo": false,
+      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+      "cursor_continuacion": null,
+      "estado_ruteo": "ESPERA_O_DELEGADA",
+      "etapa_faltante": "DECISION_CIENTIFICA",
+      "evidencia_disponible": "la copia de cola ya cita la nota de cierre real en vez de una ruta inexistente; el archivado formal del lote sigue incompleto",
+      "evidencias": [
+        "forense/no-corrido.tsv#NC-0251"
+      ],
+      "frontera": "la copia de cola ya cita la nota de cierre real en vez de una ruta inexistente; el archivado formal del lote sigue incompleto",
+      "id": "NC-0251",
+      "investigacion_previa": "FUERA-DE-PERIMETRO",
+      "motivo_ruteo": "precedencia explícita impide reactivación automática",
+      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+      "opciones_decision": [
+        "MANTENER_ESTADO_VIGENTE",
+        "APROBAR_SIGUIENTE_ACCION_DESCRITA",
+        "DESCARTAR_O_DIFERIR_CON_CAUSA"
+      ],
+      "origen_demanda": "NC_ABIERTA",
+      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+      "pregunta": "completar el archivado externo con ## CONSUMIDO, o decidir que la nota de cierre real basta",
+      "prioridad": 60,
+      "responsable": "mesa",
+      "siguiente_accion": "mesa decide si basta con la nota de cierre o si se crea el homonimo faltante",
+      "suficiencia": null,
+      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+      "variables": "completar el archivado externo con ## CONSUMIDO, o decidir que la nota de cierre real basta",
+      "version_pregunta": "AUTO-NC-v1-26f995b00cf4"
+    },
+    {
+      "antecedentes_nc": [],
+      "aplica_contrato_cientifico": true,
+      "brecha": "hacer que cola_encargos lea ESTADO:/BITACORA: en vez de solo el substring literal \"## CONSUMIDO\"",
+      "condicion_reapertura": null,
+      "consumidor": "GEN2-VIGENCIA-DEUDA-1/hallazgo -- tools/tablero_programa.py no lee ESTADO/BITACORA",
+      "contrato_cientifico_completo": false,
+      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+      "cursor_continuacion": null,
+      "estado_ruteo": "ESPERA_O_DELEGADA",
+      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
+      "evidencia_disponible": "forense/tablero/TABLERO-PROGRAMA.md sigue mostrando GATED/LISTO para encargos ya CONSUMIDO por ESTADO: (confirmado sistemico: GEN2-E1-LIMPIEZA-C1, GEN2-E2-C0-A-DEMANDA, GEN2-E4-LIMPIEZA-C2-PODA); ningun test lo atrapa hoy",
+      "evidencias": [
+        "forense/no-corrido.tsv#NC-0252"
+      ],
+      "frontera": "forense/tablero/TABLERO-PROGRAMA.md sigue mostrando GATED/LISTO para encargos ya CONSUMIDO por ESTADO: (confirmado sistemico: GEN2-E1-LIMPIEZA-C1, GEN2-E2-C0-A-DEMANDA, GEN2-E4-LIMPIEZA-C2-PODA); ningun test lo atrapa hoy",
+      "id": "NC-0252",
+      "investigacion_previa": "FUERA-DE-PERIMETRO",
+      "motivo_ruteo": "precedencia explícita impide reactivación automática",
+      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+      "opciones_decision": [],
+      "origen_demanda": "NC_ABIERTA",
+      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+      "pregunta": "hacer que cola_encargos lea ESTADO:/BITACORA: en vez de solo el substring literal \"## CONSUMIDO\"",
+      "prioridad": 60,
+      "responsable": "acto con tools/tablero_programa.py en perimetro",
+      "siguiente_accion": "acto con tools/tablero_programa.py en perimetro",
+      "suficiencia": null,
+      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+      "variables": "hacer que cola_encargos lea ESTADO:/BITACORA: en vez de solo el substring literal \"## CONSUMIDO\"",
+      "version_pregunta": "AUTO-NC-v1-7e8bb88f0062"
     }
   ],
   "seleccion_siguiente": {
-    "corte": "2026-09-15",
-    "demanda_activa_total": 64,
-    "demanda_con_contrato_operativo": 65,
+    "corte": "2026-09-16",
+    "demanda_activa_total": 70,
+    "demanda_con_contrato_operativo": 71,
     "demanda_configurada": 7,
-    "demanda_vigente_total": 65,
+    "demanda_vigente_total": 71,
     "demandas_independientes_vigentes": 1,
     "elegidos": [
+      {
+        "antecedentes_nc": [
+          "NC-0126"
+        ],
+        "aplica_contrato_cientifico": true,
+        "asignacion": "servicio-gen2-38",
+        "bloqueo_material": 3,
+        "brecha": "los tres consumidores siguen rotulados como horizonte_corto y no pueden usar P4_10 como horizonte puro",
+        "consumidor": "dinero.ahorro / tres consumidores GEN2 de horizonte",
+        "consumidores_consulta": [
+          "milpa/tramite.yaml:dinero.ahorro.horizonte_corto:horizonte_corto",
+          "milpa/tramite.yaml:dinero.ahorro.horizonte_no_corto_con_seguridad_social:horizonte_corto",
+          "milpa/tramite.yaml:dinero.ahorro.horizonte_no_trabajadores:horizonte_corto"
+        ],
+        "contrato_cientifico_completo": true,
+        "contrato_operativo": "COMPLETO_CIENTIFICO_EXPLICITO",
+        "estado_previo": {
+          "alternativa_requerida": true,
+          "alternativas": [
+            "MANTENER_BLOQUEO_Y_CONTINUAR_INSTRUMENTO",
+            "RELABEL_USO_ACOTADO_AUTORIZADO_POR_772",
+            "APROBAR_PROXY_NUEVO_CON_ALCANCE_EXPLICITO"
+          ],
+          "ciclos_sin_avance": 3,
+          "continuacion_pendiente": true,
+          "cursor_continuacion": "Examinar archivos web públicos de CNBV/CONDUSEF y un repositorio académico mexicano no recorrido, sin repetir el buscador exacto del Banco Mundial ni ENIF, EACF, ENSAFI, Findex, ENFIH o IIEG. Alternativa para mesa tras dos ciclos: relabel acotado de #772, sin decidirlo.",
+          "estado": "continua",
+          "evidencias": [
+            "forense/notas/2026-09-15-GEN2-38-DEM-AHORRO-STOCK-DURACION-01.md"
+          ],
+          "frontera_no_examinada": "Archivos web públicos de CNBV/CONDUSEF o repositorios institucionales que pudieran conservar el cuestionario no indexado; encuestas estatales distintas de IIEG; módulos académicos mexicanos con catálogo de variables; fuera login, compra y contacto.",
+          "necesidad_id": "DEM-AHORRO-STOCK-DURACION-01",
+          "proxima_revision": "2026-09-16",
+          "reprogramaciones": [
+            {
+              "fecha_decision": "2026-09-15",
+              "fecha_efectiva": "2026-09-15",
+              "motivo": "continuacion anticipada y unica autorizada por ACTO GEN2-ADQUISICION-CONTINUA-2 dentro del remanente acreditado; conserva NC-0126 cerrada y la version de pregunta vigente"
+            }
+          ],
+          "suficiencia": {
+            "conceptual": "NO_ACREDITADA",
+            "diseno": "ACREDITADA",
+            "identidad": "PARCIAL",
+            "identificacion": "NO_APLICA",
+            "poblacional": "ACREDITADA",
+            "pregunta_original": "ABIERTA",
+            "seleccion_no_respuesta": "ACREDITADA",
+            "temporalidad": "PARCIAL",
+            "unidad": "ACREDITADA",
+            "uso_habilitado": "INCOMPATIBLE"
+          },
+          "ultima_exploracion": "2026-09-15",
+          "version_pregunta": "2026-09-15-stock-ausencia-y-duracion-separados-v1"
+        },
+        "estado_ruteo": "LISTA_SONDA",
+        "estado_ruteo_declarado": "LISTA_SONDA",
+        "etapa_faltante": "FUENTE_O_VARIABLE",
+        "evidencia_disponible": "P4_10 de ENIF 2024 mezcla menos de una semana y no tiene ahorros; #772 autoriza únicamente el corte acotado, no horizonte puro",
+        "evidencias_guardia": [
+          "forense/no-corrido.tsv#NC-0126",
+          "data/corrida0/usos.tsv#RES-0046",
+          "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md"
+        ],
+        "frontera_previa": "encuestas públicas mexicanas nacionales o subnacionales, módulos académicos y descriptores que separen stock/ausencia de duración",
+        "id": "DEM-AHORRO-STOCK-DURACION-01",
+        "impacto_canonico": "los tres consumidores siguen rotulados como horizonte_corto y no pueden usar P4_10 como horizonte puro",
+        "investigacion_previa": "ENIF, EACF, ENSAFI, Findex, ENFIH e IIEG Jalisco examinados; no volver a descargar los tres XLSX IIEG",
+        "lista": true,
+        "modos": [
+          "CONSTRUCTO",
+          "HERMANAS",
+          "LATERAL"
+        ],
+        "motivo_ruteo": "contrato explícito vigente",
+        "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+        "opciones_decision": [
+          "MANTENER_BLOQUEO_Y_CONTINUAR_INSTRUMENTO",
+          "RELABEL_USO_ACOTADO_AUTORIZADO_POR_772",
+          "APROBAR_PROXY_NUEVO_CON_ALCANCE_EXPLICITO"
+        ],
+        "origen_demanda": "CONSUMIDOR_Y_USO",
+        "periodo": "vigente o comparable con ENIF 2024; no inventar equivalencia temporal",
+        "poblacion": "personas adultas en México; desagregaciones sólo si el instrumento las acredita",
+        "pregunta": "¿Existe un instrumento público mexicano que observe por separado tenencia/ausencia de ahorro y duración suficiente del stock?",
+        "prioridad_consumidor": 4,
+        "responsable": "servicio-gen2-38",
+        "siguiente_accion": "examinar una ruta pública no agotada; si no existe candidata material, proponer relabel del uso acotado de #772 o decisión humana explícita",
+        "suficiencia_actual": {
+          "conceptual": "NO_ACREDITADA",
+          "diseno": "ACREDITADA",
+          "identidad": "ACREDITADA",
+          "identificacion": "NO_APLICA",
+          "poblacional": "ACREDITADA",
+          "pregunta_original": "ABIERTA",
+          "seleccion_no_respuesta": "ACREDITADA",
+          "temporalidad": "ACREDITADA",
+          "unidad": "ACREDITADA",
+          "uso_habilitado": "INCOMPATIBLE"
+        },
+        "unidad": "persona",
+        "uso": "mejora descriptiva; no autoriza el antiguo horizonte puro",
+        "variables": "indicador de tenencia/stock de ahorro y duración/cobertura del mismo stock en campos separados; ponderador y diseño si existen",
+        "version_pregunta": "2026-09-15-stock-ausencia-y-duracion-separados-v1",
+        "vigente": true
+      },
       {
         "antecedentes_nc": [],
         "aplica_contrato_cientifico": true,
@@ -18941,44 +19259,6 @@
         "aplica_contrato_cientifico": true,
         "asignacion": "servicio-gen2-38",
         "bloqueo_material": 1,
-        "brecha": "Diseno de conjunto realmente reservado entregado; piloto y confirmacion no ejecutados.",
-        "consumidor": "GEN2-EVALUACION-SIN-FUGAS/Fase 4 B -- Transferencia o generalizacion de M",
-        "contrato_cientifico_completo": false,
-        "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
-        "estado_previo": {},
-        "estado_ruteo": "LISTA_SONDA",
-        "estado_ruteo_declarado": "LISTA_SONDA",
-        "etapa_faltante": "FUENTE_O_VARIABLE",
-        "evidencia_disponible": "No se ejecutan piloto/confirmacion, no se abre F6 y no cambia ningun contador o adopcion.",
-        "frontera_previa": "No se ejecutan piloto/confirmacion, no se abre F6 y no cambia ningun contador o adopcion.",
-        "id": "NC-0161",
-        "impacto_canonico": "No se ejecutan piloto/confirmacion, no se abre F6 y no cambia ningun contador o adopcion.",
-        "investigacion_previa": "ADQUISICION-DIRIGIDA-AUTORIZADA-CON-RESERVA-PREVIA",
-        "modos": [
-          "CONSTRUCTO",
-          "HERMANAS",
-          "LATERAL"
-        ],
-        "motivo_ruteo": "brecha de datos explícita sin compuerta posterior",
-        "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
-        "opciones_decision": [],
-        "origen_demanda": "NC_ABIERTA",
-        "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
-        "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
-        "pregunta": "Diseno de conjunto realmente reservado entregado; piloto y confirmacion no ejecutados.",
-        "prioridad_consumidor": 60,
-        "responsable": "servicio-gen2-38",
-        "siguiente_accion": "Mesa resolvio el 15/sep/2026 (D-4): se autoriza preparacion y adquisicion dirigida de familias RETENIDAS con reserva previa, y sacar esta fila de espera es CONSECUENCIA de la lista nominal, no sustituto de ella. La lista existe y es forense/prereg-duelo-v2/F5-panel-candidatos-v1_1.tsv (13 filas: 7 RETENIDA, 5 EXPUESTA, 1 INDETERMINADA), auditada contra milpa/, el corpus de L y traza-motor.tsv. RESULTADO QUE NO SE MAQUILLA: solo 2 de las 7 retenidas son realistas para piloto (R01-MOCIBA, y R02-WBES condicionada a que mesa firme un cambio de unidad persona->establecimiento), muy lejos de las 6 piloto + 12 confirmatorias que exige FP-374. SIGUIENTE ACCION, ACOTADA: adquirir y leer el descriptor de archivos (FD) de MOCIBA 2021 y 2023 -- microdato y FD ya registrados en data/manifiesto.yaml con sha256, data/raw/ vacio en la sesion nube -- para localizar el reactivo de denuncia ante autoridad y fijar variable, universo, codificacion y ponderador. Se lee SOLO estructura, nunca la base, y MOCIBA 2024/2025 no se tocan ni en FD: asi se preserva la reserva. Si el FD confirma la bateria, la familia pasa a factibilidad NO CONFIRMATORIA de una sola familia con producto y parada definidos; si no la trae, MOCIBA cae y no queda ninguna familia retenida ejecutable, lo que se declara en vez de estirar la lista.",
-        "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
-        "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
-        "variables": "Diseno de conjunto realmente reservado entregado; piloto y confirmacion no ejecutados.",
-        "version_pregunta": "AUTO-NC-v1-4ddf510d939f"
-      },
-      {
-        "antecedentes_nc": [],
-        "aplica_contrato_cientifico": true,
-        "asignacion": "servicio-gen2-38",
-        "bloqueo_material": 1,
         "brecha": "Integrar 17 y el snapshot de 18 antes de evaluar un M renovado.",
         "consumidor": "GEN2-EVALUACION-SIN-FUGAS/Evaluacion de un M renovado",
         "contrato_cientifico_completo": false,
@@ -19028,7 +19308,7 @@
       },
       {
         "id": "NC-0029",
-        "razon": "ruteo=NO_SONDA: etapa vigente ADOPCION; no corresponde investigación externa; responsable=E03 para L y E04 para motor/adopciones; siguiente=E03 para L y E04 para motor/adopciones; descomponer cada residual antes de cerrar"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=E03 para L y E04 para motor/adopciones; siguiente=E03 para L y E04 para motor/adopciones; descomponer cada residual antes de cerrar || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. E03 (cobertura vía ENCARGO GEN2-F5-COMPLETA) y E04 (cobertura vía ENCARGO GEN2-MOTOR-USOS-Y-COMPLEMENTOS) ya corrieron y se fusionaron: `grep -n \"CONSUMIDO\" forense/encargos/2026-09-10-GEN2-F5-COMPLETA.md` -> \"Estado: CONSUMIDO en PR #687\" (CALC-TRIADA-0002 sellado, 224/224, REPRODUCE/IDENTICO -- pieza L resuelta); `tail -20 forense/encargos/2026-09-10-GEN2-MOTOR-USOS-Y-COMPLEMENTOS.md` -> \"## CONSUMIDO ... PR #689\" (ADR-458 -- pieza motor resuelta). El corredor R también cerró por otra vía: NC-0018 = CERRADA (verificado hoy con `python3 -c` sobre `forense/no-corrido.tsv`). Lo que NO corrió y sigue sin producto: \"ensamble E\" -- `git grep -in \"ensamble\" -- '*.md' '*.py'` fuera de esta misma fila no encuentra ningún CALC/RESULT/acto que lo entregue. Y \"adopción de parámetros\" sigue con residuales propios y ABIERTOS hoy: NC-0085, NC-0107, NC-0111, NC-0153 (verificado con `python3 -c` sobre `forense/no-corrido.tsv`, 16/sep/2026). Esto coincide con la medición ya hecha por `forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P1-tabla.md:38`, vigente sin cambios desde entonces. Sucesor propuesto: `ensamble E` (sin dueño -- abrir acto o declarar explícitamente fuera de alcance) + `NC-0085`/`NC-0107`/`NC-0111`/`NC-0153` (adopciones concretas pendientes). NC-0018/NC-0019 (corredores R/L) ya no son sucesor de esta fila -- están CERRADA."
       },
       {
         "id": "NC-0033",
@@ -19048,7 +19328,7 @@
       },
       {
         "id": "NC-0048",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=servicio-gen2-38; siguiente=Declarar, por cada comparacion historica adicional, consumidor/uso, fuente legacy anterior a adopcion, CALC+RESULT sellado y correspondencia de ocho dimensiones; correr el contrato GEN2-DELTA-1. La materialidad requiere ademas criterio sustantivo citado."
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=servicio-gen2-38; siguiente=Declarar, por cada comparacion historica adicional, consumidor/uso, fuente legacy anterior a adopcion, CALC+RESULT sellado y correspondencia de ocho dimensiones; correr el contrato GEN2-DELTA-1. La materialidad requiere ademas criterio sustantivo citado. || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy: ACTO GEN2-RELEVO-USOS-1 (commit a7255e0, 15/sep/2026) ya corrio el contrato GEN2-DELTA-1 (tools/relevo_usos.py, VERSION_CONTRATO en tools/delta_comparacion.py:28) exactamente en la forma que este sucesor pedia -- `wc -l forense/relevo-usos/relevo-usos-delta.tsv` = 28 filas = 27 pares con consumidor/uso, fuente legacy, CALC+RESULT sellado y las ocho dimensiones (comparabilidad DEMOSTRADA en 24, INFORMACION-INSUFICIENTE en 3; 4 con MATERIALIDAD-MATERIAL). Pero son 27 de los 211 RESULT historicos (confirmado por la propia nota de cierre, forense/notas/2026-09-15-GEN2-RELEVO-USOS-1-cierre.md, seccion \"## NC-0048\"), y `data/corrida0/resultados.tsv` sigue con `delta_legacy`='NO-COMPARABLE' en las 5239 filas de datos hoy (Counter verificado por script), sin escritura de vuelta. El bloqueador original (\"no existe correspondencia declarada por identidad para ese universo\") ya NO es cierto en general -- el generador existe, corre y reproduce -- pero si sigue vigente para el resto del universo y para la columna valor_legacy/delta_legacy. Sucesor propuesto: extender tools/relevo_usos.py --escribe / corrida0 delta al resto de los pares declarando pin de RESULT o identidad de poblacion (continuando la linea de NC-0215/NC-0243/NC-0244), y solo entonces escribir valor_legacy/delta_legacy en data/corrida0/resultados.tsv para los pares resueltos."
       },
       {
         "id": "NC-0055",
@@ -19060,19 +19340,19 @@
       },
       {
         "id": "NC-0061",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=E09: reutilizar borradores; siguiente=E09: reutilizar borradores; el operador envia con identidad/cuenta y aporta comprobante"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=titular-acceso-y-receptor-tecnico; siguiente=E09: reutilizar borradores; el operador envia con identidad/cuenta y aporta comprobante || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy: forense/encargos/2026-09-10-MESA-CONCILIACION-E01.md (lineas 42-44, 73-74) trae D17 y D18 verbatim de la misma sesion de mesa (10/sep/2026) -- D17 autoriza avanzar obtencion (la que esta fila cita), pero D18 dice explicitamente \"ahorita no invertiremos\" y la tabla operativa lo traduce como \"FP-286/343 y tandas | diferir inversion comercial\". La fila hermana de la cola (REGISTRO_DE_TANDAS_Y_REPUTACION, cola-adquisicion-v1_0.tsv:40 en data/curacion-registro/cola-adquisicion-registro.tsv) ya quedo reconciliada por ACTO GEN2-ADQUISICION-DIRIGIDA-Y-DIN (10/sep/2026) con la glosa \"via comercial diferida por D18\". La fila que esta NC pide enviar (REGISTRO_OPERATIVO_DE_TANDAS_DIGITALES, cola-adquisicion-v1_0.tsv:41, misma tabla) sigue en SOLICITUD-PREPARADA con la nota vieja de ACTO GEN2-TRAMITE-BANDEJA (8/sep/2026), sin ninguna glosa que la reconcilie contra D18 -- la unica de las dos \"hermanas\" sin actualizar. El correo OECD no esta tocado por D18 (que nombra solo \"tandas\") y su bloqueador si sigue de pie: forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/02-OECD-TRUST-PUM.md dice hoy \"LISTO-PARA-TITULAR; NO ENVIADO\" y REGISTRO-RECEPCION.tsv no trae acuse ni fecha_respuesta; ningun commit desde el 11/sep toca ese expediente. Sucesor propuesto: (a) correo OECD -- sin cambio, sigue E09 (titular completa identidad/firma, envia 02-OECD-TRUST-PUM-TECHNICAL-DRAFT.docx, aporta acuse, tal como cita el residual OECD_TRUST_PUM_2021_2023_2025 de cola-adquisicion-registro.tsv); (b) correo a equipo@tandamas.mx -- mesa decide explicitamente si el envio exploratorio sin costo sigue autorizado pese a D18 (y entonces se envia con identidad) o si esta via tambien queda diferida igual que su fila hermana, reconciliando la nota de REGISTRO_OPERATIVO_DE_TANDAS_DIGITALES con la misma glosa \"via comercial diferida por D18\"; de paso, auditar NC-0090 (PR #656, 9/sep/2026) como probable DUPLICADA de esta fila."
       },
       {
         "id": "NC-0070",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=servicio-gen2-38; siguiente=C0-D, o acto sucesor con perimetro de modulacion"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=servicio-gen2-38; siguiente=C0-D, o acto sucesor con perimetro de modulacion || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. El acto que el plan define como C0-D (PLAN-FINAL-GEN2-v2_0 §4: \"corre el marcador por segmento\") ya corrio -- ACTO GEN2-MARCADOR-C0-D, 15/sep/2026, citado por su propio encargo como el sucesor que NC-0070 nombra -- pero no tenia perimetro de modulacion (se quedo bloqueado por theta antes de llegar ahi) y su propia nota de cierre re-midio esta fila y la dejo ABIERTA: \"6 celdas modulan por ola en CALC-...-ola-v2, pero con cuenta_gen2: NO; las 6 celdas con serie de C0-B siguen sin CALC sellado\" (forense/notas/2026-09-15-GEN2-MARCADOR-C0-D-A8-hueco.md §3). Verificado hoy en el arbol: data/corrida0/CALC-M-marco-M-sorteado-v1_3-ola-v2/spec.yaml linea 19 y ejecucion.json linea 13 siguen declarando cuenta_gen2: NO/false para esas 6 celdas (FAM-M-05/06/07, TRA-M-02/03/07); y para TRA-M-02 el crosswalk ENCUCI<->ENCIG que forense/prereg-caja/S18-MODULACION-OLA-R3-1-spec-v1_0.md §4.2 exige (NO-CONSTRUIBLE-SIN-CROSSWALK) sigue sin registrarse (awk sobre canon/registro-rotulos.tsv por \"crosswalk\"+\"encuci\": cero filas), confirmado por ACTO GEN2-B-MARCO (14/sep/2026, registro-rotulos.tsv): \"TRA-M-02, TRA-M-03 ... sin crosswalk ni relleno\". La premisa \"esperamos a que corra C0-D\" ya no es cierta -- C0-D corrio -- pero no cerro nada de esto. Sucesor propuesto: acto GEN2 con perimetro de modulacion explicito que produzca CALC(s) sellado(s) con cuenta_gen2: SI para FAM-M-05/06/07 y TRA-M-02/03/07 sobre fuente que no resuelva a milpa/tramite.yaml (regla E.1/D-1); TRA-M-02 queda ademas condicionado a un crosswalk ENCUCI<->ENCIG firmado por mesa (distinto del crosswalk de ejes arbitro<->CORTES_C1 que NC-0240 ya pide para el marcador por segmento -- no lo cubre ni lo sustituye)."
       },
       {
         "id": "NC-0072",
-        "razon": "ruteo=NO_SONDA: etapa vigente DECISION_O_IMPLEMENTACION; no corresponde investigación externa; responsable=C0-D (patron de cita ya probado de punta a punta); siguiente=C0-D (patron de cita ya probado de punta a punta)"
+        "razon": "ruteo=NO_SONDA: etapa vigente VALIDACION; no corresponde investigación externa; responsable=C0-D (patron de cita ya probado de punta a punta) || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy: `grep -rn \"SELLADA-SIN-ADOPTAR\" tools/corrida0.py` -> sin resultados, la etiqueta que esta fila cita ya no la emite el registro. `python3 tools/corrida0.py status` -> N_resultados_gen2_sellados=3522, N_resultados_gen2_adoptados_activos=18 (era 1 el 8/sep/2026, fecha de esta fila), N_resultados_gen2_pendientes_adopcion=12, N_resultados_gen2_vetados_por_decision=2. Los 17 activos nuevos no son otra cita del mismo CALC: `grep -o \"CALC-[A-Za-z0-9_-]*\" milpa/tramite.yaml milpa/procedencia.yaml | sort -u` lista, junto a CALC-B-0001, a CALC-ENCIG-0001, CALC-ENCUCI-0001, CALC-ENIF-0001/0002/0003 y CALC-ENVIPE-0001 -- CUATRO CALC nuevos con `p` de conducta, adoptados via `corrida0_generacion: GEN2`, censados en canon/registro-rotulos.tsv bajo GEN2-LOTE-ENCIG-1/ENCUCI-1/ENIF-1/ENVIPE-1 (los cuatro del 9/sep/2026, un dia despues de esta fila, cada uno declarando el contador adoptados_activos subiendo). La premisa de esta fila -- que solo existe una ranura, la de CALC-B-0001, y que la segunda silla necesita un CALC que hoy no existe -- vencio: el CALC nuevo existe, no uno sino cuatro, y ya estan adoptados. El sucesor que esta fila nombraba, C0-D, SI se ejecuto (GEN2-C0-D, GEN2-MARCADOR-C0-D) pero se topo con un bloqueador distinto y ajeno a esta fila -- theta.valor() lanza ThetaNoDisponible en 43 de 43 entradas, ver NC-0024/NC-0076/NC-0239 -- mientras la cartera GEN2-LOTE-* resolvio la necesidad real de esta fila por una via que el sucesor nunca nombro. Lo que sigue vigente, verificado hoy sobre `corrida0._filas_registro()`: 12 RESULT GEN2 sellados y aun sin adoptar -- RESULT-BANXICO-2024-{AUT,HIP,NOM,PER,TDC}-ATRASO-P, RESULT-CTX-{2019,2021,2023}-P-ALTO, RESULT-EDER-A-P, RESULT-MOTRAL15-{ENOE-P17-CON-ACCESO,ENOE-P17-SIN-ACCESO,P17-TOTAL}-P. Sucesor propuesto: acto de adopcion, con el patron ya probado por GEN2-LOTE-ENCIG-1/ENCUCI-1/ENIF-1/ENVIPE-1 (no C0-D, bloqueado por theta y ajeno a esta fila), que escriba en milpa/tramite.yaml y milpa/procedencia.yaml las citas de esos 12 RESULT GEN2 sellados y pendientes de adopcion.; siguiente=C0-D (patron de cita ya probado de punta a punta) || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy: `grep -rn \"SELLADA-SIN-ADOPTAR\" tools/corrida0.py` -> sin resultados, la etiqueta que esta fila cita ya no la emite el registro. `python3 tools/corrida0.py status` -> N_resultados_gen2_sellados=3522, N_resultados_gen2_adoptados_activos=18 (era 1 el 8/sep/2026, fecha de esta fila), N_resultados_gen2_pendientes_adopcion=12, N_resultados_gen2_vetados_por_decision=2. Los 17 activos nuevos no son otra cita del mismo CALC: `grep -o \"CALC-[A-Za-z0-9_-]*\" milpa/tramite.yaml milpa/procedencia.yaml | sort -u` lista, junto a CALC-B-0001, a CALC-ENCIG-0001, CALC-ENCUCI-0001, CALC-ENIF-0001/0002/0003 y CALC-ENVIPE-0001 -- CUATRO CALC nuevos con `p` de conducta, adoptados via `corrida0_generacion: GEN2`, censados en canon/registro-rotulos.tsv bajo GEN2-LOTE-ENCIG-1/ENCUCI-1/ENIF-1/ENVIPE-1 (los cuatro del 9/sep/2026, un dia despues de esta fila, cada uno declarando el contador adoptados_activos subiendo). La premisa de esta fila -- que solo existe una ranura, la de CALC-B-0001, y que la segunda silla necesita un CALC que hoy no existe -- vencio: el CALC nuevo existe, no uno sino cuatro, y ya estan adoptados. El sucesor que esta fila nombraba, C0-D, SI se ejecuto (GEN2-C0-D, GEN2-MARCADOR-C0-D) pero se topo con un bloqueador distinto y ajeno a esta fila -- theta.valor() lanza ThetaNoDisponible en 43 de 43 entradas, ver NC-0024/NC-0076/NC-0239 -- mientras la cartera GEN2-LOTE-* resolvio la necesidad real de esta fila por una via que el sucesor nunca nombro. Lo que sigue vigente, verificado hoy sobre `corrida0._filas_registro()`: 12 RESULT GEN2 sellados y aun sin adoptar -- RESULT-BANXICO-2024-{AUT,HIP,NOM,PER,TDC}-ATRASO-P, RESULT-CTX-{2019,2021,2023}-P-ALTO, RESULT-EDER-A-P, RESULT-MOTRAL15-{ENOE-P17-CON-ACCESO,ENOE-P17-SIN-ACCESO,P17-TOTAL}-P. Sucesor propuesto: acto de adopcion, con el patron ya probado por GEN2-LOTE-ENCIG-1/ENCUCI-1/ENIF-1/ENVIPE-1 (no C0-D, bloqueado por theta y ajeno a esta fila), que escriba en milpa/tramite.yaml y milpa/procedencia.yaml las citas de esos 12 RESULT GEN2 sellados y pendientes de adopcion."
       },
       {
         "id": "NC-0075",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=ACTO C0-C primero (motor y emisor limpios) y despues un acto de marcador por segmento; siguiente=ACTO C0-C primero (motor y emisor limpios) y despues un acto de marcador por segmento; NC-0024 y NC-0026 siguen ABIERTAS con ese sucesor re-apuntado"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=ACTO C0-C primero (motor y emisor limpios) y despues un acto de marcador por segmento; siguiente=ACTO C0-C primero (motor y emisor limpios) y despues un acto de marcador por segmento; NC-0024 y NC-0026 siguen ABIERTAS con ese sucesor re-apuntado || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Re-verificado hoy con los mismos comandos de la fila: `cut -f2 canon/registro-rotulos.tsv | grep -c \"C0-C\"` -> 0; `ls forense/encargos forense/encargos/cola | grep -c \"C0-C\"` -> 0; `ls forense/notas | grep -c \"C0-C\"` -> 0; `grep -c \"ACTO GEN2-C0-C\\|ACTO C0-C\" canon/gobernanza-v1_15.md` -> 1, pero ese unico hit es la propia ADR-520 citando la frase «C0-C» al explicar que nunca se redacto -- no un registro del acto. C0-C sigue sin existir como pieza con perimetro. Pero lo que C0-C prometia -- «motor y emisor limpios» -- ya esta entregado de hecho por AUTO-MOTOR-1, GEN2-MOTOR-SEMANTICA y GEN2-MOTOR-Y-HERENCIA-EXPLICITA (los tres rotulos censados hoy en canon/registro-rotulos.tsv), y esa entrega no desbloqueo nada: `milpa/src/theta.py` (linea 50) lanza `ThetaNoDisponible` incondicionalmente por diseno («eso es calibracion (E1+), que espera el cierre de BARRIDO-2. Ley de mesa vigente»), y NC-0225/NC-0236/NC-0239/NC-0240 -- la cadena real -- siguen ABIERTA hoy. El propio ACTO GEN2-MARCADOR-C0-D (15/sep/2026, ADR-520) ya hizo esta misma medicion y ya re-apunto en este sentido el sucesor de NC-0024, fila hermana con el mismo bloqueador. Sucesor propuesto: theta computable (E1+, BARRIDO-2) -> crosswalk de ejes firmado (NC-0240) -> columna de segmento del marco -> marcador por segmento (NC-0239); NC-0026 sigue con su propio re-apuntado pendiente (senalado en ADR-520 §7, no aplicado aun en su fila) porque ya tiene consumidor sellado (CALC-M-marco-M-sorteado-v1_3-ola-v2, via tools/emite_m.py) y su razon de \"codigo muerto\" quedo vencida; ninguna de las dos filas se cierra con cita."
       },
       {
         "id": "NC-0076",
@@ -19080,7 +19360,7 @@
       },
       {
         "id": "NC-0078",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=un acto sucesor del marcador que derive el metadato de alcance de las DOS familias de esquema (params y modelo_real) en vez de muestrear una captura"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=un acto sucesor del marcador que derive el metadato de alcance de las DOS familias de esquema (params y modelo_real) en vez de muestrear una captura || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. El acto que este texto pedia SI corrio: ACTO GEN2-MARCADOR-C0-D (15/sep/2026, ADR-520, forense/notas/2026-09-15-GEN2-MARCADOR-C0-D-A8-hueco.md §4) derivo el metadato de alcance sobre las 648 capturas de corridas-L y encontro que las familias de esquema son TRES, no dos (solo params 120, solo modelo_real 176, ambas 352); sobre las 424 que el marcador consumio, params.modelo_id declarado en 248 (58.49%) y ausente en 176; y modelo_real esta en None en las 528 capturas que traen ese campo, 0 no nulas -- el modelo=None del RESULT sellado no era artefacto de muestreo, como esta fila supuso de buena fe. Ese mismo acto abrio NC-0242 declarando \"No se cierra\": el objeto de este sucesor tambien incluia que el RESULT sellado quedara bien escrito, y el RESULT esta fuera de perimetro (no se retoca, misma clausula de esta fila). Verificado hoy (2026-09-16, grep -rn \"RESULT-C0D-ALCANCE-CORPUS-CAPTURA\" sobre .md/.tsv/.json/.py/.yaml): sigue sin existir ningun RESULT sucesor emitido con esta derivacion -- solo prosa en notas y en el ledger. El hueco real hoy no es \"derivar el metadato\" (ya derivado y citado en ADR-520) sino emitir el RESULT que lo incorpore. Sucesor propuesto: acto que emita el RESULT-C0D-ALCANCE-CORPUS-CAPTURA-SUCESOR citando la derivacion de tres familias de forense/notas/2026-09-15-GEN2-MARCADOR-C0-D-A8-hueco.md §4 -- el mismo sucesor que NC-0242 ya pide; hasta entonces NC-0078 y NC-0242 comparten el mismo bloqueador y ambas siguen ABIERTAS."
       },
       {
         "id": "NC-0085",
@@ -19088,11 +19368,11 @@
       },
       {
         "id": "NC-0090",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=E09: correspondencia y busqueda academica dirigida de OCDE/tandas; siguiente=E09: correspondencia y busqueda academica dirigida de OCDE/tandas"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=titular-acceso-y-receptor-tecnico; siguiente=E09: correspondencia y busqueda academica dirigida de OCDE/tandas || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. E–09 (PR #693, GEN2-ADQUISICION-DIRIGIDA-Y-DIN) ya corrió y fusionó, pero solo cubre la mitad de lo que este sucesor pedía: su nota de cierre declara la pata académica de tandas cerrada, con residual propio (`grep -n \"ruta académica cerrada\" forense/notas/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-Y-DIN-cierre.md` -> línea 55: \"ruta académica cerrada; `NC-0037` residual sin ledger\"). La pata de correspondencia OCDE NO corrió: el expediente técnico que E–09 preparó sigue \"NO ENVIADO\" (`grep -n \"Estado:\" forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/02-OECD-TRUST-PUM.md` -> \"FORMULARIO TÉCNICO COMPLETO; LISTO-PARA-TITULAR; NO ENVIADO\"), sin commit posterior que lo toque (`git log -1 --format=\"%H %ad\" -- forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/02-OECD-TRUST-PUM.md` -> 3aef05d, 11/sep/2026; `git log --all --oneline --grep=\"OECD\" -i --since=\"2026-09-11\"` -> vacío). Esa correspondencia ya tiene fila propia, más exacta y ya ABIERTA: `awk -F'\\t' '$1==\"NC-0151\"' forense/no-corrido.tsv` -> NC-0151 (\"presentar con identidad y compromisos reales los expedientes técnicos ya listos de ICPSR 35024, OECD Trust PUM y ENJUVE; recibir acceso o respuesta\"). Sucesor propuesto: NC-0151 (correspondencia OCDE, ya trackeada bajo D17/D18 con el mismo expediente); la pata académica de tandas se da por cerrada dentro de E–09, con su residual propio viviendo ya en NC-0037 (ledger de incumplimiento, no correspondencia) -- no en esta fila."
       },
       {
         "id": "NC-0098",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=acto que necesite U4 en olas anteriores a 2021; siguiente=acto que necesite U4 en olas anteriores a 2021; ver NC-0099 para el caso 2012"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=acto que necesite U4 en olas anteriores a 2021; siguiente=acto que necesite U4 en olas anteriores a 2021; ver NC-0099 para el caso 2012 || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. NC-0099 (el caso 2012 al que este sucesor remitia) esta CERRADA desde 2026-09-14, cerrado_por GEN2-LOTE-MEDICION-PENDIENTE-1: CALC-ENVIPE-U4-2012 y CALC-ENVIPE-U4-2012-v1_1 existen sellados en data/corrida0/ (sello.json, sello.sha256, resultados.json; P-C2-U4 = 0.338397, IC [0.322115, 0.355328]) y firmados por mesa (forense/firmas-pendientes.tsv, FP-375, FIRMADA 2026-09-15). Medido hoy: `find data/corrida0 -maxdepth 1 -iname \"*U4*\"` solo devuelve CALC-ENVIPE-U4-2012 y CALC-ENVIPE-U4-2012-v1_1 -- ningun CALC-ENVIPE-U4-2013 ni -2015 existe, y un barrido de las filas ABIERTA del ledger por 'U4' en pieza/que_no_se_corrio/sucesor solo devuelve esta misma NC-0098 (no hay otra fila persiguiendo el mismo hueco). El bloqueador para el caso 2012 vencio por producto sellado y firmado; el bloqueador para 2013/2015 sigue de pie, sin acto que lo tome. Sucesor propuesto: acto que necesite U4 en ENVIPE 2013 y 2015 (unidad PERSONA, ID_PER, FAC_ELE, tper_vic2) -- 2012 ya resuelto y sellado (CALC-ENVIPE-U4-2012 / -v1_1), no repetir esa ola."
       },
       {
         "id": "NC-0107",
@@ -19131,6 +19411,10 @@
         "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=titular-acceso-y-receptor-tecnico; siguiente=Titular de mesa: obtener roster de UPM seleccionadas o servicio oficial de varianza y congelar una spec sucesora antes de recalcular; SIN-ASIGNAR"
       },
       {
+        "id": "NC-0161",
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=Mesa resolvio el 15/sep/2026 (D-4): se autoriza preparacion y adquisicion dirigida de familias RETENIDAS con reserva previa, y sacar esta fila de espera es CONSECUENCIA de la lista nominal, no sustituto de ella. La lista existe y es forense/prereg-duelo-v2/F5-panel-candidatos-v1_1.tsv (13 filas: 7 RETENIDA, 5 EXPUESTA, 1 INDETERMINADA), auditada contra milpa/, el corpus de L y traza-motor.tsv. RESULTADO QUE NO SE MAQUILLA: solo 2 de las 7 retenidas son realistas para piloto (R01-MOCIBA, y R02-WBES condicionada a que mesa firme un cambio de unidad persona->establecimiento), muy lejos de las 6 piloto + 12 confirmatorias que exige FP-374. SIGUIENTE ACCION, ACOTADA: adquirir y leer el descriptor de archivos (FD) de MOCIBA 2021 y 2023 -- microdato y FD ya registrados en data/manifiesto.yaml con sha256, data/raw/ vacio en la sesion nube -- para localizar el reactivo de denuncia ante autoridad y fijar variable, universo, codificacion y ponderador. Se lee SOLO estructura, nunca la base, y MOCIBA 2024/2025 no se tocan ni en FD: asi se preserva la reserva. Si el FD confirma la bateria, la familia pasa a factibilidad NO CONFIRMATORIA de una sola familia con producto y parada definidos; si no la trae, MOCIBA cae y no queda ninguna familia retenida ejecutable, lo que se declara en vez de estirar la lista. || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. MEDIDO HOY: `python3 tools/busca_reactivos.py --tablas fd --regex \"Denunciar ante el Ministerio\"` reproduce las mismas 7 filas que forense/notas/2026-09-15-GEN2-REACTIVOS-RESIDUALES-2-cierre.md SS3.1 declaro (mociba2021/TMOCIBA/P12_5, mociba2023/TMociba/P12_05, con desdoble en P12_11 en 2023): la localizacion del reactivo que esta fila pedia como SIGUIENTE ACCION ya la hizo ACTO GEN2-REACTIVOS-RESIDUALES-2 (PR #796, fusionado en main), sin adquirir microdato. Esa misma nota declara, verbatim, que \"no cierra NC-0161: fijar universo, codificacion y ponderador sigue exigiendo el FD completo y la decision de mesa\", y esa decision ya tiene fila propia y vigente hoy: `grep -F NC-0237 forense/no-corrido.tsv` -> ABIERTA, razon=DECISION-DE-MESA-PENDIENTE, citando la misma numeracion P12_5/P12_05/P12_11. Ademas, `git branch -a --contains 246bbfa` muestra que un trabajo MAS completo (FD real de mociba2021/2022 leido en CAJA: variable P12_5, ponderador FACTOR, dominios SEXO/EDAD, universo P4_01-P4_13, R01 declarado CONGELABLE, nota forense/notas/2026-09-15-GEN2-F6-PANEL-CAJA-1-cierre.md) existe SOLO en la rama remota huerfana origin/acto/gen2-f6-panel-caja-1 -- `git merge-base --is-ancestor 246bbfa HEAD` confirma que NO es ancestro de origin/main, y una busqueda de PR (repo:Josanoforo/Modelado-Mexicano head:acto/gen2-f6-panel-caja-1) devuelve 0 resultados, abierto o cerrado: ese trabajo nunca se propuso a mesa. Por eso hoy NO califica como RESUELTA-POR-PRODUCTO (no esta en main), pero la premisa original -- \"hay que adquirir y leer el FD para localizar el reactivo\" -- si vencio: ya se localizo, en main, sin adquisicion. Sucesor propuesto: NC-0237 (decision de mesa sobre si 2021 y 2023 comparten codificacion de denuncia) primero; si mesa la resuelve, recuperar y fusionar el trabajo ya hecho en la rama sin PR origin/acto/gen2-f6-panel-caja-1 (FD real de mociba2021/2022, R01 CONGELABLE) en vez de repetirlo desde cero."
+      },
+      {
         "id": "NC-0164",
         "razon": "ruteo=ESPERA_NUEVA_PISTA: espera nueva pista; revisión 2026-10-11; responsable=servicio-gen2-38; siguiente=no repetir #734; en la próxima revisión buscar fuente mexicana con producto exacto, costo objetivo, daño, negativos y estrategia de identificación"
       },
@@ -19139,12 +19423,8 @@
         "razon": "ruteo=NO_SONDA: etapa vigente ACCESO_O_DESCARGA; no corresponde investigación externa; responsable=titular-acceso-y-receptor-tecnico; siguiente=Titular de N35: solicitar sin enviar automáticamente Appendix C, bloques, microdato y código; congelar spec sucesora y reproducir antes de proponer una regla DCE"
       },
       {
-        "id": "NC-0169",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=acto en CAJA con corpus ENSANUT montado (numpy/pandas/pyreadstat presentes) que corra corrida0.py sobre tools/medidor_l17_vacunacion_disponible.py (spec sellada S7-L17-spec-v1_0.md), sin volver a decidir nada científico — continúa la cadena de NC-0165; siguiente=acto en CAJA con corpus ENSANUT montado (numpy/pandas/pyreadstat presentes) que corra corrida0.py sobre tools/medidor_l17_vacunacion_disponible.py (spec sellada S7-L17-spec-v1_0.md), sin volver a decidir nada científico — continúa la cadena de NC-0165"
-      },
-      {
         "id": "NC-0170",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=acto de retro-sello que anada ## CONSUMIDO (PR #N) a los 8 encargos reales listados en forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P3-censo.md; y decision de mesa sobre si [COLA]/[ADQ] se suman como cuarta categoria exenta junto a censo/tramite/merge-intermedio"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=servicio-gen2-38; siguiente=acto de retro-sello que anada ## CONSUMIDO (PR #N) a los 8 encargos reales listados en forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P3-censo.md; y decision de mesa sobre si [COLA]/[ADQ] se suman como cuarta categoria exenta junto a censo/tramite/merge-intermedio || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy contra el arbol real: 6/8 de los actos citados ya tienen ## CONSUMIDO con su PR real -- forense/encargos/2026-09-14-GEN2-CONSUMIDO-RETRO-3.md linea 7 (`## CONSUMIDO · PR #759`) y forense/encargos/2026-09-11-GEN2-REACTIVOS-CON-TEXTO-Y-BUSQUEDA.md linea 76 (`## CONSUMIDO · PR #742`) confirman #739 y el acto de #737 (sellado como PR #742) por ACTO GEN2-CONSUMIDO-RETRO-3; forense/encargos/2026-09-09-GEN2-R-COMPLETA-MARCO.md linea 53 (`## CONSUMIDO · PR #680`) y forense/encargos/2026-09-10-GEN2-PUBLICACION-POST693-Y-CIERRES.md lineas 75-79 (parrafo CONSUMIDO original intacto + enmienda que agrega PR #701) confirman #680 y #701, ambos por ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2 (PR #795, 15/sep/2026). Los 4 restantes (#682, #719, #726, #728) siguen en 0 coincidencias de su rotulo sobre los 505 encargos de forense/encargos/*.md de hoy (grep -rl \"<rotulo>\" forense/encargos/*.md), y #728 sigue legitimamente en forense/encargos/cola/ sin A.3 fusionado: nunca tuvieron encargo archivado que retro-sellar. Esa deuda no es un pendiente de esta fila -- ya esta reasentada, medida y ABIERTA por su cuenta en NC-0227. La primera mitad de este sucesor (el acto de retro-sello a los 8) por tanto ya no es un bloqueador vigente: esta EJECUTADA (6/8, PR #759 y PR #795) o REASENTADA (4/8, NC-0227). La segunda mitad SI sigue de pie: grep -rn \"cuarta categoria exenta\" forense/ --include=*.md --include=*.tsv a 2026-09-16 no devuelve ninguna firma de mesa ni acto que la resuelva, solo la fila misma, el digesto que la reproduce y la nota de GEN2-MANTENIMIENTO-Y-ARCHIVO-2 confirmando \"sigue sin decidir\". Sucesor propuesto: unicamente la decision de mesa pendiente sobre si [COLA]/[ADQ] se suman como cuarta categoria exenta junto a censo/tramite/merge-intermedio; el resto del sucesor original (retro-sello de los 8) queda satisfecho por PR #759 + PR #795 + NC-0227 y no se re-persigue bajo NC-0170."
       },
       {
         "id": "NC-0174",
@@ -19152,23 +19432,15 @@
       },
       {
         "id": "NC-0185",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=titular-acceso-y-receptor-tecnico; siguiente=si mesa la firma: expediente hermano en forense/expedientes-acceso/ por la via comprobada del expediente 04-INEGI-ENCIG-NC-0153 (Contacto INEGI, atencion.usuarios@inegi.org.mx); si no la firma, queda como negativo declarado y se cierra con esa decision"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=titular-acceso-y-receptor-tecnico; siguiente=si mesa la firma: expediente hermano en forense/expedientes-acceso/ por la via comprobada del expediente 04-INEGI-ENCIG-NC-0153 (Contacto INEGI, atencion.usuarios@inegi.org.mx); si no la firma, queda como negativo declarado y se cierra con esa decision || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Mesa ya firmó (15/sep/2026, commit d487805 \"Añade expediente hermano NC-0185 (INEGI/ENVIPE 2013-2015)\", en origin/main; nota forense/notas/2026-09-15-GEN2-EXPEDIENTE-HERMANO-NC-0185.md): el expediente hermano forense/expedientes-acceso/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21/07-INEGI-ENVIPE-NC-0185.md existe hoy, registrado en REGISTRO-RECEPCION.tsv como LISTO-PARA-TITULAR con fecha_presentacion y fecha_respuesta vacías (cat REGISTRO-RECEPCION.tsv, hoy). El bloqueador \"DECISIÓN-DE-MESA-PENDIENTE\" ya no es cierto. Sucesor propuesto: titular presenta 07-INEGI-ENVIPE-NC-0185.md por Contacto INEGI (atencion.usuarios@inegi.org.mx); si INEGI responde con texto útil, el buscador de reactivos sube el veredicto de cada identidad por enmienda fechada sobre NC-0100; si no hay respuesta útil o es negativa, se cierra NC-0185 con ese negativo declarado (segunda rama del texto original, ya vigente sin cambios)."
       },
       {
         "id": "NC-0194",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=MESA (decide si la celda ENADID se sucede) + el acto que toque milpa/; siguiente=MESA (decide si la celda ENADID se sucede) + el acto que toque milpa/"
-      },
-      {
-        "id": "NC-0208",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=el acto de CAJA que relance el runner F5 apuntando a v1.2, igual que v1.1 hizo con v1.0; siguiente=el acto de CAJA que relance el runner F5 apuntando a v1.2, igual que v1.1 hizo con v1.0"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=MESA (decide si la celda ENADID se sucede) + el acto que toque milpa/ || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy: `grep -n \"F-10\" forense/encargos/2026-09-15-GEN2-FIRMAS-MESA-2.md` muestra que MESA YA DECIDIO F-10 el 15/sep/2026 (firma verbatim \"Si a todos.\" -- mesa), recomendando \"suceder la celda a ENADID 2023 (spec nueva); siguiente=MESA (decide si la celda ENADID se sucede) + el acto que toque milpa/ || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy: `grep -n \"F-10\" forense/encargos/2026-09-15-GEN2-FIRMAS-MESA-2.md` muestra que MESA YA DECIDIO F-10 el 15/sep/2026 (firma verbatim \"Si a todos.\" -- mesa), recomendando \"suceder la celda a ENADID 2023 (spec nueva); mientras, rotulo SIN-PROCEDENCIA-VERIFICABLE\", y el propio encargo deja el sucesor operativo escrito como \"acto sucesor de specs (prereg-caja)\" bajo DIFERIDO-A:spec-sucesora -- no como decision pendiente. `ls forense/prereg-caja/ | grep -i enadid` -> vacio y `python3 tools/ya_medido.py familia.union.libre` -> milpa/tramite.yaml:1031 sigue con clase \"ENADID 2023, p3_27_ag\" y CORROBORADA p=0.1905, sin spec sellada nueva en el registro. La mitad \"MESA decide\" del bloqueador vencio (mesa ya decidio); la mitad \"el acto que toque milpa/\" sigue de pie porque la spec sucesora aun no existe. Sucesor propuesto: acto sucesor de specs (prereg-caja) que redacte y selle la spec ENADID 2023 para familia.union.libre (F-10, GEN2-FIRMAS-MESA-2, 15/sep/2026), y despues el acto que toque milpa/tramite.yaml para citarla y retirar el rotulo SIN-PROCEDENCIA-VERIFICABLE."
       },
       {
         "id": "NC-0210",
         "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=acto de mantenimiento de milpa/tramite-ola5-propuesta-v0.yaml que reconcilie esa cifra o declare por que se conserva; siguiente=acto de mantenimiento de milpa/tramite-ola5-propuesta-v0.yaml que reconcilie esa cifra o declare por que se conserva"
-      },
-      {
-        "id": "NC-0211",
-        "razon": "ruteo=NO_SONDA: etapa vigente CALCULO; no corresponde investigación externa; responsable=Sesion de CAJA: `python3 tools/corrida0.py registro --verifica --escribe`; siguiente=Sesion de CAJA: `python3 tools/corrida0.py registro --verifica --escribe`"
       },
       {
         "id": "NC-0212",
@@ -19179,12 +19451,8 @@
         "razon": "ruteo=NO_SONDA: etapa vigente VALIDACION; no corresponde investigación externa; responsable=MESA / el acto que suceda a `CALC-ENVIPE-0001`; siguiente=MESA / el acto que suceda a `CALC-ENVIPE-0001`"
       },
       {
-        "id": "NC-0215",
-        "razon": "ruteo=NO_SONDA: etapa vigente DECISION_O_IMPLEMENTACION; no corresponde investigación externa; responsable=Acto de adopcion sucesor: declarar el pin por CALC y correr `tools/relevo_usos.py` + `corrida0 delta`; siguiente=Acto de adopcion sucesor: declarar el pin por CALC y correr `tools/relevo_usos.py` + `corrida0 delta`"
-      },
-      {
         "id": "NC-0216",
-        "razon": "ruteo=NO_SONDA: etapa vigente ADOPCION; no corresponde investigación externa; responsable=MESA · decidir cual veredicto gobierna, o declarar que miden estimandos distintos; siguiente=MESA · decidir cual veredicto gobierna, o declarar que miden estimandos distintos"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=MESA · decidir cual veredicto gobierna, o declarar que miden estimandos distintos || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. La premisa vencio: MESA ya decidio F-3 (HOJA DE FIRMAS DE MESA 2, 15/sep/2026, firma verbatim «Si a todos.», archivada en forense/encargos/2026-09-15-GEN2-FIRMAS-MESA-2.md) -- \"gobierna el mas reciente sellado con el grano de F-1; siguiente=MESA · decidir cual veredicto gobierna, o declarar que miden estimandos distintos || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. La premisa vencio: MESA ya decidio F-3 (HOJA DE FIRMAS DE MESA 2, 15/sep/2026, firma verbatim «Si a todos.», archivada en forense/encargos/2026-09-15-GEN2-FIRMAS-MESA-2.md) -- \"gobierna el mas reciente sellado con el grano de F-1; el otro queda SUPERADO en el registro derivado\" -- y F-1 (el mismo acto) ya cerro NC-0214 con esa misma regla de grano. Medido hoy: CALC-B-0001 sello 2026-09-09T02:01:48Z (data/corrida0/CALC-B-0001/ejecucion.json:27) y CALC-ENIGH-0001 sello 2026-09-15T16:23:22Z (data/corrida0/CALC-ENIGH-0001/ejecucion.json:31) -- ENIGH-0001 es el mas reciente, el que F-3 manda gobernar. Pero `grep -F RES-0035 data/corrida0/relevo-usos-v1_0.tsv` hoy sigue devolviendo `veredicto_sellado=CONFLICTO-ENTRE-VEREDICTOS` con las dos referencias intactas, y `tools/relevo_usos.py` (lineas 406-409) confirma que el escritor canonico no tiene logica de \"mas reciente\"/SUPERADO -- solo emite CONFLICTO-ENTRE-VEREDICTOS cuando hay mas de un valor sellado distinto, exactamente como el propio FIRMAS-MESA-2 lo dejo registrado (\"FUERA-DE-PERIMETRO ... requiere el escritor canonico\"). El bloqueador ya no es una decision de mesa pendiente: es una implementacion pendiente en el escritor canonico. Sucesor propuesto: acto sucesor que edite tools/relevo_usos.py (o el escritor canonico equivalente de data/corrida0/relevo-usos-v1_0.tsv) para aplicar la regla F-1/F-3 -- el veredicto sellado mas reciente por CALC gobierna al grano del consumidor -- y escriba CALC-B-0001/RESULT-B-ADOPCION-P3 = SUPERADO->CALC-ENIGH-0001/RESULT-ENIGH-A-ADOPCION en relevo-usos-v1_0.tsv."
       },
       {
         "id": "NC-0217",
@@ -19204,7 +19472,7 @@
       },
       {
         "id": "NC-0228",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=acto de cascada en CAJA/Ubuntu con data/raw montada que corra `registro --verifica --escribe` y publique las dos vistas; siguiente=acto de cascada en CAJA/Ubuntu con data/raw montada que corra `registro --verifica --escribe` y publique las dos vistas; conviene que absorba tambien NC-0145, que PARA por la misma causa"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=acto de cascada en CAJA/Ubuntu con data/raw montada que corra `registro --verifica --escribe` y publique las dos vistas; siguiente=acto de cascada en CAJA/Ubuntu con data/raw montada que corra `registro --verifica --escribe` y publique las dos vistas; conviene que absorba tambien NC-0145, que PARA por la misma causa || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. MEDIDO hoy: `python3 tools/entorno.py` confirma que el bloqueador propio de esta fila sigue de pie (acceso_corpus.montado=NO, archivos_examinados=0); pero sobre forense/no-corrido.tsv (csv.DictReader), NC-0145 -- la fila que este sucesor proponia absorber por \"PARAR por la misma causa\" -- tiene estado=CERRADA, cerrado_por=GEN2-CORRIDA0-CASCADA-POST-682, fecha_cierre=2026-09-10: se cerro CINCO DIAS ANTES de que esta misma fila (NC-0228, fecha 2026-09-15) se escribiera diciendo que NC-0145 \"sigue ABIERTA\"; su propio cierre declara \"cascada publicada sin recalculo ni resellado\", o sea que no necesita corpus ni este acto sucesor. Ademas, sobre los 104 spec.yaml del arbol (glob + parseo de bloque `etiquetas:`), de las 6 specs que declaran `repite_de` solo bajo etiquetas, 5 lo declaran en PROSA (\"NINGUN CALC previo -- ...\", no un calc_id) y solo CALC-ENVIPE-U4-2012-v1_1 apunta a un predecesor real (CALC-ENVIPE-U4-2012, hoy en estado=SELLADA en data/corrida0/corridas.tsv linea 133, todavia no SUPERADO). Sucesor propuesto: acto de cascada en CAJA/Ubuntu con data/raw montada que corra `python3 tools/corrida0.py registro --verifica --escribe` y publique data/corrida0/corridas.tsv y resultados.tsv, dirigido solo al efecto real pendiente -- CALC-ENVIPE-U4-2012 pasando a SUPERADO→CALC-ENVIPE-U4-2012-v1_1 -- sin absorber NC-0145 (ya CERRADA, sin pendiente) y sin esperar movimiento en las otras 5 specs (su repite_de es prosa, no produce SUPERADO-> nuevo)."
       },
       {
         "id": "NC-0229",
@@ -19212,11 +19480,7 @@
       },
       {
         "id": "NC-0231",
-        "razon": "ruteo=NO_SONDA: etapa vigente PREPARACION; no corresponde investigación externa; responsable=CAJA/Ubuntu con la raiz montada; siguiente=CAJA/Ubuntu con la raiz montada; ruta de salida: data/reactivos-contexto-*.tsv"
-      },
-      {
-        "id": "NC-0232",
-        "razon": "ruteo=NO_SONDA: etapa vigente DECISION_O_IMPLEMENTACION; no corresponde investigación externa; responsable=CAJA/Ubuntu; siguiente=CAJA/Ubuntu; si devuelve EXISTE-SATISFACE, adquisicion de dos olas ENCO (fila R10 de forense/prereg-duelo-v2/F6-falta-conseguir-v1_0.tsv)"
+        "razon": "ruteo=NO_SONDA: etapa vigente PREPARACION; no corresponde investigación externa; responsable=CAJA/Ubuntu con la raiz montada; siguiente=CAJA/Ubuntu con la raiz montada; ruta de salida: data/reactivos-contexto-*.tsv || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy: `git log --all --oneline -i --grep=\"ZA6980\"` encuentra el commit 698f958a3d43c936ac25eb5663914292c3e6b24d (\"P1-P4: MOCIBA/ISSP/ENCO leidos en CAJA...\"), que declara verbatim \"P2 · ISSP R09 (NC-0231 CERRADA): codificacion de v26 leida en ZA6980_q_mx.pdf p.3 (Pregunta 8a), 8 categorias\" y que en `git show 698f958a -- forense/no-corrido.tsv` escribe esas 8 categorias en data/reactivos-contexto-verificados-v1_0.tsv y cierra esta misma fila. Esa rama (`origin/acto/gen2-f6-panel-caja-1`, con nota de cierre en el commit 246bbfa9) nunca se fusiono: `git merge-base --is-ancestor origin/acto/gen2-f6-panel-caja-1 HEAD` -> no ancestro; `mcp__github__list_pull_requests(head=\"Josanoforo:acto/gen2-f6-panel-caja-1\", state=all)` -> cero PR jamas abierto (viola A.14, rama sin fusion ni borrado); y hoy en HEAD `git grep -n \"R09\\|ZA6980\\|Q8a\" HEAD -- data/reactivos-contexto-verificados-v1_0.tsv` sigue sin resultados y F5-panel-candidatos-v1_3.tsv \"does not exist in HEAD\". El bloqueador de ESTA sesion (sin corpus, `ls \"/mnt/c/Users/PC0/Descargas MX/\"` -> No such file or directory; data/raices.local.yaml no existe, gitignored) sigue de pie para el ejecutor actual, pero la premisa de la fila -- que el paso documental esta por hacerse -- vencio: ya se hizo, en un acto real, y quedo varado sin fusionar. Sucesor propuesto: mesa decide entre (a) recuperar/fusionar origin/acto/gen2-f6-panel-caja-1 (commit 698f958a + nota de cierre 246bbfa9) a main, reconciliando F5-panel-candidatos-v1_2 vigente contra la v1_3 de esa rama -- cierra NC-0230/0231/0232/0233 de un solo acto; o (b) si se juzga no confiable, repetir la lectura de ZA6980_q_mx.pdf p.3 en una sesion CAJA/Ubuntu fresca y escribir el resultado en main."
       },
       {
         "id": "NC-0233",
@@ -19232,11 +19496,11 @@
       },
       {
         "id": "NC-0236",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=CAJA: acto sucesor de NC-0136 que ataque primero las 1153 filas con consumidor declarado, y solo despues las 10182 sin demanda hoy; siguiente=CAJA: acto sucesor de NC-0136 que ataque primero las 1153 filas con consumidor declarado, y solo despues las 10182 sin demanda hoy"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=CAJA: acto sucesor de NC-0136 que ataque primero las 1153 filas con consumidor declarado, y solo despues las 10182 sin demanda hoy || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy contra data/corrida0/mapa-demanda-19-corr-v1_0.tsv (vigente: ultimo commit b6ca8f92, 2026-09-15T18:32:19Z, ancestro de HEAD por `git merge-base --is-ancestor`) -- de los cinco CORR citados, CORR-0003 (encuci2020, 26+32=58 filas) esta EXISTE-SATISFACE con sucesor \"NINGUNO\" (\"Relevada entera por ACTO GEN2-LOTE-ENCUCI-1\") y CORR-0009/CORR-0010/CORR-0015 (enif2024, 1 fila) estan SPEC-CONGELADA con nota \"AGOTADA\" (9/9, 2/2 y 7/7, releadas por CALC ya sellados) -- ninguno de estos cuatro necesita ya la correspondencia ambigua ni la etiqueta tecnica que este residual le atribuye. Solo CORR-0007 (envipe2025, 643+451=1094 filas) sigue EXISTE-NO-SATISFACE (6/8); siguiente=CAJA: acto sucesor de NC-0136 que ataque primero las 1153 filas con consumidor declarado, y solo despues las 10182 sin demanda hoy || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. Medido hoy contra data/corrida0/mapa-demanda-19-corr-v1_0.tsv (vigente: ultimo commit b6ca8f92, 2026-09-15T18:32:19Z, ancestro de HEAD por `git merge-base --is-ancestor`) -- de los cinco CORR citados, CORR-0003 (encuci2020, 26+32=58 filas) esta EXISTE-SATISFACE con sucesor \"NINGUNO\" (\"Relevada entera por ACTO GEN2-LOTE-ENCUCI-1\") y CORR-0009/CORR-0010/CORR-0015 (enif2024, 1 fila) estan SPEC-CONGELADA con nota \"AGOTADA\" (9/9, 2/2 y 7/7, releadas por CALC ya sellados) -- ninguno de estos cuatro necesita ya la correspondencia ambigua ni la etiqueta tecnica que este residual le atribuye. Solo CORR-0007 (envipe2025, 643+451=1094 filas) sigue EXISTE-NO-SATISFACE (6/8); y su bloqueador citado en el mapa (\"MESA · decision sobre RES-0039..0042, NC-0088\") ya se resolvio: NC-0088 esta CERRADA (fecha_cierre 2026-09-15) por ACTO GEN2-FIRMAS-MESA-1 (PR #785), que congela la spec en dos capas y deja pendiente solo una corrida en CAJA (NO-CORRIDO propio de ese acto), no otra decision de mesa. El corpus sigue sin montar hoy (`python3 tools/entorno.py --json` -> acceso_corpus.montado=NO, archivos_examinados=0), asi que el PARO-ENTORNO de esta fila no vencio; lo que vencio es la cuenta de \"1153 filas con consumidor declarado\": hoy son, cuando mucho, 1094 (las de CORR-0007/envipe2025), no 1153, y las 59 restantes (58 de encuci2020 + 1 de enif2024) ya no tienen consumidor vivo que las reclame. Sucesor propuesto: acto de CAJA (corpus montado) que ataque solo las ~1094 filas de envipe2025/CORR-0007, coordinado con la corrida pendiente de RES-0039..0042 que NO-CORRIDO de GEN2-FIRMAS-MESA-1 ya dejo lista para CAJA, sin gastar prioridad en las 58 filas de encuci2020/CORR-0003 ni en la 1 de enif2024/CORR-0009-0010-0015 (consumidor ya satisfecho por otra via); las 10182 sin demanda hoy siguen despues de eso, sin cambio."
       },
       {
         "id": "NC-0237",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=MESA (decide si la union de opciones de 2021 y la de 2023 son el mismo estimando) + CAJA/NUBE: spec congelable despues de esa decision"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=MESA (decide si la union de opciones de 2021 y la de 2023 son el mismo estimando) + CAJA/NUBE: spec congelable despues de esa decision || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. MEDIDO hoy contra origin/main=f89591c3: NC-0230 (misma familia R01, ABIERTA) ya fija el par POR DEFECTO de R01 en 2021+2022 (`awk -F'\\t' '$3==\"GEN2-PANEL-F6-EXPANSION-1\"' forense/no-corrido.tsv`; sellado en canon/registro-rotulos.tsv, ADR-518: \"Corrige la linea de exposicion de R01 MOCIBA ... y mueve su par a 2021+2022\", fusionado en main y reconciliado por la propia nota de cierre de este acto, §7), y 2022 codifica identico a 2021 (P12_5 en las dos olas; forense/notas/2026-09-15-GEN2-REACTIVOS-RESIDUALES-2-cierre.md, fila mociba2022). NC-0230 solo condiciona 2023 a que \"mesa mueva el par\" -- no lo exige para el piloto. El bloqueador vigente de R01 hoy es de entorno (NC-0230: falta CAJA/Ubuntu con la raiz montada para leer el xlsx), no esta decision de pooling: \"no se autoriza piloto\" ya no es una consecuencia de esta fila. Lo que SI sigue exigiendo la decision 2021-vs-2023 es el alcance mas amplio de NC-0161 (Fase 4B, que pide expresamente el par 2021+2023 y sigue ABIERTA hoy: grep -F NC-0161 forense/no-corrido.tsv) y cualquier extension futura del par mas alla del piloto (confirmatoria bajo FP-374, hoy FIRMADA-CON-ALCANCE-ACOTADO, no FIRMADA plena: forense/firmas-pendientes.tsv). Sucesor propuesto: CAJA ejecuta NC-0230 (par 2021+2022) para el piloto de F6 sin esperar esta fila; MESA resuelve la union de opciones 2021/2023 solo si y cuando se busque anadir 2023 al par, como insumo de NC-0161/confirmatoria bajo FP-374 -- no como precondicion del piloto."
       },
       {
         "id": "NC-0239",
@@ -19255,19 +19519,59 @@
         "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=servicio-gen2-38; siguiente=acto que emita el RESULT de alcance sucesor con esta derivacion; NC-0078 sigue ABIERTA hasta entonces"
       },
       {
-        "id": "DEM-AHORRO-STOCK-DURACION-01",
-        "razon": "revisión no vence hasta 2026-09-16"
+        "id": "NC-0243",
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=acto de adopcion sucesor (perimetro: milpa/tramite.yaml) que escriba las 9 citas del bloque REPRODUCE (pines y RESULT en forense/notas/2026-09-15-GEN2-CAJA-SUCESORES-1-cierre.md P2/P3) y presente a mesa la disposicion de RES-0043/0044; siguiente=acto de adopcion sucesor (perimetro: milpa/tramite.yaml) que escriba las 9 citas del bloque REPRODUCE (pines y RESULT en forense/notas/2026-09-15-GEN2-CAJA-SUCESORES-1-cierre.md P2/P3) y presente a mesa la disposicion de RES-0043/0044"
+      },
+      {
+        "id": "NC-0246",
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=servicio-gen2-38; siguiente=El proximo acto de la serie SPEC-DEMANDA o MEDICION-DEMANDA para CORR-0012/0013/0014; MESA para la serie MOCIBA del panel (NC-0237 sigue ABIERTA)"
+      },
+      {
+        "id": "NC-0247",
+        "razon": "ruteo=NO_SONDA: etapa vigente VALIDACION; no corresponde investigación externa; responsable=direccion-programa; siguiente=direccion-programa: asignar y ejecutar el sucesor de: la enmienda fechada propuesta para esas seis filas, tras fallar verificacion adversarial de su evidencia de primera mano"
+      },
+      {
+        "id": "NC-0248",
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=MESA + acto de tramite que escriba estado=CERRADA* citando forense/notas/2026-09-16-GEN2-VIGENCIA-DEUDA-1-cierre.md"
+      },
+      {
+        "id": "NC-0249",
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=MESA decide; si autoriza el barrido fisico, acto sucesor con la lista completa (nota SS3.5) y perimetro para reconciliar los indices 00-LEEME de cada lote"
+      },
+      {
+        "id": "NC-0250",
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=acto de mantenimiento con forense/encargos/ (fuera de cola/) en su perimetro; siguiente=acto de mantenimiento con forense/encargos/ (fuera de cola/) en su perimetro"
+      },
+      {
+        "id": "NC-0251",
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=mesa decide si basta con la nota de cierre o si se crea el homonimo faltante"
+      },
+      {
+        "id": "NC-0252",
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=acto con tools/tablero_programa.py en perimetro; siguiente=acto con tools/tablero_programa.py en perimetro"
       },
       {
         "id": "NC-0230",
+        "razon": "lista, fuera del tope maximo=3"
+      },
+      {
+        "id": "NC-0232",
+        "razon": "lista, fuera del tope maximo=3"
+      },
+      {
+        "id": "NC-0244",
+        "razon": "lista, fuera del tope maximo=3"
+      },
+      {
+        "id": "NC-0245",
         "razon": "lista, fuera del tope maximo=3"
       }
     ],
     "maximo": 3,
     "version": "GEN2-ADQ-INVESTIGACION-V1"
   },
-  "sha256_fuente": "16d99b635ca02737341130d19cd2d93789344c1636a7c8c8159f2ce10a9d35dd",
-  "sha256_insumos_demanda": "9133b90e5381c7cc277362c4446f934a4b8c2e6f52e733b6ff841f2ebd919e95",
+  "sha256_fuente": "d42064a29d48a92fbe191559b6b6c1f64c2457854053b608d6dff040a77459a9",
+  "sha256_insumos_demanda": "46ec07b8a6fa151ae9427b40d12ed7c8b60df729015202e702e56412539cd6bf",
   "situaciones_elementos": {
     "CUBIERTA": 9,
     "EVALUACION_GEN2_DISPONIBLE": 70,
@@ -19279,8 +19583,8 @@
     "PENDIENTE_PREPARACION": 65,
     "PENDIENTE_VALIDACION": 2
   },
-  "total_activas": 65,
+  "total_activas": 71,
   "total_demandas_independientes": 1,
-  "total_nc_abiertas": 64,
+  "total_nc_abiertas": 70,
   "version": "GEN2-ADQ-INVESTIGACION-V1"
 }
