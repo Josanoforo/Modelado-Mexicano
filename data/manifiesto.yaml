@@ -93,26 +93,21 @@
     mismo día. Corrige revision-publicacion-2026-07-30.md:88/403/444, que marcaba los términos
     de ENNViH como "reporta el valor" (sin verificar en esa sesión). No cambia el estado del
     payload: ningún archivo de ENNViH se ha descargado ni se registra aquí -- CAL-G3 sigue
-    sin ejecutarse.
-    CORRECCIÓN DE LETRA FECHADA (15/sep/2026, ACTO GEN2-ADOPCION-VENTANILLA-2, P4).
-    La frase anterior queda como registro y NO se reescribe: era cierta el 30/jul/2026
-    y es FALSA EN LA LETRA desde PR #703 (commit 2bd228c). Este mismo archivo registra
-    hoy 28 payloads de ENNViH con id, archivo, sha256 y tamano_bytes -- entre ellos los
-    cinco ehh05*.zip de la ola 2 que el ACTO GEN2-DISENO-FASE1-CIERRE (PR #760) abrió
-    por cabecera: ennvih2_2005_hogar_dta (ennvih/ehh05dta_all.zip, sha256
-    fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a),
-    ennvih2_2005_hogar_cb (ehh05cb_all.zip), ennvih2_2005_hogar_q (ehh05q_all.zip),
-    ennvih2_2005_ponderador_transversal (ehh05w_all.zip, de donde sale fac_3b) y
-    ennvih2_2005_ponderador_longitudinal (ehh05lw_all.zip); más las olas 1 y 3 y
-    ennvih1_muestra_diseno. Corrige la premisa citada en
-    forense/notas/2026-09-14-GEN2-DISENO-FASE1-CIERRE-cierre.md:23 («manifiesto.yaml
-    sigue sin id: para ehh05*.zip»): los id SÍ existen. Esta entrada sigue siendo lo que
-    siempre fue -- una nota de LICENCIA, sin archivo ni sha propios -- y ninguna cifra,
-    hash ni byte se toca aquí: la corrección es de letra y se verifica dentro de este
-    mismo archivo. Lo que NO cambia: ENNViH ola 2 sigue EXISTE-NO-SATISFACE por falta de
-    estrato/UPM públicos (NC-0156), y la copia de esta misma frase falsa que vive en
-    data/corrida0/demanda-corridas.tsv (fila CORR-0008) NO se toca desde aquí -- queda
-    en NC-0188.
+    sin ejecutarse. CORRECCIÓN DE LETRA FECHADA (15/sep/2026, ACTO GEN2-ADOPCION-VENTANILLA-2,
+    P4). La frase anterior queda como registro y NO se reescribe: era cierta el 30/jul/2026
+    y es FALSA EN LA LETRA desde PR #703 (commit 2bd228c). Este mismo archivo registra hoy
+    28 payloads de ENNViH con id, archivo, sha256 y tamano_bytes -- entre ellos los cinco
+    ehh05*.zip de la ola 2 que el ACTO GEN2-DISENO-FASE1-CIERRE (PR #760) abrió por cabecera:
+    ennvih2_2005_hogar_dta (ennvih/ehh05dta_all.zip, sha256 fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a),
+    ennvih2_2005_hogar_cb (ehh05cb_all.zip), ennvih2_2005_hogar_q (ehh05q_all.zip), ennvih2_2005_ponderador_transversal
+    (ehh05w_all.zip, de donde sale fac_3b) y ennvih2_2005_ponderador_longitudinal (ehh05lw_all.zip);
+    más las olas 1 y 3 y ennvih1_muestra_diseno. Corrige la premisa citada en forense/notas/2026-09-14-GEN2-DISENO-FASE1-CIERRE-cierre.md:23
+    («manifiesto.yaml sigue sin id: para ehh05*.zip»): los id SÍ existen. Esta entrada sigue
+    siendo lo que siempre fue -- una nota de LICENCIA, sin archivo ni sha propios -- y ninguna
+    cifra, hash ni byte se toca aquí: la corrección es de letra y se verifica dentro de este
+    mismo archivo. Lo que NO cambia: ENNViH ola 2 sigue EXISTE-NO-SATISFACE por falta de estrato/UPM
+    públicos (NC-0156), y la copia de esta misma frase falsa que vive en data/corrida0/demanda-corridas.tsv
+    (fila CORR-0008) NO se toca desde aquí -- queda en NC-0188.
 
 - id: encig2015_csv
   usado_para: candidata para R3.1 (trámite/mordida, misma familia que R3.2) -- serie histórica
@@ -30032,3 +30027,18 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: Complementa ennvih3_2009_guia; remite a Berumen (2007), Sample Design, pero no aporta
     réplicas ni identificación ejecutable de UPM
+
+- id: enpol2016_bd_csv_zip
+  usado_para: 'NC-0162 / R11-TRA-ENPOL-MORDIDA: ola pública 2016; uso de alcance menor, pendiente
+    FD y comparabilidad con 2021'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enpol/2016/datosabiertos/enpol_2016_csv.zip
+  fecha_descarga: '2026-09-16'
+  descargado_por: Codex, directamente de inegi.org.mx, GEN2-38
+  archivo: enpol2016/enpol_2016_csv.zip
+  sha256: a405ed7777b8f51d338347e6cef94c5daa05f00625b6cd1709ecd49d6ab06997
+  tamano_bytes: 16801537
+  formato: CSV comprimido en ZIP
+  licencia: Términos de uso INEGI
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: Doble descarga idéntica y ZIP íntegro; no acredita por sí solo reactivo, codificación,
+    ponderador ni aptitud confirmatoria.

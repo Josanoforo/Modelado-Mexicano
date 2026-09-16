@@ -5,16 +5,16 @@
     "RELABEL_USO_ACOTADO_AUTORIZADO_POR_772",
     "APROBAR_PROXY_NUEVO_CON_ALCANCE_EXPLICITO"
   ],
-  "ciclos_sin_avance": 3,
+  "ciclos_sin_avance": 5,
   "continuacion_pendiente": true,
-  "cursor_continuacion": "Examinar archivos web públicos de CNBV/CONDUSEF y un repositorio académico mexicano no recorrido, sin repetir el buscador exacto del Banco Mundial ni ENIF, EACF, ENSAFI, Findex, ENFIH o IIEG. Alternativa para mesa tras dos ciclos: relabel acotado de #772, sin decidirlo.",
+  "cursor_continuacion": "Examinar una encuesta estatal con catálogo variable por variable; no repetir ENIF, EACF, ENSAFI, Findex, ENFIH, IIEG ni Banco Mundial. Alternativa para mesa: relabel acotado autorizado por #772, sin decidirlo aquí.",
   "estado": "continua",
   "evidencias": [
-    "forense/notas/2026-09-15-GEN2-38-DEM-AHORRO-STOCK-DURACION-01.md"
+    "forense/notas/2026-09-16-GEN2-38-investigacion-adq.md"
   ],
-  "frontera_no_examinada": "Archivos web públicos de CNBV/CONDUSEF o repositorios institucionales que pudieran conservar el cuestionario no indexado; encuestas estatales distintas de IIEG; módulos académicos mexicanos con catálogo de variables; fuera login, compra y contacto.",
+  "frontera_no_examinada": "Repositorios académicos estatales distintos de UNAM/IIEG y archivos no indexados de cuestionarios CNBV/CONDUSEF.",
   "necesidad_id": "DEM-AHORRO-STOCK-DURACION-01",
-  "proxima_revision": "2026-09-16",
+  "proxima_revision": "2026-09-17",
   "reprogramaciones": [
     {
       "fecha_decision": "2026-09-15",
@@ -34,6 +34,6 @@
     "unidad": "ACREDITADA",
     "uso_habilitado": "INCOMPATIBLE"
   },
-  "ultima_exploracion": "2026-09-15",
+  "ultima_exploracion": "2026-09-16",
   "version_pregunta": "2026-09-15-stock-ausencia-y-duracion-separados-v1"
 }
