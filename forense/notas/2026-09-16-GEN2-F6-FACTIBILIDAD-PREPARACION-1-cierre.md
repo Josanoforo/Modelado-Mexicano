@@ -6,7 +6,9 @@ Worktree: `/home/pc0/mm-gen2-f6-factibilidad-preparacion-1`. Rama:
 
 Estado del producto: **PREPARADA-PARA-MESA · NO AUTORIZA EMISIONES NI R**.
 Cero llamadas, cero emisiones, cero estimaciones R, cero microdatos abiertos,
-cero cambios al motor y cero escrituras a la cascada compartida.
+cero cambios al motor, baseline, gobernanza o registros compartidos. Tras una
+instrucción posterior de resolver el CI, sólo se añadió el censo mecánico del
+encargo verbatim a `_T25_ARCHIVOS_CONOCIDOS` en `tests/check.py`.
 
 ## Resultado
 
@@ -72,15 +74,13 @@ Resultados:
   abiertos `false`, modelos llamados `false`, escrituras canónicas `false`;
 - pruebas nuevas: **9/9 OK**;
 - interfaz heredada F5 sobre fixtures: **23/23 OK**;
-- baseline final: **ROJO, 6 FAIL · 4,351 WARN; 2 entradas nuevas frente al
-  baseline**. La material es T25 por el rótulo pelado “M uno” dentro del encargo
-  verbatim, que no puede editarse; T16 aporta dos FAIL derivados porque
-  gobernanza todavía declara 3 y la corrida real da 4 antes del propio
-  self-check. Los FAIL heredados T06×2 y T08×1 y los 4,351 WARN no son de este
-  acto. Por la excepción explícita, no se editaron `tests/check.py`, baseline,
-  registro de rótulos ni gobernanza. La única propagación realmente necesaria
-  al cierre serial es censar/eximir el rótulo verbatim del encargo y recifrar
-  T16 por el mecanismo compartido vigente.
+- baseline final: **VERDE, 3 FAIL · 4,351 WARN; cero entradas nuevas frente al
+  baseline**. T25 pasa tras censar en `_T25_ARCHIVOS_CONOCIDOS` el archivo que
+  cita la ranura de motor ya documentada por `GEN2-M1-ALCANCE-1`; el encargo
+  recibido permanece verbatim. T16 vuelve a pasar sin recifrar gobernanza. Los
+  FAIL heredados T06×2 y T08×1 y los 4,351 WARN no son de este acto. No se
+  modificaron `tests/baseline.json`, `canon/registro-rotulos.tsv` ni
+  gobernanza.
 
 ## Presupuesto recalculado
 
@@ -111,11 +111,11 @@ prohíbe escribir `firmas-pendientes.tsv` y ordena llevar la decisión al PR.
 > ejecución futura exige spec sucesora, identidad de modelo/cliente,
 > presupuesto recalculado y autorización explícita.
 
-## Cierre compartido diferido
+## Resolución mecánica del cierre
 
-**CIERRE COMPARTIDO DIFERIDO — integrar después de CAREO/TRÁMITE-4.** No se
-asignaron IDs ni se escribieron decisiones, firmas, hallazgos, gobernanza,
-estado, rótulos, tableros, rutinas, manifiesto, colas o contadores. Propagación
-serial concreta: resolver sólo el rótulo “M uno” que aparece dentro del encargo
-verbatim y el recifrado T16 que ese FAIL deriva. El producto F6 no depende de
-esa contabilidad auxiliar.
+La petición posterior de resolver el CI autorizó el único cambio compartido
+necesario: el censo del archivo verbatim en el mecanismo existente de T25. No
+se asignaron IDs ni se escribieron decisiones, firmas, hallazgos, gobernanza,
+estado, rótulos, tableros, rutinas, manifiesto, colas o contadores. No queda
+propagación pendiente para integrar este PR; el producto F6 no depende de una
+decisión de cascada auxiliar.
