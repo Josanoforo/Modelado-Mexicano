@@ -92,7 +92,7 @@ recibido como prompt de lanzamiento el 16/sep/2026; SHA-256 del original:
 `1c2308099cacba55f01e501fbf5cd6ad497ae122963f5a34a7016f1f2f18bb16`.
 
 Consumo técnico: rama `acto/gen2-relevo-candidatos-delta-1`, base
-`9dffd6455c67e2ca99740e79f90be59a13f250e1`. Producto y cierre en
+`9dffd6455c67e2ca99740e79f90be59a13f250e1`, PR `#829`. Producto y cierre en
 `forense/relevo-usos/candidatos-delta-1/` y
 `forense/notas/2026-09-16-GEN2-RELEVO-CANDIDATOS-DELTA-1-cierre.md`.
 La cascada compartida queda diferida por la excepción temporal del encargo;

@@ -3,7 +3,7 @@
 Fecha: 16 de septiembre de 2026. Base efectiva:
 `9dffd6455c67e2ca99740e79f90be59a13f250e1` (`origin/main`). Worktree:
 `/home/pc0/mm-gen2-relevo-candidatos-delta-1`; rama
-`acto/gen2-relevo-candidatos-delta-1`.
+`acto/gen2-relevo-candidatos-delta-1`; PR `#829`.
 
 **Resultado:** NC-0255 queda resuelta en su alcance técnico: selección viva,
 contratos explícitos, comparación canónica y tres listas de decisión para los
