@@ -1,0 +1,28 @@
+{
+  "alternativa_requerida": false,
+  "alternativas": [],
+  "ciclos_sin_avance": 0,
+  "continuacion_pendiente": true,
+  "cursor_continuacion": "Buscar por título exacto INEGI (2004) Sample Design y Berumen (2007) en repositorios UIA/CIDE/INEGI; no repetir guías oficiales, factores ni JSON IHSN 7063.",
+  "estado": "continua",
+  "evidencias": [
+    "forense/notas/2026-09-15-ADQ-NC-0202-IHSN.md"
+  ],
+  "frontera_no_examinada": "Documento INEGI (2004) Sample Design/CIDE-UIA y copia pública verificable de Berumen (2007).",
+  "necesidad_id": "NC-0202",
+  "proxima_revision": "2026-09-16",
+  "suficiencia": {
+    "conceptual": "ACREDITADA",
+    "diseno": "PARCIAL",
+    "identidad": "ACREDITADA",
+    "identificacion": "NO_APLICA",
+    "poblacional": "ACREDITADA",
+    "pregunta_original": "ABIERTA",
+    "seleccion_no_respuesta": "PARCIAL",
+    "temporalidad": "ACREDITADA",
+    "unidad": "ACREDITADA",
+    "uso_habilitado": "APTA_ALCANCE_MENOR"
+  },
+  "ultima_exploracion": "2026-09-15",
+  "version_pregunta": "2026-09-15-ennvih-diseno-publico-v1"
+}

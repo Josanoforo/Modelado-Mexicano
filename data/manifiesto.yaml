@@ -30032,3 +30032,19 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: Complementa ennvih3_2009_guia; remite a Berumen (2007), Sample Design, pero no aporta
     réplicas ni identificación ejecutable de UPM
+
+- id: ihsn_mex_2009_ennvih3_metadata
+  usado_para: 'NC-0202 / CORR-0008: identidad, inventario y descripción pública del diseño/pesos
+    ENNViH-3; alcance menor, no habilita varianza compleja'
+  url_origen: https://catalog.ihsn.org/metadata/export/7063/json
+  fecha_descarga: '2026-09-15'
+  descargado_por: codex, directamente de catalog.ihsn.org en CAJA
+  archivo: ennvih_diseno/ihsn-mex-2009-ennvih3-metadata.json
+  sha256: e9a1764bf2b82d6b65bfa1a2a0d15820b7c67d775cd253d0c0bb7baf7a6d32d9
+  tamano_bytes: 10243502
+  formato: JSON DDI/NADA exportado por IHSN, 10,243,502 bytes; parseado correctamente
+  licencia: metadatos públicos; licencia del payload no declarada en la respuesta
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'A.7: dos descargas idénticas sha256 e9a1764bf2b82d6b65bfa1a2a0d15820b7c67d775cd253d0c0bb7baf7a6d32d9;
+    HTTP 200 application/json. Uso permitido: acreditar identidad/inventario/descripción.
+    Brecha: sin PSU/estrato/réplicas ejecutables; NC-0202 ABIERTA.'
