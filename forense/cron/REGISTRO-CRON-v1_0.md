@@ -345,3 +345,12 @@ DERIVA_PUBLICAR=0 MM_TRAMO=derivacion ADQ_DISPARADOR=manual ADQ_DEPLOY_REVISION=
 
 La nota de cierre del correctivo registra por separado el SHA publicado, el
 SHA cargado y si la activación fue manual o nació de un trigger real.
+
+**Comprobación efectiva del correctivo.** El 16/sep la tarea existente se
+actualizó con revisión `0fb94cbac6e0b3f8455404ddf5b30d859b6b590c`; quedó
+`Ready`, principal `PC0`/`Interactive`/`Limited`, tres triggers y acción al
+launcher de `/home/pc0/mm-adq`. La activación de validación fue **manual** con
+`MM_TRAMO=derivacion DERIVA_PUBLICAR=0`, no un trigger programado: cuatro
+fases terminaron en exit 0 sobre el árbol efectivo `f0a9fba…` y la repetición
+inmediata terminó `NADA-QUE-HACER-YA-COMPLETADO` en 1 s. Detalle y cifras en
+`forense/notas/2026-09-16-GEN2-DERIVADOS-CORRECTIVO-Y-DESPLIEGUE-cierre.md`.
