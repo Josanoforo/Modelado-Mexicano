@@ -309,47 +309,55 @@ CITAS `archivo:linea` DISTINTAS EN LA NOTA: 34 sobre 12 archivos -- 34 resuelven
 
 **SHA:** `9dffd64`. **Instrumentos:** ninguno abierto — este acto no toca microdato. **Celdas:** las 8 de cruce, **no derivadas**. **Archivos leídos con comando y citados:** 22 del árbol fijo `b881ee6` (P1) + `data/inventario-reactivos-v1_2.tsv` (178 256 líneas), `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `data/corrida0/demanda-resultados.tsv` (209), `forense/hallazgos.md`, `forense/no-corrido.tsv`, `forense/firmas-pendientes.tsv`, `tests/test_celdas_d.py`, `data/INFRAESTRUCTURA-v1_0.md`.
 
-**CONTADOR.** Mediciones: **0**. Corridas: **0**. Adopciones: **0**. Microdato: **0**. Red efectiva: **0** (5 intentos, 5 rechazos de política). Celdas-D registradas: **3 → 4**. `no_corrido_abiertas`: **+7** (`NC-0275`…`NC-0281`) — **el encargo previó +2**, y la diferencia son las cuatro filas A.14 propias de este acto: adjunto que no llegó, fuentes `SIN-FETCH`, enmienda que ya existía, **el perímetro mal calculado** (`NC-0280`: el encargo autorizaba tocar `tests/check.py` sólo por `T25` y el acto disparó cuatro tests de cascada — `T02`, `T22`, `T25`, `T30` —, que es lo que archivar cuatro adjuntos verbatim y abrir una fila de mesa dispara por construcción), y **la línea base en rojo sin congelar** (`NC-0281`, §10: es decisión de mesa, no del ejecutor). Se reporta, no se ajusta el conteo al pronóstico. `FP` abiertas: sin cambio (`FP-378` **nace FIRMADA**). Filas de `decisiones.tsv`: **+1**.
+**CONTADOR.** Mediciones: **0**. Corridas: **0**. Adopciones: **0**. Microdato: **0**. Red efectiva: **0** (5 intentos, 5 rechazos de política). Celdas-D registradas: **3 → 4**. `no_corrido_abiertas`: **+7** (`NC-0275`…`NC-0281`) — **el encargo previó +2**, y la diferencia son las cuatro filas A.14 propias de este acto: adjunto que no llegó, fuentes `SIN-FETCH`, enmienda que ya existía, **el perímetro mal calculado** (`NC-0280`: el encargo autorizaba tocar `tests/check.py` sólo por `T25` y el acto disparó cuatro tests de cascada — `T02`, `T22`, `T25`, `T30` —, que es lo que archivar cuatro adjuntos verbatim y abrir una fila de mesa dispara por construcción), y **la línea base en rojo sin congelar** (`NC-0281`, §10). Se reporta, no se ajusta el conteo al pronóstico. **De las siete, dos cierran en este mismo acto:** `NC-0277` (mesa cargó el adjunto al leer el reporte) y `NC-0281` (la línea base cierra **VERDE** por esa misma vía, sin recongelar nada). Quedan **5 abiertas**. `FP` abiertas: sin cambio (`FP-378` **nace FIRMADA**). Filas de `decisiones.tsv`: **+1**.
 
 ---
 
-## 10 · Suite de cierre · PARO-REPORTA, y la decisión es de mesa
+## 10 · Suite de cierre · la línea base cierra VERDE, porque mesa tomó la vía (a)
 
-**Salida cruda**, `python3 tests/check.py --baseline` sobre el árbol de cierre de este acto:
+**Este apartado se escribió dos veces, y las dos versiones son parte del registro.** La primera reportó `LÍNEA BASE ROJO` con 9 entradas nuevas y puso la decisión a mesa. **Mesa respondió cargando los dos adjuntos que faltaban, en la misma sesión** — la vía (a) de `NC-0281` —, así que no hubo nada que congelar. Se deja dicho cómo se llegó aquí porque el camino es el hallazgo, no sólo el número final.
+
+### 10.1 · Lo que se reportó, y lo que pasó después
+
+| corrida | cifra | línea base | qué la movió |
+|---|---|---|---|
+| cierre (1ª) | `3 FAIL · 4364 WARN` | ROJO, 5 nuevas | el acto archivó 4 adjuntos verbatim que citan dos documentos ausentes |
+| tras escribir el reporte | `3 FAIL · 4373 WARN` | ROJO, 9 nuevas | **nombrar los dos ausentes para reportarlos** creó 5 referencias colgantes más |
+| tras compactar la cita cruda | `3 FAIL · 4370 WARN` | ROJO, 9 nuevas | los nombres **truncados** que la salida imprime tampoco existen |
+| **mesa carga los dos adjuntos** | **`3 FAIL · 4360 WARN`** | **VERDE** | 8 de las 9 se cierran solas; la novena era otra cosa (§10.3) |
+
+### 10.2 · Los dos adjuntos, archivados con su sha verificado
+
+| documento | sha256 declarado | verificado por comando | dónde quedó |
+|---|---|---|---|
+| `D-THETA-DOCUMENTO-v1_1-post-adversarial.md` | `8a6472a72631dfdc…` | `8a6472a72631dfdcfbcd7be50db5760a214614e15b6afff9f862999ebf1e061d` ✔ | `forense/notas/insumos-direccion/` |
+| `ADVERSARIAL-D-THETA-v1_0.md` | `850f9cefe4334acd…` | `850f9cefe4334acd679d7eaa38eceafa4da19d903bd38997f448534b32d082e7` ✔ | `forense/notas/insumos-externos/celda-d-piloto/` |
+
+El sha del adversarial merece una línea: **es el que Astra declaró en su propio retorno**, sin que nadie pudiera cotejarlo contra el archivo. Al llegar el archivo, **coincide byte a byte**. Es la única afirmación de procedencia que el externo hizo sobre un objeto que no estaba en el árbol, y cuadra.
+
+`D-THETA-DOCUMENTO-v1_1-post-adversarial.md` llegó **al tercer intento**: `#822` P5 lo dejó `NO-CORRIDO` (`NC-0271`), el lanzamiento de este acto tampoco lo trajo (`NC-0277`), y mesa lo cargó al leer el reporte. **`NC-0277` queda `CERRADA`** por este mismo acto. **`NC-0271` sigue `ABIERTA` y se dice por qué**: su premisa está resuelta —es exactamente el sucesor que ella nombra, «*dirección re-envía el adjunto y un acto de trámite lo archiva con cabecera de procedencia tipo 3*»—, pero su columna enumera **dos** piezas, y la segunda (la nota corta sobre reformular el piloto de D-θ como celda-D completa) es sustancia de `#822`, no de este acto. **Se cierra la premisa, no la pieza.**
+
+### 10.3 · La novena entrada era otra cosa, y se declara en vez de pedirla
+
+Archivar los dos cerró **8** de las 9. La novena apareció al hacerlo: el adversarial de Astra cita `D-THETA-DOCUMENTO-PARA-ADVERSARIAL-v1_0.md` — **la v1.0 de D-θ, el documento que él revisa**, que nunca viajó al árbol y que está **derogado por su propia sucesora**: la v1.1 abre diciendo «*la v1.0 se conserva como historia; esta v1.1 la sucede*», y es la v1.1 la que quedó archivada.
+
+Pedírsela a mesa sería pedir historia derogada para cerrar una cita; fabricarla sería inventar procedencia. Se usa el mecanismo que el propio test documenta —`_T03_DEPENDENCIAS_PENDIENTES`, con la razón escrita, mismo patrón que `NC-0219`— para el adversarial (archivado **verbatim**, que no se edita) **y para los dos archivos donde este acto la nombra al explicar por qué cuelga**. Nombrar un archivo ausente para reportar su ausencia es lo que `T03` no sabe distinguir de citarlo esperando leerlo, y ése es el hallazgo reflexivo de §10.4: se usa el mecanismo documentado en vez de callar el nombre.
+
+### 10.4 · El hallazgo reflexivo, que sobrevive al cierre en verde
+
+**Reportar una ausencia crea la referencia colgante que se está reportando.** `T03` no distingue «cita un archivo que esperaba leer» de «nombra un archivo para decir que nunca llegó». Se midió al chocar con el punto fijo, dos veces (tabla de §10.1). La salida no es callar el nombre —escribir un informe de ausencia sin nombrar lo ausente, para que un test no lo cuente, es escribir para complacer al test, justo lo que la regla de los encargos verbatim protege— sino nombrarlo y declarar la dependencia con su razón.
+
+**Y hay una segunda lección, más barata:** el adjunto que no viaja no es intendencia. Costó **9 `WARN`**, puso la línea base en rojo, obligó a un PARO-reporte y estuvo a punto de gastar una autorización de recongelado de mesa. Llegó, y se disolvió solo. `NC-0277` lo dice con fecha.
+
+### 10.5 · Cifra final
 
 ```
 ════════════════════════════════════════════════════════════════════════
-  3 FAIL · 4370 WARN
+  3 FAIL · 4360 WARN
 ════════════════════════════════════════════════════════════════════════
-
-────────────────────────────────────────────────────────────────────────
-  LÍNEA BASE: ROJO — 9 entradas nuevas frente a tests/baseline.json (HEAD congelado 5e2ad5ce…)
-  · T03 ×2 · canon/gobernanza-v1_15.md y forense/notas/2026-09-17-GEN2-CELDA-D-CAREO-1.md
-  · T03 ×2 · forense/encargos/2026-09-17-GEN2-CELDA-D-CAREO-1-TRES-DISENOS-UN-CAREO.md
-  · T03 ×2 · forense/notas/insumos-externos/celda-d-piloto/ASTRA-…-b881ee6-v1_0.md
-  · T03 ×2 · forense/notas/insumos-externos/celda-d-piloto/ENCARGO-EXTERNO-ASTRA-…-2026-09-17.md
-  · T03 ×1 · forense/notas/2026-09-17-GEN2-CELDA-D-CAREO-1.md
-    (los nueve, la misma cita: los dos documentos que mesa no cargó)
-────────────────────────────────────────────────────────────────────────
+  LÍNEA BASE: VERDE contra tests/baseline.json (HEAD congelado 5e2ad5ce…)
 ```
 
-**Cero `FAIL` nuevos.** Los 3 son los heredados del corpus documental — `T06`×2 (12 valores distintos de «confianza interpersonal», 7 de Gini) y `T08` (7 reports sin mapa de evidencia) —, ajenos a este perímetro y presentes en `tests/baseline.json`.
+**Cero `FAIL` nuevos y cero entradas nuevas.** Los 3 `FAIL` son los heredados del corpus documental (`T06`×2, `T08`), ajenos a este perímetro y presentes en `tests/baseline.json`. **`tests/baseline.json` no se tocó** — y ése era el punto: la línea base cierra verde **sin recongelar nada**, que es siempre el mejor de los dos desenlaces que `NC-0281` ponía a mesa.
 
-**Los `FAIL` que la corrida de cierre sí trajo eran de este acto, y se corrigieron antes de escribir esta sección.** `T16` marcaba **vencidas** las cifras `**3 FAIL · 4351 WARN**` que declaran `ADR-531` y `ADR-532`: ahora llevan `{cita-historica}` con la fecha y el número que las vence, que es el mecanismo de la casa (`MARCA_HISTORICA`, `ACTO T16-HISTÓRICAS`, 18/ago/2026), y `ADR-533` declara la suya.
-
-**Las 9 entradas nuevas son de `T03` y son la misma cosa, dicha nueve veces:** referencias colgantes a `ADVERSARIAL-D-THETA-v1_0.md` (×5) y a `D-THETA-DOCUMENTO-v1_1-post-adversarial.md` (×4) — **los dos documentos que mesa iba a cargar y que no llegaron**.
-
-**Y aquí hay un hallazgo reflexivo que conviene no tragarse.** Cuatro de las nueve vienen de texto archivado **verbatim** que A.3 prohíbe editar: el encargo, el retorno de Astra y el brief externo los citan porque **esperaban leerlos**. Pero **cinco vienen de la prosa propia de este acto** —`ADR-533` y esta misma sección—, que los nombra **precisamente para reportar que no llegaron**. `T03` no distingue «cita un archivo que esperaba leer» de «nombra un archivo para decir que nunca llegó»: **reportar una ausencia crea la referencia colgante que se está reportando**. Es un punto fijo, y se midió al chocar con él **dos veces**: la primera redacción de esta sección declaró `4364 WARN` y escribirla movió la cifra a `4373`; compactar después la cita cruda —que reproducía los nombres **truncados** que la propia salida imprime, y un nombre truncado tampoco existe— la dejó en **`4370`**, que es donde se estabiliza. **La cifra es sensible a cómo el informe cita la salida**, y eso se dice en vez de presentarla como si fuera una constante del árbol.
-
-No se evita callando el nombre. Escribir un informe de ausencia sin nombrar lo ausente, para que un test no lo cuente, es escribir para complacer al test — exactamente lo que este programa prohíbe y lo que la regla de los encargos verbatim protege. Se nombra, se mide, se dice, y mesa decide.
-
-**Esto es además la medida exacta de lo que cuesta `NC-0277`.** El adjunto que no viaja no es un detalle de intendencia: cuesta 9 `WARN` y pone la línea base en rojo. **Si los dos adjuntos llegan y se archivan, las nueve desaparecen solas —las cuatro verbatim y las cinco propias— y no hay nada que congelar.**
-
-**Y por eso este acto no congela.** El recongelado de `tests/baseline.json` **no es del ejecutor**: los **siete** recongelados que la nota del propio `baseline.json` documenta llevan todos la misma fórmula — *«autorizada explícitamente por mesa en la sesión tras que el ejecutor PARARA y reportara las entradas nuevas»* —, y el precedente exacto de este caso es `ACTO GEN2-E0 · ENCOLA` (7/sep/2026), que absorbió 8 `WARN` de `T03` del bucket `pieza_GEN2_verbatim`, todas sobre texto de dirección archivado verbatim, y sólo después de que mesa lo autorizara.
-
-**Decisión de mesa, dos opciones, ninguna del ejecutor:**
-
-- **(a) — vía preferida.** Mesa carga los dos documentos que faltan; un acto los archiva por A.3 y las 9 entradas **se cierran solas**. Cierra además `NC-0277` y su hermana `NC-0271`, que llevan dos actos abiertas por lo mismo.
-- **(b).** Mesa autoriza el recongelado de esas 9 en su propio bucket —`T03_adjunto_de_mesa_no_entregado__citado_desde_texto_verbatim_y_desde_el_reporte_de_su_ausencia`—, mismo mecanismo que `GEN2-E0`.
-
-Fila: `NC-0281`. **El CI de este PR sale rojo por línea base, no por `FAIL` nuevo**, y eso es lo que mesa audita al fusionar.
+`python3 tests/test_celdas_d.py` → `4 archivo(s) de celda-D validan contra propuesta-motor-adaptativo-celda-v0_5.md §3`.

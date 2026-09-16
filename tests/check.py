@@ -357,6 +357,29 @@ HISTORICOS = {
 # La exencion queda acotada por archivo y basename para no volver globalmente
 # invisible una referencia con el mismo nombre en otro documento.
 _T03_DEPENDENCIAS_PENDIENTES = {
+    # ACTO GEN2-CELDA-D-CAREO-1, 17/sep/2026. Una sola cita, en tres archivos,
+    # y la misma razon en los tres: `D-THETA-DOCUMENTO-PARA-ADVERSARIAL-v1_0.md`
+    # es la v1.0 de D-theta, el documento que el adversarial de Astra REVISA.
+    # Nunca viajo al arbol y esta SUPERADO: su propia sucesora, la v1.1, dice
+    # «la v1.0 se conserva como historia; esta v1.1 la sucede», y es la v1.1 la
+    # que este acto archivo (con su sha256 verificado). Pedirla a mesa seria
+    # pedir historia derogada para cerrar una cita; fabricarla seria inventar
+    # procedencia. La cita cuelga a proposito, como la de NC-0219 arriba.
+    #  · en el adversarial, porque esta archivado VERBATIM (A.3) y no se edita;
+    #  · en la nota y en gobernanza, porque este acto la NOMBRA para explicar
+    #    por que cuelga -- y nombrar un archivo ausente para reportar su
+    #    ausencia es exactamente lo que T03 no sabe distinguir de citarlo
+    #    esperando leerlo (ver nota §10, hallazgo reflexivo). Se usa el
+    #    mecanismo documentado en vez de callar el nombre.
+    "forense/notas/insumos-externos/celda-d-piloto/ADVERSARIAL-D-THETA-v1_0.md": {
+        "D-THETA-DOCUMENTO-PARA-ADVERSARIAL-v1_0.md",
+    },
+    "forense/notas/2026-09-17-GEN2-CELDA-D-CAREO-1.md": {
+        "D-THETA-DOCUMENTO-PARA-ADVERSARIAL-v1_0.md",
+    },
+    "canon/gobernanza-v1_15.md": {
+        "D-THETA-DOCUMENTO-PARA-ADVERSARIAL-v1_0.md",
+    },
     "forense/encargos/cola/2026-09-11-GEN2-POST-723/27-GEN2-ENSAFI-MEDICION-DESCRIPTIVA-CON-DISENO.md": {
         "2026-09-11-GEN2-FUENTES-FINANCIERAS-CONTINUACION-EFECTIVA-cierre.md",
     },
@@ -2878,6 +2901,16 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/notas/insumos-externos/celda-d-piloto/ENCARGO-EXTERNO-ASTRA-celda-d-piloto-2026-09-17.md",
     "forense/notas/insumos-direccion/CELDA-D-PILOTO-diseno-direccion-v1_0-CIEGO-2026-09-17.md",
     "forense/notas/insumos-direccion/CELDA-D-PILOTO-diseno-direccion-v1_1-post-careo-2026-09-17.md",
+    # ACTO GEN2-CELDA-D-CAREO-1, segunda entrega (los dos adjuntos que mesa
+    # cargo despues del PARO de A.3). Los dos estan archivados VERBATIM y no se
+    # editan para complacer un test. Sus menciones:
+    #   `E0`, `E1` -- las FASES del programa de calibracion de theta (E0 = el
+    #            stub vigente de milpa/src/theta.py; E1 = el diseno de esquema
+    #            de forense/theta-cargable-por-celda-diseno-e1-v1_0.md). Son
+    #            habitantes ya existentes y ya censados del espacio E, no
+    #            rotulos nuevos: el regex no distingue una fase de un acto.
+    "forense/notas/insumos-direccion/D-THETA-DOCUMENTO-v1_1-post-adversarial.md",
+    "forense/notas/insumos-externos/celda-d-piloto/ADVERSARIAL-D-THETA-v1_0.md",
     # ACTO GEN2-CELDA-D-DISENO-CIEGO-1, 17/sep/2026. Dos archivos, una sola
     # causa: el encargo esta archivado VERBATIM (0-bis A.3) y no se edita para
     # complacer un test, y la nota lo cita verbatim. Sus menciones, una por una:
