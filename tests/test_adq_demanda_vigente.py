@@ -153,6 +153,13 @@ def _crea_fixture(tmp: Path) -> tuple[Path, Path]:
     env["GIT_AUTHOR_NAME"] = env["GIT_COMMITTER_NAME"] = "fixture"
     env["GIT_AUTHOR_EMAIL"] = env["GIT_COMMITTER_EMAIL"] = "fixture@test.invalid"
     _run(["git", "init", "--quiet", "-b", "main"], work, env=env)
+    # Config LOCAL del repo, no variables de entorno: `publica_proyeccion_demanda`
+    # se invoca después vía `_corre_bash` (un subprocess nuevo, sin este env), y
+    # un runner de CI sin identidad git global ("empty ident name") tumbaba el
+    # `git commit` real de la función bajo prueba, no la lógica que se quiere
+    # probar -- reproducido en GitHub Actions (PR #801, primer intento de CI).
+    _run(["git", "config", "user.email", "fixture@test.invalid"], work, env=env)
+    _run(["git", "config", "user.name", "fixture"], work, env=env)
     _run(["git", "add", "-A"], work, env=env)
     _run(["git", "commit", "--quiet", "-m", "fixture inicial"], work, env=env)
 
