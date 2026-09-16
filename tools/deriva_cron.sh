@@ -268,8 +268,14 @@ asegura_pr() {
 }
 
 publica_cambios() {
-  local commit_sha pr_rc
+  local commit_sha pr_rc cambios_controlados
   git add -- "$DERIVADOS_DIR" forense/tablero/TABLERO-PROGRAMA.md >>"$LOGFILE" 2>&1
+  if [ "${DERIVA_PUBLICAR:-1}" = 0 ]; then
+    cambios_controlados="$(git diff --cached --stat | tail -1 | sed 's/^ *//' || true)"
+    git restore --staged -- "$DERIVADOS_DIR" forense/tablero/TABLERO-PROGRAMA.md
+    RESULTADO_PUBLICACION="COMPROBACION-SIN-PUBLICAR:${cambios_controlados:-cero cambios versionables}"
+    return 0
+  fi
   if git diff --cached --quiet; then
     if git show-ref --verify --quiet "refs/remotes/origin/${RAMA}" && \
        ! git merge-base --is-ancestor "origin/${RAMA}" origin/main; then

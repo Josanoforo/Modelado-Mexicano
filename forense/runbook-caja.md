@@ -23,6 +23,6 @@ documentar (`FP-352`); se amplía cuando aparezca la siguiente pieza real.
   llama `tools/adquiere_launcher.sh`; éste ejecuta `tools/deriva_cron.sh` antes
   de consultar presupuesto o despacho. Derivados usa lock y worktree propios,
   propaga fallos y no invoca modelos. Para una comprobación manual acotada usa
-  `MM_TRAMO=derivacion ADQ_DISPARADOR=manual ADQ_DEPLOY_REVISION=<SHA> /home/pc0/mm-adq/tools/adquiere_launcher.sh`.
+  `DERIVA_PUBLICAR=0 MM_TRAMO=derivacion ADQ_DISPARADOR=manual ADQ_DEPLOY_REVISION=<SHA> /home/pc0/mm-adq/tools/adquiere_launcher.sh`.
   No atribuyas esa ejecución a Task Scheduler salvo que exista el evento de
   trigger correspondiente en el canal Operational.

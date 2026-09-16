@@ -340,7 +340,7 @@ wsl.exe -d Ubuntu -u pc0 -- env ADQ_DISPARADOR=windows-task-scheduler ADQ_COMPRO
 Para comprobar sólo derivados, sin adquisiciones ni descargas:
 
 ```bash
-MM_TRAMO=derivacion ADQ_DISPARADOR=manual ADQ_DEPLOY_REVISION=<SHA-publicado> /home/pc0/mm-adq/tools/adquiere_launcher.sh
+DERIVA_PUBLICAR=0 MM_TRAMO=derivacion ADQ_DISPARADOR=manual ADQ_DEPLOY_REVISION=<SHA-publicado> /home/pc0/mm-adq/tools/adquiere_launcher.sh
 ```
 
 La nota de cierre del correctivo registra por separado el SHA publicado, el
