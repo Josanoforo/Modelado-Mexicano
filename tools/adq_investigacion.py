@@ -952,6 +952,24 @@ def proyecta_demanda(cfg: dict, corte: dt.date, raiz: Path = RAIZ) -> dict:
     }
 
 
+def cambio_pertinente_proyeccion(antes: dict, despues: dict) -> bool:
+    """True si `despues` difiere de `antes` en algo más que `corte`.
+
+    `corte` avanza cada día aunque nada del registro haya cambiado; un
+    consumidor mecánico (el cron) que republicara por eso solo generaría
+    commits/PR sin contenido nuevo (ENCARGO GEN2-DEMANDA-VIGENTE-ANTES-
+    DESPACHO, 15/sep/2026: "evitar commits/PR repetidos solo por una marca
+    de tiempo"). Cualquier otra diferencia -- NC abierta/cerrada, cambio de
+    ruteo, selección siguiente -- sí es pertinente, incluida una que sólo
+    exista porque `corte` avanzó (p. ej. una revisión que vence hoy).
+    """
+    a = dict(antes)
+    a.pop("corte", None)
+    b = dict(despues)
+    b.pop("corte", None)
+    return a != b
+
+
 def reserva_seleccion(seleccion: dict, owner: str, cfg: dict,
                       raiz: Path = RAIZ, ahora: dt.datetime | None = None) -> list[str]:
     ahora = ahora or _ahora()
@@ -1484,6 +1502,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--libera")
     ap.add_argument("--actualiza-desde-resultados", type=Path)
     ap.add_argument("--escribe-proyeccion", type=Path)
+    ap.add_argument("--compara-proyeccion", type=Path, nargs=2,
+                     metavar=("ANTES", "DESPUES"))
     ap.add_argument("--presupuesto", action="store_true")
     ap.add_argument("--reserva-presupuesto", action="store_true")
     ap.add_argument("--checkpoint-presupuesto", action="store_true")
@@ -1565,6 +1585,15 @@ def main(argv: list[str] | None = None) -> int:
     if args.actualiza_desde_resultados:
         print(json.dumps({"actualizadas": actualiza_desde_resultados(
             args.actualiza_desde_resultados, cfg)}, ensure_ascii=False))
+        return 0
+    if args.compara_proyeccion:
+        ruta_antes, ruta_despues = args.compara_proyeccion
+        try:
+            antes = json.loads(ruta_antes.read_text(encoding="utf-8"))
+        except (FileNotFoundError, json.JSONDecodeError):
+            antes = {}
+        despues = json.loads(ruta_despues.read_text(encoding="utf-8"))
+        print("si" if cambio_pertinente_proyeccion(antes, despues) else "no")
         return 0
     if args.escribe_proyeccion:
         dato = proyecta_demanda(cfg, corte)

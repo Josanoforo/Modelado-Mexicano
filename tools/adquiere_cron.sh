@@ -570,6 +570,91 @@ ${RESUMEN}" >>"$LOGFILE" 2>&1
   restaura_arbol_operativo || true
 }
 
+# publica_proyeccion_demanda -- regenera data/adq-demanda-activa-v1_0.json
+# con el escritor canónico (`adq_investigacion.py --escribe-proyeccion`,
+# mecánico, sin LLM) y lo publica por el mismo canal que el censo
+# (censo/${FECHA} + PR) sólo cuando el cambio es pertinente.
+# ENCARGO GEN2-DEMANDA-VIGENTE-ANTES-DESPACHO (15/sep/2026,
+# forense/encargos/2026-09-15-GEN2-DEMANDA-VIGENTE-ANTES-DESPACHO.md): la
+# fotografía publicada se quedaba con SHA/conteos de corridas anteriores
+# porque nada la regeneraba. El SELECTOR de arriba (SELECCION-INVESTIGACION)
+# ya calcula desde `forense/no-corrido.tsv` en vivo -- esta función sólo
+# mantiene fresca la evidencia para consulta humana; su fallo NUNCA bloquea
+# la selección ni la investigación, que ya corrieron independientemente.
+# `cambio_pertinente_proyeccion` (tools/adq_investigacion.py) ignora `corte`
+# al comparar, para no commitear/PR-ear solo porque avanzó la fecha.
+publica_proyeccion_demanda() {
+  local PROYECCION="data/adq-demanda-activa-v1_0.json"
+  local rama_censo="censo/${FECHA}"
+
+  # `checkout_o_crea_censo` PRIMERO: "antes" tiene que leerse de lo que ya
+  # está en censo/${FECHA} (lo que esta MISMA rama ya publicó hoy, si
+  # alguna corrida previa del día lo hizo), no de `main` -- `main` no
+  # recibe este commit hasta que mesa fusiona el PR, así que comparar
+  # contra `main` volvería a ver "cambio" en cada corrida del mismo día
+  # aunque censo/${FECHA} ya llevara la foto fresca (repetiría publicación
+  # por una comparación contra la rama equivocada, no por falta de cambio
+  # real -- exactamente lo que el encargo pide evitar).
+  checkout_o_crea_censo
+  local ANTES_TMP
+  ANTES_TMP="$(mktemp)"
+  cp "$PROYECCION" "$ANTES_TMP" 2>/dev/null || echo '{}' >"$ANTES_TMP"
+
+  set +e
+  RESUMEN_PROYECCION="$(python3 tools/adq_investigacion.py --escribe-proyeccion "$PROYECCION" --corte "$FECHA" 2>>"$LOGFILE")"
+  CODIGO_PROYECCION=$?
+  set -e
+  if [ "$CODIGO_PROYECCION" -ne 0 ]; then
+    PUBLICACION_FALLIDA=$((PUBLICACION_FALLIDA + 1))
+    log "PARO-PROYECCION-DEMANDA: --escribe-proyeccion salió ${CODIGO_PROYECCION}; ${PROYECCION} conserva su contenido anterior (escritor atómico: nunca escribe parcial). No se publica una vista sin regenerar -- la selección de esta corrida ya se calculó arriba desde fuentes vigentes y no depende de este archivo."
+    git checkout -- "$PROYECCION" >>"$LOGFILE" 2>&1 || true
+    rm -f "$ANTES_TMP"
+    restaura_arbol_operativo || true
+    return 0
+  fi
+
+  set +e
+  CAMBIO_PERTINENTE="$(python3 tools/adq_investigacion.py --compara-proyeccion "$ANTES_TMP" "$PROYECCION" 2>>"$LOGFILE")"
+  set -e
+  rm -f "$ANTES_TMP"
+
+  if [ "$CAMBIO_PERTINENTE" != "si" ]; then
+    log "PROYECCION-DEMANDA ${FECHA}: regenerada, sin cambio pertinente respecto a la publicada (sólo corte); no se publica de nuevo. ${RESUMEN_PROYECCION}"
+    git checkout -- "$PROYECCION" >>"$LOGFILE" 2>&1 || true
+    restaura_arbol_operativo || true
+    return 0
+  fi
+
+  git add "$PROYECCION" >>"$LOGFILE" 2>&1
+  if ! git diff --cached --quiet -- "$PROYECCION"; then
+    git commit -m "[ADQ-DEMANDA] ${FECHA}
+
+${RESUMEN_PROYECCION}" >>"$LOGFILE" 2>&1
+    if git push -u origin "$rama_censo" >>"$LOGFILE" 2>&1; then
+      log "[ADQ-DEMANDA] ${FECHA}: proyección regenerada y publicada en ${rama_censo}. ${RESUMEN_PROYECCION}"
+      if command -v gh >/dev/null 2>&1; then
+        local pr_abierto
+        pr_abierto="$(gh pr list --head "$rama_censo" --state open --json number --jq '.[0].number' 2>/dev/null || true)"
+        if [ -n "$pr_abierto" ]; then
+          log "[ADQ-DEMANDA] ${FECHA}: PR diario ya abierto para ${rama_censo}: #${pr_abierto} -- se reutiliza."
+        elif gh pr create --fill >>"$LOGFILE" 2>&1; then
+          log "[ADQ-DEMANDA] ${FECHA}: PR abierto para ${rama_censo}"
+        else
+          log "[ADQ-DEMANDA] ${FECHA}: gh pr create falló, ver arriba. Compara manualmente: https://github.com/Josanoforo/Modelado-Mexicano/compare/main...${rama_censo}"
+        fi
+      else
+        log "[ADQ-DEMANDA] ${FECHA}: gh no disponible. Compara manualmente: https://github.com/Josanoforo/Modelado-Mexicano/compare/main...${rama_censo}"
+      fi
+    else
+      PUBLICACION_FALLIDA=$((PUBLICACION_FALLIDA + 1))
+      log "PARO-PROYECCION-PUSH: el commit [ADQ-DEMANDA] ${FECHA} quedó local en ${rama_censo}, no se pudo empujar. Fallo operativo, no éxito."
+    fi
+  else
+    log "[ADQ-DEMANDA] ${FECHA}: sin diferencia de bytes tras regenerar, no se commitea de nuevo."
+  fi
+  restaura_arbol_operativo || true
+}
+
 # huella_adq <invocado:si|no> <motivo:-|PARO-RAIZ|PARO-RED|PARO-PROMPT|PARO-CORPUS> <exit:codigo|->
 # Formato congelado en forense/notas/2026-09-06-MAESTRA38-CRON-3-spec.md.
 # Se llama en CADA PARO (exit 1) y una vez al terminar con éxito o con
@@ -904,6 +989,10 @@ INVESTIGACION_EXCLUIDAS="$(printf '%s' "$INVESTIGACION_JSON" | python3 -c 'impor
 NUM_INVESTIGACIONES="$(printf '%s' "$INVESTIGACION_JSON" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)["elegidos"]))')"
 DEMANDA_ATENDIBLE=$((NUM_ELEGIDOS + NUM_INVESTIGACIONES))
 log "selección investigación: elegidas=${INVESTIGACION_ELEGIDAS} excluidas=${INVESTIGACION_EXCLUIDAS} máximo=${MAXIMO_INVESTIGACIONES}"
+
+# Mecánico, sin LLM, y ANTES de cualquier PARO (CORPUS/RED) que corte el
+# resto del recorrido sin invocar el modelo -- ver publica_proyeccion_demanda.
+publica_proyeccion_demanda
 
 if [ "$NUM_INVESTIGACIONES" -gt 0 ]; then
   python3 tools/adq_investigacion.py --reserva-seleccion "$INVESTIGACION_ARCHIVO" \
