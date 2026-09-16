@@ -1,6 +1,3 @@
-## HISTÓRICO — ARCHIVADO DESDE COLA (CONSUMIDO)
-Movido de `forense/encargos/cola/` a `forense/encargos/` por `ACTO GEN2-MANTENIMIENTO-3` (2026-09-16), `NC-0248`/`NC-0249`: uno de los 18 `LANZADO-COMO` que `ACTO GEN2-VIGENCIA-DEUDA-1` confirmó ya ejecutados y fusionados (PR #692, según la propia cabecera/`## CONSUMIDO` de este archivo, verificado sin homónimo archivado en `forense/encargos/` fuera de `cola/` antes de este movimiento) pero cuya copia de cola era el único registro -- patrón A.14, mismo criterio que `2026-09-02-MAESTRA35-L10-OLA6-SALUD-L1.md` (el CADUCO que `GEN2-VIGENCIA-DEUDA-1` ya movió). A diferencia de ese caso, este SÍ se ejecutó: el movimiento es de ubicación (cola -> archivo), no una reclasificación de estado. Cuerpo verbatim y cabecera existentes se conservan sin editar debajo (A.3).
-
 ESTADO: CONSUMIDO — PR #692; serie anual 2010–2024 completa, con NC-0155
 preservada para validación independiente.
 

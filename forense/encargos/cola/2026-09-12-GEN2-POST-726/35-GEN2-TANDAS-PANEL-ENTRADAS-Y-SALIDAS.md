@@ -1,6 +1,3 @@
-## HISTÓRICO — ARCHIVADO DESDE COLA (CONSUMIDO)
-Movido de `forense/encargos/cola/` a `forense/encargos/` por `ACTO GEN2-MANTENIMIENTO-3` (2026-09-16), `NC-0248`/`NC-0249`: uno de los 18 `LANZADO-COMO` que `ACTO GEN2-VIGENCIA-DEUDA-1` confirmó ya ejecutados y fusionados (PR #735, según la propia cabecera/`## CONSUMIDO` de este archivo, verificado sin homónimo archivado en `forense/encargos/` fuera de `cola/` antes de este movimiento) pero cuya copia de cola era el único registro -- patrón A.14, mismo criterio que `2026-09-02-MAESTRA35-L10-OLA6-SALUD-L1.md` (el CADUCO que `GEN2-VIGENCIA-DEUDA-1` ya movió). A diferencia de ese caso, este SÍ se ejecutó: el movimiento es de ubicación (cola -> archivo), no una reclasificación de estado. Cuerpo verbatim y cabecera existentes se conservan sin editar debajo (A.3).
-
 # 35 · Tandas: quién permanece, entra y sale
 
 ENTORNO: CAJA
@@ -56,16 +53,6 @@ Registra el CALC con el escritor vigente y lote propio, preservando overlay/repl
 ## Concurrencia
 
 Dueño de una spec/medidor/salidas nuevos de panel tandas. No modifica `CALC-TANDAS-ENNVIH-0001`, motor, consultas de 29, validación de 30 ni diseño de F5. Puede correr ahora; requiere sus archivos accesibles, no el cierre completo del 33. Comparte lectura de ENNViH y usa temporales propios.
-
-## NO-CORRIDO / RESERVAS
-
-Ninguna nueva. El residual panel de `NC-0037` (el faltante del ledger de
-grupos/pagos, citado en `## CONSUMIDO` abajo) es el residuo que el propio
-acto ya declaró. Sección `## NO-CORRIDO / RESERVAS` ausente del archivo
-original; añadida aquí retroactivamente por `ACTO GEN2-MANTENIMIENTO-3`
-(16/sep/2026) al archivar este encargo desde `cola/` — este acto sólo
-relocaliza el archivo, no re-ejecuta ni reconstruye reservas que el
-archivo original no registró bajo este encabezado.
 
 ## CONSUMIDO
 

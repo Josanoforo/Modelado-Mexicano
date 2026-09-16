@@ -1,6 +1,3 @@
-## HISTÓRICO — ARCHIVADO DESDE COLA (CONSUMIDO)
-Movido de `forense/encargos/cola/` a `forense/encargos/` por `ACTO GEN2-MANTENIMIENTO-3` (2026-09-16), `NC-0248`/`NC-0249`: uno de los 18 `LANZADO-COMO` que `ACTO GEN2-VIGENCIA-DEUDA-1` confirmó ya ejecutados y fusionados (PR #688, según la propia cabecera/`## CONSUMIDO` de este archivo, verificado sin homónimo archivado en `forense/encargos/` fuera de `cola/` antes de este movimiento) pero cuya copia de cola era el único registro -- patrón A.14, mismo criterio que `2026-09-02-MAESTRA35-L10-OLA6-SALUD-L1.md` (el CADUCO que `GEN2-VIGENCIA-DEUDA-1` ya movió). A diferencia de ese caso, este SÍ se ejecutó: el movimiento es de ubicación (cola -> archivo), no una reclasificación de estado. Cuerpo verbatim y cabecera existentes se conservan sin editar debajo (A.3).
-
 # ENCARGO · GEN2-S6-DISENO-Y-ALCANCE-INFERENCIAL
 
 ENTORNO: NUBE
@@ -74,17 +71,6 @@ Usa `tools/cierre_acto.py` primero en seco y luego `--aplica` cuando corresponda
 **Pruebas y parada.** Validar primero el resultado material; correr el baseline requerido sin ampliarlo para ocultar fallos. No perseguir los tres FAIL históricos por rutina. No volver a arreglar NC-0141/0148: #690 ya lo hizo. Revisar el diff después de las pruebas y añadir sólo archivos deliberados. D-14: cualquier automatización adicional debe evitar un error observado con efecto material y costar menos que su corrección repetida; si no, resolver directamente. Auditoría aproximadamente 20%, salvo riesgo material en números, identidad o decisión.
 
 Avanza entre fases ya autorizadas sin pedir confirmación. Termina cuando entregues el resultado suficiente o un residual externo concreto. Cadena de cierre: autorización → producto → evidencia → consumidor cuando aplique → obligaciones → vistas/cola → PR → merge de mesa. Una fila mixta conserva su parte pendiente. No cerrar por palabra coincidente ni por recomendación. Respuesta final del ejecutor: resultado útil, fases cumplidas/pendientes, PR/SHA, pruebas, y tabla `obligación | evidencia | cerrada/residual | siguiente acción`.
-
-## NO-CORRIDO / RESERVAS
-
-Ninguna nueva. `FP-372` ABIERTA y `NC-0156` como vía oficial residual (ambas
-citadas en `## CONSUMIDO` abajo) son el residuo que el propio acto ya
-declaró en su texto. Sección `## NO-CORRIDO / RESERVAS` ausente del archivo
-original (predata la disciplina A.14 tal como quedó formalizada después);
-añadida aquí retroactivamente por `ACTO GEN2-MANTENIMIENTO-3` (16/sep/2026)
-al archivar este encargo desde `cola/` — este acto sólo relocaliza el
-archivo, no re-ejecuta ni reconstruye reservas que el archivo original no
-registró bajo este encabezado.
 
 ## CONSUMIDO
 

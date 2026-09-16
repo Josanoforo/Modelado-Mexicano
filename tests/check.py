@@ -3162,7 +3162,7 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # mención de rótulos de actos hermanos en la misma cola, no un rótulo que
     # cada uno de estos archivos instancie por sí mismo. Encargo verbatim, no
     # se edita para complacer un test.
-    "forense/encargos/2026-09-07-GEN2-E3-1-ENDURECE-CALC.md",  # movido de cola/ por ACTO GEN2-MANTENIMIENTO-3, NC-0248/0249 (16/sep/2026)
+    "forense/encargos/cola/2026-09-07-GEN2-E3-1-ENDURECE-CALC.md",
     "forense/encargos/cola/2026-09-07-GEN2-E5-0-SPECS-EJECUTABLES.md",
     "forense/encargos/cola/2026-09-07-GEN2-E7-READINESS-2.md",
     # ACTO MAESTRA38-N22, 7/sep/2026: encargo archivado VERBATIM (A.3). Su
@@ -4383,7 +4383,7 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # espacio E, mismo patron que el resto de esta lista. Los encargos no
     # se editan para complacer este test -- A.3 pide el texto verbatim de
     # direccion (Fable).
-    "forense/encargos/2026-09-01-MAESTRA34-N2-MARCO-M-v1_2.md",  # movido de cola/ por ACTO GEN2-MANTENIMIENTO-3, NC-0248/0249 (16/sep/2026)
+    "forense/encargos/cola/2026-09-01-MAESTRA34-N2-MARCO-M-v1_2.md",
     "forense/encargos/cola/2026-09-01-MAESTRA34-N3-AGREGA-2.md",
     # PR [COLA] encola MAESTRA34-N4/N5, 2/sep/2026: mismo patron y mismo
     # precedente que la entrada de arriba. El encargo N4 (LISTO PARA
@@ -4396,7 +4396,7 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # ninguno es marcador nuevo. Los encargos no se editan para complacer
     # este test -- A.3 pide el texto verbatim de direccion (Fable).
     "forense/encargos/2026-09-01-MAESTRA34-N4-PLOMERIA-v1_2.md",
-    "forense/encargos/2026-09-01-MAESTRA34-N5-RE-EVALUA-OLA6.md",  # movido de cola/ por ACTO GEN2-MANTENIMIENTO-3, NC-0248/0249 (16/sep/2026)
+    "forense/encargos/cola/2026-09-01-MAESTRA34-N5-RE-EVALUA-OLA6.md",
     # ACTO MAESTRA34-N8 · FECHAS-SON-LIMITES, 2/sep/2026: el encargo
     # archivado (A.3, verbatim de direccion) cita tres veces "E1" pelado
     # ("cola de E1", "cola/...E1...", "no ejecuta E1") al referirse en
@@ -4553,10 +4553,10 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # siete cabeceras quedan limpias y el residuo es 100% de direccion.
     "forense/notas/PLAN-FINAL-GEN2-v2_0-2026-09-07.md",
     "forense/encargos/cola/2026-09-07-ENCARGOS-GEN2-en-orden.md",
-    "forense/encargos/2026-09-07-GEN2-E1-LIMPIEZA-C1.md",  # movido de cola/ por ACTO GEN2-MANTENIMIENTO-3, NC-0248/0249 (16/sep/2026)
-    "forense/encargos/2026-09-07-GEN2-E2-C0-A-DEMANDA.md",  # movido de cola/ por ACTO GEN2-MANTENIMIENTO-3, NC-0248/0249 (16/sep/2026)
-    "forense/encargos/2026-09-07-GEN2-E3-AUTOMATIZA-GEN2-1.md",  # movido de cola/ por ACTO GEN2-MANTENIMIENTO-3, NC-0248/0249 (16/sep/2026)
-    "forense/encargos/2026-09-07-GEN2-E4-LIMPIEZA-C2-PODA.md",  # movido de cola/ por ACTO GEN2-MANTENIMIENTO-3, NC-0248/0249 (16/sep/2026)
+    "forense/encargos/cola/2026-09-07-GEN2-E1-LIMPIEZA-C1.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E2-C0-A-DEMANDA.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E3-AUTOMATIZA-GEN2-1.md",
+    "forense/encargos/cola/2026-09-07-GEN2-E4-LIMPIEZA-C2-PODA.md",
     "forense/encargos/cola/2026-09-07-GEN2-E5-CALC-0001-0003.md",
     "forense/encargos/cola/2026-09-07-GEN2-E6-AUTOMATIZA-GEN2-2.md",
     # ACTO GEN2-E1 · LIMPIEZA-C1, 7/sep/2026: NO añade exención propia aquí.
@@ -4646,8 +4646,8 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/cola/2026-09-10-GEN2-POST-685/02-GEN2-MOTOR-USOS-Y-COMPLEMENTOS.md",
     "forense/encargos/cola/2026-09-10-GEN2-POST-685/03-GEN2-ENIF-POBLACION-Y-ADOPCION.md",
     "forense/encargos/cola/2026-09-10-GEN2-POST-685/04-GEN2-S6-S12-S13-SUCESORAS.md",
-    "forense/encargos/2026-09-10-GEN2-ENVIPE-SERIE-COMPLETA.md",  # movido de cola/ por ACTO GEN2-MANTENIMIENTO-3, NC-0248/0249 (16/sep/2026)
-    "forense/encargos/2026-09-10-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md",  # movido de cola/ por ACTO GEN2-MANTENIMIENTO-3, NC-0248/0249 (16/sep/2026)
+    "forense/encargos/cola/2026-09-10-GEN2-POST-685/05-GEN2-ENVIPE-SERIE-COMPLETA.md",
+    "forense/encargos/cola/2026-09-10-GEN2-POST-685/06-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md",
     "forense/encargos/cola/2026-09-10-GEN2-POST-685/07-GEN2-SONDA-CRON-PRODUCCION.md",
     "forense/encargos/2026-09-10-GEN2-PRUEBAS-LIMPIAS-Y-REPLAY.md",
     # Copia A.3 del lote 01 anterior. Conserva verbatim los mismos E02/E03
