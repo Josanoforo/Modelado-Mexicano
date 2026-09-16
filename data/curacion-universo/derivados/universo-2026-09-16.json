@@ -1,0 +1,88 @@
+{
+  "comparado_contra": "data/curacion-universo/snapshot-t0.json",
+  "conteos": {
+    "candidatos_reconciliacion": 8461,
+    "cobertura_adquisicion_puntual": "NO_DETERMINADO",
+    "componentes_declarados_conservadores": 38364,
+    "contenidos_locales_sha256_unicos": 1274,
+    "cota_superior_activos_declarados": 38364,
+    "declaraciones_parseadas": 40597,
+    "denominador_activos_declarados": "NO_DETERMINADO",
+    "discrepancias_hash_local": 2,
+    "duplicados_locales_reales": 3,
+    "hashes_representaciones_locales_verificados": 1277,
+    "identidades_locales_verificadas": 1274,
+    "inputs": 81,
+    "inputs_con_error": 0,
+    "numerador_adquirido_identidades_locales_verificadas": 1274,
+    "representaciones_locales": 1277
+  },
+  "deltas": {
+    "candidatos_reconciliacion": {
+      "anterior": 8202,
+      "delta": 259,
+      "nuevo": 8461
+    },
+    "componentes_declarados_conservadores": {
+      "anterior": 36026,
+      "delta": 2338,
+      "nuevo": 38364
+    },
+    "contenidos_locales_sha256_unicos": {
+      "anterior": 509,
+      "delta": 765,
+      "nuevo": 1274
+    },
+    "cota_superior_activos_declarados": {
+      "anterior": 36026,
+      "delta": 2338,
+      "nuevo": 38364
+    },
+    "declaraciones_parseadas": {
+      "anterior": 37526,
+      "delta": 3071,
+      "nuevo": 40597
+    },
+    "discrepancias_hash_local": {
+      "anterior": 3,
+      "delta": -1,
+      "nuevo": 2
+    },
+    "duplicados_locales_reales": {
+      "anterior": 1,
+      "delta": 2,
+      "nuevo": 3
+    },
+    "hashes_representaciones_locales_verificados": {
+      "anterior": 510,
+      "delta": 767,
+      "nuevo": 1277
+    },
+    "identidades_locales_verificadas": {
+      "anterior": 509,
+      "delta": 765,
+      "nuevo": 1274
+    },
+    "inputs": {
+      "anterior": 52,
+      "delta": 29,
+      "nuevo": 81
+    },
+    "numerador_adquirido_identidades_locales_verificadas": {
+      "anterior": 509,
+      "delta": 765,
+      "nuevo": 1274
+    },
+    "representaciones_locales": {
+      "anterior": 510,
+      "delta": 767,
+      "nuevo": 1277
+    }
+  },
+  "fecha": "2026-09-16",
+  "hash_anterior": "89f4c3a49c00c0e1ba1f07013e0af10bbc3289fdddc48dde816c37d3da1a742b",
+  "hash_cambio": true,
+  "material": false,
+  "motivo_material": [],
+  "snapshot_sha256_del_dia": "d0cb2d8a64354ed8ccaa69c59a13655f58e224adf328a0ee41badcbdf2f9aaec"
+}
