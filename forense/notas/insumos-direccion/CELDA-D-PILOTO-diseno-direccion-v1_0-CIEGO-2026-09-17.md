@@ -9,7 +9,7 @@
 > - **sha256 del cuerpo verbatim, verificado por comando en este acto:** `c7d55e61bdf929c099f9c0a97c5ff3695f0749be11636cc903af715de893b8b8`
 >   — coincide con el prefijo `c7d55e61bdf929c0…` que el encargo declara.
 >   Comando: `sha256sum <adjunto>` antes de copiar, y `sha256sum` del cuerpo extraído después.
-> - **Archivado por:** `ACTO GEN2-CELDA-D-CAREO-1`, encargo `forense/encargos/2026-09-17-GEN2-CELDA-D-CAREO-1.md`, P0.
+> - **Archivado por:** `ACTO GEN2-CELDA-D-CAREO-1`, encargo `forense/encargos/2026-09-17-GEN2-CELDA-D-CAREO-1-TRES-DISENOS-UN-CAREO.md`, P0.
 > - **Nota:** Diseño ciego de dirección, escrito sin leer el retorno de Astra ni la nota de Opus (#823). HISTORIA: superado por el v1.1 post-careo; no se edita.
 
 ---

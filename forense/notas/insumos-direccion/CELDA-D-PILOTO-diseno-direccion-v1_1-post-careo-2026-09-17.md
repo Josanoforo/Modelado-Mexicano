@@ -9,7 +9,7 @@
 > - **sha256 del cuerpo verbatim, verificado por comando en este acto:** `68a794936ef2ca47cf052b3a1e64ca002c87fb7d9e8cefb8ae998220c99f19cb`
 >   — coincide con el prefijo `68a794936ef2ca47…` que el encargo declara.
 >   Comando: `sha256sum <adjunto>` antes de copiar, y `sha256sum` del cuerpo extraído después.
-> - **Archivado por:** `ACTO GEN2-CELDA-D-CAREO-1`, encargo `forense/encargos/2026-09-17-GEN2-CELDA-D-CAREO-1.md`, P0.
+> - **Archivado por:** `ACTO GEN2-CELDA-D-CAREO-1`, encargo `forense/encargos/2026-09-17-GEN2-CELDA-D-CAREO-1-TRES-DISENOS-UN-CAREO.md`, P0.
 > - **Nota:** EL DISEÑO VIGENTE, por la firma de mesa del 17/sep/2026. Su §9 es el YAML que este acto registra como celda-D.
 
 ---

@@ -2847,6 +2847,37 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-CELDA-D-CAREO-1, 17/sep/2026. Cinco archivos, dos causas
+    # distintas; ninguno se edita para complacer el test.
+    #
+    # CAUSA 1 -- CUATRO ADJUNTOS ARCHIVADOS VERBATIM (P0, A.3). Son insumos de
+    # terceros (Astra, externo) y de direccion, con su sha256 verificado y
+    # pegado en su cabecera de procedencia; el cuerpo bajo la linea de guiones
+    # NO se toca, ni una coma. Editarlos para que pasen un test destruiria
+    # justo lo que los hace utiles: que sean lo que su autor escribio.
+    #   `M1`, `M3`  -- `ADV1-M1`/`ADV1-M3` del careo ADV-DUELO, escritos sin
+    #            prefijo por sus autores. La nota propia de este acto los
+    #            escribe SIEMPRE con prefijo.
+    #   `M5`     -- `ADV1-M5`, la tabla de cinco casillas, idem.
+    #   `M01`, `M08`, `M09`, `M22` -- ids de FILA del catalogo de momentos
+    #            (`milpa/catalogo-momentos-v0_1.tsv`, 22 filas `M01`..`M22`).
+    #            Son datos de un TSV, no rotulos de acto ni habitantes de un
+    #            espacio; el regex no los distingue. Misma exencion que ya
+    #            lleva la nota de ACTO GEN2-CELDA-D-DISENO-CIEGO-1 arriba.
+    #
+    # CAUSA 2 -- LA NOTA PROPIA DE ESTE ACTO. Se corrigieron a mano TODOS sus
+    # rotulos pelados antes de pedir la exencion (`M3`->`ADV1-M3`,
+    # `M1(ii)`->`ADV1-M1(ii)`, `M5`->`ADV1-M5`, `M5(4)`->`ADV1-M5(4)`, y la
+    # mencion del slot `M1` del sello del motor reescrita como `ADR-91`).
+    # Quedan SOLO `M01` y `M22`, y por la razon de arriba: son ids de fila del
+    # catalogo, citados al verificar que el catalogo trae 22 momentos y no 23.
+    # El rotulo propio de este acto, `GEN2 · GEN2-CELDA-D-CAREO-1`, SI va
+    # censado en `canon/registro-rotulos.tsv`.
+    "forense/notas/2026-09-17-GEN2-CELDA-D-CAREO-1.md",
+    "forense/notas/insumos-externos/celda-d-piloto/ASTRA-CELDA-D-DISENO-Y-ADVERSARIAL-b881ee6-v1_0.md",
+    "forense/notas/insumos-externos/celda-d-piloto/ENCARGO-EXTERNO-ASTRA-celda-d-piloto-2026-09-17.md",
+    "forense/notas/insumos-direccion/CELDA-D-PILOTO-diseno-direccion-v1_0-CIEGO-2026-09-17.md",
+    "forense/notas/insumos-direccion/CELDA-D-PILOTO-diseno-direccion-v1_1-post-careo-2026-09-17.md",
     # ACTO GEN2-CELDA-D-DISENO-CIEGO-1, 17/sep/2026. Dos archivos, una sola
     # causa: el encargo esta archivado VERBATIM (0-bis A.3) y no se edita para
     # complacer un test, y la nota lo cita verbatim. Sus menciones, una por una:
@@ -5340,6 +5371,22 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-CELDA-D-CAREO-1, 17/sep/2026: encargo A.3 archivado VERBATIM,
+    # que no se edita para complacer un test (misma regla que rige T25). Su
+    # unica cita `R-n` es `R5.1`, y aparece una sola vez, dentro del bloque de
+    # VERIFICACION DE EXISTENCIA (A.8), nombrando lo que un grep ENCONTRO:
+    # «2 coincidencias, ambas del 12/ago sobre clustering de R5.1, no sobre
+    # reserva de evaluacion». Es el resultado de una busqueda negativa, no una
+    # regla que este acto clasifique, pre-registre, cargue o selle -- que es lo
+    # que ADR-340 exige documentar. El acto no toca `milpa/`, no mide, no
+    # adjudica y su celda-D es del dominio FIN, no de la familia de R5.1.
+    # Corrido igualmente, para que la exencion tenga evidencia y no palabra:
+    #   python3 tools/ya_medido.py R5.1
+    #   -> resuelto por canon: R5.1 -> familia.seguro.volatilidad_ausencia_estado
+    #      milpa/tramite.yaml:904  situacion=SELLADA tier=FUERTE p=0.045694
+    #      milpa/tramite-ola5-propuesta-v0.yaml:269  PENDIENTE-DE-MESA p=0.045694
+    # La regla esta MEDIDA y sellada desde antes; este acto no la mueve.
+    "forense/encargos/2026-09-17-GEN2-CELDA-D-CAREO-1-TRES-DISENOS-UN-CAREO.md",
     # ACTO GEN2-FIRMAS-MESA-1, 15/sep/2026: encargo A.3 archivado VERBATIM,
     # que no se edita para complacer un test (misma regla que rige T25). El
     # acto NO MIDE NADA -- su contador declara «cero mediciones propias» y

@@ -9,7 +9,7 @@
 > - **sha256 del cuerpo verbatim, verificado por comando en este acto:** `43f63e1fdf51f270f9d4bc5bcfa1a86161bee74d4e44b663695b4c97b757f5a6`
 >   — coincide con el prefijo `43f63e1fdf51f270…` que el encargo declara.
 >   Comando: `sha256sum <adjunto>` antes de copiar, y `sha256sum` del cuerpo extraído después.
-> - **Archivado por:** `ACTO GEN2-CELDA-D-CAREO-1`, encargo `forense/encargos/2026-09-17-GEN2-CELDA-D-CAREO-1.md`, P0.
+> - **Archivado por:** `ACTO GEN2-CELDA-D-CAREO-1`, encargo `forense/encargos/2026-09-17-GEN2-CELDA-D-CAREO-1-TRES-DISENOS-UN-CAREO.md`, P0.
 > - **Nota:** El brief que produjo el retorno de Astra. Se archiva porque dos de sus afirmaciones sobre el repo son falsas y el careo las registra como línea A.13 de dirección (P1 de este acto): «23 momentos» (son 22) y la columna `reglas_impacto` en la demanda (la columna es `consumidor`).
 
 ---

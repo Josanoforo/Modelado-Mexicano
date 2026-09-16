@@ -9,7 +9,7 @@
 > - **sha256 del cuerpo verbatim, verificado por comando en este acto:** `2b813f430fd3ad4f0176e3ff962677136662209830c36f9296108dafa1924356`
 >   — coincide con el prefijo `2b813f430fd3ad4f…` que el encargo declara.
 >   Comando: `sha256sum <adjunto>` antes de copiar, y `sha256sum` del cuerpo extraído después.
-> - **Archivado por:** `ACTO GEN2-CELDA-D-CAREO-1`, encargo `forense/encargos/2026-09-17-GEN2-CELDA-D-CAREO-1.md`, P0.
+> - **Archivado por:** `ACTO GEN2-CELDA-D-CAREO-1`, encargo `forense/encargos/2026-09-17-GEN2-CELDA-D-CAREO-1-TRES-DISENOS-UN-CAREO.md`, P0.
 > - **Nota:** Retorno externo al encargo ENCARGO-EXTERNO-ASTRA-celda-d-piloto-2026-09-17.md. Derivado contra el árbol fijo b881ee6. Sus 87 citas `archivo:línea` se verifican en P1 de este acto; sus tres fuentes externas quedan SIN-FETCH (A.6).
 
 ---
