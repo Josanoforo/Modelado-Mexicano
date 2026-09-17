@@ -1,5 +1,7 @@
 # Cierre · GEN2-L8-LINAJE-HEREDADO-1
 
+PR: `https://github.com/Josanoforo/Modelado-Mexicano/pull/833`.
+
 ## Resultado
 
 Se corrigió la clasificación de la única fuente numérica de

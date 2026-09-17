@@ -94,4 +94,4 @@ Termina cuando exista el producto usable y siguiente acción clara; no refines p
 ## Procedencia y consumo (fuera del texto verbatim)
 
 Fuente local recibida de mesa: `/mnt/c/Users/PC0/Descargas MX/ENCARGO-GEN2-L8-LINAJE-HEREDADO-1.md`.
-Archivado por el propio acto el 17 de septiembre de 2026 UTC (sesión iniciada el 16 de septiembre en America/Mexico_City). El bloque anterior se conserva verbatim; esta nota posterior registra únicamente procedencia y consumo. Estado: en ejecución en la rama `acto/gen2-l8-linaje-heredado-1`.
+Archivado por el propio acto el 17 de septiembre de 2026 UTC (sesión iniciada el 16 de septiembre en America/Mexico_City). El bloque anterior se conserva verbatim; esta nota posterior registra únicamente procedencia y consumo. Consumido por PR #833, abierto desde la rama `acto/gen2-l8-linaje-heredado-1`; fusión pendiente de Jonás.
