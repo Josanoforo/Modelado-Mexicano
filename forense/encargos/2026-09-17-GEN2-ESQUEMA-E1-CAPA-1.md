@@ -51,6 +51,16 @@ ejecutada, parcial, distinta de lo pedido, o con reserva.)*
 
 Ejecutado por **`PR #847`** (`https://github.com/Josanoforo/Modelado-Mexicano/pull/847`),
 rama `claude/friendly-johnson-u8b8mk`, 17/sep/2026 — `ACTO GEN2-ESQUEMA-E1-CAPA-1`,
-`ADR-535`. Suite `3 FAIL · 4364 WARN`, **LÍNEA BASE VERDE**, sin tocar
+`ADR-535`. Suite `3 FAIL · 4372 WARN`, **LÍNEA BASE VERDE**, sin tocar
 `tests/baseline.json`. `NC-0261` y `NC-0263` **CERRADAS**; `NC-0293`…`NC-0297`
 abiertas. Merge de mesa.
+
+**Sincronizado con `main` el 17/sep/2026, y RENUMERADO por ello.** `main` avanzó
+36 commits con el acto abierto; `GEN2-TRAMITE-4` (`PR #848`) **fusionó primero**
+y se llevó `ADR-534` y `NC-0283`..`NC-0292` — el rango exacto que este acto había
+tomado. Regla de la casa, renumera quien fusiona segundo: `ADR-534`→**`ADR-535`**
+y `NC-0283`..`NC-0287`→**`NC-0293`..`NC-0297`**, re-derivados contra el árbol
+fusionado y no heredados de prosa. Cuatro conflictos, los cuatro por *append*
+simultáneo en el mismo punto, resueltos conservando **ambos** lados sin editar
+una sola entrada ajena. La cifra de suite de `ADR-534` quedó `{cita-historica}`
+por la vía sancionada, **sin corregir su número**: era el suyo.
