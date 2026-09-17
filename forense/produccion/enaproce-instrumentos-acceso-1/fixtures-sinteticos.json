@@ -1,0 +1,74 @@
+[
+  {
+    "name": "2015_micro_ningun_tramite_con_carga",
+    "input": {
+      "wave": 2015,
+      "instrument": "micro",
+      "problem_codes": [6],
+      "procedure_code": 13,
+      "fiscal_compliance_cost": 450.0,
+      "monthly_procedure_hours": 8.0
+    },
+    "expected": {
+      "exceso_tramites_problem": true,
+      "named_procedure_obstacle": false,
+      "burden_observed": true,
+      "corruption_outcome_observed": false,
+      "eligible_for_current_r03": false
+    }
+  },
+  {
+    "name": "2018_micro_exceso_en_segunda_mencion_ceros_reales",
+    "input": {
+      "wave": 2018,
+      "instrument": "micro",
+      "problem_codes": [2, 6, 7],
+      "procedure_code": 4,
+      "fiscal_compliance_cost": 0,
+      "monthly_procedure_hours": 0
+    },
+    "expected": {
+      "exceso_tramites_problem": true,
+      "named_procedure_obstacle": true,
+      "burden_observed": true,
+      "corruption_outcome_observed": false,
+      "eligible_for_current_r03": false
+    }
+  },
+  {
+    "name": "2018_pyme_otro_obstaculo_sin_corrupcion",
+    "input": {
+      "wave": 2018,
+      "instrument": "pyme",
+      "problem_codes": [1, 5, 7],
+      "procedure_code": 19,
+      "fiscal_compliance_cost": 1250,
+      "monthly_procedure_hours": 14
+    },
+    "expected": {
+      "exceso_tramites_problem": false,
+      "named_procedure_obstacle": true,
+      "burden_observed": true,
+      "corruption_outcome_observed": false,
+      "eligible_for_current_r03": false
+    }
+  },
+  {
+    "name": "faltante_no_es_cero",
+    "input": {
+      "wave": 2015,
+      "instrument": "pyme",
+      "problem_codes": null,
+      "procedure_code": null,
+      "fiscal_compliance_cost": null,
+      "monthly_procedure_hours": null
+    },
+    "expected": {
+      "exceso_tramites_problem": null,
+      "named_procedure_obstacle": null,
+      "burden_observed": false,
+      "corruption_outcome_observed": false,
+      "eligible_for_current_r03": false
+    }
+  }
+]

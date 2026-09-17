@@ -140,7 +140,7 @@ cambia lo que `matriz.py`/`theta.py`/`corrida0.py demanda` leen») queda probada
 negativa por la vía más directa que hay: el artefacto que esos lectores
 producen no cambia.
 
-### 3.2 · Un hallazgo colateral, medido al montar esa prueba (`NC-0287`)
+### 3.2 · Un hallazgo colateral, medido al montar esa prueba (`NC-0297`)
 
 Los dos TSV **se reescriben al correr `demanda` aunque no se cambie nada**: con
 `procedencia.yaml` idéntico al de `origin/main`, `git status` los marca como
@@ -152,7 +152,7 @@ Es **preexistente y ajeno a este acto** —se reprodujo con el archivo sin
 tocar— y **no contamina P2**, precisamente porque la comparación de §3.1 es
 entre dos salidas generadas en la misma corrida de hoy, no contra el TSV
 commiteado. `data/corrida0/` está fuera de perímetro: los dos archivos se
-usaron como evidencia y se revirtieron con `git checkout`. Va a `NC-0287`, con
+usaron como evidencia y se revirtieron con `git checkout`. Va a `NC-0297`, con
 la rutina `/deriva` como dueña.
 
 ## 4 · P3 · consumo
@@ -175,7 +175,7 @@ archivo no cargó nada: los 43 siguen lanzando `ThetaNoDisponible`.
 
 Todos fuera de perímetro, todos con `NC` y sucesor. El primero es serio:
 
-**`NC-0284` · colisión de llave `0`.** `consumibles()` devuelve **44** entradas
+**`NC-0294` · colisión de llave `0`.** `consumibles()` devuelve **44** entradas
 pero `Theta.desde()` las indexa por llave pelada en un `dict` y entrega **43**:
 la llave `0` colisiona entre `evidencia_experimental_terceros.0` y
 `coeficientes_generador_sellados.0`, y la segunda **pisa** a la primera. La
@@ -186,22 +186,22 @@ que se emita un solo error** — la misma clase de defecto que `NC-0263`, pero e
 código en vez de en datos. `milpa/src/theta.py` está fuera de perímetro por
 mandato explícito del encargo, así que se declara y no se toca.
 
-**`NC-0285` · el censo declara `universo` presente donde el árbol no trae el
+**`NC-0295` · el censo declara `universo` presente donde el árbol no trae el
 campo.** Medido con `yaml.safe_load`: sólo **3 de las 6** llaves de
 `coeficientes_generador_medidos` traen campo `universo:`, y **ninguna** entrada
 de `condicionales_*` lo trae — el universo vive repartido en `fuente:` +
 `n_util:`. La capa lo deriva de ahí y **lo declara** en `universo_origen`, en
 vez de fingir un campo que no existe.
 
-**`NC-0286` · `fuente:` colgante del sellado `G3.horizonte_temporal`.** Su
+**`NC-0296` · `fuente:` colgante del sellado `G3.horizonte_temporal`.** Su
 `fuente` es una ruta de nota, y el parseo de `tools/corrida0.py` obtiene la
 cadena `"md"`, que no existe en la sección. Hoy cae en el respaldo y **no mueve
 ninguna cifra** (verificado: `diff` vacío); es una referencia colgante latente.
 
-**`NC-0287` · el registro en seco commiteado está desfasado del árbol.** Ver
+**`NC-0297` · el registro en seco commiteado está desfasado del árbol.** Ver
 §3.2. Preexistente, ajeno a este acto y sin efecto sobre P2.
 
-**`NC-0283` · los 24 campos `NO-CENSADO`**, sucesor explícito del residuo de
+**`NC-0293` · los 24 campos `NO-CENSADO`**, sucesor explícito del residuo de
 `NC-0261` — para que cerrar `NC-0261` no entierre la deuda que quedaba debajo.
 
 ## 6 · Perímetro
@@ -228,7 +228,7 @@ complacer el test (A.3).
 cambiados, cero decisiones sobre la forma de `G5`, cero microdato, cero red.
 43 nombres de θ con estado legible por máquina; 15 familias de dispersión
 enumeradas; dos `NC` de mesa cerradas (`NC-0261`, `NC-0263`) y **cinco**
-abiertas (`NC-0283`…`NC-0287`).
+abiertas (`NC-0293`…`NC-0297`).
 
 **Sucesor:** el rediseño del marcador (lee la capa para saber qué θ compiten) y
 el segundo piloto celda-D.
