@@ -4984,6 +4984,15 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # el dato que el consumidor lee, no un rotulo de acto. Darle prefijo
     # falsearia la cita.
     "forense/notas/2026-09-17-GEN2-CELDA-D-PILOTO-2-cierre.md",
+    # ACTO GEN2-GUARDIAS-1, 17/sep/2026: encargo archivado VERBATIM (0-bis
+    # A.3), que no se edita para complacer un test. Cita `M05` al describir
+    # NC-0330 (la fila del catalogo de momentos que paso de NO-VERIFICADO a
+    # derivada) -- misma exencion, misma causa y mismo token que ya llevan
+    # `forense/encargos/2026-09-17-GEN2-CELDA-D-PILOTO-2-V1_1.md` y su nota
+    # de cierre, justo arriba: es dato de un TSV, no rotulo de acto. El
+    # rotulo propio de este acto, `GEN2-GUARDIAS-1`, va censado en
+    # canon/registro-rotulos.tsv.
+    "forense/encargos/2026-09-17-GEN2-GUARDIAS-1.md",
 }
 
 
