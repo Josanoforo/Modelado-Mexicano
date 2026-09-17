@@ -2,6 +2,9 @@
 
 ## Convenciones comunes
 
+- **Nombres de variable:** el prefijo local `ENAPROCE-` evita confundir los
+  códigos del cuestionario con rótulos internos del repositorio; el sufijo
+  después del guion es el nombre oficial exacto en RNM.
 - **Unidad:** empresa, que puede reunir uno o más establecimientos bajo una
   razón social. No es persona ni establecimiento aislado.
 - **Sectores:** manufacturas, comercio y los servicios privados no financieros
@@ -35,10 +38,10 @@ Muestra de diseño micro: 10,384; muestra definitiva informada por RNM: 9,103.
 
 | Variable | Texto/escala y código | Periodo | Página | Correspondencia con R03 |
 |---|---|---|---|---|
-| [`M61`](https://www.inegi.org.mx/rnm/index.php/catalog/330/variable/F20/V2494?name=M61) | Principal problema para crecer; selección única. `6 = Exceso de trámites gubernamentales`; `15 = No tiene problemas`. | Situación declarada en encuesta; actividad 2014 | Cuestionario micro, p. 27 | **Proxy limitado:** percepción/obstáculo, no exposición ni corrupción. |
-| [`M62`](https://www.inegi.org.mx/rnm/index.php/catalog/330/variable/F20/V2495?name=M62) | Principal trámite al que dedica más tiempo y recursos y considera obstáculo. Códigos `1–8, 11, 12`; `13 = Ninguno`. | Situación declarada; actividad 2014 | p. 27; definiciones pp. 26 y 28 | **Proxy limitado:** tipo de obstáculo; no mide tiempo, monto ni pago informal por categoría. |
-| [`M63`](https://www.inegi.org.mx/rnm/index.php/catalog/330/variable/F20/V2496?name=M63) | Pesos en un mes normal para cumplir obligaciones fiscales federales. Incluye contador, papelería y servicios; excluye impuestos. | Mes normal de 2014 | p. 27 | **Directa sólo para costo formal de cumplimiento fiscal**; no es pago informal. |
-| [`M64`](https://www.inegi.org.mx/rnm/index.php/catalog/330/variable/F20/V2497?name=M64) | Horas aproximadas en un mes normal para trámites gubernamentales distintos del pago de impuestos. | Mes normal de 2014 | p. 29 | **Directa para carga temporal**; no identifica trámite, exposición ni corrupción. |
+| [`ENAPROCE-M61`](https://www.inegi.org.mx/rnm/index.php/catalog/330/variable/F20/V2494) | Principal problema para crecer; selección única. `6 = Exceso de trámites gubernamentales`; `15 = No tiene problemas`. | Situación declarada en encuesta; actividad 2014 | Cuestionario micro, p. 27 | **Proxy limitado:** percepción/obstáculo, no exposición ni corrupción. |
+| [`ENAPROCE-M62`](https://www.inegi.org.mx/rnm/index.php/catalog/330/variable/F20/V2495) | Principal trámite al que dedica más tiempo y recursos y considera obstáculo. Códigos `1–8, 11, 12`; `13 = Ninguno`. | Situación declarada; actividad 2014 | p. 27; definiciones pp. 26 y 28 | **Proxy limitado:** tipo de obstáculo; no mide tiempo, monto ni pago informal por categoría. |
+| [`ENAPROCE-M63`](https://www.inegi.org.mx/rnm/index.php/catalog/330/variable/F20/V2496) | Pesos en un mes normal para cumplir obligaciones fiscales federales. Incluye contador, papelería y servicios; excluye impuestos. | Mes normal de 2014 | p. 27 | **Directa sólo para costo formal de cumplimiento fiscal**; no es pago informal. |
+| [`ENAPROCE-M64`](https://www.inegi.org.mx/rnm/index.php/catalog/330/variable/F20/V2497) | Horas aproximadas en un mes normal para trámites gubernamentales distintos del pago de impuestos. | Mes normal de 2014 | p. 29 | **Directa para carga temporal**; no identifica trámite, exposición ni corrupción. |
 
 ## 2015 · Pequeñas/medianas · tabla RNM F19
 
@@ -68,10 +71,10 @@ instrumento en la pieza leída.
 
 | Variable | Texto/escala y código | Periodo | Página | Correspondencia con R03 |
 |---|---|---|---|---|
-| [`M64_1`](https://www.inegi.org.mx/rnm/index.php/catalog/518/variable/F1/V223?name=M64_1), [`M64_2`](https://www.inegi.org.mx/rnm/index.php/catalog/518/variable/F1/V224?name=M64_2), [`M64_3`](https://www.inegi.org.mx/rnm/index.php/catalog/518/variable/F1/V225?name=M64_3) | Tres problemas principales ordenados; cada campo usa `1–8, 11–16, 19`; `6 = Exceso de trámites`, `16 = No tiene problemas`, `19 = Otro`. Multirrespuesta ordenada, no tres indicadores independientes. | Situación declarada; actividad 2017 | Cuestionario micro, p. 29 | **Proxy limitado.** No es comparable como “principal único” con 2015 sin armonización explícita. |
-| [`M65`](https://www.inegi.org.mx/rnm/index.php/catalog/518/variable/F1/V227?name=M65) | Principal trámite-obstáculo. `1–8, 11, 12`; `13 = Ninguno`; `19 = Otro`. | Situación declarada; actividad 2017 | p. 29 | **Proxy limitado.** Categorías 1–13 comparables con 2015; 19 es nuevo. |
-| [`M66`](https://www.inegi.org.mx/rnm/index.php/catalog/518/variable/F1/V229?name=M66) | Pesos en un mes normal de cumplimiento fiscal federal; excluye impuestos. | Mes normal de 2017 | p. 29 | **Directa para costo formal**, no pago informal. |
-| [`M67`](https://www.inegi.org.mx/rnm/index.php/catalog/518/variable/F1/V230?name=M67) | Horas aproximadas en un mes normal para trámites gubernamentales distintos del pago de impuestos. | Mes normal de 2017 | p. 31 | **Directa para carga temporal**, no corrupción. |
+| [`ENAPROCE-M64_1`](https://www.inegi.org.mx/rnm/index.php/catalog/518/variable/F1/V223), [`ENAPROCE-M64_2`](https://www.inegi.org.mx/rnm/index.php/catalog/518/variable/F1/V224), [`ENAPROCE-M64_3`](https://www.inegi.org.mx/rnm/index.php/catalog/518/variable/F1/V225) | Tres problemas principales ordenados; cada campo usa `1–8, 11–16, 19`; `6 = Exceso de trámites`, `16 = No tiene problemas`, `19 = Otro`. Multirrespuesta ordenada, no tres indicadores independientes. | Situación declarada; actividad 2017 | Cuestionario micro, p. 29 | **Proxy limitado.** No es comparable como “principal único” con 2015 sin armonización explícita. |
+| [`ENAPROCE-M65`](https://www.inegi.org.mx/rnm/index.php/catalog/518/variable/F1/V227) | Principal trámite-obstáculo. `1–8, 11, 12`; `13 = Ninguno`; `19 = Otro`. | Situación declarada; actividad 2017 | p. 29 | **Proxy limitado.** Categorías 1–13 comparables con 2015; 19 es nuevo. |
+| [`ENAPROCE-M66`](https://www.inegi.org.mx/rnm/index.php/catalog/518/variable/F1/V229) | Pesos en un mes normal de cumplimiento fiscal federal; excluye impuestos. | Mes normal de 2017 | p. 29 | **Directa para costo formal**, no pago informal. |
+| [`ENAPROCE-M67`](https://www.inegi.org.mx/rnm/index.php/catalog/518/variable/F1/V230) | Horas aproximadas en un mes normal para trámites gubernamentales distintos del pago de impuestos. | Mes normal de 2017 | p. 31 | **Directa para carga temporal**, no corrupción. |
 
 ## 2018 · Pequeñas/medianas · tabla RNM F2
 
@@ -92,8 +95,8 @@ no son representativas y quedan fuera del contrato R03.
 
 | Constructo | Comparabilidad | Condición |
 |---|---|---|
-| Horas mensuales de trámites | **Alta en texto y unidad** | `M64↔M67`, `P82↔P84`; comparar 2014 con 2017, no “2015 con 2018”. Requiere mismos tratamientos de faltante y diseño. |
-| Gasto mensual de cumplimiento fiscal | **Alta en texto y unidad nominal** | `M63↔M66`, `P81↔P83`; deflactar pesos antes de comparar niveles y no llamarlo impuesto ni pago informal. |
+| Horas mensuales de trámites | **Alta en texto y unidad** | `ENAPROCE-M64↔ENAPROCE-M67`, `P82↔P84`; comparar 2014 con 2017, no “2015 con 2018”. Requiere mismos tratamientos de faltante y diseño. |
+| Gasto mensual de cumplimiento fiscal | **Alta en texto y unidad nominal** | `ENAPROCE-M63↔ENAPROCE-M66`, `P81↔P83`; deflactar pesos antes de comparar niveles y no llamarlo impuesto ni pago informal. |
 | Trámite principal obstáculo | **Alta para códigos comunes** | 2018 añade `19=Otro`; `13=Ninguno` existe en ambas. No es filtro de exposición. |
 | Exceso de trámites como problema | **No es una serie directa** | 2015 pide uno principal; 2018 pide tres. Puede construirse “mencionó exceso” por ola, pero cambia el estimando y el almacenamiento micro/PyME. |
 | Solicitud/pago informal o corrupción | **No equivalente / no encontrado en lo revisado** | Ningún reactivo, filtro o código en el módulo XII ni en los diccionarios examinados. |

@@ -14,7 +14,8 @@ Estado: **EJECUTADO; NO ADOPTADO; acceso NO TRAMITADO**.
   `test_codificacion.py`: codificación pura sobre campos normalizados; no leen
   microdatos.
 - `ENCARGO-GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1.md` y
-  `PROCEDENCIA-ENCARGO.md`: copia verbatim del encargo y metadatos separados.
+  `PROCEDENCIA-ENCARGO-ENAPROCE-INSTRUMENTOS-ACCESO-1.md`: copia verbatim del
+  encargo y metadatos separados.
 
 ## Veredicto
 

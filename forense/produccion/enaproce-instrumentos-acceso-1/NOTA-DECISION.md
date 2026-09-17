@@ -53,8 +53,8 @@ Para estimar carga, faltan los microdatos reales (no ejemplos) o una salida
 oficial, más el descriptor definitivo de faltantes y las variables de diseño.
 El pedido mínimo, sólo tras la redefinición, sería:
 
-- 2015 micro `M63`, `M64`; 2015 PyME `P81`, `P82`;
-- 2018 micro `M66`, `M67`; 2018 PyME `P83`, `P84`;
+- 2015 micro `ENAPROCE-M63`, `ENAPROCE-M64`; 2015 PyME `P81`, `P82`;
+- 2018 micro `ENAPROCE-M66`, `ENAPROCE-M67`; 2018 PyME `P83`, `P84`;
 - tamaño, sector, panel/ola, `FAC_EXPA`, estrato y UPM/réplicas, y códigos de
   faltante/imputación;
 - como salida agregada alternativa: media/mediana o cuantiles acordados de
