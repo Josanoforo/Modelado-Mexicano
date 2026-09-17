@@ -1,0 +1,127 @@
+{
+ "corrida_id": "CALC-ENVIPE-RES0028-U4-DERIVADO-0001--65d0408e0b71",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "demanda_que_releva": "Candidato compatible para RES-0028; no adopta ni edita el consumidor.",
+  "generacion": "GEN2",
+  "informacion_muestral_independiente": "NINGUNA; q e IC(q) son funciones deterministas de p e IC(p).",
+  "medidor_ejecutado_al_congelar": "NO; spec, medidor y prueba se comprometen antes del primer run real. Sólo se revisaron los RESULT publicados del padre y se diseñaron fixtures sintéticos.",
+  "padre": "CALC-ENVIPE-0001",
+  "tipo": "DERIVADO-DETERMINISTA-SOBRE-RESULTADO-SELLADO",
+  "validacion_independiente": "NO-APLICA-TRANSFORMACION-DETERMINISTA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-17T00:27:54Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 0,
+   "montado": "NO",
+   "nota": "data/raw ausente -- normal en un clon fresco / en la nube"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "65d0408e0b7100017276851d8df72b0e1b505dec",
+  "git_rama": "codex/gen2-envipe-res0028-u4-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "NO",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "65d0408e0b7100017276851d8df72b0e1b505dec",
+ "input_ids": [
+  "IN-ENVIPE-0001-RESULTADOS",
+  "IN-ENVIPE-0001-SPEC",
+  "IN-ENVIPE-0001-SELLO",
+  "IN-ENVIPE-0001-SELLO-SHA256"
+ ],
+ "input_sha256": {
+  "IN-ENVIPE-0001-RESULTADOS": "225bbaa1dd12eab410d838e3d6f7080a876c2353f8bc9ba466afb2eaa98f0e3b",
+  "IN-ENVIPE-0001-SELLO": "18310f8adb6fb5963038d67c2e8a7eaba50e09c062dddbc579e918f090cbde16",
+  "IN-ENVIPE-0001-SELLO-SHA256": "d14825ca650677d24f473d88afcc38a5385ce7b7e744d39b74366e749ae1dc1d",
+  "IN-ENVIPE-0001-SPEC": "06fcd2a260dccbabe958867c93ca3239d45c9b160ff90a823c5b3a206d4a0c8b"
+ },
+ "parametros": {
+  "decision": "CANDIDATO-COMPATIBLE; adopción y actualización de registros pendientes de mesa.",
+  "direccion_delta": "derivado U4 menos legacy RES-0028",
+  "fuente_acto": "ACTO GEN2-ENVIPE-RES0028-DERIVADO-U4-1",
+  "padre": {
+   "calc_id": "CALC-ENVIPE-0001",
+   "ic_hi_id": "RESULT-ENVIPE-DEN-IC-HI-C2-U4",
+   "ic_lo_id": "RESULT-ENVIPE-DEN-IC-LO-C2-U4",
+   "masa_id": "RESULT-ENVIPE-DEN-MASA-FAC-ELE-U4",
+   "metodo_ic_id": "RESULT-ENVIPE-DEN-METODO-IC",
+   "n_id": "RESULT-ENVIPE-DEN-N-PERSONAS-U4",
+   "p_id": "RESULT-ENVIPE-DEN-P-C2-U4",
+   "particion": "C2",
+   "poblacion": "U4",
+   "ponderador": "FAC_ELE",
+   "unidad": "persona",
+   "veredicto_id": "RESULT-ENVIPE-DEN-VEREDICTO"
+  },
+  "tolerancia_legacy": 1e-06,
+  "valor_legacy_res0028": 0.705687
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENVIPE-RES0028-COMPATIBILIDAD-RES0028",
+  "RESULT-ENVIPE-RES0028-DELTA-VS-LEGACY-RES0028",
+  "RESULT-ENVIPE-RES0028-IC-HI-Q-C2-U4",
+  "RESULT-ENVIPE-RES0028-IC-LO-Q-C2-U4",
+  "RESULT-ENVIPE-RES0028-MASA-FAC-ELE-U4",
+  "RESULT-ENVIPE-RES0028-METODO-IC-HEREDADO",
+  "RESULT-ENVIPE-RES0028-N-PERSONAS-U4",
+  "RESULT-ENVIPE-RES0028-P-PADRE-C2-U4",
+  "RESULT-ENVIPE-RES0028-Q-C2-U4",
+  "RESULT-ENVIPE-RES0028-SUMA-P-Q-C2-U4",
+  "RESULT-ENVIPE-RES0028-VEREDICTO"
+ ],
+ "script_blob_sha256": "8d22cc5339e339a310e12834485cf8f385f47d8564c0060312aded5314aada8f",
+ "script_path": "data/corrida0/CALC-ENVIPE-RES0028-U4-DERIVADO-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "rng": null,
+  "valor": null
+ },
+ "spec_id": "CALC-ENVIPE-RES0028-U4-DERIVADO-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "26f3573902a8febc891c49722469db03cc047d3a2959d46ecb283bbf31b8fe6d",
+ "spec_yaml_sha256": "df0a0d10ca3e340198ed54bb96ffa8a2822fcec09cdb2321ee1e723babe5376c",
+ "tolerancia": {
+  "abs": 1e-15,
+  "razon": "Aritmética determinista sobre los mismos bytes float del padre; replay en el mismo contrato.",
+  "tipo": "flotante"
+ }
+}
