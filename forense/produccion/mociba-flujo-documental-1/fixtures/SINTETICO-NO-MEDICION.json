@@ -1,0 +1,66 @@
+{
+  "naturaleza": "SINTETICO-NO-MEDICION",
+  "nota": "Casos inventados para probar flujo y faltantes; no son registros ni estadísticas MOCIBA.",
+  "casos": [
+    {
+      "id": "si_con_otros_componentes_ausentes",
+      "ola": 2021,
+      "fila": {"EDAD": 30, "P7_1": 1, "P4_03": 1, "P12_5": 1, "P12_99": 2},
+      "esperado": {"estado": "ELEGIBLE", "respuesta_estado": "VALIDA-EVENTO", "evento": true}
+    },
+    {
+      "id": "todos_no_documentados",
+      "ola": 2022,
+      "fila": {"EDAD": 30, "P7_1": 1, "P12_5": "b"},
+      "esperado": {"estado": "INDETERMINADO", "respuesta_estado": "NO-EVALUABLE"}
+    },
+    {
+      "id": "mezcla_no_y_desconocido",
+      "ola": 2021,
+      "fila": {"EDAD": 44, "P7_1": 1, "P4_01": 2, "P4_02": 9, "P4_03": 2, "P4_04": 9, "P4_05": 2, "P4_06": 9, "P4_07": 2, "P4_08": 9, "P4_09": 2, "P4_10": 9, "P4_11": 2, "P4_12": 9, "P4_13": 2},
+      "esperado": {"estado": "NO-ELEGIBLE", "respuesta_estado": "NO-APLICA-ESTRUCTURAL"}
+    },
+    {
+      "id": "salto_previo_sin_internet",
+      "ola": 2022,
+      "fila": {"EDAD": 27, "P7_1": 2, "P12_5": "b"},
+      "esperado": {"estado": "NO-ELEGIBLE", "respuesta_estado": "NO-APLICA-ESTRUCTURAL"}
+    },
+    {
+      "id": "codigo_p4_invalido",
+      "ola": 2022,
+      "fila": {"EDAD": 27, "P7_1": 1, "P4_01": 7, "P4_02": 2, "P4_03": 2, "P4_04": 2, "P4_05": 2, "P4_06": 2, "P4_07": 2, "P4_08": 2, "P4_09": 2, "P4_10": 2, "P4_11": 2, "P4_12": 2, "P4_13": 2},
+      "esperado": {"estado": "INDETERMINADO", "respuesta_estado": "NO-EVALUABLE"}
+    },
+    {
+      "id": "desenlace_vacio_dentro_universo",
+      "ola": 2022,
+      "fila": {"EDAD": 19, "P7_1": 1, "P4_01": 1, "P12_5": "b", "P12_99": "b"},
+      "esperado": {"estado": "ELEGIBLE", "respuesta_estado": "AUSENTE-DENTRO-UNIVERSO", "incluye_denominador_respuestas_validas": false}
+    },
+    {
+      "id": "desenlace_vacio_fuera_universo",
+      "ola": 2022,
+      "fila": {"EDAD": 19, "P7_1": 1, "P4_01": 2, "P4_02": 2, "P4_03": 2, "P4_04": 2, "P4_05": 2, "P4_06": 2, "P4_07": 2, "P4_08": 2, "P4_09": 2, "P4_10": 2, "P4_11": 2, "P4_12": 2, "P4_13": 2, "P12_5": "b"},
+      "esperado": {"estado": "NO-ELEGIBLE", "respuesta_estado": "NO-APLICA-ESTRUCTURAL"}
+    },
+    {
+      "id": "respuesta_valida_no_evento",
+      "ola": 2021,
+      "fila": {"EDAD": 70, "P7_1": 1, "P4_13": 1, "P12_5": 2, "P12_99": 2},
+      "esperado": {"estado": "ELEGIBLE", "respuesta_estado": "VALIDA-NO-EVENTO", "evento": false, "incluye_denominador_respuestas_validas": true}
+    },
+    {
+      "id": "no_respuesta_explicita",
+      "ola": 2021,
+      "fila": {"EDAD": 35, "P7_1": 1, "P4_05": 1, "P12_5": 2, "P12_99": 1},
+      "esperado": {"estado": "ELEGIBLE", "respuesta_estado": "NO-RESPUESTA-EXPLICITA", "incluye_denominador_respuestas_validas": false}
+    },
+    {
+      "id": "salto_previo_edad",
+      "ola": 2021,
+      "fila": {"EDAD": 11, "P7_1": 1, "P4_01": 1, "P12_5": 1},
+      "esperado": {"estado": "NO-ELEGIBLE", "respuesta_estado": "NO-APLICA-ESTRUCTURAL"}
+    }
+  ]
+}

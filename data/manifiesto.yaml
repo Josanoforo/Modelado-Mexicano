@@ -30129,3 +30129,29 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: Doble descarga idéntica y ZIP íntegro; no acredita por sí solo reactivo, codificación,
     ponderador ni aptitud confirmatoria.
+
+- id: mociba_2021_cuestionario_pdf
+  usado_para: GEN2-MOCIBA-FLUJO-DOCUMENTAL-1; acreditar población base, flujo P4→P12 y texto/modalidad de P12
+  url_origen: https://www.inegi.org.mx/contenidos/programas/mociba/2021/doc/mociba2021_cuestionario.pdf
+  fecha_descarga: '2026-09-16'
+  descargado_por: Codex CLI; curl directo al URL oficial de INEGI tras un primer intento bloqueado por DNS en sandbox
+  archivo: forense/produccion/mociba-flujo-documental-1/documentos/mociba2021_cuestionario.pdf
+  sha256: 2ffadcc44db5c6e965c8dd6e767a234e94f3e42a0967cedc24e4c52d50b5622d
+  tamano_bytes: 847961
+  formato: PDF 1.6, 7 páginas, texto extraíble
+  licencia: 'Términos de Libre Uso de la Información del INEGI: https://www.inegi.org.mx/inegi/terminos.html'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 x86_64 · Python 3.14.4
+  nota: Páginas 2-5 fijan salto a P13 si todos los P4 son 2/9; página 6 contiene P12 y opción 05. Páginas 5-6 verificadas visualmente; no se abrió ningún resultado.
+
+- id: mociba_2022_cuestionario_pdf
+  usado_para: GEN2-MOCIBA-FLUJO-DOCUMENTAL-1; acreditar población base, flujo P4→P12 y texto/modalidad de P12
+  url_origen: https://www.inegi.org.mx/contenidos/programas/mociba/2022/doc/mociba2022_cuestionario.pdf
+  fecha_descarga: '2026-09-16'
+  descargado_por: Codex CLI; curl directo al URL oficial de INEGI tras un primer intento bloqueado por DNS en sandbox
+  archivo: forense/produccion/mociba-flujo-documental-1/documentos/mociba2022_cuestionario.pdf
+  sha256: a37f17509ec028a412d6db75e61e17daeaf51bc221665c3de4e73591b03bc219
+  tamano_bytes: 1044877
+  formato: PDF 1.6, 7 páginas, texto extraíble
+  licencia: 'Términos de Libre Uso de la Información del INEGI: https://www.inegi.org.mx/inegi/terminos.html'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 x86_64 · Python 3.14.4
+  nota: Páginas 2-5 fijan salto a P13 si todos los P4 son 2/9; página 6 contiene P12 y opción 05. Páginas 5-6 verificadas visualmente; no se abrió ningún resultado.

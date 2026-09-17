@@ -1,0 +1,280 @@
+schema_version: MOCIBA-flujo-documental-1-tarjetas-sucesoras-v1_0
+estado: PREPARADA-PARA-MESA · NO AUTORIZA EMISIONES NI R
+llamadas_autorizadas: false
+apertura_R_autorizada: false
+base_repo: 1a6a530d730bb5b20ff9ea32c6dbc955b3296477
+lista_cerrada:
+  familias: [R01-CIV-MOCIBA-DENUNCIA, R09-FAM-ISSP-APOYO-DINERO]
+  maximo_familias: 2
+  maximo_celdas: 4
+  sustituciones_permitidas: false
+firma:
+  estado: PENDIENTE-DE-MESA
+  alcance: >-
+    La firma posterior debe nombrar tarjetas, snapshot M, modelo/versión,
+    cliente, presupuesto y autorización de llamadas. Este archivo no la suple.
+identidad_ejecucion:
+  snapshot_M:
+    ruta: milpa/tramite.yaml
+    sha256: f6c0082b2717b4a88fdcc1234f19764f3551f491adf56418c528b5d5e1f5051b
+    estado: CONGELADO-PARA-PREFLIGHT-NO-PARA-EMISION
+  proveedor: POR-FIRMAR
+  modelo_version: POR-FIRMAR
+  endpoint: POR-FIRMAR
+  cliente_version: POR-FIRMAR
+  cuenta_proyecto_sin_secretos: POR-FIRMAR
+  mensajes_y_plantilla_sha256: POR-FIRMAR
+  herramientas_habilitadas: POR-FIRMAR
+  temperatura_top_p_seed: POR-FIRMAR
+  ventana_y_limite_salida: POR-FIRMAR
+  politica_truncacion: POR-FIRMAR
+  orden_posiciones: POR-FIRMAR
+  ventana_horaria: POR-FIRMAR
+  parser: POR-FIRMAR
+dieta:
+  M:
+    permitido:
+      - tarjeta de la celda sin valor R
+      - snapshot M preexistente con hash
+      - semántica preexistente de la regla consumidora
+    prohibido:
+      - microdatos y resultados R de MOCIBA o ZA6980
+      - frecuencias, marginales o tabulados del desenlace
+      - transformaciones elegidas después de R
+      - MOCIBA 2024/2025 e ISSP ZA5900 u otros módulos reservados
+  L_SOLO:
+    replicas_por_celda: 8
+    permitido:
+      - tarjeta textual cerrada de la celda
+      - definición de escala y formato de respuesta
+    prohibido:
+      - corpus del proyecto
+      - M, R, derivados de R o archivos fuente del objetivo
+      - materiales de otras celdas
+  L_CORPUS:
+    incluido: false
+    razon: No se agrega por inercia en esta factibilidad.
+  B:
+    rol: REFERENCIA-ADICIONAL-SOLO-SI-CONSTRUIBLE-ANTES-DE-R
+    estado: NO-CONSTRUIBLE-EN-LISTA-ACTUAL
+    razon: >-
+      No hay baseline temporal independiente predeclarado. Abrir un R para
+      construir B contaminaría las emisiones afectadas; no se hace.
+orden_posterior:
+  - congelar spec, tarjetas, snapshot, identidad y orden
+  - obtener firma explícita de mesa y autorización de llamadas
+  - sellar emisiones M y L_SOLO; B sólo si ya era construible sin R
+  - verificar commits y timestamps de emisiones anteriores a toda apertura R
+  - abrir R y estimar únicamente las celdas autorizadas
+  - comparar errores pareados y cobertura; publicar abstenciones
+parada:
+  - lista cerrada completada
+  - identidad o contrato roto
+  - exposición del objetivo
+  - dependencia de R para construir una emisión o baseline
+  - dos fallos técnicos sistémicos consecutivos en una ejecución autorizada
+  - nunca por resultado favorable, significación o cruce de umbral
+presupuesto:
+  estado: PROPUESTO-NO-AUTORIZADO
+  nominal_antes_de_gates:
+    familias: 2
+    celdas: 4
+    posiciones_logicas_L_SOLO: 32
+    emisiones_M: 4
+    estimaciones_R: 4
+    B: 0
+  viable_con_tarjetas_actuales:
+    familias: 0
+    celdas: 0
+    posiciones_logicas_L_SOLO: 0
+    emisiones_M: 0
+    estimaciones_R: 0
+    B: 0
+    intentos_maximos: 0
+    turnos: 0
+    unidades_facturadas: 0
+  si_mesa_habilita_una_celda_en_spec_sucesora:
+    posiciones_logicas_L_SOLO_por_celda: 8
+    reintentos_tecnicos_maximos_por_posicion: 2
+    intentos_maximos_por_celda: 24
+    turnos_y_unidades_facturadas: MEDIR-CON-CLIENTE-FIRMADO
+  coste_monetario: PENDIENTE-DE-MODELO-TARIFA-Y-CONTEO-VERIFICABLE
+  llamadas_para_estimar_presupuesto: 0
+celdas:
+  - id_celda: R01-MOCIBA-2021
+    familia_id: R01-CIV-MOCIBA-DENUNCIA
+    candidata_id: R01
+    estimando: >-
+      Proporción ponderada de personas elegibles para P12 que respondieron Sí
+      a P12_5 en MOCIBA 2021.
+    poblacion: Personas seleccionadas de 12 años o más que usaron internet en los últimos tres meses; P12 corresponde a quienes registran al menos un 1 en P4_01..P4_13.
+    unidad: persona seleccionada del módulo
+    evento: P12_5=1, denunció ante Ministerio Público o policía
+    codigos:
+      evento: [1]
+      no_evento: [2]
+      missing: [blanco]
+    filtro: EDAD>=12, P7_1=1 y al menos un P4_01..P4_13=1; si todos los P4 son 2 o 9, el cuestionario ordena saltar a P13
+    denominador: respuestas válidas P12_5=1/2 dentro del universo elegible; informar aparte todos los elegibles y la no respuesta, incluida P12_99=1
+    missing: el FD 2021 no documenta código de blanco en P12_5; ausencia dentro del universo es no respuesta y fuera del universo es salto estructural, nunca 2
+    ponderador: FACTOR
+    diseno: FACTOR con UPM_DIS y EST_DIS documentados; inferencia se reserva hasta acreditar filtro y diseño de la ola
+    periodo: agosto de 2020 a levantamiento 2021
+    escala: {valor: proporcion_0_1, error: puntos_porcentuales}
+    regla_consumidora: civico.denuncia.miedo_desconfianza / denuncia_con_miedo_o_desconfianza
+    definicion:
+      estado: ACREDITADA
+      razon: >-
+        El cuestionario 2021, PDF pp. 2-5, ordena pasar a P13 sólo si todos
+        los renglones de P4 son 2 o 9; por tanto cualquier P4=1 abre P5-P12.
+        El encabezado de p. 1 y EDAD/P7_1 del FD fijan edad y uso de internet.
+    enlace_M:
+      estado: CANDIDATO-NO-ELEGIBLE
+      razon: >-
+        La regla M estima razón de no denuncia por miedo/desconfianza entre no
+        denunciantes de delitos ENVIPE. No es tasa total de denuncia ni su
+        complemento y no predice P12_5 de ciberacoso sin transformación nueva.
+    reserva: {estado: LIMPIA, detalle: No se abrió BD ni resultado MOCIBA 2021.}
+    payload_ref: data/raw/mociba2021/mociba2021_bd_* (DECLARATIVO-NO-ABRIR-EN-PREFLIGHT)
+    referencias_documentales:
+      - mociba2021_fd.xlsx hoja TMOCIBA filas 38, 2306, 2503-2504, 2531, 2542-2543, 2576-2578; sha256 375bf7c1bcdbcc9b0716cd3b63fe940906a97783a3b69f2afad35f35950b1e25
+      - forense/produccion/mociba-flujo-documental-1/documentos/mociba2021_cuestionario.pdf pp. 1, 2-6; sha256 2ffadcc44db5c6e965c8dd6e767a234e94f3e42a0967cedc24e4c52d50b5622d
+      - forense/produccion/mociba-flujo-documental-1/contrato-elegibilidad.yaml contrato mociba_2021
+      - data/reactivos-contexto-verificados-v1_0.tsv filas 22-25
+      - milpa/tramite.yaml regla civico.denuncia.miedo_desconfianza
+    dependencias_pendientes:
+      - decisión de mesa con un enlace predictivo pre-R que no trate miedo/desconfianza como complemento de toda denuncia
+
+  - id_celda: R01-MOCIBA-2022
+    familia_id: R01-CIV-MOCIBA-DENUNCIA
+    candidata_id: R01
+    estimando: >-
+      Proporción ponderada de personas elegibles para P12 que respondieron Sí
+      a P12_5 en MOCIBA 2022.
+    poblacion: Personas seleccionadas de 12 años o más que usaron internet en los últimos tres meses; P12 corresponde a quienes registran al menos un 1 en P4_01..P4_13.
+    unidad: persona seleccionada del módulo
+    evento: P12_5=1, denunció ante Ministerio Público o policía
+    codigos:
+      evento: [1]
+      no_evento: [2]
+      missing: [b, blanco]
+    filtro: EDAD>=12, P7_1=1 y al menos un P4_01..P4_13=1; si todos los P4 son 2 o 9, el cuestionario ordena saltar a P13
+    denominador: respuestas válidas P12_5=1/2 dentro del universo elegible; informar aparte todos los elegibles y la no respuesta, incluida P12_99=1
+    missing: b/blanco dentro del universo es no respuesta; fuera del universo es salto estructural; nunca convertirlo a 2
+    ponderador: FACTOR
+    diseno: FACTOR con UPM_DIS y EST_DIS documentados; inferencia se reserva hasta acreditar filtro y diseño de la ola
+    periodo: julio de 2021 a levantamiento 2022
+    escala: {valor: proporcion_0_1, error: puntos_porcentuales}
+    regla_consumidora: civico.denuncia.miedo_desconfianza / denuncia_con_miedo_o_desconfianza
+    definicion:
+      estado: ACREDITADA
+      razon: >-
+        El cuestionario 2022, PDF pp. 2-5, ordena pasar a P13 sólo si todos
+        los renglones de P4 son 2 o 9; por tanto cualquier P4=1 abre P5-P12.
+        El encabezado de p. 1 y EDAD/P7_1 del FD fijan edad y uso de internet.
+    enlace_M:
+      estado: CANDIDATO-NO-ELEGIBLE
+      razon: La regla de no denuncia por miedo/desconfianza no produce una predicción de denuncia total de ciberacoso.
+    reserva: {estado: LIMPIA, detalle: No se abrió BD ni resultado MOCIBA 2022.}
+    payload_ref: data/raw/mociba2022/mociba2022_bd_* (DECLARATIVO-NO-ABRIR-EN-PREFLIGHT)
+    referencias_documentales:
+      - mociba2022_fd.xlsx hoja TMociba filas 38, 2510, 2728-2730, 2765, 2776-2777, 2810-2812; sha256 923fa85a665219200d6c87d1f5af25090870bf91957d16f1008726e78edc396e
+      - forense/produccion/mociba-flujo-documental-1/documentos/mociba2022_cuestionario.pdf pp. 1, 2-6; sha256 a37f17509ec028a412d6db75e61e17daeaf51bc221665c3de4e73591b03bc219
+      - forense/produccion/mociba-flujo-documental-1/contrato-elegibilidad.yaml contrato mociba_2022
+      - data/reactivos-contexto-verificados-v1_0.tsv filas 26-29
+      - milpa/tramite.yaml regla civico.denuncia.miedo_desconfianza
+    dependencias_pendientes:
+      - decisión de mesa con un enlace predictivo pre-R que no trate miedo/desconfianza como complemento de toda denuncia
+
+  - id_celda: R09-ISSP-2017-SEX-1
+    familia_id: R09-FAM-ISSP-APOYO-DINERO
+    candidata_id: R09
+    estimando: >-
+      Proporción ponderada de hombres adultos en la muestra México que eligen
+      la categoría conjunta “Familiares o amigos cercanos” como primera fuente
+      hipotética para pedir prestada una gran suma.
+    poblacion: personas de 18 años o más en la muestra nacional México de ISSP 2017, dominio SEX=1
+    unidad: persona entrevistada
+    evento: v26=1, categoría conjunta Familiares o amigos cercanos
+    codigos:
+      evento: [1]
+      no_evento: [2, 3, 4, 5, 6, 7]
+      missing: [8, 9, system_missing]
+    filtro: c_alphan=MX y SEX=1; excluir SEX=9/no respuesta
+    denominador: respuestas válidas v26=1..7 dentro del dominio; 8 No puedo elegir, 9 y missing fuera
+    missing: 8 No puedo elegir, 9 no respuesta y system missing; ninguno se puntúa como no-evento
+    ponderador: WEIGHT
+    diseno: ponderación WEIGHT acreditada; PSU/estrato no acreditados en documentación permitida, por lo que R sería descriptivo
+    periodo: "2017"
+    escala: {valor: proporcion_0_1, error: puntos_porcentuales}
+    regla_consumidora: familia.apoyo.recibe_dinero_familiares / recibe_dinero_familiares_para_vejez
+    definicion:
+      estado: CODIFICACION-INTEGRADA-NO-ACREDITADA
+      razon: >-
+        El formulario mexicano acredita Q8a y sus códigos; el inventario
+        acredita que v26 tiene la etiqueta Q8a, pero falta codebook integrado
+        que demuestre las etiquetas de valor de v26 sin inferir correspondencia.
+    enlace_M:
+      estado: CANDIDATO-NO-ELEGIBLE
+      razon: >-
+        Recepción efectiva de dinero familiar para vejez no es intención de
+        acudir primero a familiares o amigos por un préstamo grande.
+    reserva:
+      estado: EXPUESTA-OBJETIVO
+      detalle: >-
+        Durante búsqueda documental apareció incidentalmente una fila ya
+        versionada en data/apertura-issp-variables-2026-08-13.tsv con la
+        distribución objetivo de v26. Se retira toda pretensión de evaluación
+        ciega; la cifra no se copia a estas tarjetas ni a la dieta.
+    payload_ref: descargas_mx/ZA6980_v2-0-0.{dta,sav}.zip (DECLARATIVO-NO-ABRIR-EN-PREFLIGHT)
+    referencias_documentales:
+      - ZA6980_q_mx.pdf PDF p.3 / impresa p.2, Pregunta 8a; sha256 61bc0c80415521965ec1b2546fbe3b2400cfacb2e6b0b542583304821544f2ed
+      - ZA6980_backgroundvar_mx.pdf SEX, construcción 1 Male / 2 Female / 9 No answer; sha256 6004c300ca1331bfd15f163c4deaa726c71b66b46ae9e05361f40ae8cc26ca5f
+      - data/inventario-reactivos-descargas-mx-v1_2.tsv líneas 47019, 47089, 47101, 47124
+      - milpa/tramite.yaml regla familia.apoyo.recibe_dinero_familiares
+    dependencias_pendientes:
+      - codebook integrado ZA6980 que ligue valores de v26 con las categorías del formulario nacional
+      - exclusión del duelo ciego actual o familia nueva no expuesta; la exposición observada no se revierte con una firma
+      - regla M preexistente o enlace de constructo firmado antes de R; no transformar recepción en intención post hoc
+
+  - id_celda: R09-ISSP-2017-SEX-2
+    familia_id: R09-FAM-ISSP-APOYO-DINERO
+    candidata_id: R09
+    estimando: >-
+      Proporción ponderada de mujeres adultas en la muestra México que eligen
+      la categoría conjunta “Familiares o amigos cercanos” como primera fuente
+      hipotética para pedir prestada una gran suma.
+    poblacion: personas de 18 años o más en la muestra nacional México de ISSP 2017, dominio SEX=2
+    unidad: persona entrevistada
+    evento: v26=1, categoría conjunta Familiares o amigos cercanos
+    codigos:
+      evento: [1]
+      no_evento: [2, 3, 4, 5, 6, 7]
+      missing: [8, 9, system_missing]
+    filtro: c_alphan=MX y SEX=2; excluir SEX=9/no respuesta
+    denominador: respuestas válidas v26=1..7 dentro del dominio; 8 No puedo elegir, 9 y missing fuera
+    missing: 8 No puedo elegir, 9 no respuesta y system missing; ninguno se puntúa como no-evento
+    ponderador: WEIGHT
+    diseno: ponderación WEIGHT acreditada; PSU/estrato no acreditados en documentación permitida, por lo que R sería descriptivo
+    periodo: "2017"
+    escala: {valor: proporcion_0_1, error: puntos_porcentuales}
+    regla_consumidora: familia.apoyo.recibe_dinero_familiares / recibe_dinero_familiares_para_vejez
+    definicion:
+      estado: CODIFICACION-INTEGRADA-NO-ACREDITADA
+      razon: Falta correspondencia documental explícita de etiquetas de valor del v26 integrado.
+    enlace_M:
+      estado: CANDIDATO-NO-ELEGIBLE
+      razon: Recepción efectiva de dinero familiar para vejez no predice la preferencia hipotética conjunta de familiares o amigos.
+    reserva:
+      estado: EXPUESTA-OBJETIVO
+      detalle: Misma exposición incidental de la distribución v26; ambos dominios siguen siendo una sola familia y no recuperan cegamiento.
+    payload_ref: descargas_mx/ZA6980_v2-0-0.{dta,sav}.zip (DECLARATIVO-NO-ABRIR-EN-PREFLIGHT)
+    referencias_documentales:
+      - ZA6980_q_mx.pdf PDF p.3 / impresa p.2, Pregunta 8a; sha256 61bc0c80415521965ec1b2546fbe3b2400cfacb2e6b0b542583304821544f2ed
+      - ZA6980_backgroundvar_mx.pdf SEX, construcción 1 Male / 2 Female / 9 No answer; sha256 6004c300ca1331bfd15f163c4deaa726c71b66b46ae9e05361f40ae8cc26ca5f
+      - data/inventario-reactivos-descargas-mx-v1_2.tsv líneas 47019, 47089, 47101, 47124
+      - milpa/tramite.yaml regla familia.apoyo.recibe_dinero_familiares
+    dependencias_pendientes:
+      - codebook integrado ZA6980 que ligue valores de v26 con las categorías del formulario nacional
+      - exclusión del duelo ciego actual o familia nueva no expuesta; la exposición observada no se revierte con una firma
+      - regla M preexistente o enlace de constructo firmado antes de R; no transformar recepción en intención post hoc
