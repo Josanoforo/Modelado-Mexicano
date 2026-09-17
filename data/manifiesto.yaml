@@ -30190,3 +30190,92 @@
   licencia: 'Términos de Libre Uso de la Información del INEGI: https://www.inegi.org.mx/inegi/terminos.html'
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 x86_64 · Python 3.14.4
   nota: Páginas 2-5 fijan salto a P13 si todos los P4 son 2/9; página 6 contiene P12 y opción 05. Páginas 5-6 verificadas visualmente; no se abrió ningún resultado.
+- id: inegi_rnm_330_download_19206_enaproce2015_pyme_comserv
+  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2015
+    PyME comercio/servicios; módulo XII de carga regulatoria y obstáculos'
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/330/download/19206
+  fecha_descarga: '2026-09-16'
+  descargado_por: Codex, descarga directa oficial desde el enlace del catálogo RNM 330
+  archivo: ENAPROCE_instrumentos/enaproce2015_pyme_comserv.pdf
+  sha256: ba3c7a8f60378c17e0e72701024a0e49bbad1e1a821f46833ac91f647659b325
+  tamano_bytes: 204944
+  formato: PDF 1.3, 40 páginas, cuestionario oficial
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: PDF real verificado; módulo XII pp. 35-37 leído por texto y revisión visual.
+    No contiene respuestas ni distribuciones del objetivo.
+
+- id: inegi_rnm_330_download_19207_enaproce2015_pyme_manufac
+  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2015
+    PyME manufactura; módulo XII de carga regulatoria y obstáculos'
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/330/download/19207
+  fecha_descarga: '2026-09-16'
+  descargado_por: Codex, descarga directa oficial desde el enlace del catálogo RNM 330
+  archivo: ENAPROCE_instrumentos/enaproce2015_pyme_manufac.pdf
+  sha256: b0223e7acc8f838a8db24571a754eb0b83ac18a34c7726aca4a4a043043272a3
+  tamano_bytes: 299948
+  formato: PDF 1.3, 40 páginas, cuestionario oficial
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: PDF real verificado; módulo XII pp. 35-37 leído, pp. 35/37 revisadas
+    visualmente y texto contrastado con comercio/servicios. Sin respuestas.
+
+- id: inegi_rnm_330_download_19208_enaproce2015_micro
+  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2015
+    micro; módulo XII de carga regulatoria y obstáculos'
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/330/download/19208
+  fecha_descarga: '2026-09-16'
+  descargado_por: Codex, descarga directa oficial desde el enlace del catálogo RNM 330
+  archivo: ENAPROCE_instrumentos/enaproce2015_micro.pdf
+  sha256: 69892f70f3ebe398e3b8c12d85c7bfe566de2cb36c71dc9f3be8578532abe0ef
+  tamano_bytes: 287157
+  formato: PDF 1.3, 32 páginas, cuestionario oficial
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: PDF real verificado; módulo XII pp. 27-29 leído por texto y revisión visual.
+    No contiene respuestas ni distribuciones del objetivo.
+
+- id: inegi_rnm_518_download_19215_enaproce2018_pyme_comserv
+  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2018
+    PyME comercio/servicios; módulo XII de carga regulatoria y obstáculos'
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/518/download/19215
+  fecha_descarga: '2026-09-16'
+  descargado_por: Codex, descarga directa oficial desde el enlace del catálogo RNM 518
+  archivo: ENAPROCE_instrumentos/enaproce2018_pyme_comserv.pdf
+  sha256: e365b7467cfd22b43dd131a7e9e5508cedc64bc51bcff73cdc6e882af538caa1
+  tamano_bytes: 297112
+  formato: PDF 1.3, 44 páginas, cuestionario oficial
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: PDF real verificado; módulo XII pp. 39-41 leído por texto y revisión visual.
+    No contiene respuestas ni distribuciones del objetivo.
+
+- id: inegi_rnm_518_download_19216_enaproce2018_pyme_manufac
+  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2018
+    PyME manufactura; módulo XII de carga regulatoria y obstáculos'
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/518/download/19216
+  fecha_descarga: '2026-09-16'
+  descargado_por: Codex, descarga directa oficial desde el enlace del catálogo RNM 518
+  archivo: ENAPROCE_instrumentos/enaproce2018_pyme_manufac.pdf
+  sha256: 7d9a1ebd44583e3c1c339dc76436b22ef146895bd1bb3939b68a757ea04c31a5
+  tamano_bytes: 296370
+  formato: PDF 1.3, 44 páginas, cuestionario oficial
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: PDF real verificado; módulo XII pp. 39-41 leído, pp. 39/41 revisadas
+    visualmente y texto contrastado con comercio/servicios. Sin respuestas.
+
+- id: inegi_rnm_518_download_19217_enaproce2018_micro
+  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2018
+    micro; módulo XII de carga regulatoria y obstáculos'
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/518/download/19217
+  fecha_descarga: '2026-09-16'
+  descargado_por: Codex, descarga directa oficial desde el enlace del catálogo RNM 518
+  archivo: ENAPROCE_instrumentos/enaproce2018_micro.pdf
+  sha256: f41e487030b814012038bb509ba192f566fd3c9da7d1264c6c37fe6c20b0679d
+  tamano_bytes: 281506
+  formato: PDF 1.3, 34 páginas, cuestionario oficial
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: PDF real verificado; módulo XII pp. 29-31 leído por texto y revisión visual.
+    No contiene respuestas ni distribuciones del objetivo.
