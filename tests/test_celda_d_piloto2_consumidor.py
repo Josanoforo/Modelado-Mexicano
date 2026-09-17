@@ -59,6 +59,19 @@ def _git(*args):
                           capture_output=True, text=True, check=False)
 
 
+def _historia_truncada():
+    """`True` si el clon es shallow -- NC-0273: en un clon truncado,
+    `git log --diff-filter=A` puede devolver el MISMO borde de injerto
+    (`.git/shallow`) para dos archivos distintos, dando un falso `FAIL` de
+    "nacieron en el mismo commit" que no es un defecto de contenido. El
+    checkout de `.github/workflows/verify.yml` usa `--depth=1` a propósito
+    (ver su cabecera), así que CI SIEMPRE es shallow -- esto no es un caso
+    raro a cubrir "por si acaso".
+    """
+    r = _git("rev-parse", "--is-shallow-repository")
+    return r.returncode == 0 and r.stdout.strip() == "true"
+
+
 def _catalogo():
     return MM.cargar_catalogo()
 
@@ -193,6 +206,10 @@ class LaCeldaDYElOrdenDeLosCommits(unittest.TestCase):
         if e.returncode != 0 or a.returncode != 0 or not e.stdout.strip() or not a.stdout.strip():
             self.skipTest("sin historia de git para los dos CALC (p. ej. antes de COMMIT-3)")
         sha_e, sha_a = e.stdout.split()[-1], a.stdout.split()[-1]
+        if sha_e == sha_a and _historia_truncada():
+            self.skipTest("clon shallow (NC-0273): el borde de injerto de "
+                          "`.git/shallow` devuelve el mismo SHA para archivos "
+                          "distintos -- no es evidencia de que nacieran juntos")
         self.assertNotEqual(sha_e, sha_a, "R y las emisiones no pueden nacer en el mismo commit")
         es_ancestro = _git("merge-base", "--is-ancestor", sha_e, sha_a)
         self.assertEqual(es_ancestro.returncode, 0,
