@@ -357,6 +357,31 @@ HISTORICOS = {
 # La exencion queda acotada por archivo y basename para no volver globalmente
 # invisible una referencia con el mismo nombre en otro documento.
 _T03_DEPENDENCIAS_PENDIENTES = {
+    # ACTO GEN2-CELDA-D-CAREO-1, 17/sep/2026. Una sola cita, en tres archivos,
+    # y la misma razon en los tres: `D-THETA-DOCUMENTO-PARA-ADVERSARIAL-v1_0.md`
+    # es la v1.0 de D-theta, el documento que el adversarial de Astra REVISA.
+    # Nunca viajo al arbol y esta SUPERADO: su propia sucesora, la v1.1, dice
+    # «la v1.0 se conserva como historia; esta v1.1 la sucede», y es la v1.1 la
+    # que este acto archivo (con su sha256 verificado). Pedirla a mesa seria
+    # pedir historia derogada para cerrar una cita; fabricarla seria inventar
+    # procedencia. La cita cuelga a proposito, como la de NC-0219 arriba.
+    #  · en el adversarial, porque esta archivado VERBATIM (A.3) y no se edita;
+    #  · en la nota y en gobernanza, porque este acto la NOMBRA para explicar
+    #    por que cuelga -- y nombrar un archivo ausente para reportar su
+    #    ausencia es exactamente lo que T03 no sabe distinguir de citarlo
+    #    esperando leerlo (ver nota §10, hallazgo reflexivo). Se usa el
+    #    mecanismo documentado en vez de callar el nombre.
+    "forense/notas/insumos-externos/celda-d-piloto/ADVERSARIAL-D-THETA-v1_0.md": {
+        "D-THETA-DOCUMENTO-PARA-ADVERSARIAL-v1_0.md",
+    },
+    "forense/notas/2026-09-17-GEN2-CELDA-D-CAREO-1.md": {
+        "D-THETA-DOCUMENTO-PARA-ADVERSARIAL-v1_0.md",
+    },
+    # (la entrada de `canon/gobernanza-v1_15.md` NO va aqui: ya existe una mas
+    #  abajo, de ACTO GEN2-M1-ALCANCE-1, y una segunda clave igual en un dict
+    #  literal SOMBREA a la primera en silencio. Se fusiona alli, no aqui --
+    #  defecto real, medido en este acto: la clave duplicada se escribio, la
+    #  suite siguió reportando el T03 de gobernanza, y solo `ast` lo delato.)
     "forense/encargos/cola/2026-09-11-GEN2-POST-723/27-GEN2-ENSAFI-MEDICION-DESCRIPTIVA-CON-DISENO.md": {
         "2026-09-11-GEN2-FUENTES-FINANCIERAS-CONTINUACION-EFECTIVA-cierre.md",
     },
@@ -407,8 +432,19 @@ _T03_DEPENDENCIAS_PENDIENTES = {
     # -- es su pieza P5 y la razon de `NC-0271`. Un ADR que dijera «el
     # adjunto no llego» sin decir cual seria un registro inauditable, que es
     # exactamente lo contrario de para lo que existe la entrada.
+    # ENMIENDA FECHADA 2026-09-16, ACTO GEN2-CELDA-D-CAREO-1 (ADR-533): el
+    # adjunto que `ADR-531` nombraba SI llego -- mesa lo cargo y este acto lo
+    # archivo en forense/notas/insumos-direccion/, con su sha verificado --, asi
+    # que esa primera cita ya NO cuelga y podria retirarse; se conserva porque
+    # retirarla es del acto que cierre NC-0271 entera, no de este. Se anade la
+    # que si cuelga hoy: `D-THETA-DOCUMENTO-PARA-ADVERSARIAL-v1_0.md`, la v1.0
+    # que el adversarial de Astra REVISA, derogada por su propia sucesora («la
+    # v1.0 se conserva como historia; esta v1.1 la sucede»). ADR-533 la nombra
+    # para explicar por que cuelga, y nombrar un archivo ausente para reportar
+    # su ausencia es justo lo que T03 no distingue de citarlo esperando leerlo.
     "canon/gobernanza-v1_15.md": {
         "D-THETA-DOCUMENTO-v1_1-post-adversarial.md",
+        "D-THETA-DOCUMENTO-PARA-ADVERSARIAL-v1_0.md",
     },
 }
 
@@ -2847,6 +2883,47 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-CELDA-D-CAREO-1, 17/sep/2026. Cinco archivos, dos causas
+    # distintas; ninguno se edita para complacer el test.
+    #
+    # CAUSA 1 -- CUATRO ADJUNTOS ARCHIVADOS VERBATIM (P0, A.3). Son insumos de
+    # terceros (Astra, externo) y de direccion, con su sha256 verificado y
+    # pegado en su cabecera de procedencia; el cuerpo bajo la linea de guiones
+    # NO se toca, ni una coma. Editarlos para que pasen un test destruiria
+    # justo lo que los hace utiles: que sean lo que su autor escribio.
+    #   `M1`, `M3`  -- `ADV1-M1`/`ADV1-M3` del careo ADV-DUELO, escritos sin
+    #            prefijo por sus autores. La nota propia de este acto los
+    #            escribe SIEMPRE con prefijo.
+    #   `M5`     -- `ADV1-M5`, la tabla de cinco casillas, idem.
+    #   `M01`, `M08`, `M09`, `M22` -- ids de FILA del catalogo de momentos
+    #            (`milpa/catalogo-momentos-v0_1.tsv`, 22 filas `M01`..`M22`).
+    #            Son datos de un TSV, no rotulos de acto ni habitantes de un
+    #            espacio; el regex no los distingue. Misma exencion que ya
+    #            lleva la nota de ACTO GEN2-CELDA-D-DISENO-CIEGO-1 arriba.
+    #
+    # CAUSA 2 -- LA NOTA PROPIA DE ESTE ACTO. Se corrigieron a mano TODOS sus
+    # rotulos pelados antes de pedir la exencion (`M3`->`ADV1-M3`,
+    # `M1(ii)`->`ADV1-M1(ii)`, `M5`->`ADV1-M5`, `M5(4)`->`ADV1-M5(4)`, y la
+    # mencion del slot `M1` del sello del motor reescrita como `ADR-91`).
+    # Quedan SOLO `M01` y `M22`, y por la razon de arriba: son ids de fila del
+    # catalogo, citados al verificar que el catalogo trae 22 momentos y no 23.
+    # El rotulo propio de este acto, `GEN2 · GEN2-CELDA-D-CAREO-1`, SI va
+    # censado en `canon/registro-rotulos.tsv`.
+    "forense/notas/2026-09-17-GEN2-CELDA-D-CAREO-1.md",
+    "forense/notas/insumos-externos/celda-d-piloto/ASTRA-CELDA-D-DISENO-Y-ADVERSARIAL-b881ee6-v1_0.md",
+    "forense/notas/insumos-externos/celda-d-piloto/ENCARGO-EXTERNO-ASTRA-celda-d-piloto-2026-09-17.md",
+    "forense/notas/insumos-direccion/CELDA-D-PILOTO-diseno-direccion-v1_0-CIEGO-2026-09-17.md",
+    "forense/notas/insumos-direccion/CELDA-D-PILOTO-diseno-direccion-v1_1-post-careo-2026-09-17.md",
+    # ACTO GEN2-CELDA-D-CAREO-1, segunda entrega (los dos adjuntos que mesa
+    # cargo despues del PARO de A.3). Los dos estan archivados VERBATIM y no se
+    # editan para complacer un test. Sus menciones:
+    #   `E0`, `E1` -- las FASES del programa de calibracion de theta (E0 = el
+    #            stub vigente de milpa/src/theta.py; E1 = el diseno de esquema
+    #            de forense/theta-cargable-por-celda-diseno-e1-v1_0.md). Son
+    #            habitantes ya existentes y ya censados del espacio E, no
+    #            rotulos nuevos: el regex no distingue una fase de un acto.
+    "forense/notas/insumos-direccion/D-THETA-DOCUMENTO-v1_1-post-adversarial.md",
+    "forense/notas/insumos-externos/celda-d-piloto/ADVERSARIAL-D-THETA-v1_0.md",
     # ACTO GEN2-CELDA-D-DISENO-CIEGO-1, 17/sep/2026. Dos archivos, una sola
     # causa: el encargo esta archivado VERBATIM (0-bis A.3) y no se edita para
     # complacer un test, y la nota lo cita verbatim. Sus menciones, una por una:
@@ -5348,6 +5425,30 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-ENCO-DOS-OLAS-RESERVADAS-1, 17/sep/2026: encargo A.3
+    # archivado VERBATIM. La cita compara constructos y ordena no equiparar
+    # posibilidad percibida de ahorro con stock existente; no solicita medir
+    # la regla M. `tools/ya_medido.py dinero.ahorro.tiene_ahorros` sí se
+    # ejecutó y devolvió `MEDIDA-EN: tramite-ola5-propuesta-v0.yaml,
+    # tramite.yaml`; la salida y su interpretación se conservan en 05-cierre.
+    # Editar el encargo rompería la custodia literal.
+    "forense/encargos/2026-09-17-GEN2-ENCO-DOS-OLAS-RESERVADAS-1.md",
+    # ACTO GEN2-CELDA-D-CAREO-1, 17/sep/2026: encargo A.3 archivado VERBATIM,
+    # que no se edita para complacer un test (misma regla que rige T25). Su
+    # unica cita `R-n` es `R5.1`, y aparece una sola vez, dentro del bloque de
+    # VERIFICACION DE EXISTENCIA (A.8), nombrando lo que un grep ENCONTRO:
+    # «2 coincidencias, ambas del 12/ago sobre clustering de R5.1, no sobre
+    # reserva de evaluacion». Es el resultado de una busqueda negativa, no una
+    # regla que este acto clasifique, pre-registre, cargue o selle -- que es lo
+    # que ADR-340 exige documentar. El acto no toca `milpa/`, no mide, no
+    # adjudica y su celda-D es del dominio FIN, no de la familia de R5.1.
+    # Corrido igualmente, para que la exencion tenga evidencia y no palabra:
+    #   python3 tools/ya_medido.py R5.1
+    #   -> resuelto por canon: R5.1 -> familia.seguro.volatilidad_ausencia_estado
+    #      milpa/tramite.yaml:904  situacion=SELLADA tier=FUERTE p=0.045694
+    #      milpa/tramite-ola5-propuesta-v0.yaml:269  PENDIENTE-DE-MESA p=0.045694
+    # La regla esta MEDIDA y sellada desde antes; este acto no la mueve.
+    "forense/encargos/2026-09-17-GEN2-CELDA-D-CAREO-1-TRES-DISENOS-UN-CAREO.md",
     # ACTO GEN2-FIRMAS-MESA-1, 15/sep/2026: encargo A.3 archivado VERBATIM,
     # que no se edita para complacer un test (misma regla que rige T25). El
     # acto NO MIDE NADA -- su contador declara «cero mediciones propias» y

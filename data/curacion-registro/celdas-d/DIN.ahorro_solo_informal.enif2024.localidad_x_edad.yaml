@@ -1,0 +1,87 @@
+# Celda-D del primer piloto, registrada por ACTO GEN2-CELDA-D-CAREO-1 (17/sep/2026).
+#
+# CONTENIDO VERBATIM del diseño vigente de dirección, v1.1 §9
+# (`forense/notas/insumos-direccion/CELDA-D-PILOTO-diseno-direccion-v1_1-post-careo-2026-09-17.md`,
+# sha256 del cuerpo `68a794936ef2ca47cf052b3a1e64ca002c87fb7d9e8cefb8ae998220c99f19cb`),
+# bajo la firma de mesa del 17/sep/2026 que el encargo pega verbatim.
+#
+# ÚNICA CORRECCIÓN, y es de sintaxis, no de contenido (el encargo lo autoriza en
+# esos términos y exige reportarlo): el diseño §9 no trae `fecha_adjudicacion` ni
+# `commit_adjudicacion`, que `tests/test_celdas_d.py::REQUIRED_TOP_FIELDS` exige.
+# Se añaden con el valor "NO-APLICA" — el mismo que llevan las tres celdas ya
+# selladas mientras no hay adjudicación (G5.familismo_obligacion.actitud.yaml:136-137,
+# G5.obligacion_medida.conducta.yaml:161-162). No se decide nada con eso: esta celda
+# no adjudica hoy, y por diseño no puede hacerlo antes del COMMIT-3 del piloto.
+#
+# NO SE DERIVA NADA AQUÍ. `momentos_holdout_refs` marca la reserva de evaluación:
+# las 8 celdas de cruce `localidad × edad` de ENIF 2024 NO ESTÁN DERIVADAS, y
+# derivarlas antes de que las emisiones estén selladas destruye la reserva.
+# ─────────────────────────────────────────────────────────────────────────────
+# AVISO FECHADO · 2026-09-17 · ACTO GEN2-CELDA-D-CAREO-1 (ADR-533)
+# CORRECTIVO PRE-EMISIÓN, tras la devolución de revisión del 16/sep sobre PR #827.
+#
+#   ESTA CELDA NO ES EMISIBLE TODAVÍA. `estado_operativo: PENDIENTE` y
+#   `requiere_decision_mesa: true` ya lo decían; esto dice POR QUÉ, con nombre.
+#
+# Seis hallazgos materiales sobre el diseño ejecutable, con su corrección y las
+# decisiones que faltan, en:
+#   forense/notas/2026-09-17-GEN2-CELDA-D-CAREO-1-CORRECTIVO-PRE-EMISION.md
+#
+#   H1 · El desenlace de C2 NO es el de R ni el de C1. R/C1 usan los SIETE
+#        códigos comunes; el marginal público que alimenta C2 usa los NUEVE.
+#        Ser proporciones [0,1] no las hace medidas del mismo evento. → D1
+#   H2 · La fórmula de C2, `p_l*p_e/p`, NO garantiza una probabilidad
+#        (sintético: .8×.8/.5 = 1.28). Propuesta: piso log-aditivo, con rechazo
+#        explícito en los casos límite y sin recorte silencioso. → D2
+#   H3 · La incertidumbre de C2 se propaga «bajo independencia», pero los tres
+#        marginales salen de la MISMA muestra. → D3
+#   H4 · El soporte del cruce NO está acreditado: el producto de márgenes es un
+#        punto bajo un supuesto. Cotas de Fréchet sobre los n publicados: las
+#        OCHO cotas inferiores son 0, contra el «≈980» que el diseño afirmaba.
+#        `n` queda DESCONOCIDO hasta el paso autorizado que lo calcula.
+#   H5 · «Nadie vence a C2 → la interacción no aporta información» no se sigue,
+#        y la parada no puede exigir un ganador: admite INDECIDIBLE,
+#        SIN-CANDIDATO-SUPERIOR y FUERA-DE-SOPORTE, sin adopción forzada.
+#   H6 · La búsqueda negativa acredita que el cruce no está en el árbol; NO que
+#        nadie lo haya visto. La reserva es OPERACIONAL, no cegamiento absoluto.
+#
+# LOS VALORES DE ABAJO NO SE EDITAN, y es deliberado: son los que mesa firmó
+# (diseño v1.1 §9, verbatim). Corregirlos aquí sería adoptar D1-D3 sin firma.
+# El contrato que C2 debe cumplir está pinado en `tests/test_celda_d_c2.py`
+# con fixtures sintéticos, y la función de referencia vive ahí — no en
+# `milpa/` — por la misma razón.
+# ─────────────────────────────────────────────────────────────────────────────
+celda_d:
+  id: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
+  estimando: "p(ahorra_solo_informal | localidad, edad) -- proporcion ponderada [0,1], personas 18+ (ENIF TMODULO, FAC_PER); vias formales = P5_6_{1,2,3,4,5,8,9} (siete codigos comunes 2021/2024)"
+  tipo_adjudicacion: COMPARACION
+  dominio: FIN
+  poblacion_objetivo: "8 celdas de cruce: localidad{<15000 tloc in {3,4}; >=15000 tloc in {1,2}} x edad{18-29,30-44,45-59,60+}; ver diseno v1.1 §1"
+  unidad_objetivo: persona
+  universo_candidatos: "careo de tres disenos ciegos (direccion v1.0, Opus #823, Astra 2b813f43) @ b881ee6-9dffd64, 17/sep/2026"
+  candidatos:
+    - {rol: BASELINE_INGENUO, fuentes: [ENIF], edicion_periodo: "2021", universo_instrumento: "personas 18+ elegidas, TMODULO 2021, mismo cruce", diseno_datos: transversal, estrategia: transversal_con_seleccion, regla_composicion: "identidad temporal p_2021 -> p_2024 (declarada 2026-09-17)", production_spec_refs: [], resultado: NO-EJECUTADO}
+    - {rol: BASELINE_INGENUO, fuentes: [ENIF], edicion_periodo: "2024 (marginales publicos del arbitro)", universo_instrumento: "marginales localidad, edad y nacional ya sellados", diseno_datos: transversal, estrategia: composicion, regla_composicion: "independencia: p(l,e) = p(l)*p(e)/p (declarada 2026-09-17)", production_spec_refs: [], resultado: NO-EJECUTADO}
+    - {rol: CHALLENGER, variante_corredor: L-solo, fuentes: [L], edicion_periodo: "elicitacion 2026-09", universo_instrumento: "memoria del modelo + marginales publicos; control de memoria sobre el cruce", diseno_datos: transversal, estrategia: composicion, regla_composicion: "protocolo ADV1", production_spec_refs: [], resultado: NO-EJECUTADO}
+    - {rol: CHALLENGER, variante_corredor: L+corpus, fuentes: [L], edicion_periodo: "elicitacion 2026-09", universo_instrumento: "idem + corpus F5 sin ENIF 2024", diseno_datos: transversal, estrategia: composicion, regla_composicion: "protocolo ADV1", production_spec_refs: [], resultado: NO-EJECUTADO}
+    - {rol: CHALLENGER, fuentes: [matriz_B, procedencia.yaml], edicion_periodo: "n/a", universo_instrumento: "n/a", diseno_datos: transversal, estrategia: momentos, regla_composicion: "B*theta(x) -> h_r (h_r inexistente)", production_spec_refs: [], resultado: INEJECUTABLE}
+    - {rol: COMPLEMENTO, fuentes: [emisor, tramite.yaml], edicion_periodo: "2024", universo_instrumento: "p nacional ENIF 2024 = arbitro (tramite.yaml:712); solo diagnostico", diseno_datos: transversal, estrategia: composicion, regla_composicion: NO-APLICA, production_spec_refs: [], resultado: NO-APLICA}
+  criterio_adjudicacion: {texto: "error absoluto por celda vs R derivado en COMMIT-3; INDECIDIBLE si ambos caen dentro del IC de R o si |d_1-d_2| < 0.5*EE(R); gana el challenger que vence a los dos pisos en >=6 de >=6 PUNTUADA; precedencia INDECIDIBLE; B-bis declarado (diseno v1.1 §3)", escala: "puntos porcentuales; EE(R)=(IC95sup-IC95inf)/3.92"}
+  estado_decidibilidad: NO-APLICA
+  margen_material: PENDIENTE-DERIVACION
+  momentos_holdout_refs: ["RESERVADA: cruce localidad x edad, ENIF 2024 -- NO DERIVADO; se deriva en COMMIT-3 de GEN2-CELDA-D-PILOTO-1"]
+  champion_actual: NINGUNO
+  output_nativo: {tipo: proporcion, escala: "[0,1] ponderada", valor_ref: "NO-PRODUCIDO"}
+  incertidumbre: {tipo: "por candidato (diseno v1.1 §4)", ref: "diseno v1.1"}
+  supuesto_transporte: "ACOTADO-CON-SUPUESTO: desenlace sobre siete codigos comunes (difiere del marginal del arbitro); identidad de tloc/edad 2021/2024 verificada por archivo antes de COMMIT-1"
+  fuerza_coeficiente: NO-APLICA
+  procedencia_condicional: MEDICION_DIRECTA_MICRODATO
+  calibrado: false
+  estado_operativo: PENDIENTE
+  vocabulario_version: 0.5
+  requiere_decision_mesa: true   # FP-376; siete codigos comunes; admision de C2
+  fecha_declaracion: 2026-09-17
+  commit_declaracion: 9dffd64
+  fecha_adjudicacion: "NO-APLICA"    # anadido por sintaxis (REQUIRED_TOP_FIELDS); no hay adjudicacion
+  commit_adjudicacion: "NO-APLICA"   # idem -- se escribe en el COMMIT-3 de GEN2-CELDA-D-PILOTO-1
+  relacion_complemento: NO-APLICA

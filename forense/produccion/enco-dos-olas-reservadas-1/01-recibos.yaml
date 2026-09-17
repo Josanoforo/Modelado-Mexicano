@@ -1,0 +1,74 @@
+acto: GEN2-ENCO-DOS-OLAS-RESERVADAS-1
+fecha_local: "2026-09-16"
+estado: ADQUIRIDAS-RESERVADAS-NO-ABIERTAS
+raiz_logica: reserva_respondentes
+publicacion: atomica_sin_reemplazo
+coordinacion_servicio:
+  lock_activo_al_comprobar: false
+  objetivo_enco_con_dueno_activo: false
+  presupuesto_generico_servicio:
+    necesidades_disponibles: 0
+    objetos_disponibles: 3
+    nota: >-
+      No se reinició ni consumió el ledger del servicio: no había despacho de este
+      objetivo y este acto trae autorización humana directa y tope propio. Se respetó
+      el límite del acto: dos paquetes y hasta dos documentos.
+  cron_o_cola_modificados: false
+descargas:
+  - id_manifiesto: enco_2025_junio_dbf_reservado
+    periodo: "2025-06"
+    url_solicitada: https://www.inegi.org.mx/contenidos/programas/enco/microdatos/2025/enco_2025_junio_dbf.zip
+    url_final: https://www.inegi.org.mx/contenidos/programas/enco/microdatos/2025/enco_2025_junio_dbf.zip
+    http: 200
+    content_type: application/x-zip-compressed
+    last_modified: "2026-05-08T12:00:35Z"
+    tamano_bytes: 159172
+    sha256: fd283a1afb034cf16064e75b39ffbe950985ada5658b0a1ade81dfb873a14c88
+    contenedor: ZIP-VALIDO-CRC-OK
+    miembros:
+      - {nombre: encocb_0625.DBF, tamano_descomprimido: 97263}
+      - {nombre: encocs_0625.DBF, tamano_descomprimido: 899689}
+      - {nombre: encoviv_0625.DBF, tamano_descomprimido: 1068610}
+    ruta_logica: reserva_respondentes:ENCO/2025-06/enco_2025_junio_dbf.zip
+    descarga_finales: 1
+    filas_leidas: 0
+    estado_reserva: RESERVADA-NO-ABIERTA-NO-INDEXAR-L
+  - id_manifiesto: enco_2026_junio_dbf_reservado
+    periodo: "2026-06"
+    url_solicitada: https://www.inegi.org.mx/contenidos/programas/enco/microdatos/enco_2026_junio_dbf.zip
+    url_final: https://www.inegi.org.mx/contenidos/programas/enco/microdatos/enco_2026_junio_dbf.zip
+    http: 200
+    content_type: application/x-zip-compressed
+    last_modified: "2026-07-03T12:00:06Z"
+    tamano_bytes: 164273
+    sha256: f1c10fb4f4c0c8c0f1cccf3cba874a57a238f3af0efbed73f34c19ca7a0ff5e0
+    contenedor: ZIP-VALIDO-CRC-OK
+    miembros:
+      - {nombre: encocb_0626.DBF, tamano_descomprimido: 114615}
+      - {nombre: encocs_0626.DBF, tamano_descomprimido: 959873}
+      - {nombre: encoviv_0626.DBF, tamano_descomprimido: 1080322}
+    ruta_logica: reserva_respondentes:ENCO/2026-06/enco_2026_junio_dbf.zip
+    descarga_finales: 1
+    filas_leidas: 0
+    estado_reserva: RESERVADA-NO-ABIERTA-NO-INDEXAR-L
+documentos:
+  - id_manifiesto: enco_fd_v5_reservado
+    url_final: https://www.inegi.org.mx/contenidos/programas/enco/doc/fd_enco_v5.pdf
+    http: 200
+    content_type: application/pdf
+    tamano_bytes: 16315
+    sha256: 850960594b27c6b5112c2dcf787ea946604827bcf6032146c1f40b74d1ee6e88
+    identidad: PDF-3-PAGINAS-DESCRIPCION-ARCHIVOS-V5
+    ruta_logica: reserva_respondentes:ENCO/documentacion/fd_enco_v5.pdf
+  - id_manifiesto: enco_manual_procedimientos_reservado
+    url_final: https://www.inegi.org.mx/contenidos/programas/enco/doc/enco_manual_procedimientos.pdf
+    http: 200
+    content_type: application/pdf
+    tamano_bytes: 10673327
+    sha256: b07ceaec3a092e89e6b53e5f21711f7a9efe39c522d3508710580982302f2db2
+    identidad: PDF-207-PAGINAS-MANUAL-PROCEDIMIENTOS-2016
+    ruta_logica: reserva_respondentes:ENCO/documentacion/enco_manual_procedimientos.pdf
+limites_validacion:
+  - CRC y testzip acreditan integridad del contenedor, no semántica.
+  - La estructura DBF se leyó hasta el terminador de cabecera; cero registros.
+  - Agosto 2026 no fue abierto, hasheado ni listado en este acto.

@@ -24225,6 +24225,72 @@
   tamano_bytes: 164174
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
 
+- id: enco_2025_junio_dbf_reservado
+  usado_para: 'GEN2-ENCO-DOS-OLAS-RESERVADAS-1 / R10-DIN-ENCO-AHORRO: ola anterior
+    fijada prospectivamente para posible medición descriptiva posterior de P10. Estado separado:
+    adquisición completa; definición documentada en preparación; M-NO-ELEGIBLE-PARA-ESTE-ESTIMANDO.
+    RESPUESTAS RESERVADAS Y NO ABIERTAS.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enco/microdatos/2025/enco_2025_junio_dbf.zip
+  fecha_descarga: '2026-09-16'
+  descargado_por: agente Codex, descarga directa autorizada desde INEGI
+  archivo: ENCO/2025-06/enco_2025_junio_dbf.zip
+  raiz: reserva_respondentes
+  sha256: fd283a1afb034cf16064e75b39ffbe950985ada5658b0a1ade81dfb873a14c88
+  tamano_bytes: 159172
+  formato: ZIP con 3 DBF; miembros listados y CRC verificado sin imprimir ni interpretar registros
+  licencia: Uso público declarado por INEGI; referencia a Términos de Libre Uso de la Información
+  estado_reserva: RESERVADA-NO-ABIERTA-NO-INDEXAR-L
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · curl 8.14.1 · Python 3.14.4
+
+- id: enco_2026_junio_dbf_reservado
+  usado_para: 'GEN2-ENCO-DOS-OLAS-RESERVADAS-1 / R10-DIN-ENCO-AHORRO: ola posterior
+    fijada prospectivamente para posible medición descriptiva posterior de P10. Estado separado:
+    adquisición completa; definición documentada en preparación; M-NO-ELEGIBLE-PARA-ESTE-ESTIMANDO.
+    RESPUESTAS RESERVADAS Y NO ABIERTAS.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enco/microdatos/enco_2026_junio_dbf.zip
+  fecha_descarga: '2026-09-16'
+  descargado_por: agente Codex, descarga directa autorizada desde INEGI
+  archivo: ENCO/2026-06/enco_2026_junio_dbf.zip
+  raiz: reserva_respondentes
+  sha256: f1c10fb4f4c0c8c0f1cccf3cba874a57a238f3af0efbed73f34c19ca7a0ff5e0
+  tamano_bytes: 164273
+  formato: ZIP con 3 DBF; miembros listados y CRC verificado sin imprimir ni interpretar registros
+  licencia: Uso público declarado por INEGI; referencia a Términos de Libre Uso de la Información
+  estado_reserva: RESERVADA-NO-ABIERTA-NO-INDEXAR-L
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · curl 8.14.1 · Python 3.14.4
+
+- id: enco_fd_v5_reservado
+  usado_para: 'GEN2-ENCO-DOS-OLAS-RESERVADAS-1: descriptor estructural histórico para
+    correspondencia de ENCOCB, P10, FACTOR, N_REN, FOL y panel de rotación; no prueba por
+    sí solo invariancia 2025-2026 y no contiene respuestas.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enco/doc/fd_enco_v5.pdf
+  fecha_descarga: '2026-09-16'
+  descargado_por: agente Codex, descarga directa autorizada desde INEGI
+  archivo: ENCO/documentacion/fd_enco_v5.pdf
+  raiz: reserva_respondentes
+  sha256: 850960594b27c6b5112c2dcf787ea946604827bcf6032146c1f40b74d1ee6e88
+  tamano_bytes: 16315
+  formato: PDF, 3 páginas, descripción de archivos quinta versión
+  licencia: Uso público declarado por INEGI; referencia a Términos de Libre Uso de la Información
+  estado_reserva: DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · curl 8.14.1 · Python 3.14.4
+
+- id: enco_manual_procedimientos_reservado
+  usado_para: 'GEN2-ENCO-DOS-OLAS-RESERVADAS-1: unidad de observación, selección de una
+    persona elegida de 18 años o más, diseño y esquema de rotación ENCO. Documento 2016;
+    informa el contrato pero no acredita sin más que todo detalle operativo siga idéntico en 2026.'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enco/doc/enco_manual_procedimientos.pdf
+  fecha_descarga: '2026-09-16'
+  descargado_por: agente Codex, descarga directa autorizada desde INEGI
+  archivo: ENCO/documentacion/enco_manual_procedimientos.pdf
+  raiz: reserva_respondentes
+  sha256: b07ceaec3a092e89e6b53e5f21711f7a9efe39c522d3508710580982302f2db2
+  tamano_bytes: 10673327
+  formato: PDF, 207 páginas, manual de procedimientos ENCO 2016
+  licencia: Uso público declarado por INEGI; referencia a Términos de Libre Uso de la Información
+  estado_reserva: DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · curl 8.14.1 · Python 3.14.4
+
 - id: conjunto_de_datos_enve_2024_csv
   usado_para: 'N16/tramite.mordida.discrecional+con_registro -- A.4 verificado EXISTE-NO-SATISFACE
     (MAESTRA38-A1 Lote 2): Seccion VII Corrupcion identifica incidencia y tipo de funcionario

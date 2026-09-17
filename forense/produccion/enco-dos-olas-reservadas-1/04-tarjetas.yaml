@@ -1,0 +1,51 @@
+schema_version: ENCO-RESERVA-PREPARA-V1
+estado: PREPARADA-NO-AUTORIZA-RESPUESTAS-NI-EMISIONES
+lectura_respuestas_autorizada: false
+emisiones_autorizadas: false
+llamadas_modelo_autorizadas: false
+familia: R10-DIN-ENCO-AHORRO
+estimando_comun: proporcion ponderada que responde Sí a posibilidades actuales de ahorrar
+escala: {valor: proporcion_0_1, comparacion: puntos_porcentuales}
+presupuesto_posterior: {posiciones: 0, emisiones: 0, llamadas: 0, estimaciones_R: 0}
+olas:
+  - id_manifiesto: enco_2025_junio_dbf_reservado
+    periodo: "2025-06"
+    adquisicion: COMPLETA
+    bytes: {tamano: 159172, sha256: fd283a1afb034cf16064e75b39ffbe950985ada5658b0a1ade81dfb873a14c88}
+    unidad_respuesta: una persona elegida de 18 años o más; no todos los integrantes del hogar
+    universo: residentes permanentes de 18 años o más en viviendas particulares del dominio ENCO urbano con representación nacional
+    variable: P10 de ENCOCB, carácter longitud 1
+    evento: "1 = Sí"
+    denominador: "respuestas sustantivas 1, 2 y 4; 4 No tiene ingresos permanece"
+    missing: "3 No sabe, blanco y faltante fuera; reportados por separado"
+    ponderador: FACTOR de ENCOCB, numérico longitud 6
+    diseno: probabilístico trietápico estratificado por conglomerados; punto descriptivo preparado, varianza no operativa
+    rotacion: ocho paneles 4-8-4; hasta 50% de viviendas coinciden al mismo mes del año siguiente
+    reserva: RESERVADA-NO-ABIERTA
+    definicion: COMPLETA-PARA-PUNTO-DESCRIPTIVO-CON-GATE-DE-CODIGOS
+    elegibilidad_M: M-NO-ELEGIBLE-PARA-ESTE-ESTIMANDO
+    cegamiento: RESPUESTAS-NO-ABIERTAS
+  - id_manifiesto: enco_2026_junio_dbf_reservado
+    periodo: "2026-06"
+    adquisicion: COMPLETA
+    bytes: {tamano: 164273, sha256: f1c10fb4f4c0c8c0f1cccf3cba874a57a238f3af0efbed73f34c19ca7a0ff5e0}
+    unidad_respuesta: una persona elegida de 18 años o más; no todos los integrantes del hogar
+    universo: residentes permanentes de 18 años o más en viviendas particulares del dominio ENCO urbano con representación nacional
+    variable: P10 de ENCOCB, carácter longitud 1
+    evento: "1 = Sí"
+    denominador: "respuestas sustantivas 1, 2 y 4; 4 No tiene ingresos permanece"
+    missing: "3 No sabe, blanco y faltante fuera; reportados por separado"
+    ponderador: FACTOR de ENCOCB, numérico longitud 6
+    diseno: probabilístico trietápico estratificado por conglomerados; punto descriptivo preparado, varianza no operativa
+    rotacion: ocho paneles 4-8-4; hasta 50% de viviendas coinciden al mismo mes del año anterior
+    reserva: RESERVADA-NO-ABIERTA
+    definicion: COMPLETA-PARA-PUNTO-DESCRIPTIVO-CON-GATE-DE-CODIGOS
+    elegibilidad_M: M-NO-ELEGIBLE-PARA-ESTE-ESTIMANDO
+    cegamiento: RESPUESTAS-JUNIO-NO-ABIERTAS-CEGAMIENTO-FAMILIA-PARCIAL-POR-TABULADO-ADYACENTE
+baseline_B:
+  estado: NO-CONSTRUIDO
+  regla: junio 2025 sólo podría ser persistencia del mismo estimando tras autorizar lectura y fijar orden
+enlace_M:
+  regla: dinero.ahorro.tiene_ahorros
+  estado: M-NO-ELEGIBLE-PARA-ESTE-ESTIMANDO
+  razon: stock de ahorro existente no identifica posibilidad actual percibida de ahorrar
