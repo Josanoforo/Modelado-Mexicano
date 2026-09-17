@@ -104,7 +104,10 @@ def main():
         "max_delta": max_delta,
     }
     raw = json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
-    output = args.output or repo / "forense/analisis/wbes2023-precision-1/control-independiente.json"
+    output = args.output or repo / (
+        "forense/analisis/wbes2023-precision-1/"
+        "control-independiente-wbes2023-precision.json"
+    )
     output.write_text(raw, encoding="utf-8")
     print(raw, end="")
     raise SystemExit(0 if result["control"].endswith("COINCIDE") else 1)
