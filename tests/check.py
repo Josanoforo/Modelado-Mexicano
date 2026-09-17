@@ -2924,6 +2924,19 @@ _T25_ARCHIVOS_CONOCIDOS = {
     #            rotulos nuevos: el regex no distingue una fase de un acto.
     "forense/notas/insumos-direccion/D-THETA-DOCUMENTO-v1_1-post-adversarial.md",
     "forense/notas/insumos-externos/celda-d-piloto/ADVERSARIAL-D-THETA-v1_0.md",
+    # ACTO GEN2-TRAMITE-4, 17/sep/2026. Un archivo, una sola causa: el
+    # encargo esta archivado VERBATIM (0-bis A.3, incluye la pieza de
+    # direccion P4 "D-theta v1.2" pegada dentro). Su unica mencion:
+    #   `M1` -- dentro del texto de direccion de D-theta v1.2 ("ADR-531 (M1
+    #            con alcance precisado)"), referencia en prosa al mismo
+    #            slot del sello del motor que ya exime `GEN2-M1-ALCANCE-1`
+    #            arriba (ADR-91/ADR-100), no un rotulo de acto nuevo.
+    "forense/encargos/2026-09-17-GEN2-TRAMITE-4-RECIBO-CARRIL-CODEX-CUATRO-FIRMAS-D-THETA-1_2.md",
+    # ACTO GEN2-TRAMITE-4, 17/sep/2026. Misma causa y misma mencion `M1`
+    # que el archivo anterior: es la pieza de direccion P4 (D-theta v1.2)
+    # archivada por separado (forense/notas/insumos-direccion/), verbatim,
+    # sin cambiar una coma respecto del texto pegado en el encargo.
+    "forense/notas/insumos-direccion/2026-09-16-D-THETA-v1_2.md",
     # ACTO GEN2-CELDA-D-DISENO-CIEGO-1, 17/sep/2026. Dos archivos, una sola
     # causa: el encargo esta archivado VERBATIM (0-bis A.3) y no se edita para
     # complacer un test, y la nota lo cita verbatim. Sus menciones, una por una:
