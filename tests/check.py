@@ -4978,6 +4978,12 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # propio del acto, `GEN2-CELDA-D-PILOTO-2`, va censado en
     # canon/registro-rotulos.tsv.
     "forense/encargos/2026-09-17-GEN2-CELDA-D-PILOTO-2-V1_1.md",
+    # Misma causa, mismo acto: la nota de cierre nombra la fila `M05` por su
+    # id de catalogo -- el que `momentos_holdout_refs` de la celda-D y
+    # `tests/test_celda_d_piloto2_consumidor.py` citan tal cual -- porque es
+    # el dato que el consumidor lee, no un rotulo de acto. Darle prefijo
+    # falsearia la cita.
+    "forense/notas/2026-09-17-GEN2-CELDA-D-PILOTO-2-cierre.md",
 }
 
 
