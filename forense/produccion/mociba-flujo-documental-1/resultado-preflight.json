@@ -1,0 +1,29 @@
+{
+  "comando": "python3 tools/f6_factibilidad_prepara.py --cards forense/produccion/mociba-flujo-documental-1/tarjetas-sucesoras.yaml --json",
+  "ejecutado_el": "2026-09-16",
+  "schema_version": "MOCIBA-flujo-documental-1-tarjetas-sucesoras-v1_0",
+  "familias": 2,
+  "celdas": 4,
+  "conteos": {"DEFINICION_O_CANDIDATO_INSUFICIENTE": 4},
+  "delta_mociba": [
+    {
+      "id_celda": "R01-MOCIBA-2021",
+      "definicion": "ACREDITADA",
+      "estado": "DEFINICION_O_CANDIDATO_INSUFICIENTE",
+      "bloqueos": ["M:CANDIDATO-NO-ELEGIBLE"]
+    },
+    {
+      "id_celda": "R01-MOCIBA-2022",
+      "definicion": "ACREDITADA",
+      "estado": "DEFINICION_O_CANDIDATO_INSUFICIENTE",
+      "bloqueos": ["M:CANDIDATO-NO-ELEGIBLE"]
+    }
+  ],
+  "otras_celdas_preservadas": ["R09-ISSP-2017-SEX-1", "R09-ISSP-2017-SEX-2"],
+  "firma_estado": "PENDIENTE-DE-MESA",
+  "autorizado_para_llamadas": false,
+  "microdatos_abiertos": false,
+  "modelos_llamados": false,
+  "resultados_canonicos_escritos": false,
+  "apertura_R_autorizada": false
+}
