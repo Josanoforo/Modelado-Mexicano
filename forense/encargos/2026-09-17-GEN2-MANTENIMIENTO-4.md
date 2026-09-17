@@ -30,3 +30,7 @@ CONTADOR: cero mediciones, dicho sin disfraz. Mueve: `--baseline` deja de dar RO
 | `forense/rutinas.tsv`: enmienda fechada a la huella PARO del 17/sep ("causa: T16 asertaba WARN; resuelto por `ADR-539`") | `NO-VERIFICABLE-AQUÍ` — la fila PARO del 17/sep todavía no existe en `origin/main`: la trae la rutina paralela `#850`, sin fusionar, y este acto declara explícitamente en su perímetro que no fusiona ni edita `#850` | la huella queda sin su causa explicada hasta que `#850` fusione y la fila exista en el árbol | `NC-0314`, `DIFERIDO-A:PR#850` |
 | `test_a2` de `tests/test_motor_holdout.py` (guardia de firma completa vs. append-only) | `FUERA-DE-PERÍMETRO` — el encargo lo excluye por nombre («No toca `tests/test_motor_holdout.py` (`NC-0305` es otro acto)») | la guardia sigue sin corregir; no bloquea (ese archivo no corre en `tests/check.py`) | `NC-0305` |
 | Fusión de `#849`/`#850` y del despacho de la cola | `FUERA-DE-PERÍMETRO` — el encargo prohíbe explícitamente fusionar o editar los PR de rutina paralelos | ninguno propio de este acto; `#850` sigue `PARO` hasta que ese ciclo lo resuelva | `DIFERIDO-A:PR#850` |
+
+## CONSUMIDO
+
+Ejecutado por `PR #854`.
