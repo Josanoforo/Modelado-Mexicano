@@ -2979,6 +2979,33 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # censado en `canon/registro-rotulos.tsv`.
     "forense/encargos/2026-09-17-GEN2-CELDA-D-DISENO-CIEGO-1-SEGUNDO-DISENO-INDEPENDIENTE.md",
     "forense/notas/2026-09-17-GEN2-CELDA-D-DISENO-CIEGO-1.md",
+    # ACTO GEN2-CELDA-D-PILOTO-1, 16/sep/2026. TRES archivos, una sola causa:
+    # son las tres versiones de la MISMA spec congelada, y en las tres `E1` no
+    # es un rotulo de acto sino el NOMBRE DE UN TRAMO DE EDAD del cruce que el
+    # piloto mide. Sus menciones, una por una:
+    #   `E1`..`E4` -- los cuatro tramos `{18-29, 30-44, 45-59, 60+}` del eje
+    #            `edad`, y los ocho rotulos de celda `L1xE1`..`L2xE4` que de
+    #            ellos salen. Viven en el contrato ejecutable
+    #            (`spec.yaml::parametros.edad_tramos` y `.celdas`), en los ids
+    #            de RESULT ya SELLADOS de los dos CALC, en el catalogo de
+    #            momentos y en la celda-D. Son claves de un espacio de celdas,
+    #            no habitantes del espacio de rotulos `E`; el regex no los
+    #            distingue.
+    #   El `E1` del espacio de rotulos YA ESTA CENSADO en
+    #   `canon/registro-rotulos.tsv:47` (`E1 · HABITANTE adicional, encargo
+    #   E1 CIERRA-FP157`), y este acto NO lo reclama ni colisiona con el.
+    # Renombrarlos con prefijo obligaria a reescribir dos `spec.yaml` y dos
+    # `resultados.json` YA SELLADOS -- y una corrida sellada es evidencia
+    # historica, no se reescribe (P4, `CALC-INMUTABLE`). El rotulo propio del
+    # acto, `GEN2-CELDA-D-PILOTO-1`, si va censado en registro-rotulos.tsv.
+    "forense/prereg-caja/DIN-ahorro-solo-informal-lxe8-spec-v1_0.md",
+    "forense/prereg-caja/DIN-ahorro-solo-informal-lxe8-spec-v1_1.md",
+    "forense/prereg-caja/DIN-ahorro-solo-informal-lxe8-spec-v1_2.md",
+    # Misma causa, mismo acto: la nota de cierre transcribe los rotulos de
+    # celda `L1xE1`..`L2xE4` y los tramos `E1`..`E4` desde los RESULT ya
+    # SELLADOS de los dos CALC. Reescribirlos falsearia lo que el registro
+    # contiene, que es justo lo que la nota existe para hacer auditable.
+    "forense/notas/2026-09-16-GEN2-CELDA-D-PILOTO-1-cierre.md",
     # ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2, 15/sep/2026: la nota de cierre
     # cita los rotulos pelados `E5-0` y `E5` porque son las CLAVES LITERALES
     # que `tools/verifica_encargos_gen2.py::secciones_maestras()` devuelve
