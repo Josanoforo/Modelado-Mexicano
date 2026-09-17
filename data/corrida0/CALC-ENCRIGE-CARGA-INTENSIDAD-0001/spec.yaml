@@ -1,0 +1,115 @@
+calc_id: CALC-ENCRIGE-CARGA-INTENSIDAD-0001
+spec_md: spec.md
+spec_md_sha256: 96b4854e9e8e17e25f97f59da36ef5d91fb9bfa815fab641713440484e46df3d
+script: data/corrida0/CALC-ENCRIGE-CARGA-INTENSIDAD-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: DERIVADO-DESCRIPTIVO-DE-RESULTADO-SELLADO
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-APLICA-DERIVACION-DETERMINISTA
+  padre: CALC-ENCRIGE-CORRUPCION-DESCRIPTIVA-0001
+  uso_motor: CONTEXTO-INFORME-NO-CALIBRA
+  unidad_transferencia: UNIDAD-DISTINTA-NO-TRANSFERENCIA
+  medidor_ejecutado_al_congelar: "NO; puntos del padre ya observados; spec, código y pruebas se comprometen antes de la primera derivación real."
+  informacion_muestral_independiente: NINGUNA
+
+inputs:
+  - id: IN-ENCRIGE-DES-CSV
+    origen: repo
+    ruta: forense/analisis/encrige-descriptiva-1/encrige-corrupcion-por-tamano.csv
+    sha256: 632ce31b2c2cf70e22871319b5842e6168592f065588b69b11010e3552b48c26
+  - id: IN-ENCRIGE-DES-RESULTADOS
+    origen: repo
+    ruta: data/corrida0/CALC-ENCRIGE-CORRUPCION-DESCRIPTIVA-0001/resultados.json
+    sha256: 476fed430d8903b192b1bee7a0317f2afd2cfc68c78d6a64a2c91b9d760684bd
+  - id: IN-ENCRIGE-DES-SPEC
+    origen: repo
+    ruta: data/corrida0/CALC-ENCRIGE-CORRUPCION-DESCRIPTIVA-0001/spec.yaml
+    sha256: b4c6882da9e9872a68dc2c7c40a355b4a66cbae997e63b02e48f4bd09251ff2a
+  - id: IN-ENCRIGE-DES-SELLO
+    origen: repo
+    ruta: data/corrida0/CALC-ENCRIGE-CORRUPCION-DESCRIPTIVA-0001/sello.json
+    sha256: dd2bc7dc912585301632789ac3b3bc2208c0ab5d9b8c1db83afa18fa2233a39a
+  - id: IN-ENCRIGE-DES-SELLO-SHA256
+    origen: repo
+    ruta: data/corrida0/CALC-ENCRIGE-CORRUPCION-DESCRIPTIVA-0001/sello.sha256
+    sha256: c0d87a4afc5b6dc4354f3a22ebde45333b5c24205643d537a99f9ed9b5294a36
+
+variables: []
+universo: >-
+  Empresas privadas del país con instalaciones fijas en industria, comercio
+  y servicios cubiertos por ENCRIGE 2020, que durante enero a la entrevista
+  realizaron al menos un trámite o fueron sujetas a una inspección. Unidad:
+  empresa, que puede integrar uno o más establecimientos.
+filtros: >-
+  Dominios publicados Estados Unidos Mexicanos, Micro, Pequeña, Mediana y
+  Grande. Las participaciones usan sólo los cuatro tamaños; el nacional se
+  usa como contraste y nunca como quinta parte.
+ponderador: >-
+  NO-REESTIMADO. N, A y T son estimaciones expandidas publicadas por INEGI,
+  no tamaños muestrales. No se abren pesos ni microdatos.
+transformacion: >-
+  p=A/N; m=T/N; r=T/A si A>0. Participaciones N_s/suma(N_s), A_s/suma(A_s)
+  y T_s/suma(T_s). Descomposición simétrica de m_s-m_micro en contribuciones
+  asociadas a prevalencia e intensidad condicional.
+estimando: >-
+  Alcance de la corrupción entre empresas expuestas, recuento por empresa
+  expuesta, intensidad por empresa afectada y concentración de las tres masas.
+  Descripción transversal, no efecto causal ni riesgo por interacción.
+precision: >-
+  Sin n muestral, EE, CV o IC utilizables. Decimal sobre absolutos publicados;
+  tolerancia 0.0003 para masas y 1e-12 para razones e identidades.
+
+dependencias_materiales: []
+seed: {aplica: false, valor: null, rng: NO-APLICA}
+tolerancia:
+  tipo: mixta
+  abs: 1.0e-12
+  razon: >-
+    Razones deterministas; las masas nacionales aceptan 0.0003 por cinco
+    redondeos de absolutos publicados a cuatro decimales.
+
+parametros:
+  fuente_acto: GEN2-ENCRIGE-CARGA-INTENSIDAD-1
+  padre: CALC-ENCRIGE-CORRUPCION-DESCRIPTIVA-0001
+  referencia: Micro
+  periodo: Durante 2020 (enero a la fecha de entrevista)
+  tolerancia_masa_abs: 0.0003
+  tolerancia_razon_abs: 1.0e-12
+  output_dir: forense/analisis/encrige-carga-intensidad-1
+  incertidumbre: NO-DISPONIBLE-EN-REPRESENTACION-CSV
+  adopcion: NINGUNA
+
+resultados:
+  - {id: RESULT-ENCRIGE-CARGA-G-PADRE-CSV-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENCRIGE-CARGA-G-N-DOMINIOS, tipo: entero, unidad: dominios}
+  - {id: RESULT-ENCRIGE-CARGA-G-N-TAMANOS, tipo: entero, unidad: tamaños oficiales}
+  - {id: RESULT-ENCRIGE-CARGA-G-N-CONTRASTES, tipo: entero, unidad: contrastes vs Micro}
+  - {id: RESULT-ENCRIGE-CARGA-G-MAX-RESIDUO-IDENTIDAD, tipo: flotante, unidad: trámites/inspecciones por empresa expuesta}
+  - {id: RESULT-ENCRIGE-CARGA-G-MAX-RESIDUO-DESCOMPOSICION, tipo: flotante, unidad: trámites/inspecciones por empresa expuesta}
+  - {id: RESULT-ENCRIGE-CARGA-G-RESIDUO-N-NACIONAL, tipo: flotante, unidad: unidades expandidas}
+  - {id: RESULT-ENCRIGE-CARGA-G-RESIDUO-A-NACIONAL, tipo: flotante, unidad: unidades expandidas}
+  - {id: RESULT-ENCRIGE-CARGA-G-RESIDUO-T-NACIONAL, tipo: flotante, unidad: trámites/inspecciones expandidos}
+  - {id: RESULT-ENCRIGE-CARGA-NACIONAL-P, tipo: proporcion, unidad: empresas afectadas por empresa expuesta}
+  - {id: RESULT-ENCRIGE-CARGA-NACIONAL-M, tipo: flotante, unidad: trámites/inspecciones con corrupción por empresa expuesta}
+  - {id: RESULT-ENCRIGE-CARGA-NACIONAL-R, tipo: flotante, unidad: trámites/inspecciones con corrupción por empresa afectada}
+  - {id: RESULT-ENCRIGE-CARGA-G-INCERTIDUMBRE, tipo: texto, unidad: estado}
+  - {id: RESULT-ENCRIGE-CARGA-G-VEREDICTO, tipo: texto, unidad: alcance}
+  - {id: RESULT-ENCRIGE-CARGA-PEQUENA-DELTA-M-VS-MICRO, tipo: flotante, unidad: trámites/inspecciones por empresa expuesta}
+  - {id: RESULT-ENCRIGE-CARGA-PEQUENA-CONTRIB-PREVALENCIA, tipo: flotante, unidad: trámites/inspecciones por empresa expuesta}
+  - {id: RESULT-ENCRIGE-CARGA-PEQUENA-CONTRIB-INTENSIDAD, tipo: flotante, unidad: trámites/inspecciones por empresa expuesta}
+  - {id: RESULT-ENCRIGE-CARGA-PEQUENA-DOMINA, tipo: texto, unidad: componente aritmético}
+  - {id: RESULT-ENCRIGE-CARGA-MEDIANA-DELTA-M-VS-MICRO, tipo: flotante, unidad: trámites/inspecciones por empresa expuesta}
+  - {id: RESULT-ENCRIGE-CARGA-MEDIANA-CONTRIB-PREVALENCIA, tipo: flotante, unidad: trámites/inspecciones por empresa expuesta}
+  - {id: RESULT-ENCRIGE-CARGA-MEDIANA-CONTRIB-INTENSIDAD, tipo: flotante, unidad: trámites/inspecciones por empresa expuesta}
+  - {id: RESULT-ENCRIGE-CARGA-MEDIANA-DOMINA, tipo: texto, unidad: componente aritmético}
+  - {id: RESULT-ENCRIGE-CARGA-GRANDE-DELTA-M-VS-MICRO, tipo: flotante, unidad: trámites/inspecciones por empresa expuesta}
+  - {id: RESULT-ENCRIGE-CARGA-GRANDE-CONTRIB-PREVALENCIA, tipo: flotante, unidad: trámites/inspecciones por empresa expuesta}
+  - {id: RESULT-ENCRIGE-CARGA-GRANDE-CONTRIB-INTENSIDAD, tipo: flotante, unidad: trámites/inspecciones por empresa expuesta}
+  - {id: RESULT-ENCRIGE-CARGA-GRANDE-DOMINA, tipo: texto, unidad: componente aritmético}
+  - {id: RESULT-ENCRIGE-CARGA-ARTEFACTO-TABLA-AMPLIADA-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENCRIGE-CARGA-ARTEFACTO-PARTICIPACIONES-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENCRIGE-CARGA-ARTEFACTO-CONTRASTES-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENCRIGE-CARGA-ARTEFACTO-CONTROLES-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENCRIGE-CARGA-ARTEFACTO-FIGURA-SVG-SHA256, tipo: texto, unidad: sha256}
