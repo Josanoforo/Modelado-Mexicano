@@ -451,6 +451,30 @@
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
 
+- id: enigh2022_descripcion_base_pdf
+  usado_para: contrato documental de unidad, periodo, construccion y contenido de concentradohogar para GEN2-ENIGH2022-INTENSIDAD-REMESAS-1
+  url_origen: https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463910626.pdf
+  fecha_descarga: '2026-09-16'
+  descargado_por: Codex CLI, descarga directa del sitio oficial de INEGI
+  archivo: enigh2022_descripcion_base_pdf.pdf
+  sha256: 7b0c4e6bd36ceb9eae7cc852fce5a38dbcf4f2da6b133d35df6b1443fc76836c
+  tamano_bytes: 2906552
+  formato: PDF, ENIGH 2022 Nueva serie, Descripcion de la base de datos
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enigh2022_nota_tecnica_pdf
+  usado_para: contrato documental de pesos y trimestre de ENIGH 2022 para GEN2-ENIGH2022-INTENSIDAD-REMESAS-1
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2022/doc/enigh2022_ns_nota_tecnica.pdf
+  fecha_descarga: '2026-09-16'
+  descargado_por: Codex CLI, descarga directa del sitio oficial de INEGI
+  archivo: enigh2022_nota_tecnica_pdf.pdf
+  sha256: 4f79f457d69c1f066d7fd319b1650f7b631f4008cb74e1046e6c644c65be0647
+  tamano_bytes: 1643661
+  formato: PDF, ENIGH 2022 Nueva serie, Nota tecnica
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
 - id: hitoD_fase1_ediciones_requieren_navegador
   fecha: '2026-07-30'
   hecho: >
