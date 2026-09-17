@@ -220,7 +220,12 @@ def load_and_derive(csv_bytes: bytes, *, enforce_parent_hash: bool = True) -> di
 
 
 def _fmt_ratio(value: Decimal | None) -> str:
-    return "" if value is None else format(value.quantize(Q12), "f")
+    if value is None:
+        return ""
+    rounded = value.quantize(Q12)
+    if rounded == 0:
+        rounded = abs(rounded)
+    return format(rounded, "f")
 
 
 def _fmt_mass(value: Decimal) -> str:
