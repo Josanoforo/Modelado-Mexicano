@@ -671,5 +671,5 @@ hallazgos:
     efecto: "la unica entrada EVIDENCIA_EXPERIMENTAL_TERCEROS del archivo (`dinero.credito.baja_friccion_usura_dano_downstream`, RCT de Compartamos, sellada por ADR-204) es INALCANZABLE por nombre desde `theta.py`, sin que se emita un solo error."
     no_corregido_aqui: "`milpa/src/theta.py` esta FUERA DE PERIMETRO de este acto. Va a NC con sucesor."
   universo_censado_presente_pero_sin_campo:
-    que: "el censo E1 §3 declara `universo` PRESENTE para `condicionales_*` y `coeficientes_generador_medidos`, pero medido contra el arbol solo 3 de las 6 llaves de `coeficientes_generador_medidos` traen campo `universo:`, y ninguna entrada de `condicionales_*` lo trae: el universo vive repartido en `fuente:` + `n_util:`."
+    que: "el censo E1 §3 declara `universo` PRESENTE para `condicionales_*` y `coeficientes_generador_medidos`, pero medido contra el arbol solo 3 de las 7 llaves (tras la reubicacion de P2; eran 6 antes, y G5_familismo_apoyo tampoco trae universo:) de `coeficientes_generador_medidos` traen campo `universo:`, y ninguna entrada de `condicionales_*` lo trae: el universo vive repartido en `fuente:` + `n_util:`."
     efecto: "esas filas llevan `universo_origen: DERIVADO de fuente:+n_util:`. No es un hueco del censo ni un valor inventado: es una discrepancia entre la prosa del censo y el arbol, declarada y no corregida."
