@@ -96,6 +96,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+from datetime import datetime
 import json
 import re
 import sys
@@ -155,6 +156,128 @@ SELLADA = ("SELLADA", "SUPERADO")
 # CERRADA y copiada de las specs: no se acepta una rama nueva por parecerse.
 ADOPTABLES = {"CANTIDAD-MEDIDA-ADOPTABLE", "ADOPTABLE-POR-REPLICA",
               "ADOPTABLE"}
+
+# F-3 de `2026-09-15-GEN2-FIRMAS-MESA-2.md` adjudica UNA pareja para UN
+# consumidor. No es una politica general de "el mas reciente gana": estas
+# identidades selladas son parte de la compuerta y un re-sellado distinto
+# vuelve a dejar el conflicto explicito para mesa.
+F3_RES = "RES-0035"
+F3_CONSUMIDOR = (
+    "milpa/tramite.yaml:familia.seguro.volatilidad_ausencia_estado:"
+    "recibe_remesas")
+F3_ANTERIOR = (
+    "CALC-B-0001", "RESULT-B-ADOPCION-P3", "NO-ADOPTABLE-POR-GRANO")
+F3_VIGENTE = (
+    "CALC-ENIGH-0001", "RESULT-ENIGH-A-ADOPCION",
+    "LISTADO-PARA-MESA-REPRODUCE")
+F3_CORRIDAS = {
+    "CALC-B-0001": "CALC-B-0001--098298ca327f",
+    "CALC-ENIGH-0001": "CALC-ENIGH-0001--d13529e2e3e9",
+}
+F3_SPEC_SHA256 = {
+    "CALC-B-0001":
+        "7feed075d55bf795f921bc7bd0d75ac8bffa60b205822cf1333364a2c67efe16",
+    "CALC-ENIGH-0001":
+        "1555d052cf0c9ebbf91d1080c6be976b64191fb932dfa04083d7804bc0ce4566",
+}
+
+
+def _instante_acreditable(texto: str):
+    """Instante ISO-8601 con zona; nunca cae a mtime, commit ni nombre."""
+    try:
+        instante = datetime.fromisoformat(str(texto).replace("Z", "+00:00"))
+    except (TypeError, ValueError):
+        return None
+    return instante if instante.utcoffset() is not None else None
+
+
+def _evidencia_ejecucion_f3(calc: str) -> dict:
+    """Lee el recibo y verifica los bytes cubiertos por su sello."""
+    ruta = C0 / calc / "ejecucion.json"
+    if not ruta.is_file():
+        return {}
+    try:
+        evidencia = json.loads(ruta.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    sello, detalle = corrida0._verifica_sello(C0 / calc)
+    evidencia["__sello_archivos__"] = sello
+    evidencia["__detalle_sello__"] = detalle
+    return evidencia
+
+
+def _resuelve_f3_remesas(res: str, consumidor: str, ramas: list[tuple],
+                         oferta: dict[str, dict], evidencias: dict[str, dict],
+                         coincide_grano: bool, modo_grano: str):
+    """Aplica la adjudicacion acotada F-3 o explica por que no aplica.
+
+    `None` significa que el caso ni siquiera esta dentro del alcance de F-3.
+    Un dict con `aplica=False` conserva el conflicto y deja su causa en la
+    columna explicativa existente.
+    """
+    if res != F3_RES or consumidor != F3_CONSUMIDOR:
+        return None
+
+    esperadas = sorted((F3_ANTERIOR, F3_VIGENTE))
+    if sorted(ramas) != esperadas:
+        return {"aplica": False,
+                "causa": "PAREJA-CALC-RESULT-VEREDICTO-DISTINTA"}
+    if not coincide_grano or not modo_grano.startswith(
+            "grano del consumidor = "):
+        return {"aplica": False,
+                "causa": f"F1-GRANO-NO-ACREDITADO:{modo_grano or 'AUSENTE'}"}
+
+    instantes = {}
+    campos = (
+        ("corrida_id", "corrida_id"),
+        ("spec_id", "spec_id"),
+        ("fecha", "fecha"),
+        ("git_commit", "codigo_commit"),
+        ("script_path", "script_path"),
+        ("script_blob_sha256", "script_blob_sha256"),
+        ("spec_yaml_sha256", "spec_yaml_sha256"),
+    )
+    for calc in (F3_ANTERIOR[0], F3_VIGENTE[0]):
+        corrida, ejecucion = oferta.get(calc), evidencias.get(calc)
+        if not corrida:
+            return {"aplica": False, "causa": f"CORRIDA-AUSENTE:{calc}"}
+        if (corrida.get("corrida_id") != F3_CORRIDAS[calc]
+                or corrida.get("spec_yaml_sha256") != F3_SPEC_SHA256[calc]):
+            return {"aplica": False,
+                    "causa": f"IDENTIDAD-SELLADA-DISTINTA:{calc}"}
+        if (not str(corrida.get("estado", "")).startswith(SELLADA)
+                or corrida.get("sello") != "COINCIDE"
+                or corrida.get("cuenta_gen2") != "SI"):
+            return {"aplica": False, "causa": f"SELLO-NO-VALIDO:{calc}"}
+        if not ejecucion:
+            return {"aplica": False,
+                    "causa": f"EJECUCION-AUSENTE-O-ILEGIBLE:{calc}"}
+        if (ejecucion.get("__sello_archivos__") != "COINCIDE"
+                or ejecucion.get("exit_code") != 0
+                or ejecucion.get("error") is not None):
+            return {"aplica": False,
+                    "causa": f"ARTEFACTOS-NO-SELLADOS:{calc}"}
+        for campo_ejecucion, campo_corrida in campos:
+            if ejecucion.get(campo_ejecucion) != corrida.get(campo_corrida):
+                return {"aplica": False,
+                        "causa": (f"EJECUCION-NO-CORRESPONDE:{calc}:"
+                                  f"{campo_ejecucion}")}
+        instante = _instante_acreditable(ejecucion.get("fecha"))
+        if instante is None:
+            return {"aplica": False,
+                    "causa": f"FECHA-NO-ACREDITABLE:{calc}"}
+        instantes[calc] = instante
+
+    if instantes[F3_VIGENTE[0]] <= instantes[F3_ANTERIOR[0]]:
+        return {"aplica": False,
+                "causa": "ORDEN-SELLADO-NO-ACREDITADO"}
+    return {
+        "aplica": True,
+        "valor": F3_VIGENTE[2],
+        "referencia": (
+            f"{F3_ANTERIOR[0]}/{F3_ANTERIOR[1]}=SUPERADO->"
+            f"{F3_VIGENTE[0]}/{F3_VIGENTE[1]}"),
+    }
 
 
 def _res_ids(texto: str) -> set[str]:
@@ -338,6 +461,8 @@ def deriva() -> tuple[list[dict], dict]:
             oferta[fila["spec_id"]] = fila
     valor_result = {(r["corrida_id"], r["resultado_id"]): r
                     for r in resultados if r["origen"] == "OFERTA"}
+    evidencias_f3 = {calc: _evidencia_ejecucion_f3(calc)
+                     for calc in F3_CORRIDAS}
 
     # Indices de los tres canales, construidos UNA vez sobre todas las specs.
     c1_por_res: dict[str, list[tuple[str, str, str]]] = {}
@@ -404,9 +529,35 @@ def deriva() -> tuple[list[dict], dict]:
         if sing:
             ramas.append(sing)
         if len({r[2] for r in ramas}) > 1:
-            fila["veredicto_sellado"] = "CONFLICTO-ENTRE-VEREDICTOS"
-            fila["veredicto_sellado_ref"] = ";".join(
+            refs_conflicto = ";".join(
                 f"{c}/{r}={v}" for c, r, v in sorted(ramas))
+            coincide_grano, modo_grano = False, "RESULT-ENIGH-A-P-AUSENTE"
+            corr_enigh = oferta.get(F3_VIGENTE[0])
+            punto_enigh = (valor_result.get(
+                (corr_enigh["corrida_id"], "RESULT-ENIGH-A-P"))
+                if corr_enigh else None)
+            if punto_enigh is not None:
+                try:
+                    coincide_grano, _delta, modo_grano = \
+                        corrida0._compara_adopcion(
+                            float(punto_enigh["valor"]),
+                            float(slot["valor_legacy"]),
+                            {"tipo": "proporcion"},
+                            specs[F3_VIGENTE[0]].get("tolerancia") or {})
+                except (KeyError, TypeError, ValueError):
+                    modo_grano = "CONTRATO-DE-GRANO-ILEGIBLE"
+            f3 = _resuelve_f3_remesas(
+                res, slot["consumidor"], ramas, oferta, evidencias_f3,
+                coincide_grano, modo_grano)
+            if f3 and f3["aplica"]:
+                fila["veredicto_sellado"] = f3["valor"]
+                fila["veredicto_sellado_ref"] = f3["referencia"]
+            else:
+                fila["veredicto_sellado"] = "CONFLICTO-ENTRE-VEREDICTOS"
+                fila["veredicto_sellado_ref"] = refs_conflicto
+                if f3:
+                    fila["veredicto_sellado_ref"] += (
+                        f";F-3-NO-APLICA:{f3['causa']}")
         elif ramas:
             calc_v, rid_v, valor_v = ramas[0]
             fila["veredicto_sellado"] = valor_v

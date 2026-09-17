@@ -5425,6 +5425,14 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-ENCO-DOS-OLAS-RESERVADAS-1, 17/sep/2026: encargo A.3
+    # archivado VERBATIM. La cita compara constructos y ordena no equiparar
+    # posibilidad percibida de ahorro con stock existente; no solicita medir
+    # la regla M. `tools/ya_medido.py dinero.ahorro.tiene_ahorros` sí se
+    # ejecutó y devolvió `MEDIDA-EN: tramite-ola5-propuesta-v0.yaml,
+    # tramite.yaml`; la salida y su interpretación se conservan en 05-cierre.
+    # Editar el encargo rompería la custodia literal.
+    "forense/encargos/2026-09-17-GEN2-ENCO-DOS-OLAS-RESERVADAS-1.md",
     # ACTO GEN2-CELDA-D-CAREO-1, 17/sep/2026: encargo A.3 archivado VERBATIM,
     # que no se edita para complacer un test (misma regla que rige T25). Su
     # unica cita `R-n` es `R5.1`, y aparece una sola vez, dentro del bloque de
