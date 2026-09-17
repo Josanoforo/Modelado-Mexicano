@@ -3311,6 +3311,9 @@ FUNCIONES_DEPENDENCIA = {
 }
 
 INSUMOS_LEGACY_ARCHIVO = {
+    # Resultado numérico de MAESTRA35-L8 (2/sep), anterior a GEN2. La ruta
+    # exacta se acredita; su SHA sigue guardado por la spec y el medidor L8.
+    "data/l8-resultados-tipo-boleta-v1_0.json",
     "milpa/tramite.yaml",
     "milpa/procedencia.yaml",
 }
