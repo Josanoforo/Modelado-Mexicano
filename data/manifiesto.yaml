@@ -68,6 +68,24 @@
     con el mismo tipo de contenido -- se usó como sustituto. "No pude alcanzar el archivo"
     original, no "el archivo no tiene el dato".
 
+- id: encig23_cuestionario_pdf
+  usado_para: GEN2-ENCIG2023-FLUJO-Y-ESTIMANDO-1 — texto, secuencia e instrucciones
+    de salto de P8_3/P8_4 y distinción documental de P8_6
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2023/doc/encig23_cuestionario.pdf
+  fecha_descarga: '2026-09-16'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: encig23_cuestionario.pdf
+  sha256: 65000ad38419da504e46b34a0a2426f218d1ba6e604ad37a14762bbd07881e1e
+  tamano_bytes: 2015393
+  formato: PDF, 24 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI
+    (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: >
+    Cuestionario general oficial ENCIG 2023. Las páginas PDF/impresas 20 y 21
+    documentan P8_3, el salto a sección IX cuando sus tres opciones son 2 o 9,
+    la selección de tipo de trámite en P8_4, la cuenta de repeticiones en P8_5
+    y la distinción entre «No le dio nada» y montos en P8_6.
+
 - id: nota_metodologica_rotulo_pareada
   fecha: '2026-07-29'
   hecho: >
