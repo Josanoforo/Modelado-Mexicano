@@ -20,6 +20,11 @@ respuestas. No se abrió ninguna fila, no se calculó una tasa y no se ejecutó 
 - pruebas de códigos especiales, “No tiene ingresos”, denominador vacío,
   pesos inválidos, escalas y barrera contra lectura accidental de filas.
 
+La comprobación requerida de reutilización se ejecutó como `python3
+tools/ya_medido.py dinero.ahorro.tiene_ahorros` y devolvió `MEDIDA-EN:
+tramite-ola5-propuesta-v0.yaml, tramite.yaml`. Es evidencia de que la tasa de
+stock M ya existe, no de equivalencia con la posibilidad percibida de P10.
+
 La adquisición está completa. La definición está completa para un punto
 descriptivo, no para inferencia de diseño: faltan llaves/receta operativa de
 estrato, covarianza por panel y política firmada ante estratos singulares. La

@@ -68,6 +68,12 @@ stock y posibilidad no está identificado: no se define
 otra. Estado obligatorio para ambas olas:
 `M-NO-ELEGIBLE-PARA-ESTE-ESTIMANDO`.
 
+La comprobación `python3 tools/ya_medido.py
+dinero.ahorro.tiene_ahorros` devolvió `MEDIDA-EN:
+tramite-ola5-propuesta-v0.yaml, tramite.yaml`. Esto confirma que el stock M ya
+existe; no aporta el puente entre constructos y por tanto no cambia la
+inelegibilidad.
+
 La medición descriptiva de P10 seguiría siendo útil para conocer capacidad
 percibida de ahorro en dos cortes. No sería una validación ni transferencia de
 la regla M sin un puente científico preexistente y aprobado antes de abrir R.

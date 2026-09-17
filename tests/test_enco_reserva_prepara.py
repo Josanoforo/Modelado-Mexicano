@@ -119,7 +119,7 @@ def test_repository_cards_remain_non_authorizing():
 def test_fixture_is_explicitly_synthetic():
     fixture = json.loads(Path(
         "forense/produccion/enco-dos-olas-reservadas-1/fixtures/"
-        "SINTETICO-NO-MEDICION.json"
+        "ENCO-P10-SINTETICO-NO-MEDICION.json"
     ).read_text(encoding="utf-8"))
     assert fixture["naturaleza"] == "SINTETICO-NO-MEDICION"
     assert synthetic_summary(fixture["filas"])["naturaleza"] == fixture["naturaleza"]
