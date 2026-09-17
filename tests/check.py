@@ -957,16 +957,19 @@ def t16_suite_self_check():
                 if historico or re.match(MARCA_HISTORICA, l[m.end():]):
                     continue
                 fd, wd = int(m.group(1)), int(m.group(2))
-                if (fd, wd) != (real_fail, real_warn):
-                    fail("T16", f"{rel(p)}:{i} declara {fd} FAIL · {wd} WARN vigente; "
-                                f"la corrida real da {real_fail} FAIL · {real_warn} WARN")
+                if fd != real_fail:
+                    fail("T16", f"{rel(p)}:{i} declara {fd} FAIL vigente; "
+                                f"la corrida real da {real_fail} FAIL")
+                elif wd != real_warn:
+                    senal("T16", f"{rel(p)}:{i} declara {wd} WARN vigente (informativo); "
+                                 f"la corrida real da {real_warn} WARN")
             for m in re.finditer(r"total de WARN de la suite es\s*\*{0,2}(\d+)", l):
                 if historico or re.match(MARCA_HISTORICA, l[m.end():]):
                     continue
                 wd = int(m.group(1))
                 if wd != real_warn:
-                    fail("T16", f"{rel(p)}:{i} declara {wd} WARN vigente; "
-                                f"la corrida real da {real_warn} WARN")
+                    senal("T16", f"{rel(p)}:{i} declara {wd} WARN vigente (informativo); "
+                                 f"la corrida real da {real_warn} WARN")
 
 
 # ───────────────────────────────────────────────────────────────
@@ -2461,31 +2464,44 @@ def _freeze_baseline():
           f"{len(data['fails'])} fail · {len(data['warns'])} warn congelados")
 
 def _baseline_compare():
+    """`suite:WARN-nuevos-son-estado` (`data/corrida0/decisiones.tsv`, firma
+    de mesa 16/sep/2026, ADR-534): el veredicto VERDE/ROJO se adjudica solo
+    por FAIL frente a `tests/baseline.json`. Los WARN nuevos frente a la
+    línea base no adjudican -- se listan aparte (id de test + primera
+    línea) bajo un rótulo separado, que es lo que la rutina de derivados
+    consume para su reporte diario ("solo FAIL nuevos y WARN nuevos")."""
     import json
     if not os.path.exists(BASELINE_PATH):
         print(f"\n[--baseline] no existe {rel(BASELINE_PATH)} — corre con --freeze primero.")
         return 1
     with open(BASELINE_PATH, encoding="utf-8") as f:
         data = json.load(f)
-    known = {tuple(e) for e in data["fails"]} | {tuple(e) for e in data["warns"]}
-    current = ({(t, _baseline_key(m)) for t, m in FAILS} |
-               {(t, _baseline_key(m)) for t, m in WARNS}) - set(SENAL)
-    nuevos = current - known
-    resueltos = known - current
+    known_fails = {tuple(e) for e in data["fails"]}
+    known_warns = {tuple(e) for e in data["warns"]}
+    current_fails = {(t, _baseline_key(m)) for t, m in FAILS} - set(SENAL)
+    current_warns = {(t, _baseline_key(m)) for t, m in WARNS} - set(SENAL)
+    fails_nuevos = current_fails - known_fails
+    warns_nuevos = current_warns - known_warns
+    fails_resueltos = known_fails - current_fails
+    warns_resueltos = known_warns - current_warns
     print("\n" + "─" * 72)
-    if nuevos:
-        print(f"  LÍNEA BASE: ROJO — {len(nuevos)} entradas nuevas frente a {rel(BASELINE_PATH)} "
+    if fails_nuevos:
+        print(f"  LÍNEA BASE: ROJO — {len(fails_nuevos)} FAIL nuevos frente a {rel(BASELINE_PATH)} "
               f"(HEAD congelado {data.get('head')})")
-        for t, k in sorted(nuevos):
+        for t, k in sorted(fails_nuevos):
             print(f"  · {t}: {k[:110]}")
     else:
-        print(f"  LÍNEA BASE: VERDE — nada nuevo frente a {rel(BASELINE_PATH)} "
+        print(f"  LÍNEA BASE: VERDE — sin FAIL nuevos frente a {rel(BASELINE_PATH)} "
               f"(HEAD congelado {data.get('head')})")
-    if resueltos:
-        print(f"  ({len(resueltos)} entradas de la línea base ya no aparecen — mejora, no bloquea, "
-              f"no baja la cifra congelada sin --freeze explícito)")
+    if warns_nuevos:
+        print(f"  WARN NUEVOS (estado, no adjudican): {len(warns_nuevos)}")
+        for t, k in sorted(warns_nuevos):
+            print(f"  · {t}: {k[:110]}")
+    if fails_resueltos or warns_resueltos:
+        print(f"  ({len(fails_resueltos)} fail + {len(warns_resueltos)} warn de la línea base ya no "
+              f"aparecen — mejora, no bloquea, no baja la cifra congelada sin --freeze explícito)")
     print("─" * 72)
-    return 1 if nuevos else 0
+    return 1 if fails_nuevos else 0
 
 
 # ───────────────────────────────────────────────────────────────
