@@ -3062,6 +3062,89 @@ def t_linaje_por_resultado_y_roles_de_uso():
             caso, "confirmación retenida y validada fue rechazada")
 
 
+def t_l8_linaje_heredado_identidad_usos_y_hash():
+    """NC-0253: sólo el JSON L8 acreditado propaga HEREDADO; una ruta
+    parecida no, y la guarda SHA sigue rechazando bytes distintos."""
+    caso = "T-L8-LINAJE-HEREDADO"
+    calc = RAIZ / "data/corrida0/CALC-L8-CONVERSION-0001"
+    import yaml
+    spec = yaml.safe_load((calc / "spec.yaml").read_text(encoding="utf-8"))
+    rids = (
+        "RESULT-L8CONV-A-P-MINIMO",
+        "RESULT-L8CONV-A-P-MAXIMO",
+        "RESULT-L8CONV-A-P-MEDIA",
+    )
+    oferta = _oferta_linaje(
+        spec["calc_id"], spec["inputs"], rids, "GEN2",
+        [r for r in spec["resultados"] if r["id"] in rids],
+    )
+    C._propaga_envuelto([oferta])
+    origenes = {rid: lin["origen"]
+                for rid, lin in oferta["linajes_resultados"].items()}
+    _afirma(set(origenes.values()) == {C.ORIGEN_HEREDADO}, caso,
+            f"el JSON L8 no propagó HEREDADO a los tres RESULT: {origenes}")
+    _afirma("data/l8-resultados-tipo-boleta-v1_0.json [FUENTE-LEGACY]"
+            in oferta["camino_linaje"], caso,
+            f"el camino no conserva la identidad acreditada: {oferta['camino_linaje']}")
+
+    parecido = _oferta_linaje("CALC-L8-PARECIDO", [{
+        "id": "IN-L8-PARECIDO", "funcion": "DATO",
+        "ruta": "data/l8-resultados-tipo-boleta-v1_0-copia.json",
+    }])
+    C._propaga_envuelto([parecido])
+    _afirma(parecido["origen_numerico"] == C.ORIGEN_INDETERMINADO, caso,
+            f"una ruta parecida obtuvo linaje: {parecido['camino_linaje']}")
+
+    esperada = {
+        "MEDICION-GEN2": C.NO_APTA,
+        "CONFIRMACION-INDEPENDIENTE": C.NO_APTA,
+        "HISTORICO": "APTA-CON-HERENCIA-DECLARADA",
+        "BASELINE": "APTA-CON-HERENCIA-DECLARADA",
+        "DESCRIPTIVO": "APTA-CON-HERENCIA-DECLARADA",
+        "CALIBRACION": "APTA-CON-HERENCIA-DECLARADA",
+    }
+    obtenida = {
+        uso: C.aptitud_para_uso(C.ORIGEN_HEREDADO, uso, "PASA", "HOLDOUT")[0]
+        for uso in esperada
+    }
+    _afirma(obtenida == esperada, caso,
+            f"tabla de aptitud heredada inesperada: {obtenida}")
+
+    artefactos = {
+        "resultados.json": "b4a57cdc2504ce379b20870b1acefd81d4259fe675b1849247fe8c8dd40d33cf",
+        "sello.json": "3d16bc120b5db1419ed6847e99288fadaf381e379b839949d38b4f41e290fd45",
+        "sello.sha256": "c6023e4064bd601213d7d1dacfbfdf1736bd187387f73b06d02550df6e69045c",
+    }
+    _afirma(all(_sha(calc / nombre) == sha for nombre, sha in artefactos.items()),
+            caso, "cambiaron bytes de resultados o sellos L8")
+    resultados = json.loads((calc / "resultados.json").read_text(encoding="utf-8"))[
+        "resultados"]
+    valores = {rid: resultados[rid] for rid in rids}
+    _afirma(valores == {
+        "RESULT-L8CONV-A-P-MINIMO": 0.345267,
+        "RESULT-L8CONV-A-P-MAXIMO": 0.750567,
+        "RESULT-L8CONV-A-P-MEDIA": 0.619867,
+    }, caso, f"cambiaron los tres valores L8: {valores}")
+
+    mod_spec = importlib.util.spec_from_file_location(
+        "medidor_l8_hash", calc / "medidor.py")
+    medidor = importlib.util.module_from_spec(mod_spec)
+    mod_spec.loader.exec_module(medidor)
+    entrada = RAIZ / "data/l8-resultados-tipo-boleta-v1_0.json"
+    crudo = entrada.read_bytes()
+    sha = next(i["sha256"] for i in spec["inputs"] if i["id"] == "IN-L8-JSON")
+    contrato = C.contrato_ejecutable(spec)
+    bueno = medidor.medir({"IN-L8-JSON": {"bytes": crudo, "sha256": sha}},
+                           contrato)
+    _afirma({rid: bueno[rid] for rid in rids} == valores, caso,
+            "los bytes acreditados no reproducen los tres valores")
+    alterado = medidor.medir(
+        {"IN-L8-JSON": {"bytes": crudo + b"\n", "sha256": sha}}, contrato)
+    _afirma(all(alterado[rid] is None for rid in rids)
+            and alterado["RESULT-L8CONV-G-SHA256-INSUMO"].startswith("DISCORDA:"),
+            caso, "la clasificación histórica neutralizó la guarda de identidad SHA")
+
+
 def t_linaje_registro_rechaza_envuelto_y_acepta_nuevo():
     """El registro bloquea un RESULT heredado aunque esté sellado y firmado
     como GEN2, y acepta el mismo cableado cuando su origen sí es nuevo."""
