@@ -9,6 +9,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+from decimal import Decimal
 
 
 IN_RESULTADOS = "IN-ENVIPE-0001-RESULTADOS"
@@ -84,6 +85,11 @@ def _contrato_padre(contrato: dict) -> dict:
     return padre
 
 
+def _complemento(valor: float) -> float:
+    """Resta decimal sobre la representación publicada en JSON."""
+    return float(Decimal("1") - Decimal(str(valor)))
+
+
 def medir(inputs: dict, contrato: dict) -> dict:
     padre = _contrato_padre(contrato)
     valores = _verifica_cadena_sellada(inputs)
@@ -111,12 +117,13 @@ def medir(inputs: dict, contrato: dict) -> dict:
     if not isinstance(metodo, str) or metodo.startswith("NO-ESTIMABLE"):
         raise RuntimeError(f"PADRE-NO-ESTIMABLE-METODO-IC:{metodo!r}")
 
-    q = 1.0 - p
-    q_lo = 1.0 - hi
-    q_hi = 1.0 - lo
+    q = _complemento(p)
+    q_lo = _complemento(hi)
+    q_hi = _complemento(lo)
     suma = p + q
-    legado = float((contrato.get("parametros") or {})["valor_legacy_res0028"])
-    delta = q - legado
+    legado_raw = (contrato.get("parametros") or {})["valor_legacy_res0028"]
+    legado = float(legado_raw)
+    delta = float(Decimal(str(q)) - Decimal(str(legado_raw)))
     tolerancia = float((contrato.get("parametros") or {})["tolerancia_legacy"])
 
     return {
