@@ -37,3 +37,7 @@ CONTADOR: cero mediciones, dicho sin disfraz; registra tres corridas Codex si ve
 | F6: acreditación de R09 y adquisición dirigida | DECISIÓN-DE-MESA-PENDIENTE — FP-380/D3: cero llamadas autorizadas bajo la preparación v1.0 | F6 no ejecuta; NC-0161/0162 siguen en ESPERA | acto propio de F6, tras orden explícita de mesa |
 | Cambio de código en `tests/check.py` para la regla WARN→estado | FUERA-DE-PERÍMETRO — el encargo lo declara pieza de mantenimiento | La firma queda documental (decisiones.tsv/FP-382), el código de la suite no cambia | pieza de mantenimiento nombrada, sin acto propio aún |
 | v2.14 íntegra de `instrucciones-proyecto` | DECISIÓN-DE-MESA-PENDIENTE — las entradas `PARA-v2.14` ya están en el repo (esta y las heredadas), pero la entrega íntegra es de dirección | Ninguno hasta que dirección entregue v2.14 | dirección |
+
+## CONSUMIDO
+
+PR [#845](https://github.com/Josanoforo/Modelado-Mexicano/pull/845), abierto contra `main` el 17/sep/2026. No fusionado por el ejecutor — el merge queda con mesa.
