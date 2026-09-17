@@ -14,7 +14,7 @@ from tools import f6_factibilidad_prepara as F6
 ROOT = Path(__file__).resolve().parents[1]
 PRODUCTO = ROOT / "forense" / "produccion" / "mociba-flujo-documental-1"
 SCRIPT = PRODUCTO / "clasifica_elegibilidad.py"
-FIXTURE = PRODUCTO / "fixtures" / "SINTETICO-NO-MEDICION.json"
+FIXTURE = PRODUCTO / "fixtures" / "SINTETICO-NO-MEDICION-MOCIBA-FLUJO-1.json"
 CARDS = PRODUCTO / "tarjetas-sucesoras.yaml"
 
 SPEC = importlib.util.spec_from_file_location("mociba_flujo", SCRIPT)
