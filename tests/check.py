@@ -4850,6 +4850,19 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-09-16-GEN2-FIRMAS-MESA-3.md",
     "forense/encargos/2026-09-16-GEN2-E1-DISENO-CALIBRACION-1.md",
     "forense/theta-cargable-por-celda-diseno-e1-v1_0.md",
+    # ACTO GEN2-ESQUEMA-E1-CAPA-1, 17/sep/2026: encargo archivado VERBATIM
+    # (A.3) y sus dos archivos de contenido. Los tres dicen `E1` pelado por
+    # la misma razon que los tres de arriba: `E1` NO es un rotulo nuevo aqui,
+    # es la ETAPA del programa (E0/E1/E1+) que `milpa/src/theta.py` nombra en
+    # su propio docstring ("En E0 este modulo NO estima nada", "eso es
+    # calibracion (E1+)") y que el censo E1 ya trae en su nombre de archivo.
+    # El rotulo propio de este acto es `GEN2-ESQUEMA-E1-CAPA-1`, censado con
+    # su forma larga completa en `canon/registro-rotulos.tsv`. El encargo no
+    # se edita para complacer el test (A.3); la capa y el test citan la etapa,
+    # no reclaman espacio de rotulos.
+    "forense/encargos/2026-09-17-GEN2-ESQUEMA-E1-CAPA-1.md",
+    "milpa/theta-esquema-e1-v1_0.yaml",
+    "tests/test_theta_esquema_e1.py",
     # ACTO GEN2-F6-FACTIBILIDAD-PREPARACION-1, 16/sep/2026: encargo
     # archivado VERBATIM (A.3). En P2.10 cita `M1` como una de las cosas que
     # la preparacion F6 no decide. Es la primera ranura del sello del motor

@@ -1,0 +1,675 @@
+# DERIVADO DEL CENSO E1 §3 — NO EDITAR VALORES DE procedencia.yaml
+#
+# Capa separada del esquema E1, sellada por ADR-531 rama B ("Esquema E1:
+# capa separada"). `milpa/procedencia.yaml` es archivo GEN1 SELLADO: sus
+# valores no se reescriben (E.1). Esta capa es METADATO SOBRE esos valores
+# —escala, universo, identificación— y no crea, corrige ni sustituye ninguno.
+#
+# CÓMO SE DERIVA. Los 43 nombres son EXACTAMENTE el conjunto de llaves de
+# `Theta.desde(cargar()).entradas` (`milpa/src/theta.py`), derivado por
+# código contra el árbol, no copiado de la nota. Los tokens son los que el
+# censo E1 §3 asigna, fila por fila; cada entrada lleva el veredicto del
+# censo verbatim en `*_segun_censo` para que la traducción sea auditable.
+#
+# A.15 — NO SE ADIVINA. Donde el censo describe el campo pero declina
+# asignarle token ("de facto ... pero sin token"), el campo lleva
+# `NO-CENSADO` y se cuenta. Donde el censo declara el campo ausente, lleva
+# `NO-DECLARADO-EN-CANON` (escala) o `NO-DECLARADO` (universo).
+#
+# ESTE ARCHIVO NO CARGA NINGUNA θ. `theta.valor()` sigue lanzando
+# `ThetaNoDisponible` para los 43 nombres; eso no cambia aquí.
+
+version: "1.0"
+derivado_de:
+  censo: "forense/theta-cargable-por-celda-diseno-e1-v1_0.md §3"
+  esquema: "forense/theta-cargable-por-celda-diseno-e1-v1_0.md §2 — vocabulario cerrado"
+  nombres: "milpa/src/theta.py — llaves de Theta.desde(procedencia.cargar()).entradas"
+  firma_de_mesa: "ADR-531 rama B"
+  acto: "GEN2-ESQUEMA-E1-CAPA-1"
+
+contador:
+  nombres_theta: 43          # derivado por código; E1 §3 decía 43
+  campos_totales: 129        # 43 nombres × 3 campos
+  argumento_explicito: 0   # A-bis: hoy DEBE ser 0 (E1 §4.3). El test lo fija.
+  ausencia_declarada: 12
+  asociacion_medida: 7
+  declarado_verbatim: 25
+  no_censado: 24            # el censo describe pero NO tokeniza (A.15)
+  no_declarado_en_canon: 36
+  no_declarado: 25
+  mediciones_de_este_acto: 0  # cero, dicho sin disfraz
+
+theta:
+
+  "salud":
+    clase: "MEDIDO·PARCIAL"
+    ruta_yaml: "condicionales_confianza_institucional.salud"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "ENCIG 2021, P11_1_3 'Confianza en hospitales públicos' — forense/notas/2026-08-03-cal-conf-faseb-medicion.md §1.1, §3.1, §4 · 38458"
+    universo_origen: "DERIVADO de `fuente:`+`n_util:` -- la entrada NO declara campo `universo:` (discrepancia medida contra el censo, ver NC de este acto)"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:183"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `condicionales_confianza_institucional.{...}` (6)"
+    escala_segun_censo: "FALTA-ESCALA (token) -- \"implícita (proporción ponderada por ítem); sin token cerrado\""
+    universo_segun_censo: "presente, explícito por entrada"
+    identificacion_segun_censo: "\"ausencia declarada de facto ... pero sin token `AUSENCIA_DECLARADA`\""
+
+  "educación":
+    clase: "MEDIDO·PARCIAL"
+    ruta_yaml: "condicionales_confianza_institucional.educación"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "ENCUCI 2020, AP5_2_6 'Confianza en universidades públicas' — forense/notas/2026-08-03-cal-conf-faseb-medicion.md §1.2, §3.2, §4 · 18771"
+    universo_origen: "DERIVADO de `fuente:`+`n_util:` -- la entrada NO declara campo `universo:` (discrepancia medida contra el censo, ver NC de este acto)"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:194"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `condicionales_confianza_institucional.{...}` (6)"
+    escala_segun_censo: "FALTA-ESCALA (token) -- \"implícita (proporción ponderada por ítem); sin token cerrado\""
+    universo_segun_censo: "presente, explícito por entrada"
+    identificacion_segun_censo: "\"ausencia declarada de facto ... pero sin token `AUSENCIA_DECLARADA`\""
+
+  "financiera":
+    clase: "MEDIDO·PARCIAL"
+    ruta_yaml: "condicionales_confianza_institucional.financiera"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "ENIF 2024, índice P11_1_1-P11_1_5 — forense/notas/2026-08-03-cal-conf-faseb-medicion.md §1.3, §3.3, §4 · 10264"
+    universo_origen: "DERIVADO de `fuente:`+`n_util:` -- la entrada NO declara campo `universo:` (discrepancia medida contra el censo, ver NC de este acto)"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:204"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `condicionales_confianza_institucional.{...}` (6)"
+    escala_segun_censo: "FALTA-ESCALA (token) -- \"implícita (proporción ponderada por ítem); sin token cerrado\""
+    universo_segun_censo: "presente, explícito por entrada"
+    identificacion_segun_censo: "\"ausencia declarada de facto ... pero sin token `AUSENCIA_DECLARADA`\""
+
+  "seguridad-FFAA":
+    clase: "MEDIDO·PARCIAL"
+    ruta_yaml: "condicionales_confianza_institucional.seguridad-FFAA"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "ENVIPE 2025, TPer_Vic1 (91 182 filas) — AP5_4_04 (Guardia Nacional) · AP5_4_08 (Ejército) · AP5_4_09 (Fuerza Aérea) · AP5_4_10 (Marina), cada una condicionada a identificar la institución (AP5_3_XX=1) — forense/notas/2026-08-03-cal-conf-faseb-medicion-ola2.md §1.2, §3.1, §5 · 91182 filas de tabla; base efectiva por in…"
+    universo_origen: "DERIVADO de `fuente:`+`n_util:` -- la entrada NO declara campo `universo:` (discrepancia medida contra el censo, ver NC de este acto)"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:228"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `condicionales_confianza_institucional.{...}` (6)"
+    escala_segun_censo: "FALTA-ESCALA (token) -- \"implícita (proporción ponderada por ítem); sin token cerrado\""
+    universo_segun_censo: "presente, explícito por entrada"
+    identificacion_segun_censo: "\"ausencia declarada de facto ... pero sin token `AUSENCIA_DECLARADA`\""
+
+  "justicia-policía":
+    clase: "MEDIDO·PARCIAL"
+    ruta_yaml: "condicionales_confianza_institucional.justicia-policía"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "ENVIPE 2025, TPer_Vic1 (misma tabla) — AP5_4_01 (Tránsito) · AP5_4_02 (Preventiva) · AP5_4_03 (Estatal) · AP5_4_05 (Ministerial/Judicial) · AP5_4_06 (MP y Fiscalías Estatales) · AP5_4_07 (FGR) · AP5_4_11 (Jueces) — forense/notas/2026-08-03-cal-conf-faseb-medicion-ola2.md §1.3, §3.2, §5 · 91182 filas de tabla; base efe…"
+    universo_origen: "DERIVADO de `fuente:`+`n_util:` -- la entrada NO declara campo `universo:` (discrepancia medida contra el censo, ver NC de este acto)"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:240"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `condicionales_confianza_institucional.{...}` (6)"
+    escala_segun_censo: "FALTA-ESCALA (token) -- \"implícita (proporción ponderada por ítem); sin token cerrado\""
+    universo_segun_censo: "presente, explícito por entrada"
+    identificacion_segun_censo: "\"ausencia declarada de facto ... pero sin token `AUSENCIA_DECLARADA`\""
+
+  "electoral-partidos":
+    clase: "MEDIDO·PARCIAL"
+    ruta_yaml: "condicionales_confianza_institucional.electoral-partidos"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "ENCUCI 2020, SEC_4_5 (21 519 filas, mismo join que educación en la primera ola) — AP5_2_5 (Partidos políticos) · AP5_3_6 (Senadores y diputados federales) · AP5_3_7 (Diputados locales) · AP5_3_8 (Instituto Nacional Electoral) — forense/notas/2026-08-03-cal-conf-faseb-medicion-ola2.md §1.4, §3.3, §5 · 21519 filas de ta…"
+    universo_origen: "DERIVADO de `fuente:`+`n_util:` -- la entrada NO declara campo `universo:` (discrepancia medida contra el censo, ver NC de este acto)"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:251"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `condicionales_confianza_institucional.{...}` (6)"
+    escala_segun_censo: "FALTA-ESCALA (token) -- \"implícita (proporción ponderada por ítem); sin token cerrado\""
+    universo_segun_censo: "presente, explícito por entrada"
+    identificacion_segun_censo: "\"ausencia declarada de facto ... pero sin token `AUSENCIA_DECLARADA`\""
+
+  "radio_confianza":
+    clase: "MEDIDO·PARCIAL"
+    ruta_yaml: "condicionales_escalares.radio_confianza"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "ENCUCI 2020, SEC_4_5, AP5_1_1 (mayoría de las personas) · AP5_1_2 (personas que conoce) · AP5_1_3 (vecinos de su colonia/localidad) -- forense/notas/2026-08-03-cal-conf-faseb-pos5-6-radio-familismo.md §1.1, §3.1, §4 · 21519 filas de tabla; útiles por ítem entre 20090 (vecinos) y 20131 (conocidos)"
+    universo_origen: "DERIVADO de `fuente:`+`n_util:` -- la entrada NO declara campo `universo:` (discrepancia medida contra el censo, ver NC de este acto)"
+    identificacion: "AUSENCIA_DECLARADA(A-bis 1/2): NO USAR para identificar cooperacion.confianza.puente_personal (canon/modelo-decision-v4_0.md:496): su desenlace observado en Tabla B es AP5_1_2, el propio reactivo de esta entrada -- sería circular (P2 §2.d). Compra la condicional de G1, no el coeficiente de esa regla."
+    fuente: "milpa/procedencia.yaml:280"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `condicionales_escalares.{radio_confianza,familismo_apoyo}` (2)"
+    escala_segun_censo: "FALTA-ESCALA (token) -- \"implícita\""
+    universo_segun_censo: "presente"
+    identificacion_segun_censo: "\"`marca_c3` ya declara circularidad y no-identificación por entrada\""
+
+  "familismo_apoyo":
+    clase: "MEDIDO·PARCIAL"
+    ruta_yaml: "condicionales_escalares.familismo_apoyo"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "ENIF 2024, TMODULO, P9.9 '¿con qué piensa cubrir su vejez?' -- seis ítems (p9_9_1..6); p9_9_4 ('dinero de familiares') es el que opera el constructo, los otros cinco son contexto del mismo menú -- forense/notas/2026-08-03-cal-conf-faseb-pos5-6-radio-familismo.md §1.2, §3.2, §4 · 12379 filas (universo efectivo filtro_s…"
+    universo_origen: "DERIVADO de `fuente:`+`n_util:` -- la entrada NO declara campo `universo:` (discrepancia medida contra el censo, ver NC de este acto)"
+    identificacion: "AUSENCIA_DECLARADA(A-bis 1/2): NO USAR para identificar G5·familismo_apoyo (canon/modelo-decision-v4_0.md:465): el desenlace de G5 en ENIF es familia.seguro.volatilidad_ausencia_estado, observado con la misma batería P9_9_1..6 -- circular (P2 §2.d, inventario:171). Sí identifica G3·familismo_apoyo (desenlace distinto, dinero.ahorro.volatilidad_hori…"
+    fuente: "milpa/procedencia.yaml:300"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `condicionales_escalares.{radio_confianza,familismo_apoyo}` (2)"
+    escala_segun_censo: "FALTA-ESCALA (token) -- \"implícita\""
+    universo_segun_censo: "presente"
+    identificacion_segun_censo: "\"`marca_c3` ya declara circularidad y no-identificación por entrada\""
+
+  "confianza_institucional_generico_servidores_publicos":
+    clase: "MEDIDO·PARCIAL"
+    ruta_yaml: "condicionales_escalares_confianza_generica.confianza_institucional_generico_servidores_publicos"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "Personas 18+ de ENCIG 2023 (ciudades de 100 000+ habitantes por diseño del instrumento) con P11_1_23 válido -- n=37845 (de 38966, excluidos código 5 'No aplica' n=20 y código 9 'No sabe' n=1101). No se reconcilia contra un marginal de otra fuente (A-bis regla 4)."
+    universo_origen: "campo `universo:`"
+    identificacion: "AUSENCIA_DECLARADA(A-bis 1/2): Antes: solo existía el β̂ MARGINAL del reactivo, registrado en coeficientes_generador_medidos.G1_confianza_institucional (marca_c2) -- una medición DISTINTA (β̂ asociación con tramite.mordida.discrecional, ya condicionada por Encargo X sobre edad únicamente). Esta entrada mide algo distinto: θ(P11_1_23 | x), la preval…"
+    fuente: "milpa/procedencia.yaml:337"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `condicionales_escalares_confianza_generica....`"
+    escala_segun_censo: "FALTA-ESCALA (token) -- \"implícita\""
+    universo_segun_censo: "presente, cita A-bis regla 4 verbatim"
+    identificacion_segun_censo: "presente, cita A-bis regla 2 verbatim"
+
+  "exposicion_violencia":
+    clase: "MEDIDO·PARCIAL"
+    ruta_yaml: "condicionales_escalares_exposicion_violencia.exposicion_violencia"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "ENVIPE 2025, TPer_Vic2 (91182 filas, universo persona seleccionada 18+, sin condicionar a RESUL_H, cero blancos), Sección VII -- núcleo AP7_3_10 (amenaza) · AP7_3_11 (agresión física con lesión) · AP7_3_12 (secuestro) · AP7_3_13 (agresión sexual) · AP7_3_14 (violación); condicional con AP7_3_09 (extorsión) reportada a…"
+    universo_origen: "DERIVADO de `fuente:`+`n_util:` -- la entrada NO declara campo `universo:` (discrepancia medida contra el censo, ver NC de este acto)"
+    identificacion: "AUSENCIA_DECLARADA(A-bis 1/2): LIMPIO. Verificado variable por variable (forense/notas/2026-08-04- envipe-tper-vic2-tmod-vic-paso1.md §7 + re-verificación independiente esta sesión, grep sobre forense/notas/2026-07-31-inventario- segmentacion.md): ninguna de AP7_3_09-14 aparece en las 41 filas de Tabla B. Único hit de mnemónico es AP7_1 de ENCUCI (…"
+    fuente: "milpa/procedencia.yaml:391"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `condicionales_escalares_exposicion_violencia....`"
+    escala_segun_censo: "FALTA-ESCALA (token) -- \"implícita\""
+    universo_segun_censo: "presente"
+    identificacion_segun_censo: "presente (\"ninguna lectura causal ni de intervención (A-bis 2)\")"
+
+  "norma_de_género":
+    clase: "MEDIDO·NACIONAL"
+    ruta_yaml: "condicionales_escalares_medido_nacional.norma_de_género"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "AUSENCIA_DECLARADA(A-bis 1/2): Admitir esta θ a la clase MEDIDO·NACIONAL no abre su condicional POR eje: quien necesite `norma_de_género` condicionada a un eje de `modelo §1.1.A` corre la medición condicionada aparte (puerta D3-B, dueño \"acto futuro por θ\" -- ver `forense/notas/2026-08-13-proc-11.md` §5, nombrada y no ejecutada aquí). `MEDIDO·NACIO…"
+    fuente: "milpa/procedencia.yaml:516"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `condicionales_escalares_medido_nacional.{...}` (2)"
+    escala_segun_censo: "FALTA-ESCALA (token) -- \"implícita (marginal, `x=∅`)\""
+    universo_segun_censo: "FALTA-UNIVERSO (filtro) -- \"ausente como campo propio: `fuente` da instrumento/tabla pero no filtro de elegibilidad completo\""
+    identificacion_segun_censo: "presente (\"no se declara EXISTE-SATISFACE\"; cita A-bis regla 3 verbatim en `obligación_medida`)"
+
+  "obligación_medida":
+    clase: "MEDIDO·NACIONAL"
+    ruta_yaml: "condicionales_escalares_medido_nacional.obligación_medida"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "AUSENCIA_DECLARADA(A-bis 1/2): Segunda entrada de la clase séptima, no una reapertura de D3: la clase y su definición (arriba) ya estaban selladas por `PROC-10-bis` (ADR-79(a)); este acto (`PROD-P638`) solo añade la segunda θ de la misma familia que ya estaba nombrada en la propia definición de la clase (adenda B.5.3 de `forense/notas/2026-08-13-pr…"
+    fuente: "milpa/procedencia.yaml:561"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `condicionales_escalares_medido_nacional.{...}` (2)"
+    escala_segun_censo: "FALTA-ESCALA (token) -- \"implícita (marginal, `x=∅`)\""
+    universo_segun_censo: "FALTA-UNIVERSO (filtro) -- \"ausente como campo propio: `fuente` da instrumento/tabla pero no filtro de elegibilidad completo\""
+    identificacion_segun_censo: "presente (\"no se declara EXISTE-SATISFACE\"; cita A-bis regla 3 verbatim en `obligación_medida`)"
+
+  "dinero.ahorro.informal_sin_puente":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_probabilidad.0"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:753"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_probabilidad` (13 reglas, ~29 valores)"
+    escala_segun_censo: "FALTA-ESCALA -- \"ausente (implícita `[0,1]` de rama SI-ENTONCES)\""
+    universo_segun_censo: "FALTA-UNIVERSO -- \"ausente como campo: `calibrable_con` nombra instrumento pero no universo/filtro\""
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto en cada `que_sostiene_de_verdad` ... pero sin token\""
+
+  "dinero.ahorro.con_puente_y_respaldo":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_probabilidad.1"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:761"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_probabilidad` (13 reglas, ~29 valores)"
+    escala_segun_censo: "FALTA-ESCALA -- \"ausente (implícita `[0,1]` de rama SI-ENTONCES)\""
+    universo_segun_censo: "FALTA-UNIVERSO -- \"ausente como campo: `calibrable_con` nombra instrumento pero no universo/filtro\""
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto en cada `que_sostiene_de_verdad` ... pero sin token\""
+
+  "dinero.planeacion.formal_estable":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_probabilidad.2"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:767"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_probabilidad` (13 reglas, ~29 valores)"
+    escala_segun_censo: "FALTA-ESCALA -- \"ausente (implícita `[0,1]` de rama SI-ENTONCES)\""
+    universo_segun_censo: "FALTA-UNIVERSO -- \"ausente como campo: `calibrable_con` nombra instrumento pero no universo/filtro\""
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto en cada `que_sostiene_de_verdad` ... pero sin token\""
+
+  "dinero.credito.scoring_alternativo":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_probabilidad.3"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:779"
+    generacion: "GEN2"
+    censo: "censo E1 §3, fila `asignados_probabilidad` (13 reglas, ~29 valores)"
+    escala_segun_censo: "FALTA-ESCALA -- \"ausente (implícita `[0,1]` de rama SI-ENTONCES)\""
+    universo_segun_censo: "FALTA-UNIVERSO -- \"ausente como campo: `calibrable_con` nombra instrumento pero no universo/filtro\""
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto en cada `que_sostiene_de_verdad` ... pero sin token\""
+
+  "dinero.consumo.estatus_mediado_por_credito":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_probabilidad.4"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:813"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_probabilidad` (13 reglas, ~29 valores)"
+    escala_segun_censo: "FALTA-ESCALA -- \"ausente (implícita `[0,1]` de rama SI-ENTONCES)\""
+    universo_segun_censo: "FALTA-UNIVERSO -- \"ausente como campo: `calibrable_con` nombra instrumento pero no universo/filtro\""
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto en cada `que_sostiene_de_verdad` ... pero sin token\""
+
+  "salud.atencion.leve_sin_imss":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_probabilidad.5"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:819"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_probabilidad` (13 reglas, ~29 valores)"
+    escala_segun_censo: "FALTA-ESCALA -- \"ausente (implícita `[0,1]` de rama SI-ENTONCES)\""
+    universo_segun_censo: "FALTA-UNIVERSO -- \"ausente como campo: `calibrable_con` nombra instrumento pero no universo/filtro\""
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto en cada `que_sostiene_de_verdad` ... pero sin token\""
+
+  "salud.atencion.grave":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_probabilidad.6"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:825"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_probabilidad` (13 reglas, ~29 valores)"
+    escala_segun_censo: "FALTA-ESCALA -- \"ausente (implícita `[0,1]` de rama SI-ENTONCES)\""
+    universo_segun_censo: "FALTA-UNIVERSO -- \"ausente como campo: `calibrable_con` nombra instrumento pero no universo/filtro\""
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto en cada `que_sostiene_de_verdad` ... pero sin token\""
+
+  "salud.prevencion.hombre_sin_permiso":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_probabilidad.7"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:830"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_probabilidad` (13 reglas, ~29 valores)"
+    escala_segun_censo: "FALTA-ESCALA -- \"ausente (implícita `[0,1]` de rama SI-ENTONCES)\""
+    universo_segun_censo: "FALTA-UNIVERSO -- \"ausente como campo: `calibrable_con` nombra instrumento pero no universo/filtro\""
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto en cada `que_sostiene_de_verdad` ... pero sin token\""
+
+  "tramite.mordida.discrecional":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_probabilidad.8"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:836"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_probabilidad` (13 reglas, ~29 valores)"
+    escala_segun_censo: "FALTA-ESCALA -- \"ausente (implícita `[0,1]` de rama SI-ENTONCES)\""
+    universo_segun_censo: "FALTA-UNIVERSO -- \"ausente como campo: `calibrable_con` nombra instrumento pero no universo/filtro\""
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto en cada `que_sostiene_de_verdad` ... pero sin token\""
+
+  "tramite.mordida.con_registro":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_probabilidad.9"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:842"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_probabilidad` (13 reglas, ~29 valores)"
+    escala_segun_censo: "FALTA-ESCALA -- \"ausente (implícita `[0,1]` de rama SI-ENTONCES)\""
+    universo_segun_censo: "FALTA-UNIVERSO -- \"ausente como campo: `calibrable_con` nombra instrumento pero no universo/filtro\""
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto en cada `que_sostiene_de_verdad` ... pero sin token\""
+
+  "tramite.gobierno_digital.util_sin_coercion":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_probabilidad.11"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:854"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_probabilidad` (13 reglas, ~29 valores)"
+    escala_segun_censo: "FALTA-ESCALA -- \"ausente (implícita `[0,1]` de rama SI-ENTONCES)\""
+    universo_segun_censo: "FALTA-UNIVERSO -- \"ausente como campo: `calibrable_con` nombra instrumento pero no universo/filtro\""
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto en cada `que_sostiene_de_verdad` ... pero sin token\""
+
+  "civico.denuncia.con_seguro":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_probabilidad.12"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:859"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_probabilidad` (13 reglas, ~29 valores)"
+    escala_segun_censo: "FALTA-ESCALA -- \"ausente (implícita `[0,1]` de rama SI-ENTONCES)\""
+    universo_segun_censo: "FALTA-UNIVERSO -- \"ausente como campo: `calibrable_con` nombra instrumento pero no universo/filtro\""
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto en cada `que_sostiene_de_verdad` ... pero sin token\""
+
+  "0":
+    clase: "MEDIDO·β̂"
+    ruta_yaml: "coeficientes_generador_sellados.0"
+    escala: "proporción ponderada [0,1], enlace identidad (ADR-220)"
+    universo: "NO-DECLARADO"
+    universo_origen: "la entrada origen `G1_confianza_institucional` no declara `universo:`"
+    identificacion: "ASOCIACION-MEDIDA·MARGINAL"
+    fuente: "milpa/procedencia.yaml:1307"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `coeficientes_generador_sellados` (7 pares)"
+    escala_segun_censo: "presente (`escala:` explícito, enlace identidad o lineal según ADR)"
+    universo_segun_censo: "\"heredado de `coeficientes_generador_medidos` (no repetido aquí, pero rastreable por `fuente:`)\""
+    identificacion_segun_censo: "\"`rotulo: ASOCIACION-MEDIDA·*` es ya, de hecho, un token cerrado\""
+
+  "G1":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_coeficiente.detalle.0"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:905"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_coeficiente.detalle` (15 pares gen×coef)"
+    escala_segun_censo: "FALTA-ESCALA (aquí; existe, redundante, en `rutas_estimabilidad_coeficiente.detalle`)"
+    universo_segun_censo: "FALTA-UNIVERSO -- ausente"
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto (`diagnostico`) ... pero sin token\""
+
+  "G2":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_coeficiente.detalle.1"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:906"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_coeficiente.detalle` (15 pares gen×coef)"
+    escala_segun_censo: "FALTA-ESCALA (aquí; existe, redundante, en `rutas_estimabilidad_coeficiente.detalle`)"
+    universo_segun_censo: "FALTA-UNIVERSO -- ausente"
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto (`diagnostico`) ... pero sin token\""
+
+  "G3":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_coeficiente.detalle.2"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:907"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_coeficiente.detalle` (15 pares gen×coef)"
+    escala_segun_censo: "FALTA-ESCALA (aquí; existe, redundante, en `rutas_estimabilidad_coeficiente.detalle`)"
+    universo_segun_censo: "FALTA-UNIVERSO -- ausente"
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto (`diagnostico`) ... pero sin token\""
+
+  "G4":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_coeficiente.detalle.3"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:908"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_coeficiente.detalle` (15 pares gen×coef)"
+    escala_segun_censo: "FALTA-ESCALA (aquí; existe, redundante, en `rutas_estimabilidad_coeficiente.detalle`)"
+    universo_segun_censo: "FALTA-UNIVERSO -- ausente"
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto (`diagnostico`) ... pero sin token\""
+
+  "G5":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_coeficiente.detalle.4"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:909"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_coeficiente.detalle` (15 pares gen×coef)"
+    escala_segun_censo: "FALTA-ESCALA (aquí; existe, redundante, en `rutas_estimabilidad_coeficiente.detalle`)"
+    universo_segun_censo: "FALTA-UNIVERSO -- ausente"
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto (`diagnostico`) ... pero sin token\""
+
+  "G6":
+    clase: "ASIGNADO"
+    ruta_yaml: "asignados_coeficiente.detalle.5"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "NO-DECLARADO"
+    identificacion: "NO-CENSADO"
+    fuente: "milpa/procedencia.yaml:916"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `asignados_coeficiente.detalle` (15 pares gen×coef)"
+    escala_segun_censo: "FALTA-ESCALA (aquí; existe, redundante, en `rutas_estimabilidad_coeficiente.detalle`)"
+    universo_segun_censo: "FALTA-UNIVERSO -- ausente"
+    identificacion_segun_censo: "FALTA-IDENTIFICACION (token) -- \"ausencia declarada de facto (`diagnostico`) ... pero sin token\""
+
+  "G1_radio_confianza":
+    clase: "MEDIDO·β̂"
+    ruta_yaml: "coeficientes_generador_medidos.G1_radio_confianza"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "ENCUCI 2020, SEC_4_5 (21519 filas) -- reactivo AP5_1_1/2/3 (dicotomizado >=6/10) x desenlace tramite.mordida.discrecional (AP5_17 o AP5_18='1', universo con contacto AP5_16_1..10) -- forense/notas/2026-08-04-w-coeficientes-generador-paso1.md §1.1, §3.1 · AP5_1_1: n=13375 (6430+6945) · AP5_1_2: n=13393 (10667+2726) · A…"
+    universo_origen: "DERIVADO de `fuente:`+`n_util:` -- la entrada NO declara campo `universo:` (discrepancia medida contra el censo, ver NC de este acto)"
+    identificacion: "AUSENCIA_DECLARADA(A-bis 1/2): NO USAR para identificar cooperacion.confianza.puente_personal (mismo límite que condicionales_escalares.radio_confianza) -- su desenlace observado es AP5_1_2, el propio reactivo de esta entrada. Esta entrada identifica G1 vía tramite.mordida.discrecional únicamente."
+    fuente: "milpa/procedencia.yaml:940"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `coeficientes_generador_medidos.{...}` (5, todas `MEDIDO·β̂`)"
+    escala_segun_censo: "FALTA-ESCALA (token cerrado; el texto ya basta para derivarlo, pero el censo NO lo asigna)"
+    universo_segun_censo: "presente (universo declarado, con colisionador/selección nombrado cuando aplica)"
+    identificacion_segun_censo: "\"presente y ya con el vocabulario correcto: cada una cita `adr57_a`/`marca_c2`/`marca_c3` con 'asociar ≠ identificar'\""
+
+  "G1_confianza_institucional":
+    clase: "MEDIDO·β̂"
+    ruta_yaml: "coeficientes_generador_medidos.G1_confianza_institucional"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "ENCIG 2023, encig2023_01_sec_11 (batería XI, ítem P11_1_23 'servidores/empleados de gobierno', dicotomizado confía={1,2}/no confía={3,4}) x encig2023_01_sec1_A_3_4_5_8_9_10 (P8_3_1/2/3, desenlace tramite.mordida.discrecional), unidas por ID_PER, 38966 filas cada una, cero pérdida de join -- forense/notas/2026-08-04-w-…"
+    universo_origen: "DERIVADO de `fuente:`+`n_util:` -- la entrada NO declara campo `universo:` (discrepancia medida contra el censo, ver NC de este acto)"
+    identificacion: "AUSENCIA_DECLARADA(A-bis 1/2): Ruta de identificación GENÉRICA (constructo, no componente con nombre) vía tramite.mordida.discrecional (\"trampa social\", G1, modelo:450) -- distinta de la ruta confianza_institucional [financiera] que ADR-52 B nombró para las reglas de ahorro de G1 (dinero.ahorro.informal_sin_puente/con_puente_y_respaldo). No se deci…"
+    fuente: "milpa/procedencia.yaml:989"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `coeficientes_generador_medidos.{...}` (5, todas `MEDIDO·β̂`)"
+    escala_segun_censo: "FALTA-ESCALA (token cerrado; el texto ya basta para derivarlo, pero el censo NO lo asigna)"
+    universo_segun_censo: "presente (universo declarado, con colisionador/selección nombrado cuando aplica)"
+    identificacion_segun_censo: "\"presente y ya con el vocabulario correcto: cada una cita `adr57_a`/`marca_c2`/`marca_c3` con 'asociar ≠ identificar'\""
+
+  "G3_familismo_apoyo":
+    clase: "MEDIDO·β̂"
+    ruta_yaml: "coeficientes_generador_medidos.G3_familismo_apoyo"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "ENIF 2024, TMODULO (universo filtro_s9_1=2, <71 años) -- reactivo p9_9_4 (binario, ya reusado de condicionales_escalares.familismo_apoyo) x desenlace dinero.ahorro.volatilidad_horizonte_corto (p4_10, dicotomizado horizonte-cero={1}/no-cero={2,3,4,5}) -- forense/notas/2026-08-04-w-coeficientes-generador-paso1.md §1.3, …"
+    universo_origen: "DERIVADO de `fuente:`+`n_util:` -- la entrada NO declara campo `universo:` (discrepancia medida contra el censo, ver NC de este acto)"
+    identificacion: "AUSENCIA_DECLARADA(A-bis 1/2): Identifica G3 (desenlace distinto del reactivo). NO identifica G5 (mismo límite que condicionales_escalares.familismo_apoyo): el desenlace de G5 en ENIF es la misma batería P9_9_1..6."
+    fuente: "milpa/procedencia.yaml:1021"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `coeficientes_generador_medidos.{...}` (5, todas `MEDIDO·β̂`)"
+    escala_segun_censo: "FALTA-ESCALA (token cerrado; el texto ya basta para derivarlo, pero el censo NO lo asigna)"
+    universo_segun_censo: "presente (universo declarado, con colisionador/selección nombrado cuando aplica)"
+    identificacion_segun_censo: "\"presente y ya con el vocabulario correcto: cada una cita `adr57_a`/`marca_c2`/`marca_c3` con 'asociar ≠ identificar'\""
+
+  "G4_exposicion_violencia":
+    clase: "MEDIDO·β̂"
+    ruta_yaml: "coeficientes_generador_medidos.G4_exposicion_violencia"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "Personas 18+ de ENVIPE 2025 (TMod_Vic) que dispararon AP7_3_XX=1 para algún XX en {05,...,15} (catálogo completo de delito personal, no solo el núcleo 10-14 de θ) y con BP1_20=2 (no denunció) para ese delito -- n=13023 (de 14285 con BP1_23 no blanco; 1262 excluidos por responder solo 09/99). Prohibido comparar contra …"
+    universo_origen: "campo `universo:`"
+    identificacion: "AUSENCIA_DECLARADA(A-bis 1/2): Comparte desenlace (BP1_23) y universo con G4_confianza_institucional_justicia (misma limitación estructural que limite_c2, procedencia.yaml:396-413) -- las dos entradas NO son independientes entre sí por compartir instrumento y universo; no se combinan ni se promedian."
+    fuente: "milpa/procedencia.yaml:1049"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `coeficientes_generador_medidos.{...}` (5, todas `MEDIDO·β̂`)"
+    escala_segun_censo: "FALTA-ESCALA (token cerrado; el texto ya basta para derivarlo, pero el censo NO lo asigna)"
+    universo_segun_censo: "presente (universo declarado, con colisionador/selección nombrado cuando aplica)"
+    identificacion_segun_censo: "\"presente y ya con el vocabulario correcto: cada una cita `adr57_a`/`marca_c2`/`marca_c3` con 'asociar ≠ identificar'\""
+
+  "G4_confianza_institucional_justicia":
+    clase: "MEDIDO·β̂"
+    ruta_yaml: "coeficientes_generador_medidos.G4_confianza_institucional_justicia"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "MISMO universo que G4_exposicion_violencia (n=13023, disparadores AP7_3_05-15 no denunciantes -- θ de esta fila es independiente del disparador, ver nota), intersectado por ítem con 'identifica la institución' (AP5_4_XX no blanco, no 9/NS-NR) -- universo distinto por institución, tamaño declarado por ítem en n_util. R…"
+    universo_origen: "campo `universo:`"
+    identificacion: "AUSENCIA_DECLARADA(A-bis 1/2): Comparte desenlace (BP1_23) y universo con G4_exposicion_violencia (misma limitación estructural que limite_c2, procedencia.yaml:396-413) -- las dos entradas NO son independientes entre sí por compartir instrumento y universo; no se combinan ni se promedian."
+    fuente: "milpa/procedencia.yaml:1080"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `coeficientes_generador_medidos.{...}` (5, todas `MEDIDO·β̂`)"
+    escala_segun_censo: "FALTA-ESCALA (token cerrado; el texto ya basta para derivarlo, pero el censo NO lo asigna)"
+    universo_segun_censo: "presente (universo declarado, con colisionador/selección nombrado cuando aplica)"
+    identificacion_segun_censo: "\"presente y ya con el vocabulario correcto: cada una cita `adr57_a`/`marca_c2`/`marca_c3` con 'asociar ≠ identificar'\""
+
+  "G5_familismo_apoyo":
+    clase: "MEDIDO·β̂"
+    ruta_yaml: "coeficientes_generador_medidos.G5_familismo_apoyo"
+    escala: "NO-DECLARADO-EN-CANON"
+    universo: "ACTO MAESTRA32-E16, 31/ago/2026 -- eder2017 (data/raw/eder2017/eder2017_bases_csv.zip, sha256 bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3) theta=vivienda.financia_8 (\"préstamo familiar\", universo tipo_adqui no blanco) x desenlace=historiavida.{padre_cor,madre_cor,hnos_cor,suegro_cor,suegra_cor}==1…"
+    universo_origen: "DERIVADO de `fuente:`+`n_util:` -- la entrada NO declara campo `universo:` (discrepancia medida contra el censo, ver NC de este acto)"
+    identificacion: "AUSENCIA_DECLARADA(A-bis 1/2): Escala de diferencia de proporciones ponderada del desenlace, NO la escala del índice del generador -- no comparable en magnitud contra el 0.50 ASIGNADO (canon/modelo-decision-v4_0.md:459). IC95 por bootstrap de conglomerados (UPM dentro de estrato), B=10000, seed=42 (ambas bases traen estrato/UPM -- aproximación decl…"
+    fuente: "milpa/procedencia.yaml:1162"
+    generacion: "GEN1"
+    censo: "censo E1 §3, última fila -- `propuesta_de_esquema.G5_familismo_apoyo`, \"entrada real alojada en la sección equivocada\" -- veredicto `FUERA-DE-SECCION` del censo RESUELTO por P2 de ACTO GEN2-ESQUEMA-E1-CAPA-1 (NC-0263): la llave se movio a `coeficientes_generador_medidos:` sin tocar un solo valor. La fila del censo se ancla por NOMBRE, no por la seccion a la que acaba de llegar."
+    escala_segun_censo: "FALTA-ESCALA (token) -- \"presente en prosa (`clase`/`nota`) sin token\""
+    universo_segun_censo: "presente (`n_util` por base, EDER 2017 y ENDIREH 2016 como robustez)"
+    identificacion_segun_censo: "presente (`nota` declara circularidad y contaminación de constructo; nunca se llama identificado)"
+
+  "1":
+    clase: "MEDIDO·β̂"
+    ruta_yaml: "coeficientes_generador_sellados.1"
+    escala: "proporción ponderada [0,1], enlace identidad (ADR-220)"
+    universo: "NO-DECLARADO"
+    universo_origen: "la entrada origen `G1_radio_confianza` no declara `universo:`"
+    identificacion: "ASOCIACION-MEDIDA·COMPUESTO·MARGINAL"
+    fuente: "milpa/procedencia.yaml:1318"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `coeficientes_generador_sellados` (7 pares)"
+    escala_segun_censo: "presente (`escala:` explícito, enlace identidad o lineal según ADR)"
+    universo_segun_censo: "\"heredado de `coeficientes_generador_medidos` (no repetido aquí, pero rastreable por `fuente:`)\""
+    identificacion_segun_censo: "\"`rotulo: ASOCIACION-MEDIDA·*` es ya, de hecho, un token cerrado\""
+
+  "2":
+    clase: "MEDIDO·β̂"
+    ruta_yaml: "coeficientes_generador_sellados.2"
+    escala: "proporción ponderada [0,1], enlace identidad (ADR-220)"
+    universo: "NO-DECLARADO"
+    universo_origen: "la entrada origen `G3_familismo_apoyo` no declara `universo:`"
+    identificacion: "ASOCIACION-MEDIDA·MARGINAL"
+    fuente: "milpa/procedencia.yaml:1331"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `coeficientes_generador_sellados` (7 pares)"
+    escala_segun_censo: "presente (`escala:` explícito, enlace identidad o lineal según ADR)"
+    universo_segun_censo: "\"heredado de `coeficientes_generador_medidos` (no repetido aquí, pero rastreable por `fuente:`)\""
+    identificacion_segun_censo: "\"`rotulo: ASOCIACION-MEDIDA·*` es ya, de hecho, un token cerrado\""
+
+  "3":
+    clase: "MEDIDO·β̂"
+    ruta_yaml: "coeficientes_generador_sellados.3"
+    escala: "proporción ponderada [0,1], enlace identidad (ADR-220)"
+    universo: "Personas 18+ de ENVIPE 2025 (TMod_Vic) que dispararon AP7_3_XX=1 para algún XX en {05,...,15} (catálogo completo de delito personal, no solo el núcleo 10-14 de θ) y con BP1_20=2 (no denunció) para ese delito -- n=13023 (de 14285 con BP1_23 no blanco; 1262 excluidos por responder solo 09/99). Prohibido comparar contra …"
+    universo_origen: "heredado de `coeficientes_generador_medidos.G4_exposicion_violencia`"
+    identificacion: "ASOCIACION-MEDIDA·CONDICIONAL"
+    fuente: "milpa/procedencia.yaml:1342"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `coeficientes_generador_sellados` (7 pares)"
+    escala_segun_censo: "presente (`escala:` explícito, enlace identidad o lineal según ADR)"
+    universo_segun_censo: "\"heredado de `coeficientes_generador_medidos` (no repetido aquí, pero rastreable por `fuente:`)\""
+    identificacion_segun_censo: "\"`rotulo: ASOCIACION-MEDIDA·*` es ya, de hecho, un token cerrado\""
+
+  "4":
+    clase: "MEDIDO·β̂"
+    ruta_yaml: "coeficientes_generador_sellados.4"
+    escala: "proporción ponderada [0,1], enlace identidad (ADR-220)"
+    universo: "MISMO universo que G4_exposicion_violencia (n=13023, disparadores AP7_3_05-15 no denunciantes -- θ de esta fila es independiente del disparador, ver nota), intersectado por ítem con 'identifica la institución' (AP5_4_XX no blanco, no 9/NS-NR) -- universo distinto por institución, tamaño declarado por ítem en n_util. R…"
+    universo_origen: "heredado de `coeficientes_generador_medidos.G4_confianza_institucional_justicia`"
+    identificacion: "ASOCIACION-MEDIDA·COMPUESTO·MARGINAL"
+    fuente: "milpa/procedencia.yaml:1353"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `coeficientes_generador_sellados` (7 pares)"
+    escala_segun_censo: "presente (`escala:` explícito, enlace identidad o lineal según ADR)"
+    universo_segun_censo: "\"heredado de `coeficientes_generador_medidos` (no repetido aquí, pero rastreable por `fuente:`)\""
+    identificacion_segun_censo: "\"`rotulo: ASOCIACION-MEDIDA·*` es ya, de hecho, un token cerrado\""
+
+  "5":
+    clase: "MEDIDO·β̂"
+    ruta_yaml: "coeficientes_generador_sellados.5"
+    escala: "θ pr02 ordinal 1-7 reescalada linealmente a [0,1]; salida en proporción de cr27; enlace identidad extendido por firma b1 + enlace lineal de dirección (ADR-225)"
+    universo: "NO-DECLARADO"
+    universo_origen: "NO-RESOLUBLE: `fuente:` no apunta a `coeficientes_generador_medidos.<llave>`"
+    identificacion: "ASOCIACION-MEDIDA·CAL·INTRA-PERSONA·SIGNO-OPUESTO-AL-ASIGNADO"
+    fuente: "milpa/procedencia.yaml:1382"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `coeficientes_generador_sellados` (7 pares)"
+    escala_segun_censo: "presente (`escala:` explícito, enlace identidad o lineal según ADR)"
+    universo_segun_censo: "\"heredado de `coeficientes_generador_medidos` (no repetido aquí, pero rastreable por `fuente:`)\""
+    identificacion_segun_censo: "\"`rotulo: ASOCIACION-MEDIDA·*` es ya, de hecho, un token cerrado\""
+
+  "6":
+    clase: "MEDIDO·β̂"
+    ruta_yaml: "coeficientes_generador_sellados.6"
+    escala: "proporción ponderada [0,1], enlace identidad (ADR-220)"
+    universo: "NO-DECLARADO"
+    universo_origen: "la entrada origen `G5_familismo_apoyo` no declara `universo:`"
+    identificacion: "ASOCIACION-MEDIDA·MARGINAL·DISCORDANTE-ENTRE-INSTRUMENTOS"
+    fuente: "milpa/procedencia.yaml:1393"
+    generacion: "GEN1"
+    censo: "censo E1 §3, fila `coeficientes_generador_sellados` (7 pares)"
+    escala_segun_censo: "presente (`escala:` explícito, enlace identidad o lineal según ADR)"
+    universo_segun_censo: "\"heredado de `coeficientes_generador_medidos` (no repetido aquí, pero rastreable por `fuente:`)\""
+    identificacion_segun_censo: "\"`rotulo: ASOCIACION-MEDIDA·*` es ya, de hecho, un token cerrado\""
+
+# ---------------------------------------------------------------------------
+# `dispersion:` — LA ENMIENDA QUE E1 §4.4 DEBÍA.
+#
+# ADR-28.d obliga a que cada parámetro sea una DISTRIBUCIÓN, y §1.2 rechaza
+# en compilación toda configuración con varianza cero dentro de la unidad.
+# Bajo la tabla de perfiles eso se contaba como «90 parámetros de dispersión».
+# Bajo el v4.0 la dispersión es parte de la especificación de cada condicional
+# (§1.1.B), así que NO son 90 números sueltos sino QUINCE FAMILIAS DE
+# DISTRIBUCIÓN SIN DECLARAR — `canon/modelo-decision-v4_0.md:806` («Las 15
+# familias de distribución exigidas por ADR-28.d no están declaradas»), con
+# el cambio de forma de la deuda explicado en :307 y :671.
+#
+# Los 15 pares gen×coef se derivan por código de
+# `asignados_coeficiente.detalle` — no se transcriben a mano.
+# Mientras las 15 sigan `NO-DECLARADA`, el check de varianza intra-celda de
+# ADR-28.d NO PUEDE CORRER. Declararlas es alcance de mesa, no de este acto.
+# ---------------------------------------------------------------------------
+dispersion:
+  deuda: "deuda_dispersion (milpa/procedencia.yaml:625) — ABIERTA, S2"
+  unidad: "familia de distribución por par gen×coef (15), NO 90 parámetros"
+  fuente_del_conteo: "canon/modelo-decision-v4_0.md:806 (y :307, :671)"
+  familias:
+    "G1×confianza_institucional": NO-DECLARADA
+    "G1×radio_confianza": NO-DECLARADA
+    "G2×sens_estatus": NO-DECLARADA
+    "G2×aversion_riesgo": NO-DECLARADA
+    "G3×horizonte_temporal": NO-DECLARADA
+    "G3×aversion_riesgo": NO-DECLARADA
+    "G3×familismo_apoyo": NO-DECLARADA
+    "G4×exposicion_violencia": NO-DECLARADA
+    "G4×confianza_institucional": NO-DECLARADA
+    "G4×horizonte_temporal": NO-DECLARADA
+    "G4×sens_estatus": NO-DECLARADA
+    "G5×familismo_apoyo": NO-DECLARADA
+    "G5×familismo_obligacion": NO-DECLARADA
+    "G5×radio_confianza": NO-DECLARADA
+    "G6×deferencia": NO-DECLARADA
+
+# ---------------------------------------------------------------------------
+# HALLAZGOS DE ESTE ACTO — medidos al derivar, no supuestos. Ninguno se
+# corrige aquí (perímetro): se dejan legibles por máquina y van a NC.
+# ---------------------------------------------------------------------------
+hallazgos:
+  colision_de_llave:
+    que: "`Procedencia.consumibles()` devuelve 44 entradas pero `Theta.desde()` indexa por `llave` en un dict y entrega 43: la llave `0` colisiona entre `evidencia_experimental_terceros.0` y `coeficientes_generador_sellados.0`, y la segunda pisa a la primera."
+    efecto: "la unica entrada EVIDENCIA_EXPERIMENTAL_TERCEROS del archivo (`dinero.credito.baja_friccion_usura_dano_downstream`, RCT de Compartamos, sellada por ADR-204) es INALCANZABLE por nombre desde `theta.py`, sin que se emita un solo error."
+    no_corregido_aqui: "`milpa/src/theta.py` esta FUERA DE PERIMETRO de este acto. Va a NC con sucesor."
+  universo_censado_presente_pero_sin_campo:
+    que: "el censo E1 §3 declara `universo` PRESENTE para `condicionales_*` y `coeficientes_generador_medidos`, pero medido contra el arbol solo 3 de las 6 llaves de `coeficientes_generador_medidos` traen campo `universo:`, y ninguna entrada de `condicionales_*` lo trae: el universo vive repartido en `fuente:` + `n_util:`."
+    efecto: "esas filas llevan `universo_origen: DERIVADO de fuente:+n_util:`. No es un hueco del censo ni un valor inventado: es una discrepancia entre la prosa del censo y el arbol, declarada y no corregida."
