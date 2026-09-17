@@ -46,3 +46,14 @@ Nueve filas, `NC-0293`…`NC-0301` en `forense/no-corrido.tsv`; tres CERRADAS po
 **Una corrección al propio encargo, declarada:** su `CONTADOR` dice «`cuenta_gen2 = SI`». Las dos corridas se sellaron con **`cuenta_gen2 = PENDIENTE-DE-MESA`**: el encargo autoriza **medir**, no contar, y `FP-367`/`FP-368` exigen un `OBJETO` explícito que el lanzamiento no trae. Se dice en vez de darse por concedido. Lo mismo con «primera fila del catálogo con estimador **adjudicado**»: la fila existe y está **derivada y sellada**, pero **no adjudicada** — el veredicto es `SIN-CANDIDATO-SUPERIOR` y `champion_actual = NINGUNO`.
 
 **Perímetro:** no se tocó `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/src/`, el marcador, el crosswalk ni `FP-376`. `tests/check.py` se tocó **sólo** en `_T25_ARCHIVOS_CONOCIDOS`, que la cascada del `/acto` manda expresamente. `tests/baseline.json` **intacto**.
+
+## CONSUMIDO
+
+**`PR #849`** — https://github.com/Josanoforo/Modelado-Mexicano/pull/849 — `ACTO GEN2-CELDA-D-PILOTO-1`, 16/sep/2026, **CAJA**, `ADR-535` (candidato, re-derivado al cierre tras fusionar `origin/main` porque `534` ya estaba tomado).
+
+**Commits que lo ejecutaron, en el orden que es el sello:**
+`3461c46` (COMMIT-1, spec congelada sin microdato) · `3422a30` (COMMIT-1-bis, `FP-379`) · `ef3f9e8` (COMMIT-1-ter, `FP-379 · ENMIENDA`) · `2053b25` (COMMIT-2a, medidor + 64 capturas) · **`c169edc` (COMMIT-2, emisiones selladas, `R` no existe en el árbol)** · `39bf1af` (COMMIT-3a, contrato del árbitro) · **`18b9914` (COMMIT-3, `R`, adjudicación, celda-D, catálogo, test)** · `472f1e2` (cascada) · `5ebfcd1` (`## NO-CORRIDO / RESERVAS`).
+
+**Resultado:** veredicto **`SIN-CANDIDATO-SUPERIOR`**, `champion_actual = NINGUNO`, **cero adopciones**. Dos corridas GEN2 selladas (`cuenta_gen2 = PENDIENTE-DE-MESA`), **389 `RESULT`**, las dos `VERIFY CONTEXTO=IDENTICO · REPRODUCE`. **El falsador del piloto no se disparó.** Suite `3 FAIL · 4373 WARN`, **LÍNEA BASE VERDE**.
+
+Este encargo no se borra ni se edita en ningún otro punto: es el registro de qué se pidió, para poder auditar si el ejecutor hizo lo que se le dijo.
