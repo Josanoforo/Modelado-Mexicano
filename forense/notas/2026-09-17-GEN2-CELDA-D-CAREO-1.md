@@ -10,6 +10,8 @@
 
 ---
 
+> **AVISO DE ESTADO · 2026-09-17.** Tras esta nota llegó una **devolución de revisión** (16/sep, ChatGPT/Codex, árbol `e83c1af`) que **conserva el careo y la reserva** y ordena **corregir el diseño ejecutable antes de lanzar `GEN2-CELDA-D-PILOTO-1`**. Seis hallazgos materiales —desenlace de `C2` distinto del de `R`/`C1`, su fórmula fuera de rango, su incertidumbre bajo muestra compartida, el soporte del cruce no acreditado, la conclusión y la parada sobredimensionadas, y el alcance de la evidencia de reserva— con su corrección y las **seis decisiones que faltan** viven en `forense/notas/2026-09-17-GEN2-CELDA-D-CAREO-1-CORRECTIVO-PRE-EMISION.md`. **Esta nota no se reescribe**: lo que el correctivo corrige lleva enmienda fechada en su sitio. **Nada de aquello toca el veredicto del careo.**
+
 ## 0 · Qué entrega este acto, en cinco líneas
 
 1. **P1** — las **87** citas `archivo:línea` de Astra resueltas en dos pasadas contra el árbol fijo `b881ee6`: **87 RESUELVEN, 0 NO-RESUELVE, 0 DICE-OTRA-COSA**. Sus tres fuentes externas quedan **SIN-FETCH** y no sostienen ninguna conclusión de este careo.
@@ -188,6 +190,8 @@ El diseño vigente v1.1 §0 lista cinco cambios sobre v1.0. Quién encontró cad
 
 **Y su falsador viaja con ella, escrito antes de correr:** si `R` se deriva antes de que las emisiones estén selladas, el piloto **no se anula — se degrada a factibilidad y se dice**. El orden del diff es el sello, y mesa lo audita. Va a `hallazgos.md` como `PARA-v2.14`.
 
+> **ENMIENDA FECHADA · 2026-09-17 · correctivo pre-emisión (`H6` de la devolución del 16/sep).** Lo que la búsqueda negativa acredita es **que el cruce no está en el árbol** — `5 256` archivos rastreados, 2 coincidencias, ambas de otro tema. **No acredita que ninguna persona ni ningún modelo lo haya visto nunca**, y el careo lo escribió más ancho de lo que la evidencia sostiene. Lo que se mantiene, y es lo que el piloto necesita: **reserva operacional** (la cantidad no está derivada y no se deriva hasta `COMMIT-3`, con el orden del diff como sello), **dieta declarada por candidato** y **exposición conocida declarada**. Lo que se retira: la promesa de **cegamiento absoluto** por orden de commits. Detalle en `forense/notas/2026-09-17-GEN2-CELDA-D-CAREO-1-CORRECTIVO-PRE-EMISION.md` §6.
+
 **Dos precisiones honestas sobre el alcance de la reserva, para que nadie la lea de más:**
 
 1. **Protege contra el doble uso del dato, no contra la exposición a los marginales.** Los marginales de `localidad` y `edad` son públicos y están sellados; el diseño v1.1 se los entrega a `L` **de propósito** (§2 C3), porque la pregunta del piloto es precisamente si `L` añade algo **sobre** los marginales. Ése es el papel de `C2`.
@@ -270,7 +274,7 @@ Este artefacto **afirma sobre el modelo** y sobre un estimando de conducta de po
 
 - **ENTORNO: CAJA** (Ubuntu). Abre ENIF **2021** y **2024**. Todo acto que abra microdato va a caja, sin excepción.
 - **MODELO SUGERIDO:** Opus. **VEHÍCULO:** `/acto`.
-- **COMPUERTA:** (1) el merge de este acto; (2) la firma de los **tres puntos de v1.1 §7** — `FP-376` (sólo para que el **marcador** consuma la celda; el piloto puede correr sin ella), la **definición por siete códigos comunes**, y la **admisión de `C2`** como segundo piso.
+- **COMPUERTA:** (1) el merge de este acto; (2) **las tres decisiones `D1`–`D3` del correctivo pre-emisión** (desenlace de `C2`, su forma, su contrato de incertidumbre) — sin ellas `C2` mide otro evento y el piloto no puede emitir; (3) la firma de los **tres puntos de v1.1 §7** — `FP-376` (sólo para que el **marcador** consuma la celda; el piloto puede correr sin ella), la **definición por siete códigos comunes**, y la **admisión de `C2`** como segundo piso.
 - **CELDA:** `DIN.ahorro_solo_informal.enif2024.localidad_x_edad`, ya registrada por este acto.
 
 **TRES COMMITS, MÍNIMO Y EN ESTE ORDEN. El orden del diff es el sello.**
@@ -279,7 +283,7 @@ Este artefacto **afirma sobre el modelo** y sobre un estimando de conducta de po
 2. **`COMMIT-2` · emisiones selladas.** `C1` (persistencia 2021), `C2` (marginales + independencia) y `C3` (`L` en sus dos dietas, elicitación ciega con control de memoria) como `RESULT` GEN2 con cadena completa (E.2). **`R` no existe todavía en el árbol al cerrar este commit.**
 3. **`COMMIT-3` · `R` y adjudicación.** Derivación de las **8 celdas de cruce** con la misma receta que el árbitro marginal, y adjudicación por celda con las dos condiciones `INDECIDIBLE` **verbatim**. `C4` se asienta `INEJECUTABLE` con sus cuatro faltantes nombrados. `C5` se cuantifica como diagnóstico.
 
-**Parada.** *Factibilidad* si `C1`/`C2` calculados con cadena GEN2, `C3` elicitado y puntuado, `C4` asentado, `C5` cuantificado, adjudicación por celda escrita, **una entrada del catálogo de momentos poblada** con estimador adjudicado (hoy 22 de 22 `NO-VERIFICADO`) y el consumidor la lee sin cambiar código. *Desempeño local* sólo bajo v1.1 §3, y con la reserva de que son 8 celdas, una encuesta y una ola.
+**Parada.** *Factibilidad* si `C1`/`C2` calculados con cadena GEN2, `C3` elicitado y puntuado, `C4` asentado, `C5` cuantificado, adjudicación por celda escrita, **una entrada del catálogo de momentos poblada** (hoy 22 de 22 `NO-VERIFICADO`) y el consumidor la lee sin cambiar código. **ENMIENDA FECHADA 2026-09-17 (`H5` de la devolución):** esa entrada **no exige un ganador**. Salidas terminales admisibles, ninguna con adopción forzada: `ADJUDICADA` · `INDECIDIBLE` · `SIN-CANDIDATO-SUPERIOR` · `FUERA-DE-SOPORTE` (correctivo §5). Y si el ganador se **elige** con las ocho celdas, **esa misma evaluación no lo valida de forma independiente**: el resultado se reporta como selección más desempeño conjunto. *Desempeño local* sólo bajo v1.1 §3, y con la reserva de que son 8 celdas, una encuesta y una ola.
 
 **El falsador del propio piloto, escrito antes de correrlo:** un `R` derivado antes del `COMMIT-2` **no anula** el piloto — lo **degrada a factibilidad**, y eso se declara, no se esconde.
 
@@ -324,7 +328,8 @@ CITAS `archivo:linea` DISTINTAS EN LA NOTA: 34 sobre 12 archivos -- 34 resuelven
 | cierre (1ª) | `3 FAIL · 4364 WARN` | ROJO, 5 nuevas | el acto archivó 4 adjuntos verbatim que citan dos documentos ausentes |
 | tras escribir el reporte | `3 FAIL · 4373 WARN` | ROJO, 9 nuevas | **nombrar los dos ausentes para reportarlos** creó 5 referencias colgantes más |
 | tras compactar la cita cruda | `3 FAIL · 4370 WARN` | ROJO, 9 nuevas | los nombres **truncados** que la salida imprime tampoco existen |
-| **mesa carga los dos adjuntos** | **`3 FAIL · 4358 WARN`** | **VERDE** | 8 de las 9 se cierran solas; la novena era otra cosa (§10.3) |
+| mesa carga los dos adjuntos | `3 FAIL · 4358 WARN` | VERDE | 8 de las 9 se cierran solas; la novena era otra cosa (§10.3) |
+| **correctivo pre-emisión** | **`3 FAIL · 4360 WARN`** | **VERDE** | `FP-379` abre `D1`–`D3`; el `T22` que eso disparó es el aparato funcionando, no un defecto: A.12 exige que toda decisión de mesa tenga fila |
 
 ### 10.2 · Los dos adjuntos, archivados con su sha verificado
 
@@ -363,7 +368,7 @@ Corregido fusionando en la entrada que ya existía —no añadiendo una segunda�
 
 ```
 ════════════════════════════════════════════════════════════════════════
-  3 FAIL · 4358 WARN
+  3 FAIL · 4360 WARN
 ════════════════════════════════════════════════════════════════════════
   LÍNEA BASE: VERDE contra tests/baseline.json (HEAD congelado 5e2ad5ce…)
 ```

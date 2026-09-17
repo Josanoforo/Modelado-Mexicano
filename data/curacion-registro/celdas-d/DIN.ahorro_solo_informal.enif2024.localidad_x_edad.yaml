@@ -16,6 +16,41 @@
 # NO SE DERIVA NADA AQUÍ. `momentos_holdout_refs` marca la reserva de evaluación:
 # las 8 celdas de cruce `localidad × edad` de ENIF 2024 NO ESTÁN DERIVADAS, y
 # derivarlas antes de que las emisiones estén selladas destruye la reserva.
+# ─────────────────────────────────────────────────────────────────────────────
+# AVISO FECHADO · 2026-09-17 · ACTO GEN2-CELDA-D-CAREO-1 (ADR-533)
+# CORRECTIVO PRE-EMISIÓN, tras la devolución de revisión del 16/sep sobre PR #827.
+#
+#   ESTA CELDA NO ES EMISIBLE TODAVÍA. `estado_operativo: PENDIENTE` y
+#   `requiere_decision_mesa: true` ya lo decían; esto dice POR QUÉ, con nombre.
+#
+# Seis hallazgos materiales sobre el diseño ejecutable, con su corrección y las
+# decisiones que faltan, en:
+#   forense/notas/2026-09-17-GEN2-CELDA-D-CAREO-1-CORRECTIVO-PRE-EMISION.md
+#
+#   H1 · El desenlace de C2 NO es el de R ni el de C1. R/C1 usan los SIETE
+#        códigos comunes; el marginal público que alimenta C2 usa los NUEVE.
+#        Ser proporciones [0,1] no las hace medidas del mismo evento. → D1
+#   H2 · La fórmula de C2, `p_l*p_e/p`, NO garantiza una probabilidad
+#        (sintético: .8×.8/.5 = 1.28). Propuesta: piso log-aditivo, con rechazo
+#        explícito en los casos límite y sin recorte silencioso. → D2
+#   H3 · La incertidumbre de C2 se propaga «bajo independencia», pero los tres
+#        marginales salen de la MISMA muestra. → D3
+#   H4 · El soporte del cruce NO está acreditado: el producto de márgenes es un
+#        punto bajo un supuesto. Cotas de Fréchet sobre los n publicados: las
+#        OCHO cotas inferiores son 0, contra el «≈980» que el diseño afirmaba.
+#        `n` queda DESCONOCIDO hasta el paso autorizado que lo calcula.
+#   H5 · «Nadie vence a C2 → la interacción no aporta información» no se sigue,
+#        y la parada no puede exigir un ganador: admite INDECIDIBLE,
+#        SIN-CANDIDATO-SUPERIOR y FUERA-DE-SOPORTE, sin adopción forzada.
+#   H6 · La búsqueda negativa acredita que el cruce no está en el árbol; NO que
+#        nadie lo haya visto. La reserva es OPERACIONAL, no cegamiento absoluto.
+#
+# LOS VALORES DE ABAJO NO SE EDITAN, y es deliberado: son los que mesa firmó
+# (diseño v1.1 §9, verbatim). Corregirlos aquí sería adoptar D1-D3 sin firma.
+# El contrato que C2 debe cumplir está pinado en `tests/test_celda_d_c2.py`
+# con fixtures sintéticos, y la función de referencia vive ahí — no en
+# `milpa/` — por la misma razón.
+# ─────────────────────────────────────────────────────────────────────────────
 celda_d:
   id: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
   estimando: "p(ahorra_solo_informal | localidad, edad) -- proporcion ponderada [0,1], personas 18+ (ENIF TMODULO, FAC_PER); vias formales = P5_6_{1,2,3,4,5,8,9} (siete codigos comunes 2021/2024)"

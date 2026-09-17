@@ -138,3 +138,17 @@ jobs:
         # `tests/test_*.py` nuevos. Ejerce las entradas reales versionadas;
         # sin corpus, sin red, sin escribir producción.
         run: python3 tests/test_motor_ejecutable.py
+
+      - name: contrato sintético de C2 — piloto celda-D (bloqueante)
+        # ACTO GEN2-CELDA-D-CAREO-1 (ADR-533), correctivo pre-emisión del
+        # 17/sep/2026, en respuesta a la devolución de revisión sobre PR #827.
+        # Pinan el contrato que `C2` debe cumplir ANTES de emitir: rango [0,1]
+        # por construcción, casos límite con rechazo explícito (nunca recorte),
+        # el mismo identificador de desenlace en entradas y salida, la
+        # incertidumbre cuando la muestra es compartida, el soporte por cotas
+        # de Fréchet (no por el producto de márgenes) y una parada que admite
+        # «sin ganador». Misma razón que el paso de arriba: `tests/check.py`
+        # no auto-descubre `tests/test_*.py`, y un test que nadie corre es
+        # decoración. Fixtures sintéticos; cero microdato, cero cifras del
+        # modelo, cero derivación del cruce reservado.
+        run: python3 tests/test_celda_d_c2.py
