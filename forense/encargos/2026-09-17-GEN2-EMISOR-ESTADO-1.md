@@ -25,3 +25,42 @@ FIRMA DE MESA, verbatim (cerrada en conversación de dirección el 16/sep/2026; 
 ## CONTADOR
 
 Cero mediciones, dicho sin disfraz. Mueve `escala_legacy` NO-DECLARADO 15 → N (reportado) y produce la primera tabla de identidad emisor↔árbitro. LO QUE NO HACE: no cambia ningún `p` · no rediseña ni corre el marcador · no cierra NC-0275 (deja la FP de diseño abierta para mesa) · no toca el piloto ni el crosswalk. SUCESOR: el rediseño del marcador por segmento (dirección, con la FP de P1 firmada) · `GEN2-CORTE-EDAD-1` (después de TRAMITE-4). CIERRE: cascada + `## NO-CORRIDO / RESERVAS` + `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| P1 · «la propuesta no se implementa: va a mesa como decisión de diseño del marcador (fila FP)» | `DECISIÓN-DE-MESA-PENDIENTE` — así lo manda el encargo. La propuesta está redactada en prosa con sus tres reglas (a)/(b)/(c) y contada; no se tocó el marcador. | El rediseño del marcador por segmento no avanza hasta la firma. Ningún contador de medición se mueve. | `FP-380` (`forense/firmas-pendientes.tsv`, abierta hoy) |
+| P1 · cierre de NC-0275 | `DECISIÓN-DE-MESA-PENDIENTE` — el encargo lo prohíbe explícitamente («no se cierra aquí»). La fila recibe sucesor y sigue `ABIERTA`. | NC-0275 sigue contando como deuda abierta del tablero. | `FP-380`, que es lo que la cerrará cuando mesa la firme |
+| P2 · escala en 11 de las 15 salidas (`RES-0003`, `0004`, `0005`, `0009`, `0011`, `0013`, `0015`, `0021`, `0022`, `0025`, `0026`) | `FUERA-DE-PERÍMETRO` — no por falta de información: la escala de las 11 **sí** se determina desde su `origen` citado. `tools/corrida0.py:282` lee `escala` al nivel de la REGLA y la línea 307 la estampa en todas sus conductas; esas 11 viven en cuatro reglas de escala mixta, así que ninguna cadena única es verdadera para todas. Declararla a nivel de conducta no serviría (el derivador no la leería) y arreglar el lector es tocar `tools/corrida0.py`, que el perímetro excluye. | `escala_legacy` `NO-DECLARADO` en `conducta_p_medido` baja a **11**, no a 0; `NC-0276` sigue `ABIERTA`. | `NC-0283` (lectura de `escala` por conducta), abierta hoy |
+| P1 · reparación de las once citas `origen:` desfasadas del emisor al árbitro | `FUERA-DE-PERÍMETRO` — el perímetro limita `milpa/tramite.yaml` a «solo campos `escala:` nuevos en las 15 salidas — ningún otro byte». Corregirlas sería reescribir once campos más. | Cualquier lectura futura que siga una de esas citas al pie de la letra leerá la entrada equivocada del árbitro. No mueve ningún `p`. | `NC-0284`, abierta hoy |
+| Contraparte de `familia.cuidado.recae_mujeres_40mas / segmentacion_ejes_enut2024` | Resuelta, con reserva de método declarada: no hay cita ni prefijo común, y se emparejó por **alias declarado** contra `familia.cuidado.reparto_mujeres40_ejes_enut2024`. La evidencia es que sus 10 celdas etiquetadas coinciden en el valor exacto, 10 de 10 — no es inferencia, es medición. Queda como alias único y explícito, no como regla general. | Si mesa lo rechaza, esas 10 celdas vuelven a `SIN-CONTRAPARTE` y el censo pasa de 89 a 79 `IDENTICO`. El sentido del hallazgo no cambia. | `FP-380` (mesa lo ve al firmar el censo) |
+| Desfase preexistente del derivado `data/corrida0/demanda-*.tsv` respecto de su fuente en `main` | `FUERA-DE-PERÍMETRO` en cuanto a causa — lo introdujo el merge de #834 (una celda-D nueva corre la numeración `RES-*` desde `RES-0174` y `CORR-*` desde `CORR-0080`), no este acto. Entra en este commit porque el comando re-deriva el archivo entero. | Los 15 ids que este acto toca (`RES-0003`…`RES-0062`) están por debajo del corte y no se renumeran. Quien lea `RES-0174`+ contra un commit anterior verá otro id. | `SIN-ASIGNAR` — se resuelve solo en cuanto cualquier acto vuelva a correr `demanda`, como hizo éste |
+
+### A.8 · `ya_medido` de la única regla que este acto cita por `id` fuera del censo
+
+La cita de `familia.cuidado.recae_mujeres_40mas` en la tabla de arriba es del
+alias de contraparte, no una clasificación ni un pre-registro: este acto no
+clasifica, no pre-registra, no carga y no sella ninguna regla del motor. Aun
+así, `ADR-340` pide la salida del comando cuando un encargo archivado cita un
+`id`, y aquí está — `python3 tools/ya_medido.py familia.cuidado.recae_mujeres_40mas`:
+
+```
+=== ya_medido: familia.cuidado.recae_mujeres_40mas ===
+  resuelto por canon: familia.cuidado.recae_mujeres_40mas -> R5.2 (canon/modelo-decision-v4_0.md §3, registro congelado + tag **id:**)
+-- milpa/tramite.yaml --
+  milpa/tramite.yaml:1065  situacion=hogar_con_carga_de_cuidado tier=FUERTE veredicto=DISCRIMINA p=0.221500  [TASA-EJECUTADA]
+-- milpa/tramite-ola5-propuesta-v0.yaml --
+  (sin apariciones)
+-- data/corrida0 (RESULT + ejecución + sello) --
+  data/corrida0/CALC-ENUT-0001/resultados.json:16  resultado_id=RESULT-ENUT-A-R ejecutado=SI sello=VALIDO  [TASA-EJECUTADA]
+MEDIDA-EN: CALC-ENUT-0001, tramite.yaml
+```
+
+Lectura, y vale la pena decirla porque toca el censo: la regla está **MEDIDA**
+y su `p` nacional (`0.221500`) es una **tasa ejecutada y sellada**
+(`CALC-ENUT-0001`, `RESULT-ENUT-A-R`), mientras el árbitro «sin apariciones»
+para este `id` es justamente por qué su contraparte tuvo que resolverse por
+alias declarado y no por cita. Lo que el censo compara de esta regla son las
+**10 celdas de su `segmentacion_ejes_enut2024`**, no ese nacional — y las 10
+son `IDENTICO`.
