@@ -1,0 +1,484 @@
+calc_id: CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0001
+spec_md: spec.md
+spec_md_sha256: 45bca1679d9d0e7e1351df709237226a5140e286e78eb2b088b6e6c70ee11491
+script: data/corrida0/CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: ARBITRO-DEL-CRUCE-Y-ADJUDICACION-CELDA-D
+  unidad_transferencia: DELITO
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  validacion_independiente: ADJUDICACION-PRE-REGISTRADA-ANTES-DEL-DATO (spec §5) + RECETA-DEL-ARBITRO-REPRODUCIDA-A-5e-7-EN-COMMIT-2
+  fuente_acto: GEN2-CELDA-D-PILOTO-2 v1.1 (relanzamiento)
+  celda_d: TRA.evade_norma.envipe2025.escolaridad_x_dominio
+  firma_vigente: "Firma 1 (v1.0, 'L no y 12') + Firma 2 (relanzamiento) -- mesa, 2026-09-17, verbatim en forense/encargos/2026-09-17-GEN2-CELDA-D-PILOTO-2-V1_1.md"
+  consume: "CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001--2ff028319eed (sellado en COMMIT-2, commit cdd78f9, ANTES de que este directorio existiera)"
+  orden_de_commits: "COMMIT-3 -- las emisiones ya estaban selladas y este directorio no existe en ningun commit anterior (git log --diff-filter=A)"
+  medidor_ejecutado_al_congelar: "NO -- solo contra zips FABRICADOS y emisiones sinteticas"
+
+inputs:
+  - {id: envipe2025_csv, origen: manifiesto}
+  - {id: emisiones_selladas, origen: repo,
+     ruta: data/corrida0/CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001/resultados.json,
+     sha256: 5d120c1f302c364639c5cdfaf82efec7a7a84cbb1a0d55c0825aa0188330c7c7}
+
+variables:
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: BP1_20, rol: universo-y-desenlace-2025}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: BP1_23, rol: desenlace-2025}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: FAC_DEL, rol: ponderador-2025}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: EST_DIS, rol: estrato-diseno-2025}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: UPM_DIS, rol: upm-diseno-2025}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: ID_PER, rol: llave-delito-persona-2025}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: DOMINIO, rol: eje-dominio-2025}
+  - {archivo: conjunto_de_datos_tsdem_envipe2025.csv, variable: ID_PER, rol: llave-persona-2025}
+  - {archivo: conjunto_de_datos_tsdem_envipe2025.csv, variable: NIV, rol: eje-escolaridad-proxy-2025}
+
+universo: >-
+  DELITOS de tmod_vic ENVIPE 2025 con BP1_20 in {1,2} (n = 40 280, el del
+  arbitro sellado), cruzados por escolaridad_proxy x dominio_urbano_rural
+  sobre los delitos clasificables en ambos ejes. Es la ola RESERVADA: se abre
+  aqui, en COMMIT-3, con las emisiones ya selladas.
+filtros: >-
+  Los de la spec humana §3.1, identicos a los de las emisiones: BP1_20 in
+  {1,2}; FAC_DEL numerico > 0 (PARA); EST_DIS/UPM_DIS no vacios (PARA);
+  ID_PER unica en tsdem (PARA); delitos sin persona se cuentan y quedan
+  (fuera). Sin filtro de edad, sexo ni tipo de delito.
+ponderador: "FAC_DEL. Toda proporcion es razon de totales ponderados sum(w*y)/sum(w)."
+transformacion: >-
+  evade_norma := (BP1_20 == "2") AND (BP1_23 in {04,05,06,08}). Ejes como en
+  las emisiones (ESC_2DIG del arbitro; DOMINIO U/C/R). R(s,d) := p_2025(s,d)
+  con punto e IC95 de wprop_ic_conglomerado. EE(R) := (IC95sup - IC95inf)/3.92.
+  d_k := 100*|p_k - R| en pp para k in {C1,C2,C6,C7}, leidos del sello de las
+  emisiones. Por celda PUNTUADA y por challenger contra cada piso:
+  INDECIDIBLE si ambos caen dentro del IC95 de R o si |d_chal - d_piso| <
+  0.5*EE(R)*100; si no, GANA-CHALLENGER si d_chal < d_piso, GANA-PISO en
+  otro caso. Celda-D en el orden de la spec §5.5.
+estimando: >-
+  R = p(evade_norma | escolaridad_proxy, dominio_urbano_rural) en las 12
+  celdas de ENVIPE 2025 (arbitro), y la adjudicacion de C6/C7 contra C1/C2
+  celda por celda y de celda-D. Emite ademas el signo de la modulacion de
+  cada candidato respecto del nacional 0.562774 y el diagnostico C5. NO adopta.
+precision: >-
+  IC95 de R por bootstrap de conglomerado estratificado por celda
+  (wprop_ic_conglomerado, 10 000 replicas, seed 42) -- la receta del arbitro
+  sellado, reproducida a 5e-7 en COMMIT-2. Skill y MAE se reportan sin
+  intervalo: no adjudican.
+
+dependencias_materiales: [numpy, pandas]
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.random.default_rng (wprop_ic_conglomerado, receta del arbitro)
+tolerancia:
+  tipo: bootstrap
+  exacto_por_seed: true
+  abs: 1.0e-10
+  razon: >-
+    seed 42 + default_rng + orden de consumo de wprop_ic_conglomerado sobre
+    las filas de cada celda en orden de archivo. Enteros EXACTO; flotantes
+    abs = 1e-10.
+
+parametros:
+  emisiones_corrida_id: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001--2ff028319eed
+  celdas: [S1xD1, S1xD2, S1xD3, S2xD1, S2xD2, S2xD3, S3xD1, S3xD2, S3xD3, S4xD1, S4xD2, S4xD3]
+  rotulos_escolaridad: {S1: "hasta primaria", S2: "secundaria", S3: "media superior", S4: "superior"}
+  rotulos_dominio: {D1: "Rural", D2: "Complemento urbano", D3: "Urbano"}
+  codigos_bp1_23_numerador: ["04", "05", "06", "08"]
+  universo_bp1_20: ["1", "2"]
+  bootstrap_replicas: 10000
+  umbral_soporte_n: 200
+  pisos: [C1, C2]
+  challengers: [C6, C7]
+  criterio_indecidible_verbatim: "si ambos caen dentro del IC de R o si |d_L-d_M| < 0.5*EE(R)"
+  criterio_indecidible_fuente: "forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md:38"
+  ee_r_formula: "(IC95sup - IC95inf)/3.92"
+  escala_d: "puntos porcentuales: d = 100*|p - R|; el umbral 0.5*EE(R) se lleva a la misma escala (x100)"
+  umbral_celdas_gana: 9
+  umbral_celdas_puntuadas: 9
+  umbral_fuera_de_soporte: 4
+  orden_de_parada: "FUERA-DE-SOPORTE (>= 4 celdas sin soporte en alguna ola) -> INDECIDIBLE (PUNTUADA < 9 o todas INDECIDIBLES) -> ADJUDICADA (algun challenger vence a los dos pisos en >= 9 PUNTUADA) -> SIN-CANDIDATO-SUPERIOR"
+  precedencia: "entre INDECIDIBLE y ADJUDICADA manda INDECIDIBLE; si los dos challengers cumplen, AMBOS-DECIDE-MESA"
+  paradas_admisibles: [ADJUDICADA, INDECIDIBLE, SIN-CANDIDATO-SUPERIOR, FUERA-DE-SOPORTE]
+  b_bis_c1: "persistencia anual corroborada en TRA (nadie vence a C1 en >= 9 celdas)"
+  b_bis_c2: "'marginales actuales sin interaccion' es el estimador honesto de celda para esta familia; la interaccion de olas previas no aporta BAJO ESTOS CANDIDATOS -- resultado de programa, cambia el marcador. Solo eso dice (H5): no identifica ausencia de interaccion ni una propiedad de la poblacion"
+  b_bis_c6_c7: "primer estimador por celda que explota interaccion"
+  b_bis_c7_no_c6: "una ola sola trae ruido"
+  limite_de_la_evaluacion: "si el ganador se ELIGE con las 12 celdas, esa misma evaluacion no lo valida de forma independiente (H5). Seleccion mas desempeno conjunto, nunca desempeno independiente."
+  signo_modulacion: "respecto del nacional 0.562774: ESTABLE si todo el IC95 del candidato queda del mismo lado que R; AMBIGUA si lo cruza; CONTRARIA si queda del lado opuesto"
+  p_nacional_c5: 0.562774
+  p_nacional_c5_fuente: "milpa/tramite.yaml:497 -- clase MEDIDO, copia del arbitro (enmienda_envipe2025, firma b1)"
+  c5_rol: "COMPLEMENTO / diagnostico puro; fuera de la competencia porque el emisor es el arbitro con otro nombre"
+  champion: NINGUNO
+  adopcion: NINGUNA
+
+resultados:
+  - {id: RESULT-TRA-SXD12-ARB-G-INPUT-ENVIPE2025-CSV-SHA256, tipo: texto, unidad: "sha256 del payload envipe2025_csv"}
+  - {id: RESULT-TRA-SXD12-ARB-G-INPUT-EMISIONES-SHA256, tipo: texto, unidad: "sha256 de resultados.json del CALC de emisiones (sellado en COMMIT-2)"}
+  - {id: RESULT-TRA-SXD12-ARB-G-EMISIONES-CORRIDA-ID, tipo: texto, unidad: "corrida_id de las emisiones que este CALC adjudica"}
+  - {id: RESULT-TRA-SXD12-ARB-G-EMISIONES-CTRL-ARBITRO-VEREDICTO, tipo: texto, unidad: "veredicto del control de reproduccion, copiado del sello de las emisiones"}
+  - {id: RESULT-TRA-SXD12-ARB-G-EMISIONES-RESERVA-CRUCE-DERIVADO, tipo: texto, unidad: "guardia de reserva de las emisiones, copiada del sello (NO)"}
+  - {id: RESULT-TRA-SXD12-ARB-G-R-FILAS-ARCHIVO, tipo: entero, unidad: "filas de tmod_vic 2025"}
+  - {id: RESULT-TRA-SXD12-ARB-G-R-FILAS-UNIVERSO, tipo: entero, unidad: "delitos con BP1_20 in {1,2}, 2025"}
+  - {id: RESULT-TRA-SXD12-ARB-G-R-ESCOLARIDAD-FUERA, tipo: entero, unidad: "delitos con escolaridad_proxy = (fuera), 2025"}
+  - {id: RESULT-TRA-SXD12-ARB-G-R-DELITOS-SIN-PERSONA, tipo: entero, unidad: "delitos sin ID_PER en tsdem, 2025"}
+  - {id: RESULT-TRA-SXD12-ARB-G-R-ESTRATOS, tipo: entero, unidad: "EST_DIS distintos, 2025"}
+  - {id: RESULT-TRA-SXD12-ARB-G-R-UPM, tipo: entero, unidad: "pares (EST_DIS, UPM_DIS) distintos, 2025"}
+  - {id: RESULT-TRA-SXD12-ARB-G-R-P-NACIONAL, tipo: proporcion, unidad: "p nacional 2025 re-derivada aqui (control contra 0.562774)"}
+  - {id: RESULT-TRA-SXD12-ARB-G-R-P-NACIONAL-DELTA-SELLADO, tipo: flotante, unidad: "p nacional re-derivada menos 0.562774 (tramite.yaml:497)"}
+  - {id: RESULT-TRA-SXD12-ARB-G-R-COBERTURA-CRUCE, tipo: proporcion, unidad: "delitos clasificables en ambos ejes / universo, 2025"}
+  - {id: RESULT-TRA-SXD12-ARB-R-N-S1xD1, tipo: entero, unidad: "delitos 2025 sin ponderar, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-R-NUM-S1xD1, tipo: entero, unidad: "delitos 2025 con evade_norma = 1, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SOPORTE-2025-S1xD1, tipo: texto, unidad: "SOPORTE-OK si n_2025 >= 200, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-R-P-S1xD1, tipo: proporcion, unidad: "R = p_2025(s,d), receta del arbitro (FAC_DEL, EST_DIS/UPM_DIS), celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95INF-S1xD1, tipo: proporcion, unidad: "IC95 inferior de R (wprop_ic_conglomerado, seed 42, 10 000), celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95SUP-S1xD1, tipo: proporcion, unidad: "IC95 superior de R, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-EE-S1xD1, tipo: flotante, unidad: "EE(R) = (IC95sup - IC95inf)/3.92, escala proporcion, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-PUNTUADA-S1xD1, tipo: texto, unidad: "SI si n >= 200 en 2023, 2024 y 2025 y los cuatro candidatos tienen punto, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C1-S1xD1, tipo: flotante, unidad: "error absoluto |C1 - R| en puntos porcentuales, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C1-S1xD1, tipo: texto, unidad: "SI si el punto de C1 cae dentro del IC95 de R, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C1-S1xD1, tipo: texto, unidad: "signo de la modulacion de C1 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C2-S1xD1, tipo: flotante, unidad: "error absoluto |C2 - R| en puntos porcentuales, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C2-S1xD1, tipo: texto, unidad: "SI si el punto de C2 cae dentro del IC95 de R, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C2-S1xD1, tipo: texto, unidad: "signo de la modulacion de C2 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C6-S1xD1, tipo: flotante, unidad: "error absoluto |C6 - R| en puntos porcentuales, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C6-S1xD1, tipo: texto, unidad: "SI si el punto de C6 cae dentro del IC95 de R, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C6-S1xD1, tipo: texto, unidad: "signo de la modulacion de C6 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C7-S1xD1, tipo: flotante, unidad: "error absoluto |C7 - R| en puntos porcentuales, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C7-S1xD1, tipo: texto, unidad: "SI si el punto de C7 cae dentro del IC95 de R, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C7-S1xD1, tipo: texto, unidad: "signo de la modulacion de C7 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C1-S1xD1, tipo: texto, unidad: "C6 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C2-S1xD1, tipo: texto, unidad: "C6 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C6-S1xD1, tipo: texto, unidad: "C6-VENCE-A-LOS-DOS-PISOS / C6-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C1-S1xD1, tipo: texto, unidad: "C7 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C2-S1xD1, tipo: texto, unidad: "C7 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C7-S1xD1, tipo: texto, unidad: "C7-VENCE-A-LOS-DOS-PISOS / C7-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-C5-DIAG-S1xD1, tipo: flotante, unidad: "C5 diagnostico puro |0.562774 - R| en pp (no compite), celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-N-S1xD2, tipo: entero, unidad: "delitos 2025 sin ponderar, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-R-NUM-S1xD2, tipo: entero, unidad: "delitos 2025 con evade_norma = 1, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SOPORTE-2025-S1xD2, tipo: texto, unidad: "SOPORTE-OK si n_2025 >= 200, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-R-P-S1xD2, tipo: proporcion, unidad: "R = p_2025(s,d), receta del arbitro (FAC_DEL, EST_DIS/UPM_DIS), celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95INF-S1xD2, tipo: proporcion, unidad: "IC95 inferior de R (wprop_ic_conglomerado, seed 42, 10 000), celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95SUP-S1xD2, tipo: proporcion, unidad: "IC95 superior de R, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-EE-S1xD2, tipo: flotante, unidad: "EE(R) = (IC95sup - IC95inf)/3.92, escala proporcion, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-PUNTUADA-S1xD2, tipo: texto, unidad: "SI si n >= 200 en 2023, 2024 y 2025 y los cuatro candidatos tienen punto, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C1-S1xD2, tipo: flotante, unidad: "error absoluto |C1 - R| en puntos porcentuales, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C1-S1xD2, tipo: texto, unidad: "SI si el punto de C1 cae dentro del IC95 de R, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C1-S1xD2, tipo: texto, unidad: "signo de la modulacion de C1 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C2-S1xD2, tipo: flotante, unidad: "error absoluto |C2 - R| en puntos porcentuales, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C2-S1xD2, tipo: texto, unidad: "SI si el punto de C2 cae dentro del IC95 de R, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C2-S1xD2, tipo: texto, unidad: "signo de la modulacion de C2 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C6-S1xD2, tipo: flotante, unidad: "error absoluto |C6 - R| en puntos porcentuales, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C6-S1xD2, tipo: texto, unidad: "SI si el punto de C6 cae dentro del IC95 de R, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C6-S1xD2, tipo: texto, unidad: "signo de la modulacion de C6 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C7-S1xD2, tipo: flotante, unidad: "error absoluto |C7 - R| en puntos porcentuales, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C7-S1xD2, tipo: texto, unidad: "SI si el punto de C7 cae dentro del IC95 de R, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C7-S1xD2, tipo: texto, unidad: "signo de la modulacion de C7 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C1-S1xD2, tipo: texto, unidad: "C6 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C2-S1xD2, tipo: texto, unidad: "C6 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C6-S1xD2, tipo: texto, unidad: "C6-VENCE-A-LOS-DOS-PISOS / C6-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C1-S1xD2, tipo: texto, unidad: "C7 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C2-S1xD2, tipo: texto, unidad: "C7 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C7-S1xD2, tipo: texto, unidad: "C7-VENCE-A-LOS-DOS-PISOS / C7-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-C5-DIAG-S1xD2, tipo: flotante, unidad: "C5 diagnostico puro |0.562774 - R| en pp (no compite), celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-N-S1xD3, tipo: entero, unidad: "delitos 2025 sin ponderar, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-R-NUM-S1xD3, tipo: entero, unidad: "delitos 2025 con evade_norma = 1, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SOPORTE-2025-S1xD3, tipo: texto, unidad: "SOPORTE-OK si n_2025 >= 200, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-R-P-S1xD3, tipo: proporcion, unidad: "R = p_2025(s,d), receta del arbitro (FAC_DEL, EST_DIS/UPM_DIS), celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95INF-S1xD3, tipo: proporcion, unidad: "IC95 inferior de R (wprop_ic_conglomerado, seed 42, 10 000), celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95SUP-S1xD3, tipo: proporcion, unidad: "IC95 superior de R, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-EE-S1xD3, tipo: flotante, unidad: "EE(R) = (IC95sup - IC95inf)/3.92, escala proporcion, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-PUNTUADA-S1xD3, tipo: texto, unidad: "SI si n >= 200 en 2023, 2024 y 2025 y los cuatro candidatos tienen punto, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C1-S1xD3, tipo: flotante, unidad: "error absoluto |C1 - R| en puntos porcentuales, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C1-S1xD3, tipo: texto, unidad: "SI si el punto de C1 cae dentro del IC95 de R, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C1-S1xD3, tipo: texto, unidad: "signo de la modulacion de C1 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C2-S1xD3, tipo: flotante, unidad: "error absoluto |C2 - R| en puntos porcentuales, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C2-S1xD3, tipo: texto, unidad: "SI si el punto de C2 cae dentro del IC95 de R, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C2-S1xD3, tipo: texto, unidad: "signo de la modulacion de C2 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C6-S1xD3, tipo: flotante, unidad: "error absoluto |C6 - R| en puntos porcentuales, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C6-S1xD3, tipo: texto, unidad: "SI si el punto de C6 cae dentro del IC95 de R, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C6-S1xD3, tipo: texto, unidad: "signo de la modulacion de C6 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C7-S1xD3, tipo: flotante, unidad: "error absoluto |C7 - R| en puntos porcentuales, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C7-S1xD3, tipo: texto, unidad: "SI si el punto de C7 cae dentro del IC95 de R, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C7-S1xD3, tipo: texto, unidad: "signo de la modulacion de C7 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C1-S1xD3, tipo: texto, unidad: "C6 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C2-S1xD3, tipo: texto, unidad: "C6 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C6-S1xD3, tipo: texto, unidad: "C6-VENCE-A-LOS-DOS-PISOS / C6-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C1-S1xD3, tipo: texto, unidad: "C7 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C2-S1xD3, tipo: texto, unidad: "C7 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C7-S1xD3, tipo: texto, unidad: "C7-VENCE-A-LOS-DOS-PISOS / C7-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-C5-DIAG-S1xD3, tipo: flotante, unidad: "C5 diagnostico puro |0.562774 - R| en pp (no compite), celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-N-S2xD1, tipo: entero, unidad: "delitos 2025 sin ponderar, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-R-NUM-S2xD1, tipo: entero, unidad: "delitos 2025 con evade_norma = 1, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SOPORTE-2025-S2xD1, tipo: texto, unidad: "SOPORTE-OK si n_2025 >= 200, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-R-P-S2xD1, tipo: proporcion, unidad: "R = p_2025(s,d), receta del arbitro (FAC_DEL, EST_DIS/UPM_DIS), celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95INF-S2xD1, tipo: proporcion, unidad: "IC95 inferior de R (wprop_ic_conglomerado, seed 42, 10 000), celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95SUP-S2xD1, tipo: proporcion, unidad: "IC95 superior de R, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-EE-S2xD1, tipo: flotante, unidad: "EE(R) = (IC95sup - IC95inf)/3.92, escala proporcion, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-PUNTUADA-S2xD1, tipo: texto, unidad: "SI si n >= 200 en 2023, 2024 y 2025 y los cuatro candidatos tienen punto, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C1-S2xD1, tipo: flotante, unidad: "error absoluto |C1 - R| en puntos porcentuales, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C1-S2xD1, tipo: texto, unidad: "SI si el punto de C1 cae dentro del IC95 de R, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C1-S2xD1, tipo: texto, unidad: "signo de la modulacion de C1 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C2-S2xD1, tipo: flotante, unidad: "error absoluto |C2 - R| en puntos porcentuales, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C2-S2xD1, tipo: texto, unidad: "SI si el punto de C2 cae dentro del IC95 de R, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C2-S2xD1, tipo: texto, unidad: "signo de la modulacion de C2 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C6-S2xD1, tipo: flotante, unidad: "error absoluto |C6 - R| en puntos porcentuales, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C6-S2xD1, tipo: texto, unidad: "SI si el punto de C6 cae dentro del IC95 de R, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C6-S2xD1, tipo: texto, unidad: "signo de la modulacion de C6 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C7-S2xD1, tipo: flotante, unidad: "error absoluto |C7 - R| en puntos porcentuales, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C7-S2xD1, tipo: texto, unidad: "SI si el punto de C7 cae dentro del IC95 de R, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C7-S2xD1, tipo: texto, unidad: "signo de la modulacion de C7 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C1-S2xD1, tipo: texto, unidad: "C6 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C2-S2xD1, tipo: texto, unidad: "C6 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C6-S2xD1, tipo: texto, unidad: "C6-VENCE-A-LOS-DOS-PISOS / C6-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C1-S2xD1, tipo: texto, unidad: "C7 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C2-S2xD1, tipo: texto, unidad: "C7 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C7-S2xD1, tipo: texto, unidad: "C7-VENCE-A-LOS-DOS-PISOS / C7-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-C5-DIAG-S2xD1, tipo: flotante, unidad: "C5 diagnostico puro |0.562774 - R| en pp (no compite), celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-N-S2xD2, tipo: entero, unidad: "delitos 2025 sin ponderar, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-R-NUM-S2xD2, tipo: entero, unidad: "delitos 2025 con evade_norma = 1, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SOPORTE-2025-S2xD2, tipo: texto, unidad: "SOPORTE-OK si n_2025 >= 200, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-R-P-S2xD2, tipo: proporcion, unidad: "R = p_2025(s,d), receta del arbitro (FAC_DEL, EST_DIS/UPM_DIS), celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95INF-S2xD2, tipo: proporcion, unidad: "IC95 inferior de R (wprop_ic_conglomerado, seed 42, 10 000), celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95SUP-S2xD2, tipo: proporcion, unidad: "IC95 superior de R, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-EE-S2xD2, tipo: flotante, unidad: "EE(R) = (IC95sup - IC95inf)/3.92, escala proporcion, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-PUNTUADA-S2xD2, tipo: texto, unidad: "SI si n >= 200 en 2023, 2024 y 2025 y los cuatro candidatos tienen punto, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C1-S2xD2, tipo: flotante, unidad: "error absoluto |C1 - R| en puntos porcentuales, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C1-S2xD2, tipo: texto, unidad: "SI si el punto de C1 cae dentro del IC95 de R, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C1-S2xD2, tipo: texto, unidad: "signo de la modulacion de C1 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C2-S2xD2, tipo: flotante, unidad: "error absoluto |C2 - R| en puntos porcentuales, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C2-S2xD2, tipo: texto, unidad: "SI si el punto de C2 cae dentro del IC95 de R, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C2-S2xD2, tipo: texto, unidad: "signo de la modulacion de C2 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C6-S2xD2, tipo: flotante, unidad: "error absoluto |C6 - R| en puntos porcentuales, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C6-S2xD2, tipo: texto, unidad: "SI si el punto de C6 cae dentro del IC95 de R, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C6-S2xD2, tipo: texto, unidad: "signo de la modulacion de C6 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C7-S2xD2, tipo: flotante, unidad: "error absoluto |C7 - R| en puntos porcentuales, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C7-S2xD2, tipo: texto, unidad: "SI si el punto de C7 cae dentro del IC95 de R, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C7-S2xD2, tipo: texto, unidad: "signo de la modulacion de C7 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C1-S2xD2, tipo: texto, unidad: "C6 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C2-S2xD2, tipo: texto, unidad: "C6 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C6-S2xD2, tipo: texto, unidad: "C6-VENCE-A-LOS-DOS-PISOS / C6-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C1-S2xD2, tipo: texto, unidad: "C7 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C2-S2xD2, tipo: texto, unidad: "C7 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C7-S2xD2, tipo: texto, unidad: "C7-VENCE-A-LOS-DOS-PISOS / C7-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-C5-DIAG-S2xD2, tipo: flotante, unidad: "C5 diagnostico puro |0.562774 - R| en pp (no compite), celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-N-S2xD3, tipo: entero, unidad: "delitos 2025 sin ponderar, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-R-NUM-S2xD3, tipo: entero, unidad: "delitos 2025 con evade_norma = 1, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SOPORTE-2025-S2xD3, tipo: texto, unidad: "SOPORTE-OK si n_2025 >= 200, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-R-P-S2xD3, tipo: proporcion, unidad: "R = p_2025(s,d), receta del arbitro (FAC_DEL, EST_DIS/UPM_DIS), celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95INF-S2xD3, tipo: proporcion, unidad: "IC95 inferior de R (wprop_ic_conglomerado, seed 42, 10 000), celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95SUP-S2xD3, tipo: proporcion, unidad: "IC95 superior de R, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-EE-S2xD3, tipo: flotante, unidad: "EE(R) = (IC95sup - IC95inf)/3.92, escala proporcion, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-PUNTUADA-S2xD3, tipo: texto, unidad: "SI si n >= 200 en 2023, 2024 y 2025 y los cuatro candidatos tienen punto, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C1-S2xD3, tipo: flotante, unidad: "error absoluto |C1 - R| en puntos porcentuales, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C1-S2xD3, tipo: texto, unidad: "SI si el punto de C1 cae dentro del IC95 de R, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C1-S2xD3, tipo: texto, unidad: "signo de la modulacion de C1 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C2-S2xD3, tipo: flotante, unidad: "error absoluto |C2 - R| en puntos porcentuales, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C2-S2xD3, tipo: texto, unidad: "SI si el punto de C2 cae dentro del IC95 de R, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C2-S2xD3, tipo: texto, unidad: "signo de la modulacion de C2 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C6-S2xD3, tipo: flotante, unidad: "error absoluto |C6 - R| en puntos porcentuales, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C6-S2xD3, tipo: texto, unidad: "SI si el punto de C6 cae dentro del IC95 de R, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C6-S2xD3, tipo: texto, unidad: "signo de la modulacion de C6 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C7-S2xD3, tipo: flotante, unidad: "error absoluto |C7 - R| en puntos porcentuales, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C7-S2xD3, tipo: texto, unidad: "SI si el punto de C7 cae dentro del IC95 de R, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C7-S2xD3, tipo: texto, unidad: "signo de la modulacion de C7 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C1-S2xD3, tipo: texto, unidad: "C6 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C2-S2xD3, tipo: texto, unidad: "C6 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C6-S2xD3, tipo: texto, unidad: "C6-VENCE-A-LOS-DOS-PISOS / C6-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C1-S2xD3, tipo: texto, unidad: "C7 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C2-S2xD3, tipo: texto, unidad: "C7 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C7-S2xD3, tipo: texto, unidad: "C7-VENCE-A-LOS-DOS-PISOS / C7-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-C5-DIAG-S2xD3, tipo: flotante, unidad: "C5 diagnostico puro |0.562774 - R| en pp (no compite), celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-N-S3xD1, tipo: entero, unidad: "delitos 2025 sin ponderar, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-R-NUM-S3xD1, tipo: entero, unidad: "delitos 2025 con evade_norma = 1, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SOPORTE-2025-S3xD1, tipo: texto, unidad: "SOPORTE-OK si n_2025 >= 200, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-R-P-S3xD1, tipo: proporcion, unidad: "R = p_2025(s,d), receta del arbitro (FAC_DEL, EST_DIS/UPM_DIS), celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95INF-S3xD1, tipo: proporcion, unidad: "IC95 inferior de R (wprop_ic_conglomerado, seed 42, 10 000), celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95SUP-S3xD1, tipo: proporcion, unidad: "IC95 superior de R, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-EE-S3xD1, tipo: flotante, unidad: "EE(R) = (IC95sup - IC95inf)/3.92, escala proporcion, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-PUNTUADA-S3xD1, tipo: texto, unidad: "SI si n >= 200 en 2023, 2024 y 2025 y los cuatro candidatos tienen punto, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C1-S3xD1, tipo: flotante, unidad: "error absoluto |C1 - R| en puntos porcentuales, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C1-S3xD1, tipo: texto, unidad: "SI si el punto de C1 cae dentro del IC95 de R, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C1-S3xD1, tipo: texto, unidad: "signo de la modulacion de C1 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C2-S3xD1, tipo: flotante, unidad: "error absoluto |C2 - R| en puntos porcentuales, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C2-S3xD1, tipo: texto, unidad: "SI si el punto de C2 cae dentro del IC95 de R, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C2-S3xD1, tipo: texto, unidad: "signo de la modulacion de C2 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C6-S3xD1, tipo: flotante, unidad: "error absoluto |C6 - R| en puntos porcentuales, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C6-S3xD1, tipo: texto, unidad: "SI si el punto de C6 cae dentro del IC95 de R, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C6-S3xD1, tipo: texto, unidad: "signo de la modulacion de C6 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C7-S3xD1, tipo: flotante, unidad: "error absoluto |C7 - R| en puntos porcentuales, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C7-S3xD1, tipo: texto, unidad: "SI si el punto de C7 cae dentro del IC95 de R, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C7-S3xD1, tipo: texto, unidad: "signo de la modulacion de C7 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C1-S3xD1, tipo: texto, unidad: "C6 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C2-S3xD1, tipo: texto, unidad: "C6 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C6-S3xD1, tipo: texto, unidad: "C6-VENCE-A-LOS-DOS-PISOS / C6-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C1-S3xD1, tipo: texto, unidad: "C7 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C2-S3xD1, tipo: texto, unidad: "C7 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C7-S3xD1, tipo: texto, unidad: "C7-VENCE-A-LOS-DOS-PISOS / C7-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-C5-DIAG-S3xD1, tipo: flotante, unidad: "C5 diagnostico puro |0.562774 - R| en pp (no compite), celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-N-S3xD2, tipo: entero, unidad: "delitos 2025 sin ponderar, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-R-NUM-S3xD2, tipo: entero, unidad: "delitos 2025 con evade_norma = 1, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SOPORTE-2025-S3xD2, tipo: texto, unidad: "SOPORTE-OK si n_2025 >= 200, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-R-P-S3xD2, tipo: proporcion, unidad: "R = p_2025(s,d), receta del arbitro (FAC_DEL, EST_DIS/UPM_DIS), celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95INF-S3xD2, tipo: proporcion, unidad: "IC95 inferior de R (wprop_ic_conglomerado, seed 42, 10 000), celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95SUP-S3xD2, tipo: proporcion, unidad: "IC95 superior de R, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-EE-S3xD2, tipo: flotante, unidad: "EE(R) = (IC95sup - IC95inf)/3.92, escala proporcion, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-PUNTUADA-S3xD2, tipo: texto, unidad: "SI si n >= 200 en 2023, 2024 y 2025 y los cuatro candidatos tienen punto, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C1-S3xD2, tipo: flotante, unidad: "error absoluto |C1 - R| en puntos porcentuales, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C1-S3xD2, tipo: texto, unidad: "SI si el punto de C1 cae dentro del IC95 de R, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C1-S3xD2, tipo: texto, unidad: "signo de la modulacion de C1 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C2-S3xD2, tipo: flotante, unidad: "error absoluto |C2 - R| en puntos porcentuales, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C2-S3xD2, tipo: texto, unidad: "SI si el punto de C2 cae dentro del IC95 de R, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C2-S3xD2, tipo: texto, unidad: "signo de la modulacion de C2 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C6-S3xD2, tipo: flotante, unidad: "error absoluto |C6 - R| en puntos porcentuales, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C6-S3xD2, tipo: texto, unidad: "SI si el punto de C6 cae dentro del IC95 de R, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C6-S3xD2, tipo: texto, unidad: "signo de la modulacion de C6 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C7-S3xD2, tipo: flotante, unidad: "error absoluto |C7 - R| en puntos porcentuales, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C7-S3xD2, tipo: texto, unidad: "SI si el punto de C7 cae dentro del IC95 de R, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C7-S3xD2, tipo: texto, unidad: "signo de la modulacion de C7 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C1-S3xD2, tipo: texto, unidad: "C6 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C2-S3xD2, tipo: texto, unidad: "C6 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C6-S3xD2, tipo: texto, unidad: "C6-VENCE-A-LOS-DOS-PISOS / C6-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C1-S3xD2, tipo: texto, unidad: "C7 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C2-S3xD2, tipo: texto, unidad: "C7 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C7-S3xD2, tipo: texto, unidad: "C7-VENCE-A-LOS-DOS-PISOS / C7-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-C5-DIAG-S3xD2, tipo: flotante, unidad: "C5 diagnostico puro |0.562774 - R| en pp (no compite), celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-N-S3xD3, tipo: entero, unidad: "delitos 2025 sin ponderar, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-R-NUM-S3xD3, tipo: entero, unidad: "delitos 2025 con evade_norma = 1, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SOPORTE-2025-S3xD3, tipo: texto, unidad: "SOPORTE-OK si n_2025 >= 200, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-R-P-S3xD3, tipo: proporcion, unidad: "R = p_2025(s,d), receta del arbitro (FAC_DEL, EST_DIS/UPM_DIS), celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95INF-S3xD3, tipo: proporcion, unidad: "IC95 inferior de R (wprop_ic_conglomerado, seed 42, 10 000), celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95SUP-S3xD3, tipo: proporcion, unidad: "IC95 superior de R, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-EE-S3xD3, tipo: flotante, unidad: "EE(R) = (IC95sup - IC95inf)/3.92, escala proporcion, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-PUNTUADA-S3xD3, tipo: texto, unidad: "SI si n >= 200 en 2023, 2024 y 2025 y los cuatro candidatos tienen punto, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C1-S3xD3, tipo: flotante, unidad: "error absoluto |C1 - R| en puntos porcentuales, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C1-S3xD3, tipo: texto, unidad: "SI si el punto de C1 cae dentro del IC95 de R, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C1-S3xD3, tipo: texto, unidad: "signo de la modulacion de C1 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C2-S3xD3, tipo: flotante, unidad: "error absoluto |C2 - R| en puntos porcentuales, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C2-S3xD3, tipo: texto, unidad: "SI si el punto de C2 cae dentro del IC95 de R, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C2-S3xD3, tipo: texto, unidad: "signo de la modulacion de C2 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C6-S3xD3, tipo: flotante, unidad: "error absoluto |C6 - R| en puntos porcentuales, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C6-S3xD3, tipo: texto, unidad: "SI si el punto de C6 cae dentro del IC95 de R, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C6-S3xD3, tipo: texto, unidad: "signo de la modulacion de C6 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C7-S3xD3, tipo: flotante, unidad: "error absoluto |C7 - R| en puntos porcentuales, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C7-S3xD3, tipo: texto, unidad: "SI si el punto de C7 cae dentro del IC95 de R, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C7-S3xD3, tipo: texto, unidad: "signo de la modulacion de C7 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C1-S3xD3, tipo: texto, unidad: "C6 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C2-S3xD3, tipo: texto, unidad: "C6 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C6-S3xD3, tipo: texto, unidad: "C6-VENCE-A-LOS-DOS-PISOS / C6-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C1-S3xD3, tipo: texto, unidad: "C7 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C2-S3xD3, tipo: texto, unidad: "C7 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C7-S3xD3, tipo: texto, unidad: "C7-VENCE-A-LOS-DOS-PISOS / C7-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-C5-DIAG-S3xD3, tipo: flotante, unidad: "C5 diagnostico puro |0.562774 - R| en pp (no compite), celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-N-S4xD1, tipo: entero, unidad: "delitos 2025 sin ponderar, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-R-NUM-S4xD1, tipo: entero, unidad: "delitos 2025 con evade_norma = 1, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SOPORTE-2025-S4xD1, tipo: texto, unidad: "SOPORTE-OK si n_2025 >= 200, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-R-P-S4xD1, tipo: proporcion, unidad: "R = p_2025(s,d), receta del arbitro (FAC_DEL, EST_DIS/UPM_DIS), celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95INF-S4xD1, tipo: proporcion, unidad: "IC95 inferior de R (wprop_ic_conglomerado, seed 42, 10 000), celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95SUP-S4xD1, tipo: proporcion, unidad: "IC95 superior de R, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-EE-S4xD1, tipo: flotante, unidad: "EE(R) = (IC95sup - IC95inf)/3.92, escala proporcion, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-PUNTUADA-S4xD1, tipo: texto, unidad: "SI si n >= 200 en 2023, 2024 y 2025 y los cuatro candidatos tienen punto, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C1-S4xD1, tipo: flotante, unidad: "error absoluto |C1 - R| en puntos porcentuales, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C1-S4xD1, tipo: texto, unidad: "SI si el punto de C1 cae dentro del IC95 de R, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C1-S4xD1, tipo: texto, unidad: "signo de la modulacion de C1 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C2-S4xD1, tipo: flotante, unidad: "error absoluto |C2 - R| en puntos porcentuales, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C2-S4xD1, tipo: texto, unidad: "SI si el punto de C2 cae dentro del IC95 de R, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C2-S4xD1, tipo: texto, unidad: "signo de la modulacion de C2 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C6-S4xD1, tipo: flotante, unidad: "error absoluto |C6 - R| en puntos porcentuales, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C6-S4xD1, tipo: texto, unidad: "SI si el punto de C6 cae dentro del IC95 de R, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C6-S4xD1, tipo: texto, unidad: "signo de la modulacion de C6 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C7-S4xD1, tipo: flotante, unidad: "error absoluto |C7 - R| en puntos porcentuales, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C7-S4xD1, tipo: texto, unidad: "SI si el punto de C7 cae dentro del IC95 de R, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C7-S4xD1, tipo: texto, unidad: "signo de la modulacion de C7 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C1-S4xD1, tipo: texto, unidad: "C6 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C2-S4xD1, tipo: texto, unidad: "C6 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C6-S4xD1, tipo: texto, unidad: "C6-VENCE-A-LOS-DOS-PISOS / C6-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C1-S4xD1, tipo: texto, unidad: "C7 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C2-S4xD1, tipo: texto, unidad: "C7 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C7-S4xD1, tipo: texto, unidad: "C7-VENCE-A-LOS-DOS-PISOS / C7-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-ARB-C5-DIAG-S4xD1, tipo: flotante, unidad: "C5 diagnostico puro |0.562774 - R| en pp (no compite), celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-N-S4xD2, tipo: entero, unidad: "delitos 2025 sin ponderar, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-R-NUM-S4xD2, tipo: entero, unidad: "delitos 2025 con evade_norma = 1, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SOPORTE-2025-S4xD2, tipo: texto, unidad: "SOPORTE-OK si n_2025 >= 200, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-R-P-S4xD2, tipo: proporcion, unidad: "R = p_2025(s,d), receta del arbitro (FAC_DEL, EST_DIS/UPM_DIS), celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95INF-S4xD2, tipo: proporcion, unidad: "IC95 inferior de R (wprop_ic_conglomerado, seed 42, 10 000), celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95SUP-S4xD2, tipo: proporcion, unidad: "IC95 superior de R, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-EE-S4xD2, tipo: flotante, unidad: "EE(R) = (IC95sup - IC95inf)/3.92, escala proporcion, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-PUNTUADA-S4xD2, tipo: texto, unidad: "SI si n >= 200 en 2023, 2024 y 2025 y los cuatro candidatos tienen punto, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C1-S4xD2, tipo: flotante, unidad: "error absoluto |C1 - R| en puntos porcentuales, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C1-S4xD2, tipo: texto, unidad: "SI si el punto de C1 cae dentro del IC95 de R, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C1-S4xD2, tipo: texto, unidad: "signo de la modulacion de C1 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C2-S4xD2, tipo: flotante, unidad: "error absoluto |C2 - R| en puntos porcentuales, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C2-S4xD2, tipo: texto, unidad: "SI si el punto de C2 cae dentro del IC95 de R, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C2-S4xD2, tipo: texto, unidad: "signo de la modulacion de C2 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C6-S4xD2, tipo: flotante, unidad: "error absoluto |C6 - R| en puntos porcentuales, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C6-S4xD2, tipo: texto, unidad: "SI si el punto de C6 cae dentro del IC95 de R, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C6-S4xD2, tipo: texto, unidad: "signo de la modulacion de C6 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C7-S4xD2, tipo: flotante, unidad: "error absoluto |C7 - R| en puntos porcentuales, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C7-S4xD2, tipo: texto, unidad: "SI si el punto de C7 cae dentro del IC95 de R, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C7-S4xD2, tipo: texto, unidad: "signo de la modulacion de C7 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C1-S4xD2, tipo: texto, unidad: "C6 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C2-S4xD2, tipo: texto, unidad: "C6 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C6-S4xD2, tipo: texto, unidad: "C6-VENCE-A-LOS-DOS-PISOS / C6-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C1-S4xD2, tipo: texto, unidad: "C7 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C2-S4xD2, tipo: texto, unidad: "C7 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C7-S4xD2, tipo: texto, unidad: "C7-VENCE-A-LOS-DOS-PISOS / C7-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-C5-DIAG-S4xD2, tipo: flotante, unidad: "C5 diagnostico puro |0.562774 - R| en pp (no compite), celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-N-S4xD3, tipo: entero, unidad: "delitos 2025 sin ponderar, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-R-NUM-S4xD3, tipo: entero, unidad: "delitos 2025 con evade_norma = 1, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SOPORTE-2025-S4xD3, tipo: texto, unidad: "SOPORTE-OK si n_2025 >= 200, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-R-P-S4xD3, tipo: proporcion, unidad: "R = p_2025(s,d), receta del arbitro (FAC_DEL, EST_DIS/UPM_DIS), celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95INF-S4xD3, tipo: proporcion, unidad: "IC95 inferior de R (wprop_ic_conglomerado, seed 42, 10 000), celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-IC95SUP-S4xD3, tipo: proporcion, unidad: "IC95 superior de R, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-R-EE-S4xD3, tipo: flotante, unidad: "EE(R) = (IC95sup - IC95inf)/3.92, escala proporcion, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-PUNTUADA-S4xD3, tipo: texto, unidad: "SI si n >= 200 en 2023, 2024 y 2025 y los cuatro candidatos tienen punto, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C1-S4xD3, tipo: flotante, unidad: "error absoluto |C1 - R| en puntos porcentuales, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C1-S4xD3, tipo: texto, unidad: "SI si el punto de C1 cae dentro del IC95 de R, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C1-S4xD3, tipo: texto, unidad: "signo de la modulacion de C1 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C2-S4xD3, tipo: flotante, unidad: "error absoluto |C2 - R| en puntos porcentuales, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C2-S4xD3, tipo: texto, unidad: "SI si el punto de C2 cae dentro del IC95 de R, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C2-S4xD3, tipo: texto, unidad: "signo de la modulacion de C2 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C6-S4xD3, tipo: flotante, unidad: "error absoluto |C6 - R| en puntos porcentuales, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C6-S4xD3, tipo: texto, unidad: "SI si el punto de C6 cae dentro del IC95 de R, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C6-S4xD3, tipo: texto, unidad: "signo de la modulacion de C6 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-D-C7-S4xD3, tipo: flotante, unidad: "error absoluto |C7 - R| en puntos porcentuales, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-DENTRO-IC-R-C7-S4xD3, tipo: texto, unidad: "SI si el punto de C7 cae dentro del IC95 de R, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-SIGNO-C7-S4xD3, tipo: texto, unidad: "signo de la modulacion de C7 respecto del nacional 0.562774: ESTABLE / AMBIGUA / CONTRARIA, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C1-S4xD3, tipo: texto, unidad: "C6 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C6-VS-C2-S4xD3, tipo: texto, unidad: "C6 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C6-S4xD3, tipo: texto, unidad: "C6-VENCE-A-LOS-DOS-PISOS / C6-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C1-S4xD3, tipo: texto, unidad: "C7 contra C1: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-C7-VS-C2-S4xD3, tipo: texto, unidad: "C7 contra C2: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-VEREDICTO-CELDA-C7-S4xD3, tipo: texto, unidad: "C7-VENCE-A-LOS-DOS-PISOS / C7-NO-VENCE-A-LOS-DOS-PISOS / INDECIDIBLE / NO-PUNTUADA, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-ARB-C5-DIAG-S4xD3, tipo: flotante, unidad: "C5 diagnostico puro |0.562774 - R| en pp (no compite), celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-G-CELDAS-FUERA-DE-SOPORTE-2025, tipo: entero, unidad: "celdas con n_2025 < 200"}
+  - {id: RESULT-TRA-SXD12-ARB-G-CELDAS-PUNTUADAS, tipo: entero, unidad: "celdas PUNTUADA (de 12)"}
+  - {id: RESULT-TRA-SXD12-ARB-G-CELDAS-FUERA-DE-SOPORTE-ALGUNA-OLA, tipo: entero, unidad: "celdas con n < 200 en alguna de las tres olas"}
+  - {id: RESULT-TRA-SXD12-ARB-G-C6-GANA-A-AMBOS-PISOS, tipo: entero, unidad: "celdas PUNTUADA en que C6 vence a C1 y a C2"}
+  - {id: RESULT-TRA-SXD12-ARB-G-C6-INDECIDIBLES, tipo: entero, unidad: "celdas PUNTUADA en que C6 queda INDECIDIBLE contra algun piso"}
+  - {id: RESULT-TRA-SXD12-ARB-G-C6-VENCE-A-C1-EN-CELDAS, tipo: entero, unidad: "celdas PUNTUADA en que C6 vence a C1"}
+  - {id: RESULT-TRA-SXD12-ARB-G-SKILL-C6-VS-C1, tipo: flotante, unidad: "skill = 1 - MAE(C6)/MAE(C1); se reporta, no adjudica", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-G-C6-VENCE-A-C2-EN-CELDAS, tipo: entero, unidad: "celdas PUNTUADA en que C6 vence a C2"}
+  - {id: RESULT-TRA-SXD12-ARB-G-SKILL-C6-VS-C2, tipo: flotante, unidad: "skill = 1 - MAE(C6)/MAE(C2); se reporta, no adjudica", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-G-C7-GANA-A-AMBOS-PISOS, tipo: entero, unidad: "celdas PUNTUADA en que C7 vence a C1 y a C2"}
+  - {id: RESULT-TRA-SXD12-ARB-G-C7-INDECIDIBLES, tipo: entero, unidad: "celdas PUNTUADA en que C7 queda INDECIDIBLE contra algun piso"}
+  - {id: RESULT-TRA-SXD12-ARB-G-C7-VENCE-A-C1-EN-CELDAS, tipo: entero, unidad: "celdas PUNTUADA en que C7 vence a C1"}
+  - {id: RESULT-TRA-SXD12-ARB-G-SKILL-C7-VS-C1, tipo: flotante, unidad: "skill = 1 - MAE(C7)/MAE(C1); se reporta, no adjudica", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-G-C7-VENCE-A-C2-EN-CELDAS, tipo: entero, unidad: "celdas PUNTUADA en que C7 vence a C2"}
+  - {id: RESULT-TRA-SXD12-ARB-G-SKILL-C7-VS-C2, tipo: flotante, unidad: "skill = 1 - MAE(C7)/MAE(C2); se reporta, no adjudica", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-G-MAE-C1, tipo: flotante, unidad: "MAE de C1 contra R en pp sobre las PUNTUADA", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-G-SIGNO-ESTABLE-C1, tipo: entero, unidad: "celdas con signo de modulacion ESTABLE para C1"}
+  - {id: RESULT-TRA-SXD12-ARB-G-MAE-C2, tipo: flotante, unidad: "MAE de C2 contra R en pp sobre las PUNTUADA", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-G-SIGNO-ESTABLE-C2, tipo: entero, unidad: "celdas con signo de modulacion ESTABLE para C2"}
+  - {id: RESULT-TRA-SXD12-ARB-G-MAE-C6, tipo: flotante, unidad: "MAE de C6 contra R en pp sobre las PUNTUADA", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-G-SIGNO-ESTABLE-C6, tipo: entero, unidad: "celdas con signo de modulacion ESTABLE para C6"}
+  - {id: RESULT-TRA-SXD12-ARB-G-MAE-C7, tipo: flotante, unidad: "MAE de C7 contra R en pp sobre las PUNTUADA", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-ARB-G-SIGNO-ESTABLE-C7, tipo: entero, unidad: "celdas con signo de modulacion ESTABLE para C7"}
+  - {id: RESULT-TRA-SXD12-ARB-G-MEJOR-CANDIDATO-POR-MAE, tipo: texto, unidad: "candidato con menor MAE (descriptivo; no adjudica)"}
+  - {id: RESULT-TRA-SXD12-ARB-G-VEREDICTO-CELDA-D, tipo: texto, unidad: "FUERA-DE-SOPORTE / INDECIDIBLE / ADJUDICADA / SIN-CANDIDATO-SUPERIOR, en el orden de la spec §5.5"}
+  - {id: RESULT-TRA-SXD12-ARB-G-CHALLENGER-GANADOR, tipo: texto, unidad: "NINGUNO / C6 / C7 / AMBOS-DECIDE-MESA"}
+  - {id: RESULT-TRA-SXD12-ARB-G-B-BIS-LEIDO, tipo: texto, unidad: "clausulas del B-bis declarado que aplican, leidas mecanicamente"}
+  - {id: RESULT-TRA-SXD12-ARB-G-CONDICION-INDECIDIBLE-VERBATIM, tipo: texto, unidad: "criterio INDECIDIBLE verbatim y su fuente"}
+  - {id: RESULT-TRA-SXD12-ARB-G-LIMITE-DE-LA-EVALUACION, tipo: texto, unidad: "H5: seleccion mas desempeno conjunto, nunca desempeno independiente"}
+  - {id: RESULT-TRA-SXD12-ARB-G-CHAMPION, tipo: texto, unidad: "NINGUNO -- este acto no adopta"}
+  - {id: RESULT-TRA-SXD12-ARB-G-C5-DIAG-MAX, tipo: flotante, unidad: "maximo |0.562774 - R| en pp sobre las 12 celdas"}

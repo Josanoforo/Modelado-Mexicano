@@ -4965,6 +4965,25 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # nuevo que este acto reclame. Se conserva la cita recibida, igual que
     # las exenciones hermanas de esa misma ranura arriba.
     "forense/encargos/2026-09-16-GEN2-F6-FACTIBILIDAD-PREPARACION-1.md",
+    # ACTO GEN2-CELDA-D-PILOTO-2 v1.1 (relanzamiento), 17/sep/2026: encargo
+    # archivado VERBATIM (A.3), que no se edita para complacer el test.
+    #   `M05` -- id de FILA de `milpa/catalogo-momentos-v0_1.tsv` (la fila de
+    #            `tramite.evasion_norma` que el COMMIT-3 de este acto pasa de
+    #            NO-VERIFICADO a DERIVADO-Y-SELLADO-GEN2). Es dato de un TSV,
+    #            no rotulo de acto ni habitante de un espacio; misma exencion
+    #            que ya llevan `M01`..`M22` en la lista de CELDA-D-CAREO-1.
+    # La spec propia de este acto (forense/prereg-caja/TRA-evade-norma-sxd12-
+    # spec-v1_0.md) NO necesita exencion: nombra la fila por su regla, no por
+    # su id (verificado con el regex de T25 antes de pedirla). El rotulo
+    # propio del acto, `GEN2-CELDA-D-PILOTO-2`, va censado en
+    # canon/registro-rotulos.tsv.
+    "forense/encargos/2026-09-17-GEN2-CELDA-D-PILOTO-2-V1_1.md",
+    # Misma causa, mismo acto: la nota de cierre nombra la fila `M05` por su
+    # id de catalogo -- el que `momentos_holdout_refs` de la celda-D y
+    # `tests/test_celda_d_piloto2_consumidor.py` citan tal cual -- porque es
+    # el dato que el consumidor lee, no un rotulo de acto. Darle prefijo
+    # falsearia la cita.
+    "forense/notas/2026-09-17-GEN2-CELDA-D-PILOTO-2-cierre.md",
 }
 
 
