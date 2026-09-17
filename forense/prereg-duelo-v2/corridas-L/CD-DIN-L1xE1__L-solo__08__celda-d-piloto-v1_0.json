@@ -1,0 +1,36 @@
+{
+ "celda_cruce": "L1xE1",
+ "contexto_corpus_metadata": null,
+ "estado_captura": "OK",
+ "fuente_citada": null,
+ "id_celda": "CD-DIN-L1xE1",
+ "indice": 8,
+ "intentos": 1,
+ "modelo_real": null,
+ "params": {
+  "corpus_id_si_aplica": null,
+  "ejecutor": "sesión limpia fuera del proyecto (D-iii)",
+  "fecha_congelacion": "2026-09-16",
+  "k_corridas": 8,
+  "modelo_id": "opus",
+  "temperatura": 1.0,
+  "variante": "L-solo",
+  "version_declarada": "derivada por corrida del campo `model` del JSON del CLI"
+ },
+ "sha256_prompt": "8a6f09c42707cbce7566865bf14f28e13a2e8b932476384840342797a7dfc7f4",
+ "spec_celda": {
+  "encuesta": "Encuesta Nacional de Inclusion Financiera (ENIF), INEGI, Mexico",
+  "escala": "continua: proporcion en [0,1]. Declara ademas un intervalo subjetivo al 80 % en la forma [inferior, superior].",
+  "estimador": "proporcion ponderada por el factor de expansion de persona (FAC_PER)",
+  "frase_discriminacion": "NO-APLICA",
+  "id": "CD-DIN-L1xE1",
+  "ola": "2024",
+  "universo": "personas elegidas de 18 anos y mas que viven en localidades de MENOS de 15 000 habitantes (tamano de localidad 3 o 4) y tienen de 18 a 29 anos cumplidos",
+  "variable": "ahorra_solo_informal: la persona ahorro por alguna via informal en los ultimos 12 meses (presto dinero, compro animales o bienes, guardo dinero en una caja de ahorro del trabajo o de personas conocidas, guardo dinero con familiares o personas conocidas, participo en una tanda, o guardo dinero en su casa) Y NO guardo ni ahorro en ninguna de estas siete cuentas formales: nomina, pension, apoyos de gobierno, cuenta de ahorro, cuenta de cheques, cuenta contratada por Internet o aplicacion, u otra cuenta"
+ },
+ "spec_piloto": "celda-d-piloto-v1_0",
+ "texto_crudo": "**Estimación puntual:** 0.29\n\n**Intervalo subjetivo al 80 %:** [0.21, 0.38]\n\n**Fuente:** No conozco el dato tabulado exacto para este cruce (18–29 años, localidades <15 000 habitantes, ENIF 2024). La cifra es una inferencia mía, no un valor consultado.\n\n**Razonamiento declarado (para que se pueda auditar):**\n- Recuerdo de la ENIF (olas 2018/2021 y titulares de 2024, INEGI–CNBV) que a nivel nacional el ahorro informal ronda 35–40 % de los adultos, y que la fracción de quienes ahorran *sólo* de manera informal (sin guardar dinero en ninguna cuenta formal) se ha ubicado aproximadamente en el rango de 20–25 %.\n- En localidades pequeñas la tenencia de cuentas es menor que la nacional (del orden de 50 % frente a ~63 %), y el uso efectivo de la cuenta para ahorrar es todavía menor; en cambio el ahorro en casa, tandas y cajas de conocidos es más frecuente.\n- Los jóvenes de 18–29 tienen menor tenencia de nómina/pensión, lo que empuja al alza la proporción de \"sólo informal\", aunque compensa parcialmente la mayor penetración de cuentas por aplicación en ese grupo de edad.\n- Combinando: ahorro informal ~0.40–0.45 en este universo × probabilidad de no ahorrar formalmente dado que ahorra informalmente ~0.65–0.70 ≈ 0.29.\n\nEl intervalo es amplio porque no tengo el tabulado y el cruce es de una submuestra relativamente pequeña.",
+ "timestamp": "2026-09-17T01:33:31.756539+00:00",
+ "valor_extraido": null,
+ "variante": "L-solo"
+}
