@@ -1,0 +1,193 @@
+{
+ "corrida_id": "CALC-ENCIG2023-AGREGADO-CONDICIONAL-0001--b347743353b2",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "Las tasas 2023 por canal PRE=0.13079648341932204 y DIG=0.02340709180348316 ya eran conocidas; esta no es una evaluacion ciega ni una prueba confirmatoria nueva.",
+  "cuenta_gen2": "PENDIENTE-DE-CASCADA-DIFERIDA",
+  "estado_adopcion": "NO-ADOPTADO-CON-RESERVA",
+  "generacion": "GEN2",
+  "tipo": "ESTIMACION-DESCRIPTIVA-AGREGADA-CONDICIONAL",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-17T00:28:37Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 414,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "b347743353b276b2ea7f0aa90a459c32ae9ecac3",
+  "git_rama": "acto/gen2-encig2023-agregado-condicional-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "b347743353b276b2ea7f0aa90a459c32ae9ecac3",
+ "input_ids": [
+  "encig23_base_datos_csv",
+  "IN-CALC-ENCIG23-PREDECESOR-RESULTADOS",
+  "IN-ENCIG23-SPEC-SELLADA",
+  "IN-ENCIG23-CORRESPONDENCIA"
+ ],
+ "input_sha256": {
+  "IN-CALC-ENCIG23-PREDECESOR-RESULTADOS": "7afa8f051765e63e863c4eb46f9a52d7a423996e91a3aad5572cca39cf889cd7",
+  "IN-ENCIG23-CORRESPONDENCIA": "ce76d3a8dad3bce10ded47e934d49eefb8ca50bc051ca113b0adcce044726c7f",
+  "IN-ENCIG23-SPEC-SELLADA": "ea4379e5d659e5b103b6d8d20db2a166bdbfc93caa27a3408efe771c6b76bda6",
+  "encig23_base_datos_csv": "af733d867a568cbb0dadef4a5a793b02488a71728d1157860f14501f3d4c393d"
+ },
+ "parametros": {
+  "blanco_literal": [
+   "",
+   "b",
+   "NA"
+  ],
+  "bootstrap_replicas": 2000,
+  "canal_dig": [
+   3,
+   4,
+   5
+  ],
+  "canal_otro": [
+   2,
+   6,
+   7,
+   8,
+   9
+  ],
+  "canal_pre": [
+   1
+  ],
+  "consumidores_fuera": [
+   "RES-0001",
+   "RES-0002"
+  ],
+  "consumidores_posibles": [
+   "RES-0007",
+   "RES-0008"
+  ],
+  "metodo_ic": "bootstrap de UPM_DIS con reemplazo dentro de EST_DIS; cociente completo en cada replica",
+  "tratamiento_upm_unica": "se remuestrea a si misma, aporta varianza cero y se reporta; no se rotula automaticamente cota inferior"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENCIG23-AGCOND-CANAL-DIG-MASA-DEN",
+  "RESULT-ENCIG23-AGCOND-CANAL-DIG-MASA-NUM",
+  "RESULT-ENCIG23-AGCOND-CANAL-DIG-N",
+  "RESULT-ENCIG23-AGCOND-CANAL-DIG-P",
+  "RESULT-ENCIG23-AGCOND-CANAL-DIG-Q",
+  "RESULT-ENCIG23-AGCOND-CANAL-FALTANTE-MASA-DEN",
+  "RESULT-ENCIG23-AGCOND-CANAL-FALTANTE-MASA-NUM",
+  "RESULT-ENCIG23-AGCOND-CANAL-FALTANTE-N",
+  "RESULT-ENCIG23-AGCOND-CANAL-FALTANTE-P",
+  "RESULT-ENCIG23-AGCOND-CANAL-FALTANTE-Q",
+  "RESULT-ENCIG23-AGCOND-CANAL-OTRO-MASA-DEN",
+  "RESULT-ENCIG23-AGCOND-CANAL-OTRO-MASA-NUM",
+  "RESULT-ENCIG23-AGCOND-CANAL-OTRO-N",
+  "RESULT-ENCIG23-AGCOND-CANAL-OTRO-P",
+  "RESULT-ENCIG23-AGCOND-CANAL-OTRO-Q",
+  "RESULT-ENCIG23-AGCOND-CANAL-PRE-MASA-DEN",
+  "RESULT-ENCIG23-AGCOND-CANAL-PRE-MASA-NUM",
+  "RESULT-ENCIG23-AGCOND-CANAL-PRE-N",
+  "RESULT-ENCIG23-AGCOND-CANAL-PRE-P",
+  "RESULT-ENCIG23-AGCOND-CANAL-PRE-Q",
+  "RESULT-ENCIG23-AGCOND-DESENLACE-COBERTURA-MASA",
+  "RESULT-ENCIG23-AGCOND-DESENLACE-COBERTURA-N",
+  "RESULT-ENCIG23-AGCOND-DESENLACE-N-FALTANTE",
+  "RESULT-ENCIG23-AGCOND-DESENLACE-N-OBSERVADO",
+  "RESULT-ENCIG23-AGCOND-ESTADO",
+  "RESULT-ENCIG23-AGCOND-JOIN-COBERTURA-MASA",
+  "RESULT-ENCIG23-AGCOND-JOIN-COBERTURA-N",
+  "RESULT-ENCIG23-AGCOND-JOIN-ESTADO",
+  "RESULT-ENCIG23-AGCOND-JOIN-N-EMPAREJADOS",
+  "RESULT-ENCIG23-AGCOND-JOIN-N-SEC7",
+  "RESULT-ENCIG23-AGCOND-JOIN-N-SEC8",
+  "RESULT-ENCIG23-AGCOND-JOIN-N-SIN-PAREJA",
+  "RESULT-ENCIG23-AGCOND-N-PESO-INVALIDO",
+  "RESULT-ENCIG23-AGCOND-PREDIG-IC-P-HI",
+  "RESULT-ENCIG23-AGCOND-PREDIG-IC-P-LO",
+  "RESULT-ENCIG23-AGCOND-PREDIG-IC-Q-HI",
+  "RESULT-ENCIG23-AGCOND-PREDIG-IC-Q-LO",
+  "RESULT-ENCIG23-AGCOND-PREDIG-MASA-DEN",
+  "RESULT-ENCIG23-AGCOND-PREDIG-MASA-NUM",
+  "RESULT-ENCIG23-AGCOND-PREDIG-METODO-IC",
+  "RESULT-ENCIG23-AGCOND-PREDIG-N",
+  "RESULT-ENCIG23-AGCOND-PREDIG-N-ESTRATOS",
+  "RESULT-ENCIG23-AGCOND-PREDIG-N-ESTRATOS-UPM-UNICA",
+  "RESULT-ENCIG23-AGCOND-PREDIG-N-REPLICAS-NO-ESTIMABLES",
+  "RESULT-ENCIG23-AGCOND-PREDIG-N-SIN-DISENO",
+  "RESULT-ENCIG23-AGCOND-PREDIG-N-UPM",
+  "RESULT-ENCIG23-AGCOND-PREDIG-P",
+  "RESULT-ENCIG23-AGCOND-PREDIG-Q",
+  "RESULT-ENCIG23-AGCOND-PRIMARIO-IC-P-HI",
+  "RESULT-ENCIG23-AGCOND-PRIMARIO-IC-P-LO",
+  "RESULT-ENCIG23-AGCOND-PRIMARIO-IC-Q-HI",
+  "RESULT-ENCIG23-AGCOND-PRIMARIO-IC-Q-LO",
+  "RESULT-ENCIG23-AGCOND-PRIMARIO-MASA-DEN",
+  "RESULT-ENCIG23-AGCOND-PRIMARIO-MASA-NUM",
+  "RESULT-ENCIG23-AGCOND-PRIMARIO-METODO-IC",
+  "RESULT-ENCIG23-AGCOND-PRIMARIO-N",
+  "RESULT-ENCIG23-AGCOND-PRIMARIO-N-ESTRATOS",
+  "RESULT-ENCIG23-AGCOND-PRIMARIO-N-ESTRATOS-UPM-UNICA",
+  "RESULT-ENCIG23-AGCOND-PRIMARIO-N-REPLICAS-NO-ESTIMABLES",
+  "RESULT-ENCIG23-AGCOND-PRIMARIO-N-SIN-DISENO",
+  "RESULT-ENCIG23-AGCOND-PRIMARIO-N-UPM",
+  "RESULT-ENCIG23-AGCOND-PRIMARIO-P",
+  "RESULT-ENCIG23-AGCOND-PRIMARIO-Q",
+  "RESULT-ENCIG23-AGCOND-SOPORTE-P73",
+  "RESULT-ENCIG23-AGCOND-SOPORTE-P84"
+ ],
+ "script_blob_sha256": "7bdbe8c43bb83988e66ddd03bb060450612bdcafec58e1a9fb9eb3d216c2eb48",
+ "script_path": "data/corrida0/CALC-ENCIG2023-AGREGADO-CONDICIONAL-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260915
+ },
+ "spec_id": "CALC-ENCIG2023-AGREGADO-CONDICIONAL-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "253391b6a9a58de9f9ee2c65c60566c0be11b8f3e14b7b9390cd2b1d15970f66",
+ "spec_yaml_sha256": "e2b529c95f1cbd6f8f5c7dbfa58410ae199528bd5405db0040912ae28776e036",
+ "tolerancia": {
+  "abs": 0.0,
+  "exacto_por_seed": true,
+  "tipo": "bootstrap"
+ }
+}
