@@ -4850,6 +4850,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-09-16-GEN2-FIRMAS-MESA-3.md",
     "forense/encargos/2026-09-16-GEN2-E1-DISENO-CALIBRACION-1.md",
     "forense/theta-cargable-por-celda-diseno-e1-v1_0.md",
+    # ACTO GEN2-F6-FACTIBILIDAD-PREPARACION-1, 16/sep/2026: encargo
+    # archivado VERBATIM (A.3). En P2.10 cita `M1` como una de las cosas que
+    # la preparacion F6 no decide. Es la primera ranura del sello del motor
+    # (ADR-91/ADR-100), ya censada y explicada en la fila
+    # `GEN2-M1-ALCANCE-1` de canon/registro-rotulos.tsv; no es un rotulo
+    # nuevo que este acto reclame. Se conserva la cita recibida, igual que
+    # las exenciones hermanas de esa misma ranura arriba.
+    "forense/encargos/2026-09-16-GEN2-F6-FACTIBILIDAD-PREPARACION-1.md",
 }
 
 

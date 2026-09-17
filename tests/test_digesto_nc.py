@@ -600,6 +600,44 @@ def t_neutralizacion_preservada_en_diff():
         r.cerrar()
 
 
+def t_neutralizacion_al_ensamblar_columnas_preserva_contenido():
+    """Regresión de PR #816 (16/sep/2026): cada fragmento era inocuo por
+    separado, pero la fila renderizada repetía `sucesor` y formaba el patrón
+    T22(b) entre columnas. La neutralización ocurre al ensamblar, conserva el
+    ID, la procedencia y el contenido distinto del token operativo."""
+    caso = "neutralizacion_entre_columnas"
+    r = _Repo()
+    try:
+        anterior = "acto que amplíe la superficie (decision de mesa)"
+        actual = anterior + " || ENMIENDA (PROPUESTA A MESA)"
+        inocuo = "texto ordinario sin marcadores"
+        r.escribe_nc([_fila_nc("NC-0076", sucesor=anterior),
+                      _fila_nc("NC-0999", sucesor=inocuo)])
+        r.commit("corte-anterior")
+        sha_anterior = r.sha_head()
+        r.escribe_nc([_fila_nc("NC-0076", sucesor=actual),
+                      _fila_nc("NC-0999", sucesor=inocuo)])
+        r.commit("corte-actual")
+
+        texto, res = r.h("2026-09-16", base_nc_ref=sha_anterior)
+        problemas = D.verifica(texto)
+        _afirma(res["h_error"] is None, caso, "el diff no debe abortar")
+        _afirma(not problemas, caso,
+                f"la unión de columnas dejó pasar el marcador: {problemas}")
+        _afirma("`NC-0076`" in texto and "forense/no-corrido.tsv" in texto, caso,
+                "la fila perdió su ID o procedencia")
+        _afirma("«marcador-T22-b» A MESA" in texto and
+                "decision de mesa" in texto, caso,
+                "la neutralización ocultó el contenido de la decisión")
+        _afirma(inocuo not in texto, caso,
+                "el control sin cambios no debe aparecer como fila modificada")
+        cuenta = D.Cuenta()
+        _afirma(D.neutraliza(inocuo, cuenta) == inocuo and cuenta.total() == 0,
+                caso, "un texto inocuo no debe alterarse ni contarse")
+    finally:
+        r.cerrar()
+
+
 def t_esquema_cambiado_declarado():
     caso = "esquema_cambiado"
     r = _Repo()
