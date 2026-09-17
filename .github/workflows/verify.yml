@@ -159,3 +159,11 @@ jobs:
         # decoración. Fixtures sintéticos; cero microdato, cero cifras del
         # modelo, cero derivación del cruce reservado.
         run: python3 tests/test_celda_d_c2.py
+
+      - name: consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)
+        # NC-0331 (ACTO GEN2-GUARDIAS-1, 17/sep/2026): `tests/check.py` no
+        # auto-descubre `tests/test_*.py` y este archivo no corría en CI desde
+        # que `ACTO GEN2-CELDA-D-PILOTO-2` lo creó -- un test que nadie corre
+        # es decoración (regla del piloto 1, NC-0331). Stdlib puro, sin
+        # numpy: `unittest` corre el módulo directo.
+        run: python3 -m unittest tests.test_celda_d_piloto2_consumidor -v

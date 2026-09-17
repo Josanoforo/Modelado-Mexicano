@@ -45,9 +45,12 @@ def main():
               "AJUSTE + HOLDOUT no suman el total (¿DIAGNÓSTICO poblado?):")
 
     def test_a2_firma_contra_el_commit_de_sello():
-        # El catálogo tal como quedó en el commit C1 -- no como está en el
-        # árbol de trabajo. Si alguien reasignó un rol después de sellar, esto
-        # lo ve.
+        # Semántica APPEND-ONLY (NC-0309): el catálogo tal como quedó en el
+        # commit C1 -- no como está en el árbol de trabajo -- fija el rol de
+        # cada id que YA existía entonces. Un id NUEVO del catálogo con rol
+        # declarado no rompe esto -- el catálogo crece con normalidad entre
+        # actos. Lo que rompe el pre-registro es (a) un id sellado que
+        # cambió de rol (`AJUSTE`<->`HOLDOUT`) o (b) un id nuevo sin rol.
         r = _git("log", "--diff-filter=A", "--format=%H", "--", CATALOGO)
         if r.returncode != 0 or not r.stdout.strip():
             saltar("sin historia de git para el catálogo en este entorno")
@@ -58,10 +61,22 @@ def main():
         import csv
         import io
         filas = list(csv.DictReader(io.StringIO(s.stdout), delimiter="\t"))
-        sellada = tuple(sorted(
-            (f["id_momento"], f["rol_calibracion"]) for f in filas))
-        igual(MM.firma_de_roles(cat), sellada,
-              "los roles cambiaron desde el commit de sello:")
+        sellada = {f["id_momento"]: f["rol_calibracion"] for f in filas}
+        actual = dict(MM.firma_de_roles(cat))
+
+        # Rama (a): ningún id sellado cambió de rol.
+        for id_momento, rol_sellado in sellada.items():
+            igual(actual.get(id_momento), rol_sellado,
+                  f"`{id_momento}` reasignó su rol de calibración "
+                  f"desde el commit de sello (append-only violado):")
+
+        # Rama (b): todo id nuevo (no estaba en el commit de sello) llega
+        # con un rol declarado -- no vacío, no ausente.
+        for id_momento, rol_actual in actual.items():
+            if id_momento not in sellada:
+                cierto(rol_actual,
+                       f"id nuevo `{id_momento}` llega al catálogo sin rol "
+                       f"de calibración declarado:")
 
     def test_b_ningun_valor_holdout_se_lee():
         for m in MM.momentos_holdout(cat):

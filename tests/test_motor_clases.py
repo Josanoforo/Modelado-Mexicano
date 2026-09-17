@@ -77,10 +77,20 @@ def main():
         C.Cortes(por_eje={}, firma_m2="x", intra_hogar=("edad",))
 
     def test_corte_pendiente_no_se_inventa():
-        igual(C.CORTES_C1.pendientes, ("edad", "migracion"),
-              "cortes PENDIENTE:")
-        lanza(C.CortesNoSellados, C.celda, edad="30-44")
+        # Contra el estado sellado (ADR-537, GEN2-CORTE-EDAD-1, 17/sep/2026):
+        # `edad` dejó de ser PENDIENTE. La regla que este test protege no es
+        # "edad es None" -- eso era el dato de ayer, no el contrato -- sino
+        # que ningún corte de CORTES_C1 se inventa fuera de un sello citado.
+        cita_adr537 = "ADR-537" in C.CORTES_C1.firma_m2
+        cierto(cita_adr537, "firma_m2 debe citar ADR-537 (sello de `edad`):")
+        for eje in C.CORTES_C1.sellados:
+            valores = C.CORTES_C1.por_eje[eje]
+            cierto(valores, f"eje sellado `{eje}` sin valores:")
+        igual(C.CORTES_C1.pendientes, ("migracion",),
+              "cortes PENDIENTE (tras ADR-537, sólo `migracion` sigue sin sello):")
+        lanza(C.CortesNoSellados, C.celda, migracion="cualquiera")
         C.celda(formalidad="segsoc=1")     # eje sellado: pasa
+        C.celda(edad="30-44")              # sellado por ADR-537: ya pasa
 
     for nombre, fn in sorted(locals().items()):
         if nombre.startswith("test_"):

@@ -20,13 +20,15 @@ no es un muro. Se comprueba que sigue lanzando.
 **Hallazgo que este test deja a la vista** (`test_append_only_no_reasigna_roles`):
 el catálogo se declara *«append-only por construcción»*
 (`milpa/src/momentos.py::sellar_catalogo`), pero
-`tests/test_motor_holdout.py::test_a2_firma_contra_el_commit_de_sello` compara
+`tests/test_motor_holdout.py::test_a2_firma_contra_el_commit_de_sello` comparaba
 la firma COMPLETA contra el commit de sello, de modo que **añadir un id nuevo lo
-rompe aunque no reasigne ningún rol**. La intención declarada de esa guardia es,
-verbatim, *«Si alguien reasignó un rol después de sellar, esto lo ve»* — y eso
-es exactamente lo que el test de abajo comprueba, sin prohibir el append.
-`tests/test_motor_holdout.py` **está fuera del perímetro de este acto y no se
-edita**; el defecto se declara en `## NO-CORRIDO / RESERVAS` con su sucesor.
+rompía aunque no reasignara ningún rol**. La intención declarada de esa guardia
+era, verbatim, *«Si alguien reasignó un rol después de sellar, esto lo ve»* — y
+eso es exactamente lo que el test de abajo comprueba, sin prohibir el append.
+CORREGIDO por `ACTO GEN2-GUARDIAS-1` (NC-0309, 17/sep/2026): la guardia ahora
+compara por rama (id sellado que cambió de rol / id nuevo sin rol), no la firma
+completa; el hallazgo que este comentario describía queda documentado por
+histórico, ya no reproduce.
 """
 from __future__ import annotations
 
@@ -48,6 +50,18 @@ CATALOGO = "milpa/catalogo-momentos-v0_1.tsv"
 ID_NUEVO = "M23"
 REGLA_CONSUMIDORA = "dinero.ahorro.via_informal"
 TRAMITE = "milpa/tramite.yaml"
+
+# NC-0330: congelado al escribir este test (commit `18b9914`, COMMIT-3 de
+# GEN2-CELDA-D-PILOTO-1), no un conteo. `M05` era `NO-VERIFICADO` entonces y
+# pasó a derivada el mismo día (17/sep/2026); bajar de este conjunto es
+# correcto -- ids que se verifican con el tiempo --, subir por encima de él
+# (un id sellado que reaparece como NO-VERIFICADO, o uno nuevo que nace así
+# sin pasar por adjudicación) no lo es.
+IDS_NO_VERIFICADO_CONGELADO_18b9914 = frozenset({
+    "M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08", "M09", "M10",
+    "M11", "M12", "M13", "M14", "M15", "M16", "M17", "M18", "M19", "M20",
+    "M21", "M22",
+})
 
 
 def _git(*args):
@@ -108,9 +122,11 @@ class ElConsumidorLaLeeSinCambiarCodigo(unittest.TestCase):
 
     def test_las_22_legado_siguen_sin_verificar_y_solo_se_movio_una(self):
         cat = _catalogo()
-        sin_verificar = [m.id_momento for m in cat.momentos
-                         if m.estatus_disponibilidad == "NO-VERIFICADO"]
-        self.assertEqual(len(sin_verificar), 22)
+        sin_verificar = {m.id_momento for m in cat.momentos
+                         if m.estatus_disponibilidad == "NO-VERIFICADO"}
+        extra = sin_verificar - IDS_NO_VERIFICADO_CONGELADO_18b9914
+        self.assertEqual(extra, set(),
+                         f"ids NO-VERIFICADO fuera del congelado: {sorted(extra)}")
         self.assertNotIn(ID_NUEVO, sin_verificar)
 
     def test_la_regla_consumidora_existe_en_el_motor(self):
