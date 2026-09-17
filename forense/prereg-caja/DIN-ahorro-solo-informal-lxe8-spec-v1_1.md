@@ -56,7 +56,7 @@ El careo (hallazgo 2, atribuido a Opus §1.6) y el correctivo §7 **D1(b)** rech
 * `P5_7_6` — «De julio de 2020 a la fecha, ¿usted guardó o ahorró en su **depósito a plazo fijo** (sólo puede retirar en determinadas fechas)?»
 * `P5_7_7` — «De julio de 2020 a la fecha, ¿usted guardó o ahorró en su **fondo de inversión** (tener acciones en casa de bolsa)?»
 
-**Este pre-registro NO adopta la vía (b).** Redefinir el desenlace del piloto a nueve códigos es exactamente lo que mesa decidió en otro sentido (D2(a), D5), y un ejecutor no revoca una firma con un hallazgo. Lo que sí hace, porque es barato, reversible y **declarado antes del dato**, es emitir el desenlace de **nueve** tipos como **objeto secundario y paralelo** (`D9`, §2.2) junto al primario de siete (`D7`), en las dos olas y también en el árbitro. Con eso, **D1 deja de ser una decisión a ciegas**: mesa verá la magnitud exacta de la brecha `D7 ↔ D9` en las mismas 8 celdas, medida, en vez de decidir sobre un supuesto. `NC-0283`.
+**Este pre-registro NO adopta la vía (b).** Redefinir el desenlace del piloto a nueve códigos es exactamente lo que mesa decidió en otro sentido (D2(a), D5), y un ejecutor no revoca una firma con un hallazgo. Lo que sí hace, porque es barato, reversible y **declarado antes del dato**, es emitir el desenlace de **nueve** tipos como **objeto secundario y paralelo** (`D9`, §2.2) junto al primario de siete (`D7`), en las dos olas y también en el árbitro. Con eso, `D5` deja de ser una decisión a ciegas: mesa verá la magnitud exacta de la brecha `D7 ↔ D9` en las mismas 8 celdas, medida, en vez de decidir sobre un supuesto. `NC-0283`. *(Nota `v1.1`: `FP-379` resolvió `D1` por la vía (a) — marginales de siete códigos derivados —, así que `D9` ya no es el desenlace de `C2`; queda como diagnóstico de brecha y como base del control de reproducción del árbitro, §0.8.)*
 
 ### 0.3 · `FAC_PER` **no existe** en ENIF 2021 — el ponderador de esa ola es `FAC_ELE`
 
@@ -330,7 +330,11 @@ Protocolo **ADV1** (`forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md` §B) y **`
 
 **Escala declarada al modelo:** `proporción en [0,1]` más **intervalo subjetivo al 80 %**, pedido por el campo `escala` de la `SpecCelda` (parámetro de la plantilla congelada, no una edición de la plantilla). El nivel `80 %` viene del diseño v1.1 §4; la plantilla sellada sólo pide «un intervalo de confianza subjetivo», así que el nivel viaja por el único canal que no toca bytes sellados.
 
-**Incertidumbre:** intervalo **de elicitación** declarado por `L` (80 %), más la dispersión entre las `k = 8` corridas. Cobertura empírica contra `R` se reporta como resultado independiente, **no adjudica**.
+**Extracción, y lo que NO se extrae — declarado antes de mirar una sola captura.** `valor_extraido` sale de la regla **congelada** `tools/extrae_l_v1_1.py::extraer_valor`, que devuelve **un punto** por captura. **El intervalo al 80 % que se le pide a `L` NO se extrae en este CALC**: la regla congelada no lo contempla, y escribir una segunda regla de extracción *después* de leer las 64 capturas sería una regla post-hoc sobre datos ya vistos. El intervalo queda **en el texto crudo** de cada captura, íntegro, para un sucesor que pre-registre su regla. Fila `NC-0286`.
+
+**Lo que sí se emite por celda, con las `k = 8` puntos extraídos:** la **mediana** (punto de `C3`), el **mínimo** y el **máximo** — la dispersión entre corridas, que es *un resultado y no un problema a limpiar* (ADV1-M2). Más `k_extraibles`, el conteo de capturas de las que la regla congelada pudo sacar un número. Una celda con `k_extraibles = 0` es `NO-ESTIMABLE` (`null`), nunca `0.0`.
+
+**Incertidumbre:** dispersión entre las `k = 8` corridas (mín–máx). **No es un IC muestral y no se presenta como tal.** La cobertura empírica del intervalo declarado por `L` contra `R` queda **sin medir en este acto**, por la razón de arriba; el diseño v1.1 §4 la promete y aquí se declara no cumplida (`NC-0286`), en vez de producirla con una regla improvisada.
 
 **Control de memoria (H6, y su alcance exacto).** Se buscó, **antes de elicitar**, si INEGI publicó el cruce `tamaño de localidad × grupo de edad` para este desenlace de ENIF 2024:
 
@@ -360,7 +364,7 @@ Fuera de la competencia por el hallazgo 3 del careo: el emisor **es el árbitro 
 
 ## 5 · Criterio de adjudicación — escrito antes del dato
 
-**Por celda**, error absoluto en **puntos porcentuales** contra `R` del mismo desenlace (`D7` con `R7`; `D9` con `R9`).
+**Por celda**, error absoluto en **puntos porcentuales** contra `R` del mismo desenlace. Bajo `FP-379`, **los tres candidatos ejecutables (`C1`, `C2`, `C3`) y el árbitro `R7` viven en `D7`**: la adjudicación primaria ocurre entera en el desenlace que mesa firmó. `D9` (`C1-D9` contra `R9`) se reporta **sólo como diagnóstico de la brecha `D7 ↔ D9`** (§0.2) y **no adjudica**.
 
 **`INDECIDIBLE`, las dos condiciones verbatim** de `forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md:38`:
 
@@ -405,7 +409,7 @@ Dos corridas del mismo código sobre los mismos bytes de input **deben** dar los
 ## 7 · Orden de los commits — el orden del diff es el sello
 
 * **`COMMIT-1`** (este archivo + sidecar + `spec.yaml`): la spec congelada. **Cero microdato abierto.** Sólo FD, diccionarios, catálogos e inventarios.
-* **`COMMIT-2`**: `CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001` — `C1`, `C2`, `C3` emitidos y sellados; `C4` `INEJECUTABLE`; `C5` `NO-APLICA`. **Prohibida toda lectura de ENIF 2024 que no sea ponderador/diseño.** Al cerrar este commit, **`R` no existe en el árbol**.
+* **`COMMIT-2`**: `CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001` — `C1`, `C2`, `C3` emitidos y sellados; `C4` `INEJECUTABLE`; `C5` `NO-APLICA`. **De ENIF 2024 se leen, y sólo, los marginales de un eje** (`localidad`, `edad`, nacional), bajo `FP-379 D1`; **el cruce `(localidad, edad)` de 2024 no se construye en ningún punto**, con guardia mecánica y `RESULT` de texto que lo declaran (§0.7). Al cerrar este commit, **`R` no existe en el árbol**.
 * **`COMMIT-3`**: `CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001` — `R` del cruce (`R7` y `R9`), adjudicación por celda, celda-D actualizada, fila del catálogo de momentos, test del consumidor, diagnóstico `C5`.
 
 **Falsador del propio piloto, declarado antes de correr:** un `R` del cruce derivado **antes** de que `COMMIT-2` cierre — aquí o en cualquier otro acto — **degrada el piloto a factibilidad y se declara en la nota**. No lo anula.
@@ -415,8 +419,9 @@ Dos corridas del mismo código sobre los mismos bytes de input **deben** dar los
 ## 8 · Lo que este pre-registro NO promete
 
 * No promete cegamiento absoluto: la reserva es **operacional** (`H6`).
-* No promete que `C2` mida el mismo evento que `R7`: mide `D9` y se puntúa contra `R9` (`H1`).
-* No promete un intervalo para `C2`: `NO-ACREDITADA` (`H3`).
+* No promete que el piso `C2` identifique `P(Y│l,e)`: es **ausencia de interacción en escala logit**, no independencia, y no estima la verdad (`FP-379 D2`).
+* No promete que el IC de `C2` cubra el error de especificación del piso: cubre el **muestreo** de sus marginales, propagado réplica por réplica (`FP-379 D3`).
+* No promete que `C2` siga siendo «lo que todos ya vieron»: bajo `FP-379 D1` su dieta cambió a **«marginales 2024 sin interacción»**, derivados dentro del piloto, y se declara.
 * No promete soporte: `n` es `DESCONOCIDO` hasta que `C1` lo calcule, y las ocho cotas inferiores de Fréchet son `0` (`H4`).
 * No promete un ganador: cuatro paradas son terminales y ninguna adopta (`H5`).
 * No promete transporte temporal: la identidad `p_2021 → p_2024` es el supuesto que `C1` **es**, no un resultado.

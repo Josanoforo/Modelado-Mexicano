@@ -1,10 +1,20 @@
 # DIN · `ahorra_solo_informal` × (localidad × edad) — pre-registro de las 8 celdas del primer piloto celda-D
 
-### `prereg-caja-DIN-AHORRO-SOLO-INFORMAL-LXE8` · **v1.0** · 16 de septiembre de 2026
+### `prereg-caja-DIN-AHORRO-SOLO-INFORMAL-LXE8` · **v1.1** · 16 de septiembre de 2026
+
+> **SUCEDE A `v1.0` (`sha256 = f54c3170fc653607b3b916ccc3857bc960c3578bfdd4dd40306725e1110f19e9`), QUE NO SE EDITA.**
+> `v1.0` se congeló en el `COMMIT-1` de este mismo acto (`3461c46`) y queda **intacta como historia**.
+> Esta `v1.1` existe porque **`FP-379` (firma de mesa, 16/sep/2026) llegó después de ese commit y enmienda `C2`** —
+> y la casa amienda un pre-registro sellado **con un archivo propio**, nunca in situ (`E.3`; precedente `NC-0094`).
+> **Ninguna corrida se había sellado contra `v1.0`**: cuando `FP-379` llegó, el árbol tenía `COMMIT-1` cerrado,
+> `medidor.py` sin escribir y cero `RESULT` producidos. **No hubo mezcla de diseños: la fórmula multiplicativa
+> nunca se implementó.** Qué cambia exactamente: §0.7.
+
+### `prereg-caja-DIN-AHORRO-SOLO-INFORMAL-LXE8` · v1.0 → **v1.1** · 16 de septiembre de 2026
 
 > | | |
 > |---|---|
-> | **ARCHIVO** | `forense/prereg-caja/DIN-ahorro-solo-informal-lxe8-spec-v1_0.md` |
+> | **ARCHIVO** | `forense/prereg-caja/DIN-ahorro-solo-informal-lxe8-spec-v1_1.md` |
 > | **NOMBRE ESTABLE** | **`prereg-caja-DIN-AHORRO-SOLO-INFORMAL-LXE8`** — cítalo así, nunca por nombre de archivo |
 > | **QUÉ ES** | Pre-registro, **congelado antes de abrir un solo byte de microdato**, del primer piloto de celda-D: `p(ahorra_solo_informal │ localidad, edad)` en **8 celdas de cruce**, con tres candidatos emisores (`C1` persistencia ENIF 2021, `C2` piso marginal de ENIF 2024, `C3` elicitación de `L` en dos dietas), un cuarto `INEJECUTABLE` y un quinto `NO-APLICA`. Gobierna **dos** CALC: `CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001` (las emisiones) y `CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001` (el árbitro `R` del cruce y la adjudicación). |
 > | **QUÉ NO ES** | **No adopta nada al motor.** No toca `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/src/`, el marcador ni el crosswalk. No firma `FP-376` (viene firmada). No re-discute el diseño v1.1 de dirección. **No deriva `R` antes de que las emisiones estén selladas.** No calcula `formalidad` (sale del diseño por el hallazgo 1 del careo). No corona un campeón: `champion_actual = NINGUNO` y adoptar es de mesa. |
@@ -46,7 +56,7 @@ El careo (hallazgo 2, atribuido a Opus §1.6) y el correctivo §7 **D1(b)** rech
 * `P5_7_6` — «De julio de 2020 a la fecha, ¿usted guardó o ahorró en su **depósito a plazo fijo** (sólo puede retirar en determinadas fechas)?»
 * `P5_7_7` — «De julio de 2020 a la fecha, ¿usted guardó o ahorró en su **fondo de inversión** (tener acciones en casa de bolsa)?»
 
-**Este pre-registro NO adopta la vía (b).** Redefinir el desenlace del piloto a nueve códigos es exactamente lo que mesa decidió en otro sentido (D2(a), D5), y un ejecutor no revoca una firma con un hallazgo. Lo que sí hace, porque es barato, reversible y **declarado antes del dato**, es emitir el desenlace de **nueve** tipos como **objeto secundario y paralelo** (`D9`, §2.2) junto al primario de siete (`D7`), en las dos olas y también en el árbitro. Con eso, **D1 deja de ser una decisión a ciegas**: mesa verá la magnitud exacta de la brecha `D7 ↔ D9` en las mismas 8 celdas, medida, en vez de decidir sobre un supuesto. `NC-0283`.
+**Este pre-registro NO adopta la vía (b).** Redefinir el desenlace del piloto a nueve códigos es exactamente lo que mesa decidió en otro sentido (D2(a), D5), y un ejecutor no revoca una firma con un hallazgo. Lo que sí hace, porque es barato, reversible y **declarado antes del dato**, es emitir el desenlace de **nueve** tipos como **objeto secundario y paralelo** (`D9`, §2.2) junto al primario de siete (`D7`), en las dos olas y también en el árbitro. Con eso, `D5` deja de ser una decisión a ciegas: mesa verá la magnitud exacta de la brecha `D7 ↔ D9` en las mismas 8 celdas, medida, en vez de decidir sobre un supuesto. `NC-0283`. *(Nota `v1.1`: `FP-379` resolvió `D1` por la vía (a) — marginales de siete códigos derivados —, así que `D9` ya no es el desenlace de `C2`; queda como diagnóstico de brecha y como base del control de reproducción del árbitro, §0.8.)*
 
 ### 0.3 · `FAC_PER` **no existe** en ENIF 2021 — el ponderador de esa ola es `FAC_ELE`
 
@@ -81,9 +91,40 @@ El encargo y el diseño v1.1 §1 declaran `FAC_PER` como ponderador de las dos o
 
 El corte `≥ 15 000 = {1,2}` / `< 15 000 = {3,4}` cae **en la frontera de una clase del catálogo**: no hay recodificación aproximada. (Diferencia de redacción «Menor de» / «Menor a» en `cve = 4`: cosmética, mismo umbral.) `localidad` conserva su corte del modelo `MAPEO-N-A-1` bajo `FP-376` FIRMADA; el marcador no consume esta celda por eso, y el piloto corre igual.
 
-### 0.6 · `EST_DIS` / `UPM_DIS` existen en las dos olas, con rango distinto
+### 0.6b · `EST_DIS` / `UPM_DIS` existen en las dos olas, con rango distinto
 
 `EST_DIS` 2021 `001...235` / 2024 `001...190`; `UPM_DIS` 2021 `0000001...0002013` / 2024 `00001...02172`. Son **llaves opacas**: no se interpretan, se usan como estrato y conglomerado del re-muestreo. El diseño no cambia de existencia entre olas, sólo de rango.
+
+### 0.7 · `FP-379` — qué enmienda, dónde alcanzó al árbol, y qué NO cambia
+
+**Firma de mesa, 16/sep/2026, verbatim:**
+
+> «**D1:** los marginales de `C2` se derivan con los siete códigos comunes en `COMMIT-2` (opción **a**); se declara que `C2` deja de ser "lo que todos ya vieron" y pasa a ser "marginales 2024 sin interacción". **D2:** `C2` toma la forma log-aditiva `expit(logit p_l + logit p_e − logit p)`, rango `(0,1)` por construcción, rechazo explícito si algún marginal es `0` o `1`, sin recorte silencioso; se rotula "ausencia de interacción en escala logit", no "independencia". **D3:** la incertidumbre de `C2` se propaga réplica por réplica con el mismo bootstrap de los marginales, sin covarianzas inventadas y sin derivar el cruce. La admisión de `C2` (`D6` de v1.1 §7) queda condicionada a estas tres. **Repliegue** si (a) no es construible: `C2` pasa a diagnóstico y el piloto pregunta sólo si alguien vence a la persistencia.»
+
+**Dónde alcanzó al árbol, para que sea auditable que no hubo mezcla.** `FP-379` llegó con `COMMIT-1` ya cerrado (`3461c46`: `v1.0` + sidecar + `spec.md` + `spec.yaml`), con `medidor.py` **sin escribir**, con **cero `RESULT` producidos** y con `C2` **sin una sola línea de código**. La forma multiplicativa **nunca se implementó**; no hubo nada que recalcular. Lo único vivo en ese momento eran las capturas de `C3` (`L-solo`), que `FP-379` no toca.
+
+**Lo que cambia:**
+
+| | `v1.0` (bajo `FP-378`) | **`v1.1` (bajo `FP-379`)** |
+|---|---|---|
+| insumos de `C2` | los marginales **sellados** de `tramite-ola5-propuesta-v0.yaml`, **citados** | los marginales de ENIF 2024 **derivados en `COMMIT-2`** con la misma receta que `R` |
+| desenlace de `C2` | `D9` (nueve códigos, el del marginal público) | **`D7`** (los siete comunes) — **`H1` se disuelve**: `C2`, `C1` y `R7` miden el mismo evento |
+| forma | log-aditiva (ya en `v1.0` por `D2` del correctivo) | log-aditiva, **confirmada por firma** |
+| incertidumbre | `NO-ACREDITADA`, punto sin banda | **IC95 por bootstrap réplica-por-réplica**, marginales compartidos |
+| dieta de `C2` | «lo que todos ya vieron» | **«marginales 2024 sin interacción»** — se declara el cambio |
+
+**Lo que NO cambia:** la reserva (el **cruce** `p(Y│l,e)` de 2024 **no se deriva** en `COMMIT-2`; los marginales no son el cruce — correctivo §1(a) verbatim: *«No toca la reserva: la reserva es el cruce `p(Y│l,e)`, no los marginales»*); el desenlace primario `D7` de `R` y `C1`; el orden de los tres commits; `C1`, `C4`, `C5`; el criterio de adjudicación; la parada.
+
+**Consecuencia sobre la prohibición del encargo.** El encargo escribía: «Prohibido en este commit: cualquier lectura de ENIF 2024 que no sea `FAC_PER`/diseño». `FP-379 D1` la **enmienda por firma posterior**: `COMMIT-2` abre ENIF 2024 **exclusivamente para marginales de un solo eje** (`localidad`, `edad`, nacional). **Guardia mecánica, no promesa:** el medidor de `COMMIT-2` no construye en ningún punto una llave `(localidad, edad)` sobre 2024; emite `RESULT-DIN-LXE8-G-C2-CRUCE-2024-DERIVADO = "NO"` y `RESULT-DIN-LXE8-G-R-EXISTE-AL-CERRAR = "NO"`, y ningún `RESULT` de este CALC lleva un valor de celda de cruce de 2024. Si alguna de las dos saliera distinta de `"NO"`, el falsador del §7 se dispara y el piloto degrada a factibilidad.
+
+**Rótulo obligatorio.** En la spec, en el contrato y en las emisiones, `C2` se rotula **«ausencia de interacción en escala logit»**. **Nunca «independencia» a secas** (`D2` lo prohíbe): la independencia de `localidad` y `edad` como variables **no identifica** `P(Y│localidad, edad)`.
+
+### 0.8 · Control de reproducción del árbitro marginal, declarado antes de correr
+
+Derivar los marginales de 2024 abre, gratis, un control que `v1.0` no podía hacer: los mismos marginales bajo **`D9`** (nueve códigos) deben **reproducir** los que el árbitro selló. Se emite con las dos ramas escritas **antes** del dato:
+
+* **REPRODUCE** si `|Δ| ≤ 1e-6` en las seis celdas marginales (`edad` ×4, `localidad` ×2) — entonces la cadena completa (payload, filtros, ponderador, dicotomización, agregación) queda validada extremo a extremo contra una cifra GEN1 sellada, y de paso queda probado que `enif2024_csv` y `enif_2024_enif_2024_bd_csv` son el mismo microdato (§2.1).
+* **NO-REPRODUCE** en otro caso — se reporta el `Δ` con signo por celda **y no se ajusta nada** para que coincida. Un `NO-REPRODUCE` aquí **no invalida el piloto**: invalida la afirmación de que este medidor reproduce la receta del árbitro, que es un hecho aparte y se declara como tal.
 
 ---
 
@@ -223,9 +264,25 @@ Mismo desenlace (`D7`, y `D9` en paralelo), mismo cruce, mismo estimador, ola **
 
 **Dieta:** microdato ENIF 2021 completo. `C1` **no** ve nada de 2024.
 
-### 4.2 · `C2` — `BASELINE_INGENUO`, piso marginal de ENIF 2024
+### 4.2 · `C2` — `BASELINE_INGENUO`, piso marginal de ENIF 2024 · **bajo `FP-379`**
 
-**Insumos, y sólo éstos:** los marginales **ya sellados** de `milpa/tramite-ola5-propuesta-v0.yaml`, **citados, no recalculados**:
+**Dieta, declarada y cambiada respecto de `v1.0`:** `C2` ya **no** es «lo que todos ya vieron». Es **«marginales 2024 sin interacción»**: siete cantidades derivadas **dentro del piloto**, en `COMMIT-2`, con la misma receta que `R`, sobre el desenlace **`D7`** — los siete códigos comunes que mesa firmó. `FP-379 D1`, opción (a).
+
+**Insumos, y sólo éstos — tres marginales de UN SOLO EJE cada uno, nunca el cruce:**
+
+| marginal | definición | grupos |
+|---|---|---|
+| `p̂_l` | `p(D7 │ localidad)` en ENIF 2024 | `L1` (`tloc ∈ {3,4}`), `L2` (`tloc ∈ {1,2}`) |
+| `p̂_e` | `p(D7 │ edad)` en ENIF 2024 | `E1`, `E2`, `E3`, `E4` |
+| `p̂` | `p(D7)` nacional en ENIF 2024 | — |
+
+Receta idéntica a la de `R` y a la del árbitro marginal: universo §3.1, ponderador `fac_per`, diseño `est_dis`/`upm_dis`, bootstrap §3.3 (**10 000 réplicas, seed 42**).
+
+**`C2` no abre el cruce, y hay guardia mecánica.** Ninguna de las tres cantidades cruza los dos ejes. El medidor de `COMMIT-2` **no construye la llave `(localidad, edad)` sobre 2024** en ningún punto, y lo declara en dos `RESULT` de texto (`…-G-C2-CRUCE-2024-DERIVADO`, `…-G-R-EXISTE-AL-CERRAR`, ambos `"NO"`). Correctivo §1(a), verbatim: *«No toca la reserva: la reserva es el cruce `p(Y│l,e)`, no los marginales.»*
+
+**`H1` queda disuelto, y se dice.** Con `FP-379`, `C2`, `C1` y `R7` miden **el mismo evento** (`D7`). La objeción del correctivo §1 — «un error absoluto de `C2` contra `R` mezcla lo que la independencia no capta con lo que dos definiciones del desenlace separan» — **deja de aplicar**. `C2` es ahora puntuable contra `R7` sin reserva de constructo.
+
+**Los marginales sellados de nueve códigos ya no alimentan `C2`.** Se conservan en este pre-registro **sólo** como referencia del control de reproducción de §0.8:
 
 | marginal | valor | IC95 | `n` | línea verificada en este árbol |
 |---|---|---|---|---|
@@ -241,24 +298,26 @@ Mismo desenlace (`D7`, y `D9` en paralelo), mismo cruce, mismo estimador, ola **
 
 **Aritmética de coherencia, verificada antes de usar los insumos:** `2924 + 4256 + 3411 + 2896 = 13 487` (universo del eje `edad`, cobertura declarada `0.998889`), `4646 + 8856 = 13 502` (universo del eje `localidad`, cobertura `1.000000`), y `13 487 / 13 502 = 0.998889…`. Cierra. `N = 13 487` es el que entra en las cotas de Fréchet de §3.4.
 
-**`C2` NO abre microdato.** Ni de 2024 ni de 2021. Es aritmética sobre siete cifras selladas.
+**Estas siete cifras NO entran en `C2`.** Bajo `FP-379` alimentan únicamente el **control de reproducción** de §0.8, y su definición de nueve códigos es la razón por la que ese control se corre sobre `D9` y no sobre `D7`.
 
-**Desenlace de `C2`: `D9`, y se declara.** Los siete valores de arriba salen de la definición de **nueve** códigos (`propuesta:1426`). `C2` **no tiene** un valor en `D7` y **no se le fabrica uno**. Por eso se puntúa contra `R9` y **no** contra `R7`, y por eso la afirmación «el challenger venció a los dos pisos» **no es evaluable en `D7`** con los insumos que mesa autorizó. Esto es `H1` del correctivo, hecho explícito y cuantificado en vez de disuelto en un promedio.
-
-**Forma, `D2` del correctivo — log-aditiva, declarada como modelo distinto:**
+**Forma, `FP-379 D2` (y `D2` del correctivo) — log-aditiva, declarada como modelo distinto:**
 
 ```
 logit(x) = ln(x/(1−x))      expit(z) = 1/(1+e^(−z))
 p̂(l,e)  = expit( logit(p̂_l) + logit(p̂_e) − logit(p̂) )
 ```
 
-*Rechazo explícito*, nunca recorte: si `p̂`, `p̂_l` o `p̂_e` ∈ `{0,1}`, el logit diverge → `SIN-DEFINIR` (`null`). Contrato pinado con fixtures sintéticos en `tests/test_celda_d_c2.py` (`piso_log_aditivo`, `DesenlaceIncompatible`, `MarginalDegenerado`); **el medidor de `C2` importa esa función de referencia y no reimplementa la fórmula**, para que el contrato y el ejecutable no puedan divergir.
+*Rechazo explícito*, nunca recorte: si `p̂`, `p̂_l` o `p̂_e` ∈ `{0,1}` — **en el punto o en cualquiera de las 10 000 réplicas** — el logit diverge → esa evaluación es `SIN-DEFINIR`. Si el **punto** de una celda es `SIN-DEFINIR`, la celda se declara **`NO-CONSTRUIBLE` con la razón escrita**, `null` en el `RESULT` (`permite_no_estimable: true`), y **no se fuerza un valor**. Contrato pinado con fixtures sintéticos en `tests/test_celda_d_c2.py` (`piso_log_aditivo`, `DesenlaceIncompatible`, `MarginalDegenerado`); **el medidor de `C2` importa esa función de referencia y no reimplementa la fórmula**, para que el contrato y el ejecutable no puedan divergir. Como los tres marginales entran ahora con el **mismo** `desenlace_id` (`D7`), la guardia `DesenlaceIncompatible` de esa función queda satisfecha por construcción — y sigue armada.
 
-*Qué supone, dicho:* **ausencia de interacción en la escala logit**. **No es «independencia»** y no identifica `P(Y│l,e)`. Es un piso: una construcción declarada, reproducible y sólo-marginal.
+*Qué supone, dicho, con el rótulo que `FP-379 D2` impone:* **ausencia de interacción en la escala logit**. **Nunca «independencia» a secas** — la independencia de `localidad` y `edad` como variables **no identifica** `P(Y│l,e)`, ni con esta forma ni con la anterior. Es un piso: una construcción declarada, reproducible y sólo-marginal, que un challenger debe vencer para poder decir que la interacción aporta algo explotable.
 
-**Diagnóstico congelado, no candidato:** la forma multiplicativa de v1.1 §9 (`p̂_l·p̂_e/p̂`) se **calcula también** y se emite como `RESULT` aparte, para dejar por escrito si en estas ocho celdas se sale o no de `[0,1]`. **No compite**; existe para que la razón del cambio de forma sea auditable sin recalcularla.
+**Diagnóstico de rango, agregado y no por celda.** La forma multiplicativa de v1.1 §9 (`p̂_l·p̂_e/p̂`) se evalúa sobre **los mismos marginales derivados** y se emite como **dos escalares**: cuántas de las 8 celdas caen fuera de `[0,1]` (`…-G-C2-MULT-FUERA-DE-RANGO`) y el valor máximo alcanzado (`…-G-C2-MULT-MAX`). **No hay un `RESULT` multiplicativo por celda**: `FP-379` ordena no mezclar las dos formas en el mismo CALC, y un escalar de control no es un candidato. Existe sólo para que la razón del cambio de forma quede auditable sin recalcularla.
 
-**Incertidumbre de `C2`: `NO-ACREDITADA`. Se emite como punto, sin banda.** Razón, verbatim del correctivo §3 vía (c): sólo hay **errores marginales publicados** y **las covarianzas son desconocidas** — los tres marginales salen de la **misma muestra**, y propagar por delta con covarianzas cero **subestima la anchura**. No se inventan covarianzas cero para poder imprimir un intervalo. **Esto se aparta de la letra del encargo** («IC propagado por delta desde los marginales») y del contrato de v1.1 §4 («un intervalo tipado por candidato»): la promesa deja de ser cierta y se enmienda aquí, declarada, en vez de cumplirse con un número que no significa lo que parece (`D3` de mesa, `NC-0285`).
+**Incertidumbre de `C2`: IC95 por bootstrap réplica-por-réplica (`FP-379 D3`).** Los tres marginales salen de la **misma muestra** y del **mismo re-muestreo**: la réplica `r` produce `p̂_l^(r)`, `p̂_e^(r)` y `p̂^(r)` **a la vez**, y se empujan juntas por la fórmula log-aditiva. El IC95 son los percentiles `2.5`/`97.5` del vector de 10 000 valores resultante. **Sin delta, sin supuesto de independencia entre estimadores, sin covarianzas inventadas** — y **sin exponer `R`**, porque las réplicas son de los marginales, no del cruce. Es el mecanismo mínimo de `RONDA1:66`, aplicado.
+
+*Enmienda declarada:* el encargo de este acto escribía «IC propagado por **delta** desde los marginales». `FP-379 D3` lo sustituye por réplicas compartidas. La vía (c) del correctivo (`incertidumbre: NO-ACREDITADA`, punto sin banda), que la `v1.0` de esta spec había adoptado, **queda superada por firma** y no se ejecuta.
+
+**Repliegue declarado (`FP-379`).** Si la construcción no es viable —porque algún marginal sale exactamente `0` o `1`, o porque los marginales de los siete códigos comunes no resultan derivables— **`C2` pasa a `DIAGNÓSTICO`**, deja de ser piso admisible del piloto, y la pregunta de fondo pasa a ser **«¿algo vence a la persistencia (`C1`)?»** en vez de la comparación contra dos pisos. Se declara en la nota de cierre; el piloto **sigue siendo válido**.
 
 ### 4.3 · `C3` — `CHALLENGER`, elicitación de `L`, dos dietas
 
@@ -271,7 +330,11 @@ Protocolo **ADV1** (`forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md` §B) y **`
 
 **Escala declarada al modelo:** `proporción en [0,1]` más **intervalo subjetivo al 80 %**, pedido por el campo `escala` de la `SpecCelda` (parámetro de la plantilla congelada, no una edición de la plantilla). El nivel `80 %` viene del diseño v1.1 §4; la plantilla sellada sólo pide «un intervalo de confianza subjetivo», así que el nivel viaja por el único canal que no toca bytes sellados.
 
-**Incertidumbre:** intervalo **de elicitación** declarado por `L` (80 %), más la dispersión entre las `k = 8` corridas. Cobertura empírica contra `R` se reporta como resultado independiente, **no adjudica**.
+**Extracción, y lo que NO se extrae — declarado antes de mirar una sola captura.** `valor_extraido` sale de la regla **congelada** `tools/extrae_l_v1_1.py::extraer_valor`, que devuelve **un punto** por captura. **El intervalo al 80 % que se le pide a `L` NO se extrae en este CALC**: la regla congelada no lo contempla, y escribir una segunda regla de extracción *después* de leer las 64 capturas sería una regla post-hoc sobre datos ya vistos. El intervalo queda **en el texto crudo** de cada captura, íntegro, para un sucesor que pre-registre su regla. Fila `NC-0286`.
+
+**Lo que sí se emite por celda, con las `k = 8` puntos extraídos:** la **mediana** (punto de `C3`), el **mínimo** y el **máximo** — la dispersión entre corridas, que es *un resultado y no un problema a limpiar* (ADV1-M2). Más `k_extraibles`, el conteo de capturas de las que la regla congelada pudo sacar un número. Una celda con `k_extraibles = 0` es `NO-ESTIMABLE` (`null`), nunca `0.0`.
+
+**Incertidumbre:** dispersión entre las `k = 8` corridas (mín–máx). **No es un IC muestral y no se presenta como tal.** La cobertura empírica del intervalo declarado por `L` contra `R` queda **sin medir en este acto**, por la razón de arriba; el diseño v1.1 §4 la promete y aquí se declara no cumplida (`NC-0286`), en vez de producirla con una regla improvisada.
 
 **Control de memoria (H6, y su alcance exacto).** Se buscó, **antes de elicitar**, si INEGI publicó el cruce `tamaño de localidad × grupo de edad` para este desenlace de ENIF 2024:
 
@@ -301,7 +364,7 @@ Fuera de la competencia por el hallazgo 3 del careo: el emisor **es el árbitro 
 
 ## 5 · Criterio de adjudicación — escrito antes del dato
 
-**Por celda**, error absoluto en **puntos porcentuales** contra `R` del mismo desenlace (`D7` con `R7`; `D9` con `R9`).
+**Por celda**, error absoluto en **puntos porcentuales** contra `R` del mismo desenlace. Bajo `FP-379`, **los tres candidatos ejecutables (`C1`, `C2`, `C3`) y el árbitro `R7` viven en `D7`**: la adjudicación primaria ocurre entera en el desenlace que mesa firmó. `D9` (`C1-D9` contra `R9`) se reporta **sólo como diagnóstico de la brecha `D7 ↔ D9`** (§0.2) y **no adjudica**.
 
 **`INDECIDIBLE`, las dos condiciones verbatim** de `forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md:38`:
 
@@ -346,7 +409,7 @@ Dos corridas del mismo código sobre los mismos bytes de input **deben** dar los
 ## 7 · Orden de los commits — el orden del diff es el sello
 
 * **`COMMIT-1`** (este archivo + sidecar + `spec.yaml`): la spec congelada. **Cero microdato abierto.** Sólo FD, diccionarios, catálogos e inventarios.
-* **`COMMIT-2`**: `CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001` — `C1`, `C2`, `C3` emitidos y sellados; `C4` `INEJECUTABLE`; `C5` `NO-APLICA`. **Prohibida toda lectura de ENIF 2024 que no sea ponderador/diseño.** Al cerrar este commit, **`R` no existe en el árbol**.
+* **`COMMIT-2`**: `CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001` — `C1`, `C2`, `C3` emitidos y sellados; `C4` `INEJECUTABLE`; `C5` `NO-APLICA`. **De ENIF 2024 se leen, y sólo, los marginales de un eje** (`localidad`, `edad`, nacional), bajo `FP-379 D1`; **el cruce `(localidad, edad)` de 2024 no se construye en ningún punto**, con guardia mecánica y `RESULT` de texto que lo declaran (§0.7). Al cerrar este commit, **`R` no existe en el árbol**.
 * **`COMMIT-3`**: `CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001` — `R` del cruce (`R7` y `R9`), adjudicación por celda, celda-D actualizada, fila del catálogo de momentos, test del consumidor, diagnóstico `C5`.
 
 **Falsador del propio piloto, declarado antes de correr:** un `R` del cruce derivado **antes** de que `COMMIT-2` cierre — aquí o en cualquier otro acto — **degrada el piloto a factibilidad y se declara en la nota**. No lo anula.
@@ -356,8 +419,9 @@ Dos corridas del mismo código sobre los mismos bytes de input **deben** dar los
 ## 8 · Lo que este pre-registro NO promete
 
 * No promete cegamiento absoluto: la reserva es **operacional** (`H6`).
-* No promete que `C2` mida el mismo evento que `R7`: mide `D9` y se puntúa contra `R9` (`H1`).
-* No promete un intervalo para `C2`: `NO-ACREDITADA` (`H3`).
+* No promete que el piso `C2` identifique `P(Y│l,e)`: es **ausencia de interacción en escala logit**, no independencia, y no estima la verdad (`FP-379 D2`).
+* No promete que el IC de `C2` cubra el error de especificación del piso: cubre el **muestreo** de sus marginales, propagado réplica por réplica (`FP-379 D3`).
+* No promete que `C2` siga siendo «lo que todos ya vieron»: bajo `FP-379 D1` su dieta cambió a **«marginales 2024 sin interacción»**, derivados dentro del piloto, y se declara.
 * No promete soporte: `n` es `DESCONOCIDO` hasta que `C1` lo calcule, y las ocho cotas inferiores de Fréchet son `0` (`H4`).
 * No promete un ganador: cuatro paradas son terminales y ninguna adopta (`H5`).
 * No promete transporte temporal: la identidad `p_2021 → p_2024` es el supuesto que `C1` **es**, no un resultado.
