@@ -1,0 +1,23 @@
+{
+  "comando": "python3 forense/produccion/mociba-flujo-documental-1/clasifica_elegibilidad.py --fixtures forense/produccion/mociba-flujo-documental-1/fixtures/SINTETICO-NO-MEDICION-MOCIBA-FLUJO-1.json",
+  "ejecutado_el": "2026-09-16",
+  "naturaleza": "SINTETICO-NO-MEDICION",
+  "fixture_sha256": "9f18f94bf9f8263ade5ba9f9fc8fc9cb88efa3bd857ab92ed00a5551114b6b34",
+  "casos": 10,
+  "casos_ok": 10,
+  "ok": true,
+  "ids": [
+    "si_con_otros_componentes_ausentes",
+    "todos_no_documentados",
+    "mezcla_no_y_desconocido",
+    "salto_previo_sin_internet",
+    "codigo_p4_invalido",
+    "desenlace_vacio_dentro_universo",
+    "desenlace_vacio_fuera_universo",
+    "respuesta_valida_no_evento",
+    "no_respuesta_explicita",
+    "salto_previo_edad"
+  ],
+  "microdatos_abiertos": false,
+  "llamadas_realizadas": 0
+}

@@ -1,0 +1,140 @@
+{
+ "corrida_id": "CALC-ENCRIGE-CARGA-INTENSIDAD-0001--55259dbe975f",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "generacion": "GEN2",
+  "informacion_muestral_independiente": "NINGUNA",
+  "medidor_ejecutado_al_congelar": "NO; puntos del padre ya observados; spec, código y pruebas se comprometen antes de la primera derivación real.",
+  "padre": "CALC-ENCRIGE-CORRUPCION-DESCRIPTIVA-0001",
+  "tipo": "DERIVADO-DESCRIPTIVO-DE-RESULTADO-SELLADO",
+  "unidad_transferencia": "UNIDAD-DISTINTA-NO-TRANSFERENCIA",
+  "uso_motor": "CONTEXTO-INFORME-NO-CALIBRA",
+  "validacion_independiente": "NO-APLICA-DERIVACION-DETERMINISTA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-17T01:00:04Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 0,
+   "montado": "NO",
+   "nota": "data/raw ausente -- normal en un clon fresco / en la nube"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "55259dbe975fbd625154cbec8af233bce6a334bf",
+  "git_rama": "acto/gen2-encrige-carga-intensidad-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "NO",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "55259dbe975fbd625154cbec8af233bce6a334bf",
+ "input_ids": [
+  "IN-ENCRIGE-DES-CSV",
+  "IN-ENCRIGE-DES-RESULTADOS",
+  "IN-ENCRIGE-DES-SPEC",
+  "IN-ENCRIGE-DES-SELLO",
+  "IN-ENCRIGE-DES-SELLO-SHA256"
+ ],
+ "input_sha256": {
+  "IN-ENCRIGE-DES-CSV": "632ce31b2c2cf70e22871319b5842e6168592f065588b69b11010e3552b48c26",
+  "IN-ENCRIGE-DES-RESULTADOS": "476fed430d8903b192b1bee7a0317f2afd2cfc68c78d6a64a2c91b9d760684bd",
+  "IN-ENCRIGE-DES-SELLO": "dd2bc7dc912585301632789ac3b3bc2208c0ab5d9b8c1db83afa18fa2233a39a",
+  "IN-ENCRIGE-DES-SELLO-SHA256": "c0d87a4afc5b6dc4354f3a22ebde45333b5c24205643d537a99f9ed9b5294a36",
+  "IN-ENCRIGE-DES-SPEC": "b4c6882da9e9872a68dc2c7c40a355b4a66cbae997e63b02e48f4bd09251ff2a"
+ },
+ "parametros": {
+  "adopcion": "NINGUNA",
+  "fuente_acto": "GEN2-ENCRIGE-CARGA-INTENSIDAD-1",
+  "incertidumbre": "NO-DISPONIBLE-EN-REPRESENTACION-CSV",
+  "output_dir": "forense/analisis/encrige-carga-intensidad-1",
+  "padre": "CALC-ENCRIGE-CORRUPCION-DESCRIPTIVA-0001",
+  "periodo": "Durante 2020 (enero a la fecha de entrevista)",
+  "referencia": "Micro",
+  "tolerancia_masa_abs": 0.0003,
+  "tolerancia_razon_abs": 1e-12
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENCRIGE-CARGA-ARTEFACTO-CONTRASTES-SHA256",
+  "RESULT-ENCRIGE-CARGA-ARTEFACTO-CONTROLES-SHA256",
+  "RESULT-ENCRIGE-CARGA-ARTEFACTO-FIGURA-SVG-SHA256",
+  "RESULT-ENCRIGE-CARGA-ARTEFACTO-PARTICIPACIONES-SHA256",
+  "RESULT-ENCRIGE-CARGA-ARTEFACTO-TABLA-AMPLIADA-SHA256",
+  "RESULT-ENCRIGE-CARGA-G-INCERTIDUMBRE",
+  "RESULT-ENCRIGE-CARGA-G-MAX-RESIDUO-DESCOMPOSICION",
+  "RESULT-ENCRIGE-CARGA-G-MAX-RESIDUO-IDENTIDAD",
+  "RESULT-ENCRIGE-CARGA-G-N-CONTRASTES",
+  "RESULT-ENCRIGE-CARGA-G-N-DOMINIOS",
+  "RESULT-ENCRIGE-CARGA-G-N-TAMANOS",
+  "RESULT-ENCRIGE-CARGA-G-PADRE-CSV-SHA256",
+  "RESULT-ENCRIGE-CARGA-G-RESIDUO-A-NACIONAL",
+  "RESULT-ENCRIGE-CARGA-G-RESIDUO-N-NACIONAL",
+  "RESULT-ENCRIGE-CARGA-G-RESIDUO-T-NACIONAL",
+  "RESULT-ENCRIGE-CARGA-G-VEREDICTO",
+  "RESULT-ENCRIGE-CARGA-GRANDE-CONTRIB-INTENSIDAD",
+  "RESULT-ENCRIGE-CARGA-GRANDE-CONTRIB-PREVALENCIA",
+  "RESULT-ENCRIGE-CARGA-GRANDE-DELTA-M-VS-MICRO",
+  "RESULT-ENCRIGE-CARGA-GRANDE-DOMINA",
+  "RESULT-ENCRIGE-CARGA-MEDIANA-CONTRIB-INTENSIDAD",
+  "RESULT-ENCRIGE-CARGA-MEDIANA-CONTRIB-PREVALENCIA",
+  "RESULT-ENCRIGE-CARGA-MEDIANA-DELTA-M-VS-MICRO",
+  "RESULT-ENCRIGE-CARGA-MEDIANA-DOMINA",
+  "RESULT-ENCRIGE-CARGA-NACIONAL-M",
+  "RESULT-ENCRIGE-CARGA-NACIONAL-P",
+  "RESULT-ENCRIGE-CARGA-NACIONAL-R",
+  "RESULT-ENCRIGE-CARGA-PEQUENA-CONTRIB-INTENSIDAD",
+  "RESULT-ENCRIGE-CARGA-PEQUENA-CONTRIB-PREVALENCIA",
+  "RESULT-ENCRIGE-CARGA-PEQUENA-DELTA-M-VS-MICRO",
+  "RESULT-ENCRIGE-CARGA-PEQUENA-DOMINA"
+ ],
+ "script_blob_sha256": "17a41f8ab65248273e465ffb8148fbffd473d43d62a5d2baf6eb1d796249a615",
+ "script_path": "data/corrida0/CALC-ENCRIGE-CARGA-INTENSIDAD-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "rng": "NO-APLICA",
+  "valor": null
+ },
+ "spec_id": "CALC-ENCRIGE-CARGA-INTENSIDAD-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "96b4854e9e8e17e25f97f59da36ef5d91fb9bfa815fab641713440484e46df3d",
+ "spec_yaml_sha256": "2d4fbfeb3f3824f1354bd48b2ea5a3d4057c94a6887300af7f2f0363b2494309",
+ "tolerancia": {
+  "abs": 1e-12,
+  "razon": "Razones deterministas; las masas nacionales aceptan 0.0003 por cinco redondeos de absolutos publicados a cuatro decimales.",
+  "tipo": "mixta"
+ }
+}
