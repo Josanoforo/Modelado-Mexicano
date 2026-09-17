@@ -2,8 +2,8 @@
 
 Fecha local: 16 de septiembre de 2026. Base efectiva `origin/main`:
 `e4f5f771b7fd9bccc88d3b6c30d0e5362b0e52a5`. Rama:
-`acto/gen2-encrige-carga-intensidad-1`. Sincronizada antes del push con
-`origin/main` `fe223a9d5f14c609327d7d30181295b4469d43ae`. PR #836.
+`acto/gen2-encrige-carga-intensidad-1`. Sincronizada antes del push final con
+`origin/main` `32071a5c9c88d39d8ebac7c24b3d997ef557edb9`. PR #836.
 
 ## Producto y decisión que permite
 
