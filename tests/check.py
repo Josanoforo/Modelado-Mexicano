@@ -6119,10 +6119,19 @@ def t_cron_huellas_adq(texto, fecha):
             "motivo": _campo("motivo"),
             "exit": _campo("exit"),
             "resultado": _campo("resultado"),
+            "resultado_origen": _campo("resultado_origen"),
+            "resultado_causa": _campo("resultado_causa"),
             "resultado_trabajo": _campo("resultado_trabajo"),
             "salud_trabajo": _campo("salud_trabajo"),
             "demanda_atendible": _campo("demanda_atendible"),
             "necesidades_atendidas": _campo("necesidades_atendidas"),
+            "investigaciones_seleccionadas": _campo("investigaciones_seleccionadas"),
+            "investigaciones_iniciadas": _campo("investigaciones_iniciadas"),
+            "investigaciones_validadas": _campo("investigaciones_validadas"),
+            "investigaciones_evidencia_nueva": _campo("investigaciones_evidencia_nueva"),
+            "investigaciones_reduccion_brecha": _campo("investigaciones_reduccion_brecha"),
+            "investigaciones_sin_avance": _campo("investigaciones_sin_avance"),
+            "objetos_intentados": _campo("objetos_intentados"),
             "objetos_nuevos": _campo("objetos_nuevos"),
             "bytes_nuevos": _campo("bytes_nuevos"),
             "publicacion_trabajo": _campo("publicacion_trabajo"),
@@ -6289,7 +6298,9 @@ def t_cron_estado(fecha, prefijos, cuerpo_adq,
     (sin red, timeout): eso NO es ausencia comprobada (A.13), y produce
     `SIN-EVIDENCIA-NO-VERIFICABLE`, nunca `SIN-HUELLA`.
 
-    Estados: COMPLETO · COMPLETO-CON-INTENTO-POSTERIOR-FALLIDO ·
+    Estados: AVANCE-ADQUISICION · REDUCCION-BRECHA ·
+    EVIDENCIA-NUEVA-SIN-REDUCCION · RESULTADO-INVALIDO · COMPLETO ·
+    COMPLETO-CON-INTENTO-POSTERIOR-FALLIDO ·
     AGENTE-OK-PUBLICACION-FALLIDA · ARRANCO-FALLO · CENSO-SIN-CIERRE ·
     SIN-HUELLA · SIN-EVIDENCIA-NO-VERIFICABLE."""
     dia = fecha.isoformat()
@@ -6314,6 +6325,27 @@ def t_cron_estado(fecha, prefijos, cuerpo_adq,
         historico = any(h["run_id"] is None for h in huellas)
         nota_hist = " (acreditado por huella histórica sin run_id)" if historico else ""
         if exitosas and _t_cron_exitosa(ultimo):
+            salud = ultimo.get("salud_trabajo")
+            if salud == "AVANCE_ADQUISICION":
+                return ("AVANCE-ADQUISICION",
+                        f"censo del {dia}: adquisición validada; "
+                        f"objetos_nuevos={ultimo.get('objetos_nuevos')} "
+                        f"bytes_nuevos={ultimo.get('bytes_nuevos')} "
+                        f"[{_t_cron_rotula(ultimo)}]")
+            if salud == "REDUCCION_BRECHA":
+                return ("REDUCCION-BRECHA",
+                        f"censo del {dia}: reducción mecánica de suficiencia; "
+                        f"investigaciones_reduccion_brecha="
+                        f"{ultimo.get('investigaciones_reduccion_brecha')} "
+                        f"[{_t_cron_rotula(ultimo)}]")
+            if salud == "EVIDENCIA_NUEVA_SIN_REDUCCION":
+                return ("EVIDENCIA-NUEVA-SIN-REDUCCION",
+                        f"censo del {dia}: evidencia nueva validada con cero o "
+                        f"más bytes, sin mejora de suficiencia; "
+                        f"investigaciones_evidencia_nueva="
+                        f"{ultimo.get('investigaciones_evidencia_nueva')} "
+                        f"bytes_nuevos={ultimo.get('bytes_nuevos')} "
+                        f"[{_t_cron_rotula(ultimo)}]")
             if ultimo.get("salud_trabajo") == "EJECUCION_SIN_EVIDENCIA_NUEVA":
                 return ("EJECUCION-SIN-AVANCE-MATERIAL",
                         f"censo del {dia}: ejecución técnica correcta, pero "
@@ -6340,6 +6372,13 @@ def t_cron_estado(fecha, prefijos, cuerpo_adq,
                     f"[{_t_cron_rotula(ultimo)}] cerró "
                     f"invocado={ultimo['invocado']} motivo={ultimo['motivo']} "
                     f"exit={ultimo['exit']}{nota_hist}")
+        if ultimo.get("salud_trabajo") == "RESULTADO_INVALIDO":
+            return ("RESULTADO-INVALIDO",
+                    f"censo del {dia}: ningún resultado estructurado fue "
+                    f"aceptado; origen={ultimo.get('resultado_origen')} "
+                    f"causa={ultimo.get('resultado_causa')} "
+                    f"exit={ultimo.get('exit')} "
+                    f"[{_t_cron_rotula(ultimo)}]")
         # H5 (`ACTO GEN2-ADQ-CONTRATO-FIX`): el agente puede terminar limpio
         # (invocado=si exit=0) y aun así no acreditar el día si la
         # publicación falló -- eso NO es "ninguno exitoso" en el sentido

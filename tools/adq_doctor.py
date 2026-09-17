@@ -918,6 +918,24 @@ def _lee_texto_evidencia(ruta, limite=2_000_000):
         return ""
 
 
+def _ruta_evidencia_local(referencia, raiz):
+    """Resuelve evidencia sólo dentro del repo o de su ``data/raw`` montado.
+
+    En CAJA ``data/raw`` es un symlink al corpus compartido.  La validación de
+    objetos ya aceptaba ese corpus, pero la de investigaciones rechazaba el
+    mismo archivo después de resolver el symlink.  La raíz permitida se deriva
+    del montaje efectivo del clon; no se acepta cualquier symlink externo.
+    """
+    ruta = (referencia if os.path.isabs(referencia)
+            else os.path.join(raiz, referencia))
+    real = os.path.realpath(ruta)
+    corpus = os.path.realpath(os.path.join(raiz, "data", "raw"))
+    raices = {os.path.realpath(raiz), corpus}
+    permitido = any(real == base or real.startswith(base + os.sep)
+                    for base in raices)
+    return real, permitido
+
+
 def valida_resultado_adquisicion(resultado, seleccion, seleccion_investigacion=None,
                                   comprobar_remoto=True, raiz=None):
     """Valida estructura, coherencia y evidencia del cierre del hijo.
@@ -981,9 +999,7 @@ def valida_resultado_adquisicion(resultado, seleccion, seleccion_investigacion=N
         if item["version_pregunta"] != versiones_inv.get(ident):
             errores.append(f"{ident}: versión de pregunta distinta de la seleccionada")
         for referencia in item["evidencias"]:
-            ruta = referencia if os.path.isabs(referencia) else os.path.join(raiz, referencia)
-            real = os.path.realpath(ruta)
-            permitido = real == raiz or real.startswith(raiz + os.sep)
+            real, permitido = _ruta_evidencia_local(referencia, raiz)
             if not permitido or not os.path.exists(real):
                 errores.append(f"{ident}: evidencia de investigación inexistente: {referencia}")
         estado_path = os.path.join(raiz, "data", "curacion-registro",
@@ -1033,11 +1049,7 @@ def valida_resultado_adquisicion(resultado, seleccion, seleccion_investigacion=N
         objeto = item["objeto_id"]
         textos = []
         for referencia in item["evidencias"]:
-            ruta = (referencia if os.path.isabs(referencia)
-                    else os.path.join(raiz, referencia))
-            real = os.path.realpath(ruta)
-            permitido = (real == raiz or real.startswith(raiz + os.sep)
-                          or real.startswith("/home/pc0/mm-corpus/"))
+            real, permitido = _ruta_evidencia_local(referencia, raiz)
             if not permitido or not os.path.exists(real):
                 errores.append(f"{objeto}: evidencia local inexistente o fuera de ámbito: {referencia}")
             else:
