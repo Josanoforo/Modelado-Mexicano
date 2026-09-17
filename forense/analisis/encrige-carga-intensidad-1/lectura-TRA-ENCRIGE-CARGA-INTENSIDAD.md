@@ -87,3 +87,4 @@ completas, controles y figura están en este directorio. Reproducción:
 ```bash
 python3 tools/encrige_carga_intensidad.py
 ```
+

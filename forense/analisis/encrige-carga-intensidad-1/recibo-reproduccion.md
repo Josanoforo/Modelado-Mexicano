@@ -58,6 +58,8 @@ python3 tools/corrida0.py verify CALC-ENCRIGE-CARGA-INTENSIDAD-0001
 Resultados: `spec-check` 0 fallos; cinco pruebas focales, cinco correctas;
 preflight verde desde árbol limpio; corrida exitosa y sellada; verify
 `REPRODUCE (CONTEXTO=IDENTICO · RESULTADO=REPRODUCE)` para 31 resultados.
+La suite general `tests/check.py --baseline` quedó verde: conserva 3 FAIL y
+4351 WARN heredados, sin entradas nuevas.
 
 Controles sustantivos: denominadores compatibles; cuatro tamaños reconstruyen
 exactamente los nacionales de `N`, `A` y `T`; identidad `m=p*r`; tres

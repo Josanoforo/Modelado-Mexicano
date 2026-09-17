@@ -60,3 +60,4 @@ inspección, durante enero–entrevista de 2020. Los absolutos son estimaciones
 expandidas, no tamaños muestrales. No hay EE, CV o IC utilizables; no se
 declaran significancia, causalidad, tendencia, riesgo por interacción ni
 intervención óptima.
+

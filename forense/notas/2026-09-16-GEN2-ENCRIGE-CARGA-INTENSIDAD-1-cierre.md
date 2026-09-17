@@ -36,7 +36,9 @@ mayor intensidad condicional.
 estimable, denominadores incompatibles se rechazan, una razón mayor que uno es
 válida, `T<A` activa la guarda semántica y el caso real reproduce sin mutar al
 padre. El CALC verificó sello, cinco inputs y 31 resultados con
-`CONTEXTO=IDENTICO` y `RESULTADO=REPRODUCE`.
+`CONTEXTO=IDENTICO` y `RESULTADO=REPRODUCE`. Tras corregir dos colisiones de
+nombres detectadas por CI, la suite general `tests/check.py --baseline` quedó
+verde: 3 FAIL y 4351 WARN heredados, sin entradas nuevas.
 
 Las sumas de los cuatro tamaños reconstruyen exactamente los nacionales de
 `N`, `A` y `T`. El residuo de `m=p*r` es cero al grano de salida y el máximo de
