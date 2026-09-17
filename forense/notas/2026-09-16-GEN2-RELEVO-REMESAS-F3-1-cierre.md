@@ -20,7 +20,7 @@ python3 tools/relevo_usos.py --escribe
 El productor anterior y el modificado se compararon sobre los mismos insumos:
 sólo cambió `RES-0035`, en `veredicto_sellado` y
 `veredicto_sellado_ref`. La tabla completa está en
-`forense/analisis/relevo-remesas-f3-1/antes-despues.md`.
+`forense/analisis/relevo-remesas-f3-1/relevo-remesas-f3-1-antes-despues.md`.
 
 ## Verificación ejecutada
 
