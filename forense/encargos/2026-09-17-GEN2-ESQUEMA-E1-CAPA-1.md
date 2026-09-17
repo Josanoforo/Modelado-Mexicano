@@ -44,3 +44,13 @@ ejecutada, parcial, distinta de lo pedido, o con reserva.)*
 | «`NC-0261` … → `CERRADA` citando este acto» | Ejecutado, **con reserva**: `NC-0261` pedía también llenar los tokens de «~120 de 144 números». La capa existe y contiene **todos los tokens que el censo asigna**; los 24 que el censo no asigna **no** se cierran aquí | Cerrar `NC-0261` sin decir esto enterraría la deuda que quedaba debajo. Por eso el residuo sale como fila propia (`NC-0283`) y se cita en el campo `cerrado_por` de `NC-0261` | `NC-0283` |
 | Regenerar `data/corrida0/demanda-*.tsv`, que `tools/corrida0.py demanda` reescribe aunque no se cambie nada | `FUERA-DE-PERÍMETRO` — `data/corrida0/` no está en el perímetro declarado; los dos archivos se usaron como evidencia de P2 y se **revirtieron** con `git checkout`. Preexistente y ajeno a este acto: se reprodujo con `procedencia.yaml` idéntico al de `origin/main` | El registro en seco versionado no describe el árbol actual (una fila `CORR` nueva y todos los ids posteriores recorridos). **No contamina P2**: la comparación que prueba el movimiento es entre dos registros generados hoy, byte a byte idénticos, no contra el TSV commiteado | `NC-0287` — la rutina `/deriva`, ya dueña de regenerar los derivados diarios |
 | Declarar las 15 familias de distribución | `DECISIÓN-DE-MESA-PENDIENTE` — el encargo pide que **entren** como sección con `NO-DECLARADA` en cada una, y eso se hizo. Declarar su contenido no es alcance de este acto | El check de varianza intra-celda de `ADR-28.d` **sigue sin poder correr**. La deuda no se salda: cambia de forma y se vuelve enumerable | `deuda_dispersion` (S2, `ABIERTA`) |
+
+---
+
+## CONSUMIDO
+
+Ejecutado por **`PR #847`** (`https://github.com/Josanoforo/Modelado-Mexicano/pull/847`),
+rama `claude/friendly-johnson-u8b8mk`, 17/sep/2026 — `ACTO GEN2-ESQUEMA-E1-CAPA-1`,
+`ADR-534`. Suite `3 FAIL · 4364 WARN`, **LÍNEA BASE VERDE**, sin tocar
+`tests/baseline.json`. `NC-0261` y `NC-0263` **CERRADAS**; `NC-0283`…`NC-0287`
+abiertas. Merge de mesa.
