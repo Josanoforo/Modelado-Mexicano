@@ -1,0 +1,42 @@
+{
+  "compatibilidad": {
+    "T": "trámites o inspecciones con experiencia de corrupción",
+    "denominador": "unidades económicas expuestas a al menos un trámite o inspección",
+    "periodo": "Durante 2020 (enero a la fecha de entrevista)",
+    "unidad": "empresa"
+  },
+  "csv_padre_sha256": "632ce31b2c2cf70e22871319b5842e6168592f065588b69b11010e3552b48c26",
+  "dominios": [
+    "Estados Unidos Mexicanos",
+    "Micro",
+    "Pequeña",
+    "Mediana",
+    "Grande"
+  ],
+  "estadistica_de_respondentes": "NINGUNA",
+  "incertidumbre": "NO-DISPONIBLE-EN-REPRESENTACION-CSV",
+  "max_delta_tasa_oficial": "0.000000000000",
+  "max_residuo_descomposicion": "0.000000000000",
+  "max_residuo_identidad_m_p_r": "0.000000000000",
+  "nacional_excluido_de_partes": true,
+  "partes_tamano": [
+    "Micro",
+    "Pequeña",
+    "Mediana",
+    "Grande"
+  ],
+  "residuo_suma_tamanos_menos_nacional": {
+    "A": "0.0000",
+    "N": "0.0000",
+    "T": "0.0000"
+  },
+  "suma_tamanos": {
+    "A": "204284.5320",
+    "N": "4006729.2849",
+    "T": "961575.9449"
+  },
+  "tolerancias_fijadas": {
+    "masa_expandida_abs": "0.0003",
+    "razon_abs": "1E-12"
+  }
+}
