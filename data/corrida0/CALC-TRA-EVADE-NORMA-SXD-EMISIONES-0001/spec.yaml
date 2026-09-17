@@ -1,0 +1,707 @@
+calc_id: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
+spec_md: spec.md
+spec_md_sha256: 45bca1679d9d0e7e1351df709237226a5140e286e78eb2b088b6e6c70ee11491
+script: data/corrida0/CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: EMISIONES-DE-CANDIDATOS-CELDA-D
+  unidad_transferencia: DELITO
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  validacion_independiente: CONTRATO-C2-PINADO-EN-tests/test_celda_d_c2.py + CONTROL-DE-REPRODUCCION-DEL-ARBITRO-MARGINAL (p e IC95, misma funcion) + GUARDIA-DE-UNA-VARIABLE-EN-tools/celda_d/marginales_reproduccion.py (tests/test_marginales_una_variable.py)
+  fuente_acto: GEN2-CELDA-D-PILOTO-2 v1.1 (relanzamiento)
+  celda_d: TRA.evade_norma.envipe2025.escolaridad_x_dominio
+  firma_vigente: "Firma 1 (v1.0, 'L no y 12') + Firma 2 (relanzamiento) -- mesa, 2026-09-17, verbatim en forense/encargos/2026-09-17-GEN2-CELDA-D-PILOTO-2-V1_1.md"
+  reserva_consumida_no_usada: "edad x dominio ENVIPE 2025: RESERVA-CONSUMIDA-SIN-PILOTO (17/sep/2026); este CALC no la toca"
+  medidor_ejecutado_al_congelar: "NO -- solo contra zips FABRICADOS (tests/test_marginales_una_variable.py::fabrica_zip), cero microdato (E.5)"
+  orden_de_commits: "COMMIT-1 spec + modulo congelado + este contrato (sin microdato) -> COMMIT-2 emisiones (R no existe en el arbol) -> COMMIT-3 R y adjudicacion"
+  falsador_de_orden: "data/corrida0/CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0001/resultados.json no existe en ningun commit anterior al COMMIT-3; se lee del historial (git log --diff-filter=A), no de un RESULT recalculable (NC-0313)"
+
+inputs:
+  - {id: envipe2023_csv, origen: manifiesto}
+  - {id: envipe2024_csv, origen: manifiesto}
+  - {id: envipe2025_csv, origen: manifiesto}
+  - {id: envipe2023_fd_pdf, origen: manifiesto}
+  - {id: envipe2024_fd_pdf, origen: manifiesto}
+  - {id: envipe2025_fd_pdf, origen: manifiesto}
+
+variables:
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2023.csv, variable: BP1_20, rol: universo-y-desenlace-2023}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2023.csv, variable: BP1_23, rol: desenlace-2023}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2023.csv, variable: FAC_DEL, rol: ponderador-2023}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2023.csv, variable: EST_DIS, rol: estrato-diseno-2023}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2023.csv, variable: UPM_DIS, rol: upm-diseno-2023}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2023.csv, variable: ID_PER, rol: llave-delito-persona-2023}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2023.csv, variable: DOMINIO, rol: eje-dominio-2023}
+  - {archivo: conjunto_de_datos_tsdem_envipe2023.csv, variable: ID_PER, rol: llave-persona-2023}
+  - {archivo: conjunto_de_datos_tsdem_envipe2023.csv, variable: NIV, rol: eje-escolaridad-proxy-2023}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: BP1_20, rol: universo-y-desenlace-2024}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: BP1_23, rol: desenlace-2024}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: FAC_DEL, rol: ponderador-2024}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: EST_DIS, rol: estrato-diseno-2024}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: UPM_DIS, rol: upm-diseno-2024}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: ID_PER, rol: llave-delito-persona-2024}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: DOMINIO, rol: eje-dominio-2024}
+  - {archivo: conjunto_de_datos_tsdem_envipe2024.csv, variable: ID_PER, rol: llave-persona-2024}
+  - {archivo: conjunto_de_datos_tsdem_envipe2024.csv, variable: NIV, rol: eje-escolaridad-proxy-2024}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: BP1_20, rol: universo-y-desenlace-2025-SOLO-MARGINALES}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: BP1_23, rol: desenlace-2025-SOLO-MARGINALES}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: FAC_DEL, rol: ponderador-2025}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: EST_DIS, rol: estrato-diseno-2025}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: UPM_DIS, rol: upm-diseno-2025}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: ID_PER, rol: llave-delito-persona-2025}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: DOMINIO, rol: eje-dominio-2025-SOLO-MARGINAL}
+  - {archivo: conjunto_de_datos_tsdem_envipe2025.csv, variable: ID_PER, rol: llave-persona-2025}
+  - {archivo: conjunto_de_datos_tsdem_envipe2025.csv, variable: NIV, rol: eje-escolaridad-proxy-2025-SOLO-MARGINAL}
+
+universo: >-
+  DELITOS (una fila por delito de tmod_vic) con BP1_20 in {1,2} -- la unidad y
+  el universo EXACTOS de prereg-caja-ENVIPE-EVASION-NORMA (MAESTRA34-L5 P3).
+  ENVIPE 2024 ENTERA para C1 (cruce escolaridad_proxy x dominio_urbano_rural,
+  I24, n de soporte). ENVIPE 2023 ENTERA como insumo de C7 (cruce, I23).
+  ENVIPE 2025 SOLO para los marginales de UN EJE (escolaridad_proxy,
+  dominio_urbano_rural, nacional), a traves del modulo congelado
+  tools/celda_d/marginales_reproduccion.py con la ola cargada reservada=True.
+  El cruce de 2025 es COMMIT-3.
+filtros: >-
+  En este orden y sin ninguno mas, identico en las tres olas: (1) BP1_20 in
+  {"1","2"}; las demas filas se cuentan (FILAS-BP1_20-FUERA) y salen; (2)
+  FAC_DEL numerico y > 0, si no PARA; (3) EST_DIS y UPM_DIS no vacios, si no
+  PARA. Sin filtro de edad, sexo ni tipo de delito. Delitos sin persona en
+  tsdem NO paran: se cuentan y quedan (fuera) de escolaridad. ID_PER no unica
+  en tsdem PARA. Convencion de universo por eje, la del arbitro: escolaridad
+  sobre delitos clasificables; dominio y nacional sobre el universo entero;
+  cruce sobre clasificables en ambos ejes.
+ponderador: >-
+  FAC_DEL (`Factor delito`, Numerico 6, 000001..999999 en las tres olas). Toda
+  proporcion es razon de totales ponderados sum(w*y)/sum(w).
+transformacion: >-
+  evade_norma := (BP1_20 == "2") AND (BP1_23 a dos digitos in {04,05,06,08});
+  b/blanco -> vacio, nunca cuenta. escolaridad_proxy := ESC_2DIG[NIV de la
+  persona ID_PER en tsdem] (00,01,02 -> hasta primaria; 03 -> secundaria;
+  04..07 -> media superior; 08,09 -> superior; 99/blanco/sin persona ->
+  fuera), importado de tools/ejes_maestra35_l1.py (el objeto del arbitro).
+  dominio_urbano_rural := {U: Urbano, C: Complemento urbano, R: Rural}[DOMINIO].
+  I_w(s,d) := logit p_w(s,d) - [logit p_w(s) + logit p_w(d) - logit p_w] por
+  ola, punto y replica a replica sobre el MISMO remuestreo de la ola;
+  SIN-DEFINIR si algun termino es 0 o 1 (sin recorte). C1 := p24(s,d).
+  C2 := expit(logit p25(s) + logit p25(d) - logit p25) con los marginales
+  SELLADOS (parametro marginales_sellados), via tests/test_celda_d_c2.py::
+  piso_log_aditivo. C6 := expit(logit C2 + I24). C7 := expit(logit C2 +
+  (I23 + I24)/2).
+estimando: >-
+  p(evade_norma | escolaridad_proxy, dominio_urbano_rural) -- proporcion
+  ponderada [0,1] de delitos, en 12 celdas SixDj. Este CALC emite C1
+  (persistencia 2024), C2 (piso log-aditivo sobre marginales 2025 sellados),
+  C6 (C2 + interaccion 2024) y C7 (C2 + interaccion promediada 2023-2024), con
+  IC95 cada uno; asienta C4 INEJECUTABLE, C5 NO-APLICA y L NO-ENTRA. NO deriva
+  el arbitro R del cruce: eso es COMMIT-3.
+precision: >-
+  Dos objetos, declarados en la spec humana §3.3: (1) IC del arbitro por
+  wprop_ic_conglomerado (importada; seed 42, 10 000; default_rng), usado en
+  los marginales del control de reproduccion; (2) replicas compartidas por
+  ola (PCG64(42), n_h UPM con reemplazo por estrato, orden lexicografico,
+  10 000), usadas en C1/C2/C6/C7 e interacciones; C6/C7 combinan la replica
+  k de cada ola (muestras independientes entre olas; sin covarianzas
+  inventadas). No cubre el error de especificacion de ningun candidato ni el
+  de la extrapolacion temporal que C1 y C6/C7 SON.
+
+dependencias_materiales: [numpy, pandas]
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.random.PCG64 (replicas compartidas) + numpy.random.default_rng (wprop_ic_conglomerado, receta del arbitro)
+tolerancia:
+  tipo: bootstrap
+  exacto_por_seed: true
+  abs: 1.0e-10
+  razon: >-
+    seed 42 + orden de consumo fijado en la spec humana §3.3 y en el modulo
+    congelado: un generador por ola, estratos y UPM en orden lexicografico,
+    replicas 0..9999. Los enteros se comparan EXACTO; los flotantes caen a
+    abs = 1e-10.
+
+parametros:
+  pregunta_consumidora: >-
+    Que candidato reproduce mejor p(evade_norma | escolaridad_proxy,
+    dominio_urbano_rural) en las 12 celdas de ENVIPE 2025, y con que margen --
+    sin que ninguno vea el cruce de 2025 antes de emitir? En particular: la
+    interaccion de la ola anterior (C6) o promediada (C7) aporta sobre los
+    marginales actuales sin interaccion (C2)?
+  consumidor: "celda-D TRA.evade_norma.envipe2025.escolaridad_x_dominio; fila M05 de milpa/catalogo-momentos-v0_1.tsv; regla tramite.evasion_norma (milpa/tramite.yaml:487); el marcador rediseñado (FP-383) es el sucesor"
+  celdas: [S1xD1, S1xD2, S1xD3, S2xD1, S2xD2, S2xD3, S3xD1, S3xD2, S3xD3, S4xD1, S4xD2, S4xD3]
+  rotulos_escolaridad: {S1: "hasta primaria", S2: "secundaria", S3: "media superior", S4: "superior"}
+  rotulos_dominio: {D1: "Rural", D2: "Complemento urbano", D3: "Urbano"}
+  codigos_bp1_23_numerador: ["04", "05", "06", "08"]
+  universo_bp1_20: ["1", "2"]
+  escolaridad_niv_a_tramo: {"00": "hasta primaria", "01": "hasta primaria", "02": "hasta primaria", "03": "secundaria", "04": "media superior", "05": "media superior", "06": "media superior", "07": "media superior", "08": "superior", "09": "superior"}
+  dominio_codigo_a_celda: {U: "Urbano", C: "Complemento urbano", R: "Rural"}
+  bootstrap_replicas: 10000
+  ola_desarrollo: 2024
+  ola_insumo_c7: 2023
+  ola_reservada: 2025
+  umbral_soporte_n: 200
+  soporte_es_caveat_no_bloqueo: true
+  soporte_n_2023_2024_donde: "COMMIT-2 (este CALC)"
+  soporte_n_2025_donde: "COMMIT-3, junto con R"
+  salida_si_sin_soporte: >-
+    la celda se rotula FUERA-DE-SOPORTE en esa ola, se emite igual su punto e
+    IC marcados, NO puntua en la adjudicacion. n = 0 -> NO-ESTIMABLE (null),
+    nunca 0.0.
+  c2_dieta: "los ocho marginales publicos sellados del arbitro (tramite-ola5-propuesta-v0.yaml:1715-1718, :1729-1731; tramite.yaml:497)"
+  c2_desenlace_id: "evade_norma::BP1_20==2 AND BP1_23 in {04,05,06,08}"
+  c2_punto_desde: "marginales sellados, citados y no recalculados"
+  c2_ic_desde: "replicas compartidas de esos mismos marginales re-derivados por el modulo congelado"
+  c2_forma: "log-aditiva: expit(logit p_s + logit p_d - logit p)"
+  c2_rotulo_supuesto: "ausencia de interaccion en escala logit"
+  c2_rotulo_prohibido: "independencia"
+  c2_rechazo: "SIN-DEFINIR si algun marginal es exactamente 0 o 1, en el punto o en una replica; si el PUNTO es SIN-DEFINIR la celda es NO-CONSTRUIBLE (null), sin recorte y sin sustitucion"
+  c2_funcion_de_referencia: "tests/test_celda_d_c2.py::piso_log_aditivo -- el medidor la IMPORTA, no la reimplementa"
+  c6_forma: "expit(logit C2 + I24(s,d))"
+  c7_forma: "expit(logit C2 + (I23(s,d) + I24(s,d))/2)"
+  interaccion_forma: "I_w(s,d) = logit p_w(s,d) - [logit p_w(s) + logit p_w(d) - logit p_w]"
+  marginales_sellados:
+    S1: {p: 0.493221, ic95: [0.462397, 0.524253], n: 3491, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1715"}
+    S2: {p: 0.567369, ic95: [0.548202, 0.586405], n: 7739, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1716"}
+    S3: {p: 0.543368, ic95: [0.522009, 0.564012], n: 11476, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1717"}
+    S4: {p: 0.590093, ic95: [0.574224, 0.605663], n: 17474, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1718"}
+    D1: {p: 0.403310, ic95: [0.377390, 0.428694], n: 3770, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1729"}
+    D2: {p: 0.522090, ic95: [0.503125, 0.540579], n: 8039, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1730"}
+    D3: {p: 0.592703, ic95: [0.579102, 0.606130], n: 28471, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1731"}
+    NAC: {p: 0.562774, ic95: [0.551982, 0.573448], n: 40280, linea: "milpa/tramite.yaml:497 y :522 (ic95); milpa/tramite-ola5-propuesta-v0.yaml:871; prereg-caja-ENVIPE-EVASION-NORMA §1"}
+  marginales_sellados_cobertura_escolaridad: 0.997517
+  control_arbitro_tol_p: 1.0e-6
+  control_arbitro_tol_ic: 1.0e-4
+  control_arbitro_ramas: "REPRODUCE si |delta p| <= 1e-6 Y |delta IC| <= 1e-4 en los ocho grupos; NO-REPRODUCE en otro caso, con delta con signo y delta n, sin ajustar nada. Un NO-REPRODUCE no invalida el piloto: invalida la afirmacion de que este medidor reproduce la receta del arbitro."
+  guardia_reserva: "tools/celda_d/marginales_reproduccion.py: marginal(ola, grupo: str) UN eje por firma; huella de la ola; cruce() lanza ReservaRota sobre ola reservada; probado en cada corrida (RESULT-TRA-SXD12-G-RESERVA-CRUCE-2025-DERIVADO)"
+  c4_faltantes:
+    - "h_r inexistente -- milpa/src/emisor.py:364 (`exige el enlace indice->adopcion (h_r) -- OLA futura, declarado`)"
+    - "theta de G1 por celda escolaridad_proxy x dominio NO MEDIDO -- milpa/theta-esquema-e1-v1_0.yaml:405-416 (G1 clase ASIGNADO, identificacion AUSENCIA_DE_FACTO, universo NO-DECLARADO)"
+  c5_cita: "milpa/tramite.yaml:497 -- evade_norma_envipe2025 p=0.562774 clase MEDIDO, copia del arbitro (enmienda_envipe2025, firma b1); diagnostico |0.562774 - R| por celda en COMMIT-3"
+  p_nacional_c5: 0.562774
+  l_estado: "NO-ENTRA por Firma 1 (`Sin L`)"
+  criterio_indecidible_verbatim: "si ambos caen dentro del IC de R o si |d_L-d_M| < 0.5*EE(R)"
+  criterio_indecidible_fuente: "forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md:38"
+  ee_r: "(IC95sup - IC95inf)/3.92"
+  umbral_celdas_gana: 9
+  umbral_celdas_puntuadas: 9
+  paradas_admisibles: [ADJUDICADA, INDECIDIBLE, SIN-CANDIDATO-SUPERIOR, FUERA-DE-SOPORTE]
+  adopcion: NINGUNA
+  r_no_existe_en_este_commit: true
+
+resultados:
+  - {id: RESULT-TRA-SXD12-G-INPUT-ENVIPE2023-CSV-SHA256, tipo: texto, unidad: "sha256 del payload envipe2023_csv"}
+  - {id: RESULT-TRA-SXD12-G-INPUT-ENVIPE2024-CSV-SHA256, tipo: texto, unidad: "sha256 del payload envipe2024_csv"}
+  - {id: RESULT-TRA-SXD12-G-INPUT-ENVIPE2025-CSV-SHA256, tipo: texto, unidad: "sha256 del payload envipe2025_csv"}
+  - {id: RESULT-TRA-SXD12-G-INPUT-ENVIPE2023-FD-SHA256, tipo: texto, unidad: "sha256 del payload envipe2023_fd_pdf"}
+  - {id: RESULT-TRA-SXD12-G-INPUT-ENVIPE2024-FD-SHA256, tipo: texto, unidad: "sha256 del payload envipe2024_fd_pdf"}
+  - {id: RESULT-TRA-SXD12-G-INPUT-ENVIPE2025-FD-SHA256, tipo: texto, unidad: "sha256 del payload envipe2025_fd_pdf"}
+  - {id: RESULT-TRA-SXD12-G-W24-FILAS-ARCHIVO, tipo: entero, unidad: "filas de tmod_vic, ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-FILAS-UNIVERSO, tipo: entero, unidad: "filas con BP1_20 in {1,2}, ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-FILAS-BP1_20-FUERA, tipo: entero, unidad: "filas de tmod_vic con BP1_20 fuera de {1,2} (blanco u otro), ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-DELITOS-SIN-PERSONA, tipo: entero, unidad: "delitos del universo sin ID_PER en tsdem, ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-ESCOLARIDAD-FUERA, tipo: entero, unidad: "delitos del universo con escolaridad_proxy = (fuera): NIV 99/blanco o sin persona, ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-DOMINIO-FUERA, tipo: entero, unidad: "delitos del universo con DOMINIO fuera de {U,C,R}, ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-BP1_23-VACIO-EN-NO-DENUNCIA, tipo: entero, unidad: "delitos con BP1_20 = 2 y BP1_23 vacio/blanco (cuentan 0), ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-NUMERADOR, tipo: entero, unidad: "delitos con evade_norma = 1 en el universo, ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-ESTRATOS, tipo: entero, unidad: "EST_DIS distintos en el universo, ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-UPM, tipo: entero, unidad: "pares (EST_DIS, UPM_DIS) distintos en el universo, ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "estratos con una sola UPM (IC conservador), ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-ENCODING-TMODVIC, tipo: texto, unidad: "encoding con que se decodifico tmod_vic (utf-8 o caida declarada a latin-1), ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-COBERTURA-ESCOLARIDAD, tipo: proporcion, unidad: "1 - escolaridad_fuera / filas_universo, ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-S1-N, tipo: entero, unidad: "delitos del universo en el grupo S1 = hasta primaria, ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-S1-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo S1 = hasta primaria, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-S1-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo S1, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-S1-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo S1, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-S2-N, tipo: entero, unidad: "delitos del universo en el grupo S2 = secundaria, ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-S2-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo S2 = secundaria, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-S2-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo S2, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-S2-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo S2, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-S3-N, tipo: entero, unidad: "delitos del universo en el grupo S3 = media superior, ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-S3-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo S3 = media superior, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-S3-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo S3, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-S3-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo S3, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-S4-N, tipo: entero, unidad: "delitos del universo en el grupo S4 = superior, ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-S4-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo S4 = superior, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-S4-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo S4, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-S4-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo S4, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-D1-N, tipo: entero, unidad: "delitos del universo en el grupo D1 = Rural, ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-D1-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo D1 = Rural, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-D1-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo D1, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-D1-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo D1, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-D2-N, tipo: entero, unidad: "delitos del universo en el grupo D2 = Complemento urbano, ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-D2-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo D2 = Complemento urbano, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-D2-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo D2, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-D2-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo D2, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-D3-N, tipo: entero, unidad: "delitos del universo en el grupo D3 = Urbano, ENVIPE 2024 (ola de desarrollo, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-D3-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo D3 = Urbano, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-D3-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo D3, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-MARG-D3-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo D3, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W24-P-NACIONAL, tipo: proporcion, unidad: "p(evade_norma) nacional ponderada, universo entero, ENVIPE 2024 (ola de desarrollo, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-FILAS-ARCHIVO, tipo: entero, unidad: "filas de tmod_vic, ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-FILAS-UNIVERSO, tipo: entero, unidad: "filas con BP1_20 in {1,2}, ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-FILAS-BP1_20-FUERA, tipo: entero, unidad: "filas de tmod_vic con BP1_20 fuera de {1,2} (blanco u otro), ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-DELITOS-SIN-PERSONA, tipo: entero, unidad: "delitos del universo sin ID_PER en tsdem, ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-ESCOLARIDAD-FUERA, tipo: entero, unidad: "delitos del universo con escolaridad_proxy = (fuera): NIV 99/blanco o sin persona, ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-DOMINIO-FUERA, tipo: entero, unidad: "delitos del universo con DOMINIO fuera de {U,C,R}, ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-BP1_23-VACIO-EN-NO-DENUNCIA, tipo: entero, unidad: "delitos con BP1_20 = 2 y BP1_23 vacio/blanco (cuentan 0), ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-NUMERADOR, tipo: entero, unidad: "delitos con evade_norma = 1 en el universo, ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-ESTRATOS, tipo: entero, unidad: "EST_DIS distintos en el universo, ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-UPM, tipo: entero, unidad: "pares (EST_DIS, UPM_DIS) distintos en el universo, ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "estratos con una sola UPM (IC conservador), ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-ENCODING-TMODVIC, tipo: texto, unidad: "encoding con que se decodifico tmod_vic (utf-8 o caida declarada a latin-1), ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-COBERTURA-ESCOLARIDAD, tipo: proporcion, unidad: "1 - escolaridad_fuera / filas_universo, ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-S1-N, tipo: entero, unidad: "delitos del universo en el grupo S1 = hasta primaria, ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-S1-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo S1 = hasta primaria, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-S1-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo S1, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-S1-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo S1, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-S2-N, tipo: entero, unidad: "delitos del universo en el grupo S2 = secundaria, ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-S2-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo S2 = secundaria, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-S2-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo S2, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-S2-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo S2, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-S3-N, tipo: entero, unidad: "delitos del universo en el grupo S3 = media superior, ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-S3-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo S3 = media superior, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-S3-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo S3, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-S3-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo S3, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-S4-N, tipo: entero, unidad: "delitos del universo en el grupo S4 = superior, ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-S4-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo S4 = superior, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-S4-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo S4, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-S4-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo S4, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-D1-N, tipo: entero, unidad: "delitos del universo en el grupo D1 = Rural, ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-D1-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo D1 = Rural, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-D1-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo D1, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-D1-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo D1, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-D2-N, tipo: entero, unidad: "delitos del universo en el grupo D2 = Complemento urbano, ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-D2-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo D2 = Complemento urbano, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-D2-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo D2, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-D2-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo D2, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-D3-N, tipo: entero, unidad: "delitos del universo en el grupo D3 = Urbano, ENVIPE 2023 (insumo de C7, entera)"}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-D3-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo D3 = Urbano, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-D3-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo D3, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-MARG-D3-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo D3, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-W23-P-NACIONAL, tipo: proporcion, unidad: "p(evade_norma) nacional ponderada, universo entero, ENVIPE 2023 (insumo de C7, entera)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-FILAS-ARCHIVO, tipo: entero, unidad: "filas de tmod_vic, ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-FILAS-UNIVERSO, tipo: entero, unidad: "filas con BP1_20 in {1,2}, ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-FILAS-BP1_20-FUERA, tipo: entero, unidad: "filas de tmod_vic con BP1_20 fuera de {1,2} (blanco u otro), ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-DELITOS-SIN-PERSONA, tipo: entero, unidad: "delitos del universo sin ID_PER en tsdem, ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-ESCOLARIDAD-FUERA, tipo: entero, unidad: "delitos del universo con escolaridad_proxy = (fuera): NIV 99/blanco o sin persona, ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-DOMINIO-FUERA, tipo: entero, unidad: "delitos del universo con DOMINIO fuera de {U,C,R}, ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-BP1_23-VACIO-EN-NO-DENUNCIA, tipo: entero, unidad: "delitos con BP1_20 = 2 y BP1_23 vacio/blanco (cuentan 0), ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-NUMERADOR, tipo: entero, unidad: "delitos con evade_norma = 1 en el universo, ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-ESTRATOS, tipo: entero, unidad: "EST_DIS distintos en el universo, ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-UPM, tipo: entero, unidad: "pares (EST_DIS, UPM_DIS) distintos en el universo, ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "estratos con una sola UPM (IC conservador), ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-ENCODING-TMODVIC, tipo: texto, unidad: "encoding con que se decodifico tmod_vic (utf-8 o caida declarada a latin-1), ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-COBERTURA-ESCOLARIDAD, tipo: proporcion, unidad: "1 - escolaridad_fuera / filas_universo, ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-S1-N, tipo: entero, unidad: "delitos del universo en el grupo S1 = hasta primaria, ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-S1-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo S1 = hasta primaria, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-S1-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo S1, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-S1-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo S1, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-S2-N, tipo: entero, unidad: "delitos del universo en el grupo S2 = secundaria, ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-S2-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo S2 = secundaria, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-S2-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo S2, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-S2-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo S2, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-S3-N, tipo: entero, unidad: "delitos del universo en el grupo S3 = media superior, ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-S3-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo S3 = media superior, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-S3-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo S3, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-S3-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo S3, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-S4-N, tipo: entero, unidad: "delitos del universo en el grupo S4 = superior, ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-S4-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo S4 = superior, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-S4-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo S4, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-S4-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo S4, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-D1-N, tipo: entero, unidad: "delitos del universo en el grupo D1 = Rural, ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-D1-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo D1 = Rural, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-D1-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo D1, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-D1-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo D1, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-D2-N, tipo: entero, unidad: "delitos del universo en el grupo D2 = Complemento urbano, ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-D2-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo D2 = Complemento urbano, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-D2-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo D2, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-D2-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo D2, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-D3-N, tipo: entero, unidad: "delitos del universo en el grupo D3 = Urbano, ENVIPE 2025 (RESERVADA: solo marginales de un eje)"}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-D3-P, tipo: proporcion, unidad: "p(evade_norma) ponderada FAC_DEL, grupo D3 = Urbano, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-D3-IC95INF, tipo: proporcion, unidad: "IC95 inferior (wprop_ic_conglomerado, receta del arbitro), grupo D3, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-MARG-D3-IC95SUP, tipo: proporcion, unidad: "IC95 superior (wprop_ic_conglomerado, receta del arbitro), grupo D3, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-M25-P-NACIONAL, tipo: proporcion, unidad: "p(evade_norma) nacional ponderada, universo entero, ENVIPE 2025 (RESERVADA: solo marginales de un eje)", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-COBERTURA-CRUCE-2024, tipo: proporcion, unidad: "delitos clasificables en ambos ejes / universo, 2024"}
+  - {id: RESULT-TRA-SXD12-G-COBERTURA-CRUCE-2023, tipo: proporcion, unidad: "delitos clasificables en ambos ejes / universo, 2023"}
+  - {id: RESULT-TRA-SXD12-G-RESERVA-OLA, tipo: texto, unidad: "ola cargada con reservada=True por el modulo congelado"}
+  - {id: RESULT-TRA-SXD12-G-RESERVA-CRUCE-2025-DERIVADO, tipo: texto, unidad: "NO si tools/celda_d/marginales_reproduccion.py::cruce lanzo ReservaRota sobre la ola reservada al intentarlo en esta corrida; SI = defecto. Funcion del codigo, no del arbol (NC-0313)"}
+  - {id: RESULT-TRA-SXD12-G-RESERVA-GUARDIA-PROBADA, tipo: texto, unidad: "mensaje de la excepcion ReservaRota capturada (o el defecto)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-S1-DELTA-P, tipo: flotante, unidad: "p re-derivado menos p sellado del arbitro, grupo S1 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-S1-DELTA-N, tipo: entero, unidad: "n re-derivado menos n sellado, grupo S1 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-S1-DELTA-IC95INF, tipo: flotante, unidad: "IC95inf re-derivado menos sellado, grupo S1 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-S1-DELTA-IC95SUP, tipo: flotante, unidad: "IC95sup re-derivado menos sellado, grupo S1 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-S2-DELTA-P, tipo: flotante, unidad: "p re-derivado menos p sellado del arbitro, grupo S2 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-S2-DELTA-N, tipo: entero, unidad: "n re-derivado menos n sellado, grupo S2 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-S2-DELTA-IC95INF, tipo: flotante, unidad: "IC95inf re-derivado menos sellado, grupo S2 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-S2-DELTA-IC95SUP, tipo: flotante, unidad: "IC95sup re-derivado menos sellado, grupo S2 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-S3-DELTA-P, tipo: flotante, unidad: "p re-derivado menos p sellado del arbitro, grupo S3 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-S3-DELTA-N, tipo: entero, unidad: "n re-derivado menos n sellado, grupo S3 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-S3-DELTA-IC95INF, tipo: flotante, unidad: "IC95inf re-derivado menos sellado, grupo S3 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-S3-DELTA-IC95SUP, tipo: flotante, unidad: "IC95sup re-derivado menos sellado, grupo S3 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-S4-DELTA-P, tipo: flotante, unidad: "p re-derivado menos p sellado del arbitro, grupo S4 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-S4-DELTA-N, tipo: entero, unidad: "n re-derivado menos n sellado, grupo S4 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-S4-DELTA-IC95INF, tipo: flotante, unidad: "IC95inf re-derivado menos sellado, grupo S4 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-S4-DELTA-IC95SUP, tipo: flotante, unidad: "IC95sup re-derivado menos sellado, grupo S4 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-D1-DELTA-P, tipo: flotante, unidad: "p re-derivado menos p sellado del arbitro, grupo D1 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-D1-DELTA-N, tipo: entero, unidad: "n re-derivado menos n sellado, grupo D1 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-D1-DELTA-IC95INF, tipo: flotante, unidad: "IC95inf re-derivado menos sellado, grupo D1 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-D1-DELTA-IC95SUP, tipo: flotante, unidad: "IC95sup re-derivado menos sellado, grupo D1 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-D2-DELTA-P, tipo: flotante, unidad: "p re-derivado menos p sellado del arbitro, grupo D2 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-D2-DELTA-N, tipo: entero, unidad: "n re-derivado menos n sellado, grupo D2 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-D2-DELTA-IC95INF, tipo: flotante, unidad: "IC95inf re-derivado menos sellado, grupo D2 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-D2-DELTA-IC95SUP, tipo: flotante, unidad: "IC95sup re-derivado menos sellado, grupo D2 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-D3-DELTA-P, tipo: flotante, unidad: "p re-derivado menos p sellado del arbitro, grupo D3 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-D3-DELTA-N, tipo: entero, unidad: "n re-derivado menos n sellado, grupo D3 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-D3-DELTA-IC95INF, tipo: flotante, unidad: "IC95inf re-derivado menos sellado, grupo D3 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-D3-DELTA-IC95SUP, tipo: flotante, unidad: "IC95sup re-derivado menos sellado, grupo D3 (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-NAC-DELTA-P, tipo: flotante, unidad: "p re-derivado menos p sellado del arbitro, grupo NAC (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-NAC-DELTA-N, tipo: entero, unidad: "n re-derivado menos n sellado, grupo NAC (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-NAC-DELTA-IC95INF, tipo: flotante, unidad: "IC95inf re-derivado menos sellado, grupo NAC (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-NAC-DELTA-IC95SUP, tipo: flotante, unidad: "IC95sup re-derivado menos sellado, grupo NAC (2025)"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-DELTA-P-MAX, tipo: flotante, unidad: "maximo |delta p| sobre los ocho grupos"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-DELTA-IC-MAX, tipo: flotante, unidad: "maximo |delta IC| sobre los ocho grupos"}
+  - {id: RESULT-TRA-SXD12-G-CTRL-ARBITRO-VEREDICTO, tipo: texto, unidad: "REPRODUCE (|dp|<=1e-6 y |dIC|<=1e-4 en los ocho) o NO-REPRODUCE"}
+  - {id: RESULT-TRA-SXD12-C1-N-S1xD1, tipo: entero, unidad: "delitos 2024 sin ponderar, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-C1-NUM-S1xD1, tipo: entero, unidad: "delitos 2024 con evade_norma = 1, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-C1-SOPORTE-S1xD1, tipo: texto, unidad: "SOPORTE-OK si n_2024 >= 200, si no FUERA-DE-SOPORTE, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-C1-P-S1xD1, tipo: proporcion, unidad: "C1 persistencia: p_2024(s,d), celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95INF-S1xD1, tipo: proporcion, unidad: "C1 IC95 inferior, replicas compartidas 2024, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95SUP-S1xD1, tipo: proporcion, unidad: "C1 IC95 superior, replicas compartidas 2024, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-N-S1xD1, tipo: entero, unidad: "delitos 2023 sin ponderar, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-W23-SOPORTE-S1xD1, tipo: texto, unidad: "SOPORTE-OK si n_2023 >= 200, si no FUERA-DE-SOPORTE, celda S1xD1 = hasta primaria x Rural"}
+  - {id: RESULT-TRA-SXD12-W23-P-S1xD1, tipo: proporcion, unidad: "p_2023(s,d), insumo de C7, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95INF-S1xD1, tipo: proporcion, unidad: "IC95 inferior de p_2023(s,d), replicas compartidas 2023, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95SUP-S1xD1, tipo: proporcion, unidad: "IC95 superior de p_2023(s,d), replicas compartidas 2023, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-N-S1xD2, tipo: entero, unidad: "delitos 2024 sin ponderar, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-C1-NUM-S1xD2, tipo: entero, unidad: "delitos 2024 con evade_norma = 1, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-C1-SOPORTE-S1xD2, tipo: texto, unidad: "SOPORTE-OK si n_2024 >= 200, si no FUERA-DE-SOPORTE, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-C1-P-S1xD2, tipo: proporcion, unidad: "C1 persistencia: p_2024(s,d), celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95INF-S1xD2, tipo: proporcion, unidad: "C1 IC95 inferior, replicas compartidas 2024, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95SUP-S1xD2, tipo: proporcion, unidad: "C1 IC95 superior, replicas compartidas 2024, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-N-S1xD2, tipo: entero, unidad: "delitos 2023 sin ponderar, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-W23-SOPORTE-S1xD2, tipo: texto, unidad: "SOPORTE-OK si n_2023 >= 200, si no FUERA-DE-SOPORTE, celda S1xD2 = hasta primaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-W23-P-S1xD2, tipo: proporcion, unidad: "p_2023(s,d), insumo de C7, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95INF-S1xD2, tipo: proporcion, unidad: "IC95 inferior de p_2023(s,d), replicas compartidas 2023, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95SUP-S1xD2, tipo: proporcion, unidad: "IC95 superior de p_2023(s,d), replicas compartidas 2023, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-N-S1xD3, tipo: entero, unidad: "delitos 2024 sin ponderar, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-C1-NUM-S1xD3, tipo: entero, unidad: "delitos 2024 con evade_norma = 1, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-C1-SOPORTE-S1xD3, tipo: texto, unidad: "SOPORTE-OK si n_2024 >= 200, si no FUERA-DE-SOPORTE, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-C1-P-S1xD3, tipo: proporcion, unidad: "C1 persistencia: p_2024(s,d), celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95INF-S1xD3, tipo: proporcion, unidad: "C1 IC95 inferior, replicas compartidas 2024, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95SUP-S1xD3, tipo: proporcion, unidad: "C1 IC95 superior, replicas compartidas 2024, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-N-S1xD3, tipo: entero, unidad: "delitos 2023 sin ponderar, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-W23-SOPORTE-S1xD3, tipo: texto, unidad: "SOPORTE-OK si n_2023 >= 200, si no FUERA-DE-SOPORTE, celda S1xD3 = hasta primaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-W23-P-S1xD3, tipo: proporcion, unidad: "p_2023(s,d), insumo de C7, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95INF-S1xD3, tipo: proporcion, unidad: "IC95 inferior de p_2023(s,d), replicas compartidas 2023, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95SUP-S1xD3, tipo: proporcion, unidad: "IC95 superior de p_2023(s,d), replicas compartidas 2023, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-N-S2xD1, tipo: entero, unidad: "delitos 2024 sin ponderar, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-C1-NUM-S2xD1, tipo: entero, unidad: "delitos 2024 con evade_norma = 1, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-C1-SOPORTE-S2xD1, tipo: texto, unidad: "SOPORTE-OK si n_2024 >= 200, si no FUERA-DE-SOPORTE, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-C1-P-S2xD1, tipo: proporcion, unidad: "C1 persistencia: p_2024(s,d), celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95INF-S2xD1, tipo: proporcion, unidad: "C1 IC95 inferior, replicas compartidas 2024, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95SUP-S2xD1, tipo: proporcion, unidad: "C1 IC95 superior, replicas compartidas 2024, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-N-S2xD1, tipo: entero, unidad: "delitos 2023 sin ponderar, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-W23-SOPORTE-S2xD1, tipo: texto, unidad: "SOPORTE-OK si n_2023 >= 200, si no FUERA-DE-SOPORTE, celda S2xD1 = secundaria x Rural"}
+  - {id: RESULT-TRA-SXD12-W23-P-S2xD1, tipo: proporcion, unidad: "p_2023(s,d), insumo de C7, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95INF-S2xD1, tipo: proporcion, unidad: "IC95 inferior de p_2023(s,d), replicas compartidas 2023, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95SUP-S2xD1, tipo: proporcion, unidad: "IC95 superior de p_2023(s,d), replicas compartidas 2023, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-N-S2xD2, tipo: entero, unidad: "delitos 2024 sin ponderar, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-C1-NUM-S2xD2, tipo: entero, unidad: "delitos 2024 con evade_norma = 1, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-C1-SOPORTE-S2xD2, tipo: texto, unidad: "SOPORTE-OK si n_2024 >= 200, si no FUERA-DE-SOPORTE, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-C1-P-S2xD2, tipo: proporcion, unidad: "C1 persistencia: p_2024(s,d), celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95INF-S2xD2, tipo: proporcion, unidad: "C1 IC95 inferior, replicas compartidas 2024, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95SUP-S2xD2, tipo: proporcion, unidad: "C1 IC95 superior, replicas compartidas 2024, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-N-S2xD2, tipo: entero, unidad: "delitos 2023 sin ponderar, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-W23-SOPORTE-S2xD2, tipo: texto, unidad: "SOPORTE-OK si n_2023 >= 200, si no FUERA-DE-SOPORTE, celda S2xD2 = secundaria x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-W23-P-S2xD2, tipo: proporcion, unidad: "p_2023(s,d), insumo de C7, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95INF-S2xD2, tipo: proporcion, unidad: "IC95 inferior de p_2023(s,d), replicas compartidas 2023, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95SUP-S2xD2, tipo: proporcion, unidad: "IC95 superior de p_2023(s,d), replicas compartidas 2023, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-N-S2xD3, tipo: entero, unidad: "delitos 2024 sin ponderar, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-C1-NUM-S2xD3, tipo: entero, unidad: "delitos 2024 con evade_norma = 1, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-C1-SOPORTE-S2xD3, tipo: texto, unidad: "SOPORTE-OK si n_2024 >= 200, si no FUERA-DE-SOPORTE, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-C1-P-S2xD3, tipo: proporcion, unidad: "C1 persistencia: p_2024(s,d), celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95INF-S2xD3, tipo: proporcion, unidad: "C1 IC95 inferior, replicas compartidas 2024, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95SUP-S2xD3, tipo: proporcion, unidad: "C1 IC95 superior, replicas compartidas 2024, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-N-S2xD3, tipo: entero, unidad: "delitos 2023 sin ponderar, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-W23-SOPORTE-S2xD3, tipo: texto, unidad: "SOPORTE-OK si n_2023 >= 200, si no FUERA-DE-SOPORTE, celda S2xD3 = secundaria x Urbano"}
+  - {id: RESULT-TRA-SXD12-W23-P-S2xD3, tipo: proporcion, unidad: "p_2023(s,d), insumo de C7, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95INF-S2xD3, tipo: proporcion, unidad: "IC95 inferior de p_2023(s,d), replicas compartidas 2023, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95SUP-S2xD3, tipo: proporcion, unidad: "IC95 superior de p_2023(s,d), replicas compartidas 2023, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-N-S3xD1, tipo: entero, unidad: "delitos 2024 sin ponderar, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-C1-NUM-S3xD1, tipo: entero, unidad: "delitos 2024 con evade_norma = 1, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-C1-SOPORTE-S3xD1, tipo: texto, unidad: "SOPORTE-OK si n_2024 >= 200, si no FUERA-DE-SOPORTE, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-C1-P-S3xD1, tipo: proporcion, unidad: "C1 persistencia: p_2024(s,d), celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95INF-S3xD1, tipo: proporcion, unidad: "C1 IC95 inferior, replicas compartidas 2024, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95SUP-S3xD1, tipo: proporcion, unidad: "C1 IC95 superior, replicas compartidas 2024, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-N-S3xD1, tipo: entero, unidad: "delitos 2023 sin ponderar, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-W23-SOPORTE-S3xD1, tipo: texto, unidad: "SOPORTE-OK si n_2023 >= 200, si no FUERA-DE-SOPORTE, celda S3xD1 = media superior x Rural"}
+  - {id: RESULT-TRA-SXD12-W23-P-S3xD1, tipo: proporcion, unidad: "p_2023(s,d), insumo de C7, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95INF-S3xD1, tipo: proporcion, unidad: "IC95 inferior de p_2023(s,d), replicas compartidas 2023, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95SUP-S3xD1, tipo: proporcion, unidad: "IC95 superior de p_2023(s,d), replicas compartidas 2023, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-N-S3xD2, tipo: entero, unidad: "delitos 2024 sin ponderar, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-C1-NUM-S3xD2, tipo: entero, unidad: "delitos 2024 con evade_norma = 1, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-C1-SOPORTE-S3xD2, tipo: texto, unidad: "SOPORTE-OK si n_2024 >= 200, si no FUERA-DE-SOPORTE, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-C1-P-S3xD2, tipo: proporcion, unidad: "C1 persistencia: p_2024(s,d), celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95INF-S3xD2, tipo: proporcion, unidad: "C1 IC95 inferior, replicas compartidas 2024, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95SUP-S3xD2, tipo: proporcion, unidad: "C1 IC95 superior, replicas compartidas 2024, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-N-S3xD2, tipo: entero, unidad: "delitos 2023 sin ponderar, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-W23-SOPORTE-S3xD2, tipo: texto, unidad: "SOPORTE-OK si n_2023 >= 200, si no FUERA-DE-SOPORTE, celda S3xD2 = media superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-W23-P-S3xD2, tipo: proporcion, unidad: "p_2023(s,d), insumo de C7, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95INF-S3xD2, tipo: proporcion, unidad: "IC95 inferior de p_2023(s,d), replicas compartidas 2023, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95SUP-S3xD2, tipo: proporcion, unidad: "IC95 superior de p_2023(s,d), replicas compartidas 2023, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-N-S3xD3, tipo: entero, unidad: "delitos 2024 sin ponderar, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-C1-NUM-S3xD3, tipo: entero, unidad: "delitos 2024 con evade_norma = 1, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-C1-SOPORTE-S3xD3, tipo: texto, unidad: "SOPORTE-OK si n_2024 >= 200, si no FUERA-DE-SOPORTE, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-C1-P-S3xD3, tipo: proporcion, unidad: "C1 persistencia: p_2024(s,d), celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95INF-S3xD3, tipo: proporcion, unidad: "C1 IC95 inferior, replicas compartidas 2024, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95SUP-S3xD3, tipo: proporcion, unidad: "C1 IC95 superior, replicas compartidas 2024, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-N-S3xD3, tipo: entero, unidad: "delitos 2023 sin ponderar, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-W23-SOPORTE-S3xD3, tipo: texto, unidad: "SOPORTE-OK si n_2023 >= 200, si no FUERA-DE-SOPORTE, celda S3xD3 = media superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-W23-P-S3xD3, tipo: proporcion, unidad: "p_2023(s,d), insumo de C7, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95INF-S3xD3, tipo: proporcion, unidad: "IC95 inferior de p_2023(s,d), replicas compartidas 2023, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95SUP-S3xD3, tipo: proporcion, unidad: "IC95 superior de p_2023(s,d), replicas compartidas 2023, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-N-S4xD1, tipo: entero, unidad: "delitos 2024 sin ponderar, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-C1-NUM-S4xD1, tipo: entero, unidad: "delitos 2024 con evade_norma = 1, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-C1-SOPORTE-S4xD1, tipo: texto, unidad: "SOPORTE-OK si n_2024 >= 200, si no FUERA-DE-SOPORTE, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-C1-P-S4xD1, tipo: proporcion, unidad: "C1 persistencia: p_2024(s,d), celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95INF-S4xD1, tipo: proporcion, unidad: "C1 IC95 inferior, replicas compartidas 2024, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95SUP-S4xD1, tipo: proporcion, unidad: "C1 IC95 superior, replicas compartidas 2024, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-N-S4xD1, tipo: entero, unidad: "delitos 2023 sin ponderar, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-W23-SOPORTE-S4xD1, tipo: texto, unidad: "SOPORTE-OK si n_2023 >= 200, si no FUERA-DE-SOPORTE, celda S4xD1 = superior x Rural"}
+  - {id: RESULT-TRA-SXD12-W23-P-S4xD1, tipo: proporcion, unidad: "p_2023(s,d), insumo de C7, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95INF-S4xD1, tipo: proporcion, unidad: "IC95 inferior de p_2023(s,d), replicas compartidas 2023, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95SUP-S4xD1, tipo: proporcion, unidad: "IC95 superior de p_2023(s,d), replicas compartidas 2023, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-N-S4xD2, tipo: entero, unidad: "delitos 2024 sin ponderar, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-C1-NUM-S4xD2, tipo: entero, unidad: "delitos 2024 con evade_norma = 1, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-C1-SOPORTE-S4xD2, tipo: texto, unidad: "SOPORTE-OK si n_2024 >= 200, si no FUERA-DE-SOPORTE, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-C1-P-S4xD2, tipo: proporcion, unidad: "C1 persistencia: p_2024(s,d), celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95INF-S4xD2, tipo: proporcion, unidad: "C1 IC95 inferior, replicas compartidas 2024, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95SUP-S4xD2, tipo: proporcion, unidad: "C1 IC95 superior, replicas compartidas 2024, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-N-S4xD2, tipo: entero, unidad: "delitos 2023 sin ponderar, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-W23-SOPORTE-S4xD2, tipo: texto, unidad: "SOPORTE-OK si n_2023 >= 200, si no FUERA-DE-SOPORTE, celda S4xD2 = superior x Complemento urbano"}
+  - {id: RESULT-TRA-SXD12-W23-P-S4xD2, tipo: proporcion, unidad: "p_2023(s,d), insumo de C7, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95INF-S4xD2, tipo: proporcion, unidad: "IC95 inferior de p_2023(s,d), replicas compartidas 2023, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95SUP-S4xD2, tipo: proporcion, unidad: "IC95 superior de p_2023(s,d), replicas compartidas 2023, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-N-S4xD3, tipo: entero, unidad: "delitos 2024 sin ponderar, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-C1-NUM-S4xD3, tipo: entero, unidad: "delitos 2024 con evade_norma = 1, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-C1-SOPORTE-S4xD3, tipo: texto, unidad: "SOPORTE-OK si n_2024 >= 200, si no FUERA-DE-SOPORTE, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-C1-P-S4xD3, tipo: proporcion, unidad: "C1 persistencia: p_2024(s,d), celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95INF-S4xD3, tipo: proporcion, unidad: "C1 IC95 inferior, replicas compartidas 2024, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C1-IC95SUP-S4xD3, tipo: proporcion, unidad: "C1 IC95 superior, replicas compartidas 2024, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-N-S4xD3, tipo: entero, unidad: "delitos 2023 sin ponderar, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-W23-SOPORTE-S4xD3, tipo: texto, unidad: "SOPORTE-OK si n_2023 >= 200, si no FUERA-DE-SOPORTE, celda S4xD3 = superior x Urbano"}
+  - {id: RESULT-TRA-SXD12-W23-P-S4xD3, tipo: proporcion, unidad: "p_2023(s,d), insumo de C7, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95INF-S4xD3, tipo: proporcion, unidad: "IC95 inferior de p_2023(s,d), replicas compartidas 2023, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-W23-IC95SUP-S4xD3, tipo: proporcion, unidad: "IC95 superior de p_2023(s,d), replicas compartidas 2023, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-C1-CELDAS-FUERA-DE-SOPORTE-2024, tipo: entero, unidad: "celdas con n_2024 < 200"}
+  - {id: RESULT-TRA-SXD12-G-W23-CELDAS-FUERA-DE-SOPORTE, tipo: entero, unidad: "celdas con n_2023 < 200"}
+  - {id: RESULT-TRA-SXD12-I24-S1xD1, tipo: flotante, unidad: "interaccion logit 2024: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95INF-S1xD1, tipo: flotante, unidad: "IC95 inferior de la interaccion 2024, replicas compartidas, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95SUP-S1xD1, tipo: flotante, unidad: "IC95 superior de la interaccion 2024, replicas compartidas, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-S1xD1, tipo: flotante, unidad: "interaccion logit 2023: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95INF-S1xD1, tipo: flotante, unidad: "IC95 inferior de la interaccion 2023, replicas compartidas, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95SUP-S1xD1, tipo: flotante, unidad: "IC95 superior de la interaccion 2023, replicas compartidas, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-S1xD2, tipo: flotante, unidad: "interaccion logit 2024: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95INF-S1xD2, tipo: flotante, unidad: "IC95 inferior de la interaccion 2024, replicas compartidas, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95SUP-S1xD2, tipo: flotante, unidad: "IC95 superior de la interaccion 2024, replicas compartidas, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-S1xD2, tipo: flotante, unidad: "interaccion logit 2023: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95INF-S1xD2, tipo: flotante, unidad: "IC95 inferior de la interaccion 2023, replicas compartidas, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95SUP-S1xD2, tipo: flotante, unidad: "IC95 superior de la interaccion 2023, replicas compartidas, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-S1xD3, tipo: flotante, unidad: "interaccion logit 2024: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95INF-S1xD3, tipo: flotante, unidad: "IC95 inferior de la interaccion 2024, replicas compartidas, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95SUP-S1xD3, tipo: flotante, unidad: "IC95 superior de la interaccion 2024, replicas compartidas, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-S1xD3, tipo: flotante, unidad: "interaccion logit 2023: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95INF-S1xD3, tipo: flotante, unidad: "IC95 inferior de la interaccion 2023, replicas compartidas, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95SUP-S1xD3, tipo: flotante, unidad: "IC95 superior de la interaccion 2023, replicas compartidas, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-S2xD1, tipo: flotante, unidad: "interaccion logit 2024: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95INF-S2xD1, tipo: flotante, unidad: "IC95 inferior de la interaccion 2024, replicas compartidas, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95SUP-S2xD1, tipo: flotante, unidad: "IC95 superior de la interaccion 2024, replicas compartidas, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-S2xD1, tipo: flotante, unidad: "interaccion logit 2023: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95INF-S2xD1, tipo: flotante, unidad: "IC95 inferior de la interaccion 2023, replicas compartidas, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95SUP-S2xD1, tipo: flotante, unidad: "IC95 superior de la interaccion 2023, replicas compartidas, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-S2xD2, tipo: flotante, unidad: "interaccion logit 2024: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95INF-S2xD2, tipo: flotante, unidad: "IC95 inferior de la interaccion 2024, replicas compartidas, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95SUP-S2xD2, tipo: flotante, unidad: "IC95 superior de la interaccion 2024, replicas compartidas, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-S2xD2, tipo: flotante, unidad: "interaccion logit 2023: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95INF-S2xD2, tipo: flotante, unidad: "IC95 inferior de la interaccion 2023, replicas compartidas, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95SUP-S2xD2, tipo: flotante, unidad: "IC95 superior de la interaccion 2023, replicas compartidas, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-S2xD3, tipo: flotante, unidad: "interaccion logit 2024: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95INF-S2xD3, tipo: flotante, unidad: "IC95 inferior de la interaccion 2024, replicas compartidas, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95SUP-S2xD3, tipo: flotante, unidad: "IC95 superior de la interaccion 2024, replicas compartidas, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-S2xD3, tipo: flotante, unidad: "interaccion logit 2023: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95INF-S2xD3, tipo: flotante, unidad: "IC95 inferior de la interaccion 2023, replicas compartidas, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95SUP-S2xD3, tipo: flotante, unidad: "IC95 superior de la interaccion 2023, replicas compartidas, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-S3xD1, tipo: flotante, unidad: "interaccion logit 2024: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95INF-S3xD1, tipo: flotante, unidad: "IC95 inferior de la interaccion 2024, replicas compartidas, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95SUP-S3xD1, tipo: flotante, unidad: "IC95 superior de la interaccion 2024, replicas compartidas, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-S3xD1, tipo: flotante, unidad: "interaccion logit 2023: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95INF-S3xD1, tipo: flotante, unidad: "IC95 inferior de la interaccion 2023, replicas compartidas, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95SUP-S3xD1, tipo: flotante, unidad: "IC95 superior de la interaccion 2023, replicas compartidas, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-S3xD2, tipo: flotante, unidad: "interaccion logit 2024: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95INF-S3xD2, tipo: flotante, unidad: "IC95 inferior de la interaccion 2024, replicas compartidas, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95SUP-S3xD2, tipo: flotante, unidad: "IC95 superior de la interaccion 2024, replicas compartidas, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-S3xD2, tipo: flotante, unidad: "interaccion logit 2023: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95INF-S3xD2, tipo: flotante, unidad: "IC95 inferior de la interaccion 2023, replicas compartidas, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95SUP-S3xD2, tipo: flotante, unidad: "IC95 superior de la interaccion 2023, replicas compartidas, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-S3xD3, tipo: flotante, unidad: "interaccion logit 2024: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95INF-S3xD3, tipo: flotante, unidad: "IC95 inferior de la interaccion 2024, replicas compartidas, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95SUP-S3xD3, tipo: flotante, unidad: "IC95 superior de la interaccion 2024, replicas compartidas, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-S3xD3, tipo: flotante, unidad: "interaccion logit 2023: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95INF-S3xD3, tipo: flotante, unidad: "IC95 inferior de la interaccion 2023, replicas compartidas, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95SUP-S3xD3, tipo: flotante, unidad: "IC95 superior de la interaccion 2023, replicas compartidas, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-S4xD1, tipo: flotante, unidad: "interaccion logit 2024: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95INF-S4xD1, tipo: flotante, unidad: "IC95 inferior de la interaccion 2024, replicas compartidas, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95SUP-S4xD1, tipo: flotante, unidad: "IC95 superior de la interaccion 2024, replicas compartidas, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-S4xD1, tipo: flotante, unidad: "interaccion logit 2023: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95INF-S4xD1, tipo: flotante, unidad: "IC95 inferior de la interaccion 2023, replicas compartidas, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95SUP-S4xD1, tipo: flotante, unidad: "IC95 superior de la interaccion 2023, replicas compartidas, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-S4xD2, tipo: flotante, unidad: "interaccion logit 2024: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95INF-S4xD2, tipo: flotante, unidad: "IC95 inferior de la interaccion 2024, replicas compartidas, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95SUP-S4xD2, tipo: flotante, unidad: "IC95 superior de la interaccion 2024, replicas compartidas, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-S4xD2, tipo: flotante, unidad: "interaccion logit 2023: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95INF-S4xD2, tipo: flotante, unidad: "IC95 inferior de la interaccion 2023, replicas compartidas, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95SUP-S4xD2, tipo: flotante, unidad: "IC95 superior de la interaccion 2023, replicas compartidas, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-S4xD3, tipo: flotante, unidad: "interaccion logit 2024: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95INF-S4xD3, tipo: flotante, unidad: "IC95 inferior de la interaccion 2024, replicas compartidas, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I24-IC95SUP-S4xD3, tipo: flotante, unidad: "IC95 superior de la interaccion 2024, replicas compartidas, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-S4xD3, tipo: flotante, unidad: "interaccion logit 2023: logit p(s,d) - [logit p(s) + logit p(d) - logit p], celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95INF-S4xD3, tipo: flotante, unidad: "IC95 inferior de la interaccion 2023, replicas compartidas, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-I23-IC95SUP-S4xD3, tipo: flotante, unidad: "IC95 superior de la interaccion 2023, replicas compartidas, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-S1xD1, tipo: proporcion, unidad: "C2 piso log-aditivo sobre los marginales SELLADOS de 2025, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-REDERIVADO-S1xD1, tipo: proporcion, unidad: "C2 sobre los marginales 2025 re-derivados aqui (control), celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95INF-S1xD1, tipo: proporcion, unidad: "C2 IC95 inferior, replicas compartidas 2025 por la forma log-aditiva, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95SUP-S1xD1, tipo: proporcion, unidad: "C2 IC95 superior, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-P-S1xD1, tipo: proporcion, unidad: "C6 = expit(logit C2 + I24), celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95INF-S1xD1, tipo: proporcion, unidad: "C6 IC95 inferior, replica k de 2025 con replica k de 2024, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95SUP-S1xD1, tipo: proporcion, unidad: "C6 IC95 superior, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-P-S1xD1, tipo: proporcion, unidad: "C7 = expit(logit C2 + (I23 + I24)/2), celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95INF-S1xD1, tipo: proporcion, unidad: "C7 IC95 inferior, replica k de las tres olas, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95SUP-S1xD1, tipo: proporcion, unidad: "C7 IC95 superior, celda S1xD1 = hasta primaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-S1xD2, tipo: proporcion, unidad: "C2 piso log-aditivo sobre los marginales SELLADOS de 2025, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-REDERIVADO-S1xD2, tipo: proporcion, unidad: "C2 sobre los marginales 2025 re-derivados aqui (control), celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95INF-S1xD2, tipo: proporcion, unidad: "C2 IC95 inferior, replicas compartidas 2025 por la forma log-aditiva, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95SUP-S1xD2, tipo: proporcion, unidad: "C2 IC95 superior, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-P-S1xD2, tipo: proporcion, unidad: "C6 = expit(logit C2 + I24), celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95INF-S1xD2, tipo: proporcion, unidad: "C6 IC95 inferior, replica k de 2025 con replica k de 2024, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95SUP-S1xD2, tipo: proporcion, unidad: "C6 IC95 superior, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-P-S1xD2, tipo: proporcion, unidad: "C7 = expit(logit C2 + (I23 + I24)/2), celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95INF-S1xD2, tipo: proporcion, unidad: "C7 IC95 inferior, replica k de las tres olas, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95SUP-S1xD2, tipo: proporcion, unidad: "C7 IC95 superior, celda S1xD2 = hasta primaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-S1xD3, tipo: proporcion, unidad: "C2 piso log-aditivo sobre los marginales SELLADOS de 2025, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-REDERIVADO-S1xD3, tipo: proporcion, unidad: "C2 sobre los marginales 2025 re-derivados aqui (control), celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95INF-S1xD3, tipo: proporcion, unidad: "C2 IC95 inferior, replicas compartidas 2025 por la forma log-aditiva, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95SUP-S1xD3, tipo: proporcion, unidad: "C2 IC95 superior, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-P-S1xD3, tipo: proporcion, unidad: "C6 = expit(logit C2 + I24), celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95INF-S1xD3, tipo: proporcion, unidad: "C6 IC95 inferior, replica k de 2025 con replica k de 2024, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95SUP-S1xD3, tipo: proporcion, unidad: "C6 IC95 superior, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-P-S1xD3, tipo: proporcion, unidad: "C7 = expit(logit C2 + (I23 + I24)/2), celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95INF-S1xD3, tipo: proporcion, unidad: "C7 IC95 inferior, replica k de las tres olas, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95SUP-S1xD3, tipo: proporcion, unidad: "C7 IC95 superior, celda S1xD3 = hasta primaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-S2xD1, tipo: proporcion, unidad: "C2 piso log-aditivo sobre los marginales SELLADOS de 2025, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-REDERIVADO-S2xD1, tipo: proporcion, unidad: "C2 sobre los marginales 2025 re-derivados aqui (control), celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95INF-S2xD1, tipo: proporcion, unidad: "C2 IC95 inferior, replicas compartidas 2025 por la forma log-aditiva, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95SUP-S2xD1, tipo: proporcion, unidad: "C2 IC95 superior, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-P-S2xD1, tipo: proporcion, unidad: "C6 = expit(logit C2 + I24), celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95INF-S2xD1, tipo: proporcion, unidad: "C6 IC95 inferior, replica k de 2025 con replica k de 2024, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95SUP-S2xD1, tipo: proporcion, unidad: "C6 IC95 superior, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-P-S2xD1, tipo: proporcion, unidad: "C7 = expit(logit C2 + (I23 + I24)/2), celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95INF-S2xD1, tipo: proporcion, unidad: "C7 IC95 inferior, replica k de las tres olas, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95SUP-S2xD1, tipo: proporcion, unidad: "C7 IC95 superior, celda S2xD1 = secundaria x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-S2xD2, tipo: proporcion, unidad: "C2 piso log-aditivo sobre los marginales SELLADOS de 2025, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-REDERIVADO-S2xD2, tipo: proporcion, unidad: "C2 sobre los marginales 2025 re-derivados aqui (control), celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95INF-S2xD2, tipo: proporcion, unidad: "C2 IC95 inferior, replicas compartidas 2025 por la forma log-aditiva, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95SUP-S2xD2, tipo: proporcion, unidad: "C2 IC95 superior, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-P-S2xD2, tipo: proporcion, unidad: "C6 = expit(logit C2 + I24), celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95INF-S2xD2, tipo: proporcion, unidad: "C6 IC95 inferior, replica k de 2025 con replica k de 2024, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95SUP-S2xD2, tipo: proporcion, unidad: "C6 IC95 superior, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-P-S2xD2, tipo: proporcion, unidad: "C7 = expit(logit C2 + (I23 + I24)/2), celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95INF-S2xD2, tipo: proporcion, unidad: "C7 IC95 inferior, replica k de las tres olas, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95SUP-S2xD2, tipo: proporcion, unidad: "C7 IC95 superior, celda S2xD2 = secundaria x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-S2xD3, tipo: proporcion, unidad: "C2 piso log-aditivo sobre los marginales SELLADOS de 2025, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-REDERIVADO-S2xD3, tipo: proporcion, unidad: "C2 sobre los marginales 2025 re-derivados aqui (control), celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95INF-S2xD3, tipo: proporcion, unidad: "C2 IC95 inferior, replicas compartidas 2025 por la forma log-aditiva, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95SUP-S2xD3, tipo: proporcion, unidad: "C2 IC95 superior, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-P-S2xD3, tipo: proporcion, unidad: "C6 = expit(logit C2 + I24), celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95INF-S2xD3, tipo: proporcion, unidad: "C6 IC95 inferior, replica k de 2025 con replica k de 2024, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95SUP-S2xD3, tipo: proporcion, unidad: "C6 IC95 superior, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-P-S2xD3, tipo: proporcion, unidad: "C7 = expit(logit C2 + (I23 + I24)/2), celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95INF-S2xD3, tipo: proporcion, unidad: "C7 IC95 inferior, replica k de las tres olas, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95SUP-S2xD3, tipo: proporcion, unidad: "C7 IC95 superior, celda S2xD3 = secundaria x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-S3xD1, tipo: proporcion, unidad: "C2 piso log-aditivo sobre los marginales SELLADOS de 2025, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-REDERIVADO-S3xD1, tipo: proporcion, unidad: "C2 sobre los marginales 2025 re-derivados aqui (control), celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95INF-S3xD1, tipo: proporcion, unidad: "C2 IC95 inferior, replicas compartidas 2025 por la forma log-aditiva, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95SUP-S3xD1, tipo: proporcion, unidad: "C2 IC95 superior, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-P-S3xD1, tipo: proporcion, unidad: "C6 = expit(logit C2 + I24), celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95INF-S3xD1, tipo: proporcion, unidad: "C6 IC95 inferior, replica k de 2025 con replica k de 2024, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95SUP-S3xD1, tipo: proporcion, unidad: "C6 IC95 superior, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-P-S3xD1, tipo: proporcion, unidad: "C7 = expit(logit C2 + (I23 + I24)/2), celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95INF-S3xD1, tipo: proporcion, unidad: "C7 IC95 inferior, replica k de las tres olas, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95SUP-S3xD1, tipo: proporcion, unidad: "C7 IC95 superior, celda S3xD1 = media superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-S3xD2, tipo: proporcion, unidad: "C2 piso log-aditivo sobre los marginales SELLADOS de 2025, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-REDERIVADO-S3xD2, tipo: proporcion, unidad: "C2 sobre los marginales 2025 re-derivados aqui (control), celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95INF-S3xD2, tipo: proporcion, unidad: "C2 IC95 inferior, replicas compartidas 2025 por la forma log-aditiva, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95SUP-S3xD2, tipo: proporcion, unidad: "C2 IC95 superior, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-P-S3xD2, tipo: proporcion, unidad: "C6 = expit(logit C2 + I24), celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95INF-S3xD2, tipo: proporcion, unidad: "C6 IC95 inferior, replica k de 2025 con replica k de 2024, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95SUP-S3xD2, tipo: proporcion, unidad: "C6 IC95 superior, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-P-S3xD2, tipo: proporcion, unidad: "C7 = expit(logit C2 + (I23 + I24)/2), celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95INF-S3xD2, tipo: proporcion, unidad: "C7 IC95 inferior, replica k de las tres olas, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95SUP-S3xD2, tipo: proporcion, unidad: "C7 IC95 superior, celda S3xD2 = media superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-S3xD3, tipo: proporcion, unidad: "C2 piso log-aditivo sobre los marginales SELLADOS de 2025, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-REDERIVADO-S3xD3, tipo: proporcion, unidad: "C2 sobre los marginales 2025 re-derivados aqui (control), celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95INF-S3xD3, tipo: proporcion, unidad: "C2 IC95 inferior, replicas compartidas 2025 por la forma log-aditiva, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95SUP-S3xD3, tipo: proporcion, unidad: "C2 IC95 superior, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-P-S3xD3, tipo: proporcion, unidad: "C6 = expit(logit C2 + I24), celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95INF-S3xD3, tipo: proporcion, unidad: "C6 IC95 inferior, replica k de 2025 con replica k de 2024, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95SUP-S3xD3, tipo: proporcion, unidad: "C6 IC95 superior, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-P-S3xD3, tipo: proporcion, unidad: "C7 = expit(logit C2 + (I23 + I24)/2), celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95INF-S3xD3, tipo: proporcion, unidad: "C7 IC95 inferior, replica k de las tres olas, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95SUP-S3xD3, tipo: proporcion, unidad: "C7 IC95 superior, celda S3xD3 = media superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-S4xD1, tipo: proporcion, unidad: "C2 piso log-aditivo sobre los marginales SELLADOS de 2025, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-REDERIVADO-S4xD1, tipo: proporcion, unidad: "C2 sobre los marginales 2025 re-derivados aqui (control), celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95INF-S4xD1, tipo: proporcion, unidad: "C2 IC95 inferior, replicas compartidas 2025 por la forma log-aditiva, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95SUP-S4xD1, tipo: proporcion, unidad: "C2 IC95 superior, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-P-S4xD1, tipo: proporcion, unidad: "C6 = expit(logit C2 + I24), celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95INF-S4xD1, tipo: proporcion, unidad: "C6 IC95 inferior, replica k de 2025 con replica k de 2024, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95SUP-S4xD1, tipo: proporcion, unidad: "C6 IC95 superior, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-P-S4xD1, tipo: proporcion, unidad: "C7 = expit(logit C2 + (I23 + I24)/2), celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95INF-S4xD1, tipo: proporcion, unidad: "C7 IC95 inferior, replica k de las tres olas, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95SUP-S4xD1, tipo: proporcion, unidad: "C7 IC95 superior, celda S4xD1 = superior x Rural", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-S4xD2, tipo: proporcion, unidad: "C2 piso log-aditivo sobre los marginales SELLADOS de 2025, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-REDERIVADO-S4xD2, tipo: proporcion, unidad: "C2 sobre los marginales 2025 re-derivados aqui (control), celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95INF-S4xD2, tipo: proporcion, unidad: "C2 IC95 inferior, replicas compartidas 2025 por la forma log-aditiva, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95SUP-S4xD2, tipo: proporcion, unidad: "C2 IC95 superior, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-P-S4xD2, tipo: proporcion, unidad: "C6 = expit(logit C2 + I24), celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95INF-S4xD2, tipo: proporcion, unidad: "C6 IC95 inferior, replica k de 2025 con replica k de 2024, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95SUP-S4xD2, tipo: proporcion, unidad: "C6 IC95 superior, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-P-S4xD2, tipo: proporcion, unidad: "C7 = expit(logit C2 + (I23 + I24)/2), celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95INF-S4xD2, tipo: proporcion, unidad: "C7 IC95 inferior, replica k de las tres olas, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95SUP-S4xD2, tipo: proporcion, unidad: "C7 IC95 superior, celda S4xD2 = superior x Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-S4xD3, tipo: proporcion, unidad: "C2 piso log-aditivo sobre los marginales SELLADOS de 2025, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-P-REDERIVADO-S4xD3, tipo: proporcion, unidad: "C2 sobre los marginales 2025 re-derivados aqui (control), celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95INF-S4xD3, tipo: proporcion, unidad: "C2 IC95 inferior, replicas compartidas 2025 por la forma log-aditiva, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C2-IC95SUP-S4xD3, tipo: proporcion, unidad: "C2 IC95 superior, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-P-S4xD3, tipo: proporcion, unidad: "C6 = expit(logit C2 + I24), celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95INF-S4xD3, tipo: proporcion, unidad: "C6 IC95 inferior, replica k de 2025 con replica k de 2024, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C6-IC95SUP-S4xD3, tipo: proporcion, unidad: "C6 IC95 superior, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-P-S4xD3, tipo: proporcion, unidad: "C7 = expit(logit C2 + (I23 + I24)/2), celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95INF-S4xD3, tipo: proporcion, unidad: "C7 IC95 inferior, replica k de las tres olas, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-C7-IC95SUP-S4xD3, tipo: proporcion, unidad: "C7 IC95 superior, celda S4xD3 = superior x Urbano", permite_no_estimable: true}
+  - {id: RESULT-TRA-SXD12-G-C2-DESENLACE-ID, tipo: texto, unidad: "identificador del desenlace de los tres marginales (piso_log_aditivo lo exige igual)"}
+  - {id: RESULT-TRA-SXD12-G-C2-ROTULO-SUPUESTO, tipo: texto, unidad: "rotulo obligatorio del supuesto de C2"}
+  - {id: RESULT-TRA-SXD12-G-C2-FORMA, tipo: texto, unidad: "formula de C2"}
+  - {id: RESULT-TRA-SXD12-G-C2-ESTADO, tipo: texto, unidad: "PISO-ADMISIBLE o DIAGNOSTICO-POR-REPLIEGUE"}
+  - {id: RESULT-TRA-SXD12-G-C2-CELDAS-NO-CONSTRUIBLES, tipo: entero, unidad: "celdas SIN-DEFINIR por marginal sellado degenerado"}
+  - {id: RESULT-TRA-SXD12-G-C2-REPLICAS-SIN-DEFINIR, tipo: entero, unidad: "replicas descartadas por logit divergente, sumadas sobre las 12 celdas (C2)"}
+  - {id: RESULT-TRA-SXD12-G-C6-REPLICAS-SIN-DEFINIR, tipo: entero, unidad: "replicas descartadas, sumadas sobre las 12 celdas (C6)"}
+  - {id: RESULT-TRA-SXD12-G-C7-REPLICAS-SIN-DEFINIR, tipo: entero, unidad: "replicas descartadas, sumadas sobre las 12 celdas (C7)"}
+  - {id: RESULT-TRA-SXD12-G-C6-FORMA, tipo: texto, unidad: "formula de C6"}
+  - {id: RESULT-TRA-SXD12-G-C7-FORMA, tipo: texto, unidad: "formula de C7"}
+  - {id: RESULT-TRA-SXD12-G-INCERTIDUMBRE, tipo: texto, unidad: "contrato de incertidumbre de los candidatos"}
+  - {id: RESULT-TRA-SXD12-G-C4-ESTADO, tipo: texto, unidad: "INEJECUTABLE, con la razon"}
+  - {id: RESULT-TRA-SXD12-G-C4-FALTANTES, tipo: texto, unidad: "los faltantes de C4 por nombre"}
+  - {id: RESULT-TRA-SXD12-G-C5-ESTADO, tipo: texto, unidad: "NO-APLICA, con la cita"}
+  - {id: RESULT-TRA-SXD12-G-C5-P-NACIONAL, tipo: proporcion, unidad: "p nacional del emisor = arbitro con otro nombre (tramite.yaml:497)"}
+  - {id: RESULT-TRA-SXD12-G-L-ESTADO, tipo: texto, unidad: "L no entra, por firma"}
