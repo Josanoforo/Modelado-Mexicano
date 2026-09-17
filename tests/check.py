@@ -4949,6 +4949,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # pasan nunca por este test y listarlos habria sido ruido.
     "forense/encargos/2026-09-17-GEN2-ESQUEMA-E1-CAPA-1.md",
     "forense/notas/2026-09-17-esquema-e1-capa-separada-cierre.md",
+    # ACTO GEN2-RECIBO-CODEX-2, 17/sep/2026: encargo archivado VERBATIM
+    # (A.3). Su P3 cita "milpa/theta-esquema-e1-v1_0.yaml (capa E1, ADR-535)"
+    # y "milpa/theta-esquema-e1-v1_0.yaml" en la VERIFICACION DE EXISTENCIA
+    # -- mismo `E1` pelado que ya exime la lista de arriba, misma razon: es
+    # la ETAPA del programa, no un rotulo nuevo. El rotulo propio de este
+    # acto es `GEN2-RECIBO-CODEX-2`, censado en `canon/registro-rotulos.tsv`.
+    # El encargo no se edita para complacer el test (A.3).
+    "forense/encargos/2026-09-17-GEN2-RECIBO-CODEX-2-FP-383-Y-TRES-CIERRES.md",
     # ACTO GEN2-F6-FACTIBILIDAD-PREPARACION-1, 16/sep/2026: encargo
     # archivado VERBATIM (A.3). En P2.10 cita `M1` como una de las cosas que
     # la preparacion F6 no decide. Es la primera ranura del sello del motor
