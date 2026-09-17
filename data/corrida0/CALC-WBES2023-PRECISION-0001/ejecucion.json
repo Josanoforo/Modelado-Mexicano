@@ -1,0 +1,173 @@
+{
+ "corrida_id": "CALC-WBES2023-PRECISION-0001--7ab4bf6255e0",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "scipy": "1.16.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "fuente_acto": "GEN2-WBES2023-PRECISION-1",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": false,
+  "tipo": "EXTENSION-PRECISION-MICRODATO",
+  "unidad_transferencia": "UNIDAD-DISTINTA-NO-TRANSFERENCIA",
+  "uso_motor": "CONTEXTO-INFORME-NO-CALIBRA",
+  "validacion_independiente": "SINTETICOS-CONTROL-INDEPENDIENTE-Y-VERIFY"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-17T01:18:06Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 415,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "7ab4bf6255e014f8d4ee7d9c79f683bc47af244f",
+  "git_rama": "codex/gen2-wbes2023-precision-1",
+  "git_status": "SUCIO",
+  "git_status_lineas": 1,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "7ab4bf6255e014f8d4ee7d9c79f683bc47af244f",
+ "input_ids": [
+  "wbes_mexico_2023_ddi_xml",
+  "wbes_mexico_2023_ddi_pdf",
+  "wbes_mexico_2023_microdato_dta_zip",
+  "wbes_mexico_2023_documentacion_zip",
+  "wbes_sampling_note_consolidated_2022_pdf"
+ ],
+ "input_sha256": {
+  "wbes_mexico_2023_ddi_pdf": "069fe4981e1e5d3b2d765009462fc51d24892d6593724f46a8985561b69ae603",
+  "wbes_mexico_2023_ddi_xml": "1d5cded32bef39cc2f129ef63c122d59e4e37b1257b36fc98bc0cc8daccad54c",
+  "wbes_mexico_2023_documentacion_zip": "2b3b0db77f12b841814a37265db279cfcb1778c4377876b77e0a4b725a76c0f7",
+  "wbes_mexico_2023_microdato_dta_zip": "bc09225244f1e1274d9c9e58221acf8884512a1ab600551f98fbc0466f479f3f",
+  "wbes_sampling_note_consolidated_2022_pdf": "199b37eac44a700146e2f75ec84e2afc79eda52fb48fd2a2059e50ac9df8fa74"
+ },
+ "parametros": {
+  "adopcion": "NINGUNA",
+  "dominios": [
+   "TOTAL",
+   "PEQUENA",
+   "MEDIANA",
+   "GRANDE",
+   "EXTRA-GRANDE"
+  ],
+  "escenarios_singleton": [
+   "SINGLETON-CERTEZA",
+   "SINGLETON-AVERAGE"
+  ],
+  "estrato": "strata",
+  "fpc": "NO-APLICADA",
+  "intervalo": "LOGIT-T-95",
+  "output": "forense/analisis/wbes2023-precision-1/wbes2023-precision.csv",
+  "padre": "CALC-WBES2023-CORRUPCION-DESCRIPTIVA-0001",
+  "unidad_muestreo": "establecimiento-idstd"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-WBES2023-PREC-EXTRA_GRANDE-AVERAGE-EE",
+  "RESULT-WBES2023-PREC-EXTRA_GRANDE-AVERAGE-IC95-HI",
+  "RESULT-WBES2023-PREC-EXTRA_GRANDE-AVERAGE-IC95-LO",
+  "RESULT-WBES2023-PREC-EXTRA_GRANDE-CERTEZA-EE",
+  "RESULT-WBES2023-PREC-EXTRA_GRANDE-CERTEZA-IC95-HI",
+  "RESULT-WBES2023-PREC-EXTRA_GRANDE-CERTEZA-IC95-LO",
+  "RESULT-WBES2023-PREC-EXTRA_GRANDE-N-CLASIFICABLE",
+  "RESULT-WBES2023-PREC-EXTRA_GRANDE-PUNTO",
+  "RESULT-WBES2023-PREC-G-CSV-SHA256",
+  "RESULT-WBES2023-PREC-G-FPC",
+  "RESULT-WBES2023-PREC-G-GL",
+  "RESULT-WBES2023-PREC-G-MAX-DELTA-PADRE",
+  "RESULT-WBES2023-PREC-G-N-ESTRATOS",
+  "RESULT-WBES2023-PREC-G-N-SINGLETON",
+  "RESULT-WBES2023-PREC-G-N-UNIDADES",
+  "RESULT-WBES2023-PREC-G-SALIDA",
+  "RESULT-WBES2023-PREC-G-TIPO",
+  "RESULT-WBES2023-PREC-GRANDE-AVERAGE-EE",
+  "RESULT-WBES2023-PREC-GRANDE-AVERAGE-IC95-HI",
+  "RESULT-WBES2023-PREC-GRANDE-AVERAGE-IC95-LO",
+  "RESULT-WBES2023-PREC-GRANDE-CERTEZA-EE",
+  "RESULT-WBES2023-PREC-GRANDE-CERTEZA-IC95-HI",
+  "RESULT-WBES2023-PREC-GRANDE-CERTEZA-IC95-LO",
+  "RESULT-WBES2023-PREC-GRANDE-N-CLASIFICABLE",
+  "RESULT-WBES2023-PREC-GRANDE-PUNTO",
+  "RESULT-WBES2023-PREC-MEDIANA-AVERAGE-EE",
+  "RESULT-WBES2023-PREC-MEDIANA-AVERAGE-IC95-HI",
+  "RESULT-WBES2023-PREC-MEDIANA-AVERAGE-IC95-LO",
+  "RESULT-WBES2023-PREC-MEDIANA-CERTEZA-EE",
+  "RESULT-WBES2023-PREC-MEDIANA-CERTEZA-IC95-HI",
+  "RESULT-WBES2023-PREC-MEDIANA-CERTEZA-IC95-LO",
+  "RESULT-WBES2023-PREC-MEDIANA-N-CLASIFICABLE",
+  "RESULT-WBES2023-PREC-MEDIANA-PUNTO",
+  "RESULT-WBES2023-PREC-PEQUENA-AVERAGE-EE",
+  "RESULT-WBES2023-PREC-PEQUENA-AVERAGE-IC95-HI",
+  "RESULT-WBES2023-PREC-PEQUENA-AVERAGE-IC95-LO",
+  "RESULT-WBES2023-PREC-PEQUENA-CERTEZA-EE",
+  "RESULT-WBES2023-PREC-PEQUENA-CERTEZA-IC95-HI",
+  "RESULT-WBES2023-PREC-PEQUENA-CERTEZA-IC95-LO",
+  "RESULT-WBES2023-PREC-PEQUENA-N-CLASIFICABLE",
+  "RESULT-WBES2023-PREC-PEQUENA-PUNTO",
+  "RESULT-WBES2023-PREC-TOTAL-AVERAGE-EE",
+  "RESULT-WBES2023-PREC-TOTAL-AVERAGE-IC95-HI",
+  "RESULT-WBES2023-PREC-TOTAL-AVERAGE-IC95-LO",
+  "RESULT-WBES2023-PREC-TOTAL-CERTEZA-EE",
+  "RESULT-WBES2023-PREC-TOTAL-CERTEZA-IC95-HI",
+  "RESULT-WBES2023-PREC-TOTAL-CERTEZA-IC95-LO",
+  "RESULT-WBES2023-PREC-TOTAL-N-CLASIFICABLE",
+  "RESULT-WBES2023-PREC-TOTAL-PUNTO"
+ ],
+ "script_blob_sha256": "9ae9746ed0c989592bc32df5465bad6f2059eb014218bad8e646a77e143a82c5",
+ "script_path": "data/corrida0/CALC-WBES2023-PRECISION-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "rng": "NO-APLICA",
+  "valor": null
+ },
+ "spec_id": "CALC-WBES2023-PRECISION-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "beb01491ff6af9937fa253bbf691251456ac9a626dcf2557df200d801b953cd3",
+ "spec_yaml_sha256": "81bbd82bd24544ba81c99002e9e1715adf4a8749fc8de0366080f06aae4492ef",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "calculo determinista; puntos contrastados al grano de 12 decimales del padre",
+  "tipo": "flotante"
+ }
+}

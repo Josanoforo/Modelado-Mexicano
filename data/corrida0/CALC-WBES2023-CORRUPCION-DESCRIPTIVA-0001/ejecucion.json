@@ -1,0 +1,148 @@
+{
+ "corrida_id": "CALC-WBES2023-CORRUPCION-DESCRIPTIVA-0001--b87ec1bf2ad5",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "fuente_acto": "GEN2-WBES2023-DESCRIPTIVA-1",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": false,
+  "tipo": "MEDICION-DESCRIPTIVA-MICRODATO",
+  "unidad_transferencia": "UNIDAD-DISTINTA-NO-TRANSFERENCIA",
+  "uso_motor": "CONTEXTO-INFORME-NO-CALIBRA",
+  "validacion_independiente": "PRUEBAS-SINTETICAS-Y-VERIFY-DIRIGIDO"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-17T00:41:32Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 414,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "b87ec1bf2ad50d5cef9126fd8b187f73ac7eb1c0",
+  "git_rama": "acto/gen2-wbes2023-descriptiva-1",
+  "git_status": "SUCIO",
+  "git_status_lineas": 1,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "b87ec1bf2ad50d5cef9126fd8b187f73ac7eb1c0",
+ "input_ids": [
+  "wbes_mexico_2023_ddi_xml",
+  "wbes_mexico_2023_ddi_pdf",
+  "wbes_mexico_2023_microdato_dta_zip",
+  "wbes_mexico_2023_documentacion_zip"
+ ],
+ "input_sha256": {
+  "wbes_mexico_2023_ddi_pdf": "069fe4981e1e5d3b2d765009462fc51d24892d6593724f46a8985561b69ae603",
+  "wbes_mexico_2023_ddi_xml": "1d5cded32bef39cc2f129ef63c122d59e4e37b1257b36fc98bc0cc8daccad54c",
+  "wbes_mexico_2023_documentacion_zip": "2b3b0db77f12b841814a37265db279cfcb1778c4377876b77e0a4b725a76c0f7",
+  "wbes_mexico_2023_microdato_dta_zip": "bc09225244f1e1274d9c9e58221acf8884512a1ab600551f98fbc0466f479f3f"
+ },
+ "parametros": {
+  "adopcion": "NINGUNA",
+  "consumidor": "seccion descriptiva TRA admitida por F-19",
+  "dominios": [
+   "Total nacional cubierto",
+   "Pequena",
+   "Mediana",
+   "Grande",
+   "Extra grande"
+  ],
+  "incertidumbre": "IC-DE-DISENO-NO-ESTIMABLE-CON-INSUMOS-DISPONIBLES",
+  "output": "forense/analisis/wbes2023-descriptiva-1/wbes2023-solicitud-expectativa-pago-informal.csv",
+  "periodo": "ventana propia de cada interaccion (un ano fiscal; las demas dos anos)",
+  "pregunta_consumidora": "Que proporcion ponderada de establecimientos WBES 2023 expuestos reporto solicitud o expectativa de pago informal y como cambia por tamano WBES?",
+  "variables_evento": [
+   "c5",
+   "c14",
+   "g4",
+   "j5",
+   "j12",
+   "j15"
+  ],
+  "variables_filtro": [
+   "c3",
+   "c12",
+   "g2",
+   "j3",
+   "j10",
+   "j13"
+  ]
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-WBES2023-DES-G-CSV-SHA256",
+  "RESULT-WBES2023-DES-G-INCERTIDUMBRE",
+  "RESULT-WBES2023-DES-G-INPUT-DDI-PDF-SHA256",
+  "RESULT-WBES2023-DES-G-INPUT-DDI-XML-SHA256",
+  "RESULT-WBES2023-DES-G-INPUT-DOCUMENTACION-SHA256",
+  "RESULT-WBES2023-DES-G-INPUT-MICRODATO-SHA256",
+  "RESULT-WBES2023-DES-G-N-CLASIFICADOS-TOTAL",
+  "RESULT-WBES2023-DES-G-N-ENTREVISTADOS",
+  "RESULT-WBES2023-DES-G-N-EXPUESTOS-TOTAL",
+  "RESULT-WBES2023-DES-G-N-FILAS-SALIDA",
+  "RESULT-WBES2023-DES-G-PESO-EXPUESTOS-TOTAL",
+  "RESULT-WBES2023-DES-G-SALIDA",
+  "RESULT-WBES2023-DES-G-USO",
+  "RESULT-WBES2023-DES-LIMITE-INFERIOR-TOTAL",
+  "RESULT-WBES2023-DES-LIMITE-SUPERIOR-TOTAL",
+  "RESULT-WBES2023-DES-MASA-DESCONOCIDA-TOTAL",
+  "RESULT-WBES2023-DES-PUNTO-TOTAL"
+ ],
+ "script_blob_sha256": "3f5d10551aa87e794b9579354b81c94c10bd529a93dfff2b6b28fc2a0d062066",
+ "script_path": "data/corrida0/CALC-WBES2023-CORRUPCION-DESCRIPTIVA-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "rng": "NO-APLICA",
+  "valor": null
+ },
+ "spec_id": "CALC-WBES2023-CORRUPCION-DESCRIPTIVA-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "2b515272e962eec309a6629ccf96a666305d0a01245f35fc9d598afaa4ce4293",
+ "spec_yaml_sha256": "5710e6eb056c27cc44311dc11f9dd7bbdfbf6908b5d0bb4438f29203c550d0aa",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "agregacion determinista y serializacion fija",
+  "tipo": "flotante"
+ }
+}

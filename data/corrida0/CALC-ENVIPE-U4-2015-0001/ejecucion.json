@@ -1,0 +1,175 @@
+{
+ "corrida_id": "CALC-ENVIPE-U4-2015-0001--d7c6823cb6ff",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "Se conocían los resultados históricos públicos U1/R por delito y U4 de 2012/2025; no se conocía el punto U4 2015.",
+  "cuenta_gen2": "PENDIENTE-DE-INTEGRACION-SERIAL",
+  "demanda_que_releva": "NC-0098, componente ENVIPE 2015 en unidad persona; no cierra administrativamente la fila.",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": "NO; sólo fixtures sintéticos, documentación y cabeceras DBF.",
+  "spec_sellada": "forense/prereg-caja/ENVIPE-U4-2013-2015-spec-v1_0.md",
+  "spec_sellada_sha256": "7d5a689a7946067951e7fa76c6cf228caee7e615e87fce6b0d0b7e5b365e33f6",
+  "tipo": "MEDICION-DESCRIPTIVA-U4-PERSONA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-17T01:18:27Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 415,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "d7c6823cb6ffedd1130b1eed6b5a85f76e495351",
+  "git_rama": "HEAD",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "d7c6823cb6ffedd1130b1eed6b5a85f76e495351",
+ "input_ids": [
+  "envipe_2015_bd_envipe2015_dbf",
+  "envipe_2015_fd_envipe2015"
+ ],
+ "input_sha256": {
+  "envipe_2015_bd_envipe2015_dbf": "6c2fcb165a179b0ca5e7d956a3673b375d26309be5a4748eabc31545add66a8d",
+  "envipe_2015_fd_envipe2015": "1042ab57b015e6de72d92184f44cfa4b1cca2ad54ceb6d60573e6800fc1c858b"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "fd_id": "envipe_2015_fd_envipe2015",
+  "fuente_acto": "GEN2-ENVIPE-U4-2013-2015-1",
+  "identity_field": "ID_PER",
+  "join_columns": [
+   "UPM",
+   "VIV_SEL",
+   "HOGAR",
+   "R_SEL"
+  ],
+  "module_member": "TMod_Vic.dbf",
+  "payload_id": "envipe_2015_bd_envipe2015_dbf",
+  "person_member": "TPer_Vic2.dbf",
+  "personal_codes": [
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15
+  ],
+  "psu_field": "UPM_DIS",
+  "result_prefix": "RESULT-ENVIPE-U4-2015",
+  "stratum_field": "EST_DIS"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENVIPE-U4-2015-COBERTURA-VINCULO",
+  "RESULT-ENVIPE-U4-2015-ESTADO",
+  "RESULT-ENVIPE-U4-2015-ESTADO-PRECISION",
+  "RESULT-ENVIPE-U4-2015-IC95-SENS-HI-C1-U4",
+  "RESULT-ENVIPE-U4-2015-IC95-SENS-HI-C2-U4",
+  "RESULT-ENVIPE-U4-2015-IC95-SENS-HI-Q-C2-U4",
+  "RESULT-ENVIPE-U4-2015-IC95-SENS-LO-C1-U4",
+  "RESULT-ENVIPE-U4-2015-IC95-SENS-LO-C2-U4",
+  "RESULT-ENVIPE-U4-2015-IC95-SENS-LO-Q-C2-U4",
+  "RESULT-ENVIPE-U4-2015-MASA-FAC-ELE-U4",
+  "RESULT-ENVIPE-U4-2015-METODO-IC",
+  "RESULT-ENVIPE-U4-2015-N-ESTRATOS",
+  "RESULT-ENVIPE-U4-2015-N-ESTRATOS-SINGLETON",
+  "RESULT-ENVIPE-U4-2015-N-EVENTOS-EN-U4",
+  "RESULT-ENVIPE-U4-2015-N-EVENTOS-U1",
+  "RESULT-ENVIPE-U4-2015-N-EVENTOS-U1-LLAVE-INVALIDA",
+  "RESULT-ENVIPE-U4-2015-N-EXCL-BPCOD",
+  "RESULT-ENVIPE-U4-2015-N-EXCL-FAC-DEL",
+  "RESULT-ENVIPE-U4-2015-N-EXCL-NO-DENUNCIA",
+  "RESULT-ENVIPE-U4-2015-N-EXCL-RAZON-09",
+  "RESULT-ENVIPE-U4-2015-N-EXCL-RAZON-99",
+  "RESULT-ENVIPE-U4-2015-N-EXCL-RAZON-BLANCA",
+  "RESULT-ENVIPE-U4-2015-N-EXCL-RAZON-OTRA",
+  "RESULT-ENVIPE-U4-2015-N-FILAS-MODULO",
+  "RESULT-ENVIPE-U4-2015-N-FILAS-PERSONAS",
+  "RESULT-ENVIPE-U4-2015-N-MARCO-FILAS-DESCARTADAS-AMBIGUAS",
+  "RESULT-ENVIPE-U4-2015-N-MARCO-PERSONAS-DISENO",
+  "RESULT-ENVIPE-U4-2015-N-PERSONAS-CANDIDATAS",
+  "RESULT-ENVIPE-U4-2015-N-PERSONAS-FAC-ELE-INVALIDO",
+  "RESULT-ENVIPE-U4-2015-N-PERSONAS-ID-COLISION",
+  "RESULT-ENVIPE-U4-2015-N-PERSONAS-ID-INVALIDA",
+  "RESULT-ENVIPE-U4-2015-N-PERSONAS-SIN-VINCULO",
+  "RESULT-ENVIPE-U4-2015-N-PERSONAS-U4",
+  "RESULT-ENVIPE-U4-2015-N-PERSONAS-U4-SIN-DISENO",
+  "RESULT-ENVIPE-U4-2015-N-PERSONAS-VINCULO-MULTI",
+  "RESULT-ENVIPE-U4-2015-N-REPLICAS-VALIDAS-C1",
+  "RESULT-ENVIPE-U4-2015-N-REPLICAS-VALIDAS-C2",
+  "RESULT-ENVIPE-U4-2015-N-UPM",
+  "RESULT-ENVIPE-U4-2015-NUMERADOR-FAC-ELE-C1-U4",
+  "RESULT-ENVIPE-U4-2015-NUMERADOR-FAC-ELE-C2-U4",
+  "RESULT-ENVIPE-U4-2015-P-C1-U4",
+  "RESULT-ENVIPE-U4-2015-P-C2-U4",
+  "RESULT-ENVIPE-U4-2015-PERFIL-DBF-MODULO",
+  "RESULT-ENVIPE-U4-2015-PERFIL-DBF-PERSONAS",
+  "RESULT-ENVIPE-U4-2015-Q-C2-U4"
+ ],
+ "script_blob_sha256": "3545fcd59cdce0bdfc2e6762347fa81e8fc4dc9c3ac117f118365faf97ea357f",
+ "script_path": "forense/analisis/envipe-u4-2013-2015-1/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260909
+ },
+ "spec_id": "CALC-ENVIPE-U4-2015-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "990b57b5b15a1450ece291df6092d0e6eb60ed82e61653a74da3446424d51ddf",
+ "spec_yaml_sha256": "6981af99f739053419ef2a04a6ad05b4fb1e6c3cdfce367b0a8eef910268f798",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "Punto determinista y bootstrap con semilla fija; enteros/textos exactos.",
+  "tipo": "flotante"
+ }
+}
