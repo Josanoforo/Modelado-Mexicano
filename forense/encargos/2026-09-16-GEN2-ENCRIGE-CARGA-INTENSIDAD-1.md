@@ -2,10 +2,12 @@
 
 **SHA de redacción:** `e4f5f771b7fd9bccc88d3b6c30d0e5362b0e52a5` (`origin/main`).
 **Entorno asignado:** Codex CLI, repo-only; no microdatos ni descargas.
-**Estado:** `VIVO`.
+**Estado:** `CONSUMIDO` por PR #836.
 **Procedencia:** archivo entregado por Jonás al lanzar la sesión el 16/sep/2026
 en America/Mexico_City; el propio texto fue emitido 17/sep/2026 UTC.
-**Consumo:** pendiente de la ejecución y PR de este acto.
+**Consumo:** producto ejecutado y publicado en
+https://github.com/Josanoforo/Modelado-Mexicano/pull/836; fusión reservada a
+Jonás.
 
 ## VERIFICACIÓN DE EXISTENCIA
 
@@ -137,4 +139,3 @@ Termina cuando exista el producto usable y siguiente acción clara; no refines p
 > Ejecuta íntegramente GEN2-ENCRIGE-CARGA-INTENSIDAD-1 en CLI o Claude Cloud. Autorizo la derivación descriptiva desde el resultado ENCRIGE ya publicado: spec, código, tablas, figura, lectura y CALC derivado si el contrato vigente lo requiere; pruebas, commits, push y PR; fusión conmigo. No abras microdatos, descargues fuentes, repitas el padre, consultes el resultado WBES en curso ni generes adopciones. Aplica cascada diferida. Separa prevalencia, intensidad por empresa afectada y volumen, sin inferencia causal o IC inventado. Si esta sesión proviene de una rama fusionada, conserva su trabajo y abre la sucesora desde origin/main. Entrega el análisis reproducible y una explicación útil para TRA.
 
 <!-- FIN TEXTO VERBATIM -->
-

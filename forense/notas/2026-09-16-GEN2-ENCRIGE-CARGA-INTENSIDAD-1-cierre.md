@@ -2,7 +2,8 @@
 
 Fecha local: 16 de septiembre de 2026. Base efectiva `origin/main`:
 `e4f5f771b7fd9bccc88d3b6c30d0e5362b0e52a5`. Rama:
-`acto/gen2-encrige-carga-intensidad-1`.
+`acto/gen2-encrige-carga-intensidad-1`. Sincronizada antes del push con
+`origin/main` `fe223a9d5f14c609327d7d30181295b4469d43ae`. PR #836.
 
 ## Producto y decisión que permite
 
@@ -26,7 +27,7 @@ mayor intensidad condicional.
   salida de producto en `forense/analisis/encrige-carga-intensidad-1/`.
 - **SELLADO:** `CALC-ENCRIGE-CARGA-INTENSIDAD-0001`, corrida
   `CALC-ENCRIGE-CARGA-INTENSIDAD-0001--55259dbe975f`, sello `c94f098f…`.
-- **INTEGRADO:** no; queda en PR para fusión exclusiva de Jonás.
+- **INTEGRADO:** no; PR #836 abierto para fusión exclusiva de Jonás.
 - **ADOPTADO:** no; no se editó TRA, motor, decisiones ni consumidores.
 
 ## Verificación
