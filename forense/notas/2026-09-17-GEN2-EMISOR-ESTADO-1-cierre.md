@@ -177,7 +177,7 @@ lee sin afirmar, de paso, algo falso sobre sus hermanas. Escribir `escala:`
 al nivel de la conducta no sirve hoy: el derivador no la leería, y un campo
 que nadie lee es ruido, no declaración. **Arreglarlo es tocar
 `tools/corrida0.py`, que está FUERA del perímetro de este acto** («si te
-encuentras escribiendo fuera de esta lista, PARA»). Va como **NC-0293**.
+encuentras escribiendo fuera de esta lista, PARA»). Va como **NC-0298**.
 
 **Efecto lateral, dicho:** por ser la escala de nivel regla, las 4 filas
 `conducta_p_derivado` hermanas de `dinero.ahorro.via_informal` (RES-0053,
@@ -205,13 +205,13 @@ por debajo del corte y no se renumeran.**
 
 ## Suite, y una corrección al propio cierre
 
-`python3 tests/check.py --baseline` → **3 FAIL · 4371 WARN**, **LÍNEA BASE
+`python3 tests/check.py --baseline` → **3 FAIL · 4374 WARN**, **LÍNEA BASE
 VERDE**, `exit=0`, `tests/baseline.json` sin tocar. Los 3 `FAIL` son los
 congelados (`T06`, `T08`); los 3 `WARN` nuevos frente al cierre de `ADR-533`
-son las filas que este acto abre (`FP-383`, `NC-0293`, `NC-0294`).
+son las filas que este acto abre (`FP-383`, `NC-0298`, `NC-0299`).
 
 **La primera cifra que este acto declaró era 4364 y estaba mal, por defecto de
-entorno propio.** `ADR-535` se redactó contra una corrida local a la que le
+entorno propio.** `ADR-536` se redactó contra una corrida local a la que le
 faltaba `jsonschema` —declarada en `requirements.txt`, ausente en este
 contenedor—, así que `T38 T-ALTA-RELACION` salía `NO-CORRIDO` y sumaba un
 `WARN` que el repo no tiene. CI, con la dependencia instalada, dio **4363** y
@@ -219,7 +219,7 @@ contenedor—, así que `T38 T-ALTA-RELACION` salía `NO-CORRIDO` y sumaba un
 dependencia (`python3 -m pip install jsonschema`), se re-corrió, y la corrida
 local ahora **reproduce la de CI cubeta por cubeta** — `T-REPRO` 4100,
 `T-NO-CORRIDO` 76, `T10` 65, `T03` 62, `T22` 50, `T-SUCESOR-EXISTE` 6, `T13` 3,
-`T-CRON` 1 —, sin `T-ALTA-RELACION`. La cifra de `ADR-535` quedó corregida a
+`T-CRON` 1 —, sin `T-ALTA-RELACION`. La cifra de `ADR-536` quedó corregida a
 4363.
 
 Vale la pena dejarlo escrito porque es la lección y no la anécdota: **una
@@ -243,11 +243,11 @@ superadas:
 
 | era | es |
 |---|---|
-| `ADR-534` | **`ADR-535`** |
+| `ADR-534` | **`ADR-536`** |
 | `FP-380` | **`FP-383`** |
-| `NC-0283` | **`NC-0293`** |
-| `NC-0284` | **`NC-0294`** |
-| suite `3 FAIL · 4363 WARN` | **`3 FAIL · 4371 WARN`** |
+| `NC-0283` | **`NC-0298`** |
+| `NC-0284` | **`NC-0299`** |
+| suite `3 FAIL · 4363 WARN` | **`3 FAIL · 4374 WARN`** |
 
 Los cinco conflictos (`gobernanza`, `estado-programa`, `registro-rotulos`,
 `firmas-pendientes`, `no-corrido`) se resolvieron **tomando la versión de
@@ -269,3 +269,32 @@ contra el árbol fusionado y salió **idéntico byte a byte** (97 filas, `IDENTI
 `main`. `escala_legacy` `NO-DECLARADO` sigue en **11**, con los mismos 11 ids.
 `milpa/tramite.yaml` sigue en **+2 líneas, 0 eliminaciones** contra `main`, y
 **0 de 15 `p` alterados**.
+
+### Segunda renumeración — GEN2-ESQUEMA-E1-CAPA-1 también fusionó primero
+
+`main` volvió a moverse (`8d2a985` → `f95f93e`, 10 commits) y `ACTO
+GEN2-ESQUEMA-E1-CAPA-1` (PR #847) tomó `ADR-535` y `NC-0293`…`NC-0297` — los
+números a los que este acto acababa de renumerarse. Segunda pasada de la misma
+regla:
+
+| era (v1) | era (v2) | **es** |
+|---|---|---|
+| `ADR-534` | `ADR-535` | **`ADR-536`** |
+| `NC-0283` | `NC-0293` | **`NC-0298`** |
+| `NC-0284` | `NC-0294` | **`NC-0299`** |
+| `FP-380` | `FP-383` | **`FP-383`** (sin colisión: el máximo en `main` es 382) |
+| `3 FAIL · 4363 WARN` | `3 FAIL · 4371 WARN` | **`3 FAIL · 4374 WARN`** |
+
+Mismo método que la primera vez: los cuatro conflictos se resolvieron tomando
+`origin/main` como base y re-insertando lo de este acto encima con los números
+nuevos. Nada de `GEN2-ESQUEMA-E1-CAPA-1` se perdió ni se reescribió —
+verificado por `diff` contra `origin/main`: **0 líneas eliminadas**. Su cifra de
+suite queda `{cita-historica}` por la misma razón de siempre, sin tocar su
+sustancia, y los contadores se reconciliaron otra vez (`535 → 536`).
+
+**Los invariantes del acto aguantaron las dos renumeraciones sin moverse:** el
+censo re-generado sale idéntico (97 filas, `IDENTICO` 89), `escala_legacy`
+`NO-DECLARADO` sigue en **11** con los mismos once ids, `milpa/tramite.yaml`
+sigue en **+2 líneas / 0 eliminaciones** contra `main`, y **0 de 15 `p`
+alterados**. Es exactamente lo que se esperaría de un acto cuyo contenido no
+depende de la numeración: renumerar le cambia las etiquetas, no los hechos.
