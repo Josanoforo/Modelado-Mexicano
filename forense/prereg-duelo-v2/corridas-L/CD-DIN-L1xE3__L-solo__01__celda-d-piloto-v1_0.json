@@ -1,0 +1,36 @@
+{
+ "celda_cruce": "L1xE3",
+ "contexto_corpus_metadata": null,
+ "estado_captura": "OK",
+ "fuente_citada": null,
+ "id_celda": "CD-DIN-L1xE3",
+ "indice": 1,
+ "intentos": 1,
+ "modelo_real": null,
+ "params": {
+  "corpus_id_si_aplica": null,
+  "ejecutor": "sesión limpia fuera del proyecto (D-iii)",
+  "fecha_congelacion": "2026-09-16",
+  "k_corridas": 8,
+  "modelo_id": "opus",
+  "temperatura": 1.0,
+  "variante": "L-solo",
+  "version_declarada": "derivada por corrida del campo `model` del JSON del CLI"
+ },
+ "sha256_prompt": "ff7e3d94fd32deb4453a90775820790f6cf46cddb114df1188827b283fccb301",
+ "spec_celda": {
+  "encuesta": "Encuesta Nacional de Inclusion Financiera (ENIF), INEGI, Mexico",
+  "escala": "continua: proporcion en [0,1]. Declara ademas un intervalo subjetivo al 80 % en la forma [inferior, superior].",
+  "estimador": "proporcion ponderada por el factor de expansion de persona (FAC_PER)",
+  "frase_discriminacion": "NO-APLICA",
+  "id": "CD-DIN-L1xE3",
+  "ola": "2024",
+  "universo": "personas elegidas de 18 anos y mas que viven en localidades de MENOS de 15 000 habitantes (tamano de localidad 3 o 4) y tienen de 45 a 59 anos cumplidos",
+  "variable": "ahorra_solo_informal: la persona ahorro por alguna via informal en los ultimos 12 meses (presto dinero, compro animales o bienes, guardo dinero en una caja de ahorro del trabajo o de personas conocidas, guardo dinero con familiares o personas conocidas, participo en una tanda, o guardo dinero en su casa) Y NO guardo ni ahorro en ninguna de estas siete cuentas formales: nomina, pension, apoyos de gobierno, cuenta de ahorro, cuenta de cheques, cuenta contratada por Internet o aplicacion, u otra cuenta"
+ },
+ "spec_piloto": "celda-d-piloto-v1_0",
+ "texto_crudo": "**Estimación puntual: 0.33** (33 % de las personas de 45 a 59 años en localidades de menos de 15 000 habitantes ahorró solo por vías informales en los últimos 12 meses).\n\n**Intervalo subjetivo al 80 %: [0.24, 0.42]**\n\n**Aclaración explícita sobre el dato:** No conozco la cifra publicada para este cruce exacto (tamaño de localidad 3–4 × grupo de edad 45–59 × indicador derivado \"ahorro informal sin ahorro formal\", ponderado por FAC_PER). Ese indicador es una construcción a partir de los microdatos y, hasta donde sé, INEGI no lo publica tal cual en sus tabulados; por tanto la cifra anterior es un juicio, no un dato recordado.\n\n**Razonamiento detrás de la estimación (no una fuente textual):**\n- En los resultados nacionales de la ENIF (2021 y 2024, INEGI–CNBV, comunicados de prensa y tabulados básicos, de memoria) el ahorro informal ronda la mitad de la población adulta y es más alto en localidades pequeñas y rurales que en las urbanas.\n- La tenencia de cuentas formales en localidades de menos de 15 000 habitantes es claramente menor que en las urbanas, y el reactivo aquí no pide tenencia sino haber *guardado o ahorrado* en la cuenta, lo que reduce aún más la proporción con ahorro formal (muchas cuentas de nómina o de apoyos de gobierno se usan para retirar, no para ahorrar).\n- Supuse ~50–55 % de ahorro informal en ese grupo y que aproximadamente un tercio de esos ahorradores informales también ahorró en alguna cuenta formal, lo que da ≈ 0.33 de \"solo informal\". La amplitud del intervalo refleja que no tengo el dato del cruce ni certeza sobre el nivel de ahorro informal 2024.\n\n**Fuente textual declarada (sonda canario / M1):** ninguna verificable para este cruce; la base es memoria de los comunicados de resultados de la ENIF 2021 y 2024 (INEGI/CNBV) a nivel nacional y por tamaño de localidad, no del indicador específico solicitado.",
+ "timestamp": "2026-09-17T01:40:41.133526+00:00",
+ "valor_extraido": null,
+ "variante": "L-solo"
+}
