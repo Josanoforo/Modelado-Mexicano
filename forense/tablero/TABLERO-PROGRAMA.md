@@ -1,11 +1,11 @@
 <!-- TABLERO-DERIVADO:BEGIN -->
 ## Estado vivo derivado
 
-- **Procedencia.** SHA `c1c7bc24` · fecha del commit `2026-09-17` · ¿árbol == origin/main? `False`.
+- **Procedencia.** SHA `15f17a96` · fecha del commit `2026-09-17` · ¿árbol == origin/main? `False`.
 - **Motor.** reglas totales `22` · reglas con dato (>=1 conducta MEDIDO*) `21` · reglas sin dato `1` · conductas MEDIDO* `45` · tiers `{'FUERTE': 20, 'MEDIA': 2}`.
 - **Corredor.** marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
 - **Corpus lógico.** entradas del manifiesto `1628` · filas de registro de curación `154` · filas de relaciones `231` · filas del inventario de reactivos v1.2 `178247`.
-- **Gobernanza operativa.** ADR máximo `538` · FP máximo `384` · FP abiertas: FP-383 · encargos archivados `537` (consumidos `494`) · cola de encargos:
+- **Gobernanza operativa.** ADR máximo `539` · FP máximo `384` · FP abiertas: FP-383 · encargos archivados `539` (consumidos `495`) · cola de encargos:
   - `2026-08-31-MAESTRA33-B2-MARCO-M-SORTEA-v1_1.md`: CONSUMIDO
   - `2026-09-01-MAESTRA34-L2-ARBITRA-v1_2.md`: CONSUMIDO
   - `2026-09-01-MAESTRA34-N2-MARCO-M-v1_2.md`: CONSUMIDO
@@ -70,7 +70,7 @@
   - `2026-09-12-GEN2-POST-741/00-LEEME-PARALELOS-41-43.md`: GATED
   - `2026-09-12-GEN2-POST-741/41-GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO.md`: GATED
   - `2026-09-12-GEN2-POST-741/43-GEN2-SHED-BNPL-DANO-Y-UNIVERSOS.md`: GATED
-- **GEN2 (derivado de `corrida0 status`).** corridas selladas `80` / requeridas `83` · resultados sellados `4123` / activos `208` · pendientes `208` · dependencias numéricas legacy activas `184` · validación independiente `215` · diferencias materiales `0` · NC- abiertas `97` · replays LEGACY-GEN1 sellados `5` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
+- **GEN2 (derivado de `corrida0 status`).** corridas selladas `80` / requeridas `83` · resultados sellados `4123` / activos `208` · pendientes `208` · dependencias numéricas legacy activas `184` · validación independiente `215` · diferencias materiales `0` · NC- abiertas `98` · replays LEGACY-GEN1 sellados `5` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
 - **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** sellados `3522` · pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) `12` · vetados por decisión vigente (sellados, pero una firma prohíbe adoptarlos: no son cola) `2` · adoptados por un consumidor activo `24`. Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: solo el consumidor activo que lo adopta la baja.
 - **Fuentes.** `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, `forense/prereg-duelo-v2/` (marcos y corridas M/R/L), `data/manifiesto.yaml`, `data/curacion-registro/cola-adquisicion-registro.tsv`, `data/curacion-registro/relaciones.tsv`, `data/inventario-reactivos-v1_2.tsv`, `canon/gobernanza-v1_15.md`, `forense/firmas-pendientes.tsv`, `forense/encargos/*.md`, `forense/encargos/cola/*.md`.
 
