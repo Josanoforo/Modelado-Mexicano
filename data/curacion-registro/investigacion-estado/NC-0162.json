@@ -3,19 +3,19 @@
   "alternativas": [],
   "ciclos_sin_avance": 0,
   "continuacion_pendiente": true,
-  "cursor_continuacion": "Localizar el FD 2016 por API/JSON-LD o RNM, adquirirlo si es público y verificar sólo estructura; no evaluar M hasta disponer del conjunto reservado requerido.",
+  "cursor_continuacion": "Abrir exportación oficial; buscar nombre/texto/universo/codificación/ponderador del reactivo de corrupción o denuncia; adquirir sólo si el objeto exacto es público y pertinente.",
   "estado": "continua",
   "evidencias": [
+    "forense/notas/2026-09-17-GEN2-38-investigacion-adq.md",
     "forense/notas/2026-09-16-GEN2-38-investigacion-adq.md",
-    "data/manifiesto.yaml",
     "data/curacion-registro/cola-adquisicion-registro.tsv"
   ],
-  "frontera_no_examinada": "FD oficial ENPOL 2016 y familias retenidas R03/R06/R08 sin material suficiente.",
+  "frontera_no_examinada": "Exportación DDI/XML o JSON del RNM 268 y documento FD ENPOL 2016.",
   "necesidad_id": "NC-0162",
-  "proxima_revision": "2026-09-17",
+  "proxima_revision": "2026-09-18",
   "suficiencia": {
     "conceptual": "PARCIAL",
-    "diseno": "PARCIAL",
+    "diseno": "ACREDITADA",
     "identidad": "ACREDITADA",
     "identificacion": "NO_APLICA",
     "poblacional": "ACREDITADA",
@@ -25,6 +25,6 @@
     "unidad": "ACREDITADA",
     "uso_habilitado": "APTA_ALCANCE_MENOR"
   },
-  "ultima_exploracion": "2026-09-16",
-  "version_pregunta": "AUTO-NC-v1-32c70b700f7f"
+  "ultima_exploracion": "2026-09-17",
+  "version_pregunta": "AUTO-NC-v1-b998fe1ea1c5"
 }
