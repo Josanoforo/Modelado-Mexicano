@@ -75,8 +75,8 @@ CORTES_C1 = Cortes(
     por_eje={
         "formalidad": ("segsoc=1", "segsoc=2"),
         # PENDIENTE — FP-53   [línea original del sello del 17/ago/2026; NO se borra]
-        # ENMIENDA FECHADA 17/sep/2026 · ACTO GEN2-CORTE-EDAD-1 · ADR-535:
-        #   resuelto por ADR-535; FP-53 era otro objeto. FP-53 quedó FIRMADA el
+        # ENMIENDA FECHADA 17/sep/2026 · ACTO GEN2-CORTE-EDAD-1 · ADR-536:
+        #   resuelto por ADR-536; FP-53 era otro objeto. FP-53 quedó FIRMADA el
         #   18/ago/2026 (ADR-111(b), ejecutada por ADR-116, PR #281) y fija el
         #   umbral binario «joven» = 15-29 para los 9 sitios de
         #   canon/modelo-decision-v4_0.md. Este corte es un objeto DISTINTO: la
@@ -85,7 +85,7 @@ CORTES_C1 = Cortes(
         #   ningún acto posterior tocó este archivo sellado.
         # Firma que autoriza el sello: D4 de mesa, 16/sep/2026, archivada verbatim
         #   en forense/encargos/2026-09-16-GEN2-CORTE-EDAD-1.md; edición del dato
-        #   sellado autorizada bajo ADR-100(2) con ADR-535 como fuente.
+        #   sellado autorizada bajo ADR-100(2) con ADR-536 como fuente.
         # Variable de referencia (ENVIPE 2025, nivel persona, la base que esto corta):
         #   TSDem.EDAD, años cumplidos — envipe2025_csv.zip sha256_12 8a7a99fd90ce.
         #   Verificación por definición sobre los tres FD (ENVIPE 2025 / ENCIG 2025 /
@@ -102,7 +102,7 @@ CORTES_C1 = Cortes(
     },
     firma_m2=(
         "ADR-100(2) · ACTO LANE-A-E0-E5 C1 · catalogo-momentos v0.1 §3"
-        " || ADR-535 · ACTO GEN2-CORTE-EDAD-1 · firma D4 de mesa 16/sep/2026"
+        " || ADR-536 · ACTO GEN2-CORTE-EDAD-1 · firma D4 de mesa 16/sep/2026"
         " (eje `edad`, cuatro tramos; los demás ejes sin tocar)"
     ),
 )
@@ -128,7 +128,7 @@ def celda(cortes=None, **coords):
             raise ValueError(f"`{eje}` no está en los cortes")
         if cortes.por_eje[eje] is None:
             raise CortesNoSellados(
-                # ENMIENDA FECHADA 17/sep/2026 · ACTO GEN2-CORTE-EDAD-1 · ADR-535.
+                # ENMIENDA FECHADA 17/sep/2026 · ACTO GEN2-CORTE-EDAD-1 · ADR-536.
                 # El texto anterior citaba `FP-53` como bloqueador de CUALQUIER eje
                 # pendiente. Nunca fue cierto para `migracion` (su pendiente es «34
                 # categorías») y dejó de serlo para `edad`, sellado por este acto.
