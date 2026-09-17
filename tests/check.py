@@ -4858,11 +4858,12 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # calibracion (E1+)") y que el censo E1 ya trae en su nombre de archivo.
     # El rotulo propio de este acto es `GEN2-ESQUEMA-E1-CAPA-1`, censado con
     # su forma larga completa en `canon/registro-rotulos.tsv`. El encargo no
-    # se edita para complacer el test (A.3); la capa y el test citan la etapa,
-    # no reclaman espacio de rotulos.
+    # se edita para complacer el test (A.3). Solo se listan los dos .md: T25
+    # recorre `canon/**/*.md` y `forense/**/*.md`, asi que ni
+    # `milpa/theta-esquema-e1-v1_0.yaml` ni `tests/test_theta_esquema_e1.py`
+    # pasan nunca por este test y listarlos habria sido ruido.
     "forense/encargos/2026-09-17-GEN2-ESQUEMA-E1-CAPA-1.md",
-    "milpa/theta-esquema-e1-v1_0.yaml",
-    "tests/test_theta_esquema_e1.py",
+    "forense/notas/2026-09-17-GEN2-ESQUEMA-E1-CAPA-1.md",
     # ACTO GEN2-F6-FACTIBILIDAD-PREPARACION-1, 16/sep/2026: encargo
     # archivado VERBATIM (A.3). En P2.10 cita `M1` como una de las cosas que
     # la preparacion F6 no decide. Es la primera ranura del sello del motor
