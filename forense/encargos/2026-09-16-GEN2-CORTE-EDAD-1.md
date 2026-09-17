@@ -60,3 +60,21 @@
   **por qué:** `NO-VERIFICABLE-AQUÍ` — `python3 tests/check.py --baseline` sale **ROJO con 1 entrada nueva (`T16`) ya antes de este acto**, verificado de dos formas: aislando el commit 0-bis (misma salida con el archivo del encargo fuera del árbol) y, tras fusionar `origin/main`, con **control directo** — un worktree temporal sobre `origin/main` **limpio**, sin nada de este acto, da `4 FAIL · 4361 WARN` y la **misma entrada única `T16`**, mientras este árbol da `4 FAIL · 4366 WARN` y esa misma entrada, con **firma idéntica**. Mismo conteo de `FAIL`, misma única entrada: este acto **no añade ninguna**; los `+5 WARN` son las 4 `NC` y la `FP` nuevas. No se «corrige» la declaración de WARN de `gobernanza`: `forense/hallazgos.md` (16/sep, `ACTO GEN2-CAJA-REACTIVOS-FD-1`, `PARA-v2.13`) ya midió que ese conteo difiere entre CAJA y CI por `data/raices.local.yaml` (gitignorado) y que **corregirlo pondría CI en rojo**.
   **impacto:** ninguno atribuible a este acto; la reserva es del árbol.
   **sucesor:** `PARA-v2.13` ya abierto en `forense/hallazgos.md` — que `T03` ignore los archivos gitignorados, o que declare que no lo hará. `SIN-ASIGNAR` a acto propio.
+
+---
+
+## CONSUMIDO
+
+Ejecutado por **`ACTO GEN2-CORTE-EDAD-1`** (`ADR-534`), 17/sep/2026, entorno **NUBE** (`cloud_default`, Opus; `acceso_corpus.montado=NO`, `archivos_examinados=0`, red `000`), vehículo `/acto`.
+
+**PR [#846](https://github.com/Josanoforo/Modelado-Mexicano/pull/846)** · rama `claude/new-session-p176hs` · base declarada por el encargo `e4f5f77`, base real al abrir `e4f5f77` (sin divergencia), fusionada `origin/main` (+69 commits) antes de cerrar.
+
+**Piezas:** P1 `EJECUTADA` (verificación por definición y por archivo sobre los tres FD; veredicto `EQUIVALENTE` para los tres, con la cláusula de no-respuesta declarada `NO-ACCESIBLE-AQUÍ` y ruteada a caja) · P2 `EJECUTADA` (`CORTES_C1.edad` sellado; la línea `PENDIENTE — FP-53` enmendada, no borrada; `firma_m2` extendida sin borrar `ADR-100(2)`) · P3 `EJECUTADA` (fila `edad` del crosswalk a `EQUIVALENTE`, con la firma D4 verbatim y la nota al pie que desambigua `FP-53`) · P4 `EJECUTADA` (`decisiones.tsv` objeto `corte-edad-celdas`; `FP-380` nace `FIRMADA`; línea en `hallazgos.md`; `NC-0239` enmendada).
+
+**Numeración final** (renumerada al fusionar segundo): `ADR-534` · `FP-380` · `NC-0283`/`NC-0284`/`NC-0285`/`NC-0286`.
+
+**Contador: cero mediciones.** `FP-53` intacta y no re-abierta. `pi.py`, `motor.py`, `matriz.py`, el marcador, `tramite.yaml`, las celdas-D y el piloto, sin tocar.
+
+**Sucesor:** el marcador por segmento, gated a `NC-0283` resuelta y al piloto (`GEN2-CELDA-D-PILOTO-1`).
+
+El encargo no se borra ni se edita en ningún otro punto: su cuerpo (líneas 1-25) es **verbatim por A.3**, verificado idéntico al original recibido. Las secciones `## NO-CORRIDO / RESERVAS` y `## CONSUMIDO` son del ejecutor, añadidas al cerrar.
