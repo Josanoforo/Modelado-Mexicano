@@ -1,0 +1,460 @@
+calc_id: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
+spec_md: spec.md
+spec_md_sha256: 427117eec290ceb93444296c555c869512f11faef25d4432bbbda991ef1f1b3e
+script: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: EMISIONES-DE-CANDIDATOS-CELDA-D
+  unidad_transferencia: PERSONA-ELEGIDA-18MAS
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: CONTRATO-C2-PINADO-EN-tests/test_celda_d_c2.py + CONTROL-DE-REPRODUCCION-DEL-ARBITRO-MARGINAL
+  fuente_acto: GEN2-CELDA-D-PILOTO-1
+  celda_d: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
+  firma_vigente: "FP-379 · ENMIENDA (mesa, 2026-09-16) -- D9 primario; D7 sensibilidad que no adjudica"
+  cadena_de_firmas: "FP-378 + D2(a) -> correctivo pre-emision (H1..H6) -> FP-379 -> FP-379·ENMIENDA"
+  spec_humana_superada: "v1_0 sha256 f54c3170fc653607b3b916ccc3857bc960c3578bfdd4dd40306725e1110f19e9 (commit 3461c46); v1_1 sha256 bb9999b22162598ea6f9ad454a73385af690510113efa7bbb9e54d2e4b8d730f (commit 3422a30). Intactas, ninguna corrida sellada contra ellas."
+  medidor_ejecutado_al_congelar: NO
+  orden_de_commits: "COMMIT-1 spec (sin microdato) -> COMMIT-2 emisiones (R no existe) -> COMMIT-3 R y adjudicacion"
+
+inputs:
+  - {id: enif2021_csv, origen: manifiesto}
+  - {id: enif2021_fd_zip, origen: manifiesto}
+  - {id: enif2024_csv, origen: manifiesto}
+  - {id: enif2024_fd_xlsx, origen: manifiesto}
+
+variables:
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_1_1, rol: ahorro-informal-2021}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_1_2, rol: ahorro-informal-2021}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_1_3, rol: ahorro-informal-2021}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_1_4, rol: ahorro-informal-2021}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_1_5, rol: ahorro-informal-2021}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_1_6, rol: ahorro-informal-2021}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_1, rol: via-formal-2021-los-siete-de-la-sensibilidad-D7}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_2, rol: via-formal-2021-los-siete-de-la-sensibilidad-D7}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_3, rol: via-formal-2021-los-siete-de-la-sensibilidad-D7}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_4, rol: via-formal-2021-los-siete-de-la-sensibilidad-D7}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_5, rol: via-formal-2021-los-siete-de-la-sensibilidad-D7}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_8, rol: via-formal-2021-los-siete-de-la-sensibilidad-D7}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_9, rol: via-formal-2021-los-siete-de-la-sensibilidad-D7}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_6, rol: via-formal-2021-los-dos-que-completan-D9-primario}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_7, rol: via-formal-2021-los-dos-que-completan-D9-primario}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: TLOC, rol: eje-localidad-2021}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: EDAD, rol: eje-edad-2021}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: FAC_ELE, rol: ponderador-2021}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: EST_DIS, rol: estrato-diseno-2021}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: UPM_DIS, rol: upm-diseno-2021}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: p5_1_1, rol: ahorro-informal-2024}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: p5_1_2, rol: ahorro-informal-2024}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: p5_1_3, rol: ahorro-informal-2024}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: p5_1_4, rol: ahorro-informal-2024}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: p5_1_5, rol: ahorro-informal-2024}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: p5_1_6, rol: ahorro-informal-2024}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: p5_6_1, rol: via-formal-2024-los-siete-de-la-sensibilidad-D7}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: p5_6_2, rol: via-formal-2024-los-siete-de-la-sensibilidad-D7}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: p5_6_3, rol: via-formal-2024-los-siete-de-la-sensibilidad-D7}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: p5_6_4, rol: via-formal-2024-los-siete-de-la-sensibilidad-D7}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: p5_6_5, rol: via-formal-2024-los-siete-de-la-sensibilidad-D7}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: p5_6_8, rol: via-formal-2024-los-siete-de-la-sensibilidad-D7}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: p5_6_9, rol: via-formal-2024-los-siete-de-la-sensibilidad-D7}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: p5_6_6, rol: via-formal-2024-los-dos-que-completan-D9-primario}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: p5_6_7, rol: via-formal-2024-los-dos-que-completan-D9-primario}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: tloc, rol: eje-localidad-2024}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: edad_v, rol: eje-edad-2024}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: fac_per, rol: ponderador-2024}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: est_dis, rol: estrato-diseno-2024}
+  - {archivo: conjunto_de_datos_tmodulo_enif2024.csv, variable: upm_dis, rol: upm-diseno-2024}
+
+universo: >-
+  Personas ELEGIDAS de 18 anos y mas del modulo TMODULO de ENIF, una fila por
+  persona seleccionada. ENIF 2021 COMPLETA para C1 (el cruce localidad x edad y
+  su n de soporte; es la ola de desarrollo). ENIF 2024 SOLO para los marginales
+  de UN EJE (localidad, edad, nacional), que alimentan el IC de C2 por replicas
+  compartidas y el control de reproduccion del arbitro. El cruce de 2024 es
+  COMMIT-3.
+filtros: >-
+  En este orden y sin ninguno mas, identico en las dos olas: (1) edad valida,
+  18 <= EDAD <= 97 en 2021 y 18 <= edad_v <= 97 en 2024, excluyendo 98 y 99 que
+  el catalogo declara `edad no especificada` -- son CENTINELAS, no edades; no se
+  imputan ni se reparten, y cuantas filas salen por este motivo se emite como
+  RESULT propio por ola, no se esconde en el denominador; (2) TLOC en
+  {1,2,3,4}; (3) ponderador presente y > 0. No se filtra por tenencia de cuenta
+  ni por respuesta a P5_1_*: quien no ahorro de ninguna forma es un 0 legitimo.
+  GUARDIA DE RESERVA DE ESTE CALC, mecanica y no promesa: sobre ENIF 2024 el
+  medidor agrupa por UN SOLO EJE a la vez y NO construye en ningun punto la
+  llave (localidad, edad); lo declara en
+  RESULT-DIN-LXE8-G-C2-CRUCE-2024-DERIVADO = "NO" y
+  RESULT-DIN-LXE8-G-R-EXISTE-AL-CERRAR = "NO".
+ponderador: >-
+  ENIF 2021 = FAC_ELE (`Factor de expansion`, FD `5,C,fac_ele`), ratificado por
+  la FP-379·ENMIENDA: es el MISMO objeto que fac_per en 2024 -- factor de
+  expansion de la persona elegida -- con otro nombre. FAC_PER NO EXISTE en
+  ningun archivo de enif2021_csv. ENIF 2024 = fac_per (`Factor de expansion a
+  nivel persona`, FD `6,C,fac_per`). Toda proporcion es razon de totales
+  ponderados: sum(w_i*y_i)/sum(w_i).
+transformacion: >-
+  informal := alguna P5_1_1..P5_1_6 == '1'. D9 (PRIMARIO, FP-379·ENMIENDA) :=
+  informal AND NOT (alguna de los NUEVE tipos de cuenta con `guardo o ahorro` ==
+  '1'). D7 (SENSIBILIDAD, NO ADJUDICA) := informal AND NOT (alguna de los SIETE
+  tipos {1,2,3,4,5,8,9}). La variable que transporta el constructo `guardo o
+  ahorro en la cuenta tipo k` es P5_7_k en 2021 y p5_6_k en 2024 --
+  correspondencia de TEXTO del FD para los NUEVE valores de k, ratificada por
+  mesa; el P5_6_k de 2021 pregunta por tarjeta de debito, otro evento. Por
+  construccion D9 subconjunto de D7, luego p(D7) >= p(D9): falsador del medidor.
+  C1: cruce localidad {L1 = TLOC in {3,4}; L2 = TLOC in {1,2}} x edad {E1 18-29,
+  E2 30-44, E3 45-59, E4 60+} sobre ENIF 2021. C2: expit(logit(p_l) + logit(p_e)
+  - logit(p)) -- AUSENCIA DE INTERACCION EN ESCALA LOGIT, NO independencia --
+  con el PUNTO sobre los marginales publicos sellados de nueve codigos y el IC95
+  sobre las replicas de esos mismos marginales re-derivados aqui. Un valor
+  distinto de '1' (incluido vacio) no cuenta como Si; toda fila con un valor
+  fuera de {'1','2',''} se cuenta y se reporta.
+estimando: >-
+  p(ahorra_solo_informal | localidad, edad) -- proporcion ponderada [0,1] de
+  personas elegidas 18+, en 8 celdas de cruce, bajo D9. Este CALC emite C1
+  (persistencia ENIF 2021, IC bootstrap propio), C2 (piso log-aditivo sobre
+  marginales de ENIF 2024, IC replica-por-replica) y C3 (elicitacion de L,
+  dieta L-solo), y asienta C4 INEJECUTABLE y C5 NO-APLICA. NO deriva el arbitro
+  R del cruce: eso es COMMIT-3.
+precision: >-
+  C1: IC95 muestral por bootstrap de conglomerados estratificado (10 000
+  replicas, seed 42); NO incluye el error de la extrapolacion temporal
+  2021->2024, que es el supuesto que C1 ES. C2 (FP-379 D3, sin cambio en la
+  ENMIENDA): IC95 por bootstrap REPLICA POR REPLICA -- la replica r produce
+  p_l^(r), p_e^(r) y p^(r) a la vez sobre el MISMO remuestreo de la MISMA
+  muestra, y las tres se empujan juntas por la forma log-aditiva; sin delta, sin
+  independencia entre estimadores, sin covarianzas inventadas, y sin exponer R.
+  NO cubre el error de especificacion del piso. C3: dispersion entre las k=8
+  corridas (minimo, mediana, maximo); NO es un IC muestral. El intervalo al 80 %
+  declarado por L NO se extrae (la regla congelada devuelve un punto; una
+  segunda regla escrita tras leer las capturas seria post-hoc).
+
+dependencias_materiales: [numpy, pandas]
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.random.PCG64
+tolerancia:
+  tipo: bootstrap
+  exacto_por_seed: true
+  abs: 1.0e-10
+  razon: >-
+    seed 42 + numpy.random.PCG64 + orden de consumo fijado en la spec humana
+    §3.3. Un generador por ola, estratos ordenados por EST_DIS, UPM por UPM_DIS,
+    replicas 0..9999; las 8 celdas de 2021 comparten su remuestreo y los siete
+    marginales de 2024 comparten el suyo. Los enteros se comparan EXACTO; los
+    flotantes caen a abs = 1e-10.
+
+parametros:
+  pregunta_consumidora: >-
+    Que candidato reproduce mejor p(ahorra_solo_informal | localidad, edad) en
+    las 8 celdas de cruce de ENIF 2024, y con que margen -- sin que ninguno vea
+    el cruce antes de emitir?
+  consumidor: >-
+    celda-D DIN.ahorro_solo_informal.enif2024.localidad_x_edad; el marcador NO
+    la consume (FP-376, corte del modelo en `localidad`).
+  celdas: [L1xE1, L1xE2, L1xE3, L1xE4, L2xE1, L2xE2, L2xE3, L2xE4]
+  desenlace_primario: D9
+  desenlace_sensibilidad: D7
+  desenlace_sensibilidad_adjudica: false
+  localidad_L1_tloc: ["3", "4"]
+  localidad_L2_tloc: ["1", "2"]
+  edad_tramos: {E1: [18, 29], E2: [30, 44], E3: [45, 59], E4: [60, 97]}
+  edad_centinela: ["98", "99"]
+  codigos_informal_2021: [P5_1_1, P5_1_2, P5_1_3, P5_1_4, P5_1_5, P5_1_6]
+  codigos_informal_2024: [p5_1_1, p5_1_2, p5_1_3, p5_1_4, p5_1_5, p5_1_6]
+  codigos_formal_D9_2021: [P5_7_1, P5_7_2, P5_7_3, P5_7_4, P5_7_5, P5_7_6, P5_7_7, P5_7_8, P5_7_9]
+  codigos_formal_D7_2021: [P5_7_1, P5_7_2, P5_7_3, P5_7_4, P5_7_5, P5_7_8, P5_7_9]
+  codigos_formal_D9_2024: [p5_6_1, p5_6_2, p5_6_3, p5_6_4, p5_6_5, p5_6_6, p5_6_7, p5_6_8, p5_6_9]
+  codigo_si: "1"
+  dominio_declarado_fd: ["1", "2"]
+  bootstrap_replicas: 10000
+  umbral_soporte_n: 200
+  soporte_es_caveat_no_bloqueo: true
+  soporte_n_2021_donde: "COMMIT-2, abriendo microdato de 2021 (ola de desarrollo)"
+  soporte_n_2024_donde: "COMMIT-3, junto con R"
+  salida_si_sin_soporte: >-
+    la celda se rotula FUERA-DE-SOPORTE, se emite igual su punto y su IC
+    marcados, NO puntua en la adjudicacion, y cuenta para la parada
+    FUERA-DE-SOPORTE si ocurre en >= 3 de las 8. n = 0 -> punto e IC
+    NO-ESTIMABLE (null), nunca 0.0.
+  cotas_frechet_N: 13487
+  firma_c2: "FP-379 D2+D3 sin cambio; D1 reescrita por la ENMIENDA"
+  c2_dieta: "marginales publicos sellados del arbitro (nueve codigos) -- `lo que todos ya vieron`"
+  c2_desenlace_id: "ahorra_solo_informal::P5_6_{1..9}"
+  c2_punto_desde: "marginales sellados, citados y no recalculados"
+  c2_ic_desde: "replicas bootstrap de esos mismos marginales re-derivados en este CALC"
+  c2_forma: "log-aditiva: expit(logit(p_l) + logit(p_e) - logit(p))"
+  c2_rotulo_supuesto: "ausencia de interaccion en escala logit"
+  c2_rotulo_prohibido: "independencia"
+  c2_rechazo: "SIN-DEFINIR si algun marginal es exactamente 0 o 1, en el punto o en una replica; si el PUNTO es SIN-DEFINIR la celda es NO-CONSTRUIBLE (null), sin recorte y sin sustitucion"
+  c2_funcion_de_referencia: "tests/test_celda_d_c2.py::piso_log_aditivo -- el medidor la IMPORTA, no la reimplementa"
+  c2_repliegue: "si la construccion no es viable, C2 pasa a DIAGNOSTICO y deja de ser piso admisible; el piloto pregunta solo si algo vence a la persistencia (C1)."
+  c2_forma_diagnostico: "multiplicativa p_l*p_e/p -- SOLO dos escalares de control de rango; no hay RESULT multiplicativo por celda y no compite"
+  c2_guardia_reserva: "el medidor no construye la llave (localidad, edad) sobre ENIF 2024 en ningun punto"
+  marginales_sellados_D9:
+    E1: {p: 0.432063, ic95: [0.407039, 0.457410], n: 2924, linea: 1447}
+    E2: {p: 0.375709, ic95: [0.354484, 0.396905], n: 4256, linea: 1448}
+    E3: {p: 0.327505, ic95: [0.307291, 0.347765], n: 3411, linea: 1449}
+    E4: {p: 0.277317, ic95: [0.254739, 0.300803], n: 2896, linea: 1450}
+    L1: {p: 0.409255, ic95: [0.387307, 0.429960], n: 4646, linea: 1472}
+    L2: {p: 0.329868, ic95: [0.315113, 0.344834], n: 8856, linea: 1473}
+    NAC: {p: 0.357153, ic95: NO-APLICA, n: 13502, fuente: "milpa/tramite.yaml:1312 y milpa/tramite-ola5-propuesta-v0.yaml:1127 -- clase DERIVADO, sin IC propio; no es MEDIDO"}
+  marginales_sellados_fuente: "milpa/tramite-ola5-propuesta-v0.yaml:1447-1450 y :1472-1473 (el encargo los cita como :1437-1470; lineas corridas en este arbol, contenido identico -- verificado)"
+  control_arbitro_umbral: 1.0e-6
+  control_arbitro_ramas: "REPRODUCE si |delta| <= 1e-6 en las seis celdas marginales con IC sellado; NO-REPRODUCE en otro caso, con delta con signo y sin ajustar nada. Un NO-REPRODUCE no invalida el piloto: invalida la afirmacion de que este medidor reproduce la receta del arbitro."
+  c3_protocolo: "ADV1 (CAREO-ADV-DUELO-diseno-v2-2026-08-19.md §B) + PAQUETE-L-v1_1.md §2"
+  c3_k_corridas: 8
+  c3_dieta_viva: L-solo
+  c3_modelo_alias: opus
+  c3_semilla_orden: 42
+  c3_spec_sufijo_vigente: celda-d-piloto-v1_2
+  c3_spec_sufijo_superado: celda-d-piloto-v1_0
+  c3_capturas_superadas: "18 capturas bajo el prompt de SIETE tipos, estado SUPERADO-POR-SPEC; no se borran, no se editan, no se reusan. Manifiesto: forense/prereg-duelo-v2/corridas-L/CD-DIN-MANIFIESTO-SUPERADAS-v1_0.json"
+  c3_extraccion: "tools/extrae_l_v1_1.py::extraer_valor (regla congelada regla-extraccion-L-v1_1.md); no se edita el script; el intervalo al 80 % NO se extrae"
+  c3_capturas_dir: forense/prereg-duelo-v2/corridas-L
+  c3_lcorpus: "DIFERIDO-A-SUCESOR por costo y tiempo (FP-379·ENMIENDA). Esta en el perimetro y en la spec. Impacto: el piloto prueba una sola dieta de L; L+corpus solo se vuelve necesario si L-solo vence a algun piso -- si pierde contra los dos, es moot. Hecho para el sucesor: paquete-corpus-F5-v1_0/manifiesto.json declara 14 celdas del marco-M y ninguna de este piloto."
+  c3_control_memoria: >-
+    NO-PUBLICADO-EN-LO-ALCANZADO. Busqueda en el arbol (git grep -icE
+    "localidad ?[x×] ?edad", con control positivo git grep -cE "eje: localidad"
+    -- milpa/ = 2 archivos) + busqueda web dirigida sobre los productos publicos
+    de ENIF 2024 (ENIF2024_CP.pdf, ENIF2024_RR.pdf, reporte CNBV, portal del
+    programa): la publicacion oficial desagrega por tamano de localidad y por
+    sexo a nivel nacional, no el cruce localidad x edad de este desenlace.
+    Acredita que el cruce no esta en el arbol ni en lo alcanzado; NO acredita
+    que nadie lo haya visto.
+  c4_faltantes:
+    - "h_r inexistente -- milpa/src/emisor.py:364"
+    - "G3.horizonte_temporal bajo GATE-ID-X -- procedencia.yaml:1116"
+    - "G3.aversion_riesgo SIN-RUTA -- procedencia.yaml:1172"
+    - "theta de G3.familismo_apoyo por celda localidad x edad NO MEDIDO (solo beta marginal 0.0279, modelo-decision-v4_0.md:466)"
+  c5_cita: "milpa/tramite.yaml:712 -- `origen: milpa/tramite-ola5-propuesta-v0.yaml:1162-1346 (dinero.ahorro.via_informal_ejes_enif2024), copiada verbatim`"
+  criterio_indecidible_verbatim: "si ambos caen dentro del IC de R o si |d_L-d_M| < 0.5*EE(R)"
+  criterio_indecidible_fuente: "forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md:38"
+  ee_r: "(IC95sup - IC95inf)/3.92"
+  paradas_admisibles: [ADJUDICADA, INDECIDIBLE, SIN-CANDIDATO-SUPERIOR, FUERA-DE-SOPORTE]
+  adopcion: NINGUNA
+  r_no_existe_en_este_commit: true
+
+resultados:
+  - {id: RESULT-DIN-LXE8-G-INPUT-ENIF2021-CSV-SHA256, tipo: texto, unidad: "sha256 del payload enif2021_csv"}
+  - {id: RESULT-DIN-LXE8-G-INPUT-ENIF2021-FD-SHA256, tipo: texto, unidad: "sha256 del payload enif2021_fd_zip"}
+  - {id: RESULT-DIN-LXE8-G-INPUT-ENIF2024-CSV-SHA256, tipo: texto, unidad: "sha256 del payload enif2024_csv"}
+  - {id: RESULT-DIN-LXE8-G-INPUT-ENIF2024-FD-SHA256, tipo: texto, unidad: "sha256 del payload enif2024_fd_xlsx"}
+  - {id: RESULT-DIN-LXE8-G-C1-FILAS-ARCHIVO, tipo: entero, unidad: "filas del microdato TMODULO 2021"}
+  - {id: RESULT-DIN-LXE8-G-C1-FILAS-UNIVERSO, tipo: entero, unidad: "filas tras los tres filtros, 2021"}
+  - {id: RESULT-DIN-LXE8-G-C1-FILAS-EDAD-CENTINELA, tipo: entero, unidad: "filas excluidas por EDAD en {98,99}, 2021"}
+  - {id: RESULT-DIN-LXE8-G-C1-COBERTURA-SIN-PONDERAR, tipo: proporcion, unidad: "filas universo / filas archivo, 2021"}
+  - {id: RESULT-DIN-LXE8-G-C1-COBERTURA-PONDERADA, tipo: proporcion, unidad: "peso universo / peso archivo, 2021"}
+  - {id: RESULT-DIN-LXE8-G-C1-FILAS-CODIGO-FUERA-DE-DOMINIO, tipo: entero, unidad: "filas con algun valor fuera de dominio, 2021"}
+  - {id: RESULT-DIN-LXE8-G-C1-ESTRATOS, tipo: entero, unidad: "EST_DIS distintos en el universo, 2021"}
+  - {id: RESULT-DIN-LXE8-G-C1-UPM, tipo: entero, unidad: "UPM_DIS distintas en el universo, 2021"}
+  - {id: RESULT-DIN-LXE8-G-M24-FILAS-ARCHIVO, tipo: entero, unidad: "filas del microdato TMODULO 2024"}
+  - {id: RESULT-DIN-LXE8-G-M24-FILAS-UNIVERSO, tipo: entero, unidad: "filas tras los tres filtros, 2024"}
+  - {id: RESULT-DIN-LXE8-G-M24-FILAS-EDAD-CENTINELA, tipo: entero, unidad: "filas excluidas por EDAD en {98,99}, 2024"}
+  - {id: RESULT-DIN-LXE8-G-M24-COBERTURA-SIN-PONDERAR, tipo: proporcion, unidad: "filas universo / filas archivo, 2024"}
+  - {id: RESULT-DIN-LXE8-G-M24-COBERTURA-PONDERADA, tipo: proporcion, unidad: "peso universo / peso archivo, 2024"}
+  - {id: RESULT-DIN-LXE8-G-M24-FILAS-CODIGO-FUERA-DE-DOMINIO, tipo: entero, unidad: "filas con algun valor fuera de dominio, 2024"}
+  - {id: RESULT-DIN-LXE8-G-M24-ESTRATOS, tipo: entero, unidad: "EST_DIS distintos en el universo, 2024"}
+  - {id: RESULT-DIN-LXE8-G-M24-UPM, tipo: entero, unidad: "UPM_DIS distintas en el universo, 2024"}
+  - {id: RESULT-DIN-LXE8-G-C1-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "estratos con una sola UPM en 2021 (IC conservador)"}
+  - {id: RESULT-DIN-LXE8-G-C1-MONOTONIA-D9-SUBSET-D7, tipo: texto, unidad: "VERIFICADA o VIOLADA -- falsador del medidor"}
+  - {id: RESULT-DIN-LXE8-G-C1-CELDAS-FUERA-DE-SOPORTE, tipo: entero, unidad: "celdas con n_2021 < 200"}
+  - {id: RESULT-DIN-LXE8-G-C1-P-NACIONAL-D9, tipo: proporcion, unidad: "p nacional ponderada 2021 bajo D9 (primario)"}
+  - {id: RESULT-DIN-LXE8-G-C1-P-NACIONAL-D7, tipo: proporcion, unidad: "p nacional ponderada 2021 bajo D7 (sensibilidad)"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-L1-D9-P, tipo: proporcion, unidad: "marginal D9 de ENIF 2024 re-derivado, grupo L1"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-L1-D9-IC95INF, tipo: proporcion, unidad: "IC95 inferior del marginal re-derivado L1"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-L1-D9-IC95SUP, tipo: proporcion, unidad: "IC95 superior del marginal re-derivado L1"}
+  - {id: RESULT-DIN-LXE8-G-CTRL-ARBITRO-L1-DELTA, tipo: flotante, unidad: "re-derivado menos sellado, grupo L1"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-L1-D9-N, tipo: entero, unidad: "filas del universo 2024 en el grupo L1 -- censo A.13 anadido tras la corrida en seco, declarado en spec §0.9"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-L2-D9-P, tipo: proporcion, unidad: "marginal D9 de ENIF 2024 re-derivado, grupo L2"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-L2-D9-IC95INF, tipo: proporcion, unidad: "IC95 inferior del marginal re-derivado L2"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-L2-D9-IC95SUP, tipo: proporcion, unidad: "IC95 superior del marginal re-derivado L2"}
+  - {id: RESULT-DIN-LXE8-G-CTRL-ARBITRO-L2-DELTA, tipo: flotante, unidad: "re-derivado menos sellado, grupo L2"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-L2-D9-N, tipo: entero, unidad: "filas del universo 2024 en el grupo L2 -- censo A.13 anadido tras la corrida en seco, declarado en spec §0.9"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-E1-D9-P, tipo: proporcion, unidad: "marginal D9 de ENIF 2024 re-derivado, grupo E1"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-E1-D9-IC95INF, tipo: proporcion, unidad: "IC95 inferior del marginal re-derivado E1"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-E1-D9-IC95SUP, tipo: proporcion, unidad: "IC95 superior del marginal re-derivado E1"}
+  - {id: RESULT-DIN-LXE8-G-CTRL-ARBITRO-E1-DELTA, tipo: flotante, unidad: "re-derivado menos sellado, grupo E1"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-E1-D9-N, tipo: entero, unidad: "filas del universo 2024 en el grupo E1 -- censo A.13 anadido tras la corrida en seco, declarado en spec §0.9"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-E2-D9-P, tipo: proporcion, unidad: "marginal D9 de ENIF 2024 re-derivado, grupo E2"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-E2-D9-IC95INF, tipo: proporcion, unidad: "IC95 inferior del marginal re-derivado E2"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-E2-D9-IC95SUP, tipo: proporcion, unidad: "IC95 superior del marginal re-derivado E2"}
+  - {id: RESULT-DIN-LXE8-G-CTRL-ARBITRO-E2-DELTA, tipo: flotante, unidad: "re-derivado menos sellado, grupo E2"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-E2-D9-N, tipo: entero, unidad: "filas del universo 2024 en el grupo E2 -- censo A.13 anadido tras la corrida en seco, declarado en spec §0.9"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-E3-D9-P, tipo: proporcion, unidad: "marginal D9 de ENIF 2024 re-derivado, grupo E3"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-E3-D9-IC95INF, tipo: proporcion, unidad: "IC95 inferior del marginal re-derivado E3"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-E3-D9-IC95SUP, tipo: proporcion, unidad: "IC95 superior del marginal re-derivado E3"}
+  - {id: RESULT-DIN-LXE8-G-CTRL-ARBITRO-E3-DELTA, tipo: flotante, unidad: "re-derivado menos sellado, grupo E3"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-E3-D9-N, tipo: entero, unidad: "filas del universo 2024 en el grupo E3 -- censo A.13 anadido tras la corrida en seco, declarado en spec §0.9"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-E4-D9-P, tipo: proporcion, unidad: "marginal D9 de ENIF 2024 re-derivado, grupo E4"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-E4-D9-IC95INF, tipo: proporcion, unidad: "IC95 inferior del marginal re-derivado E4"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-E4-D9-IC95SUP, tipo: proporcion, unidad: "IC95 superior del marginal re-derivado E4"}
+  - {id: RESULT-DIN-LXE8-G-CTRL-ARBITRO-E4-DELTA, tipo: flotante, unidad: "re-derivado menos sellado, grupo E4"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-E4-D9-N, tipo: entero, unidad: "filas del universo 2024 en el grupo E4 -- censo A.13 anadido tras la corrida en seco, declarado en spec §0.9"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-NAC-D9-P, tipo: proporcion, unidad: "marginal D9 de ENIF 2024 re-derivado, grupo NAC"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-NAC-D9-IC95INF, tipo: proporcion, unidad: "IC95 inferior del marginal re-derivado NAC"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-NAC-D9-IC95SUP, tipo: proporcion, unidad: "IC95 superior del marginal re-derivado NAC"}
+  - {id: RESULT-DIN-LXE8-G-CTRL-ARBITRO-NAC-DELTA, tipo: flotante, unidad: "re-derivado menos sellado, grupo NAC"}
+  - {id: RESULT-DIN-LXE8-G-C2-MARG-NAC-D9-N, tipo: entero, unidad: "filas del universo 2024 en el grupo NAC -- censo A.13 anadido tras la corrida en seco, declarado en spec §0.9"}
+  - {id: RESULT-DIN-LXE8-G-CTRL-ARBITRO-DELTA-MAX, tipo: flotante, unidad: "maximo |delta| sobre las seis celdas marginales con IC sellado"}
+  - {id: RESULT-DIN-LXE8-G-CTRL-ARBITRO-VEREDICTO, tipo: texto, unidad: "REPRODUCE o NO-REPRODUCE frente al arbitro marginal sellado"}
+  - {id: RESULT-DIN-LXE8-G-C2-DESENLACE-ID, tipo: texto, unidad: "identificador del desenlace de los tres marginales"}
+  - {id: RESULT-DIN-LXE8-G-C2-ROTULO-SUPUESTO, tipo: texto, unidad: "rotulo obligatorio del supuesto de C2 (FP-379 D2)"}
+  - {id: RESULT-DIN-LXE8-G-C2-INCERTIDUMBRE, tipo: texto, unidad: "estado del contrato de incertidumbre de C2"}
+  - {id: RESULT-DIN-LXE8-G-C2-ESTADO, tipo: texto, unidad: "PISO-ADMISIBLE o DIAGNOSTICO-POR-REPLIEGUE"}
+  - {id: RESULT-DIN-LXE8-G-C2-CELDAS-NO-CONSTRUIBLES, tipo: entero, unidad: "celdas SIN-DEFINIR por marginal degenerado"}
+  - {id: RESULT-DIN-LXE8-G-C2-REPLICAS-SIN-DEFINIR, tipo: entero, unidad: "replicas bootstrap descartadas por logit divergente"}
+  - {id: RESULT-DIN-LXE8-G-C2-MULT-FUERA-DE-RANGO, tipo: entero, unidad: "celdas en que p_l*p_e/p sale de [0,1] -- control de rango, no candidato"}
+  - {id: RESULT-DIN-LXE8-G-C2-MULT-MAX, tipo: flotante, unidad: "valor maximo de p_l*p_e/p sobre las 8 celdas"}
+  - {id: RESULT-DIN-LXE8-G-C2-CRUCE-2024-DERIVADO, tipo: texto, unidad: "NO si el medidor no construyo la llave (localidad, edad) sobre 2024"}
+  - {id: RESULT-DIN-LXE8-G-C3-CONTROL-MEMORIA, tipo: texto, unidad: "veredicto del control de memoria"}
+  - {id: RESULT-DIN-LXE8-G-C3-LSOLO-ESTADO, tipo: texto, unidad: "EJECUTADA o el bloqueador nombrado"}
+  - {id: RESULT-DIN-LXE8-G-C3-LSOLO-SPEC, tipo: texto, unidad: "sufijo de spec de las capturas vigentes"}
+  - {id: RESULT-DIN-LXE8-G-C3-LSOLO-CAPTURAS, tipo: entero, unidad: "capturas L-solo vigentes encontradas"}
+  - {id: RESULT-DIN-LXE8-G-C3-LSOLO-EXTRAIBLES, tipo: entero, unidad: "capturas vigentes con valor extraible por la regla congelada"}
+  - {id: RESULT-DIN-LXE8-G-C3-LSOLO-RECHAZOS, tipo: entero, unidad: "capturas vigentes con estado_captura distinto de OK"}
+  - {id: RESULT-DIN-LXE8-G-C3-LSOLO-MODELO-REAL, tipo: texto, unidad: "modelo real reportado por el CLI, o NO-REPORTADO-POR-EL-CLIENTE (FP-239)"}
+  - {id: RESULT-DIN-LXE8-G-C3-CAPTURAS-SUPERADAS, tipo: entero, unidad: "capturas SUPERADO-POR-SPEC conservadas como historia"}
+  - {id: RESULT-DIN-LXE8-G-C3-LCORPUS-ESTADO, tipo: texto, unidad: "DIFERIDO-A-SUCESOR y su razon"}
+  - {id: RESULT-DIN-LXE8-G-C3-LCORPUS-CAPTURAS, tipo: entero, unidad: "capturas L+corpus de este piloto"}
+  - {id: RESULT-DIN-LXE8-G-C4-ESTADO, tipo: texto, unidad: "INEJECUTABLE y su razon"}
+  - {id: RESULT-DIN-LXE8-G-C4-FALTANTES, tipo: texto, unidad: "los cuatro faltantes por nombre, separados por ' | '"}
+  - {id: RESULT-DIN-LXE8-G-C5-ESTADO, tipo: texto, unidad: "NO-APLICA y su cita"}
+  - {id: RESULT-DIN-LXE8-G-R-EXISTE-AL-CERRAR, tipo: texto, unidad: "NO si ningun R del cruce existe en el arbol al sellar este CALC"}
+  - {id: RESULT-DIN-LXE8-C1-D9-P-L1xE1, tipo: proporcion, unidad: "proporcion ponderada [0,1], ENIF 2021, D9 primario", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-IC95INF-L1xE1, tipo: proporcion, unidad: "IC95 inferior bootstrap", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-IC95SUP-L1xE1, tipo: proporcion, unidad: "IC95 superior bootstrap", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-N-L1xE1, tipo: entero, unidad: "filas del universo 2021 en la celda"}
+  - {id: RESULT-DIN-LXE8-C1-D7-P-L1xE1, tipo: proporcion, unidad: "ENIF 2021, D7 sensibilidad -- NO adjudica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D7-IC95INF-L1xE1, tipo: proporcion, unidad: "IC95 inferior bootstrap, sensibilidad", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D7-IC95SUP-L1xE1, tipo: proporcion, unidad: "IC95 superior bootstrap, sensibilidad", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-SOPORTE-L1xE1, tipo: texto, unidad: "SOPORTE-OK o FUERA-DE-SOPORTE"}
+  - {id: RESULT-DIN-LXE8-C2-P-L1xE1, tipo: proporcion, unidad: "piso log-aditivo sobre marginales SELLADOS", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-IC95INF-L1xE1, tipo: proporcion, unidad: "IC95 inferior, replica por replica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-IC95SUP-L1xE1, tipo: proporcion, unidad: "IC95 superior, replica por replica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-P-REDERIVADO-L1xE1, tipo: proporcion, unidad: "mismo piso sobre los marginales re-derivados", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-P-L1xE1, tipo: proporcion, unidad: "mediana de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-MIN-L1xE1, tipo: proporcion, unidad: "minimo de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-MAX-L1xE1, tipo: proporcion, unidad: "maximo de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-K-EXTRAIBLES-L1xE1, tipo: entero, unidad: "capturas de la celda con valor extraible"}
+  - {id: RESULT-DIN-LXE8-C3-LCORPUS-P-L1xE1, tipo: proporcion, unidad: "mediana L+corpus -- null, DIFERIDO", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-P-L1xE2, tipo: proporcion, unidad: "proporcion ponderada [0,1], ENIF 2021, D9 primario", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-IC95INF-L1xE2, tipo: proporcion, unidad: "IC95 inferior bootstrap", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-IC95SUP-L1xE2, tipo: proporcion, unidad: "IC95 superior bootstrap", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-N-L1xE2, tipo: entero, unidad: "filas del universo 2021 en la celda"}
+  - {id: RESULT-DIN-LXE8-C1-D7-P-L1xE2, tipo: proporcion, unidad: "ENIF 2021, D7 sensibilidad -- NO adjudica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D7-IC95INF-L1xE2, tipo: proporcion, unidad: "IC95 inferior bootstrap, sensibilidad", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D7-IC95SUP-L1xE2, tipo: proporcion, unidad: "IC95 superior bootstrap, sensibilidad", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-SOPORTE-L1xE2, tipo: texto, unidad: "SOPORTE-OK o FUERA-DE-SOPORTE"}
+  - {id: RESULT-DIN-LXE8-C2-P-L1xE2, tipo: proporcion, unidad: "piso log-aditivo sobre marginales SELLADOS", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-IC95INF-L1xE2, tipo: proporcion, unidad: "IC95 inferior, replica por replica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-IC95SUP-L1xE2, tipo: proporcion, unidad: "IC95 superior, replica por replica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-P-REDERIVADO-L1xE2, tipo: proporcion, unidad: "mismo piso sobre los marginales re-derivados", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-P-L1xE2, tipo: proporcion, unidad: "mediana de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-MIN-L1xE2, tipo: proporcion, unidad: "minimo de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-MAX-L1xE2, tipo: proporcion, unidad: "maximo de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-K-EXTRAIBLES-L1xE2, tipo: entero, unidad: "capturas de la celda con valor extraible"}
+  - {id: RESULT-DIN-LXE8-C3-LCORPUS-P-L1xE2, tipo: proporcion, unidad: "mediana L+corpus -- null, DIFERIDO", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-P-L1xE3, tipo: proporcion, unidad: "proporcion ponderada [0,1], ENIF 2021, D9 primario", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-IC95INF-L1xE3, tipo: proporcion, unidad: "IC95 inferior bootstrap", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-IC95SUP-L1xE3, tipo: proporcion, unidad: "IC95 superior bootstrap", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-N-L1xE3, tipo: entero, unidad: "filas del universo 2021 en la celda"}
+  - {id: RESULT-DIN-LXE8-C1-D7-P-L1xE3, tipo: proporcion, unidad: "ENIF 2021, D7 sensibilidad -- NO adjudica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D7-IC95INF-L1xE3, tipo: proporcion, unidad: "IC95 inferior bootstrap, sensibilidad", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D7-IC95SUP-L1xE3, tipo: proporcion, unidad: "IC95 superior bootstrap, sensibilidad", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-SOPORTE-L1xE3, tipo: texto, unidad: "SOPORTE-OK o FUERA-DE-SOPORTE"}
+  - {id: RESULT-DIN-LXE8-C2-P-L1xE3, tipo: proporcion, unidad: "piso log-aditivo sobre marginales SELLADOS", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-IC95INF-L1xE3, tipo: proporcion, unidad: "IC95 inferior, replica por replica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-IC95SUP-L1xE3, tipo: proporcion, unidad: "IC95 superior, replica por replica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-P-REDERIVADO-L1xE3, tipo: proporcion, unidad: "mismo piso sobre los marginales re-derivados", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-P-L1xE3, tipo: proporcion, unidad: "mediana de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-MIN-L1xE3, tipo: proporcion, unidad: "minimo de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-MAX-L1xE3, tipo: proporcion, unidad: "maximo de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-K-EXTRAIBLES-L1xE3, tipo: entero, unidad: "capturas de la celda con valor extraible"}
+  - {id: RESULT-DIN-LXE8-C3-LCORPUS-P-L1xE3, tipo: proporcion, unidad: "mediana L+corpus -- null, DIFERIDO", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-P-L1xE4, tipo: proporcion, unidad: "proporcion ponderada [0,1], ENIF 2021, D9 primario", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-IC95INF-L1xE4, tipo: proporcion, unidad: "IC95 inferior bootstrap", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-IC95SUP-L1xE4, tipo: proporcion, unidad: "IC95 superior bootstrap", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-N-L1xE4, tipo: entero, unidad: "filas del universo 2021 en la celda"}
+  - {id: RESULT-DIN-LXE8-C1-D7-P-L1xE4, tipo: proporcion, unidad: "ENIF 2021, D7 sensibilidad -- NO adjudica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D7-IC95INF-L1xE4, tipo: proporcion, unidad: "IC95 inferior bootstrap, sensibilidad", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D7-IC95SUP-L1xE4, tipo: proporcion, unidad: "IC95 superior bootstrap, sensibilidad", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-SOPORTE-L1xE4, tipo: texto, unidad: "SOPORTE-OK o FUERA-DE-SOPORTE"}
+  - {id: RESULT-DIN-LXE8-C2-P-L1xE4, tipo: proporcion, unidad: "piso log-aditivo sobre marginales SELLADOS", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-IC95INF-L1xE4, tipo: proporcion, unidad: "IC95 inferior, replica por replica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-IC95SUP-L1xE4, tipo: proporcion, unidad: "IC95 superior, replica por replica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-P-REDERIVADO-L1xE4, tipo: proporcion, unidad: "mismo piso sobre los marginales re-derivados", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-P-L1xE4, tipo: proporcion, unidad: "mediana de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-MIN-L1xE4, tipo: proporcion, unidad: "minimo de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-MAX-L1xE4, tipo: proporcion, unidad: "maximo de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-K-EXTRAIBLES-L1xE4, tipo: entero, unidad: "capturas de la celda con valor extraible"}
+  - {id: RESULT-DIN-LXE8-C3-LCORPUS-P-L1xE4, tipo: proporcion, unidad: "mediana L+corpus -- null, DIFERIDO", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-P-L2xE1, tipo: proporcion, unidad: "proporcion ponderada [0,1], ENIF 2021, D9 primario", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-IC95INF-L2xE1, tipo: proporcion, unidad: "IC95 inferior bootstrap", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-IC95SUP-L2xE1, tipo: proporcion, unidad: "IC95 superior bootstrap", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-N-L2xE1, tipo: entero, unidad: "filas del universo 2021 en la celda"}
+  - {id: RESULT-DIN-LXE8-C1-D7-P-L2xE1, tipo: proporcion, unidad: "ENIF 2021, D7 sensibilidad -- NO adjudica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D7-IC95INF-L2xE1, tipo: proporcion, unidad: "IC95 inferior bootstrap, sensibilidad", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D7-IC95SUP-L2xE1, tipo: proporcion, unidad: "IC95 superior bootstrap, sensibilidad", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-SOPORTE-L2xE1, tipo: texto, unidad: "SOPORTE-OK o FUERA-DE-SOPORTE"}
+  - {id: RESULT-DIN-LXE8-C2-P-L2xE1, tipo: proporcion, unidad: "piso log-aditivo sobre marginales SELLADOS", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-IC95INF-L2xE1, tipo: proporcion, unidad: "IC95 inferior, replica por replica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-IC95SUP-L2xE1, tipo: proporcion, unidad: "IC95 superior, replica por replica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-P-REDERIVADO-L2xE1, tipo: proporcion, unidad: "mismo piso sobre los marginales re-derivados", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-P-L2xE1, tipo: proporcion, unidad: "mediana de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-MIN-L2xE1, tipo: proporcion, unidad: "minimo de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-MAX-L2xE1, tipo: proporcion, unidad: "maximo de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-K-EXTRAIBLES-L2xE1, tipo: entero, unidad: "capturas de la celda con valor extraible"}
+  - {id: RESULT-DIN-LXE8-C3-LCORPUS-P-L2xE1, tipo: proporcion, unidad: "mediana L+corpus -- null, DIFERIDO", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-P-L2xE2, tipo: proporcion, unidad: "proporcion ponderada [0,1], ENIF 2021, D9 primario", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-IC95INF-L2xE2, tipo: proporcion, unidad: "IC95 inferior bootstrap", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-IC95SUP-L2xE2, tipo: proporcion, unidad: "IC95 superior bootstrap", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-N-L2xE2, tipo: entero, unidad: "filas del universo 2021 en la celda"}
+  - {id: RESULT-DIN-LXE8-C1-D7-P-L2xE2, tipo: proporcion, unidad: "ENIF 2021, D7 sensibilidad -- NO adjudica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D7-IC95INF-L2xE2, tipo: proporcion, unidad: "IC95 inferior bootstrap, sensibilidad", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D7-IC95SUP-L2xE2, tipo: proporcion, unidad: "IC95 superior bootstrap, sensibilidad", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-SOPORTE-L2xE2, tipo: texto, unidad: "SOPORTE-OK o FUERA-DE-SOPORTE"}
+  - {id: RESULT-DIN-LXE8-C2-P-L2xE2, tipo: proporcion, unidad: "piso log-aditivo sobre marginales SELLADOS", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-IC95INF-L2xE2, tipo: proporcion, unidad: "IC95 inferior, replica por replica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-IC95SUP-L2xE2, tipo: proporcion, unidad: "IC95 superior, replica por replica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-P-REDERIVADO-L2xE2, tipo: proporcion, unidad: "mismo piso sobre los marginales re-derivados", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-P-L2xE2, tipo: proporcion, unidad: "mediana de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-MIN-L2xE2, tipo: proporcion, unidad: "minimo de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-MAX-L2xE2, tipo: proporcion, unidad: "maximo de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-K-EXTRAIBLES-L2xE2, tipo: entero, unidad: "capturas de la celda con valor extraible"}
+  - {id: RESULT-DIN-LXE8-C3-LCORPUS-P-L2xE2, tipo: proporcion, unidad: "mediana L+corpus -- null, DIFERIDO", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-P-L2xE3, tipo: proporcion, unidad: "proporcion ponderada [0,1], ENIF 2021, D9 primario", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-IC95INF-L2xE3, tipo: proporcion, unidad: "IC95 inferior bootstrap", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-IC95SUP-L2xE3, tipo: proporcion, unidad: "IC95 superior bootstrap", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-N-L2xE3, tipo: entero, unidad: "filas del universo 2021 en la celda"}
+  - {id: RESULT-DIN-LXE8-C1-D7-P-L2xE3, tipo: proporcion, unidad: "ENIF 2021, D7 sensibilidad -- NO adjudica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D7-IC95INF-L2xE3, tipo: proporcion, unidad: "IC95 inferior bootstrap, sensibilidad", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D7-IC95SUP-L2xE3, tipo: proporcion, unidad: "IC95 superior bootstrap, sensibilidad", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-SOPORTE-L2xE3, tipo: texto, unidad: "SOPORTE-OK o FUERA-DE-SOPORTE"}
+  - {id: RESULT-DIN-LXE8-C2-P-L2xE3, tipo: proporcion, unidad: "piso log-aditivo sobre marginales SELLADOS", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-IC95INF-L2xE3, tipo: proporcion, unidad: "IC95 inferior, replica por replica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-IC95SUP-L2xE3, tipo: proporcion, unidad: "IC95 superior, replica por replica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-P-REDERIVADO-L2xE3, tipo: proporcion, unidad: "mismo piso sobre los marginales re-derivados", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-P-L2xE3, tipo: proporcion, unidad: "mediana de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-MIN-L2xE3, tipo: proporcion, unidad: "minimo de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-MAX-L2xE3, tipo: proporcion, unidad: "maximo de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-K-EXTRAIBLES-L2xE3, tipo: entero, unidad: "capturas de la celda con valor extraible"}
+  - {id: RESULT-DIN-LXE8-C3-LCORPUS-P-L2xE3, tipo: proporcion, unidad: "mediana L+corpus -- null, DIFERIDO", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-P-L2xE4, tipo: proporcion, unidad: "proporcion ponderada [0,1], ENIF 2021, D9 primario", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-IC95INF-L2xE4, tipo: proporcion, unidad: "IC95 inferior bootstrap", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-IC95SUP-L2xE4, tipo: proporcion, unidad: "IC95 superior bootstrap", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D9-N-L2xE4, tipo: entero, unidad: "filas del universo 2021 en la celda"}
+  - {id: RESULT-DIN-LXE8-C1-D7-P-L2xE4, tipo: proporcion, unidad: "ENIF 2021, D7 sensibilidad -- NO adjudica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D7-IC95INF-L2xE4, tipo: proporcion, unidad: "IC95 inferior bootstrap, sensibilidad", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-D7-IC95SUP-L2xE4, tipo: proporcion, unidad: "IC95 superior bootstrap, sensibilidad", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C1-SOPORTE-L2xE4, tipo: texto, unidad: "SOPORTE-OK o FUERA-DE-SOPORTE"}
+  - {id: RESULT-DIN-LXE8-C2-P-L2xE4, tipo: proporcion, unidad: "piso log-aditivo sobre marginales SELLADOS", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-IC95INF-L2xE4, tipo: proporcion, unidad: "IC95 inferior, replica por replica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-IC95SUP-L2xE4, tipo: proporcion, unidad: "IC95 superior, replica por replica", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C2-P-REDERIVADO-L2xE4, tipo: proporcion, unidad: "mismo piso sobre los marginales re-derivados", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-P-L2xE4, tipo: proporcion, unidad: "mediana de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-MIN-L2xE4, tipo: proporcion, unidad: "minimo de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-MAX-L2xE4, tipo: proporcion, unidad: "maximo de los k puntos extraidos", permite_no_estimable: true}
+  - {id: RESULT-DIN-LXE8-C3-LSOLO-K-EXTRAIBLES-L2xE4, tipo: entero, unidad: "capturas de la celda con valor extraible"}
+  - {id: RESULT-DIN-LXE8-C3-LCORPUS-P-L2xE4, tipo: proporcion, unidad: "mediana L+corpus -- null, DIFERIDO", permite_no_estimable: true}

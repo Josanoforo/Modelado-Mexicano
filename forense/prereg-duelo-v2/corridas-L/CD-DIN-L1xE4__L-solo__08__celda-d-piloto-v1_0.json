@@ -1,0 +1,36 @@
+{
+ "celda_cruce": "L1xE4",
+ "contexto_corpus_metadata": null,
+ "estado_captura": "OK",
+ "fuente_citada": null,
+ "id_celda": "CD-DIN-L1xE4",
+ "indice": 8,
+ "intentos": 1,
+ "modelo_real": null,
+ "params": {
+  "corpus_id_si_aplica": null,
+  "ejecutor": "sesión limpia fuera del proyecto (D-iii)",
+  "fecha_congelacion": "2026-09-16",
+  "k_corridas": 8,
+  "modelo_id": "opus",
+  "temperatura": 1.0,
+  "variante": "L-solo",
+  "version_declarada": "derivada por corrida del campo `model` del JSON del CLI"
+ },
+ "sha256_prompt": "594292c693e5d7c0160f93c3de0729512abded176c12bf84fee3ea49bee7a7ce",
+ "spec_celda": {
+  "encuesta": "Encuesta Nacional de Inclusion Financiera (ENIF), INEGI, Mexico",
+  "escala": "continua: proporcion en [0,1]. Declara ademas un intervalo subjetivo al 80 % en la forma [inferior, superior].",
+  "estimador": "proporcion ponderada por el factor de expansion de persona (FAC_PER)",
+  "frase_discriminacion": "NO-APLICA",
+  "id": "CD-DIN-L1xE4",
+  "ola": "2024",
+  "universo": "personas elegidas de 18 anos y mas que viven en localidades de MENOS de 15 000 habitantes (tamano de localidad 3 o 4) y tienen de 60 anos cumplidos o mas",
+  "variable": "ahorra_solo_informal: la persona ahorro por alguna via informal en los ultimos 12 meses (presto dinero, compro animales o bienes, guardo dinero en una caja de ahorro del trabajo o de personas conocidas, guardo dinero con familiares o personas conocidas, participo en una tanda, o guardo dinero en su casa) Y NO guardo ni ahorro en ninguna de estas siete cuentas formales: nomina, pension, apoyos de gobierno, cuenta de ahorro, cuenta de cheques, cuenta contratada por Internet o aplicacion, u otra cuenta"
+ },
+ "spec_piloto": "celda-d-piloto-v1_0",
+ "texto_crudo": "**Estimación puntual:** ≈ 0.22 (22 %)\n\n**Intervalo subjetivo al 80 %:** [0.14, 0.32]\n\n**Aclaración explícita:** no conozco el valor tabulado de este cruce (ENIF 2024, personas de 60 años y más en localidades de menos de 15 000 habitantes, ahorro informal sin ahorro en cuenta formal, ponderado por FAC_PER). La cifra anterior es una estimación razonada, no un dato recordado.\n\n**Base del razonamiento (sin fuente textual consultada; sonda canario: no cito documento alguno):**\n- A nivel nacional, ENIF reporta que el ahorro informal ronda un tercio de la población adulta y el ahorro formal (en cuentas) alrededor de la mitad, con traslape considerable entre ambos.\n- En localidades rurales/semiurbanas la tenencia de cuenta es menor y el ahorro en casa, tandas y compra de animales/bienes es más frecuente, lo que eleva la fracción \"solo informal\".\n- Entre personas de 60+ en esas localidades, muchas tienen cuenta por la Pensión para el Bienestar, pero es común que retiren todo el depósito y no declaren \"guardar o ahorrar\" en ella, así que el ahorro formal reportado es bajo.\n- Contrapeso: la propensión a ahorrar por cualquier vía cae con la edad y con ingresos bajos, lo que limita el numerador.\n\nCombinando estos factores, el rango plausible me parece 14–32 %, con centro cerca de 22 %.",
+ "timestamp": "2026-09-17T01:40:15.297134+00:00",
+ "valor_extraido": null,
+ "variante": "L-solo"
+}

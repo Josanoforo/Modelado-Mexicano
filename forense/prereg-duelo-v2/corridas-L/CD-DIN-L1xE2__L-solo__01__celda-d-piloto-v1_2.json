@@ -1,0 +1,36 @@
+{
+ "celda_cruce": "L1xE2",
+ "contexto_corpus_metadata": null,
+ "estado_captura": "OK",
+ "fuente_citada": null,
+ "id_celda": "CD-DIN-L1xE2",
+ "indice": 1,
+ "intentos": 1,
+ "modelo_real": null,
+ "params": {
+  "corpus_id_si_aplica": null,
+  "ejecutor": "sesión limpia fuera del proyecto (D-iii)",
+  "fecha_congelacion": "2026-09-16",
+  "k_corridas": 8,
+  "modelo_id": "opus",
+  "temperatura": 1.0,
+  "variante": "L-solo",
+  "version_declarada": "derivada por corrida del campo `model` del JSON del CLI"
+ },
+ "sha256_prompt": "ca216a97b0c31fed88afb7390bca350c428912798bf5438387d8507fdf5105ad",
+ "spec_celda": {
+  "encuesta": "Encuesta Nacional de Inclusion Financiera (ENIF), INEGI, Mexico",
+  "escala": "continua: proporcion en [0,1]. Declara ademas un intervalo subjetivo al 80 % en la forma [inferior, superior].",
+  "estimador": "proporcion ponderada por el factor de expansion de persona (FAC_PER)",
+  "frase_discriminacion": "NO-APLICA",
+  "id": "CD-DIN-L1xE2",
+  "ola": "2024",
+  "universo": "personas elegidas de 18 anos y mas que viven en localidades de MENOS de 15 000 habitantes (tamano de localidad 3 o 4) y tienen de 30 a 44 anos cumplidos",
+  "variable": "ahorra_solo_informal: la persona ahorro por alguna via informal en los ultimos 12 meses (presto dinero, compro animales o bienes, guardo dinero en una caja de ahorro del trabajo o de personas conocidas, guardo dinero con familiares o personas conocidas, participo en una tanda, o guardo dinero en su casa) Y NO guardo ni ahorro en ninguna de estas nueve cuentas formales: cuenta o tarjeta de nomina, cuenta o tarjeta de pension, cuenta o tarjeta para recibir apoyos de gobierno, cuenta de ahorro, cuenta de cheques, deposito a plazo fijo, fondo de inversion, cuenta contratada por Internet o aplicacion, u otro tipo de cuenta"
+ },
+ "spec_piloto": "celda-d-piloto-v1_2",
+ "texto_crudo": "**Estimación puntual:** 0.36\n\n**Intervalo subjetivo al 80 %:** [0.27, 0.46]\n\n**Base de la estimación (no es un dato conocido; es una inferencia):**\n\nNo conozco la cifra publicada para esta combinación exacta de filtros (ENIF 2024, localidades <15 000 habitantes, 30–44 años, indicador derivado \"ahorra solo informal\"). El indicador tal como se define aquí es una construcción del proyecto, no un tabulado estándar de INEGI/CNBV, así que no puedo citarlo textualmente.\n\nLo que sí sé de forma aproximada, de los tabulados públicos de la ENIF (ediciones 2018, 2021 y 2024, INEGI–CNBV), y que uso como anclas:\n\n- A nivel nacional (18–70 años), alrededor del 60 % de la población reporta ahorro informal en los 12 meses previos, y cerca del 45–50 % tiene alguna cuenta formal; en localidades menores de 15 000 habitantes la tenencia de cuenta cae (aprox. 35–45 %) y el ahorro informal se mantiene alto o sube (aprox. 60–65 %).\n- El grupo 30–44 años es el de mayor actividad económica y ahorro (tanto formal como informal), lo que empuja hacia arriba el ahorro informal pero también la tenencia de cuenta (nómina, apoyos de gobierno).\n- El reactivo \"guardó dinero en alguna de estas nueve cuentas\" es más restrictivo que \"tiene cuenta\": una fracción de quienes tienen cuenta (sobre todo de nómina o de apoyos) no la usa para ahorrar, lo que aumenta el grupo \"solo informal\".\n\nCombinando: ahorro informal ~0.62–0.68 en ese universo, y de ese conjunto quizá 50–60 % no ahorra en ninguna cuenta formal → ~0.33–0.40. De ahí el punto 0.36 y el intervalo relativamente ancho, que refleja incertidumbre real por (a) no conocer el tabulado exacto, (b) sensibilidad a cómo se codifican los \"no sabe/no responde\" y (c) el cambio de universo de 18–70 a 18+ en la ola 2024.\n\n**Fuente textual (sonda canario):** ninguna directa para esta cifra. Anclas de memoria: INEGI–CNBV, *ENIF 2018/2021/2024, presentación de resultados y tabulados básicos*, indicadores de tenencia de cuenta y ahorro informal por tamaño de localidad y grupo de edad; los valores citados arriba son recordados de forma aproximada y deben verificarse contra los microdatos antes de usarse como referencia.",
+ "timestamp": "2026-09-17T02:34:44.491046+00:00",
+ "valor_extraido": null,
+ "variante": "L-solo"
+}
