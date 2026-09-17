@@ -287,3 +287,36 @@ no sería auditable sin recalcularlo. Se añadieron **con la declaración al lad
 
 **CONTADOR, sin disfraz (regla de señal v2.3):** **+2 corridas GEN2 selladas**, **389 `RESULT`**, **1 celda-D
 adjudicada sin campeón**, **1 fila de catálogo con estimador derivado**. **Cero adopciones. Cero cambios al motor.**
+
+---
+
+## 12 · Un defecto propio que sólo se ve después de cerrar (`NC-0302`)
+
+**`verify` sobre el `CALC` de emisiones da `NO-REPRODUCE` de forma permanente a partir del `COMMIT-3`.** Medido:
+
+```
+VERIFY CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
+  CONTEXTO: IDENTICO
+  220 de 221 RESULT REPRODUCE con delta 0
+  [5/5 RESULT NO-REPRODUCE] RESULT-DIN-LXE8-G-R-EXISTE-AL-CERRAR
+      (tipo=texto): sellado='NO' · hoy='SI'
+```
+
+**La causa es de diseño y es mía:** ese `RESULT` es un **snapshot del estado del árbol**, no una función de los
+inputs sellados. Pregunta «¿existe ya el directorio del `CALC` del árbitro?». Al sellar el `COMMIT-2` la respuesta
+era `NO`; después del `COMMIT-3` es `SI`. **Por construcción no puede replicar** una vez que el árbol avanza, y el
+`CALC` está sellado y es `CALC-INMUTABLE`: no se reescribe (`P4`).
+
+**Ninguna cifra del piloto se mueve.** Los 220 `RESULT` sustantivos —`C1`, `C2`, `C3`, coberturas, marginales,
+control del árbitro, `C4`, `C5`— replican **exactos**, con `CONTEXTO=IDENTICO`.
+
+**Y el volteo no es señal de rotura: es exactamente la prueba que el falsador existía para dar.** Un `"NO"` sellado
+en `c169edc` **más** un `"SI"` hoy acreditan, juntos, que `R` **no existía** cuando las emisiones se sellaron y **sí
+existe** después. Eso es el orden que el acto tenía que demostrar. Lo que queda roto no es el piloto sino la
+**lectura mecánica**: un lector automático de `verify` verá `NO-REPRODUCE` sobre este `CALC` y tiene que saber por
+qué — por eso esta sección y la fila `NC-0302`.
+
+**Lección para el sucesor, escrita para que no se repita:** un falsador **de orden** se asienta en `ejecucion.json`
+o en el sello —donde el commit ya viaja— o como un `RESULT` de texto que **nombre el commit en que se evaluó**.
+Nunca como un booleano recalculable sobre el árbol vivo.
+
