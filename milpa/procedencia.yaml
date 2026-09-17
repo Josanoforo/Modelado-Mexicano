@@ -1150,6 +1150,47 @@ coeficientes_generador_medidos:
       identificado de en-escala-del-modelo; este acto no llega a ninguno
       de los dos.
 
+  # REUBICADA, SIN TOCAR UN SOLO VALOR (ACTO GEN2-ESQUEMA-E1-CAPA-1, 17/sep/2026,
+  # cierra NC-0263). Esta entrada vivia como llave hija de `propuesta_de_esquema:`
+  # (linea 1228 del corte previo), que es un bloque de PROSA sobre un campo
+  # propuesto -- no una seccion de mediciones. `yaml.safe_load` la devolvia fuera
+  # de `coeficientes_generador_medidos`, asi que ningun cargador que recorriera
+  # esta seccion la veia (censo E1 §3, ultima fila, y §4.5). Ademas
+  # `coeficientes_generador_sellados` ya cita `coeficientes_generador_medidos.
+  # G5_familismo_apoyo` en su `fuente:`, referencia que NO resolvia hasta esta
+  # reubicacion. Solo se movio la llave: los valores son byte a byte los mismos.
+  G5_familismo_apoyo:
+    clase: "MEDIDO·β̂(diferencia de proporciones), un ítem, marginal, re-empareja ext (ADR-228/230)"
+    antes: "ASIGNADO -- coeficiente de generador (G5 0.50), sin estimación empírica (modelo-decision-v4_0.md:459)"
+    fuente: "ACTO MAESTRA32-E16, 31/ago/2026 -- eder2017 (data/raw/eder2017/eder2017_bases_csv.zip, sha256 bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3) theta=vivienda.financia_8 (\"préstamo familiar\", universo tipo_adqui no blanco) x desenlace=historiavida.{padre_cor,madre_cor,hnos_cor,suegro_cor,suegra_cor}==1 en cualquier fila del panel retrospectivo, colapsado a nivel persona -- endireh2016 (data/raw/endireh2016/bd_mujeres_endireh2016_sitioinegi_csv.zip, sha256 02c06ab73a53942ddb575e3e35d8c1dd775406277b74e0605735e3eced4e6f10) theta=P4_8_2==1 ∨ P4_8_3==1 x desenlace=P18_4 en {1,2,3} -- forense/notas/2026-08-31-familismo-spec.md, forense/notas/2026-08-31-familismo-cierre.md"
+    n_util: "EDER: theta=1 n=623, theta=0 n=14264 · ENDIREH: theta=1 n=3177, theta=0 n=13490"
+    beta_hat: "EDER: +0.0041 [IC95% 0.0029,0.0054] · ENDIREH (robustez): -0.0461 [IC95% -0.0745,-0.0181]"
+    nota: >
+      Escala de diferencia de proporciones ponderada del desenlace, NO la
+      escala del índice del generador -- no comparable en magnitud contra
+      el 0.50 ASIGNADO (canon/modelo-decision-v4_0.md:459). IC95 por
+      bootstrap de conglomerados (UPM dentro de estrato), B=10000, seed=42
+      (ambas bases traen estrato/UPM -- aproximación declarada al IC por
+      diseño, ver docstring de tools/medicion_familismo.py). Ajuste de
+      constructo (a): ambos reactivos declarados VÁLIDOS -- financia_8 y
+      P4_8_2/P4_8_3 nombran "familiar" como fuente de dinero/préstamo
+      recibido, aunque ambos son compuestos con no-familia (financia_8:
+      "familiar, amigo o prestamista"; P4_8_2/3: "familiares o
+      conocidos") -- contaminación de constructo declarada, no oculta.
+      Circularidad (precedente ENIF p9_9_4): el desenlace NO es
+      transformación del mismo reactivo -- corresidencia (EDER) y carga
+      de cuidado (ENDIREH) son constructos distintos de "recibir dinero".
+    eje_condicionante: >
+      Un eje a la vez, celdas n>=30 (COMMIT-1(d)). EDER: sexo, edad
+      (15-29/30-44/45-59/60+), urbano/rural (tam_loc). ENDIREH: edad
+      (mismos cortes), urbano/rural (DOMINIO). Sexo no aplica en ENDIREH
+      (universo=mujeres). Tabla completa condicionada en
+      forense/notas/2026-08-31-familismo-cierre.md.
+    adr57_a: >
+      ADR-57 (a): concordancia o discordancia de signo entre estos β̂ y
+      el ASIGNADO (G5 0.50) son ambas informativas y ninguna corrobora ni
+      refuta -- asociar ≠ identificar. Signo DISCORDANTE entre EDER y ENDIREH.
+
 # ══════════════════════════════════════════════════════════════════
 # CENSO DE ESTIMABILIDAD · Encargo E-CE · 04/ago/2026 · campo `ruta:`
 # nuevo por coeficiente. `asignados_coeficiente.detalle` NO SE TOCA (mismo
@@ -1240,38 +1281,6 @@ propuesta_de_esquema:
     Hoy un 0.93 leído de ENVIPE y un 0.74 de juicio informado se ven idénticos
     en el archivo. Con el campo, dejan de verse idénticos — y es exactamente esa
     indistinción la puerta por la que un pilar falso entra al modelo.
-
-  G5_familismo_apoyo:
-    clase: "MEDIDO·β̂(diferencia de proporciones), un ítem, marginal, re-empareja ext (ADR-228/230)"
-    antes: "ASIGNADO -- coeficiente de generador (G5 0.50), sin estimación empírica (modelo-decision-v4_0.md:459)"
-    fuente: "ACTO MAESTRA32-E16, 31/ago/2026 -- eder2017 (data/raw/eder2017/eder2017_bases_csv.zip, sha256 bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3) theta=vivienda.financia_8 (\"préstamo familiar\", universo tipo_adqui no blanco) x desenlace=historiavida.{padre_cor,madre_cor,hnos_cor,suegro_cor,suegra_cor}==1 en cualquier fila del panel retrospectivo, colapsado a nivel persona -- endireh2016 (data/raw/endireh2016/bd_mujeres_endireh2016_sitioinegi_csv.zip, sha256 02c06ab73a53942ddb575e3e35d8c1dd775406277b74e0605735e3eced4e6f10) theta=P4_8_2==1 ∨ P4_8_3==1 x desenlace=P18_4 en {1,2,3} -- forense/notas/2026-08-31-familismo-spec.md, forense/notas/2026-08-31-familismo-cierre.md"
-    n_util: "EDER: theta=1 n=623, theta=0 n=14264 · ENDIREH: theta=1 n=3177, theta=0 n=13490"
-    beta_hat: "EDER: +0.0041 [IC95% 0.0029,0.0054] · ENDIREH (robustez): -0.0461 [IC95% -0.0745,-0.0181]"
-    nota: >
-      Escala de diferencia de proporciones ponderada del desenlace, NO la
-      escala del índice del generador -- no comparable en magnitud contra
-      el 0.50 ASIGNADO (canon/modelo-decision-v4_0.md:459). IC95 por
-      bootstrap de conglomerados (UPM dentro de estrato), B=10000, seed=42
-      (ambas bases traen estrato/UPM -- aproximación declarada al IC por
-      diseño, ver docstring de tools/medicion_familismo.py). Ajuste de
-      constructo (a): ambos reactivos declarados VÁLIDOS -- financia_8 y
-      P4_8_2/P4_8_3 nombran "familiar" como fuente de dinero/préstamo
-      recibido, aunque ambos son compuestos con no-familia (financia_8:
-      "familiar, amigo o prestamista"; P4_8_2/3: "familiares o
-      conocidos") -- contaminación de constructo declarada, no oculta.
-      Circularidad (precedente ENIF p9_9_4): el desenlace NO es
-      transformación del mismo reactivo -- corresidencia (EDER) y carga
-      de cuidado (ENDIREH) son constructos distintos de "recibir dinero".
-    eje_condicionante: >
-      Un eje a la vez, celdas n>=30 (COMMIT-1(d)). EDER: sexo, edad
-      (15-29/30-44/45-59/60+), urbano/rural (tam_loc). ENDIREH: edad
-      (mismos cortes), urbano/rural (DOMINIO). Sexo no aplica en ENDIREH
-      (universo=mujeres). Tabla completa condicionada en
-      forense/notas/2026-08-31-familismo-cierre.md.
-    adr57_a: >
-      ADR-57 (a): concordancia o discordancia de signo entre estos β̂ y
-      el ASIGNADO (G5 0.50) son ambas informativas y ninguna corrobora ni
-      refuta -- asociar ≠ identificar. Signo DISCORDANTE entre EDER y ENDIREH.
 
 # ══════════════════════════════════════════════════════════════════
 # COEFICIENTES DE GENERADOR SELLADOS · ACTO MAESTRA32-E1 · SELLA-ENLACE

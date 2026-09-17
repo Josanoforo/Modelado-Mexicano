@@ -179,6 +179,30 @@ ninguna forma reconocible hoy.
    lea la prosa.
 4. El caso especial de los `params_base_de_perfil` (universo tipológico,
    no muestral) y su dependencia dura de `deuda_dispersion` (S2, ABIERTA).
+
+   **ENMIENDA FECHADA (17/sep/2026, `ACTO GEN2-ESQUEMA-E1-CAPA-1`).** No se
+   reescribe nada de arriba: se corrige aquí, in situ, la forma en que este
+   documento nombra la deuda de dispersión. Donde §2.2 y §3 la cuentan como
+   **«90 parámetros de dispersión»**, el conteo vigente es **15 familias de
+   distribución**. La cifra de 90 es la de la tabla de perfiles; bajo el v4.0
+   la dispersión es parte de la especificación de cada condicional
+   (`canon/modelo-decision-v4_0.md` §1.1.B), así que no son 90 números
+   sueltos sino 15 familias sin declarar, una por par `gen×coef` —
+   `canon/modelo-decision-v4_0.md:806` («Las 15 familias de distribución
+   exigidas por `ADR-28.d` no están declaradas»), con el cambio de forma de la
+   deuda explicado en `:307` y `:671`. La deuda **no se salda**: mientras las
+   15 sigan `NO-DECLARADA`, el check de varianza intra-celda de `ADR-28.d`
+   sigue sin poder correr. Lo que cambia es su tamaño y su forma, y que ahora
+   es enumerable por máquina: las 15 viven en la sección `dispersion:` de
+   `milpa/theta-esquema-e1-v1_0.yaml` —la capa separada que `ADR-531` rama B
+   selló («Esquema E1: capa separada»)—, derivadas por código de
+   `asignados_coeficiente.detalle`, no transcritas a mano. Declararlas sigue
+   siendo alcance de mesa; esta enmienda solo deja de contarlas mal.
+
+   El resto de §4.4 se mantiene: `params_base_de_perfil` conserva su universo
+   tipológico (`TIPOLOGIA_NO_MUESTRAL(perfil)`) y su dependencia dura de
+   `deuda_dispersion` (S2, `ABIERTA`) — que es esta misma deuda, ahora bien
+   contada.
 5. Un defecto de **colocación** encontrado al censar, y medido, no
    supuesto: `G5_familismo_apoyo` es una entrada `MEDIDO·β̂` completa
    (β̂, IC por bootstrap de conglomerados, `n_util` por base, reserva de
