@@ -1,6 +1,6 @@
 # ACTO `GEN2-CELDA-D-PILOTO-1` · nota de cierre
 
-**16/sep/2026 · CAJA · `ADR-537` (candidato) · `PR #849`.**
+**16/sep/2026 · CAJA · `ADR-538` (candidato) · `PR #849`.**
 Encargo verbatim: `forense/encargos/2026-09-16-GEN2-CELDA-D-PILOTO-1.md` (0-bis `A.3`, commit `20b458f`).
 Spec vigente: `forense/prereg-caja/DIN-ahorro-solo-informal-lxe8-spec-v1_2.md` (`sha256 427117ee…`).
 
@@ -103,7 +103,7 @@ entre dos preguntas distintas, **no** la intersección del constructo — que es
 **Cómo se manejó, que es la parte que importa.** Las specs `v1.0` y `v1.1` **resolvieron el hallazgo por su cuenta**,
 sustituyendo la variable con la corrección escrita en el cuerpo. Eso era **decisión de mesa, no del ejecutor**. La
 sesión **paró con cero emisiones producidas**, cortó la elicitación a media tanda para no gastar más, y escaló con la
-evidencia cruda. La **`FP-379 · ENMIENDA`** ratificó el match y **venció `D2(a)` por premisa falsa**. `NC-0300`, CERRADA.
+evidencia cruda. La **`FP-379 · ENMIENDA`** ratificó el match y **venció `D2(a)` por premisa falsa**. `NC-0304`, CERRADA.
 
 **El marginal sellado del árbitro es correcto y no se toca:** en 2024 esos rótulos **sí** son la pregunta de ahorro.
 
@@ -171,7 +171,7 @@ y **ninguna editada in situ** (`E.3`, precedente `NC-0094`).
 
 ---
 
-## 5 · Un defecto de proceso propio (`NC-0304`)
+## 5 · Un defecto de proceso propio (`NC-0308`)
 
 `v1.0` y `v1.1` se congelaron **antes** de abrir un solo byte. **`v1.2` no:** el medidor se corrió en seco contra el
 microdato real **antes** de comitear esa versión, y `E.5` lo prohíbe. Se declara, no se esconde — precedente de la
@@ -216,9 +216,9 @@ no sería auditable sin recalcularlo. Se añadieron **con la declaración al lad
   es la única fuente de verdad del prompt. Son historia auditable de lo que costó el diseño vencido.
 * **Costo:** unidad medida **$0.282 por invocación `opus`**; la tanda superada consumió **≈ $5** de los **$18.05**
   proyectados, y la tanda vigente los 64.
-* **`L+corpus`: DIFERIDO** (`NC-0307`) — por **costo y tiempo**, *no* por falta de mandato. Sólo se vuelve necesario
+* **`L+corpus`: DIFERIDO** (`NC-0311`) — por **costo y tiempo**, *no* por falta de mandato. Sólo se vuelve necesario
   si `L-solo` venciera a algún piso, y no venció a ninguno.
-* **El intervalo al 80 % NO se extrae** (`NC-0303`): la regla congelada devuelve un punto, y escribir una segunda
+* **El intervalo al 80 % NO se extrae** (`NC-0307`): la regla congelada devuelve un punto, y escribir una segunda
   regla **después** de leer las 64 capturas sería post-hoc. Viaja íntegro en el texto crudo, para un sucesor que
   pre-registre la suya.
 
@@ -255,15 +255,15 @@ no sería auditable sin recalcularlo. Se añadieron **con la declaración al lad
   historial, no un problema: ninguna emisión ni ningún `R` se produjo ahí.
 * **`origin/main` se movió** y ya traía `ADR-534`. Se **fusionó antes de numerar** (`d57aaad`) y el candidato pasó de
   `534` a **`535`**. Dos ramas remotas tienen `534` redactado. **Regla de la casa: renumera quien fusiona segundo.**
-* **Las filas `NC` colisionaron** (`NC-0308`): la spec `v1.2`, congelada, cita `NC-0283`…`NC-0287` porque al
+* **Las filas `NC` colisionaron** (`NC-0312`): la spec `v1.2`, congelada, cita `NC-0283`…`NC-0287` porque al
   redactarse el máximo era `NC-0282`; `GEN2-TRAMITE-4` ya ocupaba hasta `NC-0292`. **La spec sellada no se edita**
-  (`E.3`); el mapa vive en `NC-0308`: `0283→0300 · 0284→0301 · 0285→0302 · 0286→0303 · 0287→0304` — **la cadena completa, porque renumeró DOS veces**: `0283…0287` (lo que la spec congelada cita) → `0293…0297` (primera colisión, con `GEN2-TRAMITE-4`) → `0300…0304` (segunda, con `GEN2-ESQUEMA-E1-CAPA-1` y `GEN2-EMISOR-ESTADO-1`).
+  (`E.3`); el mapa vive en `NC-0312`: `0283→0304 · 0284→0305 · 0285→0306 · 0286→0307 · 0287→0308` — **la cadena completa, porque renumeró TRES veces**: `0283…0287` (lo que la spec congelada cita) → `0293…0297` (primera colisión, con `GEN2-TRAMITE-4`) → `0300…0304` (segunda, con `GEN2-ESQUEMA-E1-CAPA-1` y `GEN2-EMISOR-ESTADO-1`) → `0304…0308` (tercera, con `GEN2-CORTE-EDAD-1`).
 
 ---
 
 ## 10 · Dos hallazgos abiertos sobre una guardia ajena
 
-* **`NC-0305`** — el catálogo se declara *«append-only por construcción»* (`milpa/src/momentos.py::sellar_catalogo`),
+* **`NC-0309`** — el catálogo se declara *«append-only por construcción»* (`milpa/src/momentos.py::sellar_catalogo`),
   pero `tests/test_motor_holdout.py::test_a2` compara la firma **completa** de roles contra el commit de sello, de
   modo que **añadir un id nuevo la rompe aunque no reasigne ningún rol** — que es literalmente lo que esa guardia
   dice querer atrapar. **`tests/test_motor_holdout.py` está fuera del perímetro de este acto y NO se editó**: el
@@ -271,7 +271,7 @@ no sería auditable sin recalcularlo. Se añadieron **con la declaración al lad
   no aparece en la línea base. La propiedad correcta queda comprobada **desde dentro del perímetro** por
   `tests/test_celda_d_piloto_consumidor.py::AppendOnlyDeVerdad`. Corrección mínima propuesta: que `test_a2` compare
   sólo los ids presentes en el commit de sello.
-* **`NC-0306`** — `test_c` del mismo archivo **ya fallaba antes** y no lo causó este acto: el catálogo y
+* **`NC-0310`** — `test_c` del mismo archivo **ya fallaba antes** y no lo causó este acto: el catálogo y
   `milpa/src/motor.py` entraron en el **mismo** commit `017ac24`. Verificado por comando.
 
 ---
@@ -280,17 +280,17 @@ no sería auditable sin recalcularlo. Se añadieron **con la declaración al lad
 
 1. **Adopción** — es de mesa. `champion_actual = NINGUNO` y **nada entra al motor por este piloto**.
 2. **`L+corpus`** sobre estas 8 celdas — hoy *moot*; requiere además construir la entrada del paquete-corpus.
-3. **La guardia `test_a2`** (`NC-0305`), con perímetro abierto sobre `tests/test_motor_holdout.py`.
-4. **Regla de extracción de intervalos de elicitación**, pre-registrada antes de mirar capturas (`NC-0303`).
+3. **La guardia `test_a2`** (`NC-0309`), con perímetro abierto sobre `tests/test_motor_holdout.py`.
+4. **Regla de extracción de intervalos de elicitación**, pre-registrada antes de mirar capturas (`NC-0307`).
 5. **Consumo por el marcador por segmento**, *gated* a `NC-0275` resuelta.
-6. **El hueco de vocabulario** «persistencia» en el enum `estrategia` (`NC-0301`).
+6. **El hueco de vocabulario** «persistencia» en el enum `estrategia` (`NC-0305`).
 
 **CONTADOR, sin disfraz (regla de señal v2.3):** **+2 corridas GEN2 selladas**, **389 `RESULT`**, **1 celda-D
 adjudicada sin campeón**, **1 fila de catálogo con estimador derivado**. **Cero adopciones. Cero cambios al motor.**
 
 ---
 
-## 12 · Un defecto propio que sólo se ve después de cerrar (`NC-0309`)
+## 12 · Un defecto propio que sólo se ve después de cerrar (`NC-0313`)
 
 **`verify` sobre el `CALC` de emisiones da `NO-REPRODUCE` de forma permanente a partir del `COMMIT-3`.** Medido:
 
@@ -314,7 +314,7 @@ control del árbitro, `C4`, `C5`— replican **exactos**, con `CONTEXTO=IDENTICO
 en `c169edc` **más** un `"SI"` hoy acreditan, juntos, que `R` **no existía** cuando las emisiones se sellaron y **sí
 existe** después. Eso es el orden que el acto tenía que demostrar. Lo que queda roto no es el piloto sino la
 **lectura mecánica**: un lector automático de `verify` verá `NO-REPRODUCE` sobre este `CALC` y tiene que saber por
-qué — por eso esta sección y la fila `NC-0309`.
+qué — por eso esta sección y la fila `NC-0313`.
 
 **Lección para el sucesor, escrita para que no se repita:** un falsador **de orden** se asienta en `ejecucion.json`
 o en el sello —donde el commit ya viaja— o como un `RESULT` de texto que **nombre el commit en que se evaluó**.

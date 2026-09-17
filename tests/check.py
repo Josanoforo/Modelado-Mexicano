@@ -2910,6 +2910,21 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # pedirla).
     "forense/encargos/2026-09-16-GEN2-TRAMITE-4-RECIBO-CODEX-Y-CUATRO-FIRMAS.md",
     "forense/notas/insumos-direccion/2026-09-16-D-THETA-v1_2.md",
+    # ACTO GEN2-CORTE-EDAD-1, 17/sep/2026. Un archivo, una causa.
+    #   `forense/encargos/2026-09-16-GEN2-CORTE-EDAD-1.md`
+    #   `M2` -- NO viene del cuerpo verbatim del encargo (A.3), que no lo
+    #            contiene: `grep -n M2` da UNA linea, y esta en la seccion
+    #            `## NO-CORRIDO / RESERVAS` que el ejecutor anade al cerrar.
+    #            Ahi `M2` no es rotulo de acto ni habitante de un espacio: es
+    #            la mitad de la cadena literal `SELLADO·M2`, el valor que
+    #            `tools/corrida0.py::_consumidores_cortes_pi` escribe en
+    #            `clase_legacy` al leer `milpa/src/celdas.py::CORTES_C1`, y que
+    #            la fila cita para medir exactamente que cambia en el registro
+    #            derivado al sellar el corte de `edad` (`NC-0286`). El sello
+    #            `M2` es el momento 2 de `milpa/catalogo-momentos-v0_1.md` §3,
+    #            citado por `firma_m2`. Darle prefijo falsearia la cita de un
+    #            valor que el codigo produce asi, sin prefijo.
+    "forense/encargos/2026-09-16-GEN2-CORTE-EDAD-1.md",
     # ACTO GEN2-CELDA-D-CAREO-1, 17/sep/2026. Cinco archivos, dos causas
     # distintas; ninguno se edita para complacer el test.
     #
