@@ -1,5 +1,5 @@
 {
-  "head": "5e2ad5ce8daac333b03f344c578a9ae292fdc9db",
+  "head": "46642e6ef7d5c794aae531d549e148319e4ac8bd",
   "fails": [
     [
       "T06",
@@ -134,6 +134,10 @@
     [
       "T03",
       "forense/encargos/2026-09-03-MAESTRA36-N6-CORRIGE-N5-Y-REMAPEA-OLA6-ADMINISTRATIVAS.md: cita `reevaluacion-ola6-cierre.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/encargos/2026-09-17-GEN2-MANTENIMIENTO-4.md: cita `DIGESTO-2026-09-17.md`, que no existe"
     ],
     [
       "T03",
@@ -497,8 +501,10 @@
     "fecha_de_clasificacion": "2026-08-17",
     "conteo_por_bucket": {
       "T-ALTA-RELACION_sin_clasificar": 1,
-      "T-NO-CORRIDO_sin_clasificar": 61,
-      "T-REPRO_sin_clasificar": 2624,
+      "T-CRON_sin_clasificar": 1,
+      "T-NO-CORRIDO_sin_clasificar": 97,
+      "T-REPRO_sin_clasificar": 3641,
+      "T-SUCESOR-EXISTE_sin_clasificar": 9,
       "T03_TRANSFER-9_cita_ilustrativa_del_propio_falso_positivo__mismo_patron_benigno_ya_reconocido": 2,
       "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 3,
       "T03_encargo_archivado_cita_nombre_corto_verbatim__A.3_prohibe_editar__patron_M6-sello": 2,
@@ -506,12 +512,13 @@
       "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test": 4,
       "T03_historia_real_no_cubierta_por_HISTORICOS__deuda_de_mantener_la_lista": 6,
       "T03_pieza_GEN2_verbatim__doc_sustituido_por_el_plan_v2_0__elipsis_de_nombre__o_artefacto_que_E3-E5_creara": 3,
-      "T03_sin_clasificar": 28,
+      "T03_sin_clasificar": 29,
       "T06_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
       "T08_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
       "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7": 65,
       "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 3,
-      "T22_sin_clasificar": 51
+      "T16_sin_clasificar": 1,
+      "T22_sin_clasificar": 48
     }
   }
 }
