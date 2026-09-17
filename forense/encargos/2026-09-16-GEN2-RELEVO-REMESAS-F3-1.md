@@ -91,8 +91,9 @@ recibido como prompt de lanzamiento el 16/sep/2026 (CDMX); SHA-256 del
 original: `213525a6e9777a393526517cd719c00000b54f9402dad2a3a555e364d0a962b0`.
 
 Consumo técnico: rama `acto/gen2-relevo-remesas-f3-1`, base
-`e4f5f771b7fd9bccc88d3b6c30d0e5362b0e52a5`. Producto en
+`e4f5f771b7fd9bccc88d3b6c30d0e5362b0e52a5`, PR `#835`. Producto en
 `tools/relevo_usos.py`, `data/corrida0/relevo-usos-v1_0.tsv` y
-`forense/analisis/relevo-remesas-f3-1/`; cierre y PR se completan en esta
-ejecución. La cascada compartida queda diferida bajo **CIERRE COMPARTIDO
-DIFERIDO**; este consumo no es una medición, una nueva firma ni una fusión.
+`forense/analisis/relevo-remesas-f3-1/`; cierre en
+`forense/notas/2026-09-16-GEN2-RELEVO-REMESAS-F3-1-cierre.md`. La cascada
+compartida queda diferida bajo **CIERRE COMPARTIDO DIFERIDO**; este consumo no
+es una medición, una nueva firma ni una fusión.

@@ -1,5 +1,7 @@
 # Cierre · GEN2-RELEVO-REMESAS-F3-1
 
+Rama `acto/gen2-relevo-remesas-f3-1`; PR `#835` contra `main`.
+
 ## Producto
 
 `tools/relevo_usos.py` aplica F-3 exclusivamente a `RES-0035` y al consumidor
@@ -50,4 +52,3 @@ administrativo de NC-0216. F-2/NC-0217, NC-0244 y cualquier decisión sobre
 
 El producto deja más cerca una decisión mejor: la vista ya expresa la decisión
 firmada en vez de presentar una indecisión inexistente.
-
