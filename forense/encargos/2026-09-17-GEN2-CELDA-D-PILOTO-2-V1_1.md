@@ -1,0 +1,58 @@
+ENCARGO · ACTO GEN2-CELDA-D-PILOTO-2 · v1.1 (RELANZAMIENTO) · ¿LA INTERACCIÓN DE LA OLA ANTERIOR APORTA? — EVASIÓN DE NORMA, ENVIPE, 12 CELDAS RESERVADAS: escolaridad_proxy × dominio
+
+CABECERA · redactado contra 9207cb2 (merge de #857); re-deriva al abrir · ENTORNO: CAJA (Ubuntu, corpus montado) — NO nube · COMPUERTA: cumplida (#856 REGISTRO-CAJA-1 fusionado) · MODELO SUGERIDO: Opus · FP/ADR/NC: deriva al cierre, no heredes (máximos al redactar: FP-384+, NC-0326+, ADR-541) · vehículo: /acto · cuenta_gen2 = SI … no adopta · AGENTE FRESCO, obligatorio: este acto sucede a una sesión cerrada por ruptura de reserva; si el mensaje de lanzamiento trae cualquier cosa además de este encargo (resumen, números, hallazgos de la sesión anterior), PARA y repórtalo. Si la rama acto/gen2-celda-d-piloto-2 sigue viva con el encargo v1.0 archivado, PARA: mesa la borra primero.
+
+FIRMAS DE MESA, verbatim (cerradas en conversación de dirección el 17/sep/2026; su archivo aquí las sella; la FP nace FIRMADA):
+
+Firma 1 (v1.0, "L no y 12"): "Se autoriza el segundo piloto celda-D … 12 celdas de ENVIPE 2025 que no se derivan hasta que las emisiones estén selladas. Sin L. Candidatos: persistencia del cruce 2024; marginales 2025 sin interacción; marginales 2025 más la interacción de 2024; marginales 2025 más la interacción promediada 2023-2024. Matriz INEJECUTABLE declarada; emisor fuera. Desenlace y universo exactos de ENVIPE-EVASION-NORMA-spec-v1_0 (MAESTRA34-L5 P3)." Firma 2 (relanzamiento): "El cruce edad × dominio de ENVIPE 2025 queda RESERVA-CONSUMIDA-SIN-PILOTO (17/sep/2026: script exploratorio en scratchpad antes de COMMIT-1, sin commit; sus números no entran al canon). El piloto 2 se relanza con agente fresco sobre escolaridad_proxy × dominio_urbano_rural (12 celdas), mismo diseño y candidatos, sin L. El control de reproducción se congela como código en COMMIT-1 con guardia de una sola variable de agrupación; toda lectura de ENVIPE 2025 antes de COMMIT-2 fuera de ese script es PARO."
+
+VERIFICACIÓN DE EXISTENCIA (A.8, dirección, contra 9207cb2):
+
+(1) Estructura: Dominio 5 (celda-D), Dominio 3 (specs D-15), registro GEN2 (E.2), milpa/catalogo-momentos-v0_1.tsv (M05 · tramite.evasion_norma · AJUSTE · NO-VERIFICADO). Cubren.
+(2) Contenido: spec previa EXISTE-SATISFACE — forense/prereg-caja/ENVIPE-EVASION-NORMA-spec-v1_0.md:65-67 (BP1_20 ∈ {1,2}; evade_norma = BP1_20==2 ∧ BP1_23 ∈ {04,05,06,08}, conjunta; FAC_DEL; n = 40 280; unidad delito); se reutiliza verbatim. Árbitro sellado por eje: milpa/tramite-ola5-propuesta-v0.yaml:1672-1731 — escolaridad_proxy 4 celdas (:1715-1718: hasta primaria 3 491 · secundaria 7 739 · media superior 11 476 · superior 17 474; cobertura 0.997517; nota: "PROXY de formalidad laboral"), dominio_urbano_rural 3 celdas (:1729-1731: Rural 3 770 · Complemento urbano 8 039 · Urbano 28 471); receta FAC_DEL, EST_DIS, UPM_DIS, llave ID_PER tmod_vic→tsdem. Cruce escolaridad × dominio: NO-ENCONTRADO (patrones escolaridad_proxy × dominio|escolaridad × dominio|escolaridad x dominio|dominio × escolaridad, 4 762 archivos md/tsv/yaml/json, 0 coincidencias). sexo × edad descartado por 3 menciones en actos ENVIPE previos. Payloads: envipe2023_csv, envipe2024_csv, envipe2025_csv + FD de las tres. Inventario: BP1_20, BP1_23, FAC_DEL, DOMINIO y la variable de escolaridad presentes en las tres olas — por nombre; el texto se verifica en COMMIT-1. Consumidor: milpa/tramite.yaml:487. Spec de este piloto: NO-ENCONTRADA, se crea (nombre nuevo, no reutiliza el de v1.0).
+(3) Cobertura retroactiva: la celda-D nace con este acto.
+DISEÑO (dirección, 17/sep; idéntico al de v1.0 salvo el cruce; el acto lo ejecuta, no lo re-discute)
+
+Estimando. p(evade_norma | escolaridad_proxy, dominio) — proporción ponderada [0,1] de delitos (FAC_DEL) del universo BP1_20 ∈ {1,2}; universo restringido a delitos, declarado (A-bis 4); delitos sin escolaridad clasificable quedan fuera con cobertura reportada, como el árbitro (0.997517). Escala: proporción en todo objeto.
+
+Población objetivo. 12 celdas: escolaridad_proxy {hasta primaria, secundaria, media superior, superior} × dominio_urbano_rural {Rural, Complemento urbano, Urbano}, con la misma construcción de escolaridad_proxy que el árbitro (leerla del acto que la selló, MAESTRA35-L5, y citarla por archivo).
+
+Árbitro R. Las 12 celdas de ENVIPE 2025, receta del árbitro (FAC_DEL, EST_DIS/UPM_DIS, bootstrap 10 000, seed 42). NO DERIVADAS HASTA COMMIT-3.
+
+Candidatos (I(s,d) := interacción en escala logit = logit p(s,d) − [logit p(s) + logit p(d) − logit p], sobre una ola):
+
+C1 · BASELINE_INGENUO · persistencia del cruce: p̂ = p₂₄(s,d), IC bootstrap 2024.
+C2 · BASELINE_INGENUO · marginales 2025 sin interacción: p̂ = expit(logit p₂₅(s) + logit p₂₅(d) − logit p₂₅) con los marginales sellados (:1715-1718, :1729-1731, nacional :1677). Rechazo explícito si algún marginal es 0 o 1. Réplicas: las produce el script congelado de COMMIT-1 (abajo), que re-deriva los marginales 2025 con réplicas y los coteja contra los sellados con la tolerancia declarada.
+C6 · CHALLENGER · marginales 2025 + interacción 2024: p̂ = expit(logit C2 + I₂₄(s,d)).
+C7 · CHALLENGER · marginales 2025 + interacción promediada: p̂ = expit(logit C2 + (I₂₃(s,d) + I₂₄(s,d))/2).
+C4 · matriz: INEJECUTABLE, faltantes por nombre (h_r inexistente; θ de G1 por celda no medido; cita milpa/theta-esquema-e1-v1_0.yaml).
+C5 · emisor (x = ∅): NO-APLICA, diagnóstico |0.562774 − R| por celda (tramite.yaml:497, copia del árbitro).
+L: no entra, por firma.
+
+Incertidumbre, tipada. C1: bootstrap 2024. C2: réplicas de marginales 2025 por la forma log-aditiva. C6: réplica k de 2024 con réplica k de 2025 (muestras independientes; combinación réplica a réplica, sin covarianzas inventadas). C7: idem con 2023.
+
+Criterio, antes del dato. Error absoluto por celda en pp contra R; INDECIDIBLE si cualquiera de las dos condiciones del programa, verbatim: "si ambos caen dentro del IC de R o si |d_L−d_M| < 0.5·EE(R)" (forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md:38; cada challenger contra cada piso); EE(R) = (IC95sup − IC95inf)/3.92. Skill contra cada piso, reportado, no adjudica. Celda-D: un challenger gana solo si vence a los dos pisos en ≥ 9 de las PUNTUADA y las PUNTUADA son ≥ 9 de 12. Familia: 12 × 2. Sin valor-p. Precedencia: INDECIDIBLE.
+
+B-bis, declarado. Nadie vence a C1 → persistencia anual corroborada en TRA. Nadie vence a C2 → "marginales actuales sin interacción" es el estimador honesto de celda para esta familia; la interacción de olas previas no aporta bajo estos candidatos — resultado de programa, cambia el marcador. C6 o C7 vencen → primer estimador por celda que explota interacción. C7 vence y C6 no → una ola sola trae ruido.
+
+Soporte. n₂₀₂₄(celda) ≥ 200 delitos sin ponderar, en COMMIT-2; n₂₀₂₅ en COMMIT-3. FUERA-DE-SOPORTE se emite marcada y no puntúa. Esperado mínimo: hasta primaria (3 491) × Rural (~9 %) ≈ 300 — se verifica.
+
+Emitir ≠ decidir. 12 estimaciones por candidato con intervalo; signo de la modulación respecto del nacional 0.5628: estable si todo el intervalo del candidato queda del lado de R; ambigua si cruza. Nada se adopta.
+
+PIEZAS — tres commits mínimo, en este orden
+
+COMMIT-1 · Spec congelada + control de reproducción congelado como código, sin abrir microdato.
+
+forense/prereg-caja/TRA-evade-norma-sxd12-spec-v1_0.md + sidecar + spec.yaml (D-15). Todo de FD y catálogos: texto de BP1_20 y de cada código de BP1_23 en 2023/2024/2025 (A.15c: si un código cambia de texto entre olas, la definición se ajusta por texto y se escribe la diferencia); variable y catálogo de escolaridad por ola y la construcción de escolaridad_proxy idéntica al árbitro; DOMINIO por archivo; FAC_DEL/EST_DIS/UPM_DIS en las tres olas; seed 42; tolerancias; fórmulas C2/C6/C7 exactas. Cierra con: "el primer resultado que produzca este procedimiento es el que se reporta." spec-check VERDE.
+tools/celda_d/marginales_reproduccion.py (o dentro del CALC, pero en este commit): función marginal(df, grupo: str, ...) que acepta una sola variable de agrupación por firma de la función — sin *grupos, sin listas — y un test tests/test_marginales_una_variable.py que asierta que llamarla con dos lanza. Es el único código autorizado a tocar ENVIPE 2025 antes de COMMIT-3. Cualquier otra lectura de ENVIPE 2025 antes de COMMIT-2 — scratchpad incluido — es PARO y se reporta. Precedente: la sesión anterior calculó el cruce con un script exploratorio "por descuido de diseño del loop"; la regla de prosa no alcanzó dos veces.
+E.5 (NC-0308): ninguna corrida en seco antes de este commit.
+
+COMMIT-2 · Emisiones selladas; el cruce de 2025 no existe en el árbol ni en la sesión al cerrar. CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001: C1 (2024, cruce y marginales, réplicas), insumos de C7 (2023), C2 (marginales 2025 por el script congelado, réplicas, control de reproducción contra :1715-1731 con tolerancia), C6/C7, n₂₀₂₄ por celda, C4 INEJECUTABLE, C5 diagnóstico. preflight → run → verify, seis checks del GO.
+
+COMMIT-3 · R del cruce y adjudicación. CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0001; adjudicación por celda y de celda-D; B-bis leído; celda-D data/curacion-registro/celdas-d/TRA.evade_norma.envipe2025.escolaridad_x_dominio.yaml (v0.5, requiere_decision_mesa: false, champion_actual: NINGUNO); fila M05 del catálogo; test de lectura por el consumidor; registro en la vista: si registro --escribe sigue bloqueado por el guardia de replay (ADR-540, NC-0315), se reporta con el comando y las dos CALC quedan SELLADA-EN-DISCO, NO-REGISTRADA en el CONTADOR — no se fuerza.
+
+P4 · La reserva consumida, asentada sin números. Fila NC: "edad × dominio ENVIPE 2025: RESERVA-CONSUMIDA-SIN-PILOTO, 17/sep/2026, script exploratorio en scratchpad antes de COMMIT-1 (sesión cerrada por mesa); sin commit; los valores no entran al canon; no usar como reserva". Línea PARA-v2.14 en hallazgos.md: "la ola de evaluación no se abre antes de COMMIT-2 ni en scratch; el control de reproducción se congela como código en COMMIT-1 con guardia de una variable". Línea A.13 sobre el filtro 18 ≤ EDAD ≤ 96 (hallazgo de procedimiento de la sesión anterior, verificado contra marginales sellados; aplica a celdas por edad, no a este cruce).
+
+PERÍMETRO Y CONCURRENCIA: forense/prereg-caja/TRA-evade-norma-sxd12-spec-v1_0.md (+ sidecar, spec.yaml) · tools/celda_d/marginales_reproduccion.py (nuevo) · tests/test_marginales_una_variable.py (nuevo) · data/corrida0/CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001/ · …-SXD-ARBITRO-CRUCE-0001/ · derivados de corrida0 por comando · data/curacion-registro/celdas-d/TRA.evade_norma.envipe2025.escolaridad_x_dominio.yaml (nuevo) · milpa/catalogo-momentos-v0_1.tsv (fila M05) · un test del consumidor · nota de cierre · tablero al cierre + cascada. No toca milpa/tramite.yaml, milpa/tramite-ola5-propuesta-v0.yaml, milpa/src/, la spec previa, el marcador ni el crosswalk. En paralelo: GEN2-MARCADOR-REDISENO-1 y GEN2-REGISTRO-BANDERA-1 (nube) — sin archivo común salvo el tablero al cierre; quien fusione después renumera. «Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.»
+
+CONTADOR: +2 corridas GEN2 selladas (registradas si el instrumento lo permite; si no, dicho), cuenta_gen2 = SI, no adopta; segunda celda-D adjudicada; segunda fila del catálogo con estimador derivado. LO QUE NO HACE: no elicita L · no usa edad × dominio · no escribe los números de la reserva consumida · no adopta · no fuerza registros · no corre en seco antes de COMMIT-1. SUCESOR: consumo por el marcador rediseñado (FP-383); si C6/C7 ganan, el mismo candidato sobre una celda DIN nueva. CIERRE: cascada + ## NO-CORRIDO / RESERVAS + ## CONSUMIDO.
