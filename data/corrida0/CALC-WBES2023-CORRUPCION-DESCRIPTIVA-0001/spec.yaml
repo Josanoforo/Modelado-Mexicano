@@ -1,0 +1,101 @@
+calc_id: CALC-WBES2023-CORRUPCION-DESCRIPTIVA-0001
+spec_md: spec.md
+spec_md_sha256: 2b515272e962eec309a6629ccf96a666305d0a01245f35fc9d598afaa4ce4293
+script: data/corrida0/CALC-WBES2023-CORRUPCION-DESCRIPTIVA-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: MEDICION-DESCRIPTIVA-MICRODATO
+  unidad_transferencia: UNIDAD-DISTINTA-NO-TRANSFERENCIA
+  uso_motor: CONTEXTO-INFORME-NO-CALIBRA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: PRUEBAS-SINTETICAS-Y-VERIFY-DIRIGIDO
+  fuente_acto: GEN2-WBES2023-DESCRIPTIVA-1
+  medidor_ejecutado_al_congelar: NO
+
+inputs:
+  - {id: wbes_mexico_2023_ddi_xml, origen: manifiesto}
+  - {id: wbes_mexico_2023_ddi_pdf, origen: manifiesto}
+  - {id: wbes_mexico_2023_microdato_dta_zip, origen: manifiesto}
+  - {id: wbes_mexico_2023_documentacion_zip, origen: manifiesto}
+
+variables:
+  - {archivo: Mexico-2023-full-data.dta, variable: idstd, rol: identificador-unico-no-publicado}
+  - {archivo: Mexico-2023-full-data.dta, variable: wmedian, rol: ponderador-principal}
+  - {archivo: Mexico-2023-full-data.dta, variable: a6a, rol: dominio-tamano-oficial}
+  - {archivo: Mexico-2023-full-data.dta, variable: c3, rol: filtro-conexion-electrica}
+  - {archivo: Mexico-2023-full-data.dta, variable: c5, rol: evento-conexion-electrica}
+  - {archivo: Mexico-2023-full-data.dta, variable: c12, rol: filtro-conexion-agua}
+  - {archivo: Mexico-2023-full-data.dta, variable: c14, rol: evento-conexion-agua}
+  - {archivo: Mexico-2023-full-data.dta, variable: g2, rol: filtro-permiso-construccion}
+  - {archivo: Mexico-2023-full-data.dta, variable: g4, rol: evento-permiso-construccion}
+  - {archivo: Mexico-2023-full-data.dta, variable: j3, rol: filtro-inspeccion-fiscal}
+  - {archivo: Mexico-2023-full-data.dta, variable: j5, rol: evento-inspeccion-fiscal}
+  - {archivo: Mexico-2023-full-data.dta, variable: j10, rol: filtro-licencia-importacion}
+  - {archivo: Mexico-2023-full-data.dta, variable: j12, rol: evento-licencia-importacion}
+  - {archivo: Mexico-2023-full-data.dta, variable: j13, rol: filtro-licencia-operacion}
+  - {archivo: Mexico-2023-full-data.dta, variable: j15, rol: evento-licencia-operacion}
+
+universo: >-
+  Establecimientos formales privados de Mexico, con al menos 1% de propiedad
+  privada y cinco o mas empleados, en manufacturas ISIC Rev.4 10-33 y los
+  servicios cubiertos 41-43,45-47,49-53,55-56,58,61-62,69-75,79,95; excluye
+  cooperativas y colectivos.
+filtros: >-
+  Compuesto: al menos uno de c3,c12,g2,j3,j10,j13 igual a 1. Tasas separadas:
+  el filtro propio igual a 1. Todos los filtros en 2 no equivalen a cero de
+  corrupcion; quedan fuera. Elegibilidad ambigua se reporta separada.
+ponderador: >-
+  wmedian, recomendado en Mexico 2023 ES Implementation Report III.6 para los
+  indicadores y analisis del equipo Enterprise Surveys.
+transformacion: >-
+  Razon de totales ponderados. Punto = si/(si+no); masa desconocida =
+  desconocido/expuestos; limites logicos = si/expuestos y
+  (si+desconocido)/expuestos. Porcentaje = proporcion*100.
+estimando: >-
+  Proporcion descriptiva propia de establecimientos expuestos que reportan al
+  menos una solicitud o expectativa de regalo/pago informal en seis
+  interacciones documentadas, mas tasas separadas; no replica certificada del
+  indicador oficial y no mide pago realizado.
+precision: >-
+  IC-DE-DISENO-NO-ESTIMABLE-CON-INSUMOS-DISPONIBLES. Los limites por faltantes
+  no son IC. No se construye IC binomial ni bootstrap iid.
+
+dependencias_materiales: []
+seed: {aplica: false, valor: null, rng: NO-APLICA}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: agregacion determinista y serializacion fija
+
+parametros:
+  pregunta_consumidora: >-
+    Que proporcion ponderada de establecimientos WBES 2023 expuestos reporto
+    solicitud o expectativa de pago informal y como cambia por tamano WBES?
+  consumidor: seccion descriptiva TRA admitida por F-19
+  periodo: ventana propia de cada interaccion (un ano fiscal; las demas dos anos)
+  variables_evento: [c5, c14, g4, j5, j12, j15]
+  variables_filtro: [c3, c12, g2, j3, j10, j13]
+  dominios: [Total nacional cubierto, Pequena, Mediana, Grande, Extra grande]
+  output: forense/analisis/wbes2023-descriptiva-1/wbes2023-solicitud-expectativa-pago-informal.csv
+  incertidumbre: IC-DE-DISENO-NO-ESTIMABLE-CON-INSUMOS-DISPONIBLES
+  adopcion: NINGUNA
+
+resultados:
+  - {id: RESULT-WBES2023-DES-G-INPUT-DDI-XML-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-WBES2023-DES-G-INPUT-DDI-PDF-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-WBES2023-DES-G-INPUT-MICRODATO-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-WBES2023-DES-G-INPUT-DOCUMENTACION-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-WBES2023-DES-G-N-ENTREVISTADOS, tipo: entero, unidad: establecimientos}
+  - {id: RESULT-WBES2023-DES-G-N-EXPUESTOS-TOTAL, tipo: entero, unidad: establecimientos}
+  - {id: RESULT-WBES2023-DES-G-N-CLASIFICADOS-TOTAL, tipo: entero, unidad: establecimientos}
+  - {id: RESULT-WBES2023-DES-G-PESO-EXPUESTOS-TOTAL, tipo: flotante, unidad: establecimientos expandidos}
+  - {id: RESULT-WBES2023-DES-PUNTO-TOTAL, tipo: proporcion, unidad: proporcion de respuesta observada}
+  - {id: RESULT-WBES2023-DES-MASA-DESCONOCIDA-TOTAL, tipo: proporcion, unidad: proporcion de expuestos}
+  - {id: RESULT-WBES2023-DES-LIMITE-INFERIOR-TOTAL, tipo: proporcion, unidad: proporcion de expuestos}
+  - {id: RESULT-WBES2023-DES-LIMITE-SUPERIOR-TOTAL, tipo: proporcion, unidad: proporcion de expuestos}
+  - {id: RESULT-WBES2023-DES-G-N-FILAS-SALIDA, tipo: entero, unidad: filas indicador-dominio}
+  - {id: RESULT-WBES2023-DES-G-CSV-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-WBES2023-DES-G-INCERTIDUMBRE, tipo: texto, unidad: estado}
+  - {id: RESULT-WBES2023-DES-G-USO, tipo: texto, unidad: limitacion de uso}
+  - {id: RESULT-WBES2023-DES-G-SALIDA, tipo: texto, unidad: ruta relativa}
