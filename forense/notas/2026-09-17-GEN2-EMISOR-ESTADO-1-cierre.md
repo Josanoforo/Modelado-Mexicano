@@ -200,3 +200,33 @@ numeración `RES-*` desde `RES-0174` y `CORR-*` desde `CORR-0080`. Ese
 desfase entra en este commit junto con lo del acto, porque el comando lo
 re-deriva entero. **Los 15 ids que este acto toca (RES-0003 … RES-0062) están
 por debajo del corte y no se renumeran.**
+
+---
+
+## Suite, y una corrección al propio cierre
+
+`python3 tests/check.py --baseline` → **3 FAIL · 4363 WARN**, **LÍNEA BASE
+VERDE**, `exit=0`, `tests/baseline.json` sin tocar. Los 3 `FAIL` son los
+congelados (`T06`, `T08`); los 3 `WARN` nuevos frente al cierre de `ADR-533`
+son las filas que este acto abre (`FP-380`, `NC-0283`, `NC-0284`).
+
+**La primera cifra que este acto declaró era 4364 y estaba mal, por defecto de
+entorno propio.** `ADR-534` se redactó contra una corrida local a la que le
+faltaba `jsonschema` —declarada en `requirements.txt`, ausente en este
+contenedor—, así que `T38 T-ALTA-RELACION` salía `NO-CORRIDO` y sumaba un
+`WARN` que el repo no tiene. CI, con la dependencia instalada, dio **4363** y
+`T16` marcó la contradicción: la afirmación era mía y era falsa. Se instaló la
+dependencia (`python3 -m pip install jsonschema`), se re-corrió, y la corrida
+local ahora **reproduce la de CI cubeta por cubeta** — `T-REPRO` 4100,
+`T-NO-CORRIDO` 76, `T10` 65, `T03` 62, `T22` 50, `T-SUCESOR-EXISTE` 6, `T13` 3,
+`T-CRON` 1 —, sin `T-ALTA-RELACION`. La cifra de `ADR-534` quedó corregida a
+4363.
+
+Vale la pena dejarlo escrito porque es la lección y no la anécdota: **una
+corrida a la que le falta una dependencia declarada no es la corrida del
+repo**, y `T16` es exactamente el mecanismo que lo atrapa. `tools/entorno.py`
+ya reportaba `numpy=AUSENTE pandas=AUSENTE scipy=AUSENTE pyreadstat=AUSENTE` en
+el ARRANQUE de este acto; `jsonschema` no está en esa lista de dependencias
+materiales, y por eso su ausencia no se vio hasta que CI la contradijo.
+**Hallazgo de aparato, no de este acto:** `tools/entorno.py` no censa
+`jsonschema` aunque `requirements.txt` la declare y la suite la use.

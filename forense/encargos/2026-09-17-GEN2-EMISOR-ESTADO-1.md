@@ -80,5 +80,5 @@ propuesta de marcador en prosa a mesa como `FP-380`, no implementada; y
 `milpa/tramite.yaml` (+2 líneas, 0 eliminaciones, 0 de 15 `p` alterados).
 `NC-0275` recibe `FP-380` como sucesor y sigue `ABIERTA`; `NC-0276` sigue
 `ABIERTA` con las 11 nombradas; `NC-0283` y `NC-0284` abiertas.
-Suite: `3 FAIL · 4364 WARN`, **LÍNEA BASE VERDE**, `exit=0`,
+Suite: `3 FAIL · 4363 WARN`, **LÍNEA BASE VERDE**, `exit=0`,
 `tests/baseline.json` sin tocar.
