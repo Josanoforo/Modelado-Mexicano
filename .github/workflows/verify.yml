@@ -129,7 +129,14 @@ jobs:
         # de la tabla CFPB sin requerir los payloads externos en CI.
         run: python3 tests/test_n34_producto_dano.py
 
-      - name: motor ejecutable — procedencia→B→evaluar() sobre las tres celdas-D (bloqueante)
+      - name: motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)
+        # El nombre decía «las tres celdas-D» y quedó vencido el 17/sep/2026,
+        # cuando ACTO GEN2-CELDA-D-CAREO-1 registró la primera celda del piloto
+        # (3 -> 4). Es el MISMO defecto que el `igual(len(semillas), 3)` que ese
+        # acto tuvo que corregir dentro del test: un conteo literal sobre un
+        # directorio que el contrato declara creciente. Se corrige aquí también,
+        # porque un nombre de paso que miente en el log de CI cuesta la próxima
+        # media hora de quien lo lea.
         # ACTO AUTO-MOTOR-1 · RECUPERA-Y-EJERCITA, NC-0023 (PR #615, ACTO
         # GEN2-T9). El motor matricial sellado por ADR-91 dejó de arrancar
         # sin que nada lo notara porque nada lo corría en CI. Misma razón
@@ -138,3 +145,17 @@ jobs:
         # `tests/test_*.py` nuevos. Ejerce las entradas reales versionadas;
         # sin corpus, sin red, sin escribir producción.
         run: python3 tests/test_motor_ejecutable.py
+
+      - name: contrato sintético de C2 — piloto celda-D (bloqueante)
+        # ACTO GEN2-CELDA-D-CAREO-1 (ADR-533), correctivo pre-emisión del
+        # 17/sep/2026, en respuesta a la devolución de revisión sobre PR #827.
+        # Pinan el contrato que `C2` debe cumplir ANTES de emitir: rango [0,1]
+        # por construcción, casos límite con rechazo explícito (nunca recorte),
+        # el mismo identificador de desenlace en entradas y salida, la
+        # incertidumbre cuando la muestra es compartida, el soporte por cotas
+        # de Fréchet (no por el producto de márgenes) y una parada que admite
+        # «sin ganador». Misma razón que el paso de arriba: `tests/check.py`
+        # no auto-descubre `tests/test_*.py`, y un test que nadie corre es
+        # decoración. Fixtures sintéticos; cero microdato, cero cifras del
+        # modelo, cero derivación del cruce reservado.
+        run: python3 tests/test_celda_d_c2.py

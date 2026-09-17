@@ -37,14 +37,44 @@ def main():
         proc = P.cargar()
         cierto(len(proc.entradas) > 0, "procedencia.cargar() no produjo entradas")
 
-    def test_evalua_las_tres_celdas_semilla_con_salida_identificable():
+    # ENMIENDA FECHADA 2026-09-17 (ACTO GEN2-CELDA-D-CAREO-1, ADR-533).
+    # Este test cableaba `igual(len(semillas), 3)` y `igual(len(resultados), 3)`,
+    # y el 3 se rompió en cuanto el programa hizo lo que su propio contrato
+    # anuncia: registrar la primera celda-D del piloto (celdas-d/ pasa de 3 a
+    # 4 archivos). El cableado contradecía dos cosas ya escritas: el docstring
+    # de `motor.celdas_semilla()` -- «Las celdas-D del disco. Son las que hay;
+    # NO SE ENUMERAN DE MEMORIA» -- y el de `tests/test_celdas_d.py`, que dice
+    # que «el piloto va a escribir 10-15 más». Un conteo literal sobre un
+    # directorio que el contrato declara creciente es una bomba de tiempo con
+    # fecha, no una invariante.
+    #
+    # NO se relaja el test: se sustituye el conteo por lo que ese conteo
+    # protegía de verdad -- que ninguna celda sellada desaparezca en silencio
+    # (p. ej. por un fallo de lectura que devolviera la lista corta) -- y eso
+    # se afirma por ID, que es más fuerte que por cardinalidad. Las tres
+    # aserciones por celda (vocabulario A.4, HOLDOUT intocados, un veredicto
+    # por celda) siguen intactas y ahora cubren TODA celda del disco, no tres.
+    SEMILLAS_SELLADAS = {
+        "G5.familismo_obligacion.actitud",
+        "G5.obligacion_medida.conducta",
+        "G5.radio_confianza.encuci_vs_enbiare",
+    }
+
+    def test_evalua_las_celdas_semilla_con_salida_identificable():
         proc = P.cargar()
         B = M.cargar_B(proc)
         cat = MM.cargar_catalogo()
         semillas = motor.celdas_semilla()
-        igual(len(semillas), 3, "celdas-D semilla en el disco:")
+        ids = {str(c.get("id")) for _, c in semillas}
+        faltantes = SEMILLAS_SELLADAS - ids
+        cierto(not faltantes,
+               f"celdas-D selladas que desaparecieron del disco: "
+               f"{sorted(faltantes)}")
+        cierto(len(semillas) >= len(SEMILLAS_SELLADAS),
+               f"celdas-D en el disco ({len(semillas)}) por debajo de las "
+               f"selladas ({len(SEMILLAS_SELLADAS)})")
         resultados = [motor.evaluar(c, cat, B) for _, c in semillas]
-        igual(len(resultados), 3, "veredictos producidos:")
+        igual(len(resultados), len(semillas), "veredictos producidos:")
         for r in resultados:
             cierto(r.veredicto in motor.VEREDICTOS,
                    f"{r.celda_id}: veredicto fuera del vocabulario A.4: "
