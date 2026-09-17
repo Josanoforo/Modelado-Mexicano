@@ -1,0 +1,111 @@
+calc_id: CALC-ENVIPE-RES0028-U4-DERIVADO-0001
+spec_md: spec.md
+spec_md_sha256: 26f3573902a8febc891c49722469db03cc047d3a2959d46ecb283bbf31b8fe6d
+script: data/corrida0/CALC-ENVIPE-RES0028-U4-DERIVADO-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: DERIVADO-DETERMINISTA-SOBRE-RESULTADO-SELLADO
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-APLICA-TRANSFORMACION-DETERMINISTA
+  padre: CALC-ENVIPE-0001
+  demanda_que_releva: "Candidato compatible para RES-0028; no adopta ni edita el consumidor."
+  medidor_ejecutado_al_congelar: "NO; spec, medidor y prueba se comprometen antes del primer run real. Sólo se revisaron los RESULT publicados del padre y se diseñaron fixtures sintéticos."
+  informacion_muestral_independiente: "NINGUNA; q e IC(q) son funciones deterministas de p e IC(p)."
+
+inputs:
+  - id: IN-ENVIPE-0001-RESULTADOS
+    origen: repo
+    ruta: data/corrida0/CALC-ENVIPE-0001/resultados.json
+    sha256: 225bbaa1dd12eab410d838e3d6f7080a876c2353f8bc9ba466afb2eaa98f0e3b
+  - id: IN-ENVIPE-0001-SPEC
+    origen: repo
+    ruta: data/corrida0/CALC-ENVIPE-0001/spec.yaml
+    sha256: 06fcd2a260dccbabe958867c93ca3239d45c9b160ff90a823c5b3a206d4a0c8b
+  - id: IN-ENVIPE-0001-SELLO
+    origen: repo
+    ruta: data/corrida0/CALC-ENVIPE-0001/sello.json
+    sha256: 18310f8adb6fb5963038d67c2e8a7eaba50e09c062dddbc579e918f090cbde16
+  - id: IN-ENVIPE-0001-SELLO-SHA256
+    origen: repo
+    ruta: data/corrida0/CALC-ENVIPE-0001/sello.sha256
+    sha256: d14825ca650677d24f473d88afcc38a5385ce7b7e744d39b74366e749ae1dc1d
+
+variables:
+  - {archivo: "CALC-ENVIPE-0001/resultados.json", variable: RESULT-ENVIPE-DEN-P-C2-U4, rol: "p padre, persona U4", codigos: "proporción [0,1]"}
+  - {archivo: "CALC-ENVIPE-0001/resultados.json", variable: RESULT-ENVIPE-DEN-IC-LO-C2-U4, rol: "límite inferior IC95(p)", codigos: "[0,1]"}
+  - {archivo: "CALC-ENVIPE-0001/resultados.json", variable: RESULT-ENVIPE-DEN-IC-HI-C2-U4, rol: "límite superior IC95(p)", codigos: "[0,1]"}
+  - {archivo: "CALC-ENVIPE-0001/resultados.json", variable: RESULT-ENVIPE-DEN-N-PERSONAS-U4, rol: "denominador observado compartido por p y q", codigos: "entero positivo"}
+  - {archivo: "CALC-ENVIPE-0001/resultados.json", variable: RESULT-ENVIPE-DEN-MASA-FAC-ELE-U4, rol: "masa FAC_ELE compartida", codigos: "flotante positivo"}
+  - {archivo: "CALC-ENVIPE-0001/resultados.json", variable: RESULT-ENVIPE-DEN-METODO-IC, rol: "método y limitación del IC heredados", codigos: "texto no NO-ESTIMABLE"}
+  - {archivo: "CALC-ENVIPE-0001/resultados.json", variable: RESULT-ENVIPE-DEN-VEREDICTO, rol: "guardia de estimabilidad", codigos: "TASA-REPORTADA"}
+
+universo: >-
+  U4, unidad persona de 18 años o más con al menos un delito personal no
+  denunciado elegible en U1 (BPCOD 05..15, BP1_20=2, BP1_23 en 01..08),
+  agregada por ID_PER y ponderada con FAC_ELE. Es exactamente el universo del
+  RESULT padre; esta corrida no vuelve a construirlo desde microdatos.
+
+filtros: >-
+  No hay filtro nuevo. Se rechaza el padre si su unidad no es persona U4, si
+  algún id apunta a U1, si VEREDICTO no es TASA-REPORTADA, si punto/IC/masa o
+  denominador no son estimables, o si 0 <= IC_lo <= p <= IC_hi <= 1 no se
+  cumple. Null, NS/NR y textos de no-estimabilidad no se convierten en cero.
+
+ponderador: "FAC_ELE heredado del padre; no se accede a pesos ni microdatos."
+
+transformacion: >-
+  q=1-p; IC_lo(q)=1-IC_hi(p); IC_hi(q)=1-IC_lo(p). La clasificación padre a
+  nivel persona es max(d_delito) sobre delitos elegibles: q=1 sólo cuando
+  ningún delito elegible de la persona pertenece a C2={01,02,06,08}.
+
+estimando: >-
+  Proporción ponderada de personas U4 sin ningún delito elegible clasificado
+  en el bloque padre C2. Es complemento dependiente, no tasa por delito, no
+  probabilidad de denunciar, no categoría 09 Otra y no evidencia muestral
+  independiente. Escala [0,1].
+
+dependencias_materiales: []
+
+parametros:
+  fuente_acto: ACTO GEN2-ENVIPE-RES0028-DERIVADO-U4-1
+  padre:
+    calc_id: CALC-ENVIPE-0001
+    unidad: persona
+    poblacion: U4
+    particion: C2
+    ponderador: FAC_ELE
+    p_id: RESULT-ENVIPE-DEN-P-C2-U4
+    ic_lo_id: RESULT-ENVIPE-DEN-IC-LO-C2-U4
+    ic_hi_id: RESULT-ENVIPE-DEN-IC-HI-C2-U4
+    n_id: RESULT-ENVIPE-DEN-N-PERSONAS-U4
+    masa_id: RESULT-ENVIPE-DEN-MASA-FAC-ELE-U4
+    metodo_ic_id: RESULT-ENVIPE-DEN-METODO-IC
+    veredicto_id: RESULT-ENVIPE-DEN-VEREDICTO
+  valor_legacy_res0028: 0.705687
+  tolerancia_legacy: 1.0e-6
+  direccion_delta: "derivado U4 menos legacy RES-0028"
+  decision: "CANDIDATO-COMPATIBLE; adopción y actualización de registros pendientes de mesa."
+
+seed:
+  aplica: false
+  valor: null
+  rng: null
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-15
+  razon: "Aritmética determinista sobre los mismos bytes float del padre; replay en el mismo contrato."
+
+resultados:
+  - {id: RESULT-ENVIPE-RES0028-P-PADRE-C2-U4, tipo: proporcion, unidad: "p(C2,U4) copiado del padre sellado; persona, FAC_ELE, escala [0,1]"}
+  - {id: RESULT-ENVIPE-RES0028-Q-C2-U4, tipo: proporcion, unidad: "q=1-p(C2,U4); persona, FAC_ELE, escala [0,1]; candidato para RES-0028"}
+  - {id: RESULT-ENVIPE-RES0028-IC-LO-Q-C2-U4, tipo: flotante, unidad: "1-IC_hi(p); límite inferior IC95(q), método heredado"}
+  - {id: RESULT-ENVIPE-RES0028-IC-HI-Q-C2-U4, tipo: flotante, unidad: "1-IC_lo(p); límite superior IC95(q), método heredado"}
+  - {id: RESULT-ENVIPE-RES0028-SUMA-P-Q-C2-U4, tipo: flotante, unidad: "control p+q=1 sobre el mismo denominador persona U4"}
+  - {id: RESULT-ENVIPE-RES0028-N-PERSONAS-U4, tipo: entero, unidad: "denominador observado heredado: personas U4"}
+  - {id: RESULT-ENVIPE-RES0028-MASA-FAC-ELE-U4, tipo: flotante, unidad: "masa FAC_ELE heredada del padre"}
+  - {id: RESULT-ENVIPE-RES0028-METODO-IC-HEREDADO, tipo: texto, unidad: "método/limitación del IC copiado del padre"}
+  - {id: RESULT-ENVIPE-RES0028-DELTA-VS-LEGACY-RES0028, tipo: flotante, unidad: "q U4 menos 0.705687; comparación admisible por misma escala, codificación, población y unidad"}
+  - {id: RESULT-ENVIPE-RES0028-COMPATIBILIDAD-RES0028, tipo: texto, unidad: "COINCIDE-AL-GRANO-U4 / NO-COINCIDE-AL-GRANO-U4 con tolerancia 1e-6"}
+  - {id: RESULT-ENVIPE-RES0028-VEREDICTO, tipo: texto, unidad: "declara derivación de padre sellado sin información muestral independiente"}

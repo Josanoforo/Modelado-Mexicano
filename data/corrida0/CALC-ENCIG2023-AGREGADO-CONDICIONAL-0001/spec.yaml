@@ -1,0 +1,138 @@
+calc_id: CALC-ENCIG2023-AGREGADO-CONDICIONAL-0001
+spec_md: spec.md
+spec_md_sha256: 253391b6a9a58de9f9ee2c65c60566c0be11b8f3e14b7b9390cd2b1d15970f66
+script: data/corrida0/CALC-ENCIG2023-AGREGADO-CONDICIONAL-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: ESTIMACION-DESCRIPTIVA-AGREGADA-CONDICIONAL
+  cuenta_gen2: PENDIENTE-DE-CASCADA-DIFERIDA
+  validacion_independiente: NO-HECHA
+  estado_adopcion: NO-ADOPTADO-CON-RESERVA
+  contaminacion_declarada: "Las tasas 2023 por canal PRE=0.13079648341932204 y DIG=0.02340709180348316 ya eran conocidas; esta no es una evaluacion ciega ni una prueba confirmatoria nueva."
+
+inputs:
+  - id: encig23_base_datos_csv
+    origen: manifiesto
+  - id: IN-CALC-ENCIG23-PREDECESOR-RESULTADOS
+    origen: repo
+    ruta: data/corrida0/CALC-ENCIG-2023-0001-v1_1/resultados.json
+    sha256: 7afa8f051765e63e863c4eb46f9a52d7a423996e91a3aad5572cca39cf889cd7
+  - id: IN-ENCIG23-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/ENCIG-MORDIDA-2023-spec-v1_0.md
+    sha256: ea4379e5d659e5b103b6d8d20db2a166bdbfc93caa27a3408efe771c6b76bda6
+  - id: IN-ENCIG23-CORRESPONDENCIA
+    origen: repo
+    ruta: forense/produccion/sin-candidato-rutas-1/01-encig2023-correspondencia.md
+    sha256: ce76d3a8dad3bce10ded47e934d49eefb8ca50bc051ca113b0adcce044726c7f
+
+variables:
+  - {archivo: encig2023_04_sec_7.csv, variable: ID_TRA, rol: llave primaria de union}
+  - {archivo: encig2023_04_sec_7.csv, variable: NT_TIPO, rol: multiplicidad de evento; no deduplicar}
+  - {archivo: encig2023_04_sec_7.csv, variable: P7_3, rol: descomposicion de canal}
+  - {archivo: encig2023_04_sec_7.csv, variable: FAC_TRA, rol: ponderador de evento}
+  - {archivo: encig2023_04_sec_7.csv, variable: EST_DIS, rol: estrato de diseno como texto opaco}
+  - {archivo: encig2023_04_sec_7.csv, variable: UPM_DIS, rol: conglomerado como texto opaco}
+  - {archivo: encig2023_05_sec_8.csv, variable: ID_TRA, rol: llave unica de union}
+  - {archivo: encig2023_05_sec_8.csv, variable: P8_4, rol: desenlace binario observado}
+  - {archivo: ambos, variable: ID_VIV+ID_PER+ID_TRA+N_TRA, rol: llave de control}
+  - {archivo: encig2023_05_sec_8.csv, variable: FAC_P18, rol: columna verificada y no usada}
+
+universo: "PRIMARIO=eventos sec_7 unidos con P8_4 en {0,1} y FAC_TRA finito >0, sin restriccion de P7_3 y sin deduplicar; PREDIG=subconjunto PRE={1} o DIG={3,4,5}"
+filtros: "P8_4 blanco queda fuera y nunca equivale a cero; P7_3 se descompone en PRE, DIG, OTRO={2,6,7,8,9}, FALTANTE; soporte fuera de mapa para"
+ponderador: "FAC_TRA de encig2023_04_sec_7.csv; FAC_P18 no se usa"
+transformacion: "q se cuenta directamente como masa P8_4=0/denominador; IC(q)=[1-IC_hi(p),1-IC_lo(p)]"
+estimando: "p=sum(FAC_TRA*I[P8_4=1])/sum(FAC_TRA); q=sum(FAC_TRA*I[P8_4=0])/sum(FAC_TRA), por universo"
+dependencias_materiales: [numpy]
+
+parametros:
+  blanco_literal: ["", b, NA]
+  canal_pre: [1]
+  canal_dig: [3, 4, 5]
+  canal_otro: [2, 6, 7, 8, 9]
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap de UPM_DIS con reemplazo dentro de EST_DIS; cociente completo en cada replica
+  tratamiento_upm_unica: se remuestrea a si misma, aporta varianza cero y se reporta; no se rotula automaticamente cota inferior
+  consumidores_posibles: [RES-0007, RES-0008]
+  consumidores_fuera: [RES-0001, RES-0002]
+
+seed:
+  aplica: true
+  valor: 20260915
+  rng: numpy.PCG64
+
+tolerancia:
+  tipo: bootstrap
+  exacto_por_seed: true
+  abs: 0.0
+
+resultados:
+  - {id: RESULT-ENCIG23-AGCOND-ESTADO, tipo: texto, unidad: rotulo}
+  - {id: RESULT-ENCIG23-AGCOND-JOIN-ESTADO, tipo: texto, unidad: rotulo}
+  - {id: RESULT-ENCIG23-AGCOND-JOIN-N-SEC7, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-AGCOND-JOIN-N-SEC8, tipo: entero, unidad: filas}
+  - {id: RESULT-ENCIG23-AGCOND-JOIN-N-EMPAREJADOS, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-AGCOND-JOIN-N-SIN-PAREJA, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-AGCOND-JOIN-COBERTURA-N, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-JOIN-COBERTURA-MASA, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-DESENLACE-N-OBSERVADO, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-AGCOND-DESENLACE-N-FALTANTE, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-AGCOND-DESENLACE-COBERTURA-N, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-DESENLACE-COBERTURA-MASA, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-N-PESO-INVALIDO, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-AGCOND-SOPORTE-P73, tipo: texto, unidad: conteos}
+  - {id: RESULT-ENCIG23-AGCOND-SOPORTE-P84, tipo: texto, unidad: conteos}
+
+  - {id: RESULT-ENCIG23-AGCOND-PRIMARIO-N, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-AGCOND-PRIMARIO-MASA-DEN, tipo: flotante, unidad: masa FAC_TRA, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-PRIMARIO-MASA-NUM, tipo: flotante, unidad: masa FAC_TRA, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-PRIMARIO-P, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-PRIMARIO-Q, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-PRIMARIO-IC-P-LO, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-PRIMARIO-IC-P-HI, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-PRIMARIO-IC-Q-LO, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-PRIMARIO-IC-Q-HI, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-PRIMARIO-N-ESTRATOS, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENCIG23-AGCOND-PRIMARIO-N-UPM, tipo: entero, unidad: UPM}
+  - {id: RESULT-ENCIG23-AGCOND-PRIMARIO-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENCIG23-AGCOND-PRIMARIO-N-REPLICAS-NO-ESTIMABLES, tipo: entero, unidad: replicas}
+  - {id: RESULT-ENCIG23-AGCOND-PRIMARIO-N-SIN-DISENO, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-AGCOND-PRIMARIO-METODO-IC, tipo: texto, unidad: rotulo}
+
+  - {id: RESULT-ENCIG23-AGCOND-PREDIG-N, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-AGCOND-PREDIG-MASA-DEN, tipo: flotante, unidad: masa FAC_TRA, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-PREDIG-MASA-NUM, tipo: flotante, unidad: masa FAC_TRA, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-PREDIG-P, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-PREDIG-Q, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-PREDIG-IC-P-LO, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-PREDIG-IC-P-HI, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-PREDIG-IC-Q-LO, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-PREDIG-IC-Q-HI, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-PREDIG-N-ESTRATOS, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENCIG23-AGCOND-PREDIG-N-UPM, tipo: entero, unidad: UPM}
+  - {id: RESULT-ENCIG23-AGCOND-PREDIG-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENCIG23-AGCOND-PREDIG-N-REPLICAS-NO-ESTIMABLES, tipo: entero, unidad: replicas}
+  - {id: RESULT-ENCIG23-AGCOND-PREDIG-N-SIN-DISENO, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-AGCOND-PREDIG-METODO-IC, tipo: texto, unidad: rotulo}
+
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-PRE-N, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-PRE-MASA-DEN, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-PRE-MASA-NUM, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-PRE-P, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-PRE-Q, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-DIG-N, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-DIG-MASA-DEN, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-DIG-MASA-NUM, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-DIG-P, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-DIG-Q, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-OTRO-N, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-OTRO-MASA-DEN, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-OTRO-MASA-NUM, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-OTRO-P, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-OTRO-Q, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-FALTANTE-N, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-FALTANTE-MASA-DEN, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-FALTANTE-MASA-NUM, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-FALTANTE-P, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENCIG23-AGCOND-CANAL-FALTANTE-Q, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
