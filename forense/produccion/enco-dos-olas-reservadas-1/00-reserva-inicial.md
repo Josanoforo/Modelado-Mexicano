@@ -1,8 +1,11 @@
 # Reserva prospectiva inicial · ENCO junio 2025 + junio 2026
 
-Estado: `COMMIT-1 · RESERVA-FIJADA · SIN-RESPUESTAS-ABIERTAS`  
-Acto: `GEN2-ENCO-DOS-OLAS-RESERVADAS-1`  
-Base al fijar: `origin/main@e4f5f771b7fd9bccc88d3b6c30d0e5362b0e52a5`  
+Estado: `COMMIT-1 · RESERVA-FIJADA · SIN-RESPUESTAS-ABIERTAS`
+
+Acto: `GEN2-ENCO-DOS-OLAS-RESERVADAS-1`
+
+Base al fijar: `origin/main@e4f5f771b7fd9bccc88d3b6c30d0e5362b0e52a5`
+
 Fecha de fijación: 16/sep/2026 America/Mexico_City (17/sep/2026 UTC)
 
 ## Pareja y motivo previo a cualquier cifra
@@ -86,4 +89,3 @@ URLs oficiales localizadas antes de solicitar bytes:
 
 Las URLs provienen del índice masivo oficial versionado; un HTTP 200 posterior
 no bastará para declarar adquisición.
-
