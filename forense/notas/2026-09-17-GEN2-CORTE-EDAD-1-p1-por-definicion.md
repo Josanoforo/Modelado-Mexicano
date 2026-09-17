@@ -1,6 +1,6 @@
 # `ACTO GEN2-CORTE-EDAD-1` · P1 — el corte de `edad`, por definición, sobre tres FD
 
-**Acto:** `ACTO GEN2-CORTE-EDAD-1` (`ADR-534`) · **encargo:** `forense/encargos/2026-09-16-GEN2-CORTE-EDAD-1.md`
+**Acto:** `ACTO GEN2-CORTE-EDAD-1` (`ADR-535`) · **encargo:** `forense/encargos/2026-09-16-GEN2-CORTE-EDAD-1.md`
 **Base:** `e4f5f77` (= `origin/main` HEAD al abrir; `git rev-list --count HEAD..origin/main` = 0).
 **Entorno:** NUBE. `python3 tools/entorno.py --sonda-red` → `acceso_corpus.montado=NO`,
 `archivos_examinados=0`, `raices=data_raw:NO`, `red=000`. **No se abrió un solo microdato

@@ -2883,6 +2883,33 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-TRAMITE-4, 16/sep/2026. DOS archivos, una sola causa: los dos
+    # son TEXTO VERBATIM y no se editan para complacer un test -- el encargo
+    # esta archivado por 0-bis A.3 y el insumo de direccion por P4, con su
+    # cuerpo verificado por comando contra el encargo (0 diferencias). Editar
+    # cualquiera de los dos destruiria justo lo que los hace auditables: que
+    # sean lo que su autor escribio. Sus menciones, una por una:
+    #   `M1`  -- dentro de "ADR-531 (M1 con alcance precisado)", en el texto
+    #            de D-theta v1.2 que direccion escribio. Es el acto
+    #            `GEN2-M1-ALCANCE-1`, ya censado en canon/registro-rotulos.tsv,
+    #            nombrado sin su prefijo por su autor. Misma exencion, misma
+    #            causa y mismo token que ya lleva el encargo de ACTO
+    #            GEN2-CELDA-D-DISENO-CIEGO-1 mas abajo.
+    #   `E1` x2 -- "la enmienda de E1 §4.4" y "la ubicacion del esquema E1",
+    #            las dos en la misma frase del §3 de D-theta v1.2. Es la FASE
+    #            E1 del programa de calibracion de theta (el diseno de esquema
+    #            de forense/theta-cargable-por-celda-diseno-e1-v1_0.md), un
+    #            habitante ya existente y ya censado del espacio E, no un
+    #            rotulo nuevo: el regex no distingue una fase de un acto. Es
+    #            la MISMA exencion, por la MISMA razon, que ya lleva
+    #            D-THETA-DOCUMENTO-v1_1-post-adversarial.md -- de quien este
+    #            documento es sucesor directo.
+    # El rotulo propio de este acto, `GEN2 · GEN2-TRAMITE-4`, SI va censado en
+    # canon/registro-rotulos.tsv. Su nota de cierre NO necesita exencion: no
+    # trae un solo rotulo pelado (verificado con el regex de T25 antes de
+    # pedirla).
+    "forense/encargos/2026-09-16-GEN2-TRAMITE-4-RECIBO-CODEX-Y-CUATRO-FIRMAS.md",
+    "forense/notas/insumos-direccion/2026-09-16-D-THETA-v1_2.md",
     # ACTO GEN2-CORTE-EDAD-1, 17/sep/2026. Un archivo, una causa.
     #   `forense/encargos/2026-09-16-GEN2-CORTE-EDAD-1.md`
     #   `M2` -- NO viene del cuerpo verbatim del encargo (A.3), que no lo
@@ -2898,7 +2925,6 @@ _T25_ARCHIVOS_CONOCIDOS = {
     #            citado por `firma_m2`. Darle prefijo falsearia la cita de un
     #            valor que el codigo produce asi, sin prefijo.
     "forense/encargos/2026-09-16-GEN2-CORTE-EDAD-1.md",
-
     # ACTO GEN2-CELDA-D-CAREO-1, 17/sep/2026. Cinco archivos, dos causas
     # distintas; ninguno se edita para complacer el test.
     #

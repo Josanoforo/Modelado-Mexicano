@@ -1,0 +1,120 @@
+calc_id: CALC-ENCIG2023-FLUJO-0001
+spec_md: spec.md
+spec_md_sha256: 7a51dd976d3e71678b749b2ce95b91332ae49ec3ca9d13c927759d4cb9a162e1
+script: data/corrida0/CALC-ENCIG2023-FLUJO-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: CLASIFICACION-DE-FLUJO-Y-CONJUNTO-IDENTIFICADO
+  cuenta_gen2: PENDIENTE-DE-CASCADA-DIFERIDA
+  validacion_independiente: NO-HECHA
+  estado_adopcion: NO-ADOPTADO-NO-EQUIVALENTE
+  contaminacion_declarada: "Análisis posterior a conocer 123186 eventos, 23100 observados y p=0.2044306136200499 del padre; no es ciego ni confirmatorio."
+
+inputs:
+  - id: encig23_base_datos_csv
+    origen: manifiesto
+  - id: encig23_estructura_base_datos_pdf
+    origen: manifiesto
+  - id: encig23_cuestionario_pdf
+    origen: manifiesto
+  - id: IN-ENCIG23-AGREGADO-PADRE
+    origen: repo
+    ruta: data/corrida0/CALC-ENCIG2023-AGREGADO-CONDICIONAL-0001/resultados.json
+    sha256: 9621590a7581ce3a8f38678cc6e5d3b31972cb7699ecbeae94c3e67365017d80
+  - id: IN-ENCIG23-CONTRATO-FLUJO
+    origen: repo
+    ruta: forense/analisis/encig2023-flujo-estimando-1/01-contrato-flujo-evidencia.md
+    sha256: f8ee9b36189cd23f010b427002e1b05095bb79ac6fd84cee7b3b6df27d601cbd
+
+variables:
+  - {archivo: encig2023_04_sec_7.csv, variable: ID_VIV, rol: control de persona}
+  - {archivo: encig2023_04_sec_7.csv, variable: ID_PER, rol: unión muchos-a-uno a persona}
+  - {archivo: encig2023_04_sec_7.csv, variable: ID_TRA, rol: unión a marca de tipo}
+  - {archivo: encig2023_04_sec_7.csv, variable: N_TRA, rol: control de tipo}
+  - {archivo: encig2023_04_sec_7.csv, variable: P7_3, rol: cuatro partes contables de canal}
+  - {archivo: encig2023_04_sec_7.csv, variable: FAC_TRA, rol: ponderador de evento}
+  - {archivo: encig2023_05_sec_8.csv, variable: ID_VIV, rol: control de persona}
+  - {archivo: encig2023_05_sec_8.csv, variable: ID_PER, rol: control de persona}
+  - {archivo: encig2023_05_sec_8.csv, variable: ID_TRA, rol: llave única de tipo}
+  - {archivo: encig2023_05_sec_8.csv, variable: N_TRA, rol: control de tipo}
+  - {archivo: encig2023_05_sec_8.csv, variable: P8_4, rol: marca observada por tipo de trámite}
+  - {archivo: encig2023_01_sec1_A_3_4_5_8_9_10.csv, variable: ID_VIV, rol: llave única de persona}
+  - {archivo: encig2023_01_sec1_A_3_4_5_8_9_10.csv, variable: ID_PER, rol: llave única de persona}
+  - {archivo: encig2023_01_sec1_A_3_4_5_8_9_10.csv, variable: P8_3_1, rol: antecedente solicitud directa}
+  - {archivo: encig2023_01_sec1_A_3_4_5_8_9_10.csv, variable: P8_3_2, rol: antecedente tercero o coyote}
+  - {archivo: encig2023_01_sec1_A_3_4_5_8_9_10.csv, variable: P8_3_3, rol: antecedente insinuación o condiciones}
+
+universo: "filas-evento de sec_7 con FAC_TRA finito y positivo, unidas sin pérdida a tipo y persona"
+filtros: "ninguno silencioso; peso inválido, multiplicación o pérdida detienen; blancos se clasifican por flujo y nunca se convierten indiscriminadamente en cero"
+ponderador: "FAC_TRA de sec_7; FAC_P18 no se lee ni se usa"
+transformacion: "P8_4=1 de tipo repetido impone 1..k positivos; límite ponderado inferior suma min(FAC_TRA) por tipo y superior resta negativos conocidos al universo"
+estimando: "conjunto identificado de proporción de eventos con circunstancia de solicitud/intento; no pago"
+dependencias_materiales: []
+
+parametros:
+  blanco_literal: ["", b, NA]
+  esperado_padre:
+    n_total: 123186
+    n_observado: 23100
+    w_observado: 63712439
+    w_numerador: 13024773
+  canal_pre: [1]
+  canal_dig: [3, 4, 5]
+  canal_otro: [2, 6, 7, 8, 9]
+  consumidores_dictaminados: [RES-0007, RES-0008]
+
+seed:
+  aplica: false
+
+tolerancia:
+  tipo: determinista
+  exacto: true
+  abs: 0.0
+
+resultados:
+  - {id: RESULT-ENCIG23-FLUJO-ESTADO, tipo: texto, unidad: rótulo}
+  - {id: RESULT-ENCIG23-FLUJO-JOIN-ESTADO, tipo: texto, unidad: rótulo}
+  - {id: RESULT-ENCIG23-FLUJO-JOIN-N-SEC7, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-FLUJO-JOIN-N-SEC8, tipo: entero, unidad: filas tipo potenciales}
+  - {id: RESULT-ENCIG23-FLUJO-JOIN-N-PERSONAS, tipo: entero, unidad: personas}
+  - {id: RESULT-ENCIG23-FLUJO-JOIN-N-EVENTOS-PERSONA, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-FLUJO-JOIN-N-EVENTOS-SIN-PERSONA, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-FLUJO-N-PESO-INVALIDO, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-FLUJO-SOPORTE-P83-1, tipo: texto, unidad: conteos persona}
+  - {id: RESULT-ENCIG23-FLUJO-SOPORTE-P83-2, tipo: texto, unidad: conteos persona}
+  - {id: RESULT-ENCIG23-FLUJO-SOPORTE-P83-3, tipo: texto, unidad: conteos persona}
+  - {id: RESULT-ENCIG23-FLUJO-SOPORTE-P84, tipo: texto, unidad: conteos tipo}
+  - {id: RESULT-ENCIG23-FLUJO-TABLA-CATEGORIAS-JSON, tipo: texto, unidad: tabla canónica JSON}
+  - {id: RESULT-ENCIG23-FLUJO-CATEGORIAS-CIERRE-N, tipo: texto, unidad: rótulo}
+  - {id: RESULT-ENCIG23-FLUJO-CATEGORIAS-CIERRE-MASA, tipo: texto, unidad: rótulo}
+  - {id: RESULT-ENCIG23-FLUJO-PADRE-N-TOTAL, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-FLUJO-PADRE-MASA-TOTAL, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-FLUJO-PADRE-N-OBSERVADO, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-FLUJO-PADRE-MASA-OBSERVADA, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-FLUJO-PADRE-MASA-NUMERADOR, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-FLUJO-PADRE-P-CONDICIONADO, tipo: proporcion, unidad: proporción}
+  - {id: RESULT-ENCIG23-FLUJO-PADRE-N-P84-FALTANTE, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-FLUJO-PADRE-N-TIPOS-OBSERVADOS, tipo: entero, unidad: tipos persona×trámite}
+  - {id: RESULT-ENCIG23-FLUJO-PADRE-N-TIPOS-POSITIVOS, tipo: entero, unidad: tipos persona×trámite}
+  - {id: RESULT-ENCIG23-FLUJO-PADRE-N-TIPOS-POSITIVOS-REPETIDOS, tipo: entero, unidad: tipos persona×trámite}
+  - {id: RESULT-ENCIG23-FLUJO-PADRE-MAX-EVENTOS-POR-TIPO-POSITIVO, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-FLUJO-RECONCILIACION-PADRE, tipo: texto, unidad: rótulo}
+  - {id: RESULT-ENCIG23-FLUJO-N-UNIVERSO, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-FLUJO-W-UNIVERSO, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-FLUJO-N-POSITIVO-CONOCIDO, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-FLUJO-W-POSITIVO-CONOCIDO, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-FLUJO-N-NEGATIVO-CONOCIDO, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-FLUJO-W-NEGATIVO-CONOCIDO, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-FLUJO-N-DESCONOCIDO, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-FLUJO-W-DESCONOCIDO, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-FLUJO-N-POSITIVO-LIM-INF, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-FLUJO-N-POSITIVO-LIM-SUP, tipo: entero, unidad: eventos}
+  - {id: RESULT-ENCIG23-FLUJO-W-POSITIVO-LIM-INF, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-FLUJO-W-POSITIVO-LIM-SUP, tipo: flotante, unidad: masa FAC_TRA}
+  - {id: RESULT-ENCIG23-FLUJO-P-LIM-INF, tipo: proporcion, unidad: proporción}
+  - {id: RESULT-ENCIG23-FLUJO-P-LIM-SUP, tipo: proporcion, unidad: proporción}
+  - {id: RESULT-ENCIG23-FLUJO-ESTIMANDO-ESTADO, tipo: texto, unidad: rótulo}
+  - {id: RESULT-ENCIG23-FLUJO-CORRESPONDENCIA-RES-0007, tipo: texto, unidad: dictamen}
+  - {id: RESULT-ENCIG23-FLUJO-CORRESPONDENCIA-RES-0008, tipo: texto, unidad: dictamen}
+  - {id: RESULT-ENCIG23-FLUJO-PRECISION-MUESTRAL, tipo: texto, unidad: rótulo}
