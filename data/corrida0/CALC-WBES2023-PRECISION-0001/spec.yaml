@@ -1,0 +1,127 @@
+calc_id: CALC-WBES2023-PRECISION-0001
+spec_md: spec.md
+spec_md_sha256: beb01491ff6af9937fa253bbf691251456ac9a626dcf2557df200d801b953cd3
+script: data/corrida0/CALC-WBES2023-PRECISION-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: EXTENSION-PRECISION-MICRODATO
+  unidad_transferencia: UNIDAD-DISTINTA-NO-TRANSFERENCIA
+  uso_motor: CONTEXTO-INFORME-NO-CALIBRA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: SINTETICOS-CONTROL-INDEPENDIENTE-Y-VERIFY
+  fuente_acto: GEN2-WBES2023-PRECISION-1
+  medidor_ejecutado_al_congelar: NO
+
+inputs:
+  - {id: wbes_mexico_2023_ddi_xml, origen: manifiesto}
+  - {id: wbes_mexico_2023_ddi_pdf, origen: manifiesto}
+  - {id: wbes_mexico_2023_microdato_dta_zip, origen: manifiesto}
+  - {id: wbes_mexico_2023_documentacion_zip, origen: manifiesto}
+  - {id: wbes_sampling_note_consolidated_2022_pdf, origen: manifiesto}
+
+variables:
+  - {archivo: Mexico-2023-full-data.dta, variable: idstd, rol: identificador-unidad-muestreo-no-publicado}
+  - {archivo: Mexico-2023-full-data.dta, variable: strata, rol: estrato-seleccion-acreditado}
+  - {archivo: Mexico-2023-full-data.dta, variable: wmedian, rol: ponderador-principal}
+  - {archivo: Mexico-2023-full-data.dta, variable: a6a, rol: dominio-publicacion-no-estrato}
+  - {archivo: Mexico-2023-full-data.dta, variable: c3, rol: filtro-conexion-electrica}
+  - {archivo: Mexico-2023-full-data.dta, variable: c5, rol: evento-conexion-electrica}
+  - {archivo: Mexico-2023-full-data.dta, variable: c12, rol: filtro-conexion-agua}
+  - {archivo: Mexico-2023-full-data.dta, variable: c14, rol: evento-conexion-agua}
+  - {archivo: Mexico-2023-full-data.dta, variable: g2, rol: filtro-permiso-construccion}
+  - {archivo: Mexico-2023-full-data.dta, variable: g4, rol: evento-permiso-construccion}
+  - {archivo: Mexico-2023-full-data.dta, variable: j3, rol: filtro-inspeccion-fiscal}
+  - {archivo: Mexico-2023-full-data.dta, variable: j5, rol: evento-inspeccion-fiscal}
+  - {archivo: Mexico-2023-full-data.dta, variable: j10, rol: filtro-licencia-importacion}
+  - {archivo: Mexico-2023-full-data.dta, variable: j12, rol: evento-licencia-importacion}
+  - {archivo: Mexico-2023-full-data.dta, variable: j13, rol: filtro-licencia-operacion}
+  - {archivo: Mexico-2023-full-data.dta, variable: j15, rol: evento-licencia-operacion}
+
+universo: >-
+  El mismo del padre: establecimientos formales privados cubiertos por WBES
+  Mexico 2023, con cinco o mas empleados y en sectores incluidos.
+filtros: >-
+  Exactamente los del padre. Clasificable si esta expuesto al compuesto y el
+  desenlace compuesto es si/no; fuera del dominio aporta cero a la varianza.
+ponderador: wmedian
+transformacion: >-
+  Razon de totales ponderados Y/X compartiendo observaciones; linealizacion
+  de Taylor estratificada WR sobre muestra completa.
+estimando: >-
+  Los cinco puntos condicionados a clasificables ya publicados por el padre;
+  esta corrida solo agrega precision muestral tipada.
+precision: >-
+  IC-APROXIMADO-CONDICIONAL-A-SUPUESTOS. Dos escenarios preespecificados:
+  SINGLETON-CERTEZA y SINGLETON-AVERAGE; sin FPC; IC95 logit-t con
+  gl=sum_h(n_h-1). Frontera p=0/1 no estimable.
+
+dependencias_materiales:
+  - scipy
+seed: {aplica: false, valor: null, rng: NO-APLICA}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: calculo determinista; puntos contrastados al grano de 12 decimales del padre
+
+parametros:
+  padre: CALC-WBES2023-CORRUPCION-DESCRIPTIVA-0001
+  dominios: [TOTAL, PEQUENA, MEDIANA, GRANDE, EXTRA-GRANDE]
+  estrato: strata
+  unidad_muestreo: establecimiento-idstd
+  escenarios_singleton: [SINGLETON-CERTEZA, SINGLETON-AVERAGE]
+  fpc: NO-APLICADA
+  intervalo: LOGIT-T-95
+  output: forense/analisis/wbes2023-precision-1/wbes2023-precision.csv
+  adopcion: NINGUNA
+
+resultados:
+  - {id: RESULT-WBES2023-PREC-G-TIPO, tipo: texto, unidad: tipo-precision}
+  - {id: RESULT-WBES2023-PREC-G-N-UNIDADES, tipo: entero, unidad: establecimientos}
+  - {id: RESULT-WBES2023-PREC-G-N-ESTRATOS, tipo: entero, unidad: estratos}
+  - {id: RESULT-WBES2023-PREC-G-N-SINGLETON, tipo: entero, unidad: estratos}
+  - {id: RESULT-WBES2023-PREC-G-GL, tipo: entero, unidad: grados-libertad}
+  - {id: RESULT-WBES2023-PREC-G-FPC, tipo: texto, unidad: tratamiento}
+  - {id: RESULT-WBES2023-PREC-G-CSV-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-WBES2023-PREC-G-SALIDA, tipo: texto, unidad: ruta-relativa}
+  - {id: RESULT-WBES2023-PREC-G-MAX-DELTA-PADRE, tipo: flotante, unidad: proporcion-absoluta}
+  - {id: RESULT-WBES2023-PREC-TOTAL-PUNTO, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-TOTAL-N-CLASIFICABLE, tipo: entero, unidad: establecimientos}
+  - {id: RESULT-WBES2023-PREC-PEQUENA-PUNTO, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-PEQUENA-N-CLASIFICABLE, tipo: entero, unidad: establecimientos}
+  - {id: RESULT-WBES2023-PREC-MEDIANA-PUNTO, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-MEDIANA-N-CLASIFICABLE, tipo: entero, unidad: establecimientos}
+  - {id: RESULT-WBES2023-PREC-GRANDE-PUNTO, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-GRANDE-N-CLASIFICABLE, tipo: entero, unidad: establecimientos}
+  - {id: RESULT-WBES2023-PREC-EXTRA_GRANDE-PUNTO, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-EXTRA_GRANDE-N-CLASIFICABLE, tipo: entero, unidad: establecimientos}
+  - {id: RESULT-WBES2023-PREC-TOTAL-CERTEZA-EE, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-TOTAL-CERTEZA-IC95-LO, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-TOTAL-CERTEZA-IC95-HI, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-TOTAL-AVERAGE-EE, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-TOTAL-AVERAGE-IC95-LO, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-TOTAL-AVERAGE-IC95-HI, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-PEQUENA-CERTEZA-EE, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-PEQUENA-CERTEZA-IC95-LO, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-PEQUENA-CERTEZA-IC95-HI, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-PEQUENA-AVERAGE-EE, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-PEQUENA-AVERAGE-IC95-LO, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-PEQUENA-AVERAGE-IC95-HI, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-MEDIANA-CERTEZA-EE, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-MEDIANA-CERTEZA-IC95-LO, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-MEDIANA-CERTEZA-IC95-HI, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-MEDIANA-AVERAGE-EE, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-MEDIANA-AVERAGE-IC95-LO, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-MEDIANA-AVERAGE-IC95-HI, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-GRANDE-CERTEZA-EE, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-GRANDE-CERTEZA-IC95-LO, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-GRANDE-CERTEZA-IC95-HI, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-GRANDE-AVERAGE-EE, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-GRANDE-AVERAGE-IC95-LO, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-GRANDE-AVERAGE-IC95-HI, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-EXTRA_GRANDE-CERTEZA-EE, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-EXTRA_GRANDE-CERTEZA-IC95-LO, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-EXTRA_GRANDE-CERTEZA-IC95-HI, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-EXTRA_GRANDE-AVERAGE-EE, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-EXTRA_GRANDE-AVERAGE-IC95-LO, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-PREC-EXTRA_GRANDE-AVERAGE-IC95-HI, tipo: flotante, unidad: proporcion}

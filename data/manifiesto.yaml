@@ -16440,6 +16440,23 @@
     exigian credencial segun las filas 9 y 10 del registro; mesa los abrio con navegador.
     Solo PDF, sin tablas de datos en ningun nivel de anidamiento.'
 
+- id: wbes_sampling_note_consolidated_2022_pdf
+  usado_para: 'metodologia oficial de muestreo WBES: probabilidades de seleccion, pesos y
+    combinacion de muestras panel/fresca; insumo de CALC-WBES2023-PRECISION-0001'
+  url_origen: https://www.enterprisesurveys.org/content/dam/enterprisesurveys/documents/methodology/Sampling_Note-Consolidated-2-16-22.pdf
+  fecha_descarga: '2026-09-16'
+  descargado_por: codex-agente-autorizado
+  archivo: WBES-Sampling-Note-Consolidated-2022.pdf
+  sha256: 199b37eac44a700146e2f75ec84e2afc79eda52fb48fd2a2059e50ac9df8fa74
+  tamano_bytes: 434649
+  formato: PDF (13 paginas)
+  licencia: World Bank Enterprise Surveys, documentacion metodologica publica
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · curl
+  nota: 'Documento oficial enlazado por Mexico 2023 ES Implementation Report. Parrafos
+    15-16 definen probabilidad n/N y peso base; parrafos 25-32 describen combinacion
+    panel/fresh; parrafo 29 y nota 10 indican SRS dentro de celda y que un panel singleton
+    puede ser seleccion de certeza. No prescribe por si solo una receta mexicana de varianza.'
+
 - id: wbes_mexico_2010_microdato_dta_zip
   usado_para: microdato a nivel establecimiento del WBES Mexico 2010 (1480 filas x 293 variables)
     -- fila MEXICO_ENTERPRISE_SURVEYS_COMPONENTE_PANEL_CANDIDATO_2006_2010 (cola-adquisicion-v1_0.tsv:9,
