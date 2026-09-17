@@ -14,3 +14,20 @@ P3 · NC-0330. `test_celda_d_piloto_consumidor.py`: reemplazar `22` por la compa
 P4 · NC-0331. Dos pasos en `.github/workflows/verify.yml`, bloqueantes, con el mismo patrón de los existentes (`run: python3 tests/…`), nombrados. Corrida local de los cuatro tests pegada en verde; `tests/check.py --baseline` VERDE; si CI corre en el PR, su enlace en el cierre.
 PERÍMETRO Y CONCURRENCIA: `tests/test_motor_clases.py` · `tests/test_motor_holdout.py` · `tests/test_celda_d_piloto_consumidor.py` · `tests/test_motor_ejecutable.py` (solo si P3 lo alcanza) · `.github/workflows/verify.yml` · nota de cierre · tablero al cierre + cascada. No toca `tests/check.py` (salvo T25), `tests/test_verifica_aislada.py` (lo crea REPLAY-ASIENTOS-1), `milpa/`, el catálogo, specs ni resultados. En paralelo: `GEN2-REPLAY-ASIENTOS-1` (caja: `replay-evidencia.tsv`, derivados de `corrida0`, un test nuevo propio) — sin archivo común salvo el tablero al cierre; quien fusione después renumera. «Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.»
 CONTADOR: cero mediciones, dicho sin disfraz; cuatro NC cerradas; dos tests pasan de decoración a bloqueantes. LO QUE NO HACE: no toca NC-0305 (vocabulario v0.6, es de mesa) ni NC-0313 (diseño del medidor, es del siguiente falsador de orden) · no cambia datos sellados · no toca `check.py`. SUCESOR: ninguno propio. CIERRE: cascada + `## NO-CORRIDO / RESERVAS` + `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** P4, la mitad de `.github/workflows/verify.yml` que cablea `tests/test_marginales_una_variable.py` (15 casos).
+  **por qué:** `PARO-PREMISA` — el archivo importa `numpy` sin condición y `numpy` no está declarado en `requirements.txt` (solo `PyYAML`, `xlrd`, `markdown`, `jsonschema`); cablearlo hoy dejaría el paso rojo en CI por falta de dependencia, no por defecto de contenido. Añadir `numpy` a `requirements.txt` es una superficie que el encargo no listó en su perímetro (solo `.github/workflows/verify.yml`).
+  **impacto:** la guardia de una sola variable de agrupación (Firma 2 de mesa) y el falsador de orden de `marginales_reproduccion.py` siguen sin ejercerse en automático; `NC-0331` queda solo parcialmente cerrada.
+  **sucesor:** `NC-0332` (nueva, `ABIERTA`) — acto de mantenimiento de CI que añada `numpy` a `requirements.txt` y entonces cablee el paso.
+
+- **qué:** `tests/test_motor_holdout.py::test_c_roles_sellados_antes_que_todo_resultado`, mencionado en la verificación de existencia del encargo.
+  **por qué:** `FUERA-DE-PERÍMETRO` — el perímetro de este acto no incluye `tests/test_motor_holdout.py::test_c`; el archivo se tocó solo para `test_a2` (P2), función distinta.
+  **impacto:** ninguno nuevo — el `FAIL` es preexistente (medido antes de este acto, verificado por `diff` contra `HEAD~1` de `canon/gobernanza-v1_15.md`, que este acto no tocó hasta su propia cascada) y ya tiene NC propia.
+  **sucesor:** `DIFERIDO-A:NC-0273/NC-0310` — ya abiertas, ya con sucesor propio (guardia contra clon `shallow`; catálogo y `motor.py` en el mismo commit histórico `017ac24`).
+
+- **qué:** `tests/test_motor_ejecutable.py` — "aplicar la misma forma a `test_motor_ejecutable.py` si conserva un literal equivalente" (P3).
+  **por qué:** `NO-VERIFICABLE-AQUÍ` no aplica — SÍ se verificó (`grep` sobre el archivo, sin coincidencias de `22` ni `NO-VERIFICADO`); se declara aquí solo para que conste que se comprobó y no se asumió, tal como el encargo pedía explícitamente ("verificar, no asumir").
+  **impacto:** ninguno — no había nada que corregir.
+  **sucesor:** SIN-ASIGNAR — no aplica, no hay pieza pendiente.
