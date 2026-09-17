@@ -1,0 +1,101 @@
+calc_id: CALC-ENVIPE-U4-2015-0001
+spec_md: spec.md
+spec_md_sha256: 990b57b5b15a1450ece291df6092d0e6eb60ed82e61653a74da3446424d51ddf
+script: forense/analisis/envipe-u4-2013-2015-1/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: MEDICION-DESCRIPTIVA-U4-PERSONA
+  cuenta_gen2: PENDIENTE-DE-INTEGRACION-SERIAL
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENVIPE-U4-2013-2015-spec-v1_0.md
+  spec_sellada_sha256: 7d5a689a7946067951e7fa76c6cf228caee7e615e87fce6b0d0b7e5b365e33f6
+  demanda_que_releva: NC-0098, componente ENVIPE 2015 en unidad persona; no cierra administrativamente la fila.
+  contaminacion_declarada: "Se conocían los resultados históricos públicos U1/R por delito y U4 de 2012/2025; no se conocía el punto U4 2015."
+  medidor_ejecutado_al_congelar: NO; sólo fixtures sintéticos, documentación y cabeceras DBF.
+inputs:
+  - {id: envipe_2015_bd_envipe2015_dbf, origen: manifiesto}
+  - {id: envipe_2015_fd_envipe2015, origen: manifiesto}
+variables:
+  - {archivo: TMod_Vic.dbf, variable: UPM, rol: llave persona 1/4; no es UPM de diseño, codigos: C7}
+  - {archivo: TMod_Vic.dbf, variable: VIV_SEL, rol: llave persona 2/4, codigos: C2}
+  - {archivo: TMod_Vic.dbf, variable: HOGAR, rol: llave persona 3/4, codigos: C2}
+  - {archivo: TMod_Vic.dbf, variable: R_SEL, rol: llave persona 4/4, codigos: C2}
+  - {archivo: TMod_Vic.dbf, variable: BPCOD, rol: delito personal, codigos: 05..15}
+  - {archivo: TMod_Vic.dbf, variable: BP1_20, rol: no denuncia, codigos: 2=No}
+  - {archivo: TMod_Vic.dbf, variable: BP1_23, rol: razón y desenlace, codigos: 01..08 válidos; 09/99/blanco fuera}
+  - {archivo: TMod_Vic.dbf, variable: FAC_DEL, rol: elegibilidad heredada del evento; nunca pondera personas, codigos: positivo finito}
+  - {archivo: TPer_Vic2.dbf, variable: ID_PER, rol: identidad persona, codigos: C16}
+  - {archivo: TPer_Vic2.dbf, variable: UPM, rol: llave persona 1/4; no diseño, codigos: C7}
+  - {archivo: TPer_Vic2.dbf, variable: VIV_SEL, rol: llave persona 2/4, codigos: C2}
+  - {archivo: TPer_Vic2.dbf, variable: HOGAR, rol: llave persona 3/4, codigos: C2}
+  - {archivo: TPer_Vic2.dbf, variable: R_SEL, rol: llave persona 4/4, codigos: C2}
+  - {archivo: TPer_Vic2.dbf, variable: FAC_ELE, rol: ponderador persona, codigos: positivo finito}
+  - {archivo: TPer_Vic2.dbf, variable: EST_DIS, rol: estrato de diseño documentado, codigos: llave opaca C3}
+  - {archivo: TPer_Vic2.dbf, variable: UPM_DIS, rol: UPM de diseño documentada; no sustituible por UPM, codigos: llave opaca C5}
+universo: "ENVIPE 2015, victimización 2014. U1=delitos personales BPCOD 05..15 no denunciados, razón 01..08 y FAC_DEL válido. U4=personas seleccionadas con al menos un evento U1, vínculo uno-a-uno, ID_PER y FAC_ELE válidos."
+filtros: "Cada exclusión por BPCOD, denuncia, razón, FAC_DEL, llave, vínculo, identidad y FAC_ELE se cuenta. Falta no equivale a cero."
+ponderador: "FAC_ELE una vez por persona. FAC_DEL sólo verifica elegibilidad del evento."
+transformacion: "C1={01,02,06}; C2={01,02,06,08}; máximo por persona; q=1-p en U4. Sensibilidad bootstrap de UPM_DIS dentro de EST_DIS sobre todo el marco observado con ceros fuera del dominio."
+estimando: "Puntos descriptivos p(C2,U4), q y p(C1,U4), persona seleccionada, FAC_ELE. IC95 sólo sensibilidad NO-APROBADA para inferencia plena."
+dependencias_materiales: [numpy]
+parametros:
+  fuente_acto: GEN2-ENVIPE-U4-2013-2015-1
+  payload_id: envipe_2015_bd_envipe2015_dbf
+  fd_id: envipe_2015_fd_envipe2015
+  module_member: TMod_Vic.dbf
+  person_member: TPer_Vic2.dbf
+  join_columns: [UPM, VIV_SEL, HOGAR, R_SEL]
+  identity_field: ID_PER
+  stratum_field: EST_DIS
+  psu_field: UPM_DIS
+  personal_codes: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  bootstrap_replicas: 2000
+  result_prefix: RESULT-ENVIPE-U4-2015
+seed: {aplica: true, valor: 20260909, rng: numpy.PCG64}
+tolerancia: {tipo: flotante, abs: 1.0e-10, razon: "Punto determinista y bootstrap con semilla fija; enteros/textos exactos."}
+resultados:
+  - {id: RESULT-ENVIPE-U4-2015-N-FILAS-MODULO, tipo: entero, unidad: filas delito leídas}
+  - {id: RESULT-ENVIPE-U4-2015-N-FILAS-PERSONAS, tipo: entero, unidad: filas del marco observado de personas}
+  - {id: RESULT-ENVIPE-U4-2015-PERFIL-DBF-MODULO, tipo: texto, unidad: perfil estructural DBF}
+  - {id: RESULT-ENVIPE-U4-2015-PERFIL-DBF-PERSONAS, tipo: texto, unidad: perfil estructural DBF}
+  - {id: RESULT-ENVIPE-U4-2015-N-EXCL-BPCOD, tipo: entero, unidad: eventos fuera de 05..15}
+  - {id: RESULT-ENVIPE-U4-2015-N-EXCL-NO-DENUNCIA, tipo: entero, unidad: eventos con BP1_20 distinto de 2}
+  - {id: RESULT-ENVIPE-U4-2015-N-EXCL-RAZON-BLANCA, tipo: entero, unidad: eventos con razón blanca}
+  - {id: RESULT-ENVIPE-U4-2015-N-EXCL-RAZON-09, tipo: entero, unidad: eventos con razón 09}
+  - {id: RESULT-ENVIPE-U4-2015-N-EXCL-RAZON-99, tipo: entero, unidad: eventos con razón 99}
+  - {id: RESULT-ENVIPE-U4-2015-N-EXCL-RAZON-OTRA, tipo: entero, unidad: eventos con otra razón inválida}
+  - {id: RESULT-ENVIPE-U4-2015-N-EXCL-FAC-DEL, tipo: entero, unidad: eventos sin FAC_DEL válido}
+  - {id: RESULT-ENVIPE-U4-2015-N-EVENTOS-U1, tipo: entero, unidad: eventos elegibles de origen}
+  - {id: RESULT-ENVIPE-U4-2015-N-EVENTOS-U1-LLAVE-INVALIDA, tipo: entero, unidad: eventos U1 sin llave completa}
+  - {id: RESULT-ENVIPE-U4-2015-N-PERSONAS-CANDIDATAS, tipo: entero, unidad: llaves persona distintas con eventos U1}
+  - {id: RESULT-ENVIPE-U4-2015-N-PERSONAS-SIN-VINCULO, tipo: entero, unidad: candidatas sin fila persona}
+  - {id: RESULT-ENVIPE-U4-2015-N-PERSONAS-VINCULO-MULTI, tipo: entero, unidad: candidatas con vínculo múltiple}
+  - {id: RESULT-ENVIPE-U4-2015-N-PERSONAS-ID-INVALIDA, tipo: entero, unidad: candidatas sin ID_PER}
+  - {id: RESULT-ENVIPE-U4-2015-N-PERSONAS-ID-COLISION, tipo: entero, unidad: candidatas con ID_PER compartido por llaves}
+  - {id: RESULT-ENVIPE-U4-2015-N-PERSONAS-FAC-ELE-INVALIDO, tipo: entero, unidad: candidatas sin peso persona válido}
+  - {id: RESULT-ENVIPE-U4-2015-N-PERSONAS-U4, tipo: entero, unidad: personas U4}
+  - {id: RESULT-ENVIPE-U4-2015-N-EVENTOS-EN-U4, tipo: entero, unidad: eventos U1 atribuidos a U4}
+  - {id: RESULT-ENVIPE-U4-2015-N-PERSONAS-U4-SIN-DISENO, tipo: entero, unidad: personas U4 fuera de sensibilidad por diseño faltante}
+  - {id: RESULT-ENVIPE-U4-2015-COBERTURA-VINCULO, tipo: proporcion, unidad: personas U4 sobre candidatas}
+  - {id: RESULT-ENVIPE-U4-2015-MASA-FAC-ELE-U4, tipo: flotante, unidad: denominador ponderado FAC_ELE}
+  - {id: RESULT-ENVIPE-U4-2015-NUMERADOR-FAC-ELE-C2-U4, tipo: flotante, unidad: numerador ponderado C2}
+  - {id: RESULT-ENVIPE-U4-2015-NUMERADOR-FAC-ELE-C1-U4, tipo: flotante, unidad: numerador ponderado C1}
+  - {id: RESULT-ENVIPE-U4-2015-P-C2-U4, tipo: proporcion, unidad: proporción persona C2}
+  - {id: RESULT-ENVIPE-U4-2015-Q-C2-U4, tipo: proporcion, unidad: complemento exacto de p C2 en U4}
+  - {id: RESULT-ENVIPE-U4-2015-P-C1-U4, tipo: proporcion, unidad: proporción persona C1}
+  - {id: RESULT-ENVIPE-U4-2015-N-MARCO-PERSONAS-DISENO, tipo: entero, unidad: filas de persona válidas para sensibilidad}
+  - {id: RESULT-ENVIPE-U4-2015-N-MARCO-FILAS-DESCARTADAS-AMBIGUAS, tipo: entero, unidad: filas duplicadas o identidad colisionada}
+  - {id: RESULT-ENVIPE-U4-2015-N-ESTRATOS, tipo: entero, unidad: estratos observados en marco}
+  - {id: RESULT-ENVIPE-U4-2015-N-UPM, tipo: entero, unidad: pares estrato-UPM observados en marco}
+  - {id: RESULT-ENVIPE-U4-2015-N-ESTRATOS-SINGLETON, tipo: entero, unidad: estratos con una UPM observada}
+  - {id: RESULT-ENVIPE-U4-2015-N-REPLICAS-VALIDAS-C2, tipo: entero, unidad: réplicas con denominador U4 positivo}
+  - {id: RESULT-ENVIPE-U4-2015-N-REPLICAS-VALIDAS-C1, tipo: entero, unidad: réplicas con denominador U4 positivo}
+  - {id: RESULT-ENVIPE-U4-2015-IC95-SENS-LO-C2-U4, tipo: flotante, unidad: límite inferior de sensibilidad, permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-U4-2015-IC95-SENS-HI-C2-U4, tipo: flotante, unidad: límite superior de sensibilidad, permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-U4-2015-IC95-SENS-LO-Q-C2-U4, tipo: flotante, unidad: 1 menos límite superior de p, permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-U4-2015-IC95-SENS-HI-Q-C2-U4, tipo: flotante, unidad: 1 menos límite inferior de p, permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-U4-2015-IC95-SENS-LO-C1-U4, tipo: flotante, unidad: límite inferior de sensibilidad C1, permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-U4-2015-IC95-SENS-HI-C1-U4, tipo: flotante, unidad: límite superior de sensibilidad C1, permite_no_estimable: true}
+  - {id: RESULT-ENVIPE-U4-2015-METODO-IC, tipo: texto, unidad: método y limitación}
+  - {id: RESULT-ENVIPE-U4-2015-ESTADO-PRECISION, tipo: texto, unidad: estatus de precisión}
+  - {id: RESULT-ENVIPE-U4-2015-ESTADO, tipo: texto, unidad: estatus del punto}

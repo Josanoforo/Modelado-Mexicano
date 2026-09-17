@@ -135,3 +135,19 @@ Queda retirado lo que la enmienda anterior daba por cierto: «`ACTO GEN2-RELEVO-
 **`NO-DETERMINABLE` no es el bin 3.** El bin 3 (`SIN-CRITERIO`) es «el consumidor no declara `se_mueve_si` y el legacy no trae IC: no hay con qué decir *no material*», y se firma **en bloque, de una vez, o se devuelve**. El `NO-DETERMINABLE` del acto es otra cosa: el delta no se puede calcular por falta de identidad de universo o por veredictos en conflicto (`RES-0005`, `RES-0028`, `RES-0035`). Hay solape —`RES-0028` compara `U1` contra `U4`, que por la invariante de escala/universo de esta regla iría a bin 3 con la razón escrita— pero los tres acabaron en filas `NC` individuales (`NC-0214`, `NC-0216`, `NC-0217`), es decir **degradados uno por uno**: exactamente el «modo de falla de transacción que esta regla existe para cerrar».
 
 **Y el acto refuta el bin 1 tal como está escrito.** Su `P4` dice, verbatim: «De los 7 NO-MATERIAL pendientes, 5 tienen un sellado o una firma que prohíbe la cita … Adoptarlos por ser inmateriales habría violado `E.3` y una decisión firmada: **la materialidad no es la única compuerta.**» El bin 1 de esta regla presenta sus tres condiciones como suficientes para que el merge adopte. No lo son: un veredicto sellado (`COMPLEMENTO-CON-DENOMINADOR-RECORTADO`, `SIN CITA` de D1/`NC-0108`) prohíbe la cita con independencia de la materialidad. De 7 NO-MATERIAL pendientes se adoptaron **2**. Esto es un falsador cumplido antes de los tres meses, y por la propia cláusula de caducidad de la regla corresponde **estrecharla, no retirarla**: el bin 1 necesita una cuarta condición — que ningún sellado ni firma vigente prohíba la cita. **Decisión de dirección; aquí sólo se deja escrito.**
+
+---
+
+**ENMIENDA FECHADA (2026-09-16, `ACTO GEN2-TRAMITE-4`, `P2(c)`).** Fuera del bloque verbatim: la firma de mesa de arriba (`:48`) **no se toca**.
+
+La tabla de propagación de `:131-133` queda enmendada así, contra `origin/main` re-derivado:
+
+| paso | estado en la tabla | estado hoy |
+|---|---|---|
+| 1 | **NO HECHO** | **HECHO por este acto.** Fila en `data/corrida0/decisiones.tsv`, objeto `regla-adopcion-en-bloque`, con la firma verbatim del 15/sep/2026 y la regla como OBJETO. Además `FP-381`, que **nace FIRMADA** (A.12). |
+| 2 | **PARCIAL** | **SIGUE PARCIAL, y la mitad que falta es otra.** Su mitad de `forense/hallazgos.md` queda **HECHA**: entrada `PARA-v2.14` con el texto de la regla. Su mitad de ADR **no**: sigue sin existir un ADR cuyo OBJETO sea la regla — `ADR-514` es del acto, no de ella. Fila `NC-0290`. |
+| 3 | **HECHO EN FORMA, NO EN DEFINICIÓN** | **Sin cambio.** Este acto no re-deriva los conteos de `GEN2-RELEVO-USOS-1`; está fuera de su perímetro. |
+
+**Por qué el paso 2 no se completa aquí y no es una omisión silenciosa.** El ADR de este acto es de **recibo** (carril Codex) y de **las cuatro firmas**; un ADR cuyo objeto sea la regla es acto propio. Y hay una razón sustantiva por encima de la de perímetro: **el bin 1 de la regla está refutado por el árbol**. `ACTO GEN2-RELEVO-USOS-1` adoptó **2 de 7** NO-MATERIAL pendientes porque «un veredicto sellado o una firma vigente prohíbe la cita con independencia de la materialidad» — las tres condiciones del bin 1 no son suficientes. Sellar con un ADR propio una regla cuyo primer bin necesita una **cuarta condición** sería sellar el defecto. Esa cuarta condición es **decisión de dirección**, ya escrita en esta adenda y no tomada por ningún ejecutor.
+
+**Y el dato que justifica que el paso 1 se pagara hoy y no antes:** la regla llevaba desde el 15/sep gobernando adopciones **sin fila** — el ADR de PINS (`PR #809`) ya la había usado. Ese es exactamente el limbo que `GEN2-TRAMITE-4` existe para cerrar.

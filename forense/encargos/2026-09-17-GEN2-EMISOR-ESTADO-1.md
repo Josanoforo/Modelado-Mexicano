@@ -30,11 +30,11 @@ Cero mediciones, dicho sin disfraz. Mueve `escala_legacy` NO-DECLARADO 15 → N 
 
 | qué | por qué | impacto | sucesor |
 |---|---|---|---|
-| P1 · «la propuesta no se implementa: va a mesa como decisión de diseño del marcador (fila FP)» | `DECISIÓN-DE-MESA-PENDIENTE` — así lo manda el encargo. La propuesta está redactada en prosa con sus tres reglas (a)/(b)/(c) y contada; no se tocó el marcador. | El rediseño del marcador por segmento no avanza hasta la firma. Ningún contador de medición se mueve. | `FP-380` (`forense/firmas-pendientes.tsv`, abierta hoy) |
-| P1 · cierre de NC-0275 | `DECISIÓN-DE-MESA-PENDIENTE` — el encargo lo prohíbe explícitamente («no se cierra aquí»). La fila recibe sucesor y sigue `ABIERTA`. | NC-0275 sigue contando como deuda abierta del tablero. | `FP-380`, que es lo que la cerrará cuando mesa la firme |
-| P2 · escala en 11 de las 15 salidas (`RES-0003`, `0004`, `0005`, `0009`, `0011`, `0013`, `0015`, `0021`, `0022`, `0025`, `0026`) | `FUERA-DE-PERÍMETRO` — no por falta de información: la escala de las 11 **sí** se determina desde su `origen` citado. `tools/corrida0.py:282` lee `escala` al nivel de la REGLA y la línea 307 la estampa en todas sus conductas; esas 11 viven en cuatro reglas de escala mixta, así que ninguna cadena única es verdadera para todas. Declararla a nivel de conducta no serviría (el derivador no la leería) y arreglar el lector es tocar `tools/corrida0.py`, que el perímetro excluye. | `escala_legacy` `NO-DECLARADO` en `conducta_p_medido` baja a **11**, no a 0; `NC-0276` sigue `ABIERTA`. | `NC-0283` (lectura de `escala` por conducta), abierta hoy |
-| P1 · reparación de las once citas `origen:` desfasadas del emisor al árbitro | `FUERA-DE-PERÍMETRO` — el perímetro limita `milpa/tramite.yaml` a «solo campos `escala:` nuevos en las 15 salidas — ningún otro byte». Corregirlas sería reescribir once campos más. | Cualquier lectura futura que siga una de esas citas al pie de la letra leerá la entrada equivocada del árbitro. No mueve ningún `p`. | `NC-0284`, abierta hoy |
-| Contraparte de `familia.cuidado.recae_mujeres_40mas / segmentacion_ejes_enut2024` | Resuelta, con reserva de método declarada: no hay cita ni prefijo común, y se emparejó por **alias declarado** contra `familia.cuidado.reparto_mujeres40_ejes_enut2024`. La evidencia es que sus 10 celdas etiquetadas coinciden en el valor exacto, 10 de 10 — no es inferencia, es medición. Queda como alias único y explícito, no como regla general. | Si mesa lo rechaza, esas 10 celdas vuelven a `SIN-CONTRAPARTE` y el censo pasa de 89 a 79 `IDENTICO`. El sentido del hallazgo no cambia. | `FP-380` (mesa lo ve al firmar el censo) |
+| P1 · «la propuesta no se implementa: va a mesa como decisión de diseño del marcador (fila FP)» | `DECISIÓN-DE-MESA-PENDIENTE` — así lo manda el encargo. La propuesta está redactada en prosa con sus tres reglas (a)/(b)/(c) y contada; no se tocó el marcador. | El rediseño del marcador por segmento no avanza hasta la firma. Ningún contador de medición se mueve. | `FP-383` (`forense/firmas-pendientes.tsv`, abierta hoy) |
+| P1 · cierre de NC-0275 | `DECISIÓN-DE-MESA-PENDIENTE` — el encargo lo prohíbe explícitamente («no se cierra aquí»). La fila recibe sucesor y sigue `ABIERTA`. | NC-0275 sigue contando como deuda abierta del tablero. | `FP-383`, que es lo que la cerrará cuando mesa la firme |
+| P2 · escala en 11 de las 15 salidas (`RES-0003`, `0004`, `0005`, `0009`, `0011`, `0013`, `0015`, `0021`, `0022`, `0025`, `0026`) | `FUERA-DE-PERÍMETRO` — no por falta de información: la escala de las 11 **sí** se determina desde su `origen` citado. `tools/corrida0.py:282` lee `escala` al nivel de la REGLA y la línea 307 la estampa en todas sus conductas; esas 11 viven en cuatro reglas de escala mixta, así que ninguna cadena única es verdadera para todas. Declararla a nivel de conducta no serviría (el derivador no la leería) y arreglar el lector es tocar `tools/corrida0.py`, que el perímetro excluye. | `escala_legacy` `NO-DECLARADO` en `conducta_p_medido` baja a **11**, no a 0; `NC-0276` sigue `ABIERTA`. | `NC-0293` (lectura de `escala` por conducta), abierta hoy |
+| P1 · reparación de las once citas `origen:` desfasadas del emisor al árbitro | `FUERA-DE-PERÍMETRO` — el perímetro limita `milpa/tramite.yaml` a «solo campos `escala:` nuevos en las 15 salidas — ningún otro byte». Corregirlas sería reescribir once campos más. | Cualquier lectura futura que siga una de esas citas al pie de la letra leerá la entrada equivocada del árbitro. No mueve ningún `p`. | `NC-0294`, abierta hoy |
+| Contraparte de `familia.cuidado.recae_mujeres_40mas / segmentacion_ejes_enut2024` | Resuelta, con reserva de método declarada: no hay cita ni prefijo común, y se emparejó por **alias declarado** contra `familia.cuidado.reparto_mujeres40_ejes_enut2024`. La evidencia es que sus 10 celdas etiquetadas coinciden en el valor exacto, 10 de 10 — no es inferencia, es medición. Queda como alias único y explícito, no como regla general. | Si mesa lo rechaza, esas 10 celdas vuelven a `SIN-CONTRAPARTE` y el censo pasa de 89 a 79 `IDENTICO`. El sentido del hallazgo no cambia. | `FP-383` (mesa lo ve al firmar el censo) |
 | Desfase preexistente del derivado `data/corrida0/demanda-*.tsv` respecto de su fuente en `main` | `FUERA-DE-PERÍMETRO` en cuanto a causa — lo introdujo el merge de #834 (una celda-D nueva corre la numeración `RES-*` desde `RES-0174` y `CORR-*` desde `CORR-0080`), no este acto. Entra en este commit porque el comando re-deriva el archivo entero. | Los 15 ids que este acto toca (`RES-0003`…`RES-0062`) están por debajo del corte y no se renumeran. Quien lea `RES-0174`+ contra un commit anterior verá otro id. | `SIN-ASIGNAR` — se resuelve solo en cuanto cualquier acto vuelva a correr `demanda`, como hizo éste |
 
 ### A.8 · `ya_medido` de la única regla que este acto cita por `id` fuera del censo
@@ -68,17 +68,17 @@ son `IDENTICO`.
 ## CONSUMIDO
 
 Ejecutado por [PR #844](https://github.com/Josanoforo/Modelado-Mexicano/pull/844)
-(rama `claude/determined-meitner-9qjdx5`, `ACTO GEN2-EMISOR-ESTADO-1`, ADR-534),
+(rama `claude/determined-meitner-9qjdx5`, `ACTO GEN2-EMISOR-ESTADO-1`, ADR-535),
 17/sep/2026. Base declarada por el encargo `0189562`; base real `1a6a530` tras
 el merge del arranque 0.a, y todo re-derivado contra ella.
 
 Entregado: censo de 97 filas
 (`forense/notas/2026-09-16-GEN2-EMISOR-ESTADO-1-censo.tsv`) con `IDENTICO` 89,
 `INDEPENDIENTE` 3, `SIN-CONTRAPARTE` 5 y `MISMO-INSTRUMENTO-OTRA-OLA` 0;
-propuesta de marcador en prosa a mesa como `FP-380`, no implementada; y
+propuesta de marcador en prosa a mesa como `FP-383`, no implementada; y
 `escala_legacy` `NO-DECLARADO` de 15 a 11 con dos líneas `escala:` nuevas en
 `milpa/tramite.yaml` (+2 líneas, 0 eliminaciones, 0 de 15 `p` alterados).
-`NC-0275` recibe `FP-380` como sucesor y sigue `ABIERTA`; `NC-0276` sigue
-`ABIERTA` con las 11 nombradas; `NC-0283` y `NC-0284` abiertas.
-Suite: `3 FAIL · 4363 WARN`, **LÍNEA BASE VERDE**, `exit=0`,
+`NC-0275` recibe `FP-383` como sucesor y sigue `ABIERTA`; `NC-0276` sigue
+`ABIERTA` con las 11 nombradas; `NC-0293` y `NC-0294` abiertas.
+Suite: `3 FAIL · 4371 WARN`, **LÍNEA BASE VERDE**, `exit=0`,
 `tests/baseline.json` sin tocar.

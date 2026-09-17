@@ -100,7 +100,7 @@ acto no inventa una: las clasifica `INDEPENDIENTE` por descarte y lo declara
 aquí. Para el marcador **no** cuentan como comparación legítima; cuentan como
 una diferencia de procedimiento sobre un payload común, que es otra cosa.
 
-### Propuesta de marcador (NO se implementa — va a mesa como FP-380)
+### Propuesta de marcador (NO se implementa — va a mesa como FP-383)
 
 El marcador por segmento compara M (emisor) contra R (árbitro). El censo dice
 qué queda de esa comparación:
@@ -131,7 +131,7 @@ planteado, no tiene sobre qué correr en el emisor.** No es que salga débil;
 es que el universo comparable es de 3 celdas discutibles o de cero. La
 decisión de diseño —rediseñar el marcador por segmento sobre otro universo, o
 declarar que el emisor no entra en la competencia— es de dirección, no del
-ejecutor. **FP-380.**
+ejecutor. **FP-383.**
 
 **Ninguna cifra nueva.** Cada `p` del censo ya estaba sellado en uno de los dos
 YAML. Ninguno de los dos se modificó por P1.
@@ -177,7 +177,7 @@ lee sin afirmar, de paso, algo falso sobre sus hermanas. Escribir `escala:`
 al nivel de la conducta no sirve hoy: el derivador no la leería, y un campo
 que nadie lee es ruido, no declaración. **Arreglarlo es tocar
 `tools/corrida0.py`, que está FUERA del perímetro de este acto** («si te
-encuentras escribiendo fuera de esta lista, PARA»). Va como **NC-0283**.
+encuentras escribiendo fuera de esta lista, PARA»). Va como **NC-0293**.
 
 **Efecto lateral, dicho:** por ser la escala de nivel regla, las 4 filas
 `conducta_p_derivado` hermanas de `dinero.ahorro.via_informal` (RES-0053,
@@ -205,13 +205,13 @@ por debajo del corte y no se renumeran.**
 
 ## Suite, y una corrección al propio cierre
 
-`python3 tests/check.py --baseline` → **3 FAIL · 4363 WARN**, **LÍNEA BASE
+`python3 tests/check.py --baseline` → **3 FAIL · 4371 WARN**, **LÍNEA BASE
 VERDE**, `exit=0`, `tests/baseline.json` sin tocar. Los 3 `FAIL` son los
 congelados (`T06`, `T08`); los 3 `WARN` nuevos frente al cierre de `ADR-533`
-son las filas que este acto abre (`FP-380`, `NC-0283`, `NC-0284`).
+son las filas que este acto abre (`FP-383`, `NC-0293`, `NC-0294`).
 
 **La primera cifra que este acto declaró era 4364 y estaba mal, por defecto de
-entorno propio.** `ADR-534` se redactó contra una corrida local a la que le
+entorno propio.** `ADR-535` se redactó contra una corrida local a la que le
 faltaba `jsonschema` —declarada en `requirements.txt`, ausente en este
 contenedor—, así que `T38 T-ALTA-RELACION` salía `NO-CORRIDO` y sumaba un
 `WARN` que el repo no tiene. CI, con la dependencia instalada, dio **4363** y
@@ -219,7 +219,7 @@ contenedor—, así que `T38 T-ALTA-RELACION` salía `NO-CORRIDO` y sumaba un
 dependencia (`python3 -m pip install jsonschema`), se re-corrió, y la corrida
 local ahora **reproduce la de CI cubeta por cubeta** — `T-REPRO` 4100,
 `T-NO-CORRIDO` 76, `T10` 65, `T03` 62, `T22` 50, `T-SUCESOR-EXISTE` 6, `T13` 3,
-`T-CRON` 1 —, sin `T-ALTA-RELACION`. La cifra de `ADR-534` quedó corregida a
+`T-CRON` 1 —, sin `T-ALTA-RELACION`. La cifra de `ADR-535` quedó corregida a
 4363.
 
 Vale la pena dejarlo escrito porque es la lección y no la anécdota: **una
@@ -230,3 +230,42 @@ el ARRANQUE de este acto; `jsonschema` no está en esa lista de dependencias
 materiales, y por eso su ausencia no se vio hasta que CI la contradijo.
 **Hallazgo de aparato, no de este acto:** `tools/entorno.py` no censa
 `jsonschema` aunque `requirements.txt` la declare y la suite la use.
+
+---
+
+## Colisión de cascada con GEN2-TRAMITE-4 — renumera quien fusiona segundo
+
+La concurrencia que el encargo declaró («en paralelo … GEN2-TRAMITE-4 … quien
+fusione después renumera») ocurrió. `GEN2-TRAMITE-4` fusionó primero (PR #848) y
+tomó `ADR-534`, `FP-380`/`381`/`382` y `NC-0283`…`NC-0292`. Este acto fusiona
+segundo, así que **renumera**, y las cifras anteriores de este cierre quedan
+superadas:
+
+| era | es |
+|---|---|
+| `ADR-534` | **`ADR-535`** |
+| `FP-380` | **`FP-383`** |
+| `NC-0283` | **`NC-0293`** |
+| `NC-0284` | **`NC-0294`** |
+| suite `3 FAIL · 4363 WARN` | **`3 FAIL · 4371 WARN`** |
+
+Los cinco conflictos (`gobernanza`, `estado-programa`, `registro-rotulos`,
+`firmas-pendientes`, `no-corrido`) se resolvieron **tomando la versión de
+`origin/main` como base** y re-insertando encima lo de este acto con los números
+nuevos — nunca al revés: nada de `GEN2-TRAMITE-4` se perdió ni se reescribió. Los
+tres contadores de ADR se reconciliaron otra vez con
+`python3 tools/cierre_acto.py --aplica` (`534 → 535`).
+
+**La cifra de suite de `ADR-534` (GEN2-TRAMITE-4) quedó marcada
+`{cita-historica}`**, por la misma razón y con el mismo mecanismo con que este
+acto marcó la de `ADR-533` y con que se renumeró a sí mismo: dejó de ser el
+estado vigente en cuanto este acto cerró encima. **Su sustancia no se
+reescribe** — sólo deja de leerse como estado de hoy. Es lo que `T16` exige y lo
+que la regla de la casa manda al que fusiona segundo.
+
+**Lo que NO cambió al renumerar, y es lo que importa:** el censo se re-generó
+contra el árbol fusionado y salió **idéntico byte a byte** (97 filas, `IDENTICO`
+89, `INDEPENDIENTE` 3, `SIN-CONTRAPARTE` 5) — no depende de nada que trajera
+`main`. `escala_legacy` `NO-DECLARADO` sigue en **11**, con los mismos 11 ids.
+`milpa/tramite.yaml` sigue en **+2 líneas, 0 eliminaciones** contra `main`, y
+**0 de 15 `p` alterados**.
