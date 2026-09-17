@@ -48,3 +48,13 @@
 | **Defecto propio, no pedido, encontrado al ejecutar `P1(d)`** | **NO PREVISTO POR EL ENCARGO Y SE ASIENTA IGUAL.** `tools/digesto_tramite.py` escribe una marca `H-REF` que parea `sha_arbol=HEAD` con el `nc_sha256` del **árbol de trabajo**; con el TSV sucio la marca sale auto-contradictoria y deja la corrida siguiente en `PARO` código 2. Reproducido **dos veces** en esta sesión y acreditado por comando. No se repara: este acto no cambia código. | Un digesto generado con el TSV sucio bloquea el del día siguiente hasta que alguien retire el envenenado a mano. Misma familia de PARO que `#824` corrigió, por otra causa. | `NC-0292` · pieza de mantenimiento en `tools/digesto_tramite.py`; agrupable con `NC-0289` y `NC-0291`. |
 | **Compuerta, primera apertura** | `PARO-PREMISA`, **resuelto**. El acto abrió con `GEN2-CELDA-D-CAREO-1` **sin fusionar** y cerró con **cero commits**, como su propia cabecera ordena («si no está fusionado, la skill se niega»). Mesa fusionó `PR #827` y el acto reabrió. | Ninguno: nada se adelantó «por si acaso». La base declarada por el encargo (`e4f5f77`) quedó vencida dos veces —`0189562` y luego `2c149f5`, **66 commits** en total— y la `A.8` se re-derivó contra la real, no se heredó. | Cerrado en este mismo acto. |
 | **`P2(a)`** — «NC-0270 queda como está» | Cumplido al pie de la letra: **no se toca**. | La firma del inciso (1) autoriza consumo con el grano de 2 celdas y **no** acredita la identidad `tloc.csv == tam_loc.csv` de primera mano. | `NC-0270`, `ABIERTA` · acto de **CAJA** que abra el FD de ENIF 2024 y el catálogo. |
+
+## CONSUMIDO
+
+**PR #848** — `ACTO GEN2-TRAMITE-4`, `ADR-534`, rama `claude/new-session-9rd5v0`, 16/sep/2026.
+
+Ejecutado en dos aperturas. **La primera cerró con cero commits**: la `COMPUERTA` de este encargo —el merge de `GEN2-CELDA-D-CAREO-1`— no se cumplía, verificada por producto en cinco vías contra `origin/main` real, y el propio encargo lo ordena así («si no está fusionado, la skill se niega»). Mesa fusionó `PR #827` y el acto reabrió sobre base re-derivada.
+
+`P1` recibe los **7 PR** del carril Codex (no 8) y **no registra ninguna** de las tres corridas, con su motivo por fila. `P2` saca las cuatro firmas del limbo. `P3` asienta los tres hallazgos. `P4` archiva D-θ v1.2. El `CONTADOR` del encargo se corrige a **80 → 80** en vez de ajustarse al pronóstico.
+
+`python3 tests/check.py --baseline` → **3 FAIL · 4368 WARN**, LÍNEA BASE **VERDE**, `EXIT=0`, `tests/baseline.json` sin tocar.
