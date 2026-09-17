@@ -31,3 +31,7 @@ CONTADOR: cero mediciones, dicho sin disfraz; cuatro NC cerradas; dos tests pasa
   **por qué:** `NO-VERIFICABLE-AQUÍ` no aplica — SÍ se verificó (`grep` sobre el archivo, sin coincidencias de `22` ni `NO-VERIFICADO`); se declara aquí solo para que conste que se comprobó y no se asumió, tal como el encargo pedía explícitamente ("verificar, no asumir").
   **impacto:** ninguno — no había nada que corregir.
   **sucesor:** SIN-ASIGNAR — no aplica, no hay pieza pendiente.
+
+## CONSUMIDO
+
+Ejecutado por `PR #860` (https://github.com/Josanoforo/Modelado-Mexicano/pull/860), rama `claude/sharp-euler-6u0tgl`, contra `main` (`2f39129`). `ADR-543`. Estado: VIVO — PR abierto, merge de mesa.
