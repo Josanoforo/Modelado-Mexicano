@@ -64,3 +64,21 @@ para este `id` es justamente por qué su contraparte tuvo que resolverse por
 alias declarado y no por cita. Lo que el censo compara de esta regla son las
 **10 celdas de su `segmentacion_ejes_enut2024`**, no ese nacional — y las 10
 son `IDENTICO`.
+
+## CONSUMIDO
+
+Ejecutado por [PR #844](https://github.com/Josanoforo/Modelado-Mexicano/pull/844)
+(rama `claude/determined-meitner-9qjdx5`, `ACTO GEN2-EMISOR-ESTADO-1`, ADR-534),
+17/sep/2026. Base declarada por el encargo `0189562`; base real `1a6a530` tras
+el merge del arranque 0.a, y todo re-derivado contra ella.
+
+Entregado: censo de 97 filas
+(`forense/notas/2026-09-16-GEN2-EMISOR-ESTADO-1-censo.tsv`) con `IDENTICO` 89,
+`INDEPENDIENTE` 3, `SIN-CONTRAPARTE` 5 y `MISMO-INSTRUMENTO-OTRA-OLA` 0;
+propuesta de marcador en prosa a mesa como `FP-380`, no implementada; y
+`escala_legacy` `NO-DECLARADO` de 15 a 11 con dos líneas `escala:` nuevas en
+`milpa/tramite.yaml` (+2 líneas, 0 eliminaciones, 0 de 15 `p` alterados).
+`NC-0275` recibe `FP-380` como sucesor y sigue `ABIERTA`; `NC-0276` sigue
+`ABIERTA` con las 11 nombradas; `NC-0283` y `NC-0284` abiertas.
+Suite: `3 FAIL · 4364 WARN`, **LÍNEA BASE VERDE**, `exit=0`,
+`tests/baseline.json` sin tocar.
