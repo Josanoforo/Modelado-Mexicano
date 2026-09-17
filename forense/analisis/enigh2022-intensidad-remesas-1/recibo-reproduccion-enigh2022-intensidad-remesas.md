@@ -33,6 +33,9 @@
 7. Comprobación independiente con `pandas.read_csv(..., usecols=...)`:
    reproduce n/masas, prevalencia, cinco estadísticos y cero casos `r>y`;
    diferencias de la media sólo en el último redondeo binario (`2e-12`).
+8. `python3 tests/check.py --baseline` después de sincronizar y corregir los
+   nombres de artefacto — línea base `VERDE`; 3 fallos y 4,360 advertencias
+   heredados, cero entradas nuevas.
 
 ## Riesgos cubiertos por fixtures
 
