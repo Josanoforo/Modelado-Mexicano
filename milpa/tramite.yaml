@@ -1321,6 +1321,7 @@ reglas:
     fuente: ["ENIF2024", "forense/notas/2026-09-02-MAESTRA34-L5-P4-spec.md"]
     ola_calibracion: "ENIF 2024 (seccion 5 AHORRO INFORMAL Y FORMAL; periodo de referencia junio 2023 a la fecha de levantamiento)"
     ponderador: FAC_PER
+    escala: "proporcion ponderada [0,1], ENIF 2024, PERSONA de 18 anios y mas ELEGIDA en TMODULO (ponderador FAC_PER)"
     universo: "personas ELEGIDAS de 18 anos y mas en TMODULO.csv (EDAD_V 18-98), las 13502 sin perdida. tiene_ahorros=1 sse alguna de P5_1_1..P5_1_6 (informal) o P5_6_1..P5_6_9 (formal) vale '1'. El blanco por secuencia de P5_6_* cuenta como no-ahorro por esa via. n_con_ahorro=8699, estratos=190, UPM=2164, poblacion expandida=94221441 adultos."
     sha256_payload: "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
     payload_manifiesto_id: enif_2024_enif_2024_bd_csv
@@ -1375,6 +1376,7 @@ reglas:
     fuente: ["ENCUCI2020", "forense/notas/2026-09-02-MAESTRA35-L9-spec.md", "forense/notas/2026-09-02-MAESTRA35-L11-resultados.md"]
     ola_calibracion: "ENCUCI 2020 (unica ola de ENCUCI en el corpus); segundo instrumento tras LAPOP Mexico 2019 (L9)"
     ponderador: FAC_SEL
+    escala: "proporcion ponderada [0,1], ENCUCI 2020, PERSONA (ponderador FAC_SEL), condicional a la celda entorno x agravio -- las dos conductas NO suman 1"
     universo: "20 187 de 21 519 = 93.80%. Desenlace AP7_3_5==1 (alguna vez protesta) x DOMINIO agrupado (urbano/rural) x AP4_3_2 (agravio percibido en la colonia)"
     contrastes:
       - {contraste: C1_entorno_con_agravio, definicion: "urbano-agravio - rural-agravio", brecha_pp: 2.0279, ic95_brecha: [-0.1796, 4.1211], excluye_cero: false, veredicto_Bbis: NO-DISCRIMINA, carga: "NO cargado -- D2-e, AMBIGUA-ENTRE-INSTRUMENTOS, ver civico.protesta.agravio_urbano_lapop2019 (tramite-ola5-propuesta-v0.yaml)"}

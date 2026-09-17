@@ -1,0 +1,67 @@
+# ENCARGO · GEN2-ESQUEMA-E1-CAPA-1 · EL ESTADO DE CADA θ, LEGIBLE POR MÁQUINA, EN SU CAPA SEPARADA
+
+**SHA de redacción:** `402d1a3` (merge de #836); re-deriva al abrir. Al abrirse, `origin/main` estaba en `1e8cbc5`.
+**Entorno asignado:** NUBE — cero microdato. NO caja.
+**Estado:** VIVO
+**Vehículo:** `/acto`
+
+CABECERA · redactado contra `402d1a3` (merge de #836); re-deriva al abrir · ENTORNO: NUBE — cero microdato · COMPUERTA: ninguna (ADR-531 ya fijó "capa separada") · MODELO SUGERIDO: Opus (traducir el censo de E1 a tokens es juicio nombre por nombre) · FP/ADR/NC: deriva al cierre, no heredes (máximos hoy: FP-379, NC-0282, ADR-533; hay tres actos de nube y uno de caja corriendo — quien fusione después renumera) · vehículo: `/acto`.
+
+FIRMA DE MESA que gobierna (verbatim, ya sellada — se cita, no se pide): ADR-531, rama B: "Esquema E1: capa separada." NC-0261 lo esperaba: "llenar el token exige decidir dónde vive el esquema (edición de procedencia.yaml sellado, o capa separada) y ese es alcance de mesa". Está decidido; este acto lo ejecuta.
+
+## VERIFICACIÓN DE EXISTENCIA (A.8, dirección, contra `402d1a3`)
+
+* (1) Estructura: `milpa/procedencia.yaml` (sellado, GEN1: valores no se reescriben — E.1), `milpa/src/theta.py` (lanza `ThetaNoDisponible` para todo nombre), `forense/theta-cargable-por-celda-diseno-e1-v1_0.md` §3 (el censo, campos `escala` · `universo` · `identificacion`; tokens `ARGUMENTO_EXPLICITO` / `ASOCIACION-MEDIDA·*` / `AUSENCIA_DECLARADA(A-bis 1/2)`), tablero. Cubren.
+* (2) Contenido: `ls milpa/ | grep -i "theta\|esquema\|e1"` → 0 de 10 archivos; `find . -name "*esquema-e1*"` → 0: la capa NO-ENCONTRADA. NC-0261 `ABIERTA` (sucesor: "acto que edite el esquema … una vez mesa decida dónde vive"); NC-0263 `ABIERTA` (`procedencia.yaml:1244` escribe `G5_familismo_apoyo` como hija de `propuesta_de_esquema:` (:1228) y no de `coeficientes_generador_medidos:`, medido con `yaml.safe_load`). Ninguno de los actos vivos toca `procedencia.yaml` (E1 lo lee; EMISOR-ESTADO-1 toca `tramite.yaml`).
+* (3) Cobertura retroactiva: E1 es del 16/sep; la capa nace hoy; nada anterior pudo pasar por ella.
+
+## PIEZAS
+
+P1 · La capa. `milpa/theta-esquema-e1-v1_0.yaml`, cabecera `# DERIVADO DEL CENSO E1 §3 — NO EDITAR VALORES DE procedencia.yaml`, una entrada por cada nombre que `theta.py` lanza (lista derivada por código, no copiada de la nota — reporta el conteo; E1 dice 43), con los tres campos y sus tokens exactamente como el censo los asigna: `escala` (declarada o `NO-DECLARADO-EN-CANON`), `universo` (poblacional / restringido a quién / `NO-DECLARADO`), `identificacion` (`ARGUMENTO_EXPLICITO: <método>` / `ASOCIACION-MEDIDA·marginal` / `ASOCIACION-MEDIDA·condicionada(eje)` / `AUSENCIA_DECLARADA(A-bis 1/2): <por qué>`), más `fuente` (`procedencia.yaml:<línea>` o `AUSENTE`) y `generacion` (GEN1/GEN2). Si el censo deja un nombre sin token, el campo lleva `NO-CENSADO` y se cuenta: no se adivina (A.15). Las 15 familias de distribución (ADR-28.d, `modelo-decision-v4_0.md:806`) entran como sección aparte `dispersion:` con `NO-DECLARADA` en cada una — es la enmienda que E1 §4.4 debía y que el careo dejó al primer acto que tocara θ.
+
+P2 · La colocación (NC-0263). Mover la llave `G5_familismo_apoyo` de `propuesta_de_esquema:` a `coeficientes_generador_medidos:` en `procedencia.yaml` sin cambiar un solo valor: `yaml.safe_load` antes y después, y el diff de valores es vacío (pegar el comando y la salida). Si mover la llave cambia lo que `matriz.py`/`theta.py`/`corrida0.py demanda` leen (el acto lo prueba corriendo `demanda` antes y después y comparando conteos), PARA en P2 y repórtalo: la llave puede estar donde está a propósito.
+
+P3 · Consumo. Un test: la capa cubre exactamente el conjunto de nombres de `theta.py` (ni uno más ni uno menos) y ningún nombre lleva `ARGUMENTO_EXPLICITO` (hoy debe ser 0; el test falla el día que uno lo alcance, para que se vea). NC-0261 y NC-0263 → CERRADAS citando este acto (o NC-0263 ABIERTA si P2 paró). Enmienda fechada in situ en E1 §4.4 ("90 parámetros" → "15 familias", con cita a ADR-531 y a la capa).
+
+PERÍMETRO Y CONCURRENCIA: `milpa/theta-esquema-e1-v1_0.yaml` (nuevo) · `milpa/procedencia.yaml` (solo la llave de P2) · `tests/test_theta_esquema_e1.py` (nuevo) · `forense/theta-cargable-por-celda-diseno-e1-v1_0.md` (enmienda fechada §4.4) · nota de cierre · tablero al cierre + cascada. No toca `theta.py`, `matriz.py`, `tramite.yaml`, specs, resultados, el piloto ni el marcador. En paralelo: E1 piloto (caja), TRÁMITE-4, EMISOR-ESTADO-1, CORTE-EDAD-1 (nube) — sin archivo común salvo el tablero al cierre. Orden de fusión: después de TRÁMITE-4 y EMISOR-ESTADO-1, antes o después de CORTE-EDAD-1 indistinto. «Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.»
+
+CONTADOR: cero mediciones, dicho sin disfraz; 43 (o los que sean) nombres de θ con estado legible por máquina; cierra dos NC de mesa. LO QUE NO HACE: no carga ninguna θ · no cambia valores · no decide la forma de G5 · no toca el piloto. SUCESOR: el rediseño del marcador (lee la capa para saber qué θ compiten) y el segundo piloto celda-D. CIERRE: cascada + `## NO-CORRIDO / RESERVAS` + `## CONSUMIDO`.
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+*(A.14. Escrito antes de `## CONSUMIDO`, nunca después. Una fila por pieza no
+ejecutada, parcial, distinta de lo pedido, o con reserva.)*
+
+| qué (verbatim del encargo) | por qué | impacto | sucesor |
+|---|---|---|---|
+| «Si el censo deja un nombre sin token, el campo lleva `NO-CENSADO` y se cuenta: no se adivina (A.15)» — **24 de 129 campos** quedaron así | `DECISIÓN-DE-MESA-PENDIENTE` — el censo describe esos campos («ausencia declarada de facto … **pero sin token**») y **declina** tokenizarlos. Traducirlos a `AUSENCIA_DECLARADA(A-bis 1/2)` sería asignar un token que el censo deliberadamente no asignó. La pieza se ejecutó como el encargo la escribió; se asienta aquí porque el resultado es un hueco, no una capa completa | `asignados_probabilidad` (12 nombres), `asignados_coeficiente.detalle` (6) y `condicionales_confianza_institucional` (6) **no** tienen `identificacion` legible por máquina. Los otros 19 nombres sí tienen los tres campos | `NC-0293` |
+| Corregir la colisión de llave `0` en `Theta.desde()` (`consumibles()`=44 vs `Theta.entradas`=43; `coeficientes_generador_sellados.0` pisa a `evidencia_experimental_terceros.0`) | `FUERA-DE-PERÍMETRO` — el encargo dice, verbatim, «No toca `theta.py`». Hallado al derivar la lista de nombres por código, no supuesto | La única entrada con identificación real del archivo (RCT de Compartamos, `ADR-204`, la única `LISTO` del censo por ese motivo) es **inalcanzable por nombre** desde `theta.py` y **no tiene fila en la capa**, sin que se emita un solo error. Misma clase de defecto que `NC-0263`, en código en vez de en datos | `NC-0294` |
+| Reconciliar censo y árbol donde el censo declara `universo` **presente** y el campo `universo:` no existe (3 de **7** llaves de `coeficientes_generador_medidos` (7 llaves tras la reubicación de P2; eran 6 antes de que este mismo acto moviera `G5_familismo_apoyo` a la sección, y `G5` tampoco trae `universo:`); ninguna `condicionales_*`) | `FUERA-DE-PERÍMETRO` — corregirlo exige escribir campos `universo:` nuevos en `procedencia.yaml`, archivo GEN1 sellado (E.1) cuyo único cambio autorizado hoy es el de `NC-0263` | Esas filas llevan universo derivado de `fuente:`+`n_util:`, **declarado** en `universo_origen`. El requisito mecánico 1 del censo §2.2 (instrumento+año+tabla como campo propio) no se puede verificar por máquina | `NC-0295` |
+| Corregir la `fuente:` colgante del sellado `G3.horizonte_temporal` (`tools/corrida0.py` la parte y obtiene `"md"`) | `FUERA-DE-PERÍMETRO` — el encargo no autoriza tocar `tools/corrida0.py` ni valores de `procedencia.yaml` más allá de la llave de `NC-0263` | Hoy cae en el respaldo y **no mueve ninguna cifra** (verificado: `diff` de `demanda` vacío). Referencia colgante latente | `NC-0296` |
+| «`tests/check.py`» **no** aparece en el perímetro declarado del encargo, y este acto lo edita | `FUERA-DE-PERÍMETRO`, ejecutado y declarado en vez de ocultado — el paso 5 de `/acto` (cascada, que el encargo sí incluye: «tablero al cierre + cascada») **obliga** a exentar en `_T25_ARCHIVOS_CONOCIDOS` el rótulo pelado nuevo que trae un encargo archivado verbatim. El `E1` de estos archivos no es rótulo sino la **etapa** del programa (`E0`/`E1`/`E1+`) que `milpa/src/theta.py` nombra en su propio docstring. El encargo verbatim **no se edita** para complacer el test (A.3) | **Dos** rutas `.md` añadidas a la lista con su razón escrita (el encargo y la nota; `T25` recorre `canon/**/*.md` y `forense/**/*.md`, así que la capa `.yaml` y el test `.py` nunca pasan por él). Ninguna regla de `T25` cambia; ningún otro test se toca | `SIN-ASIGNAR` — si mesa considera que la cascada debe listarse pieza por pieza en el perímetro de cada encargo, es enmienda a la convención, no a este acto |
+| «`NC-0261` … → `CERRADA` citando este acto» | Ejecutado, **con reserva**: `NC-0261` pedía también llenar los tokens de «~120 de 144 números». La capa existe y contiene **todos los tokens que el censo asigna**; los 24 que el censo no asigna **no** se cierran aquí | Cerrar `NC-0261` sin decir esto enterraría la deuda que quedaba debajo. Por eso el residuo sale como fila propia (`NC-0293`) y se cita en el campo `cerrado_por` de `NC-0261` | `NC-0293` |
+| Regenerar `data/corrida0/demanda-*.tsv`, que `tools/corrida0.py demanda` reescribe aunque no se cambie nada | `FUERA-DE-PERÍMETRO` — `data/corrida0/` no está en el perímetro declarado; los dos archivos se usaron como evidencia de P2 y se **revirtieron** con `git checkout`. Preexistente y ajeno a este acto: se reprodujo con `procedencia.yaml` idéntico al de `origin/main` | El registro en seco versionado no describe el árbol actual (una fila `CORR` nueva y todos los ids posteriores recorridos). **No contamina P2**: la comparación que prueba el movimiento es entre dos registros generados hoy, byte a byte idénticos, no contra el TSV commiteado | `NC-0297` — la rutina `/deriva`, ya dueña de regenerar los derivados diarios |
+| La cifra de suite se midió primero con el **instrumento incompleto**: el sandbox de nube no trae `requirements.txt` instalado, y sin `jsonschema` la suite emite un WARN de menos | `PARO-ENTORNO`, detectado por la revisión adversarial de `PR #847` y corregido en el acto — es el **cuarto pago del mismo defecto** que `ADR-520` y `ADR-530` ya documentaron, y que `GEN2-CELDA-D-DISENO-CIEGO-1` llamó «tercer pago». **Se corrigió el instrumento, no el número**: `pip install -r requirements.txt` y se re-midió | La cifra que este acto declaraba (`4372`) era un WARN más que la real (`4371`). Ninguna otra cifra del acto depende del instrumento: la capa, los 43 nombres, los 24 `NO-CENSADO` y la prueba de P2 se derivan sólo de `PyYAML`, que sí estaba | `SIN-ASIGNAR` — que el arranque de `/acto` instale `requirements.txt` antes de medir es enmienda a la skill, no a este acto; se declara aquí porque pagarlo cuatro veces ya es patrón |
+| Declarar las 15 familias de distribución | `DECISIÓN-DE-MESA-PENDIENTE` — el encargo pide que **entren** como sección con `NO-DECLARADA` en cada una, y eso se hizo. Declarar su contenido no es alcance de este acto | El check de varianza intra-celda de `ADR-28.d` **sigue sin poder correr**. La deuda no se salda: cambia de forma y se vuelve enumerable | `deuda_dispersion` (S2, `ABIERTA`) |
+
+---
+
+## CONSUMIDO
+
+Ejecutado por **`PR #847`** (`https://github.com/Josanoforo/Modelado-Mexicano/pull/847`),
+rama `claude/friendly-johnson-u8b8mk`, 17/sep/2026 — `ACTO GEN2-ESQUEMA-E1-CAPA-1`,
+`ADR-535`. Suite `3 FAIL · 4371 WARN`, **LÍNEA BASE VERDE**, sin tocar
+`tests/baseline.json`. `NC-0261` y `NC-0263` **CERRADAS**; `NC-0293`…`NC-0297`
+abiertas. Merge de mesa.
+
+**Sincronizado con `main` el 17/sep/2026, y RENUMERADO por ello.** `main` avanzó
+36 commits con el acto abierto; `GEN2-TRAMITE-4` (`PR #848`) **fusionó primero**
+y se llevó `ADR-534` y `NC-0283`..`NC-0292` — el rango exacto que este acto había
+tomado. Regla de la casa, renumera quien fusiona segundo: `ADR-534`→**`ADR-535`**
+y `NC-0283`..`NC-0287`→**`NC-0293`..`NC-0297`**, re-derivados contra el árbol
+fusionado y no heredados de prosa. Cuatro conflictos, los cuatro por *append*
+simultáneo en el mismo punto, resueltos conservando **ambos** lados sin editar
+una sola entrada ajena. La cifra de suite de `ADR-534` quedó `{cita-historica}`
+por la vía sancionada, **sin corregir su número**: era el suyo.
