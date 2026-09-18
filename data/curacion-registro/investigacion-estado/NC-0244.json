@@ -1,0 +1,29 @@
+{
+  "alternativa_requerida": false,
+  "alternativas": [],
+  "ciclos_sin_avance": 1,
+  "continuacion_pendiente": false,
+  "cursor_continuacion": "Al recibir firma de mesa, actualizar el escritor canónico y re-derivar sin cambiar 0.458657 ni 0.626870.",
+  "estado": "barrera",
+  "evidencias": [
+    "forense/notas/2026-09-18-GEN2-38-investigacion-adq.md",
+    "data/corrida0/relevo-usos-v1_0.tsv"
+  ],
+  "frontera_no_examinada": "Ninguna ruta pública científica pertinente; queda la adjudicación interna de mesa entre los dos CALC.",
+  "necesidad_id": "NC-0244",
+  "proxima_revision": "EVENTO: firma de mesa sobre el pin canónico de RES-0047/RES-0049",
+  "suficiencia": {
+    "conceptual": "ACREDITADA",
+    "diseno": "ACREDITADA",
+    "identidad": "ACREDITADA",
+    "identificacion": "NO_APLICA",
+    "poblacional": "ACREDITADA",
+    "pregunta_original": "ABIERTA",
+    "seleccion_no_respuesta": "ACREDITADA",
+    "temporalidad": "ACREDITADA",
+    "unidad": "ACREDITADA",
+    "uso_habilitado": "APTA_USO_DECLARADO"
+  },
+  "ultima_exploracion": "2026-09-18",
+  "version_pregunta": "AUTO-NC-v1-2fbd85423ec2"
+}
