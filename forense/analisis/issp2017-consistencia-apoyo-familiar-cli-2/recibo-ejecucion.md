@@ -12,4 +12,7 @@ y `control_independiente.py` (conteo, matriz v21×v22 y condicional OK).
 Los cuatro payloads de manifiesto y la evidencia Q7 coincidieron en SHA256.
 
 `cuenta_gen2=PENDIENTE-DE-MESA`; adopción `NINGUNA`. El registro compartido
-se deriva sólo mediante la interfaz vigente y no se edita a mano.
+se regeneró sólo mediante la interfaz vigente. El asiento canónico registra
+`REPRODUCE/IDENTICO`, 11/11 RESULT y 5/5 inputs en
+`forense/replay-evidencia.tsv`; la evidencia específica queda junto a esta
+entrega como `evidencia-replay-issp2017-consistencia-apoyo-familiar.json`.

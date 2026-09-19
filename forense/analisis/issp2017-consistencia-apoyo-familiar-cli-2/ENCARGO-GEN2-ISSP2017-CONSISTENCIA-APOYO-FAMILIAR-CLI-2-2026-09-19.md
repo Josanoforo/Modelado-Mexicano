@@ -7,4 +7,6 @@ perímetro: ISSP México ZA6980 v2.0.0, Q7a--e/v21--v25, SEX e identidad
 técnica; productos de conteo familia, matrices nativas y derivaciones 2x2.
 No se abren Q8, otras olas, países ni dimensiones.
 
-La ejecución queda documentada en `lectura-resultados.md` y el recibo final.
+La ejecución queda documentada en
+`lectura-resultados-issp2017-consistencia-apoyo-familiar.md` y el recibo
+final.
