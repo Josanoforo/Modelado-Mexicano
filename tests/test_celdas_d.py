@@ -67,6 +67,7 @@ import glob
 import json
 import os
 import sys
+import copy
 
 import yaml
 
@@ -103,6 +104,23 @@ ESTADOS_OPERATIVOS = {"LISTO", "LEGACY", "PENDIENTE", "EXCLUIDO"}
 # §2: "fuente y diseño nunca en la clave, solo en candidatos" -- estas claves
 # solo pueden vivir dentro de un elemento de `candidatos`, nunca al nivel celda_d.
 CLAVE_SIN_FUENTE = {"fuente", "fuentes", "diseno", "diseno_datos"}
+
+# Las specs selladas declaran la identidad de segmento. Este mapa protege los
+# dos pilotos ya emitidos sin convertir 8/12 en una regla para celdas futuras.
+PILOTOS_POR_ID = {
+    "DIN.ahorro_solo_informal.enif2024.localidad_x_edad": (
+        "CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001", "DIN-LXE8", "L", "E",
+        {f"L{i}xE{j}" for i in (1, 2) for j in range(1, 5)}),
+    "TRA.evade_norma.envipe2025.escolaridad_x_dominio": (
+        "CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001", "TRA-SXD12", "S", "D",
+        {f"S{i}xD{j}" for i in range(1, 5) for j in range(1, 4)}),
+}
+
+def _decision_adopcion_existe():
+    ruta = os.path.join(ROOT, "data", "corrida0", "decisiones.tsv")
+    with open(ruta, encoding="utf-8") as handle:
+        return any(line.startswith("adopcion:piso-C2-20-celdas\t") and
+                   "Se adoptan las 20 celdas" in line for line in handle)
 
 REQUIRED_TOP_FIELDS = [
     "id", "estimando", "tipo_adjudicacion", "dominio", "poblacion_objetivo",
@@ -258,25 +276,30 @@ def errors_for(celda_d, filename):
         elif not cand.get("resultado"):
             errs.append(f"{etiqueta}: resultado vacío")
 
-    # v0.6: un champion es un candidato, no una observación; el piso requiere
-    # la decisión explícita y el veredicto que documenta que ningún retador lo venció.
+    # v0.6: un champion es un candidato, no una observación. Las condiciones
+    # especiales sólo aplican cuando el campeón es un piso; una celda puede
+    # seguir sin adjudicar o tener un campeón de otro rol admisible.
     champion = celda_d.get("champion_actual")
     if vocabulario_version == 0.6:
         ids = {c.get("id_candidato") for c in candidatos if isinstance(c, dict)}
+        if champion == "NINGUNO":
+            return errs
         if champion not in ids:
             errs.append(f"{filename}: champion_actual debe referir id_candidato bajo v0.6")
         else:
             ganador = next(c for c in candidatos if c.get("id_candidato") == champion)
-            if ganador.get("rol") not in {"PISO", "BASELINE_INGENUO"}:
-                errs.append(f"{filename}: champion_actual v0.6 debe ser un piso admisible")
-            if estado_decid not in {"PUNTUADA", "INDECIDIBLE"}:
+            es_piso = ganador.get("rol") in {"PISO", "BASELINE_INGENUO"}
+            if es_piso and estado_decid not in {"PUNTUADA", "INDECIDIBLE"}:
                 errs.append(f"{filename}: piso adjudicado requiere estado_decidibilidad pertinente")
-            if celda_d.get("veredicto") != "SIN-CANDIDATO-SUPERIOR":
+            if es_piso and celda_d.get("veredicto") != "SIN-CANDIDATO-SUPERIOR":
                 errs.append(f"{filename}: piso adjudicado requiere veredicto SIN-CANDIDATO-SUPERIOR")
         por_celda = celda_d.get("adjudicacion_por_celda")
         if not isinstance(por_celda, dict) or not por_celda:
             errs.append(f"{filename}: falta adjudicacion_por_celda v0.6")
         else:
+            piloto = PILOTOS_POR_ID.get(celda_d.get("id"))
+            if piloto and set(por_celda) != piloto[4]:
+                errs.append(f"{filename}: cobertura de segmentos no coincide con la spec sellada")
             vistos = set()
             for segmento, refs in por_celda.items():
                 if not isinstance(refs, dict) or refs.get("id_candidato") != champion:
@@ -288,6 +311,17 @@ def errors_for(celda_d, filename):
                     if tripleta in vistos:
                         errs.append(f"{filename}: segmento duplicado o intercambio de referencias: {segmento}")
                     vistos.add(tripleta)
+                    if piloto:
+                        calc_esperado, prefijo, _, _, _ = piloto
+                        esperado = {
+                            "resultado_puntual": f"RESULT-{prefijo}-C2-P-{segmento}",
+                            "ic95inf": f"RESULT-{prefijo}-C2-IC95INF-{segmento}",
+                            "ic95sup": f"RESULT-{prefijo}-C2-IC95SUP-{segmento}",
+                        }
+                        if refs["calc"] != calc_esperado or any(refs[k] != v for k, v in esperado.items()):
+                            errs.append(f"{filename}: identidad/función RESULT no corresponde a {segmento}")
+                        if refs["decision_ref"] != "adopcion:piso-C2-20-celdas" or not _decision_adopcion_existe():
+                            errs.append(f"{filename}: decisión de adopción inexistente o no pertinente para {segmento}")
                     calc = os.path.join(ROOT, "data", "corrida0", refs["calc"], "resultados.json")
                     try:
                         with open(calc, encoding="utf-8") as handle:
@@ -333,6 +367,22 @@ def main():
 
     print(f"{len(paths)} archivo(s) de celda-D validan contra propuesta-motor-adaptativo-celda-v0_6.md §3.")
     return 0
+
+
+def test_v06_rechaza_alteraciones_de_segmento():
+    """Regresiones: la existencia de IDs no basta para una adjudicación."""
+    ruta = os.path.join(CELDAS_DIR, "DIN.ahorro_solo_informal.enif2024.localidad_x_edad.yaml")
+    with open(ruta, encoding="utf-8") as handle:
+        base = yaml.safe_load(handle)["celda_d"]
+    assert not errors_for(base, "fixture")
+    a, b = "L1xE1", "L1xE2"
+    casos = []
+    x = copy.deepcopy(base); x["adjudicacion_por_celda"][a], x["adjudicacion_por_celda"][b] = x["adjudicacion_por_celda"][b], x["adjudicacion_por_celda"][a]; casos.append(x)
+    x = copy.deepcopy(base); del x["adjudicacion_por_celda"][a]; casos.append(x)
+    x = copy.deepcopy(base); x["adjudicacion_por_celda"][a]["ic95inf"], x["adjudicacion_por_celda"][a]["ic95sup"] = x["adjudicacion_por_celda"][a]["ic95sup"], x["adjudicacion_por_celda"][a]["ic95inf"]; casos.append(x)
+    x = copy.deepcopy(base); x["adjudicacion_por_celda"][a]["decision_ref"] = "ADR-538"; casos.append(x)
+    for caso in casos:
+        assert errors_for(caso, "fixture")
 
 
 if __name__ == "__main__":
