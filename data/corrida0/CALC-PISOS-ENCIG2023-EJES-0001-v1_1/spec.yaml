@@ -1,0 +1,27 @@
+calc_id: CALC-PISOS-ENCIG2023-EJES-0001-v1_1
+spec_md: ../../../forense/prereg-caja/PISOS-ENCIG2023-ejes-spec-v1_1.md
+spec_md_sha256: 553b9b064369ecc97de812dcae9ae3c7ea9222cd1a805292b2ceab2a4b964937
+script: data/corrida0/CALC-PISOS-ENCIG2023-EJES-0001-v1_1/medidor.py
+etiquetas: {generacion: GEN2, tipo: PISO-PERSISTENCIA-POR-EJE, sucesor_de: CALC-PISOS-ENCIG2023-EJES-0001}
+inputs:
+  - {id: encig23_base_datos_csv, origen: manifiesto}
+variables:
+  - {archivo: encig2023_04_sec_7.csv, variable: P7_3, rol: desenlace-digital-util}
+  - {archivo: encig2023_04_sec_7.csv, variable: FAC_TRA, rol: ponderador}
+  - {archivo: encig2023_04_sec_7.csv, variable: EST_DIS, rol: estrato}
+  - {archivo: encig2023_04_sec_7.csv, variable: UPM_DIS, rol: upm}
+  - {archivo: encig2023_02_residentes_sec_2.csv, variable: SEXO, rol: eje-sexo}
+  - {archivo: encig2023_02_residentes_sec_2.csv, variable: EDAD, rol: eje-edad}
+  - {archivo: encig2023_02_residentes_sec_2.csv, variable: NIV, rol: eje-escolaridad}
+universo: "Eventos N_TRA=01 con FAC_TRA válido."
+filtros: "FAC_TRA > 0; EST_DIS y UPM_DIS presentes; sin imputación."
+ponderador: FAC_TRA
+transformacion: "P7_3 in {04,05}: canal digital útil; coacción NO-APLICA."
+estimando: "p_2023(digital útil | categoría), proporción ponderada [0,1]."
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+parametros: {bootstrap_replicas: 10000, metodo_ic: "bootstrap UPM estratificado; percentiles 2.5/97.5"}
+dependencias_materiales: [numpy, pandas]
+resultados:
+  - {id: RESULT-PISOS-ENCIG2023-DIGITAL-V1-1-TABLA, tipo: texto, unidad: "JSON: uso digital útil por sexo, edad y escolaridad"}
+  - {id: RESULT-PISOS-ENCIG2023-DIGITAL-V1-1-N-UNIVERSO, tipo: entero, unidad: "trámites N_TRA=01 en el universo declarado"}
+tolerancia: {tipo: flotante, abs: 1.0e-10}
