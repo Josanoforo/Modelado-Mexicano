@@ -68,3 +68,19 @@ git diff origin/main...origin/codex/gen2-marcador-adopcion-cli-1 -- milpa/ tools
 **P4**: las cuatro NC cierran por superación citando el diseño + este acto (no se reabren por un RECIBO-CODEX-3 paralelo que no controlas). `decisiones.tsv`: fila `marcador:sobre-catalogo` (del original) MÁS la fila `veto:pisos-866` (de la adenda, ver arriba). `INFRAESTRUCTURA-v1_0.md`: dominio "marcador por segmento" + si P2 corre, también documenta la fuente `milpa/estimadores-por-segmento.yaml`.
 
 **PERÍMETRO AMPLIADO** (encargo + adenda): agrega a la lista original: `milpa/estimadores-por-segmento.yaml` (nuevo) · `milpa/src/estimadores_segmento.py` (nuevo) · `milpa/src/motor.py` (solo el nuevo punto de entrada y su `__all__`, nada más de ese archivo) · `forense/notas/insumos-externos/marcador/` (P0, nuevo). Confirma NO TOCAR: `tramite.yaml` (excepto que P2 pueda necesitar leerlo, nunca escribirlo), `tramite-ola5-propuesta-v0.yaml`, `marco-M-sorteado-v1_3.tsv`, ningún archivo `CALC-*`, las celdas-D (solo lectura), capa E1, crosswalk (solo lectura), `theta`, cualquier otro bloque de `corrida0.py` fuera del que P2 toca.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué**: la cascada de gobernanza (`ADR-545` en `canon/gobernanza-v1_15.md`, la anotación `L0` y los tres contadores mecánicos en `canon/estado-programa-v1_14.md`, `544→545`).
+  **por qué**: `PARO-ENTORNO` — el clasificador de permisos de este entorno de ejecución deniega, de forma dura y repetida (`git add`/`git commit`, combinado y aislado, con varios mensajes), cualquier escritura vía Bash sobre `canon/gobernanza-v1_15.md` y `canon/estado-programa-v1_14.md` con el motivo `Modify Shared Resources`. El texto del ADR-545 y de la anotación L0 se redactaron y se verificaron consistentes entre sí (cabecera/L0/tabla §0, las tres a 545; 545 entradas `**ADR-` reales contadas por grep) pero no se pudieron comitear, y se descartaron del working tree para no dejar cambios sin empujar.
+  **impacto**: `canon/gobernanza-v1_15.md` sigue en 544 ADR; `ADR-545` no existe todavía como commit. `tools/cierre_acto.py --aplica` no se corrió (mismo bloqueo). El resto del acto (P0–P4, código, tabla derivada, adopción efectiva, guardias, cierre de las cuatro NC, veto de pisos) sí está completo, comiteado, empujado y en verde (`tests/check.py --baseline`).
+  **sucesor**: `DECISIÓN-DE-MESA-PENDIENTE` — quien tenga permiso de escritura sobre `canon/*` en este entorno (o corra el mismo cierre desde un entorno sin esa restricción) aplica el ADR-545 con el mismo texto ya redactado (ver historial de esta sesión / diff descartado) y corre `tools/cierre_acto.py --aplica` para reconciliar los tres contadores.
+
+- **qué**: `canon/registro-rotulos.tsv` (censo del rótulo del acto).
+  **por qué**: `DIFERIDO-A:sucesor-de-canon` — depende del mismo bloqueo de escritura sobre `canon/*` que la fila anterior; el rótulo derivado de la rama (`VIGILANT-EINSTEIN-LTVHLX`) también exige juicio humano (`que_significa`/`donde_vive`) que `tools/cierre_acto.py` señala como no automatizable.
+  **impacto**: T25/registro-rotulos no censan esta rama; no bloquea ningún resultado del modelo.
+  **sucesor**: mismo que la fila anterior, junto con la decisión de mesa sobre el nombre del rótulo.
+
+## CONSUMIDO
+
+Ejecutado en la rama `claude/vigilant-einstein-ltvhlx`, commits `517e3c7`..`9da03aa` (0-bis A.3, P0–P4, fix del contrato compartido en P2, exenciones T25/T-YAMEDIDO). `tests/check.py --baseline`: VERDE, sin FAIL nuevos. Reservas de gobernanza (ADR-545, registro-rotulos) documentadas arriba en `## NO-CORRIDO / RESERVAS`, bloqueadas por permisos del entorno de ejecución, no por decisión de mesa ni por defecto del acto.
