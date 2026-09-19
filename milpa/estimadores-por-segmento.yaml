@@ -1,0 +1,167 @@
+# DERIVADO — NO EDITAR (tools/marcador_segmento.py, ACTO GEN2-MARCADOR-REDISENO-1)
+_comentario: 'DERIVADO por tools/marcador_segmento.py — NO EDITAR. ACTO GEN2-MARCADOR-REDISENO-1
+  (19/sep/2026). Fuente: celdas-D con champion_actual=C2 y sus RESULT sellados; cita
+  adopcion:piso-C2-20-celdas de decisiones.tsv.'
+decision_ref: adopcion:piso-C2-20-celdas
+n_celdas: 20
+celdas:
+  CRUCE::DIN.ahorro_solo_informal.enif2024.localidad_x_edad::L1xE1:
+    regla_origen: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
+    resultado_id: RESULT-DIN-LXE8-C2-P-L1xE1
+    punto: 0.48681740146267427
+    ic95_inf: 0.45104930347728867
+    ic95_sup: 0.5188430064342969
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::DIN.ahorro_solo_informal.enif2024.localidad_x_edad::L1xE2:
+    regla_origen: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
+    resultado_id: RESULT-DIN-LXE8-C2-P-L1xE2
+    punto: 0.4287127020734599
+    ic95_inf: 0.3979510983809327
+    ic95_sup: 0.4566392134530803
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::DIN.ahorro_solo_informal.enif2024.localidad_x_edad::L1xE3:
+    regla_origen: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
+    resultado_id: RESULT-DIN-LXE8-C2-P-L1xE3
+    punto: 0.3778239169382799
+    ic95_inf: 0.3494071774135876
+    ic95_sup: 0.4051249271322063
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::DIN.ahorro_solo_informal.enif2024.localidad_x_edad::L1xE4:
+    regla_origen: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
+    resultado_id: RESULT-DIN-LXE8-C2-P-L1xE4
+    punto: 0.32363578441490926
+    ic95_inf: 0.29255587299953706
+    ic95_sup: 0.3535784125824931
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::DIN.ahorro_solo_informal.enif2024.localidad_x_edad::L2xE1:
+    regla_origen: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
+    resultado_id: RESULT-DIN-LXE8-C2-P-L2xE1
+    punto: 0.4026396036368852
+    ic95_inf: 0.37593850265585876
+    ic95_sup: 0.4300071781761701
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::DIN.ahorro_solo_informal.enif2024.localidad_x_edad::L2xE2:
+    regla_origen: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
+    resultado_id: RESULT-DIN-LXE8-C2-P-L2xE2
+    punto: 0.34777330586565824
+    ic95_inf: 0.3254030595223928
+    ic95_sup: 0.370706327471907
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::DIN.ahorro_solo_informal.enif2024.localidad_x_edad::L2xE3:
+    regla_origen: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
+    resultado_id: RESULT-DIN-LXE8-C2-P-L2xE3
+    punto: 0.3014229609560722
+    ic95_inf: 0.27935861389897754
+    ic95_sup: 0.3249703750313211
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::DIN.ahorro_solo_informal.enif2024.localidad_x_edad::L2xE4:
+    regla_origen: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
+    resultado_id: RESULT-DIN-LXE8-C2-P-L2xE4
+    punto: 0.2537238822125272
+    ic95_inf: 0.23033864321221761
+    ic95_sup: 0.2781828364443396
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::TRA.evade_norma.envipe2025.escolaridad_x_dominio::S1xD1:
+    regla_origen: TRA.evade_norma.envipe2025.escolaridad_x_dominio
+    resultado_id: RESULT-TRA-SXD12-C2-P-S1xD1
+    punto: 0.33821973592663684
+    ic95_inf: 0.30046617022479377
+    ic95_sup: 0.37860278763172794
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::TRA.evade_norma.envipe2025.escolaridad_x_dominio::S1xD2:
+    regla_origen: TRA.evade_norma.envipe2025.escolaridad_x_dominio
+    resultado_id: RESULT-TRA-SXD12-C2-P-S1xD2
+    punto: 0.452362924697569
+    ic95_inf: 0.4133095715384544
+    ic95_sup: 0.49199834440151874
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::TRA.evade_norma.envipe2025.escolaridad_x_dominio::S1xD3:
+    regla_origen: TRA.evade_norma.envipe2025.escolaridad_x_dominio
+    resultado_id: RESULT-TRA-SXD12-C2-P-S1xD3
+    punto: 0.5238831153224065
+    ic95_inf: 0.4903273035707968
+    ic95_sup: 0.5567914830601665
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::TRA.evade_norma.envipe2025.escolaridad_x_dominio::S2xD1:
+    regla_origen: TRA.evade_norma.envipe2025.escolaridad_x_dominio
+    resultado_id: RESULT-TRA-SXD12-C2-P-S2xD1
+    punto: 0.40781742459549963
+    ic95_inf: 0.3748278654042986
+    ic95_sup: 0.4404677215235302
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::TRA.evade_norma.envipe2025.escolaridad_x_dominio::S2xD2:
+    regla_origen: TRA.evade_norma.envipe2025.escolaridad_x_dominio
+    resultado_id: RESULT-TRA-SXD12-C2-P-S2xD2
+    punto: 0.5267530179087778
+    ic95_inf: 0.49884966036571654
+    ic95_sup: 0.5526469841401991
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::TRA.evade_norma.envipe2025.escolaridad_x_dominio::S2xD3:
+    regla_origen: TRA.evade_norma.envipe2025.escolaridad_x_dominio
+    resultado_id: RESULT-TRA-SXD12-C2-P-S2xD3
+    punto: 0.5972085849904782
+    ic95_inf: 0.5757997454445923
+    ic95_sup: 0.6179302693492549
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::TRA.evade_norma.envipe2025.escolaridad_x_dominio::S3xD1:
+    regla_origen: TRA.evade_norma.envipe2025.escolaridad_x_dominio
+    resultado_id: RESULT-TRA-SXD12-C2-P-S3xD1
+    punto: 0.38456627334582755
+    ic95_inf: 0.35345359777214364
+    ic95_sup: 0.41669681027415156
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::TRA.evade_norma.envipe2025.escolaridad_x_dominio::S3xD2:
+    regla_origen: TRA.evade_norma.envipe2025.escolaridad_x_dominio
+    resultado_id: RESULT-TRA-SXD12-C2-P-S3xD2
+    punto: 0.502474641238631
+    ic95_inf: 0.47666140962269526
+    ic95_sup: 0.5280179794907507
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::TRA.evade_norma.envipe2025.escolaridad_x_dominio::S3xD3:
+    regla_origen: TRA.evade_norma.envipe2025.escolaridad_x_dominio
+    resultado_id: RESULT-TRA-SXD12-C2-P-S3xD3
+    punto: 0.5736189438488493
+    ic95_inf: 0.5497263023209648
+    ic95_sup: 0.5961430255942156
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::TRA.evade_norma.envipe2025.escolaridad_x_dominio::S4xD1:
+    regla_origen: TRA.evade_norma.envipe2025.escolaridad_x_dominio
+    resultado_id: RESULT-TRA-SXD12-C2-P-S4xD1
+    punto: 0.4305100972648407
+    ic95_inf: 0.4028170508272529
+    ic95_sup: 0.45929326952274663
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::TRA.evade_norma.envipe2025.escolaridad_x_dominio::S4xD2:
+    regla_origen: TRA.evade_norma.envipe2025.escolaridad_x_dominio
+    resultado_id: RESULT-TRA-SXD12-C2-P-S4xD2
+    punto: 0.5499180279546432
+    ic95_inf: 0.5273421246680273
+    ic95_sup: 0.5715520860124206
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
+  CRUCE::TRA.evade_norma.envipe2025.escolaridad_x_dominio::S4xD3:
+    regla_origen: TRA.evade_norma.envipe2025.escolaridad_x_dominio
+    resultado_id: RESULT-TRA-SXD12-C2-P-S4xD3
+    punto: 0.6194165992369566
+    ic95_inf: 0.601297630192143
+    ic95_sup: 0.6368951298852671
+    unidad_dato: persona
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
