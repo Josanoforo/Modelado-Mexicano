@@ -37,10 +37,11 @@ inputs; control separado `CONTROL-INDEPENDIENTE-OK`, delta máximo
 
 ## Registro
 
-El registro se ejecutó en seco. Proyecta exactamente 1 corrida y 22 RESULT
-propios, pero también 20 filas de `usos.tsv` ajenas a este encargo (adopciones
-de pisos C2). Escribir habría ampliado el perímetro y aceptado derivados
-ajenos. Por ello no se usó `--escribe`; la publicación canónica queda
+El registro se ejecutó en seco antes y después de sincronizar `origin/main`.
+Proyecta exactamente 1 corrida y 22 RESULT propios, pero la vista derivada
+`usos.tsv` también trae 22 adiciones y 2 retiros ajenos a este encargo
+(adopciones de pisos C2). Escribir habría ampliado el perímetro y aceptado
+derivados ajenos. Por ello no se usó `--escribe`; la publicación canónica queda
 **PENDIENTE** con el asiento dirigido ya agregado a `forense/replay-evidencia.tsv`.
 
 No se modificaron `corridas.tsv`, `resultados.tsv`, `usos.tsv`, milpa, motor,
