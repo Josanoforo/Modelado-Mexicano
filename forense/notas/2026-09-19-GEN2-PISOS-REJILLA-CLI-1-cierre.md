@@ -1,7 +1,8 @@
 # GEN2-PISOS-REJILLA-CLI-1 · cierre para B y Claude
 
 Fecha de verificación: 2026-09-19. Base de preparación:
-`843a5f977e024ef5d74863e95856c763bee9e58d`. La rejilla íntegra y sus
+`843a5f977e024ef5d74863e95856c763bee9e58d`; `main` integrado hasta
+`33650571c509676657cc5da35a63aeea15da2297` (merge de #872). La rejilla íntegra y sus
 valores están en `forense/pisos-rejilla-entrega.tsv` (SHA-256
 `93191b9642a54b2822b357b1fc84313500990dc26058ca72f0212643f526f4c3`).
 
@@ -50,6 +51,17 @@ Los códigos se normalizan antes de filtrar. Edad es 18–29, 30–44, 45–59 y
 60–96; escolaridad usa cuatro categorías propias de cada ola. En ENIF,
 `TLOC` {1,2} significa 15 000 y más y {3,4}, menor de 15 000.
 
+La trazabilidad de escolaridad, antes implícita en cada medidor, queda
+publicada por instrumento en
+`forense/prereg-caja/PISOS-REJILLA-escolaridad-catalogos-v1_0.tsv` (SHA-256
+`6f640d5d7b4b14d0a4ba2f719eae0bd28c55f65f6035e7990bbb020ae561695c`).
+El extracto conserva miembro del ZIP, variable, código, texto literal del
+catálogo y categoría de piso. ENVIPE 2024 y ENCIG 2023 usan `NIV`; ENIF 2021
+usa `P3_1_1`. En los tres casos 0/00–2/02 → `hasta_primaria`, 3/03 →
+`secundaria`, 4/04–7/07 → `media_superior` y 8/08–9/09 → `superior`; 99 y
+blancos no se asignan. Esta adición es documental: no reabre respuestas ni
+cambia un RESULT sellado.
+
 La evidencia documental de cuenta/débito está en
 `data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/spec.md`, §0.1:
 el FD de 2021 identifica `P5_6_k` como tenencia de tarjeta de débito y
@@ -73,6 +85,15 @@ seed 42. Un plan se comparte entre celdas y desenlaces del instrumento; los
 estratos con una UPM permanecen explícitos y las réplicas con denominador vacío
 no se convierten automáticamente en números.
 
+La cobertura del código autocontenido está inventariada en
+`forense/pisos-rejilla-congelamiento.tsv` (SHA-256
+`d9fa8d7c4c7846b68885c2fe11051b1a70bd3e485224c6d541ebc92594bfa4e9`).
+Los medidores publicados no importan un helper mutable: su `medidor.py` quedó
+congelado antes de abrir/correr y el hash de ese mismo archivo figura dentro de
+cada `sello.json`. ENIF `0002` se distingue deliberadamente: quedó congelado,
+pero nunca se corrió ni selló; el hallazgo cambió la medición y por eso se
+preparó `0003`, sin corregir `0002` en sitio.
+
 Linaje publicado:
 
 - ENVIPE `0001 → 0002`.
@@ -95,10 +116,20 @@ RESULT numéricos por celda en vez de una tabla textual agregada.
 
 ## Controles
 
-El control de conjuntos usa `(input_id, outcome)` como clave y compara las 57
-identidades congeladas contra celdas emitidas más dictámenes; rechaza
-duplicados, faltantes, sobrantes y categorías `nan`. Resultado dirigido: 0
-fallos.
+El control de conjuntos compara las 57 identidades congeladas contra la
+entrega por la tupla completa: `cell_id`, `input_id`, desenlace, instrumento,
+edición y periodo fuente, instrumento, edición y periodo objetivo, unidad,
+eje, categoría, estado, razón, consumidor y procedencia. Además rechaza
+duplicados, faltantes, sobrantes y categorías `nan`; exige seis campos
+numéricos en cada una de las 53 RESULT y ninguno en los cuatro dictámenes.
+Resultado dirigido: 0 fallos. No es una validación por mero número de filas.
+La evidencia compacta está en
+`forense/evidencia-identidades-pisos-2026-09-19.json` (SHA-256
+`34137072bcadeec6333f9e26019a73c03bdbd08b1e15c9fb69e288955e57f447`):
+ambas proyecciones producen el mismo hash de identidad
+`b3389121df71d4da24786664871bbab98b9390477efb20cb2b8faa2fcad08d9a`,
+incluidos los cinco desenlaces y las unidades DELITO, TRAMITE y PERSONA
+ELEGIDA 18+.
 
 El control puntual independiente relee los ZIP sin importar los medidores.
 Coincidieron exactamente, con delta absoluto 0, ENVIPE evasión/sexo=1, ENCIG
@@ -119,9 +150,13 @@ ENIF, ENCRIGE y ENSANUT. No se copió microdato al repositorio ni se publican
 rutas privadas.
 
 Se conservaron las 41 verificaciones aisladas ya obtenidas: se publicaron las
-38 `REPRODUCE/IDENTICO` autorizadas y DIN emisiones permanece
-`NO-REPRODUCE/IDENTICO`. DIN conserva NC-0313 y la discrepancia
-`G-R-EXISTE-AL-CERRAR`; no se degradan sus puntos/IC C2 por RESULT.
+38 `REPRODUCE/IDENTICO` autorizadas y DIN emisiones permanece globalmente
+`NO-REPRODUCE/IDENTICO`. No se fabrica un replay global exitoso: DIN conserva
+NC-0313 y la discrepancia `G-R-EXISTE-AL-CERRAR`. A la vez, la evidencia
+aislada registra delta 0 para los RESULT de punto/IC de C2 y la mesa firmó el
+uso de C2; esa utilizabilidad por RESULT no cambia el veredicto del CALC
+completo. La distinción está en
+`forense/evidencia-replay-aislado-2026-09-19.json` y `data/corrida0/decisiones.tsv`.
 
 La nueva verificación concluyente reemplaza las dos limitaciones locales:
 ENCRIGE corrupción reproduce 15/15 RESULT y 3/3 inputs; ENSANUT reproduce
@@ -153,6 +188,17 @@ vigentes son:
 para que Claude haga la adopción, pero no la anticipa ni modifica marcador,
 motor, mapa de adopción, crosswalk, θ o R.
 
+Tras integrar #872 se ejecuta D3 solo mediante la capa posterior de decisiones:
+`CALC-PISOS-ENCIG2023-EJES-0001` recibe `cuenta_gen2=NO` y deja de contar; la
+evidencia y sucesión apuntan a `CALC-PISOS-ENCIG2023-EJES-0002`. No se tocó la
+spec ni el sello antiguos. Los tres sucesores de esta entrega conservan
+`PENDIENTE-DE-MESA`: que exista un piso no firma su adopción.
+Con la cadena de sucesión visible se cierran `NC-0333` como MOOT —sin volver a
+correr los cuatro pisos vetados— y `NC-0334` por publicación/rederivación. Se
+conserva `NC-0336`: los briefs 01/02 incorporados aquí no se hacen pasar por el
+archivo distinto `BRIEF-ASTRA-01-PISOS-REJILLA-2026-09-19.md` que #872 declaró
+ausente.
+
 ## NO-CORRIDO / RESERVAS
 
 - No se abrió ENVIPE 2025, ENCIG 2025 ni ENIF 2024 para recalibrar o comparar
@@ -174,7 +220,20 @@ motor, mapa de adopción, crosswalk, θ o R.
 - Evidencia aislada de las 41 verificaciones previas, sin repetirlas por rutina.
 
 Coordinación: el PR #868 debe permanecer abierto; su SHA remoto observado fue
-`9e9e89225f0d986cf51b955940ebee7526809f1b`. No se tomó su commit mixto ni sus
-cambios de motor/lector/mapa/usos. Las modificaciones pendientes del worktree
-03 quedaron preservadas localmente en `8ac076d` y `f653869` antes de iniciar
-esta rama.
+`2d662e78b143f9b00a8e2b06fb7ff6cfe0ea15a1`, no `9e9e8922`. Sus artefactos
+de pisos quedaron preservados de forma permanente fuera de `data/corrida0` en
+`forense/historico/PR-868-2d662e78/artefactos-pisos.tar.gz` (SHA-256
+`5640cb318c2f5b6d542a2796e2ab1914d80b984a43e2fdce39029827b1009c92`).
+El mapa verificable de colisiones es
+`forense/historico/PR-868-2d662e78/mapa-colisiones.tsv`: califica cada homónimo
+por commit, ruta, corrida y hashes, sin mezclar resultados. En particular,
+ENIF `0002` de #868 sí contiene resultados; ENIF `0002` de esta historia es
+`NO-CORRIDA` y no los contiene. La candidatura de #871 es exclusivamente
+ENVIPE `0002`, ENCIG `0002` y ENIF `0003` identificados en ese mapa. No se tomó
+el commit mixto de #868 ni sus cambios de motor/lector/mapa/usos.
+
+Los briefs 01 y 02 están incorporados con hashes y commits de ingreso en
+`forense/encargos/fuentes/GEN2-PISOS-REJILLA-CLI-1/PROCEDENCIA.tsv` (SHA-256
+`24b63962787e7e2616b53baf710d3b76f90ac1a9598c2261830e06d73c44cee2`).
+`informal_cualquiera` ya forma parte de las 14 celdas ENIF publicadas en esta
+entrega; no se vuelve a encargar.
