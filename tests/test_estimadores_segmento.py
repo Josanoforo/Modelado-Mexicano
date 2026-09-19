@@ -31,15 +31,13 @@ class EstimadoresSegmentoTest(unittest.TestCase):
             self.assertLess(recibido["ic95"][0], recibido["punto"])
             self.assertGreater(recibido["ic95"][1], recibido["punto"])
 
-    def test_pisos_de_los_tres_instrumentos_y_ausencia(self):
+    def test_pisos_heredados_no_se_consumen_sin_sucesor_corregido(self):
         for consulta in (
             dict(regla="TRA", desenlace="evade_norma", instrumento="ENVIPE", periodo="2025", ejes={"edad":"18-29"}),
             dict(regla="GOB", desenlace="digital_util_sin_coercion", instrumento="ENCIG", periodo="2025", ejes={"sexo":"1"}),
             dict(regla="DIN", desenlace="ahorro_solo_informal", instrumento="ENIF", periodo="2024", ejes={"edad":"18-29"}),
         ):
-            recibido = estimar_segmento(**consulta)
-            self.assertIsNotNone(recibido)
-            self.assertEqual(recibido["incertidumbre"], "IC95-muestral-t-1-no-predictiva")
+            self.assertIsNone(estimar_segmento(**consulta))
         self.assertIsNone(estimar_segmento(regla="DIN", desenlace="informal_cualquiera",
                           instrumento="ENIF", periodo="2024", ejes={"edad":"18-29"}))
 

@@ -19,7 +19,7 @@ CELDAS = ROOT / "data/curacion-registro/celdas-d"
 OUT_MAP = ROOT / "milpa/estimadores-por-segmento.yaml"
 OUT_TSV = ROOT / "data/corrida0/marcador-segmento.tsv"
 
-PISOS = (
+PISOS_HEREDADOS_PENDIENTES = (
     # nombre, regla/destino, desenlace, instrumento, periodo destino, CALC, RESULT tabla
     ("envipe", "TRA", "evade_norma", "ENVIPE", "2025",
      "CALC-PISOS-ENVIPE2024-EJES-0001", "RESULT-PISOS-ENVIPE2024-EVASION-TABLA"),
@@ -28,6 +28,10 @@ PISOS = (
     ("enif", "DIN", "ahorro_solo_informal", "ENIF", "2024",
      "CALC-PISOS-ENIF2021-EJES-0001", "RESULT-PISOS-ENIF2021-D9-TABLA"),
 )
+
+# La adenda del 03 declaró materiales los defectos de los tres CALC heredados.
+# No se conectan hasta que sus sucesores corregidos estén sellados.
+PISOS = ()
 
 
 def _sha(path: Path) -> str:
