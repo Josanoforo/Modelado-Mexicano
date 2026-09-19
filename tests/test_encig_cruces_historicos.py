@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import tempfile
 import zipfile
 from pathlib import Path
@@ -74,6 +75,24 @@ class CrucesHistoricosTest(unittest.TestCase):
                 zf.writestr("x/diccionario_de_datos/diccionario_de_datos_encig2021_04_sec_7.csv", "A,B\n2,diccionario\n")
             frame = M._member_csv(str(archive), "encig2021_04_sec_7.csv", ["A", "B"])
         self.assertEqual(frame.iloc[0].to_dict(), {"A": "1", "B": "dato"})
+
+    def test_seleccion_deriva_identidad_y_reproduce_artefacto_exacto(self):
+        base = ROOT / "data/corrida0"
+        p23 = base / "CALC-ENCIG2023-CRUCES-HISTORICOS-0002/resultados.json"
+        p21 = base / "CALC-ENCIG2021-CRUCES-HISTORICOS-0003/resultados.json"
+        r23, id23, seal23 = M._carga_calc_sellado(p23, "2023")
+        r21, id21, seal21 = M._carga_calc_sellado(p21, "2021")
+        generated = M.seleccionar(r23, r21, {id23: seal23, id21: seal21})
+        actual = (json.dumps(generated, ensure_ascii=False, sort_keys=True, indent=2) + "\n").encode()
+        expected = (ROOT / "forense/analisis/gen2-encig-cruces-historicos-cli-1/02-seleccion.json").read_bytes()
+        self.assertEqual(actual, expected)
+        self.assertEqual(set(generated["calcs_consumidos"]), {id23, id21})
+        self.assertEqual(generated["resultado"], "SELECCION-PENDIENTE-DE-DEFINICION")
+
+    def test_seleccion_rechaza_sello_declarado_incorrecto(self):
+        path = ROOT / "data/corrida0/CALC-ENCIG2023-CRUCES-HISTORICOS-0002/resultados.json"
+        with self.assertRaisesRegex(RuntimeError, "SELLO-DECLARADO-NO-COINCIDE"):
+            M._carga_calc_sellado(path, "2023", "0" * 64)
 
 
 if __name__ == "__main__":

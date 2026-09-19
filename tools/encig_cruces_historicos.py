@@ -9,9 +9,11 @@ las observaciones de cada persona pertenecen a una sola UPM de diseño.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import io
 import json
 import math
+import re
 import zipfile
 from pathlib import Path
 
@@ -234,14 +236,60 @@ def _selection_2023(outputs: dict, prefix: str, calc_id: str = "CALC-ENCIG2023-C
     outputs[f"{prefix}-SELECCION-CAUSA"] = "mayor puntaje sin empate relativo"
 
 
+def _sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def _carga_calc_sellado(path: Path, ola: str, sello_esperado: str | None = None
+                        ) -> tuple[dict, str, str]:
+    """Carga un RESULT y deriva su identidad del artefacto sellado contiguo."""
+    path = path.resolve()
+    if path.name != "resultados.json":
+        raise RuntimeError(f"ARTEFACTO-NO-RESULTADOS: {path}")
+    document = json.loads(path.read_text(encoding="utf-8"))
+    calc_id = str(document.get("spec_id", ""))
+    pattern = rf"CALC-ENCIG{re.escape(ola)}-CRUCES-HISTORICOS-[0-9]{{4}}"
+    if not re.fullmatch(pattern, calc_id):
+        raise RuntimeError(f"IDENTIDAD-CALC-INVALIDA-{ola}: {calc_id or 'AUSENTE'}")
+    if path.parent.name != calc_id:
+        raise RuntimeError(f"IDENTIDAD-RUTA-NO-COINCIDE: {path.parent.name} != {calc_id}")
+
+    required = {name: path.parent / name for name in
+                ("resultados.json", "ejecucion.json", "spec.yaml", "sello.json", "sello.sha256")}
+    missing = [name for name, item in required.items() if not item.is_file()]
+    if missing:
+        raise RuntimeError("ARTEFACTO-SELLADO-INCOMPLETO: " + ",".join(missing))
+    spec_text = required["spec.yaml"].read_text(encoding="utf-8")
+    match = re.search(r"(?m)^calc_id:\s*(\S+)\s*$", spec_text)
+    if match is None or match.group(1) != calc_id:
+        raise RuntimeError(f"IDENTIDAD-SPEC-NO-COINCIDE: {calc_id}")
+
+    manifest = json.loads(required["sello.json"].read_text(encoding="utf-8"))
+    for name in ("resultados.json", "ejecucion.json", "spec.yaml"):
+        actual = _sha256(required[name])
+        if manifest.get(name) != actual:
+            raise RuntimeError(f"SELLO-MANIFIESTO-NO-COINCIDE: {calc_id}:{name}")
+    seal_line = required["sello.sha256"].read_text(encoding="utf-8").strip().split()
+    actual_seal = _sha256(required["sello.json"])
+    if len(seal_line) != 2 or seal_line[1] != "sello.json" or seal_line[0] != actual_seal:
+        raise RuntimeError(f"SELLO-FISICO-NO-COINCIDE: {calc_id}")
+    if sello_esperado is not None and sello_esperado != actual_seal:
+        raise RuntimeError(f"SELLO-DECLARADO-NO-COINCIDE: {calc_id}")
+    resultados = document.get("resultados")
+    if not isinstance(resultados, dict):
+        raise RuntimeError(f"RESULTADOS-AUSENTES: {calc_id}")
+    return resultados, calc_id, actual_seal
+
+
 def seleccionar(resultados_2023: dict, resultados_2021: dict | None,
-                sello_2023: str, sello_2021: str | None) -> dict:
+                calcs_consumidos: dict[str, str]) -> dict:
     """Aplica mecánicamente la regla aprobada a dos resultados ya sellados."""
     p23, p21 = _prefix("2023"), _prefix("2021")
-    consumed = {"CALC-ENCIG2023-CRUCES-HISTORICOS-0001": sello_2023}
-    if resultados_2021 is not None and sello_2021:
-        consumed["CALC-ENCIG2021-CRUCES-HISTORICOS-0001"] = sello_2021
-    out = {"calcs_consumidos": consumed}
+    out = {"calcs_consumidos": dict(calcs_consumidos)}
     incoherent = [cross for cross, _, _ in CROSSES
                   if resultados_2023[f"{p23}-{cross}-COHERENCIA"] != "COHERENTE"]
     if incoherent:
@@ -479,12 +527,17 @@ def main() -> int:
         for result_id, kind, unit in declared_results(args.declaraciones):
             print(f"  - {{id: {result_id}, tipo: {kind}, unidad: \"{unit}\"}}")
     if args.seleccionar:
-        if not args.sello_2023:
-            parser.error("--sello-2023 es obligatorio con --seleccionar")
         paths = [Path(item) for item in args.seleccionar]
-        r23 = json.loads(paths[0].read_text(encoding="utf-8"))["resultados"]
-        r21 = None if str(paths[1]) == "-" else json.loads(paths[1].read_text(encoding="utf-8"))["resultados"]
-        print(json.dumps(seleccionar(r23, r21, args.sello_2023, args.sello_2021),
+        r23, id23, seal23 = _carga_calc_sellado(paths[0], "2023", args.sello_2023)
+        consumed = {id23: seal23}
+        if str(paths[1]) == "-":
+            r21 = None
+            if args.sello_2021 is not None:
+                parser.error("--sello-2021 no procede cuando RESULTADOS_2021 es '-'")
+        else:
+            r21, id21, seal21 = _carga_calc_sellado(paths[1], "2021", args.sello_2021)
+            consumed[id21] = seal21
+        print(json.dumps(seleccionar(r23, r21, consumed),
                          ensure_ascii=False, sort_keys=True, indent=2))
     return 0
 

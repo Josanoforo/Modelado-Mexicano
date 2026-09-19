@@ -57,13 +57,20 @@ filas ni identificadores en Git. Este conjunto es el artefacto reproducible
 equivalente para covarianzas/δ; una propagación posterior debe reejecutar el
 mismo plan, no suponer independencia desde los EE publicados.
 
-El replay dirigido de 2021 devuelve `CONTEXTO=IDENTICO · RESULTADO=REPRODUCE`.
-El de 2023 devuelve `RESULTADO=REPRODUCE` y `CONTEXTO=DISTINTO` únicamente
-porque el blob vigente añadió después el localizador exacto del miembro 2021;
-los resultados 2023 coinciden. No se escribió el registro central: su interfaz
-de verificación no permite aportar estos replays dirigidos y el ensayo global
-no terminó; el dry-run clasifica ambos CALC como `SIN-FUENTE`. Se preservan
-sellos, ejecuciones y resultados en la rama, sin afirmar publicación central.
+El selector ya no codifica IDs `0001` ni confía en sellos introducidos a mano:
+deriva `spec_id` de cada `resultados.json`, exige que coincida con el directorio
+y `spec.yaml`, verifica los tres hashes de `sello.json` y comprueba su hash
+contra `sello.sha256`. Regenerado desde 2023-0002 y 2021-0003, produce bytes
+idénticos a `02-seleccion.json`; una prueba de regresión exige esa igualdad.
+
+El replay aislado de ambos CALC devuelve `RESULTADO=REPRODUCE` y
+`CONTEXTO=DISTINTO` por `codigo_distinto`: el blob vigente contiene la
+corrección posterior del selector, mientras los blobs y sellos congelados se
+preservan. La salida estructurada está en `evidencia-replay-aislado.json` y
+sus dos asientos vigentes en `forense/replay-evidencia.tsv`. La proyección
+acotada publicó sólo 2 corridas y 1 156 RESULT propios (580 de 2023 y 576 de
+2021); añadió cero usos y verificó como multiconjunto que ninguna fila ajena
+cambiara.
 
 Control independiente focalizado, 2023 sexo=1×escolaridad=superior: punto
 ponderado `0.7343988774689564` y EE bootstrap `0.011701926247801479`; ambos
@@ -93,5 +100,4 @@ la población mexicana.
 - Piloto 3, S½, Sλ, R y emisiones compuestas: no ejecutados.
 - Selección final: pendiente de definición de mesa sobre la coherencia de la
   rejilla de edad; no equivale a `SIN-PODER-DE-FALSACION`.
-- Registro central: no escrito; falta una fuente de replay aceptada por la
-  interfaz de registro sin aceptar evidencia ajena al encargo.
+- Adopción/consumo activo: ninguno; la publicación central no elige cruce.
