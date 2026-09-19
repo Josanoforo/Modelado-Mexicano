@@ -5,7 +5,7 @@ reparación operativa; no cuenta como medición científica.
 
 ## Dictamen
 
-**FUNCIONANDO-PARCIAL** al corte 2026-09-19T16:31-06:00. El Task Scheduler,
+**FUNCIONANDO-PARCIAL** al corte 2026-09-19T16:47-06:00. El Task Scheduler,
 la propagación de salida, el lock, el despliegue, la derivación y la
 comprobación determinista reparada quedaron acreditados por un trigger
 horario natural posterior al despliegue. La cadena completa no se declara
@@ -18,7 +18,9 @@ inválido. `t_cron` queda `RESULTADO-INVALIDO`, sin reserva activa.
 - Worktree: `/home/pc0/mm-gen2-cron-verificacion-operativa-cli-1`.
 - Rama: `codex/gen2-cron-verificacion-operativa-cli-1`.
 - Base: `8e455bd6a3870566d6776fef19834c4da16d2fa9`.
-- SHA correctivo publicado y desplegado:
+- SHA correctivo publicado y fijado en la tarea:
+  `7791a5a75f9465d1fedcc8959db7eebe945869a8`.
+- SHA cargado por la última activación histórica de las 16:00:
   `6ab4cbe78ca31aa70eb93c490a1d43af01219736`.
 - Clon productivo: HEAD desprendido en ese SHA; conserva, sin apropiación,
   `data/manifiesto-staging.yaml` modificado y
@@ -54,6 +56,14 @@ fecha ficticia, no se elimina y no se cambia la política científica.
 La activación natural de las 16:00 confirma que la excepción desapareció:
 `NC-0244` permaneció excluida por evento y la selección continuó con
 `DEM-AHORRO-STOCK-DURACION-01`, `NC-0202` y `NC-0253`.
+
+Una reproducción posterior encontró un segundo camino de la misma causa:
+cuando un cambio material o evidencia nueva reactivaba una revisión
+`EVENTO:`, `selecciona()` omitía correctamente la espera pero después enviaba
+el valor al parser ISO. El correctivo `7791a5a` separa la condición por evento
+del parseo de fechas tanto en el ruteo de espera como tras la reactivación.
+Las barreras `ESPERA_ACCESO_HUMANO`/`BARRERA_HUMANA` siguen evaluándose antes
+que cambio material o evidencia y no se atraviesan.
 
 ## Ambos tramos
 
@@ -120,7 +130,9 @@ aprobar un proxy nuevo con alcance explícito. Este acto no elige.
 - `tests/test_adq_handoff_resultado.py`: 13 pruebas, 0 fallos; incluye symlink
   del corpus y conflicto entre dos candidatos válidos distintos.
 - `tests/test_adq_cierre_verificable.py`: 13 casos, 0 fallos.
-- Regresión nueva de revisión por evento: selección y checkpoint, 0 fallos.
+- Regresión ampliada: espera por evento, reactivación por cambio material,
+  reactivación por evidencia estructurada y conservación de barrera humana,
+  además del checkpoint runtime, 0 fallos.
 - `python3 tools/adq_investigacion.py --comprueba-despacho` sobre el SHA
   desplegado: exit 0 y JSON válido; sin modelo ni descarga.
 - Trigger natural de las 16:00: Event 107/100/200 al inicio y 201/102 al
@@ -141,3 +153,20 @@ una activación nueva produzca su propio cierre; no editar el `exit=65` del
 
 La trazabilidad compacta de activaciones está en `activaciones.tsv`; los
 extractos sin secretos están en `extractos-saneados.md`.
+
+## Incorporación del correctivo posterior
+
+El mismo commit `7791a5a75f9465d1fedcc8959db7eebe945869a8` permanece en
+el PR #886 y es ancestro directo de las cabezas actualizadas de #884
+(`699ec1ba0531e0ff329eae6a80fe6674fa976838`) y #885
+(`8aaf45c173a613ff575c084bd3ae4024f5f480f8`). Se incorporó por merge del
+correctivo publicado, no mediante implementaciones paralelas. Los tres PR
+siguen abiertos y no fusionados.
+
+Antes de actualizar la tarea se exportó su definición a
+`AdquiereCron-before-7791a5a.xml` (SHA-256
+`F6D5096A14764F3A6F406BA37156A034B15690F6CFC9550633AAEB0C20003484`). El
+instalador soportado conservó calendario, principal y política, y fijó
+`ADQ_DEPLOY_REVISION=7791a5a75f9465d1fedcc8959db7eebe945869a8`. El
+`LastTaskResult=65` de las 16:00 se conserva como evidencia histórica; no se
+reescribió ni se simuló una activación nueva.
