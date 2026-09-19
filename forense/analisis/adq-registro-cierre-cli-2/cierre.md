@@ -1,6 +1,7 @@
 # GEN2-ADQ-REGISTRO-Y-CIERRE-CLI-2
 
 Fecha: 2026-09-19, America/Mexico_City. Entorno: CAJA/WSL2.
+PR: https://github.com/Josanoforo/Modelado-Mexicano/pull/888.
 
 ## Resultado
 
