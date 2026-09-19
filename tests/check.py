@@ -2903,6 +2903,15 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-C2-COMPUESTO-RESERVADAS-1, 19/sep/2026: `E1`..`E4` y
+    # `L1`/`L2` son las CLAVES DE CELDA de los marginales sellados del par
+    # `localidad x edad` de ENIF, tal como
+    # `CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/spec.yaml:marginales_sellados_D9`
+    # las nombra (E1 = tramo 18-29, L1 = "menor de 15 000"). El test las cita
+    # verbatim porque su control de reproduccion compara contra ese CALC
+    # clave por clave; renombrarlas romperia la correspondencia con el sello.
+    # No acuna ningun rotulo del espacio E.
+    "tests/test_c2_compuesto.py",
     # ACTO GEN2-PISOS-REJILLA-CLI-1, 19/sep/2026: insumo de dirección
     # archivado VERBATIM por 0-bis A.3. Su §3 usa `E1` para la capa del
     # esquema theta ya existente, no para acuñar un rótulo nuevo. El archivo
