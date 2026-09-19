@@ -5901,6 +5901,19 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # `forense/notas/2026-09-19-GEN2-MARCADOR-REDISENO-1-cierre.md`, no en
     # el archivo verbatim del encargo.
     "forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md",
+    # ACTO GEN2-FAM-UNION-ESTIMANDO-1 (19/sep/2026). Cita
+    # `familia.union.libre` y SI la carga: este acto releva el estimando de
+    # la regla por firma de mesa del 19/sep/2026. La cita NO es ilustrativa
+    # -- lo que no puede es vivir en este archivo: el encargo llego REDACTADO
+    # POR MESA, pegado en el mensaje de lanzamiento, y A.3 lo archiva
+    # VERBATIM; un encargo verbatim no se edita para complacer al test
+    # (mismo criterio que `_T25_ARCHIVOS_CONOCIDOS`). `tools/ya_medido.py
+    # familia.union.libre` SI se corrio, antes y despues de la edicion, y su
+    # salida cruda esta pegada en el A.8 de
+    # `forense/notas/2026-09-19-GEN2-FAM-UNION-ESTIMANDO-1-cierre.md`:
+    # antes `p=0.190500 [CORROBORADA]`, despues `p=0.480971
+    # [TASA-EJECUTADA]`, ambas en `milpa/tramite.yaml:1031`.
+    "forense/encargos/2026-09-19-GEN2-FAM-UNION-ESTIMANDO-1.md",
 }
 
 
