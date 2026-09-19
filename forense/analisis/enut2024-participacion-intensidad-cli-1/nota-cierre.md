@@ -56,9 +56,16 @@ no representan tiempo exclusivo del reloj. No se caparon extremos.
 * Cuatro pruebas sintéticas dirigidas pasan.
 * Cero estratos contienen una sola UPM.
 * Replay dirigido posterior a COMMIT-2: `REPRODUCE`, contexto `IDENTICO`.
-* `corrida0 registro --verifica --escribe` terminó con `REPLAY-PISADO
-  (NC-0094)` por seis corridas ajenas; no escribió ninguna vista. No se usó
-  `--lote`, conforme al encargo. Evidencia en `replay-registro.txt`.
+* El intento histórico `corrida0 registro --verifica --escribe` terminó con
+  `REPLAY-PISADO (NC-0094)` por seis corridas ajenas; no escribió ninguna
+  vista. No se usó `--lote`. El comando y su salida se conservan en
+  `replay-registro.txt`.
+* `tools/verifica_aislada.py`, limitado al CALC propio, produjo evidencia
+  `REPRODUCE · IDENTICO`, 22/22 RESULT, 2/2 inputs y sello 4/4 coincidente en
+  `replay-aislado.json`.
+* Esa identidad se asentó en `forense/replay-evidencia.tsv`. Después,
+  `corrida0 registro --escribe`, sin `--verifica` ni `--lote`, publicó una
+  corrida y 22 RESULT ENUT. Una segunda proyección fue estable byte a byte.
 
 ## CONSUMIDO
 
@@ -73,7 +80,25 @@ No se corrieron ejes de ocupación, entidad ni otros instrumentos. No se
 estimaron efectos causales ni una descomposición causal. Quedan a mesa la
 adopción, el contador y si desea un sucesor que trate 97/98 como edades reales
 frente al rango publicado por el FD. `CALC-ENUT-0001` permanece intacto y no
-es reemplazado por esta unidad persona. La publicación en las vistas derivadas
-queda pendiente de un lote autorizado que resuelva las seis transiciones
-ajenas listadas en `replay-registro.txt`; no afecta el sello ni el replay
-dirigido de este CALC.
+es reemplazado por esta unidad persona. Las vistas derivadas ya contienen el
+CALC y sus 22 RESULT con replay `REPRODUCE · IDENTICO`; esto no declara uso
+activo, adopción ni firma. El bloqueo anterior pertenecía a la revalidación
+global con `--verifica`, no a la proyección desde evidencia propia asentada.
+
+## Replay, evidencia y publicación
+
+Son tres estados distintos:
+
+1. replay ejecutado: `verifica_aislada.py` reejecutó únicamente este CALC;
+2. evidencia asentada: una fila propia, con identidad completa, quedó en
+   `forense/replay-evidencia.tsv`;
+3. vistas publicadas: `corridas.tsv` y `resultados.tsv` proyectan el CALC y
+   sus 22 RESULT; `usos.tsv` no crea consumo ENUT.
+
+Las dos proyecciones escribieron 214 corridas, 7,302 RESULT y 228 usos, con
+hashes idénticos: `corridas.tsv=2ce0e88a…2065`,
+`resultados.tsv=f1c4fc28…40b4b` y `usos.tsv=939a06e3…f1bd`. Al integrar
+`origin/main`, la regeneración también reflejó decisiones ya vigentes en seis
+corridas/578 RESULT y 20 marcadores, además de dos relevos de unión; no eliminó
+filas, no cambió veredictos ajenos y no fue edición manual. El detalle completo
+de comandos, conteos y hashes está en `replay-registro.txt`.

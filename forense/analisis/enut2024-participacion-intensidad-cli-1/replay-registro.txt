@@ -28,3 +28,62 @@ TRATAMIENTO
 No se usó --lote porque el encargo prohíbe aceptar replay ajeno. Medición,
 sello y replay dirigido propios quedan preservados; publicación global queda
 pendiente. No se declaran consumos activos ni registro exitoso.
+
+CONTINUACION · EVIDENCIA PROPIA Y PROYECCION SIN REVALIDACION GLOBAL
+
+INTEGRACION DE BASE
+git fetch origin --prune
+git merge --no-edit origin/main
+
+Resultado: origin/main vigente se integró conservando las filas ajenas. El
+merge local fue 7cd6cd5; el SHA final de entrega será el commit posterior de
+este cierre.
+
+REPLAY AISLADO PROPIO
+python3 tools/verifica_aislada.py CALC-ENUT2024-PARTICIPACION-INTENSIDAD-0001 --salida forense/analisis/enut2024-participacion-intensidad-cli-1/replay-aislado.json
+
+Resultado: exit 0; REPRODUCE; CONTEXTO=IDENTICO; 22/22 RESULT; 2/2 inputs.
+La identidad coincidió con ejecucion.json y los cuatro archivos cubiertos por
+sello.json coincidieron byte a byte:
+- spec_yaml_sha256: 3aed0396502667acf1464897221c1d20f4204d204221e7e076dadc90a1d06cc1
+- script_blob_sha256: 4b52343104782e308701d4577401f8ed735f7d512527c05e14d7c0a85f403a69
+- enut2024_bd_csv: 25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba
+- enut2024_fd_xlsx: 4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58
+
+ASIENTO CANONICO
+Se añadió una única fila propia a forense/replay-evidencia.tsv, procedencia
+VERIFY-AISLADO · GEN2-ENUT2024-PARTICIPACION-INTENSIDAD-CLI-1, vinculada a
+replay-aislado.json. Unicidad previa: cero filas para el CALC; posterior: una.
+
+PRIMERA PROYECCION
+python3 tools/corrida0.py registro --escribe
+
+Resultado: exit 0, sin --verifica y sin --lote:
+- ESCRITO data/corrida0/corridas.tsv: 214 filas
+- ESCRITO data/corrida0/resultados.tsv: 7302 filas
+- ESCRITO data/corrida0/usos.tsv: 228 filas
+
+Diff por identidad frente a las vistas anteriores:
+- corridas.tsv: +1 ENUT, 0 eliminadas; seis filas ajenas cambiaron solo
+  cuenta_gen2/motivo_cuenta_gen2 por decisiones ya vigentes de main.
+- resultados.tsv: +22 RESULT-ENUTPI, 0 eliminados; 578 filas ajenas cambiaron
+  solo cuenta_gen2 por las mismas decisiones vigentes.
+- usos.tsv: +20 marcadores ya presentes en main, 0 eliminados; dos relevos de
+  familia.union se actualizaron por el contenido integrado de main.
+- Ningún veredicto de replay ajeno cambió. No se creó uso activo ENUT.
+
+SEGUNDA PROYECCION
+python3 tools/corrida0.py registro --escribe
+
+Resultado: exit 0; los mismos conteos y bytes. Hashes después de ambas
+proyecciones:
+- data/corrida0/corridas.tsv: 2ce0e88a998ab3be2842977b885810b5a2121ddcb34d975c315432e2bebc2065
+- data/corrida0/resultados.tsv: f1c4fc289405a216b8f061f84b61f8c274ecb411a4d084e2fdc9d9148d840b4b
+- data/corrida0/usos.tsv: 939a06e39277a184490263b24cd86a537301cf0bed918271eba51c68e95ef1bd
+
+CONCLUSION ACTUALIZADA
+El fallo anterior queda preservado como evidencia del intento que revalidó
+todas las corridas. No era una compuerta para proyectar evidencia ya asentada.
+La ruta sin --verifica publicó correctamente este CALC y sus 22 RESULT desde
+su asiento propio, sin aceptar transiciones ajenas. Contador, uso activo y
+adopción siguen PENDIENTE-DE-MESA.
