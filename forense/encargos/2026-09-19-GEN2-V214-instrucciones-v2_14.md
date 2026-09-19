@@ -27,3 +27,14 @@
 **PERÍMETRO Y CONCURRENCIA:** `instrucciones-proyecto-v2_14.md` (nuevo) · `instrucciones-proyecto-v2_14-HISTORIA.md` (nuevo) · `instrucciones-proyecto-v2_13.md` (retirado) · `tools/tablero_programa.py` (solo docstring :9) · `forense/tablero/TABLERO-PROGRAMA-v1_1.md` (bloque derivado, por comando) · cabecera de era de `canon/estado-programa-v1_1[34].md` (una línea) · `canon/registro-rotulos.tsv` · `tests/check.py` (solo T25) · `forense/hallazgos.md` · `canon/gobernanza-v1_15.md` (ADR) · nota de cierre · cascada. **No toca** `milpa/`, `data/`, specs, resultados, ni ningún encargo o nota archivados. En paralelo: `GEN2-TRAMITE-5` (nube: `estado`, tablero de firmas, `decisiones.tsv`) — comparten la cabecera de era del `estado` (una línea cada uno) y `hallazgos.md`: **quien fusione después renumera y re-aplica su línea**; `GEN2-REPLAY-ASIENTOS-1` (caja) — sin archivo común. «Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.»
 
 **CONTADOR:** cero mediciones, dicho sin disfraz; `instrucciones_vigentes` v2.13 → v2.14 (derivado); 9 entradas `PARA-v2.14` consumidas; 7 rótulos registrados. **LO QUE NO HACE:** no reescribe ninguna regla (los dos cuerpos entran verbatim) · no edita citas históricas · no toca el estado más allá de una línea · no decide: sella lo que mesa pegó. **SUCESOR:** ninguno propio; las reglas caducan a los tres meses si no atrapan nada (§9 del operativo). **CIERRE:** cascada + `## NO-CORRIDO / RESERVAS` + `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** A.9 pleno — "sellada en los dos lados (proyecto y repo)". El adjunto trae la firma de mesa con la fecha de pegado **sin llenar** (`__/sep/2026`), y este ejecutor no tiene superficie de escritura sobre las instrucciones del proyecto de Claude (fuera del repo).
+  **por qué:** `NO-VERIFICABLE-AQUÍ`.
+  **impacto:** `instrucciones_vigentes = v2.14` queda derivado y sellado del lado repo; el sello pleno de A.9 (los dos lados) no se declara hasta que mesa confirme la fecha de pegado en el proyecto.
+  **sucesor:** `DECISIÓN-DE-MESA-PENDIENTE` — mesa pega el cuerpo operativo en las instrucciones del proyecto y confirma la fecha; una enmienda fechada sobre `ADR-544` (o un ADR sucesor corto) cierra esta reserva citando esa fecha.
+
+## CONSUMIDO
+
+Ejecutado por commits directos sobre `claude/new-session-w2ojbo` (sin PR propio en esta sesión — push directo a la rama de trabajo del encargo). `ADR-544`.

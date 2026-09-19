@@ -6,7 +6,7 @@ Uso (desde la raiz del clon, con origin/main recien traido):
     python3 tools/tablero_programa.py            # markdown a stdout
     python3 tools/tablero_programa.py --json     # mismo contenido, JSON
 
-Reglas que este script respeta (instrucciones v2.12):
+Reglas que este script respeta (instrucciones v2.14):
   * A.13 -- cada negativo declara cuantos archivos examino.
   * v2.1 -- ninguna cifra esperada vive aqui; el script solo mide.
   * A.10 -- imprime el SHA contra el que derivo; sin SHA no hay tablero.

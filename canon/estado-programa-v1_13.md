@@ -2,6 +2,8 @@
 ### `estado` · **v1.13** · 14 de septiembre de 2026 · **ÚNICA FUENTE DE ESTADO** · **PROPUESTA — se sella con el merge de mesa**
 
 > **Cabecera de era.** GEN2 · semana del 9–12/sep/2026 · instrucciones vigentes `v2.13` · plan vigente `PLAN-DE-OBRA-GEN2 v1.1` + enmienda de fases (`ACTO GEN2-DOCS-ALINEACION-2`, 12/sep/2026, in situ sobre `forense/notas/PLAN-DE-OBRA-GEN2-v1_1-2026-09-09.md`).
+>
+> **Enmienda (19/sep/2026, `ADR-544`, `ACTO GEN2-V214`).** instrucciones vigentes v2.14 desde 19/sep/2026 (ADR-544); dos cuerpos: operativo en proyecto y repo, histórico en repo.
 
 > | | |
 > |---|---|
