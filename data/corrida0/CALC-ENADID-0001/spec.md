@@ -17,10 +17,13 @@ conserva 15–17 para cerrar el total.
 El punto es razón de totales ponderados. La varianza WR de Taylor para razón
 se calcula por UPM dentro de estrato sobre la muestra completa: fuera del
 dominio aporta cero. IC95 logit-t, `gl=sum_h(m_h-1)`. Un estrato singleton no
-aporta varianza ni grados de libertad y se declara; no equivale a varianza
-cero. Sin FPC acreditada. Diseño incompleto, frontera o gl nulos producen
+equivale a varianza cero: recibe el aporte medio de los estratos no singleton
+y no aporta grados de libertad. Sin FPC acreditada. Diseño incompleto,
+frontera o gl nulos producen
 precisión no disponible con causa. Desconocidos, edad 999 y pesos no positivos
-se cuentan y nunca se convierten en respuestas negativas. Llave duplicada
+se cuentan y nunca se convierten en respuestas negativas. Las categorías
+válidas ajenas a {unión libre, casada(o)} se publican como fuera del
+denominador condicional, no como desconocidas. Llave duplicada
 aborta; no hay enlace porque todas las variables viven en TSDEM.
 
 Las siete categorías son: 1 unión libre; 2 separada(o) de unión libre; 3

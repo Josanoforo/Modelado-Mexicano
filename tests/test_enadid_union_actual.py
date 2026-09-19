@@ -36,6 +36,8 @@ def test_particiones_y_condicional_separados():
     cond = [r for r in rows if r["estimando"] == "union_libre_entre_union_o_casada" and r["edad"] == "15_mas"]
     assert sum(r["punto"] for r in cond) == pytest.approx(1.0)
     assert cond[0]["punto"] != total[0]["punto"]
+    assert cond[0]["n_desconocido"] == 0
+    assert cond[0]["n_fuera_denominador"] > 0
     assert audit["perdida_enlace_n"] == 0
 
 

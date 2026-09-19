@@ -2,6 +2,7 @@
 """Control de puntos y denominadores; no importa el medidor ni sus helpers."""
 import csv
 import hashlib
+import io
 import json
 import sys
 import zipfile
@@ -16,8 +17,9 @@ AGES = (("15_17", 15, 17), ("18_29", 18, 29), ("30_44", 30, 44),
 def main(zip_path: str, expected_csv: str, output: str) -> None:
     totals = {}
     with zipfile.ZipFile(zip_path) as zf, zf.open("TSDEM.csv") as raw:
-        reader = csv.DictReader((line.decode("utf-8-sig") for line in raw))
+        reader = csv.DictReader(io.TextIOWrapper(raw, encoding="utf-8-sig", newline=""))
         for row in reader:
+            row = {key.upper(): value for key, value in row.items()}
             try:
                 age, weight = int(row["EDAD"]), float(row["FAC_VIV"])
             except (ValueError, TypeError):

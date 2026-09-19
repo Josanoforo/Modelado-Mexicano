@@ -1,6 +1,6 @@
 calc_id: CALC-ENADID-0001
 spec_md: spec.md
-spec_md_sha256: a4e067662b0238d8614d127f61b9aa5ef5e98cb5dd9cc25a3cc2dcfcfd047f15
+spec_md_sha256: 7ea5f7636a1c656926e66b8218438d9494c1696fa29ae45561df63a0ead73fef
 script: data/corrida0/CALC-ENADID-0001/medidor.py
 
 etiquetas:
@@ -9,7 +9,7 @@ etiquetas:
   cuenta_gen2: PENDIENTE-DE-MESA
   validacion_independiente: CONTROL-SEPARADO-POST-SELLO
   spec_sellada: forense/prereg-caja/ENADID-UNION-ACTUAL-spec-v1_0.md
-  spec_sellada_sha256: 451e4c7ef841a97ebb2854a706d72cec70dd09e310e406e6995e5b7f99f063d5
+  spec_sellada_sha256: 505643958b28952e64969af457fe31d264a182d5bc7bef154f85ddaf57b6ca4a
   demanda_que_releva: >-
     Sucesora autorizada por F-10/NC-0194 para RES-0043/0044. Mide ENADID
     2023 situacion conyugal actual; no releva por identidad automatica el
@@ -55,7 +55,8 @@ estimando: >-
   union y no identifica el mecanismo baja garantia institucional.
 precision: >-
   Taylor WR de razon por UPM_DIS dentro de EST_DIS sobre muestra completa;
-  IC95 logit-t, gl=sum_h(m_h-1), singleton sin aporte ni gl, sin FPC. Diseno
+  IC95 logit-t, gl=sum_h(m_h-1), singleton con aporte medio de estratos no
+  singleton y sin gl propio, sin FPC. Diseno
   faltante, frontera o gl nulos dejan precision no disponible con causa.
 
 dependencias_materiales: [pandas, scipy]
@@ -72,7 +73,7 @@ parametros:
   dominios_edad: ["15_17", "18_29", "30_44", "45_59", "60_mas", "15_mas"]
   intervalo: LOGIT-T-95-BILATERAL
   dominio: MUESTRA-COMPLETA
-  singleton: SIN-APORTE-NI-AGRUPACION
+  singleton: APORTE-PROMEDIO-DE-ESTRATOS-NO-SINGLETON
   fpc: NO-APLICADA-NO-ACREDITADA
   output_tabla: forense/analisis/enadid-union-actual-cli-1/resultados.csv
   output_auditoria: forense/analisis/enadid-union-actual-cli-1/auditoria.json

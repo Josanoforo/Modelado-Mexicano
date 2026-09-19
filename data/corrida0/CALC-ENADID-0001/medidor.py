@@ -57,7 +57,8 @@ AGES = (
 )
 OUTPUT_COLUMNS = [
     "estimando", "categoria", "edad", "n_expuesto", "n_valido",
-    "n_desconocido", "masa_desconocido", "n_numerador",
+    "n_desconocido", "masa_desconocido", "n_fuera_denominador",
+    "masa_fuera_denominador", "n_numerador",
     "masa_numerador", "masa_denominador", "punto", "ee", "ic95_lo",
     "ic95_hi", "gl", "precision_estado",
 ]
@@ -143,7 +144,12 @@ def _precision(
         df += m - 1
     if df <= 0 or not variance_terms:
         return None, None, None, df, "NO-DISPONIBLE:SIN-GL-DE-DISENO"
-    ee = math.sqrt(max(0.0, math.fsum(variance_terms)))
+    # Un singleton no demuestra varianza cero: recibe el aporte medio de los
+    # estratos con al menos dos UPM (politica average del contrato corregido).
+    variance = math.fsum(variance_terms)
+    if singletons:
+        variance *= (len(variance_terms) + singletons) / len(variance_terms)
+    ee = math.sqrt(max(0.0, variance))
     if not (0 < point < 1):
         return ee, None, None, df, "NO-DISPONIBLE:PROPORCION-FRONTERA"
     critical = float(student_t.ppf(0.975, df))
@@ -152,18 +158,20 @@ def _precision(
     inv = lambda value: 1 / (1 + math.exp(-value))
     state = "DISPONIBLE:TAYLOR-RATIO-LOGIT-T95"
     if singletons:
-        state += f":SINGLETON-SIN-APORTE={singletons}"
+        state += f":SINGLETON-APORTE-PROMEDIO={singletons}"
     return ee, inv(logit - critical * se_logit), inv(logit + critical * se_logit), df, state
 
 
 def _row(
     frame: pd.DataFrame, estimand: str, category: str, age_id: str,
     exposed: pd.Series, valid: pd.Series, numerator: pd.Series,
+    unknown: pd.Series, outside: pd.Series,
 ) -> dict:
     weight_ok = frame["_weight_ok"]
     denominator_mask = exposed & valid & weight_ok
     numerator_mask = denominator_mask & numerator
-    unknown = exposed & ~valid & weight_ok
+    unknown = unknown & weight_ok
+    outside = outside & weight_ok
     denominator = float(frame.loc[denominator_mask, "_weight"].sum())
     numerator_mass = float(frame.loc[numerator_mask, "_weight"].sum())
     point = numerator_mass / denominator if denominator > 0 else None
@@ -177,6 +185,8 @@ def _row(
         "n_expuesto": int(exposed.sum()), "n_valido": int(denominator_mask.sum()),
         "n_desconocido": int(unknown.sum()),
         "masa_desconocido": float(frame.loc[unknown, "_weight"].sum()),
+        "n_fuera_denominador": int(outside.sum()),
+        "masa_fuera_denominador": float(frame.loc[outside, "_weight"].sum()),
         "n_numerador": int(numerator_mask.sum()), "masa_numerador": numerator_mass,
         "masa_denominador": denominator, "punto": point, "ee": ee,
         "ic95_lo": lo, "ic95_hi": hi, "gl": df, "precision_estado": state,
@@ -191,12 +201,15 @@ def calculate(frame: pd.DataFrame) -> tuple[list[dict], dict]:
         valid_status = data["_status_ok"]
         for code, label in CATEGORIES.items():
             rows.append(_row(data, "distribucion_actual_15_mas", label, age_id,
-                             exposed, valid_status, data[STATUS].eq(code)))
+                             exposed, valid_status, data[STATUS].eq(code),
+                             exposed & ~valid_status, exposed & False))
         pair = data[STATUS].isin(("1", "6"))
         rows.append(_row(data, "union_libre_entre_union_o_casada", "union_libre", age_id,
-                         exposed, pair, data[STATUS].eq("1")))
+                         exposed, pair, data[STATUS].eq("1"),
+                         exposed & ~valid_status, exposed & valid_status & ~pair))
         rows.append(_row(data, "union_libre_entre_union_o_casada", "actualmente_casada", age_id,
-                         exposed, pair, data[STATUS].eq("6")))
+                         exposed, pair, data[STATUS].eq("6"),
+                         exposed & ~valid_status, exposed & valid_status & ~pair))
 
     valid_weight = data["_weight_ok"]
     age_unknown = ~data["_age_known"] & valid_weight

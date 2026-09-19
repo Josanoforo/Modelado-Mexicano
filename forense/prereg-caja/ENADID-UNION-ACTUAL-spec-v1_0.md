@@ -7,7 +7,8 @@ Se predeclaran dos universos separados: distribución de P3_27 válida entre
 personas de 15+ y unión libre frente a casada(o) entre quienes tienen P3_27
 igual a 1 o 6. Ambos se publican para total 15+ y cinco grupos exhaustivos:
 15–17, 18–29, 30–44, 45–59, 60+. Categorías, exclusiones, método de punto,
-linealización, política singleton, grados de libertad, IC logit-t, ausencia de
+linealización, política singleton con aporte promedio para estratos de una
+UPM, grados de libertad, IC logit-t, ausencia de
 FPC, controles de llave y salidas desconocidas son los fijados en `spec.md`.
 
 Contaminación declarada: antes de congelar se conocían los valores legacy
