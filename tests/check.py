@@ -5003,6 +5003,13 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md",
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/seccion-13.md",
     "canon/estado-programa-v1_14.md",
+    # ACTO GEN2-MARCADOR-REDISENO-1, 19/sep/2026: encargo archivado VERBATIM
+    # (A.3), que no se edita para complacer un test (misma regla que rige
+    # T25 en todo este bloque). Cita `M05` al describir P2: "`tramite.yaml:487`
+    # vía `M05`" -- es el nombre que el propio autor del encargo dio a la
+    # fila del catalogo consumidora de `tramite.evasion_norma`, no un rotulo
+    # de acto nuevo que este ejecutor este introduciendo.
+    "forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md",
 }
 
 
@@ -5870,6 +5877,17 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # `forense/notas/2026-09-15-GEN2-E11-RES0028-PARTICION-cierre.md`, no
     # en el archivo verbatim del encargo.
     "forense/encargos/2026-09-15-GEN2-E11-RES0028-PARTICION.md",
+    # ACTO GEN2-MARCADOR-REDISENO-1, 19/sep/2026: encargo archivado VERBATIM
+    # (A.3), que no se edita para complacer un test (misma regla que rige
+    # T25). Cita `dinero.ahorro.via_informal` en P2 solo como ilustracion de
+    # QUE consumidor de `tramite.yaml` la fila DIN va a enlazar -- no
+    # clasifica, pre-registra, carga ni sella la regla. `tools/ya_medido.py
+    # dinero.ahorro.via_informal` SI se corrio en el A.8 de este acto:
+    # `MEDIDA-EN: CALC-ENIF-0001, tramite-ola5-propuesta-v0.yaml,
+    # tramite.yaml` -- la salida completa vive en
+    # `forense/notas/2026-09-19-GEN2-MARCADOR-REDISENO-1-cierre.md`, no en
+    # el archivo verbatim del encargo.
+    "forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md",
 }
 
 
