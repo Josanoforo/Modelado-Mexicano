@@ -1,0 +1,26 @@
+{
+  "identidad_contable_max_error_horas": 3.552713678800501e-15,
+  "reconciliacion_media_nacional_desde_edades": {
+    "CON_CP": {
+      "agregada_desde_cinco_tramos": 11.115436729569124,
+      "directa": 11.115436729568984,
+      "diferencia": 1.4033219031261979e-13
+    },
+    "SIN_CP": {
+      "agregada_desde_cinco_tramos": 5.668204106016909,
+      "directa": 5.668204106016909,
+      "diferencia": 0.0
+    }
+  },
+  "representativa_via_independiente": {
+    "estimando": "P(h_CON_CP>0), mujeres 30-39",
+    "punto_directo": 0.7731949542339958,
+    "se_taylor_wr_upm_estratificada": 0.0072834569919659475,
+    "ic95_normal_taylor": [0.7589193785297424, 0.7874705299382491],
+    "punto_calc": 0.7731949542339958,
+    "ic95_bootstrap_calc": [0.758997534896, 0.787046210965],
+    "veredicto": "COINCIDE-PUNTO; PRECISION-CONSISTENTE"
+  },
+  "denominadores": "Las dos variantes usan las mismas 73891 personas y masa FAC_PER 107537532; cada fila de estimaciones publica n/masa del grupo y de participantes.",
+  "metodo_independiente": "Linealizacion de razon por UPM dentro de estrato, varianza WR sum_h m_h*s2(z_hi)/X^2; no reutiliza replicas bootstrap."
+}
