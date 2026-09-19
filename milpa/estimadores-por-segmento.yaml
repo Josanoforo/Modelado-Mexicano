@@ -11,7 +11,7 @@ celdas:
     punto: 0.48681740146267427
     ic95_inf: 0.45104930347728867
     ic95_sup: 0.5188430064342969
-    unidad_dato: persona
+    unidad_dato: persona_elegida_18mas
     tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
   CRUCE::DIN.ahorro_solo_informal.enif2024.localidad_x_edad::L1xE2:
     regla_origen: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
@@ -19,7 +19,7 @@ celdas:
     punto: 0.4287127020734599
     ic95_inf: 0.3979510983809327
     ic95_sup: 0.4566392134530803
-    unidad_dato: persona
+    unidad_dato: persona_elegida_18mas
     tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
   CRUCE::DIN.ahorro_solo_informal.enif2024.localidad_x_edad::L1xE3:
     regla_origen: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
@@ -27,7 +27,7 @@ celdas:
     punto: 0.3778239169382799
     ic95_inf: 0.3494071774135876
     ic95_sup: 0.4051249271322063
-    unidad_dato: persona
+    unidad_dato: persona_elegida_18mas
     tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
   CRUCE::DIN.ahorro_solo_informal.enif2024.localidad_x_edad::L1xE4:
     regla_origen: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
@@ -35,7 +35,7 @@ celdas:
     punto: 0.32363578441490926
     ic95_inf: 0.29255587299953706
     ic95_sup: 0.3535784125824931
-    unidad_dato: persona
+    unidad_dato: persona_elegida_18mas
     tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
   CRUCE::DIN.ahorro_solo_informal.enif2024.localidad_x_edad::L2xE1:
     regla_origen: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
@@ -43,7 +43,7 @@ celdas:
     punto: 0.4026396036368852
     ic95_inf: 0.37593850265585876
     ic95_sup: 0.4300071781761701
-    unidad_dato: persona
+    unidad_dato: persona_elegida_18mas
     tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
   CRUCE::DIN.ahorro_solo_informal.enif2024.localidad_x_edad::L2xE2:
     regla_origen: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
@@ -51,7 +51,7 @@ celdas:
     punto: 0.34777330586565824
     ic95_inf: 0.3254030595223928
     ic95_sup: 0.370706327471907
-    unidad_dato: persona
+    unidad_dato: persona_elegida_18mas
     tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
   CRUCE::DIN.ahorro_solo_informal.enif2024.localidad_x_edad::L2xE3:
     regla_origen: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
@@ -59,7 +59,7 @@ celdas:
     punto: 0.3014229609560722
     ic95_inf: 0.27935861389897754
     ic95_sup: 0.3249703750313211
-    unidad_dato: persona
+    unidad_dato: persona_elegida_18mas
     tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
   CRUCE::DIN.ahorro_solo_informal.enif2024.localidad_x_edad::L2xE4:
     regla_origen: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
@@ -67,7 +67,7 @@ celdas:
     punto: 0.2537238822125272
     ic95_inf: 0.23033864321221761
     ic95_sup: 0.2781828364443396
-    unidad_dato: persona
+    unidad_dato: persona_elegida_18mas
     tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
   CRUCE::TRA.evade_norma.envipe2025.escolaridad_x_dominio::S1xD1:
     regla_origen: TRA.evade_norma.envipe2025.escolaridad_x_dominio
