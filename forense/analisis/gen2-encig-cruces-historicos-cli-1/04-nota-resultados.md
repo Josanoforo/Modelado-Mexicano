@@ -57,6 +57,14 @@ filas ni identificadores en Git. Este conjunto es el artefacto reproducible
 equivalente para covarianzas/δ; una propagación posterior debe reejecutar el
 mismo plan, no suponer independencia desde los EE publicados.
 
+El replay dirigido de 2021 devuelve `CONTEXTO=IDENTICO · RESULTADO=REPRODUCE`.
+El de 2023 devuelve `RESULTADO=REPRODUCE` y `CONTEXTO=DISTINTO` únicamente
+porque el blob vigente añadió después el localizador exacto del miembro 2021;
+los resultados 2023 coinciden. No se escribió el registro central: su interfaz
+de verificación no permite aportar estos replays dirigidos y el ensayo global
+no terminó; el dry-run clasifica ambos CALC como `SIN-FUENTE`. Se preservan
+sellos, ejecuciones y resultados en la rama, sin afirmar publicación central.
+
 Control independiente focalizado, 2023 sexo=1×escolaridad=superior: punto
 ponderado `0.7343988774689564` y EE bootstrap `0.011701926247801479`; ambos
 coinciden exactamente con el CALC sellado. El primer cálculo focal que omitía
@@ -85,4 +93,5 @@ la población mexicana.
 - Piloto 3, S½, Sλ, R y emisiones compuestas: no ejecutados.
 - Selección final: pendiente de definición de mesa sobre la coherencia de la
   rejilla de edad; no equivale a `SIN-PODER-DE-FALSACION`.
-
+- Registro central: no escrito; falta una fuente de replay aceptada por la
+  interfaz de registro sin aceptar evidencia ajena al encargo.
