@@ -26,7 +26,7 @@ python3 data/corrida0/CALC-ISSP2017-REDES-APOYO-COTIDIANO-0001/control_independi
   --family forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/agregado-familia-item-sexo.csv \
   --counts forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/conteo-situaciones-ninguno.csv \
   --matrix forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/matriz-coocurrencia-ninguno.csv \
-  --output forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/control-independiente.json
+  --output forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/control-independiente-issp2017-redes-apoyo-cotidiano.json
 python3 tools/corrida0.py registro --lote CALC-ISSP2017-REDES-APOYO-COTIDIANO-0001
 ```
 
