@@ -76,7 +76,7 @@ explícito `actualmente_casada` con universo declarado. No usar
   cinco grupos cierran contra total 15+.
 - Receta: montar `data/raw -> /home/pc0/mm-corpus/raw`; ejecutar
   `python3 tools/corrida0.py verify CALC-ENADID-0001`; después ejecutar
-  `python3 forense/analisis/enadid-union-actual-cli-1/control_independiente.py data/raw/base_datos_enadid23_csv.zip forense/analisis/enadid-union-actual-cli-1/resultados.csv forense/analisis/enadid-union-actual-cli-1/control-independiente.json`.
+  `python3 forense/analisis/enadid-union-actual-cli-1/control_independiente.py data/raw/base_datos_enadid23_csv.zip forense/analisis/enadid-union-actual-cli-1/resultados.csv forense/analisis/enadid-union-actual-cli-1/enadid-union-control-independiente.json`.
 
 Estado separado: **medición terminada y sellada**; **validación independiente
 terminada**; **publicación canónica pendiente**; **adopción ninguna**;
