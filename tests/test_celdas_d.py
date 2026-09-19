@@ -318,6 +318,8 @@ def errors_for(celda_d, filename):
                             "ic95inf": f"RESULT-{prefijo}-C2-IC95INF-{segmento}",
                             "ic95sup": f"RESULT-{prefijo}-C2-IC95SUP-{segmento}",
                         }
+                        if champion != "C2" or refs["id_candidato"] != "C2":
+                            errs.append(f"{filename}: la firma de adopción y RESULT C2 exigen candidato C2")
                         if refs["calc"] != calc_esperado or any(refs[k] != v for k, v in esperado.items()):
                             errs.append(f"{filename}: identidad/función RESULT no corresponde a {segmento}")
                         if refs["decision_ref"] != "adopcion:piso-C2-20-celdas" or not _decision_adopcion_existe():
@@ -383,6 +385,16 @@ def test_v06_rechaza_alteraciones_de_segmento():
     x = copy.deepcopy(base); x["adjudicacion_por_celda"][a]["decision_ref"] = "ADR-538"; casos.append(x)
     for caso in casos:
         assert errors_for(caso, "fixture")
+
+
+def test_v06_rechaza_candidato_distinto_de_la_firma_c2():
+    ruta = os.path.join(CELDAS_DIR, "DIN.ahorro_solo_informal.enif2024.localidad_x_edad.yaml")
+    with open(ruta, encoding="utf-8") as handle:
+        caso = yaml.safe_load(handle)["celda_d"]
+    caso["champion_actual"] = "C1"
+    for refs in caso["adjudicacion_por_celda"].values():
+        refs["id_candidato"] = "C1"
+    assert errors_for(caso, "fixture")
 
 
 if __name__ == "__main__":
