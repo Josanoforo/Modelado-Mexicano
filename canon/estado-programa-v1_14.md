@@ -1,13 +1,13 @@
 # ESTADO DEL PROGRAMA · Psicología del Mexicano Contemporáneo
-### `estado` · **v1.13** · 14 de septiembre de 2026 · **ÚNICA FUENTE DE ESTADO** · **PROPUESTA — se sella con el merge de mesa**
+### `estado` · **v1.14** · 17 de septiembre de 2026 · **ÚNICA FUENTE DE ESTADO** · **PROPUESTA — se sella con el merge de mesa**
 
-> **Cabecera de era.** GEN2 · semana del 9–12/sep/2026 · instrucciones vigentes `v2.13` · plan vigente `PLAN-DE-OBRA-GEN2 v1.1` + enmienda de fases (`ACTO GEN2-DOCS-ALINEACION-2`, 12/sep/2026, in situ sobre `forense/notas/PLAN-DE-OBRA-GEN2-v1_1-2026-09-09.md`).
+> **Cabecera de era.** GEN2 · 14–17/sep/2026 · instrucciones vigentes `v2.13` · plan vigente `PLAN-DE-OBRA-GEN2 v1.1` + enmienda de fases (`ACTO GEN2-DOCS-ALINEACION-2`, 12/sep) · **régimen de estimación por celda**: `ADR-531` y `FP-383`.
 
 > | | |
 > |---|---|
-> | **ARCHIVO** | `estado-programa-v1.13.md` |
-> | **REEMPLAZA A** | `estado-programa-v1.12.md` — **retirada del árbol por T01** (una sola versión viva por artefacto de canon — mismo mecanismo, mismo precedente, que retiró `v1_10.md` al nacer `v1_11` y `v1_11.md` al nacer `v1_12`; historia recuperable por SHA de A.3 de este acto, no por archivo vivo) |
-> | **VERIFICAS ASÍ** | §0 lista `modelo` en **v4.0** (sin cambio, heredado de `v1_12`) · §0–§11 se conservan **verbatim** de `v1_12` — son historia correcta para su fecha (hasta el 4/sep) y este acto no las reabre · **§12, nueva**, retrata exclusivamente la semana GEN2 del 9–12/sep con cifras derivadas de `corrida0.py status`, `python3 tools/cierre_acto.py` y las notas selladas que cita — cada afirmación con su comando o cita, cero prosa valorativa nueva |
+> | **ARCHIVO** | `estado-programa-v1.14.md` |
+> | **REEMPLAZA A** | `estado-programa-v1.13.md` — **retirada del árbol por T01**; historia recuperable por SHA del acto. |
+> | **VERIFICAS ASÍ** | §0 lista `modelo` en **v4.0** (sin cambio) · §0–§12 y las anotaciones L0 se preservan; §13 incorpora el cierre de 14–17/sep sin convertir decisión de piso en consumo activo. |
 > | **NOMBRE ESTABLE** | **`estado`** — cítalo así, **nunca por nombre de archivo** |
 
 *Anotación L0 (17/sep/2026): `ADR-543`, `ACTO GEN2-GUARDIAS-1` — NUBE `cloud_default`, Sonnet, sin corpus montado, cero microdato, cero red de datos. **Corrige cuatro guardias del motor contra el estado sellado, sin tocar ningún dato sellado.** `NC-0302`: `test_corte_pendiente_no_se_inventa` reescrito contra `ADR-537` — ya no asierta `edad = None` (falso desde que `ADR-537` selló los cuatro tramos), sino que ningún corte de `CORTES_C1` se inventa fuera de un sello citado. `NC-0309`: `test_a2_firma_contra_el_commit_de_sello` pasa de comparar la firma COMPLETA de roles a semántica **append-only** real — falla sólo si un id sellado cambia de rol o un id nuevo llega sin rol, no por el mero hecho de crecer. `NC-0330`: el literal `22`, roto desde que `M05` pasó a derivada, se reemplaza por comparación de conjuntos contra la lista de ids `NO-VERIFICADO` congelada al commit `18b9914`; `test_motor_ejecutable.py` verificado por archivo, sin literal equivalente. `NC-0331` **parcial**: `tests/test_celda_d_piloto2_consumidor.py` (10 casos, stdlib puro) se cablea como paso bloqueante de `verify.yml`; `tests/test_marginales_una_variable.py` (15 casos) **NO** se cablea — depende de `numpy`, ausente de `requirements.txt`, fuera del perímetro del encargo — queda `NC-0332` como sucesor. `tests/test_motor_holdout.py::test_c_roles_sellados_antes_que_todo_resultado` sigue en `FAIL`, pre-existente (`NC-0273`/`NC-0310`), no causado por este acto — verificado por diff que `canon/gobernanza-v1_15.md` no cambió antes de esta cascada. **Suite:** `python3 tests/check.py --baseline` → **3 FAIL · 5288 WARN**, LÍNEA BASE VERDE. **Contador: cero mediciones**; `NC-0302`/`0309`/`0330` `CERRADA`, `NC-0331` abre `NC-0332`. **Adopción al motor: cero.***
@@ -573,3 +573,24 @@ corredores_envueltos_legacy=17
 | `estado-programa-v1_12.md` retirada del árbol por `T01` | commit de A.3 de este acto, historia recuperable por SHA |
 
 **NO-DERIVADO en esta sección (declarado, no tecleado):** la lectura estratégica de qué hacer con `SIN-GANADOR-UNICO` (si abre o no una vía distinta a F6) — es sucesor de mesa, no de este acto, que sólo cita el veredicto. El mapa de actos 31/39/40/41/42/43 que la ADENDA de dirección pidió incorporar a §12/tablero **no se pudo derivar**: verificado contra el árbol, esos números no son rótulos de acto sino códigos `N` de `necesidad-objeto-modelo.tsv` (demanda de reglas, no actos ni PRs), y `N43` no tiene soporte en ningún archivo (`data/curacion-registro/necesidad-objeto-modelo.tsv`, fila de alta de `N42` lo declara explícitamente: *"N43 y N44 no tienen soporte en ningún archivo del árbol (0 ocurrencias)"*). Queda en `## NO-CORRIDO / RESERVAS` de este mismo encargo, no inventado aquí.
+
+## 13 · GEN2 · 14–19 de septiembre — decisión de piso, representación y consumo son etapas distintas
+
+**Nota de corrección al insumo fechado 17/sep, aplicada 19/sep/2026.** El
+status se deriva en memoria mediante `_filas_registro(verifica=False)` desde
+demanda, oferta en disco y decisiones. `N_corridas_selladas` filtra oferta,
+`cuenta_gen2=SI` y estado sellado/superado: no equivale ni a filas publicadas
+ni al total de sellos físicos. Se reportan por separado los sellos físicos,
+las corridas GEN2 que cuenta status, las publicadas y las selladas sin publicar;
+la foto histórica de 115 sellos no autoriza sumar 82+16 como total físico.
+
+Los pilotos ADR-538 (8 segmentos) y ADR-542 (12) preservan el veredicto
+`SIN-CANDIDATO-SUPERIOR`; la firma de mesa del 17/sep adopta C2 como piso no
+vencido y el contrato v0.6 lo representa por segmento. Esa decisión y su
+representación no son consumo activo: éste permanece diferido a
+`GEN2-MARCADOR-ADOPCION-CLI-1`.
+
+El censo del emisor es 97 y contiene cinco `SIN-CONTRAPARTE`; 117 no es aún
+un universo válido del marcador. Las escalas conflictivas del insumo se dejan
+como reserva: no se completa por suposición una afirmación incompatible entre
+«15→11» y «todas declaradas».
