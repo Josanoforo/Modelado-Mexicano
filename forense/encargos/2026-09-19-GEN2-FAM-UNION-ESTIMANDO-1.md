@@ -53,3 +53,12 @@ P2 (una sola entrada editada), P3 (relevo por comando, **sin** renombre de
 conducta → la pieza no PARA) y P4 (test nuevo, rojo verificado contra la
 entrada anterior). Módulo de auditoría: **completo**, y declarado dentro de la
 propia entrada del motor, no sólo en la nota.
+
+## CONSUMIDO
+
+Ejecutado por **`PR #880`** (`ACTO GEN2-FAM-UNION-ESTIMANDO-1`, rama
+`claude/fervent-johnson-m47pdg`), 19/sep/2026, sobre base
+`origin/main = 8e455bd6a387` — el mismo SHA que este encargo declara.
+Cierre en `forense/notas/2026-09-19-GEN2-FAM-UNION-ESTIMANDO-1-cierre.md`;
+decisión en `canon/gobernanza-v1_15.md` **`ADR-546`** y anotación `L0` en
+`canon/estado-programa-v1_14.md`.
