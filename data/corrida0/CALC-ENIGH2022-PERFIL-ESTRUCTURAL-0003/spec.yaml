@@ -1,0 +1,96 @@
+calc_id: CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003
+repite_de: CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0002
+spec_md: spec.md
+spec_md_sha256: c820e67a6d7740765ffdc606c550574a4a77d0e86d4ababaf7d99bf852eb625e
+script: data/corrida0/CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: ESTIMACION-DESCRIPTIVA-PERFIL-ESTRUCTURAL-PERSONA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: CONTROL-FOCAL-CONGELADO-PENDIENTE-DE-EJECUCION
+  estado_adopcion: NO-ADOPTADO
+  uso_motor: NINGUNO
+  version_spec: "v1.2 sucesora; añade normalización del BOM mojibake en cabecera; v1.0/v1.1 fallaron antes de abrir respuestas y quedan intactas"
+  contaminacion_declarada: "Se conocían de una corrida LCA histórica n=217375 para 18+ y 139 faltantes de segsoc; no se conocían el universo 18-96 con exclusión oficial, sus marginales ni su conjunta al congelar."
+
+inputs:
+  - {id: enigh2022_nc_csv, origen: manifiesto}
+  - {id: enigh2022_descripcion_base_pdf, origen: manifiesto}
+  - {id: enigh2022_nota_tecnica_pdf, origen: manifiesto}
+
+variables:
+  - {archivo: conjunto_de_datos_poblacion_enigh2022_ns.csv, variable: folioviv, rol: llave persona y hogar como texto}
+  - {archivo: conjunto_de_datos_poblacion_enigh2022_ns.csv, variable: foliohog, rol: llave persona y hogar como texto}
+  - {archivo: conjunto_de_datos_poblacion_enigh2022_ns.csv, variable: numren, rol: llave persona como texto}
+  - {archivo: conjunto_de_datos_poblacion_enigh2022_ns.csv, variable: parentesco, rol: pertenencia oficial al hogar por prefijo 1/2/3/5/6}
+  - {archivo: conjunto_de_datos_poblacion_enigh2022_ns.csv, variable: edad, rol: edad cumplida y cuatro tramos 18-96}
+  - {archivo: conjunto_de_datos_poblacion_enigh2022_ns.csv, variable: segsoc, rol: contribución alguna vez a seguridad social 1/2}
+  - {archivo: conjunto_de_datos_poblacion_enigh2022_ns.csv, variable: factor, rol: ponderador de persona finito y positivo}
+  - {archivo: conjunto_de_datos_poblacion_enigh2022_ns.csv, variable: est_dis, rol: estrato de diseño como texto opaco}
+  - {archivo: conjunto_de_datos_poblacion_enigh2022_ns.csv, variable: upm, rol: UPM como texto opaco}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2022_ns.csv, variable: folioviv, rol: llave hogar m:1}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2022_ns.csv, variable: foliohog, rol: llave hogar m:1}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2022_ns.csv, variable: tam_loc, rol: categoría nativa heredada del hogar}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2022_ns.csv, variable: est_socio, rol: categoría nativa heredada del hogar}
+  - {archivo: conjunto_de_datos_hogares_enigh2022_ns.csv, variable: folioviv, rol: llave hogar m:1}
+  - {archivo: conjunto_de_datos_hogares_enigh2022_ns.csv, variable: foliohog, rol: llave hogar m:1}
+  - {archivo: conjunto_de_datos_hogares_enigh2022_ns.csv, variable: celular, rol: tenencia de celular en el hogar 1/2}
+  - {archivo: conjunto_de_datos_hogares_enigh2022_ns.csv, variable: conex_inte, rol: conexión a internet en el hogar 1/2}
+
+universo: "Personas pertenecientes al hogar según parentesco con prefijo 1/2/3/5/6, edad entera 18-96 y factor persona finito positivo; marco de cobertura parte de todas las filas de población."
+filtros: "Exclusiones separadas: trabajador doméstico/familia (prefijo 4), huésped/familia (7), parentesco restante/no especificado, edad inválida, edad <18, edad >96 y peso inválido. No se imputa."
+ponderador: "poblacion.factor, factor de persona; nunca factor de hogar trasladado"
+transformacion: "Marginales nativas; edad 18-29/30-44/45-59/60-96; producto cartesiano 2x4x4x4; proporciones sobre cobertura válida declarada."
+estimando: "Composición estructural descriptiva de personas; no π, no calibración, no corte migratorio, no causalidad."
+precision: "Bootstrap compartido de UPM con reemplazo dentro de est_dis sobre marco completo mediante indicadores de dominio; UPM única se remuestrea a sí misma."
+dependencias_materiales: [numpy]
+
+parametros:
+  bootstrap_replicas: 1000
+  metodo_ic: bootstrap UPM dentro de est_dis; percentiles 2.5/97.5 y EE de réplicas
+  tratamiento_upm_unica: remuestreo a sí misma; variación cero; conteo publicado
+  edad_min: 18
+  edad_max: 96
+  parentesco_prefijos_integrante: ["1", "2", "3", "5", "6"]
+  p3_estado: NO-ESTIMABLE-POR-DEFINICION-NO-ACREDITADA
+  p3_no_abrir_columna: residencia
+  output_dir: forense/analisis/enigh2022-perfil-estructural-cli-1
+  demanda_relacionada: CORR-0076 / RES-0165..RES-0170; aporte descriptivo sin relevo directo
+
+seed: {aplica: true, valor: 20260919, rng: numpy.PCG64}
+tolerancia: {tipo: determinista, exacto_por_seed: true, abs: 0.0, razon: JSON canónica y bootstrap con semilla/orden fijados}
+
+resultados:
+  - {id: RESULT-ENIGH22-PERFIL-P1-ESTADO, tipo: texto, unidad: estado}
+  - {id: RESULT-ENIGH22-PERFIL-P2-ESTADO, tipo: texto, unidad: estado}
+  - {id: RESULT-ENIGH22-PERFIL-P3-ESTADO, tipo: texto, unidad: estado}
+  - {id: RESULT-ENIGH22-PERFIL-P3-EVIDENCIA, tipo: texto, unidad: referencia documental}
+  - {id: RESULT-ENIGH22-PERFIL-EMBUDO-JSON, tipo: texto, unidad: JSON canónico}
+  - {id: RESULT-ENIGH22-PERFIL-EMBUDO-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENIGH22-PERFIL-UNIVERSO-N, tipo: entero, unidad: personas muestra}
+  - {id: RESULT-ENIGH22-PERFIL-UNIVERSO-MASA, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIGH22-PERFIL-JOIN-SIN-MATCH-CONCENTRADO-N, tipo: entero, unidad: personas}
+  - {id: RESULT-ENIGH22-PERFIL-JOIN-SIN-MATCH-HOGARES-N, tipo: entero, unidad: personas}
+  - {id: RESULT-ENIGH22-PERFIL-DISENO-FALTANTE-N, tipo: entero, unidad: personas}
+  - {id: RESULT-ENIGH22-PERFIL-DISENO-N-ESTRATOS, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENIGH22-PERFIL-DISENO-N-UPM, tipo: entero, unidad: UPM}
+  - {id: RESULT-ENIGH22-PERFIL-DISENO-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENIGH22-PERFIL-METODO-IC, tipo: texto, unidad: método}
+  - {id: RESULT-ENIGH22-PERFIL-BOOTSTRAP-REPLICAS, tipo: entero, unidad: réplicas}
+  - {id: RESULT-ENIGH22-PERFIL-P1-MARGINALES-JSON, tipo: texto, unidad: tabla JSON canónica}
+  - {id: RESULT-ENIGH22-PERFIL-P1-MARGINALES-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENIGH22-PERFIL-P1-N-FILAS, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIGH22-PERFIL-P2-CONJUNTA-JSON, tipo: texto, unidad: tabla JSON canónica}
+  - {id: RESULT-ENIGH22-PERFIL-P2-CONJUNTA-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENIGH22-PERFIL-P2-N-CELDAS, tipo: entero, unidad: celdas}
+  - {id: RESULT-ENIGH22-PERFIL-P2-COMPLETOS-N, tipo: entero, unidad: personas muestra}
+  - {id: RESULT-ENIGH22-PERFIL-P2-COMPLETOS-MASA, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIGH22-PERFIL-P2-PERDIDA-N, tipo: entero, unidad: personas muestra}
+  - {id: RESULT-ENIGH22-PERFIL-P2-PERDIDA-MASA, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIGH22-PERFIL-P2-MARGINALES-COMPLETOS-JSON, tipo: texto, unidad: tabla JSON canónica}
+  - {id: RESULT-ENIGH22-PERFIL-P2-MARGINALES-COMPLETOS-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENIGH22-PERFIL-P2-N-MARGINALES-COMPLETOS, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIGH22-PERFIL-CONTROL-MAX-DELTA-PUNTOS, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIGH22-PERFIL-CONTROL-MAX-DELTA-MARGINALIZACION, tipo: flotante, unidad: máxima diferencia n/masa/proporción}
+  - {id: RESULT-ENIGH22-PERFIL-USO, tipo: texto, unidad: limitación de uso}
