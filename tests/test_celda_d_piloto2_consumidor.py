@@ -188,7 +188,16 @@ class LaCeldaDYElOrdenDeLosCommits(unittest.TestCase):
         doc = yaml.safe_load((RAIZ / CELDA_D).read_text(encoding="utf-8"))
         self.assertEqual(mod.errors_for(doc["celda_d"], CELDA_D), [])
         c = doc["celda_d"]
-        self.assertEqual(c["champion_actual"], "NINGUNO")
+        # v0.6 representa la firma posterior del 17/sep: el veredicto del
+        # piloto no cambia, pero el piso C2 no vencido queda adjudicado.
+        self.assertEqual(c["champion_actual"], "C2")
+        self.assertEqual(c["veredicto"], "SIN-CANDIDATO-SUPERIOR")
+        self.assertEqual(len(c["adjudicacion_por_celda"]), 12)
+        self.assertTrue(all(
+            x["id_candidato"] == "C2" and
+            x["decision_ref"] == "adopcion:piso-C2-20-celdas"
+            for x in c["adjudicacion_por_celda"].values()
+        ))
         self.assertFalse(c["requiere_decision_mesa"])
         self.assertEqual(c["estado_decidibilidad"], "PUNTUADA")
         refs = c["momentos_holdout_refs"]
