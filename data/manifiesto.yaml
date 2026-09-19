@@ -69,8 +69,8 @@
     original, no "el archivo no tiene el dato".
 
 - id: encig23_cuestionario_pdf
-  usado_para: GEN2-ENCIG2023-FLUJO-Y-ESTIMANDO-1 — texto, secuencia e instrucciones
-    de salto de P8_3/P8_4 y distinción documental de P8_6
+  usado_para: GEN2-ENCIG2023-FLUJO-Y-ESTIMANDO-1 — texto, secuencia e instrucciones de salto
+    de P8_3/P8_4 y distinción documental de P8_6
   url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2023/doc/encig23_cuestionario.pdf
   fecha_descarga: '2026-09-16'
   descargado_por: agente, directamente de inegi.org.mx
@@ -78,13 +78,12 @@
   sha256: 65000ad38419da504e46b34a0a2426f218d1ba6e604ad37a14762bbd07881e1e
   tamano_bytes: 2015393
   formato: PDF, 24 páginas
-  licencia: Términos de Libre Uso de la Información del INEGI
-    (https://www.inegi.org.mx/inegi/terminos.html)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   nota: >
-    Cuestionario general oficial ENCIG 2023. Las páginas PDF/impresas 20 y 21
-    documentan P8_3, el salto a sección IX cuando sus tres opciones son 2 o 9,
-    la selección de tipo de trámite en P8_4, la cuenta de repeticiones en P8_5
-    y la distinción entre «No le dio nada» y montos en P8_6.
+    Cuestionario general oficial ENCIG 2023. Las páginas PDF/impresas 20 y 21 documentan P8_3,
+    el salto a sección IX cuando sus tres opciones son 2 o 9, la selección de tipo de trámite
+    en P8_4, la cuenta de repeticiones en P8_5 y la distinción entre «No le dio nada» y montos
+    en P8_6.
 
 - id: nota_metodologica_rotulo_pareada
   fecha: '2026-07-29'
@@ -111,26 +110,21 @@
     mismo día. Corrige revision-publicacion-2026-07-30.md:88/403/444, que marcaba los términos
     de ENNViH como "reporta el valor" (sin verificar en esa sesión). No cambia el estado del
     payload: ningún archivo de ENNViH se ha descargado ni se registra aquí -- CAL-G3 sigue
-    sin ejecutarse.
-    CORRECCIÓN DE LETRA FECHADA (15/sep/2026, ACTO GEN2-ADOPCION-VENTANILLA-2, P4).
-    La frase anterior queda como registro y NO se reescribe: era cierta el 30/jul/2026
-    y es FALSA EN LA LETRA desde PR #703 (commit 2bd228c). Este mismo archivo registra
-    hoy 28 payloads de ENNViH con id, archivo, sha256 y tamano_bytes -- entre ellos los
-    cinco ehh05*.zip de la ola 2 que el ACTO GEN2-DISENO-FASE1-CIERRE (PR #760) abrió
-    por cabecera: ennvih2_2005_hogar_dta (ennvih/ehh05dta_all.zip, sha256
-    fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a),
-    ennvih2_2005_hogar_cb (ehh05cb_all.zip), ennvih2_2005_hogar_q (ehh05q_all.zip),
-    ennvih2_2005_ponderador_transversal (ehh05w_all.zip, de donde sale fac_3b) y
-    ennvih2_2005_ponderador_longitudinal (ehh05lw_all.zip); más las olas 1 y 3 y
-    ennvih1_muestra_diseno. Corrige la premisa citada en
-    forense/notas/2026-09-14-GEN2-DISENO-FASE1-CIERRE-cierre.md:23 («manifiesto.yaml
-    sigue sin id: para ehh05*.zip»): los id SÍ existen. Esta entrada sigue siendo lo que
-    siempre fue -- una nota de LICENCIA, sin archivo ni sha propios -- y ninguna cifra,
-    hash ni byte se toca aquí: la corrección es de letra y se verifica dentro de este
-    mismo archivo. Lo que NO cambia: ENNViH ola 2 sigue EXISTE-NO-SATISFACE por falta de
-    estrato/UPM públicos (NC-0156), y la copia de esta misma frase falsa que vive en
-    data/corrida0/demanda-corridas.tsv (fila CORR-0008) NO se toca desde aquí -- queda
-    en NC-0188.
+    sin ejecutarse. CORRECCIÓN DE LETRA FECHADA (15/sep/2026, ACTO GEN2-ADOPCION-VENTANILLA-2,
+    P4). La frase anterior queda como registro y NO se reescribe: era cierta el 30/jul/2026
+    y es FALSA EN LA LETRA desde PR #703 (commit 2bd228c). Este mismo archivo registra hoy
+    28 payloads de ENNViH con id, archivo, sha256 y tamano_bytes -- entre ellos los cinco
+    ehh05*.zip de la ola 2 que el ACTO GEN2-DISENO-FASE1-CIERRE (PR #760) abrió por cabecera:
+    ennvih2_2005_hogar_dta (ennvih/ehh05dta_all.zip, sha256 fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a),
+    ennvih2_2005_hogar_cb (ehh05cb_all.zip), ennvih2_2005_hogar_q (ehh05q_all.zip), ennvih2_2005_ponderador_transversal
+    (ehh05w_all.zip, de donde sale fac_3b) y ennvih2_2005_ponderador_longitudinal (ehh05lw_all.zip);
+    más las olas 1 y 3 y ennvih1_muestra_diseno. Corrige la premisa citada en forense/notas/2026-09-14-GEN2-DISENO-FASE1-CIERRE-cierre.md:23
+    («manifiesto.yaml sigue sin id: para ehh05*.zip»): los id SÍ existen. Esta entrada sigue
+    siendo lo que siempre fue -- una nota de LICENCIA, sin archivo ni sha propios -- y ninguna
+    cifra, hash ni byte se toca aquí: la corrección es de letra y se verifica dentro de este
+    mismo archivo. Lo que NO cambia: ENNViH ola 2 sigue EXISTE-NO-SATISFACE por falta de estrato/UPM
+    públicos (NC-0156), y la copia de esta misma frase falsa que vive en data/corrida0/demanda-corridas.tsv
+    (fila CORR-0008) NO se toca desde aquí -- queda en NC-0188.
 
 - id: encig2015_csv
   usado_para: candidata para R3.1 (trámite/mordida, misma familia que R3.2) -- serie histórica
@@ -452,7 +446,8 @@
     FF-5563
 
 - id: enigh2022_descripcion_base_pdf
-  usado_para: contrato documental de unidad, periodo, construccion y contenido de concentradohogar para GEN2-ENIGH2022-INTENSIDAD-REMESAS-1
+  usado_para: contrato documental de unidad, periodo, construccion y contenido de concentradohogar
+    para GEN2-ENIGH2022-INTENSIDAD-REMESAS-1
   url_origen: https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463910626.pdf
   fecha_descarga: '2026-09-16'
   descargado_por: Codex CLI, descarga directa del sitio oficial de INEGI
@@ -16476,10 +16471,10 @@
   formato: PDF (13 paginas)
   licencia: World Bank Enterprise Surveys, documentacion metodologica publica
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · curl
-  nota: 'Documento oficial enlazado por Mexico 2023 ES Implementation Report. Parrafos
-    15-16 definen probabilidad n/N y peso base; parrafos 25-32 describen combinacion
-    panel/fresh; parrafo 29 y nota 10 indican SRS dentro de celda y que un panel singleton
-    puede ser seleccion de certeza. No prescribe por si solo una receta mexicana de varianza.'
+  nota: Documento oficial enlazado por Mexico 2023 ES Implementation Report. Parrafos 15-16
+    definen probabilidad n/N y peso base; parrafos 25-32 describen combinacion panel/fresh;
+    parrafo 29 y nota 10 indican SRS dentro de celda y que un panel singleton puede ser seleccion
+    de certeza. No prescribe por si solo una receta mexicana de varianza.
 
 - id: wbes_mexico_2010_microdato_dta_zip
   usado_para: microdato a nivel establecimiento del WBES Mexico 2010 (1480 filas x 293 variables)
@@ -24268,8 +24263,8 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
 
 - id: enco_2025_junio_dbf_reservado
-  usado_para: 'GEN2-ENCO-DOS-OLAS-RESERVADAS-1 / R10-DIN-ENCO-AHORRO: ola anterior
-    fijada prospectivamente para posible medición descriptiva posterior de P10. Estado separado:
+  usado_para: 'GEN2-ENCO-DOS-OLAS-RESERVADAS-1 / R10-DIN-ENCO-AHORRO: ola anterior fijada
+    prospectivamente para posible medición descriptiva posterior de P10. Estado separado:
     adquisición completa; definición documentada en preparación; M-NO-ELEGIBLE-PARA-ESTE-ESTIMANDO.
     RESPUESTAS RESERVADAS Y NO ABIERTAS.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enco/microdatos/2025/enco_2025_junio_dbf.zip
@@ -24282,11 +24277,12 @@
   formato: ZIP con 3 DBF; miembros listados y CRC verificado sin imprimir ni interpretar registros
   licencia: Uso público declarado por INEGI; referencia a Términos de Libre Uso de la Información
   estado_reserva: RESERVADA-NO-ABIERTA-NO-INDEXAR-L
-  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · curl 8.14.1 · Python 3.14.4
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · curl 8.14.1 · Python
+    3.14.4
 
 - id: enco_2026_junio_dbf_reservado
-  usado_para: 'GEN2-ENCO-DOS-OLAS-RESERVADAS-1 / R10-DIN-ENCO-AHORRO: ola posterior
-    fijada prospectivamente para posible medición descriptiva posterior de P10. Estado separado:
+  usado_para: 'GEN2-ENCO-DOS-OLAS-RESERVADAS-1 / R10-DIN-ENCO-AHORRO: ola posterior fijada
+    prospectivamente para posible medición descriptiva posterior de P10. Estado separado:
     adquisición completa; definición documentada en preparación; M-NO-ELEGIBLE-PARA-ESTE-ESTIMANDO.
     RESPUESTAS RESERVADAS Y NO ABIERTAS.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enco/microdatos/enco_2026_junio_dbf.zip
@@ -24299,12 +24295,13 @@
   formato: ZIP con 3 DBF; miembros listados y CRC verificado sin imprimir ni interpretar registros
   licencia: Uso público declarado por INEGI; referencia a Términos de Libre Uso de la Información
   estado_reserva: RESERVADA-NO-ABIERTA-NO-INDEXAR-L
-  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · curl 8.14.1 · Python 3.14.4
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · curl 8.14.1 · Python
+    3.14.4
 
 - id: enco_fd_v5_reservado
-  usado_para: 'GEN2-ENCO-DOS-OLAS-RESERVADAS-1: descriptor estructural histórico para
-    correspondencia de ENCOCB, P10, FACTOR, N_REN, FOL y panel de rotación; no prueba por
-    sí solo invariancia 2025-2026 y no contiene respuestas.'
+  usado_para: 'GEN2-ENCO-DOS-OLAS-RESERVADAS-1: descriptor estructural histórico para correspondencia
+    de ENCOCB, P10, FACTOR, N_REN, FOL y panel de rotación; no prueba por sí solo invariancia
+    2025-2026 y no contiene respuestas.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enco/doc/fd_enco_v5.pdf
   fecha_descarga: '2026-09-16'
   descargado_por: agente Codex, descarga directa autorizada desde INEGI
@@ -24315,12 +24312,13 @@
   formato: PDF, 3 páginas, descripción de archivos quinta versión
   licencia: Uso público declarado por INEGI; referencia a Términos de Libre Uso de la Información
   estado_reserva: DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS
-  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · curl 8.14.1 · Python 3.14.4
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · curl 8.14.1 · Python
+    3.14.4
 
 - id: enco_manual_procedimientos_reservado
-  usado_para: 'GEN2-ENCO-DOS-OLAS-RESERVADAS-1: unidad de observación, selección de una
-    persona elegida de 18 años o más, diseño y esquema de rotación ENCO. Documento 2016;
-    informa el contrato pero no acredita sin más que todo detalle operativo siga idéntico en 2026.'
+  usado_para: 'GEN2-ENCO-DOS-OLAS-RESERVADAS-1: unidad de observación, selección de una persona
+    elegida de 18 años o más, diseño y esquema de rotación ENCO. Documento 2016; informa el
+    contrato pero no acredita sin más que todo detalle operativo siga idéntico en 2026.'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enco/doc/enco_manual_procedimientos.pdf
   fecha_descarga: '2026-09-16'
   descargado_por: agente Codex, descarga directa autorizada desde INEGI
@@ -24331,7 +24329,8 @@
   formato: PDF, 207 páginas, manual de procedimientos ENCO 2016
   licencia: Uso público declarado por INEGI; referencia a Términos de Libre Uso de la Información
   estado_reserva: DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS
-  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · curl 8.14.1 · Python 3.14.4
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · curl 8.14.1 · Python
+    3.14.4
 
 - id: conjunto_de_datos_enve_2024_csv
   usado_para: 'N16/tramite.mordida.discrecional+con_registro -- A.4 verificado EXISTE-NO-SATISFACE
@@ -30190,33 +30189,40 @@
     ponderador ni aptitud confirmatoria.
 
 - id: mociba_2021_cuestionario_pdf
-  usado_para: GEN2-MOCIBA-FLUJO-DOCUMENTAL-1; acreditar población base, flujo P4→P12 y texto/modalidad de P12
+  usado_para: GEN2-MOCIBA-FLUJO-DOCUMENTAL-1; acreditar población base, flujo P4→P12 y texto/modalidad
+    de P12
   url_origen: https://www.inegi.org.mx/contenidos/programas/mociba/2021/doc/mociba2021_cuestionario.pdf
   fecha_descarga: '2026-09-16'
-  descargado_por: Codex CLI; curl directo al URL oficial de INEGI tras un primer intento bloqueado por DNS en sandbox
+  descargado_por: Codex CLI; curl directo al URL oficial de INEGI tras un primer intento bloqueado
+    por DNS en sandbox
   archivo: forense/produccion/mociba-flujo-documental-1/documentos/mociba2021_cuestionario.pdf
   sha256: 2ffadcc44db5c6e965c8dd6e767a234e94f3e42a0967cedc24e4c52d50b5622d
   tamano_bytes: 847961
   formato: PDF 1.6, 7 páginas, texto extraíble
   licencia: 'Términos de Libre Uso de la Información del INEGI: https://www.inegi.org.mx/inegi/terminos.html'
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 x86_64 · Python 3.14.4
-  nota: Páginas 2-5 fijan salto a P13 si todos los P4 son 2/9; página 6 contiene P12 y opción 05. Páginas 5-6 verificadas visualmente; no se abrió ningún resultado.
+  nota: Páginas 2-5 fijan salto a P13 si todos los P4 son 2/9; página 6 contiene P12 y opción
+    05. Páginas 5-6 verificadas visualmente; no se abrió ningún resultado.
 
 - id: mociba_2022_cuestionario_pdf
-  usado_para: GEN2-MOCIBA-FLUJO-DOCUMENTAL-1; acreditar población base, flujo P4→P12 y texto/modalidad de P12
+  usado_para: GEN2-MOCIBA-FLUJO-DOCUMENTAL-1; acreditar población base, flujo P4→P12 y texto/modalidad
+    de P12
   url_origen: https://www.inegi.org.mx/contenidos/programas/mociba/2022/doc/mociba2022_cuestionario.pdf
   fecha_descarga: '2026-09-16'
-  descargado_por: Codex CLI; curl directo al URL oficial de INEGI tras un primer intento bloqueado por DNS en sandbox
+  descargado_por: Codex CLI; curl directo al URL oficial de INEGI tras un primer intento bloqueado
+    por DNS en sandbox
   archivo: forense/produccion/mociba-flujo-documental-1/documentos/mociba2022_cuestionario.pdf
   sha256: a37f17509ec028a412d6db75e61e17daeaf51bc221665c3de4e73591b03bc219
   tamano_bytes: 1044877
   formato: PDF 1.6, 7 páginas, texto extraíble
   licencia: 'Términos de Libre Uso de la Información del INEGI: https://www.inegi.org.mx/inegi/terminos.html'
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 x86_64 · Python 3.14.4
-  nota: Páginas 2-5 fijan salto a P13 si todos los P4 son 2/9; página 6 contiene P12 y opción 05. Páginas 5-6 verificadas visualmente; no se abrió ningún resultado.
+  nota: Páginas 2-5 fijan salto a P13 si todos los P4 son 2/9; página 6 contiene P12 y opción
+    05. Páginas 5-6 verificadas visualmente; no se abrió ningún resultado.
+
 - id: inegi_rnm_330_download_19206_enaproce2015_pyme_comserv
-  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2015
-    PyME comercio/servicios; módulo XII de carga regulatoria y obstáculos'
+  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2015 PyME comercio/servicios;
+    módulo XII de carga regulatoria y obstáculos'
   url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/330/download/19206
   fecha_descarga: '2026-09-16'
   descargado_por: Codex, descarga directa oficial desde el enlace del catálogo RNM 330
@@ -30226,12 +30232,12 @@
   formato: PDF 1.3, 40 páginas, cuestionario oficial
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
-  nota: PDF real verificado; módulo XII pp. 35-37 leído por texto y revisión visual.
-    No contiene respuestas ni distribuciones del objetivo.
+  nota: PDF real verificado; módulo XII pp. 35-37 leído por texto y revisión visual. No contiene
+    respuestas ni distribuciones del objetivo.
 
 - id: inegi_rnm_330_download_19207_enaproce2015_pyme_manufac
-  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2015
-    PyME manufactura; módulo XII de carga regulatoria y obstáculos'
+  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2015 PyME manufactura;
+    módulo XII de carga regulatoria y obstáculos'
   url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/330/download/19207
   fecha_descarga: '2026-09-16'
   descargado_por: Codex, descarga directa oficial desde el enlace del catálogo RNM 330
@@ -30241,12 +30247,12 @@
   formato: PDF 1.3, 40 páginas, cuestionario oficial
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
-  nota: PDF real verificado; módulo XII pp. 35-37 leído, pp. 35/37 revisadas
-    visualmente y texto contrastado con comercio/servicios. Sin respuestas.
+  nota: PDF real verificado; módulo XII pp. 35-37 leído, pp. 35/37 revisadas visualmente y
+    texto contrastado con comercio/servicios. Sin respuestas.
 
 - id: inegi_rnm_330_download_19208_enaproce2015_micro
-  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2015
-    micro; módulo XII de carga regulatoria y obstáculos'
+  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2015 micro; módulo
+    XII de carga regulatoria y obstáculos'
   url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/330/download/19208
   fecha_descarga: '2026-09-16'
   descargado_por: Codex, descarga directa oficial desde el enlace del catálogo RNM 330
@@ -30256,12 +30262,12 @@
   formato: PDF 1.3, 32 páginas, cuestionario oficial
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
-  nota: PDF real verificado; módulo XII pp. 27-29 leído por texto y revisión visual.
-    No contiene respuestas ni distribuciones del objetivo.
+  nota: PDF real verificado; módulo XII pp. 27-29 leído por texto y revisión visual. No contiene
+    respuestas ni distribuciones del objetivo.
 
 - id: inegi_rnm_518_download_19215_enaproce2018_pyme_comserv
-  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2018
-    PyME comercio/servicios; módulo XII de carga regulatoria y obstáculos'
+  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2018 PyME comercio/servicios;
+    módulo XII de carga regulatoria y obstáculos'
   url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/518/download/19215
   fecha_descarga: '2026-09-16'
   descargado_por: Codex, descarga directa oficial desde el enlace del catálogo RNM 518
@@ -30271,12 +30277,12 @@
   formato: PDF 1.3, 44 páginas, cuestionario oficial
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
-  nota: PDF real verificado; módulo XII pp. 39-41 leído por texto y revisión visual.
-    No contiene respuestas ni distribuciones del objetivo.
+  nota: PDF real verificado; módulo XII pp. 39-41 leído por texto y revisión visual. No contiene
+    respuestas ni distribuciones del objetivo.
 
 - id: inegi_rnm_518_download_19216_enaproce2018_pyme_manufac
-  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2018
-    PyME manufactura; módulo XII de carga regulatoria y obstáculos'
+  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2018 PyME manufactura;
+    módulo XII de carga regulatoria y obstáculos'
   url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/518/download/19216
   fecha_descarga: '2026-09-16'
   descargado_por: Codex, descarga directa oficial desde el enlace del catálogo RNM 518
@@ -30286,12 +30292,12 @@
   formato: PDF 1.3, 44 páginas, cuestionario oficial
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
-  nota: PDF real verificado; módulo XII pp. 39-41 leído, pp. 39/41 revisadas
-    visualmente y texto contrastado con comercio/servicios. Sin respuestas.
+  nota: PDF real verificado; módulo XII pp. 39-41 leído, pp. 39/41 revisadas visualmente y
+    texto contrastado con comercio/servicios. Sin respuestas.
 
 - id: inegi_rnm_518_download_19217_enaproce2018_micro
-  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2018
-    micro; módulo XII de carga regulatoria y obstáculos'
+  usado_para: 'GEN2-ENAPROCE-INSTRUMENTOS-Y-ACCESO-1: contrato documental 2018 micro; módulo
+    XII de carga regulatoria y obstáculos'
   url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/518/download/19217
   fecha_descarga: '2026-09-16'
   descargado_por: Codex, descarga directa oficial desde el enlace del catálogo RNM 518
@@ -30301,5 +30307,24 @@
   formato: PDF 1.3, 34 páginas, cuestionario oficial
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
-  nota: PDF real verificado; módulo XII pp. 29-31 leído por texto y revisión visual.
-    No contiene respuestas ni distribuciones del objetivo.
+  nota: PDF real verificado; módulo XII pp. 29-31 leído por texto y revisión visual. No contiene
+    respuestas ni distribuciones del objetivo.
+
+- id: ucla_mxfls_design_summary_2007
+  usado_para: 'UCLA_MXFLS_DESIGN_SUMMARY_2007 / NC-0202: descripción general secundaria del
+    diseño MxFLS; no aporta identificadores ejecutables de UPM/estrato, réplicas ni habilita
+    IC de diseño'
+  url_origen: https://ccpr.ucla.edu/wp-content/uploads/2024/04/An-Assessment-of-Available-Data-and-Data-Needs-for-Studying-Intra-and-Inter-Generational-Family-Relationships-and-Behavior.pdf
+  fecha_descarga: '2026-09-19'
+  descargado_por: agente Codex en corrida GEN2-38 2026-09-19; dos descargas idénticas acreditadas
+    en nota de investigación
+  archivo: ennvih/ucla_mxfls_design_summary_2007_a.pdf
+  sha256: f6ae6b5f803885a03460a5cc88ca0de8173d3b489caf5deff861d4b300abc405
+  tamano_bytes: 462842
+  formato: PDF, 107 páginas, informe secundario alojado por UCLA
+  licencia: No determinada; acceso público desde UCLA
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Ficha usable: descripción general secundaria del diseño MxFLS (muestra probabilística
+    multietápica, 150 comunidades y tres estratos construidos con 14 variables del marco ENEU).
+    Alcance limitado: no contiene identificadores de UPM/estrato por observación, réplicas
+    ni campos ejecutables para varianza; NC-0202 permanece abierta.'

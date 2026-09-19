@@ -308,6 +308,10 @@ def prueba_12_runner_conserva_canales_y_publica_origen():
     afirma("HANDOFF REDUNDANTE OBLIGATORIO" in fuente and
            "os.replace" in fuente and "--selecciona-resultado" in fuente,
            "la ruta redundante no llega literal/atómica al prompt y selector")
+    afirma("preentrega-validacion.json" in fuente and
+           "intentos[].resultado debe aparecer VERBATIM" in fuente and
+           "investigaciones sin adquiridos=descubrimiento_documentado" in fuente,
+           "el productor no recibe prevalidación, evidencia literal y clasificación mecánica")
     afirma("resultado_origen=${RESULTADO_ORIGEN}" in fuente and
            "resultado_causa=${RESULTADO_CAUSA}" in fuente,
            "la huella no publica origen y causa breve")

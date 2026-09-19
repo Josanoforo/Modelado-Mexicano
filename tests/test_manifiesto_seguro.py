@@ -57,6 +57,8 @@ import sys
 import tempfile
 import threading
 
+import yaml
+
 sys.path.insert(0, "tests")
 import manifiesto  # noqa: E402
 
@@ -210,6 +212,56 @@ def test_lock_serializa_dos_escritores_concurrentes():
         ids = sorted(e["id"] for e in entradas)
         assert ids == ["id-dos", "id-uno"], (
             f"las dos entradas debieron sobrevivir sin pisarse, quedó: {ids}")
+
+
+def _entrada_reservada(estado="RESERVADA-NO-ABIERTA-NO-INDEXAR-L"):
+    return {
+        "id": "respondentes-reservados",
+        "usado_para": "prueba de reserva",
+        "url_origen": "https://example.mx/reserva.zip",
+        "fecha_descarga": "2026-09-16",
+        "descargado_por": "test",
+        "archivo": "reserva/respuestas.zip",
+        "raiz": "reserva_respondentes",
+        "sha256": "a" * 64,
+        "tamano_bytes": 3,
+        "formato": "ZIP",
+        "licencia": "publica",
+        "estado_reserva": estado,
+    }
+
+
+def test_reserva_vigente_se_conserva_al_registrar_entrada_normal():
+    with tempfile.TemporaryDirectory() as tmp:
+        root = _preparar_root(tmp)
+        manifiesto_path, raw_dir = manifiesto.rutas(root)
+        reservada = _entrada_reservada()
+        with open(manifiesto_path, "w", encoding="utf-8") as f:
+            yaml.safe_dump([reservada], f, allow_unicode=True, sort_keys=False)
+        _archivo_dato(raw_dir, "normal.pdf", b"documento-normal")
+
+        ok, salida = _registra(
+            manifiesto_path, raw_dir, "documento-normal", "normal.pdf")
+        assert ok, salida
+        _, entradas = manifiesto.leer_manifiesto(manifiesto_path)
+        assert entradas[0] == reservada, (
+            "registrar una entrada normal debe preservar íntegra la reserva")
+        assert entradas[1]["id"] == "documento-normal"
+        assert "estado_reserva" not in entradas[1]
+
+
+def test_estado_reserva_invalido_se_rechaza():
+    for entrada in (
+        _entrada_reservada("ABIERTA"),
+        {**_entrada_reservada(), "raiz": "data_raw"},
+        {k: v for k, v in _entrada_reservada().items()
+         if k != "estado_reserva"},
+    ):
+        try:
+            manifiesto._validar_manifiesto_completo([entrada])
+            raise AssertionError(f"se aceptó reserva inválida: {entrada}")
+        except ValueError as exc:
+            assert "reserva" in str(exc)
 
 
 def main():
