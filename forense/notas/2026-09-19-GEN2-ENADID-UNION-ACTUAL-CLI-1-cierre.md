@@ -104,6 +104,10 @@ explícito `actualmente_casada` con universo declarado. No usar
 ## Controles, replay y estado
 
 - `corrida0.py verify CALC-ENADID-0001`: `REPRODUCE`, contexto idéntico.
+- `verifica_aislada.py CALC-ENADID-0001`: proceso nuevo, exit 0,
+  `REPRODUCE/IDENTICO`, 13/13 RESULT y 3/3 inputs; salida cruda estructurada en
+  `forense/analisis/enadid-union-actual-cli-1/evidencia-replay-aislado.json` y
+  asiento vigente en `forense/replay-evidencia.tsv`.
 - Control independiente: módulo CSV estándar, sin importar medidor ni helpers;
   confirma ambos puntos nacionales y los denominadores de los seis grupos.
 - Control independiente de precisión: `control_precision_independiente.py`
@@ -119,9 +123,17 @@ explícito `actualmente_casada` con universo declarado. No usar
   para precisión y unidad ejecutar
   `python3 forense/analisis/enadid-union-actual-cli-1/control_precision_independiente.py data/raw/base_datos_enadid23_csv.zip data/raw/fd_enadid23.xlsx data/raw/hogar_enadid23.pdf forense/analisis/enadid-union-actual-cli-1/resultados.csv forense/analisis/enadid-union-actual-cli-1/enadid-union-control-precision.json`.
 
+Después de los merges #871 (`b061060`) y #872 (`3365057`) se incorporó
+`origin/main` por merge y se ejecutó el escritor canónico:
+`python3 tools/corrida0.py registro --escribe --lote CALC-ENADID-0001`.
+Publicó una corrida (211→212) y 13 RESULT (7 256→7 269); `usos.tsv`
+permaneció en 208 filas y byte a byte idéntico. La comprobación por multiset
+confirmó que todas las corridas y RESULT ajenos conservaron sus filas, y el
+comparador de los dos ejes de replay arrojó cero transiciones ajenas.
+RES-0043/0044 conservaron exactamente sus filas `PENDIENTE`; no se adoptó ni
+cerró ninguno.
+
 Estado separado: **medición terminada y sellada**; **validación independiente
-terminada**; **publicación canónica pendiente**; **adopción ninguna**;
-`cuenta_gen2=PENDIENTE-DE-MESA`. La publicación serial no se ejecuta porque
-los carriles A/B del lanzamiento no están integrados en `origin/main`; no se
-reescriben `corridas.tsv`, `resultados.tsv`, `usos.tsv`, demanda ni relevo en
-esta rama antes de esa compuerta.
+terminada**; **publicación canónica terminada**; **adopción ninguna**;
+`cuenta_gen2=PENDIENTE-DE-MESA`. No se modificaron demanda, relevo, consumidor,
+motor, cruce reservado, decisiones ni el CALC sellado.
