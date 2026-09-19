@@ -1,0 +1,31 @@
+{
+  "alternativa_requerida": false,
+  "alternativas": [],
+  "ciclos_sin_avance": 1,
+  "continuacion_pendiente": false,
+  "cursor_continuacion": "No repetir búsqueda web; verificar el pin de adopción en el acto sucesor.",
+  "estado": "evidencia_existente",
+  "evidencias": [
+    "forense/notas/2026-09-19-GEN2-38-investigacion-adq.md",
+    "forense/notas/2026-09-17-GEN2-L8-LINAJE-HEREDADO-1-cierre.md",
+    "forense/evidencia-replay-aislado-2026-09-19.json",
+    "data/corrida0/corridas.tsv"
+  ],
+  "frontera_no_examinada": "Ninguna ruta externa material; resta adopción/pin interno autorizado, no adquisición.",
+  "necesidad_id": "NC-0253",
+  "proxima_revision": "",
+  "suficiencia": {
+    "conceptual": "ACREDITADA",
+    "diseno": "ACREDITADA",
+    "identidad": "ACREDITADA",
+    "identificacion": "NO_APLICA",
+    "poblacional": "NO_APLICA",
+    "pregunta_original": "CUBIERTA",
+    "seleccion_no_respuesta": "NO_APLICA",
+    "temporalidad": "ACREDITADA",
+    "unidad": "ACREDITADA",
+    "uso_habilitado": "APTA_USO_DECLARADO"
+  },
+  "ultima_exploracion": "2026-09-19",
+  "version_pregunta": "AUTO-NC-v1-ee3e3a37bf9d"
+}

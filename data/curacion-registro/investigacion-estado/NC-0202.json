@@ -1,19 +1,19 @@
 {
   "alternativa_requerida": false,
   "alternativas": [],
-  "ciclos_sin_avance": 1,
-  "continuacion_pendiente": true,
-  "cursor_continuacion": "Inspeccionar ICPSR 118971 y Berumen (2007) sin repetir guías, IHSN ni ZIP de ponderadores; si sólo hay factores, mantener NC-0156.",
-  "estado": "continua",
+  "ciclos_sin_avance": 0,
+  "continuacion_pendiente": false,
+  "cursor_continuacion": "Registrar el PDF ya descargado tras corregir el validador; continuar sólo por Berumen o variables ejecutables, sin repetir UCLA/IHSN/guías/pesos.",
+  "estado": "candidata_publica",
   "evidencias": [
-    "forense/notas/2026-09-18-GEN2-38-investigacion-adq.md",
-    "data/manifiesto.yaml",
-    "data/raw/ennvih/ehh09w_all.zip",
-    "data/raw/ennvih/ehh09lw_all.zip"
+    "forense/notas/2026-09-19-GEN2-38-investigacion-adq.md",
+    "forense/PAQUETE-RECETAS-2026-09-19.md",
+    "data/raw/ennvih/ucla_mxfls_design_summary_2007_a.pdf",
+    "data/curacion-registro/cola-adquisicion-registro.tsv"
   ],
-  "frontera_no_examinada": "Metadatos/adjuntos públicos del depósito ICPSR 118971 y una copia pública independiente de Berumen (2007).",
+  "frontera_no_examinada": "Copia pública de Berumen (2007) o archivos que expongan identificadores ejecutables de UPM/estrato/réplicas.",
   "necesidad_id": "NC-0202",
-  "proxima_revision": "2026-09-19",
+  "proxima_revision": "2026-09-20",
   "suficiencia": {
     "conceptual": "ACREDITADA",
     "diseno": "PARCIAL",
@@ -24,8 +24,8 @@
     "seleccion_no_respuesta": "PARCIAL",
     "temporalidad": "ACREDITADA",
     "unidad": "ACREDITADA",
-    "uso_habilitado": "INCOMPATIBLE"
+    "uso_habilitado": "APTA_ALCANCE_MENOR"
   },
-  "ultima_exploracion": "2026-09-18",
+  "ultima_exploracion": "2026-09-19",
   "version_pregunta": "2026-09-15-ennvih-diseno-publico-v1"
 }
