@@ -50,3 +50,19 @@ Salida: `AP5_16_4`, punto `0.4275205077195218`, varianza WR por UPM
 `6.043648067277605e-06`, SE `0.0024583832222169117`, 281 estratos y 3,095
 UPM con respuesta válida. Es un control de punto y varianza del diseño; no
 modifica los RESULT ni el sello anterior.
+
+## Replay y vistas
+
+El replay propio del sucesor fue `VERIFY: REPRODUCE (CONTEXTO=IDENTICO ·
+RESULTADO=REPRODUCE)`. La publicación canónica se intentó exclusivamente por
+la interfaz vigente:
+
+```text
+python3 tools/corrida0.py registro --verifica --escribe --lote CALC-ENCUCI2020-RESPUESTA-POR-CONTACTO-0001-v1_1
+```
+
+En esta caja, dos intentos alcanzaron el límite de 30.2 s sin stdout ni stderr;
+`/tmp/rpc-registro.log` quedó en 0 bytes y no persistió proceso hijo. Por ello
+no se afirma asiento ni vistas publicados. Receta pendiente exacta: ejecutar
+ese mismo comando en una sesión con ventana mayor de 30 s y conservar su salida
+antes de confirmar `corridas.tsv`, `resultados.tsv`, `usos.tsv` y el asiento.
