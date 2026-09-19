@@ -24,6 +24,20 @@ Los puntos usan el factor persona. La incertidumbre usa 1,000 réplicas de boots
 
 Las llaves persona son únicas; los joins persona–hogar fueron m:1 sin expansión ni faltantes. Las seis variables P1 tienen cobertura total en el universo. Las particiones suman uno, la marginalización de P2 coincide con sus marginales hasta `3e-12`, y el contraste independiente reproduce `P(segsoc=1)` a `3.3e-13`. Un bootstrap independiente para 18–29 obtuvo EE 0.0014304 frente a 0.0013766 sellado (diferencia 0.0000538, dentro de la tolerancia focal congelada de 10%).
 
+## Comprobación final del marco de diseño
+
+La observación sobre el plan estrato–UPM queda cerrada sin modificar el CALC sellado. Con el mismo payload de 90,030,937 bytes y SHA-256 `3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06`, se comparó el conjunto exacto de pares de diseño de todas las 309,684 filas con factor persona finito y positivo contra el de las 217,080 personas del universo principal.
+
+Ambos conjuntos son idénticos: 10,211 pares estrato–UPM, 560 estratos y huella canónica SHA-256 `4db8099b048d52a0d70cb8084417d6f7e8f59c2700353528e24709dfe95a178a`. Hay cero pares exclusivos del marco, cero pares exclusivos del dominio, cero estratos perdidos y cero estratos con UPM única en ambos conjuntos. Tampoco hay claves `est_dis` o `upm` faltantes en ninguno. Las 92,604 personas con peso válido fuera del dominio no hacen desaparecer ninguna UPM.
+
+Para este estimando de dominio, cada persona fuera del dominio tendría indicador cero y, por tanto, aporte cero tanto al numerador como al denominador de todos los cocientes publicados. Omitir esas filas de aporte cero no cambia los totales por UPM. Como además el conjunto ordenado de pares y la partición de UPM por estrato son exactamente los mismos, el algoritmo multinomial consume el mismo plan de remuestreo con la misma semilla; no cambia puntos, réplicas, EE ni IC. No se requiere sucesor ni nueva corrida.
+
+Las claves faltantes se trataron explícitamente: una fila sin `est_dis` o `upm` no forma un par; el medidor sellado desactiva toda la precisión si encuentra cualquiera dentro del universo principal, sin imputarla ni crear una UPM artificial. El conteo observado fue cero. El tratamiento congelado de singleton —remuestrear la única UPM a sí misma— tampoco entra en operación porque el conteo fue cero tanto en marco como en dominio.
+
+Evidencia y mandato reproducible: `forense/analisis/enigh2022-perfil-estructural-cli-1/enigh2022_perfil_compara_marco_diseno.py data/raw/enigh2022_nc_csv.zip`. La salida agregada, sin identificadores de microdatos, está en `enigh2022-perfil-comparacion-marco-diseno.json`. No se reabrieron `segsoc`, residencia ni los resultados sustantivos.
+
+Para este cierre se integró `origin/main` vigente en la rama y se regeneraron `corridas.tsv`, `resultados.tsv` y `usos.tsv` exclusivamente mediante `corrida0 registro --escribe --lote CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003`; el lote no autorizó replay ajeno. Una segunda proyección informó `sin diferencia con el archivo en disco` para las tres vistas.
+
 ## Mapa RESULT → significado → demanda
 
 | RESULT | Significado | Relación con `CORR-0076` |

@@ -1,0 +1,46 @@
+{
+  "alcance": "comparacion agregada; no publica identificadores de estrato, UPM, hogar o persona",
+  "comparacion": {
+    "conjuntos_pares_identicos": true,
+    "estratos_en_marco_no_en_principal_n": 0,
+    "estratos_en_principal_no_en_marco_n": 0,
+    "filas_peso_valido_fuera_dominio_n": 92604,
+    "pares_en_marco_no_en_principal_n": 0,
+    "pares_en_principal_no_en_marco_n": 0,
+    "singleton_cambia": false
+  },
+  "definicion_marco": "todas las filas de poblacion con factor finito y positivo",
+  "definicion_principal": "prefijo parentesco 1/2/3/5/6, edad entera 18-96 y factor finito y positivo",
+  "filas_poblacion_n": 309684,
+  "marco_peso_valido": {
+    "claves_diseno": {
+      "faltante_alguna_n": 0,
+      "faltante_ambas_n": 0,
+      "faltante_solo_estrato_n": 0,
+      "faltante_solo_upm_n": 0
+    },
+    "estratos_n": 560,
+    "estratos_upm_unica_n": 0,
+    "filas_n": 309684,
+    "huella_conjunto_pares_sha256": "4db8099b048d52a0d70cb8084417d6f7e8f59c2700353528e24709dfe95a178a",
+    "pares_estrato_upm_n": 10211
+  },
+  "payload": {
+    "bytes": 90030937,
+    "sha256": "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06"
+  },
+  "tratamiento_claves_faltantes": "Las filas con est_dis o upm vacío no forman pares. En el medidor sellado, cualquier clave faltante dentro del universo principal desactiva toda precisión; no se imputa ni se crea una UPM.",
+  "universo_principal": {
+    "claves_diseno": {
+      "faltante_alguna_n": 0,
+      "faltante_ambas_n": 0,
+      "faltante_solo_estrato_n": 0,
+      "faltante_solo_upm_n": 0
+    },
+    "estratos_n": 560,
+    "estratos_upm_unica_n": 0,
+    "filas_n": 217080,
+    "huella_conjunto_pares_sha256": "4db8099b048d52a0d70cb8084417d6f7e8f59c2700353528e24709dfe95a178a",
+    "pares_estrato_upm_n": 10211
+  }
+}
