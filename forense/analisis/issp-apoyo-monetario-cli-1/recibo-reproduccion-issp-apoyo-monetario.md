@@ -1,4 +1,4 @@
-# Recibo de reproducción · CALC-ISSP2017-APOYO-MONETARIO-0001
+# Recibo ISSP de reproducción · CALC-ISSP2017-APOYO-MONETARIO-0001
 
 ## Identidad y separación
 
@@ -27,7 +27,7 @@ python3 data/corrida0/CALC-ISSP2017-APOYO-MONETARIO-0001/control_independiente.p
   --distribution forense/analisis/issp-apoyo-monetario-cli-1/distribucion-total-sexo.csv \
   --coverage forense/analisis/issp-apoyo-monetario-cli-1/cobertura-total-sexo.csv \
   --contrast forense/analisis/issp-apoyo-monetario-cli-1/contraste-mujeres-menos-hombres.csv \
-  --output forense/analisis/issp-apoyo-monetario-cli-1/control-independiente.json
+  --output forense/analisis/issp-apoyo-monetario-cli-1/control-independiente-issp-apoyo-monetario.json
 ```
 
 El control separado terminó `CONTROL-INDEPENDIENTE-OK`: delta máximo de masa 0 y delta máximo de punto `4.86e-13`, con particiones, reconciliaciones y reconstrucción total verdaderas.

@@ -1,4 +1,4 @@
-# ISSP México 2017 · primera fuente para pedir prestada una gran suma
+# Lectura ISSP México 2017 · primera fuente para pedir prestada una gran suma
 
 ## Resultado
 

@@ -96,6 +96,7 @@ def main() -> int:
     if not close(float(contrast["diferencia_menos_mas"]), p_w - p_m):
         raise SystemExit("CONTROL-FALLA:CONTRASTE")
     result = {
+        "control_id": "CONTROL-INDEPENDIENTE-ISSP-APOYO-MONETARIO-0001",
         "estado": "CONTROL-INDEPENDIENTE-OK",
         "no_importa_medidor": True,
         "n_mexico": len(frame),
