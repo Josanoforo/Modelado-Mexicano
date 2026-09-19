@@ -278,6 +278,34 @@ def prueba_reanudacion_estructurada_y_barrera_humana():
                "evidencia nueva exacta debe reanudar antes de la fecha")
 
 
+def prueba_revision_por_evento_no_rompe_ni_repite():
+    with tempfile.TemporaryDirectory() as td:
+        raiz = Path(td)
+        cfg = _fixture_investigacion(raiz)
+        (raiz / "estado").mkdir()
+        (raiz / "estado" / "NC-A.json").write_text(json.dumps({
+            "necesidad_id": "NC-A", "version_pregunta": "v1",
+            "ultima_exploracion": "2026-09-18", "estado": "barrera",
+            "proxima_revision": "EVENTO: firma de mesa",
+        }), encoding="utf-8")
+        seleccion = I.selecciona(cfg, dt.date(2026, 9, 19), 3, raiz=raiz)
+        afirma(not seleccion["elegidos"] and any(
+            x["id"] == "NC-A" and "EVENTO: firma de mesa" in x["razon"]
+            for x in seleccion["excluidos"]),
+            f"una revisión por evento debe esperar sin intentar parsearse: {seleccion}")
+
+        investigacion = {"elegidos": [{"id": "NC-A", "version_pregunta": "v1"}],
+                         "excluidos": []}
+        previo = {"investigaciones_atendidas": {"NC-A": {
+            "version_pregunta": "v1", "fecha_imputacion": "2026-09-18",
+            "proxima_revision": "EVENTO: firma de mesa", "run_id": "RUN-1",
+        }}}
+        filtrada = I._excluye_atendidas_runtime(
+            investigacion, previo, dt.date(2026, 9, 19), set())
+        afirma(not filtrada["elegidos"],
+               "el checkpoint por evento no debe repetirse al día siguiente")
+
+
 CAMPOS = ["fila_origen", "fuente_canonica", "fuente_canonica_normalizada",
           "discordancia_alias", "estado_A4A5", "prioridad", "url_conocida",
           "ids_manifiesto", "origen", "nota"]
@@ -368,6 +396,7 @@ def main() -> int:
     prueba_demanda_explica_todo_elemento_gen2_vigente()
     prueba_conciliacion_exige_identidad_y_compatibilidad_documentada()
     prueba_reanudacion_estructurada_y_barrera_humana()
+    prueba_revision_por_evento_no_rompe_ni_repite()
     prueba_altas_concurrentes_no_pierden_fila_y_vista_converge()
     prueba_cableado_y_calendario_de_produccion()
     if FALLOS:
@@ -375,7 +404,7 @@ def main() -> int:
         for fallo in FALLOS:
             print("  ·", fallo)
         return 1
-    print("OK -- test_adq_descubrimiento.py: 9 grupos, 0 fallos")
+    print("OK -- test_adq_descubrimiento.py: 10 grupos, 0 fallos")
     return 0
 
 

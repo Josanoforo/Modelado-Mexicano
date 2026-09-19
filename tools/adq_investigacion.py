@@ -28,6 +28,11 @@ def _fecha(valor: object) -> dt.date | None:
     return dt.date.fromisoformat(str(valor))
 
 
+def _revision_por_evento(valor: object) -> bool:
+    """Distingue una espera humana explícita de una fecha ISO."""
+    return isinstance(valor, str) and valor.strip().upper().startswith("EVENTO:")
+
+
 def _ahora() -> dt.datetime:
     return dt.datetime.now(dt.timezone.utc)
 
@@ -434,7 +439,15 @@ def selecciona(cfg: dict, corte: dt.date, maximo: int = 3,
             excluidos.append({"id": ident, "razon":
                               f"reserva runtime de {reserva.get('owner')} hasta {reserva.get('vence')}"})
             continue
-        proxima = _fecha(estado.get("proxima_revision") or item.get("proxima_revision"))
+        revision = estado.get("proxima_revision") or item.get("proxima_revision")
+        if (_revision_por_evento(revision) and ident not in cambios_materiales and
+                not _evidencia_nueva_aplicable(estado, item)):
+            excluidos.append({
+                "id": ident,
+                "razon": f"revisión condicionada a {revision}",
+            })
+            continue
+        proxima = _fecha(revision)
         if (proxima and corte < proxima and ident not in nombradas and
                 ident not in cambios_materiales and
                 not _evidencia_nueva_aplicable(estado, item)):
@@ -1360,11 +1373,14 @@ def _excluye_atendidas_runtime(investigacion: dict, previo: dict,
     for item in investigacion["elegidos"]:
         ident = item["id"]
         marca = atendidas.get(ident, {})
-        proxima = _fecha(marca.get("proxima_revision"))
+        revision = marca.get("proxima_revision")
+        espera_evento = _revision_por_evento(revision)
+        proxima = None if espera_evento else _fecha(revision)
         misma_version = marca.get("version_pregunta") == item.get("version_pregunta")
         atendida_hoy = marca.get("fecha_imputacion") == corte.isoformat()
         if (misma_version and ident not in cambiadas and
-                ((proxima and corte < proxima) or (not proxima and atendida_hoy))):
+                (espera_evento or (proxima and corte < proxima) or
+                 (not proxima and atendida_hoy))):
             investigacion["excluidos"].append({
                 "id": ident,
                 "razon": (f"atendida por {marca.get('run_id')} para esta versión; "
