@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[3]
-EVIDENCE = Path(__file__).with_name("evidencia-replay-aislado.json")
+EVIDENCE = Path(__file__).with_name("evidencia-replay-encig-cruces-historicos-2026-09-19.json")
 REGISTER = ROOT / "forense/replay-evidencia.tsv"
 ALLOWED = {
     "CALC-ENCIG2023-CRUCES-HISTORICOS-0002",
@@ -72,7 +72,7 @@ def main() -> int:
             "entorno": "CAJA (Ubuntu/WSL2) con corpus montado",
             "procedencia": "VERIFY-AISLADO · GEN2-ENCIG-CRUCES-HISTORICOS-CLI-1",
             "alcance": "replay de los dos CALC consumidos por 02-seleccion.json; sin adopción ni apertura de 2025",
-            "nota": "forense/analisis/gen2-encig-cruces-historicos-cli-1/evidencia-replay-aislado.json",
+            "nota": "forense/analisis/gen2-encig-cruces-historicos-cli-1/evidencia-replay-encig-cruces-historicos-2026-09-19.json",
         })
     with REGISTER.open("w", encoding="utf-8", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=HEAD, delimiter="\t", lineterminator="\n")

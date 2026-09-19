@@ -66,7 +66,8 @@ idénticos a `02-seleccion.json`; una prueba de regresión exige esa igualdad.
 El replay aislado de ambos CALC devuelve `RESULTADO=REPRODUCE` y
 `CONTEXTO=DISTINTO` por `codigo_distinto`: el blob vigente contiene la
 corrección posterior del selector, mientras los blobs y sellos congelados se
-preservan. La salida estructurada está en `evidencia-replay-aislado.json` y
+preservan. La salida estructurada está en
+`evidencia-replay-encig-cruces-historicos-2026-09-19.json` y
 sus dos asientos vigentes en `forense/replay-evidencia.tsv`. La proyección
 acotada publicó sólo 2 corridas y 1 156 RESULT propios (580 de 2023 y 576 de
 2021); añadió cero usos y verificó como multiconjunto que ninguna fila ajena
