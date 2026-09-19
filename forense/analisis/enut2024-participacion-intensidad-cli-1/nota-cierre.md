@@ -55,6 +55,10 @@ no representan tiempo exclusivo del reloj. No se caparon extremos.
   consistente con bootstrap `[0.758998, 0.787046]`.
 * Cuatro pruebas sintéticas dirigidas pasan.
 * Cero estratos contienen una sola UPM.
+* Replay dirigido posterior a COMMIT-2: `REPRODUCE`, contexto `IDENTICO`.
+* `corrida0 registro --verifica --escribe` terminó con `REPLAY-PISADO
+  (NC-0094)` por seis corridas ajenas; no escribió ninguna vista. No se usó
+  `--lote`, conforme al encargo. Evidencia en `replay-registro.txt`.
 
 ## CONSUMIDO
 
@@ -69,4 +73,7 @@ No se corrieron ejes de ocupación, entidad ni otros instrumentos. No se
 estimaron efectos causales ni una descomposición causal. Quedan a mesa la
 adopción, el contador y si desea un sucesor que trate 97/98 como edades reales
 frente al rango publicado por el FD. `CALC-ENUT-0001` permanece intacto y no
-es reemplazado por esta unidad persona.
+es reemplazado por esta unidad persona. La publicación en las vistas derivadas
+queda pendiente de un lote autorizado que resuelva las seis transiciones
+ajenas listadas en `replay-registro.txt`; no afecta el sello ni el replay
+dirigido de este CALC.
