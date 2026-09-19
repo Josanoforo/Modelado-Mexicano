@@ -69,3 +69,67 @@ replay ajeno aceptado. Una segunda proyección fue estable byte a byte:
 Estado derivado final: `SELLADA`; contador y adopción siguen
 `PENDIENTE-DE-MESA`. La URL del PR y el SHA de punta se reportan en la entrega
 del ejecutor, sin afirmar merge.
+
+## Continuación: alcance de concentración y cronología de exposición
+
+La aclaración posterior preserva 0001 y añade
+`CALC-ENFIH2019-SALDOS-AFORE-CONCENTRACION-0001`. El dominio de concentración
+de 0001 —totales completos positivos— fue una elección admisible bajo el texto
+original “monto válido y total positivo”; no se reescribió ni se declaró
+erróneo. La unidad sucesora mide el 10% superior entre todos los totales
+completos, incluidos ceros, y compara ambos dominios con réplicas compartidas.
+
+### Cronología verificable
+
+1. **Antes de COMMIT-1 de 0001:** durante la acreditación se abrieron
+   `P9_10/P9_11` y se observaron 1,660 hogares con `V_AFORE>0` y al menos un
+   tenedor con código especial. Esto quedó declarado en el preregistro que
+   entró en `dbc34849fdf6`; por tanto nunca se afirma congelación anterior a
+   toda apertura de respuestas ni ceguera.
+2. **Después de `dbc34849fdf6`:** se ejecutó 0001. Su clasificación completa
+   produjo 1,681 parciales en total, publicó el dominio positivo y quedó
+   sellada en `c57cc3f34b4d`; replay y registro siguieron en `7974c60778f8`.
+3. **Continuación actual:** `72e3d72` integró la base vigente sin tocar los
+   artefactos de 0001. `babd8ac9a00c` congeló el nuevo spec, medidor, contrato
+   y pruebas, declarando exposición completa a 0001. Solo después se ejecutó;
+   `f336f7f` publicó su ejecución y sello.
+
+### Resultado adicional
+
+| Dominio | n | Masa | Top 10% del saldo | IC95 |
+|---|---:|---:|---:|---:|
+| Todos los completos, ceros incluidos | 3,637 | 7,332,887 | 58.5915% | 43.5462–69.7493% |
+| Solo completos positivos | 3,601 | 7,271,752 | 58.4482% | 43.3330–69.6356% |
+| Diferencia todos−positivos | — | — | +0.1433 pp | +0.0850 a +0.2239 pp |
+
+Los 36 ceros válidos agregan masa, no saldo. Su inclusión eleva levemente la
+fracción porque el decil superior del dominio completo debe abarcar más masa.
+El comparativo positivo coincide exactamente con 0001. Los tres intervalos
+usan 2,000/2,000 réplicas válidas compartidas.
+
+### Qué quedó aclarado y qué se midió
+
+- **Aclarado documentalmente:** el resultado de 0001 responde al dominio
+  positivo y no se invalida; la exposición preparatoria precedió su COMMIT-1.
+- **Medido adicionalmente:** concentración con ceros dentro del denominador
+  poblacional, concentración positiva reestimada y diferencia pareada.
+- **Reserva vigente:** solo 37.16% de la masa de tenedores tiene total completo;
+  parciales y desconocidos siguen excluidos sin imputación.
+
+La unidad sucesora quedó sellada y su replay aislado dio
+`REPRODUCE · CONTEXTO=IDENTICO`, 18/18 RESULT y 4/4 inputs. Un cálculo
+independiente reprodujo n, masa, ambos puntos y la diferencia. Contador,
+adopción y cualquier uso en el modelo permanecen `PENDIENTE-DE-MESA`.
+
+`corrida0 registro --escribe`, sin `--lote`, publicó la corrida y sus 18
+RESULT y regeneró las vistas sobre la base integrada. Una segunda proyección
+fue estable byte a byte:
+
+- `corridas.tsv`: `a7f4a15bc727119f7dcfb6b2431d6052380c8ea2fa9b87d1f2f71ab3850b55c8`
+- `resultados.tsv`: `a680483c4141ee8032f181b6a1859e9fcf26629662751800673032bd15f8c962`
+- `usos.tsv`: `939a06e39277a184490263b24cd86a537301cf0bed918271eba51c68e95ef1bd`
+
+Los hashes de los siete artefactos sellados de 0001 permanecieron idénticos a
+los del inicio de esta continuación. La deriva adicional de las vistas procede
+de la base actual integrada y del generador vigente; no se resolvió a mano ni
+se aceptó replay ajeno.

@@ -114,3 +114,29 @@ No hay evidencia aquí de planeación, preferencias, aportaciones voluntarias,
 flujo anual de ahorro, formalidad o estabilidad laboral. No se construye serie
 temporal con una ola, no se actualizan pesos de 2019 y no se usa `CAT_POS`
 como formalidad.
+
+## Complemento posterior: concentración con ceros válidos
+
+La aclaración de mesa posterior a 0001 pidió completar el dominio poblacional
+del decil superior. `CALC-ENFIH2019-SALDOS-AFORE-CONCENTRACION-0001` mantiene
+los 36 hogares con total completo cero dentro de la masa que define el 10%
+superior. No cambia medias, medianas ni estados de 0001.
+
+| Dominio | n | Masa ponderada | Cobertura entre tenedores | Fracción del saldo del 10% superior (IC95) |
+|---|---:|---:|---:|---:|
+| Todos los tenedores con total completo, cero incluido | 3,637 | 7,332,887 | 37.16% | **58.5915%** (43.5462–69.7493%) |
+| Tenedores con total completo positivo | 3,601 | 7,271,752 | 36.85% | **58.4482%** (43.3330–69.6356%) |
+| Diferencia, todos menos positivos | — | — | — | **+0.1433 pp** (+0.0850 a +0.2239 pp) |
+
+El valor positivo reproduce exactamente el resultado sellado de 0001. Al
+incluir ceros, la masa que define el decil aumenta, pero el denominador
+monetario no cambia porque esos hogares aportan saldo cero. Por ello el 10%
+superior abarca algo más de masa con saldo positivo y su fracción aumenta
+ligeramente. La diferencia es pequeña frente a la amplitud de ambos IC y no
+altera la lectura sustantiva de concentración alta dentro del dominio cubierto.
+
+El contraste usa las mismas 2,000 réplicas del diseño y recalcula ambos
+umbrales en cada una; 2,000/2,000 fueron válidas. Sigue vigente la reserva más
+importante: 62.84% de la masa de tenedores carece de total completo. Ni el
+dominio original ni el complementario describen a esos hogares, y ninguno
+autoriza imputación o extrapolación de un stock nacional.
