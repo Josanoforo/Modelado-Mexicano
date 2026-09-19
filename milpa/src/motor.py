@@ -161,6 +161,20 @@ def evaluar(celda_d, catalogo, matriz_B, *, semilla=0):
     )
 
 
+def estimar_segmento(celda_id, *, ruta_estimadores=None):
+    """Consulta adicional -- ACTO GEN2-MARCADOR-REDISENO-1 (adenda, P2).
+
+    Devuelve la emisión exacta (punto + IC95 + unidad_dato +
+    tipo_incertidumbre) de una celda de segmento ya adoptada por firma de
+    mesa (`decisiones.tsv:adopcion:piso-C2-20-celdas`), leída de
+    `milpa/estimadores-por-segmento.yaml` (DERIVADO por
+    `tools/marcador_segmento.py`), o `None` si `celda_id` no está en ese
+    YAML derivado -- p. ej. una celda marginal SIN-PISO. JAMÁS sustituye un
+    nacional: es una consulta aparte, no un input de `evaluar()`/`correr()`."""
+    from . import estimadores_segmento as _es
+    return _es.estimador_de_celda(celda_id, ruta=ruta_estimadores)
+
+
 def correr(*, semilla=0, ruta_procedencia=None, ruta_catalogo=None,
            dir_celdas=None):
     """La rebanada completa, de punta a punta. Determinista por construcción."""
@@ -186,5 +200,5 @@ def correr(*, semilla=0, ruta_procedencia=None, ruta_catalogo=None,
     }
 
 
-__all__ = ["Resultado", "celdas_semilla", "evaluar", "correr", "SinMagnitud",
+__all__ = ["Resultado", "celdas_semilla", "evaluar", "correr", "estimar_segmento", "SinMagnitud",
            "VEREDICTOS"]

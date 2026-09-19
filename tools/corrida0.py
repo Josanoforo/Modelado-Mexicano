@@ -4009,9 +4009,55 @@ def _filas_registro(verifica: bool = False) -> dict:
         elif f["generacion"] == GENERACION_LEGADO and not f["sucesor"]:
             avisos.append(f"LEGACY-SIN-SUCESOR: {f['resultado_id']} es "
                           f"{GENERACION_LEGADO} y no declara sucesor")
+
+    # ── ACTO GEN2-MARCADOR-REDISENO-1 (adenda 19/sep/2026), P2 ─────────────
+    # Proyecta como usos activos las celdas de `milpa/estimadores-por-
+    # segmento.yaml` (DERIVADO por `tools/marcador_segmento.py` desde las
+    # celdas-D con `champion_actual` != NINGUNO y RESULT sellado) citando
+    # `adopcion:piso-C2-20-celdas` (decisiones.tsv, firma de mesa). Aditivo
+    # y posterior a las validaciones de arriba a propósito: estas 20
+    # identidades no son un nodo de `tramite.yaml`/`procedencia.yaml`, son
+    # una adopción por firma directa sobre el catálogo -- nunca
+    # `IMPLEMENTADO-PROPUESTO`, nunca escriben `tramite.yaml`.
+    for cid, marca in _estimadores_segmento_para_status(indice_resultados).items():
+        filas_usos.append({
+            "resultado_id": marca["resultado_id"], "consumidor": f"marcador:{cid}",
+            "tipo_uso": "ADOPCION-POR-FIRMA", "activo": "SI",
+            "reglas_impacto": marca["regla_origen"],
+            "generacion_leida": "GEN2", "corrida0_generacion": "GEN2",
+            "corrida0_resultado_id": marca["resultado_id"],
+            "fuente_replay": "NO-CORRIDA",
+            "uso_solicitado": "ADOPTADO-POR-FIRMA",
+            "origen_numerico": "GEN2-CELDA-D",
+            "aptitud_uso": "APTA-ADOPCION-FIRMA",
+            "motivo_aptitud": "adopcion:piso-C2-20-celdas (firma de mesa 17/sep/2026)",
+            "camino_linaje": f"marcador:{cid} -> {marca['resultado_id']}",
+            "valor_materializado": marca.get("punto", NO_DECLARADO),
+        })
+
     return {"corridas": filas_corridas, "resultados": filas_resultados,
             "usos": filas_usos, "avisos": avisos,
             "fuentes_replay": fuentes_replay}
+
+
+def _estimadores_segmento_para_status(indice_resultados: dict) -> dict:
+    """Lee `milpa/estimadores-por-segmento.yaml` (si existe) y devuelve solo
+    las celdas cuyo `resultado_id` es de verdad un RESULT sellado en esta
+    corrida -- nunca se inventa una cita. Ausente el YAML (P2 no corrió
+    todavía, o el arbol no lo trae) devuelve `{}` sin PARAR el registro."""
+    ruta = RAIZ / "milpa" / "estimadores-por-segmento.yaml"
+    if not ruta.exists():
+        return {}
+    try:
+        crudo = _yaml_safe_load(ruta.read_text(encoding="utf-8")) or {}
+    except (OSError, yaml.YAMLError):
+        return {}
+    out = {}
+    for cid, marca in (crudo.get("celdas") or {}).items():
+        rid = marca.get("resultado_id")
+        if rid and rid in indice_resultados:
+            out[cid] = marca
+    return out
 
 
 def _verifica_ciclos(filas: list[dict]) -> None:
