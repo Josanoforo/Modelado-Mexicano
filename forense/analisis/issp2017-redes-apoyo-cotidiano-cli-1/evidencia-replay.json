@@ -1,0 +1,21 @@
+{
+  "calc_id": "CALC-ISSP2017-REDES-APOYO-COTIDIANO-0001",
+  "comando": "python3 tools/corrida0.py verify CALC-ISSP2017-REDES-APOYO-COTIDIANO-0001",
+  "contexto_replay": "IDENTICO",
+  "corrida_id": "CALC-ISSP2017-REDES-APOYO-COTIDIANO-0001--b6365529136d",
+  "fecha_verificacion": "2026-09-19",
+  "identidad": {
+    "script_blob_sha256": "d5ed6e8cb3467ac06435ead0445e610483bfbdb5f954788cad184a8b7c5a2cf4",
+    "spec_yaml_sha256": "9cb213fdbd4889353103715f0399e82df76995f9da226ce54b49807f12e039df"
+  },
+  "inputs_coinciden": 5,
+  "problemas_replay": [],
+  "resultado_replay": "REPRODUCE",
+  "resultados_comparados": 22,
+  "resultados_con_delta_no_cero": 0,
+  "sello": "COINCIDE",
+  "tolerancia": {
+    "abs": 1e-10,
+    "tipo": "flotante"
+  }
+}

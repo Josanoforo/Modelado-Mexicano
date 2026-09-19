@@ -1,0 +1,27 @@
+{
+ "resultados": {
+  "RESULT-ENUTPI-A-CON-BRECHA-INTENSIDAD": 12.971625937044424,
+  "RESULT-ENUTPI-A-CON-BRECHA-MEDIA": 8.365919714639958,
+  "RESULT-ENUTPI-A-CON-BRECHA-PARTICIPACION": 0.0819239586961723,
+  "RESULT-ENUTPI-A-CON-INTENSIDAD-NACIONAL": 21.43951356185376,
+  "RESULT-ENUTPI-A-CON-MEDIA-NACIONAL": 11.115436729568984,
+  "RESULT-ENUTPI-A-CON-PARTICIPACION-NACIONAL": 0.5184556402131304,
+  "RESULT-ENUTPI-G-CONTRASTES-N-FILAS": 90,
+  "RESULT-ENUTPI-G-CONTRASTES-SHA256": "f79d7e6335910e5e453e350e3d1d99afeef5cc1c1234e275b2cdd85f802d6d5b",
+  "RESULT-ENUTPI-G-ESTIMACIONES-N-FILAS": 108,
+  "RESULT-ENUTPI-G-ESTIMACIONES-SHA256": "6359a5c9d9ae31c146938b3ed1841fff72867c7a13f0ebdaad3aeb51d737b629",
+  "RESULT-ENUTPI-G-IDENTIDAD-MAX-ERROR": 3.552713678800501e-15,
+  "RESULT-ENUTPI-G-INCIDENCIAS": "{\"diseno_faltante\": 0, \"edad_faltante_o_fuera_12_96\": 162, \"fac_per_invalido\": 0, \"filas_fuera_universo_comun\": 162, \"horas_por_variable\": {\"CUID_ESP_INT_HOG_CON_CP\": {\"faltante_no_numerico\": 0, \"negativo\": 0, \"sobre_maximo_fd\": 0}, \"CUID_ESP_INT_HOG_SIN_CP\": {\"faltante_no_numerico\": 0, \"negativo\": 0, \"sobre_maximo_fd\": 0}, \"CUID_INT_0A5_CON_CP\": {\"faltante_no_numerico\": 0, \"negativo\": 0, \"sobre_maximo_fd\": 0}, \"CUID_INT_0A5_SIN_CP\": {\"faltante_no_numerico\": 0, \"negativo\": 0, \"sobre_maximo_fd\": 0}, \"CUID_INT_60MAS_CON_CP\": {\"faltante_no_numerico\": 0, \"negativo\": 0, \"sobre_maximo_fd\": 0}, \"CUID_INT_60MAS_SIN_CP\": {\"faltante_no_numerico\": 0, \"negativo\": 0, \"sobre_maximo_fd\": 0}, \"CUID_INT_6A14_CON_CP\": {\"faltante_no_numerico\": 0, \"negativo\": 0, \"sobre_maximo_fd\": 0}, \"CUID_INT_6A14_SIN_CP\": {\"faltante_no_numerico\": 0, \"negativo\": 0, \"sobre_maximo_fd\": 0}}, \"llavemod_duplicada\": 0, \"llavemod_faltante\": 0, \"sexo_fuera_1_2\": 0}",
+  "RESULT-ENUTPI-G-INCIDENCIAS-SHA256": "a46b4b14cdf57c43dc043ee4599eee56642632614980047b53a4909f28f55552",
+  "RESULT-ENUTPI-G-INPUT-BD-SHA256": "25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba",
+  "RESULT-ENUTPI-G-INPUT-FD-SHA256": "4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58",
+  "RESULT-ENUTPI-G-MASA-VALIDA-COMUN": 107537532.0,
+  "RESULT-ENUTPI-G-N-ESTRATOS-UPM-UNICA": 0,
+  "RESULT-ENUTPI-G-N-MARCO": 74053,
+  "RESULT-ENUTPI-G-N-VALIDO-COMUN": 73891,
+  "RESULT-ENUTPI-G-SALIDA-CONTRASTES": "forense/analisis/enut2024-participacion-intensidad-cli-1/contrastes.csv",
+  "RESULT-ENUTPI-G-SALIDA-ESTIMACIONES": "forense/analisis/enut2024-participacion-intensidad-cli-1/estimaciones.csv",
+  "RESULT-ENUTPI-G-SALIDA-INCIDENCIAS": "forense/analisis/enut2024-participacion-intensidad-cli-1/incidencias.json"
+ },
+ "spec_id": "CALC-ENUT2024-PARTICIPACION-INTENSIDAD-0001"
+}

@@ -1,0 +1,94 @@
+calc_id: CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001
+spec_md: spec.md
+spec_md_sha256: 5ed2a697884d864584fcdf872516d9ebe96543a321f095f3f85cc281e8651680
+script: data/corrida0/CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: DESCRIPTIVO-ASOCIATIVO
+  cuenta_gen2: SI
+  adopcion: PENDIENTE-DE-MESA
+  exposicion_resultados: "DECLARADA: CALC-ENCUCI-0001, prereg ENCUCI-MORDIDA-PROTESTA y resolución F2 leídos antes del congelamiento; no hay ceguera"
+
+inputs:
+  - {id: encuci2020_bd_dbf, origen: manifiesto}
+  - id: IN-ENCUCI2020-ER-PREREG
+    origen: repo
+    ruta: forense/prereg-caja/ENCUCI2020-EXPOSICION-RESPUESTA-0001/spec-v1_0.md
+    sha256: b1aa0fe81acdc2f6405be982270a4c77ec6dddf45375f0695d29d12527bc218f
+
+variables:
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: ID_PER, rol: llave de persona seleccionada}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_1, rol: contacto policía de tránsito/seguridad pública; 1=Sí 2=No 9=NS/NR}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_2, rol: contacto Ministerio Público; 1=Sí 2=No 9=NS/NR}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_3, rol: contacto jueces; 1=Sí 2=No 9=NS/NR}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_4, rol: contacto salud pública; 1=Sí 2=No 9=NS/NR}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_5, rol: contacto educación pública; 1=Sí 2=No 9=NS/NR}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_6, rol: contacto seguridad social/bienestar; 1=Sí 2=No 9=NS/NR}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_7, rol: contacto gobierno municipal/alcaldía; 1=Sí 2=No 9=NS/NR}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_8, rol: contacto gobierno estatal/federal; 1=Sí 2=No 9=NS/NR}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_9, rol: contacto Guardia Nacional; 1=Sí 2=No 9=NS/NR}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_10, rol: contacto Ejército/Marina; 1=Sí 2=No 9=NS/NR}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_17, rol: solicitud de dádiva; 1=Sí 2=No 9=NS/NR blanco=salto}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_18, rol: entrega de dádiva; 1=Sí 2=No 9=NS/NR blanco=salto}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: FAC_SEL, rol: ponderador de persona seleccionada}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: EST_DIS, rol: estrato de diseño opaco como texto}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: UPM_DIS, rol: UPM de diseño opaca como texto}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: DOMINIO, rol: categoría nativa U/C/R}
+
+universo: >-
+  ENCUCI 2020, persona seleccionada de 15 años o más, una ola. Marco de
+  estimación: todas las filas de SEC_4_5 con FAC_SEL finito y positivo.
+  Exposición por inciso usa respuesta 1/2; cualquiera usa la lógica trivaluada
+  congelada; conteo requiere diez respuestas 1/2; respuesta conjunta requiere
+  contacto acreditado y AP5_17/AP5_18 ambos 1/2.
+filtros: >-
+  Ningún 9, blanco o código ajeno se convierte en No. Conteo exacto excluye
+  cualquier vector incompleto. Los dominios de respuesta añaden sólo el filtro
+  declarado de conteo o DOMINIO; no se cruzan. Denominador nulo queda null.
+ponderador: FAC_SEL sin normalizar; unidad persona seleccionada.
+transformacion: >-
+  Contacto cualquiera: algún 1 => Sí; diez 2 => No; resto desconocido. Conteo:
+  suma de 1 con diez códigos válidos. Conjunta AP5_17/AP5_18: ninguna 2/2,
+  sólo solicitud 1/2, sólo entrega 2/1, ambas 1/1.
+estimando: >-
+  Proporciones descriptivas de exposición, conteo 0/1/2/3+, distribución
+  conjunta y condicionales para total, conteos 1/2/3+ y DOMINIO U/C/R;
+  contrastes asociativos 2-1 y 3+-1, nunca causales ni por trámite.
+dependencias_materiales: [numpy]
+
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap de UPM_DIS con reemplazo dentro de EST_DIS sobre marco completo; percentiles 2.5/97.5
+  singleton: autorremuestreo; aporta varianza cero y se rotula
+  hash_medidor_sha256: 25d1341f0ab1481fa6422ae2f43f2997386c40ff706da659efd541cea66bbf80
+  hash_prueba_sha256: 7cc7b0c48c10bc76665a5633dbc36a0d001a235c88205dbb336de246a6e88685
+  hash_descriptor_sha256: 6cd6f7475a0b5db27a84cf0e047db5b7ed98f73c3480a9e64ea084bc7d475638
+  hash_payload_sha256: 0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283
+  hash_prereg_sha256: b1aa0fe81acdc2f6405be982270a4c77ec6dddf45375f0695d29d12527bc218f
+  hash_encargo_sha256: fc28eee37de78d200f4da84b101ff9085505ee4bf9a2a5cdc273814de20470ca
+
+seed: {aplica: true, valor: 20260919, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: misma semilla y sumas deterministas; enteros/textos comparan exacto
+
+resultados:
+  - {id: RESULT-ENCUCI2020-ER-N-FILAS, tipo: entero, unidad: filas activas de SEC_4_5}
+  - {id: RESULT-ENCUCI2020-ER-N-PONDERADOR-VALIDO, tipo: entero, unidad: filas con FAC_SEL finito positivo}
+  - {id: RESULT-ENCUCI2020-ER-MASA-PONDERADA, tipo: flotante, unidad: suma FAC_SEL del marco}
+  - {id: RESULT-ENCUCI2020-ER-LLAVE-IDPER, tipo: texto, unidad: UNICA o NO-UNICA en el marco}
+  - {id: RESULT-ENCUCI2020-ER-N-ESTRATOS, tipo: entero, unidad: EST_DIS distintos del marco}
+  - {id: RESULT-ENCUCI2020-ER-N-UPM, tipo: entero, unidad: pares EST_DIS/UPM_DIS distintos del marco}
+  - {id: RESULT-ENCUCI2020-ER-N-ESTRATOS-SINGLETON, tipo: entero, unidad: estratos con una UPM}
+  - {id: RESULT-ENCUCI2020-ER-METODO-IC, tipo: texto, unidad: método inferencial efectivamente aplicable}
+  - {id: RESULT-ENCUCI2020-ER-EXPOSICION-POR-TIPO, tipo: texto, unidad: tabla JSON de proporciones/IC/n/masa y desconocimiento para diez tipos}
+  - {id: RESULT-ENCUCI2020-ER-CONTACTO-CUALQUIERA, tipo: texto, unidad: tabla JSON de contacto cualquiera trivaluado}
+  - {id: RESULT-ENCUCI2020-ER-COBERTURA-CONTEO-EXACTO, tipo: proporcion, unidad: masa ponderada con diez respuestas válidas sobre marco, escala 0-1, permite_no_estimable: true}
+  - {id: RESULT-ENCUCI2020-ER-CONTEO-TIPOS, tipo: texto, unidad: tabla JSON 0/1/2/3+ con IC de diseño}
+  - {id: RESULT-ENCUCI2020-ER-RESPUESTA-CONJUNTA, tipo: texto, unidad: tabla JSON exhaustiva por siete grupos con coberturas y condicionales}
+  - {id: RESULT-ENCUCI2020-ER-CONTRASTES, tipo: texto, unidad: tabla JSON de contrastes con covarianza de diseño}
+  - {id: RESULT-ENCUCI2020-ER-CONTROL-NACIONAL, tipo: texto, unidad: cotejo JSON con RESULT sellado equivalente; no hallazgo nuevo}
+  - {id: RESULT-ENCUCI2020-ER-VALIDACION-PARTICION, tipo: flotante, unidad: suma de cuatro celdas menos uno, permite_no_estimable: true}
+  - {id: RESULT-ENCUCI2020-ER-VALIDACION-UNION, tipo: flotante, unidad: unión menos solicitud+entrega-ambas, permite_no_estimable: true}
