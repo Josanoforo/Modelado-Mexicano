@@ -22,6 +22,7 @@ python3 tools/corrida0.py spec-check CALC-ISSP2017-APOYO-MONETARIO-0001
 python3 tools/corrida0.py preflight CALC-ISSP2017-APOYO-MONETARIO-0001
 python3 tools/corrida0.py run CALC-ISSP2017-APOYO-MONETARIO-0001
 python3 tools/corrida0.py verify CALC-ISSP2017-APOYO-MONETARIO-0001
+python3 forense/analisis/issp-apoyo-monetario-cli-1/publica_tabla_descriptiva.py
 python3 data/corrida0/CALC-ISSP2017-APOYO-MONETARIO-0001/control_independiente.py \
   --dta-zip '/mnt/c/Users/PC0/Descargas MX/ZA6980_v2-0-0.dta.zip' \
   --distribution forense/analisis/issp-apoyo-monetario-cli-1/distribucion-total-sexo.csv \
@@ -34,4 +35,11 @@ El control separado terminó `CONTROL-INDEPENDIENTE-OK`: delta máximo de masa 0
 
 ## Estado de publicación
 
-La corrida y sus tablas están selladas en esta rama. No se modificaron F6, M, L, motor, marcador, adopción, crosswalk, theta, canon, firmas ni NC-0161/0162. No se asignó clasificación contable ni adopción. Los asientos globales de replay/vistas quedan pendientes de la integración secuencial indicada por el lanzamiento y de una decisión posterior explícita; el PR entrega la operación completa sin fusionarla.
+Tras la integración de #872 (`33650571`) y #871 (`b0610607`), la rama incorporó `main`. La verificación dirigida concluyó `REPRODUCE/IDENTICO` para 11/11 RESULT y 5/5 inputs; quedó asentada en `forense/replay-evidencia.tsv`. Un intento de publicación con `registro --verifica --escribe --lote CALC-ISSP2017-APOYO-MONETARIO-0001` se detuvo, sin escribir, ante 41 transiciones potenciales en 24 corridas ajenas. No se amplió el lote. Después se publicó desde el asiento propio mediante:
+
+```bash
+python3 tools/corrida0.py registro --escribe \
+  --lote CALC-ISSP2017-APOYO-MONETARIO-0001
+```
+
+El resultado canónico añade una corrida y 11 RESULT: `corridas.tsv` quedó en 212 filas, `resultados.tsv` en 7,267 y `usos.tsv` permaneció idéntico en 208. No hubo transición de replay ajena, consumidor nuevo ni adopción. La corrida y sus tablas conservan el sello. No se modificaron parámetros, F6, M, L, motor, marcador, adopción, crosswalk, theta, firmas, slots ni NC-0161/0162; `cuenta_gen2` permanece `PENDIENTE-DE-MESA`. El PR entrega la operación publicada sin fusionarla.

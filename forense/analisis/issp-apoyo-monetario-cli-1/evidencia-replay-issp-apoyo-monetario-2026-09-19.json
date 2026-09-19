@@ -1,0 +1,34 @@
+{
+  "calc_id": "CALC-ISSP2017-APOYO-MONETARIO-0001",
+  "comando": "python3 tools/corrida0.py verify CALC-ISSP2017-APOYO-MONETARIO-0001",
+  "contexto_replay": "IDENTICO",
+  "corrida_id": "CALC-ISSP2017-APOYO-MONETARIO-0001--f2f7a3399ce7",
+  "deltas": {
+    "RESULT-ISSP-APOYO-DELTA-P1-MUJERES-MENOS-HOMBRES": 0.0,
+    "RESULT-ISSP-APOYO-G-COBERTURA-SHA256": null,
+    "RESULT-ISSP-APOYO-G-CONTRASTE-SHA256": null,
+    "RESULT-ISSP-APOYO-G-DISTRIBUCION-SHA256": null,
+    "RESULT-ISSP-APOYO-G-N-FILAS-COBERTURA": null,
+    "RESULT-ISSP-APOYO-G-N-FILAS-DISTRIBUCION": null,
+    "RESULT-ISSP-APOYO-G-N-MEXICO": null,
+    "RESULT-ISSP-APOYO-G-PRECISION": null,
+    "RESULT-ISSP-APOYO-P1-HOMBRES": 0.0,
+    "RESULT-ISSP-APOYO-P1-MUJERES": 0.0,
+    "RESULT-ISSP-APOYO-P1-TOTAL": 0.0
+  },
+  "fecha_verificacion": "2026-09-19",
+  "identidad": {
+    "input_sha256_efectivos": "za6980_backgroundvar_mx=6004c300ca1331bfd15f163c4deaa726c71b66b46ae9e05361f40ae8cc26ca5f,za6980_codebook_integrado_evidencia=de18929fc4aa638e458b191d103d9a19f766121291d758f77a65268106cfe356,za6980_q_mx=61bc0c80415521965ec1b2546fbe3b2400cfacb2e6b0b542583304821544f2ed,za6980_v2_0_0_dta=aa3bfcbcc1dc20a2735e8e9d2d3d47a72d909dade66e8c4623b910965dc227de,za6980_v2_0_0_sav=20a1420f4aa8f8dcb30f7de61879796d20b7c3042805e7925e56c30b4ae97ca5",
+    "script_blob_sha256": "24de52e268f8a12304d23e29364372cd037f260cad3a5c7219d49d90622ee111",
+    "spec_yaml_sha256": "9789a80f3d6ce0a98781ce182a49409368980c656f16bb83afece983c51992ea"
+  },
+  "ids_faltantes": [],
+  "problemas_replay": [],
+  "resultado_replay": "REPRODUCE",
+  "resultados_comparados": 11,
+  "tolerancia": {
+    "abs": 1e-10,
+    "razon": "sumas y razones deterministas; control independiente con misma tolerancia",
+    "tipo": "flotante"
+  }
+}
