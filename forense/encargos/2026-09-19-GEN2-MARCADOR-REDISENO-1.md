@@ -23,3 +23,48 @@
 **P4 · Cierres y trámite.** NC-0024, NC-0076, NC-0239, NC-0300 → CERRADAS por superación citando el diseño y este acto (sus textos quedan; se cierra el estado). Fila `decisiones.tsv` (objeto `marcador:sobre-catalogo`). `data/INFRAESTRUCTURA-v1_0.md`: dominio nuevo "marcador por segmento" (quién escribe: este tool; quién lee: informe, dirección). Nota de cierre con la tabla de afirmación → comando.
 
 **PERÍMETRO (del encargo original):** `tools/marcador_segmento.py` (nuevo) · `data/corrida0/marcador-segmento.tsv` (nuevo, derivado) · derivados de `corrida0` que P2 mueva (por comando) · `tests/test_marcador_segmento.py` (nuevo) + `.github/workflows/verify.yml` (un paso) · `tests/gonogo_marcador.py` (una línea de salida) · `data/INFRAESTRUCTURA-v1_0.md` (dominio nuevo) · `data/corrida0/decisiones.tsv` · `forense/no-corrido.tsv` · `forense/hallazgos.md` · nota · cascada.
+
+## ADENDA 19/sep/2026 · GEN2-MARCADOR-REDISENO-1
+
+CABECERA adenda: SHA de redacción `843a5f97` (ya confirmado ancestro de tu HEAD, tu HEAD está adelante por commits ajenos ya fusionados — normal, no PARO). COMPUERTAS: las dos ya confirmadas por producto (arriba). CONTADOR: `cuenta_gen2` NO-APLICA; mueve `N_resultados_gen2_adoptados_activos` desde 24.
+
+FIRMAS NUEVAS:
+- Dueño del marcador: este acto lleva construcción Y adopción por celda (no solo "PARA y propón" — implementa P2 si el mecanismo lo permite, y el encargo original ya lo dice así).
+- **Veto de mesa a pisos**: "Veto de mesa a la adopción de `CALC-PISOS-ENVIPE2024-EJES-0001`, `CALC-PISOS-ENCIG2023-EJES-0001`, `…-v1_1` y `CALC-PISOS-ENIF2021-EJES-0001` como estimadores de celda, hasta que `GEN2-PISOS-REJILLA-CLI-1` entregue sucesores. No se reescriben; se suceden." — Este veto ES NUEVO, no existía antes en `decisiones.tsv` (yo ya lo verifiqué con grep: no hay fila `veto:pisos-866` ni ninguna mención a CALC-PISOS en decisiones.tsv). Este acto debe ESCRIBIRLO: una fila en `data/corrida0/decisiones.tsv` con clave/objeto `veto:pisos-866`, citando esta firma de mesa 19/sep/2026 verbatim, con la consecuencia operativa (el tool `marcador_segmento.py` excluye por nombre estos cuatro `CALC-PISOS-*` como fuente de piso por persistencia — existen 4 dirs `CALC-PISOS-*` en `data/corrida0/`: ENVIPE2024, ENCIG2023, ENCIG2023-v1_1, ENIF2021).
+- Ritmo: un trámite pendiente se anota en una línea y no detiene una pieza que mide o adopta.
+
+VERIFICACIÓN RE-HECHA (ya la hice yo, resultados que debes tomar como dados, no re-derivar desde cero salvo que algo no cuadre):
+- `ls tools | grep -ic marcador` → 0 (confirmado). `ls data/corrida0 | grep -ic marcador-segmento` → 0 (confirmado).
+- NC-0024, NC-0076, NC-0239, NC-0300: las cuatro ABIERTA (ya leí el contenido completo de las cuatro filas en forense/no-corrido.tsv — están abajo en el bloque NC).
+- `tools/corrida0.py:4256` define `ADOPTADO_ACTIVO` (verifica el contexto real, el número de línea puede haber cambiado desde el redactado).
+- `milpa/tramite.yaml:487` = `tramite.evasion_norma`, `:1306` = `dinero.ahorro.via_informal` (verifica, puede haber movido de línea).
+- 5 celdas-D registradas (confirmado, listadas abajo).
+- Rama Codex `codex/gen2-marcador-adopcion-cli-1` existe en remoto (ahora en @2d662e7, se movió desde que se escribió la adenda que citaba 9e9e8922 — usa el HEAD actual de esa rama remota, no el sha viejo de la adenda).
+
+CAMBIOS A LAS PIEZAS que manda la adenda:
+
+**P0 (nueva, antes que nada) · Archivar el insumo Codex y soltar la rama.**
+```
+git diff origin/main...origin/codex/gen2-marcador-adopcion-cli-1 -- milpa/ tools/ tests/ > forense/notas/insumos-externos/marcador/codex-03-<sha-corto-actual>.diff
+```
+(excluye TSV derivados del diff si el diff los trae — usa pathspec para dejarlos fuera, ej. excluye cualquier ruta bajo data/corrida0/ o *.tsv generado). Añade el sha256 del diff en el mismo directorio o en el nombre. NO fusiones ni hagas cherry-pick de esa rama. NO la borres tú (el borrado remoto lo hace mesa/Astra vía otro canal) — solo archiva el diff como insumo de lectura y sigue.
+
+**P1 · precisiones obligatorias**:
+(a) Pisos de persistencia: existen 4 dirs `CALC-PISOS-*` sellados (ENVIPE2024, ENCIG2023, ENCIG2023-v1_1, ENIF2021) que la mesa acaba de VETAR (ver arriba) como estimadores de celda hasta que REJILLA entregue sucesores. El lector de tu tool SOLO une por identidad exacta `(entrada _ejes_, eje, categoría)` contra un `RESULT` por celda serializado igual que las celdas-D — nunca contra "una tabla" ad-hoc. Si el archivo de decisiones trae la fila `veto:pisos-866` (que tú mismo escribes en este acto), esos cuatro CALC-PISOS se EXCLUYEN por nombre del lector, incondicionalmente — no se leen como piso aunque su estructura calzara. Resultado esperado: las celdas marginales por eje siguen `SIN-PISO` en esta corrida (el piso de persistencia por eje sigue vetado). Verifica también si las 9 nacionales de `CALC-TRIADA-B-PISO-0001` (que el encargo original SÍ cita como piso válido, sin veto) tienen la estructura de RESULT por celda que tu lector espera — si no calzan por formato serializado distinto, repórtalo como SIN-PISO también y dilo explícitamente, no fuerces el parseo.
+(b) Universo: deriva y reporta TRES conteos separados con su comando, cada uno con su propio denominador declarado al lado: (i) celdas marginales de `_ejes_` en `milpa/tramite-ola5-propuesta-v0.yaml`, (ii) celdas nacionales/compuestas (censo de ADR-536, ~97 total contando ambas), (iii) celdas de cruce (las 20 de ADR-538/542 + reservadas). No elijas una sola cifra "el universo" — repórtalas las tres.
+(c) Columna `unidad_dato` en la tabla: las 12 celdas TRA son proporción de delitos con universo restringido a delitos (mira `milpa/tramite-ola5-propuesta-v0.yaml` líneas ~44-52, prefijo TRA), aunque `unidad_objetivo` global del modelo sea persona — NO heredes "persona" para esas filas, usa lo que el YAML de la regla declara realmente.
+
+**P2 · se implementa si el mecanismo lo permite** (ya no es "PARA y propón" nada más, per la firma "dueño del marcador"). Crea:
+- `milpa/estimadores-por-segmento.yaml` (derivado, `# DERIVADO — NO EDITAR`, escrito por `marcador_segmento.py` desde las celdas-D con `champion_actual` != NINGUNO y sus `RESULT` sellados — NO desde CALC-PISOS vetados, NO desde la rama "tabla" del lector).
+- `milpa/src/estimadores_segmento.py` — lector de ese yaml.
+- un punto de entrada en `milpa/src/motor.py`: `estimar_segmento(...)` que devuelve la emisión exacta (punto + IC + unidad_dato + tipo_incertidumbre) o `None` si la celda pedida no está en el yaml derivado — JAMÁS sustituye un nacional, solo es una consulta adicional.
+- en `tools/corrida0.py`, el bloque (cerca de donde está `ADOPTADO_ACTIVO`) que proyecta estas 20 identidades (o las que realmente tengan `champion_actual` != NINGUNO con RESULT sellado — verifica cuántas hay exactamente, puede no ser 20 exacto) como usos activos con estado `ADOPTADO-POR-FIRMA` citando el objeto `adopcion:piso-C2-20-celdas` que YA EXISTE en `decisiones.tsv` (verifícalo, ya está ahí desde el 19/sep) — nunca uses el estado `IMPLEMENTADO-PROPUESTO`.
+- Reporta `status` antes/después con el comando real de `tools/corrida0.py status` (o el equivalente que exista) mostrando `N_resultados_gen2_adoptados_activos` moviéndose de 24 a N.
+- Un test (en `tests/test_estimadores_segmento.py` o el mismo `test_marcador_segmento.py`): pedir una celda adoptada devuelve punto+IC+unidad_dato; pedir una celda marginal `SIN-PISO` devuelve `None`.
+- Si algo del mecanismo de `corrida0.py` realmente no admite esto (por ejemplo si `ADOPTADO_ACTIVO` no es extensible sin romper otra cosa), documenta por qué y para ahí específicamente, pero NO pares P1/P3/P4 por esto.
+
+**P3**: sin cambio respecto al original (las tres guardias, un caso de prueba cada una).
+
+**P4**: las cuatro NC cierran por superación citando el diseño + este acto (no se reabren por un RECIBO-CODEX-3 paralelo que no controlas). `decisiones.tsv`: fila `marcador:sobre-catalogo` (del original) MÁS la fila `veto:pisos-866` (de la adenda, ver arriba). `INFRAESTRUCTURA-v1_0.md`: dominio "marcador por segmento" + si P2 corre, también documenta la fuente `milpa/estimadores-por-segmento.yaml`.
+
+**PERÍMETRO AMPLIADO** (encargo + adenda): agrega a la lista original: `milpa/estimadores-por-segmento.yaml` (nuevo) · `milpa/src/estimadores_segmento.py` (nuevo) · `milpa/src/motor.py` (solo el nuevo punto de entrada y su `__all__`, nada más de ese archivo) · `forense/notas/insumos-externos/marcador/` (P0, nuevo). Confirma NO TOCAR: `tramite.yaml` (excepto que P2 pueda necesitar leerlo, nunca escribirlo), `tramite-ola5-propuesta-v0.yaml`, `marco-M-sorteado-v1_3.tsv`, ningún archivo `CALC-*`, las celdas-D (solo lectura), capa E1, crosswalk (solo lectura), `theta`, cualquier otro bloque de `corrida0.py` fuera del que P2 toca.
