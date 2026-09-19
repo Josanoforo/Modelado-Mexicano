@@ -1,5 +1,5 @@
 # Gobernanza del programa · Psicología del Mexicano Contemporáneo
-### `gobernanza` · **v1.15** · 30 de julio de 2026 · **548 ADR**
+### `gobernanza` · **v1.15** · 30 de julio de 2026 · **549 ADR**
 
 > | | |
 > |---|---|
@@ -7,6 +7,26 @@
 > | **REEMPLAZA A** | `gobernanza-v1.14.md` — **borrar** |
 > | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** · detalle ADR-44 a ADR-58 (más ADR-62) en **§0.1**, abajo — el último es **ADR-65** (§4; ADR-59/60/61/63/64/65 no están detallados en §0.1, solo en §4) |
 > | **NOMBRE ESTABLE** | **`gobernanza`** — cítalo así, **nunca por nombre de archivo** |
+
+**ADR-549 · `ACTO GEN2-RECIBO-CODEX-5 · RECIBO DE SEIS PR (#876/#877/#879/#881/#882/#887); OCHO FIRMAS DE CONTADOR; UNA PREMISA CORREGIDA POR EVIDENCIA`**, 19/sep/2026, entorno **NUBE `cloud_default`, sin corpus montado (`data/raw` ausente, `tools/entorno.py` → `acceso_corpus.montado = NO`, `archivos_examinados = 0`), cero microdato, cero red de datos** (`forense/encargos/2026-09-19-GEN2-RECIBO-CODEX-5.md`, archivado verbatim por 0-bis A.3; **COMPUERTA: cumplida** — los seis PR fusionados a `origin/main`, verificado por commit de merge de cada uno, no por `grep` de log; base `6f365928` declarada por el encargo, re-derivada al abrir — `origin/main` avanzó 8 commits, se fusionó antes de arrancar).
+
+**Gate verificado.** `git log origin/main --oneline --merges | grep "#<n>"` para cada uno de `#876`, `#877`, `#879`, `#881`, `#882`, `#887`: los seis commits de merge existen en `origin/main`.
+
+**P2 — orden spec→resultado, limpio.** `git log --reverse` sobre `CALC-ENCIG2021-CRUCES-HISTORICOS-{0001,0002,0003}`, `CALC-ENCIG2023-CRUCES-HISTORICOS-{0001,0002}` y `CALC-ENIGH2022-PERFIL-ESTRUCTURAL-{0001,0002,0003}`: en las tres familias, cada spec sucedida trae solo `spec.yaml` (sin `ejecucion.json`/`sello.json`/fila propia en `corridas.tsv`, o `n_resultados=0`/`NO-CORRIDA`) al momento de ser sucedida. Ninguna ejecutó antes de sucederse — **specs sucedidas sin correr: limpio**.
+
+**P3 — firma de contador aplicada.** `cuenta_gen2=SI` en `data/corrida0/decisiones.tsv` para `CALC-PISO-PERSISTENCIA-ERROR-0001`, `CALC-ENCIG2023-CRUCES-HISTORICOS-0002`, `CALC-ENCIG2021-CRUCES-HISTORICOS-0003`, `CALC-ENFIH2019-SALDOS-AFORE-0001`, `CALC-ENFIH2019-SALDOS-AFORE-CONCENTRACION-0001`, `CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003`, `CALC-ENIGH2022-INTENSIDAD-REMESAS-0001`, `CALC-ENUT2024-PARTICIPACION-INTENSIDAD-0001`, condicionada al hallazgo de P2 (ninguna bloquea). `tools/corrida0.py registro --escribe` proyectó la firma: `N_corridas_selladas` 92→100; `N_resultados_gen2_adoptados_activos` sin cambio (46 — este acto no decide adopción). `CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001` ya traía `cuenta_gen2=SI` sin decisión de respaldo por su id exacto: no se revierte (D-1, mesa manda), se abre `FP-388`.
+
+**P7 — premisa corregida, no NC nueva.** El encargo declaró `CALC-PISO-PERSISTENCIA-ERROR-0001` con replay `NO-VERIFICADO` y pidió abrir NC por E.7(2) sin correr el replay. `forense/replay-evidencia.tsv` ya trae la fila (`REPRODUCE`/`IDENTICO`, 317/317 RESULT, asentada por `VERIFY-DIRIGIDO · GEN2-MARCADOR-PISOS-ENLACE-1`, 19/sep/2026): E.7(2) ya está satisfecho. No se abre NC sobre una premisa que la evidencia no sostiene.
+
+**P4 — dos encargos sin archivo, confirmado.** `CALC-ISSP2017-REDES-APOYO-COTIDIANO-0001` (`#881`) y `CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001` (`#882`): ninguno cita una ruta de `forense/encargos/` en su historia de commits ni en el cuerpo del PR; el único archivo que menciona "ENCUCI2020" (`2026-09-09-GEN2-LOTE-ENCUCI-1.md`) gobierna un CALC distinto. `NC-0349`/`NC-0350`, `NO-VERIFICABLE-AQUÍ` — se pide a Astra el texto verbatim con sha256, no se reconstruye.
+
+**P1 — carril limpio por inspección directa.** `BRIEF-ASTRA-CARRILES` NO-ENCONTRADO (sin referencia formal). Los seis PR tocan únicamente su propio `forense/analisis/<cli-run>/`, su propio encargo (salvo `#882`) y un archivo de prueba propio bajo `tests/` (`#887` añade además `tools/encig_cruces_historicos.py`, un script propio de su CALC); ninguno toca `canon/`, `milpa/`, ni `tools/`/`tests/` ajeno.
+
+**P6 — ISSP-REDES, rótulo de contenido.** Igual patrón que `GEN2-RECIBO-CODEX-4`: `#881` declara `EE-IC-NO-DISPONIBLES-DISENO-NO-ACREDITADO` — sin diseño muestral acreditado, evidencia clase (a), descriptiva, no adjudica.
+
+**P5 — semilla registrada, sin acto de cierre.** `SELECCION-PENDIENTE-DE-DEFINICION` (107 trámites con edad fuera de bandas) fue un paro correcto del ejecutor; dirección fijó la definición antes de leer puntajes y propuso a mesa enmendar la elegibilidad (firma F1 en los adjuntos de `#887`). `PARA-v2.15`: una regla de selección se prueba contra un caso sintético antes de congelarla.
+
+`FP-388` nueva; `NC-0349`/`NC-0350` nuevas. D-6 aplicado: el acto se declara ACTO GEN2-RECIBO-CODEX-5 en todo archivo que escribe.
 
 **ADR-548 · `ACTO GEN2-MARCADOR-PISOS-ENLACE-1 · EL MARCADOR LEE LOS PISOS DE REJILLA Y SE MIDE, POR PRIMERA VEZ, CUÁNTO SE EQUIVOCA LA PERSISTENCIA POR EJE`**, 19/sep/2026, entorno **NUBE `cloud_default`, Opus 5; sin corpus montado (`data/raw` ausente, `tools/entorno.py` → `acceso_corpus.montado = NO`, `archivos_examinados = 0`), cero microdato, cero red de datos** (`forense/encargos/2026-09-19-GEN2-MARCADOR-PISOS-ENLACE-1.md`, archivado verbatim por 0-bis A.3; **COMPUERTA: cumplida POR PRODUCTO**, no por `grep` de log — `git ls-tree origin/main` confirma `data/corrida0/CALC-PISOS-{ENVIPE2024-EJES-0002, ENCIG2023-EJES-0002, ENIF2021-EJES-0003}` y `forense/prereg-caja/PISOS-REJILLA-arbitro-metadatos-v1_0.tsv`; base `8e455bd6` declarada por el encargo y re-derivada al abrir — `git rev-list --count HEAD..origin/main` → `0`).
 
