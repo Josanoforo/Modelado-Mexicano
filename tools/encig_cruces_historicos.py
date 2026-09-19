@@ -72,7 +72,12 @@ def _school(series: pd.Series) -> pd.Series:
 
 def _member_csv(archive: str, suffix: str, columns: list[str]) -> pd.DataFrame:
     with zipfile.ZipFile(archive) as zf:
-        names = [name for name in zf.namelist() if name.lower().endswith(suffix.lower())]
+        wanted = suffix.lower()
+        names = []
+        for name in zf.namelist():
+            base = Path(name).name.lower()
+            if (base == wanted or base == "conjunto_de_datos_" + wanted) and "diccionario_de_datos" not in name.lower():
+                names.append(name)
         if len(names) != 1:
             raise RuntimeError(f"miembro CSV no único: {suffix}: {names}")
         raw = zf.read(names[0])

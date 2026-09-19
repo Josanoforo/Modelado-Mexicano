@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import importlib.util
+import tempfile
+import zipfile
 from pathlib import Path
 import unittest
 
@@ -63,6 +65,15 @@ class CrucesHistoricosTest(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "GUARDIA-ALLOWLIST"):
             M._guard_inputs({"encig2023_datosabiertos_csv": {}}, contract)
         M._guard_inputs({"encig2021_csv": {}}, contract)
+
+    def test_lector_elige_conjunto_y_no_diccionario(self):
+        with tempfile.TemporaryDirectory() as directory:
+            archive = Path(directory) / "fixture.zip"
+            with zipfile.ZipFile(archive, "w") as zf:
+                zf.writestr("x/conjunto_de_datos/conjunto_de_datos_encig2021_04_sec_7.csv", "A,B\n1,dato\n")
+                zf.writestr("x/diccionario_de_datos/diccionario_de_datos_encig2021_04_sec_7.csv", "A,B\n2,diccionario\n")
+            frame = M._member_csv(str(archive), "encig2021_04_sec_7.csv", ["A", "B"])
+        self.assertEqual(frame.iloc[0].to_dict(), {"A": "1", "B": "dato"})
 
 
 if __name__ == "__main__":

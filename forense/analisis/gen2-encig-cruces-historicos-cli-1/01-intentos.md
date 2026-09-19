@@ -17,3 +17,13 @@
 `CALC-ENCIG2021-CRUCES-HISTORICOS-0001` no se ejecutó; se sucede en paralelo
 por `-0002` para mantener una implementación idéntica entre olas.
 
+## Intento 2 · 2021 · no produjo resultado
+
+- CALC: `CALC-ENCIG2021-CRUCES-HISTORICOS-0002`.
+- Preflight: VERDE; hash del payload coincidente.
+- Fallo antes de estimar o sellar: el sufijo
+  `encig2021_04_sec_7.csv` coincidía tanto con `conjunto_de_datos_…csv`
+  como con `diccionario_de_datos_…csv` dentro del ZIP.
+- Sucesor: `CALC-ENCIG2021-CRUCES-HISTORICOS-0003`; localiza de forma exacta
+  el miembro de `conjunto_de_datos` y excluye directorios de diccionario. No
+  cambia dato, estimando ni método estadístico.
