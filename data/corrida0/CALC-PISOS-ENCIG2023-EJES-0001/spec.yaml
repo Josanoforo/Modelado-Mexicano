@@ -1,0 +1,24 @@
+calc_id: CALC-PISOS-ENCIG2023-EJES-0001
+spec_md: forense/prereg-caja/PISOS-ENCIG2023-ejes-spec-v1_0.md
+script: data/corrida0/CALC-PISOS-ENCIG2023-EJES-0001/medidor.py
+etiquetas: {generacion: GEN2, tipo: PISO-PERSISTENCIA-POR-EJE, cuenta_gen2: SI}
+inputs:
+  - {id: encig23_base_datos_csv, origen: manifiesto}
+variables:
+  - {archivo: encig2023_04_sec_7.csv, variable: N_TRA, rol: universo-tramite}
+  - {archivo: encig2023_04_sec_7.csv, variable: P7_3, rol: desenlace}
+  - {archivo: encig2023_04_sec_7.csv, variable: FAC_TRA, rol: ponderador-evento}
+  - {archivo: encig2023_04_sec_7.csv, variable: EST_DIS, rol: estrato}
+  - {archivo: encig2023_04_sec_7.csv, variable: UPM_DIS, rol: upm}
+  - {archivo: encig2023_04_sec_7.csv, variable: ID_PER, rol: llave-persona}
+  - {archivo: encig2023_02_residentes_sec_2.csv, variable: ID_PER, rol: llave-persona}
+  - {archivo: encig2023_02_residentes_sec_2.csv, variable: SEXO, rol: eje-sexo}
+  - {archivo: encig2023_02_residentes_sec_2.csv, variable: EDAD, rol: eje-edad}
+  - {archivo: encig2023_02_residentes_sec_2.csv, variable: NIV, rol: eje-escolaridad}
+universo: "Eventos N_TRA=01, con código de desenlace y FAC_TRA válidos."
+ponderador: FAC_TRA
+transformacion: "Desenlace idéntico al consumidor sólo si texto y catálogo 2023 lo acreditan."
+estimando: "p_2023(desenlace | categoría), proporción ponderada [0,1]."
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+parametros: {bootstrap_replicas: 10000, metodo_ic: "bootstrap UPM estratificado; percentiles 2.5/97.5"}
+tolerancia: {tipo: flotante, abs: 1.0e-10}
