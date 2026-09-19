@@ -140,6 +140,79 @@ def _camina_ejes(nodo):
             yield from _camina_ejes(e)
 
 
+# ── piso de persistencia v2 -- nota de dirección 19/sep/2026 (post-cierre) ──
+# `GEN2-PISOS-REJILLA-CLI-1` (Codex, rama codex/gen2-marcador-adopcion-cli-1)
+# va a sellar `CALC-PISOS-*-EJES-0002`: un RESULT POR CELDA (no la "TABLA"
+# serializada de los cuatro `-EJES-0001` vetados), con sufijos de id
+# `-P` (punto), `-IC-LO`/`-IC-HI` (IC95), `-N` (tamaño) y `-DEN-W`
+# (denominador ponderado). Hoy NINGÚN `CALC-PISOS-*-EJES-0002` existe en
+# el árbol (`git ls-tree -r --name-only origin/main -- data/corrida0/ | grep
+# EJES-0002` → vacío) -- este lector se deja LISTO para unir por identidad
+# exacta contra ese esquema, pero la convención exacta del `resultado_id`
+# no puede verificarse contra un CALC real todavía. Se documenta la
+# convención asumida (ver `_id_piso_v2`) y se prueba con un fixture
+# SINTÉTICO (`tests/test_marcador_segmento.py::t_piso_v2_fixture_sintetico`).
+# Cuando REJILLA fusione, basta re-correr `marcador_segmento.py`; si el id
+# real difiere de la convención asumida, ajustar solo `_id_piso_v2` --el
+# resto del lector (unión por identidad, nunca la rama "tabla", exclusión
+# de los vetados) no cambia.
+
+def _id_piso_v2(eje: str, categoria: str, sufijo: str) -> str:
+    """Convención ASUMIDA (no verificada contra un CALC real -- ver nota
+    arriba): `RESULT-PISOS-<EJE>-<CATEGORIA>-<SUFIJO>`, con eje/categoria
+    en mayúsculas y separadores no alfanuméricos vueltos `_`."""
+    def _slug(s: str) -> str:
+        return "".join(c if c.isalnum() else "_" for c in str(s)).strip("_").upper()
+    return f"RESULT-PISOS-{_slug(eje)}-{_slug(categoria)}-{sufijo}"
+
+
+def _calc_pisos_v2_dirs() -> list[Path]:
+    """Directorios `CALC-PISOS-*-EJES-0002` (o cualquier sucesor no
+    vetado) presentes en el árbol, excluyendo SIEMPRE los cuatro
+    `CALC_PISOS_VETADOS` por nombre -- el veto de mesa manda
+    incondicionalmente, sin importar el sufijo de versión."""
+    if not CORRIDA0_DIR.exists():
+        return []
+    return [p for p in sorted(CORRIDA0_DIR.glob("CALC-PISOS-*"))
+            if p.is_dir() and p.name not in CALC_PISOS_VETADOS]
+
+
+def _lee_piso_v2(eje: str, categoria: str) -> dict | None:
+    """Une por identidad exacta (eje, categoría) contra un RESULT por celda
+    en cualquier `CALC-PISOS-*` no vetado. Nunca lee la rama "tabla"
+    (formato de los cuatro `-EJES-0001` vetados): si `resultados.json` no
+    trae los cinco ids esperados (`-P`/`-IC-LO`/`-IC-HI`/`-N`/`-DEN-W`)
+    para esta celda, no hay match y se devuelve `None` -- no se fuerza el
+    parseo."""
+    id_p = _id_piso_v2(eje, categoria, "P")
+    id_lo = _id_piso_v2(eje, categoria, "IC-LO")
+    id_hi = _id_piso_v2(eje, categoria, "IC-HI")
+    id_n = _id_piso_v2(eje, categoria, "N")
+    id_den = _id_piso_v2(eje, categoria, "DEN-W")
+    for calc_dir in _calc_pisos_v2_dirs():
+        rj = calc_dir / "resultados.json"
+        if not rj.exists():
+            continue
+        try:
+            resultados = json.loads(rj.read_text(encoding="utf-8")).get("resultados", {})
+        except (OSError, json.JSONDecodeError):
+            continue
+        if not isinstance(resultados, dict) or id_p not in resultados:
+            continue
+        if id_lo not in resultados or id_hi not in resultados:
+            continue
+        return {
+            "punto": resultados[id_p],
+            "ic95inf": resultados.get(id_lo),
+            "ic95sup": resultados.get(id_hi),
+            "n": resultados.get(id_n),
+            "den_w": resultados.get(id_den),
+            "resultado_id": id_p,
+            "fuente": calc_dir.name,
+        }
+    return None
+
+
 def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
     d = _yaml(PROPUESTA_OLA5)
     reglas_ejes = [r for r in d["reglas_propuestas"] if "_ejes_" in r.get("id", "")]
@@ -150,8 +223,12 @@ def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
             n_ejes += 1
             eje = bloque.get("eje")
             for c in (bloque.get("celdas") or []):
-                estado = "SIN-PISO"
-                piso = "VETADO:CALC-PISOS" if vetados else "SIN-CALC-SELLADO-POR-EJE"
+                piso_v2 = None if vetados else _lee_piso_v2(eje, c.get("celda"))
+                if piso_v2:
+                    estado, piso = "SOLO-PISO", "PERSISTENCIA(t-1)"
+                else:
+                    estado = "SIN-PISO"
+                    piso = "VETADO:CALC-PISOS" if vetados else "SIN-CALC-SELLADO-POR-EJE"
                 filas.append({
                     "celda_id": f"MARG::{r['id']}::{eje}::{c.get('celda')}",
                     "tipo": "MARGINAL",
@@ -165,9 +242,12 @@ def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
                     "piso": piso,
                     "R": c.get("p"), "R_ic95inf": (c.get("ic95") or [None, None])[0],
                     "R_ic95sup": (c.get("ic95") or [None, None])[1],
-                    "M": "", "IC95_inf": "", "IC95_sup": "",
-                    "tipo_incertidumbre": "SIN-PISO",
-                    "resultado_id": "",
+                    "M": piso_v2["punto"] if piso_v2 else "",
+                    "IC95_inf": piso_v2["ic95inf"] if piso_v2 else "",
+                    "IC95_sup": piso_v2["ic95sup"] if piso_v2 else "",
+                    "tipo_incertidumbre": ("PERSISTENCIA-T1-REPLICA" if piso_v2
+                                            else "SIN-PISO"),
+                    "resultado_id": piso_v2["resultado_id"] if piso_v2 else "",
                     "decision_ref": "veto:pisos-866" if vetados else "",
                     "emisor_vs_arbitro": "N/A-MARGINAL",
                     "fuente": f"{PROPUESTA_OLA5.name}:{r['id']}",
