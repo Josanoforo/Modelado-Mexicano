@@ -76,3 +76,13 @@ commit, push y PR, pero no merge ni adopción.
 
 Ninguno al congelar COMMIT-1; se actualizará en el cierre si aparece una
 reserva material.
+
+## CONSUMIDO
+
+Ejecutado en `PR #897`, rama
+`codex/gen2-enadid2023-union-sexo-edad-cli-2`. La corrida aceptada es
+`CALC-ENADID2023-UNION-SEXO-EDAD-0002`; 0001 conserva el intento no sellado
+por tipo registral incompatible con contrastes negativos. No quedó reserva
+material: P1, P2 y P3 son estimables; el residuo visible de sexo desconocido
+tiene denominador nulo y se conserva como `NO-ESTIMABLE`, sin bloquear los
+productos. `cuenta_gen2=PENDIENTE-DE-MESA`; sin merge ni adopción.
