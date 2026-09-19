@@ -55,3 +55,54 @@ No modificar milpa, canon, NC/FP globales, decisiones, tablero, herramientas de 
 Ejecuta preflight, medición, sellado, replay dirigido y registro conforme a la interfaz vigente de la casa. No usar --lote para aceptar replay ajeno. Si el generador bloquea por transiciones ajenas, preserva resultados y entrega el PR con publicación pendiente y evidencia mínima del bloqueo, sin declarar consumos activos ni registro exitoso y sin reparar infraestructura fuera del perímetro. No cambiar decisiones ni evidencia de otras corridas. Las vistas compartidas se regeneran, nunca se mezclan a mano; una segunda proyección debe ser estable.
 
 Contador y adopción quedan PENDIENTE-DE-MESA; no inventar firmas. Entrega PR con tablas, estimandos/universos, RESULT, hashes, ejecución/sello/replay, interpretación, validaciones y secciones CONSUMIDO y NO-CORRIDO / RESERVAS. Separa cualquier fallo heredado de defectos introducidos. Cierra con URL y SHA, qué permite decidir y qué falta para usarlo; no fusionar.
+
+## A.8 · Comprobación `ya_medido`
+
+Salida de `python3 tools/ya_medido.py familia.cuidado.recae_mujeres_40mas`:
+
+```text
+=== ya_medido: familia.cuidado.recae_mujeres_40mas ===
+  resuelto por canon: familia.cuidado.recae_mujeres_40mas -> R5.2 (canon/modelo-decision-v4_0.md §3, registro congelado + tag **id:**)
+  términos de búsqueda (match exacto): familia.cuidado.recae_mujeres_40mas, R5.2
+
+-- milpa/tramite.yaml --
+  milpa/tramite.yaml:1065  situacion=hogar_con_carga_de_cuidado tier=FUERTE veredicto=veredicto=DISCRIMINA p=0.221500  [TASA-EJECUTADA]
+      id: familia.cuidado.recae_mujeres_40mas
+
+-- milpa/tramite-ola5-propuesta-v0.yaml --
+  (sin apariciones)
+
+-- data/corrida0 (RESULT + ejecución + sello) --
+  data/corrida0/CALC-ENUT-0001/resultados.json:16  resultado_id=RESULT-ENUT-A-R ejecutado=SI sello=VALIDO  [TASA-EJECUTADA]
+      RESULT-ENUT-A-R=0.22148146779116093; ejecucion=data/corrida0/CALC-ENUT-0001/ejecucion.json:29; sello=data/corrida0/CALC-ENUT-0001/sello.json:4
+
+-- canon/modelo-decision-v4_0.md §7 --
+  canon/modelo-decision-v4_0.md:704  tier=[MEDIA]
+      - **49 reglas** *(42 en v2 · 43 en v2.1 por conf.07 · 44 en v2.3 al partir la diagonal)*. **Hito D (perímetro de 27 reglas, subconjunto de las 49): 26 de 27 corridas archivadas**<!-- T20:HITO-D pob=re
+  canon/modelo-decision-v4_0.md:752  tier=[FUERTE]
+      | `R5.2` | L250 | Cuidado (mayores/niños/enfermos) → recae en mujeres 40+ | `[FUERTE]` | Sí |
+
+-- forense/notas/*-L*-*.md --
+  forense/notas/2026-09-02-MAESTRA35-L7-P0-censo.md:40
+      - **R5.2** (pieza c): `A` PROPUESTO, no archivado (`forense/notas/2026-08-04-y5-veredicto-r5-2.md`
+  forense/notas/2026-09-02-MAESTRA35-L7-P0-censo.md:189
+      ## 3 · Pieza (c) — R5.2 · `familia.cuidado.recae_mujeres_40mas`
+  forense/notas/2026-09-02-MAESTRA35-L7-P0-censo.md:321
+      | (c) | `familia.cuidado.recae_mujeres_40mas` (R5.2) | ENUT 2024, `tvar_crea.csv` | **EXISTE-SATISFACE** |
+  forense/notas/2026-09-02-MAESTRA35-L7-resultados.md:79
+      matiza o simplemente añade textura a R5.2 — es lectura de mesa.
+  forense/notas/2026-09-02-MAESTRA35-L7-spec.md:80
+      ## 3 · Pieza (c) — R5.2 · `familia.cuidado.reparto_mujeres40` (ENUT 2024)
+
+-- forense/prereg-caja/S*-spec-*.md --
+  (sin apariciones)
+
+-- canon/registro-rotulos.tsv (alias) --
+  canon/registro-rotulos.tsv:155
+      L	MAESTRA35-L7
+  canon/registro-rotulos.tsv:156
+      N	MAESTRA35-N8
+
+========================================
+MEDIDA-EN: CALC-ENUT-0001, tramite.yaml
+```
