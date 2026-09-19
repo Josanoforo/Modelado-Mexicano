@@ -160,9 +160,9 @@ def validate_and_select(frame: pd.DataFrame) -> pd.DataFrame:
         raise ValueError("PAIS-MEXICO-DISCREPA")
     if not _numeric(mx["studyno"]).eq(6980).all():
         raise ValueError("ESTUDIO-DISCREPA")
-    if set(mx["version"].astype(str)) != {"2.0.0"}:
+    if set(mx["version"].astype(str)) != {"2.0.0 (2019-08-19)"}:
         raise ValueError("VERSION-DISCREPA")
-    if set(mx["doi"].astype(str)) != {"10.4232/1.13322"}:
+    if set(mx["doi"].astype(str)) != {"doi:10.4232/1.13322"}:
         raise ValueError("DOI-DISCREPA")
     if mx["CASEID"].isna().any() or mx["CASEID"].duplicated().any():
         raise ValueError("CASEID-NO-UNICO-O-FALTANTE")

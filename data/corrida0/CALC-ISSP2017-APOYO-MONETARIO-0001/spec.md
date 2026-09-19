@@ -18,7 +18,7 @@ Se estiman, para México total adulto, hombres y mujeres, siete proporciones pon
 
 ## Columnas y selección cerradas
 
-Únicas columnas leídas del DTA: `studyno`, `doi`, `version`, `country`, `c_alphan`, `CASEID`, `SEX`, `AGE`, `WEIGHT`, `v26`. Se selecciona México con la conjunción `c_alphan == "MX"` y `country == 484`; `studyno`, DOI y versión deben coincidir con la identidad fijada. La unidad es una persona entrevistada. El universo adulto viene del diseño del estudio; `AGE` sólo controla que ninguna edad observada sea menor a 18 y no excluye la no respuesta de edad.
+Únicas columnas leídas del DTA: `studyno`, `doi`, `version`, `country`, `c_alphan`, `CASEID`, `SEX`, `AGE`, `WEIGHT`, `v26`. Se selecciona México con la conjunción `c_alphan == "MX"` y `country == 484`; `studyno=6980`, `doi="doi:10.4232/1.13322"` y `version="2.0.0 (2019-08-19)"` deben coincidir exactamente con la identidad embebida. La unidad es una persona entrevistada. El universo adulto viene del diseño del estudio; `AGE` sólo controla que ninguna edad observada sea menor a 18 y no excluye la no respuesta de edad.
 
 Dominios: `TOTAL` incluye toda la muestra México; `HOMBRES` requiere `SEX=1`; `MUJERES`, `SEX=2`. `SEX=9` o vacío permanece en el total y se conserva como sexo no clasificable para reconstrucción; no entra a los dominios por sexo.
 

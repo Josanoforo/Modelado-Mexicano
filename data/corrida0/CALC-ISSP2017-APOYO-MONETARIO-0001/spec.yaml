@@ -1,6 +1,6 @@
 calc_id: CALC-ISSP2017-APOYO-MONETARIO-0001
 spec_md: spec.md
-spec_md_sha256: 5efc86b0ee9c479166aa2e429452d5ef9a073d0ed331117f8ca41f2d9a5bf711
+spec_md_sha256: ffb1f398ced679317732e92163f123506d97627c5d99fceb57443af4331c3145
 script: data/corrida0/CALC-ISSP2017-APOYO-MONETARIO-0001/medidor.py
 
 etiquetas:
@@ -37,8 +37,9 @@ variables:
 
 universo: Personas de 18 años o más en la muestra nacional de México, ISSP 2017.
 filtros: >-
-  c_alphan=MX y country=484, con studyno=6980, doi=10.4232/1.13322 y
-  version=2.0.0. Total incluye SEX no clasificable; hombres SEX=1; mujeres SEX=2.
+  c_alphan=MX y country=484, con studyno=6980,
+  doi="doi:10.4232/1.13322" y version="2.0.0 (2019-08-19)". Total incluye
+  SEX no clasificable; hombres SEX=1; mujeres SEX=2.
 ponderador: >-
   WEIGHT, numérico, finito y positivo; sin recorte de extremos. El formulario
   mexicano documenta WEIGHT=1 No weighting.
