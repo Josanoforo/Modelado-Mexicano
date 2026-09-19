@@ -1032,18 +1032,107 @@ reglas:
     situacion: primera_union
     si:
       disparadores: {baja_garantia_institucional: NO-MEDIDO}  # el modelo (R5.3) nombra este disparador; ningún instrumento lo mide — se carga la tasa base con gradiente de cohorte, no la condicional
+    # ══════════════════════════════════════════════════════════════════
+    # RELEVO DE ESTIMANDO · ACTO GEN2-FAM-UNION-ESTIMANDO-1, 19/sep/2026.
+    # FIRMA DE MESA 19/sep/2026 («si si y de acuerdo contigo», primera
+    # opción de tres): «La regla `familia.union.libre` mide tipo de
+    # primera unión. Sus `p` pasan a ser los de `CALC-EDER-0003`
+    # (`P-LIBRE`, `P-DIRECTO`, con IC y universo: personas alguna vez
+    # unidas, EDER 2017). La prevalencia ENADID 2023 de situación
+    # conyugal actual se conserva como dato descriptivo aparte, con
+    # nombre propio (`union_libre_actual`, `actualmente_casada`), nunca
+    # como `matrimonio_directo`.»
+    #
+    # QUÉ SE CORRIGE. Hasta este acto la regla decía `situacion:
+    # primera_union` y cargaba `union_libre = 0.1905` /
+    # `matrimonio_directo = 0.8095`, que son SITUACIÓN CONYUGAL ACTUAL de
+    # la población 15+ de ENADID 2023 y su COMPLEMENTO ARITMÉTICO. El
+    # complemento incluye solteras, separadas, divorciadas y viudas: no
+    # significa matrimonio. No fue un error de cálculo — `CALC-ENADID-0001`
+    # re-midió esa misma fuente y reprodujo 0.1905406 — sino un NOMBRE
+    # puesto sobre otra cantidad. El estimando que el nombre de la regla
+    # promete lo mide `CALC-EDER-0003`: 0.480971 / 0.518946.
+    #
+    # DECISIÓN PREVIA QUE ESTA FIRMA SUCEDE (A.17, no se hereda). La spec
+    # congelada de `CALC-EDER-0003` (`spec.yaml`, `reglas_bajo_prueba`)
+    # dice «NINGUNA cambia de cifra por esta corrida. familia.union.libre
+    # (R5.3) conserva su p, su veredicto CORROBORADA y su segmentacion
+    # por cohorte sellada»; la decidió **ADR-510** (`ACTO
+    # GEN2-SPECS-DEMANDA-1`, 15/sep/2026, PR #774), que autorizaba
+    # CONGELAR y no adoptar, y la sostuvo **NC-0254** (`ACTO
+    # GEN2-PINS-REPRODUCE-1`, `DECISION-DE-MESA-PENDIENTE`, cerrada en
+    # PR #872 con sucesor «corrida ENADID 2023»). Aquella reserva era
+    # correcta MIENTRAS faltara la re-medición de la fuente GEN1: ya no
+    # falta (`CALC-ENADID-0001`, PR #869, `REPRODUCE/IDENTICO`). La firma
+    # del 19/sep/2026 la sucede por decisión de mesa, no la ignora.
+    #
+    # LO QUE NO SE HACE AQUÍ: no se mide, no se re-ejecuta ENADID ni
+    # EDER, no se toca ningún `spec.yaml` sellado (E.3), no se promedian
+    # las dos fuentes y no se restan — son proporciones sobre universos
+    # distintos (alguna vez unidos vs. población 15+).
+    # ══════════════════════════════════════════════════════════════════
     entonces:
-      - {conducta: union_libre, p: 0.190500, clase: "MEDIDO·p(prevalencia bruta ponderada 15+, tasa base; ENADID 2023, p3_27_ag)"}
-      - {conducta: matrimonio_directo, p: 0.809500, clase: "MEDIDO·p(prevalencia bruta ponderada 15+, tasa base; ENADID 2023, p3_27_ag)"}
+      - {conducta: union_libre, p: 0.480971, clase: "MEDIDO·p(proporción ponderada del TIPO DE PRIMERA UNIÓN; EDER 2017, historiavida.csv/edo_civil1, primer código no-cero por persona; universo: personas alguna vez unidas, n = 18 689; ponderador factor_per)", corrida0_resultado_id: RESULT-EDER-UNION-A-P-LIBRE, corrida0_generacion: GEN2}
+      - {conducta: matrimonio_directo, p: 0.518946, clase: "MEDIDO·p(proporción ponderada del TIPO DE PRIMERA UNIÓN; EDER 2017, historiavida.csv/edo_civil1, primer código no-cero por persona; universo: personas alguna vez unidas, n = 18 689; ponderador factor_per) — CONTADA sobre su propio numerador, nunca como 1 − p", corrida0_resultado_id: RESULT-EDER-UNION-A-P-DIRECTO, corrida0_generacion: GEN2}
     porque: {generador: NO-DECLARADO-EN-§3.5, mecanismo: "baja garantía institucional del matrimonio hace de la unión libre una opción racional, no una 'unión fallida' -- evita costos ante baja garantía -- canon/modelo-decision-v4_0.md:537 verbatim"}
-    tier: FUERTE # firma b1
-    falsable_si: "NO-APLICA -- R5.3 fuera del perímetro Hito D (27 fichas), sin falsador pre-registrado (canon/modelo-decision-v4_0.md:753)"
-    fuente: ["EDER2017", "ENADID2023", "canon/modelo-decision-v4_0.md:537", "milpa/tramite-ola5-propuesta-v0.yaml"]
-    ola_calibracion: "EDER 2017 (primera unión por cohorte) + ENADID 2023 (prevalencia actual por edad, cross-validación) -- no se promedian, miden preguntas distintas"
-    ic95: NO-APLICA  # prevalencia bruta sin celda binaria única declarada en la propuesta con IC95 propio; ver segmentacion_ejes para IC95 por celda
-    n: 152950
-    ponderador: "factor_per (EDER) / peso ENADID (peso poblacional, ver segmentacion_ejes)"
-    universo: "EDER 2017: primer edo_civil1 no-cero por persona, n = 18 687 de 23 831. ENADID 2023: 15+ condicional a casada(o)/unión libre, p3_27_ag, n = 152 950 -- copiado de la entrada familia.union.libre_ejes_eder2017 de la propuesta"
+    tier: FUERTE # firma b1; re-evaluado 19/sep/2026 SOLO para la cifra -- ver tier_partido abajo
+    tier_partido:
+      # ACTO GEN2-FAM-UNION-ESTIMANDO-1, P2. El esquema admite UN escalar
+      # en `tier` (`milpa/src/emisor.py:154`, `r.get("tier", "")`), así que
+      # el tier partido se DECLARA aquí y va a mesa como FP-387. Precedente
+      # de campo declarativo dentro de la entrada: `reserva_tier` de
+      # `dinero.digital.adopcion` (milpa/tramite.yaml:290, firma D2).
+      cifra: >-
+        FUERTE. Medida y sellada bajo GEN2 (`CALC-EDER-0003`,
+        `corridas.tsv` SELLADA/`cuenta_gen2=SI` por `decisiones.tsv:75`),
+        con IC de diseño (bootstrap de `upm` dentro de `est_dis`, 2 000
+        réplicas, semilla declarada), partición que cierra
+        (`RESULT-EDER-UNION-A-SUMA-PARTICION = SI`) y gradiente por
+        cohorte con IC por celda. Dos olas de fuente distinta describen el
+        campo (EDER 2017 el tipo de primera unión, ENADID 2023 la
+        situación actual) y NO se promedian: miden preguntas distintas.
+      mecanismo: >-
+        HIPÓTESIS, no hallazgo. El `porque` afirma que la baja garantía
+        institucional del matrimonio hace de la unión libre una opción
+        racional. El disparador `baja_garantia_institucional` está marcado
+        `NO-MEDIDO` en esta misma entrada: ningún instrumento del corpus
+        mide garantía institucional percibida. Lo que está medido es la
+        TASA BASE del desenlace y su gradiente, no la condicional al
+        disparador, y un gradiente por cohorte es compatible con varios
+        mecanismos (costo de formalización, secularización, composición).
+      valor_escalar_publicado: >-
+        FUERTE, el de la cifra -- porque es lo que el motor consume
+        (`emisor.py` lee `tier` para la carga, no para el `porque`).
+        Mientras mesa no resuelva FP-387, un lector que use `tier` como
+        respaldo del MECANISMO lo está sobreleyendo.
+    falsable_si: >-
+      CIFRA: una EDER posterior que mueva `P-LIBRE` fuera de
+      [0.469175, 0.492482], o que rompa el gradiente por cohorte
+      (`RESULT-EDER-UNION-B-COHORTE-P-LIBRE`) fuera de los IC por celda.
+      MECANISMO: un instrumento que mida garantía institucional percibida
+      del matrimonio y NO correlacione con el tipo de primera unión.
+      NOTA HEREDADA (no se reescribe): R5.3 quedó fuera del perímetro
+      Hito D (27 fichas), sin falsador pre-registrado
+      (canon/modelo-decision-v4_0.md:753).
+    fuente: ["EDER2017", "ENADID2023", "canon/modelo-decision-v4_0.md:537", "milpa/tramite-ola5-propuesta-v0.yaml", "CALC-EDER-0003", "CALC-ENADID-0001", "forense/encargos/2026-09-19-GEN2-FAM-UNION-ESTIMANDO-1.md"]
+    ola_calibracion: "EDER 2017 (tipo de primera unión -- LA QUE CARGA LA p) + ENADID 2023 (situación conyugal actual -- descriptivo aparte, NO carga p) -- no se promedian, miden preguntas distintas"
+    ic95: [0.469175, 0.492482]  # IC de diseño de `union_libre` (RESULT-EDER-UNION-A-IC-LIBRE-LO/HI, CALC-EDER-0003). NO hay IC sellado para `matrimonio_directo`: la corrida publicó el IC de la rama LIBRE únicamente. Deja de ser NO-APLICA con este acto: el IC nace en CALC-EDER-0003.
+    n: 18689  # RESULT-EDER-UNION-A-N-U (personas del universo A tras el join de ponderador). Era 152950, que es el n de ENADID 2023 -- el n del otro estimando.
+    ponderador: "factor_per (EDER 2017, antecedentes.csv) -- ponderador oficial de PERSONA; no `factor` de vivienda.csv"
+    universo: >-
+      EDER 2017: personas ALGUNA VEZ UNIDAS -- grupos (folioviv, foliohog,
+      id_pobla) de `historiavida.csv` con al menos un `edo_civil1` no-cero,
+      cuyo primer código no-cero en orden de `anio_retro` cae en LIBRE
+      {1,12,13,14,17,18,126} o en DIRECTO {2,3,4,26,27,28,46,47,48}, con
+      `factor_per` finito y > 0. n = 18 689 de 23 831 personas.
+      NO habla de quienes nunca se unieron ni de uniones posteriores a la
+      primera. El código 37 (n = 2) queda SIN CLASIFICAR y contado
+      (`RESULT-EDER-UNION-A-N-SIN-CLASIFICAR`): por eso `union_libre +
+      matrimonio_directo = 0.999917` y no 1 -- la partición cierra con ese
+      residuo declarado, no se re-escala.
+      FUERA POR DISEÑO Y SE DICE: ninguna de las dos fuentes segmenta aquí
+      por condición indígena, donde la unión consuetudinaria es otro orden
+      institucional.
     segmentacion_ejes_eder2017_enadid2023:
       eje_cohorte_eder2017:
         veredicto: CORROBORADA
@@ -1052,13 +1141,92 @@ reglas:
           - {celda: "1971-1980", p: 0.390166, ic95: [0.372687, 0.407411], n: 6274, estratos: 290, upm: 2872}
           - {celda: "1981-1990", p: 0.572448, ic95: [0.555475, 0.589410], n: 5903, estratos: 288, upm: 2709}
           - {celda: "1991+", p: 0.772924, ic95: [0.752002, 0.793279], n: 2509, estratos: 265, upm: 1571}
+      eje_cohorte_eder2017_gen2_sellado:
+        # NO SUSTITUYE al bloque de arriba (encargo P2: «el gradiente por
+        # cohorte de EDER ya sellado se conserva si ya está en la regla»).
+        # Se declara el sellado GEN2 al lado porque difiere en el 4º-5º
+        # decimal y en n por 2 personas -- y quien lea la regla debe ver
+        # los dos, no elegir a ciegas.
+        result_id: RESULT-EDER-UNION-B-COHORTE-P-LIBRE
+        generacion: GEN2
+        formato: "tramo = p : ic_lo : ic_hi : n"
+        celdas:
+          - {celda: "<=1970", p: 0.304657, ic95: [0.284771, 0.324583], n: 4001}
+          - {celda: "1971-1980", p: 0.390166, ic95: [0.373059, 0.408094], n: 6274}
+          - {celda: "1981-1990", p: 0.572290, ic95: [0.554887, 0.589032], n: 5905}
+          - {celda: "1991+", p: 0.772924, ic95: [0.752141, 0.792298], n: 2509}
+        delta_vs_bloque_legacy: "puntos iguales en 3/4 celdas al 6º decimal (1981-1990: 0.572448 vs 0.572290, delta -1.58e-04); IC de diseño ligeramente distintos; n difiere en +2 en 1981-1990. El tramo legacy `1961-1970` es `<=1970` en el sellado: mismo n (4001), corte abierto por abajo."
       eje_edad_enadid2023:
+        # OJO: este eje es SITUACIÓN CONYUGAL ACTUAL, no tipo de primera
+        # unión -- es el mismo estimando del bloque descriptivo de abajo,
+        # condicional a unión actual. Se conserva (estaba en la regla) y
+        # se re-rotula: NO es un eje del estimando que la regla carga.
+        estimando: situacion_conyugal_actual_condicional_a_union
         veredicto: CORROBORADA
         celdas:
           - {celda: "18-29", p: 0.699200, ic95: [0.689500, 0.708900], n: 22676}
           - {celda: "30-44", p: 0.416600, ic95: [0.409100, 0.424200], n: 50944}
           - {celda: "45-59", p: 0.238600, ic95: [0.232000, 0.245100], n: 47308}
           - {celda: "60+", p: 0.126700, ic95: [0.120400, 0.133100], n: 31171}
+    descriptivo_situacion_conyugal_actual_enadid2023:
+      # DATO DESCRIPTIVO APARTE, por firma de mesa 19/sep/2026. NO es una
+      # conducta, NO entra a `entonces`, NO carga ninguna p del motor y NO
+      # se resta ni se promedia con las cifras de arriba: otro evento, otra
+      # unidad de tiempo y otro denominador. Fuente: CALC-ENADID-0001
+      # (SELLADA, `REPRODUCE/IDENTICO`, PR #869).
+      instrumento: "ENADID 2023, TSDEM, reactivo P3_27 (el FD documenta P3_27_AG aparte, como agrupación; no gobierna)"
+      evento: "situación conyugal DECLARADA AL MOMENTO DE LA ENTREVISTA"
+      unidad: "persona residente (una fila por LLAVE_PER en TSDEM)"
+      universo: "personas de 15+ con edad conocida y P3_27 ∈ {1..7}; n = 276 849 (el cuestionario aplica el reactivo a personas de 12 años cumplidos o más)"
+      ponderador: "FAC_VIV (factor de expansión de la vivienda replicado en sus residentes; TSDEM no trae FAC_PER)"
+      union_libre_actual:
+        p: 0.190541
+        ic95: [0.187429, 0.193691]
+        denominador: "bruto sobre total elegible 15+ (P3_27 ∈ {1..7})"
+        corrida0_resultado_id: RESULT-ENADID-UA-G-P-BRUTA
+        corrida0_generacion: GEN2
+      actualmente_casada:
+        p: 0.359446
+        ic95: [0.356039, 0.362868]
+        denominador: "bruto sobre total elegible 15+ (P3_27 ∈ {1..7})"
+        origen: "fila `distribucion_actual_15_mas,casada,15_mas` de forense/analisis/enadid-union-actual-cli-1/resultados.csv, cuyo sha256 4c2abc76ade67fcdcfc715bf1af904a0e2a76029aabcc4dd3c17f93fe621efc2 ESTÁ SELLADO en RESULT-ENADID-UA-G-TABLA-SHA256 (CALC-ENADID-0001). No hay RESULT escalar propio para este punto."
+        corrida0_resultado_id: RESULT-ENADID-UA-G-TABLA-SHA256
+        corrida0_generacion: GEN2
+      union_libre_entre_union_actual:
+        p: 0.346446
+        ic95: [0.341222, 0.351706]
+        denominador: "condicional a unión actual (P3_27 ∈ {1,6}); n = 152 834"
+        corrida0_resultado_id: RESULT-ENADID-UA-G-P-CONDICIONAL
+        corrida0_generacion: GEN2
+      actualmente_casada_entre_union_actual:
+        p: 0.653554
+        denominador: "condicional a unión actual (P3_27 ∈ {1,6}); n = 152 834"
+        corrida0_resultado_id: RESULT-ENADID-UA-G-P-CASADA-CONDICIONAL
+        corrida0_generacion: GEN2
+      lo_que_este_bloque_no_es: >-
+        NINGUNO de estos cuatro puntos es `matrimonio_directo`. El
+        0.809500 que esta regla cargaba hasta el 19/sep/2026 era
+        1 − 0.190541 = «no unión libre», e incluía solteras (29.58%),
+        separadas de unión libre (4.15%), separadas de matrimonio (2.92%),
+        divorciadas (2.19%) y viudas (6.16%) además de las casadas
+        (35.94%). Si se quiere situación actual casada, es 0.359446 bruta
+        o 0.653554 entre casada/unión libre -- nunca 0.8095, y nunca bajo
+        el nombre `matrimonio_directo`.
+      payload_manifiesto_id: enadid2023_base_datos_csv
+    enmienda_estimando_2026_09_19:
+      aplica_a: [union_libre, matrimonio_directo]
+      sellada_por: "ACTO GEN2-FAM-UNION-ESTIMANDO-1 (19/sep/2026), firma de mesa del 19/sep/2026, primera de tres opciones"
+      origen: "CALC-EDER-0003 (SELLADA, cuenta_gen2=SI por data/corrida0/decisiones.tsv:75); RESULT-EDER-UNION-A-P-LIBRE / RESULT-EDER-UNION-A-P-DIRECTO"
+      payload_manifiesto_id: eder_2017_eder2017_bases_csv
+      sha256_payload: "bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3"
+      valores_anteriores: "union_libre 0.190500 / matrimonio_directo 0.809500, clase «MEDIDO·p(prevalencia bruta ponderada 15+, tasa base; ENADID 2023, p3_27_ag)», n 152950, ic95 NO-APLICA"
+      delta: "union_libre +0.290471; matrimonio_directo -0.290554. NO es corrección de un cálculo: es cambio de ESTIMANDO. `RESULT-EDER-UNION-A-DELTA-VS-GEN1 = NO-APLICA-ESTIMANDO-DISTINTO` -- los dos números anteriores describían otra cantidad."
+      lectura_peligrosa_declarada: >-
+        «48% entra por unión libre» NO es un juicio sobre estabilidad
+        familiar, ni «preferencia cultural», ni «unión fallida». El
+        gradiente por cohorte (30.5% en <=1970 a 77.3% en 1991+) es fuerte
+        y hay costos reales de formalización: leer el punto nacional sin el
+        gradiente es leer mal.
     sha256_payload: "bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3"
     payload_manifiesto_id: eder_2017_eder2017_bases_csv
 
