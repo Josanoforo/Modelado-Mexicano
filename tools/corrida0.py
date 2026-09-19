@@ -3266,7 +3266,11 @@ def _lee_oferta(verifica: bool) -> list[dict]:
             # conserva precedencia; `etiquetas` es el respaldo, por el
             # mismo helper `_etiqueta()` que el resto del campo usa. Las
             # specs selladas NO se tocan (E.3): se corrige el LECTOR.
-            "repite_de": str(spec.get("repite_de") or _etiqueta(spec, "repite_de", "")),
+            "repite_de": str(
+                spec.get("repite_de") or spec.get("sucesor_de")
+                or _etiqueta(spec, "repite_de", "")
+                or _etiqueta(spec, "sucesor_de", "")
+            ),
         })
 
     # ACTO GEN2-T9 · P1: el cierre transitivo corre DESPUES de leer todas

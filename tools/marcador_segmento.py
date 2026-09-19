@@ -141,21 +141,33 @@ def _camina_ejes(nodo):
 
 
 # ── piso de persistencia v2 -- nota de dirección 19/sep/2026 (post-cierre) ──
-# `GEN2-PISOS-REJILLA-CLI-1` (Codex, rama codex/gen2-marcador-adopcion-cli-1)
-# va a sellar `CALC-PISOS-*-EJES-0002`: un RESULT POR CELDA (no la "TABLA"
+# `GEN2-PISOS-REJILLA-CLI-1` (PR #871, fusionado en main tras esta pieza)
+# sella `CALC-PISOS-*-EJES-0002`: un RESULT POR CELDA (no la "TABLA"
 # serializada de los cuatro `-EJES-0001` vetados), con sufijos de id
 # `-P` (punto), `-IC-LO`/`-IC-HI` (IC95), `-N` (tamaño) y `-DEN-W`
-# (denominador ponderado). Hoy NINGÚN `CALC-PISOS-*-EJES-0002` existe en
-# el árbol (`git ls-tree -r --name-only origin/main -- data/corrida0/ | grep
-# EJES-0002` → vacío) -- este lector se deja LISTO para unir por identidad
-# exacta contra ese esquema, pero la convención exacta del `resultado_id`
-# no puede verificarse contra un CALC real todavía. Se documenta la
-# convención asumida (ver `_id_piso_v2`) y se prueba con un fixture
-# SINTÉTICO (`tests/test_marcador_segmento.py::t_piso_v2_fixture_sintetico`).
-# Cuando REJILLA fusione, basta re-correr `marcador_segmento.py`; si el id
-# real difiere de la convención asumida, ajustar solo `_id_piso_v2` --el
-# resto del lector (unión por identidad, nunca la rama "tabla", exclusión
-# de los vetados) no cambia.
+# (denominador ponderado). VERIFICADO CONTRA EL CALC REAL (post-merge):
+# el id real NO es `_id_piso_v2` (que asumía `RESULT-PISOS-<EJE>-
+# <CATEGORIA>-<SUFIJO>`) -- es
+# `RESULT-PISOS-<INSTRUMENTO>-V2-<REGLA-SLUG>-<EJE>-<CATEGORIA>-<SUFIJO>`
+# (ej. `RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-P`), y la identidad
+# (eje, categoría) -> id vive en una tabla de metadatos separada
+# (`forense/prereg-caja/PISOS-REJILLA-arbitro-metadatos-v1_0.tsv`, columnas
+# `cell_id`/`axis`/`category`/`consumer`/`status`) cuyo `consumer` NO usa
+# los mismos ids de regla que `tramite-ola5-propuesta-v0.yaml` (ej.
+# `tramite.evasion_norma.segmentacion_ejes_envipe2025` en la tabla vs
+# `tramite.evasion_norma_ejes_envipe2025` en la propuesta -- mismo dominio,
+# nombre distinto; para otras reglas incluso el prefijo cambia, ej.
+# `civico.denuncia.con_seguro_ejes_envipe2025` vs
+# `familia.seguro.denuncia.segmentacion_envipe2025`). Reconciliar esos dos
+# vocabularios de regla es trabajo de identidad real, no un ajuste de una
+# línea -- se deja `_id_piso_v2`/`_lee_piso_v2` EXACTAMENTE como estaban
+# (nunca fuerzan un match falso: hoy siguen devolviendo `None` para las 74
+# celdas marginales, `SIN-PISO` no cambia) y se abre `NC-0342` con la
+# discrepancia medida, en vez de adivinar una correspondencia. El fixture
+# sintético (`tests/test_marcador_segmento.py::t_piso_v2_fixture_sintetico`)
+# sigue probando el MECANISMO de unión (identidad exacta, nunca la rama
+# "tabla", exclusión incondicional de los vetados), que es correcto; lo que
+# falta es el mapa de vocabulario, no el lector.
 
 def _id_piso_v2(eje: str, categoria: str, sufijo: str) -> str:
     """Convención ASUMIDA (no verificada contra un CALC real -- ver nota

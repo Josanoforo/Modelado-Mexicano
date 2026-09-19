@@ -13,7 +13,7 @@ Filosofía: cada ADR que declara un principio necesita un test que FALLE
 visiblemente si no se cumple. "Principio declarado sin requisito de salida"
 es el patrón que explica casi todos los fallos del programa.
 """
-import csv, io, os, re, sys, glob, hashlib, unicodedata, datetime, tempfile, shutil
+import csv, io, os, re, sys, glob, hashlib, json, unicodedata, datetime, tempfile, shutil
 from collections import Counter, defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -2903,6 +2903,12 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-PISOS-REJILLA-CLI-1, 19/sep/2026: insumo de dirección
+    # archivado VERBATIM por 0-bis A.3. Su §3 usa `E1` para la capa del
+    # esquema theta ya existente, no para acuñar un rótulo nuevo. El archivo
+    # no se edita para complacer T25; misma excepción de procedencia que los
+    # demás encargos verbatim de esta lista.
+    "forense/encargos/fuentes/GEN2-PISOS-REJILLA-CLI-1/01-CONTRATO-Y-TRAMITE.md",
     # ACTO GEN2-TRAMITE-4, 16/sep/2026. DOS archivos, una sola causa: los dos
     # son TEXTO VERBATIM y no se editan para complacer un test -- el encargo
     # esta archivado por 0-bis A.3 y el insumo de direccion por P4, con su
@@ -5577,6 +5583,13 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # GEN2-ENADID-UNION-ACTUAL-CLI-1: encargo A.3 archivado VERBATIM. La
+    # cita nombra la regla sucesora que el acto debe medir y no se puede
+    # insertar la salida sin romper la custodia literal. A.8 se ejecutó al
+    # archivar: `python3 tools/ya_medido.py familia.union.libre` devolvió
+    # `MEDIDA-EN: tramite.yaml`; la medición nueva queda separada y no adopta
+    # ni reescribe ese consumidor legacy.
+    "forense/encargos/2026-09-19-GEN2-ENADID-UNION-ACTUAL-CLI-1.md",
     # ACTO GEN2-ENCO-DOS-OLAS-RESERVADAS-1, 17/sep/2026: encargo A.3
     # archivado VERBATIM. La cita compara constructos y ordena no equiparar
     # posibilidad percibida de ahorro con stock existente; no solicita medir
@@ -6578,6 +6591,20 @@ def t32_corrida0():
         fail("T-CORRIDA0", f)
 
 
+def t32_bis_pisos_rejilla():
+    """La rejilla arbitral coincide uno-a-uno con los RESULT primarios."""
+    ruta = os.path.join(ROOT, "tests", "test_pisos_rejilla.py")
+    try:
+        import importlib.util as _iu
+        spec = _iu.spec_from_file_location("test_pisos_rejilla_desde_check", ruta)
+        mod = _iu.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        for error in mod.corre():
+            fail("T-PISOS-REJILLA", error)
+    except Exception as exc:
+        fail("T-PISOS-REJILLA", f"no pudo correr: {type(exc).__name__}: {exc}")
+
+
 # ───────────────────────────────────────────────────────────────
 # T36 · T-CORREDORES-GEN2 -- ACTO GEN2-E7 · READINESS-2, 8/sep/2026.
 #
@@ -7014,6 +7041,40 @@ def t43_sucesor_existe():
                       f"sucesor cita el archivo `{ruta}`, ausente del árbol")
 
 
+# T44 · El control independiente de precisión ENADID queda materializado y
+# autoconsistente. La suite no recalcula el estimando ni importa scipy: eso lo
+# hace el control auditable; aquí se evita publicar o alterar silenciosamente
+# un artefacto fallido, incompleto o que confunda sus dos denominadores.
+def t44_enadid_precision_independiente():
+    ruta = os.path.join(
+        ROOT, "forense", "analisis", "enadid-union-actual-cli-1",
+        "enadid-union-control-precision.json")
+    if not os.path.exists(ruta):
+        fail("T-ENADID-PRECISION", f"falta {rel(ruta)}")
+        return
+    try:
+        control = json.loads(read(ruta))
+    except (OSError, ValueError) as exc:
+        fail("T-ENADID-PRECISION", f"{rel(ruta)} no es JSON legible: {exc}")
+        return
+    if control.get("todos_ok") is not True:
+        fail("T-ENADID-PRECISION", "el control independiente no declara todos_ok=true")
+    if control.get("identidades_ok") is not True:
+        fail("T-ENADID-PRECISION", "las identidades de las fuentes no coinciden")
+    productos = control.get("productos", {})
+    if (control.get("productos_distintos") is not True
+            or productos.get("bruto_total_elegible") == productos.get("condicional_union_actual")):
+        fail("T-ENADID-PRECISION", "bruto y condicional no están definidos como productos distintos")
+    checks = control.get("checks", [])
+    if len(checks) != 12 or not all(check.get("ok") is True for check in checks):
+        fail("T-ENADID-PRECISION", "se esperaban 12/12 controles producto×edad aprobados")
+    auditoria = control.get("auditoria_unidad_soporte", {})
+    for campo in ("llaves_duplicadas", "situacion_invalida_15_mas_n",
+                  "peso_invalido_n", "diseno_faltante_15_mas_n"):
+        if auditoria.get(campo) != 0:
+            fail("T-ENADID-PRECISION", f"auditoría {campo}={auditoria.get(campo)!r}; se esperaba 0")
+
+
 # ───────────────────────────────────────────────────────────────
 # T35 · T-REPRO -- ACTO GEN2-E6 · AUTOMATIZA-GEN2-2 (8/sep/2026),
 # plan v2.0 §2 y §7. **MODO FAIL desde `ACTO GEN2-E5 · CALC-0001..0003`
@@ -7306,6 +7367,7 @@ def main():
         ("T30b T-YAMEDIDO-HUSO",                    t30b_yamedido_huso_medianoche),
         ("T31 T-CRON",                              t31_cron),
         ("T32 T-CORRIDA0",                           t32_corrida0),
+        ("T32-bis T-PISOS-REJILLA",                    t32_bis_pisos_rejilla),
         ("T36 T-CORREDORES-GEN2",                     t36_corredores_gen2),
         ("T39 T-DIGESTO-NC",                          t39_digesto_nc),
         ("T40 T-RUTINAS",                             t40_rutinas),
@@ -7316,6 +7378,7 @@ def main():
         ("T41 T-DIGESTO-MESA",                          t41_digesto_mesa),
         ("T42 T-CANDIDATAS",                            t42_digesto_candidatas),
         ("T43 T-SUCESOR-EXISTE",                        t43_sucesor_existe),
+        ("T44 T-ENADID-PRECISION",                      t44_enadid_precision_independiente),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
