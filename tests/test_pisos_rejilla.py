@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Falsadores de la rejilla de pisos; no abre microdatos."""
 from __future__ import annotations
+import ast
 import csv
 import importlib.util
 from pathlib import Path
-import pandas as pd
 import yaml
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -14,6 +14,27 @@ CALCS=[
  "CALC-PISOS-ENCIG2023-EJES-0002",
  "CALC-PISOS-ENIF2021-EJES-0003",
 ]
+
+def _formal_posicional_en_fuente(source: str) -> bool:
+    """Falsador stdlib para la reparación ENIF; CI no instala pandas.
+
+    La prueba funcional se conserva cuando pandas está disponible. Esta
+    inspección de AST garantiza además que un runner mínimo siga verificando
+    el defecto exacto: la negación combina P5_4/P5_7 por posición antes de
+    reducir la fila, en vez de alinear etiquetas de columnas distintas.
+    """
+    tree=ast.parse(source)
+    function=next((node for node in tree.body
+                   if isinstance(node,ast.FunctionDef) and node.name=="_formal"),None)
+    if function is None:
+        return False
+    normalized="".join(ast.unparse(function).split())
+    required=(
+        "no=(a.eq('2').to_numpy()|s.eq('2').to_numpy()).all(axis=1)",
+        "out.loc[no&~yes]=False",
+        "out.loc[yes]=True",
+    )
+    return all(fragment in normalized for fragment in required)
 
 def corre():
     errors=[]
@@ -54,17 +75,25 @@ def corre():
     if any("P3_13" not in r["reason"] for r in excluded):
         errors.append("exclusión de formalidad sin razón P3_13")
     enif=ROOT/"data/corrida0/CALC-PISOS-ENIF2021-EJES-0003/medidor.py"
-    module_spec=importlib.util.spec_from_file_location("pisos_enif_v21",enif)
-    module=importlib.util.module_from_spec(module_spec)
-    module_spec.loader.exec_module(module)
-    fixture=pd.DataFrame({
-        "P5_4_1":["1","2"], "P5_4_2":["2","2"],
-        "P5_7_1":["2",""], "P5_7_2":["",""],
-    })
-    formal=module._formal(
-        fixture, ["P5_4_1","P5_4_2"], ["P5_7_1","P5_7_2"])
-    if formal.tolist()!=[False,False]:
-        errors.append(f"ENIF: pares posicionales P5_4/P5_7 rotos: {formal.tolist()}")
+    enif_source=enif.read_text(encoding="utf-8")
+    if not _formal_posicional_en_fuente(enif_source):
+        errors.append("ENIF: la negación formal no combina P5_4/P5_7 por posición")
+    try:
+        import pandas as pd
+    except ImportError:
+        pd=None
+    if pd is not None:
+        module_spec=importlib.util.spec_from_file_location("pisos_enif_v21",enif)
+        module=importlib.util.module_from_spec(module_spec)
+        module_spec.loader.exec_module(module)
+        fixture=pd.DataFrame({
+            "P5_4_1":["1","2"], "P5_4_2":["2","2"],
+            "P5_7_1":["2",""], "P5_7_2":["",""],
+        })
+        formal=module._formal(
+            fixture, ["P5_4_1","P5_4_2"], ["P5_7_1","P5_7_2"])
+        if formal.tolist()!=[False,False]:
+            errors.append(f"ENIF: pares posicionales P5_4/P5_7 rotos: {formal.tolist()}")
     return errors
 
 def main():

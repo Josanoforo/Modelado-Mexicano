@@ -2903,6 +2903,12 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-PISOS-REJILLA-CLI-1, 19/sep/2026: insumo de dirección
+    # archivado VERBATIM por 0-bis A.3. Su §3 usa `E1` para la capa del
+    # esquema theta ya existente, no para acuñar un rótulo nuevo. El archivo
+    # no se edita para complacer T25; misma excepción de procedencia que los
+    # demás encargos verbatim de esta lista.
+    "forense/encargos/fuentes/GEN2-PISOS-REJILLA-CLI-1/01-CONTRATO-Y-TRAMITE.md",
     # ACTO GEN2-TRAMITE-4, 16/sep/2026. DOS archivos, una sola causa: los dos
     # son TEXTO VERBATIM y no se editan para complacer un test -- el encargo
     # esta archivado por 0-bis A.3 y el insumo de direccion por P4, con su
