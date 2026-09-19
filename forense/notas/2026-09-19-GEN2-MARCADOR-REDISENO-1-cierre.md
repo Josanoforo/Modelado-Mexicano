@@ -36,8 +36,8 @@ re-verificadas aquí.
    las cuatro NC con el diseño como cita).
 6. **`forense/no-corrido.tsv`**: NC-0024, NC-0076, NC-0239, NC-0300 →
    `CERRADA` por superación (enmienda fechada 19/sep/2026, texto original
-   intacto). Dos filas nuevas, `ABIERTA`: NC-0333 (gate `cuenta_gen2` de
-   las 8 celdas DIN) y NC-0334 (formato de RESULT de `CALC-TRIADA-B-PISO-0001`).
+   intacto). Dos filas nuevas, `ABIERTA`: NC-0337 (gate `cuenta_gen2` de
+   las 8 celdas DIN) y NC-0338 (formato de RESULT de `CALC-TRIADA-B-PISO-0001`).
 7. **`tests/test_marcador_segmento.py`** + **`tests/test_estimadores_segmento.py`**
    (nuevos): tres guardias del diseño + dos casos de P2. Cableados en
    **`.github/workflows/verify.yml`** (un paso nuevo, bloqueante).
@@ -66,10 +66,10 @@ por superación con un artefacto real, no con prosa.
 Mesa puede: (a) decidir si sella `cuenta_gen2: SI` en la spec de
 `CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001` para que las 8 celdas DIN
 muevan `N_resultados_gen2_adoptados_activos` igual que las 12 TRA
-(NC-0333); (b) autorizar o no un sucesor que serialice
+(NC-0337); (b) autorizar o no un sucesor que serialice
 `CALC-TRIADA-B-PISO-0001` (o un reemplazo) con un `RESULT` por celda en el
 mismo formato que las celdas-D, para que el piso de persistencia nacional
-deje de ser SIN-PISO por formato (NC-0334); (c) revisar el diff archivado
+deje de ser SIN-PISO por formato (NC-0338); (c) revisar el diff archivado
 del insumo Codex y decidir si algo de él se retoma por otra vía.
 
 ## Qué falta para usarlo
@@ -120,7 +120,7 @@ tabla derivada, pero su CALC
 (`CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001`) declara
 `cuenta_gen2: PENDIENTE-DE-MESA` — un gate DISTINTO al de adopción por
 firma, y `status()` exige `cuenta_gen2=SI` antes de entrar a
-`ids_sellados_gen2`. Medido, no forzado; asentado en NC-0333.
+`ids_sellados_gen2`. Medido, no forzado; asentado en NC-0337.
 
 ## Tabla de afirmación → comando
 
@@ -142,10 +142,10 @@ firma, y `status()` exige `cuenta_gen2=SI` antes de entrar a
 
 ## Reservas materiales
 
-- **NC-0333** (nueva): las 8 celdas DIN no mueven `ADOPTADO_ACTIVO` por un
+- **NC-0337** (nueva): las 8 celdas DIN no mueven `ADOPTADO_ACTIVO` por un
   gate de spec (`cuenta_gen2`) distinto del de adopción por firma —
   decisión de mesa pendiente, no bloqueador de este acto.
-- **NC-0334** (nueva): el piso de persistencia nacional
+- **NC-0338** (nueva): el piso de persistencia nacional
   (`CALC-TRIADA-B-PISO-0001`) sigue SIN-PISO por formato de id, no por
   contenido — un sucesor de serialización lo resuelve, no un veto.
 - El insumo Codex (P0) queda archivado sin fusionar; su contenido no se
