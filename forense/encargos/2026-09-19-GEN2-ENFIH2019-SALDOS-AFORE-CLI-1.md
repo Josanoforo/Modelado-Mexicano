@@ -64,3 +64,32 @@ No modificar milpa, canon, NC/FP globales, decisiones, tablero, corrida0.py, tes
 Publica con preflight, sellado, replay dirigido y registro por interfaz vigente. No aceptar cambios de replay ajeno mediante --lote. Si una compuerta ajena impide generar vistas, conserva el CALC y entrega PR con publicación pendiente y evidencia concreta, sin afirmar adopción, uso activo o registro exitoso. No arreglar gobierno para conseguir verde. Regenerar vistas compartidas sobre la base actual cuando corresponda; no resolverlas a mano. La segunda proyección debe ser estable.
 
 Entrega tablas, RESULT→significado→universo, código/spec, hashes, ejecución/sello/replay, interpretación y reservas de cobertura. Incluye CONSUMIDO y NO-CORRIDO / RESERVAS, pruebas ejecutadas, URL de PR y SHA. Explica qué puede decidir mesa y qué falta para consumo. No fusionar.
+
+## A.8 · Verificación de medición previa (salida añadida al ejecutar)
+
+Comando: `python3 tools/ya_medido.py dinero.planeacion.formal_estable`
+
+```text
+=== ya_medido: dinero.planeacion.formal_estable ===
+  resuelto por canon: dinero.planeacion.formal_estable -> R1.2 (canon/modelo-decision-v4_0.md §3, registro congelado + tag **id:**)
+  términos de búsqueda (match exacto): dinero.planeacion.formal_estable, R1.2
+
+-- milpa/tramite.yaml --
+  milpa/tramite.yaml:938  situacion=SELLADA tier=FUERTE p=0.538502  [TASA-EJECUTADA]
+      id: dinero.planeacion.formal_estable
+
+-- milpa/tramite-ola5-propuesta-v0.yaml --
+  milpa/tramite-ola5-propuesta-v0.yaml:319  situacion=PENDIENTE-DE-MESA tier=SELLADA p=0.538502  [TASA-EJECUTADA]
+      id: dinero.planeacion.formal_estable
+
+-- data/corrida0 (RESULT + ejecución + sello) --
+  data/corrida0/CALC-ENFIH-0001/resultados.json:13  resultado_id=RESULT-ENFIH-A-P ejecutado=SI sello=VALIDO  [TASA-EJECUTADA]
+      RESULT-ENFIH-A-P=0.5385022873715912; ejecucion=data/corrida0/CALC-ENFIH-0001/ejecucion.json:28; sello=data/corrida0/CALC-ENFIH-0001/sello.json:4
+  data/corrida0/CALC-ENFIH-0001/resultados.json:14  resultado_id=RESULT-ENFIH-A-P-COMPLEMENTO ejecutado=SI sello=VALIDO  [TASA-EJECUTADA]
+      RESULT-ENFIH-A-P-COMPLEMENTO=0.46149771262840883; ejecucion=data/corrida0/CALC-ENFIH-0001/ejecucion.json:28; sello=data/corrida0/CALC-ENFIH-0001/sello.json:4
+
+========================================
+MEDIDA-EN: CALC-ENFIH-0001, tramite-ola5-propuesta-v0.yaml, tramite.yaml
+```
+
+El cuerpo anterior a este apéndice conserva verbatim el encargo recibido. La salida acredita que la tasa de tenencia ya estaba medida; este acto no la presenta como novedad y aporta únicamente cobertura y distribución de saldos.
