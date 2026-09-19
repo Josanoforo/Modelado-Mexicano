@@ -144,3 +144,46 @@ instalador, por lo que manifiesto e inventarios quedaron intactos.
 Estado posterior (`adq_doctor.py --json`, 16:31): tarea `Ready`,
 `LastRunTime=16:00:01`, `LastTaskResult=65`, `NextRunTime=17:00:00`, lock
 inactivo, heartbeat `FAILED/LAUNCHER-HANDOFF`, `t_cron=RESULTADO-INVALIDO`.
+
+## Correctivo de reactivación por evento
+
+Reproducción antes del segundo correctivo:
+
+```text
+caso=EVENTO + cambios_materiales={NC-A}
+selecciona -> tools/adq_investigacion.py:450 -> _fecha(revision)
+ValueError: Invalid isoformat string: 'EVENTO: firma de mesa'
+```
+
+El mismo riesgo existía al reactivar por
+`evidencia_nueva_identificada`. `7791a5a75f9465d1fedcc8959db7eebe945869a8`
+mantiene `espera_evento` separado de `proxima`: una revisión por evento espera
+sin parsearse o avanza por una señal válida con `proxima=None`. El ruteo
+`ESPERA_NUEVA_PISTA` usa la misma distinción; las barreras humanas retornan
+antes de ambas señales.
+
+```text
+revision-evento espera/cambio/evidencia/barrera: OK
+test_adq_handoff_resultado.py: 13 pruebas, 0 fallos
+test_adq_cierre_verificable.py: 13 casos, 0 fallos
+py_compile: OK
+git diff --check: OK
+suite test_adq_descubrimiento.py: 1 aserción heredada del mapa de necesidades;
+la regresión nueva pasa aislada
+```
+
+Incorporación remota verificada:
+
+```text
+PR #886 contiene correctivo=7791a5a75f9465d1fedcc8959db7eebe945869a8
+PR #884 head=699ec1ba0531e0ff329eae6a80fe6674fa976838; contiene 7791a5a
+PR #885 head=8aaf45c173a613ff575c084bd3ae4024f5f480f8; contiene 7791a5a
+```
+
+La tarea se actualizó por el instalador soportado, sin cambiar calendario ni
+principal. Respaldo previo:
+`C:\Users\PC0\AppData\Local\Temp\AdquiereCron-before-7791a5a.xml`, SHA-256
+`F6D5096A14764F3A6F406BA37156A034B15690F6CFC9550633AAEB0C20003484`.
+La acción instalada solicita `7791a5a75f9465d1fedcc8959db7eebe945869a8`;
+permanece `Ready`, con el `LastTaskResult=65` histórico intacto y siguiente
+trigger a las 17:00.
