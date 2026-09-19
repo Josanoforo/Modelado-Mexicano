@@ -1,0 +1,79 @@
+calc_id: CALC-PISOS-ENCIG2023-EJES-0002
+spec_md: ../../../forense/prereg-caja/PISOS-ENCIG2023-ejes-spec-v2_0.md
+spec_md_sha256: 0bd2b2d367f35ae3d999bb093e9233f6f14e643efeac565928f74680ef57cc58
+script: data/corrida0/CALC-PISOS-ENCIG2023-EJES-0002/medidor.py
+etiquetas: {generacion: GEN2, tipo: PISO-PERSISTENCIA-POR-EJE, cuenta_gen2: SI, sucesor_de: CALC-PISOS-ENCIG2023-EJES-0001-v1_1}
+inputs:
+  - {id: encig23_base_datos_csv, origen: manifiesto}
+variables:
+  - {archivo: encig2023_04_sec_7.csv, variable: N_TRA, rol: universo-tramite}
+  - {archivo: encig2023_04_sec_7.csv, variable: P7_3, rol: desenlace-y-denominador}
+  - {archivo: encig2023_04_sec_7.csv, variable: FAC_TRA, rol: ponderador}
+  - {archivo: encig2023_04_sec_7.csv, variable: EST_DIS, rol: estrato}
+  - {archivo: encig2023_04_sec_7.csv, variable: UPM_DIS, rol: upm}
+  - {archivo: encig2023_04_sec_7.csv, variable: ID_PER, rol: llave-persona}
+  - {archivo: encig2023_02_residentes_sec_2.csv, variable: ID_PER, rol: llave-persona}
+  - {archivo: encig2023_02_residentes_sec_2.csv, variable: SEXO, rol: eje-sexo}
+  - {archivo: encig2023_02_residentes_sec_2.csv, variable: EDAD, rol: eje-edad}
+  - {archivo: encig2023_02_residentes_sec_2.csv, variable: NIV, rol: eje-escolaridad}
+universo: "N_TRA=01 y P7_3 in {1,2,4,5,6}; FAC_TRA y diseno validos."
+filtros: "Edad valida 18--96; centinelas y ausencias fuera del eje; sin imputacion."
+ponderador: FAC_TRA
+transformacion: "P7_3 in {4,5}; 3,7,8,9 y blanco se excluyen del denominador."
+estimando: "p_t-1(desenlace | categoria), proporcion ponderada [0,1]."
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+parametros: {bootstrap_replicas: 10000, metodo_ic: "bootstrap UPM estratificado; percentiles 2.5/97.5"}
+dependencias_materiales: [numpy, pandas]
+resultados:
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-N-UNIVERSO, tipo: entero, unidad: "filas del universo propio"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-2-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-2-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-2-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-2-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-2-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-18-29-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-18-29-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-18-29-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-30-44-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-30-44-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-30-44-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-30-44-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-45-59-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-45-59-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-45-59-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-45-59-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-60-MAS-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-60-MAS-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-60-MAS-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SECUNDARIA-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SUPERIOR-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+tolerancia: {tipo: flotante, abs: 1.0e-10}
