@@ -2903,6 +2903,12 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-PISOS-REJILLA-CLI-1, 19/sep/2026: insumo de dirección
+    # archivado VERBATIM por 0-bis A.3. Su §3 usa `E1` para la capa del
+    # esquema theta ya existente, no para acuñar un rótulo nuevo. El archivo
+    # no se edita para complacer T25; misma excepción de procedencia que los
+    # demás encargos verbatim de esta lista.
+    "forense/encargos/fuentes/GEN2-PISOS-REJILLA-CLI-1/01-CONTRATO-Y-TRAMITE.md",
     # ACTO GEN2-TRAMITE-4, 16/sep/2026. DOS archivos, una sola causa: los dos
     # son TEXTO VERBATIM y no se editan para complacer un test -- el encargo
     # esta archivado por 0-bis A.3 y el insumo de direccion por P4, con su
@@ -6567,6 +6573,20 @@ def t32_corrida0():
         fail("T-CORRIDA0", f)
 
 
+def t32_bis_pisos_rejilla():
+    """La rejilla arbitral coincide uno-a-uno con los RESULT primarios."""
+    ruta = os.path.join(ROOT, "tests", "test_pisos_rejilla.py")
+    try:
+        import importlib.util as _iu
+        spec = _iu.spec_from_file_location("test_pisos_rejilla_desde_check", ruta)
+        mod = _iu.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        for error in mod.corre():
+            fail("T-PISOS-REJILLA", error)
+    except Exception as exc:
+        fail("T-PISOS-REJILLA", f"no pudo correr: {type(exc).__name__}: {exc}")
+
+
 # ───────────────────────────────────────────────────────────────
 # T36 · T-CORREDORES-GEN2 -- ACTO GEN2-E7 · READINESS-2, 8/sep/2026.
 #
@@ -7329,6 +7349,7 @@ def main():
         ("T30b T-YAMEDIDO-HUSO",                    t30b_yamedido_huso_medianoche),
         ("T31 T-CRON",                              t31_cron),
         ("T32 T-CORRIDA0",                           t32_corrida0),
+        ("T32-bis T-PISOS-REJILLA",                    t32_bis_pisos_rejilla),
         ("T36 T-CORREDORES-GEN2",                     t36_corredores_gen2),
         ("T39 T-DIGESTO-NC",                          t39_digesto_nc),
         ("T40 T-RUTINAS",                             t40_rutinas),
