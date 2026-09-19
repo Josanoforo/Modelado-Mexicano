@@ -104,7 +104,7 @@ from milpa.src.clases import EJES as EJES_MODELO  # noqa: E402
 from milpa.src.clases import EJES_HOGAR as EJES_HOGAR_MODELO  # noqa: E402
 from milpa.src.linaje import (  # noqa: E402
     APTA_LINAJE, NO_APTA, ORIGEN_HEREDADO, ORIGEN_INDETERMINADO,
-    ORIGEN_MIXTO, ORIGEN_NUEVO, aptitud_para_uso, combina_origenes,
+    ORIGEN_MIXTO, ORIGEN_NUEVO, USO_MEDICION_GEN2, aptitud_para_uso, combina_origenes,
 )
 
 RAIZ = Path(__file__).resolve().parents[1]
@@ -4013,9 +4013,65 @@ def _filas_registro(verifica: bool = False) -> dict:
         elif f["generacion"] == GENERACION_LEGADO and not f["sucesor"]:
             avisos.append(f"LEGACY-SIN-SUCESOR: {f['resultado_id']} es "
                           f"{GENERACION_LEGADO} y no declara sucesor")
+
+    # ── ACTO GEN2-MARCADOR-REDISENO-1 (adenda 19/sep/2026), P2 ─────────────
+    # Proyecta como usos activos las celdas de `milpa/estimadores-por-
+    # segmento.yaml` (DERIVADO por `tools/marcador_segmento.py` desde las
+    # celdas-D con `champion_actual` != NINGUNO y RESULT sellado) citando
+    # `adopcion:piso-C2-20-celdas` (decisiones.tsv, firma de mesa). Aditivo
+    # y posterior a las validaciones de arriba a propósito: estas 20
+    # identidades no son un nodo de `tramite.yaml`/`procedencia.yaml`, son
+    # una adopción por firma directa sobre el catálogo -- nunca
+    # `IMPLEMENTADO-PROPUESTO`, nunca escriben `tramite.yaml`.
+    for cid, marca in _estimadores_segmento_para_status(indice_resultados).items():
+        destino = indice_resultados[marca["resultado_id"]]
+        # Se usa el MISMO contrato compartido que T35/el registro exigen en
+        # (g) -- nunca un estado inventado. `USO_MEDICION_GEN2` es honesto:
+        # el consumidor (el marcador) lee la medición sellada de la celda,
+        # no una herencia ni una confirmación independiente.
+        aptitud, motivo = aptitud_para_uso(
+            destino["origen_numerico"], USO_MEDICION_GEN2,
+            destino["validacion_independiente"], destino["rol_evaluacion"])
+        filas_usos.append({
+            "resultado_id": marca["resultado_id"], "consumidor": f"marcador:{cid}",
+            "tipo_uso": "ADOPCION-POR-FIRMA", "activo": "SI",
+            "reglas_impacto": marca["regla_origen"],
+            "generacion_leida": "GEN2", "corrida0_generacion": "GEN2",
+            "corrida0_resultado_id": marca["resultado_id"],
+            "fuente_replay": "NO-CORRIDA",
+            "uso_solicitado": USO_MEDICION_GEN2,
+            "origen_numerico": destino["origen_numerico"],
+            "aptitud_uso": aptitud,
+            "motivo_aptitud": (f"{motivo} · adopcion:piso-C2-20-celdas "
+                               "(firma de mesa 17/sep/2026)"),
+            "camino_linaje": (f"marcador:{cid} -> {marca['resultado_id']} -> "
+                              f"{destino['camino_linaje']}"),
+            "valor_materializado": marca.get("punto", NO_DECLARADO),
+        })
+
     return {"corridas": filas_corridas, "resultados": filas_resultados,
             "usos": filas_usos, "avisos": avisos,
             "fuentes_replay": fuentes_replay}
+
+
+def _estimadores_segmento_para_status(indice_resultados: dict) -> dict:
+    """Lee `milpa/estimadores-por-segmento.yaml` (si existe) y devuelve solo
+    las celdas cuyo `resultado_id` es de verdad un RESULT sellado en esta
+    corrida -- nunca se inventa una cita. Ausente el YAML (P2 no corrió
+    todavía, o el arbol no lo trae) devuelve `{}` sin PARAR el registro."""
+    ruta = RAIZ / "milpa" / "estimadores-por-segmento.yaml"
+    if not ruta.exists():
+        return {}
+    try:
+        crudo = _yaml_safe_load(ruta.read_text(encoding="utf-8")) or {}
+    except (OSError, yaml.YAMLError):
+        return {}
+    out = {}
+    for cid, marca in (crudo.get("celdas") or {}).items():
+        rid = marca.get("resultado_id")
+        if rid and rid in indice_resultados:
+            out[cid] = marca
+    return out
 
 
 def _verifica_ciclos(filas: list[dict]) -> None:

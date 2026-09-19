@@ -1,0 +1,2276 @@
+diff --git a/milpa/estimadores-por-segmento.yaml b/milpa/estimadores-por-segmento.yaml
+new file mode 100644
+index 0000000..e55fab3
+--- /dev/null
++++ b/milpa/estimadores-por-segmento.yaml
+@@ -0,0 +1,1485 @@
++# DERIVADO — NO EDITAR
++version: 1
++derivado: NO EDITAR
++fuentes_sha256:
++  data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/resultados.json: 69ec9c6a21d259a76ae5617f2cff801e6165c351c750121125cc77e642f2d8c1
++  data/corrida0/CALC-PISOS-ENCIG2023-EJES-0002/resultados.json: 06398d10567d0f1bc343b1f7b9a9b12191c258784c9de9bebd42423676d57896
++  data/corrida0/CALC-PISOS-ENIF2021-EJES-0002/resultados.json: 598528917ff41d1b18943d980183dddc2c31eef955db6e61db3b0652aa1e18fd
++  data/corrida0/CALC-PISOS-ENVIPE2024-EJES-0002/resultados.json: ae6729a50bb6b02f58514007c1608000e1965ac72d03856d5a2f0443177d6a18
++  data/corrida0/CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001/resultados.json: 5d120c1f302c364639c5cdfaf82efec7a7a84cbb1a0d55c0825aa0188330c7c7
++estimadores:
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona
++    ejes:
++      localidad: L1
++      edad: E1
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: ACREDITADA-POR-RESULT-NC-0313
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
++    punto: RESULT-DIN-LXE8-C2-P-L1xE1
++    ic95inf: RESULT-DIN-LXE8-C2-IC95INF-L1xE1
++    ic95sup: RESULT-DIN-LXE8-C2-IC95SUP-L1xE1
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2024'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona
++    ejes:
++      localidad: L1
++      edad: E2
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: ACREDITADA-POR-RESULT-NC-0313
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
++    punto: RESULT-DIN-LXE8-C2-P-L1xE2
++    ic95inf: RESULT-DIN-LXE8-C2-IC95INF-L1xE2
++    ic95sup: RESULT-DIN-LXE8-C2-IC95SUP-L1xE2
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2024'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona
++    ejes:
++      localidad: L1
++      edad: E3
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: ACREDITADA-POR-RESULT-NC-0313
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
++    punto: RESULT-DIN-LXE8-C2-P-L1xE3
++    ic95inf: RESULT-DIN-LXE8-C2-IC95INF-L1xE3
++    ic95sup: RESULT-DIN-LXE8-C2-IC95SUP-L1xE3
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2024'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona
++    ejes:
++      localidad: L1
++      edad: E4
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: ACREDITADA-POR-RESULT-NC-0313
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
++    punto: RESULT-DIN-LXE8-C2-P-L1xE4
++    ic95inf: RESULT-DIN-LXE8-C2-IC95INF-L1xE4
++    ic95sup: RESULT-DIN-LXE8-C2-IC95SUP-L1xE4
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2024'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona
++    ejes:
++      localidad: L2
++      edad: E1
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: ACREDITADA-POR-RESULT-NC-0313
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
++    punto: RESULT-DIN-LXE8-C2-P-L2xE1
++    ic95inf: RESULT-DIN-LXE8-C2-IC95INF-L2xE1
++    ic95sup: RESULT-DIN-LXE8-C2-IC95SUP-L2xE1
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2024'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona
++    ejes:
++      localidad: L2
++      edad: E2
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: ACREDITADA-POR-RESULT-NC-0313
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
++    punto: RESULT-DIN-LXE8-C2-P-L2xE2
++    ic95inf: RESULT-DIN-LXE8-C2-IC95INF-L2xE2
++    ic95sup: RESULT-DIN-LXE8-C2-IC95SUP-L2xE2
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2024'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona
++    ejes:
++      localidad: L2
++      edad: E3
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: ACREDITADA-POR-RESULT-NC-0313
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
++    punto: RESULT-DIN-LXE8-C2-P-L2xE3
++    ic95inf: RESULT-DIN-LXE8-C2-IC95INF-L2xE3
++    ic95sup: RESULT-DIN-LXE8-C2-IC95SUP-L2xE3
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2024'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona
++    ejes:
++      localidad: L2
++      edad: E4
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: ACREDITADA-POR-RESULT-NC-0313
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
++    punto: RESULT-DIN-LXE8-C2-P-L2xE4
++    ic95inf: RESULT-DIN-LXE8-C2-IC95INF-L2xE4
++    ic95sup: RESULT-DIN-LXE8-C2-IC95SUP-L2xE4
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2024'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: persona
++    ejes:
++      escolaridad: S1
++      dominio: D1
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
++    punto: RESULT-TRA-SXD12-C2-P-S1xD1
++    ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S1xD1
++    ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S1xD1
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2025'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: persona
++    ejes:
++      escolaridad: S1
++      dominio: D2
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
++    punto: RESULT-TRA-SXD12-C2-P-S1xD2
++    ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S1xD2
++    ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S1xD2
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2025'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: persona
++    ejes:
++      escolaridad: S1
++      dominio: D3
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
++    punto: RESULT-TRA-SXD12-C2-P-S1xD3
++    ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S1xD3
++    ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S1xD3
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2025'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: persona
++    ejes:
++      escolaridad: S2
++      dominio: D1
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
++    punto: RESULT-TRA-SXD12-C2-P-S2xD1
++    ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S2xD1
++    ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S2xD1
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2025'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: persona
++    ejes:
++      escolaridad: S2
++      dominio: D2
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
++    punto: RESULT-TRA-SXD12-C2-P-S2xD2
++    ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S2xD2
++    ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S2xD2
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2025'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: persona
++    ejes:
++      escolaridad: S2
++      dominio: D3
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
++    punto: RESULT-TRA-SXD12-C2-P-S2xD3
++    ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S2xD3
++    ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S2xD3
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2025'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: persona
++    ejes:
++      escolaridad: S3
++      dominio: D1
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
++    punto: RESULT-TRA-SXD12-C2-P-S3xD1
++    ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S3xD1
++    ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S3xD1
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2025'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: persona
++    ejes:
++      escolaridad: S3
++      dominio: D2
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
++    punto: RESULT-TRA-SXD12-C2-P-S3xD2
++    ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S3xD2
++    ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S3xD2
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2025'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: persona
++    ejes:
++      escolaridad: S3
++      dominio: D3
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
++    punto: RESULT-TRA-SXD12-C2-P-S3xD3
++    ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S3xD3
++    ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S3xD3
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2025'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: persona
++    ejes:
++      escolaridad: S4
++      dominio: D1
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
++    punto: RESULT-TRA-SXD12-C2-P-S4xD1
++    ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S4xD1
++    ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S4xD1
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2025'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: persona
++    ejes:
++      escolaridad: S4
++      dominio: D2
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
++    punto: RESULT-TRA-SXD12-C2-P-S4xD2
++    ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S4xD2
++    ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S4xD2
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2025'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: persona
++    ejes:
++      escolaridad: S4
++      dominio: D3
++  tipo: cruce
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: EVALUADA
++  adjudicacion: C2
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: FUERA-DE-SELECCION
++  fuente:
++    calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
++    punto: RESULT-TRA-SXD12-C2-P-S4xD3
++    ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S4xD3
++    ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S4xD3
++    decision: adopcion:piso-C2-20-celdas
++    periodo: '2025'
++  incertidumbre: bootstrap-composicion-sellada
++- identidad:
++    regla: GOB
++    desenlace: digital_util_sin_coercion
++    instrumento: ENCIG
++    periodo: '2025'
++    universo: evento_tramite_comparable
++    ejes:
++      sexo: '1'
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENCIG2023-EJES-0002
++    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-P
++    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-IC-LO
++    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-IC-HI
++    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-N
++    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-DEN-W
++    periodo: '2023'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: GOB
++    desenlace: digital_util_sin_coercion
++    instrumento: ENCIG
++    periodo: '2025'
++    universo: evento_tramite_comparable
++    ejes:
++      sexo: '2'
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENCIG2023-EJES-0002
++    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-2-P
++    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-2-IC-LO
++    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-2-IC-HI
++    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-2-N
++    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-2-DEN-W
++    periodo: '2023'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: GOB
++    desenlace: digital_util_sin_coercion
++    instrumento: ENCIG
++    periodo: '2025'
++    universo: evento_tramite_comparable
++    ejes:
++      edad: 18-29
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENCIG2023-EJES-0002
++    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-18-29-P
++    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-18-29-IC-LO
++    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-18-29-IC-HI
++    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-18-29-N
++    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-18-29-DEN-W
++    periodo: '2023'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: GOB
++    desenlace: digital_util_sin_coercion
++    instrumento: ENCIG
++    periodo: '2025'
++    universo: evento_tramite_comparable
++    ejes:
++      edad: 30-44
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENCIG2023-EJES-0002
++    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-30-44-P
++    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-30-44-IC-LO
++    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-30-44-IC-HI
++    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-30-44-N
++    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-30-44-DEN-W
++    periodo: '2023'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: GOB
++    desenlace: digital_util_sin_coercion
++    instrumento: ENCIG
++    periodo: '2025'
++    universo: evento_tramite_comparable
++    ejes:
++      edad: 45-59
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENCIG2023-EJES-0002
++    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-45-59-P
++    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-45-59-IC-LO
++    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-45-59-IC-HI
++    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-45-59-N
++    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-45-59-DEN-W
++    periodo: '2023'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: GOB
++    desenlace: digital_util_sin_coercion
++    instrumento: ENCIG
++    periodo: '2025'
++    universo: evento_tramite_comparable
++    ejes:
++      edad: 60-mas
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENCIG2023-EJES-0002
++    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-60-MAS-P
++    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-60-MAS-IC-LO
++    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-60-MAS-IC-HI
++    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-60-MAS-N
++    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-60-MAS-DEN-W
++    periodo: '2023'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: GOB
++    desenlace: digital_util_sin_coercion
++    instrumento: ENCIG
++    periodo: '2025'
++    universo: evento_tramite_comparable
++    ejes:
++      escolaridad: hasta-primaria
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENCIG2023-EJES-0002
++    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-P
++    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
++    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
++    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-N
++    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W
++    periodo: '2023'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: GOB
++    desenlace: digital_util_sin_coercion
++    instrumento: ENCIG
++    periodo: '2025'
++    universo: evento_tramite_comparable
++    ejes:
++      escolaridad: secundaria
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENCIG2023-EJES-0002
++    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SECUNDARIA-P
++    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SECUNDARIA-IC-LO
++    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SECUNDARIA-IC-HI
++    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SECUNDARIA-N
++    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SECUNDARIA-DEN-W
++    periodo: '2023'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: GOB
++    desenlace: digital_util_sin_coercion
++    instrumento: ENCIG
++    periodo: '2025'
++    universo: evento_tramite_comparable
++    ejes:
++      escolaridad: media-superior
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENCIG2023-EJES-0002
++    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-P
++    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
++    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
++    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-N
++    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W
++    periodo: '2023'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: GOB
++    desenlace: digital_util_sin_coercion
++    instrumento: ENCIG
++    periodo: '2025'
++    universo: evento_tramite_comparable
++    ejes:
++      escolaridad: superior
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENCIG2023-EJES-0002
++    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SUPERIOR-P
++    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SUPERIOR-IC-LO
++    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SUPERIOR-IC-HI
++    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SUPERIOR-N
++    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SUPERIOR-DEN-W
++    periodo: '2023'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona_elegida_18_mas
++    ejes:
++      sexo: '1'
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENIF2021-EJES-0002
++    punto: RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-P
++    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-IC-LO
++    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-IC-HI
++    n: RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-N
++    denominador: RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-DEN-W
++    periodo: '2021'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona_elegida_18_mas
++    ejes:
++      sexo: '2'
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENIF2021-EJES-0002
++    punto: RESULT-PISOS-ENIF2021-V2-D9-SEXO-2-P
++    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-SEXO-2-IC-LO
++    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-SEXO-2-IC-HI
++    n: RESULT-PISOS-ENIF2021-V2-D9-SEXO-2-N
++    denominador: RESULT-PISOS-ENIF2021-V2-D9-SEXO-2-DEN-W
++    periodo: '2021'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona_elegida_18_mas
++    ejes:
++      edad: 18-29
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENIF2021-EJES-0002
++    punto: RESULT-PISOS-ENIF2021-V2-D9-EDAD-18-29-P
++    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-EDAD-18-29-IC-LO
++    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-EDAD-18-29-IC-HI
++    n: RESULT-PISOS-ENIF2021-V2-D9-EDAD-18-29-N
++    denominador: RESULT-PISOS-ENIF2021-V2-D9-EDAD-18-29-DEN-W
++    periodo: '2021'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona_elegida_18_mas
++    ejes:
++      edad: 30-44
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENIF2021-EJES-0002
++    punto: RESULT-PISOS-ENIF2021-V2-D9-EDAD-30-44-P
++    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-EDAD-30-44-IC-LO
++    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-EDAD-30-44-IC-HI
++    n: RESULT-PISOS-ENIF2021-V2-D9-EDAD-30-44-N
++    denominador: RESULT-PISOS-ENIF2021-V2-D9-EDAD-30-44-DEN-W
++    periodo: '2021'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona_elegida_18_mas
++    ejes:
++      edad: 45-59
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENIF2021-EJES-0002
++    punto: RESULT-PISOS-ENIF2021-V2-D9-EDAD-45-59-P
++    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-EDAD-45-59-IC-LO
++    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-EDAD-45-59-IC-HI
++    n: RESULT-PISOS-ENIF2021-V2-D9-EDAD-45-59-N
++    denominador: RESULT-PISOS-ENIF2021-V2-D9-EDAD-45-59-DEN-W
++    periodo: '2021'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona_elegida_18_mas
++    ejes:
++      edad: 60-mas
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENIF2021-EJES-0002
++    punto: RESULT-PISOS-ENIF2021-V2-D9-EDAD-60-MAS-P
++    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-EDAD-60-MAS-IC-LO
++    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-EDAD-60-MAS-IC-HI
++    n: RESULT-PISOS-ENIF2021-V2-D9-EDAD-60-MAS-N
++    denominador: RESULT-PISOS-ENIF2021-V2-D9-EDAD-60-MAS-DEN-W
++    periodo: '2021'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona_elegida_18_mas
++    ejes:
++      escolaridad: hasta-primaria
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENIF2021-EJES-0002
++    punto: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-HASTA-PRIMARIA-P
++    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
++    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
++    n: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-HASTA-PRIMARIA-N
++    denominador: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W
++    periodo: '2021'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona_elegida_18_mas
++    ejes:
++      escolaridad: secundaria
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENIF2021-EJES-0002
++    punto: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SECUNDARIA-P
++    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SECUNDARIA-IC-LO
++    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SECUNDARIA-IC-HI
++    n: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SECUNDARIA-N
++    denominador: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SECUNDARIA-DEN-W
++    periodo: '2021'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona_elegida_18_mas
++    ejes:
++      escolaridad: media-superior
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENIF2021-EJES-0002
++    punto: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-MEDIA-SUPERIOR-P
++    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
++    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
++    n: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-MEDIA-SUPERIOR-N
++    denominador: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W
++    periodo: '2021'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona_elegida_18_mas
++    ejes:
++      escolaridad: superior
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENIF2021-EJES-0002
++    punto: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SUPERIOR-P
++    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SUPERIOR-IC-LO
++    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SUPERIOR-IC-HI
++    n: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SUPERIOR-N
++    denominador: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SUPERIOR-DEN-W
++    periodo: '2021'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona_elegida_18_mas
++    ejes:
++      localidad: menos-15000
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENIF2021-EJES-0002
++    punto: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-MENOS-15000-P
++    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-MENOS-15000-IC-LO
++    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-MENOS-15000-IC-HI
++    n: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-MENOS-15000-N
++    denominador: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-MENOS-15000-DEN-W
++    periodo: '2021'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona_elegida_18_mas
++    ejes:
++      localidad: 15000-y-mas
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENIF2021-EJES-0002
++    punto: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-15000-Y-MAS-P
++    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-15000-Y-MAS-IC-LO
++    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-15000-Y-MAS-IC-HI
++    n: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-15000-Y-MAS-N
++    denominador: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-15000-Y-MAS-DEN-W
++    periodo: '2021'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona_elegida_18_mas
++    ejes:
++      cuenta_formal: sin-cuenta
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENIF2021-EJES-0002
++    punto: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-SIN-CUENTA-P
++    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-SIN-CUENTA-IC-LO
++    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-SIN-CUENTA-IC-HI
++    n: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-SIN-CUENTA-N
++    denominador: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-SIN-CUENTA-DEN-W
++    periodo: '2021'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: DIN
++    desenlace: ahorro_solo_informal
++    instrumento: ENIF
++    periodo: '2024'
++    universo: persona_elegida_18_mas
++    ejes:
++      cuenta_formal: con-cuenta
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENIF2021-EJES-0002
++    punto: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-CON-CUENTA-P
++    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-CON-CUENTA-IC-LO
++    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-CON-CUENTA-IC-HI
++    n: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-CON-CUENTA-N
++    denominador: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-CON-CUENTA-DEN-W
++    periodo: '2021'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: delito_con_bp1_20_valido
++    ejes:
++      sexo: '1'
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENVIPE2024-EJES-0002
++    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-P
++    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-IC-LO
++    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-IC-HI
++    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-N
++    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-DEN-W
++    periodo: '2024'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: delito_con_bp1_20_valido
++    ejes:
++      sexo: '2'
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENVIPE2024-EJES-0002
++    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-P
++    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-IC-LO
++    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-IC-HI
++    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-N
++    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-DEN-W
++    periodo: '2024'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: delito_con_bp1_20_valido
++    ejes:
++      edad: 18-29
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENVIPE2024-EJES-0002
++    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-P
++    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-IC-LO
++    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-IC-HI
++    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-N
++    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-DEN-W
++    periodo: '2024'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: delito_con_bp1_20_valido
++    ejes:
++      edad: 30-44
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENVIPE2024-EJES-0002
++    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-P
++    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-IC-LO
++    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-IC-HI
++    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-N
++    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-DEN-W
++    periodo: '2024'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: delito_con_bp1_20_valido
++    ejes:
++      edad: 45-59
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENVIPE2024-EJES-0002
++    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-P
++    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-IC-LO
++    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-IC-HI
++    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-N
++    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-DEN-W
++    periodo: '2024'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: delito_con_bp1_20_valido
++    ejes:
++      edad: 60-mas
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENVIPE2024-EJES-0002
++    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-P
++    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-IC-LO
++    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-IC-HI
++    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-N
++    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-DEN-W
++    periodo: '2024'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: delito_con_bp1_20_valido
++    ejes:
++      escolaridad: hasta-primaria
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENVIPE2024-EJES-0002
++    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-P
++    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
++    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
++    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-N
++    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W
++    periodo: '2024'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: delito_con_bp1_20_valido
++    ejes:
++      escolaridad: secundaria
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENVIPE2024-EJES-0002
++    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-P
++    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-IC-LO
++    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-IC-HI
++    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-N
++    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-DEN-W
++    periodo: '2024'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: delito_con_bp1_20_valido
++    ejes:
++      escolaridad: media-superior
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENVIPE2024-EJES-0002
++    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-P
++    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
++    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
++    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-N
++    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W
++    periodo: '2024'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: delito_con_bp1_20_valido
++    ejes:
++      escolaridad: superior
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENVIPE2024-EJES-0002
++    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-P
++    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-IC-LO
++    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-IC-HI
++    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-N
++    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-DEN-W
++    periodo: '2024'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: delito_con_bp1_20_valido
++    ejes:
++      dominio: R
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENVIPE2024-EJES-0002
++    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-R-P
++    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-R-IC-LO
++    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-R-IC-HI
++    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-R-N
++    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-R-DEN-W
++    periodo: '2024'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: delito_con_bp1_20_valido
++    ejes:
++      dominio: C
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENVIPE2024-EJES-0002
++    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-C-P
++    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-C-IC-LO
++    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-C-IC-HI
++    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-C-N
++    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-C-DEN-W
++    periodo: '2024'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: TRA
++    desenlace: evade_norma
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: delito_con_bp1_20_valido
++    ejes:
++      dominio: U
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENVIPE2024-EJES-0002
++    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-U-P
++    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-U-IC-LO
++    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-U-IC-HI
++    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-U-N
++    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-U-DEN-W
++    periodo: '2024'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: CIV
++    desenlace: denuncia
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: delito_robo_total_vehiculo
++    ejes:
++      cobertura_seguro: no-asegurado
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENVIPE2024-EJES-0002
++    punto: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-P
++    ic95inf: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-IC-LO
++    ic95sup: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-IC-HI
++    n: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-N
++    denominador: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-DEN-W
++    periodo: '2024'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
++- identidad:
++    regla: CIV
++    desenlace: denuncia
++    instrumento: ENVIPE
++    periodo: '2025'
++    universo: delito_robo_total_vehiculo
++    ejes:
++      cobertura_seguro: asegurado
++  tipo: marginal
++  estado: CONSUMO-ACTIVO
++  evidencia: REPRODUCE/IDENTICO
++  evaluacion: SOLO-PISO
++  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
++  implementacion: IMPLEMENTADO-PROPUESTO
++  consumo: ACTIVO
++  diagnostico_emisor: NO-APLICA-A-SELECCION
++  fuente:
++    calc: CALC-PISOS-ENVIPE2024-EJES-0002
++    punto: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-P
++    ic95inf: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-IC-LO
++    ic95sup: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-IC-HI
++    n: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-N
++    denominador: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-DEN-W
++    periodo: '2024'
++  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+diff --git a/milpa/src/estimadores_segmento.py b/milpa/src/estimadores_segmento.py
+new file mode 100644
+index 0000000..5a9792c
+--- /dev/null
++++ b/milpa/src/estimadores_segmento.py
+@@ -0,0 +1,37 @@
++"""Lector de estimadores por segmento: no usa R ni el TSV del marcador."""
++from __future__ import annotations
++
++import json
++from pathlib import Path
++import yaml
++
++ROOT = Path(__file__).resolve().parents[2]
++MAPA = ROOT / "milpa/estimadores-por-segmento.yaml"
++
++
++def estimar(*, regla: str, desenlace: str, instrumento: str, periodo: str,
++            universo: str, ejes: dict[str, str]) -> dict | None:
++    """Devuelve la emisión exacta o ``None``; jamás sustituye un nacional."""
++    mapa = yaml.safe_load(MAPA.read_text(encoding="utf-8"))
++    buscada = {"regla": regla, "desenlace": desenlace, "instrumento": instrumento,
++               "periodo": str(periodo), "universo": universo,
++               "ejes": {str(k): str(v) for k, v in ejes.items()}}
++    for entrada in mapa["estimadores"]:
++        identidad = entrada["identidad"]
++        if all(identidad[k] == buscada[k] for k in
++               ("regla", "desenlace", "instrumento", "periodo", "universo")) and identidad["ejes"] == buscada["ejes"]:
++            f = entrada["fuente"]
++            resultados = json.loads((ROOT / "data/corrida0" / f["calc"] / "resultados.json").read_text())["resultados"]
++            punto, lo, hi = resultados[f["punto"]], resultados[f["ic95inf"]], resultados[f["ic95sup"]]
++            return {"punto": punto, "ic95": [lo, hi], "incertidumbre": entrada["incertidumbre"],
++                    "fuente": f["calc"], "fuente_periodo": f["periodo"],
++                    "estado": entrada["estado"],
++                    "estados": {"evidencia": entrada["evidencia"],
++                                "evaluacion": entrada["evaluacion"],
++                                "adjudicacion": entrada["adjudicacion"],
++                                "implementacion": entrada["implementacion"],
++                                "consumo": entrada["consumo"]},
++                    "identidad": identidad, "resultado": f["punto"],
++                    "n": resultados.get(f.get("n")),
++                    "denominador_ponderado": resultados.get(f.get("denominador"))}
++    return None
+diff --git a/milpa/src/motor.py b/milpa/src/motor.py
+index fb3b4ba..43b59e3 100644
+--- a/milpa/src/motor.py
++++ b/milpa/src/motor.py
+@@ -161,6 +161,13 @@ def evaluar(celda_d, catalogo, matriz_B, *, semilla=0):
+     )
+ 
+ 
++def estimar_segmento(*, regla, desenlace, instrumento, periodo, universo, ejes):
++    """Punto de entrada del motor para una emisión segmentada autorizada."""
++    from .estimadores_segmento import estimar
++    return estimar(regla=regla, desenlace=desenlace, instrumento=instrumento,
++                   periodo=periodo, universo=universo, ejes=ejes)
++
++
+ def correr(*, semilla=0, ruta_procedencia=None, ruta_catalogo=None,
+            dir_celdas=None):
+     """La rebanada completa, de punta a punta. Determinista por construcción."""
+@@ -186,5 +193,5 @@ def correr(*, semilla=0, ruta_procedencia=None, ruta_catalogo=None,
+     }
+ 
+ 
+-__all__ = ["Resultado", "celdas_semilla", "evaluar", "correr", "SinMagnitud",
++__all__ = ["Resultado", "celdas_semilla", "evaluar", "estimar_segmento", "correr", "SinMagnitud",
+            "VEREDICTOS"]
+diff --git a/tests/gonogo_marcador.py b/tests/gonogo_marcador.py
+index f20f915..84e2667 100644
+--- a/tests/gonogo_marcador.py
++++ b/tests/gonogo_marcador.py
+@@ -5,6 +5,10 @@ Seis checks MECANICOS sobre los artefactos GEN2 del marcador. No opina, no
+ mide, no arregla: imprime `GO-MARCADOR` o la lista de fallos, y su codigo de
+ salida es 0 solo en el primer caso.
+ 
++Su alcance historico es el marcador agregado con ``x = vacio`` y su punto
++de comparacion; no acredita el nuevo consumidor segmentado ni sustituye sus
++pruebas dirigidas. Se conservan exactamente los seis checks originales.
++
+     python3 tests/gonogo_marcador.py
+ 
+ ## Por que AST y audithook, y no `grep`
+diff --git a/tests/test_corrida0.py b/tests/test_corrida0.py
+index e92fef7..103f8b5 100644
+--- a/tests/test_corrida0.py
++++ b/tests/test_corrida0.py
+@@ -1705,6 +1705,24 @@ def t_registro_superado_por_repite_de_en_etiquetas():
+             f"estado={por_spec['CALC-FIX-B']['estado']}")
+ 
+ 
++def t_registro_superado_por_sucesor_de_en_etiquetas():
++    """T-REGISTRO-SUCESOR-DE-ETIQUETAS. El lector acepta el nombre usado
++    por specs selladas de pisos sin reescribirlas ni alterar la arista."""
++    caso = "T-REGISTRO-SUCESOR-DE-ETIQUETAS"
++    calcs = [{"calc_id": "CALC-FIX-A", "valores": {"RESULT-A": 1.0},
++              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}},
++             {"calc_id": "CALC-FIX-B", "valores": {"RESULT-B": 2.0},
++              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2",
++                            "sucesor_de": "CALC-FIX-A"}}]
++    with _arbol_registro(calcs=calcs):
++        v = C.registro(escribe=False, imprime=False)
++    por_spec = {f["spec_id"]: f for f in v["corridas"] if f["origen"] == "OFERTA"}
++    _afirma(por_spec["CALC-FIX-A"]["estado"] == "SUPERADO→CALC-FIX-B", caso,
++            f"estado={por_spec['CALC-FIX-A']['estado']}")
++    _afirma(por_spec["CALC-FIX-B"]["estado"] == "SELLADA", caso,
++            f"estado={por_spec['CALC-FIX-B']['estado']}")
++
++
+ def t_status_cifras_derivadas():
+     """T-STATUS. Los contadores de §9 salen de las vistas, no de un TSV en
+     disco, y un replay LEGACY-GEN1 NUNCA incrementa `N_resultados_sellados`
+diff --git a/tests/test_estimadores_segmento.py b/tests/test_estimadores_segmento.py
+new file mode 100644
+index 0000000..1f2d037
+--- /dev/null
++++ b/tests/test_estimadores_segmento.py
+@@ -0,0 +1,104 @@
++"""Contratos mínimos del consumidor segmentado autorizado."""
++import csv
++import json
++import subprocess
++import sys
++from pathlib import Path
++import unittest
++
++ROOT = Path(__file__).resolve().parents[1]
++sys.path.insert(0, str(ROOT))
++from milpa.src.motor import estimar_segmento
++
++
++class EstimadoresSegmentoTest(unittest.TestCase):
++    @classmethod
++    def setUpClass(cls):
++        subprocess.run([sys.executable, "tools/marcador_segmento.py"], cwd=ROOT, check=True)
++
++    def test_c2_de_ambos_pilotos_conservan_result_e_ic(self):
++        casos = [
++            (dict(regla="DIN", desenlace="ahorro_solo_informal", instrumento="ENIF", periodo="2024", universo="persona", ejes={"localidad":"L1", "edad":"E1"}),
++             "CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001", "RESULT-DIN-LXE8-C2-P-L1xE1"),
++            (dict(regla="TRA", desenlace="evade_norma", instrumento="ENVIPE", periodo="2025", universo="persona", ejes={"escolaridad":"S4", "dominio":"D3"}),
++             "CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001", "RESULT-TRA-SXD12-C2-P-S4xD3"),
++        ]
++        for consulta, calc, result in casos:
++            recibido = estimar_segmento(**consulta)
++            fuente = json.loads((ROOT / "data/corrida0" / calc / "resultados.json").read_text())["resultados"]
++            self.assertEqual(recibido["fuente"], calc)
++            self.assertEqual(recibido["resultado"], result)
++            self.assertEqual(recibido["punto"], fuente[result])
++            self.assertLess(recibido["ic95"][0], recibido["punto"])
++            self.assertGreater(recibido["ic95"][1], recibido["punto"])
++
++    def test_pisos_corregidos_de_cada_instrumento(self):
++        casos = [
++            (dict(regla="GOB", desenlace="digital_util_sin_coercion", instrumento="ENCIG",
++                  periodo="2025", universo="evento_tramite_comparable", ejes={"sexo": "1"}),
++             "CALC-PISOS-ENCIG2023-EJES-0002", 0.5780492513486944, 10407),
++            (dict(regla="DIN", desenlace="ahorro_solo_informal", instrumento="ENIF",
++                  periodo="2024", universo="persona_elegida_18_mas",
++                  ejes={"localidad": "menos-15000"}),
++             "CALC-PISOS-ENIF2021-EJES-0002", 0.42350079209783514, 4989),
++            (dict(regla="TRA", desenlace="evade_norma", instrumento="ENVIPE",
++                  periodo="2025", universo="delito_con_bp1_20_valido", ejes={"edad": "60-mas"}),
++             "CALC-PISOS-ENVIPE2024-EJES-0002", 0.5480025499040757, 4337),
++            (dict(regla="CIV", desenlace="denuncia", instrumento="ENVIPE",
++                  periodo="2025", universo="delito_robo_total_vehiculo",
++                  ejes={"cobertura_seguro": "asegurado"}),
++             "CALC-PISOS-ENVIPE2024-EJES-0002", 0.7740559546028694, 375),
++        ]
++        for consulta, calc, punto, n in casos:
++            recibido = estimar_segmento(**consulta)
++            self.assertEqual(recibido["fuente"], calc)
++            self.assertEqual(recibido["punto"], punto)
++            self.assertEqual(recibido["n"], n)
++            self.assertEqual(recibido["estados"]["consumo"], "ACTIVO")
++
++    def test_ausencia_no_cae_a_nacional_ni_a_otro_desenlace_o_universo(self):
++        base = dict(regla="DIN", desenlace="ahorro_solo_informal", instrumento="ENIF",
++                    periodo="2024", universo="persona_elegida_18_mas")
++        self.assertIsNone(estimar_segmento(**base, ejes={"edad":"97-mas"}))
++        self.assertIsNone(estimar_segmento(**dict(base, universo="persona"),
++                                           ejes={"edad":"18-29"}))
++        self.assertIsNone(estimar_segmento(regla="DIN", desenlace="informal_cualquiera",
++                          instrumento="ENIF", periodo="2024", universo="persona_elegida_18_mas",
++                          ejes={"edad":"18-29"}))
++
++    def test_conteos_derivados_y_guardias_de_result(self):
++        mapa = json.loads(json.dumps(__import__("yaml").safe_load(
++            (ROOT / "milpa/estimadores-por-segmento.yaml").read_text())))
++        estimadores = mapa["estimadores"]
++        self.assertEqual(len(estimadores), 59)
++        self.assertEqual(len({e["fuente"]["punto"] for e in estimadores}), 59)
++        self.assertEqual(sum(e["tipo"] == "cruce" for e in estimadores), 20)
++        self.assertEqual(sum(e["tipo"] == "marginal" for e in estimadores), 39)
++        for entrada in estimadores:
++            punto = entrada["fuente"]["punto"]
++            self.assertNotIn("P-REDERIVADO", punto)
++            self.assertNotIn("IC95", punto)
++            self.assertNotIn("ARBITRO", entrada["fuente"]["calc"])
++
++    def test_usos_publicados_corresponden_a_consumidores_activos(self):
++        mapa = __import__("yaml").safe_load(
++            (ROOT / "milpa/estimadores-por-segmento.yaml").read_text())
++        with (ROOT / "data/corrida0/usos.tsv").open(encoding="utf-8") as f:
++            filas = csv.DictReader((x for x in f if not x.startswith("#")),
++                                  delimiter="\t")
++            usos = [x for x in filas
++                    if x["tipo_uso"] == "estimador_segmento" and x["activo"] == "SI"]
++        self.assertEqual(len(usos), len(mapa["estimadores"]))
++        self.assertEqual({x["resultado_id"] for x in usos},
++                         {x["fuente"]["punto"] for x in mapa["estimadores"]})
++        self.assertEqual(len({x["consumidor"] for x in usos}), len(usos))
++
++    def test_derivacion_determinista_y_tsv_sin_cifras_r(self):
++        antes = (ROOT / "data/corrida0/marcador-segmento.tsv").read_bytes()
++        subprocess.run([sys.executable, "tools/marcador_segmento.py"], cwd=ROOT, check=True)
++        self.assertEqual(antes, (ROOT / "data/corrida0/marcador-segmento.tsv").read_bytes())
++        self.assertTrue(antes.startswith(b"# DERIVADO"))
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tests/test_pisos_ejes_v2.py b/tests/test_pisos_ejes_v2.py
+new file mode 100644
+index 0000000..523f4a3
+--- /dev/null
++++ b/tests/test_pisos_ejes_v2.py
+@@ -0,0 +1,33 @@
++"""Controles unitarios de las correspondencias corregidas de los pisos."""
++import unittest
++
++import pandas as pd
++
++from tools.pisos_ejes_v2 import _edad, _escolaridad
++
++
++class PisosEjesV2Test(unittest.TestCase):
++    def test_edad_excluye_sentinelas_y_limita_60_mas_a_96(self):
++        valores = pd.Series([17, 18, 29, 30, 44, 45, 59, 60, 96, 97, 98, 99, ""])
++        recibido = _edad(valores).astype("string").fillna("AUSENTE").tolist()
++        self.assertEqual(recibido, [
++            "AUSENTE", "18-29", "18-29", "30-44", "30-44", "45-59",
++            "45-59", "60+", "60+", "AUSENTE", "AUSENTE", "AUSENTE",
++            "AUSENTE",
++        ])
++        self.assertNotIn("nan", recibido)
++
++    def test_escolaridad_usa_las_cuatro_categorias_selladas(self):
++        valores = pd.Series(["00", "1", "2", "3", "4", "5", "6", "7",
++                             "8", "9", "10", "11", "12", "99", ""])
++        recibido = _escolaridad(valores).astype("string").fillna("AUSENTE").tolist()
++        self.assertEqual(recibido, [
++            "hasta_primaria", "hasta_primaria", "hasta_primaria", "secundaria",
++            "media_superior", "media_superior", "media_superior", "media_superior",
++            "superior", "superior", "superior", "superior", "AUSENTE",
++            "AUSENTE", "AUSENTE",
++        ])
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/tools/corrida0.py b/tools/corrida0.py
+index cd053f0..a0b9389 100644
+--- a/tools/corrida0.py
++++ b/tools/corrida0.py
+@@ -3265,8 +3265,16 @@ def _lee_oferta(verifica: bool) -> list[dict]:
+             # CALC-ENVIPE-U4-2012-v1_1 que NC-0199 nombraba). La raiz
+             # conserva precedencia; `etiquetas` es el respaldo, por el
+             # mismo helper `_etiqueta()` que el resto del campo usa. Las
+-            # specs selladas NO se tocan (E.3): se corrige el LECTOR.
+-            "repite_de": str(spec.get("repite_de") or _etiqueta(spec, "repite_de", "")),
++            # specs selladas NO se tocan (E.3): se corrige el LECTOR. La
++            # adenda de GEN2-MARCADOR-ADOPCION-CLI-1 acredita además el
++            # sinónimo declarativo `sucesor_de`, usado por los sucesores de
++            # pisos. Ambos nombres expresan la misma arista; `repite_de`
++            # conserva precedencia por compatibilidad histórica.
++            "repite_de": str(
++                spec.get("repite_de") or spec.get("sucesor_de")
++                or _etiqueta(spec, "repite_de", "")
++                or _etiqueta(spec, "sucesor_de", "")
++            ),
+         })
+ 
+     # ACTO GEN2-T9 · P1: el cierre transitivo corre DESPUES de leer todas
+@@ -3919,9 +3927,6 @@ def _filas_registro(verifica: bool = False) -> dict:
+                           f"no trae {', '.join(o['hashes_faltantes'])} -- sellada "
+                           f"antes del esquema endurecido de ACTO GEN2-E3-1; su "
+                           f"sello NO se reescribe")
+-        if o["cuenta_gen2"] == "SI" and estado.startswith("SELLADA"):
+-            avisos.append(f"CALC-SIN-CONSUMIDOR-ACTIVO: {calc_id} esta sellada "
+-                          f"y ningun consumidor activo la cita todavia")
+ 
+     # ACTO GEN2-VALIDACION-R-ENVIPE-22: las specs y resultados sellados no
+     # se reescriben. El overlay común de validación se aplica por RESULT y
+@@ -3958,6 +3963,60 @@ def _filas_registro(verifica: bool = False) -> dict:
+         if previo is None or str(previo["estado"]).startswith("SUPERADO"):
+             indice_resultados[f["resultado_id"]] = f
+ 
++    # GEN2-MARCADOR-ADOPCION-CLI-1: el lector segmentado es un consumidor
++    # real, no una fila decorativa del marcador.  Sus punteros se derivan del
++    # mismo YAML que lee el motor; por eso un RESULT sólo gana usos cuando
++    # existe una identidad que el punto de entrada puede solicitar.
++    mapa_segmentos = RAIZ / "milpa" / "estimadores-por-segmento.yaml"
++    if mapa_segmentos.exists():
++        try:
++            indice_segmentos = _yaml_safe_load(mapa_segmentos.read_text(encoding="utf-8")) or {}
++        except (OSError, yaml.YAMLError):
++            indice_segmentos = {}
++        for entrada in indice_segmentos.get("estimadores", []):
++            if not isinstance(entrada, dict):
++                continue
++            fuente, identidad = entrada.get("fuente") or {}, entrada.get("identidad") or {}
++            rid = str(fuente.get("punto") or fuente.get("tabla") or "")
++            if not rid or rid not in indice_resultados:
++                continue
++            consumidor = "milpa/src/motor.py:estimar_segmento:" + json.dumps(
++                identidad, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
++            usos_por_resultado[rid] = usos_por_resultado.get(rid, 0) + 1
++            filas_usos.append({
++                "resultado_id": rid, "consumidor": consumidor,
++                "tipo_uso": "estimador_segmento", "activo": "SI",
++                "reglas_impacto": str(identidad.get("regla") or ""),
++                "generacion_leida": "GEN2", "corrida0_generacion": "GEN2",
++                "corrida0_resultado_id": rid, "fuente_replay": "NO-CORRIDA",
++                # No cambia theta, umbrales ni coeficientes: es una consulta
++                # descriptiva/operativa del estimador sellado.
++                "uso_solicitado": "DESCRIPTIVO", "origen_numerico": ORIGEN_INDETERMINADO,
++                "aptitud_uso": "NO-EVALUADA", "motivo_aptitud": "pendiente de resolver",
++                "camino_linaje": (
++                    f"{consumidor} -> {rid} -> "
++                    f"{indice_resultados[rid]['spec_id']}/{rid}"),
++                # Se deriva del RESULT vigente: no se copia al mapa ni se
++                # recalcula, y T-REPRO puede cotejar el consumo efectivo.
++                "valor_materializado": indice_resultados[rid]["valor"],
++            })
++
++    # Se evalúa después de incorporar TODOS los consumidores, incluido el
++    # lector segmentado. Antes se emitía este aviso dentro del bucle de
++    # oferta, cuando esas rutas aún no se habían materializado, y por eso un
++    # CALC con usos activos podía aparecer falsamente como no consumido.
++    calcs_consumidos = {
++        indice_resultados[u["resultado_id"]]["spec_id"]
++        for u in filas_usos
++        if u.get("activo") == "SI" and u.get("resultado_id") in indice_resultados
++    }
++    for o in oferta:
++        if (o["cuenta_gen2"] == "SI" and o["estado"] == "SELLADA"
++                and o["calc_id"] not in sucesor_de
++                and o["calc_id"] not in calcs_consumidos):
++            avisos.append(f"CALC-SIN-CONSUMIDOR-ACTIVO: {o['calc_id']} esta sellada "
++                          f"y ningun consumidor activo la cita todavia")
++
+     # ── validaciones que PARAN sobre el grafo ya unido ─────────────────────
+     usos_no_aptos: list[str] = []
+     for u in filas_usos:
+@@ -4000,6 +4059,10 @@ def _filas_registro(verifica: bool = False) -> dict:
+     # ── avisos (no paran) ─────────────────────────────────────────────────
+     for f in filas_resultados:
+         n_usos = usos_por_resultado.get(f["resultado_id"], 0)
++        # La oferta se materializa antes de conocer todos los consumidores;
++        # proyectar aquí evita que `resultados.tsv` diga cero mientras
++        # `usos.tsv` enumera lectores activos.
++        f["n_usos"] = n_usos
+         if n_usos == 0:
+             avisos.append(f"RESULT-SIN-CONSUMIDOR: {f['resultado_id']} "
+                           f"({f['spec_id']}) no lo cita ningun consumidor")
+diff --git a/tools/marcador_segmento.py b/tools/marcador_segmento.py
+new file mode 100644
+index 0000000..3bd176e
+--- /dev/null
++++ b/tools/marcador_segmento.py
+@@ -0,0 +1,187 @@
++#!/usr/bin/env python3
++"""Deriva el índice consumible y el marcador, sin copiar estimaciones.
++
++Las cifras permanecen en los RESULT sellados.  El YAML resultante sólo guarda
++identidades y punteros; el lector del motor resuelve los punteros al emitir.
++"""
++from __future__ import annotations
++
++import argparse
++import csv
++import hashlib
++import json
++from pathlib import Path
++
++import yaml
++
++ROOT = Path(__file__).resolve().parents[1]
++CELDAS = ROOT / "data/curacion-registro/celdas-d"
++OUT_MAP = ROOT / "milpa/estimadores-por-segmento.yaml"
++OUT_TSV = ROOT / "data/corrida0/marcador-segmento.tsv"
++
++# Cada tupla declara identidad y prefijo RESULT; jamás copia cifras. Las
++# categorías son las que las specs v2 congelaron antes de abrir los datos.
++PISOS = (
++    {"regla": "GOB", "desenlace": "digital_util_sin_coercion",
++     "instrumento": "ENCIG", "periodo": "2025", "periodo_fuente": "2023",
++     "universo": "evento_tramite_comparable", "calc": "CALC-PISOS-ENCIG2023-EJES-0002",
++     "prefijo": "RESULT-PISOS-ENCIG2023-V2-DIGITAL",
++     "ejes": {"sexo": ("1", "2"),
++              "edad": ("18-29", "30-44", "45-59", "60-mas"),
++              "escolaridad": ("hasta-primaria", "secundaria", "media-superior", "superior")}},
++    {"regla": "DIN", "desenlace": "ahorro_solo_informal",
++     "instrumento": "ENIF", "periodo": "2024", "periodo_fuente": "2021",
++     "universo": "persona_elegida_18_mas", "calc": "CALC-PISOS-ENIF2021-EJES-0002",
++     "prefijo": "RESULT-PISOS-ENIF2021-V2-D9",
++     "ejes": {"sexo": ("1", "2"),
++              "edad": ("18-29", "30-44", "45-59", "60-mas"),
++              "escolaridad": ("hasta-primaria", "secundaria", "media-superior", "superior"),
++              "localidad": ("menos-15000", "15000-y-mas"),
++              "cuenta_formal": ("sin-cuenta", "con-cuenta")}},
++    {"regla": "TRA", "desenlace": "evade_norma",
++     "instrumento": "ENVIPE", "periodo": "2025", "periodo_fuente": "2024",
++     "universo": "delito_con_bp1_20_valido", "calc": "CALC-PISOS-ENVIPE2024-EJES-0002",
++     "prefijo": "RESULT-PISOS-ENVIPE2024-V2-EVASION",
++     "ejes": {"sexo": ("1", "2"),
++              "edad": ("18-29", "30-44", "45-59", "60-mas"),
++              "escolaridad": ("hasta-primaria", "secundaria", "media-superior", "superior"),
++              "dominio": ("R", "C", "U")}},
++    {"regla": "CIV", "desenlace": "denuncia",
++     "instrumento": "ENVIPE", "periodo": "2025", "periodo_fuente": "2024",
++     "universo": "delito_robo_total_vehiculo", "calc": "CALC-PISOS-ENVIPE2024-EJES-0002",
++     "prefijo": "RESULT-PISOS-ENVIPE2024-V2-DENUNCIA",
++     "ejes": {"cobertura_seguro": ("no-asegurado", "asegurado")}},
++)
++
++
++def _sha(path: Path) -> str:
++    return hashlib.sha256(path.read_bytes()).hexdigest()
++
++
++def _c2_entries() -> list[dict]:
++    entries = []
++    for path in sorted(CELDAS.glob("*.yaml")):
++        celda = yaml.safe_load(path.read_text(encoding="utf-8"))["celda_d"]
++        adjudicadas = celda.get("adjudicacion_por_celda", {})
++        if not adjudicadas:
++            continue
++        regla, desenlace, instrumento_periodo, ejes = celda["id"].split(".")
++        instrumento = "ENIF" if "enif" in instrumento_periodo else "ENVIPE"
++        periodo = "2024" if instrumento == "ENIF" else "2025"
++        nombres_eje = ejes.split("_x_")
++        for clave, ref in sorted(adjudicadas.items()):
++            partes = clave.split("x")
++            entries.append({
++                "identidad": {"regla": regla, "desenlace": desenlace,
++                              "instrumento": instrumento, "periodo": periodo,
++                              "universo": celda["unidad_objetivo"],
++                              "ejes": dict(zip(nombres_eje, partes))},
++                "tipo": "cruce", "estado": "CONSUMO-ACTIVO",
++                "evidencia": ("ACREDITADA-POR-RESULT-NC-0313"
++                              if regla == "DIN" else "REPRODUCE/IDENTICO"),
++                "evaluacion": "EVALUADA", "adjudicacion": ref["id_candidato"],
++                "implementacion": "IMPLEMENTADO-PROPUESTO", "consumo": "ACTIVO",
++                "diagnostico_emisor": "FUERA-DE-SELECCION",
++                "fuente": {"calc": ref["calc"], "punto": ref["resultado_puntual"],
++                            "ic95inf": ref["ic95inf"], "ic95sup": ref["ic95sup"],
++                            "decision": ref["decision_ref"], "periodo": periodo},
++                "incertidumbre": "bootstrap-composicion-sellada",
++            })
++    return entries
++
++
++def _piso_entries() -> list[dict]:
++    entries = []
++    for piso in PISOS:
++        calc, prefijo = piso["calc"], piso["prefijo"]
++        resultados = json.loads((ROOT / "data/corrida0" / calc / "resultados.json").read_text())["resultados"]
++        for eje, categorias in piso["ejes"].items():
++            for categoria in categorias:
++                base = f"{prefijo}-{eje}-{categoria}".upper().replace("_", "-")
++                refs = {"punto": base + "-P", "ic95inf": base + "-IC-LO",
++                        "ic95sup": base + "-IC-HI", "n": base + "-N",
++                        "denominador": base + "-DEN-W"}
++                faltantes = [rid for rid in refs.values() if rid not in resultados]
++                if faltantes:
++                    raise ValueError(f"RESULT faltante en {calc}: {faltantes}")
++                entries.append({
++                    "identidad": {"regla": piso["regla"], "desenlace": piso["desenlace"],
++                                  "instrumento": piso["instrumento"], "periodo": piso["periodo"],
++                                  "universo": piso["universo"], "ejes": {eje: categoria}},
++                    "tipo": "marginal", "estado": "CONSUMO-ACTIVO",
++                    "evidencia": "REPRODUCE/IDENTICO", "evaluacion": "SOLO-PISO",
++                    "adjudicacion": "PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03",
++                    "implementacion": "IMPLEMENTADO-PROPUESTO", "consumo": "ACTIVO",
++                    "diagnostico_emisor": "NO-APLICA-A-SELECCION",
++                    "fuente": {"calc": calc, **refs, "periodo": piso["periodo_fuente"]},
++                    "incertidumbre": "bootstrap-UPM-estratificado-t-1-no-predictiva",
++                })
++    return entries
++
++
++def _guardias(entradas: list[dict]) -> None:
++    identidades = set()
++    for entrada in entradas:
++        i, f = entrada["identidad"], entrada["fuente"]
++        clave = (i["regla"], i["desenlace"], i["instrumento"], i["periodo"],
++                 i["universo"], json.dumps(i["ejes"], sort_keys=True))
++        if clave in identidades:
++            raise ValueError(f"identidad duplicada: {clave}")
++        identidades.add(clave)
++        punto = f["punto"]
++        if ("IC" in punto or "P-REDERIVADO" in punto
++                or not (punto.endswith("-P") or "-P-" in punto)):
++            raise ValueError(f"referencia puntual inválida: {punto}")
++        if "ARBITRO" in f["calc"] or "HOLDOUT" in punto or punto.endswith("-R"):
++            raise ValueError(f"fuga de reserva/HOLDOUT: {f}")
++        if entrada["tipo"] == "marginal" and int(f["periodo"]) >= int(i["periodo"]):
++            raise ValueError(f"piso marginal circular: {clave}")
++        if entrada["diagnostico_emisor"] not in {"FUERA-DE-SELECCION", "NO-APLICA-A-SELECCION"}:
++            raise ValueError(f"emisor usado como candidato: {clave}")
++
++
++def derivar() -> tuple[list[dict], dict]:
++    entradas = _c2_entries() + _piso_entries()
++    _guardias(entradas)
++    fuentes = sorted({e["fuente"]["calc"] for e in entradas})
++    mapa = {"version": 1, "derivado": "NO EDITAR", "fuentes_sha256": {
++        str(Path("data/corrida0") / calc / "resultados.json"):
++        _sha(ROOT / "data/corrida0" / calc / "resultados.json") for calc in fuentes},
++        "estimadores": entradas}
++    return entradas, mapa
++
++
++def escribir() -> None:
++    entradas, mapa = derivar()
++    OUT_MAP.write_text("# DERIVADO — NO EDITAR\n" + yaml.safe_dump(mapa, sort_keys=False,
++                       allow_unicode=True), encoding="utf-8")
++    campos = ["regla", "desenlace", "instrumento", "periodo", "universo", "ejes",
++              "tipo", "estado_evidencia", "estado_evaluacion", "adjudicacion",
++              "estado_implementacion", "estado_consumo", "diagnostico_emisor", "calc",
++              "periodo_fuente", "resultado_puntual", "resultado_ic95inf",
++              "resultado_ic95sup", "resultado_n", "resultado_denominador", "incertidumbre"]
++    with OUT_TSV.open("w", encoding="utf-8", newline="") as fh:
++        fh.write("# DERIVADO — NO EDITAR\n")
++        w = csv.DictWriter(fh, fieldnames=campos, delimiter="\t")
++        w.writeheader()
++        for e in entradas:
++            i, f = e["identidad"], e["fuente"]
++            w.writerow({"regla": i["regla"], "desenlace": i["desenlace"],
++                        "instrumento": i["instrumento"], "periodo": i["periodo"],
++                        "universo": i["universo"], "ejes": json.dumps(i["ejes"], sort_keys=True),
++                        "tipo": e["tipo"], "estado_evidencia": e["evidencia"],
++                        "estado_evaluacion": e["evaluacion"], "adjudicacion": e["adjudicacion"],
++                        "estado_implementacion": e["implementacion"],
++                        "estado_consumo": e["consumo"], "diagnostico_emisor": e["diagnostico_emisor"],
++                        "calc": f["calc"], "periodo_fuente": f["periodo"],
++                        "resultado_puntual": f["punto"],
++                        "resultado_ic95inf": f.get("ic95inf", ""),
++                        "resultado_ic95sup": f.get("ic95sup", ""),
++                        "resultado_n": f.get("n", ""),
++                        "resultado_denominador": f.get("denominador", ""),
++                        "incertidumbre": e["incertidumbre"]})
++
++
++if __name__ == "__main__":
++    argparse.ArgumentParser(description=__doc__).parse_args()
++    escribir()
+diff --git a/tools/pisos_ejes_v2.py b/tools/pisos_ejes_v2.py
+new file mode 100644
+index 0000000..791d9d9
+--- /dev/null
++++ b/tools/pisos_ejes_v2.py
+@@ -0,0 +1,220 @@
++"""Medidor versionado para los sucesores corregidos de pisos por eje.
++
++No modifica ``tools.pisos_ejes`` ni el codigo transitivo de los CALC sellados.
++Los datos ya habian sido vistos en la corrida defectuosa de #866; estas reglas
++corrigen las definiciones previamente selladas conforme a los catalogos.
++"""
++from __future__ import annotations
++
++import io
++import zipfile
++
++import numpy as np
++import pandas as pd
++
++
++EDADES = ("18-29", "30-44", "45-59", "60+")
++ESCOLARIDAD = ("hasta_primaria", "secundaria", "media_superior", "superior")
++
++
++def _csv(zip_path, suffix, cols):
++    with zipfile.ZipFile(zip_path) as z:
++        nombres = [n for n in z.namelist() if n.lower().endswith(suffix.lower())]
++        if len(nombres) != 1:
++            raise RuntimeError(f"miembro no unico para {suffix}: {nombres}")
++        raw = z.read(nombres[0])
++    for enc in ("utf-8-sig", "latin-1"):
++        try:
++            d = pd.read_csv(io.StringIO(raw.decode(enc)), dtype=str,
++                            keep_default_na=False, na_filter=False)
++            d.columns = [x.strip() for x in d.columns]
++            return d[cols]
++        except UnicodeDecodeError:
++            continue
++    raise RuntimeError("CSV sin codificacion util")
++
++
++def _codigo(s):
++    return s.astype(str).str.strip().str.replace(r"^0+(?=\d)", "", regex=True)
++
++
++def _edad(s):
++    x = pd.to_numeric(s, errors="coerce")
++    out = pd.Series(pd.NA, index=s.index, dtype="object")
++    out[(x >= 18) & (x <= 29)] = "18-29"
++    out[(x >= 30) & (x <= 44)] = "30-44"
++    out[(x >= 45) & (x <= 59)] = "45-59"
++    out[(x >= 60) & (x <= 96)] = "60+"
++    return out
++
++
++def _escolaridad(s):
++    c = _codigo(s)
++    mapa = {
++        "0": "hasta_primaria", "1": "hasta_primaria", "2": "hasta_primaria",
++        "3": "secundaria",
++        "4": "media_superior", "5": "media_superior",
++        "6": "media_superior", "7": "media_superior",
++        "8": "superior", "9": "superior", "10": "superior", "11": "superior",
++    }
++    return c.map(mapa)
++
++
++def _slug(texto):
++    return texto.upper().replace("+", "-MAS").replace("_", "-")
++
++
++def _bootstrap(d, categorias, reps=10000, seed=42):
++    """Punto e IC percentil remuestreando UPM dentro de estrato."""
++    d = d.copy()
++    d["_key"] = d["_est"].astype(str) + "\t" + d["_upm"].astype(str)
++    keys = sorted(d["_key"].unique())
++    pos = {k: i for i, k in enumerate(keys)}
++    gpos = {g: i for i, g in enumerate(categorias)}
++    w = np.zeros((len(keys), len(categorias)))
++    y = np.zeros_like(w)
++    n = np.zeros(len(categorias), dtype=int)
++    for key, grupo, peso, valor in d[["_key", "_grp", "_w", "_y"]].itertuples(
++            index=False, name=None):
++        i, j = pos[key], gpos[grupo]
++        w[i, j] += peso
++        y[i, j] += peso * valor
++        n[j] += 1
++    den = w.sum(0)
++    punto = np.divide(y.sum(0), den, out=np.full(len(categorias), np.nan),
++                      where=den > 0)
++    por_estrato = {}
++    for key in keys:
++        por_estrato.setdefault(key.split("\t", 1)[0], []).append(pos[key])
++    rng = np.random.Generator(np.random.PCG64(seed))
++    valores = []
++    for inicio in range(0, reps, 50):
++        b = min(50, reps - inicio)
++        mult = np.zeros((b, len(keys)), dtype=np.int16)
++        for indices in por_estrato.values():
++            indices = np.asarray(indices)
++            sorteos = rng.integers(0, len(indices), size=(b, len(indices)))
++            for fila in range(b):
++                mult[fila] += np.bincount(
++                    indices[sorteos[fila]], minlength=len(keys)).astype(np.int16)
++        den_b = mult @ w
++        num_b = mult @ y
++        valores.append(np.divide(num_b, den_b,
++                                  out=np.full_like(num_b, np.nan),
++                                  where=den_b > 0))
++    replicas = np.vstack(valores)
++    out = {}
++    for i, categoria in enumerate(categorias):
++        if not np.isfinite(punto[i]):
++            raise RuntimeError(f"celda vacia no construible: {categoria}")
++        lo, hi = np.nanpercentile(replicas[:, i], [2.5, 97.5])
++        out[categoria] = {
++            "punto": float(punto[i]), "ic_lo": float(lo), "ic_hi": float(hi),
++            "n": int(n[i]), "den_w": float(den[i]),
++        }
++    return out
++
++
++def _resultados(d, ejes, prefijo):
++    out = {f"RESULT-{prefijo}-N-UNIVERSO": int(len(d))}
++    for eje, (grupos, categorias) in ejes.items():
++        ok = (grupos.notna() & d["_w"].notna() & (d["_w"] > 0) &
++              d["_est"].ne("") & d["_upm"].ne(""))
++        x = d.loc[ok].copy()
++        x["_grp"] = grupos.loc[ok]
++        tabla = _bootstrap(x, categorias)
++        for categoria, valores in tabla.items():
++            base = f"RESULT-{prefijo}-{_slug(eje)}-{_slug(categoria)}"
++            out[base + "-P"] = valores["punto"]
++            out[base + "-IC-LO"] = valores["ic_lo"]
++            out[base + "-IC-HI"] = valores["ic_hi"]
++            out[base + "-N"] = valores["n"]
++            out[base + "-DEN-W"] = valores["den_w"]
++    return out
++
++
++def envipe_v2(inputs, contrato):
++    z = inputs["envipe2024_csv"]["ruta_absoluta"]
++    a = _csv(z, "conjunto_de_datos_tmod_vic_envipe2024.csv", [
++        "BP1_20", "BP1_23", "BP2_1", "BPCOD", "FAC_DEL", "EST_DIS",
++        "UPM_DIS", "ID_PER", "SEXO", "EDAD", "DOMINIO"])
++    b = _csv(z, "conjunto_de_datos_tsdem_envipe2024.csv", ["ID_PER", "NIV"])
++    d = a.merge(b, on="ID_PER", how="left", validate="m:1")
++    d["_w"] = pd.to_numeric(d.FAC_DEL, errors="coerce")
++    d["_est"] = d.EST_DIS.str.strip()
++    d["_upm"] = d.UPM_DIS.str.strip()
++
++    bp120 = _codigo(d.BP1_20)
++    evasion = d.loc[bp120.isin(["1", "2"])].copy()
++    evasion["_y"] = (
++        _codigo(evasion.BP1_20).eq("2") &
++        _codigo(evasion.BP1_23).isin(["4", "5", "6", "8"])).astype(int)
++    out = _resultados(evasion, {
++        "sexo": (_codigo(evasion.SEXO), ("1", "2")),
++        "edad": (_edad(evasion.EDAD), EDADES),
++        "escolaridad": (_escolaridad(evasion.NIV), ESCOLARIDAD),
++        "dominio": (evasion.DOMINIO.str.strip(), ("R", "C", "U")),
++    }, "PISOS-ENVIPE2024-V2-EVASION")
++
++    denuncia = d.loc[
++        _codigo(d.BPCOD).eq("1") & _codigo(d.BP2_1).isin(["1", "2"])
++    ].copy()
++    denuncia["_y"] = _codigo(denuncia.BP1_20).eq("1").astype(int)
++    seguro = _codigo(denuncia.BP2_1).map(
++        {"1": "asegurado", "2": "no_asegurado"})
++    out.update(_resultados(denuncia, {
++        "cobertura_seguro": (seguro, ("no_asegurado", "asegurado")),
++    }, "PISOS-ENVIPE2024-V2-DENUNCIA"))
++    return out
++
++
++def encig_v2(inputs, contrato):
++    z = inputs["encig23_base_datos_csv"]["ruta_absoluta"]
++    a = _csv(z, "encig2023_04_sec_7.csv", [
++        "N_TRA", "P7_3", "FAC_TRA", "EST_DIS", "UPM_DIS", "ID_PER"])
++    b = _csv(z, "encig2023_02_residentes_sec_2.csv", [
++        "ID_PER", "SEXO", "EDAD", "NIV"])
++    d = a.merge(b, on="ID_PER", how="left", validate="m:1")
++    p73 = _codigo(d.P7_3)
++    d = d.loc[_codigo(d.N_TRA).eq("1") & p73.isin(["1", "2", "4", "5", "6"])].copy()
++    d["_w"] = pd.to_numeric(d.FAC_TRA, errors="coerce")
++    d["_est"] = d.EST_DIS.str.strip()
++    d["_upm"] = d.UPM_DIS.str.strip()
++    d["_y"] = _codigo(d.P7_3).isin(["4", "5"]).astype(int)
++    return _resultados(d, {
++        "sexo": (_codigo(d.SEXO), ("1", "2")),
++        "edad": (_edad(d.EDAD), EDADES),
++        "escolaridad": (_escolaridad(d.NIV), ESCOLARIDAD),
++    }, "PISOS-ENCIG2023-V2-DIGITAL")
++
++
++def enif_v2(inputs, contrato):
++    z = inputs["enif2021_csv"]["ruta_absoluta"]
++    informal = [f"P5_1_{i}" for i in range(1, 7)]
++    formal = [f"P5_7_{i}" for i in range(1, 10)]
++    cuentas = [f"P5_4_{i}" for i in range(1, 10)]
++    cols = informal + formal + cuentas + [
++        "SEXO", "EDAD", "TLOC", "P3_1_1", "FAC_ELE", "EST_DIS", "UPM_DIS"]
++    d = _csv(z, "conjunto_de_datos_tmodulo_enif_2021.csv", cols)
++    d["_w"] = pd.to_numeric(d.FAC_ELE, errors="coerce")
++    d["_est"] = d.EST_DIS.str.strip()
++    d["_upm"] = d.UPM_DIS.str.strip()
++    ahorra_informal = d[informal].apply(
++        lambda c: _codigo(c).eq("1")).any(axis=1)
++    ahorra_formal = d[formal].apply(
++        lambda c: _codigo(c).eq("1")).any(axis=1)
++    d["_y"] = (ahorra_informal & ~ahorra_formal).astype(int)
++    tiene_cuenta = d[cuentas].apply(
++        lambda c: _codigo(c).eq("1")).any(axis=1).map(
++            {True: "con_cuenta", False: "sin_cuenta"})
++    localidad = _codigo(d.TLOC).map({
++        "1": "15000_y_mas", "2": "15000_y_mas",
++        "3": "menos_15000", "4": "menos_15000",
++    })
++    return _resultados(d, {
++        "sexo": (_codigo(d.SEXO), ("1", "2")),
++        "edad": (_edad(d.EDAD), EDADES),
++        "escolaridad": (_escolaridad(d.P3_1_1), ESCOLARIDAD),
++        "localidad": (localidad, ("menos_15000", "15000_y_mas")),
++        "cuenta_formal": (tiene_cuenta, ("sin_cuenta", "con_cuenta")),
++    }, "PISOS-ENIF2021-V2-D9")
