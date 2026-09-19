@@ -1,0 +1,48 @@
+{
+  "checks": [
+    {
+      "denominador_bruto_n_ok": true,
+      "denominador_condicional_n_ok": true,
+      "edad": "30_44",
+      "punto_bruto_ok": true,
+      "punto_condicional_ok": true
+    },
+    {
+      "denominador_bruto_n_ok": true,
+      "denominador_condicional_n_ok": true,
+      "edad": "15_mas",
+      "punto_bruto_ok": true,
+      "punto_condicional_ok": true
+    },
+    {
+      "denominador_bruto_n_ok": true,
+      "denominador_condicional_n_ok": true,
+      "edad": "18_29",
+      "punto_bruto_ok": true,
+      "punto_condicional_ok": true
+    },
+    {
+      "denominador_bruto_n_ok": true,
+      "denominador_condicional_n_ok": true,
+      "edad": "60_mas",
+      "punto_bruto_ok": true,
+      "punto_condicional_ok": true
+    },
+    {
+      "denominador_bruto_n_ok": true,
+      "denominador_condicional_n_ok": true,
+      "edad": "15_17",
+      "punto_bruto_ok": true,
+      "punto_condicional_ok": true
+    },
+    {
+      "denominador_bruto_n_ok": true,
+      "denominador_condicional_n_ok": true,
+      "edad": "45_59",
+      "punto_bruto_ok": true,
+      "punto_condicional_ok": true
+    }
+  ],
+  "metodo": "csv-modulo-estandar; sin importar medidor.py",
+  "todos_ok": true
+}
