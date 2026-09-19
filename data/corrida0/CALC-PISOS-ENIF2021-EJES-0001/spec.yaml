@@ -1,0 +1,49 @@
+calc_id: CALC-PISOS-ENIF2021-EJES-0001
+spec_md: ../../../forense/prereg-caja/PISOS-ENIF2021-ejes-spec-v1_0.md
+spec_md_sha256: 99ad7f4e66a3d264ef181a3eb834874ce54668055f813ac39321d63b2681a146
+script: data/corrida0/CALC-PISOS-ENIF2021-EJES-0001/medidor.py
+etiquetas: {generacion: GEN2, tipo: PISO-PERSISTENCIA-POR-EJE, cuenta_gen2: SI}
+inputs:
+  - {id: enif2021_csv, origen: manifiesto}
+variables:
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_1_1, rol: ahorro-informal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_1_2, rol: ahorro-informal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_1_3, rol: ahorro-informal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_1_4, rol: ahorro-informal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_1_5, rol: ahorro-informal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_1_6, rol: ahorro-informal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_1, rol: ahorro-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_2, rol: ahorro-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_3, rol: ahorro-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_4, rol: ahorro-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_5, rol: ahorro-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_6, rol: ahorro-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_7, rol: ahorro-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_8, rol: ahorro-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_9, rol: ahorro-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: SEXO, rol: eje-sexo}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: EDAD, rol: eje-edad}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: TLOC, rol: eje-localidad}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P3_1_1, rol: eje-escolaridad}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_6_1, rol: eje-cuenta-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_6_2, rol: eje-cuenta-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_6_3, rol: eje-cuenta-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_6_4, rol: eje-cuenta-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_6_5, rol: eje-cuenta-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_6_8, rol: eje-cuenta-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_6_9, rol: eje-cuenta-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: FAC_ELE, rol: ponderador}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: EST_DIS, rol: estrato}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: UPM_DIS, rol: upm}
+universo: "Persona elegida 18+ con FAC_ELE válido; cada eje tiene su denominador declarado."
+filtros: "Edad 18–97, TLOC en {1,2,3,4}, FAC_ELE > 0, estrato y UPM presentes; sin imputación."
+ponderador: FAC_ELE
+transformacion: "P5_1 cualquiera=1 y P5_7 ninguna=1; sin imputación."
+estimando: "p_2021(ahorro_solo_informal | categoría), proporción ponderada [0,1]."
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+parametros: {bootstrap_replicas: 10000, metodo_ic: "bootstrap UPM estratificado; percentiles 2.5/97.5"}
+dependencias_materiales: [numpy, pandas]
+resultados:
+  - {id: RESULT-PISOS-ENIF2021-D9-TABLA, tipo: texto, unidad: "JSON: ahorro sólo informal D9 por sexo, edad, escolaridad, localidad y cuenta"}
+  - {id: RESULT-PISOS-ENIF2021-D9-N-UNIVERSO, tipo: entero, unidad: "personas elegidas del universo declarado"}
+tolerancia: {tipo: flotante, abs: 1.0e-10}
