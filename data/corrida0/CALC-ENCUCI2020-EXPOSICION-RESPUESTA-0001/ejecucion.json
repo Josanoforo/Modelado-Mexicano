@@ -1,0 +1,123 @@
+{
+ "corrida_id": "CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001--b3151f7d3d68",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "adopcion": "PENDIENTE-DE-MESA",
+  "cuenta_gen2": "SI",
+  "exposicion_resultados": "DECLARADA: CALC-ENCUCI-0001, prereg ENCUCI-MORDIDA-PROTESTA y resolución F2 leídos antes del congelamiento; no hay ceguera",
+  "generacion": "GEN2",
+  "tipo": "DESCRIPTIVO-ASOCIATIVO"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-19T21:57:20Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 419,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "b3151f7d3d683f14cf875b6ba64a4ed4ceed334d",
+  "git_rama": "codex/gen2-encuci2020-exposicion-respuesta-cli-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "9bf05eacc2ade79f3790789d3b3f37e8c66fc69e8504d4d8028abbaffab46578",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "9bf05eacc2ade79f3790789d3b3f37e8c66fc69e8504d4d8028abbaffab46578",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "b3151f7d3d683f14cf875b6ba64a4ed4ceed334d",
+ "input_ids": [
+  "encuci2020_bd_dbf",
+  "IN-ENCUCI2020-ER-PREREG"
+ ],
+ "input_sha256": {
+  "IN-ENCUCI2020-ER-PREREG": "b1aa0fe81acdc2f6405be982270a4c77ec6dddf45375f0695d29d12527bc218f",
+  "encuci2020_bd_dbf": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "hash_descriptor_sha256": "6cd6f7475a0b5db27a84cf0e047db5b7ed98f73c3480a9e64ea084bc7d475638",
+  "hash_encargo_sha256": "fc28eee37de78d200f4da84b101ff9085505ee4bf9a2a5cdc273814de20470ca",
+  "hash_medidor_sha256": "25d1341f0ab1481fa6422ae2f43f2997386c40ff706da659efd541cea66bbf80",
+  "hash_payload_sha256": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283",
+  "hash_prereg_sha256": "b1aa0fe81acdc2f6405be982270a4c77ec6dddf45375f0695d29d12527bc218f",
+  "hash_prueba_sha256": "7cc7b0c48c10bc76665a5633dbc36a0d001a235c88205dbb336de246a6e88685",
+  "metodo_ic": "bootstrap de UPM_DIS con reemplazo dentro de EST_DIS sobre marco completo; percentiles 2.5/97.5",
+  "singleton": "autorremuestreo; aporta varianza cero y se rotula"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENCUCI2020-ER-COBERTURA-CONTEO-EXACTO",
+  "RESULT-ENCUCI2020-ER-CONTACTO-CUALQUIERA",
+  "RESULT-ENCUCI2020-ER-CONTEO-TIPOS",
+  "RESULT-ENCUCI2020-ER-CONTRASTES",
+  "RESULT-ENCUCI2020-ER-CONTROL-NACIONAL",
+  "RESULT-ENCUCI2020-ER-EXPOSICION-POR-TIPO",
+  "RESULT-ENCUCI2020-ER-LLAVE-IDPER",
+  "RESULT-ENCUCI2020-ER-MASA-PONDERADA",
+  "RESULT-ENCUCI2020-ER-METODO-IC",
+  "RESULT-ENCUCI2020-ER-N-ESTRATOS",
+  "RESULT-ENCUCI2020-ER-N-ESTRATOS-SINGLETON",
+  "RESULT-ENCUCI2020-ER-N-FILAS",
+  "RESULT-ENCUCI2020-ER-N-PONDERADOR-VALIDO",
+  "RESULT-ENCUCI2020-ER-N-UPM",
+  "RESULT-ENCUCI2020-ER-RESPUESTA-CONJUNTA",
+  "RESULT-ENCUCI2020-ER-VALIDACION-PARTICION",
+  "RESULT-ENCUCI2020-ER-VALIDACION-UNION"
+ ],
+ "script_blob_sha256": "25d1341f0ab1481fa6422ae2f43f2997386c40ff706da659efd541cea66bbf80",
+ "script_path": "data/corrida0/CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260919
+ },
+ "spec_id": "CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "5ed2a697884d864584fcdf872516d9ebe96543a321f095f3f85cc281e8651680",
+ "spec_yaml_sha256": "19e5d59507574a2e9c3165b0d0c4a9a205156ad0787028211246b9dd0b101dea",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "misma semilla y sumas deterministas; enteros/textos comparan exacto",
+  "tipo": "flotante"
+ }
+}
