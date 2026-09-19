@@ -1,0 +1,60 @@
+[
+  {
+    "calc_id": "CALC-ENUT2024-PARTICIPACION-INTENSIDAD-0001",
+    "fecha_verificacion": "2026-09-19",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ENUT2024-PARTICIPACION-INTENSIDAD-0001"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "3aed0396502667acf1464897221c1d20f4204d204221e7e076dadc90a1d06cc1",
+      "script_blob_sha256": "4b52343104782e308701d4577401f8ed735f7d512527c05e14d7c0a85f403a69",
+      "input_sha256_efectivos": "enut2024_bd_csv=25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba,enut2024_fd_xlsx=4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ENUTPI-A-CON-BRECHA-INTENSIDAD": 0.0,
+        "RESULT-ENUTPI-A-CON-BRECHA-MEDIA": 0.0,
+        "RESULT-ENUTPI-A-CON-BRECHA-PARTICIPACION": 0.0,
+        "RESULT-ENUTPI-A-CON-INTENSIDAD-NACIONAL": 0.0,
+        "RESULT-ENUTPI-A-CON-MEDIA-NACIONAL": 0.0,
+        "RESULT-ENUTPI-A-CON-PARTICIPACION-NACIONAL": 0.0,
+        "RESULT-ENUTPI-G-CONTRASTES-N-FILAS": null,
+        "RESULT-ENUTPI-G-CONTRASTES-SHA256": null,
+        "RESULT-ENUTPI-G-ESTIMACIONES-N-FILAS": null,
+        "RESULT-ENUTPI-G-ESTIMACIONES-SHA256": null,
+        "RESULT-ENUTPI-G-IDENTIDAD-MAX-ERROR": 0.0,
+        "RESULT-ENUTPI-G-INCIDENCIAS": null,
+        "RESULT-ENUTPI-G-INCIDENCIAS-SHA256": null,
+        "RESULT-ENUTPI-G-INPUT-BD-SHA256": null,
+        "RESULT-ENUTPI-G-INPUT-FD-SHA256": null,
+        "RESULT-ENUTPI-G-MASA-VALIDA-COMUN": 0.0,
+        "RESULT-ENUTPI-G-N-ESTRATOS-UPM-UNICA": null,
+        "RESULT-ENUTPI-G-N-MARCO": null,
+        "RESULT-ENUTPI-G-N-VALIDO-COMUN": null,
+        "RESULT-ENUTPI-G-SALIDA-CONTRASTES": null,
+        "RESULT-ENUTPI-G-SALIDA-ESTIMACIONES": null,
+        "RESULT-ENUTPI-G-SALIDA-INCIDENCIAS": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "bootstrap",
+        "exacto_por_seed": true,
+        "abs": 1e-12,
+        "razon": "plan de replicas, orden de UPM, seed, RNG y serializacion fijados"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ENUTPI-A-CON-BRECHA-INTENSIDAD\": 0.0, \"RESULT-ENUTPI-A-CON-BRECHA-MEDIA\": 0.0, \"RESULT-ENUTPI-A-CON-BRECHA-PARTICIPACION\": 0.0, \"RESULT-ENUTPI-A-CON-INTENSIDAD-NACIONAL\": 0.0, \"RESULT-ENUTPI-A-CON-MEDIA-NACIONAL\": 0.0, \"RESULT-ENUTPI-A-CON-PARTICIPACION-NACIONAL\": 0.0, \"RESULT-ENUTPI-G-CONTRASTES-N-FILAS\": null, \"RESULT-ENUTPI-G-CONTRASTES-SHA256\": null, \"RESULT-ENUTPI-G-ESTIMACIONES-N-FILAS\": null, \"RESULT-ENUTPI-G-ESTIMACIONES-SHA256\": null, \"RESULT-ENUTPI-G-IDENTIDAD-MAX-ERROR\": 0.0, \"RESULT-ENUTPI-G-INCIDENCIAS\": null, \"RESULT-ENUTPI-G-INCIDENCIAS-SHA256\": null, \"RESULT-ENUTPI-G-INPUT-BD-SHA256\": null, \"RESULT-ENUTPI-G-INPUT-FD-SHA256\": null, \"RESULT-ENUTPI-G-MASA-VALIDA-COMUN\": 0.0, \"RESULT-ENUTPI-G-N-ESTRATOS-UPM-UNICA\": null, \"RESULT-ENUTPI-G-N-MARCO\": null, \"RESULT-ENUTPI-G-N-VALIDO-COMUN\": null, \"RESULT-ENUTPI-G-SALIDA-CONTRASTES\": null, \"RESULT-ENUTPI-G-SALIDA-ESTIMACIONES\": null, \"RESULT-ENUTPI-G-SALIDA-INCIDENCIAS\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"bootstrap\", \"exacto_por_seed\": true, \"abs\": 1e-12, \"razon\": \"plan de replicas, orden de UPM, seed, RNG y serializacion fijados\"}}, \"identidad\": {\"spec_yaml_sha256\": \"3aed0396502667acf1464897221c1d20f4204d204221e7e076dadc90a1d06cc1\", \"script_blob_sha256\": \"4b52343104782e308701d4577401f8ed735f7d512527c05e14d7c0a85f403a69\", \"input_sha256_efectivos\": \"enut2024_bd_csv=25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba,enut2024_fd_xlsx=4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58\"}}\n"
+  }
+]

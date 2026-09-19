@@ -1,0 +1,129 @@
+ACTO GEN2-ENUT2024-PARTICIPACION-INTENSIDAD-CLI-1
+Fecha local: 2026-09-19
+
+COMANDO DIRIGIDO
+python3 tools/corrida0.py verify CALC-ENUT2024-PARTICIPACION-INTENSIDAD-0001
+
+RESULTADO
+VERIFY: REPRODUCE   (CONTEXTO=IDENTICO · RESULTADO=REPRODUCE)
+Sello: COINCIDE
+Spec: IDENTICO
+Inputs: 2/2 COINCIDE
+RESULT: 22/22 REPRODUCE
+
+COMANDO DE PROYECCION
+python3 tools/corrida0.py registro --verifica --escribe
+
+RESULTADO
+Exit 1. PARO · REPLAY-PISADO (NC-0094). No se escribió ninguna vista.
+Transiciones ajenas detectadas por el comando:
+- CALC-M-marco-M-sorteado-v1_3--8f09149b968e: REPLICA-RESULTADO/CONTEXTO-DISTINTO -> NO-REPRODUCE/CONTEXTO-DISTINTO.
+- CALC-MOTOR-celdas-semilla-v2--af1dee672bcd: REPLICA-RESULTADO/CONTEXTO-DISTINTO -> NO-REPRODUCE/CONTEXTO-DISTINTO.
+- CALC-PISOS-ENCIG2023-EJES-0001--e6398f997e07: NO-VERIFICADO -> REPRODUCE/IDENTICO.
+- CALC-PISOS-ENCIG2023-EJES-0001-v1_1--53841cb35e0a: NO-VERIFICADO -> REPRODUCE/IDENTICO.
+- CALC-PISOS-ENIF2021-EJES-0001--55d1265d98e0: NO-VERIFICADO -> REPRODUCE/IDENTICO.
+- CALC-PISOS-ENVIPE2024-EJES-0001--439abd3a465b: NO-VERIFICADO -> REPRODUCE/IDENTICO.
+
+TRATAMIENTO
+No se usó --lote porque el encargo prohíbe aceptar replay ajeno. Medición,
+sello y replay dirigido propios quedan preservados; publicación global queda
+pendiente. No se declaran consumos activos ni registro exitoso.
+
+CONTINUACION · EVIDENCIA PROPIA Y PROYECCION SIN REVALIDACION GLOBAL
+
+INTEGRACION DE BASE
+git fetch origin --prune
+git merge --no-edit origin/main
+
+Resultado: origin/main vigente se integró conservando las filas ajenas. El
+merge local fue 7cd6cd5; el SHA final de entrega será el commit posterior de
+este cierre.
+
+REPLAY AISLADO PROPIO
+python3 tools/verifica_aislada.py CALC-ENUT2024-PARTICIPACION-INTENSIDAD-0001 --salida forense/analisis/enut2024-participacion-intensidad-cli-1/evidencia-replay-enut2024-participacion-intensidad.json
+
+Resultado: exit 0; REPRODUCE; CONTEXTO=IDENTICO; 22/22 RESULT; 2/2 inputs.
+La identidad coincidió con ejecucion.json y los cuatro archivos cubiertos por
+sello.json coincidieron byte a byte:
+- spec_yaml_sha256: 3aed0396502667acf1464897221c1d20f4204d204221e7e076dadc90a1d06cc1
+- script_blob_sha256: 4b52343104782e308701d4577401f8ed735f7d512527c05e14d7c0a85f403a69
+- enut2024_bd_csv: 25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba
+- enut2024_fd_xlsx: 4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58
+
+ASIENTO CANONICO
+Se añadió una única fila propia a forense/replay-evidencia.tsv, procedencia
+VERIFY-AISLADO · GEN2-ENUT2024-PARTICIPACION-INTENSIDAD-CLI-1, vinculada a
+evidencia-replay-enut2024-participacion-intensidad.json. Unicidad previa: cero
+filas para el CALC; posterior: una.
+
+PRIMERA PROYECCION
+python3 tools/corrida0.py registro --escribe
+
+Resultado: exit 0, sin --verifica y sin --lote:
+- ESCRITO data/corrida0/corridas.tsv: 214 filas
+- ESCRITO data/corrida0/resultados.tsv: 7302 filas
+- ESCRITO data/corrida0/usos.tsv: 228 filas
+
+Diff por identidad frente a las vistas anteriores:
+- corridas.tsv: +1 ENUT, 0 eliminadas; seis filas ajenas cambiaron solo
+  cuenta_gen2/motivo_cuenta_gen2 por decisiones ya vigentes de main.
+- resultados.tsv: +22 RESULT-ENUTPI, 0 eliminados; 578 filas ajenas cambiaron
+  solo cuenta_gen2 por las mismas decisiones vigentes.
+- usos.tsv: +20 marcadores ya presentes en main, 0 eliminados; dos relevos de
+  familia.union se actualizaron por el contenido integrado de main.
+- Ningún veredicto de replay ajeno cambió. No se creó uso activo ENUT.
+
+SEGUNDA PROYECCION
+python3 tools/corrida0.py registro --escribe
+
+Resultado: exit 0; los mismos conteos y bytes. Hashes después de ambas
+proyecciones:
+- data/corrida0/corridas.tsv: 2ce0e88a998ab3be2842977b885810b5a2121ddcb34d975c315432e2bebc2065
+- data/corrida0/resultados.tsv: f1c4fc289405a216b8f061f84b61f8c274ecb411a4d084e2fdc9d9148d840b4b
+- data/corrida0/usos.tsv: 939a06e39277a184490263b24cd86a537301cf0bed918271eba51c68e95ef1bd
+
+CONCLUSION ACTUALIZADA
+El fallo anterior queda preservado como evidencia del intento que revalidó
+todas las corridas. No era una compuerta para proyectar evidencia ya asentada.
+La ruta sin --verifica publicó correctamente este CALC y sus 22 RESULT desde
+su asiento propio, sin aceptar transiciones ajenas. Contador, uso activo y
+adopción siguen PENDIENTE-DE-MESA.
+
+REINTEGRACION FINAL DE MAIN
+Después del primer push, origin/main incorporó PR #876. GitHub marcó PR #879
+como DIRTY, por lo que se ejecutaron:
+git fetch origin --prune
+git merge --no-edit origin/main
+
+El único conflicto fue la inserción concurrente, después de la cabecera, de
+dos asientos propios en forense/replay-evidencia.tsv. Se conservaron sin
+alteración tanto la fila ENUT de este acto como la fila ENIGH de PR #876. Las
+vistas derivadas no se resolvieron a mano: se regeneraron desde la fuente
+canónica combinada.
+
+PROYECCIONES FINALES 1 Y 2
+python3 tools/corrida0.py registro --escribe
+python3 tools/corrida0.py registro --escribe
+
+Ambas terminaron exit 0, sin --verifica y sin --lote, con 217 corridas, 7334
+RESULT y 228 usos. Hashes idénticos tras cada una:
+- data/corrida0/corridas.tsv: dc448b8e308083a464673a9f0a6ff0c013e048eafe1ca5054d1547bf02f05a4e
+- data/corrida0/resultados.tsv: 4ce145b3d95aa97d52d2ccdd972117ec85ea0a8146891df3a8c22f145a4f83f7
+- data/corrida0/usos.tsv: 939a06e39277a184490263b24cd86a537301cf0bed918271eba51c68e95ef1bd
+
+La fila ENUT conserva REPRODUCE/IDENTICO y ninguna fila ajena fue eliminada
+ni recibió una transición de replay.
+
+REINTEGRACION FINAL DE PR #877 Y CORRECCION DE NOMBRE
+CI probó el merge contra un origin/main que ya incluía PR #877 y detectó T02:
+el nombre genérico replay-aislado.json colisionaba con el artefacto ENFIH del
+PR integrado. El contenido ENUT no cambió; su archivo propio se renombró a:
+forense/analisis/enut2024-participacion-intensidad-cli-1/evidencia-replay-enut2024-participacion-intensidad.json
+
+Se actualizó la ruta en el asiento y en estas notas, se integró origin/main y
+se ejecutaron otra vez dos proyecciones, ambas exit 0, sin --verifica y sin
+--lote. Conteos finales: 219 corridas, 7417 RESULT y 228 usos. Hashes idénticos
+tras ambas:
+- data/corrida0/corridas.tsv: cc3924e9e33b14e0360c518bf17da536ebba0453f5391674dadce2e48d4e77d6
+- data/corrida0/resultados.tsv: 6e91c24d40a4d4d5b924a8bac788545f9b7e59efb6d2bc30eb1b168b567da821
+- data/corrida0/usos.tsv: 939a06e39277a184490263b24cd86a537301cf0bed918271eba51c68e95ef1bd
