@@ -6591,6 +6591,33 @@ def t32_corrida0():
         fail("T-CORRIDA0", f)
 
 
+# ───────────────────────────────────────────────────────────────
+# T32-ter · T-C2-COMPUESTO -- ACTO GEN2-C2-COMPUESTO-RESERVADAS-1,
+# 19/sep/2026. Spec: `forense/prereg-caja/C2-COMPUESTO-RESERVADAS-spec-v1_0.md`.
+#
+#   Las emisiones C2 sobre los cruces `RESERVADA` nacen
+#   `EMITIDA-SIN-EVALUAR` y sin IC. Un archivo de pruebas que nadie corre
+#   no es una guardia, asi que se cablea aqui con el mismo arnes `corre()`
+#   que `tests/test_pisos_rejilla.py`. Cubre el control de reproduccion
+#   contra el C2 YA SELLADO del par piloteado, la ausencia de IC
+#   fabricado, las causas del dictamen y que emitir no adopte.
+def t32_ter_c2_compuesto():
+    """C2 compuesto: reproduce lo sellado, no fabrica IC y no adopta."""
+    ruta = os.path.join(ROOT, "tests", "test_c2_compuesto.py")
+    if not os.path.exists(ruta):
+        fail("T-C2-COMPUESTO", "no existe `tests/test_c2_compuesto.py`")
+        return
+    try:
+        import importlib.util as _iu
+        spec = _iu.spec_from_file_location("test_c2_compuesto_desde_check", ruta)
+        mod = _iu.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        for error in mod.corre():
+            fail("T-C2-COMPUESTO", error)
+    except Exception as exc:
+        fail("T-C2-COMPUESTO", f"no pudo correr: {type(exc).__name__}: {exc}")
+
+
 def t32_bis_pisos_rejilla():
     """La rejilla arbitral coincide uno-a-uno con los RESULT primarios."""
     ruta = os.path.join(ROOT, "tests", "test_pisos_rejilla.py")
@@ -7368,6 +7395,7 @@ def main():
         ("T31 T-CRON",                              t31_cron),
         ("T32 T-CORRIDA0",                           t32_corrida0),
         ("T32-bis T-PISOS-REJILLA",                    t32_bis_pisos_rejilla),
+        ("T32-ter T-C2-COMPUESTO",                     t32_ter_c2_compuesto),
         ("T36 T-CORREDORES-GEN2",                     t36_corredores_gen2),
         ("T39 T-DIGESTO-NC",                          t39_digesto_nc),
         ("T40 T-RUTINAS",                             t40_rutinas),
