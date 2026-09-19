@@ -42,4 +42,4 @@ python3 tools/corrida0.py registro --escribe \
   --lote CALC-ISSP2017-APOYO-MONETARIO-0001
 ```
 
-El resultado canónico añade una corrida y 11 RESULT: `corridas.tsv` quedó en 212 filas, `resultados.tsv` en 7,267 y `usos.tsv` permaneció idéntico en 208. No hubo transición de replay ajena, consumidor nuevo ni adopción. La corrida y sus tablas conservan el sello. No se modificaron parámetros, F6, M, L, motor, marcador, adopción, crosswalk, theta, firmas, slots ni NC-0161/0162; `cuenta_gen2` permanece `PENDIENTE-DE-MESA`. El PR entrega la operación publicada sin fusionarla.
+El resultado canónico añade una corrida y 11 RESULT propios. Después de incorporar también las publicaciones ya integradas en `main` mediante #874/#869, `corridas.tsv` quedó en 213 filas, `resultados.tsv` en 7,280 y `usos.tsv` permaneció idéntico en 208. No hubo transición de replay ajena, consumidor nuevo ni adopción. La corrida y sus tablas conservan el sello. No se modificaron parámetros, F6, M, L, motor, marcador, adopción, crosswalk, theta, firmas, slots ni NC-0161/0162; `cuenta_gen2` permanece `PENDIENTE-DE-MESA`. El PR entrega la operación publicada sin fusionarla.
