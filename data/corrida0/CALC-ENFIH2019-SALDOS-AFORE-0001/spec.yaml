@@ -1,0 +1,137 @@
+calc_id: CALC-ENFIH2019-SALDOS-AFORE-0001
+spec_md: spec.md
+spec_md_sha256: 9f34a228086cde6655362895870d2a8f42aede4dff4cba5b5b81702aff4e5f49
+script: data/corrida0/CALC-ENFIH2019-SALDOS-AFORE-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: MEDICION-DESCRIPTIVA-DISTRIBUCION-MONETARIA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENFIH2019-SALDOS-AFORE-spec-v1_0.md
+  spec_sellada_sha256: 9331252cd09abb51d7288317e10795d2e21efb7fb93d91436603641be6e238d3
+  demanda_que_releva: "Ninguna: complementa CALC-ENFIH-0001 sin repetir su estimando de tenencia."
+  reglas_bajo_prueba: "Apoya descriptivamente dinero.planeacion.formal_estable; no valida conducta, formalidad ni causalidad."
+  firma_de_contador: "PENDIENTE-DE-MESA; el encargo autoriza medir y publicar, no inventar firma ni adopcion."
+  contaminacion_declarada: "NO-CIEGA: cifras de tenencia y soporte V_AFORE ya expuestas por CALC-ENFIH-0001 y notas previas; la acreditacion preparatoria detecto 1660 agregados positivos parciales. Ver spec humana."
+
+inputs:
+  - {id: enfih2019_bd_csv_zip, origen: manifiesto}
+  - {id: enfih2019_fd_xlsx, origen: manifiesto}
+  - id: IN-ENFIH2019-SALDOS-AFORE-SPEC
+    origen: repo
+    ruta: forense/prereg-caja/ENFIH2019-SALDOS-AFORE-spec-v1_0.md
+    sha256: 9331252cd09abb51d7288317e10795d2e21efb7fb93d91436603641be6e238d3
+
+variables:
+  - {archivo: TCONCENTRADORA.csv, variable: C_AFORE, rol: tenencia de Afore, codigos: "0=no; 1=si"}
+  - {archivo: TCONCENTRADORA.csv, variable: V_AFORE, rol: suma de montos personales conocidos en pesos, codigos: "0=sin valor especifico; 1-108264000=monto"}
+  - {archivo: TCONCENTRADORA.csv, variable: FAC_HOG, rol: ponderador de hogar}
+  - {archivo: TCONCENTRADORA.csv, variable: EDIS, rol: estrato de diseno como texto opaco}
+  - {archivo: TCONCENTRADORA.csv, variable: UPM_DIS, rol: UPM de diseno como texto opaco}
+  - {archivo: TCONCENTRADORA.csv, variable: H_PPAL, rol: filtro de sensibilidad, codigos: "1=hogar principal"}
+  - {archivo: TMODULO.csv, variable: P9_10, rol: tenencia personal, codigos: "1=si; 2=no"}
+  - {archivo: TMODULO.csv, variable: P9_11, rol: saldo personal Afore, codigos: "000000000-108264000=monto; 999999888=no responde; 999999999=no sabe; blanco por secuencia"}
+  - {archivo: TCONCENTRADORA.csv, variable: FOLIO, rol: llave hogar 1/3}
+  - {archivo: TCONCENTRADORA.csv, variable: VIV_SEL, rol: llave hogar 2/3}
+  - {archivo: TCONCENTRADORA.csv, variable: HOGAR, rol: llave hogar 3/3}
+
+universo: >-
+  Hogares unicos de TCONCENTRADORA.csv con FAC_HOG finito y positivo. El
+  dominio monetario principal son tenedores para quienes todos los tenedores
+  personales tienen P9_11 numerico. La captacion personal se agrega al hogar.
+filtros: >-
+  No se filtran extremos. No sabe/no responde producen monto desconocido o
+  parcial, nunca cero. La sensibilidad unica restringe H_PPAL==1.
+ponderador: "FAC_HOG de TCONCENTRADORA.csv, sin normalizar ni redondear."
+transformacion: >-
+  V_AFORE se verifica contra la suma de P9_11 numericos. Cuantiles por inversa
+  izquierda; top 10 por masa con fraccion uniforme en empates; no imputacion.
+estimando: >-
+  Cobertura de monto, distribucion condicional completa, distribucion positiva,
+  media del universo cubierto, concentracion observada y sensibilidad H_PPAL.
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  tabla_concentradora: TCONCENTRADORA.csv
+  tabla_modulo: TMODULO.csv
+  bootstrap_replicas: 2000
+  tenencia_control: 0.5385022873715912
+  periodo: "pesos corrientes; stock al momento de entrevista entre 2019-10-07 y 2019-11-29"
+  cuantiles: "inversa izquierda de CDF ponderada; q={0.25,0.50,0.75,0.90}"
+  empates_top10: "misma fraccion de inclusion para todos los hogares del monto umbral"
+  singleton: "UPM unica se remuestrea a si misma y se declara como limite inferior de varianza"
+
+seed: {aplica: true, valor: 20260919, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: "Semilla, RNG, orden de llave y convenciones congeladas; textos e enteros son exactos."
+
+resultados:
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-N-UNIVERSO, tipo: entero, unidad: hogares con peso valido}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-N-PESO-INVALIDO, tipo: entero, unidad: hogares excluidos por peso}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-MASA-UNIVERSO, tipo: flotante, unidad: hogares expandidos}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-P-TENEDOR, tipo: proporcion, unidad: proporcion ponderada de hogares tenedores}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-P-NO-TENEDOR, tipo: proporcion, unidad: proporcion ponderada de no tenedores}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-P-TENENCIA-DESCONOCIDA, tipo: proporcion, unidad: proporcion con tenencia desconocida}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-DELTA-TENENCIA-VS-CALC-ENFIH-0001, tipo: flotante, unidad: diferencia contra control sellado}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-ESTADOS-JSON, tipo: texto, unidad: n masa y proporcion por estado monetario}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-COHERENCIA-JSON, tipo: texto, unidad: conteos C_AFORE V_AFORE y especiales}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-COBERTURA-MONTO, tipo: proporcion, unidad: tenedores con total completo}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-COBERTURA-MONTO-IC95-LO, tipo: proporcion, unidad: IC95 inferior de cobertura}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-COBERTURA-MONTO-IC95-HI, tipo: proporcion, unidad: IC95 superior de cobertura}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-N-MONTO-VALIDO, tipo: entero, unidad: hogares tenedores con total completo}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-MASA-MONTO-VALIDO, tipo: flotante, unidad: hogares expandidos tenedores con total completo}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-N-MONTO-POSITIVO, tipo: entero, unidad: hogares con total completo positivo}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-MASA-MONTO-POSITIVO, tipo: flotante, unidad: hogares expandidos con total completo positivo}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-METODO-IC, tipo: texto, unidad: metodo de incertidumbre}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-REPLICAS-VALIDAS-JSON, tipo: texto, unidad: replicas finitas por estimando}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONTROL-CUANTILES-MONOTONOS, tipo: texto, unidad: SI o NO}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONTROL-CONCENTRACION-01, tipo: texto, unidad: SI o NO}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-MEDIA, tipo: flotante, unidad: pesos por hogar tenedor con total completo}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-P25, tipo: flotante, unidad: pesos por hogar tenedor con total completo}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-MEDIANA, tipo: flotante, unidad: pesos por hogar tenedor con total completo}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-P75, tipo: flotante, unidad: pesos por hogar tenedor con total completo}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-P90, tipo: flotante, unidad: pesos por hogar tenedor con total completo}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-POSITIVO-MEDIA, tipo: flotante, unidad: pesos por hogar tenedor con total completo positivo}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-POSITIVO-MEDIANA, tipo: flotante, unidad: pesos por hogar tenedor con total completo positivo}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-MEDIA-UNIVERSO-CUBIERTO, tipo: flotante, unidad: pesos por hogar no tenedor o tenedor con total completo}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-TOP10-FRACCION-SALDO, tipo: proporcion, unidad: fraccion saldo observado del 10 por ciento superior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-HPPAL-COBERTURA, tipo: proporcion, unidad: cobertura entre tenedores H_PPAL 1}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-HPPAL-MEDIA, tipo: flotante, unidad: pesos por hogar tenedor completo H_PPAL 1}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-HPPAL-MEDIANA, tipo: flotante, unidad: pesos por hogar tenedor completo H_PPAL 1}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-DELTA-HPPAL-COBERTURA, tipo: flotante, unidad: HPPAL menos principal}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-DELTA-HPPAL-MEDIA, tipo: flotante, unidad: pesos HPPAL menos principal}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-DELTA-HPPAL-MEDIANA, tipo: flotante, unidad: pesos HPPAL menos principal}
+  # Cada estimando de la lista siguiente publica ademas IC95-LO e IC95-HI.
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-MEDIA-IC95-LO, tipo: flotante, unidad: IC95 inferior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-MEDIA-IC95-HI, tipo: flotante, unidad: IC95 superior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-P25-IC95-LO, tipo: flotante, unidad: IC95 inferior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-P25-IC95-HI, tipo: flotante, unidad: IC95 superior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-MEDIANA-IC95-LO, tipo: flotante, unidad: IC95 inferior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-MEDIANA-IC95-HI, tipo: flotante, unidad: IC95 superior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-P75-IC95-LO, tipo: flotante, unidad: IC95 inferior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-P75-IC95-HI, tipo: flotante, unidad: IC95 superior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-P90-IC95-LO, tipo: flotante, unidad: IC95 inferior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-P90-IC95-HI, tipo: flotante, unidad: IC95 superior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-POSITIVO-MEDIA-IC95-LO, tipo: flotante, unidad: IC95 inferior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-POSITIVO-MEDIA-IC95-HI, tipo: flotante, unidad: IC95 superior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-POSITIVO-MEDIANA-IC95-LO, tipo: flotante, unidad: IC95 inferior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-POSITIVO-MEDIANA-IC95-HI, tipo: flotante, unidad: IC95 superior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-MEDIA-UNIVERSO-CUBIERTO-IC95-LO, tipo: flotante, unidad: IC95 inferior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-MEDIA-UNIVERSO-CUBIERTO-IC95-HI, tipo: flotante, unidad: IC95 superior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-TOP10-FRACCION-SALDO-IC95-LO, tipo: proporcion, unidad: IC95 inferior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-TOP10-FRACCION-SALDO-IC95-HI, tipo: proporcion, unidad: IC95 superior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-HPPAL-COBERTURA-IC95-LO, tipo: proporcion, unidad: IC95 inferior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-HPPAL-COBERTURA-IC95-HI, tipo: proporcion, unidad: IC95 superior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-HPPAL-MEDIA-IC95-LO, tipo: flotante, unidad: IC95 inferior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-HPPAL-MEDIA-IC95-HI, tipo: flotante, unidad: IC95 superior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-HPPAL-MEDIANA-IC95-LO, tipo: flotante, unidad: IC95 inferior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-HPPAL-MEDIANA-IC95-HI, tipo: flotante, unidad: IC95 superior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-DELTA-HPPAL-COBERTURA-IC95-LO, tipo: flotante, unidad: IC95 inferior compartido}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-DELTA-HPPAL-COBERTURA-IC95-HI, tipo: flotante, unidad: IC95 superior compartido}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-DELTA-HPPAL-MEDIA-IC95-LO, tipo: flotante, unidad: IC95 inferior compartido}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-DELTA-HPPAL-MEDIA-IC95-HI, tipo: flotante, unidad: IC95 superior compartido}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-DELTA-HPPAL-MEDIANA-IC95-LO, tipo: flotante, unidad: IC95 inferior compartido}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-DELTA-HPPAL-MEDIANA-IC95-HI, tipo: flotante, unidad: IC95 superior compartido}
