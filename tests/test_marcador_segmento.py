@@ -15,13 +15,17 @@ Tres guardias del diseño (§9(4)) + un caso de prueba que dispara cada una:
   T-PISO-NO-CIRCULAR     ninguna fila MARGINAL trae piso
                          MARGINAL-SIN-INTERACCION (ese piso es SOLO de
                          cruce piloteado, nunca de una celda marginal)
+
+ACTO GEN2-MARCADOR-PISOS-ENLACE-1 (19/sep/2026) añade la guardia D-14
+`T-ENLACE-BIYECTIVO` (más T-PISO-NO-ES-M, T-UNIDAD-ARBITRO y
+T-VETO-POR-NOMBRE) y retira `t_piso_v2_fixture_sintetico`: ese caso probaba
+el lector por patrón de id (`_id_piso_v2`/`_lee_piso_v2`), que este acto
+borró por no funcionar -- el enlace ahora va por la tabla de identidad.
 """
 from __future__ import annotations
 
 import importlib.util
-import json
 import sys
-import tempfile
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
@@ -60,7 +64,7 @@ def t_emisor_no_compara():
 def t_piso_no_circular():
     v = M.deriva()
     for f in v["filas"]:
-        if f["tipo"] == "MARGINAL" and f["piso"] == "MARGINAL-SIN-INTERACCION":
+        if f["tipo"] == "MARGINAL" and f["piso_tipo"] == "MARGINAL-SIN-INTERACCION":
             _falla("T-PISO-NO-CIRCULAR",
                    f"{f['celda_id']} es MARGINAL con piso MARGINAL-SIN-INTERACCION "
                    f"(ese piso es solo de cruce piloteado)")
@@ -82,64 +86,120 @@ def t_universo_97_nacional():
         _falla("T-UNIVERSO-97", f"censo ADR-536 debía dar 97 filas NACIONAL, dio {n}")
 
 
-def t_piso_v2_fixture_sintetico():
-    """Nota de dirección 19/sep/2026 (post-cierre de GEN2-MARCADOR-REDISENO-1):
-    el lector de pisos v2 debe unir por identidad exacta contra
-    `CALC-PISOS-*-EJES-0002` (un RESULT por celda), sin depender de que
-    `GEN2-PISOS-REJILLA-CLI-1` haya fusionado todavía. Este caso arma un
-    CALC sintético con la convención asumida (`_id_piso_v2`) en un
-    directorio temporal, apunta `M.CORRIDA0_DIR` ahí, y verifica que
-    `_lee_piso_v2` lo encuentra por (eje, categoría) -- y que una celda sin
-    match sigue devolviendo `None` (nunca fuerza el parseo)."""
-    eje, categoria = "eje_fixture", "cat_fixture"
-    resultados = {
-        M._id_piso_v2(eje, categoria, "P"): 0.42,
-        M._id_piso_v2(eje, categoria, "IC-LO"): 0.38,
-        M._id_piso_v2(eje, categoria, "IC-HI"): 0.46,
-        M._id_piso_v2(eje, categoria, "N"): 1234,
-        M._id_piso_v2(eje, categoria, "DEN-W"): 987.6,
+def t_enlace_biyectivo():
+    """GUARDIA D-14 de `ACTO GEN2-MARCADOR-PISOS-ENLACE-1` -- atrapa el
+    defecto que ese acto corrige.
+
+    Toda fila `CONSTRUIBLE` de la tabla de identidad de la rejilla
+    (`forense/prereg-caja/PISOS-REJILLA-arbitro-metadatos-v1_0.tsv`) debe
+    enlazar con EXACTAMENTE UNA fila `MARGINAL` del marcador. Ni cero
+    (el defecto de hoy: el lector por patrón de id no encontraba ninguna de
+    las 53) ni más de una (el defecto gemelo: perder el `outcome` colapsaba
+    dos desenlaces de ENIF en un solo `celda_id`).
+
+    No se prueba "cuántas enlazan" contra una cifra escrita a mano: se
+    prueba la BIYECCIÓN contra la tabla, que es la que manda."""
+    v = M.deriva()
+    marginales = [f for f in v["filas"] if f["tipo"] == "MARGINAL"]
+
+    # 1 · ningún celda_id duplicado entre las marginales
+    vistos = {}
+    for f in marginales:
+        vistos.setdefault(f["celda_id"], 0)
+        vistos[f["celda_id"]] += 1
+    for cid, n in vistos.items():
+        if n > 1:
+            _falla("T-ENLACE-BIYECTIVO", f"celda_id duplicado ({n} filas): {cid}")
+
+    # 2 · cada CONSTRUIBLE de la tabla aparece en exactamente una marginal,
+    #     identificada por su `resultado_id` (el `cell_id` de la tabla).
+    construibles = [f for f in M.lee_tabla_identidad() if f["status"] == "CONSTRUIBLE"]
+    if not construibles:
+        _falla("T-ENLACE-BIYECTIVO",
+               "la tabla de identidad no trae filas CONSTRUIBLE -- "
+               "¿se movió o se vació el archivo?")
+        return
+    por_result = {}
+    for f in marginales:
+        if f["resultado_id"]:
+            por_result.setdefault(f["resultado_id"], []).append(f["celda_id"])
+    for f in construibles:
+        enlazadas = por_result.get(f["cell_id"], [])
+        if len(enlazadas) == 0:
+            _falla("T-ENLACE-BIYECTIVO",
+                   f"{f['cell_id']} es CONSTRUIBLE y no enlaza con ninguna "
+                   f"fila MARGINAL (consumer={f['consumer']}, axis={f['axis']}, "
+                   f"category={f['category']}, outcome={f['outcome']})")
+        elif len(enlazadas) > 1:
+            _falla("T-ENLACE-BIYECTIVO",
+                   f"{f['cell_id']} enlaza con {len(enlazadas)} filas MARGINAL: "
+                   f"{enlazadas}")
+
+    # 3 · las NO-CONSTRUIBLE quedan SIN-PISO con la causa DE LA TABLA
+    no_con = [f for f in M.lee_tabla_identidad() if f["status"] != "CONSTRUIBLE"]
+    causas = {f["reason"] for f in no_con if f.get("reason")}
+    sin_piso_con_causa = {f["piso_fuente"].split("NO-CONSTRUIBLE:", 1)[-1]
+                          for f in marginales
+                          if f["piso_fuente"].startswith("NO-CONSTRUIBLE:")}
+    for causa in causas:
+        if causa not in sin_piso_con_causa:
+            _falla("T-ENLACE-BIYECTIVO",
+                   f"la causa NO-CONSTRUIBLE {causa!r} de la tabla no aparece "
+                   f"en ninguna fila SIN-PISO del marcador")
+
+
+def t_piso_no_es_m():
+    """Firma de mesa (GEN2-MARCADOR-PISOS-ENLACE-1): «un piso acota a los
+    retadores; no identifica nada y no sustituye a R en la ola que R ya
+    midió». Ninguna fila MARGINAL puede traer el piso en la columna `M`."""
+    v = M.deriva()
+    for f in v["filas"]:
+        if f["tipo"] == "MARGINAL" and f["M"] not in ("", None):
+            _falla("T-PISO-NO-ES-M",
+                   f"{f['celda_id']} es MARGINAL y trae M={f['M']!r}: "
+                   f"el piso no sustituye a R ni compite como estimador")
+
+
+def t_unidad_leida_del_arbitro():
+    """La unidad del dato se LEE del `payload` del árbitro, no se infiere
+    del prefijo del id. Defecto corregido: ENCIG 2025 declara
+    `unidad = TRÁMITE` y el marcador rotulaba `persona`."""
+    v = M.deriva()
+    esperado = {
+        "tramite.gobierno_digital.util_sin_coercion_ejes_encig2025": "tramite",
+        "civico.denuncia.con_seguro_ejes_envipe2025": "delito",
+        "tramite.evasion_norma_ejes_envipe2025": "delito",
+        "dinero.ahorro.via_informal_ejes_enif2024": "persona_elegida_18mas",
     }
-    corrida0_real = M.CORRIDA0_DIR
-    try:
-        with tempfile.TemporaryDirectory() as tmp:
-            tmp_path = Path(tmp)
-            calc_dir = tmp_path / "CALC-PISOS-FIXTURE-EJES-0002"
-            calc_dir.mkdir()
-            (calc_dir / "resultados.json").write_text(
-                json.dumps({"resultados": resultados}), encoding="utf-8")
-            # un vetado no debe leerse aunque tenga el esquema v2 -- el
-            # veto manda por nombre, incondicionalmente.
-            vetado_dir = tmp_path / M.CALC_PISOS_VETADOS[0]
-            vetado_dir.mkdir()
-            (vetado_dir / "resultados.json").write_text(
-                json.dumps({"resultados": {
-                    M._id_piso_v2("otro_eje", "otra_cat", "P"): 0.99,
-                    M._id_piso_v2("otro_eje", "otra_cat", "IC-LO"): 0.9,
-                    M._id_piso_v2("otro_eje", "otra_cat", "IC-HI"): 1.0,
-                }}), encoding="utf-8")
-            M.CORRIDA0_DIR = tmp_path
+    for f in v["filas"]:
+        if f["tipo"] != "MARGINAL":
+            continue
+        quiere = esperado.get(f["regla_o_eje_origen"])
+        if quiere and f["unidad_dato"] != quiere:
+            _falla("T-UNIDAD-ARBITRO",
+                   f"{f['celda_id']}: unidad_dato={f['unidad_dato']!r}, "
+                   f"el árbitro declara {quiere!r} en su payload")
 
-            hallado = M._lee_piso_v2(eje, categoria)
-            if hallado is None:
-                _falla("T-PISO-V2-FIXTURE", "el lector no encontró el fixture sintético")
-            elif hallado["punto"] != 0.42 or hallado["ic95inf"] != 0.38:
-                _falla("T-PISO-V2-FIXTURE", f"valores incorrectos: {hallado}")
 
-            ausente = M._lee_piso_v2("eje_sin_dato", "cat_sin_dato")
-            if ausente is not None:
-                _falla("T-PISO-V2-FIXTURE",
-                       f"una celda sin match debía dar None, dio {ausente}")
-
-            vetado_leido = M._lee_piso_v2("otro_eje", "otra_cat")
-            if vetado_leido is not None:
-                _falla("T-PISO-V2-FIXTURE",
-                       f"un CALC-PISOS vetado no debe leerse aunque calce el esquema: {vetado_leido}")
-    finally:
-        M.CORRIDA0_DIR = corrida0_real
+def t_vetados_nunca_se_leen():
+    """El veto `veto:pisos-866` es POR NOMBRE y sigue vigente: ningún
+    `CALC-PISOS-*-EJES-0001` puede aparecer como fuente de piso."""
+    v = M.deriva()
+    for f in v["filas"]:
+        for vetado in M.CALC_PISOS_VETADOS:
+            if vetado in str(f.get("piso_fuente", "")):
+                _falla("T-VETO-POR-NOMBRE",
+                       f"{f['celda_id']} cita el CALC vetado {vetado}")
+    for nombre in M.CALC_PISOS_SELLADOS:
+        if nombre in M.CALC_PISOS_VETADOS:
+            _falla("T-VETO-POR-NOMBRE",
+                   f"{nombre} está a la vez en SELLADOS y en VETADOS")
 
 
 CASOS = (t_reserva_sin_r, t_emisor_no_compara, t_piso_no_circular,
-         t_veinte_adoptadas, t_universo_97_nacional, t_piso_v2_fixture_sintetico)
+         t_veinte_adoptadas, t_universo_97_nacional,
+         t_enlace_biyectivo, t_piso_no_es_m, t_unidad_leida_del_arbitro,
+         t_vetados_nunca_se_leen)
 
 
 def corre() -> list[str]:

@@ -1,0 +1,356 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-PISO-PERSISTENCIA-ERROR-0001
+spec_md: ../../../forense/prereg-caja/PISO-PERSISTENCIA-ERROR-spec-v1_0.md
+spec_md_sha256: 3e462662b30c5c7d2eaebc27bf2f6dd85ceba78959347b4754dd69d5133875e0
+script: data/corrida0/CALC-PISO-PERSISTENCIA-ERROR-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: ERROR-DE-PISO-DE-PERSISTENCIA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  exposicion_historica: DERIVADO-DE-SELLADOS
+inputs:
+  - {id: CALC-PISOS-ENVIPE2024-EJES-0002, origen: repo, ruta: data/corrida0/CALC-PISOS-ENVIPE2024-EJES-0002/resultados.json, sello_sha256: 393c418420d52363e5a659d568f00689e7d36271034f64dcefdc91b772f6fd66}
+  - {id: CALC-PISOS-ENCIG2023-EJES-0002, origen: repo, ruta: data/corrida0/CALC-PISOS-ENCIG2023-EJES-0002/resultados.json, sello_sha256: 548ea868ee45fe7477ba00c7b793c62e68f325390344c4c38d0b0f31787de352}
+  - {id: CALC-PISOS-ENIF2021-EJES-0003, origen: repo, ruta: data/corrida0/CALC-PISOS-ENIF2021-EJES-0003/resultados.json, sello_sha256: 795b960b5d23ea9a0ce801cd321f7537664d6c4f1ee9b0e3c59ae1f00524c707}
+  - {id: PISOS-REJILLA-METADATOS, origen: repo, ruta: forense/prereg-caja/PISOS-REJILLA-arbitro-metadatos-v1_0.tsv, sha256: 1715da9303957dac11146bd14e5498d11c554671edcdfb9c6ea7230845433a95}
+  - {id: TRAMITE-OLA5-PROPUESTA, origen: repo, ruta: milpa/tramite-ola5-propuesta-v0.yaml}
+variables:
+  - {archivo: PISOS-REJILLA-arbitro-metadatos-v1_0.tsv, variable: cell_id, rol: llave-de-enlace}
+  - {archivo: PISOS-REJILLA-arbitro-metadatos-v1_0.tsv, variable: consumer, rol: identidad-regla}
+  - {archivo: PISOS-REJILLA-arbitro-metadatos-v1_0.tsv, variable: axis, rol: identidad-eje}
+  - {archivo: PISOS-REJILLA-arbitro-metadatos-v1_0.tsv, variable: category, rol: identidad-categoria}
+  - {archivo: PISOS-REJILLA-arbitro-metadatos-v1_0.tsv, variable: outcome, rol: identidad-desenlace}
+  - {archivo: PISOS-REJILLA-arbitro-metadatos-v1_0.tsv, variable: unit, rol: unidad-del-piso}
+  - {archivo: PISOS-REJILLA-arbitro-metadatos-v1_0.tsv, variable: status, rol: construibilidad}
+  - {archivo: tramite-ola5-propuesta-v0.yaml, variable: p, rol: R-puntual}
+  - {archivo: tramite-ola5-propuesta-v0.yaml, variable: ic95, rol: R-ic95}
+  - {archivo: tramite-ola5-propuesta-v0.yaml, variable: payload, rol: unidad-del-R}
+universo: "Celdas marginales por eje ENLAZADAS: toda fila MARGINAL de marcador-segmento.tsv con estado SOLO-PISO, es decir con un piso PERSISTENCIA(t-1) sellado detrás por la tabla de identidad. Una celda SIN-PISO no entra: no hay resta que hacer."
+filtros: "Unidad y universo deben coincidir entre piso y R (tabla `unit` vs payload del árbitro); si no, la celda sale NO-COMPARABLE con causa y no se fuerza (A-bis 3-4). Las cuatro NO-CONSTRUIBLE de la tabla quedan fuera con la causa que la tabla escribe."
+ponderador: NO-APLICA
+transformacion: "d = (R - piso) * 100, en puntos porcentuales; ambos lados son proporciones ponderadas en [0,1] ya selladas. Es la única transformación de escala."
+estimando: "Diferencia por celda entre el R sellado de la ola objetivo y el piso de persistencia t-1 de la misma celda, en puntos porcentuales, con su IC95 y su clase (PERSISTE si el IC incluye 0, CAMBIA si lo excluye)."
+seed: {aplica: false, motivo: "procedimiento determinista: no remuestrea nada, resta valores ya estimados"}
+parametros:
+  z95: 1.959964
+  metodo_ic: "ee aproximado por simetría normal desde cada IC95 sellado (ee = (sup-inf)/(2*1.959964)); olas tratadas como muestras INDEPENDIENTES; ee_d = sqrt(ee_R^2 + ee_piso^2). Pérdidas declaradas en spec §3: la asimetría del bootstrap por percentiles y la correlación por marco muestral compartido."
+  agregacion: "por (instrumento x desenlace) y por (instrumento x eje), y por instrumento entero. NUNCA entre instrumentos: ENVIPE 1 año, ENCIG 2, ENIF 3."
+dependencias_materiales: []
+resultados:
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-SEXO-1-HOMBRE-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-SEXO-1-HOMBRE-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-SEXO-1-HOMBRE-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-SEXO-1-HOMBRE-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-SEXO-2-MUJER-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-SEXO-2-MUJER-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-SEXO-2-MUJER-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-SEXO-2-MUJER-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-EDAD-18-29-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-EDAD-18-29-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-EDAD-18-29-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-EDAD-18-29-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-EDAD-30-44-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-EDAD-30-44-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-EDAD-30-44-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-EDAD-30-44-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-EDAD-45-59-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-EDAD-45-59-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-EDAD-45-59-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-EDAD-45-59-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-EDAD-60-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-EDAD-60-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-EDAD-60-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-EDAD-60-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-ESCOLARIDAD-HASTA-PRIMARIA-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-ESCOLARIDAD-HASTA-PRIMARIA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-ESCOLARIDAD-HASTA-PRIMARIA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-ESCOLARIDAD-HASTA-PRIMARIA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-ESCOLARIDAD-SECUNDARIA-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-ESCOLARIDAD-SECUNDARIA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-ESCOLARIDAD-SECUNDARIA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-ESCOLARIDAD-SECUNDARIA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-ESCOLARIDAD-MEDIA-SUPERIOR-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-ESCOLARIDAD-MEDIA-SUPERIOR-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-ESCOLARIDAD-MEDIA-SUPERIOR-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-ESCOLARIDAD-MEDIA-SUPERIOR-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-ESCOLARIDAD-SUPERIOR-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-ESCOLARIDAD-SUPERIOR-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-ESCOLARIDAD-SUPERIOR-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-ESCOLARIDAD-SUPERIOR-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-LOCALIDAD-MENOR-DE-15-000-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-LOCALIDAD-MENOR-DE-15-000-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-LOCALIDAD-MENOR-DE-15-000-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-LOCALIDAD-MENOR-DE-15-000-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-LOCALIDAD-15-000-Y-MAS-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-LOCALIDAD-15-000-Y-MAS-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-LOCALIDAD-15-000-Y-MAS-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-LOCALIDAD-15-000-Y-MAS-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-CUENTA-FORMAL-SIN-CUENTA-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-CUENTA-FORMAL-SIN-CUENTA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-CUENTA-FORMAL-SIN-CUENTA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-CUENTA-FORMAL-SIN-CUENTA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-CUENTA-FORMAL-CON-CUENTA-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-CUENTA-FORMAL-CON-CUENTA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-CUENTA-FORMAL-CON-CUENTA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-AHORRA-SOLO-INFORMAL-CUENTA-FORMAL-CON-CUENTA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-SEXO-1-HOMBRE-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-SEXO-1-HOMBRE-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-SEXO-1-HOMBRE-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-SEXO-1-HOMBRE-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-SEXO-2-MUJER-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-SEXO-2-MUJER-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-SEXO-2-MUJER-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-SEXO-2-MUJER-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-EDAD-18-29-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-EDAD-18-29-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-EDAD-18-29-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-EDAD-18-29-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-EDAD-30-44-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-EDAD-30-44-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-EDAD-30-44-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-EDAD-30-44-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-EDAD-45-59-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-EDAD-45-59-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-EDAD-45-59-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-EDAD-45-59-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-EDAD-60-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-EDAD-60-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-EDAD-60-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-EDAD-60-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-CUENTA-FORMAL-SIN-CUENTA-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-CUENTA-FORMAL-SIN-CUENTA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-CUENTA-FORMAL-SIN-CUENTA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-CUENTA-FORMAL-SIN-CUENTA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-CUENTA-FORMAL-CON-CUENTA-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-CUENTA-FORMAL-CON-CUENTA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-CUENTA-FORMAL-CON-CUENTA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENIF-INFORMAL-CUALQUIERA-CUENTA-FORMAL-CON-CUENTA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-SEXO-1-HOMBRE-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-SEXO-1-HOMBRE-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-SEXO-1-HOMBRE-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-SEXO-1-HOMBRE-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-SEXO-2-MUJER-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-SEXO-2-MUJER-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-SEXO-2-MUJER-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-SEXO-2-MUJER-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-EDAD-18-29-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-EDAD-18-29-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-EDAD-18-29-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-EDAD-18-29-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-EDAD-30-44-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-EDAD-30-44-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-EDAD-30-44-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-EDAD-30-44-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-EDAD-45-59-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-EDAD-45-59-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-EDAD-45-59-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-EDAD-45-59-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-EDAD-60-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-EDAD-60-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-EDAD-60-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-EDAD-60-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-ESCOLARIDAD-SECUNDARIA-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-ESCOLARIDAD-SECUNDARIA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-ESCOLARIDAD-SECUNDARIA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-ESCOLARIDAD-SECUNDARIA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-ESCOLARIDAD-SUPERIOR-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-ESCOLARIDAD-SUPERIOR-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-ESCOLARIDAD-SUPERIOR-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENCIG-DIGITAL-ESCOLARIDAD-SUPERIOR-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-SEXO-1-HOMBRE-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-SEXO-1-HOMBRE-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-SEXO-1-HOMBRE-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-SEXO-1-HOMBRE-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-SEXO-2-MUJER-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-SEXO-2-MUJER-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-SEXO-2-MUJER-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-SEXO-2-MUJER-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-EDAD-18-29-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-EDAD-18-29-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-EDAD-18-29-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-EDAD-18-29-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-EDAD-30-44-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-EDAD-30-44-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-EDAD-30-44-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-EDAD-30-44-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-EDAD-45-59-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-EDAD-45-59-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-EDAD-45-59-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-EDAD-45-59-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-EDAD-60-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-EDAD-60-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-EDAD-60-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-EDAD-60-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-ESCOLARIDAD-PROXY-HASTA-PRIMARIA-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-ESCOLARIDAD-PROXY-HASTA-PRIMARIA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-ESCOLARIDAD-PROXY-HASTA-PRIMARIA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-ESCOLARIDAD-PROXY-HASTA-PRIMARIA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-ESCOLARIDAD-PROXY-SECUNDARIA-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-ESCOLARIDAD-PROXY-SECUNDARIA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-ESCOLARIDAD-PROXY-SECUNDARIA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-ESCOLARIDAD-PROXY-SECUNDARIA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-ESCOLARIDAD-PROXY-MEDIA-SUPERIOR-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-ESCOLARIDAD-PROXY-MEDIA-SUPERIOR-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-ESCOLARIDAD-PROXY-MEDIA-SUPERIOR-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-ESCOLARIDAD-PROXY-MEDIA-SUPERIOR-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-ESCOLARIDAD-PROXY-SUPERIOR-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-ESCOLARIDAD-PROXY-SUPERIOR-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-ESCOLARIDAD-PROXY-SUPERIOR-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-ESCOLARIDAD-PROXY-SUPERIOR-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-DOMINIO-URBANO-RURAL-RURAL-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-DOMINIO-URBANO-RURAL-RURAL-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-DOMINIO-URBANO-RURAL-RURAL-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-DOMINIO-URBANO-RURAL-RURAL-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-DOMINIO-URBANO-RURAL-COMPLEMENTO-URBANO-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-DOMINIO-URBANO-RURAL-COMPLEMENTO-URBANO-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-DOMINIO-URBANO-RURAL-COMPLEMENTO-URBANO-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-DOMINIO-URBANO-RURAL-COMPLEMENTO-URBANO-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-DOMINIO-URBANO-RURAL-URBANO-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-DOMINIO-URBANO-RURAL-URBANO-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-DOMINIO-URBANO-RURAL-URBANO-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-EVASION-DOMINIO-URBANO-RURAL-URBANO-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENVIPE-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENVIPE-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-CLASE, tipo: categoria, unidad: "PERSISTE | CAMBIA | NO-COMPARABLE"}
+  - {id: RESULT-PISO-ERR-ENVIPE-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-PISO-ERR-ENVIPE-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-ENVIPE-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, en pp"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--DESENLACE--DIGITAL-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--DESENLACE--DIGITAL-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--DESENLACE--DIGITAL-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--DESENLACE--DIGITAL-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--DESENLACE--DIGITAL-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--EJE--EDAD-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--EJE--EDAD-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--EJE--EDAD-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--EJE--EDAD-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--EJE--EDAD-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--EJE--ESCOLARIDAD-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--EJE--ESCOLARIDAD-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--EJE--ESCOLARIDAD-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--EJE--ESCOLARIDAD-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--EJE--ESCOLARIDAD-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--EJE--SEXO-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--EJE--SEXO-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--EJE--SEXO-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--EJE--SEXO-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--EJE--SEXO-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--INSTRUMENTO-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--INSTRUMENTO-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--INSTRUMENTO-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--INSTRUMENTO-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENCIG--INSTRUMENTO-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--DESENLACE--AHORRA-SOLO-INFORMAL-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--DESENLACE--AHORRA-SOLO-INFORMAL-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--DESENLACE--AHORRA-SOLO-INFORMAL-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--DESENLACE--AHORRA-SOLO-INFORMAL-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--DESENLACE--AHORRA-SOLO-INFORMAL-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--DESENLACE--INFORMAL-CUALQUIERA-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--DESENLACE--INFORMAL-CUALQUIERA-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--DESENLACE--INFORMAL-CUALQUIERA-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--DESENLACE--INFORMAL-CUALQUIERA-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--DESENLACE--INFORMAL-CUALQUIERA-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--CUENTA-FORMAL-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--CUENTA-FORMAL-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--CUENTA-FORMAL-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--CUENTA-FORMAL-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--CUENTA-FORMAL-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--EDAD-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--EDAD-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--EDAD-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--EDAD-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--EDAD-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--ESCOLARIDAD-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--ESCOLARIDAD-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--ESCOLARIDAD-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--ESCOLARIDAD-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--ESCOLARIDAD-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--LOCALIDAD-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--LOCALIDAD-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--LOCALIDAD-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--LOCALIDAD-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--LOCALIDAD-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--SEXO-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--SEXO-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--SEXO-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--SEXO-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--EJE--SEXO-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--INSTRUMENTO-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--INSTRUMENTO-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--INSTRUMENTO-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--INSTRUMENTO-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENIF--INSTRUMENTO-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--DESENLACE--DENUNCIA-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--DESENLACE--DENUNCIA-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--DESENLACE--DENUNCIA-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--DESENLACE--DENUNCIA-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--DESENLACE--DENUNCIA-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--DESENLACE--EVASION-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--DESENLACE--EVASION-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--DESENLACE--EVASION-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--DESENLACE--EVASION-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--DESENLACE--EVASION-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--COBERTURA-SEGURO-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--COBERTURA-SEGURO-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--COBERTURA-SEGURO-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--COBERTURA-SEGURO-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--COBERTURA-SEGURO-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--DOMINIO-URBANO-RURAL-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--DOMINIO-URBANO-RURAL-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--DOMINIO-URBANO-RURAL-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--DOMINIO-URBANO-RURAL-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--DOMINIO-URBANO-RURAL-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--EDAD-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--EDAD-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--EDAD-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--EDAD-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--EDAD-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--ESCOLARIDAD-PROXY-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--ESCOLARIDAD-PROXY-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--ESCOLARIDAD-PROXY-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--ESCOLARIDAD-PROXY-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--ESCOLARIDAD-PROXY-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--SEXO-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--SEXO-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--SEXO-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--SEXO-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--EJE--SEXO-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--INSTRUMENTO-N, tipo: entero, unidad: "celdas del grupo"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--INSTRUMENTO-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--INSTRUMENTO-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--INSTRUMENTO-MAE-PP, tipo: flotante, unidad: "media de |d| en pp, DENTRO del instrumento"}
+  - {id: RESULT-PISO-ERR-AGG-ENVIPE--INSTRUMENTO-D-MEDIO-PP, tipo: flotante, unidad: "d medio con signo en pp, DENTRO del instrumento"}
