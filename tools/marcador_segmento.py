@@ -68,6 +68,10 @@ CORRIDA0_DIR = RAIZ / "data" / "corrida0"
 MARCADOR_TSV = CORRIDA0_DIR / "marcador-segmento.tsv"
 TABLA_IDENTIDAD = (RAIZ / "forense" / "prereg-caja"
                     / "PISOS-REJILLA-arbitro-metadatos-v1_0.tsv")
+# P2: el error del piso y su clase se DERIVAN de este CALC, no se
+# recalculan aquí. Si el CALC no está sellado, las dos columnas salen
+# vacías -- el marcador nunca estima.
+CALC_ERROR_PISO = CORRIDA0_DIR / "CALC-PISO-PERSISTENCIA-ERROR-0001"
 ESTIMADORES_YAML = RAIZ / "milpa" / "estimadores-por-segmento.yaml"
 
 # Los cuatro CALC-PISOS-* que el veto de mesa 19/sep/2026 (objeto
@@ -98,6 +102,7 @@ COLS = [
     "celda_id", "tipo", "regla_o_eje_origen", "instrumento",
     "eje_o_par", "categoria", "unidad_dato", "unidad_objetivo",
     "estado", "piso_tipo", "piso", "piso_ic95", "piso_fuente",
+    "error_piso_pp", "clase_persistencia",
     "R", "R_ic95inf", "R_ic95sup",
     "M", "IC95_inf", "IC95_sup", "tipo_incertidumbre",
     "resultado_id", "decision_ref", "emisor_vs_arbitro", "fuente",
@@ -439,6 +444,23 @@ def _piso_de_fila(clave: tuple, idx: dict, res: dict) -> dict | None:
     }
 
 
+def _error_de_piso_por_celda() -> dict:
+    """`celda_id` -> (`error_piso_pp`, `clase_persistencia`) tal como
+    `CALC-PISO-PERSISTENCIA-ERROR-0001` los selló. El marcador NO los
+    recalcula: los copia o los deja vacíos."""
+    rj = CALC_ERROR_PISO / "resultados.json"
+    if not rj.exists():
+        return {}
+    try:
+        d = json.loads(rj.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    out = {}
+    for c in d.get("celdas", []):
+        out[c.get("celda_id")] = (c.get("d_pp", ""), c.get("clase", ""))
+    return out
+
+
 def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
     """Universo (i): las celdas marginales por eje de los siete ids `_ejes_`.
 
@@ -453,6 +475,7 @@ def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
     reglas_ejes = [r for r in d["reglas_propuestas"] if "_ejes_" in r.get("id", "")]
     idx = indice_identidad()
     res = _resultados_sellados()
+    err = _error_de_piso_por_celda()
     filas = []
     n_ejes = 0
     for r in reglas_ejes:
@@ -496,8 +519,10 @@ def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
                                        f"tabla={piso['unit']}/marcador={unidad}")
 
                 sufijo = f"{desenlace}::" if desenlace else ""
+                celda_id = f"MARG::{r['id']}::{sufijo}{eje}::{categoria}"
+                error_pp, clase = err.get(celda_id, ("", ""))
                 filas.append({
-                    "celda_id": f"MARG::{r['id']}::{sufijo}{eje}::{categoria}",
+                    "celda_id": celda_id,
                     "tipo": "MARGINAL",
                     "regla_o_eje_origen": r["id"],
                     "instrumento": r.get("payload", ""),
@@ -510,6 +535,8 @@ def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
                     "piso": piso_val,
                     "piso_ic95": piso_ic95,
                     "piso_fuente": piso_fuente,
+                    "error_piso_pp": error_pp,
+                    "clase_persistencia": clase,
                     "R": c.get("p"), "R_ic95inf": (c.get("ic95") or [None, None])[0],
                     "R_ic95sup": (c.get("ic95") or [None, None])[1],
                     # El piso NO es M: acota a los retadores, no identifica

@@ -221,6 +221,21 @@ def deriva() -> dict:
             "resultados": resultados}
 
 
+def medir(inputs, contrato):
+    """Interfaz única de la casa (`tools/corrida0.py`, plan v2.0 §4 B-1).
+
+    Este medidor no abre `inputs`: los cinco insumos ya son archivos del
+    repo con `sha256` declarado en `spec.yaml`, y el pre-flight los verifica
+    antes de llamar aquí. `contrato` se lee sólo para comprobar que el `z95`
+    que gobierna la clasificación es el congelado en la spec -- si alguien
+    lo moviera, la corrida PARA en vez de reportar otra cosa con el mismo
+    nombre."""
+    z = (contrato or {}).get("parametros", {}).get("z95")
+    if z is not None and float(z) != Z95:
+        raise RuntimeError(f"z95 del contrato ({z}) != z95 congelado ({Z95})")
+    return deriva()["resultados"]
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
