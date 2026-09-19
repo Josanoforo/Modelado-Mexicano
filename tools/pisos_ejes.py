@@ -92,6 +92,17 @@ def encig(inputs, contrato):
     return _tabla(d,{"sexo":d.SEXO.str.strip(),"edad":_age(d.EDAD),"escolaridad":d.NIV.str.strip()},"PISOS-ENCIG2023-DIGITAL")
 
 
+def encig_v11(inputs, contrato):
+    """Sucesor: catálogo ENCIG acredita 04/05 como canal digital."""
+    z=inputs["encig23_base_datos_csv"]["ruta_absoluta"]
+    a=_csv(z,"encig2023_04_sec_7.csv",["N_TRA","P7_3","FAC_TRA","EST_DIS","UPM_DIS","ID_PER"])
+    b=_csv(z,"encig2023_02_residentes_sec_2.csv",["ID_PER","SEXO","EDAD","NIV"])
+    d=a.merge(b,on="ID_PER",how="left",validate="m:1"); d=d[d.N_TRA.str.strip().eq("01")].copy()
+    d["_w"]=pd.to_numeric(d.FAC_TRA,errors="coerce"); d["_est"]=d.EST_DIS.str.strip(); d["_upm"]=d.UPM_DIS.str.strip()
+    d["_y"]=d.P7_3.str.strip().isin(["04","05","4","5"]).astype(int)
+    return _tabla(d,{"sexo":d.SEXO.str.strip(),"edad":_age(d.EDAD),"escolaridad":d.NIV.str.strip()},"PISOS-ENCIG2023-DIGITAL-V1-1")
+
+
 def enif(inputs, contrato):
     z=inputs["enif2021_csv"]["ruta_absoluta"]
     inf=[f"P5_1_{i}" for i in range(1,7)]; formal=[f"P5_7_{i}" for i in range(1,10)]
