@@ -108,9 +108,16 @@ también coinciden.
 | `RESULT-ENADID-USE2-REPLICAS` / `SEMILLA` | 800 / 20260919 |
 | `RESULT-ENADID-USE2-SALIDA` | Directorio de las tablas |
 
-Estado: medición sellada; validación independiente terminada; publicación en
-vistas y replay pendiente del cierre de esta rama; adopción ninguna;
-`cuenta_gen2=PENDIENTE-DE-MESA`.
+Estado: medición sellada, replay aislado `REPRODUCE/IDENTICO`, validación
+independiente terminada y asiento proyectado; adopción ninguna;
+`cuenta_gen2=PENDIENTE-DE-MESA`. La segunda proyección fue estable byte a byte:
+`corridas.tsv=38b6aa1123e1f5368e13089fe7a3a9b0a94f1440cf9425e6b6eaa78adccacbfb`,
+`resultados.tsv=1598d495fa81861dc7f4ed03dd075d05a6653781c423f4121d46e98ab359ee51`
+y `usos.tsv=939a06e39277a184490263b24cd86a537301cf0bed918271eba51c68e95ef1bd`.
+Frente a `origin/main`, ninguna de las 223 corridas preexistentes cambió
+`resultado_replay` ni `contexto_replay`, y `usos.tsv` no cambió. Las filas
+derivadas ajenas que aparecieron al regenerar corresponden sólo a contratos ya
+presentes de ENCIG e ISSP; no constituyen adopción nueva.
 
 ## NO-CORRIDO / RESERVAS
 
