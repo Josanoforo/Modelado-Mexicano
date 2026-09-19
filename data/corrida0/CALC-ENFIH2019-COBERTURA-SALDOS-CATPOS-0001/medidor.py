@@ -4,6 +4,7 @@ from __future__ import annotations
 import io, json, math, zipfile
 import numpy as np
 import pandas as pd
+from scipy import sparse
 
 PREFIX = "RESULT-ENFIH2019-COBERTURA-SALDOS-CATPOS-"
 KEY = ["FOLIO", "VIV_SEL", "HOGAR"]
@@ -118,6 +119,39 @@ def _ci(v):
     return [float(z) for z in np.percentile(v,[2.5,97.5])] if len(v) else [None,None]
 
 
+def _bootstrap_metrics(d, w, reps, seed):
+    """Réplicas vectorizadas por UPM; evita rearmar tablas puntuales 2,000 veces."""
+    cluster = (d.EDIS + "\x1f" + d.UPM_DIS).to_numpy()
+    unique, inv = np.unique(cluster, return_inverse=True); strata = np.array([z.split("\x1f",1)[0] for z in unique])
+    rng=np.random.Generator(np.random.PCG64(seed)); mult=np.zeros((reps,len(unique)))
+    for r in range(reps):
+        for s in np.unique(strata):
+            pos=np.flatnonzero(strata==s); mult[r] += np.bincount(rng.choice(pos,size=len(pos),replace=True),minlength=len(unique))
+    x=d.v.to_numpy(float); cats=d.cat.to_numpy(); holder=d.c.eq(1).to_numpy(); complete=d.complete.to_numpy(bool); native=np.isin(cats,NATIVE)
+    def cv(mask): return np.bincount(inv,weights=w*mask,minlength=len(unique))
+    def median(mask):
+        take=np.flatnonzero(mask)
+        if not len(take): return np.full(reps,np.nan)
+        vals, col=np.unique(x[take],return_inverse=True)
+        mat=sparse.csr_matrix((w[take],(inv[take],col)),shape=(len(unique),len(vals)))
+        by=np.asarray(mult @ mat); target=by.sum(axis=1)*.5
+        return vals[(np.cumsum(by,axis=1)>=target[:,None]).argmax(axis=1)]
+    def metric(mask):
+        hm=mult@cv(mask&holder); cm=mult@cv(mask&complete); sm=mult@cv((mask&complete)*x)
+        return {"coverage":np.divide(cm,hm,out=np.full(reps,np.nan),where=hm>0),
+                "mean":np.divide(sm,cm,out=np.full(reps,np.nan),where=cm>0),"median":median(mask&complete),
+                "holder":hm,"complete":cm,"sum":sm}
+    per={c:metric(cats==c) for c in NATIVE+["DESCONOCIDO"]}; total=metric(native)
+    out={("t",c,"cobertura_completa"):per[c]["coverage"] for c in per}
+    out.update({("t",c,"media"):per[c]["mean"] for c in per}); out.update({("t",c,"mediana"):per[c]["median"] for c in per})
+    for c in NATIVE:
+        q=per[c]; rh=total["holder"]-q["holder"]; rc=total["complete"]-q["complete"]; rs=total["sum"]-q["sum"]
+        rest_cov=np.divide(rc,rh,out=np.full(reps,np.nan),where=rh>0); rest_mean=np.divide(rs,rc,out=np.full(reps,np.nan),where=rc>0)
+        rest_med=median(native & (cats!=c) & complete)
+        out[("c",c,"delta_cobertura")]=q["coverage"]-rest_cov; out[("c",c,"delta_media")]=q["mean"]-rest_mean; out[("c",c,"delta_mediana")]=q["median"]-rest_med
+    return out
+
+
 def medir(inputs, contrato):
     p = contrato["parametros"]
     with zipfile.ZipFile(inputs["enfih2019_bd_csv_zip"]["ruta_absoluta"]) as z:
@@ -128,11 +162,7 @@ def medir(inputs, contrato):
     w = d.w.to_numpy(float); table, con = point_table(d,w), contrasts(d,w)
     keys = [(c,k) for c in NATIVE+["DESCONOCIDO"] for k in ["cobertura_completa","media","mediana"]]
     ckeys = [(c,k) for c in NATIVE for k in ["delta_cobertura","delta_media","delta_mediana"]]
-    samples = {("t",)+k: [] for k in keys} | {("c",)+k: [] for k in ckeys}
-    for mult in _multipliers(d,int(p["bootstrap_replicas"]),int(contrato["seed"]["valor"])):
-        rt, rc = point_table(d,w*mult), contrasts(d,w*mult)
-        for c,k in keys: samples[("t",c,k)].append(rt[c][k])
-        for c,k in ckeys: samples[("c",c,k)].append(rc[c][k])
+    samples = _bootstrap_metrics(d,w,int(p["bootstrap_replicas"]),int(contrato["seed"]["valor"]))
     for c,k in keys: table[c][k+"_ic95"] = _ci(samples[("t",c,k)])
     for c,k in ckeys: con[c][k+"_ic95"] = _ci(samples[("c",c,k)])
     nat = np.isin(d.cat.to_numpy(),NATIVE); holder=d.c.eq(1).to_numpy(); complete=d.complete.to_numpy(bool)

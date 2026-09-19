@@ -34,7 +34,7 @@ filtros: "No imputación ni recorte; CAT_POS fuera de 0..5 se conserva como DESC
 ponderador: "FAC_HOG de TCONCENTRADORA.csv, sin normalizar."
 transformacion: "V_AFORE se verifica contra P9_11; cuantiles por inversa izquierda; contrastes con réplicas compartidas."
 estimando: "Cobertura, estados y distribución condicional completa por CAT_POS; contrastes categoría contra resto nativo."
-dependencias_materiales: [numpy, pandas]
+dependencias_materiales: [numpy, pandas, scipy]
 parametros:
   tabla_concentradora: TCONCENTRADORA.csv
   tabla_modulo: TMODULO.csv
