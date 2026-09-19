@@ -1,5 +1,6 @@
 calc_id: CALC-PISOS-ENVIPE2024-EJES-0001
 spec_md: forense/prereg-caja/PISOS-ENVIPE2024-ejes-spec-v1_0.md
+spec_md_sha256: 67b10c7b0603a56eefc0fc0c93b78b2bda7bf5039d7dc6a7c65f0b55c0a969f8
 script: data/corrida0/CALC-PISOS-ENVIPE2024-EJES-0001/medidor.py
 etiquetas: {generacion: GEN2, tipo: PISO-PERSISTENCIA-POR-EJE, cuenta_gen2: SI}
 inputs:
@@ -24,4 +25,8 @@ transformacion: "Evasión: BP1_20=2 y BP1_23 en {04,05,06,08}; sin imputación."
 estimando: "p_2024(desenlace | categoría), proporción ponderada [0,1]."
 seed: {aplica: true, valor: 42, rng: numpy.PCG64}
 parametros: {bootstrap_replicas: 10000, metodo_ic: "bootstrap UPM estratificado; percentiles 2.5/97.5"}
+dependencias_materiales: [numpy, pandas]
+resultados:
+  - {id: RESULT-PISOS-ENVIPE2024-EVASION-TABLA, tipo: texto, unidad: "JSON: estimaciones e IC95 por sexo, edad, escolaridad proxy y dominio"}
+  - {id: RESULT-PISOS-ENVIPE2024-EVASION-N-UNIVERSO, tipo: entero, unidad: "filas de delito en el universo declarado"}
 tolerancia: {tipo: flotante, abs: 1.0e-10}

@@ -1,5 +1,6 @@
 calc_id: CALC-PISOS-ENIF2021-EJES-0001
 spec_md: forense/prereg-caja/PISOS-ENIF2021-ejes-spec-v1_0.md
+spec_md_sha256: 99ad7f4e66a3d264ef181a3eb834874ce54668055f813ac39321d63b2681a146
 script: data/corrida0/CALC-PISOS-ENIF2021-EJES-0001/medidor.py
 etiquetas: {generacion: GEN2, tipo: PISO-PERSISTENCIA-POR-EJE, cuenta_gen2: SI}
 inputs:
@@ -40,4 +41,8 @@ transformacion: "P5_1 cualquiera=1 y P5_7 ninguna=1; sin imputación."
 estimando: "p_2021(ahorro_solo_informal | categoría), proporción ponderada [0,1]."
 seed: {aplica: true, valor: 42, rng: numpy.PCG64}
 parametros: {bootstrap_replicas: 10000, metodo_ic: "bootstrap UPM estratificado; percentiles 2.5/97.5"}
+dependencias_materiales: [numpy, pandas]
+resultados:
+  - {id: RESULT-PISOS-ENIF2021-D9-TABLA, tipo: texto, unidad: "JSON: ahorro sólo informal D9 por sexo, edad, escolaridad, localidad y cuenta"}
+  - {id: RESULT-PISOS-ENIF2021-D9-N-UNIVERSO, tipo: entero, unidad: "personas elegidas del universo declarado"}
 tolerancia: {tipo: flotante, abs: 1.0e-10}
