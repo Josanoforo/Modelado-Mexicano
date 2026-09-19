@@ -3927,9 +3927,6 @@ def _filas_registro(verifica: bool = False) -> dict:
                           f"no trae {', '.join(o['hashes_faltantes'])} -- sellada "
                           f"antes del esquema endurecido de ACTO GEN2-E3-1; su "
                           f"sello NO se reescribe")
-        if o["cuenta_gen2"] == "SI" and estado.startswith("SELLADA"):
-            avisos.append(f"CALC-SIN-CONSUMIDOR-ACTIVO: {calc_id} esta sellada "
-                          f"y ningun consumidor activo la cita todavia")
 
     # ACTO GEN2-VALIDACION-R-ENVIPE-22: las specs y resultados sellados no
     # se reescriben. El overlay común de validación se aplica por RESULT y
@@ -3998,6 +3995,21 @@ def _filas_registro(verifica: bool = False) -> dict:
                 "aptitud_uso": "NO-EVALUADA", "motivo_aptitud": "pendiente de resolver",
                 "camino_linaje": "", "valor_materializado": NO_DECLARADO,
             })
+
+    # Se evalúa después de incorporar TODOS los consumidores, incluido el
+    # lector segmentado. Antes se emitía este aviso dentro del bucle de
+    # oferta, cuando esas rutas aún no se habían materializado, y por eso un
+    # CALC con usos activos podía aparecer falsamente como no consumido.
+    calcs_consumidos = {
+        indice_resultados[u["resultado_id"]]["spec_id"]
+        for u in filas_usos
+        if u.get("activo") == "SI" and u.get("resultado_id") in indice_resultados
+    }
+    for o in oferta:
+        if (o["cuenta_gen2"] == "SI" and o["estado"] == "SELLADA"
+                and o["calc_id"] not in calcs_consumidos):
+            avisos.append(f"CALC-SIN-CONSUMIDOR-ACTIVO: {o['calc_id']} esta sellada "
+                          f"y ningun consumidor activo la cita todavia")
 
     # ── validaciones que PARAN sobre el grafo ya unido ─────────────────────
     usos_no_aptos: list[str] = []
