@@ -49,3 +49,7 @@ Un `CAMBIA` es cambio en el tiempo de una proporción en un universo restringido
 | `familia.cuidado.reparto_mujeres40` | `NUNCA-MEDIDA` |
 
 **Consecuencia leída, no ignorada:** siete de las ocho ya están medidas, lo que es consistente con que sus `R` estén sellados en `milpa/tramite-ola5-propuesta-v0.yaml` y sean justamente el lado derecho de cada resta. La única `NUNCA-MEDIDA` es `familia.cuidado.reparto_mujeres40` — y es una de las tres reglas que **no** tienen `consumer` en la tabla de identidad, así que ya estaba fuera del universo del CALC por ausencia de piso; que además esté `NUNCA-MEDIDA` refuerza dejarla fuera, no la contradice. Ninguna regla se movió de estado por este acto.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-MARCADOR-PISOS-ENLACE-1` (19/sep/2026, entorno NUBE `cloud_default`, Opus 5, sin corpus montado), rama `claude/practical-turing-kbqc08`, **PR #883** — https://github.com/Josanoforo/Modelado-Mexicano/pull/883. `ADR-546` en `canon/gobernanza-v1_15.md`; anotación L0 en `canon/estado-programa-v1_14.md`; rótulo `GEN2-MARCADOR-PISOS-ENLACE-1` censado en `canon/registro-rotulos.tsv`. `NC-0342` CERRADA. El merge es de mesa, no del ejecutor.
