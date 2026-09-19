@@ -184,13 +184,42 @@ class DictamenDeEmisibilidad(unittest.TestCase):
                              {"escolaridad_proxy", "sexo", "edad"}),
             ("escolaridad_proxy", "sexo"))
 
-    def test_la_unidad_la_pone_el_arbitro_no_el_marcador(self):
-        """ENCIG: el árbitro dice TRÁMITE, el marcador dice persona."""
+    def test_la_unidad_la_pone_el_arbitro(self):
+        """La emisión hereda la unidad del ÁRBITRO, no la del marcador.
+
+        Historia, porque explica por qué este caso sigue aquí: cuando se
+        escribió (base `8e455bd6`) el marcador publicaba `unidad_dato =
+        persona` para ENCIG mientras el árbitro declaraba `TRÁMITE`, y el
+        dictamen conservaba las dos columnas para no resolver la
+        discrepancia en silencio. `GEN2-MARCADOR-PISOS-ENLACE-1` (`PR
+        #883`) la corrigió aguas arriba: `_unidad_dato()` ahora lee el
+        `payload` del árbitro y normaliza a `tramite`/`delito`.
+
+        El caso NO se borra al desaparecer la discrepancia: lo que fija es
+        de QUIÉN se hereda la unidad, y eso vale igual ahora que
+        coinciden. Si el marcador volviera a divergir, aquí se ve.
+        """
         encig = [f for f in self.d if "encig" in f["regla"]]
-        self.assertTrue(encig)
+        envipe = [f for f in self.d if "envipe" in f["regla"]]
+        self.assertTrue(encig and envipe)
         for f in encig:
             self.assertIn("TRÁMITE", f["unidad_dato_arbitro"])
-            self.assertEqual(f["unidad_dato_marcador"], "persona")
+        for f in envipe:
+            self.assertIn("DELITO", f["unidad_dato_arbitro"])
+        # Post-#883 coinciden; se afirma la concordancia, no una igualdad
+        # literal (el árbitro trae la glosa, el marcador el token normalizado).
+        for f in encig:
+            self.assertEqual(f["unidad_dato_marcador"], "tramite")
+        for f in envipe:
+            self.assertEqual(f["unidad_dato_marcador"], "delito")
+
+    def test_la_emision_lleva_la_unidad_del_arbitro_no_la_del_marcador(self):
+        """Lo que viaja en el RESULT es la del árbitro, con su glosa."""
+        for f in C2.emisiones():
+            self.assertEqual(f["unidad_dato"],
+                             next(d["unidad_dato_arbitro"] for d in self.d
+                                  if d["celda_id_marcador"] == f["celda_id_marcador"]
+                                  and d["desenlace_id"] == f["desenlace_id"]))
 
     def test_todo_emitible_trae_nacional_del_mismo_desenlace(self):
         for f in self.d:
@@ -239,6 +268,97 @@ class LaFormaSeImportaNoSeReimplementa(unittest.TestCase):
     def test_es_la_misma_funcion_objeto(self):
         import test_celda_d_c2 as sellado
         self.assertIs(C2.piso_log_aditivo, sellado.piso_log_aditivo)
+
+
+class GuardiaD14(unittest.TestCase):
+    """(6) P3 · D-14 — la guardia única.
+
+    Falla si una celda `EMITIDA-SIN-EVALUAR` sale por la vía por defecto
+    del lector, o si cuenta como `ADOPTADO_ACTIVO`.
+
+    El defecto que atrapa ya ocurrió hoy en pequeño: 8 celdas adoptadas
+    por firma que el contador no veía porque dos compuertas distintas se
+    leían como una. Aquí el riesgo es el simétrico y peor — que una
+    emisión sin evaluar se lea como adoptada — y por eso la separación es
+    estructural (clave distinta en el YAML, espacio de nombres de id
+    distinto) y no una bandera dentro de un mismo diccionario.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        import importlib.util as _iu
+        ruta = RAIZ / "milpa" / "src" / "estimadores_segmento.py"
+        spec = _iu.spec_from_file_location("estimadores_segmento_d14", ruta)
+        cls.E = _iu.module_from_spec(spec)
+        spec.loader.exec_module(cls.E)
+        cls.emitidas = cls.E.celdas_emitidas_sin_evaluar()
+        cls.adoptadas = _yaml_estimadores().get("celdas") or {}
+
+    def test_hay_algo_que_guardar(self):
+        """A.13: una guardia sobre cero celdas no prueba nada."""
+        self.assertEqual(len(self.emitidas), 206)
+        self.assertEqual(len(self.adoptadas), 20)
+
+    def test_ninguna_emitida_sale_por_la_via_por_defecto(self):
+        fugas = [cid for cid in self.emitidas
+                 if self.E.estimador_de_celda(cid) is not None]
+        self.assertFalse(fugas, f"{len(fugas)} celdas EMITIDA-SIN-EVALUAR "
+                                f"salieron sin `incluir_no_evaluadas=True`: "
+                                f"{fugas[:5]}")
+
+    def test_ninguna_emitida_cuenta_como_ADOPTADO_ACTIVO(self):
+        for cid in self.emitidas:
+            e = self.E.estimador_de_celda(cid, incluir_no_evaluadas=True)
+            self.assertIsNotNone(e, cid)
+            self.assertEqual(e["estado"], self.E.EMITIDA_SIN_EVALUAR, cid)
+            self.assertNotEqual(e["estado"], self.E.ADOPTADO_ACTIVO, cid)
+
+    def test_los_dos_espacios_de_id_no_se_tocan(self):
+        self.assertFalse(set(self.emitidas) & set(self.adoptadas))
+        for cid in self.emitidas:
+            self.assertTrue(cid.startswith("CRUCE-EMITIDA::"), cid)
+        for cid in self.adoptadas:
+            self.assertFalse(cid.startswith("CRUCE-EMITIDA::"), cid)
+
+    def test_el_flag_no_afecta_a_las_adoptadas(self):
+        for cid in self.adoptadas:
+            a = self.E.estimador_de_celda(cid)
+            b = self.E.estimador_de_celda(cid, incluir_no_evaluadas=True)
+            self.assertEqual(a, b, cid)
+            self.assertEqual(a["estado"], self.E.ADOPTADO_ACTIVO, cid)
+
+    def test_una_emitida_nunca_trae_IC(self):
+        for cid, e in self.emitidas.items():
+            self.assertIn(e["ic95_inf"], ("", None), cid)
+            self.assertIn(e["ic95_sup"], ("", None), cid)
+            self.assertEqual(e["diagnostico_rango_es_ic"], "NO", cid)
+
+    def test_emitir_no_consume_la_reserva(self):
+        """Las dos cosas a la vez, en columnas distintas."""
+        filas = _filas_marcador()
+        emitidos = [f for f in filas if f.get("emision") == "EMITIDA-SIN-EVALUAR"]
+        self.assertEqual(len(emitidos), 16,
+                         "16 de los 22 pares RESERVADA son emitibles")
+        for f in emitidos:
+            self.assertEqual(f["estado"], "RESERVADA", f["celda_id"])
+        self.assertEqual(
+            sum(1 for f in filas if f["estado"] == "RESERVADA"), 22,
+            "emitir no consume: los 22 cruces siguen RESERVADA")
+
+
+def _yaml_estimadores() -> dict:
+    import yaml
+    return yaml.safe_load(
+        (RAIZ / "milpa" / "estimadores-por-segmento.yaml").read_text(
+            encoding="utf-8")) or {}
+
+
+def _filas_marcador() -> list[dict]:
+    import csv
+    ruta = RAIZ / "data" / "corrida0" / "marcador-segmento.tsv"
+    with ruta.open(encoding="utf-8") as fh:
+        lineas = [l for l in fh if not l.startswith("#")]
+    return list(csv.DictReader(lineas, delimiter="\t"))
 
 
 def corre() -> list[str]:
