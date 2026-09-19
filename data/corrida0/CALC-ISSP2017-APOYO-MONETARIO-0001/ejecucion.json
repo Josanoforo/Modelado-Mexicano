@@ -1,0 +1,145 @@
+{
+ "corrida_id": "CALC-ISSP2017-APOYO-MONETARIO-0001--f2f7a3399ce7",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "fuente_acto": "GEN2-ISSP-APOYO-MONETARIO-DESCRIPTIVO-CLI-1",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": false,
+  "tipo": "MEDICION-DESCRIPTIVA-MICRODATO",
+  "unidad_transferencia": "PERSONA-NO-TRANSFERENCIA-A-MOTOR",
+  "uso_motor": "EVIDENCIA-FAM-DISTINCION-DE-CONSTRUCTOS-NO-CALIBRA",
+  "validacion_independiente": "CONTROL-SEPARADO-DE-PUNTOS-Y-DENOMINADORES"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-19T18:57:48Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 0,
+   "montado": "NO",
+   "nota": "data/raw ausente -- normal en un clon fresco / en la nube"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "f2f7a3399ce7547f52057acc8f06f1a4a45789c8",
+  "git_rama": "codex/gen2-issp-apoyo-monetario-cli-1",
+  "git_status": "SUCIO",
+  "git_status_lineas": 4,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "38ed1b92edb215f2279e08d405c64bb06536c0590a441e3fa1e79e5bbaa2bfb0",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "38ed1b92edb215f2279e08d405c64bb06536c0590a441e3fa1e79e5bbaa2bfb0",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "f2f7a3399ce7547f52057acc8f06f1a4a45789c8",
+ "input_ids": [
+  "za6980_q_mx",
+  "za6980_backgroundvar_mx",
+  "za6980_v2_0_0_dta",
+  "za6980_v2_0_0_sav",
+  "za6980_codebook_integrado_evidencia"
+ ],
+ "input_sha256": {
+  "za6980_backgroundvar_mx": "6004c300ca1331bfd15f163c4deaa726c71b66b46ae9e05361f40ae8cc26ca5f",
+  "za6980_codebook_integrado_evidencia": "de18929fc4aa638e458b191d103d9a19f766121291d758f77a65268106cfe356",
+  "za6980_q_mx": "61bc0c80415521965ec1b2546fbe3b2400cfacb2e6b0b542583304821544f2ed",
+  "za6980_v2_0_0_dta": "aa3bfcbcc1dc20a2735e8e9d2d3d47a72d909dade66e8c4623b910965dc227de",
+  "za6980_v2_0_0_sav": "20a1420f4aa8f8dcb30f7de61879796d20b7c3042805e7925e56c30b4ae97ca5"
+ },
+ "parametros": {
+  "adopcion": "NINGUNA",
+  "codigos_sustantivos": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "dominios": [
+   "TOTAL",
+   "HOMBRES",
+   "MUJERES"
+  ],
+  "instrumento": "ISSP 2017 Social Networks and Social Resources, México, Q8a",
+  "no_puede_elegir": [
+   8
+  ],
+  "no_respuesta": [
+   9,
+   "system_missing"
+  ],
+  "periodo": "2017",
+  "salidas": [
+   "forense/analisis/issp-apoyo-monetario-cli-1/distribucion-total-sexo.csv",
+   "forense/analisis/issp-apoyo-monetario-cli-1/cobertura-total-sexo.csv",
+   "forense/analisis/issp-apoyo-monetario-cli-1/contraste-mujeres-menos-hombres.csv"
+  ],
+  "version": "ZA6980 v2.0.0"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ISSP-APOYO-DELTA-P1-MUJERES-MENOS-HOMBRES",
+  "RESULT-ISSP-APOYO-G-COBERTURA-SHA256",
+  "RESULT-ISSP-APOYO-G-CONTRASTE-SHA256",
+  "RESULT-ISSP-APOYO-G-DISTRIBUCION-SHA256",
+  "RESULT-ISSP-APOYO-G-N-FILAS-COBERTURA",
+  "RESULT-ISSP-APOYO-G-N-FILAS-DISTRIBUCION",
+  "RESULT-ISSP-APOYO-G-N-MEXICO",
+  "RESULT-ISSP-APOYO-G-PRECISION",
+  "RESULT-ISSP-APOYO-P1-HOMBRES",
+  "RESULT-ISSP-APOYO-P1-MUJERES",
+  "RESULT-ISSP-APOYO-P1-TOTAL"
+ ],
+ "script_blob_sha256": "24de52e268f8a12304d23e29364372cd037f260cad3a5c7219d49d90622ee111",
+ "script_path": "data/corrida0/CALC-ISSP2017-APOYO-MONETARIO-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "rng": "NO-APLICA",
+  "valor": null
+ },
+ "spec_id": "CALC-ISSP2017-APOYO-MONETARIO-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "ffb1f398ced679317732e92163f123506d97627c5d99fceb57443af4331c3145",
+ "spec_yaml_sha256": "9789a80f3d6ce0a98781ce182a49409368980c656f16bb83afece983c51992ea",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "sumas y razones deterministas; control independiente con misma tolerancia",
+  "tipo": "flotante"
+ }
+}

@@ -1,0 +1,88 @@
+calc_id: CALC-ISSP2017-APOYO-MONETARIO-0001
+spec_md: spec.md
+spec_md_sha256: ffb1f398ced679317732e92163f123506d97627c5d99fceb57443af4331c3145
+script: data/corrida0/CALC-ISSP2017-APOYO-MONETARIO-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: MEDICION-DESCRIPTIVA-MICRODATO
+  unidad_transferencia: PERSONA-NO-TRANSFERENCIA-A-MOTOR
+  uso_motor: EVIDENCIA-FAM-DISTINCION-DE-CONSTRUCTOS-NO-CALIBRA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: CONTROL-SEPARADO-DE-PUNTOS-Y-DENOMINADORES
+  fuente_acto: GEN2-ISSP-APOYO-MONETARIO-DESCRIPTIVO-CLI-1
+  medidor_ejecutado_al_congelar: NO
+
+inputs:
+  - {id: za6980_q_mx, origen: manifiesto}
+  - {id: za6980_backgroundvar_mx, origen: manifiesto}
+  - {id: za6980_v2_0_0_dta, origen: manifiesto}
+  - {id: za6980_v2_0_0_sav, origen: manifiesto}
+  - id: za6980_codebook_integrado_evidencia
+    origen: repo
+    ruta: forense/analisis/issp-apoyo-monetario-cli-1/evidencia-codebook-integrado.txt
+    sha256: de18929fc4aa638e458b191d103d9a19f766121291d758f77a65268106cfe356
+
+variables:
+  - {archivo: ZA6980_v2-0-0.dta, variable: studyno, rol: identidad-estudio}
+  - {archivo: ZA6980_v2-0-0.dta, variable: doi, rol: identidad-doi}
+  - {archivo: ZA6980_v2-0-0.dta, variable: version, rol: identidad-version}
+  - {archivo: ZA6980_v2-0-0.dta, variable: country, rol: filtro-pais-numerico}
+  - {archivo: ZA6980_v2-0-0.dta, variable: c_alphan, rol: filtro-pais-alfanumerico}
+  - {archivo: ZA6980_v2-0-0.dta, variable: CASEID, rol: llave-no-publicada}
+  - {archivo: ZA6980_v2-0-0.dta, variable: SEX, rol: dominio-y-reconstruccion}
+  - {archivo: ZA6980_v2-0-0.dta, variable: AGE, rol: control-universo-adulto}
+  - {archivo: ZA6980_v2-0-0.dta, variable: WEIGHT, rol: ponderador}
+  - {archivo: ZA6980_v2-0-0.dta, variable: v26, rol: respuesta-q8a}
+
+universo: Personas de 18 años o más en la muestra nacional de México, ISSP 2017.
+filtros: >-
+  c_alphan=MX y country=484, con studyno=6980,
+  doi="doi:10.4232/1.13322" y version="2.0.0 (2019-08-19)". Total incluye
+  SEX no clasificable; hombres SEX=1; mujeres SEX=2.
+ponderador: >-
+  WEIGHT, numérico, finito y positivo; sin recorte de extremos. El formulario
+  mexicano documenta WEIGHT=1 No weighting.
+transformacion: >-
+  Para cada dominio y código 1..7, razón de masa de la categoría sobre masa
+  de respuestas válidas 1..7. Cobertura = masa válida / masa elegible con peso
+  utilizable. Contraste = proporción código 1 mujeres menos hombres.
+estimando: >-
+  Distribución descriptiva completa de a quién o dónde acudiría primero para
+  pedir prestada una gran suma de dinero, total y por sexo; no recepción real,
+  no apoyo familiar exclusivo y no efecto causal de género.
+precision: EE-IC-NO-DISPONIBLES-DISENO-NO-ACREDITADO
+
+dependencias_materiales: []
+seed: {aplica: false, valor: null, rng: NO-APLICA}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: sumas y razones deterministas; control independiente con misma tolerancia
+
+parametros:
+  instrumento: ISSP 2017 Social Networks and Social Resources, México, Q8a
+  version: ZA6980 v2.0.0
+  periodo: "2017"
+  codigos_sustantivos: [1, 2, 3, 4, 5, 6, 7]
+  no_puede_elegir: [8]
+  no_respuesta: [9, system_missing]
+  dominios: [TOTAL, HOMBRES, MUJERES]
+  salidas:
+    - forense/analisis/issp-apoyo-monetario-cli-1/distribucion-total-sexo.csv
+    - forense/analisis/issp-apoyo-monetario-cli-1/cobertura-total-sexo.csv
+    - forense/analisis/issp-apoyo-monetario-cli-1/contraste-mujeres-menos-hombres.csv
+  adopcion: NINGUNA
+
+resultados:
+  - {id: RESULT-ISSP-APOYO-G-N-MEXICO, tipo: entero, unidad: personas}
+  - {id: RESULT-ISSP-APOYO-G-N-FILAS-DISTRIBUCION, tipo: entero, unidad: filas}
+  - {id: RESULT-ISSP-APOYO-G-N-FILAS-COBERTURA, tipo: entero, unidad: filas}
+  - {id: RESULT-ISSP-APOYO-G-DISTRIBUCION-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ISSP-APOYO-G-COBERTURA-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ISSP-APOYO-G-CONTRASTE-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ISSP-APOYO-G-PRECISION, tipo: texto, unidad: estado}
+  - {id: RESULT-ISSP-APOYO-P1-TOTAL, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ISSP-APOYO-P1-HOMBRES, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ISSP-APOYO-P1-MUJERES, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ISSP-APOYO-DELTA-P1-MUJERES-MENOS-HOMBRES, tipo: flotante, unidad: proporcion}
