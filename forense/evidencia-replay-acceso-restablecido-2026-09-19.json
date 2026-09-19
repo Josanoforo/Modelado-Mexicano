@@ -1,0 +1,115 @@
+[
+  {
+    "calc_id": "CALC-ENCRIGE-CORRUPCION-DESCRIPTIVA-0001",
+    "fecha_verificacion": "2026-09-19",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ENCRIGE-CORRUPCION-DESCRIPTIVA-0001"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "b4c6882da9e9872a68dc2c7c40a355b4a66cbae997e63b02e48f4bd09251ff2a",
+      "script_blob_sha256": "a261d2f8e3ecabe6f9f41ad486fe1b9b8411f144f555d1461f55b34afe1901cf",
+      "input_sha256_efectivos": "conjunto_de_datos_encrige_2020_csv=06864904426a6b2c18cdad63a8b7bcb995fd35333c44448ba3fb5a973b822c5a,encrige2020_cuestionario=f410156bf5131921f6699b47f07fba302b168de187ea638a5f601732097cd8c1,gen2_encrige2020_diseno_muestral=3f314258dc4ad0ddc5a4b94b327c763f3ff8c2abacf0bcac0a171519ce479961"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ENCRIGE-DES-G-CSV-SHA256": null,
+        "RESULT-ENCRIGE-DES-G-INCERTIDUMBRE": null,
+        "RESULT-ENCRIGE-DES-G-INPUT-CUESTIONARIO-SHA256": null,
+        "RESULT-ENCRIGE-DES-G-INPUT-DISENO-SHA256": null,
+        "RESULT-ENCRIGE-DES-G-INPUT-TABULADOS-SHA256": null,
+        "RESULT-ENCRIGE-DES-G-MAX-DELTA-DOBLE-LECTURA": 0.0,
+        "RESULT-ENCRIGE-DES-G-MAX-DELTA-FORMULA": 0.0,
+        "RESULT-ENCRIGE-DES-G-N-DOMINIOS": null,
+        "RESULT-ENCRIGE-DES-G-N-FILAS-SALIDA": null,
+        "RESULT-ENCRIGE-DES-G-N-INDICADORES": null,
+        "RESULT-ENCRIGE-DES-G-N-MUESTRAL": null,
+        "RESULT-ENCRIGE-DES-G-SALIDA": null,
+        "RESULT-ENCRIGE-DES-G-USO": null,
+        "RESULT-ENCRIGE-DES-INCIDENCIA-TOTAL-POR-UNIDAD": 0.0,
+        "RESULT-ENCRIGE-DES-PREVALENCIA-TOTAL-PROPORCION": 0.0
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 1e-10,
+        "razon": "extraccion determinista; tasa oficial y normalizacion decimal"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ENCRIGE-DES-G-CSV-SHA256\": null, \"RESULT-ENCRIGE-DES-G-INCERTIDUMBRE\": null, \"RESULT-ENCRIGE-DES-G-INPUT-CUESTIONARIO-SHA256\": null, \"RESULT-ENCRIGE-DES-G-INPUT-DISENO-SHA256\": null, \"RESULT-ENCRIGE-DES-G-INPUT-TABULADOS-SHA256\": null, \"RESULT-ENCRIGE-DES-G-MAX-DELTA-DOBLE-LECTURA\": 0.0, \"RESULT-ENCRIGE-DES-G-MAX-DELTA-FORMULA\": 0.0, \"RESULT-ENCRIGE-DES-G-N-DOMINIOS\": null, \"RESULT-ENCRIGE-DES-G-N-FILAS-SALIDA\": null, \"RESULT-ENCRIGE-DES-G-N-INDICADORES\": null, \"RESULT-ENCRIGE-DES-G-N-MUESTRAL\": null, \"RESULT-ENCRIGE-DES-G-SALIDA\": null, \"RESULT-ENCRIGE-DES-G-USO\": null, \"RESULT-ENCRIGE-DES-INCIDENCIA-TOTAL-POR-UNIDAD\": 0.0, \"RESULT-ENCRIGE-DES-PREVALENCIA-TOTAL-PROPORCION\": 0.0}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 1e-10, \"razon\": \"extraccion determinista; tasa oficial y normalizacion decimal\"}}, \"identidad\": {\"spec_yaml_sha256\": \"b4c6882da9e9872a68dc2c7c40a355b4a66cbae997e63b02e48f4bd09251ff2a\", \"script_blob_sha256\": \"a261d2f8e3ecabe6f9f41ad486fe1b9b8411f144f555d1461f55b34afe1901cf\", \"input_sha256_efectivos\": \"conjunto_de_datos_encrige_2020_csv=06864904426a6b2c18cdad63a8b7bcb995fd35333c44448ba3fb5a973b822c5a,encrige2020_cuestionario=f410156bf5131921f6699b47f07fba302b168de187ea638a5f601732097cd8c1,gen2_encrige2020_diseno_muestral=3f314258dc4ad0ddc5a4b94b327c763f3ff8c2abacf0bcac0a171519ce479961\"}}\n"
+  },
+  {
+    "calc_id": "CALC-ENSANUT-0001",
+    "fecha_verificacion": "2026-09-19",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ENSANUT-0001"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "c7da2ef338a84c796805b507ebf198234b734c31254d57abfbfe0e3de668c6b2",
+      "script_blob_sha256": "183891c78baa05e1d27a630a5dc411a81301e1c7ecbf418035a19ad9c9a65010",
+      "input_sha256_efectivos": "IN-ENSANUT-SPEC-SELLADA=5b9b6055122b1ea14a1bd82503fd84889c7a064a08c04e443c07ae6866ac59d2,adultos_ensanut2024_w_stata_stata__v2026_09_01=0fa8f4436fa427cc23d1d43164d449462c09eb787cb45ad20961576cb095a6c4"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ENSANUT-A-ADOPCION": null,
+        "RESULT-ENSANUT-A-DELTA-VS-GEN1": 0.0,
+        "RESULT-ENSANUT-A-DESGLOSE-COINCIDE-GEN1": null,
+        "RESULT-ENSANUT-A-DESGLOSE-RAZONES": null,
+        "RESULT-ENSANUT-A-IC-HI": 0.0,
+        "RESULT-ENSANUT-A-IC-LO": 0.0,
+        "RESULT-ENSANUT-A-METODO-IC": null,
+        "RESULT-ENSANUT-A-N-MENCION-AUSENTE": null,
+        "RESULT-ENSANUT-A-N-MENCIONES": null,
+        "RESULT-ENSANUT-A-N-PERSONAS": null,
+        "RESULT-ENSANUT-A-N-PERSONAS-MULTIMENCION": null,
+        "RESULT-ENSANUT-A-N-SIN-DISENO": null,
+        "RESULT-ENSANUT-A-N-SIN-PONDERADOR": null,
+        "RESULT-ENSANUT-A-P-LOGISTICA": 0.0,
+        "RESULT-ENSANUT-A-P-NO-LOGISTICA": 0.0,
+        "RESULT-ENSANUT-A-REPRODUCE-GEN1": null,
+        "RESULT-ENSANUT-A-SUMA-UNO": null,
+        "RESULT-ENSANUT-B-DELTA-MENCION-VS-PERSONA": 0.0,
+        "RESULT-ENSANUT-B-P-PERSONA": 0.0,
+        "RESULT-ENSANUT-C-P-POR-VACUNA": null,
+        "RESULT-ENSANUT-G-N-COLUMNAS-A0927": null,
+        "RESULT-ENSANUT-G-N-ESTRATOS-UPM-UNICA": null,
+        "RESULT-ENSANUT-G-N-FILAS-ADULTOS": null,
+        "RESULT-ENSANUT-G-N-MIEMBROS-ZIP": null,
+        "RESULT-ENSANUT-G-PERFIL-EST-SEL": null,
+        "RESULT-ENSANUT-G-PERFIL-ESTRATO": null,
+        "RESULT-ENSANUT-G-PERFIL-UPM": null,
+        "RESULT-ENSANUT-G-SOPORTE-A0927": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 1e-10,
+        "razon": "Bootstrap fijado por seed + rng declarados y sumas en orden fijo de llave: la unica diferencia esperable entre dos corridas del mismo arbol es redondeo de float64 al reasociar sumas ponderadas. Los enteros y los textos se comparan EXACTO -- incluidos los siete conteos de embudo que se cotejan contra el desglose que milpa/ declara."
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ENSANUT-A-ADOPCION\": null, \"RESULT-ENSANUT-A-DELTA-VS-GEN1\": 0.0, \"RESULT-ENSANUT-A-DESGLOSE-COINCIDE-GEN1\": null, \"RESULT-ENSANUT-A-DESGLOSE-RAZONES\": null, \"RESULT-ENSANUT-A-IC-HI\": 0.0, \"RESULT-ENSANUT-A-IC-LO\": 0.0, \"RESULT-ENSANUT-A-METODO-IC\": null, \"RESULT-ENSANUT-A-N-MENCION-AUSENTE\": null, \"RESULT-ENSANUT-A-N-MENCIONES\": null, \"RESULT-ENSANUT-A-N-PERSONAS\": null, \"RESULT-ENSANUT-A-N-PERSONAS-MULTIMENCION\": null, \"RESULT-ENSANUT-A-N-SIN-DISENO\": null, \"RESULT-ENSANUT-A-N-SIN-PONDERADOR\": null, \"RESULT-ENSANUT-A-P-LOGISTICA\": 0.0, \"RESULT-ENSANUT-A-P-NO-LOGISTICA\": 0.0, \"RESULT-ENSANUT-A-REPRODUCE-GEN1\": null, \"RESULT-ENSANUT-A-SUMA-UNO\": null, \"RESULT-ENSANUT-B-DELTA-MENCION-VS-PERSONA\": 0.0, \"RESULT-ENSANUT-B-P-PERSONA\": 0.0, \"RESULT-ENSANUT-C-P-POR-VACUNA\": null, \"RESULT-ENSANUT-G-N-COLUMNAS-A0927\": null, \"RESULT-ENSANUT-G-N-ESTRATOS-UPM-UNICA\": null, \"RESULT-ENSANUT-G-N-FILAS-ADULTOS\": null, \"RESULT-ENSANUT-G-N-MIEMBROS-ZIP\": null, \"RESULT-ENSANUT-G-PERFIL-EST-SEL\": null, \"RESULT-ENSANUT-G-PERFIL-ESTRATO\": null, \"RESULT-ENSANUT-G-PERFIL-UPM\": null, \"RESULT-ENSANUT-G-SOPORTE-A0927\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 1e-10, \"razon\": \"Bootstrap fijado por seed + rng declarados y sumas en orden fijo de llave: la unica diferencia esperable entre dos corridas del mismo arbol es redondeo de float64 al reasociar sumas ponderadas. Los enteros y los textos se comparan EXACTO -- incluidos los siete conteos de embudo que se cotejan contra el desglose que milpa/ declara.\"}}, \"identidad\": {\"spec_yaml_sha256\": \"c7da2ef338a84c796805b507ebf198234b734c31254d57abfbfe0e3de668c6b2\", \"script_blob_sha256\": \"183891c78baa05e1d27a630a5dc411a81301e1c7ecbf418035a19ad9c9a65010\", \"input_sha256_efectivos\": \"IN-ENSANUT-SPEC-SELLADA=5b9b6055122b1ea14a1bd82503fd84889c7a064a08c04e443c07ae6866ac59d2,adultos_ensanut2024_w_stata_stata__v2026_09_01=0fa8f4436fa427cc23d1d43164d449462c09eb787cb45ad20961576cb095a6c4\"}}\n"
+  }
+]
