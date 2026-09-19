@@ -50,5 +50,22 @@ La medición principal y sus reservas están en
   idéntica a la salida sellada.
 - `git diff --check`: limpio antes de COMMIT-1.
 
-El replay aislado, registro derivado, segunda proyección, URL de PR y SHA final
-se completan después de COMMIT-2 y se anotan sin afirmar merge o adopción.
+## Replay y registro
+
+Después de COMMIT-2, `tools/verifica_aislada.py` produjo
+`forense/analisis/enfih2019-saldos-afore-cli-1/replay-aislado.json`:
+`REPRODUCE · CONTEXTO=IDENTICO`, 65/65 RESULT y 3/3 inputs. Se asentó una
+fila propia en `forense/replay-evidencia.tsv`.
+
+`corrida0 registro --escribe`, sin `--lote`, añadió una corrida y 65 RESULT.
+La regeneración sobre la base actual también materializó 20 usos de marcadores
+ya presentes; son derivados del comando vigente, no cambios manuales ni
+replay ajeno aceptado. Una segunda proyección fue estable byte a byte:
+
+- `corridas.tsv`: `a5a5c8f5e84fd713f09030e6e39c9f1550f3efb7c40c2bba9868d07150d443d2`
+- `resultados.tsv`: `126577abb2b9d31b3a9223cfb6f4ce36ba8b8372b740e36ecebaa03d8983ff5b`
+- `usos.tsv`: `7f475593df1bf4c7a85ee92a7e0d812c7800afa7cd2cf923dee9308bffbfbe01`
+
+Estado derivado final: `SELLADA`; contador y adopción siguen
+`PENDIENTE-DE-MESA`. La URL del PR y el SHA de punta se reportan en la entrega
+del ejecutor, sin afirmar merge.
