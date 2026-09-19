@@ -1,0 +1,47 @@
+calc_id: CALC-WBES2023-PRECISION-INTERACCIONES-0001
+spec_md: spec.md
+spec_md_sha256: 378b0161525d614b596228fc7e1c887c1fa0a8bd9c9306ed6f6ec9362aaf5049
+script: data/corrida0/CALC-WBES2023-PRECISION-INTERACCIONES-0001/medidor.py
+etiquetas: {generacion: GEN2, tipo: EXTENSION-PRECISION-INTERACCIONES, unidad_transferencia: UNIDAD-DISTINTA-NO-TRANSFERENCIA, uso_motor: CONTEXTO-INFORME-NO-CALIBRA, cuenta_gen2: PENDIENTE-DE-MESA, validacion_independiente: SINTETICOS-CONTROL-INDEPENDIENTE, fuente_acto: GEN2-WBES2023-PRECISION-INTERACCIONES-CLI-2, medidor_ejecutado_al_congelar: NO}
+inputs:
+  - {id: wbes_mexico_2023_ddi_xml, origen: manifiesto}
+  - {id: wbes_mexico_2023_ddi_pdf, origen: manifiesto}
+  - {id: wbes_mexico_2023_microdato_dta_zip, origen: manifiesto}
+  - {id: wbes_mexico_2023_documentacion_zip, origen: manifiesto}
+  - {id: wbes_sampling_note_consolidated_2022_pdf, origen: manifiesto}
+variables:
+  - {archivo: Mexico-2023-full-data.dta, variable: idstd, rol: identificador-unico}
+  - {archivo: Mexico-2023-full-data.dta, variable: strata, rol: estrato-diseno}
+  - {archivo: Mexico-2023-full-data.dta, variable: wmedian, rol: ponderador}
+  - {archivo: Mexico-2023-full-data.dta, variable: a6a, rol: dominio-no-estrato}
+  - {archivo: Mexico-2023-full-data.dta, variable: c3, rol: filtro-electricidad}
+  - {archivo: Mexico-2023-full-data.dta, variable: c5, rol: evento-electricidad}
+  - {archivo: Mexico-2023-full-data.dta, variable: c12, rol: filtro-agua}
+  - {archivo: Mexico-2023-full-data.dta, variable: c14, rol: evento-agua}
+  - {archivo: Mexico-2023-full-data.dta, variable: g2, rol: filtro-construccion}
+  - {archivo: Mexico-2023-full-data.dta, variable: g4, rol: evento-construccion}
+  - {archivo: Mexico-2023-full-data.dta, variable: j3, rol: filtro-fiscal}
+  - {archivo: Mexico-2023-full-data.dta, variable: j5, rol: evento-fiscal}
+  - {archivo: Mexico-2023-full-data.dta, variable: j10, rol: filtro-importacion}
+  - {archivo: Mexico-2023-full-data.dta, variable: j12, rol: evento-importacion}
+  - {archivo: Mexico-2023-full-data.dta, variable: j13, rol: filtro-operacion}
+  - {archivo: Mexico-2023-full-data.dta, variable: j15, rol: evento-operacion}
+universo: Establecimientos formales privados cubiertos por WBES México 2023; el contraste se restringe a doble exposición y doble desenlace válido.
+filtros: Pares c3/c5, c12/c14, g2/g4, j3/j5, j10/j12 y j13/j15; evento esperado/solicitado.
+ponderador: wmedian
+transformacion: Razón ponderada y linealización WR estratificada; IC tasa logit-t y contraste en escala diferencia con t.
+estimando: Seis tasas observadas y fiscal menos operación, sin anualizar ni combinar fuentes.
+precision: IC-APROXIMADO-CONDICIONAL-A-SUPUESTOS; SINGLETON-CERTEZA y SINGLETON-AVERAGE; sin FPC.
+dependencias_materiales: [scipy]
+seed: {aplica: false, valor: null, rng: NO-APLICA}
+tolerancia: {tipo: flotante, abs: 1.0e-10, razon: calculo-determinista}
+parametros: {padres: [CALC-WBES2023-CORRUPCION-DESCRIPTIVA-0001, CALC-WBES2023-PRECISION-0001], escenarios_singleton: [SINGLETON-CERTEZA, SINGLETON-AVERAGE], adopcion: NINGUNA, output: forense/analisis/wbes2023-precision-interacciones-cli-2/wbes2023-precision-interacciones.csv}
+resultados:
+  - {id: RESULT-WBES2023-INT-G-TIPO, tipo: texto, unidad: tipo-precision}
+  - {id: RESULT-WBES2023-INT-G-CSV-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-WBES2023-INT-G-SALIDA, tipo: texto, unidad: ruta-relativa}
+  - {id: RESULT-WBES2023-INT-G-N-FILAS, tipo: entero, unidad: filas}
+  - {id: RESULT-WBES2023-INT-CONTRASTE-CERTEZA-DIFERENCIA, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-INT-CONTRASTE-CERTEZA-COVARIANZA, tipo: flotante, unidad: proporcion-cuadrada}
+  - {id: RESULT-WBES2023-INT-CONTRASTE-AVERAGE-DIFERENCIA, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-WBES2023-INT-CONTRASTE-AVERAGE-COVARIANZA, tipo: flotante, unidad: proporcion-cuadrada}
