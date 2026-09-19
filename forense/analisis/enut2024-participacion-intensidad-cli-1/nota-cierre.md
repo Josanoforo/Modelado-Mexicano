@@ -95,10 +95,10 @@ Son tres estados distintos:
 3. vistas publicadas: `corridas.tsv` y `resultados.tsv` proyectan el CALC y
    sus 22 RESULT; `usos.tsv` no crea consumo ENUT.
 
-Las dos proyecciones escribieron 214 corridas, 7,302 RESULT y 228 usos, con
-hashes idénticos: `corridas.tsv=2ce0e88a…2065`,
-`resultados.tsv=f1c4fc28…40b4b` y `usos.tsv=939a06e3…f1bd`. Al integrar
-`origin/main`, la regeneración también reflejó decisiones ya vigentes en seis
-corridas/578 RESULT y 20 marcadores, además de dos relevos de unión; no eliminó
-filas, no cambió veredictos ajenos y no fue edición manual. El detalle completo
-de comandos, conteos y hashes está en `replay-registro.txt`.
+Después de la integración final de `origin/main`, las dos proyecciones
+escribieron 217 corridas, 7,334 RESULT y 228 usos, con hashes idénticos:
+`corridas.tsv=dc448b8e…5a4e`, `resultados.tsv=4ce145b3…3f7` y
+`usos.tsv=939a06e3…f1bd`. La regeneración también reflejó decisiones y asientos
+ajenos ya vigentes, incluida la fila ENIGH de PR #876; no eliminó filas, no
+cambió veredictos ajenos y no fue edición manual. El detalle completo de
+comandos, conteos y hashes está en `replay-registro.txt`.

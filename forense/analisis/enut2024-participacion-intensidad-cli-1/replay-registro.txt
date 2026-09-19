@@ -87,3 +87,28 @@ todas las corridas. No era una compuerta para proyectar evidencia ya asentada.
 La ruta sin --verifica publicó correctamente este CALC y sus 22 RESULT desde
 su asiento propio, sin aceptar transiciones ajenas. Contador, uso activo y
 adopción siguen PENDIENTE-DE-MESA.
+
+REINTEGRACION FINAL DE MAIN
+Después del primer push, origin/main incorporó PR #876. GitHub marcó PR #879
+como DIRTY, por lo que se ejecutaron:
+git fetch origin --prune
+git merge --no-edit origin/main
+
+El único conflicto fue la inserción concurrente, después de la cabecera, de
+dos asientos propios en forense/replay-evidencia.tsv. Se conservaron sin
+alteración tanto la fila ENUT de este acto como la fila ENIGH de PR #876. Las
+vistas derivadas no se resolvieron a mano: se regeneraron desde la fuente
+canónica combinada.
+
+PROYECCIONES FINALES 1 Y 2
+python3 tools/corrida0.py registro --escribe
+python3 tools/corrida0.py registro --escribe
+
+Ambas terminaron exit 0, sin --verifica y sin --lote, con 217 corridas, 7334
+RESULT y 228 usos. Hashes idénticos tras cada una:
+- data/corrida0/corridas.tsv: dc448b8e308083a464673a9f0a6ff0c013e048eafe1ca5054d1547bf02f05a4e
+- data/corrida0/resultados.tsv: 4ce145b3d95aa97d52d2ccdd972117ec85ea0a8146891df3a8c22f145a4f83f7
+- data/corrida0/usos.tsv: 939a06e39277a184490263b24cd86a537301cf0bed918271eba51c68e95ef1bd
+
+La fila ENUT conserva REPRODUCE/IDENTICO y ninguna fila ajena fue eliminada
+ni recibió una transición de replay.
