@@ -1,0 +1,41 @@
+ACTO GEN2-ENUT2024-DISTRIBUCION-HORAS-CLI-2
+Fecha: 2026-09-19
+
+1. Verificacion dirigida
+
+Comando:
+python3 tools/corrida0.py verify CALC-ENUT2024-DISTRIBUCION-HORAS-0001
+
+Salida terminal:
+VERIFY: REPRODUCE (CONTEXTO=IDENTICO · RESULTADO=REPRODUCE)
+Sello 1/5 COINCIDE; spec IDENTICO; 2/2 inputs COINCIDE; codigo, parametros,
+seed y dependencias IDENTICO; 26/26 RESULT REPRODUCE.
+
+2. Replay aislado y asiento
+
+Comando:
+python3 tools/verifica_aislada.py CALC-ENUT2024-DISTRIBUCION-HORAS-0001 --salida forense/analisis/enut2024-distribucion-horas-cli-2/evidencia-replay-enut2024-distribucion-horas.json
+
+Salida: exit 0. Evidencia: proceso_aislado=true, resultado_replay=REPRODUCE,
+contexto_replay=IDENTICO, ids_faltantes=[], problemas_replay=[]. La identidad
+se asento en forense/replay-evidencia.tsv sin `--lote`.
+
+3. Proyeccion canonica
+
+Comando (dos veces):
+python3 tools/corrida0.py registro --escribe
+
+Salida de cada proyeccion:
+ESCRITO data/corrida0/corridas.tsv: 228 filas
+ESCRITO data/corrida0/resultados.tsv: 8955 filas
+ESCRITO data/corrida0/usos.tsv: 228 filas
+AVISOS: 8817 (diagnosticos generales heredados; ninguno impidio escritura).
+
+Hashes identicos despues de ambas proyecciones:
+f28833a505e6782e184a30ea551891516b601e5f98d8f3f1d18e9b1f72cc6d99  data/corrida0/corridas.tsv
+99e81e972f16750b4208c951efcfde4b02a85f3f457b0b60ec89bfc6af64713a  data/corrida0/resultados.tsv
+939a06e39277a184490263b24cd86a537301cf0bed918271eba51c68e95ef1bd  data/corrida0/usos.tsv
+
+La vista contiene una corrida ENUTDH y 26 RESULT con replay REPRODUCE,
+contexto IDENTICO y procedencia del asiento propio. `usos.tsv` no creo
+consumo para esta medicion. No se uso `--verifica` global ni `--lote`.
