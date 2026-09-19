@@ -161,6 +161,13 @@ def evaluar(celda_d, catalogo, matriz_B, *, semilla=0):
     )
 
 
+def estimar_segmento(*, regla, desenlace, instrumento, periodo, ejes):
+    """Punto de entrada del motor para una emisión segmentada autorizada."""
+    from .estimadores_segmento import estimar
+    return estimar(regla=regla, desenlace=desenlace, instrumento=instrumento,
+                   periodo=periodo, ejes=ejes)
+
+
 def correr(*, semilla=0, ruta_procedencia=None, ruta_catalogo=None,
            dir_celdas=None):
     """La rebanada completa, de punta a punta. Determinista por construcción."""
@@ -186,5 +193,5 @@ def correr(*, semilla=0, ruta_procedencia=None, ruta_catalogo=None,
     }
 
 
-__all__ = ["Resultado", "celdas_semilla", "evaluar", "correr", "SinMagnitud",
+__all__ = ["Resultado", "celdas_semilla", "evaluar", "estimar_segmento", "correr", "SinMagnitud",
            "VEREDICTOS"]

@@ -3958,6 +3958,39 @@ def _filas_registro(verifica: bool = False) -> dict:
         if previo is None or str(previo["estado"]).startswith("SUPERADO"):
             indice_resultados[f["resultado_id"]] = f
 
+    # GEN2-MARCADOR-ADOPCION-CLI-1: el lector segmentado es un consumidor
+    # real, no una fila decorativa del marcador.  Sus punteros se derivan del
+    # mismo YAML que lee el motor; por eso un RESULT sólo gana usos cuando
+    # existe una identidad que el punto de entrada puede solicitar.
+    mapa_segmentos = RAIZ / "milpa" / "estimadores-por-segmento.yaml"
+    if mapa_segmentos.exists():
+        try:
+            indice_segmentos = _yaml_safe_load(mapa_segmentos.read_text(encoding="utf-8")) or {}
+        except (OSError, yaml.YAMLError):
+            indice_segmentos = {}
+        for entrada in indice_segmentos.get("estimadores", []):
+            if not isinstance(entrada, dict):
+                continue
+            fuente, identidad = entrada.get("fuente") or {}, entrada.get("identidad") or {}
+            rid = str(fuente.get("punto") or fuente.get("tabla") or "")
+            if not rid or rid not in indice_resultados:
+                continue
+            consumidor = "milpa/src/motor.py:estimar_segmento:" + json.dumps(
+                identidad, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+            usos_por_resultado[rid] = usos_por_resultado.get(rid, 0) + 1
+            filas_usos.append({
+                "resultado_id": rid, "consumidor": consumidor,
+                "tipo_uso": "estimador_segmento", "activo": "SI",
+                "reglas_impacto": str(identidad.get("regla") or ""),
+                "generacion_leida": "GEN2", "corrida0_generacion": "GEN2",
+                "corrida0_resultado_id": rid, "fuente_replay": "NO-CORRIDA",
+                # No cambia theta, umbrales ni coeficientes: es una consulta
+                # descriptiva/operativa del estimador sellado.
+                "uso_solicitado": "DESCRIPTIVO", "origen_numerico": ORIGEN_INDETERMINADO,
+                "aptitud_uso": "NO-EVALUADA", "motivo_aptitud": "pendiente de resolver",
+                "camino_linaje": "", "valor_materializado": NO_DECLARADO,
+            })
+
     # ── validaciones que PARAN sobre el grafo ya unido ─────────────────────
     usos_no_aptos: list[str] = []
     for u in filas_usos:
@@ -4000,6 +4033,10 @@ def _filas_registro(verifica: bool = False) -> dict:
     # ── avisos (no paran) ─────────────────────────────────────────────────
     for f in filas_resultados:
         n_usos = usos_por_resultado.get(f["resultado_id"], 0)
+        # La oferta se materializa antes de conocer todos los consumidores;
+        # proyectar aquí evita que `resultados.tsv` diga cero mientras
+        # `usos.tsv` enumera lectores activos.
+        f["n_usos"] = n_usos
         if n_usos == 0:
             avisos.append(f"RESULT-SIN-CONSUMIDOR: {f['resultado_id']} "
                           f"({f['spec_id']}) no lo cita ningun consumidor")
