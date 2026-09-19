@@ -161,11 +161,11 @@ def evaluar(celda_d, catalogo, matriz_B, *, semilla=0):
     )
 
 
-def estimar_segmento(*, regla, desenlace, instrumento, periodo, ejes):
+def estimar_segmento(*, regla, desenlace, instrumento, periodo, universo, ejes):
     """Punto de entrada del motor para una emisión segmentada autorizada."""
     from .estimadores_segmento import estimar
     return estimar(regla=regla, desenlace=desenlace, instrumento=instrumento,
-                   periodo=periodo, ejes=ejes)
+                   periodo=periodo, universo=universo, ejes=ejes)
 
 
 def correr(*, semilla=0, ruta_procedencia=None, ruta_catalogo=None,

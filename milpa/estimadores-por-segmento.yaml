@@ -3,6 +3,9 @@ version: 1
 derivado: NO EDITAR
 fuentes_sha256:
   data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/resultados.json: 69ec9c6a21d259a76ae5617f2cff801e6165c351c750121125cc77e642f2d8c1
+  data/corrida0/CALC-PISOS-ENCIG2023-EJES-0002/resultados.json: 06398d10567d0f1bc343b1f7b9a9b12191c258784c9de9bebd42423676d57896
+  data/corrida0/CALC-PISOS-ENIF2021-EJES-0002/resultados.json: 598528917ff41d1b18943d980183dddc2c31eef955db6e61db3b0652aa1e18fd
+  data/corrida0/CALC-PISOS-ENVIPE2024-EJES-0002/resultados.json: ae6729a50bb6b02f58514007c1608000e1965ac72d03856d5a2f0443177d6a18
   data/corrida0/CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001/resultados.json: 5d120c1f302c364639c5cdfaf82efec7a7a84cbb1a0d55c0825aa0188330c7c7
 estimadores:
 - identidad:
@@ -15,15 +18,20 @@ estimadores:
       localidad: L1
       edad: E1
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: ACREDITADA-POR-RESULT-NC-0313
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
     punto: RESULT-DIN-LXE8-C2-P-L1xE1
     ic95inf: RESULT-DIN-LXE8-C2-IC95INF-L1xE1
     ic95sup: RESULT-DIN-LXE8-C2-IC95SUP-L1xE1
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2024'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: DIN
@@ -35,15 +43,20 @@ estimadores:
       localidad: L1
       edad: E2
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: ACREDITADA-POR-RESULT-NC-0313
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
     punto: RESULT-DIN-LXE8-C2-P-L1xE2
     ic95inf: RESULT-DIN-LXE8-C2-IC95INF-L1xE2
     ic95sup: RESULT-DIN-LXE8-C2-IC95SUP-L1xE2
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2024'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: DIN
@@ -55,15 +68,20 @@ estimadores:
       localidad: L1
       edad: E3
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: ACREDITADA-POR-RESULT-NC-0313
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
     punto: RESULT-DIN-LXE8-C2-P-L1xE3
     ic95inf: RESULT-DIN-LXE8-C2-IC95INF-L1xE3
     ic95sup: RESULT-DIN-LXE8-C2-IC95SUP-L1xE3
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2024'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: DIN
@@ -75,15 +93,20 @@ estimadores:
       localidad: L1
       edad: E4
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: ACREDITADA-POR-RESULT-NC-0313
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
     punto: RESULT-DIN-LXE8-C2-P-L1xE4
     ic95inf: RESULT-DIN-LXE8-C2-IC95INF-L1xE4
     ic95sup: RESULT-DIN-LXE8-C2-IC95SUP-L1xE4
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2024'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: DIN
@@ -95,15 +118,20 @@ estimadores:
       localidad: L2
       edad: E1
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: ACREDITADA-POR-RESULT-NC-0313
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
     punto: RESULT-DIN-LXE8-C2-P-L2xE1
     ic95inf: RESULT-DIN-LXE8-C2-IC95INF-L2xE1
     ic95sup: RESULT-DIN-LXE8-C2-IC95SUP-L2xE1
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2024'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: DIN
@@ -115,15 +143,20 @@ estimadores:
       localidad: L2
       edad: E2
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: ACREDITADA-POR-RESULT-NC-0313
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
     punto: RESULT-DIN-LXE8-C2-P-L2xE2
     ic95inf: RESULT-DIN-LXE8-C2-IC95INF-L2xE2
     ic95sup: RESULT-DIN-LXE8-C2-IC95SUP-L2xE2
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2024'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: DIN
@@ -135,15 +168,20 @@ estimadores:
       localidad: L2
       edad: E3
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: ACREDITADA-POR-RESULT-NC-0313
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
     punto: RESULT-DIN-LXE8-C2-P-L2xE3
     ic95inf: RESULT-DIN-LXE8-C2-IC95INF-L2xE3
     ic95sup: RESULT-DIN-LXE8-C2-IC95SUP-L2xE3
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2024'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: DIN
@@ -155,15 +193,20 @@ estimadores:
       localidad: L2
       edad: E4
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: ACREDITADA-POR-RESULT-NC-0313
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001
     punto: RESULT-DIN-LXE8-C2-P-L2xE4
     ic95inf: RESULT-DIN-LXE8-C2-IC95INF-L2xE4
     ic95sup: RESULT-DIN-LXE8-C2-IC95SUP-L2xE4
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2024'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: TRA
@@ -175,15 +218,20 @@ estimadores:
       escolaridad: S1
       dominio: D1
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
     punto: RESULT-TRA-SXD12-C2-P-S1xD1
     ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S1xD1
     ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S1xD1
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2025'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: TRA
@@ -195,15 +243,20 @@ estimadores:
       escolaridad: S1
       dominio: D2
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
     punto: RESULT-TRA-SXD12-C2-P-S1xD2
     ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S1xD2
     ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S1xD2
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2025'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: TRA
@@ -215,15 +268,20 @@ estimadores:
       escolaridad: S1
       dominio: D3
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
     punto: RESULT-TRA-SXD12-C2-P-S1xD3
     ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S1xD3
     ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S1xD3
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2025'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: TRA
@@ -235,15 +293,20 @@ estimadores:
       escolaridad: S2
       dominio: D1
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
     punto: RESULT-TRA-SXD12-C2-P-S2xD1
     ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S2xD1
     ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S2xD1
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2025'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: TRA
@@ -255,15 +318,20 @@ estimadores:
       escolaridad: S2
       dominio: D2
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
     punto: RESULT-TRA-SXD12-C2-P-S2xD2
     ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S2xD2
     ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S2xD2
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2025'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: TRA
@@ -275,15 +343,20 @@ estimadores:
       escolaridad: S2
       dominio: D3
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
     punto: RESULT-TRA-SXD12-C2-P-S2xD3
     ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S2xD3
     ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S2xD3
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2025'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: TRA
@@ -295,15 +368,20 @@ estimadores:
       escolaridad: S3
       dominio: D1
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
     punto: RESULT-TRA-SXD12-C2-P-S3xD1
     ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S3xD1
     ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S3xD1
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2025'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: TRA
@@ -315,15 +393,20 @@ estimadores:
       escolaridad: S3
       dominio: D2
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
     punto: RESULT-TRA-SXD12-C2-P-S3xD2
     ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S3xD2
     ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S3xD2
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2025'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: TRA
@@ -335,15 +418,20 @@ estimadores:
       escolaridad: S3
       dominio: D3
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
     punto: RESULT-TRA-SXD12-C2-P-S3xD3
     ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S3xD3
     ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S3xD3
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2025'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: TRA
@@ -355,15 +443,20 @@ estimadores:
       escolaridad: S4
       dominio: D1
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
     punto: RESULT-TRA-SXD12-C2-P-S4xD1
     ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S4xD1
     ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S4xD1
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2025'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: TRA
@@ -375,15 +468,20 @@ estimadores:
       escolaridad: S4
       dominio: D2
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
     punto: RESULT-TRA-SXD12-C2-P-S4xD2
     ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S4xD2
     ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S4xD2
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2025'
   incertidumbre: bootstrap-composicion-sellada
 - identidad:
     regla: TRA
@@ -395,13 +493,993 @@ estimadores:
       escolaridad: S4
       dominio: D3
   tipo: cruce
-  estado: IMPLEMENTADO-PROPUESTO
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
   evaluacion: EVALUADA
   adjudicacion: C2
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: FUERA-DE-SELECCION
   fuente:
     calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001
     punto: RESULT-TRA-SXD12-C2-P-S4xD3
     ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S4xD3
     ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S4xD3
     decision: adopcion:piso-C2-20-celdas
+    periodo: '2025'
   incertidumbre: bootstrap-composicion-sellada
+- identidad:
+    regla: GOB
+    desenlace: digital_util_sin_coercion
+    instrumento: ENCIG
+    periodo: '2025'
+    universo: evento_tramite_comparable
+    ejes:
+      sexo: '1'
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENCIG2023-EJES-0002
+    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-P
+    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-IC-LO
+    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-IC-HI
+    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-N
+    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-DEN-W
+    periodo: '2023'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: GOB
+    desenlace: digital_util_sin_coercion
+    instrumento: ENCIG
+    periodo: '2025'
+    universo: evento_tramite_comparable
+    ejes:
+      sexo: '2'
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENCIG2023-EJES-0002
+    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-2-P
+    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-2-IC-LO
+    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-2-IC-HI
+    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-2-N
+    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-2-DEN-W
+    periodo: '2023'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: GOB
+    desenlace: digital_util_sin_coercion
+    instrumento: ENCIG
+    periodo: '2025'
+    universo: evento_tramite_comparable
+    ejes:
+      edad: 18-29
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENCIG2023-EJES-0002
+    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-18-29-P
+    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-18-29-IC-LO
+    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-18-29-IC-HI
+    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-18-29-N
+    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-18-29-DEN-W
+    periodo: '2023'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: GOB
+    desenlace: digital_util_sin_coercion
+    instrumento: ENCIG
+    periodo: '2025'
+    universo: evento_tramite_comparable
+    ejes:
+      edad: 30-44
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENCIG2023-EJES-0002
+    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-30-44-P
+    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-30-44-IC-LO
+    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-30-44-IC-HI
+    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-30-44-N
+    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-30-44-DEN-W
+    periodo: '2023'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: GOB
+    desenlace: digital_util_sin_coercion
+    instrumento: ENCIG
+    periodo: '2025'
+    universo: evento_tramite_comparable
+    ejes:
+      edad: 45-59
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENCIG2023-EJES-0002
+    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-45-59-P
+    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-45-59-IC-LO
+    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-45-59-IC-HI
+    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-45-59-N
+    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-45-59-DEN-W
+    periodo: '2023'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: GOB
+    desenlace: digital_util_sin_coercion
+    instrumento: ENCIG
+    periodo: '2025'
+    universo: evento_tramite_comparable
+    ejes:
+      edad: 60-mas
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENCIG2023-EJES-0002
+    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-60-MAS-P
+    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-60-MAS-IC-LO
+    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-60-MAS-IC-HI
+    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-60-MAS-N
+    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-60-MAS-DEN-W
+    periodo: '2023'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: GOB
+    desenlace: digital_util_sin_coercion
+    instrumento: ENCIG
+    periodo: '2025'
+    universo: evento_tramite_comparable
+    ejes:
+      escolaridad: hasta-primaria
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENCIG2023-EJES-0002
+    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-P
+    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-N
+    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W
+    periodo: '2023'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: GOB
+    desenlace: digital_util_sin_coercion
+    instrumento: ENCIG
+    periodo: '2025'
+    universo: evento_tramite_comparable
+    ejes:
+      escolaridad: secundaria
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENCIG2023-EJES-0002
+    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SECUNDARIA-P
+    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SECUNDARIA-IC-LO
+    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SECUNDARIA-IC-HI
+    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SECUNDARIA-N
+    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SECUNDARIA-DEN-W
+    periodo: '2023'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: GOB
+    desenlace: digital_util_sin_coercion
+    instrumento: ENCIG
+    periodo: '2025'
+    universo: evento_tramite_comparable
+    ejes:
+      escolaridad: media-superior
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENCIG2023-EJES-0002
+    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-P
+    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-N
+    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W
+    periodo: '2023'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: GOB
+    desenlace: digital_util_sin_coercion
+    instrumento: ENCIG
+    periodo: '2025'
+    universo: evento_tramite_comparable
+    ejes:
+      escolaridad: superior
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENCIG2023-EJES-0002
+    punto: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SUPERIOR-P
+    ic95inf: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SUPERIOR-IC-LO
+    ic95sup: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SUPERIOR-IC-HI
+    n: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SUPERIOR-N
+    denominador: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SUPERIOR-DEN-W
+    periodo: '2023'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: DIN
+    desenlace: ahorro_solo_informal
+    instrumento: ENIF
+    periodo: '2024'
+    universo: persona_elegida_18_mas
+    ejes:
+      sexo: '1'
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENIF2021-EJES-0002
+    punto: RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-P
+    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-IC-LO
+    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-IC-HI
+    n: RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-N
+    denominador: RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-DEN-W
+    periodo: '2021'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: DIN
+    desenlace: ahorro_solo_informal
+    instrumento: ENIF
+    periodo: '2024'
+    universo: persona_elegida_18_mas
+    ejes:
+      sexo: '2'
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENIF2021-EJES-0002
+    punto: RESULT-PISOS-ENIF2021-V2-D9-SEXO-2-P
+    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-SEXO-2-IC-LO
+    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-SEXO-2-IC-HI
+    n: RESULT-PISOS-ENIF2021-V2-D9-SEXO-2-N
+    denominador: RESULT-PISOS-ENIF2021-V2-D9-SEXO-2-DEN-W
+    periodo: '2021'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: DIN
+    desenlace: ahorro_solo_informal
+    instrumento: ENIF
+    periodo: '2024'
+    universo: persona_elegida_18_mas
+    ejes:
+      edad: 18-29
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENIF2021-EJES-0002
+    punto: RESULT-PISOS-ENIF2021-V2-D9-EDAD-18-29-P
+    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-EDAD-18-29-IC-LO
+    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-EDAD-18-29-IC-HI
+    n: RESULT-PISOS-ENIF2021-V2-D9-EDAD-18-29-N
+    denominador: RESULT-PISOS-ENIF2021-V2-D9-EDAD-18-29-DEN-W
+    periodo: '2021'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: DIN
+    desenlace: ahorro_solo_informal
+    instrumento: ENIF
+    periodo: '2024'
+    universo: persona_elegida_18_mas
+    ejes:
+      edad: 30-44
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENIF2021-EJES-0002
+    punto: RESULT-PISOS-ENIF2021-V2-D9-EDAD-30-44-P
+    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-EDAD-30-44-IC-LO
+    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-EDAD-30-44-IC-HI
+    n: RESULT-PISOS-ENIF2021-V2-D9-EDAD-30-44-N
+    denominador: RESULT-PISOS-ENIF2021-V2-D9-EDAD-30-44-DEN-W
+    periodo: '2021'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: DIN
+    desenlace: ahorro_solo_informal
+    instrumento: ENIF
+    periodo: '2024'
+    universo: persona_elegida_18_mas
+    ejes:
+      edad: 45-59
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENIF2021-EJES-0002
+    punto: RESULT-PISOS-ENIF2021-V2-D9-EDAD-45-59-P
+    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-EDAD-45-59-IC-LO
+    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-EDAD-45-59-IC-HI
+    n: RESULT-PISOS-ENIF2021-V2-D9-EDAD-45-59-N
+    denominador: RESULT-PISOS-ENIF2021-V2-D9-EDAD-45-59-DEN-W
+    periodo: '2021'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: DIN
+    desenlace: ahorro_solo_informal
+    instrumento: ENIF
+    periodo: '2024'
+    universo: persona_elegida_18_mas
+    ejes:
+      edad: 60-mas
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENIF2021-EJES-0002
+    punto: RESULT-PISOS-ENIF2021-V2-D9-EDAD-60-MAS-P
+    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-EDAD-60-MAS-IC-LO
+    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-EDAD-60-MAS-IC-HI
+    n: RESULT-PISOS-ENIF2021-V2-D9-EDAD-60-MAS-N
+    denominador: RESULT-PISOS-ENIF2021-V2-D9-EDAD-60-MAS-DEN-W
+    periodo: '2021'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: DIN
+    desenlace: ahorro_solo_informal
+    instrumento: ENIF
+    periodo: '2024'
+    universo: persona_elegida_18_mas
+    ejes:
+      escolaridad: hasta-primaria
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENIF2021-EJES-0002
+    punto: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-HASTA-PRIMARIA-P
+    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+    n: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-HASTA-PRIMARIA-N
+    denominador: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W
+    periodo: '2021'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: DIN
+    desenlace: ahorro_solo_informal
+    instrumento: ENIF
+    periodo: '2024'
+    universo: persona_elegida_18_mas
+    ejes:
+      escolaridad: secundaria
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENIF2021-EJES-0002
+    punto: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SECUNDARIA-P
+    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SECUNDARIA-IC-LO
+    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SECUNDARIA-IC-HI
+    n: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SECUNDARIA-N
+    denominador: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SECUNDARIA-DEN-W
+    periodo: '2021'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: DIN
+    desenlace: ahorro_solo_informal
+    instrumento: ENIF
+    periodo: '2024'
+    universo: persona_elegida_18_mas
+    ejes:
+      escolaridad: media-superior
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENIF2021-EJES-0002
+    punto: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-MEDIA-SUPERIOR-P
+    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+    n: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-MEDIA-SUPERIOR-N
+    denominador: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W
+    periodo: '2021'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: DIN
+    desenlace: ahorro_solo_informal
+    instrumento: ENIF
+    periodo: '2024'
+    universo: persona_elegida_18_mas
+    ejes:
+      escolaridad: superior
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENIF2021-EJES-0002
+    punto: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SUPERIOR-P
+    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SUPERIOR-IC-LO
+    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SUPERIOR-IC-HI
+    n: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SUPERIOR-N
+    denominador: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SUPERIOR-DEN-W
+    periodo: '2021'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: DIN
+    desenlace: ahorro_solo_informal
+    instrumento: ENIF
+    periodo: '2024'
+    universo: persona_elegida_18_mas
+    ejes:
+      localidad: menos-15000
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENIF2021-EJES-0002
+    punto: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-MENOS-15000-P
+    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-MENOS-15000-IC-LO
+    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-MENOS-15000-IC-HI
+    n: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-MENOS-15000-N
+    denominador: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-MENOS-15000-DEN-W
+    periodo: '2021'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: DIN
+    desenlace: ahorro_solo_informal
+    instrumento: ENIF
+    periodo: '2024'
+    universo: persona_elegida_18_mas
+    ejes:
+      localidad: 15000-y-mas
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENIF2021-EJES-0002
+    punto: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-15000-Y-MAS-P
+    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-15000-Y-MAS-IC-LO
+    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-15000-Y-MAS-IC-HI
+    n: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-15000-Y-MAS-N
+    denominador: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-15000-Y-MAS-DEN-W
+    periodo: '2021'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: DIN
+    desenlace: ahorro_solo_informal
+    instrumento: ENIF
+    periodo: '2024'
+    universo: persona_elegida_18_mas
+    ejes:
+      cuenta_formal: sin-cuenta
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENIF2021-EJES-0002
+    punto: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-SIN-CUENTA-P
+    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-SIN-CUENTA-IC-LO
+    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-SIN-CUENTA-IC-HI
+    n: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-SIN-CUENTA-N
+    denominador: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-SIN-CUENTA-DEN-W
+    periodo: '2021'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: DIN
+    desenlace: ahorro_solo_informal
+    instrumento: ENIF
+    periodo: '2024'
+    universo: persona_elegida_18_mas
+    ejes:
+      cuenta_formal: con-cuenta
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENIF2021-EJES-0002
+    punto: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-CON-CUENTA-P
+    ic95inf: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-CON-CUENTA-IC-LO
+    ic95sup: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-CON-CUENTA-IC-HI
+    n: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-CON-CUENTA-N
+    denominador: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-CON-CUENTA-DEN-W
+    periodo: '2021'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: TRA
+    desenlace: evade_norma
+    instrumento: ENVIPE
+    periodo: '2025'
+    universo: delito_con_bp1_20_valido
+    ejes:
+      sexo: '1'
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENVIPE2024-EJES-0002
+    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-P
+    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-IC-LO
+    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-IC-HI
+    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-N
+    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-DEN-W
+    periodo: '2024'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: TRA
+    desenlace: evade_norma
+    instrumento: ENVIPE
+    periodo: '2025'
+    universo: delito_con_bp1_20_valido
+    ejes:
+      sexo: '2'
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENVIPE2024-EJES-0002
+    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-P
+    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-IC-LO
+    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-IC-HI
+    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-N
+    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-DEN-W
+    periodo: '2024'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: TRA
+    desenlace: evade_norma
+    instrumento: ENVIPE
+    periodo: '2025'
+    universo: delito_con_bp1_20_valido
+    ejes:
+      edad: 18-29
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENVIPE2024-EJES-0002
+    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-P
+    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-IC-LO
+    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-IC-HI
+    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-N
+    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-DEN-W
+    periodo: '2024'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: TRA
+    desenlace: evade_norma
+    instrumento: ENVIPE
+    periodo: '2025'
+    universo: delito_con_bp1_20_valido
+    ejes:
+      edad: 30-44
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENVIPE2024-EJES-0002
+    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-P
+    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-IC-LO
+    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-IC-HI
+    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-N
+    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-DEN-W
+    periodo: '2024'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: TRA
+    desenlace: evade_norma
+    instrumento: ENVIPE
+    periodo: '2025'
+    universo: delito_con_bp1_20_valido
+    ejes:
+      edad: 45-59
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENVIPE2024-EJES-0002
+    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-P
+    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-IC-LO
+    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-IC-HI
+    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-N
+    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-DEN-W
+    periodo: '2024'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: TRA
+    desenlace: evade_norma
+    instrumento: ENVIPE
+    periodo: '2025'
+    universo: delito_con_bp1_20_valido
+    ejes:
+      edad: 60-mas
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENVIPE2024-EJES-0002
+    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-P
+    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-IC-LO
+    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-IC-HI
+    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-N
+    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-DEN-W
+    periodo: '2024'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: TRA
+    desenlace: evade_norma
+    instrumento: ENVIPE
+    periodo: '2025'
+    universo: delito_con_bp1_20_valido
+    ejes:
+      escolaridad: hasta-primaria
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENVIPE2024-EJES-0002
+    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-P
+    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-N
+    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W
+    periodo: '2024'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: TRA
+    desenlace: evade_norma
+    instrumento: ENVIPE
+    periodo: '2025'
+    universo: delito_con_bp1_20_valido
+    ejes:
+      escolaridad: secundaria
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENVIPE2024-EJES-0002
+    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-P
+    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-IC-LO
+    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-IC-HI
+    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-N
+    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-DEN-W
+    periodo: '2024'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: TRA
+    desenlace: evade_norma
+    instrumento: ENVIPE
+    periodo: '2025'
+    universo: delito_con_bp1_20_valido
+    ejes:
+      escolaridad: media-superior
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENVIPE2024-EJES-0002
+    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-P
+    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-N
+    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W
+    periodo: '2024'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: TRA
+    desenlace: evade_norma
+    instrumento: ENVIPE
+    periodo: '2025'
+    universo: delito_con_bp1_20_valido
+    ejes:
+      escolaridad: superior
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENVIPE2024-EJES-0002
+    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-P
+    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-IC-LO
+    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-IC-HI
+    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-N
+    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-DEN-W
+    periodo: '2024'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: TRA
+    desenlace: evade_norma
+    instrumento: ENVIPE
+    periodo: '2025'
+    universo: delito_con_bp1_20_valido
+    ejes:
+      dominio: R
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENVIPE2024-EJES-0002
+    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-R-P
+    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-R-IC-LO
+    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-R-IC-HI
+    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-R-N
+    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-R-DEN-W
+    periodo: '2024'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: TRA
+    desenlace: evade_norma
+    instrumento: ENVIPE
+    periodo: '2025'
+    universo: delito_con_bp1_20_valido
+    ejes:
+      dominio: C
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENVIPE2024-EJES-0002
+    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-C-P
+    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-C-IC-LO
+    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-C-IC-HI
+    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-C-N
+    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-C-DEN-W
+    periodo: '2024'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: TRA
+    desenlace: evade_norma
+    instrumento: ENVIPE
+    periodo: '2025'
+    universo: delito_con_bp1_20_valido
+    ejes:
+      dominio: U
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENVIPE2024-EJES-0002
+    punto: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-U-P
+    ic95inf: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-U-IC-LO
+    ic95sup: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-U-IC-HI
+    n: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-U-N
+    denominador: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-U-DEN-W
+    periodo: '2024'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: CIV
+    desenlace: denuncia
+    instrumento: ENVIPE
+    periodo: '2025'
+    universo: delito_robo_total_vehiculo
+    ejes:
+      cobertura_seguro: no-asegurado
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENVIPE2024-EJES-0002
+    punto: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-P
+    ic95inf: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-IC-LO
+    ic95sup: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-IC-HI
+    n: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-N
+    denominador: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-DEN-W
+    periodo: '2024'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
+- identidad:
+    regla: CIV
+    desenlace: denuncia
+    instrumento: ENVIPE
+    periodo: '2025'
+    universo: delito_robo_total_vehiculo
+    ejes:
+      cobertura_seguro: asegurado
+  tipo: marginal
+  estado: CONSUMO-ACTIVO
+  evidencia: REPRODUCE/IDENTICO
+  evaluacion: SOLO-PISO
+  adjudicacion: PISO-PERSISTENCIA-AUTORIZADO-ADENDA-03
+  implementacion: IMPLEMENTADO-PROPUESTO
+  consumo: ACTIVO
+  diagnostico_emisor: NO-APLICA-A-SELECCION
+  fuente:
+    calc: CALC-PISOS-ENVIPE2024-EJES-0002
+    punto: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-P
+    ic95inf: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-IC-LO
+    ic95sup: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-IC-HI
+    n: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-N
+    denominador: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-DEN-W
+    periodo: '2024'
+  incertidumbre: bootstrap-UPM-estratificado-t-1-no-predictiva
