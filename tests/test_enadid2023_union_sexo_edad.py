@@ -5,7 +5,7 @@ import pandas as pd
 import pytest
 
 
-PATH = Path(__file__).parents[1] / "data/corrida0/CALC-ENADID2023-UNION-SEXO-EDAD-0001/medidor.py"
+PATH = Path(__file__).parents[1] / "data/corrida0/CALC-ENADID2023-UNION-SEXO-EDAD-0002/medidor.py"
 SPEC = importlib.util.spec_from_file_location("enadid_union_sexo_edad", PATH)
 MOD = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MOD)
