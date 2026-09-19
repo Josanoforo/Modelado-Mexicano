@@ -1,4 +1,5 @@
 """Contratos mínimos del consumidor segmentado autorizado."""
+import csv
 import json
 import subprocess
 import sys
@@ -78,6 +79,19 @@ class EstimadoresSegmentoTest(unittest.TestCase):
             self.assertNotIn("P-REDERIVADO", punto)
             self.assertNotIn("IC95", punto)
             self.assertNotIn("ARBITRO", entrada["fuente"]["calc"])
+
+    def test_usos_publicados_corresponden_a_consumidores_activos(self):
+        mapa = __import__("yaml").safe_load(
+            (ROOT / "milpa/estimadores-por-segmento.yaml").read_text())
+        with (ROOT / "data/corrida0/usos.tsv").open(encoding="utf-8") as f:
+            filas = csv.DictReader((x for x in f if not x.startswith("#")),
+                                  delimiter="\t")
+            usos = [x for x in filas
+                    if x["tipo_uso"] == "estimador_segmento" and x["activo"] == "SI"]
+        self.assertEqual(len(usos), len(mapa["estimadores"]))
+        self.assertEqual({x["resultado_id"] for x in usos},
+                         {x["fuente"]["punto"] for x in mapa["estimadores"]})
+        self.assertEqual(len({x["consumidor"] for x in usos}), len(usos))
 
     def test_derivacion_determinista_y_tsv_sin_cifras_r(self):
         antes = (ROOT / "data/corrida0/marcador-segmento.tsv").read_bytes()

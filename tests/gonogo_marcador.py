@@ -5,6 +5,10 @@ Seis checks MECANICOS sobre los artefactos GEN2 del marcador. No opina, no
 mide, no arregla: imprime `GO-MARCADOR` o la lista de fallos, y su codigo de
 salida es 0 solo en el primer caso.
 
+Su alcance historico es el marcador agregado con ``x = vacio`` y su punto
+de comparacion; no acredita el nuevo consumidor segmentado ni sustituye sus
+pruebas dirigidas. Se conservan exactamente los seis checks originales.
+
     python3 tests/gonogo_marcador.py
 
 ## Por que AST y audithook, y no `grep`

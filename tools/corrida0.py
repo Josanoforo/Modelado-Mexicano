@@ -4007,6 +4007,7 @@ def _filas_registro(verifica: bool = False) -> dict:
     }
     for o in oferta:
         if (o["cuenta_gen2"] == "SI" and o["estado"] == "SELLADA"
+                and o["calc_id"] not in sucesor_de
                 and o["calc_id"] not in calcs_consumidos):
             avisos.append(f"CALC-SIN-CONSUMIDOR-ACTIVO: {o['calc_id']} esta sellada "
                           f"y ningun consumidor activo la cita todavia")
