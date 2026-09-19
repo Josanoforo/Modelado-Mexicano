@@ -3993,7 +3993,12 @@ def _filas_registro(verifica: bool = False) -> dict:
                 # descriptiva/operativa del estimador sellado.
                 "uso_solicitado": "DESCRIPTIVO", "origen_numerico": ORIGEN_INDETERMINADO,
                 "aptitud_uso": "NO-EVALUADA", "motivo_aptitud": "pendiente de resolver",
-                "camino_linaje": "", "valor_materializado": NO_DECLARADO,
+                "camino_linaje": (
+                    f"{consumidor} -> {rid} -> "
+                    f"{indice_resultados[rid]['spec_id']}/{rid}"),
+                # Se deriva del RESULT vigente: no se copia al mapa ni se
+                # recalcula, y T-REPRO puede cotejar el consumo efectivo.
+                "valor_materializado": indice_resultados[rid]["valor"],
             })
 
     # Se evalúa después de incorporar TODOS los consumidores, incluido el
