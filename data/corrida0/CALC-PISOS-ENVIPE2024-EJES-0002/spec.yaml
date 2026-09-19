@@ -1,0 +1,136 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-PISOS-ENVIPE2024-EJES-0002
+sucesor_de: CALC-PISOS-ENVIPE2024-EJES-0001
+spec_md: ../../../forense/prereg-caja/PISOS-ENVIPE2024-ejes-spec-v2_0.md
+spec_md_sha256: 24ff87065730412d151ed5cef12e3cc383c940ea3518d4c35bbb601db8650d85
+script: data/corrida0/CALC-PISOS-ENVIPE2024-EJES-0002/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: PISO-PERSISTENCIA-POR-EJE
+  cuenta_gen2: PENDIENTE-DE-MESA
+  sucesor_de: CALC-PISOS-ENVIPE2024-EJES-0001
+  exposicion_historica: CORRECTIVO-NO-CIEGO
+inputs:
+  - {id: envipe2024_csv, origen: manifiesto}
+  - {id: PISOS-REJILLA-METADATOS, origen: repo, ruta: forense/prereg-caja/PISOS-REJILLA-arbitro-metadatos-v1_0.tsv, sha256: 1715da9303957dac11146bd14e5498d11c554671edcdfb9c6ea7230845433a95}
+variables:
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: BP1_20, rol: universo-y-denuncia}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: BP1_23, rol: evasion}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: BP2_1, rol: cobertura-seguro}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: BPCOD, rol: clase-delito}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: FAC_DEL, rol: ponderador}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: EST_DIS, rol: estrato}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: UPM_DIS, rol: upm}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: ID_PER, rol: llave}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: SEXO, rol: eje-sexo}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: EDAD, rol: eje-edad}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: DOMINIO, rol: eje-dominio}
+  - {archivo: conjunto_de_datos_tsdem_envipe2024.csv, variable: ID_PER, rol: llave}
+  - {archivo: conjunto_de_datos_tsdem_envipe2024.csv, variable: NIV, rol: eje-escolaridad}
+universo: "Evasión BP1_20 en 1/2; denuncia BPCOD=01, BP1_20 en 1/2 y BP2_1 en 1/2."
+filtros: "FAC_DEL positivo y diseño válido; códigos inválidos fuera solo del eje afectado."
+ponderador: FAC_DEL
+transformacion: "Evasión = BP1_20=2 y BP1_23 en 04/05/06/08; denuncia = BP1_20=1."
+estimando: "Proporción ponderada histórica 2024 por celda comparable con ENVIPE 2025."
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+parametros:
+  bootstrap_replicas: 10000
+  metodo_ic: "bootstrap UPM estratificado; percentiles 2.5/97.5; réplicas compartidas"
+dependencias_materiales: [numpy, pandas]
+resultados:
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-P, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-P, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-P, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-P, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-P, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-P, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-P, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-P, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-RURAL-P, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-RURAL-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-RURAL-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-RURAL-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-RURAL-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-RURAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-COMPLEMENTO-URBANO-P, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-COMPLEMENTO-URBANO-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-COMPLEMENTO-URBANO-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-COMPLEMENTO-URBANO-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-COMPLEMENTO-URBANO-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-COMPLEMENTO-URBANO-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-URBANO-P, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-URBANO-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-URBANO-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-URBANO-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-URBANO-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-URBANO-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-P, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-P, tipo: proporcion, unidad: "proporción ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-FILAS-VICTIMIZACION, tipo: entero, unidad: "filas leídas"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-JOIN-SIN-DEMOGRAFIA, tipo: entero, unidad: "filas sin match demográfico"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-EVASION-N-UNIVERSO, tipo: entero, unidad: "filas del universo de evasión"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-N-UNIVERSO, tipo: entero, unidad: "filas del universo de denuncia"}
+  - {id: RESULT-PISOS-ENVIPE2024-V2-BP1-20-FUERA, tipo: entero, unidad: "filas BP1_20 fuera de 1/2"}
+tolerancia: {tipo: flotante, abs: 1.0e-10}
