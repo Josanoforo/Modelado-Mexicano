@@ -45,6 +45,40 @@ estratos. Hay 56 estratos singleton: no se les atribuyó varianza cero; cada
 uno recibió el aporte promedio de los estratos no singleton. Taylor WR de
 razón, dominio sobre muestra completa, IC logit-t, gl=14 555, sin FPC.
 
+### Trazabilidad documental de los dos productos
+
+El control documental independiente abrió la hoja `TSDEM` de
+`fd_enadid23.xlsx` y el cuestionario de hogar, no los nombres heredados del
+consumidor. El cuestionario rotula 3.27 como **SITUACIÓN CONYUGAL**, pregunta
+«Actualmente» a personas de 12 años o más y documenta siete respuestas. El FD
+identifica `P3_27` como el reactivo original: 1 unión libre, 2 separada de
+unión libre, 3 separada de matrimonio, 4 divorciada, 5 viuda, 6 casada y 7
+soltera. `P3_27_AG` está documentada aparte como agrupación; no gobierna esta
+operación.
+
+La unidad de estimación es la **persona residente**, una fila única por
+`LLAVE_PER` en `TSDEM` (359 018/359 018 llaves únicas). La tabla no contiene
+`FAC_PER`: lleva `FAC_VIV`, factor de expansión de la vivienda replicado en
+sus residentes, que pondera los indicadores de persona. Para precisión se
+usan `EST_DIS` y `UPM_DIS`; `ESTRATO` es sustantivo y `UPM` forma parte de la
+llave, por lo que ninguno los sustituye.
+
+Los productos son formalmente distintos:
+
+1. **Bruto sobre total elegible:** numerador `P3_27=1`; denominador edad
+   conocida del dominio y `P3_27∈{1,…,7}`. Nacional 15+: 52 664/276 849
+   observaciones y masas 19 050 711/99 982 443.
+2. **Condicional a unión actual:** mismo numerador `P3_27=1`; denominador edad
+   conocida del dominio y `P3_27∈{1,6}`. Nacional 15+: 52 664/152 834
+   observaciones y masas 19 050 711/54 989 025. Las 124 015 respuestas en
+   códigos 2–5 o 7 están fuera de este denominador por definición, no son
+   inválidas ni respuestas negativas.
+
+Entre las 276 849 personas elegibles de 15+ hay cero códigos fuera de 1–7,
+cero pesos inválidos y cero diseños faltantes. Las 62 689 filas fuera de
+catálogo en el archivo completo incluyen no aplicabilidad estructural por la
+edad mínima del reactivo y no se describen como respuesta inválida 15+.
+
 La primera ejecución diagnóstica sobre el COMMIT-1 `97c7094` reveló que la
 regla inicialmente escrita «singleton sin aporte» contradecía el mandato.
 Se descartó ese sello no publicado y `1c9afb3` corrigió la política antes de
@@ -72,11 +106,18 @@ explícito `actualmente_casada` con universo declarado. No usar
 - `corrida0.py verify CALC-ENADID-0001`: `REPRODUCE`, contexto idéntico.
 - Control independiente: módulo CSV estándar, sin importar medidor ni helpers;
   confirma ambos puntos nacionales y los denominadores de los seis grupos.
+- Control independiente de precisión: `control_precision_independiente.py`
+  lee microdato con `csv`, evidencia con `openpyxl`/`pdftotext` y calcula
+  Taylor/IC con `scipy`, sin importar el medidor. Confirma 12/12 combinaciones
+  producto×edad: n, punto, EE, IC y gl; delta absoluto máximo `4.86e-13`.
+  Confirma 659 estratos, 15 214 UPM anidadas, 56 singleton y gl=14 555.
 - Particiones completas y condicionales cierran en uno por edad; masas de los
   cinco grupos cierran contra total 15+.
 - Receta: montar `data/raw -> /home/pc0/mm-corpus/raw`; ejecutar
   `python3 tools/corrida0.py verify CALC-ENADID-0001`; después ejecutar
-  `python3 forense/analisis/enadid-union-actual-cli-1/control_independiente.py data/raw/base_datos_enadid23_csv.zip forense/analisis/enadid-union-actual-cli-1/resultados.csv forense/analisis/enadid-union-actual-cli-1/enadid-union-control-independiente.json`.
+  `python3 forense/analisis/enadid-union-actual-cli-1/control_independiente.py data/raw/base_datos_enadid23_csv.zip forense/analisis/enadid-union-actual-cli-1/resultados.csv forense/analisis/enadid-union-actual-cli-1/enadid-union-control-independiente.json`;
+  para precisión y unidad ejecutar
+  `python3 forense/analisis/enadid-union-actual-cli-1/control_precision_independiente.py data/raw/base_datos_enadid23_csv.zip data/raw/fd_enadid23.xlsx data/raw/hogar_enadid23.pdf forense/analisis/enadid-union-actual-cli-1/resultados.csv forense/analisis/enadid-union-actual-cli-1/enadid-union-control-precision.json`.
 
 Estado separado: **medición terminada y sellada**; **validación independiente
 terminada**; **publicación canónica pendiente**; **adopción ninguna**;
