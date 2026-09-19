@@ -196,10 +196,50 @@ def t_vetados_nunca_se_leen():
                    f"{nombre} está a la vez en SELLADOS y en VETADOS")
 
 
+def t_error_piso_derivado():
+    """Las columnas `error_piso_pp` y `clase_persistencia` se DERIVAN de
+    los RESULT sellados de `CALC-PISO-PERSISTENCIA-ERROR-0001`; el marcador
+    no las recalcula. Esta guardia prueba que el id que el marcador arma
+    coincide con el que el CALC selló: toda fila SOLO-PISO debe traer clase,
+    y esa clase debe ser exactamente la del RESULT."""
+    import json as _json
+    rj = M.CALC_ERROR_PISO / "resultados.json"
+    if not rj.exists():
+        return                       # CALC no sellado: nada que comprobar
+    res = _json.loads(rj.read_text(encoding="utf-8")).get("resultados", {})
+    por_cell = {f["cell_id"]: f for f in M.lee_tabla_identidad()}
+    v = M.deriva()
+    for f in v["filas"]:
+        if f["tipo"] != "MARGINAL":
+            continue
+        if f["estado"] != "SOLO-PISO":
+            if f["clase_persistencia"]:
+                _falla("T-ERROR-PISO-DERIVADO",
+                       f"{f['celda_id']} no es SOLO-PISO y trae clase "
+                       f"{f['clase_persistencia']!r}")
+            continue
+        if not f["clase_persistencia"]:
+            _falla("T-ERROR-PISO-DERIVADO",
+                   f"{f['celda_id']} es SOLO-PISO y no trae clase: el id que "
+                   f"el marcador arma no calza con ningún RESULT sellado")
+            continue
+        t = por_cell.get(f["resultado_id"], {})
+        base = ("RESULT-PISO-ERR-"
+                f"{M._slug_result(t.get('source_instrument'))}-"
+                f"{M._slug_result(t.get('outcome'))}-"
+                f"{M._slug_result(f['eje_o_par'])}-"
+                f"{M._slug_result(f['categoria'])}")
+        if res.get(f"{base}-CLASE") != f["clase_persistencia"]:
+            _falla("T-ERROR-PISO-DERIVADO",
+                   f"{f['celda_id']}: clase del marcador "
+                   f"{f['clase_persistencia']!r} != RESULT "
+                   f"{res.get(base + '-CLASE')!r}")
+
+
 CASOS = (t_reserva_sin_r, t_emisor_no_compara, t_piso_no_circular,
          t_veinte_adoptadas, t_universo_97_nacional,
          t_enlace_biyectivo, t_piso_no_es_m, t_unidad_leida_del_arbitro,
-         t_vetados_nunca_se_leen)
+         t_vetados_nunca_se_leen, t_error_piso_derivado)
 
 
 def corre() -> list[str]:

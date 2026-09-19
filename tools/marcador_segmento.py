@@ -444,21 +444,40 @@ def _piso_de_fila(clave: tuple, idx: dict, res: dict) -> dict | None:
     }
 
 
-def _error_de_piso_por_celda() -> dict:
-    """`celda_id` -> (`error_piso_pp`, `clase_persistencia`) tal como
-    `CALC-PISO-PERSISTENCIA-ERROR-0001` los selló. El marcador NO los
-    recalcula: los copia o los deja vacíos."""
+def _slug_result(v) -> str:
+    """Mismo slug que `medidor.py` de `CALC-PISO-PERSISTENCIA-ERROR-0001`
+    usa para armar el id del RESULT. Vive duplicado a propósito: el marcador
+    no importa el medidor (sería un ciclo -- el medidor sí importa este
+    módulo), y `T-ERROR-PISO-DERIVADO` prueba que los dos coinciden contra
+    los ids realmente sellados."""
+    return "".join(c if c.isalnum() else "-" for c in str(v)).strip("-").upper()
+
+
+def _error_de_piso_por_celda(idx_por_cell_id: dict) -> dict:
+    """`celda_id` -> (`error_piso_pp`, `clase_persistencia`) LEÍDOS de los
+    RESULT sellados de `CALC-PISO-PERSISTENCIA-ERROR-0001`. El marcador no
+    recalcula nada: si el CALC no está sellado, las dos columnas van
+    vacías."""
     rj = CALC_ERROR_PISO / "resultados.json"
     if not rj.exists():
         return {}
     try:
-        d = json.loads(rj.read_text(encoding="utf-8"))
+        res = json.loads(rj.read_text(encoding="utf-8")).get("resultados", {})
     except (OSError, json.JSONDecodeError):
         return {}
-    out = {}
-    for c in d.get("celdas", []):
-        out[c.get("celda_id")] = (c.get("d_pp", ""), c.get("clase", ""))
-    return out
+    if not isinstance(res, dict):
+        return {}
+    return res
+
+
+def _columnas_error(res: dict, tabla: dict, eje: str, categoria: str) -> tuple:
+    if not res or not tabla:
+        return ("", "")
+    base = ("RESULT-PISO-ERR-"
+            f"{_slug_result(tabla.get('source_instrument'))}-"
+            f"{_slug_result(tabla.get('outcome'))}-"
+            f"{_slug_result(eje)}-{_slug_result(categoria)}")
+    return (res.get(f"{base}-D-PP", ""), res.get(f"{base}-CLASE", ""))
 
 
 def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
@@ -475,7 +494,8 @@ def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
     reglas_ejes = [r for r in d["reglas_propuestas"] if "_ejes_" in r.get("id", "")]
     idx = indice_identidad()
     res = _resultados_sellados()
-    err = _error_de_piso_por_celda()
+    err = _error_de_piso_por_celda(idx)
+    por_cell_id = {f["cell_id"]: f for f in lee_tabla_identidad()}
     filas = []
     n_ejes = 0
     for r in reglas_ejes:
@@ -520,7 +540,8 @@ def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
 
                 sufijo = f"{desenlace}::" if desenlace else ""
                 celda_id = f"MARG::{r['id']}::{sufijo}{eje}::{categoria}"
-                error_pp, clase = err.get(celda_id, ("", ""))
+                error_pp, clase = _columnas_error(
+                    err, por_cell_id.get(resultado_id, {}), eje, categoria)
                 filas.append({
                     "celda_id": celda_id,
                     "tipo": "MARGINAL",
