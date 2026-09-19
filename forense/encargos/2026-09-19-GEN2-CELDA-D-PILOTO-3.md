@@ -51,3 +51,12 @@ MÓDULO DE AUDITORÍA (afirma sobre México: aplica completo)
 | **P3 · registro** — celda-D `GOB.gobierno_digital.encig2025.edad_x_escolaridad.yaml` (`champion_actual: NINGUNO`, `SPEC-CONGELADA`) y las filas F1/F2 en `decisiones.tsv` | `PARO-PREMISA` — no hay spec congelada que registrar, y F1 no se firma porque su fundamento fáctico quedó contradicho por los CALC sellados que el propio encargo declara como compuerta. F2 (quién ejecuta) no se firma por separado: gobierna un `COMMIT-1` que no existe. | celdas-D siguen en **5**; cero filas nuevas en `data/corrida0/decisiones.tsv`; el marcador **no se re-derivó** y el par sigue `RESERVADA`, que es lo que el encargo pedía de todos modos. `cuenta_gen2` NO-APLICA. | `FP-388`; `NC-0350` |
 | **Suite en línea base VERDE al cierre** | `NO-VERIFICABLE-AQUÍ` en el preflight — `tools/cierre_acto.py` (Fase A) corrió `python3 tests/check.py --baseline` con su límite interno de 300 s y salió **código 124 (tiempo agotado)**, no ROJO por `FAIL`. Se re-corrió aparte con límite ampliado; salida cruda en el cuerpo del PR y en la nota de cierre. | Ninguno sobre el contenido del acto: este acto no toca `corridas.tsv`, `decisiones.tsv`, ningún `CALC` ni ningún `spec.yaml`. | `NC-0351` — cierra en este mismo acto si la corrida ampliada da VERDE |
 | **Firmas F1 y F2** («tu lanzamiento con este archivo es el sello») | `DECISIÓN-DE-MESA-PENDIENTE` — el sello por lanzamiento presupone que el fundamento declarado de F1 es el que los CALC sellados dicen. No lo es (§4). Un acto que sella una firma cuyo fundamento acaba de refutar no está ejecutando la voluntad de mesa sino sustituyéndola. | Nada se firmó; nada se dio por firmado. Los tres caminos posibles quedan enumerados en `FP-388`, sin que este acto elija ninguno. | `FP-388` |
+
+## CONSUMIDO
+
+Ejecutado por **[PR #894](https://github.com/Josanoforo/Modelado-Mexicano/pull/894)**
+(`ACTO GEN2-CELDA-D-PILOTO-3`, rama `claude/determined-einstein-4jlycq`, 19/sep/2026),
+que **cierra por hallazgo con `PARO-PREMISA` y cero commits sustantivos**: no congela
+spec, no congela código, no registra celda-D y no ejecuta F1 ni F2. Productos:
+`forense/notas/nota-2026-09-19-gen2-celda-d-piloto-3-paro.md`, `ADR-549`, `FP-388`,
+`NC-0349`/`NC-0350`/`NC-0351` y dos entradas en `forense/hallazgos.md`.
