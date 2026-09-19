@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MOD = ROOT / "data/corrida0/CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0001/medidor.py"
+MOD = ROOT / "data/corrida0/CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0002/medidor.py"
 spec = importlib.util.spec_from_file_location("perfil", MOD)
 perfil = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(perfil)
