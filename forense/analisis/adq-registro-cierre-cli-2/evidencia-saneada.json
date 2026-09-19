@@ -1,0 +1,59 @@
+{
+  "acto": "GEN2-ADQ-REGISTRO-Y-CIERRE-CLI-2",
+  "corte": "2026-09-19T17:36:00-06:00",
+  "entorno": "CAJA/WSL2",
+  "worktree": "/home/pc0/mm-gen2-adq-registro-cierre-cli-2",
+  "rama": "codex/gen2-adq-registro-cierre-cli-2",
+  "base": "ea88cb3b94ad820bcd92a485eae51ce24ef07fae",
+  "version_publicada_y_desplegada": "42bb27a0c429cbf1789824e3a026f4cc16234255",
+  "ucla": {
+    "objeto_id": "UCLA_MXFLS_DESIGN_SUMMARY_2007",
+    "id_manifiesto": "ucla_mxfls_design_summary_2007",
+    "archivo": "data/raw/ennvih/ucla_mxfls_design_summary_2007_a.pdf",
+    "sha256": "f6ae6b5f803885a03460a5cc88ca0de8173d3b489caf5deff861d4b300abc405",
+    "tamano_bytes": 462842,
+    "estado_residual": "OBTENIDO",
+    "alcance": "Descripción general secundaria del diseño MxFLS: muestra probabilística multietápica, 150 comunidades y tres estratos construidos con 14 variables del marco ENEU.",
+    "limite": "No contiene identificadores de UPM/estrato por observación, réplicas ni campos ejecutables para varianza; no habilita IC y NC-0202 permanece abierta.",
+    "segunda_proyeccion_estable": {
+      "registro_sha256": "86651e4cf48c4e9e9c3f18152dde85046d6bb960f2912c4e0403a21f7fd0bdd6",
+      "vista_sha256": "7587656baa9dee20a6cb9f0541fc51a19972fae427c7b54d8df798b11e39a4c3"
+    }
+  },
+  "historico_preservado": {
+    "run_id": "2026-09-19T160001-63807",
+    "exit": 65,
+    "causa": [
+      "resultado de intento ausente de las rutas de evidencia citadas",
+      "intentos_documentados incompatible con descubrimiento_documentado calculado"
+    ],
+    "accion": "Ningún JSON, recibo, handoff ni métrica histórica fue modificado."
+  },
+  "cierre_manual_sintetico": {
+    "id": "MANUAL-SINTETICO-20260919",
+    "runtime": "tempfile.TemporaryDirectory; comprobar_remoto=false; sin launcher, modelo ni ledger",
+    "exito_valido": 0,
+    "clasificacion_incompatible": 65,
+    "evidencia_ausente": 65,
+    "json_malformado": 65,
+    "dos_candidatos_validos_distintos": 67,
+    "ultima_exitosa_sha256_sin_cambio": "9c7c84857dcad5c3d376b14d1634c2b341d9e811e03480c5d06fc7048d88d78d",
+    "presupuesto_sha256_sin_cambio": "1dc9147fd606dcd9bebb99b5074e455df851d35595ad1c1273771f297d8748d6"
+  },
+  "despliegue": {
+    "procedimiento": "tools/windows/instala-tarea-adquisicion.ps1",
+    "estado": "Ready",
+    "revision": "42bb27a0c429cbf1789824e3a026f4cc16234255",
+    "ultimo_run_previo": "2026-09-19T17:00:01-06:00",
+    "ultimo_resultado_previo": 1,
+    "siguiente_trigger_observado": "2026-09-19T18:00:00-06:00",
+    "trigger_manual": false
+  },
+  "activacion_natural_durante_sesion": {
+    "run_id": "2026-09-19T170002-198047",
+    "revision": "7791a5a75f9465d1fedcc8959db7eebe945869a8",
+    "despacho_adquisicion": false,
+    "resultado": "derivacion exit=1; comprobacion sin despacho por presupuesto diario agotado",
+    "acredita_correctivo_nuevo": false
+  }
+}
