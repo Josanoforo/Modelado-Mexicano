@@ -142,7 +142,7 @@ def medir(inputs, contrato):
                 "reconstruye_masa":bool(np.isclose(sum(v["masa_marco"] for v in table.values()),_mass(w,np.ones(len(d),bool)))),
                 "nativo_masa":_mass(w,nat),"desconocido_masa":_mass(w,~nat)}
     out={"TABLA-CATEGORIAS-JSON":table,"TABLA-CONTRASTES-JSON":con,"CONTROL-NACIONAL-JSON":national,
-         "REPLICAS-VALIDAS-JSON":{":".join(map(str,k)):int(np.isfinite(v).sum()) for k,v in samples.items()},
+         "REPLICAS-VALIDAS-JSON":{":".join(map(str,k)):int(np.isfinite(np.asarray(v, dtype=float)).sum()) for k,v in samples.items()},
          "METODO-IC":"BOOTSTRAP-UPM-EN-EDIS-PERCENTIL;CONTRASTES-REPLICAS-COMPARTIDAS",
          "CONTROL-RECONCILIACION":"SI" if national["reconstruye_marco"] and national["reconstruye_masa"] else "NO"}
     return {PREFIX+k:(json.dumps(v,sort_keys=True,separators=(",",":")) if isinstance(v,(dict,list)) else v) for k,v in out.items()}
