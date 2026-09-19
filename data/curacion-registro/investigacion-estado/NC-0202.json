@@ -1,18 +1,19 @@
 {
   "alternativa_requerida": false,
   "alternativas": [],
-  "ciclos_sin_avance": 0,
+  "ciclos_sin_avance": 1,
   "continuacion_pendiente": true,
-  "cursor_continuacion": "Inspeccionar nombres/columnas de pesos y metadatos; si sólo hay factores, mantener solicitud humana NC-0156.",
+  "cursor_continuacion": "Inspeccionar ICPSR 118971 y Berumen (2007) sin repetir guías, IHSN ni ZIP de ponderadores; si sólo hay factores, mantener NC-0156.",
   "estado": "continua",
   "evidencias": [
-    "forense/notas/2026-09-17-GEN2-38-investigacion-adq.md",
+    "forense/notas/2026-09-18-GEN2-38-investigacion-adq.md",
     "data/manifiesto.yaml",
-    "data/raw/ennvih_diseno/ennvih-1_muestra.pdf"
+    "data/raw/ennvih/ehh09w_all.zip",
+    "data/raw/ennvih/ehh09lw_all.zip"
   ],
-  "frontera_no_examinada": "Tablas públicas de pesos ENNViH-2/3 y metadatos del depósito ICPSR 118971.",
+  "frontera_no_examinada": "Metadatos/adjuntos públicos del depósito ICPSR 118971 y una copia pública independiente de Berumen (2007).",
   "necesidad_id": "NC-0202",
-  "proxima_revision": "2026-09-18",
+  "proxima_revision": "2026-09-19",
   "suficiencia": {
     "conceptual": "ACREDITADA",
     "diseno": "PARCIAL",
@@ -25,6 +26,6 @@
     "unidad": "ACREDITADA",
     "uso_habilitado": "INCOMPATIBLE"
   },
-  "ultima_exploracion": "2026-09-17",
+  "ultima_exploracion": "2026-09-18",
   "version_pregunta": "2026-09-15-ennvih-diseno-publico-v1"
 }

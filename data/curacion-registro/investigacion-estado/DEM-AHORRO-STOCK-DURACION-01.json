@@ -5,16 +5,16 @@
     "RELABEL_USO_ACOTADO_AUTORIZADO_POR_772",
     "APROBAR_PROXY_NUEVO_CON_ALCANCE_EXPLICITO"
   ],
-  "ciclos_sin_avance": 5,
+  "ciclos_sin_avance": 6,
   "continuacion_pendiente": true,
-  "cursor_continuacion": "Examinar un catálogo variable-por-variable que separe tenencia/ausencia y días o meses cubiertos por el mismo stock; alternativa para mesa: relabel acotado #772, sin decidirlo aquí.",
+  "cursor_continuacion": "Buscar un instrumento probabilístico con tenencia/ausencia y meses o días cubiertos por el mismo stock; alternativa para mesa: relabel acotado #772, sin decidirlo aquí.",
   "estado": "continua",
   "evidencias": [
-    "forense/notas/2026-09-17-GEN2-38-investigacion-adq.md"
+    "forense/notas/2026-09-18-GEN2-38-investigacion-adq.md"
   ],
-  "frontera_no_examinada": "Repositorios académicos estatales distintos de Colmex/UNAM/IIEG y archivos no indexados CNBV/CONDUSEF.",
+  "frontera_no_examinada": "Catálogos variable-por-variable de encuestas financieras de universidades estatales fuera de Colmex/UNAM/IIEG y archivos históricos no indexados de CNBV/CONDUSEF.",
   "necesidad_id": "DEM-AHORRO-STOCK-DURACION-01",
-  "proxima_revision": "2026-09-18",
+  "proxima_revision": "2026-09-19",
   "reprogramaciones": [
     {
       "fecha_decision": "2026-09-15",
@@ -34,6 +34,6 @@
     "unidad": "ACREDITADA",
     "uso_habilitado": "INCOMPATIBLE"
   },
-  "ultima_exploracion": "2026-09-17",
+  "ultima_exploracion": "2026-09-18",
   "version_pregunta": "2026-09-15-stock-ausencia-y-duracion-separados-v1"
 }
