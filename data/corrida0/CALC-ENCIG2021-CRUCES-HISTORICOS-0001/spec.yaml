@@ -1,0 +1,621 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENCIG2021-CRUCES-HISTORICOS-0001
+spec_md: ../../../forense/prereg-caja/ENCIG-CRUCES-HISTORICOS-spec-v1_0.md
+spec_md_sha256: 599b9b7e42cfc325df0c928d423036726038b724bccd34acf2d4f6a80329135a
+script: tools/encig_cruces_historicos.py
+script_sha256_congelado: e2b2f6a17f6163d9bd272e1a008e3dd7826d6121dbd57e01452232d3a74abb6e
+etiquetas:
+  generacion: GEN2
+  tipo: CRUCES-HISTORICOS-ENCIG
+  cuenta_gen2: PENDIENTE-DE-MESA
+  ola: "2021"
+inputs:
+  - {id: encig2021_csv, origen: manifiesto}
+variables:
+  - {archivo: encig2021_04_sec_7.csv, variable: N_TRA, rol: universo}
+  - {archivo: encig2021_04_sec_7.csv, variable: P7_3, rol: desenlace}
+  - {archivo: encig2021_04_sec_7.csv, variable: FAC_TRA, rol: ponderador}
+  - {archivo: encig2021_04_sec_7.csv, variable: EST_DIS, rol: estrato}
+  - {archivo: encig2021_04_sec_7.csv, variable: UPM_DIS, rol: upm}
+  - {archivo: encig2021_04_sec_7.csv, variable: ID_PER, rol: llave-y-agrupacion}
+  - {archivo: encig2021_02_residentes_sec_2.csv, variable: ID_PER, rol: llave}
+  - {archivo: encig2021_02_residentes_sec_2.csv, variable: SEXO, rol: eje-sexo}
+  - {archivo: encig2021_02_residentes_sec_2.csv, variable: EDAD, rol: eje-edad}
+  - {archivo: encig2021_02_residentes_sec_2.csv, variable: NIV, rol: eje-escolaridad}
+ola: "2021"
+payload_id: encig2021_csv
+universo: "N_TRA normalizado == 1; P7_3 válida en {1,2,4,5,6}; FAC_TRA positivo; diseño válido."
+filtros: "Casos completos por par de ejes; desconocidos permanecen como residuos explícitos y nunca se reasignan."
+ponderador: FAC_TRA
+transformacion: "Evento P7_3 en {4,5}; edad 18-29/30-44/45-59/60-96; NIV agregado {0,1,2}/{3}/{4,5,6,7}/{8,9}."
+estimando: "Proporción ponderada de trámites con P7_3 en {4,5}, y residuo delta en escala logit."
+dependencias_materiales: [numpy, pandas]
+categorias:
+  sexo: ["1", "2"]
+  edad: ["18-29", "30-44", "45-59", "60-96"]
+  escolaridad: ["HASTA-PRIMARIA", "SECUNDARIA", "MEDIA-SUPERIOR", "SUPERIOR"]
+seed: {aplica: true, valor: 20260919, rng: numpy.PCG64}
+parametros:
+  bootstrap_replicas: 10000
+  metodo_ic: "bootstrap UPM con reposición dentro de estrato; singleton de certeza; percentiles 2.5/97.5; réplicas compartidas"
+guardia:
+  allowlist_payloads: [encig2021_csv]
+  patrones_prohibidos: [encig25, encig_2025, "ola: 2025"]
+tolerancia: {tipo: flotante, abs: 1.0e-10, razon: "mismo payload, transformación y sumas float64 que el piso sellado"}
+resultados:
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-18-29-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-30-44-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-45-59-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-1-60-96-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-18-29-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-30-44-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-45-59-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-2-60-96-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-N-COMPLETOS, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-RESIDUO-OTRO-EJE-N-A, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-RESIDUO-OTRO-EJE-MASA-A, tipo: flotante, unidad: "masa ponderada"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-RESIDUO-OTRO-EJE-N-B, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-RESIDUO-OTRO-EJE-MASA-B, tipo: flotante, unidad: "masa ponderada"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-COHERENCIA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-COHERENCIA-CAUSA, tipo: texto, unidad: "causa"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-ELEGIBLE, tipo: texto, unidad: "SI/NO"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-EDAD-PUNTAJE, tipo: flotante, unidad: "media |delta|/EE"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-HASTA-PRIMARIA-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SECUNDARIA-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-MEDIA-SUPERIOR-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-1-SUPERIOR-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-HASTA-PRIMARIA-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SECUNDARIA-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-MEDIA-SUPERIOR-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-2-SUPERIOR-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-N-COMPLETOS, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-RESIDUO-OTRO-EJE-N-A, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-RESIDUO-OTRO-EJE-MASA-A, tipo: flotante, unidad: "masa ponderada"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-RESIDUO-OTRO-EJE-N-B, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-RESIDUO-OTRO-EJE-MASA-B, tipo: flotante, unidad: "masa ponderada"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-COHERENCIA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-COHERENCIA-CAUSA, tipo: texto, unidad: "causa"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-ELEGIBLE, tipo: texto, unidad: "SI/NO"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-SEXO-ESCOLARIDAD-PUNTAJE, tipo: flotante, unidad: "media |delta|/EE"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-HASTA-PRIMARIA-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SECUNDARIA-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-MEDIA-SUPERIOR-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-18-29-SUPERIOR-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-HASTA-PRIMARIA-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SECUNDARIA-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-MEDIA-SUPERIOR-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-30-44-SUPERIOR-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-HASTA-PRIMARIA-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SECUNDARIA-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-MEDIA-SUPERIOR-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-45-59-SUPERIOR-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-HASTA-PRIMARIA-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SECUNDARIA-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-MEDIA-SUPERIOR-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-N, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-PERSONAS, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-PERSONAS-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-PERSONAS-NO-EVENTO, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-PERSONAS-SOLAPE, tipo: entero, unidad: "personas distintas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-NUM-W, tipo: flotante, unidad: "numerador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-P, tipo: proporcion, unidad: "proporción [0,1]"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-P-EE, tipo: flotante, unidad: "error estándar"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-P-IC-LO, tipo: proporcion, unidad: "límite inferior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-P-IC-HI, tipo: proporcion, unidad: "límite superior IC95"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-DELTA, tipo: flotante, unidad: "logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-DELTA-EE, tipo: flotante, unidad: "error estándar logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-DELTA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-DELTA-IC-HI, tipo: flotante, unidad: "límite superior IC95 logit"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas definidas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-60-96-SUPERIOR-CAUSA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-N-COMPLETOS, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-RESIDUO-OTRO-EJE-N-A, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-RESIDUO-OTRO-EJE-MASA-A, tipo: flotante, unidad: "masa ponderada"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-RESIDUO-OTRO-EJE-N-B, tipo: entero, unidad: "trámites"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-RESIDUO-OTRO-EJE-MASA-B, tipo: flotante, unidad: "masa ponderada"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-COHERENCIA, tipo: texto, unidad: "estado"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-COHERENCIA-CAUSA, tipo: texto, unidad: "causa"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-ELEGIBLE, tipo: texto, unidad: "SI/NO"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-EDAD-ESCOLARIDAD-PUNTAJE, tipo: flotante, unidad: "media |delta|/EE"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-FILAS-EVENTOS, tipo: entero, unidad: "filas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-JOIN-SIN-DEMOGRAFIA, tipo: entero, unidad: "filas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-N-UNIVERSO, tipo: entero, unidad: "filas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-N-DISENO-VALIDO, tipo: entero, unidad: "filas"}
+  - {id: RESULT-ENCIG2021-CRUCES-HISTORICOS-P7-3-EXCLUIDAS, tipo: entero, unidad: "filas"}
