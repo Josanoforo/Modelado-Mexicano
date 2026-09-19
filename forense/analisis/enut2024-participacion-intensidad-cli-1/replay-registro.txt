@@ -113,3 +113,17 @@ RESULT y 228 usos. Hashes idénticos tras cada una:
 
 La fila ENUT conserva REPRODUCE/IDENTICO y ninguna fila ajena fue eliminada
 ni recibió una transición de replay.
+
+REINTEGRACION FINAL DE PR #877 Y CORRECCION DE NOMBRE
+CI probó el merge contra un origin/main que ya incluía PR #877 y detectó T02:
+el nombre genérico replay-aislado.json colisionaba con el artefacto ENFIH del
+PR integrado. El contenido ENUT no cambió; su archivo propio se renombró a:
+forense/analisis/enut2024-participacion-intensidad-cli-1/evidencia-replay-enut2024-participacion-intensidad.json
+
+Se actualizó la ruta en el asiento y en estas notas, se integró origin/main y
+se ejecutaron otra vez dos proyecciones, ambas exit 0, sin --verifica y sin
+--lote. Conteos finales: 219 corridas, 7417 RESULT y 228 usos. Hashes idénticos
+tras ambas:
+- data/corrida0/corridas.tsv: cc3924e9e33b14e0360c518bf17da536ebba0453f5391674dadce2e48d4e77d6
+- data/corrida0/resultados.tsv: 6e91c24d40a4d4d5b924a8bac788545f9b7e59efb6d2bc30eb1b168b567da821
+- data/corrida0/usos.tsv: 939a06e39277a184490263b24cd86a537301cf0bed918271eba51c68e95ef1bd
