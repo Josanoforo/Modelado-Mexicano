@@ -1,0 +1,40 @@
+# ENCARGO · ACTO GEN2-V214 · INSTRUCCIONES v2.14 EN DOS CUERPOS: EL OPERATIVO VIAJA EN LOS DOS LADOS, EL HISTÓRICO SOLO EN EL REPO
+
+**Estado:** VIVO
+
+**CABECERA** · redactado contra `09681ab` (merge de #864, 19/sep); re-deriva al abrir · **ENTORNO: NUBE** — cero microdato · COMPUERTA: ninguna (no depende de TRÁMITE-5; si éste ya selló `estado-programa-v1_14`, P2 enmienda ésa; si no, la `v1_13` vigente) · MODELO SUGERIDO: **Sonnet** (archivo verbatim, retiro por T01, tablero derivado; sube a Opus solo si `registro-rotulos`/T25 exigen juicio) · FP/ADR/NC: deriva al cierre, no heredes (máximos al redactar: FP-385, NC-0332, ADR-543) · vehículo: `/acto` · **una sola sesión** (D-17: si este encargo ya está archivado en otra rama viva, PARA).
+
+**FIRMA DE MESA, verbatim (mesa la pega en el lanzamiento con la fecha real del pegado; A.9 — sin ella el acto no arranca):**
+> "FIRMA DE MESA, mesa, __/sep/2026 — Instrucciones v2.14 en dos cuerpos: el **operativo** (`instrucciones-proyecto-v2_14.md`) viaja en el proyecto de Claude y en el repo; el **histórico** (`instrucciones-proyecto-v2_14-HISTORIA.md`, la v2.13 íntegra más el bloque v2.14 con cada 'por qué') vive solo en el repo; ante duda de sentido manda el histórico y se corrige el operativo. El cuerpo operativo quedó pegado en las instrucciones del proyecto el __/sep/2026, antes de lanzar este acto."
+
+**ADJUNTOS (A.3; cada uno con sha256; si uno no viaja, PARA — no hay lote que salvar):**
+- `instrucciones-proyecto-v2_14-OPERATIVA.md` · `a164dc07a4a7c43c3c0c7fc86ad9212d0798e69f59742d1364e5459fde642d70` · 108 líneas · se archiva como **`instrucciones-proyecto-v2_14.md`**.
+- `instrucciones-proyecto-v2_14.md` (íntegra, 492 líneas) · `8f4c763952aa2051e0bb1947f5c72d60987247229b782c80c0a0d6929b9b7b05` · se archiva como **`instrucciones-proyecto-v2_14-HISTORIA.md`**. Sus primeras 460 líneas son `instrucciones-proyecto-v2_13.md` verbatim (el acto lo verifica con `diff`).
+
+**VERIFICACIÓN DE EXISTENCIA (A.8, dirección, contra `09681ab`):**
+- (1) Estructura: `instrucciones-proyecto-v2_*.md` (raíz; una versión viva, T01 — `ls | grep instrucciones` → solo `v2_13`), `tools/tablero_programa.py:301` (`instrucciones_vigentes` = máximo numérico de `instrucciones-proyecto-v2_(\d+)\.md`; `-HISTORIA.md` no matchea el patrón), `forense/tablero/TABLERO-PROGRAMA-v1_1.md` (bloque derivado), `forense/hallazgos.md` (9 entradas `PARA-v2.14`: 847, 850, 853, 857, 858, 861, 863, 864, 865), `canon/registro-rotulos.tsv`, cabecera de era de `estado`. Cubren.
+- (2) Contenido: `ls instrucciones-proyecto-v2_14*.md` → **NO-ENCONTRADO**; `grep -c "PARA-v2.14" forense/hallazgos.md` → 9, ninguna marcada consumida; `registro-rotulos`: `A.17`, `D-16`, `D-17`, `E.6`, `E.7` → 0 apariciones cada uno (libres); `TABLERO-PROGRAMA-v1_1.md:117` dice `instrucciones_vigentes | v2.12` — bloque derivado sin refrescar desde v2.12 (ni siquiera v2.13): defecto de refresco, se corrige con `--actualiza`. Precedente de sello: ADR-393 (v2.13, `GEN2-T8`).
+- (3) Cobertura retroactiva: las nueve entradas son del 16–17/sep; ninguna versión anterior pudo consumirlas.
+
+### PIEZAS
+
+**P1 · Los dos cuerpos, y una sola versión viva.** (a) Verificar los sha256 de los adjuntos y pegarlos en la nota. (b) `instrucciones-proyecto-v2_14.md` ← adjunto operativo, verbatim. (c) `instrucciones-proyecto-v2_14-HISTORIA.md` ← adjunto íntegro, verbatim; `diff <(head -460 …-HISTORIA.md) instrucciones-proyecto-v2_13.md` vacío, pegado. (d) Retirar `instrucciones-proyecto-v2_13.md` del árbol (T01; historia por SHA y dentro del histórico). (e) `git grep -l "instrucciones-proyecto-v2_13"` → las citas en notas y encargos archivados **no se editan** (son historia); solo se actualizan los punteros vivos: `tools/tablero_programa.py:9` (docstring "instrucciones v2.12" → v2.14) y cualquier README o índice que apunte a la versión vigente — reporta el conteo de vivos vs históricos.
+
+**P2 · Tablero y estado.** `python3 tools/tablero_programa.py --actualiza` → `instrucciones_vigentes = v2.14` derivado, salida pegada. Cabecera de era del `estado` vigente (`v1_14` si TRÁMITE-5 ya selló; si no, `v1_13`): enmienda fechada in situ *"instrucciones vigentes v2.14 desde <fecha> (ADR-<este>); dos cuerpos: operativo en proyecto y repo, histórico en repo"* — no se edita el resto. `canon/registro-rotulos.tsv`: filas para `A.17`, `D-16`, `D-17`, `E.6`, `E.7`, `A-bis 5`, `A-bis 6` (definición en una línea, fuente = `-HISTORIA.md` + `hallazgos.md:N`); T25 por los rótulos pelados de los dos cuerpos (`hs02g`, `P5_6`, `P5_7`, `G5`, PR #77) con exención comentada, precedente ADR-530.
+
+**P3 · Hallazgos y ADR.** Las nueve entradas `PARA-v2.14` reciben enmienda fechada in situ `CONSUMIDA-EN-v2.14 (ADR-<este>)` — el texto no se toca. Una línea nueva en `hallazgos.md`: *"v2.14 nace en dos cuerpos porque las conversaciones no leían las 492 líneas: el operativo tiene 108; cada regla sigue ahí, la narrativa vive en el histórico (mesa, 19/sep)"*. ADR del acto: cita **verbatim** la firma de mesa con la fecha del pegado (A.9), lista las siete reglas nuevas y el refinamiento por rótulo, y declara que `instrucciones_vigentes` es v2.14 en el tablero derivado y en la cabecera de era.
+
+**PERÍMETRO Y CONCURRENCIA:** `instrucciones-proyecto-v2_14.md` (nuevo) · `instrucciones-proyecto-v2_14-HISTORIA.md` (nuevo) · `instrucciones-proyecto-v2_13.md` (retirado) · `tools/tablero_programa.py` (solo docstring :9) · `forense/tablero/TABLERO-PROGRAMA-v1_1.md` (bloque derivado, por comando) · cabecera de era de `canon/estado-programa-v1_1[34].md` (una línea) · `canon/registro-rotulos.tsv` · `tests/check.py` (solo T25) · `forense/hallazgos.md` · `canon/gobernanza-v1_15.md` (ADR) · nota de cierre · cascada. **No toca** `milpa/`, `data/`, specs, resultados, ni ningún encargo o nota archivados. En paralelo: `GEN2-TRAMITE-5` (nube: `estado`, tablero de firmas, `decisiones.tsv`) — comparten la cabecera de era del `estado` (una línea cada uno) y `hallazgos.md`: **quien fusione después renumera y re-aplica su línea**; `GEN2-REPLAY-ASIENTOS-1` (caja) — sin archivo común. «Si te encuentras escribiendo fuera de esta lista, PARA — el perímetro estaba mal calculado y saberlo vale más que el atajo.»
+
+**CONTADOR:** cero mediciones, dicho sin disfraz; `instrucciones_vigentes` v2.13 → v2.14 (derivado); 9 entradas `PARA-v2.14` consumidas; 7 rótulos registrados. **LO QUE NO HACE:** no reescribe ninguna regla (los dos cuerpos entran verbatim) · no edita citas históricas · no toca el estado más allá de una línea · no decide: sella lo que mesa pegó. **SUCESOR:** ninguno propio; las reglas caducan a los tres meses si no atrapan nada (§9 del operativo). **CIERRE:** cascada + `## NO-CORRIDO / RESERVAS` + `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** A.9 pleno — "sellada en los dos lados (proyecto y repo)". El adjunto trae la firma de mesa con la fecha de pegado **sin llenar** (`__/sep/2026`), y este ejecutor no tiene superficie de escritura sobre las instrucciones del proyecto de Claude (fuera del repo).
+  **por qué:** `NO-VERIFICABLE-AQUÍ`.
+  **impacto:** `instrucciones_vigentes = v2.14` queda derivado y sellado del lado repo; el sello pleno de A.9 (los dos lados) no se declara hasta que mesa confirme la fecha de pegado en el proyecto.
+  **sucesor:** `DECISIÓN-DE-MESA-PENDIENTE` — mesa pega el cuerpo operativo en las instrucciones del proyecto y confirma la fecha; una enmienda fechada sobre `ADR-544` (o un ADR sucesor corto) cierra esta reserva citando esa fecha.
+
+## CONSUMIDO
+
+Ejecutado por commits directos sobre `claude/new-session-w2ojbo` (sin PR propio en esta sesión — push directo a la rama de trabajo del encargo). `ADR-544`.
