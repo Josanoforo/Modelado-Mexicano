@@ -35,3 +35,18 @@ de autoridad. Las identidades de partición y unión quedaron en cero (salvo
 redondeo float). Prueba sintética: OK; `spec-check`: 16/16 campos OK;
 preflight: VERDE. No se abrió otro instrumento ni se hizo adopción o contador:
 ambos quedan PENDIENTE-DE-MESA.
+
+## Sucesión v1_1 y control independiente
+
+El sello de `...-0001` se preserva. `CALC-ENCUCI2020-RESPUESTA-POR-CONTACTO-0001-v1_1`
+publica `RESULT-ENCUCI2020-RPCV11-VALIDACIONES-POR-CONTACTO`: las diez
+particiones son exactamente 0 y las identidades de unión están entre
+−5.55e−17 y 5.55e−17 (redondeo binario).
+
+Control independiente reproducible: `python3
+forense/analisis/encuci2020-respuesta-por-contacto-cli-2/control_independiente.py`.
+Lee el DBF y agrega UPM directamente, sin invocar el estimador de proporciones.
+Salida: `AP5_16_4`, punto `0.4275205077195218`, varianza WR por UPM
+`6.043648067277605e-06`, SE `0.0024583832222169117`, 281 estratos y 3,095
+UPM con respuesta válida. Es un control de punto y varianza del diseño; no
+modifica los RESULT ni el sello anterior.
