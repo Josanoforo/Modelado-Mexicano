@@ -62,7 +62,7 @@ no representan tiempo exclusivo del reloj. No se caparon extremos.
   `replay-registro.txt`.
 * `tools/verifica_aislada.py`, limitado al CALC propio, produjo evidencia
   `REPRODUCE · IDENTICO`, 22/22 RESULT, 2/2 inputs y sello 4/4 coincidente en
-  `replay-aislado.json`.
+  `evidencia-replay-enut2024-participacion-intensidad.json`.
 * Esa identidad se asentó en `forense/replay-evidencia.tsv`. Después,
   `corrida0 registro --escribe`, sin `--verifica` ni `--lote`, publicó una
   corrida y 22 RESULT ENUT. Una segunda proyección fue estable byte a byte.

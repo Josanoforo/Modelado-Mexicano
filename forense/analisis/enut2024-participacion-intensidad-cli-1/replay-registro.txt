@@ -40,7 +40,7 @@ merge local fue 7cd6cd5; el SHA final de entrega será el commit posterior de
 este cierre.
 
 REPLAY AISLADO PROPIO
-python3 tools/verifica_aislada.py CALC-ENUT2024-PARTICIPACION-INTENSIDAD-0001 --salida forense/analisis/enut2024-participacion-intensidad-cli-1/replay-aislado.json
+python3 tools/verifica_aislada.py CALC-ENUT2024-PARTICIPACION-INTENSIDAD-0001 --salida forense/analisis/enut2024-participacion-intensidad-cli-1/evidencia-replay-enut2024-participacion-intensidad.json
 
 Resultado: exit 0; REPRODUCE; CONTEXTO=IDENTICO; 22/22 RESULT; 2/2 inputs.
 La identidad coincidió con ejecucion.json y los cuatro archivos cubiertos por
@@ -53,7 +53,8 @@ sello.json coincidieron byte a byte:
 ASIENTO CANONICO
 Se añadió una única fila propia a forense/replay-evidencia.tsv, procedencia
 VERIFY-AISLADO · GEN2-ENUT2024-PARTICIPACION-INTENSIDAD-CLI-1, vinculada a
-replay-aislado.json. Unicidad previa: cero filas para el CALC; posterior: una.
+evidencia-replay-enut2024-participacion-intensidad.json. Unicidad previa: cero
+filas para el CALC; posterior: una.
 
 PRIMERA PROYECCION
 python3 tools/corrida0.py registro --escribe
