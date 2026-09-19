@@ -128,7 +128,7 @@ COLUMNAS = [
     "result_gen2_candidato", "valor_gen2", "valor_legacy",
     "canal", "canales_observados", "control_c0", "veredicto_sellado",
     "veredicto_sellado_ref", "resolucion_vigente", "otras_candidaturas",
-    "razon",
+    "sucesor", "razon",
     # P3 · materialidad POR CONSUMIDOR (E.4). Vacias mientras no se pase
     # `--p3`: una columna vacia dice «no se corrio», que no es lo mismo que
     # «no hay diferencia».
@@ -624,6 +624,7 @@ def deriva() -> tuple[list[dict], dict]:
     evidencia_f2 = _evidencia_ejecucion_f3(F2_CALC)
     resultados_f2 = _resultados_sellados(F2_CALC)
     firma_f2 = _firma_f2_acreditada()
+    decisiones = corrida0._lee_decisiones()
 
     # Indices de los tres canales, construidos UNA vez sobre todas las specs.
     c1_por_res: dict[str, list[tuple[str, str, str]]] = {}
@@ -679,7 +680,7 @@ def deriva() -> tuple[list[dict], dict]:
             "valor_legacy": slot["valor_legacy"] or NO_DECLARADO,
             "canal": "", "canales_observados": "", "control_c0": "",
             "veredicto_sellado": "", "veredicto_sellado_ref": "",
-            "resolucion_vigente": "",
+            "resolucion_vigente": "", "sucesor": "",
             "otras_candidaturas": "", "razon": "", **P3_VACIAS,
         }
         cita_c0 = (uso.get("resultado_id", "")
@@ -885,6 +886,24 @@ def deriva() -> tuple[list[dict], dict]:
                 fila["veredicto"] = f2["resolucion"]
             else:
                 fila["veredicto"] = "NO-ACREDITADO-POR-F2"
+
+        # FIRMA DE MESA 19/sep/2026, NC-0254. EDER 2017 observa el tipo de
+        # primera union y no releva el estimando vigente de situacion
+        # conyugal actual en ENADID 2023. La decision se aplica por las dos
+        # identidades cerradas; preserva arriba el veredicto sellado de EDER
+        # como evidencia historica rechazada y no se generaliza a otros slots.
+        decision_relevo = decisiones.get(res, "")
+        if (res in {"RES-0043", "RES-0044"}
+                and decision_relevo ==
+                "relevo=SIN-CANDIDATO · sucesor=GEN2-ENADID-2023-SITUACION-CONYUGAL"):
+            fila["veredicto"] = "SIN-CANDIDATO"
+            fila["resolucion_vigente"] = "DECISION-NC-0254"
+            fila["sucesor"] = "GEN2-ENADID-2023-SITUACION-CONYUGAL"
+            fila["razon"] = (
+                "NC-0254: EDER 2017 mide tipo de primera union, no situacion "
+                "conyugal actual; se conserva su veredicto sellado como "
+                "evidencia historica y el slot espera una corrida GEN2 "
+                "sobre ENADID 2023")
         filas.append(fila)
         contadores[fila["veredicto"]] = contadores.get(fila["veredicto"], 0) + 1
 

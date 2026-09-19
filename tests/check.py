@@ -2903,6 +2903,15 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-RECIBO-CODEX-3, 19/sep/2026. Cinco adjuntos externos se
+    # preservan byte a byte (A.3); sus M1/E1 son citas de habitantes ya
+    # censados, no rótulos creados por este acto. El prefijo ADJUNTO-R3 evita
+    # colisión de nombre sin alterar el cuerpo recibido.
+    "forense/encargos/insumos-gen2-recibo-codex-3-2026-09-19/ADJUNTO-R3-01-CONTRATO-Y-TRAMITE.md",
+    "forense/encargos/insumos-gen2-recibo-codex-3-2026-09-19/ADJUNTO-R3-05-GEN2-RECIBO-CODEX-3.md",
+    "forense/encargos/insumos-gen2-recibo-codex-3-2026-09-19/ADJUNTO-R3-MARCADOR-SEGMENTO-diseno-direccion-v1_0-2026-09-17.md",
+    "forense/encargos/insumos-gen2-recibo-codex-3-2026-09-19/ADJUNTO-R3-informe-programa-v1_1-ANEXO-delta.md",
+    "forense/encargos/insumos-gen2-recibo-codex-3-2026-09-19/ADJUNTO-R3-informe-programa-v1_1.md",
     # ACTO GEN2-TRAMITE-4, 16/sep/2026. DOS archivos, una sola causa: los dos
     # son TEXTO VERBATIM y no se editan para complacer un test -- el encargo
     # esta archivado por 0-bis A.3 y el insumo de direccion por P4, con su

@@ -60,7 +60,7 @@ def test_pareja_real_valor_vigente_y_firma_hacen_efectiva_f2():
     assert fila["valor_legacy"] == "0.126006"
     assert "grano del consumidor = 6 decimales" in fila["razon"]
     assert all(not f["resolucion_vigente"] for f in filas
-               if f["resultado_id"] != R.F2_RES)
+               if f["resultado_id"] not in {R.F2_RES, "RES-0043", "RES-0044"})
 
 
 def test_delta_menor_a_1e_6_no_basta_si_discrepa_al_grano():
