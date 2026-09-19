@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MOD = ROOT / "data/corrida0/CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0002/medidor.py"
+MOD = ROOT / "data/corrida0/CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003/medidor.py"
 spec = importlib.util.spec_from_file_location("perfil", MOD)
 perfil = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(perfil)
@@ -70,8 +70,14 @@ def test_edad_fuera_es_exclusion_no_faltante():
     assert r["embudo"]["excl_edad_invalida"]["n"] == 0
 
 
+def test_bom_unicode_y_mojibake():
+    assert perfil._texto("\ufefffolioviv") == "folioviv"
+    assert perfil._texto("ï»¿folioviv") == "folioviv"
+
+
 if __name__ == "__main__":
     for f in (test_join_persona_y_malla, test_faltante_no_imputado_y_pertenencia,
-              test_duplicados_detienen, test_edad_fuera_es_exclusion_no_faltante):
+              test_duplicados_detienen, test_edad_fuera_es_exclusion_no_faltante,
+              test_bom_unicode_y_mojibake):
         f()
-    print("OK: 4 pruebas sintéticas")
+    print("OK: 5 pruebas sintéticas")

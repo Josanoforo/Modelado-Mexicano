@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[3]
-CALC = ROOT / "data/corrida0/CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0002/resultados.json"
+CALC = ROOT / "data/corrida0/CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003/resultados.json"
 OUT = Path(__file__).resolve().parent
 P = "RESULT-ENIGH22-PERFIL-"
 
