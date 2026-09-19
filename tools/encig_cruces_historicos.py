@@ -235,14 +235,12 @@ def _selection_2023(outputs: dict, prefix: str, calc_id: str = "CALC-ENCIG2023-C
 
 
 def seleccionar(resultados_2023: dict, resultados_2021: dict | None,
-                sello_2023: str, sello_2021: str | None,
-                calc_id_2023: str = "CALC-ENCIG2023-CRUCES-HISTORICOS-0001",
-                calc_id_2021: str = "CALC-ENCIG2021-CRUCES-HISTORICOS-0001") -> dict:
+                sello_2023: str, sello_2021: str | None) -> dict:
     """Aplica mecánicamente la regla aprobada a dos resultados ya sellados."""
     p23, p21 = _prefix("2023"), _prefix("2021")
-    consumed = {calc_id_2023: sello_2023}
+    consumed = {"CALC-ENCIG2023-CRUCES-HISTORICOS-0001": sello_2023}
     if resultados_2021 is not None and sello_2021:
-        consumed[calc_id_2021] = sello_2021
+        consumed["CALC-ENCIG2021-CRUCES-HISTORICOS-0001"] = sello_2021
     out = {"calcs_consumidos": consumed}
     incoherent = [cross for cross, _, _ in CROSSES
                   if resultados_2023[f"{p23}-{cross}-COHERENCIA"] != "COHERENTE"]
@@ -476,10 +474,6 @@ def main() -> int:
     parser.add_argument("--seleccionar", nargs=2, metavar=("RESULTADOS_2023", "RESULTADOS_2021"))
     parser.add_argument("--sello-2023")
     parser.add_argument("--sello-2021")
-    parser.add_argument("--calc-id-2023", default="CALC-ENCIG2023-CRUCES-HISTORICOS-0001")
-    parser.add_argument("--calc-id-2021", default="CALC-ENCIG2021-CRUCES-HISTORICOS-0001")
-    parser.add_argument("--tabla-resultados")
-    parser.add_argument("--ola-tabla", choices=("2021", "2023"))
     args = parser.parse_args()
     if args.declaraciones:
         for result_id, kind, unit in declared_results(args.declaraciones):
@@ -490,25 +484,8 @@ def main() -> int:
         paths = [Path(item) for item in args.seleccionar]
         r23 = json.loads(paths[0].read_text(encoding="utf-8"))["resultados"]
         r21 = None if str(paths[1]) == "-" else json.loads(paths[1].read_text(encoding="utf-8"))["resultados"]
-        print(json.dumps(seleccionar(r23, r21, args.sello_2023, args.sello_2021,
-                                     args.calc_id_2023, args.calc_id_2021),
+        print(json.dumps(seleccionar(r23, r21, args.sello_2023, args.sello_2021),
                          ensure_ascii=False, sort_keys=True, indent=2))
-    if args.tabla_resultados:
-        if not args.ola_tabla:
-            parser.error("--ola-tabla es obligatorio con --tabla-resultados")
-        values = json.loads(Path(args.tabla_resultados).read_text(encoding="utf-8"))["resultados"]
-        prefix = _prefix(args.ola_tabla)
-        print("ola\tcruce\tcategoria_a\tcategoria_b\tn_tramites\tpersonas\tpersonas_evento\tpersonas_no_evento\tsolape\tnum_w\tden_w\tp\tp_ee\tp_ic_lo\tp_ic_hi\tdelta\tdelta_ee\tdelta_ic_lo\tdelta_ic_hi\tb_validas\tcausa")
-        for cross, axis_a, axis_b in CROSSES:
-            for category_a in AXES[axis_a]:
-                for category_b in AXES[axis_b]:
-                    base = f"{prefix}-{cross}-{category_a}-{category_b}"
-                    suffixes = ("N", "PERSONAS", "PERSONAS-EVENTO", "PERSONAS-NO-EVENTO", "PERSONAS-SOLAPE",
-                                "NUM-W", "DEN-W", "P", "P-EE", "P-IC-LO", "P-IC-HI", "DELTA",
-                                "DELTA-EE", "DELTA-IC-LO", "DELTA-IC-HI", "B-VALIDAS", "CAUSA")
-                    row = [args.ola_tabla, cross, category_a, category_b]
-                    row.extend(values[base + "-" + suffix] for suffix in suffixes)
-                    print("\t".join("" if value is None else str(value) for value in row))
     return 0
 
 
