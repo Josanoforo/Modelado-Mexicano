@@ -251,7 +251,10 @@ def _ruteo_efectivo(item: dict, estado: dict, corte: dt.date, *,
         return ruteo, str(item.get("motivo_ruteo") or "ruteo estructurado vigente")
     if _evidencia_nueva_aplicable(estado, item):
         return "LISTA_SONDA", "reanudada por evidencia nueva estructurada y aplicable"
-    proxima = _fecha(estado.get("proxima_revision") or item.get("proxima_revision"))
+    revision = estado.get("proxima_revision") or item.get("proxima_revision")
+    if _revision_por_evento(revision):
+        return ruteo, f"espera nueva pista; revisión condicionada a {revision}"
+    proxima = _fecha(revision)
     if proxima and corte >= proxima:
         return "LISTA_SONDA", f"reanudada al vencer revisión {proxima}"
     return ruteo, (f"espera nueva pista; revisión {proxima}" if proxima else
@@ -440,14 +443,17 @@ def selecciona(cfg: dict, corte: dt.date, maximo: int = 3,
                               f"reserva runtime de {reserva.get('owner')} hasta {reserva.get('vence')}"})
             continue
         revision = estado.get("proxima_revision") or item.get("proxima_revision")
-        if (_revision_por_evento(revision) and ident not in cambios_materiales and
+        espera_evento = _revision_por_evento(revision)
+        if (espera_evento and ident not in cambios_materiales and
                 not _evidencia_nueva_aplicable(estado, item)):
             excluidos.append({
                 "id": ident,
                 "razon": f"revisión condicionada a {revision}",
             })
             continue
-        proxima = _fecha(revision)
+        # EVENTO es una condición, no una fecha. Si una señal estructurada la
+        # reactiva, debe avanzar sin caer después en el parser ISO.
+        proxima = None if espera_evento else _fecha(revision)
         if (proxima and corte < proxima and ident not in nombradas and
                 ident not in cambios_materiales and
                 not _evidencia_nueva_aplicable(estado, item)):
