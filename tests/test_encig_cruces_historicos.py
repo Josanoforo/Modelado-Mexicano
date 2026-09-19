@@ -57,7 +57,7 @@ class CrucesHistoricosTest(unittest.TestCase):
             self.assertFalse(any("2025" in result_id for result_id in ids))
 
     def test_guardia_rechaza_payload_2025_y_alias_no_autorizado(self):
-        contract = {"guardia": {"allowlist_payloads": ["encig2021_csv"]}}
+        contract = {"parametros": {"payload_id": "encig2021_csv"}}
         with self.assertRaisesRegex(RuntimeError, "GUARDIA-ENCIG2025"):
             M._guard_inputs({"encig25_base_datos_csv": {}}, contract)
         with self.assertRaisesRegex(RuntimeError, "GUARDIA-ALLOWLIST"):

@@ -41,7 +41,7 @@ def _guard_inputs(inputs: dict, contract: dict) -> None:
     names = [str(name).lower() for name in inputs]
     if any(token in name for name in names for token in forbidden):
         raise RuntimeError("GUARDIA-ENCIG2025: insumo prohibido")
-    permitted = set(contract["guardia"]["allowlist_payloads"])
+    permitted = {str(contract["parametros"]["payload_id"])}
     payloads = {name for name in inputs if name != "pisos_encig2023_resultados"}
     if payloads != permitted:
         raise RuntimeError(f"GUARDIA-ALLOWLIST: {sorted(payloads)} != {sorted(permitted)}")
@@ -122,8 +122,8 @@ def _people_counts(frame: pd.DataFrame) -> tuple[int, int, int, int]:
 
 
 def _load_wave(inputs: dict, contract: dict) -> tuple[pd.DataFrame, dict]:
-    wave = str(contract["ola"])
-    payload_id = str(contract["payload_id"])
+    wave = str(contract["parametros"]["ola"])
+    payload_id = str(contract["parametros"]["payload_id"])
     archive = inputs[payload_id]["ruta_absoluta"]
     events = _member_csv(archive, f"encig{wave}_04_sec_7.csv",
         ["N_TRA", "P7_3", "FAC_TRA", "EST_DIS", "UPM_DIS", "ID_PER"])
@@ -200,10 +200,10 @@ def _prefix(wave: str) -> str:
     return f"RESULT-ENCIG{wave}-CRUCES-HISTORICOS"
 
 
-def _selection_2023(outputs: dict, prefix: str) -> None:
+def _selection_2023(outputs: dict, prefix: str, calc_id: str = "CALC-ENCIG2023-CRUCES-HISTORICOS-0001") -> None:
     states = [outputs[f"{prefix}-{cross}-COHERENCIA"] for cross, _, _ in CROSSES]
     candidates = [cross for cross, _, _ in CROSSES if outputs[f"{prefix}-{cross}-ELEGIBLE"] == "SI"]
-    outputs[f"{prefix}-SELECCION-CALCS-CONSUMIDOS"] = "CALC-ENCIG2023-CRUCES-HISTORICOS-0001"
+    outputs[f"{prefix}-SELECCION-CALCS-CONSUMIDOS"] = calc_id
     outputs[f"{prefix}-SELECCION-CANDIDATOS"] = ",".join(candidates)
     if any(state != "COHERENTE" for state in states):
         outputs[f"{prefix}-SELECCION-RESULTADO"] = "SELECCION-PENDIENTE-DE-DEFINICION"
@@ -309,7 +309,7 @@ def seleccionar(resultados_2023: dict, resultados_2021: dict | None,
 
 def medir(inputs: dict, contrato: dict) -> dict:
     _guard_inputs(inputs, contrato)
-    wave = str(contrato["ola"])
+    wave = str(contrato["parametros"]["ola"])
     repetitions = int(contrato["parametros"]["bootstrap_replicas"])
     seed = int(contrato["seed"]["valor"])
     frame, diagnostics = _load_wave(inputs, contrato)
@@ -388,7 +388,7 @@ def medir(inputs: dict, contrato: dict) -> dict:
                        "EDAD": {"18-29": "18-29", "30-44": "30-44", "45-59": "45-59", "60-96": "60-MAS"},
                        "ESCOLARIDAD": {"HASTA-PRIMARIA": "HASTA-PRIMARIA", "SECUNDARIA": "SECUNDARIA",
                                         "MEDIA-SUPERIOR": "MEDIA-SUPERIOR", "SUPERIOR": "SUPERIOR"}}
-            tolerance = float(contrato["tolerancia"]["abs"])
+            tolerance = float(contrato["parametros"]["tolerancia_abs"])
             for axis in (axis_a, axis_b):
                 for category in AXES[axis]:
                     chosen = frame.loc[frame[axis].eq(category)]
@@ -418,7 +418,7 @@ def medir(inputs: dict, contrato: dict) -> dict:
         outputs[base + "-PUNTAJE"] = float(np.mean(ratios)) if ratios else None
 
     if wave == "2023":
-        _selection_2023(outputs, prefix)
+        _selection_2023(outputs, prefix, str(contrato["parametros"]["calc_id"]))
     return outputs
 
 
