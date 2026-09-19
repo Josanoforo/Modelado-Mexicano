@@ -1,0 +1,33 @@
+calc_id: CALC-PISOS-ENVIPE2024-EJES-0001
+spec_md: ../../../forense/prereg-caja/PISOS-ENVIPE2024-ejes-spec-v1_0.md
+spec_md_sha256: 67b10c7b0603a56eefc0fc0c93b78b2bda7bf5039d7dc6a7c65f0b55c0a969f8
+script: data/corrida0/CALC-PISOS-ENVIPE2024-EJES-0001/medidor.py
+etiquetas: {generacion: GEN2, tipo: PISO-PERSISTENCIA-POR-EJE, cuenta_gen2: SI}
+inputs:
+  - {id: envipe2024_csv, origen: manifiesto}
+variables:
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: BP1_20, rol: desenlace-y-universo}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: BP1_23, rol: componente-desenlace-evasion}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: BP2_1, rol: cobertura-seguro}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: BPCOD, rol: clase-delito}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: FAC_DEL, rol: ponderador}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: EST_DIS, rol: estrato}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: UPM_DIS, rol: upm}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: ID_PER, rol: llave-persona}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: SEXO, rol: eje-sexo}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: EDAD, rol: eje-edad}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2024.csv, variable: DOMINIO, rol: eje-dominio}
+  - {archivo: conjunto_de_datos_tsdem_envipe2024.csv, variable: ID_PER, rol: llave-persona}
+  - {archivo: conjunto_de_datos_tsdem_envipe2024.csv, variable: NIV, rol: eje-escolaridad-proxy}
+universo: "Delitos BP1_20 in {1,2}; el subuniverso seguro exige la clase y capa acreditadas."
+filtros: "FAC_DEL > 0; estrato y UPM presentes; las categorías vacías no se imputan."
+ponderador: FAC_DEL
+transformacion: "Evasión: BP1_20=2 y BP1_23 en {04,05,06,08}; sin imputación."
+estimando: "p_2024(desenlace | categoría), proporción ponderada [0,1]."
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+parametros: {bootstrap_replicas: 10000, metodo_ic: "bootstrap UPM estratificado; percentiles 2.5/97.5"}
+dependencias_materiales: [numpy, pandas]
+resultados:
+  - {id: RESULT-PISOS-ENVIPE2024-EVASION-TABLA, tipo: texto, unidad: "JSON: estimaciones e IC95 por sexo, edad, escolaridad proxy y dominio"}
+  - {id: RESULT-PISOS-ENVIPE2024-EVASION-N-UNIVERSO, tipo: entero, unidad: "filas de delito en el universo declarado"}
+tolerancia: {tipo: flotante, abs: 1.0e-10}
