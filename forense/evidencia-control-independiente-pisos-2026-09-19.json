@@ -1,0 +1,39 @@
+{
+  "controles": [
+    {
+      "calc_id": "CALC-PISOS-ENVIPE2024-EJES-0002",
+      "result_id": "RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-P",
+      "recalculado": 0.5625367389479309,
+      "sellado": 0.5625367389479309,
+      "delta_absoluta": 0,
+      "veredicto": "COINCIDE"
+    },
+    {
+      "calc_id": "CALC-PISOS-ENCIG2023-EJES-0002",
+      "result_id": "RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-P",
+      "recalculado": 0.5780492513486944,
+      "sellado": 0.5780492513486944,
+      "delta_absoluta": 0,
+      "veredicto": "COINCIDE"
+    },
+    {
+      "calc_id": "CALC-PISOS-ENIF2021-EJES-0003",
+      "result_id": "RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-P",
+      "recalculado": 0.35864758613030456,
+      "sellado": 0.35864758613030456,
+      "delta_absoluta": 0,
+      "veredicto": "COINCIDE"
+    },
+    {
+      "calc_id": "CALC-PISOS-ENIF2021-EJES-0003",
+      "result_id": "RESULT-PISOS-ENIF2021-V2-INFORMAL-CUALQUIERA-SEXO-1-P",
+      "recalculado": 0.5250405072443105,
+      "sellado": 0.5250405072443105,
+      "delta_absoluta": 0,
+      "veredicto": "COINCIDE"
+    }
+  ],
+  "fecha": "2026-09-19",
+  "metodo": "recalculo independiente desde ZIP crudo; no importa medidores",
+  "tolerancia_absoluta": 1e-12
+}

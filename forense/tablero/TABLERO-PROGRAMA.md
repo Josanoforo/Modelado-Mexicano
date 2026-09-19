@@ -1,11 +1,11 @@
 <!-- TABLERO-DERIVADO:BEGIN -->
 ## Estado vivo derivado
 
-- **Procedencia.** SHA `a525b02` · fecha del commit `2026-09-19` · ¿árbol == origin/main? `False`.
+- **Procedencia.** SHA `9ad9c50` · fecha del commit `2026-09-19` · ¿árbol == origin/main? `False`.
 - **Motor.** reglas totales `22` · reglas con dato (>=1 conducta MEDIDO*) `21` · reglas sin dato `1` · conductas MEDIDO* `45` · tiers `{'FUERTE': 20, 'MEDIA': 2}`.
 - **Corredor.** marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
 - **Corpus lógico.** entradas del manifiesto `1628` · filas de registro de curación `154` · filas de relaciones `231` · filas del inventario de reactivos v1.2 `178247`.
-- **Gobernanza operativa.** ADR máximo `543` · FP máximo `385` · FP abiertas: (ninguna) · encargos archivados `544` (consumidos `500`) · cola de encargos:
+- **Gobernanza operativa.** ADR máximo `545` · FP máximo `387` · FP abiertas: FP-387 · encargos archivados `545` (consumidos `501`) · cola de encargos:
   - `2026-08-31-MAESTRA33-B2-MARCO-M-SORTEA-v1_1.md`: CONSUMIDO
   - `2026-09-01-MAESTRA34-L2-ARBITRA-v1_2.md`: CONSUMIDO
   - `2026-09-01-MAESTRA34-N2-MARCO-M-v1_2.md`: CONSUMIDO
@@ -70,8 +70,8 @@
   - `2026-09-12-GEN2-POST-741/00-LEEME-PARALELOS-41-43.md`: GATED
   - `2026-09-12-GEN2-POST-741/41-GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO.md`: GATED
   - `2026-09-12-GEN2-POST-741/43-GEN2-SHED-BNPL-DANO-Y-UNIVERSOS.md`: GATED
-- **GEN2 (derivado de `corrida0 status`).** corridas selladas `82` / requeridas `83` · resultados sellados `5006` / activos `208` · pendientes `208` · dependencias numéricas legacy activas `184` · validación independiente `215` · diferencias materiales `0` · NC- abiertas `109` · replays LEGACY-GEN1 sellados `5` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
-- **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** sellados `4405` · pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) `12` · vetados por decisión vigente (sellados, pero una firma prohíbe adoptarlos: no son cola) `2` · adoptados por un consumidor activo `24`. Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: solo el consumidor activo que lo adopta la baja.
+- **GEN2 (derivado de `corrida0 status`).** corridas selladas `86` / requeridas `86` · resultados sellados `5014` / activos `210` · pendientes `210` · dependencias numéricas legacy activas `186` · validación independiente `215` · diferencias materiales `0` · NC- abiertas `97` · replays LEGACY-GEN1 sellados `5` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
+- **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** sellados `4413` · pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) `12` · vetados por decisión vigente (sellados, pero una firma prohíbe adoptarlos: no son cola) `2` · adoptados por un consumidor activo `24`. Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: solo el consumidor activo que lo adopta la baja.
 - **Fuentes.** `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, `forense/prereg-duelo-v2/` (marcos y corridas M/R/L), `data/manifiesto.yaml`, `data/curacion-registro/cola-adquisicion-registro.tsv`, `data/curacion-registro/relaciones.tsv`, `data/inventario-reactivos-v1_2.tsv`, `canon/gobernanza-v1_15.md`, `forense/firmas-pendientes.tsv`, `forense/encargos/*.md`, `forense/encargos/cola/*.md`.
 
 **Protocolo vigente.** La actualización factual de este bloque se hace con:
@@ -94,7 +94,7 @@ El humano solo actualiza la interpretación (las tablas curadas §2.1-2.5 y la n
 
 **Este tablero se reconstruyó desde cero para Gen 2.** No traza el origen de los datos de Gen 1 y no lo hará: por E.1 esos valores son historia, no autoridad, y auditarlos hacia atrás sería exactamente el trabajo que la generación nueva existe para no repetir. Lo de Gen 1 que sobrevive aquí está en el **Anexo**, en dos párrafos, como comentario y no como fuente. Los siete contadores que gobernaron los snapshots v1.0 a v1.7 **ya no son la señal** y no vuelven a aparecer.
 
-> Vista derivada, no canon. Instrucciones vigentes **v2.13**. El bloque de arriba lo escribe `tools/tablero_programa.py --actualiza` y describe el árbol clásico; **la señal de Gen 2 es la de §2**, derivada de `tools/corrida0.py status` (E.4: la dice el mecanismo, nunca una persona).
+> Vista derivada, no canon. Instrucciones vigentes **v2.14** (actualizado 19/sep/2026, `ACTO GEN2-RECIBO-CODEX-3`, P7: `ls instrucciones-proyecto-v2_*.md` → máxima `v2_14`; `ADR-544` sella el lado repo, con reserva de A.9 sobre el lado proyecto — ver enmienda en `canon/gobernanza-v1_15.md`). El bloque de arriba lo escribe `tools/tablero_programa.py --actualiza` y describe el árbol clásico; **la señal de Gen 2 es la de §2**, derivada de `tools/corrida0.py status` (E.4: la dice el mecanismo, nunca una persona).
 
 **Estampa de universo (A.10).** Clon nuevo, de cero. `origin/main = HEAD = d48014ed`, árbol limpio. Firma de entorno (A.2), tres partes: `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` = **`sin_variable`** · `inegi.org.mx` → **403** · `data/raw` → **AUSENTE**. **Tercera parte no cumplida: sin corpus** — ninguna corrida GEN2 es ejecutable desde aquí y ningún hash se re-mide (A.1). Espejo del proyecto: no leído. Universo: el árbol de `d48014ed` salvo `.git` y `data/raw`.
 
@@ -164,7 +164,7 @@ El humano solo actualiza la interpretación (las tablas curadas §2.1-2.5 y la n
 | `entorno.py` · `limpia_arbol.py` · `cierre_acto.py` | en el árbol |
 | `forense/no-corrido.tsv` + plantilla de PR (A.14) | en el árbol, 43 filas |
 | Plan CORRIDA-0 | **Plan vigente: `PLAN-DE-OBRA-GEN2 v1.1` (sellado por merge del PR #652 · `forense/notas/PLAN-DE-OBRA-GEN2-v1_1-2026-09-09.md`)** — corrige NC-0083 (ACTO GEN2-OPERACION-1, 9/sep/2026): esta fila citaba `forense/notas/PLAN-FINAL-GEN2-v2_0-2026-09-07.md` **con `.sha256`**, anterior al PR #652; se cita por firma concreta, no por "versión más alta" |
-| Instrucciones v2.13 | en el árbol |
+| Instrucciones v2.14 | en el árbol (actualizado 19/sep/2026, `ACTO GEN2-RECIBO-CODEX-3`; `instrucciones-proyecto-v2_13.md` retirada por T01) |
 | suite | **3 FAIL · 203 WARN · LÍNEA BASE VERDE** (`dee5fc5`) |
 | **los seis checks del GO (E.5)** | **NO-DERIVABLE** — `preflight` responde por `calc_id`; no hay artefacto que los reporte juntos. Universo: `grep` de los seis nombres sobre el plan, `ls` de `forense/notas/*READINESS*` y `*GO*` |
 

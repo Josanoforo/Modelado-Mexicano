@@ -4,14 +4,14 @@ Fecha: 19/sep/2026. Este documento es antecedente técnico, no adopción.
 
 ## Pisos corregidos
 
-El carril A es dueño de publicar los sucesores de los pisos y su mapa técnico. Mientras no esté fusionado, su SHA y las identidades finales son **PENDIENTES DE INTEGRACIÓN**; no se sustituyen con los cuatro originales de #866. Esos cuatro originales quedan vetados de forma exacta:
+El carril A quedó fusionado como PR #871: HEAD técnico `ef0bdcc660e453bba137c39614abd174e0b354e7`, incorporado en `main` por `b061060`. El mapa íntegro es `forense/pisos-rejilla-entrega.tsv` (SHA-256 `93191b9642a54b2822b357b1fc84313500990dc26058ca72f0212643f526f4c3`). Publica ENVIPE `0002`, ENCIG `0002` y ENIF `0003`: 53/57 identidades construidas y cuatro ENIF formalidad dictaminadas `NO-CONSTRUIBLE`. No sustituyen por identidad ni adoptan automáticamente los cuatro originales de #866, que quedan vetados de forma exacta:
 
 - `CALC-PISOS-ENCIG2023-EJES-0001`
 - `CALC-PISOS-ENCIG2023-EJES-0001-v1_1`
 - `CALC-PISOS-ENIF2021-EJES-0001`
 - `CALC-PISOS-ENVIPE2024-EJES-0001`
 
-El veto no se hereda a sucesores. La relación técnica sucesora tampoco decide el contador: `FP-386` conserva pendiente si el ENCIG original pasa a `SUPERADO`, deja `cuenta_gen2=SI` o cambia clasificación. Acceso y evidencia se separan: ENCRIGE/ENSANUT pueden seguir `NO-VERIFICABLE` aunque su asiento exista.
+El veto no se hereda a sucesores. La relación técnica sucesora tampoco decide el contador: `FP-387` conserva pendiente aunque el ENCIG original ya figure `SUPERADO→`; los tres sucesores quedan `cuenta_gen2=PENDIENTE-DE-MESA`. Acceso y evidencia se separan, pero #871 restableció el acceso y dejó ENCRIGE `REPRODUCE/IDENTICO` con 15/15 RESULT y 3/3 inputs coincidentes.
 
 ## Veinte C2 y NC-0313
 
@@ -31,6 +31,6 @@ PR #868 está abierto en `9e9e89225f0d986cf51b955940ebee7526809f1b` y reporta un
 - respetar estados del crosswalk: `EQUIVALENTE`, `MAPEO-N-A-1`, `NO-EQUIVALENTE`, `SIN-CORRESPONDENCIA`;
 - mantener las reservas consumidas sin volver a derivarlas;
 - resolver `NC-0300` (lado emisor) y los alcances aún abiertos de NC-0024/0076/0239;
-- comprobar el mapa final de pisos sucesores y la reserva de contador tras el merge de A.
+- resolver `FP-387`, la reserva de contador de los sucesores ya publicados.
 
 No se sella informe v1.1 hasta que el marcador y sus consumidores efectivos existan en `main`.
