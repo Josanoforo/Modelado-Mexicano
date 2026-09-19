@@ -297,7 +297,7 @@ def medir(inputs: dict, contrato: dict) -> dict:
         _write(f"{ANALYSIS}/{filename}", payload)
         digests[filename] = _sha(payload)
     controls_raw = (json.dumps({"calc_id": CALC_ID, **metadata, **outputs[7]}, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode()
-    _write(f"{ANALYSIS}/controles-medidor-issp2017-redes-apoyo-cotidiano.json", controls_raw)
+    _write(f"{ANALYSIS}/controles-medidor.json", controls_raw)
     results = {
         "RESULT-ISSP-REDES-G-N-MEXICO": len(mx),
         "RESULT-ISSP-REDES-G-PRECISION": PRECISION,
