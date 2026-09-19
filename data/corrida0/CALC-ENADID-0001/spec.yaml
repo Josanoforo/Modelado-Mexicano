@@ -1,0 +1,95 @@
+calc_id: CALC-ENADID-0001
+spec_md: spec.md
+spec_md_sha256: 7ea5f7636a1c656926e66b8218438d9494c1696fa29ae45561df63a0ead73fef
+script: data/corrida0/CALC-ENADID-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: MEDICION-DESCRIPTIVA-ENCUESTA-CON-DISENO
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: CONTROL-SEPARADO-POST-SELLO
+  spec_sellada: forense/prereg-caja/ENADID-UNION-ACTUAL-spec-v1_0.md
+  spec_sellada_sha256: 505643958b28952e64969af457fe31d264a182d5bc7bef154f85ddaf57b6ca4a
+  demanda_que_releva: >-
+    Sucesora autorizada por F-10/NC-0194 para RES-0043/0044. Mide ENADID
+    2023 situacion conyugal actual; no releva por identidad automatica el
+    CALC-EDER-0003 de tipo de primera union.
+  uso_motor: PROPUESTA-DE-CORRESPONDENCIA;NO-ADOPTADO
+  medidor_ejecutado_al_congelar: NO
+
+inputs:
+  - {id: enadid2023_base_datos_csv, origen: manifiesto}
+  - {id: enadid2023_fd_xlsx, origen: manifiesto}
+  - {id: enadid2023_hogar_cuestionario_pdf, origen: manifiesto}
+
+payloads:
+  - {id: enadid2023_base_datos_csv, archivo: base_datos_enadid23_csv.zip, sha256: 995d448ab298251d441e437fc4a368f84879a8b74fa7bc103dc189434cbfaa18, miembros_usados: TSDEM.csv, rol: MEDICION}
+  - {id: enadid2023_fd_xlsx, archivo: fd_enadid23.xlsx, sha256: d56582b7ace04e2c13a1b9ea22aeea458d7b9cc02a21241e5fda29fe12b4f34c, rol: CODIGOS-Y-DISENO}
+  - {id: enadid2023_hogar_cuestionario_pdf, archivo: hogar_enadid23.pdf, sha256: 8b046a68dc19e292522557e05d81952e8fb04c2d3a1375c93fa7192e857e3270, rol: TEXTO-Y-UNIVERSO-DOCUMENTAL}
+
+variables:
+  - {archivo: TSDEM.csv, variable: llave_per, rol: "llave unica de persona; el lector normaliza el header fisico LLAVE_PER a mayusculas", codigos: cadena opaca}
+  - {archivo: TSDEM.csv, variable: EDAD, rol: edad y dominios, codigos: "000;001..109;120;999=no especificada"}
+  - {archivo: TSDEM.csv, variable: p3_27, rol: "situacion conyugal actual; el lector normaliza el header fisico P3_27 a mayusculas", codigos: "1 union libre;2 separada de union libre;3 separada de matrimonio;4 divorciada;5 viuda;6 casada;7 soltera"}
+  - {archivo: TSDEM.csv, variable: FAC_VIV, rol: factor de expansion de residentes en TSDEM, codigos: numerico positivo}
+  - {archivo: TSDEM.csv, variable: EST_DIS, rol: estrato de diseno, codigos: "001..659; no ESTRATO"}
+  - {archivo: TSDEM.csv, variable: UPM_DIS, rol: UPM de diseno, codigos: "00001..15220; no UPM"}
+
+universo: >-
+  Personas residentes de 15 anos y mas en TSDEM. El reactivo se aplica desde
+  12 anos; 15+ es un recorte analitico explicito. Total 15+ y dominios
+  exhaustivos 15-17, 18-29, 30-44, 45-59 y 60+.
+filtros: >-
+  Distribucion: P3_27 en 1..7. Condicional: P3_27 en {1,6}. Edad 999/no
+  numerica, situacion fuera de catalogo y FAC_VIV no finito/no positivo se
+  cuentan por separado; nunca son no. Llave duplicada aborta.
+ponderador: >-
+  FAC_VIV de TSDEM; el FD no publica FAC_PER en esta tabla. Razon de totales,
+  sin normalizar.
+transformacion: >-
+  Siete indicadores documentales y dos indicadores condicionales. P3_27_AG
+  no se usa. Union libre bruta y union libre entre casada/union conservan
+  denominadores separados. Actualmente casada se cuenta directamente.
+estimando: >-
+  Descriptivo transversal de situacion conyugal actual. No es tipo de primera
+  union y no identifica el mecanismo baja garantia institucional.
+precision: >-
+  Taylor WR de razon por UPM_DIS dentro de EST_DIS sobre muestra completa;
+  IC95 logit-t, gl=sum_h(m_h-1), singleton con aporte medio de estratos no
+  singleton y sin gl propio, sin FPC. Diseno
+  faltante, frontera o gl nulos dejan precision no disponible con causa.
+
+dependencias_materiales: [pandas, scipy]
+seed: {aplica: false, valor: null, rng: NO-APLICA}
+tolerancia:
+  tipo: flotante
+  abs: 5.0e-12
+  razon: calculo determinista y serializacion a doce decimales
+
+parametros:
+  fuente_acto: ACTO GEN2-ENADID-UNION-ACTUAL-CLI-1
+  congelacion: PROSPECTIVA-NO-CIEGA
+  categorias_documentales: 7
+  dominios_edad: ["15_17", "18_29", "30_44", "45_59", "60_mas", "15_mas"]
+  intervalo: LOGIT-T-95-BILATERAL
+  dominio: MUESTRA-COMPLETA
+  singleton: APORTE-PROMEDIO-DE-ESTRATOS-NO-SINGLETON
+  fpc: NO-APLICADA-NO-ACREDITADA
+  output_tabla: forense/analisis/enadid-union-actual-cli-1/resultados.csv
+  output_auditoria: forense/analisis/enadid-union-actual-cli-1/auditoria.json
+  adopcion: NINGUNA
+
+resultados:
+  - {id: RESULT-ENADID-UA-G-P-BRUTA, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-ENADID-UA-G-P-CONDICIONAL, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-ENADID-UA-G-P-CASADA-CONDICIONAL, tipo: proporcion, unidad: proporcion ponderada}
+  - {id: RESULT-ENADID-UA-G-N-VALIDO-BRUTA, tipo: entero, unidad: personas muestrales}
+  - {id: RESULT-ENADID-UA-G-N-VALIDO-CONDICIONAL, tipo: entero, unidad: personas muestrales}
+  - {id: RESULT-ENADID-UA-G-TABLA-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENADID-UA-G-LLAVE-UNICA, tipo: texto, unidad: guardia}
+  - {id: RESULT-ENADID-UA-G-PERDIDA-ENLACE-N, tipo: entero, unidad: personas muestrales}
+  - {id: RESULT-ENADID-UA-G-PESO-INVALIDO-N, tipo: entero, unidad: personas muestrales}
+  - {id: RESULT-ENADID-UA-G-EDAD-NE-N, tipo: entero, unidad: personas muestrales}
+  - {id: RESULT-ENADID-UA-G-SITUACION-NE-N, tipo: entero, unidad: personas muestrales}
+  - {id: RESULT-ENADID-UA-G-FPC, tipo: texto, unidad: metodo}
+  - {id: RESULT-ENADID-UA-G-SALIDA, tipo: texto, unidad: ruta relativa}

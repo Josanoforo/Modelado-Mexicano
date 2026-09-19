@@ -12,7 +12,7 @@
 > | **VERIFICAS ASÍ** | §0 lista `modelo` en **v4.0** (sin cambio) · §0–§12 y las anotaciones L0 se preservan; §13 incorpora el cierre de 14–17/sep sin convertir decisión de piso en consumo activo. |
 > | **NOMBRE ESTABLE** | **`estado`** — cítalo así, **nunca por nombre de archivo** |
 
-*Enmienda L0 (19/sep/2026, posterior a #871): `ADR-545` conserva el recibo histórico y suma el producto integrado. #871 publica ENVIPE `0002`, ENCIG `0002` y ENIF `0003`, tres sucesores `SELLADA`/`REPRODUCE`/`IDENTICO`, 53/57 identidades construidas y cuatro `NO-CONSTRUIBLE`; los cuatro originales quedan `SUPERADO→` y vetados, sin heredar el veto. La proyección de registro tiene cero transiciones de replay y pasa el guardia con lote vacío. Cierran por producto `NC-0284`, `NC-0287`, `NC-0333`, `NC-0334` y `NC-0336`; siguen `NC-0285` por archivo y `NC-0335` por decisión de mesa. `FP-386` cierra porque el encargo integrado autorizó expresamente corregir §13 sin reautorización; `FP-387` conserva la pregunta distinta sobre sucesión/contador ENCIG. Estado derivado: 211 corridas, 7,256 resultados, 208 usos; `status` mantiene 86 corridas GEN2 selladas y 5,014 resultados sellados. Contador científico atribuido a este recibo: cero.*
+*Enmienda L0 (19/sep/2026, posterior a #871, #874 y #869): `ADR-545` conserva el recibo histórico y suma el producto integrado. #871/#874 publican ENVIPE `0002`, ENCIG `0002` y ENIF `0003`, tres sucesores `SELLADA`/`REPRODUCE`/`IDENTICO`, 53/57 identidades construidas y cuatro `NO-CONSTRUIBLE`; los cuatro originales quedan `SUPERADO→` y vetados, sin heredar el veto. #869 añade `CALC-ENADID-0001`, oferta sellada para el sucesor nombrado de RES-0043/0044, sin decidir su consumo. La proyección de registro tiene cero transiciones de replay y pasa el guardia con lote vacío. Cierran por producto `NC-0284`, `NC-0287`, `NC-0333`, `NC-0334` y `NC-0336`; siguen `NC-0285` por archivo y `NC-0335` por decisión de mesa. `FP-386` cierra porque el encargo integrado autorizó expresamente corregir §13 sin reautorización; `FP-387` conserva la pregunta distinta sobre sucesión/contador ENCIG. Estado derivado: 215 corridas, 7,271 resultados, 210 usos; `status` da 85 corridas GEN2 selladas y 5,012 resultados sellados. Contador científico atribuido a este recibo: cero.*
 
 *Anotación L0 (19/sep/2026): `ADR-545`, `ACTO GEN2-RECIBO-CODEX-3` — NUBE `cloud_default`, Sonnet 5, sin corpus montado, cero microdato, cero red de datos. Recibo de `#866` (`GEN2-REPLAY-Y-PISOS-CLI-1`): cuatro `CALC-PISOS-*` sellados (spec 10:33, medidor 10:43); `status` 82→86 selladas, sellos físicos y filas de la vista se mueven igual (+4), sin discrepancia. Siete `NC` de replay procesadas una por una: `NC-0315`/`0286`/`0288`/`0329` **CIERRAN** (asientos `REPRODUCE` en CAJA); `NC-0284` sigue abierta (`NO-VERIFICABLE` incluso en CAJA, raíces no configuradas); `NC-0285` sigue abierta solo por su parte (2); `NC-0287` **NO CIERRA** — exige juicio de mesa, se para. `NC-0333` nueva: las 4 `CALC-PISOS-*` no tienen asiento en `replay-evidencia.tsv` (`E.7`). `D2`/`D3` **FIRMADAS**: veto a los cuatro `CALC-PISOS-*` hasta `GEN2-PISOS-REJILLA-CLI-1`; re-verificado que el veto no desadopta nada (`n_usos=0`, cero citas); `NC-0334` (marcar `SUPERADO→` exige tocar `spec.yaml`/`corridas.tsv`, fuera de perímetro). El brief `BRIEF-ASTRA-01-PISOS-REJILLA-2026-09-19.md` que P3 pedía re-verificar **no existe** en el repo ni llegó adjunto — `NC-0336`, `NO-CORRIDO`. Seis semillas `PARA-v2.15` sin instrumentar. Siete cierres de mesa del 17/sep que `TRÁMITE-5` nunca propagó: `NC-0274`/`0328`/`0227`/`0255`/`0256`/`0254` **CIERRAN** con el verbatim de mesa; `NC-0237` **NO CIERRA** (difiere a F6); `NC-0254` cierra la NC, no el slot (`relevo-usos-v1_0.tsv` derivado, sin comando de la casa). Recibo de la rama contrato `#865`: tres filas en `decisiones.tsv` (`FP-379`+enmienda D9, `FP-385`); `FP-386` nueva — §13 de `canon/estado-programa-v1_14.md` no es el pegado verbatim de `seccion-13.md` que `TRÁMITE-5` esperaba, catorce afirmaciones quitadas o cambiadas, se preguntan a mesa; `Dominio 10` nuevo en `INFRAESTRUCTURA-v1_0.md`; recibo de `#851`/`#852`/`#853`/`#855` (`#854` ya tenía `ADR-539`); `NC-0335` nueva (`DEM-AHORRO-STOCK-DURACION-01` sin disposición). Enmienda a `ADR-544`: A.9 cierra, lado proyecto completado, rige 19/sep/2026. Tablero **vigente** (`TABLERO-PROGRAMA.md`, no el `v1_1` superado) actualizado a v2.14. **Contador: cero mediciones**; `no_corrido_abiertas` 109→103 (10 `NC` cerradas, 4 nuevas). No adopta ni desadopta por cuenta propia, no corrige los pisos, no relanza `TRÁMITE-5`/`VOCABULARIO`/`REPLAY`/`PISOS`, no sella el informe v1.1.*
 *Anotación L0 (17/sep/2026): `ADR-543`, `ACTO GEN2-GUARDIAS-1` — NUBE `cloud_default`, Sonnet, sin corpus montado, cero microdato, cero red de datos. **Corrige cuatro guardias del motor contra el estado sellado, sin tocar ningún dato sellado.** `NC-0302`: `test_corte_pendiente_no_se_inventa` reescrito contra `ADR-537` — ya no asierta `edad = None` (falso desde que `ADR-537` selló los cuatro tramos), sino que ningún corte de `CORTES_C1` se inventa fuera de un sello citado. `NC-0309`: `test_a2_firma_contra_el_commit_de_sello` pasa de comparar la firma COMPLETA de roles a semántica **append-only** real — falla sólo si un id sellado cambia de rol o un id nuevo llega sin rol, no por el mero hecho de crecer. `NC-0330`: el literal `22`, roto desde que `M05` pasó a derivada, se reemplaza por comparación de conjuntos contra la lista de ids `NO-VERIFICADO` congelada al commit `18b9914`; `test_motor_ejecutable.py` verificado por archivo, sin literal equivalente. `NC-0331` **parcial**: `tests/test_celda_d_piloto2_consumidor.py` (10 casos, stdlib puro) se cablea como paso bloqueante de `verify.yml`; `tests/test_marginales_una_variable.py` (15 casos) **NO** se cablea — depende de `numpy`, ausente de `requirements.txt`, fuera del perímetro del encargo — queda `NC-0332` como sucesor. `tests/test_motor_holdout.py::test_c_roles_sellados_antes_que_todo_resultado` sigue en `FAIL`, pre-existente (`NC-0273`/`NC-0310`), no causado por este acto — verificado por diff que `canon/gobernanza-v1_15.md` no cambió antes de esta cascada. **Suite:** `python3 tests/check.py --baseline` → **3 FAIL · 5288 WARN**, LÍNEA BASE VERDE. **Contador: cero mediciones**; `NC-0302`/`0309`/`0330` `CERRADA`, `NC-0331` abre `NC-0332`. **Adopción al motor: cero.***
@@ -595,13 +595,13 @@ sellado/superado: no equivale ni a filas publicadas ni al total de sellos
 físicos.
 
 ```
-N_corridas_requeridas=83
-N_corridas_selladas=86
-N_resultados_activos=208
-N_resultados_sellados=5014
-N_resultados_pendientes=208
-dependencias_numericas_legacy_activas=184
-N_resultados_gen2_sellados=4413
+N_corridas_requeridas=86
+N_corridas_selladas=85
+N_resultados_activos=210
+N_resultados_sellados=5012
+N_resultados_pendientes=210
+dependencias_numericas_legacy_activas=186
+N_resultados_gen2_sellados=4411
 N_resultados_gen2_pendientes_adopcion=12
 N_resultados_gen2_vetados_por_decision=2
 N_resultados_gen2_adoptados_activos=24
@@ -612,12 +612,12 @@ replays_legacy_sellados=5
 corredores_envueltos_legacy=22
 ```
 
-En el árbol hay 128 directorios `CALC-*`, 122 con `sello.json`, y 128 filas
+En el árbol hay 129 directorios `CALC-*`, 123 con `sello.json`, y 129 filas
 de oferta publicadas en `corridas.tsv`. Son universos distintos: la foto
 histórica de 115 sellos no autoriza sumar `82+16`, y escribir una vista no
 demuestra por sí solo un cambio de `N_corridas_selladas`. #866 añadió 41
 asientos y #871 completó la fuente hasta 121, incluidos los tres sucesores de
-pisos. La proyección ordinaria de las 211 corridas arroja cero transiciones de
+pisos. La proyección ordinaria de las 215 corridas arroja cero transiciones de
 replay y pasa el guardia con lote vacío. Un veredicto impreso por `verify` sin asiento es media
 verificación.
 

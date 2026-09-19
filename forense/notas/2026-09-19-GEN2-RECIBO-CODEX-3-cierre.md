@@ -35,7 +35,7 @@ Los adjuntos disponibles se archivaron byte a byte en `forense/encargos/insumos-
 
 ## Replay y pisos
 
-La fuente integrada contiene 121 asientos: 99 `REPRODUCE/IDENTICO`, un DIN `NO-REPRODUCE/IDENTICO` y 21 estados históricos restantes. #871 restableció el acceso de ENCRIGE y ENSANUT y publicó tres asientos de pisos sucesores. La proyección ordinaria de 211 corridas arroja cero transiciones y `_para_si_pisa_replay(..., set())` pasa; por eso `NC-0315` queda demostrada con el guardia real. Un `verify` que imprime y no asienta sigue siendo media verificación.
+La fuente integrada contiene además el asiento `REPRODUCE/IDENTICO` de `CALC-ENADID-0001` fusionado por #869. #871 restableció el acceso de ENCRIGE y ENSANUT y publicó tres asientos de pisos sucesores. La proyección ordinaria de 215 corridas arroja cero transiciones y `_para_si_pisa_replay(..., set())` pasa; por eso `NC-0315` queda demostrada con el guardia real. Un `verify` que imprime y no asienta sigue siendo media verificación.
 
 Los cuatro pisos originales de #866 quedan preservados, vetados y `SUPERADO→`. #871 publicó tres sucesores distintos: ENVIPE `0002`, ENCIG `0002` y ENIF `0003`, todos `REPRODUCE/IDENTICO`, con 53/57 identidades construidas y cuatro ENIF dictaminadas `NO-CONSTRUIBLE`. Corrige persistencia/código real, cardinalidad, universos ENCIG, `BP1_20`, semántica documental de `P5_6` y salida numérica por celda. Los sucesores no heredan el veto ni quedan adoptados; su contador sigue `PENDIENTE-DE-MESA`.
 

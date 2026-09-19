@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "identity_fields": [
+    "cell_id",
+    "input_id",
+    "outcome",
+    "source_instrument",
+    "source_edition",
+    "source_reference_period",
+    "target_instrument",
+    "target_edition",
+    "target_reference_period",
+    "unit",
+    "axis",
+    "category",
+    "status",
+    "reason",
+    "consumer",
+    "metadata_source",
+    "metadata_source_sha256"
+  ],
+  "snapshot_rows": 57,
+  "delivery_rows": 57,
+  "identity_sha256": "b3389121df71d4da24786664871bbab98b9390477efb20cb2b8faa2fcad08d9a",
+  "delivery_identity_sha256": "b3389121df71d4da24786664871bbab98b9390477efb20cb2b8faa2fcad08d9a",
+  "exact_match": true,
+  "result_count": 53,
+  "dictamen_count": 4,
+  "units": [
+    "DELITO",
+    "PERSONA ELEGIDA 18+",
+    "TRAMITE"
+  ],
+  "outcomes": [
+    "ahorra_solo_informal",
+    "denuncia",
+    "digital",
+    "evasion",
+    "informal_cualquiera"
+  ]
+}
