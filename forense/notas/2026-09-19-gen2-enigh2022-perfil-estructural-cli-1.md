@@ -44,6 +44,8 @@ Dirección puede usar las marginales para conocer la masa observada de cada cate
 
 El congelamiento inicial fue `8f614f7`. `0001` falló antes de abrir respuestas por el cableado del descriptor de input; `0002` lo sucedió y falló, también antes de abrir respuestas, por la representación mojibake del BOM de la cabecera. Ambos intentos permanecen intactos y sin resultados publicados. `0003`, congelado en `b26ad24`, es el primer procedimiento que abrió respuestas y produjo resultados. Su sello es `b2aaa04402de50705f7a516e784fb8bc4b70b914dbdb6ebdfb2abecec6222654`.
 
+El replay dirigido posterior a la publicación reprodujo 32/32 RESULT y 3/3 inputs con `CONTEXTO=IDENTICO`. El asiento está en `forense/replay-evidencia.tsv` y su evidencia compacta en `evidencia-replay-dirigido.json`. `corrida0 registro --escribe --lote CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003` publicó una medición sellada y sus 32 RESULT; registró además los dos predecesores como superados, sin crear un uso activo para esta oferta. Una segunda proyección dejó sin diferencias las tres vistas canónicas.
+
 ## Recibo Claude requerido (sin asignar FP/ADR/NC)
 
 - Decidir si la oferta se enlaza como antecedente descriptivo de `CORR-0076` sin cerrar `RES-0165`–`RES-0170`.
@@ -66,4 +68,3 @@ El congelamiento inicial fue `8f614f7`. `0001` falló antes de abrir respuestas 
 - Descripción de la base ENIGH 2022, SHA-256 `7b0c4e6bd36ceb9eae7cc852fce5a38dbcf4f2da6b133d35df6b1443fc76836c`.
 - Nota técnica ENIGH 2022, SHA-256 `4f79f457d69c1f066d7fd319b1650f7b631f4008cb74e1046e6c644c65be0647`.
 - Corpus local montado en CAJA; no se versionaron microdatos ni rutas privadas.
-
