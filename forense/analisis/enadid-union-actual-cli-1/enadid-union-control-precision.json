@@ -1,0 +1,286 @@
+{
+  "auditoria_unidad_soporte": {
+    "diseno_faltante_15_mas_n": 0,
+    "diseno_faltante_total_n": 0,
+    "edad_conocida_15_mas_n": 276849,
+    "edad_conocida_menor_15_n": 82015,
+    "edad_no_especificada_n": 154,
+    "filas": 359018,
+    "fuera_denominador_condicional_15_mas_n": 124015,
+    "llaves_duplicadas": 0,
+    "llaves_unicas": 359018,
+    "peso_invalido_n": 0,
+    "situacion_codigos_15_mas": {
+      "1": 52664,
+      "2": 11533,
+      "3": 8245,
+      "4": 6691,
+      "5": 17234,
+      "6": 100170,
+      "7": 80312
+    },
+    "situacion_fuera_catalogo_total_n": 62689,
+    "situacion_invalida_15_mas_n": 0
+  },
+  "checks": [
+    {
+      "deltas": {
+        "ee": 2.83176693899323e-13,
+        "ic95_hi": 1.1875916916537221e-13,
+        "ic95_lo": 4.223843497186408e-13,
+        "punto": 1.294866991408128e-13
+      },
+      "df_control": 14555,
+      "df_publicado": 14555,
+      "diseno_faltante_dominio_n": 0,
+      "edad": "15_17",
+      "estratos_control": 659,
+      "n_control": 18709,
+      "n_publicado": 18709,
+      "ok": true,
+      "producto": "bruto_total_elegible",
+      "singleton_control": 56,
+      "upm_control": 15214
+    },
+    {
+      "deltas": {
+        "ee": 3.3205035943062455e-13,
+        "ic95_hi": 4.791722574282176e-13,
+        "ic95_lo": 4.96269692007445e-14,
+        "punto": 2.339239912885205e-13
+      },
+      "df_control": 14555,
+      "df_publicado": 14555,
+      "diseno_faltante_dominio_n": 0,
+      "edad": "15_17",
+      "estratos_control": 659,
+      "n_control": 694,
+      "n_publicado": 694,
+      "ok": true,
+      "producto": "condicional_union_actual",
+      "singleton_control": 56,
+      "upm_control": 15214
+    },
+    {
+      "deltas": {
+        "ee": 2.1887266304920772e-13,
+        "ic95_hi": 1.9961809982760315e-13,
+        "ic95_lo": 1.160460616489445e-13,
+        "punto": 1.9964585540321877e-13
+      },
+      "df_control": 14555,
+      "df_publicado": 14555,
+      "diseno_faltante_dominio_n": 0,
+      "edad": "18_29",
+      "estratos_control": 659,
+      "n_control": 65507,
+      "n_publicado": 65507,
+      "ok": true,
+      "producto": "bruto_total_elegible",
+      "singleton_control": 56,
+      "upm_control": 15214
+    },
+    {
+      "deltas": {
+        "ee": 7.274042479465948e-14,
+        "ic95_hi": 2.9609648066752925e-13,
+        "ic95_lo": 1.900701818158268e-13,
+        "punto": 4.851674617611934e-13
+      },
+      "df_control": 14555,
+      "df_publicado": 14555,
+      "diseno_faltante_dominio_n": 0,
+      "edad": "18_29",
+      "estratos_control": 659,
+      "n_control": 22676,
+      "n_publicado": 22676,
+      "ok": true,
+      "producto": "condicional_union_actual",
+      "singleton_control": 56,
+      "upm_control": 15214
+    },
+    {
+      "deltas": {
+        "ee": 3.909182005878975e-13,
+        "ic95_hi": 3.3717473257866004e-13,
+        "ic95_lo": 4.64628335805628e-14,
+        "punto": 2.8910207561239076e-13
+      },
+      "df_control": 14555,
+      "df_publicado": 14555,
+      "diseno_faltante_dominio_n": 0,
+      "edad": "30_44",
+      "estratos_control": 659,
+      "n_control": 73324,
+      "n_publicado": 73324,
+      "ok": true,
+      "producto": "bruto_total_elegible",
+      "singleton_control": 56,
+      "upm_control": 15214
+    },
+    {
+      "deltas": {
+        "ee": 2.791456302220219e-13,
+        "ic95_hi": 4.4220183070819985e-13,
+        "ic95_lo": 3.608224830031759e-13,
+        "punto": 1.5265566588595902e-13
+      },
+      "df_control": 14555,
+      "df_publicado": 14555,
+      "diseno_faltante_dominio_n": 0,
+      "edad": "30_44",
+      "estratos_control": 659,
+      "n_control": 50944,
+      "n_publicado": 50944,
+      "ok": true,
+      "producto": "condicional_union_actual",
+      "singleton_control": 56,
+      "upm_control": 15214
+    },
+    {
+      "deltas": {
+        "ee": 1.8557681433217788e-13,
+        "ic95_hi": 3.337607967779377e-13,
+        "ic95_lo": 1.8984813721090177e-14,
+        "punto": 2.6509350270487175e-13
+      },
+      "df_control": 14555,
+      "df_publicado": 14555,
+      "diseno_faltante_dominio_n": 0,
+      "edad": "45_59",
+      "estratos_control": 659,
+      "n_control": 66069,
+      "n_publicado": 66069,
+      "ok": true,
+      "producto": "bruto_total_elegible",
+      "singleton_control": 56,
+      "upm_control": 15214
+    },
+    {
+      "deltas": {
+        "ee": 1.0586930637712655e-13,
+        "ic95_hi": 4.668487818548783e-13,
+        "ic95_lo": 9.561795799584161e-14,
+        "punto": 2.7611246622427643e-13
+      },
+      "df_control": 14555,
+      "df_publicado": 14555,
+      "diseno_faltante_dominio_n": 0,
+      "edad": "45_59",
+      "estratos_control": 659,
+      "n_control": 47308,
+      "n_publicado": 47308,
+      "ok": true,
+      "producto": "condicional_union_actual",
+      "singleton_control": 56,
+      "upm_control": 15214
+    },
+    {
+      "deltas": {
+        "ee": 3.744934050364801e-13,
+        "ic95_hi": 3.872596687770624e-13,
+        "ic95_lo": 4.055089597443384e-14,
+        "punto": 2.7786106748806105e-13
+      },
+      "df_control": 14555,
+      "df_publicado": 14555,
+      "diseno_faltante_dominio_n": 0,
+      "edad": "60_mas",
+      "estratos_control": 659,
+      "n_control": 53240,
+      "n_publicado": 53240,
+      "ok": true,
+      "producto": "bruto_total_elegible",
+      "singleton_control": 56,
+      "upm_control": 15214
+    },
+    {
+      "deltas": {
+        "ee": 1.3729902631487434e-13,
+        "ic95_hi": 5.384581669432009e-14,
+        "ic95_lo": 3.0231372960543013e-13,
+        "punto": 3.1769031849648854e-13
+      },
+      "df_control": 14555,
+      "df_publicado": 14555,
+      "diseno_faltante_dominio_n": 0,
+      "edad": "60_mas",
+      "estratos_control": 659,
+      "n_control": 31212,
+      "n_publicado": 31212,
+      "ok": true,
+      "producto": "condicional_union_actual",
+      "singleton_control": 56,
+      "upm_control": 15214
+    },
+    {
+      "deltas": {
+        "ee": 2.8159332504662515e-13,
+        "ic95_hi": 2.550459843320141e-13,
+        "ic95_lo": 3.2593372445433033e-13,
+        "punto": 3.1780134079895106e-13
+      },
+      "df_control": 14555,
+      "df_publicado": 14555,
+      "diseno_faltante_dominio_n": 0,
+      "edad": "15_mas",
+      "estratos_control": 659,
+      "n_control": 276849,
+      "n_publicado": 276849,
+      "ok": true,
+      "producto": "bruto_total_elegible",
+      "singleton_control": 56,
+      "upm_control": 15214
+    },
+    {
+      "deltas": {
+        "ee": 4.087659030704849e-13,
+        "ic95_hi": 5.395683899678261e-14,
+        "ic95_lo": 2.2365442831073779e-13,
+        "punto": 1.0758061108617767e-13
+      },
+      "df_control": 14555,
+      "df_publicado": 14555,
+      "diseno_faltante_dominio_n": 0,
+      "edad": "15_mas",
+      "estratos_control": 659,
+      "n_control": 152834,
+      "n_publicado": 152834,
+      "ok": true,
+      "producto": "condicional_union_actual",
+      "singleton_control": 56,
+      "upm_control": 15214
+    }
+  ],
+  "evidencia_documental": {
+    "campos_faltantes": [],
+    "campos_requeridos_presentes": true,
+    "cuestionario_casada": true,
+    "cuestionario_situacion_actual": true,
+    "cuestionario_union_libre": true,
+    "cuestionario_universo_12_mas": true,
+    "est_dis_es_estrato_diseno": true,
+    "fac_viv_es_factor_en_tsdem": true,
+    "hoja": "TSDEM",
+    "p3_27_ag_identificada_como_agrupada": true,
+    "p3_27_codigos_y_etiquetas_ok": true,
+    "upm_dis_es_upm_diseno": true
+  },
+  "fpc": "no aplicada; no acreditada",
+  "identidades": {
+    "cuestionario": "8b046a68dc19e292522557e05d81952e8fb04c2d3a1375c93fa7192e857e3270",
+    "datos": "995d448ab298251d441e437fc4a368f84879a8b74fa7bc103dc189434cbfaa18",
+    "fd": "d56582b7ace04e2c13a1b9ea22aeea458d7b9cc02a21241e5fda29fe12b4f34c"
+  },
+  "identidades_ok": true,
+  "metodo": "csv/openpyxl/scipy independientes; no importa medidor.py",
+  "politica_singleton": "aporte medio de estratos no singleton; singleton sin gl propio",
+  "productos": {
+    "bruto_total_elegible": "P3_27=1 / P3_27 en 1..7, edad conocida del dominio",
+    "condicional_union_actual": "P3_27=1 / P3_27 en {1,6}, edad conocida del dominio"
+  },
+  "productos_distintos": true,
+  "todos_ok": true,
+  "tolerancia_absoluta": 5e-10,
+  "unidad_estimacion": "persona residente; una fila por LLAVE_PER en TSDEM"
+}

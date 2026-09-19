@@ -1,0 +1,50 @@
+[
+  {
+    "calc_id": "CALC-ENADID-0001",
+    "fecha_verificacion": "2026-09-19",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ENADID-0001"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "95fa1298042452ccdaacb55ec6bc3f993bb4537481d5e654f3d6fe0323b295f8",
+      "script_blob_sha256": "9c3ba44ea7f6c0d73597fef24bd2d7b3e2b9552e8de2071fb88011f96f00249f",
+      "input_sha256_efectivos": "enadid2023_base_datos_csv=995d448ab298251d441e437fc4a368f84879a8b74fa7bc103dc189434cbfaa18,enadid2023_fd_xlsx=d56582b7ace04e2c13a1b9ea22aeea458d7b9cc02a21241e5fda29fe12b4f34c,enadid2023_hogar_cuestionario_pdf=8b046a68dc19e292522557e05d81952e8fb04c2d3a1375c93fa7192e857e3270"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ENADID-UA-G-EDAD-NE-N": null,
+        "RESULT-ENADID-UA-G-FPC": null,
+        "RESULT-ENADID-UA-G-LLAVE-UNICA": null,
+        "RESULT-ENADID-UA-G-N-VALIDO-BRUTA": null,
+        "RESULT-ENADID-UA-G-N-VALIDO-CONDICIONAL": null,
+        "RESULT-ENADID-UA-G-P-BRUTA": 0.0,
+        "RESULT-ENADID-UA-G-P-CASADA-CONDICIONAL": 0.0,
+        "RESULT-ENADID-UA-G-P-CONDICIONAL": 0.0,
+        "RESULT-ENADID-UA-G-PERDIDA-ENLACE-N": null,
+        "RESULT-ENADID-UA-G-PESO-INVALIDO-N": null,
+        "RESULT-ENADID-UA-G-SALIDA": null,
+        "RESULT-ENADID-UA-G-SITUACION-NE-N": null,
+        "RESULT-ENADID-UA-G-TABLA-SHA256": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 5e-12,
+        "razon": "calculo determinista y serializacion a doce decimales"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ENADID-UA-G-EDAD-NE-N\": null, \"RESULT-ENADID-UA-G-FPC\": null, \"RESULT-ENADID-UA-G-LLAVE-UNICA\": null, \"RESULT-ENADID-UA-G-N-VALIDO-BRUTA\": null, \"RESULT-ENADID-UA-G-N-VALIDO-CONDICIONAL\": null, \"RESULT-ENADID-UA-G-P-BRUTA\": 0.0, \"RESULT-ENADID-UA-G-P-CASADA-CONDICIONAL\": 0.0, \"RESULT-ENADID-UA-G-P-CONDICIONAL\": 0.0, \"RESULT-ENADID-UA-G-PERDIDA-ENLACE-N\": null, \"RESULT-ENADID-UA-G-PESO-INVALIDO-N\": null, \"RESULT-ENADID-UA-G-SALIDA\": null, \"RESULT-ENADID-UA-G-SITUACION-NE-N\": null, \"RESULT-ENADID-UA-G-TABLA-SHA256\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 5e-12, \"razon\": \"calculo determinista y serializacion a doce decimales\"}}, \"identidad\": {\"spec_yaml_sha256\": \"95fa1298042452ccdaacb55ec6bc3f993bb4537481d5e654f3d6fe0323b295f8\", \"script_blob_sha256\": \"9c3ba44ea7f6c0d73597fef24bd2d7b3e2b9552e8de2071fb88011f96f00249f\", \"input_sha256_efectivos\": \"enadid2023_base_datos_csv=995d448ab298251d441e437fc4a368f84879a8b74fa7bc103dc189434cbfaa18,enadid2023_fd_xlsx=d56582b7ace04e2c13a1b9ea22aeea458d7b9cc02a21241e5fda29fe12b4f34c,enadid2023_hogar_cuestionario_pdf=8b046a68dc19e292522557e05d81952e8fb04c2d3a1375c93fa7192e857e3270\"}}\n"
+  }
+]

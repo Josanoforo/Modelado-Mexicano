@@ -1,0 +1,130 @@
+{
+ "corrida_id": "CALC-ENADID-0001--1c9afb30bf83",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "pandas": "2.3.3",
+  "scipy": "1.16.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "demanda_que_releva": "Sucesora autorizada por F-10/NC-0194 para RES-0043/0044. Mide ENADID 2023 situacion conyugal actual; no releva por identidad automatica el CALC-EDER-0003 de tipo de primera union.",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": false,
+  "spec_sellada": "forense/prereg-caja/ENADID-UNION-ACTUAL-spec-v1_0.md",
+  "spec_sellada_sha256": "505643958b28952e64969af457fe31d264a182d5bc7bef154f85ddaf57b6ca4a",
+  "tipo": "MEDICION-DESCRIPTIVA-ENCUESTA-CON-DISENO",
+  "uso_motor": "PROPUESTA-DE-CORRESPONDENCIA;NO-ADOPTADO",
+  "validacion_independiente": "CONTROL-SEPARADO-POST-SELLO"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-19T18:56:15Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 419,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "1c9afb30bf8339baf9cd04a082629e401aaa0dda",
+  "git_rama": "codex/gen2-enadid-union-actual-cli-1",
+  "git_status": "SUCIO",
+  "git_status_lineas": 2,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "1c9afb30bf8339baf9cd04a082629e401aaa0dda",
+ "input_ids": [
+  "enadid2023_base_datos_csv",
+  "enadid2023_fd_xlsx",
+  "enadid2023_hogar_cuestionario_pdf"
+ ],
+ "input_sha256": {
+  "enadid2023_base_datos_csv": "995d448ab298251d441e437fc4a368f84879a8b74fa7bc103dc189434cbfaa18",
+  "enadid2023_fd_xlsx": "d56582b7ace04e2c13a1b9ea22aeea458d7b9cc02a21241e5fda29fe12b4f34c",
+  "enadid2023_hogar_cuestionario_pdf": "8b046a68dc19e292522557e05d81952e8fb04c2d3a1375c93fa7192e857e3270"
+ },
+ "parametros": {
+  "adopcion": "NINGUNA",
+  "categorias_documentales": 7,
+  "congelacion": "PROSPECTIVA-NO-CIEGA",
+  "dominio": "MUESTRA-COMPLETA",
+  "dominios_edad": [
+   "15_17",
+   "18_29",
+   "30_44",
+   "45_59",
+   "60_mas",
+   "15_mas"
+  ],
+  "fpc": "NO-APLICADA-NO-ACREDITADA",
+  "fuente_acto": "ACTO GEN2-ENADID-UNION-ACTUAL-CLI-1",
+  "intervalo": "LOGIT-T-95-BILATERAL",
+  "output_auditoria": "forense/analisis/enadid-union-actual-cli-1/auditoria.json",
+  "output_tabla": "forense/analisis/enadid-union-actual-cli-1/resultados.csv",
+  "singleton": "APORTE-PROMEDIO-DE-ESTRATOS-NO-SINGLETON"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENADID-UA-G-EDAD-NE-N",
+  "RESULT-ENADID-UA-G-FPC",
+  "RESULT-ENADID-UA-G-LLAVE-UNICA",
+  "RESULT-ENADID-UA-G-N-VALIDO-BRUTA",
+  "RESULT-ENADID-UA-G-N-VALIDO-CONDICIONAL",
+  "RESULT-ENADID-UA-G-P-BRUTA",
+  "RESULT-ENADID-UA-G-P-CASADA-CONDICIONAL",
+  "RESULT-ENADID-UA-G-P-CONDICIONAL",
+  "RESULT-ENADID-UA-G-PERDIDA-ENLACE-N",
+  "RESULT-ENADID-UA-G-PESO-INVALIDO-N",
+  "RESULT-ENADID-UA-G-SALIDA",
+  "RESULT-ENADID-UA-G-SITUACION-NE-N",
+  "RESULT-ENADID-UA-G-TABLA-SHA256"
+ ],
+ "script_blob_sha256": "9c3ba44ea7f6c0d73597fef24bd2d7b3e2b9552e8de2071fb88011f96f00249f",
+ "script_path": "data/corrida0/CALC-ENADID-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "rng": "NO-APLICA",
+  "valor": null
+ },
+ "spec_id": "CALC-ENADID-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "7ea5f7636a1c656926e66b8218438d9494c1696fa29ae45561df63a0ead73fef",
+ "spec_yaml_sha256": "95fa1298042452ccdaacb55ec6bc3f993bb4537481d5e654f3d6fe0323b295f8",
+ "tolerancia": {
+  "abs": 5e-12,
+  "razon": "calculo determinista y serializacion a doce decimales",
+  "tipo": "flotante"
+ }
+}
