@@ -155,3 +155,23 @@ firma, y `status()` exige `cuenta_gen2=SI` antes de entrar a
   par-de-ejes (22 grupos, no 176 filas individuales) — grano declarado en
   el diseño de la tabla, no una celda por fila para esas dos categorías;
   las filas NACIONAL, MARGINAL y CRUCE-adoptadas sí van una por celda.
+
+## A.8 · `ya_medido.py` sobre la cita de P2 (T-YAMEDIDO)
+
+El encargo verbatim cita `dinero.ahorro.via_informal` en P2 solo para
+nombrar el consumidor que la fila DIN enlaza (`tramite.yaml:1306`) — no
+clasifica, pre-registra ni sella la regla. Se corrió de todos modos por
+A.8/ADR-340:
+
+```
+$ python3 tools/ya_medido.py dinero.ahorro.via_informal
+...
+MEDIDA-EN: CALC-ENIF-0001, tramite-ola5-propuesta-v0.yaml, tramite.yaml
+```
+
+`milpa/tramite.yaml:1306` (`SELLADA`, `p=0.357153`) y
+`data/corrida0/CALC-ENIF-0001/resultados.json` (`RESULT-ENIF-AHO-B-P-FORMAL-P`,
+`RESULT-ENIF-AHO-B-P-INFORMAL-P`, ambos `sello=VALIDO`) confirman que ya
+estaba medida antes de este acto. `tests/check.py::_T_YAMEDIDO_ARCHIVOS_CONOCIDOS`
+censa el archivo del encargo con esta cita (no se edita el verbatim para
+complacer el test, misma regla que T25).
