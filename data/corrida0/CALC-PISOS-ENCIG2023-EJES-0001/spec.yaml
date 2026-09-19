@@ -1,5 +1,5 @@
 calc_id: CALC-PISOS-ENCIG2023-EJES-0001
-spec_md: forense/prereg-caja/PISOS-ENCIG2023-ejes-spec-v1_0.md
+spec_md: ../../../forense/prereg-caja/PISOS-ENCIG2023-ejes-spec-v1_0.md
 spec_md_sha256: 696134e9cc465168bf65dd72227551d2a70b700d813916b5bc4522096e94d1da
 script: data/corrida0/CALC-PISOS-ENCIG2023-EJES-0001/medidor.py
 etiquetas: {generacion: GEN2, tipo: PISO-PERSISTENCIA-POR-EJE, cuenta_gen2: SI}
@@ -17,6 +17,7 @@ variables:
   - {archivo: encig2023_02_residentes_sec_2.csv, variable: EDAD, rol: eje-edad}
   - {archivo: encig2023_02_residentes_sec_2.csv, variable: NIV, rol: eje-escolaridad}
 universo: "Eventos N_TRA=01, con código de desenlace y FAC_TRA válidos."
+filtros: "FAC_TRA > 0; estrato y UPM presentes; sin imputación de categorías."
 ponderador: FAC_TRA
 transformacion: "Desenlace idéntico al consumidor sólo si texto y catálogo 2023 lo acreditan."
 estimando: "p_2023(desenlace | categoría), proporción ponderada [0,1]."

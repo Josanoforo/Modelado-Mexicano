@@ -1,5 +1,5 @@
 calc_id: CALC-PISOS-ENVIPE2024-EJES-0001
-spec_md: forense/prereg-caja/PISOS-ENVIPE2024-ejes-spec-v1_0.md
+spec_md: ../../../forense/prereg-caja/PISOS-ENVIPE2024-ejes-spec-v1_0.md
 spec_md_sha256: 67b10c7b0603a56eefc0fc0c93b78b2bda7bf5039d7dc6a7c65f0b55c0a969f8
 script: data/corrida0/CALC-PISOS-ENVIPE2024-EJES-0001/medidor.py
 etiquetas: {generacion: GEN2, tipo: PISO-PERSISTENCIA-POR-EJE, cuenta_gen2: SI}
@@ -20,6 +20,7 @@ variables:
   - {archivo: conjunto_de_datos_tsdem_envipe2024.csv, variable: ID_PER, rol: llave-persona}
   - {archivo: conjunto_de_datos_tsdem_envipe2024.csv, variable: NIV, rol: eje-escolaridad-proxy}
 universo: "Delitos BP1_20 in {1,2}; el subuniverso seguro exige la clase y capa acreditadas."
+filtros: "FAC_DEL > 0; estrato y UPM presentes; las categorías vacías no se imputan."
 ponderador: FAC_DEL
 transformacion: "Evasión: BP1_20=2 y BP1_23 en {04,05,06,08}; sin imputación."
 estimando: "p_2024(desenlace | categoría), proporción ponderada [0,1]."

@@ -1,5 +1,5 @@
 calc_id: CALC-PISOS-ENIF2021-EJES-0001
-spec_md: forense/prereg-caja/PISOS-ENIF2021-ejes-spec-v1_0.md
+spec_md: ../../../forense/prereg-caja/PISOS-ENIF2021-ejes-spec-v1_0.md
 spec_md_sha256: 99ad7f4e66a3d264ef181a3eb834874ce54668055f813ac39321d63b2681a146
 script: data/corrida0/CALC-PISOS-ENIF2021-EJES-0001/medidor.py
 etiquetas: {generacion: GEN2, tipo: PISO-PERSISTENCIA-POR-EJE, cuenta_gen2: SI}
@@ -36,6 +36,7 @@ variables:
   - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: EST_DIS, rol: estrato}
   - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: UPM_DIS, rol: upm}
 universo: "Persona elegida 18+ con FAC_ELE válido; cada eje tiene su denominador declarado."
+filtros: "Edad 18–97, TLOC en {1,2,3,4}, FAC_ELE > 0, estrato y UPM presentes; sin imputación."
 ponderador: FAC_ELE
 transformacion: "P5_1 cualquiera=1 y P5_7 ninguna=1; sin imputación."
 estimando: "p_2021(ahorro_solo_informal | categoría), proporción ponderada [0,1]."
