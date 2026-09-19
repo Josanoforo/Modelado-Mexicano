@@ -73,8 +73,8 @@ Las tablas procesables contienen también `n`, masa y cobertura no ponderada.
 | `A-CON-BRECHA-TODAS-P50/P90` | mujer menos hombre, mismo plan de réplicas | personas válidas CON_CP |
 | `G-N-MARCO/N-VALIDO-COMUN/MASA-VALIDA-COMUN` | tamaños y masa de control | archivo / universo común 12–96 |
 | `G-N-ESTRATOS/N-UPM/N-ESTRATOS-UPM-UNICA/PARES-DISENO-SHA256` | identidad del diseño | marco con peso y claves válidos |
-| `G-DISTRIBUCION-*` | 60 filas y hash de `distribucion.csv` | CON_CP/SIN_CP × 3 sexos × 2 dominios × 5 medidas |
-| `G-CONTRASTES-*` | 22 filas y hash de `contrastes.csv` | SIN−CON pareado y mujer−hombre CON_CP |
+| `G-DISTRIBUCION-*` | 60 filas y hash de `enut2024-distribucion-horas-estimaciones.csv` | CON_CP/SIN_CP × 3 sexos × 2 dominios × 5 medidas |
+| `G-CONTRASTES-*` | 22 filas y hash de `enut2024-distribucion-horas-contrastes.csv` | SIN−CON pareado y mujer−hombre CON_CP |
 | `G-INCIDENCIAS*` | causas de exclusión y diseño | archivo completo |
 | `G-INPUT-BD/FD-SHA256` | identidad de payloads | manifiesto/corpus |
 | `G-SALIDA-*` | rutas reproducibles | artefactos deterministas del CALC |
@@ -113,6 +113,15 @@ ni se winsorizó. Las horas pueden superponerse. Contador, consumo y adopción
 quedan `PENDIENTE-DE-MESA`.
 
 El detalle de replay, asiento, conteos y hashes de las vistas está en
-`replay-registro.txt`. Los 8,817 avisos generales de proyección son deuda o
+`replay-registro-enut2024-distribucion-horas.txt`. Los 8,817 avisos generales de proyección son deuda o
 diagnósticos heredados; ninguno bloqueó la escritura propia. No se usó
 verificación global ni `--lote`.
+
+## Sucesión no numérica
+
+La CI posterior al primer sello detectó cuatro colisiones de basename con el
+padre. `CALC-ENUT2024-DISTRIBUCION-HORAS-0002` sucede al intento inicial sin
+cambiar universo, seed, estimandos ni cifras; únicamente emite nombres
+específicos. El primer `ejecucion.json`, `resultados.json`, sello y tablas se
+conservan intactos en `CALC-...-0001` y en el commit `2f0954c`; las rutas
+procesables vigentes son las del sucesor `0002`.

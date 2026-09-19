@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 
 
-PATH = Path(__file__).parents[1] / "data/corrida0/CALC-ENUT2024-DISTRIBUCION-HORAS-0001/medidor.py"
+PATH = Path(__file__).parents[1] / "data/corrida0/CALC-ENUT2024-DISTRIBUCION-HORAS-0002/medidor.py"
 SPEC = importlib.util.spec_from_file_location("enutdh", PATH)
 M = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(M)
