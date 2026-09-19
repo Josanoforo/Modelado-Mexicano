@@ -2004,6 +2004,10 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # menciona "regla de mesa 4" -- mención de la exención que este mismo
     # acto ya documentó arriba, no una decisión nueva esperando firma.
     "forense/notas/2026-09-09-GEN2-REVISA-CALC-cierre.md",
+    # Insumos A.3 archivados verbatim por GEN2-CONTRATO-Y-TRAMITE-CLI-1;
+    # las frases pendientes pertenecen a la firma histórica, no abren fila nueva.
+    "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md",
+    "canon/estado-programa-v1_14.md",
 }
 
 def _t22_tabla():
@@ -4993,6 +4997,12 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # rotulo propio de este acto, `GEN2-GUARDIAS-1`, va censado en
     # canon/registro-rotulos.tsv.
     "forense/encargos/2026-09-17-GEN2-GUARDIAS-1.md",
+    # A.3: insumos verbatim del acto v0.6; se preservan byte a byte.
+    "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/ENCARGO-GEN2-TRAMITE-5-2026-09-17.md",
+    "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/ENCARGO-GEN2-VOCABULARIO-v0_6-2026-09-17.md",
+    "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md",
+    "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/seccion-13.md",
+    "canon/estado-programa-v1_14.md",
 }
 
 
