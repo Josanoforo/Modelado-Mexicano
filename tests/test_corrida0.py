@@ -1411,7 +1411,7 @@ def _fila_corrida(cid: str, rids: list[str], **kw) -> dict:
 
 def _sella_calc_fixture(d: Path, cid: str, valores: dict, etiquetas: dict,
                         decl_res=None, sin_sello=False, sin_hash=None,
-                        repite_de=None, inputs=None) -> None:
+                        repite_de=None, inputs=None, sucesor_de=None) -> None:
     """Un CALC de fixture con su sello real (`sella_sha256.py`, no un sidecar
     escrito a mano). `sin_sello` deja `resultados.json` sin respaldo y
     `sin_hash` borra un campo del recibo -- las dos son las condiciones que
@@ -1428,6 +1428,8 @@ def _sella_calc_fixture(d: Path, cid: str, valores: dict, etiquetas: dict,
                                         for r in valores])
     if repite_de:
         spec["repite_de"] = repite_de
+    if sucesor_de:
+        spec["sucesor_de"] = sucesor_de
     spec["spec_md_sha256"] = _sha(d / "spec.md")
     (d / "spec.yaml").write_text(yaml.safe_dump(spec, allow_unicode=True), encoding="utf-8")
     input_ids = [str(e.get("id")) for e in spec["inputs"] if e.get("id")]
@@ -1493,7 +1495,8 @@ def _arbol_registro(res=None, corr=None, calcs=(), tramite=None, propuesta=None,
         _sella_calc_fixture(tmp / c["calc_id"], c["calc_id"], c.get("valores", {}),
                             c.get("etiquetas", {}), c.get("decl_res"),
                             c.get("sin_sello", False), c.get("sin_hash"),
-                            c.get("repite_de"), c.get("inputs"))
+                            c.get("repite_de"), c.get("inputs"),
+                            c.get("sucesor_de"))
     try:
         yield tmp
     finally:
@@ -1703,6 +1706,32 @@ def t_registro_superado_por_repite_de_en_etiquetas():
             f"estado={por_spec['CALC-FIX-A']['estado']}")
     _afirma(por_spec["CALC-FIX-B"]["estado"] == "SELLADA", caso,
             f"estado={por_spec['CALC-FIX-B']['estado']}")
+
+
+def t_registro_superado_por_sucesor_de():
+    """La grafía semántica `sucesor_de`, en raíz o etiquetas, alimenta la
+    misma cadena técnica que `repite_de` sin modificar specs ya selladas."""
+    caso = "T-REGISTRO-SUPERADO-SUCESOR-DE"
+    for forma in ("raiz", "etiquetas"):
+        nueva = {"calc_id": f"CALC-NUEVA-{forma}",
+                 "valores": {f"RESULT-{forma}": 1.0},
+                 "etiquetas": {"cuenta_gen2": "PENDIENTE-DE-MESA",
+                               "generacion": "GEN2"}}
+        if forma == "raiz":
+            nueva["sucesor_de"] = "CALC-ANTIGUA"
+        else:
+            nueva["etiquetas"]["sucesor_de"] = "CALC-ANTIGUA"
+        calcs = [{"calc_id": "CALC-ANTIGUA",
+                  "valores": {"RESULT-ANTIGUO": 0.0},
+                  "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}},
+                 nueva]
+        with _arbol_registro(calcs=calcs):
+            vistas = C.registro(escribe=False, imprime=False)
+        por_spec = {f["spec_id"]: f for f in vistas["corridas"]
+                    if f["origen"] == "OFERTA"}
+        esperado = f"SUPERADO→CALC-NUEVA-{forma}"
+        _afirma(por_spec["CALC-ANTIGUA"]["estado"] == esperado, caso,
+                f"{forma}: {por_spec['CALC-ANTIGUA']['estado']}")
 
 
 def t_status_cifras_derivadas():
