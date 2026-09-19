@@ -98,8 +98,8 @@ def enif(inputs, contrato):
     cols=inf+formal+["SEXO","EDAD","TLOC","P3_1_1","FAC_ELE","EST_DIS","UPM_DIS"]+[f"P5_6_{i}" for i in [1,2,3,4,5,8,9]]
     d=_csv(z,"conjunto_de_datos_tmodulo_enif_2021.csv",cols)
     d["_w"]=pd.to_numeric(d.FAC_ELE,errors="coerce"); d["_est"]=d.EST_DIS.str.strip(); d["_upm"]=d.UPM_DIS.str.strip()
-    informal=d[inf].apply(lambda x:x.astype(str).apply(lambda y:y.str.strip().eq("1")).any(axis=1))
-    cuenta=d[formal].apply(lambda x:x.astype(str).apply(lambda y:y.str.strip().eq("1")).any(axis=1))
+    informal=d[inf].apply(lambda c:c.astype(str).str.strip().eq("1")).any(axis=1)
+    cuenta=d[formal].apply(lambda c:c.astype(str).str.strip().eq("1")).any(axis=1)
     d["_y"]=(informal & ~cuenta).astype(int) # D9: sólo informal, los nueve tipos formales.
-    cuenta_eje=d[[f"P5_6_{i}" for i in [1,2,3,4,5,8,9]]].astype(str).apply(lambda x:x.apply(lambda y:y.str.strip().eq("1")).any(axis=1)).map({True:"con_cuenta",False:"sin_cuenta"})
+    cuenta_eje=d[[f"P5_6_{i}" for i in [1,2,3,4,5,8,9]]].apply(lambda c:c.astype(str).str.strip().eq("1")).any(axis=1).map({True:"con_cuenta",False:"sin_cuenta"})
     return _tabla(d,{"sexo":d.SEXO.str.strip(),"edad":_age(d.EDAD),"escolaridad":d.P3_1_1.str.strip(),"localidad":d.TLOC.str.strip(),"cuenta_formal":cuenta_eje},"PISOS-ENIF2021-D9")
