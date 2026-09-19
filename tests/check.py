@@ -5623,6 +5623,17 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     #      milpa/tramite-ola5-propuesta-v0.yaml:269  PENDIENTE-DE-MESA p=0.045694
     # La regla esta MEDIDA y sellada desde antes; este acto no la mueve.
     "forense/encargos/2026-09-17-GEN2-CELDA-D-CAREO-1-TRES-DISENOS-UN-CAREO.md",
+    # ACTO GEN2-RECIBO-CODEX-4, 19/sep/2026: encargo A.3 archivado VERBATIM,
+    # que no se edita para complacer un test (misma regla que rige T25). La
+    # unica cita es `familia.union.libre`, dentro de "LO QUE NO HACE" --
+    # prosa que declara alcance excluido ("no decide el estimando de..."),
+    # no una regla que este acto clasifique, cargue, mida o selle. A.8 se
+    # ejecuto igualmente:
+    #   python3 tools/ya_medido.py familia.union.libre
+    #   -> MEDIDA-EN: tramite.yaml
+    # (misma regla, mismo veredicto que ya documenta la entrada de
+    # GEN2-ENADID-UNION-ACTUAL-CLI-1 arriba). Este acto no toca esa medicion.
+    "forense/encargos/2026-09-19-GEN2-RECIBO-CODEX-4.md",
     # ACTO GEN2-FIRMAS-MESA-1, 15/sep/2026: encargo A.3 archivado VERBATIM,
     # que no se edita para complacer un test (misma regla que rige T25). El
     # acto NO MIDE NADA -- su contador declara «cero mediciones propias» y
@@ -5910,6 +5921,19 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # `forense/notas/2026-09-19-GEN2-MARCADOR-REDISENO-1-cierre.md`, no en
     # el archivo verbatim del encargo.
     "forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md",
+    # ACTO GEN2-FAM-UNION-ESTIMANDO-1 (19/sep/2026). Cita
+    # `familia.union.libre` y SI la carga: este acto releva el estimando de
+    # la regla por firma de mesa del 19/sep/2026. La cita NO es ilustrativa
+    # -- lo que no puede es vivir en este archivo: el encargo llego REDACTADO
+    # POR MESA, pegado en el mensaje de lanzamiento, y A.3 lo archiva
+    # VERBATIM; un encargo verbatim no se edita para complacer al test
+    # (mismo criterio que `_T25_ARCHIVOS_CONOCIDOS`). `tools/ya_medido.py
+    # familia.union.libre` SI se corrio, antes y despues de la edicion, y su
+    # salida cruda esta pegada en el A.8 de
+    # `forense/notas/2026-09-19-GEN2-FAM-UNION-ESTIMANDO-1-cierre.md`:
+    # antes `p=0.190500 [CORROBORADA]`, despues `p=0.480971
+    # [TASA-EJECUTADA]`, ambas en `milpa/tramite.yaml:1031`.
+    "forense/encargos/2026-09-19-GEN2-FAM-UNION-ESTIMANDO-1.md",
 }
 
 

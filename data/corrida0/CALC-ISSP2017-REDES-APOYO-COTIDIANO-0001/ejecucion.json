@@ -1,0 +1,166 @@
+{
+ "corrida_id": "CALC-ISSP2017-REDES-APOYO-COTIDIANO-0001--b6365529136d",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "fuente_acto": "GEN2-ISSP2017-REDES-APOYO-COTIDIANO-CLI-1",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": false,
+  "tipo": "MEDICION-DESCRIPTIVA-MICRODATO",
+  "unidad_transferencia": "PERSONA-NO-TRANSFERENCIA-A-MOTOR",
+  "uso_motor": "EVIDENCIA-FAMILISMO-APOYO-NO-CALIBRA",
+  "validacion_independiente": "CONTROL-SEPARADO-DE-PUNTOS-Y-DENOMINADORES"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-19T21:56:42Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 0,
+   "montado": "NO",
+   "nota": "data/raw ausente -- normal en un clon fresco / en la nube"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "b6365529136d86851034ef7a8bf36209452dc66b",
+  "git_rama": "codex/gen2-issp2017-redes-apoyo-cotidiano-cli-1",
+  "git_status": "SUCIO",
+  "git_status_lineas": 8,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "38ed1b92edb215f2279e08d405c64bb06536c0590a441e3fa1e79e5bbaa2bfb0",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "38ed1b92edb215f2279e08d405c64bb06536c0590a441e3fa1e79e5bbaa2bfb0",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "b6365529136d86851034ef7a8bf36209452dc66b",
+ "input_ids": [
+  "za6980_q_mx",
+  "za6980_backgroundvar_mx",
+  "za6980_v2_0_0_dta",
+  "za6980_v2_0_0_sav",
+  "za6980_q7_evidencia"
+ ],
+ "input_sha256": {
+  "za6980_backgroundvar_mx": "6004c300ca1331bfd15f163c4deaa726c71b66b46ae9e05361f40ae8cc26ca5f",
+  "za6980_q7_evidencia": "7e8f4e13064d4cc4764c150a6d1842c90340857e39c320a3377a93fd9f9f676b",
+  "za6980_q_mx": "61bc0c80415521965ec1b2546fbe3b2400cfacb2e6b0b542583304821544f2ed",
+  "za6980_v2_0_0_dta": "aa3bfcbcc1dc20a2735e8e9d2d3d47a72d909dade66e8c4623b910965dc227de",
+  "za6980_v2_0_0_sav": "20a1420f4aa8f8dcb30f7de61879796d20b7c3042805e7925e56c30b4ae97ca5"
+ },
+ "parametros": {
+  "adopcion": "NINGUNA",
+  "codigo_ninguno": 7,
+  "codigos_familia": [
+   1,
+   2
+  ],
+  "codigos_sustantivos": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "dominios": [
+   "TOTAL",
+   "HOMBRES",
+   "MUJERES"
+  ],
+  "instrumento": "ISSP 2017 Social Networks and Social Resources, México, Q7a-e",
+  "no_puede_elegir": [
+   8
+  ],
+  "no_respuesta": [
+   9,
+   "system_missing"
+  ],
+  "periodo": "2017",
+  "salidas": [
+   "forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/distribucion-item-sexo.csv",
+   "forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/cobertura-item-sexo.csv",
+   "forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/agregado-familia-item-sexo.csv",
+   "forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/contraste-familia-mujeres-menos-hombres.csv",
+   "forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/conteo-situaciones-ninguno.csv",
+   "forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/resumen-y-cobertura-casos-completos.csv",
+   "forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/matriz-coocurrencia-ninguno.csv"
+  ],
+  "universo_p3": "cinco-respuestas-validas",
+  "version": "ZA6980 v2.0.0"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ISSP-REDES-G-COBERTURA-SHA256",
+  "RESULT-ISSP-REDES-G-CONTEO-SHA256",
+  "RESULT-ISSP-REDES-G-CONTRASTE-SHA256",
+  "RESULT-ISSP-REDES-G-DISTRIBUCION-SHA256",
+  "RESULT-ISSP-REDES-G-FAMILIA-SHA256",
+  "RESULT-ISSP-REDES-G-MATRIZ-SHA256",
+  "RESULT-ISSP-REDES-G-N-MEXICO",
+  "RESULT-ISSP-REDES-G-PRECISION",
+  "RESULT-ISSP-REDES-G-RESUMEN-SHA256",
+  "RESULT-ISSP-REDES-P3-ALGUNA-SITUACION-NINGUNO",
+  "RESULT-ISSP-REDES-P3-COBERTURA-COMPLETOS",
+  "RESULT-ISSP-REDES-P3-TODAS-SITUACIONES-NINGUNO",
+  "RESULT-ISSP-REDES-Q7a-DELTA-FAMILIA-MUJERES-MENOS-HOMBRES",
+  "RESULT-ISSP-REDES-Q7a-FAMILIA-TOTAL",
+  "RESULT-ISSP-REDES-Q7b-DELTA-FAMILIA-MUJERES-MENOS-HOMBRES",
+  "RESULT-ISSP-REDES-Q7b-FAMILIA-TOTAL",
+  "RESULT-ISSP-REDES-Q7c-DELTA-FAMILIA-MUJERES-MENOS-HOMBRES",
+  "RESULT-ISSP-REDES-Q7c-FAMILIA-TOTAL",
+  "RESULT-ISSP-REDES-Q7d-DELTA-FAMILIA-MUJERES-MENOS-HOMBRES",
+  "RESULT-ISSP-REDES-Q7d-FAMILIA-TOTAL",
+  "RESULT-ISSP-REDES-Q7e-DELTA-FAMILIA-MUJERES-MENOS-HOMBRES",
+  "RESULT-ISSP-REDES-Q7e-FAMILIA-TOTAL"
+ ],
+ "script_blob_sha256": "d5ed6e8cb3467ac06435ead0445e610483bfbdb5f954788cad184a8b7c5a2cf4",
+ "script_path": "data/corrida0/CALC-ISSP2017-REDES-APOYO-COTIDIANO-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "rng": "NO-APLICA",
+  "valor": null
+ },
+ "spec_id": "CALC-ISSP2017-REDES-APOYO-COTIDIANO-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "fb96d51d903d8e635fb420463888dbd6f4e08486eb776e2770bb86bcf0df7b94",
+ "spec_yaml_sha256": "9cb213fdbd4889353103715f0399e82df76995f9da226ce54b49807f12e039df",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "sumas y razones deterministas; control independiente con igual tolerancia",
+  "tipo": "flotante"
+ }
+}

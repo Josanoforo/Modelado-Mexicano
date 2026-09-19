@@ -1,0 +1,94 @@
+calc_id: CALC-ENUT2024-PARTICIPACION-INTENSIDAD-0001
+spec_md: spec.md
+spec_md_sha256: bf56becab6491bb13a1e460b29c5bd163652ca1213d48e84bde84f24cff1b0db
+script: data/corrida0/CALC-ENUT2024-PARTICIPACION-INTENSIDAD-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: DESCRIPTIVO-PARTICIPACION-INTENSIDAD
+  cuenta_gen2: PENDIENTE-DE-MESA
+  adopcion: PENDIENTE-DE-MESA
+  familia: familia.cuidado.recae_mujeres_40mas
+  releva: "NINGUNO; ampliacion descriptiva, no relevo automatico de CALC-ENUT-0001"
+  contaminacion_declarada: "Conocidos antes de congelar: CALC-ENUT-0001 y diez medias de horas por sexo x edad publicadas; no se conocian los resultados de participacion, intensidad condicional, contrastes ni sensibilidad pareada."
+
+inputs:
+  - {id: enut2024_bd_csv, origen: manifiesto}
+  - {id: enut2024_fd_xlsx, origen: manifiesto}
+
+variables:
+  - {archivo: tvar_crea.csv, variable: LLAVEMOD, rol: llave primaria de persona, codigos: "alfanumerica de 12 caracteres; se conserva como texto"}
+  - {archivo: tvar_crea.csv, variable: SEXO, rol: clasificador, codigos: "1 hombre; 2 mujer"}
+  - {archivo: tvar_crea.csv, variable: EDAD, rol: clasificador, codigos: "12-96 anos cumplidos"}
+  - {archivo: tvar_crea.csv, variable: FAC_PER, rol: ponderador persona, codigos: "numerico positivo"}
+  - {archivo: tvar_crea.csv, variable: EST_DIS, rol: estrato, codigos: "texto opaco"}
+  - {archivo: tvar_crea.csv, variable: UPM_DIS, rol: conglomerado, codigos: "texto opaco"}
+  - {archivo: tvar_crea.csv, variable: CUID_ESP_INT_HOG_CON_CP, rol: sumando principal, codigos: "0-201.25 horas/semana"}
+  - {archivo: tvar_crea.csv, variable: CUID_INT_0A5_CON_CP, rol: sumando principal, codigos: "0-280 horas/semana"}
+  - {archivo: tvar_crea.csv, variable: CUID_INT_6A14_CON_CP, rol: sumando principal, codigos: "0-152.41666666666667 horas/semana"}
+  - {archivo: tvar_crea.csv, variable: CUID_INT_60MAS_CON_CP, rol: sumando principal, codigos: "0-147 horas/semana"}
+  - {archivo: tvar_crea.csv, variable: CUID_ESP_INT_HOG_SIN_CP, rol: sumando sensibilidad, codigos: "0-136.83333333333334 horas/semana"}
+  - {archivo: tvar_crea.csv, variable: CUID_INT_0A5_SIN_CP, rol: sumando sensibilidad, codigos: "0-217.23333333333332 horas/semana"}
+  - {archivo: tvar_crea.csv, variable: CUID_INT_6A14_SIN_CP, rol: sumando sensibilidad, codigos: "0-116.13333333333334 horas/semana"}
+  - {archivo: tvar_crea.csv, variable: CUID_INT_60MAS_SIN_CP, rol: sumando sensibilidad, codigos: "0-74 horas/semana"}
+
+universo: >-
+  Personas de 12 a 96 anos en tvar_crea.csv con llave unica, sexo 1/2,
+  FAC_PER positivo, diseno completo y valores validos comunes en las ocho
+  variables de horas. Una sola ola, ENUT 2024.
+filtros: >-
+  Excluir y contar por causa llave invalida, sexo fuera de 1/2, edad fuera de
+  12-96, peso no finito/no positivo, diseno vacio u hora faltante, no numerica,
+  negativa o sobre el maximo del FD. Cero valido permanece cero. No imputar.
+ponderador: "FAC_PER a nivel persona; no FAC_HOG"
+transformacion: >-
+  h_CON y h_SIN son sumas de cuatro actividades homologas. Para cada dominio,
+  razones ponderadas de participante, horas totales y horas de participantes.
+  Diferencias mujer-hombre y SIN-CON se forman dentro de cada replica comun.
+estimando: >-
+  P(h>0), E(h) y E(h|h>0) nacionales y por sexo, edad y sexo x edad; contrastes
+  mujer menos hombre total y por edad; sensibilidad SIN_CP y diferencia
+  pareada SIN_CP menos CON_CP. Todo descriptivo, no causal.
+
+dependencias_materiales: [numpy, pandas]
+seed: {aplica: true, valor: 20260919, rng: numpy.PCG64}
+tolerancia:
+  tipo: bootstrap
+  exacto_por_seed: true
+  abs: 1.0e-12
+  razon: "plan de replicas, orden de UPM, seed, RNG y serializacion fijados"
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: "percentiles 2.5/97.5 de bootstrap de UPM con reemplazo dentro de EST_DIS"
+  estrato_upm_unica: "se remuestrea a si mismo; varianza cero; se informa conteo"
+  tramos_edad: [12-17, 18-29, 30-39, 40-59, 60+]
+  variantes: [CON_CP, SIN_CP]
+  directorio_salida: forense/analisis/enut2024-participacion-intensidad-cli-1
+  periodo_horas: semana
+  simultaneidad: "agregado declarado; no tiempo exclusivo; sin capar en 168"
+  actividad_15a59: "excluida por carecer de pareja CON_CP/SIN_CP"
+  resultados_historicos_conocidos: "medias por sexo x edad de milpa/tramite.yaml:1106; CALC-ENUT-0001 hogar"
+
+resultados:
+  - {id: RESULT-ENUTPI-G-INPUT-BD-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENUTPI-G-INPUT-FD-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENUTPI-G-N-MARCO, tipo: entero, unidad: personas}
+  - {id: RESULT-ENUTPI-G-N-VALIDO-COMUN, tipo: entero, unidad: personas}
+  - {id: RESULT-ENUTPI-G-MASA-VALIDA-COMUN, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENUTPI-G-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENUTPI-G-IDENTIDAD-MAX-ERROR, tipo: flotante, unidad: horas/semana}
+  - {id: RESULT-ENUTPI-G-ESTIMACIONES-N-FILAS, tipo: entero, unidad: filas}
+  - {id: RESULT-ENUTPI-G-CONTRASTES-N-FILAS, tipo: entero, unidad: filas}
+  - {id: RESULT-ENUTPI-G-ESTIMACIONES-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENUTPI-G-CONTRASTES-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENUTPI-G-INCIDENCIAS-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENUTPI-G-INCIDENCIAS, tipo: texto, unidad: json estructurado}
+  - {id: RESULT-ENUTPI-A-CON-PARTICIPACION-NACIONAL, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ENUTPI-A-CON-MEDIA-NACIONAL, tipo: flotante, unidad: horas/semana}
+  - {id: RESULT-ENUTPI-A-CON-INTENSIDAD-NACIONAL, tipo: flotante, unidad: horas/semana}
+  - {id: RESULT-ENUTPI-A-CON-BRECHA-PARTICIPACION, tipo: flotante, unidad: diferencia de proporciones mujer-hombre}
+  - {id: RESULT-ENUTPI-A-CON-BRECHA-MEDIA, tipo: flotante, unidad: horas/semana mujer-hombre}
+  - {id: RESULT-ENUTPI-A-CON-BRECHA-INTENSIDAD, tipo: flotante, unidad: horas/semana mujer-hombre}
+  - {id: RESULT-ENUTPI-G-SALIDA-ESTIMACIONES, tipo: texto, unidad: ruta relativa}
+  - {id: RESULT-ENUTPI-G-SALIDA-CONTRASTES, tipo: texto, unidad: ruta relativa}
+  - {id: RESULT-ENUTPI-G-SALIDA-INCIDENCIAS, tipo: texto, unidad: ruta relativa}

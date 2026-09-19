@@ -1,0 +1,91 @@
+calc_id: CALC-ENFIH2019-SALDOS-AFORE-CONCENTRACION-0001
+spec_md: spec.md
+spec_md_sha256: fa0541313391f537f1f4912d3c3b842623db7b04bac2931bf5768cb32963ee4d
+script: data/corrida0/CALC-ENFIH2019-SALDOS-AFORE-CONCENTRACION-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: MEDICION-DESCRIPTIVA-CONCENTRACION-MONETARIA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENFIH2019-SALDOS-AFORE-CONCENTRACION-spec-v1_0.md
+  spec_sellada_sha256: df641f04d61ac8c0b850b6126d1ba296019fa986bccafec922a14250875a6c0e
+  demanda_que_releva: "Ninguna: completa el dominio de concentracion de 0001 por aclaracion de mesa."
+  reglas_bajo_prueba: "Descripcion de saldos Afore; no valida planeacion, conducta ni causalidad."
+  firma_de_contador: "PENDIENTE-DE-MESA; no autorizada adopcion ni contador."
+  contaminacion_declarada: "NO-CIEGA: expuesta a resultados completos de 0001 y, antes de su COMMIT-1, a P9_10/P9_11 y al conteo preparatorio de 1660 agregados positivos parciales."
+
+inputs:
+  - {id: enfih2019_bd_csv_zip, origen: manifiesto}
+  - {id: enfih2019_fd_xlsx, origen: manifiesto}
+  - id: IN-ENFIH2019-SALDOS-AFORE-CONCENTRACION-SPEC
+    origen: repo
+    ruta: forense/prereg-caja/ENFIH2019-SALDOS-AFORE-CONCENTRACION-spec-v1_0.md
+    sha256: df641f04d61ac8c0b850b6126d1ba296019fa986bccafec922a14250875a6c0e
+  - id: IN-ENFIH2019-SALDOS-AFORE-0001-RESULTADOS
+    origen: repo
+    ruta: data/corrida0/CALC-ENFIH2019-SALDOS-AFORE-0001/resultados.json
+    sha256: 1effede2c52dfa5afa7d888865f785885b2040889c868a96540e3d14d5d727d1
+
+variables:
+  - {archivo: TCONCENTRADORA.csv, variable: C_AFORE, rol: tenencia de Afore, codigos: "0=no; 1=si"}
+  - {archivo: TCONCENTRADORA.csv, variable: V_AFORE, rol: suma de montos personales conocidos en pesos, codigos: "0=sin valor especifico; 1-108264000=monto"}
+  - {archivo: TCONCENTRADORA.csv, variable: FAC_HOG, rol: ponderador de hogar}
+  - {archivo: TCONCENTRADORA.csv, variable: EDIS, rol: estrato de diseno como texto opaco}
+  - {archivo: TCONCENTRADORA.csv, variable: UPM_DIS, rol: UPM de diseno como texto opaco}
+  - {archivo: TMODULO.csv, variable: P9_10, rol: tenencia personal, codigos: "1=si; 2=no"}
+  - {archivo: TMODULO.csv, variable: P9_11, rol: saldo personal Afore, codigos: "000000000-108264000=monto; 999999888=no responde; 999999999=no sabe"}
+  - {archivo: TCONCENTRADORA.csv, variable: FOLIO, rol: llave hogar 1/3}
+  - {archivo: TCONCENTRADORA.csv, variable: VIV_SEL, rol: llave hogar 2/3}
+  - {archivo: TCONCENTRADORA.csv, variable: HOGAR, rol: llave hogar 3/3}
+
+universo: >-
+  Hogares unicos con FAC_HOG finito y positivo. El dominio principal son
+  tenedores con total completo valido, incluido cero. El comparativo excluye
+  los ceros validos. Desconocidos y parciales salen de ambos sin imputacion.
+filtros: >-
+  No se filtran extremos. Los ceros validos permanecen en la masa poblacional
+  del dominio principal. Pesos de replica cero no aportan al dominio efectivo.
+ponderador: "FAC_HOG de TCONCENTRADORA.csv, sin normalizar ni redondear."
+transformacion: >-
+  V_AFORE se verifica contra la suma de P9_11 numericos. Top 10 por masa con
+  fraccion uniforme en el empate; umbral recalculado por replica compartida.
+estimando: >-
+  Fraccion de saldo del 10 por ciento superior entre todos los completos,
+  entre positivos, y diferencia pareada todos menos positivos.
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  tabla_concentradora: TCONCENTRADORA.csv
+  tabla_modulo: TMODULO.csv
+  bootstrap_replicas: 2000
+  fraccion_superior: 0.10
+  periodo: "pesos corrientes; stock al momento de entrevista entre 2019-10-07 y 2019-11-29"
+  empates_top10: "misma fraccion de inclusion para todos los hogares del monto umbral"
+  singleton: "UPM unica se remuestrea a si misma y se declara como limite inferior de varianza"
+
+seed: {aplica: true, valor: 20260919, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: "Semilla, RNG, orden de llave y convenciones congeladas; textos e enteros son exactos."
+
+resultados:
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-N-VALIDO-TODOS, tipo: entero, unidad: hogares tenedores con total completo incluido cero}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-MASA-VALIDO-TODOS, tipo: flotante, unidad: hogares expandidos tenedores con total completo incluido cero}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-N-VALIDO-POSITIVOS, tipo: entero, unidad: hogares tenedores con total completo positivo}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-MASA-VALIDO-POSITIVOS, tipo: flotante, unidad: hogares expandidos tenedores con total completo positivo}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-COBERTURA-VALIDO-ENTRE-TENEDORES, tipo: proporcion, unidad: cobertura de total completo entre tenedores}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-TODOS-TOP10-FRACCION-SALDO, tipo: proporcion, unidad: fraccion del saldo del decil superior entre completos incluido cero}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-TODOS-TOP10-FRACCION-SALDO-IC95-LO, tipo: proporcion, unidad: IC95 inferior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-TODOS-TOP10-FRACCION-SALDO-IC95-HI, tipo: proporcion, unidad: IC95 superior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-POSITIVOS-TOP10-FRACCION-SALDO, tipo: proporcion, unidad: fraccion del saldo del decil superior entre completos positivos}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-POSITIVOS-TOP10-FRACCION-SALDO-IC95-LO, tipo: proporcion, unidad: IC95 inferior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-POSITIVOS-TOP10-FRACCION-SALDO-IC95-HI, tipo: proporcion, unidad: IC95 superior}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-DELTA-TODOS-MENOS-POSITIVOS, tipo: flotante, unidad: diferencia pareada de fracciones}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-DELTA-TODOS-MENOS-POSITIVOS-IC95-LO, tipo: flotante, unidad: IC95 inferior compartido}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-DELTA-TODOS-MENOS-POSITIVOS-IC95-HI, tipo: flotante, unidad: IC95 superior compartido}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-REPLICAS-VALIDAS-JSON, tipo: texto, unidad: replicas finitas por estimando}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-METODO-IC, tipo: texto, unidad: metodo de incertidumbre y empates}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-CONTROL-DENOMINADOR-MONETARIO-POSITIVO, tipo: texto, unidad: SI o NO}
+  - {id: RESULT-ENFIH2019-SALDOS-AFORE-CONCENTRACION-CONTROL-DOMINIOS, tipo: texto, unidad: SI o NO}

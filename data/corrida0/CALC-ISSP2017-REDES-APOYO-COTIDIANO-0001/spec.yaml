@@ -1,0 +1,110 @@
+calc_id: CALC-ISSP2017-REDES-APOYO-COTIDIANO-0001
+spec_md: spec.md
+spec_md_sha256: fb96d51d903d8e635fb420463888dbd6f4e08486eb776e2770bb86bcf0df7b94
+script: data/corrida0/CALC-ISSP2017-REDES-APOYO-COTIDIANO-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: MEDICION-DESCRIPTIVA-MICRODATO
+  unidad_transferencia: PERSONA-NO-TRANSFERENCIA-A-MOTOR
+  uso_motor: EVIDENCIA-FAMILISMO-APOYO-NO-CALIBRA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: CONTROL-SEPARADO-DE-PUNTOS-Y-DENOMINADORES
+  fuente_acto: GEN2-ISSP2017-REDES-APOYO-COTIDIANO-CLI-1
+  medidor_ejecutado_al_congelar: NO
+
+inputs:
+  - {id: za6980_q_mx, origen: manifiesto}
+  - {id: za6980_backgroundvar_mx, origen: manifiesto}
+  - {id: za6980_v2_0_0_dta, origen: manifiesto}
+  - {id: za6980_v2_0_0_sav, origen: manifiesto}
+  - id: za6980_q7_evidencia
+    origen: repo
+    ruta: forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/evidencia-documental-q7.txt
+    sha256: 7e8f4e13064d4cc4764c150a6d1842c90340857e39c320a3377a93fd9f9f676b
+
+variables:
+  - {archivo: ZA6980_v2-0-0.dta, variable: studyno, rol: identidad-estudio}
+  - {archivo: ZA6980_v2-0-0.dta, variable: doi, rol: identidad-doi}
+  - {archivo: ZA6980_v2-0-0.dta, variable: version, rol: identidad-version}
+  - {archivo: ZA6980_v2-0-0.dta, variable: country, rol: filtro-pais-numerico}
+  - {archivo: ZA6980_v2-0-0.dta, variable: c_alphan, rol: filtro-pais-alfanumerico}
+  - {archivo: ZA6980_v2-0-0.dta, variable: CASEID, rol: llave-no-publicada}
+  - {archivo: ZA6980_v2-0-0.dta, variable: SEX, rol: dominio-y-reconstruccion}
+  - {archivo: ZA6980_v2-0-0.dta, variable: AGE, rol: control-universo-adulto}
+  - {archivo: ZA6980_v2-0-0.dta, variable: WEIGHT, rol: ponderador}
+  - {archivo: ZA6980_v2-0-0.dta, variable: v21, rol: respuesta-Q7a}
+  - {archivo: ZA6980_v2-0-0.dta, variable: v22, rol: respuesta-Q7b}
+  - {archivo: ZA6980_v2-0-0.dta, variable: v23, rol: respuesta-Q7c}
+  - {archivo: ZA6980_v2-0-0.dta, variable: v24, rol: respuesta-Q7d}
+  - {archivo: ZA6980_v2-0-0.dta, variable: v25, rol: respuesta-Q7e}
+
+universo: Personas de 18 años o más en la muestra nacional de México, ISSP 2017.
+filtros: >-
+  c_alphan=MX y country=484, con studyno=6980, DOI 10.4232/1.13322 y versión
+  2.0.0 embebidos. TOTAL conserva sexo no clasificable; HOMBRES SEX=1;
+  MUJERES SEX=2. Edad desconocida no excluye.
+ponderador: >-
+  WEIGHT numérico, finito y positivo; documentación mexicana WEIGHT=1 No
+  weighting; sin recorte, imputación ni ajuste por no respuesta.
+transformacion: >-
+  P1 distribuciones 1..7 por ítem/dominio con denominador válido específico;
+  P2 familia=1+2 y contraste mujeres-hombres; P3 conteo de v=7 y matriz de
+  coocurrencia sobre quienes tienen cinco respuestas válidas.
+estimando: >-
+  Primera persona declarada a quien acudiría en cinco situaciones cotidianas;
+  no apoyo recibido, disponibilidad, dinero, calidad del vínculo, causalidad,
+  soledad, aislamiento, depresión ni capital social validado.
+precision: EE-IC-NO-DISPONIBLES-DISENO-NO-ACREDITADO
+
+dependencias_materiales: []
+seed: {aplica: false, valor: null, rng: NO-APLICA}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: sumas y razones deterministas; control independiente con igual tolerancia
+
+parametros:
+  instrumento: ISSP 2017 Social Networks and Social Resources, México, Q7a-e
+  version: ZA6980 v2.0.0
+  periodo: "2017"
+  codigos_sustantivos: [1, 2, 3, 4, 5, 6, 7]
+  codigos_familia: [1, 2]
+  codigo_ninguno: 7
+  no_puede_elegir: [8]
+  no_respuesta: [9, system_missing]
+  dominios: [TOTAL, HOMBRES, MUJERES]
+  universo_p3: cinco-respuestas-validas
+  salidas:
+    - forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/distribucion-item-sexo.csv
+    - forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/cobertura-item-sexo.csv
+    - forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/agregado-familia-item-sexo.csv
+    - forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/contraste-familia-mujeres-menos-hombres.csv
+    - forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/conteo-situaciones-ninguno.csv
+    - forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/resumen-y-cobertura-casos-completos.csv
+    - forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/matriz-coocurrencia-ninguno.csv
+  adopcion: NINGUNA
+
+resultados:
+  - {id: RESULT-ISSP-REDES-G-N-MEXICO, tipo: entero, unidad: personas}
+  - {id: RESULT-ISSP-REDES-G-PRECISION, tipo: texto, unidad: estado}
+  - {id: RESULT-ISSP-REDES-G-DISTRIBUCION-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ISSP-REDES-G-COBERTURA-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ISSP-REDES-G-FAMILIA-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ISSP-REDES-G-CONTRASTE-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ISSP-REDES-G-CONTEO-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ISSP-REDES-G-RESUMEN-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ISSP-REDES-G-MATRIZ-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ISSP-REDES-Q7a-FAMILIA-TOTAL, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ISSP-REDES-Q7b-FAMILIA-TOTAL, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ISSP-REDES-Q7c-FAMILIA-TOTAL, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ISSP-REDES-Q7d-FAMILIA-TOTAL, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ISSP-REDES-Q7e-FAMILIA-TOTAL, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ISSP-REDES-Q7a-DELTA-FAMILIA-MUJERES-MENOS-HOMBRES, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-ISSP-REDES-Q7b-DELTA-FAMILIA-MUJERES-MENOS-HOMBRES, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-ISSP-REDES-Q7c-DELTA-FAMILIA-MUJERES-MENOS-HOMBRES, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-ISSP-REDES-Q7d-DELTA-FAMILIA-MUJERES-MENOS-HOMBRES, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-ISSP-REDES-Q7e-DELTA-FAMILIA-MUJERES-MENOS-HOMBRES, tipo: flotante, unidad: proporcion}
+  - {id: RESULT-ISSP-REDES-P3-COBERTURA-COMPLETOS, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ISSP-REDES-P3-ALGUNA-SITUACION-NINGUNO, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ISSP-REDES-P3-TODAS-SITUACIONES-NINGUNO, tipo: proporcion, unidad: proporcion}

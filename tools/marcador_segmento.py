@@ -17,17 +17,29 @@ cuatro fuentes y los proyecta a una tabla derivada:
      las 20 celdas de CRUCE piloteadas (ADR-538/ADR-542), con sus RESULT
      sellados leídos de `data/corrida0/CALC-*-EMISIONES-0001/resultados.json`.
   4. `data/corrida0/decisiones.tsv` -- el veto de mesa a los cuatro
-     `CALC-PISOS-*` (objeto `veto:pisos-866`, 19/sep/2026): si la fila
-     existe, esos cuatro directorios se EXCLUYEN POR NOMBRE como fuente de
-     piso, incondicionalmente, sin leer su contenido.
+     `CALC-PISOS-*-EJES-0001` (objeto `veto:pisos-866`, 19/sep/2026): esos
+     cuatro directorios se EXCLUYEN POR NOMBRE como fuente de piso,
+     incondicionalmente, sin leer su contenido.
+  5. `forense/prereg-caja/PISOS-REJILLA-arbitro-metadatos-v1_0.tsv` -- la
+     TABLA DE IDENTIDAD de la rejilla (`GEN2-PISOS-REJILLA-CLI-1`, PR #871):
+     `cell_id` -> `consumer`/`axis`/`category`/`outcome`/`unit`/`status`.
+     Es la fuente del enlace piso<->celda marginal; el `cell_id` ES el id
+     del RESULT, no se reconstruye ni se adivina.
 
 Piso: el diseño (§9(2)) dicta MARGINAL-SIN-INTERACCION para las celdas de
 cruce ya piloteadas (así lo declara `regla_composicion` en la celda-D misma)
-y PERSISTENCIA(t-1) por eje donde exista un CALC sellado -- hoy NINGUNO
-pasa la guardia: los cuatro `CALC-PISOS-*` están vetados por nombre, y
-`CALC-TRIADA-B-PISO-0001` serializa sus RESULT con otro formato de id
-(`RESULT-TBP-*`, no uno por-celda-D) -- no calza con lo que este lector
-une por identidad exacta, y se reporta SIN-PISO en vez de forzar el parseo.
+y PERSISTENCIA(t-1) por eje para las marginales, leído de los tres CALC que
+`GEN2-PISOS-REJILLA-CLI-1` selló (`CALC_PISOS_SELLADOS`) A TRAVÉS de la
+tabla de identidad. El veto `veto:pisos-866` sigue vigente y sigue siendo
+POR NOMBRE sobre los cuatro `-EJES-0001`: su propio texto lo condiciona
+"hasta que GEN2-PISOS-REJILLA-CLI-1 entregue sucesores", y esos sucesores
+son justamente los tres de `CALC_PISOS_SELLADOS`.
+
+ACTO GEN2-MARCADOR-PISOS-ENLACE-1 (19/sep/2026) · P1: sustituye el lector
+por patrón de id (`_id_piso_v2`/`_lee_piso_v2`, borrado) por el enlace
+contra la tabla de identidad, y corrige `unidad_dato` leyéndola del
+`payload` del árbitro en vez de inferirla del prefijo del id de la regla.
+Cierra NC-0342.
 
 Salida: `data/corrida0/marcador-segmento.tsv` (`# DERIVADO -- NO EDITAR`)
 y, en P2, `milpa/estimadores-por-segmento.yaml` con las celdas adoptadas.
@@ -41,6 +53,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -53,6 +66,12 @@ CELDAS_D_DIR = RAIZ / "data" / "curacion-registro" / "celdas-d"
 DECISIONES_TSV = RAIZ / "data" / "corrida0" / "decisiones.tsv"
 CORRIDA0_DIR = RAIZ / "data" / "corrida0"
 MARCADOR_TSV = CORRIDA0_DIR / "marcador-segmento.tsv"
+TABLA_IDENTIDAD = (RAIZ / "forense" / "prereg-caja"
+                    / "PISOS-REJILLA-arbitro-metadatos-v1_0.tsv")
+# P2: el error del piso y su clase se DERIVAN de este CALC, no se
+# recalculan aquí. Si el CALC no está sellado, las dos columnas salen
+# vacías -- el marcador nunca estima.
+CALC_ERROR_PISO = CORRIDA0_DIR / "CALC-PISO-PERSISTENCIA-ERROR-0001"
 ESTIMADORES_YAML = RAIZ / "milpa" / "estimadores-por-segmento.yaml"
 
 # Los cuatro CALC-PISOS-* que el veto de mesa 19/sep/2026 (objeto
@@ -64,6 +83,16 @@ CALC_PISOS_VETADOS = [
     "CALC-PISOS-ENIF2021-EJES-0001",
 ]
 
+# Los TRES CALC sellados por `GEN2-PISOS-REJILLA-CLI-1` (PR #871/#874) que
+# la tabla de identidad referencia con su `cell_id`. Se nombran, no se
+# globbean: `CALC-PISOS-ENIF2021-EJES-0002` existe en el árbol pero es
+# spec-only (sin `resultados.json`) y un glob lo tomaría como fuente.
+CALC_PISOS_SELLADOS = [
+    "CALC-PISOS-ENVIPE2024-EJES-0002",
+    "CALC-PISOS-ENCIG2023-EJES-0002",
+    "CALC-PISOS-ENIF2021-EJES-0003",
+]
+
 # NC-0328: "edad x dominio" dentro de tramite.evasion_norma_ejes_envipe2025
 # corrió exploratoriamente sin COMMIT-1 -- reserva consumida sin piloto.
 NC_0328_PAR_CONSUMIDO = ("tramite.evasion_norma_ejes_envipe2025",
@@ -72,7 +101,9 @@ NC_0328_PAR_CONSUMIDO = ("tramite.evasion_norma_ejes_envipe2025",
 COLS = [
     "celda_id", "tipo", "regla_o_eje_origen", "instrumento",
     "eje_o_par", "categoria", "unidad_dato", "unidad_objetivo",
-    "estado", "piso", "R", "R_ic95inf", "R_ic95sup",
+    "estado", "piso_tipo", "piso", "piso_ic95", "piso_fuente",
+    "error_piso_pp", "clase_persistencia",
+    "R", "R_ic95inf", "R_ic95sup",
     "M", "IC95_inf", "IC95_sup", "tipo_incertidumbre",
     "resultado_id", "decision_ref", "emisor_vs_arbitro", "fuente",
 ]
@@ -111,7 +142,8 @@ def filas_nacionales() -> list[dict]:
             "unidad_dato": "NO-DECLARADO-EN-CENSO",
             "unidad_objetivo": "persona",
             "estado": "IDENTICO" if veredicto == "IDENTICO" else "DIAGNOSTICO",
-            "piso": "NO-APLICA",
+            "piso_tipo": "NO-APLICA", "piso": "", "piso_ic95": "",
+            "piso_fuente": "",
             "R": f["p_arbitro"], "R_ic95inf": "", "R_ic95sup": "",
             "M": f["p_emisor"] if veredicto == "IDENTICO" else "",
             "IC95_inf": "", "IC95_sup": "",
@@ -126,154 +158,421 @@ def filas_nacionales() -> list[dict]:
 
 # ── (1) universo MARGINAL -- los 7 ids `_ejes_` de la propuesta ola5 ──────
 
-def _camina_ejes(nodo):
+def _camina_ejes(nodo, desenlace: str = ""):
     """Genérico: cualquier dict con `eje` + `celdas` es un eje marginal,
     sin importar la profundidad de anidamiento (`ejes:` plano o
-    `desenlaces: {principal, secundario}: {ejes: [...]}`)."""
+    `desenlaces: {principal, secundario}: {nombre, ejes: [...]}`).
+
+    Rinde `(desenlace, bloque)`. El DESENLACE es parte de la identidad de la
+    celda: `dinero.ahorro.via_informal_ejes_enif2024` declara dos
+    (`ahorra_solo_informal` y `informal_cualquiera`, yaml:1421/1494) sobre
+    los MISMOS ejes y categorías, con R distintos. Perderlo colapsaba 32
+    filas marginales en 16 `celda_id` duplicados y hacía imposible un enlace
+    1:1 con la tabla de identidad, que sí distingue por `outcome`."""
     if isinstance(nodo, dict):
         if "eje" in nodo and "celdas" in nodo:
-            yield nodo
-        for v in nodo.values():
-            yield from _camina_ejes(v)
+            yield desenlace, nodo
+        hijo = nodo.get("nombre") if ("nombre" in nodo and "ejes" in nodo) else None
+        for clave, v in nodo.items():
+            if clave == "nombre":
+                continue
+            yield from _camina_ejes(v, hijo or desenlace)
     elif isinstance(nodo, list):
         for e in nodo:
-            yield from _camina_ejes(e)
+            yield from _camina_ejes(e, desenlace)
 
 
-# ── piso de persistencia v2 -- nota de dirección 19/sep/2026 (post-cierre) ──
-# `GEN2-PISOS-REJILLA-CLI-1` (PR #871, fusionado en main tras esta pieza)
-# sella `CALC-PISOS-*-EJES-0002`: un RESULT POR CELDA (no la "TABLA"
-# serializada de los cuatro `-EJES-0001` vetados), con sufijos de id
-# `-P` (punto), `-IC-LO`/`-IC-HI` (IC95), `-N` (tamaño) y `-DEN-W`
-# (denominador ponderado). VERIFICADO CONTRA EL CALC REAL (post-merge):
-# el id real NO es `_id_piso_v2` (que asumía `RESULT-PISOS-<EJE>-
-# <CATEGORIA>-<SUFIJO>`) -- es
-# `RESULT-PISOS-<INSTRUMENTO>-V2-<REGLA-SLUG>-<EJE>-<CATEGORIA>-<SUFIJO>`
-# (ej. `RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-P`), y la identidad
-# (eje, categoría) -> id vive en una tabla de metadatos separada
-# (`forense/prereg-caja/PISOS-REJILLA-arbitro-metadatos-v1_0.tsv`, columnas
-# `cell_id`/`axis`/`category`/`consumer`/`status`) cuyo `consumer` NO usa
-# los mismos ids de regla que `tramite-ola5-propuesta-v0.yaml` (ej.
-# `tramite.evasion_norma.segmentacion_ejes_envipe2025` en la tabla vs
-# `tramite.evasion_norma_ejes_envipe2025` en la propuesta -- mismo dominio,
-# nombre distinto; para otras reglas incluso el prefijo cambia, ej.
-# `civico.denuncia.con_seguro_ejes_envipe2025` vs
-# `familia.seguro.denuncia.segmentacion_envipe2025`). Reconciliar esos dos
-# vocabularios de regla es trabajo de identidad real, no un ajuste de una
-# línea -- se deja `_id_piso_v2`/`_lee_piso_v2` EXACTAMENTE como estaban
-# (nunca fuerzan un match falso: hoy siguen devolviendo `None` para las 74
-# celdas marginales, `SIN-PISO` no cambia) y se abre `NC-0342` con la
-# discrepancia medida, en vez de adivinar una correspondencia. El fixture
-# sintético (`tests/test_marcador_segmento.py::t_piso_v2_fixture_sintetico`)
-# sigue probando el MECANISMO de unión (identidad exacta, nunca la rama
-# "tabla", exclusión incondicional de los vetados), que es correcto; lo que
-# falta es el mapa de vocabulario, no el lector.
+# ── P1 · MAPA DE IDENTIDAD REJILLA <-> MARCADOR (UN SOLO SITIO) ───────────
+# ACTO GEN2-MARCADOR-PISOS-ENLACE-1 (19/sep/2026). Cierra NC-0342.
+#
+# El enlace NO adivina ids ni compara cadenas por similitud: lee la tabla de
+# identidad del árbitro (`TABLA_IDENTIDAD`), que ya trae el `cell_id` exacto
+# del RESULT por celda. Lo único que este mapa resuelve es que los DOS
+# VOCABULARIOS -- el del árbitro en la tabla y el de
+# `milpa/tramite-ola5-propuesta-v0.yaml` que alimenta al marcador -- nombran
+# distinto las mismas reglas, ejes y categorías. Cada entrada cita archivo y
+# línea de AMBOS lados. Toda discrepancia NO listada aquí no se resuelve: la
+# celda se queda sin enlace y la guardia D-14 `T-ENLACE-BIYECTIVO` hace
+# fallar la suite. Nunca se enlaza por parecido de cadena.
 
-def _id_piso_v2(eje: str, categoria: str, sufijo: str) -> str:
-    """Convención ASUMIDA (no verificada contra un CALC real -- ver nota
-    arriba): `RESULT-PISOS-<EJE>-<CATEGORIA>-<SUFIJO>`, con eje/categoria
-    en mayúsculas y separadores no alfanuméricos vueltos `_`."""
-    def _slug(s: str) -> str:
-        return "".join(c if c.isalnum() else "_" for c in str(s)).strip("_").upper()
-    return f"RESULT-PISOS-{_slug(eje)}-{_slug(categoria)}-{sufijo}"
+# regla del marcador (`milpa/tramite-ola5-propuesta-v0.yaml`, campo `id`)
+# -> `consumer` de la tabla (`…PISOS-REJILLA-arbitro-metadatos-v1_0.tsv`,
+# columna 15).
+MAPA_CONSUMER = {
+    # yaml:1672                                tabla:2
+    "tramite.evasion_norma_ejes_envipe2025":
+        "tramite.evasion_norma.segmentacion_ejes_envipe2025",
+    # yaml:1993                                tabla:15
+    # cambia hasta el prefijo de dominio (`civico.` vs `familia.`): mismo
+    # objeto, dos vocabularios. Por esto el mapa es explícito.
+    "civico.denuncia.con_seguro_ejes_envipe2025":
+        "familia.seguro.denuncia.segmentacion_envipe2025",
+    # yaml:1600                                tabla:17
+    "tramite.gobierno_digital.util_sin_coercion_ejes_encig2025":
+        "tramite.gobierno_digital.util_sin_coercion.segmentacion_ejes_encig2025",
+    # yaml:1415                                tabla:27
+    "dinero.ahorro.via_informal_ejes_enif2024":
+        "dinero.ahorro.tiene_ahorros.segmentacion_ejes_enif2024",
+    # `dinero.ahorro.horizonte_corto_ejes_enif2024` (yaml:2159),
+    # `familia.union.libre_ejes_eder2017` (yaml:2041) y
+    # `familia.cuidado.reparto_mujeres40_ejes_enut2024` (yaml:2089) NO
+    # aparecen como `consumer` en la tabla: la rejilla no midió piso para
+    # ellas. Quedan SIN-PISO por AUSENCIA DE FUENTE, no por fallo de enlace.
+}
+
+# (`consumer` de la tabla, eje del marcador) -> `axis` de la tabla
+# (columna 11). Sólo las tres que difieren; el resto es identidad.
+MAPA_EJE = {
+    # yaml:1705 `escolaridad_proxy` (proxy: ENVIPE no pregunta escolaridad al
+    # delito, la hereda de la víctima) ; tabla:8 `escolaridad`
+    ("tramite.evasion_norma.segmentacion_ejes_envipe2025", "escolaridad_proxy"):
+        "escolaridad",
+    # yaml:1719 `dominio_urbano_rural` ; tabla:12 `dominio`
+    ("tramite.evasion_norma.segmentacion_ejes_envipe2025", "dominio_urbano_rural"):
+        "dominio",
+    # yaml:1486 `cuenta_formal` ; tabla:41 `cuenta`
+    ("dinero.ahorro.tiene_ahorros.segmentacion_ejes_enif2024", "cuenta_formal"):
+        "cuenta",
+}
+
+# (`axis` de la tabla, categoría del marcador) -> `category` de la tabla
+# (columna 12). Sólo las que difieren.
+MAPA_CATEGORIA = {
+    # el yaml rotula con la etiqueta legible; la tabla guarda el código crudo
+    # del árbitro.  yaml:1437 / tabla:2-3
+    ("sexo", "1 Hombre"): "1",
+    ("sexo", "2 Mujer"): "2",
+    # espacio vs guion bajo.  yaml:1460,1462 / tabla:8,10
+    ("escolaridad", "hasta primaria"): "hasta_primaria",
+    ("escolaridad", "media superior"): "media_superior",
+    # yaml:2012 / tabla:15
+    ("cobertura_seguro", "no asegurado"): "no_asegurado",
+}
+
+# `unidad` declarada en el `payload` del árbitro -> rótulo normalizado del
+# marcador. La unidad NO se infiere del prefijo del id de la regla (ése era
+# el defecto de la vieja `_unidad_dato`, que rotulaba `persona` todo lo que
+# no empezara con `tramite.evasion_norma`, contradiciendo al propio árbitro
+# en ENCIG 2025 -- `unidad = TRÁMITE`, yaml:1604 -- y en la denuncia con
+# seguro de ENVIPE 2025 -- `unidad = DELITO`, yaml:1997). Se LEE del payload.
+NORMALIZA_UNIDAD = {
+    "DELITO": "delito",
+    "TRÁMITE": "tramite",
+    "TRAMITE": "tramite",
+    "PERSONA ELEGIDA 18+": "persona_elegida_18mas",
+    "PERSONA": "persona",
+    "HOGAR": "hogar",
+}
+
+# `unit` de la tabla (columna 10) -> el mismo rótulo normalizado, para que
+# la comparación piso<->R sea entre dos etiquetas del mismo vocabulario.
+# prefijo del id de celda-D -> regla de `tramite-ola5-propuesta-v0.yaml` de
+# la que hereda su unidad. Mismo par que `pares_piloteados` ya fija abajo en
+# `filas_cruce_reservadas`; aquí sirve para que la unidad de una fila CRUCE
+# también salga del `payload` del árbitro y no de un prefijo de id.
+MAPA_CELDA_D_A_REGLA = {
+    "DIN.": "dinero.ahorro.via_informal_ejes_enif2024",       # yaml:1415
+    "TRA.": "tramite.evasion_norma_ejes_envipe2025",           # yaml:1672
+}
+
+NORMALIZA_UNIT_TABLA = {
+    "DELITO": "delito",
+    "TRAMITE": "tramite",
+    "TRÁMITE": "tramite",
+    "PERSONA ELEGIDA 18+": "persona_elegida_18mas",
+    "PERSONA": "persona",
+}
+
+_RE_UNIDAD = re.compile(r"unidad\s*=\s*(.+?)\s*$", re.IGNORECASE)
 
 
-def _calc_pisos_v2_dirs() -> list[Path]:
-    """Directorios `CALC-PISOS-*-EJES-0002` (o cualquier sucesor no
-    vetado) presentes en el árbol, excluyendo SIEMPRE los cuatro
-    `CALC_PISOS_VETADOS` por nombre -- el veto de mesa manda
-    incondicionalmente, sin importar el sufijo de versión."""
-    if not CORRIDA0_DIR.exists():
-        return []
-    return [p for p in sorted(CORRIDA0_DIR.glob("CALC-PISOS-*"))
-            if p.is_dir() and p.name not in CALC_PISOS_VETADOS]
+def _unidad_dato(regla: dict) -> str:
+    """Rótulo de unidad del dato, LEÍDO del `payload` que el árbitro
+    escribió (`milpa/tramite-ola5-propuesta-v0.yaml`, campo `payload`),
+    nunca inferido del id. Si el payload no declara `unidad = …`, o declara
+    algo que no está en `NORMALIZA_UNIDAD`, se devuelve el verbatim
+    rotulado -- nunca un valor inventado."""
+    payload = str(regla.get("payload") or "")
+    m = _RE_UNIDAD.search(payload)
+    if not m:
+        return "NO-DECLARADA-EN-PAYLOAD"
+    crudo = m.group(1).strip()
+    # El payload puede traer una glosa (`PERSONA elegida 18+`), un paréntesis
+    # explicativo (`TRÁMITE (quien pagó doce veces…)`) o DOS unidades a la vez
+    # (`HOGAR (D2) y PERSONA (D1)`, yaml:2093). Se barre por clave más larga
+    # primero, consumiendo lo ya reconocido, para que `PERSONA ELEGIDA 18+` no
+    # cuente además como `PERSONA`.
+    resto = crudo.upper()
+    halladas: list[str] = []
+    for clave in sorted(NORMALIZA_UNIDAD, key=len, reverse=True):
+        if clave in resto:
+            resto = resto.replace(clave, " ")
+            val = NORMALIZA_UNIDAD[clave]
+            if val not in halladas:
+                halladas.append(val)
+    if not halladas:
+        return f"NO-NORMALIZADA:{crudo}"
+    if len(halladas) > 1:
+        # dos unidades en un solo payload: no se elige una. Una celda así
+        # nunca compara contra un piso (A-bis 3-4).
+        return f"MIXTA:{crudo}"
+    return halladas[0]
 
 
-def _lee_piso_v2(eje: str, categoria: str) -> dict | None:
-    """Une por identidad exacta (eje, categoría) contra un RESULT por celda
-    en cualquier `CALC-PISOS-*` no vetado. Nunca lee la rama "tabla"
-    (formato de los cuatro `-EJES-0001` vetados): si `resultados.json` no
-    trae los cinco ids esperados (`-P`/`-IC-LO`/`-IC-HI`/`-N`/`-DEN-W`)
-    para esta celda, no hay match y se devuelve `None` -- no se fuerza el
-    parseo."""
-    id_p = _id_piso_v2(eje, categoria, "P")
-    id_lo = _id_piso_v2(eje, categoria, "IC-LO")
-    id_hi = _id_piso_v2(eje, categoria, "IC-HI")
-    id_n = _id_piso_v2(eje, categoria, "N")
-    id_den = _id_piso_v2(eje, categoria, "DEN-W")
-    for calc_dir in _calc_pisos_v2_dirs():
-        rj = calc_dir / "resultados.json"
+# ── enlace piso <-> celda marginal, por la tabla de identidad ─────────────
+
+def _regla_ola5(regla_id: str) -> dict:
+    d = _yaml(PROPUESTA_OLA5)
+    for r in d.get("reglas_propuestas", []):
+        if r.get("id") == regla_id:
+            return r
+    return {}
+
+
+def _unidad_de_celda_d(celda_id: str) -> str:
+    for prefijo, regla_id in MAPA_CELDA_D_A_REGLA.items():
+        if celda_id.startswith(prefijo):
+            return _unidad_dato(_regla_ola5(regla_id))
+    return "NO-MAPEADA-A-REGLA-DE-OLA5"
+
+
+def _resultados_sellados() -> dict:
+    """Une los `resultados` de los TRES CALC sellados, por nombre. Un
+    directorio vetado por `veto:pisos-866` jamás entra aquí: el veto es por
+    nombre y `CALC_PISOS_SELLADOS` no lo contiene."""
+    out: dict[str, tuple] = {}
+    for nombre in CALC_PISOS_SELLADOS:
+        if nombre in CALC_PISOS_VETADOS:   # cinturón: el veto manda siempre
+            continue
+        rj = CORRIDA0_DIR / nombre / "resultados.json"
         if not rj.exists():
             continue
         try:
-            resultados = json.loads(rj.read_text(encoding="utf-8")).get("resultados", {})
+            res = json.loads(rj.read_text(encoding="utf-8")).get("resultados", {})
         except (OSError, json.JSONDecodeError):
             continue
-        if not isinstance(resultados, dict) or id_p not in resultados:
-            continue
-        if id_lo not in resultados or id_hi not in resultados:
-            continue
-        return {
-            "punto": resultados[id_p],
-            "ic95inf": resultados.get(id_lo),
-            "ic95sup": resultados.get(id_hi),
-            "n": resultados.get(id_n),
-            "den_w": resultados.get(id_den),
-            "resultado_id": id_p,
-            "fuente": calc_dir.name,
-        }
-    return None
+        if isinstance(res, dict):
+            for k, v in res.items():
+                out.setdefault(k, (v, nombre))
+    return out
+
+
+def lee_tabla_identidad() -> list[dict]:
+    """Filas de la tabla de identidad del árbitro, tal cual. Se LEE; este
+    acto no la escribe (perímetro)."""
+    if not TABLA_IDENTIDAD.exists():
+        return []
+    with TABLA_IDENTIDAD.open(encoding="utf-8") as fh:
+        lineas = [l for l in fh if not l.startswith("#")]
+    return list(csv.DictReader(lineas, delimiter="\t"))
+
+
+def indice_identidad() -> dict:
+    """(`consumer`, `outcome`, `axis`, `category`) -> fila de la tabla.
+    Es la única llave de enlace. Una clave repetida es defecto de la tabla
+    y se reporta como tal (la guardia D-14 la vuelve fallo)."""
+    idx: dict[tuple, dict] = {}
+    for f in lee_tabla_identidad():
+        clave = (f["consumer"], f["outcome"], f["axis"], f["category"])
+        idx.setdefault(clave, f)
+    return idx
+
+
+def clave_de_marcador(regla_id: str, desenlace: str, eje: str, categoria: str,
+                       idx: dict) -> tuple | None:
+    """Traduce las coordenadas del marcador al vocabulario de la tabla,
+    SÓLO por los tres mapas explícitos de arriba. Devuelve `None` si la
+    regla no tiene `consumer` en la tabla (ausencia de fuente)."""
+    consumer = MAPA_CONSUMER.get(regla_id)
+    if consumer is None:
+        return None
+    axis = MAPA_EJE.get((consumer, eje), eje)
+    category = MAPA_CATEGORIA.get((axis, categoria), categoria)
+    if desenlace:
+        return (consumer, desenlace, axis, category)
+    # Reglas sin bloque `desenlaces:`: el consumer tiene un solo `outcome`
+    # en la tabla, y ese es el desenlace. Si tuviera más de uno, no se
+    # adivina: se devuelve None y la celda queda sin enlace.
+    outcomes = {k[1] for k in idx if k[0] == consumer}
+    if len(outcomes) != 1:
+        return None
+    return (consumer, next(iter(outcomes)), axis, category)
+
+
+def _piso_de_fila(clave: tuple, idx: dict, res: dict) -> dict | None:
+    """Piso de persistencia t-1 de una celda marginal, o `None` si la clave
+    no está en la tabla. Para una fila `NO-CONSTRUIBLE` devuelve el motivo
+    sin valor: un piso que la rejilla declaró inconstruible no se fabrica."""
+    fila = idx.get(clave)
+    if fila is None:
+        return None
+    if fila["status"] != "CONSTRUIBLE":
+        return {"construible": False, "causa": fila.get("reason") or fila["status"],
+                "unit": fila.get("unit", ""), "cell_id": fila["cell_id"]}
+    base = fila["cell_id"]
+    if base.endswith("-P"):
+        base = base[:-2]
+    ids = {s: f"{base}-{s}" for s in ("P", "IC-LO", "IC-HI", "N", "DEN-W")}
+    if any(i not in res for i in (ids["P"], ids["IC-LO"], ids["IC-HI"])):
+        # la tabla declara CONSTRUIBLE pero el RESULT no está sellado: no se
+        # fuerza el parseo ni se inventa un piso.
+        return {"construible": False,
+                "causa": f"CONSTRUIBLE-EN-TABLA-SIN-RESULT-SELLADO:{ids['P']}",
+                "unit": fila.get("unit", ""), "cell_id": fila["cell_id"]}
+    punto, calc = res[ids["P"]]
+    lo, _ = res[ids["IC-LO"]]
+    hi, _ = res[ids["IC-HI"]]
+    n = res.get(ids["N"], ("", ""))[0]
+    den = res.get(ids["DEN-W"], ("", ""))[0]
+    return {
+        "construible": True,
+        "punto": punto, "ic95inf": lo, "ic95sup": hi, "n": n, "den_w": den,
+        "unit": fila.get("unit", ""),
+        "unit_normalizada": NORMALIZA_UNIT_TABLA.get(
+            (fila.get("unit") or "").strip().upper(),
+            f"NO-NORMALIZADA:{fila.get('unit')}"),
+        "outcome": fila.get("outcome", ""),
+        "source_instrument": fila.get("source_instrument", ""),
+        "source_edition": fila.get("source_edition", ""),
+        "source_reference_period": fila.get("source_reference_period", ""),
+        "target_instrument": fila.get("target_instrument", ""),
+        "target_edition": fila.get("target_edition", ""),
+        "target_reference_period": fila.get("target_reference_period", ""),
+        "resultado_id": ids["P"],
+        "calc": calc,
+        "fuente": f"{calc}/{ids['P']}",
+    }
+
+
+def _slug_result(v) -> str:
+    """Mismo slug que `medidor.py` de `CALC-PISO-PERSISTENCIA-ERROR-0001`
+    usa para armar el id del RESULT. Vive duplicado a propósito: el marcador
+    no importa el medidor (sería un ciclo -- el medidor sí importa este
+    módulo), y `T-ERROR-PISO-DERIVADO` prueba que los dos coinciden contra
+    los ids realmente sellados."""
+    return "".join(c if c.isalnum() else "-" for c in str(v)).strip("-").upper()
+
+
+def _error_de_piso_por_celda(idx_por_cell_id: dict) -> dict:
+    """`celda_id` -> (`error_piso_pp`, `clase_persistencia`) LEÍDOS de los
+    RESULT sellados de `CALC-PISO-PERSISTENCIA-ERROR-0001`. El marcador no
+    recalcula nada: si el CALC no está sellado, las dos columnas van
+    vacías."""
+    rj = CALC_ERROR_PISO / "resultados.json"
+    if not rj.exists():
+        return {}
+    try:
+        res = json.loads(rj.read_text(encoding="utf-8")).get("resultados", {})
+    except (OSError, json.JSONDecodeError):
+        return {}
+    if not isinstance(res, dict):
+        return {}
+    return res
+
+
+def _columnas_error(res: dict, tabla: dict, eje: str, categoria: str) -> tuple:
+    if not res or not tabla:
+        return ("", "")
+    base = ("RESULT-PISO-ERR-"
+            f"{_slug_result(tabla.get('source_instrument'))}-"
+            f"{_slug_result(tabla.get('outcome'))}-"
+            f"{_slug_result(eje)}-{_slug_result(categoria)}")
+    return (res.get(f"{base}-D-PP", ""), res.get(f"{base}-CLASE", ""))
 
 
 def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
+    """Universo (i): las celdas marginales por eje de los siete ids `_ejes_`.
+
+    `vetados` conserva su semántica de nombre -- los cuatro
+    `CALC-PISOS-*-EJES-0001` NUNCA se leen -- pero ya no apaga el lector:
+    el veto `veto:pisos-866` se condicionó a sí mismo "hasta que
+    `GEN2-PISOS-REJILLA-CLI-1` entregue sucesores en la rejilla y el
+    universo del árbitro" (`data/corrida0/decisiones.tsv:126`), y esos
+    sucesores son `CALC_PISOS_SELLADOS`, que es lo único que se lee aquí.
+    """
     d = _yaml(PROPUESTA_OLA5)
     reglas_ejes = [r for r in d["reglas_propuestas"] if "_ejes_" in r.get("id", "")]
+    idx = indice_identidad()
+    res = _resultados_sellados()
+    err = _error_de_piso_por_celda(idx)
+    por_cell_id = {f["cell_id"]: f for f in lee_tabla_identidad()}
     filas = []
     n_ejes = 0
     for r in reglas_ejes:
-        for bloque in _camina_ejes(r):
+        unidad = _unidad_dato(r)
+        for desenlace, bloque in _camina_ejes(r):
             n_ejes += 1
             eje = bloque.get("eje")
             for c in (bloque.get("celdas") or []):
-                piso_v2 = None if vetados else _lee_piso_v2(eje, c.get("celda"))
-                if piso_v2:
-                    estado, piso = "SOLO-PISO", "PERSISTENCIA(t-1)"
-                else:
+                categoria = c.get("celda")
+                clave = clave_de_marcador(r["id"], desenlace, eje, categoria, idx)
+                piso = _piso_de_fila(clave, idx, res) if clave else None
+
+                piso_tipo = piso_val = piso_ic95 = piso_fuente = ""
+                resultado_id = ""
+                tipo_inc = "SIN-PISO"
+                if piso is None:
                     estado = "SIN-PISO"
-                    piso = "VETADO:CALC-PISOS" if vetados else "SIN-CALC-SELLADO-POR-EJE"
+                    piso_tipo = "SIN-PISO"
+                    piso_fuente = ("SIN-CONSUMER-EN-TABLA-DE-IDENTIDAD"
+                                   if clave is None
+                                   else "SIN-FILA-EN-TABLA-DE-IDENTIDAD")
+                elif not piso["construible"]:
+                    estado = "SIN-PISO"
+                    piso_tipo = "SIN-PISO"
+                    # la causa la escribe la tabla, no este tool.
+                    piso_fuente = f"NO-CONSTRUIBLE:{piso['causa']}"
+                else:
+                    estado = "SOLO-PISO"
+                    piso_tipo = "PERSISTENCIA(t-1)"
+                    piso_val = piso["punto"]
+                    piso_ic95 = f"[{piso['ic95inf']}, {piso['ic95sup']}]"
+                    piso_fuente = piso["fuente"]
+                    resultado_id = piso["resultado_id"]
+                    tipo_inc = "PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO"
+                    # A-bis 3-4: la unidad del piso y la del R deben coincidir
+                    # o la celda no es comparable. No se tira: se rotula.
+                    if piso["unit_normalizada"] != unidad:
+                        estado = "NO-COMPARABLE"
+                        piso_fuente = (f"{piso['fuente']}"
+                                       f" · UNIDAD-DISCREPANTE:"
+                                       f"tabla={piso['unit']}/marcador={unidad}")
+
+                sufijo = f"{desenlace}::" if desenlace else ""
+                celda_id = f"MARG::{r['id']}::{sufijo}{eje}::{categoria}"
+                error_pp, clase = _columnas_error(
+                    err, por_cell_id.get(resultado_id, {}), eje, categoria)
                 filas.append({
-                    "celda_id": f"MARG::{r['id']}::{eje}::{c.get('celda')}",
+                    "celda_id": celda_id,
                     "tipo": "MARGINAL",
                     "regla_o_eje_origen": r["id"],
                     "instrumento": r.get("payload", ""),
                     "eje_o_par": eje,
-                    "categoria": c.get("celda"),
-                    "unidad_dato": _unidad_dato(r["id"]),
+                    "categoria": categoria,
+                    "unidad_dato": unidad,
                     "unidad_objetivo": "persona",
                     "estado": estado,
-                    "piso": piso,
+                    "piso_tipo": piso_tipo,
+                    "piso": piso_val,
+                    "piso_ic95": piso_ic95,
+                    "piso_fuente": piso_fuente,
+                    "error_piso_pp": error_pp,
+                    "clase_persistencia": clase,
                     "R": c.get("p"), "R_ic95inf": (c.get("ic95") or [None, None])[0],
                     "R_ic95sup": (c.get("ic95") or [None, None])[1],
-                    "M": piso_v2["punto"] if piso_v2 else "",
-                    "IC95_inf": piso_v2["ic95inf"] if piso_v2 else "",
-                    "IC95_sup": piso_v2["ic95sup"] if piso_v2 else "",
-                    "tipo_incertidumbre": ("PERSISTENCIA-T1-REPLICA" if piso_v2
-                                            else "SIN-PISO"),
-                    "resultado_id": piso_v2["resultado_id"] if piso_v2 else "",
+                    # El piso NO es M: acota a los retadores, no identifica
+                    # nada y no sustituye a R en la ola que R ya midió
+                    # (firma de mesa, GEN2-MARCADOR-PISOS-ENLACE-1). M queda
+                    # vacía en toda fila marginal.
+                    "M": "", "IC95_inf": "", "IC95_sup": "",
+                    "tipo_incertidumbre": tipo_inc,
+                    "resultado_id": resultado_id,
                     "decision_ref": "veto:pisos-866" if vetados else "",
                     "emisor_vs_arbitro": "N/A-MARGINAL",
                     "fuente": f"{PROPUESTA_OLA5.name}:{r['id']}",
                 })
     universo = {"n_reglas_ejes": len(reglas_ejes), "n_ejes": n_ejes, "n_celdas": len(filas)}
     return filas, universo
-
-
-def _unidad_dato(regla_id: str) -> str:
-    """(c) de la adenda: las celdas TRA son proporción de delitos, universo
-    restringido a delitos -- NO se hereda `persona` para esas filas."""
-    if regla_id.startswith("tramite.evasion_norma") or regla_id.startswith("TRA."):
-        return "delito"
-    return "persona"
 
 
 # ── (3) universo de CRUCE -- 20 celdas C2 piloteadas + reservadas ─────────
@@ -321,11 +620,12 @@ def filas_cruce_adoptadas(decisiones: dict) -> list[dict]:
                 "instrumento": info.get("calc", ""),
                 "eje_o_par": sub_celda,
                 "categoria": sub_celda,
-                "unidad_dato": _unidad_dato(celda_id_base),
+                "unidad_dato": _unidad_de_celda_d(celda_id_base),
                 "unidad_objetivo": "persona",
                 "estado": ("ADOPTADO-POR-FIRMA" if tiene_adopcion
                            else "PISO-ADMISIBLE-NO-ADOPTADO"),
-                "piso": "MARGINAL-SIN-INTERACCION",
+                "piso_tipo": "MARGINAL-SIN-INTERACCION", "piso": "",
+                "piso_ic95": "", "piso_fuente": "",
                 "R": "", "R_ic95inf": "", "R_ic95sup": "",
                 "M": resultados.get(rid_p, ""),
                 "IC95_inf": resultados.get(rid_inf, ""),
@@ -364,7 +664,7 @@ def filas_cruce_reservadas() -> tuple[list[dict], dict]:
     total_consumidas = 0
     for r in reglas_ejes:
         ejes_por_bloque: dict[str, int] = {}
-        for bloque in _camina_ejes(r):
+        for _desenlace, bloque in _camina_ejes(r):
             eje = bloque.get("eje")
             n = len(bloque.get("celdas") or [])
             ejes_por_bloque[eje] = max(ejes_por_bloque.get(eje, 0), n)
@@ -392,10 +692,11 @@ def filas_cruce_reservadas() -> tuple[list[dict], dict]:
                     "instrumento": r.get("payload", ""),
                     "eje_o_par": f"{a}x{b}",
                     "categoria": f"{n_celdas} celdas agrupadas",
-                    "unidad_dato": _unidad_dato(r["id"]),
+                    "unidad_dato": _unidad_dato(r),
                     "unidad_objetivo": "persona",
                     "estado": estado,
-                    "piso": "SIN-PISO" if estado == "RESERVADA" else "SIN-PISO",
+                    "piso_tipo": "SIN-PISO", "piso": "", "piso_ic95": "",
+                    "piso_fuente": "",
                     "R": "", "R_ic95inf": "", "R_ic95sup": "",
                     "M": "", "IC95_inf": "", "IC95_sup": "",
                     "tipo_incertidumbre": "RESERVADA-SIN-R",
@@ -425,9 +726,11 @@ def deriva() -> dict:
     todas = nacionales + marginales + cruce_adoptadas + cruce_reservadas
 
     # cuatro números derivados al pie del diseño §4
-    n_con_piso = sum(1 for f in todas if f["piso"] not in ("", "NO-APLICA", "SIN-PISO")
-                      and not str(f["piso"]).startswith("SIN-CALC")
-                      and not str(f["piso"]).startswith("VETADO"))
+    # cobertura de piso = filas con un piso REAL detrás (no "NO-APLICA",
+    # no "SIN-PISO"): las 20 de cruce con MARGINAL-SIN-INTERACCION más las
+    # marginales enlazadas a un PERSISTENCIA(t-1) sellado.
+    n_con_piso = sum(1 for f in todas
+                      if f["piso_tipo"] not in ("", "NO-APLICA", "SIN-PISO"))
     n_evaluadas = len(cruce_adoptadas)  # las que tienen M sellado (== 20)
     n_universo_117 = uni_marginal["n_celdas"] + len(cruce_adoptadas) + \
         uni_reservadas["n_grupos_reservados"] + uni_reservadas["n_grupos_consumidos"]
