@@ -3265,8 +3265,16 @@ def _lee_oferta(verifica: bool) -> list[dict]:
             # CALC-ENVIPE-U4-2012-v1_1 que NC-0199 nombraba). La raiz
             # conserva precedencia; `etiquetas` es el respaldo, por el
             # mismo helper `_etiqueta()` que el resto del campo usa. Las
-            # specs selladas NO se tocan (E.3): se corrige el LECTOR.
-            "repite_de": str(spec.get("repite_de") or _etiqueta(spec, "repite_de", "")),
+            # specs selladas NO se tocan (E.3): se corrige el LECTOR. La
+            # adenda de GEN2-MARCADOR-ADOPCION-CLI-1 acredita además el
+            # sinónimo declarativo `sucesor_de`, usado por los sucesores de
+            # pisos. Ambos nombres expresan la misma arista; `repite_de`
+            # conserva precedencia por compatibilidad histórica.
+            "repite_de": str(
+                spec.get("repite_de") or spec.get("sucesor_de")
+                or _etiqueta(spec, "repite_de", "")
+                or _etiqueta(spec, "sucesor_de", "")
+            ),
         })
 
     # ACTO GEN2-T9 · P1: el cierre transitivo corre DESPUES de leer todas

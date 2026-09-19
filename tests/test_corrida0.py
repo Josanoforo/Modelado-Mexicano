@@ -1705,6 +1705,24 @@ def t_registro_superado_por_repite_de_en_etiquetas():
             f"estado={por_spec['CALC-FIX-B']['estado']}")
 
 
+def t_registro_superado_por_sucesor_de_en_etiquetas():
+    """T-REGISTRO-SUCESOR-DE-ETIQUETAS. El lector acepta el nombre usado
+    por specs selladas de pisos sin reescribirlas ni alterar la arista."""
+    caso = "T-REGISTRO-SUCESOR-DE-ETIQUETAS"
+    calcs = [{"calc_id": "CALC-FIX-A", "valores": {"RESULT-A": 1.0},
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}},
+             {"calc_id": "CALC-FIX-B", "valores": {"RESULT-B": 2.0},
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2",
+                            "sucesor_de": "CALC-FIX-A"}}]
+    with _arbol_registro(calcs=calcs):
+        v = C.registro(escribe=False, imprime=False)
+    por_spec = {f["spec_id"]: f for f in v["corridas"] if f["origen"] == "OFERTA"}
+    _afirma(por_spec["CALC-FIX-A"]["estado"] == "SUPERADO→CALC-FIX-B", caso,
+            f"estado={por_spec['CALC-FIX-A']['estado']}")
+    _afirma(por_spec["CALC-FIX-B"]["estado"] == "SELLADA", caso,
+            f"estado={por_spec['CALC-FIX-B']['estado']}")
+
+
 def t_status_cifras_derivadas():
     """T-STATUS. Los contadores de §9 salen de las vistas, no de un TSV en
     disco, y un replay LEGACY-GEN1 NUNCA incrementa `N_resultados_sellados`
