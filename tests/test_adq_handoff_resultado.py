@@ -2,7 +2,9 @@
 """Regresiones del handoff redundante y la salud mecánica ADQ."""
 import json
 import os
+import shlex
 import shutil
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -329,6 +331,70 @@ def prueba_13_vigilante_nombra_resultado_invalido():
     afirma(estado == "RESULTADO-INVALIDO" and
            "sin_candidato_valido" in detalle,
            f"vigilante ocultó causa del resultado inválido: {estado} {detalle}")
+
+
+def prueba_14_prompt_no_ejecuta_prevalidacion_al_construirse():
+    fuente = (RAIZ / "tools" / "adquiere_cron.sh").read_text(encoding="utf-8")
+    inicio = fuente.index('PROMPT_EFECTIVO="')
+    fin = fuente.index("\n\n# Reserva el consumo agregado", inicio)
+    asignacion = fuente[inicio:fin]
+
+    with tempfile.TemporaryDirectory() as td:
+        temporal = Path(td)
+        binario = temporal / "bin"
+        binario.mkdir()
+        marcador = temporal / "python-invocado"
+        python_simulado = binario / "python3"
+        python_simulado.write_text(
+            '#!/bin/sh\nprintf "invocado\\n" >"$ADQ_MARCADOR_PYTHON"\nexit 97\n',
+            encoding="utf-8")
+        python_simulado.chmod(0o755)
+
+        valores = {
+            "PROMPT": "PROMPT BASE",
+            "MAXIMO_INVESTIGACIONES": "2",
+            "TIMEOUT_DESCUBRIMIENTO": "300",
+            "MAXIMO_FILAS": "3",
+            "TIMEOUT_ADQUISICION": "600",
+            "SELECCION_JSON": "[]",
+            "INVESTIGACION_JSON": "[]",
+            "RUN_ID": "RUN-PROMPT-PRUEBA",
+            "FECHA": "2026-09-19",
+            "HANDOFF_RESULTADO": "/tmp/handoff-prueba.json",
+            "LOGDIR": "forense/adq-log",
+            "SELECCION_ARCHIVO": "/tmp/seleccion-prueba.json",
+            "INVESTIGACION_ARCHIVO": "/tmp/investigacion-prueba.json",
+        }
+        declaraciones = "\n".join(
+            f"{nombre}={shlex.quote(valor)}" for nombre, valor in valores.items())
+        guion = temporal / "construye-prompt.sh"
+        guion.write_text(
+            "#!/bin/bash\nset -eu\n" + declaraciones + "\n" + asignacion +
+            '\nprintf "%s\\n" "$PROMPT_EFECTIVO"\n', encoding="utf-8")
+
+        entorno = os.environ.copy()
+        entorno["PATH"] = f"{binario}:{entorno.get('PATH', '')}"
+        entorno["ADQ_MARCADOR_PYTHON"] = str(marcador)
+        ejecucion = subprocess.run(
+            ["bash", str(guion)], text=True, capture_output=True, env=entorno,
+            check=False)
+
+        comando = (
+            "`python3 tools/adq_handoff.py --selecciona-resultado "
+            "--last-message forense/adq-log/RUN-PROMPT-PRUEBA-preentrega-ausente.json "
+            "--handoff /tmp/handoff-prueba.json "
+            "--seleccion-archivo /tmp/seleccion-prueba.json "
+            "--seleccion-investigacion-archivo /tmp/investigacion-prueba.json "
+            "--resultado-aceptado forense/adq-log/"
+            "RUN-PROMPT-PRUEBA-preentrega-aceptado.json "
+            "--informe forense/adq-log/"
+            "RUN-PROMPT-PRUEBA-preentrega-validacion.json`")
+        afirma(ejecucion.returncode == 0,
+               f"construir el prompt falló: {ejecucion.stderr}")
+        afirma(not marcador.exists(),
+               "construir el prompt invocó prematuramente el validador")
+        afirma(comando in ejecucion.stdout,
+               "el prompt no conservó completa la instrucción de prevalidación")
 
 
 def main():
