@@ -167,3 +167,14 @@ jobs:
         # es decoración (regla del piloto 1, NC-0331). Stdlib puro, sin
         # numpy: `unittest` corre el módulo directo.
         run: python3 -m unittest tests.test_celda_d_piloto2_consumidor -v
+
+      - name: marcador por segmento — tabla derivada y guardias (bloqueante)
+        # ACTO GEN2-MARCADOR-REDISENO-1 (19/sep/2026): mismo motivo que el
+        # paso de arriba (NC-0331) -- un test nuevo que nadie cablea a CI es
+        # decoración. `tests/test_marcador_segmento.py` corre las tres
+        # guardias del diseño (T-RESERVA/T-EMISOR-NO-COMPARA/
+        # T-PISO-NO-CIRCULAR) + los dos universos derivados (97/20);
+        # `tests/test_estimadores_segmento.py` corre P2 (motor.estimar_segmento).
+        run: |
+          python3 tests/test_marcador_segmento.py
+          python3 tests/test_estimadores_segmento.py

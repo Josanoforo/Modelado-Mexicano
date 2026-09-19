@@ -468,6 +468,8 @@ def main() -> int:
             print(f"  - {n}: {f}")
         return 1
     print("\nGO-MARCADOR")
+    print("acredita el eje x = ∅; el marcador por segmento vive en "
+          "`marcador-segmento.tsv`")
     return 0
 
 
