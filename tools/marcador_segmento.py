@@ -179,7 +179,7 @@ def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
 def _unidad_dato(regla_id: str) -> str:
     """(c) de la adenda: las celdas TRA son proporción de delitos, universo
     restringido a delitos -- NO se hereda `persona` para esas filas."""
-    if regla_id.startswith("tramite.evasion_norma"):
+    if regla_id.startswith("tramite.evasion_norma") or regla_id.startswith("TRA."):
         return "delito"
     return "persona"
 
@@ -367,7 +367,7 @@ def escribe_tsv(filas: list[dict]) -> None:
     with MARCADOR_TSV.open("w", encoding="utf-8", newline="") as fh:
         fh.write("# DERIVADO — NO EDITAR (tools/marcador_segmento.py, "
                  "ACTO GEN2-MARCADOR-REDISENO-1)\n")
-        w = csv.DictWriter(fh, fieldnames=COLS, delimiter="\t")
+        w = csv.DictWriter(fh, fieldnames=COLS, delimiter="\t", lineterminator="\n")
         w.writeheader()
         for f in filas:
             w.writerow({k: f.get(k, "") for k in COLS})
