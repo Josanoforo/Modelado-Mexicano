@@ -4,6 +4,7 @@ from __future__ import annotations
 import csv
 import importlib.util
 from pathlib import Path
+import pandas as pd
 import yaml
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -11,7 +12,7 @@ SNAP=ROOT/"forense/prereg-caja/PISOS-REJILLA-arbitro-metadatos-v1_0.tsv"
 CALCS=[
  "CALC-PISOS-ENVIPE2024-EJES-0002",
  "CALC-PISOS-ENCIG2023-EJES-0002",
- "CALC-PISOS-ENIF2021-EJES-0002",
+ "CALC-PISOS-ENIF2021-EJES-0003",
 ]
 
 def corre():
@@ -52,6 +53,18 @@ def corre():
                       " sobran="+str(sorted(declared-constructible)))
     if any("P3_13" not in r["reason"] for r in excluded):
         errors.append("exclusión de formalidad sin razón P3_13")
+    enif=ROOT/"data/corrida0/CALC-PISOS-ENIF2021-EJES-0003/medidor.py"
+    module_spec=importlib.util.spec_from_file_location("pisos_enif_v21",enif)
+    module=importlib.util.module_from_spec(module_spec)
+    module_spec.loader.exec_module(module)
+    fixture=pd.DataFrame({
+        "P5_4_1":["1","2"], "P5_4_2":["2","2"],
+        "P5_7_1":["2",""], "P5_7_2":["",""],
+    })
+    formal=module._formal(
+        fixture, ["P5_4_1","P5_4_2"], ["P5_7_1","P5_7_2"])
+    if formal.tolist()!=[False,False]:
+        errors.append(f"ENIF: pares posicionales P5_4/P5_7 rotos: {formal.tolist()}")
     return errors
 
 def main():
