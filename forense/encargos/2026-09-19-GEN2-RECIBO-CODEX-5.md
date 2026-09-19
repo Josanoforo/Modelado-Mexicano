@@ -44,4 +44,4 @@ Cascada D-10 · `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO` · cero ramas.
 
 ## CONSUMIDO
 
-PR PENDIENTE (este mismo acto, rama `codex/gen2-recibo-codex-5-cli-1`).
+PR #895.
