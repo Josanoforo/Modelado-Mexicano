@@ -54,3 +54,24 @@ Propio: `instrucciones-proyecto-v2_15*.md` y sidecars · retiro de `v2_14*.md` s
 10 · NO HACE · SUCESORES · CIERRE
 
 No reescribe encargos ya archivados al formato nuevo · no toca `AGENTS.md` más allá de una cita · no instrumenta ningún linter de encargos (D-14: aún no hay defecto que lo pida). Sucesor: a tres meses, el falsador de P5. Cascada de `/acto` · `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** el sello pleno de A.9 — el cuerpo operativo v2.15 y `PLANTILLA-ENCARGO-v2_0.md` pegados en el conocimiento del proyecto de Claude, con fecha confirmada por mesa.
+  **por qué:** `DECISIÓN-DE-MESA-PENDIENTE`. La firma del lado proyecto viajó en este encargo como **propuesta** («mesa la confirma o corrige la fecha al lanzar»), no como firma dada; el ejecutor no tiene superficie de escritura fuera del repo. Precedente idéntico y por la misma causa: `ADR-544` / `GEN2-V214`.
+  **impacto:** `instrucciones_vigentes = v2.15` queda sellado y derivado del lado repo, y la v2.15 rige ya en el repo y en toda sesión de Claude Code vía `CLAUDE.md`; falta la copia del proyecto de dirección para que A.9 esté cumplida en los dos lados.
+  **sucesor:** `NC-0407` · `FP-399` — mesa pega los dos archivos y confirma la fecha; una enmienda fechada sobre `ADR-564` cierra la fila citándola verbatim.
+
+- **qué:** reescribir los encargos ya archivados al formato de `PLANTILLA-ENCARGO-v2_0.md`.
+  **por qué:** `FUERA-DE-PERÍMETRO` — de ningún otro acto, y es deliberado: §10 de este encargo lo excluye y A.3 prohíbe editar un encargo archivado. Se asienta para que la ausencia no se lea como olvido.
+  **impacto:** ninguno — la sección `4 · EJECUCIÓN` de `/acto` define el default de `MODO` para los encargos anteriores a v2.15, así que ningún acto queda sin regla aplicable.
+  **sucesor:** `SIN-ASIGNAR`; no lo requiere. `NC-0408`, CERRADA en este mismo acto.
+
+- **qué:** la medición del falsador de la plantilla a tres meses del sello.
+  **por qué:** `DIFERIDO-A:` el acto sucesor de diciembre/2026 — la ventana no ha transcurrido.
+  **impacto:** sin ella no se sabe si la plantilla resolvió el defecto que la motiva (75/160 NC = 46.9 % en la ventana 16–20/sep/2026). No bloquea nada hoy: la línea base existe y es reproducible por comando.
+  **sucesor:** `NC-0409` — `python3 tools/nc_por_razon.py --desde 2026-09-20 --hasta 2026-12-20`.
+
+## CONSUMIDO
+
+Ejecutado sobre la rama `claude/wonderful-johnson-8qs9qj`. `ADR-564` (número en disputa: dos ramas remotas vivas lo traen redactado — renumera quien fusione segundo, junto con `NC-0407`-`NC-0409` y `FP-399`). Cierre: `forense/notas/2026-09-20-GEN2-V215-cierre.md`.
