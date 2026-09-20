@@ -1,0 +1,68 @@
+calc_id: CALC-ISSP2017-CONSISTENCIA-APOYO-FAMILIAR-0001
+spec_md: spec.md
+spec_md_sha256: 2698282af92f993540c8da883aa5645c87ceffb11af5bd6020e2697cd009be3d
+script: data/corrida0/CALC-ISSP2017-CONSISTENCIA-APOYO-FAMILIAR-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: MEDICION-DESCRIPTIVA-MICRODATO
+  unidad_transferencia: PERSONA-NO-TRANSFERENCIA-A-MOTOR
+  uso_motor: EVIDENCIA-CONSISTENCIA-APOYO-FAMILIAR-NO-CALIBRA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: CONTROL-SEPARADO
+  fuente_acto: GEN2-ISSP2017-CONSISTENCIA-APOYO-FAMILIAR-CLI-2
+  medidor_ejecutado_al_congelar: NO
+inputs:
+  - {id: za6980_q_mx, origen: manifiesto}
+  - {id: za6980_backgroundvar_mx, origen: manifiesto}
+  - {id: za6980_v2_0_0_dta, origen: manifiesto}
+  - {id: za6980_v2_0_0_sav, origen: manifiesto}
+  - {id: za6980_q7_evidencia_precedente, origen: repo, ruta: forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/evidencia-documental-q7.txt, sha256: 7e8f4e13064d4cc4764c150a6d1842c90340857e39c320a3377a93fd9f9f676b}
+variables:
+  - {archivo: ZA6980_v2-0-0.dta, variable: studyno, rol: identidad-estudio}
+  - {archivo: ZA6980_v2-0-0.dta, variable: doi, rol: identidad-doi}
+  - {archivo: ZA6980_v2-0-0.dta, variable: version, rol: identidad-version}
+  - {archivo: ZA6980_v2-0-0.dta, variable: country, rol: filtro-pais}
+  - {archivo: ZA6980_v2-0-0.dta, variable: c_alphan, rol: filtro-pais}
+  - {archivo: ZA6980_v2-0-0.dta, variable: CASEID, rol: llave-no-publicada}
+  - {archivo: ZA6980_v2-0-0.dta, variable: SEX, rol: corte-conteo}
+  - {archivo: ZA6980_v2-0-0.dta, variable: WEIGHT, rol: ponderador}
+  - {archivo: ZA6980_v2-0-0.dta, variable: v21, rol: Q7a}
+  - {archivo: ZA6980_v2-0-0.dta, variable: v22, rol: Q7b}
+  - {archivo: ZA6980_v2-0-0.dta, variable: v23, rol: Q7c}
+  - {archivo: ZA6980_v2-0-0.dta, variable: v24, rol: Q7d}
+  - {archivo: ZA6980_v2-0-0.dta, variable: v25, rol: Q7e}
+universo: Personas adultas de la muestra ISSP 2017 México; productos 1 y matrices comunes requieren cinco respuestas válidas, sensibilidad requiere dos válidas.
+filtros: c_alphan=MX, country=484, studyno=6980, DOI y versión embebidos; CASEID único; sexo desconocido queda como residuo.
+ponderador: WEIGHT numérico finito positivo, sin ajuste ni imputación; precedente acredita WEIGHT=1 y no diseño ejecutable.
+transformacion: familia=1+2; no-familia=3..7; 8,9,vacío excluidos; matrices 7x7 y 2x2 ponderadas.
+estimando: Consistencia transversal descriptiva de la primera persona hipotética a quien acudiría, no apoyo recibido ni causalidad.
+precision: EE-IC-NO-DISPONIBLES-DISENO-NO-ACREDITADO
+dependencias_materiales: []
+seed: {aplica: false, valor: null, rng: NO-APLICA}
+tolerancia: {tipo: flotante, abs: 1.0e-10, razon: sumas y razones deterministas}
+parametros:
+  instrumento: ISSP 2017 Social Networks and Social Resources, México, Q7a-e
+  version: ZA6980 v2.0.0
+  codigos_nativos: [1, 2, 3, 4, 5, 6, 7]
+  codigos_familia: [1, 2]
+  dominios_conteo: [TOTAL, HOMBRES, MUJERES]
+  salidas:
+    - forense/analisis/issp2017-consistencia-apoyo-familiar-cli-2/conteo-familia.csv
+    - forense/analisis/issp2017-consistencia-apoyo-familiar-cli-2/resumen-familia.csv
+    - forense/analisis/issp2017-consistencia-apoyo-familiar-cli-2/matrices-nativas.csv
+    - forense/analisis/issp2017-consistencia-apoyo-familiar-cli-2/matrices-nativas-sensibilidad-pareja.csv
+    - forense/analisis/issp2017-consistencia-apoyo-familiar-cli-2/tablas-familia-2x2.csv
+    - forense/analisis/issp2017-consistencia-apoyo-familiar-cli-2/asociaciones-familia.csv
+  adopcion: NINGUNA
+resultados:
+  - {id: RESULT-ISSP-CONSISTENCIA-FAMILIA-N-MEXICO, tipo: entero, unidad: personas}
+  - {id: RESULT-ISSP-CONSISTENCIA-FAMILIA-PRECISION, tipo: texto, unidad: estado}
+  - {id: RESULT-ISSP-CONSISTENCIA-FAMILIA-COBERTURA-CINCO, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ISSP-CONSISTENCIA-FAMILIA-NINGUNA, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ISSP-CONSISTENCIA-FAMILIA-ALGUNA, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ISSP-CONSISTENCIA-FAMILIA-TODAS, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ISSP-CONSISTENCIA-FAMILIA-CONTEO-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ISSP-CONSISTENCIA-FAMILIA-MATRICES-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ISSP-CONSISTENCIA-FAMILIA-SENSIBILIDAD-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ISSP-CONSISTENCIA-FAMILIA-2X2-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ISSP-CONSISTENCIA-FAMILIA-ASOCIACIONES-SHA256, tipo: texto, unidad: sha256}
