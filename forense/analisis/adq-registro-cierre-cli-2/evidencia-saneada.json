@@ -1,12 +1,12 @@
 {
   "acto": "GEN2-ADQ-REGISTRO-Y-CIERRE-CLI-2",
-  "corte": "2026-09-19T17:36:00-06:00",
+  "corte": "2026-09-19T18:03:32-06:00",
   "entorno": "CAJA/WSL2",
   "worktree": "/home/pc0/mm-gen2-adq-registro-cierre-cli-2",
   "rama": "codex/gen2-adq-registro-cierre-cli-2",
   "pr": "https://github.com/Josanoforo/Modelado-Mexicano/pull/888",
   "base": "ea88cb3b94ad820bcd92a485eae51ce24ef07fae",
-  "version_publicada_y_desplegada": "42bb27a0c429cbf1789824e3a026f4cc16234255",
+  "version_publicada_y_desplegada": "462bc3ada670d42988deb66d9415233c3046c4e5",
   "ucla": {
     "objeto_id": "UCLA_MXFLS_DESIGN_SUMMARY_2007",
     "id_manifiesto": "ucla_mxfls_design_summary_2007",
@@ -43,11 +43,12 @@
   },
   "despliegue": {
     "procedimiento": "tools/windows/instala-tarea-adquisicion.ps1",
-    "estado": "Ready",
-    "revision": "42bb27a0c429cbf1789824e3a026f4cc16234255",
-    "ultimo_run_previo": "2026-09-19T17:00:01-06:00",
-    "ultimo_resultado_previo": 1,
-    "siguiente_trigger_observado": "2026-09-19T18:00:00-06:00",
+    "estado_al_corte": "Running",
+    "revision": "462bc3ada670d42988deb66d9415233c3046c4e5",
+    "revision_anterior_del_recibo": "42bb27a0c429cbf1789824e3a026f4cc16234255",
+    "ultimo_run_observado": "2026-09-19T18:00:02-06:00",
+    "ultimo_resultado_al_corte": 267009,
+    "siguiente_trigger_observado": "2026-09-19T19:00:00-06:00",
     "trigger_manual": false
   },
   "activacion_natural_durante_sesion": {
@@ -56,5 +57,17 @@
     "despacho_adquisicion": false,
     "resultado": "derivacion exit=1; comprobacion sin despacho por presupuesto diario agotado",
     "acredita_correctivo_nuevo": false
+  },
+  "activacion_natural_revision_corregida": {
+    "run_id": "2026-09-19T180002-311190",
+    "inicio": "2026-09-19T18:00:02-06:00",
+    "revision_solicitada": "462bc3ada670d42988deb66d9415233c3046c4e5",
+    "revision_resuelta": "462bc3ada670d42988deb66d9415233c3046c4e5",
+    "revision_cargada_en": "2026-09-19T18:00:06-06:00",
+    "estado_al_corte": "EN-CURSO",
+    "fase_al_corte": "DERIVACION-DIARIA",
+    "acredita_instalacion_y_arranque_natural": true,
+    "acredita_cierre_adq_valido": false,
+    "pendiente": "Terminación de esta activación y, sólo si despacha adquisición, validación extremo a extremo del cierre corregido."
   }
 }
