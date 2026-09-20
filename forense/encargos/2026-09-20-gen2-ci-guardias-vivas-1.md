@@ -28,8 +28,12 @@ Cascada D-10 · la nota abre con: tests en el repo / ejecutados por CI antes / d
 
 | qué | por qué | impacto | sucesor |
 |---|---|---|---|
-| Arreglar los 8 `FALLA-DE-VERDAD` censados (`tests/test_adq_descubrimiento.py`, `tests/test_celda_d_piloto_consumidor.py`, `tests/test_censo_derivado.py`, `tests/test_cierre_acto.py`, `tests/test_consulta_gen2.py`, `tests/test_motor_gen2_explicito.py`, `tests/test_motor_holdout.py`, `tests/test_relevo_encuci_f2.py`) | FUERA-DE-PERÍMETRO (D-14, "LO QUE NO HACE": no arregla tests rotos) | esas 8 guardias siguen sin gatear CI aunque ya no son huérfanas de facto — el job `guardias` las detecta y las salta en voz alta con NC citada | SIN-ASIGNAR por archivo, `forense/no-corrido.tsv` NC-0384..NC-0391 |
-| Instalar `numpy`/`pandas`/`scipy` en CI y/o decidir la vía para `pytest` en los 4 archivos que aún lo importan | DECISIÓN-DE-MESA-PENDIENTE (`FP-396`) | 29 de los 97 huérfanos censados siguen sin correr en CI | acto que ejecute lo que mesa firme en `FP-396` |
-| `tests/test_relevo_encuci_f2.py`: determinar si el TIMEOUT>40s es un cuelgue real o un test lento que solo necesita más tiempo | NO-VERIFICABLE-AQUÍ | la guardia sigue sin correr en CI | SIN-ASIGNAR (NC-0391) |
+| Arreglar los 8 `FALLA-DE-VERDAD` censados (`tests/test_adq_descubrimiento.py`, `tests/test_celda_d_piloto_consumidor.py`, `tests/test_censo_derivado.py`, `tests/test_cierre_acto.py`, `tests/test_consulta_gen2.py`, `tests/test_motor_gen2_explicito.py`, `tests/test_motor_holdout.py`, `tests/test_relevo_encuci_f2.py`) | FUERA-DE-PERÍMETRO (D-14, "LO QUE NO HACE": no arregla tests rotos) | esas 8 guardias siguen sin gatear CI aunque ya no son huérfanas de facto — el job `guardias` las detecta y las salta en voz alta con NC citada | SIN-ASIGNAR por archivo, `forense/no-corrido.tsv` NC-0386..NC-0393 |
+| Instalar `numpy`/`pandas`/`scipy` en CI y/o decidir la vía para `pytest` en los 4 archivos que aún lo importan | DECISIÓN-DE-MESA-PENDIENTE (`FP-397`) | 29 de los 97 huérfanos censados siguen sin correr en CI | acto que ejecute lo que mesa firme en `FP-397` |
+| `tests/test_relevo_encuci_f2.py`: determinar si el TIMEOUT>40s es un cuelgue real o un test lento que solo necesita más tiempo | NO-VERIFICABLE-AQUÍ | la guardia sigue sin correr en CI | SIN-ASIGNAR (NC-0393) |
 
-Ver `forense/notas/2026-09-20-gen2-ci-guardias-vivas-1-cierre.md` para los cinco derivados de apertura y el detalle de las decisiones baratas tomadas sin esperar a mesa (`jsonschema` ya declarado, `openpyxl` nuevo, `test_arnes_sesion.py` reescrito al estilo de la casa).
+Ver `forense/notas/2026-09-20-gen2-ci-guardias-vivas-1-cierre.md` para los cinco derivados de apertura y el detalle de las decisiones baratas tomadas sin esperar a mesa (`jsonschema` ya declarado, `openpyxl` nuevo, `test_arnes_sesion.py` reescrito al estilo de la casa). **RENUMERADO 559→560, FP-396→397, NC-0384..0391→NC-0386..0393**: `GEN2-PISOS-ENIF2021-FORMALIDAD-1` (`PR #915`) fusionó primero sobre la misma base y tomó `ADR-559`/`FP-396`/`NC-0384`-`NC-0385` — regla de la casa, renumera quien fusiona segundo.
+
+## CONSUMIDO
+
+`PR #917`.
