@@ -25,10 +25,10 @@ No mide el error de persistencia de las 6 celdas nuevas (sucesor: CALC nuevo, nu
 
 ## NO-CORRIDO / RESERVAS
 
-`NC-0407` (EDER: `SIN-PISO-POR-DISEÑO` es decisión de vocabulario de mesa) · `NC-0408`
-(una función de `tests/test_c2_compuesto.py`, fuera de la lista del perímetro) · `NC-0409`
+`NC-0411` (EDER: `SIN-PISO-POR-DISEÑO` es decisión de vocabulario de mesa) · `NC-0412`
+(una función de `tests/test_c2_compuesto.py`, fuera de la lista del perímetro) · `NC-0413`
 (`unidad = PERSONA` en el `payload` del árbitro vs `PERSONA ELEGIDA 18+` en la tabla sellada) ·
-`NC-0410` (el error de persistencia de las 6 celdas nuevas, declarado fuera por el propio encargo).
+`NC-0414` (el error de persistencia de las 6 celdas nuevas, declarado fuera por el propio encargo).
 Detalle, razón, impacto y sucesor de cada una en `forense/no-corrido.tsv` y en la §NO-CORRIDO
 de la nota de cierre.
 
