@@ -1,4 +1,7 @@
 calc_id: CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002
+# Sucesor técnico del 0001: conserva los mismos RESULT estables y corrige
+# marco de remuestreo/artefactos; esta cadena autoriza sus IDs repetidos.
+repite_de: CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0001
 script: data/corrida0/CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002/medidor.py
 spec_md: spec.md
 spec_md_sha256: 4894d4d5e8b78c96dab2f83576318d6a52103eafd238bab1d1d9968de8727b5c
