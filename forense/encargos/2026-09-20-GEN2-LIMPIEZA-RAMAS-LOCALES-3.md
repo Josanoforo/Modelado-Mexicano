@@ -17,26 +17,37 @@ En disco: P1 sobre la lista firmada. En el repo: nota, forense/notas/insumos-ext
 
 ## NO-CORRIDO / RESERVAS
 
+Actualizado tras la adenda de dirección (20/sep/2026) que levantó el P0 duro (remedio aditivo y
+seguro: `git fetch --unshallow`) y autorizó continuar P1–P4 en la misma rama/PR. Detalle completo
+en `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-3-cierre.md`.
+
 - **qué:** P1 · Borrado, cubeta por cubeta.
-  **por qué:** `PARO-PREMISA`.
-  **impacto:** ningún `branch -D` ejecutado; las cubetas `CONTENIDO-EN-MAIN`/`HISTORIA-GEN1` de `limpieza2_tabla.tsv` siguen firmadas y pendientes de borrado; `git branch | wc -l` / `git worktree list | wc -l` de la caja no se movieron.
-  **sucesor:** `NC-0404` → re-invocación verbatim de este encargo tras confirmar clon no-superficial de forma estable.
+  **por qué:** `DIFERIDO-A` para 8 de 124 ramas (el resto, 116, se ejecutó).
+  **impacto:** 3 `EN-VUELO` (regla de 24h), 4 `WORKTREE-SUCIO`, 1 `REVISADO-A-MANO` (verificado a mano como seguro pero fuera del criterio mecánico por disciplina) quedan sin borrar — listadas completas en la nota de cierre.
+  **sucesor:** `NC-0404` (`CERRADA`) → un barrido sucesor idéntico recoge las 8 cuando pase su condición.
 
 - **qué:** P2 · Rescate de MOTRAL.
-  **por qué:** `PARO-PREMISA`.
-  **impacto:** `CALC-MOTRAL2015-PRIORIDADES-PRESTACIONES-0001` (evidencia (a), verificada como ausente de `main` por `#913`) sigue sin rama propia, sin `verify`, sin fila en la vista ni asiento de replay; ningún PR de rescate abierto.
-  **sucesor:** `NC-0405` → mismo sucesor que P1.
+  **por qué:** `PARO-PREMISA` en el propio CALC: `verify` da `NO-EJECUTABLE` — el `resultados.json` sellado nunca tuvo los ~42 `RESULT` que su `spec.yaml` contrata (solo 3 keys de diagnóstico), no es drift de entorno.
+  **impacto:** `CALC-MOTRAL2015-PRIORIDADES-PRESTACIONES-0001` no se rescata; sigue sin `CALC` en `main`.
+  **sucesor:** `NC-0405` (`CERRADA`) → `SIN-ASIGNAR`, quien repare `medidor.py` para que cumpla su propio contrato de outputs y vuelva a sellar.
 
 - **qué:** P3 · La colisión que `#913` no vio (dictamen `CALC-PISOS-ENIF2021-EJES-0002`).
-  **por qué:** `PARO-PREMISA` — el propio dictamen depende de comparar timestamps de commit y árbol entre `codex/gen2-marcador-adopcion-cli-1` y `origin/main`, la misma clase de comparación que un clon superficial puede sesgar.
-  **impacto:** `#913` sigue afirmando "ausente de main, sin colisión de id" sin corrección; las 28 celdas que hoy alimenta `…-EJES-0003` no llevan la reserva que un veredicto `CORRECCION-POSTERIOR-A-VER-RESULTADO` exigiría si ese resultara ser el caso; el directorio de la rama Codex no quedó archivado como evidencia.
-  **sucesor:** `NC-0406` → mismo sucesor que P1.
+  **por qué:** Ejecutado — `NC-0406` (`CERRADA`).
+  **impacto:** veredicto `CORRECCION-INDEPENDIENTE-DEL-RESULTADO`; `-0003` no lleva reserva ni FP; directorio de la rama Codex archivado como evidencia con sha256.
+  **sucesor:** Ninguno.
 
 - **qué:** P4 · Nota por `/acto` con la corrección a `#913` asentada por enmienda.
-  **por qué:** `PARO-PREMISA` (parcial: la nota de este acto sí se produjo — es esta misma, `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-3-paro.md` — pero la enmienda a `#913` que P4 pedía depende del dictamen de P3, que no corrió).
-  **impacto:** `#913` no lleva enmienda; su texto original permanece intacto (correcto: A.3 prohíbe editar la nota).
-  **sucesor:** `NC-0407` → mismo sucesor que P1.
+  **por qué:** Ejecutado — `NC-0407` (`CERRADA`).
+  **impacto:** enmienda asentada en la nota de cierre de este acto (no se editó la nota de `#913`, A.3).
+  **sucesor:** Ninguno.
 
 ## CONSUMIDO
 
-Ejecutado por `PR #923` (`acto/gen2-limpieza-ramas-locales-3`) — `PARO-PREMISA` en P0, cero commits sustantivos. Ver `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-3-paro.md` y `canon/gobernanza-v1_15.md ADR-563`.
+Ejecutado por `PR #923` (`acto/gen2-limpieza-ramas-locales-3`). P0 paró (clon superficial, causa
+confirmada y corregida — `tests/check.py::_t_cron_ref_censo`); dirección levantó el P0 duro por
+adenda y el acto continuó en la misma rama/PR: P1 borró 116/124 ramas (8 diferidas, listadas
+arriba), P2 no rescató MOTRAL (`verify` `NO-EJECUTABLE`, sello incompleto desde origen), P3
+dictaminó `CORRECCION-INDEPENDIENTE-DEL-RESULTADO` sobre la colisión `CALC-PISOS-ENIF2021-EJES-
+0002`, P4 asentó la enmienda a `#913`. Ver `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-
+3-paro.md`, `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-3-cierre.md` y
+`canon/gobernanza-v1_15.md ADR-563`.
