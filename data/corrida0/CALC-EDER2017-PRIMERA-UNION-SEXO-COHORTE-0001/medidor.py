@@ -25,10 +25,17 @@ def _member(z, name):
 def _read(z, name, cols):
     b=z.read(_member(z,name)).replace(b"\r\n",b"\n").replace(b"\r",b"\n")
     d=pd.read_csv(io.BytesIO(b),encoding="latin-1",dtype=str,keep_default_na=False,low_memory=False)
-    d.columns=[c.strip().lstrip("\ufeff").lower() for c in d.columns]
-    miss=[c for c in cols if c not in d]
+    d.columns=[c.strip().lstrip("\ufeff").lstrip("ï»¿").lower() for c in d.columns]
+    # INEGI's CSV can retain a UTF-8 BOM after latin-1 decoding.  Resolve a
+    # requested field only when its exact name or one unique suffixed name is
+    # available; ambiguity is an error rather than an accidental selection.
+    rename={}
+    for c in cols:
+        candidates=[h for h in d.columns if h==c or h.endswith(c)]
+        if len(candidates)==1: rename[candidates[0]]=c
+    miss=[c for c in cols if c not in rename.values()]
     if miss: raise ValueError(name+" columna ausente: "+",".join(miss))
-    return d[cols]
+    return d[list(rename)].rename(columns=rename)[cols]
 
 def _coh(x):
     if not np.isfinite(x): return "desconocida"
