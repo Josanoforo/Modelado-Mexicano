@@ -68,6 +68,11 @@ CORRIDA0_DIR = RAIZ / "data" / "corrida0"
 MARCADOR_TSV = CORRIDA0_DIR / "marcador-segmento.tsv"
 TABLA_IDENTIDAD = (RAIZ / "forense" / "prereg-caja"
                     / "PISOS-REJILLA-arbitro-metadatos-v1_0.tsv")
+# ACTO GEN2-PISOS-ENUT2019-EJES-1 (19/sep/2026): segunda tabla de identidad,
+# mismo esquema de columnas; sus 11 filas son NO-CONSTRUIBLE con causa
+# (dictamen P0 por texto, forense/notas/2026-09-19-GEN2-PISOS-ENUT2019-EJES-1-dictamen.md).
+TABLA_IDENTIDAD_ENUT2019 = (RAIZ / "forense" / "prereg-caja"
+                             / "PISOS-ENUT2019-ejes-metadatos-v1_0.tsv")
 # P2: el error del piso y su clase se DERIVAN de este CALC, no se
 # recalculan aquí. Si el CALC no está sellado, las dos columnas salen
 # vacías -- el marcador nunca estima.
@@ -213,11 +218,16 @@ MAPA_CONSUMER = {
     # yaml:1415                                tabla:27
     "dinero.ahorro.via_informal_ejes_enif2024":
         "dinero.ahorro.tiene_ahorros.segmentacion_ejes_enif2024",
-    # `dinero.ahorro.horizonte_corto_ejes_enif2024` (yaml:2159),
-    # `familia.union.libre_ejes_eder2017` (yaml:2041) y
-    # `familia.cuidado.reparto_mujeres40_ejes_enut2024` (yaml:2089) NO
-    # aparecen como `consumer` en la tabla: la rejilla no midió piso para
-    # ellas. Quedan SIN-PISO por AUSENCIA DE FUENTE, no por fallo de enlace.
+    # yaml:2089                                PISOS-ENUT2019-ejes-metadatos-v1_0.tsv:2-12
+    # mismo id en ambos lados; ACTO GEN2-PISOS-ENUT2019-EJES-1 dictaminó las
+    # 11 celdas NO-CONSTRUIBLE por texto (sin tvar_crea en 2019), así que el
+    # enlace sólo transporta la causa, nunca un piso.
+    "familia.cuidado.reparto_mujeres40_ejes_enut2024":
+        "familia.cuidado.reparto_mujeres40_ejes_enut2024",
+    # `dinero.ahorro.horizonte_corto_ejes_enif2024` (yaml:2159) y
+    # `familia.union.libre_ejes_eder2017` (yaml:2041) NO aparecen como
+    # `consumer` en ninguna tabla: la rejilla no midió piso para ellas.
+    # Quedan SIN-PISO por AUSENCIA DE FUENTE, no por fallo de enlace.
 }
 
 # (`consumer` de la tabla, eje del marcador) -> `axis` de la tabla
@@ -360,11 +370,14 @@ def _resultados_sellados() -> dict:
 def lee_tabla_identidad() -> list[dict]:
     """Filas de la tabla de identidad del árbitro, tal cual. Se LEE; este
     acto no la escribe (perímetro)."""
-    if not TABLA_IDENTIDAD.exists():
-        return []
-    with TABLA_IDENTIDAD.open(encoding="utf-8") as fh:
-        lineas = [l for l in fh if not l.startswith("#")]
-    return list(csv.DictReader(lineas, delimiter="\t"))
+    filas: list[dict] = []
+    for tabla in (TABLA_IDENTIDAD, TABLA_IDENTIDAD_ENUT2019):
+        if not tabla.exists():
+            continue
+        with tabla.open(encoding="utf-8") as fh:
+            lineas = [l for l in fh if not l.startswith("#")]
+        filas.extend(csv.DictReader(lineas, delimiter="\t"))
+    return filas
 
 
 def indice_identidad() -> dict:
