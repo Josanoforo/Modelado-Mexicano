@@ -1,0 +1,524 @@
+# CALC-C2-COMPUESTO-IC-ENVIPE2025-0001 -- cara mecanica de spec.md.
+# ACTO GEN2-GUARDIAN-ENVIPE-EJES-IC-1 (20/sep/2026), P2 / COMMIT-1; corrida en COMMIT-2.
+# Gobierna forense/prereg-caja/C2-COMPUESTO-IC-ENVIPE2025-spec-v1_0.md, congelada
+# en el COMMIT-1 junto con la extension del guardian y el medidor, ANTES de abrir
+# un solo byte de ENVIPE 2025 fuera del control (iii) de P1.
+# La lista de RESULT por celda se GENERO desde c2-compuesto-emisiones-v1_0.tsv
+# (38 filas ola = ENVIPE 2025), no se tecleo.
+calc_id: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
+spec_md: spec.md
+spec_md_sha256: 5f500c535e3a9ccbe23b86f07ba74473b1766e125c7c83b9af9b8f409e6565eb
+script: data/corrida0/CALC-C2-COMPUESTO-IC-ENVIPE2025-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: IC-REPLICA-POR-REPLICA-PARA-EMISIONES-C2-COMPUESTO
+  unidad_transferencia: DELITO
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI  # PROPUESTO -- nace PENDIENTE-DE-MESA salvo firma; adoptados_activos no se mueve
+  estado_de_emision: EMITIDA-SIN-EVALUAR
+  validacion_independiente: CONTROL-A-PUNTO-CONTRA-CALC-C2-COMPUESTO-RESERVADAS-0001 + CONTROL-B-REPLICA-BASE-CONTRA-R-SELLADO-DEL-ARBITRO-EN-CINCO-EJES-(cotejo) + GUARDIA-DE-UNA-VARIABLE-EN-tools/celda_d/marginales_reproduccion.py (tests/test_marginales_una_variable.py, 22 casos) + tests/test_c2_ic_envipe2025_guardia.py (AST)
+  fuente_acto: GEN2-GUARDIAN-ENVIPE-EJES-IC-1
+  sucede_a: "GEN2-C2-COMPUESTO-IC-ENVIPE2025-1 (PR #907, PARO-PREMISA, 0 de 38, NC-0361)"
+  firma_vigente: "mesa 20/sep/2026, verbatim «2 si extendemos», en forense/encargos/2026-09-20-GEN2-GUARDIAN-ENVIPE-EJES-IC-1.md"
+  guardian_extendido: "tools/celda_d/marginales_reproduccion.py gana sexo y edad (EJES) y PARES_VETADOS[2025] = {edad, dominio_urbano_rural} (NC-0328); firmas, defaults y salidas previas intactas; verify de las dos corridas del piloto 2 REPRODUCE con el modulo extendido"
+  desviacion_declarada: "SEXO/EDAD se cargan de tmod_vic (COLUMNAS_TMOD), la tabla de la que el arbitro las leyo (medidor_evasion_norma_envipe25.py:188; tramite-ola5-propuesta-v0.yaml:1680), no de tsdem como decia el encargo -- fila NO-CORRIDO"
+  cruce_llamado: "NO -- cruce() no se invoca en este medidor; la guardia se prueba con zips fabricados en tests/test_marginales_una_variable.py"
+  medidor_ejecutado_al_congelar: "NO -- cero microdato en COMMIT-1 (E.5)"
+  orden_de_commits: "COMMIT-1 guardian extendido + spec + medidor + tests (sin microdato) -> COMMIT-2 esta corrida, registro y replay"
+
+inputs:
+  - {id: envipe2025_csv, origen: manifiesto}
+  - id: IN-C2-SELLADO
+    origen: repo
+    ruta: data/corrida0/CALC-C2-COMPUESTO-RESERVADAS-0001/resultados.json
+    sha256: be24d879d22d28a05c36441b471976a6b0b3d40f2877efa2cd514a13e5bae3cb
+    rol: >-
+      los 38 puntos C2 sellados de ENVIPE 2025 (control A); se LEE, no se edita
+  - id: IN-C2-EMISIONES
+    origen: repo
+    ruta: data/corrida0/c2-compuesto-emisiones-v1_0.tsv
+    sha256: 5f82c0fc0b5e5278adc4f9cbeca665fa9f703d5e539f99226fc9a8c93f95b461
+    rol: >-
+      lista de las 38 celdas (par, celda_a, celda_b, resultado_id) de ola = ENVIPE 2025; derivado, no editado
+  - id: IN-ARBITRO-MARGINALES
+    origen: repo
+    ruta: milpa/tramite-ola5-propuesta-v0.yaml
+    sha256: 93dfa3f9aab250dabf9cbe8c93ccef2012cb763c5367d023f24dbfbd867fbc8f
+    rol: >-
+      R sellados del arbitro (entrada tramite.evasion_norma_ejes_envipe2025, :1672-1731); los valores viajan congelados en parametros.marginales_sellados con su linea
+
+variables:
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: BP1_20, rol: universo-y-desenlace-SOLO-MARGINALES}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: BP1_23, rol: desenlace-SOLO-MARGINALES}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: FAC_DEL, rol: ponderador}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: EST_DIS, rol: estrato-diseno}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: UPM_DIS, rol: upm-diseno}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: ID_PER, rol: llave-delito-persona}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: DOMINIO, rol: eje-dominio-SOLO-MARGINAL}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: SEXO, rol: eje-sexo-SOLO-MARGINAL}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: EDAD, rol: eje-edad-SOLO-MARGINAL}
+  - {archivo: conjunto_de_datos_tsdem_envipe2025.csv, variable: ID_PER, rol: llave-persona}
+  - {archivo: conjunto_de_datos_tsdem_envipe2025.csv, variable: NIV, rol: eje-escolaridad-proxy-SOLO-MARGINAL}
+
+universo: >-
+  DELITOS (una fila por delito de tmod_vic de ENVIPE 2025) con BP1_20 in {1,2}
+  -- la unidad y el universo EXACTOS del arbitro (prereg-caja-ENVIPE-EVASION-NORMA,
+  MAESTRA34-L5 P3; n sellado 40 280). SOLO marginales de UN EJE, cinco ejes,
+  a traves del modulo congelado con la ola cargada reservada=True. Ningun cruce.
+filtros: >-
+  En este orden y sin ninguno mas: (1) BP1_20 in {"1","2"}; las demas filas se
+  cuentan y salen; (2) FAC_DEL numerico y > 0, si no PARA; (3) EST_DIS y UPM_DIS
+  no vacios, si no PARA. Sin filtro de edad, sexo ni tipo de delito: fuera de
+  banda de un eje (SEXO no en {1,2}; EDAD < 18 o > 96, 99, blanco; NIV fuera
+  de 00..09; delito sin persona) es (fuera) de ESE eje, contado y emitido.
+  ID_PER no unica en tsdem PARA. Universo por eje, el del arbitro: cada eje
+  sobre sus clasificables; nacional sobre el universo entero.
+ponderador: >-
+  FAC_DEL. Toda proporcion es razon de totales ponderados sum(w*y)/sum(w).
+transformacion: >-
+  evade_norma := (BP1_20 == "2") AND (BP1_23 a dos digitos in {04,05,06,08}).
+  escolaridad_proxy := ESC_2DIG[NIV de ID_PER en tsdem]; dominio_urbano_rural :=
+  {U: Urbano, C: Complemento urbano, R: Rural}[DOMINIO]; sexo := SEXO[tmod_vic.SEXO]
+  ({1: "1 Hombre", 2: "2 Mujer"}); edad := tramos_edad(tmod_vic.EDAD) (18-29,
+  30-44, 45-59, 60+ = 60..96) -- los cuatro objetos importados de
+  tools/ejes_maestra35_l1.py, el del arbitro. C2(a,b) := expit(logit p(a) +
+  logit p(b) - logit p) con los marginales SELLADOS (punto) y, replica a
+  replica, con los tres p_k de la MISMA replica del MISMO remuestreo (IC).
+estimando: >-
+  IC95 de C2(a,b) = piso log-aditivo de p(evade_norma) para las 38 celdas de
+  los 4 pares del dictamen de ENVIPE 2025 (dominio_urbano_rural x sexo 6,
+  edad x escolaridad_proxy 16, edad x sexo 8, escolaridad_proxy x sexo 8);
+  proporcion de delitos en [0,1]. Punto = el sellado en RESERVADAS-0001,
+  reproducido; IC = ruido muestral del estimador bajo no-interaccion. No mide
+  el error de ese supuesto. No deriva ningun R de cruce.
+precision: >-
+  Replicas compartidas por ola (PCG64(42), n_h UPM con reemplazo por estrato,
+  orden lexicografico, 10 000), UNA por ola, compartida por los cinco
+  marginales; IC95 = percentiles 2.5/97.5 de las replicas validas. Replica con
+  algun p_k en {0,1}: SIN-DEFINIR, descartada y contada. El IC del arbitro por
+  celda de eje (wprop_ic_conglomerado, receta del arbitro) se re-deriva SOLO
+  para el control B.
+
+dependencias_materiales: [numpy, pandas]
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.random.PCG64 (replicas compartidas) + numpy.random.default_rng (wprop_ic_conglomerado, control B)
+  precedente: "data/corrida0/CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001/spec.yaml:111-114 y :140"
+tolerancia:
+  tipo: bootstrap
+  exacto_por_seed: true
+  abs: 1.0e-10
+  razon: >-
+    seed 42 + orden de consumo fijado en el modulo congelado: un generador por
+    ola, estratos y UPM en orden lexicografico, replicas 0..9999. Enteros
+    EXACTO; flotantes abs = 1e-10.
+
+parametros:
+  pregunta_consumidora: >-
+    Cuanto ruido muestral lleva cada una de las 38 emisiones C2 compuestas de
+    ENVIPE 2025 (tipo_incertidumbre NO-PROPAGADA-COVARIANZA-NO-SELLADA en
+    RESERVADAS-0001), medido en caja con UN remuestreo compartido por los
+    marginales de la misma ola -- sin ver ningun cruce de 2025?
+  consumidor: "las 38 filas ola = ENVIPE 2025 de data/corrida0/c2-compuesto-emisiones-v1_0.tsv (EMITIDA-SIN-EVALUAR); FP-390 camino 1; NC-0361"
+  ola_reservada: 2025
+  ejes: [escolaridad_proxy, dominio_urbano_rural, nacional, sexo, edad]
+  n_celdas_esperadas: 38
+  pares_dictamen: {dominio_urbano_ruralxsexo: 6, edadxescolaridad_proxy: 16, edadxsexo: 8, escolaridad_proxyxsexo: 8}
+  pares_vetados: [[edad, dominio_urbano_rural]]
+  pares_vetados_cita: "NC-0328 · edad x dominio ENVIPE 2025: RESERVA-CONSUMIDA-SIN-PILOTO (17/sep/2026); vetado por nombre en cruce() (PARES_VETADOS[2025])"
+  bootstrap_replicas: 10000
+  desenlace_id: "evade_norma::BP1_20==2 AND BP1_23 in {04,05,06,08}"
+  c2_forma: "log-aditiva: expit(logit p_a + logit p_b - logit p)"
+  c2_rotulo_supuesto: "ausencia de interaccion en escala logit"
+  c2_rotulo_prohibido: "independencia"
+  c2_funcion_de_referencia: "tests/test_celda_d_c2.py::piso_log_aditivo -- el medidor la IMPORTA"
+  c2_punto_desde: "marginales sellados (parametros.marginales_sellados), citados y no recalculados"
+  c2_ic_desde: "replicas compartidas de esos mismos marginales re-derivados por el modulo congelado, una variable por llamada"
+  replica_sin_definir: "algun p_k en {0,1} -> replica descartada y contada; IC de las validas; 0 validas -> null; sin recorte ni sustitucion"
+  umbral_control_punto: 1.0e-10
+  control_arbitro_tol_p: 1.0e-6
+  control_arbitro_tol_ic: 1.0e-4
+  control_arbitro_ejes: "los CINCO: sexo y edad prueban la extension; escolaridad_proxy, dominio_urbano_rural y nacional prueban no-regresion sobre datos reales"
+  publica_ic_si: "control A REPRODUCE (38 celdas) Y control B REPRODUCE (5 ejes); si no, IC95INF/IC95SUP null en las 38 y G-IC-PUBLICADO = NO"
+  marginales_sellados:
+    escolaridad_proxy:
+      "hasta primaria": {p: 0.493221, ic95: [0.462397, 0.524253], n: 3491, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1715"}
+      "secundaria": {p: 0.567369, ic95: [0.548202, 0.586405], n: 7739, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1716"}
+      "media superior": {p: 0.543368, ic95: [0.522009, 0.564012], n: 11476, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1717"}
+      "superior": {p: 0.590093, ic95: [0.574224, 0.605663], n: 17474, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1718"}
+    dominio_urbano_rural:
+      "Rural": {p: 0.403310, ic95: [0.377390, 0.428694], n: 3770, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1729"}
+      "Complemento urbano": {p: 0.522090, ic95: [0.503125, 0.540579], n: 8039, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1730"}
+      "Urbano": {p: 0.592703, ic95: [0.579102, 0.606130], n: 28471, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1731"}
+    nacional:
+      "NAC": {p: 0.562774, ic95: [0.551982, 0.573448], n: 40280, linea: "milpa/tramite.yaml:497 y :522 (ic95); milpa/tramite-ola5-propuesta-v0.yaml:871"}
+    sexo:
+      "1 Hombre": {p: 0.597383, ic95: [0.583481, 0.611264], n: 19399, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1691"}
+      "2 Mujer": {p: 0.530654, ic95: [0.515437, 0.546004], n: 20881, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1692"}
+    edad:
+      "18-29": {p: 0.520035, ic95: [0.500236, 0.540185], n: 11871, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1701"}
+      "30-44": {p: 0.580792, ic95: [0.566117, 0.595965], n: 15214, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1702"}
+      "45-59": {p: 0.601214, ic95: [0.578437, 0.623948], n: 8620, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1703"}
+      "60+": {p: 0.566020, ic95: [0.540709, 0.591352], n: 4481, linea: "milpa/tramite-ola5-propuesta-v0.yaml:1704"}
+  adopcion: NINGUNA
+
+resultados:
+  - {id: RESULT-C2IC25-G-INPUT-ENVIPE2025-CSV-SHA256, tipo: texto, unidad: "sha256 del input ENVIPE2025-CSV"}
+  - {id: RESULT-C2IC25-G-INPUT-C2-SELLADO-SHA256, tipo: texto, unidad: "sha256 del input C2-SELLADO"}
+  - {id: RESULT-C2IC25-G-INPUT-C2-EMISIONES-SHA256, tipo: texto, unidad: "sha256 del input C2-EMISIONES"}
+  - {id: RESULT-C2IC25-G-INPUT-ARBITRO-SHA256, tipo: texto, unidad: "sha256 del input ARBITRO"}
+  - {id: RESULT-C2IC25-G-N-CELDAS-DICTAMEN, tipo: entero, unidad: "celdas de ENVIPE 2025 leidas de c2-compuesto-emisiones-v1_0.tsv (debe ser 38)"}
+  - {id: RESULT-C2IC25-G-N-PARES-DICTAMEN, tipo: entero, unidad: "pares distintos (debe ser 4)"}
+  - {id: RESULT-C2IC25-G-RESERVA-OLA, tipo: texto, unidad: "ola cargada reservada=True"}
+  - {id: RESULT-C2IC25-G-FILAS-ARCHIVO, tipo: entero, unidad: "filas de tmod_vic"}
+  - {id: RESULT-C2IC25-G-FILAS-UNIVERSO, tipo: entero, unidad: "filas con BP1_20 in {1,2}"}
+  - {id: RESULT-C2IC25-G-FILAS-BP1_20-FUERA, tipo: entero, unidad: "filas fuera del universo, contadas"}
+  - {id: RESULT-C2IC25-G-DELITOS-SIN-PERSONA, tipo: entero, unidad: "delitos sin fila en tsdem"}
+  - {id: RESULT-C2IC25-G-ESCOLARIDAD-FUERA, tipo: entero, unidad: "delitos (fuera) de escolaridad_proxy"}
+  - {id: RESULT-C2IC25-G-DOMINIO-FUERA, tipo: entero, unidad: "delitos (fuera) de dominio"}
+  - {id: RESULT-C2IC25-G-SEXO-FUERA, tipo: entero, unidad: "delitos (fuera) de sexo: SEXO no en {1,2}"}
+  - {id: RESULT-C2IC25-G-EDAD-FUERA, tipo: entero, unidad: "delitos (fuera) de edad: EDAD < 18, > 96, 99, blanco"}
+  - {id: RESULT-C2IC25-G-NUMERADOR, tipo: entero, unidad: "delitos con evade_norma = 1"}
+  - {id: RESULT-C2IC25-G-ESTRATOS, tipo: entero, unidad: "estratos EST_DIS distintos"}
+  - {id: RESULT-C2IC25-G-UPM, tipo: entero, unidad: "UPM distintas"}
+  - {id: RESULT-C2IC25-G-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "estratos con una sola UPM (sin varianza propia en el remuestreo)"}
+  - {id: RESULT-C2IC25-G-REPLICAS, tipo: entero, unidad: "replicas del remuestreo compartido"}
+  - {id: RESULT-C2IC25-G-SEED, tipo: entero, unidad: "semilla PCG64"}
+  - {id: RESULT-C2IC25-G-ENCODING-TMODVIC, tipo: texto, unidad: "encoding con que se leyo tmod_vic"}
+  - {id: RESULT-C2IC25-G-COBERTURA-ESCOLARIDAD_PROXY, tipo: proporcion, unidad: "fraccion del universo clasificable en escolaridad_proxy"}
+  - {id: RESULT-C2IC25-G-FUERA-ESCOLARIDAD_PROXY, tipo: entero, unidad: "delitos (fuera) de escolaridad_proxy"}
+  - {id: RESULT-C2IC25-G-COBERTURA-DOMINIO_URBANO_RURAL, tipo: proporcion, unidad: "fraccion del universo clasificable en dominio_urbano_rural"}
+  - {id: RESULT-C2IC25-G-FUERA-DOMINIO_URBANO_RURAL, tipo: entero, unidad: "delitos (fuera) de dominio_urbano_rural"}
+  - {id: RESULT-C2IC25-G-COBERTURA-NACIONAL, tipo: proporcion, unidad: "fraccion del universo clasificable en nacional"}
+  - {id: RESULT-C2IC25-G-FUERA-NACIONAL, tipo: entero, unidad: "delitos (fuera) de nacional"}
+  - {id: RESULT-C2IC25-G-COBERTURA-SEXO, tipo: proporcion, unidad: "fraccion del universo clasificable en sexo"}
+  - {id: RESULT-C2IC25-G-FUERA-SEXO, tipo: entero, unidad: "delitos (fuera) de sexo"}
+  - {id: RESULT-C2IC25-G-COBERTURA-EDAD, tipo: proporcion, unidad: "fraccion del universo clasificable en edad"}
+  - {id: RESULT-C2IC25-G-FUERA-EDAD, tipo: entero, unidad: "delitos (fuera) de edad"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-ESCOLARIDAD_PROXY-VEREDICTO, tipo: texto, unidad: "cotejo() de escolaridad_proxy contra R sellado: REPRODUCE / NO-REPRODUCE"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-ESCOLARIDAD_PROXY-DELTA-P-MAX, tipo: flotante, unidad: "peor |delta p| en escolaridad_proxy"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-ESCOLARIDAD_PROXY-DELTA-IC-MAX, tipo: flotante, unidad: "peor |delta IC95| en escolaridad_proxy"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-ESCOLARIDAD_PROXY-HASTA-PRIMARIA-DELTA-P, tipo: flotante, unidad: "delta p con signo, escolaridad_proxy = hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-ESCOLARIDAD_PROXY-HASTA-PRIMARIA-DELTA-N, tipo: entero, unidad: "delta n con signo, escolaridad_proxy = hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-ESCOLARIDAD_PROXY-SECUNDARIA-DELTA-P, tipo: flotante, unidad: "delta p con signo, escolaridad_proxy = secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-ESCOLARIDAD_PROXY-SECUNDARIA-DELTA-N, tipo: entero, unidad: "delta n con signo, escolaridad_proxy = secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-ESCOLARIDAD_PROXY-MEDIA-SUPERIOR-DELTA-P, tipo: flotante, unidad: "delta p con signo, escolaridad_proxy = media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-ESCOLARIDAD_PROXY-MEDIA-SUPERIOR-DELTA-N, tipo: entero, unidad: "delta n con signo, escolaridad_proxy = media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-ESCOLARIDAD_PROXY-SUPERIOR-DELTA-P, tipo: flotante, unidad: "delta p con signo, escolaridad_proxy = superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-ESCOLARIDAD_PROXY-SUPERIOR-DELTA-N, tipo: entero, unidad: "delta n con signo, escolaridad_proxy = superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-DOMINIO_URBANO_RURAL-VEREDICTO, tipo: texto, unidad: "cotejo() de dominio_urbano_rural contra R sellado: REPRODUCE / NO-REPRODUCE"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-DOMINIO_URBANO_RURAL-DELTA-P-MAX, tipo: flotante, unidad: "peor |delta p| en dominio_urbano_rural"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-DOMINIO_URBANO_RURAL-DELTA-IC-MAX, tipo: flotante, unidad: "peor |delta IC95| en dominio_urbano_rural"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-DOMINIO_URBANO_RURAL-RURAL-DELTA-P, tipo: flotante, unidad: "delta p con signo, dominio_urbano_rural = Rural", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-DOMINIO_URBANO_RURAL-RURAL-DELTA-N, tipo: entero, unidad: "delta n con signo, dominio_urbano_rural = Rural", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-DOMINIO_URBANO_RURAL-COMPLEMENTO-URBANO-DELTA-P, tipo: flotante, unidad: "delta p con signo, dominio_urbano_rural = Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-DOMINIO_URBANO_RURAL-COMPLEMENTO-URBANO-DELTA-N, tipo: entero, unidad: "delta n con signo, dominio_urbano_rural = Complemento urbano", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-DOMINIO_URBANO_RURAL-URBANO-DELTA-P, tipo: flotante, unidad: "delta p con signo, dominio_urbano_rural = Urbano", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-DOMINIO_URBANO_RURAL-URBANO-DELTA-N, tipo: entero, unidad: "delta n con signo, dominio_urbano_rural = Urbano", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-NACIONAL-VEREDICTO, tipo: texto, unidad: "cotejo() de nacional contra R sellado: REPRODUCE / NO-REPRODUCE"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-NACIONAL-DELTA-P-MAX, tipo: flotante, unidad: "peor |delta p| en nacional"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-NACIONAL-DELTA-IC-MAX, tipo: flotante, unidad: "peor |delta IC95| en nacional"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-NACIONAL-NAC-DELTA-P, tipo: flotante, unidad: "delta p con signo, nacional = NAC", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-NACIONAL-NAC-DELTA-N, tipo: entero, unidad: "delta n con signo, nacional = NAC", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-SEXO-VEREDICTO, tipo: texto, unidad: "cotejo() de sexo contra R sellado: REPRODUCE / NO-REPRODUCE"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-SEXO-DELTA-P-MAX, tipo: flotante, unidad: "peor |delta p| en sexo"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-SEXO-DELTA-IC-MAX, tipo: flotante, unidad: "peor |delta IC95| en sexo"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-SEXO-1-HOMBRE-DELTA-P, tipo: flotante, unidad: "delta p con signo, sexo = 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-SEXO-1-HOMBRE-DELTA-N, tipo: entero, unidad: "delta n con signo, sexo = 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-SEXO-2-MUJER-DELTA-P, tipo: flotante, unidad: "delta p con signo, sexo = 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-SEXO-2-MUJER-DELTA-N, tipo: entero, unidad: "delta n con signo, sexo = 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-EDAD-VEREDICTO, tipo: texto, unidad: "cotejo() de edad contra R sellado: REPRODUCE / NO-REPRODUCE"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-EDAD-DELTA-P-MAX, tipo: flotante, unidad: "peor |delta p| en edad"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-EDAD-DELTA-IC-MAX, tipo: flotante, unidad: "peor |delta IC95| en edad"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-EDAD-18-29-DELTA-P, tipo: flotante, unidad: "delta p con signo, edad = 18-29", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-EDAD-18-29-DELTA-N, tipo: entero, unidad: "delta n con signo, edad = 18-29", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-EDAD-30-44-DELTA-P, tipo: flotante, unidad: "delta p con signo, edad = 30-44", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-EDAD-30-44-DELTA-N, tipo: entero, unidad: "delta n con signo, edad = 30-44", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-EDAD-45-59-DELTA-P, tipo: flotante, unidad: "delta p con signo, edad = 45-59", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-EDAD-45-59-DELTA-N, tipo: entero, unidad: "delta n con signo, edad = 45-59", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-EDAD-60-DELTA-P, tipo: flotante, unidad: "delta p con signo, edad = 60+", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-EDAD-60-DELTA-N, tipo: entero, unidad: "delta n con signo, edad = 60+", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-DELTA-P-MAX, tipo: flotante, unidad: "peor |delta p| sobre los cinco ejes"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-DELTA-IC-MAX, tipo: flotante, unidad: "peor |delta IC95| sobre los cinco ejes"}
+  - {id: RESULT-C2IC25-CTRL-ARBITRO-VEREDICTO, tipo: texto, unidad: "control B: REPRODUCE solo si los cinco ejes REPRODUCE"}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-1-HOMBRE, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, dominio_urbano_ruralxsexo: Rural x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-1-HOMBRE, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, dominio_urbano_ruralxsexo: Rural x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-1-HOMBRE, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), dominio_urbano_ruralxsexo: Rural x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-1-HOMBRE, tipo: entero, unidad: "replicas con los tres p_k en (0,1), dominio_urbano_ruralxsexo: Rural x 1 Hombre"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-1-HOMBRE, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, dominio_urbano_ruralxsexo: Rural x 1 Hombre"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, dominio_urbano_ruralxsexo: Rural x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, dominio_urbano_ruralxsexo: Rural x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-2-MUJER, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, dominio_urbano_ruralxsexo: Rural x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-2-MUJER, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, dominio_urbano_ruralxsexo: Rural x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-2-MUJER, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), dominio_urbano_ruralxsexo: Rural x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-2-MUJER, tipo: entero, unidad: "replicas con los tres p_k en (0,1), dominio_urbano_ruralxsexo: Rural x 2 Mujer"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-2-MUJER, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, dominio_urbano_ruralxsexo: Rural x 2 Mujer"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-2-MUJER, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, dominio_urbano_ruralxsexo: Rural x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-2-MUJER, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, dominio_urbano_ruralxsexo: Rural x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-1-HOMBRE, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, dominio_urbano_ruralxsexo: Complemento urbano x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-1-HOMBRE, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, dominio_urbano_ruralxsexo: Complemento urbano x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-1-HOMBRE, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), dominio_urbano_ruralxsexo: Complemento urbano x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-1-HOMBRE, tipo: entero, unidad: "replicas con los tres p_k en (0,1), dominio_urbano_ruralxsexo: Complemento urbano x 1 Hombre"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-1-HOMBRE, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, dominio_urbano_ruralxsexo: Complemento urbano x 1 Hombre"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, dominio_urbano_ruralxsexo: Complemento urbano x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, dominio_urbano_ruralxsexo: Complemento urbano x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-2-MUJER, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, dominio_urbano_ruralxsexo: Complemento urbano x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-2-MUJER, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, dominio_urbano_ruralxsexo: Complemento urbano x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-2-MUJER, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), dominio_urbano_ruralxsexo: Complemento urbano x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-2-MUJER, tipo: entero, unidad: "replicas con los tres p_k en (0,1), dominio_urbano_ruralxsexo: Complemento urbano x 2 Mujer"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-2-MUJER, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, dominio_urbano_ruralxsexo: Complemento urbano x 2 Mujer"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-2-MUJER, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, dominio_urbano_ruralxsexo: Complemento urbano x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-2-MUJER, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, dominio_urbano_ruralxsexo: Complemento urbano x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-1-HOMBRE, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, dominio_urbano_ruralxsexo: Urbano x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-1-HOMBRE, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, dominio_urbano_ruralxsexo: Urbano x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-1-HOMBRE, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), dominio_urbano_ruralxsexo: Urbano x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-1-HOMBRE, tipo: entero, unidad: "replicas con los tres p_k en (0,1), dominio_urbano_ruralxsexo: Urbano x 1 Hombre"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-1-HOMBRE, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, dominio_urbano_ruralxsexo: Urbano x 1 Hombre"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, dominio_urbano_ruralxsexo: Urbano x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, dominio_urbano_ruralxsexo: Urbano x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-2-MUJER, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, dominio_urbano_ruralxsexo: Urbano x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-2-MUJER, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, dominio_urbano_ruralxsexo: Urbano x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-2-MUJER, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), dominio_urbano_ruralxsexo: Urbano x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-2-MUJER, tipo: entero, unidad: "replicas con los tres p_k en (0,1), dominio_urbano_ruralxsexo: Urbano x 2 Mujer"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-2-MUJER, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, dominio_urbano_ruralxsexo: Urbano x 2 Mujer"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-2-MUJER, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, dominio_urbano_ruralxsexo: Urbano x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-2-MUJER, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, dominio_urbano_ruralxsexo: Urbano x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxescolaridad_proxy: 18-29 x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-HASTA-PRIMARIA, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxescolaridad_proxy: 18-29 x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxescolaridad_proxy: 18-29 x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-HASTA-PRIMARIA, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxescolaridad_proxy: 18-29 x hasta primaria"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-HASTA-PRIMARIA, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxescolaridad_proxy: 18-29 x hasta primaria"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 18-29 x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 18-29 x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SECUNDARIA, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxescolaridad_proxy: 18-29 x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SECUNDARIA, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxescolaridad_proxy: 18-29 x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SECUNDARIA, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxescolaridad_proxy: 18-29 x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SECUNDARIA, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxescolaridad_proxy: 18-29 x secundaria"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SECUNDARIA, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxescolaridad_proxy: 18-29 x secundaria"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SECUNDARIA, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 18-29 x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SECUNDARIA, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 18-29 x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxescolaridad_proxy: 18-29 x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxescolaridad_proxy: 18-29 x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxescolaridad_proxy: 18-29 x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-MEDIA-SUPERIOR, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxescolaridad_proxy: 18-29 x media superior"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-MEDIA-SUPERIOR, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxescolaridad_proxy: 18-29 x media superior"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 18-29 x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 18-29 x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SUPERIOR, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxescolaridad_proxy: 18-29 x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SUPERIOR, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxescolaridad_proxy: 18-29 x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SUPERIOR, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxescolaridad_proxy: 18-29 x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SUPERIOR, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxescolaridad_proxy: 18-29 x superior"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SUPERIOR, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxescolaridad_proxy: 18-29 x superior"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SUPERIOR, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 18-29 x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SUPERIOR, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 18-29 x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxescolaridad_proxy: 30-44 x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-HASTA-PRIMARIA, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxescolaridad_proxy: 30-44 x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxescolaridad_proxy: 30-44 x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-HASTA-PRIMARIA, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxescolaridad_proxy: 30-44 x hasta primaria"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-HASTA-PRIMARIA, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxescolaridad_proxy: 30-44 x hasta primaria"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 30-44 x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 30-44 x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SECUNDARIA, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxescolaridad_proxy: 30-44 x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SECUNDARIA, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxescolaridad_proxy: 30-44 x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SECUNDARIA, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxescolaridad_proxy: 30-44 x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SECUNDARIA, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxescolaridad_proxy: 30-44 x secundaria"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SECUNDARIA, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxescolaridad_proxy: 30-44 x secundaria"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SECUNDARIA, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 30-44 x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SECUNDARIA, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 30-44 x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxescolaridad_proxy: 30-44 x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxescolaridad_proxy: 30-44 x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxescolaridad_proxy: 30-44 x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-MEDIA-SUPERIOR, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxescolaridad_proxy: 30-44 x media superior"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-MEDIA-SUPERIOR, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxescolaridad_proxy: 30-44 x media superior"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 30-44 x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 30-44 x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SUPERIOR, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxescolaridad_proxy: 30-44 x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SUPERIOR, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxescolaridad_proxy: 30-44 x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SUPERIOR, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxescolaridad_proxy: 30-44 x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SUPERIOR, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxescolaridad_proxy: 30-44 x superior"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SUPERIOR, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxescolaridad_proxy: 30-44 x superior"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SUPERIOR, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 30-44 x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SUPERIOR, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 30-44 x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxescolaridad_proxy: 45-59 x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-HASTA-PRIMARIA, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxescolaridad_proxy: 45-59 x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxescolaridad_proxy: 45-59 x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-HASTA-PRIMARIA, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxescolaridad_proxy: 45-59 x hasta primaria"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-HASTA-PRIMARIA, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxescolaridad_proxy: 45-59 x hasta primaria"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 45-59 x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 45-59 x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SECUNDARIA, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxescolaridad_proxy: 45-59 x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SECUNDARIA, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxescolaridad_proxy: 45-59 x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SECUNDARIA, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxescolaridad_proxy: 45-59 x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SECUNDARIA, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxescolaridad_proxy: 45-59 x secundaria"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SECUNDARIA, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxescolaridad_proxy: 45-59 x secundaria"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SECUNDARIA, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 45-59 x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SECUNDARIA, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 45-59 x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxescolaridad_proxy: 45-59 x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxescolaridad_proxy: 45-59 x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxescolaridad_proxy: 45-59 x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-MEDIA-SUPERIOR, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxescolaridad_proxy: 45-59 x media superior"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-MEDIA-SUPERIOR, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxescolaridad_proxy: 45-59 x media superior"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 45-59 x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 45-59 x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SUPERIOR, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxescolaridad_proxy: 45-59 x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SUPERIOR, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxescolaridad_proxy: 45-59 x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SUPERIOR, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxescolaridad_proxy: 45-59 x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SUPERIOR, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxescolaridad_proxy: 45-59 x superior"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SUPERIOR, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxescolaridad_proxy: 45-59 x superior"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SUPERIOR, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 45-59 x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SUPERIOR, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 45-59 x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxescolaridad_proxy: 60+ x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-HASTA-PRIMARIA, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxescolaridad_proxy: 60+ x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxescolaridad_proxy: 60+ x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-HASTA-PRIMARIA, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxescolaridad_proxy: 60+ x hasta primaria"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-HASTA-PRIMARIA, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxescolaridad_proxy: 60+ x hasta primaria"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 60+ x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 60+ x hasta primaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SECUNDARIA, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxescolaridad_proxy: 60+ x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SECUNDARIA, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxescolaridad_proxy: 60+ x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SECUNDARIA, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxescolaridad_proxy: 60+ x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SECUNDARIA, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxescolaridad_proxy: 60+ x secundaria"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SECUNDARIA, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxescolaridad_proxy: 60+ x secundaria"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SECUNDARIA, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 60+ x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SECUNDARIA, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 60+ x secundaria", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxescolaridad_proxy: 60+ x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxescolaridad_proxy: 60+ x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxescolaridad_proxy: 60+ x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-MEDIA-SUPERIOR, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxescolaridad_proxy: 60+ x media superior"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-MEDIA-SUPERIOR, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxescolaridad_proxy: 60+ x media superior"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 60+ x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 60+ x media superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SUPERIOR, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxescolaridad_proxy: 60+ x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SUPERIOR, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxescolaridad_proxy: 60+ x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SUPERIOR, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxescolaridad_proxy: 60+ x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SUPERIOR, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxescolaridad_proxy: 60+ x superior"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SUPERIOR, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxescolaridad_proxy: 60+ x superior"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SUPERIOR, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 60+ x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SUPERIOR, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxescolaridad_proxy: 60+ x superior", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-1-HOMBRE, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxsexo: 18-29 x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-1-HOMBRE, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxsexo: 18-29 x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-1-HOMBRE, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxsexo: 18-29 x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-1-HOMBRE, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxsexo: 18-29 x 1 Hombre"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-1-HOMBRE, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxsexo: 18-29 x 1 Hombre"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxsexo: 18-29 x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxsexo: 18-29 x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-2-MUJER, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxsexo: 18-29 x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-2-MUJER, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxsexo: 18-29 x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-2-MUJER, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxsexo: 18-29 x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-2-MUJER, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxsexo: 18-29 x 2 Mujer"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-2-MUJER, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxsexo: 18-29 x 2 Mujer"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-2-MUJER, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxsexo: 18-29 x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-2-MUJER, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxsexo: 18-29 x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-1-HOMBRE, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxsexo: 30-44 x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-1-HOMBRE, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxsexo: 30-44 x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-1-HOMBRE, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxsexo: 30-44 x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-1-HOMBRE, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxsexo: 30-44 x 1 Hombre"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-1-HOMBRE, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxsexo: 30-44 x 1 Hombre"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxsexo: 30-44 x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxsexo: 30-44 x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-2-MUJER, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxsexo: 30-44 x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-2-MUJER, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxsexo: 30-44 x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-2-MUJER, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxsexo: 30-44 x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-2-MUJER, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxsexo: 30-44 x 2 Mujer"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-2-MUJER, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxsexo: 30-44 x 2 Mujer"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-2-MUJER, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxsexo: 30-44 x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-2-MUJER, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxsexo: 30-44 x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-1-HOMBRE, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxsexo: 45-59 x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-1-HOMBRE, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxsexo: 45-59 x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-1-HOMBRE, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxsexo: 45-59 x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-1-HOMBRE, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxsexo: 45-59 x 1 Hombre"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-1-HOMBRE, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxsexo: 45-59 x 1 Hombre"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxsexo: 45-59 x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxsexo: 45-59 x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-2-MUJER, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxsexo: 45-59 x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-2-MUJER, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxsexo: 45-59 x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-2-MUJER, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxsexo: 45-59 x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-2-MUJER, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxsexo: 45-59 x 2 Mujer"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-2-MUJER, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxsexo: 45-59 x 2 Mujer"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-2-MUJER, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxsexo: 45-59 x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-2-MUJER, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxsexo: 45-59 x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-1-HOMBRE, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxsexo: 60+ x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-1-HOMBRE, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxsexo: 60+ x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-1-HOMBRE, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxsexo: 60+ x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-1-HOMBRE, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxsexo: 60+ x 1 Hombre"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-1-HOMBRE, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxsexo: 60+ x 1 Hombre"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxsexo: 60+ x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxsexo: 60+ x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-2-MUJER, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, edadxsexo: 60+ x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-2-MUJER, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, edadxsexo: 60+ x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-2-MUJER, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), edadxsexo: 60+ x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-2-MUJER, tipo: entero, unidad: "replicas con los tres p_k en (0,1), edadxsexo: 60+ x 2 Mujer"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-2-MUJER, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, edadxsexo: 60+ x 2 Mujer"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-2-MUJER, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, edadxsexo: 60+ x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-2-MUJER, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, edadxsexo: 60+ x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, escolaridad_proxyxsexo: hasta primaria x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, escolaridad_proxyxsexo: hasta primaria x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), escolaridad_proxyxsexo: hasta primaria x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: entero, unidad: "replicas con los tres p_k en (0,1), escolaridad_proxyxsexo: hasta primaria x 1 Hombre"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, escolaridad_proxyxsexo: hasta primaria x 1 Hombre"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, escolaridad_proxyxsexo: hasta primaria x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, escolaridad_proxyxsexo: hasta primaria x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, escolaridad_proxyxsexo: hasta primaria x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, escolaridad_proxyxsexo: hasta primaria x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), escolaridad_proxyxsexo: hasta primaria x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: entero, unidad: "replicas con los tres p_k en (0,1), escolaridad_proxyxsexo: hasta primaria x 2 Mujer"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, escolaridad_proxyxsexo: hasta primaria x 2 Mujer"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, escolaridad_proxyxsexo: hasta primaria x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, escolaridad_proxyxsexo: hasta primaria x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, escolaridad_proxyxsexo: secundaria x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, escolaridad_proxyxsexo: secundaria x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), escolaridad_proxyxsexo: secundaria x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: entero, unidad: "replicas con los tres p_k en (0,1), escolaridad_proxyxsexo: secundaria x 1 Hombre"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, escolaridad_proxyxsexo: secundaria x 1 Hombre"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, escolaridad_proxyxsexo: secundaria x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, escolaridad_proxyxsexo: secundaria x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-2-MUJER, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, escolaridad_proxyxsexo: secundaria x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-2-MUJER, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, escolaridad_proxyxsexo: secundaria x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-2-MUJER, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), escolaridad_proxyxsexo: secundaria x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-2-MUJER, tipo: entero, unidad: "replicas con los tres p_k en (0,1), escolaridad_proxyxsexo: secundaria x 2 Mujer"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-2-MUJER, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, escolaridad_proxyxsexo: secundaria x 2 Mujer"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-2-MUJER, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, escolaridad_proxyxsexo: secundaria x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-2-MUJER, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, escolaridad_proxyxsexo: secundaria x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, escolaridad_proxyxsexo: media superior x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, escolaridad_proxyxsexo: media superior x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), escolaridad_proxyxsexo: media superior x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: entero, unidad: "replicas con los tres p_k en (0,1), escolaridad_proxyxsexo: media superior x 1 Hombre"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, escolaridad_proxyxsexo: media superior x 1 Hombre"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, escolaridad_proxyxsexo: media superior x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, escolaridad_proxyxsexo: media superior x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, escolaridad_proxyxsexo: media superior x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, escolaridad_proxyxsexo: media superior x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), escolaridad_proxyxsexo: media superior x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: entero, unidad: "replicas con los tres p_k en (0,1), escolaridad_proxyxsexo: media superior x 2 Mujer"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, escolaridad_proxyxsexo: media superior x 2 Mujer"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, escolaridad_proxyxsexo: media superior x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, escolaridad_proxyxsexo: media superior x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-1-HOMBRE, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, escolaridad_proxyxsexo: superior x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, escolaridad_proxyxsexo: superior x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-1-HOMBRE, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), escolaridad_proxyxsexo: superior x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-1-HOMBRE, tipo: entero, unidad: "replicas con los tres p_k en (0,1), escolaridad_proxyxsexo: superior x 1 Hombre"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-1-HOMBRE, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, escolaridad_proxyxsexo: superior x 1 Hombre"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, escolaridad_proxyxsexo: superior x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-1-HOMBRE, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, escolaridad_proxyxsexo: superior x 1 Hombre", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-2-MUJER, tipo: proporcion, unidad: "C2 punto sobre marginales sellados, escolaridad_proxyxsexo: superior x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "punto - sellado en RESERVADAS-0001, escolaridad_proxyxsexo: superior x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-P-REDERIVADO-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-2-MUJER, tipo: proporcion, unidad: "C2 sobre marginales re-derivados aqui (diagnostico), escolaridad_proxyxsexo: superior x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-REPLICAS-VALIDAS-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-2-MUJER, tipo: entero, unidad: "replicas con los tres p_k en (0,1), escolaridad_proxyxsexo: superior x 2 Mujer"}
+  - {id: RESULT-C2IC25-REPLICAS-SIN-DEFINIR-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-2-MUJER, tipo: entero, unidad: "replicas descartadas por p_k en {0,1}, escolaridad_proxyxsexo: superior x 2 Mujer"}
+  - {id: RESULT-C2IC25-IC95INF-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-2-MUJER, tipo: proporcion, unidad: "IC95 inferior (percentil 2.5 de C2_k), null si no se publica, escolaridad_proxyxsexo: superior x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-IC95SUP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-2-MUJER, tipo: proporcion, unidad: "IC95 superior (percentil 97.5 de C2_k), null si no se publica, escolaridad_proxyxsexo: superior x 2 Mujer", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-DELTA-MAX-ABS, tipo: flotante, unidad: "control A: peor |delta| punto vs sellado sobre las 38", permite_no_estimable: true}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-VEREDICTO, tipo: texto, unidad: "control A: REPRODUCE / NO-REPRODUCE"}
+  - {id: RESULT-C2IC25-CTRL-PUNTO-N-CELDAS, tipo: entero, unidad: "celdas comparadas en el control A (A.13)"}
+  - {id: RESULT-C2IC25-G-IC-PUBLICADO, tipo: texto, unidad: "SI solo si A y B REPRODUCE"}
+  - {id: RESULT-C2IC25-G-N-CELDAS-CON-IC, tipo: entero, unidad: "de las 38, cuantas quedaron con IC"}
+  - {id: RESULT-C2IC25-G-N-CELDAS-SIN-IC, tipo: entero, unidad: "de las 38, cuantas sin IC"}
+  - {id: RESULT-C2IC25-G-C2-CELDAS-NO-CONSTRUIBLES, tipo: entero, unidad: "celdas con marginal sellado en {0,1}"}
+  - {id: RESULT-C2IC25-G-REPLICAS-SIN-DEFINIR-TOTAL, tipo: entero, unidad: "replicas descartadas, sumadas sobre las 38 celdas"}
+  - {id: RESULT-C2IC25-G-C2-DESENLACE-ID, tipo: texto, unidad: "identificador del desenlace de los tres marginales"}
+  - {id: RESULT-C2IC25-G-C2-ROTULO-SUPUESTO, tipo: texto, unidad: "rotulo obligatorio del supuesto"}
+  - {id: RESULT-C2IC25-G-C2-FORMA, tipo: texto, unidad: "formula de C2"}
+  - {id: RESULT-C2IC25-G-INCERTIDUMBRE, tipo: texto, unidad: "contrato de incertidumbre"}
+  - {id: RESULT-C2IC25-G-CRUCE-2025-DERIVADO, tipo: texto, unidad: "NO: este medidor no llama cruce()"}

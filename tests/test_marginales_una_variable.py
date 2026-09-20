@@ -62,13 +62,19 @@ def fabrica_zip(ruta: Path, anio: int, n_delitos: int = 600, seed: int = 7,
         est = f"{1 + rng.randrange(6):03d}"
         upm = f"{1 + rng.randrange(4):07d}"
         fac = "0" if (fac_del_cero and i == 5) else str(rng.randrange(1, 900))
+        # GEN2-GUARDIAN-ENVIPE-EJES-IC-1: SEXO/EDAD crudos en tmod_vic, con
+        # fuera de banda deliberado (menor, 97+, 99 = no especificado, blanco).
+        sexo = rng.choice(["1", "2", "2", "1", "9"])
+        edad = rng.choice([str(rng.randrange(18, 97)), str(rng.randrange(18, 97)),
+                           str(rng.randrange(18, 97)), "15", "97", "99", ""])
         tmod.append([f"{i:06d}", pid, bp1_20, bp1_23, fac,
-                     est, upm, rng.choice(["U", "C", "R"]), "01"])
+                     est, upm, rng.choice(["U", "C", "R"]), "01", sexo, edad])
     with zipfile.ZipFile(ruta, "w") as zf:
         zf.writestr(f"tmod_vic_envipe{anio}/conjunto_de_datos/"
                     f"conjunto_de_datos_tmod_vic_envipe{anio}.csv",
                     _csv(tmod, ["ID_DEL", "ID_PER", "BP1_20", "BP1_23", "FAC_DEL",
-                                "EST_DIS", "UPM_DIS", "DOMINIO", "BPCOD"]))
+                                "EST_DIS", "UPM_DIS", "DOMINIO", "BPCOD",
+                                "SEXO", "EDAD"]))
         zf.writestr(f"tsdem_envipe{anio}/conjunto_de_datos/"
                     f"conjunto_de_datos_tsdem_envipe{anio}.csv",
                     _csv(sdem, ["ID_PER", "NIV", "SEXO", "EST_DIS", "UPM_DIS"]))
@@ -220,6 +226,74 @@ class LoQueSiHace(Fixture):
             fabrica_zip(z, 2098, fac_del_cero=True)
             with self.assertRaises(mr.Paro):
                 mr.carga_ola(z, 2098)
+
+
+class ExtensionSexoEdad(Fixture):
+    """ACTO `GEN2-GUARDIAN-ENVIPE-EJES-IC-1` (20/sep/2026), firma «2 si
+    extendemos»: casos NUEVOS; los de arriba no se editan."""
+
+    def test_ejes_nuevos_al_final_y_los_viejos_intactos(self):
+        self.assertEqual(mr.EJES[:3], ("escolaridad_proxy", "dominio_urbano_rural",
+                                       "nacional"))
+        self.assertEqual(mr.EJES[3:], ("sexo", "edad"))
+
+    def test_marginal_sexo_funciona_con_la_construccion_del_arbitro(self):
+        l1 = sys.modules["ejes_maestra35_l1"]
+        self.assertIs(mr.SEXO, l1.SEXO)
+        self.assertIs(mr.tramos_edad, l1.tramos_edad)
+        m = mr.marginal(self.ola, "sexo")
+        self.assertEqual(list(m["celdas"]), ["1 Hombre", "2 Mujer"])
+        self.assertEqual(m["n_fuera"], self.ola.meta["sexo_fuera"])
+        self.assertGreater(m["n_fuera"], 0)                 # el "9" del fixture
+        self.assertEqual(sum(c["n"] for c in m["celdas"].values()),
+                         m["n_universo"] - m["n_fuera"])
+
+    def test_marginal_edad_tramos_y_fuera_de_banda(self):
+        m = mr.marginal(self.ola, "edad")
+        self.assertEqual(list(m["celdas"]), ["18-29", "30-44", "45-59", "60+"])
+        self.assertEqual(m["n_fuera"], self.ola.meta["edad_fuera"])
+        df = self.ola.df
+        e = df["EDAD"].apply(lambda v: int(v) if v.isdigit() else -1)
+        self.assertEqual(m["n_fuera"], int(((e < 18) | (e > 96)).sum()))
+        self.assertGreater(m["n_fuera"], 0)                 # 15 / 97 / 99 / ""
+        for k, c in m["celdas"].items():
+            sel = df["edad"] == k
+            esperado = float((df.loc[sel, "_w"] * df.loc[sel, "_y"]).sum()
+                             / df.loc[sel, "_w"].sum())
+            self.assertAlmostEqual(c["p"], esperado, places=12)
+
+    def test_sexo_y_edad_tambien_son_una_sola_variable(self):
+        with self.assertRaises(TypeError):
+            mr.marginal(self.ola, "sexo", "edad")
+        with self.assertRaises(TypeError):
+            mr.marginal(self.ola, ["sexo", "edad"])
+        with self.assertRaises(TypeError):
+            mr.marginal(self.ola, "edad", "dominio_urbano_rural")
+
+    def test_cruce_edad_dominio_vetado_por_nombre_en_ola_libre(self):
+        self.assertFalse(self.libre.reservada)
+        ola2025 = dataclasses.replace(self.libre, anio=2025)
+        for a, b in (("edad", "dominio_urbano_rural"), ("dominio_urbano_rural", "edad")):
+            with self.assertRaises(mr.ReservaRota) as cm:
+                mr.cruce(ola2025, a, b)
+            self.assertIn("NC-0328", str(cm.exception))
+        # el veto es por nombre y por ola: en otra ola el mismo par no lo dispara
+        c = mr.cruce(self.libre, "edad", "dominio_urbano_rural")   # anio 2099
+        self.assertEqual(len(c["celdas"]), 12)
+
+    def test_cruce_de_los_pares_del_dictamen_sigue_prohibido_en_reservada(self):
+        for a, b in (("dominio_urbano_rural", "sexo"), ("edad", "escolaridad_proxy"),
+                     ("edad", "sexo"), ("escolaridad_proxy", "sexo")):
+            with self.assertRaises(mr.ReservaRota):
+                mr.cruce(self.ola, a, b)
+
+    def test_replicas_compartidas_valen_para_los_ejes_nuevos(self):
+        rep = mr.replicas_compartidas(self.ola, seed=42, n_rep=100)
+        ms = mr.marginal(self.ola, "sexo", replicas=rep)
+        me = mr.marginal(self.ola, "edad", replicas=rep)
+        for m in (ms, me):
+            for c in m["celdas"].values():
+                self.assertEqual(c["replicas"].shape, (100,))
 
 
 if __name__ == "__main__":

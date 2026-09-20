@@ -1,6 +1,6 @@
 # ACTO GEN2-RELEVO-TANDA-2 · nota de cierre
 
-**20 de septiembre de 2026 · `ADR-559` · rama `claude/eager-goodall-2lh66n` · NUBE `cloud_default`, Opus 5**
+**20 de septiembre de 2026 · `ADR-561` · rama `claude/eager-goodall-2lh66n` · NUBE `cloud_default`, Opus 5**
 
 Encargo archivado verbatim por 0-bis A.3 en
 `forense/encargos/2026-09-20-GEN2-RELEVO-TANDA-2.md` (llegó pegado en el
@@ -138,7 +138,7 @@ CALC-ENVIPE-RES0028-U4-DERIVADO-0001  origen_numerico=INDETERMINADO
 ficheros de sello de su padre.** La corrección vive en la lista `inputs` de
 una `spec.yaml` **SELLADA**, y el perímetro dice «No toca ningún CALC ni
 spec». La línea de `milpa/tramite.yaml:637` quedó **byte a byte como
-estaba**. `NC-0384`, con sucesor. Se aplicó la regla del encargo: «un slot que
+estaba**. `NC-0392`, con sucesor. Se aplicó la regla del encargo: «un slot que
 no pase, no se adopta; no tumba el lote».
 
 `milpa/procedencia.yaml` **no se tocó**: el mecanismo no lo exige.
@@ -167,7 +167,7 @@ no pase, no se adopta; no tumba el lote».
 aparece ahí (`grep -c` → 0 en los tres verificados). Es otra población, no la
 cola de estos slots.
 
-**El neto del contador es `−9`, no `−11`, y la diferencia está medida, no supuesta.** La base se re-derivó en un worktree limpio de `origin/main` (`registro --escribe`, exit 0): **228** filas de uso, **182** legacy. Esta rama: **230** filas, **173** legacy. Descompuesto por consumidor: salen **exactamente los once** adoptados (`LEGACY-GEN1` → `GEN2`) y **entran dos** slots de demanda que antes no tenían fila de uso — `RES-0175` (`celda_D`, `TRA.evade_norma.envipe2025.escolaridad_x_dominio`) y `RES-0198` (`momento` nº 23 del catálogo, sobre `dinero.ahorro.via_informal`) —, los dos atados a reglas que este acto adoptó y los dos entrando como `LEGACY-GEN1` con `corrida0_resultado_id` vacío. Los archivos fuente son **idénticos** en las dos ramas y este acto no los toca; `_consumidores_celdas_d`/`_consumidores_momentos` (`tools/corrida0.py:587-643`) los enumeran de disco sin condición, así que la aparición se decide más abajo. **No se afirma el mecanismo porque no se probó**, y `corrida0.py` no está en el perímetro: `NC-0387`. Si la aparición fuera un defecto de la vista el valor honesto sería `171`; si es correcta, la adopción **suma** dos dependencias legacy nuevas y `173` es el estado real. `adoptados_activos` sí se mueve limpio: **46 → 57**, `+11` exacto.
+**El neto del contador es `−9`, no `−11`, y la diferencia está medida, no supuesta.** La base se re-derivó en un worktree limpio de `origin/main` (`registro --escribe`, exit 0): **228** filas de uso, **182** legacy. Esta rama: **230** filas, **173** legacy. Descompuesto por consumidor: salen **exactamente los once** adoptados (`LEGACY-GEN1` → `GEN2`) y **entran dos** slots de demanda que antes no tenían fila de uso — `RES-0175` (`celda_D`, `TRA.evade_norma.envipe2025.escolaridad_x_dominio`) y `RES-0198` (`momento` nº 23 del catálogo, sobre `dinero.ahorro.via_informal`) —, los dos atados a reglas que este acto adoptó y los dos entrando como `LEGACY-GEN1` con `corrida0_resultado_id` vacío. Los archivos fuente son **idénticos** en las dos ramas y este acto no los toca; `_consumidores_celdas_d`/`_consumidores_momentos` (`tools/corrida0.py:587-643`) los enumeran de disco sin condición, así que la aparición se decide más abajo. **No se afirma el mecanismo porque no se probó**, y `corrida0.py` no está en el perímetro: `NC-0395`. Si la aparición fuera un defecto de la vista el valor honesto sería `171`; si es correcta, la adopción **suma** dos dependencias legacy nuevas y `173` es el estado real. `adoptados_activos` sí se mueve limpio: **46 → 57**, `+11` exacto.
 
 ## P4 · la vista y el candidato equivocado — la conjetura del encargo es falsa
 
@@ -194,7 +194,7 @@ vía fuerte.
 
 Es una línea en la spec de un CALC **sellado**: no se edita. El arreglo
 alternativo —ampliar `RE_ENLACE`— tampoco se ejecuta: `tools/relevo_usos.py`
-está en el perímetro sólo como lectura. `NC-0385`.
+está en el perímetro sólo como lectura. `NC-0393`.
 
 **Semilla `PARA-v2.15`:** un canal de enlace que depende de una lista cerrada
 de preposiciones convierte una diferencia de redacción en una candidatura
@@ -203,9 +203,9 @@ coincidiera con el `p` vigente.
 
 ## P5 · trámite
 
-- `FP-391` y `FP-392` → **`FIRMADA`**, con `ADR-559` y el PR de este acto (A.12).
+- `FP-391` y `FP-392` → **`FIRMADA`**, con `ADR-561` y el PR de este acto (A.12).
 - `data/corrida0/decisiones.tsv`: `adopcion:relevo-tanda-2` y `estimando:RES-0028-personas`.
-- **`cuenta_gen2` de `CALC-ENVIPE-RES0028-U4-DERIVADO-0001` NO se decide aquí: sigue `PENDIENTE-DE-MESA`** (`NC-0386`).
+- **`cuenta_gen2` de `CALC-ENVIPE-RES0028-U4-DERIVADO-0001` NO se decide aquí: sigue `PENDIENTE-DE-MESA`** (`NC-0394`).
 - **CONTADOR del acto: `cuenta_gen2` NO-APLICA** — no sella ninguna corrida.
 - Recifrado L0: `python3 tools/cierre_acto.py --aplica` → `APLICADO: gobernanza 557->558 · L0 557->558 · tabla estado 557->558`.
 
