@@ -101,7 +101,7 @@ tests/test_piloto3_guardias.py: 24 passed
 
 - **Celda-D `GOB.gobierno_digital.encig2025.edad_x_escolaridad.yaml`:** no se registra. No hay veredicto que registrar (sin COMMIT-3) y el contrato de unidad (`FP-393`, `NC-0367`) sigue sin firma. Celdas-D siguen en **5**.
 - **Marcador:** `CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad` sigue `RESERVADA` / `RESERVADA-SIN-R`; no se re-deriva porque nada lo mueve. El par **no** queda consumido.
-- **Contadores:** `N_corridas_selladas` +0; `cuenta_gen2` NO-APLICA; `adoptados_activos` sin cambio. `NC-0355` → `CERRADA` (`CAMBIO-MENOR`). Nuevas: `NC-0404`–`NC-0407`, `FP-399`, `FP-400`.
+- **Contadores:** `N_corridas_selladas` +0; `cuenta_gen2` NO-APLICA; `adoptados_activos` sin cambio. `NC-0355` → `CERRADA` (`CAMBIO-MENOR`). Nuevas: `NC-0407`–`NC-0410`, `FP-399`, `FP-400`.
 
 ## 5 · Auditoría (afirma sobre México — aplica completo)
 
