@@ -36,3 +36,7 @@ Confirmada tal como el encargo la declaró: `ls tests/test_*.py | wc -l` → 122
 ## CONSUMIDO
 
 `PR #917`. **RENUMERADO 559→560, FP-396→397, NC-0384..0391→NC-0386..0393**: `GEN2-PISOS-ENIF2021-FORMALIDAD-1` (`PR #915`) fusionó primero sobre la misma base y tomó `ADR-559`/`FP-396`/`NC-0384`-`NC-0385` — regla de la casa, renumera quien fusiona segundo.
+
+## ADENDA post-CI (A.10, universo creció)
+
+El job `guardias` corrió por primera vez en CI real sobre el merge ref del PR y falló: `PR #915` trajo `tests/test_pisos_enif2021_formalidad.py`, nacido después del censo de este acto (122 archivos) y antes de que el job corriera contra el merge — el universo censado (122) quedó **VENCIDO EN ALCANCE** frente al universo real (123) sin que ninguna cifra de arriba se reescriba (A.10: se re-sella, no se edita el viejo). Re-derivado: `python3 tools/ci_guardias.py --censo` → 123 archivos, 98 huérfanos (61 `CORRE-EN-CI`, 8 `FALLA-DE-VERDAD`, 29 `NECESITA-DEPENDENCIA` — mismas ocho y mismos veintinueve; el nuevo archivo corre limpio sin corpus). `forense/analisis/ci-guardias/censo-tests.tsv` republicado con las 123 filas; el job vuelve a fallar en falso hasta el siguiente push. Esto confirma, de la peor manera posible, exactamente el mecanismo que el job existe para exigir: un test que nace sin fila en el censo detiene el job en vez de correr en silencio.

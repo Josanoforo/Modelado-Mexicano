@@ -90,20 +90,28 @@ class WorkflowGate(unittest.TestCase):
     def test_actual_shell_gate_rejects_every_non_success_state(self):
         workflow = yaml.safe_load((Path(C.ROOT) / '.github/workflows/verify.yml').read_text())
         gate = workflow['jobs']['check']
-        self.assertEqual(set(gate['needs']), {'suite', 'adicionales'})
+        # `guardias` (ACTO GEN2-CI-GUARDIAS-VIVAS-1, 20/sep/2026): tercer
+        # job requerido, sumado a `needs` para que el gate no apruebe un
+        # PR cuyas guardias huerfanas fallaron o se saltaron.
+        self.assertEqual(set(gate['needs']), {'suite', 'adicionales', 'guardias'})
         self.assertEqual(gate['if'], '${{ always() }}')
         self.assertIs(workflow['concurrency']['cancel-in-progress'], True)
         step = gate['steps'][0]
         self.assertEqual(step['env'], {
             'SUITE_RESULT': '${{ needs.suite.result }}',
-            'ADICIONALES_RESULT': '${{ needs.adicionales.result }}'})
+            'ADICIONALES_RESULT': '${{ needs.adicionales.result }}',
+            'GUARDIAS_RESULT': '${{ needs.guardias.result }}'})
         states = ('success', 'failure', 'cancelled', 'skipped', '', 'unexpected')
-        for suite, extras in itertools.product(states, repeat=2):
-            with self.subTest(suite=suite, adicionales=extras):
+        for suite, adicionales, guardias in itertools.product(states, repeat=3):
+            with self.subTest(suite=suite, adicionales=adicionales, guardias=guardias):
                 run = subprocess.run(['bash', '-c', step['run']], env={
-                    **os.environ, 'SUITE_RESULT': suite, 'ADICIONALES_RESULT': extras},
+                    **os.environ, 'SUITE_RESULT': suite,
+                    'ADICIONALES_RESULT': adicionales,
+                    'GUARDIAS_RESULT': guardias},
                     capture_output=True, text=True)
-                self.assertEqual(run.returncode == 0, suite == extras == 'success')
+                self.assertEqual(
+                    run.returncode == 0,
+                    suite == adicionales == guardias == 'success')
 
 
 if __name__ == '__main__':
