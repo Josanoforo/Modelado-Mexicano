@@ -79,7 +79,7 @@ Las tablas procesables contienen también `n`, masa y cobertura no ponderada.
 | `G-INPUT-BD/FD-SHA256` | identidad de payloads | manifiesto/corpus |
 | `G-SALIDA-*` | rutas reproducibles | artefactos deterministas del CALC |
 
-Todos los nombres completos llevan el prefijo `RESULT-ENUTDH-` y sus valores
+Los RESULT vigentes llevan el prefijo `RESULT-ENUTDH2-` y sus valores
 están en `resultados.json`; las tablas deterministas están ligadas por hash.
 
 ## Controles y pruebas
@@ -96,8 +96,9 @@ están en `resultados.json`; las tablas deterministas están ligadas por hash.
 * `spec-check`: 14/14 variables OK; 317,718 filas de catálogo examinadas.
 * `verify` y replay aislado: `REPRODUCE`, contexto `IDENTICO`, 26/26 RESULT y
   2/2 inputs; evidencia propia asentada en `forense/replay-evidencia.tsv`.
-* Dos proyecciones canónicas consecutivas fueron estables: 228 corridas,
-  8,955 RESULT y 228 usos; el CALC aparece con replay vigente y no crea uso.
+* Dos proyecciones canónicas consecutivas del sucesor fueron estables: 229
+  corridas, 8,981 RESULT y 228 usos; ambos CALC aparecen con replay vigente y
+  ninguno crea uso.
 
 ## Integridad y reservas
 

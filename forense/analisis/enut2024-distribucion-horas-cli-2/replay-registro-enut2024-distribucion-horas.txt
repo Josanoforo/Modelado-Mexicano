@@ -39,3 +39,18 @@ f28833a505e6782e184a30ea551891516b601e5f98d8f3f1d18e9b1f72cc6d99  data/corrida0/
 La vista contiene una corrida ENUTDH y 26 RESULT con replay REPRODUCE,
 contexto IDENTICO y procedencia del asiento propio. `usos.tsv` no creo
 consumo para esta medicion. No se uso `--verifica` global ni `--lote`.
+
+4. Sucesor por nombres unicos
+
+La CI del PR #896 detecto cuatro colisiones T02 de basename. El primer CALC
+quedo inmutable. Se creo `CALC-ENUT2024-DISTRIBUCION-HORAS-0002`, declarado
+`sucesor_de`, con mismos estimandos, seed y cifras, pero salidas de nombre
+especifico. Corrida: `CALC-...-0002--66a1f09471c3`; sello:
+`f5819fb89182392218ec0e768f051aaa96926a5374a8f18650fed237fde76b79`.
+Verify y replay aislado: REPRODUCE, CONTEXTO=IDENTICO, 26/26 RESULT.
+
+Dos proyecciones posteriores escribieron establemente 229 corridas, 8,981
+RESULT y 228 usos. Hashes finales:
+781eb39ef667754e070bdf39194f86e19934819610b847250de49112ed4488c3  data/corrida0/corridas.tsv
+b5668edd6de7d4209b1814944bae4112b4ca7351b18d702139aecf0b8f59ff2a  data/corrida0/resultados.tsv
+939a06e39277a184490263b24cd86a537301cf0bed918271eba51c68e95ef1bd  data/corrida0/usos.tsv
