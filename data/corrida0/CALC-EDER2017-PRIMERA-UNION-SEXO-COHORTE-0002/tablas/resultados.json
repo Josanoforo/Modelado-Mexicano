@@ -1,0 +1,518 @@
+{
+  "auditoria": {
+    "antecedentes_llave_unica": true,
+    "cohorte_desconocida": 5142,
+    "empates_incompatibles": 0,
+    "filas_historiavida": 886976,
+    "huerfanos_antecedentes": 0,
+    "huerfanos_persona": 0,
+    "huerfanos_vivienda": 0,
+    "marco_ponderable_completo": 23831,
+    "persona_llave_unica": true,
+    "personas_historiavida": 23831,
+    "primera_disolucion": 0,
+    "sexo_desconocido": 0,
+    "sin_diseno": 0,
+    "sin_primera_union_observada": 5142,
+    "universo_factor_valido": 18689,
+    "vivienda_llave_unica": true
+  },
+  "calc_id": "CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002",
+  "contrastes": [
+    {
+      "contraste": "mujer-hombre libre <=1970",
+      "diferencia": -0.016862611334363842,
+      "ee": 0.021217499915886267,
+      "ic95": [
+        -0.05906823435752638,
+        0.02535757635047674
+      ],
+      "p_hombre": 0.3139425484337193,
+      "p_mujer": 0.2970799370993555,
+      "replicas_validas": 2000
+    },
+    {
+      "contraste": "mujer-hombre libre 1971-1980",
+      "diferencia": -0.017974621175129046,
+      "ee": 0.01646489146161118,
+      "ic95": [
+        -0.050367945095292764,
+        0.013045280121711219
+      ],
+      "p_hombre": 0.3999522280786305,
+      "p_mujer": 0.38197760690350147,
+      "replicas_validas": 2000
+    },
+    {
+      "contraste": "mujer-hombre libre 1981-1990",
+      "diferencia": -0.02146536227841056,
+      "ee": 0.016857010826382086,
+      "ic95": [
+        -0.055479655969139396,
+        0.011243097442522764
+      ],
+      "p_hombre": 0.5846583381474896,
+      "p_mujer": 0.563192975869079,
+      "replicas_validas": 2000
+    },
+    {
+      "contraste": "mujer-hombre libre 1991+",
+      "diferencia": -0.07971659625959726,
+      "ee": 0.020982248937062832,
+      "ic95": [
+        -0.12040316278163117,
+        -0.03773071874713591
+      ],
+      "p_hombre": 0.8223982590085718,
+      "p_mujer": 0.7426816627489745,
+      "replicas_validas": 2000
+    },
+    {
+      "contraste": "cruda",
+      "diferencia": -0.011635507460631689,
+      "ee": 0.01030686267728331,
+      "ic95": [
+        -0.030970073123221222,
+        0.008651767560858949
+      ],
+      "replicas_validas": 2000
+    },
+    {
+      "contraste": "estandarizada",
+      "diferencia": -0.027701268979256156,
+      "ee": 0.009457851161567256,
+      "ic95": [
+        -0.04616606129342166,
+        -0.009518556936379909
+      ],
+      "replicas_validas": 2000
+    },
+    {
+      "contraste": "cambio",
+      "diferencia": -0.016065761518624468,
+      "ee": 0.0032502098344129766,
+      "ic95": [
+        -0.022342388594578384,
+        -0.009669598153933666
+      ],
+      "replicas_validas": 2000
+    }
+  ],
+  "diseno": {
+    "estratos_singleton": 0,
+    "marco": "personas ponderables completas; contribución cero fuera del dominio",
+    "n_upm": 4089,
+    "replicas_solicitadas": 2000,
+    "replicas_validas": 2000
+  },
+  "perfiles": [
+    {
+      "categoria": "total",
+      "dimension": "total",
+      "directo": 0.518945786382282,
+      "ee_directo": 0.00579352246228956,
+      "ee_libre": 0.005794259754812718,
+      "ee_sin_clasificar": 5.741758869365704e-05,
+      "ic95_directo": [
+        0.5075341018963375,
+        0.5304052076930954
+      ],
+      "ic95_libre": [
+        0.46948293098611854,
+        0.4923835296156313
+      ],
+      "ic95_sin_clasificar": [
+        0.0,
+        0.00021825219017395763
+      ],
+      "libre": 0.4809714298527631,
+      "masa": 45443693.0,
+      "n": 18689,
+      "sin_clasificar": 8.278376495501807e-05
+    },
+    {
+      "categoria": "hombre",
+      "dimension": "sexo",
+      "directo": 0.5123701297745694,
+      "ee_directo": 0.008107133087954313,
+      "ee_libre": 0.008109345932602147,
+      "ee_sin_clasificar": 5.948331253020655e-05,
+      "ic95_directo": [
+        0.49690714895265153,
+        0.5284212540353118
+      ],
+      "ic95_libre": [
+        0.47144193086934444,
+        0.5030358615417267
+      ],
+      "ic95_sin_clasificar": [
+        0.0,
+        0.00020650051896933623
+      ],
+      "libre": 0.48756136323431754,
+      "masa": 19706018.0,
+      "n": 8023,
+      "sin_clasificar": 6.850699111307013e-05
+    },
+    {
+      "categoria": "mujer",
+      "dimension": "sexo",
+      "directo": 0.5239804294676966,
+      "ee_directo": 0.0074166066634348635,
+      "ee_libre": 0.007416708354724778,
+      "ee_sin_clasificar": 9.011871296239125e-05,
+      "ic95_directo": [
+        0.5097820127047968,
+        0.5388760158691527
+      ],
+      "ic95_libre": [
+        0.4610266694292605,
+        0.4902077711746455
+      ],
+      "ic95_sin_clasificar": [
+        0.0,
+        0.00028538481153965966
+      ],
+      "libre": 0.47592585577368585,
+      "masa": 25737675.0,
+      "n": 10666,
+      "sin_clasificar": 9.37147586174742e-05
+    },
+    {
+      "categoria": "desconocido",
+      "dimension": "sexo",
+      "directo": null,
+      "ee_directo": null,
+      "ee_libre": null,
+      "ee_sin_clasificar": null,
+      "ic95_directo": null,
+      "ic95_libre": null,
+      "ic95_sin_clasificar": null,
+      "libre": null,
+      "masa": 0.0,
+      "n": 0,
+      "sin_clasificar": null
+    },
+    {
+      "categoria": "<=1970",
+      "dimension": "cohorte",
+      "directo": 0.6953427907796785,
+      "ee_directo": 0.01052577294922992,
+      "ee_libre": 0.010525772949229918,
+      "ee_sin_clasificar": 0.0,
+      "ic95_directo": [
+        0.674393604438483,
+        0.7153463435509478
+      ],
+      "ic95_libre": [
+        0.28465365644905216,
+        0.32560639556151705
+      ],
+      "ic95_sin_clasificar": [
+        0.0,
+        0.0
+      ],
+      "libre": 0.30465720922032147,
+      "masa": 10163984.0,
+      "n": 4001,
+      "sin_clasificar": 0.0
+    },
+    {
+      "categoria": "1971-1980",
+      "dimension": "cohorte",
+      "directo": 0.6098339508288542,
+      "ee_directo": 0.008966175098682198,
+      "ee_libre": 0.008966175098682198,
+      "ee_sin_clasificar": 0.0,
+      "ic95_directo": [
+        0.5924534187370876,
+        0.6277793187052314
+      ],
+      "ic95_libre": [
+        0.37222068129476854,
+        0.40754658126291243
+      ],
+      "ic95_sin_clasificar": [
+        0.0,
+        0.0
+      ],
+      "libre": 0.3901660491711458,
+      "masa": 15089988.0,
+      "n": 6274,
+      "sin_clasificar": 0.0
+    },
+    {
+      "categoria": "1981-1990",
+      "dimension": "cohorte",
+      "directo": 0.42743361720586387,
+      "ee_directo": 0.008830637626135174,
+      "ee_libre": 0.008840313410813224,
+      "ee_sin_clasificar": 0.00019193022741030208,
+      "ic95_directo": [
+        0.4107300965385008,
+        0.4442297647291196
+      ],
+      "ic95_libre": [
+        0.5553644671976162,
+        0.5890726205672445
+      ],
+      "ic95_sin_clasificar": [
+        0.0,
+        0.0007326555270605798
+      ],
+      "libre": 0.5722901205706159,
+      "masa": 13617497.0,
+      "n": 5905,
+      "sin_clasificar": 0.0002762622235202255
+    },
+    {
+      "categoria": "1991+",
+      "dimension": "cohorte",
+      "directo": 0.22707640518643307,
+      "ee_directo": 0.011241874959210692,
+      "ee_libre": 0.011241874959210692,
+      "ee_sin_clasificar": 0.0,
+      "ic95_directo": [
+        0.2042313209696197,
+        0.2490047597579998
+      ],
+      "ic95_libre": [
+        0.7509952402420002,
+        0.7957686790303803
+      ],
+      "ic95_sin_clasificar": [
+        0.0,
+        0.0
+      ],
+      "libre": 0.7729235948135669,
+      "masa": 6572224.0,
+      "n": 2509,
+      "sin_clasificar": 0.0
+    },
+    {
+      "categoria": "desconocida",
+      "dimension": "cohorte",
+      "directo": null,
+      "ee_directo": null,
+      "ee_libre": null,
+      "ee_sin_clasificar": null,
+      "ic95_directo": null,
+      "ic95_libre": null,
+      "ic95_sin_clasificar": null,
+      "libre": null,
+      "masa": 0.0,
+      "n": 0,
+      "sin_clasificar": null
+    },
+    {
+      "categoria": "hombre|<=1970",
+      "dimension": "sexo_x_cohorte",
+      "directo": 0.6860574515662807,
+      "ee_directo": 0.01660908070934542,
+      "ee_libre": 0.01660908070934542,
+      "ee_sin_clasificar": 0.0,
+      "ic95_directo": [
+        0.6541655212134235,
+        0.7186870737485727
+      ],
+      "ic95_libre": [
+        0.2813129262514273,
+        0.34583447878657647
+      ],
+      "ic95_sin_clasificar": [
+        0.0,
+        0.0
+      ],
+      "libre": 0.3139425484337193,
+      "masa": 4567221.0,
+      "n": 1731,
+      "sin_clasificar": 0.0
+    },
+    {
+      "categoria": "hombre|1971-1980",
+      "dimension": "sexo_x_cohorte",
+      "directo": 0.6000477719213695,
+      "ee_directo": 0.013331512124629073,
+      "ee_libre": 0.013331512124629075,
+      "ee_sin_clasificar": 0.0,
+      "ic95_directo": [
+        0.5732856151467484,
+        0.6257532517616256
+      ],
+      "ic95_libre": [
+        0.3742467482383744,
+        0.42671438485325164
+      ],
+      "ic95_sin_clasificar": [
+        0.0,
+        0.0
+      ],
+      "libre": 0.3999522280786305,
+      "masa": 6874331.0,
+      "n": 2810,
+      "sin_clasificar": 0.0
+    },
+    {
+      "categoria": "hombre|1981-1990",
+      "dimension": "sexo_x_cohorte",
+      "directo": 0.41510774064341155,
+      "ee_directo": 0.013197175086496397,
+      "ee_libre": 0.013202211803441452,
+      "ee_sin_clasificar": 0.00020329051231132123,
+      "ic95_directo": [
+        0.3900826538937425,
+        0.442007828405583
+      ],
+      "ic95_libre": [
+        0.5575222951616782,
+        0.6095239992345394
+      ],
+      "ic95_sin_clasificar": [
+        0.0,
+        0.0007046274627867699
+      ],
+      "libre": 0.5846583381474896,
+      "masa": 5771174.0,
+      "n": 2484,
+      "sin_clasificar": 0.00023392120909887659
+    },
+    {
+      "categoria": "hombre|1991+",
+      "dimension": "sexo_x_cohorte",
+      "directo": 0.1776017409914282,
+      "ee_directo": 0.014651357114587472,
+      "ee_libre": 0.014651357114587473,
+      "ee_sin_clasificar": 0.0,
+      "ic95_directo": [
+        0.1495827864017296,
+        0.20660850896491917
+      ],
+      "ic95_libre": [
+        0.7933914910350809,
+        0.8504172135982705
+      ],
+      "ic95_sin_clasificar": [
+        0.0,
+        0.0
+      ],
+      "libre": 0.8223982590085718,
+      "masa": 2493292.0,
+      "n": 998,
+      "sin_clasificar": 0.0
+    },
+    {
+      "categoria": "mujer|<=1970",
+      "dimension": "sexo_x_cohorte",
+      "directo": 0.7029200629006446,
+      "ee_directo": 0.013311018403880333,
+      "ee_libre": 0.013311018403880331,
+      "ee_sin_clasificar": 0.0,
+      "ic95_directo": [
+        0.6771318243853914,
+        0.728085789558616
+      ],
+      "ic95_libre": [
+        0.271914210441384,
+        0.3228681756146085
+      ],
+      "ic95_sin_clasificar": [
+        0.0,
+        0.0
+      ],
+      "libre": 0.2970799370993555,
+      "masa": 5596763.0,
+      "n": 2270,
+      "sin_clasificar": 0.0
+    },
+    {
+      "categoria": "mujer|1971-1980",
+      "dimension": "sexo_x_cohorte",
+      "directo": 0.6180223930964985,
+      "ee_directo": 0.011050731849106052,
+      "ee_libre": 0.011050731849106056,
+      "ee_sin_clasificar": 0.0,
+      "ic95_directo": [
+        0.5978798020173218,
+        0.6402754200297773
+      ],
+      "ic95_libre": [
+        0.3597245799702228,
+        0.4021201979826781
+      ],
+      "ic95_sin_clasificar": [
+        0.0,
+        0.0
+      ],
+      "libre": 0.38197760690350147,
+      "masa": 8215657.0,
+      "n": 3464,
+      "sin_clasificar": 0.0
+    },
+    {
+      "categoria": "mujer|1981-1990",
+      "dimension": "sexo_x_cohorte",
+      "directo": 0.43649961899350814,
+      "ee_directo": 0.011308950184931962,
+      "ee_libre": 0.01132675421161013,
+      "ee_sin_clasificar": 0.00029635551316248016,
+      "ic95_directo": [
+        0.41486840226510924,
+        0.45922058121053894
+      ],
+      "ic95_libre": [
+        0.5403515489464201,
+        0.5848762871628639
+      ],
+      "ic95_sin_clasificar": [
+        0.0,
+        0.00094617752970831
+      ],
+      "libre": 0.563192975869079,
+      "masa": 7846323.0,
+      "n": 3421,
+      "sin_clasificar": 0.00030740513741277285
+    },
+    {
+      "categoria": "mujer|1991+",
+      "dimension": "sexo_x_cohorte",
+      "directo": 0.2573183372510255,
+      "ee_directo": 0.015350985982693775,
+      "ee_libre": 0.015350985982693775,
+      "ee_sin_clasificar": 0.0,
+      "ic95_directo": [
+        0.22773003832962962,
+        0.2886196978645473
+      ],
+      "ic95_libre": [
+        0.7113803021354527,
+        0.7722699616703703
+      ],
+      "ic95_sin_clasificar": [
+        0.0,
+        0.0
+      ],
+      "libre": 0.7426816627489745,
+      "masa": 4078932.0,
+      "n": 1511,
+      "sin_clasificar": 0.0
+    }
+  ],
+  "pesos_estandarizacion": [
+    {
+      "cohorte": "<=1970",
+      "peso_referencia": 0.22366104796984698
+    },
+    {
+      "cohorte": "1971-1980",
+      "peso_referencia": 0.33205901641840596
+    },
+    {
+      "cohorte": "1981-1990",
+      "peso_referencia": 0.29965647818279206
+    },
+    {
+      "cohorte": "1991+",
+      "peso_referencia": 0.144623457428955
+    }
+  ]
+}
