@@ -23,6 +23,15 @@ LO QUE NO HACE
 
 No mide el error de persistencia de las 6 celdas nuevas (sucesor: CALC nuevo, nube) · no adopta · no toca el par del piloto 3.
 
+## NO-CORRIDO / RESERVAS
+
+`NC-0404` (EDER: `SIN-PISO-POR-DISEÑO` es decisión de vocabulario de mesa) · `NC-0405`
+(una función de `tests/test_c2_compuesto.py`, fuera de la lista del perímetro) · `NC-0406`
+(`unidad = PERSONA` en el `payload` del árbitro vs `PERSONA ELEGIDA 18+` en la tabla sellada) ·
+`NC-0407` (el error de persistencia de las 6 celdas nuevas, declarado fuera por el propio encargo).
+Detalle, razón, impacto y sucesor de cada una en `forense/no-corrido.tsv` y en la §NO-CORRIDO
+de la nota de cierre.
+
 ## CONSUMIDO
 
 `ACTO GEN2-MARCADOR-ENLACE-2` ejecutado en la rama `claude/pensive-keller-7wxjod`; PR y ADR citados en `forense/notas/2026-09-20-GEN2-MARCADOR-ENLACE-2-cierre.md`.
