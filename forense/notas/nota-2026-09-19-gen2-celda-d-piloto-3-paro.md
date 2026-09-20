@@ -4,6 +4,8 @@
 Encargo archivado verbatim por 0-bis A.3 en `forense/encargos/2026-09-19-GEN2-CELDA-D-PILOTO-3.md`.
 **Contadores movidos: cero.** No se congeló spec, no se congeló código, no se registró celda-D.
 
+**Enmienda fechada (20/sep/2026, al fusionar `origin/main`):** `GEN2-C2-COMPUESTO-RESERVADAS-1` (`ADR-549`) fusionó primero y **emitió el C2 compuesto para este mismo par** — `c2-compuesto-dictamen-v1_0.tsv`: `edadxescolaridad` ENCIG 2025 sale `EMITIBLE`, 16 celdas, y la columna de piso del marcador pasa de `SIN-PISO` a `EMITIDA-SIN-EVALUAR`. El `estado` del par **sigue `RESERVADA`** y este acto sigue sin tocarlo; lo que cambia es que el piso a vencer ya existe, en un estado que el motor no puede leer como adoptado. Ese acto **no decide el cruce ni la elegibilidad** (cero menciones de coherencia o elegibilidad en su `spec.yaml`), así que el hallazgo de abajo queda intacto: lo que bloquea `edad × escolaridad` sigue siendo `PARO-COHERENCIA-UNIVERSO`, no el soporte, y sigue siendo de mesa. 
+
 ## 0 · Veredicto
 
 `PARO-PREMISA` en dos puntos independientes, cada uno suficiente por sí solo para
