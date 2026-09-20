@@ -169,20 +169,37 @@ def sonda_red(activa: bool) -> dict:
     if not activa:
         return {"ejecutada": "NO",
                 "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"}
-    cmd = ["curl", "-sS", "-o", os.devnull,
-           "-w", "%{http_code} %{http_connect}",
+    # `-D -` vuelca las cabeceras de la respuesta final a stdout, antes de
+    # la marca `-w`: minimo necesario para leer `x-deny-reason` cuando el
+    # 403 llega como respuesta HTTP completa (no en el CONNECT) -- P4,
+    # ACTO GEN2-CI-GUARDIAS-VIVAS-1. No agrega ninguna sonda nueva: sigue
+    # siendo la misma llamada opt-in de siempre, solo lee una cabecera que
+    # ya viajaba y se descartaba.
+    cmd = ["curl", "-sS", "-D", "-", "-o", os.devnull,
+           "-w", "\n__CI_GUARDIAS_MARCA__ %{http_code} %{http_connect}",
            "--max-time", str(TIMEOUT_SONDA), URL_SONDA]
+    x_deny_reason = None
     try:
         r = subprocess.run(cmd, capture_output=True, text=True,
                            timeout=TIMEOUT_SONDA + 5)
         salida = (r.stdout or "").strip()
-        codigo = salida.split()[0] if salida else "SIN-SALIDA"
-        http_connect = salida.split()[1] if len(salida.split()) > 1 else "000"
+        marca = None
+        for linea in salida.splitlines():
+            if linea.startswith("__CI_GUARDIAS_MARCA__"):
+                marca = linea
+            elif ":" in linea:
+                clave, _, valor = linea.partition(":")
+                if clave.strip().lower() == "x-deny-reason":
+                    x_deny_reason = valor.strip()
+        partes = marca.split() if marca else []
+        codigo = partes[1] if len(partes) > 1 else "SIN-SALIDA"
+        http_connect = partes[2] if len(partes) > 2 else "000"
     except (OSError, subprocess.SubprocessError) as exc:
         codigo = f"ERROR:{type(exc).__name__}"
         http_connect = "000"
     return {"ejecutada": "SI", "url": URL_SONDA, "timeout_s": TIMEOUT_SONDA,
             "http_code": codigo, "http_connect": http_connect,
+            "x_deny_reason": x_deny_reason,
             "comando": " ".join(cmd)}
 
 
@@ -257,22 +274,47 @@ def _senal_entorno_derivado() -> tuple[str, list[str]]:
 
 
 def _sonda_red_arranque() -> str:
-    """Reusa `sonda_red()` (activa=True) y colapsa su `http_code` en los
-    TRES estados no colapsados que pide el hook de arranque."""
+    """Reusa `sonda_red()` (activa=True) y colapsa su resultado en los
+    CUATRO estados que pide el hook de arranque, ninguno colapsado con
+    otro (P4, ACTO GEN2-CI-GUARDIAS-VIVAS-1, corrige el defecto medido:
+    un 403 que SI llego como respuesta HTTP completa -- con cabecera
+    `x-deny-reason` -- se leia como SIN-RED igual que si no hubiera
+    contestado nadie):
+
+    - PERMITIDA: 2xx/3xx.
+    - DENEGADA-POR-POLITICA: 403 en el CONNECT (proxy nunca dejo salir la
+      peticion), o 403 final con cabecera `x-deny-reason` (el proxy si
+      dejo salir la peticion y fue el propio proxy/gateway el que
+      contesto la denegacion, no INEGI).
+    - RESPUESTA-NO-OK(<codigo>): hubo conexion y alguien contesto un
+      codigo que no es 2xx/3xx ni la denegacion de politica reconocida --
+      no se sabe si fue un proxy intermedio o el propio INEGI, y se dice
+      asi (A.4: no se inventa una tercera lectura para un caso ambiguo).
+    - SIN-RED: `http_code` es `000` o no numerico -- ninguna respuesta.
+    """
     r = _proba(sonda_red, True)
     if not isinstance(r, dict):
         return f"red: SIN-RED ({r})"
     codigo = str(r.get("http_code", ""))
     connect = str(r.get("http_connect", "000"))
+    deny = r.get("x_deny_reason")
     if codigo.isdigit() and 200 <= int(codigo) < 400:
         estado = "PERMITIDA"
     elif connect == "403":
         # El proxy respondio 403 al CONNECT (no la peticion final, que ni
         # se hizo): denegacion por politica de egreso, no red caida.
         estado = "DENEGADA-POR-POLITICA"
+    elif codigo == "403" and deny:
+        # La peticion SI salio y volvio una respuesta HTTP 403 completa,
+        # con la cabecera que el gateway de politica agrega -- sigue
+        # siendo denegacion por politica, no ausencia de red.
+        estado = "DENEGADA-POR-POLITICA"
+    elif codigo.isdigit() and codigo != "000":
+        estado = f"RESPUESTA-NO-OK({codigo})"
     else:
         estado = "SIN-RED"
     return (f"red: {estado} (http_code={codigo}, http_connect={connect}, "
+            f"x_deny_reason={deny or 'ausente'}, "
             f"via_proxy={'SI' if os.environ.get('HTTPS_PROXY') else 'NO'})")
 
 
