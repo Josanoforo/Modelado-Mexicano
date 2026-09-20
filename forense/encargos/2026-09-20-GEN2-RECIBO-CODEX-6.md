@@ -40,4 +40,4 @@ Cascada D-10 · ## NO-CORRIDO / RESERVAS · ## CONSUMIDO · cero ramas propias.
 
 ## CONSUMIDO
 
-Ejecutado por PR pendiente de número real — se añade en el commit de cierre siguiente, tras abrir el PR (paso 9/11 de la cascada D-10).
+Ejecutado por `PR #904` (`https://github.com/Josanoforo/Modelado-Mexicano/pull/904`), rama `claude/relaxed-bell-rs3dhf`. `ADR-552`, `NC-0359`..`NC-0363`, `FP-390`, `canon/registro-rotulos.tsv` (rótulo `GEN2-RECIBO-CODEX-6`), `canon/estado-programa-v1_14.md` L0. `python3 tests/check.py --baseline` → LÍNEA BASE VERDE (3 FAIL heredados, 0 nuevos). **NO FUSIONAR** sin que mesa se pronuncie sobre `NC-0359`/`NC-0360`/`FP-390`.
