@@ -46,10 +46,18 @@ particiones son exactamente 0 y las identidades de unión están entre
 Control independiente reproducible: `python3
 forense/analisis/encuci2020-respuesta-por-contacto-cli-2/control_independiente.py`.
 Lee el DBF y agrega UPM directamente, sin invocar el estimador de proporciones.
-Salida: `AP5_16_4`, punto `0.4275205077195218`, varianza WR por UPM
-`6.043648067277605e-06`, SE `0.0024583832222169117`, 281 estratos y 3,095
-UPM con respuesta válida. Es un control de punto y varianza del diseño; no
-modifica los RESULT ni el sello anterior.
+Corrige el control previo: construye primero el marco de las 3,096 UPM con
+`FAC_SEL` válida; el dominio aporta cero fuera de contacto con salud pública y
+AP5_17/18 válidas. Por estrato centra los residuos `z=y-px` y aplica
+`m/(m−1) * sum((z−z̄)^2)`.
+
+La salida acredita el estimando publicado `P(solicitud o entrega | contacto
+salud pública, AP5_17/18 válidas)`: punto independiente
+`0.12442225665637696`, punto RESULT idéntico, delta `0.0`, tolerancia absoluta
+`1e-12`, varianza WR `3.8998399149224755e-05` y SE
+`0.006244869826443523` (281 estratos). Es control de punto y varianza del
+diseño, no una sustitución de los IC bootstrap sellados ni una modificación del
+sello anterior.
 
 ## Replay y vistas
 
@@ -61,8 +69,14 @@ la interfaz vigente:
 python3 tools/corrida0.py registro --verifica --escribe --lote CALC-ENCUCI2020-RESPUESTA-POR-CONTACTO-0001-v1_1
 ```
 
-En esta caja, dos intentos alcanzaron el límite de 30.2 s sin stdout ni stderr;
-`/tmp/rpc-registro.log` quedó en 0 bytes y no persistió proceso hijo. Por ello
-no se afirma asiento ni vistas publicados. Receta pendiente exacta: ejecutar
-ese mismo comando en una sesión con ventana mayor de 30 s y conservar su salida
-antes de confirmar `corridas.tsv`, `resultados.tsv`, `usos.tsv` y el asiento.
+La proyección sin reejecución concluyó y escribió las tres vistas: `corridas.tsv`
+229 filas, `resultados.tsv` 8,954 filas y `usos.tsv` 228 filas. La fila propia
+queda publicada como SELLADA, con los 12 RESULT, pero todavía
+`NO-VERIFICADO/SIN-FUENTE`: no se presenta como replay asentado.
+
+El intento dirigido con `--verifica` sigue siendo el bloqueo real: alcanzó el
+límite de 30.2 s sin stdout ni stderr y
+`/tmp/rpc-registro-verify.log` quedó en 0 bytes. La receta pendiente exacta es
+el comando anterior en una sesión con ventana mayor de 30 s; esa ejecución es
+la única vía autorizada para proyectar `REPRODUCE/IDENTICO` en lugar de editar
+el asiento a mano.
