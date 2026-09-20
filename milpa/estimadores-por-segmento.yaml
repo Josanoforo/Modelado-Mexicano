@@ -5,6 +5,7 @@ _comentario: 'DERIVADO por tools/marcador_segmento.py — NO EDITAR. ACTO GEN2-M
 decision_ref: adopcion:piso-C2-20-celdas
 n_celdas: 20
 n_emitidas_sin_evaluar: 206
+n_emitidas_con_ic_sellado: 174
 emitidas_sin_evaluar:
   CRUCE-EMITIDA::AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-18-29:
     grupo_marcador: CRUCE-GRUPO::dinero.ahorro.via_informal_ejes_enif2024::cuenta_formalxedad
@@ -15,10 +16,11 @@ emitidas_sin_evaluar:
     celda_b: 18-29
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-18-29
     punto: 0.5715862461447855
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5398173532747117
+    ic95_sup: 0.6011541461491405
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.52536824669975
@@ -33,10 +35,11 @@ emitidas_sin_evaluar:
     celda_b: 30-44
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-30-44
     punto: 0.5134875592318439
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.48457869135381004
+    ic95_sup: 0.5410342200187508
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.469635668262066
@@ -51,10 +54,11 @@ emitidas_sin_evaluar:
     celda_b: 45-59
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-45-59
     punto: 0.4606499621204764
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.43212802537689804
+    ic95_sup: 0.48964547732593655
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.41701603709347185
@@ -69,10 +73,11 @@ emitidas_sin_evaluar:
     celda_b: 60+
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-60
     punto: 0.4022630870506333
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3725818148811879
+    ic95_sup: 0.43168449984115437
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.35532460294053475
@@ -87,10 +92,11 @@ emitidas_sin_evaluar:
     celda_b: 18-29
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-CON-CUENTA-X-18-29
     punto: 0.3536075931987105
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3283870899944421
+    ic95_sup: 0.3796433544946534
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.31430308266232765
@@ -105,10 +111,11 @@ emitidas_sin_evaluar:
     celda_b: 30-44
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-CON-CUENTA-X-30-44
     punto: 0.30204437810821805
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.28101703039073
+    ic95_sup: 0.32381125794272003
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.2683038692313877
@@ -123,10 +130,11 @@ emitidas_sin_evaluar:
     celda_b: 45-59
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-CON-CUENTA-X-45-59
     punto: 0.2593650703751758
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.2395673424492919
+    ic95_sup: 0.2795948185728513
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.22852244291123294
@@ -141,10 +149,11 @@ emitidas_sin_evaluar:
     celda_b: 60+
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-CON-CUENTA-X-60
     punto: 0.21626112825062596
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.19363205477944756
+    ic95_sup: 0.24004726715639083
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.1858275141772914
@@ -159,10 +168,11 @@ emitidas_sin_evaluar:
     celda_b: 18-29
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-SIN-CUENTA-X-18-29
     punto: 0.6447458126562683
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6137220427952028
+    ic95_sup: 0.6735351661789284
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5889228849345803
@@ -177,10 +187,11 @@ emitidas_sin_evaluar:
     celda_b: 30-44
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-SIN-CUENTA-X-30-44
     punto: 0.5587174414646596
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5295185131059975
+    ic95_sup: 0.5860527614226424
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5039157012462455
@@ -195,10 +206,11 @@ emitidas_sin_evaluar:
     celda_b: 45-59
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-SIN-CUENTA-X-45-59
     punto: 0.42704837829273457
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3981860775910337
+    ic95_sup: 0.45598871228340665
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3739413977274562
@@ -213,10 +225,11 @@ emitidas_sin_evaluar:
     celda_b: 60+
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-SIN-CUENTA-X-60
     punto: 0.3180435010635979
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.29379664067009664
+    ic95_sup: 0.3420322051226942
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.27017287433487913
@@ -231,10 +244,11 @@ emitidas_sin_evaluar:
     celda_b: 18-29
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-CON-CUENTA-X-18-29
     punto: 0.7347148160034357
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.7136009585080818
+    ic95_sup: 0.7558493348664085
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.6919203900041334
@@ -249,10 +263,11 @@ emitidas_sin_evaluar:
     celda_b: 30-44
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-CON-CUENTA-X-30-44
     punto: 0.6589487246740702
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6377875738322343
+    ic95_sup: 0.6792053840104725
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.6142615776910224
@@ -267,10 +282,11 @@ emitidas_sin_evaluar:
     celda_b: 45-59
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-CON-CUENTA-X-45-59
     punto: 0.532143217572722
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5084416035775445
+    ic95_sup: 0.5561497768130496
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.48356926102167175
@@ -285,10 +301,11 @@ emitidas_sin_evaluar:
     celda_b: 60+
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-CON-CUENTA-X-60
     punto: 0.41577952798557954
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3877203875516418
+    ic95_sup: 0.44434180593122147
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.36722331860658963
@@ -303,10 +320,11 @@ emitidas_sin_evaluar:
     celda_b: hasta primaria
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-HASTA-PRIMARIA
     punto: 0.48743391771342226
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.45613986279919744
+    ic95_sup: 0.5171781952264031
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4410587099142398
@@ -321,10 +339,11 @@ emitidas_sin_evaluar:
     celda_b: secundaria
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SECUNDARIA
     punto: 0.5550377569079498
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5262605760041693
+    ic95_sup: 0.5824686669154523
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5119946514496322
@@ -339,10 +358,11 @@ emitidas_sin_evaluar:
     celda_b: media superior
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-MEDIA-SUPERIOR
     punto: 0.5278883435664862
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.49491392495841163
+    ic95_sup: 0.5594274662781747
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.47893383856558425
@@ -357,10 +377,11 @@ emitidas_sin_evaluar:
     celda_b: superior
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SUPERIOR
     punto: 0.38179689740802764
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.35368599142000523
+    ic95_sup: 0.4096796196421359
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.33745328976930483
@@ -375,10 +396,11 @@ emitidas_sin_evaluar:
     celda_b: hasta primaria
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-HASTA-PRIMARIA
     punto: 0.28053289562181577
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.2579556172487202
+    ic95_sup: 0.3032659719186022
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.24628876949364473
@@ -393,10 +415,11 @@ emitidas_sin_evaluar:
     celda_b: secundaria
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SECUNDARIA
     punto: 0.3383852976127203
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3158110496413403
+    ic95_sup: 0.36099006366925745
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.30287377739352095
@@ -411,10 +434,11 @@ emitidas_sin_evaluar:
     celda_b: media superior
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-MEDIA-SUPERIOR
     punto: 0.3143466927166108
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.2895845964858578
+    ic95_sup: 0.3407750477120157
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.27568794595787544
@@ -429,10 +453,11 @@ emitidas_sin_evaluar:
     celda_b: superior
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SUPERIOR
     punto: 0.2020592847802064
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.18243093183629994
+    ic95_sup: 0.22258382521246045
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.17417790924841686
@@ -447,10 +472,11 @@ emitidas_sin_evaluar:
     celda_b: hasta primaria
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-HASTA-PRIMARIA
     punto: 0.3493263158245597
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3213175639666784
+    ic95_sup: 0.37672799114755573
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.2992760497351526
@@ -465,10 +491,11 @@ emitidas_sin_evaluar:
     celda_b: secundaria
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SECUNDARIA
     punto: 0.4879895291457878
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4590022915172814
+    ic95_sup: 0.5165971553160431
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.43413038011767985
@@ -483,10 +510,11 @@ emitidas_sin_evaluar:
     celda_b: media superior
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-MEDIA-SUPERIOR
     punto: 0.5722019755094425
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5404998899952657
+    ic95_sup: 0.6027159909337167
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5146927758964861
@@ -501,10 +529,11 @@ emitidas_sin_evaluar:
     celda_b: superior
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SUPERIOR
     punto: 0.5746608463724932
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5480711352216061
+    ic95_sup: 0.6008263744342405
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5190474373934992
@@ -519,10 +548,11 @@ emitidas_sin_evaluar:
     celda_b: hasta primaria
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-HASTA-PRIMARIA
     punto: 0.4503275454727099
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4253491643003307
+    ic95_sup: 0.47635914578428645
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.401036223377285
@@ -537,10 +567,11 @@ emitidas_sin_evaluar:
     celda_b: secundaria
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SECUNDARIA
     punto: 0.5925708236111238
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5698245366227687
+    ic95_sup: 0.6148438486261663
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5460142992453921
@@ -555,10 +586,11 @@ emitidas_sin_evaluar:
     celda_b: media superior
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-MEDIA-SUPERIOR
     punto: 0.671173024685006
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6478373311585744
+    ic95_sup: 0.694680433224669
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.624428106122271
@@ -573,10 +605,11 @@ emitidas_sin_evaluar:
     celda_b: superior
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SUPERIOR
     punto: 0.6733877403673532
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6494917156831992
+    ic95_sup: 0.6974571761230687
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.6285088096904133
@@ -591,10 +624,11 @@ emitidas_sin_evaluar:
     celda_b: menor de 15 000
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-MENOR-DE-15-000
     punto: 0.5485265232374201
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5183542285620897
+    ic95_sup: 0.5765407127589521
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5047832247805547
@@ -609,10 +643,11 @@ emitidas_sin_evaluar:
     celda_b: 15 000 y mas
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-15-000-Y-MAS
     punto: 0.4633117811886122
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.44002692575502816
+    ic95_sup: 0.485833600223387
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4259137613253905
@@ -627,10 +662,11 @@ emitidas_sin_evaluar:
     celda_b: menor de 15 000
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-MENOR-DE-15-000
     punto: 0.3325163445879302
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.30982460846420495
+    ic95_sup: 0.3553047639753097
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.2968163128469078
@@ -645,10 +681,11 @@ emitidas_sin_evaluar:
     celda_b: 15 000 y mas
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-15-000-Y-MAS
     punto: 0.2614275516796268
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.24541339899863363
+    ic95_sup: 0.2779405534477751
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.23501967189849293
@@ -663,10 +700,11 @@ emitidas_sin_evaluar:
     celda_b: menor de 15 000
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-MENOR-DE-15-000
     punto: 0.4809189048300638
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4517248254127218
+    ic95_sup: 0.508715140286589
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.42983919320455083
@@ -681,10 +719,11 @@ emitidas_sin_evaluar:
     celda_b: 15 000 y mas
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-15-000-Y-MAS
     punto: 0.5001313179466642
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4781140018491227
+    ic95_sup: 0.5218045209259778
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4524511019813299
@@ -699,10 +738,11 @@ emitidas_sin_evaluar:
     celda_b: menor de 15 000
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-MENOR-DE-15-000
     punto: 0.5857183397854345
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5647731501483771
+    ic95_sup: 0.6064976623570651
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5416758285208414
@@ -717,10 +757,11 @@ emitidas_sin_evaluar:
     celda_b: 15 000 y mas
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-15-000-Y-MAS
     punto: 0.6042438685983381
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5870269625601234
+    ic95_sup: 0.6219737616975562
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.564347719825568
@@ -735,10 +776,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXSEXO-SIN-CUENTA-X-1-HOMBRE
     punto: 0.4662553573647468
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4437650212588125
+    ic95_sup: 0.4879868319564888
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4275632463429403
@@ -753,10 +795,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXSEXO-SIN-CUENTA-X-2-MUJER
     punto: 0.5164797688193921
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4913738254468779
+    ic95_sup: 0.5413334074955509
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.47763373337409093
@@ -771,10 +814,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXSEXO-CON-CUENTA-X-1-HOMBRE
     punto: 0.26371875431838887
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.2462541293478165
+    ic95_sup: 0.28135310642676564
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.23623407728705104
@@ -789,10 +833,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXSEXO-CON-CUENTA-X-2-MUJER
     punto: 0.30457582008644574
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.28721188186430063
+    ic95_sup: 0.3220554889586555
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.2746487582932454
@@ -807,10 +852,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXSEXO-SIN-CUENTA-X-1-HOMBRE
     punto: 0.4910027148993952
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4676460840036419
+    ic95_sup: 0.5135552459123992
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4408752076024237
@@ -825,10 +871,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXSEXO-SIN-CUENTA-X-2-MUJER
     punto: 0.4956772076325171
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.47028980545141447
+    ic95_sup: 0.5205609163216866
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.44714542027144
@@ -843,10 +890,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXSEXO-CON-CUENTA-X-1-HOMBRE
     punto: 0.5954787375843992
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5756579737080678
+    ic95_sup: 0.6155355630640211
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5527992770434993
@@ -861,10 +909,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXSEXO-CON-CUENTA-X-2-MUJER
     punto: 0.5999754478527735
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5836667637515008
+    ic95_sup: 0.6164747975473058
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5590696467100716
@@ -879,10 +928,11 @@ emitidas_sin_evaluar:
     celda_b: hasta primaria
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-18-29-X-HASTA-PRIMARIA
     punto: 0.42611089749938563
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3957280258451747
+    ic95_sup: 0.45532440403384344
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3768069392195639
@@ -897,10 +947,11 @@ emitidas_sin_evaluar:
     celda_b: secundaria
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-18-29-X-SECUNDARIA
     punto: 0.493396655187604
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4634772392169765
+    ic95_sup: 0.5227186684462442
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.44564832568617774
@@ -915,10 +966,11 @@ emitidas_sin_evaluar:
     celda_b: media superior
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-18-29-X-MEDIA-SUPERIOR
     punto: 0.46610398154835586
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4272925100072254
+    ic95_sup: 0.5045256185143819
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4132438370829479
@@ -933,10 +985,11 @@ emitidas_sin_evaluar:
     celda_b: superior
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-18-29-X-SUPERIOR
     punto: 0.3253286264036474
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.2923668799532828
+    ic95_sup: 0.3590549997304402
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.28071435918627635
@@ -951,10 +1004,11 @@ emitidas_sin_evaluar:
     celda_b: hasta primaria
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-30-44-X-HASTA-PRIMARIA
     punto: 0.3700274270499452
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3420615194633165
+    ic95_sup: 0.398684141051389
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3260092654311638
@@ -969,10 +1023,11 @@ emitidas_sin_evaluar:
     celda_b: secundaria
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-30-44-X-SECUNDARIA
     punto: 0.4351725844128131
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.40626777021715327
+    ic95_sup: 0.46335548061260984
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.39139878017628166
@@ -987,10 +1042,11 @@ emitidas_sin_evaluar:
     celda_b: media superior
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-30-44-X-MEDIA-SUPERIOR
     punto: 0.40850357721054303
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.37582997023191633
+    ic95_sup: 0.44211667512066977
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3603745933684371
@@ -1005,10 +1061,11 @@ emitidas_sin_evaluar:
     celda_b: superior
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-30-44-X-SUPERIOR
     punto: 0.27612751108444716
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.2510897953358417
+    ic95_sup: 0.30257488004595695
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.23792525397190978
@@ -1023,10 +1080,11 @@ emitidas_sin_evaluar:
     celda_b: hasta primaria
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-45-59-X-HASTA-PRIMARIA
     punto: 0.3221761916567261
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.29494742138159674
+    ic95_sup: 0.35020016436198714
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.28095718928020363
@@ -1041,10 +1099,11 @@ emitidas_sin_evaluar:
     celda_b: secundaria
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-45-59-X-SECUNDARIA
     punto: 0.38403246089465926
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3543109555397508
+    ic95_sup: 0.41424457142421056
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3418942095862868
@@ -1059,10 +1118,11 @@ emitidas_sin_evaluar:
     celda_b: media superior
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-45-59-X-MEDIA-SUPERIOR
     punto: 0.35850825702132694
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3280372819571764
+    ic95_sup: 0.3893638724212672
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.31277735621866254
@@ -1077,10 +1137,11 @@ emitidas_sin_evaluar:
     celda_b: superior
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-45-59-X-SUPERIOR
     punto: 0.23587269794543705
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.21285552120677925
+    ic95_sup: 0.2595483798279569
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.20140822003658207
@@ -1095,10 +1156,11 @@ emitidas_sin_evaluar:
     celda_b: hasta primaria
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-60-X-HASTA-PRIMARIA
     punto: 0.27247393388246116
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.24007085855211946
+    ic95_sup: 0.307070680620641
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.23140428399883445
@@ -1113,10 +1175,11 @@ emitidas_sin_evaluar:
     celda_b: secundaria
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-60-X-SECUNDARIA
     punto: 0.32942535234473497
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.29863915670059854
+    ic95_sup: 0.36044550823030536
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.2858665985286064
@@ -1131,10 +1194,11 @@ emitidas_sin_evaluar:
     celda_b: media superior
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-60-X-MEDIA-SUPERIOR
     punto: 0.30572912743358144
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.2784478445920074
+    ic95_sup: 0.3341818771424892
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.2596387712778431
@@ -1149,10 +1213,11 @@ emitidas_sin_evaluar:
     celda_b: superior
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-60-X-SUPERIOR
     punto: 0.19564164807682108
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.17317209332093822
+    ic95_sup: 0.21942813551027934
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.1627106428217729
@@ -1167,10 +1232,11 @@ emitidas_sin_evaluar:
     celda_b: hasta primaria
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-18-29-X-HASTA-PRIMARIA
     punto: 0.5683037156787085
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5363889051893838
+    ic95_sup: 0.5995186788527891
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5062111521290746
@@ -1185,10 +1251,11 @@ emitidas_sin_evaluar:
     celda_b: secundaria
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-18-29-X-SECUNDARIA
     punto: 0.7003330549600821
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6739168315773804
+    ic95_sup: 0.7256175972654798
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.6480718916575254
@@ -1203,10 +1270,11 @@ emitidas_sin_evaluar:
     celda_b: media superior
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-18-29-X-MEDIA-SUPERIOR
     punto: 0.7663431251347427
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.7399983200787396
+    ic95_sup: 0.7915627874157137
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.7179633588776548
@@ -1221,10 +1289,11 @@ emitidas_sin_evaluar:
     celda_b: superior
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-18-29-X-SUPERIOR
     punto: 0.7681382857579822
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.7422633372629108
+    ic95_sup: 0.7932782255966141
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.7214810772990496
@@ -1239,10 +1308,11 @@ emitidas_sin_evaluar:
     celda_b: hasta primaria
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-30-44-X-HASTA-PRIMARIA
     punto: 0.4787302379845108
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.44810956236577915
+    ic95_sup: 0.5092623980965779
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4209181554076504
@@ -1257,10 +1327,11 @@ emitidas_sin_evaluar:
     celda_b: secundaria
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-30-44-X-SECUNDARIA
     punto: 0.6198284681508643
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5918699121246351
+    ic95_sup: 0.6466808364305439
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5662883325508071
@@ -1275,10 +1346,11 @@ emitidas_sin_evaluar:
     celda_b: media superior
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-30-44-X-MEDIA-SUPERIOR
     punto: 0.6958709706336281
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6682688395639573
+    ic95_sup: 0.7224743375502435
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.6434867981923055
@@ -1293,10 +1365,11 @@ emitidas_sin_evaluar:
     celda_b: superior
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-30-44-X-SUPERIOR
     punto: 0.6979941907576773
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6711971278023238
+    ic95_sup: 0.724043467416444
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.6474773300091787
@@ -1311,10 +1384,11 @@ emitidas_sin_evaluar:
     celda_b: hasta primaria
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-45-59-X-HASTA-PRIMARIA
     punto: 0.3509210966954872
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3230814611740644
+    ic95_sup: 0.37958322720023213
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.29943004148156793
@@ -1329,10 +1403,11 @@ emitidas_sin_evaluar:
     celda_b: secundaria
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-45-59-X-SECUNDARIA
     punto: 0.4897408813705367
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.45826740039583247
+    ic95_sup: 0.5209920267682476
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.43431075334379277
@@ -1347,10 +1422,11 @@ emitidas_sin_evaluar:
     celda_b: media superior
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-45-59-X-MEDIA-SUPERIOR
     punto: 0.5739167854755878
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.542154149108369
+    ic95_sup: 0.6054110162316216
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5148761654766889
@@ -1365,10 +1441,11 @@ emitidas_sin_evaluar:
     celda_b: superior
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-45-59-X-SUPERIOR
     punto: 0.5763730971073114
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5482760228055417
+    ic95_sup: 0.605261796717354
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5192307185148979
@@ -1383,10 +1460,11 @@ emitidas_sin_evaluar:
     celda_b: hasta primaria
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-60-X-HASTA-PRIMARIA
     punto: 0.252774994784352
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.2251035633075998
+    ic95_sup: 0.2822054644631627
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.2094217959753357
@@ -1401,10 +1479,11 @@ emitidas_sin_evaluar:
     celda_b: secundaria
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-60-X-SECUNDARIA
     punto: 0.37521322705852633
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3454218978920795
+    ic95_sup: 0.4050567778957145
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.32241720652482475
@@ -1419,10 +1498,11 @@ emitidas_sin_evaluar:
     celda_b: media superior
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-60-X-MEDIA-SUPERIOR
     punto: 0.45734791663847013
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4251467418142332
+    ic95_sup: 0.4903575253699553
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3967851350090034
@@ -1437,10 +1517,11 @@ emitidas_sin_evaluar:
     celda_b: superior
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-60-X-SUPERIOR
     punto: 0.4598437587543555
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4288095536793896
+    ic95_sup: 0.4918142966088635
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4009664283951956
@@ -1455,10 +1536,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXSEXO-18-29-X-1-HOMBRE
     punto: 0.40548894727689505
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3772010075260696
+    ic95_sup: 0.4337098735119882
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.36399715407898864
@@ -1473,10 +1555,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXSEXO-18-29-X-2-MUJER
     punto: 0.4547445259949655
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.426094556378167
+    ic95_sup: 0.48265269603505173
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4119810633361752
@@ -1491,10 +1574,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXSEXO-30-44-X-1-HOMBRE
     punto: 0.3504621714931714
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.32751889857373206
+    ic95_sup: 0.37359410430834816
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3140561138468631
@@ -1509,10 +1593,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXSEXO-30-44-X-2-MUJER
     punto: 0.39750274331324276
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3730080720255421
+    ic95_sup: 0.4222009743008476
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.35917448128213986
@@ -1527,10 +1612,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXSEXO-45-59-X-1-HOMBRE
     punto: 0.3039204501237492
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.2811891340454299
+    ic95_sup: 0.32701547410435006
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.2699941650172345
@@ -1545,10 +1631,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXSEXO-45-59-X-2-MUJER
     punto: 0.3480615252436674
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.32476895620184276
+    ic95_sup: 0.3722419636959092
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3116585185154022
@@ -1563,10 +1650,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXSEXO-60-X-1-HOMBRE
     punto: 0.25597096791623936
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.23235717256185193
+    ic95_sup: 0.27972607997232923
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.22177844609347772
@@ -1581,10 +1669,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXSEXO-60-X-2-MUJER
     punto: 0.2961104355551487
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.2697902815228995
+    ic95_sup: 0.3233308686960297
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.2586384778086246
@@ -1599,10 +1688,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXSEXO-18-29-X-1-HOMBRE
     punto: 0.7028575196782401
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6780537614957193
+    ic95_sup: 0.7271639368340531
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.6542973004401901
@@ -1617,10 +1707,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXSEXO-18-29-X-2-MUJER
     punto: 0.7067484160267714
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.682954847108689
+    ic95_sup: 0.7305128653158544
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.6600197827397153
@@ -1635,10 +1726,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXSEXO-30-44-X-1-HOMBRE
     punto: 0.6226657188925583
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5981566964586819
+    ic95_sup: 0.6469560228450858
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5730072610768612
@@ -1653,10 +1745,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXSEXO-30-44-X-2-MUJER
     punto: 0.6270494929023044
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6035310642683541
+    ic95_sup: 0.6494532408841194
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.579209967857256
@@ -1671,10 +1764,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXSEXO-45-59-X-1-HOMBRE
     punto: 0.4927544738259192
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4657147887703316
+    ic95_sup: 0.5199426050843224
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4410561989412109
@@ -1689,10 +1783,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXSEXO-45-59-X-2-MUJER
     punto: 0.49742934558196555
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.47326751515544696
+    ic95_sup: 0.5219840048198936
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.44732692630428095
@@ -1707,10 +1802,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXSEXO-60-X-1-HOMBRE
     punto: 0.37804421219725537
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3511158776057158
+    ic95_sup: 0.4054673440014718
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3284337765203768
@@ -1725,10 +1821,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXSEXO-60-X-2-MUJER
     punto: 0.3824513413270061
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.35650074100651347
+    ic95_sup: 0.40913860512524
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3340602777385143
@@ -1743,10 +1840,11 @@ emitidas_sin_evaluar:
     celda_b: menor de 15 000
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-MENOR-DE-15-000
     punto: 0.40339392863604556
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.36979419846509437
+    ic95_sup: 0.43708183843185405
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3576565158002092
@@ -1761,10 +1859,11 @@ emitidas_sin_evaluar:
     celda_b: 15 000 y mas
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-15-000-Y-MAS
     punto: 0.3245192970321262
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3021305808925446
+    ic95_sup: 0.3469738733864822
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.2883879366978524
@@ -1779,10 +1878,11 @@ emitidas_sin_evaluar:
     celda_b: menor de 15 000
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-MENOR-DE-15-000
     punto: 0.47003050598231333
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.440940895159041
+    ic95_sup: 0.4983578989384777
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4253873852014514
@@ -1797,10 +1897,11 @@ emitidas_sin_evaluar:
     celda_b: 15 000 y mas
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-15-000-Y-MAS
     punto: 0.38656886926334183
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.36257536892799375
+    ic95_sup: 0.4105132508316788
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3501517882907237
@@ -1815,10 +1916,11 @@ emitidas_sin_evaluar:
     celda_b: menor de 15 000
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-MENOR-DE-15-000
     punto: 0.4429003605528371
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.410385496232428
+    ic95_sup: 0.47586521164227275
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.39341061112031833
@@ -1833,10 +1935,11 @@ emitidas_sin_evaluar:
     celda_b: 15 000 y mas
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-15-000-Y-MAS
     punto: 0.3609748785873167
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.33328051498511985
+    ic95_sup: 0.38903222780293223
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3206743602352552
@@ -1851,10 +1954,11 @@ emitidas_sin_evaluar:
     celda_b: menor de 15 000
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-MENOR-DE-15-000
     punto: 0.3051278884823349
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.2782731961435567
+    ic95_sup: 0.33270219207788904
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.2643758367005779
@@ -1869,10 +1973,11 @@ emitidas_sin_evaluar:
     celda_b: 15 000 y mas
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-15-000-Y-MAS
     punto: 0.23780834999343312
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.2163769693093127
+    ic95_sup: 0.2601849738848971
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.20734173757403224
@@ -1887,10 +1992,11 @@ emitidas_sin_evaluar:
     celda_b: menor de 15 000
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-MENOR-DE-15-000
     punto: 0.40192506972694747
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3696933017023584
+    ic95_sup: 0.434787331692286
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.35042404220662826
@@ -1905,10 +2011,11 @@ emitidas_sin_evaluar:
     celda_b: 15 000 y mas
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-15-000-Y-MAS
     punto: 0.4205383922173228
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3973500764495788
+    ic95_sup: 0.443611168899472
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.37158091920524877
@@ -1923,10 +2030,11 @@ emitidas_sin_evaluar:
     celda_b: menor de 15 000
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-MENOR-DE-15-000
     punto: 0.5440108754758124
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5162457587459351
+    ic95_sup: 0.5712919530447301
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.49213890366369034
@@ -1941,10 +2049,11 @@ emitidas_sin_evaluar:
     celda_b: 15 000 y mas
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-15-000-Y-MAS
     punto: 0.5630099845085169
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5390371382878857
+    ic95_sup: 0.5867957004367403
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5150674910947192
@@ -1959,10 +2068,11 @@ emitidas_sin_evaluar:
     celda_b: menor de 15 000
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-MENOR-DE-15-000
     punto: 0.6260696928697618
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5978245145580682
+    ic95_sup: 0.6542194573719085
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5725737639780696
@@ -1977,10 +2087,11 @@ emitidas_sin_evaluar:
     celda_b: 15 000 y mas
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-15-000-Y-MAS
     punto: 0.643887882301339
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6188077219654444
+    ic95_sup: 0.6693989999287696
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5948603962017383
@@ -1995,10 +2106,11 @@ emitidas_sin_evaluar:
     celda_b: menor de 15 000
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-MENOR-DE-15-000
     punto: 0.6284200075197571
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6027178358219416
+    ic95_sup: 0.654053327318066
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5768360655707744
@@ -2013,10 +2125,11 @@ emitidas_sin_evaluar:
     celda_b: 15 000 y mas
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-15-000-Y-MAS
     punto: 0.6461894936080319
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6213304968297872
+    ic95_sup: 0.6710836418883172
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5990560802208362
@@ -2031,10 +2144,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-HOMBRE
     punto: 0.3271185436837455
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3027806055630811
+    ic95_sup: 0.3512313281150481
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.28977364897273866
@@ -2049,10 +2163,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-MUJER
     punto: 0.37282428611469687
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3469172959168983
+    ic95_sup: 0.39905217723525854
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.33309754757751114
@@ -2067,10 +2182,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-SECUNDARIA-X-1-HOMBRE
     punto: 0.38937861675650703
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.365820689923799
+    ic95_sup: 0.41300401628176237
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3516876066861896
@@ -2085,10 +2201,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-SECUNDARIA-X-2-MUJER
     punto: 0.4381194002718504
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.41264575819830673
+    ic95_sup: 0.46310134920224233
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3990669948710232
@@ -2103,10 +2220,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE
     punto: 0.363708895754898
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.33611829185268416
+    ic95_sup: 0.39208669235180044
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3221449794856169
@@ -2121,10 +2239,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-MUJER
     punto: 0.4114013382443201
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3827757766683864
+    ic95_sup: 0.44050405076717164
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3678023181387025
@@ -2139,10 +2258,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-SUPERIOR-X-1-HOMBRE
     punto: 0.23995980400682995
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.2176950472791806
+    ic95_sup: 0.26254171862379644
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.20845209583913946
@@ -2157,10 +2277,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-SUPERIOR-X-2-MUJER
     punto: 0.27852842361480584
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.25552486130006674
+    ic95_sup: 0.3024038258128563
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.2437911054327457
@@ -2175,10 +2296,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-HOMBRE
     punto: 0.4116661312817668
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3853287515725003
+    ic95_sup: 0.4380631388469019
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3607110388102284
@@ -2193,10 +2315,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-MUJER
     punto: 0.41620292519922486
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.38957791170246425
+    ic95_sup: 0.44276366864675265
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3665886513837164
@@ -2211,10 +2334,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-SECUNDARIA-X-1-HOMBRE
     punto: 0.5540056787989055
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5286923603325537
+    ic95_sup: 0.5790724923522717
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5033623146038858
@@ -2229,10 +2353,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-SECUNDARIA-X-2-MUJER
     punto: 0.5586216936743099
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5344507486951104
+    ic95_sup: 0.582668177763551
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5097110681685778
@@ -2247,10 +2372,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE
     punto: 0.6354710815807765
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6082490021074679
+    ic95_sup: 0.6630217248882873
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5835238879679846
@@ -2265,10 +2391,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-MUJER
     punto: 0.6397921482449667
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6148492526000009
+    ic95_sup: 0.6641948805477688
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5896832197726092
@@ -2283,10 +2410,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-SUPERIOR-X-1-HOMBRE
     punto: 0.637796491124083
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.612247755415281
+    ic95_sup: 0.6631651770835376
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5877556133474476
@@ -2301,10 +2429,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-SUPERIOR-X-2-MUJER
     punto: 0.6421055172614889
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6175350266941444
+    ic95_sup: 0.6662177358021099
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5938959166572271
@@ -2319,10 +2448,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-LOCALIDADXSEXO-MENOR-DE-15-000-X-1-HOMBRE
     punto: 0.38313740312566696
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.35890138619294565
+    ic95_sup: 0.4072115863680469
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.34513720700219275
@@ -2337,10 +2467,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-LOCALIDADXSEXO-MENOR-DE-15-000-X-2-MUJER
     punto: 0.43164920378138544
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.40518141976718486
+    ic95_sup: 0.45746651214240525
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.39216793623327095
@@ -2355,10 +2486,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-LOCALIDADXSEXO-15-000-Y-MAS-X-1-HOMBRE
     punto: 0.30619076153644725
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.28799185722400017
+    ic95_sup: 0.32453200371230156
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.2772467608028971
@@ -2373,10 +2505,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-LOCALIDADXSEXO-15-000-Y-MAS-X-2-MUJER
     punto: 0.35049554212124345
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3318108002307588
+    ic95_sup: 0.3692056401284461
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3195404088829426
@@ -2391,10 +2524,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-LOCALIDADXSEXO-MENOR-DE-15-000-X-1-HOMBRE
     punto: 0.5470004219933752
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5217778578957536
+    ic95_sup: 0.5723933899666825
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.498990247991557
@@ -2409,10 +2543,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-LOCALIDADXSEXO-MENOR-DE-15-000-X-2-MUJER
     punto: 0.5516302616866393
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5284453019695454
+    ic95_sup: 0.574447328352262
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5053399678029933
@@ -2427,10 +2562,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-LOCALIDADXSEXO-15-000-Y-MAS-X-1-HOMBRE
     punto: 0.5659743478312826
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5467728342151662
+    ic95_sup: 0.5855737642671449
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5219100053748473
@@ -2445,10 +2581,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-INFORMAL-CUALQUIERA-LOCALIDADXSEXO-15-000-Y-MAS-X-2-MUJER
     punto: 0.5705625094064952
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5518286123823148
+    ic95_sup: 0.5892407905451156
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENIF2024-0001
     unidad_dato: PERSONA elegida 18+
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.528243871156352
@@ -2465,6 +2602,7 @@ emitidas_sin_evaluar:
     punto: 0.48641624121756727
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2483,6 +2621,7 @@ emitidas_sin_evaluar:
     punto: 0.655819404791646
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2501,6 +2640,7 @@ emitidas_sin_evaluar:
     punto: 0.7561901098252976
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2519,6 +2659,7 @@ emitidas_sin_evaluar:
     punto: 0.8645940117152578
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2537,6 +2678,7 @@ emitidas_sin_evaluar:
     punto: 0.5181408763085343
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2555,6 +2697,7 @@ emitidas_sin_evaluar:
     punto: 0.6838804651793168
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2573,6 +2716,7 @@ emitidas_sin_evaluar:
     punto: 0.7788277007275063
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2591,6 +2735,7 @@ emitidas_sin_evaluar:
     punto: 0.8787798651213805
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2609,6 +2754,7 @@ emitidas_sin_evaluar:
     punto: 0.387391211101558
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2627,6 +2773,7 @@ emitidas_sin_evaluar:
     punto: 0.5599048436440844
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2645,6 +2792,7 @@ emitidas_sin_evaluar:
     punto: 0.6743576601371379
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2663,6 +2811,7 @@ emitidas_sin_evaluar:
     punto: 0.8100044962976979
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2681,6 +2830,7 @@ emitidas_sin_evaluar:
     punto: 0.22107105471530625
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2699,6 +2849,7 @@ emitidas_sin_evaluar:
     punto: 0.363462244638327
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2717,6 +2868,7 @@ emitidas_sin_evaluar:
     punto: 0.4817123547869687
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2735,6 +2887,7 @@ emitidas_sin_evaluar:
     punto: 0.656761456303729
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2753,6 +2906,7 @@ emitidas_sin_evaluar:
     punto: 0.7584811195424079
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2771,6 +2925,7 @@ emitidas_sin_evaluar:
     punto: 0.7448339424850914
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2789,6 +2944,7 @@ emitidas_sin_evaluar:
     punto: 0.7809676062065716
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2807,6 +2963,7 @@ emitidas_sin_evaluar:
     punto: 0.7682027338124278
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2825,6 +2982,7 @@ emitidas_sin_evaluar:
     punto: 0.6770892634559749
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2843,6 +3001,7 @@ emitidas_sin_evaluar:
     punto: 0.6608991475945778
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2861,6 +3020,7 @@ emitidas_sin_evaluar:
     punto: 0.48482541176151295
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2879,6 +3039,7 @@ emitidas_sin_evaluar:
     punto: 0.46658973471733994
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2897,6 +3058,7 @@ emitidas_sin_evaluar:
     punto: 0.4005902846803664
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2915,6 +3077,7 @@ emitidas_sin_evaluar:
     punto: 0.38316645801874955
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2933,6 +3096,7 @@ emitidas_sin_evaluar:
     punto: 0.57347935455319
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2951,6 +3115,7 @@ emitidas_sin_evaluar:
     punto: 0.5555047191382448
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2969,6 +3134,7 @@ emitidas_sin_evaluar:
     punto: 0.686379332258139
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -2987,6 +3153,7 @@ emitidas_sin_evaluar:
     punto: 0.6704282820640955
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -3005,6 +3172,7 @@ emitidas_sin_evaluar:
     punto: 0.8183672903218153
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -3023,6 +3191,7 @@ emitidas_sin_evaluar:
     punto: 0.8072440531847915
     ic95_inf: ''
     ic95_sup: ''
+    ic95_fuente: ''
     unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
     tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
     supuesto: sin-interaccion
@@ -3039,10 +3208,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-1-HOMBRE
     punto: 0.4379348999832217
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.40898262631397575
+    ic95_sup: 0.4669347986616805
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.38710578428031406
@@ -3057,10 +3227,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-2-MUJER
     punto: 0.3725365778226673
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.3458959872261044
+    ic95_sup: 0.40082154399374254
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.32414085447514784
@@ -3075,10 +3246,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-1-HOMBRE
     punto: 0.5573865982676198
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5351908394557965
+    ic95_sup: 0.5791540630596445
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5134085328425545
@@ -3093,10 +3265,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-2-MUJER
     punto: 0.48969136742007774
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4681058470664941
+    ic95_sup: 0.5109145590281127
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4448095029454976
@@ -3111,10 +3284,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-1-HOMBRE
     punto: 0.6265151675465213
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6104444245941275
+    ic95_sup: 0.6416700056630914
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5890973040217207
@@ -3129,10 +3303,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-2-MUJER
     punto: 0.5610668286566088
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5428659882050647
+    ic95_sup: 0.5783303804230813
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5212179386503805
@@ -3147,10 +3322,11 @@ emitidas_sin_evaluar:
     celda_b: hasta primaria
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-HASTA-PRIMARIA
     punto: 0.4503237668498966
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.41599507194606533
+    ic95_sup: 0.48516931874841057
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.3903870608649898
@@ -3165,10 +3341,11 @@ emitidas_sin_evaluar:
     celda_b: secundaria
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SECUNDARIA
     punto: 0.5246998148701585
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4980348724020418
+    ic95_sup: 0.5504582133314226
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4746267332013414
@@ -3183,10 +3360,11 @@ emitidas_sin_evaluar:
     celda_b: media superior
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-MEDIA-SUPERIOR
     punto: 0.5004160053128787
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4692974633395326
+    ic95_sup: 0.5302513789576314
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4484597082552358
@@ -3201,10 +3379,11 @@ emitidas_sin_evaluar:
     celda_b: superior
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SUPERIOR
     punto: 0.5478790644266747
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5239893266883002
+    ic95_sup: 0.5713506171546691
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5010292982385117
@@ -3219,10 +3398,11 @@ emitidas_sin_evaluar:
     celda_b: hasta primaria
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-HASTA-PRIMARIA
     punto: 0.5116178855228583
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.47483320747186
+    ic95_sup: 0.5481416417956275
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.45497141227925014
@@ -3237,10 +3417,11 @@ emitidas_sin_evaluar:
     celda_b: secundaria
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SECUNDARIA
     punto: 0.5853371643772278
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5604308943952185
+    ic95_sup: 0.6093556956755424
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5407845669758471
@@ -3255,10 +3436,11 @@ emitidas_sin_evaluar:
     celda_b: media superior
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-MEDIA-SUPERIOR
     punto: 0.5615626858997201
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5383892659353897
+    ic95_sup: 0.5844735314558583
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5145423484535451
@@ -3273,10 +3455,11 @@ emitidas_sin_evaluar:
     celda_b: superior
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SUPERIOR
     punto: 0.6077698327028227
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5878996833324528
+    ic95_sup: 0.6273219619638193
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5668962640258018
@@ -3291,10 +3474,11 @@ emitidas_sin_evaluar:
     celda_b: hasta primaria
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-HASTA-PRIMARIA
     punto: 0.5326983778738364
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.49258746458904573
+    ic95_sup: 0.5722971482341587
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4674786993467555
@@ -3309,10 +3493,11 @@ emitidas_sin_evaluar:
     celda_b: secundaria
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SECUNDARIA
     punto: 0.6056880708430944
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5758630793482085
+    ic95_sup: 0.6340921965963353
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5532562425930989
@@ -3327,10 +3512,11 @@ emitidas_sin_evaluar:
     celda_b: media superior
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-MEDIA-SUPERIOR
     punto: 0.5822476552455741
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5522396931917986
+    ic95_sup: 0.6113332857594886
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5271034941857944
@@ -3345,10 +3531,11 @@ emitidas_sin_evaluar:
     celda_b: superior
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SUPERIOR
     punto: 0.6277200019980504
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6005607463541041
+    ic95_sup: 0.6534470492653927
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5792105838136339
@@ -3363,10 +3550,11 @@ emitidas_sin_evaluar:
     celda_b: hasta primaria
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-HASTA-PRIMARIA
     punto: 0.49652140582792437
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4487159095435728
+    ic95_sup: 0.5437316636742056
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4296125100284216
@@ -3381,10 +3569,11 @@ emitidas_sin_evaluar:
     celda_b: secundaria
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SECUNDARIA
     punto: 0.5706069148567601
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5360588764505717
+    ic95_sup: 0.6031510298103153
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5151635788750853
@@ -3399,10 +3588,11 @@ emitidas_sin_evaluar:
     celda_b: media superior
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-MEDIA-SUPERIOR
     punto: 0.546642010793679
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5160482723832726
+    ic95_sup: 0.5776252633497326
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.48884115108650783
@@ -3417,10 +3607,11 @@ emitidas_sin_evaluar:
     celda_b: superior
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SUPERIOR
     punto: 0.593282758630013
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.564337914551318
+    ic95_sup: 0.6222580134285715
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5414969385328443
@@ -3435,10 +3626,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-1-HOMBRE
     punto: 0.5553541116935573
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5334966865951623
+    ic95_sup: 0.5770296615897185
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5105211545672258
@@ -3453,10 +3645,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-2-MUJER
     punto: 0.4876337727519642
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4626643200949288
+    ic95_sup: 0.5120980175424906
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4419575129498465
@@ -3471,10 +3664,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-1-HOMBRE
     punto: 0.6149505950424162
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5962085290588561
+    ic95_sup: 0.6332100895674939
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5761949970875171
@@ -3489,10 +3683,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-2-MUJER
     punto: 0.5489347418630344
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5301919665973742
+    ic95_sup: 0.5674313818017483
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5079644537425579
@@ -3507,10 +3702,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-1-HOMBRE
     punto: 0.6347550194752981
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6079498175147776
+    ic95_sup: 0.6602517028350376
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5884368728129765
@@ -3525,10 +3721,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-2-MUJER
     punto: 0.5697590327715581
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5441719791702317
+    ic95_sup: 0.5942342938189548
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5205372032079117
@@ -3543,10 +3740,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-1-HOMBRE
     punto: 0.600554430822763
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5718940209470039
+    ic95_sup: 0.6282701599648967
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5509089938249171
@@ -3561,10 +3759,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-2-MUJER
     punto: 0.5339409805512719
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5043620835360699
+    ic95_sup: 0.5635598978649695
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4822654169169769
@@ -3579,10 +3778,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-1-HOMBRE
     punto: 0.5287251211855295
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.49358403963326636
+    ic95_sup: 0.5623805748933183
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4726399299794782
@@ -3597,10 +3797,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-2-MUJER
     punto: 0.4608861825828184
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.426093967427391
+    ic95_sup: 0.4968181019484953
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.4049548059504487
@@ -3615,10 +3816,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-1-HOMBRE
     punto: 0.601871589456054
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5792737964241947
+    ic95_sup: 0.6234686526888082
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5583715013761138
@@ -3633,10 +3835,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-2-MUJER
     punto: 0.5353078314583926
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5110894616009917
+    ic95_sup: 0.558713102209898
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.48981223685111774
@@ -3651,10 +3854,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE
     punto: 0.5783622330997881
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5552172988355447
+    ic95_sup: 0.6011574989927221
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5322650416005702
@@ -3669,10 +3873,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-2-MUJER
     punto: 0.5110609603827159
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.4859872913291148
+    ic95_sup: 0.5351627343924615
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.463546688685972
@@ -3687,10 +3892,11 @@ emitidas_sin_evaluar:
     celda_b: 1 Hombre
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-1-HOMBRE
     punto: 0.6239843809736847
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.6039390248777309
+    ic95_sup: 0.6427312283747483
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5842519805267027
@@ -3705,10 +3911,11 @@ emitidas_sin_evaluar:
     celda_b: 2 Mujer
     resultado_id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-2-MUJER
     punto: 0.5584051437232985
-    ic95_inf: ''
-    ic95_sup: ''
+    ic95_inf: 0.5398177263406508
+    ic95_sup: 0.5768002862022615
+    ic95_fuente: CALC-C2-COMPUESTO-IC-ENVIPE2025-0001
     unidad_dato: DELITO
-    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
     supuesto: sin-interaccion
     estado: EMITIDA-SIN-EVALUAR
     diagnostico_rango_inf: 0.5162295040131226
