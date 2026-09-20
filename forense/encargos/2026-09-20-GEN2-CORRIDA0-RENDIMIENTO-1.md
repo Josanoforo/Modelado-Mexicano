@@ -5,8 +5,8 @@
 0 adelante / 0 atrás).
 **Entorno asignado:** NUBE. **El que NO:** caja (no abre microdato).
 **Sesión / rama:** `claude/vibrant-goldberg-oxbn3o` (una sola sesión, D-17).
-**Estado:** CONSUMIDO — PR de este acto (ver `## CONSUMIDO` de la nota
-`forense/notas/2026-09-20-GEN2-CORRIDA0-RENDIMIENTO-1.md`).
+**Estado:** CONSUMIDO — ver `## CONSUMIDO` al final de este archivo y la nota
+`forense/notas/2026-09-20-GEN2-CORRIDA0-RENDIMIENTO-1-cierre.md`.
 **Modelo:** Opus.
 **Compuerta:** ninguna.
 **CONTADOR:** `cuenta_gen2 = NO` — no mide nada del programa; ningún contador
@@ -78,3 +78,51 @@ No añade caché en disco, ni índice persistente, ni base de datos (D-14: no se
 CIERRE
 
 Cascada D-10 · la nota abre con la tabla antes/después y la frase "salidas byte-idénticas: SÍ/NO" · `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`. Falsador a tres meses: si NC-0357 o un "suite sin veredicto" reaparece, esta mejora no resolvió el defecto y se anota.
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+- **P1 — memoización de `_funcion_de_dependencia`** · `SUSTITUIDO-POR:P2` ·
+  se implementó, se midió y **se revirtió**: ablación leave-one-out sobre
+  `status` (mediana de 3, `nproc=4`) da 20.57 s con las tres piezas y 22.28 s
+  sin P1 — **ganancia marginal 7.7 %**, bajo el 10 % que el propio encargo
+  fija. Impacto: ninguno sobre el resultado (`status` queda en 22.45 s contra
+  70.94 s). Sucesor: SIN-ASIGNAR; la cifra a mover queda en el docstring de la
+  función. `NC-0384`, CERRADA.
+- **P5 — que `--parallel` solape también `T32`** · `SUSTITUIDO-POR:P2+P3` ·
+  **refutada por medición, no diferida**: el pool consume cada resultado en la
+  posición original del test, y los tests que preceden a `T32` suman 3.93 s de
+  197.96 s — techo de la ganancia **2 %**, bajo el 10 % del encargo, a cambio
+  de tocar el contrato de orden de la suite. Impacto: ninguno; el defecto que
+  P5 atacaba ya lo resuelven P2+P3. `NC-0386`, CERRADA.
+- **Deriva preexistente de `data/corrida0/demanda-*.tsv` en `main`** ·
+  `FUERA-DE-PERÍMETRO` · un `demanda` limpio sobre `adcfa978` reescribe las
+  dos vistas (CORR-0081..0083 → CORR-0081..0086; RES-0175..0208 →
+  RES-0175..0210). No se tocó a mano — este encargo lo prohíbe expresamente.
+  Impacto: ninguna cifra de este acto depende de ello. Sucesor: SIN-ASIGNAR.
+  `NC-0385`, ABIERTA.
+
+Nada más quedó sin correr: P0, P2, P3 y P4 se corrieron completos.
+
+## CONSUMIDO
+
+Las **seis piezas** se atendieron. **P0**: arnés de oro
+`tests/test_corrida0_oro.py` sellado en el COMMIT-1 (`03dc7b9`) antes de
+cambiar un byte de `corrida0.py`; determinismo comprobado (sin PARO) y
+control VERDE 6/6 sobre el árbol sin tocar. **P1**: implementada, medida y
+revertida por su propia cifra (`NC-0384`). **P2**: el techo del `lru_cache` de
+`_referencias_numericas_de_intermediario` sube 256 → 4096 tras contar el
+universo (947 rutas, 12 797 fallos de cache, 183 s de 197 s en YAML bajo
+`cProfile`); se reporta que el factor de repetición que el encargo pedía medir
+es 231.4× ahí y 165.4× en `_funcion_de_dependencia`, y que el memo por
+`(calc_id, resultado)` que P2 pedía **ya existía**. **P3**: `_verifica_sello`
+en proceso; `tools/sella_sha256.py` **no se tocó** porque `verifica()` ya era
+importable; A.1 sin colapsar y mensajes idénticos. **P4**: medición antes y
+después, tres repeticiones, en la nota. **P5**: refutada por medición
+(`NC-0386`). **Salidas byte-idénticas: SÍ** (6/6 invocaciones, cuatro ejes).
+**Ningún contador se movió** y no podía: `cuenta_gen2 = NO`.
+
+Nota de cierre: `forense/notas/2026-09-20-GEN2-CORRIDA0-RENDIMIENTO-1-cierre.md`.
+`ADR-559`, `NC-0384`–`NC-0386`. PR: ver el PR de esta rama
+(`claude/vibrant-goldberg-oxbn3o`).
