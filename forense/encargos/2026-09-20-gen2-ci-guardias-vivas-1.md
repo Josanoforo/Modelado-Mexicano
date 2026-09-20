@@ -23,3 +23,13 @@ No arregla tests rotos · no mueve tests entre jobs · no añade caché de pip n
 
 CIERRE
 Cascada D-10 · la nota abre con: tests en el repo / ejecutados por CI antes / después / saltados por corpus / fallas de verdad — los cinco derivados · `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| Arreglar los 8 `FALLA-DE-VERDAD` censados (`tests/test_adq_descubrimiento.py`, `tests/test_celda_d_piloto_consumidor.py`, `tests/test_censo_derivado.py`, `tests/test_cierre_acto.py`, `tests/test_consulta_gen2.py`, `tests/test_motor_gen2_explicito.py`, `tests/test_motor_holdout.py`, `tests/test_relevo_encuci_f2.py`) | FUERA-DE-PERÍMETRO (D-14, "LO QUE NO HACE": no arregla tests rotos) | esas 8 guardias siguen sin gatear CI aunque ya no son huérfanas de facto — el job `guardias` las detecta y las salta en voz alta con NC citada | SIN-ASIGNAR por archivo, `forense/no-corrido.tsv` NC-0384..NC-0391 |
+| Instalar `numpy`/`pandas`/`scipy` en CI y/o decidir la vía para `pytest` en los 4 archivos que aún lo importan | DECISIÓN-DE-MESA-PENDIENTE (`FP-396`) | 29 de los 97 huérfanos censados siguen sin correr en CI | acto que ejecute lo que mesa firme en `FP-396` |
+| `tests/test_relevo_encuci_f2.py`: determinar si el TIMEOUT>40s es un cuelgue real o un test lento que solo necesita más tiempo | NO-VERIFICABLE-AQUÍ | la guardia sigue sin correr en CI | SIN-ASIGNAR (NC-0391) |
+
+Ver `forense/notas/2026-09-20-gen2-ci-guardias-vivas-1-cierre.md` para los cinco derivados de apertura y el detalle de las decisiones baratas tomadas sin esperar a mesa (`jsonschema` ya declarado, `openpyxl` nuevo, `test_arnes_sesion.py` reescrito al estilo de la casa).

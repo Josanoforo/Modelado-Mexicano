@@ -208,10 +208,50 @@ jobs:
           python3 tests/test_marcador_segmento.py
           python3 tests/test_estimadores_segmento.py
 
+  # ACTO GEN2-CI-GUARDIAS-VIVAS-1 (20/sep/2026): 97 de 122 tests/test_*.py
+  # no aparecian ni aqui ni en tests/check.py -- nadie los corria. Este job
+  # descubre tests/test_*.py por patron, resta los que `suite` y
+  # `adicionales` ya cablean arriba, y ejecuta el resto con el invocador
+  # que el censo declara (forense/analisis/ci-guardias/censo-tests.tsv,
+  # derivado por tools/ci_guardias.py --censo -- leido, nunca adivinado).
+  # Falla si un test nuevo no tiene fila en el censo: asi ningun test
+  # vuelve a nacer huerfano. Los NECESITA-CORPUS y NECESITA-DEPENDENCIA
+  # (numpy/pandas/scipy/pytest -- FP de mesa, ver requirements.txt) y los
+  # FALLA-DE-VERDAD ya conocidos (NC abiertas, no se arreglan en este acto
+  # -- D-14: no se arreglan tests rotos aqui) se saltan en voz alta, nunca
+  # en silencio: una linea `SKIP <archivo>: <razon>` por cada uno y el
+  # conteo en el resumen final.
+  guardias:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout sin marketplace (repo público — cero descargas de action)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://github.com/${{ github.repository }}.git"
+          if [ -n "${{ github.event.pull_request.number }}" ]; then
+            REF="+refs/pull/${{ github.event.pull_request.number }}/merge:refs/remotes/origin/ci"
+          else
+            REF="+${{ github.ref }}:refs/remotes/origin/ci"
+          fi
+          git -c protocol.version=2 fetch -q --depth=1 --no-tags origin "$REF"
+          git checkout -q refs/remotes/origin/ci
+          git log -1 --format="HEAD=%H %s"
+
+      - name: Intérprete del runner (crudo, para que quede en el log)
+        run: python3 -VV
+
+      - name: Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Guardias huérfanas — censo + invocador correcto por archivo (bloqueante)
+        run: python3 tools/ci_guardias.py --ejecuta-huerfanos
+
   # Conserva el nombre requerido por protección. always() es indispensable:
   # un job fallido/omitido/cancelado debe llegar a una compuerta que NO aprueba.
   check:
-    needs: [suite, adicionales]
+    needs: [suite, adicionales, guardias]
     if: ${{ always() }}
     runs-on: ubuntu-latest
     timeout-minutes: 1
@@ -220,8 +260,10 @@ jobs:
         env:
           SUITE_RESULT: ${{ needs.suite.result }}
           ADICIONALES_RESULT: ${{ needs.adicionales.result }}
+          GUARDIAS_RESULT: ${{ needs.guardias.result }}
         run: |
           set -euo pipefail
-          printf 'suite=%s adicionales=%s\n' "$SUITE_RESULT" "$ADICIONALES_RESULT"
+          printf 'suite=%s adicionales=%s guardias=%s\n' "$SUITE_RESULT" "$ADICIONALES_RESULT" "$GUARDIAS_RESULT"
           test "$SUITE_RESULT" = success
           test "$ADICIONALES_RESULT" = success
+          test "$GUARDIAS_RESULT" = success
