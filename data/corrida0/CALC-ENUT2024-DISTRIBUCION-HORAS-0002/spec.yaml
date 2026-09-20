@@ -1,0 +1,103 @@
+calc_id: CALC-ENUT2024-DISTRIBUCION-HORAS-0002
+sucesor_de: CALC-ENUT2024-DISTRIBUCION-HORAS-0001
+spec_md: spec.md
+spec_md_sha256: 03b151846c135f4c4e32f12142a18dac6717e4fe86151e1240c981bfa1f30308
+script: data/corrida0/CALC-ENUT2024-DISTRIBUCION-HORAS-0002/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: DESCRIPTIVO-DISTRIBUCION-CONCENTRACION
+  sucesor_de: CALC-ENUT2024-DISTRIBUCION-HORAS-0001
+  cuenta_gen2: PENDIENTE-DE-MESA
+  adopcion: PENDIENTE-DE-MESA
+  familia: familia.cuidado.recae_mujeres_40mas
+  releva: "NINGUNO; ampliacion distributiva del padre #879"
+  contaminacion_declarada: "Conocidos antes de congelar: CALC-ENUT-0001, medias historicas y CALC-ENUT2024-PARTICIPACION-INTENSIDAD-0001 completo; no se conocian los resultados de cuantiles ni concentracion de este procedimiento."
+
+inputs:
+  - {id: enut2024_bd_csv, origen: manifiesto}
+  - {id: enut2024_fd_xlsx, origen: manifiesto}
+
+variables:
+  - {archivo: tvar_crea.csv, variable: LLAVEMOD, rol: llave primaria de persona, codigos: "alfanumerica; se conserva como texto"}
+  - {archivo: tvar_crea.csv, variable: SEXO, rol: clasificador, codigos: "1 hombre; 2 mujer"}
+  - {archivo: tvar_crea.csv, variable: EDAD, rol: filtro, codigos: "12-96; 97/98 en reserva"}
+  - {archivo: tvar_crea.csv, variable: FAC_PER, rol: ponderador persona, codigos: "numerico positivo"}
+  - {archivo: tvar_crea.csv, variable: EST_DIS, rol: estrato, codigos: "texto opaco"}
+  - {archivo: tvar_crea.csv, variable: UPM_DIS, rol: conglomerado, codigos: "texto opaco"}
+  - {archivo: tvar_crea.csv, variable: CUID_ESP_INT_HOG_CON_CP, rol: sumando principal, codigos: "0-201.25 horas/semana"}
+  - {archivo: tvar_crea.csv, variable: CUID_INT_0A5_CON_CP, rol: sumando principal, codigos: "0-280 horas/semana"}
+  - {archivo: tvar_crea.csv, variable: CUID_INT_6A14_CON_CP, rol: sumando principal, codigos: "0-152.41666666666667 horas/semana"}
+  - {archivo: tvar_crea.csv, variable: CUID_INT_60MAS_CON_CP, rol: sumando principal, codigos: "0-147 horas/semana"}
+  - {archivo: tvar_crea.csv, variable: CUID_ESP_INT_HOG_SIN_CP, rol: sumando sensibilidad, codigos: "0-136.83333333333334 horas/semana"}
+  - {archivo: tvar_crea.csv, variable: CUID_INT_0A5_SIN_CP, rol: sumando sensibilidad, codigos: "0-217.23333333333332 horas/semana"}
+  - {archivo: tvar_crea.csv, variable: CUID_INT_6A14_SIN_CP, rol: sumando sensibilidad, codigos: "0-116.13333333333334 horas/semana"}
+  - {archivo: tvar_crea.csv, variable: CUID_INT_60MAS_SIN_CP, rol: sumando sensibilidad, codigos: "0-74 horas/semana"}
+
+universo: >-
+  Personas de 12 a 96 anos en tvar_crea.csv con llave unica, sexo 1/2,
+  FAC_PER positivo, diseno completo y valores validos comunes en las ocho
+  variables de horas. Una sola ola, ENUT 2024.
+filtros: >-
+  Excluir y contar por causa llave invalida, sexo fuera de 1/2, edad fuera de
+  12-96, peso no finito/no positivo, diseno vacio u hora faltante, no numerica,
+  negativa o sobre maximo FD. Cero valido permanece. No imputar.
+ponderador: "FAC_PER a nivel persona; plan desde marco con peso y diseno validos"
+transformacion: >-
+  h_CON y h_SIN suman cuatro actividades homologas. Cuantiles por inversa
+  izquierda de CDF ponderada. Decil superior por masa de personas, con peso
+  fraccionado en el umbral. Dominios mediante contribuciones cero.
+estimando: >-
+  p25, p50, p75, p90 y fraccion de horas del 10% superior, total/hombres/mujeres,
+  entre todas las personas validas y participantes; SIN_CP-CON_CP pareado para
+  p50/p90/concentracion y mujer-hombre CON_CP para p50/p90.
+
+dependencias_materiales: [numpy, pandas]
+seed: {aplica: true, valor: 20260919, rng: numpy.PCG64}
+tolerancia:
+  tipo: bootstrap
+  exacto_por_seed: true
+  abs: 1.0e-12
+  razon: "plan, orden de UPM, seed, cuantiles, umbral y serializacion fijados"
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: "percentiles 2.5/97.5 de bootstrap de UPM con reemplazo dentro de EST_DIS"
+  cuantiles: [0.25, 0.50, 0.75, 0.90]
+  convencion_cuantil: "inversa izquierda de CDF ponderada; sin interpolacion"
+  masa_decil_superior: 0.10
+  regla_umbral: "fraccion de peso exacta; empates invariantes porque comparten horas"
+  variantes: [CON_CP, SIN_CP]
+  dominios: [todas_validas, participantes]
+  sexos: [total, hombre, mujer]
+  directorio_salida: forense/analisis/enut2024-distribucion-horas-cli-2
+  periodo_horas: semana
+  simultaneidad: "agregado declarado; no tiempo exclusivo; sin capar en 168"
+  actividad_15a59: "excluida por carecer de pareja CON_CP/SIN_CP"
+
+resultados:
+  - {id: RESULT-ENUTDH2-G-INPUT-BD-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENUTDH2-G-INPUT-FD-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENUTDH2-G-N-MARCO, tipo: entero, unidad: personas}
+  - {id: RESULT-ENUTDH2-G-N-VALIDO-COMUN, tipo: entero, unidad: personas}
+  - {id: RESULT-ENUTDH2-G-MASA-VALIDA-COMUN, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENUTDH2-G-N-ESTRATOS, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENUTDH2-G-N-UPM, tipo: entero, unidad: UPM}
+  - {id: RESULT-ENUTDH2-G-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENUTDH2-G-PARES-DISENO-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENUTDH2-G-DISTRIBUCION-N-FILAS, tipo: entero, unidad: filas}
+  - {id: RESULT-ENUTDH2-G-CONTRASTES-N-FILAS, tipo: entero, unidad: filas}
+  - {id: RESULT-ENUTDH2-G-DISTRIBUCION-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENUTDH2-G-CONTRASTES-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENUTDH2-G-INCIDENCIAS-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENUTDH2-G-INCIDENCIAS, tipo: texto, unidad: json estructurado}
+  - {id: RESULT-ENUTDH2-A-CON-TODAS-P50, tipo: flotante, unidad: horas/semana}
+  - {id: RESULT-ENUTDH2-A-CON-TODAS-P90, tipo: flotante, unidad: horas/semana}
+  - {id: RESULT-ENUTDH2-A-CON-TODAS-CONCENTRACION, tipo: proporcion, unidad: proporcion de horas}
+  - {id: RESULT-ENUTDH2-A-CON-PARTICIPANTES-P50, tipo: flotante, unidad: horas/semana}
+  - {id: RESULT-ENUTDH2-A-CON-PARTICIPANTES-P90, tipo: flotante, unidad: horas/semana}
+  - {id: RESULT-ENUTDH2-A-CON-PARTICIPANTES-CONCENTRACION, tipo: proporcion, unidad: proporcion de horas}
+  - {id: RESULT-ENUTDH2-A-CON-BRECHA-TODAS-P50, tipo: flotante, unidad: horas/semana mujer-hombre}
+  - {id: RESULT-ENUTDH2-A-CON-BRECHA-TODAS-P90, tipo: flotante, unidad: horas/semana mujer-hombre}
+  - {id: RESULT-ENUTDH2-G-SALIDA-DISTRIBUCION, tipo: texto, unidad: ruta relativa}
+  - {id: RESULT-ENUTDH2-G-SALIDA-CONTRASTES, tipo: texto, unidad: ruta relativa}
+  - {id: RESULT-ENUTDH2-G-SALIDA-INCIDENCIAS, tipo: texto, unidad: ruta relativa}

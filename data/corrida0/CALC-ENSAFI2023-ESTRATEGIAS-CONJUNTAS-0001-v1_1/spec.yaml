@@ -1,0 +1,46 @@
+calc_id: CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001-v1_1
+spec_md: spec.md
+spec_md_sha256: cf8fd34fe87e9ffde1f0ca1209867ffbd9135e81fb7adce5434393e615ef86b9
+script: data/corrida0/CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001-v1_1/medidor.py
+etiquetas: {generacion: GEN2, tipo: DESCRIPTIVO-ESTRATEGIAS-CONJUNTAS, cuenta_gen2: PENDIENTE-DE-MESA, adopcion: PENDIENTE-DE-MESA, sucesor_de: CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001}
+inputs: [{id: ensafi2023_bd_csv_zip, origen: manifiesto}]
+variables: [{archivo: TMODULO.csv, variable: "P6_9,P6_10_1..8,FAC_ELE,EST_DIS,UPM_DIS", rol: universo_respuestas_peso_diseno}]
+universo: "P6_9=2; respuestas 1/2 válidas."
+filtros: "Sin imputar; peso inválido y diseño faltante se publican."
+ponderador: FAC_ELE
+transformacion: "Sucesión: media limitada a [0,8], proporciones a [0,1], condicionales por razón linealizada."
+estimando: "Cinco tablas y hashes regenerados; diagnósticos adicionales."
+dependencias_materiales: [scipy]
+seed: {aplica: false, valor: null, razon: linealizacion_determinista}
+parametros: {directorio_salida: forense/analisis/ensafi2023-estrategias-conjuntas-cli-1-v1_1, metodo_precision: "linealizacion UPM/estrato; t95; sin FPC"}
+tolerancia: {tipo: determinista, abs: 1.0e-10}
+resultados:
+  - {id: RESULT-ENSAFI-EC2-G-N-MARCO, tipo: entero, unidad: personas}
+  - {id: RESULT-ENSAFI-EC2-G-N-ELEGIBLES, tipo: entero, unidad: personas}
+  - {id: RESULT-ENSAFI-EC2-G-MASA-ELEGIBLES, tipo: flotante, unidad: personas}
+  - {id: RESULT-ENSAFI-EC2-G-COBERTURA-VECTOR, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ENSAFI-EC2-G-MEDIA-CONTEO-COMPLETO, tipo: flotante, unidad: estrategias}
+  - {id: RESULT-ENSAFI-EC2-G-EE-MEDIA-CONTEO, tipo: flotante, unidad: estrategias}
+  - {id: RESULT-ENSAFI-EC2-G-IC95-LO-MEDIA-CONTEO, tipo: flotante, unidad: estrategias}
+  - {id: RESULT-ENSAFI-EC2-G-IC95-HI-MEDIA-CONTEO, tipo: flotante, unidad: estrategias}
+  - {id: RESULT-ENSAFI-EC2-G-CONTROL-PARTICION, tipo: texto, unidad: estado}
+  - {id: RESULT-ENSAFI-EC2-G-CONTROL-MEDIA-MARGINALES, tipo: texto, unidad: estado}
+  - {id: RESULT-ENSAFI-EC2-G-CONTROL-PADRE, tipo: texto, unidad: estado}
+  - {id: RESULT-ENSAFI-EC2-G-ESTRATOS, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENSAFI-EC2-G-UPM, tipo: entero, unidad: upm}
+  - {id: RESULT-ENSAFI-EC2-G-SINGLETON, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENSAFI-EC2-G-PESO-INVALIDO, tipo: entero, unidad: filas}
+  - {id: RESULT-ENSAFI-EC2-G-DISENO-FALTANTE, tipo: entero, unidad: filas}
+  - {id: RESULT-ENSAFI-EC2-G-GL, tipo: entero, unidad: grados}
+  - {id: RESULT-ENSAFI-EC2-G-SALIDA-COBERTURA, tipo: texto, unidad: ruta}
+  - {id: RESULT-ENSAFI-EC2-G-SHA256-COBERTURA, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENSAFI-EC2-G-SALIDA-CONTEOS, tipo: texto, unidad: ruta}
+  - {id: RESULT-ENSAFI-EC2-G-SHA256-CONTEOS, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENSAFI-EC2-G-SALIDA-PAREJAS, tipo: texto, unidad: ruta}
+  - {id: RESULT-ENSAFI-EC2-G-SHA256-PAREJAS, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENSAFI-EC2-G-SALIDA-SENSIBILIDAD-PAREJAS, tipo: texto, unidad: ruta}
+  - {id: RESULT-ENSAFI-EC2-G-SHA256-SENSIBILIDAD-PAREJAS, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENSAFI-EC2-G-SALIDA-LIMITES-FALTANTES, tipo: texto, unidad: ruta}
+  - {id: RESULT-ENSAFI-EC2-G-SHA256-LIMITES-FALTANTES, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENSAFI-EC2-G-SALIDA-DIAGNOSTICOS, tipo: texto, unidad: ruta}
+  - {id: RESULT-ENSAFI-EC2-G-SHA256-DIAGNOSTICOS, tipo: texto, unidad: sha256}
