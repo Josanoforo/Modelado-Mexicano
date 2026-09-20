@@ -222,8 +222,14 @@ CAMPOS_CONOCIDOS = {
     "id", "usado_para", "url_origen", "url_origen_procedencia", "fecha_descarga",
     "descargado_por", "archivo", "raiz", "sha256", "tamano_bytes",
     "entorno_descarga", "formato", "licencia", "nota", "fecha", "hecho",
-    "verificacion_tamano", "retirada",
+    "verificacion_tamano", "retirada", "estado_reserva",
 }
+
+ESTADOS_RESERVA = {
+    "RESERVADA-NO-ABIERTA-NO-INDEXAR-L",
+    "DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS",
+}
+RAIZ_RESERVA = "reserva_respondentes"
 
 
 def _es_documental(entrada):
@@ -268,6 +274,24 @@ def _validar_manifiesto_completo(entradas):
         if sobrantes:
             raise ValueError(f"entrada '{entrada.get('id')}' tiene clave(s) "
                               f"desconocida(s): {sobrantes}")
+
+        estado_reserva = entrada.get("estado_reserva")
+        raiz = entrada.get("raiz")
+        if estado_reserva is not None:
+            if estado_reserva not in ESTADOS_RESERVA:
+                raise ValueError(
+                    f"entrada '{entrada.get('id')}' tiene estado_reserva "
+                    f"inválido: {estado_reserva!r}; valores permitidos: "
+                    f"{sorted(ESTADOS_RESERVA)}")
+            if raiz != RAIZ_RESERVA:
+                raise ValueError(
+                    f"entrada '{entrada.get('id')}' declara estado_reserva "
+                    f"pero raiz={raiz!r}, debe ser {RAIZ_RESERVA!r}")
+        elif raiz == RAIZ_RESERVA:
+            raise ValueError(
+                f"entrada '{entrada.get('id')}' está en {RAIZ_RESERVA!r} "
+                "sin estado_reserva; un artefacto reservado no puede quedar "
+                "sin su protección explícita")
 
         if "sha256" in entrada:
             archivo = entrada.get("archivo")

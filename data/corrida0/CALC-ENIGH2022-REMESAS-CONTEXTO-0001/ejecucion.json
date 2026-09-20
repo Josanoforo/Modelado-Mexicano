@@ -1,0 +1,148 @@
+{
+ "corrida_id": "CALC-ENIGH2022-REMESAS-CONTEXTO-0001--b7eeb4840ff2",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "Se conocen los resultados nacionales de CALC-ENIGH-0001 y CALC-ENIGH2022-INTENSIDAD-REMESAS-0001 y los catalogos/marginales de personas de CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003; no se conocian remesas por tam_loc o est_socio antes de COMMIT-1.",
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "estado_adopcion": "NO-ADOPTADO",
+  "generacion": "GEN2",
+  "tipo": "ESTIMACION-DESCRIPTIVA-CONTEXTO-HOGAR",
+  "validacion_independiente": "FOCAL-INTERNA-NO-EXTERNA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-19T23:36:07Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 419,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "b7eeb4840ff2f407ae39cb947faca151da2fa8f4",
+  "git_rama": "codex/gen2-enigh2022-remesas-contexto-cli-2",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "b7eeb4840ff2f407ae39cb947faca151da2fa8f4",
+ "input_ids": [
+  "enigh2022_nc_csv",
+  "enigh2022_descripcion_base_pdf",
+  "enigh2022_nota_tecnica_pdf",
+  "IN-CALC-ENIGH-0001-RESULTADOS",
+  "IN-CALC-ENIGH2022-INTENSIDAD-REMESAS-0001-RESULTADOS",
+  "IN-CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003-SPEC"
+ ],
+ "input_sha256": {
+  "IN-CALC-ENIGH-0001-RESULTADOS": "26394edc6ae16808de8efa16c1be662cbe920fc9485863d0a7ababd4d9d23c34",
+  "IN-CALC-ENIGH2022-INTENSIDAD-REMESAS-0001-RESULTADOS": "e09bbe20ef49c2540dcdacc7cd0b62d8149f614836d038d1bd08ef54f90431fa",
+  "IN-CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003-SPEC": "c820e67a6d7740765ffdc606c550574a4a77d0e86d4ababaf7d99bf852eb625e",
+  "enigh2022_descripcion_base_pdf": "7b0c4e6bd36ceb9eae7cc852fce5a38dbcf4f2da6b133d35df6b1443fc76836c",
+  "enigh2022_nc_csv": "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06",
+  "enigh2022_nota_tecnica_pdf": "4f79f457d69c1f066d7fd319b1650f7b631f4008cb74e1046e6c644c65be0647"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "categorias_est_socio": {
+   "1": "Bajo",
+   "2": "Medio bajo",
+   "3": "Medio alto",
+   "4": "Alto"
+  },
+  "categorias_tam_loc": {
+   "1": "100 000 y mas",
+   "2": "15 000 a 99 999",
+   "3": "2 500 a 14 999",
+   "4": "Menos de 2 500"
+  },
+  "contraste_estrato": "est_socio=1 menos est_socio=4",
+  "contraste_localidad": "tam_loc=4 menos tam_loc=1",
+  "controles_nacionales": {
+   "ge50": 0.24146058093220438,
+   "participacion_agregada": 0.2746879872958264,
+   "participacion_media": 0.30492285849567624,
+   "prevalencia": 0.04569409956405095,
+   "remesas_media": 14455.429835947132,
+   "remesas_mediana": 8310.32
+  },
+  "cuantila_ponderada": "menor valor observado con CDF ponderada acumulada >=0.5; sin interpolacion",
+  "metodo_ic": "bootstrap de UPM con reemplazo dentro de est_dis, marco completo, multiplicidades comunes, percentiles 2.5/97.5",
+  "miembro_estadistico": "conjunto_de_datos_concentradohogar_enigh2022_ns/conjunto_de_datos/conjunto_de_datos_concentradohogar_enigh2022_ns.csv",
+  "tolerancia_componente_pesos": 0.01,
+  "tolerancia_controles": 1e-10,
+  "tratamiento_replicas_degeneradas": "se cuentan; IC con replicas finitas si existe al menos una; si ninguna, null con causa",
+  "tratamiento_upm_unica": "se remuestrea a si misma, variacion cero, se cuenta",
+  "unidad_monetaria": "pesos de 2022 por trimestre normalizado"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENIGH22-REMCTX-CATALOGOS-JSON",
+  "RESULT-ENIGH22-REMCTX-CONTRASTES-JSON",
+  "RESULT-ENIGH22-REMCTX-CONTROLES-JSON",
+  "RESULT-ENIGH22-REMCTX-DISENO-JSON",
+  "RESULT-ENIGH22-REMCTX-ESTADO",
+  "RESULT-ENIGH22-REMCTX-INDEPENDIENTE-JSON",
+  "RESULT-ENIGH22-REMCTX-LLAVE-HOGAR-UNICA",
+  "RESULT-ENIGH22-REMCTX-N-COLUMNAS",
+  "RESULT-ENIGH22-REMCTX-N-FILAS",
+  "RESULT-ENIGH22-REMCTX-RECONSTRUCCION-JSON",
+  "RESULT-ENIGH22-REMCTX-TABLA-JSON"
+ ],
+ "script_blob_sha256": "72c6f8e24e3303f737889ce03783e3c37fd1d276669c1763588387836a0da5dd",
+ "script_path": "data/corrida0/CALC-ENIGH2022-REMESAS-CONTEXTO-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260919
+ },
+ "spec_id": "CALC-ENIGH2022-REMESAS-CONTEXTO-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "12e8312359ccde2185c3d80244bdecea41cdda556e3bcf526952ba7fea69b8ff",
+ "spec_yaml_sha256": "fa2c24660bc97052ff9a9b18d61e27a494424844096cb4c1044d13f7a3a497f7",
+ "tolerancia": {
+  "abs": 0.0,
+  "exacto_por_seed": true,
+  "tipo": "determinista"
+ }
+}
