@@ -21,8 +21,23 @@ Encargo archivado por A.3 (0-bis): `forense/encargos/2026-09-20-GEN2-MARCADOR-EN
   `origin/main`, no por memoria: `436d17a` (`Merge pull request #916`),
   `be53e6f` (`Merge pull request #915`) y `1f4468b` (que declara la
   renumeración por `#910, #911, #912`) están todos en `origin/main`.
-- `tools/corrida0.py` **no se tocó** (corre `#922` en paralelo): confirmado en
+- `tools/corrida0.py` **no se tocó** (corría `#922` en paralelo): confirmado en
   el diff del PR.
+- **`origin/main` se movió durante el acto y no es PARO (ARRANQUE §2): se refrescó,
+  se re-derivó y se reporta.** Tras abrir `PR #925`, `origin/main` pasó de `8b7b056`
+  a `cb1945f` (**15 commits**: `#918`, `#920`, `#922`). `#922`
+  (`GEN2-CORRIDA0-RENDIMIENTO-1`) fusionó **primero** y tomó `ADR-563` y
+  `NC-0404`-`NC-0406` — exactamente los que este acto había tomado. Por la regla de
+  la casa (**renumera quien fusiona segundo**) este acto pasa a **`ADR-564`** y
+  **`NC-0407`-`NC-0410`**. Las cuatro colisiones de merge (`gobernanza`,
+  `estado-programa`, `registro-rotulos.tsv`, `no-corrido.tsv`) eran todas «ambos
+  lados añaden al mismo punto»: se conservan **los dos**, ninguna fila ajena se
+  editó ni se borró. `#922` reescribió `tools/corrida0.py`; este acto sigue sin
+  tocarlo (entró por el merge, no por el diff propio).
+- **Re-derivación sobre el `main` de hoy**: `python3 tools/marcador_segmento.py
+  --escribe --json` tras el merge da las **mismas** cifras que antes del merge
+  (`sin_piso = 15`, `cobertura_de_piso = 79`, `estimador_adoptado = 20`,
+  `total_filas = 214`). Ninguna cifra de §4 se hereda del pre-merge.
 
 ## 1 · P1 · Por qué paró `#915`, y qué se resolvió
 
@@ -62,7 +77,7 @@ y cada celda gobernada por una sucesora lo **dice** en `piso_fuente`
   perímetro) … salvo que mesa quiera que el marcador distinga
   `SIN-PISO-POR-DISEÑO` de `SIN-CONSUMER` — **decisión de vocabulario, de mesa**».
   Ese perímetro es también el de este acto («No toca … ninguna tabla de
-  identidad»), así que el estado no cambia: **`NC-0404`, `DECISIÓN-DE-MESA-PENDIENTE`**.
+  identidad»), así que el estado no cambia: **`NC-0407`, `DECISIÓN-DE-MESA-PENDIENTE`**.
   No es un enlace roto — es ausencia de fuente, y el marcador la rotula como tal.
 
 ## 3 · P3 · IC de las emisiones
@@ -110,7 +125,7 @@ los RESULT sellados** (el IC presente es exactamente el del CALC y nombra su
 `ic95_fuente`; el ausente va con `NO-PROPAGADA`; el rango diagnóstico nunca se deja
 leer como IC) — estrictamente más fuerte que probarlo contra la cadena vacía. Si
 mesa lo considera fuera de perímetro, la pieza que se revierte es esa sola función;
-el resto del acto no depende de ella. **`NC-0405`.**
+el resto del acto no depende de ella. **`NC-0408`.**
 
 **Frase obligatoria del encargo, y no es retórica:** *un IC estrecho sobre un C2
 compuesto mide el ruido muestral de un estimador que **supone** no-interacción; no
@@ -136,7 +151,7 @@ Todo derivado en esta sesión por comando (`python3 tools/marcador_segmento.py
 | `evaluadas` · `valor_anadido` · `total_filas` | 20 · 0 · 214 | 20 · 0 · 214 | sin cambio |
 
 Desglose del `sin_piso` que queda (15 de 74): **11** ENUT 2019 con su causa de
-`#908` · **4** EDER 2017 `SIN-CONSUMER-EN-TABLA-DE-IDENTIDAD` (`NC-0404`, arriba).
+`#908` · **4** EDER 2017 `SIN-CONSUMER-EN-TABLA-DE-IDENTIDAD` (`NC-0407`, arriba).
 El diff del TSV derivado son **6 filas** y nada más.
 
 **Dos celdas salen `NO-COMPARABLE`, y es correcto que salgan así.** Las de
@@ -146,7 +161,7 @@ El diff del TSV derivado son **6 filas** y nada más.
 (`tramite-ola5-propuesta-v0.yaml:2163`) mientras su propio `universo` dice «18+
 elegidas» (`:2164`) y la tabla sellada de `#915` dice `PERSONA ELEGIDA 18+`. Por
 A-bis 3-4 no se equiparan dos escalas sin enlace: se rotula y no se tira. **El
-yaml del árbitro está fuera de perímetro y no se editó** — `NC-0406`. Por eso
+yaml del árbitro está fuera de perímetro y no se editó** — `NC-0409`. Por eso
 `cobertura_de_piso` sube 6 (las 6 tienen piso) y los estados son 4 `SOLO-PISO` +
 2 `NO-COMPARABLE`.
 
@@ -190,25 +205,25 @@ cascada. **No tocados:** ningún CALC, ninguna tabla de identidad, `tools/corrid
 
 ## NO-CORRIDO / RESERVAS
 
-- **`NC-0404`** · `DECISIÓN-DE-MESA-PENDIENTE` — las 4 celdas de
+- **`NC-0407`** · `DECISIÓN-DE-MESA-PENDIENTE` — las 4 celdas de
   `familia.union.libre_ejes_eder2017 × cohorte_nacimiento` siguen
   `SIN-CONSUMER-EN-TABLA-DE-IDENTIDAD` en vez de `SIN-PISO-POR-DISEÑO`. Requiere
   vocabulario nuevo en el `status` de una tabla de identidad, que este perímetro
   excluye. Impacto: el marcador no distingue «nadie midió» de «el diseño no admite
   piso». Sucesor: decisión de vocabulario de mesa + acto que escriba la tabla.
-- **`NC-0405`** · `FUERA-DE-PERÍMETRO` — `tests/test_c2_compuesto.py` no está en la
+- **`NC-0408`** · `FUERA-DE-PERÍMETRO` — `tests/test_c2_compuesto.py` no está en la
   lista del encargo y se editó una función (`test_una_emitida_nunca_trae_IC` →
   `test_una_emitida_nunca_FABRICA_IC`). Sin ese cambio, P3 no puede cerrar con la
   suite verde, porque ese caso asertaba la ausencia del IC que P3 existe para traer.
   Se sustituyó por una prueba más fuerte, no más débil. Impacto: si mesa lo veta, se
   revierte esa sola función y P3 vuelve a PARO. Sucesor: veto o ratificación de mesa.
-- **`NC-0406`** · `FUERA-DE-PERÍMETRO` — `dinero.ahorro.horizonte_corto_ejes_enif2024`
+- **`NC-0409`** · `FUERA-DE-PERÍMETRO` — `dinero.ahorro.horizonte_corto_ejes_enif2024`
   declara `unidad = PERSONA` en su `payload` mientras su `universo` dice «18+
   elegidas» y la tabla sellada dice `PERSONA ELEGIDA 18+`; sus 2 celdas salen
   `NO-COMPARABLE`. El yaml del árbitro está excluido del perímetro. Impacto: 2 celdas
   con piso sellado que no comparan contra su R. Sucesor: acto que corrija el `payload`
   del árbitro, o que declare que `PERSONA` y `PERSONA ELEGIDA 18+` son la misma escala.
-- **`NC-0407`** · `FUERA-DE-PERÍMETRO` — el error de persistencia de las 6 celdas
+- **`NC-0410`** · `FUERA-DE-PERÍMETRO` — el error de persistencia de las 6 celdas
   nuevas no se mide («LO QUE NO HACE» del encargo). `CALC-PISO-PERSISTENCIA-ERROR-0001`
   cubre 53 celdas (las `CONSTRUIBLE` de la rejilla) y no estas 6, así que salen sin
   `error_piso_pp` ni `clase_persistencia`. Impacto: 4 filas `SOLO-PISO` sin clase.
