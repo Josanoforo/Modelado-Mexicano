@@ -1,3 +1,5 @@
+> Esta cabecera acota el alcance: `AGENTS.md` aplica solo a sesiones de Codex CLI. Las sesiones de Claude Code se rigen por `CLAUDE.md` y las instrucciones vigentes del proyecto.
+
 # Modelado Mexicano · Contrato de ejecución para Codex
 
 ## Cadena de mando

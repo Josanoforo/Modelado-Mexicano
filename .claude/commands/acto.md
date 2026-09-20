@@ -137,6 +137,14 @@ encargo supone es entregable, no interrupción.
     python3 tools/entorno.py              # JSON + la línea
     python3 tools/entorno.py --sonda-red  # además prueba la red
     ```
+    ⚠️ Fuente única con dos vías (hook `SessionStart`, `.claude/settings.json`):
+    si la salida de `python3 tools/entorno.py --arranque` ya está pegada en
+    el contexto de esta sesión (el hook la corrió al arrancar/reanudar),
+    pégala CRUDA tal cual aquí — es la misma firma, no se re-deriva. Si no
+    está disponible (sesión multi-repo donde este repo no es el que fija
+    `.claude/settings.json`, o una sesión vieja sin el hook), córrela a mano:
+    `python3 tools/entorno.py --arranque`. Cualquiera de las dos vías basta;
+    no se pega dos veces.
     Trae `git_commit · git_status · python · dependencias materiales ·
     variables de entorno relevantes · sonda de red (opt-in) · raíces
     lógicas (`raiz_logica · configurada · config_sha256`, **nunca** la
