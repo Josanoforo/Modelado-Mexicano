@@ -101,7 +101,7 @@ NC_0328_PAR_CONSUMIDO = ("tramite.evasion_norma_ejes_envipe2025",
 COLS = [
     "celda_id", "tipo", "regla_o_eje_origen", "instrumento",
     "eje_o_par", "categoria", "unidad_dato", "unidad_objetivo",
-    "estado", "piso_tipo", "piso", "piso_ic95", "piso_fuente",
+    "estado", "emision", "piso_tipo", "piso", "piso_ic95", "piso_fuente",
     "error_piso_pp", "clase_persistencia",
     "R", "R_ic95inf", "R_ic95sup",
     "M", "IC95_inf", "IC95_sup", "tipo_incertidumbre",
@@ -639,6 +639,44 @@ def filas_cruce_adoptadas(decisiones: dict) -> list[dict]:
     return filas
 
 
+# ── emision C2 compuesta -- ACTO GEN2-C2-COMPUESTO-RESERVADAS-1 ─────────
+# El estado `EMITIDA-SIN-EVALUAR` vive en COLUMNA PROPIA (`emision`), NUNCA
+# en `estado`: un cruce emitido sigue `RESERVADA` para evaluacion. Emitir no
+# consume la reserva, y por eso las dos cosas son ciertas a la vez y se
+# escriben en celdas distintas. Firma de mesa 19/sep/2026, verbatim en
+# forense/encargos/2026-09-19-GEN2-C2-COMPUESTO-RESERVADAS-1.md.
+EMITIDA = "EMITIDA-SIN-EVALUAR"
+
+
+def _emisiones_c2():
+    """`{celda_id_de_grupo: [fila de emision, ...]}`, o `{}` si el modulo
+    de emision no esta. Se importa en vez de leerse del TSV derivado para
+    que haya UNA sola fuente de verdad y ningun orden de derivacion que
+    respetar."""
+    try:
+        sys.path.insert(0, str(RAIZ / "tools"))
+        import c2_compuesto
+    except Exception:
+        return {}
+    por_grupo: dict[str, list] = {}
+    for f in c2_compuesto.emisiones():
+        por_grupo.setdefault(f["celda_id_marcador"], []).append(f)
+    return por_grupo
+
+
+def _marca_emitidas(filas: list[dict]) -> None:
+    """Escribe `emision` sin tocar `estado`. Idempotente."""
+    por_grupo = _emisiones_c2()
+    for f in filas:
+        if f["celda_id"] in por_grupo:
+            assert f["estado"] == "RESERVADA", (
+                f"{f['celda_id']}: emitir no consume -- una celda emitida debe "
+                f"seguir RESERVADA, y esta dice {f['estado']!r}")
+            f["emision"] = EMITIDA
+            f["decision_ref"] = (f["decision_ref"]
+                                 or "emision:c2-compuesto-reservadas")
+
+
 def filas_cruce_reservadas() -> tuple[list[dict], dict]:
     """Combinaciones de eje-par que los 7 ids `_ejes_` habilitan pero que
     NO están piloteadas (no tienen celda-D con champion C2). Se agrupan por
@@ -705,6 +743,7 @@ def filas_cruce_reservadas() -> tuple[list[dict], dict]:
                     "emisor_vs_arbitro": "N/A-CRUCE",
                     "fuente": f"{PROPUESTA_OLA5.name}:{r['id']}",
                 })
+    _marca_emitidas(filas)
     universo = {"n_grupos_reservados": sum(1 for f in filas if f["estado"] == "RESERVADA"),
                 "n_celdas_reservadas": total_reservadas,
                 "n_grupos_consumidos": sum(1 for f in filas if f["estado"] == "CONSUMIDA-SIN-PILOTO"),
@@ -774,6 +813,7 @@ def escribe_estimadores_yaml(filas: list[dict]) -> None:
     sellado -- nunca desde CALC-PISOS vetados ni desde la rama reservada."""
     adoptadas = [f for f in filas if f["tipo"] == "CRUCE"
                  and f["estado"] == "ADOPTADO-POR-FIRMA" and f["resultado_id"]]
+    emitidas = [e for g in _emisiones_c2().values() for e in g]
     payload = {
         "_comentario": ("DERIVADO por tools/marcador_segmento.py — NO EDITAR. "
                         "ACTO GEN2-MARCADOR-REDISENO-1 (19/sep/2026). Fuente: "
@@ -781,6 +821,37 @@ def escribe_estimadores_yaml(filas: list[dict]) -> None:
                         "cita adopcion:piso-C2-20-celdas de decisiones.tsv."),
         "decision_ref": "adopcion:piso-C2-20-celdas",
         "n_celdas": len(adoptadas),
+        # ── clave SEPARADA, y ese es el punto ────────────────────────────
+        # Las emitidas NO entran a `celdas`. Viven en su propia clave, con
+        # su propio espacio de nombres de id (`CRUCE-EMITIDA::…`, que no
+        # puede colisionar con un `CRUCE::…` adoptado), para que la via por
+        # defecto del lector no pueda devolverlas ni por accidente ni por
+        # un merge de diccionarios mal escrito. Firma de mesa 19/sep/2026:
+        # "excluida de la estimacion adoptada del motor y de toda decision
+        # automatica"; "una emision no pasa a adoptada por uso".
+        "n_emitidas_sin_evaluar": len(emitidas),
+        "emitidas_sin_evaluar": {
+            e["resultado_id"].replace(
+                "RESULT-C2COMP-", "CRUCE-EMITIDA::", 1): {
+                "grupo_marcador": e["celda_id_marcador"],
+                "regla_origen": e["regla"],
+                "desenlace_id": e["desenlace_id"],
+                "par": e["par"],
+                "celda_a": e["celda_a"],
+                "celda_b": e["celda_b"],
+                "resultado_id": e["resultado_id"],
+                "punto": e["p_c2"],
+                "ic95_inf": "", "ic95_sup": "",
+                "unidad_dato": e["unidad_dato"],
+                "tipo_incertidumbre": e["tipo_incertidumbre"],
+                "supuesto": e["supuesto"],
+                "estado": EMITIDA,
+                "diagnostico_rango_inf": e["diagnostico_rango_inf"],
+                "diagnostico_rango_sup": e["diagnostico_rango_sup"],
+                "diagnostico_rango_es_ic": "NO",
+            }
+            for e in emitidas
+        },
         "celdas": {
             f["celda_id"]: {
                 "regla_origen": f["regla_o_eje_origen"],
@@ -799,7 +870,8 @@ def escribe_estimadores_yaml(filas: list[dict]) -> None:
         "ACTO GEN2-MARCADOR-REDISENO-1)\n" +
         yaml.safe_dump(payload, allow_unicode=True, sort_keys=False),
         encoding="utf-8")
-    print(f"ESCRITO {ESTIMADORES_YAML.relative_to(RAIZ)}: {len(adoptadas)} celdas")
+    print(f"ESCRITO {ESTIMADORES_YAML.relative_to(RAIZ)}: {len(adoptadas)} celdas "
+          f"adoptadas + {len(emitidas)} EMITIDA-SIN-EVALUAR (clave aparte)")
 
 
 def main() -> int:
