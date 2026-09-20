@@ -4464,5 +4464,48 @@
       }
     },
     "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-WBES2023-PREC-EXTRA_GRANDE-AVERAGE-EE\": 0.0, \"RESULT-WBES2023-PREC-EXTRA_GRANDE-AVERAGE-IC95-HI\": 0.0, \"RESULT-WBES2023-PREC-EXTRA_GRANDE-AVERAGE-IC95-LO\": 0.0, \"RESULT-WBES2023-PREC-EXTRA_GRANDE-CERTEZA-EE\": 0.0, \"RESULT-WBES2023-PREC-EXTRA_GRANDE-CERTEZA-IC95-HI\": 0.0, \"RESULT-WBES2023-PREC-EXTRA_GRANDE-CERTEZA-IC95-LO\": 0.0, \"RESULT-WBES2023-PREC-EXTRA_GRANDE-N-CLASIFICABLE\": null, \"RESULT-WBES2023-PREC-EXTRA_GRANDE-PUNTO\": 0.0, \"RESULT-WBES2023-PREC-G-CSV-SHA256\": null, \"RESULT-WBES2023-PREC-G-FPC\": null, \"RESULT-WBES2023-PREC-G-GL\": null, \"RESULT-WBES2023-PREC-G-MAX-DELTA-PADRE\": 0.0, \"RESULT-WBES2023-PREC-G-N-ESTRATOS\": null, \"RESULT-WBES2023-PREC-G-N-SINGLETON\": null, \"RESULT-WBES2023-PREC-G-N-UNIDADES\": null, \"RESULT-WBES2023-PREC-G-SALIDA\": null, \"RESULT-WBES2023-PREC-G-TIPO\": null, \"RESULT-WBES2023-PREC-GRANDE-AVERAGE-EE\": 0.0, \"RESULT-WBES2023-PREC-GRANDE-AVERAGE-IC95-HI\": 0.0, \"RESULT-WBES2023-PREC-GRANDE-AVERAGE-IC95-LO\": 0.0, \"RESULT-WBES2023-PREC-GRANDE-CERTEZA-EE\": 0.0, \"RESULT-WBES2023-PREC-GRANDE-CERTEZA-IC95-HI\": 0.0, \"RESULT-WBES2023-PREC-GRANDE-CERTEZA-IC95-LO\": 0.0, \"RESULT-WBES2023-PREC-GRANDE-N-CLASIFICABLE\": null, \"RESULT-WBES2023-PREC-GRANDE-PUNTO\": 0.0, \"RESULT-WBES2023-PREC-MEDIANA-AVERAGE-EE\": 0.0, \"RESULT-WBES2023-PREC-MEDIANA-AVERAGE-IC95-HI\": 0.0, \"RESULT-WBES2023-PREC-MEDIANA-AVERAGE-IC95-LO\": 0.0, \"RESULT-WBES2023-PREC-MEDIANA-CERTEZA-EE\": 0.0, \"RESULT-WBES2023-PREC-MEDIANA-CERTEZA-IC95-HI\": 0.0, \"RESULT-WBES2023-PREC-MEDIANA-CERTEZA-IC95-LO\": 0.0, \"RESULT-WBES2023-PREC-MEDIANA-N-CLASIFICABLE\": null, \"RESULT-WBES2023-PREC-MEDIANA-PUNTO\": 0.0, \"RESULT-WBES2023-PREC-PEQUENA-AVERAGE-EE\": 0.0, \"RESULT-WBES2023-PREC-PEQUENA-AVERAGE-IC95-HI\": 0.0, \"RESULT-WBES2023-PREC-PEQUENA-AVERAGE-IC95-LO\": 0.0, \"RESULT-WBES2023-PREC-PEQUENA-CERTEZA-EE\": 0.0, \"RESULT-WBES2023-PREC-PEQUENA-CERTEZA-IC95-HI\": 0.0, \"RESULT-WBES2023-PREC-PEQUENA-CERTEZA-IC95-LO\": 0.0, \"RESULT-WBES2023-PREC-PEQUENA-N-CLASIFICABLE\": null, \"RESULT-WBES2023-PREC-PEQUENA-PUNTO\": 0.0, \"RESULT-WBES2023-PREC-TOTAL-AVERAGE-EE\": 0.0, \"RESULT-WBES2023-PREC-TOTAL-AVERAGE-IC95-HI\": 0.0, \"RESULT-WBES2023-PREC-TOTAL-AVERAGE-IC95-LO\": 0.0, \"RESULT-WBES2023-PREC-TOTAL-CERTEZA-EE\": 0.0, \"RESULT-WBES2023-PREC-TOTAL-CERTEZA-IC95-HI\": 0.0, \"RESULT-WBES2023-PREC-TOTAL-CERTEZA-IC95-LO\": 0.0, \"RESULT-WBES2023-PREC-TOTAL-N-CLASIFICABLE\": null, \"RESULT-WBES2023-PREC-TOTAL-PUNTO\": 0.0}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 1e-10, \"razon\": \"calculo determinista; puntos contrastados al grano de 12 decimales del padre\"}}, \"identidad\": {\"spec_yaml_sha256\": \"81bbd82bd24544ba81c99002e9e1715adf4a8749fc8de0366080f06aae4492ef\", \"script_blob_sha256\": \"9ae9746ed0c989592bc32df5465bad6f2059eb014218bad8e646a77e143a82c5\", \"input_sha256_efectivos\": \"wbes_mexico_2023_ddi_pdf=069fe4981e1e5d3b2d765009462fc51d24892d6593724f46a8985561b69ae603,wbes_mexico_2023_ddi_xml=1d5cded32bef39cc2f129ef63c122d59e4e37b1257b36fc98bc0cc8daccad54c,wbes_mexico_2023_documentacion_zip=2b3b0db77f12b841814a37265db279cfcb1778c4377876b77e0a4b725a76c0f7,wbes_mexico_2023_microdato_dta_zip=bc09225244f1e1274d9c9e58221acf8884512a1ab600551f98fbc0466f479f3f,wbes_sampling_note_consolidated_2022_pdf=199b37eac44a700146e2f75ec84e2afc79eda52fb48fd2a2059e50ac9df8fa74\"}}\n"
+  },
+  {
+    "calc_id": "CALC-WBES2023-PRECISION-INTERACCIONES-0001",
+    "fecha_verificacion": "2026-09-19",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-WBES2023-PRECISION-INTERACCIONES-0001"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "af2dad6132474e534db667b6d0211ed1d6c3ca3c4b2ef240d69740c24bcc36b0",
+      "script_blob_sha256": "7df6d9b31cd30cbbffda245142e5f9bd7ae369f0f00832b296293e08c3a8fd0a",
+      "input_sha256_efectivos": "wbes_mexico_2023_ddi_pdf=069fe4981e1e5d3b2d765009462fc51d24892d6593724f46a8985561b69ae603,wbes_mexico_2023_ddi_xml=1d5cded32bef39cc2f129ef63c122d59e4e37b1257b36fc98bc0cc8daccad54c,wbes_mexico_2023_documentacion_zip=2b3b0db77f12b841814a37265db279cfcb1778c4377876b77e0a4b725a76c0f7,wbes_mexico_2023_microdato_dta_zip=bc09225244f1e1274d9c9e58221acf8884512a1ab600551f98fbc0466f479f3f,wbes_sampling_note_consolidated_2022_pdf=199b37eac44a700146e2f75ec84e2afc79eda52fb48fd2a2059e50ac9df8fa74"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-WBES2023-INT-CONTRASTE-AVERAGE-COVARIANZA": 0.0,
+        "RESULT-WBES2023-INT-CONTRASTE-AVERAGE-DIFERENCIA": 0.0,
+        "RESULT-WBES2023-INT-CONTRASTE-CERTEZA-COVARIANZA": 0.0,
+        "RESULT-WBES2023-INT-CONTRASTE-CERTEZA-DIFERENCIA": 0.0,
+        "RESULT-WBES2023-INT-G-CSV-SHA256": null,
+        "RESULT-WBES2023-INT-G-N-FILAS": null,
+        "RESULT-WBES2023-INT-G-SALIDA": null,
+        "RESULT-WBES2023-INT-G-TIPO": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 1e-10,
+        "razon": "calculo-determinista"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-WBES2023-INT-CONTRASTE-AVERAGE-COVARIANZA\": 0.0, \"RESULT-WBES2023-INT-CONTRASTE-AVERAGE-DIFERENCIA\": 0.0, \"RESULT-WBES2023-INT-CONTRASTE-CERTEZA-COVARIANZA\": 0.0, \"RESULT-WBES2023-INT-CONTRASTE-CERTEZA-DIFERENCIA\": 0.0, \"RESULT-WBES2023-INT-G-CSV-SHA256\": null, \"RESULT-WBES2023-INT-G-N-FILAS\": null, \"RESULT-WBES2023-INT-G-SALIDA\": null, \"RESULT-WBES2023-INT-G-TIPO\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 1e-10, \"razon\": \"calculo-determinista\"}}, \"identidad\": {\"spec_yaml_sha256\": \"af2dad6132474e534db667b6d0211ed1d6c3ca3c4b2ef240d69740c24bcc36b0\", \"script_blob_sha256\": \"7df6d9b31cd30cbbffda245142e5f9bd7ae369f0f00832b296293e08c3a8fd0a\", \"input_sha256_efectivos\": \"wbes_mexico_2023_ddi_pdf=069fe4981e1e5d3b2d765009462fc51d24892d6593724f46a8985561b69ae603,wbes_mexico_2023_ddi_xml=1d5cded32bef39cc2f129ef63c122d59e4e37b1257b36fc98bc0cc8daccad54c,wbes_mexico_2023_documentacion_zip=2b3b0db77f12b841814a37265db279cfcb1778c4377876b77e0a4b725a76c0f7,wbes_mexico_2023_microdato_dta_zip=bc09225244f1e1274d9c9e58221acf8884512a1ab600551f98fbc0466f479f3f,wbes_sampling_note_consolidated_2022_pdf=199b37eac44a700146e2f75ec84e2afc79eda52fb48fd2a2059e50ac9df8fa74\"}}\n"
   }
 ]
