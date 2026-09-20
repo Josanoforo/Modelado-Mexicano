@@ -66,13 +66,44 @@ CELDAS_D_DIR = RAIZ / "data" / "curacion-registro" / "celdas-d"
 DECISIONES_TSV = RAIZ / "data" / "corrida0" / "decisiones.tsv"
 CORRIDA0_DIR = RAIZ / "data" / "corrida0"
 MARCADOR_TSV = CORRIDA0_DIR / "marcador-segmento.tsv"
-TABLA_IDENTIDAD = (RAIZ / "forense" / "prereg-caja"
-                    / "PISOS-REJILLA-arbitro-metadatos-v1_0.tsv")
-# ACTO GEN2-PISOS-ENUT2019-EJES-1 (19/sep/2026): segunda tabla de identidad,
-# mismo esquema de columnas; sus 11 filas son NO-CONSTRUIBLE con causa
-# (dictamen P0 por texto, forense/notas/2026-09-19-GEN2-PISOS-ENUT2019-EJES-1-dictamen.md).
-TABLA_IDENTIDAD_ENUT2019 = (RAIZ / "forense" / "prereg-caja"
-                             / "PISOS-ENUT2019-ejes-metadatos-v1_0.tsv")
+# ── LAS TABLAS DE IDENTIDAD, EN UN SOLO SITIO ────────────────────────────
+# ACTO GEN2-MARCADOR-ENLACE-2 (20/sep/2026) · P1. Antes había una constante
+# por tabla y una tupla literal dentro de `lee_tabla_identidad()`; registrar
+# una tabla nueva tocaba dos sitios y no declaraba ningún orden. Ahora la
+# lista vive AQUÍ y sólo aquí, **en orden cronológico de sello, de la más
+# antigua a la más reciente**, y ese orden ES la regla de precedencia:
+# si dos tablas hablan de la misma celda `(consumer, outcome, axis,
+# category)`, manda la MÁS RECIENTE y el marcador lo dice en `piso_fuente`
+# (`· SUCEDE-A:<cell_id de la sucedida>`). Ninguna tabla se edita nunca:
+# una fila sellada se SUCEDE, no se corrige (A.10).
+#
+# Contrato de columnas (idéntico en las tres): `cell_id · input_id ·
+# outcome · source_* · target_* · unit · axis · category · status ·
+# reason · consumer · metadata_source · metadata_source_sha256`.
+# `data/INFRAESTRUCTURA-v1_0.md` documenta la lista; esta constante la
+# gobierna.
+PREREG = RAIZ / "forense" / "prereg-caja"
+TABLAS_IDENTIDAD = [
+    # (1) la rejilla del árbitro -- `GEN2-PISOS-REJILLA-CLI-1`, PR #871.
+    PREREG / "PISOS-REJILLA-arbitro-metadatos-v1_0.tsv",
+    # (2) `GEN2-PISOS-ENUT2019-EJES-1` (19/sep/2026, PR #908): 11 filas
+    #     NO-CONSTRUIBLE con causa (dictamen P0 por texto,
+    #     forense/notas/2026-09-19-GEN2-PISOS-ENUT2019-EJES-1-dictamen.md).
+    PREREG / "PISOS-ENUT2019-ejes-metadatos-v1_0.tsv",
+    # (3) `GEN2-PISOS-ENIF2021-FORMALIDAD-1` (19/sep/2026, PR #915): 6 filas
+    #     CONSTRUIBLE con RESULT sellado. Cuatro de ellas SUCEDEN a cuatro
+    #     filas NO-CONSTRUIBLE de (1) cuya causa (`P3_13 comparable no
+    #     existe en ENIF 2021`) el dictamen de #908 §2.1 refutó por texto y
+    #     #915 refutó además sobre el dato. Va al final: es la más reciente.
+    PREREG / "PISOS-ENIF2021-formalidad-metadatos-v1_0.tsv",
+]
+COLS_TABLA_IDENTIDAD = ("cell_id", "outcome", "unit", "axis", "category",
+                         "status", "reason", "consumer")
+
+# Compatibilidad de nombre para lectores externos; la lista manda.
+TABLA_IDENTIDAD = TABLAS_IDENTIDAD[0]
+TABLA_IDENTIDAD_ENUT2019 = TABLAS_IDENTIDAD[1]
+TABLA_IDENTIDAD_ENIF2021_FORMALIDAD = TABLAS_IDENTIDAD[2]
 # P2: el error del piso y su clase se DERIVAN de este CALC, no se
 # recalculan aquí. Si el CALC no está sellado, las dos columnas salen
 # vacías -- el marcador nunca estima.
@@ -96,6 +127,11 @@ CALC_PISOS_SELLADOS = [
     "CALC-PISOS-ENVIPE2024-EJES-0002",
     "CALC-PISOS-ENCIG2023-EJES-0002",
     "CALC-PISOS-ENIF2021-EJES-0003",
+    # ACTO GEN2-MARCADOR-ENLACE-2 (20/sep/2026) · P1: el CALC que
+    # `GEN2-PISOS-ENIF2021-FORMALIDAD-1` selló (PR #915, REPRODUCE/IDENTICO,
+    # 6 celdas + 3 de universo). Sin él, sus 6 filas CONSTRUIBLE saldrían
+    # `CONSTRUIBLE-EN-TABLA-SIN-RESULT-SELLADO`.
+    "CALC-PISOS-ENIF2021-FORMALIDAD-0001",
 ]
 
 # NC-0328: "edad x dominio" dentro de tramite.evasion_norma_ejes_envipe2025
@@ -224,10 +260,21 @@ MAPA_CONSUMER = {
     # enlace sólo transporta la causa, nunca un piso.
     "familia.cuidado.reparto_mujeres40_ejes_enut2024":
         "familia.cuidado.reparto_mujeres40_ejes_enut2024",
-    # `dinero.ahorro.horizonte_corto_ejes_enif2024` (yaml:2159) y
-    # `familia.union.libre_ejes_eder2017` (yaml:2041) NO aparecen como
-    # `consumer` en ninguna tabla: la rejilla no midió piso para ellas.
-    # Quedan SIN-PISO por AUSENCIA DE FUENTE, no por fallo de enlace.
+    # yaml:2159       PISOS-ENIF2021-formalidad-metadatos-v1_0.tsv:6-7
+    # ACTO GEN2-MARCADOR-ENLACE-2 (20/sep/2026) · P1: mismo id en ambos
+    # lados. Hasta #915 no había tabla con este `consumer` y las dos celdas
+    # salían `SIN-CONSUMER-EN-TABLA-DE-IDENTIDAD`; ahora `CALC-PISOS-ENIF2021-
+    # FORMALIDAD-0001` las selló (`HORIZONTE-CORTO × {sin,con} seguridad
+    # social`) y el enlace existe.
+    "dinero.ahorro.horizonte_corto_ejes_enif2024":
+        "dinero.ahorro.horizonte_corto_ejes_enif2024",
+    # `familia.union.libre_ejes_eder2017` (yaml:2041) NO aparece como
+    # `consumer` en ninguna tabla: la rejilla no midió piso para ella y
+    # `GEN2-PISOS-ENUT2019-EJES-1` la dictaminó SIN-PISO-POR-DISEÑO
+    # (forense/notas/2026-09-19-GEN2-PISOS-ENUT2019-EJES-1-dictamen.md §2.2)
+    # SIN escribir filas: `SIN-PISO-POR-DISEÑO` no existe en el vocabulario
+    # `status` de la tabla e inventarlo es decisión de vocabulario, de mesa.
+    # Queda SIN-PISO por AUSENCIA DE FUENTE, no por fallo de enlace.
 }
 
 # (`consumer` de la tabla, eje del marcador) -> `axis` de la tabla
@@ -367,27 +414,81 @@ def _resultados_sellados() -> dict:
     return out
 
 
+def _clave_identidad(f: dict) -> tuple:
+    """La ÚNICA llave de enlace piso<->celda: `(consumer, outcome, axis,
+    category)`. Vive en una función para que el índice, la precedencia y
+    el test de enlace usen literalmente la misma."""
+    return (f["consumer"], f["outcome"], f["axis"], f["category"])
+
+
 def lee_tabla_identidad() -> list[dict]:
-    """Filas de la tabla de identidad del árbitro, tal cual. Se LEE; este
-    acto no la escribe (perímetro)."""
+    """Filas de TODAS las tablas de `TABLAS_IDENTIDAD`, tal cual y en el
+    orden declarado (más antigua primero). Se LEE; este acto no escribe
+    ninguna tabla (perímetro). Cada fila sale rotulada con `_tabla`, la
+    ruta relativa de la que vino, y `_orden`, su posición en la lista:
+    de ahí sale la precedencia, no de ninguna heurística sobre el
+    contenido."""
     filas: list[dict] = []
-    for tabla in (TABLA_IDENTIDAD, TABLA_IDENTIDAD_ENUT2019):
+    for orden, tabla in enumerate(TABLAS_IDENTIDAD):
         if not tabla.exists():
             continue
         with tabla.open(encoding="utf-8") as fh:
             lineas = [l for l in fh if not l.startswith("#")]
-        filas.extend(csv.DictReader(lineas, delimiter="\t"))
+        for f in csv.DictReader(lineas, delimiter="\t"):
+            faltan = [c for c in COLS_TABLA_IDENTIDAD if c not in f]
+            if faltan:
+                # contrato de columnas: una tabla que no lo cumple no se
+                # interpreta a medias ni se rellena -- se declara y se cae.
+                raise ValueError(
+                    f"{tabla.relative_to(RAIZ)}: la tabla de identidad no "
+                    f"trae las columnas {faltan} del contrato "
+                    f"{list(COLS_TABLA_IDENTIDAD)}")
+            f["_tabla"] = str(tabla.relative_to(RAIZ))
+            f["_orden"] = orden
+            filas.append(f)
     return filas
 
 
+def sucesiones_identidad() -> dict:
+    """`cell_id` de la fila SUCEDIDA -> `cell_id` de la que la sucede.
+    Dos tablas que hablan de la misma celda no son un defecto: la más
+    reciente manda (ACTO GEN2-MARCADOR-ENLACE-2, P1). Lo que sí sería
+    defecto es una clave repetida DENTRO de una misma tabla, y eso se
+    reporta aparte."""
+    por_clave: dict[tuple, dict] = {}
+    sucedidas: dict[str, str] = {}
+    for f in lee_tabla_identidad():
+        clave = _clave_identidad(f)
+        previa = por_clave.get(clave)
+        if previa is not None and previa["_orden"] != f["_orden"]:
+            sucedidas[previa["cell_id"]] = f["cell_id"]
+        por_clave[clave] = f
+    return sucedidas
+
+
+def colisiones_dentro_de_una_tabla() -> list[tuple]:
+    """Claves repetidas DENTRO de una misma tabla. Eso sí es defecto de la
+    tabla: no hay orden que las desempate. Se reporta, no se elige una."""
+    vistas: dict[tuple, str] = {}
+    malas: list[tuple] = []
+    for f in lee_tabla_identidad():
+        k = (f["_orden"],) + _clave_identidad(f)
+        if k in vistas:
+            malas.append((f["_tabla"], vistas[k], f["cell_id"]))
+        vistas[k] = f["cell_id"]
+    return malas
+
+
 def indice_identidad() -> dict:
-    """(`consumer`, `outcome`, `axis`, `category`) -> fila de la tabla.
-    Es la única llave de enlace. Una clave repetida es defecto de la tabla
-    y se reporta como tal (la guardia D-14 la vuelve fallo)."""
+    """(`consumer`, `outcome`, `axis`, `category`) -> fila que MANDA.
+
+    Manda la de la tabla más reciente de `TABLAS_IDENTIDAD` (asignación,
+    no `setdefault`: el último de la lista gana). La fila sucedida no se
+    borra ni se edita -- sigue sellada en su tabla y `sucesiones_identidad()`
+    la nombra; el marcador lo transporta a `piso_fuente`."""
     idx: dict[tuple, dict] = {}
     for f in lee_tabla_identidad():
-        clave = (f["consumer"], f["outcome"], f["axis"], f["category"])
-        idx.setdefault(clave, f)
+        idx[_clave_identidad(f)] = f
     return idx
 
 
@@ -412,16 +513,21 @@ def clave_de_marcador(regla_id: str, desenlace: str, eje: str, categoria: str,
     return (consumer, next(iter(outcomes)), axis, category)
 
 
-def _piso_de_fila(clave: tuple, idx: dict, res: dict) -> dict | None:
+def _piso_de_fila(clave: tuple, idx: dict, res: dict,
+                   suc: dict | None = None) -> dict | None:
     """Piso de persistencia t-1 de una celda marginal, o `None` si la clave
     no está en la tabla. Para una fila `NO-CONSTRUIBLE` devuelve el motivo
     sin valor: un piso que la rejilla declaró inconstruible no se fabrica."""
     fila = idx.get(clave)
     if fila is None:
         return None
+    # ACTO GEN2-MARCADOR-ENLACE-2 · P1: si esta fila SUCEDE a otra de una
+    # tabla anterior, el marcador lo dice. La sucedida sigue sellada.
+    sucede_a = {v: k for k, v in (suc or {}).items()}.get(fila["cell_id"], "")
     if fila["status"] != "CONSTRUIBLE":
         return {"construible": False, "causa": fila.get("reason") or fila["status"],
-                "unit": fila.get("unit", ""), "cell_id": fila["cell_id"]}
+                "unit": fila.get("unit", ""), "cell_id": fila["cell_id"],
+                "sucede_a": sucede_a, "tabla": fila.get("_tabla", "")}
     base = fila["cell_id"]
     if base.endswith("-P"):
         base = base[:-2]
@@ -431,7 +537,8 @@ def _piso_de_fila(clave: tuple, idx: dict, res: dict) -> dict | None:
         # fuerza el parseo ni se inventa un piso.
         return {"construible": False,
                 "causa": f"CONSTRUIBLE-EN-TABLA-SIN-RESULT-SELLADO:{ids['P']}",
-                "unit": fila.get("unit", ""), "cell_id": fila["cell_id"]}
+                "unit": fila.get("unit", ""), "cell_id": fila["cell_id"],
+                "sucede_a": sucede_a, "tabla": fila.get("_tabla", "")}
     punto, calc = res[ids["P"]]
     lo, _ = res[ids["IC-LO"]]
     hi, _ = res[ids["IC-HI"]]
@@ -439,6 +546,8 @@ def _piso_de_fila(clave: tuple, idx: dict, res: dict) -> dict | None:
     den = res.get(ids["DEN-W"], ("", ""))[0]
     return {
         "construible": True,
+        "sucede_a": sucede_a,
+        "tabla": fila.get("_tabla", ""),
         "punto": punto, "ic95inf": lo, "ic95sup": hi, "n": n, "den_w": den,
         "unit": fila.get("unit", ""),
         "unit_normalizada": NORMALIZA_UNIT_TABLA.get(
@@ -506,6 +615,7 @@ def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
     d = _yaml(PROPUESTA_OLA5)
     reglas_ejes = [r for r in d["reglas_propuestas"] if "_ejes_" in r.get("id", "")]
     idx = indice_identidad()
+    suc = sucesiones_identidad()
     res = _resultados_sellados()
     err = _error_de_piso_por_celda(idx)
     por_cell_id = {f["cell_id"]: f for f in lee_tabla_identidad()}
@@ -519,7 +629,7 @@ def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
             for c in (bloque.get("celdas") or []):
                 categoria = c.get("celda")
                 clave = clave_de_marcador(r["id"], desenlace, eje, categoria, idx)
-                piso = _piso_de_fila(clave, idx, res) if clave else None
+                piso = _piso_de_fila(clave, idx, res, suc) if clave else None
 
                 piso_tipo = piso_val = piso_ic95 = piso_fuente = ""
                 resultado_id = ""
@@ -535,21 +645,26 @@ def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
                     piso_tipo = "SIN-PISO"
                     # la causa la escribe la tabla, no este tool.
                     piso_fuente = f"NO-CONSTRUIBLE:{piso['causa']}"
+                    if piso["sucede_a"]:
+                        piso_fuente += f" · SUCEDE-A:{piso['sucede_a']}"
                 else:
                     estado = "SOLO-PISO"
                     piso_tipo = "PERSISTENCIA(t-1)"
                     piso_val = piso["punto"]
                     piso_ic95 = f"[{piso['ic95inf']}, {piso['ic95sup']}]"
                     piso_fuente = piso["fuente"]
+                    if piso["sucede_a"]:
+                        # dos tablas hablan de esta celda; manda la más
+                        # reciente y el marcador nombra a la sucedida.
+                        piso_fuente += f" · SUCEDE-A:{piso['sucede_a']}"
                     resultado_id = piso["resultado_id"]
                     tipo_inc = "PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO"
                     # A-bis 3-4: la unidad del piso y la del R deben coincidir
                     # o la celda no es comparable. No se tira: se rotula.
                     if piso["unit_normalizada"] != unidad:
                         estado = "NO-COMPARABLE"
-                        piso_fuente = (f"{piso['fuente']}"
-                                       f" · UNIDAD-DISCREPANTE:"
-                                       f"tabla={piso['unit']}/marcador={unidad}")
+                        piso_fuente += (f" · UNIDAD-DISCREPANTE:"
+                                        f"tabla={piso['unit']}/marcador={unidad}")
 
                 sufijo = f"{desenlace}::" if desenlace else ""
                 celda_id = f"MARG::{r['id']}::{sufijo}{eje}::{categoria}"
@@ -675,6 +790,90 @@ def _emisiones_c2():
     for f in c2_compuesto.emisiones():
         por_grupo.setdefault(f["celda_id_marcador"], []).append(f)
     return por_grupo
+
+
+# ── IC de las emisiones C2 compuestas -- ACTO GEN2-MARCADOR-ENLACE-2 · P3 ──
+# Dos CALC sellados traen IC RÉPLICA POR RÉPLICA con marginales compartidas
+# para las emisiones compuestas, y el marcador no se había enterado: las 206
+# seguían `NO-PROPAGADA-COVARIANZA-NO-SELLADA` con `ic95_*` vacíos.
+#
+#   `CALC-C2-COMPUESTO-IC-ENIF2024-0001`  (PR #911)
+#   `CALC-C2-COMPUESTO-IC-ENVIPE2025-0001` (PR #916)
+#
+# El enlace es por IDENTIDAD EXACTA DE CELDA: el sufijo del `resultado_id`
+# de la emisión (`RESULT-C2COMP-<sufijo>`) es el mismo sufijo que cada CALC
+# usa. NO se empareja por parecido ni por orden: se arma el id y se busca.
+# Las dos plantillas difieren y cada una se cita de la spec de su CALC:
+#   ENIF   `RESULT-C2IC-ENIF2024-<sufijo>-{IC95INF|IC95SUP|IC-ESTADO}`
+#          (data/corrida0/CALC-C2-COMPUESTO-IC-ENIF2024-0001/spec.md:86)
+#   ENVIPE `RESULT-C2IC25-{IC95INF|IC95SUP}-<sufijo>`
+#          (data/corrida0/CALC-C2-COMPUESTO-IC-ENVIPE2025-0001/spec.md:103)
+# ENCIG 2025 no tiene CALC de IC: sus emisiones CONSERVAN `NO-PROPAGADA`.
+# Cada entrada: (nombre del CALC, plantilla de id). La plantilla recibe el
+# sufijo de celda y el campo (`IC95INF` · `IC95SUP` · `IC-ESTADO`) y rinde
+# el id exacto; se declara una vez y sirve para armar y para desarmar.
+CALCS_IC_EMISIONES = [
+    # spec.md:86 -- el punto `…-P` debe reproducir `RESULT-C2COMP-<sufijo>`,
+    # así que el sufijo es literalmente el mismo objeto.
+    ("CALC-C2-COMPUESTO-IC-ENIF2024-0001", "RESULT-C2IC-ENIF2024-{suf}-{campo}"),
+    # spec.md:103 -- aquí el campo va ANTES del sufijo. Dos formas distintas
+    # para el mismo contenido: por eso la plantilla es explícita por CALC y
+    # no una regla común inventada aquí.
+    ("CALC-C2-COMPUESTO-IC-ENVIPE2025-0001", "RESULT-C2IC25-{campo}-{suf}"),
+]
+IC_PROPAGADO = "IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS"
+IC_NO_PROPAGADO = "NO-PROPAGADA-COVARIANZA-NO-SELLADA"
+PREFIJO_EMISION = "RESULT-C2COMP-"
+
+
+def _sufijos_de_ic(res: dict, plantilla: str) -> set:
+    """Sufijos de celda presentes en `res` bajo `plantilla`, desarmados con
+    la MISMA plantilla que los arma (nada de recortes a mano)."""
+    izq, der = plantilla.format(suf="\x00", campo="IC95INF").split("\x00")
+    return {k[len(izq):len(k) - len(der)] for k in res
+            if k.startswith(izq) and k.endswith(der) and len(k) > len(izq) + len(der)}
+
+
+def ic_de_emisiones() -> dict:
+    """`resultado_id` de emisión -> `{"ic95_inf", "ic95_sup", "calc",
+    "tipo_incertidumbre"}`, SÓLO para las emisiones cuyo IC un CALC selló.
+
+    Una emisión ausente del diccionario conserva `NO-PROPAGADA`: este tool
+    no propaga nada, sólo transporta lo sellado. Si un CALC declara un
+    `IC-ESTADO` que no es el bootstrap réplica-por-réplica (p. ej. un
+    `IC-NO-CONSTRUIBLE`), la celda tampoco entra."""
+    out: dict[str, dict] = {}
+    for nombre, plantilla in CALCS_IC_EMISIONES:
+        rj = CORRIDA0_DIR / nombre / "resultados.json"
+        if not rj.exists():
+            continue
+        try:
+            res = json.loads(rj.read_text(encoding="utf-8")).get("resultados", {})
+        except (OSError, json.JSONDecodeError):
+            continue
+        if not isinstance(res, dict):
+            continue
+        for suf in _sufijos_de_ic(res, plantilla):
+            id_inf = plantilla.format(suf=suf, campo="IC95INF")
+            id_sup = plantilla.format(suf=suf, campo="IC95SUP")
+            if id_sup not in res:
+                continue
+            # `IC-ESTADO` es opcional: el CALC de ENVIPE no lo sella. Cuando
+            # está y no es el bootstrap réplica-por-réplica, la celda NO entra.
+            estado = res.get(plantilla.format(suf=suf, campo="IC-ESTADO"))
+            if estado is not None and estado != IC_PROPAGADO:
+                continue
+            rid = f"{PREFIJO_EMISION}{suf}"
+            previo = out.get(rid)
+            if previo is not None and previo["calc"] != nombre:
+                # dos CALC reclaman la misma celda: no se elige uno.
+                out[rid] = {"ic95_inf": "", "ic95_sup": "",
+                            "calc": f"COLISION:{previo['calc']}+{nombre}",
+                            "tipo_incertidumbre": IC_NO_PROPAGADO}
+                continue
+            out[rid] = {"ic95_inf": res[id_inf], "ic95_sup": res[id_sup],
+                        "calc": nombre, "tipo_incertidumbre": IC_PROPAGADO}
+    return out
 
 
 def _marca_emitidas(filas: list[dict]) -> None:
@@ -827,6 +1026,10 @@ def escribe_estimadores_yaml(filas: list[dict]) -> None:
     adoptadas = [f for f in filas if f["tipo"] == "CRUCE"
                  and f["estado"] == "ADOPTADO-POR-FIRMA" and f["resultado_id"]]
     emitidas = [e for g in _emisiones_c2().values() for e in g]
+    # ACTO GEN2-MARCADOR-ENLACE-2 · P3: el IC de la emisión sale del CALC
+    # que lo selló, por identidad exacta de celda. Las que ningún CALC
+    # cubre (ENCIG 2025 hoy) conservan `NO-PROPAGADA` y `ic95_*` vacíos.
+    ic = ic_de_emisiones()
     payload = {
         "_comentario": ("DERIVADO por tools/marcador_segmento.py — NO EDITAR. "
                         "ACTO GEN2-MARCADOR-REDISENO-1 (19/sep/2026). Fuente: "
@@ -843,6 +1046,8 @@ def escribe_estimadores_yaml(filas: list[dict]) -> None:
         # "excluida de la estimacion adoptada del motor y de toda decision
         # automatica"; "una emision no pasa a adoptada por uso".
         "n_emitidas_sin_evaluar": len(emitidas),
+        "n_emitidas_con_ic_sellado": sum(1 for e in emitidas
+                                          if e["resultado_id"] in ic),
         "emitidas_sin_evaluar": {
             e["resultado_id"].replace(
                 "RESULT-C2COMP-", "CRUCE-EMITIDA::", 1): {
@@ -854,9 +1059,14 @@ def escribe_estimadores_yaml(filas: list[dict]) -> None:
                 "celda_b": e["celda_b"],
                 "resultado_id": e["resultado_id"],
                 "punto": e["p_c2"],
-                "ic95_inf": "", "ic95_sup": "",
+                "ic95_inf": ic.get(e["resultado_id"], {}).get("ic95_inf", ""),
+                "ic95_sup": ic.get(e["resultado_id"], {}).get("ic95_sup", ""),
+                "ic95_fuente": ic.get(e["resultado_id"], {}).get("calc", ""),
                 "unidad_dato": e["unidad_dato"],
-                "tipo_incertidumbre": e["tipo_incertidumbre"],
+                # el rótulo de escala manda sobre lo que trae la emisión:
+                # `c2_compuesto` nació antes que los dos CALC de IC.
+                "tipo_incertidumbre": ic.get(e["resultado_id"], {}).get(
+                    "tipo_incertidumbre", e["tipo_incertidumbre"]),
                 "supuesto": e["supuesto"],
                 "estado": EMITIDA,
                 "diagnostico_rango_inf": e["diagnostico_rango_inf"],

@@ -100,8 +100,20 @@ def estimador_de_celda(celda_id: str, *, ruta: Path | None = None,
 
 def celdas_emitidas_sin_evaluar(*, ruta: Path | None = None) -> dict:
     """Listado explícito de las emisiones, para exploración. No es una vía
-    de consumo del motor: cada entrada trae `estado = EMITIDA-SIN-EVALUAR`
-    y `ic95_inf`/`ic95_sup` vacíos (`NO-PROPAGADA-COVARIANZA-NO-SELLADA`)."""
+    de consumo del motor: cada entrada trae `estado = EMITIDA-SIN-EVALUAR`.
+
+    `ACTO GEN2-MARCADOR-ENLACE-2` (20/sep/2026, P3): desde `#911`/`#916`,
+    una emisión PUEDE traer `ic95_inf`/`ic95_sup` -- los que el CALC de IC
+    de su ola selló réplica por réplica, con `tipo_incertidumbre =
+    IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS` y
+    `ic95_fuente` con el nombre del CALC. Las que ningún CALC cubre siguen
+    con los dos campos vacíos y `NO-PROPAGADA-COVARIANZA-NO-SELLADA`.
+
+    **Traer IC no las vuelve adoptadas.** Ese IC mide el ruido muestral de
+    un estimador que SUPONE no-interacción; no mide el error de ese
+    supuesto, que es justamente lo que falta evaluar. El estado sigue
+    `EMITIDA-SIN-EVALUAR` y la vía por defecto del lector sigue sin
+    devolverlas."""
     return {k: dict(v, estado=EMITIDA_SIN_EVALUAR)
             for k, v in _carga_emitidas(ruta).items()}
 
