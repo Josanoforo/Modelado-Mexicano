@@ -1,0 +1,45 @@
+calc_id: CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002
+# Sucesor técnico del 0001: conserva los mismos RESULT estables y corrige
+# marco de remuestreo/artefactos; esta cadena autoriza sus IDs repetidos.
+repite_de: CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0001
+script: data/corrida0/CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002/medidor.py
+spec_md: spec.md
+spec_md_sha256: 4894d4d5e8b78c96dab2f83576318d6a52103eafd238bab1d1d9968de8727b5c
+etiquetas:
+  generacion: GEN2
+  tipo: DESCRIPTIVO-SEXO-COHORTE
+  cuenta_gen2: PENDIENTE-DE-MESA
+  contaminacion_declarada: "No ciego: se conocían los resultados y conteos del padre CALC-EDER-0003 antes de este COMMIT-1. No se conocían los perfiles por sexo, los contrastes ni la estandarización."
+inputs:
+  - {id: eder_2017_eder2017_bases_csv, origen: manifiesto}
+  - {id: eder_2017_eder2017_fd, origen: manifiesto}
+universo: "EDER 2017, 20--54 años del instrumento: persona con primer edo_civil1 distinto de cero, por anio_retro ascendente, factor_per finito y positivo. Sin primera unión observada queda fuera del denominador; libre/directo/residual se conservan."
+filtros: "Sexo o cohorte desconocidos se tabulan aparte; no se imputan. Empate mínimo de anio_retro con códigos incompatibles se excluye del estimando y se audita. Diseño ausente sale del bootstrap, no del punto."
+ponderador: "factor_per de antecedentes.csv, sin normalizar."
+transformacion: "Punto = suma(factor_per*indicador)/suma(factor_per). Directo se cuenta, no es 1-libre."
+estimando: "Perfiles de primera unión y diferencia mujer-hombre de p(libre), cruda y con estandarización descriptiva de cohorte común. No causal."
+dependencias_materiales: [numpy, pandas]
+variables:
+  - {archivo: historiavida.csv, variable: edo_civil1, rol: desenlace, codigos: "LIBRE={1,12,13,14,17,18,126}; DIRECTO={2,3,4,26,27,28,46,47,48}; residual no se complementa"}
+  - {archivo: historiavida.csv, variable: anio_retro, rol: orden}
+  - {archivo: historiavida.csv, variable: anio_nac, rol: cohorte, codigos: "<=1970;1971-1980;1981-1990;1991+"}
+  - {archivo: persona.csv, variable: sexo, rol: sexo, codigos: "FD EDER 2017, tabla PERSONA #7: 1 Hombre; 2 Mujer"}
+  - {archivo: antecedentes.csv, variable: factor_per, rol: ponderador}
+  - {archivo: vivienda.csv, variable: est_dis, rol: estrato}
+  - {archivo: vivienda.csv, variable: upm, rol: upm}
+parametros:
+  llave_persona: [folioviv, foliohog, id_pobla]
+  libre: ["1","12","13","14","17","18","126"]
+  directo: ["2","3","4","26","27","28","46","47","48"]
+  sexo: {"1": hombre, "2": mujer}
+  cohortes: ["<=1970", "1971-1980", "1981-1990", "1991+"]
+  bootstrap_replicas: 2000
+  semilla: 20260919
+  rng: PCG64
+  precision: "percentiles 2.5/97.5 de réplicas válidas; un estrato singleton se remuestrea a sí mismo y se advierte, no es una garantía matemática de incertidumbre"
+  estandarizacion: "Pesos de referencia = composición ponderada conjunta mujer+hombre de cohortes válidas del mismo universo de primera unión observada, incluso residual; se recalculan en cada réplica. Falta de soporte sexo×cohorte vuelve el contraste no estimable; no se redistribuye."
+resultados:
+  - {id: RESULT-EDER2017-PRIMERA-UNION-SEXO-COHORTE-RESUMEN, tipo: texto, unidad: JSON determinista con auditoría y estimandos}
+  - {id: RESULT-EDER2017-PRIMERA-UNION-SEXO-COHORTE-ESTADO, tipo: texto, unidad: ESTIMABLE / NO-ESTIMABLE:<causa>}
+seed: {aplica: true, valor: 20260919, rng: PCG64}
+tolerancia: {tipo: flotante, abs: 1.0e-10, razon: "sumas float64 y semilla fija"}
