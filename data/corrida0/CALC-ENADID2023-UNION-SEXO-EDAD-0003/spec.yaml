@@ -1,0 +1,108 @@
+calc_id: CALC-ENADID2023-UNION-SEXO-EDAD-0003
+spec_md: spec.md
+spec_md_sha256: 9bbd08066bfe3f3dfd6d73565b3713828b5102ed7cdd505b36a5dff6e26efa3c
+script: data/corrida0/CALC-ENADID2023-UNION-SEXO-EDAD-0003/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: MEDICION-DESCRIPTIVA-ENCUESTA-CON-DISENO
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: CONTROL-SEPARADO-POST-SELLO
+  spec_sellada: forense/prereg-caja/ENADID2023-UNION-SEXO-EDAD-spec-v1_2.md
+  spec_sellada_sha256: 14f65e0761278ec5bd8fa7ab9ca9b622730569cecd2011044598931b8cf47bb3
+  sucesor_de: CALC-ENADID2023-UNION-SEXO-EDAD-0002
+  causa_sucesion: SEMANTICA-CONTEOS-PESO-ESTANDAR-EDAD
+  padre_control: CALC-ENADID-0001
+  uso_motor: NINGUNO
+  medidor_ejecutado_al_congelar: NO
+
+inputs:
+  - {id: enadid2023_base_datos_csv, origen: manifiesto}
+  - {id: enadid2023_fd_xlsx, origen: manifiesto}
+  - {id: enadid2023_hogar_cuestionario_pdf, origen: manifiesto}
+
+payloads:
+  - id: enadid2023_base_datos_csv
+    archivo: base_datos_enadid23_csv.zip
+    sha256: 995d448ab298251d441e437fc4a368f84879a8b74fa7bc103dc189434cbfaa18
+    miembros_usados: TSDEM.csv
+    rol: MEDICION
+  - id: enadid2023_fd_xlsx
+    archivo: fd_enadid23.xlsx
+    sha256: d56582b7ace04e2c13a1b9ea22aeea458d7b9cc02a21241e5fda29fe12b4f34c
+    rol: CODIGOS-Y-DISENO
+  - id: enadid2023_hogar_cuestionario_pdf
+    archivo: hogar_enadid23.pdf
+    sha256: 8b046a68dc19e292522557e05d81952e8fb04c2d3a1375c93fa7192e857e3270
+    rol: TEXTO-UNIVERSO-Y-SALTOS
+
+variables:
+  - {archivo: TSDEM.csv, variable: llave_per, rol: "llave unica de persona residente; el lector normaliza el header fisico", codigos: cadena opaca}
+  - {archivo: TSDEM.csv, variable: SEXO, rol: eje y residuo, codigos: "1 hombre; 2 mujer; otro/desconocido no se reasigna"}
+  - {archivo: TSDEM.csv, variable: EDAD, rol: dominios, codigos: "000;001..109;120;999=no especificada"}
+  - {archivo: TSDEM.csv, variable: p3_27, rol: "situacion conyugal actual; el lector normaliza el header fisico", codigos: "1 union libre;2 separada de union libre;3 separada de matrimonio;4 divorciada;5 viuda;6 casada;7 soltera"}
+  - {archivo: TSDEM.csv, variable: FAC_VIV, rol: factor de expansion de residentes, codigos: numerico positivo}
+  - {archivo: TSDEM.csv, variable: EST_DIS, rol: estrato de diseno, codigos: "001..659; no ESTRATO"}
+  - {archivo: TSDEM.csv, variable: UPM_DIS, rol: UPM de diseno, codigos: "00001..15220; no UPM"}
+
+universo: >-
+  P1/P2: personas residentes de 15+ en TSDEM, con residuos visibles según el
+  producto. P3: sexo conocido, edad en uno de cinco tramos y P3_27 en {1,6}.
+  P3_27 aplica documentalmente desde 12+; 15+ es recorte analitico heredado.
+filtros: >-
+  Edad 999/no numerica, sexo fuera de {1,2}, P3_27 fuera de 1..7 y peso no
+  positivo/no finito no se reasignan. Categorias 2..5 y 7 son fuera del
+  denominador P2/P3, no desconocidas. Llave duplicada aborta.
+ponderador: FAC_VIV de TSDEM, razon de totales sin normalizar.
+transformacion: >-
+  P1 siete indicadores nativos por sexo y edad. P2 P3_27=1 sobre P3_27 en
+  {1,6}, con diferencia mujer-hombre de replicas compartidas. P3 pondera las
+  tasas sexo-edad por la distribucion conjunta estimada de edad y recalcula
+  tasas y pesos en cada replica; nunca redistribuye un peso positivo sin tasa.
+estimando: >-
+  Descripcion transversal de situacion conyugal actual y descomposicion
+  descriptiva de composicion de edad. No es primera union, causalidad ni
+  porcentaje explicado.
+precision: >-
+  800 replicas Rao-Wu reescaladas por UPM_DIS dentro de EST_DIS sobre marco
+  completo; PCG64 semilla 20260919. Singleton constante y matriz de covarianza
+  multiplicada por H_total/H_no_singleton. IC95 logit-t para proporciones e
+  IC95 t simetrico para contrastes; gl=sum_h(m_h-1); sin FPC. Denominador nulo
+  o replica degenerada conserva no estimable/no disponible con causa.
+
+dependencias_materiales: [numpy, pandas, scipy]
+seed: {aplica: true, valor: 20260919, rng: numpy.random.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 5.0e-10
+  razon: bootstrap determinista con semilla y serializacion a doce decimales
+
+parametros:
+  fuente_acto: GEN2-ENADID2023-UNION-SEXO-EDAD-CLI-2
+  congelacion: PROSPECTIVA-NO-CIEGA
+  replicas: 800
+  edades: ["15_17", "18_29", "30_44", "45_59", "60_mas"]
+  sexo: [hombre, mujer, sexo_desconocido]
+  singleton: APORTE-PROMEDIO-A-MATRIZ-COVARIANZA
+  degeneracion: NINGUNA-IMPUTACION
+  fpc: NO-APLICADA-NO-ACREDITADA
+  outputs:
+    - forense/analisis/enadid2023-union-sexo-edad-cli-2/distribucion.csv
+    - forense/analisis/enadid2023-union-sexo-edad-cli-2/union_condicional.csv
+    - forense/analisis/enadid2023-union-sexo-edad-cli-2/estandarizacion.csv
+    - forense/analisis/enadid2023-union-sexo-edad-cli-2/flujo.csv
+    - forense/analisis/enadid2023-union-sexo-edad-cli-2/auditoria.json
+  adopcion: NINGUNA
+
+resultados:
+  - {id: RESULT-ENADID-USE3-P1-TABLA-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENADID-USE3-P2-TABLA-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENADID-USE3-P3-TABLA-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENADID-USE3-FLUJO-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENADID-USE3-AUDITORIA-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENADID-USE3-DIF-BRUTA-MH, tipo: flotante, unidad: "diferencia de proporciones con signo en [-1,1]"}
+  - {id: RESULT-ENADID-USE3-DIF-ESTANDAR-MH, tipo: flotante, unidad: "diferencia de proporciones con signo en [-1,1]"}
+  - {id: RESULT-ENADID-USE3-BRUTA-MENOS-ESTANDAR, tipo: flotante, unidad: "diferencia de proporciones con signo en [-1,1]"}
+  - {id: RESULT-ENADID-USE3-REPLICAS, tipo: entero, unidad: replicas}
+  - {id: RESULT-ENADID-USE3-SEMILLA, tipo: entero, unidad: semilla}
+  - {id: RESULT-ENADID-USE3-SALIDA, tipo: texto, unidad: ruta relativa}

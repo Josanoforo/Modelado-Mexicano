@@ -5,7 +5,7 @@ import pandas as pd
 import pytest
 
 
-PATH = Path(__file__).parents[1] / "data/corrida0/CALC-ENADID2023-UNION-SEXO-EDAD-0002/medidor.py"
+PATH = Path(__file__).parents[1] / "data/corrida0/CALC-ENADID2023-UNION-SEXO-EDAD-0003/medidor.py"
 SPEC = importlib.util.spec_from_file_location("enadid_union_sexo_edad", PATH)
 MOD = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MOD)
@@ -81,6 +81,10 @@ def test_estandar_comun_y_bruta_distinta_de_estandarizada():
     result = calculate(frame)
     weights = [r for r in result["estandarizacion"] if r["tipo"] == "peso_estandar_edad"]
     assert sum(r["punto"] for r in weights) == pytest.approx(1.0)
+    expected_total = sum(r["n_numerador"] for r in weights)
+    assert expected_total > 0
+    assert all(r["n_denominador"] == expected_total for r in weights)
+    assert all(r["n_numerador"] < r["n_denominador"] for r in weights)
     gross = next(r for r in result["estandarizacion"] if r["tipo"] == "diferencia_bruta")
     standardized = next(r for r in result["estandarizacion"] if r["tipo"] == "diferencia_estandarizada")
     assert gross["punto"] != pytest.approx(standardized["punto"])
