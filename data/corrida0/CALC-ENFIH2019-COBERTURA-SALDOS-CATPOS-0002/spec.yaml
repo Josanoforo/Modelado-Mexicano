@@ -1,0 +1,52 @@
+calc_id: CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002
+spec_md: spec.md
+spec_md_sha256: 2b25148820c1360eef388eae8368a968e0f2c5b31d89d10850c5135c52a3c86e
+script: data/corrida0/CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: MEDICION-DESCRIPTIVA-COBERTURA-Y-DISTRIBUCION-MONETARIA-POR-CAT_POS
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENFIH2019-COBERTURA-SALDOS-CATPOS-spec-v1_1.md
+  sucesora_de: CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0001
+  demanda_que_releva: "Ninguna: desagrega la cobertura y distribución monetaria ya medidas nacionalmente."
+  reglas_bajo_prueba: "Descripción de saldos por posición ocupacional; no formalidad ni causalidad."
+  firma_de_contador: PENDIENTE-DE-MESA
+  contaminacion_declarada: "NO-CIEGA: conocidas tenencia CAT_POS y cifras nacionales de saldos/cobertura de CALC antecedentes."
+inputs:
+  - {id: enfih2019_bd_csv_zip, origen: manifiesto}
+  - {id: enfih2019_fd_xlsx, origen: manifiesto}
+  - {id: IN-ENFIH2019-COBERTURA-SALDOS-CATPOS-SPEC-V11, origen: repo, ruta: forense/prereg-caja/ENFIH2019-COBERTURA-SALDOS-CATPOS-spec-v1_1.md, sha256: 3e78e727494810cbe89ddb0e1d0667548dd4387d55829278b749b50a37a238f9}
+variables:
+  - {archivo: TCONCENTRADORA.csv, variable: CAT_POS, rol: "posición en el trabajo de persona de referencia; no formalidad", codigos: "0=no ocupada;1=empleado;2=jornalero;3=patrón;4=cuenta propia;5=familiar sin pago; otro/vacío=desconocido"}
+  - {archivo: TCONCENTRADORA.csv, variable: C_AFORE, rol: tenencia, codigos: "0=no;1=si"}
+  - {archivo: TCONCENTRADORA.csv, variable: V_AFORE, rol: total de importes personales conocidos, codigos: "0-108264000 pesos"}
+  - {archivo: TCONCENTRADORA.csv, variable: FAC_HOG, rol: ponderador de hogar}
+  - {archivo: TCONCENTRADORA.csv, variable: EDIS, rol: estrato opaco}
+  - {archivo: TCONCENTRADORA.csv, variable: UPM_DIS, rol: UPM opaca}
+  - {archivo: TMODULO.csv, variable: P9_10, rol: tenencia personal, codigos: "1=si"}
+  - {archivo: TMODULO.csv, variable: P9_11, rol: saldo personal, codigos: "0-108264000=número;999999888/999999999=desconocido"}
+  - {archivo: TCONCENTRADORA.csv, variable: FOLIO, rol: llave hogar 1/3}
+  - {archivo: TCONCENTRADORA.csv, variable: VIV_SEL, rol: llave hogar 2/3}
+  - {archivo: TCONCENTRADORA.csv, variable: HOGAR, rol: llave hogar 3/3}
+universo: "Hogares únicos con FAC_HOG finito y positivo; dominios se forman dentro del marco completo."
+filtros: "No imputación ni recorte; CAT_POS fuera de 0..5 se conserva como DESCONOCIDO."
+ponderador: "FAC_HOG de TCONCENTRADORA.csv, sin normalizar."
+transformacion: "V_AFORE se verifica contra P9_11; cuantiles por inversa izquierda; contrastes con réplicas compartidas."
+estimando: "Cobertura, estados y distribución condicional completa por CAT_POS; contrastes categoría contra resto nativo."
+dependencias_materiales: [numpy, pandas]
+parametros:
+  tabla_concentradora: TCONCENTRADORA.csv
+  tabla_modulo: TMODULO.csv
+  bootstrap_replicas: 2000
+  periodo: "pesos corrientes; entrevista ENFIH 2019"
+  singleton: "UPM única se remuestrea a sí misma; IC es límite inferior"
+seed: {aplica: true, valor: 20260919, rng: numpy.PCG64}
+tolerancia: {tipo: flotante, abs: 1.0e-10, razon: "semilla y orden de llave congelados; textos e enteros exactos"}
+resultados:
+  - {id: RESULT-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002-TABLA-CATEGORIAS-JSON, tipo: texto, unidad: "tabla determinista por categoría y precisión"}
+  - {id: RESULT-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002-TABLA-CONTRASTES-JSON, tipo: texto, unidad: "contrastes categoría-resto con precisión compartida"}
+  - {id: RESULT-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002-CONTROL-NACIONAL-JSON, tipo: texto, unidad: "reconciliación, estados y control independiente"}
+  - {id: RESULT-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002-REPLICAS-VALIDAS-JSON, tipo: texto, unidad: "réplicas válidas e inválidas por estimando"}
+  - {id: RESULT-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002-METODO-IC, tipo: texto, unidad: método de precisión}
+  - {id: RESULT-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002-CONTROL-RECONCILIACION, tipo: texto, unidad: "SI o NO"}

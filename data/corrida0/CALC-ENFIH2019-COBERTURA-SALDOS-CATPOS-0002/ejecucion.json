@@ -1,0 +1,111 @@
+{
+ "corrida_id": "CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002--cd853c64a584",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "NO-CIEGA: conocidas tenencia CAT_POS y cifras nacionales de saldos/cobertura de CALC antecedentes.",
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "demanda_que_releva": "Ninguna: desagrega la cobertura y distribución monetaria ya medidas nacionalmente.",
+  "firma_de_contador": "PENDIENTE-DE-MESA",
+  "generacion": "GEN2",
+  "reglas_bajo_prueba": "Descripción de saldos por posición ocupacional; no formalidad ni causalidad.",
+  "spec_sellada": "forense/prereg-caja/ENFIH2019-COBERTURA-SALDOS-CATPOS-spec-v1_1.md",
+  "sucesora_de": "CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0001",
+  "tipo": "MEDICION-DESCRIPTIVA-COBERTURA-Y-DISTRIBUCION-MONETARIA-POR-CAT_POS",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-20T00:06:10Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 419,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "cd853c64a58461022aa8fa5ad1716fbbb5814ad6",
+  "git_rama": "codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "cd853c64a58461022aa8fa5ad1716fbbb5814ad6",
+ "input_ids": [
+  "enfih2019_bd_csv_zip",
+  "enfih2019_fd_xlsx",
+  "IN-ENFIH2019-COBERTURA-SALDOS-CATPOS-SPEC-V11"
+ ],
+ "input_sha256": {
+  "IN-ENFIH2019-COBERTURA-SALDOS-CATPOS-SPEC-V11": "3e78e727494810cbe89ddb0e1d0667548dd4387d55829278b749b50a37a238f9",
+  "enfih2019_bd_csv_zip": "be372533d5043920892142e8bf792b7293a5f20ab466a6441bc89925b42ef4d5",
+  "enfih2019_fd_xlsx": "326b68b342797de45a7a4eb3dbf04f3790d11035df2611d7f9153d1ae12a48e1"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "periodo": "pesos corrientes; entrevista ENFIH 2019",
+  "singleton": "UPM única se remuestrea a sí misma; IC es límite inferior",
+  "tabla_concentradora": "TCONCENTRADORA.csv",
+  "tabla_modulo": "TMODULO.csv"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002-CONTROL-NACIONAL-JSON",
+  "RESULT-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002-CONTROL-RECONCILIACION",
+  "RESULT-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002-METODO-IC",
+  "RESULT-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002-REPLICAS-VALIDAS-JSON",
+  "RESULT-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002-TABLA-CATEGORIAS-JSON",
+  "RESULT-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002-TABLA-CONTRASTES-JSON"
+ ],
+ "script_blob_sha256": "5b8b37ccedbf81373afebe0f00162e3924252fd0d9c046220b72f990b55e57f3",
+ "script_path": "data/corrida0/CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260919
+ },
+ "spec_id": "CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "2b25148820c1360eef388eae8368a968e0f2c5b31d89d10850c5135c52a3c86e",
+ "spec_yaml_sha256": "5ae8479bbcf6a28e319cac7f39b9149b14d6d1cd4ad0a854f3817b0a3f5d2355",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "semilla y orden de llave congelados; textos e enteros exactos",
+  "tipo": "flotante"
+ }
+}
