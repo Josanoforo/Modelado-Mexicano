@@ -217,3 +217,124 @@ no-respuesta— **todavía no se ha leído**, y `F1-bis` los expulsa del univers
 que nadie lo sepa. La definición es correcta como regla de gobierno y sigue siendo lo
 que desbloquea el piloto; pero su justificación sustantiva depende de §4c, que está
 pendiente. Evidencia clase (a).
+
+---
+
+# ENMIENDA POR ADENDA DE MESA · 20/sep/2026
+
+Mesa lanzó una adenda a este mismo encargo. Sella el PARO y los dos juicios de §6 (no
+duplicar NC, no disparar P3), y **reordena una compuerta**: `P0` deja de gatear el
+`COMMIT-1` y pasa a gatear el `COMMIT-2`. Congelar spec y código no abre microdato, así
+que no depende de `P0`. Con eso, y con `F1-bis` firmada, `P2` **sí corre**.
+
+## E.1 · Reorden de compuertas (adenda 2)
+
+`NC-0356` queda enmendada por fecha en `forense/no-corrido.tsv`: su sucesor pasa a decir
+que el `COMMIT-1` está desbloqueado y se congela en este acto, y que si `P0` en caja
+resulta `CAMBIO-DE-INSTRUMENTO` **la spec se retira sin correr** (`SUPERADO`,
+`n_resultados = 0`). **`NC-0355` sigue ABIERTA y gatea toda apertura de dato.** El texto
+original de 19/sep se conserva íntegro en el mismo campo, marcado como superado.
+
+## E.2 · `P2(a)(b)` · La restricción, medida en vez de asumida
+
+Mesa tenía razón en que mi observación de §5 estaba incompleta: `n_completos` da el
+universo, no los marginales ni el EE. El procedimiento de la adenda (3a–3b) se ejecutó
+íntegro, **sin abrir dato**, y es reproducible con un comando:
+
+```
+python3 forense/notas/2026-09-20-p2-seleccion-f1bis.py
+```
+
+| ola | cruce | celdas | `DEN-W` total | `p_all` | peor cociente |
+|---|---|---:|---:|---:|---:|
+| 2021 | SEXO-EDAD | 8 | 107 478 297.0 | 0.572960 | **0.000e+00** |
+| 2021 | SEXO-ESCOLARIDAD | 8 | 108 151 004.0 | 0.573227 | **0.000e+00** |
+| 2021 | EDAD-ESCOLARIDAD | 16 | 107 478 297.0 | 0.572960 | **0.000e+00** |
+| 2023 | SEXO-EDAD | 8 | 107 107 269.0 | 0.559957 | **0.000e+00** |
+| 2023 | SEXO-ESCOLARIDAD | 8 | 107 679 023.0 | 0.560382 | **0.000e+00** |
+| 2023 | EDAD-ESCOLARIDAD | 16 | 107 107 269.0 | 0.559957 | **0.000e+00** |
+
+El cociente `|δ_F1bis − δ_sellado| / EE_sellado` es **exactamente 0 en las 48 celdas**,
+no meramente `< 0.10`. **La razón es estructural y conviene asentarla con precisión,
+porque corrige el supuesto sobre el que la adenda construyó su umbral:** el script
+congelado de los dos CALC define los cuatro marginales sobre el mismo filtro de casos
+completos —
+
+```
+complete = frame[axis_a].notna() & frame[axis_b].notna()
+a = complete & frame[axis_a].eq(category_a)  ;  all_common = complete
+```
+
+`tools/encig_cruces_historicos.py:381-387`. El residuo de edad **nunca entró en
+`p_ab`, `p_a`, `p_b` ni `p_all`**. Es decir: **los `δ`, `EE` e `IC` sellados ya estaban
+calculados sobre el universo de `F1-bis`**. No son una «aproximación declarada» como la
+adenda 3c preveía — **son exactos sobre ese universo**, y la condición del umbral se
+satisface trivialmente porque no había nada que aproximar.
+
+**Qué era entonces el `PARO-COHERENCIA-UNIVERSO`.** No era que `δ` usara el universo
+equivocado. Es la bandera `RESIDUO-OTRO-EJE`: la rejilla no puede reconstruir los
+**marginales sellados del CALC de pisos** —calculados sobre el universo completo,
+residuo incluido— porque le falta ese residuo. `F1-bis` manda verificar la coherencia
+contra los marginales **recalculados sobre el universo del cruce**, no contra los
+sellados con otro denominador; con esa definición la causa se disuelve por construcción.
+Verificado además que **ninguna** de las seis combinaciones dispara la otra causa posible
+(`NO-REPRODUCE-PISO`): la única causa sellada en las seis es `RESIDUO-OTRO-EJE`.
+
+## E.3 · `P2(c)` · Regla completa y cruce elegido
+
+| ola | cruce | celdas `n<200` | frac | ≤ ⅓ | elegible | puntaje | celdas IC δ ≠ 0 | coherencia F1-bis |
+|---|---|---:|---:|:--:|:--:|---:|---:|---|
+| 2021 | EDAD-ESCOLARIDAD | 1 / 16 | 0.062 | SI | **SI** | 1.6001 | 4 | COHERENTE |
+| 2021 | SEXO-EDAD | 0 / 8 | 0.000 | SI | SI | 1.0004 | 1 | COHERENTE |
+| 2021 | SEXO-ESCOLARIDAD | 0 / 8 | 0.000 | SI | SI | 0.6653 | 0 | COHERENTE |
+| 2023 | EDAD-ESCOLARIDAD | 1 / 16 | 0.062 | SI | **SI** | 2.1535 | 7 | COHERENTE |
+| 2023 | SEXO-EDAD | 0 / 8 | 0.000 | SI | SI | 0.7945 | 0 | COHERENTE |
+| 2023 | SEXO-ESCOLARIDAD | 0 / 8 | 0.000 | SI | SI | 0.8708 | 1 | COHERENTE |
+
+Desempate congelado del careo (§4(2), «mayor media `|δ|/EE`» sobre `δ₂₃`, entre los
+elegibles en ambas olas): **2.1535 > 0.8708 > 0.7945**.
+
+> **CRUCE ELEGIDO: `edad × escolaridad`.** 15 celdas `PUNTUADA`; `18–29 × HASTA-PRIMARIA`
+> queda **`FUERA-DE-SOPORTE` declarada ex ante** (n = 110 en 2021, 70 en 2023, única celda
+> bajo `n ≥ 200` y en las dos olas). La **condición de no-piloto no dispara**: el ganador
+> tiene 7 celdas con IC95 de δ que excluye 0.
+
+**Una ambigüedad de `F1-bis` que se midió en vez de resolverse a dedo.** `F1-bis` declara
+las celdas sin soporte `FUERA-DE-SOPORTE` ex ante pero no dice si entran en el puntaje.
+Importa en principio —un cruce no debería ganar por la fuerza de una celda declarada
+inutilizable— así que se calcularon **las dos lecturas**: con las 16 celdas, 2.1535; con
+las 15 con soporte, 2.2142. **El orden y el ganador son idénticos en ambas** y el margen
+es de más del doble sobre el segundo, así que la ambigüedad **no es dispositiva aquí** y
+no se resuelve por este acto: queda señalada para que mesa la cierre cuando importe.
+
+**Convergencia con el encargo del 19/sep, que vale la pena hacer explícita.** La `F1`
+original ya proponía «`edad × escolaridad`, 15 celdas puntuables, `18–29 × hasta primaria`
+`FUERA-DE-SOPORTE` ex ante». Es **exactamente** lo que la regla arroja sola bajo `F1-bis`.
+La intuición de dirección era correcta; lo que estaba mal fundado era el instrumento que
+invocaba (`ADR-551`). Con la rejilla definida, la regla la alcanza sin ayuda.
+
+**Límite declarado, heredado de la nota sellada y no debilitado:** las 7 celdas con IC que
+excluye 0 se usan aquí **sólo** para verificar que la condición de no-piloto no dispara.
+**No** constituyen evidencia confirmatoria independiente, porque se leen después de
+seleccionar entre celdas y entre cruces. Ese límite viaja a la spec.
+
+## E.4 · `λ`, derivada y congelada
+
+`Sλ = C2 + λ·δ̄(a,b)`, `δ̄ = (δ₂₁+δ₂₃)/2`, `λ = τ̂²/(τ̂²+σ̄²)` con
+`τ̂² = max(0, Var_entre(δ̄) − σ̄²)`. Derivada de los `DELTA`/`DELTA-EE` sellados sobre las
+**15 celdas `PUNTUADA`**, con `Var(δ̄) = (EE₂₁² + EE₂₃²)/4` por celda:
+
+| cantidad | valor |
+|---|---:|
+| `k` | 15 |
+| `media(δ̄)` | +0.011039613 |
+| `Var_entre(δ̄)` | 0.028257826 |
+| `σ̄²` | 0.003001124 |
+| `τ̂²` | 0.025256702 |
+| **`λ`** | **0.893794941** |
+
+`τ̂² > 0`, así que el `max(0, ·)` no ata. Control con las 16 celdas (no se congela):
+`λ = 0.831050904`. **Se congela `λ = 0.893794941`**; no se teclea, se deriva con el
+comando de E.2. Que `λ ≈ 0.89` dice que la varianza entre celdas domina al ruido de
+muestreo —la interacción es señal, no dispersión—, consistente con los 13 de 16 signos
+estables.
