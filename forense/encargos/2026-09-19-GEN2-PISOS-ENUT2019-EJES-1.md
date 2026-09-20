@@ -38,3 +38,17 @@ El reparto de cuidado por sexo y edad es el dato del programa más expuesto a le
 | **`tests/test_pisos_enut2019.py` cableado en la suite** (`tests/check.py` / `.github/workflows/verify.yml`) | `FUERA-DE-PERÍMETRO` — el test existe, PASA standalone y falla con control negativo (3 `FALLA`, exit 1), pero ninguno de los dos archivos de cableado está en la lista. | Un test que nadie corre no protege nada (FP-344). | `NC-0366` · `SIN-ASIGNAR` (`t32_quater` en `check.py` con el arnés `corre()` de `test_pisos_rejilla.py`, o un paso en `verify.yml`) |
 | **COMPUERTA · «que GEN2-CELDA-D-PILOTO-3-P0 haya cerrado su rama — un acto de caja a la vez»** | `DECISIÓN-DE-MESA-PENDIENTE` — cumplida **vacuamente** al abrir (20:47–20:50 local: 0 ramas, 0 worktrees, 0 PR con ese rótulo; `PILOTO-3` cerrado por #894; tres ramas vivas, todas NUBE). **Diez minutos después del 0-bis** mesa lanzó `PILOTO-3-P0` (`claude/lucid-lamport-32k9t3`) y dos `C2-COMPUESTO-IC-*`, los tres en CAJA. El ejecutor no paró: este acto no sella ningún CALC-id, así que la clase de colisión que la compuerta guarda no puede producirse desde aquí; ADR/NC se renumeran por regla de la casa. | `ADR-553` y `NC-0361..0364` colisionan con las ramas vivas — renumera quien fusiona segundo. | mesa: aceptar la lectura, o `NO FUSIONAR` hasta que cierren |
 | **Registro en la vista y asiento de replay «en el mismo acto (E.7)»** | `PARO-PREMISA` — no hay corrida que registrar ni replay que asentar. | — | cubierto por `NC-0362` |
+
+## CONSUMIDO
+
+Ejecutado por **[PR #908](https://github.com/Josanoforo/Modelado-Mexicano/pull/908)**
+(`ACTO GEN2-PISOS-ENUT2019-EJES-1`, rama `acto/gen2-pisos-enut2019-ejes-1`, 19/sep/2026, CAJA,
+Opus 5, cero microdato abierto). P0 **NO-CONSTRUIBLE por texto**: entregable = dictamen
+(`forense/notas/2026-09-19-GEN2-PISOS-ENUT2019-EJES-1-dictamen.md`) + tabla de identidad
+`forense/prereg-caja/PISOS-ENUT2019-ejes-metadatos-v1_0.tsv` (11 filas `NO-CONSTRUIBLE` con causa,
+enlazadas en `tools/marcador_segmento.py`) + `tests/test_pisos_enut2019.py`; `sin_piso` 21 → 21
+(cambia la causa, no el conteo). P1/P2 no se ejecutan (`NC-0361`/`NC-0362`). P3 (a): premisa falsa —
+ENIF 2021 tiene `P3_10` = `P3_13`; construible por texto, no medido (`NC-0363`). P3 (b):
+`SIN-PISO-POR-DISEÑO` (`NC-0364`). `ADR-553` (renumerado de `ADR-552` tras `#906`), L0, hallazgo,
+rótulo censado; `NC-0361`..`NC-0366`. Cierre en
+`forense/notas/2026-09-19-GEN2-PISOS-ENUT2019-EJES-1-cierre.md`. **No se fusiona desde aquí.**
