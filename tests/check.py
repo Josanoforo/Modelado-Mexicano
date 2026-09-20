@@ -7464,6 +7464,55 @@ def _run_tests(tests, parallel=False):
             pool.shutdown(wait=True, cancel_futures=True)
 
 
+# T45 · T-LEGACY-DESGLOSE-SUMA -- ACTO GEN2-RELEVO-RECONCILIA-1 (P4,
+# 20/sep/2026). `corrida0 status` publica desde este acto un desglose
+# ADITIVO de `dependencias_numericas_legacy_activas` por consumidor. El
+# desglose solo sirve si SUMA: una clase nueva de consumidor que nadie
+# mapee caeria fuera y el desglose mentiria por defecto, que es justo el
+# defecto que este acto vino a corregir (un contador que subcuenta y nadie
+# lo nota). Defecto real que atrapa: el propio de este acto -- la vista de
+# relevo llevaba 37 filas con `RES` desincronizado (NC-0343) sin que
+# ningun contador se moviera. Costo a un lector: dirigir el programa con
+# una cifra que no cubre su universo (A.10).
+def t45_legacy_desglose_suma():
+    """T-LEGACY-DESGLOSE-SUMA. El desglose por consumidor suma exactamente
+    el total, y la clase residual `otro` esta vacia."""
+    import subprocess
+    r = subprocess.run([sys.executable, "tools/corrida0.py", "status"],
+                       cwd=str(ROOT), capture_output=True, text=True)
+    if r.returncode != 0:
+        fail("T-LEGACY-DESGLOSE-SUMA",
+             f"`corrida0.py status` salio con codigo {r.returncode}; "
+             f"stderr: {r.stderr.strip()[:300]}")
+        return
+    total = None
+    partes = {}
+    for linea in r.stdout.splitlines():
+        if linea.startswith("dependencias_numericas_legacy_activas="):
+            total = int(linea.split("=", 1)[1])
+        elif linea.startswith("legacy_activas_por_consumidor__"):
+            k, v = linea.split("=", 1)
+            partes[k.split("__", 1)[1]] = int(v)
+    if total is None:
+        fail("T-LEGACY-DESGLOSE-SUMA",
+             "`status` no imprime `dependencias_numericas_legacy_activas`")
+        return
+    if not partes:
+        fail("T-LEGACY-DESGLOSE-SUMA",
+             "`status` no imprime el desglose `legacy_activas_por_consumidor__*`")
+        return
+    if sum(partes.values()) != total:
+        fail("T-LEGACY-DESGLOSE-SUMA",
+             f"el desglose suma {sum(partes.values())} y el total es {total}; "
+             f"partes={partes}")
+    if partes.get("otro", 0):
+        fail("T-LEGACY-DESGLOSE-SUMA",
+             f"{partes['otro']} slots legacy caen en la clase residual "
+             "`otro`: hay un consumidor que el desglose no mapea, y el "
+             "desglose deja de guiar. Mapealo en "
+             "`tools/corrida0.py:_legacy_por_consumidor`.")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -7514,6 +7563,7 @@ def main():
         ("T42 T-CANDIDATAS",                            t42_digesto_candidatas),
         ("T43 T-SUCESOR-EXISTE",                        t43_sucesor_existe),
         ("T44 T-ENADID-PRECISION",                      t44_enadid_precision_independiente),
+        ("T45 T-LEGACY-DESGLOSE-SUMA",                  t45_legacy_desglose_suma),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))

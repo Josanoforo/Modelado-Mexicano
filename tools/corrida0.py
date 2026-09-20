@@ -4339,6 +4339,35 @@ def _no_corrido_abiertas() -> int:
                if (f.get("estado") or "").strip() == "ABIERTA")
 
 
+def _legacy_por_consumidor(usos_activos: list) -> dict:
+    """Desglose aditivo de `dependencias_numericas_legacy_activas` por el
+    ARCHIVO CONSUMIDOR que lee la cifra (ACTO GEN2-RELEVO-RECONCILIA-1, P4).
+
+    Derivado del propio campo `consumidor`, no de una lista a mano: un
+    consumidor nuevo cae en `otro` y se ve, en vez de desaparecer del
+    desglose y romper la suma en silencio.
+    """
+    clases = {"motor": 0, "procedencia": 0, "catalogo_de_momentos": 0,
+              "marco_del_duelo": 0, "celdas_D": 0, "otro": 0}
+    for u in usos_activos:
+        if u["generacion_leida"] != GENERACION_LEGADO:
+            continue
+        c = str(u["consumidor"])
+        if c.startswith("forense/prereg-duelo-v2/marco-M"):
+            clases["marco_del_duelo"] += 1
+        elif c.startswith("milpa/procedencia.yaml"):
+            clases["procedencia"] += 1
+        elif "catalogo-momentos" in c:
+            clases["catalogo_de_momentos"] += 1
+        elif c.startswith("milpa/tramite.yaml") or c.startswith("milpa/src/"):
+            clases["motor"] += 1
+        elif "curacion-registro/celdas-d/" in c:
+            clases["celdas_D"] += 1
+        else:
+            clases["otro"] += 1
+    return {f"legacy_activas_por_consumidor__{k}": v for k, v in clases.items()}
+
+
 def status(imprime: bool = True) -> dict:
     """§9 del plan v2.0. TODO derivado de las vistas en memoria: ningun
     numero se teclea aqui y ninguno se lee de un TSV que quiza no se
@@ -4396,6 +4425,14 @@ def status(imprime: bool = True) -> dict:
         "N_resultados_pendientes": sum(1 for f in activos if f["estado"] == "PENDIENTE"),
         "dependencias_numericas_legacy_activas": sum(
             1 for u in usos_activos if u["generacion_leida"] == GENERACION_LEGADO),
+        # ACTO GEN2-RELEVO-RECONCILIA-1 · P4. Desglose ADITIVO del contador
+        # de arriba por CONSUMIDOR que lo lee. No cambia su nombre ni su
+        # valor: las cuatro sub-cifras SUMAN exactamente ese total, y el
+        # test T-LEGACY-DESGLOSE-SUMA lo exige mecanicamente. Existe porque
+        # «173» no dice a quien le falta el relevo, y mesa dirige con esa
+        # cifra (firma 20/sep/2026). Los cuatro son RELEVABLES: ninguno se
+        # declara fuera del contador.
+        **_legacy_por_consumidor(usos_activos),
         "N_resultados_gen2_sellados": len(ids_sellados_gen2),
         "N_resultados_gen2_pendientes_adopcion": len(ids_pendientes),
         "N_resultados_gen2_vetados_por_decision": len(ids_vetados),
