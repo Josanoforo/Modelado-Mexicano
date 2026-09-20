@@ -1,5 +1,5 @@
 ---
-description: Ejecuta el Bloque D (ARRANQUE + COMPUERTA + 0-bis A.3 + CIERRE en cascada) sobre un encargo de forense/encargos/. Uso — /acto forense/encargos/<archivo>.md
+description: Ejecuta el Bloque D (ARRANQUE + COMPUERTA + 0-bis A.3 + EJECUCIÓN + CIERRE en cascada) sobre un encargo de forense/encargos/. Uso — /acto forense/encargos/<archivo>.md
 argument-hint: <ruta al encargo, en forense/encargos/>
 ---
 
@@ -23,9 +23,12 @@ instrucción ejecutable para esta sesión, no prosa de referencia.
 
 ## 1 · ARRANQUE — hazlo antes de leer el resto del encargo
 
-Reporta las cinco líneas de abajo y NO empieces hasta tenerlas. Si algo
-no cuadra, PARA y repórtalo: encontrar que el terreno no es el que el
-encargo supone es entregable, no interrupción.
+Reporta las cinco líneas de abajo y NO empieces hasta tenerlas.
+Encontrar que el terreno no es el que el encargo supone es entregable,
+no interrupción — pero qué hacer con ese hallazgo lo decide la sección
+4: si toca qué se mide o una firma de mesa, PARA y repórtalo; si es
+logística (main movido, `data/raw` sin enlazar, un clon superficial) y
+el objetivo sigue alcanzable, resuélvelo, síguele y decláralo.
 
 0 · GUARD DE ARRANQUE — cuatro comprobaciones, antes de crear la rama
     (`ACTO GEN2-E3 · AUTOMATIZA-GEN2-1`, 7/sep/2026, plan v2.0 §8 Fase I).
@@ -221,7 +224,68 @@ No se ejecuta ningún paso sustantivo del encargo antes de este commit.
 
 ---
 
-## 4 · CIERRE — cascada estándar
+## 4 · EJECUCIÓN — premisas, latitud y paros
+
+Lee el `MODO` de la cabecera. Si el encargo no lo trae (es anterior a
+v2.15): trátalo como `RÍGIDO` si congela o ejecuta una spec con reserva,
+`ABIERTO` en cualquier otro caso, y dilo.
+
+1. **Verifica las premisas según su rótulo, antes de construir sobre
+   ellas.** `[EJECUTADO]` y `[LEÍDO]`: compruébalas de pasada.
+   `[EXISTE]`, `[SUPUESTO]` y `[REPORTADO]`: son tuyas de verificar —
+   dirección no sabe si funcionan. Un encargo sin rótulos: trata toda
+   premisa como `[SUPUESTO]`. Repite la búsqueda de «ya hecho / ya
+   decidido» **por objeto** con tu acceso, que es mejor que el de
+   dirección. Si está hecho, el entregable es decirlo y hacer lo que
+   falte.
+
+2. **Una premisa falsa no es, por sí sola, un PARO.**
+   - Toca **qué se mide** (estimando, universo, código, umbral) o una
+     **firma de mesa** → PARA y reporta. Nunca se ajusta el
+     procedimiento para que cuadre.
+   - Toca **logística o estado del repo** y el OBJETIVO sigue
+     alcanzable → replantea, sigue, y declara en la nota qué premisa
+     cayó y qué hiciste en su lugar. Si el encargo previó la rama («si
+     X resulta falso, entonces Y»), tómala.
+   - El OBJETIVO dejó de ser alcanzable o de tener sentido → PARO, y
+     ése es el entregable.
+
+3. **PAROS: lista cerrada.** (a) abrir, derivar o imprimir dato de una
+   ola reservada fuera del código autorizado · (b) borrar, forzar
+   (`-D`, `--force`, `clean`) o reescribir algo sellado · (c) adoptar, o
+   mover un contador que el encargo veda · (d) cambiar estimando,
+   universo, umbral, candidato o código de un procedimiento congelado ·
+   (e) entorno equivocado · (f) objetivo inalcanzable. En `RÍGIDO` se
+   añade (g): el código congelado no corre → no se parcha.
+   **Fuera de esta lista no se para: se resuelve o se pregunta.**
+
+4. **Latitud.** Decides tú, y lo dices: el cómo, el orden, las
+   herramientas, los nombres; remover obstáculos reversibles y baratos
+   (enlazar `data/raw`, `git fetch --unshallow`, instalar una
+   dependencia, regenerar un derivado por comando, corregir una cita
+   rota); arreglar un defecto adyacente de ≤ 10 líneas que te impide
+   terminar. **Preguntas a mesa** —con 2 o 3 opciones y tu
+   recomendación— cuando una bifurcación no prevista cambia qué se
+   entrega, **y sigues con lo demás mientras contesta**: una pregunta no
+   es un PARO. La respuesta de mesa se copia verbatim a la nota.
+
+5. **Perímetro de cierre — permanente, aunque el encargo no lo
+   enumere.** Cablear en CI el test propio (hoy: `tools/ci_guardias.py
+   --censo`, job `guardias`) · publicar en la vista las filas propias y
+   su asiento de replay (E.7) · registrar en
+   `data/INFRAESTRUCTURA-v1_0.md` la tabla propia · la cascada de la sección
+   5 · hallazgos, NC y FP propios. `FUERA-DE-PERÍMETRO` como razón de
+   una NC queda para lo que de verdad es de otro acto; si la usas, di de
+   cuál.
+
+6. **Compuertas.** Cada una declara qué protege: abrir dato · congelar
+   spec · adoptar · borrar. Una "compuerta" que no proteja una de esas
+   cuatro es un orden sugerido: puedes adelantar lo que no dependa de
+   ella, y lo dices.
+
+---
+
+## 5 · CIERRE — cascada estándar
 
 Al terminar el objeto del encargo (o al cerrar por hallazgo, si el acto
 no llega a arrancar), en el mismo commit o en el commit de cascada:
@@ -305,6 +369,10 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
       `PARO-ENTORNO` · `PARO-PREMISA` · `FUERA-DE-PERÍMETRO` ·
       `SUSTITUIDO-POR:<acto>` · `DIFERIDO-A:<sucesor>` ·
       `NO-VERIFICABLE-AQUÍ` · `DECISIÓN-DE-MESA-PENDIENTE`.
+      `FUERA-DE-PERÍMETRO` **nombra de qué otro acto es la pieza**; si no
+      puedes nombrarlo, no era de otro acto y te toca a ti (D-21).
+      El token va **al principio** de la razón, no en medio de la prosa
+      (A.16): `tools/nc_por_razon.py` cuenta por prefijo exacto.
     - **impacto** — qué contador o consumidor no se mueve por esto.
     - **sucesor** — acto, fila FP, o `SIN-ASIGNAR` — nunca vacío.
     Un `SUSTITUIDO-POR` que no enumere qué absorbe el sustituto y qué
