@@ -1,11 +1,13 @@
+import csv
 import importlib.util
+import io
 from pathlib import Path
 
 import pandas as pd
 import pytest
 
 
-PATH = Path(__file__).parents[1] / "data/corrida0/CALC-ENADID2023-UNION-SEXO-EDAD-0003/medidor.py"
+PATH = Path(__file__).parents[1] / "data/corrida0/CALC-ENADID2023-UNION-SEXO-EDAD-0004/medidor.py"
 SPEC = importlib.util.spec_from_file_location("enadid_union_sexo_edad", PATH)
 MOD = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MOD)
@@ -85,6 +87,13 @@ def test_estandar_comun_y_bruta_distinta_de_estandarizada():
     assert expected_total > 0
     assert all(r["n_denominador"] == expected_total for r in weights)
     assert all(r["n_numerador"] < r["n_denominador"] for r in weights)
+    serialized = MOD._serialize(result["estandarizacion"], MOD.STD_COLUMNS)
+    published = list(csv.DictReader(io.StringIO(serialized.decode("utf-8"))))
+    published_weights = [r for r in published if r["tipo"] == "peso_estandar_edad"]
+    assert "n_numerador" in published[0]
+    assert [int(r["n_numerador"]) for r in published_weights] == [
+        r["n_numerador"] for r in weights
+    ]
     gross = next(r for r in result["estandarizacion"] if r["tipo"] == "diferencia_bruta")
     standardized = next(r for r in result["estandarizacion"] if r["tipo"] == "diferencia_estandarizada")
     assert gross["punto"] != pytest.approx(standardized["punto"])
