@@ -14,3 +14,25 @@ P0 · Respaldo vigente. git bundle verify de los dos bundles y sha256 contra #91
 PERÍMETRO
 
 En disco: P1 sobre la lista firmada. En el repo: nota, forense/notas/insumos-externos/…, el PR de rescate de MOTRAL (rama propia), hallazgos.md, NC/FP, cascada. No toca CALC-PISOS-ENIF2021-EJES-0002 ni -0003 en main · ningún worktree sucio · origin salvo los PR propios. Prohibidos worktree remove --force, git clean, stash drop, push --delete. «Si te encuentras borrando o escribiendo fuera de esta lista, PARA.»
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** P1 · Borrado, cubeta por cubeta.
+  **por qué:** `PARO-PREMISA`.
+  **impacto:** ningún `branch -D` ejecutado; las cubetas `CONTENIDO-EN-MAIN`/`HISTORIA-GEN1` de `limpieza2_tabla.tsv` siguen firmadas y pendientes de borrado; `git branch | wc -l` / `git worktree list | wc -l` de la caja no se movieron.
+  **sucesor:** `NC-0404` → re-invocación verbatim de este encargo tras confirmar clon no-superficial de forma estable.
+
+- **qué:** P2 · Rescate de MOTRAL.
+  **por qué:** `PARO-PREMISA`.
+  **impacto:** `CALC-MOTRAL2015-PRIORIDADES-PRESTACIONES-0001` (evidencia (a), verificada como ausente de `main` por `#913`) sigue sin rama propia, sin `verify`, sin fila en la vista ni asiento de replay; ningún PR de rescate abierto.
+  **sucesor:** `NC-0405` → mismo sucesor que P1.
+
+- **qué:** P3 · La colisión que `#913` no vio (dictamen `CALC-PISOS-ENIF2021-EJES-0002`).
+  **por qué:** `PARO-PREMISA` — el propio dictamen depende de comparar timestamps de commit y árbol entre `codex/gen2-marcador-adopcion-cli-1` y `origin/main`, la misma clase de comparación que un clon superficial puede sesgar.
+  **impacto:** `#913` sigue afirmando "ausente de main, sin colisión de id" sin corrección; las 28 celdas que hoy alimenta `…-EJES-0003` no llevan la reserva que un veredicto `CORRECCION-POSTERIOR-A-VER-RESULTADO` exigiría si ese resultara ser el caso; el directorio de la rama Codex no quedó archivado como evidencia.
+  **sucesor:** `NC-0406` → mismo sucesor que P1.
+
+- **qué:** P4 · Nota por `/acto` con la corrección a `#913` asentada por enmienda.
+  **por qué:** `PARO-PREMISA` (parcial: la nota de este acto sí se produjo — es esta misma, `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-3-paro.md` — pero la enmienda a `#913` que P4 pedía depende del dictamen de P3, que no corrió).
+  **impacto:** `#913` no lleva enmienda; su texto original permanece intacto (correcto: A.3 prohíbe editar la nota).
+  **sucesor:** `NC-0407` → mismo sucesor que P1.
