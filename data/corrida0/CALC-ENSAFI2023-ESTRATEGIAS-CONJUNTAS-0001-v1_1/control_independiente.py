@@ -1,5 +1,5 @@
 """Control separado: recomputa un punto y su varianza sin importar medidor."""
-import csv, io, json, math, zipfile
+import csv, hashlib, io, json, math, zipfile
 from collections import defaultdict
 from pathlib import Path
 
@@ -27,9 +27,12 @@ def main():
         a=[z[h,u] for u in us]
         if len(a)>1:
             m=sum(a)/len(a);v+=len(a)/(len(a)-1)*sum((x-m)**2 for x in a)
-    sealed=json.loads((ROOT/'data/corrida0/CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001/resultados.json').read_text())['resultados']
-    tab=list(csv.DictReader((ROOT/'forense/analisis/ensafi2023-estrategias-conjuntas-cli-1/conteos.csv').open()))
+    sealed=json.loads((ROOT/'data/corrida0/CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001-v1_1/resultados.json').read_text())['resultados']
+    outdir=ROOT/'forense/analisis/ensafi2023-estrategias-conjuntas-cli-1-v1_1'
+    tab=list(csv.DictReader((outdir/'conteos.csv').open()))
     hit=next(x for x in tab if x['conteo']=='>=2')
-    out={'control':'COINCIDE' if abs(p-float(hit['p']))<1e-10 and abs(math.sqrt(v)-float(hit['ee']))<1e-10 else 'DISCREPA','p_ge2':p,'ee_ge2':math.sqrt(v),'delta_p':abs(p-float(hit['p'])),'delta_ee':abs(math.sqrt(v)-float(hit['ee'])),'implementacion':'separada; no importa medidor.py'}
+    hashes={n:hashlib.sha256((outdir/n).read_bytes()).hexdigest() for n in ('cobertura.csv','conteos.csv','parejas.csv','sensibilidad_parejas.csv','limites_faltantes.csv')}
+    seal_hashes={'cobertura.csv':sealed['RESULT-ENSAFI-EC2-G-SHA256-COBERTURA'],'conteos.csv':sealed['RESULT-ENSAFI-EC2-G-SHA256-CONTEOS'],'parejas.csv':sealed['RESULT-ENSAFI-EC2-G-SHA256-PAREJAS'],'sensibilidad_parejas.csv':sealed['RESULT-ENSAFI-EC2-G-SHA256-SENSIBILIDAD-PAREJAS'],'limites_faltantes.csv':sealed['RESULT-ENSAFI-EC2-G-SHA256-LIMITES-FALTANTES']}
+    out={'control':'COINCIDE' if abs(p-float(hit['p']))<1e-10 and abs(math.sqrt(v)-float(hit['ee']))<1e-10 and hashes==seal_hashes else 'DISCREPA','p_ge2':p,'ee_ge2':math.sqrt(v),'delta_p':abs(p-float(hit['p'])),'delta_ee':abs(math.sqrt(v)-float(hit['ee'])),'hashes_regenerados':hashes,'hashes_sellados':seal_hashes,'replay_tablas':'IDENTICO' if hashes==seal_hashes else 'DISCREPA','implementacion':'separada; no importa medidor.py'}
     print(json.dumps(out,indent=2)); return out
 if __name__=='__main__': main()
