@@ -23,12 +23,15 @@ Una corrección de hecho, menor y sin consecuencia para el acto: la dirección d
 
 ## P1 · Delta por script — CORRIDO, reproduce idéntico
 
+Re-derivado a un destino temporal **fuera del árbol publicado** y comparado contra el directorio canónico; el temporal se descartó, porque una copia bit-idéntica de un derivado que ya existe no es un entregable, es un duplicado (y `T02` tiene razón en llamarlo así). Los artefactos vigentes siguen siendo los de `forense/relevo-usos/candidatos-delta-1/`.
+
 ```
-python3 tools/relevo_candidatos_delta.py --destino forense/analisis/relevo-tanda-1/p1-delta
-python3 tools/corrida0.py delta --entrada .../contrato-gen2-delta-1.yaml --formato json --salida-dir .../_corrida0_delta
-python3 tools/relevo_candidatos_delta.py --destino .../p1-delta --delta-json .../delta.json
+python3 tools/relevo_candidatos_delta.py --destino <tmp>
+python3 tools/corrida0.py delta --entrada <tmp>/contrato-gen2-delta-1.yaml --formato json --salida-dir <tmp>/_corrida0_delta
+python3 tools/relevo_candidatos_delta.py --destino <tmp> --delta-json <tmp>/_corrida0_delta/delta.json
   → seleccion=12 · bins=1:0,2:10,3:2
-diff contra forense/relevo-usos/candidatos-delta-1/tabla-decision.tsv → sin diferencias
+diff <tmp>/tabla-decision.tsv  forense/relevo-usos/candidatos-delta-1/tabla-decision.tsv → sin diferencias
+diff <tmp>/relevo-candidatos-delta-1.tsv  forense/relevo-usos/candidatos-delta-1/relevo-candidatos-delta-1.tsv → sin diferencias
 ```
 
 12 pares · comparables 11 · incompatible 1 (RES-0028) · **deltas materiales 0**. Los once deltas comparables van de `5.55e-17` a `4.79e-07`: ruido de redondeo del sexto decimal con que `milpa/` materializa, no movimiento.
