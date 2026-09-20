@@ -135,10 +135,19 @@ def t_enlace_biyectivo():
                    f"{f['cell_id']} enlaza con {len(enlazadas)} filas MARGINAL: "
                    f"{enlazadas}")
 
-    # 3 · las NO-CONSTRUIBLE quedan SIN-PISO con la causa DE LA TABLA
-    no_con = [f for f in M.lee_tabla_identidad() if f["status"] != "CONSTRUIBLE"]
+    # 3 · las NO-CONSTRUIBLE VIGENTES quedan SIN-PISO con la causa DE LA
+    #     TABLA. `ACTO GEN2-MARCADOR-ENLACE-2` (20/sep/2026) acota la
+    #     guardia a las VIGENTES: una fila sellada que una tabla más
+    #     reciente SUCEDE ya no gobierna su celda, y exigir que su causa
+    #     siga apareciendo obligaría al marcador a transportar una causa
+    #     refutada. La fila sucedida no se edita ni se borra (A.10): sigue
+    #     en su tabla, y `sucesiones_identidad()` la nombra.
+    sucedidas = set(M.sucesiones_identidad())
+    no_con = [f for f in M.lee_tabla_identidad()
+              if f["status"] != "CONSTRUIBLE" and f["cell_id"] not in sucedidas]
     causas = {f["reason"] for f in no_con if f.get("reason")}
     sin_piso_con_causa = {f["piso_fuente"].split("NO-CONSTRUIBLE:", 1)[-1]
+                          .split(" · SUCEDE-A:", 1)[0]
                           for f in marginales
                           if f["piso_fuente"].startswith("NO-CONSTRUIBLE:")}
     for causa in causas:
@@ -146,6 +155,86 @@ def t_enlace_biyectivo():
             _falla("T-ENLACE-BIYECTIVO",
                    f"la causa NO-CONSTRUIBLE {causa!r} de la tabla no aparece "
                    f"en ninguna fila SIN-PISO del marcador")
+
+
+def t_precedencia_entre_tablas():
+    """GUARDIA D-14 de `ACTO GEN2-MARCADOR-ENLACE-2` (P1).
+
+    El defecto que atrapa ya ocurrió: `GEN2-PISOS-ENIF2021-FORMALIDAD-1`
+    (PR #915) selló seis pisos y el enlace PARÓ porque `indice_identidad()`
+    indexaba con `setdefault` -- las cuatro filas NO-CONSTRUIBLE de la
+    rejilla, más antiguas, ganaban por orden de lectura y los seis RESULT
+    quedaban sin enlazar. Le habría costado a un lector del marcador seis
+    celdas SIN-PISO que el repo ya mide.
+
+    Tres cosas, ninguna con cifra a mano:
+      (a) ninguna clave repetida DENTRO de una misma tabla (eso sí es
+          defecto: no hay orden que lo desempate);
+      (b) para cada colisión ENTRE tablas, la fila que gobierna el índice
+          es la de la tabla MÁS RECIENTE de `TABLAS_IDENTIDAD`;
+      (c) toda celda gobernada por una fila sucesora lo DICE en
+          `piso_fuente` (`· SUCEDE-A:<cell_id sucedido>`).
+    """
+    malas = M.colisiones_dentro_de_una_tabla()
+    if malas:
+        _falla("T-PRECEDENCIA", f"clave repetida dentro de una misma tabla: {malas}")
+
+    por_cell = {f["cell_id"]: f for f in M.lee_tabla_identidad()}
+    idx = M.indice_identidad()
+    suc = M.sucesiones_identidad()
+    for sucedido, sucesor in suc.items():
+        a, b = por_cell[sucedido], por_cell[sucesor]
+        if M._clave_identidad(a) != M._clave_identidad(b):
+            _falla("T-PRECEDENCIA",
+                   f"{sucedido} y {sucesor} se declaran sucesión y no comparten clave")
+            continue
+        if b["_orden"] <= a["_orden"]:
+            _falla("T-PRECEDENCIA",
+                   f"{sucesor} sucede a {sucedido} pero su tabla no es más reciente "
+                   f"({b['_tabla']} orden {b['_orden']} vs {a['_tabla']} orden {a['_orden']})")
+        if idx[M._clave_identidad(b)]["cell_id"] != sucesor:
+            _falla("T-PRECEDENCIA",
+                   f"el índice no gobierna con {sucesor}, la fila más reciente")
+
+    # (c) el marcador lo dice
+    marginales = [f for f in M.deriva()["filas"] if f["tipo"] == "MARGINAL"]
+    for sucedido, sucesor in suc.items():
+        filas = [f for f in marginales if f["resultado_id"] == sucesor
+                 or f"SUCEDE-A:{sucedido}" in f["piso_fuente"]]
+        if not filas:
+            _falla("T-PRECEDENCIA",
+                   f"{sucesor} gobierna una celda y ninguna fila MARGINAL lo reporta")
+            continue
+        for f in filas:
+            if f"SUCEDE-A:{sucedido}" not in f["piso_fuente"]:
+                _falla("T-PRECEDENCIA",
+                       f"{f['celda_id']} usa la fila sucesora y no nombra a "
+                       f"{sucedido} en piso_fuente: {f['piso_fuente']!r}")
+
+
+def t_contrato_de_columnas_de_las_tablas():
+    """Toda tabla de `TABLAS_IDENTIDAD` cumple el MISMO contrato de
+    columnas. `lee_tabla_identidad()` lo exige y se cae si no; esta guardia
+    prueba que la lista declarada hoy lo cumple y que no está vacía (A.13:
+    una guardia sobre cero tablas no prueba nada)."""
+    if len(M.TABLAS_IDENTIDAD) < 2:
+        _falla("T-CONTRATO-TABLAS",
+               f"la lista declara {len(M.TABLAS_IDENTIDAD)} tabla(s): la "
+               f"generalización no está probada contra nada")
+    existentes = [t for t in M.TABLAS_IDENTIDAD if t.exists()]
+    if len(existentes) != len(M.TABLAS_IDENTIDAD):
+        faltan = [str(t) for t in M.TABLAS_IDENTIDAD if not t.exists()]
+        _falla("T-CONTRATO-TABLAS", f"tablas declaradas y ausentes del árbol: {faltan}")
+    try:
+        filas = M.lee_tabla_identidad()
+    except ValueError as e:
+        _falla("T-CONTRATO-TABLAS", str(e))
+        return
+    vistas = {f["_tabla"] for f in filas}
+    for t in existentes:
+        rel = str(t.relative_to(M.RAIZ))
+        if rel not in vistas:
+            _falla("T-CONTRATO-TABLAS", f"{rel} está declarada y no aportó ninguna fila")
 
 
 def t_piso_no_es_m():
@@ -199,16 +288,40 @@ def t_vetados_nunca_se_leen():
 def t_error_piso_derivado():
     """Las columnas `error_piso_pp` y `clase_persistencia` se DERIVAN de
     los RESULT sellados de `CALC-PISO-PERSISTENCIA-ERROR-0001`; el marcador
-    no las recalcula. Esta guardia prueba que el id que el marcador arma
-    coincide con el que el CALC selló: toda fila SOLO-PISO debe traer clase,
-    y esa clase debe ser exactamente la del RESULT."""
+    no las recalcula. La guardia prueba que el id que el marcador arma
+    coincide con el que el CALC selló.
+
+    `ACTO GEN2-MARCADOR-ENLACE-2` (20/sep/2026) corrige la FORMA de la
+    prueba sin debilitarla. Antes pedía «toda fila SOLO-PISO trae clase»,
+    lo que daba por supuesto que el universo del CALC de error cubre todo
+    piso que exista -- premisa que caducó en cuanto `#915` selló seis pisos
+    nuevos que ese CALC (más viejo) no midió, y que este acto declara
+    expresamente fuera de perímetro («no mide el error de persistencia de
+    las 6 celdas nuevas»; sucesor: CALC nuevo).
+
+    Se prueba contra el UNIVERSO DEL CALC, que es lo que manda, y en los
+    dos sentidos -- ninguno de los dos admite una cifra a mano:
+      (a) todo RESULT `-CLASE` sellado es reclamado por EXACTAMENTE UNA
+          fila SOLO-PISO. Si el marcador armara mal un id, su RESULT se
+          quedaría huérfano y esto falla -- es el mismo defecto de antes;
+      (b) toda fila SOLO-PISO trae la clase EXACTA de su RESULT, o no trae
+          ninguna de las dos columnas, y entonces el CALC no tiene RESULT
+          para ella (piso más reciente que el CALC de error).
+    """
     import json as _json
     rj = M.CALC_ERROR_PISO / "resultados.json"
     if not rj.exists():
         return                       # CALC no sellado: nada que comprobar
     res = _json.loads(rj.read_text(encoding="utf-8")).get("resultados", {})
+    sellados = {k[:-len("-CLASE")] for k in res if k.endswith("-CLASE")}
+    if not sellados:
+        _falla("T-ERROR-PISO-DERIVADO",
+               "el CALC de error no trae ningún RESULT -CLASE (A.13)")
+        return
     por_cell = {f["cell_id"]: f for f in M.lee_tabla_identidad()}
     v = M.deriva()
+
+    reclamados: dict[str, list] = {}
     for f in v["filas"]:
         if f["tipo"] != "MARGINAL":
             continue
@@ -218,28 +331,41 @@ def t_error_piso_derivado():
                        f"{f['celda_id']} no es SOLO-PISO y trae clase "
                        f"{f['clase_persistencia']!r}")
             continue
-        if not f["clase_persistencia"]:
-            _falla("T-ERROR-PISO-DERIVADO",
-                   f"{f['celda_id']} es SOLO-PISO y no trae clase: el id que "
-                   f"el marcador arma no calza con ningún RESULT sellado")
-            continue
         t = por_cell.get(f["resultado_id"], {})
         base = ("RESULT-PISO-ERR-"
                 f"{M._slug_result(t.get('source_instrument'))}-"
                 f"{M._slug_result(t.get('outcome'))}-"
                 f"{M._slug_result(f['eje_o_par'])}-"
                 f"{M._slug_result(f['categoria'])}")
-        if res.get(f"{base}-CLASE") != f["clase_persistencia"]:
+        if base in sellados:
+            reclamados.setdefault(base, []).append(f["celda_id"])
+            if res.get(f"{base}-CLASE") != f["clase_persistencia"]:
+                _falla("T-ERROR-PISO-DERIVADO",
+                       f"{f['celda_id']}: clase del marcador "
+                       f"{f['clase_persistencia']!r} != RESULT "
+                       f"{res.get(base + '-CLASE')!r}")
+        elif f["clase_persistencia"] or f["error_piso_pp"]:
             _falla("T-ERROR-PISO-DERIVADO",
-                   f"{f['celda_id']}: clase del marcador "
-                   f"{f['clase_persistencia']!r} != RESULT "
-                   f"{res.get(base + '-CLASE')!r}")
+                   f"{f['celda_id']} trae clase/error y el CALC no selló "
+                   f"{base}: el marcador estaría estimando")
+
+    # (a) ningún RESULT sellado queda huérfano ni lo reclaman dos filas
+    for base in sorted(sellados):
+        n = len(reclamados.get(base, []))
+        if n == 0:
+            _falla("T-ERROR-PISO-DERIVADO",
+                   f"{base} está sellado y ninguna fila SOLO-PISO lo reclama: "
+                   f"el id que el marcador arma no calza")
+        elif n > 1:
+            _falla("T-ERROR-PISO-DERIVADO",
+                   f"{base} lo reclaman {n} filas: {reclamados[base]}")
 
 
 CASOS = (t_reserva_sin_r, t_emisor_no_compara, t_piso_no_circular,
          t_veinte_adoptadas, t_universo_97_nacional,
          t_enlace_biyectivo, t_piso_no_es_m, t_unidad_leida_del_arbitro,
-         t_vetados_nunca_se_leen, t_error_piso_derivado)
+         t_vetados_nunca_se_leen, t_error_piso_derivado,
+         t_precedencia_entre_tablas, t_contrato_de_columnas_de_las_tablas)
 
 
 def corre() -> list[str]:

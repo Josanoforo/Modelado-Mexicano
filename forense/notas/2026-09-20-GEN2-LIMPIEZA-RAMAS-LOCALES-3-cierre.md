@@ -89,7 +89,7 @@ ates a que el contrato se satisfizo. No es un efecto del entorno (drift desde el
 propio sello nació incompleto frente a su contrato.
 
 **No se rescata** (regla del encargo: "si verify no reproduce, no se rescata: NC con la salida
-cruda"). `NC-0405` (`forense/no-corrido.tsv`) actualizada con esta razón y la salida cruda citada
+cruda"). `NC-0420` (`forense/no-corrido.tsv`) actualizada con esta razón y la salida cruda citada
 arriba. Rama y worktree efímeros de este intento, limpiados (`git worktree remove` sin `--force`
 tras vaciar el índice a mano — sin contenido de valor: todo lo generado en la sesión era mío,
 del intento fallido; `git branch -D`).
@@ -199,6 +199,6 @@ ejecutada, superada formalmente por `-0003`. La corrección no invalida `-0003` 
 
 ## Estado final
 
-`## NO-CORRIDO / RESERVAS` del encargo archivado, actualizado: `NC-0404` (P1) se cierra —
-ejecutado; `NC-0405` (P2) se cierra con razón real (`NO-EJECUTABLE`, MOTRAL no se rescata);
-`NC-0406` (P3) se cierra — dictaminado; `NC-0407` (P4) se cierra — enmienda asentada arriba.
+`## NO-CORRIDO / RESERVAS` del encargo archivado, actualizado: `NC-0419` (P1) se cierra —
+ejecutado; `NC-0420` (P2) se cierra con razón real (`NO-EJECUTABLE`, MOTRAL no se rescata);
+`NC-0421` (P3) se cierra — dictaminado; `NC-0422` (P4) se cierra — enmienda asentada arriba.

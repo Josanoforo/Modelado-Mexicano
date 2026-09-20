@@ -327,11 +327,57 @@ class GuardiaD14(unittest.TestCase):
             self.assertEqual(a, b, cid)
             self.assertEqual(a["estado"], self.E.ADOPTADO_ACTIVO, cid)
 
-    def test_una_emitida_nunca_trae_IC(self):
+    def test_una_emitida_nunca_FABRICA_IC(self):
+        """`ACTO GEN2-MARCADOR-ENLACE-2` (20/sep/2026, P3) sustituye el
+        supuesto de este caso, no lo relaja.
+
+        Se escribió cuando NINGÚN CALC había sellado el IC de una emisión
+        compuesta, y entonces «nunca trae IC» y «nunca fabrica IC» eran la
+        misma frase. Desde `#911`/`#916` ya no lo son: los dos CALC de IC
+        traen IC réplica por réplica, y exigir el campo vacío obligaría al
+        marcador a esconder una medición que el repo ya selló. Lo que la
+        guardia protege -- que ningún IC nazca aquí -- se prueba ahora
+        contra los RESULT sellados, que es más fuerte que probarlo contra
+        la cadena vacía:
+
+          (a) un IC presente es EXACTAMENTE el del CALC, por identidad de
+              celda, y nombra su CALC en `ic95_fuente`;
+          (b) una emisión que ningún CALC cubre sigue con los dos campos
+              vacíos y `NO-PROPAGADA-COVARIANZA-NO-SELLADA`;
+          (c) el rango diagnóstico NUNCA se deja leer como IC, con IC o sin
+              él.
+
+        Tener IC no la vuelve adoptada: eso lo guardan los otros casos de
+        esta clase, intactos. El IC mide el ruido muestral de un estimador
+        que SUPONE no-interacción; no mide el error de ese supuesto.
+        """
+        import importlib.util as _iu
+        spec = _iu.spec_from_file_location(
+            "marcador_segmento_ic", RAIZ / "tools" / "marcador_segmento.py")
+        MS = _iu.module_from_spec(spec)
+        spec.loader.exec_module(MS)
+        sellados = MS.ic_de_emisiones()
+        self.assertTrue(sellados, "ningún CALC de IC legible (A.13)")
+
+        n_con_ic = 0
         for cid, e in self.emitidas.items():
-            self.assertIn(e["ic95_inf"], ("", None), cid)
-            self.assertIn(e["ic95_sup"], ("", None), cid)
-            self.assertEqual(e["diagnostico_rango_es_ic"], "NO", cid)
+            self.assertEqual(e["diagnostico_rango_es_ic"], "NO", cid)   # (c)
+            rid = e["resultado_id"]
+            sello = sellados.get(rid)
+            if sello is None:                                            # (b)
+                self.assertIn(e["ic95_inf"], ("", None), cid)
+                self.assertIn(e["ic95_sup"], ("", None), cid)
+                self.assertEqual(e["tipo_incertidumbre"],
+                                 MS.IC_NO_PROPAGADO, cid)
+                continue
+            n_con_ic += 1                                                # (a)
+            self.assertEqual(e["ic95_inf"], sello["ic95_inf"], cid)
+            self.assertEqual(e["ic95_sup"], sello["ic95_sup"], cid)
+            self.assertEqual(e["ic95_fuente"], sello["calc"], cid)
+            self.assertEqual(e["tipo_incertidumbre"], MS.IC_PROPAGADO, cid)
+        self.assertTrue(n_con_ic,
+                        "ninguna emisión trae IC sellado: el enlace del P3 "
+                        "no está haciendo nada")
 
     def test_emitir_no_consume_la_reserva(self):
         """Las dos cosas a la vez, en columnas distintas."""

@@ -24,20 +24,20 @@ en `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-3-cierre.md`.
 - **qué:** P1 · Borrado, cubeta por cubeta.
   **por qué:** `DIFERIDO-A` para 8 de 124 ramas (el resto, 116, se ejecutó).
   **impacto:** 3 `EN-VUELO` (regla de 24h), 4 `WORKTREE-SUCIO`, 1 `REVISADO-A-MANO` (verificado a mano como seguro pero fuera del criterio mecánico por disciplina) quedan sin borrar — listadas completas en la nota de cierre.
-  **sucesor:** `NC-0404` (`CERRADA`) → un barrido sucesor idéntico recoge las 8 cuando pase su condición.
+  **sucesor:** `NC-0419` (`CERRADA`) → un barrido sucesor idéntico recoge las 8 cuando pase su condición.
 
 - **qué:** P2 · Rescate de MOTRAL.
   **por qué:** `PARO-PREMISA` en el propio CALC: `verify` da `NO-EJECUTABLE` — el `resultados.json` sellado nunca tuvo los ~42 `RESULT` que su `spec.yaml` contrata (solo 3 keys de diagnóstico), no es drift de entorno.
   **impacto:** `CALC-MOTRAL2015-PRIORIDADES-PRESTACIONES-0001` no se rescata; sigue sin `CALC` en `main`.
-  **sucesor:** `NC-0405` (`CERRADA`) → `SIN-ASIGNAR`, quien repare `medidor.py` para que cumpla su propio contrato de outputs y vuelva a sellar.
+  **sucesor:** `NC-0420` (`CERRADA`) → `SIN-ASIGNAR`, quien repare `medidor.py` para que cumpla su propio contrato de outputs y vuelva a sellar.
 
 - **qué:** P3 · La colisión que `#913` no vio (dictamen `CALC-PISOS-ENIF2021-EJES-0002`).
-  **por qué:** Ejecutado — `NC-0406` (`CERRADA`).
+  **por qué:** Ejecutado — `NC-0421` (`CERRADA`).
   **impacto:** veredicto `CORRECCION-INDEPENDIENTE-DEL-RESULTADO`; `-0003` no lleva reserva ni FP; directorio de la rama Codex archivado como evidencia con sha256.
   **sucesor:** Ninguno.
 
 - **qué:** P4 · Nota por `/acto` con la corrección a `#913` asentada por enmienda.
-  **por qué:** Ejecutado — `NC-0407` (`CERRADA`).
+  **por qué:** Ejecutado — `NC-0422` (`CERRADA`).
   **impacto:** enmienda asentada en la nota de cierre de este acto (no se editó la nota de `#913`, A.3).
   **sucesor:** Ninguno.
 
@@ -50,4 +50,4 @@ arriba), P2 no rescató MOTRAL (`verify` `NO-EJECUTABLE`, sello incompleto desde
 dictaminó `CORRECCION-INDEPENDIENTE-DEL-RESULTADO` sobre la colisión `CALC-PISOS-ENIF2021-EJES-
 0002`, P4 asentó la enmienda a `#913`. Ver `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-
 3-paro.md`, `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-3-cierre.md` y
-`canon/gobernanza-v1_15.md ADR-563`.
+`canon/gobernanza-v1_15.md ADR-567`.

@@ -1061,6 +1061,18 @@ TOL_FLOTANTE_DEFECTO = 1e-10
 SELLA_PY = RAIZ / "tools" / "sella_sha256.py"
 ENTORNO_PY = RAIZ / "tools" / "entorno.py"
 
+# ACTO GEN2-CORRIDA0-RENDIMIENTO-1 · P3. `_verifica_sello` lanzaba un
+# interprete de Python nuevo por cada sello (315 llamadas medidas en un
+# `status`, 164 directorios distintos) solo para correr
+# `sella_sha256.py --verifica`. `verifica()` ya era una funcion pura de
+# solo lectura que devuelve `(codigo, mensaje)` con los MISMOS tres codigos
+# que el CLI (0 COINCIDE · 2 SIDECAR_AUSENTE · 3 NO_COINCIDE), asi que se
+# importa directo -- mismo patron que `_PR` arriba. La CLI de
+# `sella_sha256.py` queda intacta: no se le toca una linea.
+_spec_sella = importlib.util.spec_from_file_location("sella_sha256", SELLA_PY)
+_SELLA = importlib.util.module_from_spec(_spec_sella)
+_spec_sella.loader.exec_module(_SELLA)
+
 # P1 (ACTO GEN2-E3-1 · READINESS-DEL-RUNNER): resolver unico de payload,
 # importado DIRECTO -- mismo patron que `tests/corpus.py` ya usa para
 # reutilizar `tests/manifiesto.py` -- nunca por subproceso. El objeto que
@@ -2399,10 +2411,19 @@ def _verifica_sello(d: Path) -> tuple[str, str]:
     sello_json = d / "sello.json"
     if not (d / "sello.sha256").exists():
         return "AUSENTE", "sin sello.sha256 -- no hay recibo sellado que verificar"
-    r = subprocess.run([sys.executable, str(SELLA_PY), "--verifica", str(sello_json)],
-                       cwd=RAIZ, capture_output=True, text=True)
-    if r.returncode != 0:
-        return "NO-COINCIDE", f"sidecar de sello.json no valida (exit={r.returncode})"
+    # P3 (RENDIMIENTO-1): en proceso, no por subproceso. El codigo de salida
+    # que se reporta es el MISMO que devolvia el CLI -- `verifica()` es su
+    # unica fuente en los dos caminos -- y los tres estados de A.1 siguen sin
+    # colapsarse: `AUSENTE` lo decide la rama de arriba (sin `sello.sha256`),
+    # raiz-no-configurada y hash-discordante salen de los codigos 1/2/3 de
+    # `verifica()`. Una excepcion se reporta como el CLI la habria reportado:
+    # un exit distinto de cero, nunca un COINCIDE piadoso.
+    try:
+        codigo, _mensaje = _SELLA.verifica(str(sello_json))
+    except Exception:  # noqa: BLE001 -- el CLI tampoco distinguia la causa
+        codigo = 1
+    if codigo != 0:
+        return "NO-COINCIDE", f"sidecar de sello.json no valida (exit={codigo})"
     try:
         sello = json.loads(sello_json.read_text(encoding="utf-8"))
     except (OSError, ValueError) as exc:
@@ -3405,7 +3426,18 @@ def _es_referencia_numerica(ruta: str) -> bool:
                 or _ruta_es_fuente_nueva_acreditada(normal))
 
 
-@lru_cache(maxsize=256)
+# ACTO GEN2-CORRIDA0-RENDIMIENTO-1 · P2. El `maxsize=256` de este cache era
+# mas chico que el universo que tiene que cubrir, y `_propaga_envuelto` lo
+# recorre en un orden que lo hace thrashear entero. Medido sobre `status` en
+# `adcfa978`: 219 134 llamadas sobre 947 rutas distintas (factor 231.4x) y
+# 12 797 FALLOS de cache -- es decir, 13.5 parseos de YAML por archivo en vez
+# de uno. Ese sobre-parseo era el 93 % del tiempo de `_filas_registro` bajo
+# cProfile (183 s de 197 s en `_yaml_safe_load`). Subir el techo por encima
+# del universo no cambia la semantica -- la funcion es pura sobre la ruta y
+# ya estaba cacheada de proceso -- solo deja de tirar lo que va a volver a
+# pedir. No es cache en disco ni indice persistente (D-14): sigue viviendo y
+# muriendo con la invocacion.
+@lru_cache(maxsize=4096)
 def _referencias_numericas_de_intermediario(ruta: str) -> tuple[tuple[str, ...], str]:
     """Rutas numéricas citadas por un JSON/YAML/TSV colectivo ya declarado.
 
@@ -3447,6 +3479,19 @@ def _referencias_numericas_de_intermediario(ruta: str) -> tuple[tuple[str, ...],
 
 
 def _funcion_de_dependencia(entrada: dict) -> str:
+    """NO SE CACHEA, Y ESO SE MIDIO (ACTO GEN2-CORRIDA0-RENDIMIENTO-1 · P1).
+
+    Es funcion pura de cuatro campos de su entrada (`funcion`, `origen`,
+    `id`, `ruta`) y se la llama 273 385 veces sobre 1 653 tuplas distintas en
+    un `status` -- factor de repeticion 165.4x. Memoizarla por esa tupla se
+    implemento y se midio: CON el cache de P2 arriba puesto, quitar esa
+    memoizacion cuesta 22.3 s contra 20.6 s (mediana de 3, `status`, 4 CPU),
+    o sea 7.7 % -- por debajo del 10 % que el encargo fija como precio
+    minimo de la complejidad, asi que se revirtio. La razon es que el
+    sobre-parseo de YAML que P2 quita era lo que hacia caro cada recorrido;
+    ya sin el, las 273 385 llamadas son baratas. Si alguien vuelve a
+    proponerlo, esta es la cifra que tiene que mover.
+    """
     explicita = str(entrada.get("funcion") or "").upper().replace("_", "-")
     if explicita:
         return explicita if explicita in FUNCIONES_DEPENDENCIA else FUNCION_INDETERMINADA
