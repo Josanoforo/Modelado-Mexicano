@@ -1,9 +1,9 @@
 {
   "control": "COINCIDE",
-  "replay_tablas": "IDENTICO",
+  "integridad_archivos": "IDENTICO",
   "p_ge2": 0.5555285873416805,
   "ee_ge2": 0.01340111907105023,
   "delta_p": 3.1941116418465754e-13,
   "delta_ee": 5.022891824690845e-14,
-  "metodo": "implementacion separada; compara SHA-256 regenerado con los cinco RESULT sellados"
+  "metodo": "control independiente e integridad de archivos: compara SHA-256 de archivos ya materializados; no constituye regeneración"
 }
