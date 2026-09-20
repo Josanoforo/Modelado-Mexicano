@@ -89,4 +89,4 @@ FIRMAS DE MESA
 
 ## CONSUMIDO
 
-Ejecutado por `ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_1`, **PR #926** (apilado sobre PR #924), 20/sep/2026 (CAJA, Opus 5). Congela spec v1.1 + `CALC-GOB-DIGITAL-EXE-EMISIONES-0002` + `CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001`, validados por prueba sintética y oro sobre 2023 (7/7); `FP-399`/`FP-400` FIRMADAS; celda-D SPEC-CONGELADA; `ADR-565`. No ejecuta COMMIT-2 ni 3; ENCIG 2025 no abierta. Nota: `forense/notas/nota-2026-09-20-gen2-celda-d-piloto-3-commit-1-v1_1.md`.
+Ejecutado por `ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_1`, **PR #926** (apilado sobre PR #924), 20/sep/2026 (CAJA, Opus 5). Congela spec v1.1 + `CALC-GOB-DIGITAL-EXE-EMISIONES-0002` + `CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001`, validados por prueba sintética y oro sobre 2023 (7/7); `FP-399`/`FP-400` FIRMADAS; celda-D SPEC-CONGELADA; `ADR-568`. No ejecuta COMMIT-2 ni 3; ENCIG 2025 no abierta. Nota: `forense/notas/nota-2026-09-20-gen2-celda-d-piloto-3-commit-1-v1_1.md`.

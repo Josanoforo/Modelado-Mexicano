@@ -1,0 +1,99 @@
+calc_id: CALC-PISOS-ENIF2021-EJES-0002
+spec_md: ../../../forense/prereg-caja/PISOS-ENIF2021-ejes-spec-v2_0.md
+spec_md_sha256: 26ecba57aece61c4dcb66b2e7e468cd658860ffe98cccb86fef9ff93ef9c0cff
+script: data/corrida0/CALC-PISOS-ENIF2021-EJES-0002/medidor.py
+etiquetas: {generacion: GEN2, tipo: PISO-PERSISTENCIA-POR-EJE, cuenta_gen2: SI, sucesor_de: CALC-PISOS-ENIF2021-EJES-0001}
+inputs:
+  - {id: enif2021_csv, origen: manifiesto}
+variables:
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_1_1..P5_1_6, rol: ahorro-informal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_7_1..P5_7_9, rol: ahorro-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P5_4_1..P5_4_9, rol: eje-cuenta-formal}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: SEXO, rol: eje-sexo}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: EDAD, rol: eje-edad}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: TLOC, rol: eje-localidad}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: P3_1_1, rol: eje-escolaridad}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: FAC_ELE, rol: ponderador}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: EST_DIS, rol: estrato}
+  - {archivo: conjunto_de_datos_tmodulo_enif_2021.csv, variable: UPM_DIS, rol: upm}
+universo: "Persona elegida 18+; categorias de eje validas y FAC_ELE/diseno validos."
+filtros: "Edad valida 18--96; centinelas y ausencias fuera del eje; sin imputacion."
+ponderador: FAC_ELE
+transformacion: "Alguna P5_1_1..6=1 y ninguna P5_7_1..9=1; cuenta formal por P5_4."
+estimando: "p_t-1(desenlace | categoria), proporcion ponderada [0,1]."
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+parametros: {bootstrap_replicas: 10000, metodo_ic: "bootstrap UPM estratificado; percentiles 2.5/97.5"}
+dependencias_materiales: [numpy, pandas]
+resultados:
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-N-UNIVERSO, tipo: entero, unidad: "filas del universo propio"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-SEXO-2-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-SEXO-2-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-SEXO-2-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-SEXO-2-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-SEXO-2-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-18-29-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-18-29-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-18-29-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-30-44-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-30-44-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-30-44-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-30-44-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-45-59-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-45-59-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-45-59-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-45-59-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-60-MAS-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-60-MAS-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-60-MAS-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SECUNDARIA-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SUPERIOR-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-MENOS-15000-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-MENOS-15000-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-MENOS-15000-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-MENOS-15000-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-MENOS-15000-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-15000-Y-MAS-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-15000-Y-MAS-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-15000-Y-MAS-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-15000-Y-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-15000-Y-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-SIN-CUENTA-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-SIN-CUENTA-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-SIN-CUENTA-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-SIN-CUENTA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-SIN-CUENTA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-CON-CUENTA-P, tipo: flotante, unidad: "proporcion ponderada [0,1]"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-CON-CUENTA-IC-LO, tipo: flotante, unidad: "limite inferior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-CON-CUENTA-IC-HI, tipo: flotante, unidad: "limite superior IC95 muestral"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-CON-CUENTA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-FORMAL-CON-CUENTA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+tolerancia: {tipo: flotante, abs: 1.0e-10}
