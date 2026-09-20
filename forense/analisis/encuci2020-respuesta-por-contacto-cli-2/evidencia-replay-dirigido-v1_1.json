@@ -1,0 +1,49 @@
+[
+  {
+    "calc_id": "CALC-ENCUCI2020-RESPUESTA-POR-CONTACTO-0001-v1_1",
+    "fecha_verificacion": "2026-09-19",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ENCUCI2020-RESPUESTA-POR-CONTACTO-0001-v1_1"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "459d0b6107d0e6a44f5615c0599d6067c296df3ca8ebf30f00d2684270ef1388",
+      "script_blob_sha256": "ed7501c6ba63a540263f5949194d6daf216d8fcaf7e30869dce945bea9e502b4",
+      "input_sha256_efectivos": "encuci2020_bd_dbf=0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ENCUCI2020-RPCV11-CONTRASTES-POR-CONTACTO": null,
+        "RESULT-ENCUCI2020-RPCV11-LLAVE-IDPER": null,
+        "RESULT-ENCUCI2020-RPCV11-MASA-PONDERADA": 0.0,
+        "RESULT-ENCUCI2020-RPCV11-METODO-IC": null,
+        "RESULT-ENCUCI2020-RPCV11-N-ESTRATOS": null,
+        "RESULT-ENCUCI2020-RPCV11-N-ESTRATOS-SINGLETON": null,
+        "RESULT-ENCUCI2020-RPCV11-N-FILAS": null,
+        "RESULT-ENCUCI2020-RPCV11-N-PONDERADOR-VALIDO": null,
+        "RESULT-ENCUCI2020-RPCV11-N-UPM": null,
+        "RESULT-ENCUCI2020-RPCV11-PERFIL-POR-CONTACTO": null,
+        "RESULT-ENCUCI2020-RPCV11-SOLAPAMIENTO-OTROS-CONTACTOS": null,
+        "RESULT-ENCUCI2020-RPCV11-VALIDACIONES-POR-CONTACTO": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 1e-10,
+        "razon": "misma semilla y sumas deterministas"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ENCUCI2020-RPCV11-CONTRASTES-POR-CONTACTO\": null, \"RESULT-ENCUCI2020-RPCV11-LLAVE-IDPER\": null, \"RESULT-ENCUCI2020-RPCV11-MASA-PONDERADA\": 0.0, \"RESULT-ENCUCI2020-RPCV11-METODO-IC\": null, \"RESULT-ENCUCI2020-RPCV11-N-ESTRATOS\": null, \"RESULT-ENCUCI2020-RPCV11-N-ESTRATOS-SINGLETON\": null, \"RESULT-ENCUCI2020-RPCV11-N-FILAS\": null, \"RESULT-ENCUCI2020-RPCV11-N-PONDERADOR-VALIDO\": null, \"RESULT-ENCUCI2020-RPCV11-N-UPM\": null, \"RESULT-ENCUCI2020-RPCV11-PERFIL-POR-CONTACTO\": null, \"RESULT-ENCUCI2020-RPCV11-SOLAPAMIENTO-OTROS-CONTACTOS\": null, \"RESULT-ENCUCI2020-RPCV11-VALIDACIONES-POR-CONTACTO\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 1e-10, \"razon\": \"misma semilla y sumas deterministas\"}}, \"identidad\": {\"spec_yaml_sha256\": \"459d0b6107d0e6a44f5615c0599d6067c296df3ca8ebf30f00d2684270ef1388\", \"script_blob_sha256\": \"ed7501c6ba63a540263f5949194d6daf216d8fcaf7e30869dce945bea9e502b4\", \"input_sha256_efectivos\": \"encuci2020_bd_dbf=0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283\"}}\n"
+  }
+]

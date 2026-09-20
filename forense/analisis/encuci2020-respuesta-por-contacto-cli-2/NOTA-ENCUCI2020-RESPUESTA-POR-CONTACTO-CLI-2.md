@@ -61,22 +61,29 @@ sello anterior.
 
 ## Replay y vistas
 
-El replay propio del sucesor fue `VERIFY: REPRODUCE (CONTEXTO=IDENTICO ·
-RESULTADO=REPRODUCE)`. La publicación canónica se intentó exclusivamente por
-la interfaz vigente:
+La verificación oficial dirigida al sucesor
+`CALC-ENCUCI2020-RESPUESTA-POR-CONTACTO-0001-v1_1--796156326e60` concluyó
+`REPRODUCE` con `CONTEXTO=IDENTICO`: 12/12 RESULT y 1/1 input coinciden. Se
+ejecutó sin el límite transitorio de 30 segundos, primero en intérprete
+aislado y después mediante la interfaz de registro dirigida:
 
 ```text
 python3 tools/corrida0.py registro --verifica --escribe --lote CALC-ENCUCI2020-RESPUESTA-POR-CONTACTO-0001-v1_1
 ```
 
-La proyección sin reejecución concluyó y escribió las tres vistas: `corridas.tsv`
-229 filas, `resultados.tsv` 8,954 filas y `usos.tsv` 228 filas. La fila propia
-queda publicada como SELLADA, con los 12 RESULT, pero todavía
-`NO-VERIFICADO/SIN-FUENTE`: no se presenta como replay asentado.
+La evidencia aislada está en
+`forense/analisis/encuci2020-respuesta-por-contacto-cli-2/evidencia-replay-dirigido-v1_1.json`.
+El asentador propio validó sus huellas de spec, script e input frente a la
+corrida sellada antes de incorporar el asiento a
+`forense/replay-evidencia.tsv` (fila del sucesor). La proyección canónica se
+publicó con:
 
-El intento dirigido con `--verifica` sigue siendo el bloqueo real: alcanzó el
-límite de 30.2 s sin stdout ni stderr y
-`/tmp/rpc-registro-verify.log` quedó en 0 bytes. La receta pendiente exacta es
-el comando anterior en una sesión con ventana mayor de 30 s; esa ejecución es
-la única vía autorizada para proyectar `REPRODUCE/IDENTICO` en lugar de editar
-el asiento a mano.
+```text
+python3 tools/corrida0.py registro --escribe --lote CALC-ENCUCI2020-RESPUESTA-POR-CONTACTO-0001-v1_1
+```
+
+Escribió `corridas.tsv` (229 filas), `resultados.tsv` (8,954) y `usos.tsv`
+(228). Las vistas referencian `VERIFY-DIRIGIDO … replay-evidencia.tsv#…v1_1`,
+por lo que la corrida SELLADA queda acreditada como `REPRODUCE/IDENTICO`, no
+como `NO-VERIFICADO/SIN-FUENTE`. El sello histórico de `...-0001` permanece
+sin alteración; no hay adopción ni fusión.
