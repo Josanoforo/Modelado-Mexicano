@@ -1,5 +1,5 @@
 {
- "corrida_id": "CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002--8507f8cf7e3f",
+ "corrida_id": "CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002--18e3c08247d5",
  "dependencias_materiales": {
   "numpy": "2.3.5",
   "pandas": "2.3.3",
@@ -19,7 +19,7 @@
   "tipo": "DESCRIPTIVO-SEXO-COHORTE"
  },
  "exit_code": 0,
- "fecha": "2026-09-20T00:14:51Z",
+ "fecha": "2026-09-20T01:22:45Z",
  "firma_entorno": {
   "acceso_corpus": {
    "archivos_examinados": 419,
@@ -33,7 +33,7 @@
    "scipy": "1.16.3",
    "yaml": "6.0.3"
   },
-  "git_commit": "8507f8cf7e3f43e0a1b2b54810f9c48243e8350f",
+  "git_commit": "18e3c08247d5864a29b14f58e60c3d179d3e3661",
   "git_rama": "codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1",
   "git_status": "LIMPIO",
   "git_status_lineas": 0,
@@ -59,7 +59,7 @@
    "TZ": "sin_variable"
   }
  },
- "git_commit": "8507f8cf7e3f43e0a1b2b54810f9c48243e8350f",
+ "git_commit": "18e3c08247d5864a29b14f58e60c3d179d3e3661",
  "input_ids": [
   "eder_2017_eder2017_bases_csv",
   "eder_2017_eder2017_fd"
@@ -125,7 +125,7 @@
  "spec_id": "CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002",
  "spec_md_estado": "NO-EN-MAIN",
  "spec_md_sha256": "4894d4d5e8b78c96dab2f83576318d6a52103eafd238bab1d1d9968de8727b5c",
- "spec_yaml_sha256": "868afcb41913869546cffa9d2eee20f6bb42ce11d5fae23bddd6d58071ba3d39",
+ "spec_yaml_sha256": "d5d783b218a8e3491f2b8912e8ad6cb2c3f0ff0dff4d1747de2f30aba1ad4e50",
  "tolerancia": {
   "abs": 1e-10,
   "razon": "sumas float64 y semilla fija",
