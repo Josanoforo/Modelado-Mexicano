@@ -1,0 +1,30 @@
+{
+  "alternativa_requerida": false,
+  "alternativas": [],
+  "ciclos_sin_avance": 1,
+  "continuacion_pendiente": false,
+  "cursor_continuacion": "No repetir búsqueda web; el acto autorizado consume verify REPRODUCE y actualiza registro sin alterar el estimando.",
+  "estado": "evidencia_existente",
+  "evidencias": [
+    "forense/notas/2026-09-20-GEN2-38-investigacion-adq.md",
+    "data/corrida0/CALC-ENCRIGE-CORRUPCION-DESCRIPTIVA-0001/sello.json",
+    "data/manifiesto.yaml"
+  ],
+  "frontera_no_examinada": "Ninguna ruta externa material para esta brecha; resta registro/gobierno, no fuente.",
+  "necesidad_id": "NC-0284",
+  "proxima_revision": "",
+  "suficiencia": {
+    "conceptual": "ACREDITADA",
+    "diseno": "ACREDITADA",
+    "identidad": "ACREDITADA",
+    "identificacion": "NO_APLICA",
+    "poblacional": "ACREDITADA",
+    "pregunta_original": "CUBIERTA",
+    "seleccion_no_respuesta": "ACREDITADA",
+    "temporalidad": "ACREDITADA",
+    "unidad": "ACREDITADA",
+    "uso_habilitado": "APTA_USO_DECLARADO"
+  },
+  "ultima_exploracion": "2026-09-20",
+  "version_pregunta": "AUTO-NC-v1-1849e41a8cba"
+}
