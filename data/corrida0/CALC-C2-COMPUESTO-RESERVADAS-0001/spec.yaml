@@ -1,0 +1,794 @@
+# CALC-C2-COMPUESTO-RESERVADAS-0001 -- cara mecanica de spec.md.
+# ACTO GEN2-C2-COMPUESTO-RESERVADAS-1 (19/sep/2026), P2 / COMMIT-2.
+# Gobierna forense/prereg-caja/C2-COMPUESTO-RESERVADAS-spec-v1_0.md,
+# congelada en el COMMIT-1 -- ANTES de que existiera una sola emision.
+# CERO MICRODATO: los seis inputs son `origen: repo`.
+calc_id: CALC-C2-COMPUESTO-RESERVADAS-0001
+spec_md: spec.md
+spec_md_sha256: cb754f0915aaa247b240ebe5314cc1bc21e5be76c746e9abc333936f60fa6065
+
+script: data/corrida0/CALC-C2-COMPUESTO-RESERVADAS-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: EMISIONES-C2-COMPUESTO-SOBRE-CRUCES-RESERVADA
+  unidad_transferencia: "POR FILA (DELITO / TRAMITE / PERSONA elegida 18+) -- ningun numero cruza unidad"
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI  # PROPUESTO -- nace PENDIENTE-DE-MESA salvo firma; `adoptados_activos` no se mueve
+  estado_de_emision: EMITIDA-SIN-EVALUAR
+  validacion_independiente: CONTROL-DE-REPRODUCCION-CONTRA-EL-C2-YA-SELLADO-DEL-PAR-PILOTEADO (RESULT-C2COMP-CONTROL-ARBITRO) + CONTRATO-C2-PINADO-EN-tests/test_celda_d_c2.py + tests/test_c2_compuesto.py (T32-ter en tests/check.py)
+  fuente_acto: GEN2-C2-COMPUESTO-RESERVADAS-1
+  firma_vigente: "mesa 19/sep/2026, verbatim en forense/encargos/2026-09-19-GEN2-C2-COMPUESTO-RESERVADAS-1.md; el careo adjunto que la firma cita NO esta en el arbol (0 de 5769 archivos) -- sha256/16 NO-VERIFICABLE-AQUI, ver spec §0"
+  microdato_abierto: "NO -- ninguna ola reservada se abre; data/raw ausente en este entorno y no se pidio"
+  orden_de_commits: "COMMIT-1 spec + dictamen (sin una sola emision) -> COMMIT-2 este CALC"
+
+inputs:
+  - id: IN-ARBITRO-MARGINALES
+    origen: repo
+    ruta: milpa/tramite-ola5-propuesta-v0.yaml
+    sha256: 93dfa3f9aab250dabf9cbe8c93ccef2012cb763c5367d023f24dbfbd867fbc8f
+    rol: >-
+      marginales R con IC95 y n de los 7 ids `_ejes_` -- la UNICA entrada numerica por eje
+  - id: IN-MOTOR-NACIONALES
+    origen: repo
+    ruta: milpa/tramite.yaml
+    sha256: 4b635828c326a5f5e7e125254fe80c91f4416c27041bc88ba5322409b274922d
+    rol: >-
+      los cuatro nacionales por desenlace (citados, no recalculados); se LEE, no se edita
+  - id: IN-MARCADOR-SEGMENTO
+    origen: repo
+    ruta: data/corrida0/marcador-segmento.tsv
+    sha256: cd773ff3aa3e33d28aee2be5ddca654f900d93eb2029986ffd1f8173b07f32a0
+    rol: >-
+      los 22 cruces RESERVADA; se LEE, no se edita en este CALC
+  - id: IN-SPEC-SELLADA
+    origen: repo
+    ruta: forense/prereg-caja/C2-COMPUESTO-RESERVADAS-spec-v1_0.md
+    sha256: bacd82611e749a7d7e109e287b87430a19dc02ac7c3b31a2f87d93ad5a9b242b
+    rol: >-
+      spec congelada en el COMMIT-1, anterior a esta corrida
+  - id: IN-FORMA-C2-SELLADA
+    origen: repo
+    ruta: tests/test_celda_d_c2.py
+    sha256: 71878f9ca98698a4d770b77e583e5086875509dcd022ba6928b86caa976a12d9
+    rol: >-
+      `piso_log_aditivo`: la forma se importa de aqui, no se reimplementa
+  - id: IN-CONTROL-C2-YA-SELLADO
+    origen: repo
+    ruta: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/resultados.json
+    sha256: 69ec9c6a21d259a76ae5617f2cff801e6165c351c750121125cc77e642f2d8c1
+    rol: >-
+      los 8 puntos C2 del par `localidad x edad` YA PILOTEADO -- control de reproduccion
+
+variables: []
+# Vacia a proposito y no por omision: `variables` es el contrato contra el
+# INVENTARIO DE REACTIVOS, que cataloga columnas de MICRODATO. Este CALC no
+# abre microdato -- sus seis inputs son archivos del repo -- asi que declarar
+# ahi `celdas[].p` o `eje_o_par` produciria nueve FAIL de `spec-check` contra
+# un inventario que, correctamente, no conoce esos nombres. Lo que se lee de
+# cada archivo esta declarado en el `rol` de su input y en spec.md §1-§2.
+universo: >-
+  Los 22 cruces `RESERVADA` de data/corrida0/marcador-segmento.tsv, abiertos a
+  36 filas (par x bloque de desenlace) porque el marcador colapsa los dos
+  desenlaces de ENIF (`_camina_ejes` toma el max sobre bloques) y la firma de
+  mesa emite POR desenlace. La celda unidad de la emision es (eje_a, eje_b) del
+  par, dentro del universo de la regla del arbitro. El par `localidad x edad`
+  de ENIF NO esta aqui: ya fue piloteado, y por eso sirve de control externo.
+
+filtros: >-
+  EMITIBLE exige las cinco condiciones de la spec §4 -- mismo desenlace, mismo
+  universo, misma unidad, misma ola y mismo ponderador -- mas las dos guardias
+  de la forma: ningun marginal sin punto y ninguno con p en {0,1}. Un eje con
+  `universo_restringido: true` (A-bis 4) no compone con ejes de universo
+  completo. Nada se recorta ni se sustituye: lo que no pasa queda NO-EMITIBLE
+  con causa citada.
+
+ponderador: >-
+  Heredado del arbitro y no re-derivado: FAC_PER (ENIF 2024), FAC_TRA
+  (ENCIG 2025), FAC_DEL (ENVIPE 2025). Este CALC no pondera nada: compone
+  puntos ya ponderados.
+
+transformacion: >-
+  C2(a,b) = expit(logit p(a) + logit p(b) - logit p), con p el nacional del
+  MISMO desenlace, misma ola, mismo universo y mismo ponderador. La funcion se
+  IMPORTA de tests/test_celda_d_c2.py::piso_log_aditivo; no se reimplementa.
+  Supuesto declarado: ausencia de interaccion en escala logit
+  (`supuesto: sin-interaccion`). Rotulo PROHIBIDO: `independencia` -- C2 no
+  identifica P(Y | a, b).
+
+estimando: >-
+  Un piso compuesto, en PROPORCION, por celda de cruce. Es un piso declarado y
+  solo-marginal que un challenger debe vencer; NO es la conjunta medida y NO es
+  un efecto. Asociacion dentro de una corrida (A-bis 1), nunca efecto (A-bis 2).
+  Estado EMITIDA-SIN-EVALUAR: excluida de la estimacion adoptada del motor.
+
+dependencias_materiales: [yaml]
+
+parametros:
+  fuente_acto: "ACTO GEN2-C2-COMPUESTO-RESERVADAS-1 · CALC-C2-COMPUESTO-RESERVADAS-0001"
+  spec_sellada: forense/prereg-caja/C2-COMPUESTO-RESERVADAS-spec-v1_0.md
+  spec_sellada_sha256: bacd82611e749a7d7e109e287b87430a19dc02ac7c3b31a2f87d93ad5a9b242b
+  c2_forma: "log-aditiva: expit(logit(p_a) + logit(p_b) - logit(p))"
+  c2_funcion_de_referencia: "tests/test_celda_d_c2.py::piso_log_aditivo -- el medidor la IMPORTA (via tools/c2_compuesto.py), no la reimplementa"
+  c2_rotulo_supuesto: "ausencia de interaccion en escala logit"
+  c2_rotulo_prohibido: "independencia"
+  c2_rechazo: "SIN-DEFINIR si algun marginal es exactamente 0 o 1; la celda es NO-CONSTRUIBLE, sin recorte y sin sustitucion"
+  supuesto: sin-interaccion
+  estado_de_emision: EMITIDA-SIN-EVALUAR
+  tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+  ic_por_que_no: >-
+    Los marginales de una misma ola salen de la misma muestra; su covarianza NO
+    esta sellada, y el IC de los C2 adoptados se obtuvo en caja replica por
+    replica (IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS). Aqui no
+    hay caja y no hay replicas: no se fabrica. Sucesor declarado: IC replica por
+    replica con el modulo guardado de una sola variable de agrupacion.
+  diagnostico_no_es_ic: >-
+    Los RESULT-C2COMP-DIAG-INF-*/DIAG-SUP-* son el recorrido del punto al mover
+    cada marginal a los extremos de SU IC95, una esquina a la vez. No es un
+    intervalo de confianza: ignora la covarianza que lo haria uno y no tiene
+    cobertura declarada. Nombre distinto a proposito.
+  # ── control de reproduccion (spec §4 de spec.md, §7 de la spec sellada) ──
+  input_control: IN-CONTROL-C2-YA-SELLADO
+  prefijo_control: "RESULT-DIN-LXE8-C2-P-"
+  desenlace_control: ahorra_solo_informal
+  nacional_control: 0.357153
+  umbral_control: 1.0e-12
+  celdas_control_a: [L1, L2]
+  celdas_control_b: [E1, E2, E3, E4]
+  marginales_control:
+    E1: 0.432063
+    E2: 0.375709
+    E3: 0.327505
+    E4: 0.277317
+    L1: 0.409255
+    L2: 0.329868
+  control_ramas: "REPRODUCE si |delta| <= 1e-12 en las 8 celdas; NO-REPRODUCE en otro caso, con el delta con signo y SIN ajustar nada -- no invalida las emisiones, invalida la afirmacion de que este medidor ejecuta la receta sellada; NO-EJECUTABLE si falta el resultados.json de control, que no es un NO-REPRODUCE piadoso"
+  control_excluye: "las claves ...-C2-P-REDERIVADO-... re-derivan los marginales desde microdato en vez de citarlos y difieren del orden de 1e-3 por esa razon, no por la forma"
+
+seed:
+  aplica: false
+  razon: >-
+    Aritmetica determinista sobre marginales ya sellados: no hay remuestreo, no
+    hay sorteo y no hay orden aleatorio. Dos corridas del mismo arbol dan los
+    mismos bits.
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-12
+  razon: >-
+    Sin remuestreo, la unica diferencia esperable entre dos corridas del mismo
+    arbol es redondeo de float64. Los enteros y los textos se comparan EXACTO.
+
+resultados:
+  - {id: RESULT-C2COMP-N-PARES-RESERVADA-EXAMINADOS, tipo: entero, unidad: "pares RESERVADA del marcador examinados (A.13)"}
+  - {id: RESULT-C2COMP-N-FILAS-DICTAMEN, tipo: entero, unidad: "filas (par x bloque de desenlace) dictaminadas"}
+  - {id: RESULT-C2COMP-N-FILAS-EMITIBLES, tipo: entero, unidad: "filas EMITIBLE"}
+  - {id: RESULT-C2COMP-N-FILAS-NO-EMITIBLES, tipo: entero, unidad: "filas NO-EMITIBLE, cada una con causa citada"}
+  - {id: RESULT-C2COMP-N-PARES-EMITIBLES, tipo: entero, unidad: "pares RESERVADA emitibles en al menos un desenlace"}
+  - {id: RESULT-C2COMP-N-PARES-NO-EMITIBLES-EN-NINGUN-DESENLACE, tipo: entero, unidad: "pares RESERVADA sin emision en ningun desenlace"}
+  - {id: RESULT-C2COMP-N-CELDAS-EMITIDAS, tipo: entero, unidad: "celdas con punto C2 emitido"}
+  - {id: RESULT-C2COMP-N-CELDAS-CON-IC, tipo: entero, unidad: "celdas con IC (debe ser 0: la incertidumbre no se fabrica)"}
+  - {id: RESULT-C2COMP-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "tipo declarado de incertidumbre"}
+  - {id: RESULT-C2COMP-SUPUESTO, tipo: texto, unidad: "supuesto que la emision lleva encima"}
+  - {id: RESULT-C2COMP-ESTADO-DE-EMISION, tipo: texto, unidad: "estado con que nace toda emision"}
+  - {id: RESULT-C2COMP-CONTROL-ARBITRO, tipo: texto, unidad: "REPRODUCE / NO-REPRODUCE / NO-EJECUTABLE"}
+  - {id: RESULT-C2COMP-CONTROL-DELTA-MAX-ABS, tipo: flotante, unidad: "peor |delta| contra el C2 ya sellado", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-CONTROL-N-CELDAS, tipo: entero, unidad: "celdas del control comparadas (A.13)"}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-18-29, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-18-29, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-18-29, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-30-44, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-30-44, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-30-44, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-45-59, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-45-59, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-45-59, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-60, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-60, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-60, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-CON-CUENTA-X-18-29, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-CON-CUENTA-X-18-29, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-CON-CUENTA-X-18-29, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-CON-CUENTA-X-30-44, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-CON-CUENTA-X-30-44, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-CON-CUENTA-X-30-44, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-CON-CUENTA-X-45-59, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-CON-CUENTA-X-45-59, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-CON-CUENTA-X-45-59, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-CON-CUENTA-X-60, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-CON-CUENTA-X-60, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-CON-CUENTA-X-60, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-SIN-CUENTA-X-18-29, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-SIN-CUENTA-X-18-29, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-SIN-CUENTA-X-18-29, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-SIN-CUENTA-X-30-44, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-SIN-CUENTA-X-30-44, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-SIN-CUENTA-X-30-44, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-SIN-CUENTA-X-45-59, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-SIN-CUENTA-X-45-59, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-SIN-CUENTA-X-45-59, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-SIN-CUENTA-X-60, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-SIN-CUENTA-X-60, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-SIN-CUENTA-X-60, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-CON-CUENTA-X-18-29, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-CON-CUENTA-X-18-29, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-CON-CUENTA-X-18-29, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-CON-CUENTA-X-30-44, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-CON-CUENTA-X-30-44, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-CON-CUENTA-X-30-44, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-CON-CUENTA-X-45-59, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-CON-CUENTA-X-45-59, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-CON-CUENTA-X-45-59, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-CON-CUENTA-X-60, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-CON-CUENTA-X-60, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXEDAD-CON-CUENTA-X-60, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-SIN-CUENTA-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXESCOLARIDAD-CON-CUENTA-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-MENOR-DE-15-000, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-15-000-Y-MAS, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-MENOR-DE-15-000, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-15-000-Y-MAS, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-MENOR-DE-15-000, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-15-000-Y-MAS, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXLOCALIDAD-SIN-CUENTA-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-MENOR-DE-15-000, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-15-000-Y-MAS, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXLOCALIDAD-CON-CUENTA-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXSEXO-SIN-CUENTA-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXSEXO-SIN-CUENTA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXSEXO-SIN-CUENTA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXSEXO-SIN-CUENTA-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXSEXO-SIN-CUENTA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXSEXO-SIN-CUENTA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXSEXO-CON-CUENTA-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXSEXO-CON-CUENTA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXSEXO-CON-CUENTA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXSEXO-CON-CUENTA-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXSEXO-CON-CUENTA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXSEXO-CON-CUENTA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXSEXO-SIN-CUENTA-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXSEXO-SIN-CUENTA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXSEXO-SIN-CUENTA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXSEXO-SIN-CUENTA-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXSEXO-SIN-CUENTA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXSEXO-SIN-CUENTA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXSEXO-CON-CUENTA-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXSEXO-CON-CUENTA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXSEXO-CON-CUENTA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-CUENTA-FORMALXSEXO-CON-CUENTA-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-CUENTA-FORMALXSEXO-CON-CUENTA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-CUENTA-FORMALXSEXO-CON-CUENTA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-18-29-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-18-29-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-18-29-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-18-29-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-18-29-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-18-29-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-18-29-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-18-29-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-18-29-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-18-29-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-18-29-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-18-29-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-30-44-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-30-44-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-30-44-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-30-44-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-30-44-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-30-44-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-30-44-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-30-44-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-30-44-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-30-44-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-30-44-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-30-44-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-45-59-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-45-59-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-45-59-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-45-59-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-45-59-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-45-59-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-45-59-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-45-59-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-45-59-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-45-59-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-45-59-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-45-59-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-60-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-60-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-60-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-60-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-60-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-60-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-60-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-60-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-60-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-60-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-60-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXESCOLARIDAD-60-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-18-29-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-18-29-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-18-29-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-18-29-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-18-29-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-18-29-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-18-29-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-18-29-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-18-29-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-18-29-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-18-29-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-18-29-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-30-44-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-30-44-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-30-44-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-30-44-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-30-44-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-30-44-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-30-44-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-30-44-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-30-44-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-30-44-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-30-44-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-30-44-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-45-59-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-45-59-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-45-59-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-45-59-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-45-59-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-45-59-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-45-59-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-45-59-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-45-59-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-45-59-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-45-59-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-45-59-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-60-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-60-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-60-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-60-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-60-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-60-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-60-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-60-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-60-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-60-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-60-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXESCOLARIDAD-60-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXSEXO-18-29-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXSEXO-18-29-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXSEXO-18-29-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXSEXO-18-29-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXSEXO-18-29-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXSEXO-18-29-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXSEXO-30-44-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXSEXO-30-44-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXSEXO-30-44-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXSEXO-30-44-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXSEXO-30-44-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXSEXO-30-44-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXSEXO-45-59-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXSEXO-45-59-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXSEXO-45-59-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXSEXO-45-59-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXSEXO-45-59-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXSEXO-45-59-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXSEXO-60-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXSEXO-60-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXSEXO-60-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-EDADXSEXO-60-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-EDADXSEXO-60-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-EDADXSEXO-60-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXSEXO-18-29-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXSEXO-18-29-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXSEXO-18-29-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXSEXO-18-29-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXSEXO-18-29-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXSEXO-18-29-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXSEXO-30-44-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXSEXO-30-44-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXSEXO-30-44-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXSEXO-30-44-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXSEXO-30-44-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXSEXO-30-44-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXSEXO-45-59-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXSEXO-45-59-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXSEXO-45-59-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXSEXO-45-59-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXSEXO-45-59-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXSEXO-45-59-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXSEXO-60-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXSEXO-60-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXSEXO-60-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-EDADXSEXO-60-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-EDADXSEXO-60-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-EDADXSEXO-60-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-MENOR-DE-15-000, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-15-000-Y-MAS, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-MENOR-DE-15-000, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-15-000-Y-MAS, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-MENOR-DE-15-000, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-15-000-Y-MAS, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-MENOR-DE-15-000, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-15-000-Y-MAS, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-MENOR-DE-15-000, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-15-000-Y-MAS, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-HASTA-PRIMARIA-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-MENOR-DE-15-000, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-15-000-Y-MAS, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-SECUNDARIA-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-MENOR-DE-15-000, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-15-000-Y-MAS, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-MEDIA-SUPERIOR-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-MENOR-DE-15-000, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-MENOR-DE-15-000, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-15-000-Y-MAS, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-ESCOLARIDADXLOCALIDAD-SUPERIOR-X-15-000-Y-MAS, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-SECUNDARIA-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-SECUNDARIA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-SECUNDARIA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-SUPERIOR-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-SUPERIOR-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-ESCOLARIDADXSEXO-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-SECUNDARIA-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-SECUNDARIA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-SECUNDARIA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-SUPERIOR-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-SUPERIOR-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-ESCOLARIDADXSEXO-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-LOCALIDADXSEXO-MENOR-DE-15-000-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-LOCALIDADXSEXO-MENOR-DE-15-000-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-LOCALIDADXSEXO-MENOR-DE-15-000-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-LOCALIDADXSEXO-MENOR-DE-15-000-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-LOCALIDADXSEXO-MENOR-DE-15-000-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-LOCALIDADXSEXO-MENOR-DE-15-000-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-LOCALIDADXSEXO-15-000-Y-MAS-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-LOCALIDADXSEXO-15-000-Y-MAS-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-LOCALIDADXSEXO-15-000-Y-MAS-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-AHORRA-SOLO-INFORMAL-LOCALIDADXSEXO-15-000-Y-MAS-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-AHORRA-SOLO-INFORMAL-LOCALIDADXSEXO-15-000-Y-MAS-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-AHORRA-SOLO-INFORMAL-LOCALIDADXSEXO-15-000-Y-MAS-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-LOCALIDADXSEXO-MENOR-DE-15-000-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-LOCALIDADXSEXO-MENOR-DE-15-000-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-LOCALIDADXSEXO-MENOR-DE-15-000-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-LOCALIDADXSEXO-MENOR-DE-15-000-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-LOCALIDADXSEXO-MENOR-DE-15-000-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-LOCALIDADXSEXO-MENOR-DE-15-000-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-LOCALIDADXSEXO-15-000-Y-MAS-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-LOCALIDADXSEXO-15-000-Y-MAS-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-LOCALIDADXSEXO-15-000-Y-MAS-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-INFORMAL-CUALQUIERA-LOCALIDADXSEXO-15-000-Y-MAS-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-INFORMAL-CUALQUIERA-LOCALIDADXSEXO-15-000-Y-MAS-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-INFORMAL-CUALQUIERA-LOCALIDADXSEXO-15-000-Y-MAS-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-18-29-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-18-29-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-18-29-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-18-29-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-18-29-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-18-29-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-30-44-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-30-44-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-30-44-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-30-44-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-30-44-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-30-44-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-45-59-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-45-59-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-45-59-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-45-59-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-45-59-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-45-59-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-60-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-60-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-60-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-60-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-60-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-EDADXSEXO-60-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-SECUNDARIA-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-SECUNDARIA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-SECUNDARIA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-SUPERIOR-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-SUPERIOR-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-ADOPTA-ENCIG2025-LUZ-ESCOLARIDADXSEXO-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-RURAL-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-COMPLEMENTO-URBANO-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-DOMINIO-URBANO-RURALXSEXO-URBANO-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-18-29-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-30-44-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-45-59-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-HASTA-PRIMARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-HASTA-PRIMARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SECUNDARIA, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SECUNDARIA, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-MEDIA-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-MEDIA-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SUPERIOR, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXESCOLARIDAD-PROXY-60-X-SUPERIOR, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-18-29-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-30-44-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-45-59-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-EDADXSEXO-60-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-HASTA-PRIMARIA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SECUNDARIA-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-MEDIA-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-1-HOMBRE, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-1-HOMBRE, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-2-MUJER, tipo: proporcion, unidad: "proporcion ponderada compuesta [0,1] -- PISO declarado, no conjunta medida"}
+  - {id: RESULT-C2COMP-DIAG-INF-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
+  - {id: RESULT-C2COMP-DIAG-SUP-EVADE-NORMA-ENVIPE2025-ESCOLARIDAD-PROXYXSEXO-SUPERIOR-X-2-MUJER, tipo: flotante, unidad: "recorrido DIAGNOSTICO del punto (NO es un IC95)", permite_no_estimable: true}
