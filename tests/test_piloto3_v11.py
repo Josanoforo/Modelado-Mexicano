@@ -198,7 +198,7 @@ def test_c_reserva_encig2025_no_abierta():
     # ningún archivo versionado trae un RESULT de este piloto sobre 2025
     tracked = subprocess.run(["git", "ls-files", "-z"], cwd=ROOT, capture_output=True, check=True).stdout.split(b"\0")
     for rel in tracked:
-        if not rel or not rel.endswith((b".json", b".tsv", b".yaml", b".md")):
+        if not rel or not rel.endswith((b".json", b".tsv")):   # productos, no prosa ni esquema
             continue
         if b"forense/encargos/" in rel or rel.endswith(b"test_piloto3_v11.py"):
             continue

@@ -84,6 +84,7 @@ FIRMAS DE MESA
 | COMMIT-3 R y adjudicación; llenar la celda-D; re-derivar marcador | DIFERIDO-A:sesión que ejecute COMMIT-3 tras COMMIT-2 empujado | `NC-0408`, `NC-0409`, `NC-0410` | `corrida0 run CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001` |
 | «Registra la celda-D en estado SPEC-CONGELADA» con unidad TRÁMITE | DECISIÓN-DE-MESA-PENDIENTE | Registrada con `unidad_objetivo: persona` (precedente `TRA.evade_norma`; enum no admite evento); `FP-393` sigue ABIERTA | `FP-393` |
 | Lectura de `n(a,b)` 2025 en COMMIT-2 (v1.0 §4 «sólo se puede verificar en el COMMIT-2») | SUSTITUIDO-POR:lectura en COMMIT-3 (E.6, una variable en emisiones) | Regla de soporte intacta; el COMMIT-2 emite `SOPORTE-HISTORICO`; absorbe: clasificación definitiva en `adjudicacion.py`; huérfano: nada | spec v1.1 §4; si mesa quiere el conteo en COMMIT-2, una línea + firma |
+| `tests/test_piloto3_v11.py` en CI | NO-VERIFICABLE-AQUÍ | CI no tiene numpy/pandas/pytest (FP-398 de mesa): la fila del censo lo declara `NECESITA-DEPENDENCIA(pytest)` y el job `guardias` lo salta en voz alta; corre en CAJA (7/7) | `FP-398` |
 | IC de C1a | NO-VERIFICABLE-AQUÍ | Las réplicas de 2023 no se sellaron; C1a se emite como punto con `IC-CAUSA = SIN-REPLICAS-SELLADAS-2023`; C1a es referencia, no piso | SIN-ASIGNAR (re-bootstrap de 2023 sería un CALC nuevo) |
 
 ## CONSUMIDO
