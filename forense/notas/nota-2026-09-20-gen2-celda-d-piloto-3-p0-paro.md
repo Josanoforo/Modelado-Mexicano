@@ -338,3 +338,71 @@ seleccionar entre celdas y entre cruces. Ese límite viaja a la spec.
 comando de E.2. Que `λ ≈ 0.89` dice que la varianza entre celdas domina al ruido de
 muestreo —la interacción es señal, no dispersión—, consistente con los 13 de 16 signos
 estables.
+
+## E.5 · `COMMIT-1` congelado (adenda 4)
+
+Con `P0` fuera del camino del `COMMIT-1` y el cruce elegido, se congela. **Cero
+microdato**: ninguna cifra de ENCIG 2025 se leyó para escribir nada de esto.
+
+| artefacto | qué lleva |
+|---|---|
+| `forense/prereg-caja/GOB-gobierno-digital-exe15-spec-v1_0.md` | spec humana; `sha256 20c358b6ae3025cf…` |
+| `…-spec-v1_0.sha256` | sidecar |
+| `data/corrida0/CALC-GOB-DIGITAL-EXE-EMISIONES-0001/spec.yaml` | contrato ejecutable, `resultados_esperados: []` |
+| `…/medidor.py` | código congelado, `medidor_ejecutado_al_congelar: NO` |
+| `tests/test_piloto3_guardias.py` | **24 guardias, 24 en verde** (6 saltadas por falta de `numpy`/`pandas`) |
+
+**Las dos condiciones suspensivas son mecánicas, no prosa.** Viven en
+`_guardia_suspensiva()`, que corre **antes** de cualquier medición y levanta
+`ParoDeGuardia`:
+
+- **S1** — `COMMIT-2` no corre hasta que `NC-0355` cierre `MISMO-INSTRUMENTO` o
+  `CAMBIO-MENOR`. Con `CAMBIO-DE-INSTRUMENTO` la spec **se retira sin correr**
+  (`SUPERADO`, `n_resultados = 0`): el código lo dice y el test lo pina.
+- **S2** — si la lectura de caja encuentra que alguno de `97`/`98`/`99` es **edad real
+  censurada**, para y **reporta a mesa antes de emitir**. La rejilla del árbitro
+  (`60-96`) no se toca aquí.
+
+**`λ` congelada = `0.8937949410086089`**, en los tres artefactos, y el test verifica que
+sean el mismo número **y** que satisfaga su propia identidad `τ̂²/(τ̂²+σ̄²)`.
+
+> **La guardia se ganó el sueldo en el acto.** La primera versión declaraba `λ` y sus
+> momentos redondeados a 9 decimales; `G2` falló por **2.7e-9** —`λ` no reproducía
+> `τ̂²/(τ̂²+σ̄²)` a partir de los momentos escritos—. Se corrigió guardando los momentos a
+> precisión completa en los tres sitios, no aflojando la tolerancia del test. Un
+> pre-registro cuyo parámetro no se re-deriva de sus propios insumos no es un
+> pre-registro.
+
+## E.6 · Lo que NO se pudo registrar, y por qué es un hallazgo
+
+**La celda-D `GOB.gobierno_digital.encig2025.edad_x_escolaridad` no se escribió.**
+`PARA`, y no por falta de tiempo:
+
+`tests/test_celdas_d.py:79` fija `UNIDADES_OBJETIVO = {persona, hogar, establecimiento,
+agregado_geografico}`. **La unidad de este estimando es `TRÁMITE`** — así la declaran los
+`RESULT` sellados de 2021 y 2023 (`unidad: "trámites"`), el docstring de
+`tools/medidor_gobierno_digital_encig25.py` y el propio marcador («unidad = TRÁMITE:
+quien pagó doce veces contribuye doce veces»). Un trámite no es una persona, ni un hogar,
+ni un establecimiento, ni un agregado geográfico: **es un evento**.
+
+Las dos salidas disponibles son malas y por eso no se tomó ninguna:
+
+1. Registrarla con `unidad_objetivo: persona` **re-comete exactamente el defecto que
+   `ADR-548` corrigió hace dos días**, cuando `unidad_dato` se infería del id y ENCIG 2025
+   salía `persona` contra el árbitro que dice `TRÁMITE`.
+2. Enmendar el enum vive en `tests/test_celdas_d.py`, **fuera del perímetro** de este
+   encargo, que sólo autoriza `tests/test_piloto3_guardias.py`.
+
+`NC-0359` abierta y **`FP-390` a mesa**: o se añade `evento` al enum, o se declara que
+las celdas-D sobre eventos no se registran. **No bloquea el piloto** —el `COMMIT-2` corre
+sin ella— pero sí deja hoy un estimando congelado que el registro no puede nombrar.
+Celdas-D siguen en **5**.
+
+## E.7 · Contadores al cierre
+
+`cuenta_gen2` **NO-APLICA**. Cero corridas selladas, cero resultados, cero adopciones,
+cero microdato. Dos filas nuevas en `decisiones.tsv` (`F1-bis` y `F3`, ambas firmas de
+mesa selladas por el lanzamiento). `FP-389` FIRMADA; `FP-390` nueva, ABIERTA. `NC-0355` y
+`NC-0356` siguen ABIERTAS —la segunda con enmienda fechada—, `NC-0359` nueva. El par
+`edad × escolaridad` de ENCIG 2025 sigue **`RESERVADA`** en el marcador, que este acto no
+tocó ni re-derivó.
