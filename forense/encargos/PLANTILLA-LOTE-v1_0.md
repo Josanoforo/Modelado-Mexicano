@@ -1,5 +1,10 @@
 PLANTILLA-LOTE · v1.0
 
+SUCEDIDA POR `forense/encargos/PLANTILLA-ENCARGO-v2_0.md` (instrucciones v2.15,
+20/sep/2026, ACTO GEN2-V215). Se conserva como historia: los encargos redactados
+contra esta plantilla no se reescriben al formato nuevo (A.3). Para redactar un
+encargo nuevo, usa la v2.0.
+
 Esqueleto D-12 (`instrucciones-proyecto-v2_12.md`, Bloque D-quater). Formato
 corto de encargo: sellada la skill `/acto` (D-10), el encargo trae solo lo
 sustantivo — el ARRANQUE, la compuerta y el cierre en cascada ya no se

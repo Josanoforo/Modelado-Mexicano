@@ -6341,7 +6341,7 @@ def _t_cron_ref_censo(fecha, timeout=20):
         if r.returncode != 0 or not r.stdout.strip():
             return None, False         # no se pudo preguntar.
         rf = subprocess.run(
-            ["git", "fetch", "-q", "--depth=100", "origin",
+            ["git", "fetch", "-q", "origin",
              f"refs/heads/{rama}:refs/remotes/origin/{rama}"],
             cwd=ROOT, capture_output=True, text=True, timeout=timeout)
         if rf.returncode == 0:
