@@ -121,12 +121,14 @@ Estado: medición sellada, replay aislado `REPRODUCE/IDENTICO`, validación
 independiente terminada y asiento proyectado; adopción ninguna;
 `cuenta_gen2=PENDIENTE-DE-MESA`. La proyección posterior a 0004 fue estable byte
 a byte:
-`corridas.tsv=4480e9b31cb2dacd4b01d5a7ac9b04de7aa6915e4f3c95339c204cedd9e381d0`,
-`resultados.tsv=4d3253f3d0acde0793026d326c006a1ac6a59a866e6fd544f7522c3bcb3639aa`
+`corridas.tsv=25e03ab68f50676d1a19dd4d71e584b4bf93b405b33e3b4c1246880108f81d06`,
+`resultados.tsv=ae21451331f50da950fa94fae2d56a7df8fc5298055c6ed6091ab2f9f2be5c11`
 y `usos.tsv=939a06e39277a184490263b24cd86a537301cf0bed918271eba51c68e95ef1bd`.
 Frente a la vista previa a esta proyección, ninguna corrida preexistente cambió
 `resultado_replay` ni `contexto_replay`, y `usos.tsv` no cambió. Sólo se
-añadieron las corridas sucesoras 0003 y 0004; no hubo adopción nueva.
+añadieron las corridas sucesoras 0003 y 0004; no hubo adopción nueva. El único
+`--lote` nombró la corrida propia 0003 para asentar su replay
+`REPRODUCE/IDENTICO`; no incluyó ni cambió evidencia ajena.
 
 ## NO-CORRIDO / RESERVAS
 
