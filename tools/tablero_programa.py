@@ -78,6 +78,95 @@ def _estado_cola(texto: str) -> str:
     return "CONSUMIDO" if "## CONSUMIDO" in texto else ("LISTO" if "LISTO-" in texto else "GATED")
 
 
+_NC_TOKENS_A14 = (
+    "PARO-ENTORNO", "PARO-PREMISA", "FUERA-DE-PERÍMETRO", "SUSTITUIDO-POR:",
+    "DIFERIDO-A:", "NO-VERIFICABLE-AQUÍ", "DECISIÓN-DE-MESA-PENDIENTE",
+)
+
+
+def _nc_por_razon() -> dict:
+    """Censa `forense/no-corrido.tsv`, filas `estado == ABIERTA`, por el
+    TOKEN DE A.14 que abre su columna `razon` -- prefijo exacto (A.16), no
+    un corte por espacio y dos puntos (el defecto real: un parser que corta
+    por ' ' o ':' pierde `DIFERIDO-A:E7` y `NO-VERIFICABLE-AQUÍ` contadas
+    como prosa cuando sí llevan token)."""
+    ruta = "forense/no-corrido.tsv"
+    if not os.path.exists(ruta):
+        return {"abiertas": 0, "por_token": {}, "prosa": 0}
+    filas = [r for r in csv.reader(open(ruta, encoding="utf-8", errors="replace"),
+                                    delimiter="\t", quoting=csv.QUOTE_NONE)
+             if r and not r[0].startswith("#")]
+    if not filas:
+        return {"abiertas": 0, "por_token": {}, "prosa": 0}
+    cab = filas[0]
+    i_estado = cab.index("estado")
+    i_razon = cab.index("razon")
+    abiertas = [r for r in filas[1:] if len(r) > i_estado and r[i_estado] == "ABIERTA"]
+    por_token = Counter()
+    prosa = 0
+    for r in abiertas:
+        razon = r[i_razon] if len(r) > i_razon else ""
+        token = next((t.rstrip(":") for t in _NC_TOKENS_A14 if razon.startswith(t)), None)
+        if token:
+            por_token[token] += 1
+        else:
+            prosa += 1
+    return {"abiertas": len(abiertas), "por_token": dict(por_token), "prosa": prosa}
+
+
+def _marcador_segmento_resumen() -> dict:
+    """Filas de `data/corrida0/marcador-segmento.tsv` por `estado`, más
+    `emision = EMITIDA-SIN-EVALUAR`, cruzadas con `tools/marcador_segmento.py
+    --json` (`cobertura_de_piso`, `valor_anadido/evaluadas`,
+    `veto_pisos_activo`). Cada número con su denominador (P1, lección 9.6:
+    dos contadores que parecen fracción y no lo son)."""
+    ruta = "data/corrida0/marcador-segmento.tsv"
+    if not os.path.exists(ruta):
+        return {"error": f"AUSENTE: {ruta}"}
+    filas = tsv_rows(ruta)
+    cab, cuerpo = filas[0], filas[1:]
+    i_estado = cab.index("estado")
+    i_emision = cab.index("emision")
+    por_estado = dict(Counter(r[i_estado] for r in cuerpo))
+    emitida_sin_evaluar = sum(1 for r in cuerpo if r[i_emision] == "EMITIDA-SIN-EVALUAR")
+    try:
+        j = json.loads(sh("python3 tools/marcador_segmento.py --json"))
+    except Exception as exc:  # noqa: BLE001
+        j = {"error": f"{type(exc).__name__}: {exc}"}
+    return {
+        "total_filas": len(cuerpo),
+        "por_estado": por_estado,
+        "emitida_sin_evaluar": f"{emitida_sin_evaluar} / {len(cuerpo)}",
+        "cobertura_de_piso": f"{j.get('cobertura_de_piso')} / {len(cuerpo)}" if "error" not in j else j["error"],
+        "valor_anadido_sobre_evaluadas": f"{j.get('valor_anadido')} / {j.get('evaluadas')}" if "error" not in j else j["error"],
+        "veto_pisos_activo": j.get("veto_pisos_activo") if "error" not in j else j["error"],
+    }
+
+
+def _corridas_pendientes_de_contar() -> dict:
+    """`corridas.tsv`: filas `estado == SELLADA` repartidas por
+    `cuenta_gen2`, más el detalle de `PENDIENTE-DE-MESA` con su
+    `resultado_replay` (P1)."""
+    ruta = "data/corrida0/corridas.tsv"
+    if not os.path.exists(ruta):
+        return {"error": f"AUSENTE: {ruta}"}
+    filas = tsv_rows(ruta)
+    cab, cuerpo = filas[0], filas[1:]
+    i_estado = cab.index("estado")
+    i_cuenta = cab.index("cuenta_gen2")
+    i_id = cab.index("corrida_id")
+    i_replay = cab.index("resultado_replay")
+    selladas = [r for r in cuerpo if r[i_estado] == "SELLADA"]
+    por_cuenta = dict(Counter(r[i_cuenta] for r in selladas))
+    pendientes_mesa = [{"corrida_id": r[i_id], "resultado_replay": r[i_replay]}
+                       for r in selladas if r[i_cuenta] == "PENDIENTE-DE-MESA"]
+    return {
+        "selladas_total": len(selladas),
+        "por_cuenta_gen2": por_cuenta,
+        "pendientes_de_mesa": pendientes_mesa,
+    }
+
+
 def find_rules(o):
     if isinstance(o, dict):
         for v in o.values():
@@ -147,6 +236,11 @@ def derivar_indicadores() -> dict[str, dict]:
         "'vivas' es historico del nombre de esta clave -- son ramas PRESENTES en origin "
         "(ACTO AUTOMATIZA-1-E2), no necesariamente PR abierto ni trabajo sin fusionar: "
         "una rama puede existir sin haber redactado aun su ADR")
+    _ramas_detalle, _fuente_ramas_detalle = EC.ramas_remotas_detalle(RAIZ)
+    put("ramas_remotas_detalle", _ramas_detalle,
+        f"tools/estado_comun.py::ramas_remotas_detalle() -- {_fuente_ramas_detalle}",
+        "nombre + commits delante/detras de origin/main + fecha del ultimo commit, "
+        "por cada rama presente en origin distinta de main (P1, GEN2-TABLERO-SENAL-1)")
 
     # ACTO GEN2-T9 · P4(v): `NO-VERIFICABLE-SIN-GH` es un ESTADO, no un cero.
     # `tools/limpia_arbol.py` ya lo distinguia y el tablero no lo leia: sin
@@ -298,8 +392,19 @@ def derivar_indicadores() -> dict[str, dict]:
         "esa cabecera (formato viejo, pre patron 2-ter) cae al heuristico por substring "
         "'## CONSUMIDO' / 'LISTO-' / otro=GATED -- NC-0252, ACTO GEN2-MANTENIMIENTO-3")
     put("skills", sorted(os.path.basename(f)[:-3] for f in glob.glob(".claude/commands/*.md")), "ls .claude/commands/")
-    vers = sorted(int(m) for m in re.findall(r"instrucciones-proyecto-v2_(\d+)\.md", " ".join(glob.glob("instrucciones-proyecto-v2_*.md"))))
-    put("instrucciones_vigentes", f"v2.{vers[-1]}" if vers else None, "ls instrucciones-proyecto-v2_*.md | version maxima numerica")
+    # P2 (GEN2-TABLERO-SENAL-1): version maxima presente en el arbol, de
+    # CUALQUIER familia `instrucciones-proyecto-v<mayor>[_<menor>].md`, sin
+    # sufijo `-HISTORIA`/`-DELTA` (el propio patron de nombre ya los excluye:
+    # `v2_14-HISTORIA.md` no calza `v(\d+)(?:_(\d+))?\.md$`). El cuerpo
+    # curado deja de escribir la version a mano -- cita esta clave.
+    _ivig = re.compile(r"instrucciones-proyecto-v(\d+)(?:_(\d+))?\.md$")
+    _ivers = []
+    for f in glob.glob("instrucciones-proyecto-v*.md"):
+        m = _ivig.search(os.path.basename(f))
+        if m:
+            _ivers.append((int(m.group(1)), int(m.group(2) or 0)))
+    put("instrucciones_vigentes", f"v{max(_ivers)[0]}.{max(_ivers)[1]}" if _ivers else None,
+        "ls instrucciones-proyecto-v*.md | version maxima (mayor, menor), sin sufijo -HISTORIA/-DELTA")
     put("para_v2_13_entradas", int(sh("grep -c 'PARA-v2.13' forense/hallazgos.md") or 0), "grep -c 'PARA-v2.13' forense/hallazgos.md", "v2.13 se entrega con >=3")
     put("hallazgos_entradas", int(sh("grep -c '^- \\*\\*2026' forense/hallazgos.md") or 0), "grep -c '^- **2026' forense/hallazgos.md")
     put("reports_tematicos", len(glob.glob("corpus/reports/*.md")), "ls corpus/reports/*.md | wc -l")
@@ -328,6 +433,16 @@ def derivar_indicadores() -> dict[str, dict]:
     for clave, valor in gen2.items():
         put(f"gen2_{clave}", valor, comando_gen2)
 
+    # ── 8 · marcador por segmento y corridas pendientes de contar (P1) ──
+    put("marcador_segmento", _marcador_segmento_resumen(),
+        "tools/marcador_segmento.py --json + data/corrida0/marcador-segmento.tsv (columnas estado/emision)")
+    put("corridas_pendientes_de_contar", _corridas_pendientes_de_contar(),
+        "data/corrida0/corridas.tsv: SELLADA por cuenta_gen2, y detalle de PENDIENTE-DE-MESA")
+
+    # ── 9 · NC por razon, token de A.14 (P5) ────────────────────────────
+    put("nc_por_razon", _nc_por_razon(),
+        "forense/no-corrido.tsv: filas ABIERTA por token de A.14 (prefijo exacto, A.16)")
+
     return I
 
 
@@ -343,8 +458,36 @@ def render_bloque_vivo(I: dict[str, dict]) -> str:
     la salida interactiva normal (markdown/--json) pero no aqui.
     """
     fp_ids = ", ".join(a["id"] for a in (_v(I, "fp_abiertas") or [])) or "(ninguna)"
+    # P3 (GEN2-TABLERO-SENAL-1): la cola deja de listar las 64 lineas de
+    # CONSUMIDO -- solo los estados != CONSUMIDO, mas el conteo de consumidos.
     cola = _v(I, "cola_encargos") or {}
-    cola_txt = "\n".join(f"  - `{k}`: {v}" for k, v in cola.items()) or "  (vacía)"
+    cola_no_consumidos = {k: v for k, v in cola.items() if v != "CONSUMIDO"}
+    cola_n_consumidos = sum(1 for v in cola.values() if v == "CONSUMIDO")
+    cola_txt = "\n".join(f"  - `{k}`: {v}" for k, v in cola_no_consumidos.items()) or "  (vacía)"
+
+    ms = _v(I, "marcador_segmento") or {}
+    ms_estado = ms.get("por_estado", {})
+    ms_estado_txt = " · ".join(f"{k} `{v}`" for k, v in sorted(ms_estado.items())) or "(sin filas)"
+
+    cpc = _v(I, "corridas_pendientes_de_contar") or {}
+    cpc_cuenta = cpc.get("por_cuenta_gen2", {})
+    cpc_cuenta_txt = " · ".join(f"`{k}` {v}" for k, v in sorted(cpc_cuenta.items())) or "(sin filas)"
+    cpc_pend_txt = "\n".join(
+        f"  - `{p['corrida_id']}`: `{p['resultado_replay']}`"
+        for p in cpc.get("pendientes_de_mesa", [])
+    ) or "  (ninguna)"
+
+    ramas_detalle = _v(I, "ramas_remotas_detalle") or []
+    ramas_n = len(ramas_detalle)
+    ramas_txt = "\n".join(
+        f"  - `{r['nombre']}`: {r['delante_de_main']} delante / {r['detras_de_main']} detrás de main · "
+        f"último commit `{r['fecha_ultimo_commit']}`"
+        for r in ramas_detalle
+    ) or "  (ninguna)"
+    if ramas_n > 0:
+        ramas_cabecera = f"**{ramas_n} rama(s) presente(s) en origin (política de cero)**"
+    else:
+        ramas_cabecera = "0 ramas presentes en origin (política de cero cumplida)"
 
     partes = []
     partes.append(MARCA_INICIO)
@@ -362,7 +505,22 @@ def render_bloque_vivo(I: dict[str, dict]) -> str:
         f"tiers `{_v(I, 'motor_tiers')}`."
     )
     partes.append(
-        f"- **Corredor.** marco vigente `marco-M-{_v(I, 'marco_vigente_sorteado')}` sorteado / "
+        f"- **Marcador por segmento.** filas por estado: {ms_estado_txt} (total `{ms.get('total_filas')}`) · "
+        f"cobertura de piso `{ms.get('cobertura_de_piso')}` · "
+        f"valor añadido / evaluadas `{ms.get('valor_anadido_sobre_evaluadas')}` · "
+        f"celdas `emision = EMITIDA-SIN-EVALUAR` `{ms.get('emitida_sin_evaluar')}` · "
+        f"`veto_pisos_activo` `{ms.get('veto_pisos_activo')}`."
+    )
+    partes.append(
+        f"- **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: {cpc_cuenta_txt} "
+        f"(selladas total `{cpc.get('selladas_total')}`) · `PENDIENTE-DE-MESA`:\n{cpc_pend_txt}"
+    )
+    partes.append(
+        f"- **Ramas presentes en origin.** {ramas_cabecera}:\n{ramas_txt}"
+    )
+    partes.append(
+        f"- **Corredor LEGACY (eje x = ∅, GO-MARCADOR).** el marcador por segmento es la línea de arriba. "
+        f"marco vigente `marco-M-{_v(I, 'marco_vigente_sorteado')}` sorteado / "
         f"`marco-M-{_v(I, 'marco_vigente_congelado')}` congelado (derivado del árbol) · "
         f"celdas sorteadas `{_v(I, 'marco_sorteado')}` · "
         f"celdas con M `{_v(I, 'celdas_con_M')}` · con R `{_v(I, 'celdas_con_R')}` · con L `{_v(I, 'celdas_con_L')}` · "
@@ -379,7 +537,14 @@ def render_bloque_vivo(I: dict[str, dict]) -> str:
         f"- **Gobernanza operativa.** ADR máximo `{_v(I, 'adr_max')}` · FP máximo `{_v(I, 'fp_max')}` · "
         f"FP abiertas: {fp_ids} · "
         f"encargos archivados `{_v(I, 'encargos_archivados')}` (consumidos `{_v(I, 'encargos_consumidos')}`) · "
-        f"cola de encargos:\n{cola_txt}"
+        f"instrucciones vigentes `{_v(I, 'instrucciones_vigentes')}` · "
+        f"cola de encargos (solo estados != CONSUMIDO; consumidos `{cola_n_consumidos}`):\n{cola_txt}"
+    )
+    nc = _v(I, "nc_por_razon") or {}
+    nc_tok_txt = " · ".join(f"`{k}` {v}" for k, v in sorted(nc.get("por_token", {}).items())) or "(ninguno)"
+    partes.append(
+        f"- **NC abiertas por razón (token A.14, prefijo exacto).** abiertas `{nc.get('abiertas')}` · "
+        f"por token: {nc_tok_txt} · prosa (sin token reconocible) `{nc.get('prosa')}`."
     )
     partes.append(
         f"- **GEN2 (derivado de `corrida0 status`).** corridas selladas "

@@ -190,6 +190,57 @@ def prueba_estado_cola_contra_arbol_real():
     afirma(revisados > 0, "debe haber al menos un archivo con cabecera ESTADO: en forense/encargos/cola/")
 
 
+def prueba_render_incluye_marcador_corridas_ramas_nc():
+    """P1/P2/P5 (ACTO GEN2-TABLERO-SENAL-1): las tres líneas nuevas y el
+    censo de NC por razón deben aparecer en el bloque renderizado, y el
+    rótulo del Corredor debe llevar la corrección de P2."""
+    I = _indicadores_fixture()
+    I["marcador_segmento"] = {"valor": {
+        "total_filas": 3, "por_estado": {"IDENTICO": 2, "SOLO-PISO": 1},
+        "emitida_sin_evaluar": "1 / 3", "cobertura_de_piso": "2 / 3",
+        "valor_anadido_sobre_evaluadas": "0 / 1", "veto_pisos_activo": True,
+    }, "comando": "-", "nota": ""}
+    I["corridas_pendientes_de_contar"] = {"valor": {
+        "selladas_total": 5, "por_cuenta_gen2": {"SI": 3, "PENDIENTE-DE-MESA": 2},
+        "pendientes_de_mesa": [{"corrida_id": "CORR-X", "resultado_replay": "REPRODUCE"}],
+    }, "comando": "-", "nota": ""}
+    I["ramas_remotas_detalle"] = {"valor": [
+        {"nombre": "claude/foo", "delante_de_main": 1, "detras_de_main": 0, "fecha_ultimo_commit": "2026-09-20"},
+    ], "comando": "-", "nota": ""}
+    I["nc_por_razon"] = {"valor": {"abiertas": 4, "por_token": {"PARO-PREMISA": 1}, "prosa": 3}, "comando": "-", "nota": ""}
+    I["instrucciones_vigentes"] = {"valor": "v2.14", "comando": "-", "nota": ""}
+    bloque = TP.render_bloque_vivo(I)
+    afirma("Marcador por segmento" in bloque, "debe traer la línea Marcador por segmento (P1)")
+    afirma("2 / 3" in bloque, "debe mostrar cada número con su denominador (P1)")
+    afirma("Corridas selladas que no cuentan todavía" in bloque, "debe traer la línea de corridas pendientes de contar (P1)")
+    afirma("CORR-X" in bloque, "debe listar la corrida PENDIENTE-DE-MESA (P1)")
+    afirma("Ramas presentes en origin" in bloque, "debe traer la línea de ramas (P1)")
+    afirma("claude/foo" in bloque, "debe listar la rama presente (P1)")
+    afirma("Corredor LEGACY (eje x = ∅, GO-MARCADOR)" in bloque, "el rótulo Corredor debe llevar la corrección de P2")
+    afirma("NC abiertas por razón" in bloque, "debe traer el censo de NC por razón (P5)")
+    afirma("instrucciones vigentes `v2.14`" in bloque, "instrucciones_vigentes debe aparecer en el bloque vivo (P2)")
+
+
+def prueba_render_cola_solo_estados_no_consumido():
+    """P3: la cola de encargos del bloque renderizado lista solo estados
+    != CONSUMIDO, y da el conteo aparte de los consumidos."""
+    I = _indicadores_fixture()
+    I["cola_encargos"] = {"valor": {"a.md": "CONSUMIDO", "b.md": "CONSUMIDO", "c.md": "GATED"}, "comando": "-", "nota": ""}
+    bloque = TP.render_bloque_vivo(I)
+    afirma("`c.md`: GATED" in bloque, "un estado != CONSUMIDO debe listarse")
+    afirma("`a.md`: CONSUMIDO" not in bloque, "un estado CONSUMIDO no debe listarse por nombre")
+    afirma("consumidos `2`" in bloque, "debe dar el conteo de consumidos")
+
+
+def prueba_nc_por_razon_prefijo_exacto():
+    """P5: el parser censa por PREFIJO EXACTO del token de A.14, no por
+    corte de espacio/dos puntos (el defecto real que motivó la pieza)."""
+    tok = next((t.rstrip(":") for t in TP._NC_TOKENS_A14 if "DIFERIDO-A:E7".startswith(t)), None)
+    afirma(tok == "DIFERIDO-A", "DIFERIDO-A:E7 debe clasificar como token DIFERIDO-A")
+    tok2 = next((t.rstrip(":") for t in TP._NC_TOKENS_A14 if "una nota en prosa sin token".startswith(t)), None)
+    afirma(tok2 is None, "prosa sin token al inicio no debe clasificar en ningún token")
+
+
 def main():
     prueba_idempotencia_y_preservacion()
     prueba_ancla_invalida_sin_marcadores()
@@ -197,12 +248,15 @@ def main():
     prueba_ancla_invalida_end_antes_de_begin()
     prueba_estado_cola_lee_cabecera_no_substring()
     prueba_estado_cola_contra_arbol_real()
+    prueba_render_incluye_marcador_corridas_ramas_nc()
+    prueba_render_cola_solo_estados_no_consumido()
+    prueba_nc_por_razon_prefijo_exacto()
     if FAILS:
         print(f"FALLÓ ({len(FAILS)}):")
         for m in FAILS:
             print(f"  · {m}")
         return 1
-    print("OK -- test_tablero_programa.py: 6 pruebas, 0 fallos")
+    print("OK -- test_tablero_programa.py: 9 pruebas, 0 fallos")
     return 0
 
 

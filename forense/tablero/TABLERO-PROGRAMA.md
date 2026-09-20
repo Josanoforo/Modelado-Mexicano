@@ -1,55 +1,43 @@
 <!-- TABLERO-DERIVADO:BEGIN -->
 ## Estado vivo derivado
 
-- **Procedencia.** SHA `4a35529` · fecha del commit `2026-09-19` · ¿árbol == origin/main? `False`.
-- **Motor.** reglas totales `22` · reglas con dato (>=1 conducta MEDIDO*) `21` · reglas sin dato `1` · conductas MEDIDO* `45` · tiers `{'FUERTE': 20, 'MEDIA': 2}`.
-- **Corredor.** marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
-- **Corpus lógico.** entradas del manifiesto `1628` · filas de registro de curación `154` · filas de relaciones `231` · filas del inventario de reactivos v1.2 `178247`.
-- **Gobernanza operativa.** ADR máximo `545` · FP máximo `386` · FP abiertas: FP-386 · encargos archivados `545` (consumidos `501`) · cola de encargos:
-  - `2026-08-31-MAESTRA33-B2-MARCO-M-SORTEA-v1_1.md`: CONSUMIDO
-  - `2026-09-01-MAESTRA34-L2-ARBITRA-v1_2.md`: CONSUMIDO
-  - `2026-09-01-MAESTRA34-N2-MARCO-M-v1_2.md`: CONSUMIDO
-  - `2026-09-01-MAESTRA34-N3-AGREGA-2.md`: CONSUMIDO
-  - `2026-09-01-MAESTRA34-N5-RE-EVALUA-OLA6.md`: CONSUMIDO
+- **Procedencia.** SHA `061792d` · fecha del commit `2026-09-20` · ¿árbol == origin/main? `False`.
+- **Motor.** reglas totales `22` · reglas con dato (>=1 conducta MEDIDO*) `21` · reglas sin dato `1` · conductas MEDIDO* `46` · tiers `{'FUERTE': 20, 'MEDIA': 2}`.
+- **Marcador por segmento.** filas por estado: ADOPTADO-POR-FIRMA `20` · CONSUMIDA-SIN-PILOTO `1` · DIAGNOSTICO `8` · IDENTICO `89` · RESERVADA `22` · SIN-PISO `21` · SOLO-PISO `53` (total `214`) · cobertura de piso `73 / 214` · valor añadido / evaluadas `0 / 20` · celdas `emision = EMITIDA-SIN-EVALUAR` `16 / 214` · `veto_pisos_activo` `True`.
+- **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: `NO` 11 · `NO-DERIVACION-CONTEXTUAL` 1 · `NO-SIN-FIRMA-DE-OBJETO` 1 · `PENDIENTE-DE-CASCADA-DIFERIDA` 2 · `PENDIENTE-DE-INTEGRACION-SERIAL` 2 · `PENDIENTE-DE-MESA` 13 · `SI` 78 (selladas total `108`) · `PENDIENTE-DE-MESA`:
+  - `CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001--39bf1af3cdac`: `REPRODUCE`
+  - `CALC-ENADID2023-UNION-SEXO-EDAD-0004--28ecceb6d292`: `REPRODUCE`
+  - `CALC-ENCRIGE-CARGA-INTENSIDAD-0001--55259dbe975f`: `REPRODUCE`
+  - `CALC-ENCRIGE-CORRUPCION-DESCRIPTIVA-0001--4cbeaa28dc49`: `REPRODUCE`
+  - `CALC-ENIGH2022-REMESAS-CONTEXTO-0001--b7eeb4840ff2`: `REPRODUCE`
+  - `CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001-v1_1--b76b950ff9df`: `REPRODUCE`
+  - `CALC-ENUT2024-DISTRIBUCION-HORAS-0002--66a1f09471c3`: `REPRODUCE`
+  - `CALC-ENVIPE-RES0028-U4-DERIVADO-0001--65d0408e0b71`: `REPRODUCE`
+  - `CALC-ISSP2017-CONSISTENCIA-APOYO-FAMILIAR-0001--3f8b5bc3bc29`: `REPRODUCE`
+  - `CALC-ISSP2017-REDES-APOYO-COTIDIANO-0001--b6365529136d`: `REPRODUCE`
+  - `CALC-WBES2023-CORRUPCION-DESCRIPTIVA-0001--b87ec1bf2ad5`: `REPRODUCE`
+  - `CALC-WBES2023-PRECISION-0001--7ab4bf6255e0`: `REPRODUCE`
+  - `CALC-WBES2023-PRECISION-INTERACCIONES-0001--7f2a0899f700`: `NO-VERIFICADO`
+- **Ramas presentes en origin.** **3 rama(s) presente(s) en origin (política de cero)**:
+  - `claude/intelligent-albattani-v7kf2s`: 1 delante / 0 detrás de main · último commit `2026-09-20`
+  - `claude/optimistic-cray-15co3n`: 1 delante / 4 detrás de main · último commit `2026-09-20`
+  - `claude/relaxed-bell-rs3dhf`: 1 delante / 0 detrás de main · último commit `2026-09-20`
+- **Corredor LEGACY (eje x = ∅, GO-MARCADOR).** el marcador por segmento es la línea de arriba. marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
+- **Corpus lógico.** entradas del manifiesto `1629` · filas de registro de curación `155` · filas de relaciones `231` · filas del inventario de reactivos v1.2 `178247`.
+- **Gobernanza operativa.** ADR máximo `551` · FP máximo `389` · FP abiertas: FP-386, FP-387, FP-388, FP-389 · encargos archivados `562` (consumidos `510`) · instrucciones vigentes `v2.14` · cola de encargos (solo estados != CONSUMIDO; consumidos `36`):
   - `2026-09-07-ENCARGOS-GEN2-en-orden.md`: GATED
-  - `2026-09-07-GEN2-E1-LIMPIEZA-C1.md`: CONSUMIDO
-  - `2026-09-07-GEN2-E2-C0-A-DEMANDA.md`: CONSUMIDO
-  - `2026-09-07-GEN2-E3-1-ENDURECE-CALC.md`: CONSUMIDO
-  - `2026-09-07-GEN2-E3-AUTOMATIZA-GEN2-1.md`: CONSUMIDO
-  - `2026-09-07-GEN2-E4-LIMPIEZA-C2-PODA.md`: CONSUMIDO
-  - `2026-09-07-GEN2-E5-0-SPECS-EJECUTABLES.md`: CONSUMIDO
-  - `2026-09-07-GEN2-E5-CALC-0001-0003.md`: CONSUMIDO
-  - `2026-09-07-GEN2-E6-AUTOMATIZA-GEN2-2.md`: CONSUMIDO
-  - `2026-09-07-GEN2-E7-READINESS-2.md`: CONSUMIDO
   - `2026-09-08-GEN2-SONDA-3-PILOTO-CAJA.md`: LISTO
-  - `2026-09-08-MAESTRA34-E1-REVISION-FALSADORES.md`: CONSUMIDO
   - `2026-09-10-GEN2-POST-685/00-LEEME-LANZAMIENTO-POST-685.md`: GATED
-  - `2026-09-10-GEN2-POST-685/01-GEN2-F5-COMPLETA.md`: CONSUMIDO
-  - `2026-09-10-GEN2-POST-685/02-GEN2-MOTOR-USOS-Y-COMPLEMENTOS.md`: CONSUMIDO
-  - `2026-09-10-GEN2-POST-685/03-GEN2-ENIF-POBLACION-Y-ADOPCION.md`: CONSUMIDO
-  - `2026-09-10-GEN2-POST-685/04-GEN2-S6-S12-S13-SUCESORAS.md`: CONSUMIDO
-  - `2026-09-10-GEN2-POST-685/05-GEN2-ENVIPE-SERIE-COMPLETA.md`: CONSUMIDO
-  - `2026-09-10-GEN2-POST-685/06-GEN2-ADQUISICION-DIRIGIDA-Y-DIN.md`: CONSUMIDO
   - `2026-09-10-GEN2-POST-685/07-GEN2-SONDA-CRON-PRODUCCION.md`: GATED
   - `2026-09-11-GEN2-F5-DOCUMENTAL-EJECUCION-PENDIENTE.md`: GATED
   - `2026-09-11-GEN2-POST-693/00-LEEME-LANZAMIENTO-POST693.md`: GATED
-  - `2026-09-11-GEN2-POST-693/09-GEN2-PUBLICACION-POST693-Y-CIERRES.md`: CONSUMIDO
   - `2026-09-11-GEN2-POST-693/10-GEN2-ENVIPE-VALIDACION-Y-LECTURA.md`: GATED
   - `2026-09-11-GEN2-POST-693/11-GEN2-CORRUPCION-UNIDAD-Y-FUENTE-GENERAL.md`: GATED
-  - `2026-09-11-GEN2-POST-693/13-GEN2-F5-APRENDIZAJES-Y-SUCESOR.md`: CONSUMIDO
   - `2026-09-11-GEN2-POST-694/00-DECISIONES-Y-PARALELOS-POST694.md`: GATED
-  - `2026-09-11-GEN2-POST-694/14-GEN2-YA-MEDIDO-SIN-FALSOS-NEGATIVOS.md`: CONSUMIDO
-  - `2026-09-11-GEN2-POST-694/15-GEN2-ENIF-FINTECH-SERIE-DESCRIPTIVA.md`: CONSUMIDO
-  - `2026-09-11-GEN2-POST-694/16-GEN2-S6-DISENO-Y-ALCANCE-INFERENCIAL.md`: CONSUMIDO
-  - `2026-09-11-GEN2-POST-694/ADENDA-09-CIERRES-YA-ACREDITADOS.md`: CONSUMIDO
   - `2026-09-11-GEN2-POST-701/00-LEEME-LANZAMIENTO-POST701.md`: GATED
-  - `2026-09-11-GEN2-POST-701/17-GEN2-LINAJE-Y-ADOPCION.md`: CONSUMIDO
-  - `2026-09-11-GEN2-POST-701/18-GEN2-MOTOR-Y-HERENCIA-EXPLICITA.md`: CONSUMIDO
-  - `2026-09-11-GEN2-POST-701/19-GEN2-EVALUACION-SIN-FUGAS.md`: CONSUMIDO
   - `2026-09-11-GEN2-POST-701/REVISION-CANDADOS-GEN1-GEN2-2026-09-11.md`: GATED
   - `2026-09-11-GEN2-POST-707/00-LEEME-PARALELOS-POST707.md`: GATED
   - `2026-09-11-GEN2-POST-707/07R-GEN2-PRODUCCION-Y-FALLO-POST707.md`: GATED
-  - `2026-09-11-GEN2-POST-707/20-GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES.md`: CONSUMIDO
   - `2026-09-11-GEN2-POST-707/21-GEN2-EXPEDIENTES-ACCESO-LISTOS.md`: GATED
   - `2026-09-11-GEN2-POST-707/22-GEN2-VALIDACION-R-ENVIPE-CSV.md`: GATED
   - `2026-09-11-GEN2-POST-707/ADENDA-18-CONSUMOS-Y-BENCHMARK.md`: GATED
@@ -60,18 +48,14 @@
   - `2026-09-11-GEN2-POST-723/30-GEN2-VALIDACION-INDEPENDIENTE-PARAMETROS-ACTIVOS.md`: GATED
   - `2026-09-11-GEN2-POST-723/31-GEN2-F5-DOCUMENTAL-EJECUCION-PARA-FIRMA.md`: GATED
   - `2026-09-12-GEN2-POST-726/00-LEEME-PARALELOS-POST726.md`: GATED
-  - `2026-09-12-GEN2-POST-726/33-GEN2-CORPUS-COMPARTIDO-UTILIZABLE.md`: CONSUMIDO
-  - `2026-09-12-GEN2-POST-726/34-GEN2-REACTIVOS-CON-TEXTO-Y-BUSQUEDA.md`: CONSUMIDO
-  - `2026-09-12-GEN2-POST-726/35-GEN2-TANDAS-PANEL-ENTRADAS-Y-SALIDAS.md`: CONSUMIDO
-  - `2026-09-12-GEN2-POST-726/36-GEN2-N34-DATOS-PRODUCTO-Y-DANO.md`: CONSUMIDO
-  - `2026-09-12-GEN2-POST-726/37-GEN2-DELTA-COMPARACION-EXPLICITA.md`: CONSUMIDO
   - `2026-09-12-GEN2-POST-739/00-LEEME-LANZAMIENTO-POST739.md`: GATED
   - `2026-09-12-GEN2-POST-739/39-GEN2-REACTIVOS-PENDIENTES-Y-BUSQUEDA-UTIL.md`: GATED
   - `2026-09-12-GEN2-POST-741/00-LEEME-PARALELOS-41-43.md`: GATED
   - `2026-09-12-GEN2-POST-741/41-GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO.md`: GATED
   - `2026-09-12-GEN2-POST-741/43-GEN2-SHED-BNPL-DANO-Y-UNIVERSOS.md`: GATED
-- **GEN2 (derivado de `corrida0 status`).** corridas selladas `86` / requeridas `83` · resultados sellados `5014` / activos `208` · pendientes `208` · dependencias numéricas legacy activas `184` · validación independiente `215` · diferencias materiales `0` · NC- abiertas `103` · replays LEGACY-GEN1 sellados `5` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
-- **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** sellados `4413` · pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) `12` · vetados por decisión vigente (sellados, pero una firma prohíbe adoptarlos: no son cola) `2` · adoptados por un consumidor activo `24`. Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: solo el consumidor activo que lo adopta la baja.
+- **NC abiertas por razón (token A.14, prefijo exacto).** abiertas `108` · por token: `DECISIÓN-DE-MESA-PENDIENTE` 1 · `DIFERIDO-A` 7 · `FUERA-DE-PERÍMETRO` 1 · `NO-VERIFICABLE-AQUÍ` 1 · `PARO-ENTORNO` 3 · `PARO-PREMISA` 7 · `SUSTITUIDO-POR` 1 · prosa (sin token reconocible) `87`.
+- **GEN2 (derivado de `corrida0 status`).** corridas selladas `102` / requeridas `83` · resultados sellados `7287` / activos `208` · pendientes `208` · dependencias numéricas legacy activas `182` · validación independiente `215` · diferencias materiales `0` · NC- abiertas `108` · replays LEGACY-GEN1 sellados `5` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
+- **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** sellados `6686` · pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) `12` · vetados por decisión vigente (sellados, pero una firma prohíbe adoptarlos: no son cola) `2` · adoptados por un consumidor activo `46`. Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: solo el consumidor activo que lo adopta la baja.
 - **Fuentes.** `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, `forense/prereg-duelo-v2/` (marcos y corridas M/R/L), `data/manifiesto.yaml`, `data/curacion-registro/cola-adquisicion-registro.tsv`, `data/curacion-registro/relaciones.tsv`, `data/inventario-reactivos-v1_2.tsv`, `canon/gobernanza-v1_15.md`, `forense/firmas-pendientes.tsv`, `forense/encargos/*.md`, `forense/encargos/cola/*.md`.
 
 **Protocolo vigente.** La actualización factual de este bloque se hace con:
@@ -94,7 +78,7 @@ El humano solo actualiza la interpretación (las tablas curadas §2.1-2.5 y la n
 
 **Este tablero se reconstruyó desde cero para Gen 2.** No traza el origen de los datos de Gen 1 y no lo hará: por E.1 esos valores son historia, no autoridad, y auditarlos hacia atrás sería exactamente el trabajo que la generación nueva existe para no repetir. Lo de Gen 1 que sobrevive aquí está en el **Anexo**, en dos párrafos, como comentario y no como fuente. Los siete contadores que gobernaron los snapshots v1.0 a v1.7 **ya no son la señal** y no vuelven a aparecer.
 
-> Vista derivada, no canon. Instrucciones vigentes **v2.14** (actualizado 19/sep/2026, `ACTO GEN2-RECIBO-CODEX-3`, P7: `ls instrucciones-proyecto-v2_*.md` → máxima `v2_14`; `ADR-544` sella el lado repo, con reserva de A.9 sobre el lado proyecto — ver enmienda en `canon/gobernanza-v1_15.md`). El bloque de arriba lo escribe `tools/tablero_programa.py --actualiza` y describe el árbol clásico; **la señal de Gen 2 es la de §2**, derivada de `tools/corrida0.py status` (E.4: la dice el mecanismo, nunca una persona).
+> Vista derivada, no canon. Instrucciones vigentes: ver `instrucciones_vigentes` en el bloque derivado de arriba (`ADR-544` sella el lado repo, con reserva de A.9 sobre el lado proyecto — ver enmienda en `canon/gobernanza-v1_15.md`). El cuerpo curado deja de escribir la versión a mano (P2, `GEN2-TABLERO-SENAL-1`). El bloque de arriba lo escribe `tools/tablero_programa.py --actualiza` y describe el árbol clásico; **la señal de Gen 2 es la de §2**, derivada de `tools/corrida0.py status` (E.4: la dice el mecanismo, nunca una persona).
 
 **Estampa de universo (A.10).** Clon nuevo, de cero. `origin/main = HEAD = d48014ed`, árbol limpio. Firma de entorno (A.2), tres partes: `CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE` = **`sin_variable`** · `inegi.org.mx` → **403** · `data/raw` → **AUSENTE**. **Tercera parte no cumplida: sin corpus** — ninguna corrida GEN2 es ejecutable desde aquí y ningún hash se re-mide (A.1). Espejo del proyecto: no leído. Universo: el árbol de `d48014ed` salvo `.git` y `data/raw`.
 
@@ -195,9 +179,9 @@ El humano solo actualiza la interpretación (las tablas curadas §2.1-2.5 y la n
 |---|---|---|---|
 | **G1** | **El GO de E.5 no es derivable.** E.5 prohíbe lanzar corrida real hasta que los seis checks pasen en `origin/main`, y hoy «podemos lanzar» sería juicio, no derivación | dirección | un `corrida0.py go` o un readiness commiteado |
 | **G2** | **`vigencia` y `delta` sin implementar** — sigue así; ver `NC-0091` (`ABIERTA`, `GEN2-FIRMAS-ADOPCION-1`/`PR #656`: «Implementar delta» · `DECISION-DE-MESA-PENDIENTE`) para la decisión pendiente concreta. Corrección (ACTO GEN2-OPERACION-1, 9/sep/2026): decisiones POSTERIORES a este bloqueador ya consolidaron dos adopciones activas (`ADR-432 · ACTO GEN2-FIRMAS-ADOPCION-1`, `PR #655`: `CALC-C0D-MARCADOR-v3` y `CALC-ENVIPE-0001`, `cuenta_gen2=SI`, adoptadas por consumidor real). Esas dos adopciones **no** requirieron `delta`/`vigencia` (E.1 exige la comparación contra GEN1 sólo para lo que hereda de GEN1, no para toda adopción) — el bloqueador sigue vivo para la comparación GEN1, no bloqueó estas dos | dirección | implementarlos antes de la primera adopción que sí compare contra GEN1; mesa resuelve `NC-0091` |
-| **G3** | **Cuatro filas `DECISION-DE-MESA-PENDIENTE`** en la deuda declarada | mesa | resolver por fila |
-| **G4** | **Una rama viva contra la política de cero**, y el verificador no puede comprobar el punto D sin `gh` | mesa | fusionar o borrar; instalar `gh` donde corra el reporte |
-| **G5** | **Cuatro firmas ABIERTA** (FP-349 a FP-352) | mesa | firma por fila |
+| **G3** | **Filas `DECISION-DE-MESA-PENDIENTE`** en la deuda declarada — cifra viva: ver bloque derivado (`nc_por_razon`) | mesa | resolver por fila |
+| **G4** | **Ramas contra la política de cero** — cifra viva: ver bloque derivado (línea «Ramas presentes en origin») | mesa | fusionar o borrar |
+| **G5** | **Firmas ABIERTA** — cifra viva: ver bloque derivado (línea «Gobernanza operativa», `FP abiertas`) | mesa | firma por fila |
 | **G6** | **NUEVA (14/sep, ACTO GEN2-DOCS-ALINEACION-2).** Fila de cita, no bloqueo — los cuatro hitos mayores de la semana del 9–12/sep, para que este tablero deje de describir solo el mundo del 9/sep: **triada, veredicto citado** — `CALC-TRIADA-0002` termina `SIN-GANADOR-UNICO` sobre `U3=12/14` (`forense/notas/2026-09-10-GEN2-F5-COMPLETA-cierre.md`, `PR #690`); **R-completa** — `UR=14/14` congelado, ocho `CALC-R` nuevos sellados (`forense/encargos/2026-09-09-GEN2-R-COMPLETA-MARCO.md`, `PR #690`); **validación independiente** — 16/16 PASA sobre parámetros activos, implementación separada (`forense/notas/2026-09-11-GEN2-VALIDACION-INDEPENDIENTE-PARAMETROS-ACTIVOS-cierre.md`, `PR #731`; el acumulado vivo `resultados_con_validacion_independiente=199` es del bloque derivado de arriba, no de este acto solo); **delta implementado** — `corrida0.py delta` deja de ser `NO-IMPLEMENTADO` (`delta_comparacion.py`, `PR #733`); `vigencia` sigue declarado y vacío | dirección | ninguno — es registro, no pendiente |
 | **G7** | **NUEVA (14/sep, ACTO GEN2-DOCS-ALINEACION-2).** El mapa `31/39/40/41/42/43` que la ADENDA de dirección pidió, con triple distinción — verificado contra el árbol, no contra la prosa del despacho del 12/sep (`forense/encargos/cola/2026-09-12-GEN2-POST-741/00-LEEME-PARALELOS-41-43.md`): **31** (F5 documental, `DIN-M-01`/`TRA-M-07`) — **pausado**, `LISTO PARA FIRMA; NO AUTORIZA LLAMADAS POR SU MERA ENTREGA` (`forense/encargos/cola/2026-09-11-GEN2-POST-723/31-GEN2-F5-DOCUMENTAL-EJECUCION-PARA-FIRMA.md`); **39** (reactivos pendientes/búsqueda útil) — **fusionado**, `PR #742` (`forense/encargos/2026-09-12-GEN2-REACTIVOS-PENDIENTES-Y-BUSQUEDA-UTIL.md` `## CONSUMIDO`); **40** (conciliación NC-0165/demanda/ruteo) — **CORREGIDO tras revisión adversarial del PR (comentario de `/revisa`, 14/sep): fusionado, `PR #744`** (`git show 1518a15 --stat` → rama `acto/gen2-demanda-contratos-ejecucion-nc0165`, ficha en `forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P3-censo.md:130` cita exacta `#744 -> 2026-09-12-GEN2-DEMANDA-CONCILIADA-Y-EJECUCION-NC0165.md`; el nombre de rama resuelve la identidad que la primera redacción de esta fila declaró `NO-VERIFICABLE-AQUÍ` — `ACTO GEN2-DEMANDA-CONTRATOS-EJECUCION-NC0165`/`ADR-491` SÍ es "encargo 40"); **41** (Banxico) — **fusionado**, **`PR #746`** (corregido: la redacción original de esta fila citaba `PR #744`, que en realidad es el 40 de arriba — confirmado por `git log --oneline origin/main \| grep -iE "Merge pull request #(742\|744\|745\|746\|747)\b"`, `ADR-492`); **42** (MOTRAL 2015/N35, "despachado, PR #747" según el propio LEEME) — **fusionado**, `PR #747` (`ADR-493`); **43** (SHED 2025 BNPL) — **fusionado**, `PR #745` (`canon/registro-rotulos.tsv`, `ADR-494`). `NC-0166` (falta el paquete reproducible del DCE mexicano de N35) se conserva con su vía propia — no se duplica aquí | dirección | ninguno — las seis celdas quedan con identidad y PR confirmados |
 
@@ -224,6 +208,21 @@ El humano solo actualiza la interpretación (las tablas curadas §2.1-2.5 y la n
 | v2.1 | `e36c66dc` | 8/sep 13:23 | **0 de 205 · 0 de 86 · 205 dependencias legacy** | **tablero reconstruido desde cero.** Frontera de generación derivada (PR #597 cierra, PR #600 abre). Gen 1 sale del tablero y queda en el Anexo. Bloqueadores renumerados a la serie `G`. Un PR fusionado (#630) sin efecto en la señal |
 
 **El contador no se movió entre v2.0 y v2.1, y no debía**: la ventana fue de un solo PR de trámite. Lo que cambió es qué mide este tablero.
+
+---
+
+### 9.7 · 19–20/sep
+
+Una frase por hecho, cada una con su comando. Sin narrativa.
+
+- **Pisos en rejilla.** `forense/prereg-caja/PISOS-REJILLA-arbitro-metadatos-v1_0.tsv` entra como tabla de identidad `cell_id → consumer/axis/category/outcome/unit/status` (`GEN2-PISOS-REJILLA-CLI-1`, PR #871) — `ls forense/prereg-caja/PISOS-REJILLA-arbitro-metadatos-v1_0.tsv`.
+- **Marcador.** `tools/marcador_segmento.py` se rediseña sobre el diseño de mesa `MARCADOR-SEGMENTO-diseno-direccion-v1_0` + delta v1.1 — `cat forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md | head -5`.
+- **46 adoptados.** `estado = ADOPTADO-POR-FIRMA` en `data/corrida0/marcador-segmento.tsv` (cifra viva: ver `marcador_segmento.por_estado` en el bloque derivado, hoy `20` — la cifra de este ítem es histórica del 19/sep y no se reescribe) — `grep -c ADOPTADO-POR-FIRMA data/corrida0/marcador-segmento.tsv`.
+- **Error de persistencia por instrumento.** Celda-D piloto 3 lo trae como hallazgo de partida — `cat forense/encargos/2026-09-19-GEN2-CELDA-D-PILOTO-3.md`.
+- **Corrección de `familia.union.libre`.** regla en `milpa/tramite.yaml` con ajuste citado en `forense/encargos/2026-09-19-GEN2-FAM-UNION-ESTIMANDO-1.md` — `grep -n "familia.union.libre" milpa/tramite.yaml`.
+- **Emisión C2 compuesta.** `forense/encargos/2026-09-19-GEN2-C2-COMPUESTO-RESERVADAS-1.md` derrota el universo III (cruce) del marcador — `ls forense/encargos/2026-09-19-GEN2-C2-COMPUESTO-RESERVADAS-1.md`.
+- **PARO del piloto 3.** `forense/encargos/2026-09-19-GEN2-CELDA-D-PILOTO-3.md` cierra por hallazgo, no por objeto cumplido — `grep -n "PARO" forense/encargos/2026-09-19-GEN2-CELDA-D-PILOTO-3.md`.
+- **Salida del carril Codex.** rama Codex sin PR (`…marcador-adopcion-cli-1`) invisible para mesa durante horas — defecto real que abre este mismo encargo (`GEN2-TABLERO-SENAL-1`, Gate D-14 (b)) — `git ls-remote --heads origin | grep -i marcador-adopcion-cli-1`.
 
 ---
 
