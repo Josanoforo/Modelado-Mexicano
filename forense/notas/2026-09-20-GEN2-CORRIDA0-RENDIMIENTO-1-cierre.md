@@ -5,16 +5,13 @@
 `registro --escribe`) producen exactamente los mismos bytes de `stdout`,
 `stderr`, el mismo código de salida, las mismas huellas sha256 de los veinte
 TSV derivados de `data/corrida0/` y el mismo contenido en los dos TSV que
-`demanda` reescribe. **Ningún contador se movió por el cambio de código**, y
-se dice con precisión: con **sólo** `tools/corrida0.py` modificado, `status`
-es byte-idéntico al arnés — los quince campos. Ya con la cascada de cierre
-encima, `status` difiere en **un** campo y **uno solo**,
-`no_corrido_abiertas` 132 → 133, que es `NC-0405` — la fila que este mismo
-acto abre y que A.14 obliga a asentar. Los otros catorce campos siguen
-idénticos. No es PARO: es el asiento del acto contándose a sí mismo, no una
-derivación que se movió. El diff completo, verbatim:
-
-```
+`demanda` reescribe. **Ningún contador se movió: `status` es byte-idéntico en sus quince campos.**
+Durante el acto hubo un paso intermedio en que difería en uno — `no_corrido_abiertas`,
+por la fila `NC-0405` que este mismo acto abría. Al sincronizar con `main` (60 commits
+después) esa fila se cerró: `d413a42` (`GEN2-RELEVO-TANDA-2`) publicó la derivación que
+`NC-0405` denunciaba, y sobre `8b7b056` un `demanda` limpio reescribe **0 de 20** TSV
+(sobre `adcfa978` reescribía 2). Con `NC-0405` en CERRADA, `no_corrido_abiertas` no se
+mueve y los quince campos coinciden.
 13c13
 < no_corrido_abiertas=132
 ---

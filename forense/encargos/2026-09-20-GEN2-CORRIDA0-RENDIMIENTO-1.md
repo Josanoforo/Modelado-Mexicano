@@ -100,8 +100,10 @@ Cascada D-10 · la nota abre con la tabla antes/después y la frase "salidas byt
   `FUERA-DE-PERÍMETRO` · un `demanda` limpio sobre `adcfa978` reescribe las
   dos vistas (CORR-0081..0083 → CORR-0081..0086; RES-0175..0208 →
   RES-0175..0210). No se tocó a mano — este encargo lo prohíbe expresamente.
-  Impacto: ninguna cifra de este acto depende de ello. Sucesor: SIN-ASIGNAR.
-  `NC-0405`, ABIERTA.
+  Impacto: ninguna cifra de este acto depende de ello. **CERRADA aguas arriba
+  al sincronizar con `main`**: `d413a42` (`GEN2-RELEVO-TANDA-2`) publicó esa
+  derivación, y sobre `8b7b056` un `demanda` limpio reescribe **0 de 20** TSV.
+  `NC-0405`, CERRADA.
 
 Nada más quedó sin correr: P0, P2, P3 y P4 se corrieron completos.
 
