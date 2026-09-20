@@ -1,0 +1,76 @@
+calc_id: CALC-GOB-DIGITAL-EXE-EMISIONES-0001
+spec_md: forense/prereg-caja/GOB-gobierno-digital-exe15-spec-v1_0.md
+spec_md_sha256: 20c358b6ae3025cff37ee6094a14e1575b8ecf235405921ccc7deab07ef43b3b
+script: data/corrida0/CALC-GOB-DIGITAL-EXE-EMISIONES-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: EMISIONES-DE-CANDIDATOS-CELDA-D
+  unidad_transferencia: TRAMITE
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: NO-APLICA
+  fuente_acto: GEN2-CELDA-D-PILOTO-3-P0
+  celda_d: "NO-REGISTRADA -- PARA por contrato de unidad; ver NC nueva de este acto y FP a mesa"
+  firma_vigente: "F1-bis (mesa, 2026-09-20; FP-389 FIRMADA) -- rejilla de edad y coherencia; F3 -- separacion de ejecutor"
+  cadena_de_firmas: "brief 03 -> careo 2026-09-19 §4(2) -> F1 (ADR-551: mal fundada, no firmada) -> F1-bis (FP-389 FIRMADA)"
+  medidor_ejecutado_al_congelar: NO
+  orden_de_commits: "COMMIT-1 spec y codigo (sin microdato, este acto) -> COMMIT-2 emisiones -> COMMIT-3 R y adjudicacion"
+  condicion_suspensiva_1: "COMMIT-2 NO CORRE hasta que NC-0355 cierre con MISMO-INSTRUMENTO o CAMBIO-MENOR. Si cierra CAMBIO-DE-INSTRUMENTO, esta spec se retira SIN CORRER (SUPERADO, n_resultados=0)."
+  condicion_suspensiva_2: "Primera lectura de caja, ANTES que P0: que significan 97/98/99 por ola. Si alguno es edad real censurada, F1-bis esta sacando poblacion del universo y se reporta a mesa ANTES de emitir. La rejilla sellada del arbitro (60-96) no se toca aqui."
+  separacion_f3: "Quien congelo este COMMIT-1 (ACTO GEN2-CELDA-D-PILOTO-3-P0) NO ejecuta COMMIT-2 ni COMMIT-3."
+
+inputs:
+  - {id: encig25_base_datos_csv, origen: manifiesto, nota: "ENCIG 2025, seccion 7 -- NO ABIERTO POR ESTE ACTO"}
+  - {id: encig2021_cruces_resultados, origen: repo, ruta: data/corrida0/CALC-ENCIG2021-CRUCES-HISTORICOS-0003/resultados.json}
+  - {id: encig2023_cruces_resultados, origen: repo, ruta: data/corrida0/CALC-ENCIG2023-CRUCES-HISTORICOS-0002/resultados.json}
+  - {id: c2_compuesto_resultados, origen: repo, ruta: data/corrida0/CALC-C2-COMPUESTO-RESERVADAS-0001/resultados.json, nota: "control, punto sin IC -- NO es el piso"}
+
+variables:
+  - {archivo: encig2025_04_sec_7.csv, variable: P7_3, rol: desenlace-canal}
+  - {archivo: encig2025_04_sec_7.csv, variable: N_TRA, rol: filtro-universo}
+  - {archivo: encig2025_04_sec_7.csv, variable: FAC_TRA, rol: ponderador}
+  - {archivo: encig2025_04_sec_7.csv, variable: EST_DIS, rol: estrato}
+  - {archivo: encig2025_04_sec_7.csv, variable: UPM_DIS, rol: upm}
+  - {archivo: encig2025_04_sec_7.csv, variable: ID_TRA, rol: llave}
+  - {archivo: encig2025_04_sec_7.csv, variable: NT_TIPO, rol: llave}
+  - {archivo: encig2025_02_residentes_sec_2.csv, variable: EDAD, rol: eje-edad}
+  - {archivo: encig2025_02_residentes_sec_2.csv, variable: NIV, rol: eje-escolaridad}
+
+transformacion: "Unidad TRAMITE. Universo N_TRA=='01'; adopta P7_3 en {4,5}; no adopta {1,2,6}; fuera {3,7,8,9,blanco}. edad 18-29/30-44/45-59/60-96; NIV agregado {0,1,2}/{3}/{4,5,6,7}/{8,9}. Residuo de edad fuera de las cuatro bandas: FUERA DEL UNIVERSO, contado y reportado (F1-bis)."
+
+rejilla:
+  edad: ["18-29", "30-44", "45-59", "60-96"]
+  escolaridad: ["HASTA-PRIMARIA", "SECUNDARIA", "MEDIA-SUPERIOR", "SUPERIOR"]
+  celdas_total: 16
+  celdas_puntuadas: 15
+  fuera_de_soporte_ex_ante: ["18-29 x HASTA-PRIMARIA"]
+
+parametros:
+  lambda_congelada: 0.8937949410086089
+  lambda_derivacion: "tau2/(tau2+sigma_bar2); tau2 = max(0, Var_entre(dbar) - sigma_bar2); dbar = (d21+d23)/2; Var(dbar) = (EE21^2+EE23^2)/4; k=15 celdas PUNTUADA"
+  lambda_tau2: 0.02525670198316379
+  lambda_sigma_bar2: 0.003001124084482884
+  lambda_var_entre: 0.028257826067646673
+  lambda_control_16_celdas: 0.8310509043319922
+  n_minimo_celda: 200
+  olas_para_soporte: ["2021", "2023", "2025"]
+  fuera_de_soporte_global_si_fallan: 5
+  retador_gana_si_vence_c2_en_fraccion: 0.75
+  delta_mae_umbral_pp: 0.5
+  bootstrap_replicas: 10000
+  metodo_ic: "bootstrap UPM con reposicion dentro de estrato; singleton de certeza; percentiles 2.5/97.5; replicas compartidas"
+
+candidatos:
+  - {id: C2, rol: PISO, regla: "persistencia compuesta con marginales 2025, replica por replica"}
+  - {id: C2-COMPUESTO, rol: CONTROL, regla: "CALC-C2-COMPUESTO-RESERVADAS-0001, punto sin IC -- control, NO piso"}
+  - {id: C1a, rol: REFERENCIA, regla: "persistencia compuesta con marginales 2023"}
+  - {id: C1b, rol: REFERENCIA, regla: "p_23(a,b) directo"}
+  - {id: S-MEDIO, rol: CHALLENGER, regla: "C2 + 0.5*delta_23(a,b)"}
+  - {id: S-LAMBDA, rol: CHALLENGER, regla: "C2 + 0.893794941*dbar(a,b)"}
+
+adjudicacion:
+  b_bis: "Nadie vence y limite superior de DeltaMAE <= 0.5 pp -> corroborada, acotada a cruces de dos ejes estructurales en tres dominios. Nadie vence pero el IC admite > 0.5 pp -> falsador debil, aunque sea la tercera vez. SI AMBAS CABEN, MANDA FALSADOR DEBIL. Un retador vence -> limita a C2 solo en este desenlace, rejilla y ola; C2 sigue adoptado en DIN y TRA (A.10). S-LAMBDA vence y S-MEDIO no, o al reves -> el hallazgo es sobre CUANTO ENCOGER."
+  indecidible: "las dos condiciones del programa verbatim, CAREO-ADV-DUELO-diseno-v2:38"
+  limite_declarado: "Las 7 celdas con IC95 de delta que excluye 0 en 2023 se usaron SOLO para verificar que la condicion de no-piloto no dispara. NO son evidencia confirmatoria independiente: se leen despues de seleccionar entre celdas y entre cruces. El limite no se debilita en el COMMIT-3."
+
+resultados_esperados: []   # COMMIT-1: cero resultados por diseno. El medidor no se ejecuto.
