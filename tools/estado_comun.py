@@ -130,6 +130,46 @@ def ramas_remotas_presentes(raiz):
     return ramas, fuente
 
 
+def ramas_remotas_detalle(raiz):
+    """(detalle, fuente). Por cada rama remota presente en `origin` distinta
+    de `main`: nombre, commits delante/detrás de `origin/main`, fecha del
+    último commit. Construida para `tools/tablero_programa.py` P1 (ACTO
+    GEN2-TABLERO-SENAL-1): el tablero ya derivaba `ramas_remotas_presentes`
+    pero el bloque renderizado no las pintaba -- una rama Codex sin PR quedó
+    invisible para mesa durante horas (defecto real, 19/sep/2026)."""
+    ramas, fuente = ramas_remotas_presentes(raiz)
+    # Refresca los objetos de TODAS las ramas remotas antes de comparar --
+    # `ramas_remotas_presentes()` puede listar (via `ls-remote`, sin objetos)
+    # una rama mas nueva que el ultimo `fetch` de este clon; sin este paso,
+    # `rev-list` sobre `origin/<rama>` falla en silencio y el detalle sale
+    # `None` para una rama que sí existe (A.13: un negativo de un comando
+    # que no trajo los objetos que iba a examinar no es un negativo).
+    _corre(["git", "fetch", "--prune", "origin",
+            "+refs/heads/*:refs/remotes/origin/*"], raiz, timeout=120)
+    detalle = []
+    for nombre in ramas:
+        if nombre == "main":
+            continue
+        rc, salida = _corre(
+            ["git", "rev-list", "--left-right", "--count",
+             f"origin/main...origin/{nombre}"], raiz)
+        if rc == 0 and salida.strip():
+            partes = salida.strip().split()
+            detras, delante = (int(partes[0]), int(partes[1])) if len(partes) == 2 else (None, None)
+        else:
+            detras = delante = None
+        rc2, fecha = _corre(
+            ["git", "log", "-1", "--format=%ad", "--date=short",
+             f"origin/{nombre}"], raiz)
+        detalle.append({
+            "nombre": nombre,
+            "delante_de_main": delante,
+            "detras_de_main": detras,
+            "fecha_ultimo_commit": fecha.strip() if rc2 == 0 else None,
+        })
+    return detalle, f"{fuente}; delante/detrás con `git rev-list --left-right --count origin/main...origin/<rama>`, fecha con `git log -1 --format=%ad --date=short origin/<rama>`"
+
+
 def adr_max(raiz):
     """Máximo ADR actual, derivado de `canon/gobernanza-v1_15.md` -- mismo
     comando de la casa que ya usan `tools/tablero_programa.py` y la
