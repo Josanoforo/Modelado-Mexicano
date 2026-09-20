@@ -1,0 +1,383 @@
+{
+  "base": "4bda996fdb2bad1d67f45210c249d52a870a4e35",
+  "schedule": [
+    [
+      "T01 fuente única de verdad",
+      "t01_single_source"
+    ],
+    [
+      "T02 duplicados nombre/contenido",
+      "t02_duplicates"
+    ],
+    [
+      "T03 referencias colgantes",
+      "t03_dangling_refs"
+    ],
+    [
+      "T04 ADR-33 diagonal en ENTONCES",
+      "t04_adr33_diagonal"
+    ],
+    [
+      "T05 ADR-32.c constructos en glosario",
+      "t05_adr32c_constructs"
+    ],
+    [
+      "T06 consistencia numérica",
+      "t06_numeric_consistency"
+    ],
+    [
+      "T07 vocabulario de tiers",
+      "t07_tier_vocabulary"
+    ],
+    [
+      "T08 mapa de evidencia por report",
+      "t08_evidence_map"
+    ],
+    [
+      "T09 marco (c) usado como causa",
+      "t09_imported_as_cause"
+    ],
+    [
+      "T10 diáspora (b) sin marcar",
+      "t10_diaspora_unmarked"
+    ],
+    [
+      "T11 afirmaciones de estado absolutas",
+      "t11_state_claims"
+    ],
+    [
+      "T12 conteos del motor",
+      "t12_counts"
+    ],
+    [
+      "T13 cabecera de versión ADR-36",
+      "t13_version_header"
+    ],
+    [
+      "T14 T-INVENTARIO",
+      "t14_inventario"
+    ],
+    [
+      "T15 T-ADR-COUNT",
+      "t15_adr_count"
+    ],
+    [
+      "T17 T-FICHAS-COUNT",
+      "t17_fichas_count"
+    ],
+    [
+      "T18 T-PASO2-EJECUCION",
+      "t18_paso2_ejecucion"
+    ],
+    [
+      "T19a cabecera cruzada estado→modelo",
+      "t19a_estado_cita_modelo_vigente"
+    ],
+    [
+      "T19b contador 14 cruzado (modelo)",
+      "t19b_modelo_contador_14"
+    ],
+    [
+      "T19c portada derivada (README)",
+      "t19c_readme_derivadas"
+    ],
+    [
+      "T20 T-CASCADA-MARCADA",
+      "t20_cascada_marcada"
+    ],
+    [
+      "T21 T-CAPA2-CAPA3",
+      "t21_capa2_capa3"
+    ],
+    [
+      "T22 T-FIRMAS",
+      "t22_firmas"
+    ],
+    [
+      "T23 T-CABLEADO",
+      "t23_cableado"
+    ],
+    [
+      "T24 T-LLAVES-EJERCIDAS",
+      "t24_llaves_ejercidas"
+    ],
+    [
+      "T25 T-ROTULOS",
+      "t25_rotulos"
+    ],
+    [
+      "T26 T-VISTA-COLA-ADQUISICION",
+      "t26_vista_cola_adquisicion"
+    ],
+    [
+      "T26-bis T-TSV-CRUDO-ROUND-TRIP",
+      "t26_bis_tsv_crudo_round_trip"
+    ],
+    [
+      "T27 T-INFRA",
+      "t27_infraestructura"
+    ],
+    [
+      "T28 T-A3",
+      "t28_a3_encargo_archivado"
+    ],
+    [
+      "T29 T-FIRMAS-2",
+      "t29_firmas_2_no_perdidas"
+    ],
+    [
+      "T30 T-YAMEDIDO",
+      "t30_yamedido"
+    ],
+    [
+      "T30b T-YAMEDIDO-HUSO",
+      "t30b_yamedido_huso_medianoche"
+    ],
+    [
+      "T31 T-CRON",
+      "t31_cron"
+    ],
+    [
+      "T32 T-CORRIDA0",
+      "t32_corrida0"
+    ],
+    [
+      "T32-bis T-PISOS-REJILLA",
+      "t32_bis_pisos_rejilla"
+    ],
+    [
+      "T32-ter T-C2-COMPUESTO",
+      "t32_ter_c2_compuesto"
+    ],
+    [
+      "T36 T-CORREDORES-GEN2",
+      "t36_corredores_gen2"
+    ],
+    [
+      "T39 T-DIGESTO-NC",
+      "t39_digesto_nc"
+    ],
+    [
+      "T40 T-RUTINAS",
+      "t40_rutinas"
+    ],
+    [
+      "T37 T-COLA-SINCRONIZADA",
+      "t37_cola_sincronizada"
+    ],
+    [
+      "T38 T-ALTA-RELACION",
+      "t38_alta_relacion"
+    ],
+    [
+      "T34 T-NO-CORRIDO",
+      "t34_no_corrido"
+    ],
+    [
+      "T35 T-REPRO",
+      "t35_repro"
+    ],
+    [
+      "T41 T-DIGESTO-MESA",
+      "t41_digesto_mesa"
+    ],
+    [
+      "T42 T-CANDIDATAS",
+      "t42_digesto_candidatas"
+    ],
+    [
+      "T43 T-SUCESOR-EXISTE",
+      "t43_sucesor_existe"
+    ],
+    [
+      "T44 T-ENADID-PRECISION",
+      "t44_enadid_precision_independiente"
+    ],
+    [
+      "T16 T-SUITE-SELF-CHECK",
+      "t16_suite_self_check"
+    ]
+  ],
+  "unchanged_test_functions_sha256": {
+    "t01_single_source": "50c35258266b4c1791342a6b0e5d39329a72df45a7f53c7d01959b4a65fb8d93",
+    "t02_duplicates": "e3c673a7d43d3d93f026e15754d97430c44b510d6b9b188d76f7635cad44b3fa",
+    "t03_dangling_refs": "4d7bb5f0b2458a3439c2a82e7d5a24ab52641e681a00c2adebf97b0db57b8e06",
+    "t04_adr33_diagonal": "54df0bdd6f0c58008d8d60fc102306c74e578e6b2030fa85023b8b346fe3f86e",
+    "t05_adr32c_constructs": "99302065f538185570fc4b8ea5f5d2c0ffce094528820c2bf03a3dbe6f9d089f",
+    "t06_numeric_consistency": "599966120d9569b5161ecf1549c42c42c2e5091b85a43504c156a757c0dbc7fd",
+    "t07_tier_vocabulary": "8a19cae542038310fb2fa44c637c4d17f6e90e540886f891347bcfa8be84285b",
+    "t08_evidence_map": "fa405e519f25c37a2c7dbc78a788bde17d9e122c9d3283b9f31e9a093350c292",
+    "t09_imported_as_cause": "7ae4cded9de2bce5b9a90968cfcf88777c027c1458484199303d12d808bb0c6f",
+    "t10_diaspora_unmarked": "33fa712dca6d5de9c1431de549b8ce6ee4ee56eeca90e4a0f374e4f2a00ee2a2",
+    "t11_state_claims": "bd39f157031386f40d359a91372fe43ad76b8c8e53e86cef22357ac03328319e",
+    "t12_counts": "0607f61b432c809bf7cc504f4d5f038e8999d7244cb8312ed9fa07277fe02fe4",
+    "t13_version_header": "ea106319c9917d5037dcf06eff4f2b22946aa6a7b67906f1a86a9f41e2fdff96",
+    "t14_inventario": "1a334d1d5966566ee20c3ef0a30c90442485aab06fa2d8ac6944a6e162ea8137",
+    "t15_adr_count": "8268ede8898f0a6a166a2ce8cb7f0d0ff7125503eab4082a14443f5d36a9c0e4",
+    "t17_fichas_count": "0876150b6f0c0f1fac5cb6c8c0ed0a3d2288a839871e6e4a977a8ec118f7650c",
+    "t18_paso2_ejecucion": "928f3144bf9f80546921bc70890564d7772b729c15b978426b91aacac110fbc8",
+    "t19a_estado_cita_modelo_vigente": "ac4455fc9d3e0c2304dc4b9439103c37bde5029caa45ff4ce35d27f588a23d6c",
+    "t19b_modelo_contador_14": "7a39359d2372a3aa88f089b6d9edba8e7736516497f49ba67436e357dc9f8b07",
+    "t19c_readme_derivadas": "9f41a5f91a0a116ba6d9b8caa761c25c7c4f402cbddff38b0f8f8253f186a9a5",
+    "t20_cascada_marcada": "4a402471cc918051c71fe0ab7b378ef7c3d66ffe6233d97a9d73f5887ccba860",
+    "t21_capa2_capa3": "6d8d283dd8d5d1cc3880758da8ce0826fc83fa73d32b17fd88582e910d7c8e5c",
+    "t22_firmas": "f3f58032beac76a3c755096a7f29b4a4e4b94e922908ad9539b9c8e39a9173a5",
+    "t23_cableado": "285ccea886b0d52958c0847c50a24f0018990111759e6f497d3b81daca6dad28",
+    "t24_llaves_ejercidas": "6e12497fe76735201089f78d7f4aab4534073f1f783d7e43ec7e5d6f5fcbe5c1",
+    "t25_rotulos": "83e0f4cae551ca66873654ff7b74e62ffa506d7f17ed093636bcdfaddcf6600a",
+    "t26_vista_cola_adquisicion": "3f8b8cbb1b7e4d5970f765df8d4306673fd7c9d2246ee6bffba0e663fabf5c2a",
+    "t26_bis_tsv_crudo_round_trip": "c55e28056a78969ca7c793ec3000a4d26c241f9f0c7d8d28a95a7a5b5cd70509",
+    "t27_infraestructura": "4894e9d3336445252d76309f90dcfa11214890d3a905626e7e52d0f37c16d1bf",
+    "t28_a3_encargo_archivado": "4f351af0523f3055d73d4f25a3eaf60cc586bc69e8b95dda3866eb1868e310d3",
+    "t29_firmas_2_no_perdidas": "921bb0b9aa032fa00b3796cb032f2a20de936dfcb13e443cd792588bd78eb1dc",
+    "t30_yamedido": "f0b7d04ed567e21c35ee9f9f307bd8f751af7638d1a8afcdaa35f18d898e7965",
+    "t30b_yamedido_huso_medianoche": "e64667696c35998ae5cbb64a5ebcac4e142c7d707edfcd47535d0ba58ed8cfab",
+    "t31_cron": "e198f691804139d1e03a2359c2254d752e6c3166d5a58169503d66289a295431",
+    "t32_corrida0": "890ff8b0bc8d63afa9d6795ab8380cc092e28855004cf95018193cfa330bb5fb",
+    "t32_bis_pisos_rejilla": "dc566cfea4ee5c07826875dbed9b46f19ba00f910f1ee82c62a2755515b9d265",
+    "t32_ter_c2_compuesto": "7cff88c084c5e0771978b926e3797208baec03fcee507f69220d238e02606f2d",
+    "t36_corredores_gen2": "b3887b7575b715ec12d13decdb373e70fadac4cb06539fc93b091bbb9f450805",
+    "t39_digesto_nc": "494d23a762305e1537023f2bc5039b9b1281e0d86fbc75722ec0bc98bde9b61e",
+    "t40_rutinas": "6e3811e394de2784957946c7049bd88c5ebe4c030912b62b554ff05b34e5ca28",
+    "t37_cola_sincronizada": "3be1aedf9bd4de84c92f440c683f0b385f3835b567bb16d1dffc32e95c0199f2",
+    "t38_alta_relacion": "313330c2860d2e789e94ff4ef5b60059bd4912b05f78c16516263c687f28b5c3",
+    "t34_no_corrido": "c75f50ef7c35839a3193be7cfcd2f28aa069c8e16e4c7e3ca425b2774774b6f1",
+    "t35_repro": "187de01780400134bdfcf3765c6abe0abad0fbf4e1b3199b53a5fb65f0840a31",
+    "t41_digesto_mesa": "0102bc4eed0c6fe7b584a89687bf0569dbd70de6f1a4d0b418fe66a0b3e93802",
+    "t42_digesto_candidatas": "82c960836621d3ca934961a30a96906a2fcd5af33b7c9cd3ed1585398a8d31ca",
+    "t43_sucesor_existe": "6fc57b51aa1b4d5d0b35f82e16fec6133f945ac357c333b29f8d561f3859308f",
+    "t44_enadid_precision_independiente": "978cf573f5b68460040ce818c4317275ef2f122eabf98208514b8aff5eec38e6",
+    "t16_suite_self_check": "b7204ce562e32db80d0ee1c3f733d2f04e194652c4c1cfc95086684db53b14f0"
+  },
+  "unchanged_baseline_functions_sha256": {
+    "_baseline_key": "c01bffcda3612d48cdb76f82a16f537d7db031976a7dfd94f954c6654a0d5d00",
+    "_baseline_compare": "ca4a5a95e7ce803ae48d0bbfa6e258776ba77fc5ab9b4c14fe84f80d662ac3e5",
+    "_freeze_baseline": "0acc022b8a53c88abb9776ea5439489dd300e77fa78ce0bfee86fa22f31439b6",
+    "_classify": "14eb218fdcbad6efae5b3784c29cc645e15adc23fbb764c46c5821edf8cdd461",
+    "fail": "6e4266b122b5f67b702f857ab2c9c617e951514fe0573ae35160c0c30bf40ac6",
+    "warn": "1abebb70b709130a9ebfbc9f497c1cadb6f93904b3d31cea92376db64054047b",
+    "senal": "2aadb09bc20430e80aac25d65035adce8dd043b2ab92686a92a344f0875459e6"
+  },
+  "baseline_sha256": "688a0dbdc30d3c1a2609af30af55aa49dc5613dae3aa7365441c33a528b80566",
+  "unchanged_nested_tests": {
+    "tests/test_corrida0.py": "e4c336265498908f592de31e7a082f929a725da2ea6efa8453c5e0486864c2a3",
+    "tests/test_pisos_rejilla.py": "38da9981501758944a243f10005621847f1c7b5dec2340be44f202bf69a6964f",
+    "tests/test_c2_compuesto.py": "f1628ac891be69f31925840a5909607ee51c9a5995efa8680d6b484b19184008",
+    "tests/test_corredores_gen2.py": "5fa238c05cdc4b49af07cb7188a1d5f473d4d9454eb33233c152874d77116ddb",
+    "tests/test_digesto_nc.py": "a73e8a32c3c9caa1e3b35adf95deb9046ce0eb0014f342ef0e3b6e2d798f3a91",
+    "tests/test_rutinas.py": "140edc07c8c7bf45a42c359c3ff61d5541c2722abc222e1e170f73412e40a15d",
+    "tests/test_digesto_mesa.py": "7a95ab95f84cc75245fb08c29fa7cec03fa942881f774d554f9323c7f01fb697",
+    "tests/test_digesto_candidatas.py": "61d998b29d78924aa7af9719f29d8e4ee7ae827e50008bc21d227cb49f6ae621",
+    "tools/curador_registro/tests/test_alta_relacion.py": "7c5fbfe796ce71e7724dce9c08b9472af01aba2d9aa22da154e44e303d278574",
+    "tests/test_svystat.py": "e6ac45bce837f39d467245994f055c85efe078b70673939877bb7f588826162f",
+    "tests/test_emite_m_calibracion.py": "3354c5a9b48d464cea1b07d402e4fa17bf0d667f4d067a4aa5081e4307a087cc",
+    "tests/test_baseline_temporal.py": "1b66fa1c1ee306fe9cb103cc59e167b9490f1b41836483ff2929f8ca4e29971e",
+    "tests/test_t_cron.py": "0bdc5adfb88a313e138b02908e8790b2000173e35054d854f18efc68e6d92983",
+    "tests/test_adq_config.py": "1cf4f09b5421d6a5f4cd6da5ba33885d5314b247932bbc12f2ca46ac353aedb5",
+    "tests/test_adq_doctor.py": "6b456d0f882600e362d9f3d8e5e796d0997c8415b321457f3f9d1d4395155664",
+    "tests/test_adq_demanda_vigente.py": "90499224c840b9786de92c028d76ca17736333e440533fbd472a365d6bf657e0",
+    "tests/test_fuentes_financieras.py": "64d13abc3c5f27513d4af5268fb15e9db4e9cc860a8123200cbfc6b8090a6a44",
+    "tests/test_n34_producto_dano.py": "cbd49b174fbcc738057739d8531358ca17fc870fab53b672e990465a6f0fa58e",
+    "tests/test_motor_ejecutable.py": "2de93cb4b1a818340771b60a825a79aa51893bae0134311e8bd0ee5d65298ca6",
+    "tests/test_celda_d_c2.py": "71878f9ca98698a4d770b77e583e5086875509dcd022ba6928b86caa976a12d9",
+    "tests/test_celda_d_piloto2_consumidor.py": "963206b65bf5ffcf363885a00f1dde536a4c98971ff1a8a2f0219d8eb0e5df2a",
+    "tests/test_marcador_segmento.py": "e41d27d940784e90b986231f0d4443087816a66c9387ddeb6d0a749e1ea2d9f9",
+    "tests/test_estimadores_segmento.py": "4ce36d04a3d82824f7042a20c60491b3e3decd1de486fb4b187f782d97022dfc"
+  },
+  "T32_cases_unchanged": [
+    "t_adopcion_grano_del_consumidor",
+    "t_adopcion_tolerancia_declarada_y_no_aplica",
+    "t_cmd_demanda_aplica_fp339",
+    "t_decisiones_tsv_se_lee",
+    "t_distancia_edicion",
+    "t_ejecuta_reporta_el_fallo_como_hecho",
+    "t_encargo_gen2_desfasado",
+    "t_entorno_una_vez",
+    "t_estado_calc_derivado",
+    "t_fuente_replay_persiste_en_tres_vistas",
+    "t_gen2_sin_resultado_id_avisa",
+    "t_instrumento_fuente_ambigua_no_resuelve_por_primera",
+    "t_instrumento_no_agrupa_por_sufijo_de_regla",
+    "t_instrumento_orden_de_fuente_no_cambia_identidad",
+    "t_l8_linaje_heredado_identidad_usos_y_hash",
+    "t_linaje_aliases_exactos_prefijo_y_enlace",
+    "t_linaje_codigo_historico_no_es_tasa_y_ocho_r",
+    "t_linaje_desconocido_ciclo_y_excepcion_contador",
+    "t_linaje_intermediario_padre_nieto_y_orden",
+    "t_linaje_por_resultado_y_roles_de_uso",
+    "t_linaje_registro_rechaza_envuelto_y_acepta_nuevo",
+    "t_manifiesto_ausente_bloquea",
+    "t_manifiesto_ruta_al_medidor",
+    "t_medidor_sin_medir_es_error",
+    "t_mismo_archivo_es_por_ruta",
+    "t_negativo_declara_lo_examinado",
+    "t_negativo_filtra_por_archivo",
+    "t_outputs_exactos",
+    "t_preflight_arbol_sucio_es_bloqueo",
+    "t_preflight_campos_obligatorios",
+    "t_preflight_ids_duplicados",
+    "t_preflight_ids_unicos_no_bloquean",
+    "t_preflight_input_repo_sha",
+    "t_preflight_no_commiteado",
+    "t_preflight_raiz_no_visible_es_aviso_no_bloqueo",
+    "t_preflight_script_ausente",
+    "t_preflight_sha_del_md",
+    "t_preflight_valida_schema_de_resultados",
+    "t_registro_avisa_sin_parar",
+    "t_registro_estado_superado",
+    "t_registro_para_cadena_rota",
+    "t_registro_para_consumidor_gen2_roto",
+    "t_registro_para_id_duplicado",
+    "t_registro_punta_a_punta",
+    "t_registro_superado_por_repite_de_en_etiquetas",
+    "t_registro_superado_por_sucesor_de",
+    "t_replay_a_lote_nuevo_no_toca_evidencia_ajena",
+    "t_replay_b_segundo_registro_idempotente",
+    "t_replay_c_sesion_sin_corpus_no_borra_evidencia",
+    "t_replay_d_cambio_de_identidad_invalida_el_comprobante",
+    "t_replay_e_no_reproduce_posterior_queda_visible",
+    "t_replay_f_caso_23_filas_defecto_y_proteccion",
+    "t_replay_g_hash_vacio_no_certifica_identidad",
+    "t_repro_atrapa_valor_movido",
+    "t_resultado_id_sin_generacion_avisa",
+    "t_run_bloqueado_no_escribe",
+    "t_run_fallo_no_sella",
+    "t_seed_llega_al_medidor",
+    "t_seed_no_aplica",
+    "t_seed_rng_obligatorio",
+    "t_sellada_sin_adoptar_agregado_coincide",
+    "t_sellada_sin_adoptar_es_warn_no_fail",
+    "t_sellada_sin_adoptar_no_tapa_cita_inexistente",
+    "t_sellado_no_sobrescribe",
+    "t_sellador_falla_no_ejecutado",
+    "t_sha_manifiesto_congelado",
+    "t_snapshot_input_unico",
+    "t_snapshot_repo_trae_los_bytes",
+    "t_spec_check_hs02g_dos_archivos",
+    "t_spec_check_imms_warn",
+    "t_spec_no_aplica_explicito",
+    "t_spec_yaml_sellada",
+    "t_status_arbol_real_no_cuenta_smokes",
+    "t_status_cifras_derivadas",
+    "t_status_fixture_computable",
+    "t_status_mide_no_adopta",
+    "t_status_puro_y_registro_seco_no_escriben",
+    "t_tipo_result",
+    "t_tolerancia_bootstrap",
+    "t_tolerancia_entero_es_exacta",
+    "t_tolerancia_estructuras",
+    "t_tolerancia_flotante",
+    "t_validacion_overlay_sucesor_por_resultado_y_hash",
+    "t_verify_contexto",
+    "t_verify_contexto_fp358_codigo_distinto",
+    "t_verify_contexto_fp358_commit_no_gatea",
+    "t_verify_contexto_llaves_no_cadena",
+    "t_verify_no_escribe",
+    "t_verify_no_estimable",
+    "t_verify_sin_corrida_es_no_ejecutable",
+    "t_verify_tipo_por_result",
+    "t_verify_valida_sello",
+    "t_warn_sin_adoptar_baja_en_uno_al_adoptar",
+    "t_warn_sin_adoptar_ignora_cadena_a_medias"
+  ]
+}

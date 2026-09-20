@@ -8,12 +8,16 @@ Cada test corresponde a un ADR o a un defecto documentado.
 
     python3 tests/check.py           # corre todo
     python3 tests/check.py --strict  # los WARN también fallan
+    python3 tests/check.py --baseline --parallel  # T35 en proceso aislado
 
 Filosofía: cada ADR que declara un principio necesita un test que FALLE
 visiblemente si no se cumple. "Principio declarado sin requisito de salida"
 es el patrón que explica casi todos los fallos del programa.
 """
 import csv, io, os, re, sys, glob, hashlib, json, unicodedata, datetime, tempfile, shutil
+import time
+from concurrent.futures import ProcessPoolExecutor
+import multiprocessing
 from collections import Counter, defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,6 +25,11 @@ STRICT = "--strict" in sys.argv
 BASELINE_MODE = "--baseline" in sys.argv
 FREEZE_MODE = "--freeze" in sys.argv
 REQUIRE_CABLEADO = "--require-cableado" in sys.argv
+PARALLEL = "--parallel" in sys.argv
+if PARALLEL:
+    # Los procesos comparten sólo lecturas del checkout, tampoco escrituras
+    # incidentales de __pycache__. Se aplica también al hijo independiente.
+    sys.dont_write_bytecode = True
 BASELINE_PATH = os.path.join(ROOT, "tests", "baseline.json")
 FAILS, WARNS = [], []
 SENAL = []
@@ -915,11 +924,17 @@ def _suite_real():
         # `GEN2-CONSUMIDO-RETRO-3` ya lo atribuyó a "saturación de CPU").
         # 300 s deja ~3.6x sobre la mediana medida. NO se toca la lógica de
         # comparación FAIL/WARN, que es lo que NC-0191 excluye del perímetro.
-        r = subprocess.run([sys.executable, os.path.join(ROOT, "tests", "check.py")],
+        command = [sys.executable, os.path.join(ROOT, "tests", "check.py")]
+        if PARALLEL:
+            command.append("--parallel")
+        r = subprocess.run(command,
                             cwd=ROOT, capture_output=True, text=True, env=env, timeout=300)
     except Exception as e:
         return None, None, str(e)
     m = re.search(r"(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN", r.stdout)
+    for line in r.stdout.splitlines():
+        if line.strip().startswith("[tiempo]"):
+            print(f"  [T16/hijo] {line.strip()}", flush=True)
     if not m:
         return None, None, r.stdout[-300:]
     return int(m.group(1)), int(m.group(2)), None
@@ -7393,6 +7408,54 @@ def t35_repro(modulo=None):
                             f"vara de adopcion: {modo}")
 
 
+def _repro_worker(strict, require_cableado):
+    """T35 solo lee artefactos; proceso nuevo, sin globals/fixtures de T32."""
+    global STRICT, REQUIRE_CABLEADO
+    STRICT, REQUIRE_CABLEADO = strict, require_cableado
+    FAILS.clear()
+    WARNS.clear()
+    SENAL.clear()
+    started = time.perf_counter()
+    t35_repro()
+    return FAILS, WARNS, SENAL, time.perf_counter() - started
+
+
+def _run_tests(tests, parallel=False):
+    # Sólo T35 sale del orden secuencial. Se consume en su posición original:
+    # baseline, orden de mensajes y T16 conservan el mismo contrato.
+    # spawn evita heredar módulos con rutas/estado parcheados por los fixtures.
+    pool = None
+    future = None
+    try:
+        if parallel:
+            if sum(fn is t35_repro for _, fn in tests) != 1:
+                raise ValueError("T35 debe aparecer exactamente una vez")
+            pool = ProcessPoolExecutor(
+                max_workers=1, mp_context=multiprocessing.get_context("spawn"))
+            future = pool.submit(_repro_worker, STRICT, REQUIRE_CABLEADO)
+        for name, fn in tests:
+            before_f, before_w = len(FAILS), len(WARNS)
+            started = time.perf_counter()
+            if parallel and fn is t35_repro:
+                # result() propaga cancelación, excepción o muerte del worker.
+                # Nunca se interpreta ausencia de resultado como lista vacía.
+                fs, ws, signals, elapsed = future.result()
+                FAILS.extend(fs)
+                WARNS.extend(ws)
+                SENAL.extend(signals)
+            else:
+                fn()
+                elapsed = time.perf_counter() - started
+            df, dw = len(FAILS) - before_f, len(WARNS) - before_w
+            mark = "FAIL" if df else ("warn" if dw else " ok ")
+            extra = f"  ({df} fail" + (f", {dw} warn)" if dw else ")") if df else (f"  ({dw} warn)" if dw else "")
+            print(f"  [{mark}]  {name}{extra}", flush=True)
+            print(f"  [tiempo] {name}: {elapsed:.3f} s", flush=True)
+    finally:
+        if pool is not None:
+            pool.shutdown(wait=True, cancel_futures=True)
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -7449,13 +7512,7 @@ def main():
     print("═" * 72)
     print("  VERIFICACIÓN DEL CORPUS" + ("   [--strict]" if STRICT else ""))
     print("═" * 72)
-    for name, fn in tests:
-        before_f, before_w = len(FAILS), len(WARNS)
-        fn()
-        df, dw = len(FAILS) - before_f, len(WARNS) - before_w
-        mark = "FAIL" if df else ("warn" if dw else " ok ")
-        extra = f"  ({df} fail" + (f", {dw} warn)" if dw else ")") if df else (f"  ({dw} warn)" if dw else "")
-        print(f"  [{mark}]  {name}{extra}")
+    _run_tests(tests, parallel=PARALLEL)
 
     if WARNS:
         print("\n" + "─" * 72 + f"\n  WARN ({len(WARNS)})\n" + "─" * 72)

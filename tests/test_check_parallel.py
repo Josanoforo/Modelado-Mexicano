@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+"""Falsadores del transporte T35 y de la compuerta real de verify.yml."""
+import contextlib
+import io
+import itertools
+import json
+import os
+from pathlib import Path
+import subprocess
+import tempfile
+import unittest
+from concurrent.futures import Future, CancelledError
+from unittest.mock import patch
+
+import yaml
+import check as C
+
+
+class ParallelCheck(unittest.TestCase):
+    def setUp(self):
+        self.previous = C.FAILS[:], C.WARNS[:], C.SENAL[:], C.BASELINE_PATH
+        C.FAILS.clear()
+        C.WARNS.clear()
+        C.SENAL.clear()
+        self.temp = tempfile.TemporaryDirectory()
+        C.BASELINE_PATH = str(Path(self.temp.name) / 'baseline.json')
+        Path(C.BASELINE_PATH).write_text(json.dumps({
+            'fails': [['T35', 'conocido']], 'warns': []}))
+        self.output = io.StringIO()
+        self.capture = contextlib.redirect_stdout(self.output)
+        self.capture.__enter__()
+
+    def tearDown(self):
+        self.capture.__exit__(None, None, None)
+        fs, ws, signals, baseline = self.previous
+        C.FAILS[:], C.WARNS[:], C.SENAL[:] = fs, ws, signals
+        C.BASELINE_PATH = baseline
+        self.temp.cleanup()
+
+    def run_future(self, future, parent=lambda: None, tests=None):
+        with patch.object(C, 'ProcessPoolExecutor') as pool:
+            pool.return_value.submit.return_value = future
+            C._run_tests(tests if tests is not None else [
+                ('T01 fixture', parent), ('T35 fixture', C.t35_repro)], parallel=True)
+            pool.return_value.submit.assert_called_once_with(
+                C._repro_worker, C.STRICT, C.REQUIRE_CABLEADO)
+            pool.return_value.shutdown.assert_called_once_with(
+                wait=True, cancel_futures=True)
+
+    def test_new_failure_in_each_execution_path_blocks_baseline(self):
+        for worker in (False, True):
+            with self.subTest(worker=worker):
+                C.FAILS.clear()
+                future = Future()
+                future.set_result(([('T35', 'nuevo')] if worker else [], [], [], .01))
+                self.run_future(future, parent=lambda: None if worker else C.fail('T01', 'nuevo'))
+                self.assertEqual(C._baseline_compare(), 1)
+
+    def test_known_fail_warn_and_signal_keep_baseline_semantics_and_order(self):
+        future = Future()
+        future.set_result(([('T35', 'conocido')], [('T35', 'estado')],
+                           [('T35', 'vigia')], .01))
+        self.run_future(future, parent=lambda: C.warn('T01', 'primero'))
+        self.assertEqual(C.WARNS, [('T01', 'primero'), ('T35', 'estado')])
+        self.assertEqual(C.SENAL, [('T35', 'vigia')])
+        self.assertEqual(C._baseline_compare(), 0)
+        self.assertIn('[FAIL]  T35 fixture', self.output.getvalue())
+
+    def test_cancel_exception_and_absent_payload_never_succeed(self):
+        for state, error in [('cancel', CancelledError), ('exception', RuntimeError),
+                             ('missing', TypeError)]:
+            with self.subTest(state=state):
+                future = Future()
+                if state == 'cancel':
+                    future.cancel()
+                elif state == 'exception':
+                    future.set_exception(RuntimeError('worker muerto'))
+                else:
+                    future.set_result(None)
+                with self.assertRaises(error):
+                    self.run_future(future)
+
+    def test_omitted_or_duplicate_t35_is_an_error(self):
+        for tests in ([], [('T35', C.t35_repro), ('T35 duplicado', C.t35_repro)]):
+            with self.assertRaises(ValueError):
+                self.run_future(Future(), tests=tests)
+
+
+class WorkflowGate(unittest.TestCase):
+    def test_actual_shell_gate_rejects_every_non_success_state(self):
+        workflow = yaml.safe_load((Path(C.ROOT) / '.github/workflows/verify.yml').read_text())
+        gate = workflow['jobs']['check']
+        self.assertEqual(set(gate['needs']), {'suite', 'adicionales'})
+        self.assertEqual(gate['if'], '${{ always() }}')
+        self.assertIs(workflow['concurrency']['cancel-in-progress'], True)
+        step = gate['steps'][0]
+        self.assertEqual(step['env'], {
+            'SUITE_RESULT': '${{ needs.suite.result }}',
+            'ADICIONALES_RESULT': '${{ needs.adicionales.result }}'})
+        states = ('success', 'failure', 'cancelled', 'skipped', '', 'unexpected')
+        for suite, extras in itertools.product(states, repeat=2):
+            with self.subTest(suite=suite, adicionales=extras):
+                run = subprocess.run(['bash', '-c', step['run']], env={
+                    **os.environ, 'SUITE_RESULT': suite, 'ADICIONALES_RESULT': extras},
+                    capture_output=True, text=True)
+                self.assertEqual(run.returncode == 0, suite == extras == 'success')
+
+
+if __name__ == '__main__':
+    unittest.main(verbosity=2)
