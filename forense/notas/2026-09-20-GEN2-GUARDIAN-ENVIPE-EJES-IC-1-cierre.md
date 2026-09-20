@@ -1,10 +1,10 @@
 # ACTO GEN2-GUARDIAN-ENVIPE-EJES-IC-1 · nota de cierre
 
-**20/sep/2026 · CAJA (Ubuntu/WSL2, corpus montado) · Opus 5 · `ADR-559` · rama `acto/gen2-guardian-envipe-ejes-ic-1`**
+**20/sep/2026 · CAJA (Ubuntu/WSL2, corpus montado) · Opus 5 · `ADR-560` · rama `acto/gen2-guardian-envipe-ejes-ic-1`**
 Encargo (A.3): `forense/encargos/2026-09-20-GEN2-GUARDIAN-ENVIPE-EJES-IC-1.md` · base `1bb9e2c4` (se movió 20 commits; fusionado en `c0f500d`).
 Sucede a `GEN2-C2-COMPUESTO-IC-ENVIPE2025-1` (`PR #907`, `ADR-553`, PARO-PREMISA, 0 de 38). Firma de mesa, verbatim: **«2 si extendemos»**.
 
-**Contadores movidos:** `N_corridas_selladas` +1 (`CALC-C2-COMPUESTO-IC-ENVIPE2025-0001`). `cuenta_gen2` nace NO por E.1 (`FP-396`). `adoptados_activos`: 0 (no adopta). `NC-0361` CERRADA; `FP-390` FIRMADA.
+**Contadores movidos:** `N_corridas_selladas` +1 (`CALC-C2-COMPUESTO-IC-ENVIPE2025-0001`). `cuenta_gen2` nace NO por E.1 (`FP-397`). `adoptados_activos`: 0 (no adopta). `NC-0361` CERRADA; `FP-390` FIRMADA.
 
 ## 1 · Qué se hizo, en orden
 
@@ -12,7 +12,7 @@ Sucede a `GEN2-C2-COMPUESTO-IC-ENVIPE2025-1` (`PR #907`, `ADR-553`, PARO-PREMISA
 2. **Tres controles de no-regresión, los tres antes de medir:** (i) 15/15 casos heredados verdes sin editar un caso; (ii) 7 casos nuevos (sexo/edad con el orden del árbitro; lista o dos posicionales → `TypeError`; veto por nombre en ola libre de 2025 con `NC-0328` en el mensaje, y 12 celdas en otra ola; los cuatro pares del dictamen prohibidos en reservada; réplicas para los ejes nuevos); (iii) `corrida0 verify` de `CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001` y `…-ARBITRO-CRUCE-0001` con el módulo extendido, en proceso aislado: **REPRODUCE las dos**.
 3. **P2 · COMMIT-1** (`d8adce0`): spec humana `forense/prereg-caja/C2-COMPUESTO-IC-ENVIPE2025-spec-v1_0.md` + sidecar (`5f500c53…`), `spec.yaml` (357 RESULT generados desde el TSV derivado de emisiones, no tecleados), `medidor.py`, `tests/test_c2_ic_envipe2025_guardia.py` (11 guardias AST/sha, cero microdato). `spec-check` 11 OK. CALC-id libre en 7/7 ramas remotas (0 directorios). Sin microdato en el commit.
 4. **P3 · COMMIT-2** (`fcbfe11`): `preflight` VERDE → `run` (11 s) → `verify` aislado REPRODUCE, `CONTEXTO=IDENTICO`. Registro E.7: `registro --verifica --lote CALC-C2-COMPUESTO-IC-ENVIPE2025-0001 --escribe`; asiento en `forense/replay-evidencia.tsv`. Tras fusionar `origin/main` (`#908`/`#911`/`#912`), re-derivado: **0 filas ajenas modificadas o borradas** (medido contra `origin/main` fresco excluyendo las propias); las 5 corridas + 16 RESULT ajenos que el árbol traía sin derivar ya los publicó `#911` (`NC-0382`).
-5. **P4 · trámite:** `ADR-559`, L0, rótulo, `FP-390` FIRMADA, `FP-396`, `NC-0361` CERRADA, `NC-0384`–`NC-0388`, `decisiones.tsv` objeto `guardian:envipe2025-ejes`, esta nota.
+5. **P4 · trámite:** `ADR-560`, L0, rótulo, `FP-390` FIRMADA, `FP-397`, `NC-0361` CERRADA, `NC-0386`–`NC-0390`, `decisiones.tsv` objeto `guardian:envipe2025-ejes`, esta nota.
 
 ## 2 · Universo, unidad, escala, clase
 
@@ -85,7 +85,7 @@ Un remuestreo (`PCG64(42)`, 10,000) compartido por cinco `marginal()` de una var
 
 Anchura: mín 0.0312, mediana 0.0512, máx 0.0950. `P-REDERIVADO` (C2 sobre los marginales re-derivados aquí) difiere del punto sellado en ≤ 1.39e-6: el redondeo a 6 decimales de los R públicos.
 
-## 4 · Desviación declarada (A.8 contra el árbol) — `NC-0384`
+## 4 · Desviación declarada (A.8 contra el árbol) — `NC-0386`
 
 El encargo decía «`COLUMNAS_TSDEM` gana las dos columnas crudas». El árbitro las leyó de `tmod_vic` (`tools/medidor_evasion_norma_envipe25.py:188`; `milpa/tramite-ola5-propuesta-v0.yaml:1680`). Se cargaron de `COLUMNAS_TMOD`, se declaró en la spec §3 antes del COMMIT-1, y el control B es la prueba de que era la tabla correcta: Δn = 0 en `1 Hombre` 19 399 / `2 Mujer` 20 881 / `18-29` 11 871 / `30-44` 15 214 / `45-59` 8 620 / `60+` 4 481.
 
