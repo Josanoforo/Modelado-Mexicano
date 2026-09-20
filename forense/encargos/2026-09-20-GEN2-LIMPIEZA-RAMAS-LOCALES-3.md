@@ -36,3 +36,7 @@ En disco: P1 sobre la lista firmada. En el repo: nota, forense/notas/insumos-ext
   **por qué:** `PARO-PREMISA` (parcial: la nota de este acto sí se produjo — es esta misma, `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-3-paro.md` — pero la enmienda a `#913` que P4 pedía depende del dictamen de P3, que no corrió).
   **impacto:** `#913` no lleva enmienda; su texto original permanece intacto (correcto: A.3 prohíbe editar la nota).
   **sucesor:** `NC-0407` → mismo sucesor que P1.
+
+## CONSUMIDO
+
+Ejecutado por `PR #923` (`acto/gen2-limpieza-ramas-locales-3`) — `PARO-PREMISA` en P0, cero commits sustantivos. Ver `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-3-paro.md` y `canon/gobernanza-v1_15.md ADR-563`.
