@@ -3,9 +3,10 @@
 Dictamen sustantivo (P0/P3): `forense/notas/2026-09-19-GEN2-PISOS-ENUT2019-EJES-1-dictamen.md`
 (congelado; su sha256 viaja en `metadata_source_sha256` de la tabla de identidad y
 `tests/test_pisos_enut2019.py` lo verifica byte a byte — no se edita después del sello).
-Encargo: `forense/encargos/2026-09-19-GEN2-PISOS-ENUT2019-EJES-1.md`. ADR: `ADR-552`
-(candidato del comando de la casa; ya redactado en tres ramas remotas al cerrar —
-renumera quien fusiona segundo).
+Encargo: `forense/encargos/2026-09-19-GEN2-PISOS-ENUT2019-EJES-1.md`. ADR: `ADR-553`
+(candidato del comando de la casa era `ADR-552`; `PR #906`, `GEN2-TABLERO-SENAL-1`, fusionó
+primero y lo tomó junto con `NC-0359`/`NC-0360` — renumerado aquí a `ADR-553` y `NC-0361`..`NC-0366`,
+regla de la casa: renumera quien fusiona segundo).
 
 ## 1 · ARRANQUE (cinco líneas, crudas)
 
@@ -42,7 +43,7 @@ nuevos**, todos posteriores al 0-bis de este acto (`992f454`, 20:50 local):
 local), los tres `ENTORNO: CAJA`. **Decisión del ejecutor, declarada:** no parar. La
 compuerta existe por la colisión de CALC-id del 19/sep; este acto no sella ningún CALC
 (P0 salió NO-CONSTRUIBLE), así que esa clase de colisión no puede producirse desde aquí.
-Lo que sí colisiona (`ADR-552`, `NC-0359..0364`) se resuelve por la regla de la casa. Si
+Lo que sí colisiona (`ADR-553`, `NC-0361..0364`) se resuelve por la regla de la casa. Si
 mesa lee la compuerta como «PARO aunque el acto no selle», la fila correspondiente de
 `## NO-CORRIDO / RESERVAS` lo deja a su decisión.
 
@@ -53,10 +54,10 @@ mesa lee la compuerta como «PARO aunque el acto no selle», la fila correspondi
 | `forense/encargos/2026-09-19-GEN2-PISOS-ENUT2019-EJES-1.md` | 0-bis A.3 verbatim; `## NO-CORRIDO / RESERVAS` y `## CONSUMIDO` al cierre |
 | `forense/notas/2026-09-19-GEN2-PISOS-ENUT2019-EJES-1-dictamen.md` | P0 (tabla actividad por actividad, veredicto) + P3 (a)/(b) |
 | `forense/prereg-caja/PISOS-ENUT2019-ejes-metadatos-v1_0.tsv` + `.sha256` | tabla de identidad: 11 filas `NO-CONSTRUIBLE`, categorías leídas del yaml del árbitro, `metadata_source` = dictamen + sha256 |
-| `tools/marcador_segmento.py` | enlace de la segunda tabla (**tres sitios**, no una línea — `NC-0363`) |
+| `tools/marcador_segmento.py` | enlace de la segunda tabla (**tres sitios**, no una línea — `NC-0365`) |
 | `data/corrida0/marcador-segmento.tsv` | re-derivado por `--escribe`; diff = exactamente las 11 filas ENUT |
 | `tests/test_pisos_enut2019.py` | rejilla emitida == rejilla del árbitro; causa única; sin CALC; sidecar/fuente byte a byte; transporte de la causa por el marcador |
-| cascada | `hallazgos.md` (una entrada), `no-corrido.tsv` (`NC-0359..0364`), `gobernanza-v1_15.md` (`ADR-552`), `estado-programa-v1_14.md` (L0), `registro-rotulos.tsv` (una fila) |
+| cascada | `hallazgos.md` (una entrada), `no-corrido.tsv` (`NC-0361..0364`), `gobernanza-v1_15.md` (`ADR-553`), `estado-programa-v1_14.md` (L0), `registro-rotulos.tsv` (una fila) |
 
 **No escribió**: `forense/prereg-caja/PISOS-ENUT2019-ejes-spec-v1_0.md` (P1 — no hay spec
 que congelar sobre un estimando inexistente en la ola fuente),
@@ -81,10 +82,10 @@ sólo FD, diccionarios RNM, descripciones de archivos y listados de miembros de 
 ## 5 · Suite en línea base
 
 Primera corrida (`TZ=UTC timeout 1800 python3 tests/check.py --baseline`, exit 1): **ROJO — 5
-FAIL nuevos**, todos propios: 3 × `T-NO-CORRIDO` (`NC-0360`/`NC-0363`/`NC-0364` con sucesor
+FAIL nuevos**, todos propios: 3 × `T-NO-CORRIDO` (`NC-0362`/`NC-0365`/`NC-0366` con sucesor
 literal `SIN-ASIGNAR` → `NC-HUÉRFANA`) y 2 × `T16` (canon declara 3 FAIL, la corrida da 6 —
 los tres de arriba). Corrección: los tres sucesores se asignaron a actos/decisiones concretas
-(el sucesor de `NC-0359`; mesa al fusionar; el acto que cierre `NC-0361`). `T16` no se
+(el sucesor de `NC-0361`; mesa al fusionar; el acto que cierre `NC-0363`). `T16` no se
 editó: vuelve a cuadrar solo al bajar la cuenta real a 3.
 
 Segunda corrida (mismo comando, exit 0), salida cruda del bloque final:
