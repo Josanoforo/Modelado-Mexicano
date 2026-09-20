@@ -1,0 +1,58 @@
+calc_id: CALC-ENCUCI2020-RESPUESTA-POR-CONTACTO-0001-v1_1
+spec_md: spec.md
+spec_md_sha256: aa158039251a8f07b307725a09d9bfa5f42b64bc0d44ba4b7a8a289cdc356c39
+script: data/corrida0/CALC-ENCUCI2020-RESPUESTA-POR-CONTACTO-0001-v1_1/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: DESCRIPTIVO-ASOCIATIVO
+  cuenta_gen2: SI
+  adopcion: PENDIENTE-DE-MESA
+  exposicion_resultados: "DECLARADA: se leyeron CALC-ENCUCI-0001 y CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001 antes del congelamiento; no hay ceguera"
+inputs:
+  - {id: encuci2020_bd_dbf, origen: manifiesto}
+variables:
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: ID_PER, rol: llave persona}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_1, rol: contacto tipo 1; 1=si 2=no}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_2, rol: contacto tipo 2; 1=si 2=no}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_3, rol: contacto tipo 3; 1=si 2=no}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_4, rol: contacto tipo 4; 1=si 2=no}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_5, rol: contacto tipo 5; 1=si 2=no}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_6, rol: contacto tipo 6; 1=si 2=no}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_7, rol: contacto tipo 7; 1=si 2=no}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_8, rol: contacto tipo 8; 1=si 2=no}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_9, rol: contacto tipo 9; 1=si 2=no}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_16_10, rol: contacto tipo 10; 1=si 2=no}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_17, rol: solicitud general; 1=si 2=no}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_18, rol: entrega general; 1=si 2=no}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: FAC_SEL, rol: ponderador persona}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: EST_DIS, rol: estrato}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: UPM_DIS, rol: UPM}
+universo: "Persona seleccionada ENCUCI 2020, 15+, una ola, FAC_SEL valido. Ningun desconocido se convierte en no."
+filtros: "Por tipo: AP5_16_j=1; contraste: algun contacto acreditado, AP5_16_j 1 versus 2 y AP5_17/AP5_18 validas; solapamiento: vector completo solo donde se declara."
+ponderador: FAC_SEL sin normalizar
+transformacion: "1/2 validos; conjunta 2/2=ninguna, 1/2=solo solicitud, 2/1=solo entrega, 1/1=ambas; otros contactos es suma de los otros nueve 1."
+estimando: "Proporciones descriptivas ponderadas, condicionales y diferencias de perfiles por contacto; sin atribucion por autoridad ni inferencia causal."
+dependencias_materiales: [numpy]
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap UPM_DIS con reemplazo dentro de EST_DIS, percentiles 2.5/97.5
+  singleton: autorremuestreo; varianza cero rotulada
+  hash_medidor_sha256: ed7501c6ba63a540263f5949194d6daf216d8fcaf7e30869dce945bea9e502b4
+  hash_prueba_sha256: bd6fce8fe9695dc9696bd58b81e45394a4603df355a6f6936e3c96890e989e59
+  hash_descriptor_sha256: 51221e72d64e4ae3a73ebe02c4b59b765e67ae2ceb3d15780ce5debee7e61ca6
+  hash_payload_sha256: 0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283
+seed: {aplica: true, valor: 20260919, rng: numpy.PCG64}
+tolerancia: {tipo: flotante, abs: 1.0e-10, razon: misma semilla y sumas deterministas}
+resultados:
+  - {id: RESULT-ENCUCI2020-RPCV11-N-FILAS, tipo: entero, unidad: filas SEC_4_5}
+  - {id: RESULT-ENCUCI2020-RPCV11-N-PONDERADOR-VALIDO, tipo: entero, unidad: marco}
+  - {id: RESULT-ENCUCI2020-RPCV11-MASA-PONDERADA, tipo: flotante, unidad: suma FAC_SEL}
+  - {id: RESULT-ENCUCI2020-RPCV11-LLAVE-IDPER, tipo: texto, unidad: unicidad}
+  - {id: RESULT-ENCUCI2020-RPCV11-N-ESTRATOS, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENCUCI2020-RPCV11-N-UPM, tipo: entero, unidad: UPM}
+  - {id: RESULT-ENCUCI2020-RPCV11-N-ESTRATOS-SINGLETON, tipo: entero, unidad: estratos singleton}
+  - {id: RESULT-ENCUCI2020-RPCV11-METODO-IC, tipo: texto, unidad: metodo}
+  - {id: RESULT-ENCUCI2020-RPCV11-PERFIL-POR-CONTACTO, tipo: texto, unidad: tabla por contacto}
+  - {id: RESULT-ENCUCI2020-RPCV11-CONTRASTES-POR-CONTACTO, tipo: texto, unidad: tabla contrastes}
+  - {id: RESULT-ENCUCI2020-RPCV11-SOLAPAMIENTO-OTROS-CONTACTOS, tipo: texto, unidad: tabla solapamiento}
+  - {id: RESULT-ENCUCI2020-RPCV11-VALIDACIONES-POR-CONTACTO, tipo: texto, unidad: identidades por los diez contactos}

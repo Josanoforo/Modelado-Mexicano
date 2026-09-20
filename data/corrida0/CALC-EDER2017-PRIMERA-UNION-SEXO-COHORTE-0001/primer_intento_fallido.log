@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/home/pc0/mm-gen2-eder2017-primera-union-sexo-cohorte-cli-1/data/corrida0/CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0001/medidor.py", line 123, in <module>
+    q=argparse.ArgumentParser(); q.add_argument("--zip",required=True); q.add_argument("--out",required=True); a=q.parse_args(); run(a.zip,a.out)
+                                                                                                                                 ~~~^^^^^^^^^^^^^
+  File "/home/pc0/mm-gen2-eder2017-primera-union-sexo-cohorte-cli-1/data/corrida0/CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0001/medidor.py", line 108, in run
+    d,a=carga(zip_path); rows=[]
+        ~~~~~^^^^^^^^^^
+  File "/home/pc0/mm-gen2-eder2017-primera-union-sexo-cohorte-cli-1/data/corrida0/CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0001/medidor.py", line 39, in carga
+    hv=_read(z,"historiavida.csv",KEY+["anio_retro","anio_nac","edo_civil1"])
+  File "/home/pc0/mm-gen2-eder2017-primera-union-sexo-cohorte-cli-1/data/corrida0/CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0001/medidor.py", line 30, in _read
+    if miss: raise ValueError(name+" columna ausente: "+",".join(miss))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: historiavida.csv columna ausente: folioviv

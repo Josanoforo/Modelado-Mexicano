@@ -3174,7 +3174,7 @@ def _cita_fuente_replay(fuente: dict | None) -> str:
     return clase
 
 
-def _lee_oferta(verifica: bool) -> list[dict]:
+def _lee_oferta(verifica: bool, verifica_ids: set | None = None) -> list[dict]:
     """Un registro por carpeta `CALC-*/`. Levanta `ParoRegistro` en las
     validaciones que el plan declara bloqueantes."""
     evidencia = _lee_evidencia_replay()
@@ -3243,7 +3243,10 @@ def _lee_oferta(verifica: bool) -> list[dict]:
         if estado != "SELLADA":
             replay, contexto = NO_CORRIDA, NO_CORRIDA
         else:
-            fresco = verify(calc_id, imprime=False) if verifica else None
+            # Con --verifica --lote, el lote es una verificación dirigida:
+            # no se reejecutan CALC ajenos sólo para poder asentar uno propio.
+            verificar_este = verifica and (verifica_ids is None or calc_id in verifica_ids)
+            fresco = verify(calc_id, imprime=False) if verificar_este else None
             replay, contexto, fuente_replay, avisos_replay = _proyecta_replay(
                 calc_id, ejec or {}, fresco, evidencia)
 
@@ -3725,7 +3728,7 @@ def _validacion_independiente_resuelta(calc_id: str, rid: str, spec: dict,
     return "NO-HECHA", NO_DECLARADO, NO_DECLARADO
 
 
-def _filas_registro(verifica: bool = False) -> dict:
+def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> dict:
     """Deriva las tres vistas. Devuelve `{corridas, resultados, usos,
     avisos}`; levanta `ParoRegistro` sin escribir nada si una validacion
     bloqueante falla."""
@@ -3734,7 +3737,7 @@ def _filas_registro(verifica: bool = False) -> dict:
                            "`demanda-corridas.tsv` -- corre `corrida0 demanda` primero")
     demanda_res = _leer_tsv_derivado(DEMANDA_RESULTADOS)
     demanda_corr = _leer_tsv_derivado(DEMANDA_CORRIDAS)
-    oferta = _lee_oferta(verifica)
+    oferta = _lee_oferta(verifica, verifica_ids)
     marcas = _ids_corrida0_declarados()
     avisos: list[str] = []
     # ACTO GEN2-REGISTRO-REPLAY · P2: la limitacion de ESTA sesion viaja
@@ -4217,14 +4220,15 @@ def registro(escribe: bool = False, verifica: bool = False,
     documentado para "simular sin escribir" (`ADR-410`) escribia de todos
     modos como efecto colateral (`FP-359`) -- publico una firma que mesa
     nunca dio."""
-    vistas = _filas_registro(verifica)
+    lote_autorizado = _lote_autorizado(lote)
+    vistas = _filas_registro(verifica, lote_autorizado if verifica and lote_autorizado else None)
     if fuentes and imprime:
         _imprime_fuentes_replay(vistas["fuentes_replay"])
     if escribe:
         # P1 (NC-0094): el diff de los dos ejes se calcula ANTES de tocar
         # el primer TSV. Si pisa evidencia ajena, esto levanta y no se
         # escribe nada -- ni la primera de las tres vistas.
-        _para_si_pisa_replay(vistas["corridas"], _lote_autorizado(lote))
+        _para_si_pisa_replay(vistas["corridas"], lote_autorizado)
         _escribe(VISTA_CORRIDAS, COLS_VISTA_CORRIDAS, vistas["corridas"])
         _escribe(VISTA_RESULTADOS, COLS_VISTA_RESULTADOS, vistas["resultados"])
         _escribe(VISTA_USOS, COLS_VISTA_USOS, vistas["usos"])
@@ -4451,8 +4455,7 @@ def construye_parser() -> argparse.ArgumentParser:
     rg = subs.add_parser("registro",
                          help="B-1 · une demanda y oferta -> corridas/resultados/usos.tsv")
     rg.add_argument("--verifica", action="store_true",
-                    help="ademas corre `verify` por CALC sellado para llenar "
-                         "resultado_replay/contexto_replay (reejecuta el medidor)")
+                    help="con --lote, corre `verify` sólo para esos CALC sellados; sin lote, por cada CALC sellado")
     rg.add_argument("--escribe", action="store_true",
                     help="FP-359: sin esta bandera, `registro` deriva, valida "
                          "e imprime el diff que escribiria SIN tocar ningun "
