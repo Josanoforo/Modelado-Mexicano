@@ -9,7 +9,7 @@ TSV derivados de `data/corrida0/` y el mismo contenido en los dos TSV que
 se dice con precisión: con **sólo** `tools/corrida0.py` modificado, `status`
 es byte-idéntico al arnés — los quince campos. Ya con la cascada de cierre
 encima, `status` difiere en **un** campo y **uno solo**,
-`no_corrido_abiertas` 132 → 133, que es `NC-0385` — la fila que este mismo
+`no_corrido_abiertas` 132 → 133, que es `NC-0405` — la fila que este mismo
 acto abre y que A.14 obliga a asentar. Los otros catorce campos siguen
 idénticos. No es PARO: es el asiento del acto contándose a sí mismo, no una
 derivación que se movió. El diff completo, verbatim:
@@ -144,7 +144,7 @@ de los veinte TSV antes de cada invocación y los repone después, así que un
 reescribe `demanda-corridas.tsv` y `demanda-resultados.tsv` cada vez que
 corre. En `adcfa978` esos dos archivos están desfasados respecto de lo que
 `demanda` deriva hoy (un `demanda` limpio los modifica). Eso es deriva
-preexistente de `main`, fuera de este perímetro, y va a `NC-0385`; este acto
+preexistente de `main`, fuera de este perímetro, y va a `NC-0405`; este acto
 lo detectó porque el arnés lo obligó a mirar, y lo restauró sin tocarlo.
 
 El arnés **no corre en `check.py`** y no debe: su referencia pesa >15 MB de
@@ -163,7 +163,7 @@ suite ya optimizada: los tests que preceden a `T32` suman **3.93 s** de
 197.96 s. El techo de la ganancia es **2 %** — por debajo del 10 % que el
 propio encargo fija, y a cambio de tocar el contrato de orden de la suite.
 Además `T16` ya lanza una corrida completa de la suite como hijo, así que las
-4 CPU no están ociosas durante `T32`. Se anota como `NC-0386` con la cifra,
+4 CPU no están ociosas durante `T32`. Se anota como `NC-0406` con la cifra,
 no como deuda viva.
 
 ## Auditoría de rigor extremo
@@ -172,12 +172,12 @@ No aplica: este artefacto no afirma nada sobre México. Mide tiempos de un
 CLI y compara bytes. Contadores movidos **por el cambio de código: cero, y es
 el diseño** — mover uno habría sido el fallo. El único campo de `status` que
 cambia en el árbol final es `no_corrido_abiertas` (132 → 133), y lo mueve la
-fila `NC-0385` que A.14 obliga a asentar, no la optimización.
+fila `NC-0405` que A.14 obliga a asentar, no la optimización.
 
 ## NO-CORRIDO / RESERVAS
 
 Ver `## NO-CORRIDO / RESERVAS` abajo y `forense/no-corrido.tsv`
-(`NC-0384`–`NC-0386`).
+(`NC-0404`–`NC-0406`).
 
 ## Falsador a tres meses (20/dic/2026)
 

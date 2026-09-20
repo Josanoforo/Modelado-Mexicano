@@ -242,7 +242,7 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
    alguna rama remota accesible (sin afirmar "PR abierto" sin evidencia),
    FP máximo/filas abiertas, los conteos de `gobernanza`/L0 contra el
    real, el rótulo esperado y si ya está en `registro-rotulos.tsv`, y
-   corre `tests/check.py --baseline`. Declara si hay otro acto en vuelo
+   corre `tests/check.py --baseline --parallel`. Declara si hay otro acto en vuelo
    conocido que pueda tomar el mismo número primero — regla de la casa,
    renumera quien fusiona segundo.
 2. **Cabecera.** Entrada nueva en `canon/gobernanza-v1_15.md` §4
@@ -275,7 +275,7 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
    `_T25_ARCHIVOS_CONOCIDOS` con el comentario que explica de dónde sale
    cada mención — mismo patrón que el resto de la lista. Un encargo
    verbatim (A.3) nunca se edita para complacer al test.
-6. **`python3 tests/check.py --baseline`** en VERDE (sin `FAIL` nuevo
+6. **`python3 tests/check.py --baseline --parallel`** en VERDE (sin `FAIL` nuevo
    contra `tests/baseline.json`), o PARO-reporta con la salida cruda —
    nunca se sigue con un `FAIL` nuevo sin reportarlo primero.
 7. **Anti-PR#77.** Si este acto descargó algo: verifica que los payloads
@@ -338,7 +338,7 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
     <rama>` en el mismo momento en que se escribe `## CONSUMIDO`.
     `tools/limpia_arbol.py --reporta` cuenta toda rama remota sin PR
     abierto como `fuera_de_politica`.
-12. **`python3 tests/check.py --baseline`** una última vez, después del
+12. **`python3 tests/check.py --baseline --parallel`** una última vez, después del
     commit del paso 10, en VERDE — o PARO-reporta con la salida cruda,
     nunca se declara el PR listo con un `FAIL` nuevo sin reportarlo
     primero.

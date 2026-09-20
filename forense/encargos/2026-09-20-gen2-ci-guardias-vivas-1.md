@@ -1,0 +1,39 @@
+# ENCARGO · ACTO GEN2-CI-GUARDIAS-VIVAS-1 · 97 DE 122 ARCHIVOS DE TEST NO LOS EJECUTA NADIE: UNA GUARDIA QUE NO CORRE NO GUARDA. MÁS DOS ARREGLOS CHICOS AL ARNÉS Y AL CIERRE
+
+ENTORNO: NUBE — NO caja.
+
+CABECERA (D-12) · SHA de redacción `adcfa978`; re-deriva al abrir · una sola sesión, rama propia · compuerta: ninguna · MODELO: Sonnet (clasificación mecánica; donde haya juicio, lista, no arregles) · CONTADOR: `cuenta_gen2 = NO`; cero contadores · corre en paralelo con `GEN2-CORRIDA0-RENDIMIENTO-1`: ese acto es dueño de `tools/corrida0.py` y de `check.py:7441`; aquí no se tocan · FP/ADR/NC: deriva al cierre.
+
+Gate D-14. ¿Defecto observado? Sí, tres: (a) `tests/test_marginales_una_variable.py` — la guardia que nació de la reserva quemada (NC-0328) — no aparece ni en `verify.yml` ni en `check.py`; tampoco `test_piloto3_guardias`, `test_c2_ic_enif2024_guardia`, `test_union_estimando` (el test contra la recaída de `matrimonio_directo`), `test_pisos_enut2019`. (b) El hook de arranque fusionado en #912 clasifica `SIN-RED` cuando sí hubo respuesta HTTP. (c) `cierre_acto.py` corre la suite sin `--parallel` y con tope de 300 s (NC-0357). ¿Cambia una decisión? Sí: mesa fusiona con un verde que no ejecutó las guardias.
+
+VERIFICACIÓN DE EXISTENCIA (dirección contra `adcfa978`)
+
+* `ls tests/test_*.py | wc -l` → 122. Para cada uno, `grep` de su nombre base en `.github/workflows/verify.yml` y en `tests/check.py`: 97 sin coincidencia. `check.py` usa `glob` solo para documentos (`:67`, `:76`, `:193`…): no descubre tests. El workflow tiene dos jobs (`suite`, `adicionales`) con pasos nombrados uno por uno.
+* Corridos los 97 como `python3 tests/<x>.py`, 4 procesos, tope 40 s c/u, sin corpus: 47 s de pared, suma 159 s; 67 pasan, 30 no. Causa de los 30, leída del último error: `No module named 'tools'` (9) y `'milpa'` (3) — se invocan como módulo, no como script —; `'jsonschema'` (6) y `'pyreadstat'` (3) — faltaban en el entorno de dirección, no necesariamente en CI: `requirements.txt` declara `PyYAML xlrd markdown jsonschema` y nada más (ni numpy ni pandas ni pytest); `'pytest'` (5 archivos lo importan: `test_arnes_sesion`, `test_emisor_fidelidad`, `test_enadid2023_union_sexo_edad`, `test_enadid_union_actual`, `test_enco_reserva_prepara`); `FileNotFoundError` (2). Ninguno de los 30 es, a la vista, un fallo de lógica — pero eso es pregunta, no hecho: clasifícalos tú.
+* Hook: en un entorno con proxy transparente, `curl https://www.inegi.org.mx/` → `HTTP/2 403` con cabecera `x-deny-reason: host_not_allowed`; `entorno.py --arranque` imprime `red: SIN-RED (http_code=403, http_connect=000, via_proxy=NO)`. La regla (`tools/entorno.py:259-277`) solo reconoce denegación si el 403 llega en el CONNECT.
+
+PIEZAS (lote D-11)
+P1 · Censo de los 97, una fila por archivo, en un TSV derivado por script (`forense/analisis/ci-guardias/censo-tests.tsv`): cómo se invoca (script · `-m unittest` · pytest), qué importa que no esté en `requirements.txt`, si necesita `data/raw` (por lectura de código, y por corrida sin corpus), tiempo, y veredicto: `CORRE-EN-CI` · `NECESITA-DEPENDENCIA(<cuál>)` · `NECESITA-CORPUS` · `FALLA-DE-VERDAD`. Un `FALLA-DE-VERDAD` es hallazgo: no lo arregles, NC con el error crudo. P2 · Tercer job en `verify.yml`: `guardias`. Descubre `tests/test_*.py` por patrón, resta los que `suite` y `adicionales` ya corren, y ejecuta el resto con el invocador correcto por archivo (leído del censo, no adivinado), en paralelo, `timeout-minutes: 10`. Los `NECESITA-CORPUS` se saltan diciéndolo — una línea `SKIP <archivo>: corpus` en el log y el conteo al final — nunca en silencio. El job falla si un test nuevo no está en el censo: así ningún test vuelve a nacer huérfano. Sin actions de marketplace, como el resto del workflow. P3 · Dependencias, con criterio. Lo que el censo pida y sea barato va a `requirements.txt` con versión. Decisión que no es tuya: si añadir `numpy/pandas/scipy` al CI (hoy no están; +tiempo de instalación en cada job) — preséntala a mesa como FP con el costo medido (`pip install` cronometrado) y cuántos tests destraba. Los 5 archivos en pytest: propón una de dos — añadir `pytest` o reescribirlos al estilo de la casa (script que sale ≠ 0) — con el conteo; no mezcles. P4 · Hook de arranque: cuatro estados, ninguno colapsado. `PERMITIDA` (2xx/3xx) · `DENEGADA-POR-POLITICA` (403 en el CONNECT, o 403 final con cabecera `x-deny-reason`) · `RESPUESTA-NO-OK(<código>)` (hubo red y alguien contestó otra cosa: no se sabe si fue un proxy o INEGI, y se dice así) · `SIN-RED` (solo `000`: ninguna respuesta). Test con las cuatro entradas simuladas. Convierte `tests/test_arnes_sesion.py` según lo que P3 decida. P5 · `cierre_acto.py`: la Fase A corre `check.py --baseline --parallel`, con tope configurable por bandera y por defecto mayor que el tiempo medido hoy; si se agota, el mensaje distingue `TIEMPO-AGOTADO` de `ROJO` (A.1: estados que no se colapsan). Actualiza las tres menciones de `/acto` (`acto.md:245, 278, 341`) y la de `/tramite` para que digan `--parallel`.
+
+PERÍMETRO
+`.github/workflows/verify.yml` (job nuevo) · `tools/ci_guardias.py` (nuevo: censo + invocador) · `forense/analisis/ci-guardias/` · `requirements.txt` · `tools/entorno.py` (`_sonda_red_arranque` y lo mínimo de `sonda_red` para leer la cabecera) · `tests/test_arnes_sesion.py` · `tools/cierre_acto.py` (Fase A) · `.claude/commands/acto.md` y `tramite.md` (la bandera) · nota · cascada. No toca `tools/corrida0.py` · el pool de `check.py` · ningún otro test (se censan, no se editan) · jobs `suite` y `adicionales`. «Si te encuentras escribiendo fuera de esta lista, PARA».
+
+LO QUE NO HACE
+No arregla tests rotos · no mueve tests entre jobs · no añade caché de pip ni actions · no decide sobre pandas en CI.
+
+CIERRE
+Cascada D-10 · la nota abre con: tests en el repo / ejecutados por CI antes / después / saltados por corpus / fallas de verdad — los cinco derivados · `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| Arreglar los 8 `FALLA-DE-VERDAD` censados (`tests/test_adq_descubrimiento.py`, `tests/test_celda_d_piloto_consumidor.py`, `tests/test_censo_derivado.py`, `tests/test_cierre_acto.py`, `tests/test_consulta_gen2.py`, `tests/test_motor_gen2_explicito.py`, `tests/test_motor_holdout.py`, `tests/test_relevo_encuci_f2.py`) | FUERA-DE-PERÍMETRO (D-14, "LO QUE NO HACE": no arregla tests rotos) | esas 8 guardias siguen sin gatear CI aunque ya no son huérfanas de facto — el job `guardias` las detecta y las salta en voz alta con NC citada | SIN-ASIGNAR por archivo, `forense/no-corrido.tsv` NC-0396..NC-0403 |
+| Instalar `numpy`/`pandas`/`scipy` en CI y/o decidir la vía para `pytest` en los 4 archivos que aún lo importan | DECISIÓN-DE-MESA-PENDIENTE (`FP-398`) | 29 de los 97 huérfanos censados siguen sin correr en CI | acto que ejecute lo que mesa firme en `FP-398` |
+| `tests/test_relevo_encuci_f2.py`: determinar si el TIMEOUT>40s es un cuelgue real o un test lento que solo necesita más tiempo | NO-VERIFICABLE-AQUÍ | la guardia sigue sin correr en CI | SIN-ASIGNAR (NC-0403) |
+
+Ver `forense/notas/2026-09-20-gen2-ci-guardias-vivas-1-cierre.md` para los cinco derivados de apertura y el detalle de las decisiones baratas tomadas sin esperar a mesa (`jsonschema` ya declarado, `openpyxl` nuevo, `test_arnes_sesion.py` reescrito al estilo de la casa). **RENUMERADO 559→560→561→562, FP-396→397→398, NC-0384..0391→NC-0396..0403**: `GEN2-PISOS-ENIF2021-FORMALIDAD-1` (`PR #915`) tomó `ADR-559`/`FP-396`/`NC-0384`-`NC-0385`; `GEN2-GUARDIAN-ENVIPE-EJES-IC-1` (`PR #916`) tomó `ADR-560`/`FP-397`/`NC-0386`-`NC-0390`; `GEN2-RELEVO-TANDA-2` (`PR #914`) fusionó tercero sobre la misma base y tomó `ADR-561`/`NC-0392`-`NC-0395` — regla de la casa, renumera quien fusiona después, así que este acto queda en `ADR-562`/`FP-398` (sigue libre)/`NC-0396`-`NC-0403`.
+
+## CONSUMIDO
+
+`PR #917`.
