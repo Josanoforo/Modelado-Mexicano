@@ -5610,6 +5610,14 @@ _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
     # tramite.yaml`; la salida y su interpretación se conservan en 05-cierre.
     # Editar el encargo rompería la custodia literal.
     "forense/encargos/2026-09-17-GEN2-ENCO-DOS-OLAS-RESERVADAS-1.md",
+    # GEN2-TABLERO-SENAL-1, 20/sep/2026: encargo A.3 archivado VERBATIM. La
+    # cita a `familia.union.libre` (P6, ventana §9.7) es ilustrativa -- lista
+    # un hecho ya cerrado por otro acto (`GEN2-FAM-UNION-ESTIMANDO-1`,
+    # `ADR-546`), no pide medirla ni clasificarla aquí. A.8 se ejecutó al
+    # archivar: `python3 tools/ya_medido.py familia.union.libre` devuelve
+    # `MEDIDA-EN: CALC-EDER-0003, CALC-ENADID-0001, tramite.yaml`. Editar el
+    # encargo rompería la custodia literal.
+    "forense/encargos/2026-09-20-GEN2-TABLERO-SENAL-1.md",
     # ACTO GEN2-CELDA-D-CAREO-1, 17/sep/2026: encargo A.3 archivado VERBATIM,
     # que no se edita para complacer un test (misma regla que rige T25). Su
     # unica cita `R-n` es `R5.1`, y aparece una sola vez, dentro del bloque de
