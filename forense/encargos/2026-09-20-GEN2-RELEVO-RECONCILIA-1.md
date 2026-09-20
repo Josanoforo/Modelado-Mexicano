@@ -77,3 +77,7 @@ No adopta · no re-mide · no arregla la numeración posicional. Sucesores: `REL
 **`NC-0343` queda `ABIERTA`**, ahora con sucesor asignado: este acto la **toma y la mide** (no era sólo un derivado a re-derivar: es la causa de que la vista no vea 37 cifras GEN2 selladas), pero el rediseño del esquema es de TUBERÍA.
 
 **Nada más quedó sin correr.** P1, P2, P3 y P4 se ejecutan completos.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-RELEVO-RECONCILIA-1` en **[PR #928](https://github.com/Josanoforo/Modelado-Mexicano/pull/928)**, rama `claude/gracious-faraday-wf9b8j`, base `dfb07b9`. `ADR-566`. Entorno NUBE `cloud_default`, corpus NO montado (archivos examinados = 0), Opus 5. `cuenta_gen2 = NO`: cero mediciones, cero adopciones, cero contadores movidos.
