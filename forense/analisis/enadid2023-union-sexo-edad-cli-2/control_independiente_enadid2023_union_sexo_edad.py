@@ -269,7 +269,10 @@ def compare(zip_path, output_dir, parent_path):
 
 def main(argv):
     if len(argv) != 5:
-        raise SystemExit("uso: control_independiente.py ZIP DIR_RESULTADOS PADRE_CSV SALIDA_JSON")
+        raise SystemExit(
+            "uso: control_independiente_enadid2023_union_sexo_edad.py "
+            "ZIP DIR_RESULTADOS PADRE_CSV SALIDA_JSON"
+        )
     result = compare(argv[1], argv[2], argv[3])
     Path(argv[4]).write_text(json.dumps(result, ensure_ascii=False, indent=2,
                                         sort_keys=True) + "\n", encoding="utf-8")

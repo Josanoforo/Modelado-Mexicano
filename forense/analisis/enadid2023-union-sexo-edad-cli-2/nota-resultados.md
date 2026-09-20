@@ -80,7 +80,8 @@ ese denominador, no como desconocidas.
 
 El control independiente separa las 82,169 filas fuera de los cinco tramos:
 82,015 son menores de 15 (masa 29,435,905) y 154 tienen edad 999/no
-especificada (masa 59,206). El campo histórico de `auditoria.json`
+especificada (masa 59,206). El campo histórico de
+`enadid2023-union-sexo-edad-auditoria.json`
 `edad_999_o_no_valida_n=82169` debe leerse como “fuera de los cinco tramos”;
 su nombre es demasiado estrecho, pero el flujo y los resultados no cambian.
 Hay cero sexo desconocido entre 15+, cero `P3_27` desconocida, cero peso
@@ -102,6 +103,21 @@ estandarización completa. La diferencia máxima frente a punto/EE/IC publicados
 es 4.55e-13. El hash del payload, la llave única y los parámetros de diseño
 también coinciden.
 
+Los nombres publicados del control son
+`control_independiente_enadid2023_union_sexo_edad.py` y
+`enadid2023-union-sexo-edad-control-independiente.json`. El archivo de
+auditoría conserva exactamente los bytes sellados bajo su nombre único; este
+cambio de nombre no modifica ningún RESULT.
+
+Los artefactos completos del intento 0001 y de la sucesión intermedia 0003 se
+conservan, incluidos sus README y tablas originales, en
+`intento-0001-fallo-tipo-result.tar.gz`
+(SHA-256 `8f8e76befb6352ecb0117eaf59b32949cf8d4d0001c67d5ca5b7aaeb22f63186`)
+y `sucesion-0003-campo-omitido.tar.gz`
+(SHA-256 `03d052506052f673856cf09903caf0620f69de5f34e43ef71889b31b94381634`).
+El empaquetado sólo evita colisiones de basename/contenido en la validación
+del repositorio y no altera la sucesión sellada.
+
 ## Mapa RESULT → universo
 
 | RESULT | Universo / contenido |
@@ -121,8 +137,8 @@ Estado: medición sellada, replay aislado `REPRODUCE/IDENTICO`, validación
 independiente terminada y asiento proyectado; adopción ninguna;
 `cuenta_gen2=PENDIENTE-DE-MESA`. La proyección posterior a 0004 fue estable byte
 a byte:
-`corridas.tsv=25e03ab68f50676d1a19dd4d71e584b4bf93b405b33e3b4c1246880108f81d06`,
-`resultados.tsv=ae21451331f50da950fa94fae2d56a7df8fc5298055c6ed6091ab2f9f2be5c11`
+`corridas.tsv=efaf6e0bfcc923a03db6db54b7cce6c306b3894da989f85759af46e1bd26ec2f`,
+`resultados.tsv=a4148b9041fa999a14c7468a391f549f4c696c90890bfc566bdc828183a88eaf`
 y `usos.tsv=939a06e39277a184490263b24cd86a537301cf0bed918271eba51c68e95ef1bd`.
 Frente a la vista previa a esta proyección, ninguna corrida preexistente cambió
 `resultado_replay` ni `contexto_replay`, y `usos.tsv` no cambió. Sólo se
