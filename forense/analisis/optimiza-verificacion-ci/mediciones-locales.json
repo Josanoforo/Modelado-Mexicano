@@ -1,0 +1,737 @@
+{
+  "platform": "WSL2 Linux x86_64; Python 3.14.4; 24 CPUs visibles; TZ no definido",
+  "dependencies": {
+    "PyYAML": "6.0.3",
+    "jsonschema": "4.19.2",
+    "xlrd": "2.0.2",
+    "markdown": "ausente local; no ejercitado por inventario"
+  },
+  "suite": [
+    {
+      "repeat": 1,
+      "before_s": 133.33086457699756,
+      "after_s": 96.50500230399848,
+      "before_cpu_s": null,
+      "after_cpu_s": 131.97105200000001,
+      "counts": {
+        "fails": 19,
+        "warns": 7575,
+        "senal": 7410
+      },
+      "equal_multisets": {
+        "fails": true,
+        "warns": true,
+        "senal": true
+      },
+      "equal_ordered_lists": {
+        "fails": true,
+        "warns": true,
+        "senal": true
+      },
+      "diagnostics_multiset_sha256": {
+        "fails": "519f62602865c78eddfbf73e0e648fd35569406ca3855b5477bbfdcc3dce4d92",
+        "warns": "4d3a1d2701ed50ceb5c5ed35893e37def3985100f190cc4ea902a302f902a5db",
+        "senal": "de8f939cbcb113b19d795dd29947d57da9cdb6383f79c5b68e0172c512663f68"
+      }
+    },
+    {
+      "repeat": 2,
+      "before_s": 131.89620266899874,
+      "after_s": 110.0912349350001,
+      "before_cpu_s": 132.158243,
+      "after_cpu_s": 139.140132,
+      "counts": {
+        "fails": 19,
+        "warns": 7575,
+        "senal": 7410
+      },
+      "equal_multisets": {
+        "fails": true,
+        "warns": true,
+        "senal": true
+      },
+      "equal_ordered_lists": {
+        "fails": false,
+        "warns": false,
+        "senal": true
+      },
+      "diagnostics_multiset_sha256": {
+        "fails": "519f62602865c78eddfbf73e0e648fd35569406ca3855b5477bbfdcc3dce4d92",
+        "warns": "4d3a1d2701ed50ceb5c5ed35893e37def3985100f190cc4ea902a302f902a5db",
+        "senal": "de8f939cbcb113b19d795dd29947d57da9cdb6383f79c5b68e0172c512663f68"
+      }
+    },
+    {
+      "repeat": 3,
+      "before_s": 141.93708195199724,
+      "after_s": 103.61942798400196,
+      "before_cpu_s": 141.89031,
+      "after_cpu_s": 142.590885,
+      "counts": {
+        "fails": 19,
+        "warns": 7575,
+        "senal": 7410
+      },
+      "equal_multisets": {
+        "fails": true,
+        "warns": true,
+        "senal": true
+      },
+      "equal_ordered_lists": {
+        "fails": false,
+        "warns": false,
+        "senal": true
+      },
+      "diagnostics_multiset_sha256": {
+        "fails": "519f62602865c78eddfbf73e0e648fd35569406ca3855b5477bbfdcc3dce4d92",
+        "warns": "4d3a1d2701ed50ceb5c5ed35893e37def3985100f190cc4ea902a302f902a5db",
+        "senal": "de8f939cbcb113b19d795dd29947d57da9cdb6383f79c5b68e0172c512663f68"
+      }
+    }
+  ],
+  "totals": [
+    {
+      "repeat": 2,
+      "variant": "before",
+      "seconds": 192.513465248001
+    },
+    {
+      "repeat": 2,
+      "variant": "after",
+      "seconds": 110.7615637279996
+    },
+    {
+      "repeat": 3,
+      "variant": "before",
+      "seconds": 211.04084276599679
+    },
+    {
+      "repeat": 3,
+      "variant": "after",
+      "seconds": 104.35555289600234
+    }
+  ],
+  "extras": [
+    {
+      "repeat": 1,
+      "mode": "before",
+      "seconds": 59.68764964799993,
+      "cpu_s": 59.552021,
+      "commands": [
+        {
+          "command": [
+            "python3",
+            "tests/test_svystat.py"
+          ],
+          "seconds": 0.01567106700167642,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_emite_m_calibracion.py"
+          ],
+          "seconds": 2.2413328509974235,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_baseline_temporal.py"
+          ],
+          "seconds": 0.10498666499915998,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_t_cron.py"
+          ],
+          "seconds": 0.10220812099942123,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_adq_config.py"
+          ],
+          "seconds": 0.03705994600022677,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_adq_doctor.py"
+          ],
+          "seconds": 0.13123289799841587,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_adq_demanda_vigente.py"
+          ],
+          "seconds": 4.120122607997473,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_fuentes_financieras.py"
+          ],
+          "seconds": 0.0431291599998076,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_n34_producto_dano.py"
+          ],
+          "seconds": 0.04159553299905383,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_motor_ejecutable.py"
+          ],
+          "seconds": 0.3497075400009635,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_celda_d_c2.py"
+          ],
+          "seconds": 0.04214627499823109,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "-m",
+            "unittest",
+            "tests.test_celda_d_piloto2_consumidor",
+            "-v"
+          ],
+          "seconds": 0.18846445500093978,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_marcador_segmento.py"
+          ],
+          "seconds": 52.14913796100154,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_estimadores_segmento.py"
+          ],
+          "seconds": 0.12050706099762465,
+          "code": 0
+        }
+      ]
+    },
+    {
+      "repeat": 2,
+      "mode": "before",
+      "seconds": 59.86178522599948,
+      "cpu_s": 59.70782,
+      "commands": [
+        {
+          "command": [
+            "python3",
+            "tests/test_svystat.py"
+          ],
+          "seconds": 0.013037485998211196,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_emite_m_calibracion.py"
+          ],
+          "seconds": 2.2056284430000233,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_baseline_temporal.py"
+          ],
+          "seconds": 0.10698107600182993,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_t_cron.py"
+          ],
+          "seconds": 0.07679116099825478,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_adq_config.py"
+          ],
+          "seconds": 0.03548024100018665,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_adq_doctor.py"
+          ],
+          "seconds": 0.123356297997816,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_adq_demanda_vigente.py"
+          ],
+          "seconds": 4.080534206001175,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_fuentes_financieras.py"
+          ],
+          "seconds": 0.03596963800009689,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_n34_producto_dano.py"
+          ],
+          "seconds": 0.044020866000209935,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_motor_ejecutable.py"
+          ],
+          "seconds": 0.35731618700083345,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_celda_d_c2.py"
+          ],
+          "seconds": 0.04357777799668838,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "-m",
+            "unittest",
+            "tests.test_celda_d_piloto2_consumidor",
+            "-v"
+          ],
+          "seconds": 0.15144009200230357,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_marcador_segmento.py"
+          ],
+          "seconds": 52.45672623400242,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_estimadores_segmento.py"
+          ],
+          "seconds": 0.13045715800035396,
+          "code": 0
+        }
+      ]
+    },
+    {
+      "repeat": 2,
+      "mode": "after",
+      "seconds": 62.341176867001195,
+      "cpu_s": 62.171385,
+      "commands": [
+        {
+          "command": [
+            "python3",
+            "tests/test_svystat.py"
+          ],
+          "seconds": 0.012971009997272631,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_emite_m_calibracion.py"
+          ],
+          "seconds": 2.3057096030024695,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_baseline_temporal.py"
+          ],
+          "seconds": 0.11108673199851182,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_t_cron.py"
+          ],
+          "seconds": 0.07841212800121866,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_adq_config.py"
+          ],
+          "seconds": 0.03708534299948951,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_adq_doctor.py"
+          ],
+          "seconds": 0.1392132360015239,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_adq_demanda_vigente.py"
+          ],
+          "seconds": 4.395185162000416,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_fuentes_financieras.py"
+          ],
+          "seconds": 0.039369063000776805,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_n34_producto_dano.py"
+          ],
+          "seconds": 0.045555909997347044,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_motor_ejecutable.py"
+          ],
+          "seconds": 0.3782301639985235,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_celda_d_c2.py"
+          ],
+          "seconds": 0.04296403099942836,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "-m",
+            "unittest",
+            "tests.test_celda_d_piloto2_consumidor",
+            "-v"
+          ],
+          "seconds": 0.15961777800112031,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_marcador_segmento.py"
+          ],
+          "seconds": 54.46676446700076,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_estimadores_segmento.py"
+          ],
+          "seconds": 0.1278797820014006,
+          "code": 0
+        }
+      ]
+    },
+    {
+      "repeat": 3,
+      "mode": "before",
+      "seconds": 63.121648199001356,
+      "cpu_s": 62.501495,
+      "commands": [
+        {
+          "command": [
+            "python3",
+            "tests/test_svystat.py"
+          ],
+          "seconds": 0.01412819699908141,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_emite_m_calibracion.py"
+          ],
+          "seconds": 2.341112369002076,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_baseline_temporal.py"
+          ],
+          "seconds": 0.15558987500116928,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_t_cron.py"
+          ],
+          "seconds": 0.10159277700222447,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_adq_config.py"
+          ],
+          "seconds": 0.07268932499937364,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_adq_doctor.py"
+          ],
+          "seconds": 0.1512814689995139,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_adq_demanda_vigente.py"
+          ],
+          "seconds": 4.438870216999931,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_fuentes_financieras.py"
+          ],
+          "seconds": 0.038329173999954946,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_n34_producto_dano.py"
+          ],
+          "seconds": 0.042757612998684635,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_motor_ejecutable.py"
+          ],
+          "seconds": 0.38459413400050835,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_celda_d_c2.py"
+          ],
+          "seconds": 0.04574969600071199,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "-m",
+            "unittest",
+            "tests.test_celda_d_piloto2_consumidor",
+            "-v"
+          ],
+          "seconds": 0.5926458059984725,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_marcador_segmento.py"
+          ],
+          "seconds": 54.599487479001255,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_estimadores_segmento.py"
+          ],
+          "seconds": 0.14240306899955613,
+          "code": 0
+        }
+      ]
+    },
+    {
+      "repeat": 3,
+      "mode": "after",
+      "seconds": 64.42212033500255,
+      "cpu_s": 64.321426,
+      "commands": [
+        {
+          "command": [
+            "python3",
+            "tests/test_svystat.py"
+          ],
+          "seconds": 0.013002024999877904,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_emite_m_calibracion.py"
+          ],
+          "seconds": 2.388960197000415,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_baseline_temporal.py"
+          ],
+          "seconds": 0.11094214399781777,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_t_cron.py"
+          ],
+          "seconds": 0.07631455999944592,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_adq_config.py"
+          ],
+          "seconds": 0.03583587399771204,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_adq_doctor.py"
+          ],
+          "seconds": 0.1394362050014024,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_adq_demanda_vigente.py"
+          ],
+          "seconds": 4.479462360999605,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_fuentes_financieras.py"
+          ],
+          "seconds": 0.04781778500182554,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_n34_producto_dano.py"
+          ],
+          "seconds": 0.04187010800160351,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_motor_ejecutable.py"
+          ],
+          "seconds": 0.38949648000198067,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_celda_d_c2.py"
+          ],
+          "seconds": 0.04595033900113776,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "-m",
+            "unittest",
+            "tests.test_celda_d_piloto2_consumidor",
+            "-v"
+          ],
+          "seconds": 0.16355098799976986,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_marcador_segmento.py"
+          ],
+          "seconds": 56.354188568999234,
+          "code": 0
+        },
+        {
+          "command": [
+            "python3",
+            "tests/test_estimadores_segmento.py"
+          ],
+          "seconds": 0.1349657920000027,
+          "code": 0
+        }
+      ]
+    }
+  ],
+  "bytecode_disabled_validation": {
+    "seconds": 99.08138403799967,
+    "cpu_s": 135.461773,
+    "code": 0,
+    "equal_multisets": true
+  }
+}

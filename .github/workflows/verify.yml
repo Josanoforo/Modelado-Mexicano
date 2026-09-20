@@ -43,7 +43,7 @@ permissions:
   contents: read
 
 jobs:
-  check:
+  suite:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -70,7 +70,36 @@ jobs:
         run: python3 -m pip install -r requirements.txt
 
       - name: Suite de verificación (modo línea base — verde = no empeoraste)
-        run: python3 tests/check.py --baseline
+        run: time python3 tests/check.py --baseline --parallel
+
+      - name: Transporte paralelo, compuerta y semántica del baseline (bloqueante)
+        run: |
+          python3 tests/test_check_parallel.py
+          python3 tests/test_suite_warn_estado.py
+
+  adicionales:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout sin marketplace (repo público — cero descargas de action)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://github.com/${{ github.repository }}.git"
+          if [ -n "${{ github.event.pull_request.number }}" ]; then
+            REF="+refs/pull/${{ github.event.pull_request.number }}/merge:refs/remotes/origin/ci"
+          else
+            REF="+${{ github.ref }}:refs/remotes/origin/ci"
+          fi
+          git -c protocol.version=2 fetch -q --depth=1 --no-tags origin "$REF"
+          git checkout -q refs/remotes/origin/ci
+          git log -1 --format="HEAD=%H %s"
+
+      - name: Intérprete del runner (crudo, para que quede en el log)
+        run: python3 -VV
+
+      - name: Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)
+        run: python3 -m pip install -r requirements.txt
 
       - name: svystat.py — validación independiente (bloqueante)
         run: python3 tests/test_svystat.py
@@ -178,3 +207,21 @@ jobs:
         run: |
           python3 tests/test_marcador_segmento.py
           python3 tests/test_estimadores_segmento.py
+
+  # Conserva el nombre requerido por protección. always() es indispensable:
+  # un job fallido/omitido/cancelado debe llegar a una compuerta que NO aprueba.
+  check:
+    needs: [suite, adicionales]
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Todos los grupos requeridos terminaron correctamente
+        env:
+          SUITE_RESULT: ${{ needs.suite.result }}
+          ADICIONALES_RESULT: ${{ needs.adicionales.result }}
+        run: |
+          set -euo pipefail
+          printf 'suite=%s adicionales=%s\n' "$SUITE_RESULT" "$ADICIONALES_RESULT"
+          test "$SUITE_RESULT" = success
+          test "$ADICIONALES_RESULT" = success

@@ -132,6 +132,11 @@ empieces sin ellas.
    quedan disponibles aunque la suite bloquee lo que sigue. Hecho eso:
    `python3 tests/check.py --baseline`.
    - **VERDE** → sigue.
+   - Con la línea base verde, regenera el bloque vivo del tablero antes
+     de seguir (T0, `GEN2-TABLERO-SENAL-1`): `python3
+     tools/tablero_programa.py --actualiza`. Es derivación mecánica —
+     no decide nada — y si cambia algo, va en el mismo commit de huella
+     de este ciclo.
    - **ROJO** → **PARO**. Termina con cero commits (salvo la huella ya
      permitida del bloque 2/3.5) y reporta la salida cruda. Un agente de
      trámite que commitea sobre una línea base rota mete su ruido encima
