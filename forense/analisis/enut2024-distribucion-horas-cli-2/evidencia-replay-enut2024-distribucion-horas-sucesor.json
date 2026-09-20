@@ -1,0 +1,64 @@
+[
+  {
+    "calc_id": "CALC-ENUT2024-DISTRIBUCION-HORAS-0002",
+    "fecha_verificacion": "2026-09-19",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ENUT2024-DISTRIBUCION-HORAS-0002"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "522afa7da1fdc60f866c8b3af0fd37fb21444e5ec94d7d1a3ec9ec7f38596277",
+      "script_blob_sha256": "d4cafceccae395c92df64c161b046b4f7cbe72b387324e9b85eeae2007fd012e",
+      "input_sha256_efectivos": "enut2024_bd_csv=25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba,enut2024_fd_xlsx=4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ENUTDH2-A-CON-BRECHA-TODAS-P50": 0.0,
+        "RESULT-ENUTDH2-A-CON-BRECHA-TODAS-P90": 0.0,
+        "RESULT-ENUTDH2-A-CON-PARTICIPANTES-CONCENTRACION": 0.0,
+        "RESULT-ENUTDH2-A-CON-PARTICIPANTES-P50": 0.0,
+        "RESULT-ENUTDH2-A-CON-PARTICIPANTES-P90": 0.0,
+        "RESULT-ENUTDH2-A-CON-TODAS-CONCENTRACION": 0.0,
+        "RESULT-ENUTDH2-A-CON-TODAS-P50": 0.0,
+        "RESULT-ENUTDH2-A-CON-TODAS-P90": 0.0,
+        "RESULT-ENUTDH2-G-CONTRASTES-N-FILAS": null,
+        "RESULT-ENUTDH2-G-CONTRASTES-SHA256": null,
+        "RESULT-ENUTDH2-G-DISTRIBUCION-N-FILAS": null,
+        "RESULT-ENUTDH2-G-DISTRIBUCION-SHA256": null,
+        "RESULT-ENUTDH2-G-INCIDENCIAS": null,
+        "RESULT-ENUTDH2-G-INCIDENCIAS-SHA256": null,
+        "RESULT-ENUTDH2-G-INPUT-BD-SHA256": null,
+        "RESULT-ENUTDH2-G-INPUT-FD-SHA256": null,
+        "RESULT-ENUTDH2-G-MASA-VALIDA-COMUN": 0.0,
+        "RESULT-ENUTDH2-G-N-ESTRATOS": null,
+        "RESULT-ENUTDH2-G-N-ESTRATOS-UPM-UNICA": null,
+        "RESULT-ENUTDH2-G-N-MARCO": null,
+        "RESULT-ENUTDH2-G-N-UPM": null,
+        "RESULT-ENUTDH2-G-N-VALIDO-COMUN": null,
+        "RESULT-ENUTDH2-G-PARES-DISENO-SHA256": null,
+        "RESULT-ENUTDH2-G-SALIDA-CONTRASTES": null,
+        "RESULT-ENUTDH2-G-SALIDA-DISTRIBUCION": null,
+        "RESULT-ENUTDH2-G-SALIDA-INCIDENCIAS": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "bootstrap",
+        "exacto_por_seed": true,
+        "abs": 1e-12,
+        "razon": "plan, orden de UPM, seed, cuantiles, umbral y serializacion fijados"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ENUTDH2-A-CON-BRECHA-TODAS-P50\": 0.0, \"RESULT-ENUTDH2-A-CON-BRECHA-TODAS-P90\": 0.0, \"RESULT-ENUTDH2-A-CON-PARTICIPANTES-CONCENTRACION\": 0.0, \"RESULT-ENUTDH2-A-CON-PARTICIPANTES-P50\": 0.0, \"RESULT-ENUTDH2-A-CON-PARTICIPANTES-P90\": 0.0, \"RESULT-ENUTDH2-A-CON-TODAS-CONCENTRACION\": 0.0, \"RESULT-ENUTDH2-A-CON-TODAS-P50\": 0.0, \"RESULT-ENUTDH2-A-CON-TODAS-P90\": 0.0, \"RESULT-ENUTDH2-G-CONTRASTES-N-FILAS\": null, \"RESULT-ENUTDH2-G-CONTRASTES-SHA256\": null, \"RESULT-ENUTDH2-G-DISTRIBUCION-N-FILAS\": null, \"RESULT-ENUTDH2-G-DISTRIBUCION-SHA256\": null, \"RESULT-ENUTDH2-G-INCIDENCIAS\": null, \"RESULT-ENUTDH2-G-INCIDENCIAS-SHA256\": null, \"RESULT-ENUTDH2-G-INPUT-BD-SHA256\": null, \"RESULT-ENUTDH2-G-INPUT-FD-SHA256\": null, \"RESULT-ENUTDH2-G-MASA-VALIDA-COMUN\": 0.0, \"RESULT-ENUTDH2-G-N-ESTRATOS\": null, \"RESULT-ENUTDH2-G-N-ESTRATOS-UPM-UNICA\": null, \"RESULT-ENUTDH2-G-N-MARCO\": null, \"RESULT-ENUTDH2-G-N-UPM\": null, \"RESULT-ENUTDH2-G-N-VALIDO-COMUN\": null, \"RESULT-ENUTDH2-G-PARES-DISENO-SHA256\": null, \"RESULT-ENUTDH2-G-SALIDA-CONTRASTES\": null, \"RESULT-ENUTDH2-G-SALIDA-DISTRIBUCION\": null, \"RESULT-ENUTDH2-G-SALIDA-INCIDENCIAS\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"bootstrap\", \"exacto_por_seed\": true, \"abs\": 1e-12, \"razon\": \"plan, orden de UPM, seed, cuantiles, umbral y serializacion fijados\"}}, \"identidad\": {\"spec_yaml_sha256\": \"522afa7da1fdc60f866c8b3af0fd37fb21444e5ec94d7d1a3ec9ec7f38596277\", \"script_blob_sha256\": \"d4cafceccae395c92df64c161b046b4f7cbe72b387324e9b85eeae2007fd012e\", \"input_sha256_efectivos\": \"enut2024_bd_csv=25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba,enut2024_fd_xlsx=4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58\"}}\n"
+  }
+]

@@ -1,0 +1,31 @@
+{
+ "resultados": {
+  "RESULT-ENUTDH2-A-CON-BRECHA-TODAS-P50": 2.0,
+  "RESULT-ENUTDH2-A-CON-BRECHA-TODAS-P90": 27.33333333333333,
+  "RESULT-ENUTDH2-A-CON-PARTICIPANTES-CONCENTRACION": 0.40177328691992276,
+  "RESULT-ENUTDH2-A-CON-PARTICIPANTES-P50": 11.25,
+  "RESULT-ENUTDH2-A-CON-PARTICIPANTES-P90": 55.0,
+  "RESULT-ENUTDH2-A-CON-TODAS-CONCENTRACION": 0.5913589851692604,
+  "RESULT-ENUTDH2-A-CON-TODAS-P50": 0.58333333333333,
+  "RESULT-ENUTDH2-A-CON-TODAS-P90": 35.18333333333333,
+  "RESULT-ENUTDH2-G-CONTRASTES-N-FILAS": 22,
+  "RESULT-ENUTDH2-G-CONTRASTES-SHA256": "d944a7542a7c253c13273189d238f0fca2958263c249705fe0bfbf9fb77c02ad",
+  "RESULT-ENUTDH2-G-DISTRIBUCION-N-FILAS": 60,
+  "RESULT-ENUTDH2-G-DISTRIBUCION-SHA256": "fa9170a68949383cf3f80eaca0a15405d58176a65fd46894c1ad2066d4791776",
+  "RESULT-ENUTDH2-G-INCIDENCIAS": "{\"diseno\": {\"n_estratos\": 342, \"n_estratos_upm_unica\": 0, \"n_upm\": 4200, \"pares_sha256\": \"f9d796cc153b2aafff5b7f27aa27523397503ee287cca850a1b6f35f10f804dd\"}, \"diseno_faltante\": 0, \"edad_faltante_o_fuera_12_96\": 162, \"fac_per_invalido\": 0, \"filas_fuera_universo_comun\": 162, \"horas_por_variable\": {\"CUID_ESP_INT_HOG_CON_CP\": {\"faltante_no_numerico\": 0, \"negativo\": 0, \"sobre_maximo_fd\": 0}, \"CUID_ESP_INT_HOG_SIN_CP\": {\"faltante_no_numerico\": 0, \"negativo\": 0, \"sobre_maximo_fd\": 0}, \"CUID_INT_0A5_CON_CP\": {\"faltante_no_numerico\": 0, \"negativo\": 0, \"sobre_maximo_fd\": 0}, \"CUID_INT_0A5_SIN_CP\": {\"faltante_no_numerico\": 0, \"negativo\": 0, \"sobre_maximo_fd\": 0}, \"CUID_INT_60MAS_CON_CP\": {\"faltante_no_numerico\": 0, \"negativo\": 0, \"sobre_maximo_fd\": 0}, \"CUID_INT_60MAS_SIN_CP\": {\"faltante_no_numerico\": 0, \"negativo\": 0, \"sobre_maximo_fd\": 0}, \"CUID_INT_6A14_CON_CP\": {\"faltante_no_numerico\": 0, \"negativo\": 0, \"sobre_maximo_fd\": 0}, \"CUID_INT_6A14_SIN_CP\": {\"faltante_no_numerico\": 0, \"negativo\": 0, \"sobre_maximo_fd\": 0}}, \"llavemod_duplicada\": 0, \"llavemod_faltante\": 0, \"sexo_fuera_1_2\": 0}",
+  "RESULT-ENUTDH2-G-INCIDENCIAS-SHA256": "ba74686aa9457e1802e0d8a8a84d4a2553ea99c21bcfa5c9124ab3be1883a4b8",
+  "RESULT-ENUTDH2-G-INPUT-BD-SHA256": "25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba",
+  "RESULT-ENUTDH2-G-INPUT-FD-SHA256": "4a7dddf1bc0612f5e72694b146848804edc47d8f00c86e7d34d1cfb8f5ec3f58",
+  "RESULT-ENUTDH2-G-MASA-VALIDA-COMUN": 107537532.0,
+  "RESULT-ENUTDH2-G-N-ESTRATOS": 342,
+  "RESULT-ENUTDH2-G-N-ESTRATOS-UPM-UNICA": 0,
+  "RESULT-ENUTDH2-G-N-MARCO": 74053,
+  "RESULT-ENUTDH2-G-N-UPM": 4200,
+  "RESULT-ENUTDH2-G-N-VALIDO-COMUN": 73891,
+  "RESULT-ENUTDH2-G-PARES-DISENO-SHA256": "f9d796cc153b2aafff5b7f27aa27523397503ee287cca850a1b6f35f10f804dd",
+  "RESULT-ENUTDH2-G-SALIDA-CONTRASTES": "forense/analisis/enut2024-distribucion-horas-cli-2/enut2024-distribucion-horas-contrastes.csv",
+  "RESULT-ENUTDH2-G-SALIDA-DISTRIBUCION": "forense/analisis/enut2024-distribucion-horas-cli-2/enut2024-distribucion-horas-estimaciones.csv",
+  "RESULT-ENUTDH2-G-SALIDA-INCIDENCIAS": "forense/analisis/enut2024-distribucion-horas-cli-2/enut2024-distribucion-horas-incidencias.json"
+ },
+ "spec_id": "CALC-ENUT2024-DISTRIBUCION-HORAS-0002"
+}
