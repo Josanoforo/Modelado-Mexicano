@@ -80,9 +80,12 @@ reserva material.
 ## CONSUMIDO
 
 Ejecutado en `PR #897`, rama
-`codex/gen2-enadid2023-union-sexo-edad-cli-2`. La corrida aceptada es
-`CALC-ENADID2023-UNION-SEXO-EDAD-0002`; 0001 conserva el intento no sellado
-por tipo registral incompatible con contrastes negativos. No quedó reserva
+`codex/gen2-enadid2023-union-sexo-edad-cli-2`. La corrida vigente es
+`CALC-ENADID2023-UNION-SEXO-EDAD-0004`; 0001 conserva el intento no sellado
+por tipo registral incompatible con contrastes negativos, 0002 permanece
+sellado y 0003 conserva la primera corrección incompleta de los conteos de
+pesos estándar. 0004 publica `n_numerador` por tramo y `n_denominador` común
+sin cambiar ningún estimando. No quedó reserva
 material: P1, P2 y P3 son estimables; el residuo visible de sexo desconocido
 tiene denominador nulo y se conserva como `NO-ESTIMABLE`, sin bloquear los
 productos. `cuenta_gen2=PENDIENTE-DE-MESA`; sin merge ni adopción.

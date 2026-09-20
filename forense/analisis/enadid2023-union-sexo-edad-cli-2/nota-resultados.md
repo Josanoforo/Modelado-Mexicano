@@ -2,10 +2,11 @@
 
 ## Resultado
 
-`CALC-ENADID2023-UNION-SEXO-EDAD-0002` es la corrida aceptada. Mide situación
+`CALC-ENADID2023-UNION-SEXO-EDAD-0004` es la corrida vigente. Mide situación
 conyugal **actual**, no primera unión. El intento 0001 quedó no sellado por un
-tipo registral incorrecto para diferencias con signo; el sucesor conservó el
-método y corrigió sólo tipo e identidades RESULT.
+tipo registral incorrecto para diferencias con signo. 0002 quedó sellado y
+publicó los estimandos; 0003 y 0004 documentan la corrección posterior de los
+conteos de `peso_estandar_edad`, sin cambiar el método ni los puntos.
 
 Entre personas actualmente en unión libre o casadas, la proporción en unión
 libre baja con la edad en ambos sexos. La comparación mujeres−hombres es
@@ -61,6 +62,14 @@ composición etaria modifica materialmente la comparación descriptiva agregada;
 la resta de 3.70 puntos porcentuales no es un efecto causal ni un porcentaje
 explicado.
 
+En cada fila `peso_estandar_edad`, `n_numerador` publica ahora el conteo del
+tramo (694, 22,676, 50,944, 47,308 y 31,212) y `n_denominador=152,834` el
+conteo conjunto de los cinco tramos. Su suma reconstruye exactamente el
+denominador común. Frente a 0002 sólo cambiaron esos diez campos tabulares;
+masas, pesos, puntos, EE e IC permanecen idénticos. 0003 queda conservado y
+sellado: corrigió el denominador común, pero su serializador omitió la nueva
+columna `n_numerador`; 0004 añadió esa columna mediante sucesión.
+
 ## Universo, filtros y residuos
 
 TSDEM contiene 359,018 residentes y masa 129,477,554. Después del recorte a
@@ -97,16 +106,16 @@ también coinciden.
 
 | RESULT | Universo / contenido |
 |---|---|
-| `RESULT-ENADID-USE2-P1-TABLA-SHA256` | Siete categorías por sexo×cinco edades y sexo total; residuo de sexo visible |
-| `RESULT-ENADID-USE2-P2-TABLA-SHA256` | `P3_27=1 / P3_27∈{1,6}` por sexo×edad/total y diferencias mujer−hombre |
-| `RESULT-ENADID-USE2-P3-TABLA-SHA256` | Sexo conocido, edad válida, `P3_27∈{1,6}`; pesos comunes, tasas, brechas y resta |
-| `RESULT-ENADID-USE2-DIF-BRUTA-MH` | Diferencia mujer−hombre sin fijar composición de edad |
-| `RESULT-ENADID-USE2-DIF-ESTANDAR-MH` | Diferencia mujer−hombre con los cinco pesos comunes estimados |
-| `RESULT-ENADID-USE2-BRUTA-MENOS-ESTANDAR` | Diferencia bruta menos estandarizada; descriptiva, no causal |
-| `RESULT-ENADID-USE2-FLUJO-SHA256` | N y masas antes/después de filtros |
-| `RESULT-ENADID-USE2-AUDITORIA-SHA256` | Llave, residuos y marco de diseño |
-| `RESULT-ENADID-USE2-REPLICAS` / `SEMILLA` | 800 / 20260919 |
-| `RESULT-ENADID-USE2-SALIDA` | Directorio de las tablas |
+| `RESULT-ENADID-USE4-P1-TABLA-SHA256` | Siete categorías por sexo×cinco edades y sexo total; residuo de sexo visible |
+| `RESULT-ENADID-USE4-P2-TABLA-SHA256` | `P3_27=1 / P3_27∈{1,6}` por sexo×edad/total y diferencias mujer−hombre |
+| `RESULT-ENADID-USE4-P3-TABLA-SHA256` | Sexo conocido, edad válida, `P3_27∈{1,6}`; pesos comunes, tasas, brechas, resta y conteos coherentes |
+| `RESULT-ENADID-USE4-DIF-BRUTA-MH` | Diferencia mujer−hombre sin fijar composición de edad |
+| `RESULT-ENADID-USE4-DIF-ESTANDAR-MH` | Diferencia mujer−hombre con los cinco pesos comunes estimados |
+| `RESULT-ENADID-USE4-BRUTA-MENOS-ESTANDAR` | Diferencia bruta menos estandarizada; descriptiva, no causal |
+| `RESULT-ENADID-USE4-FLUJO-SHA256` | N y masas antes/después de filtros |
+| `RESULT-ENADID-USE4-AUDITORIA-SHA256` | Llave, residuos y marco de diseño |
+| `RESULT-ENADID-USE4-REPLICAS` / `SEMILLA` | 800 / 20260919 |
+| `RESULT-ENADID-USE4-SALIDA` | Directorio de las tablas |
 
 Estado: medición sellada, replay aislado `REPRODUCE/IDENTICO`, validación
 independiente terminada y asiento proyectado; adopción ninguna;
