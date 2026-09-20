@@ -1,0 +1,1707 @@
+{
+  "definition": "Total: created_at hasta último job completado. Costo agregado: suma de segundos de jobs (no facturación redondeada ni CPU). Espera inicial: creación hasta primer job. Preparación: pasos previos a primera prueba; tiempos redondeados de API.",
+  "runs": [
+    {
+      "label": "before-1",
+      "id": 35482245209,
+      "conclusion": "success",
+      "createdAt": "2026-09-20T01:46:13Z",
+      "event": "push",
+      "headSha": "4bda996fdb2bad1d67f45210c249d52a870a4e35",
+      "startedAt": "2026-09-20T01:46:13Z",
+      "status": "completed",
+      "updatedAt": "2026-09-20T01:52:15Z",
+      "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482245209",
+      "jobs": [
+        {
+          "name": "check",
+          "conclusion": "success",
+          "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482245209/job/106002009083",
+          "startedAt": "2026-09-20T01:46:15Z",
+          "completedAt": "2026-09-20T01:52:15Z",
+          "seconds": 360,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+              "conclusion": "success",
+              "seconds": 6
+            },
+            {
+              "name": "Intérprete del runner (crudo, para que quede en el log)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+              "conclusion": "success",
+              "seconds": 1
+            },
+            {
+              "name": "Suite de verificación (modo línea base — verde = no empeoraste)",
+              "conclusion": "success",
+              "seconds": 201
+            },
+            {
+              "name": "svystat.py — validación independiente (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "emite_m — resolver de ola_calibracion por conducta (bloqueante)",
+              "conclusion": "success",
+              "seconds": 6
+            },
+            {
+              "name": "Baseline temporal — corte y compatibilidad del estimando",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "T-CRON — huella del cron y no-regresión de baseline (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "adq_config.py — lector de data/adq-config.yaml (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "adq_doctor.py — clasificación de lock/crontab (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)",
+              "conclusion": "success",
+              "seconds": 7
+            },
+            {
+              "name": "Fuentes financieras — unidades, faltantes y duplicados (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "N34 — producto, costo y daño (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)",
+              "conclusion": "success",
+              "seconds": 1
+            },
+            {
+              "name": "contrato sintético de C2 — piloto celda-D (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "marcador por segmento — tabla derivada y guardias (bloqueante)",
+              "conclusion": "success",
+              "seconds": 134
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "seconds": 0
+            }
+          ]
+        }
+      ],
+      "totalSeconds": 362,
+      "initialWaitSeconds": 2,
+      "aggregateJobSeconds": 360
+    },
+    {
+      "label": "before-2",
+      "id": 35482843438,
+      "conclusion": "success",
+      "createdAt": "2026-09-20T02:00:26Z",
+      "event": "workflow_dispatch",
+      "headSha": "4bda996fdb2bad1d67f45210c249d52a870a4e35",
+      "startedAt": "2026-09-20T02:00:26Z",
+      "status": "completed",
+      "updatedAt": "2026-09-20T02:04:48Z",
+      "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482843438",
+      "jobs": [
+        {
+          "name": "check",
+          "conclusion": "success",
+          "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482843438/job/106003626153",
+          "startedAt": "2026-09-20T02:00:29Z",
+          "completedAt": "2026-09-20T02:04:47Z",
+          "seconds": 258,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+              "conclusion": "success",
+              "seconds": 6
+            },
+            {
+              "name": "Intérprete del runner (crudo, para que quede en el log)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+              "conclusion": "success",
+              "seconds": 2
+            },
+            {
+              "name": "Suite de verificación (modo línea base — verde = no empeoraste)",
+              "conclusion": "success",
+              "seconds": 150
+            },
+            {
+              "name": "svystat.py — validación independiente (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "emite_m — resolver de ola_calibracion por conducta (bloqueante)",
+              "conclusion": "success",
+              "seconds": 4
+            },
+            {
+              "name": "Baseline temporal — corte y compatibilidad del estimando",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "T-CRON — huella del cron y no-regresión de baseline (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "adq_config.py — lector de data/adq-config.yaml (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "adq_doctor.py — clasificación de lock/crontab (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)",
+              "conclusion": "success",
+              "seconds": 6
+            },
+            {
+              "name": "Fuentes financieras — unidades, faltantes y duplicados (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "N34 — producto, costo y daño (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "contrato sintético de C2 — piloto celda-D (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "marcador por segmento — tabla derivada y guardias (bloqueante)",
+              "conclusion": "success",
+              "seconds": 88
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "seconds": 0
+            }
+          ]
+        }
+      ],
+      "totalSeconds": 261,
+      "initialWaitSeconds": 3,
+      "aggregateJobSeconds": 258
+    },
+    {
+      "label": "before-3",
+      "id": 35483077343,
+      "conclusion": "success",
+      "createdAt": "2026-09-20T02:05:40Z",
+      "event": "workflow_dispatch",
+      "headSha": "4bda996fdb2bad1d67f45210c249d52a870a4e35",
+      "startedAt": "2026-09-20T02:05:40Z",
+      "status": "completed",
+      "updatedAt": "2026-09-20T02:12:25Z",
+      "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35483077343",
+      "jobs": [
+        {
+          "name": "check",
+          "conclusion": "success",
+          "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35483077343/job/106004277927",
+          "startedAt": "2026-09-20T02:06:19Z",
+          "completedAt": "2026-09-20T02:12:24Z",
+          "seconds": 365,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+              "conclusion": "success",
+              "seconds": 5
+            },
+            {
+              "name": "Intérprete del runner (crudo, para que quede en el log)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+              "conclusion": "success",
+              "seconds": 3
+            },
+            {
+              "name": "Suite de verificación (modo línea base — verde = no empeoraste)",
+              "conclusion": "success",
+              "seconds": 205
+            },
+            {
+              "name": "svystat.py — validación independiente (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "emite_m — resolver de ola_calibracion por conducta (bloqueante)",
+              "conclusion": "success",
+              "seconds": 5
+            },
+            {
+              "name": "Baseline temporal — corte y compatibilidad del estimando",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "T-CRON — huella del cron y no-regresión de baseline (bloqueante)",
+              "conclusion": "success",
+              "seconds": 1
+            },
+            {
+              "name": "adq_config.py — lector de data/adq-config.yaml (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "adq_doctor.py — clasificación de lock/crontab (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)",
+              "conclusion": "success",
+              "seconds": 8
+            },
+            {
+              "name": "Fuentes financieras — unidades, faltantes y duplicados (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "N34 — producto, costo y daño (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)",
+              "conclusion": "success",
+              "seconds": 1
+            },
+            {
+              "name": "contrato sintético de C2 — piloto celda-D (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "marcador por segmento — tabla derivada y guardias (bloqueante)",
+              "conclusion": "success",
+              "seconds": 136
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "seconds": 0
+            }
+          ]
+        }
+      ],
+      "totalSeconds": 404,
+      "initialWaitSeconds": 39,
+      "aggregateJobSeconds": 365
+    },
+    {
+      "label": "after-1",
+      "id": 35482844734,
+      "conclusion": "success",
+      "createdAt": "2026-09-20T02:00:28Z",
+      "event": "workflow_dispatch",
+      "headSha": "01b35f9f00fb375bf9132e0f4ac1729ad278dbbb",
+      "startedAt": "2026-09-20T02:00:28Z",
+      "status": "completed",
+      "updatedAt": "2026-09-20T02:03:26Z",
+      "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482844734",
+      "jobs": [
+        {
+          "name": "adicionales",
+          "conclusion": "success",
+          "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482844734/job/106003629868",
+          "startedAt": "2026-09-20T02:00:31Z",
+          "completedAt": "2026-09-20T02:03:12Z",
+          "seconds": 161,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "seconds": 1
+            },
+            {
+              "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+              "conclusion": "success",
+              "seconds": 4
+            },
+            {
+              "name": "Intérprete del runner (crudo, para que quede en el log)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+              "conclusion": "success",
+              "seconds": 3
+            },
+            {
+              "name": "svystat.py — validación independiente (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "emite_m — resolver de ola_calibracion por conducta (bloqueante)",
+              "conclusion": "success",
+              "seconds": 6
+            },
+            {
+              "name": "Baseline temporal — corte y compatibilidad del estimando",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "T-CRON — huella del cron y no-regresión de baseline (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "adq_config.py — lector de data/adq-config.yaml (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "adq_doctor.py — clasificación de lock/crontab (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)",
+              "conclusion": "success",
+              "seconds": 7
+            },
+            {
+              "name": "Fuentes financieras — unidades, faltantes y duplicados (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "N34 — producto, costo y daño (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)",
+              "conclusion": "success",
+              "seconds": 1
+            },
+            {
+              "name": "contrato sintético de C2 — piloto celda-D (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "marcador por segmento — tabla derivada y guardias (bloqueante)",
+              "conclusion": "success",
+              "seconds": 138
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "suite",
+          "conclusion": "success",
+          "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482844734/job/106003630004",
+          "startedAt": "2026-09-20T02:00:31Z",
+          "completedAt": "2026-09-20T02:03:19Z",
+          "seconds": 168,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+              "conclusion": "success",
+              "seconds": 5
+            },
+            {
+              "name": "Intérprete del runner (crudo, para que quede en el log)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+              "conclusion": "success",
+              "seconds": 2
+            },
+            {
+              "name": "Suite de verificación (modo línea base — verde = no empeoraste)",
+              "conclusion": "success",
+              "seconds": 158
+            },
+            {
+              "name": "Transporte paralelo, compuerta y semántica del baseline (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "check",
+          "conclusion": "success",
+          "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482844734/job/106003988412",
+          "startedAt": "2026-09-20T02:03:22Z",
+          "completedAt": "2026-09-20T02:03:25Z",
+          "seconds": 3,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Todos los grupos requeridos terminaron correctamente",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "seconds": 0
+            }
+          ]
+        }
+      ],
+      "totalSeconds": 177,
+      "initialWaitSeconds": 3,
+      "aggregateJobSeconds": 332
+    },
+    {
+      "label": "after-2",
+      "id": 35483010742,
+      "conclusion": "success",
+      "createdAt": "2026-09-20T02:04:07Z",
+      "event": "workflow_dispatch",
+      "headSha": "01b35f9f00fb375bf9132e0f4ac1729ad278dbbb",
+      "startedAt": "2026-09-20T02:04:07Z",
+      "status": "completed",
+      "updatedAt": "2026-09-20T02:06:59Z",
+      "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35483010742",
+      "jobs": [
+        {
+          "name": "adicionales",
+          "conclusion": "success",
+          "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35483010742/job/106004098950",
+          "startedAt": "2026-09-20T02:04:14Z",
+          "completedAt": "2026-09-20T02:06:54Z",
+          "seconds": 160,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+              "conclusion": "success",
+              "seconds": 5
+            },
+            {
+              "name": "Intérprete del runner (crudo, para que quede en el log)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+              "conclusion": "success",
+              "seconds": 1
+            },
+            {
+              "name": "svystat.py — validación independiente (bloqueante)",
+              "conclusion": "success",
+              "seconds": 1
+            },
+            {
+              "name": "emite_m — resolver de ola_calibracion por conducta (bloqueante)",
+              "conclusion": "success",
+              "seconds": 5
+            },
+            {
+              "name": "Baseline temporal — corte y compatibilidad del estimando",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "T-CRON — huella del cron y no-regresión de baseline (bloqueante)",
+              "conclusion": "success",
+              "seconds": 1
+            },
+            {
+              "name": "adq_config.py — lector de data/adq-config.yaml (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "adq_doctor.py — clasificación de lock/crontab (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)",
+              "conclusion": "success",
+              "seconds": 7
+            },
+            {
+              "name": "Fuentes financieras — unidades, faltantes y duplicados (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "N34 — producto, costo y daño (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)",
+              "conclusion": "success",
+              "seconds": 1
+            },
+            {
+              "name": "contrato sintético de C2 — piloto celda-D (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "marcador por segmento — tabla derivada y guardias (bloqueante)",
+              "conclusion": "success",
+              "seconds": 137
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "suite",
+          "conclusion": "success",
+          "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35483010742/job/106004099092",
+          "startedAt": "2026-09-20T02:04:14Z",
+          "completedAt": "2026-09-20T02:06:10Z",
+          "seconds": 116,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+              "conclusion": "success",
+              "seconds": 6
+            },
+            {
+              "name": "Intérprete del runner (crudo, para que quede en el log)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+              "conclusion": "success",
+              "seconds": 6
+            },
+            {
+              "name": "Suite de verificación (modo línea base — verde = no empeoraste)",
+              "conclusion": "success",
+              "seconds": 101
+            },
+            {
+              "name": "Transporte paralelo, compuerta y semántica del baseline (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "check",
+          "conclusion": "success",
+          "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35483010742/job/106004422399",
+          "startedAt": "2026-09-20T02:06:56Z",
+          "completedAt": "2026-09-20T02:06:59Z",
+          "seconds": 3,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Todos los grupos requeridos terminaron correctamente",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "seconds": 0
+            }
+          ]
+        }
+      ],
+      "totalSeconds": 172,
+      "initialWaitSeconds": 7,
+      "aggregateJobSeconds": 279
+    },
+    {
+      "label": "after-3",
+      "id": 35483175259,
+      "conclusion": "success",
+      "createdAt": "2026-09-20T02:07:54Z",
+      "event": "workflow_dispatch",
+      "headSha": "01b35f9f00fb375bf9132e0f4ac1729ad278dbbb",
+      "startedAt": "2026-09-20T02:07:54Z",
+      "status": "completed",
+      "updatedAt": "2026-09-20T02:10:47Z",
+      "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35483175259",
+      "jobs": [
+        {
+          "name": "adicionales",
+          "conclusion": "success",
+          "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35483175259/job/106004547051",
+          "startedAt": "2026-09-20T02:07:57Z",
+          "completedAt": "2026-09-20T02:10:37Z",
+          "seconds": 160,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+              "conclusion": "success",
+              "seconds": 6
+            },
+            {
+              "name": "Intérprete del runner (crudo, para que quede en el log)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+              "conclusion": "success",
+              "seconds": 1
+            },
+            {
+              "name": "svystat.py — validación independiente (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "emite_m — resolver de ola_calibracion por conducta (bloqueante)",
+              "conclusion": "success",
+              "seconds": 6
+            },
+            {
+              "name": "Baseline temporal — corte y compatibilidad del estimando",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "T-CRON — huella del cron y no-regresión de baseline (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "adq_config.py — lector de data/adq-config.yaml (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "adq_doctor.py — clasificación de lock/crontab (bloqueante)",
+              "conclusion": "success",
+              "seconds": 1
+            },
+            {
+              "name": "adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)",
+              "conclusion": "success",
+              "seconds": 6
+            },
+            {
+              "name": "Fuentes financieras — unidades, faltantes y duplicados (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "N34 — producto, costo y daño (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)",
+              "conclusion": "success",
+              "seconds": 1
+            },
+            {
+              "name": "contrato sintético de C2 — piloto celda-D (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "marcador por segmento — tabla derivada y guardias (bloqueante)",
+              "conclusion": "success",
+              "seconds": 136
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "suite",
+          "conclusion": "success",
+          "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35483175259/job/106004547143",
+          "startedAt": "2026-09-20T02:07:57Z",
+          "completedAt": "2026-09-20T02:10:42Z",
+          "seconds": 165,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+              "conclusion": "success",
+              "seconds": 5
+            },
+            {
+              "name": "Intérprete del runner (crudo, para que quede en el log)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+              "conclusion": "success",
+              "seconds": 3
+            },
+            {
+              "name": "Suite de verificación (modo línea base — verde = no empeoraste)",
+              "conclusion": "success",
+              "seconds": 154
+            },
+            {
+              "name": "Transporte paralelo, compuerta y semántica del baseline (bloqueante)",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "seconds": 0
+            }
+          ]
+        },
+        {
+          "name": "check",
+          "conclusion": "success",
+          "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35483175259/job/106004892930",
+          "startedAt": "2026-09-20T02:10:44Z",
+          "completedAt": "2026-09-20T02:10:46Z",
+          "seconds": 2,
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Todos los grupos requeridos terminaron correctamente",
+              "conclusion": "success",
+              "seconds": 0
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success",
+              "seconds": 0
+            }
+          ]
+        }
+      ],
+      "totalSeconds": 172,
+      "initialWaitSeconds": 3,
+      "aggregateJobSeconds": 327
+    }
+  ],
+  "faults": {
+    "fail-suite": [
+      {
+        "name": "adicionales",
+        "conclusion": "success",
+        "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482959302/job/106003952707",
+        "startedAt": "2026-09-20T02:03:05Z",
+        "completedAt": "2026-09-20T02:05:42Z",
+        "seconds": 157,
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Inyección temporal exclusiva de la prueba de compuerta",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+            "conclusion": "success",
+            "seconds": 5
+          },
+          {
+            "name": "Intérprete del runner (crudo, para que quede en el log)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+            "conclusion": "success",
+            "seconds": 3
+          },
+          {
+            "name": "svystat.py — validación independiente (bloqueante)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "emite_m — resolver de ola_calibracion por conducta (bloqueante)",
+            "conclusion": "success",
+            "seconds": 5
+          },
+          {
+            "name": "Baseline temporal — corte y compatibilidad del estimando",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "T-CRON — huella del cron y no-regresión de baseline (bloqueante)",
+            "conclusion": "success",
+            "seconds": 1
+          },
+          {
+            "name": "adq_config.py — lector de data/adq-config.yaml (bloqueante)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "adq_doctor.py — clasificación de lock/crontab (bloqueante)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)",
+            "conclusion": "success",
+            "seconds": 6
+          },
+          {
+            "name": "Fuentes financieras — unidades, faltantes y duplicados (bloqueante)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "N34 — producto, costo y daño (bloqueante)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)",
+            "conclusion": "success",
+            "seconds": 1
+          },
+          {
+            "name": "contrato sintético de C2 — piloto celda-D (bloqueante)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "marcador por segmento — tabla derivada y guardias (bloqueante)",
+            "conclusion": "success",
+            "seconds": 135
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success",
+            "seconds": 0
+          }
+        ]
+      },
+      {
+        "name": "suite",
+        "conclusion": "failure",
+        "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482959302/job/106003952809",
+        "startedAt": "2026-09-20T02:03:06Z",
+        "completedAt": "2026-09-20T02:03:09Z",
+        "seconds": 3,
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Inyección temporal exclusiva de la prueba de compuerta",
+            "conclusion": "failure",
+            "seconds": 1
+          },
+          {
+            "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Intérprete del runner (crudo, para que quede en el log)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Suite de verificación (modo línea base — verde = no empeoraste)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Transporte paralelo, compuerta y semántica del baseline (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success",
+            "seconds": 0
+          }
+        ]
+      },
+      {
+        "name": "check",
+        "conclusion": "failure",
+        "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482959302/job/106004280130",
+        "startedAt": "2026-09-20T02:05:45Z",
+        "completedAt": "2026-09-20T02:05:48Z",
+        "seconds": 3,
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Todos los grupos requeridos terminaron correctamente",
+            "conclusion": "failure",
+            "seconds": 0
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success",
+            "seconds": 0
+          }
+        ]
+      }
+    ],
+    "fail-adicionales": [
+      {
+        "name": "suite",
+        "conclusion": "success",
+        "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482960574/job/106003955435",
+        "startedAt": "2026-09-20T02:03:07Z",
+        "completedAt": "2026-09-20T02:05:57Z",
+        "seconds": 170,
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success",
+            "seconds": 1
+          },
+          {
+            "name": "Inyección temporal exclusiva de la prueba de compuerta",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+            "conclusion": "success",
+            "seconds": 5
+          },
+          {
+            "name": "Intérprete del runner (crudo, para que quede en el log)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+            "conclusion": "success",
+            "seconds": 1
+          },
+          {
+            "name": "Suite de verificación (modo línea base — verde = no empeoraste)",
+            "conclusion": "success",
+            "seconds": 160
+          },
+          {
+            "name": "Transporte paralelo, compuerta y semántica del baseline (bloqueante)",
+            "conclusion": "success",
+            "seconds": 1
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success",
+            "seconds": 0
+          }
+        ]
+      },
+      {
+        "name": "adicionales",
+        "conclusion": "failure",
+        "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482960574/job/106003955817",
+        "startedAt": "2026-09-20T02:03:42Z",
+        "completedAt": "2026-09-20T02:03:44Z",
+        "seconds": 2,
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Inyección temporal exclusiva de la prueba de compuerta",
+            "conclusion": "failure",
+            "seconds": 0
+          },
+          {
+            "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Intérprete del runner (crudo, para que quede en el log)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "svystat.py — validación independiente (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "emite_m — resolver de ola_calibracion por conducta (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Baseline temporal — corte y compatibilidad del estimando",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "T-CRON — huella del cron y no-regresión de baseline (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "adq_config.py — lector de data/adq-config.yaml (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "adq_doctor.py — clasificación de lock/crontab (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Fuentes financieras — unidades, faltantes y duplicados (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "N34 — producto, costo y daño (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "contrato sintético de C2 — piloto celda-D (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "marcador por segmento — tabla derivada y guardias (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success",
+            "seconds": 0
+          }
+        ]
+      },
+      {
+        "name": "check",
+        "conclusion": "failure",
+        "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482960574/job/106004310398",
+        "startedAt": "2026-09-20T02:05:59Z",
+        "completedAt": "2026-09-20T02:06:01Z",
+        "seconds": 2,
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Todos los grupos requeridos terminaron correctamente",
+            "conclusion": "failure",
+            "seconds": 0
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success",
+            "seconds": 0
+          }
+        ]
+      }
+    ],
+    "skip-suite": [
+      {
+        "name": "adicionales",
+        "conclusion": "success",
+        "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482961894/job/106003960476",
+        "startedAt": "2026-09-20T02:03:09Z",
+        "completedAt": "2026-09-20T02:05:43Z",
+        "seconds": 154,
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Inyección temporal exclusiva de la prueba de compuerta",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+            "conclusion": "success",
+            "seconds": 3
+          },
+          {
+            "name": "Intérprete del runner (crudo, para que quede en el log)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+            "conclusion": "success",
+            "seconds": 1
+          },
+          {
+            "name": "svystat.py — validación independiente (bloqueante)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "emite_m — resolver de ola_calibracion por conducta (bloqueante)",
+            "conclusion": "success",
+            "seconds": 6
+          },
+          {
+            "name": "Baseline temporal — corte y compatibilidad del estimando",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "T-CRON — huella del cron y no-regresión de baseline (bloqueante)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "adq_config.py — lector de data/adq-config.yaml (bloqueante)",
+            "conclusion": "success",
+            "seconds": 1
+          },
+          {
+            "name": "adq_doctor.py — clasificación de lock/crontab (bloqueante)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)",
+            "conclusion": "success",
+            "seconds": 6
+          },
+          {
+            "name": "Fuentes financieras — unidades, faltantes y duplicados (bloqueante)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "N34 — producto, costo y daño (bloqueante)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)",
+            "conclusion": "success",
+            "seconds": 1
+          },
+          {
+            "name": "contrato sintético de C2 — piloto celda-D (bloqueante)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "marcador por segmento — tabla derivada y guardias (bloqueante)",
+            "conclusion": "success",
+            "seconds": 134
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success",
+            "seconds": 1
+          }
+        ]
+      },
+      {
+        "name": "suite",
+        "conclusion": "skipped",
+        "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482961894/job/106003960850",
+        "startedAt": "2026-09-20T02:03:07Z",
+        "completedAt": "2026-09-20T02:03:06Z",
+        "seconds": -1,
+        "steps": []
+      },
+      {
+        "name": "check",
+        "conclusion": "failure",
+        "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482961894/job/106004281653",
+        "startedAt": "2026-09-20T02:05:46Z",
+        "completedAt": "2026-09-20T02:05:50Z",
+        "seconds": 4,
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Todos los grupos requeridos terminaron correctamente",
+            "conclusion": "failure",
+            "seconds": 1
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success",
+            "seconds": 0
+          }
+        ]
+      }
+    ],
+    "skip-adicionales": [
+      {
+        "name": "suite",
+        "conclusion": "success",
+        "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482963179/job/106003964661",
+        "startedAt": "2026-09-20T02:03:10Z",
+        "completedAt": "2026-09-20T02:05:56Z",
+        "seconds": 166,
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Inyección temporal exclusiva de la prueba de compuerta",
+            "conclusion": "success",
+            "seconds": 1
+          },
+          {
+            "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+            "conclusion": "success",
+            "seconds": 2
+          },
+          {
+            "name": "Intérprete del runner (crudo, para que quede en el log)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+            "conclusion": "success",
+            "seconds": 3
+          },
+          {
+            "name": "Suite de verificación (modo línea base — verde = no empeoraste)",
+            "conclusion": "success",
+            "seconds": 158
+          },
+          {
+            "name": "Transporte paralelo, compuerta y semántica del baseline (bloqueante)",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success",
+            "seconds": 0
+          }
+        ]
+      },
+      {
+        "name": "adicionales",
+        "conclusion": "skipped",
+        "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482963179/job/106003965381",
+        "startedAt": "2026-09-20T02:03:08Z",
+        "completedAt": "2026-09-20T02:03:08Z",
+        "seconds": 0,
+        "steps": []
+      },
+      {
+        "name": "check",
+        "conclusion": "failure",
+        "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482963179/job/106004308493",
+        "startedAt": "2026-09-20T02:05:58Z",
+        "completedAt": "2026-09-20T02:06:00Z",
+        "seconds": 2,
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Todos los grupos requeridos terminaron correctamente",
+            "conclusion": "failure",
+            "seconds": 0
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success",
+            "seconds": 0
+          }
+        ]
+      }
+    ],
+    "cancel": [
+      {
+        "name": "adicionales",
+        "conclusion": "cancelled",
+        "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482964784/job/106003966705",
+        "startedAt": "2026-09-20T02:03:11Z",
+        "completedAt": "2026-09-20T02:03:59Z",
+        "seconds": 48,
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Inyección temporal exclusiva de la prueba de compuerta",
+            "conclusion": "cancelled",
+            "seconds": 46
+          },
+          {
+            "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Intérprete del runner (crudo, para que quede en el log)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "svystat.py — validación independiente (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "emite_m — resolver de ola_calibracion por conducta (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Baseline temporal — corte y compatibilidad del estimando",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "T-CRON — huella del cron y no-regresión de baseline (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "adq_config.py — lector de data/adq-config.yaml (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "adq_doctor.py — clasificación de lock/crontab (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Fuentes financieras — unidades, faltantes y duplicados (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "N34 — producto, costo y daño (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "contrato sintético de C2 — piloto celda-D (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "marcador por segmento — tabla derivada y guardias (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success",
+            "seconds": 0
+          }
+        ]
+      },
+      {
+        "name": "suite",
+        "conclusion": "cancelled",
+        "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482964784/job/106003966850",
+        "startedAt": "2026-09-20T02:03:11Z",
+        "completedAt": "2026-09-20T02:03:59Z",
+        "seconds": 48,
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Inyección temporal exclusiva de la prueba de compuerta",
+            "conclusion": "cancelled",
+            "seconds": 46
+          },
+          {
+            "name": "Checkout sin marketplace (repo público — cero descargas de action)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Intérprete del runner (crudo, para que quede en el log)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Suite de verificación (modo línea base — verde = no empeoraste)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Transporte paralelo, compuerta y semántica del baseline (bloqueante)",
+            "conclusion": "skipped",
+            "seconds": 0
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success",
+            "seconds": 0
+          }
+        ]
+      },
+      {
+        "name": "check",
+        "conclusion": "failure",
+        "url": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/35482964784/job/106004073396",
+        "startedAt": "2026-09-20T02:04:01Z",
+        "completedAt": "2026-09-20T02:04:04Z",
+        "seconds": 3,
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success",
+            "seconds": 0
+          },
+          {
+            "name": "Todos los grupos requeridos terminaron correctamente",
+            "conclusion": "failure",
+            "seconds": 0
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success",
+            "seconds": 0
+          }
+        ]
+      }
+    ]
+  }
+}

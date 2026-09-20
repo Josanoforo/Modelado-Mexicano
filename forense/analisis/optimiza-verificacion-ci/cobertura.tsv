@@ -1,0 +1,64 @@
+id	comando	cobertura	lecturas	dependencias	escrituras	antes	despues	segundos_local_mediana
+T01	tests/check.py::t01_single_source (--baseline)	T01 fuente única de verdad	canon/{modelo-decision,glosario,gobernanza,estado-programa}-v*.md	stdlib	ninguna	check/suite	suite/principal	0.000
+T02	tests/check.py::t02_duplicates (--baseline)	T02 duplicados nombre/contenido	**/*.*; exclusiones originales .git, tests, data/raw, forense/rescate y recibos CALC	stdlib/hashlib	ninguna	check/suite	suite/principal	0.434
+T03	tests/check.py::t03_dangling_refs (--baseline)	T03 referencias colgantes	**/*.md y nombres **/*.*; excepciones originales	stdlib	ninguna	check/suite	suite/principal	0.215
+T04	tests/check.py::t04_adr33_diagonal (--baseline)	T04 ADR-33 diagonal en ENTONCES	canon/modelo-decision-v*.md	stdlib	ninguna	check/suite	suite/principal	0.001
+T05	tests/check.py::t05_adr32c_constructs (--baseline)	T05 ADR-32.c constructos en glosario	canon/{modelo-decision,glosario}-v*.md	stdlib	ninguna	check/suite	suite/principal	0.000
+T06	tests/check.py::t06_numeric_consistency (--baseline)	T06 consistencia numérica	corpus/{reports,forense}/*.md	stdlib	ninguna	check/suite	suite/principal	0.013
+T07	tests/check.py::t07_tier_vocabulary (--baseline)	T07 vocabulario de tiers	corpus/reports/*.md	stdlib	ninguna	check/suite	suite/principal	0.006
+T08	tests/check.py::t08_evidence_map (--baseline)	T08 mapa de evidencia por report	corpus/reports/*.md	stdlib	ninguna	check/suite	suite/principal	0.002
+T09	tests/check.py::t09_imported_as_cause (--baseline)	T09 marco (c) usado como causa	corpus/reports/*.md	stdlib	ninguna	check/suite	suite/principal	0.016
+T10	tests/check.py::t10_diaspora_unmarked (--baseline)	T10 diáspora (b) sin marcar	corpus/reports/*.md	stdlib	ninguna	check/suite	suite/principal	0.032
+T11	tests/check.py::t11_state_claims (--baseline)	T11 afirmaciones de estado absolutas	**/*.md	stdlib	ninguna	check/suite	suite/principal	0.286
+T12	tests/check.py::t12_counts (--baseline)	T12 conteos del motor	canon/{modelo-decision,estado-programa,gobernanza}-v*.md	stdlib	ninguna	check/suite	suite/principal	0.056
+T13	tests/check.py::t13_version_header (--baseline)	T13 cabecera de versión ADR-36	canon/*.md	stdlib	ninguna	check/suite	suite/principal	0.004
+T14	tests/check.py::t14_inventario (--baseline)	T14 T-INVENTARIO	canon/integrador-*.md; corpus/{reports,forense}/*.md	stdlib	ninguna	check/suite	suite/principal	0.002
+T15	tests/check.py::t15_adr_count (--baseline)	T15 T-ADR-COUNT	canon/*.md (incluye gobernanza vigente)	stdlib	ninguna	check/suite	suite/principal	0.060
+T17	tests/check.py::t17_fichas_count (--baseline)	T17 T-FICHAS-COUNT	canon/estado-programa-v*.md; forense/hitoD-preregistro-v*.md	stdlib	ninguna	check/suite	suite/principal	0.005
+T18	tests/check.py::t18_paso2_ejecucion (--baseline)	T18 T-PASO2-EJECUCION	canon/estado-programa-v*.md; forense/hitoD-preregistro-v*.md	stdlib	ninguna	check/suite	suite/principal	0.003
+T19a	tests/check.py::t19a_estado_cita_modelo_vigente (--baseline)	T19a cabecera cruzada estado→modelo	canon/{estado-programa,modelo-decision}-v*.md	stdlib	ninguna	check/suite	suite/principal	0.001
+T19b	tests/check.py::t19b_modelo_contador_14 (--baseline)	T19b contador 14 cruzado (modelo)	canon/modelo-decision-v*.md; milpa/procedencia.yaml	stdlib	ninguna	check/suite	suite/principal	0.001
+T19c	tests/check.py::t19c_readme_derivadas (--baseline)	T19c portada derivada (README)	README.md; milpa/procedencia.yaml; forense/hitoD-preregistro-v*.md	stdlib	ninguna	check/suite	suite/principal	0.002
+T20	tests/check.py::t20_cascada_marcada (--baseline)	T20 T-CASCADA-MARCADA	README.md; canon/*.md; forense/hitoD-preregistro-v*.md	stdlib	ninguna	check/suite	suite/principal	0.009
+T21	tests/check.py::t21_capa2_capa3 (--baseline)	T21 T-CAPA2-CAPA3	data/curacion-registro/relaciones.tsv	stdlib	ninguna	check/suite	suite/principal	0.000
+T22	tests/check.py::t22_firmas (--baseline)	T22 T-FIRMAS	forense/firmas-pendientes.tsv; archivos citados bajo canon/forense/data	tools/estado_comun.py; stdlib	ninguna	check/suite	suite/principal	0.120
+T23	tests/check.py::t23_cableado (--baseline)	T23 T-CABLEADO	data/cableado-universo-v1_0.tsv; data/curacion-registro/relaciones.tsv; barrido2/{decisiones-integracion-barrido2,propuestas-barrido2,tareas-semanticas-barrido2}.tsv; data/lista-apertura-enlace2-2026-08-14.tsv	stdlib	ninguna	check/suite	suite/principal	0.004
+T24	tests/check.py::t24_llaves_ejercidas (--baseline)	T24 T-LLAVES-EJERCIDAS	canon/estado-programa-v*.md; forense/registro-llaves-identificacion-v*.md	stdlib	ninguna	check/suite	suite/principal	0.002
+T25	tests/check.py::t25_rotulos (--baseline)	T25 T-ROTULOS	canon/registro-rotulos.tsv; {canon,forense}/**/*.md	stdlib	ninguna	check/suite	suite/principal	0.180
+T26	tests/check.py::t26_vista_cola_adquisicion (--baseline)	T26 T-VISTA-COLA-ADQUISICION	data/cola-adquisicion-v1_0.tsv; data/curacion-registro/cola-adquisicion-registro.tsv	tools/vista_cola_adquisicion.py	ninguna; vista construida en memoria	check/suite	suite/principal	0.003
+T26-bis	tests/check.py::t26_bis_tsv_crudo_round_trip (--baseline)	T26-bis T-TSV-CRUDO-ROUND-TRIP	data/curacion-registro/cola-adquisicion-registro.tsv	tools/curador_registro/tsv_crudo.py; csv	buffers en memoria	check/suite	suite/principal	0.002
+T27	tests/check.py::t27_infraestructura (--baseline)	T27 T-INFRA	data/INFRAESTRUCTURA-v1_0.md; nombres data/**; data/raices.local.yaml si existe	stdlib	ninguna	check/suite	suite/principal	0.013
+T28	tests/check.py::t28_a3_encargo_archivado (--baseline)	T28 T-A3	forense/encargos/**/*N1-lite*.md	stdlib	ninguna	check/suite	suite/principal	0.001
+T29	tests/check.py::t29_firmas_2_no_perdidas (--baseline)	T29 T-FIRMAS-2	forense/firmas-pendientes.tsv	stdlib	ninguna	check/suite	suite/principal	0.001
+T30	tests/check.py::t30_yamedido (--baseline)	T30 T-YAMEDIDO	forense/encargos/*.md	stdlib/reloj UTC	ninguna	check/suite	suite/principal	0.001
+T30b	tests/check.py::t30b_yamedido_huso_medianoche (--baseline)	T30b T-YAMEDIDO-HUSO	fixture de medianoche	stdlib; t30_yamedido	temporal check-t30b-*; restaura ROOT/FAILS	check/suite	suite/principal	0.000
+T31	tests/check.py::t31_cron (--baseline)	T31 T-CRON	data/adq-config.yaml; forense/cron, huellas/censos locales; ref censo remoto	git; tools/adq_config.py; zona America/Mexico_City	.git/FETCH_HEAD, objetos y ref de censo si se consulta remoto; conserva secuencia	check/suite	suite/principal	0.028
+T32	tests/check.py::t32_corrida0 (--baseline)	T32 T-CORRIDA0	tests/test_corrida0.py (94 casos); inventarios de reactivos vigentes; metadatos data/corrida0 y milpa; fixtures	tools/corrida0.py; PyYAML; git; sella_sha256.py	temporales calc-test-*, registro-test-*, demanda-*, etc.; globals del módulo restaurados; sin producción	check/suite	suite/principal	41.760
+T32-bis	tests/check.py::t32_bis_pisos_rejilla (--baseline)	T32-bis T-PISOS-REJILLA	tests/test_pisos_rejilla.py; tabla/entrega/catalogos de pisos; archivo histórico; specs/código/sellos CALC-PISOS	PyYAML; stdlib; prueba pandas si disponible (sin cambio)	ninguna	check/suite	suite/principal	0.046
+T32-ter	tests/check.py::t32_ter_c2_compuesto (--baseline)	T32-ter T-C2-COMPUESTO	tests/test_c2_compuesto.py; C2 sellado y contratos de cruces reservados; fixtures	tools/c2_compuesto.py; PyYAML	temporales de fixtures; sin adopción	check/suite	suite/principal	1.590
+T36	tests/check.py::t36_corredores_gen2 (--baseline)	T36 T-CORREDORES-GEN2	tests/test_corredores_gen2.py; medidores wrappers; marco M; L-spec; fixtures	PyYAML; módulos de wrappers	TemporaryDirectory; sin producción	check/suite	suite/principal	2.489
+T39	tests/check.py::t39_digesto_nc (--baseline)	T39 T-DIGESTO-NC	tests/test_digesto_nc.py; fixtures NC/digesto	tools/digesto_tramite.py; git	repositorios Git temporales	check/suite	suite/principal	1.468
+T40	tests/check.py::t40_rutinas (--baseline)	T40 T-RUTINAS	tests/test_rutinas.py; fixtures de revisiones/huellas	tools/rutinas.py	fixtures aislados	check/suite	suite/principal	0.005
+T37	tests/check.py::t37_cola_sincronizada (--baseline)	T37 T-COLA-SINCRONIZADA	forense/encargos y su cola	tools/cierre_acto.py	ninguna	check/suite	suite/principal	0.002
+T38	tests/check.py::t38_alta_relacion (--baseline)	T38 T-ALTA-RELACION	tools/curador_registro/tests/test_alta_relacion.py y schemas; fixtures	jsonschema; tools/curador_registro	TemporaryDirectory; cinco casos originales	check/suite	suite/principal	0.126
+T34	tests/check.py::t34_no_corrido (--baseline)	T34 T-NO-CORRIDO	forense/no-corrido.tsv; forense/encargos/*.md	stdlib/reloj	ninguna	check/suite	suite/principal	0.018
+T35	tests/check.py::t35_repro (--baseline)	T35 T-REPRO	data/corrida0/{CALC-*/spec.yaml,ejecucion.json,resultados.json,sello.*,decisiones.tsv,demanda-*.tsv,replay/validaciones}; milpa/{tramite,procedencia}*.yaml; referencias de linaje y blobs versionados	tools/corrida0.py; PyYAML; git para blobs; hashlib	ninguna; sólo metadatos/custodia, sin reejecutar microdatos	check/suite	suite/worker spawn	17.506
+T41	tests/check.py::t41_digesto_mesa (--baseline)	T41 T-DIGESTO-MESA	tests/test_digesto_mesa.py; fixtures de decisiones de mesa	tools/digesto_tramite.py	temporales de fixtures	check/suite	suite/principal	0.100
+T42	tests/check.py::t42_digesto_candidatas (--baseline)	T42 T-CANDIDATAS	tests/test_digesto_candidatas.py; fixtures de candidatas	tools/digesto_tramite.py	temporales de fixtures	check/suite	suite/principal	0.010
+T43	tests/check.py::t43_sucesor_existe (--baseline)	T43 T-SUCESOR-EXISTE	forense/no-corrido.tsv; nombres forense/encargos/**/*.md; rutas de sucesores	stdlib	ninguna	check/suite	suite/principal	0.005
+T44	tests/check.py::t44_enadid_precision_independiente (--baseline)	T44 T-ENADID-PRECISION	forense/analisis/enadid-union-actual-cli-1/enadid-union-control-precision.json	stdlib/json	ninguna; no recalcula estimando	check/suite	suite/principal	0.000
+T16	tests/check.py::t16_suite_self_check (--baseline)	T16 T-SUITE-SELF-CHECK	canon/*.md y las mismas entradas de los otros 48 controles	Python/subproceso independiente; mismas dependencias de suite	temporales propios del hijo y referencias Git de T31; después del núcleo	check/suite	suite/principal; subproceso independiente con 48 controles	67.167
+A01	python3 tests/test_svystat.py	svystat independiente	fixtures estadísticos sintéticos	milpa/src/svystat.py; stdlib	ninguna	check/adicionales	adicionales/secuencial	0.014
+A02	python3 tests/test_emite_m_calibracion.py	emite_m calibración	marcos/metadatos milpa y fixtures de conductas	tools/emite_m.py; PyYAML	mocks restaurados; sin producción	check/adicionales	adicionales/secuencial	2.241
+A03	python3 tests/test_baseline_temporal.py	baseline temporal	fixtures del corte y estimando	tools/baseline_temporal.py; stdlib	TemporaryDirectory	check/adicionales	adicionales/secuencial	0.107
+A04	python3 tests/test_t_cron.py	T-CRON falsadores	fixtures de cron/calendario/baseline	tests/check.py; mocks de subprocess	TemporaryDirectory	check/adicionales	adicionales/secuencial	0.102
+A05	python3 tests/test_adq_config.py	adq_config	YAML de fixture	tools/adq_config.py	TemporaryDirectory	check/adicionales	adicionales/secuencial	0.037
+A06	python3 tests/test_adq_doctor.py	adq_doctor	fixtures de lock/crontab	tools/adq_doctor.py; fcntl; mocks	locks y subproceso en TemporaryDirectory	check/adicionales	adicionales/secuencial	0.131
+A07	python3 tests/test_adq_demanda_vigente.py	demanda vigente	herramientas reales y datos de fixture	tools/adq_investigacion.py; git; bash; PyYAML	repositorios bare/worktrees y JSON temporales	check/adicionales	adicionales/secuencial	4.120
+A08	python3 tests/test_fuentes_financieras.py	fuentes financieras	tablas sintéticas	tools/extrae_fuentes_financieras.py; stdlib	ninguna	check/adicionales	adicionales/secuencial	0.038
+A09	python3 tests/test_n34_producto_dano.py	N34 producto/costo/daño	HTML y filas sintéticas	herramientas N34; stdlib	ninguna	check/adicionales	adicionales/secuencial	0.043
+A10	python3 tests/test_motor_ejecutable.py	motor ejecutable	milpa/*.yaml; celdas-D versionadas	milpa/src/motor.py; PyYAML	memoria; sin producción	check/adicionales	adicionales/secuencial	0.357
+A11	python3 tests/test_celda_d_c2.py	contrato C2	fixtures sintéticos de extremos/covarianza/Fréchet/parada	stdlib	ninguna	check/adicionales	adicionales/secuencial	0.044
+A12	python3 -m unittest tests.test_celda_d_piloto2_consumidor -v	consumidor piloto2	milpa/tramite.yaml; registro/recibos piloto2; Git	unittest; stdlib	ninguna	check/adicionales	adicionales/secuencial	0.188
+A13	python3 tests/test_marcador_segmento.py	marcador segmento (10 casos)	metadatos/RESULT del marcador, tabla de identidad y milpa	tools/marcador_segmento.py; PyYAML	ninguna; conserva diez llamadas deriva()	check/adicionales	adicionales/secuencial	52.457
+A14	python3 tests/test_estimadores_segmento.py	estimadores segmento (3 casos)	milpa/estimadores-segmento.yaml y módulos motor/estimadores	milpa/src; PyYAML	ninguna	check/adicionales	adicionales/secuencial	0.130

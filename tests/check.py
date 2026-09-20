@@ -26,6 +26,10 @@ BASELINE_MODE = "--baseline" in sys.argv
 FREEZE_MODE = "--freeze" in sys.argv
 REQUIRE_CABLEADO = "--require-cableado" in sys.argv
 PARALLEL = "--parallel" in sys.argv
+if PARALLEL:
+    # Los procesos comparten sólo lecturas del checkout, tampoco escrituras
+    # incidentales de __pycache__. Se aplica también al hijo independiente.
+    sys.dont_write_bytecode = True
 BASELINE_PATH = os.path.join(ROOT, "tests", "baseline.json")
 FAILS, WARNS = [], []
 SENAL = []
