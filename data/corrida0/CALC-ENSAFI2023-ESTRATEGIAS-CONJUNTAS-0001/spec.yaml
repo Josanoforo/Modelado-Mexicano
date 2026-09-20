@@ -1,0 +1,50 @@
+calc_id: CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001
+spec_md: spec.md
+spec_md_sha256: 637a604683cb7b36176ed1b6a9e413b2b06f9f8c0aa5466603a1eb7253de7615
+script: data/corrida0/CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: DESCRIPTIVO-ESTRATEGIAS-CONJUNTAS
+  cuenta_gen2: PENDIENTE-DE-MESA
+  adopcion: PENDIENTE-DE-MESA
+  releva: "NINGUNO; extension de CALC-ENSAFI-DISENO-0001"
+  contaminacion_declarada: "Se conocian los ocho marginales del padre antes de congelar; no los cruces, conteos conjuntos, sensibilidad ni limites."
+inputs:
+  - {id: ensafi2023_bd_csv_zip, origen: manifiesto}
+variables:
+  - {archivo: TMODULO.csv, variable: LLAVEMOD, rol: llave primaria}
+  - {archivo: TMODULO.csv, variable: P6_9, rol: universo, codigos: "2=ingreso insuficiente sin endeudarse"}
+  - {archivo: TMODULO.csv, variable: P6_10_1..P6_10_8, rol: estrategias multiples, codigos: "1=si; 2=no; otro=desconocido"}
+  - {archivo: TMODULO.csv, variable: FAC_ELE, rol: ponderador persona}
+  - {archivo: TMODULO.csv, variable: EST_DIS, rol: estrato}
+  - {archivo: TMODULO.csv, variable: UPM_DIS, rol: upm}
+universo: "TMODULO, persona elegida de 18+ con P6_9=2; sin THOGAR ni otras variables."
+filtros: "P6_9 distinto de 2 queda fuera; solamente 1/2 es válido en cada P6_10; peso no positivo/no finito y diseño vacío se declaran sin imputar."
+ponderador: FAC_ELE
+transformacion: "Conteo=numero de sí entre ocho; vector completo exige ocho válidas; cada sensibilidad exige sólo sus dos válidas; límites usan mínimo/máximo compatibles con desconocidos."
+estimando: "Cobertura, conteo conjunto, 28 parejas completas, sensibilidad por faltantes y limites de identificacion."
+dependencias_materiales: [scipy]
+seed: {aplica: false, valor: null, razon: "linealizacion determinista; no hay remuestreo"}
+parametros:
+  directorio_salida: forense/analisis/ensafi2023-estrategias-conjuntas-cli-1
+  metodo_precision: "linealizacion de razon por UPM anidada en estrato; t95; sin FPC"
+  sensibilidad: "diferencia pareada de razones mediante influencia conjunta"
+  respuestas_validas: ["1", "2"]
+tolerancia: {tipo: determinista, abs: 1.0e-10}
+resultados:
+  - {id: RESULT-ENSAFI-EC-G-N-MARCO, tipo: entero, unidad: personas}
+  - {id: RESULT-ENSAFI-EC-G-N-ELEGIBLES, tipo: entero, unidad: personas}
+  - {id: RESULT-ENSAFI-EC-G-MASA-ELEGIBLES, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENSAFI-EC-G-COBERTURA-VECTOR, tipo: proporcion, unidad: proporcion}
+  - {id: RESULT-ENSAFI-EC-G-MEDIA-CONTEO-COMPLETO, tipo: flotante, unidad: estrategias}
+  - {id: RESULT-ENSAFI-EC-G-CONTROL-PARTICION, tipo: texto, unidad: estado}
+  - {id: RESULT-ENSAFI-EC-G-CONTROL-MEDIA-MARGINALES, tipo: texto, unidad: estado}
+  - {id: RESULT-ENSAFI-EC-G-CONTROL-PADRE, tipo: texto, unidad: estado}
+  - {id: RESULT-ENSAFI-EC-G-ESTRATOS, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENSAFI-EC-G-UPM, tipo: entero, unidad: upm}
+  - {id: RESULT-ENSAFI-EC-G-GL, tipo: entero, unidad: grados de libertad}
+  - {id: RESULT-ENSAFI-EC-G-SALIDA-COBERTURA, tipo: texto, unidad: ruta relativa}
+  - {id: RESULT-ENSAFI-EC-G-SALIDA-CONTEOS, tipo: texto, unidad: ruta relativa}
+  - {id: RESULT-ENSAFI-EC-G-SALIDA-PAREJAS, tipo: texto, unidad: ruta relativa}
+  - {id: RESULT-ENSAFI-EC-G-SALIDA-SENSIBILIDAD, tipo: texto, unidad: ruta relativa}
+  - {id: RESULT-ENSAFI-EC-G-SALIDA-LIMITES, tipo: texto, unidad: ruta relativa}
