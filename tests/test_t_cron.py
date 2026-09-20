@@ -162,6 +162,72 @@ def prueba_negativo_sin_censo_sin_red_real():
            "_t_cron_commits_censo debe devolver None (SIN-HUELLA en t31_cron)")
 
 
+def prueba_no_shallow_el_repo_que_verifica():
+    """GEN2-LIMPIEZA-RAMAS-LOCALES-3 (20/sep/2026): `_t_cron_ref_censo`
+    hacía `git fetch --depth=100 ...` sobre `ROOT` -- el clon de trabajo
+    real, no un scratch -- y eso lo volvía superficial en cuanto la rama
+    `censo/<fecha>` existía en origin (medido: rompió `git cherry`/
+    merge-base para P1 de un acto de limpieza de ramas, PARO-PREMISA en
+    PR #923). Con repos locales reales (bare + clon de trabajo, sin red),
+    invoca la función completa hasta el `git fetch` real y verifica que
+    el clon de trabajo sigue completo después."""
+    with tempfile.TemporaryDirectory() as td:
+        bare = os.path.join(td, "origin.git")
+        trabajo = os.path.join(td, "trabajo")
+        subprocess.run(["git", "init", "-q", "--bare", bare], check=True)
+
+        semilla = os.path.join(td, "semilla")
+        subprocess.run(["git", "init", "-q", semilla], check=True)
+        subprocess.run(["git", "-C", semilla, "config", "user.email", "t@t.t"], check=True)
+        subprocess.run(["git", "-C", semilla, "config", "user.name", "t"], check=True)
+        with io.open(os.path.join(semilla, "a.txt"), "w") as f:
+            f.write("0")
+        subprocess.run(["git", "-C", semilla, "add", "a.txt"], check=True)
+        subprocess.run(["git", "-C", semilla, "commit", "-q", "-m", "base"], check=True)
+        # 120 commits: más que el --depth=100 que este acto quitó, para que
+        # el fixture de verdad truncara ancestría con el código viejo (con
+        # menos de 100, --depth=100 no recorta nada y la prueba pasaría por
+        # casualidad incluso contra el defecto).
+        for i in range(120):
+            subprocess.run(["git", "-C", semilla, "commit", "-q", "--allow-empty",
+                             "-m", f"relleno {i}"], check=True)
+        subprocess.run(["git", "-C", semilla, "checkout", "-q", "-b", "censo/2026-09-10"],
+                        check=True)
+        with io.open(os.path.join(semilla, "a.txt"), "w") as f:
+            f.write("2")
+        subprocess.run(["git", "-C", semilla, "commit", "-q", "-am", "censo"], check=True)
+        subprocess.run(["git", "-C", semilla, "push", "-q", bare,
+                         "HEAD:refs/heads/main", "HEAD:refs/heads/censo/2026-09-10"],
+                        check=True)
+
+        # --single-branch: un clon normal trae refs/remotes/origin/* de TODAS
+        # las ramas del bare, y eso adelantaría refs/remotes/origin/censo/...
+        # antes de que la función bajo prueba haga nada -- el defecto real
+        # (`git fetch --depth=100` sobre ROOT) nunca se hubiera exhibido.
+        subprocess.run(["git", "clone", "-q", "--single-branch", "--branch", "main",
+                         bare, trabajo], check=True)
+        antes = subprocess.run(["git", "-C", trabajo, "rev-parse", "--is-shallow-repository"],
+                                capture_output=True, text=True, check=True).stdout.strip()
+        afirma(antes == "false", f"fixture mal construido: ya nace shallow ({antes!r})")
+
+        root_orig = C.ROOT
+        C.ROOT = trabajo
+        try:
+            ref, legible = C._t_cron_ref_censo(datetime.date(2026, 9, 10))
+        finally:
+            C.ROOT = root_orig
+
+        afirma(legible, f"se esperaba poder leer la rama, dio legible={legible!r}")
+        afirma(ref == "refs/remotes/origin/censo/2026-09-10",
+               f"se esperaba la ref de seguimiento fetcheada, dio {ref!r}")
+
+        despues = subprocess.run(["git", "-C", trabajo, "rev-parse", "--is-shallow-repository"],
+                                  capture_output=True, text=True, check=True).stdout.strip()
+        afirma(despues == "false",
+               "el clon de trabajo quedó superficial después de "
+               f"_t_cron_ref_censo (regresión del defecto de PR #923): {despues!r}")
+
+
 def prueba_gracia_pendiente_no_es_senal():
     """P5: antes de 07:30+gracia del día en curso, t31_cron() no debe
     emitir ninguna señal -- PENDIENTE no es una señal."""
@@ -239,6 +305,7 @@ def main():
     prueba_t_cron_estado_arranco_fallo_exit_no_cero()
     prueba_t_cron_estado_completo()
     prueba_negativo_sin_censo_sin_red_real()
+    prueba_no_shallow_el_repo_que_verifica()
     prueba_gracia_pendiente_no_es_senal()
     prueba_senal_no_genera_delta_baseline()
     if FAILS:
@@ -246,7 +313,7 @@ def main():
         for m in FAILS:
             print(f"  · {m}")
         return 1
-    print("OK -- test_t_cron.py: 10 pruebas, 0 fallos")
+    print("OK -- test_t_cron.py: 11 pruebas, 0 fallos")
     return 0
 
 
