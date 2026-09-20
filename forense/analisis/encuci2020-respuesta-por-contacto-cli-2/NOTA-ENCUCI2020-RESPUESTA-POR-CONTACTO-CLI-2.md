@@ -44,7 +44,7 @@ particiones son exactamente 0 y las identidades de unión están entre
 −5.55e−17 y 5.55e−17 (redondeo binario).
 
 Control independiente reproducible: `python3
-forense/analisis/encuci2020-respuesta-por-contacto-cli-2/control_independiente.py`.
+forense/analisis/encuci2020-respuesta-por-contacto-cli-2/control_independiente_encuci2020_respuesta_por_contacto.py`.
 Lee el DBF y agrega UPM directamente, sin invocar el estimador de proporciones.
 Corrige el control previo: construye primero el marco de las 3,096 UPM con
 `FAC_SEL` válida; el dominio aporta cero fuera de contacto con salud pública y
