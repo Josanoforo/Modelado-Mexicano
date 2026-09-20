@@ -137,8 +137,8 @@ Estado: medición sellada, replay aislado `REPRODUCE/IDENTICO`, validación
 independiente terminada y asiento proyectado; adopción ninguna;
 `cuenta_gen2=PENDIENTE-DE-MESA`. La proyección posterior a 0004 fue estable byte
 a byte:
-`corridas.tsv=640e2d4e90d071614188c95baec2aa5ffb5c7aa3350e6da3ec8013ebfd4509a3`,
-`resultados.tsv=b08028482e2826d950bc3c8124c8efd235e6b93a3c23cdc7caba991573ebc921`
+`corridas.tsv=a3f1eec3a3643681767a94f432c08834736fd19b7826f54fe3d2546a1a001bf0`,
+`resultados.tsv=785bc2a77ed079d3bd13c1390fc14d2a5dcf0bd66bf21d24fb7c014de781e0ec`
 y `usos.tsv=939a06e39277a184490263b24cd86a537301cf0bed918271eba51c68e95ef1bd`.
 Frente a la vista previa a esta proyección, ninguna corrida preexistente cambió
 `resultado_replay` ni `contexto_replay`, y `usos.tsv` no cambió. Sólo se
