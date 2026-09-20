@@ -1,0 +1,139 @@
+{
+ "corrida_id": "CALC-ENADID2023-UNION-SEXO-EDAD-0003--a6146d208325",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "scipy": "1.16.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "causa_sucesion": "SEMANTICA-CONTEOS-PESO-ESTANDAR-EDAD",
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": false,
+  "padre_control": "CALC-ENADID-0001",
+  "spec_sellada": "forense/prereg-caja/ENADID2023-UNION-SEXO-EDAD-spec-v1_2.md",
+  "spec_sellada_sha256": "14f65e0761278ec5bd8fa7ab9ca9b622730569cecd2011044598931b8cf47bb3",
+  "sucesor_de": "CALC-ENADID2023-UNION-SEXO-EDAD-0002",
+  "tipo": "MEDICION-DESCRIPTIVA-ENCUESTA-CON-DISENO",
+  "uso_motor": "NINGUNO",
+  "validacion_independiente": "CONTROL-SEPARADO-POST-SELLO"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-20T00:07:50Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 419,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "a6146d208325094f13076f2f4c604061a3dd9377",
+  "git_rama": "codex/gen2-enadid2023-union-sexo-edad-cli-2",
+  "git_status": "SUCIO",
+  "git_status_lineas": 1,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "a6146d208325094f13076f2f4c604061a3dd9377",
+ "input_ids": [
+  "enadid2023_base_datos_csv",
+  "enadid2023_fd_xlsx",
+  "enadid2023_hogar_cuestionario_pdf"
+ ],
+ "input_sha256": {
+  "enadid2023_base_datos_csv": "995d448ab298251d441e437fc4a368f84879a8b74fa7bc103dc189434cbfaa18",
+  "enadid2023_fd_xlsx": "d56582b7ace04e2c13a1b9ea22aeea458d7b9cc02a21241e5fda29fe12b4f34c",
+  "enadid2023_hogar_cuestionario_pdf": "8b046a68dc19e292522557e05d81952e8fb04c2d3a1375c93fa7192e857e3270"
+ },
+ "parametros": {
+  "adopcion": "NINGUNA",
+  "congelacion": "PROSPECTIVA-NO-CIEGA",
+  "degeneracion": "NINGUNA-IMPUTACION",
+  "edades": [
+   "15_17",
+   "18_29",
+   "30_44",
+   "45_59",
+   "60_mas"
+  ],
+  "fpc": "NO-APLICADA-NO-ACREDITADA",
+  "fuente_acto": "GEN2-ENADID2023-UNION-SEXO-EDAD-CLI-2",
+  "outputs": [
+   "forense/analisis/enadid2023-union-sexo-edad-cli-2/distribucion.csv",
+   "forense/analisis/enadid2023-union-sexo-edad-cli-2/union_condicional.csv",
+   "forense/analisis/enadid2023-union-sexo-edad-cli-2/estandarizacion.csv",
+   "forense/analisis/enadid2023-union-sexo-edad-cli-2/flujo.csv",
+   "forense/analisis/enadid2023-union-sexo-edad-cli-2/auditoria.json"
+  ],
+  "replicas": 800,
+  "sexo": [
+   "hombre",
+   "mujer",
+   "sexo_desconocido"
+  ],
+  "singleton": "APORTE-PROMEDIO-A-MATRIZ-COVARIANZA"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENADID-USE3-AUDITORIA-SHA256",
+  "RESULT-ENADID-USE3-BRUTA-MENOS-ESTANDAR",
+  "RESULT-ENADID-USE3-DIF-BRUTA-MH",
+  "RESULT-ENADID-USE3-DIF-ESTANDAR-MH",
+  "RESULT-ENADID-USE3-FLUJO-SHA256",
+  "RESULT-ENADID-USE3-P1-TABLA-SHA256",
+  "RESULT-ENADID-USE3-P2-TABLA-SHA256",
+  "RESULT-ENADID-USE3-P3-TABLA-SHA256",
+  "RESULT-ENADID-USE3-REPLICAS",
+  "RESULT-ENADID-USE3-SALIDA",
+  "RESULT-ENADID-USE3-SEMILLA"
+ ],
+ "script_blob_sha256": "8469a677af7628e1b1971285c08973331a01d091816838b50d2a600968f72b0e",
+ "script_path": "data/corrida0/CALC-ENADID2023-UNION-SEXO-EDAD-0003/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.random.PCG64",
+  "valor": 20260919
+ },
+ "spec_id": "CALC-ENADID2023-UNION-SEXO-EDAD-0003",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "9bbd08066bfe3f3dfd6d73565b3713828b5102ed7cdd505b36a5dff6e26efa3c",
+ "spec_yaml_sha256": "c2b4d49d4822653d4e6442e1691dea93a8b7693752e057baf2d437c6804d8d2e",
+ "tolerancia": {
+  "abs": 5e-10,
+  "razon": "bootstrap determinista con semilla y serializacion a doce decimales",
+  "tipo": "flotante"
+ }
+}
