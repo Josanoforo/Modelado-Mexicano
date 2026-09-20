@@ -249,15 +249,47 @@ def inspeccion_consumido(ruta_encargo):
     return {"ruta": ruta_encargo, "estado": "PRESENTE" if presente else "AUSENTE"}
 
 
-def corre_baseline(raiz=RAIZ):
-    rc, out, err = _corre([sys.executable, "tests/check.py", "--baseline"], raiz, timeout=300)
+# Tope por defecto de `corre_baseline` -- P5, ACTO GEN2-CI-GUARDIAS-VIVAS-1
+# (20/sep/2026, NC-0357). Medido en el entorno de dirección (nube, sin
+# corpus, dos corridas concurrentes de fondo compitiendo por CPU):
+# `time python3 tests/check.py --baseline --parallel` -> real 5m22.8s.
+# El tope viejo (300s, sin `--parallel`) ya se comía ese margen sin dejar
+# nada; éste deja ~2.8x de holgura porque el runner de CI no es esta
+# máquina y no hay corrida competidora de fondo ahí.
+TOPE_BASELINE_SEGUNDOS_POR_DEFECTO = 900
+
+
+def corre_baseline(raiz=RAIZ, paralelo=True, timeout=TOPE_BASELINE_SEGUNDOS_POR_DEFECTO):
+    cmd = [sys.executable, "tests/check.py", "--baseline"]
+    if paralelo:
+        cmd.append("--parallel")
+    rc, out, err = _corre(cmd, raiz, timeout=timeout)
     salida = (out + err)
     lineas = [l for l in salida.splitlines() if l.strip()]
-    verde = "LÍNEA BASE: VERDE" in salida
-    return {"codigo": rc, "verde": verde, "ultimas_lineas": lineas[-8:]}
+    agotado = rc == 124 or "tiempo agotado" in err
+    verde = (not agotado) and "LÍNEA BASE: VERDE" in salida
+    if agotado:
+        estado = "TIEMPO-AGOTADO"
+    elif verde:
+        estado = "VERDE"
+    else:
+        estado = "ROJO"
+    # A.1: TIEMPO-AGOTADO y ROJO nunca se colapsan -- un timeout no dice
+    # nada sobre si la suite habria pasado, y tratarlo como ROJO le
+    # imputa un veredicto de contenido que el comando nunca llegó a dar.
+    return {
+        "codigo": rc,
+        "verde": verde,
+        "agotado": agotado,
+        "estado": estado,
+        "timeout_usado": timeout,
+        "paralelo": paralelo,
+        "ultimas_lineas": lineas[-8:],
+    }
 
 
-def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True):
+def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True,
+           baseline_timeout=TOPE_BASELINE_SEGUNDOS_POR_DEFECTO):
     git = inspeccion_git(raiz)
     adr = inspeccion_adr(git["ramas_presentes"], raiz)
     fp = inspeccion_fp(raiz)
@@ -265,7 +297,7 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True):
     rotulo = inspeccion_rotulo(raiz)
     consumido = inspeccion_consumido(ruta_encargo)
     no_corrido = inspeccion_no_corrido(ruta_encargo, raiz)
-    suite = corre_baseline(raiz) if corre_suite else None
+    suite = corre_baseline(raiz, timeout=baseline_timeout) if corre_suite else None
 
     print("=== FASE A · INSPECCIÓN (dry-run, nunca escribe) ===")
     print()
@@ -328,9 +360,15 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True):
         print("  NC-HUÉRFANA: ninguna")
     print()
     if suite is not None:
+        cmd_txt = "python3 tests/check.py --baseline" + (
+            " --parallel" if suite.get("paralelo") else ""
+        )
         print("SUITE")
-        print("  Comando: python3 tests/check.py --baseline")
-        print(f"  Código: {suite['codigo']} -- {'VERDE' if suite['verde'] else 'ROJO/NO-VERDE'}")
+        print(f"  Comando: {cmd_txt} (tope={suite.get('timeout_usado')}s)")
+        print(f"  Código: {suite['codigo']} -- {suite.get('estado', 'ROJO/NO-VERDE')}")
+        if suite.get("agotado"):
+            print("  NOTA: tope agotado -- no es veredicto de contenido, es "
+                  "un PARO de tiempo (A.1: no se colapsa con ROJO).")
         print("  Últimas líneas:")
         for l in suite["ultimas_lineas"]:
             print(f"    {l}")
@@ -749,11 +787,15 @@ def main():
                      help="ruta al encargo del acto, para reportar presencia/ausencia de ## CONSUMIDO")
     ap.add_argument("--sin-suite", action="store_true",
                      help="omite correr tests/check.py --baseline en la Fase A (más rápido)")
+    ap.add_argument("--tope-suite", type=int, default=TOPE_BASELINE_SEGUNDOS_POR_DEFECTO,
+                     help=f"tope en segundos para tests/check.py --baseline --parallel "
+                          f"(default={TOPE_BASELINE_SEGUNDOS_POR_DEFECTO})")
     a = ap.parse_args()
 
     if a.aplica:
         return fase_b_aplica()
-    fase_a(ruta_encargo=a.encargo, corre_suite=not a.sin_suite)
+    fase_a(ruta_encargo=a.encargo, corre_suite=not a.sin_suite,
+           baseline_timeout=a.tope_suite)
     return 0
 
 

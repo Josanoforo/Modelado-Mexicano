@@ -130,7 +130,7 @@ empieces sin ellas.
    propuesta de Astra).** Antes de correr la suite, emite la vista de
    mesa (`--mesa`, bloque 2, ahora primero) — su lectura y su huella
    quedan disponibles aunque la suite bloquee lo que sigue. Hecho eso:
-   `python3 tests/check.py --baseline`.
+   `python3 tests/check.py --baseline --parallel`.
    - **VERDE** → sigue.
    - Con la línea base verde, regenera el bloque vivo del tablero antes
      de seguir (T0, `GEN2-TABLERO-SENAL-1`): `python3
@@ -519,7 +519,7 @@ El cuerpo trae, en este orden y sin adornos:
 5. **Perímetro tocado**, con `git diff --stat`. Si aparece una ruta
    fuera de las cuatro, el PR no se abre: se reporta el error de perímetro.
 
-Antes de abrir el PR, corre `python3 tests/check.py --baseline` otra vez
+Antes de abrir el PR, corre `python3 tests/check.py --baseline --parallel` otra vez
 y pega el veredicto. Si el digesto del día hizo que la suite deje de
 estar VERDE, **no abras el PR**: reporta con la salida cruda. Es
 exactamente el modo de falla contra el que P1 se blinda, y si aun así
