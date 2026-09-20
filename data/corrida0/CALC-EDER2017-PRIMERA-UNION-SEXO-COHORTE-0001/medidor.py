@@ -73,17 +73,31 @@ def point(d, mask):
   return {"n":int(len(x)),"masa":float(den),"libre":float((x.w*(x.tipo=="libre")).sum()/den) if den else None,"directo":float((x.w*(x.tipo=="directo")).sum()/den) if den else None,"sin_clasificar":float((x.w*(x.tipo=="sin_clasificar")).sum()/den) if den else None}
 
 def bootstrap(d, reps=2000, seed=20260919):
-  d=d[d.design_ok].copy(); rng=np.random.Generator(np.random.PCG64(seed)); d["cl"]=d.est_dis.str.strip()+"\x1f"+d.upm.str.strip()
-  cls=d[["cl","est_dis"]].drop_duplicates().sort_values(["est_dis","cl"]); totals=[]; single=0
+  # Agrega primero por UPM×sexo×cohorte. Así cada réplica comparte exactamente
+  # el sorteo de todos los estimandos, sin recorrer las personas 2,000 veces.
+  z=d[d.design_ok & d.sexo_cat.isin(["mujer","hombre"]) & d.cohorte.isin(COHORTES)].copy()
+  z["cl"]=z.est_dis.str.strip()+"\x1f"+z.upm.str.strip()
+  cls=z[["cl","est_dis"]].drop_duplicates().sort_values(["est_dis","cl"]).reset_index(drop=True)
+  cmap={c:i for i,c in enumerate(cls.cl)}; C=len(cls); den=np.zeros((C,8)); free=np.zeros((C,8))
+  for row in z.itertuples():
+    j=(0 if row.sexo_cat=="mujer" else 1)*4+COHORTES.index(row.cohorte); i=cmap[row.cl]
+    den[i,j]+=row.w
+    if row.tipo=="libre": free[i,j]+=row.w
+  rng=np.random.Generator(np.random.PCG64(seed)); M=np.zeros((reps,C)); single=0
   for _,g in cls.groupby("est_dis",sort=True):
-    a=g.cl.to_numpy(); k=len(a); single+=k==1; totals.append((a,k))
-  vals=[]
+    pos=g.index.to_numpy(); k=len(pos); single+=k==1
+    draw=rng.integers(0,k,size=(reps,k));
+    for j in range(k): M[np.arange(reps),pos[draw[:,j]]]+=1
+  D=M@den; F=M@free; vals=[]
   for r in range(reps):
-    mult={c:0 for c in cls.cl}
-    for a,k in totals:
-      for c in a[rng.integers(0,k,k)]: mult[c]+=1
-    w=d.w.to_numpy()*d.cl.map(mult).to_numpy(); vals.append(_summary(d,w))
-  return vals,{"replicas_solicitadas":reps,"estratos_singleton":single,"replicas_validas":reps}
+    x={}; pm=F[r,:4]/D[r,:4]; ph=F[r,4:]/D[r,4:]
+    x.update({"coh_"+c:float(pm[i]-ph[i]) if D[r,i]>0 and D[r,i+4]>0 else None for i,c in enumerate(COHORTES)})
+    x["cruda"]=float(F[r,:4].sum()/D[r,:4].sum()-F[r,4:].sum()/D[r,4:].sum()) if D[r,:4].sum()>0 and D[r,4:].sum()>0 else None
+    al=(D[r,:4]+D[r,4:]); al=al/al.sum() if al.sum()>0 else al
+    x["estandarizada"]=float(np.sum(al*(pm-ph))) if np.isfinite(pm).all() and np.isfinite(ph).all() else None
+    x["cambio"]=None if x["estandarizada"] is None or x["cruda"] is None else x["estandarizada"]-x["cruda"]
+    vals.append(x)
+  return vals,{"replicas_solicitadas":reps,"estratos_singleton":single,"replicas_validas":reps,"n_upm":C}
 
 def _summary(d,w):
   z=d.assign(wb=w); good=(z.sexo_cat.isin(["mujer","hombre"]))&(z.cohorte.isin(COHORTES)); out={}
