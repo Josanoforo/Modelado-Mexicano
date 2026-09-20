@@ -124,5 +124,5 @@ después, tres repeticiones, en la nota. **P5**: refutada por medición
 **Ningún contador se movió** y no podía: `cuenta_gen2 = NO`.
 
 Nota de cierre: `forense/notas/2026-09-20-GEN2-CORRIDA0-RENDIMIENTO-1-cierre.md`.
-`ADR-559`, `NC-0384`–`NC-0386`. PR: ver el PR de esta rama
-(`claude/vibrant-goldberg-oxbn3o`).
+`ADR-559`, `NC-0384`–`NC-0386`. **PR #922** (rama
+`claude/vibrant-goldberg-oxbn3o`).
