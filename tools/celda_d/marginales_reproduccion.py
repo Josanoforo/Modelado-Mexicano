@@ -46,6 +46,24 @@ El punto y el IC95 de cada celda salen de `wprop_ic_conglomerado`
 no reimplementada. Las réplicas compartidas son ADEMÁS de eso, para los
 candidatos; no sustituyen al IC del árbitro.
 
+EXTENSIÓN ADITIVA · ACTO `GEN2-GUARDIAN-ENVIPE-EJES-IC-1` (20/sep/2026)
+-----------------------------------------------------------------------
+Firma de mesa (20/sep/2026, verbatim, a la propuesta «extender el guardián
+por firma — añadir sexo y edad a sus ejes admitidos, con edad × dominio
+vetado por nombre — y después relanzar el IC»): «2 si extendemos».
+  · `EJES` gana `sexo` y `edad`; se derivan en `carga_ola` con los objetos
+    del árbitro (`ejes_maestra35_l1.py` :: `SEXO`, `tramos_edad`), importados
+    y no copiados, desde las columnas crudas `SEXO`/`EDAD` de `tmod_vic` --
+    la MISMA tabla de la que el árbitro las leyó (`medidor_evasion_norma_
+    envipe25.py:188`; `tramite-ola5-propuesta-v0.yaml:1680`: «sexo y edad
+    viven en tmod_vic y no necesitan el join»). Edad fuera de 18..96 (menores,
+    97+, no especificado) va a `FUERA`, contada en `meta` y reportada.
+  · `PARES_VETADOS`: `edad × dominio_urbano_rural` en 2025 está QUEMADO
+    (`NC-0328`, `RESERVA-CONSUMIDA-SIN-PILOTO`). `cruce()` lanza `ReservaRota`
+    para ese par con la ola reservada o no; no hay bandera que lo salte.
+  · Ninguna firma, valor por defecto, orden ni nombre de lo ya devuelto
+    cambia. El párrafo de la Firma 2 de arriba no se toca.
+
 Sin argumentos de CLI este archivo no abre nada. Ver `__main__`.
 """
 from __future__ import annotations
@@ -80,6 +98,10 @@ _EJES_L1 = _importa("ejes_maestra35_l1", TOOLS / "ejes_maestra35_l1.py")
 ESC_2DIG = _EJES_L1.ESC_2DIG
 ORD_ESC = list(_EJES_L1.ORD_ESC)
 FUERA = _EJES_L1.FUERA
+SEXO = _EJES_L1.SEXO                       # {"1": "1 Hombre", "2": "2 Mujer"}
+ORD_SEXO = list(_EJES_L1.ORD_SEXO)
+ORD_EDAD = list(_EJES_L1.ORD_EDAD)         # 18-29 · 30-44 · 45-59 · 60+ (60..96)
+tramos_edad = _EJES_L1.tramos_edad
 _CAL = _importa("calibracion_mordida_encig_serie",
                 TOOLS / "calibracion_mordida_encig_serie.py")
 wprop_ic_conglomerado = _CAL.wprop_ic_conglomerado
@@ -96,10 +118,18 @@ ESC_ROTULO = {"S1": "hasta primaria", "S2": "secundaria",
 DOM_ROTULO = {"D1": "Rural", "D2": "Complemento urbano", "D3": "Urbano"}
 CELDAS = [f"{s}x{d}" for s in ("S1", "S2", "S3", "S4") for d in ("D1", "D2", "D3")]
 
-EJES = ("escolaridad_proxy", "dominio_urbano_rural", "nacional")
+EJES = ("escolaridad_proxy", "dominio_urbano_rural", "nacional",
+        "sexo", "edad")
+
+# Pares que NO se cruzan en una ola, reservada o no, por nombre. edad ×
+# dominio_urbano_rural de 2025 fue RESERVA-CONSUMIDA-SIN-PILOTO (NC-0328) y
+# no está en el dictamen `c2-compuesto-dictamen-v1_0.tsv`.
+PARES_VETADOS = {2025: frozenset({frozenset({"edad", "dominio_urbano_rural"})})}
+PARES_VETADOS_CITA = {2025: "NC-0328 · edad x dominio ENVIPE 2025: "
+                            "RESERVA-CONSUMIDA-SIN-PILOTO (17/sep/2026)"}
 
 COLUMNAS_TMOD = ("ID_DEL", "ID_PER", "BP1_20", "BP1_23", "FAC_DEL",
-                 "EST_DIS", "UPM_DIS", "DOMINIO")
+                 "EST_DIS", "UPM_DIS", "DOMINIO", "SEXO", "EDAD")
 COLUMNAS_TSDEM = ("ID_PER", "NIV")
 
 
@@ -210,6 +240,8 @@ def carga_ola(zip_path, anio: int, *, reservada: bool = False) -> Ola:
     df["escolaridad_proxy"] = df["_NIV"].map(ESC_2DIG).fillna(FUERA)
     df["dominio_urbano_rural"] = df["DOMINIO"].map(DOMINIO_MAP).fillna(FUERA)
     df["nacional"] = "NAC"
+    df["sexo"] = df["SEXO"].map(SEXO).fillna(FUERA)
+    df["edad"] = tramos_edad(df["EDAD"])
     df["_y"] = ((df["BP1_20"] == "2") & df["BP1_23n"].isin(INUTIL)).astype(float)
     df = df.reset_index(drop=True)
 
@@ -227,6 +259,8 @@ def carga_ola(zip_path, anio: int, *, reservada: bool = False) -> Ola:
         "estratos": int(df["EST_DIS"].nunique()),
         "upm": int((df["EST_DIS"] + "\x1f" + df["UPM_DIS"]).nunique()),
         "poblacion_expandida": float(df["_w"].sum()),
+        "sexo_fuera": int((df["sexo"] == FUERA).sum()),
+        "edad_fuera": int((df["edad"] == FUERA).sum()),
     }
     return Ola(anio=anio, df=df, huella=_huella(df), reservada=reservada, meta=meta)
 
@@ -325,7 +359,7 @@ def _celda_estimada(ola: Ola, mask: np.ndarray, rep: Replicas | None) -> dict:
 
 def _orden(grupo: str) -> list[str]:
     return {"escolaridad_proxy": ORD_ESC, "dominio_urbano_rural": ORD_DOMINIO,
-            "nacional": ["NAC"]}[grupo]
+            "nacional": ["NAC"], "sexo": ORD_SEXO, "edad": ORD_EDAD}[grupo]
 
 
 def marginal(ola: Ola, grupo: str, *, replicas: Replicas | None = None) -> dict:
@@ -355,7 +389,13 @@ def marginal(ola: Ola, grupo: str, *, replicas: Replicas | None = None) -> dict:
 def cruce(ola: Ola, eje_a: str, eje_b: str, *,
           replicas: Replicas | None = None) -> dict:
     """Las celdas del cruce `eje_a × eje_b`. PROHIBIDO sobre una ola marcada
-    reservada: lanza `ReservaRota`. No hay bandera que lo salte."""
+    reservada: lanza `ReservaRota`. No hay bandera que lo salte. PROHIBIDO
+    también, reservada o no, para los pares de `PARES_VETADOS[anio]`."""
+    if (isinstance(eje_a, str) and isinstance(eje_b, str)
+            and frozenset({eje_a, eje_b}) in PARES_VETADOS.get(ola.anio, frozenset())):
+        raise ReservaRota(f"ENVIPE {ola.anio}: el par {eje_a!r} x {eje_b!r} está "
+                          f"VETADO por nombre ({PARES_VETADOS_CITA[ola.anio]}); "
+                          "no se deriva con la ola reservada ni libre")
     if ola.reservada:
         raise ReservaRota(f"ENVIPE {ola.anio} está RESERVADA: el cruce no se "
                           "deriva hasta que las emisiones estén selladas")
