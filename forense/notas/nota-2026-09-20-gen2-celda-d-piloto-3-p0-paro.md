@@ -393,7 +393,7 @@ Las dos salidas disponibles son malas y por eso no se tomó ninguna:
 2. Enmendar el enum vive en `tests/test_celdas_d.py`, **fuera del perímetro** de este
    encargo, que sólo autoriza `tests/test_piloto3_guardias.py`.
 
-`NC-0361` abierta y **`FP-390` a mesa**: o se añade `evento` al enum, o se declara que
+`NC-0362` abierta y **`FP-391` a mesa**: o se añade `evento` al enum, o se declara que
 las celdas-D sobre eventos no se registran. **No bloquea el piloto** —el `COMMIT-2` corre
 sin ella— pero sí deja hoy un estimando congelado que el registro no puede nombrar.
 Celdas-D siguen en **5**.
@@ -402,7 +402,7 @@ Celdas-D siguen en **5**.
 
 `cuenta_gen2` **NO-APLICA**. Cero corridas selladas, cero resultados, cero adopciones,
 cero microdato. Dos filas nuevas en `decisiones.tsv` (`F1-bis` y `F3`, ambas firmas de
-mesa selladas por el lanzamiento). `FP-389` FIRMADA; `FP-390` nueva, ABIERTA. `NC-0355` y
-`NC-0356` siguen ABIERTAS —la segunda con enmienda fechada—, `NC-0361` nueva. El par
+mesa selladas por el lanzamiento). `FP-389` FIRMADA; `FP-391` nueva, ABIERTA. `NC-0355` y
+`NC-0356` siguen ABIERTAS —la segunda con enmienda fechada—, `NC-0362` nueva. El par
 `edad × escolaridad` de ENCIG 2025 sigue **`RESERVADA`** en el marcador, que este acto no
 tocó ni re-derivó.
