@@ -46,3 +46,7 @@ La unidad es el delito declarado por la víctima, no la persona: "mujeres 60+" a
 | **LO QUE NO HACE · «no actualiza el marcador»** | `DIFERIDO-A:` sucesor de nube (una línea) | Las 38 emisiones siguen con `tipo_incertidumbre = NO-PROPAGADA-COVARIANZA-NO-SELLADA` en el TSV aunque el IC existe sellado; ninguna decisión del motor depende de ello | `NC-0386`, `FP-396` (2) |
 | **P2 · cableado de `tests/test_c2_ic_envipe2025_guardia.py` en CI** | `FUERA-DE-PERÍMETRO`: `tests/check.py` no auto-descubre `tests/test_*.py`; `.github/workflows/verify.yml` no está en la lista del encargo | La guardia que sí corre en cada `run`/`verify` es la del guardián; la AST del medidor y G5–G8 sólo corren a mano (11/11) | `NC-0388` (SIN-ASIGNAR: el acto que toque `verify.yml`, junto con `NC-0381`) |
 | **Ejecución diagnóstica** | Ninguna: el medidor se congeló sin microdato (`medidor_ejecutado_al_congelar: NO`) y corrió una vez. El primer resultado es el que se reporta | — | — |
+
+## CONSUMIDO
+
+Ejecutado por **PR #916** (`acto/gen2-guardian-envipe-ejes-ic-1`, 20/sep/2026, CAJA, Opus 5), `ADR-559`. COMMIT-1 `d8adce0` (guardián extendido + spec + medidor + tests, sin microdato) · COMMIT-2 `fcbfe11` (`CALC-C2-COMPUESTO-IC-ENVIPE2025-0001`, 38/38 con IC, registro y replay) · cascada `8eb4fd5`. `NC-0361` CERRADA; `NC-0384`–`NC-0388` citan el PR. El merge es de mesa.
