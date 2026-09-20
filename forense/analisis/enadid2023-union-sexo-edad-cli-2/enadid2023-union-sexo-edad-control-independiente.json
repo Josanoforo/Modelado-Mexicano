@@ -1,0 +1,406 @@
+{
+  "auditoria_independiente": {
+    "edad_999_o_no_numerica_masa": 59206.0,
+    "edad_999_o_no_numerica_n": 154.0,
+    "edad_menor_15_masa": 29435905.0,
+    "edad_menor_15_n": 82015.0,
+    "filas": 359018.0,
+    "llaves_duplicadas": 0.0,
+    "llaves_unicas": 359018,
+    "masa_total": 129477554.0
+  },
+  "checks": {
+    "categorias_exhaustivas_max_delta": 1.000088900582341e-12,
+    "hash_input_ok": true,
+    "llave_unica": true,
+    "pesos_estandar_suman": 1.0,
+    "precision_representativa_max_delta": 4.548167398255032e-13,
+    "reconstruccion_padre_max_delta_masa": 0.0,
+    "sexo_desconocido_residuo_n": 0
+  },
+  "contraste_representativo_30_44": {
+    "deltas_publicado": {
+      "ee": 3.1660698368574103e-13,
+      "ic95_hi": 4.388156504830931e-13,
+      "ic95_lo": 4.548167398255032e-13,
+      "punto": 8.004014118156988e-15
+    },
+    "ee": 0.003620539108683393,
+    "ic95_hi": -0.018200754417438816,
+    "ic95_lo": -0.03239418722854518,
+    "punto": -0.025297470822991996
+  },
+  "diseno": {
+    "ajuste": 1.0928689883913765,
+    "estratos": 659,
+    "gl": 14555,
+    "singleton": 56,
+    "upm_anidadas": 15214
+  },
+  "estandarizacion": {
+    "diferencia": {
+      "deltas_publicado": {
+        "ee": 2.1948263519144806e-13,
+        "ic95_hi": 3.634592626866606e-13,
+        "ic95_lo": 4.2119085996716876e-13,
+        "punto": 3.923250613269147e-13
+      },
+      "ee": 0.0011879204017805174,
+      "ic95_hi": -0.02400650996736346,
+      "ic95_lo": -0.02866345963742119,
+      "punto": -0.026334984802392325
+    },
+    "pesos": {
+      "15_17": 0.004645399695666544,
+      "18_29": 0.14662485832400193,
+      "30_44": 0.3352397682992197,
+      "45_59": 0.3108008734470197,
+      "60_mas": 0.20268910023409217
+    },
+    "tasas": {
+      "hombre": 0.35954092503529306,
+      "mujer": 0.33320594023290073
+    }
+  },
+  "input_sha256": "995d448ab298251d441e437fc4a368f84879a8b74fa7bc103dc189434cbfaa18",
+  "metodo": "csv/numpy/scipy independiente; no importa medidor.py",
+  "reconstruccion": [
+    {
+      "categoria": "union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "15_17",
+      "producto": "P1"
+    },
+    {
+      "categoria": "separada_union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "15_17",
+      "producto": "P1"
+    },
+    {
+      "categoria": "separada_matrimonio",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "15_17",
+      "producto": "P1"
+    },
+    {
+      "categoria": "divorciada",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "15_17",
+      "producto": "P1"
+    },
+    {
+      "categoria": "viuda",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "15_17",
+      "producto": "P1"
+    },
+    {
+      "categoria": "casada",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "15_17",
+      "producto": "P1"
+    },
+    {
+      "categoria": "soltera",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "15_17",
+      "producto": "P1"
+    },
+    {
+      "categoria": "union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "15_17",
+      "producto": "P2"
+    },
+    {
+      "categoria": "union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "18_29",
+      "producto": "P1"
+    },
+    {
+      "categoria": "separada_union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "18_29",
+      "producto": "P1"
+    },
+    {
+      "categoria": "separada_matrimonio",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "18_29",
+      "producto": "P1"
+    },
+    {
+      "categoria": "divorciada",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "18_29",
+      "producto": "P1"
+    },
+    {
+      "categoria": "viuda",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "18_29",
+      "producto": "P1"
+    },
+    {
+      "categoria": "casada",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "18_29",
+      "producto": "P1"
+    },
+    {
+      "categoria": "soltera",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "18_29",
+      "producto": "P1"
+    },
+    {
+      "categoria": "union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "18_29",
+      "producto": "P2"
+    },
+    {
+      "categoria": "union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "30_44",
+      "producto": "P1"
+    },
+    {
+      "categoria": "separada_union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "30_44",
+      "producto": "P1"
+    },
+    {
+      "categoria": "separada_matrimonio",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "30_44",
+      "producto": "P1"
+    },
+    {
+      "categoria": "divorciada",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "30_44",
+      "producto": "P1"
+    },
+    {
+      "categoria": "viuda",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "30_44",
+      "producto": "P1"
+    },
+    {
+      "categoria": "casada",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "30_44",
+      "producto": "P1"
+    },
+    {
+      "categoria": "soltera",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "30_44",
+      "producto": "P1"
+    },
+    {
+      "categoria": "union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "30_44",
+      "producto": "P2"
+    },
+    {
+      "categoria": "union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "45_59",
+      "producto": "P1"
+    },
+    {
+      "categoria": "separada_union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "45_59",
+      "producto": "P1"
+    },
+    {
+      "categoria": "separada_matrimonio",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "45_59",
+      "producto": "P1"
+    },
+    {
+      "categoria": "divorciada",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "45_59",
+      "producto": "P1"
+    },
+    {
+      "categoria": "viuda",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "45_59",
+      "producto": "P1"
+    },
+    {
+      "categoria": "casada",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "45_59",
+      "producto": "P1"
+    },
+    {
+      "categoria": "soltera",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "45_59",
+      "producto": "P1"
+    },
+    {
+      "categoria": "union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "45_59",
+      "producto": "P2"
+    },
+    {
+      "categoria": "union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "60_mas",
+      "producto": "P1"
+    },
+    {
+      "categoria": "separada_union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "60_mas",
+      "producto": "P1"
+    },
+    {
+      "categoria": "separada_matrimonio",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "60_mas",
+      "producto": "P1"
+    },
+    {
+      "categoria": "divorciada",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "60_mas",
+      "producto": "P1"
+    },
+    {
+      "categoria": "viuda",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "60_mas",
+      "producto": "P1"
+    },
+    {
+      "categoria": "casada",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "60_mas",
+      "producto": "P1"
+    },
+    {
+      "categoria": "soltera",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "60_mas",
+      "producto": "P1"
+    },
+    {
+      "categoria": "union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "60_mas",
+      "producto": "P2"
+    },
+    {
+      "categoria": "union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "15_mas",
+      "producto": "P1"
+    },
+    {
+      "categoria": "separada_union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "15_mas",
+      "producto": "P1"
+    },
+    {
+      "categoria": "separada_matrimonio",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "15_mas",
+      "producto": "P1"
+    },
+    {
+      "categoria": "divorciada",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "15_mas",
+      "producto": "P1"
+    },
+    {
+      "categoria": "viuda",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "15_mas",
+      "producto": "P1"
+    },
+    {
+      "categoria": "casada",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "15_mas",
+      "producto": "P1"
+    },
+    {
+      "categoria": "soltera",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "15_mas",
+      "producto": "P1"
+    },
+    {
+      "categoria": "union_libre",
+      "delta_den": 0.0,
+      "delta_num": 0.0,
+      "edad": "15_mas",
+      "producto": "P2"
+    }
+  ],
+  "todos_ok": true
+}

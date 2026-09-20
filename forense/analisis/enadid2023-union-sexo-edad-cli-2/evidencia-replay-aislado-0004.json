@@ -1,0 +1,48 @@
+[
+  {
+    "calc_id": "CALC-ENADID2023-UNION-SEXO-EDAD-0004",
+    "fecha_verificacion": "2026-09-19",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ENADID2023-UNION-SEXO-EDAD-0004"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "1511d471f6871a3744d0fb69a8239c5bbec74238e1f814e395721ee80cb3dd3d",
+      "script_blob_sha256": "863f31d6b4ebaea8a3bba1b9d92ee9fe67ff373ecb423aadc653a7bf66e8e9bb",
+      "input_sha256_efectivos": "enadid2023_base_datos_csv=995d448ab298251d441e437fc4a368f84879a8b74fa7bc103dc189434cbfaa18,enadid2023_fd_xlsx=d56582b7ace04e2c13a1b9ea22aeea458d7b9cc02a21241e5fda29fe12b4f34c,enadid2023_hogar_cuestionario_pdf=8b046a68dc19e292522557e05d81952e8fb04c2d3a1375c93fa7192e857e3270"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ENADID-USE4-AUDITORIA-SHA256": null,
+        "RESULT-ENADID-USE4-BRUTA-MENOS-ESTANDAR": 0.0,
+        "RESULT-ENADID-USE4-DIF-BRUTA-MH": 0.0,
+        "RESULT-ENADID-USE4-DIF-ESTANDAR-MH": 0.0,
+        "RESULT-ENADID-USE4-FLUJO-SHA256": null,
+        "RESULT-ENADID-USE4-P1-TABLA-SHA256": null,
+        "RESULT-ENADID-USE4-P2-TABLA-SHA256": null,
+        "RESULT-ENADID-USE4-P3-TABLA-SHA256": null,
+        "RESULT-ENADID-USE4-REPLICAS": null,
+        "RESULT-ENADID-USE4-SALIDA": null,
+        "RESULT-ENADID-USE4-SEMILLA": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 5e-10,
+        "razon": "bootstrap determinista con semilla y serializacion a doce decimales"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ENADID-USE4-AUDITORIA-SHA256\": null, \"RESULT-ENADID-USE4-BRUTA-MENOS-ESTANDAR\": 0.0, \"RESULT-ENADID-USE4-DIF-BRUTA-MH\": 0.0, \"RESULT-ENADID-USE4-DIF-ESTANDAR-MH\": 0.0, \"RESULT-ENADID-USE4-FLUJO-SHA256\": null, \"RESULT-ENADID-USE4-P1-TABLA-SHA256\": null, \"RESULT-ENADID-USE4-P2-TABLA-SHA256\": null, \"RESULT-ENADID-USE4-P3-TABLA-SHA256\": null, \"RESULT-ENADID-USE4-REPLICAS\": null, \"RESULT-ENADID-USE4-SALIDA\": null, \"RESULT-ENADID-USE4-SEMILLA\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 5e-10, \"razon\": \"bootstrap determinista con semilla y serializacion a doce decimales\"}}, \"identidad\": {\"spec_yaml_sha256\": \"1511d471f6871a3744d0fb69a8239c5bbec74238e1f814e395721ee80cb3dd3d\", \"script_blob_sha256\": \"863f31d6b4ebaea8a3bba1b9d92ee9fe67ff373ecb423aadc653a7bf66e8e9bb\", \"input_sha256_efectivos\": \"enadid2023_base_datos_csv=995d448ab298251d441e437fc4a368f84879a8b74fa7bc103dc189434cbfaa18,enadid2023_fd_xlsx=d56582b7ace04e2c13a1b9ea22aeea458d7b9cc02a21241e5fda29fe12b4f34c,enadid2023_hogar_cuestionario_pdf=8b046a68dc19e292522557e05d81952e8fb04c2d3a1375c93fa7192e857e3270\"}}\n"
+  }
+]

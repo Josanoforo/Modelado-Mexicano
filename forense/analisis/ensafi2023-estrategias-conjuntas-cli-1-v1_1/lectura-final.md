@@ -13,4 +13,13 @@ de tablas materializadas y no prueba que se hayan regenerado. El replay dirigido
 oficial sí vuelve a ejecutar el medidor desde el ZIP declarado en un intérprete
 nuevo: `REPRODUCE · IDENTICO`, 29/29 RESULT, sin diferencias ni IDs faltantes.
 Su evidencia y el asiento canónico están en
-`evidencia-replay-dirigido.json` y `forense/replay-evidencia.tsv`.
+`evidencia-replay-dirigido-ensafi-estrategias-conjuntas.json` y
+`forense/replay-evidencia.tsv`.
+
+Tras la sincronización, las seis salidas del CALC original superado quedaron
+conservadas íntegramente en
+`forense/analisis/ensafi2023-estrategias-conjuntas-0001-superado.tar.gz`
+(SHA-256
+`601f857f088f1e8ca39eef1f0b9201b397cd6562b795c971c418c16c4b6b5e72`).
+El empaquetado evita colisiones de nombre y contenido con este sucesor; no
+modifica sus RESULT ni su replay.
