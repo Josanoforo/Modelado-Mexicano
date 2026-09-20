@@ -87,6 +87,9 @@ separada, commit `61347a8`, con los jobs y el agregador del candidato:
 
 Las inyecciones nunca estuvieron en la rama entregable. Los estados y enlaces
 por job están conservados en [mediciones-actions.json](mediciones-actions.json).
+La validación posterior del informe detectó además una colisión de su nombre
+genérico con un informe previo (T02, run 35483644321): se corrigió usando
+el nombre específico del encargo, sin cambiar baseline ni el control.
 
 ## Mediciones y condiciones
 
