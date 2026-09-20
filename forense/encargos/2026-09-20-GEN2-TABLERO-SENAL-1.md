@@ -14,3 +14,12 @@ PERÍMETRO
 `tools/tablero_programa.py` · `tools/estado_comun.py` solo si P1 lo exige · `forense/tablero/TABLERO-PROGRAMA.md` · `.claude/commands/tramite.md` · `tests/test_tablero_programa.py` (un caso por línea nueva) · cascada. No toca `tools/corrida0.py`, `marcador_segmento.py`, ningún TSV fuente, `milpa/`. «Si te encuentras escribiendo fuera de esta lista, PARA.»
 LO QUE NO HACE
 No decide firmas de contador ni borra ramas: las hace visibles. No reescribe razones de NC. No toca los snapshots históricos del tablero.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** borrar `claude/optimistic-cray-15co3n` (política de cero ramas, A.14) tras el merge de `#902`. **por qué:** `PARO-ENTORNO`. **impacto:** una rama presente en origin sin PR abierto queda contada por `tools/limpia_arbol.py --reporta` como `fuera_de_politica` hasta que se borre. **sucesor:** mesa (`git push origin --delete claude/optimistic-cray-15co3n`), o el próximo acto que corra `limpia_arbol.py --aplica`. (`NC-0359`)
+- **qué:** reescribir las 87/108 filas de `forense/no-corrido.tsv` cuya `razon` no empieza por un token de A.14 (P5). **por qué:** `FUERA-DE-PERÍMETRO`. **impacto:** `nc_por_razon.prosa` sigue en 87 hasta que se corrija fila por fila. **sucesor:** semilla `PARA-v2.15` en `forense/hallazgos.md` (2026-09-20); sin acto asignado todavía. (`NC-0360`)
+
+## CONSUMIDO
+
+`PR #902` (rama `claude/optimistic-cray-15co3n`, fusionado contra `main`), commits `dc28e17` (P1–P7) y `ba16aa7` (corrección post-merge de CI, `T-YAMEDIDO`). Cierre de gobernanza (`ADR-552`, L0, `registro-rotulos.tsv`, esta sección) en PR propio contra `main` desde `claude/gen2-tablero-senal-1-cierre`, porque la rama de `#902` ya no admite más commits sobre ese PR.
