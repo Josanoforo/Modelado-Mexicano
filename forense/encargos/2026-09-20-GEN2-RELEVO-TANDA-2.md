@@ -30,3 +30,10 @@ Pasar a GEN2 da trazabilidad, no validez: cada cifra hereda su universo y sus se
 | **P5 · `cuenta_gen2` de `CALC-ENVIPE-RES0028-U4-DERIVADO-0001`** | `DECISIÓN-DE-MESA-PENDIENTE` — `NC-0382`. El encargo lo excluye explícitamente («no se decide aquí … dilo»). **Se dice: sigue `PENDIENTE-DE-MESA`**, en `data/corrida0/corridas.tsv` y en `etiquetas.cuenta_gen2` de su spec. | `N_corridas_selladas` no se mueve por este acto (**102**) y el CALC derivado sigue sin contar en el marcador GEN2. No bloquea `NC-0380`: son dos cosas distintas — el contador es contabilidad, el guard de linaje es aptitud. | Mesa, por la vía de recibo (los actos `GEN2-RECIBO-CODEX-*` son los que han venido firmando `cuenta_gen2` por lote). |
 
 Fuera de tabla, por no ser reservas: `forense/relevo-usos/candidatos-delta-1/tabla-decision.tsv` y `forense/analisis/relevo-tanda-1/P2-mismo-estimando.tsv` **no se re-derivan** — el encargo los declara «evidencia ya sellada que este acto cita y no repite». `milpa/procedencia.yaml` **no se tocó**: el mecanismo no lo exige (ninguna adopción previa escribe ahí; ejemplo vivo `milpa/tramite.yaml:62`). El renombre de `denuncia_por_otra_razon` que `ADR-509` propuso **no es de este acto**, y `complemento_de` se conserva.
+
+## CONSUMIDO
+
+ACTO GEN2-RELEVO-TANDA-2 ejecutado por [PR #914](https://github.com/Josanoforo/Modelado-Mexicano/pull/914)
+(`ADR-558`; `FP-391` y `FP-392` → `FIRMADA`; `NC-0380`..`NC-0382`). Once de
+los doce slots escritos con procedencia GEN2; `RES-0028` no, por `NC-0380`.
+La adopción la ejecuta el merge de mesa de ese PR (E.2).
