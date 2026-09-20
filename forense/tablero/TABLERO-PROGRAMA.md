@@ -1,9 +1,9 @@
 <!-- TABLERO-DERIVADO:BEGIN -->
 ## Estado vivo derivado
 
-- **Procedencia.** SHA `cb1945f` · fecha del commit `2026-09-20` · ¿árbol == origin/main? `True`.
+- **Procedencia.** SHA `a4e0dda` · fecha del commit `2026-09-20` · ¿árbol == origin/main? `False`.
 - **Motor.** reglas totales `22` · reglas con dato (>=1 conducta MEDIDO*) `21` · reglas sin dato `1` · conductas MEDIDO* `46` · tiers `{'FUERTE': 20, 'MEDIA': 2}`.
-- **Marcador por segmento.** filas por estado: ADOPTADO-POR-FIRMA `20` · CONSUMIDA-SIN-PILOTO `1` · DIAGNOSTICO `8` · IDENTICO `89` · RESERVADA `22` · SIN-PISO `21` · SOLO-PISO `53` (total `214`) · cobertura de piso `73 / 214` · valor añadido / evaluadas `0 / 20` · celdas `emision = EMITIDA-SIN-EVALUAR` `16 / 214` · `veto_pisos_activo` `True`.
+- **Marcador por segmento.** filas por estado: ADOPTADO-POR-FIRMA `20` · CONSUMIDA-SIN-PILOTO `1` · DIAGNOSTICO `8` · IDENTICO `89` · NO-COMPARABLE `2` · RESERVADA `22` · SIN-PISO `15` · SOLO-PISO `57` (total `214`) · cobertura de piso `79 / 214` · valor añadido / evaluadas `0 / 20` · celdas `emision = EMITIDA-SIN-EVALUAR` `16 / 214` · `veto_pisos_activo` `True`.
 - **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: `NO` 13 · `NO-DERIVACION-CONTEXTUAL` 1 · `NO-SIN-FIRMA-DE-OBJETO` 1 · `PENDIENTE-DE-CASCADA-DIFERIDA` 2 · `PENDIENTE-DE-INTEGRACION-SERIAL` 2 · `PENDIENTE-DE-MESA` 17 · `SI` 78 (selladas total `114`) · `PENDIENTE-DE-MESA`:
   - `CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001--39bf1af3cdac`: `REPRODUCE`
   - `CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002--18e3c08247d5`: `NO-VERIFICADO`
@@ -22,14 +22,13 @@
   - `CALC-WBES2023-CORRUPCION-DESCRIPTIVA-0001--b87ec1bf2ad5`: `REPRODUCE`
   - `CALC-WBES2023-PRECISION-0001--7ab4bf6255e0`: `REPRODUCE`
   - `CALC-WBES2023-PRECISION-INTERACCIONES-0001--7f2a0899f700`: `NO-VERIFICADO`
-- **Ramas presentes en origin.** **4 rama(s) presente(s) en origin (política de cero)**:
-  - `acto/gen2-celda-d-piloto-3-commit-1-v1_1`: 7 delante / 0 detrás de main · último commit `2026-09-20`
-  - `acto/gen2-celda-d-piloto-3-ejecucion`: 4 delante / 4 detrás de main · último commit `2026-09-20`
-  - `acto/gen2-limpieza-ramas-locales-3`: 6 delante / 15 detrás de main · último commit `2026-09-20`
-  - `claude/pensive-keller-7wxjod`: 3 delante / 0 detrás de main · último commit `2026-09-20`
+- **Ramas presentes en origin.** **3 rama(s) presente(s) en origin (política de cero)**:
+  - `acto/gen2-celda-d-piloto-3-commit-1-v1_1`: 6 delante / 6 detrás de main · último commit `2026-09-20`
+  - `acto/gen2-limpieza-ramas-locales-3`: 6 delante / 26 detrás de main · último commit `2026-09-20`
+  - `claude/wonderful-johnson-8qs9qj`: 3 delante / 11 detrás de main · último commit `2026-09-20`
 - **Corredor LEGACY (eje x = ∅, GO-MARCADOR).** el marcador por segmento es la línea de arriba. marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
 - **Corpus lógico.** entradas del manifiesto `1629` · filas de registro de curación `155` · filas de relaciones `231` · filas del inventario de reactivos v1.2 `178247`.
-- **Gobernanza operativa.** ADR máximo `563` · FP máximo `398` · FP abiertas: FP-386, FP-387, FP-388, FP-393, FP-394, FP-395, FP-396, FP-397, FP-398 · encargos archivados `576` (consumidos `524`) · instrucciones vigentes `v2.15` · cola de encargos (solo estados != CONSUMIDO; consumidos `36`):
+- **Gobernanza operativa.** ADR máximo `566` · FP máximo `401` · FP abiertas: FP-386, FP-387, FP-388, FP-393, FP-394, FP-395, FP-396, FP-397, FP-398, FP-399, FP-400 · encargos archivados `579` (consumidos `527`) · instrucciones vigentes `v2.15` · cola de encargos (solo estados != CONSUMIDO; consumidos `36`):
   - `2026-09-07-ENCARGOS-GEN2-en-orden.md`: GATED
   - `2026-09-08-GEN2-SONDA-3-PILOTO-CAJA.md`: LISTO
   - `2026-09-10-GEN2-POST-685/00-LEEME-LANZAMIENTO-POST-685.md`: GATED
@@ -58,8 +57,8 @@
   - `2026-09-12-GEN2-POST-741/00-LEEME-PARALELOS-41-43.md`: GATED
   - `2026-09-12-GEN2-POST-741/41-GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO.md`: GATED
   - `2026-09-12-GEN2-POST-741/43-GEN2-SHED-BNPL-DANO-Y-UNIVERSOS.md`: GATED
-- **NC abiertas por razón (token A.14, prefijo exacto).** abiertas `148` · por token: `DECISIÓN-DE-MESA-PENDIENTE` 3 · `DIFERIDO-A` 11 · `FUERA-DE-PERÍMETRO` 13 · `NO-VERIFICABLE-AQUÍ` 2 · `PARO-ENTORNO` 4 · `PARO-PREMISA` 16 · `SUSTITUIDO-POR` 1 · prosa (sin token reconocible) `98`.
-- **GEN2 (derivado de `corrida0 status`).** corridas selladas `102` / requeridas `86` · resultados sellados `7287` / activos `210` · pendientes `210` · dependencias numéricas legacy activas `173` · validación independiente `215` · diferencias materiales `0` · NC- abiertas `148` · replays LEGACY-GEN1 sellados `5` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
+- **NC abiertas por razón (token A.14, prefijo exacto).** abiertas `157` · por token: `DECISIÓN-DE-MESA-PENDIENTE` 4 · `DIFERIDO-A` 15 · `FUERA-DE-PERÍMETRO` 17 · `NO-VERIFICABLE-AQUÍ` 2 · `PARO-ENTORNO` 4 · `PARO-PREMISA` 17 · `SUSTITUIDO-POR` 1 · prosa (sin token reconocible) `97`.
+- **GEN2 (derivado de `corrida0 status`).** corridas selladas `102` / requeridas `86` · resultados sellados `7287` / activos `210` · pendientes `210` · dependencias numéricas legacy activas `173` · validación independiente `215` · diferencias materiales `0` · NC- abiertas `157` · replays LEGACY-GEN1 sellados `5` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
 - **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** sellados `6686` · pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) `12` · vetados por decisión vigente (sellados, pero una firma prohíbe adoptarlos: no son cola) `2` · adoptados por un consumidor activo `57`. Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: solo el consumidor activo que lo adopta la baja.
 - **Fuentes.** `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, `forense/prereg-duelo-v2/` (marcos y corridas M/R/L), `data/manifiesto.yaml`, `data/curacion-registro/cola-adquisicion-registro.tsv`, `data/curacion-registro/relaciones.tsv`, `data/inventario-reactivos-v1_2.tsv`, `canon/gobernanza-v1_15.md`, `forense/firmas-pendientes.tsv`, `forense/encargos/*.md`, `forense/encargos/cola/*.md`.
 

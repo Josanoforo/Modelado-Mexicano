@@ -57,21 +57,21 @@ No reescribe encargos ya archivados al formato nuevo · no toca `AGENTS.md` más
 
 ## NO-CORRIDO / RESERVAS
 
-- **qué:** el sello pleno de A.9 — el cuerpo operativo v2.15 y `PLANTILLA-ENCARGO-v2_0.md` pegados en el conocimiento del proyecto de Claude, con fecha confirmada por mesa.
-  **por qué:** `DECISIÓN-DE-MESA-PENDIENTE`. La firma del lado proyecto viajó en este encargo como **propuesta** («mesa la confirma o corrige la fecha al lanzar»), no como firma dada; el ejecutor no tiene superficie de escritura fuera del repo. Precedente idéntico y por la misma causa: `ADR-544` / `GEN2-V214`.
-  **impacto:** `instrucciones_vigentes = v2.15` queda sellado y derivado del lado repo, y la v2.15 rige ya en el repo y en toda sesión de Claude Code vía `CLAUDE.md`; falta la copia del proyecto de dirección para que A.9 esté cumplida en los dos lados.
-  **sucesor:** `NC-0407` · `FP-399` — mesa pega los dos archivos y confirma la fecha; una enmienda fechada sobre `ADR-564` cierra la fila citándola verbatim.
+- **qué:** el sello pleno de A.9 — el cuerpo operativo v2.15 y `PLANTILLA-ENCARGO-v2_0.md` pegados en el conocimiento del proyecto de Claude, con fecha declarada por mesa. **RESUELTA EN EL MISMO ACTO.**
+  **por qué:** `DECISIÓN-DE-MESA-PENDIENTE`. Nació porque la firma del lado proyecto viajó en este encargo como **propuesta** («mesa la confirma o corrige la fecha al lanzar»), no como firma dada. Precedente idéntico y por la misma causa: `ADR-544` / `GEN2-V214`. **Mesa la declaró al cierre, verbatim: «La fecha es de hoy 20 de septiembre» (20/sep/2026).**
+  **impacto:** ninguno pendiente — A.9 cumplida en los dos lados; la v2.15 sella completa. El lado repo verificado por comando; el lado proyecto por declaración de mesa, que es lo que A.9 pide.
+  **sucesor:** ninguno. `NC-0416` **CERRADA**; `FP-401` **FIRMADA**.
 
 - **qué:** reescribir los encargos ya archivados al formato de `PLANTILLA-ENCARGO-v2_0.md`.
   **por qué:** `FUERA-DE-PERÍMETRO` — de ningún otro acto, y es deliberado: §10 de este encargo lo excluye y A.3 prohíbe editar un encargo archivado. Se asienta para que la ausencia no se lea como olvido.
   **impacto:** ninguno — la sección `4 · EJECUCIÓN` de `/acto` define el default de `MODO` para los encargos anteriores a v2.15, así que ningún acto queda sin regla aplicable.
-  **sucesor:** `SIN-ASIGNAR`; no lo requiere. `NC-0408`, CERRADA en este mismo acto.
+  **sucesor:** `SIN-ASIGNAR`; no lo requiere. `NC-0417`, CERRADA en este mismo acto.
 
 - **qué:** la medición del falsador de la plantilla a tres meses del sello.
   **por qué:** `DIFERIDO-A:` el acto sucesor de diciembre/2026 — la ventana no ha transcurrido.
   **impacto:** sin ella no se sabe si la plantilla resolvió el defecto que la motiva (75/160 NC = 46.9 % en la ventana 16–20/sep/2026). No bloquea nada hoy: la línea base existe y es reproducible por comando.
-  **sucesor:** `NC-0409` — `python3 tools/nc_por_razon.py --desde 2026-09-20 --hasta 2026-12-20`.
+  **sucesor:** `NC-0418` — `python3 tools/nc_por_razon.py --desde 2026-09-20 --hasta 2026-12-20`.
 
 ## CONSUMIDO
 
-Ejecutado sobre la rama `claude/wonderful-johnson-8qs9qj`. `ADR-564` (número en disputa: dos ramas remotas vivas lo traen redactado — renumera quien fusione segundo, junto con `NC-0407`-`NC-0409` y `FP-399`). Cierre: `forense/notas/2026-09-20-GEN2-V215-cierre.md`.
+Ejecutado sobre la rama `claude/wonderful-johnson-8qs9qj`. `ADR-566` (**RENUMERADO 564→566**: `claude/pensive-keller-7wxjod` fusionó primero por `PR #925` y renumeró a su vez 564→565; este acto fusiona segundo contra esa base — regla de la casa. Con él, `NC-0407`-`NC-0409` → `NC-0416`-`NC-0418` y `FP-399` → `FP-401`, máximos re-derivados contra `origin/main` `dfb07b9`). **A.9 sellada en los dos lados** por la firma de mesa del 20/sep/2026. Cierre: `forense/notas/2026-09-20-GEN2-V215-cierre.md`.
