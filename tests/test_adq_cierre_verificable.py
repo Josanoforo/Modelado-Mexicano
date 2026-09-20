@@ -15,6 +15,7 @@ RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "tools"))
 sys.path.insert(0, str(RAIZ / "tests"))
 import adq_doctor as D  # noqa: E402
+import adq_handoff as H  # noqa: E402
 import check as C  # noqa: E402
 
 FALLOS = []
@@ -110,6 +111,68 @@ def prueba_resultado_parcial_y_publicacion_separada():
         afirma(r["resultado_trabajo"] == "intentos_documentados"
                and r["publicacion_trabajo"] == "fallida",
                f"trabajo y publicación deben quedar separados: {r}")
+    finally:
+        td.cleanup()
+
+
+def prueba_preentrega_acepta_exito_y_rechaza_clasificacion_o_evidencia():
+    """Tres salidas del preflight del productor, sin runner ni presupuesto."""
+    td, raiz = _raiz_fixture()
+    try:
+        evidencia = raiz / "forense" / "intento.md"
+        resultado_literal = "HTTP 404 acreditado; no se obtuvo el objeto"
+        evidencia.write_text(resultado_literal + "\n", encoding="utf-8")
+        (raiz / "data" / "manifiesto.yaml").write_text("[]\n", encoding="utf-8")
+        (raiz / "data" / "curacion-registro" /
+         "cola-adquisicion-registro.tsv").write_text(
+            "fuente_canonica\testado_A4A5\tnota\n"
+            "OBJ\tNO-OBTENIDO-POR-ESTE-AGENTE(1 intento)\tHTTP 404 acreditado\n",
+            encoding="utf-8")
+        por_objeto = [{
+            "objeto_id": "OBJ", "desenlace": "intento_documentado",
+            "evidencias": ["forense/intento.md"],
+            "intentos": [{"via": "URL pública", "resultado": resultado_literal}],
+            "archivos": [], "ids_manifiesto": [],
+        }]
+        valido = _resultado(
+            ["OBJ"], estado="intentos_documentados", resultados=por_objeto)
+        handoff = raiz / "MANUAL-SINTETICO-20260919-handoff.json"
+        handoff.write_text(json.dumps(valido), encoding="utf-8")
+        i_valido, aceptado = H.selecciona_resultado(
+            [("handoff-manual-sintetico", handoff)], _seleccion(["OBJ"]),
+            {"corte": "2026-09-11", "maximo": 0,
+             "elegidos": [], "excluidos": []},
+            comprobar_remoto=False, raiz=raiz)
+        afirma(i_valido["codigo"] == 0 and aceptado is not None,
+               f"preentrega válida fue rechazada: {i_valido}")
+
+        clasificacion_mala = json.loads(json.dumps(valido))
+        clasificacion_mala["resultado_sustantivo"] = "descubrimiento_documentado"
+        handoff.write_text(json.dumps(clasificacion_mala), encoding="utf-8")
+        i_clase, aceptado_clase = H.selecciona_resultado(
+            [("handoff-manual-sintetico", handoff)], _seleccion(["OBJ"]),
+            {"corte": "2026-09-11", "maximo": 0,
+             "elegidos": [], "excluidos": []},
+            comprobar_remoto=False, raiz=raiz)
+        errores_clase = i_clase["candidatos"][0]["errores"]
+        afirma(i_clase["codigo"] == 65 and aceptado_clase is None and any(
+            "no coincide con trabajo" in e for e in errores_clase),
+            f"clasificación incompatible no falló cerrado: {i_clase}")
+
+        evidencia_ausente = json.loads(json.dumps(valido))
+        evidencia_ausente["resultados_por_objeto"][0]["intentos"][0][
+            "resultado"] = "texto ausente de las rutas citadas"
+        handoff.write_text(json.dumps(evidencia_ausente), encoding="utf-8")
+        i_evidencia, aceptado_evidencia = H.selecciona_resultado(
+            [("handoff-manual-sintetico", handoff)], _seleccion(["OBJ"]),
+            {"corte": "2026-09-11", "maximo": 0,
+             "elegidos": [], "excluidos": []},
+            comprobar_remoto=False, raiz=raiz)
+        errores_evidencia = i_evidencia["candidatos"][0]["errores"]
+        afirma(i_evidencia["codigo"] == 65 and aceptado_evidencia is None and any(
+            "resultado de intento no aparece en evidencia" in e
+            for e in errores_evidencia),
+            f"evidencia ausente no falló cerrado: {i_evidencia}")
     finally:
         td.cleanup()
 
@@ -450,6 +513,7 @@ def prueba_launcher_rechazado_no_pisa_heartbeat():
 def main():
     prueba_h2_rechaza_tres_falsos_positivos()
     prueba_resultado_parcial_y_publicacion_separada()
+    prueba_preentrega_acepta_exito_y_rechaza_clasificacion_o_evidencia()
     prueba_adquisicion_exige_archivo_manifiesto_pertinente()
     prueba_vinculo_estructurado_exacto_ihsn_enpol()
     prueba_candidata_publica_recorre_descubrimiento_y_adquisicion()
@@ -466,7 +530,7 @@ def main():
         for fallo in FALLOS:
             print(f"  · {fallo}")
         return 1
-    print("OK -- test_adq_cierre_verificable.py: 13 casos, 0 fallos")
+    print("OK -- test_adq_cierre_verificable.py: 14 casos, 0 fallos")
     return 0
 
 

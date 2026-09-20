@@ -1,0 +1,23 @@
+tipo,variante,sexo,dominio,medida,estimacion,ic95_inferior,ic95_superior,estado,replicas_validas,replicas_totales,precision_nota,unidad
+sin_cp_menos_con_cp,PAREADA,total,todas_validas,p50,-0.583333333333,-0.833333333333,-0.416666666667,OK,2000,2000,,horas/semana
+sin_cp_menos_con_cp,PAREADA,total,todas_validas,p90,-17.433333333333,-18.333333333333,-16.716666666667,OK,2000,2000,,horas/semana
+sin_cp_menos_con_cp,PAREADA,total,todas_validas,concentracion_decil_superior,-0.016397567737,-0.020667998154,-0.011812383760,OK,2000,2000,,diferencia de proporciones de horas
+sin_cp_menos_con_cp,PAREADA,total,participantes,p50,-4.250000000000,-4.833333333333,-4.000000000000,OK,2000,2000,,horas/semana
+sin_cp_menos_con_cp,PAREADA,total,participantes,p90,-27.583333333333,-28.916666666667,-26.000000000000,OK,2000,2000,,horas/semana
+sin_cp_menos_con_cp,PAREADA,total,participantes,concentracion_decil_superior,-0.025338997429,-0.029840279513,-0.020482684137,OK,2000,2000,,diferencia de proporciones de horas
+sin_cp_menos_con_cp,PAREADA,hombre,todas_validas,p50,0.000000000000,0.000000000000,0.000000000000,OK,2000,2000,IC-COLAPSADO-POR-MASA-DISCRETA; no demuestra ausencia de error,horas/semana
+sin_cp_menos_con_cp,PAREADA,hombre,todas_validas,p90,-9.583333333333,-10.000000000000,-9.000000000000,OK,2000,2000,,horas/semana
+sin_cp_menos_con_cp,PAREADA,hombre,todas_validas,concentracion_decil_superior,-0.016902348397,-0.023402518793,-0.010284635362,OK,2000,2000,,diferencia de proporciones de horas
+sin_cp_menos_con_cp,PAREADA,hombre,participantes,p50,-2.750000000000,-3.000000000000,-2.500000000000,OK,2000,2000,,horas/semana
+sin_cp_menos_con_cp,PAREADA,hombre,participantes,p90,-16.416666666667,-17.250833333333,-15.166666666667,OK,2000,2000,,horas/semana
+sin_cp_menos_con_cp,PAREADA,hombre,participantes,concentracion_decil_superior,-0.034354159917,-0.041987091350,-0.026636021894,OK,2000,2000,,diferencia de proporciones de horas
+sin_cp_menos_con_cp,PAREADA,mujer,todas_validas,p50,-1.000000000000,-1.500000000000,-1.000000000000,OK,2000,2000,,horas/semana
+sin_cp_menos_con_cp,PAREADA,mujer,todas_validas,p90,-24.833333333333,-26.250000000000,-23.250000000000,OK,2000,2000,,horas/semana
+sin_cp_menos_con_cp,PAREADA,mujer,todas_validas,concentracion_decil_superior,-0.009716897763,-0.014855493875,-0.004152791699,OK,2000,2000,,diferencia de proporciones de horas
+sin_cp_menos_con_cp,PAREADA,mujer,participantes,p50,-6.750000000000,-7.250000000000,-6.300000000000,OK,2000,2000,,horas/semana
+sin_cp_menos_con_cp,PAREADA,mujer,participantes,p90,-34.483333333333,-36.333333333333,-32.581666666667,OK,2000,2000,,horas/semana
+sin_cp_menos_con_cp,PAREADA,mujer,participantes,concentracion_decil_superior,-0.014149979479,-0.019346591371,-0.008467967912,OK,2000,2000,,diferencia de proporciones de horas
+mujer_menos_hombre,CON_CP,mujer-hombre,todas_validas,p50,2.000000000000,1.833333333333,2.500000000000,OK,2000,2000,,horas/semana
+mujer_menos_hombre,CON_CP,mujer-hombre,todas_validas,p90,27.333333333333,25.833333333333,28.833333333333,OK,2000,2000,,horas/semana
+mujer_menos_hombre,CON_CP,mujer-hombre,participantes,p50,8.000000000000,7.415833333333,8.500000000000,OK,2000,2000,,horas/semana
+mujer_menos_hombre,CON_CP,mujer-hombre,participantes,p90,32.900000000000,31.000000000000,34.983750000000,OK,2000,2000,,horas/semana
