@@ -1,0 +1,144 @@
+{
+ "corrida_id": "CALC-ISSP2017-CONSISTENCIA-APOYO-FAMILIAR-0001--3f8b5bc3bc29",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "fuente_acto": "GEN2-ISSP2017-CONSISTENCIA-APOYO-FAMILIAR-CLI-2",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": false,
+  "tipo": "MEDICION-DESCRIPTIVA-MICRODATO",
+  "unidad_transferencia": "PERSONA-NO-TRANSFERENCIA-A-MOTOR",
+  "uso_motor": "EVIDENCIA-CONSISTENCIA-APOYO-FAMILIAR-NO-CALIBRA",
+  "validacion_independiente": "CONTROL-SEPARADO"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-19T23:42:16Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 0,
+   "montado": "NO",
+   "nota": "data/raw ausente -- normal en un clon fresco / en la nube"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "3f8b5bc3bc2989d6bf8ee6f770c8c1f6d3904de8",
+  "git_rama": "codex/gen2-issp2017-consistencia-apoyo-familiar-cli-2",
+  "git_status": "SUCIO",
+  "git_status_lineas": 7,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "6bfe110ab381928b38fc07b4d2db58bcd797a68d8059a9873700b49c887d7f80",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "6bfe110ab381928b38fc07b4d2db58bcd797a68d8059a9873700b49c887d7f80",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "3f8b5bc3bc2989d6bf8ee6f770c8c1f6d3904de8",
+ "input_ids": [
+  "za6980_q_mx",
+  "za6980_backgroundvar_mx",
+  "za6980_v2_0_0_dta",
+  "za6980_v2_0_0_sav",
+  "za6980_q7_evidencia_precedente"
+ ],
+ "input_sha256": {
+  "za6980_backgroundvar_mx": "6004c300ca1331bfd15f163c4deaa726c71b66b46ae9e05361f40ae8cc26ca5f",
+  "za6980_q7_evidencia_precedente": "7e8f4e13064d4cc4764c150a6d1842c90340857e39c320a3377a93fd9f9f676b",
+  "za6980_q_mx": "61bc0c80415521965ec1b2546fbe3b2400cfacb2e6b0b542583304821544f2ed",
+  "za6980_v2_0_0_dta": "aa3bfcbcc1dc20a2735e8e9d2d3d47a72d909dade66e8c4623b910965dc227de",
+  "za6980_v2_0_0_sav": "20a1420f4aa8f8dcb30f7de61879796d20b7c3042805e7925e56c30b4ae97ca5"
+ },
+ "parametros": {
+  "adopcion": "NINGUNA",
+  "codigos_familia": [
+   1,
+   2
+  ],
+  "codigos_nativos": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "dominios_conteo": [
+   "TOTAL",
+   "HOMBRES",
+   "MUJERES"
+  ],
+  "instrumento": "ISSP 2017 Social Networks and Social Resources, México, Q7a-e",
+  "salidas": [
+   "forense/analisis/issp2017-consistencia-apoyo-familiar-cli-2/conteo-familia.csv",
+   "forense/analisis/issp2017-consistencia-apoyo-familiar-cli-2/resumen-familia.csv",
+   "forense/analisis/issp2017-consistencia-apoyo-familiar-cli-2/matrices-nativas.csv",
+   "forense/analisis/issp2017-consistencia-apoyo-familiar-cli-2/matrices-nativas-sensibilidad-pareja.csv",
+   "forense/analisis/issp2017-consistencia-apoyo-familiar-cli-2/tablas-familia-2x2.csv",
+   "forense/analisis/issp2017-consistencia-apoyo-familiar-cli-2/asociaciones-familia.csv"
+  ],
+  "version": "ZA6980 v2.0.0"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ISSP-CONSISTENCIA-FAMILIA-2X2-SHA256",
+  "RESULT-ISSP-CONSISTENCIA-FAMILIA-ALGUNA",
+  "RESULT-ISSP-CONSISTENCIA-FAMILIA-ASOCIACIONES-SHA256",
+  "RESULT-ISSP-CONSISTENCIA-FAMILIA-COBERTURA-CINCO",
+  "RESULT-ISSP-CONSISTENCIA-FAMILIA-CONTEO-SHA256",
+  "RESULT-ISSP-CONSISTENCIA-FAMILIA-MATRICES-SHA256",
+  "RESULT-ISSP-CONSISTENCIA-FAMILIA-N-MEXICO",
+  "RESULT-ISSP-CONSISTENCIA-FAMILIA-NINGUNA",
+  "RESULT-ISSP-CONSISTENCIA-FAMILIA-PRECISION",
+  "RESULT-ISSP-CONSISTENCIA-FAMILIA-SENSIBILIDAD-SHA256",
+  "RESULT-ISSP-CONSISTENCIA-FAMILIA-TODAS"
+ ],
+ "script_blob_sha256": "98a11e8512c2c6b5dc758a49607aed04c5ddb75cb2f20da2e83c8a44ebf77aa5",
+ "script_path": "data/corrida0/CALC-ISSP2017-CONSISTENCIA-APOYO-FAMILIAR-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "rng": "NO-APLICA",
+  "valor": null
+ },
+ "spec_id": "CALC-ISSP2017-CONSISTENCIA-APOYO-FAMILIAR-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "2698282af92f993540c8da883aa5645c87ceffb11af5bd6020e2697cd009be3d",
+ "spec_yaml_sha256": "0cba6b6bb6e591e54806a1bfb344892d97b1aa895806f126a60c8fff068642f5",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "sumas y razones deterministas",
+  "tipo": "flotante"
+ }
+}

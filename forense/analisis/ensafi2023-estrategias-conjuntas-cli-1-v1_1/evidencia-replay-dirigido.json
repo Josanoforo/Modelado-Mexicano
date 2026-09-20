@@ -1,0 +1,65 @@
+[
+  {
+    "calc_id": "CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001-v1_1",
+    "fecha_verificacion": "2026-09-19",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001-v1_1"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "ecb85bba038f60946c5969e3dfba1051732ccd86aae7fe7fbd6f4d24026470e5",
+      "script_blob_sha256": "45f6a57af3d103268167f6e4353c997dea9502212233383e120c6da12c334b83",
+      "input_sha256_efectivos": "ensafi2023_bd_csv_zip=c0594079ddf4733d4f574d00f5e84290c62c5330eab0567dd867c26d42fafacd"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ENSAFI-EC2-G-COBERTURA-VECTOR": 0.0,
+        "RESULT-ENSAFI-EC2-G-CONTROL-MEDIA-MARGINALES": null,
+        "RESULT-ENSAFI-EC2-G-CONTROL-PADRE": null,
+        "RESULT-ENSAFI-EC2-G-CONTROL-PARTICION": null,
+        "RESULT-ENSAFI-EC2-G-DISENO-FALTANTE": null,
+        "RESULT-ENSAFI-EC2-G-EE-MEDIA-CONTEO": 0.0,
+        "RESULT-ENSAFI-EC2-G-ESTRATOS": null,
+        "RESULT-ENSAFI-EC2-G-GL": null,
+        "RESULT-ENSAFI-EC2-G-IC95-HI-MEDIA-CONTEO": 0.0,
+        "RESULT-ENSAFI-EC2-G-IC95-LO-MEDIA-CONTEO": 0.0,
+        "RESULT-ENSAFI-EC2-G-MASA-ELEGIBLES": 0.0,
+        "RESULT-ENSAFI-EC2-G-MEDIA-CONTEO-COMPLETO": 0.0,
+        "RESULT-ENSAFI-EC2-G-N-ELEGIBLES": null,
+        "RESULT-ENSAFI-EC2-G-N-MARCO": null,
+        "RESULT-ENSAFI-EC2-G-PESO-INVALIDO": null,
+        "RESULT-ENSAFI-EC2-G-SALIDA-COBERTURA": null,
+        "RESULT-ENSAFI-EC2-G-SALIDA-CONTEOS": null,
+        "RESULT-ENSAFI-EC2-G-SALIDA-DIAGNOSTICOS": null,
+        "RESULT-ENSAFI-EC2-G-SALIDA-LIMITES-FALTANTES": null,
+        "RESULT-ENSAFI-EC2-G-SALIDA-PAREJAS": null,
+        "RESULT-ENSAFI-EC2-G-SALIDA-SENSIBILIDAD-PAREJAS": null,
+        "RESULT-ENSAFI-EC2-G-SHA256-COBERTURA": null,
+        "RESULT-ENSAFI-EC2-G-SHA256-CONTEOS": null,
+        "RESULT-ENSAFI-EC2-G-SHA256-DIAGNOSTICOS": null,
+        "RESULT-ENSAFI-EC2-G-SHA256-LIMITES-FALTANTES": null,
+        "RESULT-ENSAFI-EC2-G-SHA256-PAREJAS": null,
+        "RESULT-ENSAFI-EC2-G-SHA256-SENSIBILIDAD-PAREJAS": null,
+        "RESULT-ENSAFI-EC2-G-SINGLETON": null,
+        "RESULT-ENSAFI-EC2-G-UPM": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "determinista",
+        "abs": 1e-10
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ENSAFI-EC2-G-COBERTURA-VECTOR\": 0.0, \"RESULT-ENSAFI-EC2-G-CONTROL-MEDIA-MARGINALES\": null, \"RESULT-ENSAFI-EC2-G-CONTROL-PADRE\": null, \"RESULT-ENSAFI-EC2-G-CONTROL-PARTICION\": null, \"RESULT-ENSAFI-EC2-G-DISENO-FALTANTE\": null, \"RESULT-ENSAFI-EC2-G-EE-MEDIA-CONTEO\": 0.0, \"RESULT-ENSAFI-EC2-G-ESTRATOS\": null, \"RESULT-ENSAFI-EC2-G-GL\": null, \"RESULT-ENSAFI-EC2-G-IC95-HI-MEDIA-CONTEO\": 0.0, \"RESULT-ENSAFI-EC2-G-IC95-LO-MEDIA-CONTEO\": 0.0, \"RESULT-ENSAFI-EC2-G-MASA-ELEGIBLES\": 0.0, \"RESULT-ENSAFI-EC2-G-MEDIA-CONTEO-COMPLETO\": 0.0, \"RESULT-ENSAFI-EC2-G-N-ELEGIBLES\": null, \"RESULT-ENSAFI-EC2-G-N-MARCO\": null, \"RESULT-ENSAFI-EC2-G-PESO-INVALIDO\": null, \"RESULT-ENSAFI-EC2-G-SALIDA-COBERTURA\": null, \"RESULT-ENSAFI-EC2-G-SALIDA-CONTEOS\": null, \"RESULT-ENSAFI-EC2-G-SALIDA-DIAGNOSTICOS\": null, \"RESULT-ENSAFI-EC2-G-SALIDA-LIMITES-FALTANTES\": null, \"RESULT-ENSAFI-EC2-G-SALIDA-PAREJAS\": null, \"RESULT-ENSAFI-EC2-G-SALIDA-SENSIBILIDAD-PAREJAS\": null, \"RESULT-ENSAFI-EC2-G-SHA256-COBERTURA\": null, \"RESULT-ENSAFI-EC2-G-SHA256-CONTEOS\": null, \"RESULT-ENSAFI-EC2-G-SHA256-DIAGNOSTICOS\": null, \"RESULT-ENSAFI-EC2-G-SHA256-LIMITES-FALTANTES\": null, \"RESULT-ENSAFI-EC2-G-SHA256-PAREJAS\": null, \"RESULT-ENSAFI-EC2-G-SHA256-SENSIBILIDAD-PAREJAS\": null, \"RESULT-ENSAFI-EC2-G-SINGLETON\": null, \"RESULT-ENSAFI-EC2-G-UPM\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"determinista\", \"abs\": 1e-10}}, \"identidad\": {\"spec_yaml_sha256\": \"ecb85bba038f60946c5969e3dfba1051732ccd86aae7fe7fbd6f4d24026470e5\", \"script_blob_sha256\": \"45f6a57af3d103268167f6e4353c997dea9502212233383e120c6da12c334b83\", \"input_sha256_efectivos\": \"ensafi2023_bd_csv_zip=c0594079ddf4733d4f574d00f5e84290c62c5330eab0567dd867c26d42fafacd\"}}\n"
+  }
+]

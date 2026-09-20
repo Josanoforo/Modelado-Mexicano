@@ -1,6 +1,46 @@
 {
-  "head": "46642e6ef7d5c794aae531d549e148319e4ac8bd",
+  "head": "7100cd0317132b1f4513b2efdc04058fd7ae89a2",
   "fails": [
+    [
+      "T02",
+      "contenido idéntico bajo nombres distintos: forense/analisis/ensafi2023-estrategias-conjuntas-cli-1-v1_1/cobertura.csv · forense/analisis/ensafi2023-estrategias-conjuntas-cli-1/cobertura.csv"
+    ],
+    [
+      "T02",
+      "contenido idéntico bajo nombres distintos: forense/analisis/ensafi2023-estrategias-conjuntas-cli-1-v1_1/limites_faltantes.csv · forense/analisis/ensafi2023-estrategias-conjuntas-cli-1/limites_faltantes.csv"
+    ],
+    [
+      "T02",
+      "contenido idéntico bajo nombres distintos: forense/analisis/ensafi2023-estrategias-conjuntas-cli-1-v1_1/sensibilidad_parejas.csv · forense/analisis/ensafi2023-estrategias-conjuntas-cli-1/sensibilidad_parejas.csv"
+    ],
+    [
+      "T02",
+      "nombre normalizado colisiona: forense/analisis/enigh2022-intensidad-remesas-1/lectura.md · forense/analisis/ensafi2023-estrategias-conjuntas-cli-1/lectura.md"
+    ],
+    [
+      "T02",
+      "nombre normalizado colisiona: forense/analisis/enigh2022-perfil-estructural-cli-1/evidencia-replay-dirigido.json · forense/analisis/ensafi2023-estrategias-conjuntas-cli-1-v1_1/evidencia-replay-dirigido.json"
+    ],
+    [
+      "T02",
+      "nombre normalizado colisiona: forense/analisis/ensafi2023-estrategias-conjuntas-cli-1-v1_1/cobertura.csv · forense/analisis/ensafi2023-estrategias-conjuntas-cli-1/cobertura.csv"
+    ],
+    [
+      "T02",
+      "nombre normalizado colisiona: forense/analisis/ensafi2023-estrategias-conjuntas-cli-1-v1_1/conteos.csv · forense/analisis/ensafi2023-estrategias-conjuntas-cli-1/conteos.csv"
+    ],
+    [
+      "T02",
+      "nombre normalizado colisiona: forense/analisis/ensafi2023-estrategias-conjuntas-cli-1-v1_1/limites_faltantes.csv · forense/analisis/ensafi2023-estrategias-conjuntas-cli-1/limites_faltantes.csv"
+    ],
+    [
+      "T02",
+      "nombre normalizado colisiona: forense/analisis/ensafi2023-estrategias-conjuntas-cli-1-v1_1/parejas.csv · forense/analisis/ensafi2023-estrategias-conjuntas-cli-1/parejas.csv"
+    ],
+    [
+      "T02",
+      "nombre normalizado colisiona: forense/analisis/ensafi2023-estrategias-conjuntas-cli-1-v1_1/sensibilidad_parejas.csv · forense/analisis/ensafi2023-estrategias-conjuntas-cli-1/sensibilidad_parejas.csv"
+    ],
     [
       "T06",
       "12 valores distintos de **confianza interpersonal** en el corpus: 12 (4x, Confianza_y_Desconfianza_en_:221(2009)) · 15 (4x, Psicología__Conducta_y_Socie:3(2025)) · 16 (1x, Report_26__The_Contemporary_:161(s/f)) · 20 (1x, El_Mexicano_y_el_Tiempo__Est:137(2024)) · 22 (5x, Confianza_y_Desconfianza_en_:9(2018)) · 28 (1x, Behavioral_Finance_Mexicano_:17(s/f)) · 33 (2x, Confianza_y_Desconfianza_en_:295(2018)) · 34 (1x, La_arquitectura_invisible_de:43(1990)) · 5 (1x, Confianza_y_Desconfianza_en_:219(2017)) · 50 (1x, La_familia_mexicana_como_sis:109(s/f)) · 66 (1x, Confianza_y_Desconfianza_en_:205(2022)) · 70 (1x, Sanción_Social_Horizontal_en:231(s/f))"
@@ -12,9 +52,21 @@
     [
       "T08",
       "7 reports sin mapa de evidencia — todo constructo suyo es DERIVADO, no LEÍDO: Humor_in_Mexican_Psychological_Life__2023-2026 · La_arquitectura_invisible_de_la_interacción_so · Mexican_Population_Genomics__2025-2026_Scienti · Mérito__Movilidad_Social_y_Desigualdad_en_Méxi · Non-Family_Social_Capital_in_Mexico__Cooperati · Psicología__Conducta_y_Sociedad_en_el_México_C · Psicología_del_Trabajo_en_México__Un_Mapa_Basa"
+    ],
+    [
+      "T16",
+      "canon/estado-programa-v1_14.md: declara 3 FAIL vigente; la corrida real da 13 FAIL"
+    ],
+    [
+      "T16",
+      "canon/gobernanza-v1_15.md: declara 3 FAIL vigente; la corrida real da 13 FAIL"
     ]
   ],
   "warns": [
+    [
+      "T03",
+      "canon/estado-programa-v1_14.md: cita `BRIEF-ASTRA-01-PISOS-REJILLA-2026-09-19.md`, que no existe"
+    ],
     [
       "T03",
       "canon/gobernanza-v1_15.md: cita `MESA-cuatro-decisiones-3_1-a-3_4.md`, que no existe"
@@ -22,6 +74,18 @@
     [
       "T03",
       "canon/gobernanza-v1_15.md: cita `estado-programa-v1_9.md`, que no existe"
+    ],
+    [
+      "T03",
+      "canon/gobernanza-v1_15.md: cita `instrucciones-proyecto-v2_13.md`, que no existe"
+    ],
+    [
+      "T03",
+      "canon/informe-programa-v1_0.md: cita `instrucciones-proyecto-v2_13.md`, que no existe"
+    ],
+    [
+      "T03",
+      "data/INFRAESTRUCTURA-v1_0.md: cita `instrucciones-proyecto-v2_13.md`, que no existe"
     ],
     [
       "T03",
@@ -46,6 +110,10 @@
     [
       "T03",
       "forense/TRANSFER-MAESTRA-FASE-CALCULO-2026-08-19.md: cita `PROMPTS-ADV-DUELO.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/analisis/gen2-encig-cruces-historicos-cli-1/adjuntos/03-BRIEF-ASTRA-03-ENCIG2023-CRUCES-HISTORICOS-2026-09-19.md: cita `CAREO-PILOTO-3-direccion-2026-09-19.md`, que no existe"
     ],
     [
       "T03",
@@ -137,7 +205,35 @@
     ],
     [
       "T03",
-      "forense/encargos/2026-09-17-GEN2-MANTENIMIENTO-4.md: cita `DIGESTO-2026-09-17.md`, que no existe"
+      "forense/encargos/2026-09-09-GEN2-GOBIERNO-DECISIONES.md: cita `instrucciones-proyecto-v2_13.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/encargos/2026-09-15-GEN2-DEMANDA-VIGENTE-ANTES-DESPACHO.md: cita `instrucciones-proyecto-v2_13.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/encargos/2026-09-19-GEN2-C2-COMPUESTO-RESERVADAS-1.md: cita `CAREO-PILOTO-3-direccion-2026-09-19.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/encargos/2026-09-19-GEN2-CELDA-D-PILOTO-3.md: cita `GOB.gobierno_digital.encig2025.edad_x_escolaridad.yaml`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/encargos/2026-09-19-GEN2-RECIBO-CODEX-3.md: cita `BRIEF-ASTRA-01-PISOS-REJILLA-2026-09-19.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/encargos/2026-09-19-GEN2-V214-instrucciones-v2_14.md: cita `-HISTORIA.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/encargos/2026-09-19-GEN2-V214-instrucciones-v2_14.md: cita `instrucciones-proyecto-v2_13.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/encargos/2026-09-19-GEN2-V214-instrucciones-v2_14.md: cita `instrucciones-proyecto-v2_14-OPERATIVA.md`, que no existe"
     ],
     [
       "T03",
@@ -153,7 +249,23 @@
     ],
     [
       "T03",
+      "forense/encargos/fuentes/02-REPLAY-Y-PISOS.md: cita `ENCARGO-GEN2-REPLAY-ASIENTOS-1-2026-09-17.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/seccion-13.md: cita `estado-programa-v1_13.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/hallazgos.md: cita `BRIEF-ASTRA-01-PISOS-REJILLA-2026-09-19.md`, que no existe"
+    ],
+    [
+      "T03",
       "forense/hallazgos.md: cita `estado-programa-v1_9.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/hallazgos.md: cita `v2_1.md`, que no existe"
     ],
     [
       "T03",
@@ -205,11 +317,35 @@
     ],
     [
       "T03",
+      "forense/notas/2026-09-08-GEN2-E6-registro-status-tablero.md: cita `instrucciones-proyecto-v2_13.md`, que no existe"
+    ],
+    [
+      "T03",
       "forense/notas/2026-09-09-PROPUESTA-PLAN-DE-OBRA-GEN2-v1_1-astra.md: cita `PROPUESTA-SIGUIENTES-CALCULOS-GEN2-v1_0-2026-09-09.md`, que no existe"
     ],
     [
       "T03",
       "forense/notas/2026-09-09-PROPUESTA-SIGUIENTES-CALCULOS-GEN2-v1_0-astra.md: cita `PROPUESTA-PLAN-DE-OBRA-GEN2-v1_1-2026-09-09.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/notas/2026-09-15-GEN2-PANEL-F6-EXPANSION-1-cierre.md: cita `estado-programa-v1_13.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/notas/2026-09-19-GEN2-PISOS-REJILLA-CLI-1-cierre.md: cita `BRIEF-ASTRA-01-PISOS-REJILLA-2026-09-19.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/notas/ENCARGOS-GEN2-v1_5-aparato-antes-de-calcular-2026-09-08.md: cita `instrucciones-proyecto-v2_13.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/prereg-caja/C2-COMPUESTO-RESERVADAS-spec-v1_0.md: cita `CAREO-PILOTO-3-direccion-2026-09-19.md`, que no existe"
+    ],
+    [
+      "T03",
+      "forense/tablero/TABLERO-PROGRAMA.md: cita `instrucciones-proyecto-v2_13.md`, que no existe"
     ],
     [
       "T03",
@@ -500,11 +636,11 @@
     "principio": "Congelar no es aceptar. La cifra congelada mezcla deuda real del corpus con ruido de medición conocido del propio T03 (cobertura angosta); ver forense/censo-integridad-v1_1.md §1 para la derivación completa de cada bucket. Bajada de 89 a 83 WARN el 29/jul/2026 (sesión de correcciones, ver mensaje de commit) sin tocar ningún FAIL. Re-congelada el 30/jul/2026 tras el merge del PR #1 (main 22a7d9d): 3 entradas nuevas, cada una con bucket propio — 1 T03 (cita ilustrativa de LICENSE-CORPUS, artefacto propuesto y descartado por D-05, patrón I-01) y 2 T16 que son su consecuencia aritmética. Re-congelada el 13/ago/2026, ACTO A8-LAND (ADR-78), autorizado explícitamente por mesa en el hilo de la sesión tras que el ejecutor reportara los hallazgos y preguntara si congelar — mismo mecanismo de autorización que ya usó ENCARGO ADR-PROVISIONALIDAD §9 (PR #199): 3 entradas nuevas — 1 T03 (forense/encargos/2026-08-13-A8LAND-instrucciones-v2_7.md cita \"v2_6.md\" sin prefijo, verbatim, tres veces, patrón M6-sello) y 2 T16 (gobernanza:1104/ADR-76(f) y gobernanza:1132/ADR-77, cada uno correcto contra lo que su propio ADR midió al sellarse, consecuencia aritmética del T03 de este mismo refreeze — ninguno de los dos ADR está mal, el WARN real se movió después de que ambos sellaran). Re-congelada el 13/ago/2026, ACTO PROC-10-bis (ADR-79(a)), autorizado explícitamente por el usuario en la sesión ('pull and solve CI', tras reportarle el fallo de CI de PR #227 y el hallazgo verificado) — mismo mecanismo de autorización que ya usó ACTO A8-LAND. Corrige la causa raíz declarada por PROC-10-bis (T19b/T19c contaban solo `MEDIDO·PARCIAL`, no reconocían la séptima clase `MEDIDO·NACIONAL` que ese acto selló — corregido en ambas regex, `tests/check.py` líneas ~918/~1001) y congela el residuo esperado: 7 T03 (los cinco archivos de MOTOR-1 nunca entregados a la sesión, más dos citas del propio encargo verbatim a `propuesta-motor-matriz-v0_2.md`, que no existe — solo `v0_1` — error del encargo original, no de este acto) y 6 T16 (cuatro citas históricas de \"107 WARN\"/\"18 FAIL · 107 WARN\" en gobernanza:764,856 y estado-programa:129,221, correctas cuando se escribieron, más las dos ya clasificadas de A8-LAND cuyo número de línea real se corrió de :1132 a :1134 por edits ajenos entre sesiones — consecuencia aritmética de subir el WARN real, ninguna cita está mal). Detalle completo: forense/notas/2026-08-13-proc-10-bis.md §4. Re-congelada el 17/ago/2026, ACTO T22-DERIVA (ADR-88), autorizada por mesa en la sesión mediante pregunta estructurada que citó ADR-76(f) verbatim y describió qué cambia y qué no con cada opción — mismo mecanismo de autorización que ya usó ADR-86, y misma honestidad de procedencia: no es cita verbatim de texto libre. Este recongelado NO absorbe deuda nueva del corpus: reescribe las 19 claves de T22 bajo la normalización nueva de `_baseline_key`, que deja de meter la antigüedad variable ('(N días)') en la clave. Sin esa corrección el recongelado duraba un solo día — probado contra el propio CI, no supuesto: el run 31772585548 sobre f3873c2 fue SUCCESS el 14/ago y ese mismo commit da exit 1 el 17/ago. La suite cruda no se mueve y T22 sigue emitiendo sus 19 WARN en cada corrida: cambia qué cuenta como regresión nueva, no qué reporta la suite. Detalle completo: forense/notas/2026-08-17-t22-deriva.md. Re-congelada el 7/sep/2026, ACTO GEN2-E0 · ENCOLA, autorizada explícitamente por mesa en la sesión tras que el ejecutor PARARA en el paso 4 de `/encola`, reportara las 16 entradas nuevas con su token exacto y pusiera la decisión a dirección («los archivos que te pasé son los finales»). Absorbe 8 WARN de T03, todas del mismo bucket `T03_pieza_GEN2_verbatim__…` y todas sobre texto de dirección archivado verbatim (A.3): 2 nombran los documentos que el propio PLAN-FINAL-GEN2 v2.0 declara haber absorbido («integra y sustituye»), 1 es la cola de una elipsis de nombre de archivo (patrón M6-sello) y 5 citan `spec.yaml` / `spec.md`, el contrato de dos capas que GEN2-E3 y GEN2-E5 crearán bajo `data/corrida0/CALC-NNNN/`. Cero FAIL nuevos y cero bajas: los 8 T25 que esta misma sesión produjo NO se congelaron — se resolvieron por exención de archivo con censo en `canon/registro-rotulos.tsv`, y antes de pedirla el ejecutor corrigió los rótulos pelados de su PROPIA prosa de bitácora, que sí era editable. Detalle completo: el PR `[COLA]` de este acto.",
     "fecha_de_clasificacion": "2026-08-17",
     "conteo_por_bucket": {
-      "T-ALTA-RELACION_sin_clasificar": 1,
       "T-CRON_sin_clasificar": 1,
-      "T-NO-CORRIDO_sin_clasificar": 97,
-      "T-REPRO_sin_clasificar": 3641,
-      "T-SUCESOR-EXISTE_sin_clasificar": 9,
+      "T-NO-CORRIDO_sin_clasificar": 108,
+      "T-REPRO_sin_clasificar": 6783,
+      "T-SUCESOR-EXISTE_sin_clasificar": 7,
+      "T02_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 10,
       "T03_TRANSFER-9_cita_ilustrativa_del_propio_falso_positivo__mismo_patron_benigno_ya_reconocido": 2,
       "T03_defecto_real_gobernanza_S2_tabla_stale__deuda_real_del_corpus_C5-02": 3,
       "T03_encargo_archivado_cita_nombre_corto_verbatim__A.3_prohibe_editar__patron_M6-sello": 2,
@@ -512,13 +648,13 @@
       "T03_fragmento_de_ejemplo_no_es_archivo_real__deuda_del_test": 4,
       "T03_historia_real_no_cubierta_por_HISTORICOS__deuda_de_mantener_la_lista": 6,
       "T03_pieza_GEN2_verbatim__doc_sustituido_por_el_plan_v2_0__elipsis_de_nombre__o_artefacto_que_E3-E5_creara": 3,
-      "T03_sin_clasificar": 29,
+      "T03_sin_clasificar": 51,
       "T06_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 2,
       "T08_FAIL_no_re-analizado_en_P1__ver_censo-integridad_para_detalle": 1,
       "T10_no_triado_instancia_por_instancia_en_esta_sesion__pendiente_C7": 65,
       "T13_integrador_sin_cabecera__deuda_real_del_corpus_C5-01": 3,
-      "T16_sin_clasificar": 1,
-      "T22_sin_clasificar": 48
+      "T16_consecuencia_aritmetica_del_T03_de_revision-publicacion__no_defecto_independiente__desaparece_cuando_A1_resuelva_I-01": 6,
+      "T22_sin_clasificar": 51
     }
   }
 }
