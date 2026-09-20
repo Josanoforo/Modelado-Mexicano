@@ -163,6 +163,30 @@ Además `T16` ya lanza una corrida completa de la suite como hijo, así que las
 4 CPU no están ociosas durante `T32`. Se anota como `NC-0406` con la cifra,
 no como deuda viva.
 
+## Fuera del perímetro escrito, y por qué entró igual
+
+`forense/analisis/ci-guardias/censo-tests.tsv` no está en el perímetro del
+encargo, y no podía estarlo: el job `guardias` y `tools/ci_guardias.py` nacen
+en `GEN2-CI-GUARDIAS-VIVAS-1`, que fusionó **durante** este acto (uno de los
+60 commits que `main` avanzó). Su guardia exige que todo `tests/test_*.py`
+tenga fila en el censo, y `tests/test_corrida0_oro.py` —que el encargo **sí**
+autoriza— nació huérfano: el CI salió rojo con
+`FALLA: tests sin fila en el censo (nacieron huerfanos): test_corrida0_oro`.
+
+Se añadió **una** fila, y no se tecleó: se derivó llamando a
+`ci_guardias.clasifica()` sobre ese archivo, la misma función que usa
+`--censo`. No se corrió `--censo` completo a propósito — reejecuta los 97
+huérfanos y reescribiría con timings nuevos las filas medidas por otro acto.
+La fila derivada:
+
+```
+tests/test_corrida0_oro.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
+```
+
+`CORRE-EN-CI` con 0.0 s es correcto y es el diseño: sin `CORRIDA0_ORO` el
+arnés sale `SALTADO-SIN-ARNES` en el acto, sin cotejar nada. La guardia local
+da `OK tests/test_corrida0_oro.py (0.0s)`.
+
 ## Auditoría de rigor extremo
 
 No aplica: este artefacto no afirma nada sobre México. Mide tiempos de un
