@@ -29,3 +29,13 @@ Relevar procedencia no valida el contenido: una cifra GEN2 idéntica a la legacy
 | P5 · «Pista leída por dirección, a verificar: el encargo Codex de ENIGH declara que `CORR-0076` enlaza RES-0165 a RES-0170.» | `NO-VERIFICABLE-AQUÍ` (la mitad del enlace) | Verificado lo verificable: `CORR-0076` agrupa exactamente `RES-0165`…`RES-0170`, los seis cortes de `milpa/src/celdas.py:CORTES_C1`. Pero los seis salen `CORR-SIN-CALC-DECLARADA`: **`CORR-0076` no tiene CALC declarado**, y el enlace del encargo Codex no vive en ninguna spec sellada. Seis slots de demanda siguen sin oferta. | Encargo de caja sobre `CORR-0076` (6 slots) desde `P5-demanda-agrupada.tsv`. |
 | P6 · los 2 `CONFLICTO-ENTRE-CANALES` (RES-0047, RES-0049) | `DECISIÓN-DE-MESA-PENDIENTE` | La línea por slot se entregó con los dos `RESULT` en pugna y el `SELLO-NO-COINCIDE:AUSENTE`, que es lo que el encargo pedía; adjudicar el canal es de mesa y el registro no decide. Los dos slots siguen `LEGACY-GEN1`. | `SIN-ASIGNAR` — adjudicación de canal por mesa, en la misma hoja de FP-391. |
 | CONTADOR · «mueve `dependencias_numericas_legacy_activas` (hoy 182) y `adoptados_activos` (hoy 46)» | `PARO-PREMISA` | Ninguno de los dos se movió: 182 → 182 y 46 → 46, los dos derivados por comando antes y después. Ni P4 ni P5 podían moverlos sin derogar una regla firmada o inventar un enlace que ninguna spec declara. | FP-391 (los mueve a 171 al firmarse) y los encargos de caja de P5. |
+
+## CONSUMIDO
+
+Ejecutado por **[PR #905](https://github.com/Josanoforo/Modelado-Mexicano/pull/905)** · `ACTO GEN2-RELEVO-TANDA-1` · `ADR-552` · rama `claude/intelligent-albattani-v7kf2s` · base `a92126f0a930dc31614c5c8f58f09b29b395962a` (el SHA que el encargo declara, re-derivado al abrir y coincidente) · entorno NUBE `cloud_default`, Opus 5, sin corpus montado, cero microdato.
+
+**Entregado:** P1 (delta re-derivado, `bins=1:0,2:10,3:2`, reproduce bit a bit la corrida del 16/sep), P2 (11 CASA / 1 NO-CASA por texto), P3 (RES-0028 diagnosticado con cita de spec y aritmética cerrada → `FP-390`), P5 (vista en punto fijo; 0 de 42 CALC del 19/sep declaran pareja; demanda agrupada de 154 slots en 71 corridas naturales), P6 (7 `LISTADO-PARA-MESA` partidos por veredicto sellado, 2 `CONFLICTO`, `GEN2-PISOS-REJILLA` descartado por ola).
+
+**No entregado, y por qué:** P4 · `PARO-PREMISA` — el bin 1 de la regla firmada de adopción en bloque sale vacío con los doce candidatos, así que el acto adopta **cero** y sirve a mesa el instrumento que falta (`FP-391`). Detalle completo en `## NO-CORRIDO / RESERVAS`, arriba.
+
+**Contadores:** `cuenta_gen2` NO-APLICA · `dependencias_numericas_legacy_activas` 182 → 182 · `adoptados_activos` 46 → 46.
