@@ -28,3 +28,19 @@ forense/notas/ (nota S2+S1 con transcripciones) · data/corrida0/CALC-GOB-DIGITA
 MÓDULO DE AUDITORÍA (afirma sobre México: aplica completo)
 
 Lo que salga es una asociación en escala logit entre trámites realizados, no una disposición de un grupo. edad × escolaridad en gobierno digital es brecha de acceso, conectividad y alfabetización digital por cohorte antes que actitud hacia el Estado. El universo excluye a quien no hizo trámites — más rural, más informal. Si un retador vence, dice que la interacción histórica se transporta; no dice por qué existe. Si nadie vence con IC ancho, el veredicto honesto es falsador débil, no "tercera corroboración". Peligroso leído simplista: "+11 pp" como confianza en el gobierno digital; "C2 gana tres veces" como ausencia de interacciones entre segmentos en México.
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| «COMMIT-2 · Emisiones. Ejecuta medidor.py en su modo de emisión, tal cual. Sella CALC-GOB-DIGITAL-EXE-EMISIONES-0001 … Vista y replay en el mismo acto (E.7).» | PARO-PREMISA | El código congelado no corre: guardia S2 (`ParoDeGuardia`, 97 = edad real censurada por texto) y, detrás, `medir()` = `NotImplementedError`. `N_corridas_selladas` +0; `encig25_base_datos_csv` no se abrió. `NC-0407` | COMMIT-1 v1.1 de otra sesión (F3), gateado por `FP-399` y `FP-400` |
+| «COMMIT-3 · R y adjudicación. Solo con el COMMIT-2 empujado.» | DIFERIDO-A:COMMIT-1 v1.1 + su COMMIT-2 | Sin COMMIT-2 no hay R, adjudicación, ΔMAE ni B-bis; el +11 pp sigue sin atribución. `NC-0408` | Sesión que ejecute el COMMIT-2 del v1.1 |
+| «Registro. Celda-D GOB.gobierno_digital.encig2025.edad_x_escolaridad.yaml … regístrala con el veredicto.» | DIFERIDO-A:COMMIT-3 del v1.1 | Sin veredicto; contrato de unidad sin firma (`FP-393`). Celdas-D siguen en 5. `NC-0409` | Acto del COMMIT-3 v1.1, tras `FP-393` |
+| «Marcador: el par pasa de RESERVADA a lo que el diseño manda tras un COMMIT-3. edad × escolaridad de ENCIG 2025 queda consumido.» | DIFERIDO-A:COMMIT-3 del v1.1 | El par sigue `RESERVADA` / `RESERVADA-SIN-R`, no consumido; marcador no re-derivado. `NC-0410` | Acto del COMMIT-3 v1.1 |
+| «una FP con el conteo por código si el FD lo permite sin abrir respuestas de 2025» — conteo de 2025 | NO-VERIFICABLE-AQUÍ | El FD no trae conteos y 2025 no se abre; `FP-399` lleva 2021/2023 y deja 2025 al COMMIT-2 del v1.1 | COMMIT-2 del v1.1 |
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-CELDA-D-PILOTO-3-EJECUCION`, **PR #924**, 20/sep/2026 (CAJA, Opus 5). Cierra: `NC-0355` (`CAMBIO-MENOR`); abre `NC-0407`–`NC-0410`, `FP-399`, `FP-400`; `ADR-564`. COMMIT-2 y COMMIT-3 no corren (PARO sin parche, E.6); sucesor = COMMIT-1 v1.1 de otra sesión. Nota: `forense/notas/nota-2026-09-20-gen2-celda-d-piloto-3-ejecucion-paro.md`.
