@@ -52,7 +52,9 @@ tests/test_enadid2023_union_sexo_edad.py	pytest	NO	pandas,pytest	NO	0.0	NECESITA
 tests/test_enadid_union_actual.py	pytest	NO	pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_encig2023_agregado_condicional.py	script	NO	(ninguna)	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_encig2023_flujo.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_encig_canal_comparabilidad_texto.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_encig_cruces_historicos.py	script	NO	numpy,pandas	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_encig_serie_canal.py	script	NO	numpy,pandas	NO	0.4	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_enco_reserva_prepara.py	pytest	NO	pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_encrige_carga_intensidad.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_encrige_descriptiva.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
