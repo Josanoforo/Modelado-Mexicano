@@ -2,7 +2,7 @@
 
 **Fecha:** 21/sep/2026 · **Entorno:** NUBE (`cloud_default`), corpus NO montado, cero microdato
 **Encargo:** `forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-4.md` (0-bis A.3, verbatim, `.cuerpo.sha256`), SHA de redacción `deddfd42`
-**Rama:** `acto/gen2-relevo-tanda-4` · **PR #959** (propuesto; mesa fusiona) · **`ADR-590`** · **MODO:** ABIERTO · **Compuertas:** solo la interna de §8 (tests de P1 y P3 en verde antes de escribir un pin) — cumplida.
+**Rama:** `acto/gen2-relevo-tanda-4` · **PR #959** (propuesto; mesa fusiona) · **`ADR-591`** · **MODO:** ABIERTO · **Compuertas:** solo la interna de §8 (tests de P1 y P3 en verde antes de escribir un pin) — cumplida.
 
 ---
 
