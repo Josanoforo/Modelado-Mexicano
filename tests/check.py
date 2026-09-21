@@ -5095,6 +5095,19 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # arriba. El rotulo propio del acto, `GEN2-TUBERIA-SUCESOR-1`, va
     # censado en canon/registro-rotulos.tsv.
     "forense/encargos/2026-09-21-GEN2-TUBERIA-SUCESOR-1.md",
+    # ACTO GEN2-TUBERIA-SUCESOR-1, 21/sep/2026 (P4): expediente del careo
+    # GEN2-TUBERIA-CAREO-1 archivado VERBATIM, verificado por sha256 al abrir
+    # (veredicto 6bdb7758… · encargo 817f7cd2…). El veredicto cita `M1`..`M4`
+    # y `E5`: son los nombres de sus propias MUTACIONES de P4 y de sus
+    # escenarios de P1, numerados dentro del documento -- no rotulos de acto
+    # ni habitantes de un espacio. El propio careo ya habia desacuñado los
+    # `E1..E5` originales renombrandolos «Escenario 1..5» por este mismo test;
+    # el residuo `E5` sobrevive en una cita interna. Un documento sellado y
+    # archivado verbatim no se edita para complacer un test (A.3). El rotulo
+    # propio del careo, `GEN2-TUBERIA-CAREO-1`, va censado en
+    # canon/registro-rotulos.tsv.
+    "forense/notas/2026-09-20-GEN2-TUBERIA-CAREO-1-cierre.md",
+    "forense/encargos/2026-09-20-GEN2-TUBERIA-CAREO-1.md",
 }
 
 

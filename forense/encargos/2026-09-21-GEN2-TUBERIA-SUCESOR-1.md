@@ -205,3 +205,41 @@ exactamente la propiedad por la que D-2 existe.
 `FP-260921-GEN2-TUBERIA-SUCESOR-1-6e60-01` **FIRMADA** ·
 nota: `forense/notas/2026-09-21-GEN2-TUBERIA-SUCESOR-1-cierre.md` ·
 suite `--baseline` en **LÍNEA BASE VERDE**.
+
+---
+
+## ENMIENDA FECHADA AL `## NO-CORRIDO / RESERVAS` — 21/sep/2026, mismo acto
+
+**`P4 · El careo, archivado y re-acuñado` pasa de `PARO-PREMISA` a EJECUTADA.** No se reescribe
+la fila de arriba (A.10: un asiento no se edita, se enmienda con fecha); se declara aquí qué
+cambió y por qué.
+
+**Qué cambió:** mesa mandó el expediente cuando el acto ya había declarado su ausencia. **Los
+cinco sha256 coincidieron 5 de 5** con los que esta cabecera declara (`6bdb7758` · `817f7cd2` ·
+`b882985e` · `69ed1ed6` · `ed2676e6`), verificados al abrir. P4 se ejecutó **en el mismo acto**,
+con las cinco correcciones obligatorias del encargo cumplidas: ids re-acuñados con la raíz nueva
+(los del expediente estaban tomados — `NC-0423`–`NC-0426` por `GEN2-RELEVO-RECONCILIA-1`, `FP-402`
+por otro acto: **la colisión que D-2 cierra, ocurrida sobre el careo que la diagnosticó**); la fila
+`FP` **nace FIRMADA** con D-1/D-2 verbatim; la reserva de la guarda de salto de línea **nace
+CERRADA por producto**; las otras tres nacen abiertas, con la diferencia de 2 en el conteo de
+filas `FP` declarada **error de dirección**; `T02` y `T25` prevenidos. **El parche no se usó.**
+
+**Estado de las filas tras la enmienda:**
+
+| fila | estado |
+|---|---|
+| `NC-…-6e60-03` (P4) | **CERRADA** — `SUSTITUIDO-POR` este mismo acto, con lo que absorbe enumerado y **nada huérfano** |
+| `NC-…-6e60-05` (tercer esquema `C`) | ABIERTA — el careo lo entrega como candidato sin cotizar |
+| `NC-…-6e60-06` (guarda de salto de línea) | **CERRADA por producto** — `T46`, cableada en CI y ejercida por mutación |
+| `NC-…-6e60-07` (censo de consumidores de **orden**) | ABIERTA — el careo censó formato, no orden |
+| `NC-…-6e60-08` (la diferencia de 2 en filas `FP`) | ABIERTA — **error de dirección**, registro del error, no trabajo |
+| `FP-…-6e60-02` (adjudicación del esquema) | **FIRMADA** — veredicto **B′**, D-1/D-2 verbatim |
+
+**Lo que sigue sin correrse, sin cambios:** `NC-…-6e60-01` (`digesto_tramite.py`),
+`NC-…-6e60-02` (chequeo 0.c de `acto.md`) y `NC-…-6e60-04` (recetas de máximo), las tres
+`FUERA-DE-PERÍMETRO` y de dirección; más el PR, que no se fusiona desde el acto.
+
+**Defecto de proceso propio, asentado en `forense/hallazgos.md`:** el ejecutor declaró la
+ausencia del expediente y **no lo pidió**. Declarar era correcto y no era PARO, pero pedir cuesta
+una línea y habría entregado P4 en el primer turno. **Ante un adjunto ausente, se declara Y se
+pide en el mismo turno.**
