@@ -44,3 +44,11 @@ Propio: CALC nuevo y spec · módulo agregador nuevo en `tools/` y su test · ta
 
 ## 10 · NO HACE · SUCESORES · AUDITORÍA · CIERRE
 No pinea · no corre LLM · no juzga si el LLM «sabe» de México. Sucesores: firma de mesa sobre los pines de L · el paquete L del lote ENIF usa este módulo. Auditoría: lo que un LLM contesta sobre México es, en buena parte, el sesgo de su corpus —clase media urbana, fuentes en inglés, muestras de diáspora—: el acto mide qué dijo, no si tiene razón; el duelo nacional es RETROSPECTIVO para el LLM y así se rotula toda cifra que salga de aquí. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| Firma de mesa sobre qué de los 28 slots (18 sin reserva, resto con reserva de cobertura) queda pineable | `DECISION-DE-MESA-PENDIENTE` | Ningún slot de L se pinea todavía; el pin lo firma mesa, no este acto (PARO (b)) | Sucesor citado en el encargo: «firma de mesa sobre los pines de L» |
+| Consumo del módulo `tools/agrega_l_v1_0.py` por el lote ENIF 2024 y los duelos ENVIPE/ENIGH | `DIFERIDO-A:lote-ENIF-2024` | Ninguno hoy: el módulo queda importable y probado, sin consumidor activo todavía (WARN `RESULT-SIN-CONSUMIDOR`/`CALC-SIN-CONSUMIDOR-ACTIVO`, D-16, no adjudica) | `DIFERIDO-A:GEN2-DIN-LOTE-ENIF2024-A` (rama ya en vuelo, `acto/gen2-din-lote-enif2024-a`) — usa el módulo al sellar sus capturas L |
+| Re-lectura de los 9 slots «rehecho con diferencia» (`P6-los-9-L-con-diferencia-v1_0.md`) a la luz de este CALC | `FUERA-DE-PERÍMETRO` de este acto: el análisis original es de `GEN2-RELEVO-TANDA-3`, no de éste | Ninguno inmediato: la tabla de diferencias completa (28 slots) ya vive en `RESULT-LDESC-DIFERENCIAS-VS-GEN1-JSON` y en `lista-pineables-v1_0.md` §3, así que la re-lectura queda disponible aunque nadie reescriba el análisis original | `SIN-ASIGNAR` |
