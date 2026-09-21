@@ -1,0 +1,46 @@
+# ENCARGO · ACTO GEN2-ARBITRO-MARGINALES-1 · LA REALIDAD DE LA OLA NUEVA SE MIDE EN GEN2, EJE POR EJE, EN ENIF 2024, ENVIPE 2025 Y ENCIG 2025 — Y 57 PISOS QUE HOY NO TIENEN CONTRA QUÉ COMPARARSE PASAN A TENERLO
+
+> ENTORNO: **CAJA** (corpus montado: abre microdato de tres encuestas). Si el hook no dice CAJA, PARA en una línea. `data/raw` ausente en worktree nuevo: se enlaza. NO es NUBE.
+
+CABECERA · SHA de redacción `55c8d57c`; re-deriva al abrir · una sola sesión, rama `acto/gen2-arbitro-marginales-1` · MODELO: Opus (mide) · MODO: **ABIERTO** hasta cada COMMIT-1; desde ahí el procedimiento de esa pieza es RÍGIDO · LOTE (D-11): tres piezas afines, un entorno, un PR; una pieza que PARA no tumba las otras · CONTADOR: sella hasta tres corridas; `cuenta_gen2 = SI` (§2); `adoptados_activos` no se mueve; `celdas_validadas` y las filas `SOLO-PISO` del marcador, antes y después · FP/ADR/NC: raíz de acto.
+**Si al fusionar `main` choca la línea L0 de `canon/estado-programa-v1_14.md`: NO conserves los dos lados; toma la de `main` y re-inserta solo tu anotación** (27 MB por duplicaciones; TUBERÍA la repara). Si `canon/L0/` ya existe al cerrar, tu anotación va ahí.
+
+## 1 · OBJETIVO
+El «árbitro» —la realidad contra la que se califica todo pronóstico— vive hoy en `milpa/tramite-ola5-propuesta-v0.yaml`: 53 reglas medidas en GEN1. Consecuencia medida: en el marcador, **57 celdas marginales están `SOLO-PISO`** —tienen su pronóstico de persistencia sellado en GEN2 y nada contra qué compararlo, porque «el árbitro no vio el microdato»— y las 53 marginales que sí cuentan como validadas se apoyan en un número GEN1. Mesa firmó re-medir el árbitro como demanda (3D, 21/sep); nadie lo tomó. Este acto mide, desde microdato y con cadena completa, **los marginales por eje de la ola más reciente** de las tres encuestas donde ya hay piso. Es por **una sola variable de agrupación**: no toca ningún cruce reservado.
+«Hecho» significa, por pieza: spec congelada antes de abrir el dato (COMMIT-1) · corrida sellada por `corrida0 run` (COMMIT-2) · cada marginal con punto e IC95 · error de la persistencia por celda **y cobertura del IC del piso** (R dentro del IC del piso) · vista, replay y marcador re-derivados · una nota que diga, por encuesta, cuánto erró la persistencia y dónde.
+
+## 2 · FIRMAS DE MESA — verbatim
+3D (21/sep, cuaderno de mesa; `[LEÍDO: forense/encargos/2026-09-21-GEN2-TRAMITE-FIRMAS-3-PROPAGACION.md:19,61]`): «insumo-árbitro no impide contar (caso por caso) — «rec: a + b como demanda»», con la razón escrita: «el insumo legacy es el árbitro, leído como control y como rejilla, no como fuente de la cifra». La mitad (b) —re-medir el árbitro en GEN2, como demanda— es la que este acto ejecuta. Segunda mitad de 3D, que aquí aplica: «cuando no existe módulo guardián para una ola reservada, la guardia de una sola variable puede vivir en el medidor, con la misma semántica que el guardián, auditoría automática del código antes de abrir el dato, y prueba por mutación» (`:63`). Piso adjudicado (17/sep): «Un piso no vencido es el estimador adjudicado de su celda y se adopta salvo veto de mesa.» Reservas vivas: los cruces `RESERVADA` del marcador (ENIF 2024 ×14, ENVIPE 2025 ×4, ENCIG 2025 ×2, ENUT 2024 ×1); «La sección de crédito de ENIF 2024 queda RESERVADA desde hoy» (20/sep); ENVIPE 2026 entera (21/sep). D-22 ampliada (21/sep): «Congelado exige: `preflight` VERDE sobre el commit final con main fusionado; que `_valida_outputs` acepte la salida de cada rama terminal del procedimiento, incluida la de celda rara, sobre sintético y sobre oro; que todo id que el código pueda emitir nulo por lectura estática esté declarado; y ningún input con hash sobre un archivo vivo.»
+**Propuesta de dirección — el lanzamiento es el sello:** «Las corridas de GEN2-ARBITRO-MARGINALES-1 cuentan (`cuenta_gen2 = SI`), sea cual sea el error que le encuentren a la persistencia: miden la realidad desde microdato con cadena completa.»
+
+## 3 · LO QUE DIRECCIÓN SABE (contra `55c8d57c`, sin corpus)
+- `[EJECUTADO sobre data/corrida0/marcador-segmento.tsv]` filas marginales `SOLO-PISO`: ENIF 2024 · 32 — ENVIPE 2025 · 13 + 2 — ENCIG 2025 · 10. Total 57 (el tablero derivado dice lo mismo). Filas `IDENTICO` (el emisor copió al árbitro; no cuentan): 89.
+- `[EJECUTADO]` el YAML del árbitro: 53 reglas; por payload: `enif_2024_enif_2024_bd_csv` 5 · `envipe2025_csv` 4 · `encig25_base_datos_csv` 4 · el resto de otras encuestas, fuera de este acto.
+- `[EXISTE]` los pisos sellados de la ola anterior, con su spec y su medidor: `CALC-PISOS-ENIF2021-EJES-0003` (174 RESULT declarados) y `…-FORMALIDAD-0001` · `CALC-PISOS-ENVIPE2024-EJES-0002` · `CALC-PISOS-ENCIG2023-EJES-0002`; specs `forense/prereg-caja/PISOS-*-ejes-spec-v2_*.md`. **El procedimiento de la ola nueva es el mismo que el del piso, apuntado a la ola nueva**: misma rejilla, misma conducta, mismo remuestreo. Donde el nemónico cambió entre olas se resuelve por texto de pregunta (A.15); el antecedente está en la spec del piloto 1 (§0: tres tropiezos 2021→2024).
+- `[EJECUTADO: ls data/corrida0, ~150 CALC]` de la ola nueva solo existen `CALC-C2-COMPUESTO-IC-ENIF2024-0001` y `…-ENVIPE2025-0001`, y los CALC de los pilotos (que midieron marginales de **un** par cada uno: ENIF 2024 localidad y edad; ENVIPE 2025 escolaridad y dominio; ENCIG 2025 luz por edad y escolaridad, 9 marginales sellados hoy). **Lo que ya esté medido y sellado se cita, no se re-mide**; tu oro es reproducirlo.
+- `[LEÍDO: C2-COMPUESTO-RESERVADAS-spec-v1_0.md:129-132]` `formalidad` en ENIF vive en el universo de quien trabaja: su marginal se mide **en ese universo** y se rotula así.
+
+## 4 · YA HECHO
+Por objeto («árbitro», «marginales 2024/2025», «SOLO-PISO», «ola nueva») en encargos, `prereg-caja`, `data/corrida0/` y ramas remotas (1 viva, de TUBERÍA): la demanda está firmada; no hay acto que la ejecute. **Repítela tú, con tu acceso al corpus.**
+
+## 5 · PIEZAS — una por encuesta; mismo molde
+**P-ENIF · ENIF 2024, conductas de ahorro.** **P-ENVIPE · ENVIPE 2025.** **P-ENCIG · ENCIG 2025.** Para cada una:
+1. **COMMIT-1, sin abrir la ola:** spec humana con sidecar (universo, unidad y escala en la primera línea; rejilla y conductas **leídas del piso sellado**, no tecleadas; qué celdas del marcador debe cubrir, por id) + `spec.yaml` + medidor con guardia de **una sola variable de agrupación**. «Congelado» es D-22 ampliada, demostrada: el mismo punto de entrada, corrido sobre la ola **anterior**, reproduce el piso sellado dentro de la tolerancia del tipo; `_valida_outputs` acepta cada rama terminal, eje con categoría vacía incluida; nulos y no finitos enumerados.
+2. **COMMIT-2:** `corrida0 run`; sella; vista y replay (E.7).
+3. **Adjudicación de la persistencia**, como aritmética entre sellados: por celda, |piso − R| en pp y si R cae dentro del IC95 del piso; por encuesta, error medio y cobertura con su intervalo binomial. Rotulada PROSPECTIVA: el piso se selló antes de que GEN2 midiera R.
+Al cierre del lote: marcador re-derivado; cuántas `SOLO-PISO` pasaron a evaluadas; qué celdas del YAML GEN1 **discrepan** de lo medido ahora y por cuánto (es un hallazgo sobre GEN1, no se corrige el YAML).
+
+## 6 · LATITUD
+Decides tú: un CALC por encuesta o por familia de conductas · qué reutilizas del medidor del piso · orden de las piezas. Replantea y sigue ante main movido, ids renombrados, o una celda del marcador que resulte no construible en la ola nueva: `NO-CONSTRUIBLE` con el texto de la pregunta buscada y las secciones del descriptor recorridas. Pregunta a mesa, siguiendo con lo demás: si el medidor del piso no reproduce su propio sello sobre la ola anterior.
+
+## 7 · PAROS — lista cerrada
+a) agrupar por **dos** variables cualquier ola con cruces `RESERVADA` (ENIF 2024, ENVIPE 2025, ENCIG 2025) · b) abrir la sección de **crédito** de ENIF 2024, en marginal o en cruce · c) abrir o listar `envipe2026*` · d) editar un piso sellado, una spec sellada o el YAML del árbitro · e) cambiar un procedimiento después de su COMMIT-1 · f) `corrida0 run` no sella → no se parcha: diagnóstico exacto · g) adoptar · h) entorno equivocado.
+
+## 8 · COMPUERTAS
+«COMMIT-1 de la pieza en `origin` con su oro en verde» protege: **abrir dato**. Ninguna más.
+
+## 9 · PERÍMETRO
+Propio: los CALC nuevos y sus specs · filas propias en `corridas.tsv`, `resultados.tsv`, `replay-evidencia.tsv` · marcador y tablero por comando · tests propios cableados en CI · nota · cascada. Ajeno: pisos y pilotos sellados · `milpa/` · celdas-D · `tools/corrida0.py`. Si te encuentras escribiendo fuera de esta lista, PARA.
+
+## 10 · NO HACE · SUCESORES · AUDITORÍA · CIERRE
+No corrige el YAML GEN1 · no mide cruces · no toca ENUT, EDER, ENCUCI ni las demás reglas del árbitro (sucesor: `ARBITRO-MARGINALES-2`, con lo que este acto enseñe). Sucesor de dirección: leer la cobertura de la persistencia con n grande — hoy es 10 de 20. Auditoría (afirma sobre México): que un marginal persista no dice que la conducta sea rasgo: puede persistir la oferta, el ingreso o la regla; ENCIG ya mostró 0 de 10 marginales persistentes con un salto de nivel que ningún eje explica: se reporta por eje y no se promedia entre encuestas de unidad distinta (persona, delito, trámite). `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
