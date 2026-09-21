@@ -42,8 +42,14 @@ Las cuatro guardas de `valida_pin` son esa regla EN CODIGO. Son lo RIGIDO de
 este modulo: ninguna se relaja por conveniencia de un pin concreto.
 
   (a) SELLO      el CALC citado esta `SELLADA`/`SUPERADO`, `cuenta_gen2 = SI`
-                 y su replay dice `REPRODUCE`. Un CALC sin sellar, envuelto
-                 legacy, o que no reproduce, no acredita nada.
+                 y su replay ACREDITA. Un CALC sin sellar, envuelto legacy, o
+                 que no reproduce, no acredita nada. Desde TANDA-4 (P1) el
+                 replay se lee POR EJE: la via (i) exige `REPRODUCE` estricto
+                 (contexto incluido); las vias (ii) y (iii) exigen que el eje
+                 RESULTADO sea afirmativo -- `REPRODUCE` o
+                 `REPLICA-RESULTADO · CONTEXTO-DISTINTO` -- y el CONTEXTO se
+                 declara en la `nota` del pin. `NO-REPRODUCE*` y
+                 `NO-EJECUTABLE` quedan fuera por las tres vias.
   (b) CRUDO      `via = i-CRUDO` exige al menos un input `origen: manifiesto`
                  (microdato del corpus) o un manifiesto de capturas selladas.
                  Un CALC que solo lee el repo no produce una cifra desde
@@ -58,7 +64,11 @@ este modulo: ninguna se relaja por conveniencia de un pin concreto.
                  corrida. `RESULT-TRIADA-*-M` es el caso testigo --
                  `CALC-TRIADA-0001` toma los 14 valores M de
                  `snapshot-M-triada-v1_0.json`, y por 4.1 eso no cuenta
-                 NUNCA, tenga hash o no.
+                 NUNCA, tenga hash o no. La UNICA excepcion es la clase
+                 (iii) `iii-DERIVADO-DE-GEN2` (firma 7bf5-02, 21/sep/2026),
+                 y solo bajo las cuatro condiciones de `_valida_derivado`:
+                 un padre unico, sellado, que cuenta, con replay afirmativo,
+                 y que no ingiere a su vez. Ingerir GEN1 sigue sin contar.
 
 La llave logica
 ===============
@@ -83,9 +93,24 @@ COLUMNAS = ["llave_logica", "result_gen2", "calc_gen2", "via", "firma", "nota"]
 
 VIA_CRUDO = "i-CRUDO"
 VIA_CONDUCTA = "ii-CONDUCTA-GEN2"
-VIAS = (VIA_CRUDO, VIA_CONDUCTA)
+# ACTO GEN2-RELEVO-TANDA-4 · P3. Tercera clase, firma de direccion 7bf5-02
+# bajo el mandato de mesa del 21/sep/2026: «Un derivado determinista de un
+# RESULT GEN2 releva en clase propia, `iii-DERIVADO-DE-GEN2`, que el contador
+# muestra sin fundir con (i) y (ii). La clase exige que TODO lo ingerido sea
+# RESULT de un CALC sellado, que cuenta y cuyo replay es afirmativo en
+# RESULTADO; un derivado de un derivado no entra. "Ingerir un numero GEN1 no
+# cuenta nunca" queda intacto.»
+VIA_DERIVADO = "iii-DERIVADO-DE-GEN2"
+VIAS = (VIA_CRUDO, VIA_CONDUCTA, VIA_DERIVADO)
 
 ACEPTADO = "ACEPTADO"
+
+# Separador del eje RESULTADO dentro del veredicto compuesto de `verify`
+# (`corrida0.verify`: `<RESULTADO> · CONTEXTO-DISTINTO`). El primer token es
+# el eje RESULTADO; el resto habla del CONTEXTO.
+_SEP_EJES = " · "
+
+_PREFIJO_DE_ARBOL_CORRIDA0 = "data/corrida0/"
 
 # Prefijos de llave logica, por ARCHIVO consumidor. La version se recorta del
 # nombre del archivo, no del contenido: `marco-M-sorteado-v1_3.tsv` y un
@@ -234,6 +259,60 @@ def _ingiere(spec: dict) -> str:
     return ""
 
 
+def vocabulario_replay() -> frozenset[str]:
+    """Los veredictos de replay que CONCLUYEN sobre la reproducibilidad.
+
+    Se IMPORTA de `corrida0` (tarde, para no cerrar el ciclo: `corrida0` ya
+    importa este modulo). No se teclea aqui una segunda copia: una lista a
+    mano y el vocabulario real se separan sin que nadie lo note, que es el
+    defecto de procedencia que §2 prohibe.
+    """
+    import corrida0  # noqa: PLC0415  -- tardio a proposito (ciclo)
+    return frozenset(corrida0.VEREDICTOS_CONCLUYENTES)
+
+
+def veredictos_afirmativos_en_resultado(vocabulario=None) -> frozenset[str]:
+    """Los veredictos cuyo EJE RESULTADO dice que el numero salio igual.
+
+    Regla, no lista: el eje RESULTADO es el PRIMER token del veredicto
+    compuesto, y `NO-` lo niega. Del vocabulario real
+    (`REPRODUCE` · `NO-REPRODUCE` · `REPLICA-RESULTADO · CONTEXTO-DISTINTO` ·
+    `NO-REPRODUCE · CONTEXTO-DISTINTO`) quedan los dos primeros afirmativos.
+    `NO-EJECUTABLE` y `NO-VERIFICABLE` no estan en el vocabulario concluyente
+    -- son limitacion de la sesion, no hallazgo sobre el numero (E.3) -- y por
+    eso NO son afirmativos por la via corta: no entran al conjunto.
+    """
+    if vocabulario is None:
+        vocabulario = vocabulario_replay()
+    return frozenset(
+        v for v in vocabulario
+        if not str(v).split(_SEP_EJES)[0].strip().startswith("NO-"))
+
+
+def _calcs_ingeridos(spec: dict) -> tuple[set[str], list[str]]:
+    """`(CALCs cuyo arbol se ingiere, inputs que NO vienen de un CALC)`.
+
+    Un input bajo `data/corrida0/<CALC>/…` es un numero que otra corrida ya
+    produjo. Todo lo demas -- un TSV de GEN1, un snapshot, un microdato --
+    cae en la segunda lista y la clase (iii) lo rechaza: la firma exige que
+    TODO lo ingerido sea del padre.
+    """
+    calcs: set[str] = set()
+    ajenos: list[str] = []
+    for entrada in (spec.get("inputs") or []):
+        if not isinstance(entrada, dict):
+            continue
+        ruta = str(entrada.get("ruta") or "")
+        if ruta.startswith(_PREFIJO_DE_ARBOL_CORRIDA0):
+            resto = ruta[len(_PREFIJO_DE_ARBOL_CORRIDA0):]
+            calc, _, cola = resto.partition("/")
+            if calc and cola:
+                calcs.add(calc)
+                continue
+        ajenos.append(ruta or str(entrada.get("id") or "SIN-RUTA"))
+    return calcs, ajenos
+
+
 def _tiene_crudo(spec: dict) -> bool:
     """Un insumo CRUDO con hash: microdato del manifiesto, o un manifiesto de
     capturas selladas. `origen: repo` a secas no lo es."""
@@ -246,6 +325,71 @@ def _tiene_crudo(spec: dict) -> bool:
         if "manifiesto-capturas" in ruta.rsplit("/", 1)[-1]:
             return True
     return False
+
+
+def _valida_derivado(llave: str, calc: str, spec: dict, corridas: dict,
+                     specs: dict) -> tuple[str, str]:
+    """Las CUATRO condiciones de la firma 7bf5-02 para la clase (iii).
+
+    Es la unica puerta por la que un CALC que INGIERE releva algo, y por eso
+    es la mas estrecha de las tres:
+
+      1. TODO lo ingerido viene de UN solo CALC -- el padre. Cualquier input
+         que no viva bajo `data/corrida0/<padre>/` (un TSV de GEN1, un
+         snapshot, un microdato) tumba el pin: «Ingerir un numero GEN1 no
+         cuenta nunca» (4.1) sigue intacto.
+      2. Ese padre esta SELLADA/SUPERADO en el registro.
+      3. Ese padre `cuenta_gen2 = SI`.
+      4. El replay del padre es afirmativo en el eje RESULTADO.
+
+    Y, ademas, el padre NO puede ingerir a su vez: un derivado de un derivado
+    no entra (la firma lo dice literal). Sin esta ultima comprobacion la
+    cadena se alarga sin limite y la distancia al crudo deja de ser auditable
+    en un solo salto.
+    """
+    ingeridos, ajenos = _calcs_ingeridos(spec)
+    if ajenos:
+        return ("RECHAZADO-DERIVADO-INGIERE-AJENO",
+                f"{llave}: {calc} ingiere insumos que no son del padre "
+                f"({', '.join(sorted(ajenos))}); la clase (iii) exige que "
+                f"TODO lo ingerido sea RESULT de un CALC GEN2 -- 4.1: "
+                f"«Ingerir un numero GEN1 como insumo, con hash o sin el, no "
+                f"cuenta nunca»")
+    if len(ingeridos) != 1:
+        return ("RECHAZADO-DERIVADO-SIN-PADRE-UNICO",
+                f"{llave}: {calc} ingiere de {sorted(ingeridos) or 'nada'}; "
+                f"la clase (iii) exige EXACTAMENTE un padre")
+    padre = next(iter(ingeridos))
+
+    p = corridas.get(padre)
+    if p is None:
+        return ("RECHAZADO-DERIVADO-PADRE-INEXISTENTE",
+                f"{llave}: el padre {padre} de {calc} no esta en el registro")
+    if not str(p.get("estado", "")).startswith(("SELLADA", "SUPERADO")):
+        return ("RECHAZADO-DERIVADO-PADRE-NO-SELLADA",
+                f"{llave}: el padre {padre} esta {p.get('estado')!r}; la "
+                f"clase (iii) exige un padre SELLADA")
+    if str(p.get("cuenta_gen2", "")) != "SI":
+        return ("RECHAZADO-DERIVADO-PADRE-NO-CUENTA-GEN2",
+                f"{llave}: el padre {padre} declara cuenta_gen2="
+                f"{p.get('cuenta_gen2')!r}; la clase (iii) exige SI -- un "
+                f"derivado no puede acreditar mas que su padre")
+    replay_padre = str(p.get("resultado_replay", ""))
+    if replay_padre not in veredictos_afirmativos_en_resultado():
+        return ("RECHAZADO-DERIVADO-PADRE-NO-REPRODUCE",
+                f"{llave}: el replay del padre {padre} dice {replay_padre!r},"
+                f" que no es afirmativo en el eje RESULTADO")
+
+    spec_padre = specs.get(padre) or {}
+    abuelos, _ = _calcs_ingeridos(spec_padre)
+    razon_padre = _ingiere(spec_padre)
+    if abuelos or razon_padre:
+        detalle = (f"ingiere a su vez de {sorted(abuelos)}" if abuelos
+                   else razon_padre)
+        return ("RECHAZADO-DERIVADO-DE-DERIVADO",
+                f"{llave}: el padre {padre} {detalle}; la firma 7bf5-02 dice "
+                f"literal que «un derivado de un derivado no entra»")
+    return (ACEPTADO, "")
 
 
 def valida_pin(fila: dict, corridas: dict, specs: dict,
@@ -265,8 +409,9 @@ def valida_pin(fila: dict, corridas: dict, specs: dict,
 
     if via not in VIAS:
         return ("RECHAZADO-VIA-DESCONOCIDA",
-                f"{llave}: via={via!r} no es una de {VIAS} (4.1 declara DOS "
-                f"vias y ninguna tercera)")
+                f"{llave}: via={via!r} no es una de {VIAS} (las vias son "
+                f"lista cerrada: las dos de 4.1 mas la clase (iii) que la "
+                f"firma 7bf5-02 abrio; una cuarta se firma, no se infiere)")
     if not firma.strip():
         return ("RECHAZADO-SIN-FIRMA",
                 f"{llave}: el canal es de FIRMA DE MESA; una fila sin "
@@ -284,15 +429,35 @@ def valida_pin(fila: dict, corridas: dict, specs: dict,
         return ("RECHAZADO-CALC-NO-CUENTA-GEN2",
                 f"{llave}: {calc} declara cuenta_gen2="
                 f"{c.get('cuenta_gen2')!r}; guarda (a) exige SI")
-    if not str(c.get("resultado_replay", "")).startswith("REPRODUCE"):
+    # Guarda (a), eje RESULTADO (ACTO GEN2-RELEVO-TANDA-4 · P1). La via (i)
+    # NO se relaja: sigue exigiendo `REPRODUCE` estricto, contexto incluido.
+    # Las vias (ii) y (iii) leen el EJE RESULTADO y declaran el CONTEXTO en
+    # la `nota` del pin (firma de direccion 7bf5-01): un cambio de contexto
+    # ajeno a la lectura -- otro commit en una herramienta del arbol -- no es
+    # un hallazgo sobre el numero, y dejar fuera un sello cuyo resultado
+    # replica era el defecto. `NO-REPRODUCE*` y `NO-EJECUTABLE` siguen fuera
+    # por las dos vias.
+    replay = str(c.get("resultado_replay", ""))
+    if via == VIA_CRUDO:
+        if not replay.startswith("REPRODUCE"):
+            return ("RECHAZADO-CALC-NO-REPRODUCE",
+                    f"{llave}: el replay de {calc} dice {replay!r}; la via "
+                    f"(i) exige REPRODUCE estricto y no se relaja")
+    elif replay not in veredictos_afirmativos_en_resultado():
         return ("RECHAZADO-CALC-NO-REPRODUCE",
-                f"{llave}: el replay de {calc} dice "
-                f"{c.get('resultado_replay')!r}; guarda (a) exige REPRODUCE")
+                f"{llave}: el replay de {calc} dice {replay!r}, que no es "
+                f"afirmativo en el eje RESULTADO "
+                f"({sorted(veredictos_afirmativos_en_resultado())}); guarda "
+                f"(a) exige que el numero haya vuelto a salir igual")
     if result not in set(c.get("resultados_ids") or ()):
         return ("RECHAZADO-RESULT-AJENO-AL-CALC",
                 f"{llave}: {result} no es un resultado de {calc}")
 
     spec = specs.get(calc) or {}
+
+    if via == VIA_DERIVADO:
+        return _valida_derivado(llave, calc, spec, corridas, specs)
+
     razon_ingestion = _ingiere(spec)
     if razon_ingestion:
         return ("RECHAZADO-RESULT-INGERIDO",

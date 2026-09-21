@@ -60,4 +60,4 @@ Corrido entero lo demás: P0, P1 (COMMIT-2 sellado y en `origin`), P2 (sin nulos
 
 ## CONSUMIDO
 
-Ejecutado por `ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_3`, **PR #961** (`acto/gen2-celda-d-piloto-3-commit-2-3-v1_3`, 21/sep/2026, CAJA, sesión `953594cb`), ADR-591. Sello de cuerpo del 0-bis intacto (`7d82e141…`). Mesa fusiona.
+Ejecutado por `ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_3`, **PR #961** (`acto/gen2-celda-d-piloto-3-commit-2-3-v1_3`, 21/sep/2026, CAJA, sesión `953594cb`), ADR-592. Sello de cuerpo del 0-bis intacto (`7d82e141…`). Mesa fusiona.
