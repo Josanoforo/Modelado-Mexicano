@@ -84,3 +84,17 @@ No re-sella ningún otro encargo · no extiende el verificador a los 261 · no a
 Sucesores, en el orden de mesa: (3) `RES`/`CORR` con llave lógica sin ruta ni versión; (4) un archivo por entrada; (5) taxonomía de PR y regla de enrutamiento. Y las semillas PARA-v2.16 que este acto asienta, para la próxima versión de instrucciones.
 10 · FALSADOR (§9)
 Si en tres meses el verificador no ha emitido un solo FAIL ni un solo WARN, se anota y se revisa si valía el aparato. Si el WARN de D-a5 salta en más de uno de cada diez encargos nuevos, la frase de D-a6 no se está cumpliendo y se revisa `/acto`, no el verificador.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué** — `P-h · Huérfano dentro del universo. El sello del insumo codex en `forense/notas/insumos-externos/pisos-enif2021-0002-rama-codex/` cita un `sello.json` que no está junto a él. El verificador lo declara huérfano; el acto lo asienta como hallazgo. No se toca.`
+  **por qué** — `FUERA-DE-PERÍMETRO` — es del acto que vuelva a recibir o re-sellar el insumo `pisos-enif2021-0002` de la rama codex. El propio encargo lo ordena («No se toca») y es un insumo EXTERNO: editarle el sidecar es reescribir evidencia ajena. Medido aquí, además: el hermano `pisos-enif2021-0002-codex-2026-09-20-sello.json` tiene exactamente el sha256 declarado (`96fd07bc…`), así que lo roto es la CITA, no el payload.
+  **impacto** — ningún contador. El payload está verificado y en su sitio; lo que no se mueve es la cita: cualquier verificador futuro que le tome la palabra al sidecar seguirá leyendo `HUÉRFANO` y depende de la declaración de testigo en `tools/verifica_sidecars.py` para no adjudicar. Si esa declaración se pierde, el FAIL reaparece.
+  **sucesor** — `SIN-ASIGNAR` — el acto que re-reciba o re-selle el insumo codex `pisos-enif2021-0002`.
+  Fila: `NC-260921-GEN2-TUBERIA-SIDECAR-CUERPO-1-3d08-01`.
+
+- **qué** — `P-g · Adendas sin rastro — en la nota de cierre, la tabla de actos del 19 al 21/sep que corrieron bajo una adenda que el repo no guarda, con los datos de §3. Nada se archiva retroactivamente. La diferencia entre las seis reportadas y las cuatro nombrables se declara, no se estima.` **La tabla SÍ se entregó** (nota de cierre, §3); lo que no se corrió es la recuperación del TEXTO de dos de esas adendas.
+  **por qué** — `NO-VERIFICABLE-AQUÍ` — el texto de las adendas de `GEN2-CELDA-D-PILOTO-3-P0` (`4d4131df`, `352c7aed`) y `GEN2-LIMPIEZA-RAMAS-LOCALES-3` (`2802e63b`, `adbdb3c0`) nunca llegó al árbol y no se deriva del mensaje de commit sin inventarlo (§2, regla de oro). La firma «Semillas sin ejecutar» ordena que no se archiven retroactivamente. Sólo mesa tiene el texto.
+  **impacto** — ningún contador. Queda escrito qué actos corrieron bajo un texto que el repo no guarda: dos actos cuyo encargo archivado no es el texto completo bajo el que se ejecutaron. La regla firmada hoy (adenda = archivo propio, sellada al recibirse) lo impide hacia adelante; hacia atrás sólo se cierra si mesa aporta el texto.
+  **sucesor** — `SIN-ASIGNAR` — sólo se cierra si mesa aporta el texto de esas dos adendas.
+  Fila: `NC-260921-GEN2-TUBERIA-SIDECAR-CUERPO-1-3d08-02`.
