@@ -108,7 +108,7 @@ decisión. El veredicto de cada una quedó asentado en la columna
 `verificado_por_producto_en_senal_1` del TSV, para que el siguiente acto no repita el
 trabajo ni confíe en el heurístico.
 
-### Cerradas: 2. `no_corrido_abiertas` **157 → 155 → 159**. Los dos tramos son de naturaleza distinta y no se colapsan: **−2 por los dos cierres verificados por producto** (NC-0379, NC-0390), que es el único movimiento que el encargo autoriza; **+4 por los asientos que A.14 obliga** (NC-0423..NC-0426), que no son deuda nueva descubierta sino las reservas de este mismo acto puestas por escrito. El neto sube, y se declara: el encargo previó que la cifra sólo bajara, y no contempló que cerrar un acto con reservas la suba por regla. **No es PARO** (la lista cerrada del §7 veda que cambien los otros contadores, y A.14 no es opcional); se declara para que mesa decida si quiere que el contador distinga asiento de deuda.
+### Cerradas: 2. `no_corrido_abiertas` **157 → 155 → 159**. Los dos tramos son de naturaleza distinta y no se colapsan: **−2 por los dos cierres verificados por producto** (NC-0379, NC-0390), que es el único movimiento que el encargo autoriza; **+4 por los asientos que A.14 obliga** (NC-0429..NC-0432), que no son deuda nueva descubierta sino las reservas de este mismo acto puestas por escrito. El neto sube, y se declara: el encargo previó que la cifra sólo bajara, y no contempló que cerrar un acto con reservas la suba por regla. **No es PARO** (la lista cerrada del §7 veda que cambien los otros contadores, y A.14 no es opcional); se declara para que mesa decida si quiere que el contador distinga asiento de deuda.
 
 Una por una, con evidencia por producto escrita en `cerrado_por`. Nunca en bloque, nunca
 por el hecho de que un PR fusionó.
@@ -177,7 +177,7 @@ motor no estaba roto, **el archivo se contradecía**.
 
 Este artefacto afirma sobre el **programa**, y roza México en una línea.
 
-- **¿Cuántos contadores movió este trabajo?** Uno: `no_corrido_abiertas` **157 → 155 → 159**. Los dos tramos son de naturaleza distinta y no se colapsan: **−2 por los dos cierres verificados por producto** (NC-0379, NC-0390), que es el único movimiento que el encargo autoriza; **+4 por los asientos que A.14 obliga** (NC-0423..NC-0426), que no son deuda nueva descubierta sino las reservas de este mismo acto puestas por escrito. El neto sube, y se declara: el encargo previó que la cifra sólo bajara, y no contempló que cerrar un acto con reservas la suba por regla. **No es PARO** (la lista cerrada del §7 veda que cambien los otros contadores, y A.14 no es opcional); se declara para que mesa decida si quiere que el contador distinga asiento de deuda. Los tres vedados **no se movieron**, verificado por
+- **¿Cuántos contadores movió este trabajo?** Uno: `no_corrido_abiertas` **157 → 155 → 159**. Los dos tramos son de naturaleza distinta y no se colapsan: **−2 por los dos cierres verificados por producto** (NC-0379, NC-0390), que es el único movimiento que el encargo autoriza; **+4 por los asientos que A.14 obliga** (NC-0429..NC-0432), que no son deuda nueva descubierta sino las reservas de este mismo acto puestas por escrito. El neto sube, y se declara: el encargo previó que la cifra sólo bajara, y no contempló que cerrar un acto con reservas la suba por regla. **No es PARO** (la lista cerrada del §7 veda que cambien los otros contadores, y A.14 no es opcional); se declara para que mesa decida si quiere que el contador distinga asiento de deuda. Los tres vedados **no se movieron**, verificado por
   comando al cerrar: `N_corridas_selladas` 102, `adoptados_activos` 57,
   `dependencias_numericas_legacy_activas` 173. `cuenta_gen2 = NO`: no mide, no adopta.
 - **¿En qué escala está cada cantidad y contra qué se compara?** Todo error en **pp**. La
@@ -231,7 +231,7 @@ casa ya usa en las otras veinte líneas iguales del mismo archivo (mecanismo de
 `ACTO T16-HISTÓRICAS`). Defecto adyacente de menos de diez líneas que impedía cerrar: D-21
 autoriza arreglarlo y declararlo.
 
-**Firma abierta por este acto (A.12): FP-402** — añadir `numpy` a `requirements.txt`. Nace
+**Firma abierta por este acto (A.12): FP-403** — añadir `numpy` a `requirements.txt`. Nace
 ABIERTA con el hecho medido aquí, la recomendación del ejecutor y lo que **no** se
 recomienda (cerrar NC-0381 sin la dependencia sería un cierre falso).
 
