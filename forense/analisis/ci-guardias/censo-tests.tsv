@@ -23,6 +23,7 @@ tests/test_celdas_validadas.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado e
 tests/test_censo_derivado.py	script	NO	(ninguna)	NO	0.4	FALLA-DE-VERDAD	· censo-estimabilidad-coeficientes-v1_2.md en disco no coincide con lo que el derivador produce ahora mismo -- fue editado a mano o quedó desactualizado; regenerar con `tools/censo_estimabilidad.py --write`
 tests/test_check_parallel.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_cierre_acto.py	script	NO	(ninguna)	NO	0.0	FALLA-DE-VERDAD	FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpusixr72s/canon/estado-programa-v1_14.md'
+tests/test_clasifica_pr.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_cola_writer.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_compara_sha.py	script	NO	manifiesto	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_consulta_gen2.py	modulo	NO	(ninguna)	NO	39.5	FALLA-DE-VERDAD	AssertionError: 1 != 0 : FALLA respuestas distintas: /home/user/Modelado-Mexicano/forense/ejemplos/GEN2-AHORRO-ALCANCE-MENOR/respuestas-ahorro-alcance-menor.json
@@ -136,3 +137,6 @@ tests/test_wbes2023_descriptiva.py	script	NO	pandas	NO	0.1	NECESITA-DEPENDENCIA(
 tests/test_wbes2023_precision.py	script	NO	pandas	SI	0.1	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
 tests/test_wbes2023_precision_interacciones.py	script	NO	pandas	NO	0.0	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
 tests/test_ya_medido.py	modulo	NO	(ninguna)	NO	1.1	CORRE-EN-CI	exit 0 con -m tests.test_ya_medido (invocacion de script fallaba)
+tests/test_arbitro_marginales.py	pytest	NO	numpy,pytest,yaml	SI	40.0	NECESITA-DEPENDENCIA(pytest)	como test_piloto3_v13_conducto.py: pytest + corpus opcional (oro sobre la ola anterior se salta sin corpus); fila propia de ACTO GEN2-ARBITRO-MARGINALES-1
+tests/test_duelo_prospectivo.py	pytest	NO	numpy,pytest,yaml	NO	2.1	NECESITA-DEPENDENCIA(pytest)	como test_piloto3_v13_conducto.py: pytest + numpy; zips fabricados, sin corpus; corre en CAJA y se salta en CI hasta FP-398 (a); fila propia de ACTO GEN2-DUELO-ENVIPE2026-COMMIT-1
+tests/test_validacion_independiente_pilotos.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus; guardia de GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-v1_0 (ACTO GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1)

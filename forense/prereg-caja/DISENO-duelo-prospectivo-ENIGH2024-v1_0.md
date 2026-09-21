@@ -348,3 +348,48 @@ en nube y no abrió ninguno.
 | `DISENO-...-ENVIPE2026` NO-ENCONTRADO | `forense/prereg-caja/`, 56 archivos | `ls forense/prereg-caja/` |
 
 Ninguna cifra esperada está tecleada; ninguna sale del espejo del proyecto.
+
+---
+
+## 12 · Enmienda fechada — 21/sep/2026, al fusionar `main = c441c9d`
+
+**No se reescribe nada de arriba** (A.10): se anota lo que cambió bajo los pies del documento.
+
+**El molde apareció.** Al redactar este diseño (contra `main = fc13cdc`),
+`DISENO-duelo-prospectivo-ENVIPE2026-v1_0.md` estaba **NO-ENCONTRADO** en
+`forense/prereg-caja/` — universo declarado: 56 archivos, `ls`, y por eso §0 dice que se tomó
+en su lugar el texto de la firma F7. Ese negativo era cierto y **queda VENCIDO EN ALCANCE**:
+PR #968 (`ACTO GEN2-DUELO-ENVIPE2026-COMMIT-1`) lo archivó después, y hoy `origin/main` trae
+`DISENO-duelo-prospectivo-ENVIPE2026-v1_0.md`, su `enmienda-v1_1.md` y
+`DUELO-PROSPECTIVO-ENVIPE2026-spec-v1_0.md` (206 archivos en el directorio). Se reactiva por
+re-lectura, no editando el texto viejo.
+
+**Leído el molde real, este diseño no cambia — lo confirma en los dos puntos que importaban:**
+
+1. **La regla de entrada es la misma, y el molde la escribe verbatim:** «Un estimando entra al
+   duelo solo si tiene R sellado por ola en al menos tres olas y un universo idéntico a lo
+   largo de ellas.» Es la que §2 aplicó.
+2. **El trato de lo no construible es el mismo.** El molde, sobre `evade_norma`: «T5 y TC =
+   NO-CONSTRUIBLE por serie insuficiente, y así se asientan. **No se sustituyen por T3, no se
+   rellenan, no se omiten del marcador.**» Es exactamente lo que §3 y §4.3 hacen con el nivel
+   de cruce de ENIGH. La decisión de declararlo en vez de simularlo no era una lectura
+   arriesgada de la firma F7: es la regla de la casa, ya escrita.
+
+**Dos cosas del molde que este diseño adopta, y que mejoran §5:**
+
+- **El reporte es de tres cifras que no se colapsan**, no una: MAE en **pp**, **cobertura de
+  IC95** (R dentro del IC del candidato) con su intervalo binomial, y el punto dentro del IC de
+  R. §5 pedía error y `dentro_IC`; se añade la cobertura con su binomial. El COMMIT-1 las
+  declara las tres.
+- **La coincidencia entre contendientes se comprueba por comando antes de congelar, no se
+  supone.** El molde lo aprendió en carne propia: para `evade_norma`, la constante del motor y
+  la persistencia t−1 resultaron **el mismo número**, y se emiten una sola vez rotuladas como
+  tal. En este duelo `C-PISO` y `C-MEDIA` **no** pueden coincidir (la serie no es plana), pero
+  **el COMMIT-1 lo comprueba por comando igual**, junto con `C-T2` contra `C-T3`, y lo asienta.
+
+**Lo que sigue siendo distinto, y por qué:** el molde de ENVIPE tiene niveles marginal (`E+`)
+y cruce (`C2`) porque ENVIPE tiene marginales y cruces sellados por ola. ENIGH no los tiene
+(§3), así que esos dos niveles quedan `NO-CONSTRUIBLE` aquí. Unidad: ENVIPE mide en **delito**
+con `FAC_DEL`; ENIGH, en **hogar** con `factor`. **No se comparan entre sí sin función de
+enlace, y en estos dos duelos no hay ninguna: no se mezclan** — ni sus errores, ni sus
+marcadores.
