@@ -16,7 +16,7 @@ import sys
 import unittest
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 
 from agrega_l_v1_0 import agregar_celda, extraer  # noqa: E402
 
