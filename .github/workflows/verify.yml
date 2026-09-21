@@ -240,6 +240,20 @@ jobs:
         # `guardias` no lo cuente como huérfano.
         run: python3 tests/test_celdas_validadas.py
 
+      - name: descargador por id de manifiesto — arnés HTTP local (bloqueante)
+        # ACTO GEN2-NUBE-PILOTO-1-bis (21/sep/2026), perímetro de cierre
+        # permanente (D-21): el COMMIT-1 rescatado de PR #930 congeló el
+        # descargador y su arnés pero no llegó a cablearlo, porque el acto
+        # paró por PARO (e) antes del cierre. Mismo motivo que los pasos de
+        # arriba (NC-0331): `tests/check.py` no auto-descubre
+        # `tests/test_*.py`, y un test que nadie corre es decoración.
+        # Levanta un `http.server` de la stdlib en 127.0.0.1 y corre
+        # `tests/manifiesto.py --descarga` por subproceso, de punta a punta,
+        # con su propio --root y su propio manifiesto sintético: 26 PASS.
+        # Cero red externa, cero microdato, cero escritura en data/raw del
+        # repo. NO toca los dos archivos congelados.
+        run: python3 tests/test_descarga_manifiesto.py
+
   # ACTO GEN2-CI-GUARDIAS-VIVAS-1 (20/sep/2026): 97 de 122 tests/test_*.py
   # no aparecian ni aqui ni en tests/check.py -- nadie los corria. Este job
   # descubre tests/test_*.py por patron, resta los que `suite` y

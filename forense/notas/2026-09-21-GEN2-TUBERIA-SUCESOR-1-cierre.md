@@ -65,7 +65,7 @@ habían caducado en las horas entre su redacción y su ejecución, con `PR #932`
 | `NC` | 0432 | **0435** |
 | `FP` | 403 | **404** |
 
-Consecuencia: el `ADR` de este acto es **`ADR-573`**, no el `ADR-572` que el encargo proponía
+Consecuencia: el `ADR` de este acto es **`ADR-574`**, no el `ADR-572` que el encargo proponía
 como candidato — `ADR-572` ya lo tomó `GEN2-DIN-CREDITO-COMPARABILIDAD-TEXTO-1`. Es
 exactamente la clase de premisa que §0 manda verificar antes de obedecer: logística, no
 estimando, así que se replanteó y se siguió (v2.15).
@@ -95,7 +95,7 @@ corrobora la prueba, no la prosa.
 **Lo que esta enmienda NO hace, y queda declarado en el código para que nadie lo herede al
 revés: NO protege contra la renumeración.** Una renumeración internamente consistente deja el
 registro sin duplicados, sin huecos y sin citas colgantes mientras la prosa sellada re-apunta
-en silencio a otro `ADR`; `T15` sale verde antes y después. `ADR-573` **no afirma lo contrario**.
+en silencio a otro `ADR`; `T15` sale verde antes y después. `ADR-574` **no afirma lo contrario**.
 Quien quiera esa garantía necesita anclar la cita al CONTENIDO del ADR, no a su número, y no
 es este test.
 
