@@ -171,3 +171,7 @@ Si el código admite la adjudicación con la ola 2023 como R, se valida también
 | `NC-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_3-5870-03` · Cabecera: «Congela la sesion de #944»: congelo una sesion NUEVA (165ce648), no la de #944: el operador lanzo el encargo en esta sesion. F3 se cumple igual (no corrio el medidor sobre 2025, no abrio la ola, no leyo disenos A/B ni careo; quien congela no ejecuta). Premisa logistica, objetivo alcanzable: se siguio y se declara | DECISIÓN-DE-MESA-PENDIENTE: si mesa exigia literalmente la sesion de #944, que lo diga al fusionar; la salida no depende de que sesion tecleo | ninguno | MESA -- al fusionar el PR de este acto |
 
 Corrido entero: P1 (292 + 174 declaraciones), P2, P3 (ocho caminos, incluida la adjudicación con oro 2023 como R), P4, P5 (en CAJA), P6. `## CONSUMIDO` se añade en el commit siguiente con el número real del PR.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_3`, **PR #958** (`acto/gen2-celda-d-piloto-3-commit-1-v1_3`, 21/sep/2026, CAJA, sesión `165ce648`), ADR-589. Sello de cuerpo del 0-bis intacto (`684d0213…`). Mesa fusiona.
