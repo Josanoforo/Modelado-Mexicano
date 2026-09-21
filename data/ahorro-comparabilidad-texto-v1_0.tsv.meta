@@ -1,0 +1,98 @@
+# `data/ahorro-comparabilidad-texto-v1_0.tsv` — sidecar
+
+**Acto.** `ACTO GEN2-DIN-LOTE-ENIF2024-A`, 21/sep/2026, entorno NUBE (`milpa-inegi`),
+rama `acto/gen2-din-lote-enif2024-a`. Pieza P1 del encargo
+`forense/encargos/2026-09-21-GEN2-DIN-LOTE-ENIF2024-A.md`.
+
+**Qué es.** Comparabilidad **por texto de pregunta** (A.15) de los dos componentes
+del desenlace `ahorra_solo_informal` y de los seis ejes del lote, en las cinco olas
+de ENIF con microdato y descriptor manifestados. **Gobierna la recodificación; no es
+un resultado.** Ningún número de este archivo sale de microdato: **cero bytes de
+microdato abiertos en el acto que la produjo.**
+
+**Universo y mecanismo (A.4).** 10 payloads del manifiesto, bajados con
+`python3 tests/manifiesto.py --descarga --id <id>` y verificados por sha256 contra
+`data/manifiesto.yaml` — **10/10 `DESCARGADO-AHORA`**, ninguno discordante:
+
+| ola | descriptor de archivo | cuestionario |
+|---|---|---|
+| 2012 | `fd_enif2012.xlsx` `sha256/16=f03d8e7c82f511e7` (1 594 filas de catálogo) | `enif_2012_cuestionario.pdf` `sha256/16=b7fc1f4a2363a609` (1 733 líneas de texto) |
+| 2015 | `enif_2015_fd.xlsx` `sha256/16=8233cf53f5904966` (1 886 filas) | `enif_2015_cuestionario.pdf` `sha256/16=10688412391ecd5e` |
+| 2018 | `enif_2018_fd.xlsx` `sha256/16=dd8d5c92a7a03150` (1 237 filas) | `enif_2018_cuestionario.pdf` `sha256/16=cda9a0283a39514e` |
+| 2021 | `enif_2021_fd_pdf.zip` `sha256/16(zip)=6f4e3aab705ddb69` → `enif_2021_estructura_del_archivo.xlsx` (1 539 filas) | `enif_2021_cuestionario.pdf` `sha256/16=2fe495a58f2eae73` |
+| 2024 | `enif_2024_fd.xlsx` `sha256/16=17e2ad86ce9e4fd5` (1 673 filas) | `enif_2024_cuestionario.pdf` `sha256/16=32e37cc13da38691` |
+
+Los `.xlsx` se leyeron con `openpyxl` hoja por hoja, **todas las hojas completas**;
+los `.pdf` con `pdfminer.six`. El conteo de filas y líneas examinadas está en la
+tabla de arriba y en la columna `secciones_fd_recorridas` de cada fila (A.13: un
+negativo que no declara cuántos archivos y cuántas filas examinó no es un negativo).
+
+**Forma.** 19 columnas, **40 filas = 8 objetos × 5 olas**, sin duplicados ni huecos.
+
+| objeto | qué es |
+|---|---|
+| `D-INF` | desenlace, componente 1: ahorró o guardó por alguna vía **informal** |
+| `D-FOR` | desenlace, componente 2: guardó o ahorró en alguna de las nueve vías **formales** |
+| `E-SEX` · `E-EDA` · `E-ESC` · `E-LOC` · `E-FOR` · `E-CTA` | los seis ejes: sexo, edad, escolaridad, localidad, formalidad, cuenta_formal |
+
+**Ola ancla: 2021** (columna `comparado_con`), por ser la ola histórica del piloto 1
+y la que define el desenlace vigente en
+`forense/prereg-caja/DIN-ahorro-solo-informal-lxe8-spec-v1_2.md` §2.2.
+
+**Vocabulario de veredictos — lista cerrada, la misma que la tabla de crédito:**
+`MISMO-INSTRUMENTO` · `CAMBIO-MENOR` · `CAMBIO-DE-INSTRUMENTO` · `NO-ESTIMABLE` ·
+`NO-VERIFICABLE-AQUÍ`.
+
+**Conteo derivado de la tabla** (`cut -f5 | sort | uniq -c`):
+
+```
+MISMO-INSTRUMENTO      21
+CAMBIO-MENOR           11
+CAMBIO-DE-INSTRUMENTO   8
+NO-ESTIMABLE            0
+NO-VERIFICABLE-AQUÍ     0
+```
+
+**Cero `NO-VERIFICABLE-AQUÍ`, y eso es un hecho sobre el corpus, no sobre el método.**
+La tabla de crédito (`data/credito-comparabilidad-texto-v1_0.tsv`, 20/sep) cerró con
+16 filas `NO-VERIFICABLE-AQUÍ` porque los cuestionarios de 2012 y 2015 no estaban en
+el corpus. Entraron el 21/sep (PR #960). Esta tabla es la primera que los usa.
+
+**Trampas que la tabla deja escritas, para que nadie las redescubra midiendo:**
+
+1. **El nemónico se desplaza y la pregunta no.** `P5_7_k` (2021) ↔ `P5_6_k` (2024)
+   para «guardó o ahorró en su cuenta»; `EDAD` (2021) ↔ `EDAD_V` (2024);
+   `P3_1_1` (módulo 2021) ↔ `NIV` (módulo 2024); `P3_10` (2021) ↔ `P3_11` (2018)
+   ↔ `P3_13` (2024); `TLOC` (2015-2024) ↔ `TL` (2012).
+   Un negativo por nombre de variable sería falso en los cinco casos (A.15).
+2. **El catálogo de escolaridad de 2024 NO es el de 2021.** Los códigos 04 y 05 están
+   **intercambiados** (Normal básica ↔ Estudios técnicos con secundaria) y el 09
+   («Maestría o doctorado» en 2012-2021) se parte en **09 Especialidad · 10 Maestría ·
+   11 Doctorado**. Recodificar por número de código produce cifras falsas: el mapa
+   se hace **por etiqueta**. Hallazgo de este acto.
+3. **El catálogo de formalidad de 2024 tiene siete posiciones y el de 2021 seis.**
+   «de otra institución» pasa de 5 a 6 y el «carece» de 6 a 7.
+4. **La batería informal de 2015 está en otro orden.** Mapa por texto 2015→2021:
+   1→3, 2→4, 3→6, 4→5, 5→1, 6→2. Emparejar por posición repetiría el defecto que
+   tumbó la corrida `CALC-PISOS-ENIF2021-EJES-0002`.
+5. **En 2012 los dos componentes del desenlace tienen ventanas de referencia
+   distintas**: informal «de febrero a la fecha» (~3 meses), formal «de abril de 2011
+   a la fecha» (~12 meses). `informal ∧ ¬formal` mezclaría dos periodos.
+6. **La población base de 2012, 2015 y 2018 es 18 a 70 años**, no 18 y más. Aplica a
+   **todas** las filas de esas olas, no sólo a `E-EDA`. A-bis 4: un estimando
+   restringido a una subpoblación no se compara contra uno poblacional sin
+   recalcular al mismo universo o declararlo acotado.
+7. **El ponderador de 2021 es `FAC_ELE`**; en 2012, 2015, 2018 y 2024 es `FAC_PER`.
+   `FAC_PER` **no existe** en 2021 (ya en la spec v1_2 §0.3; esta tabla lo confirma
+   contra el FD del zip).
+8. **El gate de tenencia es la estructura, no un defecto.** `5.4 → 5.6/5.7` por
+   posición: sin la cuenta `k` no hay pregunta de ahorro en `k`. Confirmado por el
+   flujo del cuestionario en 2021 y 2024 — que es lo que este acto sí podía leer.
+
+**Verificador.** `tests/test_ahorro_comparabilidad_texto.py` — seis pruebas sobre un
+caso sintético **antes** de mirar la tabla real (D-22) y cuatro sobre la tabla real.
+Cableado bloqueante en `.github/workflows/verify.yml`.
+
+**Lo que esta tabla NO dice.** No dice qué olas se van a usar: eso es P2 y vive en
+`forense/notas/2026-09-21-lote-enif2024-comparabilidad-y-R2.md`. No dice nada sobre
+magnitudes: no se abrió microdato. No adjudica ninguna celda.
