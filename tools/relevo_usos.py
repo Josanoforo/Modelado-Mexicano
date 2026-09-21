@@ -109,6 +109,11 @@ import re
 import sys
 from pathlib import Path
 
+# ACTO GEN2-DIN-CREDITO-PISOS-ENIF2021-1 (PR #943): `resultados_ids` de una corrida con
+# 2 939 RESULT mide 209 856 bytes y revienta el tope de 131 072 del modulo csv.
+# El tope es del lector, no del dato: se sube antes de leer cualquier vista.
+csv.field_size_limit(sys.maxsize)
+
 import yaml
 
 RAIZ = Path(__file__).resolve().parent.parent

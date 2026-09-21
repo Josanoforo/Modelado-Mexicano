@@ -31,6 +31,16 @@ comprueba que algo falla no distingue una guarda de un `assert False`.
          archivo bien terminado, la misma fusión sale limpia. Esto prueba
          que la guarda vigila un defecto real y no un fantasma.
 
+  D · T47, ids únicos en los registros donde este acto acuña:
+      D0 control: los registros reales del repo pasan.
+      D1 huecos y las dos épocas conviviendo NO fallan (sólo unicidad).
+      D2 EL DEFECTO REAL DEL 21/sep/2026: `FP-406` duplicado con contenido
+         contradictorio -> FALLA. Lo produjo el propio merge de este acto
+         (conservar ambos lados de una fila que `main` MODIFICÓ en vez de
+         apendicar) y lo cazó una persona, no la suite.
+      D3 id `NC` duplicado -> FALLA.
+      D4 cero registros examinados no es un negativo (A.13).
+
   C · La gramática de id `FP`, dos épocas (firma D-2):
       C1 acepta la época vieja (`FP-###`, espacio CERRADO).
       C2 acepta la época nueva (`FP-<AAMMDD>-<RÓTULO>-<hhhh>-<NN>`).
@@ -309,11 +319,68 @@ def caso_C4():
        t2 != NPC.T_FIRMA, f"{t2} · {d2}")
 
 
+# ─────────────────────────────────────────────────────────────────────
+# D · T47, ids únicos en los registros
+# ─────────────────────────────────────────────────────────────────────
+def _t47(tmp):
+    m = _carga_check()
+    m.ROOT = tmp
+    m.t47_ids_unicos()
+    return [f for f in m.FAILS if f[0] == "T47"]
+
+
+def _arbol_registros(tmp, nc_filas, fp_filas):
+    os.makedirs(os.path.join(tmp, "forense"), exist_ok=True)
+    with open(os.path.join(tmp, "forense", "no-corrido.tsv"), "w", encoding="utf-8") as f:
+        f.write("id\tfecha\n" + "".join(l + "\n" for l in nc_filas))
+    with open(os.path.join(tmp, "forense", "firmas-pendientes.tsv"), "w", encoding="utf-8") as f:
+        f.write("id\tqué_se_firma\n" + "".join(l + "\n" for l in fp_filas))
+
+
+def caso_D():
+    print("D · T47, ids únicos en no-corrido.tsv y firmas-pendientes.tsv")
+    # D0 · control sobre los registros REALES del repo.
+    f = _t47(ROOT)
+    ok("D0 control: los registros reales pasan", f == [], str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        # Las dos épocas conviven y los huecos son legítimos: no debe fallar.
+        _arbol_registros(tmp,
+                         ["NC-0001\ta", "NC-0007\tb", f"NC-260921-GEN2-X-1-6e60-01\tc"],
+                         ["FP-67\ta", "FP-402\tb", NUEVOS[0] + "\tc"])
+        f = _t47(tmp)
+        ok("D1 huecos y dos épocas conviviendo NO fallan", f == [], str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        # EL DEFECTO REAL DEL 21/sep/2026: FP-406 duplicado con contenido
+        # contradictorio (misma fila salvo el ADR citado, 575 contra 574)
+        # porque el merge conservó ambos lados de una fila que main MODIFICÓ.
+        _arbol_registros(tmp, ["NC-0001\ta"],
+                         ["FP-406\tRETIRADA (... PR #938, ADR-575): ...",
+                          "FP-406\tRETIRADA (... PR #938, ADR-574): ..."])
+        f = _t47(tmp)
+        ok("D2 id FP duplicado con contenido contradictorio FALLA",
+           any("FP-406" in x[1] for x in f), str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_registros(tmp, ["NC-0001\ta", "NC-0001\tb"], ["FP-67\ta"])
+        f = _t47(tmp)
+        ok("D3 id NC duplicado FALLA", any("NC-0001" in x[1] for x in f), str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        # A.13: sin registros que examinar, el veredicto no es un negativo.
+        os.makedirs(os.path.join(tmp, "forense"), exist_ok=True)
+        f = _t47(tmp)
+        ok("D4 cero registros examinados no es un negativo (A.13)",
+           any("A.13" in x[1] or "no se pudo leer" in x[1] for x in f), str(f))
+
+
+
 def main():
     print("═" * 72)
     print("  GEN2-TUBERIA-SUCESOR-1 · guardas por mutación")
     print("═" * 72)
-    caso_A(); caso_B(); caso_B3(); caso_C(); caso_C4()
+    caso_A(); caso_B(); caso_B3(); caso_C(); caso_C4(); caso_D()
     print("─" * 72)
     if FALLAS:
         print(f"  {len(FALLAS)} FALLA(S): " + " · ".join(FALLAS))

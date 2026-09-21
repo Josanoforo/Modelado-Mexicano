@@ -289,9 +289,12 @@ no es verbatim de nadie y reformularlo no falsea nada.
 ## 5-bis · IDS DE ESTE ACTO
 
 - **ADR:** máximo real re-derivado con el comando de la casa contra `origin/main`
-  `a61dd000` → `579`; candidato contiguo **`580`**, que es el que este acto
-  toma. `acto/gen2-celda-d-piloto-3-commit-1-v1_2` (`PR #944`) lo trae
-  redactado también: **renumera quien fusiona segundo**, regla de la casa.
+  `32e23f7a` → `583`; candidato contiguo **`584`**, que es el que este acto
+  toma. **RENUMERADO `580` → `584`**: al primer cierre el máximo era `579`,
+  pero `#942`, `#944` y los correctivos de `#945` fusionaron antes y `580`–`583`
+  quedaron tomados — **renumera quien fusiona segundo**, regla de la casa.
+  **Mesa fijó el orden de merge de este PR DESPUÉS de `PR #944`** (21/sep/2026),
+  así que si ése u otro se lleva `584` primero, este acto vuelve a renumerar.
   **Se intentó primero saltar al `581`** para no disputar el número, dejando el
   hueco declarado — y `T15` lo rechazó con `FAIL`: la cabecera habría citado
   uno más de los ADR únicos que hay. La enmienda de `ADR-577` **acepta huecos

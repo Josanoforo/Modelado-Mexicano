@@ -104,6 +104,20 @@ jobs:
       - name: svystat.py — validación independiente (bloqueante)
         run: python3 tests/test_svystat.py
 
+      - name: sidecars de forense/encargos y forense/notas — sello de cuerpo (bloqueante)
+        # ACTO GEN2-TUBERIA-SIDECAR-CUERPO-1 (21/sep/2026), firma D-a4.
+        # Dos pasos, no uno: el test cubre la regla por mutación sobre
+        # fixtures, el verificador la corre sobre el árbol real. Sin él, un
+        # `.cuerpo.sha256` roto no lo vería nadie hasta el próximo careo —
+        # que es exactamente cómo #932 llegó a tener un sidecar que fallaba
+        # durante un día entero. `tests/check.py` no auto-descubre
+        # `tests/test_*.py`, así que el test va cableado a mano como los
+        # demás. Stdlib puro: sin red, sin corpus, y el verificador nunca
+        # escribe.
+        run: |
+          python3 tests/test_verifica_sidecars.py
+          python3 tools/verifica_sidecars.py
+
       - name: emite_m — resolver de ola_calibracion por conducta (bloqueante)
         # ACTO MAESTRA38-M13 · M-POR-CELDA v1.3, §5 ("PRUEBA PERMANENTE
         # JUSTIFICADA"). El defecto que cubre es material: si

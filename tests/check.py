@@ -2069,6 +2069,24 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # las frases pendientes pertenecen a la firma histórica, no abren fila nueva.
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md",
     "canon/estado-programa-v1_14.md",
+    # ACTO GEN2-SENAL-1 (21/sep/2026), encargo archivado verbatim (A.3) y su
+    # nota de cierre. Disparan `_T22_MARCADOR_PENDIENTE` por el patron
+    # `requiere_decision.*true`, y lo disparan por NARRACION del cierre, no
+    # por una ranura nueva: la pieza P3 de ese acto es justamente la que pasa
+    # `requiere_decision_mesa: true -> false` en las dos celdas-D que toca, y
+    # el encargo y la nota lo dicen citando el token viejo. Verificado por
+    # estado (A.17) al exentarlos, no heredado de su prosa:
+    #   grep -rn "requiere_decision_mesa" data/curacion-registro/celdas-d/*.yaml
+    # -> `DIN.ahorro_solo_informal…:160` y `TRA.evade_norma…:125` dicen
+    #    `false`; el unico `true` vivo es `GOB.gobierno_digital…:63`, que cita
+    #    su `FP-39x` y no es de este acto. Y el acto SI tiene su fila en
+    #    `forense/firmas-pendientes.tsv` (1 acierto por rotulo).
+    # Es decir: no falta ninguna fila del tablero; falta que el marcador
+    # distinga la cita del uso, que es el limite ya declarado de (b). Exento
+    # por ACTO GEN2-TUBERIA-SUCESOR-1 · CORRECTIVO POST-MERGE (ADR-580), que
+    # se topo con estos dos FAIL en main al traerlos a su rama.
+    "forense/encargos/2026-09-21-GEN2-SENAL-1.md",
+    "forense/notas/2026-09-21-GEN2-SENAL-1-cierre.md",
 }
 
 def _t22_tabla():
@@ -2964,6 +2982,19 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-TUBERIA-SIDECAR-CUERPO-1, 21/sep/2026. Una sola mencion y
+    # una sola causa: el encargo CITA POR NOMBRE cuatro encargos reales
+    # que tienen mas de una linea `## NO-CORRIDO` -- `PRE-E5`,
+    # `BANXICO-PRODUCTO-ATRASO-Y-COSTO`, `CHECADOR-2` y `E3-1-1`. El
+    # `E3` pelado que el regex ve sale de `E3-1-1`, que es el rotulo
+    # completo de un encargo ajeno ya archivado
+    # (`forense/encargos/2026-09-08-GEN2-E3-1-1-CABLEADO-FINAL-RUNNER.md`),
+    # no un rotulo que ESTE acto acune. El espacio `E3` ya esta censado en
+    # `canon/registro-rotulos.tsv` por su acto original, y este no lo
+    # reclama ni colisiona con el. Ademas: un encargo verbatim (A.3) nunca
+    # se edita para complacer al test. El rotulo propio de este acto,
+    # `T · GEN2-TUBERIA-SIDECAR-CUERPO-1`, SI va censado.
+    "forense/encargos/2026-09-21-GEN2-TUBERIA-SIDECAR-CUERPO-1.md",
     # ACTO GEN2-C2-COMPUESTO-RESERVADAS-1, 19/sep/2026: `E1`..`E4` y
     # `L1`/`L2` son las CLAVES DE CELDA de los marginales sellados del par
     # `localidad x edad` de ENIF, tal como
@@ -7695,6 +7726,86 @@ def t46_union_newline():
                     f"`merge=union`: el veredicto no es un negativo (A.13)")
 
 
+# ───────────────────────────────────────────────────────────────
+# T47 · T-IDS-UNICOS — ningún id se repite en `forense/no-corrido.tsv`
+#   ni en `forense/firmas-pendientes.tsv`.
+#   (ACTO GEN2-TUBERIA-SUCESOR-1, 21/sep/2026; hueco destapado por el
+#   revisor adversarial del PR de ese mismo acto.)
+#
+#   DEFECTO REAL, OCURRIDO EL DÍA QUE SE ESCRIBIÓ ESTA GUARDA y no
+#   atrapado por nada: al fusionar `origin/main` hacia la rama, el
+#   resolutor de conflictos conservó AMBOS lados de `firmas-pendientes.tsv`
+#   — política correcta para un registro donde las dos ramas APENDICAN, y
+#   equivocada cuando `main` MODIFICÓ una fila ajena en vez de añadirla.
+#   Resultado: `FP-406` duplicado, dos filas de texto idéntico salvo el
+#   `ADR` citado (`575` contra `574`, el candidato intermedio ya superado),
+#   es decir **dos versiones contradictorias del mismo id**. Lo cazó una
+#   persona leyendo la vista previa del merge; la suite salía VERDE.
+#
+#   Lo que le habría costado a un lector: `tools/nc_por_clase.py`,
+#   `tools/digesto_tramite.py` y el tablero leen estos TSV por id; con dos
+#   filas del mismo id, cuál gana depende del orden de lectura, y mesa lee
+#   el estado de una firma que puede ser el viejo. Es la misma clase de
+#   defecto que `T15` ya vigila para `ADR` en `canon/` — este test es esa
+#   aserción aplicada a los dos registros donde el acto de hoy acuña.
+#
+#   Por qué aquí y no en un acto sucesor (D-21): es un defecto adyacente,
+#   de menos de diez líneas, que impedía cerrar el propio acto — el
+#   revisor lo marcó BLOQUEA. Se arregla y se declara.
+#
+#   NO exige contigüidad ni formato: el espacio viejo `NC-####`/`FP-###`
+#   y la raíz de acto nueva conviven a propósito (D-2), y los huecos son
+#   legítimos. Sólo unicidad.
+#
+#   FALSADOR (§9, tres meses — al 21/dic/2026): si no ha fallado ni una vez
+#   en CI, se anota y se revisa. Ya se ganó uno el día de su sello.
+#   Ejercido por mutación en `tests/test_tuberia_ids_union.py` (caso D).
+# ───────────────────────────────────────────────────────────────
+_T47_REGISTROS = (
+    ("forense/no-corrido.tsv", "NC"),
+    ("forense/firmas-pendientes.tsv", "FP"),
+)
+
+
+def ids_duplicados(texto, prefijo):
+    """Ids repetidos en la primera columna de un TSV, en orden de aparición.
+
+    Lee la columna cruda, sin `csv`: estos registros traen campos con saltos
+    embebidos y comillas sin escapar, y el parseo estructurado los junta.
+    El id vive siempre al principio de la línea, así que el prefijo basta y
+    es lo que `check.py:7051` y `corrida0.py` ya usan.
+    """
+    vistos, dup = set(), []
+    for l in texto.split("\n"):
+        if not l.startswith(prefijo + "-"):
+            continue
+        i = l.split("\t")[0].strip()
+        if i in vistos and i not in dup:
+            dup.append(i)
+        vistos.add(i)
+    return sorted(dup), len(vistos)
+
+
+def t47_ids_unicos():
+    examinados = 0
+    for rel_, prefijo in _T47_REGISTROS:
+        p = os.path.join(ROOT, rel_)
+        if not os.path.exists(p):
+            fail("T47", f"no se pudo leer `{rel_}`: el registro de ids no se "
+                        f"verifica contra ningún otro sitio")
+            continue
+        examinados += 1
+        dup, total = ids_duplicados(read(p), prefijo)
+        if dup:
+            fail("T47", f"{rel_}: id(s) repetido(s) sobre {total} únicos: "
+                        f"{dup} -- dos filas del mismo id son dos estados "
+                        f"contradictorios, y cuál gana depende del orden de lectura")
+    # A.13: un negativo de un comando que no examinó archivos no es un negativo.
+    if examinados == 0:
+        fail("T47", f"cero registros examinados de {len(_T47_REGISTROS)}: "
+                    f"el veredicto no es un negativo (A.13)")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -7748,6 +7859,7 @@ def main():
         ("T44 T-ENADID-PRECISION",                      t44_enadid_precision_independiente),
         ("T45 T-LEGACY-DESGLOSE-SUMA",                  t45_legacy_desglose_suma),
         ("T46 T-UNION-NEWLINE",                         t46_union_newline),
+        ("T47 T-IDS-UNICOS",                            t47_ids_unicos),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
