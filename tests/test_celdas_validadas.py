@@ -79,9 +79,13 @@ class TestCeldasValidadas(unittest.TestCase):
         sin enlace = signo y razón), que es lo que el factor 100 rompe."""
         for c in self.cv["clase_1_cruce_vs_R"]:
             self.assertNotIn("estado", c, f"CALC ausente para {c.get('celda_d')}")
-            nombre = ("DIN.ahorro_solo_informal.enif2024.localidad_x_edad.yaml"
-                      if c["celda_d"].startswith("DIN.")
-                      else "TRA.evade_norma.envipe2025.escolaridad_x_dominio.yaml")
+            # El nombre del YAML ES el id de la celda-D. Antes esto era un
+            # if/else DIN-o-TRA que mandaba cualquier tercera celda-D al YAML de
+            # TRA y comparaba su mediana contra un `margen_material` ajeno: el
+            # guardia pasaba, pero sobre la cifra equivocada. Lo destapó la
+            # tercera celda-D (GOB, piloto 3) al entrar a la métrica
+            # (ACTO GEN2-MARCADOR-E-INFORME-1, defecto adyacente D-21).
+            nombre = c["celda_d"] + ".yaml"
             mae = _yaml_margen(nombre)
             med = c["error_mediano_pp"]
             self.assertLess(abs(med - mae), 10.0,

@@ -337,7 +337,15 @@ def _celdas_validadas() -> dict:
     # ESCALA DECLARADA -- DIN emite en PROPORCIÓN y TRA en PUNTOS PORCENTUALES;
     # confundirlas da un factor 100. La escala se verifica contra el
     # `margen_material` sellado del YAML de cada celda-D, no se teclea.
-    cruces = _celdas_d_adjudicadas()
+    # `clase_1_cruce_vs_R` publica SÓLO las celdas-D que cuentan: es un contrato
+    # que ya tiene consumidor (`tests/test_celdas_validadas.py` recorre la lista
+    # y lee `error_mediano_pp` de cada entrada), y una celda-D sin veredicto no
+    # tiene esa clave. Las que NO cuentan no se callan -- salen en
+    # `clase_1_celdas_d_sin_contar` con su motivo, que es lo que §2 pide: un
+    # negativo con universo declarado, no un silencio.
+    todas_las_celdas_d = _celdas_d_adjudicadas()
+    cruces = [c for c in todas_las_celdas_d if c.get("cuenta")]
+    sin_contar = [c for c in todas_las_celdas_d if not c.get("cuenta")]
     for c in cruces:
         inst = [r for r in R if r["celda_id"].startswith(f"CRUCE::{c['celda_d']}::")]
         c["n_adoptadas_en_marcador"] = sum(
@@ -350,7 +358,7 @@ def _celdas_validadas() -> dict:
         c["instrumento"] = inst[0]["instrumento"] if inst else (
             f"celda-D {c['celda_d']} · SIN-FILA-EN-MARCADOR "
             f"(champion_actual={c.get('champion_actual')!r})")
-    n_cruce = sum(c.get("n_celdas") or 0 for c in cruces if c.get("cuenta"))
+    n_cruce = sum(c.get("n_celdas") or 0 for c in cruces)
 
     # ── clase 2 · PERSISTENCIA t-1 vs R (filas con error_piso_pp) ──────────
     ep = [r for r in R if r["error_piso_pp"]]
@@ -416,8 +424,6 @@ def _celdas_validadas() -> dict:
     # promedian entre sí (§4.3) y aquí no se promedia ninguno.
     por_instrumento: dict[str, dict] = {}
     for c in cruces:
-        if not c.get("cuenta"):
-            continue
         k = c.get("instrumento") or "(sin fila en el marcador)"
         por_instrumento.setdefault(k, {"cruce": 0, "marginal": 0})["cruce"] += \
             c["n_celdas"]
@@ -450,6 +456,7 @@ def _celdas_validadas() -> dict:
                     "(firma de mesa 21/sep/2026); este bloque no trae total.",
         },
         "clase_1_cruce_vs_R": cruces,
+        "clase_1_celdas_d_sin_contar": sin_contar,
         "clase_2_persistencia_vs_R": persist,
         "clase_3_duelo_tres_nacional": triada,
         "dominio_dinero": dinero,
