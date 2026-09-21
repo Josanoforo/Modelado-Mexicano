@@ -1,9 +1,9 @@
 archivo	invocador	cableado_hoy	dependencias_faltantes	necesita_corpus_por_codigo	tiempo_seg	veredicto	detalle
-tests/test_adq_cableado.py	script	NO	adq_doctor,check	NO	3.9	FALLA-DE-VERDAD	34 pruebas, 5 fallos
+tests/test_adq_cableado.py	script	NO	adq_doctor,check	NO	4.1	FALLA-DE-VERDAD	34 pruebas, 5 fallos
 tests/test_adq_cierre_verificable.py	script	NO	adq_doctor,adq_handoff,check	SI	0.1	NECESITA-DEPENDENCIA(jsonschema)	ModuleNotFoundError: No module named 'jsonschema'
 tests/test_adq_config.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_adq_continua.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
-tests/test_adq_contrato_fix.py	script	NO	adq_doctor,check,test_adq_cableado	NO	0.5	FALLA-DE-VERDAD	20 pruebas, 12 fallos
+tests/test_adq_contrato_fix.py	script	NO	adq_doctor,check,test_adq_cableado	NO	0.4	FALLA-DE-VERDAD	20 pruebas, 12 fallos
 tests/test_adq_demanda_vigente.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_adq_descubrimiento.py	script	NO	adq_doctor,tsv_crudo	NO	0.1	NECESITA-DEPENDENCIA(jsonschema)	ModuleNotFoundError: No module named 'jsonschema'
 tests/test_adq_doctor.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
@@ -22,10 +22,10 @@ tests/test_celdas_d.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_celdas_validadas.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_censo_derivado.py	script	NO	(ninguna)	NO	0.4	FALLA-DE-VERDAD	· censo-estimabilidad-coeficientes-v1_2.md en disco no coincide con lo que el derivador produce ahora mismo -- fue editado a mano o quedó desactualizado; regenerar con `tools/censo_estimabilidad.py --write`
 tests/test_check_parallel.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
-tests/test_cierre_acto.py	script	NO	(ninguna)	NO	0.0	FALLA-DE-VERDAD	FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmp1jhu0hro/canon/estado-programa-v1_14.md'
+tests/test_cierre_acto.py	script	NO	(ninguna)	NO	0.0	FALLA-DE-VERDAD	FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpwtycljxt/canon/estado-programa-v1_14.md'
 tests/test_cola_writer.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
-tests/test_compara_sha.py	script	NO	manifiesto	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
-tests/test_consulta_gen2.py	modulo	NO	(ninguna)	NO	37.4	FALLA-DE-VERDAD	AssertionError: 1 != 0 : FALLA respuestas distintas: /home/user/Modelado-Mexicano/forense/ejemplos/GEN2-AHORRO-ALCANCE-MENOR/respuestas-ahorro-alcance-menor.json
+tests/test_compara_sha.py	script	NO	manifiesto	SI	0.2	CORRE-EN-CI	exit 0 sin corpus
+tests/test_consulta_gen2.py	modulo	NO	(ninguna)	NO	37.0	FALLA-DE-VERDAD	AssertionError: 1 != 0 : FALLA respuestas distintas: /home/user/Modelado-Mexicano/forense/ejemplos/GEN2-AHORRO-ALCANCE-MENOR/respuestas-ahorro-alcance-menor.json
 tests/test_corpus.py	script	NO	manifiesto	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_corredores_gen2.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_corrida0.py	script	SI	(ninguna)	SI		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
@@ -64,12 +64,12 @@ tests/test_ensafi_estrategias_conjuntas.py	script	NO	(ninguna)	NO	0.1	NECESITA-D
 tests/test_enut2024_distribucion_horas.py	script	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_enut2024_participacion_intensidad.py	script	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_envipe_res0028_u4_derivado.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
-tests/test_envipe_u4_2013_2015.py	script	NO	(ninguna)	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_envipe_u4_2013_2015.py	script	NO	(ninguna)	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_estado_comun.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_estimadores_segmento.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_f5_completa.py	script	NO	(ninguna)	NO	0.4	CORRE-EN-CI	exit 0 sin corpus
 tests/test_f5_documental.py	script	NO	(ninguna)	NO	0.1	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
-tests/test_f5_sin_fugas.py	script	NO	(ninguna)	NO	0.9	CORRE-EN-CI	exit 0 sin corpus
+tests/test_f5_sin_fugas.py	script	NO	(ninguna)	NO	1.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_f6_factibilidad_prepara.py	modulo	NO	(ninguna)	NO	0.3	CORRE-EN-CI	exit 0 con -m tests.test_f6_factibilidad_prepara (invocacion de script fallaba)
 tests/test_fuentes_financieras.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_imor_contexto_temporal.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
@@ -88,7 +88,7 @@ tests/test_mociba_flujo_documental.py	modulo	NO	(ninguna)	NO	0.2	CORRE-EN-CI	exi
 tests/test_motor_clases.py	script	NO	(ninguna)	NO	0.2	CORRE-EN-CI	exit 0 sin corpus
 tests/test_motor_determinismo.py	script	NO	(ninguna)	NO	1.6	CORRE-EN-CI	exit 0 sin corpus
 tests/test_motor_ejecutable.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
-tests/test_motor_gen2_explicito.py	modulo	NO	(ninguna)	NO	22.9	FALLA-DE-VERDAD	AssertionError: 'NO_COVERAGE' != 'EMITE'
+tests/test_motor_gen2_explicito.py	modulo	NO	(ninguna)	NO	22.7	FALLA-DE-VERDAD	AssertionError: 'NO_COVERAGE' != 'EMITE'
 tests/test_motor_holdout.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_motor_matriz.py	script	NO	(ninguna)	NO	0.2	CORRE-EN-CI	exit 0 sin corpus
 tests/test_motor_procedencia.py	script	NO	(ninguna)	NO	0.2	CORRE-EN-CI	exit 0 sin corpus
@@ -99,17 +99,18 @@ tests/test_n34_producto_dano.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado 
 tests/test_perimetro_raices.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_piloto3_guardias.py	script	NO	numpy,pandas	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_piloto3_v11.py	pytest	NO	numpy,pytest	SI	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
+tests/test_pines_mesa.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_pisos_enif2021_formalidad.py	script	NO	(ninguna)	NO	0.4	CORRE-EN-CI	exit 0 sin corpus
 tests/test_pisos_enut2019.py	script	NO	(ninguna)	NO	15.7	CORRE-EN-CI	exit 0 sin corpus
 tests/test_pisos_rejilla.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_pisos_rejilla_datos.py	script	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_prepara_corpus.py	script	NO	(ninguna)	SI	0.6	CORRE-EN-CI	exit 0 sin corpus
-tests/test_reactivos_ciegos_fd.py	modulo	NO	(ninguna)	NO	8.9	CORRE-EN-CI	exit 0 con -m tests.test_reactivos_ciegos_fd (invocacion de script fallaba)
+tests/test_reactivos_ciegos_fd.py	modulo	NO	(ninguna)	NO	9.1	CORRE-EN-CI	exit 0 con -m tests.test_reactivos_ciegos_fd (invocacion de script fallaba)
 tests/test_reactivos_contexto.py	script	NO	openpyxl	NO	0.1	NECESITA-DEPENDENCIA(openpyxl)	ModuleNotFoundError: No module named 'openpyxl'
-tests/test_recupera_reactivos_fd.py	modulo	NO	(ninguna)	NO	1.5	CORRE-EN-CI	exit 0 con -m tests.test_recupera_reactivos_fd (invocacion de script fallaba)
-tests/test_relevo_candidatos_delta.py	script	NO	(ninguna)	NO	7.2	CORRE-EN-CI	exit 0 sin corpus
+tests/test_recupera_reactivos_fd.py	modulo	NO	(ninguna)	NO	1.6	CORRE-EN-CI	exit 0 con -m tests.test_recupera_reactivos_fd (invocacion de script fallaba)
+tests/test_relevo_candidatos_delta.py	script	NO	(ninguna)	NO	7.4	CORRE-EN-CI	exit 0 sin corpus
 tests/test_relevo_encuci_f2.py	script	NO	(ninguna)	NO	40.0	FALLA-DE-VERDAD	TIMEOUT>40s
-tests/test_relevo_remesas_f3.py	script	NO	(ninguna)	NO	13.8	CORRE-EN-CI	exit 0 sin corpus
+tests/test_relevo_remesas_f3.py	script	NO	(ninguna)	NO	7.0	FALLA-DE-VERDAD	AssertionError
 tests/test_runner_l_completa.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_rutas_sin_candidato.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_rutinas.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
