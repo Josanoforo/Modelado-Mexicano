@@ -125,3 +125,23 @@ TSV con universo y conteo declarados, `runs.json`/`jobs.json` crudos de
 sobre GitHub: ningún workflow se relanzó, canceló ni disparó; `tests/`,
 `.github/workflows/`, `.claude/commands/`, `tools/`, `data/` y `milpa/`
 sin tocar.
+
+**Vuelta 2 (`ADENDA-1`, `forense/encargos/2026-09-21-GEN2-TUBERIA-CI-MEDICION-1-ADENDA-1.md`),
+21/sep/2026 — mismo `PR #955`, misma rama.** `main` fusionado (24 commits);
+`ADR` renumerado `587 → 588` (`PR #949`/`ACTO GEN2-TUBERIA-RES-LLAVE-1`
+tomó `587` mientras este PR seguía abierto). Cinco correcciones sobre el
+informe y la lista del barrido: (A2) `p4b_refusiones_por_pr.py` contaba
+re-fusión por mensaje de commit y subcontaba a la mitad — reescrito para
+contar todo commit de dos padres, sale 78.3%/47.0% (confirma el
+antecedente de TUBERÍA); (A3) T16 aparecía como "señal real" con 66
+fallos — medido que las 66 son eco (otro test falla en la misma
+ejecución), cero fallos propios; la recomendación ELIMINAR no cambia, la
+evidencia que la sostiene sí; (A4) 27 de 53 filas de
+`barrido-check-tests.tsv` sin `nacimiento_citas` — completadas contra
+`tests/check.py`, `SIN-DEFECTO-CITADO` donde no hay ninguno; (A5) la
+recomendación de saltar el `check.py` interno de `cierre_acto.py` ahora
+dice "mismo árbol", no "commit reciente"; (A6) dos líneas en el informe
+sobre por qué `runs.json`/`jobs.json` se quedan, y hallazgo
+`PARA-v2.16` sobre archivar encargos adjuntos, no pegados/renderizados.
+`tests/check.py --baseline --parallel` VERDE sobre el árbol fusionado.
+El encargo original y su sello: sin cambios de bytes.
