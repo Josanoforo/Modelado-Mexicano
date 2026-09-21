@@ -143,6 +143,10 @@ COLS_RESULTADOS = [
     "sha256_legacy", "script_legacy", "spec_legacy", "spec_sha_legacy",
     "receta_legacy", "depende_de", "corrida_natural", "estado", "vigencia",
     "validacion_independiente",
+    # ACTO GEN2-TUBERIA-RES-LLAVE-1 (P3): la IDENTIDAD del slot, a la vista.
+    # `resultado_id` es desde hoy un ALIAS estable de esta llave, no la
+    # identidad; quien lea la vista tiene que poder ver las dos.
+    "llave_logica",
 ]
 COLS_CORRIDAS = [
     "corrida_id", "instrumento", "payload_ids", "medidor_o_spec_candidato",
@@ -702,9 +706,168 @@ def _consumidores_theta(crudo_proc, indice_cortes, ambiguas) -> list[dict]:
     return filas
 
 
-def _asigna_ids(filas: list[dict]) -> None:
-    for i, fila in enumerate(filas, start=1):
-        fila["resultado_id"] = f"RES-{i:04d}"
+# ── registro de RES: el numero deja de ser posicional ─────────────────────
+#
+# Firma de mesa 21/sep/2026 (ACTO GEN2-TUBERIA-RES-LLAVE-1, D-r1 A):
+#   «RES se congela como alias estable de la llave logica; asignar numero es
+#   un paso explicito y ningun comando de lectura escribe el registro.»
+#
+# Defecto que atrapa, MEDIDO en la historia de los dos archivos derivados:
+# 135 de 208 llaves logicas han tenido mas de un numero `RES` porque
+# `RES-{i:04d}` era POSICIONAL -- una entrada nueva en `tramite.yaml`, que es
+# la primera familia, corria todas las de abajo (asi nacio `NC-0343`, 37 filas
+# corridas en uno). Una cita sellada que no se puede reescribir queda
+# apuntando en silencio a otro slot.
+#
+# El registro es PERSISTENTE y SOLO-AÑADIR: el estado de una llave es su
+# ULTIMA fila. Nunca se edita ni se borra una fila anterior -- asi la historia
+# de un numero se lee del propio archivo y G1 puede comparar contra la base.
+
+REGISTRO_RES = SALIDA / "registro-res.tsv"
+COLS_REGISTRO_RES = ["llave_logica", "resultado_id", "estado", "fecha",
+                     "commit"]
+REG_VIGENTE = "vigente"
+REG_RETIRADO = "retirado"
+
+_CMD_NUMERA = "python3 tools/corrida0.py numera-res --escribe"
+
+
+class RegistroResIncompleto(SystemExit):
+    """Una LECTURA encontro un slot sin numero. No se numera en silencio."""
+
+
+def lee_registro_res(ruta: Path = None) -> list[dict]:
+    """Las filas del registro, EN ORDEN DE ARCHIVO. Ausente = registro vacio,
+    que no es un error: es el estado de un arbol que aun no lo poblo."""
+    ruta = Path(ruta) if ruta is not None else REGISTRO_RES
+    if not ruta.exists():
+        return []
+    lineas = [l for l in ruta.read_text(encoding="utf-8").splitlines(True)
+              if not l.startswith("#")]
+    filas = list(csv.DictReader(lineas, delimiter="\t"))
+    for i, f in enumerate(filas, start=1):
+        faltan = [c for c in COLS_REGISTRO_RES if not (f.get(c) or "").strip()
+                  and c != "commit"]
+        if faltan:
+            raise SystemExit(
+                f"PARO: {ruta} fila {i} sin columnas {', '.join(faltan)}")
+        if f["estado"] not in (REG_VIGENTE, REG_RETIRADO):
+            raise SystemExit(
+                f"PARO: {ruta} fila {i}: estado {f['estado']!r} no es "
+                f"{REG_VIGENTE!r} ni {REG_RETIRADO!r}")
+    return filas
+
+
+def estado_registro_res(ruta: Path = None) -> tuple[dict, set, dict]:
+    """`(vigentes, numeros_jamas_libres, retiradas)`.
+
+    - `vigentes`     llave_logica -> `RES-####` con estado vigente HOY.
+    - `numeros_...`  TODO numero que el archivo haya mencionado, vigente o
+                     retirado: **un numero retirado no se reusa nunca**, asi
+                     que un pin viejo jamas re-apunta a un slot nuevo.
+    - `retiradas`    llave_logica -> `RES-####` de las llaves ya retiradas.
+    """
+    vigentes: dict[str, str] = {}
+    retiradas: dict[str, str] = {}
+    jamas_libres: set[int] = set()
+    for f in lee_registro_res(ruta):
+        llave, numero, estado = f["llave_logica"], f["resultado_id"], f["estado"]
+        m = re.fullmatch(r"RES-(\d{4,})", numero)
+        if not m:
+            raise SystemExit(
+                f"PARO: {REGISTRO_RES}: {numero!r} no tiene forma RES-####")
+        jamas_libres.add(int(m.group(1)))
+        if estado == REG_VIGENTE:
+            vigentes[llave] = numero
+            retiradas.pop(llave, None)
+        else:
+            retiradas[llave] = numero
+            vigentes.pop(llave, None)
+    return vigentes, jamas_libres, retiradas
+
+
+@lru_cache(maxsize=1)
+def alias_declarados_por_consumidores() -> dict:
+    """`llave VIGENTE -> (llaves VIEJAS que su dueño declara como alias)`.
+
+    El dato NO se duplica en un archivo aparte (D-15): vive en el campo
+    `aliases:` del propio consumidor —`milpa/tramite.yaml`, que
+    `milpa/src/emisor.py` ya lee— y **esa declaracion ES la certificacion de
+    su dueño** (firma de mesa 21/sep/2026). Sin certificacion un nombre nuevo
+    NO hereda numero: el viejo se retira y el nuevo recibe uno propio.
+    """
+    mapa: dict[str, tuple] = {}
+    for regla in cargar_reglas(TRAMITE):
+        for salida in tuple(regla.entonces) + tuple(
+                getattr(regla, "transiciones", ()) or ()):
+            alias = tuple(getattr(salida, "aliases", ()) or ())
+            if not alias:
+                continue
+            nueva = pines_mesa.llave_logica(
+                f"milpa/tramite.yaml:{regla.id}:{salida.conducta}")
+            viejas = tuple(pines_mesa.llave_logica(
+                f"milpa/tramite.yaml:{regla.id}:{a}") for a in alias)
+            mapa[nueva] = tuple(dict.fromkeys(mapa.get(nueva, ()) + viejas))
+    return mapa
+
+
+def _numero_heredado(llave: str, vigentes: dict, retiradas: dict) -> str:
+    """El numero que `llave` hereda de un alias declarado por su dueño, o ""."""
+    for vieja in alias_declarados_por_consumidores().get(llave, ()):
+        numero = vigentes.get(vieja) or retiradas.get(vieja)
+        if numero:
+            return numero
+    return ""
+
+
+def _asigna_ids(filas: list[dict], *, estricto: bool = True,
+                memoria: dict = None) -> None:
+    """LEE el registro y pone `resultado_id` y `llave_logica`. NO ESCRIBE.
+
+    `estricto=True` (todo comando de lectura: `demanda`, `status`, el CI, el
+    test de oro): un slot sin numero **falla en voz alta**, con su nombre y el
+    comando que lo numera. Nunca recibe numero en silencio -- si lo recibiera,
+    una corrida en una rama sucia quemaria numeros que despues nadie tiene.
+
+    `estricto=False` es SOLO para `registro --escribe`, el unico paso que
+    asigna: ahi los slots nuevos toman el siguiente numero libre y `memoria`
+    los conserva entre las tres pasadas de la misma corrida.
+    """
+    if memoria is None:
+        memoria = {}
+    if "vigentes" not in memoria:
+        vig, jamas, ret = estado_registro_res()
+        memoria.update(vigentes=dict(vig), jamas_libres=set(jamas),
+                       retiradas=dict(ret), nuevas={}, heredadas={})
+    vigentes = memoria["vigentes"]
+    faltan: list[str] = []
+    for fila in filas:
+        llave = pines_mesa.llave_logica(fila["consumidor"])
+        fila["llave_logica"] = llave
+        numero = vigentes.get(llave)
+        if numero is None:
+            heredado = _numero_heredado(llave, vigentes, memoria["retiradas"])
+            if heredado:
+                numero = vigentes[llave] = heredado
+                memoria["heredadas"][llave] = heredado
+        if numero is None:
+            if estricto:
+                faltan.append(f"{llave}  ({fila['consumidor']})")
+                continue
+            n = max(memoria["jamas_libres"], default=0) + 1
+            memoria["jamas_libres"].add(n)
+            numero = vigentes[llave] = f"RES-{n:04d}"
+            memoria["nuevas"][llave] = numero
+        fila["resultado_id"] = numero
+    if faltan:
+        raise RegistroResIncompleto(
+            "PARO · REGISTRO-RES-INCOMPLETO: "
+            f"{len(faltan)} slot(s) de la demanda no tienen numero en "
+            f"{REGISTRO_RES.relative_to(RAIZ)}.\n  "
+            + "\n  ".join(sorted(faltan))
+            + f"\nAsignar numero es un paso EXPLICITO (firma de mesa "
+              f"21/sep/2026): correlo con\n    {_CMD_NUMERA}\n"
+              "Ningun comando de lectura escribe el registro.")
 
 
 def _resuelve_dependencias_locales(filas: list[dict]) -> None:
@@ -910,13 +1073,146 @@ def _lee_decisiones() -> dict:
     return {f["objeto"]: f["decision"] for f in _leer_tsv(DECISIONES)}
 
 
-def cmd_demanda(args) -> int:
+def _semilla_numeracion_de_hoy() -> dict:
+    """`llave_logica -> RES-####` LEIDO de `demanda-resultados.tsv` tal como
+    esta en el arbol.
+
+    Es el arranque del registro, y una sola vez: «contenido inicial = la
+    numeracion de hoy» (encargo P2). Se lee del derivado COMMITEADO, no de una
+    re-derivacion, porque es ese archivo el que sostiene hoy los 149 literales
+    `RES`/`CORR` del codigo y las 110 citas de specs selladas. Re-derivar para
+    sembrar seria renumerar justo lo que el acto existe para congelar: en el
+    arbol de este acto la re-derivacion posicional corre 36 ids, porque entro
+    un slot `celda-D` nuevo y el derivado quedo viejo (la deriva de `NC-0343`,
+    en vivo).
+    """
+    ruta = DEMANDA_RESULTADOS
+    if not ruta.exists():
+        return {}
+    lineas = [l for l in ruta.read_text(encoding="utf-8").splitlines(True)
+              if not l.startswith("#")]
+    semilla: dict[str, str] = {}
+    for f in csv.DictReader(lineas, delimiter="\t"):
+        llave = pines_mesa.llave_logica(f["consumidor"])
+        if llave in semilla and semilla[llave] != f["resultado_id"]:
+            raise SystemExit(
+                f"PARO: {llave} aparece con dos numeros en {ruta}")
+        semilla[llave] = f["resultado_id"]
+    return semilla
+
+
+def _commit_actual() -> str:
+    try:
+        return subprocess.run(
+            ["git", "-C", str(RAIZ), "rev-parse", "--short=8", "HEAD"],
+            capture_output=True, text=True, check=True).stdout.strip()
+    except Exception:
+        return "SIN-COMMIT"
+
+
+def cmd_numera_res(args) -> int:
+    """El UNICO codigo que escribe `data/corrida0/registro-res.tsv`.
+
+    Sin `--escribe` es un diagnostico: dice que cambiaria y no toca nada. Con
+    `--escribe` AÑADE filas -- nunca edita ni borra las anteriores: un slot
+    nuevo toma el siguiente numero jamas usado; un renombre con alias
+    declarado por su dueño hereda el numero del viejo y retira el viejo; un
+    nombre que desaparece sin alias se retira y su numero NO se reusa nunca.
+    """
+    memoria: dict = {}
+    semilla = _semilla_numeracion_de_hoy() if not lee_registro_res() else {}
+    if semilla:
+        vig, jamas, ret = estado_registro_res()
+        memoria.update(vigentes=dict(semilla), retiradas=dict(ret),
+                       jamas_libres={int(n[4:]) for n in semilla.values()},
+                       nuevas=dict(semilla), heredadas={})
+        print(f"SEMILLA: {len(semilla)} pares llave->RES leidos de "
+              f"{DEMANDA_RESULTADOS.relative_to(RAIZ)} -- el contenido inicial "
+              f"del registro ES la numeracion de hoy, no una renumeracion")
+    filas, _, _, _ = _construye_filas_demanda(
+        lambda f: _asigna_ids(f, estricto=False, memoria=memoria))
+
+    vigentes_ahora = {f["llave_logica"]: f["resultado_id"] for f in filas}
+    previas, _, _ = estado_registro_res()
+    nuevas = memoria.get("nuevas", {})
+    heredadas = memoria.get("heredadas", {})
+    # Se retira toda llave que estaba vigente y hoy ya no esta en la demanda,
+    # incluidas las que un alias declarado acaba de suceder (biyeccion, G6:
+    # el nombre viejo y el nuevo no pueden quedar vivos a la vez).
+    retiros = sorted(k for k in previas if k not in vigentes_ahora)
+
+    nuevas = {k: v for k, v in nuevas.items() if k not in semilla}
+    print(f"slots_en_la_demanda = {len(filas)}")
+    print(f"llaves_vigentes_en_el_registro = {len(previas)}")
+    print(f"numeros_sembrados_de_la_numeracion_de_hoy = {len(semilla)}")
+    print(f"numeros_nuevos = {len(nuevas)}")
+    print(f"numeros_heredados_por_alias = {len(heredadas)}")
+    print(f"llaves_retiradas = {len(retiros)}")
+    for llave, numero in sorted(nuevas.items()):
+        print(f"  NUEVO     {numero}  {llave}")
+    for llave, numero in sorted(heredadas.items()):
+        print(f"  HEREDADO  {numero}  {llave}  "
+              f"(alias declarado por su consumidor)")
+    for llave in retiros:
+        print(f"  RETIRADO  {previas[llave]}  {llave}")
+
+    if not (semilla or nuevas or heredadas or retiros):
+        print("sin cambios: el registro ya describe la demanda de hoy")
+        return 0
+    if not getattr(args, "escribe", False):
+        print("\nDIAGNOSTICO: nada escrito. Para asignar, `--escribe`.")
+        return 0
+
+    fecha = datetime.date.today().isoformat()
+    commit = _commit_actual()
+    ya = lee_registro_res()
+    filas_nuevas = [{"llave_logica": k, "resultado_id": previas[k],
+                     "estado": REG_RETIRADO, "fecha": fecha, "commit": commit}
+                    for k in retiros]
+    # La semilla se escribe EN ORDEN DE NUMERO, para que el archivo se lea
+    # como lo que es: la numeracion de hoy, congelada.
+    filas_nuevas += [{"llave_logica": k, "resultado_id": n,
+                      "estado": REG_VIGENTE, "fecha": fecha, "commit": commit}
+                     for k, n in sorted(semilla.items(),
+                                        key=lambda kv: kv[1])]
+    filas_nuevas += [{"llave_logica": k, "resultado_id": n,
+                      "estado": REG_VIGENTE, "fecha": fecha, "commit": commit}
+                     for k, n in sorted({**nuevas, **heredadas}.items())]
+    REGISTRO_RES.parent.mkdir(parents=True, exist_ok=True)
+    with REGISTRO_RES.open("w", encoding="utf-8", newline="\n") as fh:
+        fh.write("# REGISTRO DE NUMEROS RES · SOLO-AÑADIR · el estado de una "
+                 "llave es su ULTIMA fila\n")
+        fh.write("# Firma de mesa 21/sep/2026 (D-r1 A): `RES` es un ALIAS "
+                 "ESTABLE de la llave logica.\n")
+        fh.write("# Lo escribe UNICAMENTE `" + _CMD_NUMERA + "`. Ningun "
+                 "comando de lectura lo toca.\n")
+        fh.write("\t".join(COLS_REGISTRO_RES) + "\n")
+        for f in ya + filas_nuevas:
+            fh.write("\t".join(str(f.get(c, "")) for c in COLS_REGISTRO_RES)
+                     + "\n")
+    print(f"\nESCRITO: {REGISTRO_RES.relative_to(RAIZ)} "
+          f"(+{len(filas_nuevas)} filas, {len(ya) + len(filas_nuevas)} total)")
+    return 0
+
+
+def _construye_filas_demanda(asigna=None):
+    """Construye las filas de la demanda y las corridas, y devuelve
+    `(filas, ambiguas, crudo_tramite, crudo_proc)`.
+
+    Se extrajo de `cmd_demanda` (ACTO GEN2-TUBERIA-RES-LLAVE-1) porque el
+    paso explicito `registro --escribe` tiene que recorrer EXACTAMENTE el
+    mismo universo de consumidores que la lectura: si lo reconstruyera aparte,
+    el registro y la vista se separarian sin que nadie lo notara. `asigna` es
+    el unico grado de libertad -- lectura estricta o asignacion explicita.
+    """
+    if asigna is None:
+        asigna = _asigna_ids
     crudo_tramite = _yaml_safe_load(TRAMITE.read_text(encoding="utf-8"))
     crudo_proc = _yaml_safe_load(PROCEDENCIA.read_text(encoding="utf-8"))
     ambiguas: list[str] = []
 
     filas = _consumidores_conductas(crudo_tramite, ambiguas)
-    _asigna_ids(filas)
+    asigna(filas)
     indice_conductas = [(f["resultado_id"], f["consumidor"]) for f in filas]
 
     filas += _consumidores_coeficientes(crudo_proc, ambiguas)
@@ -929,13 +1225,13 @@ def cmd_demanda(args) -> int:
     filas += _consumidores_cortes_pi(ambiguas)
     filas += _consumidores_celdas_d(ambiguas)
     filas += _consumidores_momentos(ambiguas)
-    _asigna_ids(filas)
+    asigna(filas)
     indice_cortes = {
         f["consumidor"].rsplit(":", 1)[1]: f["resultado_id"]
         for f in filas if f["tipo"] == "corte_pi"}
     filas += _consumidores_theta(crudo_proc, indice_cortes, ambiguas)
 
-    _asigna_ids(filas)
+    asigna(filas)
     _resuelve_dependencias_locales(filas)
 
     for fila in filas:
@@ -965,6 +1261,12 @@ def cmd_demanda(args) -> int:
                 fila["clase_legacy"] = f"{ROTULO_SIN_PROCEDENCIA}·{previo}"
 
     _verifica_grafo(filas)
+    return filas, ambiguas, crudo_tramite, crudo_proc
+
+
+def cmd_demanda(args) -> int:
+    filas, ambiguas, crudo_tramite, crudo_proc = _construye_filas_demanda()
+    decisiones = _lee_decisiones()
 
     manifiesto_por_id = {e.get("id"): e for e in
                          _yaml_safe_load((RAIZ / "data" / "manifiesto.yaml")
@@ -4662,6 +4964,19 @@ def construye_parser() -> argparse.ArgumentParser:
     subs = p.add_subparsers(dest="subcomando", required=True)
     d = subs.add_parser("demanda", help="C0-A: deriva que hay que volver a medir")
     d.set_defaults(func=cmd_demanda)
+
+    # ACTO GEN2-TUBERIA-RES-LLAVE-1 · asignar numero es un PASO EXPLICITO
+    # (firma de mesa 21/sep/2026). Sin `--escribe` es diagnostico puro.
+    # El nombre `registro` ya lo tomaba la vista (demanda+oferta -> usos), asi
+    # que este paso se llama `numera-res`: es lo que hace y no se confunde.
+    nr = subs.add_parser(
+        "numera-res",
+        help="asigna numeros RES a los slots nuevos de la demanda (UNICO "
+             "escritor de data/corrida0/registro-res.tsv); sin --escribe solo "
+             "diagnostica")
+    nr.add_argument("--escribe", action="store_true",
+                    help="AÑADE al registro-res; sin esta bandera no toca nada")
+    nr.set_defaults(func=cmd_numera_res)
 
     # GEN2-E3 · AUTOMATIZA-GEN2-1: el nucleo de corrida deja de ser un hueco.
     sc = subs.add_parser("spec-check",

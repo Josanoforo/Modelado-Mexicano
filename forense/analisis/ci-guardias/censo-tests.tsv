@@ -73,6 +73,7 @@ tests/test_f5_documental.py	script	NO	(ninguna)	NO	0.1	NECESITA-DEPENDENCIA(pand
 tests/test_f5_sin_fugas.py	script	NO	(ninguna)	NO	1.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_f6_factibilidad_prepara.py	modulo	NO	(ninguna)	NO	0.3	CORRE-EN-CI	exit 0 con -m tests.test_f6_factibilidad_prepara (invocacion de script fallaba)
 tests/test_fuentes_financieras.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
+tests/test_guardas_res.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_imor_contexto_temporal.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_issp2017_consistencia_apoyo_familiar.py	script	NO	pandas	NO	0.1	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
 tests/test_issp2017_redes_apoyo_cotidiano.py	script	NO	pandas	NO	0.1	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'

@@ -235,6 +235,35 @@ def test_llave_logica_ida_y_vuelta_sobre_el_registro():
         assert not any(t in llave for t in ("v1_3", "v1_2", "v0_1"))
 
 
+def test_los_210_consumidores_de_hoy_se_traducen_sin_excepcion():
+    """Con el espacio `cortes-C1` declarado (D-r3, firma de mesa 21/sep/2026)
+    NO queda ningun consumidor sin llave. Antes quedaban seis --
+    `milpa/src/celdas.py:CORTES_C1:*` --, y eran justo los unicos que habrian
+    seguido con numero posicional cuando `RES` se congelo como alias de la
+    llave (ACTO GEN2-TUBERIA-RES-LLAVE-1).
+    """
+    _, _, _, v = _contexto_real()
+    consumidores = sorted({u["consumidor"] for u in v["usos"]})
+    sin_llave = [c for c in consumidores if not _traducible(c)]
+    assert sin_llave == [], (
+        f"{len(sin_llave)} consumidores sin espacio logico: {sin_llave[:5]}")
+    indice = pines_mesa.indice_llaves(consumidores)
+    assert len(indice) == len(consumidores)
+
+
+def test_espacio_cortes_c1_no_repite_el_nombre_de_la_tabla():
+    """Mesa firmo `cortes-C1::<corte>`, no `cortes-C1::CORTES_C1::<corte>`."""
+    assert pines_mesa.llave_logica(
+        "milpa/src/celdas.py:CORTES_C1:formalidad") == "cortes-C1::formalidad"
+    # La absorcion es solo del token declarado y solo al principio: un campo
+    # que se llame igual mas adentro NO se borra.
+    assert pines_mesa.llave_logica(
+        "milpa/src/celdas.py:CORTES_C1:CORTES_C1") == "cortes-C1::CORTES_C1"
+    # Y no se absorbe en otro espacio.
+    assert pines_mesa.llave_logica(
+        "milpa/tramite.yaml:CORTES_C1:x") == "tramite::CORTES_C1::x"
+
+
 def _traducible(consumidor: str) -> bool:
     try:
         pines_mesa.llave_logica(consumidor)
