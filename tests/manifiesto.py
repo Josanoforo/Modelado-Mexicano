@@ -49,6 +49,19 @@ hueco; con el diseño actual, alguien todavía teclea el sha256 de un
 archivo recién bajado por fuera de este script antes de que --registra
 pueda verificarlo.
 
+--descarga  (ACTO GEN2-NUBE-PILOTO-1, 20/sep/2026) baja por --id el payload
+             que la entrada declara y verifica su sha256 contra el manifiesto
+             ANTES de que el archivo entre a su raíz. Cierra el hueco que el
+             DESVÍO DE ALCANCE de arriba dejó abierto desde el 30/jul: el
+             momento de la descarga ya está instrumentado, y el sha256 de un
+             archivo recién bajado ya no se teclea. Solo por id -- no acepta
+             una URL suelta, con ningún nombre de parámetro (firma de mesa 8);
+             no escribe data/manifiesto.yaml (firma 2); se niega ante toda
+             entrada con `estado_reserva` (E.6); reporta el host exacto y para
+             ante cualquier redirección fuera del host que la entrada declara
+             (firma 1). El DESVÍO de arriba sigue describiendo a --registra,
+             que sigue sin abrir sockets.
+
 --compara   contrasta un payload NUEVO (--archivo, típicamente recién
              bajado bajo un nombre de prueba) contra una entrada YA
              registrada (--id) -- sin escribir nada. Reporta COINCIDE o
@@ -210,6 +223,9 @@ import platform
 import re
 import sys
 import tempfile
+import urllib.error
+import urllib.parse
+import urllib.request
 import zipfile
 
 import yaml
@@ -1651,6 +1667,316 @@ def cmd_compara_sha(a, manifiesto_path, raw_dir):
     sys.exit(r["codigo"])
 
 
+# ---------------------------------------------------------------------------
+# --descarga (ACTO GEN2-NUBE-PILOTO-1, pieza 1). Cierra el hueco que la
+# cabecera de este archivo declara desde el 30/jul: "el momento de la descarga
+# en sí sigue sin instrumentar -- ahí nacieron los dos hashes tecleados a mano
+# que este script existe para evitar". No es herramienta nueva (D-14): extiende
+# el punto de entrada que ya gobierna el manifiesto, y HEREDA de
+# payload_resolver los estados de A.1 (AUSENTE / RAIZ_NO_CONFIGURADA /
+# COINCIDE / NO_COINCIDE / FUERA_DE_PERIMETRO) en vez de reimplementarlos; el
+# único estado que añade es el cuarto que el encargo previó: DESCARGADO-AHORA.
+#
+# Contrato congelado por COMMIT-1 (firmas de mesa 1, 4 y 8, 20/sep/2026):
+#   - SOLO POR ID. No hay parámetro de URL, ni con otro nombre. La lista de
+#     hosts permitidos la impone el entorno (red del contenedor); el código no
+#     ofrece una segunda puerta. El host esperado de cada descarga se DERIVA
+#     del `url_origen` que la propia entrada declara -- no hay lista de hosts
+#     tecleada aquí, y por eso no hay nada que ampliar por cuenta propia.
+#   - CLASIFICACIÓN ANTES DE TOCAR LA RED, derivada de la ruta (no del string
+#     completo: `...Action.do?sector=21` NO termina en ".do" y una regla
+#     escrita sobre el string crudo los da por descargables -- ése es el
+#     defecto que mesa puso como caso de prueba).
+#   - `raiz` ausente y `raiz` presente-con-valor-nulo se resuelven EXPLÍCITO y
+#     se declara cuál se usó. Prohibido `entrada.get("raiz", RAIZ_INTEGRADA)`
+#     aquí: colapsa los dos casos en silencio.
+#   - Guardia E.6: se niega ante toda entrada con `estado_reserva`. NO se
+#     niega ante `enif_2024_enif_2024_bd_csv` -- la reserva de la sección de
+#     crédito de ENIF 2024 se protege en el MEDIDOR, no en el descargador
+#     (firma 4). Un descargador que la bloqueara protegería lo que no le toca.
+#   - sha256 de lo descargado contra el del manifiesto ANTES de que el archivo
+#     entre a su raíz. Discordante -> no entra, y se conserva el temporal para
+#     que se pueda inspeccionar.
+#   - Redirección: se reporta el host final exacto y se PARA sin seguirla.
+#   - Nunca escribe en data/manifiesto.yaml (firma 2).
+# ---------------------------------------------------------------------------
+
+# Extensiones de ruta que delatan un punto de entrada dinámico. La decisión se
+# toma sobre `urlsplit(url).path`, nunca sobre la URL cruda.
+_DESCARGA_EXT_SERVLET = frozenset({
+    ".do", ".jsp", ".jspx", ".aspx", ".asp", ".php", ".cgi", ".action", ".pl",
+})
+_DESCARGA_EXT_PAGINA = frozenset({".html", ".htm", ".xhtml", ".shtml"})
+
+# Estados de salida de --descarga. Cerrados: ninguno implícito fuera de éstos.
+# Los cinco primeros son los de payload_resolver (A.1), con el vocabulario de
+# A.4; DESCARGADO-AHORA es el cuarto estado que el encargo autorizó añadir.
+DESCARGA_ESTADOS = (
+    "EXISTE-SATISFACE",        # ya estaba en su raíz y su sha256 coincide
+    "EXISTE-NO-SATISFACE",     # ya estaba y NO coincide -- no se sobreescribe
+    "DESCARGADO-AHORA",        # bajado en esta invocación y verificado
+    "NO-ACCESIBLE",            # clasificado sin tocar la red
+    "NO-OBTENIDO",             # la red se tocó y no dio el payload
+    "SHA-DISCORDANTE",         # bajó, no coincide -- no entra a la raíz
+    "REDIRECCION-A-OTRO-HOST", # PARO de firma 1
+    "RESERVADO",               # guardia E.6
+    "RAIZ-NO-CONFIGURADA",     # heredado de A.1
+    "FUERA-DE-PERIMETRO",      # heredado de A.1
+    "SIN-SHA256-EN-MANIFIESTO",
+    "ID-NO-EN-MANIFIESTO",
+)
+
+# Estados que NO cuentan como falla del acto: el payload quedó verificado en
+# su raíz. Todo lo demás sale con código 1.
+_DESCARGA_ESTADOS_OK = frozenset({"EXISTE-SATISFACE", "DESCARGADO-AHORA"})
+
+
+def resolver_raiz_declarada(entrada):
+    """(nombre_raiz, procedencia) -- resolución EXPLÍCITA del campo `raiz`.
+
+    Tres casos que no se colapsan, porque la cabecera de data/manifiesto.yaml
+    solo cubre uno ("Ausente = data_raw") y un `raiz: null` presente no está
+    cubierto por esa frase. Medido sobre el manifiesto al redactar este
+    bloque (1 629 entradas): 1 013 AUSENTE, 335 'descargas_mx', 277
+    'data_raw', 4 'reserva_respondentes', 0 con valor nulo. El tercer caso no
+    ocurre hoy; se resuelve igual porque el silencio es lo que se prohíbe.
+    """
+    if "raiz" not in entrada:
+        return RAIZ_INTEGRADA, "AUSENTE -> data_raw (cabecera de data/manifiesto.yaml)"
+    valor = entrada["raiz"]
+    if valor is None:
+        return RAIZ_INTEGRADA, ("PRESENTE-CON-VALOR-NULO -> data_raw (resuelto "
+                                 "explícito; la cabecera solo cubre el ausente)")
+    return valor, "DECLARADA"
+
+
+def clasifica_url_origen(url):
+    """(clase, motivo) sin tocar la red. clase in {DESCARGABLE, NO-ACCESIBLE}.
+
+    Se decide sobre la RUTA, no sobre la URL cruda. El defecto que esto
+    atrapa, y que mesa fijó como caso de prueba: los nueve ids
+    `banxico_sie_*` apuntan a `.../consultarDirectorioInternetAction.do?...`
+    -- son servlets del SIE, y ninguno "termina en .do": todos llevan query
+    detrás. Una regla escrita sobre el string completo los da por
+    descargables y los manda a la red.
+    """
+    if url is None or not str(url).strip():
+        return "NO-ACCESIBLE", "la entrada no declara url_origen"
+    crudo = str(url).strip()
+    if any(c.isspace() for c in crudo):
+        return "NO-ACCESIBLE", (f"url_origen no es una URL sola: contiene espacios "
+                                 f"o prosa -- valor crudo: {crudo!r}")
+    partes = urllib.parse.urlsplit(crudo)
+    if partes.scheme not in ("http", "https"):
+        return "NO-ACCESIBLE", (f"url_origen no es http(s) -- valor crudo: "
+                                 f"{crudo!r}")
+    if not partes.netloc:
+        return "NO-ACCESIBLE", f"url_origen sin host -- valor crudo: {crudo!r}"
+    ruta = partes.path
+    ultimo = ruta.rsplit("/", 1)[-1]
+    ext = ("." + ultimo.rsplit(".", 1)[-1].lower()) if "." in ultimo else ""
+    if ext in _DESCARGA_EXT_SERVLET:
+        return "NO-ACCESIBLE", (f"la ruta apunta a un servlet ({ext}), no a un "
+                                 f"archivo: {ruta}")
+    if ext in _DESCARGA_EXT_PAGINA:
+        return "NO-ACCESIBLE", (f"la ruta apunta a una página ({ext}), no a un "
+                                 f"archivo: {ruta}")
+    if not ext:
+        return "NO-ACCESIBLE", (f"la ruta no termina en extensión de archivo "
+                                 f"(catálogo o buscador): {ruta}")
+    return "DESCARGABLE", f"la ruta termina en extensión de archivo ({ext})"
+
+
+class _DescargaSinRedirect(urllib.request.HTTPRedirectHandler):
+    """No sigue ninguna redirección: la reporta y para (firma 1).
+
+    Seguir el 30x y comparar el host DESPUÉS ya habría abierto la conexión al
+    host nuevo. El host se compara antes, y el destino no se toca.
+    """
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        raise _RedirigeA(newurl, code)
+
+
+class _RedirigeA(Exception):
+    def __init__(self, url, code):
+        super().__init__(url)
+        self.url = url
+        self.code = code
+
+
+def _descarga_a_temporal(url, destino_tmp, tiempo_espera):
+    """Baja `url` a `destino_tmp`. Devuelve (ok, detalle). No sigue redirects."""
+    opener = urllib.request.build_opener(_DescargaSinRedirect)
+    req = urllib.request.Request(url, headers={"User-Agent": "modelado-mexicano/manifiesto --descarga"})
+    with opener.open(req, timeout=tiempo_espera) as r, open(destino_tmp, "wb") as out:
+        leidos = 0
+        while True:
+            trozo = r.read(1024 * 256)
+            if not trozo:
+                break
+            out.write(trozo)
+            leidos += len(trozo)
+    return leidos
+
+
+def _descarga_un_id(id_, entradas, root, raw_dir, intentos, tiempo_espera):
+    """Dict con {id, estado, detalle, raiz, procedencia_raiz}. Una sola entrada."""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import payload_resolver as _PR  # noqa: E402
+
+    entrada = buscar(entradas, id_)
+    if entrada is None:
+        return {"id": id_, "estado": "ID-NO-EN-MANIFIESTO", "raiz": None,
+                "procedencia_raiz": None,
+                "detalle": (f"NO-ENCONTRADO: '{id_}' no está en "
+                             f"data/manifiesto.yaml (universo: {len(entradas)} entradas)")}
+
+    # Guardia E.6 -- antes de cualquier otra cosa, incluida la red.
+    reserva = entrada.get("estado_reserva")
+    if reserva:
+        return {"id": id_, "estado": "RESERVADO", "raiz": None,
+                "procedencia_raiz": None,
+                "detalle": (f"la entrada declara estado_reserva={reserva!r}; este "
+                             f"punto de entrada se niega a descargarla")}
+
+    if "sha256" not in entrada:
+        return {"id": id_, "estado": "SIN-SHA256-EN-MANIFIESTO", "raiz": None,
+                "procedencia_raiz": None,
+                "detalle": ("la entrada no declara sha256: no hay contra qué "
+                             "verificar lo descargado, y bajar sin poder verificar "
+                             "es justo lo que este subcomando existe para no hacer")}
+
+    nombre_raiz, procedencia_raiz = resolver_raiz_declarada(entrada)
+    base = {"id": id_, "raiz": nombre_raiz, "procedencia_raiz": procedencia_raiz}
+
+    if not raiz_escaneable(nombre_raiz):
+        return {**base, "estado": "FUERA-DE-PERIMETRO",
+                "detalle": (f"raíz '{nombre_raiz}' fuera de RAICES_ESCANEABLES "
+                             f"({sorted(RAICES_ESCANEABLES)}): no se resuelve ni se abre")}
+
+    # Heredado de A.1 vía payload_resolver: si ya está y coincide, no se baja.
+    r = _PR.resolver_payload(id_, entradas=entradas, root=root, raw_dir=raw_dir)
+    if r["estado"] == "RAIZ_NO_CONFIGURADA":
+        return {**base, "estado": "RAIZ-NO-CONFIGURADA",
+                "detalle": (f"este entorno no define '{nombre_raiz}' en "
+                             f"data/raices.local.yaml; no hay dónde dejar el payload")}
+    if r["estado"] == "COINCIDE":
+        return {**base, "estado": "EXISTE-SATISFACE",
+                "detalle": (f"ya está en '{nombre_raiz}' y su sha256 coincide "
+                             f"({r['tamano']} bytes): no se descarga nada")}
+    if r["estado"] == "NO_COINCIDE":
+        return {**base, "estado": "EXISTE-NO-SATISFACE",
+                "detalle": (f"ya hay un archivo en '{nombre_raiz}' cuyo sha256 NO "
+                             f"coincide (esperado {r['sha256_esperado']}, real "
+                             f"{r['sha256_actual']}); no se sobreescribe -- es un "
+                             f"hallazgo, no un archivo que falte")}
+
+    archivo = entrada.get("archivo")
+    if not archivo:
+        return {**base, "estado": "NO-ACCESIBLE",
+                "detalle": "la entrada no declara `archivo`: no hay dónde dejarlo"}
+
+    clase, motivo = clasifica_url_origen(entrada.get("url_origen"))
+    if clase == "NO-ACCESIBLE":
+        return {**base, "estado": "NO-ACCESIBLE", "detalle": motivo}
+
+    url = str(entrada["url_origen"]).strip()
+    host_declarado = urllib.parse.urlsplit(url).netloc
+
+    base_dir = resolver_raiz(nombre_raiz, root, raw_dir)
+    destino = os.path.join(base_dir, archivo)
+    os.makedirs(os.path.dirname(destino) or base_dir, exist_ok=True)
+    destino_tmp = destino + ".parcial"
+
+    fallos = []
+    for intento in range(1, intentos + 1):
+        try:
+            leidos = _descarga_a_temporal(url, destino_tmp, tiempo_espera)
+        except _RedirigeA as red:
+            host_final = urllib.parse.urlsplit(red.url).netloc
+            _borra_si_existe(destino_tmp)
+            return {**base, "estado": "REDIRECCION-A-OTRO-HOST",
+                    "detalle": (f"HTTP {red.code} de {host_declarado} hacia el host "
+                                 f"'{host_final}' (URL completa: {red.url}). No se "
+                                 f"sigue: firma de mesa 1 -- se reporta el host "
+                                 f"exacto y mesa decide si lo añade a la red")}
+        except Exception as exc:  # urllib.error.*, socket.*, ssl.*
+            fallos.append(f"intento {intento}/{intentos}: {type(exc).__name__}: {exc}")
+            continue
+
+        sha_real = sha256_de(destino_tmp)
+        if sha_real != entrada["sha256"]:
+            return {**base, "estado": "SHA-DISCORDANTE",
+                    "detalle": (f"bajaron {leidos} bytes con sha256 {sha_real}; el "
+                                 f"manifiesto declara {entrada['sha256']}. El archivo "
+                                 f"NO entra a '{nombre_raiz}'; queda en "
+                                 f"{destino_tmp} para inspección")}
+        os.replace(destino_tmp, destino)
+        return {**base, "estado": "DESCARGADO-AHORA",
+                "detalle": (f"{leidos} bytes desde {host_declarado}, sha256 "
+                             f"verificado contra el manifiesto antes de entrar a "
+                             f"'{nombre_raiz}' -> {archivo}")}
+
+    _borra_si_existe(destino_tmp)
+    # A.5: el fallo de un agente es un hecho sobre el agente, no sobre el portal.
+    return {**base, "estado": "NO-OBTENIDO",
+            "detalle": ("NO OBTENIDO POR ESTE AGENTE EN "
+                         f"{intentos} INTENTO(S) -- " + " | ".join(fallos) +
+                         f" · receta manual de un minuto: abre {url} en un navegador, "
+                         f"guarda el archivo como '{archivo}' en la raíz "
+                         f"'{nombre_raiz}', y corre "
+                         f"`python3 tests/manifiesto.py --verifica --id {id_}`")}
+
+
+def _borra_si_existe(ruta):
+    try:
+        os.remove(ruta)
+    except OSError:
+        pass
+
+
+def cmd_descarga(a, manifiesto_path, raw_dir):
+    root = os.path.dirname(os.path.dirname(manifiesto_path))
+    _, entradas = leer_manifiesto(manifiesto_path)
+
+    if not a.id:
+        print("ERROR: --descarga exige al menos un --id. Este subcomando NO acepta "
+              "una URL suelta como argumento (firma de mesa 8, 20/sep/2026): la "
+              "lista de hosts permitidos la impone el entorno, y el código no "
+              "ofrece una segunda puerta.", file=sys.stderr)
+        sys.exit(1)
+
+    ids = list(dict.fromkeys(a.id))
+    print(f"Entorno de verificación: {entorno_actual()}")
+    print(f"Universo del manifiesto: {len(entradas)} entradas · ids pedidos: {len(ids)}")
+    print()
+
+    resultados = [_descarga_un_id(i, entradas, root, raw_dir, a.intentos,
+                                    a.tiempo_espera) for i in ids]
+
+    for r in resultados:
+        raiz = f" [{r['raiz']}]" if r["raiz"] else ""
+        print(f"{r['id']}{raiz}: {r['estado']} -- {r['detalle']}")
+        if r.get("procedencia_raiz"):
+            print(f"    raíz resuelta: {r['procedencia_raiz']}")
+
+    print()
+    print("RESUMEN por estado (sin colapsar):")
+    tally = {}
+    for r in resultados:
+        tally[r["estado"]] = tally.get(r["estado"], 0) + 1
+    for estado in DESCARGA_ESTADOS:
+        if estado in tally:
+            print(f"  {estado}: {tally[estado]}")
+    # A.13: un negativo de un comando que no examinó nada no es un negativo.
+    print(f"  ids examinados: {len(ids)} · entradas leídas del manifiesto: {len(entradas)}")
+    print("  data/manifiesto.yaml: NO ESCRITO (firma de mesa 2)")
+
+    fallidos = [r for r in resultados if r["estado"] not in _DESCARGA_ESTADOS_OK]
+    sys.exit(1 if fallidos else 0)
+
+
 def main():
     ap = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -1673,6 +1999,11 @@ def main():
                          "data/manifiesto-staging.yaml -- nunca en el manifiesto. "
                          "Sobre una raíz marcada como no-datos (p.ej. 'downloads') "
                          "exige --grupo o --grupo-n")
+    g.add_argument("--descarga", action="store_true",
+                    help="Baja por --id (repetible) el payload que la entrada "
+                         "declara, verifica su sha256 contra el manifiesto ANTES "
+                         "de que entre a su raíz, y no escribe el manifiesto. "
+                         "NO acepta una URL suelta: solo ids (firma de mesa 8)")
     g.add_argument("--promueve", action="store_true",
                     help="Mueve candidatos de data/manifiesto-staging.yaml a "
                          "data/manifiesto.yaml aunque url_origen no esté confirmada "
@@ -1715,6 +2046,11 @@ def main():
     ap.add_argument("--fecha-descarga", dest="fecha_descarga", default=None,
                      help="YYYY-MM-DD; por defecto, hoy")
     ap.add_argument("--nota", default=None)
+    ap.add_argument("--intentos", type=int, default=2,
+                     help="(--descarga) intentos por id antes de declarar "
+                          "NO-OBTENIDO POR ESTE AGENTE (A.5). Por defecto 2")
+    ap.add_argument("--tiempo-espera", dest="tiempo_espera", type=int, default=120,
+                     help="(--descarga) segundos de espera por conexión/lectura")
     ap.add_argument("--root", default=None,
                      help=argparse.SUPPRESS)  # override de raíz, solo para pruebas
 
@@ -1730,6 +2066,8 @@ def main():
         cmd_escanea(a, manifiesto_path, raw_dir)
     elif a.promueve:
         cmd_promueve(a, manifiesto_path, raw_dir)
+    elif a.descarga:
+        cmd_descarga(a, manifiesto_path, raw_dir)
     elif a.compara_sha:
         cmd_compara_sha(a, manifiesto_path, raw_dir)
     else:
