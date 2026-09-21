@@ -60,3 +60,6 @@ No reescribe encargos archivados · no borra el delta del cuerpo · no instrumen
   **Por qué:** `PARO-PREMISA` no aplica — no es que la premisa cayera, es que el cuerpo verbatim (P1, no editable por este acto) simplemente no las escribió. Se declaran con texto propuesto en la HISTORIA (§6 del encargo: "si una semilla no promovida te parece norma, propón texto en la nota — no la metas tú").
   **Impacto:** ninguna norma nueva sobre el estado `superado` de un índice de linaje ni sobre «vencido» sin retador; ambas siguen sin instrumentar hasta que mesa decida.
   **Sucesor:** `DIFERIDO-A:v2.17` (§9 del cuerpo lo declara explícitamente como su primera tarea).
+
+## CONSUMIDO
+Ejecutado por `ACTO GEN2-V216`, rama `acto/gen2-v216`, PR #978 contra `main`.
