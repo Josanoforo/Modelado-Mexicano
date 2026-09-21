@@ -53,3 +53,9 @@ data/curacion-registro/.alta-relacion.lock
 # (tools/curador_registro/alta_relacion.py) -- artefacto de ejecución, uno
 # por relacion_id, no versionado por defecto.
 data/alta-relacion-journal-*.json
+
+# ACTO GEN2-ENIGH2024-RESERVA-Y-DISENO-1: lock runtime de
+# tools/vista_cola_adquisicion.py. Hermano de data/.manifiesto.lock y de
+# data/curacion-registro/.alta-relacion.lock, que ya estaban ignorados; éste
+# no, y se coló al índice al regenerar la vista de la cola (D-21, ≤10 líneas).
+data/curacion-registro/cola-adquisicion-registro.tsv.lock
