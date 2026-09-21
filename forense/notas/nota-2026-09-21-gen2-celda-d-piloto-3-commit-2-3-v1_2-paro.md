@@ -112,7 +112,7 @@ Exactamente **40** líneas: 32 (A) + 8 (B). Ningún otro problema de `_valida_ou
 - **`FP-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2-a6f5-01`** (ABIERTA): mesa decide (a) quién congela el v1.3; (b) si el arreglo de la clave del control en `medidor.py:355` cuenta como cableado (recomendación: sí, una línea, con la prueba 4.ii) o si se pierde el control en 60-96; (c) si la firma de contador se hereda al v1.3 y a sus COMMIT-2/3a/3 sin re-asentar; (d) si D-22 adopta la prueba del punto 7.4 como obligatoria antes de congelar.
 - **`NC-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2-a6f5-01`…`-05`**: P1 (COMMIT-2), P2 (COMMIT-3a), P3 (COMMIT-3), P4 (veredicto), P5 (registro y marcador), todas `PARO-PREMISA` o `DIFERIDO-A:` con sucesor nombrado. P6 (página para mesa) sí se ejecutó, en forma de PARO: es el §0.
 - Raíz de acto (D-2): `a6f5` = commit del 0-bis `a6f5f399`.
-- ADR: candidato contiguo re-derivado por `tools/cierre_acto.py` = **`ADR-585`** (máximo real 584; ninguna rama remota lo tiene redactado). Renumera quien fusiona segundo.
+- ADR: candidato contiguo re-derivado por `tools/cierre_acto.py` al cerrar = `ADR-585` (máximo real 584; ninguna rama remota lo tenía redactado). `PR #948` fusionó primero con `ADR-585`, así que este acto lleva **`ADR-586`** (renumerado al fusionar `origin/main = 8535a977`, regla de la casa: renumera quien fusiona segundo).
 
 ## 9 · Auditoría (§5 de las instrucciones) — tres líneas obligatorias
 
