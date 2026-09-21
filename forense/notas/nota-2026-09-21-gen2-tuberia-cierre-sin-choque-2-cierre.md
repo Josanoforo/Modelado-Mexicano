@@ -413,3 +413,47 @@ Si en dos semanas `canon/registro-rotulos.tsv` vuelve a aparecer en un conflicto
 de fusión, o un cierre vuelve a modificar `canon/estado-programa-v1_14.md`, el
 mecanismo no hizo lo que dice. `T51` y `T52` caducan a los tres meses
 (21/dic/2026) si no atrapan nada, y se anota (§9).
+
+---
+
+## 8 · Cierre · suite en LÍNEA BASE VERDE
+
+```
+$ python3 tests/check.py --baseline --parallel
+  LÍNEA BASE: VERDE — sin FAIL nuevos frente a tests/baseline.json (HEAD congelado 7100cd03…)
+  WARN NUEVOS (estado, no adjudican): 42
+  (12 fail + 1 warn de la línea base ya no aparecen — mejora, no bloquea, no baja la cifra congelada sin --freeze explícito)
+```
+
+**Un FAIL nuevo apareció y se resolvió por el mecanismo, no editando la
+evidencia.** `T25` marcó los rótulos pelados `E5` y `E9` en esta nota: salen de
+la **salida cruda** del conteo de pares repetidos de P1.2 (`('E', 'E5') 2`,
+`('E', 'E9') 2`), que es justamente la evidencia del hallazgo. Los dos son
+habitantes del espacio `E` **ya censados** en `canon/registro-rotulos.tsv` —la
+nota los cita *porque* están censados dos veces—, así que el archivo entra a
+`_T25_ARCHIVOS_CONOCIDOS` con el comentario que explica de dónde sale cada
+mención, que es el mecanismo previsto (paso 5 de la cascada). La salida cruda no
+se edita para complacer al test.
+
+**Los 42 WARN nuevos son todos `T03`** (referencias colgantes) y se listan como
+estado: no adjudican (D-16). Cuatro son de archivos de este acto y las tres
+clases son legítimas: `acto.md` (la skill vive en `.claude/commands/acto.md` y se
+cita por nombre corto, como en todo el repo) y `estado-programa-v1_13.md` /
+`v1_12.md` (retiradas del árbol por `T01`, citadas aquí como historia en la
+tabla de universos de P0.1 — que es el punto de la tabla).
+
+**Anti-PR#77:** no aplica — este acto no descargó nada (`red:
+DENEGADA-POR-POLITICA`, cero payloads).
+
+**Perímetro de cierre permanente (D-21).** `T51` y `T52` viven en
+`tests/check.py`, que el job de CI ya corre
+(`.github/workflows/verify.yml:73`); `G3-bis`/`G3-ter` viven en
+`tests/test_tuberia_ids_union.py`, ya cableado
+(`forense/analisis/ci-guardias/censo-tests.tsv:130`, `CORRE-EN-CI`). Este acto no
+crea ninguna tabla, así que no añade nada a `data/INFRAESTRUCTURA-v1_0.md`. No
+sella ninguna corrida, así que E.7 no le aplica y no toca
+`forense/replay-evidencia.tsv`.
+
+**Fuera del perímetro declarado, y declarado:** `tools/estado_comun.py` (una
+línea, el arreglo de `fp_max`) — sin él la `NC-…-6e60-04` no podía cerrarse con
+evidencia, que es la pieza P0.2. D-21, defecto adyacente de ≤ 10 líneas.
