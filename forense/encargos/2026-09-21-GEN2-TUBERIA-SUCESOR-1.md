@@ -243,3 +243,12 @@ filas `FP` declarada **error de dirección**; `T02` y `T25` prevenidos. **El par
 ausencia del expediente y **no lo pidió**. Declarar era correcto y no era PARO, pero pedir cuesta
 una línea y habría entregado P4 en el primer turno. **Ante un adjunto ausente, se declara Y se
 pide en el mismo turno.**
+
+---
+
+## CONSUMIDO — actualización 21/sep/2026 (P4 ejecutada, `ADR-577`)
+
+**PR #939** sigue siendo el vehículo; **`ADR-576` → `ADR-577`**, quinta renumeración de esta
+sesión (572 → 573 → 574 → 575 → 576 → 577). Ningún id propio de raíz de acto se renumeró con él.
+**P4 ejecutada**: expediente del careo archivado, 5/5 sha256 COINCIDE. Suite `--baseline` en
+**LÍNEA BASE VERDE**. El PR queda **propuesto**; mesa fusiona, después de `#937`.
