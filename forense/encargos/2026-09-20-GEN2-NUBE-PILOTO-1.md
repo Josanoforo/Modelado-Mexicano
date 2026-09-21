@@ -188,7 +188,17 @@ Fuera del perímetro y necesario para terminar → es **latitud** (≤10 líneas
 
 ## `## NO-CORRIDO / RESERVAS`
 
-A llenar por el ejecutor al cierre.
+Llenado por `ACTO GEN2-NUBE-PILOTO-1-bis` (21/sep/2026), que reanuda este encargo tras dos intentos que no llegaron a main.
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| **Pieza 2 · El piloto: `CALC-ENIF-0001` en nube** — no corrida por `PR #930`, que paró por PARO (e) en `cloud_default` | `SUSTITUIDO-POR:GEN2-NUBE-PILOTO-1-bis` | Ninguno pendiente. **Qué absorbe el sustituto:** la pieza 2 entera (descarga con la pieza 1 + verify + asiento E.7), corrida aquí con `RESULTADO=REPRODUCE` / `CONTEXTO=DISTINTO`, y la pieza 3 (`FP-404`). **Qué queda huérfano: nada** — la pieza 1 de aquel acto se rescata intacta (`sha256` verificado), su medición de `cloud_default` se incorpora citada a `FP-404` y a la nota, y sus tres líneas de hallazgos se conservan íntegras | `CERRADA` por este mismo acto. Fila `NC-0433`. Escala: `NUBE-PILOTO-2` |
+| **Perímetro de cierre permanente (D-21) · cierre anti-PR#77**: «verifica al cerrar que los payloads quedaron en el CORPUS COMPARTIDO y no solo en tu worktree» | `NO-VERIFICABLE-AQUÍ` — en esta caja no hay corpus compartido que verificar: con `data/raw` vacía el hook da `senal-corpus: montado=VACIO archivos_examinados=0` (A.13), no existe `data/raices.local.yaml`, y el contenedor es efímero. **No es un negativo sobre el corpus compartido** (existe y vive en CAJA): es un hecho sobre esta caja (A.5) | Ningún contador. El verify ya consumió el payload y su fila de replay está asentada con el `sha256` a la vista, así que la evidencia no depende de que el archivo sobreviva. Lo abierto es de escala: 381.6 MB en una caja efímera se bajarían una vez por sesión y se tirarían | `NUBE-PILOTO-2` — debe declarar en su spec dónde aterrizan los payloads **antes** de bajar 37 ids. Fila `NC-0434` |
+| **Pieza 2, paso 3** — corregir que `corrida0.py verify` devuelva `1` (no `0`) con `RESULTADO=REPRODUCE` y `CONTEXTO=DISTINTO` | `FUERA-DE-PERÍMETRO` — es de `tools/corrida0.py`, que §9 lista como ajeno; y cambiar el contrato de salida de un verificador sellado no es un defecto adyacente de ≤10 líneas | Ninguno en este acto: el veredicto se lee de los dos ejes. El riesgo es de un sucesor que gatee por `rc == 0` y convierta un `REPRODUCE` legítimo en falso negativo — justo lo que `NUBE-PILOTO-2` haría al encadenar 37 verificaciones | `GEN2-CORRIDA0-RENDIMIENTO-1` o el acto que toque `tools/corrida0.py`. Fila `NC-0435` |
+
+**Dejado fuera a propósito, declarado:** la fila `NC-0343` que `PR #930` añadía es de `GEN2-FAM-UNION-ESTIMANDO-1` (`PR #880`), acto ajeno y fuera del perímetro de §9. Ya existe en `origin/main` con su dueño y `estado = ABIERTA`, y este acto no produjo evidencia que la cierre: no se re-añade ni se toca.
+
+Todo lo demás del encargo se corrió: las tres piezas completas, las cuatro compuertas evaluadas, el perímetro de cierre (CI cableado, filas publicadas en la vista, Dominio 1 registrado, cascada corrida, hallazgos/NC/FP propios derivados). **Ningún PARO de la lista cerrada de §7 se disparó en este acto** — el PARO (e) que paró a `PR #930` no se reprodujo: `red: PERMITIDA`.
 
 ## `## CONSUMIDO`
 
