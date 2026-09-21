@@ -24,7 +24,7 @@ La razón, cuando se mira de cerca, es sistemática: la mayoría de esos sucesor
 son *decisiones de mesa*, no trabajo de ejecución. Un PR que fusiona no toma una
 decisión. Por eso fusionar no cierra la fila.
 
-**Cerradas en este acto: 2.** `no_corrido_abiertas` **157 → 155 → 159**. Los dos tramos son de naturaleza distinta y no se colapsan: **−2 por los dos cierres verificados por producto** (NC-0379, NC-0390), que es el único movimiento que el encargo autoriza; **+4 por los asientos que A.14 obliga** (NC-0423..NC-0426), que no son deuda nueva descubierta sino las reservas de este mismo acto puestas por escrito. El neto sube, y se declara: el encargo previó que la cifra sólo bajara, y no contempló que cerrar un acto con reservas la suba por regla. **No es PARO** (la lista cerrada del §7 veda que cambien los otros contadores, y A.14 no es opcional); se declara para que mesa decida si quiere que el contador distinga asiento de deuda.
+**Cerradas en este acto: 2.** `no_corrido_abiertas` **157 → 155 → 159**. Los dos tramos son de naturaleza distinta y no se colapsan: **−2 por los dos cierres verificados por producto** (NC-0379, NC-0390), que es el único movimiento que el encargo autoriza; **+4 por los asientos que A.14 obliga** (NC-0429..NC-0432), que no son deuda nueva descubierta sino las reservas de este mismo acto puestas por escrito. El neto sube, y se declara: el encargo previó que la cifra sólo bajara, y no contempló que cerrar un acto con reservas la suba por regla. **No es PARO** (la lista cerrada del §7 veda que cambien los otros contadores, y A.14 no es opcional); se declara para que mesa decida si quiere que el contador distinga asiento de deuda.
 Ningún otro contador se movió.
 
 | NC | Qué pedía | Producto verificado |

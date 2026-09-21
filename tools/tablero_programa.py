@@ -778,6 +778,34 @@ def render_bloque_vivo(I: dict[str, dict]) -> str:
         f"replays LEGACY-GEN1 sellados `{_v(I, 'gen2_replays_legacy_sellados')}` (no cuentan). "
         f"El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas."
     )
+    # ACTO GEN2-RELEVO-RECONCILIA-1 · P4 (la mitad que faltaba: el encargo
+    # pide el desglose en `status` Y en el tablero). Las claves llegan solas
+    # con prefijo `gen2_` desde `corrida0 status`, así que esta línea sólo
+    # las RINDE: no recalcula nada y no puede discrepar del contador.
+    # Aditiva: las sub-cifras suman el total de la línea de arriba, que no
+    # cambia de nombre ni de valor. `T45 T-LEGACY-DESGLOSE-SUMA` exige la
+    # suma; si una clase falta aquí, se imprime como `(sin desglose)` en vez
+    # de mentir por omisión.
+    _CLASES_LEGACY = ("motor", "procedencia", "catalogo_de_momentos",
+                      "marco_del_duelo", "celdas_D", "otro")
+    _desg = [(c, _v(I, f"gen2_legacy_activas_por_consumidor__{c}"))
+             for c in _CLASES_LEGACY]
+    if all(v is not None for _, v in _desg):
+        _txt = " · ".join(f"{c.replace('_', ' ')} `{v}`" for c, v in _desg)
+        _suma = sum(int(v) for _, v in _desg)
+        partes.append(
+            f"- **Legacy activas por consumidor (desglose aditivo del contador "
+            f"de arriba).** {_txt} — suman `{_suma}`, el total. Los cinco "
+            f"consumidores son RELEVABLES: ninguno se declara fuera del "
+            f"contador. Cuántos de ellos ya tienen medición GEN2 sellada que "
+            f"la vista no enlaza se deriva en "
+            f"`forense/analisis/relevo-reconcilia-1/reconcilia-173-v1_0.tsv`."
+        )
+    else:
+        partes.append(
+            "- **Legacy activas por consumidor.** (sin desglose: "
+            "`corrida0 status` no entregó las seis clases)."
+        )
     partes.append(
         f"- **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** "
         f"sellados `{_v(I, 'gen2_N_resultados_gen2_sellados')}` · "
