@@ -1,0 +1,1014 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-DIN-CREDITO-K8-ENFIH2019-0001
+spec_md: ../../../forense/prereg-caja/DIN-CREDITO-K8-ENFIH2019-spec-v1_0.md
+spec_md_sha256: 0df5b324af24968a06f6e54aac6252c0f712938874f243709d224b71634c0785
+script: data/corrida0/CALC-DIN-CREDITO-K8-ENFIH2019-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: DESCRIPTIVO-ROTULADO-SIN-SERIE
+  dominio: credito
+  fuente: ENFIH 2019
+  cuenta_gen2: SI
+  cuenta_gen2_firma: 'PROPUESTA DE DIRECCIÓN (encargo GEN2-DIN-CREDITO-HISTORIA-1 §2, 21/sep/2026): «Las corridas de GEN2-DIN-CREDITO-HISTORIA-1 cuentan (cuenta_gen2 = SI)»; FP-404 (1) FIRMADA: K8 se triangula en ENSAFI 2023 / ENFIH 2019 en acto propio; cuenta, no adopta'
+  adopta: 'NO'
+  exposicion_historica: CIEGO-A-ENFIH2019-ESTRUCTURA-LEIDA
+  serie: 'NO (PARO d): ENSAFI 2023 NO-ESTIMABLE por texto; ENFIH 2019 se mide por separado'
+  medidor_ejecutado_al_congelar: SI -- sobre el payload sintético de tests/test_din_credito_k8_enfih2019.py::payload_sintetico (default_rng(11), 120 réplicas) antes del COMMIT-1; NUNCA sobre ENFIH 2019 antes del COMMIT-2. El primer resultado real es el que se reporta.
+inputs:
+- id: enfih2019_bd_csv_zip
+  origen: manifiesto
+- id: MEDIDOR-EJES-0003
+  origen: repo
+  funcion: CODIGO
+  ruta: data/corrida0/CALC-PISOS-ENIF2021-EJES-0003/medidor.py
+  sha256: d069f38bd75c47fd5550015b179c7b2e61f1ab20ce6b22c630c66392afea06a3
+- id: K8-TRIANGULACION-TEXTO
+  origen: repo
+  funcion: METADATO
+  ruta: data/credito-k8-triangulacion-texto-v1_0.tsv
+  sha256: d01516f701abbb52d220a97510d35dfee7887f84796e285a551a52220632a50c
+variables:
+- archivo: TNOMINA.csv
+  variable: P8_31
+  rol: destino principal del crédito de nómina (K8)
+- archivo: TNOMINA.csv
+  variable: FOLIO
+  rol: llave persona
+- archivo: TNOMINA.csv
+  variable: VIV_SEL
+  rol: llave persona
+- archivo: TNOMINA.csv
+  variable: HOGAR
+  rol: llave persona
+- archivo: TNOMINA.csv
+  variable: N_REN
+  rol: llave persona
+- archivo: TNOMINA.csv
+  variable: CONSEC
+  rol: llave crédito
+- archivo: TNOMINA.csv
+  variable: EDIS
+  rol: estrato
+- archivo: TNOMINA.csv
+  variable: UPM_DIS
+  rol: upm
+- archivo: TNOMINA.csv
+  variable: FACTOR
+  rol: ponderador
+- archivo: TPERSONAL.csv
+  variable: P8_47
+  rol: destino principal del crédito personal (K8)
+- archivo: TPERSONAL.csv
+  variable: FOLIO
+  rol: llave persona
+- archivo: TPERSONAL.csv
+  variable: VIV_SEL
+  rol: llave persona
+- archivo: TPERSONAL.csv
+  variable: HOGAR
+  rol: llave persona
+- archivo: TPERSONAL.csv
+  variable: N_REN
+  rol: llave persona
+- archivo: TPERSONAL.csv
+  variable: CONSEC
+  rol: llave crédito
+- archivo: TPERSONAL.csv
+  variable: EDIS
+  rol: estrato
+- archivo: TPERSONAL.csv
+  variable: UPM_DIS
+  rol: upm
+- archivo: TPERSONAL.csv
+  variable: FACTOR
+  rol: ponderador
+universo: Créditos vigentes de nómina (TNomina) y personales (TPersonal) de la persona seleccionada del hogar, ENFIH 2019, con destino definido (códigos 1-8) y diseño válido; unidad PR = crédito
+filtros: FACTOR positivo y diseño válido (EDIS, UPM_DIS no vacíos); 9 No sabe y blanco fuera del denominador (contados); sin filtro de edad ni de familia; ENSAFI 2023 no se lee (NO-ESTIMABLE por texto); tarjetas, automotriz, vivienda, educativo, grupal y 8.7 (informal) no se leen (sin destino o unidad P multirrespuesta)
+ponderador: FACTOR (de la tabla del crédito)
+transformacion: 'Diez desenlaces dicotómicos por crédito sobre el destino principal (spec §2: consumo=3, emergencia=5, emergencia+salud=5,6, refinanciar deuda=4, lista de mesa=3,4,5, vivienda=1, vehículo=2, salud=6, educación=7, otro=8); celdas nacional y por familia; un solo plan de réplicas; negocio NO-ESTIMABLE emitido como texto'
+estimando: Proporciones ponderadas de créditos vigentes de nómina y personales (ENFIH 2019) por destino principal, con IC95 bootstrap, unidad PR, rotuladas CAMBIO-DE-INSTRUMENTO frente a K8 de mesa y sin serie con ENIF ni ENSAFI
+seed:
+  aplica: true
+  rng: numpy.PCG64
+  valor: 42
+parametros:
+  bootstrap_replicas: 10000
+  metodo_ic: bootstrap UPM estratificado; percentiles 2.5/97.5; réplicas compartidas (una sola llamada a _estimate)
+  n_soporte: 200
+  tolerancia_coherencia: 1e-6 x den_w nacional; si se excede el medidor PARA
+dependencias_materiales:
+- numpy
+- pandas
+resultados:
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-FAMILIA-NOMINA-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-FAMILIA-NOMINA-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-FAMILIA-NOMINA-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-FAMILIA-NOMINA-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-FAMILIA-NOMINA-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-FAMILIA-NOMINA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-FAMILIA-PERSONAL-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-FAMILIA-PERSONAL-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-FAMILIA-PERSONAL-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-FAMILIA-PERSONAL-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-FAMILIA-PERSONAL-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-FAMILIA-PERSONAL-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-FAMILIA-NOMINA-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-FAMILIA-NOMINA-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-FAMILIA-NOMINA-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-FAMILIA-NOMINA-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-FAMILIA-NOMINA-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-FAMILIA-NOMINA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-FAMILIA-PERSONAL-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-FAMILIA-PERSONAL-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-FAMILIA-PERSONAL-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-FAMILIA-PERSONAL-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-FAMILIA-PERSONAL-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-FAMILIA-PERSONAL-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-FAMILIA-NOMINA-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-FAMILIA-NOMINA-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-FAMILIA-NOMINA-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-FAMILIA-NOMINA-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-FAMILIA-NOMINA-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-FAMILIA-NOMINA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-FAMILIA-PERSONAL-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-FAMILIA-PERSONAL-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-FAMILIA-PERSONAL-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-FAMILIA-PERSONAL-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-FAMILIA-PERSONAL-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-FAMILIA-PERSONAL-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-FAMILIA-NOMINA-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-FAMILIA-NOMINA-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-FAMILIA-NOMINA-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-FAMILIA-NOMINA-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-FAMILIA-NOMINA-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-FAMILIA-NOMINA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-FAMILIA-PERSONAL-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-FAMILIA-PERSONAL-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-FAMILIA-PERSONAL-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-FAMILIA-PERSONAL-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-FAMILIA-PERSONAL-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-FAMILIA-PERSONAL-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-FAMILIA-NOMINA-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-FAMILIA-NOMINA-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-FAMILIA-NOMINA-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-FAMILIA-NOMINA-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-FAMILIA-NOMINA-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-FAMILIA-NOMINA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-FAMILIA-PERSONAL-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-FAMILIA-PERSONAL-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-FAMILIA-PERSONAL-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-FAMILIA-PERSONAL-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-FAMILIA-PERSONAL-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-FAMILIA-PERSONAL-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-FAMILIA-NOMINA-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-FAMILIA-NOMINA-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-FAMILIA-NOMINA-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-FAMILIA-NOMINA-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-FAMILIA-NOMINA-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-FAMILIA-NOMINA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-FAMILIA-PERSONAL-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-FAMILIA-PERSONAL-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-FAMILIA-PERSONAL-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-FAMILIA-PERSONAL-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-FAMILIA-PERSONAL-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-FAMILIA-PERSONAL-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-FAMILIA-NOMINA-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-FAMILIA-NOMINA-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-FAMILIA-NOMINA-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-FAMILIA-NOMINA-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-FAMILIA-NOMINA-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-FAMILIA-NOMINA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-FAMILIA-PERSONAL-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-FAMILIA-PERSONAL-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-FAMILIA-PERSONAL-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-FAMILIA-PERSONAL-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-FAMILIA-PERSONAL-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-FAMILIA-PERSONAL-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-FAMILIA-NOMINA-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-FAMILIA-NOMINA-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-FAMILIA-NOMINA-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-FAMILIA-NOMINA-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-FAMILIA-NOMINA-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-FAMILIA-NOMINA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-FAMILIA-PERSONAL-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-FAMILIA-PERSONAL-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-FAMILIA-PERSONAL-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-FAMILIA-PERSONAL-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-FAMILIA-PERSONAL-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-FAMILIA-PERSONAL-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-FAMILIA-NOMINA-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-FAMILIA-NOMINA-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-FAMILIA-NOMINA-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-FAMILIA-NOMINA-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-FAMILIA-NOMINA-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-FAMILIA-NOMINA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-FAMILIA-PERSONAL-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-FAMILIA-PERSONAL-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-FAMILIA-PERSONAL-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-FAMILIA-PERSONAL-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-FAMILIA-PERSONAL-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-FAMILIA-PERSONAL-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-FAMILIA-NOMINA-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-FAMILIA-NOMINA-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-FAMILIA-NOMINA-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-FAMILIA-NOMINA-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-FAMILIA-NOMINA-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-FAMILIA-NOMINA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-FAMILIA-PERSONAL-P
+  tipo: proporcion
+  unidad: proporción ponderada de créditos [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-FAMILIA-PERSONAL-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-FAMILIA-PERSONAL-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-FAMILIA-PERSONAL-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-FAMILIA-PERSONAL-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador (créditos)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-FAMILIA-PERSONAL-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-FAMILIA-NOMINA-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-FAMILIA-PERSONAL-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-FAMILIA-NOMINA-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-FAMILIA-PERSONAL-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-FAMILIA-NOMINA-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-FAMILIA-PERSONAL-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-FAMILIA-NOMINA-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-FAMILIA-PERSONAL-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-FAMILIA-NOMINA-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-FAMILIA-PERSONAL-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-FAMILIA-NOMINA-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-FAMILIA-PERSONAL-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-FAMILIA-NOMINA-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-FAMILIA-PERSONAL-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-FAMILIA-NOMINA-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-FAMILIA-PERSONAL-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-FAMILIA-NOMINA-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-FAMILIA-PERSONAL-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-FAMILIA-NOMINA-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-FAMILIA-PERSONAL-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-COHERENCIA-FAMILIA-DELTA-NUM-W
+  tipo: flotante
+  unidad: '|num_w nacional - num_w nómina - num_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-COHERENCIA-FAMILIA-DELTA-DEN-W
+  tipo: flotante
+  unidad: '|den_w nacional - den_w nómina - den_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-N-UNIVERSO
+  tipo: entero
+  unidad: créditos con destino definido y diseño válido
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-UNIDAD
+  tipo: texto
+  unidad: PR (crédito vigente)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-CONSUMO-CODIGOS-1
+  tipo: texto
+  unidad: códigos de 8.31/8.47 que cuentan 1
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-COHERENCIA-FAMILIA-DELTA-NUM-W
+  tipo: flotante
+  unidad: '|num_w nacional - num_w nómina - num_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-COHERENCIA-FAMILIA-DELTA-DEN-W
+  tipo: flotante
+  unidad: '|den_w nacional - den_w nómina - den_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-N-UNIVERSO
+  tipo: entero
+  unidad: créditos con destino definido y diseño válido
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-UNIDAD
+  tipo: texto
+  unidad: PR (crédito vigente)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-CODIGOS-1
+  tipo: texto
+  unidad: códigos de 8.31/8.47 que cuentan 1
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-COHERENCIA-FAMILIA-DELTA-NUM-W
+  tipo: flotante
+  unidad: '|num_w nacional - num_w nómina - num_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-COHERENCIA-FAMILIA-DELTA-DEN-W
+  tipo: flotante
+  unidad: '|den_w nacional - den_w nómina - den_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-N-UNIVERSO
+  tipo: entero
+  unidad: créditos con destino definido y diseño válido
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-UNIDAD
+  tipo: texto
+  unidad: PR (crédito vigente)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EMERGENCIA-MAS-SALUD-CODIGOS-1
+  tipo: texto
+  unidad: códigos de 8.31/8.47 que cuentan 1
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-COHERENCIA-FAMILIA-DELTA-NUM-W
+  tipo: flotante
+  unidad: '|num_w nacional - num_w nómina - num_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-COHERENCIA-FAMILIA-DELTA-DEN-W
+  tipo: flotante
+  unidad: '|den_w nacional - den_w nómina - den_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-N-UNIVERSO
+  tipo: entero
+  unidad: créditos con destino definido y diseño válido
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-UNIDAD
+  tipo: texto
+  unidad: PR (crédito vigente)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-REFINANCIAR-DEUDA-CODIGOS-1
+  tipo: texto
+  unidad: códigos de 8.31/8.47 que cuentan 1
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-COHERENCIA-FAMILIA-DELTA-NUM-W
+  tipo: flotante
+  unidad: '|num_w nacional - num_w nómina - num_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-COHERENCIA-FAMILIA-DELTA-DEN-W
+  tipo: flotante
+  unidad: '|den_w nacional - den_w nómina - den_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-N-UNIVERSO
+  tipo: entero
+  unidad: créditos con destino definido y diseño válido
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-UNIDAD
+  tipo: texto
+  unidad: PR (crédito vigente)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-LISTA-DE-MESA-ALGUNO-CODIGOS-1
+  tipo: texto
+  unidad: códigos de 8.31/8.47 que cuentan 1
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-COHERENCIA-FAMILIA-DELTA-NUM-W
+  tipo: flotante
+  unidad: '|num_w nacional - num_w nómina - num_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-COHERENCIA-FAMILIA-DELTA-DEN-W
+  tipo: flotante
+  unidad: '|den_w nacional - den_w nómina - den_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-N-UNIVERSO
+  tipo: entero
+  unidad: créditos con destino definido y diseño válido
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-UNIDAD
+  tipo: texto
+  unidad: PR (crédito vigente)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VIVIENDA-CODIGOS-1
+  tipo: texto
+  unidad: códigos de 8.31/8.47 que cuentan 1
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-COHERENCIA-FAMILIA-DELTA-NUM-W
+  tipo: flotante
+  unidad: '|num_w nacional - num_w nómina - num_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-COHERENCIA-FAMILIA-DELTA-DEN-W
+  tipo: flotante
+  unidad: '|den_w nacional - den_w nómina - den_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-N-UNIVERSO
+  tipo: entero
+  unidad: créditos con destino definido y diseño válido
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-UNIDAD
+  tipo: texto
+  unidad: PR (crédito vigente)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEHICULO-CODIGOS-1
+  tipo: texto
+  unidad: códigos de 8.31/8.47 que cuentan 1
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-COHERENCIA-FAMILIA-DELTA-NUM-W
+  tipo: flotante
+  unidad: '|num_w nacional - num_w nómina - num_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-COHERENCIA-FAMILIA-DELTA-DEN-W
+  tipo: flotante
+  unidad: '|den_w nacional - den_w nómina - den_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-N-UNIVERSO
+  tipo: entero
+  unidad: créditos con destino definido y diseño válido
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-UNIDAD
+  tipo: texto
+  unidad: PR (crédito vigente)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SALUD-CODIGOS-1
+  tipo: texto
+  unidad: códigos de 8.31/8.47 que cuentan 1
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-COHERENCIA-FAMILIA-DELTA-NUM-W
+  tipo: flotante
+  unidad: '|num_w nacional - num_w nómina - num_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-COHERENCIA-FAMILIA-DELTA-DEN-W
+  tipo: flotante
+  unidad: '|den_w nacional - den_w nómina - den_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-N-UNIVERSO
+  tipo: entero
+  unidad: créditos con destino definido y diseño válido
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-UNIDAD
+  tipo: texto
+  unidad: PR (crédito vigente)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-EDUCACION-CODIGOS-1
+  tipo: texto
+  unidad: códigos de 8.31/8.47 que cuentan 1
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-COHERENCIA-FAMILIA-DELTA-NUM-W
+  tipo: flotante
+  unidad: '|num_w nacional - num_w nómina - num_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-COHERENCIA-FAMILIA-DELTA-DEN-W
+  tipo: flotante
+  unidad: '|den_w nacional - den_w nómina - den_w personal|'
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-N-UNIVERSO
+  tipo: entero
+  unidad: créditos con destino definido y diseño válido
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-UNIDAD
+  tipo: texto
+  unidad: PR (crédito vigente)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-OTRO-CODIGOS-1
+  tipo: texto
+  unidad: códigos de 8.31/8.47 que cuentan 1
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-FILAS-CREDITOS
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-PERSONAS-CON-CREDITO-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-NO-SABE-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-BLANCO-O-FUERA-DE-CATALOGO-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SIN-DISENO-N
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-UPM-EN-PLAN
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-VEREDICTO-TEXTO
+  tipo: texto
+  unidad: declaración de la corrida (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-MATIZ
+  tipo: texto
+  unidad: declaración de la corrida (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-NEGOCIO
+  tipo: texto
+  unidad: declaración de la corrida (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-ENSAFI2023
+  tipo: texto
+  unidad: declaración de la corrida (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-SERIE
+  tipo: texto
+  unidad: declaración de la corrida (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-FILAS-NOMINA
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+- id: RESULT-DIN-CREDITO-K8-ENFIH2019-FILAS-PERSONAL
+  tipo: entero
+  unidad: conteo de créditos (o personas) sin ponderar
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10

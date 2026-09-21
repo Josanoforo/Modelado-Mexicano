@@ -30,6 +30,7 @@ tests/test_cola_writer.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corp
 tests/test_compara_sha.py	script	NO	manifiesto	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_consulta_gen2.py	modulo	NO	(ninguna)	NO	38.9	FALLA-DE-VERDAD	AssertionError: 1 != 0 : FALLA respuestas distintas: /home/user/Modelado-Mexicano/forense/ejemplos/GEN2-AHORRO-ALCANCE-MENOR/respuestas-ahorro-alcance-menor.json
 tests/test_corpus.py	script	NO	manifiesto	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_corpus_integridad_respaldo.py	script	NO	(ninguna)	NO	0.4	CORRE-EN-CI	exit 0 sin corpus (corpus sintético en tempdir; rsync presente en ubuntu-latest)
 tests/test_corredores_gen2.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_corrida0.py	script	SI	(ninguna)	SI		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_corrida0_oro.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
@@ -52,7 +53,9 @@ tests/test_enadid2023_union_sexo_edad.py	pytest	NO	pandas,pytest	NO	0.0	NECESITA
 tests/test_enadid_union_actual.py	pytest	NO	pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_encig2023_agregado_condicional.py	script	NO	(ninguna)	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_encig2023_flujo.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_encig_canal_comparabilidad_texto.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_encig_cruces_historicos.py	script	NO	numpy,pandas	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_encig_serie_canal.py	script	NO	numpy,pandas	NO	0.4	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_enco_reserva_prepara.py	pytest	NO	pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_encrige_carga_intensidad.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_encrige_descriptiva.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
@@ -68,6 +71,9 @@ tests/test_ensafi_diseno.py	script	NO	(ninguna)	NO	0.0	NECESITA-DEPENDENCIA(scip
 tests/test_ensafi_estrategias_conjuntas.py	script	NO	(ninguna)	NO	0.1	NECESITA-DEPENDENCIA(scipy)	ModuleNotFoundError: No module named 'scipy'
 tests/test_enut2024_distribucion_horas.py	script	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_enut2024_participacion_intensidad.py	script	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_enut_comparabilidad_texto.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus; fila propia de ACTO GEN2-ENUT-PISOS-Y-SERIE-1 (huérfano: lo ejecuta ci_guardias --ejecuta-huerfanos)
+tests/test_enut_nucleo_conducto.py	script	NO	numpy,pandas,dbfread,yaml	NO	0.7	NECESITA-DEPENDENCIA(numpy)	sintético autocontenido (escribe sus propios zip/DBF en tmpdir); corre en CAJA; fila propia de ACTO GEN2-ENUT-PISOS-Y-SERIE-1
+tests/test_enut_persistencia_serie.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus (lee resultados.json sellados del repo); fila propia de ACTO GEN2-ENUT-PISOS-Y-SERIE-1
 tests/test_envipe_res0028_u4_derivado.py	script	NO	(ninguna)	NO	0.2	CORRE-EN-CI	exit 0 sin corpus
 tests/test_envipe_u4_2013_2015.py	script	NO	(ninguna)	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_estado_comun.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
@@ -141,3 +147,10 @@ tests/test_wbes2023_descriptiva.py	script	NO	pandas	NO	0.0	NECESITA-DEPENDENCIA(
 tests/test_wbes2023_precision.py	script	NO	pandas	SI	0.1	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
 tests/test_wbes2023_precision_interacciones.py	script	NO	pandas	NO	0.0	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
 tests/test_ya_medido.py	modulo	NO	(ninguna)	NO	1.4	CORRE-EN-CI	exit 0 con -m tests.test_ya_medido (invocacion de script fallaba)
+tests/test_ya_medido.py	modulo	NO	(ninguna)	NO	1.1	CORRE-EN-CI	exit 0 con -m tests.test_ya_medido (invocacion de script fallaba)
+tests/test_arbitro_marginales.py	pytest	NO	numpy,pytest,yaml	SI	40.0	NECESITA-DEPENDENCIA(pytest)	como test_piloto3_v13_conducto.py: pytest + corpus opcional (oro sobre la ola anterior se salta sin corpus); fila propia de ACTO GEN2-ARBITRO-MARGINALES-1
+tests/test_duelo_prospectivo.py	pytest	NO	numpy,pytest,yaml	NO	2.1	NECESITA-DEPENDENCIA(pytest)	como test_piloto3_v13_conducto.py: pytest + numpy; zips fabricados, sin corpus; corre en CAJA y se salta en CI hasta FP-398 (a); fila propia de ACTO GEN2-DUELO-ENVIPE2026-COMMIT-1
+tests/test_validacion_independiente_pilotos.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus; guardia de GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-v1_0 (ACTO GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1)
+tests/test_din_credito_pisos_historia.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy' -- ACTO GEN2-DIN-CREDITO-HISTORIA-1 (21/sep/2026): sintético D-22, cero corpus; corre en el job guardias con requirements.txt
+tests/test_din_credito_k8_enfih2019.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy' -- ACTO GEN2-DIN-CREDITO-HISTORIA-1 (21/sep/2026): sintético D-22, cero corpus; corre en el job guardias con requirements.txt
+tests/test_din_credito_k2_bancaria_historia.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy' -- ACTO GEN2-DIN-CREDITO-HISTORIA-1 (21/sep/2026): sintético D-22, cero corpus; corre en el job guardias con requirements.txt
