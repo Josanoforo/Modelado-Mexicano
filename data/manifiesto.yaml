@@ -30377,3 +30377,55 @@
   nota: 'D3 del encargo GEN2-TRAMITE-FIRMAS-4. URL sigue el patron de 2018 verbatim. Payload
     NO queda en corpus compartido desde nube (PR #77): se remueve de data/raw tras registrar;
     NC con sucesor para que caja lo traiga por --descarga --id.'
+
+- id: envipe2026_csv
+  usado_para: 'duelo prospectivo ENVIPE 2026 (GEN2-DUELO-ENVIPE2026-COMMIT-1, PR #968, input_manifiesto
+    envipe2026_csv); RESERVA F7: solo se baja y se hashea, no se descomprime/lista/abre el
+    payload ni se leen tabulados -- ver forense/encargos/2026-09-21-GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1.md
+    §2 y data/corrida0/decisiones.tsv clave reserva:envipe2026'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2026/datosabiertos/conjunto_de_datos_ENVIPE_2026_csv.zip
+  fecha_descarga: '2026-09-21'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: envipe2026_csv.zip
+  sha256: dd79f589eb6ed7d3675cc86e21ac9bbdbf269913963091d8698d6e28e0540a17
+  tamano_bytes: 20258782
+  formato: ZIP (datos abiertos ENVIPE 2026) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: envipe2026_fd_pdf
+  usado_para: documentación -- descriptor de archivos / estructura de la base de datos ENVIPE
+    2026 (mismo rol que envipe2025_fd_pdf)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2026/doc/fd_envipe2026.pdf
+  fecha_descarga: '2026-09-21'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: fd_envipe2026.pdf
+  sha256: 4a076ce356b6e89b237a78d5ecdea090656f8893c4184553b07d39efef1a0b18
+  tamano_bytes: 6316553
+  formato: PDF (Descriptor de archivos / FD)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: envipe2026_cuest_principal_pdf
+  usado_para: documentación -- cuestionario principal ENVIPE 2026 (mismo rol que envipe2025_cuest_principal_pdf)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2026/doc/cuest_principal_envipe2026.pdf
+  fecha_descarga: '2026-09-21'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: cuest_principal_envipe2026.pdf
+  sha256: 772a12085f8f05dd9c428eb76ce6dab801233a9b6ac04a3250992b2ffa672615
+  tamano_bytes: 1190112
+  formato: PDF (Cuestionario principal)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: envipe2026_cuest_modulo_pdf
+  usado_para: documentación -- cuestionario de módulos ENVIPE 2026 (mismo rol que envipe2025_cuest_modulo_pdf)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/envipe/2026/doc/cuest_modulo_envipe2026.pdf
+  fecha_descarga: '2026-09-21'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: cuest_modulo_envipe2026.pdf
+  sha256: ece80e284b63fefd17f311f1ed52374c1aa440e3226f17997a3f96e1a2eb274e
+  tamano_bytes: 829565
+  formato: PDF (Cuestionario de módulos)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
