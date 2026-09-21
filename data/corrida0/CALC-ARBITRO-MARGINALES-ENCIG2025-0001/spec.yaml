@@ -1,0 +1,123 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ARBITRO-MARGINALES-ENCIG2025-0001
+spec_md: ../../../forense/prereg-caja/ARBITRO-MARGINALES-ENCIG2025-spec-v1_0.md
+spec_md_sha256: de4126bffa3ba8607c443fcfc0660068ef9db472fc41c3c6678a3b7a34f1200d
+script: data/corrida0/CALC-ARBITRO-MARGINALES-ENCIG2025-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: ARBITRO-MARGINALES-POR-EJE
+  cuenta_gen2: SI
+  cuenta_gen2_nota: propuesto por el encargo GEN2-ARBITRO-MARGINALES-1 §2 (firma 3D, mitad b, mide la realidad desde microdato con cadena completa); no adopta
+  exposicion_historica: NO-CIEGO-AL-ARBITRO-GEN1-NI-AL-PILOTO-3; MICRODATO-2025-NO-ABIERTO-AL-CONGELAR
+  acto: GEN2-ARBITRO-MARGINALES-1
+inputs:
+  - {id: encig25_base_datos_csv, origen: manifiesto}
+  - {id: MEDIDOR-PISO-EJES-0002, origen: repo, ruta: data/corrida0/CALC-PISOS-ENCIG2023-EJES-0002/medidor.py, sha256: 29be74a296a00bfd6664c807153ce88afdce1e9f6caf443fff3e30f5e23b65cb}
+variables:
+  - {archivo: encig2025_04_sec_7.csv, variable: N_TRA, rol: universo}
+  - {archivo: encig2025_04_sec_7.csv, variable: P7_3, rol: desenlace}
+  - {archivo: encig2025_04_sec_7.csv, variable: FAC_TRA, rol: ponderador}
+  - {archivo: encig2025_04_sec_7.csv, variable: EST_DIS, rol: estrato}
+  - {archivo: encig2025_04_sec_7.csv, variable: UPM_DIS, rol: upm}
+  - {archivo: encig2025_04_sec_7.csv, variable: ID_PER, rol: llave}
+  - {archivo: encig2025_02_residentes_sec_2.csv, variable: ID_PER, rol: llave}
+  - {archivo: encig2025_02_residentes_sec_2.csv, variable: SEXO, rol: eje-sexo}
+  - {archivo: encig2025_02_residentes_sec_2.csv, variable: EDAD, rol: eje-edad}
+  - {archivo: encig2025_02_residentes_sec_2.csv, variable: NIV, rol: eje-escolaridad}
+universo: "Trámites con N_TRA=01 y P7_3 en 01/02/04/05/06; FAC_TRA > 0 y diseño válido; cada eje conserva su denominador válido."
+filtros: "FAC_TRA positivo y EST_DIS/UPM_DIS no vacíos; edad 18--96 (97/98/99 fuera del eje edad, contados; FP-399); códigos inválidos o blanco fuera sólo del eje afectado; unión trámite<-persona por ID_PER m:1."
+ponderador: FAC_TRA
+transformacion: "Digital = P7_3 en 04/05; no adopción = 01/02/06. Ejes: sexo, edad 18-29/30-44/45-59/60-96, NIV 0-2/3/4-7/8-9; total."
+estimando: "Proporciones ponderadas de ENCIG 2025 por celda marginal de la rejilla del piso, con IC95: la realidad R contra la que se califica la persistencia t-1 (CALC-PISOS-ENCIG2023-EJES-0002)."
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+parametros:
+  ola: '2025'
+  payload_id: encig25_base_datos_csv
+  bootstrap_replicas: 10000
+  metodo_ic: "bootstrap UPM estratificado; percentiles 2.5/97.5; réplicas compartidas (importado del medidor sellado del piso)"
+  agrupacion: UNA-SOLA-VARIABLE
+dependencias_materiales: [numpy, pandas]
+resultados:
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-TOTAL-TODOS-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-TOTAL-TODOS-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-TOTAL-TODOS-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-TOTAL-TODOS-N, tipo: entero, unidad: "n sin ponderar (trámites)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-TOTAL-TODOS-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-TOTAL-TODOS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-SEXO-1-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-SEXO-1-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-SEXO-1-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-SEXO-1-N, tipo: entero, unidad: "n sin ponderar (trámites)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-SEXO-1-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-SEXO-1-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-SEXO-2-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-SEXO-2-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-SEXO-2-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-SEXO-2-N, tipo: entero, unidad: "n sin ponderar (trámites)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-SEXO-2-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-SEXO-2-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-18-29-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-18-29-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-18-29-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar (trámites)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-30-44-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-30-44-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-30-44-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-30-44-N, tipo: entero, unidad: "n sin ponderar (trámites)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-30-44-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-45-59-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-45-59-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-45-59-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-45-59-N, tipo: entero, unidad: "n sin ponderar (trámites)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-45-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-60-MAS-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-60-MAS-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-60-MAS-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar (trámites)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar (trámites)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar (trámites)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar (trámites)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar (trámites)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENCIG2025-G-FILAS-EVENTOS, tipo: entero, unidad: "filas de sec_7 (trámites)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-G-JOIN-SIN-DEMOGRAFIA, tipo: entero, unidad: "trámites sin persona en residentes"}
+  - {id: RESULT-ARBITRO-ENCIG2025-G-FILAS-DISENO-VALIDO, tipo: entero, unidad: "trámites del universo con ponderador > 0 y diseño"}
+  - {id: RESULT-ARBITRO-ENCIG2025-G-REPLICAS, tipo: entero, unidad: "réplicas bootstrap"}
+  - {id: RESULT-ARBITRO-ENCIG2025-G-OLA, tipo: texto, unidad: "ola medida"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-G-N-UNIVERSO, tipo: entero, unidad: "trámites N_TRA=01 con P7_3 en 01/02/04/05/06"}
+  - {id: RESULT-ARBITRO-ENCIG2025-DIGITAL-G-P7-3-EXCLUIDAS, tipo: entero, unidad: "trámites N_TRA=01 con P7_3 fuera del universo"}
+  - {id: RESULT-ARBITRO-ENCIG2025-G-EDAD-97-N, tipo: entero, unidad: "trámites del universo con EDAD=97 (FP-399, fuera del eje edad)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-G-EDAD-98-99-N, tipo: entero, unidad: "trámites del universo con EDAD en 98/99 (fuera del eje edad)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-G-EJE-TOTAL-FUERA, tipo: entero, unidad: "trámites del universo fuera del eje (código inválido o blanco)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-G-EJE-SEXO-FUERA, tipo: entero, unidad: "trámites del universo fuera del eje (código inválido o blanco)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-G-EJE-EDAD-FUERA, tipo: entero, unidad: "trámites del universo fuera del eje (código inválido o blanco)"}
+  - {id: RESULT-ARBITRO-ENCIG2025-G-EJE-ESCOLARIDAD-FUERA, tipo: entero, unidad: "trámites del universo fuera del eje (código inválido o blanco)"}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: mismo payload, transformación y sumas float64; bootstrap determinista por semilla (misma tolerancia que el piso)
