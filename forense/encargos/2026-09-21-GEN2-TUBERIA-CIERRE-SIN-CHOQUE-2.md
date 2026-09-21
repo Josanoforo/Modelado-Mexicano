@@ -81,3 +81,28 @@ Si en dos semanas `registro-rotulos.tsv` sigue apareciendo en conflictos de fusi
 5. **Censo de rótulos, fila extra.** Además del rótulo propio se censó `GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1`, que **su propio acto (`#962`) no censó** — hueco encontrado al censar el sucesor, una fila añadida, ninguna tocada.
 
 **PAROS:** ninguno. Ninguna de las seis causas de la lista cerrada del §5 del encargo se presentó: no se perdió ni cambió ninguna fila de `registro-rotulos.tsv` (436 → 436 antes de añadir las dos del censo, mismo multiconjunto), no se borró ningún par repetido (los 7 quedan congelados como exención), el archivo entró a `union` **sólo después** de que su mutación hiciera fallar a `T51`, no se tocaron las vistas derivadas ni E.7, `acto.md` se editó sólo en el paso 3 de la cascada (el que escribe en `estado-programa`), no se reescribió historia y no se abrió microdato.
+
+## CONSUMIDO
+
+**PR [#966](https://github.com/Josanoforo/Modelado-Mexicano/pull/966)** ·
+`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2` ·
+`ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2-8e53-01` · 21/sep/2026 · NUBE
+(`cloud_default`), Opus 5, MODO ABIERTO, COMPUERTA: ninguna, cero microdato ·
+**CONTADOR: `cuenta_gen2 = NO`** · rama `claude/untitled-session-gowmwp`,
+0-bis `8e53c0e`.
+
+**El PR queda PROPUESTO, no fusionado: el merge es de mesa** (instrucción
+explícita de este encargo).
+
+Los cinco criterios de «hecho» del §4, cumplidos por comando: (1) prueba de
+no-pérdida **SIN PÉRDIDA** sobre el universo máximo (161 commits, 92 versiones,
+142 fragmentos, 426/426 trozos del medio) y asentada en `forense/hallazgos.md`;
+(2) las cuatro `NC` **CERRADAS** con evidencia —`…-6e60-04` por arreglo: `fp_max`
+devolvía el FP fantasma `260921`—; (3) `canon/registro-rotulos.tsv` con cabecera
+en la línea 1, 436 → 436 filas, guarda `T51`, mutación `G3-bis`/`G3-ter`
+fallando como debe, y `merge=union` en `.gitattributes`; (4) `cierre_acto.py
+--aplica` deja `estado-programa` sin tocar, ahora de forma permanente bajo `T52`;
+(5) suite en **LÍNEA BASE VERDE**, sin FAIL nuevos.
+
+Nota de cierre:
+`forense/notas/nota-2026-09-21-gen2-tuberia-cierre-sin-choque-2-cierre.md`.
