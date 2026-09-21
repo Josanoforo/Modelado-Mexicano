@@ -2833,6 +2833,26 @@ def _regla_de(consumidor: str) -> str:
 CAMPOS_VALOR_MATERIALIZADO = ["p", "valor_ejecutable", "valor"]
 
 
+def _numero_o_texto(crudo):
+    """`repr()` de vuelta a su tipo, o el texto tal cual si no era numero.
+
+    `cmd_demanda` guarda `valor_legacy` como `repr(...)` para que un valor
+    ausente y la cadena `'None'` no se confundan. Quien compara contra un
+    RESULT necesita el NUMERO: una cifra como cadena no tiene grano, y sin
+    grano la comparacion de adopcion cae a la vara de reproducibilidad.
+    """
+    if not isinstance(crudo, str):
+        return crudo
+    try:
+        return int(crudo)
+    except ValueError:
+        pass
+    try:
+        return float(crudo)
+    except ValueError:
+        return crudo
+
+
 def _ids_corrida0_declarados() -> dict[str, dict]:
     """Consumidores que declaran identidad, generacion y/o uso corrida0.
 
@@ -4083,9 +4103,14 @@ def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> 
         # del agregado. Dejarla en NO-DECLARADO convertiria el relevo en una
         # adopcion que nadie puede falsar, que es lo contrario de lo que el
         # canal existe para dar.
+        # El `valor_legacy` del lado DEMANDA viaja como `repr()`; se devuelve
+        # a su TIPO antes de guardarlo. Un numero como cadena hace que la
+        # comparacion de adopcion caiga en `SIN-GRANO -> reproducibilidad`
+        # (1e-10) en vez de en el grano de `milpa/`, y entonces falla por el
+        # motivo equivocado.
         if u["valor_materializado"] == NO_DECLARADO:
-            u["valor_materializado"] = valor_legacy_de.get(
-                u["resultado_id"], NO_DECLARADO)
+            u["valor_materializado"] = _numero_o_texto(
+                valor_legacy_de.get(u["resultado_id"], NO_DECLARADO))
     for llave in sorted(set(pines_ok) - llaves_usadas):
         avisos.append(
             f"PIN-SIN-CONSUMIDOR: {llave} esta firmado y validado, pero "
