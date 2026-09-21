@@ -159,3 +159,15 @@ Si el código admite la adjudicación con la ola 2023 como R, se valida también
 ---
 
 **Falsador, a tres meses:** si el COMMIT-2/3 para en `corrida0` por un id que la lectura estática no listó, la lectura no fue completa, y D-22 ampliada tiene que exigir enumeración por herramienta, no a mano.
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| `NC-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_3-5870-01` · P5 -- «La prueba que se queda»: los siete caminos con su asercion, en CI: tests/test_piloto3_v13_conducto.py existe, pasa en CAJA (7 passed, ocho caminos) y esta censado, pero en CI se salta en voz alta: NECESITA-DEPENDENCIA(pytest) -- el runner no instala numpy/pandas/pytest (misma fila que tests/test_piloto3_v11.py) | DECISIÓN-DE-MESA-PENDIENTE: FP-398 FIRMADA opcion (a) (instalar librerias en CI) con ejecucion en manos de mesa; este acto no toca requirements.txt ni verify.yml (fuera de perimetro §9: tools/ y CI ajenos) | la guardia del conducto solo protege al COMMIT-2/3 si quien lo ejecuta la corre en CAJA (P0 del sucesor la exige); ningun contador | ejecucion de FP-398 (a) por mesa; hasta entonces, P0 del COMMIT-2/3a/3 del v1.3 corre pytest tests/test_piloto3_v13_conducto.py en CAJA |
+| `NC-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_3-5870-02` · §1 «Guardarrail: ningun camino produce un valor no finito» -- lectura estatica mas alla de los ocho caminos: adjudicacion.py:185-189,207 emite -{C2,S-MEDIO,S-LAMBDA}-P sin guardia de finitud: NaN si una marginal de UNA variable entera queda sin masa en 2025. Inalcanzable en los ocho caminos y en el dato real (miles de tramites por marginal en 2023); cero no finitos medidos. No es PARO (c) ni se arregla declarando (PARO b: no se toca codigo) | DIFERIDO-A:D-22 ampliada (direccion, semilla v2.16): la enumeracion por herramienta debe cubrir NaN ademas de None; reserva escrita en la nota §3 | ninguno hoy; si ocurriera en el COMMIT-3, corrida0 pararia con valor_no_finito y el sucesor lo reporta | D-22 ampliada (direccion); COMMIT-2/3a/3 del v1.3 lo vigila con la asercion de finitud del test |
+| `NC-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_3-5870-03` · Cabecera: «Congela la sesion de #944»: congelo una sesion NUEVA (165ce648), no la de #944: el operador lanzo el encargo en esta sesion. F3 se cumple igual (no corrio el medidor sobre 2025, no abrio la ola, no leyo disenos A/B ni careo; quien congela no ejecuta). Premisa logistica, objetivo alcanzable: se siguio y se declara | DECISIÓN-DE-MESA-PENDIENTE: si mesa exigia literalmente la sesion de #944, que lo diga al fusionar; la salida no depende de que sesion tecleo | ninguno | MESA -- al fusionar el PR de este acto |
+
+Corrido entero: P1 (292 + 174 declaraciones), P2, P3 (ocho caminos, incluida la adjudicación con oro 2023 como R), P4, P5 (en CAJA), P6. `## CONSUMIDO` se añade en el commit siguiente con el número real del PR.
