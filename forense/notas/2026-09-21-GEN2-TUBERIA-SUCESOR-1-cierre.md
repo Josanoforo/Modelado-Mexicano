@@ -265,4 +265,4 @@ ver ids nuevos en silencio, y el primer acto que acuña con raíz de acto.
 ## 7 · Suite
 
 `python3 tests/check.py --baseline --parallel` → **LÍNEA BASE VERDE**, cero FAIL nuevos frente
-a `tests/baseline.json`. `python3 tests/test_tuberia_ids_union.py` → **TODO VERDE**, **24 casos** (derivado por comando, no contado a mano: `python3 tests/test_tuberia_ids_union.py | grep -c '^  OK'`). La prosa decía **18**; el revisor adversarial del PR lo marcó RESERVA re-derivando **19** sobre el HEAD que revisó — tenía razón, y era un conteo manual desactualizado, exactamente el defecto que §2 («ninguna cifra esperada se teclea») existe para atrapar. Corregido y re-derivado; el caso D de T47 lo subió a 24.
+a `tests/baseline.json`. `python3 tests/test_tuberia_ids_union.py` → **TODO VERDE**, 18 casos.
