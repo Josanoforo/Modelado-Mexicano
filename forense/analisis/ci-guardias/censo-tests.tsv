@@ -94,6 +94,7 @@ tests/test_motral2015_valoracion.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 
 tests/test_n34_producto_dano.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_perimetro_raices.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_piloto3_guardias.py	script	NO	numpy,pandas	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_piloto3_v11.py	pytest	NO	numpy,pandas,pytest	SI	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_pisos_enif2021_formalidad.py	script	NO	(ninguna)	NO	0.3	CORRE-EN-CI	exit 0 sin corpus
 tests/test_pisos_enut2019.py	script	NO	(ninguna)	NO	11.6	CORRE-EN-CI	exit 0 sin corpus
 tests/test_pisos_rejilla.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py

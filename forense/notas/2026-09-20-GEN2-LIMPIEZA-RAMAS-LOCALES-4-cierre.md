@@ -141,7 +141,7 @@ $ git -C /home/pc0/mm-adq worktree list | wc -l
 |---|---|---|---|
 | Actos vivos con worktree (incl. 3 EN-VUELO, `acto/gen2-celda-d-piloto-3-*` de `pc0-77`/PR #924/#926, `acto/gen2-din-credito-comparabilidad-texto-1` de otra sesión concurrente, `acto/gen2-limpieza-ramas-locales-4` de este acto, y actos previos aún no cerrados) | ~14 | 0 | Trabajo en curso, fuera de perímetro |
 | `codex/*` <24h (11 del grupo 2 + `codex/optimiza-verificacion-ci-prueba-compuerta`) | 12 | 0 | Regla de 24h — candidatas mecánicas mañana |
-| Rechazadas por `branch -d`, contenido verificado redundante o propio real (F-A/F-B/F-C) | 5 | 3 | `FP-402`/`NC-0423`, decisión de mesa pendiente |
+| Rechazadas por `branch -d`, contenido verificado redundante o propio real (F-A/F-B/F-C) | 5 | 3 | `FP-402`/`NC-0428`, decisión de mesa pendiente |
 | `acto/gen2-celda-d-piloto-2` (heredada de `#910`, nunca resuelta) | 1 | 0 | Pendiente de que alguien haga `git checkout main && git branch -d` en el clon base — fuera de perímetro de este acto |
 | Worktrees sucios con decisión de mesa (viven, no se tocan) | 4 | 0 | 2 archivados, 2 descartados sin acción — mesa no autorizó tocar el worktree en sí |
 | `claude/tramite-2026-09-17` (branch huérfana del clon base, ya no checked out) | 1 | 0 | No estaba en ninguna lista de borrado |
@@ -152,7 +152,7 @@ $ git -C /home/pc0/mm-adq worktree list | wc -l
 
 ## NO-CORRIDO / RESERVAS
 
-- `NC-0423`: `git branch -D` sobre las 6 ramas rechazadas por `-d` — `DECISION-DE-MESA-PENDIENTE`.
+- `NC-0428`: `git branch -D` sobre las 6 ramas rechazadas por `-d` — `DECISION-DE-MESA-PENDIENTE`.
   Sucesor: `FP-402`.
 
 Ninguna otra pieza del encargo quedó sin correr.

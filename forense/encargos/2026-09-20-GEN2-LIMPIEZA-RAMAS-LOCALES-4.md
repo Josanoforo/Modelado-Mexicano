@@ -61,7 +61,7 @@ otra pasada. No construyas nada más para esto (D-14).
 
 ## NO-CORRIDO / RESERVAS
 
-- `NC-0423`: `git branch -D` sobre las 6 ramas rechazadas por `git branch -d` (contenido
+- `NC-0428`: `git branch -D` sobre las 6 ramas rechazadas por `git branch -d` (contenido
   verificado redundante o propio real, pero no ancestro de `main`) — razón
   `DECISION-DE-MESA-PENDIENTE`. Sucesor: `FP-402`. Detalle completo en la nota de cierre.
 
