@@ -100,9 +100,24 @@ _ESPACIOS = (
     (re.compile(r"^data/curacion-registro/celdas-d/(?P<resto>.+)\.yaml$"),
      "celda-D"),
     (re.compile(r"^marcador$"), "marcador"),
+    # D-r3, firmada por mesa el 21/sep/2026 con el nombre `cortes-C1::<corte>`
+    # (ACTO GEN2-TUBERIA-RES-LLAVE-1, P1). Se llama `cortes-C1` y no `celdas`
+    # para que no se confunda con `celda-D::`. Declarar el espacio NO vuelve
+    # pineable nada por si solo: un pin sigue exigiendo firma de mesa y las
+    # cuatro guardas de 4.1.
+    (re.compile(r"^milpa/src/celdas\.py$"), "cortes-C1"),
 )
 
 SEP = "::"
+
+# Tokens del `resto` que el nombre del espacio YA dice, y que por eso no se
+# repiten dentro de la llave. Mesa firmo `cortes-C1::<corte>`, no
+# `cortes-C1::CORTES_C1::<corte>`: la tabla del archivo consumidor es
+# precisamente lo que el espacio nombra. Se declara aqui, token por token, y
+# solo se absorbe si va al PRINCIPIO del resto -- nunca a ojo.
+_RESTO_REDUNDANTE = {
+    "cortes-C1": ("CORTES_C1",),
+}
 
 
 class PinInvalido(ValueError):
@@ -130,7 +145,11 @@ def llave_logica(consumidor: str) -> str:
         extra = m.groupdict().get("resto")
         if extra:
             partes.append(extra)
-        partes.extend(p for p in resto.split(":") if p)
+        campos = [p for p in resto.split(":") if p]
+        redundante = _RESTO_REDUNDANTE.get(espacio, ())
+        if campos and campos[0] in redundante:
+            campos = campos[1:]
+        partes.extend(campos)
         return SEP.join(partes)
     raise PinInvalido(
         f"CONSUMIDOR-SIN-ESPACIO-LOGICO: {consumidor!r} -- su archivo no esta "
