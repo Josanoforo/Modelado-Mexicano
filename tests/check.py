@@ -5126,6 +5126,20 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # canon/registro-rotulos.tsv.
     "forense/notas/2026-09-20-GEN2-TUBERIA-CAREO-1-cierre.md",
     "forense/encargos/2026-09-20-GEN2-TUBERIA-CAREO-1.md",
+    # ACTO MOTOR-THETA-CONGELADA-1, 21/sep/2026. Un archivo, archivado
+    # VERBATIM por 0-bis A.3 -- no se edita para complacer T25.
+    #   `E0`, `E1` -- "En E0 este módulo NO estima nada" (§3) y "diseño E1
+    #            (forense/theta-cargable-por-celda-diseno-e1-v1_0.md)" (§4):
+    #            las mismas fases del programa de calibración de theta ya
+    #            censadas y exentas arriba (ver GEN2-TRAMITE-4), citadas aquí
+    #            sin acuñar nada nuevo.
+    #   `M1` -- "sobre `M1`" en "firma de mesa del 17/sep/2026 sobre `M1`"
+    #            (§5, §8): el mismo acto `GEN2-M1-ALCANCE-1` ya censado en
+    #            canon/registro-rotulos.tsv, nombrado sin prefijo por su
+    #            autor -- misma exención que GEN2-TRAMITE-4 arriba.
+    # El rótulo propio de este acto, `MOTOR-THETA-CONGELADA-1`, no vive en el
+    # espacio `M`/`E` de actos (no matchea `M\d{1,2}` ni `E\d{1,2}` pelado).
+    "forense/encargos/2026-09-21-MOTOR-THETA-CONGELADA-1.md",
 }
 
 
