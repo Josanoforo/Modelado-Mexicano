@@ -87,8 +87,8 @@ Dónde un retador tiene margen: los IC más anchos (≥ 0.08) están en las cond
 | P4 COMMIT-2 con tres guardias | `56dc64ca` (CALC sellado, tabla de identidad, replay aislado, vistas) |
 | P5 rejilla de la tabla de identidad GEN2 | hecho; `milpa/` no se lee (`envuelto_legacy = NO`) |
 | P6 tabla corta | §3 de esta nota |
-| enlace de la tabla de crédito al marcador | **no se hace**: `tools/marcador_segmento.py` y `marcador-segmento.tsv` son perímetro de dirección (`NC-0447`, sucesor: piloto de crédito) |
-| cascada | `ADR-578`, L0, rótulo, `FP-404` FIRMADA, `NC-0447`, hallazgo, `INFRAESTRUCTURA`, censo CI |
+| enlace de la tabla de crédito al marcador | **no se hace**: `tools/marcador_segmento.py` y `marcador-segmento.tsv` son perímetro de dirección (`NC-0449`, sucesor: piloto de crédito) |
+| cascada | `ADR-581`, L0, rótulo, `FP-404` FIRMADA, `NC-0449`, hallazgo, `INFRAESTRUCTURA`, censo CI |
 
 No tocado: specs, CALC y tablas de identidad de ahorro; `milpa/` entero; `marcador-segmento.tsv`; `data/curacion-registro/celdas-d/`; `data/credito-comparabilidad-texto-v1_0.tsv` (se lee, con sha256); ENIF 2024, ENIGH, ENSAFI, ENFIH. Sucesores en el orden del encargo §10: regla de elección del cruce del piloto de ahorro (dirección) → piloto de crédito (usa esta tabla) → K8 triangulada → descriptivo rotulado de K2-bancaria → adquisición de cuestionarios 2012/2015 (`NC-0433`).
 

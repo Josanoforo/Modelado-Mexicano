@@ -40,7 +40,7 @@ tests/test_digesto_candidatas.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado
 tests/test_digesto_fecha.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_digesto_mesa.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_digesto_nc.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
-tests/test_din_credito_pisos_enif2021.py	script	NO	(ninguna)	NO	1.3	CORRE-EN-CI	exit 0 sin corpus
+tests/test_din_credito_pisos_enif2021.py	script	NO	(ninguna)	NO	1.3	NECESITA-DEPENDENCIA(numpy,pandas)	ModuleNotFoundError: No module named 'numpy' en el job guardias (FP-398); en CAJA exit 0 sin corpus
 tests/test_emisor_fidelidad.py	pytest	NO	pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_emisor_m2.py	modulo	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 con -m tests.test_emisor_m2 (invocacion de script fallaba)
 tests/test_emite_m_calibracion.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
@@ -100,6 +100,7 @@ tests/test_n34_producto_dano.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado 
 tests/test_perimetro_raices.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_piloto3_guardias.py	script	NO	numpy,pandas	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_piloto3_v11.py	pytest	NO	numpy,pytest	SI	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
+tests/test_pines_mesa.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py (T-PINES-MESA); fila anadida por GEN2-DIN-CREDITO-PISOS-ENIF2021-1 al fusionar #942, que la dejo huerfana y tumbaba el job guardias
 tests/test_pisos_enif2021_formalidad.py	script	NO	(ninguna)	NO	0.4	CORRE-EN-CI	exit 0 sin corpus
 tests/test_pisos_enut2019.py	script	NO	(ninguna)	NO	15.6	CORRE-EN-CI	exit 0 sin corpus
 tests/test_pisos_rejilla.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
@@ -110,7 +111,7 @@ tests/test_reactivos_contexto.py	script	NO	openpyxl	NO	0.1	NECESITA-DEPENDENCIA(
 tests/test_recupera_reactivos_fd.py	modulo	NO	(ninguna)	NO	1.5	CORRE-EN-CI	exit 0 con -m tests.test_recupera_reactivos_fd (invocacion de script fallaba)
 tests/test_relevo_candidatos_delta.py	script	NO	(ninguna)	NO	7.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_relevo_encuci_f2.py	script	NO	(ninguna)	NO	40.0	FALLA-DE-VERDAD	TIMEOUT>40s
-tests/test_relevo_remesas_f3.py	script	NO	(ninguna)	NO	13.7	CORRE-EN-CI	exit 0 sin corpus
+tests/test_relevo_remesas_f3.py	script	NO	(ninguna)	NO	0.2	FALLA-DE-VERDAD	AssertionError en test_f3_no_alcanza_otros_consumidores_ni_res_0047_0049: espera CONFLICTO-ENTRE-CANALES para RES-0047/0049 y #942 (RELEVO-TANDA-3 P4) cerro ese conflicto; NC-0450
 tests/test_runner_l_completa.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_rutas_sin_candidato.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_rutinas.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
