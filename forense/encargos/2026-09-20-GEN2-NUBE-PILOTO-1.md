@@ -197,4 +197,8 @@ Todo lo demás del encargo se corrió: las tres piezas completas, las cuatro com
 
 ## `## CONSUMIDO`
 
-A llenar con el PR al cierre (A.3).
+**PR #931** — https://github.com/Josanoforo/Modelado-Mexicano/pull/931 · rama `claude/trusting-allen-0y61rq` · 21/sep/2026 · `ADR-569` (candidato) · entorno NUBE (`milpa-inegi`, red `Custom`).
+
+Commits: `4333b14` (COMMIT-1, congela el descargador y su arnés antes de abrir dato) · `e7395e9` (COMMIT-2, resultados: descarga verificada, `RESULTADO=REPRODUCE` / `CONTEXTO=DISTINTO`, fila de replay y `FP-402`) · `f628216` (cascada de cierre).
+
+Veredicto del acto: **`REPRODUCE` · `CONTEXTO DISTINTO`**, asentado en `forense/replay-evidencia.tsv` (146 → 147) en el mismo acto que el verify. `cuenta_gen2` no se movió. Ningún PARO de §7 se disparó. Suite en línea base VERDE.
