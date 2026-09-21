@@ -289,12 +289,16 @@ vuelta:** entre el push de la vuelta 2 y la verificación del PR, `main`
 avanzó otros 12 commits y `ACTO MOTOR-THETA-CONGELADA-1` (`PR #947`)
 también tomó `ADR-588` — renumerado de nuevo, a `ADR-589` (autorizado por
 ADENDA-1 §5: "si main vuelve a moverse, fusiona otra vez y re-deriva el
-ADR -- eso es exactamente el ciclo que el acto midió"). Tres vueltas para
+ADR -- eso es exactamente el ciclo que el acto midió"). **Cuarta vuelta:** 8 commits más, `ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_3`
+(`PR #958`) tomó `ADR-589`; renumerado a `ADR-590`. Cuatro vueltas para
 cerrar un acto que no tocó ni un `.py` de producción ni un test es, en sí
-mismo, una medición más del propio mandato. `## CONSUMIDO` del encargo
-original sigue apuntando a `PR #955` (mismo PR, misma rama en las tres
+mismo, la medición más contundente del propio mandato: en el tiempo que
+tomó escribir y cerrar este informe, tres actos ajenos fusionaron y
+colisionaron con su número de ADR, cada uno obligando a re-fusionar,
+re-derivar y re-correr la suite completa. `## CONSUMIDO` del encargo
+original sigue apuntando a `PR #955` (mismo PR, misma rama en las cuatro
 vueltas); la sección de cierre del encargo, al final, cita la adenda y
-las tres vueltas.
+las cuatro vueltas.
 
 ## Hallazgos que no bloquean pero se declaran (A.13/regla de señal)
 

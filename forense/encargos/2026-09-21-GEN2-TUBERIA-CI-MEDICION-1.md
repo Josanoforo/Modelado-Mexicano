@@ -155,3 +155,10 @@ procedimiento: conflictos resueltos en `canon/gobernanza-v1_15.md` y
 `canon/estado-programa-v1_14.md` (tres anotaciones `L0` encadenadas,
 589→588→587), los tres contadores mecánicos reconciliados,
 `tests/check.py --baseline --parallel` VERDE.
+
+**Vuelta 4 (mismo `PR #955`).** 8 commits más; `ACTO
+GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_3` (`PR #958`) también tomó `ADR-589`.
+Renumerado a `ADR-590`. Cuarta anotación `L0` encadenada
+(590→589→588→587), tres contadores reconciliados, suite VERDE. Cuatro
+vueltas para cerrar un acto que sólo mide: el informe (P7) lo cita como
+la medición más directa de su propio mandato.
