@@ -60,4 +60,4 @@ Ninguno — todas las piezas firmadas se ejecutaron o se declararon explícitame
 
 ## CONSUMIDO
 
-`PR` (a abrir por esta sesión) — ver `forense/notas/2026-09-21-GEN2-LIMPIEZA-RAMAS-LOCALES-6-cierre.md`.
+`PR #938` — ver `forense/notas/2026-09-21-GEN2-LIMPIEZA-RAMAS-LOCALES-6-cierre.md`.
