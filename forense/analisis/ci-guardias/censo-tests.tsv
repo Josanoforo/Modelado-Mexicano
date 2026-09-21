@@ -101,6 +101,7 @@ tests/test_n34_producto_dano.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado 
 tests/test_perimetro_raices.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_piloto3_guardias.py	script	NO	numpy,pandas	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_piloto3_v11.py	pytest	NO	numpy,pytest	SI	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
+tests/test_piloto3_v13_conducto.py	pytest	NO	numpy,pytest,yaml	SI	23.0	NECESITA-DEPENDENCIA(pytest)	como test_piloto3_v11.py: pytest + corpus opcional (oro 2023 se salta sin corpus); fila propia de ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_3
 tests/test_pines_mesa.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_pisos_enif2021_formalidad.py	script	NO	(ninguna)	NO	0.4	CORRE-EN-CI	exit 0 sin corpus
 tests/test_pisos_enut2019.py	script	NO	(ninguna)	NO	15.7	CORRE-EN-CI	exit 0 sin corpus
