@@ -2982,6 +2982,19 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-TUBERIA-SIDECAR-CUERPO-1, 21/sep/2026. Una sola mencion y
+    # una sola causa: el encargo CITA POR NOMBRE cuatro encargos reales
+    # que tienen mas de una linea `## NO-CORRIDO` -- `PRE-E5`,
+    # `BANXICO-PRODUCTO-ATRASO-Y-COSTO`, `CHECADOR-2` y `E3-1-1`. El
+    # `E3` pelado que el regex ve sale de `E3-1-1`, que es el rotulo
+    # completo de un encargo ajeno ya archivado
+    # (`forense/encargos/2026-09-08-GEN2-E3-1-1-CABLEADO-FINAL-RUNNER.md`),
+    # no un rotulo que ESTE acto acune. El espacio `E3` ya esta censado en
+    # `canon/registro-rotulos.tsv` por su acto original, y este no lo
+    # reclama ni colisiona con el. Ademas: un encargo verbatim (A.3) nunca
+    # se edita para complacer al test. El rotulo propio de este acto,
+    # `T · GEN2-TUBERIA-SIDECAR-CUERPO-1`, SI va censado.
+    "forense/encargos/2026-09-21-GEN2-TUBERIA-SIDECAR-CUERPO-1.md",
     # ACTO GEN2-C2-COMPUESTO-RESERVADAS-1, 19/sep/2026: `E1`..`E4` y
     # `L1`/`L2` son las CLAVES DE CELDA de los marginales sellados del par
     # `localidad x edad` de ENIF, tal como

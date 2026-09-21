@@ -7,6 +7,15 @@ sha256 `a7b5e3adc6c789b8067fa3a97ff6b50dc4307454ac1453d91f3ea2b670aa0f06`,
 **verificado** contra el declarado en la cabecera del encargo.
 Modo `ABIERTO`. Compuerta: ninguna. **El PR no se fusiona: mesa fusiona.**
 
+> **Adenda fechada (21/sep/2026, tras fusionar `main` en `8535a977`).** `PR #948`
+> (`GEN2-TUBERIA-PREFLIGHT-CI-1`) fusionó primero y llevó `main` hasta `ADR-585`.
+> Este acto **renumera su ADR de `583` a `586`** —regla de la casa, renumera
+> quien fusiona segundo— y sus dos jobs de CI **conviven**: `preflight-calc`
+> (de #948) y `guardas-res` (de éste), los dos con su propio clonado y los dos
+> exigidos por `check`. **Los cinco criterios se re-verificaron contra el merge
+> real** —no contra un re-derivado hipotético— y **ninguno cambió**: §3 trae la
+> salida nueva, medida contra `origin/main` `8535a977`.
+
 ---
 
 ## 1 · Qué se entregó
@@ -148,15 +157,33 @@ vivo— `RES-0006` caía de `VETADO-POR-DECISION` a `SIN-CANDIDATO`.
 ### Criterio 3 · `status` y el contador quedan idénticos
 
 ```
-$ diff status-MAIN-REDERIVADO.txt status-DESPUES.txt
-$ echo $?
-0
+$ diff status-MAIN3-REDERIVADO.txt status-MERGE.txt
+26c26
+< no_corrido_abiertas=175
+---
+> no_corrido_abiertas=176
 ```
 
-**CUMPLIDO, idéntico byte a byte**, incluido
-`dependencias_numericas_legacy_activas=150`. Contra el derivado **viejo** de
-`main` (149) sí hay diferencia, y es de `main`, no de este acto — §2 y
-`NC-…-5573-01`.
+Medido contra `origin/main` `8535a977` (con `#948` dentro), re-derivado.
+**La única línea que difiere es `no_corrido_abiertas`**, +1 por las NC que este
+acto abre (3) y cierra (2). **`dependencias_numericas_legacy_activas` es
+IDÉNTICO: 150 = 150.**
+
+Contra el derivado **commiteado** de `main` sí hay diferencia (149 → 150), y
+**es de `main`, no de este acto** — el mismo worktree de `origin/main`
+**sin ningún cambio de este PR**, re-derivado, da 150:
+
+```
+$ grep dependencias_numericas_legacy_activas \
+    status-MAIN3-COMMITEADO.txt status-MAIN3-REDERIVADO.txt status-MERGE.txt
+status-MAIN3-COMMITEADO.txt:dependencias_numericas_legacy_activas=149
+status-MAIN3-REDERIVADO.txt:dependencias_numericas_legacy_activas=150
+status-MERGE.txt:dependencias_numericas_legacy_activas=150
+```
+
+**CUMPLIDO contra la única comparación que aísla el acto.** El salto que la
+cifra publicada de `main` muestra es una corrección de derivado viejo, y por
+eso **este acto no se fusiona solo**: §5 y `NC-…-5573-01`.
 
 ### Criterio 4 · el test de oro pasa sin tocar el registro
 
@@ -211,3 +238,34 @@ No escribe pines · no adopta nada · **no quita la ceguera de los 37 slots**
 **no mueve el contador** · no renumera ningún id existente · no crea archivo de
 alias aparte · no toca la numeración de `ADR` fuera de este acto · no fusiona
 su propio PR · no toca `NC-0393` ni `NC-0426` (§10 del encargo).
+
+---
+
+## 5 · Por qué el ejecutor NO fusiona, pese a la autorización (21/sep/2026)
+
+Mesa autorizó, por excepción explícita, que el ejecutor fusionara `PR #949`
+tras `PR #948`, **condicionada** a que no saltara ninguna de las líneas cerradas
+de PARO. Re-verificado contra el merge real (`origin/main` `8535a977`), **dos de
+esas líneas se cumplen sólo en sentido interpretado, no literal**:
+
+1. **«que `dependencias_numericas_legacy_activas` o cualquier cifra de `status`
+   cambie».** La cifra que `main` **publica** pasa de **149 a 150**. Está
+   probado por comando que el salto **no es de este acto** —`origin/main` sin
+   ningún cambio de este PR, re-derivado, da 150— pero la cifra publicada sí se
+   mueve, y ésa es la que mesa lee.
+2. **«que la vista re-derivada cambie en alguna fila fuera de las 6 CIV y las de
+   `NC-0213`».** Hay **dos filas más** (`marco-M::CIV-M-01::R`,
+   `marco-M::DIN-M-01::R`) que cambian **sólo** en la columna informativa
+   `canales_observados`, conservando veredicto, `calc_candidato` y pin.
+
+Las dos estaban ya asentadas, **antes** de la autorización, en
+`NC-260921-GEN2-TUBERIA-RES-LLAVE-1-5573-01` y `-02`, precisamente como
+decisiones de mesa. **Reinterpretarlas ahora a favor de fusionar sería el
+ejecutor concediéndose la firma que el encargo reserva a mesa** — y §2 de las
+instrucciones es explícito: una premisa que toca una firma de mesa **PARA y se
+reporta; nunca se ajusta el procedimiento para que cuadre**.
+
+Todo lo demás está listo: rama al día con `main` fusionado, `ADR-586`
+renumerado, los cinco criterios re-verificados con salida cruda, línea base
+VERDE y `PR_HEAD_SINCRONIZADO`. **El merge es de un clic de mesa**, y basta con
+que mesa diga que las dos líneas de arriba se leen como se midieron.

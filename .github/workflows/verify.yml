@@ -104,6 +104,20 @@ jobs:
       - name: svystat.py — validación independiente (bloqueante)
         run: python3 tests/test_svystat.py
 
+      - name: sidecars de forense/encargos y forense/notas — sello de cuerpo (bloqueante)
+        # ACTO GEN2-TUBERIA-SIDECAR-CUERPO-1 (21/sep/2026), firma D-a4.
+        # Dos pasos, no uno: el test cubre la regla por mutación sobre
+        # fixtures, el verificador la corre sobre el árbol real. Sin él, un
+        # `.cuerpo.sha256` roto no lo vería nadie hasta el próximo careo —
+        # que es exactamente cómo #932 llegó a tener un sidecar que fallaba
+        # durante un día entero. `tests/check.py` no auto-descubre
+        # `tests/test_*.py`, así que el test va cableado a mano como los
+        # demás. Stdlib puro: sin red, sin corpus, y el verificador nunca
+        # escribe.
+        run: |
+          python3 tests/test_verifica_sidecars.py
+          python3 tools/verifica_sidecars.py
+
       - name: emite_m — resolver de ola_calibracion por conducta (bloqueante)
         # ACTO MAESTRA38-M13 · M-POR-CELDA v1.3, §5 ("PRUEBA PERMANENTE
         # JUSTIFICADA"). El defecto que cubre es material: si
@@ -314,6 +328,58 @@ jobs:
       - name: Guardias huérfanas — censo + invocador correcto por archivo (bloqueante)
         run: python3 tools/ci_guardias.py --ejecuta-huerfanos
 
+  # ACTO GEN2-TUBERIA-PREFLIGHT-CI-1 (21/sep/2026). `corrida0 preflight` sobre
+  # los CALC SIN SELLO que este cambio añade o toca — y sólo sobre ésos.
+  #
+  # Defecto que atrapa, tres veces en una semana y siempre el mismo: un CALC
+  # se fusiona en un estado en que el runner no podría correrlo (#781 sin
+  # `spec.md`, #903 sin `seed`, #926 con `spec_md` escrito como ruta desde la
+  # raíz), y lo topa la ejecución del día siguiente en vez del PR que lo
+  # introdujo. D-14: el chequeo tarda segundos, no necesita corpus, y cuesta
+  # menos que uno solo de esos paros.
+  #
+  # CLON PROPIO, `--depth=2`: el job necesita LA BASE para saber qué CALC toca
+  # el cambio, y el primer padre de la ref de merge es la punta de main. Los
+  # otros jobs no la tienen y D-23 prohíbe que este haga `fetch` dentro del
+  # clon de otro. `PYTHONDONTWRITEBYTECODE`: un `__pycache__` recién escrito
+  # sería `working_tree_dirty` fabricado por el propio chequeo.
+  preflight-calc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Checkout con la base (clon propio — D-23, no se toca el de otro job)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://github.com/${{ github.repository }}.git"
+          if [ -n "${{ github.event.pull_request.number }}" ]; then
+            REF="+refs/pull/${{ github.event.pull_request.number }}/merge:refs/remotes/origin/ci"
+          else
+            REF="+${{ github.ref }}:refs/remotes/origin/ci"
+          fi
+          git -c protocol.version=2 fetch -q --depth=2 --no-tags origin "$REF"
+          git checkout -q refs/remotes/origin/ci
+          git log -1 --format="HEAD=%H %s"
+          git rev-parse refs/remotes/origin/ci^1 > /dev/null
+          git log -1 --format="BASE=%H %s" refs/remotes/origin/ci^1
+
+      - name: Intérprete del runner (crudo, para que quede en el log)
+        run: python3 -VV
+
+      - name: Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Prueba por mutación del chequeo (bloqueante — D-21, el acto cablea su test)
+        run: python3 tests/test_preflight_calc_tocados.py
+
+      - name: preflight sobre los CALC sin sello que este cambio toca (bloqueante)
+        run: |
+          python3 tools/preflight_calc_tocados.py \
+            --base refs/remotes/origin/ci^1 \
+            --cabeza refs/remotes/origin/ci
+
   # ACTO GEN2-TUBERIA-RES-LLAVE-1 (P6) · las seis guardas de identidad
   # RES/llave logica. Job PROPIO con su PROPIO clonado, porque G1 y G3
   # comparan contra el registro de la ref BASE y `tools/ci_guardas_res.py`
@@ -357,7 +423,7 @@ jobs:
   # Conserva el nombre requerido por protección. always() es indispensable:
   # un job fallido/omitido/cancelado debe llegar a una compuerta que NO aprueba.
   check:
-    needs: [suite, adicionales, guardias, guardas-res]
+    needs: [suite, adicionales, guardias, preflight-calc, guardas-res]
     if: ${{ always() }}
     runs-on: ubuntu-latest
     timeout-minutes: 1
@@ -368,10 +434,12 @@ jobs:
           ADICIONALES_RESULT: ${{ needs.adicionales.result }}
           GUARDIAS_RESULT: ${{ needs.guardias.result }}
           GUARDAS_RES_RESULT: ${{ needs['guardas-res'].result }}
+          PREFLIGHT_CALC_RESULT: ${{ needs['preflight-calc'].result }}
         run: |
           set -euo pipefail
-          printf 'suite=%s adicionales=%s guardias=%s guardas-res=%s\n' "$SUITE_RESULT" "$ADICIONALES_RESULT" "$GUARDIAS_RESULT" "$GUARDAS_RES_RESULT"
+          printf 'suite=%s adicionales=%s guardias=%s preflight-calc=%s guardas-res=%s\n' "$SUITE_RESULT" "$ADICIONALES_RESULT" "$GUARDIAS_RESULT" "$PREFLIGHT_CALC_RESULT" "$GUARDAS_RES_RESULT"
           test "$SUITE_RESULT" = success
           test "$ADICIONALES_RESULT" = success
           test "$GUARDIAS_RESULT" = success
           test "$GUARDAS_RES_RESULT" = success
+          test "$PREFLIGHT_CALC_RESULT" = success
