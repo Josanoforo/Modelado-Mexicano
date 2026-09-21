@@ -186,10 +186,16 @@ Fuera del perímetro y necesario para terminar → es **latitud** (≤10 líneas
 
 **CIERRE**: ADR del acto (número derivado por el comando de la casa al escribir **y** al fusionar; renumera quien fusione segundo) · FP/NC propios derivados, no heredados · `## NO-CORRIDO / RESERVAS` antes de `## CONSUMIDO`, con «Ninguno.» obligatorio si no hubo (A.14) · `tests/check.py --baseline` VERDE o PARO · rama fusionada o borrada (política de cero ramas).
 
-## `## NO-CORRIDO / RESERVAS`
+## NO-CORRIDO / RESERVAS
 
-A llenar por el ejecutor al cierre.
+Llenado por el ejecutor al cierre (A.14). Ejecutado 21/sep/2026 sobre `origin/main` `b8438d7`, rama `claude/new-session-lvyz4s`, entorno **NUBE `cloud_default`** (no `milpa-inegi`).
 
-## `## CONSUMIDO`
+- **Pieza 2 · El piloto — `CALC-ENIF-0001` en nube** — `PARO-ENTORNO`. La premisa `[REPORTADO]` de §3 («`milpa-inegi` existe y permite `www.inegi.org.mx`») se verificó y cayó: el hook dice `red: DENEGADA-POR-POLITICA (http_code=000, http_connect=403, x_deny_reason=ausente, via_proxy=SI)` y el descargador de la pieza 1, contra el id del piloto, da `NO-OBTENIDO — Tunnel connection failed: 403 Forbidden`. Es el PARO (e) que §7 nombra y que §5 anticipa. Sin red no hay payload, y el paso 2 del propio encargo es bajarlo **con la pieza 1**; §1 excluye de «hecho» un verify sobre un payload traído a mano. No se tocó `data/corrida0/CALC-ENIF-0001/*` ni la fila de replay existente. **Impacto:** `forense/replay-evidencia.tsv` no se mueve — queda en **147** filas (el CONTADOR del encargo decía 146 → 147; medido al arrancar ya estaba en 147, la premisa iba una fila atrás). `CALC-ENIF-0001` sigue sin un verify nuevo fuera de CAJA. `cuenta_gen2` no se movió, como el encargo veda. **Sucesor:** `NC-0423`; relanzar este encargo en `milpa-inegi` cuando mesa lo cree — la pieza 1 ya queda congelada y probada, así que el relanzamiento es sólo piezas 2 y 3.
 
-A llenar con el PR al cierre (A.3).
+- **Pieza 1 y Pieza 3** — **corridas y entregadas.** La pieza 1 quedó congelada en `COMMIT-1` con sus cuatro pruebas contra servidor HTTP local (26 PASS / 0 FAIL, D-22), tal como §5 previó para el caso de que la premisa del entorno resultara falsa. La pieza 3 se escribió con lo que salió (`FP-402`), que es lo que §5 exige explícitamente: la medición de `cloud_default` **confirma** `FP-67` en su forma actual para ese universo y **no** mide nada sobre la red `Custom`.
+
+- **Ninguna otra.** Todo lo demás del perímetro de §9 se corrió: CI cableado (`forense/analisis/ci-guardias/censo-tests.tsv`, `tests/test_descarga_manifiesto.py` → `CORRE-EN-CI`), `data/INFRAESTRUCTURA-v1_0.md` dominio 1 actualizado, hallazgos, ADR y cascada.
+
+**Fuera de perímetro, pedido a media sesión y no alcanzado:** los cinco artefactos de `C:\Users\PC0\Descargas MX` (`censo_nube_v1.py`, `censo-hueco-url-v1_0.tsv`, `censo-licencias-v1_0.tsv`, `CENSO-NUBE-MEDICION-2026-09-20.md`, `TRANSFER-NUBE-MEDICION-2026-09-20.md`). `NO-ACCESIBLE` (ruta de la máquina de mesa; la raíz lógica `descargas_mx` no está configurada en este entorno) y `NO-ENCONTRADO` en el repo (universo 6 298 archivos en `b8438d7`). No estaban en el perímetro de §9 ni eran insumo de las tres piezas. Son de otro acto — el censo de licencias que la firma 7 difiere a cuando se arme la salida pública.
+
+## CONSUMIDO
