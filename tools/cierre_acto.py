@@ -449,129 +449,30 @@ def _confirma_temp(ruta_tmp, ruta):
 
 
 def fase_b_aplica(raiz=RAIZ):
-    ruta_gob = _ruta_gobernanza(raiz)
-    ruta_est = _ruta_estado(raiz)
+    """(`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1`, 21/sep/2026, P-B, firma de
+    mesa D-2 del 21/sep.) Los TRES contadores mecánicos -- cabecera de
+    `gobernanza`, línea `L0` de `estado-programa` y su fila de tabla §0 --
+    DEJAN DE ESCRIBIRSE. Quedaron HISTÓRICOS al congelar la L0 (P-A): el
+    conteo vigente se deriva por comando (`EC.adr_max`, o
+    `python3 tools/l0_vista.py --conteo`), nunca de esos tres textos, y
+    reconciliarlos era exactamente lo que producía el choque de merges que
+    este acto existe para cerrar. `--aplica` sigue sincronizando la cola
+    (independiente de los tres contadores, ver ACTO GEN2-T9 P4(i)) y ya no
+    toca `canon/gobernanza-v1_15.md` ni `canon/estado-programa-v1_14.md`
+    -- verificable con `git status` tras correrlo (criterio de "hecho" 4
+    del encargo)."""
     adr_real = EC.adr_max(raiz)
-    gob_texto = _leer(ruta_gob)
-    # canon/estado-programa-v1_14.md se lee UNA sola vez; L0 y la fila de
-    # tabla se reconcilian en secuencia sobre el mismo buffer en memoria
-    # (nunca dos ciclos independientes de read/write) y el archivo se
-    # escribe UNA sola vez, al final, con las dos correcciones ya aplicadas.
-    est_texto = _leer(ruta_est)
-
-    anclas_cab = list(CABECERA_ADR_RE.finditer(gob_texto))
-    anclas_l0 = list(L0_ADR_RE.finditer(est_texto))
-    anclas_tabla = list(TABLA_ADR_RE.finditer(est_texto))
-
-    problemas = []
-    if len(anclas_cab) != 1:
-        problemas.append(f"cabecera de gobernanza: {len(anclas_cab)} ancla(s) (se requiere exactamente 1)")
-    if len(anclas_l0) != 1:
-        problemas.append(f"L0: {len(anclas_l0)} ancla(s) (se requiere exactamente 1)")
-    if len(anclas_tabla) != 1:
-        problemas.append(f"tabla estado: {len(anclas_tabla)} ancla(s) (se requiere exactamente 1)")
-    if problemas:
-        print("APLICACION_ABORTADA · 0 archivos escritos")
-        for p in problemas:
-            print(f"  · {p}")
-        return 1
-
-    cab_actual = int(anclas_cab[0].group(2))
-    l0_actual = int(anclas_l0[0].group(2))
-    tabla_actual = int(anclas_tabla[0].group(2))
-
-    if cab_actual == adr_real and l0_actual == adr_real and tabla_actual == adr_real:
-        # ACTO GEN2-T9 · P4(i): esta salida temprana se comia la
-        # sincronizacion de la cola. Los TRES contadores de ADR y el ESTADO
-        # de `cola/` son cosas independientes: que los primeros ya cuadren
-        # no dice nada del segundo, y el acto cuyos contadores no se movieron
-        # -- justo el que solo cierra cola -- era el que se quedaba sin
-        # sincronizar. Se corre la cola SIEMPRE, antes de devolver.
-        sincronizadas = sincroniza_cola(raiz)
-        for fila in sincronizadas:
-            destino = "CONSUMIDO" if fila.get("completa", True) else "EN-CURSO (parcial)"
-            print(f"APLICADO: cola {os.path.basename(fila['cola'])} "
-                  f"-> {destino}"
-                  + (f" (PR #{fila['pr']})" if fila["pr"] else ""))
-        print(f"sin cambios -- cabecera, L0 y tabla estado ya declaran {adr_real}, igual al real")
-        return 0
-
-    def _sustituye(texto, m, valor):
-        return texto[:m.start(2)] + str(valor) + texto[m.end(2):]
-
-    gob_candidato = _sustituye(gob_texto, anclas_cab[0], adr_real) if cab_actual != adr_real else gob_texto
-
-    # L0 primero, tabla después -- ambas sobre el mismo buffer encadenado.
-    # Cada paso se valida contra el buffer que lo precede inmediatamente
-    # (no contra est_texto original en el segundo paso), porque el patrón
-    # de la tabla debe re-ubicarse en el texto YA modificado por L0.
-    est_tras_l0 = _sustituye(est_texto, anclas_l0[0], adr_real) if l0_actual != adr_real else est_texto
-    if est_tras_l0 != est_texto and not _solo_digitos_cambiaron(est_texto, est_tras_l0, L0_ADR_RE):
-        print("APLICACION_ABORTADA · 0 archivos escritos")
-        print("  · L0: el cambio construido no se limita a los dígitos del conteo")
-        return 1
-
-    anclas_tabla_tras_l0 = list(TABLA_ADR_RE.finditer(est_tras_l0))
-    if len(anclas_tabla_tras_l0) != 1:
-        print("APLICACION_ABORTADA · 0 archivos escritos")
-        print(f"  · tabla estado: {len(anclas_tabla_tras_l0)} ancla(s) tras aplicar L0 (se requiere exactamente 1)")
-        return 1
-    est_candidato = (_sustituye(est_tras_l0, anclas_tabla_tras_l0[0], adr_real)
-                      if tabla_actual != adr_real else est_tras_l0)
-    if est_candidato != est_tras_l0 and not _solo_digitos_cambiaron(est_tras_l0, est_candidato, TABLA_ADR_RE):
-        print("APLICACION_ABORTADA · 0 archivos escritos")
-        print("  · tabla estado: el cambio construido no se limita a los dígitos del conteo")
-        return 1
-
-    if gob_candidato != gob_texto and not _solo_digitos_cambiaron(gob_texto, gob_candidato, CABECERA_ADR_RE):
-        print("APLICACION_ABORTADA · 0 archivos escritos")
-        print("  · cabecera de gobernanza: el cambio construido no se limita a los dígitos del conteo")
-        return 1
-
-    # Todo validado -- recién ahora se escribe, los dos archivos o ninguno.
-    # Primero se preparan TODOS los temporales (si algo falla aquí, ningún
-    # archivo real se tocó); sólo después se confirman los reemplazos --
-    # así el archivo real nunca queda con contenido parcial, y la ventana
-    # entre "nada escrito" y "todo escrito" se reduce a los dos renames
-    # atómicos consecutivos, no a dos escrituras completas consecutivas.
-    temps = []
-    try:
-        if gob_candidato != gob_texto:
-            temps.append((_prepara_temp(ruta_gob, gob_candidato), ruta_gob))
-        if est_candidato != est_texto:
-            temps.append((_prepara_temp(ruta_est, est_candidato), ruta_est))
-    except OSError as e:
-        print("APLICACION_ABORTADA · 0 archivos escritos")
-        print(f"  · error de E/S al preparar los temporales: {e}")
-        return 1
-
-    confirmados = []
-    try:
-        for ruta_tmp, ruta_destino in temps:
-            _confirma_temp(ruta_tmp, ruta_destino)
-            confirmados.append(ruta_destino)
-    except OSError as e:
-        # Los temporales ya estaban listos (ver arriba): si esto falla, es
-        # un error de E/S al hacer el rename, no una validación fallida.
-        # `confirmados` dice exactamente cuáles de los dos ya quedaron
-        # escritos antes del fallo -- nunca se afirma "0 archivos" si no
-        # es cierto.
-        print(f"ERROR DE E/S AL CONFIRMAR -- ya escrito: {confirmados or '(ninguno)'} · falló: {e}")
-        return 1
-
-    cambios = []
-    if cab_actual != adr_real:
-        cambios.append(f"gobernanza {cab_actual}->{adr_real}")
-    if l0_actual != adr_real:
-        cambios.append(f"L0 {l0_actual}->{adr_real}")
-    if tabla_actual != adr_real:
-        cambios.append(f"tabla estado {tabla_actual}->{adr_real}")
     sincronizadas = sincroniza_cola(raiz)
     for fila in sincronizadas:
         destino = "CONSUMIDO" if fila.get("completa", True) else "EN-CURSO (parcial)"
-        cambios.append(f"cola {os.path.basename(fila['cola'])} -> {destino}"
-                       + (f" (PR #{fila['pr']})" if fila["pr"] else ""))
-    print("APLICADO: " + (" · ".join(cambios) if cambios else "nada que reconciliar"))
+        print(f"APLICADO: cola {os.path.basename(fila['cola'])} "
+              f"-> {destino}"
+              + (f" (PR #{fila['pr']})" if fila["pr"] else ""))
+    print(f"contadores HISTÓRICOS (P-B, no se escriben): cabecera de gobernanza, "
+          f"L0 de estado-programa, fila de tabla §0 -- ADR numérico real: {adr_real} "
+          f"(`EC.adr_max`); los ADR de raíz de acto (P-C) no participan de este conteo.")
+    if not sincronizadas:
+        print("sin cambios -- ningún archivo de gobierno escrito por esta fase")
     return 0
 
 
