@@ -1,0 +1,723 @@
+run_id	job_id	job_name	evento	rama	conclusion_run	test	contexto
+35616351333	106387949630	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35616351333	106387949630	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35611048115	106370182926	suite	pull_request	claude/tramite-2026-09-21	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.024 s
+35611048115	106370182926	suite	pull_request	claude/tramite-2026-09-21	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35570344776	106240474852	suite	pull_request	claude/entorno-spu2y7	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.032 s
+35570344776	106240474852	suite	pull_request	claude/entorno-spu2y7	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35569597010	106238236043	suite	pull_request	claude/entorno-spu2y7	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35569597010	106238236043	suite	pull_request	claude/entorno-spu2y7	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35568652217	106235420640	suite	pull_request	claude/entorno-spu2y7	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35568652217	106235420640	suite	pull_request	claude/entorno-spu2y7	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35567946007	106233411226	suite	pull_request	claude/entorno-spu2y7	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35567946007	106233411226	suite	pull_request	claude/entorno-spu2y7	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35566479159	106229209920	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35566479159	106229209920	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35566233763	106228489280	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-1-v1_2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.029 s
+35566233763	106228489280	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-1-v1_2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35565539735	106226498941	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35565539735	106226498941	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.006 s
+35565280009	106225744743	suite	pull_request	claude/entorno-6pj9np	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.024 s
+35565280009	106225744743	suite	pull_request	claude/entorno-6pj9np	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35564685069	106224075057	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-1-v1_2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.033 s
+35564685069	106224075057	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-1-v1_2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35564433615	106223347848	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.023 s
+35564433615	106223347848	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35564312752	106223005682	suite	pull_request	claude/entorno-6pj9np	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.022 s
+35564312752	106223005682	suite	pull_request	claude/entorno-6pj9np	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35564210328	106222705459	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-2-3	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.033 s
+35564210328	106222705459	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-2-3	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35563790557	106221504810	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-2-3	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35563790557	106221504810	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-2-3	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35563420838	106220480319	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.016 s
+35563420838	106220480319	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35563137146	106219673684	suite	pull_request	acto/gen2-din-credito-pisos-enif2021-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.024 s
+35563137146	106219673684	suite	pull_request	acto/gen2-din-credito-pisos-enif2021-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35562711423	106218486809	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.017 s
+35562711423	106218486809	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35562514260	106217944204	suite	pull_request	claude/new-session-ccjtu7	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35562514260	106217944204	suite	pull_request	claude/new-session-ccjtu7	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35561212672	106214313614	suite	push	main	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.030 s
+35561212672	106214313614	suite	push	main	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35561212672	106214313614	suite	push	main	failure	T22 T-FIRMAS	[FAIL]  T22 T-FIRMAS  (2 fail, 62 warn) | [tiempo] T22 T-FIRMAS: 0.290 s
+35561179929	106214223098	suite	pull_request	claude/focused-archimedes-fjyqf5	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.029 s
+35561179929	106214223098	suite	pull_request	claude/focused-archimedes-fjyqf5	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35561179929	106214223098	suite	pull_request	claude/focused-archimedes-fjyqf5	failure	T22 T-FIRMAS	[FAIL]  T22 T-FIRMAS  (2 fail, 62 warn) | [tiempo] T22 T-FIRMAS: 0.304 s
+35560738403	106213005701	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-1-v1_2	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.018 s
+35560738403	106213005701	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-1-v1_2	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35560738403	106213005701	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-1-v1_2	failure	T22 T-FIRMAS	[FAIL]  T22 T-FIRMAS  (2 fail, 62 warn) | [tiempo] T22 T-FIRMAS: 0.161 s
+35560663420	106212798612	suite	pull_request	claude/new-session-ccjtu7	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35560663420	106212798612	suite	pull_request	claude/new-session-ccjtu7	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35560663420	106212798612	suite	pull_request	claude/new-session-ccjtu7	failure	T22 T-FIRMAS	[FAIL]  T22 T-FIRMAS  (2 fail, 62 warn) | [tiempo] T22 T-FIRMAS: 0.298 s
+35560346144	106211921827	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-2-3	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35560346144	106211921827	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-2-3	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35560346144	106211921827	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-2-3	failure	T22 T-FIRMAS	[FAIL]  T22 T-FIRMAS  (2 fail, 63 warn) | [tiempo] T22 T-FIRMAS: 0.284 s
+35559744600	106210206410	suite	push	main	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35559744600	106210206410	suite	push	main	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35559744600	106210206410	suite	push	main	failure	T22 T-FIRMAS	[FAIL]  T22 T-FIRMAS  (2 fail, 62 warn) | [tiempo] T22 T-FIRMAS: 0.258 s
+35559684678	106210034966	suite	pull_request	acto/gen2-tramite-firmas-3-propagacion	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35559684678	106210034966	suite	pull_request	acto/gen2-tramite-firmas-3-propagacion	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35559684678	106210034966	suite	pull_request	acto/gen2-tramite-firmas-3-propagacion	failure	T22 T-FIRMAS	[FAIL]  T22 T-FIRMAS  (2 fail, 62 warn) | [tiempo] T22 T-FIRMAS: 0.304 s
+35559484433	106209466365	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-2-3	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.033 s
+35559484433	106209466365	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-2-3	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35559286325	106208958598	suite	pull_request	acto/gen2-din-credito-pisos-enif2021-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35559286325	106208958598	suite	pull_request	acto/gen2-din-credito-pisos-enif2021-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35559135450	106208477468	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.030 s
+35559135450	106208477468	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35559055723	106208411503	suite	pull_request	acto/gen2-din-credito-pisos-enif2021-1	cancelled	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35559055723	106208411503	suite	pull_request	acto/gen2-din-credito-pisos-enif2021-1	cancelled	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35558764952	106207446335	suite	pull_request	claude/new-session-ccjtu7	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.032 s
+35558764952	106207446335	suite	pull_request	claude/new-session-ccjtu7	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35557564955	106204068913	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-2-3	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.025 s
+35557564955	106204068913	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-2-3	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35556721083	106201645187	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.025 s
+35556721083	106201645187	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35556483108	106200987774	suite	pull_request	claude/ecstatic-edison-y1t005	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.029 s
+35556483108	106200987774	suite	pull_request	claude/ecstatic-edison-y1t005	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.006 s
+35556438029	106200916859	suite	pull_request	claude/new-session-ccjtu7	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35556438029	106200916859	suite	pull_request	claude/new-session-ccjtu7	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35555820656	106199139633	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35555820656	106199139633	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35555602597	106198543379	suite	pull_request	acto/gen2-limpieza-ramas-locales-6	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.029 s
+35555602597	106198543379	suite	pull_request	acto/gen2-limpieza-ramas-locales-6	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35555184161	106197359181	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35555184161	106197359181	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35555110286	106197151435	suite	pull_request	acto/gen2-limpieza-ramas-locales-6	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.036 s
+35555110286	106197151435	suite	pull_request	acto/gen2-limpieza-ramas-locales-6	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35554979250	106196770934	suite	pull_request	acto/gen2-limpieza-ramas-locales-5	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35554979250	106196770934	suite	pull_request	acto/gen2-limpieza-ramas-locales-5	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35554692592	106195914042	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35554692592	106195914042	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35554608963	106195689593	suite	pull_request	acto/gen2-limpieza-ramas-locales-5	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35554608963	106195689593	suite	pull_request	acto/gen2-limpieza-ramas-locales-5	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35554019422	106194011776	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.031 s
+35554019422	106194011776	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35553831870	106193473634	suite	pull_request	acto/gen2-limpieza-ramas-locales-4-cierre-fp402	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.015 s
+35553831870	106193473634	suite	pull_request	acto/gen2-limpieza-ramas-locales-4-cierre-fp402	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35553812062	106193417362	suite	pull_request	claude/trusting-allen-0y61rq-bis	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.032 s
+35553812062	106193417362	suite	pull_request	claude/trusting-allen-0y61rq-bis	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35553169946	106191656139	suite	pull_request	acto/gen2-limpieza-ramas-locales-6	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.018 s
+35553169946	106191656139	suite	pull_request	acto/gen2-limpieza-ramas-locales-6	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35553147808	106191547140	suite	pull_request	claude/trusting-allen-0y61rq-bis	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35553147808	106191547140	suite	pull_request	claude/trusting-allen-0y61rq-bis	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35552877115	106190775908	suite	pull_request	claude/ecstatic-edison-y1t005	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.022 s
+35552877115	106190775908	suite	pull_request	claude/ecstatic-edison-y1t005	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35552154454	106188768003	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35552154454	106188768003	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35552006273	106188395224	suite	pull_request	claude/ecstatic-edison-y1t005	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.031 s
+35552006273	106188395224	suite	pull_request	claude/ecstatic-edison-y1t005	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35552006273	106188395224	suite	pull_request	claude/ecstatic-edison-y1t005	failure	T34 T-NO-CORRIDO	[FAIL]  T34 T-NO-CORRIDO  (1 fail, 165 warn) | [tiempo] T34 T-NO-CORRIDO: 0.039 s
+35551356382	106186630496	suite	pull_request	acto/gen2-limpieza-ramas-locales-5	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.016 s
+35551356382	106186630496	suite	pull_request	acto/gen2-limpieza-ramas-locales-5	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35551288153	106186450346	suite	pull_request	claude/trusting-allen-0y61rq-bis	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.021 s
+35551288153	106186450346	suite	pull_request	claude/trusting-allen-0y61rq-bis	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35551173346	106186082938	suite	pull_request	acto/gen2-din-credito-comparabilidad-texto-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.024 s
+35551173346	106186082938	suite	pull_request	acto/gen2-din-credito-comparabilidad-texto-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35550485419	106184183436	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.018 s
+35550485419	106184183436	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.002 s
+35550133623	106183236239	suite	pull_request	claude/clever-dirac-9nb7d8	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.029 s
+35550133623	106183236239	suite	pull_request	claude/clever-dirac-9nb7d8	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35549926144	106182644771	suite	pull_request	acto/gen2-limpieza-ramas-locales-4-cierre-fp402	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.016 s
+35549926144	106182644771	suite	pull_request	acto/gen2-limpieza-ramas-locales-4-cierre-fp402	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35549871401	106182497276	suite	pull_request	acto/gen2-din-credito-comparabilidad-texto-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35549871401	106182497276	suite	pull_request	acto/gen2-din-credito-comparabilidad-texto-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35549478124	106181427653	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.020 s
+35549478124	106181427653	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35549408658	106181244455	suite	pull_request	acto/gen2-din-credito-comparabilidad-texto-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.015 s
+35549408658	106181244455	suite	pull_request	acto/gen2-din-credito-comparabilidad-texto-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35548819494	106179621093	suite	pull_request	acto/gen2-limpieza-ramas-locales-4	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.016 s
+35548819494	106179621093	suite	pull_request	acto/gen2-limpieza-ramas-locales-4	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35547973529	106177252996	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.016 s
+35547973529	106177252996	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35547607792	106176248288	suite	pull_request	claude/gracious-faraday-wf9b8j	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.029 s
+35547607792	106176248288	suite	pull_request	claude/gracious-faraday-wf9b8j	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35547080915	106174804759	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.022 s
+35547080915	106174804759	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35546865119	106174226725	suite	pull_request	claude/gracious-faraday-wf9b8j	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.021 s
+35546865119	106174226725	suite	pull_request	claude/gracious-faraday-wf9b8j	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35546066415	106172074535	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-1-v1_1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35546066415	106172074535	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-1-v1_1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35543549263	106165385416	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35543549263	106165385416	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35543084188	106164153533	suite	pull_request	acto/gen2-limpieza-ramas-locales-3	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.029 s
+35543084188	106164153533	suite	pull_request	acto/gen2-limpieza-ramas-locales-3	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35542791002	106163370832	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.035 s
+35542791002	106163370832	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.006 s
+35542601206	106162864453	suite	pull_request	claude/wonderful-johnson-8qs9qj	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35542601206	106162864453	suite	pull_request	claude/wonderful-johnson-8qs9qj	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35541637721	106160256086	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35541637721	106160256086	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35541436506	106159719273	suite	pull_request	claude/pensive-keller-7wxjod	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35541436506	106159719273	suite	pull_request	claude/pensive-keller-7wxjod	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35541003925	106158523584	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-1-v1_1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.023 s
+35541003925	106158523584	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-1-v1_1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35540528995	106157225441	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35540528995	106157225441	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35540492796	106157126169	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-1-v1_1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35540492796	106157126169	suite	pull_request	acto/gen2-celda-d-piloto-3-commit-1-v1_1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35540441622	106156989074	suite	pull_request	claude/pensive-keller-7wxjod	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35540441622	106156989074	suite	pull_request	claude/pensive-keller-7wxjod	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35539356222	106154090282	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.017 s
+35539356222	106154090282	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35539084527	106153321205	suite	pull_request	derivados/2026-09-20	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35539084527	106153321205	suite	pull_request	derivados/2026-09-20	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35538862612	106152775669	suite	pull_request	acto/gen2-celda-d-piloto-3-ejecucion	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.029 s
+35538862612	106152775669	suite	pull_request	acto/gen2-celda-d-piloto-3-ejecucion	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35538588364	106152045456	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.022 s
+35538588364	106152045456	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35538233380	106151077584	suite	pull_request	acto/gen2-limpieza-ramas-locales-3	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.024 s
+35538233380	106151077584	suite	pull_request	acto/gen2-limpieza-ramas-locales-3	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35538223000	106151000286	suite	pull_request	claude/vibrant-goldberg-oxbn3o	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35538223000	106151000286	suite	pull_request	claude/vibrant-goldberg-oxbn3o	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35537867295	106150029934	suite	pull_request	codex/adq-2026-09-20	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.032 s
+35537867295	106150029934	suite	pull_request	codex/adq-2026-09-20	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35537851490	106149986895	suite	pull_request	claude/vibrant-goldberg-oxbn3o	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.021 s
+35537851490	106149986895	suite	pull_request	claude/vibrant-goldberg-oxbn3o	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35536841502	106147277690	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.020 s
+35536841502	106147277690	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35536636286	106146785979	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.018 s
+35536636286	106146785979	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35536623762	106146699376	suite	pull_request	acto/gen2-limpieza-ramas-locales-2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35536623762	106146699376	suite	pull_request	acto/gen2-limpieza-ramas-locales-2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.006 s
+35536397377	106146095176	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.022 s
+35536397377	106146095176	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35516613087	106093565064	suite	pull_request	claude/tramite-2026-09-20	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.026 s
+35516613087	106093565064	suite	pull_request	claude/tramite-2026-09-20	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35494232714	106034275889	suite	pull_request	censo/2026-09-20	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.016 s
+35494232714	106034275889	suite	pull_request	censo/2026-09-20	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35494162478	106034089952	suite	pull_request	codex/adq-2026-09-20	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.039 s
+35494162478	106034089952	suite	pull_request	codex/adq-2026-09-20	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35494162478	106034089952	suite	pull_request	codex/adq-2026-09-20	failure	T27 T-INFRA	[FAIL]  T27 T-INFRA  (1 fail) | [tiempo] T27 T-INFRA: 0.031 s
+35494162478	106034089952	suite	pull_request	codex/adq-2026-09-20	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (8 fail) | [tiempo] T16 T-SUITE-SELF-CHECK: 85.031 s
+35494019513	106033746817	suite	pull_request	censo/2026-09-20	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.032 s
+35494019513	106033746817	suite	pull_request	censo/2026-09-20	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35493993383	106033641247	suite	pull_request	derivados/2026-09-20	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35493993383	106033641247	suite	pull_request	derivados/2026-09-20	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35493449494	106032201709	suite	pull_request	claude/vigilant-ritchie-7zuufs	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.033 s
+35493449494	106032201709	suite	pull_request	claude/vigilant-ritchie-7zuufs	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35492886335	106030735665	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.036 s
+35492886335	106030735665	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35492751658	106030382441	suite	pull_request	claude/eager-goodall-2lh66n	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35492751658	106030382441	suite	pull_request	claude/eager-goodall-2lh66n	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35492099158	106028686410	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.034 s
+35492099158	106028686410	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.007 s
+35491998945	106028424727	suite	pull_request	claude/vigilant-ritchie-7zuufs	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.034 s
+35491998945	106028424727	suite	pull_request	claude/vigilant-ritchie-7zuufs	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35491974018	106028359765	suite	pull_request	acto/gen2-guardian-envipe-ejes-ic-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35491974018	106028359765	suite	pull_request	acto/gen2-guardian-envipe-ejes-ic-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35491526178	106027178325	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35491526178	106027178325	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35491470612	106027032190	suite	pull_request	acto/gen2-guardian-envipe-ejes-ic-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.044 s
+35491470612	106027032190	suite	pull_request	acto/gen2-guardian-envipe-ejes-ic-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.008 s
+35491362360	106026788004	suite	pull_request	acto/gen2-pisos-enif2021-formalidad-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.026 s
+35491362360	106026788004	suite	pull_request	acto/gen2-pisos-enif2021-formalidad-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35490270550	106023898553	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.021 s
+35490270550	106023898553	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35490093755	106023446199	suite	pull_request	acto/gen2-limpieza-ramas-locales-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35490093755	106023446199	suite	pull_request	acto/gen2-limpieza-ramas-locales-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35489573907	106022067130	suite	pull_request	acto/gen2-limpieza-ramas-locales-2	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [tiempo] T02 duplicados nombre/contenido: 0.761 s
+35489573907	106022067130	suite	pull_request	acto/gen2-limpieza-ramas-locales-2	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.033 s
+35489573907	106022067130	suite	pull_request	acto/gen2-limpieza-ramas-locales-2	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35489573907	106022067130	suite	pull_request	acto/gen2-limpieza-ramas-locales-2	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (8 fail) | [tiempo] T16 T-SUITE-SELF-CHECK: 81.509 s
+35489468682	106021787554	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.021 s
+35489468682	106021787554	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35489339812	106021436724	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.034 s
+35489339812	106021436724	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35489296872	106021323224	suite	pull_request	acto/gen2-c2-compuesto-ic-enif2024-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.036 s
+35489296872	106021323224	suite	pull_request	acto/gen2-c2-compuesto-ic-enif2024-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35489181514	106021003742	suite	pull_request	claude/session-start-hook-claude-md-ncxwc7	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35489181514	106021003742	suite	pull_request	claude/session-start-hook-claude-md-ncxwc7	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35488888671	106020207529	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.025 s
+35488888671	106020207529	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35488674439	106019613273	suite	pull_request	acto/gen2-pisos-enut2019-ejes-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.026 s
+35488674439	106019613273	suite	pull_request	acto/gen2-pisos-enut2019-ejes-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35488497372	106019158048	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35488497372	106019158048	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35488163261	106018232676	suite	pull_request	claude/relaxed-bell-rs3dhf	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.036 s
+35488163261	106018232676	suite	pull_request	claude/relaxed-bell-rs3dhf	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35488005946	106017813466	suite	pull_request	acto/gen2-limpieza-ramas-locales-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [tiempo] T02 duplicados nombre/contenido: 0.730 s
+35488005946	106017813466	suite	pull_request	acto/gen2-limpieza-ramas-locales-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.029 s
+35488005946	106017813466	suite	pull_request	acto/gen2-limpieza-ramas-locales-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35488005946	106017813466	suite	pull_request	acto/gen2-limpieza-ramas-locales-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (8 fail) | [tiempo] T16 T-SUITE-SELF-CHECK: 82.306 s
+35487650969	106016867104	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.021 s
+35487650969	106016867104	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35487488699	106016430114	suite	pull_request	claude/lucid-lamport-32k9t3	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.037 s
+35487488699	106016430114	suite	pull_request	claude/lucid-lamport-32k9t3	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.006 s
+35487382783	106016146254	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.035 s
+35487382783	106016146254	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35487280104	106015912490	suite	pull_request	claude/tramite-2026-09-20	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35487280104	106015912490	suite	pull_request	claude/tramite-2026-09-20	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35487241435	106015773188	suite	pull_request	claude/intelligent-albattani-v7kf2s	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.022 s
+35487241435	106015773188	suite	pull_request	claude/intelligent-albattani-v7kf2s	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35486689580	106014269259	suite	pull_request	claude/lucid-lamport-32k9t3	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.035 s
+35486689580	106014269259	suite	pull_request	claude/lucid-lamport-32k9t3	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35486502333	106013757239	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.044 s
+35486502333	106013757239	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35486493591	106013772226	suite	pull_request	acto/gen2-pisos-enut2019-ejes-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.036 s
+35486493591	106013772226	suite	pull_request	acto/gen2-pisos-enut2019-ejes-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35486449855	106013613683	suite	pull_request	claude/lucid-lamport-32k9t3	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.017 s
+35486449855	106013613683	suite	pull_request	claude/lucid-lamport-32k9t3	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35486348483	106013326653	suite	pull_request	acto/gen2-c2-compuesto-ic-envipe2025-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.027 s
+35486348483	106013326653	suite	pull_request	acto/gen2-c2-compuesto-ic-envipe2025-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.004 s
+35486321352	106013252671	suite	pull_request	claude/lucid-lamport-32k9t3	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.016 s
+35486321352	106013252671	suite	pull_request	claude/lucid-lamport-32k9t3	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35486321352	106013252671	suite	pull_request	claude/lucid-lamport-32k9t3	failure	T15 T-ADR-COUNT	[FAIL]  T15 T-ADR-COUNT  (2 fail) | [tiempo] T15 T-ADR-COUNT: 0.078 s
+35486321352	106013252671	suite	pull_request	claude/lucid-lamport-32k9t3	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (8 fail) | [tiempo] T16 T-SUITE-SELF-CHECK: 45.974 s
+35485996560	106012365163	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.033 s
+35485996560	106012365163	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35485905045	106012107748	suite	pull_request	claude/lucid-lamport-32k9t3	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.035 s
+35485905045	106012107748	suite	pull_request	claude/lucid-lamport-32k9t3	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.007 s
+35485856680	106011975791	suite	pull_request	claude/gen2-tablero-senal-1-cierre	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.022 s
+35485856680	106011975791	suite	pull_request	claude/gen2-tablero-senal-1-cierre	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35485698230	106011568634	suite	pull_request	claude/intelligent-albattani-v7kf2s	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (13 fail) | [tiempo] T02 duplicados nombre/contenido: 0.766 s
+35485698230	106011568634	suite	pull_request	claude/intelligent-albattani-v7kf2s	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35485698230	106011568634	suite	pull_request	claude/intelligent-albattani-v7kf2s	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35485698230	106011568634	suite	pull_request	claude/intelligent-albattani-v7kf2s	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | [tiempo] T16 T-SUITE-SELF-CHECK: 79.728 s
+35485471848	106010912635	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.028 s
+35485471848	106010912635	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35485321536	106010501996	suite	pull_request	claude/optimistic-cray-15co3n	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.034 s
+35485321536	106010501996	suite	pull_request	claude/optimistic-cray-15co3n	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.006 s
+35485133160	106009985599	suite	pull_request	claude/optimistic-cray-15co3n	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.043 s
+35485133160	106009985599	suite	pull_request	claude/optimistic-cray-15co3n	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.006 s
+35485133160	106009985599	suite	pull_request	claude/optimistic-cray-15co3n	failure	T30 T-YAMEDIDO	[FAIL]  T30 T-YAMEDIDO  (1 fail) | [tiempo] T30 T-YAMEDIDO: 0.005 s
+35485133160	106009985599	suite	pull_request	claude/optimistic-cray-15co3n	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | [tiempo] T16 T-SUITE-SELF-CHECK: 79.709 s
+35484484482	106008228661	suite	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.033 s
+35484484482	106008228661	suite	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.006 s
+35483784440	106006250242	suite	pull_request	codex/optimiza-verificacion-ci	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.031 s
+35483784440	106006250242	suite	pull_request	codex/optimiza-verificacion-ci	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35483644321	106005855917	suite	pull_request	codex/optimiza-verificacion-ci	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [tiempo] T02 duplicados nombre/contenido: 0.593 s
+35483644321	106005855917	suite	pull_request	codex/optimiza-verificacion-ci	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.026 s
+35483644321	106005855917	suite	pull_request	codex/optimiza-verificacion-ci	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35483644321	106005855917	suite	pull_request	codex/optimiza-verificacion-ci	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | [tiempo] T16 T-SUITE-SELF-CHECK: 57.497 s
+35483605734	106005747187	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35483605734	106005747187	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35483319622	106004948358	check	pull_request	codex/gen2-enadid2023-union-sexo-edad-cli-2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35483319622	106004948358	check	pull_request	codex/gen2-enadid2023-union-sexo-edad-cli-2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35483175259	106004547143	suite	workflow_dispatch	codex/optimiza-verificacion-ci	success	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [tiempo] T02 duplicados nombre/contenido: 0.765 s
+35483175259	106004547143	suite	workflow_dispatch	codex/optimiza-verificacion-ci	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.034 s
+35483175259	106004547143	suite	workflow_dispatch	codex/optimiza-verificacion-ci	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35483175259	106004547143	suite	workflow_dispatch	codex/optimiza-verificacion-ci	success	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | [tiempo] T16 T-SUITE-SELF-CHECK: 76.650 s
+35483077343	106004277927	check	workflow_dispatch	codex/optimiza-verificacion-ci-base-medicion	success	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [warn]  T03 referencias colgantes  (97 warn)
+35483077343	106004277927	check	workflow_dispatch	codex/optimiza-verificacion-ci-base-medicion	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35483077343	106004277927	check	workflow_dispatch	codex/optimiza-verificacion-ci-base-medicion	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35483077343	106004277927	check	workflow_dispatch	codex/optimiza-verificacion-ci-base-medicion	success	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35483071194	106004259075	check	push	main	success	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [warn]  T03 referencias colgantes  (97 warn)
+35483071194	106004259075	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35483071194	106004259075	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35483071194	106004259075	check	push	main	success	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35483010742	106004099092	suite	workflow_dispatch	codex/optimiza-verificacion-ci	success	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [tiempo] T02 duplicados nombre/contenido: 0.531 s
+35483010742	106004099092	suite	workflow_dispatch	codex/optimiza-verificacion-ci	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.015 s
+35483010742	106004099092	suite	workflow_dispatch	codex/optimiza-verificacion-ci	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.003 s
+35483010742	106004099092	suite	workflow_dispatch	codex/optimiza-verificacion-ci	success	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | [tiempo] T16 T-SUITE-SELF-CHECK: 50.573 s
+35482963179	106003964661	suite	workflow_dispatch	codex/optimiza-verificacion-ci-prueba-compuerta	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [tiempo] T02 duplicados nombre/contenido: 0.724 s
+35482963179	106003964661	suite	workflow_dispatch	codex/optimiza-verificacion-ci-prueba-compuerta	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.036 s
+35482963179	106003964661	suite	workflow_dispatch	codex/optimiza-verificacion-ci-prueba-compuerta	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.007 s
+35482963179	106003964661	suite	workflow_dispatch	codex/optimiza-verificacion-ci-prueba-compuerta	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | [tiempo] T16 T-SUITE-SELF-CHECK: 77.758 s
+35482960574	106003955435	suite	workflow_dispatch	codex/optimiza-verificacion-ci-prueba-compuerta	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [tiempo] T02 duplicados nombre/contenido: 0.766 s
+35482960574	106003955435	suite	workflow_dispatch	codex/optimiza-verificacion-ci-prueba-compuerta	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.037 s
+35482960574	106003955435	suite	workflow_dispatch	codex/optimiza-verificacion-ci-prueba-compuerta	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35482960574	106003955435	suite	workflow_dispatch	codex/optimiza-verificacion-ci-prueba-compuerta	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | [tiempo] T16 T-SUITE-SELF-CHECK: 80.024 s
+35482844734	106003630004	suite	workflow_dispatch	codex/optimiza-verificacion-ci	success	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [tiempo] T02 duplicados nombre/contenido: 0.756 s
+35482844734	106003630004	suite	workflow_dispatch	codex/optimiza-verificacion-ci	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.036 s
+35482844734	106003630004	suite	workflow_dispatch	codex/optimiza-verificacion-ci	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.006 s
+35482844734	106003630004	suite	workflow_dispatch	codex/optimiza-verificacion-ci	success	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | [tiempo] T16 T-SUITE-SELF-CHECK: 78.514 s
+35482843438	106003626153	check	workflow_dispatch	codex/optimiza-verificacion-ci-base-medicion	success	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [warn]  T03 referencias colgantes  (97 warn)
+35482843438	106003626153	check	workflow_dispatch	codex/optimiza-verificacion-ci-base-medicion	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35482843438	106003626153	check	workflow_dispatch	codex/optimiza-verificacion-ci-base-medicion	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35482843438	106003626153	check	workflow_dispatch	codex/optimiza-verificacion-ci-base-medicion	success	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35482818253	106003563277	suite	pull_request	codex/optimiza-verificacion-ci	success	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [tiempo] T02 duplicados nombre/contenido: 0.774 s
+35482818253	106003563277	suite	pull_request	codex/optimiza-verificacion-ci	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [tiempo] T06 consistencia numérica: 0.033 s
+35482818253	106003563277	suite	pull_request	codex/optimiza-verificacion-ci	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [tiempo] T08 mapa de evidencia por report: 0.005 s
+35482818253	106003563277	suite	pull_request	codex/optimiza-verificacion-ci	success	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | [tiempo] T16 T-SUITE-SELF-CHECK: 77.016 s
+35482817900	106003562524	check	pull_request	codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2	success	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [warn]  T03 referencias colgantes  (97 warn)
+35482817900	106003562524	check	pull_request	codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35482817900	106003562524	check	pull_request	codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35482817900	106003562524	check	pull_request	codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2	success	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35482645264	106003097816	check	push	main	success	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [warn]  T03 referencias colgantes  (97 warn)
+35482645264	106003097816	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35482645264	106003097816	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35482645264	106003097816	check	push	main	success	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35482614949	106003018830	check	pull_request	codex/gen2-enadid2023-union-sexo-edad-cli-2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35482614949	106003018830	check	pull_request	codex/gen2-enadid2023-union-sexo-edad-cli-2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35482436839	106002530288	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	success	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [warn]  T03 referencias colgantes  (97 warn)
+35482436839	106002530288	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35482436839	106002530288	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35482436839	106002530288	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	success	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35482245209	106002009083	check	push	main	success	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [warn]  T03 referencias colgantes  (97 warn)
+35482245209	106002009083	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35482245209	106002009083	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35482245209	106002009083	check	push	main	success	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35482122063	106001677627	check	pull_request	codex/gen2-enadid2023-union-sexo-edad-cli-2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35482122063	106001677627	check	pull_request	codex/gen2-enadid2023-union-sexo-edad-cli-2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35482065683	106001530104	check	pull_request	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	success	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [warn]  T03 referencias colgantes  (97 warn)
+35482065683	106001530104	check	pull_request	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35482065683	106001530104	check	pull_request	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35482065683	106001530104	check	pull_request	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	success	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35481302477	105999500681	check	pull_request	codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [warn]  T03 referencias colgantes  (97 warn)
+35481302477	105999500681	check	pull_request	codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35481302477	105999500681	check	pull_request	codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35481302477	105999500681	check	pull_request	codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35481282565	105999448680	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [warn]  T03 referencias colgantes  (97 warn)
+35481282565	105999448680	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35481282565	105999448680	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35481282565	105999448680	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35481243283	105999369808	check	push	main	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [warn]  T03 referencias colgantes  (97 warn)
+35481243283	105999369808	check	push	main	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35481243283	105999369808	check	push	main	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35481243283	105999369808	check	push	main	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35481193485	105999200468	check	workflow_dispatch	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35481193485	105999200468	check	workflow_dispatch	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35481087594	105998906717	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35481087594	105998906717	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35481087594	105998906717	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T32 T-CORRIDA0	[FAIL]  T32 T-CORRIDA0  (1 fail) | [ ok ]  T32-bis T-PISOS-REJILLA
+35481087594	105998906717	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T35 T-REPRO	[FAIL]  T35 T-REPRO  (1 fail) | [ ok ]  T41 T-DIGESTO-MESA
+35481087594	105998906717	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35480923305	105998463534	check	pull_request	codex/gen2-wbes2023-precision-interacciones-cli-2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35480923305	105998463534	check	pull_request	codex/gen2-wbes2023-precision-interacciones-cli-2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35480908270	105998425539	check	pull_request	codex/gen2-ensafi2023-estrategias-conjuntas-cli-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (10 fail) | [warn]  T03 referencias colgantes  (97 warn)
+35480908270	105998425539	check	pull_request	codex/gen2-ensafi2023-estrategias-conjuntas-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35480908270	105998425539	check	pull_request	codex/gen2-ensafi2023-estrategias-conjuntas-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35480908270	105998425539	check	pull_request	codex/gen2-ensafi2023-estrategias-conjuntas-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35480714611	105997883016	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35480714611	105997883016	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35480714611	105997883016	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T32 T-CORRIDA0	[FAIL]  T32 T-CORRIDA0  (1 fail) | [ ok ]  T32-bis T-PISOS-REJILLA
+35480714611	105997883016	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T35 T-REPRO	[FAIL]  T35 T-REPRO  (1 fail) | [ ok ]  T41 T-DIGESTO-MESA
+35480714611	105997883016	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35480635209	105997674484	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35480635209	105997674484	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35480575882	105997517690	check	pull_request	codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (95 warn)
+35480575882	105997517690	check	pull_request	codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35480575882	105997517690	check	pull_request	codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35480575882	105997517690	check	pull_request	codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35480311182	105996807647	check	pull_request	claude/determined-einstein-4jlycq	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35480311182	105996807647	check	pull_request	claude/determined-einstein-4jlycq	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35480187406	105996485072	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35480187406	105996485072	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35479938188	105995806692	check	pull_request	codex/gen2-enut2024-distribucion-horas-cli-2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35479938188	105995806692	check	pull_request	codex/gen2-enut2024-distribucion-horas-cli-2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35479877637	105995643054	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35479877637	105995643054	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35479713885	105995228833	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35479713885	105995228833	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35479531912	105994698336	check	pull_request	codex/gen2-ensafi2023-estrategias-conjuntas-cli-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (9 fail) | [warn]  T03 referencias colgantes  (95 warn)
+35479531912	105994698336	check	pull_request	codex/gen2-ensafi2023-estrategias-conjuntas-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35479531912	105994698336	check	pull_request	codex/gen2-ensafi2023-estrategias-conjuntas-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35479531912	105994698336	check	pull_request	codex/gen2-ensafi2023-estrategias-conjuntas-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35478588885	105992105267	check	pull_request	codex/gen2-recibo-codex-5-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35478588885	105992105267	check	pull_request	codex/gen2-recibo-codex-5-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35478438619	105991705369	check	pull_request	codex/gen2-enadid2023-union-sexo-edad-cli-2	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (13 fail) | [warn]  T03 referencias colgantes  (95 warn)
+35478438619	105991705369	check	pull_request	codex/gen2-enadid2023-union-sexo-edad-cli-2	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35478438619	105991705369	check	pull_request	codex/gen2-enadid2023-union-sexo-edad-cli-2	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35478438619	105991705369	check	pull_request	codex/gen2-enadid2023-union-sexo-edad-cli-2	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35478353876	105991473129	check	pull_request	claude/determined-einstein-4jlycq	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35478353876	105991473129	check	pull_request	claude/determined-einstein-4jlycq	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35478288780	105991300261	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35478288780	105991300261	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35478288780	105991300261	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T32 T-CORRIDA0	[FAIL]  T32 T-CORRIDA0  (1 fail) | [ ok ]  T32-bis T-PISOS-REJILLA
+35478288780	105991300261	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T35 T-REPRO	[FAIL]  T35 T-REPRO  (1 fail) | [ ok ]  T41 T-DIGESTO-MESA
+35478288780	105991300261	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35478119413	105990845074	check	pull_request	codex/gen2-issp2017-consistencia-apoyo-familiar-cli-2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35478119413	105990845074	check	pull_request	codex/gen2-issp2017-consistencia-apoyo-familiar-cli-2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35477874934	105990164450	check	workflow_dispatch	codex/gen2-enut2024-distribucion-horas-cli-2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35477874934	105990164450	check	workflow_dispatch	codex/gen2-enut2024-distribucion-horas-cli-2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35477847820	105990089031	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35477847820	105990089031	check	pull_request	codex/gen2-eder2017-primera-union-sexo-cohorte-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35477841991	105990072628	check	pull_request	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (95 warn)
+35477841991	105990072628	check	pull_request	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35477841991	105990072628	check	pull_request	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35477841991	105990072628	check	pull_request	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35477811552	105989996630	check	pull_request	codex/gen2-adq-registro-cierre-cli-2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35477811552	105989996630	check	pull_request	codex/gen2-adq-registro-cierre-cli-2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35477808174	105990017254	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35477808174	105990017254	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35477643488	105989537710	check	pull_request	codex/gen2-ensafi2023-estrategias-conjuntas-cli-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (95 warn)
+35477643488	105989537710	check	pull_request	codex/gen2-ensafi2023-estrategias-conjuntas-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35477643488	105989537710	check	pull_request	codex/gen2-ensafi2023-estrategias-conjuntas-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35477643488	105989537710	check	pull_request	codex/gen2-ensafi2023-estrategias-conjuntas-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35477422889	105988966779	check	pull_request	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (92 warn)
+35477422889	105988966779	check	pull_request	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35477422889	105988966779	check	pull_request	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35477422889	105988966779	check	pull_request	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35477355994	105988790080	check	pull_request	codex/gen2-issp2017-consistencia-apoyo-familiar-cli-2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35477355994	105988790080	check	pull_request	codex/gen2-issp2017-consistencia-apoyo-familiar-cli-2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35477351585	105988777352	check	pull_request	claude/beautiful-fermi-mct15n	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35477351585	105988777352	check	pull_request	claude/beautiful-fermi-mct15n	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35477316360	105988682340	check	pull_request	codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (92 warn)
+35477316360	105988682340	check	pull_request	codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35477316360	105988682340	check	pull_request	codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35477316360	105988682340	check	pull_request	codex/gen2-enfih2019-cobertura-saldos-catpos-cli-2	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35477311346	105988670597	check	pull_request	codex/gen2-enadid2023-union-sexo-edad-cli-2	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (14 fail) | [warn]  T03 referencias colgantes  (92 warn)
+35477311346	105988670597	check	pull_request	codex/gen2-enadid2023-union-sexo-edad-cli-2	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35477311346	105988670597	check	pull_request	codex/gen2-enadid2023-union-sexo-edad-cli-2	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35477311346	105988670597	check	pull_request	codex/gen2-enadid2023-union-sexo-edad-cli-2	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35477281137	105988614944	check	pull_request	codex/gen2-recibo-codex-5-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35477281137	105988614944	check	pull_request	codex/gen2-recibo-codex-5-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35477276932	105988578468	check	pull_request	codex/gen2-enut2024-distribucion-horas-cli-2	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (4 fail) | [warn]  T03 referencias colgantes  (92 warn)
+35477276932	105988578468	check	pull_request	codex/gen2-enut2024-distribucion-horas-cli-2	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35477276932	105988578468	check	pull_request	codex/gen2-enut2024-distribucion-horas-cli-2	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35477276932	105988578468	check	pull_request	codex/gen2-enut2024-distribucion-horas-cli-2	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35477268800	105988585635	check	pull_request	claude/determined-einstein-4jlycq	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35477268800	105988585635	check	pull_request	claude/determined-einstein-4jlycq	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35477248164	105988505880	check	pull_request	codex/gen2-adq-registro-cierre-cli-2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35477248164	105988505880	check	pull_request	codex/gen2-adq-registro-cierre-cli-2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35477240836	105988482824	check	pull_request	codex/gen2-enigh2022-remesas-contexto-cli-2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35477240836	105988482824	check	pull_request	codex/gen2-enigh2022-remesas-contexto-cli-2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35476948352	105987712808	check	pull_request	codex/gen2-enigh2022-remesas-contexto-cli-2	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (92 warn)
+35476948352	105987712808	check	pull_request	codex/gen2-enigh2022-remesas-contexto-cli-2	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35476948352	105987712808	check	pull_request	codex/gen2-enigh2022-remesas-contexto-cli-2	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35476948352	105987712808	check	pull_request	codex/gen2-enigh2022-remesas-contexto-cli-2	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35476925735	105987654538	check	pull_request	codex/gen2-issp2017-consistencia-apoyo-familiar-cli-2	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (4 fail) | [warn]  T03 referencias colgantes  (92 warn)
+35476925735	105987654538	check	pull_request	codex/gen2-issp2017-consistencia-apoyo-familiar-cli-2	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35476925735	105987654538	check	pull_request	codex/gen2-issp2017-consistencia-apoyo-familiar-cli-2	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35476925735	105987654538	check	pull_request	codex/gen2-issp2017-consistencia-apoyo-familiar-cli-2	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35476912812	105987618282	check	pull_request	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (3 fail) | [warn]  T03 referencias colgantes  (92 warn)
+35476912812	105987618282	check	pull_request	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35476912812	105987618282	check	pull_request	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35476912812	105987618282	check	pull_request	codex/gen2-encuci2020-respuesta-por-contacto-cli-2	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35476894121	105987571876	check	pull_request	codex/gen2-wbes2023-precision-interacciones-cli-2	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (92 warn)
+35476894121	105987571876	check	pull_request	codex/gen2-wbes2023-precision-interacciones-cli-2	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35476894121	105987571876	check	pull_request	codex/gen2-wbes2023-precision-interacciones-cli-2	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35476894121	105987571876	check	pull_request	codex/gen2-wbes2023-precision-interacciones-cli-2	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35476641078	105986929164	check	pull_request	codex/gen2-adq-registro-cierre-cli-2	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35476641078	105986929164	check	pull_request	codex/gen2-adq-registro-cierre-cli-2	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35476170066	105985702888	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35476170066	105985702888	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35475643786	105984318395	check	pull_request	adq/2026-09-19	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35475643786	105984318395	check	pull_request	adq/2026-09-19	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35475279152	105983354968	check	pull_request	codex/gen2-encig-cruces-historicos-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35475279152	105983354968	check	pull_request	codex/gen2-encig-cruces-historicos-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35475078486	105982825148	check	pull_request	censo/2026-09-19	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35475078486	105982825148	check	pull_request	censo/2026-09-19	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35475078197	105982824310	check	pull_request	adq/2026-09-19	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35475078197	105982824310	check	pull_request	adq/2026-09-19	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35475078197	105982824310	check	pull_request	adq/2026-09-19	failure	T26-bis T-TSV-CRUDO-ROUND-TRIP	[FAIL]  T26-bis T-TSV-CRUDO-ROUND-TRIP  (1 fail) | [FAIL]  T27 T-INFRA  (1 fail)
+35475078197	105982824310	check	pull_request	adq/2026-09-19	failure	T27 T-INFRA	[FAIL]  T27 T-INFRA  (1 fail) | [ ok ]  T28 T-A3
+35475078197	105982824310	check	pull_request	adq/2026-09-19	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35475055528	105982796587	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35475055528	105982796587	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35475027657	105982719210	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35475027657	105982719210	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474817058	105982139195	check	pull_request	claude/practical-turing-kbqc08	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474817058	105982139195	check	pull_request	claude/practical-turing-kbqc08	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474802791	105982097564	check	pull_request	codex/gen2-encig-cruces-historicos-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474802791	105982097564	check	pull_request	codex/gen2-encig-cruces-historicos-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474684606	105981779867	check	pull_request	codex/gen2-enut2024-participacion-intensidad-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474684606	105981779867	check	pull_request	codex/gen2-enut2024-participacion-intensidad-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474677883	105981760201	check	pull_request	adq/2026-09-19	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (91 warn)
+35474677883	105981760201	check	pull_request	adq/2026-09-19	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474677883	105981760201	check	pull_request	adq/2026-09-19	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474677883	105981760201	check	pull_request	adq/2026-09-19	failure	T26-bis T-TSV-CRUDO-ROUND-TRIP	[FAIL]  T26-bis T-TSV-CRUDO-ROUND-TRIP  (1 fail) | [FAIL]  T27 T-INFRA  (1 fail)
+35474677883	105981760201	check	pull_request	adq/2026-09-19	failure	T27 T-INFRA	[FAIL]  T27 T-INFRA  (1 fail) | [ ok ]  T28 T-A3
+35474677883	105981760201	check	pull_request	adq/2026-09-19	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35474667557	105981734125	check	pull_request	censo/2026-09-19	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (91 warn)
+35474667557	105981734125	check	pull_request	censo/2026-09-19	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474667557	105981734125	check	pull_request	censo/2026-09-19	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474667557	105981734125	check	pull_request	censo/2026-09-19	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35474642533	105981667458	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (91 warn)
+35474642533	105981667458	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474642533	105981667458	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474642533	105981667458	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35474612184	105981588188	check	pull_request	codex/gen2-issp2017-redes-apoyo-cotidiano-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474612184	105981588188	check	pull_request	codex/gen2-issp2017-redes-apoyo-cotidiano-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474598970	105981550591	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474598970	105981550591	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474485333	105981254785	check	pull_request	codex/gen2-encig-cruces-historicos-cli-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (92 warn)
+35474485333	105981254785	check	pull_request	codex/gen2-encig-cruces-historicos-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474485333	105981254785	check	pull_request	codex/gen2-encig-cruces-historicos-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474485333	105981254785	check	pull_request	codex/gen2-encig-cruces-historicos-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35474407427	105981050407	check	pull_request	codex/gen2-encuci2020-exposicion-respuesta-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474407427	105981050407	check	pull_request	codex/gen2-encuci2020-exposicion-respuesta-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474362972	105980934255	check	pull_request	codex/gen2-enut2024-participacion-intensidad-cli-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (91 warn)
+35474362972	105980934255	check	pull_request	codex/gen2-enut2024-participacion-intensidad-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474362972	105980934255	check	pull_request	codex/gen2-enut2024-participacion-intensidad-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474362972	105980934255	check	pull_request	codex/gen2-enut2024-participacion-intensidad-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35474330765	105980847867	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474330765	105980847867	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474270154	105980687848	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (91 warn)
+35474270154	105980687848	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474270154	105980687848	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474270154	105980687848	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35474261170	105980688848	check	pull_request	claude/practical-turing-kbqc08	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474261170	105980688848	check	pull_request	claude/practical-turing-kbqc08	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474237523	105980598776	check	pull_request	codex/gen2-issp2017-redes-apoyo-cotidiano-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474237523	105980598776	check	pull_request	codex/gen2-issp2017-redes-apoyo-cotidiano-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474153376	105980370934	check	pull_request	adq/2026-09-19	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (91 warn)
+35474153376	105980370934	check	pull_request	adq/2026-09-19	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474153376	105980370934	check	pull_request	adq/2026-09-19	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474153376	105980370934	check	pull_request	adq/2026-09-19	failure	T26-bis T-TSV-CRUDO-ROUND-TRIP	[FAIL]  T26-bis T-TSV-CRUDO-ROUND-TRIP  (1 fail) | [FAIL]  T27 T-INFRA  (1 fail)
+35474153376	105980370934	check	pull_request	adq/2026-09-19	failure	T27 T-INFRA	[FAIL]  T27 T-INFRA  (1 fail) | [ ok ]  T28 T-A3
+35474153376	105980370934	check	pull_request	adq/2026-09-19	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35474144775	105980345640	check	pull_request	censo/2026-09-19	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (91 warn)
+35474144775	105980345640	check	pull_request	censo/2026-09-19	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474144775	105980345640	check	pull_request	censo/2026-09-19	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474144775	105980345640	check	pull_request	censo/2026-09-19	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35474144094	105980342289	check	pull_request	codex/gen2-enfih2019-saldos-afore-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474144094	105980342289	check	pull_request	codex/gen2-enfih2019-saldos-afore-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474110846	105980252455	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (91 warn)
+35474110846	105980252455	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474110846	105980252455	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35474110846	105980252455	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35474053646	105980097895	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35474053646	105980097895	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35473845988	105979540559	check	pull_request	codex/gen2-enigh2022-perfil-estructural-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35473845988	105979540559	check	pull_request	codex/gen2-enigh2022-perfil-estructural-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35473800317	105979416503	check	pull_request	codex/gen2-encig-cruces-historicos-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35473800317	105979416503	check	pull_request	codex/gen2-encig-cruces-historicos-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35473734604	105979246378	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (91 warn)
+35473734604	105979246378	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35473734604	105979246378	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35473734604	105979246378	check	pull_request	codex/gen2-cron-verificacion-operativa-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35473546652	105978732885	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35473546652	105978732885	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35473271072	105978005165	check	pull_request	censo/2026-09-19	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35473271072	105978005165	check	pull_request	censo/2026-09-19	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35473130441	105977637112	check	pull_request	adq/2026-09-19	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35473130441	105977637112	check	pull_request	adq/2026-09-19	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35473130441	105977637112	check	pull_request	adq/2026-09-19	failure	T26-bis T-TSV-CRUDO-ROUND-TRIP	[FAIL]  T26-bis T-TSV-CRUDO-ROUND-TRIP  (1 fail) | [FAIL]  T27 T-INFRA  (1 fail)
+35473130441	105977637112	check	pull_request	adq/2026-09-19	failure	T27 T-INFRA	[FAIL]  T27 T-INFRA  (1 fail) | [ ok ]  T28 T-A3
+35473130441	105977637112	check	pull_request	adq/2026-09-19	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35473044495	105977443286	check	pull_request	claude/gallant-feynman-1ww0lm	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35473044495	105977443286	check	pull_request	claude/gallant-feynman-1ww0lm	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35472850638	105976881891	check	pull_request	codex/gen2-encuci2020-exposicion-respuesta-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35472850638	105976881891	check	pull_request	codex/gen2-encuci2020-exposicion-respuesta-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35472843112	105976892788	check	pull_request	censo/2026-09-19	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35472843112	105976892788	check	pull_request	censo/2026-09-19	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35472815803	105976786846	check	pull_request	codex/gen2-issp2017-redes-apoyo-cotidiano-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35472815803	105976786846	check	pull_request	codex/gen2-issp2017-redes-apoyo-cotidiano-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35472504255	105975919714	check	pull_request	codex/gen2-encuci2020-exposicion-respuesta-cli-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (90 warn)
+35472504255	105975919714	check	pull_request	codex/gen2-encuci2020-exposicion-respuesta-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35472504255	105975919714	check	pull_request	codex/gen2-encuci2020-exposicion-respuesta-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35472504255	105975919714	check	pull_request	codex/gen2-encuci2020-exposicion-respuesta-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35472330713	105975428713	check	pull_request	codex/gen2-issp2017-redes-apoyo-cotidiano-cli-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (3 fail) | [warn]  T03 referencias colgantes  (90 warn)
+35472330713	105975428713	check	pull_request	codex/gen2-issp2017-redes-apoyo-cotidiano-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35472330713	105975428713	check	pull_request	codex/gen2-issp2017-redes-apoyo-cotidiano-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35472330713	105975428713	check	pull_request	codex/gen2-issp2017-redes-apoyo-cotidiano-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35471982143	105974474631	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35471982143	105974474631	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35471922527	105974303566	check	pull_request	codex/gen2-enut2024-participacion-intensidad-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35471922527	105974303566	check	pull_request	codex/gen2-enut2024-participacion-intensidad-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35471757354	105973849728	check	pull_request	codex/gen2-enigh2022-perfil-estructural-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35471757354	105973849728	check	pull_request	codex/gen2-enigh2022-perfil-estructural-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35471639669	105973558118	check	pull_request	claude/fervent-johnson-m47pdg	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35471639669	105973558118	check	pull_request	claude/fervent-johnson-m47pdg	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35471567561	105973338599	check	pull_request	codex/gen2-enut2024-participacion-intensidad-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35471567561	105973338599	check	pull_request	codex/gen2-enut2024-participacion-intensidad-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35471567561	105973338599	check	pull_request	codex/gen2-enut2024-participacion-intensidad-cli-1	failure	T30 T-YAMEDIDO	[FAIL]  T30 T-YAMEDIDO  (1 fail) | [ ok ]  T30b T-YAMEDIDO-HUSO
+35471567561	105973338599	check	pull_request	codex/gen2-enut2024-participacion-intensidad-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35471496657	105973153694	check	pull_request	codex/gen2-enfih2019-saldos-afore-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35471496657	105973153694	check	pull_request	codex/gen2-enfih2019-saldos-afore-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35471234479	105972488539	check	pull_request	claude/gallant-feynman-1ww0lm	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35471234479	105972488539	check	pull_request	claude/gallant-feynman-1ww0lm	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35471234479	105972488539	check	pull_request	claude/gallant-feynman-1ww0lm	failure	T30 T-YAMEDIDO	[FAIL]  T30 T-YAMEDIDO  (1 fail) | [ ok ]  T30b T-YAMEDIDO-HUSO
+35471234479	105972488539	check	pull_request	claude/gallant-feynman-1ww0lm	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35471179612	105972304704	check	pull_request	codex/gen2-enfih2019-saldos-afore-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35471179612	105972304704	check	pull_request	codex/gen2-enfih2019-saldos-afore-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35471179612	105972304704	check	pull_request	codex/gen2-enfih2019-saldos-afore-cli-1	failure	T30 T-YAMEDIDO	[FAIL]  T30 T-YAMEDIDO  (1 fail) | [ ok ]  T30b T-YAMEDIDO-HUSO
+35471179612	105972304704	check	pull_request	codex/gen2-enfih2019-saldos-afore-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35470873851	105971488562	check	pull_request	codex/gen2-enigh2022-perfil-estructural-cli-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (3 fail) | [warn]  T03 referencias colgantes  (90 warn)
+35470873851	105971488562	check	pull_request	codex/gen2-enigh2022-perfil-estructural-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35470873851	105971488562	check	pull_request	codex/gen2-enigh2022-perfil-estructural-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35470873851	105971488562	check	pull_request	codex/gen2-enigh2022-perfil-estructural-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35468646337	105965504895	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35468646337	105965504895	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35468368999	105964742837	check	pull_request	claude/vigilant-einstein-ltvhlx	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35468368999	105964742837	check	pull_request	claude/vigilant-einstein-ltvhlx	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35468314079	105964600173	check	pull_request	codex/gen2-recibo-codex-3	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35468314079	105964600173	check	pull_request	codex/gen2-recibo-codex-3	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35468097802	105964010872	check	pull_request	codex/gen2-issp-apoyo-monetario-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35468097802	105964010872	check	pull_request	codex/gen2-issp-apoyo-monetario-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35467860309	105963374008	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35467860309	105963374008	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35467600370	105962687027	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35467600370	105962687027	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35467524352	105962492611	check	pull_request	codex/gen2-enadid-union-actual-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35467524352	105962492611	check	pull_request	codex/gen2-enadid-union-actual-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35467288070	105961857673	check	pull_request	claude/vigilant-einstein-ltvhlx	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35467288070	105961857673	check	pull_request	claude/vigilant-einstein-ltvhlx	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35467263087	105961788646	check	pull_request	codex/gen2-pisos-rejilla-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35467263087	105961788646	check	pull_request	codex/gen2-pisos-rejilla-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35467103010	105961349944	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35467103010	105961349944	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35466906605	105960811523	check	pull_request	codex/gen2-enadid-union-actual-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35466906605	105960811523	check	pull_request	codex/gen2-enadid-union-actual-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35466837046	105960609962	check	pull_request	claude/vigilant-einstein-ltvhlx	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35466837046	105960609962	check	pull_request	claude/vigilant-einstein-ltvhlx	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35466676922	105960169563	check	pull_request	claude/vigilant-einstein-ltvhlx	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35466676922	105960169563	check	pull_request	claude/vigilant-einstein-ltvhlx	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35465957136	105958210755	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35465957136	105958210755	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35465943019	105958172589	check	pull_request	codex/gen2-enadid-union-actual-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35465943019	105958172589	check	pull_request	codex/gen2-enadid-union-actual-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35464428902	105954021480	check	pull_request	codex/gen2-pisos-rejilla-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35464428902	105954021480	check	pull_request	codex/gen2-pisos-rejilla-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35464231217	105953424863	check	pull_request	claude/dazzling-maxwell-l85j2n	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35464231217	105953424863	check	pull_request	claude/dazzling-maxwell-l85j2n	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35463337061	105951003871	check	pull_request	codex/gen2-pisos-rejilla-cli-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (6 fail) | [warn]  T03 referencias colgantes  (84 warn)
+35463337061	105951003871	check	pull_request	codex/gen2-pisos-rejilla-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35463337061	105951003871	check	pull_request	codex/gen2-pisos-rejilla-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35463337061	105951003871	check	pull_request	codex/gen2-pisos-rejilla-cli-1	failure	T25 T-ROTULOS	[FAIL]  T25 T-ROTULOS  (1 fail) | [ ok ]  T26 T-VISTA-COLA-ADQUISICION
+35463337061	105951003871	check	pull_request	codex/gen2-pisos-rejilla-cli-1	failure	T32-bis T-PISOS-REJILLA	[FAIL]  T32-bis T-PISOS-REJILLA  (1 fail) | [ ok ]  T36 T-CORREDORES-GEN2
+35463337061	105951003871	check	pull_request	codex/gen2-pisos-rejilla-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35463264019	105950805539	check	pull_request	codex/gen2-issp-apoyo-monetario-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35463264019	105950805539	check	pull_request	codex/gen2-issp-apoyo-monetario-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35462948829	105949970257	check	pull_request	codex/gen2-enadid-union-actual-cli-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (1 fail) | [warn]  T03 referencias colgantes  (83 warn)
+35462948829	105949970257	check	pull_request	codex/gen2-enadid-union-actual-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35462948829	105949970257	check	pull_request	codex/gen2-enadid-union-actual-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35462948829	105949970257	check	pull_request	codex/gen2-enadid-union-actual-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35462038210	105947505201	check	pull_request	codex/gen2-marcador-adopcion-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35462038210	105947505201	check	pull_request	codex/gen2-marcador-adopcion-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35459585437	105940912926	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35459585437	105940912926	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35459464623	105940585564	check	pull_request	codex/gen2-marcador-adopcion-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35459464623	105940585564	check	pull_request	codex/gen2-marcador-adopcion-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35459464623	105940585564	check	pull_request	codex/gen2-marcador-adopcion-cli-1	failure	T27 T-INFRA	[FAIL]  T27 T-INFRA  (1 fail) | [ ok ]  T28 T-A3
+35459464623	105940585564	check	pull_request	codex/gen2-marcador-adopcion-cli-1	failure	T35 T-REPRO	[FAIL]  T35 T-REPRO  (20 fail, 4979 warn) | [ ok ]  T41 T-DIGESTO-MESA
+35459464623	105940585564	check	pull_request	codex/gen2-marcador-adopcion-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35459264631	105940049702	check	pull_request	claude/new-session-w2ojbo	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35459264631	105940049702	check	pull_request	claude/new-session-w2ojbo	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35458783608	105938744522	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35458783608	105938744522	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35458569583	105938160788	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35458569583	105938160788	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35458253584	105937298182	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T02 duplicados nombre/contenido	[FAIL]  T02 duplicados nombre/contenido  (2 fail) | [warn]  T03 referencias colgantes  (65 warn)
+35458253584	105937298182	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35458253584	105937298182	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35458253584	105937298182	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35458151533	105937016789	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35458151533	105937016789	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35457886764	105936300418	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35457886764	105936300418	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35457616980	105935592459	check	pull_request	codex/gen2-replay-y-pisos-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35457616980	105935592459	check	pull_request	codex/gen2-replay-y-pisos-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35457534368	105935372660	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35457534368	105935372660	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35457534368	105935372660	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T19a cabecera cruzada estado→modelo	[FAIL]  T19a cabecera cruzada estado→modelo  (1 fail) | [ ok ]  T19b contador 14 cruzado (modelo)
+35457534368	105935372660	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T22 T-FIRMAS	[FAIL]  T22 T-FIRMAS  (2 fail, 47 warn) | [ ok ]  T23 T-CABLEADO
+35457534368	105935372660	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T25 T-ROTULOS	[FAIL]  T25 T-ROTULOS  (5 fail) | [ ok ]  T26 T-VISTA-COLA-ADQUISICION
+35457534368	105935372660	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35456273285	105931986473	check	pull_request	codex/gen2-replay-y-pisos-cli-1	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35456273285	105931986473	check	pull_request	codex/gen2-replay-y-pisos-cli-1	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35455756664	105930600224	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35455756664	105930600224	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35455756664	105930600224	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T19a cabecera cruzada estado→modelo	[FAIL]  T19a cabecera cruzada estado→modelo  (1 fail) | [ ok ]  T19b contador 14 cruzado (modelo)
+35455756664	105930600224	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T22 T-FIRMAS	[FAIL]  T22 T-FIRMAS  (2 fail, 47 warn) | [ ok ]  T23 T-CABLEADO
+35455756664	105930600224	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T25 T-ROTULOS	[FAIL]  T25 T-ROTULOS  (5 fail) | [ ok ]  T26 T-VISTA-COLA-ADQUISICION
+35455756664	105930600224	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35455410145	105929728044	check	push	main	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35455410145	105929728044	check	push	main	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35455305468	105929440263	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35455305468	105929440263	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35455305468	105929440263	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T19a cabecera cruzada estado→modelo	[FAIL]  T19a cabecera cruzada estado→modelo  (1 fail) | [ ok ]  T19b contador 14 cruzado (modelo)
+35455305468	105929440263	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T22 T-FIRMAS	[FAIL]  T22 T-FIRMAS  (2 fail, 47 warn) | [ ok ]  T23 T-CABLEADO
+35455305468	105929440263	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T25 T-ROTULOS	[FAIL]  T25 T-ROTULOS  (5 fail) | [ ok ]  T26 T-VISTA-COLA-ADQUISICION
+35455305468	105929440263	check	pull_request	codex/gen2-contrato-y-tramite-cli-1	failure	T16 T-SUITE-SELF-CHECK	[FAIL]  T16 T-SUITE-SELF-CHECK  (6 fail) | 
+35453426707	105924432231	check	pull_request	derivados/2026-09-19	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35453426707	105924432231	check	pull_request	derivados/2026-09-19	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35358896941	105644961866	check	pull_request	censo/2026-09-18	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35358896941	105644961866	check	pull_request	censo/2026-09-18	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35358545839	105643799049	check	pull_request	adq/2026-09-18	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35358545839	105643799049	check	pull_request	adq/2026-09-18	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35357813938	105641472024	check	pull_request	censo/2026-09-18	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35357813938	105641472024	check	pull_request	censo/2026-09-18	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
+35357753720	105641176362	check	pull_request	derivados/2026-09-18	success	T06 consistencia numérica	[FAIL]  T06 consistencia numérica  (2 fail) | [ ok ]  T07 vocabulario de tiers
+35357753720	105641176362	check	pull_request	derivados/2026-09-18	success	T08 mapa de evidencia por report	[FAIL]  T08 mapa de evidencia por report  (1 fail) | [ ok ]  T09 marco (c) usado como causa
