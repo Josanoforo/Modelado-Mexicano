@@ -1,0 +1,64 @@
+# Celda-D del TERCER piloto, registrada en estado SPEC-CONGELADA por
+# ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_1 (20/sep/2026, CAJA). Nace con este acto
+# porque el COMMIT-1 v1.0 (#903) no pudo registrarla (contrato de unidad, FP-393).
+#
+# ESTADO: SPEC-CONGELADA. Ninguna corrida sellada, ningún veredicto. El campo
+# `estado_operativo: PENDIENTE` es el del contrato; el rótulo SPEC-CONGELADA viaja
+# en `resultado` de cada candidato y en `veredicto`. Los COMMIT-2 (emisiones) y
+# COMMIT-3 (R y adjudicación) los ejecuta OTRA sesión (F3, FP-400) y son los que
+# llenan `adjudicacion_por_celda`, `margen_material`, `fecha/commit_adjudicacion`.
+#
+# FIRMAS DE MESA (20/sep/2026), verbatim en el encargo archivado
+# `forense/encargos/2026-09-20-GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_1.md`:
+#   FP-399 (S2): 97 es edad real censurada y se mantiene fuera del universo del
+#     cruce; el COMMIT-2 lo cuenta con una sola variable; >1 % de la banda 60+ →
+#     marca RESERVA-S2, no detiene.
+#   FP-400 (herencia): el v1.1 hereda VERBATIM estimando, rejilla, PUNTUADA,
+#     candidatos, λ, soporte, adjudicación, lectura secundaria y B-bis de la v1.0;
+#     cambian sólo cuerpo, semántica de S2 y validación de «congelado».
+#   Vigentes también: F1-bis (FP-389, rejilla 60-96 y residuo fuera del universo)
+#   y F3 (quien congela no ejecuta).
+#
+# UNIDAD (FP-393 sigue ABIERTA): la regla `tramite.gobierno_digital.util_sin_coercion`
+# modela la conducta de una PERSONA que paga; el instrumento la observa por
+# TRÁMITE (sec_7, FAC_TRA) y el universo queda RESTRINGIDO A PAGOS DE LUZ
+# REALIZADOS, declarado (A-bis 4; spec §1). Se sigue el precedente de
+# `TRA.evade_norma.envipe2025.escolaridad_x_dominio` (unidad del modelo en
+# `unidad_objetivo`; unidad del dato en `universo_instrumento`). Si mesa firma
+# FP-393 con `evento`/`tramite` en el enum, este campo cambia en una línea.
+# ─────────────────────────────────────────────────────────────────────────────
+celda_d:
+  id: GOB.gobierno_digital.encig2025.edad_x_escolaridad
+  estimando: "p(adopta canal digital | edad, escolaridad) -- proporcion ponderada [0,1] de PAGOS ORDINARIOS DEL SERVICIO DE LUZ (ENCIG 2025 sec_7, N_TRA==01, FAC_TRA) hechos por canal digital (P7_3 in {4,5}) entre los de canal valido ({1,2,4,5,6}); NO es 'gobierno digital' en general ni confianza en el Estado (spec v1.1 primera linea)"
+  tipo_adjudicacion: COMPARACION
+  dominio: TRA
+  poblacion_objetivo: "16 celdas de cruce: edad{18-29; 30-44; 45-59; 60-96} x escolaridad{HASTA-PRIMARIA NIV 0-2; SECUNDARIA 3; MEDIA-SUPERIOR 4-7; SUPERIOR 8-9}; rejilla identica a CALC-ENCIG2021-CRUCES-HISTORICOS-0003 y CALC-ENCIG2023-CRUCES-HISTORICOS-0002; 15 PUNTUADA ex ante, 18-29 x HASTA-PRIMARIA FUERA-DE-SOPORTE ex ante (n=110/70); F1-bis: edad 97 (censurada) y 98/99 (no especificada) fuera del universo, contadas (FP-399)"
+  unidad_objetivo: persona
+  universo_candidatos: "spec v1.1 (hereda v1.0 verbatim, FP-400): piso C2, control C2-compuesto, referencias C1a/C1b, retadores S-MEDIO y S-LAMBDA; lambda = 0.8937949410086089 derivada de los DELTA/DELTA-EE sellados; L fuera; declarados ANTES de abrir ENCIG 2025"
+  candidatos:
+    - {id_candidato: C2, rol: PISO, fuentes: [ENCIG], edicion_periodo: "2025 (marginales de UNA variable, recalculados sobre el universo del cruce)", universo_instrumento: "TRAMITES: pagos de luz N_TRA==01 con P7_3 in {1,2,4,5,6}, FAC_TRA, EST_DIS x UPM_DIS, join residentes por ID_PER m:1", diseno_datos: transversal, estrategia: composicion, regla_composicion: "expit(logit p_a + logit p_b - logit p_all), replica por replica (bootstrap UPM en estrato, PCG64 20260919, 10000)", production_spec_refs: ["prereg-caja GOB-gobierno-digital-exe15-spec-v1_1", "CALC-GOB-DIGITAL-EXE-EMISIONES-0002"], resultado: "SPEC-CONGELADA -- no ejecutado sobre 2025; el codigo corrio sobre fixture sintetico y reprodujo 2023 (tests/test_piloto3_v11.py)"}
+    - {id_candidato: C2-COMPUESTO, rol: COMPLEMENTO, fuentes: [ENCIG], edicion_periodo: "2025 (marginales publicos del arbitro)", universo_instrumento: "CALC-C2-COMPUESTO-RESERVADAS-0001, punto sin IC; control de C2, NO piso", diseno_datos: transversal, estrategia: composicion, regla_composicion: NO-APLICA, production_spec_refs: ["CALC-GOB-DIGITAL-EXE-EMISIONES-0002"], resultado: NO-APLICA}
+    - {id_candidato: C1A, rol: BASELINE, fuentes: [ENCIG], edicion_periodo: "2023", universo_instrumento: "mismo universo, ola 2023 (RESULT sellados de CALC-ENCIG2023-CRUCES-HISTORICOS-0002)", diseno_datos: transversal, estrategia: composicion, regla_composicion: "expit(logit p23(a,b) - delta23(a,b)) = compuesto con marginales 2023; punto sellado, IC NO-DERIVABLE (sin replicas selladas)", production_spec_refs: ["prereg-caja GOB-gobierno-digital-exe15-spec-v1_1", "CALC-GOB-DIGITAL-EXE-EMISIONES-0002"], resultado: "SPEC-CONGELADA -- referencia, no piso a vencer"}
+    - {id_candidato: C1B, rol: BASELINE, fuentes: [ENCIG], edicion_periodo: "2023", universo_instrumento: "mismo universo, ola 2023 (RESULT sellados)", diseno_datos: transversal, estrategia: persistencia, regla_composicion: "p23(a,b) directo, punto e IC sellados", production_spec_refs: ["prereg-caja GOB-gobierno-digital-exe15-spec-v1_1", "CALC-GOB-DIGITAL-EXE-EMISIONES-0002"], resultado: "SPEC-CONGELADA -- referencia, no piso a vencer (el CALC de persistencia dice CAMBIA para ENCIG, MAE 10.838 pp)"}
+    - {id_candidato: S-MEDIO, rol: CHALLENGER, fuentes: [ENCIG], edicion_periodo: "2025 (marginales) + 2023 (interaccion)", universo_instrumento: "C2 + delta23(a,b) sellado", diseno_datos: transversal, estrategia: composicion, regla_composicion: "expit(logit C2 + 0.5*delta23(a,b)), replica por replica sobre C2", production_spec_refs: ["prereg-caja GOB-gobierno-digital-exe15-spec-v1_1", "CALC-GOB-DIGITAL-EXE-EMISIONES-0002", "CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001"], resultado: "SPEC-CONGELADA"}
+    - {id_candidato: S-LAMBDA, rol: CHALLENGER, fuentes: [ENCIG], edicion_periodo: "2025 (marginales) + 2021-2023 (interaccion promediada, encogida)", universo_instrumento: "C2 + lambda*(delta21+delta23)/2 sellados", diseno_datos: transversal, estrategia: composicion, regla_composicion: "expit(logit C2 + 0.8937949410086089*dbar(a,b)), replica por replica sobre C2", production_spec_refs: ["prereg-caja GOB-gobierno-digital-exe15-spec-v1_1", "CALC-GOB-DIGITAL-EXE-EMISIONES-0002", "CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001"], resultado: "SPEC-CONGELADA"}
+  criterio_adjudicacion: {texto: "error absoluto por celda en pp vs R derivado en COMMIT-3 (CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001); INDECIDIBLE si ambos caen dentro del IC de R o si |d_L-d_M| < 0.5*EE(R) (CAREO-ADV-DUELO-diseno-v2:38), cada retador contra C2; un retador gana solo si vence a C2 en >= 3/4 de las PUNTUADA (n>=200 en 2021, 2023 y 2025; FUERA-DE-SOPORTE global si fallan >=5 de 15); DeltaMAE con IC replica por replica; B-bis verbatim (spec v1.1 §4.2): nadie vence y sup(DeltaMAE)<=0.5 pp -> CORROBORADA; nadie vence pero IC admite >0.5 -> FALSADOR-DEBIL; si ambas caben manda FALSADOR-DEBIL; retador vence -> LIMITA-C2 solo aqui; marca RESERVA-S2 si aplica (FP-399)", escala: "puntos porcentuales; EE(R) = (IC95sup - IC95inf)/3.92"}
+  estado_decidibilidad: NO-APLICA   # SPEC-CONGELADA: no hay dato de 2025; el COMMIT-3 lo fija por celda
+  margen_material: PENDIENTE-DERIVACION
+  momentos_holdout_refs: ["CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001 (COMMIT-3, no ejecutado)", "data/corrida0/marcador-segmento.tsv: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad RESERVADA"]
+  veredicto: SPEC-CONGELADA
+  champion_actual: NINGUNO   # nada se adjudica en COMMIT-1; adoptar es de mesa
+  output_nativo: {tipo: proporcion, escala: "[0,1] ponderada FAC_TRA, unidad TRAMITE", valor_ref: "R (ENCIG 2025, 16 celdas): NO DERIVADO -- reservado hasta COMMIT-3 (E.6)"}
+  incertidumbre: {tipo: "IC95 por replicas compartidas (bootstrap UPM dentro de estrato, PCG64 20260919, 10000; singleton de certeza); C2, S-MEDIO, S-LAMBDA y R de la misma replica; C1b IC sellado 2023; C1a punto sin IC (declarado)", ref: "prereg-caja GOB-gobierno-digital-exe15-spec-v1_1 §5"}
+  supuesto_transporte: "ACOTADO-CON-SUPUESTO: instrumento comparable por texto en 2021/2023/2025 (NC-0355 CAMBIO-MENOR, PR #924); la extrapolacion temporal de la interaccion es el supuesto que S-MEDIO y S-LAMBDA SON"
+  fuerza_coeficiente: NO-APLICA
+  procedencia_condicional: MEDICION_DIRECTA_MICRODATO
+  calibrado: false
+  estado_operativo: PENDIENTE   # SPEC-CONGELADA; nada entra al motor
+  vocabulario_version: 0.6
+  requiere_decision_mesa: true   # FP-393 (unidad de celda-D sobre eventos) sigue ABIERTA; cuenta_gen2=SI propuesto nace PENDIENTE-DE-MESA
+  fecha_declaracion: 2026-09-20
+  commit_declaracion: 9a05d2a6     # 0-bis A.3 de GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_1
+  fecha_adjudicacion: PENDIENTE-COMMIT-3
+  commit_adjudicacion: PENDIENTE-COMMIT-3
+  relacion_complemento: "C2-COMPUESTO es control del piso C2 (mismo compuesto con marginales publicos del arbitro, punto sin IC); se reporta |C2 - control| por celda"

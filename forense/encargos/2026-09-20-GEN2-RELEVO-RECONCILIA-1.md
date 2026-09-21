@@ -82,4 +82,4 @@ No adopta · no re-mide · no arregla la numeración posicional. Sucesores: `REL
 
 ## CONSUMIDO
 
-Ejecutado por `ACTO GEN2-RELEVO-RECONCILIA-1` en **[PR #928](https://github.com/Josanoforo/Modelado-Mexicano/pull/928)**, rama `claude/gracious-faraday-wf9b8j`, base `dfb07b9`. `ADR-568`. Entorno NUBE `cloud_default`, corpus NO montado (archivos examinados = 0), Opus 5. `cuenta_gen2 = NO`: cero mediciones, cero adopciones, cero contadores movidos.
+Ejecutado por `ACTO GEN2-RELEVO-RECONCILIA-1` en **[PR #928](https://github.com/Josanoforo/Modelado-Mexicano/pull/928)**, rama `claude/gracious-faraday-wf9b8j`, base `dfb07b9`. `ADR-569`. Entorno NUBE `cloud_default`, corpus NO montado (archivos examinados = 0), Opus 5. `cuenta_gen2 = NO`: cero mediciones, cero adopciones, cero contadores movidos.

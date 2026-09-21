@@ -1,7 +1,7 @@
 <!-- TABLERO-DERIVADO:BEGIN -->
 ## Estado vivo derivado
 
-- **Procedencia.** SHA `9623f6f` · fecha del commit `2026-09-20` · ¿árbol == origin/main? `False`.
+- **Procedencia.** SHA `f67169f` · fecha del commit `2026-09-21` · ¿árbol == origin/main? `False`.
 - **Motor.** reglas totales `22` · reglas con dato (>=1 conducta MEDIDO*) `21` · reglas sin dato `1` · conductas MEDIDO* `46` · tiers `{'FUERTE': 20, 'MEDIA': 2}`.
 - **Marcador por segmento.** filas por estado: ADOPTADO-POR-FIRMA `20` · CONSUMIDA-SIN-PILOTO `1` · DIAGNOSTICO `8` · IDENTICO `89` · NO-COMPARABLE `2` · RESERVADA `22` · SIN-PISO `15` · SOLO-PISO `57` (total `214`) · cobertura de piso `79 / 214` · valor añadido / evaluadas `0 / 20` · celdas `emision = EMITIDA-SIN-EVALUAR` `16 / 214` · `veto_pisos_activo` `True`.
 - **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: `NO` 13 · `NO-DERIVACION-CONTEXTUAL` 1 · `NO-SIN-FIRMA-DE-OBJETO` 1 · `PENDIENTE-DE-CASCADA-DIFERIDA` 2 · `PENDIENTE-DE-INTEGRACION-SERIAL` 2 · `PENDIENTE-DE-MESA` 17 · `SI` 78 (selladas total `114`) · `PENDIENTE-DE-MESA`:
@@ -23,11 +23,11 @@
   - `CALC-WBES2023-PRECISION-0001--7ab4bf6255e0`: `REPRODUCE`
   - `CALC-WBES2023-PRECISION-INTERACCIONES-0001--7f2a0899f700`: `NO-VERIFICADO`
 - **Ramas presentes en origin.** **2 rama(s) presente(s) en origin (política de cero)**:
-  - `acto/gen2-celda-d-piloto-3-commit-1-v1_1`: 6 delante / 20 detrás de main · último commit `2026-09-20`
-  - `claude/gracious-faraday-wf9b8j`: 4 delante / 14 detrás de main · último commit `2026-09-20`
+  - `acto/gen2-din-credito-comparabilidad-texto-1`: 1 delante / 8 detrás de main · último commit `2026-09-20`
+  - `claude/gracious-faraday-wf9b8j`: 6 delante / 8 detrás de main · último commit `2026-09-21`
 - **Corredor LEGACY (eje x = ∅, GO-MARCADOR).** el marcador por segmento es la línea de arriba. marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
 - **Corpus lógico.** entradas del manifiesto `1629` · filas de registro de curación `155` · filas de relaciones `231` · filas del inventario de reactivos v1.2 `178247`.
-- **Gobernanza operativa.** ADR máximo `568` · FP máximo `401` · FP abiertas: FP-386, FP-387, FP-388, FP-393, FP-394, FP-395, FP-396, FP-397, FP-398, FP-399, FP-400 · encargos archivados `581` (consumidos `529`) · instrucciones vigentes `v2.15` · cola de encargos (solo estados != CONSUMIDO; consumidos `36`):
+- **Gobernanza operativa.** ADR máximo `569` · FP máximo `401` · FP abiertas: FP-386, FP-387, FP-388, FP-393, FP-394, FP-395, FP-396, FP-397, FP-398 · encargos archivados `582` (consumidos `530`) · instrucciones vigentes `v2.15` · cola de encargos (solo estados != CONSUMIDO; consumidos `36`):
   - `2026-09-07-ENCARGOS-GEN2-en-orden.md`: GATED
   - `2026-09-08-GEN2-SONDA-3-PILOTO-CAJA.md`: LISTO
   - `2026-09-10-GEN2-POST-685/00-LEEME-LANZAMIENTO-POST-685.md`: GATED
