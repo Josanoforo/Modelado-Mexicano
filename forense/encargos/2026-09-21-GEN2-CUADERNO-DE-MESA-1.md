@@ -53,3 +53,13 @@ No firma · no tramita. Sucesor: mesa lee; lo que apruebe va a un trámite de fi
 **Lo que sí se corrió y conviene dejar asentado, porque el encargo lo suponía de otra manera:** la premisa «~50 FP sin cerrar» de §3 **no se sostiene** y no era una premisa de medición sino de logística, así que —por §2 de las instrucciones (v2.15)— se replanteó, se siguió y se declara: el universo real es **6** FP no cerradas y **28** NC con token de mesa. La ruta `forense/cuadernos/` de §1 se ignoró, como el propio §3 instruye, en favor de `forense/encargos/`. La base `55c8d57c` que el encargo declaraba se re-derivó a `fc13cdc` porque `main` se movió.
 
 **Ninguna otra pieza quedó sin correr.** P1, P2, P3 y P4 se ejecutaron completas; los tres renglones de arriba son reservas dentro de piezas ejecutadas, no piezas omitidas.
+
+## CONSUMIDO
+
+Ejecutado por [PR #963](https://github.com/Josanoforo/Modelado-Mexicano/pull/963) (`ACTO GEN2-CUADERNO-DE-MESA-1`, rama `claude/sleepy-ritchie-nak8pa`, 21/sep/2026).
+
+Commits: `b6dca71` (0-bis A.3 — este encargo verbatim + sello de cuerpo `654fc38c…`) · `929ee13` (cuaderno, dictámenes y cascada) · este commit (`## CONSUMIDO`).
+
+Entregable: `forense/encargos/CUADERNO-DE-MESA-2026-09-21.md` (+ `.sha256` `62a5f415…`). `ADR-260921-GEN2-CUADERNO-DE-MESA-1-b6dc-01` en `canon/gobernanza-v1_15.md`, con fragmento propio en `canon/L0/`. **CONTADOR: ninguno** — el acto no firma, no cierra, no adopta y no re-corre nada.
+
+**Nota de logística, declarada por §2 de las instrucciones (v2.15).** El encargo nombra la rama `claude/cuaderno-de-mesa-1`; la sesión que lo ejecutó tenía asignada `claude/sleepy-ritchie-nak8pa` y se trabajó en ella. Premisa de logística, no de medición: el objetivo seguía alcanzable y D-17 se cumple —un solo escritor, un solo rótulo, sin duplicado (verificado en los tres sitios del guard 0.c: `ls-remote` sin coincidencia, un worktree, cero PR abiertos al arrancar)—. Se declara aquí y no se corrige hacia atrás.
