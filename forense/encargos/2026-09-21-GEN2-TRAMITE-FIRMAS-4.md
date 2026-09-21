@@ -42,3 +42,20 @@ Decides tú: en qué archivo vive cada firma (A.12 y la costumbre de `/tramite`)
 ## 6 · PERÍMETRO · NO HACE · CIERRE
 Propio: `forense/firmas-pendientes.tsv`, `data/corrida0/decisiones.tsv` (solo si una firma gobierna un contador: ninguna de éstas lo hace), `forense/hallazgos.md`, los dos diseños y sus enmiendas, la cola de adquisición por su vía, nota, cascada. Ajeno: todo código, toda spec, todo CALC. Si te encuentras escribiendo fuera de esta lista, PARA.
 No hace: no escribe el encargo del lote ni el del duelo (dirección) · no corrige `emite_m.py` (acto propio, F8) · no relanza θ congelada. Compuertas: ninguna. Auditoría §5: no aplica, no afirma nada sobre México. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué**: los dos diseños archivados de §3 — `DISENO-LOTE-CRUCES-ENIF2024-protocolo-unico-v0_1.md` (sha256 `f9ea6d4fb8932d668f4bee808ed34e26d12297871be542457f1a4aa3845ed5a3`) y `DISENO-duelo-prospectivo-ENVIPE2026-v1_0.md` (sha256 `e88d3192268167a37e5c96e75a8c73421eb1926a9f621e46da29a10ce2dabca3`), junto con sus enmiendas hermanas (F2, F7 A/B/C).
+  **por qué**: `PARO-PREMISA` — ninguno de los dos llegó a esta sesión, y una búsqueda por nombre (`find . -iname`) sobre todo el árbol confirma que ninguno vive ya en el repo bajo un acto anterior. Fabricar el contenido bajo los sha256 declarados sería fraude de procedencia (§2 del proyecto); se declara y se pide en vez de inventar.
+  **impacto**: el lote de 14 cruces ENIF2024 (F1/F2) y el duelo prospectivo ENVIPE2026 (F7) quedan **firmados pero sin diseño archivado que su COMMIT-1 pueda citar** — ningún acto que abra esas olas puede lanzarse hasta que el diseño llegue.
+  **sucesor**: `SIN-ASIGNAR` — quien tenga el adjunto (dirección o MOTOR) lo archiva en un acto sucesor que cite este ADR-590 y las firmas F1/F2/F7 ya asentadas.
+
+- **qué**: D1 (ENVIPE 2026: microdato CSV, descriptor, cuestionario, diseño muestral) y D2 (ENIGH 2024: CSV + descriptor) — bajar el payload real.
+  **por qué**: `FUERA-DE-PERÍMETRO` — el propio encargo (§4 "Quién baja qué") declara que microdato → CAJA, siempre; este acto solo encola por su vía documentada.
+  **impacto**: ninguno de los dos payloads existe todavía en `data/manifiesto.yaml`; el duelo ENVIPE2026 y cualquier trabajo sobre ENIGH 2024 nueva serie siguen sin corpus.
+  **sucesor**: `DIFERIDO-A:/adquiere` — mesa corre `/adquiere` (o `/adquiere 2` inmediatamente después de este PR, dado el orden de prioridad 1/2 recién encoladas) para que el agente de adquisición camine las dos filas nuevas, con la RESERVA F7 ya escrita en la fila de D1 (baja+hashea, NO descomprime/lista/abre, tabulados NO se bajan).
+
+- **qué**: D3 — el payload físico de los dos cuestionarios PDF de ENIF 2012/2015, que este acto obtuvo y registró en el manifiesto pero no dejó en el corpus compartido.
+  **por qué**: `PARO-ENTORNO` — la trampa conocida de PR #77 (un payload que cae en `data/raw` desde nube vuelca `ENTORNO-DERIVADO` a CAJA sin que la nube tenga corpus compartido real): los dos PDF se removieron de `data/raw/` tras `tests/manifiesto.py --registra` para no dejar un payload huérfano fuera del corpus compartido.
+  **impacto**: `enif_2012_cuestionario_pdf` y `enif_2015_cuestionario_pdf` están en `data/manifiesto.yaml` con sha256 y tamaño verdaderos, pero sin archivo físico en ningún corpus hasta que caja lo traiga — el lote ENIF2024 (F2) que necesita leer el texto de las cuatro olas para comparabilidad no puede leerlas todavía.
+  **sucesor**: `DIFERIDO-A:caja (--descarga --id enif_2012_cuestionario_pdf --id enif_2015_cuestionario_pdf)` — `tests/manifiesto.py --descarga` verifica el sha256 contra lo que este acto ya registró.
