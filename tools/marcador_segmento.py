@@ -59,6 +59,9 @@ from pathlib import Path
 
 import yaml
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import prospectividad  # noqa: E402  -- ACTO GEN2-MARCADOR-E-INFORME-1 · P2
+
 RAIZ = Path(__file__).resolve().parents[1]
 CENSO_TSV = RAIZ / "forense" / "notas" / "2026-09-16-GEN2-EMISOR-ESTADO-1-censo.tsv"
 PROPUESTA_OLA5 = RAIZ / "milpa" / "tramite-ola5-propuesta-v0.yaml"
@@ -161,6 +164,11 @@ COLS = [
     "R", "R_ic95inf", "R_ic95sup",
     "M", "IC95_inf", "IC95_sup", "tipo_incertidumbre",
     "resultado_id", "decision_ref", "emisor_vs_arbitro", "fuente",
+    # ACTO GEN2-MARCADOR-E-INFORME-1 · P2 (firma de mesa 21/sep/2026: «Rótulo
+    # PROSPECTIVA/RETROSPECTIVA en todo marcador»). Derivadas por
+    # tools/prospectividad.py desde los sellos, nunca tecleadas. Van al final
+    # para no mover el orden de ninguna columna que ya tenga lectores.
+    "prospectividad", "prospectividad_cita",
 ]
 
 
@@ -1053,6 +1061,31 @@ def filas_cruce_reservadas() -> tuple[list[dict], dict]:
 
 # ── ensamblado + cuatro números derivados al pie ──────────────────────────
 
+def _calcs_para_prospectividad() -> dict:
+    """`{celda_id: (CALC de la emisión, CALC de la R)}` para las filas de cruce.
+
+    ACTO GEN2-MARCADOR-E-INFORME-1 · P2. Los dos nombres ya viven en la celda-D
+    y aquí sólo se leen: la emisión en `adjudicacion_por_celda[*].calc` y el
+    árbitro en `momentos_holdout_refs` (la referencia trae el hash de corrida,
+    que `prospectividad` normaliza). El marcador NO decide el orden: lo lee de
+    los `ejecucion.json` sellados de esos dos CALC.
+    """
+    mapa = {}
+    for ruta in _celdas_d_c2():
+        d = _celda_d(ruta)
+        sub = d.get("adjudicacion_por_celda")
+        if not isinstance(sub, dict):
+            continue
+        refs = [r for r in (d.get("momentos_holdout_refs") or [])
+                if isinstance(r, str) and r.startswith("CALC-")]
+        calc_r = refs[0] if len(refs) == 1 else ""
+        for sub_celda, info in sub.items():
+            if not isinstance(info, dict) or info.get("id_candidato") != "C2":
+                continue
+            mapa[f"CRUCE::{d['id']}::{sub_celda}"] = (info.get("calc", ""), calc_r)
+    return mapa
+
+
 def deriva() -> dict:
     decisiones = _lee_decisiones()
     veto_activo = "veto:pisos-866" in decisiones
@@ -1063,6 +1096,10 @@ def deriva() -> dict:
     cruce_reservadas, uni_reservadas = filas_cruce_reservadas()
 
     todas = nacionales + marginales + cruce_adoptadas + cruce_reservadas
+
+    # P2 · el rótulo PROSPECTIVA/RETROSPECTIVA se anota sobre las filas YA
+    # derivadas: una sola pasada, ninguna fila se construye distinto por él.
+    prospectividad.anota(todas, _calcs_para_prospectividad())
 
     # cuatro números derivados al pie del diseño §4
     # cobertura de piso = filas con un piso REAL detrás (no "NO-APLICA",
@@ -1098,6 +1135,9 @@ def deriva() -> dict:
         "marginales_evaluadas_gen2": n_marg_evaluadas,
         "marginales_solo_piso": n_marg_solo_piso,
         "total_filas": len(todas),
+        # P2: seis clases, cada una con su n. NO hay cifra que sume
+        # PROSPECTIVA + RETROSPECTIVA -- firma de mesa 21/sep/2026.
+        "prospectividad": prospectividad.resumen(todas),
     }
     return {"filas": todas, "resumen": resumen, "decisiones": decisiones}
 

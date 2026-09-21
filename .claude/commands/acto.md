@@ -346,7 +346,9 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
    dry-run, nunca escribe) deriva y reporta el candidato de raíz contra
    el 0-bis ya commiteado, FP máximo/filas abiertas, el rótulo esperado y
    si ya está en `registro-rotulos.tsv`, y corre
-   `tests/check.py --baseline --parallel`. **Un id con raíz de acto no se
+   `tests/check.py --rapido` (P-A, ACTO GEN2-TUBERIA-CIERRE-RAPIDO-1,
+   21/sep/2026: la sesión verifica en segundos, el CI juzga con la suite
+   completa en el push). **Un id con raíz de acto no se
    renumera nunca.** El espacio numérico viejo (`ADR-<n>`, `max+1`) queda
    CERRADO desde este acto — ningún `ADR` existente se toca ni se
    renumera; si un id NUMÉRICO acuñado antes del cierre choca al fusionar
@@ -398,9 +400,13 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
    `_T25_ARCHIVOS_CONOCIDOS` con el comentario que explica de dónde sale
    cada mención — mismo patrón que el resto de la lista. Un encargo
    verbatim (A.3) nunca se edita para complacer al test.
-6. **`python3 tests/check.py --baseline --parallel`** en VERDE (sin `FAIL` nuevo
-   contra `tests/baseline.json`), o PARO-reporta con la salida cruda —
-   nunca se sigue con un `FAIL` nuevo sin reportarlo primero.
+6. **`python3 tests/check.py --rapido`** en VERDE (P-A, ACTO
+   GEN2-TUBERIA-CIERRE-RAPIDO-1, 21/sep/2026: el subconjunto rápido —T02,
+   T22, T25, T15, T27, T30, T34 y el verificador de sidecars, ≤15s— es lo
+   que la sesión corre antes de empujar; la suite completa la corre el CI
+   en el push, y **ése es el juez**. Si el CI falla: la sesión corrige y
+   vuelve a empujar), o PARO-reporta con la salida cruda si el subconjunto
+   mismo falla — nunca se sigue con un `FAIL` nuevo sin reportarlo primero.
 7. **Anti-PR#77.** Si este acto descargó algo: verifica que los payloads
    quedaron en el corpus compartido y no solo en el worktree de esta
    sesión, antes de dar el acto por cerrado.
@@ -470,8 +476,9 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
     <rama>` en el mismo momento en que se escribe `## CONSUMIDO`.
     `tools/limpia_arbol.py --reporta` cuenta toda rama remota sin PR
     abierto como `fuera_de_politica`.
-12. **`python3 tests/check.py --baseline --parallel`** una última vez, después del
-    commit del paso 10, en VERDE — o PARO-reporta con la salida cruda,
+12. **`python3 tests/check.py --rapido`** una última vez, después del
+    commit del paso 10, en VERDE — el CI del push sobre este PR es el
+    juez de la suite completa (P-A) — o PARO-reporta con la salida cruda,
     nunca se declara el PR listo con un `FAIL` nuevo sin reportarlo
     primero.
 13. **Guard final de HEAD** (`ACTO AUTOMATIZA-2-A · BLINDA-HEAD-PR`,
