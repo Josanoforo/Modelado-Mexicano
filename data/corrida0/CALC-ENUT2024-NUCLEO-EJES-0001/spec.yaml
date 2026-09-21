@@ -1,0 +1,372 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENUT2024-NUCLEO-EJES-0001
+spec_md: ../../../forense/prereg-caja/ENUT-NUCLEO-ejes-spec-v1_0.md
+spec_md_sha256: f8481b8a0eaf1c4dc987215d8358f5b496e3bf60f2c635242af3e4dd825201cf
+script: data/corrida0/CALC-ENUT2024-NUCLEO-EJES-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: R-POR-EJE-CON-ORO
+  cuenta_gen2: SI
+  firma_de_contador: "Propuesta de dirección, encargo §2 (21/sep/2026), verbatim: «Las corridas de GEN2-ENUT-PISOS-Y-SERIE-1 cuentan (cuenta_gen2 = SI), sea cual sea el error que le encuentren a la persistencia.» CABECERA: «CONTADOR: sella corridas; cuenta_gen2 = SI (§2); no adopta»."
+  validacion_independiente: NO-HECHA
+  spec_sellada: forense/prereg-caja/ENUT-NUCLEO-ejes-spec-v1_0.md
+  spec_sellada_sha256: f8481b8a0eaf1c4dc987215d8358f5b496e3bf60f2c635242af3e4dd825201cf
+  estimando_autorizado_por_mesa: "Opción A (mesa, 21/sep/2026, en respuesta a la pregunta §6 del encargo): «Núcleo común + CON_CP 2024 como secundario». horas_cuidado_nucleo (C2) y nucleo_min (C3) son estimandos NUEVOS; CON_CP (C1) sólo en 2024 y secundario."
+  contaminacion_declarada: "ADR-46: al congelar, la sesión había leído el dictamen ADR-557 (2019 vs 2024 por texto), CALC-ENUT-0001/spec.yaml y resultados.json (A-R = 0.2215, n = 29 181 hogares), tools/medidor_cuidado_enut.py, las 10 medias sexo_edad del marcador (R de ENUT 2024) y los FD/RNM de las cuatro olas. Ningún registro de microdato de ninguna ola. Lo genuinamente desconocido: si la suma de ítems crudos reproduce *_CON_CP (fórmula INEGI), el nivel del núcleo en cada ola y por eje, la anchura de los IC, cuántos ítems «Sí» vienen sin tiempo, y si el pasivo sin presencia de 2019 pesa más o menos que el pasivo presente de 2024."
+  medidor_ejecutado_al_congelar: "SÍ, sobre datos sintéticos (tests/test_enut_nucleo_conducto.py: cuatro olas sintéticas, _valida_outputs contra este spec.yaml, respuesta conocida, celda rara, guardia y 11 mutaciones). Ningún dato real abierto."
+inputs:
+  - {id: enut2024_bd_csv, origen: manifiesto}
+  - {id: IN-NUCLEO-MODULO, origen: repo, ruta: tools/enut_nucleo.py, sha256: d34b207cc4f088d20bb625fd48d8eb5b6e162036faf33af77c0e75846c6d473c}
+  - {id: IN-SPEC-SELLADA, origen: repo, ruta: forense/prereg-caja/ENUT-NUCLEO-ejes-spec-v1_0.md, sha256: f8481b8a0eaf1c4dc987215d8358f5b496e3bf60f2c635242af3e4dd825201cf}
+  - {id: IN-COMPARABILIDAD-P1, origen: repo, ruta: data/enut-comparabilidad-texto-v1_0.tsv, sha256: 9483ecbb65ab2bafb02a670cbe00ee05db3f93f6c2b367dcfe95040d8cabd963}
+  - {id: IN-ORO-CALC-ENUT-0001, origen: repo, ruta: data/corrida0/CALC-ENUT-0001/resultados.json, sha256: 49259f3244a8902270cab2636ea5f6fd9604d02f0acebe9ae0c80a64ff155fb7}
+variables:
+  - {archivo: tmodulo.csv, variable: "P6_11_01..P6_11_14 + P6_11A_nn_1..4", rol: "ítems 6.11 (Sí y cuatro tiempos); NUCLEO/MIN/TODOS según ITEMS"}
+  - {archivo: tmodulo.csv, variable: "P6_12_01..P6_12_12 + P6_12A_nn_1..4", rol: "ítems 6.12"}
+  - {archivo: tmodulo.csv, variable: "P6_13_1..P6_13_9 + P6_13A_n_1..4", rol: "ítems 6.13"}
+  - {archivo: tmodulo.csv, variable: "P6_15_1..P6_15_7 + P6_15A_n_1..4", rol: "ítems 6.15"}
+  - {archivo: tmodulo.csv, variable: SEXO, rol: eje-sexo}
+  - {archivo: tmodulo.csv, variable: EDAD_V, rol: "eje-edad y corte 40+ del numerador C4 (sobre TMODULO)"}
+  - {archivo: tmodulo.csv, variable: NIV, rol: "eje-escolaridad (00-11 homologado)"}
+  - {archivo: tmodulo.csv, variable: TLOC, rol: "eje-localidad (4 = rural)"}
+  - {archivo: tmodulo.csv, variable: FAC_PER, rol: ponderador-persona}
+  - {archivo: tmodulo.csv, variable: EST_DIS, rol: estrato}
+  - {archivo: tmodulo.csv, variable: UPM_DIS, rol: upm}
+  - {archivo: tmodulo.csv, variable: LLAVEMOD, rol: "llave persona (join 1:1 con tvar_crea)"}
+  - {archivo: tmodulo.csv, variable: LLAVEHOG, rol: "llave hogar (razón C4)"}
+  - {archivo: tvar_crea.csv, variable: "CUID_ESP_INT_HOG_CON_CP, CUID_INT_0A5_CON_CP, CUID_INT_6A14_CON_CP, CUID_INT_60MAS_CON_CP", rol: "variante CONCP (C1) y validación de la fórmula bloque por bloque"}
+  - {archivo: tvar_crea.csv, variable: "SEXO, EDAD", rol: "SÓLO para el oro: numerador mujer 40+ exactamente como CALC-ENUT-0001"}
+  - {archivo: tsdem.csv, variable: FAC_HOG, rol: "ponderador de hogar (constante por LLAVEHOG; se cuenta si no)"}
+universo: "Personas de 12 años y más con registro en la tabla del módulo de la base nacional de la ola (2024 TMODULO; 2019 enut_2019/TMODULO; 2014 Enut2014.zip/TMODULO2; 2009 TModulo2), incluidas las que no declaran ninguna hora (aportan 0). Las tablas _indígena/_PI no entran (extracción, no muestra adicional; P1). Hogares: todos los que tienen al menos una persona en el universo."
+filtros: "Sale de todas las celdas, contado y no imputado: FAC_PER ausente, no numérico o ≤ 0 (N-SIN-PONDERADOR). Sale sólo del eje afectado: código de SEXO/EDAD/NIV/TLOC(LOC) inválido o ausente (FUERA-*). Hogar sin ponderador de hogar sale de la razón, contado. Tiempo en blanco = 0 y se cuenta (SI-SIN-TIEMPO). Miembro o columna ausente → ReservaRota (la corrida no sella)."
+ponderador: "FAC_PER de la tabla del módulo para las medias; hogar: FAC_HOG (2024 tsdem, 2019 THOGAR) o FAC_VIV (2014 THOGAR, 2009 THogar) — variante de ponderador declarada en P1 (C4)."
+transformacion: "Por persona y variante: horas = Σ ítems de ITEMS[ola][variante] con h_LV + min_LV/60 + h_SD + min_SD/60. Media ponderada Σw·y/Σw por celda de UN eje; razón C4 por hogar. 2024 además: CONCP = Σ cuatro *_CON_CP de tvar_crea; validación = |Σ ítems TODOS del bloque − *_CON_CP del bloque| por persona; oro = razón CONCP con SEXO/EDAD de tvar_crea y FAC_HOG de tsdem vs RESULT-ENUT-A-R sellado."
+estimando: "DESCRIPTIVO, R de ENUT 2024: media de horas/semana de cuidado por celda de eje para NUCLEO (C2, principal), MIN (C3, variante) y CONCP (C1, secundario: la definición sellada, cuya distancia a NUCLEO por eje mide el tamaño del cambio de instrumento); razón C4 nacional por variante. Ninguna celda se compara entre variantes ni escalas sin enlace (A-bis 3). No adopta; no toca el marcador."
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+parametros:
+  bootstrap_replicas: 10000
+  metodo_ic: "bootstrap de UPM_DIS con reemplazo dentro de EST_DIS conservando el número de UPM por estrato; percentiles 2.5/97.5; UN plan de réplicas por frame (personas; hogares aparte, misma semilla); estrato con UPM única se re-muestrea a sí mismo (varianza cero, no se colapsa)"
+  horas_por_item: "h_LV + min_LV/60 + h_SD + min_SD/60; blanco o no numérico = 0 y se cuenta en *-SI-SIN-TIEMPO cuando el ítem es Sí; sin tope"
+  ejes: "nacional · sexo{1 hombre, 2 mujer} · edad{12-17, 18-29, 30-39, 40-59, 60+} · escolaridad homologada{hasta_primaria, secundaria, media_superior, superior} · localidad{urbano, rural} — UNA variable por celda (guardia 3D: celdas_de_eje + auditoría AST R1-R6 antes de abrir el zip)"
+  items_por_variante: "tools/enut_nucleo.py::ITEMS, transcripción de data/enut-comparabilidad-texto-v1_0.tsv (C2, C3), cotejada por tests/test_enut_nucleo_conducto.py"
+  razon_c4: "Σ_h w_h·num_h / Σ_h w_h·den_h sobre hogares con ponderador (0/0 dentro), num = horas de mujeres 40+; emitida SÓLO nacional; escala [0,1], nunca se compara con las medias (PARO b)"
+  fuera_del_eje: "código inválido o ausente sale sólo del eje afectado (RESULT FUERA-*); FAC_PER no positivo sale de todas las celdas (N-SIN-PONDERADOR)"
+  oro: "RESULT-ENUT2024-ORO-A-R-DELTA (|razón CONCP recalculada − RESULT-ENUT-A-R de CALC-ENUT-0001|) y RESULT-ENUT2024-VALIDACION-CONCP-MAX-ABS (fórmula de tvar_crea). Son RESULT, no guardias: si no dan ~0 el CALC sella igual y el acto lo reporta como hallazgo; no se parcha (PARO e)."
+  compuerta_del_encargo: "§8: este COMMIT-1 en origin con el oro en verde protege abrir dato; 2019 (CALC-ENUT2019-NUCLEO-EJES-0001) no se abre antes de verificar este oro"
+dependencias_materiales: [numpy, pandas, dbfread]
+resultados:
+  - {id: RESULT-ENUT2024-FILAS-MODULO, tipo: entero, unidad: "conteo de filas"}
+  - {id: RESULT-ENUT2024-FILAS-TVAR-CREA, tipo: entero, unidad: "conteo de filas"}
+  - {id: RESULT-ENUT2024-FILAS-TSDEM, tipo: entero, unidad: "conteo de filas"}
+  - {id: RESULT-ENUT2024-JOIN-SIN-TVAR-CREA, tipo: entero, unidad: "conteo de filas"}
+  - {id: RESULT-ENUT2024-HOGARES-FAC-HOG-NO-CONSTANTE, tipo: entero, unidad: "conteo de filas"}
+  - {id: RESULT-ENUT2024-N-UNIVERSO, tipo: entero, unidad: "personas 12+ del módulo"}
+  - {id: RESULT-ENUT2024-N-SIN-PONDERADOR, tipo: entero, unidad: "personas sin FAC_PER válido"}
+  - {id: RESULT-ENUT2024-FUERA-SEXO, tipo: entero, unidad: "personas sin categoría en sexo"}
+  - {id: RESULT-ENUT2024-FUERA-EDAD, tipo: entero, unidad: "personas sin categoría en edad"}
+  - {id: RESULT-ENUT2024-FUERA-ESCOLARIDAD, tipo: entero, unidad: "personas sin categoría en escolaridad"}
+  - {id: RESULT-ENUT2024-FUERA-LOCALIDAD, tipo: entero, unidad: "personas sin categoría en localidad"}
+  - {id: RESULT-ENUT2024-NUCLEO-SI-SIN-TIEMPO, tipo: entero, unidad: "ítems Sí sin tiempo declarado"}
+  - {id: RESULT-ENUT2024-NUCLEO-MEDIA-HORAS-CRUDA, tipo: flotante, unidad: "horas/semana, media sin ponderar (diagnóstico)"}
+  - {id: RESULT-ENUT2024-NUCLEO-NACIONAL-NAC-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-NACIONAL-NAC-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-NACIONAL-NAC-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-NACIONAL-NAC-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-NUCLEO-NACIONAL-NAC-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-NUCLEO-NACIONAL-NAC-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-NUCLEO-SEXO-HOMBRE-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-SEXO-HOMBRE-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-SEXO-HOMBRE-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-SEXO-HOMBRE-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-NUCLEO-SEXO-HOMBRE-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-NUCLEO-SEXO-HOMBRE-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-NUCLEO-SEXO-MUJER-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-SEXO-MUJER-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-SEXO-MUJER-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-SEXO-MUJER-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-NUCLEO-SEXO-MUJER-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-NUCLEO-SEXO-MUJER-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-12-17-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-12-17-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-12-17-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-12-17-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-12-17-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-12-17-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-18-29-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-18-29-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-18-29-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-18-29-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-30-39-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-30-39-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-30-39-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-30-39-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-30-39-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-30-39-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-40-59-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-40-59-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-40-59-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-40-59-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-40-59-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-40-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-60-MAS-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-60-MAS-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-60-MAS-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-NUCLEO-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-SECUNDARIA-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-SUPERIOR-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-NUCLEO-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-NUCLEO-LOCALIDAD-URBANO-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-LOCALIDAD-URBANO-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-LOCALIDAD-URBANO-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-LOCALIDAD-URBANO-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-NUCLEO-LOCALIDAD-URBANO-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-NUCLEO-LOCALIDAD-URBANO-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-NUCLEO-LOCALIDAD-RURAL-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-LOCALIDAD-RURAL-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-LOCALIDAD-RURAL-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-NUCLEO-LOCALIDAD-RURAL-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-NUCLEO-LOCALIDAD-RURAL-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-NUCLEO-LOCALIDAD-RURAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-MIN-SI-SIN-TIEMPO, tipo: entero, unidad: "ítems Sí sin tiempo declarado"}
+  - {id: RESULT-ENUT2024-MIN-MEDIA-HORAS-CRUDA, tipo: flotante, unidad: "horas/semana, media sin ponderar (diagnóstico)"}
+  - {id: RESULT-ENUT2024-MIN-NACIONAL-NAC-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-NACIONAL-NAC-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-NACIONAL-NAC-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-NACIONAL-NAC-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-MIN-NACIONAL-NAC-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-MIN-NACIONAL-NAC-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-MIN-SEXO-HOMBRE-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-SEXO-HOMBRE-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-SEXO-HOMBRE-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-SEXO-HOMBRE-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-MIN-SEXO-HOMBRE-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-MIN-SEXO-HOMBRE-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-MIN-SEXO-MUJER-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-SEXO-MUJER-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-SEXO-MUJER-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-SEXO-MUJER-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-MIN-SEXO-MUJER-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-MIN-SEXO-MUJER-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-MIN-EDAD-12-17-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-EDAD-12-17-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-EDAD-12-17-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-EDAD-12-17-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-MIN-EDAD-12-17-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-MIN-EDAD-12-17-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-MIN-EDAD-18-29-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-EDAD-18-29-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-EDAD-18-29-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-MIN-EDAD-18-29-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-MIN-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-MIN-EDAD-30-39-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-EDAD-30-39-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-EDAD-30-39-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-EDAD-30-39-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-MIN-EDAD-30-39-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-MIN-EDAD-30-39-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-MIN-EDAD-40-59-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-EDAD-40-59-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-EDAD-40-59-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-EDAD-40-59-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-MIN-EDAD-40-59-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-MIN-EDAD-40-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-MIN-EDAD-60-MAS-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-EDAD-60-MAS-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-EDAD-60-MAS-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-MIN-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-MIN-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-SECUNDARIA-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-SUPERIOR-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-MIN-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-MIN-LOCALIDAD-URBANO-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-LOCALIDAD-URBANO-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-LOCALIDAD-URBANO-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-LOCALIDAD-URBANO-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-MIN-LOCALIDAD-URBANO-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-MIN-LOCALIDAD-URBANO-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-MIN-LOCALIDAD-RURAL-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-LOCALIDAD-RURAL-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-LOCALIDAD-RURAL-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-MIN-LOCALIDAD-RURAL-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-MIN-LOCALIDAD-RURAL-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-MIN-LOCALIDAD-RURAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-CONCP-NULOS, tipo: entero, unidad: "personas con algún *_CON_CP nulo"}
+  - {id: RESULT-ENUT2024-VALIDACION-CONCP-6.11-MAX-ABS, tipo: flotante, unidad: "horas, |suma crudos − tvar_crea| máx"}
+  - {id: RESULT-ENUT2024-VALIDACION-CONCP-6.11-N-DISCORDANTES, tipo: entero, unidad: "personas con |dif| > 1e-6"}
+  - {id: RESULT-ENUT2024-VALIDACION-CONCP-6.12-MAX-ABS, tipo: flotante, unidad: "horas, |suma crudos − tvar_crea| máx"}
+  - {id: RESULT-ENUT2024-VALIDACION-CONCP-6.12-N-DISCORDANTES, tipo: entero, unidad: "personas con |dif| > 1e-6"}
+  - {id: RESULT-ENUT2024-VALIDACION-CONCP-6.13-MAX-ABS, tipo: flotante, unidad: "horas, |suma crudos − tvar_crea| máx"}
+  - {id: RESULT-ENUT2024-VALIDACION-CONCP-6.13-N-DISCORDANTES, tipo: entero, unidad: "personas con |dif| > 1e-6"}
+  - {id: RESULT-ENUT2024-VALIDACION-CONCP-6.15-MAX-ABS, tipo: flotante, unidad: "horas, |suma crudos − tvar_crea| máx"}
+  - {id: RESULT-ENUT2024-VALIDACION-CONCP-6.15-N-DISCORDANTES, tipo: entero, unidad: "personas con |dif| > 1e-6"}
+  - {id: RESULT-ENUT2024-VALIDACION-CONCP-MAX-ABS, tipo: flotante, unidad: "horas, peor bloque"}
+  - {id: RESULT-ENUT2024-CONCP-SI-SIN-TIEMPO, tipo: entero, unidad: "ítems Sí sin tiempo declarado"}
+  - {id: RESULT-ENUT2024-CONCP-MEDIA-HORAS-CRUDA, tipo: flotante, unidad: "horas/semana, media sin ponderar (diagnóstico)"}
+  - {id: RESULT-ENUT2024-CONCP-NACIONAL-NAC-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-NACIONAL-NAC-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-NACIONAL-NAC-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-NACIONAL-NAC-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-CONCP-NACIONAL-NAC-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-CONCP-NACIONAL-NAC-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-CONCP-SEXO-HOMBRE-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-SEXO-HOMBRE-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-SEXO-HOMBRE-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-SEXO-HOMBRE-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-CONCP-SEXO-HOMBRE-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-CONCP-SEXO-HOMBRE-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-CONCP-SEXO-MUJER-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-SEXO-MUJER-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-SEXO-MUJER-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-SEXO-MUJER-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-CONCP-SEXO-MUJER-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-CONCP-SEXO-MUJER-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-12-17-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-12-17-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-12-17-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-12-17-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-12-17-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-12-17-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-18-29-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-18-29-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-18-29-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-18-29-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-30-39-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-30-39-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-30-39-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-30-39-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-30-39-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-30-39-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-40-59-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-40-59-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-40-59-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-40-59-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-40-59-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-40-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-60-MAS-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-60-MAS-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-60-MAS-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-CONCP-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-SECUNDARIA-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-SUPERIOR-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-CONCP-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-CONCP-LOCALIDAD-URBANO-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-LOCALIDAD-URBANO-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-LOCALIDAD-URBANO-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-LOCALIDAD-URBANO-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-CONCP-LOCALIDAD-URBANO-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-CONCP-LOCALIDAD-URBANO-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-CONCP-LOCALIDAD-RURAL-P, tipo: flotante, unidad: "horas/semana, media ponderada FAC_PER", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-LOCALIDAD-RURAL-IC-LO, tipo: flotante, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-LOCALIDAD-RURAL-IC-HI, tipo: flotante, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-CONCP-LOCALIDAD-RURAL-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ENUT2024-CONCP-LOCALIDAD-RURAL-DEN-W, tipo: flotante, unidad: "suma de FAC_PER en la celda"}
+  - {id: RESULT-ENUT2024-CONCP-LOCALIDAD-RURAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-RAZON-NUCLEO-NACIONAL-P, tipo: proporcion, unidad: "razón horas mujeres 40+ / total del hogar [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-RAZON-NUCLEO-NACIONAL-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-RAZON-NUCLEO-NACIONAL-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-RAZON-NUCLEO-NACIONAL-N, tipo: entero, unidad: "hogares del universo con ponderador"}
+  - {id: RESULT-ENUT2024-RAZON-NUCLEO-NACIONAL-DEN-W, tipo: flotante, unidad: "Σ w_h·den_h"}
+  - {id: RESULT-ENUT2024-RAZON-NUCLEO-NACIONAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-RAZON-NUCLEO-HOGARES, tipo: entero, unidad: "hogares agregados"}
+  - {id: RESULT-ENUT2024-RAZON-NUCLEO-HOGARES-SIN-PONDERADOR, tipo: entero, unidad: "hogares sin ponderador de hogar"}
+  - {id: RESULT-ENUT2024-RAZON-NUCLEO-HOGARES-CON-CARGA, tipo: entero, unidad: "hogares con alguna hora"}
+  - {id: RESULT-ENUT2024-RAZON-NUCLEO-HOGARES-DISENO-NO-CONSTANTE, tipo: entero, unidad: "hogares con más de un estrato"}
+  - {id: RESULT-ENUT2024-RAZON-MIN-NACIONAL-P, tipo: proporcion, unidad: "razón horas mujeres 40+ / total del hogar [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-RAZON-MIN-NACIONAL-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-RAZON-MIN-NACIONAL-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-RAZON-MIN-NACIONAL-N, tipo: entero, unidad: "hogares del universo con ponderador"}
+  - {id: RESULT-ENUT2024-RAZON-MIN-NACIONAL-DEN-W, tipo: flotante, unidad: "Σ w_h·den_h"}
+  - {id: RESULT-ENUT2024-RAZON-MIN-NACIONAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-RAZON-MIN-HOGARES, tipo: entero, unidad: "hogares agregados"}
+  - {id: RESULT-ENUT2024-RAZON-MIN-HOGARES-SIN-PONDERADOR, tipo: entero, unidad: "hogares sin ponderador de hogar"}
+  - {id: RESULT-ENUT2024-RAZON-MIN-HOGARES-CON-CARGA, tipo: entero, unidad: "hogares con alguna hora"}
+  - {id: RESULT-ENUT2024-RAZON-MIN-HOGARES-DISENO-NO-CONSTANTE, tipo: entero, unidad: "hogares con más de un estrato"}
+  - {id: RESULT-ENUT2024-RAZON-CONCP-NACIONAL-P, tipo: proporcion, unidad: "razón horas mujeres 40+ / total del hogar [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-RAZON-CONCP-NACIONAL-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-RAZON-CONCP-NACIONAL-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-RAZON-CONCP-NACIONAL-N, tipo: entero, unidad: "hogares del universo con ponderador"}
+  - {id: RESULT-ENUT2024-RAZON-CONCP-NACIONAL-DEN-W, tipo: flotante, unidad: "Σ w_h·den_h"}
+  - {id: RESULT-ENUT2024-RAZON-CONCP-NACIONAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ENUT2024-RAZON-CONCP-HOGARES, tipo: entero, unidad: "hogares agregados"}
+  - {id: RESULT-ENUT2024-RAZON-CONCP-HOGARES-SIN-PONDERADOR, tipo: entero, unidad: "hogares sin ponderador de hogar"}
+  - {id: RESULT-ENUT2024-RAZON-CONCP-HOGARES-CON-CARGA, tipo: entero, unidad: "hogares con alguna hora"}
+  - {id: RESULT-ENUT2024-RAZON-CONCP-HOGARES-DISENO-NO-CONSTANTE, tipo: entero, unidad: "hogares con más de un estrato"}
+  - {id: RESULT-ENUT2024-ORO-A-R-RECALCULADA, tipo: proporcion, unidad: "razón CON_CP como CALC-ENUT-0001"}
+  - {id: RESULT-ENUT2024-ORO-A-R-SELLADA, tipo: proporcion, unidad: "A-R de CALC-ENUT-0001/resultados.json", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-ORO-A-R-DELTA, tipo: flotante, unidad: "|recalculada − sellada|", permite_no_estimable: true}
+  - {id: RESULT-ENUT2024-ORO-HOGARES, tipo: entero, unidad: "hogares con FAC_HOG en el oro"}
+  - {id: RESULT-ENUT2024-AUDITORIA-AST, tipo: texto, unidad: "PASA o lista de violaciones"}
+tolerancia: {tipo: flotante, abs: 1.0e-10}
