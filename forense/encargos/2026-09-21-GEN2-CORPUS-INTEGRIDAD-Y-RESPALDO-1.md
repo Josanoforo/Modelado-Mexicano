@@ -53,3 +53,7 @@ No reorganiza raíces · no corrige el manifiesto · no automatiza el respaldo (
 | P2 · «Traer lo que falta y se puede» | No es NO-CORRIDO: se corrió y el conjunto resultó vacío (0 `NO-ESTÁ` con `url_origen` fuera del repo). 0 descargas, 0 intentos, candado del agente intacto. | Ninguno. | — |
 | Reserva · «al menos un payload por encuesta» en la prueba de restauración | La muestra por subdirectorio (147) no garantiza «por encuesta» (284 + 342 payloads son archivos sueltos y los ids no llevan encuesta), así que se restauró **todo** (1 914/1 914). Cumplido por exceso, declarado. | Ninguno. | — |
 | Reserva · modelo | El encargo sugería Sonnet; corrió Opus 5 (subir está permitido). | Ninguno. | — |
+
+## CONSUMIDO
+
+Ejecutado por `PR #974` (rama `acto/gen2-corpus-integridad-y-respaldo-1`, 21/sep/2026). ADR `ADR-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01`; nota `forense/notas/2026-09-21-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-cierre.md`; productos en `forense/analisis/corpus-integridad-1/`. Firma de mesa recibida en el acto: «Sin destino por ahora» → el juego de la caja no es respaldo (`FP-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01`). Propuesto; mesa fusiona.
