@@ -23,6 +23,7 @@ tests/test_celdas_validadas.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado e
 tests/test_censo_derivado.py	script	NO	(ninguna)	NO	0.4	FALLA-DE-VERDAD	· censo-estimabilidad-coeficientes-v1_2.md en disco no coincide con lo que el derivador produce ahora mismo -- fue editado a mano o quedó desactualizado; regenerar con `tools/censo_estimabilidad.py --write`
 tests/test_check_parallel.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_cierre_acto.py	script	NO	(ninguna)	NO	0.0	FALLA-DE-VERDAD	FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpusixr72s/canon/estado-programa-v1_14.md'
+tests/test_clasifica_pr.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_cola_writer.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_compara_sha.py	script	NO	manifiesto	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_consulta_gen2.py	modulo	NO	(ninguna)	NO	39.5	FALLA-DE-VERDAD	AssertionError: 1 != 0 : FALLA respuestas distintas: /home/user/Modelado-Mexicano/forense/ejemplos/GEN2-AHORRO-ALCANCE-MENOR/respuestas-ahorro-alcance-menor.json
