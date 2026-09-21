@@ -126,7 +126,7 @@ Cuatro filas. `forense/no-corrido.tsv`, ids `NC-260921-GEN2-DIN-LOTE-ENIF2024-A-
 **3 · P2 — `R2` con `λ` estimada.** Queda en `λ = ½` fija para los catorce pares. La rama de `λ` estimada exige admitir 2018 bajo un desenlace `D8` armonizado y recortar 2021 a 18-70: es una bifurcación que cambia el entregable.
 **Por qué:** `DECISIÓN-DE-MESA-PENDIENTE`.
 **Impacto:** `R2` entra al lote con el mismo encogimiento fijo que ya midió el piloto 3 (`S½`). **No bloquea el COMMIT-1:** la firma F2 ya dictamina `λ = ½` para el caso «solo una ola comparable», y el caso se cumple. Si mesa toma la Opción B, la spec se enmienda **con archivo propio antes del COMMIT-1**, nunca in situ.
-**Sucesor:** mesa — opciones A/B/C y recomendación (la A) en `forense/notas/2026-09-21-lote-enif2024-comparabilidad-y-R2.md` §5.
+**Sucesor:** mesa — opciones A/B/C y recomendación (la A) en `forense/notas/2026-09-21-lote-enif2024-comparabilidad-y-R2.md` §5. Ranura de mesa asentada (A.12) como `FP-260921-GEN2-DIN-LOTE-ENIF2024-A-a98a-02`, `ABIERTA`.
 
 **4 · P0 — el sha256 declarado del Anexo A.** El contenido entre las dos líneas marcadoras da `bd1dcfd89a108cdd…` (o `5dff45e67558d1c2…` conservando el salto de línea inicial), no el `f9ea6d4fb8932d66…` que el encargo declara. El texto viajó por el canal de chat, que renormaliza los tabuladores de las tablas del §4 del diseño. **No se «arregló»:** el encargo ordena reportarlo y seguir, y eso se hizo.
 **Por qué:** `PARO-PREMISA`.
