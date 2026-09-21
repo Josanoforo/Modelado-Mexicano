@@ -1,0 +1,343 @@
+diff --git a/data/INFRAESTRUCTURA-v1_0.md b/data/INFRAESTRUCTURA-v1_0.md
+index cda7a177..12eaffa4 100644
+--- a/data/INFRAESTRUCTURA-v1_0.md
++++ b/data/INFRAESTRUCTURA-v1_0.md
+@@ -765,7 +765,7 @@ Las 73 entradas de `data/manifiesto.yaml` declaradas `raiz: data_raw` que `tests
+ | `data/adq-config.yaml` | configuración histórica extraída del shell por ADQ-CRON-V2, ampliada por GEN2-38 | YAML: `ejecutor=codex`, timeout global 3900 s, presupuestos 1800+1800 s, máximos 3 necesidades/5 objetos, búsqueda web habilitada y calendario diario 07:30 México; conserva zonas, sondas independientes, runbook y sistemas PDN | `tools/adquiere_launcher.sh`, `tools/adquiere_cron.sh` y `tools/adq_doctor.py`, siempre mediante `tools/adq_config.py` | Los presupuestos son límites de corrida, no umbrales de suficiencia. Claude no es fallback. `Interactive` exige sesión PC0 iniciada; equipo apagado no ejecuta. |
+ | `data/adq-investigacion.yaml` | contrato operativo GEN2-38, referenciado a `forense/no-corrido.tsv` | añade por ID pregunta-versionada, consumidor/uso, población/unidad/periodo/variables, brecha, frontera, asignación y suficiencia dimensional; para consumidores bloqueados fija además vínculo exacto a RESULT y uso | `tools/adq_investigacion.py`, `tools/adq_suficiencia.py`, runner y `tools/consulta_gen2.py` | Seis necesidades conservan contrato científico completo. Las demás abiertas reciben contrato mínimo derivado desde su NC, sin inferir población/unidad/periodo. Una suficiencia reportada no adopta una emisión. |
+ | `data/adq-demanda-activa-v1_0.json` | `python3 tools/adq_investigacion.py --escribe-proyeccion ...`; regenerado también, mecánicamente y sin LLM, por `tools/adquiere_cron.sh` (`publica_proyeccion_demanda`, paso SELECCION-INVESTIGACION) en cada corrida, publicado en `censo/<fecha>` sólo si el cambio es pertinente (`total_activas`/`total_nc_abiertas` y las demás cifras son las vigentes en el propio JSON al leerlo — no se congelan aquí, por diseño: fue justo su staleness lo que motivó `ENCARGO GEN2-DEMANDA-VIGENTE-ANTES-DESPACHO`, 15/sep/2026) | vista derivada con hashes de NC, usos, RESULT, demanda GEN1, decisiones, necesidad→objeto y utilidad-modelo; explica las demandas activas (NC abiertas + demandas independientes), los elementos activos del alcance aprobado y la selección siguiente con sus causas | selector SONDA, consulta y revisión humana | No es otra autoridad. Separa contrato científico completo, descripción mínima y contrato operativo; cada NC tiene etapa, responsable, siguiente acción y ruteo. GEN1 es antecedente, no adopción. Diferidos/sustituidos/descartados y barreras humanas no se reactivan. Archivo obtenido no equivale a cobertura, falta de adopción no equivale a falta de datos y cero elegibles no acredita suficiencia. `sha256_fuente` debe coincidir con el `forense/no-corrido.tsv` vigente; si no coincide, la fotografía está atrasada, no es NC-0221..0224 desaparecidas. |
+-| `data/curacion-registro/investigacion-estado/NC-0122.json` · `data/curacion-registro/investigacion-estado/NC-0126.json` · `data/curacion-registro/investigacion-estado/DEM-AHORRO-STOCK-DURACION-01.json` | `tools/adq_investigacion.py --actualiza-desde-resultados`, publicados por corridas GEN2-38 | progreso por necesidad y versión: fecha, estado, cursor, frontera, evidencia y suficiencia por dimensión | selección recurrente y `tools/adq_suficiencia.py --prepara-uso` | Son estados concretos, no una lista cerrada. Un estado cuya necesidad o versión no coincide se descarta. `APTA_USO_DECLARADO` sólo habilita con `decision_emision` exacta y evidenciada para consumidor, RESULT, versión y uso: adopción de sucesor calculado o autorización explícita del resultado existente. |
++| `data/curacion-registro/investigacion-estado/NC-0122.json` · `data/curacion-registro/investigacion-estado/NC-0126.json` · `data/curacion-registro/investigacion-estado/DEM-AHORRO-STOCK-DURACION-01.json` · `data/curacion-registro/investigacion-estado/NC-0202.json` · `data/curacion-registro/investigacion-estado/NC-0162.json` | `tools/adq_investigacion.py --actualiza-desde-resultados`, publicados por corridas GEN2-38 | progreso por necesidad y versión: fecha, estado, cursor, frontera, evidencia y suficiencia por dimensión | selección recurrente y `tools/adq_suficiencia.py --prepara-uso` | Son estados concretos, no una lista cerrada. Un estado cuya necesidad o versión no coincide se descarta. `APTA_USO_DECLARADO` sólo habilita con `decision_emision` exacta y evidenciada para consumidor, RESULT, versión y uso: adopción de sucesor calculado o autorización explícita del resultado existente. |
+ 
+ ## `forense/tablero/` — el tablero del programa, cierra el hueco del índice (`ACTO GEN2-TRAMITE-TABLERO-1`, 8/sep/2026)
+ 
+diff --git a/data/cola-adquisicion-v1_0.tsv b/data/cola-adquisicion-v1_0.tsv
+index 1a78e7d1..cbc7c669 100644
+--- a/data/cola-adquisicion-v1_0.tsv
++++ b/data/cola-adquisicion-v1_0.tsv
+@@ -151,3 +151,4 @@ ENSAFI_TANDAS_REPUTACION_INCUMPLIMIENTO	NO-ENCONTRADO	39	https://www.inegi.org.m
+ BANXICO_SATISFACCION_USUARIOS_2019_2024	OBTENIDO	3	https://www.banxico.org.mx/publicaciones-y-prensa/indicadores-de-satisfaccion-de-los-usuarios-de-ser/servicios-financieros-satis.html	gen2_banxico_satisfaccion_usuarios_2019_2024_microdatos;gen2_banxico_satisfaccion_usuarios_2019_2024_manual;gen2_banxico_satisfaccion_usuarios_2024_informe	forense/encargos/cola/2026-09-12-GEN2-POST-726/36-GEN2-N34-DATOS-PRODUCTO-Y-DANO.md	ACTO GEN2-N34-DATOS-PRODUCTO-Y-DANO (11/sep/2026): XLSX publico 2019-2024, manual e informe obtenidos y verificados dos veces. Microdato persona-ola enlaza cinco categorias de credito, costo subjetivo, pago y problemas en Mexico. EXISTE-SATISFACE para descripcion/asociacion; no lender, CAT ni causalidad. NC-0164 permanece abierta.
+ FEDERAL_RESERVE_SHED_2025_BNPL	OBTENIDO	3	https://www.federalreserve.gov/consumerscommunities/shed_data.htm	gen2_federal_reserve_shed_2025_public_csv;gen2_federal_reserve_shed_2025_codebook	forense/encargos/cola/2026-09-12-GEN2-POST-726/36-GEN2-N34-DATOS-PRODUCTO-Y-DANO.md	ACTO GEN2-N34-DATOS-PRODUCTO-Y-DANO (11/sep/2026): CSV y codebook publicos obtenidos y verificados dos veces. Co-observa uso BNPL, atraso, cargo extra, sobregiro/NSF y asequibilidad en 12,934 personas. Mecanismo extranjero descriptivo/asociativo; no transportar a Mexico ni tratar como causal.
+ CFPB_BNPL_UNSECURED_DEBT_2025	OBTENIDO-PARCIAL	3	https://www.consumerfinance.gov/data-research/research-reports/consumer-use-of-buy-now-pay-later-and-other-unsecured-debt/	gen2_cfpb_bnpl_unsecured_debt_2025_report	forense/encargos/cola/2026-09-12-GEN2-POST-726/36-GEN2-N34-DATOS-PRODUCTO-Y-DANO.md	ACTO GEN2-N34-DATOS-PRODUCTO-Y-DANO (11/sep/2026): PDF oficial obtenido y verificado dos veces; Table 3 reproducida para 892,668 originaciones pay-in-four y default a 120 dias por FICO. OBTENIDO-PARCIAL porque el microdato administrativo no es publico; Estados Unidos, agregado y no causal.
++ENPOL_2016_MICRODATOS_CSV	OBTENIDO-PARCIAL	60	https://www.inegi.org.mx/contenidos/programas/enpol/2016/datosabiertos/enpol_2016_csv.zip	enpol2016_bd_csv_zip	GEN2-38 NC-0162, investigación 2026-09-16, R11-TRA-ENPOL-MORDIDA de F5-panel-candidatos-v1_2.tsv	RESIDUAL-ADQ-V1={"padre":"NC-0162","consumidor":"GEN2-EVALUACION-SIN-FUGAS / R11-TRA-ENPOL-MORDIDA","objeto":"microdatos públicos ENPOL 2016 CSV ZIP","cobertura":"añade la ola 2016 a la familia retenida ENPOL; no acredita por sí sola reactivo, comparabilidad 2016-2021 ni aptitud confirmatoria","residual":"FD 2016 y verificación de reactivo/codificación/ponderador; conjunto reservado suficiente sigue faltando","via":"https://www.inegi.org.mx/contenidos/programas/enpol/2016/datosabiertos/enpol_2016_csv.zip","autoridad":"AUTORIZADA-POR-ALCANCE:Jonas/2026-09-12/GEN2-38/ENPOL_2016_MICRODATOS_CSV","siguiente_accion":"descargar doble, verificar ZIP, registrar manifiesto; después localizar FD 2016 sin adoptar científicamente"} || descubrimiento de vía 2026-09-16; buscador web real site:inegi.org.mx/programas/enpol/2016 microdatos descriptor archivos ENPOL 2016; invocar por ID ENPOL_2016_MICRODATOS_CSV || intento efectivo 2026-09-16: dos HTTP 200 de 16801537 bytes, sha256 idéntico a405ed7777b8f51d338347e6cef94c5daa05f00625b6cd1709ecd49d6ab06997; python3 -m zipfile -t OK; uso permitido: estructura/ola 2016, no evaluación confirmatoria; brecha: FD, reactivo, comparabilidad y reserva suficiente
+diff --git a/data/curacion-registro/cola-adquisicion-registro.tsv b/data/curacion-registro/cola-adquisicion-registro.tsv
+index 5f2cc7a2..bbd246fc 100644
+--- a/data/curacion-registro/cola-adquisicion-registro.tsv
++++ b/data/curacion-registro/cola-adquisicion-registro.tsv
+@@ -150,3 +150,4 @@ residual:ENSAFI_TANDAS_REPUTACION_INCUMPLIMIENTO	ENSAFI_TANDAS_REPUTACION_INCUMP
+ forense/notas/2026-09-11-GEN2-N34-DATOS-PRODUCTO-Y-DANO-cierre.md#BANXICO	BANXICO_SATISFACCION_USUARIOS_2019_2024	BANXICO_SATISFACCION_USUARIOS_2019_2024	SIN_ALIAS	OBTENIDO	3	https://www.banxico.org.mx/publicaciones-y-prensa/indicadores-de-satisfaccion-de-los-usuarios-de-ser/servicios-financieros-satis.html	gen2_banxico_satisfaccion_usuarios_2019_2024_microdatos;gen2_banxico_satisfaccion_usuarios_2019_2024_manual;gen2_banxico_satisfaccion_usuarios_2024_informe	forense/encargos/cola/2026-09-12-GEN2-POST-726/36-GEN2-N34-DATOS-PRODUCTO-Y-DANO.md	ACTO GEN2-N34-DATOS-PRODUCTO-Y-DANO (11/sep/2026): XLSX publico 2019-2024, manual e informe obtenidos y verificados dos veces. Microdato persona-ola enlaza cinco categorias de credito, costo subjetivo, pago y problemas en Mexico. EXISTE-SATISFACE para descripcion/asociacion; no lender, CAT ni causalidad. NC-0164 permanece abierta.
+ forense/notas/2026-09-11-GEN2-N34-DATOS-PRODUCTO-Y-DANO-cierre.md#SHED	FEDERAL_RESERVE_SHED_2025_BNPL	FEDERAL_RESERVE_SHED_2025_BNPL	SIN_ALIAS	OBTENIDO	3	https://www.federalreserve.gov/consumerscommunities/shed_data.htm	gen2_federal_reserve_shed_2025_public_csv;gen2_federal_reserve_shed_2025_codebook	forense/encargos/cola/2026-09-12-GEN2-POST-726/36-GEN2-N34-DATOS-PRODUCTO-Y-DANO.md	ACTO GEN2-N34-DATOS-PRODUCTO-Y-DANO (11/sep/2026): CSV y codebook publicos obtenidos y verificados dos veces. Co-observa uso BNPL, atraso, cargo extra, sobregiro/NSF y asequibilidad en 12,934 personas. Mecanismo extranjero descriptivo/asociativo; no transportar a Mexico ni tratar como causal.
+ forense/notas/2026-09-11-GEN2-N34-DATOS-PRODUCTO-Y-DANO-cierre.md#CFPB	CFPB_BNPL_UNSECURED_DEBT_2025	CFPB_BNPL_UNSECURED_DEBT_2025	SIN_ALIAS	OBTENIDO-PARCIAL	3	https://www.consumerfinance.gov/data-research/research-reports/consumer-use-of-buy-now-pay-later-and-other-unsecured-debt/	gen2_cfpb_bnpl_unsecured_debt_2025_report	forense/encargos/cola/2026-09-12-GEN2-POST-726/36-GEN2-N34-DATOS-PRODUCTO-Y-DANO.md	ACTO GEN2-N34-DATOS-PRODUCTO-Y-DANO (11/sep/2026): PDF oficial obtenido y verificado dos veces; Table 3 reproducida para 892,668 originaciones pay-in-four y default a 120 dias por FICO. OBTENIDO-PARCIAL porque el microdato administrativo no es publico; Estados Unidos, agregado y no causal.
++residual:ENPOL_2016_MICRODATOS_CSV	ENPOL_2016_MICRODATOS_CSV	ENPOL_2016_MICRODATOS_CSV	SIN_ALIAS	OBTENIDO-PARCIAL	60	https://www.inegi.org.mx/contenidos/programas/enpol/2016/datosabiertos/enpol_2016_csv.zip	enpol2016_bd_csv_zip	GEN2-38 NC-0162, investigación 2026-09-16, R11-TRA-ENPOL-MORDIDA de F5-panel-candidatos-v1_2.tsv	RESIDUAL-ADQ-V1={"padre":"NC-0162","consumidor":"GEN2-EVALUACION-SIN-FUGAS / R11-TRA-ENPOL-MORDIDA","objeto":"microdatos públicos ENPOL 2016 CSV ZIP","cobertura":"añade la ola 2016 a la familia retenida ENPOL; no acredita por sí sola reactivo, comparabilidad 2016-2021 ni aptitud confirmatoria","residual":"FD 2016 y verificación de reactivo/codificación/ponderador; conjunto reservado suficiente sigue faltando","via":"https://www.inegi.org.mx/contenidos/programas/enpol/2016/datosabiertos/enpol_2016_csv.zip","autoridad":"AUTORIZADA-POR-ALCANCE:Jonas/2026-09-12/GEN2-38/ENPOL_2016_MICRODATOS_CSV","siguiente_accion":"descargar doble, verificar ZIP, registrar manifiesto; después localizar FD 2016 sin adoptar científicamente"} || descubrimiento de vía 2026-09-16; buscador web real site:inegi.org.mx/programas/enpol/2016 microdatos descriptor archivos ENPOL 2016; invocar por ID ENPOL_2016_MICRODATOS_CSV || intento efectivo 2026-09-16: dos HTTP 200 de 16801537 bytes, sha256 idéntico a405ed7777b8f51d338347e6cef94c5daa05f00625b6cd1709ecd49d6ab06997; python3 -m zipfile -t OK; uso permitido: estructura/ola 2016, no evaluación confirmatoria; brecha: FD, reactivo, comparabilidad y reserva suficiente
+diff --git a/data/curacion-registro/investigacion-estado/DEM-AHORRO-STOCK-DURACION-01.json b/data/curacion-registro/investigacion-estado/DEM-AHORRO-STOCK-DURACION-01.json
+index d38ffe27..1bf4e2b5 100644
+--- a/data/curacion-registro/investigacion-estado/DEM-AHORRO-STOCK-DURACION-01.json
++++ b/data/curacion-registro/investigacion-estado/DEM-AHORRO-STOCK-DURACION-01.json
+@@ -5,16 +5,16 @@
+     "RELABEL_USO_ACOTADO_AUTORIZADO_POR_772",
+     "APROBAR_PROXY_NUEVO_CON_ALCANCE_EXPLICITO"
+   ],
+-  "ciclos_sin_avance": 3,
++  "ciclos_sin_avance": 5,
+   "continuacion_pendiente": true,
+-  "cursor_continuacion": "Examinar archivos web públicos de CNBV/CONDUSEF y un repositorio académico mexicano no recorrido, sin repetir el buscador exacto del Banco Mundial ni ENIF, EACF, ENSAFI, Findex, ENFIH o IIEG. Alternativa para mesa tras dos ciclos: relabel acotado de #772, sin decidirlo.",
++  "cursor_continuacion": "Examinar una encuesta estatal con catálogo variable por variable; no repetir ENIF, EACF, ENSAFI, Findex, ENFIH, IIEG ni Banco Mundial. Alternativa para mesa: relabel acotado autorizado por #772, sin decidirlo aquí.",
+   "estado": "continua",
+   "evidencias": [
+-    "forense/notas/2026-09-15-GEN2-38-DEM-AHORRO-STOCK-DURACION-01.md"
++    "forense/notas/2026-09-16-GEN2-38-investigacion-adq.md"
+   ],
+-  "frontera_no_examinada": "Archivos web públicos de CNBV/CONDUSEF o repositorios institucionales que pudieran conservar el cuestionario no indexado; encuestas estatales distintas de IIEG; módulos académicos mexicanos con catálogo de variables; fuera login, compra y contacto.",
++  "frontera_no_examinada": "Repositorios académicos estatales distintos de UNAM/IIEG y archivos no indexados de cuestionarios CNBV/CONDUSEF.",
+   "necesidad_id": "DEM-AHORRO-STOCK-DURACION-01",
+-  "proxima_revision": "2026-09-16",
++  "proxima_revision": "2026-09-17",
+   "reprogramaciones": [
+     {
+       "fecha_decision": "2026-09-15",
+@@ -34,6 +34,6 @@
+     "unidad": "ACREDITADA",
+     "uso_habilitado": "INCOMPATIBLE"
+   },
+-  "ultima_exploracion": "2026-09-15",
++  "ultima_exploracion": "2026-09-16",
+   "version_pregunta": "2026-09-15-stock-ausencia-y-duracion-separados-v1"
+ }
+diff --git a/data/curacion-registro/investigacion-estado/NC-0162.json b/data/curacion-registro/investigacion-estado/NC-0162.json
+new file mode 100644
+index 00000000..f3a61e5c
+--- /dev/null
++++ b/data/curacion-registro/investigacion-estado/NC-0162.json
+@@ -0,0 +1,30 @@
++{
++  "alternativa_requerida": false,
++  "alternativas": [],
++  "ciclos_sin_avance": 0,
++  "continuacion_pendiente": true,
++  "cursor_continuacion": "Localizar el FD 2016 por API/JSON-LD o RNM, adquirirlo si es público y verificar sólo estructura; no evaluar M hasta disponer del conjunto reservado requerido.",
++  "estado": "continua",
++  "evidencias": [
++    "forense/notas/2026-09-16-GEN2-38-investigacion-adq.md",
++    "data/manifiesto.yaml",
++    "data/curacion-registro/cola-adquisicion-registro.tsv"
++  ],
++  "frontera_no_examinada": "FD oficial ENPOL 2016 y familias retenidas R03/R06/R08 sin material suficiente.",
++  "necesidad_id": "NC-0162",
++  "proxima_revision": "2026-09-17",
++  "suficiencia": {
++    "conceptual": "PARCIAL",
++    "diseno": "PARCIAL",
++    "identidad": "ACREDITADA",
++    "identificacion": "NO_APLICA",
++    "poblacional": "ACREDITADA",
++    "pregunta_original": "ABIERTA",
++    "seleccion_no_respuesta": "PARCIAL",
++    "temporalidad": "PARCIAL",
++    "unidad": "ACREDITADA",
++    "uso_habilitado": "APTA_ALCANCE_MENOR"
++  },
++  "ultima_exploracion": "2026-09-16",
++  "version_pregunta": "AUTO-NC-v1-32c70b700f7f"
++}
+diff --git a/data/curacion-registro/investigacion-estado/NC-0202.json b/data/curacion-registro/investigacion-estado/NC-0202.json
+new file mode 100644
+index 00000000..d9675009
+--- /dev/null
++++ b/data/curacion-registro/investigacion-estado/NC-0202.json
+@@ -0,0 +1,29 @@
++{
++  "alternativa_requerida": false,
++  "alternativas": [],
++  "ciclos_sin_avance": 0,
++  "continuacion_pendiente": true,
++  "cursor_continuacion": "Inspeccionar metadatos/columnas de pesos sin repetir guías ni automatizar contacto; si sólo hay factores, mantener solicitud humana NC-0156.",
++  "estado": "continua",
++  "evidencias": [
++    "forense/notas/2026-09-16-GEN2-38-investigacion-adq.md",
++    "data/manifiesto.yaml"
++  ],
++  "frontera_no_examinada": "Tablas públicas de pesos ENNViH-2/3 y documentación del depósito ICPSR 118971.",
++  "necesidad_id": "NC-0202",
++  "proxima_revision": "2026-09-17",
++  "suficiencia": {
++    "conceptual": "ACREDITADA",
++    "diseno": "PARCIAL",
++    "identidad": "ACREDITADA",
++    "identificacion": "NO_APLICA",
++    "poblacional": "ACREDITADA",
++    "pregunta_original": "ABIERTA",
++    "seleccion_no_respuesta": "PARCIAL",
++    "temporalidad": "ACREDITADA",
++    "unidad": "ACREDITADA",
++    "uso_habilitado": "INCOMPATIBLE"
++  },
++  "ultima_exploracion": "2026-09-16",
++  "version_pregunta": "2026-09-15-ennvih-diseno-publico-v1"
++}
+diff --git a/data/manifiesto.yaml b/data/manifiesto.yaml
+index c27913c8..b92a9884 100644
+--- a/data/manifiesto.yaml
++++ b/data/manifiesto.yaml
+@@ -93,26 +93,21 @@
+     mismo día. Corrige revision-publicacion-2026-07-30.md:88/403/444, que marcaba los términos
+     de ENNViH como "reporta el valor" (sin verificar en esa sesión). No cambia el estado del
+     payload: ningún archivo de ENNViH se ha descargado ni se registra aquí -- CAL-G3 sigue
+-    sin ejecutarse.
+-    CORRECCIÓN DE LETRA FECHADA (15/sep/2026, ACTO GEN2-ADOPCION-VENTANILLA-2, P4).
+-    La frase anterior queda como registro y NO se reescribe: era cierta el 30/jul/2026
+-    y es FALSA EN LA LETRA desde PR #703 (commit 2bd228c). Este mismo archivo registra
+-    hoy 28 payloads de ENNViH con id, archivo, sha256 y tamano_bytes -- entre ellos los
+-    cinco ehh05*.zip de la ola 2 que el ACTO GEN2-DISENO-FASE1-CIERRE (PR #760) abrió
+-    por cabecera: ennvih2_2005_hogar_dta (ennvih/ehh05dta_all.zip, sha256
+-    fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a),
+-    ennvih2_2005_hogar_cb (ehh05cb_all.zip), ennvih2_2005_hogar_q (ehh05q_all.zip),
+-    ennvih2_2005_ponderador_transversal (ehh05w_all.zip, de donde sale fac_3b) y
+-    ennvih2_2005_ponderador_longitudinal (ehh05lw_all.zip); más las olas 1 y 3 y
+-    ennvih1_muestra_diseno. Corrige la premisa citada en
+-    forense/notas/2026-09-14-GEN2-DISENO-FASE1-CIERRE-cierre.md:23 («manifiesto.yaml
+-    sigue sin id: para ehh05*.zip»): los id SÍ existen. Esta entrada sigue siendo lo que
+-    siempre fue -- una nota de LICENCIA, sin archivo ni sha propios -- y ninguna cifra,
+-    hash ni byte se toca aquí: la corrección es de letra y se verifica dentro de este
+-    mismo archivo. Lo que NO cambia: ENNViH ola 2 sigue EXISTE-NO-SATISFACE por falta de
+-    estrato/UPM públicos (NC-0156), y la copia de esta misma frase falsa que vive en
+-    data/corrida0/demanda-corridas.tsv (fila CORR-0008) NO se toca desde aquí -- queda
+-    en NC-0188.
++    sin ejecutarse. CORRECCIÓN DE LETRA FECHADA (15/sep/2026, ACTO GEN2-ADOPCION-VENTANILLA-2,
++    P4). La frase anterior queda como registro y NO se reescribe: era cierta el 30/jul/2026
++    y es FALSA EN LA LETRA desde PR #703 (commit 2bd228c). Este mismo archivo registra hoy
++    28 payloads de ENNViH con id, archivo, sha256 y tamano_bytes -- entre ellos los cinco
++    ehh05*.zip de la ola 2 que el ACTO GEN2-DISENO-FASE1-CIERRE (PR #760) abrió por cabecera:
++    ennvih2_2005_hogar_dta (ennvih/ehh05dta_all.zip, sha256 fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a),
++    ennvih2_2005_hogar_cb (ehh05cb_all.zip), ennvih2_2005_hogar_q (ehh05q_all.zip), ennvih2_2005_ponderador_transversal
++    (ehh05w_all.zip, de donde sale fac_3b) y ennvih2_2005_ponderador_longitudinal (ehh05lw_all.zip);
++    más las olas 1 y 3 y ennvih1_muestra_diseno. Corrige la premisa citada en forense/notas/2026-09-14-GEN2-DISENO-FASE1-CIERRE-cierre.md:23
++    («manifiesto.yaml sigue sin id: para ehh05*.zip»): los id SÍ existen. Esta entrada sigue
++    siendo lo que siempre fue -- una nota de LICENCIA, sin archivo ni sha propios -- y ninguna
++    cifra, hash ni byte se toca aquí: la corrección es de letra y se verifica dentro de este
++    mismo archivo. Lo que NO cambia: ENNViH ola 2 sigue EXISTE-NO-SATISFACE por falta de estrato/UPM
++    públicos (NC-0156), y la copia de esta misma frase falsa que vive en data/corrida0/demanda-corridas.tsv
++    (fila CORR-0008) NO se toca desde aquí -- queda en NC-0188.
+ 
+ - id: encig2015_csv
+   usado_para: candidata para R3.1 (trámite/mordida, misma familia que R3.2) -- serie histórica
+@@ -30032,3 +30027,18 @@
+   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+   nota: Complementa ennvih3_2009_guia; remite a Berumen (2007), Sample Design, pero no aporta
+     réplicas ni identificación ejecutable de UPM
++
++- id: enpol2016_bd_csv_zip
++  usado_para: 'NC-0162 / R11-TRA-ENPOL-MORDIDA: ola pública 2016; uso de alcance menor, pendiente
++    FD y comparabilidad con 2021'
++  url_origen: https://www.inegi.org.mx/contenidos/programas/enpol/2016/datosabiertos/enpol_2016_csv.zip
++  fecha_descarga: '2026-09-16'
++  descargado_por: Codex, directamente de inegi.org.mx, GEN2-38
++  archivo: enpol2016/enpol_2016_csv.zip
++  sha256: a405ed7777b8f51d338347e6cef94c5daa05f00625b6cd1709ecd49d6ab06997
++  tamano_bytes: 16801537
++  formato: CSV comprimido en ZIP
++  licencia: Términos de uso INEGI
++  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
++  nota: Doble descarga idéntica y ZIP íntegro; no acredita por sí solo reactivo, codificación,
++    ponderador ni aptitud confirmatoria.
+diff --git a/forense/notas/2026-09-16-GEN2-38-investigacion-adq.md b/forense/notas/2026-09-16-GEN2-38-investigacion-adq.md
+new file mode 100644
+index 00000000..42e64cc4
+--- /dev/null
++++ b/forense/notas/2026-09-16-GEN2-38-investigacion-adq.md
+@@ -0,0 +1,97 @@
++# GEN2-38 · recorrido descubrimiento → adquisición → suficiencia
++
++Fecha: 2026-09-16. Entorno: CAJA/WSL2. `data/raw` resolvió a
++`/home/pc0/mm-corpus/raw`; `https://www.inegi.org.mx/` respondió HTTP 200 desde
++`200.23.8.5` antes de caminar filas. La selección canónica de adquisición dio
++cero elegidos. Se ejecutaron, en el orden entregado, las tres investigaciones.
++
++## DEM-AHORRO-STOCK-DURACION-01
++
++Versión: `2026-09-15-stock-ausencia-y-duracion-separados-v1`.
++
++Modos: CONSTRUCTO, HERMANAS, LATERAL. Búsquedas web reales nuevas:
++
++- `site:condusef.gob.mx encuesta ahorro duración ahorros meses cuestionario México`
++- `site:cnbv.gob.mx cuestionario ahorro cuánto tiempo cubrir gastos ahorros encuesta`
++- `site:repositorio.unam.mx encuesta ahorro duración stock ahorros cuestionario México`
++
++Los resultados volvieron a ENSAFI 2023 y materiales divulgativos de CONDUSEF,
++familia declarada como ya examinada. El resultado pertinente separa tenencia de
++ahorro y monto expresado en quincenas/meses de ingreso entre quienes ahorran,
++pero no añade un instrumento distinto ni justifica repetir la descarga. Un test
++autoadministrado de CONDUSEF pregunta por tiempo para sostener gastos si se pierde
++el empleo y, separadamente, si se ahorra; no es encuesta probabilística ni mide
++duración del mismo stock. No se creó candidata ni se tomó una decisión científica.
++
++Estado: `continua`. Frontera: repositorios académicos estatales distintos de
++UNAM/IIEG y archivos no indexados de cuestionarios CNBV/CONDUSEF. Cursor:
++examinar una encuesta estatal con catálogo variable por variable; no repetir
++ENIF, EACF, ENSAFI, Findex, ENFIH, IIEG ni el catálogo Banco Mundial. Tras más
++de dos ciclos sin avance, la alternativa concreta permanece: presentar a mesa
++el relabel acotado autorizado por #772, sin ejecutarlo aquí.
++
++Suficiencia: identidad PARCIAL; concepto NO_ACREDITADA; población ACREDITADA;
++selección/no respuesta ACREDITADA; unidad ACREDITADA; temporalidad PARCIAL;
++diseño ACREDITADA; identificación NO_APLICA; uso INCOMPATIBLE; pregunta ABIERTA.
++
++## NC-0202
++
++Versión: `2026-09-15-ennvih-diseno-publico-v1`.
++
++Modos: LATERAL, HERMANAS. Búsqueda web real:
++`ENNViH MxFLS Berumen 2007 sample design PSU strata public documentation`.
++El sitio oficial expone páginas de pesos de ENNViH-2/3 y el PDF
++`calculation_weights_mxfls.pdf`. A.8 encontró que el mismo objeto ya estaba en
++el manifiesto como `ennvih3_2009_factores_exp`; `tests/manifiesto.py --verifica`
++confirmó 337947 bytes. La lectura acredita selección por región/estrato/UPM/USM,
++ajuste por no respuesta, proyección, calibración y ponderadores transversales y
++longitudinales. No entrega identificadores públicos ejecutables de UPM/estrato
++ni réplicas. No se repitió la descarga.
++
++Estado: `evidencia_existente`; la pregunta original sigue ABIERTA. Frontera:
++tablas públicas de pesos ENNViH-2/3 y depósito ICPSR 118971, para comprobar si
++algún archivo separado contiene variables de varianza. Cursor: inspeccionar
++metadatos/columnas de pesos sin reabrir guías ni contactar; si sólo hay factores,
++mantener la solicitud humana NC-0156.
++
++Suficiencia: identidad ACREDITADA; concepto ACREDITADA; población ACREDITADA;
++selección/no respuesta PARCIAL; unidad ACREDITADA; temporalidad ACREDITADA;
++diseño PARCIAL; identificación NO_APLICA; uso INCOMPATIBLE; pregunta ABIERTA.
++
++## NC-0162
++
++Versión: `AUTO-NC-v1-32c70b700f7f`.
++
++Modos: CONSTRUCTO, HERMANAS, LATERAL. Búsquedas web reales:
++
++- `site:inegi.org.mx/programas/enpol/2016 microdatos descriptor archivos ENPOL 2016`
++- `site:inegi.org.mx/programas/enaproce/2018 microdatos descriptor archivos`
++- `site:inegi.org.mx/programas/encrige/2016 microdatos descriptor archivos`
++- `site:inegi.org.mx/programas/enjuve microdatos 2010 cuestionario`
++
++La búsqueda localizó el portal oficial y JSON-LD de ENPOL 2016 con descarga CSV
++pública. Se creó el residual `ENPOL_2016_MICRODATOS_CSV` con autoridad
++`AUTORIZADA-POR-ALCANCE:Jonas/2026-09-12/GEN2-38/ENPOL_2016_MICRODATOS_CSV`.
++Dos descargas HTTP 200 produjeron 16801537 bytes idénticos, SHA-256
++`a405ed7777b8f51d338347e6cef94c5daa05f00625b6cd1709ecd49d6ab06997`; `python3
++-m zipfile -t` resultó OK. El payload quedó en
++`data/raw/enpol2016/enpol_2016_csv.zip` y el manifiesto lo registró como
++`enpol2016_bd_csv_zip`. La fila residual quedó `OBTENIDO-PARCIAL`.
++
++Uso permitido: documentar y preparar la ola 2016 de la familia retenida
++`R11-TRA-ENPOL-MORDIDA`. Brecha: falta FD 2016, confirmar el reactivo, universo,
++codificación, ponderador y comparabilidad con 2021; una familia adicional no
++completa las 6 piloto + 12 confirmatorias ni autoriza evaluar un M renovado.
++No se abrió el microdato y no se adoptó científicamente la familia. La relación
++queda pendiente: `NC-0162` no existe como `necesidad_id` en
++`necesidad-objeto-modelo.tsv`, y forzar un alta inventaría la decisión de qué
++objeto del modelo representa.
++
++Estado: `candidata_publica`. Frontera: FD oficial ENPOL 2016 y las familias
++retenidas R03/R06/R08 todavía sin material suficiente. Cursor: localizar el FD
++2016 por API/JSON-LD o RNM, adquirirlo si es público y verificar sólo estructura;
++no evaluar M hasta disponer del conjunto reservado requerido.
++
++Suficiencia: identidad ACREDITADA; concepto PARCIAL; población ACREDITADA;
++selección/no respuesta PARCIAL; unidad ACREDITADA; temporalidad PARCIAL; diseño
++PARCIAL; identificación NO_APLICA; uso APTA_ALCANCE_MENOR; pregunta ABIERTA.
+diff --git a/tests/check.py b/tests/check.py
+index 524e4293..cc1df544 100644
+--- a/tests/check.py
++++ b/tests/check.py
+@@ -4973,12 +4973,15 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
+     dobles. **29 líneas** (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94,
+     97, 114, 117, 119, 121, 123, 124, 125, 136, 139, 140, 144, 145, 146,
+     147, 148, 149).
++    Re-medido el 16/sep/2026 al añadir el residual público
++    `ENPOL_2016_MICRODATOS_CSV` por la misma vía canónica: **30 líneas**; la
++    nueva línea 153 contiene metadata JSON con comillas dobles.
+     Este test es DOBLE:
+ 
+     (1) CONTROL, documenta que el defecto sigue vivo con `csv`: si algún
+         día alguien "arregla" el round-trip corriendo `csv.writer` sobre
+         el archivo completo, este control lo hace visible en vez de
+-        quedar en silencio -- se esperan EXACTAMENTE 29 líneas distintas
++        quedar en silencio -- se esperan EXACTAMENTE 30 líneas distintas
+         hoy; si el número cambia (para arriba o para abajo) sin que
+         nadie lo haya declarado, falla.
+     (2) REGRESIÓN del lector/escritor propio (`tools/curador_registro/
+@@ -5004,12 +5007,12 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
+         escritor.writerow(fila)
+     csv_out_lines = buf.getvalue().split("\r\n")
+     diffs_csv = [i for i, (a, b) in enumerate(zip(orig_lines, csv_out_lines)) if a != b]
+-    if len(diffs_csv) != 29:
+-        fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv daba "
+-                         f"29 líneas distintas (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94, "
++    if len(diffs_csv) != 30:
++        fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv debe dar "
++                         f"30 líneas distintas (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94, "
+                          f"97, 114, 117, 119, 121, 123, 124, 125, 136, 139, 140, 144, 145, 146, "
+-                         f"147, 148, 149) el 11/sep/2026 (ACTO GEN2-CRON-DEMANDA-A-DATO-Y-"
+-                         f"PRODUCCION, tras añadir siete residuales con `tsv_crudo.upsert_fila`); hoy da "
++                         f"147, 148, 149, 153), re-medidas el 16/sep/2026 tras añadir el residual "
++                         f"ENPOL_2016_MICRODATOS_CSV con `tsv_crudo.upsert_fila`; hoy da "
+                          f"{len(diffs_csv)} ({[i + 1 for i in diffs_csv]}) -- el archivo cambió "
+                          f"de forma que el control ya no describe la realidad, actualiza el número "
+                          f"esperado con el hallazgo re-medido, no lo silencies.")

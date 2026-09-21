@@ -1,0 +1,44 @@
+diff --cc data/corrida0/CALC-MOTRAL2015-PRIORIDADES-PRESTACIONES-0001/medidor.py
+index cdac79b3,bb089b49..00000000
+--- a/data/corrida0/CALC-MOTRAL2015-PRIORIDADES-PRESTACIONES-0001/medidor.py
++++ b/data/corrida0/CALC-MOTRAL2015-PRIORIDADES-PRESTACIONES-0001/medidor.py
+@@@ -11,8 -11,6 +11,11 @@@ import jso
+  import math
+  import struct
+  import zipfile
+++<<<<<<< HEAD
+ +from pathlib import Path
+ +import yaml
+++=======
+++>>>>>>> 7a64858 (SPEC MOTRAL2015 prioridades prestaciones congelada)
+  from collections import Counter, defaultdict
+  
+  
+@@@ -293,14 -291,7 +296,18 @@@ def medir(inputs, contrato)
+  # Extensión sucesora: reemplaza la salida del padre; no enlaza ENOE ni empleos.
+  def medir(inputs, contrato):
+      required = {"UPM", "EST_D", "CD_A", "R_DEF", "SEX", "EDA", "C_TRA", "P17", "FAC_MOTRAL"} | set(RANK_FIELDS)
+++<<<<<<< HEAD
+ +    # El CLI vigente pasa la declaración de manifiesto, no una ruta; resolver
+ +    # la raíz local sin incorporar rutas de CAJA al artefacto versionado.
+ +    root = Path(__file__).resolve().parents[3]
+ +    manifest = yaml.safe_load((root / "data/manifiesto.yaml").read_text(encoding="utf-8"))
+ +    entry = next(x for x in manifest if x.get("id") == MOTRAL_ID)
+ +    roots = yaml.safe_load((root / "data/raices.local.yaml").read_text(encoding="utf-8"))
+ +    source = Path(roots[entry["raiz"]]) / entry["archivo"]
+ +    rows, meta = _read_dbf(source, "motral2015_cuestionario.dbf", required)
+++=======
++     rows, meta = _read_dbf(inputs[MOTRAL_ID]["ruta_absoluta"], "motral2015_cuestionario.dbf", required)
+++>>>>>>> 7a64858 (SPEC MOTRAL2015 prioridades prestaciones congelada)
+      rows = [r for r in rows if _eligible(r)]
+      for r in rows:
+          status, first = _ranking_status(r)
+@@@ -334,4 -325,4 +341,8 @@@
+                "controles": {"matriz_condicionada_a_permutacion_1a5": True, "top2_suma_dos": True, "top3_suma_tres": True, "parejas_son_complementarias": True, "ee_conjunta_contrastes_p17": "NO-ESTIMABLE: no implementada en esta corrida"}}
+      return {"RESULT-MOTRAL15-RANKING-JSON": json.dumps(result, ensure_ascii=False, sort_keys=True),
+              "RESULT-MOTRAL15-RANKING-N-ELEGIBLES": len(rows),
+++<<<<<<< HEAD
+ +            "RESULT-MOTRAL15-RANKING-COMPLETOS": q["COMPLETO"]["n_numerador"]}
+++=======
++             "RESULT-MOTRAL15-RANKING-COMPLETOS": q["COMPLETO"]["n_valido"]}
+++>>>>>>> 7a64858 (SPEC MOTRAL2015 prioridades prestaciones congelada)

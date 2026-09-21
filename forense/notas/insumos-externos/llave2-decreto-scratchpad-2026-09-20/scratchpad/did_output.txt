@@ -1,0 +1,66 @@
+2017T1   pre   clasica  leidas= 392047 6-estados= 71321 universo= 30832
+2017T2   pre   clasica  leidas= 398017 6-estados= 75796 universo= 33368
+2017T3   pre   clasica  leidas= 392178 6-estados= 74751 universo= 32363
+2017T4   pre   clasica  leidas= 391620 6-estados= 74712 universo= 32711
+2018T1   pre   clasica  leidas= 390712 6-estados= 74785 universo= 32597
+2018T2   pre   clasica  leidas= 392257 6-estados= 75172 universo= 33510
+2018T3   pre   clasica  leidas= 390837 6-estados= 74786 universo= 32876
+2018T4   pre   clasica  leidas= 390612 6-estados= 74837 universo= 33189
+2019T2   post  clasica  leidas= 407431 6-estados= 88526 universo= 39755
+2019T3   post  clasica  leidas= 405449 6-estados= 88166 universo= 39497
+2019T4   post  clasica  leidas= 402536 6-estados= 87543 universo= 39526
+2020T1   post  clasica  leidas= 417783 6-estados= 87294 universo= 38748
+2020T3   post  enoen    leidas= 296874 6-estados= 57176 universo= 23839
+2020T4   post  enoen    leidas= 356790 6-estados= 75720 universo= 32891
+
+total filas universo (6 estados, ocupados, mun no vacio): 475702
+tratados: 157033  control: 318669
+UPM distintas tratadas (pool pre+post): 3266
+municipios tratados con al menos 1 observacion: 34 de 43 -> [(2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (5, 2), (5, 12), (5, 22), (5, 23), (5, 25), (5, 38), (8, 5), (8, 35), (8, 37), (8, 52), (8, 53), (19, 5), (26, 2), (26, 4), (26, 17), (26, 19), (26, 39), (26, 43), (26, 48), (26, 55), (26, 60), (28, 15), (28, 22), (28, 24), (28, 25), (28, 27), (28, 32), (28, 33), (28, 40)]
+municipios control con al menos 1 observacion: 128 de 235
+tratados SIN ninguna observacion (mun suprimido o muestra 0): [(5, 13), (5, 14), (8, 15), (8, 28), (8, 42), (26, 59), (26, 70), (28, 7), (28, 14)]
+
+=== Pre-tendencia (8 olas pre, media ponderada por fac) ===
+ola       log_wage_T  log_wage_C   brecha   informal_T  informal_C   brecha
+2017T1        3.4668      3.4784  -0.0115       36.63%      40.82%   -4.19pp
+2017T2        3.4746      3.5022  -0.0277       38.03%      40.16%   -2.13pp
+2017T3        3.4688      3.4899  -0.0212       37.73%      40.49%   -2.76pp
+2017T4        3.5081      3.5162  -0.0081       37.94%      40.33%   -2.39pp
+2018T1        3.5262      3.5359  -0.0096       37.86%      39.59%   -1.73pp
+2018T2        3.5608      3.5627  -0.0019       38.15%      39.72%   -1.57pp
+2018T3        3.5708      3.5538   0.0170       37.92%      39.78%   -1.86pp
+2018T4        3.5515      3.5600  -0.0085       37.52%      39.86%   -2.34pp
+cobertura log_wage: N_tratado=108725  N_control=232297
+cobertura informal: N_tratado=157033  N_control=318669
+
+=== DiD primario: cluster por UPM (ent,mun,upm) ===
+log(ing_x_hrs): n=341022, clusters=9002, beta_tratado x post = +0.0043  SE(cluster)=0.0127  IC95%=(-0.0205, +0.0291)
+  coeficientes completos [b0(intercepto) b1(tratado) b2(post) b3(tratado:post)]:
+    b0           +3.52506  SE=0.00695
+    b1_tratado   -0.00899  SE=0.01035
+    b2_post      +0.14229  SE=0.00878
+    b3_did       +0.00430  SE=0.01266
+  umbral=0.05: IC dentro de (+/-umbral) en las dos direcciones
+informal (EMP_PPAL==1): n=475702, clusters=9052, beta_tratado x post = -0.0013  SE(cluster)=0.0095  IC95%=(-0.0200, +0.0174)
+  coeficientes completos [b0(intercepto) b1(tratado) b2(post) b3(tratado:post)]:
+    b0           +0.40090  SE=0.00512
+    b1_tratado   -0.02360  SE=0.00746
+    b2_post      -0.00583  SE=0.00651
+    b3_did       -0.00128  SE=0.00953
+  umbral=0.05: IC dentro de (+/-umbral) en las dos direcciones
+
+=== Sensibilidad: cluster por municipio (ent,mun) ===
+log(ing_x_hrs): n=341022, clusters=162, beta_tratado x post = +0.0043  SE(cluster)=0.0195  IC95%=(-0.0340, +0.0426)
+  coeficientes completos [b0(intercepto) b1(tratado) b2(post) b3(tratado:post)]:
+    b0           +3.52506  SE=0.02142
+    b1_tratado   -0.00899  SE=0.03354
+    b2_post      +0.14229  SE=0.01055
+    b3_did       +0.00430  SE=0.01955
+  umbral=0.05: IC dentro de (+/-umbral) en las dos direcciones
+informal (EMP_PPAL==1): n=475702, clusters=162, beta_tratado x post = -0.0013  SE(cluster)=0.0091  IC95%=(-0.0191, +0.0165)
+  coeficientes completos [b0(intercepto) b1(tratado) b2(post) b3(tratado:post)]:
+    b0           +0.40090  SE=0.01528
+    b1_tratado   -0.02360  SE=0.02456
+    b2_post      -0.00583  SE=0.00584
+    b3_did       -0.00128  SE=0.00908
+  umbral=0.05: IC dentro de (+/-umbral) en las dos direcciones
