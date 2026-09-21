@@ -1,0 +1,288 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ARBITRO-MARGINALES-ENIF2024-0001
+spec_md: ../../../forense/prereg-caja/ARBITRO-MARGINALES-ENIF2024-spec-v1_0.md
+spec_md_sha256: 20bfd28da40d532ec7c3063edb316e12176c333c99eacc5039e6324287fffbc1
+script: data/corrida0/CALC-ARBITRO-MARGINALES-ENIF2024-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: ARBITRO-MARGINALES-POR-EJE
+  cuenta_gen2: SI
+  cuenta_gen2_nota: propuesto por el encargo GEN2-ARBITRO-MARGINALES-1 §2 (firma 3D, mitad b, mide la realidad desde microdato con cadena completa); no adopta
+  exposicion_historica: NO-CIEGO-AL-ARBITRO-GEN1-NI-A-C2IC-ENIF2024; MICRODATO-2024-NO-ABIERTO-AL-CONGELAR
+  acto: GEN2-ARBITRO-MARGINALES-1
+inputs:
+  - {id: enif_2024_enif_2024_bd_csv, origen: manifiesto}
+  - {id: MEDIDOR-PISO-EJES-0003, origen: repo, ruta: data/corrida0/CALC-PISOS-ENIF2021-EJES-0003/medidor.py, sha256: d069f38bd75c47fd5550015b179c7b2e61f1ab20ce6b22c630c66392afea06a3}
+variables:
+  - {archivo: TMODULO.csv, variable: P5_1_1, rol: ahorro-informal}
+  - {archivo: TMODULO.csv, variable: P5_1_2, rol: ahorro-informal}
+  - {archivo: TMODULO.csv, variable: P5_1_3, rol: ahorro-informal}
+  - {archivo: TMODULO.csv, variable: P5_1_4, rol: ahorro-informal}
+  - {archivo: TMODULO.csv, variable: P5_1_5, rol: ahorro-informal}
+  - {archivo: TMODULO.csv, variable: P5_1_6, rol: ahorro-informal}
+  - {archivo: TMODULO.csv, variable: P5_4_1, rol: tenencia-de-cuenta}
+  - {archivo: TMODULO.csv, variable: P5_4_2, rol: tenencia-de-cuenta}
+  - {archivo: TMODULO.csv, variable: P5_4_3, rol: tenencia-de-cuenta}
+  - {archivo: TMODULO.csv, variable: P5_4_4, rol: tenencia-de-cuenta}
+  - {archivo: TMODULO.csv, variable: P5_4_5, rol: tenencia-de-cuenta}
+  - {archivo: TMODULO.csv, variable: P5_4_6, rol: tenencia-de-cuenta}
+  - {archivo: TMODULO.csv, variable: P5_4_7, rol: tenencia-de-cuenta}
+  - {archivo: TMODULO.csv, variable: P5_4_8, rol: tenencia-de-cuenta}
+  - {archivo: TMODULO.csv, variable: P5_4_9, rol: tenencia-de-cuenta}
+  - {archivo: TMODULO.csv, variable: P5_6_1, rol: ahorro-formal}
+  - {archivo: TMODULO.csv, variable: P5_6_2, rol: ahorro-formal}
+  - {archivo: TMODULO.csv, variable: P5_6_3, rol: ahorro-formal}
+  - {archivo: TMODULO.csv, variable: P5_6_4, rol: ahorro-formal}
+  - {archivo: TMODULO.csv, variable: P5_6_5, rol: ahorro-formal}
+  - {archivo: TMODULO.csv, variable: P5_6_6, rol: ahorro-formal}
+  - {archivo: TMODULO.csv, variable: P5_6_7, rol: ahorro-formal}
+  - {archivo: TMODULO.csv, variable: P5_6_8, rol: ahorro-formal}
+  - {archivo: TMODULO.csv, variable: P5_6_9, rol: ahorro-formal}
+  - {archivo: TMODULO.csv, variable: SEXO, rol: eje-sexo}
+  - {archivo: TMODULO.csv, variable: EDAD_V, rol: eje-edad}
+  - {archivo: TMODULO.csv, variable: NIV, rol: eje-escolaridad}
+  - {archivo: TMODULO.csv, variable: TLOC, rol: eje-localidad}
+  - {archivo: TMODULO.csv, variable: P3_13, rol: eje-formalidad}
+  - {archivo: TMODULO.csv, variable: FAC_PER, rol: ponderador}
+  - {archivo: TMODULO.csv, variable: EST_DIS, rol: estrato}
+  - {archivo: TMODULO.csv, variable: UPM_DIS, rol: upm}
+universo: "Persona elegida 18+ de TMODULO con FAC_PER > 0 y diseño válido y desenlace definido; cada eje conserva su denominador válido; formalidad en el universo de quien llega a 3.13 (A-bis 4)."
+filtros: "FAC_PER positivo y EST_DIS/UPM_DIS no vacíos; edad 18--96; códigos inválidos o blanco fuera sólo del eje afectado; sección de crédito no se carga."
+ponderador: FAC_PER
+transformacion: "Dos desenlaces del piso: D9 = informal (P5_1) sí y formal (P5_6 por posición con P5_4) no; informal_cualquiera = informal sí. Ejes: sexo, edad 18-29/30-44/45-59/60-96, NIV 00-02/03/04-07/08-11, TLOC 1-2 vs 3-4, P3_13 1-6 con / 7 sin, cuenta por P5_4; total por desenlace."
+estimando: "Proporciones ponderadas de ENIF 2024 por celda marginal de la rejilla del piso, con IC95: la realidad R contra la que se califica la persistencia t-1 (CALC-PISOS-ENIF2021-EJES-0003 y -FORMALIDAD-0001)."
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+parametros:
+  ola: '2024'
+  payload_id: enif_2024_enif_2024_bd_csv
+  bootstrap_replicas: 10000
+  metodo_ic: "bootstrap UPM estratificado; percentiles 2.5/97.5; réplicas compartidas (importado del medidor sellado del piso)"
+  agrupacion: UNA-SOLA-VARIABLE
+dependencias_materiales: [numpy, pandas]
+resultados:
+  - {id: RESULT-ARBITRO-ENIF2024-D9-TOTAL-TODOS-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-TOTAL-TODOS-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-TOTAL-TODOS-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-TOTAL-TODOS-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-TOTAL-TODOS-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-TOTAL-TODOS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-SEXO-1-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-SEXO-1-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-SEXO-1-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-SEXO-1-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-SEXO-1-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-SEXO-1-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-SEXO-2-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-SEXO-2-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-SEXO-2-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-SEXO-2-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-SEXO-2-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-SEXO-2-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-18-29-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-18-29-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-18-29-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-30-44-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-30-44-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-30-44-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-30-44-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-30-44-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-45-59-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-45-59-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-45-59-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-45-59-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-45-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-60-MAS-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-60-MAS-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-60-MAS-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-CUENTA-SIN-CUENTA-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-CUENTA-SIN-CUENTA-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-CUENTA-SIN-CUENTA-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-CUENTA-SIN-CUENTA-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-CUENTA-SIN-CUENTA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-CUENTA-SIN-CUENTA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-CUENTA-CON-CUENTA-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-CUENTA-CON-CUENTA-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-CUENTA-CON-CUENTA-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-CUENTA-CON-CUENTA-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-CUENTA-CON-CUENTA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-CUENTA-CON-CUENTA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-G-N-UNIVERSO, tipo: entero, unidad: "personas con desenlace definido"}
+  - {id: RESULT-ARBITRO-ENIF2024-D9-G-DESENLACE-INDEFINIDO, tipo: entero, unidad: "personas con desenlace indefinido"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-TOTAL-TODOS-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-TOTAL-TODOS-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-TOTAL-TODOS-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-TOTAL-TODOS-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-TOTAL-TODOS-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-TOTAL-TODOS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-N, tipo: entero, unidad: "n sin ponderar"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-G-N-UNIVERSO, tipo: entero, unidad: "personas con desenlace definido"}
+  - {id: RESULT-ARBITRO-ENIF2024-INFORMAL-CUALQUIERA-G-DESENLACE-INDEFINIDO, tipo: entero, unidad: "personas con desenlace indefinido"}
+  - {id: RESULT-ARBITRO-ENIF2024-G-FILAS-PERSONAS, tipo: entero, unidad: "filas del módulo"}
+  - {id: RESULT-ARBITRO-ENIF2024-G-FILAS-DISENO-VALIDO, tipo: entero, unidad: "filas con ponderador > 0 y diseño"}
+  - {id: RESULT-ARBITRO-ENIF2024-G-REPLICAS, tipo: entero, unidad: "réplicas bootstrap"}
+  - {id: RESULT-ARBITRO-ENIF2024-G-OLA, tipo: texto, unidad: "ola medida"}
+  - {id: RESULT-ARBITRO-ENIF2024-G-EJE-TOTAL-FUERA, tipo: entero, unidad: "personas fuera del eje (código inválido o blanco)"}
+  - {id: RESULT-ARBITRO-ENIF2024-G-EJE-SEXO-FUERA, tipo: entero, unidad: "personas fuera del eje (código inválido o blanco)"}
+  - {id: RESULT-ARBITRO-ENIF2024-G-EJE-EDAD-FUERA, tipo: entero, unidad: "personas fuera del eje (código inválido o blanco)"}
+  - {id: RESULT-ARBITRO-ENIF2024-G-EJE-ESCOLARIDAD-FUERA, tipo: entero, unidad: "personas fuera del eje (código inválido o blanco)"}
+  - {id: RESULT-ARBITRO-ENIF2024-G-EJE-LOCALIDAD-FUERA, tipo: entero, unidad: "personas fuera del eje (código inválido o blanco)"}
+  - {id: RESULT-ARBITRO-ENIF2024-G-EJE-FORMALIDAD-FUERA, tipo: entero, unidad: "personas fuera del eje (código inválido o blanco)"}
+  - {id: RESULT-ARBITRO-ENIF2024-G-EJE-CUENTA-FUERA, tipo: entero, unidad: "personas fuera del eje (código inválido o blanco)"}
+  - {id: RESULT-ARBITRO-ENIF2024-G-FORMALIDAD-NO-SABE, tipo: entero, unidad: "código 9 en el ítem de formalidad"}
+  - {id: RESULT-ARBITRO-ENIF2024-G-FORMALIDAD-BLANCO, tipo: entero, unidad: "blanco por secuencia en el ítem de formalidad"}
+  - {id: RESULT-ARBITRO-ENIF2024-G-ESCOLARIDAD-SUPERIOR-EXTRA-N, tipo: entero, unidad: "personas con código de escolaridad 10/11 (2024) mapeado a superior"}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: mismo payload, transformación y sumas float64; bootstrap determinista por semilla (misma tolerancia que el piso)

@@ -3039,6 +3039,19 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-CUADERNO-DE-MESA-1, 21/sep/2026. El cuaderno de mesa CITA
+    # VERBATIM dos líneas de `milpa/src/motor.py` (`:20` y `:129`) porque
+    # uno de sus renglones es, precisamente, que esas dos líneas citan
+    # `BARRIDO-2` donde hoy correspondería `ADR-531`. El `E0` pelado que el
+    # regex ve sale de esa cita -- «la ley de mesa vigente lo prohíbe en E0
+    # y toda calibración E1+ espera el cierre de BARRIDO-2» -- y es la capa
+    # del esquema theta ya existente, no un rótulo que este acto acuñe.
+    # Recortar la cita para complacer el test destruiría justo la evidencia
+    # que el renglón necesita: mesa tiene que leer qué dicen las líneas para
+    # decidir si vale pagar dos sellos de replay por corregirlas. Misma
+    # excepción de procedencia que los demás de esta lista. El rótulo propio
+    # de este acto SÍ va censado en `canon/registro-rotulos.tsv`.
+    "forense/encargos/CUADERNO-DE-MESA-2026-09-21.md",
     # ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1, 21/sep/2026. `canon/L0/
     # HISTORICO.md` es el contenido histórico congelado de la línea `L0`
     # (P-A) -- prosa verbatim de decenas de actos anteriores, sellada tal
@@ -5218,6 +5231,19 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # El rótulo propio de este acto, `MOTOR-THETA-CONGELADA-1`, no vive en el
     # espacio `M`/`E` de actos (no matchea `M\d{1,2}` ni `E\d{1,2}` pelado).
     "forense/encargos/2026-09-21-MOTOR-THETA-CONGELADA-1.md",
+    # `ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2` (21/sep/2026). De dónde sale
+    # cada mención pelada:
+    #   `E5`, `E9` -- filas de la SALIDA CRUDA del conteo de pares repetidos
+    #            de `canon/registro-rotulos.tsv` que P1.2 congela como
+    #            exención de `T51` (`('E', 'E5') 2`, `('E', 'E9') 2`). Son
+    #            habitantes del espacio `E` YA CENSADOS en ese mismo archivo
+    #            -- de hecho la nota los cita PORQUE están censados dos
+    #            veces. No se acuña nada nuevo, y la salida cruda no se edita
+    #            para complacer al test: es la evidencia del hallazgo.
+    # El rótulo propio de este acto, `GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2`, no
+    # vive en el espacio `M`/`E` de actos (no matchea `M\d{1,2}` ni
+    # `E\d{1,2}` pelado) y queda censado en `canon/registro-rotulos.tsv`.
+    "forense/notas/nota-2026-09-21-gen2-tuberia-cierre-sin-choque-2-cierre.md",
 }
 
 
@@ -8035,6 +8061,172 @@ def t50_union_lineas_repetidas():
                     f"el veredicto no es un negativo (A.13)")
 
 
+# ───────────────────────────────────────────────────────────────
+# T51 · T-ROTULOS-PAR-UNICO — en `canon/registro-rotulos.tsv`, el par
+#   `(espacio, valor)` no se repite. (`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2`,
+#   21/sep/2026, P1.2.)
+#
+#   POR QUÉ EXISTE. `#962` midió que este archivo lo tocan el 47 % de los PR
+#   fusionados en 7 días — el tercero del repo, y el único de esa cabeza que
+#   no estaba en `merge=union`. Se quedó fuera por una razón exacta, escrita
+#   en `.gitattributes`: la mutación real (una rama edita EN SU SITIO la
+#   última fila, otra añade debajo, se fusiona con `union`) SÍ deja el
+#   archivo con dos filas contradictorias del mismo rótulo, y NINGUNA guarda
+#   de la suite lo veía. T47 no sirve tal cual: su llave es un id al
+#   principio de la línea (`NC-`/`FP-`), y aquí la identidad es el PAR de las
+#   dos primeras columnas. Esta es esa misma aserción con la llave correcta,
+#   y es lo que habilita la entrada del archivo a `union`.
+#
+#   Lo que le habría costado a un lector: `tools/ya_medido.py` cruza este
+#   registro como fuente de ALIAS y devuelve la fila que encuentra; con dos
+#   filas del mismo par, el `que_significa` y el `donde_vive` que gana
+#   dependen del orden de lectura — y ese texto es el que decide si una
+#   regla se declara ya medida.
+#
+#   EXENCIÓN CONGELADA, no limpieza. Hoy hay 7 pares repetidos, nacidos de
+#   censos legítimos de actos distintos. El encargo prohíbe borrar ninguno:
+#   se listan como ESTADO y la guarda falla sólo sobre repeticiones NUEVAS.
+#   Un par de la exención que deje de repetirse no rompe nada; uno que crezca
+#   por encima de su conteo congelado, sí.
+#
+#   FALSADOR (§9, tres meses — al 21/dic/2026): si no falla ni una vez en CI
+#   y `registro-rotulos.tsv` no vuelve a aparecer en un conflicto de fusión,
+#   se anota y se revisa. Ejercido por mutación en
+#   `tests/test_tuberia_ids_union.py` (caso G3-bis).
+# ───────────────────────────────────────────────────────────────
+RUTA_REGISTRO_ROTULOS = "canon/registro-rotulos.tsv"
+
+# Pares `(espacio, valor)` repetidos al 21/sep/2026 y su conteo, derivados
+# del árbol con el mismo criterio que usa `pares_rotulos_repetidos`, no
+# tecleados de memoria. Estado declarado, no deuda instrumentada.
+_T51_EXENCION = {
+    ("A", "MAESTRA37-A2"): 2,
+    ("E", "E5"): 2,
+    ("E", "E9"): 2,
+    ("E", "GEN2-E7"): 2,
+    ("E", "MAESTRA34-E1"): 2,
+    ("GEN2", "GEN2-TRAMITE-4"): 2,
+    ("M", "M5"): 4,
+}
+
+
+def pares_rotulos_repetidos(texto):
+    """Conteo por par `(espacio, valor)` de `registro-rotulos.tsv`.
+
+    Columna cruda, sin `csv`, por la misma razón que `ids_duplicados`: el
+    campo `que_significa` trae comillas sin escapar. La cabecera
+    (`espacio\tvalor\t…`) se salta por su contenido, no por su posición.
+    """
+    conteo = Counter()
+    for l in texto.split("\n"):
+        if not l.strip():
+            continue
+        f = l.split("\t")
+        if len(f) < 2 or f[0] == "espacio":
+            continue
+        conteo[(f[0].strip(), f[1].strip())] += 1
+    return conteo
+
+
+def t51_rotulos_par_unico():
+    p = os.path.join(ROOT, RUTA_REGISTRO_ROTULOS)
+    if not os.path.exists(p):
+        fail("T51", f"no se pudo leer `{RUTA_REGISTRO_ROTULOS}`: la unicidad "
+                    f"del par (espacio, valor) no se verifica en ningún otro sitio")
+        return
+    texto = read(p)
+    conteo = pares_rotulos_repetidos(texto)
+    if not conteo:
+        fail("T51", f"cero filas examinadas en `{RUTA_REGISTRO_ROTULOS}`: "
+                    f"el veredicto no es un negativo (A.13)")
+        return
+    nuevos = []
+    for par, n in sorted(conteo.items()):
+        if n > _T51_EXENCION.get(par, 1):
+            nuevos.append((par, n, _T51_EXENCION.get(par, 1)))
+    for par, n, tope in nuevos:
+        fail("T51", f"{RUTA_REGISTRO_ROTULOS}: el par (espacio, valor) "
+                    f"{par!r} aparece {n} veces (congelado: {tope}) -- dos "
+                    f"filas del mismo rótulo son dos significados "
+                    f"contradictorios, y cuál gana depende del orden de lectura")
+    cab = texto.split("\n", 1)[0].split("\t")
+    if cab[:2] != ["espacio", "valor"]:
+        fail("T51", f"{RUTA_REGISTRO_ROTULOS}: la línea 1 no es la cabecera "
+                    f"`espacio/valor/…` sino {cab[0][:40]!r} -- una fila de "
+                    f"datos en la posición de la cabecera es el defecto de "
+                    f"forma que P1.1 corrigió")
+
+
+# ───────────────────────────────────────────────────────────────
+# T52 · T-ESTADO-PROGRAMA-SIN-APENDICE — el bloque §0 de
+#   `canon/estado-programa-v1_14.md` que los actos venían apendicando no
+#   crece más. (`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2`, 21/sep/2026, P2.)
+#
+#   QUÉ MIDIÓ ESTE ACTO. `#962` congeló la línea `L0` y los tres contadores
+#   mecánicos, y con eso `tools/cierre_acto.py --aplica` dejó de escribir
+#   nada (verificado con `git status`). Pero un cierre seguía tocando el
+#   archivo A MANO por dos vías, medidas sobre los 11 PR de primer padre
+#   anteriores a `#962` que lo modifican: la fila `gobernanza` de la tabla
+#   §0 (11 de 11) y una línea `*Anotación L0 (fecha): …` nueva (6 de 11).
+#   Las dos son apéndices por acto en un archivo compartido: exactamente
+#   la forma que hizo chocar la `L0` y que la infló a 27 MB.
+#
+#   MISMO TRATO QUE LA `L0`. Las 96 anotaciones existentes y la fila de la
+#   tabla quedan HISTÓRICAS, con su hash fijado igual que `T49` fija el de
+#   `canon/L0/HISTORICO.md`. La anotación de cada acto nuevo va a su
+#   fragmento propio, `canon/L0/<ADR-raíz-del-acto>.md`, que ya existe
+#   desde `#962` y que `python3 tools/l0_vista.py` imprime junto con el
+#   histórico. El conteo de ADR se deriva por comando (`EC.adr_max`,
+#   `l0_vista.py --conteo`), nunca de la fila de la tabla.
+#
+#   Lo que le habría costado a un lector: dos ramas que cierran el mismo
+#   día apendicaban su anotación al mismo punto del mismo archivo y
+#   escribían números distintos en la misma celda de la tabla -- conflicto
+#   de fusión en el mejor caso, y en el peor una fila de tabla que declara
+#   un conteo de ADR que ya no es el del árbol.
+#
+#   FALSADOR (§9, tres meses — al 21/dic/2026): si ningún acto intenta
+#   apendicar aquí y `estado-programa` no vuelve a aparecer en un conflicto,
+#   se anota y se revisa.
+# ───────────────────────────────────────────────────────────────
+RUTA_ESTADO_PROGRAMA = "canon/estado-programa-v1_14.md"
+_T52_N_ANOTACIONES = 96
+_T52_SHA_ANOTACIONES = "ebbfe58cdd53a8ee14ac77499034d30c063e8eab8dc2478149dafbefb387c50f"
+_T52_FILA_GOBERNANZA = (
+    "| **`gobernanza`** | `gobernanza-v1.15.md` | 593 ADR, protocolo de cambio |"
+)
+_T52_QUE_HACER = (
+    "pon tu anotación en `canon/L0/<tu ADR de raíz>.md` (la vista completa es "
+    "`python3 tools/l0_vista.py`) y deriva el conteo de ADR por comando "
+    "(`EC.adr_max`), no editando este archivo"
+)
+
+
+def t52_estado_programa_sin_apendice():
+    p = os.path.join(ROOT, RUTA_ESTADO_PROGRAMA)
+    if not os.path.exists(p):
+        fail("T52", f"no se pudo leer `{RUTA_ESTADO_PROGRAMA}`: el bloque §0 "
+                    f"congelado no se verifica en ningún otro sitio")
+        return
+    lineas = read(p).split("\n")
+    anot = [l for l in lineas if l.startswith("*Anotación L0 ")]
+    if len(anot) != _T52_N_ANOTACIONES:
+        fail("T52", f"{RUTA_ESTADO_PROGRAMA}: {len(anot)} líneas `*Anotación L0` "
+                    f"(congeladas: {_T52_N_ANOTACIONES}) -- {_T52_QUE_HACER}")
+    else:
+        real = hashlib.sha256("\n".join(anot).encode("utf-8")).hexdigest()
+        if real != _T52_SHA_ANOTACIONES:
+            fail("T52", f"{RUTA_ESTADO_PROGRAMA}: el bloque de anotaciones §0 "
+                        f"cambió (sha256 real {real}, fijado "
+                        f"{_T52_SHA_ANOTACIONES}) -- es histórico, no se edita; "
+                        f"{_T52_QUE_HACER}")
+    fila = [l for l in lineas if l.startswith("| **`gobernanza`** |")]
+    if fila != [_T52_FILA_GOBERNANZA]:
+        fail("T52", f"{RUTA_ESTADO_PROGRAMA}: la fila `gobernanza` de la tabla §0 "
+                    f"no es la congelada (P-B de `#962` la dejó HISTÓRICA): "
+                    f"{fila!r} -- {_T52_QUE_HACER}")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -8092,6 +8284,8 @@ def main():
         ("T48 T-CANON-LINEA-1MB",                       t48_canon_linea_1mb),
         ("T49 T-L0-HISTORICO-FIJADO",                   t49_l0_historico_fijado),
         ("T50 T-UNION-LINEAS-REPETIDAS",                t50_union_lineas_repetidas),
+        ("T51 T-ROTULOS-PAR-UNICO",                     t51_rotulos_par_unico),
+        ("T52 T-ESTADO-PROGRAMA-SIN-APENDICE",          t52_estado_programa_sin_apendice),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))

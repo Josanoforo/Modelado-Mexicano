@@ -675,12 +675,23 @@ def derivar_indicadores() -> dict[str, dict]:
     put("inventario_reactivos_v1_2", int(sh("grep -vc '^#' data/inventario-reactivos-v1_2.tsv") or 0), "grep -vc '^#' data/inventario-reactivos-v1_2.tsv")
 
     # ── 6 · gobernanza y aparato ───────────────────────────────────────
-    put("adr_max", EC.adr_max(RAIZ),
+    # NC-260921-GEN2-TUBERIA-SUCESOR-1-6e60-04: el espacio NUMERICO quedo CERRADO
+    # (D-2, ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1). Estos dos maximos describen ese
+    # espacio cerrado, NO el ultimo id acuñado: los de raiz de acto se cuentan aparte.
+    put("adr_max_espacio_cerrado", EC.adr_max(RAIZ),
         "tools/estado_comun.py::adr_max() -- equivalente a "
-        "grep -oE '^\\*\\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1")
-    put("fp_max", EC.fp_max(RAIZ),
+        "grep -oE '^\\*\\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1",
+        "espacio NUMERICO cerrado (D-2): no es el ultimo id acuñado")
+    put("fp_max_espacio_cerrado", EC.fp_max(RAIZ),
         "tools/estado_comun.py::fp_max() -- equivalente a "
-        "grep -oE '^FP-[0-9]+' forense/firmas-pendientes.tsv | grep -oE '[0-9]+' | sort -n | tail -1")
+        "grep -oE '^FP-[0-9]+' forense/firmas-pendientes.tsv | grep -oE '[0-9]+' | sort -n | tail -1",
+        "espacio NUMERICO cerrado (D-2): no es el ultimo id acuñado")
+    put("ids_raiz_de_acto", {
+        "ADR": int(sh("grep -coE '^\\*\\*ADR-[0-9]{6}-' canon/gobernanza-v1_15.md") or 0),
+        "FP": int(sh("grep -coE '^FP-[0-9]{6}-' forense/firmas-pendientes.tsv") or 0),
+        "NC": int(sh("grep -coE '^NC-[0-9]{6}-' forense/no-corrido.tsv") or 0)},
+        "grep -coE '^<PREFIJO>-[0-9]{6}-' sobre gobernanza/firmas-pendientes/no-corrido",
+        "epoca vigente: ids con raiz de acto, que nunca se renumeran")
     hoy = date.today()
     abiertas = []
     for r in csv.reader(open("forense/firmas-pendientes.tsv", encoding="utf-8", errors="replace"), delimiter="\t"):
@@ -920,7 +931,10 @@ def render_bloque_vivo(I: dict[str, dict]) -> str:
         f"filas del inventario de reactivos v1.2 `{_v(I, 'inventario_reactivos_v1_2')}`."
     )
     partes.append(
-        f"- **Gobernanza operativa.** ADR máximo `{_v(I, 'adr_max')}` · FP máximo `{_v(I, 'fp_max')}` · "
+        f"- **Gobernanza operativa.** ADR máximo del espacio numérico CERRADO "
+        f"`{_v(I, 'adr_max_espacio_cerrado')}` · FP máximo del mismo espacio "
+        f"`{_v(I, 'fp_max_espacio_cerrado')}` · ids con raíz de acto (época vigente) "
+        f"`{_v(I, 'ids_raiz_de_acto')}` · "
         f"FP abiertas: {fp_ids} · "
         f"encargos archivados `{_v(I, 'encargos_archivados')}` (consumidos `{_v(I, 'encargos_consumidos')}`) · "
         f"instrucciones vigentes `{_v(I, 'instrucciones_vigentes')}` · "
