@@ -213,7 +213,7 @@ todavía no existe y pasaría en falso.
 
 En un **clon temporal compartido** (`git clone -s`, D-23: nunca sobre el clon
 que se verifica), para cada commit de first-parent de `main` desde el 7/sep que
-toca `data/corrida0` —**128** commits—, se hizo `checkout` de ese commit y se
+toca `data/corrida0` —**128** commits *(universo sellado: `origin/main` `a61dd000`; A.10 — hoy son 130 en `13129c05`, ver 4-bis)*—, se hizo `checkout` de ese commit y se
 corrió el chequeo con el **`corrida0.py` de ese commit**, leyendo su diccionario.
 
 | | dirección (§4 del encargo) | esta sesión | |
@@ -237,6 +237,46 @@ La conclusión de §4 queda **confirmada por medición independiente**, y con el
 la razón de ser de la clasificación: el chequeo literal habría puesto rojos **4
 PR legítimos de 7**, es decir, más de la mitad de sus rojos habrían sido ruido —
 y un chequeo que se equivoca la mitad de las veces se desactiva en una semana.
+
+---
+
+## 4-bis · LA RESERVA DEL REVISOR SOBRE «128 COMMITS», RESUELTA — el universo creció
+
+La revisión adversarial de este PR levantó una `RESERVA` sobre la cifra base de
+la re-corrida: derivó **129** donde esta nota declara **128**, y dejó la causa
+«no localizada dentro del presupuesto de esta revisión». Localizada:
+
+| SHA de `origin/main` | commits de first-parent desde el 7/sep que tocan `data/corrida0` |
+|---|---|
+| `a61dd000` — contra el que se corrió la re-corrida | **128** |
+| `73d7c816` — contra el que corrió el revisor | **129** |
+| `13129c05` — hoy, tras `#944` | **130** |
+
+```
+comm -13 <(git log a61dd000 … --format=%H) <(git log 73d7c816 … --format=%H)
+→ 9bb5396f  2026-09-20T23:07:33  Merge pull request #943
+```
+
+**No hay discrepancia de criterio: hay dos universos.** Entre una derivación y
+la otra fusionó `PR #943`, y después `PR #944`. Las dos cifras son correctas
+contra su propio SHA, y ninguna es más correcta que la otra — es exactamente
+`A.10`: **un sello cuyo universo creció queda VENCIDO EN ALCANCE, no refutado.**
+El defecto real que esto expone no es el número sino cómo estaba escrito: `128`
+sin su SHA al lado. Corregido en toda esta nota, en el ADR y en el cuerpo del
+PR. Es la misma lección que `ADR-566` dejó ayer —«una cifra de referencia sin
+SHA no es una referencia, porque el denominador de este repo se mueve varias
+veces al día»— y que este acto acaba de volver a pagar.
+
+**Los dos commits nuevos se corrieron, no se asumieron.** El chequeo sobre cada
+uno, con el `corrida0.py` de ese commit, en clon temporal:
+
+- `9bb5396f` (`#943`) → `0 CALC sin sello tocados — PASA`.
+- `13129c05` (`#944`) → `FAIL=0 WARN=1 LIMPIO=1 · PASA`, con
+  `CALC-GOB-DIGITAL-EXE-EMISIONES-0002` ya en **`preflight: VERDE`** — el
+  arreglo del piloto, verificado por este chequeo.
+
+**La conclusión de §4 se extiende sin cambiar:** sobre los **130** commits de
+`13129c05`, siguen siendo **3 PR rojos, los tres verdaderos, cero falsos**.
 
 ---
 
