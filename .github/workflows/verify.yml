@@ -314,10 +314,50 @@ jobs:
       - name: Guardias huérfanas — censo + invocador correcto por archivo (bloqueante)
         run: python3 tools/ci_guardias.py --ejecuta-huerfanos
 
+  # ACTO GEN2-TUBERIA-RES-LLAVE-1 (P6) · las seis guardas de identidad
+  # RES/llave logica. Job PROPIO con su PROPIO clonado, porque G1 y G3
+  # comparan contra el registro de la ref BASE y `tools/ci_guardas_res.py`
+  # no hace `fetch` nunca: una herramienta de verificacion no muta el clon
+  # que verifica (D-23). G2, G4, G5 y G6 no necesitan historia.
+  guardas-res:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout sin marketplace, con la ref base (repo público)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://github.com/${{ github.repository }}.git"
+          if [ -n "${{ github.event.pull_request.number }}" ]; then
+            REF="+refs/pull/${{ github.event.pull_request.number }}/merge:refs/remotes/origin/ci"
+          else
+            REF="+${{ github.ref }}:refs/remotes/origin/ci"
+          fi
+          # Fetch COMPLETO (D-23) y, ademas, la rama BASE del PR: G1 y G3
+          # la necesitan y aqui es donde se trae, no dentro de la suite.
+          git -c protocol.version=2 fetch -q --no-tags origin "$REF"
+          BASE="${{ github.event.pull_request.base.ref || 'main' }}"
+          git -c protocol.version=2 fetch -q --no-tags origin "+refs/heads/$BASE:refs/remotes/origin/base"
+          git checkout -q refs/remotes/origin/ci
+          git log -1 --format="HEAD=%H %s"
+          git log -1 --format="BASE=%H %s" refs/remotes/origin/base
+
+      - name: Intérprete del runner (crudo, para que quede en el log)
+        run: python3 -VV
+
+      - name: Instala dependencias (requirements.txt)
+        run: python3 -m pip install -r requirements.txt
+
+      - name: G1..G6 — identidad RES/llave lógica (bloqueante)
+        run: python3 tools/ci_guardas_res.py --base refs/remotes/origin/base
+
+      - name: Mutaciones de las seis guardas (cada una prueba SU guarda)
+        run: python3 tests/test_guardas_res.py
+
   # Conserva el nombre requerido por protección. always() es indispensable:
   # un job fallido/omitido/cancelado debe llegar a una compuerta que NO aprueba.
   check:
-    needs: [suite, adicionales, guardias]
+    needs: [suite, adicionales, guardias, guardas-res]
     if: ${{ always() }}
     runs-on: ubuntu-latest
     timeout-minutes: 1
@@ -327,9 +367,11 @@ jobs:
           SUITE_RESULT: ${{ needs.suite.result }}
           ADICIONALES_RESULT: ${{ needs.adicionales.result }}
           GUARDIAS_RESULT: ${{ needs.guardias.result }}
+          GUARDAS_RES_RESULT: ${{ needs['guardas-res'].result }}
         run: |
           set -euo pipefail
-          printf 'suite=%s adicionales=%s guardias=%s\n' "$SUITE_RESULT" "$ADICIONALES_RESULT" "$GUARDIAS_RESULT"
+          printf 'suite=%s adicionales=%s guardias=%s guardas-res=%s\n' "$SUITE_RESULT" "$ADICIONALES_RESULT" "$GUARDIAS_RESULT" "$GUARDAS_RES_RESULT"
           test "$SUITE_RESULT" = success
           test "$ADICIONALES_RESULT" = success
           test "$GUARDIAS_RESULT" = success
+          test "$GUARDAS_RES_RESULT" = success
