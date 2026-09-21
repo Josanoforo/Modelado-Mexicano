@@ -1,0 +1,2739 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENCIG-ORIGEN-MOVIL-0001
+spec_md: ../../../forense/prereg-caja/ENCIG-ORIGEN-MOVIL-spec-v1_0.md
+spec_md_sha256: cecb68a89e0837fec3504e415361b451f031bd00e7e04b0a76604f99defb4620
+script: tools/encig_origen_movil.py
+script_sha256_congelado: 8ddb293d8d580630099317fc820b47c66b1646ba87a12a5812bfae53b9cf0bc1
+etiquetas:
+  generacion: GEN2
+  tipo: ORIGEN-MOVIL-PISOS-MECANICOS
+  cuenta_gen2: SI
+  cuenta_gen2_firma: 'Encargo GEN2-ENCIG-SERIE-Y-TENDENCIA-1 §2 (propuesta de dirección, 21/sep/2026): «Las corridas de GEN2-ENCIG-SERIE-Y-TENDENCIA-1 cuentan (cuenta_gen2 = SI). Su validación de origen
+    móvil se rotula RETROSPECTIVA-MECÁNICA». No adopta ni re-adjudica. El merge de mesa perfecciona la firma.'
+  rotulo: RETROSPECTIVA-MECÁNICA
+  exposicion_historica: DERIVADO-DE-SELLADOS; el 2025 ya se vio (marcador), ningún contendiente tiene parámetro elegible
+  procedimiento_congelado_en: COMMIT-1 d060d222 (script y spec.md con sha; este spec.yaml sólo añade la identidad de los insumos sellados)
+inputs:
+- id: CALC-ENCIG-SERIE-CANAL-2015
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG-SERIE-CANAL-2015/resultados.json
+  sha256: 960d6ecdc4c31d36fb881e9f8c217cc7c3ac1214f60d617f6e052a2dc3ed10e5
+  sello_sha256: d8a45556d8e08d16bbbae138b11d545e32021b063ed7dcd186f560a4e9f3d66c
+- id: CALC-ENCIG-SERIE-CANAL-2017
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG-SERIE-CANAL-2017/resultados.json
+  sha256: 9bbe13c04dc7273d0253a23a63db8e07c1f28022483af9332a357a4a1ebcc340
+  sello_sha256: a56b8821173dca9f1863902d248b6d2a8993450f84e5d27596d9571103e929ed
+- id: CALC-ENCIG-SERIE-CANAL-2019
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG-SERIE-CANAL-2019/resultados.json
+  sha256: 3e4d5bda11dcfba16013a16a42edb3ebc8149d022e98abb00c9d19f916db9bf0
+  sello_sha256: 738940de458bd2ab8afdc3a221dd8499c0ba0cd51df27450f0bc6d95a449d9ba
+- id: CALC-ENCIG-SERIE-CANAL-2021
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG-SERIE-CANAL-2021/resultados.json
+  sha256: 0db4eda8ad7754e7432a8f23e9e41f5d7c575bcf8fed203e1da69357173f4b53
+  sello_sha256: dcca8609db351a384aeb127714a9221f0fb239343668c03b3f655cbf0b2f1ce1
+- id: CALC-ENCIG-SERIE-CANAL-2023
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG-SERIE-CANAL-2023/resultados.json
+  sha256: a350ac811fc4eb41f03a7585b12c32c56c24a3c05612e10be73cc5e05325827c
+  sello_sha256: df3c353046155bc68dcbc2c7def923244f07199415971b2a459c49a8a319f298
+- id: TRAMITE-OLA5-PROPUESTA
+  origen: repo
+  ruta: milpa/tramite-ola5-propuesta-v0.yaml
+  sha256: 93dfa3f9aab250dabf9cbe8c93ccef2012cb763c5367d023f24dbfbd867fbc8f
+variables:
+- archivo: CALC-ENCIG-SERIE-CANAL-2015/resultados.json
+  variable: RESULT-ENCIG-SERIE-2015-DIGITAL-*-P|IC-LO|IC-HI
+  rol: serie por celda
+- archivo: CALC-ENCIG-SERIE-CANAL-2017/resultados.json
+  variable: RESULT-ENCIG-SERIE-2017-DIGITAL-*-P|IC-LO|IC-HI
+  rol: serie por celda
+- archivo: CALC-ENCIG-SERIE-CANAL-2019/resultados.json
+  variable: RESULT-ENCIG-SERIE-2019-DIGITAL-*-P|IC-LO|IC-HI
+  rol: serie por celda
+- archivo: CALC-ENCIG-SERIE-CANAL-2021/resultados.json
+  variable: RESULT-ENCIG-SERIE-2021-DIGITAL-*-P|IC-LO|IC-HI
+  rol: serie por celda
+- archivo: CALC-ENCIG-SERIE-CANAL-2023/resultados.json
+  variable: RESULT-ENCIG-SERIE-2023-DIGITAL-*-P|IC-LO|IC-HI
+  rol: serie por celda
+- archivo: tramite-ola5-propuesta-v0.yaml
+  variable: p
+  rol: R-2025-puntual
+- archivo: tramite-ola5-propuesta-v0.yaml
+  variable: ic95
+  rol: R-2025-ic95
+universo: 'Once celdas (nacional + sexo 2 + edad 4 + escolaridad 4) × olas objetivo 2017..2025; cada ola predicha sólo con las anteriores. Olas comunes a los cuatro pisos: 2021, 2023, 2025.'
+filtros: Un punto con P nulo no existe para su celda. Ningún piso tiene parámetro elegible; las cuatro variantes entran todas.
+ponderador: NO-APLICA
+transformacion: logit; ee_i = (logit(hi)-logit(lo))/(2·1.959964); predicción = Σ w_i·logit(p_i) con pesos fijos por piso; var = Σ w_i²·ee_i²; error = 100·(expit(L̂) − R) pp.
+estimando: Error y cobertura de cuatro pisos mecánicos (persistencia, tendencia 2, 3 y serie) por celda y ola, y el dictamen de §4 de la spec.
+seed:
+  aplica: false
+  motivo: 'determinista: aritmética entre sellados'
+parametros:
+  olas_serie:
+  - '2015'
+  - '2017'
+  - '2019'
+  - '2021'
+  - '2023'
+  anio_final: '2025'
+  olas_comunes:
+  - '2021'
+  - '2023'
+  - '2025'
+  delta_mae_material_pp: 3.0
+  z95: 1.959964
+  olas_comparables: 6
+  cambio_instrumento_en_ola: NINGUNA
+  fuente_olas_comparables: 'data/encig-canal-comparabilidad-texto-v1_0.tsv (P1): 2017/2019 MISMO-INSTRUMENTO, 2015/2023/2025 CAMBIO-MENOR sin efecto sobre el estimando'
+dependencias_materiales:
+- PyYAML
+resultados:
+- id: RESULT-ENCIG-OM-2017-ALL-ALL-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ALL-ALL-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ALL-ALL-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ALL-ALL-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ALL-ALL-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ALL-ALL-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ALL-ALL-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ALL-ALL-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ALL-ALL-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ALL-ALL-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ALL-ALL-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ALL-ALL-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-SEXO-1-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-SEXO-1-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-SEXO-1-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-SEXO-1-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-SEXO-1-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-SEXO-1-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-SEXO-1-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-SEXO-1-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-SEXO-1-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-SEXO-1-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-SEXO-1-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-SEXO-1-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-SEXO-2-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-SEXO-2-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-SEXO-2-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-SEXO-2-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-SEXO-2-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-SEXO-2-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-SEXO-2-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-SEXO-2-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-SEXO-2-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-SEXO-2-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-SEXO-2-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-SEXO-2-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-EDAD-18-29-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-18-29-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-18-29-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-EDAD-18-29-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-18-29-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-18-29-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-EDAD-18-29-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-18-29-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-18-29-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-EDAD-18-29-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-18-29-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-18-29-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-EDAD-30-44-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-30-44-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-30-44-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-EDAD-30-44-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-30-44-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-30-44-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-EDAD-30-44-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-30-44-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-30-44-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-EDAD-30-44-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-30-44-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-30-44-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-EDAD-45-59-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-45-59-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-45-59-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-EDAD-45-59-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-45-59-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-45-59-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-EDAD-45-59-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-45-59-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-45-59-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-EDAD-45-59-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-45-59-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-45-59-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-EDAD-60-MAS-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-60-MAS-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-60-MAS-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-EDAD-60-MAS-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-60-MAS-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-60-MAS-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-EDAD-60-MAS-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-60-MAS-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-60-MAS-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-EDAD-60-MAS-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-60-MAS-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-EDAD-60-MAS-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-HASTA-PRIMARIA-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-HASTA-PRIMARIA-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-HASTA-PRIMARIA-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SECUNDARIA-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SECUNDARIA-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SECUNDARIA-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SECUNDARIA-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SECUNDARIA-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SECUNDARIA-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SECUNDARIA-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SECUNDARIA-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SECUNDARIA-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SECUNDARIA-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SECUNDARIA-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SECUNDARIA-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-MEDIA-SUPERIOR-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-MEDIA-SUPERIOR-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-MEDIA-SUPERIOR-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SUPERIOR-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SUPERIOR-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SUPERIOR-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SUPERIOR-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SUPERIOR-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SUPERIOR-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SUPERIOR-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SUPERIOR-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SUPERIOR-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SUPERIOR-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SUPERIOR-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2017-ESCOLARIDAD-SUPERIOR-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ALL-ALL-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ALL-ALL-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ALL-ALL-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ALL-ALL-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ALL-ALL-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ALL-ALL-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ALL-ALL-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ALL-ALL-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ALL-ALL-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ALL-ALL-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ALL-ALL-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ALL-ALL-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-SEXO-1-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-SEXO-1-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-SEXO-1-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-SEXO-1-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-SEXO-1-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-SEXO-1-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-SEXO-1-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-SEXO-1-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-SEXO-1-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-SEXO-1-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-SEXO-1-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-SEXO-1-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-SEXO-2-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-SEXO-2-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-SEXO-2-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-SEXO-2-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-SEXO-2-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-SEXO-2-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-SEXO-2-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-SEXO-2-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-SEXO-2-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-SEXO-2-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-SEXO-2-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-SEXO-2-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-EDAD-18-29-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-18-29-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-18-29-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-EDAD-18-29-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-18-29-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-18-29-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-EDAD-18-29-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-18-29-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-18-29-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-EDAD-18-29-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-18-29-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-18-29-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-EDAD-30-44-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-30-44-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-30-44-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-EDAD-30-44-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-30-44-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-30-44-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-EDAD-30-44-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-30-44-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-30-44-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-EDAD-30-44-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-30-44-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-30-44-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-EDAD-45-59-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-45-59-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-45-59-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-EDAD-45-59-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-45-59-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-45-59-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-EDAD-45-59-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-45-59-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-45-59-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-EDAD-45-59-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-45-59-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-45-59-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-EDAD-60-MAS-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-60-MAS-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-60-MAS-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-EDAD-60-MAS-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-60-MAS-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-60-MAS-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-EDAD-60-MAS-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-60-MAS-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-60-MAS-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-EDAD-60-MAS-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-60-MAS-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-EDAD-60-MAS-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-HASTA-PRIMARIA-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-HASTA-PRIMARIA-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-HASTA-PRIMARIA-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SECUNDARIA-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SECUNDARIA-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SECUNDARIA-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SECUNDARIA-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SECUNDARIA-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SECUNDARIA-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SECUNDARIA-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SECUNDARIA-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SECUNDARIA-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SECUNDARIA-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SECUNDARIA-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SECUNDARIA-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-MEDIA-SUPERIOR-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-MEDIA-SUPERIOR-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-MEDIA-SUPERIOR-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SUPERIOR-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SUPERIOR-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SUPERIOR-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SUPERIOR-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SUPERIOR-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SUPERIOR-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SUPERIOR-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SUPERIOR-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SUPERIOR-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SUPERIOR-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SUPERIOR-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2019-ESCOLARIDAD-SUPERIOR-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ALL-ALL-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ALL-ALL-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ALL-ALL-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ALL-ALL-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ALL-ALL-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ALL-ALL-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ALL-ALL-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ALL-ALL-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ALL-ALL-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ALL-ALL-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ALL-ALL-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ALL-ALL-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-SEXO-1-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-SEXO-1-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-SEXO-1-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-SEXO-1-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-SEXO-1-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-SEXO-1-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-SEXO-1-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-SEXO-1-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-SEXO-1-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-SEXO-1-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-SEXO-1-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-SEXO-1-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-SEXO-2-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-SEXO-2-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-SEXO-2-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-SEXO-2-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-SEXO-2-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-SEXO-2-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-SEXO-2-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-SEXO-2-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-SEXO-2-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-SEXO-2-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-SEXO-2-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-SEXO-2-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-EDAD-18-29-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-18-29-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-18-29-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-EDAD-18-29-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-18-29-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-18-29-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-EDAD-18-29-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-18-29-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-18-29-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-EDAD-18-29-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-18-29-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-18-29-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-EDAD-30-44-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-30-44-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-30-44-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-EDAD-30-44-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-30-44-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-30-44-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-EDAD-30-44-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-30-44-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-30-44-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-EDAD-30-44-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-30-44-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-30-44-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-EDAD-45-59-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-45-59-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-45-59-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-EDAD-45-59-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-45-59-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-45-59-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-EDAD-45-59-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-45-59-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-45-59-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-EDAD-45-59-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-45-59-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-45-59-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-EDAD-60-MAS-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-60-MAS-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-60-MAS-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-EDAD-60-MAS-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-60-MAS-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-60-MAS-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-EDAD-60-MAS-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-60-MAS-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-60-MAS-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-EDAD-60-MAS-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-60-MAS-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-EDAD-60-MAS-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-HASTA-PRIMARIA-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-HASTA-PRIMARIA-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-HASTA-PRIMARIA-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SECUNDARIA-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SECUNDARIA-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SECUNDARIA-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SECUNDARIA-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SECUNDARIA-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SECUNDARIA-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SECUNDARIA-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SECUNDARIA-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SECUNDARIA-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SECUNDARIA-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SECUNDARIA-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SECUNDARIA-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-MEDIA-SUPERIOR-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-MEDIA-SUPERIOR-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-MEDIA-SUPERIOR-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SUPERIOR-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SUPERIOR-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SUPERIOR-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SUPERIOR-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SUPERIOR-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SUPERIOR-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SUPERIOR-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SUPERIOR-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SUPERIOR-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SUPERIOR-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SUPERIOR-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2021-ESCOLARIDAD-SUPERIOR-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ALL-ALL-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ALL-ALL-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ALL-ALL-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ALL-ALL-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ALL-ALL-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ALL-ALL-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ALL-ALL-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ALL-ALL-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ALL-ALL-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ALL-ALL-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ALL-ALL-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ALL-ALL-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-SEXO-1-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-SEXO-1-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-SEXO-1-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-SEXO-1-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-SEXO-1-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-SEXO-1-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-SEXO-1-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-SEXO-1-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-SEXO-1-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-SEXO-1-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-SEXO-1-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-SEXO-1-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-SEXO-2-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-SEXO-2-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-SEXO-2-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-SEXO-2-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-SEXO-2-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-SEXO-2-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-SEXO-2-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-SEXO-2-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-SEXO-2-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-SEXO-2-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-SEXO-2-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-SEXO-2-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-EDAD-18-29-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-18-29-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-18-29-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-EDAD-18-29-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-18-29-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-18-29-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-EDAD-18-29-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-18-29-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-18-29-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-EDAD-18-29-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-18-29-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-18-29-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-EDAD-30-44-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-30-44-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-30-44-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-EDAD-30-44-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-30-44-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-30-44-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-EDAD-30-44-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-30-44-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-30-44-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-EDAD-30-44-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-30-44-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-30-44-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-EDAD-45-59-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-45-59-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-45-59-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-EDAD-45-59-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-45-59-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-45-59-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-EDAD-45-59-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-45-59-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-45-59-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-EDAD-45-59-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-45-59-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-45-59-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-EDAD-60-MAS-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-60-MAS-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-60-MAS-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-EDAD-60-MAS-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-60-MAS-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-60-MAS-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-EDAD-60-MAS-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-60-MAS-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-60-MAS-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-EDAD-60-MAS-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-60-MAS-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-EDAD-60-MAS-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-HASTA-PRIMARIA-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-HASTA-PRIMARIA-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-HASTA-PRIMARIA-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SECUNDARIA-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SECUNDARIA-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SECUNDARIA-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SECUNDARIA-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SECUNDARIA-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SECUNDARIA-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SECUNDARIA-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SECUNDARIA-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SECUNDARIA-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SECUNDARIA-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SECUNDARIA-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SECUNDARIA-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-MEDIA-SUPERIOR-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-MEDIA-SUPERIOR-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-MEDIA-SUPERIOR-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SUPERIOR-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SUPERIOR-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SUPERIOR-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SUPERIOR-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SUPERIOR-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SUPERIOR-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SUPERIOR-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SUPERIOR-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SUPERIOR-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SUPERIOR-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SUPERIOR-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2023-ESCOLARIDAD-SUPERIOR-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ALL-ALL-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ALL-ALL-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ALL-ALL-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ALL-ALL-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ALL-ALL-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ALL-ALL-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ALL-ALL-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ALL-ALL-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ALL-ALL-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ALL-ALL-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ALL-ALL-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ALL-ALL-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-SEXO-1-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-SEXO-1-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-SEXO-1-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-SEXO-1-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-SEXO-1-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-SEXO-1-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-SEXO-1-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-SEXO-1-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-SEXO-1-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-SEXO-1-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-SEXO-1-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-SEXO-1-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-SEXO-2-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-SEXO-2-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-SEXO-2-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-SEXO-2-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-SEXO-2-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-SEXO-2-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-SEXO-2-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-SEXO-2-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-SEXO-2-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-SEXO-2-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-SEXO-2-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-SEXO-2-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-EDAD-18-29-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-18-29-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-18-29-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-EDAD-18-29-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-18-29-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-18-29-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-EDAD-18-29-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-18-29-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-18-29-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-EDAD-18-29-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-18-29-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-18-29-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-EDAD-30-44-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-30-44-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-30-44-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-EDAD-30-44-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-30-44-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-30-44-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-EDAD-30-44-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-30-44-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-30-44-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-EDAD-30-44-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-30-44-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-30-44-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-EDAD-45-59-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-45-59-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-45-59-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-EDAD-45-59-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-45-59-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-45-59-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-EDAD-45-59-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-45-59-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-45-59-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-EDAD-45-59-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-45-59-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-45-59-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-EDAD-60-MAS-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-60-MAS-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-60-MAS-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-EDAD-60-MAS-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-60-MAS-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-60-MAS-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-EDAD-60-MAS-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-60-MAS-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-60-MAS-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-EDAD-60-MAS-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-60-MAS-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-EDAD-60-MAS-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-HASTA-PRIMARIA-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-HASTA-PRIMARIA-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-HASTA-PRIMARIA-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-HASTA-PRIMARIA-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SECUNDARIA-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SECUNDARIA-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SECUNDARIA-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SECUNDARIA-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SECUNDARIA-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SECUNDARIA-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SECUNDARIA-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SECUNDARIA-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SECUNDARIA-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SECUNDARIA-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SECUNDARIA-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SECUNDARIA-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-MEDIA-SUPERIOR-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-MEDIA-SUPERIOR-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-MEDIA-SUPERIOR-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-MEDIA-SUPERIOR-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SUPERIOR-PERSISTENCIA-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SUPERIOR-PERSISTENCIA-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SUPERIOR-PERSISTENCIA-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SUPERIOR-TENDENCIA-2-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SUPERIOR-TENDENCIA-2-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SUPERIOR-TENDENCIA-2-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SUPERIOR-TENDENCIA-3-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SUPERIOR-TENDENCIA-3-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SUPERIOR-TENDENCIA-3-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SUPERIOR-TENDENCIA-SERIE-P
+  tipo: proporcion
+  unidad: predicción del piso [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SUPERIOR-TENDENCIA-SERIE-ERROR-PP
+  tipo: flotante
+  unidad: puntos porcentuales (piso menos R)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-2025-ESCOLARIDAD-SUPERIOR-TENDENCIA-SERIE-CUBRE
+  tipo: texto
+  unidad: SI | NO | NO-DEFINIDO (R dentro del IC95 del piso)
+- id: RESULT-ENCIG-OM-PERSISTENCIA-MAE-TODAS-PP
+  tipo: flotante
+  unidad: MAE pp sobre todas las predicciones definidas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-PERSISTENCIA-N-PREDICCIONES
+  tipo: entero
+  unidad: predicciones definidas
+- id: RESULT-ENCIG-OM-PERSISTENCIA-MAE-COMUN-PP
+  tipo: flotante
+  unidad: MAE pp sobre las olas comunes a los cuatro pisos
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-PERSISTENCIA-N-COMUN
+  tipo: entero
+  unidad: predicciones en olas comunes
+- id: RESULT-ENCIG-OM-PERSISTENCIA-COBERTURA-COMUN
+  tipo: proporcion
+  unidad: fracción de R dentro del IC95 del piso, olas comunes
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-PERSISTENCIA-MAE-NACIONAL-COMUN-PP
+  tipo: flotante
+  unidad: MAE pp de la celda nacional, olas comunes
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-PERSISTENCIA-MAE-2017-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-PERSISTENCIA-MAE-2019-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-PERSISTENCIA-MAE-2021-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-PERSISTENCIA-MAE-2023-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-PERSISTENCIA-MAE-2025-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-2-MAE-TODAS-PP
+  tipo: flotante
+  unidad: MAE pp sobre todas las predicciones definidas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-2-N-PREDICCIONES
+  tipo: entero
+  unidad: predicciones definidas
+- id: RESULT-ENCIG-OM-TENDENCIA-2-MAE-COMUN-PP
+  tipo: flotante
+  unidad: MAE pp sobre las olas comunes a los cuatro pisos
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-2-N-COMUN
+  tipo: entero
+  unidad: predicciones en olas comunes
+- id: RESULT-ENCIG-OM-TENDENCIA-2-COBERTURA-COMUN
+  tipo: proporcion
+  unidad: fracción de R dentro del IC95 del piso, olas comunes
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-2-MAE-NACIONAL-COMUN-PP
+  tipo: flotante
+  unidad: MAE pp de la celda nacional, olas comunes
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-2-MAE-2017-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-2-MAE-2019-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-2-MAE-2021-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-2-MAE-2023-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-2-MAE-2025-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-3-MAE-TODAS-PP
+  tipo: flotante
+  unidad: MAE pp sobre todas las predicciones definidas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-3-N-PREDICCIONES
+  tipo: entero
+  unidad: predicciones definidas
+- id: RESULT-ENCIG-OM-TENDENCIA-3-MAE-COMUN-PP
+  tipo: flotante
+  unidad: MAE pp sobre las olas comunes a los cuatro pisos
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-3-N-COMUN
+  tipo: entero
+  unidad: predicciones en olas comunes
+- id: RESULT-ENCIG-OM-TENDENCIA-3-COBERTURA-COMUN
+  tipo: proporcion
+  unidad: fracción de R dentro del IC95 del piso, olas comunes
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-3-MAE-NACIONAL-COMUN-PP
+  tipo: flotante
+  unidad: MAE pp de la celda nacional, olas comunes
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-3-MAE-2017-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-3-MAE-2019-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-3-MAE-2021-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-3-MAE-2023-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-3-MAE-2025-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-SERIE-MAE-TODAS-PP
+  tipo: flotante
+  unidad: MAE pp sobre todas las predicciones definidas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-SERIE-N-PREDICCIONES
+  tipo: entero
+  unidad: predicciones definidas
+- id: RESULT-ENCIG-OM-TENDENCIA-SERIE-MAE-COMUN-PP
+  tipo: flotante
+  unidad: MAE pp sobre las olas comunes a los cuatro pisos
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-SERIE-N-COMUN
+  tipo: entero
+  unidad: predicciones en olas comunes
+- id: RESULT-ENCIG-OM-TENDENCIA-SERIE-COBERTURA-COMUN
+  tipo: proporcion
+  unidad: fracción de R dentro del IC95 del piso, olas comunes
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-SERIE-MAE-NACIONAL-COMUN-PP
+  tipo: flotante
+  unidad: MAE pp de la celda nacional, olas comunes
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-SERIE-MAE-2017-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-SERIE-MAE-2019-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-SERIE-MAE-2021-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-SERIE-MAE-2023-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-SERIE-MAE-2025-PP
+  tipo: flotante
+  unidad: MAE pp de la ola, 11 celdas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-2-VENCE-PERSISTENCIA-COMUN
+  tipo: entero
+  unidad: pares (celda, ola común) con |error| menor que persistencia
+- id: RESULT-ENCIG-OM-TENDENCIA-2-DELTA-MAE-COMUN-PP
+  tipo: flotante
+  unidad: MAE persistencia menos MAE del piso, olas comunes, pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-3-VENCE-PERSISTENCIA-COMUN
+  tipo: entero
+  unidad: pares (celda, ola común) con |error| menor que persistencia
+- id: RESULT-ENCIG-OM-TENDENCIA-3-DELTA-MAE-COMUN-PP
+  tipo: flotante
+  unidad: MAE persistencia menos MAE del piso, olas comunes, pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-TENDENCIA-SERIE-VENCE-PERSISTENCIA-COMUN
+  tipo: entero
+  unidad: pares (celda, ola común) con |error| menor que persistencia
+- id: RESULT-ENCIG-OM-TENDENCIA-SERIE-DELTA-MAE-COMUN-PP
+  tipo: flotante
+  unidad: MAE persistencia menos MAE del piso, olas comunes, pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-NACIONAL-N-OLAS
+  tipo: entero
+  unidad: olas en la serie nacional
+- id: RESULT-ENCIG-OM-NACIONAL-PARES-POSITIVOS
+  tipo: entero
+  unidad: pares consecutivos con incremento > 0
+- id: RESULT-ENCIG-OM-NACIONAL-PARES-NEGATIVOS-SIGNIFICATIVOS
+  tipo: entero
+  unidad: pares con decremento y IC95 sin traslape
+- id: RESULT-ENCIG-OM-NACIONAL-CAMBIO-TOTAL-PP
+  tipo: flotante
+  unidad: pp, última menos primera ola
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-NACIONAL-SALTO-MAXIMO-PP
+  tipo: flotante
+  unidad: pp, mayor incremento entre olas consecutivas
+  permite_no_estimable: true
+- id: RESULT-ENCIG-OM-NACIONAL-SALTO-MAXIMO-OLA
+  tipo: texto
+  unidad: ola destino del mayor incremento
+- id: RESULT-ENCIG-OM-NACIONAL-SUBE-SOSTENIDA
+  tipo: texto
+  unidad: SI | NO (spec §4.1)
+- id: RESULT-ENCIG-OM-MEJOR-TENDENCIA
+  tipo: texto
+  unidad: piso de tendencia con mayor reducción de MAE común
+- id: RESULT-ENCIG-OM-TENDENCIA-ERRA-MATERIALMENTE-MENOS
+  tipo: texto
+  unidad: SI | NO (spec §4.2)
+- id: RESULT-ENCIG-OM-DICTAMEN
+  tipo: texto
+  unidad: CAMBIO-DE-INSTRUMENTO | TENDENCIA | SALTO-SIN-EXPLICAR | NO-DECIDIBLE
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
