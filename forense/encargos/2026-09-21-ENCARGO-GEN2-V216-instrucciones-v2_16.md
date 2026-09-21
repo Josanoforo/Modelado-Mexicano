@@ -43,3 +43,20 @@ Propio: `instrucciones-proyecto-v2_16*.md` y sidecars · `forense/encargos/PLANT
 
 ## 10 · NO HACE · SUCESORES · CIERRE
 No reescribe encargos archivados · no borra el delta del cuerpo · no instrumenta linters. Sucesor: v2.17, que suelta el delta absorbido y revisa la caducidad de A.3+, D-16–D-24 (§9) el 21/dic/2026. Auditoría §5: no aplica. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+- **Qué:** `.claude/commands/tramite.md` — línea de cita a la versión de la plantilla (P3 del encargo: "`PLANTILLA-LOTE-v1_0.md` y `tramite.md`: solo la cita a la versión").
+  **Por qué:** `NO-VERIFICABLE-AQUÍ` no aplica — se verificó y no hay nada que hacer: `grep -n "PLANTILLA-ENCARGO" .claude/commands/tramite.md` no encuentra ninguna cita a `PLANTILLA-ENCARGO-v2_0` ni a ninguna versión de la plantilla en ese archivo. No había línea que actualizar.
+  **Impacto:** ninguno — el archivo no cita la plantilla y no queda desactualizado.
+  **Sucesor:** `SIN-ASIGNAR` (nada que resolver; se deja escrito para que un acto futuro no repita la búsqueda).
+
+- **Qué:** `AGENTS.md` — actualizar cita a la versión de instrucciones (P4 del encargo: "`AGENTS.md` solo la cita").
+  **Por qué:** `NO-VERIFICABLE-AQUÍ` no aplica — se verificó: `grep -n "v2_15\|v2\.15" AGENTS.md` no encuentra ninguna cita de versión. El archivo no existe con ese contenido en este repo (no se creó ni se tocó).
+  **Impacto:** ninguno.
+  **Sucesor:** `SIN-ASIGNAR`.
+
+- **Qué:** Dos semillas `PARA-v2.16` (`hallazgos.md:967` `MOTOR-LINAJE-1`; `hallazgos.md:1016` `ARBITRO-MARGINALES-1`, la mitad sobre «vencido» sin retador) que dirección esperaba ver promovidas y el cuerpo adjunto no trae.
+  **Por qué:** `PARO-PREMISA` no aplica — no es que la premisa cayera, es que el cuerpo verbatim (P1, no editable por este acto) simplemente no las escribió. Se declaran con texto propuesto en la HISTORIA (§6 del encargo: "si una semilla no promovida te parece norma, propón texto en la nota — no la metas tú").
+  **Impacto:** ninguna norma nueva sobre el estado `superado` de un índice de linaje ni sobre «vencido» sin retador; ambas siguen sin instrumentar hasta que mesa decida.
+  **Sucesor:** `DIFERIDO-A:v2.17` (§9 del cuerpo lo declara explícitamente como su primera tarea).
