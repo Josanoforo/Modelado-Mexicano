@@ -4059,6 +4059,7 @@ def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> 
         pin = pines_ok.get(llave)
         if pin is None:
             continue
+        llaves_usadas.add(llave)
         if u["corrida0_generacion"]:
             avisos.append(
                 f"PIN-SOBRE-CONSUMIDOR-YA-MARCADO: {llave} tiene pin de mesa "
@@ -4066,7 +4067,6 @@ def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> 
                 f"corrida0_generacion={u['corrida0_generacion']}; manda el "
                 f"consumidor y el pin no se aplica")
             continue
-        llaves_usadas.add(llave)
         u["generacion_leida"] = "GEN2"
         u["corrida0_generacion"] = "GEN2"
         u["corrida0_resultado_id"] = pin["result_gen2"]
