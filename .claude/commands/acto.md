@@ -222,6 +222,48 @@ creó un paso anterior de la misma sesión), no se re-escribe.
 
 No se ejecuta ningún paso sustantivo del encargo antes de este commit.
 
+**Sello del CUERPO, en este mismo commit** (`ACTO
+GEN2-TUBERIA-SIDECAR-CUERPO-1`, 21/sep/2026; firmas de mesa D-a1, D-a2,
+D-a3, D-a5, D-a6):
+
+```
+python3 tools/sella_sha256.py --cuerpo <encargo>
+```
+
+- **Qué cubre y cómo se normaliza (D-a1).** El sello cubre el CUERPO del
+  encargo —lo que se pidió—, no lo que el ejecutor añada después. Se
+  calcula sobre `N(texto)`: se quita al final todo blanco y toda línea de
+  solo `---`, y se termina en exactamente un salto de línea. `N` se
+  aplica IGUAL al sellar y al verificar.
+- **Candidatos por hash, sin centinela (D-a2 + D-a5).** Al verificar, los
+  candidatos son el prefijo anterior a CADA línea que empieza en `^## `,
+  más el archivo entero; pasa si alguno, normalizado, casa. El hash
+  desambigua solo: un encargo con dos líneas `## NO-CORRIDO` no obliga a
+  escoger delimitador. La verificación reporta CUÁL candidato casó, y
+  emite WARN —no FAIL— si lo que sigue al cuerpo sellado abre con un
+  encabezado distinto de `## NO-CORRIDO` o `## CONSUMIDO` (D-16: los WARN
+  se listan, no adjudican).
+- **Sufijo propio (D-a3).** El sidecar se llama `X.cuerpo.sha256`.
+  `sha256sum -c` no es su verificador, y el nombre lo dice. Quien los
+  revisa en conjunto es `python3 tools/verifica_sidecars.py`, cableado en
+  CI sobre `forense/encargos/` y `forense/notas/`.
+
+**ESTE SELLO NO SE REGENERA NUNCA: ni al cierre, ni tras una
+renumeración, ni para que un verificador pase.** Nace aquí, en el 0-bis, y
+aquí se queda. Vale verbatim la advertencia del 7/sep de
+`tools/sella_sha256.py`: «que el cierre reselle un archivo no vuelve
+aceptable un cambio accidental en una spec». Un sello que no casa es un
+hallazgo sobre el texto, no un sidecar que arreglar — se declara, y el
+testigo viejo queda VENCIDO EN ALCANCE (A.10), nunca editado ni borrado.
+
+**Adendas — archivo propio, nunca pegadas al encargo** (firma de mesa
+`ADENDAS`, 21/sep/2026). Una adenda de mesa que llega con el acto ya
+corriendo se archiva como `<encargo>-ADENDA-N.md`, junto a su encargo, en
+forma plana, con su propio `.cuerpo.sha256`, **sellada al recibirse**. `N`
+es `max+1` sobre las adendas ya archivadas de ese encargo (un solo
+escritor por encargo, D-17). El encargo cita sus adendas **desde el
+CIERRE, nunca desde el cuerpo**: el cuerpo no se toca ni para eso.
+
 ---
 
 ## 4 · EJECUCIÓN — premisas, latitud y paros
@@ -360,7 +402,12 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
 10. **`## NO-CORRIDO / RESERVAS`** (A.14, `ACTO GEN2-T8`, 8/sep/2026,
     `forense/encargos/2026-09-08-GEN2-T8-A14-CERO-RAMAS-RETROFIT.md`).
     **Precede** a `## CONSUMIDO` — se escribe en el mismo encargo
-    archivado, antes de esa sección, y nunca después. Lo que no se corrió
+    archivado, antes de esa sección, y nunca después. **La sección de
+    cierre se añade al final del encargo archivado; nada por encima de
+    ella se edita.** (D-a6, 21/sep/2026: es lo que mantiene válido el
+    sello de cuerpo del 0-bis — medido sobre los 56 encargos tocados del
+    19 al 21/sep, cinco de los nueve sellos rotos lo fueron por la
+    cascada de cierre del propio acto.) Lo que no se corrió
     se asienta, o el acto no cierra: una fila por pieza no ejecutada,
     parcial, distinta de lo pedido, o con reserva —
     "Ninguno." si de verdad no hay nada. Cada fila trae:

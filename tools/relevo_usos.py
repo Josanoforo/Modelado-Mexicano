@@ -120,7 +120,8 @@ RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "tools"))
 
 import corrida0  # noqa: E402
-import pines_mesa  # noqa: E402
+import pines_mesa
+import resuelve_citas  # noqa: E402
 
 C0 = RAIZ / "data" / "corrida0"
 SALIDA_TSV = C0 / "relevo-usos-v1_0.tsv"
@@ -552,6 +553,36 @@ def _veredictos(calc: str, spec: dict, singulares: list,
     return out
 
 
+def _traductor_de_citas():
+    """`(calc, token) -> [llave_logica]`, el UNICO puente entre lo que una
+    spec dice y lo que la vista casa.
+
+    Tres fuentes, en este orden y sin colapsarse:
+      1. `data/corrida0/pines-sellados-resueltos.tsv` -- la cita de una spec
+         SELLADA, resuelta contra la demanda del commit que fijo esa spec.
+         Es la unica lectura honesta de un texto que ya no se puede cambiar.
+      2. el registro `RES -> llave` para una cita NUEVA, que desde el
+         congelamiento no puede volver a cambiar de dueño.
+      3. nada: una cita que no resuelve no acredita. No se adivina.
+    """
+    tabla: dict[tuple, list] = {}
+    for f in resuelve_citas.lee_tabla():
+        llaves = [l for l in (f.get("llave_logica") or "").split(";")
+                  if l and l != resuelve_citas.NO_RESUELVE]
+        if llaves:
+            tabla[(f["calc_id"], f["token"])] = llaves
+    vigentes, _, _ = corrida0.estado_registro_res()
+    por_numero = {numero: llave for llave, numero in vigentes.items()}
+
+    def traduce(calc: str, token: str) -> list:
+        if (calc, token) in tabla:
+            return tabla[(calc, token)]
+        if token.startswith("RES-") and token in por_numero:
+            return [por_numero[token]]
+        return []
+    return traduce
+
+
 def _canal_c1(spec: dict) -> tuple[dict, list[tuple[str, str, str]]]:
     """`parametros.adopcion*` -> (`RES -> (destino, consumidor)`, singulares).
 
@@ -661,12 +692,22 @@ def deriva() -> tuple[list[dict], dict]:
         if llave in pines_ok:
             pin_por_consumidor[consumidor] = pines_ok[llave]
 
-    # Indices de los tres canales, construidos UNA vez sobre todas las specs.
-    c1_por_res: dict[str, list[tuple[str, str, str]]] = {}
+    # ACTO GEN2-TUBERIA-RES-LLAVE-1 (P5): los canales dejan de casar por el
+    # TOKEN de la spec y casan por LLAVE LOGICA.
+    #
+    # Defecto que atrapa, medido: `RES-####` era posicional, asi que 135 de
+    # 208 llaves han tenido mas de un numero. Una spec SELLADA no se reescribe
+    # (E.3), asi que su cita quedo nombrando otro slot: en 6 filas la vista
+    # proponia el CALC EQUIVOCADO como candidato (los `CALC-R-CIV-*`). Casar
+    # por llave -- cita sellada -> tabla de P4 -> llave; cita nueva -> registro
+    # -> llave -- arregla lo mal atribuido de una vez.
+    traduce = _traductor_de_citas()
+    alias_del_consumidor = corrida0.alias_declarados_por_consumidores()
+    # Indices de los canales, construidos UNA vez sobre todas las specs.
+    c1_por_llave: dict[str, list[tuple[str, str, str]]] = {}
     c1_singular: list[tuple[str, str, str, str]] = []
-    c2_por_res: dict[str, list[tuple[str, str]]] = {}
-    c3_corr: dict[str, set[str]] = {}
-    c3_res: dict[str, set[str]] = {}
+    c2_por_llave: dict[str, list[tuple[str, str]]] = {}
+    c3_por_llave: dict[str, set[str]] = {}
     vered: dict[str, list[tuple[str, str, str]]] = {}   # RES -> [(calc, rid, valor)]
     vered_singular: dict[str, tuple[str, str]] = {}     # consumidor -> (rid, valor)
     veto: dict[str, list[tuple[str, str]]] = {}         # RES -> [(calc, texto)]
@@ -680,12 +721,15 @@ def deriva() -> tuple[list[dict], dict]:
             rid, razon = _resuelve_destino(destino, ids_result)
             if razon.startswith("DESTINO-SIN-CITA"):
                 veto.setdefault(res, []).append((calc, razon))
-            c1_por_res.setdefault(res, []).append((calc, rid, razon))
+            for llave_cita in traduce(calc, res):
+                c1_por_llave.setdefault(llave_cita, []).append(
+                    (calc, rid, razon))
         for consumidor, rid, _clave in singulares:
             c1_singular.append((consumidor, calc, rid, "C1-SINGULAR"))
         for res, rids in _canal_c2(spec).items():
             for rid in rids:
-                c2_por_res.setdefault(res, []).append((calc, rid))
+                for llave_cita in traduce(calc, res):
+                    c2_por_llave.setdefault(llave_cita, []).append((calc, rid))
         corrs, ress = _canal_c3(spec)
         for res, (rid, valor) in _veredictos(
                 calc, spec, singulares, ress).items():
@@ -693,14 +737,30 @@ def deriva() -> tuple[list[dict], dict]:
                 vered_singular[singulares[0][0]] = (calc, rid, valor)
             else:
                 vered.setdefault(res, []).append((calc, rid, valor))
+        # `CORR` deja de ser CITABLE (D-r2, firmada): su cita vieja acredita
+        # cobertura sobre los slots que el grupo tenia CUANDO SE ESCRIBIO, y
+        # un slot que entro despues ya no recibe credito.
         for corr in corrs:
-            c3_corr.setdefault(corr, set()).add(calc)
+            for llave_cita in traduce(calc, corr):
+                c3_por_llave.setdefault(llave_cita, set()).add(calc)
         for res in ress:
-            c3_res.setdefault(res, set()).add(calc)
+            for llave_cita in traduce(calc, res):
+                c3_por_llave.setdefault(llave_cita, set()).add(calc)
 
     filas, contadores = [], {}
     for slot in slots:
         res = slot["resultado_id"]
+        try:
+            llave_slot = pines_mesa.llave_logica(slot["consumidor"])
+        except pines_mesa.PinInvalido:
+            llave_slot = f"<{slot['consumidor']}>"
+        # Los ALIAS que el propio consumidor declara (§2.2 del diseño) entran
+        # AQUI y no en otro acto: sin ellos, una spec sellada que cito la
+        # clave VIEJA pierde su enlace y tres adopciones (`RES-0005`,
+        # `RES-0059`, `RES-0060`) y un veto (`RES-0006`) se caen de la vista.
+        # Medido: pasa de verdad si se casa por llave sin leer el alias.
+        llaves_slot = [llave_slot] + [
+            v for v in alias_del_consumidor.get(llave_slot, ())]
         uso = declarado.get(slot["consumidor"], {})
         fila = {
             "resultado_id": res,
@@ -766,15 +826,17 @@ def deriva() -> tuple[list[dict], dict]:
 
         # ── candidaturas por canal, sin colapsar ──────────────────────────
         cands: list[tuple[str, str, str, str]] = []   # (canal, calc, rid, razon)
-        for calc, rid, razon in c1_por_res.get(res, []):
-            cands.append(("C1-MAPA", calc, rid, razon))
+        for k in llaves_slot:
+            for calc, rid, razon in c1_por_llave.get(k, []):
+                cands.append(("C1-MAPA", calc, rid, razon))
         for consumidor, calc, rid, canal in c1_singular:
             if consumidor and consumidor == slot["consumidor"]:
                 cands.append((canal, calc, rid, ""))
-        for calc, rid in c2_por_res.get(res, []):
-            cands.append(("C2-RESULTADO", calc, rid, ""))
-        cobertura = set(c3_corr.get(slot["corrida_natural"], set())) \
-            | set(c3_res.get(res, set()))
+        for k in llaves_slot:
+            for calc, rid in c2_por_llave.get(k, []):
+                cands.append(("C2-RESULTADO", calc, rid, ""))
+        cobertura = set().union(*(c3_por_llave.get(k, set())
+                                  for k in llaves_slot))
         pin = pin_por_consumidor.get(slot["consumidor"])
         fila["canales_observados"] = ";".join(sorted(
             {c[0] for c in cands}

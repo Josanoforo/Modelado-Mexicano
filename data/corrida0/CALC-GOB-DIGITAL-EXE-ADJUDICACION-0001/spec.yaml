@@ -1,8 +1,9 @@
 # El primer resultado que produzca este procedimiento es el que se reporta.
 calc_id: CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001
-spec_md: forense/prereg-caja/GOB-gobierno-digital-exe15-spec-v1_1.md
+spec_md: ../../../forense/prereg-caja/GOB-gobierno-digital-exe15-spec-v1_1.md
 spec_md_sha256: 62d8d07d70dd4d53544975bf8b541e5cd63079080d9537b5fde8414115579eb5
 script: data/corrida0/CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001/adjudicacion.py
+dependencias_materiales: [numpy, pandas]
 etiquetas:
   generacion: GEN2
   unidad_transferencia: TRAMITE
@@ -17,6 +18,12 @@ etiquetas:
   tipo: ARBITRO-CRUCE-Y-ADJUDICACION-CELDA-D
   commit: COMMIT-3
   condicion: SE NIEGA A CORRER sin el sello de CALC-GOB-DIGITAL-EXE-EMISIONES-0002 (inputs emisiones_resultados + emisiones_sello, sha256 verificado) y sin reproducir su C2 a 1e-9
+secuencia_commits:
+  fuente: 'FP-407 (b), firmada 21/sep/2026; escrita por ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_2. Precedente de la casa: piloto 1, 16/sep/2026 -- c169edc9 (COMMIT-2, emisiones selladas, R no existe) -> 39bf1af3 (COMMIT-3a, contrato del arbitro fija el sha256 de las emisiones ya selladas, antes de correr) -> 18b99142 (COMMIT-3, R y adjudicacion). E.6 se conserva: R se deriva DESPUES de fijar el arbitro.'
+  commit_2: 'OTRA sesion (F3): corrida0 run CALC-GOB-DIGITAL-EXE-EMISIONES-0002; sella; vista y replay (E.7); commit y push; git ls-remote confirma que el sello esta en origin antes de seguir.'
+  commit_3a: 'La misma sesion del COMMIT-2, en commit aparte y ANTES de derivar R: escribe en ESTE spec.yaml la llave sha256 de los inputs emisiones_resultados y emisiones_sello (huellas de los archivos recien sellados, derivadas en la sesion), y verifica corrida0 preflight CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001 = VERDE. Ninguna otra linea de este archivo cambia. Es la unica edicion admitida de un spec.yaml despues del COMMIT-1 v1.2, y no rompe ningun sello: este CALC aun no tiene corrida.'
+  commit_3: 'corrida0 run CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001: deriva R(a,b), soporte 2025, adjudicacion por celda, regla de 3/4, delta-MAE con IC; sella; vista y replay.'
+  preflight_esperado_antes_del_commit_3a: 'BLOQUEADO exactamente por input_repo_ausente=emisiones_resultados, input_repo_no_commiteado=emisiones_resultados, input_repo_ausente=emisiones_sello, input_repo_no_commiteado=emisiones_sello -- y por nada mas.'
 inputs:
 - id: encig25_base_datos_csv
   origen: manifiesto
@@ -24,17 +31,21 @@ inputs:
 - id: encig2021_cruces_resultados
   origen: repo
   ruta: data/corrida0/CALC-ENCIG2021-CRUCES-HISTORICOS-0003/resultados.json
+  sha256: 285eeb552c0ab99cb9cc9cab1d0622209d3ddda837baa29193d98670fefbe9f5
 - id: encig2023_cruces_resultados
   origen: repo
   ruta: data/corrida0/CALC-ENCIG2023-CRUCES-HISTORICOS-0002/resultados.json
+  sha256: b7d3dfe9aae42276961c5bf5676f0aa5f3de7e9a2218e44a58a613ef5cb7773e
 - id: c2_compuesto_resultados
   origen: repo
   ruta: data/corrida0/CALC-C2-COMPUESTO-RESERVADAS-0001/resultados.json
+  sha256: be24d879d22d28a05c36441b471976a6b0b3d40f2877efa2cd514a13e5bae3cb
   nota: control, punto sin IC -- NO es el piso
 - id: firmas_pendientes_tsv
   origen: repo
-  ruta: forense/firmas-pendientes.tsv
-  nota: 'guardia S2: FP-399 debe figurar FIRMADA'
+  ruta: data/corrida0/CALC-GOB-DIGITAL-EXE-EMISIONES-0002/fp399-firmada-826bf3a1.tsv
+  nota: 'guardia S2: FP-399 debe figurar FIRMADA. v1.2 (FP-407 b): copia INMUTABLE de forense/firmas-pendientes.tsv al commit 826bf3a1 (el que firmo FP-399 y congelo el v1.1); el libro vivo cambia de huella con cada acto y no se sella contra el'
+  sha256: c79e37d780198c904142b089caf8d235e30add02b514d67e7a762f0203466bdf
 - id: emisiones_resultados
   origen: repo
   ruta: data/corrida0/CALC-GOB-DIGITAL-EXE-EMISIONES-0002/resultados.json
