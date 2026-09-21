@@ -55,3 +55,7 @@ No abre el cruce reservado · no dictamina FP-409. Sucesor: lote de cruces de EN
 | P1 · lista de actividades de «trabajo doméstico» ítem por ítem | `DIFERIDO-A:SIN-ASIGNAR` — se listó a nivel de bloque (fila C5, 7 bloques en las 4 olas); ninguna celda lo consume | ninguno | mesa (decidir si algún acto medirá trabajo doméstico) · `NC-…-308c-04` |
 
 Reservas (no son piezas no corridas): el dictamen 2019→2024 del núcleo es `NO-DECIDIBLE` por la regla prerregistrada aunque la lectura (salto uniforme, −18 % a −35 % en 14/14 celdas) apunte a cambio de instrumento — se lleva a mesa en la FP, no se re-dictamina; `cuenta_gen2 = SI` aplicado por la propuesta de dirección §2, confirmación de mesa en la misma FP (c).
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-ENUT-PISOS-Y-SERIE-1` en **PR #976** (`acto/gen2-enut-pisos-y-serie-1`, 0-bis `308c6843`, COMMIT-1 `7ebb04de`, cascada `2c079212`), 21/sep/2026, CAJA. `ADR-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01`; `FP-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01` a mesa; `NC-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01..04`. Mesa fusiona.
