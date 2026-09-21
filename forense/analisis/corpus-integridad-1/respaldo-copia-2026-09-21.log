@@ -1,0 +1,15 @@
+$ rsync -rt --safe-links --no-links --exclude .manifiesto.lock --stats /home/pc0/mm-corpus/raw/ /home/pc0/mm-respaldo-corpus/2026-09-21/data_raw/
+  Number of files: 1,495 (reg: 1,291, dir: 203, link: 1)
+  Number of regular files transferred: 1,291
+  Total file size: 17,716,486,605 bytes
+  Total transferred file size: 17,716,486,582 bytes
+$ rsync -rt --safe-links --no-links --exclude .manifiesto.lock --stats "/mnt/c/Users/PC0/Descargas MX/" /home/pc0/mm-respaldo-corpus/2026-09-21/descargas_mx/
+  Number of files: 639 (reg: 619, dir: 20)
+  Number of regular files transferred: 619
+  Total file size: 2,090,341,979 bytes
+  Total transferred file size: 2,090,341,979 bytes
+$ rsync -rt --safe-links --no-links --exclude .manifiesto.lock --stats /home/pc0/mm-corpus/reservas-respondentes/ /home/pc0/mm-respaldo-corpus/2026-09-21/reserva_respondentes/
+  Number of files: 9 (reg: 4, dir: 5)
+  Number of regular files transferred: 4
+  Total file size: 11,013,087 bytes
+  Total transferred file size: 11,013,087 bytes
