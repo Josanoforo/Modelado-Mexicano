@@ -44,3 +44,14 @@ Propio: tabla de comparabilidad de ENUT y su test · CALC nuevos y specs · fila
 
 ## 10 · NO HACE · SUCESORES · AUDITORÍA · CIERRE
 No abre el cruce reservado · no dictamina FP-409. Sucesor: lote de cruces de ENUT con el módulo genérico. Auditoría (afirma sobre México): que las mujeres carguen más horas de cuidado es estructura —oferta de guarderías, mercado laboral, composición del hogar— además de norma; el acto reporta niveles y persistencia, no causa; «familismo» y «marianismo» son en buena parte evidencia (b), de diáspora: no se invocan para explicar un marginal; horas autoreportadas: sesgo de recuerdo distinto por sexo, se declara; rural e indígena difuso: localidad es el único eje que lo asoma. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| «P2 · Pisos ENUT 2019 por eje» de la definición sellada `horas_cuidado` (C1, `*_CON_CP`) | `SUSTITUIDO-POR:GEN2-ENUT-PISOS-Y-SERIE-1 (núcleo común)` — ADR-557 (PR #908) la dictaminó NO-CONSTRUIBLE por texto y P1 lo confirma; mesa eligió la opción A. Absorbe: piso 2019 por eje y razón C4 sobre C2/C3 (`CALC-ENUT2019-NUCLEO-EJES-0001`), R 2024 sobre las mismas variantes, persistencia y serie. Huérfano: el piso de las 21 celdas del marcador tal como están definidas. | `sin_piso` del marcador sigue en 15 (11 ENUT); ninguna celda del marcador gana piso | `FP-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01` (b) · `NC-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01` |
+| CABECERA · «filas SIN-PISO del marcador, antes y después» | `DECISIÓN-DE-MESA-PENDIENTE` — reportadas por comando (15 → 15; 11 ENUT NO-CONSTRUIBLE); el marcador no se edita porque el piso medido es de otro estimando y el enlace es de mesa (A-bis 3) | las 11 filas ENUT no cambian de estado; `cobertura_de_piso` sigue en 79 | `FP-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01` (b) · `NC-…-308c-02` |
+| D-21 · el test del conducto (`tests/test_enut_nucleo_conducto.py`) en CI | `DIFERIDO-A:FP-398 (a)` — necesita numpy/pandas/dbfread/yaml, que el runner no instala; censado NECESITA-DEPENDENCIA; corre en CAJA (11/11) | la guardia de una variable y el conducto sintético sólo se verifican en caja | `FP-398 (a)` · `NC-…-308c-03` |
+| P1 · lista de actividades de «trabajo doméstico» ítem por ítem | `DIFERIDO-A:SIN-ASIGNAR` — se listó a nivel de bloque (fila C5, 7 bloques en las 4 olas); ninguna celda lo consume | ninguno | mesa (decidir si algún acto medirá trabajo doméstico) · `NC-…-308c-04` |
+
+Reservas (no son piezas no corridas): el dictamen 2019→2024 del núcleo es `NO-DECIDIBLE` por la regla prerregistrada aunque la lectura (salto uniforme, −18 % a −35 % en 14/14 celdas) apunte a cambio de instrumento — se lleva a mesa en la FP, no se re-dictamina; `cuenta_gen2 = SI` aplicado por la propuesta de dirección §2, confirmación de mesa en la misma FP (c).
