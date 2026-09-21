@@ -19,6 +19,34 @@
 forense/hallazgos.md merge=union
 forense/bitacora.md merge=union
 
+# P-D (`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1`, 21/sep/2026): cuatro
+# candidatos probados por MUTACIÓN REAL con git (`tests/test_tuberia_ids_
+# union.py`, caso G) contra el caso exacto -- una rama edita EN SU SITIO
+# la última fila/entrada (marca FIRMADA, cierra una NC, enmienda un ADR);
+# otra rama AÑADE debajo; se fusiona con union. "Entra" sólo si una guarda
+# YA EXISTENTE atrapa el resultado (nunca al revés):
+#   forense/no-corrido.tsv         -- T47 atrapa (id repetido, ya vivía
+#                                      aquí desde el defecto real FP-406).
+#   forense/firmas-pendientes.tsv  -- T47 atrapa, misma guarda.
+#   canon/gobernanza-v1_15.md      -- T15 atrapa (ADR repetido por número,
+#                                      aunque el texto de las dos copias
+#                                      difiera -- es justo lo que produce
+#                                      esta mutación).
+# canon/registro-rotulos.tsv se probó con la MISMA mutación y quedó FUERA:
+# el archivo SÍ termina duplicado con contenido contradictorio (el riesgo
+# es real), pero NINGUNA guarda de la suite lo vigila hoy (T25 vigila
+# OTROS archivos citando rótulos pelados, no filas repetidas de éste) --
+# se sigue fusionando a mano hasta que exista esa guarda (sucesor).
+forense/no-corrido.tsv merge=union
+forense/firmas-pendientes.tsv merge=union
+canon/gobernanza-v1_15.md merge=union
+
+# La guarda de líneas repetidas (T50, tests/check.py): en todo archivo de
+# arriba declarado merge=union, ninguna línea de >= 200 caracteres aparece
+# dos veces o más -- riesgo residual DECLARADO, no instrumentado más allá
+# de esto (P-D.4): dos ramas que enmiendan A LA VEZ la misma línea con
+# textos DISTINTOS no lo dispara (son líneas distintas, no repetidas).
+
 # hitoD-preregistro-v2_0.md es append-only pero NO entra a union, a propósito:
 # T18/T19c/T20 (tests/check.py) cuentan reglas/líneas de su bloque designado
 # "## Registro de veredictos archivados". Con union, dos ramas que archiven

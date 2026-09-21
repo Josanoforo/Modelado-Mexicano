@@ -8,6 +8,55 @@
 > | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** · detalle ADR-44 a ADR-58 (más ADR-62) en **§0.1**, abajo — el último es **ADR-65** (§4; ADR-59/60/61/63/64/65 no están detallados en §0.1, solo en §4) |
 > | **NOMBRE ESTABLE** | **`gobernanza`** — cítalo así, **nunca por nombre de archivo** |
 
+**ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-01** (primer `ADR` con **raíz de acto** —
+`ADR-<AAMMDD>-<RÓTULO>-<hhhh>-<NN>`, `hhhh` = 4 hex del commit de 0-bis `27078f6` —; por eso
+**no se renumera al fusionar**, aunque otro acto tome un `ADR` numérico mientras éste corre),
+`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1 · LA LÍNEA L0 SE REPARA SIN PÉRDIDA, SE CONGELA Y QUEDA
+VIGILADA · LOS CONTADORES DE ADR DEJAN DE EDITARSE · ADR PASA A RAÍZ DE ACTO · union SÓLO
+DONDE UNA MUTACIÓN LO JUSTIFIQUE`, 21/sep/2026, entorno **NUBE** (`cloud_default`, credenciales
+de Git y publicación de PR, corpus **NO** montado, cero microdato), Sonnet 5, sin sub-agentes,
+**MODO ABIERTO**, **COMPUERTA: ninguna** (no abre dato, no congela spec, no adopta, no borra
+información). Encargo archivado verbatim (A.3) con sello de cuerpo:
+`forense/encargos/2026-09-21-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1.md` + `.cuerpo.sha256`, SHA de
+redacción `9abc7a19` (re-derivado y confirmado idéntico al abrir), raíz de acto `2707`.
+**P-A.** `canon/estado-programa-v1_14.md` pesaba ~27.7 MB (27.2 MB en la línea `L0`, 47 785
+anotaciones con sólo 98 fragmentos distintos por el separador `")* *("` — el resto, copias de
+merges "conservar ambos lados": ×2.00 en `PR #929`, ×3.00 en `PR #936`, ×2.67 en `PR #938`,
+×2.12 en `PR #947`). Reparada: los 98 fragmentos distintos, orden de primera aparición, sellados
+en `canon/L0/HISTORICO.md` (316 KB, sha256 fijado `a7de8944…`). Prueba de no-pérdida contra la
+historia: reconstruida la `L0` en 5 versiones (`V0..V4`=HEAD, commits `d449495`→`1dfb672`→
+`ff73e02`→`04a2edeb`→HEAD, exactamente antes/después de cada salto ×2.00/×3.00/×2.67/×2.12) —
+toda anotación de esas 5 versiones es substring del cuerpo reparado, 0 pérdidas. `estado-programa`
+pasa a 548 KB; su línea `L0` es un puntero corto; los fragmentos por acto futuros viven en
+`canon/L0/<ADR-raíz>.md` (el de este acto: `canon/L0/ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-01.md`);
+vista completa por `python3 tools/l0_vista.py`. Dos guardas permanentes en CI (`tests/check.py`):
+`T48` (ninguna línea de `canon/**/*.md` supera 1 MB) y `T49` (hash de `HISTORICO.md` fijado) —
+ambas ejercidas por mutación con el caso exacto de las ramas en vuelo (fusionar la `L0` vieja
+sobre la reparada, conservando ambos lados): las dos fallan a la vez. **P-B.**
+`tools/cierre_acto.py --aplica` deja de escribir los tres contadores mecánicos (cabecera de
+`gobernanza`, línea `L0`, fila de tabla §0 de `estado-programa`) — quedan HISTÓRICOS; el conteo
+vigente se deriva por `tools/estado_comun.py::adr_max()` o `tools/l0_vista.py --conteo`. Verificado
+con `git status` tras correr `--aplica` sobre el árbol real: sin cambios. **P-C.** `ADR` adopta la
+forma de raíz de acto (misma que `NC`/`FP` desde `D-2`), prospectiva — ningún `ADR` existente
+cambia. `tools/estado_comun.py::adr_max()`/`adr_raiz_candidato()`, `tests/check.py::t15_adr_count()`
+y `tests/bitacora.py` aceptan las dos épocas sin leer una raíz nueva como un `ADR` numérico
+fantasma (el defecto de backtracking: `(?!-)` deja pasar dígitos intermedios, `(?![\d-])` no; y
+el ancho de la época vieja se acota a `{1,3}`, el real del espacio ya cerrado). `.claude/commands/
+acto.md` (los tres sitios que la firma nombra) y `.claude/commands/revisa.md` §2.8 reflejan el
+mecanismo nuevo: un id de raíz nunca se renumera; sólo un numérico en vuelo puede colisionar, y
+entonces se re-acuña con raíz. **P-D.** Cuatro candidatos probados con reproducción REAL de git
+(`tests/test_tuberia_ids_union.py`, caso G) contra el caso exacto (edición en sitio + apéndice +
+`union`): `forense/no-corrido.tsv` y `forense/firmas-pendientes.tsv` — `T47` atrapa (id repetido)
+— **entran** a `union`; `canon/gobernanza-v1_15.md` — `T15` atrapa (ADR repetido por número,
+aunque el texto difiera) — **entra**; `canon/registro-rotulos.tsv` — ninguna guarda vigila filas
+repetidas de este archivo — **queda fuera** hasta un sucesor. `T50` nueva (guarda de líneas
+repetidas ≥ 200 caracteres en archivos `union`, universo derivado de `.gitattributes` como `T46`).
+Riesgo residual declarado, no instrumentado: dos ramas que enmiendan a la vez la MISMA línea con
+textos distintos en un archivo `union`. **Los blobs de 0.8/1.6/4.7/12.8/27 MB quedan en la
+historia de git para siempre** — este acto no reescribe la historia; el CI, que clona con
+profundidad 1, no los sufre; los clones completos sí. `cuenta_gen2 = NO`. **El PR no se fusiona
+en este acto**: queda propuesto; mesa central fusiona.
+
 **ADR-593 (RENUMERADO 591 → 592 → 593: `PR #959` fusionó primero con `ADR-591` y `PR #960` con `ADR-592`; regla de la casa, renumera quien fusiona segundo) · `ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_3 · EL PILOTO 3 CORRE: EMISIONES SELLADAS, PIN, REALIDAD Y VEREDICTO — FALSADOR DÉBIL; NADIE VENCE AL PISO C2, PERO LOS DOS RETADORES CON INTERACCIÓN QUEDAN MÁS CERCA DE R EN PROMEDIO`**, 21/sep/2026, entorno **CAJA** (`ENTORNO-DERIVADO = CAJA`, corpus montado, `archivos_examinados=420`, `encig25_base_datos_csv` COINCIDE), Opus 5, sesión nueva `953594cb` (F3: no es la de `#944`, `#951`, `165ce648` ni `pc0-77`; sin diseños A/B ni careo en contexto), sin sub-agentes, **MODO RÍGIDO**. Encargo archivado (A.3): `forense/encargos/2026-09-21-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_3.md`, 0-bis `3619d28b`, sello de cuerpo `7d82e141…`, raíz de acto `3619`. Base `33d97e12` (= SHA de redacción); `main` se movió 17 commits (`#955`) durante el acto: fusionado en `ea447470` sin conflicto. **CONTADOR: `N_corridas_selladas` 119 → 121 · `cuenta_gen2 = SI` en las dos corridas (`decisiones.tsv:184-185`, heredada por FP-407 c) · `adoptados_activos` 71 → 71 (no adopta) · `celdas_validadas` 73 → 73.** **Compuertas de abrir dato (§8) cumplidas por producto:** P0 en verde (sidecar OK, `pytest` 14/14 con la de oro sobre 2023, `preflight` EMISIONES VERDE y ADJUDICACION BLOQUEADO exactamente por los cuatro de `emisiones_*`, censo de rastros sin 2025 abierto por dos variables); emisiones selladas y en `origin` (`d2488a98`, `git ls-remote` + `git cat-file -e` del `sello.json` en la rama remota) **antes** del COMMIT-3a (`704d5289`, dos líneas `sha256:` y nada más, `preflight` VERDE) y éste antes del COMMIT-3; P2 sin nulos (9 marginales y 80 puntos de candidato no nulos). **El orden del diff es el sello.** **COMMIT-2** `CALC-GOB-DIGITAL-EXE-EMISIONES-0002--bfc2e4b840e3`: 565 RESULT, 40 null exactamente los declarados (16 `C1A-P-IC-LO` + 16 `C1A-P-IC-HI`, causa `SIN-REPLICAS-SELLADAS-2023`; 4 `60-96-<esc>-CONTROL-C2COMP-P` + 4 `-C2-VS-CONTROL-ABS`), 0 no finitos; universo 20 203 trámites de pago de luz; F1-bis: 115 trámites de edad fuera del universo; **S2 (FP-399): código 97 = 1 trámite, fracción 0.000223 en 60+ → `SIN-RESERVA`.** **COMMIT-3** `CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001--704d52894c2f`: 349 RESULT, 0 null, C2 reproducido a 0.0; soporte 2025 **15/15 PUNTUADA** (n de 286 a 3 365; 18-29 × HASTA-PRIMARIA FUERA-DE-SOPORTE ex ante, n=67). **Veredicto con las palabras de la spec v1.1 §4.2: FALSADOR DÉBIL** — nadie vence (Sλ vence a C2 en 3/15, S½ en 3/15, umbral ¾ = 12; 12 INDECIDIBLE cada uno; 0 celdas perdidas) y algún IC de ΔMAE admite > 0.5 pp (Sλ 1.465 pp IC95 [0.439, 2.115]; S½ 1.101 pp IC95 [0.256, 1.484]); MAE vs R: C2 3.411 · Sλ 1.946 · S½ 2.310 · C1a 10.654 · C1b 10.519 pp; Sλ y S½ vencen en las mismas tres celdas (no adjudican «cuánto encoger»); sin marca RESERVA-S2; alcance A.10: C2 sigue adoptado en DIN y TRA. **Para la regla de salida de θ: ningún retador con interacción venció al piso.** Las dos corridas con `verify` y `verifica_aislada` REPRODUCE/IDENTICO, asiento en `forense/replay-evidencia.tsv` antes de publicar y vista por `registro --verifica --escribe --lote` (E.7). Control 60-96 recuperado como **ARITMÉTICA DERIVADA** entre sellados (|C2 − control|: 1.30e-3, 1.01e-3, 5.98e-4, 4.17e-4). Celda-D `GOB.gobierno_digital.encig2025.edad_x_escolaridad` con `unidad_objetivo: evento`, `veredicto: FALSADOR-DEBIL`, `margen_material: 3.411216`, `champion_actual: NINGUNO` (6/6 validan). **Premisa que cayó (logística, no PARO):** «marcador re-derivado (el par deja de estar RESERVADA)» — `marcador_segmento.py --escribe` corre sin diff porque la herramienta sólo levanta la reserva con `champion_actual: C2`; un estado `CONSUMIDA-POR-PILOTO` excede las 10 líneas de latitud y la aserción «emitir no consume»: ensayado y revertido sin commitear; va a mesa (`NC-260921-…-3619-01`: adoptar el piso no vencido, A-bis 6 — recomendada —, vetar, o dejar RESERVADA). `celdas_validadas` no mueve porque `tablero_programa.py` cuenta desde el marcador y dos CALC nombrados (`NC-…-3619-02`). Defecto adyacente (5 líneas, declarado): `tools/corrida0.py::_leer_tsv_derivado` reventaba con `field larger than field limit` por el `resultados_ids` de 209 856 B de `#943`. Pisada ajena de la vista medida columna por columna y nombrada (nota §5): re-derivación desde `decisiones.tsv` y esquema de `usos.tsv` ya en `main`, ninguna de esta sesión. FP-389/399/400 `ejecutada_en` llenas, FP-407 y FP-…-a6f5-01 ampliadas; 14 NC del piloto CERRADAS por objeto, NC-0410/NC-0432 re-apuntadas a mesa. Nota: `forense/notas/2026-09-21-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_3-cierre.md`. `## NO-CORRIDO / RESERVAS`: ver encargo archivado. Rótulo censado.
 **ADR-592 (RENUMERADO 590 → 592: al fusionar, `origin/main` ya traía `ADR-590` propio —`ACTO GEN2-TUBERIA-CI-MEDICION-1`— y `ADR-591` —`ACTO GEN2-RELEVO-TANDA-4`—, ninguno tomado por este acto; regla de la casa, renumera quien fusiona segundo. Renumeración pura: ni una línea de contenido cambia) · `ACTO GEN2-TRAMITE-FIRMAS-4 · LAS OCHO FIRMAS DE MESA DEL 21/SEP QUEDAN EN EL REPO, DOS PDF DE ENIF HISTÓRICO SE OBTIENEN Y LOS DOS DISEÑOS NO ARCHIVADOS QUEDAN DECLARADOS PARO-PREMISA`**, 21/sep/2026, entorno **NUBE `milpa-inegi`** (`CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE=cloud_default`, sonda a `www.inegi.org.mx` → `200`, corpus `data/raw` ausente — esperado en nube), Sonnet 5, sin sub-agentes, **MODO ABIERTO**, **COMPUERTA: ninguna** (§6 del encargo lo declara explícitamente). Encargo archivado (A.3): `forense/encargos/2026-09-21-GEN2-TRAMITE-FIRMAS-4.md`, SHA de redacción `33d97e12`, sello de cuerpo sidecar `.cuerpo.sha256`; base real al abrir `159edaf` (`origin/main` al día, 0 commits de diferencia). `CONTADOR: NO-APLICA` (`cuenta_gen2` no mueve ningún numérico).
 
