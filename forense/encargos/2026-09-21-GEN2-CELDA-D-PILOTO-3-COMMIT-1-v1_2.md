@@ -143,3 +143,14 @@ Lo demás en este encargo es orden sugerido, no compuerta.
 ---
 
 **Falsador de este encargo, a tres meses:** si el COMMIT-2/3 del piloto 3 para en el preflight por una causa que este encargo no nombró, la prueba en seco no bastaba y la exigencia de D-22 tiene que ir más lejos.
+
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| Ninguno. | — | — | — |
+
+Todas las piezas P1–P5 se ejecutaron en la caja; la compuerta de §8 se cumplió (nota §2 y §3). Los dos puntos «para mesa» de §10 (D-22 y el libro vivo) no son piezas de este acto: van a DIRECCIÓN, como el propio encargo lo asigna.
