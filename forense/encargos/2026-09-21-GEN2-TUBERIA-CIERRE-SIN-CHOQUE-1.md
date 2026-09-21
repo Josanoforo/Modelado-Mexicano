@@ -120,3 +120,7 @@ Si en dos semanas hay un solo commit de renumeración de un id con raíz de acto
   **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` — esta sesión NUBE no tiene `gh` con credenciales (verificado: `which gh` sin salida); el propio encargo declara que esto no es PARO.
   **impacto**: ninguno sobre P-A/P-B/P-C/P-D ni sobre los criterios de "hecho" — sólo deja sin responder cuánto de la meta de re-fusiones depende de esa política de `main`.
   **sucesor**: mesa responde directamente, o una sesión con `gh` disponible corre la sonda y lo asienta.
+
+## CONSUMIDO
+
+Ejecutado por esta sesión, PR [Josanoforo/Modelado-Mexicano#962](https://github.com/Josanoforo/Modelado-Mexicano/pull/962) (creado desde la interfaz web sobre la rama `claude/blissful-planck-vdg9k0` de este acto). **No se fusiona en este acto** (§0/§7 del encargo: "El PR no se fusiona en este acto — queda propuesto; mesa central fusiona"). Línea base verde confirmada (`python3 tests/check.py --baseline --parallel`, sin FAIL nuevos frente a `tests/baseline.json`) tras P-A/P-B/P-C/P-D y el fragmento/entrada de gobernanza de este mismo acto (`ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-01`).
