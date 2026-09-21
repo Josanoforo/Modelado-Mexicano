@@ -101,7 +101,7 @@ Si en tres meses el verificador no ha emitido un solo FAIL ni un solo WARN, se a
 
 ## CONSUMIDO
 
-**PR #946** — https://github.com/Josanoforo/Modelado-Mexicano/pull/946 · rama `claude/entorno-6pj9np` · `ADR-582` · 21/sep/2026.
+**PR #946** — https://github.com/Josanoforo/Modelado-Mexicano/pull/946 · rama `claude/entorno-6pj9np` · `ADR-583` · 21/sep/2026.
 
 Publicado y **propuesto a mesa; NO fusionado por el ejecutor** (el encargo lo exige y D-10/paso 9 de `/acto` lo confirma: el merge es la autorización, no un trámite).
 
