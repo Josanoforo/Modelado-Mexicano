@@ -80,6 +80,44 @@ def prueba_adr_max():
         afirma(EC.adr_max(tmp_vacio) == 0, "sin canon/gobernanza-v1_15.md, adr_max debe ser 0")
 
 
+def prueba_adr_max_dos_epocas():
+    """P-C.3 (`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1`, 21/sep/2026): una
+    raíz de acto conviviendo con ADR numéricos no se lee como un ADR
+    numérico fantasma (el defecto de backtracking: `260921-GEN2-…` se
+    leía como `260921`, o retrocediendo, `26092`)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        os.makedirs(os.path.join(tmp, "canon"))
+        ruta = os.path.join(tmp, "canon", "gobernanza-v1_15.md")
+        with open(ruta, "w", encoding="utf-8") as f:
+            f.write("### `gobernanza` · **v1.15** · **5 ADR**\n\n")
+            f.write("**ADR-260921-GEN2-X-1-6e60-01** — entrada de raíz\n\n")
+            f.write("**ADR-3 (derivado...) · ACTO X**, texto.\n\n")
+            f.write("**ADR-5 (derivado...) · ACTO Y**, texto.\n\n")
+            f.write("**ADR-4 (derivado...) · ACTO Z**, texto.\n\n")
+        afirma(EC.adr_max(tmp) == 5,
+               f"la raíz de acto no debe mover el máximo numérico, fue {EC.adr_max(tmp)}")
+
+
+def prueba_adr_raiz_candidato():
+    with tempfile.TemporaryDirectory() as tmp:
+        os.makedirs(os.path.join(tmp, "canon"))
+        import datetime
+        hoy = datetime.date(2026, 9, 21)
+        c1 = EC.adr_raiz_candidato(tmp, "GEN2-X-1", "27078f65c28459a", hoy=hoy)
+        afirma(c1 == "ADR-260921-GEN2-X-1-2707-01", f"primer candidato inesperado: {c1}")
+
+        ruta = os.path.join(tmp, "canon", "gobernanza-v1_15.md")
+        with open(ruta, "w", encoding="utf-8") as f:
+            f.write(f"### `gobernanza` · **v1.15** · **1 ADR**\n\n**{c1}** — ya acuñada\n")
+        c2 = EC.adr_raiz_candidato(tmp, "GEN2-X-1", "27078f65c28459a", hoy=hoy)
+        afirma(c2 == "ADR-260921-GEN2-X-1-2707-02",
+               f"segunda debe incrementar NN sobre el mismo prefijo, fue {c2}")
+
+        import re as _re
+        afirma(_re.fullmatch(EC.RE_ADR_NUEVA, c1) is not None,
+               f"el candidato debe casar la gramática de raíz nueva: {c1}")
+
+
 def prueba_fp_max():
     with tempfile.TemporaryDirectory() as tmp:
         os.makedirs(os.path.join(tmp, "forense"))
@@ -126,6 +164,8 @@ def main():
     prueba_lee_tablero_con_glosa()
     prueba_lee_tablero_ausente()
     prueba_adr_max()
+    prueba_adr_max_dos_epocas()
+    prueba_adr_raiz_candidato()
     prueba_fp_max()
     prueba_ramas_remotas_presentes_respaldo()
     if FAILS:
@@ -133,7 +173,7 @@ def main():
         for m in FAILS:
             print(f"  · {m}")
         return 1
-    print("OK -- test_estado_comun.py: 6 pruebas, 0 fallos")
+    print("OK -- test_estado_comun.py: 8 pruebas, 0 fallos")
     return 0
 
 

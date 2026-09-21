@@ -186,7 +186,11 @@ def cmd_cierra(decidido, bloqueado):
         lineas.append("```")
 
         diff_canon = git("diff", rango, "--", "canon/")
-        adrs = re.findall(r"^\+\*\*(ADR-\d+)", diff_canon, re.M) if diff_canon else []
+        # P-C.3 (`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1`, 21/sep/2026): dos
+        # épocas de id `ADR` -- la nueva PRIMERO, o un `ADR-260921-GEN2-…`
+        # se lee como el numérico fantasma 260921.
+        _re_adr_dos_epocas = r"ADR-\d{6}-GEN2(?:-[A-Z0-9]+)+-[0-9a-f]{4}-\d{2}|ADR-\d{1,3}(?![\d-])"
+        adrs = re.findall(rf"^\+\*\*({_re_adr_dos_epocas})", diff_canon, re.M) if diff_canon else []
         lineas.append("")
         lineas.append(f"**ADRs añadidos:** {', '.join(adrs) if adrs else '(ninguno detectado)'}")
 

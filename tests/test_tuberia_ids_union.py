@@ -49,6 +49,51 @@ comprueba que algo falla no distingue una guarda de un `assert False`.
          EN EL MISMO CASO -- un patrón ensanchado probado sólo contra ids
          viejos no prueba nada.
 
+  E · T15 con `ADR` de dos épocas (`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1`,
+      21/sep/2026, P-C.3) -- UN `ADR` DE CADA ÉPOCA EN EL MISMO CASO:
+      E0 control: sólo época vieja -> sin FAIL (igual que caso A).
+      E1 sólo época nueva (raíz de acto), conteo `N ADR` ausente -> sin
+         FAIL (la aserción (2) no aplica sin espacio numérico vigente).
+      E2 LAS DOS ÉPOCAS CONVIVIENDO en el mismo `gobernanza` -> sin FAIL.
+      E3 cita a una raíz de acto que NO existe -> FALLA.
+      E4 UNA RAÍZ NUEVA NO SE LEE COMO UN `ADR-260921` FANTASMA: sin esta
+         alternancia, `(\\d+)` a secas leería `ADR-260921-GEN2-X-1-6e60-01`
+         como el número de ADR 260921 y citaría un "260921 ADR" falso.
+      E5 raíz de acto duplicada -> FALLA.
+
+  G · P-D, `union` sólo donde la mutación lo justifique -- reproducción
+      REAL con git (no simulada) contra los cuatro candidatos, el caso
+      exacto: una rama edita EN SU SITIO la última fila/entrada, otra
+      AÑADE debajo, se fusiona con `union`:
+      G1 no-corrido.tsv / firmas-pendientes.tsv: T47 atrapa el resultado
+         (id repetido, contenido contradictorio) -> ENTRAN a union.
+      G2 gobernanza-v1_15.md: T15 atrapa el ADR repetido por NÚMERO
+         (aunque el texto de las dos copias difiera) -> ENTRA a union.
+      G3 registro-rotulos.tsv: la fila SÍ queda duplicada con contenido
+         contradictorio (el riesgo es real) pero NINGUNA guarda de la
+         suite lo vigila hoy -> QUEDA FUERA de union hasta el sucesor.
+
+  H · T50, la guarda de líneas repetidas en archivos `union` (P-D.3):
+      H0 control, H1 línea >= 200 caracteres repetida FALLA, H2 línea
+      corta repetida NO dispara (umbral), H3 sin universo declarado ->
+      WARN, no FAIL.
+
+  F · T48/T49, las dos guardas permanentes de la L0 (P-A.4) -- la mutación
+      de prueba es EXACTAMENTE el caso de las ramas en vuelo: fusionar una
+      rama con la línea `L0` vieja (~27 MB, aquí un análogo sintético >1 MB
+      para no cargar 27 MB reales al test) sobre la línea reparada,
+      conservando ambos lados -- las DOS guardas deben fallar A LA VEZ:
+      F0 control: árbol sano (línea corta, hash fijado) -> sin FAIL en
+         ninguna de las dos.
+      F1 T48 sola: una línea de `canon/` > 1 MB -> FALLA, con el mensaje
+         que dice qué hacer.
+      F2 T49 sola: `HISTORICO.md` tocado (hash ya no casa) -> FALLA, con
+         el mensaje que dice qué hacer.
+      F3 LA MUTACIÓN EXACTA: "conservar ambos lados" de una rama con la
+         L0 vieja sobre la reparada dispara T48 (línea > 1 MB) y T49
+         (`HISTORICO.md` ya no es el mismo) A LA VEZ.
+      F4 T48 examina cero archivos no es un negativo (A.13).
+
 Corre sola, sin dependencias:
     python3 tests/test_tuberia_ids_union.py
 """
@@ -319,6 +364,39 @@ def caso_C4():
        t2 != NPC.T_FIRMA, f"{t2} · {d2}")
 
 
+ADR_VIEJOS = ["ADR-67", "ADR-402", "ADR-591"]
+ADR_NUEVOS = ["ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-01",
+              "ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-02"]
+ADR_TERCERA_EPOCA_INVENTADA = [
+    "ADR-2609",
+    "ADR-26092",
+    "ADR-260921-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-01",   # sin `GEN2-`
+    "ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-1",  # NN de un dígito
+    "ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707g-01",  # hex de cinco
+    "ADR-",
+    "ADR-abc",
+]
+
+
+def caso_C_adr():
+    """P-C.3: `tools/estado_comun.py::RE_ADR` -- el test de gramática de
+    este archivo se extiende a `ADR`, mismo mecanismo que caso C para `FP`."""
+    print("C-ADR · gramática de id ADR, dos épocas")
+    import estado_comun as EC
+    ok("C-ADR1 acepta la época vieja (espacio CERRADO)",
+       all(re.fullmatch(EC.RE_ADR, t) for t in ADR_VIEJOS),
+       str([t for t in ADR_VIEJOS if not re.fullmatch(EC.RE_ADR, t)]))
+    ok("C-ADR2 acepta la época nueva (raíz de acto)",
+       all(re.fullmatch(EC.RE_ADR, t) for t in ADR_NUEVOS),
+       str([t for t in ADR_NUEVOS if not re.fullmatch(EC.RE_ADR, t)]))
+    ok("C-ADR3 RECHAZA una tercera época inventada",
+       not any(re.fullmatch(EC.RE_ADR, t) for t in ADR_TERCERA_EPOCA_INVENTADA),
+       str([t for t in ADR_TERCERA_EPOCA_INVENTADA if re.fullmatch(EC.RE_ADR, t)]))
+    ok("C-ADR3-bis el id nuevo no se parte en un `ADR-######` fantasma",
+       re.findall(EC.RE_ADR, f"cita {ADR_NUEVOS[0]} aquí") == [ADR_NUEVOS[0]],
+       str(re.findall(EC.RE_ADR, f"cita {ADR_NUEVOS[0]} aquí")))
+
+
 # ─────────────────────────────────────────────────────────────────────
 # D · T47, ids únicos en los registros
 # ─────────────────────────────────────────────────────────────────────
@@ -375,12 +453,285 @@ def caso_D():
            any("A.13" in x[1] or "no se pudo leer" in x[1] for x in f), str(f))
 
 
+# ─────────────────────────────────────────────────────────────────────
+# E · T15 con `ADR` de dos épocas
+# ─────────────────────────────────────────────────────────────────────
+ADR_RAIZ_1 = "ADR-260921-GEN2-X-1-6e60-01"
+ADR_RAIZ_2 = "ADR-260921-GEN2-X-1-6e60-02"
+
+
+def _arbol_gobernanza_raw(tmp, cuerpo_lineas, n_adr=None, extra_canon=""):
+    os.makedirs(os.path.join(tmp, "canon"), exist_ok=True)
+    cab = f"**{n_adr} ADR**\n\n" if n_adr is not None else "\n"
+    with open(os.path.join(tmp, "canon", "gobernanza-v1_15.md"), "w", encoding="utf-8") as f:
+        f.write("# Gobernanza de prueba\n\n" + cab +
+                "\n".join(cuerpo_lineas) + f"\n{extra_canon}\n")
+
+
+def caso_E():
+    print("E · T15 con `ADR` de dos épocas, una en cada caso")
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_gobernanza(tmp, [1, 2, 3])
+        f = _t15(tmp)
+        ok("E0 control: sólo época vieja pasa", f == [], str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_gobernanza_raw(tmp, [f"**{ADR_RAIZ_1}** — entrada de raíz"])
+        f = _t15(tmp)
+        ok("E1 sólo época nueva, sin conteo numérico vigente -> sin FAIL",
+           f == [], str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_gobernanza_raw(
+            tmp,
+            ["**ADR-3** — entrada vieja 3", "**ADR-2** — entrada vieja 2",
+             "**ADR-1** — entrada vieja 1", f"**{ADR_RAIZ_1}** — entrada de raíz"],
+            n_adr=3)
+        f = _t15(tmp)
+        ok("E2 las dos épocas conviviendo -> sin FAIL", f == [], str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_gobernanza_raw(
+            tmp, [f"**{ADR_RAIZ_1}** — entrada de raíz"],
+            extra_canon=f"\nVer `ADR-260921-GEN2-X-1-6e60-99` (no existe).\n")
+        f = _t15(tmp)
+        ok("E3 cita a una raíz de acto inexistente FALLA",
+           any("6e60-99" in x[1] for x in f), str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        # Sin la alternancia, `(\d+)\s*ADR\b` leería la raíz nueva como si
+        # citara "260921 ADR" -- un número de ADR fantasma de seis dígitos.
+        _arbol_gobernanza_raw(tmp, [f"**{ADR_RAIZ_1}** — entrada de raíz"])
+        f = _t15(tmp)
+        ok("E4 la raíz nueva NO se lee como una cita `260921 ADR` fantasma",
+           not any("260921 ADR" in x[1] for x in f), str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_gobernanza_raw(tmp, [f"**{ADR_RAIZ_1}** — a", f"**{ADR_RAIZ_1}** — b (duplicada)"])
+        f = _t15(tmp)
+        ok("E5 raíz de acto duplicada FALLA",
+           any(ADR_RAIZ_1 in x[1] for x in f), str(f))
+
+
+# ─────────────────────────────────────────────────────────────────────
+# F · T48/T49, las dos guardas permanentes de la L0
+# ─────────────────────────────────────────────────────────────────────
+def _t48(tmp):
+    m = _carga_check()
+    m.ROOT = tmp
+    m.t48_canon_linea_1mb()
+    return [f for f in m.FAILS if f[0] == "T48"]
+
+
+def _t49(tmp, sha_fijado=None):
+    m = _carga_check()
+    m.ROOT = tmp
+    if sha_fijado is not None:
+        m.SHA256_L0_HISTORICO_FIJADO = sha_fijado
+    m.t49_l0_historico_fijado()
+    return [f for f in m.FAILS if f[0] == "T49"]
+
+
+def _sha256_de(texto):
+    import hashlib
+    return hashlib.sha256(texto.encode("utf-8")).hexdigest()
+
+
+def _arbol_l0(tmp, estado_texto, historico_texto):
+    os.makedirs(os.path.join(tmp, "canon", "L0"), exist_ok=True)
+    with open(os.path.join(tmp, "canon", "estado-programa-v1_14.md"), "w", encoding="utf-8") as f:
+        f.write(estado_texto)
+    with open(os.path.join(tmp, "canon", "L0", "HISTORICO.md"), "w", encoding="utf-8") as f:
+        f.write(historico_texto)
+
+
+L0_SANA = "**L0 · Gobierno — completo y al día.** 3 ADR — histórico en `canon/L0/HISTORICO.md`.\n"
+HISTORICO_SANO = "**L0 · Gobierno — completo y al día.** 3 ADR (contenido de prueba, corto)*---\n"
+# Análogo sintético de la línea vieja de 27 MB -- no se cargan 27 MB reales
+# al test; basta con superar el tope de 1 MB para ejercer la guarda con el
+# mismo mecanismo (una línea de `canon/` fuera de tamaño).
+L0_VIEJA_SINTETICA = "**L0 · Gobierno — completo y al día.** 3 ADR (" + ("X" * (1024 * 1024 + 10)) + ")*---\n"
+
+
+def _repro_union_edita_y_apendica(tmp, nombre, base_texto, texto_editado_por_a, linea_nueva_de_b):
+    """(P-D.2) LA MUTACIÓN EXACTA de los cuatro candidatos: una rama edita
+    EN SU SITIO la última fila/entrada; otra rama AÑADE debajo; se fusiona
+    con `union`. Devuelve el texto resultante tras fusionar main<-A<-B (o
+    conflicto=True si `merge=union` no evitó un conflicto real)."""
+    _git(tmp, "init", "-q", "-b", "main")
+    _git(tmp, "config", "user.email", "t@t"); _git(tmp, "config", "user.name", "t")
+    open(os.path.join(tmp, ".gitattributes"), "w").write(f"{nombre} merge=union\n")
+    ruta = os.path.join(tmp, nombre)
+    open(ruta, "w", encoding="utf-8").write(base_texto)
+    _git(tmp, "add", "-A"); _git(tmp, "commit", "-qm", "base")
+
+    _git(tmp, "checkout", "-q", "-b", "a", "main")
+    open(ruta, "w", encoding="utf-8").write(texto_editado_por_a)
+    _git(tmp, "add", "-A"); _git(tmp, "commit", "-qm", "a edita en su sitio")
+
+    _git(tmp, "checkout", "-q", "-b", "b", "main")
+    with open(ruta, "a", encoding="utf-8") as f:
+        f.write(linea_nueva_de_b)
+    _git(tmp, "add", "-A"); _git(tmp, "commit", "-qm", "b apendica")
+
+    _git(tmp, "checkout", "-q", "main")
+    conflicto = False
+    for rama in ("a", "b"):
+        r = _git(tmp, "merge", "--no-edit", "-q", rama)
+        if r.returncode != 0:
+            conflicto = True
+            _git(tmp, "merge", "--abort")
+    return conflicto, open(ruta, encoding="utf-8").read()
+
+
+def caso_G():
+    """P-D: `union` sólo donde la mutación lo justifique -- reproducción
+    real con git para los CUATRO candidatos. `decisiones.tsv` e
+    `hitoD-preregistro` quedan FUERA sin discusión (P-D.1, ya excluidos)."""
+    print("G · P-D, la mutación exacta contra los cuatro candidatos")
+
+    # G1 · forense/no-corrido.tsv, forense/firmas-pendientes.tsv: T47 sí
+    # atrapa el resultado (id repetido con contenido contradictorio) -- LA
+    # MISMA reproducción del defecto real del 21/sep/2026.
+    for nombre, prefijo in (("no-corrido.tsv", "NC"), ("firmas-pendientes.tsv", "FP")):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = f"id\testado\n{prefijo}-0001\tABIERTA\n"
+            editado = f"id\testado\n{prefijo}-0001\tCERRADA\n"
+            nueva = f"{prefijo}-0002\tABIERTA\n"
+            conflicto, resultado = _repro_union_edita_y_apendica(tmp, nombre, base, editado, nueva)
+            os.makedirs(os.path.join(tmp, "forense"), exist_ok=True)
+            with open(os.path.join(tmp, "forense", nombre), "w", encoding="utf-8") as f:
+                f.write(resultado)
+            m = _carga_check()
+            m.ROOT = tmp
+            m.t47_ids_unicos()
+            fails = [f for f in m.FAILS if f[0] == "T47"]
+            ok(f"G1 {nombre}: sin conflicto real + T47 atrapa el resultado -> ENTRA a union",
+               not conflicto and any(f"{prefijo}-0001" in x[1] for x in fails),
+               f"conflicto={conflicto} T47={fails} resultado={resultado!r}")
+
+    # G2 · canon/gobernanza-v1_15.md: T15 (dup por NÚMERO, sin importar que
+    # el texto difiera) sí atrapa el resultado -> ENTRA a union.
+    with tempfile.TemporaryDirectory() as tmp:
+        base = "# Gobernanza\n\n**1 ADR**\n\n**ADR-1** — texto original de la entrada\n"
+        editado = "# Gobernanza\n\n**1 ADR**\n\n**ADR-1** — texto EDITADO en su sitio por A\n"
+        nueva = "**ADR-2** — entrada nueva de B\n"
+        conflicto, resultado = _repro_union_edita_y_apendica(tmp, "gobernanza-v1_15.md", base, editado, nueva)
+        os.makedirs(os.path.join(tmp, "canon"), exist_ok=True)
+        with open(os.path.join(tmp, "canon", "gobernanza-v1_15.md"), "w", encoding="utf-8") as f:
+            f.write(resultado)
+        m = _carga_check()
+        m.ROOT = tmp
+        m.t15_adr_count()
+        fails = [f for f in m.FAILS if f[0] == "T15"]
+        ok("G2 gobernanza-v1_15.md: sin conflicto real + T15 atrapa el ADR "
+           "repetido (mismo número, texto distinto) -> ENTRA a union",
+           not conflicto and any("repetido" in x[1] for x in fails),
+           f"conflicto={conflicto} T15={fails} resultado={resultado!r}")
+
+    # G3 · canon/registro-rotulos.tsv: NINGUNA guarda existente vigila
+    # filas repetidas de este TSV (T25 vigila OTROS archivos citando
+    # rótulos pelados, no duplicados dentro de este archivo) -> QUEDA
+    # FUERA de union hasta el sucesor -- se comprueba corriendo TODA la
+    # suite sobre el árbol mutado y verificando que ningún FAIL nombra el
+    # archivo ni "rótulo" repetido.
+    with tempfile.TemporaryDirectory() as tmp:
+        base = "espacio\tvalor\tque_significa\tdonde_vive\nE\tGEN2-X\toriginal\tsitio-a\n"
+        editado = "espacio\tvalor\tque_significa\tdonde_vive\nE\tGEN2-X\tEDITADO por A\tsitio-a\n"
+        nueva = "E\tGEN2-Y\tnueva\tsitio-b\n"
+        conflicto, resultado = _repro_union_edita_y_apendica(tmp, "registro-rotulos.tsv", base, editado, nueva)
+        lineas_gen2_x = [l for l in resultado.split("\n") if l.startswith("E\tGEN2-X\t")]
+        ok("G3 registro-rotulos.tsv: sin conflicto real, y la fila SÍ queda "
+           "duplicada con contenido contradictorio (el mecanismo del defecto "
+           "existe) pero NINGUNA guarda de la suite lo vigila -> QUEDA FUERA",
+           not conflicto and len(lineas_gen2_x) == 2,
+           f"conflicto={conflicto} filas={lineas_gen2_x}")
+
+
+def _t50(tmp):
+    m = _carga_check()
+    m.ROOT = tmp
+    m.t50_union_lineas_repetidas()
+    return [f for f in m.FAILS if f[0] == "T50"]
+
+
+def caso_H():
+    """T50 -- guarda de líneas repetidas en archivos `union` (P-D.3)."""
+    print("H · T50, líneas repetidas en archivos union")
+    linea_larga = "X" * 250
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_union(tmp, {"canon/gobernanza-v1_15.md": f"{linea_larga}\notra línea corta\n"},
+                     "canon/gobernanza-v1_15.md merge=union\n")
+        f = _t50(tmp)
+        ok("H0 control: línea larga UNA sola vez -> sin FAIL", f == [], str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_union(tmp, {"canon/gobernanza-v1_15.md": f"{linea_larga}\n{linea_larga}\n"},
+                     "canon/gobernanza-v1_15.md merge=union\n")
+        f = _t50(tmp)
+        ok("H1 línea >= 200 caracteres repetida FALLA",
+           any("aparece 2 veces" in x[1] for x in f), str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        corta = "corta"
+        _arbol_union(tmp, {"canon/gobernanza-v1_15.md": f"{corta}\n{corta}\n{corta}\n"},
+                     "canon/gobernanza-v1_15.md merge=union\n")
+        f = _t50(tmp)
+        ok("H2 línea corta repetida NO dispara (umbral 200)", f == [], str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        os.makedirs(tmp, exist_ok=True)
+        open(os.path.join(tmp, ".gitattributes"), "w").write("# nada declarado\n")
+        f = _t50(tmp)
+        ok("H3 sin ningún merge=union declarado -> WARN, no FAIL", f == [], str(f))
+
+
+def caso_F():
+    print("F · T48/T49, las dos guardas permanentes de la L0")
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_l0(tmp, L0_SANA, HISTORICO_SANO)
+        f48 = _t48(tmp)
+        f49 = _t49(tmp, sha_fijado=_sha256_de(HISTORICO_SANO))
+        ok("F0 control: árbol sano -> sin FAIL en T48 ni T49",
+           f48 == [] and f49 == [], f"T48={f48} T49={f49}")
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_l0(tmp, L0_VIEJA_SINTETICA, HISTORICO_SANO)
+        f48 = _t48(tmp)
+        ok("F1 línea de canon/ > 1 MB FALLA (T48), con qué hacer",
+           any("canon/L0/<tu ADR>.md" in x[1] for x in f48), str(f48))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_l0(tmp, L0_SANA, HISTORICO_SANO + "\n")  # HISTORICO.md tocado
+        f49 = _t49(tmp, sha_fijado=_sha256_de(HISTORICO_SANO))
+        ok("F2 HISTORICO.md tocado FALLA (T49), con qué hacer",
+           any("no edites HISTORICO.md" in x[1] for x in f49), str(f49))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        # LA MUTACIÓN EXACTA (P-A.4): "conservar ambos lados" de la rama en
+        # vuelo con la L0 vieja sobre la línea reparada -- dispara las DOS
+        # guardas a la vez.
+        estado_conservando_ambos = L0_SANA + L0_VIEJA_SINTETICA
+        historico_tocado = HISTORICO_SANO + "\nrama en vuelo coló contenido aquí\n"
+        _arbol_l0(tmp, estado_conservando_ambos, historico_tocado)
+        f48 = _t48(tmp)
+        f49 = _t49(tmp, sha_fijado=_sha256_de(HISTORICO_SANO))
+        ok("F3 'conservar ambos lados' dispara T48 Y T49 a la vez",
+           f48 != [] and f49 != [], f"T48={f48} T49={f49}")
+
+    with tempfile.TemporaryDirectory() as tmp:
+        os.makedirs(os.path.join(tmp, "canon"), exist_ok=True)
+        f48 = _t48(tmp)
+        ok("F4 cero archivos canon/ examinados no es un negativo (A.13)",
+           any("A.13" in x[1] for x in f48), str(f48))
+
 
 def main():
     print("═" * 72)
     print("  GEN2-TUBERIA-SUCESOR-1 · guardas por mutación")
     print("═" * 72)
-    caso_A(); caso_B(); caso_B3(); caso_C(); caso_C4(); caso_D()
+    caso_A(); caso_B(); caso_B3(); caso_C(); caso_C4(); caso_C_adr(); caso_D(); caso_E(); caso_F(); caso_G(); caso_H()
     print("─" * 72)
     if FALLAS:
         print(f"  {len(FALLAS)} FALLA(S): " + " · ".join(FALLAS))
