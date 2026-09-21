@@ -868,7 +868,14 @@ MARCA_HISTORICA = r"`?\s*\{cita-historica\}"
 # un `ADR` de cada época pinado en el mismo caso.
 # ───────────────────────────────────────────────────────────────
 RE_ADR_NUEVA = r"ADR-\d{6}-GEN2(?:-[A-Z0-9]+)+-[0-9a-f]{4}-\d{2}"
-RE_ADR_VIEJA = r"ADR-\d+(?![\d\-A-Za-z])"
+# Ancho `{1,3}`, no tecleado: ancho real del espacio ya CERRADO (99 de
+# ancho 2, 492 de ancho 3, ninguno más ancho -- derivado 21/sep/2026 de
+# `grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+'
+# | awk '{print length($1)}' | sort | uniq -c`). Sin este tope, un
+# `ADR-2609` de 4 dígitos coincidía con la rama vieja como un ADR numérico
+# válido en vez de rechazarse como tercera época inventada -- mismo
+# mecanismo que `RE_FP_VIEJA` en `tools/nc_por_clase.py`.
+RE_ADR_VIEJA = r"ADR-\d{1,3}(?![\d\-A-Za-z])"
 RE_ADR = rf"(?:{RE_ADR_NUEVA}|{RE_ADR_VIEJA})"
 
 

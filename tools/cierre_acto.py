@@ -128,11 +128,41 @@ def _rama_trae_adr(rama, candidato, raiz=RAIZ):
     return f"**ADR-{candidato}" in salida
 
 
+def _commit_0bis(raiz=RAIZ):
+    """El commit de 0-bis: el primer commit de ESTA rama desde que divergió
+    de `origin/main` (P-C.2 -- "deriva la raíz del commit de 0-bis, que
+    existe antes de acuñar"). `None` si no se puede derivar (rama no
+    diverge de `origin/main`, o hay 0 commits propios todavía)."""
+    rc, base, _ = _corre(["git", "merge-base", "origin/main", "HEAD"], raiz)
+    if rc != 0:
+        return None
+    rc, salida, _ = _corre(
+        ["git", "log", "--reverse", "--format=%H", f"{base.strip()}..HEAD"], raiz)
+    if rc != 0:
+        return None
+    primeros = [l for l in salida.splitlines() if l.strip()]
+    return primeros[0] if primeros else None
+
+
 def inspeccion_adr(ramas_presentes, raiz=RAIZ):
     real = EC.adr_max(raiz)
     candidato = real + 1
     por_rama = {r: _rama_trae_adr(r, candidato, raiz) for r in ramas_presentes}
-    return {"real": real, "candidato": candidato, "candidato_en_rama": por_rama}
+    # P-C.2: el candidato VIGENTE es de raíz de acto, no `max+1` -- el
+    # numérico queda como dato histórico/informativo (espacio CERRADO,
+    # D-2), reportado para que quien cierra vea que dejó de ser lo que se
+    # acuña.
+    commit_0bis = _commit_0bis(raiz)
+    rotulo = inspeccion_rotulo(raiz)["rotulo_esperado"]
+    candidato_raiz = (EC.adr_raiz_candidato(raiz, rotulo, commit_0bis)
+                       if commit_0bis and rotulo else None)
+    return {
+        "real": real,
+        "candidato": candidato,
+        "candidato_en_rama": por_rama,
+        "commit_0bis": commit_0bis,
+        "candidato_raiz": candidato_raiz,
+    }
 
 
 def inspeccion_fp(raiz=RAIZ):
@@ -310,8 +340,16 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True,
     print("    NOTA: una rama presente no implica PR abierto ni trabajo sin fusionar.")
     print()
     print("ADR")
-    print(f"  Real (comando de la casa): {adr['real']}")
-    print(f"  Candidato: {adr['candidato']}")
+    print(f"  Real numérico (espacio CERRADO, D-2): {adr['real']}")
+    print(f"  Candidato de RAÍZ DE ACTO (P-C, vigente): "
+          f"{adr['candidato_raiz'] or 'NO DERIVABLE (falta 0-bis o rótulo)'}"
+          f" -- 0-bis: {adr['commit_0bis'] or '(ninguno todavía)'}")
+    if adr["candidato_raiz"] and "-GEN2" not in adr["candidato_raiz"]:
+        print("  ⚠ el rótulo derivado de la RAMA no trae `GEN2` -- la gramática de "
+              "dos épocas (RE_ADR_NUEVA) exige `ADR-<AAMMDD>-GEN2…`; si el rótulo real "
+              "del acto (el del encargo) sí lo trae, acuña con ESE, no con el derivado "
+              "de la rama (best-effort, ver `inspeccion_rotulo`)")
+    print(f"  Candidato numérico histórico (ya NO se acuña, informativo): {adr['candidato']}")
     if adr["candidato_en_rama"]:
         print("  ¿Candidato ya redactado en alguna rama remota accesible?")
         for rama, estado in adr["candidato_en_rama"].items():

@@ -424,40 +424,57 @@ divergen precisamente porque en su día entraron sin universo.
 sobre México que entra al corpus o al canon — que es la clase que `T06`
 lleva contando y la casa no quiere seguir pagando.
 
-### 2.8 · ADR/FP candidatos, y renumeración si `main` se movió
+### 2.8 · ADR/FP/NC candidatos — raíz de acto (P-C, `ACTO
+    GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1`, 21/sep/2026): un id con raíz nunca
+    se renumera
+
+Desde ese acto, `ADR` (igual que `NC`/`FP` desde antes, D-2) acuña con
+raíz: `ADR-<AAMMDD>-<RÓTULO>-<hhhh>-<NN>`, `hhhh` = 4 hex del commit de
+0-bis. **Un id con raíz de acto no se renumera nunca** — colisión,
+contigüidad y cabeceras de conteo dejaron de ser problema para él por
+construcción.
 
 ```
-# sobre la vista previa
-grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | tail -1
-grep -oE 'FP-[0-9]+' forense/firmas-pendientes.tsv | grep -oE '[0-9]+' | sort -n | tail -1
-# contra origin/main, para detectar colisión
+# candidato de raíz de este PR (lo deriva tools/estado_comun.py::adr_raiz_candidato)
+python3 -c "import sys; sys.path.insert(0,'tools'); import estado_comun as EC; \
+  print(EC.adr_raiz_candidato('.', '<RÓTULO>', '<sha 0-bis>'))"
+# ids de raíz ya acuñados con este mismo prefijo, para ver el NN vigente
+grep -oE '\*\*ADR-[0-9]{6}-[A-Z0-9-]+-[0-9a-f]{4}-[0-9]{2}' canon/gobernanza-v1_15.md
+```
+
+**Un id NUMÉRICO acuñado antes del cierre que choque** (espacio viejo,
+CERRADO desde P-C: sólo puede chocar un candidato que alguien haya
+tomado ANTES de este acto, en vuelo) sigue la regla vieja: el PR que
+fusiona segundo **se re-acuña con raíz**, nunca renumera el numérico de
+otro. Si eso ocurre:
+
+```
 git show origin/main:canon/gobernanza-v1_15.md | grep -oE '^\*\*ADR-[0-9]+' | grep -oE '[0-9]+' | sort -n | tail -1
-git show origin/main:forense/firmas-pendientes.tsv | grep -oE 'FP-[0-9]+' | grep -oE '[0-9]+' | sort -n | tail -1
-# contigüidad: sin huecos
-grep -oE '^\*\*ADR-[0-9]+' canon/gobernanza-v1_15.md | grep -oE '[0-9]+' | sort -n | uniq | awk 'NR>1 && $1 != prev+1 {print "hueco: " prev " -> " $1} {prev=$1}'
 ```
 
-Cuatro comprobaciones:
+Tres comprobaciones:
 
-1. **Colisión.** Si `origin/main` ya tiene el número que el PR
-   candidatea, **el PR fusiona segundo y renumera** — regla de la casa.
-   No es hipotética: `MAESTRA33-E3` renumeró `ADR-242→243` y
-   `FP-209→210` porque `PR #414` fusionó primero, y con el número se
-   movieron sus **tres** referencias cruzadas.
-2. **Referencias cruzadas.** Renumerar y olvidar una cita deja el canon
-   apuntando a un ADR que es otro. Búscalas todas:
-   `grep -rn "ADR-<viejo>" canon/ forense/ .claude/` y declara el
+1. **Colisión sobre un candidato NUMÉRICO en vuelo.** Si `origin/main`
+   ya tiene el número que el PR candidateaba, ese PR se re-acuña con
+   raíz (no renumera) y **sus referencias cruzadas** (si redactó alguna
+   cita al número candidato antes de fusionar) se corrigen a la raíz
+   nueva: `grep -rn "ADR-<viejo>" canon/ forense/ .claude/` y declara el
    conteo de archivos examinados.
-3. **Contigüidad.** Sin huecos.
-4. **Cabeceras de conteo.** El `**N ADR**` de `canon/gobernanza-v1_15.md`
-   línea 2 y el conteo de la línea `L0` de la ÚNICA FUENTE DE ESTADO vigente
-   (`canon/estado-programa-v1_11.md`; `v1_10` retirada del árbol por `T01`,
-   ver `ADR-301`) tienen que **coincidir entre sí** y
-   con el máximo re-derivado.
+2. **Gramática de dos épocas.** Todo `ADR-…` citado en el diff resuelve
+   en su propia época (numérica vieja o raíz nueva) — mismo mecanismo
+   que `RE_FP`/`RE_ADR` de `tests/check.py`/`tools/estado_comun.py`; un
+   id de raíz mal formado (rótulo sin `GEN2`, hex en mayúscula, `NN` de
+   un dígito) no casa ninguna de las dos y `T15` lo marca colgante.
+3. **Cabeceras de conteo — HISTÓRICAS (P-B).** El `**N ADR**` de
+   `canon/gobernanza-v1_15.md` línea 2 y el conteo de la línea `L0` de la
+   ÚNICA FUENTE DE ESTADO vigente (`canon/estado-programa-v1_14.md`) ya
+   NO se reconcilian por PR — `cierre_acto.py --aplica` dejó de
+   escribirlos (P-B). Un PR que SÍ los edita a mano es el error: el
+   conteo vigente se deriva por `EC.adr_max()`, nunca se teclea.
 
-**Peso: `BLOQUEA`** para colisión no renumerada, referencia cruzada
-huérfana y cabeceras descuadradas — los tres meten al canon un error que
-sobrevive al merge. `RESERVA` para hueco de contigüidad.
+**Peso: `BLOQUEA`** para colisión numérica no re-acuñada con raíz,
+referencia cruzada huérfana, id de raíz mal formado, y edición a mano de
+las cabeceras de conteo (P-B, ya HISTÓRICAS).
 
 ### 2.9 · `tests/check.py --baseline` sobre la vista previa
 

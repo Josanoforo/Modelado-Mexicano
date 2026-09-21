@@ -347,6 +347,39 @@ def caso_C4():
        t2 != NPC.T_FIRMA, f"{t2} · {d2}")
 
 
+ADR_VIEJOS = ["ADR-67", "ADR-402", "ADR-591"]
+ADR_NUEVOS = ["ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-01",
+              "ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-02"]
+ADR_TERCERA_EPOCA_INVENTADA = [
+    "ADR-2609",
+    "ADR-26092",
+    "ADR-260921-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-01",   # sin `GEN2-`
+    "ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-1",  # NN de un dígito
+    "ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707g-01",  # hex de cinco
+    "ADR-",
+    "ADR-abc",
+]
+
+
+def caso_C_adr():
+    """P-C.3: `tools/estado_comun.py::RE_ADR` -- el test de gramática de
+    este archivo se extiende a `ADR`, mismo mecanismo que caso C para `FP`."""
+    print("C-ADR · gramática de id ADR, dos épocas")
+    import estado_comun as EC
+    ok("C-ADR1 acepta la época vieja (espacio CERRADO)",
+       all(re.fullmatch(EC.RE_ADR, t) for t in ADR_VIEJOS),
+       str([t for t in ADR_VIEJOS if not re.fullmatch(EC.RE_ADR, t)]))
+    ok("C-ADR2 acepta la época nueva (raíz de acto)",
+       all(re.fullmatch(EC.RE_ADR, t) for t in ADR_NUEVOS),
+       str([t for t in ADR_NUEVOS if not re.fullmatch(EC.RE_ADR, t)]))
+    ok("C-ADR3 RECHAZA una tercera época inventada",
+       not any(re.fullmatch(EC.RE_ADR, t) for t in ADR_TERCERA_EPOCA_INVENTADA),
+       str([t for t in ADR_TERCERA_EPOCA_INVENTADA if re.fullmatch(EC.RE_ADR, t)]))
+    ok("C-ADR3-bis el id nuevo no se parte en un `ADR-######` fantasma",
+       re.findall(EC.RE_ADR, f"cita {ADR_NUEVOS[0]} aquí") == [ADR_NUEVOS[0]],
+       str(re.findall(EC.RE_ADR, f"cita {ADR_NUEVOS[0]} aquí")))
+
+
 # ─────────────────────────────────────────────────────────────────────
 # D · T47, ids únicos en los registros
 # ─────────────────────────────────────────────────────────────────────
@@ -547,7 +580,7 @@ def main():
     print("═" * 72)
     print("  GEN2-TUBERIA-SUCESOR-1 · guardas por mutación")
     print("═" * 72)
-    caso_A(); caso_B(); caso_B3(); caso_C(); caso_C4(); caso_D(); caso_E(); caso_F()
+    caso_A(); caso_B(); caso_B3(); caso_C(); caso_C4(); caso_C_adr(); caso_D(); caso_E(); caso_F()
     print("─" * 72)
     if FALLAS:
         print(f"  {len(FALLAS)} FALLA(S): " + " · ".join(FALLAS))
