@@ -144,3 +144,7 @@ Falsador de este encargo, a tres meses: si el sucesor 1 (marginales de crédito 
 | Regeneración completa de `forense/analisis/ci-guardias/censo-tests.tsv` con `--censo` | `FUERA-DE-PERÍMETRO`: en esta caja reclasifica 74 filas ajenas (numpy/pandas presentes); es del acto `GEN2-CI-GUARDIAS-VIVAS-1` o de quien gobierne el censo. Aquí se añadió sólo la fila del test propio | ninguno para este acto; `--ejecuta-huerfanos` → 0 fallidos, 0 huérfanos nuevos | SIN-ASIGNAR |
 
 Piezas P1, P3, P4, P5, P6, P7 y la cascada de cierre: corridas completas. La rama de P5 («K4b no separable en ninguna ola») no se abrió porque K4(a)/(b) es separable en 2018/2021/2024.
+
+## CONSUMIDO
+
+Ejecutado por `PR #932` (rama `acto/gen2-din-credito-comparabilidad-texto-1`, 20/sep/2026, CAJA, Opus). `ADR-570`, `NC-0428`–`NC-0430`, `FP-402`. Entregable: `data/credito-comparabilidad-texto-v1_0.tsv` + `.meta`, `tests/test_credito_comparabilidad_texto.py`, `forense/notas/2026-09-20-GEN2-DIN-CREDITO-COMPARABILIDAD-TEXTO-1-cierre.md`. Merge de mesa pendiente.
