@@ -208,6 +208,26 @@ jobs:
           python3 tests/test_marcador_segmento.py
           python3 tests/test_estimadores_segmento.py
 
+      - name: comparabilidad por texto de crédito ENIF — forma de la tabla K1-K8 × 5 olas (bloqueante)
+        # ACTO GEN2-DIN-CREDITO-COMPARABILIDAD-TEXTO-1 (20/sep/2026): mismo
+        # motivo que los pasos de arriba (NC-0331) -- un test que nadie cablea
+        # es decoración. Corre PRIMERO el caso sintético (D-22) y después la
+        # tabla real `data/credito-comparabilidad-texto-v1_0.tsv`: 40 filas,
+        # veredictos en lista cerrada, toda fila negativa con texto buscado.
+        # Stdlib puro, cero microdato.
+        run: python3 tests/test_credito_comparabilidad_texto.py
+
+      - name: métrica rectora — celdas_validadas en la primera línea del tablero (bloqueante)
+        # ACTO GEN2-SENAL-1 (21/sep/2026) · P1. `celdas_validadas` es la métrica
+        # rectora por firma de mesa del 20/sep/2026. El test pina los DOS
+        # defectos que el acto encontró en el árbol: (1) las 89 filas IDENTICO
+        # tienen M == R por EMISOR=ARBITRO -- el mismo número copiado, no una
+        # predicción validada; (2) el CALC de DIN guarda el error en PROPORCIÓN
+        # y el de TRA en PUNTOS PORCENTUALES, y fundirlos da un factor 100 en la
+        # métrica rectora del programa. Se cablea aquí (D-21) para que el job
+        # `guardias` no lo cuente como huérfano.
+        run: python3 tests/test_celdas_validadas.py
+
   # ACTO GEN2-CI-GUARDIAS-VIVAS-1 (20/sep/2026): 97 de 122 tests/test_*.py
   # no aparecian ni aqui ni en tests/check.py -- nadie los corria. Este job
   # descubre tests/test_*.py por patron, resta los que `suite` y

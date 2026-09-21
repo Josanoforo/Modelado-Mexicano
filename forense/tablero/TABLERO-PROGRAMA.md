@@ -1,7 +1,17 @@
 <!-- TABLERO-DERIVADO:BEGIN -->
 ## Estado vivo derivado
 
-- **Procedencia.** SHA `f67169f` · fecha del commit `2026-09-21` · ¿árbol == origin/main? `False`.
+- **Celdas validadas (métrica rectora, firma de mesa 20/sep/2026).** `73` celdas con predicción emitida antes de ver el dato y error sellado contra R (cruce `20` + persistencia `53`). **No es «N aciertos»: es N celdas con error CONOCIDO.** Tres clases, sin fundir:
+  - *cruce vs R* · `DIN.ahorro_solo_informal.enif2024.localidad_x_edad` · n `8` · champion `C2` · error mediano `0.936` pp (máx `4.375` pp) · brecha `0` años (misma ola) · escala cruda del CALC `PROPORCION` · `CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001/resultados.json`
+  - *cruce vs R* · `TRA.evade_norma.envipe2025.escolaridad_x_dominio` · n `12` · champion `C2` · error mediano `1.224` pp (máx `5.436` pp) · brecha `0` años (misma ola) · escala cruda del CALC `PUNTOS-PORCENTUALES` · `CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0001/resultados.json`
+  - *persistencia t−1 vs R* · `ENCIG 2025 · encig2025_04_sec_7.csv · unidad = TRÁMITE (quien pagó doce veces contribuye doce veces)` · n `10` · error mediano `11.826` pp (máx `13.359` pp) · **brecha `2` años** · PERSISTE `0` / CAMBIA `10`
+  - *persistencia t−1 vs R* · `ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+` · n `28` · error mediano `2.145` pp (máx `5.197` pp) · **brecha `3` años** · PERSISTE `14` / CAMBIA `14`
+  - *persistencia t−1 vs R* · `ENVIPE 2025 · tmod_vic (conjunto_de_datos) · unidad = DELITO` · n `2` · error mediano `2.767` pp (máx `3.849` pp) · **brecha `1` años** · PERSISTE `2` / CAMBIA `0`
+  - *persistencia t−1 vs R* · `ENVIPE 2025 · tmod_vic · unidad = DELITO` · n `13` · error mediano `2.34` pp (máx `5.361` pp) · **brecha `1` años** · PERSISTE `6` / CAMBIA `7`
+  - *duelo de tres, nacional* · n `12` · MAE `M` `4.987` pp · `L_SOLO` `3.957` pp · `L_CORPUS` `3.889` pp · veredicto `SIN-GANADOR-UNICO` · NO se suma a las otras dos clases (otro universo, otro estimando) · `CALC-TRIADA-0002/resultados.json`
+  - *sub-cifra del dominio DINERO* · cruce n `8` (error mediano `0.936` pp) · persistencia n `28` (error mediano `2.145` pp) · ENIF 2024; la brecha de persistencia es de 3 años y no se promedia con las de 1 y 2 años de ENVIPE/ENCIG
+  - *NO cuentan* · `89` filas `IDENTICO` (M == R porque `EMISOR=ARBITRO`: el mismo número copiado, no una predicción contrastada) · `6` celdas de `formalidad` con piso y sin `error_piso_pp` (su error es un CALC sucesor) · universo examinado: 214 filas de data/corrida0/marcador-segmento.tsv + 3 CALC sellados
+- **Procedencia.** SHA `b2f9f70` · fecha del commit `2026-09-21` · ¿árbol == origin/main? `False`.
 - **Motor.** reglas totales `22` · reglas con dato (>=1 conducta MEDIDO*) `21` · reglas sin dato `1` · conductas MEDIDO* `46` · tiers `{'FUERTE': 20, 'MEDIA': 2}`.
 - **Marcador por segmento.** filas por estado: ADOPTADO-POR-FIRMA `20` · CONSUMIDA-SIN-PILOTO `1` · DIAGNOSTICO `8` · IDENTICO `89` · NO-COMPARABLE `2` · RESERVADA `22` · SIN-PISO `15` · SOLO-PISO `57` (total `214`) · cobertura de piso `79 / 214` · valor añadido / evaluadas `0 / 20` · celdas `emision = EMITIDA-SIN-EVALUAR` `16 / 214` · `veto_pisos_activo` `True`.
 - **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: `NO` 13 · `NO-DERIVACION-CONTEXTUAL` 1 · `NO-SIN-FIRMA-DE-OBJETO` 1 · `PENDIENTE-DE-CASCADA-DIFERIDA` 2 · `PENDIENTE-DE-INTEGRACION-SERIAL` 2 · `PENDIENTE-DE-MESA` 17 · `SI` 78 (selladas total `114`) · `PENDIENTE-DE-MESA`:
@@ -22,12 +32,14 @@
   - `CALC-WBES2023-CORRUPCION-DESCRIPTIVA-0001--b87ec1bf2ad5`: `REPRODUCE`
   - `CALC-WBES2023-PRECISION-0001--7ab4bf6255e0`: `REPRODUCE`
   - `CALC-WBES2023-PRECISION-INTERACCIONES-0001--7f2a0899f700`: `NO-VERIFICADO`
-- **Ramas presentes en origin.** **2 rama(s) presente(s) en origin (política de cero)**:
-  - `acto/gen2-din-credito-comparabilidad-texto-1`: 1 delante / 8 detrás de main · último commit `2026-09-20`
-  - `claude/gracious-faraday-wf9b8j`: 6 delante / 8 detrás de main · último commit `2026-09-21`
+- **Ramas presentes en origin.** **4 rama(s) presente(s) en origin (política de cero)**:
+  - `acto/gen2-din-credito-comparabilidad-texto-1`: 6 delante / 9 detrás de main · último commit `2026-09-20`
+  - `claude/clever-dirac-9nb7d8`: 2 delante / 17 detrás de main · último commit `2026-09-21`
+  - `claude/new-session-lvyz4s`: 4 delante / 17 detrás de main · último commit `2026-09-21`
+  - `claude/trusting-allen-0y61rq`: 5 delante / 17 detrás de main · último commit `2026-09-21`
 - **Corredor LEGACY (eje x = ∅, GO-MARCADOR).** el marcador por segmento es la línea de arriba. marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
 - **Corpus lógico.** entradas del manifiesto `1629` · filas de registro de curación `155` · filas de relaciones `231` · filas del inventario de reactivos v1.2 `178247`.
-- **Gobernanza operativa.** ADR máximo `569` · FP máximo `401` · FP abiertas: FP-386, FP-387, FP-388, FP-393, FP-394, FP-395, FP-396, FP-397, FP-398 · encargos archivados `582` (consumidos `530`) · instrucciones vigentes `v2.15` · cola de encargos (solo estados != CONSUMIDO; consumidos `36`):
+- **Gobernanza operativa.** ADR máximo `571` · FP máximo `403` · FP abiertas: FP-386, FP-387, FP-388, FP-393, FP-394, FP-395, FP-396, FP-397, FP-398, FP-402, FP-403 · encargos archivados `584` (consumidos `532`) · instrucciones vigentes `v2.15` · cola de encargos (solo estados != CONSUMIDO; consumidos `36`):
   - `2026-09-07-ENCARGOS-GEN2-en-orden.md`: GATED
   - `2026-09-08-GEN2-SONDA-3-PILOTO-CAJA.md`: LISTO
   - `2026-09-10-GEN2-POST-685/00-LEEME-LANZAMIENTO-POST-685.md`: GATED
@@ -56,8 +68,8 @@
   - `2026-09-12-GEN2-POST-741/00-LEEME-PARALELOS-41-43.md`: GATED
   - `2026-09-12-GEN2-POST-741/41-GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO.md`: GATED
   - `2026-09-12-GEN2-POST-741/43-GEN2-SHED-BNPL-DANO-Y-UNIVERSOS.md`: GATED
-- **NC abiertas por razón (token A.14, prefijo exacto).** abiertas `162` · por token: `DECISIÓN-DE-MESA-PENDIENTE` 4 · `DIFERIDO-A` 15 · `FUERA-DE-PERÍMETRO` 17 · `NO-VERIFICABLE-AQUÍ` 2 · `PARO-ENTORNO` 4 · `PARO-PREMISA` 18 · `SUSTITUIDO-POR` 1 · prosa (sin token reconocible) `101`.
-- **GEN2 (derivado de `corrida0 status`).** corridas selladas `102` / requeridas `86` · resultados sellados `7287` / activos `210` · pendientes `210` · dependencias numéricas legacy activas `173` · validación independiente `215` · diferencias materiales `0` · NC- abiertas `162` · replays LEGACY-GEN1 sellados `5` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
+- **NC abiertas por razón (token A.14, prefijo exacto).** abiertas `165` · por token: `DECISIÓN-DE-MESA-PENDIENTE` 4 · `DIFERIDO-A` 16 · `FUERA-DE-PERÍMETRO` 19 · `NO-VERIFICABLE-AQUÍ` 2 · `PARO-ENTORNO` 4 · `PARO-PREMISA` 18 · `SUSTITUIDO-POR` 1 · prosa (sin token reconocible) `101`.
+- **GEN2 (derivado de `corrida0 status`).** corridas selladas `102` / requeridas `86` · resultados sellados `7287` / activos `210` · pendientes `210` · dependencias numéricas legacy activas `173` · validación independiente `215` · diferencias materiales `0` · NC- abiertas `165` · replays LEGACY-GEN1 sellados `5` (no cuentan). El `0 / N` es la lectura correcta: el aparato se construyó antes que las corridas.
 - **Legacy activas por consumidor (desglose aditivo del contador de arriba).** motor `35` · procedencia `40` · catalogo de momentos `23` · marco del duelo `70` · celdas D `5` · otro `0` — suman `173`, el total. Los cinco consumidores son RELEVABLES: ninguno se declara fuera del contador. Cuántos de ellos ya tienen medición GEN2 sellada que la vista no enlaza se deriva en `forense/analisis/relevo-reconcilia-1/reconcilia-173-v1_0.tsv`.
 - **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** sellados `6686` · pendientes de adopción (citados en la propuesta, ningún consumidor activo aún) `12` · vetados por decisión vigente (sellados, pero una firma prohíbe adoptarlos: no son cola) `2` · adoptados por un consumidor activo `57`. Sellar un RESULT no mueve `dependencias_numericas_legacy_activas` por sí solo: solo el consumidor activo que lo adopta la baja.
 - **Fuentes.** `milpa/tramite.yaml`, `milpa/tramite-ola5-propuesta-v0.yaml`, `milpa/procedencia.yaml`, `forense/prereg-duelo-v2/` (marcos y corridas M/R/L), `data/manifiesto.yaml`, `data/curacion-registro/cola-adquisicion-registro.tsv`, `data/curacion-registro/relaciones.tsv`, `data/inventario-reactivos-v1_2.tsv`, `canon/gobernanza-v1_15.md`, `forense/firmas-pendientes.tsv`, `forense/encargos/*.md`, `forense/encargos/cola/*.md`.
