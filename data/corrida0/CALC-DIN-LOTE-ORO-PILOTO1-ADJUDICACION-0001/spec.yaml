@@ -1,0 +1,1675 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-DIN-LOTE-ORO-PILOTO1-ADJUDICACION-0001
+spec_md: ../../../forense/prereg-caja/DIN-lote-enif2024-spec-v1_0.md
+spec_md_sha256: 64bb52f2cbd26dbb9402855e772fc1926ffc4786d1d50aaf1fb5ffaa8110386a
+script: data/corrida0/CALC-DIN-LOTE-ORO-PILOTO1-ADJUDICACION-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  unidad_transferencia: PERSONA-ELEGIDA-18MAS
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  fuente_acto: GEN2-DIN-LOTE-ENIF2024-COMMIT-1 (21/sep/2026)
+  spec_humana: forense/prereg-caja/DIN-lote-enif2024-spec-v1_0.md (sucede a DIN-lote-enif2024-spec-v0_1-PROPUESTA.md,
+    intacta)
+  firmas: F1 FP-260921-GEN2-TRAMITE-FIRMAS-4-8a1f-01 · F2 -02 · D-22 ampliada -05 · enmienda v0.3 FP-260921-GEN2-DIN-LOTE-ENIF2024-A-a98a-01
+    · opcion A de direccion (lambda = 1/2 en los 14 pares, 21/sep/2026)
+  medidor_ejecutado_al_congelar: sintetico (tests/test_lote_enif2024.py, zips fabricados, cada rama terminal) y
+    los dos oros sobre datos ya abiertos; NUNCA un cruce reservado de ENIF 2024
+  tipo: 'RETROSPECTIVA -- oro (i): el codigo generico reproduce la R sellada del piloto 1 (localidad x edad) a 1e-9
+    y prueba la guardia sobre un par vetado'
+  commit: ORO-COMMIT-1
+  adjudica: NO -- retrospectiva; el veredicto v0.3 que emite es ilustrativo y no adjudica nada
+  celda_d: DIN.ahorro_solo_informal.enif2024.localidad_x_edad (ya adjudicada por el piloto 1; aqui solo control)
+inputs:
+- id: enif2021_csv
+  origen: manifiesto
+  nota: ENIF 2021 datos abiertos, TMODULO (ola de desarrollo, abierta)
+- id: enif2024_csv
+  origen: manifiesto
+  nota: ENIF 2024 datos abiertos, TMODULO -- en emisiones SOLO marginales de UN eje (guardia); contenido identico
+    a enif_2024_bd_csv (cotejado por multiconjunto de columnas en este acto)
+- id: arbitro_marginales_2024
+  origen: repo
+  ruta: data/corrida0/CALC-ARBITRO-MARGINALES-ENIF2024-0001/resultados.json
+  sha256: 552aef42c92cc70ded24bebb4c3e295739b95b346644e624cd22c8392916ecc4
+  nota: masa ponderada por categoria para R3 (no cotejado en el oro)
+- id: piloto1_spec_yaml
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/spec.yaml
+  sha256: 12bf26d8a8f7c6a84cea3ac5f3152dcd8bbcfe07eefd5bf9015107da26374888
+  nota: 'los marginales SELLADOS que el piloto 1 uso (6 decimales de milpa): el oro reproduce su C2 con SUS insumos'
+- id: piloto1_emisiones
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/resultados.json
+  sha256: 69ec9c6a21d259a76ae5617f2cff801e6165c351c750121125cc77e642f2d8c1
+  nota: 'emisiones selladas del piloto 1: C1 (=P2) y C2 por celda'
+- id: cruces_familia_py
+  origen: repo
+  ruta: tools/duelo/cruces_familia.py
+  sha256: a41bdb07d1d975fe84a0b5653232f8532d38c56952c1eafeffd29bae89f9ee3b
+- id: lote_familia_py
+  origen: repo
+  ruta: tools/lote_enif2024/lote_familia.py
+  sha256: 96821de2ef7807b2232dfec56646c957273293a73a95ff0eabfbd79bef02f460
+- id: piloto1_arbitro
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001/resultados.json
+  sha256: 0482265e112205e225bc55cc6a060b836a63a79f4fa539fa2601070460e84273
+  nota: R sellado del piloto 1 (COMMIT-3), el oro de la R
+- id: emisiones_selladas
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-LOTE-ORO-PILOTO1-EMISIONES-0001/resultados.json
+  nota: lo crea la corrida del oro de emisiones en este mismo acto; su sha se fija antes de correr este CALC
+  sha256: PENDIENTE-ORO
+variables:
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_1_1..P5_1_6
+  rol: desenlace-informal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_7_1..P5_7_9
+  rol: desenlace-formal-2021 (nueve cuentas)
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_4_1..P5_4_9
+  rol: eje-cuenta_formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: SEXO
+  rol: eje-sexo-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: EDAD
+  rol: eje-edad-2021 y filtro
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P3_1_1
+  rol: eje-escolaridad-2021 (catalogo por etiqueta)
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: TLOC
+  rol: eje-localidad-2021 y filtro
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P3_10
+  rol: eje-formalidad-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: FAC_ELE
+  rol: ponderador-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: EST_DIS
+  rol: estrato-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: UPM_DIS
+  rol: upm-2021
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_1_1..P5_1_6
+  rol: desenlace-informal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_6_1..P5_6_9
+  rol: desenlace-formal-2024 (nueve cuentas)
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_4_1..P5_4_9
+  rol: eje-cuenta_formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: SEXO
+  rol: eje-sexo-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: EDAD_V
+  rol: eje-edad-2024 y filtro
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: NIV
+  rol: eje-escolaridad-2024 (catalogo por etiqueta)
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: TLOC
+  rol: eje-localidad-2024 y filtro
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P3_13
+  rol: eje-formalidad-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: FAC_PER
+  rol: ponderador-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: EST_DIS
+  rol: estrato-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: UPM_DIS
+  rol: upm-2024
+universo: 'Personas ELEGIDAS de 18 anos y mas de TMODULO de ENIF, una fila por persona. Regimen PILOTO-1 (spec v1_0
+  §1): filtros globales; ENIF 2021 completa; ENIF 2024 segun el punto de entrada.'
+filtros: 'PILOTO-1 (spec v1_0 §1): (1) 18 <= edad <= 97 en las dos olas, 98/99 centinelas fuera y contados; (2)
+  TLOC en {1,2,3,4}; (3) ponderador presente y > 0. Nada mas. Sobre ENIF 2024 en emisiones: una sola variable de
+  agrupacion por lectura (guardia probada en cada corrida); el cruce solo en adjudicacion, por la unica funcion
+  cruce() y solo sobre pares autorizados por el contrato.'
+ponderador: ENIF 2021 = FAC_ELE (factor del elegido; FAC_PER no existe en 2021); ENIF 2024 = FAC_PER. Toda proporcion
+  es razon de totales ponderados.
+transformacion: 'D9 := alguna P5_1_k == ''1'' (k=1..6) Y ninguna via formal == ''1'' (2021: P5_7_1..9; 2024: P5_6_1..9).
+  Ejes: sexo (1/2); edad en 4 tramos del arbitro; escolaridad por ETIQUETA del catalogo de cada ola (codigo sin
+  etiqueta declarada -> PARO; ''No sabe'' -> fuera); localidad TLOC {1,2} vs {3,4}; formalidad P3_10 (2021: 1-5
+  con, 6 sin) / P3_13 (2024: 1-6 con, 7 sin), blanco y 9 fuera; cuenta_formal alguna P5_4_k == ''1'' vs ninguna
+  (todas en blanco -> fuera). Contendientes (spec v1_0 §4): C2 = expit(logit m24(a) + logit m24(b) - logit m24)
+  con m24 SELLADOS (#971) e IC replica a replica; P2 = cruce 2021; R1 = expit(logit C2 + delta21); R2 = expit(logit
+  C2 + 1/2 delta21); R3 = raking a tres vias de la tabla ponderada 2021 (a,b,D) a los margenes (a,D),(b,D) de 2024
+  sellados.'
+estimando: p(ahorra_solo_informal | eje_A, eje_B) -- proporcion ponderada [0,1] de personas elegidas 18+ de ENIF
+  2024, en las 96 celdas de los 14 pares reservados, bajo D9; error en pp.
+precision: 'Replicas compartidas por ola: n_h UPM con reemplazo por estrato, PCG64(42), estratos y UPM en orden
+  lexicografico, 10 000 replicas; IC95 = percentiles 2.5/97.5 de las replicas definidas; C2/R1/R2/R3 combinan replica
+  k con k (2024 con 2021, muestras independientes, sin covarianzas inventadas); delta-MAE por replica. No cubre
+  el error de especificacion de ningun candidato.'
+dependencias_materiales:
+- numpy
+- pandas
+- yaml
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.random.PCG64 (replicas compartidas por ola)
+tolerancia:
+  tipo: bootstrap
+  exacto_por_seed: true
+  abs: 1.0e-10
+  razon: seed 42 + orden de consumo fijado por replicas() (un generador por ola, estratos y UPM lexicograficos,
+    replicas 0..9999); enteros exactos, flotantes abs 1e-10
+parametros:
+  bootstrap_replicas: 10000
+  umbral_soporte_n: 200
+  lambda_r2: 0.5
+  universo_regimen:
+    tipo: PILOTO-1
+    edad_min: 18
+    edad_max: 97
+    edad_centinelas:
+    - '98'
+    - '99'
+    tloc:
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+  ola_nueva: '2024'
+  ola_anterior: '2021'
+  olas_zip:
+    '2021': enif2021_csv
+    '2024': enif2024_csv
+  columnas:
+    '2021':
+      tabla_sufijo: conjunto_de_datos_tmodulo_enif_2021.csv
+      edad: EDAD
+      tloc: TLOC
+      peso: FAC_ELE
+      est: EST_DIS
+      upm: UPM_DIS
+      sexo: SEXO
+      escolaridad: P3_1_1
+      formalidad: P3_10
+      cuentas:
+      - P5_4_1
+      - P5_4_2
+      - P5_4_3
+      - P5_4_4
+      - P5_4_5
+      - P5_4_6
+      - P5_4_7
+      - P5_4_8
+      - P5_4_9
+      informal:
+      - P5_1_1
+      - P5_1_2
+      - P5_1_3
+      - P5_1_4
+      - P5_1_5
+      - P5_1_6
+      formal:
+      - P5_7_1
+      - P5_7_2
+      - P5_7_3
+      - P5_7_4
+      - P5_7_5
+      - P5_7_6
+      - P5_7_7
+      - P5_7_8
+      - P5_7_9
+    '2024':
+      tabla_sufijo: conjunto_de_datos_tmodulo_enif2024.csv
+      edad: EDAD_V
+      tloc: TLOC
+      peso: FAC_PER
+      est: EST_DIS
+      upm: UPM_DIS
+      sexo: SEXO
+      escolaridad: NIV
+      formalidad: P3_13
+      cuentas:
+      - P5_4_1
+      - P5_4_2
+      - P5_4_3
+      - P5_4_4
+      - P5_4_5
+      - P5_4_6
+      - P5_4_7
+      - P5_4_8
+      - P5_4_9
+      informal:
+      - P5_1_1
+      - P5_1_2
+      - P5_1_3
+      - P5_1_4
+      - P5_1_5
+      - P5_1_6
+      formal:
+      - P5_6_1
+      - P5_6_2
+      - P5_6_3
+      - P5_6_4
+      - P5_6_5
+      - P5_6_6
+      - P5_6_7
+      - P5_6_8
+      - P5_6_9
+  edad_tramos:
+    18-29:
+    - 18
+    - 29
+    30-44:
+    - 30
+    - 44
+    45-59:
+    - 45
+    - 59
+    60+:
+    - 60
+    - 97
+  escolaridad_catalogo:
+    '2021':
+      '0': Ninguno
+      '1': Preescolar o kínder
+      '2': Primaria
+      '3': Secundaria
+      '4': Estudios técnicos con secundaria terminada
+      '5': Normal básica
+      '6': Preparatoria o bachillerato
+      '7': Estudios técnicos con preparatoria terminada
+      '8': Licenciatura o ingeniería (profesional)
+      '9': Maestría o doctorado
+      '99': No sabe
+    '2024':
+      '0': Ninguno
+      '1': Preescolar o kínder
+      '2': Primaria
+      '3': Secundaria
+      '4': Normal básica
+      '5': Estudios técnicos con secundaria terminada
+      '6': Preparatoria o bachillerato
+      '7': Estudios técnicos con preparatoria terminada
+      '8': Licenciatura o ingeniería (profesional)
+      '9': Especialidad
+      '10': Maestría
+      '11': Doctorado
+      '99': No sabe
+  escolaridad_tramo_por_etiqueta:
+    Ninguno: hasta primaria
+    Preescolar o kínder: hasta primaria
+    Primaria: hasta primaria
+    Secundaria: secundaria
+    Estudios técnicos con secundaria terminada: media superior
+    Normal básica: media superior
+    Preparatoria o bachillerato: media superior
+    Estudios técnicos con preparatoria terminada: media superior
+    Licenciatura o ingeniería (profesional): superior
+    Maestría o doctorado: superior
+    Especialidad: superior
+    Maestría: superior
+    Doctorado: superior
+  escolaridad_fuera_etiquetas:
+  - No sabe
+  localidad_map:
+    '1': 15 000 y mas
+    '2': 15 000 y mas
+    '3': menor de 15 000
+    '4': menor de 15 000
+  formalidad_map:
+    '2021':
+      '1': con seguridad social
+      '2': con seguridad social
+      '3': con seguridad social
+      '4': con seguridad social
+      '5': con seguridad social
+      '6': sin seguridad social
+    '2024':
+      '1': con seguridad social
+      '2': con seguridad social
+      '3': con seguridad social
+      '4': con seguridad social
+      '5': con seguridad social
+      '6': con seguridad social
+      '7': sin seguridad social
+  ejes:
+    sexo:
+      orden:
+      - 1 Hombre
+      - 2 Mujer
+      universo_restringido: false
+      cobertura_arbitro: 1.0
+    edad:
+      orden:
+      - 18-29
+      - 30-44
+      - 45-59
+      - 60+
+      universo_restringido: false
+      cobertura_arbitro: 0.998889
+    escolaridad:
+      orden:
+      - hasta primaria
+      - secundaria
+      - media superior
+      - superior
+      universo_restringido: false
+      cobertura_arbitro: 0.99963
+    localidad:
+      orden:
+      - menor de 15 000
+      - 15 000 y mas
+      universo_restringido: false
+      cobertura_arbitro: 1.0
+    formalidad:
+      orden:
+      - sin seguridad social
+      - con seguridad social
+      universo_restringido: true
+      cobertura_arbitro: 0.689676
+    cuenta_formal:
+      orden:
+      - sin cuenta
+      - con cuenta
+      universo_restringido: false
+      cobertura_arbitro: 1.0
+  pares:
+    localidadxedad:
+      a: localidad
+      b: edad
+      grupo: ORO-PILOTO-1
+      c2: EMITIBLE
+  grupo_primario: ORO-PILOTO-1
+  marginales_sellados:
+    puntos:
+      input: piloto1_spec_yaml
+      formato: spec-yaml
+      ids:
+        localidad:
+          menor de 15 000: parametros.marginales_sellados_D9.L1.p
+          15 000 y mas: parametros.marginales_sellados_D9.L2.p
+        edad:
+          18-29: parametros.marginales_sellados_D9.E1.p
+          30-44: parametros.marginales_sellados_D9.E2.p
+          45-59: parametros.marginales_sellados_D9.E3.p
+          60+: parametros.marginales_sellados_D9.E4.p
+      nacional_id: parametros.marginales_sellados_D9.NAC.p
+    masa:
+      input: arbitro_marginales_2024
+      formato: resultados-json
+      ids:
+        sexo:
+          1 Hombre: RESULT-ARBITRO-ENIF2024-D9-SEXO-1-DEN-W
+          2 Mujer: RESULT-ARBITRO-ENIF2024-D9-SEXO-2-DEN-W
+        edad:
+          18-29: RESULT-ARBITRO-ENIF2024-D9-EDAD-18-29-DEN-W
+          30-44: RESULT-ARBITRO-ENIF2024-D9-EDAD-30-44-DEN-W
+          45-59: RESULT-ARBITRO-ENIF2024-D9-EDAD-45-59-DEN-W
+          60+: RESULT-ARBITRO-ENIF2024-D9-EDAD-60-MAS-DEN-W
+        escolaridad:
+          hasta primaria: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W
+          secundaria: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-DEN-W
+          media superior: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W
+          superior: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-DEN-W
+        localidad:
+          menor de 15 000: RESULT-ARBITRO-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-DEN-W
+          15 000 y mas: RESULT-ARBITRO-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-DEN-W
+        formalidad:
+          sin seguridad social: RESULT-ARBITRO-ENIF2024-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DEN-W
+          con seguridad social: RESULT-ARBITRO-ENIF2024-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DEN-W
+        cuenta_formal:
+          sin cuenta: RESULT-ARBITRO-ENIF2024-D9-CUENTA-SIN-CUENTA-DEN-W
+          con cuenta: RESULT-ARBITRO-ENIF2024-D9-CUENTA-CON-CUENTA-DEN-W
+      nacional_id: RESULT-ARBITRO-ENIF2024-D9-TOTAL-TODOS-DEN-W
+  r3_ipf:
+    tol: 1.0e-12
+    max_iter: 2000
+  umbral_vence_pp: 0.5
+  umbral_reserva_pp: 0.0
+  regla_v0_3: 'v0.3: dMAE = MAE(C2) - MAE(R2) en pp sobre las celdas PUNTUADAS de los 5 pares primarios, IC95 por
+    réplica (misma réplica k en R, C2 y R2); VENCE-RETADOR si IC95inf > 0.5 pp; PROPUESTA-CON-RESERVA si 0 < IC95inf
+    <= 0.5; NADIE-VENCE si incluye 0. Retador primario R2 (lambda = 1/2 fija); P2, R1, R3, L1, L2 y los 9 pares
+    no primarios se adjudican con la misma regla rotulados SECUNDARIA. El conteo de 3/4 se reporta, no adjudica.'
+  m_estado: 'NO-DERIVABLE -- firma F2: no existe una theta calibrada que emita esta celda; la matriz no es estimador
+    por defecto de una celda que no adjudico (A-bis 5, ADR-68). El silencio se escribe.'
+  l_estado: NO-ENTRA-EN-ESTE-CALC -- L1/L2 los corre mesa por CLI (FP-228) con el paquete PAQUETE-L-LOTE-ENIF2024-v1_0;
+    las capturas se sellan antes del COMMIT-2 mecanico
+  punto_de_entrada: adjudicacion
+  prefijo_result: RESULT-DIN-LOTE24-ORO1-ADJ
+  prefijo_emisiones: RESULT-DIN-LOTE24-ORO1-EM
+  tol_reproduccion_emisiones: 1.0e-10
+  pares_cruce_autorizados_2024:
+  - - localidad
+    - edad
+  par_vetado_probar:
+    a: sexo
+    b: edad
+  control_sellado_R:
+    input: piloto1_arbitro
+    tol: 1.0e-09
+    celdas:
+      localidadxedad|menor de 15 000|18-29:
+        R-P: RESULT-DIN-LXE8-ARB-R-D9-P-L1xE1
+        R-IC95INF: RESULT-DIN-LXE8-ARB-R-D9-IC95INF-L1xE1
+        R-IC95SUP: RESULT-DIN-LXE8-ARB-R-D9-IC95SUP-L1xE1
+        R-N: RESULT-DIN-LXE8-ARB-R-D9-N-L1xE1
+      localidadxedad|menor de 15 000|30-44:
+        R-P: RESULT-DIN-LXE8-ARB-R-D9-P-L1xE2
+        R-IC95INF: RESULT-DIN-LXE8-ARB-R-D9-IC95INF-L1xE2
+        R-IC95SUP: RESULT-DIN-LXE8-ARB-R-D9-IC95SUP-L1xE2
+        R-N: RESULT-DIN-LXE8-ARB-R-D9-N-L1xE2
+      localidadxedad|menor de 15 000|45-59:
+        R-P: RESULT-DIN-LXE8-ARB-R-D9-P-L1xE3
+        R-IC95INF: RESULT-DIN-LXE8-ARB-R-D9-IC95INF-L1xE3
+        R-IC95SUP: RESULT-DIN-LXE8-ARB-R-D9-IC95SUP-L1xE3
+        R-N: RESULT-DIN-LXE8-ARB-R-D9-N-L1xE3
+      localidadxedad|menor de 15 000|60+:
+        R-P: RESULT-DIN-LXE8-ARB-R-D9-P-L1xE4
+        R-IC95INF: RESULT-DIN-LXE8-ARB-R-D9-IC95INF-L1xE4
+        R-IC95SUP: RESULT-DIN-LXE8-ARB-R-D9-IC95SUP-L1xE4
+        R-N: RESULT-DIN-LXE8-ARB-R-D9-N-L1xE4
+      localidadxedad|15 000 y mas|18-29:
+        R-P: RESULT-DIN-LXE8-ARB-R-D9-P-L2xE1
+        R-IC95INF: RESULT-DIN-LXE8-ARB-R-D9-IC95INF-L2xE1
+        R-IC95SUP: RESULT-DIN-LXE8-ARB-R-D9-IC95SUP-L2xE1
+        R-N: RESULT-DIN-LXE8-ARB-R-D9-N-L2xE1
+      localidadxedad|15 000 y mas|30-44:
+        R-P: RESULT-DIN-LXE8-ARB-R-D9-P-L2xE2
+        R-IC95INF: RESULT-DIN-LXE8-ARB-R-D9-IC95INF-L2xE2
+        R-IC95SUP: RESULT-DIN-LXE8-ARB-R-D9-IC95SUP-L2xE2
+        R-N: RESULT-DIN-LXE8-ARB-R-D9-N-L2xE2
+      localidadxedad|15 000 y mas|45-59:
+        R-P: RESULT-DIN-LXE8-ARB-R-D9-P-L2xE3
+        R-IC95INF: RESULT-DIN-LXE8-ARB-R-D9-IC95INF-L2xE3
+        R-IC95SUP: RESULT-DIN-LXE8-ARB-R-D9-IC95SUP-L2xE3
+        R-N: RESULT-DIN-LXE8-ARB-R-D9-N-L2xE3
+      localidadxedad|15 000 y mas|60+:
+        R-P: RESULT-DIN-LXE8-ARB-R-D9-P-L2xE4
+        R-IC95INF: RESULT-DIN-LXE8-ARB-R-D9-IC95INF-L2xE4
+        R-IC95SUP: RESULT-DIN-LXE8-ARB-R-D9-IC95SUP-L2xE4
+        R-N: RESULT-DIN-LXE8-ARB-R-D9-N-L2xE4
+resultados:
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-INPUT-ENIF2021-CSV-SHA256
+  tipo: texto
+  unidad: sha256 del input enif2021_csv
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-INPUT-ENIF2024-CSV-SHA256
+  tipo: texto
+  unidad: sha256 del input enif2024_csv
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-INPUT-ARBITRO-MARGINALES-2024-SHA256
+  tipo: texto
+  unidad: sha256 del input arbitro_marginales_2024
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-INPUT-PILOTO1-SPEC-YAML-SHA256
+  tipo: texto
+  unidad: sha256 del input piloto1_spec_yaml
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-INPUT-PILOTO1-EMISIONES-SHA256
+  tipo: texto
+  unidad: sha256 del input piloto1_emisiones
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-INPUT-CRUCES-FAMILIA-PY-SHA256
+  tipo: texto
+  unidad: sha256 del input cruces_familia_py
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-INPUT-LOTE-FAMILIA-PY-SHA256
+  tipo: texto
+  unidad: sha256 del input lote_familia_py
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-INPUT-PILOTO1-ARBITRO-SHA256
+  tipo: texto
+  unidad: sha256 del input piloto1_arbitro
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-INPUT-EMISIONES-SELLADAS-SHA256
+  tipo: texto
+  unidad: sha256 del input emisiones_selladas
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-CODIGO-CRUCES-FAMILIA-SHA256
+  tipo: texto
+  unidad: sha256 del módulo CRUCES-FAMILIA al correr
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-CODIGO-LOTE-FAMILIA-SHA256
+  tipo: texto
+  unidad: sha256 del módulo LOTE-FAMILIA al correr
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-CODIGO-ENIF-LOTE-SHA256
+  tipo: texto
+  unidad: sha256 del módulo ENIF-LOTE al correr
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-OLA-NUEVA
+  tipo: texto
+  unidad: ola nueva del contrato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-REGIMEN-UNIVERSO
+  tipo: texto
+  unidad: régimen de universo (PILOTO-1 | ARBITRO-2024)
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-GUARDIA-AST-VIOLACIONES
+  tipo: entero
+  unidad: violaciones de auditoria_ast()
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-GUARDIA-AST
+  tipo: texto
+  unidad: PASA si auditoria_ast() no reporta violaciones
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-EMISIONES-SPEC-ID
+  tipo: texto
+  unidad: spec_id de las emisiones selladas
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-EMISIONES-RESERVA-CRUCE-DERIVADO
+  tipo: texto
+  unidad: lo que las emisiones declararon sobre la reserva
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-EMISIONES-R-EXISTIA
+  tipo: texto
+  unidad: lo que las emisiones declararon sobre R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-OLA-NUEVA-ABIERTA
+  tipo: texto
+  unidad: 'SI: en este commit la ola nueva se abre'
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-PARES-AUTORIZADOS
+  tipo: texto
+  unidad: pares que el contrato autoriza a cruzar en la ola nueva
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-EMISIONES-DELTA-P-MAX
+  tipo: flotante
+  unidad: peor |emisión re-derivada - sellada|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-EMISIONES-REPRODUCIDAS
+  tipo: texto
+  unidad: SI o PARO antes de abrir R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-VETO-PROBADO
+  tipo: texto
+  unidad: la excepción sobre el par vetado, probada
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-LOCALIDADXEDAD-ESTADO
+  tipo: texto
+  unidad: ADJUDICADO | SIN-PISO-SOLO-P2 | NO-ADJUDICABLE-VETO
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-18-29-P
+  tipo: proporcion
+  unidad: árbitro R del cruce en la ola nueva
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-18-29-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-18-29-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-18-29-N
+  tipo: entero
+  unidad: personas en la celda (ola nueva)
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-18-29-EE
+  tipo: flotante
+  unidad: (IC95SUP - IC95INF)/3.92
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-PUNTUADA-MENOR-DE-15-000-X-18-29
+  tipo: texto
+  unidad: SI si n >= umbral en las dos olas
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-ERROR-PP-MENOR-DE-15-000-X-18-29
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-DENTRO-IC-R-MENOR-DE-15-000-X-18-29
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-18-29
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-ERROR-PP-MENOR-DE-15-000-X-18-29
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-DENTRO-IC-R-MENOR-DE-15-000-X-18-29
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-18-29
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-ERROR-PP-MENOR-DE-15-000-X-18-29
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-DENTRO-IC-R-MENOR-DE-15-000-X-18-29
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-18-29
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-ERROR-PP-MENOR-DE-15-000-X-18-29
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-DENTRO-IC-R-MENOR-DE-15-000-X-18-29
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-18-29
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-ERROR-PP-MENOR-DE-15-000-X-18-29
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-DENTRO-IC-R-MENOR-DE-15-000-X-18-29
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-18-29
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-30-44-P
+  tipo: proporcion
+  unidad: árbitro R del cruce en la ola nueva
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-30-44-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-30-44-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-30-44-N
+  tipo: entero
+  unidad: personas en la celda (ola nueva)
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-30-44-EE
+  tipo: flotante
+  unidad: (IC95SUP - IC95INF)/3.92
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-PUNTUADA-MENOR-DE-15-000-X-30-44
+  tipo: texto
+  unidad: SI si n >= umbral en las dos olas
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-ERROR-PP-MENOR-DE-15-000-X-30-44
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-DENTRO-IC-R-MENOR-DE-15-000-X-30-44
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-30-44
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-ERROR-PP-MENOR-DE-15-000-X-30-44
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-DENTRO-IC-R-MENOR-DE-15-000-X-30-44
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-30-44
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-ERROR-PP-MENOR-DE-15-000-X-30-44
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-DENTRO-IC-R-MENOR-DE-15-000-X-30-44
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-30-44
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-ERROR-PP-MENOR-DE-15-000-X-30-44
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-DENTRO-IC-R-MENOR-DE-15-000-X-30-44
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-30-44
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-ERROR-PP-MENOR-DE-15-000-X-30-44
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-DENTRO-IC-R-MENOR-DE-15-000-X-30-44
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-30-44
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-45-59-P
+  tipo: proporcion
+  unidad: árbitro R del cruce en la ola nueva
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-45-59-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-45-59-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-45-59-N
+  tipo: entero
+  unidad: personas en la celda (ola nueva)
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-45-59-EE
+  tipo: flotante
+  unidad: (IC95SUP - IC95INF)/3.92
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-PUNTUADA-MENOR-DE-15-000-X-45-59
+  tipo: texto
+  unidad: SI si n >= umbral en las dos olas
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-ERROR-PP-MENOR-DE-15-000-X-45-59
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-DENTRO-IC-R-MENOR-DE-15-000-X-45-59
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-45-59
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-ERROR-PP-MENOR-DE-15-000-X-45-59
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-DENTRO-IC-R-MENOR-DE-15-000-X-45-59
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-45-59
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-ERROR-PP-MENOR-DE-15-000-X-45-59
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-DENTRO-IC-R-MENOR-DE-15-000-X-45-59
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-45-59
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-ERROR-PP-MENOR-DE-15-000-X-45-59
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-DENTRO-IC-R-MENOR-DE-15-000-X-45-59
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-45-59
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-ERROR-PP-MENOR-DE-15-000-X-45-59
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-DENTRO-IC-R-MENOR-DE-15-000-X-45-59
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-45-59
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-60-P
+  tipo: proporcion
+  unidad: árbitro R del cruce en la ola nueva
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-60-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-60-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-60-N
+  tipo: entero
+  unidad: personas en la celda (ola nueva)
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-60-EE
+  tipo: flotante
+  unidad: (IC95SUP - IC95INF)/3.92
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-PUNTUADA-MENOR-DE-15-000-X-60
+  tipo: texto
+  unidad: SI si n >= umbral en las dos olas
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-ERROR-PP-MENOR-DE-15-000-X-60
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-DENTRO-IC-R-MENOR-DE-15-000-X-60
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-60
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-ERROR-PP-MENOR-DE-15-000-X-60
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-DENTRO-IC-R-MENOR-DE-15-000-X-60
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-60
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-ERROR-PP-MENOR-DE-15-000-X-60
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-DENTRO-IC-R-MENOR-DE-15-000-X-60
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-60
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-ERROR-PP-MENOR-DE-15-000-X-60
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-DENTRO-IC-R-MENOR-DE-15-000-X-60
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-60
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-ERROR-PP-MENOR-DE-15-000-X-60
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-DENTRO-IC-R-MENOR-DE-15-000-X-60
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-R-DENTRO-IC-CAND-MENOR-DE-15-000-X-60
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-18-29-P
+  tipo: proporcion
+  unidad: árbitro R del cruce en la ola nueva
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-18-29-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-18-29-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-18-29-N
+  tipo: entero
+  unidad: personas en la celda (ola nueva)
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-18-29-EE
+  tipo: flotante
+  unidad: (IC95SUP - IC95INF)/3.92
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-PUNTUADA-15-000-Y-MAS-X-18-29
+  tipo: texto
+  unidad: SI si n >= umbral en las dos olas
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-ERROR-PP-15-000-Y-MAS-X-18-29
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-DENTRO-IC-R-15-000-Y-MAS-X-18-29
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-R-DENTRO-IC-CAND-15-000-Y-MAS-X-18-29
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-ERROR-PP-15-000-Y-MAS-X-18-29
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-DENTRO-IC-R-15-000-Y-MAS-X-18-29
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-R-DENTRO-IC-CAND-15-000-Y-MAS-X-18-29
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-ERROR-PP-15-000-Y-MAS-X-18-29
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-DENTRO-IC-R-15-000-Y-MAS-X-18-29
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-R-DENTRO-IC-CAND-15-000-Y-MAS-X-18-29
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-ERROR-PP-15-000-Y-MAS-X-18-29
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-DENTRO-IC-R-15-000-Y-MAS-X-18-29
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-R-DENTRO-IC-CAND-15-000-Y-MAS-X-18-29
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-ERROR-PP-15-000-Y-MAS-X-18-29
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-DENTRO-IC-R-15-000-Y-MAS-X-18-29
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-R-DENTRO-IC-CAND-15-000-Y-MAS-X-18-29
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-30-44-P
+  tipo: proporcion
+  unidad: árbitro R del cruce en la ola nueva
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-30-44-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-30-44-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-30-44-N
+  tipo: entero
+  unidad: personas en la celda (ola nueva)
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-30-44-EE
+  tipo: flotante
+  unidad: (IC95SUP - IC95INF)/3.92
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-PUNTUADA-15-000-Y-MAS-X-30-44
+  tipo: texto
+  unidad: SI si n >= umbral en las dos olas
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-ERROR-PP-15-000-Y-MAS-X-30-44
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-DENTRO-IC-R-15-000-Y-MAS-X-30-44
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-R-DENTRO-IC-CAND-15-000-Y-MAS-X-30-44
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-ERROR-PP-15-000-Y-MAS-X-30-44
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-DENTRO-IC-R-15-000-Y-MAS-X-30-44
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-R-DENTRO-IC-CAND-15-000-Y-MAS-X-30-44
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-ERROR-PP-15-000-Y-MAS-X-30-44
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-DENTRO-IC-R-15-000-Y-MAS-X-30-44
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-R-DENTRO-IC-CAND-15-000-Y-MAS-X-30-44
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-ERROR-PP-15-000-Y-MAS-X-30-44
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-DENTRO-IC-R-15-000-Y-MAS-X-30-44
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-R-DENTRO-IC-CAND-15-000-Y-MAS-X-30-44
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-ERROR-PP-15-000-Y-MAS-X-30-44
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-DENTRO-IC-R-15-000-Y-MAS-X-30-44
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-R-DENTRO-IC-CAND-15-000-Y-MAS-X-30-44
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-45-59-P
+  tipo: proporcion
+  unidad: árbitro R del cruce en la ola nueva
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-45-59-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-45-59-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-45-59-N
+  tipo: entero
+  unidad: personas en la celda (ola nueva)
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-45-59-EE
+  tipo: flotante
+  unidad: (IC95SUP - IC95INF)/3.92
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-PUNTUADA-15-000-Y-MAS-X-45-59
+  tipo: texto
+  unidad: SI si n >= umbral en las dos olas
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-ERROR-PP-15-000-Y-MAS-X-45-59
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-DENTRO-IC-R-15-000-Y-MAS-X-45-59
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-R-DENTRO-IC-CAND-15-000-Y-MAS-X-45-59
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-ERROR-PP-15-000-Y-MAS-X-45-59
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-DENTRO-IC-R-15-000-Y-MAS-X-45-59
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-R-DENTRO-IC-CAND-15-000-Y-MAS-X-45-59
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-ERROR-PP-15-000-Y-MAS-X-45-59
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-DENTRO-IC-R-15-000-Y-MAS-X-45-59
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-R-DENTRO-IC-CAND-15-000-Y-MAS-X-45-59
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-ERROR-PP-15-000-Y-MAS-X-45-59
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-DENTRO-IC-R-15-000-Y-MAS-X-45-59
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-R-DENTRO-IC-CAND-15-000-Y-MAS-X-45-59
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-ERROR-PP-15-000-Y-MAS-X-45-59
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-DENTRO-IC-R-15-000-Y-MAS-X-45-59
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-R-DENTRO-IC-CAND-15-000-Y-MAS-X-45-59
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-60-P
+  tipo: proporcion
+  unidad: árbitro R del cruce en la ola nueva
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-60-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-60-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-60-N
+  tipo: entero
+  unidad: personas en la celda (ola nueva)
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R-15-000-Y-MAS-X-60-EE
+  tipo: flotante
+  unidad: (IC95SUP - IC95INF)/3.92
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-PUNTUADA-15-000-Y-MAS-X-60
+  tipo: texto
+  unidad: SI si n >= umbral en las dos olas
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-ERROR-PP-15-000-Y-MAS-X-60
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-DENTRO-IC-R-15-000-Y-MAS-X-60
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-R-DENTRO-IC-CAND-15-000-Y-MAS-X-60
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-ERROR-PP-15-000-Y-MAS-X-60
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-DENTRO-IC-R-15-000-Y-MAS-X-60
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-R-DENTRO-IC-CAND-15-000-Y-MAS-X-60
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-ERROR-PP-15-000-Y-MAS-X-60
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-DENTRO-IC-R-15-000-Y-MAS-X-60
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-R-DENTRO-IC-CAND-15-000-Y-MAS-X-60
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-ERROR-PP-15-000-Y-MAS-X-60
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-DENTRO-IC-R-15-000-Y-MAS-X-60
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-R-DENTRO-IC-CAND-15-000-Y-MAS-X-60
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-ERROR-PP-15-000-Y-MAS-X-60
+  tipo: flotante
+  unidad: 100*|cand - R|
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-DENTRO-IC-R-15-000-Y-MAS-X-60
+  tipo: texto
+  unidad: candidato dentro del IC95 de R
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-R-DENTRO-IC-CAND-15-000-Y-MAS-X-60
+  tipo: texto
+  unidad: R dentro del IC95 del candidato
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-CELDAS-PUNTUADAS
+  tipo: entero
+  unidad: celdas con soporte en las dos olas
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-MAE-PP
+  tipo: flotante
+  unidad: error absoluto medio en pp sobre puntuadas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2) - MAE(cand) en pp
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 inferior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 superior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-VEREDICTO
+  tipo: texto
+  unidad: 'regla v0.3: VENCE-RETADOR | PROPUESTA-CON-RESERVA | NADIE-VENCE | NO-ADJUDICABLE | PISO'
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-ROL
+  tipo: texto
+  unidad: PISO | PRIMARIA | SECUNDARIA
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-COBERTURA-R-EN-IC-CAND-N
+  tipo: entero
+  unidad: celdas con comparación definida
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-COBERTURA-R-EN-IC-CAND-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con R dentro del IC95 del candidato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-C2-COBERTURA-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con el candidato dentro del IC95 de R
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-MAE-PP
+  tipo: flotante
+  unidad: error absoluto medio en pp sobre puntuadas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2) - MAE(cand) en pp
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 inferior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 superior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-VEREDICTO
+  tipo: texto
+  unidad: 'regla v0.3: VENCE-RETADOR | PROPUESTA-CON-RESERVA | NADIE-VENCE | NO-ADJUDICABLE | PISO'
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-ROL
+  tipo: texto
+  unidad: PISO | PRIMARIA | SECUNDARIA
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-COBERTURA-R-EN-IC-CAND-N
+  tipo: entero
+  unidad: celdas con comparación definida
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-COBERTURA-R-EN-IC-CAND-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con R dentro del IC95 del candidato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-P2-COBERTURA-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con el candidato dentro del IC95 de R
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-MAE-PP
+  tipo: flotante
+  unidad: error absoluto medio en pp sobre puntuadas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2) - MAE(cand) en pp
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 inferior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 superior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-VEREDICTO
+  tipo: texto
+  unidad: 'regla v0.3: VENCE-RETADOR | PROPUESTA-CON-RESERVA | NADIE-VENCE | NO-ADJUDICABLE | PISO'
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-ROL
+  tipo: texto
+  unidad: PISO | PRIMARIA | SECUNDARIA
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-COBERTURA-R-EN-IC-CAND-N
+  tipo: entero
+  unidad: celdas con comparación definida
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-COBERTURA-R-EN-IC-CAND-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con R dentro del IC95 del candidato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R1-COBERTURA-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con el candidato dentro del IC95 de R
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-MAE-PP
+  tipo: flotante
+  unidad: error absoluto medio en pp sobre puntuadas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2) - MAE(cand) en pp
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 inferior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 superior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-VEREDICTO
+  tipo: texto
+  unidad: 'regla v0.3: VENCE-RETADOR | PROPUESTA-CON-RESERVA | NADIE-VENCE | NO-ADJUDICABLE | PISO'
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-ROL
+  tipo: texto
+  unidad: PISO | PRIMARIA | SECUNDARIA
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-COBERTURA-R-EN-IC-CAND-N
+  tipo: entero
+  unidad: celdas con comparación definida
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-COBERTURA-R-EN-IC-CAND-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con R dentro del IC95 del candidato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R2-COBERTURA-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con el candidato dentro del IC95 de R
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-MAE-PP
+  tipo: flotante
+  unidad: error absoluto medio en pp sobre puntuadas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2) - MAE(cand) en pp
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 inferior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 superior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-VEREDICTO
+  tipo: texto
+  unidad: 'regla v0.3: VENCE-RETADOR | PROPUESTA-CON-RESERVA | NADIE-VENCE | NO-ADJUDICABLE | PISO'
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-ROL
+  tipo: texto
+  unidad: PISO | PRIMARIA | SECUNDARIA
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-COBERTURA-R-EN-IC-CAND-N
+  tipo: entero
+  unidad: celdas con comparación definida
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-COBERTURA-R-EN-IC-CAND-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con R dentro del IC95 del candidato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-R3-COBERTURA-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con el candidato dentro del IC95 de R
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-TRES-CUARTOS-N
+  tipo: entero
+  unidad: celdas puntuadas con error definido en C2 y R2
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-TRES-CUARTOS-GANA-R2
+  tipo: entero
+  unidad: de ellas, R2 yerra menos que C2 (descriptivo)
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-TRES-CUARTOS-FRAC
+  tipo: proporcion
+  unidad: fracción (descriptiva, no adjudica)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-LOCALIDADXEDAD-VEREDICTO-PRIMARIO
+  tipo: texto
+  unidad: veredicto v0.3 de R2 contra C2 en el bloque
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-N-CELDAS
+  tipo: entero
+  unidad: celdas del grupo
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-SIN-SOPORTE-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas sin soporte
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-CELDAS-PUNTUADAS
+  tipo: entero
+  unidad: celdas con soporte en las dos olas
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-C2-MAE-PP
+  tipo: flotante
+  unidad: error absoluto medio en pp sobre puntuadas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-C2-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2) - MAE(cand) en pp
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-C2-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 inferior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-C2-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 superior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-C2-VEREDICTO
+  tipo: texto
+  unidad: 'regla v0.3: VENCE-RETADOR | PROPUESTA-CON-RESERVA | NADIE-VENCE | NO-ADJUDICABLE | PISO'
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-C2-ROL
+  tipo: texto
+  unidad: PISO | PRIMARIA | SECUNDARIA
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-C2-COBERTURA-R-EN-IC-CAND-N
+  tipo: entero
+  unidad: celdas con comparación definida
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-C2-COBERTURA-R-EN-IC-CAND-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con R dentro del IC95 del candidato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-C2-COBERTURA-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con el candidato dentro del IC95 de R
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-P2-MAE-PP
+  tipo: flotante
+  unidad: error absoluto medio en pp sobre puntuadas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-P2-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2) - MAE(cand) en pp
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-P2-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 inferior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-P2-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 superior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-P2-VEREDICTO
+  tipo: texto
+  unidad: 'regla v0.3: VENCE-RETADOR | PROPUESTA-CON-RESERVA | NADIE-VENCE | NO-ADJUDICABLE | PISO'
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-P2-ROL
+  tipo: texto
+  unidad: PISO | PRIMARIA | SECUNDARIA
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-P2-COBERTURA-R-EN-IC-CAND-N
+  tipo: entero
+  unidad: celdas con comparación definida
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-P2-COBERTURA-R-EN-IC-CAND-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con R dentro del IC95 del candidato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-P2-COBERTURA-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con el candidato dentro del IC95 de R
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R1-MAE-PP
+  tipo: flotante
+  unidad: error absoluto medio en pp sobre puntuadas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R1-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2) - MAE(cand) en pp
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R1-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 inferior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R1-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 superior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R1-VEREDICTO
+  tipo: texto
+  unidad: 'regla v0.3: VENCE-RETADOR | PROPUESTA-CON-RESERVA | NADIE-VENCE | NO-ADJUDICABLE | PISO'
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R1-ROL
+  tipo: texto
+  unidad: PISO | PRIMARIA | SECUNDARIA
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R1-COBERTURA-R-EN-IC-CAND-N
+  tipo: entero
+  unidad: celdas con comparación definida
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R1-COBERTURA-R-EN-IC-CAND-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con R dentro del IC95 del candidato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R1-COBERTURA-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con el candidato dentro del IC95 de R
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R2-MAE-PP
+  tipo: flotante
+  unidad: error absoluto medio en pp sobre puntuadas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R2-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2) - MAE(cand) en pp
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R2-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 inferior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R2-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 superior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R2-VEREDICTO
+  tipo: texto
+  unidad: 'regla v0.3: VENCE-RETADOR | PROPUESTA-CON-RESERVA | NADIE-VENCE | NO-ADJUDICABLE | PISO'
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R2-ROL
+  tipo: texto
+  unidad: PISO | PRIMARIA | SECUNDARIA
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R2-COBERTURA-R-EN-IC-CAND-N
+  tipo: entero
+  unidad: celdas con comparación definida
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R2-COBERTURA-R-EN-IC-CAND-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con R dentro del IC95 del candidato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R2-COBERTURA-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con el candidato dentro del IC95 de R
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R3-MAE-PP
+  tipo: flotante
+  unidad: error absoluto medio en pp sobre puntuadas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R3-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2) - MAE(cand) en pp
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R3-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 inferior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R3-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 superior de delta-MAE por réplica
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R3-VEREDICTO
+  tipo: texto
+  unidad: 'regla v0.3: VENCE-RETADOR | PROPUESTA-CON-RESERVA | NADIE-VENCE | NO-ADJUDICABLE | PISO'
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R3-ROL
+  tipo: texto
+  unidad: PISO | PRIMARIA | SECUNDARIA
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R3-COBERTURA-R-EN-IC-CAND-N
+  tipo: entero
+  unidad: celdas con comparación definida
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R3-COBERTURA-R-EN-IC-CAND-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con R dentro del IC95 del candidato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-R3-COBERTURA-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fracción de celdas con el candidato dentro del IC95 de R
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-TRES-CUARTOS-N
+  tipo: entero
+  unidad: celdas puntuadas con error definido en C2 y R2
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-TRES-CUARTOS-GANA-R2
+  tipo: entero
+  unidad: de ellas, R2 yerra menos que C2 (descriptivo)
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-TRES-CUARTOS-FRAC
+  tipo: proporcion
+  unidad: fracción (descriptiva, no adjudica)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-ORO-PILOTO-1-VEREDICTO-PRIMARIO
+  tipo: texto
+  unidad: veredicto v0.3 de R2 contra C2 en el bloque
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-BBIS-FILA
+  tipo: texto
+  unidad: lectura mecánica del §10 (CORROBORADA | ACOTADA | FALSADOR-DEBIL | NO-CAE-EN-NINGUNA-FILA)
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-BBIS-RAZON
+  tipo: texto
+  unidad: por qué
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-BBIS-ADJUDICA-SOLO
+  tipo: texto
+  unidad: 'NO'
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-REGLA
+  tipo: texto
+  unidad: regla v0.3 verbatim
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-18-29-P-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-18-29-IC95INF-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-18-29-IC95SUP-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-18-29-N-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-30-44-P-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-30-44-IC95INF-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-30-44-IC95SUP-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-30-44-N-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-45-59-P-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-45-59-IC95INF-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-45-59-IC95SUP-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-45-59-N-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-60-P-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-60-IC95INF-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-60-IC95SUP-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-MENOR-DE-15-000-X-60-N-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-15-000-Y-MAS-X-18-29-P-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-15-000-Y-MAS-X-18-29-IC95INF-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-15-000-Y-MAS-X-18-29-IC95SUP-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-15-000-Y-MAS-X-18-29-N-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-15-000-Y-MAS-X-30-44-P-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-15-000-Y-MAS-X-30-44-IC95INF-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-15-000-Y-MAS-X-30-44-IC95SUP-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-15-000-Y-MAS-X-30-44-N-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-15-000-Y-MAS-X-45-59-P-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-15-000-Y-MAS-X-45-59-IC95INF-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-15-000-Y-MAS-X-45-59-IC95SUP-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-15-000-Y-MAS-X-45-59-N-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-15-000-Y-MAS-X-60-P-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-15-000-Y-MAS-X-60-IC95INF-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-15-000-Y-MAS-X-60-IC95SUP-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-CTRL-LOCALIDADXEDAD-R-15-000-Y-MAS-X-60-N-DELTA
+  tipo: flotante
+  unidad: R emitido - R sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-CTRL-DELTA-MAX
+  tipo: flotante
+  unidad: peor |emitido - sellado|
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-CTRL-N-COTEJADOS
+  tipo: entero
+  unidad: valores cotejados
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-CTRL-N-NO-COTEJABLES
+  tipo: entero
+  unidad: valores sin cotejo (null en alguno de los dos lados)
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-CTRL-REPRODUCE
+  tipo: texto
+  unidad: SI si todo cotejado dentro de la tolerancia
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-CTRL-TOL
+  tipo: flotante
+  unidad: tolerancia del control
+- id: RESULT-DIN-LOTE24-ORO1-ADJ-G-MEDIDOR-IDENTICO-A-TOOLS
+  tipo: texto
+  unidad: SI si medidor.py es byte a byte tools/lote_enif2024/enif_lote.py
