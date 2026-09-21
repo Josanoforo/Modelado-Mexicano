@@ -647,6 +647,53 @@ def caso_G():
            not conflicto and len(lineas_gen2_x) == 2,
            f"conflicto={conflicto} filas={lineas_gen2_x}")
 
+    # G3-bis · el sucesor que G3 nombraba (`ACTO GEN2-TUBERIA-CIERRE-SIN-
+    # CHOQUE-2`, 21/sep/2026, P1.2/P1.3). MISMA mutación, MISMO caso exacto:
+    # una rama edita en su sitio la última fila, otra añade debajo, se
+    # fusiona con `union`. Ahora T51 existe y DEBE fallar sobre el resultado
+    # -- ésa es la condición que el encargo pone para que el archivo entre a
+    # `merge=union`. Si este caso dejara de fallar, la entrada a `union` de
+    # `canon/registro-rotulos.tsv` deja de estar justificada.
+    with tempfile.TemporaryDirectory() as tmp:
+        base = "espacio\tvalor\tque_significa\tdonde_vive\nE\tGEN2-X\toriginal\tsitio-a\n"
+        editado = "espacio\tvalor\tque_significa\tdonde_vive\nE\tGEN2-X\tEDITADO por A\tsitio-a\n"
+        nueva = "E\tGEN2-Y\tnueva\tsitio-b\n"
+        conflicto, resultado = _repro_union_edita_y_apendica(tmp, "registro-rotulos.tsv", base, editado, nueva)
+        os.makedirs(os.path.join(tmp, "canon"), exist_ok=True)
+        with open(os.path.join(tmp, "canon", "registro-rotulos.tsv"), "w", encoding="utf-8") as f:
+            f.write(resultado)
+        m = _carga_check()
+        m.ROOT = tmp
+        m.t51_rotulos_par_unico()
+        fails = [f for f in m.FAILS if f[0] == "T51"]
+        ok("G3-bis registro-rotulos.tsv: sin conflicto real + T51 atrapa el par "
+           "(espacio, valor) repetido con contenido contradictorio -> ENTRA a union",
+           not conflicto and any("GEN2-X" in x[1] for x in fails),
+           f"conflicto={conflicto} T51={fails} resultado={resultado!r}")
+
+    # G3-ter · la exención congelada no es una puerta abierta: un par que ya
+    # estaba repetido NO falla mientras no crezca, y falla en cuanto crece.
+    with tempfile.TemporaryDirectory() as tmp:
+        os.makedirs(os.path.join(tmp, "canon"), exist_ok=True)
+        ruta = os.path.join(tmp, "canon", "registro-rotulos.tsv")
+        cab = "espacio\tvalor\tque_significa\tdonde_vive\n"
+        dos = cab + "M\tM5\tuno\ta\nM\tM5\tdos\tb\n"
+        m = _carga_check()
+        m.ROOT = tmp
+        m._T51_EXENCION = {("M", "M5"): 2}
+        with open(ruta, "w", encoding="utf-8") as f:
+            f.write(dos)
+        m.t51_rotulos_par_unico()
+        sin_fail = not [f for f in m.FAILS if f[0] == "T51"]
+        with open(ruta, "w", encoding="utf-8") as f:
+            f.write(dos + "M\tM5\ttres\tc\n")
+        m.t51_rotulos_par_unico()
+        con_fail = [f for f in m.FAILS if f[0] == "T51"]
+        ok("G3-ter T51: la exención congelada tolera el conteo de hoy y falla "
+           "en cuanto ese mismo par crece una fila más",
+           sin_fail and any("'M5'" in x[1] or "M5" in x[1] for x in con_fail),
+           f"sin_fail={sin_fail} con_fail={con_fail}")
+
 
 def _t50(tmp):
     m = _carga_check()

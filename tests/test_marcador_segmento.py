@@ -321,14 +321,29 @@ def t_error_piso_derivado():
     por_cell = {f["cell_id"]: f for f in M.lee_tabla_identidad()}
     v = M.deriva()
 
+    # ACTO GEN2-ARBITRO-MARGINALES-1 (21/sep/2026): una fila con R GEN2
+    # sellado es `EVALUADA` y sus dos columnas se LEEN de
+    # `CALC-ARBITRO-PERSISTENCIA-ERROR-0001` (adjudicación contra la
+    # realidad GEN2), no del CALC contra GEN1. La guardia se prueba en los
+    # dos universos, cada uno contra SU CALC, y en los dos sentidos: (a) todo
+    # `-CLASE` sellado lo reclama exactamente UNA fila (SOLO-PISO o EVALUADA
+    # para el CALC GEN1, cuyo id sigue teniendo que calzar; EVALUADA para el
+    # GEN2); (b) la clase de cada fila es EXACTAMENTE la de su RESULT.
+    res_g2 = {}
+    rj2 = M.CALC_ERROR_ARBITRO / "resultados.json"
+    if rj2.exists():
+        res_g2 = _json.loads(rj2.read_text(encoding="utf-8")).get("resultados", {})
+    sellados_g2 = {k[:-len("-CLASE")] for k in res_g2 if k.endswith("-CLASE")}
+
     reclamados: dict[str, list] = {}
+    reclamados_g2: dict[str, list] = {}
     for f in v["filas"]:
         if f["tipo"] != "MARGINAL":
             continue
-        if f["estado"] != "SOLO-PISO":
+        if f["estado"] not in ("SOLO-PISO", "EVALUADA"):
             if f["clase_persistencia"]:
                 _falla("T-ERROR-PISO-DERIVADO",
-                       f"{f['celda_id']} no es SOLO-PISO y trae clase "
+                       f"{f['celda_id']} no es SOLO-PISO ni EVALUADA y trae clase "
                        f"{f['clase_persistencia']!r}")
             continue
         t = por_cell.get(f["resultado_id"], {})
@@ -339,6 +354,26 @@ def t_error_piso_derivado():
                 f"{M._slug_result(f['categoria'])}")
         if base in sellados:
             reclamados.setdefault(base, []).append(f["celda_id"])
+        if f["estado"] == "EVALUADA":
+            calc_r, cell_id_r = f["fuente"].split("/", 1)
+            if calc_r not in M.CALC_ARBITRO_R:
+                _falla("T-ERROR-PISO-DERIVADO",
+                       f"{f['celda_id']} EVALUADA con fuente fuera de CALC_ARBITRO_R: {calc_r}")
+            base2 = M.id_error_gen2(cell_id_r)
+            if base2 in sellados_g2:
+                reclamados_g2.setdefault(base2, []).append(f["celda_id"])
+                if res_g2.get(f"{base2}-CLASE") != f["clase_persistencia"] \
+                        or res_g2.get(f"{base2}-D-PP") != f["error_piso_pp"]:
+                    _falla("T-ERROR-PISO-DERIVADO",
+                           f"{f['celda_id']}: clase/error del marcador "
+                           f"{f['clase_persistencia']!r}/{f['error_piso_pp']!r} != RESULT GEN2 "
+                           f"{res_g2.get(base2 + '-CLASE')!r}/{res_g2.get(base2 + '-D-PP')!r}")
+            elif f["clase_persistencia"] or f["error_piso_pp"]:
+                _falla("T-ERROR-PISO-DERIVADO",
+                       f"{f['celda_id']} EVALUADA trae clase/error y el CALC GEN2 no selló "
+                       f"{base2}: el marcador estaría estimando")
+            continue
+        if base in sellados:
             if res.get(f"{base}-CLASE") != f["clase_persistencia"]:
                 _falla("T-ERROR-PISO-DERIVADO",
                        f"{f['celda_id']}: clase del marcador "
@@ -354,11 +389,16 @@ def t_error_piso_derivado():
         n = len(reclamados.get(base, []))
         if n == 0:
             _falla("T-ERROR-PISO-DERIVADO",
-                   f"{base} está sellado y ninguna fila SOLO-PISO lo reclama: "
+                   f"{base} está sellado y ninguna fila SOLO-PISO/EVALUADA lo reclama: "
                    f"el id que el marcador arma no calza")
         elif n > 1:
             _falla("T-ERROR-PISO-DERIVADO",
                    f"{base} lo reclaman {n} filas: {reclamados[base]}")
+    for base in sorted(sellados_g2):
+        n = len(reclamados_g2.get(base, []))
+        if n != 1:
+            _falla("T-ERROR-PISO-DERIVADO",
+                   f"{base} (GEN2) lo reclaman {n} filas EVALUADA: {reclamados_g2.get(base, [])}")
 
 
 CASOS = (t_reserva_sin_r, t_emisor_no_compara, t_piso_no_circular,

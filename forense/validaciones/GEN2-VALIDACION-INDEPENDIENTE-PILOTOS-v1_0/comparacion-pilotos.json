@@ -1,0 +1,2300 @@
+{
+ "pilotos": {
+  "piloto1": {
+   "resumen": {
+    "piloto": "piloto1",
+    "celdas": 8,
+    "max_abs_d_pp_punto": 0.0,
+    "clases_punto": {
+     "IDÉNTICO": 16
+    },
+    "clases_ic": {
+     "COINCIDE": 8
+    }
+   },
+   "filas": [
+    {
+     "celda": "L1xE1",
+     "tipo": "R",
+     "propio": 0.4910300543745604,
+     "sellado": 0.4910300543745604,
+     "n_propio": 992,
+     "n_sellado": 992,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L1xE1",
+     "tipo": "R-IC",
+     "propio": [
+      0.44265845455649727,
+      0.5374562704348337
+     ],
+     "sellado": [
+      0.44318408647994423,
+      0.5372140450669164
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.05256319234469564,
+      "d_sup_pp": 0.024222536791729254,
+      "razon_semiancho": 1.0081660919870983
+     }
+    },
+    {
+     "celda": "L1xE1",
+     "tipo": "C2",
+     "propio": 0.48681740146267427,
+     "sellado": 0.48681740146267427,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L1xE1",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.48578186352650626,
+     "sellado": 0.48578186352650626,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L1xE1",
+     "tipo": "R7-sensibilidad",
+     "propio": 0.4926669518217335,
+     "sellado": 0.4926669518217335,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L1xE2",
+     "tipo": "R",
+     "propio": 0.45540754711768405,
+     "sellado": 0.45540754711768405,
+     "n_propio": 1402,
+     "n_sellado": 1402,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L1xE2",
+     "tipo": "R-IC",
+     "propio": [
+      0.41634769110520653,
+      0.4919790681316084
+     ],
+     "sellado": [
+      0.41842539642697496,
+      0.49182931932608265
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.20777053217684305,
+      "d_sup_pp": 0.01497488055257623,
+      "razon_semiancho": 1.0303451646631445
+     }
+    },
+    {
+     "celda": "L1xE2",
+     "tipo": "C2",
+     "propio": 0.4287127020734599,
+     "sellado": 0.4287127020734599,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L1xE2",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.427697929897425,
+     "sellado": 0.427697929897425,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L1xE2",
+     "tipo": "R7-sensibilidad",
+     "propio": 0.4572061145726745,
+     "sellado": 0.4572061145726745,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L1xE3",
+     "tipo": "R",
+     "propio": 0.3340743538539274,
+     "sellado": 0.3340743538539274,
+     "n_propio": 1194,
+     "n_sellado": 1194,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L1xE3",
+     "tipo": "R-IC",
+     "propio": [
+      0.30217276239943747,
+      0.36598984100747195
+     ],
+     "sellado": [
+      0.3018896421359583,
+      0.36647865784757083
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.028312026347915298,
+      "d_sup_pp": -0.04888168400988824,
+      "razon_semiancho": 0.9880484770502664
+     }
+    },
+    {
+     "celda": "L1xE3",
+     "tipo": "C2",
+     "propio": 0.3778239169382799,
+     "sellado": 0.3778239169382799,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L1xE3",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.3768505655442777,
+     "sellado": 0.3768505655442777,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L1xE3",
+     "tipo": "R7-sensibilidad",
+     "propio": 0.3348453607728589,
+     "sellado": 0.3348453607728589,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L1xE4",
+     "tipo": "R",
+     "propio": 0.3254975134283613,
+     "sellado": 0.3254975134283613,
+     "n_propio": 1057,
+     "n_sellado": 1057,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L1xE4",
+     "tipo": "R-IC",
+     "propio": [
+      0.2859795964601911,
+      0.3653914654722881
+     ],
+     "sellado": [
+      0.28685415119357355,
+      0.36442240412097615
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.08745547333824377,
+      "d_sup_pp": 0.09690613513119728,
+      "razon_semiancho": 1.0237676628661456
+     }
+    },
+    {
+     "celda": "L1xE4",
+     "tipo": "C2",
+     "propio": 0.32363578441490926,
+     "sellado": 0.32363578441490926,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L1xE4",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.322614130290782,
+     "sellado": 0.322614130290782,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L1xE4",
+     "tipo": "R7-sensibilidad",
+     "propio": 0.3254975134283613,
+     "sellado": 0.3254975134283613,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L2xE1",
+     "tipo": "R",
+     "propio": 0.40003510605874565,
+     "sellado": 0.40003510605874565,
+     "n_propio": 1932,
+     "n_sellado": 1932,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L2xE1",
+     "tipo": "R-IC",
+     "propio": [
+      0.36802214182934895,
+      0.43105100828338405
+     ],
+     "sellado": [
+      0.3682263301179102,
+      0.4304435395274831
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.020418828856128002,
+      "d_sup_pp": 0.060746875590095284,
+      "razon_semiancho": 1.0130455392031348
+     }
+    },
+    {
+     "celda": "L2xE1",
+     "tipo": "C2",
+     "propio": 0.4026396036368852,
+     "sellado": 0.4026396036368852,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L2xE1",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.40312219815090383,
+     "sellado": 0.40312219815090383,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L2xE1",
+     "tipo": "R7-sensibilidad",
+     "propio": 0.40500217601425864,
+     "sellado": 0.40500217601425864,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L2xE2",
+     "tipo": "R",
+     "propio": 0.33325788796681544,
+     "sellado": 0.33325788796681544,
+     "n_propio": 2854,
+     "n_sellado": 2854,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L2xE2",
+     "tipo": "R-IC",
+     "propio": [
+      0.3064554654957847,
+      0.36120215323580623
+     ],
+     "sellado": [
+      0.30654182751663667,
+      0.3601410694667029
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.00863620208519933,
+      "d_sup_pp": 0.10610837691033548,
+      "razon_semiancho": 1.021407873473739
+     }
+    },
+    {
+     "celda": "L2xE2",
+     "tipo": "C2",
+     "propio": 0.34777330586565824,
+     "sellado": 0.34777330586565824,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L2xE2",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.348228638454383,
+     "sellado": 0.348228638454383,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L2xE2",
+     "tipo": "R7-sensibilidad",
+     "propio": 0.3368515912767585,
+     "sellado": 0.3368515912767585,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L2xE3",
+     "tipo": "R",
+     "propio": 0.3241275837673242,
+     "sellado": 0.3241275837673242,
+     "n_propio": 2217,
+     "n_sellado": 2217,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L2xE3",
+     "tipo": "R-IC",
+     "propio": [
+      0.29697120305392105,
+      0.3507981525723875
+     ],
+     "sellado": [
+      0.29745410781646786,
+      0.3514820748041502
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.04829047625468097,
+      "d_sup_pp": -0.06839222317627236,
+      "razon_semiancho": 0.9962793812089628
+     }
+    },
+    {
+     "celda": "L2xE3",
+     "tipo": "C2",
+     "propio": 0.3014229609560722,
+     "sellado": 0.3014229609560722,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L2xE3",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.3018460733614223,
+     "sellado": 0.3018460733614223,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L2xE3",
+     "tipo": "R7-sensibilidad",
+     "propio": 0.32885327750300763,
+     "sellado": 0.32885327750300763,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L2xE4",
+     "tipo": "R",
+     "propio": 0.25272430274044605,
+     "sellado": 0.25272430274044605,
+     "n_propio": 1844,
+     "n_sellado": 1844,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L2xE4",
+     "tipo": "R-IC",
+     "propio": [
+      0.22471433968662582,
+      0.28260367111731266
+     ],
+     "sellado": [
+      0.2236903823021392,
+      0.28202768007983253
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.1023957384486629,
+      "d_sup_pp": 0.0575991037480128,
+      "razon_semiancho": 0.9923210987812022
+     }
+    },
+    {
+     "celda": "L2xE4",
+     "tipo": "C2",
+     "propio": 0.2537238822125272,
+     "sellado": 0.2537238822125272,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L2xE4",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.25400425075489347,
+     "sellado": 0.25400425075489347,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L2xE4",
+     "tipo": "R7-sensibilidad",
+     "propio": 0.2553200571164161,
+     "sellado": 0.2553200571164161,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "L1",
+     "tipo": "MARGINAL",
+     "propio": 0.40907634587159497,
+     "sellado": 0.40907634587159497,
+     "n_propio": 4645,
+     "n_sellado": 4645,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "publico_arbitro": 0.409255,
+     "d_pp_vs_publico": -0.017865412840500916
+    },
+    {
+     "celda": "L2",
+     "tipo": "MARGINAL",
+     "propio": 0.3310655214160762,
+     "sellado": 0.3310655214160762,
+     "n_propio": 8847,
+     "n_sellado": 8847,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "publico_arbitro": 0.329868,
+     "d_pp_vs_publico": 0.11975214160762082
+    },
+    {
+     "celda": "E1",
+     "tipo": "MARGINAL",
+     "propio": 0.4320629027722269,
+     "sellado": 0.4320629027722269,
+     "n_propio": 2924,
+     "n_sellado": 2924,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "publico_arbitro": 0.432063,
+     "d_pp_vs_publico": -9.72277730548754e-06
+    },
+    {
+     "celda": "E2",
+     "tipo": "MARGINAL",
+     "propio": 0.3757090767556958,
+     "sellado": 0.3757090767556958,
+     "n_propio": 4256,
+     "n_sellado": 4256,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "publico_arbitro": 0.375709,
+     "d_pp_vs_publico": 7.675569579923547e-06
+    },
+    {
+     "celda": "E3",
+     "tipo": "MARGINAL",
+     "propio": 0.3275054698041219,
+     "sellado": 0.3275054698041219,
+     "n_propio": 3411,
+     "n_sellado": 3411,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "publico_arbitro": 0.327505,
+     "d_pp_vs_publico": 4.698041218831328e-05
+    },
+    {
+     "celda": "E4",
+     "tipo": "MARGINAL",
+     "propio": 0.2772115363395326,
+     "sellado": 0.2772115363395326,
+     "n_propio": 2901,
+     "n_sellado": 2901,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "publico_arbitro": 0.277317,
+     "d_pp_vs_publico": -0.010546366046737532
+    },
+    {
+     "celda": "NAC",
+     "tipo": "MARGINAL",
+     "propio": 0.3579353480705256,
+     "sellado": 0.3579353480705256,
+     "n_propio": 13492,
+     "n_sellado": 13492,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "publico_arbitro": 0.357153,
+     "d_pp_vs_publico": 0.07823480705256292
+    }
+   ]
+  },
+  "piloto2": {
+   "resumen": {
+    "piloto": "piloto2",
+    "celdas": 12,
+    "max_abs_d_pp_punto": 0.0,
+    "clases_punto": {
+     "IDÉNTICO": 24
+    },
+    "clases_ic": {
+     "COINCIDE": 12
+    }
+   },
+   "filas": [
+    {
+     "celda": "S1xD1",
+     "tipo": "R",
+     "propio": 0.39257499328776513,
+     "sellado": 0.39257499328776513,
+     "n_propio": 792,
+     "n_sellado": 792,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S1xD1",
+     "tipo": "R-IC",
+     "propio": [
+      0.34484646874342245,
+      0.44036184981432025
+     ],
+     "sellado": [
+      0.3458337918133803,
+      0.44054271566991465
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.09873230699578572,
+      "d_sup_pp": -0.018086585559440316,
+      "razon_semiancho": 1.008515113270478
+     }
+    },
+    {
+     "celda": "S1xD1",
+     "tipo": "C2",
+     "propio": 0.33821973592663684,
+     "sellado": 0.33821973592663684,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S1xD1",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.3382198726337866,
+     "sellado": 0.3382198726337866,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S1xD2",
+     "tipo": "R",
+     "propio": 0.48928319886282723,
+     "sellado": 0.48928319886282723,
+     "n_propio": 871,
+     "n_sellado": 871,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S1xD2",
+     "tipo": "R-IC",
+     "propio": [
+      0.41603660527681324,
+      0.562860496326945
+     ],
+     "sellado": [
+      0.42169228570735245,
+      0.5569250469713213
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.5655680430539212,
+      "d_sup_pp": 0.5935449355623734,
+      "razon_semiancho": 1.0857124388929509
+     }
+    },
+    {
+     "celda": "S1xD2",
+     "tipo": "C2",
+     "propio": 0.452362924697569,
+     "sellado": 0.452362924697569,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S1xD2",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.452363146142564,
+     "sellado": 0.452363146142564,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S1xD3",
+     "tipo": "R",
+     "propio": 0.536772454918862,
+     "sellado": 0.536772454918862,
+     "n_propio": 1828,
+     "n_sellado": 1828,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S1xD3",
+     "tipo": "R-IC",
+     "propio": [
+      0.489110243858115,
+      0.5832833554608418
+     ],
+     "sellado": [
+      0.49318871318844054,
+      0.5788285440676767
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.4078469330325518,
+      "d_sup_pp": 0.4454811393165059,
+      "razon_semiancho": 1.0996414943360138
+     }
+    },
+    {
+     "celda": "S1xD3",
+     "tipo": "C2",
+     "propio": 0.5238831153224065,
+     "sellado": 0.5238831153224065,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S1xD3",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.5238827092927265,
+     "sellado": 0.5238827092927265,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S2xD1",
+     "tipo": "R",
+     "propio": 0.4262755795492647,
+     "sellado": 0.4262755795492647,
+     "n_propio": 1221,
+     "n_sellado": 1221,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S2xD1",
+     "tipo": "R-IC",
+     "propio": [
+      0.38483153396364844,
+      0.46831517431227015
+     ],
+     "sellado": [
+      0.38487502015081765,
+      0.46781699473747235
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.004348618716920605,
+      "d_sup_pp": 0.049817957479780794,
+      "razon_semiancho": 1.0065306591103773
+     }
+    },
+    {
+     "celda": "S2xD1",
+     "tipo": "C2",
+     "propio": 0.40781742459549963,
+     "sellado": 0.40781742459549963,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S2xD1",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.4078173921527249,
+     "sellado": 0.4078173921527249,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S2xD2",
+     "tipo": "R",
+     "propio": 0.5269995985345812,
+     "sellado": 0.5269995985345812,
+     "n_propio": 1884,
+     "n_sellado": 1884,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S2xD2",
+     "tipo": "R-IC",
+     "propio": [
+      0.4901909470036571,
+      0.5629668794196686
+     ],
+     "sellado": [
+      0.49243265503401784,
+      0.5604176598574107
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.22417080303607229,
+      "d_sup_pp": 0.2549219562257954,
+      "razon_semiancho": 1.0704703574716843
+     }
+    },
+    {
+     "celda": "S2xD2",
+     "tipo": "C2",
+     "propio": 0.5267530179087778,
+     "sellado": 0.5267530179087778,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S2xD2",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.5267530549986988,
+     "sellado": 0.5267530549986988,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S2xD3",
+     "tipo": "R",
+     "propio": 0.6137124508166867,
+     "sellado": 0.6137124508166867,
+     "n_propio": 4634,
+     "n_sellado": 4634,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S2xD3",
+     "tipo": "R-IC",
+     "propio": [
+      0.5859036267907606,
+      0.6406982052695038
+     ],
+     "sellado": [
+      0.5879148715441842,
+      0.6391017300252084
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.20112447534236244,
+      "d_sup_pp": 0.15964752442954033,
+      "razon_semiancho": 1.0704813716797343
+     }
+    },
+    {
+     "celda": "S2xD3",
+     "tipo": "C2",
+     "propio": 0.5972085849904782,
+     "sellado": 0.5972085849904782,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S2xD3",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.5972080141782089,
+     "sellado": 0.5972080141782089,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S3xD1",
+     "tipo": "R",
+     "propio": 0.3766726198653661,
+     "sellado": 0.3766726198653661,
+     "n_propio": 985,
+     "n_sellado": 985,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S3xD1",
+     "tipo": "R-IC",
+     "propio": [
+      0.3230445635387569,
+      0.43288368078467765
+     ],
+     "sellado": [
+      0.32432170057439963,
+      0.4319049300231147
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.12771370356427503,
+      "d_sup_pp": 0.0978750761562952,
+      "razon_semiancho": 1.0209687681692163
+     }
+    },
+    {
+     "celda": "S3xD1",
+     "tipo": "C2",
+     "propio": 0.38456627334582755,
+     "sellado": 0.38456627334582755,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S3xD1",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.38456573915536046,
+     "sellado": 0.38456573915536046,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S3xD2",
+     "tipo": "R",
+     "propio": 0.5093826350178828,
+     "sellado": 0.5093826350178828,
+     "n_propio": 2412,
+     "n_sellado": 2412,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S3xD2",
+     "tipo": "R-IC",
+     "propio": [
+      0.47463065734237714,
+      0.5429801139205352
+     ],
+     "sellado": [
+      0.4757468845170787,
+      0.5414987155907013
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.11162271747015562,
+      "d_sup_pp": 0.14813983298339606,
+      "razon_semiancho": 1.0395065120183034
+     }
+    },
+    {
+     "celda": "S3xD2",
+     "tipo": "C2",
+     "propio": 0.502474641238631,
+     "sellado": 0.502474641238631,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S3xD2",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.502474147765598,
+     "sellado": 0.502474147765598,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S3xD3",
+     "tipo": "R",
+     "propio": 0.572186882356774,
+     "sellado": 0.572186882356774,
+     "n_propio": 8079,
+     "n_sellado": 8079,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S3xD3",
+     "tipo": "R-IC",
+     "propio": [
+      0.5429496543052964,
+      0.5996040691354987
+     ],
+     "sellado": [
+      0.5433533260618177,
+      0.5991573561275187
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.04036717565213399,
+      "d_sup_pp": 0.04467130079799375,
+      "razon_semiancho": 1.0152387697358072
+     }
+    },
+    {
+     "celda": "S3xD3",
+     "tipo": "C2",
+     "propio": 0.5736189438488493,
+     "sellado": 0.5736189438488493,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S3xD3",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.5736178442970777,
+     "sellado": 0.5736178442970777,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S4xD1",
+     "tipo": "R",
+     "propio": 0.4161379175435331,
+     "sellado": 0.4161379175435331,
+     "n_propio": 769,
+     "n_sellado": 769,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S4xD1",
+     "tipo": "R-IC",
+     "propio": [
+      0.3597302054085216,
+      0.47364271928613944
+     ],
+     "sellado": [
+      0.36305830565946756,
+      0.46849595482338224
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.33281002509459867,
+      "d_sup_pp": 0.5146764462757192,
+      "razon_semiancho": 1.0803779748591327
+     }
+    },
+    {
+     "celda": "S4xD1",
+     "tipo": "C2",
+     "propio": 0.4305100972648407,
+     "sellado": 0.4305100972648407,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S4xD1",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.43050954436512173,
+     "sellado": 0.43050954436512173,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S4xD2",
+     "tipo": "R",
+     "propio": 0.543323852475761,
+     "sellado": 0.543323852475761,
+     "n_propio": 2847,
+     "n_sellado": 2847,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S4xD2",
+     "tipo": "R-IC",
+     "propio": [
+      0.5109225926729932,
+      0.5756161028895693
+     ],
+     "sellado": [
+      0.5128334194379375,
+      0.5740460175525178
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.19108267649442512,
+      "d_sup_pp": 0.15700853370514967,
+      "razon_semiancho": 1.0568659427832163
+     }
+    },
+    {
+     "celda": "S4xD2",
+     "tipo": "C2",
+     "propio": 0.5499180279546432,
+     "sellado": 0.5499180279546432,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S4xD2",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.549917539859646,
+     "sellado": 0.549917539859646,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S4xD3",
+     "tipo": "R",
+     "propio": 0.6078239267022411,
+     "sellado": 0.6078239267022411,
+     "n_propio": 13858,
+     "n_sellado": 13858,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S4xD3",
+     "tipo": "R-IC",
+     "propio": [
+      0.5895226723872901,
+      0.6259551463708244
+     ],
+     "sellado": [
+      0.5895836324957499,
+      0.6254529862273694
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.006096010845979549,
+      "d_sup_pp": 0.050216014345494386,
+      "razon_semiancho": 1.0156992026153606
+     }
+    },
+    {
+     "celda": "S4xD3",
+     "tipo": "C2",
+     "propio": 0.6194165992369566,
+     "sellado": 0.6194165992369566,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S4xD3",
+     "tipo": "C2-REDERIVADO",
+     "propio": 0.6194155398783323,
+     "sellado": 0.6194155398783323,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S1",
+     "tipo": "MARGINAL",
+     "propio": 0.4932213113467235,
+     "sellado": 0.4932213113467235,
+     "n_propio": 3491,
+     "n_sellado": 3491,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S2",
+     "tipo": "MARGINAL",
+     "propio": 0.5673691228552837,
+     "sellado": 0.5673691228552837,
+     "n_propio": 7739,
+     "n_sellado": 7739,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S3",
+     "tipo": "MARGINAL",
+     "propio": 0.5433675974963666,
+     "sellado": 0.5433675974963666,
+     "n_propio": 11476,
+     "n_sellado": 11476,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "S4",
+     "tipo": "MARGINAL",
+     "propio": 0.5900926080732073,
+     "sellado": 0.5900926080732073,
+     "n_propio": 17474,
+     "n_sellado": 17474,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "D1",
+     "tipo": "MARGINAL",
+     "propio": 0.40331031548476615,
+     "sellado": 0.40331031548476615,
+     "n_propio": 3770,
+     "n_sellado": 3770,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "D2",
+     "tipo": "MARGINAL",
+     "propio": 0.5220903977437227,
+     "sellado": 0.5220903977437227,
+     "n_propio": 8039,
+     "n_sellado": 8039,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "D3",
+     "tipo": "MARGINAL",
+     "propio": 0.5927027760619027,
+     "sellado": 0.5927027760619027,
+     "n_propio": 28471,
+     "n_sellado": 28471,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "NAC",
+     "tipo": "MARGINAL",
+     "propio": 0.5627744787844097,
+     "sellado": 0.5627744787844097,
+     "n_propio": 40280,
+     "n_sellado": 40280,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    }
+   ]
+  },
+  "piloto3": {
+   "resumen": {
+    "piloto": "piloto3",
+    "celdas": 16,
+    "max_abs_d_pp_punto": 0.0,
+    "clases_punto": {
+     "IDÉNTICO": 32
+    },
+    "clases_ic": {
+     "COINCIDE": 16
+    }
+   },
+   "filas": [
+    {
+     "celda": "18-29|HASTA-PRIMARIA",
+     "tipo": "R",
+     "propio": 0.3261416044260799,
+     "sellado": 0.3261416044260799,
+     "n_propio": 67,
+     "n_sellado": 67,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "soporte_sellado": "FUERA-DE-SOPORTE-EX-ANTE"
+    },
+    {
+     "celda": "18-29|HASTA-PRIMARIA",
+     "tipo": "R-IC",
+     "propio": [
+      0.1896364700070796,
+      0.48409439200209303
+     ],
+     "sellado": [
+      0.1860392905378624,
+      0.4795297148067582
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.3597179469217199,
+      "d_sup_pp": 0.4564677195334821,
+      "razon_semiancho": 1.0032965222920909
+     }
+    },
+    {
+     "celda": "18-29|HASTA-PRIMARIA",
+     "tipo": "C2",
+     "propio": 0.48452491444265666,
+     "sellado": 0.48452491444265666,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "18-29|HASTA-PRIMARIA",
+     "tipo": "C2-ALTERNATIVA-marginales-por-eje",
+     "propio": 0.48641534644128054,
+     "sellado": 0.48452491444265666,
+     "d_pp": 0.1890431998623876,
+     "clase": "DIFERENCIA"
+    },
+    {
+     "celda": "18-29|HASTA-PRIMARIA",
+     "tipo": "C2-IC",
+     "propio": [
+      0.4404003549000712,
+      0.5295102636978488
+     ],
+     "sellado": [
+      0.440786307903583,
+      0.5289531531785042
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.03859530035117964,
+      "d_sup_pp": 0.055711051934459466,
+      "razon_semiancho": 1.0106963509913023
+     }
+    },
+    {
+     "celda": "18-29|SECUNDARIA",
+     "tipo": "R",
+     "propio": 0.5987833935807219,
+     "sellado": 0.5987833935807219,
+     "n_propio": 417,
+     "n_sellado": 417,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "soporte_sellado": "PUNTUADA"
+    },
+    {
+     "celda": "18-29|SECUNDARIA",
+     "tipo": "R-IC",
+     "propio": [
+      0.5218420791470719,
+      0.6752237477009702
+     ],
+     "sellado": [
+      0.5210718372892742,
+      0.672864601380927
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.07702418577977266,
+      "d_sup_pp": 0.23591463200431928,
+      "razon_semiancho": 1.0104675902817482
+     }
+    },
+    {
+     "celda": "18-29|SECUNDARIA",
+     "tipo": "C2",
+     "propio": 0.6568030841330653,
+     "sellado": 0.6568030841330653,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "18-29|SECUNDARIA",
+     "tipo": "C2-ALTERNATIVA-marginales-por-eje",
+     "propio": 0.6558188738459714,
+     "sellado": 0.6568030841330653,
+     "d_pp": -0.09842102870939451,
+     "clase": "DIFERENCIA"
+    },
+    {
+     "celda": "18-29|SECUNDARIA",
+     "tipo": "C2-IC",
+     "propio": [
+      0.6196691011195887,
+      0.6939530061750553
+     ],
+     "sellado": [
+      0.6195503021445021,
+      0.6931977507279221
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.011879897508659809,
+      "d_sup_pp": 0.0755255447133174,
+      "razon_semiancho": 1.0086419351150457
+     }
+    },
+    {
+     "celda": "18-29|MEDIA-SUPERIOR",
+     "tipo": "R",
+     "propio": 0.7113043302471926,
+     "sellado": 0.7113043302471926,
+     "n_propio": 934,
+     "n_sellado": 934,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "soporte_sellado": "PUNTUADA"
+    },
+    {
+     "celda": "18-29|MEDIA-SUPERIOR",
+     "tipo": "R-IC",
+     "propio": [
+      0.6642664459636729,
+      0.7547663627495371
+     ],
+     "sellado": [
+      0.6648071560948814,
+      0.7549240133550752
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.05407101312084883,
+      "d_sup_pp": -0.01576506055380733,
+      "razon_semiancho": 1.0042506977863688
+     }
+    },
+    {
+     "celda": "18-29|MEDIA-SUPERIOR",
+     "tipo": "C2",
+     "propio": 0.7566313129728077,
+     "sellado": 0.7566313129728077,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "18-29|MEDIA-SUPERIOR",
+     "tipo": "C2-ALTERNATIVA-marginales-por-eje",
+     "propio": 0.7561895664909942,
+     "sellado": 0.7566313129728077,
+     "d_pp": -0.04417464818134986,
+     "clase": "COINCIDE"
+    },
+    {
+     "celda": "18-29|MEDIA-SUPERIOR",
+     "tipo": "C2-IC",
+     "propio": [
+      0.7263935794720074,
+      0.7855873920468672
+     ],
+     "sellado": [
+      0.7263639399900934,
+      0.7861082773960419
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.0029639481914034427,
+      "d_sup_pp": -0.05208853491747156,
+      "razon_semiancho": 0.9907853220072044
+     }
+    },
+    {
+     "celda": "18-29|SUPERIOR",
+     "tipo": "R",
+     "propio": 0.8448394704373234,
+     "sellado": 0.8448394704373234,
+     "n_propio": 1388,
+     "n_sellado": 1388,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "soporte_sellado": "PUNTUADA"
+    },
+    {
+     "celda": "18-29|SUPERIOR",
+     "tipo": "R-IC",
+     "propio": [
+      0.8130835644738539,
+      0.8742274092674568
+     ],
+     "sellado": [
+      0.8134040290592507,
+      0.8740372893926975
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.03204645853968069,
+      "d_sup_pp": 0.019011987475925363,
+      "razon_semiancho": 1.0084208643465344
+     }
+    },
+    {
+     "celda": "18-29|SUPERIOR",
+     "tipo": "C2",
+     "propio": 0.8643775065418697,
+     "sellado": 0.8643775065418697,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "18-29|SUPERIOR",
+     "tipo": "C2-ALTERNATIVA-marginales-por-eje",
+     "propio": 0.8645939825546168,
+     "sellado": 0.8643775065418697,
+     "d_pp": 0.021647601274710215,
+     "clase": "COINCIDE"
+    },
+    {
+     "celda": "18-29|SUPERIOR",
+     "tipo": "C2-IC",
+     "propio": [
+      0.8439325573812082,
+      0.8828854080394303
+     ],
+     "sellado": [
+      0.8437608575070431,
+      0.8832445294425465
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.01716998741650988,
+      "d_sup_pp": -0.03591214031162249,
+      "razon_semiancho": 0.9865559292927867
+     }
+    },
+    {
+     "celda": "30-44|HASTA-PRIMARIA",
+     "tipo": "R",
+     "propio": 0.5417639162331245,
+     "sellado": 0.5417639162331245,
+     "n_propio": 286,
+     "n_sellado": 286,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "soporte_sellado": "PUNTUADA"
+    },
+    {
+     "celda": "30-44|HASTA-PRIMARIA",
+     "tipo": "R-IC",
+     "propio": [
+      0.4510351328780267,
+      0.6326897833552266
+     ],
+     "sellado": [
+      0.4494809383514319,
+      0.6316483688399328
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.1554194526594832,
+      "d_sup_pp": 0.10414145152938259,
+      "razon_semiancho": 0.9971851169557262
+     }
+    },
+    {
+     "celda": "30-44|HASTA-PRIMARIA",
+     "tipo": "C2",
+     "propio": 0.5162501009076711,
+     "sellado": 0.5162501009076711,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "30-44|HASTA-PRIMARIA",
+     "tipo": "C2-ALTERNATIVA-marginales-por-eje",
+     "propio": 0.5181398930134041,
+     "sellado": 0.5162501009076711,
+     "d_pp": 0.18897921057330347,
+     "clase": "DIFERENCIA"
+    },
+    {
+     "celda": "30-44|HASTA-PRIMARIA",
+     "tipo": "C2-IC",
+     "propio": [
+      0.4791041599752695,
+      0.5532613280152202
+     ],
+     "sellado": [
+      0.47874759756924795,
+      0.5528963243627989
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.03565624060215544,
+      "d_sup_pp": 0.036500365242131405,
+      "razon_semiancho": 1.000113842095
+     }
+    },
+    {
+     "celda": "30-44|SECUNDARIA",
+     "tipo": "R",
+     "propio": 0.6311088979912456,
+     "sellado": 0.6311088979912456,
+     "n_propio": 1380,
+     "n_sellado": 1380,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "soporte_sellado": "PUNTUADA"
+    },
+    {
+     "celda": "30-44|SECUNDARIA",
+     "tipo": "R-IC",
+     "propio": [
+      0.5939328845436839,
+      0.6686319033315258
+     ],
+     "sellado": [
+      0.5935270517324619,
+      0.6683690330300078
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.040583281122197334,
+      "d_sup_pp": 0.026287030151794788,
+      "razon_semiancho": 0.9980898085910412
+     }
+    },
+    {
+     "celda": "30-44|SECUNDARIA",
+     "tipo": "C2",
+     "propio": 0.6848224108313606,
+     "sellado": 0.6848224108313606,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "30-44|SECUNDARIA",
+     "tipo": "C2-ALTERNATIVA-marginales-por-eje",
+     "propio": 0.683879879559757,
+     "sellado": 0.6848224108313606,
+     "d_pp": -0.09425312716035972,
+     "clase": "DIFERENCIA"
+    },
+    {
+     "celda": "30-44|SECUNDARIA",
+     "tipo": "C2-IC",
+     "propio": [
+      0.6579169588033731,
+      0.7107993338296619
+     ],
+     "sellado": [
+      0.6580862183759106,
+      0.7111609057110774
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.01692595725375501,
+      "d_sup_pp": -0.03615718814155011,
+      "razon_semiancho": 0.9963765719868777
+     }
+    },
+    {
+     "celda": "30-44|MEDIA-SUPERIOR",
+     "tipo": "R",
+     "propio": 0.7490026662153917,
+     "sellado": 0.7490026662153917,
+     "n_propio": 1977,
+     "n_sellado": 1977,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "soporte_sellado": "PUNTUADA"
+    },
+    {
+     "celda": "30-44|MEDIA-SUPERIOR",
+     "tipo": "R-IC",
+     "propio": [
+      0.7179429137202121,
+      0.7798810339818455
+     ],
+     "sellado": [
+      0.7178427190171655,
+      0.7794018380768649
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.010019470304667433,
+      "d_sup_pp": 0.04791959049805783,
+      "razon_semiancho": 1.0061567028203628
+     }
+    },
+    {
+     "celda": "30-44|MEDIA-SUPERIOR",
+     "tipo": "C2",
+     "propio": 0.7792398364372125,
+     "sellado": 0.7792398364372125,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "30-44|MEDIA-SUPERIOR",
+     "tipo": "C2-ALTERNATIVA-marginales-por-eje",
+     "propio": 0.7788271316572103,
+     "sellado": 0.7792398364372125,
+     "d_pp": -0.041270478000221544,
+     "clase": "COINCIDE"
+    },
+    {
+     "celda": "30-44|MEDIA-SUPERIOR",
+     "tipo": "C2-IC",
+     "propio": [
+      0.7582894701238293,
+      0.7999279447675687
+     ],
+     "sellado": [
+      0.7581170609275167,
+      0.7997891049931551
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.01724091963125618,
+      "d_sup_pp": 0.013883977441353501,
+      "razon_semiancho": 0.9991944378383227
+     }
+    },
+    {
+     "celda": "30-44|SUPERIOR",
+     "tipo": "R",
+     "propio": 0.8759495303707676,
+     "sellado": 0.8759495303707676,
+     "n_propio": 3365,
+     "n_sellado": 3365,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "soporte_sellado": "PUNTUADA"
+    },
+    {
+     "celda": "30-44|SUPERIOR",
+     "tipo": "R-IC",
+     "propio": [
+      0.8536051827501866,
+      0.8956798271006753
+     ],
+     "sellado": [
+      0.854066276959843,
+      0.8952631386569616
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.04610942096564541,
+      "d_sup_pp": 0.04166884437136753,
+      "razon_semiancho": 1.0213070272154134
+     }
+    },
+    {
+     "celda": "30-44|SUPERIOR",
+     "tipo": "C2",
+     "propio": 0.8785828188181685,
+     "sellado": 0.8785828188181685,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "30-44|SUPERIOR",
+     "tipo": "C2-ALTERNATIVA-marginales-por-eje",
+     "propio": 0.8787798005986505,
+     "sellado": 0.8785828188181685,
+     "d_pp": 0.019698178048199733,
+     "clase": "COINCIDE"
+    },
+    {
+     "celda": "30-44|SUPERIOR",
+     "tipo": "C2-IC",
+     "propio": [
+      0.864457853412514,
+      0.891733683323834
+     ],
+     "sellado": [
+      0.864418915219044,
+      0.8918013529437138
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.0038938193470006155,
+      "d_sup_pp": -0.0067669619879806575,
+      "razon_semiancho": 0.9961067084522659
+     }
+    },
+    {
+     "celda": "45-59|HASTA-PRIMARIA",
+     "tipo": "R",
+     "propio": 0.41420922527912923,
+     "sellado": 0.41420922527912923,
+     "n_propio": 630,
+     "n_sellado": 630,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "soporte_sellado": "PUNTUADA"
+    },
+    {
+     "celda": "45-59|HASTA-PRIMARIA",
+     "tipo": "R-IC",
+     "propio": [
+      0.357375561447646,
+      0.4726253517209586
+     ],
+     "sellado": [
+      0.3565601749748515,
+      0.47360076783714333
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.08153864727944993,
+      "d_sup_pp": -0.09754161161847352,
+      "razon_semiancho": 0.9846993035050133
+     }
+    },
+    {
+     "celda": "45-59|HASTA-PRIMARIA",
+     "tipo": "C2",
+     "propio": 0.38559588351130086,
+     "sellado": 0.38559588351130086,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "45-59|HASTA-PRIMARIA",
+     "tipo": "C2-ALTERNATIVA-marginales-por-eje",
+     "propio": 0.3873904067655437,
+     "sellado": 0.38559588351130086,
+     "d_pp": 0.17945232542428413,
+     "clase": "DIFERENCIA"
+    },
+    {
+     "celda": "45-59|HASTA-PRIMARIA",
+     "tipo": "C2-IC",
+     "propio": [
+      0.3522512430741345,
+      0.41989701190404793
+     ],
+     "sellado": [
+      0.35137906120007373,
+      0.4208102641660194
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.08721818740607956,
+      "d_sup_pp": -0.09132522619714756,
+      "razon_semiancho": 0.9742848451450858
+     }
+    },
+    {
+     "celda": "45-59|SECUNDARIA",
+     "tipo": "R",
+     "propio": 0.5999796793949911,
+     "sellado": 0.5999796793949911,
+     "n_propio": 1529,
+     "n_sellado": 1529,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "soporte_sellado": "PUNTUADA"
+    },
+    {
+     "celda": "45-59|SECUNDARIA",
+     "tipo": "R-IC",
+     "propio": [
+      0.5587433267966029,
+      0.6412084986850802
+     ],
+     "sellado": [
+      0.5578024380201753,
+      0.6403351307876874
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.09408887764276175,
+      "d_sup_pp": 0.0873367897392785,
+      "razon_semiancho": 0.9991818893002191
+     }
+    },
+    {
+     "celda": "45-59|SECUNDARIA",
+     "tipo": "C2",
+     "propio": 0.5609791903425925,
+     "sellado": 0.5609791903425925,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "45-59|SECUNDARIA",
+     "tipo": "C2-ALTERNATIVA-marginales-por-eje",
+     "propio": 0.5599043114602088,
+     "sellado": 0.5609791903425925,
+     "d_pp": -0.10748788823836675,
+     "clase": "DIFERENCIA"
+    },
+    {
+     "celda": "45-59|SECUNDARIA",
+     "tipo": "C2-IC",
+     "propio": [
+      0.5282965314909933,
+      0.5934367763358633
+     ],
+     "sellado": [
+      0.5286353362193754,
+      0.5933991319252395
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.033880472838210274,
+      "d_sup_pp": 0.003764441062381607,
+      "razon_semiancho": 1.0058126478675775
+     }
+    },
+    {
+     "celda": "45-59|MEDIA-SUPERIOR",
+     "tipo": "R",
+     "propio": 0.6776899667742782,
+     "sellado": 0.6776899667742782,
+     "n_propio": 1646,
+     "n_sellado": 1646,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "soporte_sellado": "PUNTUADA"
+    },
+    {
+     "celda": "45-59|MEDIA-SUPERIOR",
+     "tipo": "R-IC",
+     "propio": [
+      0.6429743065680685,
+      0.7120579807490944
+     ],
+     "sellado": [
+      0.641663492633059,
+      0.7123604930889107
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.1310813935009536,
+      "d_sup_pp": -0.030251233981626324,
+      "razon_semiancho": 0.9771797068556922
+     }
+    },
+    {
+     "celda": "45-59|MEDIA-SUPERIOR",
+     "tipo": "C2",
+     "propio": 0.6748833231311685,
+     "sellado": 0.6748833231311685,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "45-59|MEDIA-SUPERIOR",
+     "tipo": "C2-ALTERNATIVA-marginales-por-eje",
+     "propio": 0.6743570552416972,
+     "sellado": 0.6748833231311685,
+     "d_pp": -0.05262678894712991,
+     "clase": "DIFERENCIA"
+    },
+    {
+     "celda": "45-59|MEDIA-SUPERIOR",
+     "tipo": "C2-IC",
+     "propio": [
+      0.6492931698357894,
+      0.7005759813645089
+     ],
+     "sellado": [
+      0.649041427074107,
+      0.7003414786792362
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.02517427616824941,
+      "d_sup_pp": 0.023450268527269724,
+      "razon_semiancho": 0.9996639364704251
+     }
+    },
+    {
+     "celda": "45-59|SUPERIOR",
+     "tipo": "R",
+     "propio": 0.8011917419942933,
+     "sellado": 0.8011917419942933,
+     "n_propio": 1994,
+     "n_sellado": 1994,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "soporte_sellado": "PUNTUADA"
+    },
+    {
+     "celda": "45-59|SUPERIOR",
+     "tipo": "R-IC",
+     "propio": [
+      0.7736524195472063,
+      0.827329755189709
+     ],
+     "sellado": [
+      0.7738580884859871,
+      0.8268992246202074
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.020566893878082304,
+      "d_sup_pp": 0.04305305695015971,
+      "razon_semiancho": 1.0119944547694553
+     }
+    },
+    {
+     "celda": "45-59|SUPERIOR",
+     "tipo": "C2",
+     "propio": 0.8097199454837418,
+     "sellado": 0.8097199454837418,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "45-59|SUPERIOR",
+     "tipo": "C2-ALTERNATIVA-marginales-por-eje",
+     "propio": 0.8100044875880061,
+     "sellado": 0.8097199454837418,
+     "d_pp": 0.028454210426431814,
+     "clase": "COINCIDE"
+    },
+    {
+     "celda": "45-59|SUPERIOR",
+     "tipo": "C2-IC",
+     "propio": [
+      0.7922796345575301,
+      0.8266869991356987
+     ],
+     "sellado": [
+      0.7919532773080719,
+      0.8264773705035735
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.03263572494582867,
+      "d_sup_pp": 0.020962863212514726,
+      "razon_semiancho": 0.9966189230033607
+     }
+    },
+    {
+     "celda": "60-96|HASTA-PRIMARIA",
+     "tipo": "R",
+     "propio": 0.34258995472375203,
+     "sellado": 0.34258995472375203,
+     "n_propio": 1294,
+     "n_sellado": 1294,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "soporte_sellado": "PUNTUADA"
+    },
+    {
+     "celda": "60-96|HASTA-PRIMARIA",
+     "tipo": "R-IC",
+     "propio": [
+      0.3041883606476085,
+      0.3822186646006035
+     ],
+     "sellado": [
+      0.30321057283528846,
+      0.38255298511366875
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.09777878123200523,
+      "d_sup_pp": -0.0334320513065256,
+      "razon_semiancho": 0.9834627119631597
+     }
+    },
+    {
+     "celda": "60-96|HASTA-PRIMARIA",
+     "tipo": "C2",
+     "propio": 0.2197701594038772,
+     "sellado": 0.2197701594038772,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "60-96|HASTA-PRIMARIA",
+     "tipo": "C2-ALTERNATIVA-marginales-por-eje",
+     "propio": 0.2210706275298213,
+     "sellado": 0.2197701594038772,
+     "d_pp": 0.13004681259440876,
+     "clase": "DIFERENCIA"
+    },
+    {
+     "celda": "60-96|HASTA-PRIMARIA",
+     "tipo": "C2-IC",
+     "propio": [
+      0.19290540482789229,
+      0.24908685905780567
+     ],
+     "sellado": [
+      0.1931095649958357,
+      0.2492556029174386
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.020416016794341796,
+      "d_sup_pp": -0.016874385963291938,
+      "razon_semiancho": 1.0006307890925439
+     }
+    },
+    {
+     "celda": "60-96|SECUNDARIA",
+     "tipo": "R",
+     "propio": 0.3977488544899167,
+     "sellado": 0.3977488544899167,
+     "n_propio": 872,
+     "n_sellado": 872,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "soporte_sellado": "PUNTUADA"
+    },
+    {
+     "celda": "60-96|SECUNDARIA",
+     "tipo": "R-IC",
+     "propio": [
+      0.3447949207417542,
+      0.4521928878795948
+     ],
+     "sellado": [
+      0.3457426881734253,
+      0.4526876900534512
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.0947767431671076,
+      "d_sup_pp": -0.049480217385644565,
+      "razon_semiancho": 1.0042354972168104
+     }
+    },
+    {
+     "celda": "60-96|SECUNDARIA",
+     "tipo": "C2",
+     "propio": 0.36447203158605124,
+     "sellado": 0.36447203158605124,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "60-96|SECUNDARIA",
+     "tipo": "C2-ALTERNATIVA-marginales-por-eje",
+     "propio": 0.3634619551520136,
+     "sellado": 0.36447203158605124,
+     "d_pp": -0.101007643403761,
+     "clase": "DIFERENCIA"
+    },
+    {
+     "celda": "60-96|SECUNDARIA",
+     "tipo": "C2-IC",
+     "propio": [
+      0.3343473495230103,
+      0.3941333851769958
+     ],
+     "sellado": [
+      0.33506944210010475,
+      0.39450658364802593
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.07220925770944353,
+      "d_sup_pp": -0.03731984710301228,
+      "razon_semiancho": 1.0058699677840837
+     }
+    },
+    {
+     "celda": "60-96|MEDIA-SUPERIOR",
+     "tipo": "R",
+     "propio": 0.5074261380264923,
+     "sellado": 0.5074261380264923,
+     "n_propio": 1002,
+     "n_sellado": 1002,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "soporte_sellado": "PUNTUADA"
+    },
+    {
+     "celda": "60-96|MEDIA-SUPERIOR",
+     "tipo": "R-IC",
+     "propio": [
+      0.45896710774987837,
+      0.5583222327912734
+     ],
+     "sellado": [
+      0.4579008755514982,
+      0.5581639541232576
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": 0.1066232198380146,
+      "d_sup_pp": 0.01582786680157655,
+      "razon_semiancho": 0.9909442883332716
+     }
+    },
+    {
+     "celda": "60-96|MEDIA-SUPERIOR",
+     "tipo": "C2",
+     "propio": 0.48231049077684934,
+     "sellado": 0.48231049077684934,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "60-96|MEDIA-SUPERIOR",
+     "tipo": "C2-ALTERNATIVA-marginales-por-eje",
+     "propio": 0.48171189389092467,
+     "sellado": 0.48231049077684934,
+     "d_pp": -0.059859688592467375,
+     "clase": "DIFERENCIA"
+    },
+    {
+     "celda": "60-96|MEDIA-SUPERIOR",
+     "tipo": "C2-IC",
+     "propio": [
+      0.4537321347093191,
+      0.5109608027047884
+     ],
+     "sellado": [
+      0.45390737442093426,
+      0.5115889609431381
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.01752397116151494,
+      "d_sup_pp": -0.06281582383497186,
+      "razon_semiancho": 0.9921479530289926
+     }
+    },
+    {
+     "celda": "60-96|SUPERIOR",
+     "tipo": "R",
+     "propio": 0.6398059680401741,
+     "sellado": 0.6398059680401741,
+     "n_propio": 1307,
+     "n_sellado": 1307,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO",
+     "soporte_sellado": "PUNTUADA"
+    },
+    {
+     "celda": "60-96|SUPERIOR",
+     "tipo": "R-IC",
+     "propio": [
+      0.5992642912378725,
+      0.6798348338615094
+     ],
+     "sellado": [
+      0.6006612959520768,
+      0.6777786039235929
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.13970047142043418,
+      "d_sup_pp": 0.20562299379165427,
+      "razon_semiancho": 1.0447789833819974
+     }
+    },
+    {
+     "celda": "60-96|SUPERIOR",
+     "tipo": "C2",
+     "propio": 0.6563449744105344,
+     "sellado": 0.6563449744105344,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "60-96|SUPERIOR",
+     "tipo": "C2-ALTERNATIVA-marginales-por-eje",
+     "propio": 0.656761648341971,
+     "sellado": 0.6563449744105344,
+     "d_pp": 0.041667393143662856,
+     "clase": "COINCIDE"
+    },
+    {
+     "celda": "60-96|SUPERIOR",
+     "tipo": "C2-IC",
+     "propio": [
+      0.6294315532570935,
+      0.682527728602028
+     ],
+     "sellado": [
+      0.6301430827504048,
+      0.6822532906884965
+     ],
+     "clase": "COINCIDE",
+     "detalle": {
+      "d_inf_pp": -0.07115294933112137,
+      "d_sup_pp": 0.027443791353154445,
+      "razon_semiancho": 1.0189208112163766
+     }
+    },
+    {
+     "celda": "18-29",
+     "tipo": "MARGINAL",
+     "propio": 0.7518116205149231,
+     "sellado": 0.7518116205149231,
+     "n_propio": 2806,
+     "n_sellado": 2806,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "30-44",
+     "tipo": "MARGINAL",
+     "propio": 0.7747345828258643,
+     "sellado": 0.7747345828258643,
+     "n_propio": 7008,
+     "n_sellado": 7008,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "45-59",
+     "tipo": "MARGINAL",
+     "propio": 0.6691525923613206,
+     "sellado": 0.6691525923613206,
+     "n_propio": 5799,
+     "n_sellado": 5799,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "60-96",
+     "tipo": "MARGINAL",
+     "propio": 0.4758217673436737,
+     "sellado": 0.4758217673436737,
+     "n_propio": 4475,
+     "n_sellado": 4475,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "HASTA-PRIMARIA",
+     "tipo": "MARGINAL",
+     "propio": 0.38963095157189565,
+     "sellado": 0.38963095157189565,
+     "n_propio": 2277,
+     "n_sellado": 2277,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "SECUNDARIA",
+     "tipo": "MARGINAL",
+     "propio": 0.5651613524294491,
+     "sellado": 0.5651613524294491,
+     "n_propio": 4198,
+     "n_sellado": 4198,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "MEDIA-SUPERIOR",
+     "tipo": "MARGINAL",
+     "propio": 0.6786020795436412,
+     "sellado": 0.6786020795436412,
+     "n_propio": 5559,
+     "n_sellado": 5559,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "SUPERIOR",
+     "tipo": "MARGINAL",
+     "propio": 0.8123252983045801,
+     "sellado": 0.8123252983045801,
+     "n_propio": 8054,
+     "n_sellado": 8054,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    },
+    {
+     "celda": "TOTAL",
+     "tipo": "MARGINAL",
+     "propio": 0.6729051284086661,
+     "sellado": 0.6729051284086661,
+     "n_propio": 20088,
+     "n_sellado": 20088,
+     "d_pp": 0.0,
+     "clase": "IDÉNTICO"
+    }
+   ],
+   "puntuadas_selladas": [
+    "18-29|SECUNDARIA",
+    "18-29|MEDIA-SUPERIOR",
+    "18-29|SUPERIOR",
+    "30-44|HASTA-PRIMARIA",
+    "30-44|SECUNDARIA",
+    "30-44|MEDIA-SUPERIOR",
+    "30-44|SUPERIOR",
+    "45-59|HASTA-PRIMARIA",
+    "45-59|SECUNDARIA",
+    "45-59|MEDIA-SUPERIOR",
+    "45-59|SUPERIOR",
+    "60-96|HASTA-PRIMARIA",
+    "60-96|SECUNDARIA",
+    "60-96|MEDIA-SUPERIOR",
+    "60-96|SUPERIOR"
+   ]
+  }
+ },
+ "P4": {
+  "piloto1": {
+   "MAE_pp": 1.4667863476778786,
+   "max_err_pp": 4.374956308435246,
+   "ic_C2_cubre_R": 7,
+   "celdas_puntuadas": 8,
+   "MAE_C2_sellado_pp": 1.4667863476778786
+  },
+  "piloto2": {
+   "MAE_pp": 1.5680517417942745,
+   "max_err_pp": 5.435525736112829,
+   "ic_C2_cubre_R": 11,
+   "celdas_puntuadas": 12,
+   "MAE_C2_sellado_pp": 1.5680517417942743
+  },
+  "piloto3": {
+   "MAE_pp": 3.411216306758824,
+   "max_err_pp": 12.281979531987483,
+   "ic_C2_cubre_R": 8,
+   "celdas_puntuadas": 15,
+   "MAE_C2_sellado_pp": 3.411216306758824
+  },
+  "global": {
+   "celdas_puntuadas": 35,
+   "MAE_ponderado_por_celdas_pp": 2.334833036695334,
+   "ic_C2_cubre_R": 26
+  }
+ }
+}
