@@ -141,6 +141,13 @@ tolerancia:
   tipo: flotante
   abs: 1.0e-10
   razon: mismo payload, transformacion y sumas float64; bootstrap determinista por semilla
+ejecucion_previa:
+  acto: 'ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2 (PR #951, sesion c0ab3df1, CAJA)'
+  fecha: '2026-09-21'
+  comando: python3 tools/corrida0.py run CALC-GOB-DIGITAL-EXE-EMISIONES-0002
+  duracion_s: 13.76
+  resultado: 'RUN: FALLO -- nada se sella. El medidor congelado (826bf3a1) produjo los 565 RESULT declarados; 40 vinieron null (32 C1A-P-IC-LO/HI por diseno, medidor.py:416; 8 de la banda 60-96 porque el control se rotula -60-X- en CALC-C2-COMPUESTO-RESERVADAS-0001, medidor.py:355) y corrida0 los descarto ANTES de escribir nada (tools/corrida0.py:1951): sin ejecucion.json, sin resultados.json, sin sello. Ninguna cifra fue vista (nota-2026-09-21-gen2-celda-d-piloto-3-commit-2-3-v1_2-paro.md, secciones 0 y 4).'
+  consecuencia: 'Por la firma de mesa del 21/sep (FP-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2-a6f5-01): re-correr EMISIONES es legitimo -- procedimiento y semilla intactos, nadie vio cifras. El COMMIT-2 del v1.3 NO es un segundo resultado (E.5): el primero que este procedimiento SELLE es el que se reporta. Declarado por ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_3.'
 resultados:
 - id: RESULT-GOB-EXE15-2025-FILAS-EVENTOS
   tipo: entero
@@ -207,16 +214,20 @@ resultados:
   unidad: denominador ponderado
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-18-29-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: máscara sin masa (medidor.py:389)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-18-29-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-18-29-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-18-29-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-18-29-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -228,16 +239,20 @@ resultados:
   unidad: denominador ponderado
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-30-44-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: máscara sin masa (medidor.py:389)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-30-44-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-30-44-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-30-44-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-30-44-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -249,16 +264,20 @@ resultados:
   unidad: denominador ponderado
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-45-59-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: máscara sin masa (medidor.py:389)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-45-59-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-45-59-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-45-59-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-45-59-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -270,16 +289,20 @@ resultados:
   unidad: denominador ponderado
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-60-96-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: máscara sin masa (medidor.py:389)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-60-96-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-60-96-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-60-96-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-60-96-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -291,16 +314,20 @@ resultados:
   unidad: denominador ponderado
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-HASTA-PRIMARIA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: máscara sin masa (medidor.py:389)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-HASTA-PRIMARIA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-HASTA-PRIMARIA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-HASTA-PRIMARIA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-HASTA-PRIMARIA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -312,16 +339,20 @@ resultados:
   unidad: denominador ponderado
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SECUNDARIA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: máscara sin masa (medidor.py:389)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SECUNDARIA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SECUNDARIA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SECUNDARIA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SECUNDARIA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -333,16 +364,20 @@ resultados:
   unidad: denominador ponderado
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-MEDIA-SUPERIOR-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: máscara sin masa (medidor.py:389)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-MEDIA-SUPERIOR-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-MEDIA-SUPERIOR-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-MEDIA-SUPERIOR-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-MEDIA-SUPERIOR-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -354,16 +389,20 @@ resultados:
   unidad: denominador ponderado
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SUPERIOR-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: máscara sin masa (medidor.py:389)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SUPERIOR-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SUPERIOR-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SUPERIOR-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SUPERIOR-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -375,61 +414,77 @@ resultados:
   unidad: denominador ponderado
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ALL-ALL-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: máscara sin masa (medidor.py:389)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ALL-ALL-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ALL-ALL-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ALL-ALL-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:387)'
 - id: RESULT-GOB-EXE15-2025-MARGINAL-ALL-ALL-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-MEDIO-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-MEDIO-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-MEDIO-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-MEDIO-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-MEDIO-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-LAMBDA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-LAMBDA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-LAMBDA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-LAMBDA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-LAMBDA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -438,10 +493,12 @@ resultados:
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C1A-P-IC-LO
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C1A-P-IC-HI
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C1A-IC-CAUSA
   tipo: texto
   unidad: estado
@@ -474,52 +531,66 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-CONTROL-C2COMP-P
   tipo: proporcion
-  unidad: control, punto sin IC
+  permite_no_estimable: true
+  unidad: 'control, punto sin IC -- nulo si el control no existe con este rótulo: la casa rotula la banda 60-96 como -60-X- (tools/ejes_maestra35_l1.py:60), mismo universo; medidor.py:355 usa .get; se recupera al cierre del COMMIT-3 como aritmética entre sellados'
 - id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-VS-CONTROL-ABS
   tipo: flotante
-  unidad: '|C2 − control|'
+  permite_no_estimable: true
+  unidad: '|C2 − control| -- nulo si el control es nulo o C2 no es finito (medidor.py:424-425)'
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C2-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C2-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C2-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C2-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C2-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-MEDIO-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-MEDIO-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-MEDIO-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-MEDIO-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-MEDIO-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-LAMBDA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-LAMBDA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-LAMBDA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-LAMBDA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-LAMBDA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -528,10 +599,12 @@ resultados:
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C1A-P-IC-LO
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C1A-P-IC-HI
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C1A-IC-CAUSA
   tipo: texto
   unidad: estado
@@ -564,52 +637,66 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-CONTROL-C2COMP-P
   tipo: proporcion
-  unidad: control, punto sin IC
+  permite_no_estimable: true
+  unidad: 'control, punto sin IC -- nulo si el control no existe con este rótulo: la casa rotula la banda 60-96 como -60-X- (tools/ejes_maestra35_l1.py:60), mismo universo; medidor.py:355 usa .get; se recupera al cierre del COMMIT-3 como aritmética entre sellados'
 - id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C2-VS-CONTROL-ABS
   tipo: flotante
-  unidad: '|C2 − control|'
+  permite_no_estimable: true
+  unidad: '|C2 − control| -- nulo si el control es nulo o C2 no es finito (medidor.py:424-425)'
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C2-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C2-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C2-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C2-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C2-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-MEDIO-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-MEDIO-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-MEDIO-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-MEDIO-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-MEDIO-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-LAMBDA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-LAMBDA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-LAMBDA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-LAMBDA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-LAMBDA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -618,10 +705,12 @@ resultados:
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C1A-P-IC-LO
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C1A-P-IC-HI
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C1A-IC-CAUSA
   tipo: texto
   unidad: estado
@@ -654,52 +743,66 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-CONTROL-C2COMP-P
   tipo: proporcion
-  unidad: control, punto sin IC
+  permite_no_estimable: true
+  unidad: 'control, punto sin IC -- nulo si el control no existe con este rótulo: la casa rotula la banda 60-96 como -60-X- (tools/ejes_maestra35_l1.py:60), mismo universo; medidor.py:355 usa .get; se recupera al cierre del COMMIT-3 como aritmética entre sellados'
 - id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C2-VS-CONTROL-ABS
   tipo: flotante
-  unidad: '|C2 − control|'
+  permite_no_estimable: true
+  unidad: '|C2 − control| -- nulo si el control es nulo o C2 no es finito (medidor.py:424-425)'
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C2-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C2-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C2-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C2-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C2-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-MEDIO-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-MEDIO-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-MEDIO-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-MEDIO-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-MEDIO-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-LAMBDA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-LAMBDA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-LAMBDA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-LAMBDA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-LAMBDA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -708,10 +811,12 @@ resultados:
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C1A-P-IC-LO
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C1A-P-IC-HI
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C1A-IC-CAUSA
   tipo: texto
   unidad: estado
@@ -744,52 +849,66 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-CONTROL-C2COMP-P
   tipo: proporcion
-  unidad: control, punto sin IC
+  permite_no_estimable: true
+  unidad: 'control, punto sin IC -- nulo si el control no existe con este rótulo: la casa rotula la banda 60-96 como -60-X- (tools/ejes_maestra35_l1.py:60), mismo universo; medidor.py:355 usa .get; se recupera al cierre del COMMIT-3 como aritmética entre sellados'
 - id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C2-VS-CONTROL-ABS
   tipo: flotante
-  unidad: '|C2 − control|'
+  permite_no_estimable: true
+  unidad: '|C2 − control| -- nulo si el control es nulo o C2 no es finito (medidor.py:424-425)'
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C2-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C2-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C2-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C2-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C2-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-MEDIO-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-MEDIO-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-MEDIO-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-MEDIO-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-MEDIO-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-LAMBDA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-LAMBDA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-LAMBDA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-LAMBDA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-LAMBDA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -798,10 +917,12 @@ resultados:
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C1A-P-IC-LO
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C1A-P-IC-HI
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C1A-IC-CAUSA
   tipo: texto
   unidad: estado
@@ -834,52 +955,66 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-CONTROL-C2COMP-P
   tipo: proporcion
-  unidad: control, punto sin IC
+  permite_no_estimable: true
+  unidad: 'control, punto sin IC -- nulo si el control no existe con este rótulo: la casa rotula la banda 60-96 como -60-X- (tools/ejes_maestra35_l1.py:60), mismo universo; medidor.py:355 usa .get; se recupera al cierre del COMMIT-3 como aritmética entre sellados'
 - id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C2-VS-CONTROL-ABS
   tipo: flotante
-  unidad: '|C2 − control|'
+  permite_no_estimable: true
+  unidad: '|C2 − control| -- nulo si el control es nulo o C2 no es finito (medidor.py:424-425)'
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C2-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C2-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C2-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C2-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C2-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-MEDIO-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-MEDIO-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-MEDIO-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-MEDIO-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-MEDIO-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-LAMBDA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-LAMBDA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-LAMBDA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-LAMBDA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-LAMBDA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -888,10 +1023,12 @@ resultados:
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C1A-P-IC-LO
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C1A-P-IC-HI
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C1A-IC-CAUSA
   tipo: texto
   unidad: estado
@@ -924,52 +1061,66 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-CONTROL-C2COMP-P
   tipo: proporcion
-  unidad: control, punto sin IC
+  permite_no_estimable: true
+  unidad: 'control, punto sin IC -- nulo si el control no existe con este rótulo: la casa rotula la banda 60-96 como -60-X- (tools/ejes_maestra35_l1.py:60), mismo universo; medidor.py:355 usa .get; se recupera al cierre del COMMIT-3 como aritmética entre sellados'
 - id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C2-VS-CONTROL-ABS
   tipo: flotante
-  unidad: '|C2 − control|'
+  permite_no_estimable: true
+  unidad: '|C2 − control| -- nulo si el control es nulo o C2 no es finito (medidor.py:424-425)'
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C2-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C2-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C2-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C2-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C2-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-MEDIO-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-MEDIO-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-MEDIO-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-MEDIO-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-MEDIO-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-LAMBDA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-LAMBDA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-LAMBDA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-LAMBDA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-LAMBDA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -978,10 +1129,12 @@ resultados:
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C1A-P-IC-LO
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C1A-P-IC-HI
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C1A-IC-CAUSA
   tipo: texto
   unidad: estado
@@ -1014,52 +1167,66 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-CONTROL-C2COMP-P
   tipo: proporcion
-  unidad: control, punto sin IC
+  permite_no_estimable: true
+  unidad: 'control, punto sin IC -- nulo si el control no existe con este rótulo: la casa rotula la banda 60-96 como -60-X- (tools/ejes_maestra35_l1.py:60), mismo universo; medidor.py:355 usa .get; se recupera al cierre del COMMIT-3 como aritmética entre sellados'
 - id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C2-VS-CONTROL-ABS
   tipo: flotante
-  unidad: '|C2 − control|'
+  permite_no_estimable: true
+  unidad: '|C2 − control| -- nulo si el control es nulo o C2 no es finito (medidor.py:424-425)'
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C2-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C2-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C2-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C2-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C2-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-MEDIO-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-MEDIO-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-MEDIO-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-MEDIO-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-MEDIO-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-LAMBDA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-LAMBDA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-LAMBDA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-LAMBDA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-LAMBDA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -1068,10 +1235,12 @@ resultados:
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C1A-P-IC-LO
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C1A-P-IC-HI
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C1A-IC-CAUSA
   tipo: texto
   unidad: estado
@@ -1104,52 +1273,66 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-CONTROL-C2COMP-P
   tipo: proporcion
-  unidad: control, punto sin IC
+  permite_no_estimable: true
+  unidad: 'control, punto sin IC -- nulo si el control no existe con este rótulo: la casa rotula la banda 60-96 como -60-X- (tools/ejes_maestra35_l1.py:60), mismo universo; medidor.py:355 usa .get; se recupera al cierre del COMMIT-3 como aritmética entre sellados'
 - id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C2-VS-CONTROL-ABS
   tipo: flotante
-  unidad: '|C2 − control|'
+  permite_no_estimable: true
+  unidad: '|C2 − control| -- nulo si el control es nulo o C2 no es finito (medidor.py:424-425)'
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C2-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C2-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C2-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C2-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C2-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-MEDIO-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-MEDIO-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-MEDIO-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-MEDIO-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-MEDIO-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-LAMBDA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-LAMBDA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-LAMBDA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-LAMBDA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-LAMBDA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -1158,10 +1341,12 @@ resultados:
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C1A-P-IC-LO
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C1A-P-IC-HI
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C1A-IC-CAUSA
   tipo: texto
   unidad: estado
@@ -1194,52 +1379,66 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-CONTROL-C2COMP-P
   tipo: proporcion
-  unidad: control, punto sin IC
+  permite_no_estimable: true
+  unidad: 'control, punto sin IC -- nulo si el control no existe con este rótulo: la casa rotula la banda 60-96 como -60-X- (tools/ejes_maestra35_l1.py:60), mismo universo; medidor.py:355 usa .get; se recupera al cierre del COMMIT-3 como aritmética entre sellados'
 - id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C2-VS-CONTROL-ABS
   tipo: flotante
-  unidad: '|C2 − control|'
+  permite_no_estimable: true
+  unidad: '|C2 − control| -- nulo si el control es nulo o C2 no es finito (medidor.py:424-425)'
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C2-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C2-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C2-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C2-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C2-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-MEDIO-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-MEDIO-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-MEDIO-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-MEDIO-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-MEDIO-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-LAMBDA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-LAMBDA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-LAMBDA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-LAMBDA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-LAMBDA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -1248,10 +1447,12 @@ resultados:
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C1A-P-IC-LO
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C1A-P-IC-HI
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C1A-IC-CAUSA
   tipo: texto
   unidad: estado
@@ -1284,52 +1485,66 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-CONTROL-C2COMP-P
   tipo: proporcion
-  unidad: control, punto sin IC
+  permite_no_estimable: true
+  unidad: 'control, punto sin IC -- nulo si el control no existe con este rótulo: la casa rotula la banda 60-96 como -60-X- (tools/ejes_maestra35_l1.py:60), mismo universo; medidor.py:355 usa .get; se recupera al cierre del COMMIT-3 como aritmética entre sellados'
 - id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C2-VS-CONTROL-ABS
   tipo: flotante
-  unidad: '|C2 − control|'
+  permite_no_estimable: true
+  unidad: '|C2 − control| -- nulo si el control es nulo o C2 no es finito (medidor.py:424-425)'
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C2-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C2-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C2-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C2-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C2-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-MEDIO-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-MEDIO-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-MEDIO-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-MEDIO-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-MEDIO-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-LAMBDA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-LAMBDA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-LAMBDA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-LAMBDA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-LAMBDA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -1338,10 +1553,12 @@ resultados:
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C1A-P-IC-LO
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C1A-P-IC-HI
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C1A-IC-CAUSA
   tipo: texto
   unidad: estado
@@ -1374,52 +1591,66 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-CONTROL-C2COMP-P
   tipo: proporcion
-  unidad: control, punto sin IC
+  permite_no_estimable: true
+  unidad: 'control, punto sin IC -- nulo si el control no existe con este rótulo: la casa rotula la banda 60-96 como -60-X- (tools/ejes_maestra35_l1.py:60), mismo universo; medidor.py:355 usa .get; se recupera al cierre del COMMIT-3 como aritmética entre sellados'
 - id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C2-VS-CONTROL-ABS
   tipo: flotante
-  unidad: '|C2 − control|'
+  permite_no_estimable: true
+  unidad: '|C2 − control| -- nulo si el control es nulo o C2 no es finito (medidor.py:424-425)'
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C2-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C2-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C2-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C2-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C2-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-MEDIO-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-MEDIO-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-MEDIO-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-MEDIO-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-MEDIO-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-LAMBDA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-LAMBDA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-LAMBDA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-LAMBDA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-LAMBDA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -1428,10 +1659,12 @@ resultados:
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C1A-P-IC-LO
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C1A-P-IC-HI
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C1A-IC-CAUSA
   tipo: texto
   unidad: estado
@@ -1464,52 +1697,66 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-CONTROL-C2COMP-P
   tipo: proporcion
-  unidad: control, punto sin IC
+  permite_no_estimable: true
+  unidad: 'control, punto sin IC -- nulo si el control no existe con este rótulo: la casa rotula la banda 60-96 como -60-X- (tools/ejes_maestra35_l1.py:60), mismo universo; medidor.py:355 usa .get; se recupera al cierre del COMMIT-3 como aritmética entre sellados'
 - id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C2-VS-CONTROL-ABS
   tipo: flotante
-  unidad: '|C2 − control|'
+  permite_no_estimable: true
+  unidad: '|C2 − control| -- nulo si el control es nulo o C2 no es finito (medidor.py:424-425)'
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C2-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C2-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C2-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C2-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C2-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-MEDIO-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-MEDIO-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-MEDIO-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-MEDIO-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-MEDIO-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-LAMBDA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-LAMBDA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-LAMBDA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-LAMBDA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-LAMBDA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -1518,10 +1765,12 @@ resultados:
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C1A-P-IC-LO
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C1A-P-IC-HI
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C1A-IC-CAUSA
   tipo: texto
   unidad: estado
@@ -1554,52 +1803,66 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-CONTROL-C2COMP-P
   tipo: proporcion
-  unidad: control, punto sin IC
+  permite_no_estimable: true
+  unidad: 'control, punto sin IC -- nulo si el control no existe con este rótulo: la casa rotula la banda 60-96 como -60-X- (tools/ejes_maestra35_l1.py:60), mismo universo; medidor.py:355 usa .get; se recupera al cierre del COMMIT-3 como aritmética entre sellados'
 - id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C2-VS-CONTROL-ABS
   tipo: flotante
-  unidad: '|C2 − control|'
+  permite_no_estimable: true
+  unidad: '|C2 − control| -- nulo si el control es nulo o C2 no es finito (medidor.py:424-425)'
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C2-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C2-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C2-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C2-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C2-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-MEDIO-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-MEDIO-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-MEDIO-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-MEDIO-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-MEDIO-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-LAMBDA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-LAMBDA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-LAMBDA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-LAMBDA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-LAMBDA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -1608,10 +1871,12 @@ resultados:
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C1A-P-IC-LO
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C1A-P-IC-HI
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C1A-IC-CAUSA
   tipo: texto
   unidad: estado
@@ -1644,52 +1909,66 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-CONTROL-C2COMP-P
   tipo: proporcion
-  unidad: control, punto sin IC
+  permite_no_estimable: true
+  unidad: 'control, punto sin IC -- nulo si el control no existe con este rótulo: la casa rotula la banda 60-96 como -60-X- (tools/ejes_maestra35_l1.py:60), mismo universo; medidor.py:355 usa .get; se recupera al cierre del COMMIT-3 como aritmética entre sellados'
 - id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C2-VS-CONTROL-ABS
   tipo: flotante
-  unidad: '|C2 − control|'
+  permite_no_estimable: true
+  unidad: '|C2 − control| -- nulo si el control es nulo o C2 no es finito (medidor.py:424-425)'
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C2-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C2-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C2-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C2-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C2-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-MEDIO-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-MEDIO-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-MEDIO-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-MEDIO-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-MEDIO-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-LAMBDA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-LAMBDA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-LAMBDA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-LAMBDA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-LAMBDA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -1698,10 +1977,12 @@ resultados:
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C1A-P-IC-LO
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C1A-P-IC-HI
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C1A-IC-CAUSA
   tipo: texto
   unidad: estado
@@ -1734,52 +2015,66 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-CONTROL-C2COMP-P
   tipo: proporcion
-  unidad: control, punto sin IC
+  permite_no_estimable: true
+  unidad: 'control, punto sin IC -- nulo si el control no existe con este rótulo: la casa rotula la banda 60-96 como -60-X- (tools/ejes_maestra35_l1.py:60), mismo universo; medidor.py:355 usa .get; se recupera al cierre del COMMIT-3 como aritmética entre sellados'
 - id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C2-VS-CONTROL-ABS
   tipo: flotante
-  unidad: '|C2 − control|'
+  permite_no_estimable: true
+  unidad: '|C2 − control| -- nulo si el control es nulo o C2 no es finito (medidor.py:424-425)'
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C2-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C2-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C2-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C2-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C2-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-MEDIO-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-MEDIO-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-MEDIO-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-MEDIO-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-MEDIO-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-LAMBDA-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si el punto no es finito: marginal sin masa (medidor.py:410)'
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-LAMBDA-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-LAMBDA-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-LAMBDA-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (medidor.py:409)'
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-LAMBDA-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -1788,10 +2083,12 @@ resultados:
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C1A-P-IC-LO
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C1A-P-IC-HI
   tipo: proporcion
-  unidad: NO-DERIVABLE (null)
+  permite_no_estimable: true
+  unidad: 'NO-DERIVABLE (null) -- IC NO-DERIVABLE: sin réplicas selladas de 2023 (medidor.py:416)'
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C1A-IC-CAUSA
   tipo: texto
   unidad: estado
@@ -1824,10 +2121,12 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-CONTROL-C2COMP-P
   tipo: proporcion
-  unidad: control, punto sin IC
+  permite_no_estimable: true
+  unidad: 'control, punto sin IC -- nulo si el control no existe con este rótulo: la casa rotula la banda 60-96 como -60-X- (tools/ejes_maestra35_l1.py:60), mismo universo; medidor.py:355 usa .get; se recupera al cierre del COMMIT-3 como aritmética entre sellados'
 - id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C2-VS-CONTROL-ABS
   tipo: flotante
-  unidad: '|C2 − control|'
+  permite_no_estimable: true
+  unidad: '|C2 − control| -- nulo si el control es nulo o C2 no es finito (medidor.py:424-425)'
 - id: RESULT-GOB-EXE15-2025-LAMBDA
   tipo: flotante
   unidad: λ congelada

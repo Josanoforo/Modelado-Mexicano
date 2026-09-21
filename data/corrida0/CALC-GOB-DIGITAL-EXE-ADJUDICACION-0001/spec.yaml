@@ -23,6 +23,7 @@ secuencia_commits:
   commit_2: 'OTRA sesion (F3): corrida0 run CALC-GOB-DIGITAL-EXE-EMISIONES-0002; sella; vista y replay (E.7); commit y push; git ls-remote confirma que el sello esta en origin antes de seguir.'
   commit_3a: 'La misma sesion del COMMIT-2, en commit aparte y ANTES de derivar R: escribe en ESTE spec.yaml la llave sha256 de los inputs emisiones_resultados y emisiones_sello (huellas de los archivos recien sellados, derivadas en la sesion), y verifica corrida0 preflight CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001 = VERDE. Ninguna otra linea de este archivo cambia. Es la unica edicion admitida de un spec.yaml despues del COMMIT-1 v1.2, y no rompe ningun sello: este CALC aun no tiene corrida.'
   commit_3: 'corrida0 run CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001: deriva R(a,b), soporte 2025, adjudicacion por celda, regla de 3/4, delta-MAE con IC; sella; vista y replay.'
+  commit_3_cierre_control_60_96: 'ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_3 (firma de mesa 21/sep/2026): al cierre del COMMIT-3, las CUATRO restas |C2 del piloto - control de la casa| para las celdas 60-96 x {HASTA-PRIMARIA, SECUNDARIA, MEDIA-SUPERIOR, SUPERIOR}, entre dos numeros ya sellados -- RESULT-GOB-EXE15-2025-60-96-<esc>-C2-P (CALC-GOB-DIGITAL-EXE-EMISIONES-0002) y RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-<esc> (CALC-C2-COMPUESTO-RESERVADAS-0001; mismo universo, 60 <= edad <= 96 por tools/ejes_maestra35_l1.py:60; solo cambia el rotulo) -- se asientan en la nota de cierre rotuladas ARITMETICA DERIVADA, no como RESULT de corrida ni en resultados.json. Sustituyen a RESULT-GOB-EXE15-2025-60-96-<esc>-CONTROL-C2COMP-P y -C2-VS-CONTROL-ABS, que quedan null declarados (permite_no_estimable). El cierre lista ademas cada null emitido, por familia de id.'
   preflight_esperado_antes_del_commit_3a: 'BLOQUEADO exactamente por input_repo_ausente=emisiones_resultados, input_repo_no_commiteado=emisiones_resultados, input_repo_ausente=emisiones_sello, input_repo_no_commiteado=emisiones_sello -- y por nada mas.'
 inputs:
 - id: encig25_base_datos_csv
@@ -145,16 +146,20 @@ resultados:
   unidad: proporción
 - id: RESULT-GOB-EXE15-ADJ-2025-UMBRAL-VENCER-N
   tipo: entero
-  unidad: celdas
+  permite_no_estimable: true
+  unidad: 'celdas -- nulo si no hay celdas puntuadas (adjudicacion.py:219)'
 - id: RESULT-GOB-EXE15-ADJ-2025-C2-MAE-PP
   tipo: flotante
-  unidad: pp
+  permite_no_estimable: true
+  unidad: 'pp -- nulo si no hay celdas puntuadas (adjudicacion.py:239-245)'
 - id: RESULT-GOB-EXE15-ADJ-2025-C1A-MAE-PP
   tipo: flotante
-  unidad: pp
+  permite_no_estimable: true
+  unidad: 'pp -- nulo si no hay celdas puntuadas (adjudicacion.py:239-245)'
 - id: RESULT-GOB-EXE15-ADJ-2025-C1B-MAE-PP
   tipo: flotante
-  unidad: pp
+  permite_no_estimable: true
+  unidad: 'pp -- nulo si no hay celdas puntuadas (adjudicacion.py:239-245)'
 - id: RESULT-GOB-EXE15-ADJ-2025-B-BIS
   tipo: texto
   unidad: veredicto
@@ -172,19 +177,24 @@ resultados:
   unidad: SI/NO
 - id: RESULT-GOB-EXE15-ADJ-2025-S-MEDIO-MAE-PP
   tipo: flotante
-  unidad: pp
+  permite_no_estimable: true
+  unidad: 'pp -- nulo si no hay celdas puntuadas (adjudicacion.py:239-245)'
 - id: RESULT-GOB-EXE15-ADJ-2025-S-MEDIO-DELTA-MAE-PP
   tipo: flotante
-  unidad: pp
+  permite_no_estimable: true
+  unidad: 'pp -- nulo si no hay celdas puntuadas (adjudicacion.py:239-245)'
 - id: RESULT-GOB-EXE15-ADJ-2025-S-MEDIO-DELTA-MAE-EE
   tipo: flotante
-  unidad: pp
+  permite_no_estimable: true
+  unidad: 'pp -- nulo si no hay celdas puntuadas (adjudicacion.py:239-245); nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:233)'
 - id: RESULT-GOB-EXE15-ADJ-2025-S-MEDIO-DELTA-MAE-IC-LO
   tipo: flotante
-  unidad: pp
+  permite_no_estimable: true
+  unidad: 'pp -- nulo si no hay celdas puntuadas (adjudicacion.py:239-245); nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:233)'
 - id: RESULT-GOB-EXE15-ADJ-2025-S-MEDIO-DELTA-MAE-IC-HI
   tipo: flotante
-  unidad: pp
+  permite_no_estimable: true
+  unidad: 'pp -- nulo si no hay celdas puntuadas (adjudicacion.py:239-245); nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:233)'
 - id: RESULT-GOB-EXE15-ADJ-2025-S-MEDIO-DELTA-MAE-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -199,19 +209,24 @@ resultados:
   unidad: SI/NO
 - id: RESULT-GOB-EXE15-ADJ-2025-S-LAMBDA-MAE-PP
   tipo: flotante
-  unidad: pp
+  permite_no_estimable: true
+  unidad: 'pp -- nulo si no hay celdas puntuadas (adjudicacion.py:239-245)'
 - id: RESULT-GOB-EXE15-ADJ-2025-S-LAMBDA-DELTA-MAE-PP
   tipo: flotante
-  unidad: pp
+  permite_no_estimable: true
+  unidad: 'pp -- nulo si no hay celdas puntuadas (adjudicacion.py:239-245)'
 - id: RESULT-GOB-EXE15-ADJ-2025-S-LAMBDA-DELTA-MAE-EE
   tipo: flotante
-  unidad: pp
+  permite_no_estimable: true
+  unidad: 'pp -- nulo si no hay celdas puntuadas (adjudicacion.py:239-245); nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:233)'
 - id: RESULT-GOB-EXE15-ADJ-2025-S-LAMBDA-DELTA-MAE-IC-LO
   tipo: flotante
-  unidad: pp
+  permite_no_estimable: true
+  unidad: 'pp -- nulo si no hay celdas puntuadas (adjudicacion.py:239-245); nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:233)'
 - id: RESULT-GOB-EXE15-ADJ-2025-S-LAMBDA-DELTA-MAE-IC-HI
   tipo: flotante
-  unidad: pp
+  permite_no_estimable: true
+  unidad: 'pp -- nulo si no hay celdas puntuadas (adjudicacion.py:239-245); nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:233)'
 - id: RESULT-GOB-EXE15-ADJ-2025-S-LAMBDA-DELTA-MAE-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
@@ -223,52 +238,62 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-R-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si R no es finita: celda vacía en 2025 (adjudicacion.py:202)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-R-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-R-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-R-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-R-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-DELTA-25
   tipo: flotante
-  unidad: logit
+  permite_no_estimable: true
+  unidad: 'logit -- nulo si delta no es finita: R en {0,1} o celda vacía (adjudicacion.py:204)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-C2-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-C2-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-C1A-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-C1A-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-C1B-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-C1B-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-S-MEDIO-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-S-MEDIO-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-S-LAMBDA-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-S-LAMBDA-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-HASTA-PRIMARIA-S-MEDIO-VS-C2
   tipo: texto
   unidad: VENCE/PIERDE/INDECIDIBLE/NO-PUNTUADA
@@ -283,52 +308,62 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-R-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si R no es finita: celda vacía en 2025 (adjudicacion.py:202)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-R-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-R-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-R-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-R-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-DELTA-25
   tipo: flotante
-  unidad: logit
+  permite_no_estimable: true
+  unidad: 'logit -- nulo si delta no es finita: R en {0,1} o celda vacía (adjudicacion.py:204)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-C2-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-C2-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-C1A-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-C1A-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-C1B-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-C1B-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-S-MEDIO-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-S-MEDIO-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-S-LAMBDA-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-S-LAMBDA-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SECUNDARIA-S-MEDIO-VS-C2
   tipo: texto
   unidad: VENCE/PIERDE/INDECIDIBLE/NO-PUNTUADA
@@ -343,52 +378,62 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-R-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si R no es finita: celda vacía en 2025 (adjudicacion.py:202)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-R-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-R-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-R-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-R-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-DELTA-25
   tipo: flotante
-  unidad: logit
+  permite_no_estimable: true
+  unidad: 'logit -- nulo si delta no es finita: R en {0,1} o celda vacía (adjudicacion.py:204)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-C2-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-C2-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-C1A-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-C1A-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-C1B-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-C1B-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-S-MEDIO-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-S-MEDIO-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-S-LAMBDA-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-S-LAMBDA-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-MEDIA-SUPERIOR-S-MEDIO-VS-C2
   tipo: texto
   unidad: VENCE/PIERDE/INDECIDIBLE/NO-PUNTUADA
@@ -403,52 +448,62 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-R-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si R no es finita: celda vacía en 2025 (adjudicacion.py:202)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-R-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-R-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-R-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-R-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-DELTA-25
   tipo: flotante
-  unidad: logit
+  permite_no_estimable: true
+  unidad: 'logit -- nulo si delta no es finita: R en {0,1} o celda vacía (adjudicacion.py:204)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-C2-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-C2-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-C1A-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-C1A-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-C1B-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-C1B-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-S-MEDIO-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-S-MEDIO-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-S-LAMBDA-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-S-LAMBDA-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-18-29-SUPERIOR-S-MEDIO-VS-C2
   tipo: texto
   unidad: VENCE/PIERDE/INDECIDIBLE/NO-PUNTUADA
@@ -463,52 +518,62 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-R-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si R no es finita: celda vacía en 2025 (adjudicacion.py:202)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-R-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-R-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-R-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-R-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-DELTA-25
   tipo: flotante
-  unidad: logit
+  permite_no_estimable: true
+  unidad: 'logit -- nulo si delta no es finita: R en {0,1} o celda vacía (adjudicacion.py:204)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-C2-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-C2-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-C1A-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-C1A-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-C1B-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-C1B-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-S-MEDIO-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-S-MEDIO-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-S-LAMBDA-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-S-LAMBDA-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-HASTA-PRIMARIA-S-MEDIO-VS-C2
   tipo: texto
   unidad: VENCE/PIERDE/INDECIDIBLE/NO-PUNTUADA
@@ -523,52 +588,62 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-R-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si R no es finita: celda vacía en 2025 (adjudicacion.py:202)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-R-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-R-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-R-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-R-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-DELTA-25
   tipo: flotante
-  unidad: logit
+  permite_no_estimable: true
+  unidad: 'logit -- nulo si delta no es finita: R en {0,1} o celda vacía (adjudicacion.py:204)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-C2-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-C2-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-C1A-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-C1A-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-C1B-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-C1B-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-S-MEDIO-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-S-MEDIO-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-S-LAMBDA-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-S-LAMBDA-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SECUNDARIA-S-MEDIO-VS-C2
   tipo: texto
   unidad: VENCE/PIERDE/INDECIDIBLE/NO-PUNTUADA
@@ -583,52 +658,62 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-R-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si R no es finita: celda vacía en 2025 (adjudicacion.py:202)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-R-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-R-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-R-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-R-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-DELTA-25
   tipo: flotante
-  unidad: logit
+  permite_no_estimable: true
+  unidad: 'logit -- nulo si delta no es finita: R en {0,1} o celda vacía (adjudicacion.py:204)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-C2-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-C2-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-C1A-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-C1A-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-C1B-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-C1B-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-S-MEDIO-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-S-MEDIO-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-S-LAMBDA-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-S-LAMBDA-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-MEDIA-SUPERIOR-S-MEDIO-VS-C2
   tipo: texto
   unidad: VENCE/PIERDE/INDECIDIBLE/NO-PUNTUADA
@@ -643,52 +728,62 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-R-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si R no es finita: celda vacía en 2025 (adjudicacion.py:202)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-R-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-R-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-R-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-R-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-DELTA-25
   tipo: flotante
-  unidad: logit
+  permite_no_estimable: true
+  unidad: 'logit -- nulo si delta no es finita: R en {0,1} o celda vacía (adjudicacion.py:204)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-C2-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-C2-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-C1A-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-C1A-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-C1B-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-C1B-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-S-MEDIO-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-S-MEDIO-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-S-LAMBDA-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-S-LAMBDA-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-30-44-SUPERIOR-S-MEDIO-VS-C2
   tipo: texto
   unidad: VENCE/PIERDE/INDECIDIBLE/NO-PUNTUADA
@@ -703,52 +798,62 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-R-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si R no es finita: celda vacía en 2025 (adjudicacion.py:202)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-R-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-R-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-R-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-R-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-DELTA-25
   tipo: flotante
-  unidad: logit
+  permite_no_estimable: true
+  unidad: 'logit -- nulo si delta no es finita: R en {0,1} o celda vacía (adjudicacion.py:204)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-C2-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-C2-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-C1A-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-C1A-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-C1B-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-C1B-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-S-MEDIO-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-S-MEDIO-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-S-LAMBDA-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-S-LAMBDA-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-HASTA-PRIMARIA-S-MEDIO-VS-C2
   tipo: texto
   unidad: VENCE/PIERDE/INDECIDIBLE/NO-PUNTUADA
@@ -763,52 +868,62 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-R-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si R no es finita: celda vacía en 2025 (adjudicacion.py:202)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-R-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-R-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-R-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-R-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-DELTA-25
   tipo: flotante
-  unidad: logit
+  permite_no_estimable: true
+  unidad: 'logit -- nulo si delta no es finita: R en {0,1} o celda vacía (adjudicacion.py:204)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-C2-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-C2-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-C1A-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-C1A-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-C1B-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-C1B-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-S-MEDIO-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-S-MEDIO-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-S-LAMBDA-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-S-LAMBDA-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SECUNDARIA-S-MEDIO-VS-C2
   tipo: texto
   unidad: VENCE/PIERDE/INDECIDIBLE/NO-PUNTUADA
@@ -823,52 +938,62 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-R-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si R no es finita: celda vacía en 2025 (adjudicacion.py:202)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-R-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-R-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-R-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-R-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-DELTA-25
   tipo: flotante
-  unidad: logit
+  permite_no_estimable: true
+  unidad: 'logit -- nulo si delta no es finita: R en {0,1} o celda vacía (adjudicacion.py:204)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-C2-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-C2-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-C1A-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-C1A-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-C1B-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-C1B-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-S-MEDIO-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-S-MEDIO-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-S-LAMBDA-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-S-LAMBDA-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-MEDIA-SUPERIOR-S-MEDIO-VS-C2
   tipo: texto
   unidad: VENCE/PIERDE/INDECIDIBLE/NO-PUNTUADA
@@ -883,52 +1008,62 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-R-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si R no es finita: celda vacía en 2025 (adjudicacion.py:202)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-R-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-R-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-R-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-R-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-DELTA-25
   tipo: flotante
-  unidad: logit
+  permite_no_estimable: true
+  unidad: 'logit -- nulo si delta no es finita: R en {0,1} o celda vacía (adjudicacion.py:204)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-C2-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-C2-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-C1A-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-C1A-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-C1B-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-C1B-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-S-MEDIO-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-S-MEDIO-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-S-LAMBDA-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-S-LAMBDA-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-45-59-SUPERIOR-S-MEDIO-VS-C2
   tipo: texto
   unidad: VENCE/PIERDE/INDECIDIBLE/NO-PUNTUADA
@@ -943,52 +1078,62 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-R-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si R no es finita: celda vacía en 2025 (adjudicacion.py:202)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-R-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-R-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-R-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-R-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-DELTA-25
   tipo: flotante
-  unidad: logit
+  permite_no_estimable: true
+  unidad: 'logit -- nulo si delta no es finita: R en {0,1} o celda vacía (adjudicacion.py:204)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-C2-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-C2-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-C1A-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-C1A-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-C1B-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-C1B-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-S-MEDIO-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-S-MEDIO-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-S-LAMBDA-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-S-LAMBDA-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-HASTA-PRIMARIA-S-MEDIO-VS-C2
   tipo: texto
   unidad: VENCE/PIERDE/INDECIDIBLE/NO-PUNTUADA
@@ -1003,52 +1148,62 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-R-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si R no es finita: celda vacía en 2025 (adjudicacion.py:202)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-R-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-R-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-R-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-R-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-DELTA-25
   tipo: flotante
-  unidad: logit
+  permite_no_estimable: true
+  unidad: 'logit -- nulo si delta no es finita: R en {0,1} o celda vacía (adjudicacion.py:204)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-C2-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-C2-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-C1A-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-C1A-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-C1B-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-C1B-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-S-MEDIO-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-S-MEDIO-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-S-LAMBDA-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-S-LAMBDA-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SECUNDARIA-S-MEDIO-VS-C2
   tipo: texto
   unidad: VENCE/PIERDE/INDECIDIBLE/NO-PUNTUADA
@@ -1063,52 +1218,62 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-R-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si R no es finita: celda vacía en 2025 (adjudicacion.py:202)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-R-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-R-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-R-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-R-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-DELTA-25
   tipo: flotante
-  unidad: logit
+  permite_no_estimable: true
+  unidad: 'logit -- nulo si delta no es finita: R en {0,1} o celda vacía (adjudicacion.py:204)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-C2-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-C2-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-C1A-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-C1A-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-C1B-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-C1B-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-S-MEDIO-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-S-MEDIO-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-S-LAMBDA-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-S-LAMBDA-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-MEDIA-SUPERIOR-S-MEDIO-VS-C2
   tipo: texto
   unidad: VENCE/PIERDE/INDECIDIBLE/NO-PUNTUADA
@@ -1123,52 +1288,62 @@ resultados:
   unidad: estado
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-R-P
   tipo: proporcion
-  unidad: proporción [0,1]
+  permite_no_estimable: true
+  unidad: 'proporción [0,1] -- nulo si R no es finita: celda vacía en 2025 (adjudicacion.py:202)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-R-P-EE
   tipo: flotante
-  unidad: error estándar
+  permite_no_estimable: true
+  unidad: 'error estándar -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-R-P-IC-LO
   tipo: proporcion
-  unidad: límite inferior IC95
+  permite_no_estimable: true
+  unidad: 'límite inferior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-R-P-IC-HI
   tipo: proporcion
-  unidad: límite superior IC95
+  permite_no_estimable: true
+  unidad: 'límite superior IC95 -- nulo si una réplica vacía la celda (medidor.py:283,291) (adjudicacion.py:116,200)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-R-B-VALIDAS
   tipo: entero
   unidad: réplicas definidas
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-DELTA-25
   tipo: flotante
-  unidad: logit
+  permite_no_estimable: true
+  unidad: 'logit -- nulo si delta no es finita: R en {0,1} o celda vacía (adjudicacion.py:204)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-C2-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-C2-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-C1A-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-C1A-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-C1B-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-C1B-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-S-MEDIO-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-S-MEDIO-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-S-LAMBDA-P
   tipo: proporcion
   unidad: proporción [0,1]
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-S-LAMBDA-D-PP
   tipo: flotante
-  unidad: '|cand − R| pp'
+  permite_no_estimable: true
+  unidad: '|cand − R| pp -- nulo si R no es finita o el candidato es nulo (adjudicacion.py:208)'
 - id: RESULT-GOB-EXE15-ADJ-2025-60-96-SUPERIOR-S-MEDIO-VS-C2
   tipo: texto
   unidad: VENCE/PIERDE/INDECIDIBLE/NO-PUNTUADA
