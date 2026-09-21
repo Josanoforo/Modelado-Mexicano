@@ -4040,6 +4040,8 @@ def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> 
     for u in filas_usos:
         u.setdefault("via_relevo", "")
         u.setdefault("pin_de_mesa", "")
+    valor_legacy_de = {f["resultado_id"]: f["valor_legacy"]
+                       for f in filas_resultados if f["origen"] == "DEMANDA"}
     ctx_corridas = {f["spec_id"]: {
         "estado": f["estado"], "cuenta_gen2": f["cuenta_gen2"],
         "resultado_replay": f["resultado_replay"],
@@ -4074,6 +4076,16 @@ def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> 
         u["uso_solicitado"] = USO_MEDICION_GEN2
         u["via_relevo"] = pin["via"]
         u["pin_de_mesa"] = f"{llave} · {pin['firma']}"
+        # T-REPRO (c) compara la cifra que el consumidor MATERIALIZA contra
+        # el RESULT sellado. Un consumidor sellado no escribe esa cifra en su
+        # archivo -- por eso hace falta el pin -- pero SI la materializa: es
+        # el `valor_legacy` que el lado DEMANDA ya deriva de `corridas-R/` o
+        # del agregado. Dejarla en NO-DECLARADO convertiria el relevo en una
+        # adopcion que nadie puede falsar, que es lo contrario de lo que el
+        # canal existe para dar.
+        if u["valor_materializado"] == NO_DECLARADO:
+            u["valor_materializado"] = valor_legacy_de.get(
+                u["resultado_id"], NO_DECLARADO)
     for llave in sorted(set(pines_ok) - llaves_usadas):
         avisos.append(
             f"PIN-SIN-CONSUMIDOR: {llave} esta firmado y validado, pero "

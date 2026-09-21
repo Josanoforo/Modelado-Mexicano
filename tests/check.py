@@ -6651,6 +6651,38 @@ def t32_corrida0():
 
 
 # ───────────────────────────────────────────────────────────────
+# T32-quater · T-PINES-MESA -- ACTO GEN2-RELEVO-TANDA-3, 21/sep/2026.
+#
+#   Las cuatro guardas de la firma de mesa 4.1 son lo unico que separa
+#   `dependencias_numericas_legacy_activas` de un pin mal escrito: el canal
+#   `data/corrida0/pines-de-mesa.tsv` baja ese contador SIN que el consumidor
+#   escriba nada. Un archivo de pruebas que nadie corre no es una guardia, asi
+#   que se cablea aqui con el mismo arnes `corre()` que `tests/test_corrida0.py`.
+#   Cubre los dos casos testigo REALES -- `RESULT-TRIADA-*-M` (ingerido de un
+#   snapshot) y `DIN-M-01:M` (`tiene_ahorros`, que sigue GEN1) -- y la ida y
+#   vuelta de la llave logica sobre todos los consumidores del registro.
+# ───────────────────────────────────────────────────────────────
+def t32_quater_pines_mesa():
+    ruta = os.path.join(ROOT, "tests", "test_pines_mesa.py")
+    if not os.path.exists(ruta):
+        fail("T-PINES-MESA", "no existe `tests/test_pines_mesa.py`")
+        return
+    try:
+        import importlib.util as _iu
+        _spec = _iu.spec_from_file_location("test_pines_mesa_desde_check", ruta)
+        _mod = _iu.module_from_spec(_spec)
+        sys.modules[_spec.name] = _mod
+        _spec.loader.exec_module(_mod)
+        fallos = _mod.corre()
+    except Exception as exc:
+        fail("T-PINES-MESA", f"`tests/test_pines_mesa.py` no pudo correr: "
+                             f"{type(exc).__name__}: {exc}")
+        return
+    for f in fallos:
+        fail("T-PINES-MESA", f)
+
+
+# ───────────────────────────────────────────────────────────────
 # T32-ter · T-C2-COMPUESTO -- ACTO GEN2-C2-COMPUESTO-RESERVADAS-1,
 # 19/sep/2026. Spec: `forense/prereg-caja/C2-COMPUESTO-RESERVADAS-spec-v1_0.md`.
 #
@@ -7552,6 +7584,7 @@ def main():
         ("T32 T-CORRIDA0",                           t32_corrida0),
         ("T32-bis T-PISOS-REJILLA",                    t32_bis_pisos_rejilla),
         ("T32-ter T-C2-COMPUESTO",                     t32_ter_c2_compuesto),
+        ("T32-quater T-PINES-MESA",                   t32_quater_pines_mesa),
         ("T36 T-CORREDORES-GEN2",                     t36_corredores_gen2),
         ("T39 T-DIGESTO-NC",                          t39_digesto_nc),
         ("T40 T-RUTINAS",                             t40_rutinas),
