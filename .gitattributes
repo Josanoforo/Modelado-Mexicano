@@ -37,9 +37,21 @@ forense/bitacora.md merge=union
 # es real), pero NINGUNA guarda de la suite lo vigila hoy (T25 vigila
 # OTROS archivos citando rótulos pelados, no filas repetidas de éste) --
 # se sigue fusionando a mano hasta que exista esa guarda (sucesor).
+#
+# P1 (`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2`, 21/sep/2026): ese sucesor
+# corrió. `canon/registro-rotulos.tsv` ENTRA -- la guarda que faltaba es
+# `T51` (T-ROTULOS-PAR-UNICO), unicidad del par `(espacio, valor)`, que es
+# la identidad natural de este registro; `T47` no servía tal cual porque su
+# llave es un id al principio de la línea. La MISMA mutación de P-D (una
+# rama edita en su sitio la última fila, otra añade debajo, union) la
+# atrapa: `tests/test_tuberia_ids_union.py`, caso G3-bis. `G3` se conserva
+# como el registro de por qué quedó fuera el 21/sep por la mañana. Los 7
+# pares hoy repetidos quedan congelados como EXENCIÓN declarada en `T51`
+# -- no se borró ninguno; la guarda falla sólo sobre repeticiones nuevas.
 forense/no-corrido.tsv merge=union
 forense/firmas-pendientes.tsv merge=union
 canon/gobernanza-v1_15.md merge=union
+canon/registro-rotulos.tsv merge=union
 
 # La guarda de líneas repetidas (T50, tests/check.py): en todo archivo de
 # arriba declarado merge=union, ninguna línea de >= 200 caracteres aparece
