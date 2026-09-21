@@ -376,6 +376,19 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
    tras correrlo); el conteo vigente se deriva por comando
    (`python3 tools/estado_comun.py --adr-max` o
    `python3 tools/l0_vista.py --conteo`), nunca de esos tres textos.
+
+   **`estado-programa` deja de tocarse en el cierre** (`ACTO
+   GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2`, 21/sep/2026, P2; guarda `T52`).
+   Medido sobre los 11 PR de primer padre anteriores a `#962` que
+   modifican el archivo: además de la `L0`, un cierre seguía escribiendo
+   a mano la fila `gobernanza` de la tabla §0 (11 de 11) y una línea
+   `*Anotación L0 (fecha): …` nueva en §0 (6 de 11). Las dos reciben el
+   mismo trato que la `L0`: las 96 anotaciones existentes y esa fila
+   quedan **HISTÓRICAS** con su hash fijado (`T52`), y la anotación del
+   acto **va sólo** a `canon/L0/<ADR-raíz>.md`. **Un cierre estándar no
+   modifica `canon/estado-programa-v1_14.md`** — compruébalo con
+   `git status` antes de empujar; si el archivo sale modificado, lo que
+   escribiste va al fragmento.
 4. **`registro-rotulos`.** `canon/registro-rotulos.tsv`: censa el rótulo
    del acto (`ESPACIO-Nn`) y cualquier token pelado nuevo que el encargo
    o las notas de cierre traigan sin prefijo (D-6/ADR-128) — deriva con
