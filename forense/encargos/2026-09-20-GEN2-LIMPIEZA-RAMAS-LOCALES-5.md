@@ -68,4 +68,4 @@ No termina actos a medias · no rescata mediciones · no decide entre los dos PR
 
 ## CONSUMIDO
 
-`PR` (a abrir por esta sesión) — ver `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-5-cierre.md`.
+`PR #936` — ver `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-5-cierre.md`.
