@@ -8,6 +8,49 @@
 > | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** · detalle ADR-44 a ADR-58 (más ADR-62) en **§0.1**, abajo — el último es **ADR-65** (§4; ADR-59/60/61/63/64/65 no están detallados en §0.1, solo en §4) |
 > | **NOMBRE ESTABLE** | **`gobernanza`** — cítalo así, **nunca por nombre de archivo** |
 
+**ADR-260921-GEN2-ARBITRO-MARGINALES-1-ed7d-01** (raíz de acto: 0-bis `ed7d8482`; no se renumera), `ACTO
+GEN2-ARBITRO-MARGINALES-1 · LA REALIDAD DE LA OLA NUEVA SE MIDE EN GEN2, EJE POR EJE, EN ENIF 2024,
+ENVIPE 2025 Y ENCIG 2025 — Y 57 PISOS QUE HOY NO TIENEN CONTRA QUÉ COMPARARSE PASAN A TENERLO`,
+21/sep/2026, **CAJA** (corpus montado, 420 archivos examinados), Opus 5, sin sub-agentes, **MODO
+ABIERTO** hasta cada COMMIT-1 y RÍGIDO desde ahí, **LOTE D-11** (tres piezas + adjudicación, un
+PR), compuerta interna cumplida por producto (COMMIT-1 `6fb36eb8` en `origin` con oro Δ = 0 y
+`preflight` VERDE ×3 **antes** de abrir dato). Encargo archivado verbatim (A.3) con sello de
+cuerpo `b6d73b3f…`: `forense/encargos/2026-09-21-GEN2-ARBITRO-MARGINALES-1.md`, SHA de redacción
+`55c8d57c` (= `origin/main` al abrir). **Ejecuta la mitad (b) de la firma 3D (21/sep):** re-medir
+el árbitro como demanda. **Qué se midió:** los marginales por eje de la ola más reciente de las
+tres encuestas con piso, con el MISMO procedimiento del piso apuntado a la ola nueva (remuestreo,
+rejilla y conductas importados por sha256 del medidor sellado del piso; sólo cambia el mapa de
+nemónicos por texto, A.15): `CALC-ARBITRO-MARGINALES-ENIF2024-0001` (222 RESULT, 13 502 personas;
+`P3_13`, `NIV` 00-11, `FAC_PER`), `…-ENVIPE2025-0001` (116, 40 280 delitos / 1 016 BPCOD=01),
+`…-ENCIG2025-0001` (79, 20 203 trámites) — 0 null, `corrida0 run` SELLADO al primer intento
+×3, replay aislado REPRODUCE/IDENTICO ×3, asiento E.7 y registro; **guardia de una sola variable
+en el medidor** (firma 3D, segunda mitad): `marginal()` con eje `str` de lista blanca, auditoría
+AST antes de abrir el zip y 7 reglas probadas por mutación, ningún cruce visto (los 20 pares
+`RESERVADA` siguen reservados; crédito de ENIF 2024 no se carga; `envipe2026*` no se nombra).
+**Congelado D-22 ampliada, demostrado:** el mismo punto de entrada con `ola` = ola anterior
+reproduce los pisos sellados con Δ = 0 (192 / 90 / 60 RESULT, IC incluidos); sintético con la forma
+de la ola nueva y categoría vacía por `corrida0._valida_outputs` (nulos declarados en -P/-IC-LO/-IC-HI).
+**Adjudicación (`CALC-ARBITRO-PERSISTENCIA-ERROR-0001`, 903 RESULT, aritmética entre sellados,
+PROSPECTIVA):** cobertura del IC95 del piso por la realidad — ENIF 2024 (3 años, persona) 6/32 =
+0.19 [0.09, 0.35], MAE 2.92 pp, 16 PERSISTE / 16 CAMBIA (D9 baja −1.65 pp; informal_cualquiera sube
++3.62 pp); ENVIPE 2025 (1 año, delito) 8/15 = 0.53 [0.30, 0.75], MAE 2.59 pp, 8/7; ENCIG 2025
+(2 años, trámite) **0/10**, MAE 10.84 pp, 0/10 — salto de nivel +7.7 a +13.4 pp que ningún eje
+explica; persiste el orden, no el nivel. Nunca se promedia entre encuestas. **Hallazgo sobre GEN1:**
+el yaml del árbitro no discrepa en ninguna de las 57 celdas (máx |R − p| = 4.95e-7): le faltaba la
+cadena, no la cifra; no se corrige. Citas de los pilotos: 28/28 `COINCIDE` con
+`CALC-C2-COMPUESTO-IC-ENIF2024-0001`; ENCIG 4/4 edad `COINCIDE`, escolaridad 3 `COINCIDE-1E-3` + 1
+`DISCREPA` (2.3e-3, universo «caso completo» del piloto vs el del piso; declarado, ninguno se toca).
+**Marcador por comando:** tabla de identidad propia `ARBITRO-MARGINALES-metadatos-v1_0.tsv`
+(57 filas, `cell_id_piso → cell_id_R`); `tools/marcador_segmento.py` lee el R GEN2 sellado y la
+adjudicación GEN2 → **57 `SOLO-PISO` → 0, 57 `EVALUADA`**; `cobertura_de_piso` 79 → 79,
+`sin_piso` 15 → 15, `estimador_adoptado` 20 → 20 (`milpa/estimadores-por-segmento.yaml`
+idéntico); tablero `celdas_validadas` **73 → 77**. `cuenta_gen2 = SI` ×4 (`envuelto_legacy = NO`
+×3; la adjudicación entra por fila 3D caso por caso en `decisiones.tsv`: el yaml es control, no
+fuente de la cifra — a ratificar, FP propia). **No adopta** (PARO g; adopción del piso en marginales
+a mesa, A-bis 6, con recomendación por encuesta en la nota). Nota:
+`forense/notas/2026-09-21-GEN2-ARBITRO-MARGINALES-1-cierre.md`. Fragmento L0: `canon/L0/ADR-260921-GEN2-ARBITRO-MARGINALES-1-ed7d-01.md`.
+**El PR no se fusiona en este acto**: mesa fusiona.
+
 **ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-01** (primer `ADR` con **raíz de acto** —
 `ADR-<AAMMDD>-<RÓTULO>-<hhhh>-<NN>`, `hhhh` = 4 hex del commit de 0-bis `27078f6` —; por eso
 **no se renumera al fusionar**, aunque otro acto tome un `ADR` numérico mientras éste corre),
