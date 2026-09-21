@@ -154,3 +154,7 @@ Lo demás en este encargo es orden sugerido, no compuerta.
 | Ninguno. | — | — | — |
 
 Todas las piezas P1–P5 se ejecutaron en la caja; la compuerta de §8 se cumplió (nota §2 y §3). Los dos puntos «para mesa» de §10 (D-22 y el libro vivo) no son piezas de este acto: van a DIRECCIÓN, como el propio encargo lo asigna.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_2`, **PR #944** (apilado sobre `PR #941`), 21/sep/2026 (CAJA, Opus 5, MODO RÍGIDO, cero microdato). COMMIT-1 v1.2 congelado: `corrida0 preflight` EMISIONES VERDE, ADJUDICACION bloqueada sólo por `emisiones_*`; `FP-407` FIRMADA; `cuenta_gen2=SI` en `decisiones.tsv`; `ADR-579`. Sucesor: COMMIT-2 / 3a / 3 en otra sesión. Nota: `forense/notas/nota-2026-09-21-gen2-celda-d-piloto-3-commit-1-v1_2.md`.
