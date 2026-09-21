@@ -49,6 +49,34 @@ comprueba que algo falla no distingue una guarda de un `assert False`.
          EN EL MISMO CASO -- un patrón ensanchado probado sólo contra ids
          viejos no prueba nada.
 
+  E · T15 con `ADR` de dos épocas (`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1`,
+      21/sep/2026, P-C.3) -- UN `ADR` DE CADA ÉPOCA EN EL MISMO CASO:
+      E0 control: sólo época vieja -> sin FAIL (igual que caso A).
+      E1 sólo época nueva (raíz de acto), conteo `N ADR` ausente -> sin
+         FAIL (la aserción (2) no aplica sin espacio numérico vigente).
+      E2 LAS DOS ÉPOCAS CONVIVIENDO en el mismo `gobernanza` -> sin FAIL.
+      E3 cita a una raíz de acto que NO existe -> FALLA.
+      E4 UNA RAÍZ NUEVA NO SE LEE COMO UN `ADR-260921` FANTASMA: sin esta
+         alternancia, `(\\d+)` a secas leería `ADR-260921-GEN2-X-1-6e60-01`
+         como el número de ADR 260921 y citaría un "260921 ADR" falso.
+      E5 raíz de acto duplicada -> FALLA.
+
+  F · T48/T49, las dos guardas permanentes de la L0 (P-A.4) -- la mutación
+      de prueba es EXACTAMENTE el caso de las ramas en vuelo: fusionar una
+      rama con la línea `L0` vieja (~27 MB, aquí un análogo sintético >1 MB
+      para no cargar 27 MB reales al test) sobre la línea reparada,
+      conservando ambos lados -- las DOS guardas deben fallar A LA VEZ:
+      F0 control: árbol sano (línea corta, hash fijado) -> sin FAIL en
+         ninguna de las dos.
+      F1 T48 sola: una línea de `canon/` > 1 MB -> FALLA, con el mensaje
+         que dice qué hacer.
+      F2 T49 sola: `HISTORICO.md` tocado (hash ya no casa) -> FALLA, con
+         el mensaje que dice qué hacer.
+      F3 LA MUTACIÓN EXACTA: "conservar ambos lados" de una rama con la
+         L0 vieja sobre la reparada dispara T48 (línea > 1 MB) y T49
+         (`HISTORICO.md` ya no es el mismo) A LA VEZ.
+      F4 T48 examina cero archivos no es un negativo (A.13).
+
 Corre sola, sin dependencias:
     python3 tests/test_tuberia_ids_union.py
 """
@@ -375,12 +403,151 @@ def caso_D():
            any("A.13" in x[1] or "no se pudo leer" in x[1] for x in f), str(f))
 
 
+# ─────────────────────────────────────────────────────────────────────
+# E · T15 con `ADR` de dos épocas
+# ─────────────────────────────────────────────────────────────────────
+ADR_RAIZ_1 = "ADR-260921-GEN2-X-1-6e60-01"
+ADR_RAIZ_2 = "ADR-260921-GEN2-X-1-6e60-02"
+
+
+def _arbol_gobernanza_raw(tmp, cuerpo_lineas, n_adr=None, extra_canon=""):
+    os.makedirs(os.path.join(tmp, "canon"), exist_ok=True)
+    cab = f"**{n_adr} ADR**\n\n" if n_adr is not None else "\n"
+    with open(os.path.join(tmp, "canon", "gobernanza-v1_15.md"), "w", encoding="utf-8") as f:
+        f.write("# Gobernanza de prueba\n\n" + cab +
+                "\n".join(cuerpo_lineas) + f"\n{extra_canon}\n")
+
+
+def caso_E():
+    print("E · T15 con `ADR` de dos épocas, una en cada caso")
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_gobernanza(tmp, [1, 2, 3])
+        f = _t15(tmp)
+        ok("E0 control: sólo época vieja pasa", f == [], str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_gobernanza_raw(tmp, [f"**{ADR_RAIZ_1}** — entrada de raíz"])
+        f = _t15(tmp)
+        ok("E1 sólo época nueva, sin conteo numérico vigente -> sin FAIL",
+           f == [], str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_gobernanza_raw(
+            tmp,
+            ["**ADR-3** — entrada vieja 3", "**ADR-2** — entrada vieja 2",
+             "**ADR-1** — entrada vieja 1", f"**{ADR_RAIZ_1}** — entrada de raíz"],
+            n_adr=3)
+        f = _t15(tmp)
+        ok("E2 las dos épocas conviviendo -> sin FAIL", f == [], str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_gobernanza_raw(
+            tmp, [f"**{ADR_RAIZ_1}** — entrada de raíz"],
+            extra_canon=f"\nVer `ADR-260921-GEN2-X-1-6e60-99` (no existe).\n")
+        f = _t15(tmp)
+        ok("E3 cita a una raíz de acto inexistente FALLA",
+           any("6e60-99" in x[1] for x in f), str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        # Sin la alternancia, `(\d+)\s*ADR\b` leería la raíz nueva como si
+        # citara "260921 ADR" -- un número de ADR fantasma de seis dígitos.
+        _arbol_gobernanza_raw(tmp, [f"**{ADR_RAIZ_1}** — entrada de raíz"])
+        f = _t15(tmp)
+        ok("E4 la raíz nueva NO se lee como una cita `260921 ADR` fantasma",
+           not any("260921 ADR" in x[1] for x in f), str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_gobernanza_raw(tmp, [f"**{ADR_RAIZ_1}** — a", f"**{ADR_RAIZ_1}** — b (duplicada)"])
+        f = _t15(tmp)
+        ok("E5 raíz de acto duplicada FALLA",
+           any(ADR_RAIZ_1 in x[1] for x in f), str(f))
+
+
+# ─────────────────────────────────────────────────────────────────────
+# F · T48/T49, las dos guardas permanentes de la L0
+# ─────────────────────────────────────────────────────────────────────
+def _t48(tmp):
+    m = _carga_check()
+    m.ROOT = tmp
+    m.t48_canon_linea_1mb()
+    return [f for f in m.FAILS if f[0] == "T48"]
+
+
+def _t49(tmp, sha_fijado=None):
+    m = _carga_check()
+    m.ROOT = tmp
+    if sha_fijado is not None:
+        m.SHA256_L0_HISTORICO_FIJADO = sha_fijado
+    m.t49_l0_historico_fijado()
+    return [f for f in m.FAILS if f[0] == "T49"]
+
+
+def _sha256_de(texto):
+    import hashlib
+    return hashlib.sha256(texto.encode("utf-8")).hexdigest()
+
+
+def _arbol_l0(tmp, estado_texto, historico_texto):
+    os.makedirs(os.path.join(tmp, "canon", "L0"), exist_ok=True)
+    with open(os.path.join(tmp, "canon", "estado-programa-v1_14.md"), "w", encoding="utf-8") as f:
+        f.write(estado_texto)
+    with open(os.path.join(tmp, "canon", "L0", "HISTORICO.md"), "w", encoding="utf-8") as f:
+        f.write(historico_texto)
+
+
+L0_SANA = "**L0 · Gobierno — completo y al día.** 3 ADR — histórico en `canon/L0/HISTORICO.md`.\n"
+HISTORICO_SANO = "**L0 · Gobierno — completo y al día.** 3 ADR (contenido de prueba, corto)*---\n"
+# Análogo sintético de la línea vieja de 27 MB -- no se cargan 27 MB reales
+# al test; basta con superar el tope de 1 MB para ejercer la guarda con el
+# mismo mecanismo (una línea de `canon/` fuera de tamaño).
+L0_VIEJA_SINTETICA = "**L0 · Gobierno — completo y al día.** 3 ADR (" + ("X" * (1024 * 1024 + 10)) + ")*---\n"
+
+
+def caso_F():
+    print("F · T48/T49, las dos guardas permanentes de la L0")
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_l0(tmp, L0_SANA, HISTORICO_SANO)
+        f48 = _t48(tmp)
+        f49 = _t49(tmp, sha_fijado=_sha256_de(HISTORICO_SANO))
+        ok("F0 control: árbol sano -> sin FAIL en T48 ni T49",
+           f48 == [] and f49 == [], f"T48={f48} T49={f49}")
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_l0(tmp, L0_VIEJA_SINTETICA, HISTORICO_SANO)
+        f48 = _t48(tmp)
+        ok("F1 línea de canon/ > 1 MB FALLA (T48), con qué hacer",
+           any("canon/L0/<tu ADR>.md" in x[1] for x in f48), str(f48))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_l0(tmp, L0_SANA, HISTORICO_SANO + "\n")  # HISTORICO.md tocado
+        f49 = _t49(tmp, sha_fijado=_sha256_de(HISTORICO_SANO))
+        ok("F2 HISTORICO.md tocado FALLA (T49), con qué hacer",
+           any("no edites HISTORICO.md" in x[1] for x in f49), str(f49))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        # LA MUTACIÓN EXACTA (P-A.4): "conservar ambos lados" de la rama en
+        # vuelo con la L0 vieja sobre la línea reparada -- dispara las DOS
+        # guardas a la vez.
+        estado_conservando_ambos = L0_SANA + L0_VIEJA_SINTETICA
+        historico_tocado = HISTORICO_SANO + "\nrama en vuelo coló contenido aquí\n"
+        _arbol_l0(tmp, estado_conservando_ambos, historico_tocado)
+        f48 = _t48(tmp)
+        f49 = _t49(tmp, sha_fijado=_sha256_de(HISTORICO_SANO))
+        ok("F3 'conservar ambos lados' dispara T48 Y T49 a la vez",
+           f48 != [] and f49 != [], f"T48={f48} T49={f49}")
+
+    with tempfile.TemporaryDirectory() as tmp:
+        os.makedirs(os.path.join(tmp, "canon"), exist_ok=True)
+        f48 = _t48(tmp)
+        ok("F4 cero archivos canon/ examinados no es un negativo (A.13)",
+           any("A.13" in x[1] for x in f48), str(f48))
+
 
 def main():
     print("═" * 72)
     print("  GEN2-TUBERIA-SUCESOR-1 · guardas por mutación")
     print("═" * 72)
-    caso_A(); caso_B(); caso_B3(); caso_C(); caso_C4(); caso_D()
+    caso_A(); caso_B(); caso_B3(); caso_C(); caso_C4(); caso_D(); caso_E(); caso_F()
     print("─" * 72)
     if FALLAS:
         print(f"  {len(FALLAS)} FALLA(S): " + " · ".join(FALLAS))

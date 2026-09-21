@@ -852,42 +852,92 @@ def t14_inventario():
 #   así que la marca debe tolerar un backtick opcional antes de sí misma.
 MARCA_HISTORICA = r"`?\s*\{cita-historica\}"
 
+# ───────────────────────────────────────────────────────────────
+# DOS ÉPOCAS DE ID `ADR`, una sola gramática (firma de mesa D-2, 21/sep/2026
+# · `ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1` · P-C.3): mismo mecanismo que
+# `RE_FP_NUEVA`/`RE_FP_VIEJA` de `tools/nc_por_clase.py`, aplicado a `ADR`.
+#
+#   vieja  `ADR-<n>`                                  — espacio CERRADO.
+#   nueva  `ADR-<AAMMDD>-<RÓTULO>-<hhhh>-<NN>`        — raíz de acto.
+#
+# Un `ADR-260921-GEN2-…` sin esta alternancia se lee con `(\d+)` a secas
+# como `ADR-260921` -- un número de ADR fantasma de seis dígitos. La época
+# nueva va PRIMERO en la alternancia por la misma razón que en `nc_por_clase`:
+# un id nuevo empieza por dígitos que la rama vieja casaría como prefijo.
+# Ejercida por mutación en `tests/test_tuberia_ids_union.py` (caso E), con
+# un `ADR` de cada época pinado en el mismo caso.
+# ───────────────────────────────────────────────────────────────
+RE_ADR_NUEVA = r"ADR-\d{6}-GEN2(?:-[A-Z0-9]+)+-[0-9a-f]{4}-\d{2}"
+RE_ADR_VIEJA = r"ADR-\d+(?![\d\-A-Za-z])"
+RE_ADR = rf"(?:{RE_ADR_NUEVA}|{RE_ADR_VIEJA})"
+
+
 def t15_adr_count():
     g = newest("canon/gobernanza-v*.md")
     if not g:
         fail("T15", "no se pudo leer `canon/gobernanza-v*.md`")
         return
-    nums = [int(n) for n in re.findall(r"^\*\*ADR-(\d+)", read(g), re.M)]
-    if not nums:
-        fail("T15", f"{rel(g)}: no se encontró ningún `**ADR-N`")
+    texto_g = read(g)
+    # Sólo la época VIEJA (numérica) participa del conteo `N ADR` y del
+    # chequeo de duplicados -- la época nueva (raíz de acto) es un espacio
+    # aparte que nunca se renumera y no mueve este contador (P-B/P-C).
+    # `(?![\d-])` y no sólo `(?!-)`: un `\d+` codicioso retrocede dígito a
+    # dígito, y cada dígito intermedio de una raíz nueva (`260921-GEN2-…`)
+    # está seguido de OTRO dígito, no de un guion -- `(?!-)` a secas dejaba
+    # pasar el retroceso y leía `260921` como `26092` seguido de dígito.
+    nums = [int(n) for n in re.findall(r"^\*\*ADR-(\d+)(?![\d-])", texto_g, re.M)]
+    # SIN deduplicar aquí: el chequeo de duplicados de abajo (`Counter`)
+    # necesita la lista cruda, no el conjunto -- deduplicar antes habría
+    # vuelto invisible cualquier raíz repetida.
+    raices = re.findall(rf"^\*\*({RE_ADR_NUEVA})", texto_g, re.M)
+    if not nums and not raices:
+        fail("T15", f"{rel(g)}: no se encontró ningún `**ADR-N` ni `**ADR-<raíz>`")
         return
-    real = len(set(nums))
-    dup = sorted(n for n, c in Counter(nums).items() if c > 1)
-    if dup:
-        fail("T15", f"{rel(g)}: ADR repetido(s), mismo número dos veces: {dup}")
-    # Aserción (3): toda cita `ADR-N` de `canon/` resuelve a una entrada real.
-    # Reemplaza al bloque de huecos: con huecos permitidos, una cita a un
-    # número que nadie selló ya no se delata sola.
+    if nums:
+        real = len(set(nums))
+        dup = sorted(n for n, c in Counter(nums).items() if c > 1)
+        if dup:
+            fail("T15", f"{rel(g)}: ADR repetido(s), mismo número dos veces: {dup}")
+    else:
+        real = None
+    dup_raiz = sorted(r for r, c in Counter(raices).items() if c > 1)
+    if dup_raiz:
+        fail("T15", f"{rel(g)}: ADR de raíz repetido(s): {dup_raiz}")
+    # Aserción (3): toda cita `ADR-…` de `canon/` resuelve a una entrada real,
+    # en su propia época. Reemplaza al bloque de huecos: con huecos
+    # permitidos, una cita a un número que nadie selló ya no se delata sola.
     existentes = set(nums)
+    existentes_raiz = set(raices)
     for p in sorted(glob.glob(os.path.join(ROOT, "canon", "*.md"))):
         for i, l in enumerate(read(p).split("\n"), 1):
-            # (2) el conteo citado
-            for m in re.finditer(r"(\d+)\s*ADR\b", l):
-                n = int(m.group(1))
-                if n == real:
-                    continue
+            # (2) el conteo citado -- sólo tiene sentido si hay un `real`
+            # numérico vigente; si el espacio numérico está vacío (todo lo
+            # nuevo ya es raíz de acto), esta aserción no aplica.
+            if real is not None:
+                for m in re.finditer(r"(\d+)\s*ADR\b", l):
+                    n = int(m.group(1))
+                    if n == real:
+                        continue
+                    if re.match(MARCA_HISTORICA, l[m.end():]):
+                        continue
+                    fail("T15", f"{rel(p)}:{i} cita {n} ADR; gobernanza tiene {real} únicos")
+            # (3) la cita resoluble, dos épocas -- la nueva se prueba PRIMERO
+            # para no partirla en un `ADR-<n>` fantasma.
+            for m in re.finditer(rf"\b{RE_ADR}\b", l):
+                cita = m.group(0)
                 if re.match(MARCA_HISTORICA, l[m.end():]):
                     continue
-                fail("T15", f"{rel(p)}:{i} cita {n} ADR; gobernanza tiene {real} únicos")
-            # (3) la cita resoluble
-            for m in re.finditer(r"\bADR-(\d+)\b", l):
-                n = int(m.group(1))
-                if n in existentes:
-                    continue
-                if re.match(MARCA_HISTORICA, l[m.end():]):
-                    continue
-                fail("T15", f"{rel(p)}:{i} cita `ADR-{n}`, que no existe en "
-                            f"{rel(g)} (máximo sellado: ADR-{max(nums)})")
+                if re.fullmatch(RE_ADR_NUEVA, cita):
+                    if cita in existentes_raiz:
+                        continue
+                    fail("T15", f"{rel(p)}:{i} cita `{cita}`, que no existe en {rel(g)}")
+                else:
+                    n = int(cita.split("-", 1)[1])
+                    if n in existentes:
+                        continue
+                    tope = f"ADR-{max(nums)}" if nums else "(ninguno sellado)"
+                    fail("T15", f"{rel(p)}:{i} cita `{cita}`, que no existe en "
+                                f"{rel(g)} (máximo numérico sellado: {tope})")
 
 
 # ───────────────────────────────────────────────────────────────
@@ -7824,6 +7874,92 @@ def t47_ids_unicos():
                     f"el veredicto no es un negativo (A.13)")
 
 
+# ───────────────────────────────────────────────────────────────
+# T48 · T-CANON-LINEA-1MB — ninguna línea de ningún archivo de `canon/`
+#   supera 1 MB. (`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1`, 21/sep/2026,
+#   P-A.4, criterio 2 de la v1.0 convertido en test.)
+#
+#   DEFECTO REAL QUE ATRAPA: la línea `L0` de
+#   `canon/estado-programa-v1_14.md` creció de 797 824 caracteres a
+#   27 738 504 en cinco merges "conservar ambos lados" en 20-21/sep/2026
+#   (×2.00, ×3.00, ×2.67, ×2.12) sin que ningún test lo viera -- la suite
+#   pasaba en VERDE con una línea de 27 MB. Lo que le habría costado a un
+#   lector: un clon completo de 27+ MB extra por commit, y GitHub rechaza
+#   el empuje de blobs de más de 100 MB -- una o dos duplicaciones más lo
+#   habrían alcanzado.
+#
+#   Ejercida por mutación en `tests/test_tuberia_ids_union.py` (caso F):
+#   la mutación de prueba es EXACTAMENTE el caso de las ramas en vuelo --
+#   fusionar una rama que trae la línea `L0` vieja (~27 MB) sobre la línea
+#   reparada, conservando ambos lados (`git merge -X ours` no aplica; es
+#   la resolución "los dos lados" de un conflicto real) -- debe FALLAR.
+#
+#   FALSADOR (§9, tres meses -- al 21/dic/2026): si ninguna rama ha
+#   intentado nunca superar 1 MB en una línea de `canon/`, se anota y se
+#   revisa si el aparato valía la pena.
+# ───────────────────────────────────────────────────────────────
+TOPE_LINEA_CANON_BYTES = 1024 * 1024
+
+
+def t48_canon_linea_1mb():
+    examinados = 0
+    for p in sorted(glob.glob(os.path.join(ROOT, "canon", "**", "*.md"), recursive=True)):
+        examinados += 1
+        with io.open(p, "rb") as f:
+            for i, linea in enumerate(f, 1):
+                n = len(linea)
+                if n > TOPE_LINEA_CANON_BYTES:
+                    fail("T48", f"{rel(p)}:{i} tiene una línea de {n} bytes "
+                                f"(> {TOPE_LINEA_CANON_BYTES} = 1 MB) -- "
+                                f"si es un merge 'conservar ambos lados' de la L0, "
+                                f"toma la versión de `main` completa y pon tu anotación "
+                                f"en `canon/L0/<tu ADR>.md`")
+    # A.13: un negativo de un comando que no examinó archivos no es un negativo.
+    if examinados == 0:
+        fail("T48", "cero archivos `canon/**/*.md` examinados: el veredicto "
+                    "no es un negativo (A.13)")
+
+
+# ───────────────────────────────────────────────────────────────
+# T49 · T-L0-HISTORICO-FIJADO — el hash del contenido histórico congelado
+#   de la L0 (`canon/L0/HISTORICO.md`) está fijado. (`ACTO
+#   GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1`, 21/sep/2026, P-A.4.)
+#
+#   Es una constancia congelada A PROPÓSITO, no un libro vivo: el
+#   contenido de `HISTORICO.md` es el resultado, ya deduplicado y
+#   verificado sin pérdida contra 5 versiones de la historia (`V0..V4`,
+#   `9abc7a19..d44949529e..1dfb6726..ff73e022..04a2edeb`), de la
+#   reparación de este acto. Si una rama lo toca -- por ejemplo,
+#   conservando los dos lados de la L0 vieja al fusionar `main` sobre un
+#   worktree que todavía trae la línea de 27 MB -- este test debe FALLAR
+#   con un mensaje que diga qué hacer, no sólo que algo cambió.
+#
+#   Ejercida por mutación en `tests/test_tuberia_ids_union.py` (caso F,
+#   junto con T48): la mutación de prueba fusiona la rama en vuelo sobre
+#   la línea reparada conservando ambos lados -- las DOS guardas (T48 y
+#   T49) deben fallar a la vez, es el mismo caso.
+#
+#   FALSADOR (§9, tres meses -- al 21/dic/2026): igual que T48.
+# ───────────────────────────────────────────────────────────────
+RUTA_L0_HISTORICO = os.path.join("canon", "L0", "HISTORICO.md")
+SHA256_L0_HISTORICO_FIJADO = "a7de89442e1dc559f13beaf565af2aec7c5937339debe0d2615082f0ae071ab8"
+
+
+def t49_l0_historico_fijado():
+    p = os.path.join(ROOT, RUTA_L0_HISTORICO)
+    if not os.path.exists(p):
+        fail("T49", f"no se pudo leer `{RUTA_L0_HISTORICO}`: el hash histórico "
+                    f"no se verifica contra ningún otro sitio")
+        return
+    with io.open(p, "rb") as f:
+        real = hashlib.sha256(f.read()).hexdigest()
+    if real != SHA256_L0_HISTORICO_FIJADO:
+        fail("T49", f"{RUTA_L0_HISTORICO} cambió: sha256 real {real}, fijado "
+                    f"{SHA256_L0_HISTORICO_FIJADO} -- si fusionaste `main` y "
+                    f"chocó la L0, toma la versión de `main` completa y pon tu "
+                    f"anotación en `canon/L0/<tu ADR>.md`, no edites HISTORICO.md")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -7878,6 +8014,8 @@ def main():
         ("T45 T-LEGACY-DESGLOSE-SUMA",                  t45_legacy_desglose_suma),
         ("T46 T-UNION-NEWLINE",                         t46_union_newline),
         ("T47 T-IDS-UNICOS",                            t47_ids_unicos),
+        ("T48 T-CANON-LINEA-1MB",                       t48_canon_linea_1mb),
+        ("T49 T-L0-HISTORICO-FIJADO",                   t49_l0_historico_fijado),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
