@@ -343,3 +343,61 @@ def test_tabla_identidad_57_solo_piso_enlazadas_a_ids_declarados():
     v = M.deriva()
     ids = {f["celda_id"] for f in v["filas"] if f["tipo"] == "MARGINAL" and f["estado"] in ("SOLO-PISO", "EVALUADA")}
     assert {r["marcador_celda_id"] for r in rows} == ids
+
+
+# ═══════════════════════════ 5 · adjudicación: aritmética entre sellados ════
+
+ADJ = os.path.join(C0DIR, "CALC-ARBITRO-PERSISTENCIA-ERROR-0001")
+MADJ = _load(os.path.join(ADJ, "medidor.py"), "medidor_arbitro_persistencia_error")
+
+
+def _inputs_adj_sinteticos(tmp_path, seed=7):
+    """Fixtures desde los ids REALES de la tabla de identidad y de los sellados
+    (nunca desde la constante del medidor): valores aleatorios, forma real."""
+    rng = np.random.default_rng(seed)
+    tabla = os.path.join(ROOT, "forense", "prereg-caja", "ARBITRO-MARGINALES-metadatos-v1_0.tsv")
+    filas = [dict(zip(*[l.rstrip("\n").split("\t") for l in [open(tabla, encoding="utf-8").readline(), ln]]))
+             for ln in open(tabla, encoding="utf-8").readlines()[1:]]
+    R = {"ENIF": {}, "ENVIPE": {}, "ENCIG": {}}
+    P = {}
+    for f in filas:
+        for res, cid in ((R[f["instrumento"]], f["cell_id_R"]), (P.setdefault(f["calc_piso"], {}), f["cell_id_piso"])):
+            p = float(rng.uniform(0.2, 0.8)); w = float(rng.uniform(0.01, 0.05))
+            res[cid] = p; res[cid[:-2] + "-IC-LO"] = p - w; res[cid[:-2] + "-IC-HI"] = p + w
+    # sellados de pilotos: ids reales
+    real_c2 = json.load(open(os.path.join(C0DIR, "CALC-C2-COMPUESTO-IC-ENIF2024-0001", "resultados.json"), encoding="utf-8"))["resultados"]
+    real_gob = json.load(open(os.path.join(C0DIR, "CALC-GOB-DIGITAL-EXE-EMISIONES-0002", "resultados.json"), encoding="utf-8"))["resultados"]
+    c2 = {k: float(rng.uniform(0.2, 0.8)) for k in real_c2 if "-G-MARG-" in k and k.endswith(("-P", "-IC95INF", "-IC95SUP"))}
+    gob = {k: float(rng.uniform(0.2, 0.8)) for k in real_gob if "-MARGINAL-" in k and k.endswith(("-P", "-P-IC-LO", "-P-IC-HI"))}
+    inp = {}
+
+    def put(iid, obj):
+        p = tmp_path / f"{iid}.json"
+        p.write_text(json.dumps({"resultados": obj}), encoding="utf-8")
+        inp[iid] = {"ruta_absoluta": str(p)}
+    put("R-ENIF2024", R["ENIF"]); put("R-ENVIPE2025", R["ENVIPE"]); put("R-ENCIG2025", R["ENCIG"])
+    for calc, iid in MADJ.INPUTS_PISO.items():
+        put(iid, P[calc])
+    put("SELLADO-C2IC-ENIF2024", c2); put("SELLADO-GOB-EXE-2025", gob)
+    inp[MADJ.INPUT_TABLA] = {"ruta_absoluta": tabla}
+    inp[MADJ.INPUT_YAML] = {"ruta_absoluta": os.path.join(ROOT, "milpa", "tramite-ola5-propuesta-v0.yaml")}
+    return inp
+
+
+def test_adjudicacion_sintetico_ids_exactos_y_valida_outputs(tmp_path):
+    inp = _inputs_adj_sinteticos(tmp_path)
+    spec = yaml.safe_load(open(os.path.join(ADJ, "spec.yaml"), encoding="utf-8"))
+    out = MADJ.medir(inp, C0.contrato_ejecutable(spec))
+    declarados = {r["id"] for r in spec["resultados"]}
+    assert set(out) == declarados, (sorted(set(out) - declarados)[:5], sorted(declarados - set(out))[:5])
+    assert C0._valida_outputs(spec, out) == []
+    assert _no_finitos(out) == []
+    assert out["RESULT-ARBERR-G-N-CELDAS"] == 57 and out["RESULT-ARBERR-G-N-CON-SELLADO-PILOTO"] == 36
+    # aritmética: d en pp desde los dos sellados, clase y cobertura coherentes
+    for k, v in out.items():
+        if k.endswith("-CLASE"):
+            b = k[:-6]
+            assert (out[b + "-D-IC-LO-PP"] <= 0.0 <= out[b + "-D-IC-HI-PP"]) == (v == "PERSISTE")
+        if k.endswith("-COBERTURA"):
+            assert out[k[:-10] + "-N-DENTRO"] / out[k[:-10] + "-N"] == v
+            assert out[k + "-IC-LO"] <= v <= out[k + "-IC-HI"]
