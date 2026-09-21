@@ -1,0 +1,53 @@
+# ENCARGO · ACTO GEN2-TRAMITE-FIRMAS-5 · LAS DECISIONES DEL CUADERNO DE MESA ENTRAN AL REPO: NUEVE PENDIENTES SE CIERRAN, ONCE CORRIDAS CUENTAN, EL PISO DEL PILOTO 3 SE ADOPTA, DOS DICTÁMENES QUEDAN FIRMADOS
+
+> ENTORNO: **NUBE** (cualquiera): papeleo; no abre microdato. NO es CAJA.
+
+CABECERA · SHA de redacción `b219aeef`; re-deriva al abrir · una sola sesión, rama `claude/tramite-firmas-5` · MODELO: Sonnet (se puede subir) · MODO: **ABIERTO** · CONTADOR: **sí puede moverse por firma**: `N_resultados_gen2_adoptados_activos` (P2 y P3) y lo que `status` derive; se reporta antes y después, el número sale del comando · FP/ADR/NC: raíz de acto.
+**Si al fusionar `main` choca la línea L0 de `canon/estado-programa-v1_14.md`: NO conserves los dos lados; toma la de `main` y re-inserta solo tu anotación.** `canon/L0/` ya existe: tu anotación va ahí como fragmento. No edites `.github/workflows/verify.yml`, `tests/check.py`, `.gitattributes`, `tools/cierre_acto.py`, `tools/tablero_programa.py`, `tools/estado_comun.py` ni `tools/digesto_tramite.py` (TUBERÍA); lo que necesites de ahí queda en NC con sucesor.
+
+## 1 · OBJETIVO
+El cuaderno de mesa del 21/sep (`forense/encargos/CUADERNO-DE-MESA-2026-09-21.md`, `#963`) llevó a mesa cada pendiente verificado y con recomendación; mesa lo leyó con dirección y resolvió. Una firma en chat no se propaga sola: este acto la asienta (A.12). «Hecho» significa: cada firma de §2 con su fila `FIRMADA` o su NC `CERRADA`, con cita al cuaderno; las filas de `decisiones.tsv` que gobiernan contadores escritas; la adopción del piloto 3 registrada; `status` re-derivado; nota de una página con antes/después.
+
+## 2 · FIRMAS DE MESA — verbatim (mesa, 21/sep/2026, sobre el cuaderno; donde dirección cambió la recomendación del cuaderno se dice)
+**F1 · §1, nueve que ya no necesitan a mesa:** «Doy por resueltas y mando cerrar, con la evidencia del cuaderno del 21/sep: NC-0185, NC-0237, NC-0344, NC-0363, NC-0366, NC-0372, NC-0434, NC-0435 y NC-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_3-5870-01. Ninguna espera decisión mía: cinco ya tienen su FP firmada, una la firmé el 15/sep, una pasó a otra mesa y dos esperan ejecución, no dictamen. El residuo de NC-0372 que sí sigue vivo (NC-0369) se trata por separado.»
+**F2 · §2.1, universo de corridas:** «El universo de corridas tras #897 queda ratificado, en coherencia con FP-394 (4.5 a). Firmo `cuenta_gen2 = SI` en bloque para las once corridas SELLADA con replay REPRODUCE listadas en NC-0372. NC-0369 se cierra con esta misma ratificación.» *(Mesa firma sabiendo, como el cuaderno §8 lo dice, que se apoya en coherencia con FP-394 y no en una auditoría de los 16 commits.)*
+**F3 · §2.2, piso del piloto 3:** «Adopto el piso C2 de `tramite.gobierno_digital.util_sin_coercion_ejes_encig2025 :: edadxescolaridad` por A-bis 6 (piso no vencido, falsador débil). `champion_actual: C2` y fila de adopción en `decisiones.tsv`. No se crea el estado CONSUMIDA-POR-PILOTO.» Con la nota, verbatim de la celda-D: veredicto FALSADOR-DÉBIL; el IC del piso cubrió 8 de 15; el retador encogido queda como propuesta con reserva.
+**F4 · §3, dictámenes (categoría, nunca contenido):** FP-409 → «`DECLARADO`. La sucesión `CALC-ENUT2024-DISTRIBUCION-HORAS-0001 → -0002` es un renombre: medidor byte-idéntico salvo tres nombres de archivo de salida, 23 de 26 RESULT idénticos y los 3 restantes son rutas. Ninguna decisión de estimación pudo contaminarse. Admisible sin reserva.» FP-408 → «`INFERIDO`. La sucesión es aditiva —EE/IC para la media, EE/IC para las condicionales, diagnósticos y sha256— y verificablemente no movió nada.» Las dos filas pasan a `FIRMADA` con la categoría; el texto completo del dictamen se cita del cuaderno §3, no se copia entero.
+**F5 · §4.1:** «FP-405: acoto FP-67 a `cloud_default` (A.10, VENCIDA EN ALCANCE para nube con red Custom; la fila FP-67 no se edita). Firmo el **alcance**, no la sustitución: la adquisición sigue asignada a UBUNTU hasta que NUBE-PILOTO-2 mida escala.» *(Precisión de dirección: `milpa-inegi` ya bajó payloads con sha verificado — `#960`, `#967` —; lo que sigue en UBUNTU/caja es el **microdato**, por mandato de mesa del 21/sep.)*
+**F6 · §4.2:** «FP-374 no se firma. Encargo un acto de re-sello con su universo actual (A.10). Las filas que la citan como bloqueador (NC-0161 y la cadena de NC-0237) se re-verifican contra el sello nuevo, no contra el viejo.» → fila FP nueva para el acto de re-sello, sin dueño asignado aún.
+**F7 · §5.1:** «Adopto `SIN-PISO-POR-DISEÑO` en el vocabulario `status` de las tablas de identidad. Un acto escribe la tabla EDER de 4 filas con el dictamen de #908 §2.2 como `metadata_source`. Resuelve NC-0377 y NC-0411.» → aquí solo la firma; la tabla EDER es acto sucesor (NC re-apuntada).
+**F8 · §5.2:** «Acepto la edición de tres sitios de NC-0378. Queda como está.» **F9 · §5.3:** «`canales_observados` es informativa y no forma parte del criterio 2.» **F10 · §5.4:** «La sesión que congeló es válida. D-17 se cumple: un solo escritor.»
+**Ya ejecutadas, solo se cierran:** §2.3 y §2.4 las ejecutó `GEN2-RELEVO-TANDA-4` (`#959`): los tres pines M y la clase iii de RES-0028 están en `main`; las NC que aún los pidan se cierran con cita al PR. §6.2 / NC-0425 / NC-…-7bf5-03: `GEN2-L-DESDE-CAPTURAS-1` (`#973`) midió los 28 slots con la mediana; se cierran con cita.
+**NO entran en este trámite** (A.12: viajan en su encargo): los 18 pines de L y la extensión del eje RESULTADO a la vía (i) (§2.5), que van en `GEN2-RELEVO-TANDA-5`. El destino del respaldo (`#974`) y la sonda de `gh` (NC-…-2707-01) siguen esperando un dato de mesa: no se tocan.
+
+## 3 · LO QUE DIRECCIÓN SABE (contra `b219aeef`)
+- `[EJECUTADO]` `FP-374` está `VENCIDA-EN-ALCANCE`, `FP-405`, `FP-408`, `FP-409` `ABIERTA`; `NC-0369` `ABIERTA/PARO-PREMISA`; `NC-0372`, `NC-0377`, `NC-0378`, `NC-0411`, `NC-0425` `ABIERTA/DECISIÓN-DE-MESA-PENDIENTE`. Re-verifica cada una al abrir (A.17): el cuaderno se derivó contra `fc13cdcc` y desde entonces entraron diez PR.
+- `[EJECUTADO]` la celda-D `GOB.gobierno_digital.encig2025.edad_x_escolaridad.yaml` trae `veredicto: FALSADOR-DEBIL` y `fecha_adjudicacion: 2026-09-21` (`e45c7d41`); `decisiones.tsv` tiene 4 filas del piloto 3 y ninguna de adopción; `champion_actual` no está escrito. `[LEÍDO: cuaderno §2.2]` con la adopción, el marcador levanta la reserva solo, por comando.
+- `[EJECUTADO]` `pines-de-mesa.tsv`: los tres `::M` de FAM y el pin de RES-0028 existen; `status`: legacy 146, adoptados 72 (antes de este trámite).
+- `[EJECUTADO]` firmas de `cuenta_gen2` que viajaron en encargos ya fusionados: ARBITRO (1 fila en `decisiones.tsv`), DUELO (3 FP), LOTE-A (2 FP); ENCIG-SERIE, VALIDACION-INDEPENDIENTE y L-DESDE-CAPTURAS **sin fila propia visible por `grep` del rótulo**. Verifica por objeto (el CALC) si su `cuenta_gen2` quedó resuelto por etiqueta o por fila; si un acto no asentó la firma que traía, asiéntala aquí con cita al encargo archivado y dilo como hallazgo (A.12).
+- `[EXISTE]` precedentes: `2026-09-21-GEN2-TRAMITE-FIRMAS-3-PROPAGACION.md` y `-4.md`; `/tramite`.
+
+## 4 · YA HECHO
+Por objeto (cada id de §2) en `firmas-pendientes.tsv`, `no-corrido.tsv`, `decisiones.tsv` y ramas vivas: ninguna de las diez firmas está asentada; las «ya ejecutadas» sí (`#959`, `#973`). **Repítela tú.**
+
+## 5 · PIEZAS
+**P1 · Cierres.** F1 (nueve NC) + las de TANDA-4 y #973: `CERRADA` con cita al cuaderno y al PR.
+**P2 · Contador de corridas (F2).** Las once corridas de NC-0372 con `cuenta_gen2 = SI` en `decisiones.tsv`, una fila por corrida, razón verbatim; NC-0369 y NC-0372 cerradas. `status` antes/después.
+**P3 · Adopción del piloto 3 (F3).** Fila de adopción en `decisiones.tsv`; `champion_actual: C2` en la celda-D (solo ese campo); marcador y tablero re-derivados por comando; reporta qué filas cambiaron de estado.
+**P4 · FP.** F4 (dos a `FIRMADA` con categoría), F5, F6 (fila nueva), F7 (firma + NC re-apuntada), F8–F10 (NC cerradas).
+**P5 · Verificación de las firmas que viajaron en encargos** (§3, cuarto punto) y nota.
+
+## 6 · LATITUD
+Decides tú: orden, forma de las filas, si usas `/tramite`. Replantea y sigue si una fila ya cambió de estado desde el cuaderno: no la toques y dilo. Pregunta a mesa, siguiendo: si una de las once corridas de F2 ya no es `SELLADA · REPRODUCE` hoy.
+
+## 7 · PAROS — lista cerrada
+a) alterar el texto verbatim de una firma · b) escribir un pin · c) cerrar una fila que no esté en §2 · d) editar un sello o un veredicto · e) tocar el contador a mano en lugar de por fila y comando.
+
+## 8 · COMPUERTAS
+Ninguna.
+
+## 9 · PERÍMETRO
+Propio: `forense/firmas-pendientes.tsv` · `forense/no-corrido.tsv` · `data/corrida0/decisiones.tsv` · el campo `champion_actual` de una celda-D · derivados por comando · nota · cascada. Ajeno: todo lo demás. Si te encuentras escribiendo fuera de esta lista, PARA.
+
+## 10 · NO HACE · SUCESORES · CIERRE
+No pinea · no re-sella FP-374 · no escribe la tabla EDER. Sucesores: `GEN2-RELEVO-TANDA-5` (18 pines L + vía (i)) · re-sello de FP-374 · tabla EDER (F7). Auditoría §5: no aplica. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
