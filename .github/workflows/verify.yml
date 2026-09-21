@@ -208,6 +208,18 @@ jobs:
           python3 tests/test_marcador_segmento.py
           python3 tests/test_estimadores_segmento.py
 
+      - name: tubería de ids y union — T15 por mutación, guarda de salto de línea, gramática de FP (bloqueante)
+        # ACTO GEN2-TUBERIA-SUCESOR-1 (21/sep/2026), D-21: mismo motivo que
+        # los pasos de arriba (NC-0331) -- un test que nadie cablea es
+        # decoración, y una guarda que no se puede disparar no es guarda.
+        # Ejerce POR MUTACIÓN las tres aserciones de T15 (firma D-3), la
+        # guarda T46 de salto de línea final en archivos `merge=union`
+        # (incluida la reproducción del defecto con git de verdad en un repo
+        # temporal) y la gramática de id `FP` de las dos épocas (firma D-2),
+        # con un id de CADA época pinado en el mismo caso. Stdlib puro, cero
+        # microdato, cero red.
+        run: python3 tests/test_tuberia_ids_union.py
+
       - name: comparabilidad por texto de crédito ENIF — forma de la tabla K1-K8 × 5 olas (bloqueante)
         # ACTO GEN2-DIN-CREDITO-COMPARABILIDAD-TEXTO-1 (20/sep/2026): mismo
         # motivo que los pasos de arriba (NC-0331) -- un test que nadie cablea
@@ -241,6 +253,17 @@ jobs:
         # Cero red externa, cero microdato, cero escritura en data/raw del
         # repo. NO toca los dos archivos congelados.
         run: python3 tests/test_descarga_manifiesto.py
+      - name: cargador de linaje — los tres caminos del id superado (bloqueante)
+        # ACTO MOTOR-LINAJE-1 (21/sep/2026) · P1/P4 + D-21. Defecto real que
+        # atrapa (NC-0401/NC-0400): `cargar_indice_linaje_emision` colapsaba
+        # «una vigente», «más de una vigente» y «cero vigentes» en una sola
+        # excepción de carga, y la tercera hacía incargable el índice entero
+        # por un `resultado_id` que ningún consumidor pin-ea (222 de 10 542 en
+        # la vista, derivado por tools/delta_pin_superado.py). Condición de la
+        # firma de mesa del 21/sep: el cargador NO sigue la sucesión en
+        # silencio — nombra al sucesor y no lo resuelve. Fixtures sintéticos
+        # en tmp; cero microdato, cero cifras del modelo.
+        run: python3 tests/test_linaje_superado.py
 
   # ACTO GEN2-CI-GUARDIAS-VIVAS-1 (20/sep/2026): 97 de 122 tests/test_*.py
   # no aparecian ni aqui ni en tests/check.py -- nadie los corria. Este job
@@ -269,7 +292,16 @@ jobs:
           else
             REF="+${{ github.ref }}:refs/remotes/origin/ci"
           fi
-          git -c protocol.version=2 fetch -q --depth=1 --no-tags origin "$REF"
+          # ACTO MOTOR-LINAJE-1 (21/sep/2026) · P4 / D-23: fetch COMPLETO,
+          # no `--depth=1`. NC-0402 y NC-0397 clasificaban
+          # `tests/test_motor_holdout.py` y
+          # `tests/test_celda_d_piloto_consumidor.py` como
+          # FALLA-DE-VERDAD; en clon completo dan 6/6 y 9/9. La causa
+          # era este clon superficial: pinan firmas contra el commit
+          # de sello y no hay historia que leer a profundidad 1. Una
+          # herramienta de verificacion no verifica un arbol que ella
+          # misma mutilo (D-23).
+          git -c protocol.version=2 fetch -q --no-tags origin "$REF"
           git checkout -q refs/remotes/origin/ci
           git log -1 --format="HEAD=%H %s"
 
