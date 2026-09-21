@@ -1,0 +1,10 @@
+conducta	variante	escala	objetivo	n_celdas	cobertura_v1_k	cobertura_v1_n	cobertura_v1	cp95_lo	cp95_hi	mae_v1	mae_v2	mae_v3	cobertura_proxy_v1	cobertura_proxy_v2	cobertura_proxy_v3	dictamen	regla_aplicada
+C2 NUCLEO media	NUCLEO	media	2019	14	10	14	0.714286	0.418965	0.916111	0.390226			0.714286			NO-DECIDIBLE	§5.3 media: CP95_lo < 0.5 y la tendencia no reduce el MAE a la mitad
+C2 NUCLEO media	NUCLEO	media	2024	14	0	14	0.000000	0.000000	0.231636	3.132727	2.933046		0.000000	0.000000		NO-DECIDIBLE	§5.3 media: CP95_lo < 0.5 y la tendencia no reduce el MAE a la mitad
+C2 NUCLEO razon	NUCLEO	razon	2019	1	0	1	0.000000	0.000000	0.975000	0.019469			0.000000			NO-DECIDIBLE	§5.3 razón: sin cobertura mutua y sin tercera ola para evaluar tendencia
+C2 NUCLEO razon	NUCLEO	razon	2024	1	0	1	0.000000	0.000000	0.975000	0.012378	0.031847		0.000000	0.000000		NO-DECIDIBLE	§5.3 razón: sin cobertura mutua y sin dos cambios consecutivos del mismo signo fuera de IC
+C3 MIN media	MIN	media	2019	14	10	14	0.714286	0.418965	0.916111	0.392610	2.384807		0.642857	0.000000		NO-DECIDIBLE	§5.3 media: CP95_lo < 0.5 y la tendencia no reduce el MAE a la mitad
+C3 MIN media	MIN	media	2024	14	0	14	0.000000	0.000000	0.231636	3.137186	2.913374	4.503245	0.000000	0.000000	0.000000	NO-DECIDIBLE	§5.3 media: CP95_lo < 0.5 y la tendencia no reduce el MAE a la mitad
+C3 MIN razon	MIN	razon	2019	1	0	1	0.000000	0.000000	0.975000	0.019573	0.001077		0.000000	1.000000		TENDENCIA	§5.3 razón: dos cambios consecutivos del mismo signo, cada uno mayor que la semi-anchura del IC destino
+C3 MIN razon	MIN	razon	2024	1	0	1	0.000000	0.000000	0.975000	0.012788	0.032361	0.033079	0.000000	0.000000	0.000000	NO-DECIDIBLE	§5.3 razón: sin cobertura mutua y sin dos cambios consecutivos del mismo signo fuera de IC
+C1 horas_cuidado CON_CP (21 celdas del marcador)	CONCP	media+razon	2024	21												CAMBIO-DE-INSTRUMENTO	§5.3 por texto: ADR-557 + P1 (C1 2019/2014/2009 = CAMBIO-DE-INSTRUMENTO); sin piso

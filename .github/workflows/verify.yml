@@ -240,7 +240,10 @@ jobs:
         # es decoración. Corre PRIMERO el caso sintético (D-22) y después la
         # tabla real `data/credito-comparabilidad-texto-v1_0.tsv`: 40 filas,
         # veredictos en lista cerrada, toda fila negativa con texto buscado.
-        # Stdlib puro, cero microdato.
+        # Stdlib puro, cero microdato. Desde ACTO GEN2-DIN-CREDITO-HISTORIA-1
+        # (21/sep/2026, P1) el mismo archivo verifica también la sucesora
+        # `data/credito-comparabilidad-texto-v1_1.tsv` (cuestionarios 2012/2015
+        # ya en el corpus: cero NO-VERIFICABLE-AQUÍ, 24 filas heredadas verbatim).
         run: python3 tests/test_credito_comparabilidad_texto.py
 
       - name: comparabilidad por texto de ahorro ENIF — forma de la tabla 8 objetos × 5 olas (bloqueante)
