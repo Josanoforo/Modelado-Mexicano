@@ -189,3 +189,13 @@ Si en tres meses ninguna de las seis guardas ha fallado una sola vez, se anota y
    triviales: los canales siguen leyendo el mismo vocabulario, sólo cambió
    contra qué casan. **Impacto:** ninguno. **Sucesor:** SIN-ASIGNAR, como
    estaban.
+
+---
+
+## CONSUMIDO
+
+**PR #949** — `ACTO GEN2-TUBERIA-RES-LLAVE-1 · RES se congela como alias
+estable de la llave lógica; CORR deja de ser citable; la vista casa por llave`,
+rama `claude/lucid-hypatia-j9m0xj`, 21/sep/2026. `ADR-583`.
+
+**PROPUESTO, no fusionado: el merge es de mesa** (firma D-r4 y §5 del encargo).
