@@ -9,7 +9,7 @@ Modo `ABIERTO`. Compuerta: ninguna. **El PR no se fusiona: mesa fusiona.**
 
 > **Adenda fechada (21/sep/2026, tras fusionar `main` en `8535a977`).** `PR #948`
 > (`GEN2-TUBERIA-PREFLIGHT-CI-1`) fusionó primero y llevó `main` hasta `ADR-585`.
-> Este acto **renumera su ADR de `583` a `586`** —regla de la casa, renumera
+> Este acto **renumera su ADR de `583` a `586` y luego a `587`** —regla de la casa, renumera
 > quien fusiona segundo— y sus dos jobs de CI **conviven**: `preflight-calc`
 > (de #948) y `guardas-res` (de éste), los dos con su propio clonado y los dos
 > exigidos por `check`. **Los cinco criterios se re-verificaron contra el merge

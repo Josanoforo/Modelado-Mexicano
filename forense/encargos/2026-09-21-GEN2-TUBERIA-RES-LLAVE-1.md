@@ -196,6 +196,6 @@ Si en tres meses ninguna de las seis guardas ha fallado una sola vez, se anota y
 
 **PR #949** — `ACTO GEN2-TUBERIA-RES-LLAVE-1 · RES se congela como alias
 estable de la llave lógica; CORR deja de ser citable; la vista casa por llave`,
-rama `claude/lucid-hypatia-j9m0xj`, 21/sep/2026. `ADR-586` (renumerado desde 583: `PR #948` fusionó antes y `main` llegó a `ADR-585`).
+rama `claude/lucid-hypatia-j9m0xj`, 21/sep/2026. `ADR-587` (renumerado 583 → 586 → 587: dos tandas de actos fusionaron antes; renumera quien fusiona segundo).
 
 **PROPUESTO, no fusionado: el merge es de mesa** (firma D-r4 y §5 del encargo).
