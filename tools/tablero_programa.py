@@ -148,6 +148,152 @@ def _marcador_segmento_resumen() -> dict:
     }
 
 
+#: Sufijos de RESULT con los que una corrida de adjudicación nombra el ERROR
+#: POR CELDA del piso C2 contra R. Son dos convenciones vivas, no una
+#: preferencia: los pilotos 1 y 2 emitieron `...-ARB-D-C2-<celda>` y el piloto 3
+#: `...-<celda>-C2-D-PP`. La escala NO se teclea: se deriva abajo contra el
+#: `margen_material` sellado de la propia celda-D.
+_PATRONES_ERROR_C2 = (
+    ("-C2-D-PP", "sufijo"),      # piloto 3 (GOB): ya en puntos porcentuales
+    ("-ARB-D-C2-", "prefijo"),   # pilotos 1 y 2 (DIN, TRA)
+)
+
+
+def _celdas_d_adjudicadas() -> list[dict]:
+    """Las celdas-D con VEREDICTO SELLADO, con su n de celdas y su error.
+
+    ACTO GEN2-MARCADOR-E-INFORME-1 · P1. Antes de este acto la clase 1 de la
+    métrica rectora era una lista de DOS celdas-D escritas a mano en este
+    archivo, con su CALC y su escala tecleados al lado. El piloto 3 adjudicó 15
+    celdas en un tercer dominio y la métrica no se movió, porque nadie había
+    añadido la tercera línea. Una métrica rectora que hay que editar a mano cada
+    vez que el programa avanza mide al editor, no al programa.
+
+    VALIDADA NO QUIERE DECIR ACERTADA. Una celda cuenta si su predicción se
+    emitió antes de ver el dato y se comparó contra R con error sellado. El
+    VEREDICTO de la celda-D -- `SIN-CANDIDATO-SUPERIOR` («nadie vence»),
+    `FALSADOR-DEBIL`, o el día que lo haya, uno que vence -- NO entra en el
+    conteo: un piloto que falsa una hipótesis validó exactamente tantas celdas
+    como uno que la corrobora. Lo único que se exige es que el veredicto EXISTA
+    y esté sellado, porque un veredicto ausente significa que nadie comparó.
+
+    LA ESCALA SE DERIVA, NO SE TECLEA (§4.3, y el defecto es de factor 100: DIN
+    emite en proporción y TRA/GOB en puntos porcentuales). El `margen_material`
+    de la celda-D es el MAE del piso C2 en pp, sellado en el YAML. Se prueba el
+    factor 1 y el factor 100 contra él y se adopta el que casa. Si NINGUNO casa,
+    la celda-D NO cuenta y se declara con su motivo: preferimos una métrica que
+    no sube a una que sube por una escala adivinada (PARO (d) del encargo).
+    """
+    salida = []
+    if yaml is None:
+        return salida
+    for ruta in sorted(glob.glob(os.path.join(
+            RAIZ, "data", "curacion-registro", "celdas-d", "*.yaml"))):
+        try:
+            with open(ruta, encoding="utf-8") as fh:
+                d = (yaml.safe_load(fh) or {}).get("celda_d") or {}
+        except (OSError, ValueError):
+            continue
+        rel = os.path.relpath(ruta, RAIZ)
+        cid = d.get("id") or os.path.basename(ruta)
+        veredicto = d.get("veredicto")
+        if d.get("estado_decidibilidad") != "PUNTUADA" or not veredicto:
+            salida.append({
+                "celda_d": cid, "n_celdas": 0, "cuenta": False,
+                "motivo": (f"estado_decidibilidad="
+                           f"{d.get('estado_decidibilidad')!r}, veredicto="
+                           f"{veredicto!r} -- sin veredicto sellado no hubo "
+                           "comparación contra R"),
+                "fuente": rel,
+            })
+            continue
+
+        errores, calc_usado, soportes = {}, "", {}
+        for ref in (d.get("momentos_holdout_refs") or []):
+            if not isinstance(ref, str) or not ref.startswith("CALC-"):
+                continue
+            calc_id = ref.split("--", 1)[0]
+            p = os.path.join(RAIZ, "data", "corrida0", calc_id, "resultados.json")
+            if not os.path.exists(p):
+                continue
+            try:
+                with open(p, encoding="utf-8") as fh:
+                    res = json.load(fh).get("resultados", {})
+            except (OSError, ValueError):
+                continue
+            for patron, modo in _PATRONES_ERROR_C2:
+                if modo == "sufijo":
+                    hit = {k[:-len(patron)]: v for k, v in res.items()
+                           if k.endswith(patron) and isinstance(v, (int, float))}
+                else:
+                    hit = {k.split(patron, 1)[1]: v for k, v in res.items()
+                           if patron in k and isinstance(v, (int, float))}
+                if hit:
+                    errores, calc_usado = hit, calc_id
+                    soportes = {k[:-len("-SOPORTE")]: v for k, v in res.items()
+                                if k.endswith("-SOPORTE")}
+                    break
+            if errores:
+                break
+
+        if not errores:
+            salida.append({
+                "celda_d": cid, "n_celdas": 0, "cuenta": False,
+                "veredicto": veredicto,
+                "motivo": ("veredicto sellado pero ningún RESULT de error por "
+                           "celda localizado en sus momentos_holdout_refs "
+                           f"({_PATRONES_ERROR_C2[0][0]} / "
+                           f"{_PATRONES_ERROR_C2[1][0]})"),
+                "fuente": rel,
+            })
+            continue
+
+        # Las celdas FUERA-DE-SOPORTE declaradas ex ante no se comparan contra
+        # nada: el árbitro las marca y aquí no cuentan.
+        vivos = {k: v for k, v in errores.items()
+                 if soportes.get(k, "PUNTUADA") == "PUNTUADA"}
+        margen = d.get("margen_material")
+        escala, factor = None, None
+        if isinstance(margen, (int, float)) and vivos:
+            mae = sum(vivos.values()) / len(vivos)
+            for f, nombre in ((1.0, "PUNTOS-PORCENTUALES"), (100.0, "PROPORCION")):
+                if abs(mae * f - margen) <= 1e-5:
+                    escala, factor = nombre, f
+                    break
+        if factor is None:
+            salida.append({
+                "celda_d": cid, "n_celdas": 0, "cuenta": False,
+                "veredicto": veredicto,
+                "motivo": ("la escala no se derivó: ni el factor 1 ni el 100 "
+                           f"reproducen margen_material={margen!r} desde "
+                           f"{calc_usado}"),
+                "fuente": rel,
+            })
+            continue
+
+        e_pp = sorted(v * factor for v in vivos.values())
+        n = len(e_pp)
+        salida.append({
+            "celda_d": cid,
+            "n_celdas": n,
+            "cuenta": True,
+            "veredicto": veredicto,
+            "champion_actual": d.get("champion_actual"),
+            "dominio": d.get("dominio"),
+            "unidad_objetivo": d.get("unidad_objetivo"),
+            "error_mediano_pp": round(
+                e_pp[n // 2] if n % 2 else (e_pp[n // 2 - 1] + e_pp[n // 2]) / 2, 3),
+            "error_max_pp": round(max(e_pp), 3),
+            "MAE_pp": round(sum(e_pp) / n, 3),
+            "escala_cruda": escala,
+            "escala_verificada_contra": f"margen_material={margen} (sellado en {rel})",
+            "fuera_de_soporte": len(errores) - n,
+            "brecha_anios": 0,
+            "fuente": f"data/corrida0/{calc_usado}/resultados.json",
+        })
+    return salida
+
+
 def _celdas_validadas() -> dict:
     """MÉTRICA RECTORA (firma de mesa 20/sep/2026): celdas cuya predicción se
     emitió ANTES de ver el dato y se comparó contra R con error sellado.
@@ -191,35 +337,27 @@ def _celdas_validadas() -> dict:
     # ESCALA DECLARADA -- DIN emite en PROPORCIÓN y TRA en PUNTOS PORCENTUALES;
     # confundirlas da un factor 100. La escala se verifica contra el
     # `margen_material` sellado del YAML de cada celda-D, no se teclea.
-    cruces = []
-    for cid, calc, pref, esc in (
-        ("DIN.ahorro_solo_informal.enif2024.localidad_x_edad",
-         "CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001",
-         "RESULT-DIN-LXE8-ARB-D-C2-", 100.0),
-        ("TRA.evade_norma.envipe2025.escolaridad_x_dominio",
-         "CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0001",
-         "RESULT-TRA-SXD12-ARB-D-C2-", 1.0),
-    ):
-        p = f"data/corrida0/{calc}/resultados.json"
-        if not os.path.exists(p):
-            cruces.append({"celda_d": cid, "estado": f"AUSENTE: {p}"})
-            continue
-        res = json.load(open(p, encoding="utf-8")).get("resultados", {})
-        err = [v * esc for k, v in res.items() if k.startswith(pref)]
-        inst = [r for r in R if r["celda_id"].startswith(f"CRUCE::{cid}::")]
-        adoptadas = [r for r in inst if r["estado"] == "ADOPTADO-POR-FIRMA"]
-        cruces.append({
-            "celda_d": cid,
-            "n_celdas": len(err),
-            "n_adoptadas_en_marcador": len(adoptadas),
-            "champion": "C2",
-            "error_mediano_pp": round(mediana(err), 3) if err else None,
-            "error_max_pp": round(max(err), 3) if err else None,
-            "escala_cruda": "PROPORCION" if esc == 100.0 else "PUNTOS-PORCENTUALES",
-            "instrumento": inst[0]["instrumento"] if inst else "(sin fila)",
-            "brecha_anios": 0,
-            "fuente": f"{calc}/resultados.json",
-        })
+    # `clase_1_cruce_vs_R` publica SÓLO las celdas-D que cuentan: es un contrato
+    # que ya tiene consumidor (`tests/test_celdas_validadas.py` recorre la lista
+    # y lee `error_mediano_pp` de cada entrada), y una celda-D sin veredicto no
+    # tiene esa clave. Las que NO cuentan no se callan -- salen en
+    # `clase_1_celdas_d_sin_contar` con su motivo, que es lo que §2 pide: un
+    # negativo con universo declarado, no un silencio.
+    todas_las_celdas_d = _celdas_d_adjudicadas()
+    cruces = [c for c in todas_las_celdas_d if c.get("cuenta")]
+    sin_contar = [c for c in todas_las_celdas_d if not c.get("cuenta")]
+    for c in cruces:
+        inst = [r for r in R if r["celda_id"].startswith(f"CRUCE::{c['celda_d']}::")]
+        c["n_adoptadas_en_marcador"] = sum(
+            1 for r in inst if r["estado"] == "ADOPTADO-POR-FIRMA")
+        # Una celda-D adjudicada puede NO tener filas en el marcador: el
+        # derivador sólo publica cruces con `champion_actual: C2`, y el piloto 3
+        # cerró en `NINGUNO`. La celda cuenta igual (se emitió antes y se comparó
+        # después); lo que falta es su fila en la vista, que es
+        # DECISIÓN-DE-MESA-PENDIENTE heredada de #961, no un hueco de conteo.
+        c["instrumento"] = inst[0]["instrumento"] if inst else (
+            f"celda-D {c['celda_d']} · SIN-FILA-EN-MARCADOR "
+            f"(champion_actual={c.get('champion_actual')!r})")
     n_cruce = sum(c.get("n_celdas") or 0 for c in cruces)
 
     # ── clase 2 · PERSISTENCIA t-1 vs R (filas con error_piso_pp) ──────────
@@ -281,6 +419,21 @@ def _celdas_validadas() -> dict:
                 "con las de 1 y 2 años de ENVIPE/ENCIG",
     }
 
+    # ── P1 · desglose por INSTRUMENTO y por TIPO (cruce / marginal) ────────
+    # Conteos, no promedios: los errores de instrumentos distintos no se
+    # promedian entre sí (§4.3) y aquí no se promedia ninguno.
+    por_instrumento: dict[str, dict] = {}
+    for c in cruces:
+        k = c.get("instrumento") or "(sin fila en el marcador)"
+        por_instrumento.setdefault(k, {"cruce": 0, "marginal": 0})["cruce"] += \
+            c["n_celdas"]
+    for r in ep:
+        k = r["instrumento"]
+        por_instrumento.setdefault(k, {"cruce": 0, "marginal": 0})["marginal"] += 1
+
+    # ── P2 · el rótulo PROSPECTIVA/RETROSPECTIVA del marcador, sin sumar ───
+    prosp = Counter(r.get("prospectividad", "(columna ausente)") for r in R)
+
     return {
         "total_celdas_validadas": n_cruce + n_persist,
         "desglose_por_clase": {
@@ -288,7 +441,22 @@ def _celdas_validadas() -> dict:
             "persistencia_t_menos_1_vs_R": n_persist,
             "duelo_tres_nacional": triada.get("n_celdas"),
         },
+        "desglose_por_tipo": {
+            "cruce": n_cruce,
+            "marginal": n_persist,
+            "nota": "un cruce y una marginal no son la misma unidad de trabajo; "
+                    "el total de arriba las suma porque ambas son celdas "
+                    "validadas, y este desglose existe para poder deshacer la suma",
+        },
+        "desglose_por_instrumento": por_instrumento,
+        "prospectividad_del_marcador": {
+            **dict(prosp),
+            "nota": "columna derivada por tools/prospectividad.py desde los sellos. "
+                    "PROSPECTIVA y RETROSPECTIVA NO se suman en una sola cifra "
+                    "(firma de mesa 21/sep/2026); este bloque no trae total.",
+        },
         "clase_1_cruce_vs_R": cruces,
+        "clase_1_celdas_d_sin_contar": sin_contar,
         "clase_2_persistencia_vs_R": persist,
         "clase_3_duelo_tres_nacional": triada,
         "dominio_dinero": dinero,
