@@ -126,3 +126,13 @@ declarado:
   desde el encargo que no los arregla: son de `PR #944` (sucesor del piloto).
   No es deuda de este acto ni `FUERA-DE-PERÍMETRO` de nadie — es alcance
   declarado por dirección y ejecutado por otro acto vivo.
+
+## CONSUMIDO
+
+Ejecutado por **[PR #948](https://github.com/Josanoforo/Modelado-Mexicano/pull/948)**
+— `ACTO GEN2-TUBERIA-PREFLIGHT-CI-1 · el CI corre preflight sobre todo CALC sin
+sello que un PR toca, y sólo se pone rojo cuando el runner no podría correrlo`,
+rama `claude/entorno-spu2y7`, 0-bis `9919f28`, `ADR-580`.
+
+**El PR queda PROPUESTO, no fusionado**: el encargo lo declara y `/acto` lo
+exige — el merge es de mesa y es la autorización, no un trámite del ejecutor.
