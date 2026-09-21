@@ -78,6 +78,8 @@ No adopta · no re-mide · no arregla la numeración posicional. Sucesores: `REL
 
 **Nada más quedó sin correr.** P1, P2, P3 y P4 se ejecutan completos.
 
+> **Corrección (20/sep/2026, antes del merge).** Esta línea era falsa en el primer empuje: **P4 iba a medias** — el desglose entró en `corrida0 status` pero no en el tablero, que el encargo pide explícitamente y que está en el perímetro Propio. Lo encontró la revisión adversarial de `PR #928` (hallazgo 3, `BLOQUEA`). **Corregido en el mismo acto, no diferido**: `tools/tablero_programa.py` rinde la línea de desglose y `forense/tablero/TABLERO-PROGRAMA.md` quedó regenerado por comando. No se abre `NC` porque la pieza está hecha, no aplazada; queda asentado aquí por qué el reporte la dio por completa antes de estarlo.
+
 ## CONSUMIDO
 
 Ejecutado por `ACTO GEN2-RELEVO-RECONCILIA-1` en **[PR #928](https://github.com/Josanoforo/Modelado-Mexicano/pull/928)**, rama `claude/gracious-faraday-wf9b8j`, base `dfb07b9`. `ADR-568`. Entorno NUBE `cloud_default`, corpus NO montado (archivos examinados = 0), Opus 5. `cuenta_gen2 = NO`: cero mediciones, cero adopciones, cero contadores movidos.
