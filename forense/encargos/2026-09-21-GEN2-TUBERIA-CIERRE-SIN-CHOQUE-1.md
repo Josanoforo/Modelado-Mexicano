@@ -113,3 +113,10 @@ No migra ningún id existente · no convierte gobernanza ni los TSV en un archiv
 ## 12 · FALSADOR (§9)
 
 Si en dos semanas hay un solo commit de renumeración de un id con raíz de acto, o alguna línea de `canon/` vuelve a pasar de 1 MB sin que el CI lo haya atrapado, el mecanismo no hace lo que dice y se revisa.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué**: P0 — sonda de si la protección de `main` en GitHub exige ramas al día, para saber cuánto baja la meta de re-fusiones (§8).
+  **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` — esta sesión NUBE no tiene `gh` con credenciales (verificado: `which gh` sin salida); el propio encargo declara que esto no es PARO.
+  **impacto**: ninguno sobre P-A/P-B/P-C/P-D ni sobre los criterios de "hecho" — sólo deja sin responder cuánto de la meta de re-fusiones depende de esa política de `main`.
+  **sucesor**: mesa responde directamente, o una sesión con `gh` disponible corre la sonda y lo asienta.
