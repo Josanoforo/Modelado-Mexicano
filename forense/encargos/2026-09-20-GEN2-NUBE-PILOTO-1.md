@@ -202,4 +202,10 @@ Todo lo demás del encargo se corrió: las tres piezas completas, las cuatro com
 
 ## `## CONSUMIDO`
 
-A llenar con el PR al cierre (A.3).
+**PR #935** — https://github.com/Josanoforo/Modelado-Mexicano/pull/935 · rama `claude/trusting-allen-0y61rq-bis` · 21/sep/2026 · `ADR-572` (candidato) · entorno NUBE (`milpa-inegi`, red `Custom`), `ACTO GEN2-NUBE-PILOTO-1-bis`.
+
+Commits: `44e3b70` (0-bis A.3, rescatado de `91b1e9fd`) · `a236f31` (COMMIT-1, rescatado de `ca194d3f`, congelamiento verificado por `sha256`) · `5485597` (D-21, cableado en CI, sin tocar lo congelado) · merge de `origin/main` `d582506` · `cf1ba17` (COMMIT-2, piezas 2 y 3) · `fee718a` (cascada de cierre).
+
+Veredicto del acto: **`REPRODUCE` · `CONTEXTO DISTINTO`**, asentado en `forense/replay-evidencia.tsv` (146 → 147 filas de datos) en el mismo acto que el verify. `cuenta_gen2` no se movió. Ningún PARO de §7 se disparó. Suite en línea base VERDE.
+
+**Intentos previos de este mismo encargo, los dos sustituidos por `PR #935`:** `PR #930` (rama `claude/new-session-lvyz4s`) — entregó la pieza 1 congelada y paró por PARO (e) en `cloud_default`; su pieza 1 se rescata intacta aquí, su medición de `cloud_default` se incorpora citada a `FP-404`, y sus tres líneas de hallazgos se conservan íntegras. `PR #931` — ejecutó el encargo completo con una pieza 1 distinta; sus cuatro rótulos (`ADR-569`, `FP-402`, `NC-0423`, `NC-0424`) quedaron todos ocupados en main por otros actos antes de fusionar.
