@@ -208,6 +208,18 @@ jobs:
           python3 tests/test_marcador_segmento.py
           python3 tests/test_estimadores_segmento.py
 
+      - name: descargador por id de manifiesto — arnés HTTP local (bloqueante)
+        # ACTO GEN2-NUBE-PILOTO-1 (21/sep/2026), pieza 1. Mismo motivo que los
+        # pasos de arriba (NC-0331): `tests/check.py` no auto-descubre
+        # `tests/test_*.py`, y un test que nadie corre es decoración. Levanta
+        # un `http.server` de la stdlib en 127.0.0.1 y corre
+        # `tests/manifiesto.py --descarga` de punta a punta sobre los cuatro
+        # escenarios que D-22 exige (archivo bueno · sha256 discordante ·
+        # redirección a otro host · 404), más la regla de clasificación contra
+        # el manifiesto real. Cero red externa, cero microdato, cero escritura
+        # en data/raw del repo: todo contra un --root temporal.
+        run: python3 tests/test_manifiesto_descarga.py
+
   # ACTO GEN2-CI-GUARDIAS-VIVAS-1 (20/sep/2026): 97 de 122 tests/test_*.py
   # no aparecian ni aqui ni en tests/check.py -- nadie los corria. Este job
   # descubre tests/test_*.py por patron, resta los que `suite` y

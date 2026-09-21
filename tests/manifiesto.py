@@ -745,6 +745,292 @@ def cmd_verifica(a, manifiesto_path, raw_dir):
     sys.exit(exit_code)
 
 
+# ──────────────────────────────────────────────────────────── --descarga ──
+#
+# ACTO GEN2-NUBE-PILOTO-1 (pieza 1, 21/sep/2026). Descarga SOLO por id del
+# manifiesto: el subcomando NO acepta una URL suelta como argumento (firma de
+# mesa 8, 20/sep/2026) y la lista de hosts permitidos la impone el ENTORNO --
+# el código no ofrece una segunda puerta. Vive aquí, y no en una herramienta
+# nueva (D-14), porque éste es el punto de entrada que ya gobierna el
+# manifiesto: hereda de `--verifica` la resolución de raíz y el contraste de
+# sha256 en vez de reimplementarlos, y añade un CUARTO estado
+# (`DESCARGADO-AHORA`) sin tocar los tres de A.1 que `cmd_verifica` ya tabula.
+
+HOST_MESA = "www.inegi.org.mx"  # firma 1: el único host que mesa abrió hoy.
+
+# Extensiones de ruta que NO son un payload aunque la URL las tenga: son
+# páginas, buscadores o endpoints de servlet. Derivado, no adivinado, del
+# universo real de `url_origen` en data/manifiesto.yaml (1 629 entradas,
+# censadas el 21/sep/2026): .php=162 · .aspx=46 · .html=21 · .xhtml=20 ·
+# .do=9 (los nueve ids `banxico_sie_*`, servlets del SIE de Banxico) ·
+# .htm=2 · .cfm=2 · .jsp=11.
+EXTENSIONES_NO_PAYLOAD = frozenset({
+    ".php", ".aspx", ".html", ".xhtml", ".htm", ".cfm", ".jsp", ".do",
+})
+
+MAX_REDIRECCIONES = 5
+
+
+def clasifica_url(url):
+    """Clasifica `url_origen` ANTES de tocar la red. Devuelve
+    (clase, motivo) con clase en {'DESCARGABLE', 'NO-ACCESIBLE'} y el
+    vocabulario de A.4. Función pura: no abre sockets, no resuelve DNS.
+
+    El motivo de un NO-ACCESIBLE siempre deja el valor crudo a la vista --
+    un negativo que esconde lo que examinó no es un negativo (A.13).
+    """
+    from urllib.parse import urlparse
+    import posixpath
+
+    if url is None:
+        return "NO-ACCESIBLE", "la entrada no declara url_origen (valor crudo: None)"
+    if not isinstance(url, str):
+        return "NO-ACCESIBLE", f"url_origen no es texto (valor crudo: {url!r})"
+    crudo = url
+    # Varias entradas guardan la URL con prosa pegada ("... (POST; idCuadro
+    # CF891 ...)") o dos URLs separadas por ';'. Eso no es una URL: se dice,
+    # no se recorta para que quepa.
+    if re.search(r"\s", url.strip()) or ";" in url:
+        return "NO-ACCESIBLE", (f"url_origen no es una URL única y limpia "
+                                 f"(espacios o ';'; valor crudo: {crudo!r})")
+    p = urlparse(url)
+    if p.scheme not in ("http", "https"):
+        return "NO-ACCESIBLE", (f"esquema no http/https: {p.scheme or '(vacío)'!r} "
+                                 f"(valor crudo: {crudo!r})")
+    if not p.netloc:
+        return "NO-ACCESIBLE", f"URL sin host (valor crudo: {crudo!r})"
+    if p.query:
+        return "NO-ACCESIBLE", (f"URL con query string -- buscador o servlet, no "
+                                 f"ruta de archivo (valor crudo: {crudo!r})")
+    ext = posixpath.splitext(p.path)[1].lower()
+    if not ext:
+        return "NO-ACCESIBLE", (f"la ruta no termina en extensión de archivo -- "
+                                 f"página de catálogo (valor crudo: {crudo!r})")
+    if ext in EXTENSIONES_NO_PAYLOAD:
+        return "NO-ACCESIBLE", (f"extensión de página/servlet {ext!r}, no de payload "
+                                 f"(valor crudo: {crudo!r})")
+    return "DESCARGABLE", f"ruta termina en extensión de archivo {ext!r}"
+
+
+def resuelve_raiz_declarada(entrada):
+    """Resuelve el nombre de raíz de una entrada DECLARANDO cuál de los tres
+    casos se aplicó. Devuelve (nombre_raiz, procedencia).
+
+    Prohibido `entrada.get('raiz') or RAIZ_INTEGRADA` en silencio: 'clave
+    ausente' y 'clave presente con valor nulo' son dos hechos distintos del
+    manifiesto y se resuelven al mismo sitio por razones distintas. Censo del
+    21/sep/2026 sobre las 1 629 entradas: 1 013 con la clave ausente, 0 con
+    valor nulo -- la rama nula existe porque el contrato la exige, no porque
+    hoy se ejerza.
+    """
+    if "raiz" not in entrada:
+        return RAIZ_INTEGRADA, f"clave 'raiz' AUSENTE -> {RAIZ_INTEGRADA} (integrada)"
+    valor = entrada["raiz"]
+    if valor is None:
+        return RAIZ_INTEGRADA, (f"clave 'raiz' PRESENTE con valor nulo -> "
+                                 f"{RAIZ_INTEGRADA} (integrada)")
+    return valor, f"clave 'raiz' PRESENTE con valor {valor!r}"
+
+
+def _abre_sin_redireccion(url, timeout):
+    """GET sin seguir redirecciones. Devuelve (codigo, cabeceras, cuerpo|None)."""
+    import urllib.request
+    import urllib.error
+
+    class _SinRedir(urllib.request.HTTPRedirectHandler):
+        def redirect_request(self, req, fp, code, msg, headers, newurl):
+            return None
+
+    op = urllib.request.build_opener(_SinRedir)
+    try:
+        r = op.open(url, timeout=timeout)
+        return r.getcode(), r.headers, r
+    except urllib.error.HTTPError as e:
+        return e.code, e.headers, e
+
+
+def descarga_verificada(entrada, destino, timeout=120):
+    """Baja el payload de `entrada` a `destino` (ruta final absoluta) y sólo
+    lo deja ahí si el sha256 coincide con el del manifiesto.
+
+    Devuelve (estado, detalle). Estados: 'DESCARGADO-AHORA' ·
+    'NO-ACCESIBLE' (con motivo) · 'EXISTE-NO-SATISFACE' (sha256 discordante:
+    el archivo NO entra a la raíz) · 'PARO-REDIRECCION' (host final distinto
+    del declarado: se reporta el host exacto y decide mesa, firma 1).
+    """
+    from urllib.parse import urlparse, urljoin
+
+    url = entrada.get("url_origen")
+    clase, motivo = clasifica_url(url)
+    if clase != "DESCARGABLE":
+        return "NO-ACCESIBLE", motivo
+
+    host_declarado = urlparse(url).netloc
+    actual = url
+    vistos = [host_declarado]
+    for _ in range(MAX_REDIRECCIONES + 1):
+        codigo, cabeceras, cuerpo = _abre_sin_redireccion(actual, timeout)
+        if codigo in (301, 302, 303, 307, 308):
+            destino_red = cabeceras.get("Location")
+            if not destino_red:
+                return "NO-ACCESIBLE", f"HTTP {codigo} sin cabecera Location en {actual}"
+            nueva = urljoin(actual, destino_red)
+            host_nuevo = urlparse(nueva).netloc
+            vistos.append(host_nuevo)
+            if host_nuevo != host_declarado:
+                return "PARO-REDIRECCION", (
+                    f"la descarga redirige a un host distinto del declarado. "
+                    f"host declarado: {host_declarado} · host final exacto: "
+                    f"{host_nuevo} · cadena: {' -> '.join(vistos)}. "
+                    f"Se reporta y decide mesa (firma 1); no se abre por "
+                    f"cuenta propia. Host abierto hoy: {HOST_MESA}")
+            actual = nueva
+            continue
+        if codigo != 200:
+            return "NO-ACCESIBLE", (f"HTTP {codigo} en {actual} "
+                                     f"(host: {urlparse(actual).netloc})")
+        break
+    else:
+        return "NO-ACCESIBLE", (f"más de {MAX_REDIRECCIONES} redirecciones; "
+                                 f"cadena: {' -> '.join(vistos)}")
+
+    # Descarga a un temporal DENTRO de la raíz de destino: el sha256 se
+    # verifica antes de que el payload entre al corpus (compuerta: abrir dato).
+    import hashlib
+    import tempfile
+    carpeta = os.path.dirname(destino)
+    os.makedirs(carpeta, exist_ok=True)
+    h = hashlib.sha256()
+    total = 0
+    fd, tmp = tempfile.mkstemp(prefix=".descarga-", dir=carpeta)
+    try:
+        with os.fdopen(fd, "wb") as w:
+            while True:
+                trozo = cuerpo.read(1 << 20)
+                if not trozo:
+                    break
+                w.write(trozo)
+                h.update(trozo)
+                total += len(trozo)
+        sha_real = h.hexdigest()
+        sha_esperado = entrada.get("sha256")
+        if sha_real != sha_esperado:
+            os.unlink(tmp)
+            return "EXISTE-NO-SATISFACE", (
+                f"sha256 DISCORDANTE -- el archivo NO entra a la raíz. "
+                f"manifiesto: {sha_esperado} · descargado: {sha_real} · "
+                f"bytes: {total} (manifiesto: {entrada.get('tamano_bytes')}) · "
+                f"host final: {urlparse(actual).netloc}")
+        os.replace(tmp, destino)
+        tmp = None
+        return "DESCARGADO-AHORA", (
+            f"sha256 VERIFICADO contra data/manifiesto.yaml ({sha_real}) · "
+            f"{total} bytes · host final: {urlparse(actual).netloc} · "
+            f"cadena: {' -> '.join(vistos)}")
+    finally:
+        if tmp is not None and os.path.exists(tmp):
+            os.unlink(tmp)
+
+
+def cmd_descarga(a, manifiesto_path, raw_dir):
+    """--descarga: baja por id del manifiesto, nunca por URL suelta."""
+    import hashlib
+
+    root = os.path.dirname(os.path.dirname(manifiesto_path))
+    _, entradas = leer_manifiesto(manifiesto_path)
+
+    if not a.id:
+        print("ERROR: --descarga exige al menos un --id. Este subcomando NO "
+              "acepta una URL suelta como argumento (firma de mesa 8, "
+              "20/sep/2026): la lista de hosts la impone el entorno.",
+              file=sys.stderr)
+        sys.exit(1)
+
+    ids_pedidos = list(dict.fromkeys(a.id))
+    print(f"Entorno de descarga: {entorno_actual()}")
+    print(f"ids pedidos: {len(ids_pedidos)} · entradas en el manifiesto: "
+          f"{len(entradas)} (universo examinado, A.13)")
+    print()
+
+    salida = 0
+    for id_ in ids_pedidos:
+        entrada = buscar(entradas, id_)
+        if entrada is None:
+            print(f"{id_}: NO-ENCONTRADO -- no hay entrada con ese id en "
+                  f"{os.path.relpath(manifiesto_path, root)} "
+                  f"(universo: {len(entradas)} entradas)")
+            salida = 1
+            continue
+
+        # Guardia de reserva (E.6): los ids con `estado_reserva` no se bajan
+        # desde aquí. OJO -- esta guardia es sobre la RESERVA DEL PAYLOAD, no
+        # sobre reservas de CONTENIDO: la sección de crédito de ENIF 2024 está
+        # reservada por firma de mesa 4 (20/sep/2026) y aun así su payload SE
+        # BAJA, porque lo que se protege es abrirla fuera del código
+        # autorizado, y eso vive en el medidor, no aquí. Un descargador que la
+        # bloqueara estaría protegiendo lo que no le toca.
+        if entrada.get("estado_reserva"):
+            print(f"{id_}: NO-ACCESIBLE -- entrada con estado_reserva="
+                  f"{entrada['estado_reserva']!r}; el descargador se niega "
+                  f"(guardia de reserva, E.6)")
+            salida = 1
+            continue
+
+        if not entrada.get("sha256"):
+            print(f"{id_}: NO-ACCESIBLE -- la entrada no declara sha256; sin "
+                  f"cifra contra la cual verificar no se descarga nada")
+            salida = 1
+            continue
+
+        archivo = entrada.get("archivo")
+        if not archivo:
+            print(f"{id_}: NO-ACCESIBLE -- la entrada no declara 'archivo'; "
+                  f"no hay nombre de destino")
+            salida = 1
+            continue
+
+        nombre_raiz, procedencia_raiz = resuelve_raiz_declarada(entrada)
+        print(f"{id_}: raíz resuelta = {nombre_raiz} [{procedencia_raiz}]")
+        if not raiz_escaneable(nombre_raiz):
+            print(f"{id_}: NO-ACCESIBLE -- raíz {nombre_raiz!r} fuera del "
+                  f"perímetro físico (RAICES_ESCANEABLES = "
+                  f"{sorted(RAICES_ESCANEABLES)})")
+            salida = 1
+            continue
+        base = resolver_raiz(nombre_raiz, root, raw_dir)
+        if base is None:
+            print(f"{id_}: NO-ACCESIBLE -- raíz {nombre_raiz!r} no configurada "
+                  f"en este entorno (data/raices.local.yaml)")
+            salida = 1
+            continue
+        destino = os.path.join(base, archivo)
+
+        # Si ya está y coincide, no se vuelve a bajar -- los tres estados de
+        # A.1 de `--verifica` siguen siendo los mismos y no se reimplementan.
+        if os.path.exists(destino):
+            h = hashlib.sha256()
+            with open(destino, "rb") as f:
+                for trozo in iter(lambda: f.read(1 << 20), b""):
+                    h.update(trozo)
+            if h.hexdigest() == entrada["sha256"]:
+                print(f"{id_}: EXISTE-SATISFACE -- ya está en {nombre_raiz} y "
+                      f"su sha256 coincide; no se descarga")
+                continue
+            print(f"{id_}: EXISTE-NO-SATISFACE -- ya hay un archivo en "
+                  f"{nombre_raiz} con sha256 {h.hexdigest()} != "
+                  f"{entrada['sha256']}; no se sobrescribe")
+            salida = 1
+            continue
+
+        estado, detalle = descarga_verificada(entrada, destino,
+                                               timeout=a.timeout)
+        print(f"{id_}: {estado} -- {detalle}")
+        if estado != "DESCARGADO-AHORA":
+            salida = 1
+
+    sys.exit(salida)
+
+
 # ───────────────────────────────────────────────────────────── --escanea ──
 
 STAGING_NOMBRE = "manifiesto-staging.yaml"
@@ -1673,6 +1959,12 @@ def main():
                          "data/manifiesto-staging.yaml -- nunca en el manifiesto. "
                          "Sobre una raíz marcada como no-datos (p.ej. 'downloads') "
                          "exige --grupo o --grupo-n")
+    g.add_argument("--descarga", action="store_true",
+                    help="Descarga por --id del manifiesto (repetible) y deja el "
+                         "payload en su raíz SOLO si el sha256 coincide. NO acepta "
+                         "una URL suelta: la lista de hosts la impone el entorno "
+                         "(firma de mesa 8, 20/sep/2026). Nunca escribe en "
+                         "data/manifiesto.yaml")
     g.add_argument("--promueve", action="store_true",
                     help="Mueve candidatos de data/manifiesto-staging.yaml a "
                          "data/manifiesto.yaml aunque url_origen no esté confirmada "
@@ -1715,6 +2007,8 @@ def main():
     ap.add_argument("--fecha-descarga", dest="fecha_descarga", default=None,
                      help="YYYY-MM-DD; por defecto, hoy")
     ap.add_argument("--nota", default=None)
+    ap.add_argument("--timeout", type=float, default=120.0,
+                     help="(--descarga) segundos de espera por petición")
     ap.add_argument("--root", default=None,
                      help=argparse.SUPPRESS)  # override de raíz, solo para pruebas
 
@@ -1728,6 +2022,8 @@ def main():
         cmd_verifica(a, manifiesto_path, raw_dir)
     elif a.escanea:
         cmd_escanea(a, manifiesto_path, raw_dir)
+    elif a.descarga:
+        cmd_descarga(a, manifiesto_path, raw_dir)
     elif a.promueve:
         cmd_promueve(a, manifiesto_path, raw_dir)
     elif a.compara_sha:
