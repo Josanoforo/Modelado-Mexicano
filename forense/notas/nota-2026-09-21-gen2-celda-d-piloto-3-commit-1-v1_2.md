@@ -137,7 +137,7 @@ PRE-FLIGHT: BLOQUEADO input_repo_ausente=emisiones_resultados:data/corrida0/CALC
 
 1. **D-22 debería exigir `corrida0 preflight`** en VERDE, o bloqueado sólo por una lista declarada antes de correr: el v1.1 cumplía D-22 tal como está (7/7 con oro 2023) y no corría. Regla de gobierno → DIRECCIÓN.
 2. **Nada se sella contra un libro vivo:** `forense/firmas-pendientes.tsv` cambió de huella tres veces en dos días. Misma clase que el sidecar de `#932` → TUBERÍA.
-3. **Colisión de números en vuelo:** `#941` (base de este acto) lleva `ADR-578`; `#943` (abierto) también declara `ADR-578` y `NC-0447`. Regla de la casa: renumera quien fusiona segundo. Este acto toma `ADR-580` sobre `#941`.
+3. **Colisión de números en vuelo:** `#941` (base de este acto) lleva `ADR-578`; `#943` (abierto) también declara `ADR-578` y `NC-0447`. Regla de la casa: renumera quien fusiona segundo. Este acto toma `ADR-583` sobre `#941`.
 4. `forense/firmas-pendientes.tsv` trae en `origin/main` un id malformado `FP-260921` (dos filas) que hace que `cierre_acto.py` reporte «FP máximo: 260921». Ajeno; una línea.
 
 ## 6 · Sucesor
