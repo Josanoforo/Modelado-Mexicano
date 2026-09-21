@@ -7663,6 +7663,86 @@ def t46_union_newline():
                     f"`merge=union`: el veredicto no es un negativo (A.13)")
 
 
+# ───────────────────────────────────────────────────────────────
+# T47 · T-IDS-UNICOS — ningún id se repite en `forense/no-corrido.tsv`
+#   ni en `forense/firmas-pendientes.tsv`.
+#   (ACTO GEN2-TUBERIA-SUCESOR-1, 21/sep/2026; hueco destapado por el
+#   revisor adversarial del PR de ese mismo acto.)
+#
+#   DEFECTO REAL, OCURRIDO EL DÍA QUE SE ESCRIBIÓ ESTA GUARDA y no
+#   atrapado por nada: al fusionar `origin/main` hacia la rama, el
+#   resolutor de conflictos conservó AMBOS lados de `firmas-pendientes.tsv`
+#   — política correcta para un registro donde las dos ramas APENDICAN, y
+#   equivocada cuando `main` MODIFICÓ una fila ajena en vez de añadirla.
+#   Resultado: `FP-406` duplicado, dos filas de texto idéntico salvo el
+#   `ADR` citado (`575` contra `574`, el candidato intermedio ya superado),
+#   es decir **dos versiones contradictorias del mismo id**. Lo cazó una
+#   persona leyendo la vista previa del merge; la suite salía VERDE.
+#
+#   Lo que le habría costado a un lector: `tools/nc_por_clase.py`,
+#   `tools/digesto_tramite.py` y el tablero leen estos TSV por id; con dos
+#   filas del mismo id, cuál gana depende del orden de lectura, y mesa lee
+#   el estado de una firma que puede ser el viejo. Es la misma clase de
+#   defecto que `T15` ya vigila para `ADR` en `canon/` — este test es esa
+#   aserción aplicada a los dos registros donde el acto de hoy acuña.
+#
+#   Por qué aquí y no en un acto sucesor (D-21): es un defecto adyacente,
+#   de menos de diez líneas, que impedía cerrar el propio acto — el
+#   revisor lo marcó BLOQUEA. Se arregla y se declara.
+#
+#   NO exige contigüidad ni formato: el espacio viejo `NC-####`/`FP-###`
+#   y la raíz de acto nueva conviven a propósito (D-2), y los huecos son
+#   legítimos. Sólo unicidad.
+#
+#   FALSADOR (§9, tres meses — al 21/dic/2026): si no ha fallado ni una vez
+#   en CI, se anota y se revisa. Ya se ganó uno el día de su sello.
+#   Ejercido por mutación en `tests/test_tuberia_ids_union.py` (caso D).
+# ───────────────────────────────────────────────────────────────
+_T47_REGISTROS = (
+    ("forense/no-corrido.tsv", "NC"),
+    ("forense/firmas-pendientes.tsv", "FP"),
+)
+
+
+def ids_duplicados(texto, prefijo):
+    """Ids repetidos en la primera columna de un TSV, en orden de aparición.
+
+    Lee la columna cruda, sin `csv`: estos registros traen campos con saltos
+    embebidos y comillas sin escapar, y el parseo estructurado los junta.
+    El id vive siempre al principio de la línea, así que el prefijo basta y
+    es lo que `check.py:7051` y `corrida0.py` ya usan.
+    """
+    vistos, dup = set(), []
+    for l in texto.split("\n"):
+        if not l.startswith(prefijo + "-"):
+            continue
+        i = l.split("\t")[0].strip()
+        if i in vistos and i not in dup:
+            dup.append(i)
+        vistos.add(i)
+    return sorted(dup), len(vistos)
+
+
+def t47_ids_unicos():
+    examinados = 0
+    for rel_, prefijo in _T47_REGISTROS:
+        p = os.path.join(ROOT, rel_)
+        if not os.path.exists(p):
+            fail("T47", f"no se pudo leer `{rel_}`: el registro de ids no se "
+                        f"verifica contra ningún otro sitio")
+            continue
+        examinados += 1
+        dup, total = ids_duplicados(read(p), prefijo)
+        if dup:
+            fail("T47", f"{rel_}: id(s) repetido(s) sobre {total} únicos: "
+                        f"{dup} -- dos filas del mismo id son dos estados "
+                        f"contradictorios, y cuál gana depende del orden de lectura")
+    # A.13: un negativo de un comando que no examinó archivos no es un negativo.
+    if examinados == 0:
+        fail("T47", f"cero registros examinados de {len(_T47_REGISTROS)}: "
+                    f"el veredicto no es un negativo (A.13)")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -7715,6 +7795,7 @@ def main():
         ("T44 T-ENADID-PRECISION",                      t44_enadid_precision_independiente),
         ("T45 T-LEGACY-DESGLOSE-SUMA",                  t45_legacy_desglose_suma),
         ("T46 T-UNION-NEWLINE",                         t46_union_newline),
+        ("T47 T-IDS-UNICOS",                            t47_ids_unicos),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
