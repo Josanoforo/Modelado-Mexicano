@@ -51,9 +51,21 @@ class MotorGen2Explicito(unittest.TestCase):
             indice=indice or self.indice)
 
     def test_01_parametro_nuevo_apto_emite_result_completo(self):
-        directos = [u for u in self.indice.usos.values()
-                    if u.corrida0_generacion == "GEN2"]
+        gen2 = [u for u in self.indice.usos.values()
+                if u.corrida0_generacion == "GEN2"]
+        self.assertTrue(gen2)
+        # El registro de 17 ya no es solo del motor: desde los cruces del
+        # marcador contiene consumidores `marcador:CRUCE::…`, que NO son
+        # reglas de `milpa/tramite.yaml` y no los emite `emitir_binaria_
+        # contrato`. Se separan por universo declarado (A.4) en vez de
+        # dejarlos reventar el split de `_partes`.
+        directos = [u for u in gen2
+                    if u.consumidor.startswith("milpa/tramite.yaml:")]
+        ajenos = [u for u in gen2 if u not in directos]
         self.assertTrue(directos)
+        self.assertTrue(all(u.consumidor.startswith("marcador:")
+                            for u in ajenos),
+                        f"consumidor GEN2 de universo desconocido: {ajenos}")
         for uso in directos:
             with self.subTest(consumidor=uso.consumidor):
                 regla_id, conducta = self._partes(uso.consumidor)
@@ -68,9 +80,16 @@ class MotorGen2Explicito(unittest.TestCase):
                 evidencia = self.indice.resultados[
                     uso.corrida0_resultado_id]
                 self.assertEqual(r.estado, "EMITE")
-                self.assertEqual(r.valor_punto, evidencia.valor)
-                self.assertEqual(r.resultado_id, evidencia.resultado_id)
                 self.assertEqual(r.aptitud_uso, "APTA-POR-LINAJE")
+                if r.derivado_de:
+                    # Complemento: reutiliza el RESULT del padre y no emite
+                    # uno propio (contrato de test_05). Comparar su
+                    # `resultado_id` contra el id que el registro le da a la
+                    # fila complemento es comparar dos cosas distintas.
+                    self.assertEqual(r.valor_punto, evidencia.valor)
+                else:
+                    self.assertEqual(r.valor_punto, evidencia.valor)
+                    self.assertEqual(r.resultado_id, evidencia.resultado_id)
 
     def test_02_legacy_puro_no_se_cuela_a_gen2(self):
         r = self._emite(
