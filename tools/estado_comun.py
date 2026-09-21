@@ -232,13 +232,20 @@ def adr_raiz_candidato(raiz, rotulo, commit_0bis, hoy=None):
 
 
 def fp_max(raiz):
-    """Máximo FP actual, primera columna de
+    """Máximo FP NUMÉRICO actual, primera columna de
     `forense/firmas-pendientes.tsv`. E3 la necesita y no debe crear una
-    segunda implementación."""
+    segunda implementación.
+
+    `ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2` (21/sep/2026, cierre de
+    `NC-260921-GEN2-TUBERIA-SUCESOR-1-6e60-04`): mismo `(?![\\d-])` que
+    `adr_max`, que P-C.3 de `#962` puso ahí y aquí NO. Sin él, las 17
+    filas de raíz de acto (`FP-260921-GEN2-…`) entraban al máximo y esta
+    función devolvía el FP fantasma **260921** -- medido en este acto,
+    no supuesto. La época de raíz nunca se renumera y no tiene máximo."""
     ruta = os.path.join(raiz, "forense", "firmas-pendientes.tsv")
     if not os.path.exists(ruta):
         return 0
     with open(ruta, encoding="utf-8") as f:
         texto = f.read()
-    nums = [int(n) for n in re.findall(r"^FP-(\d+)", texto, re.M)]
+    nums = [int(n) for n in re.findall(r"^FP-(\d+)(?![\d-])", texto, re.M)]
     return max(nums) if nums else 0
