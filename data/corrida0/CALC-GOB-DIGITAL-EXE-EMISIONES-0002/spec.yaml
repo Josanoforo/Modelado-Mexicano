@@ -1,0 +1,1834 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-GOB-DIGITAL-EXE-EMISIONES-0002
+repite_de: CALC-GOB-DIGITAL-EXE-EMISIONES-0001
+spec_md: forense/prereg-caja/GOB-gobierno-digital-exe15-spec-v1_1.md
+spec_md_sha256: 62d8d07d70dd4d53544975bf8b541e5cd63079080d9537b5fde8414115579eb5
+script: data/corrida0/CALC-GOB-DIGITAL-EXE-EMISIONES-0002/medidor.py
+etiquetas:
+  generacion: GEN2
+  unidad_transferencia: TRAMITE
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  cuenta_gen2_nota: propuesto por el encargo (nace PENDIENTE-DE-MESA); no adopta
+  fuente_acto: GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_1
+  celda_d: GOB.gobierno_digital.encig2025.edad_x_escolaridad (SPEC-CONGELADA)
+  firmas: FP-399 FIRMADA (S2) · FP-400 FIRMADA (v1.1 hereda spec v1.0 verbatim salvo cuerpo, S2 y validacion) · F1-bis (FP-389) · F3 (quien congela no ejecuta)
+  medidor_ejecutado_al_congelar: SI -- sobre fixture sintetico y sobre ENCIG 2023 (control de oro, tests/test_piloto3_v11.py); NUNCA sobre 2025
+  orden_de_commits: COMMIT-1 (este acto) -> COMMIT-2 emisiones (otra sesion) -> COMMIT-3 R y adjudicacion (otra sesion)
+  tipo: EMISIONES-DE-CANDIDATOS-CELDA-D
+  commit: COMMIT-2
+  sucede_a: 'CALC-GOB-DIGITAL-EXE-EMISIONES-0001: SUPERADA-SIN-CORRER, n_resultados=0 (medir() era NotImplementedError; PR #924)'
+inputs:
+- id: encig25_base_datos_csv
+  origen: manifiesto
+  nota: ENCIG 2025, sec_7 + residentes_sec_2 -- NO ABIERTO EN COMMIT-1
+- id: encig2021_cruces_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG2021-CRUCES-HISTORICOS-0003/resultados.json
+- id: encig2023_cruces_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG2023-CRUCES-HISTORICOS-0002/resultados.json
+- id: c2_compuesto_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-C2-COMPUESTO-RESERVADAS-0001/resultados.json
+  nota: control, punto sin IC -- NO es el piso
+- id: firmas_pendientes_tsv
+  origen: repo
+  ruta: forense/firmas-pendientes.tsv
+  nota: 'guardia S2: FP-399 debe figurar FIRMADA'
+variables:
+- archivo: encig2025_04_sec_7.csv
+  variable: P7_3
+  rol: desenlace-canal
+- archivo: encig2025_04_sec_7.csv
+  variable: N_TRA
+  rol: filtro-universo
+- archivo: encig2025_04_sec_7.csv
+  variable: FAC_TRA
+  rol: ponderador
+- archivo: encig2025_04_sec_7.csv
+  variable: EST_DIS
+  rol: estrato
+- archivo: encig2025_04_sec_7.csv
+  variable: UPM_DIS
+  rol: upm
+- archivo: encig2025_04_sec_7.csv
+  variable: ID_PER
+  rol: llave-join-m:1
+- archivo: encig2025_02_residentes_sec_2.csv
+  variable: ID_PER
+  rol: llave-join
+- archivo: encig2025_02_residentes_sec_2.csv
+  variable: EDAD
+  rol: eje-edad
+- archivo: encig2025_02_residentes_sec_2.csv
+  variable: NIV
+  rol: eje-escolaridad
+universo: N_TRA normalizado == 1 (pago ordinario del servicio de luz); P7_3 en {1,2,4,5,6}; FAC_TRA > 0; EST_DIS y UPM_DIS no vacios; join sec_7 <- residentes por ID_PER (m:1, validado).
+filtros: 'F1-bis: edad fuera de 18-96 (97 censurada, 98/99 no especificada) y NIV fuera de {0..9} quedan FUERA del universo del cruce, contados y reportados; 97/98/99 se cuentan por codigo (FP-399).'
+ponderador: FAC_TRA
+transformacion: adopta = P7_3 en {4,5}; no adopta = {1,2,6}; edad 18-29/30-44/45-59/60-96; NIV agregado {0,1,2}/{3}/{4,5,6,7}/{8,9}.
+seed:
+  aplica: true
+  valor: 20260919
+  rng: numpy.PCG64
+estimando: Proporcion de PAGOS ORDINARIOS DEL SERVICIO DE LUZ hechos por canal digital ({4,5}) entre los de canal valido ({1,2,4,5,6}), por edad x escolaridad, ENCIG 2025, unidad TRAMITE. COMMIT-2 emite
+  por celda C2 (piso, marginales 2025 sin interaccion, replica por replica), C1a, C1b (sellados 2023), S-MEDIO y S-LAMBDA, mas marginales por UNA variable, residuos F1-bis y conteo S2 por codigo. NO agrupa
+  2025 por dos variables; NO emite R.
+parametros:
+  ola: '2025'
+  payload_id: encig25_base_datos_csv
+  bootstrap_replicas: 10000
+  s1_veredicto: CAMBIO-MENOR
+  metodo_ic: bootstrap UPM con reposicion dentro de estrato; singleton de certeza; percentiles 2.5/97.5; replicas compartidas; PCG64(20260919) como CALC-ENCIG2023-CRUCES-HISTORICOS-0002
+  lambda_congelada: 0.8937949410086089
+  lambda_tau2: 0.02525670198316379
+  lambda_sigma_bar2: 0.003001124084482884
+  lambda_var_entre: 0.028257826067646673
+  n_minimo_celda: 200
+  olas_para_soporte:
+  - '2021'
+  - '2023'
+  - '2025'
+  fuera_de_soporte_global_si_fallan: 5
+  retador_gana_si_vence_c2_en_fraccion: 0.75
+  delta_mae_umbral_pp: 0.5
+  reserva_s2_fraccion: 0.01
+rejilla:
+  edad:
+  - 18-29
+  - 30-44
+  - 45-59
+  - 60-96
+  escolaridad:
+  - HASTA-PRIMARIA
+  - SECUNDARIA
+  - MEDIA-SUPERIOR
+  - SUPERIOR
+  celdas_total: 16
+  celdas_puntuadas_ex_ante: 15
+  fuera_de_soporte_ex_ante:
+  - 18-29 x HASTA-PRIMARIA
+candidatos:
+- id: C2
+  rol: PISO
+  regla: expit(logit p_a + logit p_b - logit p_all) con marginales 2025, replica por replica
+- id: C2-COMPUESTO
+  rol: CONTROL
+  regla: CALC-C2-COMPUESTO-RESERVADAS-0001, punto sin IC; se reporta |C2 - control|
+- id: C1a
+  rol: REFERENCIA
+  regla: expit(logit p23(a,b) - delta23(a,b)) = compuesto con marginales 2023; punto sellado, IC NO-DERIVABLE (sin replicas selladas de 2023)
+- id: C1b
+  rol: REFERENCIA
+  regla: p23(a,b) directo, punto e IC sellados
+- id: S-MEDIO
+  rol: CHALLENGER
+  regla: expit(logit C2 + 0.5*delta23), replica por replica sobre C2
+- id: S-LAMBDA
+  rol: CHALLENGER
+  regla: expit(logit C2 + lambda*dbar), dbar=(delta21+delta23)/2, replica por replica sobre C2
+guardia:
+  allowlist_payloads:
+  - encig25_base_datos_csv
+  agrupacion_maxima: UNA variable (E.6); el cruce vive solo en CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: mismo payload, transformacion y sumas float64; bootstrap determinista por semilla
+resultados:
+- id: RESULT-GOB-EXE15-2025-FILAS-EVENTOS
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-JOIN-SIN-DEMOGRAFIA
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-N-UNIVERSO
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-N-DISENO-VALIDO
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-P7-3-EXCLUIDAS
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-N-COMPLETOS
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-RESIDUO-EDAD-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-RESIDUO-EDAD-MASA
+  tipo: flotante
+  unidad: masa FAC_TRA
+- id: RESULT-GOB-EXE15-2025-RESIDUO-ESC-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-RESIDUO-ESC-MASA
+  tipo: flotante
+  unidad: masa FAC_TRA
+- id: RESULT-GOB-EXE15-2025-S2-EDAD-97-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-S2-EDAD-97-MASA
+  tipo: flotante
+  unidad: masa FAC_TRA
+- id: RESULT-GOB-EXE15-2025-S2-EDAD-98-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-S2-EDAD-98-MASA
+  tipo: flotante
+  unidad: masa FAC_TRA
+- id: RESULT-GOB-EXE15-2025-S2-EDAD-99-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-S2-EDAD-99-MASA
+  tipo: flotante
+  unidad: masa FAC_TRA
+- id: RESULT-GOB-EXE15-2025-S2-BANDA-60MAS-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-S2-FRACCION-97-EN-60MAS
+  tipo: flotante
+  unidad: fracción
+- id: RESULT-GOB-EXE15-2025-S2-RESERVA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-18-29-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-18-29-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-18-29-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-18-29-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-18-29-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-18-29-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-30-44-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-30-44-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-30-44-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-30-44-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-30-44-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-30-44-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-45-59-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-45-59-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-45-59-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-45-59-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-45-59-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-45-59-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-60-96-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-60-96-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-60-96-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-60-96-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-60-96-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-60-96-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-EDAD-60-96-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-HASTA-PRIMARIA-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-HASTA-PRIMARIA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-HASTA-PRIMARIA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-HASTA-PRIMARIA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-HASTA-PRIMARIA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SECUNDARIA-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SECUNDARIA-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SECUNDARIA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SECUNDARIA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SECUNDARIA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SECUNDARIA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-MEDIA-SUPERIOR-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-MEDIA-SUPERIOR-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-MEDIA-SUPERIOR-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-MEDIA-SUPERIOR-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-MEDIA-SUPERIOR-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SUPERIOR-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SUPERIOR-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SUPERIOR-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SUPERIOR-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SUPERIOR-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ESC-SUPERIOR-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ALL-ALL-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ALL-ALL-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ALL-ALL-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ALL-ALL-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ALL-ALL-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ALL-ALL-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-MARGINAL-ALL-ALL-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-MEDIO-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-MEDIO-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-MEDIO-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-MEDIO-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-LAMBDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-LAMBDA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-LAMBDA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-LAMBDA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-S-LAMBDA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C1A-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C1A-P-IC-LO
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C1A-P-IC-HI
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C1A-IC-CAUSA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C1B-P
+  tipo: proporcion
+  unidad: proporción [0,1] sellada 2023
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C1B-P-IC-LO
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C1B-P-IC-HI
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-DELTA-21
+  tipo: flotante
+  unidad: logit sellado 2021
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-DELTA-23
+  tipo: flotante
+  unidad: logit sellado 2023
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-DELTA-BARRA
+  tipo: flotante
+  unidad: logit
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-N-2021
+  tipo: entero
+  unidad: trámites sellado 2021
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-N-2023
+  tipo: entero
+  unidad: trámites sellado 2023
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-SOPORTE-HISTORICO
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-CONTROL-C2COMP-P
+  tipo: proporcion
+  unidad: control, punto sin IC
+- id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-VS-CONTROL-ABS
+  tipo: flotante
+  unidad: '|C2 − control|'
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C2-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C2-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C2-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-MEDIO-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-MEDIO-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-MEDIO-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-MEDIO-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-LAMBDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-LAMBDA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-LAMBDA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-LAMBDA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-S-LAMBDA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C1A-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C1A-P-IC-LO
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C1A-P-IC-HI
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C1A-IC-CAUSA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C1B-P
+  tipo: proporcion
+  unidad: proporción [0,1] sellada 2023
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C1B-P-IC-LO
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C1B-P-IC-HI
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-DELTA-21
+  tipo: flotante
+  unidad: logit sellado 2021
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-DELTA-23
+  tipo: flotante
+  unidad: logit sellado 2023
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-DELTA-BARRA
+  tipo: flotante
+  unidad: logit
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-N-2021
+  tipo: entero
+  unidad: trámites sellado 2021
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-N-2023
+  tipo: entero
+  unidad: trámites sellado 2023
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-SOPORTE-HISTORICO
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-CONTROL-C2COMP-P
+  tipo: proporcion
+  unidad: control, punto sin IC
+- id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C2-VS-CONTROL-ABS
+  tipo: flotante
+  unidad: '|C2 − control|'
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C2-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C2-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C2-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-MEDIO-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-MEDIO-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-MEDIO-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-MEDIO-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-LAMBDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-LAMBDA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-LAMBDA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-LAMBDA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-S-LAMBDA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C1A-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C1A-P-IC-LO
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C1A-P-IC-HI
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C1A-IC-CAUSA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C1B-P
+  tipo: proporcion
+  unidad: proporción [0,1] sellada 2023
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C1B-P-IC-LO
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C1B-P-IC-HI
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-DELTA-21
+  tipo: flotante
+  unidad: logit sellado 2021
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-DELTA-23
+  tipo: flotante
+  unidad: logit sellado 2023
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-DELTA-BARRA
+  tipo: flotante
+  unidad: logit
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-N-2021
+  tipo: entero
+  unidad: trámites sellado 2021
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-N-2023
+  tipo: entero
+  unidad: trámites sellado 2023
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-SOPORTE-HISTORICO
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-CONTROL-C2COMP-P
+  tipo: proporcion
+  unidad: control, punto sin IC
+- id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C2-VS-CONTROL-ABS
+  tipo: flotante
+  unidad: '|C2 − control|'
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C2-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C2-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C2-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-MEDIO-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-MEDIO-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-MEDIO-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-MEDIO-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-LAMBDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-LAMBDA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-LAMBDA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-LAMBDA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-S-LAMBDA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C1A-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C1A-P-IC-LO
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C1A-P-IC-HI
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C1A-IC-CAUSA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C1B-P
+  tipo: proporcion
+  unidad: proporción [0,1] sellada 2023
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C1B-P-IC-LO
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C1B-P-IC-HI
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-DELTA-21
+  tipo: flotante
+  unidad: logit sellado 2021
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-DELTA-23
+  tipo: flotante
+  unidad: logit sellado 2023
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-DELTA-BARRA
+  tipo: flotante
+  unidad: logit
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-N-2021
+  tipo: entero
+  unidad: trámites sellado 2021
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-N-2023
+  tipo: entero
+  unidad: trámites sellado 2023
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-SOPORTE-HISTORICO
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-CONTROL-C2COMP-P
+  tipo: proporcion
+  unidad: control, punto sin IC
+- id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C2-VS-CONTROL-ABS
+  tipo: flotante
+  unidad: '|C2 − control|'
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C2-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C2-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C2-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-MEDIO-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-MEDIO-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-MEDIO-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-MEDIO-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-LAMBDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-LAMBDA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-LAMBDA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-LAMBDA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-S-LAMBDA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C1A-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C1A-P-IC-LO
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C1A-P-IC-HI
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C1A-IC-CAUSA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C1B-P
+  tipo: proporcion
+  unidad: proporción [0,1] sellada 2023
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C1B-P-IC-LO
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C1B-P-IC-HI
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-DELTA-21
+  tipo: flotante
+  unidad: logit sellado 2021
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-DELTA-23
+  tipo: flotante
+  unidad: logit sellado 2023
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-DELTA-BARRA
+  tipo: flotante
+  unidad: logit
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-N-2021
+  tipo: entero
+  unidad: trámites sellado 2021
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-N-2023
+  tipo: entero
+  unidad: trámites sellado 2023
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-SOPORTE-HISTORICO
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-CONTROL-C2COMP-P
+  tipo: proporcion
+  unidad: control, punto sin IC
+- id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C2-VS-CONTROL-ABS
+  tipo: flotante
+  unidad: '|C2 − control|'
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C2-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C2-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C2-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-MEDIO-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-MEDIO-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-MEDIO-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-MEDIO-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-LAMBDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-LAMBDA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-LAMBDA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-LAMBDA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-S-LAMBDA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C1A-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C1A-P-IC-LO
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C1A-P-IC-HI
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C1A-IC-CAUSA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C1B-P
+  tipo: proporcion
+  unidad: proporción [0,1] sellada 2023
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C1B-P-IC-LO
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C1B-P-IC-HI
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-DELTA-21
+  tipo: flotante
+  unidad: logit sellado 2021
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-DELTA-23
+  tipo: flotante
+  unidad: logit sellado 2023
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-DELTA-BARRA
+  tipo: flotante
+  unidad: logit
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-N-2021
+  tipo: entero
+  unidad: trámites sellado 2021
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-N-2023
+  tipo: entero
+  unidad: trámites sellado 2023
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-SOPORTE-HISTORICO
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-CONTROL-C2COMP-P
+  tipo: proporcion
+  unidad: control, punto sin IC
+- id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C2-VS-CONTROL-ABS
+  tipo: flotante
+  unidad: '|C2 − control|'
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C2-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C2-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C2-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-MEDIO-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-MEDIO-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-MEDIO-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-MEDIO-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-LAMBDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-LAMBDA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-LAMBDA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-LAMBDA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-S-LAMBDA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C1A-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C1A-P-IC-LO
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C1A-P-IC-HI
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C1A-IC-CAUSA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C1B-P
+  tipo: proporcion
+  unidad: proporción [0,1] sellada 2023
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C1B-P-IC-LO
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C1B-P-IC-HI
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-DELTA-21
+  tipo: flotante
+  unidad: logit sellado 2021
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-DELTA-23
+  tipo: flotante
+  unidad: logit sellado 2023
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-DELTA-BARRA
+  tipo: flotante
+  unidad: logit
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-N-2021
+  tipo: entero
+  unidad: trámites sellado 2021
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-N-2023
+  tipo: entero
+  unidad: trámites sellado 2023
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-SOPORTE-HISTORICO
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-CONTROL-C2COMP-P
+  tipo: proporcion
+  unidad: control, punto sin IC
+- id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C2-VS-CONTROL-ABS
+  tipo: flotante
+  unidad: '|C2 − control|'
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C2-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C2-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C2-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-MEDIO-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-MEDIO-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-MEDIO-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-MEDIO-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-LAMBDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-LAMBDA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-LAMBDA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-LAMBDA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-S-LAMBDA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C1A-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C1A-P-IC-LO
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C1A-P-IC-HI
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C1A-IC-CAUSA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C1B-P
+  tipo: proporcion
+  unidad: proporción [0,1] sellada 2023
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C1B-P-IC-LO
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C1B-P-IC-HI
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-DELTA-21
+  tipo: flotante
+  unidad: logit sellado 2021
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-DELTA-23
+  tipo: flotante
+  unidad: logit sellado 2023
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-DELTA-BARRA
+  tipo: flotante
+  unidad: logit
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-N-2021
+  tipo: entero
+  unidad: trámites sellado 2021
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-N-2023
+  tipo: entero
+  unidad: trámites sellado 2023
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-SOPORTE-HISTORICO
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-CONTROL-C2COMP-P
+  tipo: proporcion
+  unidad: control, punto sin IC
+- id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C2-VS-CONTROL-ABS
+  tipo: flotante
+  unidad: '|C2 − control|'
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C2-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C2-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C2-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-MEDIO-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-MEDIO-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-MEDIO-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-MEDIO-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-LAMBDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-LAMBDA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-LAMBDA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-LAMBDA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-S-LAMBDA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C1A-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C1A-P-IC-LO
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C1A-P-IC-HI
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C1A-IC-CAUSA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C1B-P
+  tipo: proporcion
+  unidad: proporción [0,1] sellada 2023
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C1B-P-IC-LO
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C1B-P-IC-HI
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-DELTA-21
+  tipo: flotante
+  unidad: logit sellado 2021
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-DELTA-23
+  tipo: flotante
+  unidad: logit sellado 2023
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-DELTA-BARRA
+  tipo: flotante
+  unidad: logit
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-N-2021
+  tipo: entero
+  unidad: trámites sellado 2021
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-N-2023
+  tipo: entero
+  unidad: trámites sellado 2023
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-SOPORTE-HISTORICO
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-CONTROL-C2COMP-P
+  tipo: proporcion
+  unidad: control, punto sin IC
+- id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C2-VS-CONTROL-ABS
+  tipo: flotante
+  unidad: '|C2 − control|'
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C2-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C2-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C2-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-MEDIO-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-MEDIO-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-MEDIO-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-MEDIO-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-LAMBDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-LAMBDA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-LAMBDA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-LAMBDA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-S-LAMBDA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C1A-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C1A-P-IC-LO
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C1A-P-IC-HI
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C1A-IC-CAUSA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C1B-P
+  tipo: proporcion
+  unidad: proporción [0,1] sellada 2023
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C1B-P-IC-LO
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C1B-P-IC-HI
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-DELTA-21
+  tipo: flotante
+  unidad: logit sellado 2021
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-DELTA-23
+  tipo: flotante
+  unidad: logit sellado 2023
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-DELTA-BARRA
+  tipo: flotante
+  unidad: logit
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-N-2021
+  tipo: entero
+  unidad: trámites sellado 2021
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-N-2023
+  tipo: entero
+  unidad: trámites sellado 2023
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-SOPORTE-HISTORICO
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-CONTROL-C2COMP-P
+  tipo: proporcion
+  unidad: control, punto sin IC
+- id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C2-VS-CONTROL-ABS
+  tipo: flotante
+  unidad: '|C2 − control|'
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C2-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C2-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C2-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-MEDIO-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-MEDIO-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-MEDIO-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-MEDIO-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-LAMBDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-LAMBDA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-LAMBDA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-LAMBDA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-S-LAMBDA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C1A-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C1A-P-IC-LO
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C1A-P-IC-HI
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C1A-IC-CAUSA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C1B-P
+  tipo: proporcion
+  unidad: proporción [0,1] sellada 2023
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C1B-P-IC-LO
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C1B-P-IC-HI
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-DELTA-21
+  tipo: flotante
+  unidad: logit sellado 2021
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-DELTA-23
+  tipo: flotante
+  unidad: logit sellado 2023
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-DELTA-BARRA
+  tipo: flotante
+  unidad: logit
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-N-2021
+  tipo: entero
+  unidad: trámites sellado 2021
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-N-2023
+  tipo: entero
+  unidad: trámites sellado 2023
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-SOPORTE-HISTORICO
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-CONTROL-C2COMP-P
+  tipo: proporcion
+  unidad: control, punto sin IC
+- id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C2-VS-CONTROL-ABS
+  tipo: flotante
+  unidad: '|C2 − control|'
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C2-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C2-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C2-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-MEDIO-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-MEDIO-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-MEDIO-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-MEDIO-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-LAMBDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-LAMBDA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-LAMBDA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-LAMBDA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-S-LAMBDA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C1A-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C1A-P-IC-LO
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C1A-P-IC-HI
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C1A-IC-CAUSA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C1B-P
+  tipo: proporcion
+  unidad: proporción [0,1] sellada 2023
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C1B-P-IC-LO
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C1B-P-IC-HI
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-DELTA-21
+  tipo: flotante
+  unidad: logit sellado 2021
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-DELTA-23
+  tipo: flotante
+  unidad: logit sellado 2023
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-DELTA-BARRA
+  tipo: flotante
+  unidad: logit
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-N-2021
+  tipo: entero
+  unidad: trámites sellado 2021
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-N-2023
+  tipo: entero
+  unidad: trámites sellado 2023
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-SOPORTE-HISTORICO
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-CONTROL-C2COMP-P
+  tipo: proporcion
+  unidad: control, punto sin IC
+- id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C2-VS-CONTROL-ABS
+  tipo: flotante
+  unidad: '|C2 − control|'
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C2-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C2-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C2-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-MEDIO-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-MEDIO-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-MEDIO-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-MEDIO-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-LAMBDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-LAMBDA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-LAMBDA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-LAMBDA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-S-LAMBDA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C1A-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C1A-P-IC-LO
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C1A-P-IC-HI
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C1A-IC-CAUSA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C1B-P
+  tipo: proporcion
+  unidad: proporción [0,1] sellada 2023
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C1B-P-IC-LO
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C1B-P-IC-HI
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-DELTA-21
+  tipo: flotante
+  unidad: logit sellado 2021
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-DELTA-23
+  tipo: flotante
+  unidad: logit sellado 2023
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-DELTA-BARRA
+  tipo: flotante
+  unidad: logit
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-N-2021
+  tipo: entero
+  unidad: trámites sellado 2021
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-N-2023
+  tipo: entero
+  unidad: trámites sellado 2023
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-SOPORTE-HISTORICO
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-CONTROL-C2COMP-P
+  tipo: proporcion
+  unidad: control, punto sin IC
+- id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C2-VS-CONTROL-ABS
+  tipo: flotante
+  unidad: '|C2 − control|'
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C2-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C2-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C2-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-MEDIO-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-MEDIO-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-MEDIO-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-MEDIO-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-LAMBDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-LAMBDA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-LAMBDA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-LAMBDA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-S-LAMBDA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C1A-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C1A-P-IC-LO
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C1A-P-IC-HI
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C1A-IC-CAUSA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C1B-P
+  tipo: proporcion
+  unidad: proporción [0,1] sellada 2023
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C1B-P-IC-LO
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C1B-P-IC-HI
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-DELTA-21
+  tipo: flotante
+  unidad: logit sellado 2021
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-DELTA-23
+  tipo: flotante
+  unidad: logit sellado 2023
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-DELTA-BARRA
+  tipo: flotante
+  unidad: logit
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-N-2021
+  tipo: entero
+  unidad: trámites sellado 2021
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-N-2023
+  tipo: entero
+  unidad: trámites sellado 2023
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-SOPORTE-HISTORICO
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-CONTROL-C2COMP-P
+  tipo: proporcion
+  unidad: control, punto sin IC
+- id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C2-VS-CONTROL-ABS
+  tipo: flotante
+  unidad: '|C2 − control|'
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C2-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C2-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C2-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-MEDIO-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-MEDIO-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-MEDIO-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-MEDIO-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-LAMBDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-LAMBDA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-LAMBDA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-LAMBDA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-S-LAMBDA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C1A-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C1A-P-IC-LO
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C1A-P-IC-HI
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C1A-IC-CAUSA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C1B-P
+  tipo: proporcion
+  unidad: proporción [0,1] sellada 2023
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C1B-P-IC-LO
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C1B-P-IC-HI
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-DELTA-21
+  tipo: flotante
+  unidad: logit sellado 2021
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-DELTA-23
+  tipo: flotante
+  unidad: logit sellado 2023
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-DELTA-BARRA
+  tipo: flotante
+  unidad: logit
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-N-2021
+  tipo: entero
+  unidad: trámites sellado 2021
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-N-2023
+  tipo: entero
+  unidad: trámites sellado 2023
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-SOPORTE-HISTORICO
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-CONTROL-C2COMP-P
+  tipo: proporcion
+  unidad: control, punto sin IC
+- id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C2-VS-CONTROL-ABS
+  tipo: flotante
+  unidad: '|C2 − control|'
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C2-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C2-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C2-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-MEDIO-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-MEDIO-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-MEDIO-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-MEDIO-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-LAMBDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-LAMBDA-P-EE
+  tipo: flotante
+  unidad: error estándar
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-LAMBDA-P-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-LAMBDA-P-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-S-LAMBDA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C1A-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C1A-P-IC-LO
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C1A-P-IC-HI
+  tipo: proporcion
+  unidad: NO-DERIVABLE (null)
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C1A-IC-CAUSA
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C1B-P
+  tipo: proporcion
+  unidad: proporción [0,1] sellada 2023
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C1B-P-IC-LO
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C1B-P-IC-HI
+  tipo: proporcion
+  unidad: IC95 sellado 2023
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-DELTA-21
+  tipo: flotante
+  unidad: logit sellado 2021
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-DELTA-23
+  tipo: flotante
+  unidad: logit sellado 2023
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-DELTA-BARRA
+  tipo: flotante
+  unidad: logit
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-N-2021
+  tipo: entero
+  unidad: trámites sellado 2021
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-N-2023
+  tipo: entero
+  unidad: trámites sellado 2023
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-SOPORTE-HISTORICO
+  tipo: texto
+  unidad: estado
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-CONTROL-C2COMP-P
+  tipo: proporcion
+  unidad: control, punto sin IC
+- id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C2-VS-CONTROL-ABS
+  tipo: flotante
+  unidad: '|C2 − control|'
+- id: RESULT-GOB-EXE15-2025-LAMBDA
+  tipo: flotante
+  unidad: λ congelada
+- id: RESULT-GOB-EXE15-2025-BOOTSTRAP-REPLICAS
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-GOB-EXE15-2025-SEED
+  tipo: entero
+  unidad: semilla PCG64
