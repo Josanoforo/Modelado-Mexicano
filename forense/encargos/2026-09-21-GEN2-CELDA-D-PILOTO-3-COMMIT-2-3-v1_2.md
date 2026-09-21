@@ -145,3 +145,7 @@ No hay más compuertas.
 | **P5 · Registro.** celda-D, `champion_actual`, `unidad_objetivo: evento`, marcador re-derivado, `celdas_validadas` antes/después | `DIFERIDO-A:COMMIT-3 del v1.3`. `NC-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2-a6f5-05` | celda-D intacta (`SPEC-CONGELADA`); marcador no re-derivado | acto del COMMIT-3 v1.3 |
 | **P6 · Para mesa, al frente de la nota.** | ejecutada en forma de PARO: §0 de `forense/notas/nota-2026-09-21-gen2-celda-d-piloto-3-commit-2-3-v1_2-paro.md` | — | — |
 | Por objeto, las NC de `#941`: `NC-0451`–`NC-0454` siguen ABIERTAS (sucesor re-apuntado al v1.3); `NC-0455` CERRADA por producto (`decisiones.tsv:184-185`, resuelto SI) | — | — | — |
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2`, **PR #951**, 21/sep/2026 (CAJA, Opus 5, MODO RÍGIDO, sesión nueva `c0ab3df1`). **PARO (b) sin parche:** P0 en verde; `corrida0 run CALC-GOB-DIGITAL-EXE-EMISIONES-0002` → `RUN: FALLO — nada se sella` (40 RESULT `null` sin `permite_no_estimable`; control 60-96 con clave `60`). Cero sellos, cero adopciones, ninguna cifra de 2025 vista; árbol de los CALC intacto. `ADR-585`; `FP-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2-a6f5-01` ABIERTA; `NC-260921-…-a6f5-01`–`-05`; `NC-0455` CERRADA por producto. Sucesor: COMMIT-1 v1.3 en otra sesión, y sus COMMIT-2 / 3a / 3. Nota: `forense/notas/nota-2026-09-21-gen2-celda-d-piloto-3-commit-2-3-v1_2-paro.md`.
