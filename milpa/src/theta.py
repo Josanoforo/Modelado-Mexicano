@@ -9,6 +9,12 @@ En E0 este módulo NO estima nada. Lee lo ya adjudicado en
 `procedencia.py`: una `MEDIDO·NACIONAL` no se segmenta, una `MEDIDO·PARCIAL(x)`
 sólo por sus `x`, y una `ASIGNADO` devuelve punto sin banda con su deuda a la
 vista.
+
+ESTADO VIGENTE (ACTO MOTOR-THETA-CONGELADA-1, 21/sep/2026): `valor()` lanza
+para las 43 entradas, y por eso `matriz.g` no es camino de emisión vigente.
+No es un defecto a parchar: bajo `ADR-531` la matriz compone, no estima, y
+compite como candidato de una celda solo cuando esa celda la adjudica por
+contrato celda-D (`ADR-68`). Mientras ninguna lo haga, lanzar es lo correcto.
 """
 
 from dataclasses import dataclass
@@ -48,9 +54,11 @@ class Theta:
             for eje, _ in celda.coordenadas:
                 segmentar(e, eje)
         raise ThetaNoDisponible(
-            f"`{nombre}` está registrada como {e.clase.value} pero E0 no "
-            f"construye su distribución: eso es calibración (E1+), que espera "
-            f"el cierre de BARRIDO-2. Ley de mesa vigente."
+            f"`{nombre}` está registrada como {e.clase.value} pero no hay "
+            f"distribución cargable: `matriz.g` no es camino de emisión "
+            f"vigente. Bajo ADR-531 la matriz compone, no estima, y solo "
+            f"compite en una celda que la adjudique por contrato celda-D "
+            f"(ADR-68). No se sustituye por un default."
         )
 
     def segmentable(self, nombre, eje):

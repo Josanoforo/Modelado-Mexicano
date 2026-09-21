@@ -5139,6 +5139,20 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # canon/registro-rotulos.tsv.
     "forense/notas/2026-09-20-GEN2-TUBERIA-CAREO-1-cierre.md",
     "forense/encargos/2026-09-20-GEN2-TUBERIA-CAREO-1.md",
+    # ACTO MOTOR-THETA-CONGELADA-1, 21/sep/2026. Un archivo, archivado
+    # VERBATIM por 0-bis A.3 -- no se edita para complacer T25.
+    #   `E0`, `E1` -- "En E0 este módulo NO estima nada" (§3) y "diseño E1
+    #            (forense/theta-cargable-por-celda-diseno-e1-v1_0.md)" (§4):
+    #            las mismas fases del programa de calibración de theta ya
+    #            censadas y exentas arriba (ver GEN2-TRAMITE-4), citadas aquí
+    #            sin acuñar nada nuevo.
+    #   `M1` -- "sobre `M1`" en "firma de mesa del 17/sep/2026 sobre `M1`"
+    #            (§5, §8): el mismo acto `GEN2-M1-ALCANCE-1` ya censado en
+    #            canon/registro-rotulos.tsv, nombrado sin prefijo por su
+    #            autor -- misma exención que GEN2-TRAMITE-4 arriba.
+    # El rótulo propio de este acto, `MOTOR-THETA-CONGELADA-1`, no vive en el
+    # espacio `M`/`E` de actos (no matchea `M\d{1,2}` ni `E\d{1,2}` pelado).
+    "forense/encargos/2026-09-21-MOTOR-THETA-CONGELADA-1.md",
 }
 
 
@@ -5456,12 +5470,16 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
     Re-medido el 19/sep/2026 tras registrar la candidata UCLA MxFLS de
     `GEN2-38-NC-0202`: **32 líneas**; la línea 155 añade otra nota JSON con
     comillas dobles por la misma vía canónica.
+    Re-medido el 21/sep/2026 tras registrar el residual `ENPOL_2016_FD`
+    (ACTO `[ADQ] 2026-09-21`, GEN2-38 NC-0162) vía la misma `upsert_fila`
+    canónica: **33 líneas**; la línea 156 añade otra fila con coma dentro
+    de una nota de texto libre, que `csv.writer` cita.
     Este test es DOBLE:
 
     (1) CONTROL, documenta que el defecto sigue vivo con `csv`: si algún
         día alguien "arregla" el round-trip corriendo `csv.writer` sobre
         el archivo completo, este control lo hace visible en vez de
-        quedar en silencio -- se esperan EXACTAMENTE 32 líneas distintas
+        quedar en silencio -- se esperan EXACTAMENTE 33 líneas distintas
         hoy; si el número cambia (para arriba o para abajo) sin que
         nadie lo haya declarado, falla.
     (2) REGRESIÓN del lector/escritor propio (`tools/curador_registro/
@@ -5487,12 +5505,12 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
         escritor.writerow(fila)
     csv_out_lines = buf.getvalue().split("\r\n")
     diffs_csv = [i for i, (a, b) in enumerate(zip(orig_lines, csv_out_lines)) if a != b]
-    if len(diffs_csv) != 32:
+    if len(diffs_csv) != 33:
         fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv debe dar "
-                         f"32 líneas distintas (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94, "
+                         f"33 líneas distintas (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94, "
                          f"97, 114, 117, 119, 121, 123, 124, 125, 136, 139, 140, 144, 145, 146, "
-                         f"147, 148, 149, 153, 154, 155), re-medidas el 19/sep/2026 tras registrar "
-                         f"la candidata UCLA MxFLS en el registro canónico; hoy da "
+                         f"147, 148, 149, 153, 154, 155, 156), re-medidas el 21/sep/2026 tras "
+                         f"registrar el residual ENPOL_2016_FD en el registro canónico; hoy da "
                          f"{len(diffs_csv)} ({[i + 1 for i in diffs_csv]}) -- el archivo cambió "
                          f"de forma que el control ya no describe la realidad, actualiza el número "
                          f"esperado con el hallazgo re-medido, no lo silencies.")

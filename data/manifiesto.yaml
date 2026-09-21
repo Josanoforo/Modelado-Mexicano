@@ -30328,3 +30328,18 @@
     multietápica, 150 comunidades y tres estratos construidos con 14 variables del marco ENEU).
     Alcance limitado: no contiene identificadores de UPM/estrato por observación, réplicas
     ni campos ejecutables para varianza; NC-0202 permanece abierta.'
+
+- id: enpol2016_fd_pdf
+  usado_para: 'ENPOL_2016_FD / NC-0162: descriptor oficial de estructura, variables, códigos
+    y preguntas de ENPOL 2016'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enpol/2016/doc/fd_enpol2016.pdf
+  fecha_descarga: '2026-09-21'
+  descargado_por: Codex, directamente de inegi.org.mx, GEN2-38
+  archivo: fd_enpol2016.pdf
+  sha256: 5b2c780f29b991ada8f0ed8bb9c0f93ed98ce1e75edcb5c6c0b12aa7ae3f3b19
+  tamano_bytes: 2549127
+  formato: PDF
+  licencia: Términos de uso INEGI
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: 'Doble descarga idéntica; PDF 1.6 con %%EOF. Uso permitido: verificar estructura de
+    ENPOL 2016; no acredita comparabilidad ni adopción científica.'
