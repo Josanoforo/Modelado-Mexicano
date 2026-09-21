@@ -178,3 +178,31 @@ celda; no compone por segmento.»
 Auditoría de rigor extremo: no aplica — no afirma nada sobre México.
 Cierre: `## NO-CORRIDO / RESERVAS` («Ninguno." si no hubo) antes de `## CONSUMIDO`, con este
 encargo archivado verbatim y marcado con su PR.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** `motor.py:20` y `:129`, que también citan `BARRIDO-2` (§10 de este encargo).
+  **por qué:** `DECISIÓN-DE-MESA-PENDIENTE` — el encargo los excluye a propósito del
+  perímetro (editar `motor.py` mueve el contexto de replay de dos sellos, PARO c/§7).
+  **impacto:** `motor.py:20`/`:129` siguen citando `BARRIDO-2` en vez de `ADR-531`;
+  ningún contador de adopción de este acto se mueve por esto.
+  **sucesor:** `SIN-ASIGNAR` (acto sucesor con permiso explícito de mesa para tocar
+  `motor.py`) — fila `NC-260921-MOTOR-THETA-CONGELADA-1-e8fa-01`.
+
+- **qué:** compuerta de "seis tests salen 0" (§8 de este encargo).
+  **por qué:** `DECISIÓN-DE-MESA-PENDIENTE` — `test_motor_holdout::test_c_roles_sellados_antes_que_todo_resultado`
+  sale `FAIL`, verificado ajeno a este diff: `git log` sobre `matriz.py`/`motor.py`/`celdas.py`
+  no muestra ningún commit de este acto y el fallo es anterior a `PR #883` (ADR-68, "el
+  catálogo y el motor entraron en el MISMO commit"). Los otros cinco — `test_motor_matriz`
+  (10/10), `test_theta_esquema_e1` (7/7), `test_motor_ejecutable` (6/6),
+  `test_motor_procedencia` (8/8), `test_motor_clases` (10/10) — salen 0.
+  **impacto:** la compuerta de adopción de este acto se apoya en 5/6, no 6/6; ningún
+  contador de adopción propio se mueve por esto.
+  **sucesor:** `SIN-ASIGNAR` (acto que resuelva el `commit_declaracion` de ADR-68 para el
+  catálogo/motor) — fila `NC-260921-MOTOR-THETA-CONGELADA-1-e8fa-02` y firma pendiente
+  `FP-260921-MOTOR-THETA-CONGELADA-1-e8fa-01`.
+
+**Defecto de secuencia propio, declarado:** el commit que archiva este encargo verbatim
+(0-bis A.3) llegó *después* del commit que aplicó el diff de §5, no antes como exige el
+orden del Bloque D de `/acto`. No afecta el contenido verbatim del encargo ni las
+compuertas — se declara aquí por transparencia, no se corrige reescribiendo historia.
