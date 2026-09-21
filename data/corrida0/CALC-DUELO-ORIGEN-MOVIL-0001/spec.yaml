@@ -1,0 +1,2339 @@
+calc_id: CALC-DUELO-ORIGEN-MOVIL-0001
+spec_md: ../../../forense/prereg-caja/DUELO-PROSPECTIVO-ENVIPE2026-spec-v1_0.md
+spec_md_sha256: 4204b07b77bcd2dc12a518738479abfe3cd36ce5739b3e9bb0b861b6a4dd740b
+script: data/corrida0/CALC-DUELO-ORIGEN-MOVIL-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  unidad_transferencia: DELITO
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  fuente_acto: GEN2-DUELO-ENVIPE2026-COMMIT-1 (21/sep/2026)
+  diseno: forense/prereg-caja/DISENO-duelo-prospectivo-ENVIPE2026-v1_0.md (sha e88d3192) + enmienda v1_1
+  firma_vigente: F7 (A)(B)(C) + D-22 ampliada + regla v0.3 + respuesta de mesa 'Ola anterior = 2024' (21/sep/2026), verbatim en la enmienda v1_1
+  medidor_ejecutado_al_congelar: sintetico (tests/test_duelo_prospectivo.py, zips fabricados) y ensayo sobre olas abiertas (2023-2025); NUNCA sobre ENVIPE 2026
+  tipo: VALIDACION-DE-ORIGEN-MOVIL (P3 ii)
+  congelado: SI -- solo insumos versionados con sha
+inputs:
+- id: serie_nd
+  origen: repo
+  ruta: data/corrida0/envipe-serie-denuncia-v1_0.tsv
+  sha256: 78e83b95710924ea12b51a5a9ed10ed8e84cb4184c9ff55ee4133e433a883993
+- id: emisiones_piloto2
+  origen: repo
+  ruta: data/corrida0/CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001/resultados.json
+  sha256: 5d120c1f302c364639c5cdfaf82efec7a7a84cbb1a0d55c0825aa0188330c7c7
+- id: evasion_norma_v11
+  origen: repo
+  ruta: data/corrida0/CALC-EVASION-NORMA-0001-v1_1/resultados.json
+  sha256: 85a726c1326b01c0d166ff962be8e2d7e2d201eecefd1a248ae5e32e37c5e815
+variables: []
+universo: 'DELITOS (una fila por delito de tmod_vic). EN: BP1_20 in {1,2}, unidad DELITO, FAC_DEL (prereg-caja-ENVIPE-EVASION-NORMA). ND: delitos personales (BPCOD personales) con BP1_20 == 2 y BP1_23 en
+  catalogo, el universo del medidor sellado de la serie. La ola nueva se abre SOLO por el guardian (tools/celda_d/marginales_reproduccion.py): un eje por firma en emisiones; cruces en adjudicacion.'
+filtros: 'Los del guardian, identicos en todas las olas: BP1_20 in {1,2} (las demas filas se cuentan y salen); FAC_DEL numerico > 0 si no PARA; EST_DIS/UPM_DIS no vacios si no PARA; ID_PER unica en tsdem
+  si no PARA; delitos sin persona se cuentan y quedan (fuera) de escolaridad; edad fuera de 18..96 y sexo fuera de {1,2} van a (fuera). Serie ND: solo olas con comparabilidad == NINGUNA-EN-C1-U1 (2011 fuera).'
+ponderador: FAC_DEL (Factor delito, Numerico 6). Toda proporcion es razon de totales ponderados sum(w*y)/sum(w).
+transformacion: 'evade_norma := (BP1_20 == ''2'') AND (BP1_23 a dos digitos in {04,05,06,08}). Ejes del guardian (ESC_2DIG de NIV; DOMINIO U/C/R; SEXO; tramos_edad). Nacional: K = p_{t-1}; T3/T5/TC = OLS
+  en logit sobre ola_encuesta, IC por propagacion delta de los EE por ola. E+ = expit(logit p_eje,t-1 + logit T* - logit p_nac,t-1). Cruces: familia de la spec §4 (C2, P, S1, SL, AP) en logit, replica k
+  con k.'
+estimando: Para cada ola comparable de la serie ND (2012-2025) y de los puntos EN (2023-2025), la prediccion de K/T3/T5/TC hecha solo con olas anteriores, su error en pp y su cobertura; resumen por contendiente
+  (MAE, sesgo, cobertura Wilson) sobre todas sus olas y sobre la ventana comun. Sin seleccion.
+precision: Replicas compartidas por ola (PCG64(42), n_h UPM con reemplazo por estrato, orden lexicografico, 10 000); IC95 percentil 2.5/97.5; IC del arbitro por wprop_ic_conglomerado (importada) en P y
+  R; IC de T* por propagacion delta; E+ con sorteo normal en logit del termino T*. No cubre el error de especificacion de ningun candidato.
+dependencias_materiales:
+- numpy
+- pandas
+seed:
+  aplica: false
+tolerancia:
+  tipo: bootstrap
+  exacto_por_seed: true
+  abs: 1.0e-10
+  razon: seed 42 + orden de consumo fijado por el guardian (un generador por ola, estratos y UPM lexicograficos, replicas 0..9999) y por la serie sellada; enteros exactos, flotantes abs 1e-10
+parametros:
+  punto_de_entrada: origen_movil
+  prefijo_result: RESULT-DUELO-OM
+  serie_nd_input: serie_nd
+  comparabilidad_homogenea: NINGUNA-EN-C1-U1
+  rotulo: RETROSPECTIVA-MECANICA (F7 A); no selecciona variante
+  nacionales:
+    K: p_{t-1} con IC sellado
+    T3: OLS logit ultimas 3
+    T5: OLS logit ultimas 5
+    TC: OLS logit todas (>= 6)
+  ventana_minima:
+    K: 1
+    T3: 3
+    T5: 5
+    TC: 6
+  en_puntos_sellados:
+    2023:
+      input: emisiones_piloto2
+      id_p: RESULT-TRA-SXD12-G-W23-P-NACIONAL
+    2024:
+      input: emisiones_piloto2
+      id_p: RESULT-TRA-SXD12-G-W24-P-NACIONAL
+    2025:
+      input: evasion_norma_v11
+      id_p: RESULT-EVASIONNORMA-A-P-EVADE
+      id_lo: RESULT-EVASIONNORMA-A-IC-LO
+      id_hi: RESULT-EVASIONNORMA-A-IC-HI
+resultados:
+- id: RESULT-DUELO-OM-G-CODIGO-ENVIPE-DUELO-SHA256
+  tipo: texto
+  unidad: sha256 del modulo ENVIPE-DUELO tal como corrio
+- id: RESULT-DUELO-OM-G-CODIGO-TENDENCIA-NACIONAL-SHA256
+  tipo: texto
+  unidad: sha256 del modulo TENDENCIA-NACIONAL tal como corrio
+- id: RESULT-DUELO-OM-G-EN-OLAS-EN-SERIE
+  tipo: entero
+  unidad: puntos nacionales EN sellados
+- id: RESULT-DUELO-OM-G-INPUT-EMISIONES-PILOTO2-SHA256
+  tipo: texto
+  unidad: sha256 del input EMISIONES-PILOTO2
+- id: RESULT-DUELO-OM-G-INPUT-EVASION-NORMA-V11-SHA256
+  tipo: texto
+  unidad: sha256 del input EVASION-NORMA-V11
+- id: RESULT-DUELO-OM-G-INPUT-SERIE-ND-SHA256
+  tipo: texto
+  unidad: sha256 del input SERIE-ND
+- id: RESULT-DUELO-OM-G-MEDIDOR-IDENTICO-A-TOOLS
+  tipo: texto
+  unidad: SI si medidor.py es byte a byte tools/duelo/envipe_duelo.py
+- id: RESULT-DUELO-OM-G-ND-OLAS-EN-SERIE
+  tipo: entero
+  unidad: olas en la serie ND sellada
+- id: RESULT-DUELO-OM-G-ROTULO
+  tipo: texto
+  unidad: rotulo del origen movil
+- id: RESULT-DUELO-OM-OM-EN-2024-K-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, K, ola 2024, estimando EN'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-K-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si K cae dentro del IC95 de R, ola 2024, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2024-K-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, K, ola 2024, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-K-ESTADO
+  tipo: texto
+  unidad: estado de K prediciendo la ola 2024, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2024-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de K, ola 2024, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de K, ola 2024, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-K-PRED
+  tipo: proporcion
+  unidad: prediccion de K para la ola 2024 solo con las anteriores, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-K-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de K, ola 2024, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2024-T3-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T3, ola 2024, estimando EN'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-T3-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T3 cae dentro del IC95 de R, ola 2024, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2024-T3-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T3, ola 2024, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-T3-ESTADO
+  tipo: texto
+  unidad: estado de T3 prediciendo la ola 2024, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2024-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T3, ola 2024, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T3, ola 2024, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-T3-PRED
+  tipo: proporcion
+  unidad: prediccion de T3 para la ola 2024 solo con las anteriores, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-T3-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T3, ola 2024, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2024-T5-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T5, ola 2024, estimando EN'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-T5-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T5 cae dentro del IC95 de R, ola 2024, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2024-T5-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T5, ola 2024, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-T5-ESTADO
+  tipo: texto
+  unidad: estado de T5 prediciendo la ola 2024, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2024-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T5, ola 2024, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T5, ola 2024, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-T5-PRED
+  tipo: proporcion
+  unidad: prediccion de T5 para la ola 2024 solo con las anteriores, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-T5-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T5, ola 2024, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2024-TC-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, TC, ola 2024, estimando EN'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-TC-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si TC cae dentro del IC95 de R, ola 2024, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2024-TC-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, TC, ola 2024, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-TC-ESTADO
+  tipo: texto
+  unidad: estado de TC prediciendo la ola 2024, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2024-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de TC, ola 2024, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de TC, ola 2024, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-TC-PRED
+  tipo: proporcion
+  unidad: prediccion de TC para la ola 2024 solo con las anteriores, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2024-TC-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de TC, ola 2024, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2025-K-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, K, ola 2025, estimando EN'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-K-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si K cae dentro del IC95 de R, ola 2025, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2025-K-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, K, ola 2025, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-K-ESTADO
+  tipo: texto
+  unidad: estado de K prediciendo la ola 2025, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2025-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de K, ola 2025, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de K, ola 2025, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-K-PRED
+  tipo: proporcion
+  unidad: prediccion de K para la ola 2025 solo con las anteriores, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-K-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de K, ola 2025, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2025-T3-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T3, ola 2025, estimando EN'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-T3-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T3 cae dentro del IC95 de R, ola 2025, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2025-T3-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T3, ola 2025, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-T3-ESTADO
+  tipo: texto
+  unidad: estado de T3 prediciendo la ola 2025, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2025-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T3, ola 2025, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T3, ola 2025, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-T3-PRED
+  tipo: proporcion
+  unidad: prediccion de T3 para la ola 2025 solo con las anteriores, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-T3-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T3, ola 2025, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2025-T5-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T5, ola 2025, estimando EN'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-T5-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T5 cae dentro del IC95 de R, ola 2025, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2025-T5-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T5, ola 2025, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-T5-ESTADO
+  tipo: texto
+  unidad: estado de T5 prediciendo la ola 2025, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2025-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T5, ola 2025, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T5, ola 2025, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-T5-PRED
+  tipo: proporcion
+  unidad: prediccion de T5 para la ola 2025 solo con las anteriores, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-T5-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T5, ola 2025, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2025-TC-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, TC, ola 2025, estimando EN'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-TC-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si TC cae dentro del IC95 de R, ola 2025, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2025-TC-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, TC, ola 2025, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-TC-ESTADO
+  tipo: texto
+  unidad: estado de TC prediciendo la ola 2025, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-2025-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de TC, ola 2025, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de TC, ola 2025, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-TC-PRED
+  tipo: proporcion
+  unidad: prediccion de TC para la ola 2025 solo con las anteriores, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-2025-TC-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de TC, ola 2025, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-OLAS-NO-COMPARABLES
+  tipo: texto
+  unidad: olas excluidas por comparabilidad, estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-K-TODAS-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fraccion de olas con K dentro del IC95 de R (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-K-TODAS-COBERTURA-IC95INF
+  tipo: proporcion
+  unidad: Wilson 95 INF de la cobertura de K (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-K-TODAS-COBERTURA-IC95SUP
+  tipo: proporcion
+  unidad: Wilson 95 SUP de la cobertura de K (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-K-TODAS-COBERTURA-R-EN-IC-CAND
+  tipo: proporcion
+  unidad: fraccion de olas con R dentro del IC95 de K (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-K-TODAS-MAE-PP
+  tipo: flotante
+  unidad: MAE en pp de K (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-K-TODAS-N-COBERTURA
+  tipo: entero
+  unidad: olas con IC del candidato derivable, K (TODAS), estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-K-TODAS-N-OLAS
+  tipo: entero
+  unidad: olas predichas por K (TODAS), estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-K-TODAS-SESGO-PP
+  tipo: flotante
+  unidad: error medio con signo en pp de K (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-K-VENTANA-COMUN-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fraccion de olas con K dentro del IC95 de R (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-K-VENTANA-COMUN-COBERTURA-IC95INF
+  tipo: proporcion
+  unidad: Wilson 95 INF de la cobertura de K (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-K-VENTANA-COMUN-COBERTURA-IC95SUP
+  tipo: proporcion
+  unidad: Wilson 95 SUP de la cobertura de K (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-K-VENTANA-COMUN-COBERTURA-R-EN-IC-CAND
+  tipo: proporcion
+  unidad: fraccion de olas con R dentro del IC95 de K (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-K-VENTANA-COMUN-MAE-PP
+  tipo: flotante
+  unidad: MAE en pp de K (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-K-VENTANA-COMUN-N-COBERTURA
+  tipo: entero
+  unidad: olas con IC del candidato derivable, K (VENTANA-COMUN), estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-K-VENTANA-COMUN-N-OLAS
+  tipo: entero
+  unidad: olas predichas por K (VENTANA-COMUN), estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-K-VENTANA-COMUN-SESGO-PP
+  tipo: flotante
+  unidad: error medio con signo en pp de K (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T3-TODAS-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fraccion de olas con T3 dentro del IC95 de R (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T3-TODAS-COBERTURA-IC95INF
+  tipo: proporcion
+  unidad: Wilson 95 INF de la cobertura de T3 (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T3-TODAS-COBERTURA-IC95SUP
+  tipo: proporcion
+  unidad: Wilson 95 SUP de la cobertura de T3 (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T3-TODAS-COBERTURA-R-EN-IC-CAND
+  tipo: proporcion
+  unidad: fraccion de olas con R dentro del IC95 de T3 (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T3-TODAS-MAE-PP
+  tipo: flotante
+  unidad: MAE en pp de T3 (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T3-TODAS-N-COBERTURA
+  tipo: entero
+  unidad: olas con IC del candidato derivable, T3 (TODAS), estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T3-TODAS-N-OLAS
+  tipo: entero
+  unidad: olas predichas por T3 (TODAS), estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T3-TODAS-SESGO-PP
+  tipo: flotante
+  unidad: error medio con signo en pp de T3 (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T3-VENTANA-COMUN-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fraccion de olas con T3 dentro del IC95 de R (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T3-VENTANA-COMUN-COBERTURA-IC95INF
+  tipo: proporcion
+  unidad: Wilson 95 INF de la cobertura de T3 (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T3-VENTANA-COMUN-COBERTURA-IC95SUP
+  tipo: proporcion
+  unidad: Wilson 95 SUP de la cobertura de T3 (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T3-VENTANA-COMUN-COBERTURA-R-EN-IC-CAND
+  tipo: proporcion
+  unidad: fraccion de olas con R dentro del IC95 de T3 (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T3-VENTANA-COMUN-MAE-PP
+  tipo: flotante
+  unidad: MAE en pp de T3 (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T3-VENTANA-COMUN-N-COBERTURA
+  tipo: entero
+  unidad: olas con IC del candidato derivable, T3 (VENTANA-COMUN), estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T3-VENTANA-COMUN-N-OLAS
+  tipo: entero
+  unidad: olas predichas por T3 (VENTANA-COMUN), estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T3-VENTANA-COMUN-SESGO-PP
+  tipo: flotante
+  unidad: error medio con signo en pp de T3 (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T5-TODAS-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fraccion de olas con T5 dentro del IC95 de R (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T5-TODAS-COBERTURA-IC95INF
+  tipo: proporcion
+  unidad: Wilson 95 INF de la cobertura de T5 (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T5-TODAS-COBERTURA-IC95SUP
+  tipo: proporcion
+  unidad: Wilson 95 SUP de la cobertura de T5 (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T5-TODAS-COBERTURA-R-EN-IC-CAND
+  tipo: proporcion
+  unidad: fraccion de olas con R dentro del IC95 de T5 (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T5-TODAS-MAE-PP
+  tipo: flotante
+  unidad: MAE en pp de T5 (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T5-TODAS-N-COBERTURA
+  tipo: entero
+  unidad: olas con IC del candidato derivable, T5 (TODAS), estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T5-TODAS-N-OLAS
+  tipo: entero
+  unidad: olas predichas por T5 (TODAS), estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T5-TODAS-SESGO-PP
+  tipo: flotante
+  unidad: error medio con signo en pp de T5 (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T5-VENTANA-COMUN-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fraccion de olas con T5 dentro del IC95 de R (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T5-VENTANA-COMUN-COBERTURA-IC95INF
+  tipo: proporcion
+  unidad: Wilson 95 INF de la cobertura de T5 (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T5-VENTANA-COMUN-COBERTURA-IC95SUP
+  tipo: proporcion
+  unidad: Wilson 95 SUP de la cobertura de T5 (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T5-VENTANA-COMUN-COBERTURA-R-EN-IC-CAND
+  tipo: proporcion
+  unidad: fraccion de olas con R dentro del IC95 de T5 (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T5-VENTANA-COMUN-MAE-PP
+  tipo: flotante
+  unidad: MAE en pp de T5 (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T5-VENTANA-COMUN-N-COBERTURA
+  tipo: entero
+  unidad: olas con IC del candidato derivable, T5 (VENTANA-COMUN), estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T5-VENTANA-COMUN-N-OLAS
+  tipo: entero
+  unidad: olas predichas por T5 (VENTANA-COMUN), estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-T5-VENTANA-COMUN-SESGO-PP
+  tipo: flotante
+  unidad: error medio con signo en pp de T5 (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-TC-TODAS-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fraccion de olas con TC dentro del IC95 de R (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-TC-TODAS-COBERTURA-IC95INF
+  tipo: proporcion
+  unidad: Wilson 95 INF de la cobertura de TC (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-TC-TODAS-COBERTURA-IC95SUP
+  tipo: proporcion
+  unidad: Wilson 95 SUP de la cobertura de TC (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-TC-TODAS-COBERTURA-R-EN-IC-CAND
+  tipo: proporcion
+  unidad: fraccion de olas con R dentro del IC95 de TC (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-TC-TODAS-MAE-PP
+  tipo: flotante
+  unidad: MAE en pp de TC (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-TC-TODAS-N-COBERTURA
+  tipo: entero
+  unidad: olas con IC del candidato derivable, TC (TODAS), estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-TC-TODAS-N-OLAS
+  tipo: entero
+  unidad: olas predichas por TC (TODAS), estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-TC-TODAS-SESGO-PP
+  tipo: flotante
+  unidad: error medio con signo en pp de TC (TODAS), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-TC-VENTANA-COMUN-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fraccion de olas con TC dentro del IC95 de R (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-TC-VENTANA-COMUN-COBERTURA-IC95INF
+  tipo: proporcion
+  unidad: Wilson 95 INF de la cobertura de TC (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-TC-VENTANA-COMUN-COBERTURA-IC95SUP
+  tipo: proporcion
+  unidad: Wilson 95 SUP de la cobertura de TC (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-TC-VENTANA-COMUN-COBERTURA-R-EN-IC-CAND
+  tipo: proporcion
+  unidad: fraccion de olas con R dentro del IC95 de TC (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-TC-VENTANA-COMUN-MAE-PP
+  tipo: flotante
+  unidad: MAE en pp de TC (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-TC-VENTANA-COMUN-N-COBERTURA
+  tipo: entero
+  unidad: olas con IC del candidato derivable, TC (VENTANA-COMUN), estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-TC-VENTANA-COMUN-N-OLAS
+  tipo: entero
+  unidad: olas predichas por TC (VENTANA-COMUN), estimando EN
+- id: RESULT-DUELO-OM-OM-EN-RESUMEN-TC-VENTANA-COMUN-SESGO-PP
+  tipo: flotante
+  unidad: error medio con signo en pp de TC (VENTANA-COMUN), estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-EN-VENTANA-COMUN
+  tipo: texto
+  unidad: olas donde los cuatro contendientes son construibles, estimando EN
+- id: RESULT-DUELO-OM-OM-ND-2013-K-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, K, ola 2013, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-K-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si K cae dentro del IC95 de R, ola 2013, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2013-K-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, K, ola 2013, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-K-ESTADO
+  tipo: texto
+  unidad: estado de K prediciendo la ola 2013, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2013-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de K, ola 2013, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de K, ola 2013, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-K-PRED
+  tipo: proporcion
+  unidad: prediccion de K para la ola 2013 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-K-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de K, ola 2013, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2013-T3-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T3, ola 2013, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-T3-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T3 cae dentro del IC95 de R, ola 2013, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2013-T3-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T3, ola 2013, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-T3-ESTADO
+  tipo: texto
+  unidad: estado de T3 prediciendo la ola 2013, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2013-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T3, ola 2013, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T3, ola 2013, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-T3-PRED
+  tipo: proporcion
+  unidad: prediccion de T3 para la ola 2013 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-T3-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T3, ola 2013, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2013-T5-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T5, ola 2013, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-T5-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T5 cae dentro del IC95 de R, ola 2013, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2013-T5-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T5, ola 2013, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-T5-ESTADO
+  tipo: texto
+  unidad: estado de T5 prediciendo la ola 2013, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2013-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T5, ola 2013, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T5, ola 2013, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-T5-PRED
+  tipo: proporcion
+  unidad: prediccion de T5 para la ola 2013 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-T5-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T5, ola 2013, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2013-TC-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, TC, ola 2013, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-TC-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si TC cae dentro del IC95 de R, ola 2013, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2013-TC-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, TC, ola 2013, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-TC-ESTADO
+  tipo: texto
+  unidad: estado de TC prediciendo la ola 2013, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2013-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de TC, ola 2013, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de TC, ola 2013, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-TC-PRED
+  tipo: proporcion
+  unidad: prediccion de TC para la ola 2013 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2013-TC-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de TC, ola 2013, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2014-K-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, K, ola 2014, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-K-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si K cae dentro del IC95 de R, ola 2014, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2014-K-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, K, ola 2014, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-K-ESTADO
+  tipo: texto
+  unidad: estado de K prediciendo la ola 2014, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2014-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de K, ola 2014, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de K, ola 2014, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-K-PRED
+  tipo: proporcion
+  unidad: prediccion de K para la ola 2014 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-K-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de K, ola 2014, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2014-T3-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T3, ola 2014, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-T3-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T3 cae dentro del IC95 de R, ola 2014, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2014-T3-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T3, ola 2014, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-T3-ESTADO
+  tipo: texto
+  unidad: estado de T3 prediciendo la ola 2014, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2014-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T3, ola 2014, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T3, ola 2014, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-T3-PRED
+  tipo: proporcion
+  unidad: prediccion de T3 para la ola 2014 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-T3-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T3, ola 2014, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2014-T5-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T5, ola 2014, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-T5-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T5 cae dentro del IC95 de R, ola 2014, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2014-T5-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T5, ola 2014, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-T5-ESTADO
+  tipo: texto
+  unidad: estado de T5 prediciendo la ola 2014, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2014-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T5, ola 2014, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T5, ola 2014, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-T5-PRED
+  tipo: proporcion
+  unidad: prediccion de T5 para la ola 2014 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-T5-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T5, ola 2014, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2014-TC-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, TC, ola 2014, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-TC-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si TC cae dentro del IC95 de R, ola 2014, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2014-TC-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, TC, ola 2014, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-TC-ESTADO
+  tipo: texto
+  unidad: estado de TC prediciendo la ola 2014, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2014-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de TC, ola 2014, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de TC, ola 2014, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-TC-PRED
+  tipo: proporcion
+  unidad: prediccion de TC para la ola 2014 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2014-TC-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de TC, ola 2014, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2015-K-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, K, ola 2015, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-K-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si K cae dentro del IC95 de R, ola 2015, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2015-K-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, K, ola 2015, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-K-ESTADO
+  tipo: texto
+  unidad: estado de K prediciendo la ola 2015, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2015-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de K, ola 2015, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de K, ola 2015, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-K-PRED
+  tipo: proporcion
+  unidad: prediccion de K para la ola 2015 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-K-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de K, ola 2015, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2015-T3-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T3, ola 2015, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-T3-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T3 cae dentro del IC95 de R, ola 2015, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2015-T3-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T3, ola 2015, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-T3-ESTADO
+  tipo: texto
+  unidad: estado de T3 prediciendo la ola 2015, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2015-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T3, ola 2015, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T3, ola 2015, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-T3-PRED
+  tipo: proporcion
+  unidad: prediccion de T3 para la ola 2015 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-T3-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T3, ola 2015, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2015-T5-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T5, ola 2015, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-T5-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T5 cae dentro del IC95 de R, ola 2015, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2015-T5-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T5, ola 2015, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-T5-ESTADO
+  tipo: texto
+  unidad: estado de T5 prediciendo la ola 2015, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2015-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T5, ola 2015, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T5, ola 2015, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-T5-PRED
+  tipo: proporcion
+  unidad: prediccion de T5 para la ola 2015 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-T5-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T5, ola 2015, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2015-TC-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, TC, ola 2015, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-TC-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si TC cae dentro del IC95 de R, ola 2015, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2015-TC-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, TC, ola 2015, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-TC-ESTADO
+  tipo: texto
+  unidad: estado de TC prediciendo la ola 2015, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2015-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de TC, ola 2015, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de TC, ola 2015, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-TC-PRED
+  tipo: proporcion
+  unidad: prediccion de TC para la ola 2015 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2015-TC-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de TC, ola 2015, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2016-K-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, K, ola 2016, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-K-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si K cae dentro del IC95 de R, ola 2016, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2016-K-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, K, ola 2016, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-K-ESTADO
+  tipo: texto
+  unidad: estado de K prediciendo la ola 2016, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2016-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de K, ola 2016, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de K, ola 2016, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-K-PRED
+  tipo: proporcion
+  unidad: prediccion de K para la ola 2016 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-K-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de K, ola 2016, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2016-T3-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T3, ola 2016, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-T3-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T3 cae dentro del IC95 de R, ola 2016, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2016-T3-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T3, ola 2016, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-T3-ESTADO
+  tipo: texto
+  unidad: estado de T3 prediciendo la ola 2016, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2016-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T3, ola 2016, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T3, ola 2016, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-T3-PRED
+  tipo: proporcion
+  unidad: prediccion de T3 para la ola 2016 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-T3-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T3, ola 2016, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2016-T5-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T5, ola 2016, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-T5-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T5 cae dentro del IC95 de R, ola 2016, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2016-T5-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T5, ola 2016, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-T5-ESTADO
+  tipo: texto
+  unidad: estado de T5 prediciendo la ola 2016, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2016-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T5, ola 2016, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T5, ola 2016, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-T5-PRED
+  tipo: proporcion
+  unidad: prediccion de T5 para la ola 2016 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-T5-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T5, ola 2016, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2016-TC-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, TC, ola 2016, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-TC-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si TC cae dentro del IC95 de R, ola 2016, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2016-TC-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, TC, ola 2016, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-TC-ESTADO
+  tipo: texto
+  unidad: estado de TC prediciendo la ola 2016, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2016-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de TC, ola 2016, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de TC, ola 2016, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-TC-PRED
+  tipo: proporcion
+  unidad: prediccion de TC para la ola 2016 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2016-TC-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de TC, ola 2016, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2017-K-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, K, ola 2017, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-K-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si K cae dentro del IC95 de R, ola 2017, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2017-K-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, K, ola 2017, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-K-ESTADO
+  tipo: texto
+  unidad: estado de K prediciendo la ola 2017, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2017-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de K, ola 2017, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de K, ola 2017, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-K-PRED
+  tipo: proporcion
+  unidad: prediccion de K para la ola 2017 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-K-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de K, ola 2017, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2017-T3-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T3, ola 2017, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-T3-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T3 cae dentro del IC95 de R, ola 2017, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2017-T3-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T3, ola 2017, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-T3-ESTADO
+  tipo: texto
+  unidad: estado de T3 prediciendo la ola 2017, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2017-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T3, ola 2017, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T3, ola 2017, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-T3-PRED
+  tipo: proporcion
+  unidad: prediccion de T3 para la ola 2017 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-T3-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T3, ola 2017, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2017-T5-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T5, ola 2017, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-T5-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T5 cae dentro del IC95 de R, ola 2017, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2017-T5-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T5, ola 2017, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-T5-ESTADO
+  tipo: texto
+  unidad: estado de T5 prediciendo la ola 2017, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2017-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T5, ola 2017, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T5, ola 2017, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-T5-PRED
+  tipo: proporcion
+  unidad: prediccion de T5 para la ola 2017 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-T5-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T5, ola 2017, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2017-TC-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, TC, ola 2017, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-TC-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si TC cae dentro del IC95 de R, ola 2017, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2017-TC-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, TC, ola 2017, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-TC-ESTADO
+  tipo: texto
+  unidad: estado de TC prediciendo la ola 2017, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2017-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de TC, ola 2017, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de TC, ola 2017, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-TC-PRED
+  tipo: proporcion
+  unidad: prediccion de TC para la ola 2017 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2017-TC-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de TC, ola 2017, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2018-K-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, K, ola 2018, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-K-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si K cae dentro del IC95 de R, ola 2018, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2018-K-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, K, ola 2018, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-K-ESTADO
+  tipo: texto
+  unidad: estado de K prediciendo la ola 2018, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2018-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de K, ola 2018, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de K, ola 2018, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-K-PRED
+  tipo: proporcion
+  unidad: prediccion de K para la ola 2018 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-K-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de K, ola 2018, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2018-T3-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T3, ola 2018, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-T3-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T3 cae dentro del IC95 de R, ola 2018, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2018-T3-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T3, ola 2018, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-T3-ESTADO
+  tipo: texto
+  unidad: estado de T3 prediciendo la ola 2018, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2018-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T3, ola 2018, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T3, ola 2018, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-T3-PRED
+  tipo: proporcion
+  unidad: prediccion de T3 para la ola 2018 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-T3-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T3, ola 2018, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2018-T5-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T5, ola 2018, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-T5-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T5 cae dentro del IC95 de R, ola 2018, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2018-T5-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T5, ola 2018, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-T5-ESTADO
+  tipo: texto
+  unidad: estado de T5 prediciendo la ola 2018, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2018-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T5, ola 2018, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T5, ola 2018, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-T5-PRED
+  tipo: proporcion
+  unidad: prediccion de T5 para la ola 2018 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-T5-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T5, ola 2018, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2018-TC-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, TC, ola 2018, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-TC-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si TC cae dentro del IC95 de R, ola 2018, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2018-TC-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, TC, ola 2018, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-TC-ESTADO
+  tipo: texto
+  unidad: estado de TC prediciendo la ola 2018, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2018-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de TC, ola 2018, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de TC, ola 2018, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-TC-PRED
+  tipo: proporcion
+  unidad: prediccion de TC para la ola 2018 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2018-TC-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de TC, ola 2018, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2019-K-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, K, ola 2019, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-K-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si K cae dentro del IC95 de R, ola 2019, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2019-K-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, K, ola 2019, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-K-ESTADO
+  tipo: texto
+  unidad: estado de K prediciendo la ola 2019, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2019-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de K, ola 2019, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de K, ola 2019, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-K-PRED
+  tipo: proporcion
+  unidad: prediccion de K para la ola 2019 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-K-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de K, ola 2019, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2019-T3-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T3, ola 2019, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-T3-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T3 cae dentro del IC95 de R, ola 2019, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2019-T3-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T3, ola 2019, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-T3-ESTADO
+  tipo: texto
+  unidad: estado de T3 prediciendo la ola 2019, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2019-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T3, ola 2019, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T3, ola 2019, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-T3-PRED
+  tipo: proporcion
+  unidad: prediccion de T3 para la ola 2019 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-T3-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T3, ola 2019, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2019-T5-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T5, ola 2019, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-T5-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T5 cae dentro del IC95 de R, ola 2019, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2019-T5-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T5, ola 2019, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-T5-ESTADO
+  tipo: texto
+  unidad: estado de T5 prediciendo la ola 2019, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2019-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T5, ola 2019, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T5, ola 2019, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-T5-PRED
+  tipo: proporcion
+  unidad: prediccion de T5 para la ola 2019 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-T5-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T5, ola 2019, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2019-TC-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, TC, ola 2019, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-TC-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si TC cae dentro del IC95 de R, ola 2019, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2019-TC-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, TC, ola 2019, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-TC-ESTADO
+  tipo: texto
+  unidad: estado de TC prediciendo la ola 2019, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2019-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de TC, ola 2019, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de TC, ola 2019, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-TC-PRED
+  tipo: proporcion
+  unidad: prediccion de TC para la ola 2019 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2019-TC-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de TC, ola 2019, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2020-K-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, K, ola 2020, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-K-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si K cae dentro del IC95 de R, ola 2020, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2020-K-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, K, ola 2020, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-K-ESTADO
+  tipo: texto
+  unidad: estado de K prediciendo la ola 2020, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2020-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de K, ola 2020, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de K, ola 2020, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-K-PRED
+  tipo: proporcion
+  unidad: prediccion de K para la ola 2020 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-K-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de K, ola 2020, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2020-T3-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T3, ola 2020, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-T3-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T3 cae dentro del IC95 de R, ola 2020, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2020-T3-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T3, ola 2020, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-T3-ESTADO
+  tipo: texto
+  unidad: estado de T3 prediciendo la ola 2020, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2020-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T3, ola 2020, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T3, ola 2020, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-T3-PRED
+  tipo: proporcion
+  unidad: prediccion de T3 para la ola 2020 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-T3-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T3, ola 2020, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2020-T5-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T5, ola 2020, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-T5-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T5 cae dentro del IC95 de R, ola 2020, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2020-T5-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T5, ola 2020, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-T5-ESTADO
+  tipo: texto
+  unidad: estado de T5 prediciendo la ola 2020, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2020-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T5, ola 2020, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T5, ola 2020, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-T5-PRED
+  tipo: proporcion
+  unidad: prediccion de T5 para la ola 2020 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-T5-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T5, ola 2020, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2020-TC-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, TC, ola 2020, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-TC-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si TC cae dentro del IC95 de R, ola 2020, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2020-TC-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, TC, ola 2020, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-TC-ESTADO
+  tipo: texto
+  unidad: estado de TC prediciendo la ola 2020, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2020-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de TC, ola 2020, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de TC, ola 2020, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-TC-PRED
+  tipo: proporcion
+  unidad: prediccion de TC para la ola 2020 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2020-TC-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de TC, ola 2020, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2021-K-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, K, ola 2021, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-K-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si K cae dentro del IC95 de R, ola 2021, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2021-K-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, K, ola 2021, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-K-ESTADO
+  tipo: texto
+  unidad: estado de K prediciendo la ola 2021, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2021-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de K, ola 2021, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de K, ola 2021, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-K-PRED
+  tipo: proporcion
+  unidad: prediccion de K para la ola 2021 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-K-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de K, ola 2021, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2021-T3-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T3, ola 2021, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-T3-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T3 cae dentro del IC95 de R, ola 2021, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2021-T3-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T3, ola 2021, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-T3-ESTADO
+  tipo: texto
+  unidad: estado de T3 prediciendo la ola 2021, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2021-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T3, ola 2021, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T3, ola 2021, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-T3-PRED
+  tipo: proporcion
+  unidad: prediccion de T3 para la ola 2021 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-T3-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T3, ola 2021, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2021-T5-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T5, ola 2021, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-T5-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T5 cae dentro del IC95 de R, ola 2021, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2021-T5-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T5, ola 2021, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-T5-ESTADO
+  tipo: texto
+  unidad: estado de T5 prediciendo la ola 2021, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2021-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T5, ola 2021, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T5, ola 2021, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-T5-PRED
+  tipo: proporcion
+  unidad: prediccion de T5 para la ola 2021 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-T5-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T5, ola 2021, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2021-TC-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, TC, ola 2021, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-TC-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si TC cae dentro del IC95 de R, ola 2021, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2021-TC-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, TC, ola 2021, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-TC-ESTADO
+  tipo: texto
+  unidad: estado de TC prediciendo la ola 2021, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2021-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de TC, ola 2021, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de TC, ola 2021, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-TC-PRED
+  tipo: proporcion
+  unidad: prediccion de TC para la ola 2021 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2021-TC-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de TC, ola 2021, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2022-K-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, K, ola 2022, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-K-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si K cae dentro del IC95 de R, ola 2022, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2022-K-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, K, ola 2022, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-K-ESTADO
+  tipo: texto
+  unidad: estado de K prediciendo la ola 2022, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2022-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de K, ola 2022, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de K, ola 2022, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-K-PRED
+  tipo: proporcion
+  unidad: prediccion de K para la ola 2022 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-K-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de K, ola 2022, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2022-T3-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T3, ola 2022, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-T3-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T3 cae dentro del IC95 de R, ola 2022, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2022-T3-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T3, ola 2022, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-T3-ESTADO
+  tipo: texto
+  unidad: estado de T3 prediciendo la ola 2022, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2022-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T3, ola 2022, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T3, ola 2022, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-T3-PRED
+  tipo: proporcion
+  unidad: prediccion de T3 para la ola 2022 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-T3-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T3, ola 2022, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2022-T5-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T5, ola 2022, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-T5-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T5 cae dentro del IC95 de R, ola 2022, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2022-T5-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T5, ola 2022, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-T5-ESTADO
+  tipo: texto
+  unidad: estado de T5 prediciendo la ola 2022, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2022-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T5, ola 2022, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T5, ola 2022, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-T5-PRED
+  tipo: proporcion
+  unidad: prediccion de T5 para la ola 2022 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-T5-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T5, ola 2022, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2022-TC-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, TC, ola 2022, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-TC-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si TC cae dentro del IC95 de R, ola 2022, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2022-TC-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, TC, ola 2022, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-TC-ESTADO
+  tipo: texto
+  unidad: estado de TC prediciendo la ola 2022, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2022-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de TC, ola 2022, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de TC, ola 2022, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-TC-PRED
+  tipo: proporcion
+  unidad: prediccion de TC para la ola 2022 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2022-TC-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de TC, ola 2022, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2023-K-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, K, ola 2023, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-K-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si K cae dentro del IC95 de R, ola 2023, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2023-K-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, K, ola 2023, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-K-ESTADO
+  tipo: texto
+  unidad: estado de K prediciendo la ola 2023, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2023-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de K, ola 2023, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de K, ola 2023, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-K-PRED
+  tipo: proporcion
+  unidad: prediccion de K para la ola 2023 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-K-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de K, ola 2023, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2023-T3-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T3, ola 2023, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-T3-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T3 cae dentro del IC95 de R, ola 2023, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2023-T3-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T3, ola 2023, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-T3-ESTADO
+  tipo: texto
+  unidad: estado de T3 prediciendo la ola 2023, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2023-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T3, ola 2023, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T3, ola 2023, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-T3-PRED
+  tipo: proporcion
+  unidad: prediccion de T3 para la ola 2023 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-T3-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T3, ola 2023, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2023-T5-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T5, ola 2023, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-T5-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T5 cae dentro del IC95 de R, ola 2023, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2023-T5-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T5, ola 2023, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-T5-ESTADO
+  tipo: texto
+  unidad: estado de T5 prediciendo la ola 2023, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2023-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T5, ola 2023, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T5, ola 2023, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-T5-PRED
+  tipo: proporcion
+  unidad: prediccion de T5 para la ola 2023 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-T5-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T5, ola 2023, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2023-TC-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, TC, ola 2023, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-TC-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si TC cae dentro del IC95 de R, ola 2023, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2023-TC-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, TC, ola 2023, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-TC-ESTADO
+  tipo: texto
+  unidad: estado de TC prediciendo la ola 2023, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2023-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de TC, ola 2023, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de TC, ola 2023, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-TC-PRED
+  tipo: proporcion
+  unidad: prediccion de TC para la ola 2023 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2023-TC-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de TC, ola 2023, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2024-K-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, K, ola 2024, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-K-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si K cae dentro del IC95 de R, ola 2024, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2024-K-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, K, ola 2024, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-K-ESTADO
+  tipo: texto
+  unidad: estado de K prediciendo la ola 2024, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2024-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de K, ola 2024, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de K, ola 2024, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-K-PRED
+  tipo: proporcion
+  unidad: prediccion de K para la ola 2024 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-K-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de K, ola 2024, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2024-T3-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T3, ola 2024, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-T3-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T3 cae dentro del IC95 de R, ola 2024, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2024-T3-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T3, ola 2024, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-T3-ESTADO
+  tipo: texto
+  unidad: estado de T3 prediciendo la ola 2024, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2024-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T3, ola 2024, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T3, ola 2024, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-T3-PRED
+  tipo: proporcion
+  unidad: prediccion de T3 para la ola 2024 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-T3-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T3, ola 2024, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2024-T5-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T5, ola 2024, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-T5-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T5 cae dentro del IC95 de R, ola 2024, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2024-T5-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T5, ola 2024, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-T5-ESTADO
+  tipo: texto
+  unidad: estado de T5 prediciendo la ola 2024, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2024-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T5, ola 2024, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T5, ola 2024, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-T5-PRED
+  tipo: proporcion
+  unidad: prediccion de T5 para la ola 2024 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-T5-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T5, ola 2024, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2024-TC-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, TC, ola 2024, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-TC-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si TC cae dentro del IC95 de R, ola 2024, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2024-TC-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, TC, ola 2024, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-TC-ESTADO
+  tipo: texto
+  unidad: estado de TC prediciendo la ola 2024, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2024-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de TC, ola 2024, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de TC, ola 2024, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-TC-PRED
+  tipo: proporcion
+  unidad: prediccion de TC para la ola 2024 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2024-TC-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de TC, ola 2024, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2025-K-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, K, ola 2025, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-K-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si K cae dentro del IC95 de R, ola 2025, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2025-K-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, K, ola 2025, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-K-ESTADO
+  tipo: texto
+  unidad: estado de K prediciendo la ola 2025, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2025-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de K, ola 2025, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de K, ola 2025, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-K-PRED
+  tipo: proporcion
+  unidad: prediccion de K para la ola 2025 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-K-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de K, ola 2025, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2025-T3-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T3, ola 2025, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-T3-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T3 cae dentro del IC95 de R, ola 2025, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2025-T3-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T3, ola 2025, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-T3-ESTADO
+  tipo: texto
+  unidad: estado de T3 prediciendo la ola 2025, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2025-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T3, ola 2025, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T3, ola 2025, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-T3-PRED
+  tipo: proporcion
+  unidad: prediccion de T3 para la ola 2025 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-T3-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T3, ola 2025, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2025-T5-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, T5, ola 2025, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-T5-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si T5 cae dentro del IC95 de R, ola 2025, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2025-T5-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, T5, ola 2025, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-T5-ESTADO
+  tipo: texto
+  unidad: estado de T5 prediciendo la ola 2025, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2025-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de T5, ola 2025, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de T5, ola 2025, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-T5-PRED
+  tipo: proporcion
+  unidad: prediccion de T5 para la ola 2025 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-T5-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de T5, ola 2025, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2025-TC-ABS-ERROR-PP
+  tipo: flotante
+  unidad: '|pred - R| en pp, TC, ola 2025, estimando ND'
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-TC-CAND-EN-IC-R
+  tipo: texto
+  unidad: SI si TC cae dentro del IC95 de R, ola 2025, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2025-TC-ERROR-PP
+  tipo: flotante
+  unidad: pred - R en pp, TC, ola 2025, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-TC-ESTADO
+  tipo: texto
+  unidad: estado de TC prediciendo la ola 2025, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-2025-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion de TC, ola 2025, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion de TC, ola 2025, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-TC-PRED
+  tipo: proporcion
+  unidad: prediccion de TC para la ola 2025 solo con las anteriores, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-2025-TC-R-EN-IC-CAND
+  tipo: texto
+  unidad: SI si R cae dentro del IC95 de TC, ola 2025, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-OLAS-NO-COMPARABLES
+  tipo: texto
+  unidad: olas excluidas por comparabilidad, estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-K-TODAS-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fraccion de olas con K dentro del IC95 de R (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-K-TODAS-COBERTURA-IC95INF
+  tipo: proporcion
+  unidad: Wilson 95 INF de la cobertura de K (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-K-TODAS-COBERTURA-IC95SUP
+  tipo: proporcion
+  unidad: Wilson 95 SUP de la cobertura de K (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-K-TODAS-COBERTURA-R-EN-IC-CAND
+  tipo: proporcion
+  unidad: fraccion de olas con R dentro del IC95 de K (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-K-TODAS-MAE-PP
+  tipo: flotante
+  unidad: MAE en pp de K (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-K-TODAS-N-COBERTURA
+  tipo: entero
+  unidad: olas con IC del candidato derivable, K (TODAS), estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-K-TODAS-N-OLAS
+  tipo: entero
+  unidad: olas predichas por K (TODAS), estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-K-TODAS-SESGO-PP
+  tipo: flotante
+  unidad: error medio con signo en pp de K (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-K-VENTANA-COMUN-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fraccion de olas con K dentro del IC95 de R (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-K-VENTANA-COMUN-COBERTURA-IC95INF
+  tipo: proporcion
+  unidad: Wilson 95 INF de la cobertura de K (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-K-VENTANA-COMUN-COBERTURA-IC95SUP
+  tipo: proporcion
+  unidad: Wilson 95 SUP de la cobertura de K (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-K-VENTANA-COMUN-COBERTURA-R-EN-IC-CAND
+  tipo: proporcion
+  unidad: fraccion de olas con R dentro del IC95 de K (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-K-VENTANA-COMUN-MAE-PP
+  tipo: flotante
+  unidad: MAE en pp de K (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-K-VENTANA-COMUN-N-COBERTURA
+  tipo: entero
+  unidad: olas con IC del candidato derivable, K (VENTANA-COMUN), estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-K-VENTANA-COMUN-N-OLAS
+  tipo: entero
+  unidad: olas predichas por K (VENTANA-COMUN), estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-K-VENTANA-COMUN-SESGO-PP
+  tipo: flotante
+  unidad: error medio con signo en pp de K (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T3-TODAS-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fraccion de olas con T3 dentro del IC95 de R (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T3-TODAS-COBERTURA-IC95INF
+  tipo: proporcion
+  unidad: Wilson 95 INF de la cobertura de T3 (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T3-TODAS-COBERTURA-IC95SUP
+  tipo: proporcion
+  unidad: Wilson 95 SUP de la cobertura de T3 (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T3-TODAS-COBERTURA-R-EN-IC-CAND
+  tipo: proporcion
+  unidad: fraccion de olas con R dentro del IC95 de T3 (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T3-TODAS-MAE-PP
+  tipo: flotante
+  unidad: MAE en pp de T3 (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T3-TODAS-N-COBERTURA
+  tipo: entero
+  unidad: olas con IC del candidato derivable, T3 (TODAS), estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T3-TODAS-N-OLAS
+  tipo: entero
+  unidad: olas predichas por T3 (TODAS), estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T3-TODAS-SESGO-PP
+  tipo: flotante
+  unidad: error medio con signo en pp de T3 (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T3-VENTANA-COMUN-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fraccion de olas con T3 dentro del IC95 de R (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T3-VENTANA-COMUN-COBERTURA-IC95INF
+  tipo: proporcion
+  unidad: Wilson 95 INF de la cobertura de T3 (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T3-VENTANA-COMUN-COBERTURA-IC95SUP
+  tipo: proporcion
+  unidad: Wilson 95 SUP de la cobertura de T3 (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T3-VENTANA-COMUN-COBERTURA-R-EN-IC-CAND
+  tipo: proporcion
+  unidad: fraccion de olas con R dentro del IC95 de T3 (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T3-VENTANA-COMUN-MAE-PP
+  tipo: flotante
+  unidad: MAE en pp de T3 (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T3-VENTANA-COMUN-N-COBERTURA
+  tipo: entero
+  unidad: olas con IC del candidato derivable, T3 (VENTANA-COMUN), estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T3-VENTANA-COMUN-N-OLAS
+  tipo: entero
+  unidad: olas predichas por T3 (VENTANA-COMUN), estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T3-VENTANA-COMUN-SESGO-PP
+  tipo: flotante
+  unidad: error medio con signo en pp de T3 (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T5-TODAS-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fraccion de olas con T5 dentro del IC95 de R (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T5-TODAS-COBERTURA-IC95INF
+  tipo: proporcion
+  unidad: Wilson 95 INF de la cobertura de T5 (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T5-TODAS-COBERTURA-IC95SUP
+  tipo: proporcion
+  unidad: Wilson 95 SUP de la cobertura de T5 (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T5-TODAS-COBERTURA-R-EN-IC-CAND
+  tipo: proporcion
+  unidad: fraccion de olas con R dentro del IC95 de T5 (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T5-TODAS-MAE-PP
+  tipo: flotante
+  unidad: MAE en pp de T5 (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T5-TODAS-N-COBERTURA
+  tipo: entero
+  unidad: olas con IC del candidato derivable, T5 (TODAS), estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T5-TODAS-N-OLAS
+  tipo: entero
+  unidad: olas predichas por T5 (TODAS), estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T5-TODAS-SESGO-PP
+  tipo: flotante
+  unidad: error medio con signo en pp de T5 (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T5-VENTANA-COMUN-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fraccion de olas con T5 dentro del IC95 de R (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T5-VENTANA-COMUN-COBERTURA-IC95INF
+  tipo: proporcion
+  unidad: Wilson 95 INF de la cobertura de T5 (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T5-VENTANA-COMUN-COBERTURA-IC95SUP
+  tipo: proporcion
+  unidad: Wilson 95 SUP de la cobertura de T5 (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T5-VENTANA-COMUN-COBERTURA-R-EN-IC-CAND
+  tipo: proporcion
+  unidad: fraccion de olas con R dentro del IC95 de T5 (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T5-VENTANA-COMUN-MAE-PP
+  tipo: flotante
+  unidad: MAE en pp de T5 (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T5-VENTANA-COMUN-N-COBERTURA
+  tipo: entero
+  unidad: olas con IC del candidato derivable, T5 (VENTANA-COMUN), estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T5-VENTANA-COMUN-N-OLAS
+  tipo: entero
+  unidad: olas predichas por T5 (VENTANA-COMUN), estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-T5-VENTANA-COMUN-SESGO-PP
+  tipo: flotante
+  unidad: error medio con signo en pp de T5 (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-TC-TODAS-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fraccion de olas con TC dentro del IC95 de R (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-TC-TODAS-COBERTURA-IC95INF
+  tipo: proporcion
+  unidad: Wilson 95 INF de la cobertura de TC (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-TC-TODAS-COBERTURA-IC95SUP
+  tipo: proporcion
+  unidad: Wilson 95 SUP de la cobertura de TC (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-TC-TODAS-COBERTURA-R-EN-IC-CAND
+  tipo: proporcion
+  unidad: fraccion de olas con R dentro del IC95 de TC (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-TC-TODAS-MAE-PP
+  tipo: flotante
+  unidad: MAE en pp de TC (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-TC-TODAS-N-COBERTURA
+  tipo: entero
+  unidad: olas con IC del candidato derivable, TC (TODAS), estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-TC-TODAS-N-OLAS
+  tipo: entero
+  unidad: olas predichas por TC (TODAS), estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-TC-TODAS-SESGO-PP
+  tipo: flotante
+  unidad: error medio con signo en pp de TC (TODAS), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-TC-VENTANA-COMUN-CAND-EN-IC-R-FRAC
+  tipo: proporcion
+  unidad: fraccion de olas con TC dentro del IC95 de R (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-TC-VENTANA-COMUN-COBERTURA-IC95INF
+  tipo: proporcion
+  unidad: Wilson 95 INF de la cobertura de TC (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-TC-VENTANA-COMUN-COBERTURA-IC95SUP
+  tipo: proporcion
+  unidad: Wilson 95 SUP de la cobertura de TC (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-TC-VENTANA-COMUN-COBERTURA-R-EN-IC-CAND
+  tipo: proporcion
+  unidad: fraccion de olas con R dentro del IC95 de TC (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-TC-VENTANA-COMUN-MAE-PP
+  tipo: flotante
+  unidad: MAE en pp de TC (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-TC-VENTANA-COMUN-N-COBERTURA
+  tipo: entero
+  unidad: olas con IC del candidato derivable, TC (VENTANA-COMUN), estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-TC-VENTANA-COMUN-N-OLAS
+  tipo: entero
+  unidad: olas predichas por TC (VENTANA-COMUN), estimando ND
+- id: RESULT-DUELO-OM-OM-ND-RESUMEN-TC-VENTANA-COMUN-SESGO-PP
+  tipo: flotante
+  unidad: error medio con signo en pp de TC (VENTANA-COMUN), estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO-OM-OM-ND-VENTANA-COMUN
+  tipo: texto
+  unidad: olas donde los cuatro contendientes son construibles, estimando ND

@@ -1,0 +1,163 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ARBITRO-MARGINALES-ENVIPE2025-0001
+spec_md: ../../../forense/prereg-caja/ARBITRO-MARGINALES-ENVIPE2025-spec-v1_0.md
+spec_md_sha256: 5e8f2c1377ed0c98c6d0b3e65ce6e3f7734f86282370893650305fc501d73127
+script: data/corrida0/CALC-ARBITRO-MARGINALES-ENVIPE2025-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: ARBITRO-MARGINALES-POR-EJE
+  cuenta_gen2: SI
+  cuenta_gen2_nota: propuesto por el encargo GEN2-ARBITRO-MARGINALES-1 §2 (firma 3D, mitad b, mide la realidad desde microdato con cadena completa); no adopta
+  exposicion_historica: NO-CIEGO-AL-ARBITRO-GEN1; MICRODATO-2025-NO-ABIERTO-AL-CONGELAR
+  acto: GEN2-ARBITRO-MARGINALES-1
+inputs:
+  - {id: envipe2025_csv, origen: manifiesto}
+  - {id: MEDIDOR-PISO-EJES-0002, origen: repo, ruta: data/corrida0/CALC-PISOS-ENVIPE2024-EJES-0002/medidor.py, sha256: 0a1f3385188bb777d7f307d4989bd0a3fcfcfbba0e8dbba0c940a4797ab42953}
+variables:
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: BP1_20, rol: universo-y-denuncia}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: BP1_23, rol: evasion}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: BP2_1, rol: cobertura-seguro}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: BPCOD, rol: clase-delito}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: FAC_DEL, rol: ponderador}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: EST_DIS, rol: estrato}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: UPM_DIS, rol: upm}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: ID_PER, rol: llave}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: SEXO, rol: eje-sexo}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: EDAD, rol: eje-edad}
+  - {archivo: conjunto_de_datos_tmod_vic_envipe2025.csv, variable: DOMINIO, rol: eje-dominio}
+  - {archivo: conjunto_de_datos_tsdem_envipe2025.csv, variable: ID_PER, rol: llave}
+  - {archivo: conjunto_de_datos_tsdem_envipe2025.csv, variable: NIV, rol: eje-escolaridad}
+universo: "Evasión: delitos con BP1_20 en 1/2; denuncia: BPCOD=01, BP1_20 en 1/2 y BP2_1 en 1/2; FAC_DEL > 0 y diseño válido; cada eje conserva su denominador válido."
+filtros: "FAC_DEL positivo y EST_DIS/UPM_DIS no vacíos; edad 18--96; códigos inválidos o blanco fuera sólo del eje afectado; unión delito<-persona por ID_PER m:1."
+ponderador: FAC_DEL
+transformacion: "Evasión = BP1_20=2 y BP1_23 en 04/05/06/08; denuncia = BP1_20=1. Ejes: sexo, edad 18-29/30-44/45-59/60-96, NIV 00-02/03/04-07/08-09 (proxy), DOMINIO R/C/U; cobertura BP2_1 1 asegurado / 2 no; total por desenlace."
+estimando: "Proporciones ponderadas de ENVIPE 2025 por celda marginal de la rejilla del piso, con IC95: la realidad R contra la que se califica la persistencia t-1 (CALC-PISOS-ENVIPE2024-EJES-0002)."
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+parametros:
+  ola: '2025'
+  payload_id: envipe2025_csv
+  bootstrap_replicas: 10000
+  metodo_ic: "bootstrap UPM estratificado; percentiles 2.5/97.5; réplicas compartidas (importado del medidor sellado del piso)"
+  agrupacion: UNA-SOLA-VARIABLE
+dependencias_materiales: [numpy, pandas]
+resultados:
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-TOTAL-TODOS-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-TOTAL-TODOS-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-TOTAL-TODOS-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-TOTAL-TODOS-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-TOTAL-TODOS-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-TOTAL-TODOS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-SEXO-1-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-SEXO-1-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-SEXO-1-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-SEXO-1-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-SEXO-1-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-SEXO-1-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-SEXO-2-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-SEXO-2-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-SEXO-2-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-SEXO-2-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-SEXO-2-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-SEXO-2-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-18-29-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-18-29-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-18-29-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-30-44-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-30-44-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-30-44-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-30-44-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-30-44-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-45-59-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-45-59-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-45-59-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-45-59-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-45-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-60-MAS-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-60-MAS-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-60-MAS-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-SECUNDARIA-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-SUPERIOR-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-RURAL-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-RURAL-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-RURAL-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-RURAL-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-RURAL-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-RURAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-COMPLEMENTO-URBANO-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-COMPLEMENTO-URBANO-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-COMPLEMENTO-URBANO-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-COMPLEMENTO-URBANO-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-COMPLEMENTO-URBANO-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-COMPLEMENTO-URBANO-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-URBANO-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-URBANO-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-URBANO-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-URBANO-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-URBANO-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-DOMINIO-URBANO-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-TOTAL-TODOS-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-TOTAL-TODOS-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-TOTAL-TODOS-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-TOTAL-TODOS-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-TOTAL-TODOS-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-TOTAL-TODOS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-IC-LO, tipo: proporcion, unidad: "límite inferior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-IC-HI, tipo: proporcion, unidad: "límite superior IC95", permite_no_estimable: true}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-N, tipo: entero, unidad: "n sin ponderar (delitos)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-DEN-W, tipo: flotante, unidad: "denominador ponderado"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap definidas"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-G-FILAS-VICTIMIZACION, tipo: entero, unidad: "filas de tmod_vic"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-G-FILAS-DISENO-VALIDO, tipo: entero, unidad: "filas con ponderador > 0 y diseño"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-G-JOIN-SIN-DEMOGRAFIA, tipo: entero, unidad: "delitos sin persona en tsdem"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-G-REPLICAS, tipo: entero, unidad: "réplicas bootstrap"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-G-OLA, tipo: texto, unidad: "ola medida"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-G-N-UNIVERSO, tipo: entero, unidad: "delitos con BP1_20 en 1/2"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-EVASION-G-BP1-20-FUERA, tipo: entero, unidad: "delitos con BP1_20 fuera de 1/2"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-G-N-UNIVERSO, tipo: entero, unidad: "delitos BPCOD=01 con BP1_20 y BP2_1 válidos"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-G-EJE-TOTAL-FUERA, tipo: entero, unidad: "delitos fuera del eje (código inválido o blanco)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-G-EJE-SEXO-FUERA, tipo: entero, unidad: "delitos fuera del eje (código inválido o blanco)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-G-EJE-EDAD-FUERA, tipo: entero, unidad: "delitos fuera del eje (código inválido o blanco)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-G-EJE-ESCOLARIDAD-FUERA, tipo: entero, unidad: "delitos fuera del eje (código inválido o blanco)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-G-EJE-DOMINIO-FUERA, tipo: entero, unidad: "delitos fuera del eje (código inválido o blanco)"}
+  - {id: RESULT-ARBITRO-ENVIPE2025-G-EJE-COBERTURA-SEGURO-FUERA, tipo: entero, unidad: "delitos fuera del eje (código inválido o blanco)"}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: mismo payload, transformación y sumas float64; bootstrap determinista por semilla (misma tolerancia que el piso)
