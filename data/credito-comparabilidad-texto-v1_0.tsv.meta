@@ -1,0 +1,65 @@
+ACTO GEN2-DIN-CREDITO-COMPARABILIDAD-TEXTO-1 — metadato de universo de data/credito-comparabilidad-texto-v1_0.tsv
+
+Archivo hermano (mismo patrón que data/inventario-reactivos-v1_0.tsv.meta, ADR-213: no se
+mezcla como comentario en el TSV principal para no romper el parseo).
+
+fecha_generacion: 2026-09-20
+commit_padre: bd9ed213 (origin/main al redactar el encargo; sin movimiento al abrir)
+rama: acto/gen2-din-credito-comparabilidad-texto-1
+encargo: forense/encargos/2026-09-20-GEN2-DIN-CREDITO-COMPARABILIDAD-TEXTO-1.md
+insumo_k1_k8: forense/encargos/2026-09-20-GEN2-DIN-CREDITO-COMPARABILIDAD-TEXTO-1-INSUMO-K1-K8.md (lista cerrada de mesa, 20/sep/2026)
+
+qué_es: 40 filas = 8 conductas de crédito (K1-K8) × 5 olas de ENIF (2012, 2015, 2018, 2021,
+  2024), una por par, con el veredicto de comparabilidad del INSTRUMENTO leído del texto de la
+  pregunta, sus opciones, sus códigos y su flujo — nunca del nombre de la variable. No contiene
+  ninguna cifra sobre conducta en México: sólo afirma sobre el cuestionario y el FD.
+
+ola_ancla: 2021. La columna `comparado_con` lo dice por fila. Cada veredicto se lee contra la
+  fila 2021 de la misma conducta (la fila 2021 lleva «2021 (ancla)» y su veredicto es
+  MISMO-INSTRUMENTO respecto de sí misma, o NO-ESTIMABLE si 2021 no pregunta la conducta).
+  Razón: el sucesor 1 (marginales de crédito ENIF 2021) es el piso del dominio.
+
+vocabulario_veredicto (lista cerrada, §5 del encargo; la consecuencia vive SÓLO aquí):
+  MISMO-INSTRUMENTO      redacción, opciones, códigos, filtro y flujo idénticos
+  CAMBIO-MENOR           algo cambió y la columna `nota` dice por qué no entra en el estimando
+  CAMBIO-DE-INSTRUMENTO  cambió algo que sí entra en el estimando (incluye cambio de unidad, P3)
+  NO-ESTIMABLE           la ola no pregunta la conducta; `texto_buscado` obligatorio (A.15)
+  NO-VERIFICABLE-AQUÍ    2012 y 2015, sin cuestionario en el corpus; `limite_fd` obligatorio;
+                         no se degrada a NO-ESTIMABLE (§5)
+
+columnas (18): conducta · conducta_texto · ola · comparado_con · veredicto ·
+  alcance_del_veredicto (a qué parte de la conducta aplica; K2/K3 tienen componentes) ·
+  reactivo (nemónico tal como aparece en el FD) · texto_literal · opciones_y_codigos ·
+  filtro_y_flujo · unidad (P / P por familia / PR) · poblacion_base · fuente (archivo +
+  sha256/16 + pdf-pág o fila del FD) · secciones_fd_recorridas · componentes_no_estimables ·
+  texto_buscado · limite_fd · nota.
+  Obligatorias siempre: conducta, conducta_texto, ola, comparado_con, veredicto,
+  alcance_del_veredicto, unidad, poblacion_base, fuente, secciones_fd_recorridas, nota.
+  Obligatorias por veredicto: las cuatro de cita (reactivo, texto_literal, opciones_y_codigos,
+  filtro_y_flujo) si el veredicto es positivo; texto_buscado si NO-ESTIMABLE o si
+  componentes_no_estimables no está vacía; limite_fd si NO-VERIFICABLE-AQUÍ.
+
+conteo_por_veredicto (derivado: cut -f5 | sort | uniq -c):
+  MISMO-INSTRUMENTO 8 · CAMBIO-MENOR 11 · CAMBIO-DE-INSTRUMENTO 2 · NO-ESTIMABLE 3 ·
+  NO-VERIFICABLE-AQUÍ 16 (= 8 conductas × 2 olas sin cuestionario)
+
+documentos_leídos (12, identidad verificada con tests/manifiesto.py --verifica --id, 12/12 COINCIDE,
+  0 AUSENTE, 0 raíz-no-configurada, 0 hash-discordante; salida cruda en la nota de cierre):
+  enif_2012_fd_enif2012 · enif_2012_modelo_enif2012 · enif_2015_enif_2015_fd ·
+  enif_2015_enif_2015_modelo_datos · enif2018_fd_xlsx · enif2018_cuestionario_pdf ·
+  enif2021_fd_zip · enif2021_cuestionario_pdf · enif_2021_enif_2021_modelo_er_pdf ·
+  enif2024_fd_xlsx · enif2024_cuestionario_pdf · enif_2024_enif_2024_modelo_logico_pdf
+  NINGÚN miembro de datos (dbf/sav/csv) de ninguna ola fue abierto; la sección de crédito de
+  ENIF 2024 sigue RESERVADA (firma de mesa 20/sep/2026).
+
+extracción: pdftotext -layout (poppler) para los PDF; openpyxl (read_only) para los FD xlsx;
+  zipfile para enif_2021_fd_pdf.zip / modelo_er / modelo_logico. Páginas citadas = página del
+  PDF (conteo de form-feeds de pdftotext), no el folio impreso.
+
+test: tests/test_credito_comparabilidad_texto.py (cableado en .github/workflows/verify.yml y
+  censado en forense/analisis/ci-guardias/censo-tests.tsv). Corre primero el caso sintético
+  (D-22) y después la tabla real; pina el conteo por veredicto de arriba.
+
+lector_previsto: sucesor 1 (marginales de crédito ENIF 2021, y 2018 donde el texto lo permita).
+falsador (encargo §10): si ese sucesor tiene que volver a leer el texto de algún reactivo que
+  esta tabla ya clasificó, la tabla no sirvió y se revisa su diseño de columnas.
