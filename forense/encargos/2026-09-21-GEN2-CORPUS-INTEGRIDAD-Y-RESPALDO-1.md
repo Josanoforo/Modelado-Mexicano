@@ -43,3 +43,13 @@ Propio: `forense/analisis/corpus-integridad-1/` (censo, tabla de propuestas, ín
 
 ## 10 · NO HACE · SUCESORES · CIERRE
 No reorganiza raíces · no corrige el manifiesto · no automatiza el respaldo (D-14: primero se ve si se repite a mano). Sucesor: decisión de mesa sobre la tabla de propuestas de raíz. Auditoría §5: no aplica. Falsador a tres meses: si nadie repitió el respaldo, la instrucción no sirve y se anota. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+| qué (verbatim del encargo) | por qué | impacto | sucesor |
+|---|---|---|---|
+| P3 · «copia al destino de mesa; verificación por hash en destino» | `DECISIÓN-DE-MESA-PENDIENTE`: mesa contestó «Sin destino por ahora» a la bifurcación del §2. Se corrió lo previsto para ese caso: índice desde los archivos, copia a `/home/pc0/mm-respaldo-corpus/2026-09-21/` (mismo disco), rehash en destino 1 914/1 914 VERDE, restauración completa VERDE. **Eso todavía no es un respaldo.** | El corpus sigue en una sola máquina. | `FP-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01` + acto que repita `INSTRUCCION-RESPALDO.md` con el destino (`NC-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01`) |
+| P1 · «No edites el manifiesto para que cuadre: propón el cambio en una tabla» — las 4 propuestas no se aplican | `DECISIÓN-DE-MESA-PENDIENTE`: sucesor fijado por el §10 del propio encargo; editar el manifiesto es PARO c. | 6 payloads (2 MOCIBA en el repo, 4 `enco_*_reservado` fuera de perímetro) se verifican sólo a mano, no por `--verifica`. | mesa sobre `propuestas-manifiesto-2026-09-21.tsv` (`NC-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-02`) |
+| P2 · «Traer lo que falta y se puede» | No es NO-CORRIDO: se corrió y el conjunto resultó vacío (0 `NO-ESTÁ` con `url_origen` fuera del repo). 0 descargas, 0 intentos, candado del agente intacto. | Ninguno. | — |
+| Reserva · «al menos un payload por encuesta» en la prueba de restauración | La muestra por subdirectorio (147) no garantiza «por encuesta» (284 + 342 payloads son archivos sueltos y los ids no llevan encuesta), así que se restauró **todo** (1 914/1 914). Cumplido por exceso, declarado. | Ninguno. | — |
+| Reserva · modelo | El encargo sugería Sonnet; corrió Opus 5 (subir está permitido). | Ninguno. | — |
