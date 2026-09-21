@@ -40,6 +40,29 @@
 # celda-D `TRA…` (delito, envipe2025): queda listada como pregunta aparte
 # (no se decide aquí qué unidad le corresponde).
 # ─────────────────────────────────────────────────────────────────────────────
+# AVISO FECHADO · 2026-09-21 · ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_3 (CAJA)
+# EL PILOTO CORRIÓ. Emisiones selladas y en origin (d2488a98) ANTES del COMMIT-3a
+# (704d5289, dos líneas sha256 en el spec.yaml del árbitro) y del COMMIT-3
+# (CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001--704d52894c2f). El orden del diff es el sello.
+#
+#   VEREDICTO B-bis (spec v1.1 §4.2, palabras de la spec): FALSADOR DÉBIL.
+#   Nadie vence: Sλ vence a C2 en 3/15 PUNTUADA, S½ en 3/15 (umbral ¾ = 12);
+#   12 INDECIDIBLE cada uno. ΔMAE = MAE(C2) − MAE(j): Sλ 1.465 pp IC95 [0.439, 2.115],
+#   S½ 1.101 pp IC95 [0.256, 1.484] — los dos IC admiten > 0.5 pp, así que no cabe
+#   «corroborada». MAE vs R: C2 3.411 · Sλ 1.946 · S½ 2.310 · C1a 10.654 · C1b 10.519 pp.
+#   Soporte 2025: 15/15 PUNTUADA con n ≥ 200 (SOPORTE-FALLAN = 0; CON-SOPORTE);
+#   18-29 × HASTA-PRIMARIA FUERA-DE-SOPORTE ex ante (n₂₀₂₅ = 67). S2: SIN-RESERVA
+#   (1 trámite con código 97; fracción 0.00022 en 60+). C2 reproducido a 0.0.
+#   `champion_actual` sigue NINGUNO: ESTE ACTO NO ADOPTA NADA. Un piso no vencido
+#   se adopta salvo veto de mesa (A-bis 6): esa decisión es de mesa, no de aquí.
+#
+# LOS VALORES DE ABAJO SE ACTUALIZAN sólo en los campos que el cierre autoriza:
+# `resultado` por candidato, `momentos_holdout_refs`, `estado_decidibilidad`,
+# `margen_material`, `veredicto`, `output_nativo.valor_ref` y las dos estampas de
+# adjudicación. El cuerpo firmado NO se edita. Cifras completas:
+#   data/corrida0/CALC-GOB-DIGITAL-EXE-EMISIONES-0002/ · CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001/
+#   forense/notas/2026-09-21-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_3-cierre.md
+# ─────────────────────────────────────────────────────────────────────────────
 celda_d:
   id: GOB.gobierno_digital.encig2025.edad_x_escolaridad
   estimando: "p(adopta canal digital | edad, escolaridad) -- proporcion ponderada [0,1] de PAGOS ORDINARIOS DEL SERVICIO DE LUZ (ENCIG 2025 sec_7, N_TRA==01, FAC_TRA) hechos por canal digital (P7_3 in {4,5}) entre los de canal valido ({1,2,4,5,6}); NO es 'gobierno digital' en general ni confianza en el Estado (spec v1.1 primera linea)"
@@ -49,19 +72,19 @@ celda_d:
   unidad_objetivo: evento
   universo_candidatos: "spec v1.1 (hereda v1.0 verbatim, FP-400): piso C2, control C2-compuesto, referencias C1a/C1b, retadores S-MEDIO y S-LAMBDA; lambda = 0.8937949410086089 derivada de los DELTA/DELTA-EE sellados; L fuera; declarados ANTES de abrir ENCIG 2025"
   candidatos:
-    - {id_candidato: C2, rol: PISO, fuentes: [ENCIG], edicion_periodo: "2025 (marginales de UNA variable, recalculados sobre el universo del cruce)", universo_instrumento: "TRAMITES: pagos de luz N_TRA==01 con P7_3 in {1,2,4,5,6}, FAC_TRA, EST_DIS x UPM_DIS, join residentes por ID_PER m:1", diseno_datos: transversal, estrategia: composicion, regla_composicion: "expit(logit p_a + logit p_b - logit p_all), replica por replica (bootstrap UPM en estrato, PCG64 20260919, 10000)", production_spec_refs: ["prereg-caja GOB-gobierno-digital-exe15-spec-v1_1", "CALC-GOB-DIGITAL-EXE-EMISIONES-0002"], resultado: "SPEC-CONGELADA -- no ejecutado sobre 2025; el codigo corrio sobre fixture sintetico y reprodujo 2023 (tests/test_piloto3_v11.py)"}
-    - {id_candidato: C2-COMPUESTO, rol: COMPLEMENTO, fuentes: [ENCIG], edicion_periodo: "2025 (marginales publicos del arbitro)", universo_instrumento: "CALC-C2-COMPUESTO-RESERVADAS-0001, punto sin IC; control de C2, NO piso", diseno_datos: transversal, estrategia: composicion, regla_composicion: NO-APLICA, production_spec_refs: ["CALC-GOB-DIGITAL-EXE-EMISIONES-0002"], resultado: NO-APLICA}
-    - {id_candidato: C1A, rol: BASELINE, fuentes: [ENCIG], edicion_periodo: "2023", universo_instrumento: "mismo universo, ola 2023 (RESULT sellados de CALC-ENCIG2023-CRUCES-HISTORICOS-0002)", diseno_datos: transversal, estrategia: composicion, regla_composicion: "expit(logit p23(a,b) - delta23(a,b)) = compuesto con marginales 2023; punto sellado, IC NO-DERIVABLE (sin replicas selladas)", production_spec_refs: ["prereg-caja GOB-gobierno-digital-exe15-spec-v1_1", "CALC-GOB-DIGITAL-EXE-EMISIONES-0002"], resultado: "SPEC-CONGELADA -- referencia, no piso a vencer"}
-    - {id_candidato: C1B, rol: BASELINE, fuentes: [ENCIG], edicion_periodo: "2023", universo_instrumento: "mismo universo, ola 2023 (RESULT sellados)", diseno_datos: transversal, estrategia: persistencia, regla_composicion: "p23(a,b) directo, punto e IC sellados", production_spec_refs: ["prereg-caja GOB-gobierno-digital-exe15-spec-v1_1", "CALC-GOB-DIGITAL-EXE-EMISIONES-0002"], resultado: "SPEC-CONGELADA -- referencia, no piso a vencer (el CALC de persistencia dice CAMBIA para ENCIG, MAE 10.838 pp)"}
-    - {id_candidato: S-MEDIO, rol: CHALLENGER, fuentes: [ENCIG], edicion_periodo: "2025 (marginales) + 2023 (interaccion)", universo_instrumento: "C2 + delta23(a,b) sellado", diseno_datos: transversal, estrategia: composicion, regla_composicion: "expit(logit C2 + 0.5*delta23(a,b)), replica por replica sobre C2", production_spec_refs: ["prereg-caja GOB-gobierno-digital-exe15-spec-v1_1", "CALC-GOB-DIGITAL-EXE-EMISIONES-0002", "CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001"], resultado: "SPEC-CONGELADA"}
-    - {id_candidato: S-LAMBDA, rol: CHALLENGER, fuentes: [ENCIG], edicion_periodo: "2025 (marginales) + 2021-2023 (interaccion promediada, encogida)", universo_instrumento: "C2 + lambda*(delta21+delta23)/2 sellados", diseno_datos: transversal, estrategia: composicion, regla_composicion: "expit(logit C2 + 0.8937949410086089*dbar(a,b)), replica por replica sobre C2", production_spec_refs: ["prereg-caja GOB-gobierno-digital-exe15-spec-v1_1", "CALC-GOB-DIGITAL-EXE-EMISIONES-0002", "CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001"], resultado: "SPEC-CONGELADA"}
+    - {id_candidato: C2, rol: PISO, fuentes: [ENCIG], edicion_periodo: "2025 (marginales de UNA variable, recalculados sobre el universo del cruce)", universo_instrumento: "TRAMITES: pagos de luz N_TRA==01 con P7_3 in {1,2,4,5,6}, FAC_TRA, EST_DIS x UPM_DIS, join residentes por ID_PER m:1", diseno_datos: transversal, estrategia: composicion, regla_composicion: "expit(logit p_a + logit p_b - logit p_all), replica por replica (bootstrap UPM en estrato, PCG64 20260919, 10000)", production_spec_refs: ["prereg-caja GOB-gobierno-digital-exe15-spec-v1_1", "CALC-GOB-DIGITAL-EXE-EMISIONES-0002"], resultado: "EJECUTADO -- 16/16 celdas con IC95 replica por replica (COMMIT-2, 565 RESULT); PISO NO VENCIDO: MAE vs R = 3.411216 pp sobre las 15 PUNTUADA; Sλ y S½ le vencen en 3/15 (umbral 12); reproducido en el arbitro a 0.0"}
+    - {id_candidato: C2-COMPUESTO, rol: COMPLEMENTO, fuentes: [ENCIG], edicion_periodo: "2025 (marginales publicos del arbitro)", universo_instrumento: "CALC-C2-COMPUESTO-RESERVADAS-0001, punto sin IC; control de C2, NO piso", diseno_datos: transversal, estrategia: composicion, regla_composicion: NO-APLICA, production_spec_refs: ["CALC-GOB-DIGITAL-EXE-EMISIONES-0002"], resultado: NO-APLICA}   # control, no compite; |C2 - control| por celda: 12 en RESULT -C2-VS-CONTROL-ABS (max 1.30e-3) y las 4 de 60-96 como ARITMETICA DERIVADA en la nota de cierre (1.30e-3, 1.01e-3, 5.98e-4, 4.17e-4)
+    - {id_candidato: C1A, rol: BASELINE, fuentes: [ENCIG], edicion_periodo: "2023", universo_instrumento: "mismo universo, ola 2023 (RESULT sellados de CALC-ENCIG2023-CRUCES-HISTORICOS-0002)", diseno_datos: transversal, estrategia: composicion, regla_composicion: "expit(logit p23(a,b) - delta23(a,b)) = compuesto con marginales 2023; punto sellado, IC NO-DERIVABLE (sin replicas selladas)", production_spec_refs: ["prereg-caja GOB-gobierno-digital-exe15-spec-v1_1", "CALC-GOB-DIGITAL-EXE-EMISIONES-0002"], resultado: "EJECUTADO -- punto por celda (IC NO-DERIVABLE: C1A-IC-CAUSA = SIN-REPLICAS-SELLADAS-2023, 32 null declarados); MAE vs R = 10.654133 pp; referencia, no adjudica"}
+    - {id_candidato: C1B, rol: BASELINE, fuentes: [ENCIG], edicion_periodo: "2023", universo_instrumento: "mismo universo, ola 2023 (RESULT sellados)", diseno_datos: transversal, estrategia: persistencia, regla_composicion: "p23(a,b) directo, punto e IC sellados", production_spec_refs: ["prereg-caja GOB-gobierno-digital-exe15-spec-v1_1", "CALC-GOB-DIGITAL-EXE-EMISIONES-0002"], resultado: "EJECUTADO -- punto e IC sellados de 2023; MAE vs R = 10.519332 pp; referencia, no adjudica (persistencia CAMBIA, como el CALC de persistencia anticipo)"}
+    - {id_candidato: S-MEDIO, rol: CHALLENGER, fuentes: [ENCIG], edicion_periodo: "2025 (marginales) + 2023 (interaccion)", universo_instrumento: "C2 + delta23(a,b) sellado", diseno_datos: transversal, estrategia: composicion, regla_composicion: "expit(logit C2 + 0.5*delta23(a,b)), replica por replica sobre C2", production_spec_refs: ["prereg-caja GOB-gobierno-digital-exe15-spec-v1_1", "CALC-GOB-DIGITAL-EXE-EMISIONES-0002", "CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001"], resultado: "EJECUTADO -- NO GANA: vence a C2 en 3/15 PUNTUADA (18-29xMEDIA-SUPERIOR, 30-44xSECUNDARIA, 60-96xHASTA-PRIMARIA), 12 INDECIDIBLE, 0 pierde; MAE vs R = 2.309970 pp; DeltaMAE = 1.101246 pp IC95 [0.255951, 1.484009]"}
+    - {id_candidato: S-LAMBDA, rol: CHALLENGER, fuentes: [ENCIG], edicion_periodo: "2025 (marginales) + 2021-2023 (interaccion promediada, encogida)", universo_instrumento: "C2 + lambda*(delta21+delta23)/2 sellados", diseno_datos: transversal, estrategia: composicion, regla_composicion: "expit(logit C2 + 0.8937949410086089*dbar(a,b)), replica por replica sobre C2", production_spec_refs: ["prereg-caja GOB-gobierno-digital-exe15-spec-v1_1", "CALC-GOB-DIGITAL-EXE-EMISIONES-0002", "CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001"], resultado: "EJECUTADO -- NO GANA: vence a C2 en 3/15 PUNTUADA (las mismas tres que S-MEDIO), 12 INDECIDIBLE, 0 pierde; MAE vs R = 1.946110 pp, el menor de los cinco; DeltaMAE = 1.465107 pp IC95 [0.439227, 2.114863]"}
   criterio_adjudicacion: {texto: "error absoluto por celda en pp vs R derivado en COMMIT-3 (CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001); INDECIDIBLE si ambos caen dentro del IC de R o si |d_L-d_M| < 0.5*EE(R) (CAREO-ADV-DUELO-diseno-v2:38), cada retador contra C2; un retador gana solo si vence a C2 en >= 3/4 de las PUNTUADA (n>=200 en 2021, 2023 y 2025; FUERA-DE-SOPORTE global si fallan >=5 de 15); DeltaMAE con IC replica por replica; B-bis verbatim (spec v1.1 §4.2): nadie vence y sup(DeltaMAE)<=0.5 pp -> CORROBORADA; nadie vence pero IC admite >0.5 -> FALSADOR-DEBIL; si ambas caben manda FALSADOR-DEBIL; retador vence -> LIMITA-C2 solo aqui; marca RESERVA-S2 si aplica (FP-399)", escala: "puntos porcentuales; EE(R) = (IC95sup - IC95inf)/3.92"}
-  estado_decidibilidad: NO-APLICA   # SPEC-CONGELADA: no hay dato de 2025; el COMMIT-3 lo fija por celda
-  margen_material: PENDIENTE-DERIVACION
-  momentos_holdout_refs: ["CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001 (COMMIT-3, no ejecutado)", "data/corrida0/marcador-segmento.tsv: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad RESERVADA"]
-  veredicto: SPEC-CONGELADA
-  champion_actual: NINGUNO   # nada se adjudica en COMMIT-1; adoptar es de mesa
-  output_nativo: {tipo: proporcion, escala: "[0,1] ponderada FAC_TRA, unidad TRAMITE", valor_ref: "R (ENCIG 2025, 16 celdas): NO DERIVADO -- reservado hasta COMMIT-3 (E.6)"}
+  estado_decidibilidad: PUNTUADA   # 15/15 PUNTUADA con soporte 2025 (SOPORTE-FALLAN = 0); 18-29xHASTA-PRIMARIA FUERA-DE-SOPORTE ex ante; por retador: 3 VENCE + 12 INDECIDIBLE
+  margen_material: 3.411216   # pp; MAE del PISO C2 contra R sobre las 15 PUNTUADA. VEREDICTO = FALSADOR-DEBIL: nadie vence (3/15 < 12) y los IC de DeltaMAE admiten > 0.5 pp (Sλ [0.44, 2.11], S½ [0.26, 1.48])
+  momentos_holdout_refs: ["CALC-GOB-DIGITAL-EXE-EMISIONES-0002--bfc2e4b840e3", "CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001--704d52894c2f"]   # la reserva se LEVANTO en el COMMIT-3, con las emisiones ya selladas y en origin; el par edadxescolaridad de marcador-segmento.tsv deja de estar RESERVADA (re-derivado por comando)
+  veredicto: FALSADOR-DEBIL   # B-bis spec v1.1 §4.2, verbatim: «nadie vence pero algun IC admite > 0.5 pp -> falsador debil»; sin RESERVA-S2
+  champion_actual: NINGUNO   # este acto NO ADOPTA; el piso C2 no fue vencido y su adopcion es de mesa (A-bis 6)
+  output_nativo: {tipo: proporcion, escala: "[0,1] ponderada FAC_TRA, unidad TRAMITE", valor_ref: "R (ENCIG 2025, 16 celdas, unidad TRAMITE): 0.326142 0.598783 0.711304 0.844839 0.541764 0.631109 0.749003 0.875950 0.414209 0.599980 0.677690 0.801192 0.342590 0.397749 0.507426 0.639806 -- orden edad{18-29,30-44,45-59,60-96} x escolaridad{HASTA-PRIMARIA,SECUNDARIA,MEDIA-SUPERIOR,SUPERIOR}; n2025 67 417 934 1388 286 1380 1977 3365 630 1529 1646 1994 1294 872 1002 1307; ver RESULT-GOB-EXE15-ADJ-2025-*-R-P"}
   incertidumbre: {tipo: "IC95 por replicas compartidas (bootstrap UPM dentro de estrato, PCG64 20260919, 10000; singleton de certeza); C2, S-MEDIO, S-LAMBDA y R de la misma replica; C1b IC sellado 2023; C1a punto sin IC (declarado)", ref: "prereg-caja GOB-gobierno-digital-exe15-spec-v1_1 §5"}
   supuesto_transporte: "ACOTADO-CON-SUPUESTO: instrumento comparable por texto en 2021/2023/2025 (NC-0355 CAMBIO-MENOR, PR #924); la extrapolacion temporal de la interaccion es el supuesto que S-MEDIO y S-LAMBDA SON"
   fuerza_coeficiente: NO-APLICA
@@ -69,9 +92,9 @@ celda_d:
   calibrado: false
   estado_operativo: PENDIENTE   # SPEC-CONGELADA; nada entra al motor
   vocabulario_version: 0.6
-  requiere_decision_mesa: true   # FP-393 (unidad de celda-D sobre eventos) sigue ABIERTA; cuenta_gen2=SI propuesto nace PENDIENTE-DE-MESA
+  requiere_decision_mesa: true   # FP-393 FIRMADA (evento, a) y cuenta_gen2=SI asentado (decisiones.tsv:184-185); lo pendiente de mesa es la adopcion o veto del piso C2 no vencido (A-bis 6)
   fecha_declaracion: 2026-09-20
   commit_declaracion: 9a05d2a6     # 0-bis A.3 de GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_1
-  fecha_adjudicacion: PENDIENTE-COMMIT-3
-  commit_adjudicacion: PENDIENTE-COMMIT-3
+  fecha_adjudicacion: 2026-09-21     # el piloto adjudico POR CELDA; el veredicto de celda-D es FALSADOR-DEBIL y no corona a nadie
+  commit_adjudicacion: 704d5289       # COMMIT-3a; la corrida sellada es CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001--704d52894c2f
   relacion_complemento: "C2-COMPUESTO es control del piso C2 (mismo compuesto con marginales publicos del arbitro, punto sin IC); se reporta |C2 - control| por celda"
