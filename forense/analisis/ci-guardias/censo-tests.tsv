@@ -9,6 +9,7 @@ tests/test_adq_descubrimiento.py	script	NO	adq_doctor,tsv_crudo	NO	0.1	NECESITA-
 tests/test_adq_doctor.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_adq_handoff_resultado.py	script	NO	adq_doctor,adq_handoff,check	SI	0.1	NECESITA-DEPENDENCIA(jsonschema)	ModuleNotFoundError: No module named 'jsonschema'
 tests/test_adq_residuales.py	script	NO	adq_doctor	NO	0.0	NECESITA-DEPENDENCIA(jsonschema)	ModuleNotFoundError: No module named 'jsonschema'
+tests/test_agrega_l_v1_0.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_ahorro_comparabilidad_texto.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_arbitro_marginales.py	pytest	NO	numpy,pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_arnes_sesion.py	script	NO	(ninguna)	NO	1.3	CORRE-EN-CI	exit 0 sin corpus
