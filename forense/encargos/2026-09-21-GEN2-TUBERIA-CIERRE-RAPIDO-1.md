@@ -139,3 +139,30 @@ La meta **«≤ 1 re-fusión por PR»** necesita el sucesor. Con los datos de §
 ## 10 · FALSADOR
 
 Si en dos semanas una sesión rompe `main` con un FAIL que el subconjunto rápido habría atrapado, el subconjunto está mal elegido. Si el job de derivados deja `main` con una vista distinta de la que su comando produce, el job está mal.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué**: P0 · sondas de `gh` (protección de `main` exige ramas al día, si `GITHUB_TOKEN` puede empujar a `main`, si la sesión lee el CI de su propio PR).
+  **por qué**: `PARO-ENTORNO` — `gh` no está instalado/autenticado en este entorno de nube; el propio encargo previó este camino («si no, quedan como pregunta a mesa y no es PARO»).
+  **impacto**: las tres preguntas del §2 sin verificar (`SUPUESTO`); P-D.5 (permiso de Actions para empujar a `main`) depende de la respuesta a (ii).
+  **sucesor**: `DECISIÓN-DE-MESA-PENDIENTE` — mesa responde (i)/(ii)/(iii) con `gh api repos/josanoforo/modelado-mexicano/branches/main/protection` y viendo si el propio PR de este acto corre CI en verde; el sucesor de P-D las consume.
+
+- **qué**: P-B · una sola derivación del árbol compartida por T32, T32-quater, T45 y `test_marcador_segmento.py`, con salida byte a byte idéntica antes/después (diff en la nota).
+  **por qué**: `NO-VERIFICABLE-AQUÍ` — el criterio no negociable del encargo (byte a byte idéntico, comparado con `diff`) exige refactorizar cuatro puntos de entrada que hoy llaman `deriva()`/`status`/`corrida0 status` de formas distintas (llamada directa, subproceso, 11 veces en el marcador) y medir el `diff` de cada uno con y sin corpus montado; verificarlo con el rigor que el PARO de P-B exige («que una salida de P-B cambie un byte» es PARO de lista cerrada) no cabe en el presupuesto de esta sesión sin arriesgar precisamente el defecto que el PARO prohíbe.
+  **impacto**: T32/T32-quater/T45/el marcador siguen recalculando la derivación del árbol real varias veces por corrida (~12s × 11 en el marcador); ningún contador ni `status` se mueve por esto.
+  **sucesor**: `DIFERIDO-A:acto sucesor de P-B` — absorbe P-B completo: memoiza la derivación una vez por proceso, copia por caso, prueba de diff byte-idéntico antes de tocar ningún punto de entrada.
+
+- **qué**: P-C · la suite pasa a estricta (reports GEN1 históricos, baseline re-congelado a cero FAIL, retiro completo del canal WARN de 22 sitios según la tabla de destinos del §P-C.3, tres NC de deuda vieja).
+  **por qué**: `NO-VERIFICABLE-AQUÍ` — reclasificar 22 sitios de `warn()`/`senal()` entre CONTADOR/FAIL-acotado/BORRAR, con FAIL acotado correctamente al `merge-base` en local y al primer padre en CI (§"Cómo se acota"), y sin volver FAIL sin acotar ninguna familia con deuda vieja (PARO de lista cerrada), es un cambio de comportamiento observable de la suite completa que este acto no puede probar contra el CI real (el CI es el juez, y este acto no llega a fusionar). Ejecutarlo sin esa prueba arriesga exactamente el PARO «convertir en FAIL sin acotar una familia que hoy tiene deuda vieja».
+  **impacto**: la suite sigue emitiendo WARN (289 en esta corrida, incluidos T-REPRO/T-NO-CORRIDO/T22/T23/T-CRON/T03/T13/T-SUCESOR-EXISTE/T10); T06/T08 siguen fallando contra 3 reports GEN1 activos en el baseline (no tocados, cero PARO); T16 ya se retiró en este acto (P-A), independiente de P-C.
+  **sucesor**: `DIFERIDO-A:acto sucesor de P-C` — absorbe la tabla de destinos completa del §P-C.3, las 3 tablas de `forense/analisis/deuda-warn-1/`, y el re-congelado del baseline a cero FAIL tras declarar históricos los reports de T06/T08.
+
+- **qué**: P-D · los archivos derivados salen de los PR (identificación por las 2 condiciones, job del push a `main` con permiso de escritura exclusivo, modo de ensayo `workflow_dispatch`, guarda de mutación en CI).
+  **por qué**: `NO-VERIFICABLE-AQUÍ` — depende de la sonda P0(ii) (si la protección de `main` permite que `GITHUB_TOKEN` empuje) que no se pudo correr sin `gh`; además, dar permiso de escritura (`contents: write`) a un job nuevo es exactamente la clase de cambio que el PARO «dar permiso de escritura a otro job que no sea el de derivados» exige probar con cuidado, y probar el modo de ensayo (`workflow_dispatch` sin commit) requiere que el workflow corra en GitHub Actions, no en esta sesión.
+  **impacto**: `data/corrida0/corridas.tsv`, `resultados.tsv`, etc. y `forense/tablero/TABLERO-PROGRAMA.md` siguen viajando en los PR; ningún contador cambia.
+  **sucesor**: `DIFERIDO-A:acto sucesor de P-D` — depende primero de la respuesta de mesa a P0(ii); si (a) (permitir a Actions empujar), implementa el job con `workflow_dispatch` de ensayo tal como especifica el encargo.
+
+- **qué**: `tools/verifica_sidecars.py` · su WARN propio (firma D-a5, encabezado ajeno tras el cuerpo sellado) queda fuera del canal de la suite.
+  **por qué**: `FUERA-DE-PERÍMETRO` — el propio encargo (§2, "Fuera del perímetro, a propósito") lo deja como pregunta a mesa, no como pieza de este acto.
+  **impacto**: ninguno — no se tocó.
+  **sucesor**: `DECISIÓN-DE-MESA-PENDIENTE`, tal como el encargo la dejó.
