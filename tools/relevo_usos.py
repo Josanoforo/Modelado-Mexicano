@@ -115,6 +115,7 @@ RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "tools"))
 
 import corrida0  # noqa: E402
+import pines_mesa  # noqa: E402
 
 C0 = RAIZ / "data" / "corrida0"
 SALIDA_TSV = C0 / "relevo-usos-v1_0.tsv"
@@ -625,6 +626,36 @@ def deriva() -> tuple[list[dict], dict]:
     resultados_f2 = _resultados_sellados(F2_CALC)
     firma_f2 = _firma_f2_acreditada()
 
+    # ── CP-PIN-DE-MESA · PRECEDENCIA MAXIMA (ACTO GEN2-RELEVO-TANDA-3, P1) ─
+    # Los cuatro canales de abajo leen la SPEC del CALC. Hay consumidores
+    # SELLADOS -- el marco M, las specs mismas -- donde no cabe escribir un
+    # pin, y por eso su relevo era inderivable por construccion. El canal de
+    # pines es ese lugar, y manda sobre los cuatro porque es una FIRMA DE
+    # MESA, no una derivacion: tambien es lo que resuelve un
+    # `CONFLICTO-ENTRE-CANALES`, que por definicion el registro no puede
+    # decidir solo. Cada pin pasa antes las cuatro guardas de 4.1.
+    ctx_corridas = {calc: {
+        "estado": f["estado"], "cuenta_gen2": f["cuenta_gen2"],
+        "resultado_replay": f.get("resultado_replay", ""),
+        "resultados_ids": set(str(f.get("resultados_ids", "")).split(",")),
+    } for calc, f in oferta.items()}
+    ctx_conductas = {m["resultado_id"]: c for c, m in declarado.items()
+                     if m.get("generacion") == "GEN2" and m.get("resultado_id")
+                     and c.startswith("milpa/tramite.yaml:")}
+    pines_ok, pines_rechazados = pines_mesa.pines_validados(
+        ctx_corridas, specs, ctx_conductas)
+    # El pin se indexa por CONSUMIDOR: la llave logica es la forma de CITA,
+    # no la de consulta, y traducir en los dos sentidos en dos sitios es
+    # exactamente como las dos formas se separan.
+    pin_por_consumidor: dict[str, dict] = {}
+    for consumidor in {s["consumidor"] for s in slots}:
+        try:
+            llave = pines_mesa.llave_logica(consumidor)
+        except pines_mesa.PinInvalido:
+            continue
+        if llave in pines_ok:
+            pin_por_consumidor[consumidor] = pines_ok[llave]
+
     # Indices de los tres canales, construidos UNA vez sobre todas las specs.
     c1_por_res: dict[str, list[tuple[str, str, str]]] = {}
     c1_singular: list[tuple[str, str, str, str]] = []
@@ -739,8 +770,10 @@ def deriva() -> tuple[list[dict], dict]:
             cands.append(("C2-RESULTADO", calc, rid, ""))
         cobertura = set(c3_corr.get(slot["corrida_natural"], set())) \
             | set(c3_res.get(res, set()))
+        pin = pin_por_consumidor.get(slot["consumidor"])
         fila["canales_observados"] = ";".join(sorted(
             {c[0] for c in cands}
+            | ({"CP-PIN-DE-MESA"} if pin else set())
             | ({"C3-CORRIDA"} if cobertura else set())
             | ({"C0-CONSUMIDOR"} if cita_c0 else set()))) or "NINGUNO"
 
@@ -774,7 +807,23 @@ def deriva() -> tuple[list[dict], dict]:
             for canal, calc, rid, motivo in blandas)) or "NINGUNA"
 
         distintos = {f[2] for f in firmes}
-        if len(distintos) > 1:
+        if pin is not None:
+            corr = oferta.get(pin["calc_gen2"], {})
+            r = valor_result.get((corr.get("corrida_id"), pin["result_gen2"]))
+            fila.update(
+                veredicto="RELEVADO-POR-PIN-DE-MESA", canal="CP-PIN-DE-MESA",
+                calc_candidato=pin["calc_gen2"],
+                corrida_oferta=corr.get("corrida_id", NO_DECLARADO),
+                estado_calc=corr.get("estado", NO_DECLARADO),
+                sello_calc=corr.get("sello", NO_DECLARADO),
+                result_gen2_candidato=pin["result_gen2"],
+                valor_gen2=(r["valor"] if r else NO_DECLARADO),
+                razon=(f"pin de mesa por {pin['via']}, firmado en "
+                       f"{pin['firma']}; paso las cuatro guardas de 4.1. "
+                       f"Manda sobre "
+                       f"{fila['canales_observados'] or 'NINGUN otro canal'}"),
+            )
+        elif len(distintos) > 1:
             fila["veredicto"] = "CONFLICTO-ENTRE-CANALES"
             fila["canal"] = ";".join(sorted({f[0] for f in firmes}))
             fila["calc_candidato"] = ";".join(sorted({f[1] for f in firmes}))

@@ -806,6 +806,34 @@ def render_bloque_vivo(I: dict[str, dict]) -> str:
             "- **Legacy activas por consumidor.** (sin desglose: "
             "`corrida0 status` no entregó las seis clases)."
         )
+    # ACTO GEN2-RELEVO-TANDA-3 · P7. La firma 4.1 cierra con «El contador
+    # muestra las clases sin fundirlas»: una sola cifra de "relevadas"
+    # borraría la diferencia entre medir desde crudo (i) y leer una conducta
+    # que ya es GEN2 (ii). Se RINDE lo que `status` deriva; aquí no se
+    # recalcula nada.
+    _vi = _v(I, "gen2_relevadas_por_pin_de_mesa__i_CRUDO")
+    _vii = _v(I, "gen2_relevadas_por_pin_de_mesa__ii_CONDUCTA_GEN2")
+    _mp = _v(I, "gen2_legacy_marco_M_celdas_M_pendientes")
+    if _vi is not None and _vii is not None:
+        _campos = " · ".join(
+            f"{c} `{_v(I, f'gen2_legacy_marco_M_por_campo__{c}')}`"
+            for c in ("R", "M", "L", "AGREGADO"))
+        partes.append(
+            f"- **Relevadas por pin de mesa, por vía (firma 4.1, 21/sep/2026 — "
+            f"las clases NO se funden).** vía (i) desde insumo crudo con hash "
+            f"`{_vi}` · vía (ii) lectura de una conducta ya GEN2 `{_vii}`. "
+            f"Marco del duelo, lo que sigue legacy por campo: {_campos}. "
+            f"Celdas M todavía legacy, **nombradas**: `{_mp}` — `DIN-M-01` es "
+            f"el recordatorio de que `tiene_ahorros` espera el acceso a "
+            f"ENNViH. El canal vive en `data/corrida0/pines-de-mesa.tsv` y "
+            f"cada fila pasa las cuatro guardas de 4.1 antes de mover el "
+            f"contador (`T32-quater T-PINES-MESA`)."
+        )
+    else:
+        partes.append(
+            "- **Relevadas por pin de mesa.** (sin desglose: `corrida0 status` "
+            "no entregó las dos vías)."
+        )
     partes.append(
         f"- **GEN2 · medición vs. adopción (ACTO GEN2-PRE-E5 · P3).** "
         f"sellados `{_v(I, 'gen2_N_resultados_gen2_sellados')}` · "
