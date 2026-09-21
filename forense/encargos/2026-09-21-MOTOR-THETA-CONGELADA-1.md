@@ -206,3 +206,17 @@ encargo archivado verbatim y marcado con su PR.
 (0-bis A.3) llegó *después* del commit que aplicó el diff de §5, no antes como exige el
 orden del Bloque D de `/acto`. No afecta el contenido verbatim del encargo ni las
 compuertas — se declara aquí por transparencia, no se corrige reescribiendo historia.
+
+## CONSUMIDO
+
+Ejecutado por PR https://github.com/Josanoforo/Modelado-Mexicano/pull/947, rama
+`claude/untitled-session-anhykf`. Diff de §5 aplicado limpio con `git am` sobre
+`9bb5396` (main se había movido desde el SHA de redacción `a61dd000`; no fue PARO).
+Cinco de seis tests de §8 verdes; el sexto (`test_motor_holdout`) con un FAIL ajeno,
+declarado arriba en `## NO-CORRIDO / RESERVAS` junto con `motor.py:20`/`:129`, no
+editados. Cascada de cierre: `ADR-582` (`canon/gobernanza-v1_15.md`), L0 recifrado
+(`canon/estado-programa-v1_14.md`), `canon/registro-rotulos.tsv`, excepción T25 en
+`tests/check.py`, `NC-260921-MOTOR-THETA-CONGELADA-1-e8fa-01/02`,
+`FP-260921-MOTOR-THETA-CONGELADA-1-e8fa-01`. `python3 tests/check.py --baseline
+--parallel`: LÍNEA BASE VERDE, 0 FAIL nuevos frente a `tests/baseline.json`. **NO
+FUSIONAR** hasta que mesa se pronuncie sobre `FP-260921-MOTOR-THETA-CONGELADA-1-e8fa-01`.
