@@ -11,7 +11,7 @@
   - *duelo de tres, nacional* · n `12` · MAE `M` `4.987` pp · `L_SOLO` `3.957` pp · `L_CORPUS` `3.889` pp · veredicto `SIN-GANADOR-UNICO` · NO se suma a las otras dos clases (otro universo, otro estimando) · `CALC-TRIADA-0002/resultados.json`
   - *sub-cifra del dominio DINERO* · cruce n `8` (error mediano `0.936` pp) · persistencia n `28` (error mediano `2.145` pp) · ENIF 2024; la brecha de persistencia es de 3 años y no se promedia con las de 1 y 2 años de ENVIPE/ENCIG
   - *NO cuentan* · `89` filas `IDENTICO` (M == R porque `EMISOR=ARBITRO`: el mismo número copiado, no una predicción contrastada) · `6` celdas de `formalidad` con piso y sin `error_piso_pp` (su error es un CALC sucesor) · universo examinado: 214 filas de data/corrida0/marcador-segmento.tsv + 3 CALC sellados
-- **Procedencia.** SHA `0f81894f` · fecha del commit `2026-09-21` · ¿árbol == origin/main? `False`.
+- **Procedencia.** SHA `c896bdbd` · fecha del commit `2026-09-21` · ¿árbol == origin/main? `False`.
 - **Motor.** reglas totales `22` · reglas con dato (>=1 conducta MEDIDO*) `21` · reglas sin dato `1` · conductas MEDIDO* `46` · tiers `{'FUERTE': 20, 'MEDIA': 2}`.
 - **Marcador por segmento.** filas por estado: ADOPTADO-POR-FIRMA `20` · CONSUMIDA-SIN-PILOTO `1` · DIAGNOSTICO `8` · IDENTICO `89` · NO-COMPARABLE `2` · RESERVADA `22` · SIN-PISO `15` · SOLO-PISO `57` (total `214`) · cobertura de piso `79 / 214` · valor añadido / evaluadas `0 / 20` · celdas `emision = EMITIDA-SIN-EVALUAR` `16 / 214` · `veto_pisos_activo` `True`.
 - **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: `NO` 13 · `NO-DERIVACION-CONTEXTUAL` 1 · `NO-SIN-FIRMA-DE-OBJETO` 1 · `PENDIENTE-DE-CASCADA-DIFERIDA` 2 · `PENDIENTE-DE-INTEGRACION-SERIAL` 2 · `PENDIENTE-DE-MESA` 17 · `SI` 79 (selladas total `115`) · `PENDIENTE-DE-MESA`:
@@ -33,12 +33,12 @@
   - `CALC-WBES2023-PRECISION-0001--7ab4bf6255e0`: `REPRODUCE`
   - `CALC-WBES2023-PRECISION-INTERACCIONES-0001--7f2a0899f700`: `NO-VERIFICADO`
 - **Ramas presentes en origin.** **6 rama(s) presente(s) en origin (política de cero)**:
-  - `acto/gen2-tuberia-ci-medicion-1`: 1 delante / 14 detrás de main · último commit `2026-09-21`
-  - `claude/epic-cori-4aiuak`: 0 delante / 78 detrás de main · último commit `2026-09-21`
-  - `claude/lucid-hypatia-j9m0xj`: 12 delante / 14 detrás de main · último commit `2026-09-21`
-  - `claude/untitled-session-anhykf`: 5 delante / 52 detrás de main · último commit `2026-09-21`
-  - `codex/adq-2026-09-21`: 1 delante / 14 detrás de main · último commit `2026-09-21`
-  - `derivados/2026-09-21`: 1 delante / 14 detrás de main · último commit `2026-09-21`
+  - `acto/gen2-tuberia-ci-medicion-1`: 1 delante / 17 detrás de main · último commit `2026-09-21`
+  - `censo/2026-09-21`: 1 delante / 14 detrás de main · último commit `2026-09-21`
+  - `claude/epic-cori-4aiuak`: 0 delante / 81 detrás de main · último commit `2026-09-21`
+  - `claude/lucid-hypatia-j9m0xj`: 12 delante / 17 detrás de main · último commit `2026-09-21`
+  - `claude/untitled-session-anhykf`: 5 delante / 55 detrás de main · último commit `2026-09-21`
+  - `codex/adq-2026-09-21`: 1 delante / 17 detrás de main · último commit `2026-09-21`
 - **Corredor LEGACY (eje x = ∅, GO-MARCADOR).** el marcador por segmento es la línea de arriba. marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
 - **Corpus lógico.** entradas del manifiesto `1629` · filas de registro de curación `155` · filas de relaciones `231` · filas del inventario de reactivos v1.2 `178247`.
 - **Gobernanza operativa.** ADR máximo `586` · FP máximo `260921` · FP abiertas: FP-405, FP-408, FP-409, FP-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2-a6f5-01 · encargos archivados `601` (consumidos `547`) · instrucciones vigentes `v2.15` · cola de encargos (solo estados != CONSUMIDO; consumidos `36`):
