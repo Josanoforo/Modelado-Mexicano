@@ -61,6 +61,23 @@ comprueba que algo falla no distingue una guarda de un `assert False`.
          como el número de ADR 260921 y citaría un "260921 ADR" falso.
       E5 raíz de acto duplicada -> FALLA.
 
+  G · P-D, `union` sólo donde la mutación lo justifique -- reproducción
+      REAL con git (no simulada) contra los cuatro candidatos, el caso
+      exacto: una rama edita EN SU SITIO la última fila/entrada, otra
+      AÑADE debajo, se fusiona con `union`:
+      G1 no-corrido.tsv / firmas-pendientes.tsv: T47 atrapa el resultado
+         (id repetido, contenido contradictorio) -> ENTRAN a union.
+      G2 gobernanza-v1_15.md: T15 atrapa el ADR repetido por NÚMERO
+         (aunque el texto de las dos copias difiera) -> ENTRA a union.
+      G3 registro-rotulos.tsv: la fila SÍ queda duplicada con contenido
+         contradictorio (el riesgo es real) pero NINGUNA guarda de la
+         suite lo vigila hoy -> QUEDA FUERA de union hasta el sucesor.
+
+  H · T50, la guarda de líneas repetidas en archivos `union` (P-D.3):
+      H0 control, H1 línea >= 200 caracteres repetida FALLA, H2 línea
+      corta repetida NO dispara (umbral), H3 sin universo declarado ->
+      WARN, no FAIL.
+
   F · T48/T49, las dos guardas permanentes de la L0 (P-A.4) -- la mutación
       de prueba es EXACTAMENTE el caso de las ramas en vuelo: fusionar una
       rama con la línea `L0` vieja (~27 MB, aquí un análogo sintético >1 MB
@@ -536,6 +553,140 @@ HISTORICO_SANO = "**L0 · Gobierno — completo y al día.** 3 ADR (contenido de
 L0_VIEJA_SINTETICA = "**L0 · Gobierno — completo y al día.** 3 ADR (" + ("X" * (1024 * 1024 + 10)) + ")*---\n"
 
 
+def _repro_union_edita_y_apendica(tmp, nombre, base_texto, texto_editado_por_a, linea_nueva_de_b):
+    """(P-D.2) LA MUTACIÓN EXACTA de los cuatro candidatos: una rama edita
+    EN SU SITIO la última fila/entrada; otra rama AÑADE debajo; se fusiona
+    con `union`. Devuelve el texto resultante tras fusionar main<-A<-B (o
+    conflicto=True si `merge=union` no evitó un conflicto real)."""
+    _git(tmp, "init", "-q", "-b", "main")
+    _git(tmp, "config", "user.email", "t@t"); _git(tmp, "config", "user.name", "t")
+    open(os.path.join(tmp, ".gitattributes"), "w").write(f"{nombre} merge=union\n")
+    ruta = os.path.join(tmp, nombre)
+    open(ruta, "w", encoding="utf-8").write(base_texto)
+    _git(tmp, "add", "-A"); _git(tmp, "commit", "-qm", "base")
+
+    _git(tmp, "checkout", "-q", "-b", "a", "main")
+    open(ruta, "w", encoding="utf-8").write(texto_editado_por_a)
+    _git(tmp, "add", "-A"); _git(tmp, "commit", "-qm", "a edita en su sitio")
+
+    _git(tmp, "checkout", "-q", "-b", "b", "main")
+    with open(ruta, "a", encoding="utf-8") as f:
+        f.write(linea_nueva_de_b)
+    _git(tmp, "add", "-A"); _git(tmp, "commit", "-qm", "b apendica")
+
+    _git(tmp, "checkout", "-q", "main")
+    conflicto = False
+    for rama in ("a", "b"):
+        r = _git(tmp, "merge", "--no-edit", "-q", rama)
+        if r.returncode != 0:
+            conflicto = True
+            _git(tmp, "merge", "--abort")
+    return conflicto, open(ruta, encoding="utf-8").read()
+
+
+def caso_G():
+    """P-D: `union` sólo donde la mutación lo justifique -- reproducción
+    real con git para los CUATRO candidatos. `decisiones.tsv` e
+    `hitoD-preregistro` quedan FUERA sin discusión (P-D.1, ya excluidos)."""
+    print("G · P-D, la mutación exacta contra los cuatro candidatos")
+
+    # G1 · forense/no-corrido.tsv, forense/firmas-pendientes.tsv: T47 sí
+    # atrapa el resultado (id repetido con contenido contradictorio) -- LA
+    # MISMA reproducción del defecto real del 21/sep/2026.
+    for nombre, prefijo in (("no-corrido.tsv", "NC"), ("firmas-pendientes.tsv", "FP")):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = f"id\testado\n{prefijo}-0001\tABIERTA\n"
+            editado = f"id\testado\n{prefijo}-0001\tCERRADA\n"
+            nueva = f"{prefijo}-0002\tABIERTA\n"
+            conflicto, resultado = _repro_union_edita_y_apendica(tmp, nombre, base, editado, nueva)
+            os.makedirs(os.path.join(tmp, "forense"), exist_ok=True)
+            with open(os.path.join(tmp, "forense", nombre), "w", encoding="utf-8") as f:
+                f.write(resultado)
+            m = _carga_check()
+            m.ROOT = tmp
+            m.t47_ids_unicos()
+            fails = [f for f in m.FAILS if f[0] == "T47"]
+            ok(f"G1 {nombre}: sin conflicto real + T47 atrapa el resultado -> ENTRA a union",
+               not conflicto and any(f"{prefijo}-0001" in x[1] for x in fails),
+               f"conflicto={conflicto} T47={fails} resultado={resultado!r}")
+
+    # G2 · canon/gobernanza-v1_15.md: T15 (dup por NÚMERO, sin importar que
+    # el texto difiera) sí atrapa el resultado -> ENTRA a union.
+    with tempfile.TemporaryDirectory() as tmp:
+        base = "# Gobernanza\n\n**1 ADR**\n\n**ADR-1** — texto original de la entrada\n"
+        editado = "# Gobernanza\n\n**1 ADR**\n\n**ADR-1** — texto EDITADO en su sitio por A\n"
+        nueva = "**ADR-2** — entrada nueva de B\n"
+        conflicto, resultado = _repro_union_edita_y_apendica(tmp, "gobernanza-v1_15.md", base, editado, nueva)
+        os.makedirs(os.path.join(tmp, "canon"), exist_ok=True)
+        with open(os.path.join(tmp, "canon", "gobernanza-v1_15.md"), "w", encoding="utf-8") as f:
+            f.write(resultado)
+        m = _carga_check()
+        m.ROOT = tmp
+        m.t15_adr_count()
+        fails = [f for f in m.FAILS if f[0] == "T15"]
+        ok("G2 gobernanza-v1_15.md: sin conflicto real + T15 atrapa el ADR "
+           "repetido (mismo número, texto distinto) -> ENTRA a union",
+           not conflicto and any("repetido" in x[1] for x in fails),
+           f"conflicto={conflicto} T15={fails} resultado={resultado!r}")
+
+    # G3 · canon/registro-rotulos.tsv: NINGUNA guarda existente vigila
+    # filas repetidas de este TSV (T25 vigila OTROS archivos citando
+    # rótulos pelados, no duplicados dentro de este archivo) -> QUEDA
+    # FUERA de union hasta el sucesor -- se comprueba corriendo TODA la
+    # suite sobre el árbol mutado y verificando que ningún FAIL nombra el
+    # archivo ni "rótulo" repetido.
+    with tempfile.TemporaryDirectory() as tmp:
+        base = "espacio\tvalor\tque_significa\tdonde_vive\nE\tGEN2-X\toriginal\tsitio-a\n"
+        editado = "espacio\tvalor\tque_significa\tdonde_vive\nE\tGEN2-X\tEDITADO por A\tsitio-a\n"
+        nueva = "E\tGEN2-Y\tnueva\tsitio-b\n"
+        conflicto, resultado = _repro_union_edita_y_apendica(tmp, "registro-rotulos.tsv", base, editado, nueva)
+        lineas_gen2_x = [l for l in resultado.split("\n") if l.startswith("E\tGEN2-X\t")]
+        ok("G3 registro-rotulos.tsv: sin conflicto real, y la fila SÍ queda "
+           "duplicada con contenido contradictorio (el mecanismo del defecto "
+           "existe) pero NINGUNA guarda de la suite lo vigila -> QUEDA FUERA",
+           not conflicto and len(lineas_gen2_x) == 2,
+           f"conflicto={conflicto} filas={lineas_gen2_x}")
+
+
+def _t50(tmp):
+    m = _carga_check()
+    m.ROOT = tmp
+    m.t50_union_lineas_repetidas()
+    return [f for f in m.FAILS if f[0] == "T50"]
+
+
+def caso_H():
+    """T50 -- guarda de líneas repetidas en archivos `union` (P-D.3)."""
+    print("H · T50, líneas repetidas en archivos union")
+    linea_larga = "X" * 250
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_union(tmp, {"canon/gobernanza-v1_15.md": f"{linea_larga}\notra línea corta\n"},
+                     "canon/gobernanza-v1_15.md merge=union\n")
+        f = _t50(tmp)
+        ok("H0 control: línea larga UNA sola vez -> sin FAIL", f == [], str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        _arbol_union(tmp, {"canon/gobernanza-v1_15.md": f"{linea_larga}\n{linea_larga}\n"},
+                     "canon/gobernanza-v1_15.md merge=union\n")
+        f = _t50(tmp)
+        ok("H1 línea >= 200 caracteres repetida FALLA",
+           any("aparece 2 veces" in x[1] for x in f), str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        corta = "corta"
+        _arbol_union(tmp, {"canon/gobernanza-v1_15.md": f"{corta}\n{corta}\n{corta}\n"},
+                     "canon/gobernanza-v1_15.md merge=union\n")
+        f = _t50(tmp)
+        ok("H2 línea corta repetida NO dispara (umbral 200)", f == [], str(f))
+
+    with tempfile.TemporaryDirectory() as tmp:
+        os.makedirs(tmp, exist_ok=True)
+        open(os.path.join(tmp, ".gitattributes"), "w").write("# nada declarado\n")
+        f = _t50(tmp)
+        ok("H3 sin ningún merge=union declarado -> WARN, no FAIL", f == [], str(f))
+
+
 def caso_F():
     print("F · T48/T49, las dos guardas permanentes de la L0")
     with tempfile.TemporaryDirectory() as tmp:
@@ -580,7 +731,7 @@ def main():
     print("═" * 72)
     print("  GEN2-TUBERIA-SUCESOR-1 · guardas por mutación")
     print("═" * 72)
-    caso_A(); caso_B(); caso_B3(); caso_C(); caso_C4(); caso_C_adr(); caso_D(); caso_E(); caso_F()
+    caso_A(); caso_B(); caso_B3(); caso_C(); caso_C4(); caso_C_adr(); caso_D(); caso_E(); caso_F(); caso_G(); caso_H()
     print("─" * 72)
     if FALLAS:
         print(f"  {len(FALLAS)} FALLA(S): " + " · ".join(FALLAS))

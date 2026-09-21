@@ -7967,6 +7967,61 @@ def t49_l0_historico_fijado():
                     f"anotación en `canon/L0/<tu ADR>.md`, no edites HISTORICO.md")
 
 
+# ───────────────────────────────────────────────────────────────
+# T50 · T-UNION-LINEAS-REPETIDAS — en cada archivo declarado `merge=union`,
+#   ninguna línea de 200 caracteres o más aparece dos veces o más.
+#   (`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1`, 21/sep/2026, P-D.3.)
+#
+#   Riesgo que abre `merge=union` (declarado, no instrumentado más allá de
+#   esto en P-D.4): dos ramas que enmiendan A LA VEZ la misma línea con
+#   textos DISTINTOS producen dos líneas largas y distintas -- eso T50 no
+#   lo ve, porque no son la "misma línea" repetida. Lo que SÍ atrapa: el
+#   caso donde el merge deja la MISMA línea larga duplicada -- señal de
+#   que una entrada se copió en vez de apendicarse, o de que dos ramas
+#   escribieron el mismo contenido por accidente. El universo se deriva
+#   de `.gitattributes` (`union_paths`), como hace T46.
+#
+#   Umbral de 200 caracteres, no cero: una línea corta repetida (un
+#   encabezado, una fila de tabla corta) es normal y no es la señal que
+#   esto vigila -- la firma del defecto real (T47, FP-406) son líneas de
+#   cientos de caracteres.
+#
+#   FALSADOR (§9, tres meses -- al 21/dic/2026): si ninguna rama produce
+#   nunca una línea larga duplicada en un archivo `union`, se anota y se
+#   revisa si el aparato valía la pena.
+# ───────────────────────────────────────────────────────────────
+TOPE_LINEA_REPETIDA_UNION = 200
+
+
+def t50_union_lineas_repetidas():
+    ga = os.path.join(ROOT, ".gitattributes")
+    if not os.path.exists(ga):
+        fail("T50", "no se pudo leer `.gitattributes`: el universo de "
+                    "`merge=union` no se deriva de ningún otro sitio")
+        return
+    rutas = union_paths(read(ga))
+    if not rutas:
+        warn("T50", "`.gitattributes` no declara ningún `merge=union`: "
+                    "la guarda no tiene universo que vigilar (ver su falsador)")
+        return
+    examinados = 0
+    for r in rutas:
+        p = os.path.join(ROOT, r)
+        if not os.path.exists(p):
+            fail("T50", f"`{r}` declarado `merge=union` pero no existe en el árbol")
+            continue
+        examinados += 1
+        conteo = Counter(l for l in read(p).split("\n") if len(l) >= TOPE_LINEA_REPETIDA_UNION)
+        repetidas = [l for l, n in conteo.items() if n > 1]
+        for l in repetidas:
+            fail("T50", f"{r}: una línea de {len(l)} caracteres aparece "
+                        f"{conteo[l]} veces -- señal de que un merge `union` "
+                        f"copió en vez de apendicar: {l[:120]!r}…")
+    if examinados == 0:
+        fail("T50", f"cero de {len(rutas)} archivo(s) `merge=union` examinados: "
+                    f"el veredicto no es un negativo (A.13)")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -8023,6 +8078,7 @@ def main():
         ("T47 T-IDS-UNICOS",                            t47_ids_unicos),
         ("T48 T-CANON-LINEA-1MB",                       t48_canon_linea_1mb),
         ("T49 T-L0-HISTORICO-FIJADO",                   t49_l0_historico_fijado),
+        ("T50 T-UNION-LINEAS-REPETIDAS",                t50_union_lineas_repetidas),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
