@@ -152,4 +152,4 @@ Lo demás en este encargo es orden sugerido, no compuerta.
 
 ## CONSUMIDO
 
-Ejecutado por `PR #943` (`acto/gen2-din-credito-pisos-enif2021-1`, 20/sep/2026, CAJA): COMMIT-1 `ad93b0b3`, COMMIT-2 `56dc64ca`, cascada `ADR-577`; `CALC-DIN-CREDITO-PISOS-ENIF2021-0001` sellado, `cuenta_gen2 = SI`, `envuelto_legacy = NO`; `FP-404` FIRMADA; `NC-0447`. Nota: `forense/notas/2026-09-20-GEN2-DIN-CREDITO-PISOS-ENIF2021-1-cierre.md`.
+Ejecutado por `PR #943` (`acto/gen2-din-credito-pisos-enif2021-1`, 20/sep/2026, CAJA): COMMIT-1 `ad93b0b3`, COMMIT-2 `56dc64ca`, cascada `ADR-578`; `CALC-DIN-CREDITO-PISOS-ENIF2021-0001` sellado, `cuenta_gen2 = SI`, `envuelto_legacy = NO`; `FP-404` FIRMADA; `NC-0447`. Nota: `forense/notas/2026-09-20-GEN2-DIN-CREDITO-PISOS-ENIF2021-1-cierre.md`.
