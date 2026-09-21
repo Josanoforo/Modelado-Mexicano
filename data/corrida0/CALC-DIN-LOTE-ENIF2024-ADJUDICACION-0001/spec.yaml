@@ -10705,5 +10705,6 @@ secuencia_commits:
   commit_3: 'corrida0 run CALC-DIN-LOTE-ENIF2024-ADJUDICACION-0001: reproduce las emisiones, abre los 14 cruces
     por la guardia, R por celda, soporte, regla v0.3 primaria (44 celdas pooled) y secundarias, cobertura, lectura
     B-bis; sella; registro/replay.'
-  preflight_esperado_antes_del_commit_3a: BLOQUEADO exactamente por input_repo_ausente=emisiones_selladas, input_repo_ausente=emisiones_sello
-    (y sus sha PENDIENTE) -- y por nada mas.
+  preflight_esperado_antes_del_commit_3a: BLOQUEADO exactamente por input_repo_ausente=emisiones_selladas:<ruta>
+    input_repo_no_commiteado=emisiones_selladas input_repo_ausente=emisiones_sello:<ruta> input_repo_no_commiteado=emisiones_sello
+    -- y por nada mas (medido en este acto, 21/sep/2026).

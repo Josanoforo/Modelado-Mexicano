@@ -365,7 +365,7 @@ def specs() -> dict:
         "commit_2": "OTRA sesion (F3): corrida0 run CALC-DIN-LOTE-ENIF2024-EMISIONES-0001; sella; registro/replay (E.7); commit y push; git ls-remote confirma el sello en origin antes de seguir. Las capturas L1/L2 de mesa se sellan ANTES de este paso.",
         "commit_3a": "La misma sesion del COMMIT-2, en commit aparte y ANTES de derivar R: escribe en ESTE spec.yaml el sha256 de emisiones_selladas y emisiones_sello (huellas de los archivos recien sellados), y verifica corrida0 preflight CALC-DIN-LOTE-ENIF2024-ADJUDICACION-0001 = VERDE. Ninguna otra linea cambia.",
         "commit_3": "corrida0 run CALC-DIN-LOTE-ENIF2024-ADJUDICACION-0001: reproduce las emisiones, abre los 14 cruces por la guardia, R por celda, soporte, regla v0.3 primaria (44 celdas pooled) y secundarias, cobertura, lectura B-bis; sella; registro/replay.",
-        "preflight_esperado_antes_del_commit_3a": "BLOQUEADO exactamente por input_repo_ausente=emisiones_selladas, input_repo_ausente=emisiones_sello (y sus sha PENDIENTE) -- y por nada mas.",
+        "preflight_esperado_antes_del_commit_3a": "BLOQUEADO exactamente por input_repo_ausente=emisiones_selladas:<ruta> input_repo_no_commiteado=emisiones_selladas input_repo_ausente=emisiones_sello:<ruta> input_repo_no_commiteado=emisiones_sello -- y por nada mas (medido en este acto, 21/sep/2026).",
     }
     # ── oro (i) · piloto 1, emisiones ──────────────────────────────────────
     em_ids, arb_ids = piloto1_control_ids()
