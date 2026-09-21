@@ -128,6 +128,7 @@ tests/test_tuberia_ids_union.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado 
 tests/test_union_estimando.py	script	NO	(ninguna)	NO	0.5	CORRE-EN-CI	exit 0 sin corpus
 tests/test_verifica_aislada.py	modulo	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 con -m tests.test_verifica_aislada (invocacion de script fallaba)
 tests/test_verifica_head_remoto.py	script	NO	(ninguna)	NO	1.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_verifica_sidecars.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_wbes2023_descriptiva.py	script	NO	pandas	NO	0.0	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
 tests/test_wbes2023_precision.py	script	NO	pandas	SI	0.1	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
 tests/test_wbes2023_precision_interacciones.py	script	NO	pandas	NO	0.0	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
