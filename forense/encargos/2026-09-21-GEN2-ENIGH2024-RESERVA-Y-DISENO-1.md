@@ -54,3 +54,9 @@ No mide · no congela. Sucesor: COMMIT-1 del duelo ENIGH 2024, en caja, con el m
 - **Sucesor:** acto en entorno con egreso a INEGI **verificado por sonda** (`milpa-inegi` o caja), consumiendo la forma ya existente de `data/credito-comparabilidad-texto-v1_0.tsv`; **`SIN-ASIGNAR`** de dueño. Debe correr **antes** del COMMIT-1 del duelo ENIGH 2024.
 
 **Ninguna otra pieza quedó sin correr.** P0 (reserva), P1 (inventario) y P3 (diseño para firma) se entregaron completos. Nada de lo que este acto sí hizo quedó parcial ni sustituido.
+
+## CONSUMIDO
+
+Ejecutado por **ACTO GEN2-ENIGH2024-RESERVA-Y-DISENO-1**, rama `acto/gen2-enigh2024-reserva-y-diseno-1`, **PR #964** (https://github.com/Josanoforo/Modelado-Mexicano/pull/964), `ADR-260921-GEN2-ENIGH2024-RESERVA-Y-DISENO-1-b7ae-01`. 0-bis en `b7ae01e`, sello de cuerpo `e165564d6a03e743` (no regenerado en el cierre).
+
+P0, P1 y P3 completos; P2 en `## NO-CORRIDO / RESERVAS` arriba. Cierre: `forense/notas/2026-09-21-GEN2-ENIGH2024-RESERVA-Y-DISENO-1-cierre.md`.
