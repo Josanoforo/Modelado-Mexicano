@@ -178,7 +178,8 @@ class MedidorSerieTest(unittest.TestCase):
             else:
                 self.assertEqual(a[mine], v, k)
             n += 1
-        self.assertEqual(n, 60)
+        # 10 celdas × 6 + `DIGITAL-N-UNIVERSO` (también lleva `-DIGITAL-` y también debe coincidir).
+        self.assertEqual(n, 61)
 
 
 class OrigenMovilTest(unittest.TestCase):
