@@ -199,3 +199,5 @@ Llenado por el ejecutor al cierre (A.14). Ejecutado 21/sep/2026 sobre `origin/ma
 **Fuera de perímetro, pedido a media sesión y no alcanzado:** los cinco artefactos de `C:\Users\PC0\Descargas MX` (`censo_nube_v1.py`, `censo-hueco-url-v1_0.tsv`, `censo-licencias-v1_0.tsv`, `CENSO-NUBE-MEDICION-2026-09-20.md`, `TRANSFER-NUBE-MEDICION-2026-09-20.md`). `NO-ACCESIBLE` (ruta de la máquina de mesa; la raíz lógica `descargas_mx` no está configurada en este entorno) y `NO-ENCONTRADO` en el repo (universo 6 298 archivos en `b8438d7`). No estaban en el perímetro de §9 ni eran insumo de las tres piezas. Son de otro acto — el censo de licencias que la firma 7 difiere a cuando se arme la salida pública.
 
 ## CONSUMIDO
+
+**CONSUMIDO** por `PR #930` (`ACTO GEN2-NUBE-PILOTO-1`), rama `claude/new-session-lvyz4s` sobre `origin/main` `b8438d7`, 21/sep/2026, entorno **NUBE `cloud_default`** (no el `milpa-inegi` asignado — ése es el PARO (e) del acto). `ADR-569`. Piezas 1 y 3 entregadas; pieza 2 no corrida (`NC-0423`). `FP-402` ABIERTA. Contadores: `forense/replay-evidencia.tsv` 147 → 147 (no movido), `cuenta_gen2` no movido, `N_corridas_selladas` +0. Suite: LÍNEA BASE VERDE.
