@@ -37,3 +37,10 @@ No mide · no re-adjudica · no escribe SALIDA para cliente (el informe es su in
 | `NC-260921-GEN2-MARCADOR-E-INFORME-1-48d4-04` · P4 (ii), «con intervalo binomial». El intervalo es de **Wilson** (score, `z=1.959964`), no Clopper-Pearson exacto: `scipy` no está en este entorno. Y el supuesto de independencia **no se cumple**: las celdas de una misma ola comparten marco muestral, estratos, UPM y réplicas de bootstrap, así que **todo intervalo publicado es demasiado angosto**. Las dos cosas van declaradas pegadas a cada tabla del informe. | `NO-VERIFICABLE-AQUÍ`: el exacto necesita `scipy` y el intervalo que respete la dependencia necesita las réplicas de bootstrap, que son microdato (CAJA). | los IC de cobertura del informe son optimistas en anchura; los conteos y los puntos no cambian. | SIN-ASIGNAR — acto en CAJA que derive la cobertura con las réplicas compartidas. |
 
 **Corridas, sellos y adopciones: ninguna.** Este acto no selló ninguna corrida, no adoptó ningún candidato y no tocó ningún veredicto ni ninguna celda-D. El único contador que movió es `celdas_validadas`, **73 → 88**, y lo movió contando lo que ya estaba adjudicado.
+
+## CONSUMIDO
+
+`PR #969` — https://github.com/Josanoforo/Modelado-Mexicano/pull/969 ·
+`ACTO GEN2-MARCADOR-E-INFORME-1` · `ADR-260921-GEN2-MARCADOR-E-INFORME-1-48d4-01` ·
+21/sep/2026. Nota de cierre:
+`forense/notas/2026-09-21-GEN2-MARCADOR-E-INFORME-1-cierre.md`.
