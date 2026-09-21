@@ -67,4 +67,4 @@ otra pasada. No construyas nada más para esto (D-14).
 
 ## CONSUMIDO
 
-`PR` (a abrir por esta sesión) — ver `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-4-cierre.md`.
+`PR #929` — ver `forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-4-cierre.md`.
