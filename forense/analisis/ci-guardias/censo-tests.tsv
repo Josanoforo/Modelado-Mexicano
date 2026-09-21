@@ -40,6 +40,7 @@ tests/test_digesto_candidatas.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado
 tests/test_digesto_fecha.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_digesto_mesa.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_digesto_nc.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
+tests/test_din_credito_pisos_enif2021.py	script	NO	(ninguna)	NO	1.3	CORRE-EN-CI	exit 0 sin corpus
 tests/test_emisor_fidelidad.py	pytest	NO	pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_emisor_m2.py	modulo	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 con -m tests.test_emisor_m2 (invocacion de script fallaba)
 tests/test_emite_m_calibracion.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
