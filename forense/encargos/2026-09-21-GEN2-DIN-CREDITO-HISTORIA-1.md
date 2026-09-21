@@ -44,3 +44,13 @@ Propio: la tabla v1.1 y su test · CALC nuevos y sus specs · filas propias de v
 
 ## 10 · NO HACE · SUCESORES · AUDITORÍA · CIERRE
 No congela ninguna predicción de 2024 · no abre 2024. Sucesor: lote prospectivo de crédito sobre ENIF 2024, con el módulo genérico de cruces. Auditoría (afirma sobre México): no tener crédito formal no es «preferir» el informal — puede ser rechazo, requisitos o buró; por eso K4(b) y K5 viajan siempre al lado; ENIF es adulto elegido: sub-representa a quien no decide el dinero del hogar; ENSAFI y ENFIH tienen otro universo y otra unidad, y no se promedian con ENIF; toda la evidencia es clase (a). `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** P4 · Descriptivo de K2-bancaria: niveles por ola (`corrida0 run` de `CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-0001`, congelado con preflight VERDE) · **por qué:** DECISIÓN-DE-MESA-PENDIENTE: sería la quinta corrida y el CONTADOR del encargo «sella hasta cuatro corridas»; la frontera FP-404 (2) sí queda escrita · **impacto:** los niveles 2012-2021 de tarjeta de crédito bancaria no están sellados; ningún contador GEN2 se mueve por esto · **sucesor:** `FP-260921-GEN2-DIN-CREDITO-HISTORIA-1-ff56-02` (`NC-260921-GEN2-DIN-CREDITO-HISTORIA-1-ff56-01`).
+- **qué:** P3 · K8 medido en ENSAFI 2023 · **por qué:** NO-VERIFICABLE-AQUÍ: por texto, ENSAFI 2023 no tiene instrumento de destino de crédito (`data/credito-k8-triangulacion-texto-v1_0.tsv`, EXISTE-NO-SATISFACE) · **impacto:** la triangulación de K8 queda con una sola fuente (ENFIH 2019, rotulada, sin serie) · **sucesor:** FP-404 ejecutada en su alcance verificable (`NC-260921-GEN2-DIN-CREDITO-HISTORIA-1-ff56-02`, CERRADA por este acto).
+- **qué:** P2 · pisos «conmensurables con #943»: NACIONAL y celdas fuera de edad · **por qué:** DECISIÓN-DE-MESA-PENDIENTE: exige recortar 2021 a 18-70 y #943 es sellado; las celdas 18-29/30-44/45-59 ya son conmensurables · **impacto:** la historia por eje de K1-K6 sólo se lee hoy en tres celdas de edad · **sucesor:** `FP-260921-GEN2-DIN-CREDITO-HISTORIA-1-ff56-01` (`NC-260921-GEN2-DIN-CREDITO-HISTORIA-1-ff56-03`).
+
+## CONSUMIDO
+
+PR #975 (`acto/gen2-din-credito-historia-1`, `ADR-260921-GEN2-DIN-CREDITO-HISTORIA-1-ff56-01`), 21/sep/2026. Ejecutado íntegro salvo las reservas de arriba. Nota: `forense/notas/2026-09-21-GEN2-DIN-CREDITO-HISTORIA-1-cierre.md`.
