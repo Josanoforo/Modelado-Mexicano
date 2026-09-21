@@ -253,48 +253,73 @@ sólo siembra el `PARA-v2.16`. No fusiona su propio PR.
 
 ---
 
-## 5-ter · LA SUITE — `ROJO`, con cero FAIL de este acto
+## 5-ter · LA SUITE — terminó `VERDE`, y el camino importa
 
 `python3 tests/check.py --baseline --parallel` en la cabeza de esta rama:
-**2 FAIL nuevos** frente a `tests/baseline.json`, los dos de `T22`, sobre
-`forense/encargos/2026-09-21-GEN2-SENAL-1.md` y su nota de cierre.
+**LÍNEA BASE VERDE**, sin FAIL nuevos frente a `tests/baseline.json`.
 
-**No son de este acto, y no se afirma: se midió.** La misma suite corrida sobre
-`origin/main` `a61dd000` **limpio**, en un clon temporal (D-23, nunca sobre el
-clon que se verifica), da **exactamente esos dos FAIL y ningún otro**, con los
-**mismos 25 WARN nuevos** de `T03`. El conjunto de FAIL de esta rama es
-**idéntico** al de su base: **este acto no añade ni un FAIL ni un WARN**.
+**No lo estuvo durante casi todo el acto.** Al primer cierre daba **2 FAIL** de
+`T22` sobre `forense/encargos/2026-09-21-GEN2-SENAL-1.md` y su nota. No se
+afirmó que fueran ajenos: **se midió** —la misma suite sobre `origin/main`
+`a61dd000` **limpio**, en clon temporal (D-23), daba **exactamente esos dos** y
+los mismos 25 WARN de `T03`—, se asentaron en
+`NC-260921-GEN2-TUBERIA-PREFLIGHT-CI-1-9919-01` con su dueño nombrado, y **no se
+tocó ningún archivo ajeno para forzar el verde**. `main` los cerró por su cuenta
+antes de que este PR fusionara: la fila queda **CERRADA por el hecho**, no por
+trabajo de este acto. Es exactamente lo que A.14 busca — la deuda se asienta con
+su dueño y se cierra cuando su dueño la paga.
 
-No se arreglan aquí: los dos archivos son de `ACTO GEN2-SENAL-1` y el PERÍMETRO
-de éste (§9 del encargo) no los incluye; lo que `T22` pide es una fila en
-`forense/firmas-pendientes.tsv`, que es una decisión de trámite, no un defecto
-adyacente de ≤10 líneas. Asentado en
-`NC-260921-GEN2-TUBERIA-PREFLIGHT-CI-1-9919-01`.
-
-**El criterio de «hecho» del encargo pedía VERDE y no se entrega VERDE.** Se
-dice así, sin suavizarlo: lo que se entrega es *el mismo rojo que ya tenía la
-base*, declarado y medido contra ella.
-
-**`T15` cobró su falsador dos veces en este mismo cierre**, y las dos veces
-sobre texto de este acto: primero por el hueco de numeración (ver 5-bis), y
-después porque la prosa que explicaba ese primer rojo **citaba el mensaje del
-test verbatim**, y el número dentro de la cita cuenta como cita. Es el hallazgo
-que `ADR-577` asentó para `T25` —«la cita de un defecto reproduce el defecto»—
+**`T15` cobró su falsador dos veces en este mismo cierre**, y las dos sobre
+texto de este acto: primero por el hueco de numeración (ver 5-bis), y después
+porque la prosa que explicaba ese primer rojo **citaba el mensaje del test
+verbatim**, y el número dentro de la cita cuenta como cita. Es el hallazgo que
+`ADR-577` asentó para `T25` —«la cita de un defecto reproduce el defecto»—
 reaparecido en un test distinto, al día siguiente, sin que nadie lo buscara. Se
 reformularon las frases; **no se exentó ningún archivo**, porque aquí el texto
 no es verbatim de nadie y reformularlo no falsea nada.
 
 ---
 
+## 5-quater · EL CHEQUEO SE VALIDÓ CONTRA UN ARREGLO REAL, NO SÓLO CONTRA SUS PROPIAS PRUEBAS
+
+`PR #944` —el sucesor del piloto, el que arregla los dos CALC que `#926` dejó
+BLOQUEADOS— **fusionó mientras este acto cerraba**. Mesa fijó que este PR va
+después de él, se trajo a la rama, y el chequeo los evaluó:
+
+```
+CALC sin sello tocados por este cambio: 2
+  [WARN]   CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001   (corrida0 preflight: BLOQUEADO)
+      WARN  input_repo_ausente=emisiones_resultados:…/CALC-GOB-DIGITAL-EXE-EMISIONES-0002/resultados.json
+      WARN  input_repo_no_commiteado=emisiones_resultados
+      WARN  input_repo_ausente=emisiones_sello:…/CALC-GOB-DIGITAL-EXE-EMISIONES-0002/sello.json
+      WARN  input_repo_no_commiteado=emisiones_sello
+  [LIMPIO] CALC-GOB-DIGITAL-EXE-EMISIONES-0002     (corrida0 preflight: BLOQUEADO)
+
+RESUMEN · FAIL=0 WARN=1 LIMPIO=1
+PASA. Ningún bloqueo fuera de la lista cerrada de estados legítimos.
+```
+
+**Los dos siguen diciendo `BLOQUEADO` a `preflight` y ninguno pone rojo el PR**,
+que es literalmente el objetivo del encargo: `ADJUDICACION-0001` espera
+`resultados.json` de su hermano `EMISIONES-0002`, que no existe hasta que ése
+corra — **estado de cadena, no defecto**. Es el escenario que la lista de
+estados legítimos existe para distinguir, y se validó contra un arreglo que
+**otro acto** produjo, sin que nadie lo fabricara para esta prueba. El chequeo
+literal habría puesto rojo ese PR.
+
+---
+
 ## 5-bis · IDS DE ESTE ACTO
 
 - **ADR:** máximo real re-derivado con el comando de la casa contra `origin/main`
-  `32e23f7a` → `583`; candidato contiguo **`584`**, que es el que este acto
-  toma. **RENUMERADO `580` → `584`**: al primer cierre el máximo era `579`,
-  pero `#942`, `#944` y los correctivos de `#945` fusionaron antes y `580`–`583`
-  quedaron tomados — **renumera quien fusiona segundo**, regla de la casa.
-  **Mesa fijó el orden de merge de este PR DESPUÉS de `PR #944`** (21/sep/2026),
-  así que si ése u otro se lleva `584` primero, este acto vuelve a renumerar.
+  `13129c05` → `584`; candidato contiguo **`585`**, que es el que este acto
+  toma. **RENUMERADO `580` → `584` → `585`, dos veces por fusionar segundo**:
+  al primer cierre el máximo era `579` y el contiguo `580`, pero `#942`, `#946`
+  y los correctivos fusionaron antes; re-derivado a `584`, **`PR #944` fusionó
+  con ese mismo número** y obligó a la segunda. **Mesa fijó el orden de merge de
+  este PR DESPUÉS de `PR #944`** (21/sep/2026) y así se hizo: `#944` está
+  fusionado y traído a esta rama **antes** de renumerar, no después. Si otro
+  acto se lleva `585` primero, éste renumera otra vez — regla de la casa.
   **Se intentó primero saltar al `581`** para no disputar el número, dejando el
   hueco declarado — y `T15` lo rechazó con `FAIL`: la cabecera habría citado
   uno más de los ADR únicos que hay. La enmienda de `ADR-577` **acepta huecos
