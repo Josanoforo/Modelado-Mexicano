@@ -1,0 +1,1761 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-DIN-LOTE-ORO-PILOTO1-EMISIONES-0001
+spec_md: ../../../forense/prereg-caja/DIN-lote-enif2024-spec-v1_0.md
+spec_md_sha256: 64bb52f2cbd26dbb9402855e772fc1926ffc4786d1d50aaf1fb5ffaa8110386a
+script: data/corrida0/CALC-DIN-LOTE-ORO-PILOTO1-EMISIONES-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  unidad_transferencia: PERSONA-ELEGIDA-18MAS
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  fuente_acto: GEN2-DIN-LOTE-ENIF2024-COMMIT-1 (21/sep/2026)
+  spec_humana: forense/prereg-caja/DIN-lote-enif2024-spec-v1_0.md (sucede a DIN-lote-enif2024-spec-v0_1-PROPUESTA.md,
+    intacta)
+  firmas: F1 FP-260921-GEN2-TRAMITE-FIRMAS-4-8a1f-01 · F2 -02 · D-22 ampliada -05 · enmienda v0.3 FP-260921-GEN2-DIN-LOTE-ENIF2024-A-a98a-01
+    · opcion A de direccion (lambda = 1/2 en los 14 pares, 21/sep/2026)
+  medidor_ejecutado_al_congelar: sintetico (tests/test_lote_enif2024.py, zips fabricados, cada rama terminal) y
+    los dos oros sobre datos ya abiertos; NUNCA un cruce reservado de ENIF 2024
+  tipo: 'RETROSPECTIVA -- oro (i): el codigo generico reproduce las emisiones selladas del piloto 1 (localidad x
+    edad) a 1e-9'
+  commit: ORO-COMMIT-1
+  adjudica: NO -- retrospectiva sobre un par ya abierto; no mueve adoptados_activos
+  celda_d: DIN.ahorro_solo_informal.enif2024.localidad_x_edad (ya adjudicada por el piloto 1; aqui solo control)
+inputs:
+- id: enif2021_csv
+  origen: manifiesto
+  nota: ENIF 2021 datos abiertos, TMODULO (ola de desarrollo, abierta)
+- id: enif2024_csv
+  origen: manifiesto
+  nota: ENIF 2024 datos abiertos, TMODULO -- en emisiones SOLO marginales de UN eje (guardia); contenido identico
+    a enif_2024_bd_csv (cotejado por multiconjunto de columnas en este acto)
+- id: arbitro_marginales_2024
+  origen: repo
+  ruta: data/corrida0/CALC-ARBITRO-MARGINALES-ENIF2024-0001/resultados.json
+  sha256: 552aef42c92cc70ded24bebb4c3e295739b95b346644e624cd22c8392916ecc4
+  nota: masa ponderada por categoria para R3 (no cotejado en el oro)
+- id: piloto1_spec_yaml
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/spec.yaml
+  sha256: 12bf26d8a8f7c6a84cea3ac5f3152dcd8bbcfe07eefd5bf9015107da26374888
+  nota: 'los marginales SELLADOS que el piloto 1 uso (6 decimales de milpa): el oro reproduce su C2 con SUS insumos'
+- id: piloto1_emisiones
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/resultados.json
+  sha256: 69ec9c6a21d259a76ae5617f2cff801e6165c351c750121125cc77e642f2d8c1
+  nota: 'emisiones selladas del piloto 1: C1 (=P2) y C2 por celda'
+- id: cruces_familia_py
+  origen: repo
+  ruta: tools/duelo/cruces_familia.py
+  sha256: a41bdb07d1d975fe84a0b5653232f8532d38c56952c1eafeffd29bae89f9ee3b
+- id: lote_familia_py
+  origen: repo
+  ruta: tools/lote_enif2024/lote_familia.py
+  sha256: 96821de2ef7807b2232dfec56646c957273293a73a95ff0eabfbd79bef02f460
+variables:
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_1_1..P5_1_6
+  rol: desenlace-informal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_7_1..P5_7_9
+  rol: desenlace-formal-2021 (nueve cuentas)
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_4_1..P5_4_9
+  rol: eje-cuenta_formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: SEXO
+  rol: eje-sexo-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: EDAD
+  rol: eje-edad-2021 y filtro
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P3_1_1
+  rol: eje-escolaridad-2021 (catalogo por etiqueta)
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: TLOC
+  rol: eje-localidad-2021 y filtro
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P3_10
+  rol: eje-formalidad-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: FAC_ELE
+  rol: ponderador-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: EST_DIS
+  rol: estrato-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: UPM_DIS
+  rol: upm-2021
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_1_1..P5_1_6
+  rol: desenlace-informal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_6_1..P5_6_9
+  rol: desenlace-formal-2024 (nueve cuentas)
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_4_1..P5_4_9
+  rol: eje-cuenta_formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: SEXO
+  rol: eje-sexo-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: EDAD_V
+  rol: eje-edad-2024 y filtro
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: NIV
+  rol: eje-escolaridad-2024 (catalogo por etiqueta)
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: TLOC
+  rol: eje-localidad-2024 y filtro
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P3_13
+  rol: eje-formalidad-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: FAC_PER
+  rol: ponderador-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: EST_DIS
+  rol: estrato-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: UPM_DIS
+  rol: upm-2024
+universo: 'Personas ELEGIDAS de 18 anos y mas de TMODULO de ENIF, una fila por persona. Regimen PILOTO-1 (spec v1_0
+  §1): filtros globales; ENIF 2021 completa; ENIF 2024 segun el punto de entrada.'
+filtros: 'PILOTO-1 (spec v1_0 §1): (1) 18 <= edad <= 97 en las dos olas, 98/99 centinelas fuera y contados; (2)
+  TLOC en {1,2,3,4}; (3) ponderador presente y > 0. Nada mas. Sobre ENIF 2024 en emisiones: una sola variable de
+  agrupacion por lectura (guardia probada en cada corrida); el cruce solo en adjudicacion, por la unica funcion
+  cruce() y solo sobre pares autorizados por el contrato.'
+ponderador: ENIF 2021 = FAC_ELE (factor del elegido; FAC_PER no existe en 2021); ENIF 2024 = FAC_PER. Toda proporcion
+  es razon de totales ponderados.
+transformacion: 'D9 := alguna P5_1_k == ''1'' (k=1..6) Y ninguna via formal == ''1'' (2021: P5_7_1..9; 2024: P5_6_1..9).
+  Ejes: sexo (1/2); edad en 4 tramos del arbitro; escolaridad por ETIQUETA del catalogo de cada ola (codigo sin
+  etiqueta declarada -> PARO; ''No sabe'' -> fuera); localidad TLOC {1,2} vs {3,4}; formalidad P3_10 (2021: 1-5
+  con, 6 sin) / P3_13 (2024: 1-6 con, 7 sin), blanco y 9 fuera; cuenta_formal alguna P5_4_k == ''1'' vs ninguna
+  (todas en blanco -> fuera). Contendientes (spec v1_0 §4): C2 = expit(logit m24(a) + logit m24(b) - logit m24)
+  con m24 SELLADOS (#971) e IC replica a replica; P2 = cruce 2021; R1 = expit(logit C2 + delta21); R2 = expit(logit
+  C2 + 1/2 delta21); R3 = raking a tres vias de la tabla ponderada 2021 (a,b,D) a los margenes (a,D),(b,D) de 2024
+  sellados.'
+estimando: p(ahorra_solo_informal | eje_A, eje_B) -- proporcion ponderada [0,1] de personas elegidas 18+ de ENIF
+  2024, en las 96 celdas de los 14 pares reservados, bajo D9; error en pp.
+precision: 'Replicas compartidas por ola: n_h UPM con reemplazo por estrato, PCG64(42), estratos y UPM en orden
+  lexicografico, 10 000 replicas; IC95 = percentiles 2.5/97.5 de las replicas definidas; C2/R1/R2/R3 combinan replica
+  k con k (2024 con 2021, muestras independientes, sin covarianzas inventadas); delta-MAE por replica. No cubre
+  el error de especificacion de ningun candidato.'
+dependencias_materiales:
+- numpy
+- pandas
+- yaml
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.random.PCG64 (replicas compartidas por ola)
+tolerancia:
+  tipo: bootstrap
+  exacto_por_seed: true
+  abs: 1.0e-10
+  razon: seed 42 + orden de consumo fijado por replicas() (un generador por ola, estratos y UPM lexicograficos,
+    replicas 0..9999); enteros exactos, flotantes abs 1e-10
+parametros:
+  bootstrap_replicas: 10000
+  umbral_soporte_n: 200
+  lambda_r2: 0.5
+  universo_regimen:
+    tipo: PILOTO-1
+    edad_min: 18
+    edad_max: 97
+    edad_centinelas:
+    - '98'
+    - '99'
+    tloc:
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+  ola_nueva: '2024'
+  ola_anterior: '2021'
+  olas_zip:
+    '2021': enif2021_csv
+    '2024': enif2024_csv
+  columnas:
+    '2021':
+      tabla_sufijo: conjunto_de_datos_tmodulo_enif_2021.csv
+      edad: EDAD
+      tloc: TLOC
+      peso: FAC_ELE
+      est: EST_DIS
+      upm: UPM_DIS
+      sexo: SEXO
+      escolaridad: P3_1_1
+      formalidad: P3_10
+      cuentas:
+      - P5_4_1
+      - P5_4_2
+      - P5_4_3
+      - P5_4_4
+      - P5_4_5
+      - P5_4_6
+      - P5_4_7
+      - P5_4_8
+      - P5_4_9
+      informal:
+      - P5_1_1
+      - P5_1_2
+      - P5_1_3
+      - P5_1_4
+      - P5_1_5
+      - P5_1_6
+      formal:
+      - P5_7_1
+      - P5_7_2
+      - P5_7_3
+      - P5_7_4
+      - P5_7_5
+      - P5_7_6
+      - P5_7_7
+      - P5_7_8
+      - P5_7_9
+    '2024':
+      tabla_sufijo: conjunto_de_datos_tmodulo_enif2024.csv
+      edad: EDAD_V
+      tloc: TLOC
+      peso: FAC_PER
+      est: EST_DIS
+      upm: UPM_DIS
+      sexo: SEXO
+      escolaridad: NIV
+      formalidad: P3_13
+      cuentas:
+      - P5_4_1
+      - P5_4_2
+      - P5_4_3
+      - P5_4_4
+      - P5_4_5
+      - P5_4_6
+      - P5_4_7
+      - P5_4_8
+      - P5_4_9
+      informal:
+      - P5_1_1
+      - P5_1_2
+      - P5_1_3
+      - P5_1_4
+      - P5_1_5
+      - P5_1_6
+      formal:
+      - P5_6_1
+      - P5_6_2
+      - P5_6_3
+      - P5_6_4
+      - P5_6_5
+      - P5_6_6
+      - P5_6_7
+      - P5_6_8
+      - P5_6_9
+  edad_tramos:
+    18-29:
+    - 18
+    - 29
+    30-44:
+    - 30
+    - 44
+    45-59:
+    - 45
+    - 59
+    60+:
+    - 60
+    - 97
+  escolaridad_catalogo:
+    '2021':
+      '0': Ninguno
+      '1': Preescolar o kínder
+      '2': Primaria
+      '3': Secundaria
+      '4': Estudios técnicos con secundaria terminada
+      '5': Normal básica
+      '6': Preparatoria o bachillerato
+      '7': Estudios técnicos con preparatoria terminada
+      '8': Licenciatura o ingeniería (profesional)
+      '9': Maestría o doctorado
+      '99': No sabe
+    '2024':
+      '0': Ninguno
+      '1': Preescolar o kínder
+      '2': Primaria
+      '3': Secundaria
+      '4': Normal básica
+      '5': Estudios técnicos con secundaria terminada
+      '6': Preparatoria o bachillerato
+      '7': Estudios técnicos con preparatoria terminada
+      '8': Licenciatura o ingeniería (profesional)
+      '9': Especialidad
+      '10': Maestría
+      '11': Doctorado
+      '99': No sabe
+  escolaridad_tramo_por_etiqueta:
+    Ninguno: hasta primaria
+    Preescolar o kínder: hasta primaria
+    Primaria: hasta primaria
+    Secundaria: secundaria
+    Estudios técnicos con secundaria terminada: media superior
+    Normal básica: media superior
+    Preparatoria o bachillerato: media superior
+    Estudios técnicos con preparatoria terminada: media superior
+    Licenciatura o ingeniería (profesional): superior
+    Maestría o doctorado: superior
+    Especialidad: superior
+    Maestría: superior
+    Doctorado: superior
+  escolaridad_fuera_etiquetas:
+  - No sabe
+  localidad_map:
+    '1': 15 000 y mas
+    '2': 15 000 y mas
+    '3': menor de 15 000
+    '4': menor de 15 000
+  formalidad_map:
+    '2021':
+      '1': con seguridad social
+      '2': con seguridad social
+      '3': con seguridad social
+      '4': con seguridad social
+      '5': con seguridad social
+      '6': sin seguridad social
+    '2024':
+      '1': con seguridad social
+      '2': con seguridad social
+      '3': con seguridad social
+      '4': con seguridad social
+      '5': con seguridad social
+      '6': con seguridad social
+      '7': sin seguridad social
+  ejes:
+    sexo:
+      orden:
+      - 1 Hombre
+      - 2 Mujer
+      universo_restringido: false
+      cobertura_arbitro: 1.0
+    edad:
+      orden:
+      - 18-29
+      - 30-44
+      - 45-59
+      - 60+
+      universo_restringido: false
+      cobertura_arbitro: 0.998889
+    escolaridad:
+      orden:
+      - hasta primaria
+      - secundaria
+      - media superior
+      - superior
+      universo_restringido: false
+      cobertura_arbitro: 0.99963
+    localidad:
+      orden:
+      - menor de 15 000
+      - 15 000 y mas
+      universo_restringido: false
+      cobertura_arbitro: 1.0
+    formalidad:
+      orden:
+      - sin seguridad social
+      - con seguridad social
+      universo_restringido: true
+      cobertura_arbitro: 0.689676
+    cuenta_formal:
+      orden:
+      - sin cuenta
+      - con cuenta
+      universo_restringido: false
+      cobertura_arbitro: 1.0
+  pares:
+    localidadxedad:
+      a: localidad
+      b: edad
+      grupo: ORO-PILOTO-1
+      c2: EMITIBLE
+  grupo_primario: ORO-PILOTO-1
+  marginales_sellados:
+    puntos:
+      input: piloto1_spec_yaml
+      formato: spec-yaml
+      ids:
+        localidad:
+          menor de 15 000: parametros.marginales_sellados_D9.L1.p
+          15 000 y mas: parametros.marginales_sellados_D9.L2.p
+        edad:
+          18-29: parametros.marginales_sellados_D9.E1.p
+          30-44: parametros.marginales_sellados_D9.E2.p
+          45-59: parametros.marginales_sellados_D9.E3.p
+          60+: parametros.marginales_sellados_D9.E4.p
+      nacional_id: parametros.marginales_sellados_D9.NAC.p
+    masa:
+      input: arbitro_marginales_2024
+      formato: resultados-json
+      ids:
+        sexo:
+          1 Hombre: RESULT-ARBITRO-ENIF2024-D9-SEXO-1-DEN-W
+          2 Mujer: RESULT-ARBITRO-ENIF2024-D9-SEXO-2-DEN-W
+        edad:
+          18-29: RESULT-ARBITRO-ENIF2024-D9-EDAD-18-29-DEN-W
+          30-44: RESULT-ARBITRO-ENIF2024-D9-EDAD-30-44-DEN-W
+          45-59: RESULT-ARBITRO-ENIF2024-D9-EDAD-45-59-DEN-W
+          60+: RESULT-ARBITRO-ENIF2024-D9-EDAD-60-MAS-DEN-W
+        escolaridad:
+          hasta primaria: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W
+          secundaria: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-DEN-W
+          media superior: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W
+          superior: RESULT-ARBITRO-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-DEN-W
+        localidad:
+          menor de 15 000: RESULT-ARBITRO-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-DEN-W
+          15 000 y mas: RESULT-ARBITRO-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-DEN-W
+        formalidad:
+          sin seguridad social: RESULT-ARBITRO-ENIF2024-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DEN-W
+          con seguridad social: RESULT-ARBITRO-ENIF2024-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DEN-W
+        cuenta_formal:
+          sin cuenta: RESULT-ARBITRO-ENIF2024-D9-CUENTA-SIN-CUENTA-DEN-W
+          con cuenta: RESULT-ARBITRO-ENIF2024-D9-CUENTA-CON-CUENTA-DEN-W
+      nacional_id: RESULT-ARBITRO-ENIF2024-D9-TOTAL-TODOS-DEN-W
+  r3_ipf:
+    tol: 1.0e-12
+    max_iter: 2000
+  umbral_vence_pp: 0.5
+  umbral_reserva_pp: 0.0
+  regla_v0_3: 'v0.3: dMAE = MAE(C2) - MAE(R2) en pp sobre las celdas PUNTUADAS de los 5 pares primarios, IC95 por
+    réplica (misma réplica k en R, C2 y R2); VENCE-RETADOR si IC95inf > 0.5 pp; PROPUESTA-CON-RESERVA si 0 < IC95inf
+    <= 0.5; NADIE-VENCE si incluye 0. Retador primario R2 (lambda = 1/2 fija); P2, R1, R3, L1, L2 y los 9 pares
+    no primarios se adjudican con la misma regla rotulados SECUNDARIA. El conteo de 3/4 se reporta, no adjudica.'
+  m_estado: 'NO-DERIVABLE -- firma F2: no existe una theta calibrada que emita esta celda; la matriz no es estimador
+    por defecto de una celda que no adjudico (A-bis 5, ADR-68). El silencio se escribe.'
+  l_estado: NO-ENTRA-EN-ESTE-CALC -- L1/L2 los corre mesa por CLI (FP-228) con el paquete PAQUETE-L-LOTE-ENIF2024-v1_0;
+    las capturas se sellan antes del COMMIT-2 mecanico
+  punto_de_entrada: emisiones
+  prefijo_result: RESULT-DIN-LOTE24-ORO1-EM
+  control_sellado:
+    input: piloto1_emisiones
+    tol: 1.0e-09
+    celdas:
+      localidadxedad|menor de 15 000|18-29:
+        P2-P: RESULT-DIN-LXE8-C1-D9-P-L1xE1
+        P2-IC95INF: RESULT-DIN-LXE8-C1-D9-IC95INF-L1xE1
+        P2-IC95SUP: RESULT-DIN-LXE8-C1-D9-IC95SUP-L1xE1
+        P2-N: RESULT-DIN-LXE8-C1-D9-N-L1xE1
+        C2-P: RESULT-DIN-LXE8-C2-P-L1xE1
+        C2-IC95INF: RESULT-DIN-LXE8-C2-IC95INF-L1xE1
+        C2-IC95SUP: RESULT-DIN-LXE8-C2-IC95SUP-L1xE1
+      localidadxedad|menor de 15 000|30-44:
+        P2-P: RESULT-DIN-LXE8-C1-D9-P-L1xE2
+        P2-IC95INF: RESULT-DIN-LXE8-C1-D9-IC95INF-L1xE2
+        P2-IC95SUP: RESULT-DIN-LXE8-C1-D9-IC95SUP-L1xE2
+        P2-N: RESULT-DIN-LXE8-C1-D9-N-L1xE2
+        C2-P: RESULT-DIN-LXE8-C2-P-L1xE2
+        C2-IC95INF: RESULT-DIN-LXE8-C2-IC95INF-L1xE2
+        C2-IC95SUP: RESULT-DIN-LXE8-C2-IC95SUP-L1xE2
+      localidadxedad|menor de 15 000|45-59:
+        P2-P: RESULT-DIN-LXE8-C1-D9-P-L1xE3
+        P2-IC95INF: RESULT-DIN-LXE8-C1-D9-IC95INF-L1xE3
+        P2-IC95SUP: RESULT-DIN-LXE8-C1-D9-IC95SUP-L1xE3
+        P2-N: RESULT-DIN-LXE8-C1-D9-N-L1xE3
+        C2-P: RESULT-DIN-LXE8-C2-P-L1xE3
+        C2-IC95INF: RESULT-DIN-LXE8-C2-IC95INF-L1xE3
+        C2-IC95SUP: RESULT-DIN-LXE8-C2-IC95SUP-L1xE3
+      localidadxedad|menor de 15 000|60+:
+        P2-P: RESULT-DIN-LXE8-C1-D9-P-L1xE4
+        P2-IC95INF: RESULT-DIN-LXE8-C1-D9-IC95INF-L1xE4
+        P2-IC95SUP: RESULT-DIN-LXE8-C1-D9-IC95SUP-L1xE4
+        P2-N: RESULT-DIN-LXE8-C1-D9-N-L1xE4
+        C2-P: RESULT-DIN-LXE8-C2-P-L1xE4
+        C2-IC95INF: RESULT-DIN-LXE8-C2-IC95INF-L1xE4
+        C2-IC95SUP: RESULT-DIN-LXE8-C2-IC95SUP-L1xE4
+      localidadxedad|15 000 y mas|18-29:
+        P2-P: RESULT-DIN-LXE8-C1-D9-P-L2xE1
+        P2-IC95INF: RESULT-DIN-LXE8-C1-D9-IC95INF-L2xE1
+        P2-IC95SUP: RESULT-DIN-LXE8-C1-D9-IC95SUP-L2xE1
+        P2-N: RESULT-DIN-LXE8-C1-D9-N-L2xE1
+        C2-P: RESULT-DIN-LXE8-C2-P-L2xE1
+        C2-IC95INF: RESULT-DIN-LXE8-C2-IC95INF-L2xE1
+        C2-IC95SUP: RESULT-DIN-LXE8-C2-IC95SUP-L2xE1
+      localidadxedad|15 000 y mas|30-44:
+        P2-P: RESULT-DIN-LXE8-C1-D9-P-L2xE2
+        P2-IC95INF: RESULT-DIN-LXE8-C1-D9-IC95INF-L2xE2
+        P2-IC95SUP: RESULT-DIN-LXE8-C1-D9-IC95SUP-L2xE2
+        P2-N: RESULT-DIN-LXE8-C1-D9-N-L2xE2
+        C2-P: RESULT-DIN-LXE8-C2-P-L2xE2
+        C2-IC95INF: RESULT-DIN-LXE8-C2-IC95INF-L2xE2
+        C2-IC95SUP: RESULT-DIN-LXE8-C2-IC95SUP-L2xE2
+      localidadxedad|15 000 y mas|45-59:
+        P2-P: RESULT-DIN-LXE8-C1-D9-P-L2xE3
+        P2-IC95INF: RESULT-DIN-LXE8-C1-D9-IC95INF-L2xE3
+        P2-IC95SUP: RESULT-DIN-LXE8-C1-D9-IC95SUP-L2xE3
+        P2-N: RESULT-DIN-LXE8-C1-D9-N-L2xE3
+        C2-P: RESULT-DIN-LXE8-C2-P-L2xE3
+        C2-IC95INF: RESULT-DIN-LXE8-C2-IC95INF-L2xE3
+        C2-IC95SUP: RESULT-DIN-LXE8-C2-IC95SUP-L2xE3
+      localidadxedad|15 000 y mas|60+:
+        P2-P: RESULT-DIN-LXE8-C1-D9-P-L2xE4
+        P2-IC95INF: RESULT-DIN-LXE8-C1-D9-IC95INF-L2xE4
+        P2-IC95SUP: RESULT-DIN-LXE8-C1-D9-IC95SUP-L2xE4
+        P2-N: RESULT-DIN-LXE8-C1-D9-N-L2xE4
+        C2-P: RESULT-DIN-LXE8-C2-P-L2xE4
+        C2-IC95INF: RESULT-DIN-LXE8-C2-IC95INF-L2xE4
+        C2-IC95SUP: RESULT-DIN-LXE8-C2-IC95SUP-L2xE4
+resultados:
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-INPUT-ENIF2021-CSV-SHA256
+  tipo: texto
+  unidad: sha256 del input enif2021_csv
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-INPUT-ENIF2024-CSV-SHA256
+  tipo: texto
+  unidad: sha256 del input enif2024_csv
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-INPUT-ARBITRO-MARGINALES-2024-SHA256
+  tipo: texto
+  unidad: sha256 del input arbitro_marginales_2024
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-INPUT-PILOTO1-SPEC-YAML-SHA256
+  tipo: texto
+  unidad: sha256 del input piloto1_spec_yaml
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-INPUT-PILOTO1-EMISIONES-SHA256
+  tipo: texto
+  unidad: sha256 del input piloto1_emisiones
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-INPUT-CRUCES-FAMILIA-PY-SHA256
+  tipo: texto
+  unidad: sha256 del input cruces_familia_py
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-INPUT-LOTE-FAMILIA-PY-SHA256
+  tipo: texto
+  unidad: sha256 del input lote_familia_py
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-CODIGO-CRUCES-FAMILIA-SHA256
+  tipo: texto
+  unidad: sha256 del módulo CRUCES-FAMILIA al correr
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-CODIGO-LOTE-FAMILIA-SHA256
+  tipo: texto
+  unidad: sha256 del módulo LOTE-FAMILIA al correr
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-CODIGO-ENIF-LOTE-SHA256
+  tipo: texto
+  unidad: sha256 del módulo ENIF-LOTE al correr
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-OLA-NUEVA
+  tipo: texto
+  unidad: ola nueva del contrato
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-REGIMEN-UNIVERSO
+  tipo: texto
+  unidad: régimen de universo (PILOTO-1 | ARBITRO-2024)
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-GUARDIA-AST-VIOLACIONES
+  tipo: entero
+  unidad: violaciones de auditoria_ast()
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-GUARDIA-AST
+  tipo: texto
+  unidad: PASA si auditoria_ast() no reporta violaciones
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2021-FILAS-ARCHIVO
+  tipo: entero
+  unidad: filas del miembro TMODULO
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2021-FILAS-UNIVERSO
+  tipo: entero
+  unidad: filas tras los filtros del régimen
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2021-FILAS-EDAD-CENTINELA
+  tipo: entero
+  unidad: filas con edad centinela (98/99)
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2021-FILAS-CODIGO-FUERA-DE-DOMINIO
+  tipo: entero
+  unidad: filas del universo con algún código fuera de {1,2,blanco}
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2021-ESTRATOS
+  tipo: entero
+  unidad: EST_DIS distintos
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2021-UPM
+  tipo: entero
+  unidad: UPM distintas (EST_DIS, UPM_DIS)
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2021-ESTRATOS-UPM-UNICA
+  tipo: entero
+  unidad: estratos con una sola UPM (no remuestrean)
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2021-ENCODING
+  tipo: texto
+  unidad: codificación con que se leyó el miembro
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2021-CATALOGO-ESCOLARIDAD
+  tipo: texto
+  unidad: COINCIDE si el catálogo del zip iguala al declarado; SIN-CATALOGO-EN-ZIP si no viaja
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2021-FUERA-SEXO
+  tipo: entero
+  unidad: filas del universo (fuera) en el eje sexo
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2021-FUERA-EDAD
+  tipo: entero
+  unidad: filas del universo (fuera) en el eje edad
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2021-FUERA-ESCOLARIDAD
+  tipo: entero
+  unidad: filas del universo (fuera) en el eje escolaridad
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2021-FUERA-LOCALIDAD
+  tipo: entero
+  unidad: filas del universo (fuera) en el eje localidad
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2021-FUERA-FORMALIDAD
+  tipo: entero
+  unidad: filas del universo (fuera) en el eje formalidad
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2021-FUERA-CUENTA-FORMAL
+  tipo: entero
+  unidad: filas del universo (fuera) en el eje cuenta_formal
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2024-FILAS-ARCHIVO
+  tipo: entero
+  unidad: filas del miembro TMODULO
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2024-FILAS-UNIVERSO
+  tipo: entero
+  unidad: filas tras los filtros del régimen
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2024-FILAS-EDAD-CENTINELA
+  tipo: entero
+  unidad: filas con edad centinela (98/99)
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2024-FILAS-CODIGO-FUERA-DE-DOMINIO
+  tipo: entero
+  unidad: filas del universo con algún código fuera de {1,2,blanco}
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2024-ESTRATOS
+  tipo: entero
+  unidad: EST_DIS distintos
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2024-UPM
+  tipo: entero
+  unidad: UPM distintas (EST_DIS, UPM_DIS)
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2024-ESTRATOS-UPM-UNICA
+  tipo: entero
+  unidad: estratos con una sola UPM (no remuestrean)
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2024-ENCODING
+  tipo: texto
+  unidad: codificación con que se leyó el miembro
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2024-CATALOGO-ESCOLARIDAD
+  tipo: texto
+  unidad: COINCIDE si el catálogo del zip iguala al declarado; SIN-CATALOGO-EN-ZIP si no viaja
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2024-FUERA-SEXO
+  tipo: entero
+  unidad: filas del universo (fuera) en el eje sexo
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2024-FUERA-EDAD
+  tipo: entero
+  unidad: filas del universo (fuera) en el eje edad
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2024-FUERA-ESCOLARIDAD
+  tipo: entero
+  unidad: filas del universo (fuera) en el eje escolaridad
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2024-FUERA-LOCALIDAD
+  tipo: entero
+  unidad: filas del universo (fuera) en el eje localidad
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2024-FUERA-FORMALIDAD
+  tipo: entero
+  unidad: filas del universo (fuera) en el eje formalidad
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-W2024-FUERA-CUENTA-FORMAL
+  tipo: entero
+  unidad: filas del universo (fuera) en el eje cuenta_formal
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-RESERVA-OLA-NUEVA-CARGADA-RESERVADA
+  tipo: texto
+  unidad: SI si la ola nueva se cargó reservada
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-RESERVA-CRUCE-OLA-NUEVA-DERIVADO
+  tipo: texto
+  unidad: NO si cruce() sobre la ola nueva lanzó
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-RESERVA-GUARDIA-PROBADA
+  tipo: texto
+  unidad: la excepción de la guardia, probada en esta corrida
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-18-29-N
+  tipo: entero
+  unidad: personas en la categoría (ola nueva)
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-18-29-P-REDERIVADO
+  tipo: proporcion
+  unidad: marginal re-derivado de UN eje (réplica base)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-18-29-MASA-REDERIVADA
+  tipo: flotante
+  unidad: masa ponderada re-derivada
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-18-29-P-SELLADO
+  tipo: proporcion
+  unidad: marginal SELLADO citado por el contrato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-18-29-DELTA-SELLADO
+  tipo: flotante
+  unidad: re-derivado - sellado
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-30-44-N
+  tipo: entero
+  unidad: personas en la categoría (ola nueva)
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-30-44-P-REDERIVADO
+  tipo: proporcion
+  unidad: marginal re-derivado de UN eje (réplica base)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-30-44-MASA-REDERIVADA
+  tipo: flotante
+  unidad: masa ponderada re-derivada
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-30-44-P-SELLADO
+  tipo: proporcion
+  unidad: marginal SELLADO citado por el contrato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-30-44-DELTA-SELLADO
+  tipo: flotante
+  unidad: re-derivado - sellado
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-45-59-N
+  tipo: entero
+  unidad: personas en la categoría (ola nueva)
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-45-59-P-REDERIVADO
+  tipo: proporcion
+  unidad: marginal re-derivado de UN eje (réplica base)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-45-59-MASA-REDERIVADA
+  tipo: flotante
+  unidad: masa ponderada re-derivada
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-45-59-P-SELLADO
+  tipo: proporcion
+  unidad: marginal SELLADO citado por el contrato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-45-59-DELTA-SELLADO
+  tipo: flotante
+  unidad: re-derivado - sellado
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-60-N
+  tipo: entero
+  unidad: personas en la categoría (ola nueva)
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-60-P-REDERIVADO
+  tipo: proporcion
+  unidad: marginal re-derivado de UN eje (réplica base)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-60-MASA-REDERIVADA
+  tipo: flotante
+  unidad: masa ponderada re-derivada
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-60-P-SELLADO
+  tipo: proporcion
+  unidad: marginal SELLADO citado por el contrato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-EDAD-60-DELTA-SELLADO
+  tipo: flotante
+  unidad: re-derivado - sellado
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-LOCALIDAD-MENOR-DE-15-000-N
+  tipo: entero
+  unidad: personas en la categoría (ola nueva)
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-LOCALIDAD-MENOR-DE-15-000-P-REDERIVADO
+  tipo: proporcion
+  unidad: marginal re-derivado de UN eje (réplica base)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-LOCALIDAD-MENOR-DE-15-000-MASA-REDERIVADA
+  tipo: flotante
+  unidad: masa ponderada re-derivada
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-LOCALIDAD-MENOR-DE-15-000-P-SELLADO
+  tipo: proporcion
+  unidad: marginal SELLADO citado por el contrato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-LOCALIDAD-MENOR-DE-15-000-DELTA-SELLADO
+  tipo: flotante
+  unidad: re-derivado - sellado
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-LOCALIDAD-15-000-Y-MAS-N
+  tipo: entero
+  unidad: personas en la categoría (ola nueva)
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-LOCALIDAD-15-000-Y-MAS-P-REDERIVADO
+  tipo: proporcion
+  unidad: marginal re-derivado de UN eje (réplica base)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-LOCALIDAD-15-000-Y-MAS-MASA-REDERIVADA
+  tipo: flotante
+  unidad: masa ponderada re-derivada
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-LOCALIDAD-15-000-Y-MAS-P-SELLADO
+  tipo: proporcion
+  unidad: marginal SELLADO citado por el contrato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-LOCALIDAD-15-000-Y-MAS-DELTA-SELLADO
+  tipo: flotante
+  unidad: re-derivado - sellado
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-NACIONAL-NAC-N
+  tipo: entero
+  unidad: personas en la categoría (ola nueva)
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-NACIONAL-NAC-P-REDERIVADO
+  tipo: proporcion
+  unidad: marginal re-derivado de UN eje (réplica base)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-NACIONAL-NAC-MASA-REDERIVADA
+  tipo: flotante
+  unidad: masa ponderada re-derivada
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-NACIONAL-NAC-P-SELLADO
+  tipo: proporcion
+  unidad: marginal SELLADO citado por el contrato
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M24-NACIONAL-NAC-DELTA-SELLADO
+  tipo: flotante
+  unidad: re-derivado - sellado
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-M24-DELTA-SELLADO-MAX
+  tipo: flotante
+  unidad: 'peor |re-derivado - sellado| (informativo: régimen vs árbitro)'
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-M24-N-COTEJADOS
+  tipo: entero
+  unidad: marginales cotejados contra el sellado
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-M24-ORIGEN-SELLADO
+  tipo: texto
+  unidad: input del que salen los puntos sellados
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-EDAD-18-29-P
+  tipo: proporcion
+  unidad: marginal de la ola anterior
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-EDAD-18-29-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-EDAD-18-29-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-EDAD-18-29-N
+  tipo: entero
+  unidad: personas en la categoría (ola anterior)
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-EDAD-30-44-P
+  tipo: proporcion
+  unidad: marginal de la ola anterior
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-EDAD-30-44-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-EDAD-30-44-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-EDAD-30-44-N
+  tipo: entero
+  unidad: personas en la categoría (ola anterior)
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-EDAD-45-59-P
+  tipo: proporcion
+  unidad: marginal de la ola anterior
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-EDAD-45-59-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-EDAD-45-59-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-EDAD-45-59-N
+  tipo: entero
+  unidad: personas en la categoría (ola anterior)
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-EDAD-60-P
+  tipo: proporcion
+  unidad: marginal de la ola anterior
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-EDAD-60-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-EDAD-60-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-EDAD-60-N
+  tipo: entero
+  unidad: personas en la categoría (ola anterior)
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-LOCALIDAD-MENOR-DE-15-000-P
+  tipo: proporcion
+  unidad: marginal de la ola anterior
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-LOCALIDAD-MENOR-DE-15-000-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-LOCALIDAD-MENOR-DE-15-000-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-LOCALIDAD-MENOR-DE-15-000-N
+  tipo: entero
+  unidad: personas en la categoría (ola anterior)
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-LOCALIDAD-15-000-Y-MAS-P
+  tipo: proporcion
+  unidad: marginal de la ola anterior
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-LOCALIDAD-15-000-Y-MAS-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-LOCALIDAD-15-000-Y-MAS-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-LOCALIDAD-15-000-Y-MAS-N
+  tipo: entero
+  unidad: personas en la categoría (ola anterior)
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-NACIONAL-NAC-P
+  tipo: proporcion
+  unidad: marginal de la ola anterior
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-NACIONAL-NAC-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-NACIONAL-NAC-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-M21-NACIONAL-NAC-N
+  tipo: entero
+  unidad: personas en la categoría (ola anterior)
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-ESTADO
+  tipo: texto
+  unidad: EMITIBLE o NO-EMITIBLE:<causa> (dictamen sellado)
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-LAMBDA
+  tipo: flotante
+  unidad: lambda de R2 (fija)
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-ESTADO
+  tipo: texto
+  unidad: CONSTRUIDO | NO-EMITIBLE | NO-CONSTRUIBLE:<causa>
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-ITERACIONES-PUNTO
+  tipo: entero
+  unidad: iteraciones del raking del punto
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-CONVERGIO-PUNTO
+  tipo: texto
+  unidad: SI si el raking del punto llegó a la tolerancia
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-REPS-NO-CONVERGEN
+  tipo: entero
+  unidad: réplicas cuyo raking no convergió (quedan SIN-DEFINIR)
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas NaN sumadas sobre celdas
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-18-29-P
+  tipo: proporcion
+  unidad: 'piso log-aditivo sobre marginales SELLADOS de la ola nueva (IC réplica a réplica): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-18-29-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-18-29-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-30-44-P
+  tipo: proporcion
+  unidad: 'piso log-aditivo sobre marginales SELLADOS de la ola nueva (IC réplica a réplica): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-30-44-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-30-44-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-45-59-P
+  tipo: proporcion
+  unidad: 'piso log-aditivo sobre marginales SELLADOS de la ola nueva (IC réplica a réplica): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-45-59-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-45-59-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-60-P
+  tipo: proporcion
+  unidad: 'piso log-aditivo sobre marginales SELLADOS de la ola nueva (IC réplica a réplica): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-60-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-60-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-18-29-P
+  tipo: proporcion
+  unidad: 'piso log-aditivo sobre marginales SELLADOS de la ola nueva (IC réplica a réplica): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-18-29-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-18-29-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-30-44-P
+  tipo: proporcion
+  unidad: 'piso log-aditivo sobre marginales SELLADOS de la ola nueva (IC réplica a réplica): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-30-44-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-30-44-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-45-59-P
+  tipo: proporcion
+  unidad: 'piso log-aditivo sobre marginales SELLADOS de la ola nueva (IC réplica a réplica): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-45-59-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-45-59-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-60-P
+  tipo: proporcion
+  unidad: 'piso log-aditivo sobre marginales SELLADOS de la ola nueva (IC réplica a réplica): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-60-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-60-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas NaN sumadas sobre celdas
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-18-29-P
+  tipo: proporcion
+  unidad: 'persistencia: el cruce de ENIF 2021 tal cual: punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-18-29-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-18-29-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-18-29-N
+  tipo: entero
+  unidad: personas en la celda de la ola anterior
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-30-44-P
+  tipo: proporcion
+  unidad: 'persistencia: el cruce de ENIF 2021 tal cual: punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-30-44-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-30-44-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-30-44-N
+  tipo: entero
+  unidad: personas en la celda de la ola anterior
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-45-59-P
+  tipo: proporcion
+  unidad: 'persistencia: el cruce de ENIF 2021 tal cual: punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-45-59-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-45-59-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-45-59-N
+  tipo: entero
+  unidad: personas en la celda de la ola anterior
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-60-P
+  tipo: proporcion
+  unidad: 'persistencia: el cruce de ENIF 2021 tal cual: punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-60-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-60-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-60-N
+  tipo: entero
+  unidad: personas en la celda de la ola anterior
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-18-29-P
+  tipo: proporcion
+  unidad: 'persistencia: el cruce de ENIF 2021 tal cual: punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-18-29-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-18-29-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-18-29-N
+  tipo: entero
+  unidad: personas en la celda de la ola anterior
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-30-44-P
+  tipo: proporcion
+  unidad: 'persistencia: el cruce de ENIF 2021 tal cual: punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-30-44-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-30-44-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-30-44-N
+  tipo: entero
+  unidad: personas en la celda de la ola anterior
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-45-59-P
+  tipo: proporcion
+  unidad: 'persistencia: el cruce de ENIF 2021 tal cual: punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-45-59-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-45-59-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-45-59-N
+  tipo: entero
+  unidad: personas en la celda de la ola anterior
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-60-P
+  tipo: proporcion
+  unidad: 'persistencia: el cruce de ENIF 2021 tal cual: punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-60-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-60-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-60-N
+  tipo: entero
+  unidad: personas en la celda de la ola anterior
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas NaN sumadas sobre celdas
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-MENOR-DE-15-000-X-18-29-P
+  tipo: proporcion
+  unidad: 'interacción histórica cruda: expit(logit C2 + delta_21): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-MENOR-DE-15-000-X-18-29-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-MENOR-DE-15-000-X-18-29-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-MENOR-DE-15-000-X-30-44-P
+  tipo: proporcion
+  unidad: 'interacción histórica cruda: expit(logit C2 + delta_21): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-MENOR-DE-15-000-X-30-44-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-MENOR-DE-15-000-X-30-44-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-MENOR-DE-15-000-X-45-59-P
+  tipo: proporcion
+  unidad: 'interacción histórica cruda: expit(logit C2 + delta_21): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-MENOR-DE-15-000-X-45-59-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-MENOR-DE-15-000-X-45-59-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-MENOR-DE-15-000-X-60-P
+  tipo: proporcion
+  unidad: 'interacción histórica cruda: expit(logit C2 + delta_21): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-MENOR-DE-15-000-X-60-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-MENOR-DE-15-000-X-60-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-15-000-Y-MAS-X-18-29-P
+  tipo: proporcion
+  unidad: 'interacción histórica cruda: expit(logit C2 + delta_21): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-15-000-Y-MAS-X-18-29-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-15-000-Y-MAS-X-18-29-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-15-000-Y-MAS-X-30-44-P
+  tipo: proporcion
+  unidad: 'interacción histórica cruda: expit(logit C2 + delta_21): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-15-000-Y-MAS-X-30-44-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-15-000-Y-MAS-X-30-44-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-15-000-Y-MAS-X-45-59-P
+  tipo: proporcion
+  unidad: 'interacción histórica cruda: expit(logit C2 + delta_21): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-15-000-Y-MAS-X-45-59-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-15-000-Y-MAS-X-45-59-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-15-000-Y-MAS-X-60-P
+  tipo: proporcion
+  unidad: 'interacción histórica cruda: expit(logit C2 + delta_21): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-15-000-Y-MAS-X-60-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R1-15-000-Y-MAS-X-60-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas NaN sumadas sobre celdas
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-MENOR-DE-15-000-X-18-29-P
+  tipo: proporcion
+  unidad: 'interacción histórica encogida: expit(logit C2 + lambda*delta_21), lambda fija: punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-MENOR-DE-15-000-X-18-29-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-MENOR-DE-15-000-X-18-29-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-MENOR-DE-15-000-X-30-44-P
+  tipo: proporcion
+  unidad: 'interacción histórica encogida: expit(logit C2 + lambda*delta_21), lambda fija: punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-MENOR-DE-15-000-X-30-44-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-MENOR-DE-15-000-X-30-44-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-MENOR-DE-15-000-X-45-59-P
+  tipo: proporcion
+  unidad: 'interacción histórica encogida: expit(logit C2 + lambda*delta_21), lambda fija: punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-MENOR-DE-15-000-X-45-59-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-MENOR-DE-15-000-X-45-59-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-MENOR-DE-15-000-X-60-P
+  tipo: proporcion
+  unidad: 'interacción histórica encogida: expit(logit C2 + lambda*delta_21), lambda fija: punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-MENOR-DE-15-000-X-60-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-MENOR-DE-15-000-X-60-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-15-000-Y-MAS-X-18-29-P
+  tipo: proporcion
+  unidad: 'interacción histórica encogida: expit(logit C2 + lambda*delta_21), lambda fija: punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-15-000-Y-MAS-X-18-29-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-15-000-Y-MAS-X-18-29-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-15-000-Y-MAS-X-30-44-P
+  tipo: proporcion
+  unidad: 'interacción histórica encogida: expit(logit C2 + lambda*delta_21), lambda fija: punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-15-000-Y-MAS-X-30-44-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-15-000-Y-MAS-X-30-44-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-15-000-Y-MAS-X-45-59-P
+  tipo: proporcion
+  unidad: 'interacción histórica encogida: expit(logit C2 + lambda*delta_21), lambda fija: punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-15-000-Y-MAS-X-45-59-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-15-000-Y-MAS-X-45-59-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-15-000-Y-MAS-X-60-P
+  tipo: proporcion
+  unidad: 'interacción histórica encogida: expit(logit C2 + lambda*delta_21), lambda fija: punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-15-000-Y-MAS-X-60-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R2-15-000-Y-MAS-X-60-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas NaN sumadas sobre celdas
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-MENOR-DE-15-000-X-18-29-P
+  tipo: proporcion
+  unidad: 'ajuste proporcional iterativo (raking a tres vías de la tabla 2021 a los márgenes 2024): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-MENOR-DE-15-000-X-18-29-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-MENOR-DE-15-000-X-18-29-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-MENOR-DE-15-000-X-30-44-P
+  tipo: proporcion
+  unidad: 'ajuste proporcional iterativo (raking a tres vías de la tabla 2021 a los márgenes 2024): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-MENOR-DE-15-000-X-30-44-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-MENOR-DE-15-000-X-30-44-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-MENOR-DE-15-000-X-45-59-P
+  tipo: proporcion
+  unidad: 'ajuste proporcional iterativo (raking a tres vías de la tabla 2021 a los márgenes 2024): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-MENOR-DE-15-000-X-45-59-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-MENOR-DE-15-000-X-45-59-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-MENOR-DE-15-000-X-60-P
+  tipo: proporcion
+  unidad: 'ajuste proporcional iterativo (raking a tres vías de la tabla 2021 a los márgenes 2024): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-MENOR-DE-15-000-X-60-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-MENOR-DE-15-000-X-60-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-15-000-Y-MAS-X-18-29-P
+  tipo: proporcion
+  unidad: 'ajuste proporcional iterativo (raking a tres vías de la tabla 2021 a los márgenes 2024): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-15-000-Y-MAS-X-18-29-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-15-000-Y-MAS-X-18-29-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-15-000-Y-MAS-X-30-44-P
+  tipo: proporcion
+  unidad: 'ajuste proporcional iterativo (raking a tres vías de la tabla 2021 a los márgenes 2024): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-15-000-Y-MAS-X-30-44-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-15-000-Y-MAS-X-30-44-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-15-000-Y-MAS-X-45-59-P
+  tipo: proporcion
+  unidad: 'ajuste proporcional iterativo (raking a tres vías de la tabla 2021 a los márgenes 2024): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-15-000-Y-MAS-X-45-59-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-15-000-Y-MAS-X-45-59-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-15-000-Y-MAS-X-60-P
+  tipo: proporcion
+  unidad: 'ajuste proporcional iterativo (raking a tres vías de la tabla 2021 a los márgenes 2024): punto'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-15-000-Y-MAS-X-60-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-R3-15-000-Y-MAS-X-60-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de las réplicas definidas
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-IBAR-MENOR-DE-15-000-X-18-29
+  tipo: flotante
+  unidad: delta_21 en logit (interacción 2021)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-N21-MENOR-DE-15-000-X-18-29
+  tipo: entero
+  unidad: n de la celda en 2021
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-SOPORTE-2021-MENOR-DE-15-000-X-18-29
+  tipo: texto
+  unidad: SI si n21 >= umbral
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-IBAR-MENOR-DE-15-000-X-30-44
+  tipo: flotante
+  unidad: delta_21 en logit (interacción 2021)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-N21-MENOR-DE-15-000-X-30-44
+  tipo: entero
+  unidad: n de la celda en 2021
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-SOPORTE-2021-MENOR-DE-15-000-X-30-44
+  tipo: texto
+  unidad: SI si n21 >= umbral
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-IBAR-MENOR-DE-15-000-X-45-59
+  tipo: flotante
+  unidad: delta_21 en logit (interacción 2021)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-N21-MENOR-DE-15-000-X-45-59
+  tipo: entero
+  unidad: n de la celda en 2021
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-SOPORTE-2021-MENOR-DE-15-000-X-45-59
+  tipo: texto
+  unidad: SI si n21 >= umbral
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-IBAR-MENOR-DE-15-000-X-60
+  tipo: flotante
+  unidad: delta_21 en logit (interacción 2021)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-N21-MENOR-DE-15-000-X-60
+  tipo: entero
+  unidad: n de la celda en 2021
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-SOPORTE-2021-MENOR-DE-15-000-X-60
+  tipo: texto
+  unidad: SI si n21 >= umbral
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-IBAR-15-000-Y-MAS-X-18-29
+  tipo: flotante
+  unidad: delta_21 en logit (interacción 2021)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-N21-15-000-Y-MAS-X-18-29
+  tipo: entero
+  unidad: n de la celda en 2021
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-SOPORTE-2021-15-000-Y-MAS-X-18-29
+  tipo: texto
+  unidad: SI si n21 >= umbral
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-IBAR-15-000-Y-MAS-X-30-44
+  tipo: flotante
+  unidad: delta_21 en logit (interacción 2021)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-N21-15-000-Y-MAS-X-30-44
+  tipo: entero
+  unidad: n de la celda en 2021
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-SOPORTE-2021-15-000-Y-MAS-X-30-44
+  tipo: texto
+  unidad: SI si n21 >= umbral
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-IBAR-15-000-Y-MAS-X-45-59
+  tipo: flotante
+  unidad: delta_21 en logit (interacción 2021)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-N21-15-000-Y-MAS-X-45-59
+  tipo: entero
+  unidad: n de la celda en 2021
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-SOPORTE-2021-15-000-Y-MAS-X-45-59
+  tipo: texto
+  unidad: SI si n21 >= umbral
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-IBAR-15-000-Y-MAS-X-60
+  tipo: flotante
+  unidad: delta_21 en logit (interacción 2021)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-N21-15-000-Y-MAS-X-60
+  tipo: entero
+  unidad: n de la celda en 2021
+- id: RESULT-DIN-LOTE24-ORO1-EM-LOCALIDADXEDAD-SOPORTE-2021-15-000-Y-MAS-X-60
+  tipo: texto
+  unidad: SI si n21 >= umbral
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-M-ESTADO
+  tipo: texto
+  unidad: 'M: NO-DERIVABLE con su razón (firma F2)'
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-L-ESTADO
+  tipo: texto
+  unidad: 'L1/L2: estado en esta corrida'
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-LAMBDA-R2
+  tipo: flotante
+  unidad: lambda fija de R2
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-R-EXISTE-EN-ESTE-COMMIT
+  tipo: texto
+  unidad: 'NO: ningún R del lote existe al sellar'
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-18-29-P-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-18-29-IC95INF-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-18-29-IC95SUP-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-18-29-N-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-18-29-P-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-18-29-IC95INF-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-18-29-IC95SUP-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-30-44-P-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-30-44-IC95INF-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-30-44-IC95SUP-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-30-44-N-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-30-44-P-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-30-44-IC95INF-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-30-44-IC95SUP-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-45-59-P-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-45-59-IC95INF-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-45-59-IC95SUP-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-45-59-N-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-45-59-P-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-45-59-IC95INF-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-45-59-IC95SUP-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-60-P-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-60-IC95INF-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-60-IC95SUP-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-MENOR-DE-15-000-X-60-N-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-60-P-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-60-IC95INF-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-MENOR-DE-15-000-X-60-IC95SUP-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-18-29-P-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-18-29-IC95INF-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-18-29-IC95SUP-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-18-29-N-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-18-29-P-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-18-29-IC95INF-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-18-29-IC95SUP-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-30-44-P-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-30-44-IC95INF-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-30-44-IC95SUP-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-30-44-N-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-30-44-P-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-30-44-IC95INF-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-30-44-IC95SUP-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-45-59-P-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-45-59-IC95INF-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-45-59-IC95SUP-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-45-59-N-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-45-59-P-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-45-59-IC95INF-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-45-59-IC95SUP-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-60-P-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-60-IC95INF-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-60-IC95SUP-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-P2-15-000-Y-MAS-X-60-N-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-60-P-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-60-IC95INF-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-CTRL-LOCALIDADXEDAD-C2-15-000-Y-MAS-X-60-IC95SUP-DELTA
+  tipo: flotante
+  unidad: emitido - sellado del piloto 1
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-CTRL-DELTA-MAX
+  tipo: flotante
+  unidad: peor |emitido - sellado|
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-CTRL-N-COTEJADOS
+  tipo: entero
+  unidad: valores cotejados
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-CTRL-N-NO-COTEJABLES
+  tipo: entero
+  unidad: valores sin cotejo (null en alguno de los dos lados)
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-CTRL-REPRODUCE
+  tipo: texto
+  unidad: SI si todo cotejado dentro de la tolerancia
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-CTRL-TOL
+  tipo: flotante
+  unidad: tolerancia del control
+- id: RESULT-DIN-LOTE24-ORO1-EM-G-MEDIDOR-IDENTICO-A-TOOLS
+  tipo: texto
+  unidad: SI si medidor.py es byte a byte tools/lote_enif2024/enif_lote.py

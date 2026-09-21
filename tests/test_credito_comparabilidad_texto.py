@@ -16,6 +16,10 @@ texto de ningún reactivo:
     (A.15: «no existe la variable» no vale);
   · toda fila NO-VERIFICABLE-AQUÍ trae el límite del FD declarado, y sólo
     puede serlo en 2012 y 2015 (las olas sin cuestionario en el corpus);
+    en v1.1 (ACTO GEN2-DIN-CREDITO-HISTORIA-1, 21/sep/2026, pieza P1) los dos
+    cuestionarios ya están en el corpus (`enif_2012_cuestionario_pdf`,
+    `enif_2015_cuestionario_pdf`, #960), así que ninguna ola admite ese
+    veredicto y las 16 filas de 2012/2015 citan el cuestionario por sha256/16;
   · toda fila con componentes no estimables trae el texto buscado;
   · la fuente cita archivo + sha256/16 + página o fila;
   · unidad y población base nunca vacías.
@@ -35,6 +39,9 @@ import unittest
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TABLA = os.path.join(RAIZ, "data", "credito-comparabilidad-texto-v1_0.tsv")
+TABLA_V11 = os.path.join(RAIZ, "data", "credito-comparabilidad-texto-v1_1.tsv")
+# v1.1: los cuestionarios 2012/2015 entraron al corpus (#960); la fila cita su sha.
+SHA_CUESTIONARIO = {"2012": "sha256/16=b7fc1f4a2363a609", "2015": "sha256/16=10688412391ecd5e"}
 
 CONDUCTAS = ["K1", "K2", "K3", "K4", "K5", "K6", "K7", "K8"]
 OLAS = ["2012", "2015", "2018", "2021", "2024"]
@@ -84,8 +91,13 @@ def leer_tsv(ruta: str) -> tuple[list[str], list[dict[str, str]]]:
     return cab, filas
 
 
-def verificar(ruta: str) -> list[str]:
-    """Devuelve la lista de defectos (vacía = tabla en forma)."""
+def verificar(ruta: str, olas_sin_cuestionario: set[str] = OLAS_SIN_CUESTIONARIO,
+              sha_cuestionario: dict[str, str] | None = None) -> list[str]:
+    """Devuelve la lista de defectos (vacía = tabla en forma).
+
+    `olas_sin_cuestionario`: olas donde cabe NO-VERIFICABLE-AQUÍ (v1.0: 2012 y
+    2015; v1.1: ninguna). `sha_cuestionario`: por ola, el sha256/16 del
+    cuestionario que toda fila de esa ola debe citar en `fuente` (v1.1)."""
     defectos: list[str] = []
     cab, filas = leer_tsv(ruta)
     if cab != COLUMNAS:
@@ -117,11 +129,12 @@ def verificar(ruta: str) -> list[str]:
         if v == "NO-ESTIMABLE":
             if not r["texto_buscado"].strip():
                 defectos.append(f"{pref}: NO-ESTIMABLE sin texto_buscado (A.15)")
-            if ola in OLAS_SIN_CUESTIONARIO:
+            if ola in olas_sin_cuestionario:
                 defectos.append(f"{pref}: NO-ESTIMABLE en ola sin cuestionario; debe ser NO-VERIFICABLE-AQUÍ")
         if v == "NO-VERIFICABLE-AQUÍ":
-            if ola not in OLAS_SIN_CUESTIONARIO:
-                defectos.append(f"{pref}: NO-VERIFICABLE-AQUÍ sólo cabe en 2012/2015")
+            if ola not in olas_sin_cuestionario:
+                cabe = "/".join(sorted(olas_sin_cuestionario)) or "ninguna ola"
+                defectos.append(f"{pref}: NO-VERIFICABLE-AQUÍ sólo cabe en {cabe}")
             if not r["limite_fd"].strip():
                 defectos.append(f"{pref}: NO-VERIFICABLE-AQUÍ sin limite_fd")
         if r["componentes_no_estimables"].strip() and not r["texto_buscado"].strip():
@@ -130,6 +143,8 @@ def verificar(ruta: str) -> list[str]:
             defectos.append(f"{pref}: fuente sin sha256/16")
         if not RE_PAG_O_FILA.search(r["fuente"]):
             defectos.append(f"{pref}: fuente sin página ni fila")
+        if sha_cuestionario and ola in sha_cuestionario and sha_cuestionario[ola] not in r["fuente"]:
+            defectos.append(f"{pref}: fuente sin el cuestionario {ola} ({sha_cuestionario[ola]})")
     faltan = {(k, o) for k in CONDUCTAS for o in OLAS} - vistos
     if faltan:
         defectos.append(f"pares conducta×ola ausentes: {sorted(faltan)}")
@@ -215,6 +230,38 @@ class TestSintetico(unittest.TestCase):
         self.assertTrue(any("sin reactivo" in x for x in d), d)
 
 
+class TestSinteticoV11(unittest.TestCase):
+    """v1.1: sin olas sin cuestionario, NO-VERIFICABLE-AQUÍ no cabe en ninguna."""
+
+    def _defectos(self, filas, **kw):
+        with tempfile.TemporaryDirectory() as d:
+            p = os.path.join(d, "t.tsv")
+            escribir(filas, p)
+            return verificar(p, olas_sin_cuestionario=set(), **kw)
+
+    def _tabla(self):
+        filas = tabla_sintetica()
+        for r in filas:
+            if r["veredicto"] == "NO-VERIFICABLE-AQUÍ":
+                r.update(_fila(r["conducta"], r["ola"], "CAMBIO-MENOR"))
+        return filas
+
+    def test_control_positivo_v11(self):
+        self.assertEqual(self._defectos(self._tabla()), [])
+
+    def test_falla_no_verificable_en_v11(self):
+        filas = self._tabla()
+        filas[0]["veredicto"] = "NO-VERIFICABLE-AQUÍ"  # K1×2012
+        filas[0]["limite_fd"] = "x"
+        d = self._defectos(filas)
+        self.assertTrue(any("sólo cabe en ninguna ola" in x for x in d), d)
+
+    def test_falla_sin_sha_del_cuestionario(self):
+        filas = self._tabla()
+        d = self._defectos(filas, sha_cuestionario={"2012": "sha256/16=b7fc1f4a2363a609"})
+        self.assertEqual(len([x for x in d if "sin el cuestionario 2012" in x]), 8, d)
+
+
 class TestTablaReal(unittest.TestCase):
     def test_tabla_real_en_forma(self):
         self.assertTrue(os.path.exists(TABLA), TABLA)
@@ -234,6 +281,39 @@ class TestTablaReal(unittest.TestCase):
             "CAMBIO-DE-INSTRUMENTO": 2,
             "NO-ESTIMABLE": 3,
             "NO-VERIFICABLE-AQUÍ": 16,
+        })
+
+
+class TestTablaRealV11(unittest.TestCase):
+    """v1.1 sucede a v1.0 (que no se edita): las 24 filas de 2018/2021/2024 se
+    copian verbatim y las 16 de 2012/2015 pasan de NO-VERIFICABLE-AQUÍ al
+    veredicto leído del cuestionario."""
+
+    def test_tabla_v11_en_forma(self):
+        self.assertTrue(os.path.exists(TABLA_V11), TABLA_V11)
+        d = verificar(TABLA_V11, olas_sin_cuestionario=set(), sha_cuestionario=SHA_CUESTIONARIO)
+        self.assertEqual(d, [], "\n".join(d))
+
+    def test_v11_hereda_verbatim_las_filas_con_cuestionario_en_v10(self):
+        _, v10 = leer_tsv(TABLA)
+        _, v11 = leer_tsv(TABLA_V11)
+        k10 = {(r["conducta"], r["ola"]): r for r in v10}
+        for r in v11:
+            if r["ola"] not in OLAS_SIN_CUESTIONARIO:
+                self.assertEqual(r, k10[(r["conducta"], r["ola"])], (r["conducta"], r["ola"]))
+
+    def test_conteo_v11_por_veredicto_es_el_declarado(self):
+        # Pinado al cierre de P1 (21/sep/2026): 2015 y 2012 dan cada una
+        # K1 K2 K3 K5 K6 CAMBIO-MENOR · K4 K8 CAMBIO-DE-INSTRUMENTO · K7 NO-ESTIMABLE.
+        _, filas = leer_tsv(TABLA_V11)
+        conteo = {}
+        for r in filas:
+            conteo[r["veredicto"]] = conteo.get(r["veredicto"], 0) + 1
+        self.assertEqual(conteo, {
+            "MISMO-INSTRUMENTO": 8,
+            "CAMBIO-MENOR": 21,
+            "CAMBIO-DE-INSTRUMENTO": 6,
+            "NO-ESTIMABLE": 5,
         })
 
 

@@ -1,0 +1,13 @@
+raíces escaneables configuradas y accesibles: ['data_raw', 'descargas_mx']
+raíces extra de búsqueda (--busca-tambien): ['repo', 'reserva_respondentes']
+archivos indexados por raíz: {'data_raw': 1291, 'descargas_mx': 620, 'reserva_respondentes': 4, 'repo': 6533} (0s)
+entradas=1632 · archivos_examinados(hasheados)=1627 · 21s
+  ESTÁ-Y-COINCIDE: 1621
+  NO-ES-ARCHIVO: 5
+  NO-ESTÁ: 2
+  NO-VERIFICABLE: 4
+por raíz declarada (sin colapsar):
+  SIN-RAIZ: ESTÁ-Y-COINCIDE=1009 · NO-ES-ARCHIVO=5 · NO-ESTÁ=2
+  data_raw: ESTÁ-Y-COINCIDE=277
+  descargas_mx: ESTÁ-Y-COINCIDE=335
+  reserva_respondentes: NO-VERIFICABLE=4

@@ -240,7 +240,10 @@ jobs:
         # es decoración. Corre PRIMERO el caso sintético (D-22) y después la
         # tabla real `data/credito-comparabilidad-texto-v1_0.tsv`: 40 filas,
         # veredictos en lista cerrada, toda fila negativa con texto buscado.
-        # Stdlib puro, cero microdato.
+        # Stdlib puro, cero microdato. Desde ACTO GEN2-DIN-CREDITO-HISTORIA-1
+        # (21/sep/2026, P1) el mismo archivo verifica también la sucesora
+        # `data/credito-comparabilidad-texto-v1_1.tsv` (cuestionarios 2012/2015
+        # ya en el corpus: cero NO-VERIFICABLE-AQUÍ, 24 filas heredadas verbatim).
         run: python3 tests/test_credito_comparabilidad_texto.py
 
       - name: comparabilidad por texto de ahorro ENIF — forma de la tabla 8 objetos × 5 olas (bloqueante)
@@ -252,6 +255,13 @@ jobs:
         # veredictos en lista cerrada; toda fila con componente no estimable cita
         # el texto buscado (A.15). Stdlib puro, cero microdato.
         run: python3 tests/test_ahorro_comparabilidad_texto.py
+
+      - name: comparabilidad por texto del canal de pago de luz ENCIG — forma de la tabla 1 conducta × 6 olas (bloqueante)
+        # ACTO GEN2-ENCIG-SERIE-Y-TENDENCIA-1 (21/sep/2026), P1: misma forma y
+        # verificador que la tabla de crédito, otra rejilla (2015-2025, ancla
+        # 2021). Sintético primero (D-22), luego `data/encig-canal-
+        # comparabilidad-texto-v1_0.tsv`. Stdlib puro, cero microdato.
+        run: python3 tests/test_encig_canal_comparabilidad_texto.py
 
       - name: métrica rectora — celdas_validadas en la primera línea del tablero (bloqueante)
         # ACTO GEN2-SENAL-1 (21/sep/2026) · P1. `celdas_validadas` es la métrica
