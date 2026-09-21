@@ -31,7 +31,7 @@ coincidencias de «PROSPECTIVA/RETROSPECTIVA», «error conocido», «Cobertura 
 «intervalo binomial». Nacen FIRMADAS como
 `FP-260921-GEN2-MARCADOR-E-INFORME-1-48d4-01/-02/-03`; el lanzamiento del encargo es el sello.
 
-**P1 · `celdas_validadas` 73 → 88, la métrica rectora deja de contar desde una lista escrita a
+**P1 · `celdas_validadas` 73 → 92, la métrica rectora deja de contar desde una lista escrita a
 mano.** El defecto real, abierto por el propio piloto 3 (`NC-260921-…-3619-02`, `PR #961`): la
 clase 1 de la métrica era una tupla de **dos** celdas-D —con su CALC, su prefijo de `RESULT` y
 su factor de escala— tecleada dentro de `tools/tablero_programa.py`, así que el día que un
@@ -41,14 +41,18 @@ hay que editar a mano cada vez que el programa avanza mide al editor. Ahora
 celda-D con `estado_decidibilidad: PUNTUADA` **y** veredicto sellado. **El veredicto no entra en
 el conteo**: validada quiere decir *predicha antes y comparada después*, no acertada, y por eso
 `FALSADOR-DEBIL` (piloto 3) y `SIN-CANDIDATO-SUPERIOR` (pilotos 1 y 2) cuentan exactamente
-igual que uno que venciera. Hoy: **8 + 12 + 15 = 35** celdas de cruce, más las **53** de
-persistencia ya contadas = **88**; las tres celdas-D sin veredicto quedan fuera **con su motivo
+igual que uno que venciera. Hoy: **8 + 12 + 15 = 35** celdas de cruce, más las **57** de
+persistencia = **92** — re-derivado por comando **después** de fusionar `PR #971`
+(`GEN2-ARBITRO-MARGINALES-1`), que fusionó primero y subió las marginales con error
+medido de 53 a 57; esta rama medía **88** contra su base anterior (`55c8d57`) y esa
+cifra **no se heredó**, igual que no se heredó el 77 que `#971` medía contra la suya.
+Los dos ejes se componen sin doble conteo; las tres celdas-D sin veredicto quedan fuera **con su motivo
 escrito**, no en silencio. **La escala se deriva, no se teclea** (§4.3; el defecto es de factor
 100: DIN emite en proporción, TRA y GOB en puntos porcentuales): se prueban los factores 1 y 100
 contra el `margen_material` sellado de la propia celda-D y se adopta el que casa —verificado
 COINCIDE en las tres—; **si ninguno casa la celda NO cuenta**, que es el PARO (d) del encargo
 leído al derecho (la métrica no sube por una escala adivinada). El tablero publica además el
-desglose por **tipo** (35 cruce / 53 marginal) y por **instrumento**. Las 15 celdas del piloto 3
+desglose por **tipo** (35 cruce / 57 marginal) y por **instrumento**. Las 15 celdas del piloto 3
 cuentan **sin** tener fila en el marcador: el derivador sólo publica cruces con
 `champion_actual: C2` y el piloto 3 cerró en `NINGUNO` — es `DECISIÓN-DE-MESA-PENDIENTE`
 heredada (`NC-260921-…-3619-01`), y el tablero lo dice en el campo `instrumento` en vez de
@@ -122,7 +126,7 @@ conteo, de que la escala indeterminable **no** sube la métrica, y de que `SIN-E
 (`CORRE-EN-CI`). Rótulo censado en `canon/registro-rotulos.tsv`. Suite en línea base **VERDE**
 (sin `FAIL` nuevos); **37 WARN nuevos** se listan como estado y **no adjudican** (D-16).
 **CONTADOR: `cuenta_gen2 = NO`** — este acto no sella corrida, no adopta, no adjudica y no
-re-adjudica; el único contador que mueve es `celdas_validadas`, **73 → 88**, y lo mueve por
+re-adjudica; el único contador que mueve es `celdas_validadas`, **73 → 92**, y lo mueve por
 contar lo que ya estaba adjudicado, no por medir nada nuevo. → **Propuesto; mesa fusiona.**
 **ADR-260921-GEN2-ARBITRO-MARGINALES-1-ed7d-01** (raíz de acto: 0-bis `ed7d8482`; no se renumera), `ACTO
 GEN2-ARBITRO-MARGINALES-1 · LA REALIDAD DE LA OLA NUEVA SE MIDE EN GEN2, EJE POR EJE, EN ENIF 2024,

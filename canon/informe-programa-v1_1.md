@@ -13,8 +13,11 @@ Documento del programa, escrito para mesa y para un comprador escéptico.
 > | **VERIFICAS ASÍ** | cada cifra del cuerpo trae, en su propia línea o en el pie de su tabla, **el comando que la produce o el `RESULT` sellado que la contiene**. Las cifras de los tres pilotos salen todas de `python3 tools/informe_pilotos.py --json`, que además **se verifica a sí mismo**: cada MAE derivado se compara contra el MAE sellado de la corrida correspondiente y la salida trae la columna `check` (hoy: **COINCIDE en los 12 candidatos de los tres pilotos**). |
 > | **NOMBRE ESTABLE** | **`informe-programa`** — cítalo así, **nunca por nombre de archivo** |
 
-> **Estampa de universo (A.10), global.** Derivado contra `origin/main = 55c8d57`
-> (merge de `PR #961`, el piloto 3, 21/sep/2026), en un acto de **NUBE sin corpus
+> **Estampa de universo (A.10), global.** Derivado contra `origin/main = d78a4d1`
+> (merge de `PR #971`, `GEN2-ARBITRO-MARGINALES-1`, 21/sep/2026; el piloto 3,
+> `PR #961`, es ancestro suyo). Las cifras de §1.1 se **re-derivaron por comando
+> después** de fusionar esa base, no se heredaron de la base anterior
+> (`55c8d57`), donde esta rama medía 88. En un acto de **NUBE sin corpus
 > montado** (`tools/entorno.py --arranque`: `senal-corpus: montado=NO
 > archivos_examinados=0`; `data-raw-en-este-worktree: NO`; red
 > `DENEGADA-POR-POLITICA`). **Fuentes: sólo el registro derivado y las corridas
@@ -54,9 +57,13 @@ celda que no ha visto, y sabe cuánto se equivoca?** La respuesta honesta, hoy:
   (§3).
 
 **Contadores que movió el trabajo que produjo este informe** (v2.3 del módulo de
-auditoría): **uno**. `celdas_validadas` pasó de **73 a 88** al dejar de contarse
-desde una lista escrita a mano. Ninguna corrida nueva se selló, ningún candidato
-se adoptó.
+auditoría): **uno**. `celdas_validadas` pasó de **73 a 92**. De ese salto, **15**
+son del piloto 3, que el conteo no veía porque la métrica se calculaba desde una
+lista escrita a mano, y **4** vienen de `ACTO GEN2-ARBITRO-MARGINALES-1`
+(`PR #971`), que fusionó primero y subió las marginales con error medido de 53 a
+57. La cifra **no se heredó de ninguna de las dos ramas**: las dos habían
+re-derivado contra su propia base (88 y 77) y ésta se re-derivó por comando
+después de fusionar. Ninguna corrida nueva se selló, ningún candidato se adoptó.
 
 ---
 
@@ -96,7 +103,7 @@ distintas y sumarlas es el defecto que el rótulo existe para evitar.*
 · **columna publicada:** `data/corrida0/marcador-segmento.tsv`, campos
 `prospectividad` y `prospectividad_cita` (la cita nombra los dos sellos).
 
-### 1.1 · La métrica rectora, `celdas_validadas` = **88**
+### 1.1 · La métrica rectora, `celdas_validadas` = **92**
 
 Una celda cuenta como **validada** si su predicción se emitió antes de ver el
 dato y se comparó contra R con error sellado. **Validada no quiere decir
@@ -106,8 +113,8 @@ exactamente tantas celdas como uno que termina en «vence».
 | clase | n | escala / unidad |
 |---|---:|---|
 | cruce vs R (los tres pilotos) | **35** | celdas de cruce; persona (8), delito (12), trámite (15) |
-| persistencia t−1 vs R | **53** | celdas marginales; persona, delito y trámite según instrumento |
-| **total** | **88** | celdas validadas |
+| persistencia t−1 vs R | **57** | celdas marginales; persona, delito y trámite según instrumento |
+| **total** | **92** | celdas validadas |
 | *(no cuenta)* duelo de tres, nacional | 12 | es RETROSPECTIVO para sus tres contendientes |
 
 *No cuentan, y se declara con su universo:* las **89** filas `IDENTICO` y las
@@ -124,8 +131,8 @@ deriva contra el `margen_material` sellado de la propia celda-D, no se teclea.
 Si la escala no se deriva, **la celda no cuenta**: la métrica no sube por una
 escala adivinada.
 
-Desglose por tipo: **35 cruce · 53 marginal**. Por instrumento: ENIF 2024 (8
-cruce + 28 marginal) · ENVIPE 2025 (12 cruce + 15 marginal) · ENCIG 2025 (15
+Desglose por tipo: **35 cruce · 57 marginal**. Por instrumento: ENIF 2024 (8
+cruce + 32 marginal) · ENVIPE 2025 (12 cruce + 15 marginal) · ENCIG 2025 (15
 cruce + 10 marginal). *Escala: conteo de celdas.*
 
 ---
@@ -354,8 +361,8 @@ celdas, 3 victorias y 12 indecidibles**. Por eso el veredicto sellado es
 **¿Qué sería peligroso leído en simple?** Tres frases: (1) «el modelo predice
 conducta en México con 1.5 pp de error» — es el piso, en cruces, dentro de una
 ola, en un dominio; (2) «74% de cobertura» leído como garantía — los intervalos
-de §2 son **demasiado angostos** por dependencia entre celdas; (3) «88 celdas
-validadas» leído como 88 aciertos — validada quiere decir **predicha antes y
+de §2 son **demasiado angostos** por dependencia entre celdas; (3) «92 celdas
+validadas» leído como 92 aciertos — validada quiere decir **predicha antes y
 comparada después**, y 59 de las filas rotuladas del marcador son
 **RETROSPECTIVAS**.
 
@@ -373,7 +380,9 @@ serlo el día que la métrica se declaró rectora (firma 20/sep) y el programa
 adquirió un tercer dominio. Caducó, y este acto la pagó.
 
 **[v2.3] ¿Cuántos contadores movió este trabajo?** **Uno**: `celdas_validadas`,
-73 → 88. Ninguna corrida sellada, ninguna adopción, ningún veredicto tocado.
+73 → **92** (35 cruce + 57 marginal), re-derivado por comando **después** de
+fusionar `PR #971`, no heredado del número que esta rama traía contra su propia
+base (88). Ninguna corrida sellada, ninguna adopción, ningún veredicto tocado.
 
 **[v2.4] ¿En qué escala está cada cantidad y contra qué se compara?** Declarado
 al pie de cada tabla. Resumen: §1 y §1.1 son **conteos de celdas**; §2.1 está en

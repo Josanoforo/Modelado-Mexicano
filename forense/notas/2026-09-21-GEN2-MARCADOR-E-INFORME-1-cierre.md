@@ -59,7 +59,7 @@ Confirmado.
 
 - **P0** — tres firmas asentadas verbatim, con verificación de existencia de
   universo declarado (414 + 185 filas, cero coincidencias).
-- **P1** — `celdas_validadas` **73 → 88**. La métrica se deriva de toda celda-D
+- **P1** — `celdas_validadas` **73 → 92**. La métrica se deriva de toda celda-D
   con veredicto sellado; el veredicto **no** entra en el conteo; la escala se
   deriva contra el `margen_material` sellado y, si no se deriva, **la celda no
   cuenta**.
@@ -91,8 +91,8 @@ piso. Faltan el lote ENIF 2024 y ENVIPE 2026, ninguno lanzado.
 ## 5 · Contador
 
 `cuenta_gen2 = NO` — no sella corrida, no adopta, no adjudica, no re-adjudica.
-Único contador movido: **`celdas_validadas` 73 → 88** (`python3
-tools/tablero_programa.py`), y lo mueve contando lo que ya estaba adjudicado.
+Único contador movido: **`celdas_validadas` 73 → 92** (`python3
+tools/tablero_programa.py`), y lo mueve contando lo que ya estaba adjudicado. El número **no se heredó**: esta rama medía 88 contra su base (`55c8d57`) y `ACTO GEN2-ARBITRO-MARGINALES-1` (`PR #971`) medía 77 contra la suya; `#971` fusionó primero y, tras traer `main`, la cifra se **re-derivó por comando** (`python3 tools/tablero_programa.py`): **35** cruce (esta rama) + **57** marginal (`#971` subió las marginales con error medido de 53 a 57). Los dos ejes se componen sin doble conteo.
 
 ## 6 · Estado de la suite
 
