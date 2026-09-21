@@ -467,7 +467,15 @@ jobs:
   # Conserva el nombre requerido por protección. always() es indispensable:
   # un job fallido/omitido/cancelado debe llegar a una compuerta que NO aprueba.
   check:
-    needs: [suite, adicionales, guardias, preflight-calc, guardas-res]
+    # `enrutamiento-pr` (ACTO GEN2-TUBERIA-ENRUTAMIENTO-PR-1, 21/sep/2026):
+    # entra a `needs` porque la guarda de `tests/test_check_parallel.py`
+    # DERIVA el conjunto del workflow -- TODO job menos el gate es requerido.
+    # Esto NO hace que la clase adjudique: `tools/clasifica_pr.py` sale 0
+    # clasifique lo que clasifique (probado en `tests/test_clasifica_pr.py`,
+    # caso 8), así que lo único que este job puede poner en rojo es su
+    # propio test o su clonado -- nunca la clase que le toque a un PR. Ver
+    # §PREMISA-CAÍDA de la nota de cierre del acto.
+    needs: [suite, adicionales, guardias, preflight-calc, guardas-res, enrutamiento-pr]
     if: ${{ always() }}
     runs-on: ubuntu-latest
     timeout-minutes: 1
@@ -479,11 +487,13 @@ jobs:
           GUARDIAS_RESULT: ${{ needs.guardias.result }}
           GUARDAS_RES_RESULT: ${{ needs['guardas-res'].result }}
           PREFLIGHT_CALC_RESULT: ${{ needs['preflight-calc'].result }}
+          ENRUTAMIENTO_PR_RESULT: ${{ needs['enrutamiento-pr'].result }}
         run: |
           set -euo pipefail
-          printf 'suite=%s adicionales=%s guardias=%s preflight-calc=%s guardas-res=%s\n' "$SUITE_RESULT" "$ADICIONALES_RESULT" "$GUARDIAS_RESULT" "$PREFLIGHT_CALC_RESULT" "$GUARDAS_RES_RESULT"
+          printf 'suite=%s adicionales=%s guardias=%s preflight-calc=%s guardas-res=%s enrutamiento-pr=%s\n' "$SUITE_RESULT" "$ADICIONALES_RESULT" "$GUARDIAS_RESULT" "$PREFLIGHT_CALC_RESULT" "$GUARDAS_RES_RESULT" "$ENRUTAMIENTO_PR_RESULT"
           test "$SUITE_RESULT" = success
           test "$ADICIONALES_RESULT" = success
           test "$GUARDIAS_RESULT" = success
           test "$GUARDAS_RES_RESULT" = success
           test "$PREFLIGHT_CALC_RESULT" = success
+          test "$ENRUTAMIENTO_PR_RESULT" = success

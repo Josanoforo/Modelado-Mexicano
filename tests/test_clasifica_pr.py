@@ -174,9 +174,40 @@ def caso_tabla_coherente() -> None:
     ok(C.PRECEDENCIA[-1] == "REVISIÓN", "REVISIÓN es el resto, al final")
 
 
+def caso_la_clase_nunca_adjudica() -> None:
+    """El PARO del encargo, blindado: «que la clase haga fallar el CI».
+
+    Desde que el job `enrutamiento-pr` entró a `needs` de `check` (la guarda
+    de `tests/test_check_parallel.py` deriva el conjunto del workflow: TODO
+    job menos el gate es requerido), lo único que separa a la clase de
+    adjudicar es que el punto de entrada salga 0 SIEMPRE. Eso deja de ser
+    una propiedad leída del código y pasa a ser una que se prueba: una de
+    las cuatro clases saliendo distinto de 0 bloquearía un PR por lo que
+    toca, que es exactamente lo que el encargo prohíbe.
+    """
+    print("8 · la clase nunca adjudica (D-16): rc 0 en las CUATRO clases")
+    casos = {
+        "ADOPTA": "A\tdata/corrida0/CALC-0001/sello.json\n",
+        "FIRMA": "M\tmilpa/x.md\n",
+        "APARATO": "M\ttests/check.py\n",
+        "REVISIÓN": "M\tREADME.md\n",
+    }
+    with tempfile.TemporaryDirectory() as td:
+        for esperada, cuerpo in casos.items():
+            d = Path(td) / f"{esperada}.txt"
+            d.write_text(cuerpo, encoding="utf-8")
+            p = subprocess.run(
+                [sys.executable, str(RAIZ / "tools" / "clasifica_pr.py"), "--diff", str(d)],
+                capture_output=True, text=True,
+            )
+            ok(p.returncode == 0, f"clase {esperada} -> rc 0 (dio {p.returncode})")
+            ok(f"`{esperada}`" in p.stdout, f"y la reporta como {esperada}")
+
+
 def main() -> int:
     for f in (caso_por_clase, caso_dos_señales, caso_vacio, caso_varios_calc,
-              caso_renombre_y_borrado, caso_punto_de_entrada, caso_tabla_coherente):
+              caso_renombre_y_borrado, caso_punto_de_entrada, caso_tabla_coherente,
+              caso_la_clase_nunca_adjudica):
         f()
     print()
     if FALLOS:
