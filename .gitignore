@@ -49,7 +49,17 @@ data/.reactivos-contexto-cache/
 # MAESTRA37-INFRA-1 Frente C (COMMIT-3): lock runtime de alta_relacion.py
 # sobre data/curacion-registro/ -- puramente de ejecución local.
 data/curacion-registro/.alta-relacion.lock
+# GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1: lock runtime de
+# tools/curador_registro/tsv_crudo.py::bloqueo_escritura sobre el registro
+# de cola -- puramente de ejecución local, nunca versionado.
+data/curacion-registro/cola-adquisicion-registro.tsv.lock
 # MAESTRA37-INFRA-1 Frente C (COMMIT-3): journal de cada alta transaccional
 # (tools/curador_registro/alta_relacion.py) -- artefacto de ejecución, uno
 # por relacion_id, no versionado por defecto.
 data/alta-relacion-journal-*.json
+
+# ACTO GEN2-ENIGH2024-RESERVA-Y-DISENO-1: lock runtime de
+# tools/vista_cola_adquisicion.py. Hermano de data/.manifiesto.lock y de
+# data/curacion-registro/.alta-relacion.lock, que ya estaban ignorados; éste
+# no, y se coló al índice al regenerar la vista de la cola (D-21, ≤10 líneas).
+data/curacion-registro/cola-adquisicion-registro.tsv.lock
