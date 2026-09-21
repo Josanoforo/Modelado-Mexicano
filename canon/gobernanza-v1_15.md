@@ -8,6 +8,123 @@
 > | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** · detalle ADR-44 a ADR-58 (más ADR-62) en **§0.1**, abajo — el último es **ADR-65** (§4; ADR-59/60/61/63/64/65 no están detallados en §0.1, solo en §4) |
 > | **NOMBRE ESTABLE** | **`gobernanza`** — cítalo así, **nunca por nombre de archivo** |
 
+**ADR-260921-GEN2-MARCADOR-E-INFORME-1-48d4-01** (raíz de acto `48d4` = 4 hex del commit
+de 0-bis `48d40ba`, forma sellada por `ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-01`;
+por eso no se renumera al fusionar), `ACTO GEN2-MARCADOR-E-INFORME-1 · EL MARCADOR CUENTA LO
+QUE YA SE VALIDÓ, DICE QUÉ ES PROSPECTIVO Y QUÉ NO, EL TEST DEL MOTOR DEJA DE FALLAR POR UNA
+OLA SIN DECLARAR, Y EL INFORME DEL PROGRAMA SE REESCRIBE CON TRES PILOTOS`, 21/sep/2026,
+entorno **NUBE** (`cloud_default`; `senal-corpus: montado=NO archivos_examinados=0`; red
+`DENEGADA-POR-POLITICA`; cero microdato), Opus 5, sin sub-agentes, **MODO ABIERTO**, **LOTE**
+de cuatro piezas (D-11), **COMPUERTA: ninguna** (no abre dato, no congela spec, no adopta, no
+borra). Encargo archivado verbatim (A.3) con sello de cuerpo:
+`forense/encargos/2026-09-21-GEN2-MARCADOR-E-INFORME-1.md` + `.cuerpo.sha256`
+(`d9c9fe57…`), SHA de redacción `55c8d57c` **re-derivado y confirmado idéntico al abrir**
+(`origin/main = 55c8d57`). Precondición verificada por producto antes de tocar nada: `PR #961`
+(piloto 3) **fusionado** a `main` (`merged_at 2026-09-21T18:23:49Z`), así que P1 y P4 corren.
+
+**P0 · las tres decisiones de mesa del 21/sep a MOTOR, asentadas verbatim.** «Rótulo
+PROSPECTIVA/RETROSPECTIVA en todo marcador» · «"Error conocido" no se promete fuera de cruces»
+· «Cobertura acotada a cruces, con intervalo binomial». Verificación de existencia con universo
+declarado (A.4/A.13) antes de asentar: `grep -ic` sobre **414** filas de
+`forense/firmas-pendientes.tsv` y **185** de `data/corrida0/decisiones.tsv` → **cero**
+coincidencias de «PROSPECTIVA/RETROSPECTIVA», «error conocido», «Cobertura acotada» e
+«intervalo binomial». Nacen FIRMADAS como
+`FP-260921-GEN2-MARCADOR-E-INFORME-1-48d4-01/-02/-03`; el lanzamiento del encargo es el sello.
+
+**P1 · `celdas_validadas` 73 → 88, la métrica rectora deja de contar desde una lista escrita a
+mano.** El defecto real, abierto por el propio piloto 3 (`NC-260921-…-3619-02`, `PR #961`): la
+clase 1 de la métrica era una tupla de **dos** celdas-D —con su CALC, su prefijo de `RESULT` y
+su factor de escala— tecleada dentro de `tools/tablero_programa.py`, así que el día que un
+tercer dominio adjudicó 15 celdas la métrica rectora del programa no se movió. Una métrica que
+hay que editar a mano cada vez que el programa avanza mide al editor. Ahora
+`_celdas_d_adjudicadas()` recorre `data/curacion-registro/celdas-d/*.yaml` y cuenta **toda**
+celda-D con `estado_decidibilidad: PUNTUADA` **y** veredicto sellado. **El veredicto no entra en
+el conteo**: validada quiere decir *predicha antes y comparada después*, no acertada, y por eso
+`FALSADOR-DEBIL` (piloto 3) y `SIN-CANDIDATO-SUPERIOR` (pilotos 1 y 2) cuentan exactamente
+igual que uno que venciera. Hoy: **8 + 12 + 15 = 35** celdas de cruce, más las **53** de
+persistencia ya contadas = **88**; las tres celdas-D sin veredicto quedan fuera **con su motivo
+escrito**, no en silencio. **La escala se deriva, no se teclea** (§4.3; el defecto es de factor
+100: DIN emite en proporción, TRA y GOB en puntos porcentuales): se prueban los factores 1 y 100
+contra el `margen_material` sellado de la propia celda-D y se adopta el que casa —verificado
+COINCIDE en las tres—; **si ninguno casa la celda NO cuenta**, que es el PARO (d) del encargo
+leído al derecho (la métrica no sube por una escala adivinada). El tablero publica además el
+desglose por **tipo** (35 cruce / 53 marginal) y por **instrumento**. Las 15 celdas del piloto 3
+cuentan **sin** tener fila en el marcador: el derivador sólo publica cruces con
+`champion_actual: C2` y el piloto 3 cerró en `NINGUNO` — es `DECISIÓN-DE-MESA-PENDIENTE`
+heredada (`NC-260921-…-3619-01`), y el tablero lo dice en el campo `instrumento` en vez de
+ocultarlo.
+
+**P2 · el rótulo PROSPECTIVA / RETROSPECTIVA, derivado de los sellos.** `tools/prospectividad.py`
+(nuevo) anota cada fila del marcador con `prospectividad` + `prospectividad_cita`. **Seis clases
+que no se colapsan** (A.4): `PROSPECTIVA` (la emisión está sellada antes de que existiera la R,
+y las dos fechas salen de dos `ejecucion.json` distintos) · `RETROSPECTIVA` · `IDENTICO-EMISOR-
+ES-ARBITRO` (`emisor_vs_arbitro = EMISOR=ARBITRO`: M y R son el mismo número copiado, ni
+acertado ni fallado) · `SIN-EMISION` · `EMITIDA-SIN-R` (emitida y aún sin R: reserva de
+evaluación viva, E.6 — «no emitió» y «emitió y nadie la contrastó» son dos hechos distintos) ·
+`ORDEN-NO-DERIVABLE`, que **nunca** se degrada a `RETROSPECTIVA` ni sube a `PROSPECTIVA`.
+**El orden sale de los sellos, no de `git`**, y la razón es medible en este mismo repo: el clon
+de trabajo es `shallow` y ahí `git log --diff-filter=A -- milpa/tramite-ola5-propuesta-v0.yaml`
+da `2026-09-20T01:46:10Z` para un archivo que `CALC-PISO-PERSISTENCIA-ERROR-0001` ya declara
+como input `TRAMITE-OLA5-PROPUESTA` en una corrida sellada a las `2026-09-19T21:37:26Z` — una
+fecha posterior a la corrida que leyó el archivo no es una fecha de nacimiento, es el borde del
+clon. Resultado sobre las 214 filas: **20 PROSPECTIVA · 59 RETROSPECTIVA · 89 IDENTICO · 30
+SIN-EMISION · 16 EMITIDA-SIN-R · 0 ORDEN-NO-DERIVABLE**. Ni el marcador ni el tablero publican
+cifra alguna que sume PROSPECTIVA + RETROSPECTIVA, y `prospectividad.resumen()` **no tiene clave
+de total** a propósito.
+
+**P3 · la ola de calibración de `tramite.evasion_norma` (firma F8,
+`FP-260921-GEN2-TRAMITE-FIRMAS-4-8a1f-08`).** `tools/emite_m.py` levantaba `LookupError` porque
+la regla no trae `ola_calibracion:` propia ni enmienda que la declare, y eso tumbaba **tres**
+pruebas de transferencia que ni siquiera miden calibración. El valor **no se teclea**: se deriva
+de la spec sellada que F8 nombra, `data/corrida0/CALC-EVASION-NORMA-0001-v1_1/spec.yaml`
+(`inputs` id `envipe2025_csv`; `variables` sobre `tmod_vic_envipe2025`; `universo` «Delitos … en
+tmod_vic_envipe2025. n=40280»), y **la cadena cierra por hash**: el payload que esa spec declara
+(`8a7a99fd90ce…`) es byte a byte el `sha256_payload` de la propia regla en
+`milpa/tramite.yaml:535`. **ENVIPE 2025 es la ola de toda la regla**, no de una conducta: el
+ASIGNADO 0.66/0.34 se calibró ahí (`nota_calibracion`, `:516`, que es el ancla citada) y la
+enmienda que trae los MEDIDOS es `enmienda_envipe2025` — por eso **no** reaparece aquí el defecto
+conducta-aware de `mordida.discrecional`. `test_10` y `test_11` **pasan**. `test_08` deja de
+fallar por la ola y aparece su falla real, **ajena y anterior**: compara `construir_snapshot()`
+contra `forense/prereg-duelo-v2/snapshot-M-gen2-explicito-v1_2.json`, sellado el 19/sep (`4bda996`),
+y `milpa/src/emisor.py` cambió el **21/sep** (`85a4b97`, `MOTOR-LINAJE-1`) — el snapshot está
+**VENCIDO EN ALCANCE** (A.10: su universo creció, no fue refutado) y editarlo sería PARO (b).
+Va a `NC-260921-GEN2-MARCADOR-E-INFORME-1-48d4-01`. La cuarta falla,
+`share_horas_mujeres_40mas`, **no se toca** (F8 lo veda): `NC-…-48d4-02`.
+
+**P4 · `canon/informe-programa-v1_1.md`.** La v1.0 (15/sep) **no se edita** —E.3— y queda
+**VENCIDA EN ALCANCE** por ser anterior a los tres pilotos. El sucesor trae: (i) el marcador en
+columnas que nunca se mezclan; (ii) los tres pilotos, 35 celdas, con error **y cobertura del IC95
+por candidato**, entendida como **R dentro del IC del candidato** —**no** el campo sellado
+`ARB-DENTRO-IC-R` del piloto 2, que mide lo contrario (el punto del candidato dentro del IC de
+R)— con **intervalo binomial de Wilson** (`z=1.959964`; `scipy` ausente en este entorno, se
+declara) y la advertencia, pegada a cada intervalo, de que las celdas de una misma ola comparten
+marco muestral y réplicas y **no son ensayos independientes**, así que todos esos intervalos son
+demasiado angostos; (iii) qué enseñó el piloto 3 **sin adjudicar**; (iv) los cinco límites del
+producto; (v) lo que viene; (vi) el módulo de auditoría de §5 **completo**. Cifra central nueva:
+la cobertura del piso C2 es **7/8 · 11/12 · 8/15 = 26/35 = 0.743, Wilson95 [0.579, 0.858]** —
+con dos pilotos era 18/20 = 0.90, y **el tercer dominio la bajó**: un informe que sólo hubiera
+reportado los dos primeros habría vendido una garantía que el tercero no sostiene. El piloto 3
+también deja el primer indicio de valor añadido del programa —la interacción **encogida**
+(S-LAMBDA) erra 1.946 pp contra 3.411 del piso, ΔMAE sellado 1.465 pp IC95 [0.439, 2.115],
+cobertura 14/15— **y aun así no vence**: ganó en 3 de 15 celdas contra las ≥12 que pide el
+criterio, 12 INDECIDIBLES, 0 derrotas, veredicto `FALSADOR-DEBIL` y `champion_actual: NINGUNO`.
+Eso entrega, además, la primera de las tres filas de la **regla de salida de θ**
+(`FP-260921-GEN2-TRAMITE-FIRMAS-4-8a1f-06`): ningún retador con interacción venció al piso.
+**Cada cifra trae su comando o su `RESULT`**: las de §2 salen todas de
+`python3 tools/informe_pilotos.py --json`, que **se verifica a sí mismo** comparando cada MAE
+derivado contra el MAE sellado de su corrida — **COINCIDE en los 12 candidatos de los tres
+pilotos**. Fila del informe actualizada en `data/INFRAESTRUCTURA-v1_0.md` (D-21).
+
+**Perímetro de cierre (D-21).** Guardia propia `tests/test_marcador_metrica_y_prospectividad.py`
+(11 casos; celdas-D **sintéticas** de cada veredicto, prueba de que el veredicto no cambia el
+conteo, de que la escala indeterminable **no** sube la métrica, y de que `SIN-EMISION` y
+`EMITIDA-SIN-R` no se colapsan), cableada en CI por `tools/ci_guardias.py --censo`
+(`CORRE-EN-CI`). Rótulo censado en `canon/registro-rotulos.tsv`. Suite en línea base **VERDE**
+(sin `FAIL` nuevos); **37 WARN nuevos** se listan como estado y **no adjudican** (D-16).
+**CONTADOR: `cuenta_gen2 = NO`** — este acto no sella corrida, no adopta, no adjudica y no
+re-adjudica; el único contador que mueve es `celdas_validadas`, **73 → 88**, y lo mueve por
+contar lo que ya estaba adjudicado, no por medir nada nuevo. → **Propuesto; mesa fusiona.**
+
 **ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-01** (primer `ADR` con **raíz de acto** —
 `ADR-<AAMMDD>-<RÓTULO>-<hhhh>-<NN>`, `hhhh` = 4 hex del commit de 0-bis `27078f6` —; por eso
 **no se renumera al fusionar**, aunque otro acto tome un `ADR` numérico mientras éste corre),

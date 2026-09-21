@@ -64,7 +64,7 @@ se adoptó.
 
 Firma de mesa, 21/sep/2026, verbatim: **«Rótulo PROSPECTIVA/RETROSPECTIVA en
 todo marcador»** (`forense/firmas-pendientes.tsv`,
-`FP-260921-GEN2-MARCADOR-E-INFORME-1-d9c9-01`).
+`FP-260921-GEN2-MARCADOR-E-INFORME-1-48d4-01`).
 
 El marcador del programa tiene 214 filas. Antes de esta versión, todas se leían
 igual. El defecto que eso produce es concreto: 89 de esas 214 filas tienen un
