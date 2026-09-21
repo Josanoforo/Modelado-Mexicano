@@ -181,3 +181,27 @@ el merge o el borrado que mesa decida.
 derivado y el defecto reproducido con git), P3 (`tools/nc_por_clase.py` ensanchado, con un id de
 cada época pinado en el mismo caso y el test de gramática) y P5 (cascada completa, `check.py
 --baseline` VERDE).
+
+---
+
+## CONSUMIDO
+
+**PR #939** — <https://github.com/Josanoforo/Modelado-Mexicano/pull/939>, rama
+`claude/new-session-ccjtu7`, **propuesto a mesa, no fusionado desde el acto** (instrucción
+verbatim del encargo: «EL PR NO SE FUSIONA EN ESTE ACTO»). Número real verificado contra el
+HEAD remoto, no inferido.
+
+**Orden de fusión fijado por mesa durante el acto:** este PR va **después de `#937`**. `#937`
+reclama hoy `ADR-573`, así que **es previsible una renumeración más al fusionar**; le toca a
+quien fusione segundo, como siempre. Este acto ya renumeró **cuatro veces** en una sola sesión
+(572 → 573 → 574 → 575 → 576, por `#932`, `#935` y otros dos), y las dos primeras colisiones las
+atrapó **la aserción (1) de su propia enmienda de `T15`** — esa aserción cobró su falsador el día
+en que se selló, sin esperar tres meses. Los ids propios de raíz de acto (`…-6e60-NN`) **no se
+renumeran** con el `ADR`: son inmunes a esta clase de colisión por construcción, y ésa es
+exactamente la propiedad por la que D-2 existe.
+
+`ADR-576` · `cuenta_gen2 = NO`, cero contadores del programa movidos ·
+`NC-260921-GEN2-TUBERIA-SUCESOR-1-6e60-01`–`-04` ABIERTAS con sucesor nombrado ·
+`FP-260921-GEN2-TUBERIA-SUCESOR-1-6e60-01` **FIRMADA** ·
+nota: `forense/notas/2026-09-21-GEN2-TUBERIA-SUCESOR-1-cierre.md` ·
+suite `--baseline` en **LÍNEA BASE VERDE**.
