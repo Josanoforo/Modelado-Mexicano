@@ -99,3 +99,19 @@ re-corrida retrospectiva) y P4, con los cinco criterios de «hecho»
 verificados por comando en
 `forense/notas/nota-2026-09-21-gen2-tuberia-enrutamiento-pr-1.md`.
 Ninguno de los seis PAROS de la lista cerrada de §5 se tocó.
+
+## CONSUMIDO
+
+Ejecutado por el **ACTO `GEN2-TUBERIA-ENRUTAMIENTO-PR-1`**, 21/sep/2026,
+entorno NUBE (`cloud_default`), Opus 5, rama
+`claude/exciting-mccarthy-qcvxdv`, 0-bis `9a2ca8b3`.
+
+**PR #965** — https://github.com/Josanoforo/Modelado-Mexicano/pull/965
+(propuesto, **no fusionado por este acto**: el merge es de mesa central,
+como el propio encargo ordena).
+
+`ADR-260921-GEN2-TUBERIA-ENRUTAMIENTO-PR-1-9a2c-01` ·
+`FP-260921-GEN2-TUBERIA-ENRUTAMIENTO-PR-1-9a2c-01` (la firma del 20/sep,
+asentada) · `NC-260921-GEN2-TUBERIA-ENRUTAMIENTO-PR-1-9a2c-01`.
+Nota de cierre:
+`forense/notas/nota-2026-09-21-gen2-tuberia-enrutamiento-pr-1.md`.
