@@ -13,8 +13,10 @@ insumo". Se preserva tal cual estaba, sin resolver ni limpiar.
   (`tools/curador_registro/autoridad_semantica_marco.py` original).
 - `autoridad-semantica-enif-2026-09-20-autoridad-semantica-marco-v1_0.jsonl` — dato sin seguimiento
   (originalmente `data/curacion-universo/autoridad-semantica-marco-v1_0.jsonl`), **1 registro**.
-- `autoridad-semantica-enif-2026-09-20-autoridad-semantica-marco-v1_0.schema.json` — schema sin
-  seguimiento (mismo path original).
+- El `.schema.json` sin seguimiento (mismo path original) **no se duplica aquí**: es byte a byte
+  idéntico al que `main` ya trackea en `data/curacion-universo/autoridad-semantica-marco-v1_0.schema.json`
+  (verificado con `diff`) — archivarlo aparte solo generaba una colisión de contenido en T02 sin
+  preservar nada que `main` no tenga ya.
 
 ## Hallazgo — este contenido parece SUPERADO, no rescatable sin fricción
 
