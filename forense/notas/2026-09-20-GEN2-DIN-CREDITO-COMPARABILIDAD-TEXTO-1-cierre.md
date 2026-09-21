@@ -109,8 +109,8 @@ Orden: inventario → 2021 (ancla) → 2024 → 2018 → FD 2012/2015 → tabla 
 
 ## 9 · Preguntas a mesa (con recomendación; el acto siguió sin esperarlas)
 
-1. **K8 sin instrumento en 2021/2024.** Opciones: (i) sacar K8 de la serie ENIF y buscarlo en ENSAFI 2023 / ENFIH 2019 como triangulación rotulada; (ii) redefinir K8 como «destino de créditos de nómina/personal/grupal, unidad P» y medirlo sólo en 2012–2018 como serie propia; (iii) mantener la definición PR y declararlo SIN-INSTRUMENTO. **Recomendación: (ii)** — es lo que el instrumento pregunta, y (i) puede sumarse después. `FP-403`.
-2. **K2 bancaria 2024.** Opciones: (i) reportar bancaria 2021↔2024 sólo con la advertencia de frontera; (ii) construir en 2021 una «bancaria ampliada» = 6.2.2 ∪ 6.2.8 ∪ (6.2.9 con especifique, no disponible) y declararla cota; (iii) no comparar la familia. **Recomendación: (iii) para la serie, (i) rotulado para el descriptivo.** `FP-403` (mismo asiento, dos incisos).
+1. **K8 sin instrumento en 2021/2024.** Opciones: (i) sacar K8 de la serie ENIF y buscarlo en ENSAFI 2023 / ENFIH 2019 como triangulación rotulada; (ii) redefinir K8 como «destino de créditos de nómina/personal/grupal, unidad P» y medirlo sólo en 2012–2018 como serie propia; (iii) mantener la definición PR y declararlo SIN-INSTRUMENTO. **Recomendación: (ii)** — es lo que el instrumento pregunta, y (i) puede sumarse después. `FP-404`.
+2. **K2 bancaria 2024.** Opciones: (i) reportar bancaria 2021↔2024 sólo con la advertencia de frontera; (ii) construir en 2021 una «bancaria ampliada» = 6.2.2 ∪ 6.2.8 ∪ (6.2.9 con especifique, no disponible) y declararla cota; (iii) no comparar la familia. **Recomendación: (iii) para la serie, (i) rotulado para el descriptivo.** `FP-404` (mismo asiento, dos incisos).
 3. K4b **no** requiere decisión: es separable. Se informa, no se pregunta.
 
 ## 10 · Auditoría (§5, tres líneas obligatorias)
@@ -122,8 +122,8 @@ Orden: inventario → 2021 (ancla) → 2024 → 2018 → FD 2012/2015 → tabla 
 ## 11 · Hallazgos, NC, FP
 
 - `forense/hallazgos.md`: una línea (la colisión `P6_3_k` 2021/2024 y las otras tres, como clase).
-- `NC-0429`: cuestionarios 2012/2015 no accesibles → 16 filas NO-VERIFICABLE-AQUÍ (DIFERIDO-A sucesor 3). `NC-0430`: K8 sin instrumento en 2021/2024 (DECISIÓN-DE-MESA-PENDIENTE, FP-403). `NC-0431`: K2 bancaria 2024 no comparable sin enlace (DECISIÓN-DE-MESA-PENDIENTE, FP-403).
-- `FP-403`: las dos preguntas de §9.
+- `NC-0433`: cuestionarios 2012/2015 no accesibles → 16 filas NO-VERIFICABLE-AQUÍ (DIFERIDO-A sucesor 3). `NC-0434`: K8 sin instrumento en 2021/2024 (DECISIÓN-DE-MESA-PENDIENTE, FP-404). `NC-0435`: K2 bancaria 2024 no comparable sin enlace (DECISIÓN-DE-MESA-PENDIENTE, FP-404).
+- `FP-404`: las dos preguntas de §9.
 
 ## 12 · Sucesores (orden del encargo)
 
