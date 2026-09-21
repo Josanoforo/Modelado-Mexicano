@@ -188,7 +188,12 @@ Fuera del perímetro y necesario para terminar → es **latitud** (≤10 líneas
 
 ## `## NO-CORRIDO / RESERVAS`
 
-A llenar por el ejecutor al cierre.
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| **Perímetro de cierre permanente (D-21) · cierre anti-PR#77**: «verifica al cerrar que los payloads quedaron en el CORPUS COMPARTIDO y no solo en tu worktree» | `NO-VERIFICABLE-AQUÍ` — en esta caja no hay corpus compartido que verificar: el hook da `senal-corpus: montado=NO archivos_examinados=0` (A.13) y no existe `data/raices.local.yaml`, así que `data_raw` (raíz integrada, resuelta por código) es la única raíz del entorno. El contenedor de nube es efímero. **No es un negativo sobre el corpus compartido** —existe y vive en CAJA—: es un hecho sobre esta caja (A.5) | Ningún contador. El verify ya consumió el payload en esta sesión y su fila de replay está asentada con el `sha256` a la vista, así que la evidencia no depende de que el archivo sobreviva. Lo que queda abierto es de escala: 381.6 MB bajados a una caja efímera se bajarían una vez por sesión y se tirarían | `NUBE-PILOTO-2` (declarado en §10) — debe declarar en su spec dónde aterrizan los payloads **antes** de bajar 37 ids. Fila `NC-0423` |
+| **Pieza 2, paso 3** — corregir que `corrida0.py verify` devuelva `1` (no `0`) con `RESULTADO=REPRODUCE` y `CONTEXTO=DISTINTO` | `FUERA-DE-PERÍMETRO` — es de `tools/corrida0.py`, que §9 lista como ajeno; y cambiar el contrato de salida de un verificador sellado no es un defecto adyacente de ≤10 líneas | Ninguno en este acto: el veredicto se lee de los dos ejes, no del código de salida. El riesgo es de un sucesor que gatee por `rc == 0` | `GEN2-CORRIDA0-RENDIMIENTO-1` o el acto que toque `tools/corrida0.py`. Fila `NC-0424`, y anotado en `forense/hallazgos.md` |
+
+Todo lo demás del encargo se corrió: las tres piezas completas, las cuatro compuertas evaluadas, el perímetro de cierre (CI cableado, filas publicadas en la vista, `data/INFRAESTRUCTURA-v1_0.md` Dominio 1 registrado, cascada corrida, hallazgos/NC/FP propios derivados). Ningún PARO de la lista cerrada de §7 se disparó.
 
 ## `## CONSUMIDO`
 
