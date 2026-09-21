@@ -420,6 +420,50 @@ jobs:
       - name: Mutaciones de las seis guardas (cada una prueba SU guarda)
         run: python3 tests/test_guardas_res.py
 
+  # ACTO GEN2-TUBERIA-ENRUTAMIENTO-PR-1 (P2) · qué tipo de merge es este PR,
+  # derivado de su diff, escrito en el RESUMEN del job para que mesa lo lea
+  # en la pestaña Checks sin abrir el diff. Job PROPIO con su PROPIO clonado
+  # que traiga la base (D-23: una herramienta de verificación no muta el clon
+  # que verifica; `clasifica_pr.py` nunca hace fetch).
+  #
+  # NO está en `needs` de `check`, y es a propósito: la clase INFORMA, no
+  # adjudica (D-16). Un PR no se bloquea por la clase que le toque -- el
+  # merge es de mesa. Este job no fusiona, no etiqueta y no tiene permisos
+  # de escritura.
+  enrutamiento-pr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout sin marketplace, con la ref base (repo público)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://github.com/${{ github.repository }}.git"
+          if [ -n "${{ github.event.pull_request.number }}" ]; then
+            REF="+refs/pull/${{ github.event.pull_request.number }}/merge:refs/remotes/origin/ci"
+          else
+            REF="+${{ github.ref }}:refs/remotes/origin/ci"
+          fi
+          git -c protocol.version=2 fetch -q --no-tags origin "$REF"
+          BASE="${{ github.event.pull_request.base.ref || 'main' }}"
+          git -c protocol.version=2 fetch -q --no-tags origin "+refs/heads/$BASE:refs/remotes/origin/base"
+          git checkout -q refs/remotes/origin/ci
+          git log -1 --format="HEAD=%H %s"
+          git log -1 --format="BASE=%H %s" refs/remotes/origin/base
+
+      - name: Intérprete del runner (crudo, para que quede en el log)
+        run: python3 -VV
+
+      - name: Los casos sintéticos, uno por clase (bloqueante — D-21)
+        run: python3 tests/test_clasifica_pr.py
+
+      - name: Clase de este PR, al resumen del job (nunca falla por la clase)
+        run: |
+          python3 tools/clasifica_pr.py \
+            --base refs/remotes/origin/base \
+            --cabeza refs/remotes/origin/ci \
+            --resumen "$GITHUB_STEP_SUMMARY"
+
   # Conserva el nombre requerido por protección. always() es indispensable:
   # un job fallido/omitido/cancelado debe llegar a una compuerta que NO aprueba.
   check:

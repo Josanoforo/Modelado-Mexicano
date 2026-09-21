@@ -73,3 +73,29 @@ No fusiona nada, no etiqueta PR, no bloquea por clase, no decide nada por mesa. 
 ## 7 · FALSADOR
 
 Si en un mes mesa fusiona un PR de clase ADOPTA sin haber visto su enrutamiento, o la regla clasifica como REVISIÓN un PR que adoptó cifras, la herramienta no hace lo que dice.
+
+## NO-CORRIDO / RESERVAS
+
+*(A.14. Añadido al FINAL del encargo archivado; nada por encima de esta
+línea se editó — es lo que mantiene válido el sello de cuerpo del 0-bis,
+D-a6.)*
+
+- **qué** — «**Sucesor posible:** que `/revisa` lea la clase del resumen en
+  vez de deducirla —se propone con evidencia de uso, no antes—.» (§6,
+  verbatim).
+  **por qué** — `DIFERIDO-A: acto propio de /revisa, cuando haya evidencia
+  de uso del job `enrutamiento-pr``. El propio encargo lo declara sucesor
+  **posible** y condiciona su lanzamiento a evidencia de uso; hoy no existe
+  ni una corrida del job en un PR real, así que la evidencia es cero y
+  lanzarlo ahora sería construir sobre un supuesto.
+  **impacto** — ninguno sobre los cinco criterios de «hecho» de este acto.
+  `/revisa` sigue deduciendo la clase del diff exactamente como hasta hoy;
+  no se degrada nada.
+  **sucesor** — acto propio sobre `/revisa`
+  (`NC-260921-GEN2-TUBERIA-ENRUTAMIENTO-PR-1-9a2c-01`, `SIN-ASIGNAR` a sesión).
+
+Todo lo demás del encargo se corrió: P0, P1, P2, P3 (diffs sintéticos **y**
+re-corrida retrospectiva) y P4, con los cinco criterios de «hecho»
+verificados por comando en
+`forense/notas/nota-2026-09-21-gen2-tuberia-enrutamiento-pr-1.md`.
+Ninguno de los seis PAROS de la lista cerrada de §5 se tocó.
