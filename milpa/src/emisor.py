@@ -569,10 +569,113 @@ class UsoRegistrado:
     camino_linaje: str
 
 
+SUCESOR_NO_DECLARADO = "NO-DECLARADO-EN-EL-CAMPO-ESTADO"
+
+
+class ResultadoIntegramenteSuperado(ValueError):
+    """Todas las filas de un `resultado_id` están SUPERADO: no hay vigente.
+
+    Contrato fijado por firma de mesa del 21/sep/2026 (ACTO MOTOR-LINAJE-1,
+    `forense/encargos/2026-09-21-motor-linaje-1-nc0401.md` §2): el cargador
+    **no sigue la sucesión en silencio**. Resolver solo al sucesor cambiaría
+    qué número emite el motor sin que nadie lo firme — adopción por la puerta
+    de atrás. Por eso este error NOMBRA al sucesor tal como lo declara el
+    campo `estado` y NO lo resuelve: quien quiera el número del sucesor lo
+    pide por su propio `resultado_id`, en un acto que lo firme.
+
+    Es `ValueError` por compatibilidad con los llamadores que ya capturaban
+    el error indistinto que existía antes de este acto; el tipo propio es lo
+    que permite distinguir «íntegramente superado» de «hay 2 vigentes» y de
+    «no existe», tres situaciones que antes se colapsaban en una (A.4).
+    """
+
+    def __init__(self, resultado_id: str, sucesor: str) -> None:
+        self.resultado_id = resultado_id
+        self.sucesor = sucesor
+        super().__init__(
+            f"{resultado_id}: íntegramente superado (0 filas vigentes); "
+            f"sucesor declarado en `estado`: {sucesor}. "
+            "El cargador no lo resuelve: pídelo por su propio resultado_id.")
+
+
+@dataclass(frozen=True)
+class ResultadoSuperado:
+    """La entrada NO se omite del índice: se conserva, rotulada.
+
+    Guarda el sucesor **tal como lo declara el campo `estado`** (un id de
+    corrida/spec, no necesariamente un `resultado_id`), sin resolverlo.
+    """
+
+    resultado_id: str
+    sucesor: str
+    estado: str
+
+
+class _MapaResultados(Mapping):
+    """Mapa de evidencia que distingue las tres situaciones de A.4.
+
+    - `resultado_id` con exactamente una fila vigente → la evidencia.
+    - `resultado_id` íntegramente superado → `ResultadoIntegramenteSuperado`,
+      tanto por `[]` como por `.get()`. `.get()` **no** devuelve `None` aquí:
+      `None` significa «no existe», y un id superado sí existe — colapsar las
+      dos cosas es el defecto que este contrato cierra.
+    - `resultado_id` ausente → `KeyError` por `[]`, `None` por `.get()`.
+
+    La iteración, `len()` y `in` recorren **solo las vigentes**: quien hace
+    `dict(indice.resultados)` o recorre el índice está pidiendo evidencia
+    utilizable, y una superada no lo es. La entrada superada sigue en el
+    índice, en `IndiceLinajeEmision.superados`.
+    """
+
+    def __init__(self, vigentes: Mapping[str, EvidenciaResultado],
+                 superados: Mapping[str, ResultadoSuperado] | None = None):
+        self._vigentes = dict(vigentes)
+        self._superados = dict(superados or {})
+
+    def _revienta_si_superado(self, clave) -> None:
+        superado = self._superados.get(clave)
+        if superado is not None:
+            raise ResultadoIntegramenteSuperado(
+                superado.resultado_id, superado.sucesor)
+
+    def __getitem__(self, clave):
+        self._revienta_si_superado(clave)
+        return self._vigentes[clave]
+
+    def get(self, clave, default=None):
+        self._revienta_si_superado(clave)
+        return self._vigentes.get(clave, default)
+
+    def __iter__(self):
+        return iter(self._vigentes)
+
+    def __len__(self) -> int:
+        return len(self._vigentes)
+
+    def __contains__(self, clave) -> bool:
+        return clave in self._vigentes
+
+
+def _sucesor_declarado(estado: str) -> str:
+    """Lee el sucesor del campo `estado` (`SUPERADO→X` / `SUPERADO->X`).
+
+    No resuelve nada: copia el texto. Si el campo no declara sucesor, lo dice
+    con vocabulario A.4 en vez de inventarlo.
+    """
+    texto = str(estado).strip()
+    for flecha in ("→", "->"):
+        if flecha in texto:
+            sucesor = texto.split(flecha, 1)[1].strip()
+            if sucesor:
+                return sucesor
+    return SUCESOR_NO_DECLARADO
+
+
 @dataclass(frozen=True)
 class IndiceLinajeEmision:
     resultados: Mapping[str, EvidenciaResultado]
     usos: Mapping[str, UsoRegistrado]
+    superados: Mapping[str, ResultadoSuperado] = field(default_factory=dict)
 
 
 def _leer_vista_derivada(ruta: Path) -> list[dict[str, str]]:
@@ -602,10 +705,23 @@ def cargar_indice_linaje_emision(
         por_id.setdefault(fila["resultado_id"], []).append(fila)
 
     resultados: dict[str, EvidenciaResultado] = {}
+    superados: dict[str, ResultadoSuperado] = {}
     for resultado_id, filas in por_id.items():
         vigentes = [f for f in filas
                     if not str(f.get("estado", "")).startswith("SUPERADO")]
-        if len(vigentes) != 1:
+        if not vigentes:
+            # (iii) íntegramente superado. La entrada NO se omite y el
+            # sucesor NO se resuelve: se conserva rotulada y el error se
+            # levanta cuando alguien la pide (firma de mesa 21/sep/2026).
+            estado = str(filas[0].get("estado", ""))
+            superados[resultado_id] = ResultadoSuperado(
+                resultado_id=resultado_id,
+                sucesor=_sucesor_declarado(estado),
+                estado=estado)
+            continue
+        if len(vigentes) > 1:
+            # (ii) ambigüedad en la propia vista: no hay a quién preguntar,
+            # revienta al cargar, como antes de este acto.
             raise ValueError(
                 f"{resultado_id}: se esperaba una fila vigente; hay {len(vigentes)}")
         f = vigentes[0]
@@ -647,7 +763,10 @@ def cargar_indice_linaje_emision(
             activo=f.get("activo", ""),
             camino_linaje=f.get("camino_linaje", ""),
         )
-    return IndiceLinajeEmision(resultados=resultados, usos=usos)
+    return IndiceLinajeEmision(
+        resultados=_MapaResultados(resultados, superados),
+        usos=usos,
+        superados=superados)
 
 
 def _documentos_calc_sellado(spec_id: str) -> tuple[dict, dict, dict]:
