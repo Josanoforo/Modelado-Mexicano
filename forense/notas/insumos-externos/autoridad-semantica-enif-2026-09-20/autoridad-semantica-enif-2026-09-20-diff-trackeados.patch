@@ -1,0 +1,357 @@
+diff --git a/tools/curador_registro/generar_marco.py b/tools/curador_registro/generar_marco.py
+index b30833b2..d7821c52 100644
+--- a/tools/curador_registro/generar_marco.py
++++ b/tools/curador_registro/generar_marco.py
+@@ -30,6 +30,13 @@ from typing import Any, Iterable, Mapping
+ import yaml
+ 
+ try:
++    from .autoridad_semantica_marco import (
++        AutoridadSemanticaError,
++        AuthorityKey,
++        SemanticAuthorityIndex,
++        authority_key_from_e2,
++        load_semantic_authority,
++    )
+     from .marco_e2_adapter import (
+         E2AdapterError,
+         E2IndexReader,
+@@ -43,6 +50,13 @@ try:
+         resolve_private_index,
+     )
+ except ImportError:
++    from autoridad_semantica_marco import (
++        AutoridadSemanticaError,
++        AuthorityKey,
++        SemanticAuthorityIndex,
++        authority_key_from_e2,
++        load_semantic_authority,
++    )
+     from marco_e2_adapter import (
+         E2AdapterError,
+         E2IndexReader,
+@@ -138,71 +152,34 @@ def _normal_type(value: Any) -> str:
+     return re.sub(r"[^A-Z0-9]+", "_", _text(value).upper()).strip("_")
+ 
+ 
+-def _scope_matches(record: Mapping[str, Any], authority: Mapping[str, Any]) -> bool:
+-    if _text(authority.get("representacion_id")) != _text(record.get("representacion_id")):
+-        return False
+-    if _text(authority.get("variable")) != _text(record.get("nombre")):
+-        return False
+-    table_matches = bool(
+-        is_meaningful(record.get("tabla"))
+-        and _text(authority.get("tabla")) == _text(record.get("tabla"))
+-    )
+-    parent_matches = bool(
+-        is_meaningful(record.get("objeto_padre_id"))
+-        and _text(authority.get("objeto_padre_id"))
+-        == _text(record.get("objeto_padre_id"))
+-    )
+-    return table_matches or parent_matches
+-
+-
+-def _authority_matches(
+-    record: Mapping[str, Any],
+-    semantic_authority: Iterable[Mapping[str, Any]],
+-) -> list[dict[str, str]]:
+-    return [
+-        {str(key): _text(value) for key, value in row.items()}
+-        for row in semantic_authority
+-        if _scope_matches(record, row)
+-    ]
+-
+-
+-def _categories(record: Mapping[str, Any], authority: Mapping[str, Any]) -> str:
+-    explicit = authority.get("categorias")
+-    if is_meaningful(explicit):
+-        return _text(explicit)
+-    categories = record.get("categorias")
+-    labels = record.get("value_labels")
+-    material: dict[str, Any] = {}
+-    if isinstance(categories, list) and categories:
+-        material["categorias"] = categories
+-    if isinstance(labels, list) and labels:
+-        material["value_labels"] = labels
+-    return (
+-        json.dumps(material, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+-        if material
+-        else ""
++def _canonical_json(value: Any) -> str:
++    return json.dumps(
++        value,
++        ensure_ascii=False,
++        sort_keys=True,
++        separators=(",", ":"),
+     )
+ 
+ 
+ def _derive_estimator(authority: Mapping[str, Any]) -> tuple[str | None, str | None]:
+     kind = _normal_type(authority.get("tipo_estadistico"))
+-    if kind in {"BINARIA", "BINARIO", "BINARY"}:
++    if kind == "BINARIA":
+         return "PROPORCION_PONDERADA", None
+-    if kind in {"CATEGORICA", "CATEGORICA_EXCLUYENTE", "CATEGORICAL"}:
+-        if _text(authority.get("categorias_excluyentes")).upper() != "SI":
++    if kind == "CATEGORICA":
++        if authority.get("respuesta_multiple") or not authority.get(
++            "categorias_excluyentes"
++        ):
+             return None, "CATEGORIAS_NO_DOCUMENTADAS_COMO_EXCLUYENTES"
+         return "DISTRIBUCION_PONDERADA", None
+-    if kind in {"NUMERICA_CONTINUA", "CONTINUA", "CONTINUOUS"}:
+-        if not is_meaningful(authority.get("unidad")):
++    if kind == "NUMERICA_CONTINUA":
++        if not is_meaningful(authority.get("unidad_medida")):
+             return None, "NUMERICA_SIN_UNIDAD"
+         return "MEDIA_PONDERADA", None
+-    if kind in {"ADMINISTRATIVA", "CENSAL", "ADMINISTRATIVO"}:
++    if kind in {"ADMINISTRATIVA", "CENSAL"}:
+         operation = _text(authority.get("operacion_estimador"))
+         if not is_meaningful(operation):
+             return None, "OPERACION_ADMINISTRATIVA_NO_DOCUMENTADA"
+         return operation, None
+-    if kind in {"MULTIRRESPUESTA", "INDICE", "TEXTO", "TRANSFORMACION_AMBIGUA"}:
+-        return None, f"TIPO_NO_DERIVABLE:{kind}"
+     return None, "TIPO_ESTADISTICO_AUSENTE_EN_CONTRATO"
+ 
+ 
+@@ -210,40 +187,25 @@ def _derive_scale(
+     record: Mapping[str, Any], authority: Mapping[str, Any]
+ ) -> tuple[str | None, str | None]:
+     kind = _normal_type(authority.get("tipo_estadistico"))
+-    coding = _text(authority.get("codificacion"))
+-    missing = _text(authority.get("missing"))
+-    if not is_meaningful(coding) or not is_meaningful(missing):
++    coding = authority.get("codificacion")
++    missing = authority.get("missing")
++    if not isinstance(coding, list) or not coding or not isinstance(missing, dict):
+         return None, "CODIFICACION_O_MISSING_AUSENTE_EN_CONTRATO"
+-    if kind in {
+-        "BINARIA",
+-        "BINARIO",
+-        "BINARY",
+-        "CATEGORICA",
+-        "CATEGORICA_EXCLUYENTE",
+-        "CATEGORICAL",
+-    }:
+-        categories = _categories(record, authority)
+-        if not categories:
+-            return None, "CATEGORIAS_AUSENTES_EN_CONTRATO"
++    if kind in {"BINARIA", "CATEGORICA"}:
+         return (
+-            f"tipo={kind};codificacion={coding};categorias={categories};missing={missing}",
++            f"tipo={kind};codificacion={_canonical_json(coding)};"
++            f"missing={_canonical_json(missing)}",
+             None,
+         )
+-    if kind in {
+-        "NUMERICA_CONTINUA",
+-        "CONTINUA",
+-        "CONTINUOUS",
+-        "ADMINISTRATIVA",
+-        "CENSAL",
+-        "ADMINISTRATIVO",
+-    }:
+-        range_value = _text(authority.get("rango"))
+-        unit = _text(authority.get("unidad"))
+-        if not is_meaningful(range_value) or not is_meaningful(unit):
++    if kind in {"NUMERICA_CONTINUA", "ADMINISTRATIVA", "CENSAL"}:
++        range_value = authority.get("rango_valido")
++        unit = _text(authority.get("unidad_medida"))
++        if not isinstance(range_value, dict) or not is_meaningful(unit):
+             return None, "ESCALA_NUMERICA_SIN_RANGO_O_UNIDAD"
+         return (
+-            f"tipo={kind};codificacion={coding};rango={range_value};"
+-            f"unidad={unit};missing={missing}",
++            f"tipo={kind};codificacion={_canonical_json(coding)};"
++            f"rango={_canonical_json(range_value)};unidad={unit};"
++            f"missing={_canonical_json(missing)}",
+             None,
+         )
+     return None, "TIPO_ESTADISTICO_AUSENTE_EN_CONTRATO"
+@@ -252,14 +214,14 @@ def _derive_scale(
+ def _derive_weight(authority: Mapping[str, Any]) -> tuple[str | None, str | None]:
+     kind = _normal_type(authority.get("tipo_estadistico"))
+     weight = _text(authority.get("ponderador"))
+-    if kind in {"ADMINISTRATIVA", "CENSAL", "ADMINISTRATIVO"}:
+-        documented = _text(authority.get("no_aplica_ponderador_documentado")).upper()
+-        if weight.replace("_", " ").upper() == "NO APLICA" and documented == "SI":
++    if kind in {"ADMINISTRATIVA", "CENSAL"}:
++        documented = authority.get("no_aplica_ponderador_documentado")
++        if weight.replace("_", " ").upper() == "NO APLICA" and documented is True:
+             return "NO APLICA", None
+         return None, "NO_APLICA_PONDERADOR_NO_DOCUMENTADO"
+-    exact = _text(authority.get("ponderador_exacto")).upper()
+-    scope = _text(authority.get("ponderador_fuente_ola_tabla")).upper()
+-    if is_meaningful(weight) and exact == "SI" and scope == "SI":
++    exact = authority.get("ponderador_exacto")
++    scope = authority.get("ponderador_fuente_ola_tabla")
++    if is_meaningful(weight) and exact is True and scope is True:
+         return weight, None
+     return None, "PONDERADOR_EXACTO_SCOPE_AUSENTE_EN_CONTRATO"
+ 
+@@ -268,7 +230,7 @@ def _classify_seed(
+     record: Mapping[str, Any],
+     join: JoinResolution,
+     provenance_index: ProvenanceIndex,
+-    authorities: list[dict[str, str]],
++    authority: Mapping[str, Any] | None,
+ ) -> tuple[dict[str, str], list[str]]:
+     states = {field: "AUSENTE_EN_CONTRATO" for field in REQUIRED_COMPONENTS}
+     states["variable"] = "EXISTE_ESTRUCTURADO"
+@@ -276,22 +238,16 @@ def _classify_seed(
+ 
+     if join.status != "EXACTA":
+         reasons.append(join.reason)
+-    if len(authorities) > 1:
+-        for field in ("encuesta", "ola", "estimador", "ponderador", "escala"):
+-            states[field] = "CONFLICTIVO"
+-        reasons.append("AUTORIDAD_SEMANTICA_CONFLICTIVA")
+-        if is_meaningful(record.get("poblacion")):
+-            states["universo"] = "EXISTE_ESTRUCTURADO"
+-        return states, reasons
+-
+-    authority: Mapping[str, Any] = authorities[0] if authorities else {}
++    if authority is None:
++        reasons.append("AUTORIDAD_SEMANTICA_AUSENTE")
++    material: Mapping[str, Any] = authority or {}
+     t0 = (
+         provenance_index.t0_semantic_fields(join.provenance.hash_local)
+         if join.provenance is not None
+         else {}
+     )
+     for field, t0_field in (("encuesta", "fuente_programa"), ("ola", "edicion_periodo")):
+-        if is_meaningful(authority.get(field)):
++        if is_meaningful(material.get(field)):
+             states[field] = "DERIVABLE_EXACTO"
+         elif is_meaningful(t0.get(t0_field)):
+             states[field] = "NO_SEMANTICAMENTE_APTO"
+@@ -299,40 +255,40 @@ def _classify_seed(
+         else:
+             reasons.append(f"{field.upper()}_AUSENTE_EN_CONTRATO")
+ 
+-    if is_meaningful(authority.get("universo_poblacional")):
++    if is_meaningful(material.get("universo_poblacional")):
+         states["universo"] = "DERIVABLE_EXACTO"
+     elif is_meaningful(record.get("poblacion")):
+         states["universo"] = "EXISTE_ESTRUCTURADO"
+     else:
+         reasons.append("UNIVERSO_POBLACIONAL_AUSENTE_EN_CONTRATO")
+ 
+-    estimator, estimator_error = _derive_estimator(authority)
++    estimator, estimator_error = _derive_estimator(material)
+     if estimator:
+         states["estimador"] = "DERIVABLE_EXACTO"
+     else:
+         reasons.append(estimator_error or "ESTIMADOR_AUSENTE_EN_CONTRATO")
+-    weight, weight_error = _derive_weight(authority)
++    weight, weight_error = _derive_weight(material)
+     if weight:
+         states["ponderador"] = "DERIVABLE_EXACTO"
+     else:
+         reasons.append(weight_error or "PONDERADOR_AUSENTE_EN_CONTRATO")
+-    scale, scale_error = _derive_scale(record, authority)
++    scale, scale_error = _derive_scale(record, material)
+     if scale:
+         states["escala"] = "DERIVABLE_EXACTO"
+     else:
+         reasons.append(scale_error or "ESCALA_AUSENTE_EN_CONTRATO")
+-    if authorities and not is_meaningful(authority.get("cita_procedencia")):
++    if authority is not None and not material.get("cita_procedencia"):
+         reasons.append("CITA_PROCEDENCIA_AUSENTE_EN_CONTRATO")
+     return states, sorted(set(reasons))
+ 
+ 
+-def _candidate_id(identity: tuple[str, str, str]) -> str:
++def _candidate_id(identity: tuple[str, ...]) -> str:
+     encoded = "\x1f".join(identity).encode("utf-8")
+     return "CAND-" + hashlib.sha256(encoded).hexdigest()[:20]
+ 
+ 
+ def _cv(authority: Mapping[str, Any], kind: str) -> tuple[str, bool]:
+-    if kind in {"ADMINISTRATIVA", "CENSAL", "ADMINISTRATIVO"}:
++    if kind in {"ADMINISTRATIVA", "CENSAL"}:
+         return "NO APLICA", True
+     value = _text(authority.get("cv"))
+     if not value:
+@@ -368,7 +324,7 @@ def _build_candidate(
+     for field, value in (("ENCUESTA", survey), ("OLA", wave), ("UNIVERSO", population)):
+         if not is_meaningful(value):
+             reasons.append(f"{field}_AUSENTE_EN_CONTRATO")
+-    if not is_meaningful(authority.get("cita_procedencia")):
++    if not authority.get("cita_procedencia"):
+         reasons.append("CITA_PROCEDENCIA_AUSENTE_EN_CONTRATO")
+ 
+     estimator, estimator_error = _derive_estimator(authority)
+@@ -385,7 +341,15 @@ def _build_candidate(
+     if not admissible:
+         return None, [cv_text]
+     variable = _text(record.get("nombre"))
+-    identity = (survey, wave, variable)
++    key = authority_key_from_e2(record)
++    identity = (
++        survey,
++        wave,
++        key.representacion_id,
++        key.scope_tipo,
++        key.scope_id,
++        variable,
++    )
+     dependency = _pending(authority, "grado_dependencia", "ii")
+     domain = _pending(authority, "dominio", "ESTRATIFICACION-DOMINIO")
+     difficulty = _pending(authority, "dificultad", "ESTRATIFICACION-DIFICULTAD")
+diff --git a/tools/curador_registro/marco_e2_adapter.py b/tools/curador_registro/marco_e2_adapter.py
+index 8f81f831..79fe3e81 100644
+--- a/tools/curador_registro/marco_e2_adapter.py
++++ b/tools/curador_registro/marco_e2_adapter.py
+@@ -296,21 +296,42 @@ class ProvenanceIndex:
+         content_hash = _text(record.get("sha256")).lower()
+         payload = _text(record.get("payload_id"))
+         key = (representation, batch)
+-        census_routes = self._census_routes.get(key, [])
++        census_declared = self._census_routes.get(key, [])
++        ledger_declared = self._ledger_routes.get(key, [])
++        census_routes = [
++            row
++            for row in census_declared
++            if not row["sha256"] or row["sha256"] == content_hash
++        ]
+         ledger_routes = [
+             row
+-            for row in self._ledger_routes.get(key, [])
++            for row in ledger_declared
+             if row["sha256"] == content_hash and row["payload_id"] == payload
+         ]
+         t0_routes = self._t0_by_hash.get(content_hash, [])
+-        census_routes = [
+-            row for row in census_routes if not row["sha256"] or row["sha256"] == content_hash
+-        ]
+         cardinalities = (len(census_routes), len(ledger_routes), len(t0_routes))
+         if any(count > 1 for count in cardinalities):
+             return JoinResolution("AMBIGUA", None, "UNION_PROCEDENCIA_AMBIGUA")
+-        if any(count == 0 for count in cardinalities):
+-            return JoinResolution("AUSENTE", None, "UNION_PROCEDENCIA_AUSENTE")
++        census_missing = not census_routes
++        ledger_missing = not ledger_routes
++        t0_missing = not t0_routes
++        if ledger_missing:
++            reason = (
++                "HASH_CENSO_LEDGER_NO_RECONCILIADO"
++                if ledger_declared
++                else "LEDGER_AUSENTE"
++            )
++            return JoinResolution("AUSENTE", None, reason)
++        if census_missing:
++            if census_declared:
++                reason = "HASH_CENSO_LEDGER_NO_RECONCILIADO"
++            elif t0_missing:
++                reason = "RUTA_CENSO_Y_HASH_T0_AUSENTES"
++            else:
++                reason = "RUTA_CENSO_AUSENTE"
++            return JoinResolution("AUSENTE", None, reason)
++        if t0_missing:
++            return JoinResolution("AUSENTE", None, "FUERA_UNIVERSO_T0_POR_HASH")
+         provenance = Provenance(
+             manifest_id=census_routes[0]["manifest_id"],
+             representacion_id=representation,
