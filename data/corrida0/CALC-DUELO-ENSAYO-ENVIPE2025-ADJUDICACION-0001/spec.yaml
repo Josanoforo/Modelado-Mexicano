@@ -28,7 +28,7 @@ inputs:
 - id: emisiones_selladas
   origen: repo
   ruta: data/corrida0/CALC-DUELO-ENSAYO-ENVIPE2025-EMISIONES-0001/resultados.json
-  sha256: PENDIENTE-COMMIT-3a-DEL-ENSAYO
+  sha256: 62d54e9edd740e78c95abc0432fb2b78636e8b6377a761728469dc05744bb094
 variables:
 - archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
   variable: BP1_20
