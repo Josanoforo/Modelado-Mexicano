@@ -1,0 +1,81 @@
+ola	rol	miembro	variables	codigos_1	codigos_0	regla	fuente	nota
+2021	llave	conjunto_de_datos_tmodulo_enif_2021.csv				una tabla; sin join	#943 (CALC-DIN-CREDITO-PISOS-ENIF2021-0001 spec.yaml)	fila oro: reproduce #943
+2021	ponderador	conjunto_de_datos_tmodulo_enif_2021.csv	FAC_ELE			FAC_ELE > 0	#943	
+2021	diseno	conjunto_de_datos_tmodulo_enif_2021.csv	EST_DIS,UPM_DIS			estrato × UPM no vacíos	#943	
+2021	sexo	conjunto_de_datos_tmodulo_enif_2021.csv	SEXO	1,2		1 hombre · 2 mujer	#943	
+2021	edad	conjunto_de_datos_tmodulo_enif_2021.csv	EDAD			cortes de -0003: 18-29 / 30-44 / 45-59 / 60-96	#943	
+2021	escolaridad	conjunto_de_datos_tmodulo_enif_2021.csv	P3_1_1			cortes de -0003: 0-2 / 3 / 4-7 / 8-9; 99 fuera	#943	
+2021	localidad	conjunto_de_datos_tmodulo_enif_2021.csv	TLOC			1-2 → 15 000 y mas · 3-4 → menor de 15 000	#943	
+2021	cuenta	conjunto_de_datos_tmodulo_enif_2021.csv	P5_4_1,P5_4_2,P5_4_3,P5_4_4,P5_4_5,P5_4_6,P5_4_7,P5_4_8,P5_4_9	1	2	con cuenta si algún = 1; sin cuenta si los nueve = 2	#943	batería universal
+2021	formalidad	conjunto_de_datos_tmodulo_enif_2021.csv	P3_10	1,2,3,4,5	6	con seguridad social 1-5 · sin 6 · 9/blanco fuera; universo trabaja = 1..6	#943; PISOS-ENIF2021-formalidad-spec-v1_0.md §1	
+2021	credito_filtro	conjunto_de_datos_tmodulo_enif_2021.csv				sin filtro previo: la batería es universal	#943	
+2021	credito_bateria	conjunto_de_datos_tmodulo_enif_2021.csv	P6_2_1,P6_2_2,P6_2_3,P6_2_4,P6_2_5,P6_2_6,P6_2_7,P6_2_8,P6_2_9	1	2	tenedor = algún 1; sin producto = los nueve 2	#943; tabla K1·2021	
+2021	k2_departamental	conjunto_de_datos_tmodulo_enif_2021.csv	P6_2_1	1	2		#943; tabla K2·2021	
+2021	k2_nomina	conjunto_de_datos_tmodulo_enif_2021.csv	P6_2_3	1	2		#943; tabla K2·2021	
+2021	k2_automotriz	conjunto_de_datos_tmodulo_enif_2021.csv	P6_2_5	1	2		#943; tabla K2·2021	
+2021	k3_items	conjunto_de_datos_tmodulo_enif_2021.csv	P6_1_1,P6_1_2,P6_1_3,P6_1_4,P6_1_5	1	2	K3 = algún 1; 0 si los cinco = 2	#943; tabla K3·2021	
+2021	k4_alguna_vez	conjunto_de_datos_tmodulo_enif_2021.csv	P6_14	1	2	base K4 = sin producto ∧ = 2	#943; tabla K4·2021	
+2021	k4_motivo	conjunto_de_datos_tmodulo_enif_2021.csv	P6_15	6,7|1,2,3|1|2|3	1,2,3,4,5,6,7,8,9	(a) 6,7 · (b) 1,2,3 · b1 1 · b2 2 · b3 3; catálogo 1..9	#943; tabla K4·2021	
+2021	k5	conjunto_de_datos_tmodulo_enif_2021.csv	P6_17	1	2,3	entre solicitantes: 0 sólo si 2	#943; tabla K5·2021	
+2021	k6_atraso	conjunto_de_datos_tmodulo_enif_2021.csv	P6_4_1,P6_4_2,P6_4_3,P6_4_4,P6_4_5,P6_4_6,P6_4_7,P6_4_8,P6_4_9	1	2	posicional k↔k con la batería; 8, 9, blanco indefinido	#943; tabla K6·2021	
+2021	k7_canal	conjunto_de_datos_tmodulo_enif_2021.csv	P6_7	1,2,3,4,5,6		SUCURSAL 1 · APP 2 · INTERNET 3 · ESTABLECIMIENTO 4 · PROMOTOR 5 · OTRO 6; 9/blanco indefinido	#943; tabla K7·2021	
+2018	llave	conjunto_de_datos/tmodulo.csv				una tabla; sin join; columnas en minúsculas en el archivo (se normalizan a mayúsculas)	diccionario_datos_tmodulo_enif_2018.csv filas 2-5	
+2018	ponderador	conjunto_de_datos/tmodulo.csv	FAC_PER			FAC_PER > 0 (factor persona; no existe FAC_ELE en 2018)	diccionario_datos_tmodulo_enif_2018.csv fila 223 «Factor persona»	
+2018	diseno	conjunto_de_datos/tmodulo.csv	EST_DIS,UPM_DIS			estrato de diseño (001-012) × UPM de diseño (00001-00826)	diccionario_datos_tmodulo_enif_2018.csv filas 221-222	
+2018	sexo	conjunto_de_datos/tmodulo.csv	SEXO	1,2		1 Hombre · 2 mujer	diccionario fila 218; catálogo sexo.csv	
+2018	edad	conjunto_de_datos/tmodulo.csv	EDAD			cortes de -0003; rango del archivo 18-70	diccionario fila 217; catálogo edad.csv (18..70)	población 18-70: la celda 60+ es 60-70 y NACIONAL es 18-70
+2018	escolaridad	conjunto_de_datos/tmodulo.csv	NIV			cortes de -0003 sobre el mismo catálogo de 11 códigos (0 Ninguno … 9 Maestría o doctorado, 99 NS/NR)	diccionario fila 9; catálogo niv.csv	texto de catálogo idéntico a p3_1_1 de 2021
+2018	localidad	conjunto_de_datos/tmodulo.csv	TLOC			1-2 → 15 000 y mas · 3-4 → menor de 15 000	diccionario fila 220; catálogo tloc.csv	mismos cortes que 2021
+2018	cuenta	conjunto_de_datos/tmodulo.csv	P5_4,P5_5	1	2	con cuenta si P5_4 = 1 o P5_5 = 1; sin cuenta si ambas = 2	cuestionario 2018 pdf-pág 8 (5.4 Sí → PASE A 5.9; No → 5.5; 5.5 Sí → 5.9); diccionario filas 65-66	5.4 «cuenta o tarjeta de nómina, ahorro o pensión en algún banco o institución financiera» + 5.5 «donde reciba apoyos de gobierno»: mismo referente que la batería 5.4 de 2021 en dos preguntas filtro
+2018	formalidad	conjunto_de_datos/tmodulo.csv	P3_11	1,2,3,4,5	6	con seguridad social 1-5 · sin 6 · 9/blanco fuera; universo trabaja = 1..6	cuestionario 2018 pdf-pág 5 (3.11 «Por parte de su trabajo, ¿usted tiene derecho a los servicios médicos…»); diccionario fila 22; catálogo p3_11.csv	texto y catálogo idénticos a 3.10 de 2021 (6 «No tiene servicio médico (incluye Seguro Popular)»)
+2018	credito_filtro	conjunto_de_datos/tmodulo.csv	P6_3,P6_4	1	2	tenedor si P6_3 = 1 o P6_4 = 1 o algún ítem de la batería = 1; sin producto si P6_3 = 2 y P6_4 = 2	tabla v1.1 K1·2018 (filtro_y_flujo); cuestionario pdf-pág 12	filtro Sí pero batería toda No se cuenta como inconsistencia (diagnóstico), no se corrige
+2018	credito_bateria	conjunto_de_datos/tmodulo.csv	P6_8_1,P6_8_2,P6_8_3,P6_8_4,P6_8_5,P6_8_6,P6_8_7,P6_8_8	1	2	gateada por el filtro: blanco de quien dijo No en 6.3 y 6.4 se recodifica a No	tabla v1.1 K1·2018; FD 2018 TModulo filas 463-526	8 ítems (sin Internet/aplicación); 6.8.6 vivienda · 6.8.7 grupal · 6.8.8 Otro
+2018	k2_departamental	conjunto_de_datos/tmodulo.csv	P6_8_1	1	2	blanco → 0 si sin producto	tabla v1.1 K2·2018	
+2018	k2_nomina	conjunto_de_datos/tmodulo.csv	P6_8_3	1	2	blanco → 0 si sin producto	tabla v1.1 K2·2018	
+2018	k2_automotriz	conjunto_de_datos/tmodulo.csv	P6_8_5	1	2	blanco → 0 si sin producto	tabla v1.1 K2·2018	
+2018	k3_items	conjunto_de_datos/tmodulo.csv	P6_1_1,P6_1_2,P6_1_3,P6_1_4,P6_1_5	1	2	K3 = algún 1; 0 si los cinco = 2; mismo orden que 2021 (caja, empeño, amigos, familiares, otro)	tabla v1.1 K3·2018	ventana «de abril de 2017 a la fecha»
+2018	k4_alguna_vez	conjunto_de_datos/tmodulo.csv	P6_5	1	2	base K4 = sin producto ∧ P6_5 = 2	tabla v1.1 K4·2018	
+2018	k4_motivo	conjunto_de_datos/tmodulo.csv	P6_6	6,7|1,2,3|1|2|3	1,2,3,4,5,6,7,8	(a) 6,7 · (b) 1,2,3 · b1 1 · b2 2 · b3 3; catálogo 1..8 (8 = Otro; no existe «impuestos»)	tabla v1.1 K4·2018; catálogo p6_6.csv	el código 8 es «Otro» en 2018 e «impuestos» en 2021: ambos «ni a ni b»
+2018	k5	conjunto_de_datos/tmodulo.csv	P6_18	1	2,3	entre solicitantes: 0 sólo si 2	tabla v1.1 K5·2018; catálogo p6_18.csv	
+2018	k6_atraso	conjunto_de_datos/tmodulo.csv	P6_10_1,P6_10_2,P6_10_3,P6_10_4,P6_10_5,P6_10_6,P6_10_7	1	2	posicional k↔k con los primeros 7 ítems de la batería; el ítem 8 «Otro» no tiene variable de atraso y no entra al marco PR; 8, 9, blanco indefinido	tabla v1.1 K6·2018; diccionario 2018 (no existe p6_10_8)	
+2018	k7_canal					NO-ESTIMABLE (tabla v1.1 K7·2018): no se emite	tabla v1.1 K7·2018	
+2015	llave	tmodulo1.DBF+tmodulo2.DBF	UPM,VIV_SEL,HOGAR,R_SEL			join interno TModulo1 (3.x-5.x, 6.1-6.5, diseño, SEXO, EDAD) ⋈ TModulo2 (6.6-6.21) por las cuatro llaves; una fila por persona elegida	FD 2015 TModulo1 filas 5-8, TModulo2 filas 5-8; cabecera DBF (descriptor de campos)	el medidor PARA si el join pierde o duplica filas
+2015	ponderador	tmodulo1.DBF	FAC_PER			FAC_PER > 0 (factor personas)	FD 2015 TModulo1 fila 635	
+2015	diseno	tmodulo1.DBF	EST_DIS,UPM_DIS			estrato de diseño (001-012) × UPM de diseño (00001-00826)	FD 2015 TModulo1 filas 629-630; cabecera DBF tmodulo1 (EST_DIS C3, UPM_DIS C5)	
+2015	sexo	tmodulo1.DBF	SEXO	1,2		1 Hombre · 2 Mujer	FD 2015 TModulo1 fila 632 («Campo extraído de tabla TSDEM»)	
+2015	edad	tmodulo1.DBF	EDAD			cortes de -0003; rango del archivo 18-70	FD 2015 TModulo1 fila 634	población 18-70
+2015	escolaridad	tmodulo1.DBF	NIV			cortes de -0003 sobre el mismo catálogo (0 Ninguno … 9 Maestría o doctorado)	FD 2015 TModulo1 filas 23-32	un solo carácter (0-9); mismo texto de catálogo que 2018/2021
+2015	localidad	tmodulo1.DBF	TLOC			1-2 → 15 000 y mas · 3-4 → menor de 15 000	FD 2015 TModulo1 filas 625-628	
+2015	cuenta	tmodulo1.DBF	P5_4	1	2	con cuenta si P5_4 = 1; sin cuenta si = 2 (universal)	FD 2015 TModulo1 fila 193; cuestionario 2015 pdf-pág 5 (5.4 Sí → PASE A 5.9; No → 5.5)	5.4 «cuenta o tarjeta de nómina, ahorro, pensión o donde reciba apoyos de gobierno en algún banco o institución financiera»: los dos filtros de 2018 en una sola pregunta
+2015	formalidad	tmodulo1.DBF				NO-CONSTRUIBLE por texto: 3.10 «¿Usted tiene derecho a los servicios médicos…» no dice «por parte de su trabajo» y lista «del Seguro Popular» como código 1; es derechohabiencia general, no seguridad social ligada al empleo (PISOS-ENIF2021-formalidad-spec-v1_0.md §1). No se emiten celdas de formalidad ni UNIVERSO-TRABAJA	FD 2015 TModulo1 filas 66-74; cuestionario 2015 pdf-pág 4 (3.10, sección SERVICIOS DE SALUD); texto buscado «por parte de su trabajo» en el cuestionario 2015 completo: 0 aciertos	un trabajador cubierto por el IMSS de su cónyuge cuenta «con» aquí y «sin» en 2021: cambio de referente
+2015	credito_filtro	tmodulo1.DBF	P6_4	1	2	tenedor si P6_4 = 1 o algún ítem de la batería = 1; sin producto si P6_4 = 2	tabla v1.1 K1·2015; cuestionario pdf-pág 10 (6.4 Sí → 6.8 → 6.9; No → 6.5)	
+2015	credito_bateria	tmodulo2.DBF	P6_9_1,P6_9_2,P6_9_3,P6_9_4,P6_9_5,P6_9_6,P6_9_7,P6_9_8	1	2	gateada por 6.4: blanco de quien dijo No se recodifica a No	tabla v1.1 K1·2015; FD 2015 TModulo2 filas 75-228	orden 1 departamental · 2 bancaria · 3 nómina · 4 personal · 5 automotriz · 6 hipotecario · 7 grupal · 8 Otro
+2015	k2_departamental	tmodulo2.DBF	P6_9_1	1	2	blanco → 0 si sin producto	tabla v1.1 K2·2015	
+2015	k2_nomina	tmodulo2.DBF	P6_9_3	1	2	blanco → 0 si sin producto	tabla v1.1 K2·2015	
+2015	k2_automotriz	tmodulo2.DBF	P6_9_5	1	2	blanco → 0 si sin producto	tabla v1.1 K2·2015	
+2015	k3_items	tmodulo1.DBF	P6_1_1,P6_1_2,P6_1_3,P6_1_4,P6_1_5	1	2	K3 = algún 1; 0 si los cinco = 2; ORDEN DISTINTO de 2018+ (1 familiares · 2 amigos · 3 caja · 4 empeño · 5 otro) — la unión no depende del orden	tabla v1.1 K3·2015	ventana «de julio del año pasado a la fecha»
+2015	k4_alguna_vez	tmodulo1.DBF	P6_5	1	2	sólo diagnóstico (nunca ha tenido / ex usuarios); K4 no se emite	tabla v1.1 K4·2015	
+2015	k4_motivo					CAMBIO-DE-INSTRUMENTO (tabla v1.1 K4·2015: multirrespuesta): no se emite	tabla v1.1 K4·2015	
+2015	k5	tmodulo2.DBF	P6_20	1	2,3	entre solicitantes: 0 sólo si 2	tabla v1.1 K5·2015; FD 2015 TModulo2 filas 307-310	
+2015	k6_atraso	tmodulo2.DBF	P6_13_1,P6_13_2,P6_13_3,P6_13_4,P6_13_5,P6_13_6,P6_13_7,P6_13_8	1,2	3	posicional k↔k con los 8 ítems de la batería; una variable de cinco códigos: 1 una vez · 2 más de una vez = atraso; 3 No; 8, 9, blanco indefinido	tabla v1.1 K6·2015	
+2015	k7_canal					NO-ESTIMABLE (tabla v1.1 K7·2015): no se emite	tabla v1.1 K7·2015	
+2012	llave	stmodulo1_e2.dbf+stsdem_e2.dbf	CONTROL,VIV_SEL,HOGAR,R_SEL=N_REN			join izquierdo TMODULO1 (3.x-6.x, diseño, FAC_PER) ⋈ TSDEM (SEXO, EDAD) por CONTROL, VIV_SEL, HOGAR y R_SEL = N_REN; la fila persona es la de TMODULO1	FD 2012 TMODULO1 filas 19-27, TSDEM filas 18-24; cabecera DBF	sin pareja en TSDEM → sexo y edad indefinidos (contado); el medidor PARA si el join duplica filas
+2012	ponderador	stmodulo1_e2.dbf	FAC_PER			FAC_PER > 0 (factor persona; el FD admite 0)	FD 2012 TMODULO1 filas 854-855 (FAC_PER 0…62284)	
+2012	diseno	stmodulo1_e2.dbf	EST_DIS,UPM_DIS			estrato de diseño (11-14, 21, 22, 31, 32, 41, 42) × UPM de diseño (00001-00847)	FD 2012 TMODULO1 filas 856-859; cabecera DBF (EST_DIS C2, UPM_DIS C5)	
+2012	sexo	stsdem_e2.dbf	SEXO	1,2		1 Hombre · 2 Mujer	FD 2012 TSDEM filas 30-32	
+2012	edad	stsdem_e2.dbf	EDAD			cortes de -0003; 98/99 no especificada fuera	FD 2012 TSDEM filas 33-38	población elegida 18-70 (NOTAS ACLARATORIAS fila 15)
+2012	escolaridad	stmodulo1_e2.dbf	NIV			cortes de -0003 sobre el mismo catálogo (00 Ninguno … 09 Maestría o doctorado; 99 No Especificado)	FD 2012 TMODULO1 filas 56-67	«Carrera técnica» por «Estudios técnicos»: mismo nivel
+2012	localidad	stmodulo1_e2.dbf	TL			1-2 → 15 000 y mas · 3-4 → menor de 15 000	FD 2012 TMODULO1 filas 848-851 (TL: 1 100 000 y más · 2 15 000-99 999 · 3 2 500-14 999 · 4 menores de 2 499)	el nemónico es TL, no TLOC
+2012	cuenta	stmodulo1_e2.dbf	P5_3	1	2	con cuenta si P5_3 = 1; sin cuenta si = 2 (universal)	FD 2012 TMODULO1 filas 188-190; cuestionario 2012 pdf-pág 5 (5.3 Sí → PASE A 5.5; No → 5.4)	MATIZ: 5.3 dice «cuenta de ahorro, nómina, inversión u otra en algún banco»: sólo bancos, sin «institución financiera» ni «apoyos de gobierno»; el eje se declara con este referente más estrecho
+2012	formalidad	stmodulo1_e2.dbf				NO-CONSTRUIBLE por texto: 3.9 «¿Usted tiene derecho a atención médica en… el Seguro Popular? el Seguro Social (IMSS)? …» es derechohabiencia general (código 1 Seguro Popular, 7 no tiene), no «por parte de su trabajo». No se emiten celdas de formalidad ni UNIVERSO-TRABAJA	FD 2012 TMODULO1 filas 104-113; cuestionario 2012 pdf-pág 4 (3.9, DERECHOHABIENCIA); texto buscado «por parte de su trabajo» en el cuestionario 2012 completo: 0 aciertos	mismo cambio de referente que 2015
+2012	credito_filtro	stmodulo1_e2.dbf	P6_4	1	2	tenedor si P6_4 = 1 o algún ítem de la batería = 1; sin producto si P6_4 = 2	tabla v1.1 K1·2012; cuestionario pdf-pág 8 (6.4 Sí → PASE A 6.6; No → 6.5)	
+2012	credito_bateria	stmodulo1_e2.dbf	P6_6_1,P6_6_2,P6_6_3,P6_6_4,P6_6_5,P6_6_6,P6_6_7,P6_6_8	1	2	gateada por 6.4: blanco de quien dijo No se recodifica a No	tabla v1.1 K1·2012; FD 2012 TMODULO1 filas 542-737	ORDEN INVERTIDO: 1 bancaria · 2 departamental · 3 nómina · 4 personal · 5 automotriz · 6 hipotecario · 7 grupal · 8 Otro
+2012	k2_departamental	stmodulo1_e2.dbf	P6_6_2	1	2	blanco → 0 si sin producto; es el ÍTEM 2 en 2012 (en 2015-2024 es el 1)	tabla v1.1 K2·2012	trampa de sufijo escrita en la tabla
+2012	k2_nomina	stmodulo1_e2.dbf	P6_6_3	1	2	blanco → 0 si sin producto	tabla v1.1 K2·2012	
+2012	k2_automotriz	stmodulo1_e2.dbf	P6_6_5	1	2	blanco → 0 si sin producto	tabla v1.1 K2·2012	
+2012	k3_items	stmodulo1_e2.dbf	P6_1_2,P6_1_3,P6_1_4,P6_1_5	1	2	K3 = algún 1 entre empeño (6.1.2), amigos o conocidos (6.1.3), familiares (6.1.4) y otro (6.1.5); 0 si los cuatro = 2. SIN 6.1.1: «caja de ahorro entre amigos o conocidos» tiene otro referente que «caja de ahorro del trabajo o de personas conocidas» y se excluye, no se colapsa (tabla v1.1 K3·2012)	tabla v1.1 K3·2012	MATIZ obligatorio en cada RESULT de K3·2012: unión de cuatro ítems, no de cinco
+2012	k4_alguna_vez					no existe «alguna vez tuvo» en 2012 (tabla v1.1 K4·2012): el diagnóstico NUNCA-HA-TENIDO no es construible	tabla v1.1 K1·2012, K4·2012	
+2012	k4_motivo					CAMBIO-DE-INSTRUMENTO (tabla v1.1 K4·2012): no se emite	tabla v1.1 K4·2012	
+2012	k5	stmodulo1_e2.dbf	P6_17	1	2,3	entre solicitantes: 0 sólo si 2	tabla v1.1 K5·2012; FD 2012 TMODULO1 filas 803-806	
+2012	k6_atraso	stmodulo1_e2.dbf	P6_11_1,P6_11_2,P6_11_3,P6_11_4,P6_11_5,P6_11_6,P6_11_7,P6_11_8	1,2	3	posicional k↔k con los 8 ítems de la batería; una variable de cinco códigos: 1 una vez · 2 más de una vez = atraso; 3 No; 8, 9, blanco indefinido	tabla v1.1 K6·2012	ventana «de abril de 2011 a la fecha»
+2012	k7_canal					NO-ESTIMABLE (tabla v1.1 K7·2012): no se emite	tabla v1.1 K7·2012	
