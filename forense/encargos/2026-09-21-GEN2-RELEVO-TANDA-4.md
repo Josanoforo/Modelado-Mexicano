@@ -49,3 +49,12 @@ Propio: `tools/pines_mesa.py` · `data/corrida0/pines-de-mesa.tsv` · `tests/tes
 
 ## 10 · NO HACE · SUCESORES · CIERRE
 No pinea nada más de lo que P1 vuelve pineable · no re-sella `CALC-B-0001` · no construye el CALC de L · no toca `DIN-M-01`. Sucesores: decisión de mesa sobre lo que quedó pineable tras P1 (dirección la lleva con la lista de este acto) · CALC de L desde capturas (sin dueño; NC). Falsador a tres meses: si la clase (iii) no vuelve a usarse, se anota y no se generaliza. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+| id | pieza | qué no se corrió | razón (token al principio) | impacto | sucesor |
+|---|---|---|---|---|---|
+| `NC-260921-GEN2-RELEVO-TANDA-4-dedd-01` | P4 | El CALC propio que mida los 9 puntos L desde las 224 capturas, con el extractor y el agregador declarados (no `CALC-TRIADA-0001`, que ingiere `snapshot-M-triada-v1_0.json`). | `DIFERIDO-A:<sucesor sin dueño — CALC de L desde capturas>` — §10 de este encargo lo prohíbe explícitamente («no construye el CALC de L»). | Los 9 L siguen `LEGACY-GEN1`, dentro de `legacy_marco_M_por_campo__L = 28`. **El contador no se mueve por esto**: ya contaban y siguen contando. Lo que sí cierra este acto es que dejen de **parecer** candidatos a pin. | Sin dueño; dirección asigna. Insumos listos: `forense/analisis/relevo-tanda-4/P4-los-9-L-rotulo-sucesor-v1_1.md` y el `v1_0` de TANDA-3. |
+| `NC-260921-GEN2-RELEVO-TANDA-4-dedd-02` | P1 | Pinear las diez corridas restantes que el eje RESULTADO habilitaría si la vía (i) también lo leyera: ocho `CALC-R-*` (`DIN-M-01`, `FAM-M-01`, `FAM-M-05`, `FAM-M-06`, `FAM-M-07`, `TRA-M-02`, `TRA-M-03`, `TRA-M-07`) y dos de ENCIG (`…CRUCES-HISTORICOS-0003`, `…-0002`). | `DECISIÓN-DE-MESA-PENDIENTE` — su puerta natural es la vía (i), y relajarla es **PARO (b)** de §7. Ninguna tiene un RESULT declarado por una conducta GEN2, así que la vía (ii) tampoco las alcanza. | Cero lecturas extra fuera de legacy. El contador bajó en exactamente lo firmado (−4). | Dirección lleva la pregunta a mesa con la lista derivada de este acto (`forense/notas/nota-2026-09-21-gen2-relevo-tanda-4-cierre.md` §3). |
+
+Todo lo demás del encargo **se corrió**: P1, P2, P3, P4 (la parte que sí autoriza) y P5 completas; las tres FP a `FIRMADA`; vista, tablero y marcador re-derivados por comando; cascada de cierre completa. **Paso anti-`PR #77`: no aplica** — este acto no descarga nada y no escribe en `data/raw` (`ENTORNO: NUBE`, corpus no montado, `archivos_examinados = 0`). **PAROS de §7 disparados: ninguno.**

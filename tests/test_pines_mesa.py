@@ -143,6 +143,156 @@ def test_rechaza_result_ingerido_de_snapshot():
     assert estado == "RECHAZADO-RESULT-INGERIDO", motivo
 
 
+# ── P1 (TANDA-4) · guarda (a) por EJE, un caso por token del vocabulario ──
+#
+# Que defecto atrapa: `CALC-B-0001` esta SELLADA, cuenta_gen2 = SI y su
+# replay dice `REPLICA-RESULTADO · CONTEXTO-DISTINTO` -- el numero volvio a
+# salir igual y lo unico que cambio fue `tools/baseline_temporal.py` en
+# 67aa13d, ajeno a la lectura. Con la guarda vieja (prefijo `REPRODUCE`) las
+# tres lecturas M de ENIGH quedaban en legacy por un cambio de contexto. Con
+# la guarda floja al reves, un `NO-REPRODUCE · CONTEXTO-DISTINTO` entraria
+# por parecerse. Los dos errores cuestan lo mismo al lector: el contador
+# miente en una direccion o en la otra.
+
+# El universo se DERIVA del vocabulario real, no se teclea: si manana
+# `corrida0` acuna un veredicto nuevo, este test falla hasta que alguien
+# decida de que lado del eje cae.
+VOCABULARIO_REPLAY = pines_mesa.vocabulario_replay() | {"NO-EJECUTABLE"}
+
+
+def _corridas_con_replay(valor: str) -> dict:
+    return {"CALC-REPLAY": {"estado": "SELLADA", "cuenta_gen2": "SI",
+                            "resultado_replay": valor,
+                            "resultados_ids": {"RESULT-REPLAY-P"}}}
+
+
+def test_vocabulario_afirmativo_se_deriva_y_no_se_teclea():
+    afirmativos = pines_mesa.veredictos_afirmativos_en_resultado()
+    assert afirmativos == {"REPRODUCE",
+                           "REPLICA-RESULTADO · CONTEXTO-DISTINTO"}, afirmativos
+    # `NO-EJECUTABLE` no esta en el vocabulario CONCLUYENTE de corrida0 (E.3:
+    # es limitacion de la sesion, no hallazgo sobre el numero) y por tanto
+    # tampoco puede colarse como afirmativo.
+    assert "NO-EJECUTABLE" not in pines_mesa.vocabulario_replay()
+    assert "NO-EJECUTABLE" not in afirmativos
+
+
+def test_cada_token_del_vocabulario_real_por_las_dos_vias():
+    """Un caso por token de `forense/replay-evidencia.tsv`, por via (i) y por
+    via (ii): la (i) solo acepta `REPRODUCE`; la (ii) acepta el eje."""
+    afirmativos = pines_mesa.veredictos_afirmativos_en_resultado()
+    conductas = {"RESULT-REPLAY-P": "milpa/tramite.yaml:r:c"}
+    for token in sorted(VOCABULARIO_REPLAY):
+        corridas = _corridas_con_replay(token)
+        fila_i = dict(PIN_VALIDO, calc_gen2="CALC-REPLAY",
+                      result_gen2="RESULT-REPLAY-P", via=pines_mesa.VIA_CRUDO)
+        estado_i, motivo_i = pines_mesa.valida_pin(
+            fila_i, corridas, {"CALC-REPLAY": CON_CRUDO}, conductas)
+        esperado_i = (pines_mesa.ACEPTADO if token == "REPRODUCE"
+                      else "RECHAZADO-CALC-NO-REPRODUCE")
+        assert estado_i == esperado_i, f"via (i) · {token}: {estado_i} {motivo_i}"
+
+        fila_ii = dict(fila_i, via=pines_mesa.VIA_CONDUCTA)
+        estado_ii, motivo_ii = pines_mesa.valida_pin(
+            fila_ii, corridas, {"CALC-REPLAY": CON_CRUDO}, conductas)
+        esperado_ii = (pines_mesa.ACEPTADO if token in afirmativos
+                       else "RECHAZADO-CALC-NO-REPRODUCE")
+        assert estado_ii == esperado_ii, \
+            f"via (ii) · {token}: {estado_ii} {motivo_ii}"
+        if estado_ii != pines_mesa.ACEPTADO:
+            assert token in motivo_ii, "el rechazo debe decir POR QUE"
+
+
+# ── P3 (TANDA-4) · clase (iii) `iii-DERIVADO-DE-GEN2` ─────────────────────
+#
+# Que defecto atrapa: sin la clase, un derivado determinista de un RESULT
+# GEN2 -- RES-0028, q = 1 - p -- queda en legacy para siempre, porque la
+# guarda (d) rechaza toda ingestion sin mirar la generacion de lo ingerido.
+# Y sin las cuatro condiciones, la misma puerta deja pasar un derivado de un
+# derivado o uno que mezcla un numero de GEN1, que es exactamente lo que 4.1
+# prohibe. La clase es estrecha a proposito.
+
+_PADRE_CRUDO = {"estado": "SELLADA", "cuenta_gen2": "SI",
+                "resultado_replay": "REPRODUCE",
+                "resultados_ids": {"RESULT-PADRE-P"}}
+_DERIVADO = {"estado": "SELLADA", "cuenta_gen2": "SI",
+             "resultado_replay": "REPRODUCE",
+             "resultados_ids": {"RESULT-DERIVADO-Q"}}
+CORRIDAS_III = {
+    "CALC-PADRE": dict(_PADRE_CRUDO),
+    "CALC-PADRE-NO-CUENTA": dict(_PADRE_CRUDO, cuenta_gen2="PENDIENTE-DE-MESA"),
+    "CALC-PADRE-DERIVADO": dict(_PADRE_CRUDO),
+    "CALC-HIJO": dict(_DERIVADO),
+    "CALC-NIETO": dict(_DERIVADO),
+    "CALC-HIJO-DE-NO-CUENTA": dict(_DERIVADO),
+    "CALC-HIJO-MESTIZO": dict(_DERIVADO),
+}
+
+
+def _ingiriendo(*rutas):
+    return {"inputs": [{"id": f"IN-{i}", "origen": "repo", "ruta": r}
+                       for i, r in enumerate(rutas)]}
+
+
+SPECS_III = {
+    "CALC-PADRE": CON_CRUDO,
+    "CALC-PADRE-NO-CUENTA": CON_CRUDO,
+    "CALC-PADRE-DERIVADO": _ingiriendo(
+        "data/corrida0/CALC-PADRE/resultados.json"),
+    "CALC-HIJO": _ingiriendo("data/corrida0/CALC-PADRE/resultados.json",
+                             "data/corrida0/CALC-PADRE/spec.yaml",
+                             "data/corrida0/CALC-PADRE/sello.json"),
+    "CALC-NIETO": _ingiriendo(
+        "data/corrida0/CALC-PADRE-DERIVADO/resultados.json"),
+    "CALC-HIJO-DE-NO-CUENTA": _ingiriendo(
+        "data/corrida0/CALC-PADRE-NO-CUENTA/resultados.json"),
+    "CALC-HIJO-MESTIZO": _ingiriendo(
+        "data/corrida0/CALC-PADRE/resultados.json",
+        "forense/prereg-duelo-v2/L-extraido-v1_2.tsv"),
+}
+
+
+def _valida_iii(calc, result):
+    fila = dict(PIN_VALIDO, llave_logica="tramite::una.regla::una_conducta",
+                via=pines_mesa.VIA_DERIVADO, calc_gen2=calc,
+                result_gen2=result)
+    return pines_mesa.valida_pin(fila, CORRIDAS_III, SPECS_III, {})
+
+
+def test_iii_acepta_derivado_de_padre_gen2():
+    estado, motivo = _valida_iii("CALC-HIJO", "RESULT-DERIVADO-Q")
+    assert estado == pines_mesa.ACEPTADO, motivo
+
+
+def test_iii_rechaza_derivado_cuyo_padre_no_cuenta():
+    estado, motivo = _valida_iii("CALC-HIJO-DE-NO-CUENTA", "RESULT-DERIVADO-Q")
+    assert estado == "RECHAZADO-DERIVADO-PADRE-NO-CUENTA-GEN2", motivo
+
+
+def test_iii_rechaza_derivado_de_derivado():
+    estado, motivo = _valida_iii("CALC-NIETO", "RESULT-DERIVADO-Q")
+    assert estado == "RECHAZADO-DERIVADO-DE-DERIVADO", motivo
+
+
+def test_iii_rechaza_derivado_que_ademas_ingiere_gen1():
+    """La condicion que NO se puede relajar (PARO (b) del encargo): un
+    derivado que mezcla un numero de GEN1 no entra, tenga hash o no."""
+    estado, motivo = _valida_iii("CALC-HIJO-MESTIZO", "RESULT-DERIVADO-Q")
+    assert estado == "RECHAZADO-DERIVADO-INGIERE-AJENO", motivo
+    assert "L-extraido-v1_2.tsv" in motivo
+
+
+def test_iii_no_afloja_la_guarda_d_para_las_otras_vias():
+    """La clase (iii) es una puerta NUEVA, no un boquete en la vieja: el
+    mismo CALC-HIJO por via (i) o (ii) sigue rechazado por ingestion."""
+    for via in (pines_mesa.VIA_CRUDO, pines_mesa.VIA_CONDUCTA):
+        fila = dict(PIN_VALIDO, llave_logica="tramite::una.regla::una_conducta",
+                    via=via, calc_gen2="CALC-HIJO",
+                    result_gen2="RESULT-DERIVADO-Q")
+        estado, motivo = pines_mesa.valida_pin(fila, CORRIDAS_III, SPECS_III, {})
+        assert estado.startswith("RECHAZADO-"), f"{via}: {estado} {motivo}"
+
+
 # ── higiene del canal ─────────────────────────────────────────────────────
 
 def test_rechaza_via_desconocida():
@@ -300,12 +450,21 @@ def test_pines_del_arbol_pasan_todos_sus_guardas():
                  and c.startswith("milpa/tramite.yaml:")}
     import yaml
     specs = {}
-    filas = pines_mesa.lee_pines()
-    for f in filas:
-        calc = f["calc_gen2"]
+
+    def _carga(calc: str) -> dict:
         ruta = RAIZ / "data" / "corrida0" / calc / "spec.yaml"
         specs[calc] = (yaml.safe_load(ruta.read_text(encoding="utf-8"))
                        if ruta.exists() else {})
+        return specs[calc]
+
+    filas = pines_mesa.lee_pines()
+    for f in filas:
+        spec = _carga(f["calc_gen2"])
+        # La clase (iii) consulta ademas la spec del PADRE (para saber si el
+        # padre ingiere a su vez). Se carga por derivacion de los inputs, no
+        # por una lista a mano.
+        for padre in pines_mesa._calcs_ingeridos(spec)[0]:
+            _carga(padre)
     _, rechazos = pines_mesa.pines_validados(
         corridas, specs, conductas, pines_mesa.RUTA_PINES)
     assert not rechazos, "pines escritos y rechazados:\n  " + "\n  ".join(rechazos)

@@ -4781,6 +4781,12 @@ def _legacy_por_consumidor(usos_activos: list) -> dict:
 # clases sin fundirlas»: una sola cifra de "relevadas" borraria la diferencia
 # entre medir desde crudo (i) y leer una conducta que ya es GEN2 (ii), que es
 # exactamente la distincion que la firma establece.
+#
+# ACTO GEN2-RELEVO-TANDA-4 · P3 anade la tercera clase,
+# `iii-DERIVADO-DE-GEN2` (firma de direccion 7bf5-02): «el contador muestra
+# sin fundir con (i) y (ii)». No se teclea una fila mas aqui: el desglose se
+# deriva de `pines_mesa.VIAS`, asi que una via nueva aparece en `status` el
+# mismo dia que se firma, y la suma de las tres es el total relevado.
 CAMPOS_MARCO = ("R", "M", "L", "AGREGADO")
 
 
