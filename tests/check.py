@@ -3039,6 +3039,14 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1, 21/sep/2026. `canon/L0/
+    # HISTORICO.md` es el contenido histórico congelado de la línea `L0`
+    # (P-A) -- prosa verbatim de decenas de actos anteriores, sellada tal
+    # cual estaba, hash fijado (T49). El `M05` pelado que el regex ve es
+    # una mención de un acto viejo, ya escrita antes de este; no es un
+    # rótulo que este acto acuñe, y el archivo no se edita para complacer
+    # el test -- editarlo rompería T49 (hash fijado a propósito).
+    "canon/L0/HISTORICO.md",
     # ACTO GEN2-TUBERIA-SIDECAR-CUERPO-1, 21/sep/2026. Una sola mencion y
     # una sola causa: el encargo CITA POR NOMBRE cuatro encargos reales
     # que tienen mas de una linea `## NO-CORRIDO` -- `PRE-E5`,

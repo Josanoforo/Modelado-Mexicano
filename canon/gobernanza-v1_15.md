@@ -8,6 +8,55 @@
 > | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** · detalle ADR-44 a ADR-58 (más ADR-62) en **§0.1**, abajo — el último es **ADR-65** (§4; ADR-59/60/61/63/64/65 no están detallados en §0.1, solo en §4) |
 > | **NOMBRE ESTABLE** | **`gobernanza`** — cítalo así, **nunca por nombre de archivo** |
 
+**ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-01** (primer `ADR` con **raíz de acto** —
+`ADR-<AAMMDD>-<RÓTULO>-<hhhh>-<NN>`, `hhhh` = 4 hex del commit de 0-bis `27078f6` —; por eso
+**no se renumera al fusionar**, aunque otro acto tome un `ADR` numérico mientras éste corre),
+`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1 · LA LÍNEA L0 SE REPARA SIN PÉRDIDA, SE CONGELA Y QUEDA
+VIGILADA · LOS CONTADORES DE ADR DEJAN DE EDITARSE · ADR PASA A RAÍZ DE ACTO · union SÓLO
+DONDE UNA MUTACIÓN LO JUSTIFIQUE`, 21/sep/2026, entorno **NUBE** (`cloud_default`, credenciales
+de Git y publicación de PR, corpus **NO** montado, cero microdato), Sonnet 5, sin sub-agentes,
+**MODO ABIERTO**, **COMPUERTA: ninguna** (no abre dato, no congela spec, no adopta, no borra
+información). Encargo archivado verbatim (A.3) con sello de cuerpo:
+`forense/encargos/2026-09-21-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1.md` + `.cuerpo.sha256`, SHA de
+redacción `9abc7a19` (re-derivado y confirmado idéntico al abrir), raíz de acto `2707`.
+**P-A.** `canon/estado-programa-v1_14.md` pesaba ~27.7 MB (27.2 MB en la línea `L0`, 47 785
+anotaciones con sólo 98 fragmentos distintos por el separador `")* *("` — el resto, copias de
+merges "conservar ambos lados": ×2.00 en `PR #929`, ×3.00 en `PR #936`, ×2.67 en `PR #938`,
+×2.12 en `PR #947`). Reparada: los 98 fragmentos distintos, orden de primera aparición, sellados
+en `canon/L0/HISTORICO.md` (316 KB, sha256 fijado `a7de8944…`). Prueba de no-pérdida contra la
+historia: reconstruida la `L0` en 5 versiones (`V0..V4`=HEAD, commits `d449495`→`1dfb672`→
+`ff73e02`→`04a2edeb`→HEAD, exactamente antes/después de cada salto ×2.00/×3.00/×2.67/×2.12) —
+toda anotación de esas 5 versiones es substring del cuerpo reparado, 0 pérdidas. `estado-programa`
+pasa a 548 KB; su línea `L0` es un puntero corto; los fragmentos por acto futuros viven en
+`canon/L0/<ADR-raíz>.md` (el de este acto: `canon/L0/ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-01.md`);
+vista completa por `python3 tools/l0_vista.py`. Dos guardas permanentes en CI (`tests/check.py`):
+`T48` (ninguna línea de `canon/**/*.md` supera 1 MB) y `T49` (hash de `HISTORICO.md` fijado) —
+ambas ejercidas por mutación con el caso exacto de las ramas en vuelo (fusionar la `L0` vieja
+sobre la reparada, conservando ambos lados): las dos fallan a la vez. **P-B.**
+`tools/cierre_acto.py --aplica` deja de escribir los tres contadores mecánicos (cabecera de
+`gobernanza`, línea `L0`, fila de tabla §0 de `estado-programa`) — quedan HISTÓRICOS; el conteo
+vigente se deriva por `tools/estado_comun.py::adr_max()` o `tools/l0_vista.py --conteo`. Verificado
+con `git status` tras correr `--aplica` sobre el árbol real: sin cambios. **P-C.** `ADR` adopta la
+forma de raíz de acto (misma que `NC`/`FP` desde `D-2`), prospectiva — ningún `ADR` existente
+cambia. `tools/estado_comun.py::adr_max()`/`adr_raiz_candidato()`, `tests/check.py::t15_adr_count()`
+y `tests/bitacora.py` aceptan las dos épocas sin leer una raíz nueva como un `ADR` numérico
+fantasma (el defecto de backtracking: `(?!-)` deja pasar dígitos intermedios, `(?![\d-])` no; y
+el ancho de la época vieja se acota a `{1,3}`, el real del espacio ya cerrado). `.claude/commands/
+acto.md` (los tres sitios que la firma nombra) y `.claude/commands/revisa.md` §2.8 reflejan el
+mecanismo nuevo: un id de raíz nunca se renumera; sólo un numérico en vuelo puede colisionar, y
+entonces se re-acuña con raíz. **P-D.** Cuatro candidatos probados con reproducción REAL de git
+(`tests/test_tuberia_ids_union.py`, caso G) contra el caso exacto (edición en sitio + apéndice +
+`union`): `forense/no-corrido.tsv` y `forense/firmas-pendientes.tsv` — `T47` atrapa (id repetido)
+— **entran** a `union`; `canon/gobernanza-v1_15.md` — `T15` atrapa (ADR repetido por número,
+aunque el texto difiera) — **entra**; `canon/registro-rotulos.tsv` — ninguna guarda vigila filas
+repetidas de este archivo — **queda fuera** hasta un sucesor. `T50` nueva (guarda de líneas
+repetidas ≥ 200 caracteres en archivos `union`, universo derivado de `.gitattributes` como `T46`).
+Riesgo residual declarado, no instrumentado: dos ramas que enmiendan a la vez la MISMA línea con
+textos distintos en un archivo `union`. **Los blobs de 0.8/1.6/4.7/12.8/27 MB quedan en la
+historia de git para siempre** — este acto no reescribe la historia; el CI, que clona con
+profundidad 1, no los sufre; los clones completos sí. `cuenta_gen2 = NO`. **El PR no se fusiona
+en este acto**: queda propuesto; mesa central fusiona.
+
 **ADR-591 (RENUMERADO 589 → 590 → 591: al cerrar la primera vez, `origin/main` se había movido de `deddfd42` a `33d97e12` (8 commits, `PR #958`) y ya traía `ADR-589`, así que este acto pasó al contiguo 590; al fusionar de nuevo, `origin/main` ya traía `ADR-590` propio —`ACTO GEN2-TUBERIA-CI-MEDICION-1`, `PR` de esa sesión— así que este acto renumera otra vez, al contiguo 591. Renumeración pura: ni una línea de contenido cambia. Regla de la casa: renumera quien fusiona segundo) · `ACTO GEN2-RELEVO-TANDA-4 · LAS TRES DECISIONES QUE TANDA-3 DEJÓ EN MESA SE EJECUTAN: LA GUARDA (a) LEE EL EJE RESULTADO PARA LA VÍA (ii), NACE LA CLASE `iii-DERIVADO-DE-GEN2`, Y LOS 9 PUNTOS L DEJAN DE PARECER CANDIDATOS A PIN`**, 21/sep/2026, entorno **NUBE** (`cloud_default`, corpus **NO** montado — `data/raw` ausente, `archivos_examinados = 0`, A.13), Opus 5, sin sub-agentes, **MODO ABIERTO**, **COMPUERTA de merge: ninguna** (el encargo no trae línea `COMPUERTA:`); la única compuerta es la interna de §8 —«los tests de P1 y P3 en verde antes de escribir un pin», que protege **adoptar** (D-20)— y se cumplió: `tests/test_pines_mesa.py` en verde antes de la primera fila escrita. Encargo archivado verbatim (A.3) con sello de cuerpo: `forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-4.md` + `.cuerpo.sha256`, SHA de redacción `deddfd42`, raíz de acto `dedd`. **Cero microdato, cero corridas nuevas, cero sellos, `cuenta_gen2 = NO-APLICA`; la adopción es el merge de mesa (E.2), no este commit.** Nota de cierre: `forense/notas/nota-2026-09-21-gen2-relevo-tanda-4-cierre.md`. **PR #959**, publicado **propuesto**; **mesa fusiona**.
 
 **Qué establece.** Ejecuta las tres decisiones que `ACTO GEN2-RELEVO-TANDA-3` (`#942`, `ADR-574`) dejó en `FP-260921-GEN2-RELEVO-TANDA-3-7bf5-01/02/03`, resueltas por dirección bajo el mandato de mesa del 21/sep («dámelas resueltas»); las tres pasan a **FIRMADA** con este PR (A.12).
