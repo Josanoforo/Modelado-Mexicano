@@ -253,6 +253,13 @@ jobs:
         # el texto buscado (A.15). Stdlib puro, cero microdato.
         run: python3 tests/test_ahorro_comparabilidad_texto.py
 
+      - name: comparabilidad por texto del canal de pago de luz ENCIG — forma de la tabla 1 conducta × 6 olas (bloqueante)
+        # ACTO GEN2-ENCIG-SERIE-Y-TENDENCIA-1 (21/sep/2026), P1: misma forma y
+        # verificador que la tabla de crédito, otra rejilla (2015-2025, ancla
+        # 2021). Sintético primero (D-22), luego `data/encig-canal-
+        # comparabilidad-texto-v1_0.tsv`. Stdlib puro, cero microdato.
+        run: python3 tests/test_encig_canal_comparabilidad_texto.py
+
       - name: métrica rectora — celdas_validadas en la primera línea del tablero (bloqueante)
         # ACTO GEN2-SENAL-1 (21/sep/2026) · P1. `celdas_validadas` es la métrica
         # rectora por firma de mesa del 20/sep/2026. El test pina los DOS
