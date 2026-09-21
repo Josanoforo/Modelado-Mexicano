@@ -214,7 +214,9 @@ Ejecutado por PR https://github.com/Josanoforo/Modelado-Mexicano/pull/947, rama
 `9bb5396` (main se había movido desde el SHA de redacción `a61dd000`; no fue PARO).
 Cinco de seis tests de §8 verdes; el sexto (`test_motor_holdout`) con un FAIL ajeno,
 declarado arriba en `## NO-CORRIDO / RESERVAS` junto con `motor.py:20`/`:129`, no
-editados. Cascada de cierre: `ADR-582` (`canon/gobernanza-v1_15.md`), L0 recifrado
+editados. Cascada de cierre: `ADR-582` (renumerado a `ADR-588` al re-mergear
+`origin/main` tras fusionar `PR #948`/`PR #949`, regla de la casa: renumera quien
+fusiona segundo — `canon/gobernanza-v1_15.md`), L0 recifrado
 (`canon/estado-programa-v1_14.md`), `canon/registro-rotulos.tsv`, excepción T25 en
 `tests/check.py`, `NC-260921-MOTOR-THETA-CONGELADA-1-e8fa-01/02`,
 `FP-260921-MOTOR-THETA-CONGELADA-1-e8fa-01`. `python3 tests/check.py --baseline
