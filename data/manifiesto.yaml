@@ -30429,3 +30429,127 @@
   formato: PDF (Cuestionario de módulos)
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enigh2024_nc_csv
+  usado_para: 'reserva ENIGH 2024 asentada por #964 (o por §2 de este encargo si aún no está
+    en main): nueva serie ENIGH 2024, sin consumidor de motor declarado hoy -- solo se baja
+    y se hashea'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2024/datosabiertos/conjunto_de_datos_enigh2024_ns_csv.zip
+  fecha_descarga: '2026-09-21'
+  descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
+  archivo: enigh2024_ns_csv.zip
+  sha256: 7cbf18fee02c58849356e5495fb851ae4d0330743e34d26e35973f9ad5a1155d
+  tamano_bytes: 103139139
+  formato: ZIP (datos abiertos ENIGH 2024, nueva serie) -- no inspeccionado, solo hasheado
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enigh2024_descripcion_base_pdf
+  usado_para: documentación -- ENIGH 2024 Nueva serie, Descripción de la base de datos (catálogo
+    RNM 1116, related-materials)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2024/microdatos/889463924494.pdf
+  fecha_descarga: '2026-09-21'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enigh2024_descripcion_base_pdf.pdf
+  sha256: 1b0c698594da41bfe8c976c5d161dcdf99ae4f962a8a5cafe73947582dfdf8a1
+  tamano_bytes: 2967447
+  formato: PDF, ENIGH 2024 Nueva serie, Descripción de la base de datos
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enigh2024_diseno_muestral_pdf
+  usado_para: documentación -- ENIGH 2024 Nueva serie, Diseño muestral (catálogo RNM 1116,
+    related-materials)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2024/doc/889463924517.pdf
+  fecha_descarga: '2026-09-21'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enigh2024_diseno_muestral_pdf.pdf
+  sha256: 2d2a5c0fd47a92d7c2d044300b47cf15330f9902c8b50975dd1e4eab35395229
+  tamano_bytes: 1626755
+  formato: PDF, ENIGH 2024 Nueva serie, Diseño muestral
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enigh2024_cuest_hogares_pdf
+  usado_para: documentación -- Cuestionario de hogares (catálogo RNM 1116, related-materials)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2024/doc/enigh2024_ns_cuest_hogares.pdf
+  fecha_descarga: '2026-09-21'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enigh2024_ns_cuest_hogares.pdf
+  sha256: d52c61e972eee8fa643088d70a7a9c3487ea84e64eb43c88210b294b8a68e7eb
+  tamano_bytes: 1712727
+  formato: PDF, ENIGH 2024 Nueva serie, Cuestionario de hogares
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enigh2024_cuest_personas_mayores_pdf
+  usado_para: documentación -- Cuestionario de personas mayores (catálogo RNM 1116, related-materials)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2024/doc/enigh2024_ns_cuest_personas_mayores.pdf
+  fecha_descarga: '2026-09-21'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enigh2024_ns_cuest_personas_mayores.pdf
+  sha256: 65a1403a7eb917fce560cbc39144ded7ea17b8a8d96cf9856f16f1bdc84c3a98
+  tamano_bytes: 1979334
+  formato: PDF, ENIGH 2024 Nueva serie, Cuestionario de personas mayores
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enigh2024_cuest_personas_menores_pdf
+  usado_para: documentación -- Cuestionario de personas menores (catálogo RNM 1116, related-materials)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2024/doc/enigh2024_ns_cuest_personas_menores.pdf
+  fecha_descarga: '2026-09-21'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enigh2024_ns_cuest_personas_menores.pdf
+  sha256: 3ad6349f1403815c62bfc24ad04b1938746f5ea19fa8194afe5db9762197d1f7
+  tamano_bytes: 1474063
+  formato: PDF, ENIGH 2024 Nueva serie, Cuestionario de personas menores
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enigh2024_cuest_negocios_hogar_pdf
+  usado_para: documentación -- Cuestionario de negocios del hogar (catálogo RNM 1116, related-materials)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2024/doc/enigh2024_ns_cuest_negocios_hogar.pdf
+  fecha_descarga: '2026-09-21'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enigh2024_ns_cuest_negocios_hogar.pdf
+  sha256: 22315c7c7a9330a41a083a50bbcfea0b6c9fc97e65e85fcd816dcf55665b715f
+  tamano_bytes: 2484145
+  formato: PDF, ENIGH 2024 Nueva serie, Cuestionario de negocios del hogar
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enigh2024_cuest_gastos_hogar_pdf
+  usado_para: documentación -- Cuestionario de gastos del hogar (catálogo RNM 1116, related-materials)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2024/doc/enigh2024_ns_cuest_gastos_hogar.pdf
+  fecha_descarga: '2026-09-21'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enigh2024_ns_cuest_gastos_hogar.pdf
+  sha256: 446cdfc71788bf3909d421b109c06ff6b4acd04b2e8361467ffd060459dbc6c1
+  tamano_bytes: 3722455
+  formato: PDF, ENIGH 2024 Nueva serie, Cuestionario de gastos del hogar
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enigh2024_cuest_gastos_diarios_pdf
+  usado_para: documentación -- Cuestionario de gastos diarios (catálogo RNM 1116, related-materials)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2024/doc/enigh2024_ns_cuest_gastos_diarios.pdf
+  fecha_descarga: '2026-09-21'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enigh2024_ns_cuest_gastos_diarios.pdf
+  sha256: 31a3f012271abe49856d2b3855d43b07ed3c65ae56591e6e0e087787ab1baa66
+  tamano_bytes: 2764249
+  formato: PDF, ENIGH 2024 Nueva serie, Cuestionario de gastos diarios
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enigh2024_entrevistador_pdf
+  usado_para: documentación -- Manual del entrevistador (catálogo RNM 1116, related-materials)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2024/doc/enigh2024_ns_entrevistador.pdf
+  fecha_descarga: '2026-09-21'
+  descargado_por: agente, directamente de inegi.org.mx
+  archivo: enigh2024_ns_entrevistador.pdf
+  sha256: 31440937c5c494a2e626ead64fac1e06aa30bdeefb2175fbfc1a9ac494cb81f2
+  tamano_bytes: 25025757
+  formato: PDF, ENIGH 2024 Nueva serie, Manual del entrevistador
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
