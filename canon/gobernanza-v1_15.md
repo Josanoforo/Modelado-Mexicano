@@ -8,6 +8,115 @@
 > | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** · detalle ADR-44 a ADR-58 (más ADR-62) en **§0.1**, abajo — el último es **ADR-65** (§4; ADR-59/60/61/63/64/65 no están detallados en §0.1, solo en §4) |
 > | **NOMBRE ESTABLE** | **`gobernanza`** — cítalo así, **nunca por nombre de archivo** |
 
+**ADR-260921-GEN2-DIN-LOTE-ENIF2024-A-a98a-01** (raíz de acto, `a98a` = 4 hex del commit de
+0-bis `a98a483`; no se renumera al fusionar), `ACTO GEN2-DIN-LOTE-ENIF2024-A · SE SABE QUÉ OLAS
+DE ENIF SON COMPARABLES POR TEXTO, LA SPEC DEL LOTE QUEDA ESCRITA COMO PROPUESTA Y EL PAQUETE DE
+LOS LLM QUEDA LISTO — SIN ABRIR UN SOLO MICRODATO`, 21/sep/2026, entorno **NUBE `milpa-inegi`**
+(`CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE=cloud_default`, sonda a INEGI `http_code=200`, corpus **NO**
+montado al arrancar, `archivos_examinados = 0`), Opus 5, sin sub-agentes, **MODO ABIERTO**,
+**COMPUERTA: ninguna** (no abre dato, no congela, no adopta, no borra). Encargo archivado verbatim
+(A.3) con sello de cuerpo: `forense/encargos/2026-09-21-GEN2-DIN-LOTE-ENIF2024-A.md` +
+`.cuerpo.sha256` (`b16bf0c579acc127`), SHA de redacción `1f197a2c`. **Cero microdato abierto;
+`cuenta_gen2 = NO-APLICA`; cero contadores movidos.**
+
+**Entorno, declarado y no escondido.** Al bajar los descriptores, `data/raw` pasó a existir y
+`ENTORNO-DERIVADO` se volteó solo a CAJA. **No es PARO ni cambio de entorno** — la trampa estaba
+prevista en el encargo y se declara aquí: lo que se abrió son descriptores de archivo y
+cuestionarios, nunca microdato.
+
+**P1 — la pieza que contesta la pregunta.** `data/ahorro-comparabilidad-texto-v1_0.tsv` (+ `.meta`
++ sidecar): **19 columnas, 40 filas = 8 objetos × 5 olas**. Los objetos son los **dos componentes
+del desenlace** `ahorra_solo_informal` (`D-INF` informal, `D-FOR` las nueve vías formales) y los
+**seis ejes** (`E-SEX`, `E-EDA`, `E-ESC`, `E-LOC`, `E-FOR`, `E-CTA`); las olas, `{2012, 2015, 2018,
+2021 ancla, 2024}`. Universo leído (A.4/A.13): **10 payloads** del manifiesto —FD y cuestionario de
+cada ola—, bajados con `tests/manifiesto.py --descarga --id` y verificados por sha256 contra
+`data/manifiesto.yaml`: **10/10 `DESCARGADO-AHORA`**, cero discordantes; los cinco FD leídos **hoja
+por hoja completos** (7 929 filas de catálogo) con `openpyxl`, los cinco cuestionarios completos con
+`pdfminer.six`. Veredictos en la **misma lista cerrada** que la tabla de crédito:
+**MISMO-INSTRUMENTO 21 · CAMBIO-MENOR 11 · CAMBIO-DE-INSTRUMENTO 8 · NO-ESTIMABLE 0 ·
+NO-VERIFICABLE-AQUÍ 0**. **El cero de `NO-VERIFICABLE-AQUÍ` es un hecho sobre el corpus, no sobre el
+método:** la tabla de crédito (`ADR` del 20/sep) cerró con 16 de esas filas porque los cuestionarios
+de 2012 y 2015 no estaban; entraron por `PR #960` y ésta es la primera tabla que los usa.
+
+**P2 — la consecuencia, escrita antes de que nadie mida. Sólo 2021 es comparable para el desenlace
+completo, luego `R2` entra al lote con `λ = ½` fija, para los catorce pares, sin excepción.** Es la
+aplicación literal de la **firma F2** (`FP-260921-GEN2-TRAMITE-FIRMAS-4-8a1f-02`): «si solo una lo
+es, R2 es solo λ = ½ y se declara antes de abrir». Las razones, que **no se colapsan** entre sí:
+**2012** tiene los dos componentes del desenlace con **ventanas de referencia distintas** (`5.1 ¿De
+febrero a la fecha…`, ~3 meses, contra `5.10 De abril de 2011 a la fecha…`, ~12 meses) y le falta la
+vía «comprando animales o bienes»; **2015** tiene el lado informal (en otro orden de índice: mapa por
+texto 1→3, 2→4, 3→6, 4→5, 5→1, 6→2) pero su lado formal son 6 posiciones con **nómina y pensión
+colapsadas** y sin «apoyos de gobierno», partición que no se recupera desagregando; **2018** tiene
+**8 de las 9** vías —lo construible ahí es `D8` y por construcción `D9 ⊆ D8`—. Y las tres arrastran,
+además, **población base de 18 a 70 años** (`EDAD [18-70]` en el módulo de 2015 y 2018; cuestionario
+2012 «PARA PERSONAS DE 18 A 70 AÑOS») contra 18 y más en 2021/2024: A-bis 4. **Ningún par cae en
+`NO-CONSTRUIBLE`**: 2021 sí es comparable y es la ola de la que `P2`, `R1`, `R2` y `R3` toman su
+historia; lo que se pierde no es el retador, es la `λ` estimada.
+
+**P0 — los tres archivos de diseño, y un testigo que no casa.** `DISENO-LOTE-CRUCES-ENIF2024-
+protocolo-unico-v0_1.md` extraído del Anexo A del encargo (**no se edita**), más
+`…-enmienda-v0_2.md` (firma F2 verbatim) y `…-enmienda-v0_3.md` (regla de victoria verbatim), las
+dos con su `.cuerpo.sha256`. La **v0.3 queda asentada como FIRMADA** en
+`forense/firmas-pendientes.tsv` (`FP-260921-GEN2-DIN-LOTE-ENIF2024-A-a98a-01`, A.12).
+**El sha256 que el encargo declara para el Anexo A NO casa** — declarado
+`f9ea6d4fb8932d66…`, extraído `bd1dcfd89a108cdd…` (`5dff45e67558d1c2…` conservando el salto de línea
+inicial). El texto viajó por el canal de chat, que renormaliza los tabuladores de las tablas del §4;
+el encargo previó el caso y ordenó **reportar y seguir**, y eso se hizo: **no se «arregló» nada**.
+El testigo `f9ea6d4f…` queda **VENCIDO EN ALCANCE** (A.10), no refutado y no borrado; el archivado
+lleva su propio sidecar. `NC-…-a98a-04`.
+
+**P3 y P4.** `forense/prereg-caja/DIN-lote-enif2024-spec-v0_1-PROPUESTA.md` (+ sidecar): universo,
+unidad y escala en la primera línea; los 14 pares clasificados en 5 primarios (44 celdas) / 4 de
+formalidad secundarios / 5 de `cuenta_formal` aparte, **cada grupo con su razón correcta** —la de
+`cuenta_formal` **corregida por la v0.2**: el estimando cambia por **construcción del cuestionario**
+(el pase `5.4 → 5.6`), no por tautología, y este acto **lo confirmó por el flujo del cuestionario**,
+que es lo que sí podía leer—; lista cerrada de contendientes con fórmula cerrada (`C2`, `P2`, `R1`,
+`R2` con `λ = ½`, `R3` IPF, `L1`, `L2`, y `M` sellado **NO-DERIVABLE con su razón**); rejilla que
+**se lee del árbitro** y regla de soporte escrita **como regla y no como número**; la regla de la
+v0.3 con su estadística (ΔMAE), su remuestreo (**IC95 por réplica, plan compartido** — restar dos IC
+independientes queda prohibido) y sus tres salidas; cobertura por celda y por par **con el apellido
+«dentro de ENIF 2024»**; B-bis con cuál manda; los **dos oros** del COMMIT-1; la simulación de
+potencia sobre los pilotos 1-3; D-22 ampliada como definición de congelado; y «lo que NO significa».
+**Mientras diga `PROPUESTA` en el nombre, ninguna corrida puede citarla como congelada.**
+`forense/prereg-duelo-v2/PAQUETE-L-LOTE-ENIF2024-v0_1.md` (+ sidecar): prompts de `L1` y `L2`
+verbatim, 44 celdas, `k = 8`, formato de captura `JSON Lines` con `prompt_sha256`, agregación
+**mediana** y la regla «si hay que recortar, se recortan celdas, nunca `k`». Este acto **no corre
+ninguna llamada**.
+
+**Cuatro hallazgos en `forense/hallazgos.md`, dos de ellos capaces de producir cifras falsas.**
+(i) **El catálogo de escolaridad (`NIV`) de 2024 no es el de 2021**: `04` y `05` están
+**intercambiados** (Normal básica ↔ Estudios técnicos con secundaria) y el `09` («Maestría o
+doctorado» en 2012-2021) se parte en `09 Especialidad · 10 Maestría · 11 Doctorado`; el catálogo pasa
+de 10 a 12 posiciones. **Recodificar por número de código da cifras falsas** en `escolaridad` y en
+los cuatro pares que la contienen; la spec fija el mapa **por etiqueta** y detiene la corrida ante un
+código sin etiqueta declarada. (ii) El **universo 18-70** de las tres olas históricas. (iii) Las
+**ventanas discordantes de 2012**. (iv) El **sha256 del Anexo A**.
+
+**Perímetro de cierre (D-21), completo.** Test propio `tests/test_ahorro_comparabilidad_texto.py`
+—**seis pruebas sobre sintético antes de mirar la tabla real** (D-22) y cuatro sobre la real, 10/10
+en verde—, **cableado bloqueante** en `.github/workflows/verify.yml` y censado `CORRE-EN-CI` por
+`tools/ci_guardias.py --censo`. Tabla propia registrada en `data/INFRAESTRUCTURA-v1_0.md`. Sidecars
+verdes (`tools/verifica_sidecars.py`: 0 FAIL). **No hay filas de vista ni asientos de replay que
+publicar (E.7): este acto no sella ninguna corrida.**
+
+**La bifurcación que se pregunta a mesa, y con la que el acto siguió (D-19).** ¿Se admite 2018 como
+segunda ola histórica bajo un desenlace `D8` armonizado —quitando la vía 8 **también de 2021** y
+recortando 2021 a 18-70— para estimar `λ`? Opciones, costos y recomendación (**la A: quedarse en
+`λ = ½`**) en `forense/notas/2026-09-21-lote-enif2024-comparabilidad-y-R2.md` §5, con las tres
+razones: es lo que F2 ya dictamina, `λ` se estimaría con **una sola** pareja de olas sobre un
+desenlace auxiliar y un universo truncado, y el piloto 3 ya midió que lo que importa es **encoger**
+y no el valor fino de `λ`. `NC-…-a98a-03`.
+
+**Cuatro filas `NC` abiertas** (`forense/no-corrido.tsv`, ids `NC-260921-GEN2-DIN-LOTE-ENIF2024-A-a98a-01`
+a `-04`): las capturas `L` (`DIFERIDO-A` mesa), `spec.yaml` (`FUERA-DE-PERÍMETRO`, del COMMIT-1 del
+lote), la `λ` estimada (`DECISIÓN-DE-MESA-PENDIENTE`) y el testigo del Anexo A (`PARO-PREMISA`).
+
+**Qué rompería revertirlo.** Se perdería la única lectura por archivo de las cinco olas que la casa
+tiene sobre el dominio de ahorro, y el COMMIT-1 del lote tendría que volver a abrir diez payloads
+para decidir con qué `λ` entra `R2` — o, peor, decidirlo de memoria. Los dos hallazgos de
+recodificación volverían a estar disponibles para morder: el de escolaridad no lo atrapa ninguna
+guarda mecánica, sólo esta tabla.
+
 **ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-01** (primer `ADR` con **raíz de acto** —
 `ADR-<AAMMDD>-<RÓTULO>-<hhhh>-<NN>`, `hhhh` = 4 hex del commit de 0-bis `27078f6` —; por eso
 **no se renumera al fusionar**, aunque otro acto tome un `ADR` numérico mientras éste corre),

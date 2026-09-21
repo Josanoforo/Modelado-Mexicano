@@ -108,3 +108,27 @@ Tres pasos, una apertura por cruce. (a) NUBE: spec humana + capturas L1/L2 sella
 
 ¿Estructura confundida con cultura? — el riesgo central; atendido en 3.1 y 5. ¿Sobre-generalización desde clase media urbana? — los ejes localidad y formalidad existen para verlo; se reportan por eje. ¿Marcos importados? — ninguno: todo es dato primario en México, clase (a). ¿Qué cambia con foco rural/popular? — menor de 15 000 y sin seguridad social son donde se espera más error; se reporta aparte. ¿Afirmación escrita a mano? — las cifras 14, 96, 68 y 28 se derivaron hoy del marcador; 18/20 y 10/20 vienen del tablero derivado. ¿Escalas? — proporción de personas, error en pp; no se compara contra el duelo nacional ni contra ENCIG (unidad trámite). Falsabilidad del propio diseño: si el oro de §6.3 no reproduce al piloto 1, el código genérico no es el mismo procedimiento y el lote no se lanza.
 <<<ANEXO-A-FIN>>>
+
+## NO-CORRIDO / RESERVAS
+
+Cuatro filas. `forense/no-corrido.tsv`, ids `NC-260921-GEN2-DIN-LOTE-ENIF2024-A-a98a-01` a `-04`, todas `ABIERTA`.
+
+**1 · P4 — las capturas de `L1` y `L2`.** El paquete queda escrito y sellado (`forense/prereg-duelo-v2/PAQUETE-L-LOTE-ENIF2024-v0_1.md`: prompts verbatim, 44 celdas, `k = 8`, formato de captura y agregador declarados), pero las 704 llamadas no se corren.
+**Por qué:** `DIFERIDO-A:mesa corre el paquete L por CLI sin API (FP-228)`; el propio encargo lo declara en §10, «no corre los LLM».
+**Impacto:** `L1` y `L2` no tienen emisiones. Son retadores **secundarios**, así que no bloquean la adjudicación primaria (`C2` contra `R2`) ni mueven ningún contador; bloquean el bloque secundario del COMMIT-2.
+**Sucesor:** mesa (corrida `L`) → COMMIT-2 del lote.
+
+**2 · P3 — `spec.yaml`, la capa ejecutable de D-15.** La spec sale sólo en su capa humana y como `PROPUESTA`. La rejilla de celdas (tramos de `edad` y de `escolaridad`), el umbral de soporte, la semilla y el número de remuestras quedan escritos **como regla y no como número**.
+**Por qué:** `FUERA-DE-PERÍMETRO:del COMMIT-1 del lote, en CAJA` — el encargo §10 se lo asigna a dirección «con lo que P1 y P2 digan», y §5-P3 ordena expresamente escribir como regla lo que no se pueda cerrar sin microdato.
+**Impacto:** ninguna corrida puede citar esta spec como congelada mientras diga `PROPUESTA` en el nombre. Cero contadores afectados.
+**Sucesor:** COMMIT-1 del lote ENIF 2024 (CAJA).
+
+**3 · P2 — `R2` con `λ` estimada.** Queda en `λ = ½` fija para los catorce pares. La rama de `λ` estimada exige admitir 2018 bajo un desenlace `D8` armonizado y recortar 2021 a 18-70: es una bifurcación que cambia el entregable.
+**Por qué:** `DECISIÓN-DE-MESA-PENDIENTE`.
+**Impacto:** `R2` entra al lote con el mismo encogimiento fijo que ya midió el piloto 3 (`S½`). **No bloquea el COMMIT-1:** la firma F2 ya dictamina `λ = ½` para el caso «solo una ola comparable», y el caso se cumple. Si mesa toma la Opción B, la spec se enmienda **con archivo propio antes del COMMIT-1**, nunca in situ.
+**Sucesor:** mesa — opciones A/B/C y recomendación (la A) en `forense/notas/2026-09-21-lote-enif2024-comparabilidad-y-R2.md` §5.
+
+**4 · P0 — el sha256 declarado del Anexo A.** El contenido entre las dos líneas marcadoras da `bd1dcfd89a108cdd…` (o `5dff45e67558d1c2…` conservando el salto de línea inicial), no el `f9ea6d4fb8932d66…` que el encargo declara. El texto viajó por el canal de chat, que renormaliza los tabuladores de las tablas del §4 del diseño. **No se «arregló»:** el encargo ordena reportarlo y seguir, y eso se hizo.
+**Por qué:** `PARO-PREMISA`.
+**Impacto:** el testigo `f9ea6d4f…` queda **VENCIDO EN ALCANCE** (A.10), no refutado y no borrado. El v0.1 archivado lleva su propio sidecar `bd1dcfd8…` y **no se edita**. Ningún contador afectado; el contenido del diseño está íntegro.
+**Sucesor:** `SIN-ASIGNAR` — si mesa conserva el original byte a byte en otro sitio, se re-sella ahí; el archivado no se toca.
