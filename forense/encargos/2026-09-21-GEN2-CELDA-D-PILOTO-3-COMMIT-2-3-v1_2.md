@@ -133,3 +133,15 @@ No hay más compuertas.
 ---
 
 **Falsador de este encargo, a tres meses:** si este acto para por una causa de cableado o de secuencia que `#944` o este texto no nombraron, la prueba del congelador todavía no cubre el conducto completo y D-22 tiene que exigir más.
+
+## NO-CORRIDO / RESERVAS
+
+| qué (verbatim del encargo) | por qué | impacto | sucesor |
+|---|---|---|---|
+| **P1 · COMMIT-2 · las emisiones.** `python3 tools/corrida0.py run CALC-GOB-DIGITAL-EXE-EMISIONES-0002` … Sella. Reporta el conteo de código 97 en 2025 … Registro en la vista y asiento de replay … Commit y push | `PARO-PREMISA`: el CALC congelado corre pero `corrida0` se niega a sellar — `RUN: FALLO — nada se sella`, 40 RESULT `valor_null_sin_NO-ESTIMABLE_permitido` (32 IC de C1a NO-DERIVABLE sin `permite_no_estimable`; 8 de la banda 60-96 cuyo control el CALC sellado rotula `60`). PARO (b): no se parcha. `NC-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2-a6f5-01` | `N_corridas_selladas` +0; conteo 97 sin reportar; ninguna cifra de 2025 vista | COMMIT-1 v1.3 de otra sesión (`FP-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2-a6f5-01`) y su COMMIT-2 |
+| **P2 · COMMIT-3a · las huellas, antes de R.** | `DIFERIDO-A:COMMIT-2 del v1.3` — sin sello no hay huellas; `spec.yaml` de ADJUDICACION intacto. `NC-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2-a6f5-02` | preflight de ADJUDICACION sigue BLOQUEADO por `emisiones_*`; R no existe | sesión del COMMIT-2 del v1.3 |
+| **P3 · COMMIT-3 · la realidad y el veredicto.** | `DIFERIDO-A:COMMIT-3 del v1.3`; reserva: ADJUDICACION tiene 0 `permite_no_estimable` y emite `None` en el camino FUERA-DE-SOPORTE global. `NC-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2-a6f5-03` | sin R ni veredicto; el par sigue `RESERVADA` | sesión del COMMIT-3 del v1.3 |
+| **P4 · El veredicto, con las palabras de la spec.** | `DIFERIDO-A:COMMIT-3 del v1.3`. `NC-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2-a6f5-04` | nada que adjudicar ni explorar | acto del COMMIT-3 v1.3 |
+| **P5 · Registro.** celda-D, `champion_actual`, `unidad_objetivo: evento`, marcador re-derivado, `celdas_validadas` antes/después | `DIFERIDO-A:COMMIT-3 del v1.3`. `NC-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2-a6f5-05` | celda-D intacta (`SPEC-CONGELADA`); marcador no re-derivado | acto del COMMIT-3 v1.3 |
+| **P6 · Para mesa, al frente de la nota.** | ejecutada en forma de PARO: §0 de `forense/notas/nota-2026-09-21-gen2-celda-d-piloto-3-commit-2-3-v1_2-paro.md` | — | — |
+| Por objeto, las NC de `#941`: `NC-0451`–`NC-0454` siguen ABIERTAS (sucesor re-apuntado al v1.3); `NC-0455` CERRADA por producto (`decisiones.tsv:184-185`, resuelto SI) | — | — | — |
