@@ -171,18 +171,64 @@ def ramas_remotas_detalle(raiz):
 
 
 def adr_max(raiz):
-    """Máximo ADR actual, derivado de `canon/gobernanza-v1_15.md` -- mismo
-    comando de la casa que ya usan `tools/tablero_programa.py` y la
-    cascada de `/acto`, reimplementado en Python en vez de `grep`
+    """Máximo ADR NUMÉRICO actual, derivado de `canon/gobernanza-v1_15.md`
+    -- mismo comando de la casa que ya usan `tools/tablero_programa.py` y
+    la cascada de `/acto`, reimplementado en Python en vez de `grep`
     encadenado. Para tablero, E3 y consumidores productivos -- NO para
-    T15 (ver cabecera del módulo)."""
+    T15 (ver cabecera del módulo).
+
+    P-C.3 (`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1`, 21/sep/2026): sólo
+    cuenta la época VIEJA (numérica) -- la nueva (`ADR-<AAMMDD>-<RÓTULO>-
+    <hhhh>-<NN>`, raíz de acto) es un espacio aparte que nunca se
+    renumera y no participa de este máximo. `(?![\\d-])`, no sólo
+    `(?!-)`: un `\\d+` codicioso retrocede dígito a dígito, y cada dígito
+    intermedio de una raíz nueva (`260921-GEN2-…`) está seguido de OTRO
+    dígito -- sin el retroceso bloqueado, `ADR-260921-GEN2-X-1-6e60-01`
+    se leía como el ADR numérico fantasma 260921 (o, tras retroceder,
+    26092)."""
     ruta = os.path.join(raiz, "canon", "gobernanza-v1_15.md")
     if not os.path.exists(ruta):
         return 0
     with open(ruta, encoding="utf-8") as f:
         texto = f.read()
-    nums = [int(n) for n in re.findall(r"^\*\*ADR-(\d+)", texto, re.M)]
+    nums = [int(n) for n in re.findall(r"^\*\*ADR-(\d+)(?![\d-])", texto, re.M)]
     return max(nums) if nums else 0
+
+
+# Dos épocas de id `ADR` (firma de mesa D-2, 21/sep/2026 · `ACTO
+# GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1` · P-C): mismo mecanismo que
+# `RE_FP_NUEVA`/`RE_FP_VIEJA` de `tools/nc_por_clase.py`. La época nueva
+# va PRIMERO en la alternancia -- un id nuevo empieza por dígitos que la
+# rama vieja casaría como prefijo.
+RE_ADR_NUEVA = r"ADR-\d{6}-GEN2(?:-[A-Z0-9]+)+-[0-9a-f]{4}-\d{2}"
+# Ancho `{1,3}`, derivado igual que en `tests/check.py::RE_ADR_VIEJA` (99 de
+# ancho 2, 492 de ancho 3, ninguno más ancho, 21/sep/2026) -- sin el tope,
+# un `ADR-2609` de 4 dígitos pasaba como numérico válido.
+RE_ADR_VIEJA = r"ADR-\d{1,3}(?![\d\-A-Za-z])"
+RE_ADR = rf"(?:{RE_ADR_NUEVA}|{RE_ADR_VIEJA})"
+
+
+def adr_raiz_candidato(raiz, rotulo, commit_0bis, hoy=None):
+    """Deriva el candidato de `ADR` con raíz de acto: `ADR-<AAMMDD>-
+    <RÓTULO>-<hhhh>-<NN>` (P-C.1/P-C.2). `hhhh` son los 4 primeros hex del
+    commit de 0-bis, que YA EXISTE antes de acuñar (D-17: el 0-bis es el
+    primer commit del acto). `NN` es `max+1` sobre las raíces ya acuñadas
+    con el MISMO prefijo `<AAMMDD>-<RÓTULO>-<hhhh>` en `gobernanza` -- el
+    mismo patrón que ya usan `NC`/`FP` (D-2). No escribe nada: el humano
+    redacta la entrada; este comando sólo deriva el id disponible."""
+    import datetime
+    hoy = hoy or datetime.date.today()
+    aammdd = hoy.strftime("%y%m%d")
+    hhhh = (commit_0bis or "")[:4]
+    prefijo = f"ADR-{aammdd}-{rotulo}-{hhhh}"
+    ruta = os.path.join(raiz, "canon", "gobernanza-v1_15.md")
+    existentes = []
+    if os.path.exists(ruta):
+        with open(ruta, encoding="utf-8") as f:
+            texto = f.read()
+        existentes = re.findall(rf"^\*\*({re.escape(prefijo)}-(\d{{2}}))", texto, re.M)
+    nn = max((int(n) for _, n in existentes), default=0) + 1
+    return f"{prefijo}-{nn:02d}"
 
 
 def fp_max(raiz):

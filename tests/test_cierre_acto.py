@@ -5,14 +5,25 @@
 la fila `gobernanza` de la tabla de nombres estables -- añadido por
 `ACTO AUTOMATIZA-2-B · CIERRA-TERCER-CONTADOR`, 7/sep/2026).
 
-Todos los casos sobre un fixture mínimo en `tempfile.TemporaryDirectory`
-(nunca sobre el árbol real): (A) dry-run reconcilia las TRES cifras
-(cabecera/L0/tabla) 3→4, (B) `--aplica` escribe sólo los dígitos previstos
-en las tres, (C) ancla L0 rota aborta todo-o-nada, (D) segunda corrida ya
-reconciliada no cambia nada, (E) rótulo ausente se reporta sin escribir
-`registro-rotulos.tsv`, (F) fallo del segundo `os.replace()` no miente
-"0 archivos escritos", (G) ancla de tabla rota (duplicada) aborta
-todo-o-nada igual que L0.
+P-B (`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1`, 21/sep/2026): los TRES
+contadores mecánicos quedaron HISTÓRICOS -- `--aplica` DEJÓ DE
+ESCRIBIRLOS. Los casos B/C/G/F de antes (que probaban la reconciliación
+todo-o-nada de las tres cifras) se reemplazan por los que prueban que
+`--aplica` YA NO las toca, pase lo que pase en sus anclas; `inspeccion_gobernanza`
+(la lectura de Fase A) sigue viva sin cambios -- sigue siendo la que
+reporta las anclas rotas/duplicadas a un humano, sólo dejó de gatear una
+escritura.
+
+Casos: (A) dry-run sigue reportando las TRES cifras (cabecera/L0/tabla)
+3 vs 4 real, sin escribir nada -- es sólo lectura. (B) `--aplica` NO
+escribe ninguno de los tres archivos de gobierno, aunque estén
+desreconciliados -- sólo corre la cola y reporta el real por
+`EC.adr_max`. (C/G) `inspeccion_gobernanza` sigue detectando ancla L0 y
+de tabla rotas/duplicadas para un humano, aun cuando `--aplica` ya no usa
+eso para decidir si escribe. (D) segunda corrida es igual de inerte que
+la primera -- no hay estado que reconciliar. (E) rótulo ausente se
+reporta sin escribir `registro-rotulos.tsv`. (H) unicidad de L0 con
+duplicado/ausente/cita histórica -- sigue viva, es lectura pura.
 
 Corre sola:
     python3 tests/test_cierre_acto.py
@@ -35,7 +46,7 @@ def afirma(cond, msg):
 
 def _fixture(tmp, adr_reales, cabecera_declara, l0_declara, tabla_declara=None):
     """Construye un mini-árbol con canon/gobernanza-v1_15.md (N ADR reales,
-    cabecera declarando `cabecera_declara`) y canon/estado-programa-v1_12.md
+    cabecera declarando `cabecera_declara`) y canon/estado-programa-v1_14.md
     (L0 declarando `l0_declara`, tabla de nombres estables declarando
     `tabla_declara` -- default: igual a `l0_declara`, para no tener que
     tocar cada llamada existente). Sin git real -- cierre_acto sólo
@@ -68,7 +79,7 @@ def _fixture(tmp, adr_reales, cabecera_declara, l0_declara, tabla_declara=None):
         + "cabecera de estado\n\n" * 55 +  # empuja L0 más allá de la línea 1, no crítico
         f"**L0 · Gobierno — completo y al día.** {l0_declara} ADR *(`ADR-{l0_declara}` (anotación previa) · texto)*\n"
     )
-    with open(os.path.join(canon, "estado-programa-v1_12.md"), "w", encoding="utf-8") as f:
+    with open(os.path.join(canon, "estado-programa-v1_14.md"), "w", encoding="utf-8") as f:
         f.write(estado)
 
     return tmp
@@ -85,62 +96,45 @@ def prueba_a_dry_run_reconcilia():
         afirma(gob["cabecera_anclas"] == 1 and gob["l0_anclas"] == 1 and gob["tabla_anclas"] == 1, gob)
 
 
-def prueba_b_aplica_actualiza_los_tres():
+def prueba_b_aplica_ya_no_escribe_los_tres():
+    """P-B: `--aplica` deja de reconciliar cabecera/L0/tabla -- aunque estén
+    desreconciliadas (3 declarado, 4 real), ninguno de los dos archivos de
+    gobierno se toca. El criterio de "hecho" 4 del encargo: verificable con
+    `git status` tras correrlo -- aquí, con una comparación byte a byte."""
     with tempfile.TemporaryDirectory() as tmp:
         _fixture(tmp, adr_reales=4, cabecera_declara=3, l0_declara=3, tabla_declara=3)
         gob_antes = CA._leer(CA._ruta_gobernanza(tmp))
         est_antes = CA._leer(CA._ruta_estado(tmp))
 
-        codigo = CA.fase_b_aplica(raiz=tmp)
+        import io
+        import contextlib
+        salida = io.StringIO()
+        with contextlib.redirect_stdout(salida):
+            codigo = CA.fase_b_aplica(raiz=tmp)
         afirma(codigo == 0, f"--aplica debe salir 0, salió {codigo}")
 
         gob_despues = CA._leer(CA._ruta_gobernanza(tmp))
         est_despues = CA._leer(CA._ruta_estado(tmp))
+        afirma(gob_despues == gob_antes,
+               "P-B: gobernanza no debe cambiar -- el contador quedó HISTÓRICO")
+        afirma(est_despues == est_antes,
+               "P-B: estado-programa (L0 y tabla) no debe cambiar -- quedaron HISTÓRICOS")
+        afirma("HISTÓRICOS" in salida.getvalue(),
+               f"el mensaje debe declarar que los contadores son históricos: {salida.getvalue()!r}")
 
-        afirma("**4 ADR**" in gob_despues, "cabecera debe declarar 4 tras aplicar")
-        afirma("**3 ADR**" not in gob_despues, "cabecera no debe seguir declarando 3")
-        afirma("día.** 4 ADR" in est_despues, "L0 debe declarar 4 tras aplicar")
-        afirma("`gobernanza-v1.15.md` | 4 ADR, protocolo de cambio |" in est_despues,
-               "tabla estado debe declarar 4 tras aplicar")
-        afirma("`gobernanza-v1.15.md` | 3 ADR, protocolo de cambio |" not in est_despues,
-               "tabla estado no debe seguir declarando 3")
-
-        # Sólo los dígitos previstos cambiaron -- todo lo demás es idéntico.
-        # `estado-programa` trae DOS anclas propias (L0 y tabla) en el mismo
-        # archivo, así que `_solo_digitos_cambiaron` (pensada para un solo
-        # patrón) no basta por sí sola para comparar antes/después de las
-        # dos correcciones juntas: se neutralizan ambos dígitos en las dos
-        # copias del texto y se compara lo que queda.
-        afirma(CA._solo_digitos_cambiaron(gob_antes, gob_despues, CA.CABECERA_ADR_RE),
-               "el cambio en gobernanza debe limitarse a los dígitos del conteo")
-        est_antes_neutro = CA.L0_ADR_RE.sub(r"\g<1>N\g<3>", est_antes)
-        est_antes_neutro = CA.TABLA_ADR_RE.sub(r"\g<1>N\g<3>", est_antes_neutro)
-        est_despues_neutro = CA.L0_ADR_RE.sub(r"\g<1>N\g<3>", est_despues)
-        est_despues_neutro = CA.TABLA_ADR_RE.sub(r"\g<1>N\g<3>", est_despues_neutro)
-        afirma(est_antes_neutro == est_despues_neutro,
-               "el cambio en estado-programa debe limitarse a los dígitos de L0 y de la tabla, nada más")
-        # La anotación previa de L0 (ajena al conteo) no se toca.
-        afirma("(anotación previa)" in est_despues, "la anotación existente de L0 no debe alterarse")
-        # El resto de la tabla (otras filas) tampoco se toca.
-        afirma("| **`modelo`** | `modelo-decision-v4.0.md` | CANÓNICO OPERATIVO |" in est_despues,
-               "otras filas de la tabla no deben alterarse")
-
-        # canon/estado-programa-v1_12.md se lee y se escribe UNA sola vez:
-        # las dos correcciones (L0 y tabla) llegan en el mismo archivo, no
-        # en dos escrituras independientes -- verificado indirectamente por
-        # el hecho de que ambos cambios ya están presentes en un solo
-        # _leer() posterior a una sola corrida de fase_b_aplica.
-
-        # Escritura atómica (tempfile + os.replace): no debe quedar ningún
-        # temporal huérfano en el directorio tras una corrida exitosa.
+        # Ningún temporal huérfano: --aplica no preparó ningún rename sobre
+        # estos dos archivos.
         sobrantes = [n for n in os.listdir(os.path.join(tmp, "canon")) if n.endswith(".tmp")]
         afirma(sobrantes == [], f"no deben quedar temporales tras --aplica: {sobrantes}")
 
 
-def prueba_c_ancla_rota_aborta_todo_o_nada():
+def prueba_c_ancla_l0_rota_sigue_siendo_lectura():
+    """`inspeccion_gobernanza` (Fase A, sólo lectura) sigue detectando el
+    ancla L0 rota para un humano; `--aplica` (Fase B) ya no la usa para
+    decidir si escribe -- P-B la volvió irrelevante para la escritura, no
+    para el reporte."""
     with tempfile.TemporaryDirectory() as tmp:
         _fixture(tmp, adr_reales=4, cabecera_declara=3, l0_declara=3)
-        # Rompe el ancla de L0 (dos ocurrencias en vez de una).
         ruta_est = CA._ruta_estado(tmp)
         contenido = CA._leer(ruta_est)
         with open(ruta_est, "w", encoding="utf-8") as f:
@@ -149,58 +143,43 @@ def prueba_c_ancla_rota_aborta_todo_o_nada():
         gob_antes = CA._leer(CA._ruta_gobernanza(tmp))
         est_antes = CA._leer(ruta_est)
 
-        import io
-        import contextlib
-        salida = io.StringIO()
-        with contextlib.redirect_stdout(salida):
-            codigo = CA.fase_b_aplica(raiz=tmp)
+        rep = CA.inspeccion_gobernanza(CA.EC.adr_max(tmp), raiz=tmp)
+        afirma(rep["l0_anclas"] == 2 and rep["l0_declara"] is None,
+               f"Fase A debe seguir viendo el ancla L0 duplicada: {rep}")
 
-        afirma(codigo == 1, f"ancla rota debe abortar con código 1, fue {codigo}")
-        afirma("APLICACION_ABORTADA" in salida.getvalue(), salida.getvalue())
-        afirma("0 archivos escritos" in salida.getvalue(), salida.getvalue())
+        codigo = CA.fase_b_aplica(raiz=tmp)
+        afirma(codigo == 0, f"--aplica ya no aborta por esto, sale 0, fue {codigo}")
         afirma(CA._leer(CA._ruta_gobernanza(tmp)) == gob_antes,
-               "gobernanza no debe cambiar cuando L0 aborta -- todo o nada")
+               "gobernanza no debe cambiar -- --aplica no la toca")
         afirma(CA._leer(ruta_est) == est_antes,
-               "L0 no debe cambiar cuando su propia ancla está rota")
+               "estado-programa no debe cambiar, ni siquiera con el ancla rota")
 
 
-def prueba_g_ancla_tabla_rota_aborta_todo_o_nada():
-    """Misma forma que prueba_c pero rompiendo SÓLO el ancla de la tabla
-    (fila `gobernanza` duplicada) dejando L0 intacta con una sola
-    ocurrencia -- caso distinto: aquí es la tabla la que aborta, no L0."""
+def prueba_g_ancla_tabla_rota_sigue_siendo_lectura():
+    """Misma idea que prueba_c pero con la fila de tabla duplicada."""
     with tempfile.TemporaryDirectory() as tmp:
         _fixture(tmp, adr_reales=4, cabecera_declara=3, l0_declara=3, tabla_declara=3)
         ruta_est = CA._ruta_estado(tmp)
         contenido = CA._leer(ruta_est)
         fila_tabla = "| **`gobernanza`** | `gobernanza-v1.15.md` | 3 ADR, protocolo de cambio |\n"
         afirma(contenido.count(fila_tabla) == 1, "precondición: la fila aparece una sola vez")
-        # Duplica solo la fila de la tabla, en otro punto del archivo --
-        # L0 sigue teniendo exactamente una ancla.
         contenido_roto = contenido + "\n" + fila_tabla
         with open(ruta_est, "w", encoding="utf-8") as f:
             f.write(contenido_roto)
 
-        anclas_l0_precheck = list(CA.L0_ADR_RE.finditer(contenido_roto))
-        afirma(len(anclas_l0_precheck) == 1, "precondición: L0 sigue teniendo una sola ancla")
-
-        gob_antes = CA._leer(CA._ruta_gobernanza(tmp))
         est_antes = CA._leer(ruta_est)
+        gob_antes = CA._leer(CA._ruta_gobernanza(tmp))
 
-        import io
-        import contextlib
-        salida = io.StringIO()
-        with contextlib.redirect_stdout(salida):
-            codigo = CA.fase_b_aplica(raiz=tmp)
+        rep = CA.inspeccion_gobernanza(CA.EC.adr_max(tmp), raiz=tmp)
+        afirma(rep["tabla_anclas"] == 2 and rep["tabla_declara"] is None,
+               f"Fase A debe seguir viendo la fila de tabla duplicada: {rep}")
 
-        afirma(codigo == 1, f"ancla de tabla rota debe abortar con código 1, fue {codigo}")
-        texto = salida.getvalue()
-        afirma("APLICACION_ABORTADA" in texto, texto)
-        afirma("0 archivos escritos" in texto, texto)
-        afirma("tabla" in texto.lower(), f"el mensaje debe nombrar la tabla como causa: {texto!r}")
+        codigo = CA.fase_b_aplica(raiz=tmp)
+        afirma(codigo == 0, f"--aplica ya no aborta por esto, sale 0, fue {codigo}")
         afirma(CA._leer(CA._ruta_gobernanza(tmp)) == gob_antes,
-               "gobernanza no debe cambiar cuando la tabla aborta -- todo o nada")
+               "gobernanza no debe cambiar")
         afirma(CA._leer(ruta_est) == est_antes,
-               "estado-programa no debe cambiar cuando su propia ancla de tabla está rota")
+               "estado-programa no debe cambiar, ni siquiera con la fila de tabla rota")
 
 
 def prueba_h_unicidad_l0_uno_duplicado_ausente_y_cita_historica():
@@ -237,22 +216,24 @@ def prueba_h_unicidad_l0_uno_duplicado_ausente_y_cita_historica():
                f"el ancla ausente no fue detectada: {ausente}")
 
 
-def prueba_d_ya_reconciliado_no_cambia():
+def prueba_d_segunda_corrida_igual_de_inerte():
+    """Ya no hay estado de conteo que reconciliar -- correr dos veces
+    seguidas es igual de inerte la primera vez que la segunda."""
     with tempfile.TemporaryDirectory() as tmp:
         _fixture(tmp, adr_reales=4, cabecera_declara=4, l0_declara=4)
         gob_antes = CA._leer(CA._ruta_gobernanza(tmp))
         est_antes = CA._leer(CA._ruta_estado(tmp))
 
-        import io
-        import contextlib
-        salida = io.StringIO()
-        with contextlib.redirect_stdout(salida):
-            codigo = CA.fase_b_aplica(raiz=tmp)
-
-        afirma(codigo == 0, codigo)
-        afirma("sin cambios" in salida.getvalue(), salida.getvalue())
-        afirma(CA._leer(CA._ruta_gobernanza(tmp)) == gob_antes, "no debe reescribir si ya coincide")
-        afirma(CA._leer(CA._ruta_estado(tmp)) == est_antes, "no debe reescribir si ya coincide")
+        for _ in range(2):
+            import io
+            import contextlib
+            salida = io.StringIO()
+            with contextlib.redirect_stdout(salida):
+                codigo = CA.fase_b_aplica(raiz=tmp)
+            afirma(codigo == 0, codigo)
+            afirma("sin cambios" in salida.getvalue(), salida.getvalue())
+            afirma(CA._leer(CA._ruta_gobernanza(tmp)) == gob_antes, "no debe reescribir nunca")
+            afirma(CA._leer(CA._ruta_estado(tmp)) == est_antes, "no debe reescribir nunca")
 
 
 def prueba_e_rotulo_ausente_no_escribe_registro():
@@ -268,60 +249,20 @@ def prueba_e_rotulo_ausente_no_escribe_registro():
                "inspeccion_rotulo() es de sólo lectura -- nunca debe crear registro-rotulos.tsv")
 
 
-def prueba_f_fallo_de_confirmacion_no_miente():
-    """Si el segundo `os.replace` falla DESPUÉS de que el primero ya
-    confirmó, el mensaje de error no debe decir "0 archivos escritos" --
-    eso sería falso. Simulado: el primer archivo objetivo (gobernanza, se
-    procesa primero) se reemplaza con normalidad; el segundo (L0) falla."""
-    with tempfile.TemporaryDirectory() as tmp:
-        _fixture(tmp, adr_reales=4, cabecera_declara=3, l0_declara=3)
-        ruta_est = CA._ruta_estado(tmp)
-
-        reemplazo_original = CA._confirma_temp
-        llamadas = []
-
-        def reemplazo_falso(ruta_tmp, ruta):
-            llamadas.append(ruta)
-            if ruta == ruta_est:
-                raise OSError("simulado: falla el segundo rename")
-            return reemplazo_original(ruta_tmp, ruta)
-
-        CA._confirma_temp = reemplazo_falso
-        import io
-        import contextlib
-        salida = io.StringIO()
-        try:
-            with contextlib.redirect_stdout(salida):
-                codigo = CA.fase_b_aplica(raiz=tmp)
-        finally:
-            CA._confirma_temp = reemplazo_original
-
-        afirma(codigo == 1, codigo)
-        texto = salida.getvalue()
-        afirma("0 archivos" not in texto,
-               f"gobernanza SÍ se escribió antes de que L0 fallara -- el mensaje no debe decir '0 archivos': {texto!r}")
-        afirma(CA._ruta_gobernanza(tmp) in llamadas and ruta_est in llamadas,
-               "ambos renames deben haberse intentado")
-        gob_despues = CA._leer(CA._ruta_gobernanza(tmp))
-        afirma("**4 ADR**" in gob_despues,
-               "gobernanza debe haber quedado escrita aunque L0 fallara despues")
-
-
 def main():
     prueba_a_dry_run_reconcilia()
-    prueba_b_aplica_actualiza_los_tres()
-    prueba_c_ancla_rota_aborta_todo_o_nada()
-    prueba_g_ancla_tabla_rota_aborta_todo_o_nada()
+    prueba_b_aplica_ya_no_escribe_los_tres()
+    prueba_c_ancla_l0_rota_sigue_siendo_lectura()
+    prueba_g_ancla_tabla_rota_sigue_siendo_lectura()
     prueba_h_unicidad_l0_uno_duplicado_ausente_y_cita_historica()
-    prueba_d_ya_reconciliado_no_cambia()
+    prueba_d_segunda_corrida_igual_de_inerte()
     prueba_e_rotulo_ausente_no_escribe_registro()
-    prueba_f_fallo_de_confirmacion_no_miente()
     if FAILS:
         print(f"FALLÓ ({len(FAILS)}):")
         for m in FAILS:
             print(f"  · {m}")
         return 1
-    print("OK -- test_cierre_acto.py: 8 pruebas, 0 fallos")
+    print("OK -- test_cierre_acto.py: 7 pruebas, 0 fallos")
     return 0
 
 
