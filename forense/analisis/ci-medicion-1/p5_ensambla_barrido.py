@@ -45,16 +45,18 @@ REC_CHECK["T16 T-SUITE-SELF-CHECK"] = (
     "aporta la evidencia, no lo elimina\"). Evidencia medida aquí: relanza el núcleo completo en "
     "un subproceso (mediana local 46-61s, p90 runner 87.7s; es el paso más caro de toda la "
     "cascada); hoy pasa limpio (0 afirmaciones FAIL/WARN vigentes contradictorias en los 11 "
-    "archivos de canon/, confirmado por la corrida local VERDE de este acto). SÍ atrapó algo real "
-    "66 veces en el runner entre el 18 y el 20/sep (55 en rama de PR) -- no es un test que nunca "
-    "sirvió, es uno cuyo costo (relanzar TODO el núcleo por cada corrida, multiplicado por las 2-3 "
-    "invocaciones de check.py de la cascada de /acto) superó lo que protege una vez que las "
-    "afirmaciones vigentes de FAIL/WARN en canon/ se volvieron raras. Costo a un lector si se "
-    "elimina: pierde la única guardia mecánica de que una nota o un ADR no mienta sobre el estado "
-    "de la suite; sustituir por una verificación más barata (comparar sólo las líneas con "
-    "`_CAMBIO_FECHADO`/`MARCA_HISTORICA` contra el `baseline.json` ya escrito, sin relanzar nada) "
-    "es la vía de abaratamiento si dirección prefiere abaratar en vez de eliminar del todo.",
-    "pierde la única guardia mecánica de notas/ADR que mienten sobre el estado de la suite",
+    "archivos de canon/, confirmado por la corrida local VERDE de este acto). CORREGIDO por "
+    "ADENDA-1 (A3): T16 aparece en FAIL 66 veces entre el 18 y el 20/sep, pero en las 66 falla "
+    "TAMBIÉN otro test fuera de baseline en la misma ejecución (T02 en 51, T27 en 6, T30/T35/"
+    "T26-bis/T25 en 4 cada una) -- CERO fallos propios (t16-eco-o-propio.tsv, 66/66 ECO, 0/66 "
+    "PROPIO). T16 falla por ECO: su comparación es 'el conteo total de FAIL de esta corrida es "
+    "el mismo que el de la afirmación vigente en canon/', y ese conteo cambia cuando CUALQUIER "
+    "otro test falla -- no porque una afirmación de canon/ mienta sobre el estado de la suite. "
+    "Dos hechos, no uno, sostienen ELIMINAR: cero afirmaciones vigentes que comparar hoy (medido) "
+    "y cero fallos propios en la historia de CI examinada (medido). Costo a un lector si se "
+    "elimina: nada que otra guarda no atrape antes -- ningún fallo en la ventana medida fue "
+    "detectado únicamente por T16.",
+    "nada que otra guarda no atrape antes: cero fallos propios en la ventana medida",
 )
 
 REC_CHECK["T32 T-CORRIDA0"] = (

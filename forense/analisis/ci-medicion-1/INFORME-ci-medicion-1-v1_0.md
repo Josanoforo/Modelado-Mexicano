@@ -1,5 +1,12 @@
 # INFORME · ACTO GEN2-TUBERIA-CI-MEDICION-1 · Cuánto tarda de verdad el CI en GitHub
 
+**Corregido por ADENDA-1** (`forense/encargos/2026-09-21-GEN2-TUBERIA-CI-MEDICION-1-ADENDA-1.md`,
+mesa/TUBERÍA): el conteo de re-fusiones por PR (P4), la evidencia de T16
+en P3/P5 (T16 falla por eco, no tiene fallos propios) y la columna
+`nacimiento_citas` de `barrido-check-tests.tsv` (27 filas completadas).
+Las cifras de abajo son las corregidas; donde una cifra vieja quedó mal,
+se dice qué cambió y por qué, no se borra el rastro.
+
 Fecha: 21/sep/2026. Base: `8535a977c9fe42b20465f74cd9ccc10f2b98cdd3` (origin/main
 al abrir; el encargo se redactó contra `13129c05`, main se movió, no fue
 PARO). Worktree: `/home/pc0/mm-gen2-tuberia-ci-medicion-1`, rama
@@ -20,17 +27,25 @@ evidencia fresca, no se hereda de memoria.
 | Meta | Objetivo | Medido hoy | Cumple |
 |---|---|---|---|
 | Trabajo posterior a CONSUMIDO (mediana) | ≤ 10 min | 39 min (TUBERÍA, EJECUTADO, antecedente no re-derivado aquí — este acto mide CI, no arqueología de PR) · complementario propio: PR creado→fusionado, mediana **56.2 min**, p90 570 min (83 PR, incluye espera de mesa, no sólo ciclo de re-fusión) | **NO** |
-| PR con renumeración | 0 | TUBERÍA: 29/78 · propio (grep de mensajes de commit por `renumer`): **26/83 (31.3%)** | **NO** |
-| PR con dos o más re-fusiones de main | < 10% | TUBERÍA: 35/78 (44.9%) · propio (commits `Merge branch main`): **18/83 (21.7%)** — ver nota metodológica abajo | **NO** |
+| PR con renumeración | 0 | propio (grep de mensajes de commit por `renumer`): **36/83 (43.4%)** | **NO** |
+| PR con dos o más re-fusiones de main | < 10% | propio, CORREGIDO por ADENDA-1 (ver nota metodológica): **39/83 (47.0%)** con ≥2, **65/83 (78.3%)** con ≥1 | **NO** |
 | Suite local | ≤ 60 s | **93.5 s** real (`--baseline --parallel`, VERDE, este acto, commit 8535a977) · TUBERÍA midió 189 s pero **sin** `--parallel` y en 1 núcleo — no es la misma medición | **NO** |
 | Ejecuciones de la suite por cierre | 1 | **hasta 6** núcleos de `check.py` por cierre sin re-fusión: 3 invocaciones top-level (`acto.md`:351 dentro de `cierre_acto.py` Fase A, :384, :456) × 2 (T16 relanza el núcleo una vez por invocación) | **NO** |
 
-**Nota metodológica (P4).** El conteo propio de re-fusiones cuenta commits
-de mensaje `Merge branch 'main'…`; un PR resincronizado por *rebase* +
-force-push no deja ese commit y no se cuenta, así que la cifra propia es un
-**piso**, no el total — la brecha con la cifra de TUBERÍA (76.9% vs 51.8%
-con ≥1) probablemente viene de ahí, no de que TUBERÍA se equivocara. Las
-dos cifras se citan, ninguna se descarta.
+**Nota metodológica (P4), CORREGIDA por ADENDA-1.** La primera versión de
+`p4b_refusiones_por_pr.py` contaba re-fusión por MENSAJE de commit
+(`Merge branch 'main'`/`Merge remote-tracking branch`) y salía en
+51.8%/21.7% — la mitad de lo que TUBERÍA había medido (76.9%/44.9%). La
+causa **no era** *rebase* (esa explicación, en la v1.0 original de este
+informe, estaba mal): la casa escribe la mitad de sus re-fusiones con otro
+mensaje (`GEN2-…: merge origin/main (…) y renumera`), que el patrón no
+reconocía. Reescrito para contar **todo commit con dos padres** en la
+rama del PR (`gh api .../pulls/{n}/commits`, campo `parents`, sin mirar
+el mensaje) — la definición mecánica de "re-fusión". El resultado corregido
+(78.3%/47.0%) confirma la cifra de TUBERÍA dentro del mismo orden de
+magnitud; la cifra propia se deriva de una ventana más amplia (83 PR
+contra 78) y con otro comando, así que no coincide exacto y no tiene por
+qué.
 
 ## P0 · Sonda de acceso
 
@@ -64,6 +79,14 @@ paginado, filtro `created:>=2026-09-18`, 21/sep ~15:00 UTC. Script:
 | workflow_dispatch | 12 |
 
 Rango: `2026-09-18T14:41:00Z` → `2026-09-21T15:03:43Z`.
+
+**Por qué `runs.json`/`jobs.json` (≈7.7 MB) se quedan en el árbol, sin
+recortar (A6, ADENDA-1).** Son la materia prima de P1/P2/P4: cada TSV
+derivado de este informe se puede re-derivar de ellos sin volver a llamar
+a la API. Quitarlos en un commit posterior **no reduciría el repo**: la
+casa fusiona por merge commit (nunca squash ni rebase), así que esos
+blobs quedarían en la historia de todas formas, y reescribir la historia
+de esta rama está en la lista cerrada de PAROS. Quedan.
 
 ## P2 · Jobs y pasos
 
@@ -163,13 +186,30 @@ job `check`-ERA1, 314 en job `suite`-ERA2-4.
 (282) y T08 (282)— son **FAIL heredados y aceptados en baseline** (FP-293:
 "nota de aceptación, no fix"; confirmado: fallan también en la corrida
 local de este acto, VERDE por `--baseline` de todas formas) — no son
-señal de que el CI "atrape algo nuevo", son ruido de baseline. Descontados
-esos dos, el resto **sí es señal real**: T16 (66 veces, 55 en rama de PR),
-T02 (51, 40 en PR), T22 (10, 8 en PR), T27 (6, 6 en PR), T30/T25/T26-bis
-(4 cada uno, todos en PR), y siete más con 1-3 fallos cada uno. **44 de las
-45 corridas de PR que hicieron fallar `T06`/`T08`-descontados atraparon
-algo ANTES de fusionar** — el patrón dominante es exactamente el que
-justifica tener la suite en CI.
+señal de que el CI "atrape algo nuevo", son ruido de baseline.
+
+**T16 CORREGIDO por ADENDA-1 (A3): no es señal real, falla por ECO.** La
+v1.0 original de este informe contaba las 66 fallas de T16 como evidencia
+de que "sí atrapa algo". TUBERÍA lo revisó: en las **66 de 66** ejecuciones
+donde T16 falla, **algún otro test fuera de baseline falla también en la
+misma ejecución** (T02 en 51, T27 en 6, T30/T35/T26-bis/T25 en 4 cada uno
+— script [`p3c_t16_eco_o_propio.py`](p3c_t16_eco_o_propio.py) →
+[`t16-eco-o-propio.tsv`](t16-eco-o-propio.tsv), 66 ECO / 0 PROPIO). T16
+compara el conteo de FAIL de la corrida real contra el de la afirmación
+vigente en `canon/`: ese conteo cambia cuando **cualquier** otro test
+falla, así que un T16 en rojo no dice "una nota de `canon/` mintió", dice
+"algo más falló en esta corrida". **Cero fallos propios en toda la
+ventana medida.** La recomendación de ELIMINAR (P5) no cambia — al
+contrario, queda mejor sostenida: cero afirmaciones vigentes que comparar
+hoy (medido) y cero fallos propios en CI (medido), dos hechos, no una
+lectura optimista de 66.
+
+Descontados T06/T08 (baseline) y corregido T16 (eco, no señal propia), el
+resto **sí es señal real**: T02 (51, 40 en PR), T22 (10, 8 en PR), T27
+(6, 6 en PR), T30/T25/T26-bis (4 cada uno, todos en PR), y seis más con
+1-3 fallos cada uno. La inmensa mayoría de esos fallos —en rama de PR, no
+en `main`— es el patrón que justifica tener la suite en CI: atrapan antes
+de fusionar.
 
 ## P4 · Espera de CI por PR
 
@@ -189,6 +229,10 @@ indexada por rama, 0 sin indexar). Complemento propio
 - PR creado → fusionado: mediana **56.2 min**, p90 **570 min** (esto
   incluye espera de mesa, no sólo el ciclo CI — se declara como métrica
   complementaria, no como sustituto de "trabajo posterior a CONSUMIDO").
+- Re-fusiones por PR (CORREGIDO por ADENDA-1, ver nota metodológica de
+  arriba): 65/83 (78.3%) con ≥1 commit de dos padres en su rama, 39/83
+  (47.0%) con ≥2. Renumeraciones (mensaje de commit con "renumer…"):
+  36/83 (43.4%).
 
 ## P5 · La lista del barrido
 
@@ -197,7 +241,7 @@ script; ninguna es muestra):
 
 | tabla | filas | script |
 |---|---|---|
-| [`barrido-check-tests.tsv`](barrido-check-tests.tsv) | 53 (los 53 tests que `tests/check.py` registra hoy, incluido T16 — el encargo decía 54; recontado mecánicamente, `awk '/^def main/,/^if __name__/'`, da 53: 52 base + T16 condicional) | [`p5_ensambla_barrido.py`](p5_ensambla_barrido.py) |
+| [`barrido-check-tests.tsv`](barrido-check-tests.tsv) | 53 (los 53 tests que `tests/check.py` registra hoy, incluido T16 — el encargo decía 54; recontado mecánicamente, `awk '/^def main/,/^if __name__/'`, da 53: 52 base + T16 condicional). Columna `nacimiento_citas`: **0 filas vacías** (27 completadas a mano por ADENDA-1/A4 contra el banner de sección, docstring y cuerpo de cada test en `tests/check.py`; donde no hay ningún defecto citado, dice `SIN-DEFECTO-CITADO` en vez de inventar uno) | [`p5_ensambla_barrido.py`](p5_ensambla_barrido.py) + [`p5a2_completa_nacimiento.py`](p5a2_completa_nacimiento.py) |
 | [`barrido-verify-steps.tsv`](barrido-verify-steps.tsv) | 37 (todos los pasos del `verify.yml` vigente hoy) | [`p5b_ensambla_barrido_verify.py`](p5b_ensambla_barrido_verify.py) |
 | [`cascada-acto-md.tsv`](cascada-acto-md.tsv) | 17 (4 guardas de ARRANQUE + 13 pasos de CIERRE) | curado a mano contra `.claude/commands/acto.md` |
 | [`no-cableados-44.tsv`](no-cableados-44.tsv) | 44 (36 NECESITA-DEPENDENCIA + 8 FALLA-DE-VERDAD del censo — el encargo decía 134 archivos en el censo; recontado, son 135: 91 CORRE-EN-CI + 36 + 8) | [`p5c_ensambla_no_cableados.py`](p5c_ensambla_no_cableados.py) |
@@ -206,8 +250,8 @@ script; ninguna es muestra):
 
 | recomendación | n | dónde |
 |---|---|---|
-| ELIMINAR | 1 | T16 T-SUITE-SELF-CHECK (decisión ya tomada por dirección; evidencia aportada aquí) |
-| ABARATAR | 2 | paso "marcador por segmento" (job propio); paso 1 de la cascada (saltar el `check.py` interno de `cierre_acto.py` cuando hay VERDE reciente) |
+| ELIMINAR | 1 | T16 T-SUITE-SELF-CHECK (decisión ya tomada por dirección; evidencia aportada aquí — CORREGIDA por ADENDA-1: cero fallos propios en CI, no 66) |
+| ABARATAR | 2 | paso "marcador por segmento" (job propio); paso 1 de la cascada (saltar el `check.py` interno de `cierre_acto.py` sólo si hay VERDE sobre el **mismo árbol** — precisado por ADENDA-1/A5, no "commit reciente") |
 | FUERA-DE-ALCANCE | 6 | T06-T11, reglas de contenido §3, excluidas por el propio encargo |
 | DEFECTO-ABIERTO-NO-SE-TOCA-AQUI | 8 | los 8 FALLA-DE-VERDAD del censo — activos, con dueño sin asignar, PARO de este acto prohíbe tocarlos |
 | MANTENER / MANTENER-SIN-CABLEAR | 134 | el resto |
@@ -220,7 +264,7 @@ sin abaratar más (ya se abarató una vez, PR #901).
 
 | recomendación | ahorro por corrida | ahorro por acto | base |
 |---|---|---|---|
-| ELIMINAR T16 | 61.4 s mediana / 87.7 s p90, por cada invocación de `check.py` (CI o local) | ≥ 2 invocaciones obligatorias por cierre (pasos 6 y 12 de `acto.md`) → **123-175 s por acto como piso**, más si hay re-fusión o si la sesión corrió el núcleo antes de cerrar | tiempos-tests-runner-agg.tsv + tiempos-locales-run1.tsv |
+| ELIMINAR T16 (cero fallos propios en CI, corregido por ADENDA-1) | 61.4 s mediana / 87.7 s p90, por cada invocación de `check.py` (CI o local) | ≥ 2 invocaciones obligatorias por cierre (pasos 6 y 12 de `acto.md`) → **123-175 s por acto como piso**, más si hay re-fusión o si la sesión corrió el núcleo antes de cerrar | tiempos-tests-runner-agg.tsv + tiempos-locales-run1.tsv + t16-eco-o-propio.tsv |
 | ABARATAR "marcador por segmento" → job propio | 20-70 s en la ruta crítica de **cada** corrida de `verify.yml` (max(suite,adicionales) baja de ~159-220 s a ~136-149 s) | mismo ahorro × corridas que dispara el acto (mediana 3 por PR, más con re-fusión) | duracion-por-job-por-era.tsv, duracion-por-paso-por-era.tsv |
 | ABARATAR paso 1 de la cascada (saltar `check.py` interno si hay VERDE reciente) | n/a (paso local, no de CI) | 60-200 s por cierre (1 de hasta 3 invocaciones del núcleo) | tiempos-locales-run1.tsv |
 
@@ -234,11 +278,16 @@ estimación.
 
 ## P7 · Cierre
 
-Cascada de `/acto` en curso en el commit de cierre de este mismo PR;
-`tests/check.py --baseline --parallel` VERDE (93.5 s, este acto,
-`8535a977`) antes de escribir este informe. `## NO-CORRIDO / RESERVAS` y
-`## CONSUMIDO` van en el encargo archivado
-(`forense/encargos/2026-09-21-GEN2-TUBERIA-CI-MEDICION-1.md`), no aquí.
+Primera vuelta: cascada de `/acto` VERDE (93.5 s, commit `8535a977`),
+`## NO-CORRIDO / RESERVAS` y `## CONSUMIDO` (`PR #955`) en el encargo
+archivado. **Segunda vuelta (ADENDA-1):** `main` fusionado hacia la rama
+(24 commits, `ADR` renumerado `587→588` — `PR #949`/`ACTO
+GEN2-TUBERIA-RES-LLAVE-1` tomó `587` mientras este PR seguía abierto),
+las cinco correcciones de arriba aplicadas, `tests/check.py --baseline
+--parallel` corrido de nuevo en VERDE sobre el árbol fusionado antes de
+declarar la vuelta cerrada. `## CONSUMIDO` del encargo original sigue
+apuntando a `PR #955` (mismo PR, misma rama — la adenda no abre uno
+nuevo); la sección de cierre del encargo, al final, cita esta adenda.
 
 ## Hallazgos que no bloquean pero se declaran (A.13/regla de señal)
 
@@ -254,3 +303,14 @@ Cascada de `/acto` en curso en el commit de cierre de este mismo PR;
    nuevo que este acto deba resolver (fuera de perímetro: no se toca
    `verify.yml`), pero contextualiza por qué "cuánto tarda el CI" no tiene
    una sola respuesta esta semana.
+4. **La v1.0 original de este informe tenía dos lecturas de datos
+   equivocadas**, encontradas por una revisión adversarial (ADENDA-1,
+   TUBERÍA) sobre `PR #955` antes de que mesa lo mirara: el conteo de
+   re-fusiones subcontaba a la mitad (patrón de mensaje incompleto, no
+   *rebase* como decía la nota vieja), y T16 se leyó como "señal real" sin
+   comprobar si fallaba SOLO o en compañía de otro test (fallaba siempre
+   en compañía — eco, no señal propia). Las dos se corrigieron en este
+   mismo documento, con el método viejo y el nuevo declarados los dos, no
+   sólo el resultado. El encargo original archivado no se editó (A.3): la
+   corrección vive en el informe y en esta lista, no reescribiendo lo que
+   ya se entregó.
