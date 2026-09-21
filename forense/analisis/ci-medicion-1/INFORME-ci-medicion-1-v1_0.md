@@ -284,10 +284,17 @@ archivado. **Segunda vuelta (ADENDA-1):** `main` fusionado hacia la rama
 (24 commits, `ADR` renumerado `587→588` — `PR #949`/`ACTO
 GEN2-TUBERIA-RES-LLAVE-1` tomó `587` mientras este PR seguía abierto),
 las cinco correcciones de arriba aplicadas, `tests/check.py --baseline
---parallel` corrido de nuevo en VERDE sobre el árbol fusionado antes de
-declarar la vuelta cerrada. `## CONSUMIDO` del encargo original sigue
-apuntando a `PR #955` (mismo PR, misma rama — la adenda no abre uno
-nuevo); la sección de cierre del encargo, al final, cita esta adenda.
+--parallel` corrido de nuevo en VERDE sobre el árbol fusionado. **Tercera
+vuelta:** entre el push de la vuelta 2 y la verificación del PR, `main`
+avanzó otros 12 commits y `ACTO MOTOR-THETA-CONGELADA-1` (`PR #947`)
+también tomó `ADR-588` — renumerado de nuevo, a `ADR-589` (autorizado por
+ADENDA-1 §5: "si main vuelve a moverse, fusiona otra vez y re-deriva el
+ADR -- eso es exactamente el ciclo que el acto midió"). Tres vueltas para
+cerrar un acto que no tocó ni un `.py` de producción ni un test es, en sí
+mismo, una medición más del propio mandato. `## CONSUMIDO` del encargo
+original sigue apuntando a `PR #955` (mismo PR, misma rama en las tres
+vueltas); la sección de cierre del encargo, al final, cita la adenda y
+las tres vueltas.
 
 ## Hallazgos que no bloquean pero se declaran (A.13/regla de señal)
 

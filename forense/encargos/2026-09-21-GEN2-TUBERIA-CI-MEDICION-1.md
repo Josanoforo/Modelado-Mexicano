@@ -145,3 +145,13 @@ sobre por qué `runs.json`/`jobs.json` se quedan, y hallazgo
 `PARA-v2.16` sobre archivar encargos adjuntos, no pegados/renderizados.
 `tests/check.py --baseline --parallel` VERDE sobre el árbol fusionado.
 El encargo original y su sello: sin cambios de bytes.
+
+**Vuelta 3 (mismo `PR #955`, sin adenda nueva — autorizada por
+ADENDA-1 §5: "si main vuelve a moverse, fusiona otra vez y re-deriva el
+ADR").** Entre el push de la vuelta 2 y la verificación del PR, `main`
+avanzó otros 12 commits; `ACTO MOTOR-THETA-CONGELADA-1` (`PR #947`)
+también tomó `ADR-588`. Renumerado de nuevo, a `ADR-589`. Mismo
+procedimiento: conflictos resueltos en `canon/gobernanza-v1_15.md` y
+`canon/estado-programa-v1_14.md` (tres anotaciones `L0` encadenadas,
+589→588→587), los tres contadores mecánicos reconciliados,
+`tests/check.py --baseline --parallel` VERDE.
