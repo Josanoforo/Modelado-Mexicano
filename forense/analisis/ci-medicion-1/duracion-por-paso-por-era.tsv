@@ -1,0 +1,137 @@
+era	job	paso	n	mediana_s	p90_s
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	Suite de verificación (modo línea base — verde = no empeoraste)	165	174.0	198.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	Checkout sin marketplace (repo público — cero descargas de action)	165	5.0	5.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)	165	5.0	6.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	emite_m — resolver de ola_calibracion por conducta (bloqueante)	165	4.0	6.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	marcador por segmento — tabla derivada y guardias (bloqueante)	123	4.0	133.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)	165	2.0	3.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	Set up job	165	0.0	1.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	Intérprete del runner (crudo, para que quede en el log)	165	0.0	0.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	svystat.py — validación independiente (bloqueante)	165	0.0	0.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	Baseline temporal — corte y compatibilidad del estimando	165	0.0	0.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	T-CRON — huella del cron y no-regresión de baseline (bloqueante)	165	0.0	0.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	adq_config.py — lector de data/adq-config.yaml (bloqueante)	165	0.0	0.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	adq_doctor.py — clasificación de lock/crontab (bloqueante)	165	0.0	1.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	Fuentes financieras — unidades, faltantes y duplicados (bloqueante)	165	0.0	0.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	N34 — producto, costo y daño (bloqueante)	165	0.0	0.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)	165	0.0	1.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	contrato sintético de C2 — piloto celda-D (bloqueante)	165	0.0	0.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)	165	0.0	0.0
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	Complete job	165	0.0	0.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	suite	Suite de verificación (modo línea base — verde = no empeoraste)	60	159.0	166.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	marcador por segmento — tabla derivada y guardias (bloqueante)	60	132.5	136.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)	60	6.0	8.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	Checkout sin marketplace (repo público — cero descargas de action)	60	5.0	6.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	emite_m — resolver de ola_calibracion por conducta (bloqueante)	60	5.0	6.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	suite	Checkout sin marketplace (repo público — cero descargas de action)	60	5.0	6.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)	60	2.0	3.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	suite	Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)	60	2.0	4.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)	60	1.0	1.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	suite	Inyección temporal exclusiva de la prueba de compuerta	4	1.0	46.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	Set up job	60	0.0	0.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	Intérprete del runner (crudo, para que quede en el log)	60	0.0	0.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	svystat.py — validación independiente (bloqueante)	60	0.0	0.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	Baseline temporal — corte y compatibilidad del estimando	60	0.0	1.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	T-CRON — huella del cron y no-regresión de baseline (bloqueante)	60	0.0	1.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	adq_config.py — lector de data/adq-config.yaml (bloqueante)	60	0.0	0.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	adq_doctor.py — clasificación de lock/crontab (bloqueante)	60	0.0	1.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	Fuentes financieras — unidades, faltantes y duplicados (bloqueante)	60	0.0	1.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	N34 — producto, costo y daño (bloqueante)	60	0.0	0.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	contrato sintético de C2 — piloto celda-D (bloqueante)	60	0.0	0.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)	60	0.0	0.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	Complete job	60	0.0	0.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	suite	Set up job	60	0.0	0.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	suite	Intérprete del runner (crudo, para que quede en el log)	60	0.0	0.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	suite	Transporte paralelo, compuerta y semántica del baseline (bloqueante)	60	0.0	1.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	suite	Complete job	60	0.0	0.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	check	Set up job	61	0.0	0.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	check	Todos los grupos requeridos terminaron correctamente	61	0.0	1.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	check	Complete job	61	0.0	0.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	Inyección temporal exclusiva de la prueba de compuerta	4	0.0	46.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	marcador por segmento — tabla derivada y guardias (bloqueante)	97	136.0	149.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	suite	Suite de verificación (modo línea base — verde = no empeoraste)	97	109.0	171.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	guardias	Guardias huérfanas — censo + invocador correcto por archivo (bloqueante)	97	37.0	44.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	métrica rectora — celdas_validadas en la primera línea del tablero (bloqueante)	59	36.0	45.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)	97	7.0	8.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	guardias	Checkout sin marketplace (repo público — cero descargas de action)	97	6.0	16.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	suite	Checkout sin marketplace (repo público — cero descargas de action)	97	6.0	6.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	Checkout sin marketplace (repo público — cero descargas de action)	97	5.0	6.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	emite_m — resolver de ola_calibracion por conducta (bloqueante)	97	5.0	6.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	guardias	Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)	97	3.0	4.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)	97	3.0	4.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	descargador por id de manifiesto — arnés HTTP local (bloqueante)	46	3.0	3.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	suite	Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)	97	3.0	4.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	T-CRON — huella del cron y no-regresión de baseline (bloqueante)	97	1.0	1.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)	97	1.0	1.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	guardias	Set up job	97	0.0	0.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	guardias	Intérprete del runner (crudo, para que quede en el log)	97	0.0	0.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	guardias	Complete job	97	0.0	0.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	Set up job	97	0.0	1.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	Intérprete del runner (crudo, para que quede en el log)	97	0.0	0.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	svystat.py — validación independiente (bloqueante)	97	0.0	0.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	sidecars de forense/encargos y forense/notas — sello de cuerpo (bloqueante)	8	0.0	0.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	Baseline temporal — corte y compatibilidad del estimando	97	0.0	1.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	adq_config.py — lector de data/adq-config.yaml (bloqueante)	97	0.0	0.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	adq_doctor.py — clasificación de lock/crontab (bloqueante)	97	0.0	1.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	Fuentes financieras — unidades, faltantes y duplicados (bloqueante)	97	0.0	0.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	N34 — producto, costo y daño (bloqueante)	97	0.0	0.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	contrato sintético de C2 — piloto celda-D (bloqueante)	97	0.0	1.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)	97	0.0	1.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	tubería de ids y union — T15 por mutación, guarda de salto de línea, gramática de FP (bloqueante)	29	0.0	1.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	comparabilidad por texto de crédito ENIF — forma de la tabla K1-K8 × 5 olas (bloqueante)	52	0.0	0.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	cargador de linaje — los tres caminos del id superado (bloqueante)	35	0.0	0.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	Complete job	97	0.0	0.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	suite	Set up job	97	0.0	0.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	suite	Intérprete del runner (crudo, para que quede en el log)	97	0.0	0.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	suite	Transporte paralelo, compuerta y semántica del baseline (bloqueante)	97	0.0	1.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	suite	Complete job	97	0.0	0.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	check	Set up job	97	0.0	0.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	check	Todos los grupos requeridos terminaron correctamente	97	0.0	1.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	check	Complete job	97	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	suite	Suite de verificación (modo línea base — verde = no empeoraste)	5	193.0	195.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	marcador por segmento — tabla derivada y guardias (bloqueante)	5	108.0	148.0
+ERA4-actual (+preflight-calc, desde PR #948)	guardias	Guardias huérfanas — censo + invocador correcto por archivo (bloqueante)	5	35.0	36.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	métrica rectora — celdas_validadas en la primera línea del tablero (bloqueante)	5	32.0	38.0
+ERA4-actual (+preflight-calc, desde PR #948)	guardias	Checkout sin marketplace (repo público — cero descargas de action)	5	17.0	18.0
+ERA4-actual (+preflight-calc, desde PR #948)	preflight-calc	Checkout con la base (clon propio — D-23, no se toca el de otro job)	5	7.0	8.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	Checkout sin marketplace (repo público — cero descargas de action)	5	7.0	7.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)	5	7.0	8.0
+ERA4-actual (+preflight-calc, desde PR #948)	suite	Checkout sin marketplace (repo público — cero descargas de action)	5	6.0	8.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	emite_m — resolver de ola_calibracion por conducta (bloqueante)	5	4.0	6.0
+ERA4-actual (+preflight-calc, desde PR #948)	preflight-calc	Prueba por mutación del chequeo (bloqueante — D-21, el acto cablea su test)	5	3.0	3.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)	5	3.0	4.0
+ERA4-actual (+preflight-calc, desde PR #948)	guardias	Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)	5	3.0	4.0
+ERA4-actual (+preflight-calc, desde PR #948)	preflight-calc	Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)	5	2.0	3.0
+ERA4-actual (+preflight-calc, desde PR #948)	suite	Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)	5	2.0	4.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	descargador por id de manifiesto — arnés HTTP local (bloqueante)	5	2.0	4.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	T-CRON — huella del cron y no-regresión de baseline (bloqueante)	5	1.0	5.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)	5	1.0	1.0
+ERA4-actual (+preflight-calc, desde PR #948)	preflight-calc	Set up job	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	preflight-calc	Intérprete del runner (crudo, para que quede en el log)	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	preflight-calc	preflight sobre los CALC sin sello que este cambio toca (bloqueante)	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	preflight-calc	Complete job	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	suite	Set up job	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	suite	Intérprete del runner (crudo, para que quede en el log)	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	suite	Transporte paralelo, compuerta y semántica del baseline (bloqueante)	5	0.0	2.0
+ERA4-actual (+preflight-calc, desde PR #948)	suite	Complete job	5	0.0	1.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	Set up job	5	0.0	1.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	Intérprete del runner (crudo, para que quede en el log)	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	svystat.py — validación independiente (bloqueante)	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	sidecars de forense/encargos y forense/notas — sello de cuerpo (bloqueante)	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	Baseline temporal — corte y compatibilidad del estimando	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	adq_config.py — lector de data/adq-config.yaml (bloqueante)	5	0.0	1.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	adq_doctor.py — clasificación de lock/crontab (bloqueante)	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	Fuentes financieras — unidades, faltantes y duplicados (bloqueante)	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	N34 — producto, costo y daño (bloqueante)	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	contrato sintético de C2 — piloto celda-D (bloqueante)	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)	5	0.0	1.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	tubería de ids y union — T15 por mutación, guarda de salto de línea, gramática de FP (bloqueante)	5	0.0	1.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	comparabilidad por texto de crédito ENIF — forma de la tabla K1-K8 × 5 olas (bloqueante)	5	0.0	1.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	cargador de linaje — los tres caminos del id superado (bloqueante)	5	0.0	1.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	Complete job	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	guardias	Set up job	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	guardias	Intérprete del runner (crudo, para que quede en el log)	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	guardias	Complete job	5	0.0	1.0
+ERA4-actual (+preflight-calc, desde PR #948)	check	Set up job	5	0.0	0.0
+ERA4-actual (+preflight-calc, desde PR #948)	check	Todos los grupos requeridos terminaron correctamente	5	0.0	1.0
+ERA4-actual (+preflight-calc, desde PR #948)	check	Complete job	5	0.0	1.0
