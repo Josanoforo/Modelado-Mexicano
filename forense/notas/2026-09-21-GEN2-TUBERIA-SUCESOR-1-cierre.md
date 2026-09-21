@@ -65,7 +65,7 @@ habían caducado en las horas entre su redacción y su ejecución, con `PR #932`
 | `NC` | 0432 | **0435** |
 | `FP` | 403 | **404** |
 
-Consecuencia: el `ADR` de este acto es **`ADR-576`**, no el `ADR-572` que el encargo proponía
+Consecuencia: el `ADR` de este acto es **`ADR-577`**, no el `ADR-572` que el encargo proponía
 como candidato — `ADR-572` ya lo tomó `GEN2-DIN-CREDITO-COMPARABILIDAD-TEXTO-1`. Es
 exactamente la clase de premisa que §0 manda verificar antes de obedecer: logística, no
 estimando, así que se replanteó y se siguió (v2.15).
@@ -95,7 +95,7 @@ corrobora la prueba, no la prosa.
 **Lo que esta enmienda NO hace, y queda declarado en el código para que nadie lo herede al
 revés: NO protege contra la renumeración.** Una renumeración internamente consistente deja el
 registro sin duplicados, sin huecos y sin citas colgantes mientras la prosa sellada re-apunta
-en silencio a otro `ADR`; `T15` sale verde antes y después. `ADR-576` **no afirma lo contrario**.
+en silencio a otro `ADR`; `T15` sale verde antes y después. `ADR-577` **no afirma lo contrario**.
 Quien quiera esa garantía necesita anclar la cita al CONTENIDO del ADR, no a su número, y no
 es este test.
 
@@ -240,14 +240,14 @@ ejecuta de preguntar. **El parche no se usó**, como manda el encargo.
 **Lo que el careo dictamina y este acto confirma de forma independiente.** Su `P4`/mutación 4
 —la renumeración internamente consistente deja `T15` **VERDE antes y después**, y no es
 instrumentable, sólo prevenible por construcción— se corroboró **en vivo**: esta sesión renumeró
-**cuatro veces** (572→573→574→575→576) y ninguna de esas renumeraciones habría sido visible para
+**cinco veces** (572→573→574→575→576→577) y ninguna de esas renumeraciones habría sido visible para
 `T15` si hubiera sido internamente consistente. Por eso el `ADR` de este acto **no afirma** que
 la enmienda proteja contra la renumeración. Y su `P1`/escenario 5 —la trampa del salto de línea
 es **ortogonal al esquema de id**— se reprodujo aquí por separado, con git de verdad (§3, caso
 B3), **antes** de leer el expediente: dos derivaciones independientes del mismo defecto.
 
 **Segundo defecto propio de esta sesión, y se asienta porque casi cuesta la nota.** La
-renumeración a `ADR-576` se aplicó sobre esta nota con
+renumeración a `ADR-577` se aplicó sobre esta nota con
 `io.open(p,"w").write(io.open(p).read().replace(...))`: en Python el `open(...,"w")` se evalúa
 **antes** que el `read()`, así que truncó el archivo a 0 bytes y escribió la cadena vacía. Se
 detectó al releerla y se recuperó íntegra de `git show e1bda94:<ruta>` (15 455 bytes). Queda como
