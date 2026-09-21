@@ -30,6 +30,7 @@ tests/test_cola_writer.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corp
 tests/test_compara_sha.py	script	NO	manifiesto	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_consulta_gen2.py	modulo	NO	(ninguna)	NO	38.9	FALLA-DE-VERDAD	AssertionError: 1 != 0 : FALLA respuestas distintas: /home/user/Modelado-Mexicano/forense/ejemplos/GEN2-AHORRO-ALCANCE-MENOR/respuestas-ahorro-alcance-menor.json
 tests/test_corpus.py	script	NO	manifiesto	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_corpus_integridad_respaldo.py	script	NO	(ninguna)	NO	0.4	CORRE-EN-CI	exit 0 sin corpus (corpus sintético en tempdir; rsync presente en ubuntu-latest)
 tests/test_corredores_gen2.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_corrida0.py	script	SI	(ninguna)	SI		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_corrida0_oro.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
