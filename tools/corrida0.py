@@ -96,6 +96,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 # tools/relevo_usos.py, para que `pines_mesa` se resuelva por las dos vias.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+# ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_3: `_leer_tsv_derivado` revienta con el
+# `resultados_ids` de 209 856 bytes de CALC-DIN-CREDITO-PISOS-ENIF2021-0001 (PR #943
+# subio el tope en relevo_usos/tablero, no aqui). El tope es del lector, no del dato.
+csv.field_size_limit(sys.maxsize)
+
 import yaml  # noqa: E402
 
 from milpa.src.emisor import cargar_reglas  # noqa: E402
