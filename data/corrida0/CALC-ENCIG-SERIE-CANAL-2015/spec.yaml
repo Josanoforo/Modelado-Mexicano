@@ -1,0 +1,342 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENCIG-SERIE-CANAL-2015
+spec_md: ../../../forense/prereg-caja/ENCIG-SERIE-CANAL-spec-v1_0.md
+spec_md_sha256: c46c0a7cd9d30b309b807d762f9dd2a3d706368bc0b79023240ea6a4f3754287
+script: tools/encig_serie_canal.py
+script_sha256_congelado: 5911279d73fa4328b9091231c599d7d51f440b14f869b1b9f2ea18f05a6b280a
+etiquetas:
+  generacion: GEN2
+  tipo: SERIE-CANAL-DIGITAL-ENCIG
+  cuenta_gen2: SI
+  cuenta_gen2_firma: 'Encargo GEN2-ENCIG-SERIE-Y-TENDENCIA-1 §2 (propuesta de dirección, 21/sep/2026): «Las corridas de GEN2-ENCIG-SERIE-Y-TENDENCIA-1 cuentan (cuenta_gen2 = SI)». No adopta. El merge de
+    mesa perfecciona la firma.'
+  ola: '2015'
+  oro: NO-APLICA (el oro es la ola 2023)
+  comparabilidad_texto: data/encig-canal-comparabilidad-texto-v1_0.tsv
+  exposicion_historica: PRIMERA-LECTURA
+inputs:
+- id: encig2015_csv
+  origen: manifiesto
+variables:
+- archivo: encig2015_04_sec_7.csv
+  variable: N_TRA
+  rol: universo
+- archivo: encig2015_04_sec_7.csv
+  variable: P7_3
+  rol: desenlace
+- archivo: encig2015_04_sec_7.csv
+  variable: FAC_TRA
+  rol: ponderador
+- archivo: encig2015_04_sec_7.csv
+  variable: EST_DIS
+  rol: estrato
+- archivo: encig2015_04_sec_7.csv
+  variable: UPM_DIS
+  rol: upm
+- archivo: encig2015_04_sec_7.csv
+  variable: ENT
+  rol: llave
+- archivo: encig2015_04_sec_7.csv
+  variable: UPM
+  rol: llave
+- archivo: encig2015_04_sec_7.csv
+  variable: V_SEL
+  rol: llave
+- archivo: encig2015_04_sec_7.csv
+  variable: N_HOG
+  rol: llave
+- archivo: encig2015_04_sec_7.csv
+  variable: R_ELE
+  rol: llave
+- archivo: encig2015_02_residentes_sec_2.csv
+  variable: ENT
+  rol: llave
+- archivo: encig2015_02_residentes_sec_2.csv
+  variable: UPM
+  rol: llave
+- archivo: encig2015_02_residentes_sec_2.csv
+  variable: V_SEL
+  rol: llave
+- archivo: encig2015_02_residentes_sec_2.csv
+  variable: N_HOG
+  rol: llave
+- archivo: encig2015_02_residentes_sec_2.csv
+  variable: N_REN
+  rol: llave
+- archivo: encig2015_02_residentes_sec_2.csv
+  variable: SEXO
+  rol: eje-sexo
+- archivo: encig2015_02_residentes_sec_2.csv
+  variable: EDAD
+  rol: eje-edad
+- archivo: encig2015_02_residentes_sec_2.csv
+  variable: NIV
+  rol: eje-escolaridad
+universo: N_TRA normalizado == 1 (pago ordinario del servicio de luz) y P7_3 en {1,2,4,5,6}; FAC_TRA positivo; EST_DIS y UPM_DIS no vacíos.
+filtros: Códigos inválidos de un eje quedan fuera solo de ese eje; la celda nacional no exige demografía. P7_3 en {3,7,8,9,blanco} fuera del universo y contado.
+ponderador: FAC_TRA
+transformacion: Digital útil = P7_3 en {4,5}; edad 18-29/30-44/45-59/60-96; NIV {0,1,2}/{3}/{4,5,6,7}/{8,9}.
+estimando: Proporción ponderada de trámites de pago de luz por canal digital útil en ENCIG 2015, nacional y por eje, comparable con el piso 2023 y con ENCIG 2025.
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.PCG64
+parametros:
+  ola: '2015'
+  payload_id: encig2015_csv
+  bootstrap_replicas: 10000
+  metodo_ic: bootstrap UPM estratificado; percentiles 2.5/97.5; réplicas compartidas por las once celdas; verbatim del piso
+  llave_join: ENT+UPM+V_SEL+N_HOG+R_ELE->ENT+UPM+V_SEL+N_HOG+N_REN
+dependencias_materiales:
+- numpy
+- pandas
+resultados:
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ALL-ALL-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ALL-ALL-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ALL-ALL-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ALL-ALL-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ALL-ALL-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ALL-ALL-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-SEXO-1-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-SEXO-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-SEXO-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-SEXO-1-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-SEXO-1-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-SEXO-1-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-SEXO-2-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-SEXO-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-SEXO-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-SEXO-2-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-SEXO-2-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-SEXO-2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-18-29-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-18-29-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-18-29-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-30-44-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-30-44-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-30-44-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-45-59-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-45-59-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-45-59-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-60-MAS-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-60-MAS-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-EDAD-60-MAS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-SECUNDARIA-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-SECUNDARIA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-SUPERIOR-DEN-W
+  tipo: flotante
+  unidad: denominador ponderado
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-ESCOLARIDAD-SUPERIOR-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-ENCIG-SERIE-2015-FILAS-EVENTOS
+  tipo: entero
+  unidad: filas de sec_7 leídas
+- id: RESULT-ENCIG-SERIE-2015-JOIN-SIN-DEMOGRAFIA
+  tipo: entero
+  unidad: filas del universo sin match en residentes
+- id: RESULT-ENCIG-SERIE-2015-DIGITAL-N-UNIVERSO
+  tipo: entero
+  unidad: filas del universo N_TRA=01 con P7_3 en {1,2,4,5,6}
+- id: RESULT-ENCIG-SERIE-2015-P7-3-EXCLUIDAS
+  tipo: entero
+  unidad: N_TRA=01 excluidas por P7_3 en {3,7,8,9,blanco}
+- id: RESULT-ENCIG-SERIE-2015-LLAVE-JOIN
+  tipo: texto
+  unidad: llave sec_7 -> residentes usada
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
