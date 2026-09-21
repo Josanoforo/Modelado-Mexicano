@@ -108,6 +108,20 @@ TABLA_IDENTIDAD_ENIF2021_FORMALIDAD = TABLAS_IDENTIDAD[2]
 # recalculan aquí. Si el CALC no está sellado, las dos columnas salen
 # vacías -- el marcador nunca estima.
 CALC_ERROR_PISO = CORRIDA0_DIR / "CALC-PISO-PERSISTENCIA-ERROR-0001"
+# ACTO GEN2-ARBITRO-MARGINALES-1 (21/sep/2026): la REALIDAD R de la ola
+# nueva medida en GEN2 (cadena completa), celda por celda, enlazada al piso
+# por la tabla de identidad propia (`cell_id_piso` -> `cell_id_R`). Donde el
+# R GEN2 está sellado, la fila deja de ser `SOLO-PISO` (R GEN1 del yaml) y
+# pasa a `EVALUADA`: R, IC y las dos columnas de error se LEEN de estos CALC
+# -- el marcador sigue sin estimar nada. El R GEN1 del yaml queda como
+# historia (E.1); `CALC-ARBITRO-PERSISTENCIA-ERROR-0001` cotejó los 57 a 5e-7.
+TABLA_ARBITRO_MARGINALES = PREREG / "ARBITRO-MARGINALES-metadatos-v1_0.tsv"
+CALC_ARBITRO_R = [
+    "CALC-ARBITRO-MARGINALES-ENIF2024-0001",
+    "CALC-ARBITRO-MARGINALES-ENVIPE2025-0001",
+    "CALC-ARBITRO-MARGINALES-ENCIG2025-0001",
+]
+CALC_ERROR_ARBITRO = CORRIDA0_DIR / "CALC-ARBITRO-PERSISTENCIA-ERROR-0001"
 ESTIMADORES_YAML = RAIZ / "milpa" / "estimadores-por-segmento.yaml"
 
 # Los cuatro CALC-PISOS-* que el veto de mesa 19/sep/2026 (objeto
@@ -592,6 +606,65 @@ def _error_de_piso_por_celda(idx_por_cell_id: dict) -> dict:
     return res
 
 
+def _r_gen2_por_piso() -> dict:
+    """`cell_id_piso` -> {cell_id_R, calc, punto, ic95inf, ic95sup} SÓLO para
+    las celdas cuyo R GEN2 está SELLADO en uno de `CALC_ARBITRO_R` (se nombran,
+    no se globbean). Sin tabla o sin sello: vacío, y la fila sigue SOLO-PISO."""
+    if not TABLA_ARBITRO_MARGINALES.exists():
+        return {}
+    sellados: dict[str, tuple] = {}
+    for nombre in CALC_ARBITRO_R:
+        rj = CORRIDA0_DIR / nombre / "resultados.json"
+        if not rj.exists():
+            continue
+        try:
+            res = json.loads(rj.read_text(encoding="utf-8")).get("resultados", {})
+        except (OSError, json.JSONDecodeError):
+            continue
+        for k, v in (res or {}).items():
+            sellados.setdefault(k, (v, nombre))
+    out = {}
+    with TABLA_ARBITRO_MARGINALES.open(encoding="utf-8", newline="") as fh:
+        for f in csv.DictReader(fh, delimiter="\t"):
+            rid = f["cell_id_R"]
+            base = rid[:-2] if rid.endswith("-P") else rid
+            if any(i not in sellados for i in (rid, base + "-IC-LO", base + "-IC-HI")):
+                continue
+            out[f["cell_id_piso"]] = {
+                "cell_id_R": rid, "calc": sellados[rid][1],
+                "punto": sellados[rid][0], "ic95inf": sellados[base + "-IC-LO"][0],
+                "ic95sup": sellados[base + "-IC-HI"][0],
+            }
+    return out
+
+
+def _error_gen2() -> dict:
+    """RESULT sellados de `CALC-ARBITRO-PERSISTENCIA-ERROR-0001` (vacío si no
+    está sellado: las columnas salen vacías, nunca estimadas aquí)."""
+    rj = CALC_ERROR_ARBITRO / "resultados.json"
+    if not rj.exists():
+        return {}
+    try:
+        res = json.loads(rj.read_text(encoding="utf-8")).get("resultados", {})
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return res if isinstance(res, dict) else {}
+
+
+def id_error_gen2(cell_id_R: str) -> str:
+    """`RESULT-ARBITRO-ENIF2024-D9-SEXO-1-P` -> `RESULT-ARBERR-ENIF2024-D9-SEXO-1`
+    (el prefijo que `CALC-ARBITRO-PERSISTENCIA-ERROR-0001` usa por celda)."""
+    base = cell_id_R[:-2] if cell_id_R.endswith("-P") else cell_id_R
+    return "RESULT-ARBERR-" + base[len("RESULT-ARBITRO-"):]
+
+
+def _columnas_error_gen2(res: dict, cell_id_R: str) -> tuple:
+    if not res:
+        return ("", "")
+    b = id_error_gen2(cell_id_R)
+    return (res.get(f"{b}-D-PP", ""), res.get(f"{b}-CLASE", ""))
+
+
 def _columnas_error(res: dict, tabla: dict, eje: str, categoria: str) -> tuple:
     if not res or not tabla:
         return ("", "")
@@ -618,6 +691,8 @@ def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
     suc = sucesiones_identidad()
     res = _resultados_sellados()
     err = _error_de_piso_por_celda(idx)
+    r_gen2 = _r_gen2_por_piso()
+    err_gen2 = _error_gen2()
     por_cell_id = {f["cell_id"]: f for f in lee_tabla_identidad()}
     filas = []
     n_ejes = 0
@@ -668,8 +743,22 @@ def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
 
                 sufijo = f"{desenlace}::" if desenlace else ""
                 celda_id = f"MARG::{r['id']}::{sufijo}{eje}::{categoria}"
+                # R por defecto: el árbitro GEN1 del yaml (historia, E.1).
+                r_val = c.get("p")
+                r_lo, r_hi = (c.get("ic95") or [None, None])[:2]
+                fuente = f"{PROPUESTA_OLA5.name}:{r['id']}"
                 error_pp, clase = _columnas_error(
                     err, por_cell_id.get(resultado_id, {}), eje, categoria)
+                # ACTO GEN2-ARBITRO-MARGINALES-1: si el R GEN2 de esta celda
+                # está sellado, manda -- la celda queda EVALUADA (piso t-1
+                # contra realidad medida con cadena completa) y el error se
+                # lee del CALC de adjudicación GEN2, no del de GEN1.
+                r2 = r_gen2.get(resultado_id) if estado == "SOLO-PISO" else None
+                if r2 is not None:
+                    estado = "EVALUADA"
+                    r_val, r_lo, r_hi = r2["punto"], r2["ic95inf"], r2["ic95sup"]
+                    fuente = f"{r2['calc']}/{r2['cell_id_R']}"
+                    error_pp, clase = _columnas_error_gen2(err_gen2, r2["cell_id_R"])
                 filas.append({
                     "celda_id": celda_id,
                     "tipo": "MARGINAL",
@@ -686,8 +775,7 @@ def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
                     "piso_fuente": piso_fuente,
                     "error_piso_pp": error_pp,
                     "clase_persistencia": clase,
-                    "R": c.get("p"), "R_ic95inf": (c.get("ic95") or [None, None])[0],
-                    "R_ic95sup": (c.get("ic95") or [None, None])[1],
+                    "R": r_val, "R_ic95inf": r_lo, "R_ic95sup": r_hi,
                     # El piso NO es M: acota a los retadores, no identifica
                     # nada y no sustituye a R en la ola que R ya midió
                     # (firma de mesa, GEN2-MARCADOR-PISOS-ENLACE-1). M queda
@@ -697,7 +785,7 @@ def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
                     "resultado_id": resultado_id,
                     "decision_ref": "veto:pisos-866" if vetados else "",
                     "emisor_vs_arbitro": "N/A-MARGINAL",
-                    "fuente": f"{PROPUESTA_OLA5.name}:{r['id']}",
+                    "fuente": fuente,
                 })
     universo = {"n_reglas_ejes": len(reglas_ejes), "n_ejes": n_ejes, "n_celdas": len(filas)}
     return filas, universo
@@ -988,6 +1076,10 @@ def deriva() -> dict:
     n_con_valor_anadido = 0  # M vs R: hoy sin comparación legítima (FP-383)
     n_adoptadas = sum(1 for f in cruce_adoptadas if f["estado"] == "ADOPTADO-POR-FIRMA")
     n_sin_piso = sum(1 for f in todas if f["estado"] == "SIN-PISO")
+    # ACTO GEN2-ARBITRO-MARGINALES-1: marginales con piso y R GEN2 sellado
+    # (EVALUADA) frente a las que siguen con R GEN1 del yaml (SOLO-PISO).
+    n_marg_evaluadas = sum(1 for f in marginales if f["estado"] == "EVALUADA")
+    n_marg_solo_piso = sum(1 for f in marginales if f["estado"] == "SOLO-PISO")
 
     resumen = {
         "veto_pisos_activo": veto_activo,
@@ -1003,6 +1095,8 @@ def deriva() -> dict:
         "valor_anadido": n_con_valor_anadido,
         "estimador_adoptado": n_adoptadas,
         "sin_piso": n_sin_piso,
+        "marginales_evaluadas_gen2": n_marg_evaluadas,
+        "marginales_solo_piso": n_marg_solo_piso,
         "total_filas": len(todas),
     }
     return {"filas": todas, "resumen": resumen, "decisiones": decisiones}

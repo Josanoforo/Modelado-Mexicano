@@ -1,0 +1,954 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ARBITRO-PERSISTENCIA-ERROR-0001
+spec_md: ../../../forense/prereg-caja/ARBITRO-PERSISTENCIA-ERROR-spec-v1_0.md
+spec_md_sha256: f6156a01f3876a9601a49987e0021c111a1e7d05167e08ccd34972e8a19c20e9
+script: data/corrida0/CALC-ARBITRO-PERSISTENCIA-ERROR-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: ERROR-DE-PISO-DE-PERSISTENCIA-VS-R-GEN2
+  cuenta_gen2: SI
+  cuenta_gen2_nota: propuesto por el encargo GEN2-ARBITRO-MARGINALES-1 §2 (aritmética entre sellados GEN2, cadena completa); no adopta
+  exposicion_historica: DERIVADO-DE-SELLADOS; PROSPECTIVA (piso sellado antes de medir R)
+  acto: GEN2-ARBITRO-MARGINALES-1
+inputs:
+  - {id: ARBITRO-MARGINALES-METADATOS, origen: repo, ruta: forense/prereg-caja/ARBITRO-MARGINALES-metadatos-v1_0.tsv, sha256: 80af0c370bc1bfd987f78a177ead490c59434e833ae98bc7ff7eac46be961f3b}
+  - {id: ARBITRO-OLA5-YAML, origen: repo, ruta: milpa/tramite-ola5-propuesta-v0.yaml, sha256: 93dfa3f9aab250dabf9cbe8c93ccef2012cb763c5367d023f24dbfbd867fbc8f}
+  - {id: R-ENIF2024, origen: repo, ruta: data/corrida0/CALC-ARBITRO-MARGINALES-ENIF2024-0001/resultados.json, sha256: 552aef42c92cc70ded24bebb4c3e295739b95b346644e624cd22c8392916ecc4, sello_sha256: 4d1aa2d10c3b353964e2d456fc0d817c1fb5ee331ef33c145e9c803f48e52d5e}
+  - {id: R-ENVIPE2025, origen: repo, ruta: data/corrida0/CALC-ARBITRO-MARGINALES-ENVIPE2025-0001/resultados.json, sha256: 732567d2c201f029c1e979c6f45f0b641081eb2d220da4f36cf9b580e5960694, sello_sha256: 48a122149a28dd94990541267b5d5087f752a83c4f32b82503efb84396aa2725}
+  - {id: R-ENCIG2025, origen: repo, ruta: data/corrida0/CALC-ARBITRO-MARGINALES-ENCIG2025-0001/resultados.json, sha256: 5a5272d7ef0c27f98e44d26f8e86d57ea0223fe8e4880f7b5f6601521e80d317, sello_sha256: 488033c779aee8c310fc08a5049ab3bddb79e7c850b08689590338103f9cc2cc}
+  - {id: PISO-ENIF2021-EJES, origen: repo, ruta: data/corrida0/CALC-PISOS-ENIF2021-EJES-0003/resultados.json, sha256: 3348feb66621470e07b0ad1e97d0081a4533d9b155573cd59fc45540323c17a0, sello_sha256: 795b960b5d23ea9a0ce801cd321f7537664d6c4f1ee9b0e3c59ae1f00524c707}
+  - {id: PISO-ENIF2021-FORMALIDAD, origen: repo, ruta: data/corrida0/CALC-PISOS-ENIF2021-FORMALIDAD-0001/resultados.json, sha256: 2b5f1274f3b700900e40366e333cff1a820b6db7aaded0a68a0b81ac95e6e4ff, sello_sha256: 8abf3abb9fce9b2c909f4baaceee19d1fe62762c86fbcd6f5b60c675c405c72b}
+  - {id: PISO-ENVIPE2024-EJES, origen: repo, ruta: data/corrida0/CALC-PISOS-ENVIPE2024-EJES-0002/resultados.json, sha256: a898a3cccfb3b63cc2055cc3c12f8edf4863a9f116466f74d5235a0d8c5e217f, sello_sha256: 393c418420d52363e5a659d568f00689e7d36271034f64dcefdc91b772f6fd66}
+  - {id: PISO-ENCIG2023-EJES, origen: repo, ruta: data/corrida0/CALC-PISOS-ENCIG2023-EJES-0002/resultados.json, sha256: bd13a97b01f2d1251c54ddd3ff8c2d1ab5d16f68bc77f2b4041c1b617ee78568, sello_sha256: 548ea868ee45fe7477ba00c7b793c62e68f325390344c4c38d0b0f31787de352}
+  - {id: SELLADO-C2IC-ENIF2024, origen: repo, ruta: data/corrida0/CALC-C2-COMPUESTO-IC-ENIF2024-0001/resultados.json, sha256: 6d3e449ed3156410777f49fac06ad0d3faecf9397bfa60eb9430117ab993fcb7, sello_sha256: 12781406159a3638387597cec5d1f73f909c1aaf30ba2f588cdbee2e09baeb17}
+  - {id: SELLADO-GOB-EXE-2025, origen: repo, ruta: data/corrida0/CALC-GOB-DIGITAL-EXE-EMISIONES-0002/resultados.json, sha256: a97fee3e27cb17be3da5798fc095d886985dad8015d7a9a1a03836856750919a, sello_sha256: c04598b22f310fd3de1e8aaee6a84fc9c8d334aab51ca960686564e1a82c8eb3}
+variables:
+  - {archivo: ARBITRO-MARGINALES-metadatos-v1_0.tsv, variable: cell_id_R, rol: llave-R}
+  - {archivo: ARBITRO-MARGINALES-metadatos-v1_0.tsv, variable: cell_id_piso, rol: llave-piso}
+  - {archivo: ARBITRO-MARGINALES-metadatos-v1_0.tsv, variable: calc_piso, rol: fuente-del-piso}
+  - {archivo: ARBITRO-MARGINALES-metadatos-v1_0.tsv, variable: marcador_celda_id, rol: llave-al-yaml-GEN1}
+  - {archivo: ARBITRO-MARGINALES-metadatos-v1_0.tsv, variable: instrumento, rol: agrupacion}
+  - {archivo: ARBITRO-MARGINALES-metadatos-v1_0.tsv, variable: axis, rol: agrupacion}
+  - {archivo: resultados.json, variable: -P/-IC-LO/-IC-HI, rol: punto-e-IC95-de-R-y-de-piso}
+  - {archivo: tramite-ola5-propuesta-v0.yaml, variable: p, rol: p-GEN1}
+universo: "Las 57 celdas marginales enlazadas piso<->R por ARBITRO-MARGINALES-metadatos-v1_0.tsv (SOLO-PISO del marcador en 55c8d57c): ENIF 2024 x32, ENVIPE 2025 x15, ENCIG 2025 x10."
+filtros: "Ninguno: toda celda enlazada entra; un lado ausente hace fallar la corrida (no se inventa). Nunca se agrega entre encuestas."
+ponderador: NO-APLICA
+transformacion: "d = (R - piso)*100 pp; ee por simetria normal desde cada IC95 sellado, olas independientes; IC de d = d +/- 1.959964*ee_d; CLASE PERSISTE/CAMBIA por IC de d; R-EN-IC-PISO DENTRO/FUERA por punto R en IC95 del piso; R - p_GEN1 con cotejo a 5e-7; R - sellado_piloto con cotejo a 1e-6/1e-3; agregados por encuesta, encuesta x desenlace, encuesta x eje con cobertura binomial de Wilson."
+estimando: "Error de la persistencia t-1 por celda marginal contra la realidad GEN2 de la ola nueva, y cobertura del IC95 del piso; hallazgo de discrepancia contra el arbitro GEN1; cita de los marginales ya sellados por pilotos."
+seed: {aplica: false, motivo: procedimiento determinista, resta y cuenta valores ya estimados}
+parametros:
+  z95: 1.959964
+  tol_gen1: 5.0e-7
+  tol_sellado: 1.0e-6
+  tol_sellado_laxa: 1.0e-3
+  agregacion: por encuesta, encuesta x desenlace, encuesta x eje; NUNCA entre encuestas (persona/delito/tramite; brechas 3/1/2 anios)
+dependencias_materiales: [yaml]
+resultados:
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-1-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-1-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-1-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-1-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-1-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-1-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-1-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-1-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-1-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-1-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-1-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-1-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-1-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-2-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-2-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-2-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-2-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-2-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-2-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-2-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-2-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-2-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-2-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-2-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-2-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-SEXO-2-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-18-29-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-18-29-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-18-29-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-18-29-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-18-29-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-18-29-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-18-29-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-18-29-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-18-29-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-18-29-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-18-29-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-18-29-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-18-29-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-30-44-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-30-44-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-30-44-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-30-44-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-30-44-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-30-44-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-30-44-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-30-44-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-30-44-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-30-44-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-30-44-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-30-44-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-30-44-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-45-59-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-45-59-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-45-59-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-45-59-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-45-59-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-45-59-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-45-59-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-45-59-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-45-59-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-45-59-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-45-59-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-45-59-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-45-59-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-60-MAS-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-60-MAS-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-60-MAS-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-60-MAS-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-60-MAS-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-60-MAS-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-60-MAS-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-60-MAS-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-60-MAS-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-60-MAS-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-60-MAS-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-60-MAS-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-EDAD-60-MAS-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-HASTA-PRIMARIA-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SECUNDARIA-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-MEDIA-SUPERIOR-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-ESCOLARIDAD-SUPERIOR-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-MENOR-DE-15-000-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-LOCALIDAD-15-000-Y-MAS-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-SIN-CUENTA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-SIN-CUENTA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-SIN-CUENTA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-SIN-CUENTA-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-SIN-CUENTA-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-SIN-CUENTA-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-SIN-CUENTA-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-SIN-CUENTA-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-SIN-CUENTA-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-SIN-CUENTA-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-SIN-CUENTA-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-SIN-CUENTA-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-SIN-CUENTA-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-CON-CUENTA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-CON-CUENTA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-CON-CUENTA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-CON-CUENTA-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-CON-CUENTA-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-CON-CUENTA-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-CON-CUENTA-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-CON-CUENTA-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-CON-CUENTA-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-CON-CUENTA-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-CON-CUENTA-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-CON-CUENTA-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-D9-CUENTA-CON-CUENTA-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-1-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-SEXO-2-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-18-29-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-30-44-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-45-59-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-EDAD-60-MAS-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENIF2024-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-SEXO-1-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-SEXO-1-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-SEXO-1-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-SEXO-1-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-SEXO-1-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-SEXO-1-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-SEXO-1-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-SEXO-1-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-SEXO-2-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-SEXO-2-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-SEXO-2-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-SEXO-2-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-SEXO-2-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-SEXO-2-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-SEXO-2-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-SEXO-2-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-18-29-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-18-29-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-18-29-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-18-29-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-18-29-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-18-29-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-18-29-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-18-29-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-18-29-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-18-29-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-18-29-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-18-29-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-18-29-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-30-44-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-30-44-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-30-44-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-30-44-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-30-44-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-30-44-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-30-44-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-30-44-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-30-44-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-30-44-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-30-44-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-30-44-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-30-44-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-45-59-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-45-59-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-45-59-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-45-59-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-45-59-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-45-59-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-45-59-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-45-59-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-45-59-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-45-59-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-45-59-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-45-59-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-45-59-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-60-MAS-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-60-MAS-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-60-MAS-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-60-MAS-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-60-MAS-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-60-MAS-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-60-MAS-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-60-MAS-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-60-MAS-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-60-MAS-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-60-MAS-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-60-MAS-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-EDAD-60-MAS-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SECUNDARIA-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-SELLADO-P, tipo: proporcion, unidad: "marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-R-MENOS-SELLADO, tipo: flotante, unidad: "R menos el sellado del piloto, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-SELLADO-DELTA-IC-MAX, tipo: flotante, unidad: "máx |Δ| en los límites del IC95, en proporción"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-SELLADO-COTEJO, tipo: texto, unidad: "COINCIDE (≤1e-6) | COINCIDE-1E-3 (≤1e-3) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENCIG2025-DIGITAL-ESCOLARIDAD-SUPERIOR-SELLADO-FUENTE, tipo: texto, unidad: "id del RESULT sellado citado"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-SEXO-1-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-SEXO-1-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-SEXO-1-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-SEXO-1-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-SEXO-1-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-SEXO-1-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-SEXO-1-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-SEXO-1-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-SEXO-2-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-SEXO-2-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-SEXO-2-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-SEXO-2-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-SEXO-2-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-SEXO-2-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-SEXO-2-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-SEXO-2-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-18-29-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-18-29-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-18-29-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-18-29-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-18-29-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-18-29-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-18-29-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-18-29-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-30-44-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-30-44-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-30-44-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-30-44-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-30-44-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-30-44-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-30-44-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-30-44-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-45-59-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-45-59-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-45-59-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-45-59-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-45-59-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-45-59-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-45-59-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-45-59-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-60-MAS-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-60-MAS-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-60-MAS-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-60-MAS-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-60-MAS-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-60-MAS-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-60-MAS-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-EDAD-60-MAS-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-SECUNDARIA-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-SECUNDARIA-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-SECUNDARIA-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-SECUNDARIA-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-SECUNDARIA-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-SECUNDARIA-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-SECUNDARIA-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-SECUNDARIA-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-SUPERIOR-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-SUPERIOR-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-SUPERIOR-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-SUPERIOR-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-SUPERIOR-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-SUPERIOR-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-SUPERIOR-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-ESCOLARIDAD-SUPERIOR-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-RURAL-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-RURAL-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-RURAL-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-RURAL-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-RURAL-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-RURAL-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-RURAL-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-RURAL-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-COMPLEMENTO-URBANO-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-COMPLEMENTO-URBANO-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-COMPLEMENTO-URBANO-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-COMPLEMENTO-URBANO-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-COMPLEMENTO-URBANO-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-COMPLEMENTO-URBANO-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-COMPLEMENTO-URBANO-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-COMPLEMENTO-URBANO-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-URBANO-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-URBANO-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-URBANO-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-URBANO-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-URBANO-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-URBANO-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-URBANO-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENVIPE2025-EVASION-DOMINIO-URBANO-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-D-PP, tipo: flotante, unidad: "puntos porcentuales (R menos piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-D-IC-LO-PP, tipo: flotante, unidad: "límite inferior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-D-IC-HI-PP, tipo: flotante, unidad: "límite superior IC95 de d, pp"}
+  - {id: RESULT-ARBERR-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-CLASE, tipo: texto, unidad: "PERSISTE | CAMBIA"}
+  - {id: RESULT-ARBERR-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-R-EN-IC-PISO, tipo: texto, unidad: "DENTRO | FUERA (punto R en IC95 del piso)"}
+  - {id: RESULT-ARBERR-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-GEN1-P, tipo: proporcion, unidad: "p del árbitro GEN1 (yaml), misma celda"}
+  - {id: RESULT-ARBERR-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-R-MENOS-GEN1, tipo: flotante, unidad: "R menos p GEN1, en proporción"}
+  - {id: RESULT-ARBERR-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-GEN1-COTEJO, tipo: texto, unidad: "COINCIDE (|Δ| ≤ 5e-7) | DISCREPA"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-D9-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-D9-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-D9-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-D9-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-D9-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-D9-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-D9-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-D9-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-D9-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-D9-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-D9-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-D9-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-SEXO-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-SEXO-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-SEXO-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-SEXO-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-SEXO-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-SEXO-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-SEXO-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-SEXO-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-SEXO-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-SEXO-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-SEXO-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-SEXO-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-EDAD-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-EDAD-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-EDAD-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-EDAD-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-EDAD-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-EDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-EDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-EDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-EDAD-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-EDAD-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-EDAD-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-EDAD-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-ESCOLARIDAD-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-ESCOLARIDAD-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-ESCOLARIDAD-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-ESCOLARIDAD-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-ESCOLARIDAD-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-ESCOLARIDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-ESCOLARIDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-ESCOLARIDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-ESCOLARIDAD-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-ESCOLARIDAD-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-ESCOLARIDAD-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-ESCOLARIDAD-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-LOCALIDAD-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-LOCALIDAD-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-LOCALIDAD-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-LOCALIDAD-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-LOCALIDAD-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-LOCALIDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-LOCALIDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-LOCALIDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-LOCALIDAD-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-LOCALIDAD-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-LOCALIDAD-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-LOCALIDAD-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-FORMALIDAD-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-FORMALIDAD-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-FORMALIDAD-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-FORMALIDAD-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-FORMALIDAD-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-FORMALIDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-FORMALIDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-FORMALIDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-FORMALIDAD-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-FORMALIDAD-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-FORMALIDAD-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-FORMALIDAD-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-CUENTA-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-CUENTA-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-CUENTA-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-CUENTA-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-CUENTA-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-CUENTA-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-CUENTA-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-CUENTA-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-CUENTA-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-CUENTA-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-CUENTA-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-EJE-CUENTA-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-INFORMAL-CUALQUIERA-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-INFORMAL-CUALQUIERA-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-INFORMAL-CUALQUIERA-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-INFORMAL-CUALQUIERA-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-INFORMAL-CUALQUIERA-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-INFORMAL-CUALQUIERA-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-INFORMAL-CUALQUIERA-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-INFORMAL-CUALQUIERA-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-INFORMAL-CUALQUIERA-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-INFORMAL-CUALQUIERA-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-INFORMAL-CUALQUIERA-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENIF2024-DESENLACE-INFORMAL-CUALQUIERA-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-DESENLACE-DIGITAL-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-DESENLACE-DIGITAL-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-DESENLACE-DIGITAL-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-DESENLACE-DIGITAL-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-DESENLACE-DIGITAL-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-DESENLACE-DIGITAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-DESENLACE-DIGITAL-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-DESENLACE-DIGITAL-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-DESENLACE-DIGITAL-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-DESENLACE-DIGITAL-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-DESENLACE-DIGITAL-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-DESENLACE-DIGITAL-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-SEXO-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-SEXO-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-SEXO-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-SEXO-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-SEXO-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-SEXO-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-SEXO-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-SEXO-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-SEXO-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-SEXO-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-SEXO-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-SEXO-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-EDAD-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-EDAD-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-EDAD-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-EDAD-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-EDAD-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-EDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-EDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-EDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-EDAD-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-EDAD-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-EDAD-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-EDAD-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-ESCOLARIDAD-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-ESCOLARIDAD-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-ESCOLARIDAD-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-ESCOLARIDAD-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-ESCOLARIDAD-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-ESCOLARIDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-ESCOLARIDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-ESCOLARIDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-ESCOLARIDAD-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-ESCOLARIDAD-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-ESCOLARIDAD-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENCIG2025-EJE-ESCOLARIDAD-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-EVASION-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-EVASION-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-EVASION-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-EVASION-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-EVASION-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-EVASION-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-EVASION-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-EVASION-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-EVASION-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-EVASION-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-EVASION-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-EVASION-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-SEXO-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-SEXO-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-SEXO-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-SEXO-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-SEXO-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-SEXO-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-SEXO-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-SEXO-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-SEXO-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-SEXO-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-SEXO-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-SEXO-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-EDAD-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-EDAD-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-EDAD-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-EDAD-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-EDAD-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-EDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-EDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-EDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-EDAD-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-EDAD-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-EDAD-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-EDAD-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-ESCOLARIDAD-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-ESCOLARIDAD-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-ESCOLARIDAD-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-ESCOLARIDAD-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-ESCOLARIDAD-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-ESCOLARIDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-ESCOLARIDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-ESCOLARIDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-ESCOLARIDAD-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-ESCOLARIDAD-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-ESCOLARIDAD-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-ESCOLARIDAD-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-DOMINIO-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-DOMINIO-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-DOMINIO-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-DOMINIO-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-DOMINIO-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-DOMINIO-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-DOMINIO-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-DOMINIO-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-DOMINIO-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-DOMINIO-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-DOMINIO-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-DOMINIO-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-DENUNCIA-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-DENUNCIA-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-DENUNCIA-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-DENUNCIA-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-DENUNCIA-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-DENUNCIA-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-DENUNCIA-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-DENUNCIA-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-DENUNCIA-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-DENUNCIA-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-DENUNCIA-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-DESENLACE-DENUNCIA-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-COBERTURA-SEGURO-N, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-COBERTURA-SEGURO-D-MEDIO-PP, tipo: flotante, unidad: "media de d, pp (error medio con signo)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-COBERTURA-SEGURO-MAE-PP, tipo: flotante, unidad: "media de |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-COBERTURA-SEGURO-MAX-ABS-PP, tipo: flotante, unidad: "máx |d|, pp"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-COBERTURA-SEGURO-N-DENTRO, tipo: entero, unidad: "celdas con R dentro del IC95 del piso"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-COBERTURA-SEGURO-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-COBERTURA-SEGURO-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson, inferior"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-COBERTURA-SEGURO-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson, superior"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-COBERTURA-SEGURO-N-PERSISTE, tipo: entero, unidad: "celdas PERSISTE (IC de d incluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-COBERTURA-SEGURO-N-CAMBIA, tipo: entero, unidad: "celdas CAMBIA (IC de d excluye 0)"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-COBERTURA-SEGURO-GEN1-N-COINCIDE, tipo: entero, unidad: "celdas cuyo R coincide con el p GEN1 del yaml a 5e-7"}
+  - {id: RESULT-ARBERR-AGG-ENVIPE2025-EJE-COBERTURA-SEGURO-GEN1-MAX-ABS, tipo: flotante, unidad: "máx |R − p GEN1|, en proporción"}
+  - {id: RESULT-ARBERR-G-N-CELDAS, tipo: entero, unidad: "celdas enlazadas (SOLO-PISO en 55c8d57c)"}
+  - {id: RESULT-ARBERR-G-N-CON-SELLADO-PILOTO, tipo: entero, unidad: "celdas con marginal de la ola nueva ya sellado por un piloto"}
+  - {id: RESULT-ARBERR-G-ROTULO, tipo: texto, unidad: "rótulo de la adjudicación"}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: determinista sin remuestreo; re-derivacion bit a bit salvo redondeo de punto flotante
