@@ -1,0 +1,67 @@
+job	paso	n_corridas_completas	n_fail	ultimo_fail	fail_en_pr	fail_en_push
+check	Todos los grupos requeridos terminaron correctamente	163	51	2026-09-21T14:13:55Z	41	5
+check	Suite de verificación (modo línea base — verde = no empeoraste)	146	45	2026-09-20T01:24:21Z	44	1
+suite	Suite de verificación (modo línea base — verde = no empeoraste)	140	15	2026-09-21T04:30:01Z	13	2
+guardias	Guardias huérfanas — censo + invocador correcto por archivo (bloqueante)	94	13	2026-09-21T06:28:30Z	12	1
+suite	Transporte paralelo, compuerta y semántica del baseline (bloqueante)	125	4	2026-09-21T06:42:03Z	4	0
+adicionales	Checkout sin marketplace (repo público — cero descargas de action)	160	1	2026-09-21T04:29:29Z	1	0
+adicionales	métrica rectora — celdas_validadas en la primera línea del tablero (bloqueante)	53	1	2026-09-21T03:57:54Z	1	0
+check	consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)	101	1	2026-09-19T17:22:25Z	1	0
+adicionales	Inyección temporal exclusiva de la prueba de compuerta	3	1	2026-09-20T02:03:03Z	0	0
+suite	Inyección temporal exclusiva de la prueba de compuerta	3	1	2026-09-20T02:03:01Z	0	0
+preflight-calc	Set up job	5	0		0	0
+preflight-calc	Checkout con la base (clon propio — D-23, no se toca el de otro job)	5	0		0	0
+preflight-calc	Intérprete del runner (crudo, para que quede en el log)	5	0		0	0
+preflight-calc	Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)	5	0		0	0
+preflight-calc	Prueba por mutación del chequeo (bloqueante — D-21, el acto cablea su test)	5	0		0	0
+preflight-calc	preflight sobre los CALC sin sello que este cambio toca (bloqueante)	5	0		0	0
+preflight-calc	Complete job	5	0		0	0
+suite	Set up job	162	0		0	0
+suite	Checkout sin marketplace (repo público — cero descargas de action)	160	0		0	0
+suite	Intérprete del runner (crudo, para que quede en el log)	160	0		0	0
+suite	Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)	160	0		0	0
+suite	Complete job	162	0		0	0
+adicionales	Set up job	162	0		0	0
+adicionales	Intérprete del runner (crudo, para que quede en el log)	159	0		0	0
+adicionales	Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)	159	0		0	0
+adicionales	svystat.py — validación independiente (bloqueante)	159	0		0	0
+adicionales	sidecars de forense/encargos y forense/notas — sello de cuerpo (bloqueante)	13	0		0	0
+adicionales	emite_m — resolver de ola_calibracion por conducta (bloqueante)	156	0		0	0
+adicionales	Baseline temporal — corte y compatibilidad del estimando	156	0		0	0
+adicionales	T-CRON — huella del cron y no-regresión de baseline (bloqueante)	156	0		0	0
+adicionales	adq_config.py — lector de data/adq-config.yaml (bloqueante)	156	0		0	0
+adicionales	adq_doctor.py — clasificación de lock/crontab (bloqueante)	156	0		0	0
+adicionales	adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)	151	0		0	0
+adicionales	Fuentes financieras — unidades, faltantes y duplicados (bloqueante)	151	0		0	0
+adicionales	N34 — producto, costo y daño (bloqueante)	151	0		0	0
+adicionales	motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)	151	0		0	0
+adicionales	contrato sintético de C2 — piloto celda-D (bloqueante)	151	0		0	0
+adicionales	consumidor de celda-D — piloto 2, fila M05 derivada (bloqueante)	151	0		0	0
+adicionales	marcador por segmento — tabla derivada y guardias (bloqueante)	140	0		0	0
+adicionales	tubería de ids y union — T15 por mutación, guarda de salto de línea, gramática de FP (bloqueante)	30	0		0	0
+adicionales	comparabilidad por texto de crédito ENIF — forma de la tabla K1-K8 × 5 olas (bloqueante)	51	0		0	0
+adicionales	descargador por id de manifiesto — arnés HTTP local (bloqueante)	43	0		0	0
+adicionales	cargador de linaje — los tres caminos del id superado (bloqueante)	33	0		0	0
+adicionales	Complete job	162	0		0	0
+guardias	Set up job	102	0		0	0
+guardias	Checkout sin marketplace (repo público — cero descargas de action)	102	0		0	0
+guardias	Intérprete del runner (crudo, para que quede en el log)	102	0		0	0
+guardias	Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)	101	0		0	0
+guardias	Complete job	102	0		0	0
+check	Set up job	328	0		0	0
+check	Complete job	328	0		0	0
+check	Checkout sin marketplace (repo público — cero descargas de action)	164	0		0	0
+check	Intérprete del runner (crudo, para que quede en el log)	164	0		0	0
+check	Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)	163	0		0	0
+check	svystat.py — validación independiente (bloqueante)	101	0		0	0
+check	emite_m — resolver de ola_calibracion por conducta (bloqueante)	101	0		0	0
+check	Baseline temporal — corte y compatibilidad del estimando	101	0		0	0
+check	T-CRON — huella del cron y no-regresión de baseline (bloqueante)	101	0		0	0
+check	adq_config.py — lector de data/adq-config.yaml (bloqueante)	101	0		0	0
+check	adq_doctor.py — clasificación de lock/crontab (bloqueante)	101	0		0	0
+check	adq_investigacion.py — proyección de demanda no se queda atrás (bloqueante)	101	0		0	0
+check	Fuentes financieras — unidades, faltantes y duplicados (bloqueante)	101	0		0	0
+check	N34 — producto, costo y daño (bloqueante)	101	0		0	0
+check	motor ejecutable — procedencia→B→evaluar() sobre las celdas-D del disco (bloqueante)	101	0		0	0
+check	contrato sintético de C2 — piloto celda-D (bloqueante)	101	0		0	0
+check	marcador por segmento — tabla derivada y guardias (bloqueante)	69	0		0	0

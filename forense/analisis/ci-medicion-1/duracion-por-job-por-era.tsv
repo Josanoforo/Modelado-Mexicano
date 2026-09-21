@@ -1,0 +1,14 @@
+era	job	n	mediana_s	p90_s
+ERA1-monolitico (un solo job check, hasta 20/sep ~02:00)	check	166	197.0	337.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	suite	61	168.0	175.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	adicionales	61	154.0	161.0
+ERA2-split-3job (suite+adicionales+check, sin guardias)	check	61	3.0	4.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	adicionales	97	165.0	220.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	suite	97	121.0	182.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	guardias	97	50.0	58.0
+ERA3-mas-guardias (suite+adicionales+guardias+check)	check	97	3.0	4.0
+ERA4-actual (+preflight-calc, desde PR #948)	suite	5	204.0	207.0
+ERA4-actual (+preflight-calc, desde PR #948)	adicionales	5	167.0	217.0
+ERA4-actual (+preflight-calc, desde PR #948)	guardias	5	57.0	60.0
+ERA4-actual (+preflight-calc, desde PR #948)	preflight-calc	5	14.0	15.0
+ERA4-actual (+preflight-calc, desde PR #948)	check	5	3.0	4.0
