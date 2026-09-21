@@ -3039,6 +3039,19 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-CUADERNO-DE-MESA-1, 21/sep/2026. El cuaderno de mesa CITA
+    # VERBATIM dos líneas de `milpa/src/motor.py` (`:20` y `:129`) porque
+    # uno de sus renglones es, precisamente, que esas dos líneas citan
+    # `BARRIDO-2` donde hoy correspondería `ADR-531`. El `E0` pelado que el
+    # regex ve sale de esa cita -- «la ley de mesa vigente lo prohíbe en E0
+    # y toda calibración E1+ espera el cierre de BARRIDO-2» -- y es la capa
+    # del esquema theta ya existente, no un rótulo que este acto acuñe.
+    # Recortar la cita para complacer el test destruiría justo la evidencia
+    # que el renglón necesita: mesa tiene que leer qué dicen las líneas para
+    # decidir si vale pagar dos sellos de replay por corregirlas. Misma
+    # excepción de procedencia que los demás de esta lista. El rótulo propio
+    # de este acto SÍ va censado en `canon/registro-rotulos.tsv`.
+    "forense/encargos/CUADERNO-DE-MESA-2026-09-21.md",
     # ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1, 21/sep/2026. `canon/L0/
     # HISTORICO.md` es el contenido histórico congelado de la línea `L0`
     # (P-A) -- prosa verbatim de decenas de actos anteriores, sellada tal
