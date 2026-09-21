@@ -76,7 +76,12 @@ CELDAS_DIR = os.path.join(ROOT, "data", "curacion-registro", "celdas-d")
 
 TIPOS_ADJUDICACION = {"COMPARACION", "FALSACION", "CALIBRACION_CONJUNTA"}
 DOMINIOS = {"FIN", "MIG", "TEC", "CAP", "CUL", "SAL", "SEG", "TRA", "EST", "TIE"}
-UNIDADES_OBJETIVO = {"persona", "hogar", "establecimiento", "agregado_geografico"}
+UNIDADES_OBJETIVO = {"persona", "hogar", "establecimiento", "agregado_geografico", "evento"}
+# `evento`: firma de mesa 21/sep/2026 (FP-393, GEN2-TRAMITE-FIRMAS-3 §2 4.2
+# «a»), para estimandos cuyo denominador no es persona/hogar/establecimiento
+# ni agregado geográfico, sino el propio evento (p. ej. ENCIG trámite,
+# N_TRA=='01', ponderador FAC_TRA, llave (ID_TRA,NT_TIPO) sin deduplicar):
+# quien hizo doce trámites contribuye doce veces.
 ROLES = {"BASELINE", "CHALLENGER", "COMPLEMENTO", "BASELINE_INGENUO", "ENSAMBLE", "PISO"}
 DISENOS_DATOS = {
     "panel", "pseudo_panel", "transversal", "registro_administrativo",
@@ -385,6 +390,22 @@ def test_v06_rechaza_alteraciones_de_segmento():
     x = copy.deepcopy(base); x["adjudicacion_por_celda"][a]["decision_ref"] = "ADR-538"; casos.append(x)
     for caso in casos:
         assert errors_for(caso, "fixture")
+
+
+def test_unidad_objetivo_evento_es_valida():
+    """FP-393/GEN2-TRAMITE-FIRMAS-3 §2 4.2 (firma de mesa 21/sep/2026, 'a'):
+    `evento` entra a UNIDADES_OBJETIVO para estimandos cuyo denominador no es
+    persona/hogar/establecimiento/agregado_geografico sino el propio evento
+    (ENCIG trámite: quien hizo doce trámites contribuye doce veces)."""
+    ruta = os.path.join(CELDAS_DIR, "DIN.ahorro_solo_informal.enif2024.localidad_x_edad.yaml")
+    with open(ruta, encoding="utf-8") as handle:
+        base = yaml.safe_load(handle)["celda_d"]
+    caso = copy.deepcopy(base)
+    caso["unidad_objetivo"] = "evento"
+    assert not errors_for(caso, "fixture")
+    caso_invalido = copy.deepcopy(base)
+    caso_invalido["unidad_objetivo"] = "tramite"
+    assert errors_for(caso_invalido, "fixture")
 
 
 def test_v06_rechaza_candidato_distinto_de_la_firma_c2():

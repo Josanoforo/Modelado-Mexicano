@@ -22,13 +22,17 @@
 #   Vigentes también: F1-bis (FP-389, rejilla 60-96 y residuo fuera del universo)
 #   y F3 (quien congela no ejecuta).
 #
-# UNIDAD (FP-393 sigue ABIERTA): la regla `tramite.gobierno_digital.util_sin_coercion`
-# modela la conducta de una PERSONA que paga; el instrumento la observa por
-# TRÁMITE (sec_7, FAC_TRA) y el universo queda RESTRINGIDO A PAGOS DE LUZ
-# REALIZADOS, declarado (A-bis 4; spec §1). Se sigue el precedente de
+# UNIDAD (FP-393 FIRMADA 21/sep/2026, GEN2-TRAMITE-FIRMAS-3 §2 4.2, opción
+# «a»): `evento` entró a UNIDADES_OBJETIVO (tests/test_celdas_d.py). La regla
+# `tramite.gobierno_digital.util_sin_coercion` modela la conducta de una
+# PERSONA que paga; el instrumento la observa por TRÁMITE (sec_7, FAC_TRA) y
+# el universo queda RESTRINGIDO A PAGOS DE LUZ REALIZADOS, declarado (A-bis 4;
+# spec §1) -- quien hizo doce trámites contribuye doce veces: es un EVENTO, no
+# una persona. Se sigue el precedente de
 # `TRA.evade_norma.envipe2025.escolaridad_x_dominio` (unidad del modelo en
-# `unidad_objetivo`; unidad del dato en `universo_instrumento`). Si mesa firma
-# FP-393 con `evento`/`tramite` en el enum, este campo cambia en una línea.
+# `unidad_objetivo`; unidad del dato en `universo_instrumento`). No toca la
+# celda-D `TRA…` (delito, envipe2025): queda listada como pregunta aparte
+# (no se decide aquí qué unidad le corresponde).
 # ─────────────────────────────────────────────────────────────────────────────
 celda_d:
   id: GOB.gobierno_digital.encig2025.edad_x_escolaridad
@@ -36,7 +40,7 @@ celda_d:
   tipo_adjudicacion: COMPARACION
   dominio: TRA
   poblacion_objetivo: "16 celdas de cruce: edad{18-29; 30-44; 45-59; 60-96} x escolaridad{HASTA-PRIMARIA NIV 0-2; SECUNDARIA 3; MEDIA-SUPERIOR 4-7; SUPERIOR 8-9}; rejilla identica a CALC-ENCIG2021-CRUCES-HISTORICOS-0003 y CALC-ENCIG2023-CRUCES-HISTORICOS-0002; 15 PUNTUADA ex ante, 18-29 x HASTA-PRIMARIA FUERA-DE-SOPORTE ex ante (n=110/70); F1-bis: edad 97 (censurada) y 98/99 (no especificada) fuera del universo, contadas (FP-399)"
-  unidad_objetivo: persona
+  unidad_objetivo: evento
   universo_candidatos: "spec v1.1 (hereda v1.0 verbatim, FP-400): piso C2, control C2-compuesto, referencias C1a/C1b, retadores S-MEDIO y S-LAMBDA; lambda = 0.8937949410086089 derivada de los DELTA/DELTA-EE sellados; L fuera; declarados ANTES de abrir ENCIG 2025"
   candidatos:
     - {id_candidato: C2, rol: PISO, fuentes: [ENCIG], edicion_periodo: "2025 (marginales de UNA variable, recalculados sobre el universo del cruce)", universo_instrumento: "TRAMITES: pagos de luz N_TRA==01 con P7_3 in {1,2,4,5,6}, FAC_TRA, EST_DIS x UPM_DIS, join residentes por ID_PER m:1", diseno_datos: transversal, estrategia: composicion, regla_composicion: "expit(logit p_a + logit p_b - logit p_all), replica por replica (bootstrap UPM en estrato, PCG64 20260919, 10000)", production_spec_refs: ["prereg-caja GOB-gobierno-digital-exe15-spec-v1_1", "CALC-GOB-DIGITAL-EXE-EMISIONES-0002"], resultado: "SPEC-CONGELADA -- no ejecutado sobre 2025; el codigo corrio sobre fixture sintetico y reprodujo 2023 (tests/test_piloto3_v11.py)"}
