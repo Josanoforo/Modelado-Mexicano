@@ -1,18 +1,18 @@
 {
-  "alternativa_requerida": false,
+  "alternativa_requerida": true,
   "alternativas": [],
-  "ciclos_sin_avance": 0,
+  "ciclos_sin_avance": 2,
   "continuacion_pendiente": true,
-  "cursor_continuacion": "Abrir exportación oficial; buscar nombre/texto/universo/codificación/ponderador del reactivo de corrupción o denuncia; adquirir sólo si el objeto exacto es público y pertinente.",
+  "cursor_continuacion": "Usar el FD 2016 adquirido y el FD 2021 ya presente para comparar P8_7/codificación/universo; no repetir descarga ni adoptar.",
   "estado": "continua",
   "evidencias": [
-    "forense/notas/2026-09-17-GEN2-38-investigacion-adq.md",
-    "forense/notas/2026-09-16-GEN2-38-investigacion-adq.md",
+    "forense/notas/2026-09-21-GEN2-38-investigacion-adq.md",
+    "data/manifiesto.yaml",
     "data/curacion-registro/cola-adquisicion-registro.tsv"
   ],
-  "frontera_no_examinada": "Exportación DDI/XML o JSON del RNM 268 y documento FD ENPOL 2016.",
+  "frontera_no_examinada": "Comparación de P8_7, codificación y universo con ENPOL 2021; decisión de mesa sobre conjunto reservado.",
   "necesidad_id": "NC-0162",
-  "proxima_revision": "2026-09-18",
+  "proxima_revision": "2026-09-22",
   "suficiencia": {
     "conceptual": "PARCIAL",
     "diseno": "ACREDITADA",
@@ -25,6 +25,6 @@
     "unidad": "ACREDITADA",
     "uso_habilitado": "APTA_ALCANCE_MENOR"
   },
-  "ultima_exploracion": "2026-09-17",
-  "version_pregunta": "AUTO-NC-v1-b998fe1ea1c5"
+  "ultima_exploracion": "2026-09-21",
+  "version_pregunta": "AUTO-NC-v1-273b1bd2a16a"
 }
