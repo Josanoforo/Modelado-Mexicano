@@ -142,3 +142,10 @@ Lo demás en este encargo es orden sugerido, no compuerta.
 ---
 
 **Falsador de este encargo, a tres meses:** si el piloto de crédito tiene que re-medir algún marginal de 2021 que este acto ya selló, el piso no sirvió y se revisa su diseño de celdas.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| Perímetro de cierre (D-21): enlazar la tabla de identidad propia (`forense/prereg-caja/DIN-CREDITO-PISOS-ENIF2021-metadatos-v1_0.tsv`) a `TABLAS_IDENTIDAD` de `tools/marcador_segmento.py` y re-derivar `data/corrida0/marcador-segmento.tsv` | `FUERA-DE-PERÍMETRO` — de DIRECCIÓN: §9 de este encargo declara `data/corrida0/marcador-segmento.tsv` y `data/curacion-registro/celdas-d/` perímetro de dirección; además el árbitro 2024 no tiene reglas de crédito que consuman estas celdas (`consumer = PENDIENTE:piloto-credito-2024`) y añadirla daría `SIN-CONSUMER-EN-TABLA-DE-IDENTIDAD` | `sin_piso` del marcador no baja por crédito todavía (0 de 216 filas son de crédito); el piloto de crédito lee el piso del CALC y de la tabla | `NC-0447` · `SIN-ASIGNAR` (piloto de crédito, sucesor 2 de §10) |
+| Reserva: `registro --verifica --escribe` nombró en `--lote` la corrida ajena `CALC-ENIF-0001--afbf3c76d71b` | no es pieza no corrida: su `contexto_replay` pasa `IDENTICO→DISTINTO` porque el asiento NUBE de `#935` (`cf1ba17f`, `forense/replay-evidencia.tsv:148`) ya estaba en `origin/main` sin proyectar; `verify` en esta CAJA sigue IDENTICO. Declarado en la nota §2 y en `forense/hallazgos.md`; ninguna otra fila ajena cambió | ninguno sobre contadores propios | — |
