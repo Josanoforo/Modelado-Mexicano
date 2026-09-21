@@ -60,7 +60,7 @@ inputs:
   origen: repo
   ruta: data/corrida0/CALC-DIN-LOTE-ORO-PILOTO1-EMISIONES-0001/resultados.json
   nota: lo crea la corrida del oro de emisiones en este mismo acto; su sha se fija antes de correr este CALC
-  sha256: PENDIENTE-ORO
+  sha256: ee2889070d48e6c1d27990b76fd5a78d495063b71742b32862b8cd3ccb3d3b5f
 variables:
 - archivo: conjunto_de_datos_tmodulo_enif_2021.csv
   variable: P5_1_1..P5_1_6
