@@ -166,3 +166,7 @@ Si en dos semanas una sesión rompe `main` con un FAIL que el subconjunto rápid
   **por qué**: `FUERA-DE-PERÍMETRO` — el propio encargo (§2, "Fuera del perímetro, a propósito") lo deja como pregunta a mesa, no como pieza de este acto.
   **impacto**: ninguno — no se tocó.
   **sucesor**: `DECISIÓN-DE-MESA-PENDIENTE`, tal como el encargo la dejó.
+
+## CONSUMIDO
+
+PR #980. Ejecutado: P0 (firma de mesa asentada, sondas de `gh` sin correr — `gh` no disponible), P-A (subconjunto rápido `tests/check.py --rapido`, T16 retirado), P-E (cascada de cierre). P-B, P-C, P-D del lote NO-CORRIDO — ver `## NO-CORRIDO / RESERVAS` arriba y `forense/no-corrido.tsv` (`NC-260921-GEN2-TUBERIA-CIERRE-RAPIDO-1-baca-01..04`, ABIERTA). El PR queda propuesto; mesa central fusiona (cabecera del encargo).
