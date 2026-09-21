@@ -3520,7 +3520,8 @@ def _funcion_de_dependencia(entrada: dict) -> str:
     if "CONTROL" in iid or "BASELINE" in iid:
         return FUNCION_CONTROL_HISTORICO
     if any(token in iid or token.lower() in nombre for token in
-           ("SPEC", "PLAN", "MARCO", "CODIFICACION", "MANIFIESTO", "UNIVERSO")):
+           ("SPEC", "PLAN", "MARCO", "CODIFICACION", "MANIFIESTO", "UNIVERSO",
+            "SELLO")):
         return FUNCION_METADATO
     return FUNCION_INDETERMINADA
 
