@@ -93,25 +93,39 @@ class WorkflowGate(unittest.TestCase):
         # `guardias` (ACTO GEN2-CI-GUARDIAS-VIVAS-1, 20/sep/2026): tercer
         # job requerido, sumado a `needs` para que el gate no apruebe un
         # PR cuyas guardias huerfanas fallaron o se saltaron.
-        self.assertEqual(set(gate['needs']), {'suite', 'adicionales', 'guardias'})
+        #
+        # El conjunto se DERIVA del workflow, no se teclea (ACTO
+        # GEN2-TUBERIA-PREFLIGHT-CI-1, 21/sep/2026). Defecto real que cierra:
+        # este test fijaba a mano {suite, adicionales, guardias}, y el cuarto
+        # job (`preflight-calc`) lo puso en rojo aunque el gate estuviera
+        # CORRECTO -- el job SI estaba en `needs` y SI se asertaba. Un test que
+        # se rompe cuando el arbol mejora no protege nada: solo cobra peaje al
+        # siguiente acto. Derivado, la propiedad que asegura es mas fuerte:
+        # TODO job del workflow (menos el gate) es requerido, lleva su variable
+        # y ningun estado distinto de `success` lo deja pasar.
+        requeridos = sorted(set(workflow['jobs']) - {'check'})
+        self.assertEqual(sorted(gate['needs']), requeridos)
         self.assertEqual(gate['if'], '${{ always() }}')
         self.assertIs(workflow['concurrency']['cancel-in-progress'], True)
         step = gate['steps'][0]
-        self.assertEqual(step['env'], {
-            'SUITE_RESULT': '${{ needs.suite.result }}',
-            'ADICIONALES_RESULT': '${{ needs.adicionales.result }}',
-            'GUARDIAS_RESULT': '${{ needs.guardias.result }}'})
+        # `needs.<job>.result` no se puede escribir con punto cuando el nombre
+        # del job trae guion: GitHub lo leeria como una resta.
+        def ref(job):
+            return ("${{ needs.%s.result }}" % job if '-' not in job
+                    else "${{ needs['%s'].result }}" % job)
+        var = {job: job.upper().replace('-', '_') + '_RESULT' for job in requeridos}
+        self.assertEqual(step['env'], {var[j]: ref(j) for j in requeridos})
         states = ('success', 'failure', 'cancelled', 'skipped', '', 'unexpected')
-        for suite, adicionales, guardias in itertools.product(states, repeat=3):
-            with self.subTest(suite=suite, adicionales=adicionales, guardias=guardias):
+        for combo in itertools.product(states, repeat=len(requeridos)):
+            entorno = dict(zip(requeridos, combo))
+            with self.subTest(**entorno):
                 run = subprocess.run(['bash', '-c', step['run']], env={
-                    **os.environ, 'SUITE_RESULT': suite,
-                    'ADICIONALES_RESULT': adicionales,
-                    'GUARDIAS_RESULT': guardias},
+                    **os.environ,
+                    **{var[j]: v for j, v in entorno.items()}},
                     capture_output=True, text=True)
                 self.assertEqual(
                     run.returncode == 0,
-                    suite == adicionales == guardias == 'success')
+                    all(v == 'success' for v in combo))
 
 
 if __name__ == '__main__':
