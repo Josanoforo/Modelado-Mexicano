@@ -105,3 +105,23 @@ No elimina, no abarata y no desactiva nada: mide y recomienda · no dispara corr
 10 · FALSADOR (§9)
 
 Si la lista sale con cero recomendaciones de abaratar o eliminar, o las metas de dirección ya se cumplen en el runner, el diagnóstico de dirección estaba mal y se dice así en la primera línea del informe.
+
+## NO-CORRIDO / RESERVAS
+
+- Ninguno.
+
+## CONSUMIDO
+
+`PR #955` (rama `acto/gen2-tuberia-ci-medicion-1`), 21/sep/2026. Entregables:
+`forense/analisis/ci-medicion-1/` (43 archivos: scripts de un solo uso,
+TSV con universo y conteo declarados, `runs.json`/`jobs.json` crudos de
+`gh api`, informe `INFORME-ci-medicion-1-v1_0.md`); `ADR-587`
+(`canon/gobernanza-v1_15.md`); anotación `L0` nueva
+(`canon/estado-programa-v1_14.md`); rótulo censado
+(`canon/registro-rotulos.tsv`); hallazgo sobre el tamaño de la línea `L0`
+(`forense/hallazgos.md`); nota de cierre
+(`forense/notas/2026-09-21-GEN2-TUBERIA-CI-MEDICION-1-cierre.md`).
+`tests/check.py --baseline --parallel` VERDE (dos veces). Sólo lectura
+sobre GitHub: ningún workflow se relanzó, canceló ni disparó; `tests/`,
+`.github/workflows/`, `.claude/commands/`, `tools/`, `data/` y `milpa/`
+sin tocar.
