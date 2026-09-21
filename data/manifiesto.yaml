@@ -30343,3 +30343,37 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: 'Doble descarga idéntica; PDF 1.6 con %%EOF. Uso permitido: verificar estructura de
     ENPOL 2016; no acredita comparabilidad ni adopción científica.'
+
+- id: enif_2012_cuestionario_pdf
+  usado_para: comparabilidad por texto de pregunta entre las cuatro olas historicas de ENIF
+    (F2/lote ENIF2024)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enif/2012/doc/enif2012_cuestionario.pdf
+  fecha_descarga: '2026-09-21'
+  descargado_por: agente, ACTO GEN2-TRAMITE-FIRMAS-4, nube milpa-inegi
+  archivo: enif_2012_cuestionario.pdf
+  sha256: b7fc1f4a2363a609b414310ab6b061115332d91b832a08c7c779b0db0cea1380
+  tamano_bytes: 855195
+  formato: PDF (Cuestionario)
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.44-fc-v37 (x86_64) · Python 3.11.15
+  nota: 'D3 del encargo GEN2-TRAMITE-FIRMAS-4. URL derivada por patron: 2018 usa enif_2018_cuestionario.pdf
+    pero 2012 NO tiene guion bajo (enif2012_cuestionario.pdf); el patron con guion bajo devuelve
+    200 con pagina Pagina-no-encontrada. Payload NO queda en corpus compartido desde nube
+    (PR #77): se remueve de data/raw tras registrar; NC con sucesor para que caja lo traiga
+    por --descarga --id.'
+
+- id: enif_2015_cuestionario_pdf
+  usado_para: comparabilidad por texto de pregunta entre las cuatro olas historicas de ENIF
+    (F2/lote ENIF2024)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enif/2015/doc/enif_2015_cuestionario.pdf
+  fecha_descarga: '2026-09-21'
+  descargado_por: agente, ACTO GEN2-TRAMITE-FIRMAS-4, nube milpa-inegi
+  archivo: enif_2015_cuestionario.pdf
+  sha256: 10688412391ecd5e80adc6ceec49e25d8ec0673c9b08d41fd0b08f580afb19a6
+  tamano_bytes: 676127
+  formato: PDF (Cuestionario)
+  licencia: Terminos de Libre Uso de la Informacion del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.44-fc-v37 (x86_64) · Python 3.11.15
+  nota: 'D3 del encargo GEN2-TRAMITE-FIRMAS-4. URL sigue el patron de 2018 verbatim. Payload
+    NO queda en corpus compartido desde nube (PR #77): se remueve de data/raw tras registrar;
+    NC con sucesor para que caja lo traiga por --descarga --id.'
