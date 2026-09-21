@@ -209,7 +209,15 @@ class LauncherTest(unittest.TestCase):
             })
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             self.assertTrue(marker.exists(), "el tramo determinista quedó condicionado al despacho")
-            self.assertNotIn("99", (root / "forense/adq-log/launcher.log").read_text(encoding="utf-8"))
+            # `adquiere_cron.sh` sale 99 y el tramo de despacho no debe correr, asi que
+            # ese codigo no debe llegar al log. Se busca `exit=99`, la forma EXACTA en que
+            # `adquiere_launcher.sh` escribe un codigo de salida (lineas CIERRE /
+            # DERIVACION-DIARIA / PARO-*), no el desnudo "99": el `run_id` es
+            # `${FECHA}T$(date +%H%M%S)-$$`, asi que un PID o una hora que contenga "99"
+            # hacia fallar este test por una coincidencia sin relacion con el codigo de
+            # salida. Medido en CI el 21/sep/2026 (job 106191547133, PID 1999,
+            # run_id=2026-09-20T200832-1999). ACTO GEN2-NUBE-PILOTO-1-bis, D-21.
+            self.assertNotIn("exit=99", (root / "forense/adq-log/launcher.log").read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

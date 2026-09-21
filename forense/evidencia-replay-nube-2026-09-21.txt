@@ -1,0 +1,197 @@
+VERIFY CALC-ENIF-0001   (data/corrida0/CALC-ENIF-0001)
+  [1/5 SELLO] COINCIDE -- sello y todos los archivos que cubre coinciden
+  [2/5 SPEC.YAML] IDENTICO  sellado=93d76e8537e96702ba46f169a2ceab7e29a735291e38c71999c9b253bea4fc28  hoy=93d76e8537e96702ba46f169a2ceab7e29a735291e38c71999c9b253bea4fc28
+  [3/5 INPUT COINCIDE] enif_2024_enif_2024_bd_csv (manifiesto)  sellado=00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039  actual=00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039
+  [3/5 INPUT COINCIDE] IN-ENIF-SPEC-SELLADA (repo)  sellado=697ab9e8084d5a7d8ae413778c9ef33303181a934c1c493980202f87580f10ab  hoy=697ab9e8084d5a7d8ae413778c9ef33303181a934c1c493980202f87580f10ab
+  [4/5 CONTEXTO] codigo=IDENTICO  commit_informativo=DISTINTO  (FP-358: no gatea)  parametros=IDENTICO  seed=IDENTICO  dependencias=DISTINTO
+  CONTEXTO: DISTINTO  razon: dependencias_distintas
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-C-FALTANTE-P410-CON-N (tipo=entero): sellado=109 · hoy=109 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-C-FALTANTE-P410-SIN-N (tipo=entero): sellado=169 · hoy=169 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-C-FUERA-DEL-EJE-DENOMINADOR (tipo=texto): sellado='personas 18+ con FAC_PER valido' · hoy='personas 18+ con FAC_PER valido' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-C-FUERA-DEL-EJE-FRACCION (tipo=flotante): sellado=0.011384 · hoy=0.011384 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-C-FUERA-DEL-EJE-N (tipo=entero): sellado=148 · hoy=148 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-C-FUERA-DEL-EJE-PESO (tipo=flotante): sellado=1072614.0 · hoy=1072614.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-C-PESO-TOTAL-18MAS (tipo=flotante): sellado=94221441.0 · hoy=94221441.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-C-SIN-EJE-BLANCO-DENOMINADOR (tipo=texto): sellado='personas 18+ con FAC_PER valido' · hoy='personas 18+ con FAC_PER valido' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-C-SIN-EJE-BLANCO-FRACCION (tipo=flotante): sellado=0.319422 · hoy=0.319422 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-C-SIN-EJE-BLANCO-N (tipo=entero): sellado=4134 · hoy=4134 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-C-SIN-EJE-BLANCO-PESO (tipo=flotante): sellado=30096410.0 · hoy=30096410.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-DENOMINADOR (tipo=texto): sellado='personas 18+ con trabajo CON seguridad social (P3_13 in {1,2,3,4}) y P4_10 valido' · hoy='personas 18+ con trabajo CON seguridad social (P3_13 in {1,2,3,4}) y P4_10 valido' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-IC-HI (tipo=flotante): sellado=0.393834 · hoy=0.393834 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-IC-LO (tipo=flotante): sellado=0.349888 · hoy=0.349888 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-METODO-IC (tipo=texto): sellado='IC-CON-ESTRATOS-DE-UPM-UNICA' · hoy='IC-CON-ESTRATOS-DE-UPM-UNICA' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-N-DENOMINADOR (tipo=entero): sellado=3969 · hoy=3969 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-N-ESTRATOS (tipo=entero): sellado=187 · hoy=187 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-N-ESTRATOS-UPM-UNICA (tipo=entero): sellado=9 · hoy=9 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-N-SIN-DISENO (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-N-UPM (tipo=entero): sellado=1786 · hoy=1786 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-P (tipo=flotante): sellado=0.37313 · hoy=0.37313 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-PESO-DENOMINADOR (tipo=flotante): sellado=26064281.0 · hoy=26064281.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-S1-DENOMINADOR (tipo=texto): sellado='personas 18+ con trabajo CON seguridad social (P3_13 in {1,2,3,4}) y P4_10 valido' · hoy='personas 18+ con trabajo CON seguridad social (P3_13 in {1,2,3,4}) y P4_10 valido' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-S1-IC-HI (tipo=flotante): sellado=0.190697 · hoy=0.190697 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-S1-IC-LO (tipo=flotante): sellado=0.157215 · hoy=0.157215 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-S1-METODO-IC (tipo=texto): sellado='IC-CON-ESTRATOS-DE-UPM-UNICA' · hoy='IC-CON-ESTRATOS-DE-UPM-UNICA' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-S1-N-DENOMINADOR (tipo=entero): sellado=3969 · hoy=3969 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-S1-N-ESTRATOS (tipo=entero): sellado=187 · hoy=187 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-S1-N-ESTRATOS-UPM-UNICA (tipo=entero): sellado=9 · hoy=9 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-S1-N-SIN-DISENO (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-S1-N-UPM (tipo=entero): sellado=1786 · hoy=1786 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-S1-P (tipo=flotante): sellado=0.173995 · hoy=0.173995 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-CON-S1-PESO-DENOMINADOR (tipo=flotante): sellado=26064281.0 · hoy=26064281.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-DENOMINADOR (tipo=texto): sellado="personas 18+ con trabajo SIN seguridad social (P3_13='7') y P4_10 valido" · hoy="personas 18+ con trabajo SIN seguridad social (P3_13='7') y P4_10 valido" · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-IC-HI (tipo=flotante): sellado=0.561928 · hoy=0.561928 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-IC-LO (tipo=flotante): sellado=0.521597 · hoy=0.521597 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-METODO-IC (tipo=texto): sellado='IC-CON-ESTRATOS-DE-UPM-UNICA' · hoy='IC-CON-ESTRATOS-DE-UPM-UNICA' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-N-DENOMINADOR (tipo=entero): sellado=4973 · hoy=4973 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-N-ESTRATOS (tipo=entero): sellado=189 · hoy=189 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-N-ESTRATOS-UPM-UNICA (tipo=entero): sellado=4 · hoy=4 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-N-SIN-DISENO (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-N-UPM (tipo=entero): sellado=1717 · hoy=1717 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-P (tipo=flotante): sellado=0.541343 · hoy=0.541343 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-PESO-DENOMINADOR (tipo=flotante): sellado=35086918.0 · hoy=35086918.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-DENOMINADOR (tipo=texto): sellado="personas 18+ con trabajo SIN seguridad social (P3_13='7') y P4_10 valido" · hoy="personas 18+ con trabajo SIN seguridad social (P3_13='7') y P4_10 valido" · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-IC-HI (tipo=flotante): sellado=0.349539 · hoy=0.349539 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-IC-LO (tipo=flotante): sellado=0.311133 · hoy=0.311133 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-METODO-IC (tipo=texto): sellado='IC-CON-ESTRATOS-DE-UPM-UNICA' · hoy='IC-CON-ESTRATOS-DE-UPM-UNICA' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-N-DENOMINADOR (tipo=entero): sellado=4973 · hoy=4973 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-N-ESTRATOS (tipo=entero): sellado=189 · hoy=189 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-N-ESTRATOS-UPM-UNICA (tipo=entero): sellado=4 · hoy=4 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-N-SIN-DISENO (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-N-UPM (tipo=entero): sellado=1717 · hoy=1717 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-P (tipo=flotante): sellado=0.330639 · hoy=0.330639 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-CORTO-SIN-S1-PESO-DENOMINADOR (tipo=flotante): sellado=35086918.0 · hoy=35086918.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-CON-DENOMINADOR (tipo=texto): sellado='personas 18+ con trabajo CON seguridad social (P3_13 in {1,2,3,4}) y P4_10 valido' · hoy='personas 18+ con trabajo CON seguridad social (P3_13 in {1,2,3,4}) y P4_10 valido' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-CON-IC-HI (tipo=flotante): sellado=0.650112 · hoy=0.650112 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-CON-IC-LO (tipo=flotante): sellado=0.606166 · hoy=0.606166 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-CON-METODO-IC (tipo=texto): sellado='IC-CON-ESTRATOS-DE-UPM-UNICA' · hoy='IC-CON-ESTRATOS-DE-UPM-UNICA' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-CON-N-DENOMINADOR (tipo=entero): sellado=3969 · hoy=3969 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-CON-N-ESTRATOS (tipo=entero): sellado=187 · hoy=187 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-CON-N-ESTRATOS-UPM-UNICA (tipo=entero): sellado=9 · hoy=9 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-CON-N-SIN-DISENO (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-CON-N-UPM (tipo=entero): sellado=1786 · hoy=1786 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-CON-P (tipo=flotante): sellado=0.62687 · hoy=0.62687 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-CON-PESO-DENOMINADOR (tipo=flotante): sellado=26064281.0 · hoy=26064281.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-SIN-DENOMINADOR (tipo=texto): sellado="personas 18+ con trabajo SIN seguridad social (P3_13='7') y P4_10 valido" · hoy="personas 18+ con trabajo SIN seguridad social (P3_13='7') y P4_10 valido" · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-SIN-IC-HI (tipo=flotante): sellado=0.478403 · hoy=0.478403 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-SIN-IC-LO (tipo=flotante): sellado=0.438072 · hoy=0.438072 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-SIN-METODO-IC (tipo=texto): sellado='IC-CON-ESTRATOS-DE-UPM-UNICA' · hoy='IC-CON-ESTRATOS-DE-UPM-UNICA' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-SIN-N-DENOMINADOR (tipo=entero): sellado=4973 · hoy=4973 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-SIN-N-ESTRATOS (tipo=entero): sellado=189 · hoy=189 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-SIN-N-ESTRATOS-UPM-UNICA (tipo=entero): sellado=4 · hoy=4 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-SIN-N-SIN-DISENO (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-SIN-N-UPM (tipo=entero): sellado=1717 · hoy=1717 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-SIN-P (tipo=flotante): sellado=0.458657 · hoy=0.458657 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-A-P-NOCORTO-SIN-PESO-DENOMINADOR (tipo=flotante): sellado=35086918.0 · hoy=35086918.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-C-AMBAS-VIAS-DENOMINADOR (tipo=texto): sellado='TODA la poblacion 18+ con FAC_PER valido (denominador COMPARTIDO)' · hoy='TODA la poblacion 18+ con FAC_PER valido (denominador COMPARTIDO)' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-C-AMBAS-VIAS-FRACCION (tipo=flotante): sellado=0.204767 · hoy=0.204767 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-C-AMBAS-VIAS-N (tipo=entero): sellado=2969 · hoy=2969 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-C-AMBAS-VIAS-PESO (tipo=flotante): sellado=19293472.0 · hoy=19293472.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-C-NINGUNA-VIA-DENOMINADOR (tipo=texto): sellado='TODA la poblacion 18+ con FAC_PER valido (denominador COMPARTIDO)' · hoy='TODA la poblacion 18+ con FAC_PER valido (denominador COMPARTIDO)' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-C-NINGUNA-VIA-FRACCION (tipo=flotante): sellado=0.35792 · hoy=0.35792 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-C-NINGUNA-VIA-N (tipo=entero): sellado=4803 · hoy=4803 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-C-NINGUNA-VIA-PESO (tipo=flotante): sellado=33723779.0 · hoy=33723779.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-CONTROL-FILTRO-S5-1 (tipo=texto): sellado='COINCIDE' · hoy='COINCIDE' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-CONTROL-FILTRO-S5-1-N-DISCREPANTES (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-NOTA-COEXISTENCIA (tipo=texto): sellado='formal e informal COEXISTEN; la suma NO se fuerza a 1, no se normaliza y no se re-escala. Una suma > 1 es coexistencia, no defecto.' · hoy='formal e informal COEXISTEN; la suma NO se fuerza a 1, no se normaliza y no se re-escala. Una suma > 1 es coexistencia, no defecto.' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-FORMAL-DENOMINADOR (tipo=texto): sellado='TODA la poblacion 18+ con FAC_PER valido (denominador COMPARTIDO)' · hoy='TODA la poblacion 18+ con FAC_PER valido (denominador COMPARTIDO)' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-FORMAL-IC-HI (tipo=flotante): sellado=0.296777 · hoy=0.296777 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-FORMAL-IC-LO (tipo=flotante): sellado=0.274161 · hoy=0.274161 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-FORMAL-METODO-IC (tipo=texto): sellado='BOOTSTRAP-UPM-EN-ESTRATO' · hoy='BOOTSTRAP-UPM-EN-ESTRATO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-FORMAL-N-DENOMINADOR (tipo=entero): sellado=13502 · hoy=13502 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-FORMAL-N-ESTRATOS (tipo=entero): sellado=190 · hoy=190 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-FORMAL-N-ESTRATOS-UPM-UNICA (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-FORMAL-N-SIN-DISENO (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-FORMAL-N-UPM (tipo=entero): sellado=2164 · hoy=2164 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-FORMAL-P (tipo=flotante): sellado=0.284927 · hoy=0.284927 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-FORMAL-PESO-DENOMINADOR (tipo=flotante): sellado=94221441.0 · hoy=94221441.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-INFORMAL-DENOMINADOR (tipo=texto): sellado='TODA la poblacion 18+ con FAC_PER valido (denominador COMPARTIDO)' · hoy='TODA la poblacion 18+ con FAC_PER valido (denominador COMPARTIDO)' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-INFORMAL-IC-HI (tipo=flotante): sellado=0.573979 · hoy=0.573979 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-INFORMAL-IC-LO (tipo=flotante): sellado=0.550248 · hoy=0.550248 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-INFORMAL-METODO-IC (tipo=texto): sellado='BOOTSTRAP-UPM-EN-ESTRATO' · hoy='BOOTSTRAP-UPM-EN-ESTRATO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-INFORMAL-N-DENOMINADOR (tipo=entero): sellado=13502 · hoy=13502 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-INFORMAL-N-ESTRATOS (tipo=entero): sellado=190 · hoy=190 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-INFORMAL-N-ESTRATOS-UPM-UNICA (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-INFORMAL-N-SIN-DISENO (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-INFORMAL-N-UPM (tipo=entero): sellado=2164 · hoy=2164 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-INFORMAL-P (tipo=flotante): sellado=0.56192 · hoy=0.56192 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-P-INFORMAL-PESO-DENOMINADOR (tipo=flotante): sellado=94221441.0 · hoy=94221441.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-SUMA-EXCEDE-1 (tipo=texto): sellado='NO' · hoy='NO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-B-SUMA-FORMAL-MAS-INFORMAL (tipo=flotante): sellado=0.846847 · hoy=0.846847 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-C-OTRAS-RAZONES-CONOCE-N (tipo=entero): sellado=401 · hoy=401 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-C-OTRAS-RAZONES-CONOCE-PESO (tipo=flotante): sellado=3006942.0 · hoy=3006942.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-C-OTRAS-RAZONES-NOCONOCE-N (tipo=entero): sellado=2386 · hoy=2386 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-C-OTRAS-RAZONES-NOCONOCE-PESO (tipo=flotante): sellado=18241377.0 · hoy=18241377.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-CUALQUIER-RAZON (tipo=texto): sellado='NO-APLICA' · hoy='NO-APLICA' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-CUALQUIER-RAZON-JUSTIFICACION (tipo=texto): sellado='P5_20 es de RESPUESTA UNICA (FD: Alfanumerico tamanio 2, codigos 01-10). ENIF 2024 no trae bateria de menciones multiples para 5.20 (contraste: 5.7, 5.8, 5.15 y 5.17 si lo son). NO-APLICA es un valor, no un hueco.' · hoy='P5_20 es de RESPUESTA UNICA (FD: Alfanumerico tamanio 2, codigos 01-10). ENIF 2024 no trae bateria de menciones multiples para 5.20 (contraste: 5.7, 5.8, 5.15 y 5.17 si lo son). NO-APLICA es un valor, no un hueco.' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-NOTA-NO-SUMAR (tipo=texto): sellado='C-P-DESCONFIA-CONOCE y C-P-DESCONFIA-NOCONOCE tienen DENOMINADORES DISTINTOS: su suma no significa nada.' · hoy='C-P-DESCONFIA-CONOCE y C-P-DESCONFIA-NOCONOCE tienen DENOMINADORES DISTINTOS: su suma no significa nada.' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-DENOMINADOR (tipo=texto): sellado="personas 18+ SIN CUENTA que SI conocen la proteccion (P5_20 valido y P5_23='1')" · hoy="personas 18+ SIN CUENTA que SI conocen la proteccion (P5_20 valido y P5_23='1')" · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-IC-HI (tipo=flotante): sellado=0.086727 · hoy=0.086727 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-IC-LO (tipo=flotante): sellado=0.037716 · hoy=0.037716 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-METODO-IC (tipo=texto): sellado='IC-CON-ESTRATOS-DE-UPM-UNICA' · hoy='IC-CON-ESTRATOS-DE-UPM-UNICA' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-N-DENOMINADOR (tipo=entero): sellado=426 · hoy=426 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-N-ESTRATOS (tipo=entero): sellado=138 · hoy=138 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-N-ESTRATOS-UPM-UNICA (tipo=entero): sellado=46 · hoy=46 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-N-SIN-DISENO (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-N-UPM (tipo=entero): sellado=351 · hoy=351 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-P (tipo=flotante): sellado=0.06078 · hoy=0.06078 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-PESO-DENOMINADOR (tipo=flotante): sellado=3201531.0 · hoy=3201531.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-DENOMINADOR (tipo=texto): sellado="personas 18+ SIN CUENTA que NO conocen la proteccion (P5_20 valido y P5_23='2')" · hoy="personas 18+ SIN CUENTA que NO conocen la proteccion (P5_20 valido y P5_23='2')" · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-IC-HI (tipo=flotante): sellado=0.064677 · hoy=0.064677 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-IC-LO (tipo=flotante): sellado=0.045718 · hoy=0.045718 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-METODO-IC (tipo=texto): sellado='IC-CON-ESTRATOS-DE-UPM-UNICA' · hoy='IC-CON-ESTRATOS-DE-UPM-UNICA' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-N-DENOMINADOR (tipo=entero): sellado=2544 · hoy=2544 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-N-ESTRATOS (tipo=entero): sellado=186 · hoy=186 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-N-ESTRATOS-UPM-UNICA (tipo=entero): sellado=12 · hoy=12 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-N-SIN-DISENO (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-N-UPM (tipo=entero): sellado=1105 · hoy=1105 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-P (tipo=flotante): sellado=0.054767 · hoy=0.054767 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-PESO-DENOMINADOR (tipo=flotante): sellado=19298294.0 · hoy=19298294.0 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-C1-EJE-ES-PARTICION (tipo=texto): sellado='SI' · hoy='SI' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-C1-N-P523-BLANCO-O-B (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-C2-DENOMINADOR-C-VERIFICADO (tipo=texto): sellado='SI' · hoy='SI' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-C2-N-FILAS-CON-520-Y-CUENTA (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-COLUMNAS-AUSENTES (tipo=texto): sellado='NINGUNA' · hoy='NINGUNA' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D2-N-SIN-PONDERADOR (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D2-PONDERADOR (tipo=texto): sellado='OK' · hoy='OK' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D4-LLAVES-OPACAS (tipo=texto): sellado='TEXTO-CRUDO' · hoy='TEXTO-CRUDO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D4-N-FILAS-CON-CERO-A-LA-IZQUIERDA (tipo=entero): sellado=13502 · hoy=13502 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P3_13 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P4_10 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_1_1 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_1_2 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_1_3 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_1_4 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_1_5 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_1_6 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_20 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_23 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_1 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_2 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_3 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_4 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_5 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_6 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_7 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_8 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_4_9 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_1 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_2 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_3 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_4 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_5 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_6 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_7 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_8 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-FUERA-DE-DOMINIO-P5_6_9 (tipo=texto): sellado='NINGUNO' · hoy='NINGUNO' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-D5-N-CELDAS-FUERA-DE-DOMINIO (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-ENCODING-USADO (tipo=texto): sellado='utf-8-sig' · hoy='utf-8-sig' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-N-FILAS-TMODULO (tipo=entero): sellado=13502 · hoy=13502 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-NOTA-FP-201 (tipo=texto): sellado='FP-201 declaro «sin campo de diseno UPM/estrato reproducible» para ENIF. El FD de ENIF 2024 trae EST_DIS, UPM_DIS y FAC_PER en TMODULO: FP-201 es FALSO tambien para ENIF. Cierra la parte ENIF de NC-0086.' · hoy='FP-201 declaro «sin campo de diseno UPM/estrato reproducible» para ENIF. El FD de ENIF 2024 trae EST_DIS, UPM_DIS y FAC_PER en TMODULO: FP-201 es FALSO tambien para ENIF. Cierra la parte ENIF de NC-0086.' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-NOTA-IC-NO-COMPARABLE (tipo=texto): sellado='Fase 1 (FP-201) midio SIN diseno; esta corrida SI lo estima. Los IC NO son comparables con los de fase 1 y no se comparan: el control positivo compara SOLO el punto (A-bis.3).' · hoy='Fase 1 (FP-201) midio SIN diseno; esta corrida SI lo estima. Los IC NO son comparables con los de fase 1 y no se comparan: el control positivo compara SOLO el punto (A-bis.3).' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-P1-EDAD-MAX (tipo=entero): sellado=95 · hoy=95 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-P1-EDAD-MIN (tipo=entero): sellado=18 · hoy=18 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-P1-N-CODIGO-97 (tipo=entero): sellado=5 · hoy=5 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-P1-N-CODIGO-98 (tipo=entero): sellado=10 · hoy=10 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-ENIF-AHO-G-P1-POBLACION (tipo=texto): sellado='18-Y-MAS · PREMISA-18-70-REFUTADA' · hoy='18-Y-MAS · PREMISA-18-70-REFUTADA' · delta=None
+
+VERIFY: REPLICA-RESULTADO · CONTEXTO-DISTINTO   (CONTEXTO=DISTINTO · RESULTADO=REPRODUCE)
