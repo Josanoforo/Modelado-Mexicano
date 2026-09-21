@@ -13,11 +13,13 @@ Documento del programa, escrito para mesa y para un comprador escéptico.
 > | **VERIFICAS ASÍ** | cada cifra del cuerpo trae, en su propia línea o en el pie de su tabla, **el comando que la produce o el `RESULT` sellado que la contiene**. Las cifras de los tres pilotos salen todas de `python3 tools/informe_pilotos.py --json`, que además **se verifica a sí mismo**: cada MAE derivado se compara contra el MAE sellado de la corrida correspondiente y la salida trae la columna `check` (hoy: **COINCIDE en los 12 candidatos de los tres pilotos**). |
 > | **NOMBRE ESTABLE** | **`informe-programa`** — cítalo así, **nunca por nombre de archivo** |
 
-> **Estampa de universo (A.10), global.** Derivado contra `origin/main = d78a4d1`
-> (merge de `PR #971`, `GEN2-ARBITRO-MARGINALES-1`, 21/sep/2026; el piloto 3,
-> `PR #961`, es ancestro suyo). Las cifras de §1.1 se **re-derivaron por comando
-> después** de fusionar esa base, no se heredaron de la base anterior
-> (`55c8d57`), donde esta rama medía 88. En un acto de **NUBE sin corpus
+> **Estampa de universo (A.10), global.** Derivado contra `origin/main = c441c9d`
+> (merge de `PR #970`, 21/sep/2026; `PR #971` `GEN2-ARBITRO-MARGINALES-1`, `PR #968`
+> y el piloto 3 `PR #961` son ancestros suyos). Las cifras de §1.1 se **re-derivaron
+> por comando** sobre esta base y **no se heredaron** de ninguna base anterior: contra
+> `55c8d57` esta rama medía 88 y `GEN2-ARBITRO-MARGINALES-1` medía 77; contra
+> `d78a4d1` (con `#971` ya dentro) el comando dio **92**, y contra `c441c9d` vuelve a
+> dar **92** — `#968` y `#970` no movieron el contador. En un acto de **NUBE sin corpus
 > montado** (`tools/entorno.py --arranque`: `senal-corpus: montado=NO
 > archivos_examinados=0`; `data-raw-en-este-worktree: NO`; red
 > `DENEGADA-POR-POLITICA`). **Fuentes: sólo el registro derivado y las corridas
