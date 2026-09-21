@@ -63,8 +63,8 @@ No termina actos a medias · no rescata mediciones · no decide entre los dos PR
 
 ## NO-CORRIDO / RESERVAS
 
-- `NC-0429`: terminar o abandonar `acto/gen2-f5-recaptura-l` (A-MEDIAS) — razón `DECISION-DE-MESA-PENDIENTE`. Sucesor: `FP-403`.
-- `NC-0430`: `git branch -D`/limpieza de residuo en 5 worktrees bloqueados (`acto/gen2-reparacion-cierre-consolidacion-cron`, `codex/autoridad-semantica-enif`, `codex/gen2-encuci2020-respuesta-por-contacto-cli-2`, `codex/gen2-issp2017-consistencia-apoyo-familiar-cli-2`, `llave2-decreto`) — razón `DECISION-DE-MESA-PENDIENTE` (ninguno de los residuos está firmado para descartar). Sucesor: nota de cierre, tabla completa.
+- `NC-0433`: terminar o abandonar `acto/gen2-f5-recaptura-l` (A-MEDIAS) — razón `DECISION-DE-MESA-PENDIENTE`. Sucesor: `FP-404`.
+- `NC-0434`: `git branch -D`/limpieza de residuo en 5 worktrees bloqueados (`acto/gen2-reparacion-cierre-consolidacion-cron`, `codex/autoridad-semantica-enif`, `codex/gen2-encuci2020-respuesta-por-contacto-cli-2`, `codex/gen2-issp2017-consistencia-apoyo-familiar-cli-2`, `llave2-decreto`) — razón `DECISION-DE-MESA-PENDIENTE` (ninguno de los residuos está firmado para descartar). Sucesor: nota de cierre, tabla completa.
 
 ## CONSUMIDO
 

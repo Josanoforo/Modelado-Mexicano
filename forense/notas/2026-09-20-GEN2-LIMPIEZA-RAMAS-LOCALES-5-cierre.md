@@ -34,7 +34,7 @@ sub-agentes de escritura ni cross-session: todo este acto se ejecutó directo, s
    nuevas fueron capturadas correctamente (no son un artefacto de una edición a mano), comprometer
    el archivo, y decidir si el registro de `corrida0` necesita una fila nueva o una actualización
    de la existente. Bajo costo: el trabajo pesado (la captura) ya está hecho.
-2. **Abandonar** — cerrar `NC-0429` con razón, archivar el diff de `demanda-resultados.tsv` como
+2. **Abandonar** — cerrar `NC-0433` con razón, archivar el diff de `demanda-resultados.tsv` como
    insumo externo (ya con procedencia: 8→16 réplicas, 9/sep/2026), y borrar la rama/worktree.
    Se pierde la remedición.
 
@@ -50,7 +50,7 @@ protocolo de captura, no de esta sesión de limpieza.
 
 | Rama | Último commit | ¿En origin? | PR | Cherry vs main | Veredicto | Acción P3 |
 |---|---|---|---|---|---|---|
-| `acto/gen2-din-credito-comparabilidad-texto-1` | 20/sep 17:xx | SÍ | #932 OPEN | n/a | **EN-CURSO** | No tocar (mesa lo pidió explícito; ADR-571 candidato ya redactado ahí) |
+| `acto/gen2-din-credito-comparabilidad-texto-1` | 20/sep 17:xx | SÍ | #932 OPEN | n/a | **EN-CURSO** | No tocar (mesa lo pidió explícito; su propio candidato ADR era 571, ya tomado por #933 al momento de este cierre — #932 renumerará al fusionar) |
 | `acto/gen2-f5-recaptura-l` | 9/sep 18:58 (merge) | no | #669 MERGED | 0 propios | **A-MEDIAS** | Ver P5 arriba — no se toca |
 | `acto/gen2-limpieza-ramas-locales-4-cierre-fp402` | 20/sep (hoy) | SÍ | #934 OPEN | n/a | **EN-CURSO** | Mío, activo — no tocar |
 | `acto/gen2-limpieza-ramas-locales-5` | 20/sep (hoy) | SÍ | (este) | n/a | **EN-CURSO** | Mío, este acto — no tocar |
@@ -113,8 +113,8 @@ anterior).
 - 2 worktrees con symlink `.barrido2` retirado por firma de mesa, luego worktree + rama borrados
   (cherry limpio, 0 commits propios).
 - 5 `CERRADO-FALTA-BORRAR` **no se pudieron borrar**: bloqueados por residuo sin seguimiento no
-  cubierto por ninguna firma de este acto (`NC-0430`).
-- 1 `A-MEDIAS` no tocada (`acto/gen2-f5-recaptura-l`, `NC-0429`).
+  cubierto por ninguna firma de este acto (`NC-0434`).
+- 1 `A-MEDIAS` no tocada (`acto/gen2-f5-recaptura-l`, `NC-0433`).
 - 4 `EN-CURSO` no tocadas (din-credito, las dos ramas propias de este carril de limpieza,
   optimiza-verificacion-ci-prueba-compuerta).
 - 3 `INFRAESTRUCTURA` no tocadas.
@@ -149,9 +149,9 @@ $ git -C /home/pc0/mm-adq worktree list | wc -l
 
 ## NO-CORRIDO / RESERVAS
 
-- `NC-0429`: terminar o abandonar `acto/gen2-f5-recaptura-l` — `DECISION-DE-MESA-PENDIENTE`.
-  Sucesor: `FP-403`.
-- `NC-0430`: 5 `CERRADO-FALTA-BORRAR` bloqueados por residuo sin seguimiento no firmado para
+- `NC-0433`: terminar o abandonar `acto/gen2-f5-recaptura-l` — `DECISION-DE-MESA-PENDIENTE`.
+  Sucesor: `FP-404`.
+- `NC-0434`: 5 `CERRADO-FALTA-BORRAR` bloqueados por residuo sin seguimiento no firmado para
   descartar — `DECISION-DE-MESA-PENDIENTE`.
 
 ## CONSUMIDO

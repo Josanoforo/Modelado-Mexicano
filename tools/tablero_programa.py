@@ -143,6 +143,161 @@ def _marcador_segmento_resumen() -> dict:
     }
 
 
+def _celdas_validadas() -> dict:
+    """MÉTRICA RECTORA (firma de mesa 20/sep/2026): celdas cuya predicción se
+    emitió ANTES de ver el dato y se comparó contra R con error sellado.
+
+    TRES CLASES QUE NO SE FUNDEN EN UNA CIFRA (§4.3/§4.4: escalas y universos
+    distintos no se promedian). Cada una con su n, su error mediano en pp, su
+    instrumento y su BRECHA TEMPORAL al lado -- las brechas de 1, 2 y 3 años NO
+    se promedian entre sí.
+
+    LO QUE NO CUENTA, y por qué (el defecto que esta métrica existe para evitar
+    es leer «N validadas» como «N aciertos»):
+      * las filas `IDENTICO` del marcador (89) tienen M y R porque
+        `emisor_vs_arbitro = EMISOR=ARBITRO` -- M y R son EL MISMO NÚMERO
+        copiado, no una predicción contrastada. Cero de ellas es validación.
+      * las 6 celdas de `formalidad` con piso y SIN `error_piso_pp`:
+        CALC-PISO-PERSISTENCIA-ERROR-0001 se selló antes de que existieran. Su
+        error es un CALC sucesor, no de este acto.
+    """
+    ruta = "data/corrida0/marcador-segmento.tsv"
+    if not os.path.exists(ruta):
+        return {"error": f"AUSENTE: {ruta}"}
+    filas = tsv_rows(ruta)
+    cab, cuerpo = filas[0], filas[1:]
+    ix = {k: cab.index(k) for k in cab}
+    R = [dict(zip(cab, r)) for r in cuerpo]
+
+    def mediana(v):
+        v = sorted(v)
+        n = len(v)
+        if not n:
+            return None
+        return v[n // 2] if n % 2 else (v[n // 2 - 1] + v[n // 2]) / 2
+
+    def anio(s):
+        m = re.findall(r"(19|20)\d{2}", s or "")
+        return int(re.findall(r"(?:19|20)\d{2}", s)[0]) if m else None
+
+    # ── clase 1 · CRUCE vs R (pilotos 1 y 2, adoptados por firma) ──────────
+    # El marcador trae M pero NO trae R para estas filas: el error por celda
+    # vive en el CALC del árbitro del cruce, sellado. Se lee de ahí, con su
+    # ESCALA DECLARADA -- DIN emite en PROPORCIÓN y TRA en PUNTOS PORCENTUALES;
+    # confundirlas da un factor 100. La escala se verifica contra el
+    # `margen_material` sellado del YAML de cada celda-D, no se teclea.
+    cruces = []
+    for cid, calc, pref, esc in (
+        ("DIN.ahorro_solo_informal.enif2024.localidad_x_edad",
+         "CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001",
+         "RESULT-DIN-LXE8-ARB-D-C2-", 100.0),
+        ("TRA.evade_norma.envipe2025.escolaridad_x_dominio",
+         "CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0001",
+         "RESULT-TRA-SXD12-ARB-D-C2-", 1.0),
+    ):
+        p = f"data/corrida0/{calc}/resultados.json"
+        if not os.path.exists(p):
+            cruces.append({"celda_d": cid, "estado": f"AUSENTE: {p}"})
+            continue
+        res = json.load(open(p, encoding="utf-8")).get("resultados", {})
+        err = [v * esc for k, v in res.items() if k.startswith(pref)]
+        inst = [r for r in R if r["celda_id"].startswith(f"CRUCE::{cid}::")]
+        adoptadas = [r for r in inst if r["estado"] == "ADOPTADO-POR-FIRMA"]
+        cruces.append({
+            "celda_d": cid,
+            "n_celdas": len(err),
+            "n_adoptadas_en_marcador": len(adoptadas),
+            "champion": "C2",
+            "error_mediano_pp": round(mediana(err), 3) if err else None,
+            "error_max_pp": round(max(err), 3) if err else None,
+            "escala_cruda": "PROPORCION" if esc == 100.0 else "PUNTOS-PORCENTUALES",
+            "instrumento": inst[0]["instrumento"] if inst else "(sin fila)",
+            "brecha_anios": 0,
+            "fuente": f"{calc}/resultados.json",
+        })
+    n_cruce = sum(c.get("n_celdas") or 0 for c in cruces)
+
+    # ── clase 2 · PERSISTENCIA t-1 vs R (filas con error_piso_pp) ──────────
+    ep = [r for r in R if r["error_piso_pp"]]
+    por_inst: dict[str, list] = {}
+    for r in ep:
+        por_inst.setdefault(r["instrumento"], []).append(r)
+    persist = []
+    for inst, rs in sorted(por_inst.items()):
+        e = [float(r["error_piso_pp"]) for r in rs]
+        a_obj, a_piso = anio(inst), anio(rs[0]["piso_fuente"])
+        persist.append({
+            "instrumento": inst,
+            "n_celdas": len(rs),
+            "error_mediano_pp": round(mediana(e), 3),
+            "error_max_pp": round(max(e), 3),
+            "brecha_anios": (a_obj - a_piso) if (a_obj and a_piso) else None,
+            "PERSISTE": sum(1 for r in rs if r["clase_persistencia"] == "PERSISTE"),
+            "CAMBIA": sum(1 for r in rs if r["clase_persistencia"] == "CAMBIA"),
+        })
+    n_persist = len(ep)
+
+    # Las 6 de formalidad: piso SIN error. No cuentan. Se declaran con universo.
+    sin_error = [r for r in R
+                 if r["piso"] and not r["error_piso_pp"] and "::formalidad::" in r["celda_id"]]
+
+    # ── clase 3 · DUELO DE TRES, NACIONAL (CALC-TRIADA-0002) ───────────────
+    pt = "data/corrida0/CALC-TRIADA-0002/resultados.json"
+    triada = {"estado": f"AUSENTE: {pt}"}
+    if os.path.exists(pt):
+        t = json.load(open(pt, encoding="utf-8")).get("resultados", {})
+        def g(k):
+            for kk, vv in t.items():
+                if kk.endswith(k):
+                    return vv
+            return None
+        def r3(x):
+            return round(x, 3) if isinstance(x, (int, float)) else x
+        triada = {
+            "n_celdas": g("U3-N"),
+            "MAE_M_pp": r3(g("MAE-M-PP")),
+            "MAE_L_SOLO_pp": r3(g("MAE-L-SOLO-PP")),
+            "MAE_L_CORPUS_pp": r3(g("MAE-L-CORPUS-PP")),
+            "veredicto": g("VEREDICTO-GLOBAL"),
+            "fuente": "CALC-TRIADA-0002/resultados.json",
+        }
+
+    # ── sub-cifra del dominio DINERO (la firma la exige explícitamente) ────
+    din_cruce = next((c for c in cruces if c["celda_d"].startswith("DIN.")), {})
+    din_persist = [p for p in persist if "ENIF" in p["instrumento"]]
+    dinero = {
+        "cruce_n": din_cruce.get("n_celdas"),
+        "cruce_error_mediano_pp": din_cruce.get("error_mediano_pp"),
+        "persistencia_n": sum(p["n_celdas"] for p in din_persist),
+        "persistencia_error_mediano_pp": (
+            round(mediana([float(r["error_piso_pp"]) for r in ep if "ENIF" in r["instrumento"]]), 3)
+            if any("ENIF" in r["instrumento"] for r in ep) else None),
+        "nota": "ENIF 2024; la brecha de persistencia es de 3 años y no se promedia "
+                "con las de 1 y 2 años de ENVIPE/ENCIG",
+    }
+
+    return {
+        "total_celdas_validadas": n_cruce + n_persist,
+        "desglose_por_clase": {
+            "cruce_vs_R": n_cruce,
+            "persistencia_t_menos_1_vs_R": n_persist,
+            "duelo_tres_nacional": triada.get("n_celdas"),
+        },
+        "clase_1_cruce_vs_R": cruces,
+        "clase_2_persistencia_vs_R": persist,
+        "clase_3_duelo_tres_nacional": triada,
+        "dominio_dinero": dinero,
+        "NO_CUENTAN": {
+            "identico_emisor_igual_arbitro": sum(1 for r in R if r["estado"] == "IDENTICO"),
+            "formalidad_con_piso_sin_error": len(sin_error),
+            "por_que": "IDENTICO tiene M == R por EMISOR=ARBITRO (mismo número copiado, "
+                       "no predicción contrastada). Las de formalidad tienen piso pero su "
+                       "error de persistencia no está medido: CALC sucesor.",
+        },
+        "universo_examinado": f"{len(cuerpo)} filas de {ruta} + 3 CALC sellados",
+    }
+
+
 def _corridas_pendientes_de_contar() -> dict:
     """`corridas.tsv`: filas `estado == SELLADA` repartidas por
     `cuenta_gen2`, más el detalle de `PENDIENTE-DE-MESA` con su
@@ -433,7 +588,15 @@ def derivar_indicadores() -> dict[str, dict]:
     for clave, valor in gen2.items():
         put(f"gen2_{clave}", valor, comando_gen2)
 
-    # ── 8 · marcador por segmento y corridas pendientes de contar (P1) ──
+    # ── 8 · MÉTRICA RECTORA + marcador por segmento y corridas pendientes ──
+    # `celdas_validadas` es la métrica rectora del programa por firma de mesa
+    # del 20/sep/2026, y por eso va PRIMERA en el bloque derivado (ACTO
+    # GEN2-SENAL-1 · P1). Se deriva del marcador y de tres CALC sellados.
+    put("celdas_validadas", _celdas_validadas(),
+        "data/corrida0/marcador-segmento.tsv + CALC-{DIN-AHORRO-SOLO-INFORMAL,TRA-EVADE-NORMA-SXD}-ARBITRO-CRUCE-0001 "
+        "+ CALC-TRIADA-0002 (resultados.json sellados)",
+        "métrica rectora (firma de mesa 20/sep/2026); tres clases que NO se funden: "
+        "cruce vs R, persistencia t-1 vs R, duelo de tres nacional")
     put("marcador_segmento", _marcador_segmento_resumen(),
         "tools/marcador_segmento.py --json + data/corrida0/marcador-segmento.tsv (columnas estado/emision)")
     put("corridas_pendientes_de_contar", _corridas_pendientes_de_contar(),
@@ -448,6 +611,62 @@ def derivar_indicadores() -> dict[str, dict]:
 
 def _v(I, k):
     return I[k]["valor"] if k in I else None
+
+
+def _linea_celdas_validadas(cv: dict) -> str:
+    """Primera línea del bloque derivado: la MÉTRICA RECTORA (firma de mesa
+    20/sep/2026). Las tres clases se imprimen POR SEPARADO y cada una lleva su
+    instrumento y su brecha temporal al lado; no hay un solo error promedio,
+    porque promediar brechas de 1, 2 y 3 años y escalas distintas sería
+    exactamente la lectura que esta línea existe para impedir."""
+    if not cv or "error" in cv:
+        return f"- **Celdas validadas (métrica rectora).** {cv.get('error', '(no derivable)')}"
+    d = cv["desglose_por_clase"]
+    L = [f"- **Celdas validadas (métrica rectora, firma de mesa 20/sep/2026).** "
+         f"`{cv['total_celdas_validadas']}` celdas con predicción emitida antes de ver el dato "
+         f"y error sellado contra R "
+         f"(cruce `{d['cruce_vs_R']}` + persistencia `{d['persistencia_t_menos_1_vs_R']}`). "
+         f"**No es «N aciertos»: es N celdas con error CONOCIDO.** Tres clases, sin fundir:"]
+
+    for c in cv["clase_1_cruce_vs_R"]:
+        if "estado" in c:
+            L.append(f"  - *cruce vs R* · `{c['celda_d']}`: {c['estado']}")
+            continue
+        L.append(
+            f"  - *cruce vs R* · `{c['celda_d']}` · n `{c['n_celdas']}` · champion `{c['champion']}` · "
+            f"error mediano `{c['error_mediano_pp']}` pp (máx `{c['error_max_pp']}` pp) · "
+            f"brecha `{c['brecha_anios']}` años (misma ola) · escala cruda del CALC "
+            f"`{c['escala_cruda']}` · `{c['fuente']}`")
+
+    for p in cv["clase_2_persistencia_vs_R"]:
+        L.append(
+            f"  - *persistencia t−1 vs R* · `{p['instrumento']}` · n `{p['n_celdas']}` · "
+            f"error mediano `{p['error_mediano_pp']}` pp (máx `{p['error_max_pp']}` pp) · "
+            f"**brecha `{p['brecha_anios']}` años** · PERSISTE `{p['PERSISTE']}` / CAMBIA `{p['CAMBIA']}`")
+
+    t = cv["clase_3_duelo_tres_nacional"]
+    if "estado" in t:
+        L.append(f"  - *duelo de tres, nacional* · {t['estado']}")
+    else:
+        L.append(
+            f"  - *duelo de tres, nacional* · n `{t['n_celdas']}` · "
+            f"MAE `M` `{t['MAE_M_pp']}` pp · `L_SOLO` `{t['MAE_L_SOLO_pp']}` pp · "
+            f"`L_CORPUS` `{t['MAE_L_CORPUS_pp']}` pp · veredicto `{t['veredicto']}` · "
+            f"NO se suma a las otras dos clases (otro universo, otro estimando) · `{t['fuente']}`")
+
+    dn = cv["dominio_dinero"]
+    L.append(
+        f"  - *sub-cifra del dominio DINERO* · cruce n `{dn['cruce_n']}` (error mediano "
+        f"`{dn['cruce_error_mediano_pp']}` pp) · persistencia n `{dn['persistencia_n']}` "
+        f"(error mediano `{dn['persistencia_error_mediano_pp']}` pp) · {dn['nota']}")
+
+    nc = cv["NO_CUENTAN"]
+    L.append(
+        f"  - *NO cuentan* · `{nc['identico_emisor_igual_arbitro']}` filas `IDENTICO` "
+        f"(M == R porque `EMISOR=ARBITRO`: el mismo número copiado, no una predicción contrastada) · "
+        f"`{nc['formalidad_con_piso_sin_error']}` celdas de `formalidad` con piso y sin "
+        f"`error_piso_pp` (su error es un CALC sucesor) · universo examinado: {cv['universo_examinado']}")
+    return "\n".join(L)
 
 
 def render_bloque_vivo(I: dict[str, dict]) -> str:
@@ -493,6 +712,7 @@ def render_bloque_vivo(I: dict[str, dict]) -> str:
     partes.append(MARCA_INICIO)
     partes.append("## Estado vivo derivado")
     partes.append("")
+    partes.append(_linea_celdas_validadas(_v(I, "celdas_validadas") or {}))
     partes.append(
         f"- **Procedencia.** SHA `{_v(I, 'sha')}` · fecha del commit `{_v(I, 'fecha_commit')}` · "
         f"¿árbol == origin/main? `{_v(I, 'es_origin_main')}`."
