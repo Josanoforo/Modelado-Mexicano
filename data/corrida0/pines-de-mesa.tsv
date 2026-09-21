@@ -1,0 +1,40 @@
+# PINES DE MESA -- canal de relevo por FIRMA, ACTO GEN2-RELEVO-TANDA-3 (P1/P3).
+# NO ES DERIVADO: cada fila es una firma de mesa y se escribe a mano, con su
+# origen en la columna `firma`. Lo que si es mecanico son las GUARDAS de 4.1
+# que `tools/pines_mesa.py:valida_pin` aplica a cada fila antes de que mueva
+# un solo contador; un pin que no pasa se rechaza con codigo y no tumba a los
+# demas.
+#
+# `llave_logica` NO lleva ruta, ni version, ni `RES-####`: esos ids son
+# posicionales y la ruta con version no sobrevive a una rotacion del marco
+# (mesa TUBERIA, caso sintetico del 20/sep/2026). La traduccion
+# consumidor <-> llave vive en un solo sitio, `tools/pines_mesa.llave_logica`.
+#
+# `via`: `i-CRUDO` = la cifra la produce codigo GEN2 desde un insumo crudo con
+# hash. `ii-CONDUCTA-GEN2` = la lectura es de una conducta del motor que ya
+# tiene procedencia GEN2, y el pin cita el RESULT de ESA conducta.
+llave_logica	result_gen2	calc_gen2	via	firma	nota
+marco-M::CIV-M-01::R	RESULT-R-CIV-M-01-PUNTO	CALC-R-CIV-M-01	i-CRUDO	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	medidor lee el microdato de cero; delta contra el punto R de GEN1 = 0.0 (script de P3, ACTO GEN2-RELEVO-TANDA-3)
+marco-M::CIV-M-02::R	RESULT-R-CIV-M-02-PUNTO	CALC-R-CIV-M-02	i-CRUDO	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	medidor lee el microdato de cero; delta contra el punto R de GEN1 = 0.0 (script de P3, ACTO GEN2-RELEVO-TANDA-3)
+marco-M::CIV-M-04::R	RESULT-R-CIV-M-04-PUNTO	CALC-R-CIV-M-04	i-CRUDO	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	medidor lee el microdato de cero; delta contra el punto R de GEN1 = 0.0 (script de P3, ACTO GEN2-RELEVO-TANDA-3)
+marco-M::CIV-M-10::R	RESULT-R-CIV-M-10-PUNTO	CALC-R-CIV-M-10	i-CRUDO	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	medidor lee el microdato de cero; delta contra el punto R de GEN1 = 0.0 (script de P3, ACTO GEN2-RELEVO-TANDA-3)
+marco-M::CIV-M-12::R	RESULT-R-CIV-M-12-PUNTO	CALC-R-CIV-M-12	i-CRUDO	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	medidor lee el microdato de cero; delta contra el punto R de GEN1 = 0.0 (script de P3, ACTO GEN2-RELEVO-TANDA-3)
+marco-M::CIV-M-13::R	RESULT-R-CIV-M-13-PUNTO	CALC-R-CIV-M-13	i-CRUDO	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	medidor lee el microdato de cero; delta contra el punto R de GEN1 = 0.0 (script de P3, ACTO GEN2-RELEVO-TANDA-3)
+marco-M::DIN-M-01::R	RESULT-R-DIN-M-01-PUNTO	CALC-R-DIN-M-01-v4	i-CRUDO	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	medidor lee el microdato de cero; delta contra el punto R de GEN1 = 0.0 (script de P3, ACTO GEN2-RELEVO-TANDA-3)
+marco-M::FAM-M-01::R	RESULT-R-FAM-M-01-PUNTO	CALC-R-FAM-M-01-v3	i-CRUDO	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	medidor lee el microdato de cero; delta contra el punto R de GEN1 = 0.0 (script de P3, ACTO GEN2-RELEVO-TANDA-3)
+marco-M::FAM-M-05::R	RESULT-R-FAM-M-05-PUNTO	CALC-R-FAM-M-05-v3	i-CRUDO	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	medidor lee el microdato de cero; delta contra el punto R de GEN1 = 0.0 (script de P3, ACTO GEN2-RELEVO-TANDA-3)
+marco-M::FAM-M-06::R	RESULT-R-FAM-M-06-PUNTO	CALC-R-FAM-M-06-v3	i-CRUDO	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	medidor lee el microdato de cero; delta contra el punto R de GEN1 = 0.0 (script de P3, ACTO GEN2-RELEVO-TANDA-3)
+marco-M::FAM-M-07::R	RESULT-R-FAM-M-07-PUNTO	CALC-R-FAM-M-07-v3	i-CRUDO	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	medidor lee el microdato de cero; delta contra el punto R de GEN1 = 0.0 (script de P3, ACTO GEN2-RELEVO-TANDA-3)
+marco-M::TRA-M-02::R	RESULT-R-TRA-M-02-PUNTO	CALC-R-TRA-M-02-v3	i-CRUDO	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	medidor lee el microdato de cero; delta contra el punto R de GEN1 = 0.0 (script de P3, ACTO GEN2-RELEVO-TANDA-3)
+marco-M::TRA-M-03::R	RESULT-R-TRA-M-03-PUNTO	CALC-R-TRA-M-03-v3	i-CRUDO	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	medidor lee el microdato de cero; delta contra el punto R de GEN1 = 0.0 (script de P3, ACTO GEN2-RELEVO-TANDA-3); A.15: el marco rotula la variable P8_3_1 y ENCIG 2013 la nombra P8_3 -- nemonico desplazado, misma pregunta (seccion VIII, 1=Si/2=No/9 fuera), mismo ponderador FAC_P18
+marco-M::TRA-M-07::R	RESULT-R-TRA-M-07-PUNTO	CALC-R-TRA-M-07-v3	i-CRUDO	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	medidor lee el microdato de cero; delta contra el punto R de GEN1 = 0.0 (script de P3, ACTO GEN2-RELEVO-TANDA-3)
+marco-M::CIV-M-01::M	RESULT-ENVIPE-DEN-P-C2-U4	CALC-ENVIPE-0001	ii-CONDUCTA-GEN2	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	conducta denuncia_con_miedo_o_desconfianza (milpa/tramite.yaml:636), que M-<celda>.json cita en cita_p
+marco-M::CIV-M-02::M	RESULT-ENVIPE-DEN-P-C2-U4	CALC-ENVIPE-0001	ii-CONDUCTA-GEN2	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	conducta denuncia_con_miedo_o_desconfianza (milpa/tramite.yaml:636), que M-<celda>.json cita en cita_p
+marco-M::CIV-M-04::M	RESULT-ENVIPE-DEN-P-C2-U4	CALC-ENVIPE-0001	ii-CONDUCTA-GEN2	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	conducta denuncia_con_miedo_o_desconfianza (milpa/tramite.yaml:636), que M-<celda>.json cita en cita_p
+marco-M::CIV-M-10::M	RESULT-ENVIPE-DEN-P-C2-U4	CALC-ENVIPE-0001	ii-CONDUCTA-GEN2	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	conducta denuncia_con_miedo_o_desconfianza (milpa/tramite.yaml:636), que M-<celda>.json cita en cita_p
+marco-M::CIV-M-12::M	RESULT-ENVIPE-DEN-P-C2-U4	CALC-ENVIPE-0001	ii-CONDUCTA-GEN2	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	conducta denuncia_con_miedo_o_desconfianza (milpa/tramite.yaml:636), que M-<celda>.json cita en cita_p
+marco-M::CIV-M-13::M	RESULT-ENVIPE-DEN-P-C2-U4	CALC-ENVIPE-0001	ii-CONDUCTA-GEN2	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	conducta denuncia_con_miedo_o_desconfianza (milpa/tramite.yaml:636), que M-<celda>.json cita en cita_p
+marco-M::FAM-M-01::M	RESULT-DFVEJEZ-A-P-RECIBE	CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1	ii-CONDUCTA-GEN2	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	conducta recibe_dinero_familiares_para_vejez (milpa/tramite.yaml:856), citada en cita_p de M-FAM-M-01.json
+marco-M::TRA-M-02::M	RESULT-ENCIG-MOR-A-P-SOL1	CALC-ENCIG-0001	ii-CONDUCTA-GEN2	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	conducta paga_mordida_encig2025 (milpa/tramite.yaml:62), citada en cita_p de M-<celda>__v1_3.json
+marco-M::TRA-M-03::M	RESULT-ENCIG-MOR-A-P-SOL1	CALC-ENCIG-0001	ii-CONDUCTA-GEN2	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	conducta paga_mordida_encig2025 (milpa/tramite.yaml:62), citada en cita_p de M-<celda>__v1_3.json
+marco-M::TRA-M-07::M	RESULT-ENCIG-MOR-A-P-SOL1	CALC-ENCIG-0001	ii-CONDUCTA-GEN2	forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md · 21/sep/2026 · §2 (firma 4.1 del 21/sep/2026)	conducta paga_mordida_encig2025 (milpa/tramite.yaml:62), citada en cita_p de M-<celda>__v1_3.json

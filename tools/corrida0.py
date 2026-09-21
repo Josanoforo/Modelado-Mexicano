@@ -91,6 +91,10 @@ from functools import lru_cache
 from pathlib import Path, PurePosixPath
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+# `tools/` no es paquete: los tests importan `tools.corrida0` por namespace y
+# ahi el directorio propio NO entra solo en sys.path. Mismo patron que
+# tools/relevo_usos.py, para que `pines_mesa` se resuelva por las dos vias.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import yaml  # noqa: E402
 
@@ -102,6 +106,7 @@ from milpa.src.emisor import cargar_reglas  # noqa: E402
 # note. `clases.py` no abre ningun archivo al importarse.
 from milpa.src.clases import EJES as EJES_MODELO  # noqa: E402
 from milpa.src.clases import EJES_HOGAR as EJES_HOGAR_MODELO  # noqa: E402
+import pines_mesa  # noqa: E402
 from milpa.src.linaje import (  # noqa: E402
     APTA_LINAJE, NO_APTA, ORIGEN_HEREDADO, ORIGEN_INDETERMINADO,
     ORIGEN_MIXTO, ORIGEN_NUEVO, USO_MEDICION_GEN2, aptitud_para_uso, combina_origenes,
@@ -2725,6 +2730,11 @@ COLS_VISTA_USOS = [
     "fuente_replay", "uso_solicitado", "origen_numerico", "aptitud_uso",
     "motivo_aptitud", "camino_linaje",
     "valor_materializado",
+    # ACTO GEN2-RELEVO-TANDA-3 · P1/P7. `via_relevo` no funde las dos clases
+    # de 4.1 («El contador muestra las clases sin fundirlas»); `pin_de_mesa`
+    # deja a la vista QUE firma autorizo la lectura. Vacias para todo uso que
+    # no llego por el canal de pines.
+    "via_relevo", "pin_de_mesa",
 ]
 
 
@@ -3888,6 +3898,7 @@ def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> 
 
     # ── lado OFERTA ───────────────────────────────────────────────────────
     decisiones_validacion = _lee_decisiones()
+    specs_por_calc: dict[str, dict] = {}
     for o in oferta:
         calc_id, ejec, spec = o["calc_id"], o["ejec"], o["spec"]
         sucesor = sucesor_de.get(calc_id, "")
@@ -3905,6 +3916,10 @@ def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> 
         # tolerancia de reproducibilidad -- y por eso se distingue de vacio.
         tol_adop_spec = spec.get("tolerancia_adopcion")
         cita_fuente = _cita_fuente_replay(o.get("fuente_replay"))
+        # El canal de pines de mesa valida contra la spec YA CARGADA aqui
+        # (guardas (b) y (d) de 4.1, ACTO GEN2-RELEVO-TANDA-3): leerla otra
+        # vez desde disco seria una segunda fuente del mismo hecho.
+        specs_por_calc[calc_id] = spec
         filas_corridas.append({
             "corrida_id": corrida_id, "origen": "OFERTA", "spec_id": calc_id,
             "estado": estado, "generacion": o["generacion"],
@@ -4010,6 +4025,59 @@ def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> 
         if previo is None or str(previo["estado"]).startswith("SUPERADO"):
             indice_resultados[f["resultado_id"]] = f
 
+    # ── canal de PINES DE MESA (ACTO GEN2-RELEVO-TANDA-3, P1) ─────────────
+    # Se aplica AQUI, no al construir los usos: las guardas de 4.1 necesitan
+    # el registro de oferta ya unido (estado, cuenta_gen2, replay, resultados
+    # de cada CALC), que arriba todavia no existe.
+    #
+    # PRECEDENCIA: el pin solo alcanza a los usos cuyo consumidor NO declara
+    # `corrida0_generacion`. Un consumidor que SI puede llevar marca y la
+    # lleva manda sobre el canal externo -- el pin existe porque hay
+    # consumidores SELLADOS que no pueden escribirla, no para sobreescribir a
+    # los que si. Un pin que apunte a un consumidor ya marcado se reporta
+    # como aviso y no pisa nada.
+    for u in filas_usos:
+        u.setdefault("via_relevo", "")
+        u.setdefault("pin_de_mesa", "")
+    ctx_corridas = {f["spec_id"]: {
+        "estado": f["estado"], "cuenta_gen2": f["cuenta_gen2"],
+        "resultado_replay": f["resultado_replay"],
+        "resultados_ids": set(str(f["resultados_ids"]).split(",")),
+    } for f in filas_corridas if f["origen"] == "OFERTA"}
+    ctx_conductas = {m["resultado_id"]: c for c, m in marcas.items()
+                     if m.get("generacion") == "GEN2" and m.get("resultado_id")
+                     and c.startswith(f"{_rel(TRAMITE)}:")}
+    pines_ok, pines_rechazados = pines_mesa.pines_validados(
+        ctx_corridas, specs_por_calc, ctx_conductas)
+    avisos.extend(pines_rechazados)
+    llaves_usadas: set[str] = set()
+    for u in filas_usos:
+        try:
+            llave = pines_mesa.llave_logica(u["consumidor"])
+        except pines_mesa.PinInvalido:
+            continue
+        pin = pines_ok.get(llave)
+        if pin is None:
+            continue
+        if u["corrida0_generacion"]:
+            avisos.append(
+                f"PIN-SOBRE-CONSUMIDOR-YA-MARCADO: {llave} tiene pin de mesa "
+                f"pero {u['consumidor']} ya declara "
+                f"corrida0_generacion={u['corrida0_generacion']}; manda el "
+                f"consumidor y el pin no se aplica")
+            continue
+        llaves_usadas.add(llave)
+        u["generacion_leida"] = "GEN2"
+        u["corrida0_generacion"] = "GEN2"
+        u["corrida0_resultado_id"] = pin["result_gen2"]
+        u["uso_solicitado"] = USO_MEDICION_GEN2
+        u["via_relevo"] = pin["via"]
+        u["pin_de_mesa"] = f"{llave} · {pin['firma']}"
+    for llave in sorted(set(pines_ok) - llaves_usadas):
+        avisos.append(
+            f"PIN-SIN-CONSUMIDOR: {llave} esta firmado y validado, pero "
+            f"ningun uso activo del registro tiene esa llave logica")
+
     # ── validaciones que PARAN sobre el grafo ya unido ─────────────────────
     usos_no_aptos: list[str] = []
     for u in filas_usos:
@@ -4095,6 +4163,7 @@ def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> 
             "camino_linaje": (f"marcador:{cid} -> {marca['resultado_id']} -> "
                               f"{destino['camino_linaje']}"),
             "valor_materializado": marca.get("punto", NO_DECLARADO),
+            "via_relevo": "", "pin_de_mesa": "",
         })
 
     return {"corridas": filas_corridas, "resultados": filas_resultados,
@@ -4368,6 +4437,48 @@ def _legacy_por_consumidor(usos_activos: list) -> dict:
     return {f"legacy_activas_por_consumidor__{k}": v for k, v in clases.items()}
 
 
+# ACTO GEN2-RELEVO-TANDA-3 · P7. 4.1 cierra con «El contador muestra las
+# clases sin fundirlas»: una sola cifra de "relevadas" borraria la diferencia
+# entre medir desde crudo (i) y leer una conducta que ya es GEN2 (ii), que es
+# exactamente la distincion que la firma establece.
+CAMPOS_MARCO = ("R", "M", "L", "AGREGADO")
+
+
+def _clases_de_relevo(usos_activos: list) -> dict:
+    """Relevadas por via, y lo que sigue legacy en el marco, por campo.
+
+    El desglose del marco por campo es lo que hace VISIBLE a `DIN-M-01:M`:
+    sin el, la unica lectura M que no se releva desaparece dentro de un
+    total. Se deriva del propio `consumidor`, no de una lista a mano.
+    """
+    por_via = {v: 0 for v in pines_mesa.VIAS}
+    marco = {c: 0 for c in CAMPOS_MARCO}
+    pendientes_m = []
+    for u in usos_activos:
+        via = str(u.get("via_relevo") or "")
+        if via in por_via:
+            por_via[via] += 1
+        c = str(u["consumidor"])
+        if not c.startswith("forense/prereg-duelo-v2/marco-M"):
+            continue
+        if u["generacion_leida"] != GENERACION_LEGADO:
+            continue
+        partes = c.split(":")
+        campo = partes[2] if len(partes) > 2 else "NO-DECLARADO"
+        if campo in marco:
+            marco[campo] += 1
+        if campo == "M":
+            pendientes_m.append(partes[1])
+    salida = {f"relevadas_por_pin_de_mesa__{v.replace('-', '_')}": n
+              for v, n in por_via.items()}
+    salida.update({f"legacy_marco_M_por_campo__{k}": v for k, v in marco.items()})
+    # Nombrada, no contada: es el recordatorio de que `tiene_ahorros` sigue
+    # esperando el acceso a ENNViH.
+    salida["legacy_marco_M_celdas_M_pendientes"] = (
+        ",".join(sorted(pendientes_m)) or "NINGUNA")
+    return salida
+
+
 def status(imprime: bool = True) -> dict:
     """§9 del plan v2.0. TODO derivado de las vistas en memoria: ningun
     numero se teclea aqui y ninguno se lee de un TSV que quiza no se
@@ -4433,6 +4544,7 @@ def status(imprime: bool = True) -> dict:
         # cifra (firma 20/sep/2026). Los cuatro son RELEVABLES: ninguno se
         # declara fuera del contador.
         **_legacy_por_consumidor(usos_activos),
+        **_clases_de_relevo(usos_activos),
         "N_resultados_gen2_sellados": len(ids_sellados_gen2),
         "N_resultados_gen2_pendientes_adopcion": len(ids_pendientes),
         "N_resultados_gen2_vetados_por_decision": len(ids_vetados),
