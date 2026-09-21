@@ -5474,6 +5474,11 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
     (ACTO `[ADQ] 2026-09-21`, GEN2-38 NC-0162) vía la misma `upsert_fila`
     canónica: **33 líneas**; la línea 156 añade otra fila con coma dentro
     de una nota de texto libre, que `csv.writer` cita.
+    Re-medido el 21/sep/2026 (ACTO `GEN2-TRAMITE-FIRMAS-4`, D1/D2 del
+    encargo) tras añadir a mano las dos filas `residual:ENVIPE_2026` y
+    `residual:ENIGH_2024_NC` al pie del registro: **35 líneas**; las
+    líneas 157 y 158 traen notas JSON con comillas dobles, mismo patrón
+    que las anteriores.
     Este test es DOBLE:
 
     (1) CONTROL, documenta que el defecto sigue vivo con `csv`: si algún
@@ -5505,12 +5510,12 @@ GUARDIA-TSV-Y-CAPA2-LISTAS, 3/sep/2026. Un round-trip
         escritor.writerow(fila)
     csv_out_lines = buf.getvalue().split("\r\n")
     diffs_csv = [i for i, (a, b) in enumerate(zip(orig_lines, csv_out_lines)) if a != b]
-    if len(diffs_csv) != 33:
+    if len(diffs_csv) != 35:
         fail("T26-bis", f"control: round-trip csv sobre cola-adquisicion-registro.tsv debe dar "
-                         f"33 líneas distintas (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94, "
+                         f"35 líneas distintas (20, 29, 35, 37, 38, 40, 41, 47, 50, 51, 63, 94, "
                          f"97, 114, 117, 119, 121, 123, 124, 125, 136, 139, 140, 144, 145, 146, "
-                         f"147, 148, 149, 153, 154, 155, 156), re-medidas el 21/sep/2026 tras "
-                         f"registrar el residual ENPOL_2016_FD en el registro canónico; hoy da "
+                         f"147, 148, 149, 153, 154, 155, 156, 157, 158), re-medidas el 21/sep/2026 "
+                         f"tras añadir ENVIPE_2026/ENIGH_2024_NC al registro canónico; hoy da "
                          f"{len(diffs_csv)} ({[i + 1 for i in diffs_csv]}) -- el archivo cambió "
                          f"de forma que el control ya no describe la realidad, actualiza el número "
                          f"esperado con el hallazgo re-medido, no lo silencies.")
