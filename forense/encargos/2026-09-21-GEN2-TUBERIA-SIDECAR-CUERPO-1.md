@@ -98,3 +98,11 @@ Si en tres meses el verificador no ha emitido un solo FAIL ni un solo WARN, se a
   **impacto** — ningún contador. Queda escrito qué actos corrieron bajo un texto que el repo no guarda: dos actos cuyo encargo archivado no es el texto completo bajo el que se ejecutaron. La regla firmada hoy (adenda = archivo propio, sellada al recibirse) lo impide hacia adelante; hacia atrás sólo se cierra si mesa aporta el texto.
   **sucesor** — `SIN-ASIGNAR` — sólo se cierra si mesa aporta el texto de esas dos adendas.
   Fila: `NC-260921-GEN2-TUBERIA-SIDECAR-CUERPO-1-3d08-02`.
+
+## CONSUMIDO
+
+**PR #946** — https://github.com/Josanoforo/Modelado-Mexicano/pull/946 · rama `claude/entorno-6pj9np` · `ADR-580` · 21/sep/2026.
+
+Publicado y **propuesto a mesa; NO fusionado por el ejecutor** (el encargo lo exige y D-10/paso 9 de `/acto` lo confirma: el merge es la autorización, no un trámite).
+
+`cuenta_gen2 = NO` · contadores movidos: **cero**.
