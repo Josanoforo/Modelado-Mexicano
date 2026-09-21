@@ -47,6 +47,36 @@
 # `unidad_objetivo: persona` (la del modelo) y `universo_instrumento` de cada
 # candidato dice DELITO (la del dato). El enum v0.5 §3 no tiene `delito`.
 # ─────────────────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────
+# AVISO FECHADO · 2026-09-21 · ACTO GEN2-SENAL-1 (P3)
+# NO EDITA NINGÚN AVISO ANTERIOR DE ESTE ARCHIVO.
+#
+#   LA CELDA EMITE C2 DESDE LA FIRMA DEL 17/sep/2026 Y LA ENMIENDA DEL 19/sep.
+#   Este acto NO adopta: propaga a `estado_operativo` lo que `champion_actual`
+#   (abajo) ya decía. Ningún campo de adjudicación se toca.
+#
+#   `estado_operativo: PENDIENTE` -> `LISTO`, por contrato y no por criterio del
+#   ejecutor. `propuesta-motor-adaptativo-celda-v0_2.md:104` define LISTO =
+#   «existe un candidato `champion_actual` vigente, con `production_spec_refs`
+#   ejecutados y auditables»; :105 define PENDIENTE = «NINGÚN champion vigente».
+#   Con `champion_actual: C2` vigente, PENDIENTE es literalmente falso. Los
+#   `production_spec_refs` de C2 están EJECUTADOS y auditables:
+#   CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001, 12/12 celdas, MAE vs R = 1.568052 pp.
+#
+#   EL COMENTARIO ANTERIOR DE ESE CAMPO DECÍA: «adjudicada sin campeon; nada entra
+#   al motor. LISTO es de mesa si algun dia adopta». La condición se cumplió: mesa
+#   adoptó el 17/sep/2026 («Un piso no vencido en su celda-D es el estimador
+#   adjudicado de esa celda y se adopta salvo veto de mesa; se adoptan las 20
+#   celdas de ADR-538 y ADR-542»), y la enmienda del 19/sep escribió C2 en
+#   `champion_actual`. Lo que faltaba era propagarlo a este campo.
+#
+#   `requiere_decision_mesa` NO SE TOCA: ya decía `false` antes de este acto.
+#   Es un eje ortogonal a `estado_operativo` (v0_2.md:109) y estaba correcto.
+#
+#   VERIFICADO EN ESTE ACTO: el motor emite esta celda por `champion_actual == "C2"`
+#   (tools/marcador_segmento.py:715,753; milpa/src/estimadores_segmento.py:24) y
+#   NO consulta `estado_operativo`. El motor no estaba roto; el archivo se
+#   contradecía. Esta enmienda quita la contradicción sin cambiar una sola emisión.
 celda_d:
   id: TRA.evade_norma.envipe2025.escolaridad_x_dominio
   estimando: "p(evade_norma | escolaridad_proxy, dominio_urbano_rural) -- proporcion ponderada [0,1] de DELITOS (ENVIPE tmod_vic, FAC_DEL) del universo BP1_20 in {1,2}; evade_norma = BP1_20==2 AND BP1_23 in {04,05,06,08}, la CONJUNTA (prereg-caja-ENVIPE-EVASION-NORMA §1, verbatim)"
@@ -87,7 +117,10 @@ celda_d:
   fuerza_coeficiente: NO-APLICA
   procedencia_condicional: MEDICION_DIRECTA_MICRODATO
   calibrado: false
-  estado_operativo: PENDIENTE   # adjudicada sin campeon; nada entra al motor. LISTO es de mesa si algun dia adopta
+  estado_operativo: LISTO   # 2026-09-21, ACTO GEN2-SENAL-1 (P3): la condicion del comentario anterior
+                            # («LISTO es de mesa si algun dia adopta») SE CUMPLIO -- mesa adopto el 17/sep/2026
+                            # y la enmienda del 19/sep escribio C2 en champion_actual. LISTO por contrato
+                            # v0_2.md:104; PENDIENTE exige «ningun champion vigente» (:105) y era falso.
   vocabulario_version: 0.6
   requiere_decision_mesa: false   # no hay decision que tomar sobre el motor: no se propone adoptar (encargo)
   fecha_declaracion: 2026-09-17

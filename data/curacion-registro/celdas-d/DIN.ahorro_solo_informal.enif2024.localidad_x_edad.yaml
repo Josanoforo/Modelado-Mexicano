@@ -81,6 +81,42 @@
 #   data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001/
 #   forense/notas/2026-09-16-GEN2-CELDA-D-PILOTO-1-cierre.md
 # ─────────────────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────
+# AVISO FECHADO · 2026-09-21 · ACTO GEN2-SENAL-1 (P3)
+# ACOTA —NO EDITA— EL AVISO DEL 2026-09-17 DE ESTE MISMO ARCHIVO.
+#
+#   «ESTA CELDA NO ES EMISIBLE TODAVÍA» ERA CIERTO ANTES DEL COMMIT-3. YA NO.
+#   Desde la firma de mesa del 17/sep/2026 y la enmienda del 19/sep, la celda
+#   EMITE C2. El aviso del 17/sep se conserva íntegro como historia: describe el
+#   estado anterior al COMMIT-3, no el de hoy.
+#
+# QUÉ CAMBIA AQUÍ Y POR QUÉ (este acto NO adopta: propaga a dos campos lo que un
+# tercer campo del mismo archivo ya decía desde el 19/sep):
+#
+#   `estado_operativo: PENDIENTE` -> `LISTO`.
+#     Por contrato, no por criterio del ejecutor. `propuesta-motor-adaptativo-
+#     celda-v0_2.md:104` define LISTO = «existe un candidato `champion_actual`
+#     vigente, con `production_spec_refs` ejecutados y auditables», y :105 define
+#     PENDIENTE = «NINGÚN champion vigente». Con `champion_actual: C2` (:104 de
+#     este archivo, enmienda del 19/sep bajo la firma del 17/sep), PENDIENTE es
+#     literalmente falso. Los `production_spec_refs` de C2 (:94) están EJECUTADOS
+#     y auditables: CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001, 8/8 celdas.
+#
+#   `requiere_decision_mesa: true` -> `false`.
+#     Eje ORTOGONAL a `estado_operativo` (v0_2.md:109), evaluado por separado.
+#     Las TRES razones que el campo citaba están resueltas, verificadas una por
+#     una en `forense/firmas-pendientes.tsv` en este acto (A.17: se re-verifica
+#     el ESTADO del bloqueador, no se hereda su nombre):
+#       - FP-376 (localidad MAPEO-N-A-1)  -> FIRMADA, mesa 16/sep/2026 (:365).
+#       - «siete códigos comunes» (FP-379 D1/D5) -> FIRMADA; la ENMIENDA del
+#         mismo día disuelve H1 y fija D9 (nueve códigos) como desenlace (:368).
+#       - «admisión de C2» (FP-379 D6) -> subordinada a D1-D3, EJECUTADA entera
+#         por ACTO GEN2-CELDA-D-PILOTO-1 / ADR-538: «C2 salió PISO-ADMISIBLE sin
+#         repliegue» (:368).
+#
+# NO SE TOCA NINGÚN CAMPO DE ADJUDICACIÓN: `champion_actual`, `veredicto`,
+# `margen_material`, `estado_decidibilidad` y `criterio_adjudicacion` quedan
+# exactamente como estaban. Este acto no adopta, no desadopta y no mide.
 celda_d:
   id: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
   estimando: "p(ahorra_solo_informal | localidad, edad) -- proporcion ponderada [0,1], personas 18+ (ENIF TMODULO, FAC_PER); vias formales = P5_6_{1,2,3,4,5,8,9} (siete codigos comunes 2021/2024)"
@@ -117,9 +153,14 @@ celda_d:
   fuerza_coeficiente: NO-APLICA
   procedencia_condicional: MEDICION_DIRECTA_MICRODATO
   calibrado: false
-  estado_operativo: PENDIENTE
+  estado_operativo: LISTO   # 2026-09-21, ACTO GEN2-SENAL-1 (P3): champion_actual C2 vigente con
+                            # production_spec_refs EJECUTADOS -> LISTO por contrato v0_2.md:104.
+                            # PENDIENTE exige «ningun champion vigente» (:105) y era falso desde el 19/sep.
   vocabulario_version: 0.6
-  requiere_decision_mesa: true   # FP-376; siete codigos comunes; admision de C2
+  requiere_decision_mesa: false   # 2026-09-21, ACTO GEN2-SENAL-1 (P3): las TRES razones resueltas y
+                                  # re-verificadas por estado (A.17) en forense/firmas-pendientes.tsv:
+                                  # FP-376 FIRMADA (:365); FP-379 D1/D5 FIRMADA + enmienda (:368);
+                                  # FP-379 D6 (admision de C2) EJECUTADA por ADR-538, PISO-ADMISIBLE.
   fecha_declaracion: 2026-09-17
   commit_declaracion: 9dffd64
   fecha_adjudicacion: 2026-09-16     # el piloto adjudico POR CELDA; el veredicto de celda-D es SIN-CANDIDATO-SUPERIOR y no corona a nadie
