@@ -243,6 +243,16 @@ jobs:
         # Stdlib puro, cero microdato.
         run: python3 tests/test_credito_comparabilidad_texto.py
 
+      - name: comparabilidad por texto de ahorro ENIF — forma de la tabla 8 objetos × 5 olas (bloqueante)
+        # ACTO GEN2-DIN-LOTE-ENIF2024-A (21/sep/2026) · P1. Hermano del paso de
+        # arriba, mismo motivo (NC-0331). Corre PRIMERO el caso sintético (D-22:
+        # una tabla mínima válida y cinco mutaciones que deben fallar) y después
+        # la tabla real `data/ahorro-comparabilidad-texto-v1_0.tsv`: 40 filas =
+        # 2 componentes del desenlace + 6 ejes, × {2012, 2015, 2018, 2021, 2024};
+        # veredictos en lista cerrada; toda fila con componente no estimable cita
+        # el texto buscado (A.15). Stdlib puro, cero microdato.
+        run: python3 tests/test_ahorro_comparabilidad_texto.py
+
       - name: métrica rectora — celdas_validadas en la primera línea del tablero (bloqueante)
         # ACTO GEN2-SENAL-1 (21/sep/2026) · P1. `celdas_validadas` es la métrica
         # rectora por firma de mesa del 20/sep/2026. El test pina los DOS
