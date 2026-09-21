@@ -240,8 +240,28 @@ jobs:
         # es decoración. Corre PRIMERO el caso sintético (D-22) y después la
         # tabla real `data/credito-comparabilidad-texto-v1_0.tsv`: 40 filas,
         # veredictos en lista cerrada, toda fila negativa con texto buscado.
-        # Stdlib puro, cero microdato.
+        # Stdlib puro, cero microdato. Desde ACTO GEN2-DIN-CREDITO-HISTORIA-1
+        # (21/sep/2026, P1) el mismo archivo verifica también la sucesora
+        # `data/credito-comparabilidad-texto-v1_1.tsv` (cuestionarios 2012/2015
+        # ya en el corpus: cero NO-VERIFICABLE-AQUÍ, 24 filas heredadas verbatim).
         run: python3 tests/test_credito_comparabilidad_texto.py
+
+      - name: comparabilidad por texto de ahorro ENIF — forma de la tabla 8 objetos × 5 olas (bloqueante)
+        # ACTO GEN2-DIN-LOTE-ENIF2024-A (21/sep/2026) · P1. Hermano del paso de
+        # arriba, mismo motivo (NC-0331). Corre PRIMERO el caso sintético (D-22:
+        # una tabla mínima válida y cinco mutaciones que deben fallar) y después
+        # la tabla real `data/ahorro-comparabilidad-texto-v1_0.tsv`: 40 filas =
+        # 2 componentes del desenlace + 6 ejes, × {2012, 2015, 2018, 2021, 2024};
+        # veredictos en lista cerrada; toda fila con componente no estimable cita
+        # el texto buscado (A.15). Stdlib puro, cero microdato.
+        run: python3 tests/test_ahorro_comparabilidad_texto.py
+
+      - name: comparabilidad por texto del canal de pago de luz ENCIG — forma de la tabla 1 conducta × 6 olas (bloqueante)
+        # ACTO GEN2-ENCIG-SERIE-Y-TENDENCIA-1 (21/sep/2026), P1: misma forma y
+        # verificador que la tabla de crédito, otra rejilla (2015-2025, ancla
+        # 2021). Sintético primero (D-22), luego `data/encig-canal-
+        # comparabilidad-texto-v1_0.tsv`. Stdlib puro, cero microdato.
+        run: python3 tests/test_encig_canal_comparabilidad_texto.py
 
       - name: métrica rectora — celdas_validadas en la primera línea del tablero (bloqueante)
         # ACTO GEN2-SENAL-1 (21/sep/2026) · P1. `celdas_validadas` es la métrica
@@ -420,10 +440,62 @@ jobs:
       - name: Mutaciones de las seis guardas (cada una prueba SU guarda)
         run: python3 tests/test_guardas_res.py
 
+  # ACTO GEN2-TUBERIA-ENRUTAMIENTO-PR-1 (P2) · qué tipo de merge es este PR,
+  # derivado de su diff, escrito en el RESUMEN del job para que mesa lo lea
+  # en la pestaña Checks sin abrir el diff. Job PROPIO con su PROPIO clonado
+  # que traiga la base (D-23: una herramienta de verificación no muta el clon
+  # que verifica; `clasifica_pr.py` nunca hace fetch).
+  #
+  # NO está en `needs` de `check`, y es a propósito: la clase INFORMA, no
+  # adjudica (D-16). Un PR no se bloquea por la clase que le toque -- el
+  # merge es de mesa. Este job no fusiona, no etiqueta y no tiene permisos
+  # de escritura.
+  enrutamiento-pr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout sin marketplace, con la ref base (repo público)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://github.com/${{ github.repository }}.git"
+          if [ -n "${{ github.event.pull_request.number }}" ]; then
+            REF="+refs/pull/${{ github.event.pull_request.number }}/merge:refs/remotes/origin/ci"
+          else
+            REF="+${{ github.ref }}:refs/remotes/origin/ci"
+          fi
+          git -c protocol.version=2 fetch -q --no-tags origin "$REF"
+          BASE="${{ github.event.pull_request.base.ref || 'main' }}"
+          git -c protocol.version=2 fetch -q --no-tags origin "+refs/heads/$BASE:refs/remotes/origin/base"
+          git checkout -q refs/remotes/origin/ci
+          git log -1 --format="HEAD=%H %s"
+          git log -1 --format="BASE=%H %s" refs/remotes/origin/base
+
+      - name: Intérprete del runner (crudo, para que quede en el log)
+        run: python3 -VV
+
+      - name: Los casos sintéticos, uno por clase (bloqueante — D-21)
+        run: python3 tests/test_clasifica_pr.py
+
+      - name: Clase de este PR, al resumen del job (nunca falla por la clase)
+        run: |
+          python3 tools/clasifica_pr.py \
+            --base refs/remotes/origin/base \
+            --cabeza refs/remotes/origin/ci \
+            --resumen "$GITHUB_STEP_SUMMARY"
+
   # Conserva el nombre requerido por protección. always() es indispensable:
   # un job fallido/omitido/cancelado debe llegar a una compuerta que NO aprueba.
   check:
-    needs: [suite, adicionales, guardias, preflight-calc, guardas-res]
+    # `enrutamiento-pr` (ACTO GEN2-TUBERIA-ENRUTAMIENTO-PR-1, 21/sep/2026):
+    # entra a `needs` porque la guarda de `tests/test_check_parallel.py`
+    # DERIVA el conjunto del workflow -- TODO job menos el gate es requerido.
+    # Esto NO hace que la clase adjudique: `tools/clasifica_pr.py` sale 0
+    # clasifique lo que clasifique (probado en `tests/test_clasifica_pr.py`,
+    # caso 8), así que lo único que este job puede poner en rojo es su
+    # propio test o su clonado -- nunca la clase que le toque a un PR. Ver
+    # §PREMISA-CAÍDA de la nota de cierre del acto.
+    needs: [suite, adicionales, guardias, preflight-calc, guardas-res, enrutamiento-pr]
     if: ${{ always() }}
     runs-on: ubuntu-latest
     timeout-minutes: 1
@@ -435,11 +507,13 @@ jobs:
           GUARDIAS_RESULT: ${{ needs.guardias.result }}
           GUARDAS_RES_RESULT: ${{ needs['guardas-res'].result }}
           PREFLIGHT_CALC_RESULT: ${{ needs['preflight-calc'].result }}
+          ENRUTAMIENTO_PR_RESULT: ${{ needs['enrutamiento-pr'].result }}
         run: |
           set -euo pipefail
-          printf 'suite=%s adicionales=%s guardias=%s preflight-calc=%s guardas-res=%s\n' "$SUITE_RESULT" "$ADICIONALES_RESULT" "$GUARDIAS_RESULT" "$PREFLIGHT_CALC_RESULT" "$GUARDAS_RES_RESULT"
+          printf 'suite=%s adicionales=%s guardias=%s preflight-calc=%s guardas-res=%s enrutamiento-pr=%s\n' "$SUITE_RESULT" "$ADICIONALES_RESULT" "$GUARDIAS_RESULT" "$PREFLIGHT_CALC_RESULT" "$GUARDAS_RES_RESULT" "$ENRUTAMIENTO_PR_RESULT"
           test "$SUITE_RESULT" = success
           test "$ADICIONALES_RESULT" = success
           test "$GUARDIAS_RESULT" = success
           test "$GUARDAS_RES_RESULT" = success
           test "$PREFLIGHT_CALC_RESULT" = success
+          test "$ENRUTAMIENTO_PR_RESULT" = success
