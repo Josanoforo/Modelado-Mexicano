@@ -46,3 +46,14 @@ Propio: las dos filas de la cola (por el escritor canónico) y su vista regenera
 
 ## 10 · NO HACE · SUCESORES · CIERRE
 No abre ninguna ola · no corre el duelo · no camina el resto de la cola (las 7 `SOLICITUD-PREPARADA` son de otro contrato). Sucesores: COMMIT-2/3a/3 del duelo ENVIPE 2026 (otra sesión, antes del 31/oct) · comparabilidad ENIGH 2022→2024 en `milpa-inegi` (relanzamiento de `#964` P2) · hallazgo para TUBERÍA: `SOLICITUD-PRE-CONFIRMADA` no es un estado del contrato de `/adquiere`; o entra al contrato, o `/tramite` no lo escribe. Auditoría §5: no aplica. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+- `NC-260921-GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1-dd08-01` — §5.4 de `/adquiere` (`tools/actualiza_reactivos_contexto.py --objeto envipe2026*`) para los 4 payloads nuevos de ENVIPE 2026: FUERA-DE-PERÍMETRO. La corrida real sobrescribió el overlay completo (43 020 filas + 6 091 grupos residuales acumulados) con 0 filas porque el objeto no está indexado en las tablas de fuentes por defecto; revertida con `git checkout --` antes de comitear (nunca llegó a `git add`). Impacto: el overlay de reactivos de ENVIPE 2026 sigue sin texto acreditado; no afecta al manifiesto ni al duelo congelado. Sucesor: sesión que edite las tablas de fuentes de `tools/` para indexar `envipe2026` antes de correrlo.
+- `NC-260921-GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1-dd08-02` — cuatro documentos metodológicos adicionales de ENIGH 2024 localizados en el catálogo RNM 1116 (diseño conceptual `889463924487.pdf`, criterios de validación `889463924500.pdf`, documento operativo de campo `889463924524.pdf`, descripción del cálculo de indicadores con R `889463924845.pdf`): FUERA-DE-PERÍMETRO — P3 pide descriptor + nota técnica + cuestionario, no la documentación metodológica completa del catálogo. Impacto: ninguno sobre lo obtenido. Sucesor: sesión que los pida explícitamente (URLs ya citadas arriba).
+- ENIGH 2024 nota técnica: no es un NO-CORRIDO sino un `NO-ENCONTRADO` verificado (A.4) — el catálogo RNM 1116 enumera sus 13 recursos completos y ninguno lo es (a diferencia de 2022, que sí publicó uno). No aplica sucesor de búsqueda; sólo aplica si INEGI publica el documento más tarde.
+- COMMIT-2/3a/3 del duelo ENVIPE 2026, comparabilidad ENIGH 2022→2024 y el hallazgo de TUBERÍA sobre `SOLICITUD-PRE-CONFIRMADA`: ya declarados como sucesores arriba, por diseño del encargo — no son omisiones de esta sesión.
+
+## CONSUMIDO
+
+`PR #977` — `ACTO GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1 · ENVIPE 2026 y ENIGH 2024 al corpus con hash; duelo ENVIPE 2026 congelado`. Rama `acto/gen2-adquiere-envipe2026-enigh2024-1`. ADR raíz de acto `ADR-260921-GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1-dd08-01` (`canon/gobernanza-v1_15.md` §4, `canon/L0/ADR-260921-GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1-dd08-01.md`). Nota: `forense/notas/2026-09-21-GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1-cierre.md`.
