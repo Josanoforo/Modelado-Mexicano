@@ -792,9 +792,44 @@ def t14_inventario():
 
 
 # ───────────────────────────────────────────────────────────────
-# T15 · T-ADR-COUNT — el número de ADR citado en canon/ debe igualar los
-#   ADR únicos de `gobernanza`, sin huecos en la secuencia.
-#   (sesión de tests, 29/jul/2026 · censo-integridad-v1_0.md C1-02: 32 vs 37)
+# T15 · T-ADR-COUNT — TRES aserciones, y acepta huecos.
+#   (firma de mesa D-3, 21/sep/2026, ACTO GEN2-TUBERIA-SUCESOR-1; deroga la
+#   variante de dos aserciones que dirección escribió sin ejecutarla.)
+#
+#   (1) SIN DUPLICADOS — ningún número de ADR aparece dos veces en
+#       `gobernanza`. Defecto que atrapa: dos actos en vuelo que toman el
+#       mismo `max+1` y fusionan uno tras otro (regla de la casa:
+#       renumera quien fusiona segundo; sin esta aserción, nadie se entera).
+#   (2) EL CONTEO CITADO IGUALA LOS ÚNICOS — toda cita `N ADR` en `canon/`
+#       vale `len(set(nums))`, salvo marca de cita histórica.
+#       Defecto que atrapa: censo-integridad-v1_0.md C1-02 (29/jul/2026),
+#       32 citado contra 37 reales. MEDIDO por dirección contra el árbol
+#       real: sin esta aserción —la variante de DOS— ese defecto sale
+#       VERDE. Es la razón por la que la firma dice tres y no dos.
+#   (3) TODA CITA RESOLUBLE — ningún `ADR-N` citado en `canon/` apunta a
+#       un ADR que no existe en `gobernanza`. Defecto que atrapa: la cita
+#       colgante que antes sólo se veía de rebote, cuando el hueco que la
+#       dejaba huérfana aún era ilegal.
+#
+#   ACEPTA HUECOS, a propósito. El bloque de huecos
+#   (`set(range(1, max+1)) - set(nums)`) se retira aquí: exigía que el
+#   espacio de ADR fuera dos cosas a la vez —contiguo y estable—, y desde
+#   que los actos corren en paralelo un hueco es el resultado NORMAL de
+#   renumerar al fusionar segundo. Lo que protege el espacio no es la
+#   contigüidad sino (1) y (3): sin duplicados y sin citas colgantes.
+#
+#   LO QUE ESTA ENMIENDA **NO** HACE, medido por dirección y declarado
+#   aquí para que nadie lo herede al revés: NO protege contra la
+#   renumeración. Una renumeración internamente consistente deja el
+#   registro sin duplicados, sin huecos y sin citas colgantes mientras la
+#   prosa sellada re-apunta en silencio a otro ADR — T15 sale verde antes
+#   y después. Quien quiera esa garantía necesita otro mecanismo (anclar
+#   la cita al CONTENIDO del ADR, no a su número), y no es este test.
+#
+#   FALSADOR (§9, tres meses — al 21/dic/2026): si ninguna de las tres
+#   aserciones ha fallado una sola vez en CI, se anota y se revisa si
+#   valían el aparato. La (2) ya se ganó el suyo el 29/jul/2026.
+#   Ejercidas por mutación en `tests/test_tuberia_ids_union.py`.
 #
 #   Marca de cita histórica (ADR-72, 13/ago/2026). Mismo mecanismo que
 #   MARCA_ILUSTRATIVA de T03 (línea ~208), aplicado aquí porque T15 tenía
@@ -830,11 +865,13 @@ def t15_adr_count():
     dup = sorted(n for n, c in Counter(nums).items() if c > 1)
     if dup:
         fail("T15", f"{rel(g)}: ADR repetido(s), mismo número dos veces: {dup}")
-    huecos = sorted(set(range(1, max(nums) + 1)) - set(nums))
-    if huecos:
-        fail("T15", f"{rel(g)}: huecos en la secuencia de ADR: {huecos}")
-    for p in glob.glob(os.path.join(ROOT, "canon", "*.md")):
+    # Aserción (3): toda cita `ADR-N` de `canon/` resuelve a una entrada real.
+    # Reemplaza al bloque de huecos: con huecos permitidos, una cita a un
+    # número que nadie selló ya no se delata sola.
+    existentes = set(nums)
+    for p in sorted(glob.glob(os.path.join(ROOT, "canon", "*.md"))):
         for i, l in enumerate(read(p).split("\n"), 1):
+            # (2) el conteo citado
             for m in re.finditer(r"(\d+)\s*ADR\b", l):
                 n = int(m.group(1))
                 if n == real:
@@ -842,6 +879,15 @@ def t15_adr_count():
                 if re.match(MARCA_HISTORICA, l[m.end():]):
                     continue
                 fail("T15", f"{rel(p)}:{i} cita {n} ADR; gobernanza tiene {real} únicos")
+            # (3) la cita resoluble
+            for m in re.finditer(r"\bADR-(\d+)\b", l):
+                n = int(m.group(1))
+                if n in existentes:
+                    continue
+                if re.match(MARCA_HISTORICA, l[m.end():]):
+                    continue
+                fail("T15", f"{rel(p)}:{i} cita `ADR-{n}`, que no existe en "
+                            f"{rel(g)} (máximo sellado: ADR-{max(nums)})")
 
 
 # ───────────────────────────────────────────────────────────────
@@ -5040,6 +5086,15 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # fila del catalogo consumidora de `tramite.evasion_norma`, no un rotulo
     # de acto nuevo que este ejecutor este introduciendo.
     "forense/encargos/2026-09-19-GEN2-MARCADOR-REDISENO-1.md",
+    # ACTO GEN2-TUBERIA-SUCESOR-1, 21/sep/2026: encargo archivado VERBATIM
+    # (A.3), que no se edita para complacer un test. El token pelado `E1`
+    # aparece una sola vez, en la lınea que NARRA por que el careo previo
+    # salio en rojo: «`T25` por un rotulo pelado `E1` sin prefijo de
+    # espacio». Es la CITA del defecto ajeno, no un rotulo nuevo que este
+    # acto introduzca -- misma causa y misma exencion que el bloque de
+    # arriba. El rotulo propio del acto, `GEN2-TUBERIA-SUCESOR-1`, va
+    # censado en canon/registro-rotulos.tsv.
+    "forense/encargos/2026-09-21-GEN2-TUBERIA-SUCESOR-1.md",
 }
 
 
@@ -7513,6 +7568,88 @@ def t45_legacy_desglose_suma():
              "`tools/corrida0.py:_legacy_por_consumidor`.")
 
 
+# ───────────────────────────────────────────────────────────────
+# T46 · T-UNION-NEWLINE — todo archivo declarado `merge=union` en
+#   `.gitattributes` termina en salto de línea.
+#   (ACTO GEN2-TUBERIA-SUCESOR-1, 21/sep/2026, P2.)
+#
+#   DEFECTO QUE ATRAPA, reproducido por dirección el 21/sep/2026 y ya
+#   documentado en `forense/notas/2026-08-05-cu-cascada-vigilada-union.md`
+#   el día que `merge=union` entró: un archivo union que NO termina en
+#   `\n`, fusionado desde dos ramas que apendican, NO conflictúa y NO
+#   duplica una fila limpia — pega la última fila compartida a la primera
+#   fila de cada rama y deja DOS filas deformadas, mientras la fila
+#   compartida desaparece como fila propia. Es silencioso: cero conflictos,
+#   cero aviso, y lo que se pierde es una entrada ajena en `hallazgos.md` o
+#   `bitacora.md`. Con el archivo bien terminado, la misma fusión sale
+#   limpia. Le habría costado a un lector una entrada de hallazgo perdida
+#   sin rastro — el hueco llevaba siete semanas abierto.
+#
+#   EL UNIVERSO SE DERIVA DE `.gitattributes`, no se teclea: un tercer
+#   archivo que entre a `merge=union` mañana queda cubierto solo, sin
+#   tocar este test. Hoy son dos (`forense/hallazgos.md`,
+#   `forense/bitacora.md`); `hitoD-preregistro-v2_0.md` está excluido de
+#   union a propósito (ver el comentario de `.gitattributes`) y por tanto
+#   queda fuera de este universo por construcción, no por omisión.
+#
+#   La guarda nace VERDE: es preventiva. Verificada por mutación en
+#   `tests/test_tuberia_ids_union.py` contra el caso reproducido arriba.
+#
+#   FALSADOR: deja de tener sentido el día que ningún archivo lleve
+#   `merge=union` — su falsador se revisa ENTONCES, no a los tres meses
+#   (§9, caducidad de regla cuyo defecto desaparece).
+# ───────────────────────────────────────────────────────────────
+_RE_UNION = re.compile(r"^\s*(?P<pat>\S+)\s+(?P<attrs>.*\bmerge=union\b.*)$", re.M)
+
+
+def union_paths(texto_gitattributes):
+    """Rutas declaradas `merge=union`, derivadas del texto de `.gitattributes`.
+
+    Ignora comentarios (`#`), que es donde este repo explica POR QUÉ un
+    archivo entra o no entra a union -- `hitoD-preregistro-v2_0.md` se
+    menciona ahí con la palabra `union` en prosa y no debe contarse.
+    """
+    fuera_de_comentario = "\n".join(
+        l for l in texto_gitattributes.split("\n") if not l.lstrip().startswith("#")
+    )
+    return [m.group("pat") for m in _RE_UNION.finditer(fuera_de_comentario)]
+
+
+def t46_union_newline():
+    ga = os.path.join(ROOT, ".gitattributes")
+    if not os.path.exists(ga):
+        fail("T46", "no se pudo leer `.gitattributes`: el universo de "
+                    "`merge=union` no se deriva de ningún otro sitio")
+        return
+    rutas = union_paths(read(ga))
+    if not rutas:
+        # No es FAIL: que nadie use `merge=union` es el estado en que esta
+        # guarda deja de tener sentido (su falsador). Se declara y se sigue.
+        warn("T46", "`.gitattributes` no declara ningún `merge=union`: "
+                    "la guarda no tiene universo que vigilar (ver su falsador)")
+        return
+    examinados = 0
+    for r in rutas:
+        p = os.path.join(ROOT, r)
+        if not os.path.exists(p):
+            fail("T46", f"`.gitattributes` declara `{r} merge=union` pero el "
+                        f"archivo no existe: universo de union no verificable")
+            continue
+        examinados += 1
+        with open(p, "rb") as fh:
+            if fh.seek(0, os.SEEK_END) == 0:
+                continue                      # archivo vacío: no hay fila que deformar
+            fh.seek(-1, os.SEEK_END)
+            if fh.read(1) != b"\n":
+                fail("T46", f"{r}: declarado `merge=union` y NO termina en salto de "
+                            f"línea -- dos ramas que apendiquen a la vez deformarán "
+                            f"dos filas y perderán la fila compartida, sin conflicto")
+    # A.13: un negativo de un comando que no examinó archivos no es un negativo.
+    if examinados == 0:
+        fail("T46", f"cero archivos examinados sobre {len(rutas)} declarados "
+                    f"`merge=union`: el veredicto no es un negativo (A.13)")
+
+
 def main():
     tests = [
         ("T01 fuente única de verdad",            t01_single_source),
@@ -7564,6 +7701,7 @@ def main():
         ("T43 T-SUCESOR-EXISTE",                        t43_sucesor_existe),
         ("T44 T-ENADID-PRECISION",                      t44_enadid_precision_independiente),
         ("T45 T-LEGACY-DESGLOSE-SUMA",                  t45_legacy_desglose_suma),
+        ("T46 T-UNION-NEWLINE",                         t46_union_newline),
     ]
     if not os.environ.get("CHECK_SELFCHECK_CHILD"):
         tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))

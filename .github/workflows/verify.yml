@@ -208,6 +208,18 @@ jobs:
           python3 tests/test_marcador_segmento.py
           python3 tests/test_estimadores_segmento.py
 
+      - name: tubería de ids y union — T15 por mutación, guarda de salto de línea, gramática de FP (bloqueante)
+        # ACTO GEN2-TUBERIA-SUCESOR-1 (21/sep/2026), D-21: mismo motivo que
+        # los pasos de arriba (NC-0331) -- un test que nadie cablea es
+        # decoración, y una guarda que no se puede disparar no es guarda.
+        # Ejerce POR MUTACIÓN las tres aserciones de T15 (firma D-3), la
+        # guarda T46 de salto de línea final en archivos `merge=union`
+        # (incluida la reproducción del defecto con git de verdad en un repo
+        # temporal) y la gramática de id `FP` de las dos épocas (firma D-2),
+        # con un id de CADA época pinado en el mismo caso. Stdlib puro, cero
+        # microdato, cero red.
+        run: python3 tests/test_tuberia_ids_union.py
+
       - name: comparabilidad por texto de crédito ENIF — forma de la tabla K1-K8 × 5 olas (bloqueante)
         # ACTO GEN2-DIN-CREDITO-COMPARABILIDAD-TEXTO-1 (20/sep/2026): mismo
         # motivo que los pasos de arriba (NC-0331) -- un test que nadie cablea

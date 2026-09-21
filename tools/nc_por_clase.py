@@ -39,6 +39,49 @@ os.chdir(RAIZ)
 
 NC = "forense/no-corrido.tsv"
 FP = "forense/firmas-pendientes.tsv"
+
+# ─────────────────────────────────────────────────────────────────────
+# DOS ÉPOCAS DE ID `FP`, una sola gramática
+# (firma de mesa D-2, 21/sep/2026 · ACTO GEN2-TUBERIA-SUCESOR-1 · P3)
+#
+#   vieja  `FP-###`                                  — espacio CERRADO.
+#   nueva  `FP-<AAMMDD>-<RÓTULO>-<hhhh>-<NN>`        — raíz de acto.
+#
+# El espacio viejo se CIERRA, no se migra: ningún id viejo cambia de dueño
+# y todas sus citas siguen resolviendo. Por eso la gramática acepta las
+# dos y no traduce entre ellas.
+#
+# DEFECTO QUE ATRAPA ESTE ENSANCHAMIENTO, censado por dirección el
+# 21/sep/2026: con `FP-\d+` a secas, `estado_fps()` (la lectura del
+# tablero de firmas) y `clasifica()` (las FP citadas por una NC) DEJAN DE
+# VER cualquier id de la época nueva. No revientan: devuelven menos, en
+# silencio. Una NC bloqueada por una FP nueva se clasificaría como
+# SIN-ASIGNAR en vez de ESPERA-FIRMA, y mesa vería deuda sin dueño donde
+# hay una firma pendiente.
+#
+# ORDEN DE LA ALTERNACIA, no cosmético: la época nueva va PRIMERO. Un id
+# nuevo empieza por `FP-260921…`, que la rama vieja casaría como el
+# prefijo `FP-2609` si se le diera la primera oportunidad — partiendo el
+# id en dos y produciendo una cita fantasma. El `(?![\d\-A-Za-z])` de la
+# rama vieja es el segundo cinturón: un `FP-###` sólo casa cuando de
+# verdad termina ahí.
+#
+# El ancho `{1,3}` de la rama vieja NO está tecleado: es el ancho real
+# del espacio ya CERRADO, derivado el 21/sep/2026 de
+#   cut -f1 forense/firmas-pendientes.tsv | grep -oE '^FP-[0-9]+' \\
+#     | awk -F- '{print length($2)}' | sort | uniq -c
+# -> 99 de ancho 2 · 291 de ancho 3 · ninguno más ancho. Como el espacio
+# está cerrado (D-2), ese ancho ya no puede crecer, y acotarlo es lo que
+# permite RECHAZAR una tercera época inventada (`FP-2609`, `FP-26092`)
+# en vez de tragársela como un id viejo largo.
+#
+# Ejercida por mutación y por gramática en `tests/test_tuberia_ids_union.py`,
+# con un id de CADA época pinado en el mismo caso — un patrón ensanchado
+# probado sólo contra ids viejos no prueba nada.
+# ─────────────────────────────────────────────────────────────────────
+RE_FP_NUEVA = r"FP-\d{6}-GEN2(?:-[A-Z0-9]+)+-[0-9a-f]{4}-\d{2}"
+RE_FP_VIEJA = r"FP-\d{1,3}(?![\d\-A-Za-z])"
+RE_FP = rf"(?:{RE_FP_NUEVA}|{RE_FP_VIEJA})"
 SALIDA = "forense/analisis/senal-1/nc-abiertas-por-clase.tsv"
 
 # Tokens de clase (A.16: el marcador de estado vive en el campo, no en la prosa).
@@ -100,7 +143,7 @@ def estado_fps() -> dict[str, str]:
         return out
     for r in filas(FP):
         fid = (r.get("id") or "").strip()
-        if re.fullmatch(r"FP-\d+", fid):
+        if re.fullmatch(RE_FP, fid):
             out[fid] = (r.get("estado") or "").strip() or "(sin estado)"
     return out
 
@@ -140,7 +183,7 @@ def clasifica(r, fps, enc, notas):
     if re.search(r"bandeja|titular", texto, re.I):
         return T_BANDEJA, "la fila se enruta a una bandeja/titular", ""
 
-    citadas = sorted(set(re.findall(r"FP-\d+", texto)))
+    citadas = sorted(set(re.findall(RE_FP, texto)))
     abiertas = [f for f in citadas if fps.get(f, "").upper() not in ("FIRMADA", "EJECUTADA")]
     if abiertas:
         det = " · ".join(f"{f}={fps.get(f, 'NO-ENCONTRADA-EN-EL-TABLERO')}" for f in citadas)

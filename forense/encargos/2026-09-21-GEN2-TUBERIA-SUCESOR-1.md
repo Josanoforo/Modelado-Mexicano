@@ -111,3 +111,73 @@ Sucesores, en el orden que mesa fijó: (3) `RES`/`CORR` con llave lógica sin ru
 ## 10 · FALSADOR (§9)
 
 Si en tres meses ni la tercera aserción de `T15`, ni la guarda de salto de línea, ni el test de gramática de id han fallado una sola vez en CI, se anota y se revisa si valían el aparato. La guarda de `union` deja de tener sentido el día que ningún archivo lleve `merge=union`: su falsador se revisa entonces, no a los tres meses.
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+**`P4 · El careo, archivado y re-acuñado`** — *verbatim del encargo: «El contenido viaja en
+cinco archivos del expediente, con sha256 verificado al abrir: `01-VEREDICTO.md` `6bdb7758…` ·
+`02-ENCARGO-verbatim.md` `817f7cd2…` · `03-hallazgos-de-este-acto.md` `b882985e…` ·
+`04-asientos-NC.tsv` `69ed1ed6…` · `04-asiento-FP-402.tsv` `ed2676e6…`»*
+· **por qué:** `PARO-PREMISA` — la premisa `EJECUTADO` no se sostiene: **ninguno de los cinco
+archivos llegó**. El directorio de adjuntos de esta sesión contiene **1 archivo**, el encargo
+mismo; `GEN2-TUBERIA-CAREO-1` no aparece en **ninguna de las 7 refs vivas** del remoto
+(`git grep -l "TUBERIA-CAREO" origin/main` → 0 aciertos; los 7 aciertos de `careo` en el árbol
+son de `CELDA-D-CAREO-1`, `ADV-DUELO`, `benchmarks-4RT` y `PILOTO-3`, otro objeto). A.4:
+**NO-ACCESIBLE** (los adjuntos) · **NO-ENCONTRADO** (el acto en el repo). §2: es «no pude
+alcanzar la fuente», **no** «la fuente no tiene el dato». La premisa toca **logística**, no
+estimando ni firma de mesa, y los objetivos (a), (b) y (c) seguían alcanzables → por §4/D-19
+**no es PARO del acto**: se replanteó, se siguió con P1/P2/P3/P5 y se declara aquí.
+· **impacto:** objetivo (d) de §1 no entregado. Quedan sin asentar el encargo del careo
+verbatim, su veredicto como nota, sus tres líneas de `hallazgos.md` y **tres** de sus cuatro
+reservas (el tercer esquema `C`; el censo de consumidores de **orden** por id; la diferencia de
+2 en el conteo de filas `FP`, que el encargo declara error de dirección). **La cuarta reserva no
+queda huérfana:** la guarda de salto de línea la cierra `P2` de este acto, por producto. **La
+firma tampoco queda huérfana:** `D-1`/`D-2`/`D-3`/`D-4`/`D-7` viajan verbatim en §2 del encargo
+y se asientan **FIRMADAS** en `FP-260921-GEN2-TUBERIA-SUCESOR-1-6e60-01`. Ningún contador del
+programa depende de esto (`cuenta_gen2 = NO`).
+· **sucesor:** `NC-260921-GEN2-TUBERIA-SUCESOR-1-6e60-03` — acto de dirección, re-lanzable con
+los cinco archivos adjuntos; **cuesta un encargo, no rehacer el careo**.
+
+**`P3 · tools/digesto_tramite.py:2324 NO se toca: se redacta el diff de una línea y se asienta
+como NC FUERA-DE-PERÍMETRO dirigida a dirección, con el diff dentro de la fila`**
+· **por qué:** `FUERA-DE-PERÍMETRO` — **es de dirección**, y el propio encargo lo excluye por
+nombre y por superficie de consumo (2 854 líneas, 32 menciones en gobernanza, consumido por
+`.claude/commands/revisa.md` y `tramite.md`, `cierre_acto.py`, `estado_comun.py`, `check.py` y
+tres tests). **Ejecutado tal como se pidió**: el diff de una línea está **dentro** de la fila.
+· **impacto:** el digesto de trámite deja de ver en silencio cualquier `FP` de la época nueva.
+Hoy: 1 fila. Crece con cada acto que acuñe.
+· **sucesor:** `NC-260921-GEN2-TUBERIA-SUCESOR-1-6e60-01`.
+
+**`§9 · no arregla el chequeo 0.c de acto.md`**
+· **por qué:** `FUERA-DE-PERÍMETRO` — **es de dirección**: `.claude/commands/acto.md` está en la
+lista «No tocas» de §8. El encargo lo manda dejar en `NC`, y eso se hizo, **con la medición que
+lo justifica**: 4 de las 6 ramas vivas llevan nombre autogenerado sin rótulo, así que el `grep`
+de rótulo es ciego en el 67 % del universo.
+· **impacto:** todo acto futuro corre un 0.c que no detecta un despacho duplicado en una rama de
+nombre autogenerado — el caso mayoritario hoy. Dos sesiones sobre el mismo rótulo producen dos
+`ADR` con el mismo número.
+· **sucesor:** `NC-260921-GEN2-TUBERIA-SUCESOR-1-6e60-02`.
+
+**`§3 · recetas de máximo «obsoletas pero ruidosas» (tools/tablero_programa.py:517 y
+.claude/commands/revisa.md:432,435)`**
+· **por qué:** `FUERA-DE-PERÍMETRO` — **es de dirección**, misma bandeja: §8 enumera
+`tools/nc_por_clase.py` como el único consumidor dentro del perímetro.
+· **impacto:** ruidoso, no silencioso — el tablero y el revisor reportan un máximo que, cerrado
+el espacio viejo (D-2), ya describe medio universo. Nadie pierde una fila.
+· **sucesor:** `NC-260921-GEN2-TUBERIA-SUCESOR-1-6e60-04`.
+
+**`§9 · el PR no se fusiona en este acto`**
+· **por qué:** `DECISIÓN-DE-MESA-PENDIENTE` — no es deuda: es la instrucción explícita del
+encargo («**EL PR NO SE FUSIONA EN ESTE ACTO.** Se publica y se deja propuesto; mesa central lo
+revisa y fusiona»). Se declara para que la ausencia de merge no se lea como acto sin cerrar.
+· **impacto:** ninguno sobre contadores; la **política de cero ramas** (A.14) se satisface con
+el merge o el borrado que mesa decida.
+· **sucesor:** mesa central.
+
+**Todo lo demás del encargo se corrió:** P0 (0-bis y chequeo de duplicado por contenido), P1
+(`T15` con tres aserciones, probado por mutación), P2 (guarda de salto de línea con universo
+derivado y el defecto reproducido con git), P3 (`tools/nc_por_clase.py` ensanchado, con un id de
+cada época pinado en el mismo caso y el test de gramática) y P5 (cascada completa, `check.py
+--baseline` VERDE).
