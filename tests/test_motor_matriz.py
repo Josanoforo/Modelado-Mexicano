@@ -50,6 +50,12 @@ def main():
         lanza(SinMagnitud, M.g, B, object(), None)
 
     def test_g_acotada_a_generadores_computa_g1_pese_a_g5():
+        # MARCA (ACTO MOTOR-THETA-CONGELADA-1, 21/sep/2026): este test usa un
+        # θ INVENTADO (≡1) para verificar la ARITMÉTICA de la composición.
+        # NO demuestra que `g()` emita: con la θ real, `theta.valor()` lanza
+        # en 43/43 y `matriz.g` no es camino de emisión vigente (ADR-531).
+        # Su contrato gemelo con la θ real vive en
+        # tests/test_theta_esquema_e1.py::test_la_capa_no_carga_ninguna_theta.
         # `ADR-531` (`ACTO GEN2-M1-ALCANCE-1`, firma de mesa del 17/sep/2026
         # sobre `M1`): el estimador es de la celda; la matriz COMPONE. `G1` no
         # depende de `G5 × familismo_obligacion` en ninguna lectura del modelo,

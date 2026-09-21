@@ -26,6 +26,8 @@
 
 ## 1. Vista general
 
+> **Estado vigente, 21/sep/2026 (ACTO MOTOR-THETA-CONGELADA-1, ADR-531):** `matriz.g` no es camino de emisión vigente. `theta.valor()` lanza para las 43 entradas de `milpa/procedencia.yaml`; ninguna celda emite por composición `B·θ(x)`. Lo que el motor emite hoy sale del emisor (`milpa/src/emisor.py`) y de los estimadores adjudicados por celda. El diagrama de abajo describe la arquitectura diseñada, no la que corre.
+
 ```
    DATOS                MOTOR                        SALIDA
 ┌───────────┐    ┌────────────────────────┐    ┌──────────────┐
