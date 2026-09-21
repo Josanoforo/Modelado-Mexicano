@@ -1,0 +1,43 @@
+# ENCARGO · ACTO GEN2-CUADERNO-DE-MESA-1 · TODO LO QUE ESPERA UNA DECISIÓN DE MESA, VERIFICADO UNO POR UNO, AGRUPADO Y CON RECOMENDACIÓN, PARA QUE MESA LO RESUELVA EN UNA SENTADA
+
+> ENTORNO: **NUBE** (cualquiera): todo lo que lee está en el repo. NO es CAJA.
+
+CABECERA · SHA de redacción `55c8d57c`; re-deriva al abrir · una sola sesión, rama `claude/cuaderno-de-mesa-1` · MODELO: Opus (juicio) · MODO: **ABIERTO** · CONTADOR: ninguno; **este acto no firma, no cierra y no adopta nada**: prepara · FP/ADR/NC: raíz de acto.
+**Si al fusionar `main` choca la línea L0 de `canon/estado-programa-v1_14.md`: NO conserves los dos lados; toma la de `main` y re-inserta solo tu anotación** (27 MB por duplicaciones; TUBERÍA la repara). Si `canon/L0/` ya existe al cerrar, tu anotación va ahí.
+
+## 1 · OBJETIVO
+El tablero derivado trae decenas de firmas sin cerrar y más de cien NC abiertas; una parte espera a mesa. El 21/sep mesa resolvió veinte en una sola pasada porque alguien se las llevó verificadas, agrupadas y con recomendación (`GEN2-TRAMITE-FIRMAS-3`). Desde entonces mesa cerró las conversaciones MOTOR y PRODUCTO-DINERO y pidió que dirección le lleve las cosas **resueltas**. Este acto produce el cuaderno: mesa lo lee, tacha lo que no comparte, y su envío a un trámite es la firma.
+«Hecho» significa: un documento, `forense/cuadernos/CUADERNO-DE-MESA-<fecha>.md`, donde **cada** renglón pendiente de mesa aparece una vez, con su estado re-verificado hoy, en lenguaje de Recursos Humanos, con una recomendación y su razón en dos líneas, y con el texto de firma listo para copiar; más una lista aparte de lo que **ya no necesita a mesa** (caducó, lo resolvió otro acto, o nunca fue de mesa).
+
+## 2 · FIRMAS DE MESA — verbatim
+Mandato (21/sep): «No me des hojas de respuestas para esto, ya damelas resueltas […] hagamos trabajo más estratégico y menos operativo.» Instrucciones §0: «Antes de declarar cualquier decisión pendiente, revisa el repo: contexto, decisiones anteriores relacionadas, dependencias, qué desbloquea. Preséntala en lenguaje de Recursos Humanos para que mesa decida fácil.»
+
+## 3 · LO QUE DIRECCIÓN SABE (contra `55c8d57c`)
+- `[EXISTE]` el precedente de forma: `forense/encargos/CUADERNO-DE-FIRMAS-2026-09-21.md` (con su `.sha256`), el cuaderno que mesa resolvió el 21/sep. **Misma forma y mismo lugar**; lo que cambia es que ahora cada renglón llega con recomendación. Si el precedente vive en `forense/encargos/`, el tuyo también: ignora la ruta `forense/cuadernos/` de §1.
+- `[EXISTE]` `tools/digesto_tramite.py` y los comandos `/tramite` y `/revisa`; `forense/firmas-pendientes.tsv`; `forense/no-corrido.tsv` con la razón `DECISIÓN-DE-MESA-PENDIENTE` (hay filas con y sin acento: cuenta las dos). **Parte de lo que pide este acto puede estar ya hecho por el digesto: córrelo primero y di qué cubre.**
+- `[EJECUTADO]` firmas abiertas que piden dictamen y no tienen quién lo prepare: `FP-408` (¿la corrección de `CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001-v1_1` pudo depender de haber visto el resultado?), `FP-409` (lo mismo para `CALC-ENUT2024-DISTRIBUCION-HORAS-0002`), `FP-405` (acota FP-67 a `cloud_default`; el piloto de nube ya midió: `milpa-inegi` tiene egreso a INEGI). Conteo crudo de dirección, con un `awk` sin validar: ~50 FP sin cerrar. **No heredes el número: deriva el tuyo y di cómo.**
+- `[LEÍDO]` pendientes que dirección ya conoce y que deben aparecer: el redondeo de `share_horas_mujeres_40mas` (F8: va por canal de relevo; falta dueño) · `motor.py:20` y `:129` citan BARRIDO-2 (tocarlas mueve el replay de dos sellos) · «una corrida puede contar solo por la etiqueta de su propia spec» (pregunta de regla) · respaldo del corpus: 18.4 GB en una sola máquina · toda ola nueva que entra al corpus, ¿nace reservada?
+
+## 4 · YA HECHO
+Por objeto («cuaderno», «digesto», «pendientes de mesa») en encargos y notas: existe el digesto y existieron tres trámites de firmas; no hay un cuaderno con recomendaciones posterior al 21/sep. **Repítela tú.**
+
+## 5 · PIEZAS
+**P1 · Universo.** Todo lo que espera a mesa: FP no cerradas · NC abiertas cuya razón o sucesor nombre a mesa · preguntas a mesa en notas de cierre desde el 18/sep. Con comando y conteo (A.4, A.13).
+**P2 · Re-verificación de estado, una por una (A.17).** ¿Sigue abierta? ¿Lo resolvió otro acto sin marcarlo? ¿Su universo creció y quedó vencida en alcance? ¿Depende de otra que ya se firmó? Lo resuelto-sin-marcar va a la lista aparte **con la evidencia**, no se cierra aquí.
+**P3 · Dictámenes de FP-408 y FP-409.** Para cada una: qué cambió entre la versión que corrió y la sucesora (diff de spec y de código), cuándo (orden de commits contra el primer resultado), y si el cambio pudo elegirse mirando el resultado. Rótulo de §5 de las instrucciones: DECLARADO / INFERIDO / RETROSPECTIVO. Se pide la **categoría** del defecto y su razón; no se re-corre nada.
+**P4 · El cuaderno.** Por renglón: qué se decide (una frase, sin jerga) · por qué está detenido · qué desbloquea · opciones · **recomendación y su razón** · texto de firma listo · a quién va después. Agrupado por lo que desbloquea, no por id. Primero lo que destraba trabajo en curso; al final lo que puede esperar, dicho así.
+
+## 6 · LATITUD
+Decides tú: forma del documento, agrupación, herramientas. Si un renglón no se puede recomendar sin un dato que no está en el repo, dilo y di cuál dato.
+
+## 7 · PAROS — lista cerrada
+a) marcar FIRMADA, cerrar una NC o editar una fila ajena · b) recomendar sobre un renglón cuyo estado no re-verificaste · c) re-correr un CALC.
+
+## 8 · COMPUERTAS
+Ninguna.
+
+## 9 · PERÍMETRO
+Propio: el cuaderno · nota · filas propias · cascada. Ajeno: todo lo demás. Si te encuentras escribiendo fuera de esta lista, PARA.
+
+## 10 · NO HACE · SUCESORES · CIERRE
+No firma · no tramita. Sucesor: mesa lee; lo que apruebe va a un trámite de firmas. Auditoría §5: no aplica, no afirma nada sobre México. Falsador a tres meses: si mesa no resuelve al menos la mitad de los renglones con el cuaderno en la mano, el formato no sirve y se anota. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
