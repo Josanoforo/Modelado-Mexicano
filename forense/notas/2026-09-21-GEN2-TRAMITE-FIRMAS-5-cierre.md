@@ -33,7 +33,7 @@ Ningún contador se movió por este trámite. Es lo esperado: P2 asienta firma s
 ## Hallazgos de P5 (A.12: firma dada pero no asentada por fila)
 
 1. **ENCIG-SERIE-Y-TENDENCIA-1** (ADR-260921-GEN2-ENCIG-SERIE-Y-TENDENCIA-1-852f-01, ya en `canon/gobernanza-v1_15.md`, es decir ya fusionado): la entrada de gobernanza dice `cuenta_gen2 = SI` para las seis corridas, pero `grep` de esos seis `CALC-*` en `decisiones.tsv` daba 0 filas antes de este acto. Asentadas ahora (P5).
-2. **VALIDACION-INDEPENDIENTE-PILOTOS-1**: el encargo existe (`forense/encargos/2026-09-21-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1.md`) pero no tiene entrada en `canon/gobernanza-v1_15.md` — no está fusionado/cerrado. No hay firma de `cuenta_gen2` que asentar todavía: es un acto de validación de resultados ya sellados (columna `validacion_independiente`, no `cuenta_gen2`), y su estado es NO-VERIFICABLE-AQUÍ hasta que cierre.
+2. **VALIDACION-INDEPENDIENTE-PILOTOS-1**: SÍ tiene entrada en `canon/gobernanza-v1_15.md` (ADR-260921-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1-7ef3-01). Su propio texto declara explícitamente `cuenta_gen2 = NO-APLICA` (cero mediciones, cero sellos, cero adopciones — es un acto de validación de resultados ya sellados, columna `validacion_independiente`, no `cuenta_gen2`). No hay ninguna firma `cuenta_gen2=SI` pendiente de asentar: el `grep` que no la encuentra en `decisiones.tsv` está correcto, porque no hay nada que asentar ahí. Corrección sobre la primera lectura de esta nota, que decía erróneamente "no fusionado".
 3. **L-DESDE-CAPTURAS-1 (PR #973)**: la cabecera del encargo GEN2-TRAMITE-FIRMAS-5 (§2, "ya ejecutadas") y su propio §6.2 asumen que `#973` ya ejecutó y midió los 28 slots. **Verificado por objeto (mcp github, `pull_request_read`): PR #973 está `state: open`, `merged: false`.** Esta es una premisa que no se sostuvo — logística/estado del repo, no una firma de mesa ni un estimando — así que el objetivo (cerrar NC-0425 y NC-…-7bf5-03 citando #973) NO es alcanzable hoy: **no se cerraron esas dos filas**. Quedan `ABIERTA`, y se declara aquí (D-19: bifurcación que cambia el entregable; no PARO porque el resto del acto sigue).
 
 ## Premisas que no se sostuvieron y cómo se replantearon
@@ -45,3 +45,18 @@ Ningún contador se movió por este trámite. Es lo esperado: P2 asienta firma s
 ## PAROS
 
 Ninguno de la lista cerrada de §7 se activó.
+
+## Cascada de cierre — `tests/check.py --baseline --parallel`
+
+Línea base **ROJO**: 2 FAIL nuevos frente a `tests/baseline.json`, ninguno de contenido de este acto (ver `## NO-CORRIDO / RESERVAS` del encargo archivado, filas `NC-260921-GEN2-TRAMITE-FIRMAS-5-958c-05`):
+
+1. **`T-YAMEDIDO`**: el cuerpo (sellado, A.3) cita `tramite.gobierno_digital.util_sin_coercion_ejes_encig2025` sin la salida de `tools/ya_medido.py`. Corrida en esta sesión:
+   ```
+   $ python3 tools/ya_medido.py tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+   ...
+   MEDIDA-EN: tramite-ola5-propuesta-v0.yaml
+   ```
+   No se puede pegar en A.8 del cuerpo sellado sin romper el sello; no se censa el archivo en `tests/check.py::_T_YAMEDIDO_ARCHIVOS_CONOCIDOS` porque tocar `tests/check.py` es TUBERÍA vedada por la cabecera de este mismo encargo, y la única excepción que la skill `/acto` autoriza para ese archivo es `_T25_ARCHIVOS_CONOCIDOS`, no esta lista.
+2. **`T16`**: la re-invocación interna de `tests/check.py --parallel` (subproceso) excede su propio tope de 300 s en este entorno NUBE. Reproducido aislado: `timeout 320 python3 tests/check.py --parallel` también agota el tiempo. Es infraestructura del entorno, no un defecto de contenido de este acto.
+
+**Recomendación a mesa**: censar `2026-09-21-GEN2-TRAMITE-FIRMAS-5.md` en `_T_YAMEDIDO_ARCHIVOS_CONOCIDOS` (razón: cita en cuerpo sellado A.3) y decidir si sube o excluye el tope de `T16` para la re-invocación recursiva. Ninguno de los dos gatea PARO de §7 de este encargo ni de D-19: no tocan qué se mide, ni una firma de mesa, ni un dato reservado, ni algo sellado, ni el entorno de este acto (NUBE, papeleo), ni el objetivo. Se reporta crudo y se sigue, per D-19/§6.
