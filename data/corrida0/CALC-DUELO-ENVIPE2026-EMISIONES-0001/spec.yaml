@@ -1,0 +1,3137 @@
+calc_id: CALC-DUELO-ENVIPE2026-EMISIONES-0001
+spec_md: ../../../forense/prereg-caja/DUELO-PROSPECTIVO-ENVIPE2026-spec-v1_0.md
+spec_md_sha256: 4204b07b77bcd2dc12a518738479abfe3cd36ce5739b3e9bb0b861b6a4dd740b
+script: data/corrida0/CALC-DUELO-ENVIPE2026-EMISIONES-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  unidad_transferencia: DELITO
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  fuente_acto: GEN2-DUELO-ENVIPE2026-COMMIT-1 (21/sep/2026)
+  diseno: forense/prereg-caja/DISENO-duelo-prospectivo-ENVIPE2026-v1_0.md (sha e88d3192) + enmienda v1_1
+  firma_vigente: F7 (A)(B)(C) + D-22 ampliada + regla v0.3 + respuesta de mesa 'Ola anterior = 2024' (21/sep/2026), verbatim en la enmienda v1_1
+  medidor_ejecutado_al_congelar: sintetico (tests/test_duelo_prospectivo.py, zips fabricados) y ensayo sobre olas abiertas (2023-2025); NUNCA sobre ENVIPE 2026
+  tipo: EMISIONES-DEL-DUELO-PROSPECTIVO (COMMIT-2)
+  reserva: ENVIPE 2026 RESERVADA (mesa 21/sep/2026); la ola se carga reservada=True; solo marginales de un eje
+  congelado: NO -- envipe2026_csv sin sha en el manifiesto (spec §10); congelar = preflight VERDE cuando entre, sin otra edicion
+inputs:
+- id: envipe2023_csv
+  origen: manifiesto
+- id: envipe2024_csv
+  origen: manifiesto
+- id: envipe2025_csv
+  origen: manifiesto
+- id: envipe2026_csv
+  origen: manifiesto
+- id: serie_nd
+  origen: repo
+  ruta: data/corrida0/envipe-serie-denuncia-v1_0.tsv
+  sha256: 78e83b95710924ea12b51a5a9ed10ed8e84cb4184c9ff55ee4133e433a883993
+variables:
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: BP1_20
+  rol: universo-y-desenlace-2023
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: BP1_23
+  rol: desenlace-2023
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: FAC_DEL
+  rol: ponderador-2023
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: EST_DIS
+  rol: estrato-diseno-2023
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: UPM_DIS
+  rol: upm-diseno-2023
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: ID_PER
+  rol: llave-delito-persona-2023
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: DOMINIO
+  rol: eje-dominio-2023
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: SEXO
+  rol: eje-sexo-2023
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: EDAD
+  rol: eje-edad-2023
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: BPCOD
+  rol: tipo-de-delito-serie-nd-2023
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: BP1_20
+  rol: universo-y-desenlace-2024
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: BP1_23
+  rol: desenlace-2024
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: FAC_DEL
+  rol: ponderador-2024
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: EST_DIS
+  rol: estrato-diseno-2024
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: UPM_DIS
+  rol: upm-diseno-2024
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: ID_PER
+  rol: llave-delito-persona-2024
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: DOMINIO
+  rol: eje-dominio-2024
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: SEXO
+  rol: eje-sexo-2024
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: EDAD
+  rol: eje-edad-2024
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: BPCOD
+  rol: tipo-de-delito-serie-nd-2024
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: BP1_20
+  rol: universo-y-desenlace-2025
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: BP1_23
+  rol: desenlace-2025
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: FAC_DEL
+  rol: ponderador-2025
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: EST_DIS
+  rol: estrato-diseno-2025
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: UPM_DIS
+  rol: upm-diseno-2025
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: ID_PER
+  rol: llave-delito-persona-2025
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: DOMINIO
+  rol: eje-dominio-2025
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: SEXO
+  rol: eje-sexo-2025
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: EDAD
+  rol: eje-edad-2025
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: BPCOD
+  rol: tipo-de-delito-serie-nd-2025
+- archivo: conjunto_de_datos_tmod_vic_envipe2026.csv
+  variable: BP1_20
+  rol: universo-y-desenlace-2026-ESPERADO
+- archivo: conjunto_de_datos_tmod_vic_envipe2026.csv
+  variable: BP1_23
+  rol: desenlace-2026-ESPERADO
+- archivo: conjunto_de_datos_tmod_vic_envipe2026.csv
+  variable: FAC_DEL
+  rol: ponderador-2026-ESPERADO
+- archivo: conjunto_de_datos_tmod_vic_envipe2026.csv
+  variable: EST_DIS
+  rol: estrato-diseno-2026-ESPERADO
+- archivo: conjunto_de_datos_tmod_vic_envipe2026.csv
+  variable: UPM_DIS
+  rol: upm-diseno-2026-ESPERADO
+- archivo: conjunto_de_datos_tmod_vic_envipe2026.csv
+  variable: ID_PER
+  rol: llave-delito-persona-2026-ESPERADO
+- archivo: conjunto_de_datos_tmod_vic_envipe2026.csv
+  variable: DOMINIO
+  rol: eje-dominio-2026-ESPERADO
+- archivo: conjunto_de_datos_tmod_vic_envipe2026.csv
+  variable: SEXO
+  rol: eje-sexo-2026-ESPERADO
+- archivo: conjunto_de_datos_tmod_vic_envipe2026.csv
+  variable: EDAD
+  rol: eje-edad-2026-ESPERADO
+- archivo: conjunto_de_datos_tmod_vic_envipe2026.csv
+  variable: BPCOD
+  rol: tipo-de-delito-serie-nd-2026-ESPERADO
+- archivo: conjunto_de_datos_tsdem_envipe2023.csv
+  variable: ID_PER
+  rol: llave-persona-2023
+- archivo: conjunto_de_datos_tsdem_envipe2023.csv
+  variable: NIV
+  rol: eje-escolaridad-proxy-2023
+- archivo: conjunto_de_datos_tsdem_envipe2024.csv
+  variable: ID_PER
+  rol: llave-persona-2024
+- archivo: conjunto_de_datos_tsdem_envipe2024.csv
+  variable: NIV
+  rol: eje-escolaridad-proxy-2024
+- archivo: conjunto_de_datos_tsdem_envipe2025.csv
+  variable: ID_PER
+  rol: llave-persona-2025
+- archivo: conjunto_de_datos_tsdem_envipe2025.csv
+  variable: NIV
+  rol: eje-escolaridad-proxy-2025
+- archivo: conjunto_de_datos_tsdem_envipe2026.csv
+  variable: ID_PER
+  rol: llave-persona-2026-ESPERADO
+- archivo: conjunto_de_datos_tsdem_envipe2026.csv
+  variable: NIV
+  rol: eje-escolaridad-proxy-2026-ESPERADO
+universo: 'DELITOS (una fila por delito de tmod_vic). EN: BP1_20 in {1,2}, unidad DELITO, FAC_DEL (prereg-caja-ENVIPE-EVASION-NORMA). ND: delitos personales (BPCOD personales) con BP1_20 == 2 y BP1_23 en
+  catalogo, el universo del medidor sellado de la serie. La ola nueva se abre SOLO por el guardian (tools/celda_d/marginales_reproduccion.py): un eje por firma en emisiones; cruces en adjudicacion.'
+filtros: 'Los del guardian, identicos en todas las olas: BP1_20 in {1,2} (las demas filas se cuentan y salen); FAC_DEL numerico > 0 si no PARA; EST_DIS/UPM_DIS no vacios si no PARA; ID_PER unica en tsdem
+  si no PARA; delitos sin persona se cuentan y quedan (fuera) de escolaridad; edad fuera de 18..96 y sexo fuera de {1,2} van a (fuera). Serie ND: solo olas con comparabilidad == NINGUNA-EN-C1-U1 (2011 fuera).'
+ponderador: FAC_DEL (Factor delito, Numerico 6). Toda proporcion es razon de totales ponderados sum(w*y)/sum(w).
+transformacion: 'evade_norma := (BP1_20 == ''2'') AND (BP1_23 a dos digitos in {04,05,06,08}). Ejes del guardian (ESC_2DIG de NIV; DOMINIO U/C/R; SEXO; tramos_edad). Nacional: K = p_{t-1}; T3/T5/TC = OLS
+  en logit sobre ola_encuesta, IC por propagacion delta de los EE por ola. E+ = expit(logit p_eje,t-1 + logit T* - logit p_nac,t-1). Cruces: familia de la spec §4 (C2, P, S1, SL, AP) en logit, replica k
+  con k.'
+estimando: K/T3/T5/TC nacionales por estimando (ND, EN), E+ por eje y variante (EN), y la familia C2/P/S1/SL/AP por celda de los pares SXD y EXD, todos con IC95, ciegos a R de la ola nueva. Prueba la guardia.
+  No adjudica.
+precision: Replicas compartidas por ola (PCG64(42), n_h UPM con reemplazo por estrato, orden lexicografico, 10 000); IC95 percentil 2.5/97.5; IC del arbitro por wprop_ic_conglomerado (importada) en P y
+  R; IC de T* por propagacion delta; E+ con sorteo normal en logit del termino T*. No cubre el error de especificacion de ningun candidato.
+dependencias_materiales:
+- numpy
+- pandas
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.random.PCG64 (replicas compartidas por ola; generador propio para E+); la serie ND en adjudicacion usa el medidor sellado con su seed 20260909
+tolerancia:
+  tipo: bootstrap
+  exacto_por_seed: true
+  abs: 1.0e-10
+  razon: seed 42 + orden de consumo fijado por el guardian (un generador por ola, estratos y UPM lexicograficos, replicas 0..9999) y por la serie sellada; enteros exactos, flotantes abs 1e-10
+parametros:
+  bootstrap_replicas: 10000
+  umbral_soporte_n: 200
+  serie_nd_input: serie_nd
+  comparabilidad_homogenea: NINGUNA-EN-C1-U1
+  control_tol_p: 1.0e-06
+  constante_motor_evade_norma: 0.562774
+  constante_motor_tol: 1.0e-06
+  constante_motor_cita: 'milpa/tramite.yaml:497 evade_norma_envipe2025 p: 0.562774'
+  regla_v0_3: dMAE = MAE(C2) - MAE(retador) sobre PUNTUADAS, IC95 por replica; VENCE-RETADOR si IC95inf > 0.5 pp; PROPUESTA-CON-RESERVA si 0 < IC95inf <= 0.5; NADIE-VENCE si incluye 0; retador primario
+    SL
+  umbral_vence_pp: 0.5
+  umbral_reserva_pp: 0.0
+  familia:
+    C2: expit(logit m_t(a) + logit m_t(b) - logit m_t)
+    P: x_t'(a,b)
+    S1: expit(logit C2 + Ibar)
+    SL: expit(logit C2 + lambda*Ibar), lambda = tau2/(tau2+sigma2), momentos
+    AP: expit(logit x_t'(a,b) + logit m_t - logit m_t')
+  nacionales:
+    K: p_{t-1} con IC sellado
+    T3: OLS logit ultimas 3
+    T5: OLS logit ultimas 5
+    TC: OLS logit todas (>= 6)
+  l_estado: NO-ENTRA -- este acto no corre LLM (spec §5)
+  punto_de_entrada: emisiones
+  prefijo_result: RESULT-DUELO26-EM
+  ola_nueva: 2026
+  olas_zip:
+    2023: envipe2023_csv
+    2024: envipe2024_csv
+    2025: envipe2025_csv
+    2026: envipe2026_csv
+  olas_anteriores_por_par:
+    SXD:
+    - 2024
+    - 2025
+    EXD:
+    - 2023
+    - 2024
+  ola_anterior_emas: 2025
+  rotulo_pares:
+    SXD: escolaridad_proxy x dominio_urbano_rural, PERSISTENCIA-t-1
+    EXD: 'edad x dominio_urbano_rural, PERSISTENCIA-t-2 (2025 vetada por nombre, NC-0328; mesa 21/sep/2026: ''Ola anterior = 2024'')'
+  en_nacional_sellado:
+    2023:
+      p: 0.5215395526634797
+      cita: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001 RESULT-TRA-SXD12-G-W23-P-NACIONAL
+    2024:
+      p: 0.538725312630215
+      cita: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001 RESULT-TRA-SXD12-G-W24-P-NACIONAL
+    2025:
+      p: 0.5627744787844097
+      cita: CALC-EVASION-NORMA-0001-v1_1 RESULT-EVASIONNORMA-A-P-EVADE; = RESULT-TRA-SXD12-G-M25-P-NACIONAL
+  par_vetado_probar:
+    anio: 2025
+    par: EXD
+  r_no_existe_en_este_commit: true
+  orden_de_commits: 'COMMIT-2: emisiones selladas ciegas a R -> COMMIT-3a: fijar sha en adjudicacion -> COMMIT-3: R y adjudicacion'
+resultados:
+- id: RESULT-DUELO26-EM-EMAS-T3-D1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T3), celda D1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-D1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T3), celda D1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-D1-P
+  tipo: proporcion
+  unidad: E+ con variante T3, celda de eje D1, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-D2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T3), celda D2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-D2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T3), celda D2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-D2-P
+  tipo: proporcion
+  unidad: E+ con variante T3, celda de eje D2, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-D3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T3), celda D3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-D3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T3), celda D3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-D3-P
+  tipo: proporcion
+  unidad: E+ con variante T3, celda de eje D3, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-E1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T3), celda E1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-E1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T3), celda E1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-E1-P
+  tipo: proporcion
+  unidad: E+ con variante T3, celda de eje E1, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-E2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T3), celda E2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-E2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T3), celda E2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-E2-P
+  tipo: proporcion
+  unidad: E+ con variante T3, celda de eje E2, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-E3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T3), celda E3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-E3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T3), celda E3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-E3-P
+  tipo: proporcion
+  unidad: E+ con variante T3, celda de eje E3, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-E4-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T3), celda E4
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-E4-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T3), celda E4
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-E4-P
+  tipo: proporcion
+  unidad: E+ con variante T3, celda de eje E4, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-H-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T3), celda H
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-H-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T3), celda H
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-H-P
+  tipo: proporcion
+  unidad: E+ con variante T3, celda de eje H, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-M-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T3), celda M
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-M-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T3), celda M
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-M-P
+  tipo: proporcion
+  unidad: E+ con variante T3, celda de eje M, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-S1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T3), celda S1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-S1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T3), celda S1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-S1-P
+  tipo: proporcion
+  unidad: E+ con variante T3, celda de eje S1, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-S2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T3), celda S2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-S2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T3), celda S2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-S2-P
+  tipo: proporcion
+  unidad: E+ con variante T3, celda de eje S2, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-S3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T3), celda S3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-S3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T3), celda S3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-S3-P
+  tipo: proporcion
+  unidad: E+ con variante T3, celda de eje S3, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-S4-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T3), celda S4
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-S4-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T3), celda S4
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T3-S4-P
+  tipo: proporcion
+  unidad: E+ con variante T3, celda de eje S4, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-D1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T5), celda D1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-D1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T5), celda D1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-D1-P
+  tipo: proporcion
+  unidad: E+ con variante T5, celda de eje D1, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-D2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T5), celda D2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-D2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T5), celda D2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-D2-P
+  tipo: proporcion
+  unidad: E+ con variante T5, celda de eje D2, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-D3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T5), celda D3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-D3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T5), celda D3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-D3-P
+  tipo: proporcion
+  unidad: E+ con variante T5, celda de eje D3, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-E1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T5), celda E1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-E1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T5), celda E1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-E1-P
+  tipo: proporcion
+  unidad: E+ con variante T5, celda de eje E1, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-E2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T5), celda E2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-E2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T5), celda E2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-E2-P
+  tipo: proporcion
+  unidad: E+ con variante T5, celda de eje E2, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-E3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T5), celda E3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-E3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T5), celda E3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-E3-P
+  tipo: proporcion
+  unidad: E+ con variante T5, celda de eje E3, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-E4-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T5), celda E4
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-E4-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T5), celda E4
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-E4-P
+  tipo: proporcion
+  unidad: E+ con variante T5, celda de eje E4, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-H-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T5), celda H
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-H-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T5), celda H
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-H-P
+  tipo: proporcion
+  unidad: E+ con variante T5, celda de eje H, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-M-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T5), celda M
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-M-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T5), celda M
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-M-P
+  tipo: proporcion
+  unidad: E+ con variante T5, celda de eje M, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-S1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T5), celda S1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-S1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T5), celda S1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-S1-P
+  tipo: proporcion
+  unidad: E+ con variante T5, celda de eje S1, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-S2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T5), celda S2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-S2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T5), celda S2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-S2-P
+  tipo: proporcion
+  unidad: E+ con variante T5, celda de eje S2, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-S3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T5), celda S3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-S3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T5), celda S3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-S3-P
+  tipo: proporcion
+  unidad: E+ con variante T5, celda de eje S3, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-S4-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (T5), celda S4
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-S4-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (T5), celda S4
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-T5-S4-P
+  tipo: proporcion
+  unidad: E+ con variante T5, celda de eje S4, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-D1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (TC), celda D1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-D1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (TC), celda D1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-D1-P
+  tipo: proporcion
+  unidad: E+ con variante TC, celda de eje D1, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-D2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (TC), celda D2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-D2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (TC), celda D2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-D2-P
+  tipo: proporcion
+  unidad: E+ con variante TC, celda de eje D2, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-D3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (TC), celda D3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-D3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (TC), celda D3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-D3-P
+  tipo: proporcion
+  unidad: E+ con variante TC, celda de eje D3, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-E1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (TC), celda E1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-E1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (TC), celda E1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-E1-P
+  tipo: proporcion
+  unidad: E+ con variante TC, celda de eje E1, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-E2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (TC), celda E2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-E2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (TC), celda E2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-E2-P
+  tipo: proporcion
+  unidad: E+ con variante TC, celda de eje E2, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-E3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (TC), celda E3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-E3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (TC), celda E3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-E3-P
+  tipo: proporcion
+  unidad: E+ con variante TC, celda de eje E3, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-E4-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (TC), celda E4
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-E4-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (TC), celda E4
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-E4-P
+  tipo: proporcion
+  unidad: E+ con variante TC, celda de eje E4, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-H-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (TC), celda H
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-H-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (TC), celda H
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-H-P
+  tipo: proporcion
+  unidad: E+ con variante TC, celda de eje H, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-M-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (TC), celda M
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-M-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (TC), celda M
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-M-P
+  tipo: proporcion
+  unidad: E+ con variante TC, celda de eje M, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-S1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (TC), celda S1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-S1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (TC), celda S1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-S1-P
+  tipo: proporcion
+  unidad: E+ con variante TC, celda de eje S1, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-S2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (TC), celda S2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-S2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (TC), celda S2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-S2-P
+  tipo: proporcion
+  unidad: E+ con variante TC, celda de eje S2, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-S3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (TC), celda S3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-S3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (TC), celda S3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-S3-P
+  tipo: proporcion
+  unidad: E+ con variante TC, celda de eje S3, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-S4-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de E+ (TC), celda S4
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-S4-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de E+ (TC), celda S4
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EMAS-TC-S4-P
+  tipo: proporcion
+  unidad: E+ con variante TC, celda de eje S4, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E1xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par EXD, celda E1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E1xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par EXD, celda E1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E1xD1-P
+  tipo: proporcion
+  unidad: candidato AP del par EXD, celda E1xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E1xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par EXD, celda E1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E1xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par EXD, celda E1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E1xD2-P
+  tipo: proporcion
+  unidad: candidato AP del par EXD, celda E1xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E1xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par EXD, celda E1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E1xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par EXD, celda E1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E1xD3-P
+  tipo: proporcion
+  unidad: candidato AP del par EXD, celda E1xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E2xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par EXD, celda E2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E2xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par EXD, celda E2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E2xD1-P
+  tipo: proporcion
+  unidad: candidato AP del par EXD, celda E2xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E2xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par EXD, celda E2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E2xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par EXD, celda E2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E2xD2-P
+  tipo: proporcion
+  unidad: candidato AP del par EXD, celda E2xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E2xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par EXD, celda E2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E2xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par EXD, celda E2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E2xD3-P
+  tipo: proporcion
+  unidad: candidato AP del par EXD, celda E2xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E3xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par EXD, celda E3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E3xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par EXD, celda E3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E3xD1-P
+  tipo: proporcion
+  unidad: candidato AP del par EXD, celda E3xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E3xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par EXD, celda E3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E3xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par EXD, celda E3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E3xD2-P
+  tipo: proporcion
+  unidad: candidato AP del par EXD, celda E3xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E3xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par EXD, celda E3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E3xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par EXD, celda E3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E3xD3-P
+  tipo: proporcion
+  unidad: candidato AP del par EXD, celda E3xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E4xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par EXD, celda E4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E4xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par EXD, celda E4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E4xD1-P
+  tipo: proporcion
+  unidad: candidato AP del par EXD, celda E4xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E4xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par EXD, celda E4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E4xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par EXD, celda E4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E4xD2-P
+  tipo: proporcion
+  unidad: candidato AP del par EXD, celda E4xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E4xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par EXD, celda E4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E4xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par EXD, celda E4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-E4xD3-P
+  tipo: proporcion
+  unidad: candidato AP del par EXD, celda E4xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-AP-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: replicas NaN sumadas sobre las celdas, candidato AP, par EXD
+- id: RESULT-DUELO26-EM-EXD-C2-E1xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par EXD, celda E1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E1xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par EXD, celda E1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E1xD1-P
+  tipo: proporcion
+  unidad: candidato C2 del par EXD, celda E1xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E1xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par EXD, celda E1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E1xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par EXD, celda E1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E1xD2-P
+  tipo: proporcion
+  unidad: candidato C2 del par EXD, celda E1xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E1xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par EXD, celda E1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E1xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par EXD, celda E1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E1xD3-P
+  tipo: proporcion
+  unidad: candidato C2 del par EXD, celda E1xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E2xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par EXD, celda E2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E2xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par EXD, celda E2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E2xD1-P
+  tipo: proporcion
+  unidad: candidato C2 del par EXD, celda E2xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E2xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par EXD, celda E2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E2xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par EXD, celda E2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E2xD2-P
+  tipo: proporcion
+  unidad: candidato C2 del par EXD, celda E2xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E2xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par EXD, celda E2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E2xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par EXD, celda E2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E2xD3-P
+  tipo: proporcion
+  unidad: candidato C2 del par EXD, celda E2xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E3xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par EXD, celda E3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E3xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par EXD, celda E3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E3xD1-P
+  tipo: proporcion
+  unidad: candidato C2 del par EXD, celda E3xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E3xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par EXD, celda E3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E3xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par EXD, celda E3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E3xD2-P
+  tipo: proporcion
+  unidad: candidato C2 del par EXD, celda E3xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E3xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par EXD, celda E3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E3xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par EXD, celda E3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E3xD3-P
+  tipo: proporcion
+  unidad: candidato C2 del par EXD, celda E3xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E4xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par EXD, celda E4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E4xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par EXD, celda E4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E4xD1-P
+  tipo: proporcion
+  unidad: candidato C2 del par EXD, celda E4xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E4xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par EXD, celda E4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E4xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par EXD, celda E4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E4xD2-P
+  tipo: proporcion
+  unidad: candidato C2 del par EXD, celda E4xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E4xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par EXD, celda E4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E4xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par EXD, celda E4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-E4xD3-P
+  tipo: proporcion
+  unidad: candidato C2 del par EXD, celda E4xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: replicas NaN sumadas sobre las celdas, candidato C2, par EXD
+- id: RESULT-DUELO26-EM-EXD-IBAR-E1xD1
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par EXD, celda E1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-IBAR-E1xD2
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par EXD, celda E1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-IBAR-E1xD3
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par EXD, celda E1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-IBAR-E2xD1
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par EXD, celda E2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-IBAR-E2xD2
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par EXD, celda E2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-IBAR-E2xD3
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par EXD, celda E2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-IBAR-E3xD1
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par EXD, celda E3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-IBAR-E3xD2
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par EXD, celda E3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-IBAR-E3xD3
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par EXD, celda E3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-IBAR-E4xD1
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par EXD, celda E4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-IBAR-E4xD2
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par EXD, celda E4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-IBAR-E4xD3
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par EXD, celda E4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-K-CELDAS-LAMBDA
+  tipo: entero
+  unidad: celdas con Ibar y varianza finitas usadas en lambda, par EXD
+- id: RESULT-DUELO26-EM-EXD-LAMBDA
+  tipo: flotante
+  unidad: lambda de encogimiento, par EXD
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-N-2023-E1xD1
+  tipo: entero
+  unidad: n sin ponderar de la ola 2023, par EXD, celda E1xD1
+- id: RESULT-DUELO26-EM-EXD-N-2023-E1xD2
+  tipo: entero
+  unidad: n sin ponderar de la ola 2023, par EXD, celda E1xD2
+- id: RESULT-DUELO26-EM-EXD-N-2023-E1xD3
+  tipo: entero
+  unidad: n sin ponderar de la ola 2023, par EXD, celda E1xD3
+- id: RESULT-DUELO26-EM-EXD-N-2023-E2xD1
+  tipo: entero
+  unidad: n sin ponderar de la ola 2023, par EXD, celda E2xD1
+- id: RESULT-DUELO26-EM-EXD-N-2023-E2xD2
+  tipo: entero
+  unidad: n sin ponderar de la ola 2023, par EXD, celda E2xD2
+- id: RESULT-DUELO26-EM-EXD-N-2023-E2xD3
+  tipo: entero
+  unidad: n sin ponderar de la ola 2023, par EXD, celda E2xD3
+- id: RESULT-DUELO26-EM-EXD-N-2023-E3xD1
+  tipo: entero
+  unidad: n sin ponderar de la ola 2023, par EXD, celda E3xD1
+- id: RESULT-DUELO26-EM-EXD-N-2023-E3xD2
+  tipo: entero
+  unidad: n sin ponderar de la ola 2023, par EXD, celda E3xD2
+- id: RESULT-DUELO26-EM-EXD-N-2023-E3xD3
+  tipo: entero
+  unidad: n sin ponderar de la ola 2023, par EXD, celda E3xD3
+- id: RESULT-DUELO26-EM-EXD-N-2023-E4xD1
+  tipo: entero
+  unidad: n sin ponderar de la ola 2023, par EXD, celda E4xD1
+- id: RESULT-DUELO26-EM-EXD-N-2023-E4xD2
+  tipo: entero
+  unidad: n sin ponderar de la ola 2023, par EXD, celda E4xD2
+- id: RESULT-DUELO26-EM-EXD-N-2023-E4xD3
+  tipo: entero
+  unidad: n sin ponderar de la ola 2023, par EXD, celda E4xD3
+- id: RESULT-DUELO26-EM-EXD-N-2024-E1xD1
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par EXD, celda E1xD1
+- id: RESULT-DUELO26-EM-EXD-N-2024-E1xD2
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par EXD, celda E1xD2
+- id: RESULT-DUELO26-EM-EXD-N-2024-E1xD3
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par EXD, celda E1xD3
+- id: RESULT-DUELO26-EM-EXD-N-2024-E2xD1
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par EXD, celda E2xD1
+- id: RESULT-DUELO26-EM-EXD-N-2024-E2xD2
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par EXD, celda E2xD2
+- id: RESULT-DUELO26-EM-EXD-N-2024-E2xD3
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par EXD, celda E2xD3
+- id: RESULT-DUELO26-EM-EXD-N-2024-E3xD1
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par EXD, celda E3xD1
+- id: RESULT-DUELO26-EM-EXD-N-2024-E3xD2
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par EXD, celda E3xD2
+- id: RESULT-DUELO26-EM-EXD-N-2024-E3xD3
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par EXD, celda E3xD3
+- id: RESULT-DUELO26-EM-EXD-N-2024-E4xD1
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par EXD, celda E4xD1
+- id: RESULT-DUELO26-EM-EXD-N-2024-E4xD2
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par EXD, celda E4xD2
+- id: RESULT-DUELO26-EM-EXD-N-2024-E4xD3
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par EXD, celda E4xD3
+- id: RESULT-DUELO26-EM-EXD-OLA-PERSISTENCIA
+  tipo: texto
+  unidad: ola de P y AP, par EXD
+- id: RESULT-DUELO26-EM-EXD-OLAS-ANTERIORES
+  tipo: texto
+  unidad: olas anteriores usadas por la familia, par EXD
+- id: RESULT-DUELO26-EM-EXD-P-E1xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par EXD, celda E1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E1xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par EXD, celda E1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E1xD1-P
+  tipo: proporcion
+  unidad: candidato P del par EXD, celda E1xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E1xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par EXD, celda E1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E1xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par EXD, celda E1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E1xD2-P
+  tipo: proporcion
+  unidad: candidato P del par EXD, celda E1xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E1xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par EXD, celda E1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E1xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par EXD, celda E1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E1xD3-P
+  tipo: proporcion
+  unidad: candidato P del par EXD, celda E1xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E2xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par EXD, celda E2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E2xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par EXD, celda E2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E2xD1-P
+  tipo: proporcion
+  unidad: candidato P del par EXD, celda E2xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E2xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par EXD, celda E2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E2xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par EXD, celda E2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E2xD2-P
+  tipo: proporcion
+  unidad: candidato P del par EXD, celda E2xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E2xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par EXD, celda E2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E2xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par EXD, celda E2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E2xD3-P
+  tipo: proporcion
+  unidad: candidato P del par EXD, celda E2xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E3xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par EXD, celda E3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E3xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par EXD, celda E3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E3xD1-P
+  tipo: proporcion
+  unidad: candidato P del par EXD, celda E3xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E3xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par EXD, celda E3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E3xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par EXD, celda E3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E3xD2-P
+  tipo: proporcion
+  unidad: candidato P del par EXD, celda E3xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E3xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par EXD, celda E3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E3xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par EXD, celda E3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E3xD3-P
+  tipo: proporcion
+  unidad: candidato P del par EXD, celda E3xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E4xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par EXD, celda E4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E4xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par EXD, celda E4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E4xD1-P
+  tipo: proporcion
+  unidad: candidato P del par EXD, celda E4xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E4xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par EXD, celda E4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E4xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par EXD, celda E4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E4xD2-P
+  tipo: proporcion
+  unidad: candidato P del par EXD, celda E4xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E4xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par EXD, celda E4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E4xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par EXD, celda E4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-E4xD3-P
+  tipo: proporcion
+  unidad: candidato P del par EXD, celda E4xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-P-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: replicas NaN sumadas sobre las celdas, candidato P, par EXD
+- id: RESULT-DUELO26-EM-EXD-S1-E1xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par EXD, celda E1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E1xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par EXD, celda E1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E1xD1-P
+  tipo: proporcion
+  unidad: candidato S1 del par EXD, celda E1xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E1xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par EXD, celda E1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E1xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par EXD, celda E1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E1xD2-P
+  tipo: proporcion
+  unidad: candidato S1 del par EXD, celda E1xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E1xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par EXD, celda E1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E1xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par EXD, celda E1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E1xD3-P
+  tipo: proporcion
+  unidad: candidato S1 del par EXD, celda E1xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E2xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par EXD, celda E2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E2xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par EXD, celda E2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E2xD1-P
+  tipo: proporcion
+  unidad: candidato S1 del par EXD, celda E2xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E2xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par EXD, celda E2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E2xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par EXD, celda E2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E2xD2-P
+  tipo: proporcion
+  unidad: candidato S1 del par EXD, celda E2xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E2xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par EXD, celda E2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E2xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par EXD, celda E2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E2xD3-P
+  tipo: proporcion
+  unidad: candidato S1 del par EXD, celda E2xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E3xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par EXD, celda E3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E3xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par EXD, celda E3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E3xD1-P
+  tipo: proporcion
+  unidad: candidato S1 del par EXD, celda E3xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E3xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par EXD, celda E3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E3xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par EXD, celda E3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E3xD2-P
+  tipo: proporcion
+  unidad: candidato S1 del par EXD, celda E3xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E3xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par EXD, celda E3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E3xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par EXD, celda E3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E3xD3-P
+  tipo: proporcion
+  unidad: candidato S1 del par EXD, celda E3xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E4xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par EXD, celda E4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E4xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par EXD, celda E4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E4xD1-P
+  tipo: proporcion
+  unidad: candidato S1 del par EXD, celda E4xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E4xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par EXD, celda E4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E4xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par EXD, celda E4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E4xD2-P
+  tipo: proporcion
+  unidad: candidato S1 del par EXD, celda E4xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E4xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par EXD, celda E4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E4xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par EXD, celda E4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-E4xD3-P
+  tipo: proporcion
+  unidad: candidato S1 del par EXD, celda E4xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-S1-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: replicas NaN sumadas sobre las celdas, candidato S1, par EXD
+- id: RESULT-DUELO26-EM-EXD-SIGMA2-MEDIO
+  tipo: flotante
+  unidad: media de Var(Ibar_k) por celda, par EXD
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E1xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par EXD, celda E1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E1xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par EXD, celda E1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E1xD1-P
+  tipo: proporcion
+  unidad: candidato SL del par EXD, celda E1xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E1xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par EXD, celda E1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E1xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par EXD, celda E1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E1xD2-P
+  tipo: proporcion
+  unidad: candidato SL del par EXD, celda E1xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E1xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par EXD, celda E1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E1xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par EXD, celda E1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E1xD3-P
+  tipo: proporcion
+  unidad: candidato SL del par EXD, celda E1xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E2xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par EXD, celda E2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E2xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par EXD, celda E2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E2xD1-P
+  tipo: proporcion
+  unidad: candidato SL del par EXD, celda E2xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E2xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par EXD, celda E2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E2xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par EXD, celda E2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E2xD2-P
+  tipo: proporcion
+  unidad: candidato SL del par EXD, celda E2xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E2xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par EXD, celda E2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E2xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par EXD, celda E2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E2xD3-P
+  tipo: proporcion
+  unidad: candidato SL del par EXD, celda E2xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E3xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par EXD, celda E3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E3xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par EXD, celda E3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E3xD1-P
+  tipo: proporcion
+  unidad: candidato SL del par EXD, celda E3xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E3xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par EXD, celda E3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E3xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par EXD, celda E3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E3xD2-P
+  tipo: proporcion
+  unidad: candidato SL del par EXD, celda E3xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E3xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par EXD, celda E3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E3xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par EXD, celda E3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E3xD3-P
+  tipo: proporcion
+  unidad: candidato SL del par EXD, celda E3xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E4xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par EXD, celda E4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E4xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par EXD, celda E4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E4xD1-P
+  tipo: proporcion
+  unidad: candidato SL del par EXD, celda E4xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E4xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par EXD, celda E4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E4xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par EXD, celda E4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E4xD2-P
+  tipo: proporcion
+  unidad: candidato SL del par EXD, celda E4xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E4xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par EXD, celda E4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E4xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par EXD, celda E4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-E4xD3-P
+  tipo: proporcion
+  unidad: candidato SL del par EXD, celda E4xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-SL-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: replicas NaN sumadas sobre las celdas, candidato SL, par EXD
+- id: RESULT-DUELO26-EM-EXD-SOPORTE-HISTORICO-E1xD1
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par EXD, celda E1xD1
+- id: RESULT-DUELO26-EM-EXD-SOPORTE-HISTORICO-E1xD2
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par EXD, celda E1xD2
+- id: RESULT-DUELO26-EM-EXD-SOPORTE-HISTORICO-E1xD3
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par EXD, celda E1xD3
+- id: RESULT-DUELO26-EM-EXD-SOPORTE-HISTORICO-E2xD1
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par EXD, celda E2xD1
+- id: RESULT-DUELO26-EM-EXD-SOPORTE-HISTORICO-E2xD2
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par EXD, celda E2xD2
+- id: RESULT-DUELO26-EM-EXD-SOPORTE-HISTORICO-E2xD3
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par EXD, celda E2xD3
+- id: RESULT-DUELO26-EM-EXD-SOPORTE-HISTORICO-E3xD1
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par EXD, celda E3xD1
+- id: RESULT-DUELO26-EM-EXD-SOPORTE-HISTORICO-E3xD2
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par EXD, celda E3xD2
+- id: RESULT-DUELO26-EM-EXD-SOPORTE-HISTORICO-E3xD3
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par EXD, celda E3xD3
+- id: RESULT-DUELO26-EM-EXD-SOPORTE-HISTORICO-E4xD1
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par EXD, celda E4xD1
+- id: RESULT-DUELO26-EM-EXD-SOPORTE-HISTORICO-E4xD2
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par EXD, celda E4xD2
+- id: RESULT-DUELO26-EM-EXD-SOPORTE-HISTORICO-E4xD3
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par EXD, celda E4xD3
+- id: RESULT-DUELO26-EM-EXD-TAU2
+  tipo: flotante
+  unidad: tau2 = max(0, Var_entre - sigma2), par EXD
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-EXD-VAR-ENTRE
+  tipo: flotante
+  unidad: varianza entre celdas de Ibar (ddof=1), par EXD
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-G-CODIGO-CRUCES-FAMILIA-SHA256
+  tipo: texto
+  unidad: sha256 del modulo CRUCES-FAMILIA tal como corrio
+- id: RESULT-DUELO26-EM-G-CODIGO-ENVIPE-DUELO-SHA256
+  tipo: texto
+  unidad: sha256 del modulo ENVIPE-DUELO tal como corrio
+- id: RESULT-DUELO26-EM-G-CODIGO-MARGINALES-REPRODUCCION-SHA256
+  tipo: texto
+  unidad: sha256 del modulo MARGINALES-REPRODUCCION tal como corrio
+- id: RESULT-DUELO26-EM-G-CODIGO-SERIE-COMPLETA-MEDIDOR-SHA256
+  tipo: texto
+  unidad: sha256 del modulo SERIE-COMPLETA-MEDIDOR tal como corrio
+- id: RESULT-DUELO26-EM-G-CODIGO-TENDENCIA-NACIONAL-SHA256
+  tipo: texto
+  unidad: sha256 del modulo TENDENCIA-NACIONAL tal como corrio
+- id: RESULT-DUELO26-EM-G-EMAS-ND-ESTADO
+  tipo: texto
+  unidad: estado de E+ para no-denunciado
+- id: RESULT-DUELO26-EM-G-EN-K-COINCIDE-CONSTANTE-MOTOR
+  tipo: texto
+  unidad: 'SI si K == constante del motor a 1e-6: K se emite una sola vez'
+- id: RESULT-DUELO26-EM-G-EN-K-DELTA-CONSTANTE-MOTOR
+  tipo: flotante
+  unidad: K de evade_norma menos la constante del motor (tramite.yaml:497)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-G-INPUT-ENVIPE2023-CSV-SHA256
+  tipo: texto
+  unidad: sha256 del input ENVIPE2023-CSV
+- id: RESULT-DUELO26-EM-G-INPUT-ENVIPE2024-CSV-SHA256
+  tipo: texto
+  unidad: sha256 del input ENVIPE2024-CSV
+- id: RESULT-DUELO26-EM-G-INPUT-ENVIPE2025-CSV-SHA256
+  tipo: texto
+  unidad: sha256 del input ENVIPE2025-CSV
+- id: RESULT-DUELO26-EM-G-INPUT-ENVIPE2026-CSV-SHA256
+  tipo: texto
+  unidad: sha256 del input ENVIPE2026-CSV
+- id: RESULT-DUELO26-EM-G-INPUT-SERIE-ND-SHA256
+  tipo: texto
+  unidad: sha256 del input SERIE-ND
+- id: RESULT-DUELO26-EM-G-MEDIDOR-IDENTICO-A-TOOLS
+  tipo: texto
+  unidad: SI si medidor.py es byte a byte tools/duelo/envipe_duelo.py
+- id: RESULT-DUELO26-EM-G-ND-OLAS-EN-SERIE
+  tipo: entero
+  unidad: olas en la serie ND sellada
+- id: RESULT-DUELO26-EM-G-ND-OLAS-NO-COMPARABLES
+  tipo: texto
+  unidad: olas excluidas por comparabilidad
+- id: RESULT-DUELO26-EM-G-OLA-NUEVA
+  tipo: texto
+  unidad: ola nueva del contrato
+- id: RESULT-DUELO26-EM-G-RESERVA-CRUCE-OLA-NUEVA-DERIVADO
+  tipo: texto
+  unidad: NO si el guardian rechazo el cruce de la ola nueva
+- id: RESULT-DUELO26-EM-G-RESERVA-GUARDIA-PROBADA
+  tipo: texto
+  unidad: texto de ReservaRota al intentar cruzar la ola nueva
+- id: RESULT-DUELO26-EM-G-RESERVA-OLA-CARGADA-RESERVADA
+  tipo: texto
+  unidad: SI si la ola nueva se cargo reservada=True
+- id: RESULT-DUELO26-EM-G-ROTULO-NIVEL-NACIONAL
+  tipo: texto
+  unidad: rotulo del nivel nacional
+- id: RESULT-DUELO26-EM-G-VETO-EXD-2025-PROBADO
+  tipo: texto
+  unidad: texto de ReservaRota al intentar el par vetado EXD de 2025
+- id: RESULT-DUELO26-EM-G-W2023-DELITOS-SIN-PERSONA
+  tipo: entero
+  unidad: delitos del universo sin ID_PER en tsdem, ola 2023
+- id: RESULT-DUELO26-EM-G-W2023-ENCODING-TMODVIC
+  tipo: texto
+  unidad: encoding con que se leyo tmod_vic, ola 2023
+- id: RESULT-DUELO26-EM-G-W2023-ESTRATOS
+  tipo: entero
+  unidad: EST_DIS distintos, ola 2023
+- id: RESULT-DUELO26-EM-G-W2023-ESTRATOS-UPM-UNICA
+  tipo: entero
+  unidad: estratos con una sola UPM, ola 2023
+- id: RESULT-DUELO26-EM-G-W2023-FILAS-ARCHIVO
+  tipo: entero
+  unidad: filas de tmod_vic, ola 2023
+- id: RESULT-DUELO26-EM-G-W2023-FILAS-UNIVERSO
+  tipo: entero
+  unidad: filas con BP1_20 in {1,2}, ola 2023
+- id: RESULT-DUELO26-EM-G-W2023-UPM
+  tipo: entero
+  unidad: pares (EST_DIS, UPM_DIS) distintos, ola 2023
+- id: RESULT-DUELO26-EM-G-W2024-DELITOS-SIN-PERSONA
+  tipo: entero
+  unidad: delitos del universo sin ID_PER en tsdem, ola 2024
+- id: RESULT-DUELO26-EM-G-W2024-ENCODING-TMODVIC
+  tipo: texto
+  unidad: encoding con que se leyo tmod_vic, ola 2024
+- id: RESULT-DUELO26-EM-G-W2024-ESTRATOS
+  tipo: entero
+  unidad: EST_DIS distintos, ola 2024
+- id: RESULT-DUELO26-EM-G-W2024-ESTRATOS-UPM-UNICA
+  tipo: entero
+  unidad: estratos con una sola UPM, ola 2024
+- id: RESULT-DUELO26-EM-G-W2024-FILAS-ARCHIVO
+  tipo: entero
+  unidad: filas de tmod_vic, ola 2024
+- id: RESULT-DUELO26-EM-G-W2024-FILAS-UNIVERSO
+  tipo: entero
+  unidad: filas con BP1_20 in {1,2}, ola 2024
+- id: RESULT-DUELO26-EM-G-W2024-UPM
+  tipo: entero
+  unidad: pares (EST_DIS, UPM_DIS) distintos, ola 2024
+- id: RESULT-DUELO26-EM-G-W2025-DELITOS-SIN-PERSONA
+  tipo: entero
+  unidad: delitos del universo sin ID_PER en tsdem, ola 2025
+- id: RESULT-DUELO26-EM-G-W2025-ENCODING-TMODVIC
+  tipo: texto
+  unidad: encoding con que se leyo tmod_vic, ola 2025
+- id: RESULT-DUELO26-EM-G-W2025-ESTRATOS
+  tipo: entero
+  unidad: EST_DIS distintos, ola 2025
+- id: RESULT-DUELO26-EM-G-W2025-ESTRATOS-UPM-UNICA
+  tipo: entero
+  unidad: estratos con una sola UPM, ola 2025
+- id: RESULT-DUELO26-EM-G-W2025-FILAS-ARCHIVO
+  tipo: entero
+  unidad: filas de tmod_vic, ola 2025
+- id: RESULT-DUELO26-EM-G-W2025-FILAS-UNIVERSO
+  tipo: entero
+  unidad: filas con BP1_20 in {1,2}, ola 2025
+- id: RESULT-DUELO26-EM-G-W2025-UPM
+  tipo: entero
+  unidad: pares (EST_DIS, UPM_DIS) distintos, ola 2025
+- id: RESULT-DUELO26-EM-G-W2026-DELITOS-SIN-PERSONA
+  tipo: entero
+  unidad: delitos del universo sin ID_PER en tsdem, ola 2026
+- id: RESULT-DUELO26-EM-G-W2026-ENCODING-TMODVIC
+  tipo: texto
+  unidad: encoding con que se leyo tmod_vic, ola 2026
+- id: RESULT-DUELO26-EM-G-W2026-ESTRATOS
+  tipo: entero
+  unidad: EST_DIS distintos, ola 2026
+- id: RESULT-DUELO26-EM-G-W2026-ESTRATOS-UPM-UNICA
+  tipo: entero
+  unidad: estratos con una sola UPM, ola 2026
+- id: RESULT-DUELO26-EM-G-W2026-FILAS-ARCHIVO
+  tipo: entero
+  unidad: filas de tmod_vic, ola 2026
+- id: RESULT-DUELO26-EM-G-W2026-FILAS-UNIVERSO
+  tipo: entero
+  unidad: filas con BP1_20 in {1,2}, ola 2026
+- id: RESULT-DUELO26-EM-G-W2026-UPM
+  tipo: entero
+  unidad: pares (EST_DIS, UPM_DIS) distintos, ola 2026
+- id: RESULT-DUELO26-EM-NAC-EN-K-ESTADO
+  tipo: texto
+  unidad: CONSTRUIBLE o NO-CONSTRUIBLE-<razon>, contendiente K, estimando EN
+- id: RESULT-DUELO26-EM-NAC-EN-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion K, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion K, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-K-OLAS-USADAS
+  tipo: texto
+  unidad: olas de la serie usadas por K, estimando EN
+- id: RESULT-DUELO26-EM-NAC-EN-K-P
+  tipo: proporcion
+  unidad: prediccion nacional del contendiente K para el estimando EN, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-K-PENDIENTE-LOGIT
+  tipo: flotante
+  unidad: pendiente OLS en logit por ola, contendiente K, estimando EN (null en K)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-SERIE-2023-DELTA-SELLADO
+  tipo: flotante
+  unidad: p re-derivada menos sellada, ola 2023
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-SERIE-2023-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de p nacional evade_norma 2023 (wprop_ic_conglomerado)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-SERIE-2023-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de p nacional evade_norma 2023 (wprop_ic_conglomerado)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-SERIE-2023-P
+  tipo: proporcion
+  unidad: p nacional evade_norma 2023 re-derivada por el guardian
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-SERIE-2023-REPRODUCE
+  tipo: texto
+  unidad: SI si |delta| <= control_tol_p, ola 2023
+- id: RESULT-DUELO26-EM-NAC-EN-SERIE-2024-DELTA-SELLADO
+  tipo: flotante
+  unidad: p re-derivada menos sellada, ola 2024
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-SERIE-2024-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de p nacional evade_norma 2024 (wprop_ic_conglomerado)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-SERIE-2024-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de p nacional evade_norma 2024 (wprop_ic_conglomerado)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-SERIE-2024-P
+  tipo: proporcion
+  unidad: p nacional evade_norma 2024 re-derivada por el guardian
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-SERIE-2024-REPRODUCE
+  tipo: texto
+  unidad: SI si |delta| <= control_tol_p, ola 2024
+- id: RESULT-DUELO26-EM-NAC-EN-SERIE-2025-DELTA-SELLADO
+  tipo: flotante
+  unidad: p re-derivada menos sellada, ola 2025
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-SERIE-2025-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de p nacional evade_norma 2025 (wprop_ic_conglomerado)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-SERIE-2025-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de p nacional evade_norma 2025 (wprop_ic_conglomerado)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-SERIE-2025-P
+  tipo: proporcion
+  unidad: p nacional evade_norma 2025 re-derivada por el guardian
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-SERIE-2025-REPRODUCE
+  tipo: texto
+  unidad: SI si |delta| <= control_tol_p, ola 2025
+- id: RESULT-DUELO26-EM-NAC-EN-T3-ESTADO
+  tipo: texto
+  unidad: CONSTRUIBLE o NO-CONSTRUIBLE-<razon>, contendiente T3, estimando EN
+- id: RESULT-DUELO26-EM-NAC-EN-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion T3, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion T3, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-T3-OLAS-USADAS
+  tipo: texto
+  unidad: olas de la serie usadas por T3, estimando EN
+- id: RESULT-DUELO26-EM-NAC-EN-T3-P
+  tipo: proporcion
+  unidad: prediccion nacional del contendiente T3 para el estimando EN, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-T3-PENDIENTE-LOGIT
+  tipo: flotante
+  unidad: pendiente OLS en logit por ola, contendiente T3, estimando EN (null en K)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-T5-ESTADO
+  tipo: texto
+  unidad: CONSTRUIBLE o NO-CONSTRUIBLE-<razon>, contendiente T5, estimando EN
+- id: RESULT-DUELO26-EM-NAC-EN-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion T5, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion T5, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-T5-OLAS-USADAS
+  tipo: texto
+  unidad: olas de la serie usadas por T5, estimando EN
+- id: RESULT-DUELO26-EM-NAC-EN-T5-P
+  tipo: proporcion
+  unidad: prediccion nacional del contendiente T5 para el estimando EN, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-T5-PENDIENTE-LOGIT
+  tipo: flotante
+  unidad: pendiente OLS en logit por ola, contendiente T5, estimando EN (null en K)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-TC-ESTADO
+  tipo: texto
+  unidad: CONSTRUIBLE o NO-CONSTRUIBLE-<razon>, contendiente TC, estimando EN
+- id: RESULT-DUELO26-EM-NAC-EN-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion TC, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion TC, estimando EN
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-TC-OLAS-USADAS
+  tipo: texto
+  unidad: olas de la serie usadas por TC, estimando EN
+- id: RESULT-DUELO26-EM-NAC-EN-TC-P
+  tipo: proporcion
+  unidad: prediccion nacional del contendiente TC para el estimando EN, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-EN-TC-PENDIENTE-LOGIT
+  tipo: flotante
+  unidad: pendiente OLS en logit por ola, contendiente TC, estimando EN (null en K)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-ND-K-ESTADO
+  tipo: texto
+  unidad: CONSTRUIBLE o NO-CONSTRUIBLE-<razon>, contendiente K, estimando ND
+- id: RESULT-DUELO26-EM-NAC-ND-K-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion K, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-ND-K-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion K, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-ND-K-OLAS-USADAS
+  tipo: texto
+  unidad: olas de la serie usadas por K, estimando ND
+- id: RESULT-DUELO26-EM-NAC-ND-K-P
+  tipo: proporcion
+  unidad: prediccion nacional del contendiente K para el estimando ND, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-ND-K-PENDIENTE-LOGIT
+  tipo: flotante
+  unidad: pendiente OLS en logit por ola, contendiente K, estimando ND (null en K)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-ND-T3-ESTADO
+  tipo: texto
+  unidad: CONSTRUIBLE o NO-CONSTRUIBLE-<razon>, contendiente T3, estimando ND
+- id: RESULT-DUELO26-EM-NAC-ND-T3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion T3, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-ND-T3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion T3, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-ND-T3-OLAS-USADAS
+  tipo: texto
+  unidad: olas de la serie usadas por T3, estimando ND
+- id: RESULT-DUELO26-EM-NAC-ND-T3-P
+  tipo: proporcion
+  unidad: prediccion nacional del contendiente T3 para el estimando ND, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-ND-T3-PENDIENTE-LOGIT
+  tipo: flotante
+  unidad: pendiente OLS en logit por ola, contendiente T3, estimando ND (null en K)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-ND-T5-ESTADO
+  tipo: texto
+  unidad: CONSTRUIBLE o NO-CONSTRUIBLE-<razon>, contendiente T5, estimando ND
+- id: RESULT-DUELO26-EM-NAC-ND-T5-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion T5, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-ND-T5-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion T5, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-ND-T5-OLAS-USADAS
+  tipo: texto
+  unidad: olas de la serie usadas por T5, estimando ND
+- id: RESULT-DUELO26-EM-NAC-ND-T5-P
+  tipo: proporcion
+  unidad: prediccion nacional del contendiente T5 para el estimando ND, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-ND-T5-PENDIENTE-LOGIT
+  tipo: flotante
+  unidad: pendiente OLS en logit por ola, contendiente T5, estimando ND (null en K)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-ND-TC-ESTADO
+  tipo: texto
+  unidad: CONSTRUIBLE o NO-CONSTRUIBLE-<razon>, contendiente TC, estimando ND
+- id: RESULT-DUELO26-EM-NAC-ND-TC-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la prediccion TC, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-ND-TC-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la prediccion TC, estimando ND
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-ND-TC-OLAS-USADAS
+  tipo: texto
+  unidad: olas de la serie usadas por TC, estimando ND
+- id: RESULT-DUELO26-EM-NAC-ND-TC-P
+  tipo: proporcion
+  unidad: prediccion nacional del contendiente TC para el estimando ND, proporcion
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-NAC-ND-TC-PENDIENTE-LOGIT
+  tipo: flotante
+  unidad: pendiente OLS en logit por ola, contendiente TC, estimando ND (null en K)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-D1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la persistencia por eje, celda D1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-D1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la persistencia por eje, celda D1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-D1-N
+  tipo: entero
+  unidad: n sin ponderar de la ola anterior, celda de eje D1
+- id: RESULT-DUELO26-EM-PERS-D1-P
+  tipo: proporcion
+  unidad: 'persistencia por eje: p de la ola anterior, celda D1'
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-D2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la persistencia por eje, celda D2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-D2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la persistencia por eje, celda D2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-D2-N
+  tipo: entero
+  unidad: n sin ponderar de la ola anterior, celda de eje D2
+- id: RESULT-DUELO26-EM-PERS-D2-P
+  tipo: proporcion
+  unidad: 'persistencia por eje: p de la ola anterior, celda D2'
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-D3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la persistencia por eje, celda D3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-D3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la persistencia por eje, celda D3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-D3-N
+  tipo: entero
+  unidad: n sin ponderar de la ola anterior, celda de eje D3
+- id: RESULT-DUELO26-EM-PERS-D3-P
+  tipo: proporcion
+  unidad: 'persistencia por eje: p de la ola anterior, celda D3'
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-E1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la persistencia por eje, celda E1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-E1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la persistencia por eje, celda E1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-E1-N
+  tipo: entero
+  unidad: n sin ponderar de la ola anterior, celda de eje E1
+- id: RESULT-DUELO26-EM-PERS-E1-P
+  tipo: proporcion
+  unidad: 'persistencia por eje: p de la ola anterior, celda E1'
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-E2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la persistencia por eje, celda E2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-E2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la persistencia por eje, celda E2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-E2-N
+  tipo: entero
+  unidad: n sin ponderar de la ola anterior, celda de eje E2
+- id: RESULT-DUELO26-EM-PERS-E2-P
+  tipo: proporcion
+  unidad: 'persistencia por eje: p de la ola anterior, celda E2'
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-E3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la persistencia por eje, celda E3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-E3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la persistencia por eje, celda E3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-E3-N
+  tipo: entero
+  unidad: n sin ponderar de la ola anterior, celda de eje E3
+- id: RESULT-DUELO26-EM-PERS-E3-P
+  tipo: proporcion
+  unidad: 'persistencia por eje: p de la ola anterior, celda E3'
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-E4-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la persistencia por eje, celda E4
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-E4-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la persistencia por eje, celda E4
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-E4-N
+  tipo: entero
+  unidad: n sin ponderar de la ola anterior, celda de eje E4
+- id: RESULT-DUELO26-EM-PERS-E4-P
+  tipo: proporcion
+  unidad: 'persistencia por eje: p de la ola anterior, celda E4'
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-H-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la persistencia por eje, celda H
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-H-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la persistencia por eje, celda H
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-H-N
+  tipo: entero
+  unidad: n sin ponderar de la ola anterior, celda de eje H
+- id: RESULT-DUELO26-EM-PERS-H-P
+  tipo: proporcion
+  unidad: 'persistencia por eje: p de la ola anterior, celda H'
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-M-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la persistencia por eje, celda M
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-M-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la persistencia por eje, celda M
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-M-N
+  tipo: entero
+  unidad: n sin ponderar de la ola anterior, celda de eje M
+- id: RESULT-DUELO26-EM-PERS-M-P
+  tipo: proporcion
+  unidad: 'persistencia por eje: p de la ola anterior, celda M'
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-S1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la persistencia por eje, celda S1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-S1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la persistencia por eje, celda S1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-S1-N
+  tipo: entero
+  unidad: n sin ponderar de la ola anterior, celda de eje S1
+- id: RESULT-DUELO26-EM-PERS-S1-P
+  tipo: proporcion
+  unidad: 'persistencia por eje: p de la ola anterior, celda S1'
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-S2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la persistencia por eje, celda S2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-S2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la persistencia por eje, celda S2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-S2-N
+  tipo: entero
+  unidad: n sin ponderar de la ola anterior, celda de eje S2
+- id: RESULT-DUELO26-EM-PERS-S2-P
+  tipo: proporcion
+  unidad: 'persistencia por eje: p de la ola anterior, celda S2'
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-S3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la persistencia por eje, celda S3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-S3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la persistencia por eje, celda S3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-S3-N
+  tipo: entero
+  unidad: n sin ponderar de la ola anterior, celda de eje S3
+- id: RESULT-DUELO26-EM-PERS-S3-P
+  tipo: proporcion
+  unidad: 'persistencia por eje: p de la ola anterior, celda S3'
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-S4-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF de la persistencia por eje, celda S4
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-S4-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP de la persistencia por eje, celda S4
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-PERS-S4-N
+  tipo: entero
+  unidad: n sin ponderar de la ola anterior, celda de eje S4
+- id: RESULT-DUELO26-EM-PERS-S4-P
+  tipo: proporcion
+  unidad: 'persistencia por eje: p de la ola anterior, celda S4'
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: replicas NaN sumadas sobre las celdas, candidato AP, par SXD
+- id: RESULT-DUELO26-EM-SXD-AP-S1xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par SXD, celda S1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S1xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par SXD, celda S1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S1xD1-P
+  tipo: proporcion
+  unidad: candidato AP del par SXD, celda S1xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S1xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par SXD, celda S1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S1xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par SXD, celda S1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S1xD2-P
+  tipo: proporcion
+  unidad: candidato AP del par SXD, celda S1xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S1xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par SXD, celda S1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S1xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par SXD, celda S1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S1xD3-P
+  tipo: proporcion
+  unidad: candidato AP del par SXD, celda S1xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S2xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par SXD, celda S2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S2xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par SXD, celda S2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S2xD1-P
+  tipo: proporcion
+  unidad: candidato AP del par SXD, celda S2xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S2xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par SXD, celda S2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S2xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par SXD, celda S2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S2xD2-P
+  tipo: proporcion
+  unidad: candidato AP del par SXD, celda S2xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S2xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par SXD, celda S2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S2xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par SXD, celda S2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S2xD3-P
+  tipo: proporcion
+  unidad: candidato AP del par SXD, celda S2xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S3xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par SXD, celda S3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S3xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par SXD, celda S3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S3xD1-P
+  tipo: proporcion
+  unidad: candidato AP del par SXD, celda S3xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S3xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par SXD, celda S3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S3xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par SXD, celda S3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S3xD2-P
+  tipo: proporcion
+  unidad: candidato AP del par SXD, celda S3xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S3xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par SXD, celda S3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S3xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par SXD, celda S3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S3xD3-P
+  tipo: proporcion
+  unidad: candidato AP del par SXD, celda S3xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S4xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par SXD, celda S4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S4xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par SXD, celda S4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S4xD1-P
+  tipo: proporcion
+  unidad: candidato AP del par SXD, celda S4xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S4xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par SXD, celda S4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S4xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par SXD, celda S4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S4xD2-P
+  tipo: proporcion
+  unidad: candidato AP del par SXD, celda S4xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S4xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato AP, par SXD, celda S4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S4xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato AP, par SXD, celda S4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-AP-S4xD3-P
+  tipo: proporcion
+  unidad: candidato AP del par SXD, celda S4xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: replicas NaN sumadas sobre las celdas, candidato C2, par SXD
+- id: RESULT-DUELO26-EM-SXD-C2-S1xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par SXD, celda S1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S1xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par SXD, celda S1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S1xD1-P
+  tipo: proporcion
+  unidad: candidato C2 del par SXD, celda S1xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S1xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par SXD, celda S1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S1xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par SXD, celda S1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S1xD2-P
+  tipo: proporcion
+  unidad: candidato C2 del par SXD, celda S1xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S1xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par SXD, celda S1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S1xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par SXD, celda S1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S1xD3-P
+  tipo: proporcion
+  unidad: candidato C2 del par SXD, celda S1xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S2xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par SXD, celda S2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S2xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par SXD, celda S2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S2xD1-P
+  tipo: proporcion
+  unidad: candidato C2 del par SXD, celda S2xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S2xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par SXD, celda S2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S2xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par SXD, celda S2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S2xD2-P
+  tipo: proporcion
+  unidad: candidato C2 del par SXD, celda S2xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S2xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par SXD, celda S2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S2xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par SXD, celda S2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S2xD3-P
+  tipo: proporcion
+  unidad: candidato C2 del par SXD, celda S2xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S3xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par SXD, celda S3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S3xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par SXD, celda S3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S3xD1-P
+  tipo: proporcion
+  unidad: candidato C2 del par SXD, celda S3xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S3xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par SXD, celda S3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S3xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par SXD, celda S3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S3xD2-P
+  tipo: proporcion
+  unidad: candidato C2 del par SXD, celda S3xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S3xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par SXD, celda S3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S3xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par SXD, celda S3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S3xD3-P
+  tipo: proporcion
+  unidad: candidato C2 del par SXD, celda S3xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S4xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par SXD, celda S4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S4xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par SXD, celda S4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S4xD1-P
+  tipo: proporcion
+  unidad: candidato C2 del par SXD, celda S4xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S4xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par SXD, celda S4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S4xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par SXD, celda S4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S4xD2-P
+  tipo: proporcion
+  unidad: candidato C2 del par SXD, celda S4xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S4xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato C2, par SXD, celda S4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S4xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato C2, par SXD, celda S4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-C2-S4xD3-P
+  tipo: proporcion
+  unidad: candidato C2 del par SXD, celda S4xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-IBAR-S1xD1
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par SXD, celda S1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-IBAR-S1xD2
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par SXD, celda S1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-IBAR-S1xD3
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par SXD, celda S1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-IBAR-S2xD1
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par SXD, celda S2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-IBAR-S2xD2
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par SXD, celda S2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-IBAR-S2xD3
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par SXD, celda S2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-IBAR-S3xD1
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par SXD, celda S3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-IBAR-S3xD2
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par SXD, celda S3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-IBAR-S3xD3
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par SXD, celda S3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-IBAR-S4xD1
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par SXD, celda S4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-IBAR-S4xD2
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par SXD, celda S4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-IBAR-S4xD3
+  tipo: flotante
+  unidad: interaccion media en logit de las olas anteriores, par SXD, celda S4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-K-CELDAS-LAMBDA
+  tipo: entero
+  unidad: celdas con Ibar y varianza finitas usadas en lambda, par SXD
+- id: RESULT-DUELO26-EM-SXD-LAMBDA
+  tipo: flotante
+  unidad: lambda de encogimiento, par SXD
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-N-2024-S1xD1
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par SXD, celda S1xD1
+- id: RESULT-DUELO26-EM-SXD-N-2024-S1xD2
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par SXD, celda S1xD2
+- id: RESULT-DUELO26-EM-SXD-N-2024-S1xD3
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par SXD, celda S1xD3
+- id: RESULT-DUELO26-EM-SXD-N-2024-S2xD1
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par SXD, celda S2xD1
+- id: RESULT-DUELO26-EM-SXD-N-2024-S2xD2
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par SXD, celda S2xD2
+- id: RESULT-DUELO26-EM-SXD-N-2024-S2xD3
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par SXD, celda S2xD3
+- id: RESULT-DUELO26-EM-SXD-N-2024-S3xD1
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par SXD, celda S3xD1
+- id: RESULT-DUELO26-EM-SXD-N-2024-S3xD2
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par SXD, celda S3xD2
+- id: RESULT-DUELO26-EM-SXD-N-2024-S3xD3
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par SXD, celda S3xD3
+- id: RESULT-DUELO26-EM-SXD-N-2024-S4xD1
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par SXD, celda S4xD1
+- id: RESULT-DUELO26-EM-SXD-N-2024-S4xD2
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par SXD, celda S4xD2
+- id: RESULT-DUELO26-EM-SXD-N-2024-S4xD3
+  tipo: entero
+  unidad: n sin ponderar de la ola 2024, par SXD, celda S4xD3
+- id: RESULT-DUELO26-EM-SXD-N-2025-S1xD1
+  tipo: entero
+  unidad: n sin ponderar de la ola 2025, par SXD, celda S1xD1
+- id: RESULT-DUELO26-EM-SXD-N-2025-S1xD2
+  tipo: entero
+  unidad: n sin ponderar de la ola 2025, par SXD, celda S1xD2
+- id: RESULT-DUELO26-EM-SXD-N-2025-S1xD3
+  tipo: entero
+  unidad: n sin ponderar de la ola 2025, par SXD, celda S1xD3
+- id: RESULT-DUELO26-EM-SXD-N-2025-S2xD1
+  tipo: entero
+  unidad: n sin ponderar de la ola 2025, par SXD, celda S2xD1
+- id: RESULT-DUELO26-EM-SXD-N-2025-S2xD2
+  tipo: entero
+  unidad: n sin ponderar de la ola 2025, par SXD, celda S2xD2
+- id: RESULT-DUELO26-EM-SXD-N-2025-S2xD3
+  tipo: entero
+  unidad: n sin ponderar de la ola 2025, par SXD, celda S2xD3
+- id: RESULT-DUELO26-EM-SXD-N-2025-S3xD1
+  tipo: entero
+  unidad: n sin ponderar de la ola 2025, par SXD, celda S3xD1
+- id: RESULT-DUELO26-EM-SXD-N-2025-S3xD2
+  tipo: entero
+  unidad: n sin ponderar de la ola 2025, par SXD, celda S3xD2
+- id: RESULT-DUELO26-EM-SXD-N-2025-S3xD3
+  tipo: entero
+  unidad: n sin ponderar de la ola 2025, par SXD, celda S3xD3
+- id: RESULT-DUELO26-EM-SXD-N-2025-S4xD1
+  tipo: entero
+  unidad: n sin ponderar de la ola 2025, par SXD, celda S4xD1
+- id: RESULT-DUELO26-EM-SXD-N-2025-S4xD2
+  tipo: entero
+  unidad: n sin ponderar de la ola 2025, par SXD, celda S4xD2
+- id: RESULT-DUELO26-EM-SXD-N-2025-S4xD3
+  tipo: entero
+  unidad: n sin ponderar de la ola 2025, par SXD, celda S4xD3
+- id: RESULT-DUELO26-EM-SXD-OLA-PERSISTENCIA
+  tipo: texto
+  unidad: ola de P y AP, par SXD
+- id: RESULT-DUELO26-EM-SXD-OLAS-ANTERIORES
+  tipo: texto
+  unidad: olas anteriores usadas por la familia, par SXD
+- id: RESULT-DUELO26-EM-SXD-P-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: replicas NaN sumadas sobre las celdas, candidato P, par SXD
+- id: RESULT-DUELO26-EM-SXD-P-S1xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par SXD, celda S1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S1xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par SXD, celda S1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S1xD1-P
+  tipo: proporcion
+  unidad: candidato P del par SXD, celda S1xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S1xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par SXD, celda S1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S1xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par SXD, celda S1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S1xD2-P
+  tipo: proporcion
+  unidad: candidato P del par SXD, celda S1xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S1xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par SXD, celda S1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S1xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par SXD, celda S1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S1xD3-P
+  tipo: proporcion
+  unidad: candidato P del par SXD, celda S1xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S2xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par SXD, celda S2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S2xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par SXD, celda S2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S2xD1-P
+  tipo: proporcion
+  unidad: candidato P del par SXD, celda S2xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S2xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par SXD, celda S2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S2xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par SXD, celda S2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S2xD2-P
+  tipo: proporcion
+  unidad: candidato P del par SXD, celda S2xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S2xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par SXD, celda S2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S2xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par SXD, celda S2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S2xD3-P
+  tipo: proporcion
+  unidad: candidato P del par SXD, celda S2xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S3xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par SXD, celda S3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S3xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par SXD, celda S3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S3xD1-P
+  tipo: proporcion
+  unidad: candidato P del par SXD, celda S3xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S3xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par SXD, celda S3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S3xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par SXD, celda S3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S3xD2-P
+  tipo: proporcion
+  unidad: candidato P del par SXD, celda S3xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S3xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par SXD, celda S3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S3xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par SXD, celda S3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S3xD3-P
+  tipo: proporcion
+  unidad: candidato P del par SXD, celda S3xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S4xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par SXD, celda S4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S4xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par SXD, celda S4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S4xD1-P
+  tipo: proporcion
+  unidad: candidato P del par SXD, celda S4xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S4xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par SXD, celda S4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S4xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par SXD, celda S4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S4xD2-P
+  tipo: proporcion
+  unidad: candidato P del par SXD, celda S4xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S4xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato P, par SXD, celda S4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S4xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato P, par SXD, celda S4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-P-S4xD3-P
+  tipo: proporcion
+  unidad: candidato P del par SXD, celda S4xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: replicas NaN sumadas sobre las celdas, candidato S1, par SXD
+- id: RESULT-DUELO26-EM-SXD-S1-S1xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par SXD, celda S1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S1xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par SXD, celda S1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S1xD1-P
+  tipo: proporcion
+  unidad: candidato S1 del par SXD, celda S1xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S1xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par SXD, celda S1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S1xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par SXD, celda S1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S1xD2-P
+  tipo: proporcion
+  unidad: candidato S1 del par SXD, celda S1xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S1xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par SXD, celda S1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S1xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par SXD, celda S1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S1xD3-P
+  tipo: proporcion
+  unidad: candidato S1 del par SXD, celda S1xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S2xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par SXD, celda S2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S2xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par SXD, celda S2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S2xD1-P
+  tipo: proporcion
+  unidad: candidato S1 del par SXD, celda S2xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S2xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par SXD, celda S2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S2xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par SXD, celda S2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S2xD2-P
+  tipo: proporcion
+  unidad: candidato S1 del par SXD, celda S2xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S2xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par SXD, celda S2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S2xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par SXD, celda S2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S2xD3-P
+  tipo: proporcion
+  unidad: candidato S1 del par SXD, celda S2xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S3xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par SXD, celda S3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S3xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par SXD, celda S3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S3xD1-P
+  tipo: proporcion
+  unidad: candidato S1 del par SXD, celda S3xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S3xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par SXD, celda S3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S3xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par SXD, celda S3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S3xD2-P
+  tipo: proporcion
+  unidad: candidato S1 del par SXD, celda S3xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S3xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par SXD, celda S3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S3xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par SXD, celda S3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S3xD3-P
+  tipo: proporcion
+  unidad: candidato S1 del par SXD, celda S3xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S4xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par SXD, celda S4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S4xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par SXD, celda S4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S4xD1-P
+  tipo: proporcion
+  unidad: candidato S1 del par SXD, celda S4xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S4xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par SXD, celda S4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S4xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par SXD, celda S4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S4xD2-P
+  tipo: proporcion
+  unidad: candidato S1 del par SXD, celda S4xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S4xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato S1, par SXD, celda S4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S4xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato S1, par SXD, celda S4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-S1-S4xD3-P
+  tipo: proporcion
+  unidad: candidato S1 del par SXD, celda S4xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SIGMA2-MEDIO
+  tipo: flotante
+  unidad: media de Var(Ibar_k) por celda, par SXD
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: replicas NaN sumadas sobre las celdas, candidato SL, par SXD
+- id: RESULT-DUELO26-EM-SXD-SL-S1xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par SXD, celda S1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S1xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par SXD, celda S1xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S1xD1-P
+  tipo: proporcion
+  unidad: candidato SL del par SXD, celda S1xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S1xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par SXD, celda S1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S1xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par SXD, celda S1xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S1xD2-P
+  tipo: proporcion
+  unidad: candidato SL del par SXD, celda S1xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S1xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par SXD, celda S1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S1xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par SXD, celda S1xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S1xD3-P
+  tipo: proporcion
+  unidad: candidato SL del par SXD, celda S1xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S2xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par SXD, celda S2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S2xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par SXD, celda S2xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S2xD1-P
+  tipo: proporcion
+  unidad: candidato SL del par SXD, celda S2xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S2xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par SXD, celda S2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S2xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par SXD, celda S2xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S2xD2-P
+  tipo: proporcion
+  unidad: candidato SL del par SXD, celda S2xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S2xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par SXD, celda S2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S2xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par SXD, celda S2xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S2xD3-P
+  tipo: proporcion
+  unidad: candidato SL del par SXD, celda S2xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S3xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par SXD, celda S3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S3xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par SXD, celda S3xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S3xD1-P
+  tipo: proporcion
+  unidad: candidato SL del par SXD, celda S3xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S3xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par SXD, celda S3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S3xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par SXD, celda S3xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S3xD2-P
+  tipo: proporcion
+  unidad: candidato SL del par SXD, celda S3xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S3xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par SXD, celda S3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S3xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par SXD, celda S3xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S3xD3-P
+  tipo: proporcion
+  unidad: candidato SL del par SXD, celda S3xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S4xD1-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par SXD, celda S4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S4xD1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par SXD, celda S4xD1
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S4xD1-P
+  tipo: proporcion
+  unidad: candidato SL del par SXD, celda S4xD1, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S4xD2-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par SXD, celda S4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S4xD2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par SXD, celda S4xD2
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S4xD2-P
+  tipo: proporcion
+  unidad: candidato SL del par SXD, celda S4xD2, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S4xD3-IC95INF
+  tipo: proporcion
+  unidad: IC95 INF del candidato SL, par SXD, celda S4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S4xD3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 SUP del candidato SL, par SXD, celda S4xD3
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SL-S4xD3-P
+  tipo: proporcion
+  unidad: candidato SL del par SXD, celda S4xD3, proporcion (null = NO-CONSTRUIBLE)
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-SOPORTE-HISTORICO-S1xD1
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par SXD, celda S1xD1
+- id: RESULT-DUELO26-EM-SXD-SOPORTE-HISTORICO-S1xD2
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par SXD, celda S1xD2
+- id: RESULT-DUELO26-EM-SXD-SOPORTE-HISTORICO-S1xD3
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par SXD, celda S1xD3
+- id: RESULT-DUELO26-EM-SXD-SOPORTE-HISTORICO-S2xD1
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par SXD, celda S2xD1
+- id: RESULT-DUELO26-EM-SXD-SOPORTE-HISTORICO-S2xD2
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par SXD, celda S2xD2
+- id: RESULT-DUELO26-EM-SXD-SOPORTE-HISTORICO-S2xD3
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par SXD, celda S2xD3
+- id: RESULT-DUELO26-EM-SXD-SOPORTE-HISTORICO-S3xD1
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par SXD, celda S3xD1
+- id: RESULT-DUELO26-EM-SXD-SOPORTE-HISTORICO-S3xD2
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par SXD, celda S3xD2
+- id: RESULT-DUELO26-EM-SXD-SOPORTE-HISTORICO-S3xD3
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par SXD, celda S3xD3
+- id: RESULT-DUELO26-EM-SXD-SOPORTE-HISTORICO-S4xD1
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par SXD, celda S4xD1
+- id: RESULT-DUELO26-EM-SXD-SOPORTE-HISTORICO-S4xD2
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par SXD, celda S4xD2
+- id: RESULT-DUELO26-EM-SXD-SOPORTE-HISTORICO-S4xD3
+  tipo: texto
+  unidad: SI si n >= 200 en todas las olas anteriores, par SXD, celda S4xD3
+- id: RESULT-DUELO26-EM-SXD-TAU2
+  tipo: flotante
+  unidad: tau2 = max(0, Var_entre - sigma2), par SXD
+  permite_no_estimable: true
+- id: RESULT-DUELO26-EM-SXD-VAR-ENTRE
+  tipo: flotante
+  unidad: varianza entre celdas de Ibar (ddof=1), par SXD
+  permite_no_estimable: true
