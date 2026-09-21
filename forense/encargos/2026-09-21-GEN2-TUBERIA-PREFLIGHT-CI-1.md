@@ -105,3 +105,24 @@ Sucesores, en el orden de mesa: (3) RES/CORR con llave lógica; (4) un archivo p
 11 · FALSADOR (§9)
 
 Si en tres meses el chequeo no ha puesto rojo un solo PR, se anota y se revisa si valía el aparato. Si pone rojo un PR por un estado que resulta legítimo, la lista de §4 está incompleta: se añade el estado con su razón, en un acto, visible —nunca se relaja la regla de «todo lo demás es FAIL».
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| **P-f · el criterio de «hecho» «`python3 tests/check.py --baseline --parallel` en LÍNEA BASE VERDE»** | `FUERA-DE-PERÍMETRO:ACTO GEN2-SENAL-1` — la suite da **2 FAIL nuevos**, los dos de `T22`, sobre `forense/encargos/2026-09-21-GEN2-SENAL-1.md` y su nota de cierre (marcador de ranura sin fila en `firmas-pendientes.tsv`). Los dos archivos son de otro acto y el PERÍMETRO de éste (§9) no los incluye. **Verificado heredado, no causado:** la misma suite sobre `origin/main` `a61dd000` limpio, en clon temporal (D-23), da **exactamente esos dos** FAIL y los mismos **25** WARN nuevos de `T03` — el conjunto de FAIL de esta rama es **idéntico** al de su base, y este acto **no añade ni un FAIL ni un WARN**. | Ninguno sobre contadores (`cuenta_gen2 = NO`, cero movidos). El impacto real: el encargo pide VERDE y la base no lo está, así que se entrega con el conjunto de FAIL idéntico al de `main`, **declarado**, en vez de tocar archivos ajenos para forzar el verde. | `ACTO GEN2-SENAL-1`, o el acto de trámite que registre la ranura en `forense/firmas-pendientes.tsv`, que es lo que `T22` pide. Fila: `NC-260921-GEN2-TUBERIA-PREFLIGHT-CI-1-9919-01`. |
+
+Fuera de esa fila, las seis piezas (P0, P-a, P-b, P-c, P-d, P-e) se ejecutaron en este acto y P-f
+es este cierre. Dos cosas que el encargo previó explícitamente y que **no** son
+filas de esta sección, porque no son trabajo no corrido sino resultado
+declarado:
+
+- **P-d no reprodujo la cifra al pie de la letra y el encargo dijo qué hacer:**
+  «si no reproduce, no es PARO: se reporta la diferencia con su causa y se
+  sigue». La diferencia es una fila de más (`#600`, donde `preflight` aún no
+  existía en `corrida0.py`) y está explicada en la nota de cierre §4 y en el
+  ADR. Los tres verdaderos y los cuatro falsos reproducen **exactos**.
+- **Los dos CALC del piloto siguen BLOQUEADOS en `main`** y este acto declara
+  desde el encargo que no los arregla: son de `PR #944` (sucesor del piloto).
+  No es deuda de este acto ni `FUERA-DE-PERÍMETRO` de nadie — es alcance
+  declarado por dirección y ejecutado por otro acto vivo.
