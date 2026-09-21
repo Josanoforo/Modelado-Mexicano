@@ -122,7 +122,7 @@ Orden: inventario → 2021 (ancla) → 2024 → 2018 → FD 2012/2015 → tabla 
 ## 11 · Hallazgos, NC, FP
 
 - `forense/hallazgos.md`: una línea (la colisión `P6_3_k` 2021/2024 y las otras tres, como clase).
-- `NC-0423`: cuestionarios 2012/2015 no accesibles → 16 filas NO-VERIFICABLE-AQUÍ (DIFERIDO-A sucesor 3). `NC-0424`: K8 sin instrumento en 2021/2024 (DECISIÓN-DE-MESA-PENDIENTE, FP-402). `NC-0425`: K2 bancaria 2024 no comparable sin enlace (DECISIÓN-DE-MESA-PENDIENTE, FP-402).
+- `NC-0428`: cuestionarios 2012/2015 no accesibles → 16 filas NO-VERIFICABLE-AQUÍ (DIFERIDO-A sucesor 3). `NC-0429`: K8 sin instrumento en 2021/2024 (DECISIÓN-DE-MESA-PENDIENTE, FP-402). `NC-0430`: K2 bancaria 2024 no comparable sin enlace (DECISIÓN-DE-MESA-PENDIENTE, FP-402).
 - `FP-402`: las dos preguntas de §9.
 
 ## 12 · Sucesores (orden del encargo)
