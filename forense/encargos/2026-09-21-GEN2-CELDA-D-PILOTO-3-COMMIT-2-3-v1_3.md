@@ -57,3 +57,7 @@ No cambia el procedimiento · no adopta · no abre otros cruces. Sucesores: info
 A.8 contra medición ya corrida (`T-YAMEDIDO`; la cita de arriba es el `celda_id` del marcador, no clasifica ni sella la regla): `python3 tools/ya_medido.py tramite.gobierno_digital.util_sin_coercion_ejes_encig2025` → `MEDIDA-EN: tramite-ola5-propuesta-v0.yaml`; `python3 tools/ya_medido.py tramite.gobierno_digital.util_sin_coercion` → `MEDIDA-EN: 2026-09-09-GEN2-LOTE-ENCIG-1-cierre.md, CALC-ENCIG-0001, tramite-ola5-propuesta-v0.yaml, tramite.yaml`.
 
 Corrido entero lo demás: P0, P1 (COMMIT-2 sellado y en `origin`), P2 (sin nulos), P3 (COMMIT-3a, preflight VERDE), P4 (COMMIT-3 sellado, veredicto FALSADOR DÉBIL con las palabras de la spec), P5 (aritmética 60-96, celda-D con `evento`, contadores, FP/NC por objeto), nota para mesa. `## CONSUMIDO` se añade en el commit siguiente con el número real del PR.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_3`, **PR #961** (`acto/gen2-celda-d-piloto-3-commit-2-3-v1_3`, 21/sep/2026, CAJA, sesión `953594cb`), ADR-591. Sello de cuerpo del 0-bis intacto (`7d82e141…`). Mesa fusiona.
