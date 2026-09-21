@@ -127,3 +127,65 @@ Sucesores, en el orden de mesa: (4) un archivo por entrada; (5) taxonomía de PR
 ## 11 · FALSADOR (§9)
 
 Si en tres meses ninguna de las seis guardas ha fallado una sola vez, se anota y se revisa si valían el aparato. Si aparece un consumidor que renombra una clave **sin** declarar el alias y G4 no lo atrapa, la guarda está mal escrita.
+
+---
+
+## NO-CORRIDO / RESERVAS
+
+*(A.14 · escrito por el ejecutor al cierre; precede a `## CONSUMIDO`.)*
+
+1. **«Los criterios 2 y 3 del §2, verificados con `main` fusionado»** —
+   `PARO-PREMISA`. Se verificaron, pero **no contra el estado que el encargo
+   supone**: `main` se movió y traía un slot `celda-D` nuevo
+   (`GOB.gobierno_digital.encig2025.edad_x_escolaridad`) **sin re-derivar
+   `demanda-resultados.tsv`**. Contra el derivado *commiteado* de `main`,
+   `status` cambia (`N_resultados_activos` 210→211,
+   `dependencias_numericas_legacy_activas` 149→150, `N_corridas_requeridas`
+   86→87). Verificado que **nada de eso es efecto de este acto**: un worktree
+   de `origin/main` sin ningún cambio de este acto, re-derivado, da las mismas
+   cifras. Contra `main` re-derivado —la única comparación que aísla el
+   acto— `status` queda **idéntico** y la vista difiere en 12 filas
+   sustantivas, 0 veredictos.
+   **Impacto:** ningún contador se mueve por este acto; el que se mueve ya
+   estaba movido y nadie lo había derivado.
+   **Sucesor:** MESA, al fusionar — decide si el salto 149→150 se declara como
+   corrección de derivado viejo o si quiere un acto aparte que lo separe.
+   Fila: `NC-260921-GEN2-TUBERIA-RES-LLAVE-1-5573-01`.
+
+2. **«La vista re-derivada difiere sólo en las 6 filas CIV y en la de
+   `NC-0213`» (criterio 2, literal)** — `DECISIÓN-DE-MESA-PENDIENTE`. Se
+   cumple para todo lo sustantivo, pero **dos filas más** cambian **sólo** en
+   la columna informativa `canales_observados`: `marco-M::CIV-M-01::R` gana
+   `C3-CORRIDA` y `marco-M::DIN-M-01::R` la pierde, porque las citas `CORR`
+   se resuelven ahora a los slots que el grupo tenía al escribirse (D-r2,
+   firmada). En las dos, veredicto (`RELEVADO-POR-PIN-DE-MESA`),
+   `calc_candidato` y pin quedan idénticos.
+   **Impacto:** ninguna adopción y ningún contador. Se toca la red de
+   seguridad del PARO, no lo que protege.
+   **Sucesor:** MESA, al fusionar.
+   Fila: `NC-260921-GEN2-TUBERIA-RES-LLAVE-1-5573-02`.
+
+3. **«G1 y G3 corriendo contra la ref base real»** —
+   `NO-VERIFICABLE-AQUÍ`. `G1` sale `NO-VERIFICABLE-AQUI` y `G3` juzga su
+   mitad `CORR` y declara la mitad `RES` sin juzgar, porque **la base todavía
+   no tiene `data/corrida0/registro-res.tsv`: lo crea este mismo PR**. No se
+   degradan a `PASA` (A.4). Las dos quedan probadas por mutación contra repos
+   de git sintéticos con ref base fija.
+   **Impacto:** ninguna medición. Desde el primer PR posterior al merge corren
+   completas.
+   **Sucesor:** el primer PR que toque el registro o una spec tras el merge.
+   Fila: `NC-260921-GEN2-TUBERIA-RES-LLAVE-1-5573-03`.
+
+4. **Sucesores del §9 del encargo** — `DIFERIDO-A`: **(4) un archivo por
+   entrada** y **(5) taxonomía de PR y regla de enrutamiento** siguen siendo
+   del orden de mesa y no se tocaron. **Impacto:** ninguno sobre esta tubería.
+   **Sucesor:** los actos que mesa lance en ese orden.
+
+5. **`NC-0393` y `NC-0426`** — `FUERA-DE-PERÍMETRO`: el §10 del encargo los
+   declara **no de este acto**. `NC-0393` (el reconocedor `RE_ENLACE` no acepta
+   «candidato para») es un defecto de vocabulario adyacente, no de identidad;
+   `NC-0426` (quinto canal por `parametros.id_celda`) quedó sustituido en la
+   práctica por los pines de mesa. El trabajo de P5 **no** los volvió
+   triviales: los canales siguen leyendo el mismo vocabulario, sólo cambió
+   contra qué casan. **Impacto:** ninguno. **Sucesor:** SIN-ASIGNAR, como
+   estaban.

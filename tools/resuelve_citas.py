@@ -38,6 +38,10 @@ import subprocess
 import sys
 from pathlib import Path
 
+# `data/corrida0/corridas.tsv` trae campos enormes (listas de inputs de una
+# corrida): el limite por defecto de `csv` los rompe.
+csv.field_size_limit(10_000_000)
+
 RAIZ = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(RAIZ))
 sys.path.insert(0, str(RAIZ / "tools"))
