@@ -75,4 +75,4 @@ No adopta · no mide nada fuera de la spec · no toca los otros cruces · no re-
 
 ## CONSUMIDO
 
-Ejecutado por `ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-2-3`, **PR #941**, 20/sep/2026 (CAJA, Opus 5, MODO RÍGIDO). PARO (b) sin parche: `corrida0 preflight` BLOQUEADO en `CALC-GOB-DIGITAL-EXE-EMISIONES-0002` y `CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001`; ENCIG 2025 no se abrió; cero corridas selladas. Abre `NC-0447`–`NC-0451`, `FP-407`; `ADR-577`. Sucesor = COMMIT-1 v1.2 de otra sesión. Nota: `forense/notas/nota-2026-09-20-gen2-celda-d-piloto-3-commit-2-3-paro.md`.
+Ejecutado por `ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-2-3`, **PR #941**, 20/sep/2026 (CAJA, Opus 5, MODO RÍGIDO). PARO (b) sin parche: `corrida0 preflight` BLOQUEADO en `CALC-GOB-DIGITAL-EXE-EMISIONES-0002` y `CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001`; ENCIG 2025 no se abrió; cero corridas selladas. Abre `NC-0447`–`NC-0451`, `FP-407`; `ADR-578`. Sucesor = COMMIT-1 v1.2 de otra sesión. Nota: `forense/notas/nota-2026-09-20-gen2-celda-d-piloto-3-commit-2-3-paro.md`.
