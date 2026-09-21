@@ -92,6 +92,35 @@ _OLA_CALIBRACION_FIJA = {
         "milpa/procedencia.yaml:782-786 (asignados_probabilidad, 'el 0.62 NO "
         "corresponde a ninguna categoria medida -- es ASIGNADO, confirmado')",
     ),
+    # ACTO GEN2-MARCADOR-E-INFORME-1 · P3 (firma F8, mesa 21/sep/2026,
+    # FP-260921-GEN2-TRAMITE-FIRMAS-4-8a1f-08). La regla no trae
+    # `ola_calibracion:` propia ni enmienda que la declare, asi que
+    # `cita_ola_calibracion` levantaba LookupError y tumbaba tres pruebas de
+    # transferencia (test_08/test_10/test_11) que ni siquiera miden calibracion.
+    # El valor NO se teclea: se DERIVA de la spec sellada que F8 nombra,
+    # data/corrida0/CALC-EVASION-NORMA-0001-v1_1/spec.yaml -- `inputs` id
+    # `envipe2025_csv` (:52), `variables` sobre el archivo `tmod_vic_envipe2025`
+    # (:57-61) y `universo` "Delitos ... en tmod_vic_envipe2025. n=40280" (:63-65).
+    # La cadena cierra por hash: el payload que esa spec declara
+    # (sha256 8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa,
+    # spec.yaml:41 `contaminacion_declarada`) es byte a byte el
+    # `sha256_payload` de la propia regla en milpa/tramite.yaml:535.
+    # ENVIPE 2025 es la ola de TODA la regla, no solo de una conducta: el
+    # ASIGNADO 0.66/0.34 se calibro ahi (nota_calibracion, :516) y la enmienda
+    # que trae los MEDIDOS es `enmienda_envipe2025` (:543-548). Por eso NO
+    # reaparece aqui el defecto conducta-aware de `mordida.discrecional`
+    # (docstring de `cita_ola_calibracion`): alli las dos conductas tenian olas
+    # distintas, aqui las dos tienen la misma.
+    "tramite.evasion_norma": (
+        "ENVIPE 2025",
+        r"^\s*CALIBRADA en ENVIPE 2025 por ACTO MAESTRA34-L5",
+        "CALIBRADA en ENVIPE 2025 por ACTO MAESTRA34-L5 (ADR-287); ver "
+        "enmienda_envipe2025 -- ola derivada de la spec sellada "
+        "data/corrida0/CALC-EVASION-NORMA-0001-v1_1/spec.yaml (input "
+        "envipe2025_csv, archivo tmod_vic_envipe2025, universo n=40280); el "
+        "sha256 del payload de esa spec coincide con el `sha256_payload` de "
+        "esta regla (8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa)",
+    ),
 }
 
 CIEGO_A_R = (
