@@ -26,6 +26,27 @@ BASELINE_MODE = "--baseline" in sys.argv
 FREEZE_MODE = "--freeze" in sys.argv
 REQUIRE_CABLEADO = "--require-cableado" in sys.argv
 PARALLEL = "--parallel" in sys.argv
+RAPIDO_MODE = "--rapido" in sys.argv
+
+# Subconjunto rápido (P-A del ACTO GEN2-TUBERIA-CIERRE-RAPIDO-1, 21/sep/2026,
+# firma de mesa §1: "antes de empujar, un acto corre solo el subconjunto
+# rápido de la suite; la suite completa la corre el CI una vez en el push y
+# ése es el juez"). Vive en UN solo sitio -- éste -- con una línea por test
+# que diga por qué está: evidencia de captura medida en #955 (ADR-260921-
+# GEN2-TUBERIA-CIERRE-RAPIDO-1). Presupuesto declarado: ≤15s en local
+# (medido: T02 7.35s · T22 0.29 · T25 0.44 · T15 0.24 · T27 0.03 · T30 0.02 ·
+# T34 0.04 · verifica_sidecars 0.4 ≈ 8.8s). Las guardias huérfanas
+# (`ci_guardias.py --ejecuta-huerfanos`, 33.4s) NO entran aquí -- se quedan
+# en el CI, que ya las corre (P-A.1, §2 punto 2 del encargo).
+SUBCONJUNTO_RAPIDO = {
+    "T02": "duplicados de nombre/contenido -- la clase de defecto que #955 capturó",
+    "T22": "T-FIRMAS -- firmas de mesa abiertas/no ejecutadas, barato y frecuente",
+    "T25": "T-ROTULOS -- rótulos pelados sin censar, se dispara en casi todo PR",
+    "T15": "T-ADR-COUNT -- contador de ADR consistente con gobernanza",
+    "T27": "T-INFRA -- tablas declaradas en INFRAESTRUCTURA-v1_0.md existen",
+    "T30": "T-YAMEDIDO -- A.8 contra medición ya corrida, barato y de alto valor",
+    "T34": "T-NO-CORRIDO -- NC bien formadas, coherentes con no-corrido.tsv",
+}
 if PARALLEL:
     # Los procesos comparten sólo lecturas del checkout, tampoco escrituras
     # incidentales de __pycache__. Se aplica también al hijo independiente.
@@ -852,6 +873,12 @@ def t14_inventario():
 #   así que la marca debe tolerar un backtick opcional antes de sí misma.
 MARCA_HISTORICA = r"`?\s*\{cita-historica\}"
 
+# Formato de changelog histórico ("> **v1.8 — 29/jul.** ..."), usado por T17
+# y T19 para eximir una cifra fechada dentro de un bloque de historia --
+# nacido con T16 (retirado en P-A del ACTO GEN2-TUBERIA-CIERRE-RAPIDO-1,
+# 21/sep/2026) pero consumido por otros tests que siguen vivos.
+_CAMBIO_FECHADO = re.compile(r"^>\s*\*\*v\d+[._]\d+\s*[—-]\s*\d{1,2}/")
+
 # ───────────────────────────────────────────────────────────────
 # DOS ÉPOCAS DE ID `ADR`, una sola gramática (firma de mesa D-2, 21/sep/2026
 # · `ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1` · P-C.3): mismo mecanismo que
@@ -945,150 +972,6 @@ def t15_adr_count():
                     tope = f"ADR-{max(nums)}" if nums else "(ninguno sellado)"
                     fail("T15", f"{rel(p)}:{i} cita `{cita}`, que no existe en "
                                 f"{rel(g)} (máximo numérico sellado: {tope})")
-
-
-# ───────────────────────────────────────────────────────────────
-# T16 · T-SUITE-SELF-CHECK — ninguna afirmación VIGENTE sobre FAIL/WARN en
-#   un canónico puede contradecir la corrida real.
-#   (sesión de tests, 29/jul/2026 · censo-integridad-v1_0.md C1-06/C1-07,
-#   el hallazgo de mayor severidad de todo el censo: 107 vigente cuando la
-#   corrida real daba 111, y el propio mensaje del commit ya sabía 111.)
-#
-#   Juicio explícito de esta sesión: una cifra fechada dentro de un
-#   changelog histórico (`> **v1.8 — 29/jul.** ...`) NO es un defecto -- era
-#   correcta cuando se escribió, y perseguirla degradaría un registro
-#   correcto a falso positivo (exactamente lo que este archivo, en su
-#   propio §0, ya distingue a mano). El único marcador mecánico confiable
-#   que encontramos para "esto es historia, no estado vigente" es esa
-#   combinación cita-de-bloque + versión + fecha, porque es la única forma
-#   en que ESTE documento narra un cambio pasado (ver v1.1/v1.6/v1.7/v1.8
-#   en `estado §0`). Si algún día un canónico declara un FAIL/WARN histórico
-#   con una forma distinta, este test no lo reconocerá como historia y lo
-#   marcará FAIL por error -- limitación declarada, no descubierta a mano.
-# ───────────────────────────────────────────────────────────────
-_CAMBIO_FECHADO = re.compile(r"^>\s*\*\*v\d+[._]\d+\s*[—-]\s*\d{1,2}/")
-
-def _suite_real():
-    """Corrida independiente en subproceso, sin --strict/--baseline/--freeze
-    y sin volver a correr T16 (variable de entorno) -- correr la suite
-    completa para preguntarle 'cuál es tu resultado real' mientras todavía
-    está corriendo es un problema de punto fijo, no una pregunta con
-    respuesta. El subproceso excluye T16 de sí mismo: la cifra contra la
-    que este test compara es 'todo lo demás', no 'todo incluido yo mismo'.
-
-    Punto fijo verificado, no asumido (ACTO CI-CATEGORIA, 18/ago/2026,
-    contra 997482b). Como T16 nunca corre dentro de este subproceso, el
-    par (real_fail, real_warn) que devuelve NUNCA incluye la contribución
-    de T16 -- es estructuralmente estable frente a cuántas citas de
-    gobernanza estén desincronizadas (0, 1, 2 o 3), no una coincidencia de
-    esta corrida en particular. Confirmado por prueba directa (editada y
-    revertida, no commiteada): fijar una sola cita vigente
-    (`gobernanza:1658`) al valor esperado bajó el FAIL de la corrida
-    completa de 22 a 21 -- un T16 menos -- y este subproceso siguió dando
-    exactamente 19 FAIL · 132 WARN, sin moverse un dígito. La trampa que
-    esto previene: quien resincronice `gobernanza:1106`, `:1136` o
-    `:1658` copiando el total impreso al pie de la corrida (22 FAIL) en
-    vez del que este test acepta (19 FAIL, el 'núcleo' sin T16) deja esas
-    líneas rojas para siempre -- ningún `declara` hace cerrar la
-    comparación contra 22, porque este subproceso jamás calcula 22.
-
-    Las tres citas que hoy no matchean el núcleo (`gobernanza:1106`,
-    `:1136`, `:1658`) no se reescriben aquí: las tres narran un estado
-    PASADO de un ADR ya sellado (ADR-76(f)/ADR-77/ADR-94 respectivamente),
-    sin el formato de blockquote que `_CAMBIO_FECHADO` exige para
-    reconocerlas como histórico -- límite ya declarado en el docstring de
-    `t16_suite_self_check`. Sobreescribirlas con el núcleo vigente
-    falsearía lo que esos ADR midieron al sellarse -- `gobernanza:1106`
-    lo dice verbatim: "nunca debe seguir al real". Quedan protegidas por
-    el mecanismo que ya existe: `_T16_REAL_SUFIJO` normaliza el sufijo
-    volátil ('la corrida real da…') de la clave de línea base para las
-    tres por igual -- el regex no está acotado a `:1106`/`:1136` -- así
-    que ninguna necesita recongelarse cada vez que el WARN real se mueve
-    por una causa ajena a gobernanza."""
-    import subprocess
-    env = dict(os.environ, CHECK_SELFCHECK_CHILD="1")
-    try:
-        # T32 ahora falsifica también el linaje transitivo sobre 90 casos y
-        # el registro real abre cientos de specs. Conservamos un límite duro,
-        # pero con margen para el arranque frío del runner de CI: 60 s llegó a
-        # cortar una suite que termina verde localmente, no un ciclo real.
-        #
-        # ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2 (`NC-0191`), 15/sep/2026:
-        # 120 s -> 300 s, PISO MEDIDO, no estimado. NC-0191 abrió fila tras
-        # dos ocurrencias consecutivas (2026-09-14 rutinas.tsv · 2026-09-15
-        # digesto) en que ESTE subproceso topó el límite y dejó el ciclo sin
-        # 3.1/3.2/3.3/3.6. Medición bajo carga real de NUBE, tres corridas
-        # consecutivas del hijo (`CHECK_SELFCHECK_CHILD=1 python3
-        # tests/check.py`), en este mismo árbol: 82.9 s · 83.0 s · 82.0 s
-        # (mediana 82.9 s), las tres con la MISMA salida `3 FAIL · 4353
-        # WARN` -- o sea el límite cortaba una suite estable, no una
-        # regresión de contenido. Con 120 s el margen era 1.45x, que la
-        # contención de CPU del sandbox se come (el propio cierre de
-        # `GEN2-CONSUMIDO-RETRO-3` ya lo atribuyó a "saturación de CPU").
-        # 300 s deja ~3.6x sobre la mediana medida. NO se toca la lógica de
-        # comparación FAIL/WARN, que es lo que NC-0191 excluye del perímetro.
-        command = [sys.executable, os.path.join(ROOT, "tests", "check.py")]
-        if PARALLEL:
-            command.append("--parallel")
-        r = subprocess.run(command,
-                            cwd=ROOT, capture_output=True, text=True, env=env, timeout=300)
-    except Exception as e:
-        return None, None, str(e)
-    m = re.search(r"(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN", r.stdout)
-    for line in r.stdout.splitlines():
-        if line.strip().startswith("[tiempo]"):
-            print(f"  [T16/hijo] {line.strip()}", flush=True)
-    if not m:
-        return None, None, r.stdout[-300:]
-    return int(m.group(1)), int(m.group(2)), None
-
-def t16_suite_self_check():
-    """Ninguna afirmación VIGENTE de FAIL/WARN en canon/ puede contradecir
-    la corrida real (subproceso independiente, ver `_suite_real`).
-
-    LÍMITE DECLARADO -- léelo antes de tocar este test: dos marcadores
-    mecánicos reconocen "esto es historia, no estado vigente". El primero,
-    `_CAMBIO_FECHADO`, exige el formato literal `> **vX.Y — DD/mon.**` al
-    INICIO de la línea (el patrón que `estado §0` ya usa para v1.1, v1.6,
-    v1.7, v1.8). El segundo, `MARCA_HISTORICA` (ACTO T16-HISTÓRICAS,
-    18/ago/2026 -- mismo mecanismo `{cita-historica}` que T15 ya usa desde
-    ADR-72), exime SOLO la cita inmediatamente anterior a la marca: una
-    línea con dos citas y una marca deja la otra vigilada. Si un canónico
-    narra un cambio pasado con cualquier otra forma -- una tabla, una nota
-    sin blockquote ni marca, una fecha en otro lugar de la oración -- este
-    test NO lo reconocerá como histórico y marcará FAIL un registro que en
-    realidad es correcto. Verificado en la sesión de tests (29/jul/2026):
-    quitarle el `>` a una entrada histórica real basta para que empiece a
-    fallar -- la exención es real, pero es tan angosta como los dos
-    formatos que sabe reconocer. Antes de ampliar el universo de
-    documentos o de patrones que este test vigila, hay que ampliar ambos
-    marcadores en la misma medida, o se repite exactamente el defecto de
-    T07 (cobertura más angosta que el fenómeno que declara medir)."""
-    real_fail, real_warn, err = _suite_real()
-    if real_fail is None:
-        fail("T16", f"no se pudo derivar el resultado real de la suite (subproceso): {err}")
-        return
-    for p in glob.glob(os.path.join(ROOT, "canon", "*.md")):
-        for i, l in enumerate(read(p).split("\n"), 1):
-            historico = bool(_CAMBIO_FECHADO.match(l))
-            for m in re.finditer(r"\*\*(\d+)\s*FAIL\s*·\s*(\d+)\s*WARN\*\*", l):
-                if historico or re.match(MARCA_HISTORICA, l[m.end():]):
-                    continue
-                fd, wd = int(m.group(1)), int(m.group(2))
-                if fd != real_fail:
-                    fail("T16", f"{rel(p)}:{i} declara {fd} FAIL vigente; "
-                                f"la corrida real da {real_fail} FAIL")
-                elif wd != real_warn:
-                    senal("T16", f"{rel(p)}:{i} declara {wd} WARN vigente (informativo); "
-                                 f"la corrida real da {real_warn} WARN")
-            for m in re.finditer(r"total de WARN de la suite es\s*\*{0,2}(\d+)", l):
-                if historico or re.match(MARCA_HISTORICA, l[m.end():]):
-                    continue
-                wd = int(m.group(1))
-                if wd != real_warn:
-                    senal("T16", f"{rel(p)}:{i} declara {wd} WARN vigente (informativo); "
-                                 f"la corrida real da {real_warn} WARN")
-
 
 # ───────────────────────────────────────────────────────────────
 # T17 · T-FICHAS-COUNT — el conteo de fichas de `hitoD-preregistro`
@@ -8297,12 +8180,37 @@ def main():
         ("T51 T-ROTULOS-PAR-UNICO",                     t51_rotulos_par_unico),
         ("T52 T-ESTADO-PROGRAMA-SIN-APENDICE",          t52_estado_programa_sin_apendice),
     ]
-    if not os.environ.get("CHECK_SELFCHECK_CHILD"):
-        tests.append(("T16 T-SUITE-SELF-CHECK", t16_suite_self_check))
+    # T16 T-SUITE-SELF-CHECK se retiró (P-A.3, ACTO GEN2-TUBERIA-CIERRE-RAPIDO-1,
+    # 21/sep/2026, firma de mesa §1(3)): cero afirmaciones VIGENTES que
+    # comparar quedaban en canon/ (las que quedan son históricas, marcadas
+    # `{cita-historica}` o `> **vX.Y**`); sus dos FAIL salieron del baseline
+    # en el mismo acto.
+
+    if RAPIDO_MODE:
+        prefijos = tuple(f"{k} " for k in SUBCONJUNTO_RAPIDO)
+        tests = [t for t in tests if t[0].startswith(prefijos)]
+
     print("═" * 72)
-    print("  VERIFICACIÓN DEL CORPUS" + ("   [--strict]" if STRICT else ""))
+    print("  VERIFICACIÓN DEL CORPUS" + ("   [--strict]" if STRICT else "")
+          + ("   [--rapido]" if RAPIDO_MODE else ""))
     print("═" * 72)
+    t0 = time.time()
     _run_tests(tests, parallel=PARALLEL)
+
+    if RAPIDO_MODE:
+        # El verificador de sidecars vive en su propio archivo (firma D-a5,
+        # WARN propio fuera de este canal); un solo comando lo incluye.
+        import subprocess
+        r = subprocess.run([sys.executable, os.path.join(ROOT, "tools", "verifica_sidecars.py")],
+                            capture_output=True, text=True)
+        print(r.stdout, end="")
+        if r.returncode != 0:
+            print(r.stderr, end="")
+            fail("SUBCONJUNTO-RAPIDO", f"verifica_sidecars.py salió con código {r.returncode}")
+        dt = time.time() - t0
+        print(f"\n  [--rapido] {dt:.2f}s (presupuesto: 15s)")
+        if dt > 15:
+            fail("SUBCONJUNTO-RAPIDO", f"presupuesto de 15s excedido: {dt:.2f}s")
 
     if WARNS:
         print("\n" + "─" * 72 + f"\n  WARN ({len(WARNS)})\n" + "─" * 72)

@@ -279,25 +279,24 @@ def inspeccion_consumido(ruta_encargo):
     return {"ruta": ruta_encargo, "estado": "PRESENTE" if presente else "AUSENTE"}
 
 
-# Tope por defecto de `corre_baseline` -- P5, ACTO GEN2-CI-GUARDIAS-VIVAS-1
-# (20/sep/2026, NC-0357). Medido en el entorno de dirección (nube, sin
-# corpus, dos corridas concurrentes de fondo compitiendo por CPU):
-# `time python3 tests/check.py --baseline --parallel` -> real 5m22.8s.
-# El tope viejo (300s, sin `--parallel`) ya se comía ese margen sin dejar
-# nada; éste deja ~2.8x de holgura porque el runner de CI no es esta
-# máquina y no hay corrida competidora de fondo ahí.
+# Tope por defecto de `corre_baseline` -- P-A, ACTO GEN2-TUBERIA-CIERRE-RAPIDO-1
+# (21/sep/2026, firma de mesa §1(1)): la Fase A deja de correr la suite
+# completa -- la sesión verifica en segundos con el subconjunto rápido
+# (`--rapido`, ≤15s medido) y el CI del push es el juez de la suite
+# completa. El tope viejo (900s, heredado de `--baseline --parallel`,
+# P5/ACTO GEN2-CI-GUARDIAS-VIVAS-1, 20/sep/2026) queda como referencia
+# histórica del régimen anterior -- ya no gobierna esta llamada.
 TOPE_BASELINE_SEGUNDOS_POR_DEFECTO = 900
+TOPE_RAPIDO_SEGUNDOS_POR_DEFECTO = 60  # ~4x sobre el presupuesto de 15s medido
 
 
-def corre_baseline(raiz=RAIZ, paralelo=True, timeout=TOPE_BASELINE_SEGUNDOS_POR_DEFECTO):
-    cmd = [sys.executable, "tests/check.py", "--baseline"]
-    if paralelo:
-        cmd.append("--parallel")
+def corre_baseline(raiz=RAIZ, paralelo=True, timeout=TOPE_RAPIDO_SEGUNDOS_POR_DEFECTO):
+    cmd = [sys.executable, "tests/check.py", "--rapido"]
     rc, out, err = _corre(cmd, raiz, timeout=timeout)
     salida = (out + err)
     lineas = [l for l in salida.splitlines() if l.strip()]
     agotado = rc == 124 or "tiempo agotado" in err
-    verde = (not agotado) and "LÍNEA BASE: VERDE" in salida
+    verde = (not agotado) and rc == 0
     if agotado:
         estado = "TIEMPO-AGOTADO"
     elif verde:
@@ -398,9 +397,7 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True,
         print("  NC-HUÉRFANA: ninguna")
     print()
     if suite is not None:
-        cmd_txt = "python3 tests/check.py --baseline" + (
-            " --parallel" if suite.get("paralelo") else ""
-        )
+        cmd_txt = "python3 tests/check.py --rapido"
         print("SUITE")
         print(f"  Comando: {cmd_txt} (tope={suite.get('timeout_usado')}s)")
         print(f"  Código: {suite['codigo']} -- {suite.get('estado', 'ROJO/NO-VERDE')}")
@@ -725,10 +722,10 @@ def main():
     ap.add_argument("--encargo", default=None,
                      help="ruta al encargo del acto, para reportar presencia/ausencia de ## CONSUMIDO")
     ap.add_argument("--sin-suite", action="store_true",
-                     help="omite correr tests/check.py --baseline en la Fase A (más rápido)")
-    ap.add_argument("--tope-suite", type=int, default=TOPE_BASELINE_SEGUNDOS_POR_DEFECTO,
-                     help=f"tope en segundos para tests/check.py --baseline --parallel "
-                          f"(default={TOPE_BASELINE_SEGUNDOS_POR_DEFECTO})")
+                     help="omite correr tests/check.py --rapido en la Fase A (más rápido aún)")
+    ap.add_argument("--tope-suite", type=int, default=TOPE_RAPIDO_SEGUNDOS_POR_DEFECTO,
+                     help=f"tope en segundos para tests/check.py --rapido "
+                          f"(default={TOPE_RAPIDO_SEGUNDOS_POR_DEFECTO})")
     a = ap.parse_args()
 
     if a.aplica:
