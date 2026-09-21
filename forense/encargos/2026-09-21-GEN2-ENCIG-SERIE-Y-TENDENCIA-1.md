@@ -47,6 +47,7 @@ No re-adjudica · no abre los cruces reservados. Sucesor: decisión de mesa sobr
 ## NO-CORRIDO / RESERVAS
 
 - **qué:** P3 — «con el 2025 ya sellado como último punto»: el punto 2025 entra desde `milpa/tramite-ola5-propuesta-v0.yaml` (firma de mesa a1/s1, receta GEN1), no desde un CALC GEN2. · **por qué:** DIFERIDO-A:sucesor de mesa — el encargo (§5 P2) sólo autoriza tocar 2025 si el código lo necesita, y no lo necesitó; el único 2025 GEN2 sellado (`CALC-GOB-DIGITAL-EXE-EMISIONES-0002`) usa casos completos y no trae sexo. · **impacto:** `CALC-ENCIG-ORIGEN-MOVIL-0001` queda `envuelto_legacy = INDETERMINADO` en la vista; el dictamen no cambia (diferencias ≤ 0.3 pp frente a un salto de 11 pp). · **sucesor:** `NC-260921-GEN2-ENCIG-SERIE-Y-TENDENCIA-1-852f-01` — CALC GEN2 de marginales ENCIG 2025 por sexo (una variable) + origen móvil `-0002`.
+- **qué:** ADENDA-1 de mesa (`2026-09-21-GEN2-ENCIG-SERIE-Y-TENDENCIA-1-ADENDA-1.md`, sellada al recibirse): re-apuntar el insumo 2025 del origen móvil a los RESULT GEN2 de `CALC-ARBITRO-MARGINALES-ENCIG2025-0001` (#971). · **por qué:** DIFERIDO-A:CALC-ENCIG-ORIGEN-MOVIL-0002 — #971 no está en `main`; nada sellado ni el dictamen se tocan. · **impacto:** `envuelto_legacy = INDETERMINADO` persiste hasta el sucesor; diferencia esperada de centésimas de punto. · **sucesor:** `NC-260921-GEN2-ENCIG-SERIE-Y-TENDENCIA-1-852f-02` (sustituye a la `-01`).
 
 ## CONSUMIDO
 

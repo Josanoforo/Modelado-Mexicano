@@ -250,3 +250,24 @@ escolaridad: en 2025 la brecha entre superior (0.81) y hasta primaria
 bajo (secundaria +12.6, hasta primaria +8.0) — compatible con difusión
 tardía, no con un rasgo. ENCIG cubre ciudades de 100 mil habitantes o más:
 nada de esto habla del México rural.
+
+## 8 · ADENDA-1 de mesa (21/sep/2026, tras abrir el PR #972)
+
+Archivada sellada en `forense/encargos/2026-09-21-GEN2-ENCIG-SERIE-Y-TENDENCIA-1-ADENDA-1.md`
+(`7adde5c5…`). Verbatim: «Tu origen móvil tomó el punto 2025 de
+milpa/tramite-ola5-propuesta-v0.yaml (GEN1: nacional 0.6734). El acto
+ÁRBITRO-MARGINALES-1 (#971) selló hoy esos mismos marginales en GEN2. No
+cambies nada sellado ni el dictamen. Añade una NC con sucesor: re-apuntar el
+insumo 2025 de CALC-ENCIG-ORIGEN-MOVIL-0001 a los RESULT GEN2 cuando #971
+esté en main, como CALC sucesor. Así el origen móvil deja de estar envuelto
+en legacy. La diferencia esperada es de centésimas de punto.»
+
+Verificado contra el origen (A.17): `gh pr view 971` → OPEN, rama
+`acto/gen2-arbitro-marginales-1` en `9943e058`; su
+`CALC-ARBITRO-MARGINALES-ENCIG2025-0001/resultados.json` trae 79 ids con los
+once marginales que este acto necesita (`TOTAL-TODOS`, `SEXO-1/2`, `EDAD`
+×4, `ESCOLARIDAD` ×4): los puntos coinciden con el YAML a seis decimales
+(TOTAL 0.6733930341 vs 0.673393; 60+ 0.4758217673 vs 0.475822). Nada
+sellado se toca; el dictamen no cambia. `NC-…-852f-02` (ABIERTA,
+DIFERIDO-A:`CALC-ENCIG-ORIGEN-MOVIL-0002`) sustituye a `NC-…-852f-01`
+(CERRADA).
