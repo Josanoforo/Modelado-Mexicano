@@ -132,3 +132,11 @@ Cuatro filas. `forense/no-corrido.tsv`, ids `NC-260921-GEN2-DIN-LOTE-ENIF2024-A-
 **Por qué:** `PARO-PREMISA`.
 **Impacto:** el testigo `f9ea6d4f…` queda **VENCIDO EN ALCANCE** (A.10), no refutado y no borrado. El v0.1 archivado lleva su propio sidecar `bd1dcfd8…` y **no se edita**. Ningún contador afectado; el contenido del diseño está íntegro.
 **Sucesor:** `SIN-ASIGNAR` — si mesa conserva el original byte a byte en otro sitio, se re-sella ahí; el archivado no se toca.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-DIN-LOTE-ENIF2024-A`, 21/sep/2026, rama `acto/gen2-din-lote-enif2024-a`, entorno **NUBE `milpa-inegi`**, Opus 5, **MODO ABIERTO**, **COMPUERTA: ninguna**. **PR #967** — https://github.com/Josanoforo/Modelado-Mexicano/pull/967
+
+`ADR-260921-GEN2-DIN-LOTE-ENIF2024-A-a98a-01` (raíz de acto; `a98a` = 4 hex del commit de 0-bis `a98a483`) en `canon/gobernanza-v1_15.md`, con su fragmento en `canon/L0/ADR-260921-GEN2-DIN-LOTE-ENIF2024-A-a98a-01.md`. Rótulo censado en `canon/registro-rotulos.tsv`. Firma de la enmienda v0.3 asentada como `FP-260921-GEN2-DIN-LOTE-ENIF2024-A-a98a-01` (`FIRMADA`); ranura de la bifurcación como `FP-260921-GEN2-DIN-LOTE-ENIF2024-A-a98a-02` (`ABIERTA`). Cuatro filas `NC` abiertas. `python3 tests/check.py --baseline --parallel`: **LÍNEA BASE VERDE**. `cuenta_gen2 = NO-APLICA`; cero microdato abierto; cero contadores movidos.
+
+**Adendas de mesa a este encargo: ninguna.**
