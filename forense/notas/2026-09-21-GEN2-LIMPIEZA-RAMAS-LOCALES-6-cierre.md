@@ -31,9 +31,9 @@ comprobaciones que dirección pidió más dos propias:
 commitear era la regeneración local de un archivo derivado, ya idéntica a lo que `main` calcula
 por su cuenta desde los mismos insumos sellados. No hay medición en riesgo. `#936` no se edita
 (A.10/A.3 — un registro ya sellado no se reescribe); esta enmienda queda como corrección posterior
-citable. `NC-0433` (`terminar o abandonar acto/gen2-f5-recaptura-l`) **CIERRA** con esta evidencia
+citable. `NC-0433`/`NC-0434` de `#936` (renumeradas a `NC-0436`/`NC-0437` tras el merge con `#932`) **CIERRAN** con esta evidencia
 como razón — la pregunta que planteaba (¿terminar o abandonar una medición?) no aplicaba: no había
-medición pendiente que terminar ni abandonar. `FP-404` se retira del tablero de pendientes por la
+medición pendiente que terminar ni abandonar. `FP-404` de `#936` (renumerada a `FP-405`) se retira del tablero de pendientes por la
 misma razón.
 
 ## F-1 a F-5 · ejecutado
@@ -103,8 +103,12 @@ false
 ```
 
 **Lo que queda y por qué:**
-- 4 `EN-CURSO`, no se tocan: `acto/gen2-din-credito-comparabilidad-texto-1` (PR #932 abierto),
-  `acto/gen2-limpieza-ramas-locales-4-cierre-fp402` (PR #934 abierto),
+- **Hallazgo durante este acto:** `PR #932` (`acto/gen2-din-credito-comparabilidad-texto-1`) se
+  fusionó mientras este acto corría — dejó de ser `EN-CURSO` y pasó a `CERRADO-FALTA-BORRAR`. No
+  se tocó: F-1 a F-5 son una lista cerrada de residuos nombrados uno por uno, y esta rama no está
+  en ella (PAROS: "borrar un archivo que no esté nombrado arriba"; por extensión de espíritu, la
+  misma disciplina aplica a ramas fuera de la lista). Queda para un barrido futuro.
+- Restantes, no se tocan: `acto/gen2-limpieza-ramas-locales-4-cierre-fp402` (PR #934 abierto),
   `acto/gen2-limpieza-ramas-locales-5` (PR #936 abierto, "se fusiona como está"),
   `acto/gen2-limpieza-ramas-locales-6` (este acto).
 - `codex/optimiza-verificacion-ci-prueba-compuerta`: `<24h` (F-5 diferida).
