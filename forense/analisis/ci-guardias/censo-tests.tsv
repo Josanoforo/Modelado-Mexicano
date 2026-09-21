@@ -30,6 +30,7 @@ tests/test_corpus.py	script	NO	manifiesto	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_corredores_gen2.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_corrida0.py	script	SI	(ninguna)	SI		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_corrida0_oro.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
+tests/test_credito_comparabilidad_texto.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_crosswalk_encuesta.py	modulo	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 con -m tests.test_crosswalk_encuesta (invocacion de script fallaba)
 tests/test_crosswalk_tablas_fd.py	modulo	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 con -m tests.test_crosswalk_tablas_fd (invocacion de script fallaba)
 tests/test_delta_comparacion.py	script	NO	(ninguna)	NO	0.6	CORRE-EN-CI	exit 0 sin corpus

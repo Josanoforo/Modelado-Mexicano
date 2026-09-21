@@ -109,9 +109,9 @@ VERIFY: REPLICA-RESULTADO · CONTEXTO-DISTINTO   (CONTEXTO=DISTINTO · RESULTADO
 
 ---
 
-## 6 · Pieza 3 · FP-404, con los dos lados medidos
+## 6 · Pieza 3 · FP-405, con los dos lados medidos
 
-`FP-404`, `ABIERTA`. Acota `FP-67` a su universo medido (A.10) por firma 6. **La fila `FP-67` no se editó**: sigue `CERRADA` y sigue mandando mientras mesa no firme.
+`FP-405`, `ABIERTA`. Acota `FP-67` a su universo medido (A.10) por firma 6. **La fila `FP-67` no se editó**: sigue `CERRADA` y sigue mandando mientras mesa no firme.
 
 Lo nuevo es que ahora **los dos lados están medidos**, por dos sesiones distintas del mismo encargo, y cada uno entra con su origen citado:
 
@@ -139,14 +139,14 @@ Conservados íntegros de `PR #930`, con su origen marcado en la propia línea: l
 
 **«Cuatro líneas de hallazgos»** — la instrucción de dirección las da por cuatro. El diff de `forense/hallazgos.md` entre `origin/main` y `origin/claude/new-session-lvyz4s` trae **tres** (universo: ese diff completo, A.13). Las tres se conservan íntegras. La cuarta corrección de aquella sesión —la del contador— vivía sólo en su nota, nunca llegó a `hallazgos.md`, y es justamente la que resultó equivocada (§7.2).
 
-**La fila de no-corrido de `PR #930`** se marca `SUSTITUIDO-POR` esta PR, pero no en su sitio: aquella fila era `NC-0423` **en su rama**, nunca llegó a main, y ese número hoy pertenece a `GEN2-RELEVO-RECONCILIA-1`. Se absorbe como **`NC-0433`**, `CERRADA` por este acto, enumerando qué absorbe (la pieza 2 entera y la pieza 3) y qué queda huérfano (**nada**).
+**La fila de no-corrido de `PR #930`** se marca `SUSTITUIDO-POR` esta PR, pero no en su sitio: aquella fila era `NC-0423` **en su rama**, nunca llegó a main, y ese número hoy pertenece a `GEN2-RELEVO-RECONCILIA-1`. Se absorbe como **`NC-0436`**, `CERRADA` por este acto, enumerando qué absorbe (la pieza 2 entera y la pieza 3) y qué queda huérfano (**nada**).
 
 ---
 
 ## 9 · Contadores movidos
 
 - `forense/replay-evidencia.tsv`: **146 → 147** filas de datos.
-- `forense/firmas-pendientes.tsv`: **+1** (`FP-404`, `ABIERTA`).
-- `forense/no-corrido.tsv`: **+3** (`NC-0433` CERRADA, `NC-0434` y `NC-0435` ABIERTAS).
+- `forense/firmas-pendientes.tsv`: **+1** (`FP-405`, `ABIERTA`).
+- `forense/no-corrido.tsv`: **+3** (`NC-0436` CERRADA, `NC-0437` y `NC-0438` ABIERTAS).
 - `cuenta_gen2`: **sin mover**, como el encargo veda. `N_corridas_selladas` +0. Cero adopciones.
 - Mediciones sobre México producidas por este acto: **0** — verifica un carril, no afirma nada sobre México. Por eso el módulo de auditoría de rigor extremo no aplica.

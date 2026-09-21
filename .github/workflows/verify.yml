@@ -208,6 +208,15 @@ jobs:
           python3 tests/test_marcador_segmento.py
           python3 tests/test_estimadores_segmento.py
 
+      - name: comparabilidad por texto de crédito ENIF — forma de la tabla K1-K8 × 5 olas (bloqueante)
+        # ACTO GEN2-DIN-CREDITO-COMPARABILIDAD-TEXTO-1 (20/sep/2026): mismo
+        # motivo que los pasos de arriba (NC-0331) -- un test que nadie cablea
+        # es decoración. Corre PRIMERO el caso sintético (D-22) y después la
+        # tabla real `data/credito-comparabilidad-texto-v1_0.tsv`: 40 filas,
+        # veredictos en lista cerrada, toda fila negativa con texto buscado.
+        # Stdlib puro, cero microdato.
+        run: python3 tests/test_credito_comparabilidad_texto.py
+
       - name: métrica rectora — celdas_validadas en la primera línea del tablero (bloqueante)
         # ACTO GEN2-SENAL-1 (21/sep/2026) · P1. `celdas_validadas` es la métrica
         # rectora por firma de mesa del 20/sep/2026. El test pina los DOS
