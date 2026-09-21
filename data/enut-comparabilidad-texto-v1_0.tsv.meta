@@ -1,0 +1,69 @@
+ACTO GEN2-ENUT-PISOS-Y-SERIE-1 — metadato de universo de data/enut-comparabilidad-texto-v1_0.tsv
+
+Archivo hermano (mismo patrón que data/credito-comparabilidad-texto-v1_0.tsv.meta, ADR-213: no se
+mezcla como comentario en el TSV principal para no romper el parseo).
+
+fecha_generacion: 2026-09-21
+commit_padre: fc13cdcc (origin/main al redactar el encargo; sin movimiento al abrir)
+rama: acto/gen2-enut-pisos-y-serie-1
+encargo: forense/encargos/2026-09-21-GEN2-ENUT-PISOS-Y-SERIE-1.md
+antecedente: forense/notas/2026-09-19-GEN2-PISOS-ENUT2019-EJES-1-dictamen.md (ADR-557, PR #908): comparabilidad
+  2019↔2024 ítem por ítem; esta tabla la EXTIENDE a 2009 y 2014 y le da la forma de tabla que el resto del
+  acto consume (qué ítems forman cada variante de «cuidado» en cada ola).
+
+qué_es: 24 filas = 6 objetos (C1..C5 y E) × 4 olas de ENUT (2009, 2014, 2019, 2024), una por par, con el
+  veredicto de comparabilidad del INSTRUMENTO leído del texto de los ítems, sus códigos, sus filtros y su
+  diseño — nunca del nombre de la variable. No contiene ninguna cifra sobre conducta en México.
+  C1 horas_cuidado sellada 2024 (*_CON_CP)          → la conducta de las 21 celdas del marcador
+  C2 horas_cuidado_nucleo (común 2014/2019/2024)    → estimando NUEVO (mesa, 21/sep/2026, opción A)
+  C3 horas_cuidado_nucleo_min (común 2009-2024)     → variante declarada para que 2009 entre en la serie
+  C4 reparto_hogar (razón mujeres 40+ / total)      → escala [0,1], nunca se compara con C1-C3
+  C5 trabajo doméstico (bloques; contexto)          → no se mide en este acto
+  E  ejes de la rejilla de la casa                  → construcción por ola (NIV, TLOC/LOC, EDAD, SEXO)
+
+ola_ancla: 2024 (la definición sellada vive en 2024; los pisos se leen hacia atrás).
+
+vocabulario_veredicto (lista cerrada; misma que data/credito-comparabilidad-texto-v1_0.tsv):
+  MISMO-INSTRUMENTO · CAMBIO-MENOR (la nota dice qué cambió y por qué no cambia el estimando) ·
+  CAMBIO-DE-INSTRUMENTO (cambió algo que entra en el estimando) · NO-ESTIMABLE (texto_buscado obligatorio).
+  NO-VERIFICABLE-AQUÍ no aparece: las cuatro olas tienen FD en el corpus.
+
+columnas (18): conducta · conducta_texto · ola · comparado_con · veredicto · alcance_del_veredicto ·
+  reactivo · texto_literal · opciones_y_codigos · filtro_y_flujo · periodo_referencia · unidad ·
+  poblacion_base · ponderador_y_diseno · fuente (archivo + sha256/16 + página o fila) ·
+  secciones_fd_recorridas · texto_buscado (A.15) · nota.
+  Obligatorias siempre: conducta, conducta_texto, ola, comparado_con, veredicto, alcance_del_veredicto,
+  periodo_referencia, unidad, poblacion_base, ponderador_y_diseno, fuente, secciones_fd_recorridas, nota.
+  Obligatorias por veredicto: reactivo, texto_literal, opciones_y_codigos, filtro_y_flujo si el veredicto
+  es positivo; texto_buscado si NO-ESTIMABLE o CAMBIO-DE-INSTRUMENTO (qué se buscó y no está).
+
+conteo_por_veredicto (derivado: cut -f5 | sort | uniq -c):
+  MISMO-INSTRUMENTO 6 · CAMBIO-MENOR 13 · CAMBIO-DE-INSTRUMENTO 5 · NO-ESTIMABLE 0
+
+hallazgos_de_texto (los que fijan el diseño del acto):
+  · 2014 ≡ 2019 ítem por ítem en los 24 ítems de cuidado (6.11×11, 6.12×3, 6.13×6, 6.15×4).
+  · 2024 añade 4 emocionales + 4 esperas y exige presencia en el pasivo; separa 6-14 de 0-5.
+  · 2009 es otra batería (5.10-5.14) sin filtro de dependencia en 5.11-5.13 y con dependientes por
+    persona cuidada (TCuidados, N_REF).
+  · 2014 y 2009 no tienen FAC_HOG (sólo FAC_VIV); 2014 llama EDIS al estrato.
+  · Las tablas _indígena/_PI de 2019/2014 son extracciones del subconjunto hablante, no muestra adicional
+    (RNM 2014 y 2019, verbatim: «comprende exclusivamente al subconjunto…»).
+
+documentos_leídos (12, identidad verificada con tests/manifiesto.py --verifica --id, 12/12 COINCIDE):
+  enut2009_fd_pdf · enut2009_diccionario_variables_html · enut2009_bd_dbf (sólo cuest_ENUT2009.pdf y
+  cabeceras DBF: nombres de campo y número de registros) · enut2014_fd_xls · enut2014_diccionario_variables_html ·
+  enut2014_bd_dbf (sólo listado de miembros y cabeceras DBF) · enut2019_fd_xlsx ·
+  enut2019_diccionario_variables_html · enut2019_bd_csv (sólo listado de miembros y nota_bd_enut_2019.txt) ·
+  enut2024_fd_xlsx · enut2024_diccionario_variables_html · enut2024_bd_csv (sólo listado de miembros).
+  NINGÚN registro de datos (dbf/csv) de ninguna ola fue leído para esta tabla (ADR-46: exploración de
+  estructura declarada).
+
+controles_negativos (A.13, corridos sobre el FD, conteo de filas examinadas en la columna texto_buscado):
+  FD 2019 hoja TModulo, 140 filas de 6.11-6.15; FD 2014 hojas TModulo2+TModulo3, 172 filas; FD 2009
+  bloques 5.10 (5 347 caracteres), 5.12 (4 219), 5.13 (1 741).
+
+extracción: pdftotext -layout (poppler) para los PDF; xlrd para el FD 2014 (.xls); openpyxl (read_only)
+  para los FD 2019/2024 (.xlsx); zipfile para los listados; dbfread (load=False) para las cabeceras DBF.
+  Páginas citadas = página del PDF (form-feeds de pdftotext), no el folio impreso.
+
+test: tests/test_enut_comparabilidad_texto.py (sintético primero, D-22; sin módulo csv).
