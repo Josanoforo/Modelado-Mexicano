@@ -141,6 +141,13 @@ tolerancia:
   tipo: flotante
   abs: 1.0e-10
   razon: mismo payload, transformacion y sumas float64; bootstrap determinista por semilla
+ejecucion_previa:
+  acto: 'ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2 (PR #951, sesion c0ab3df1, CAJA)'
+  fecha: '2026-09-21'
+  comando: python3 tools/corrida0.py run CALC-GOB-DIGITAL-EXE-EMISIONES-0002
+  duracion_s: 13.76
+  resultado: 'RUN: FALLO -- nada se sella. El medidor congelado (826bf3a1) produjo los 565 RESULT declarados; 40 vinieron null (32 C1A-P-IC-LO/HI por diseno, medidor.py:416; 8 de la banda 60-96 porque el control se rotula -60-X- en CALC-C2-COMPUESTO-RESERVADAS-0001, medidor.py:355) y corrida0 los descarto ANTES de escribir nada (tools/corrida0.py:1951): sin ejecucion.json, sin resultados.json, sin sello. Ninguna cifra fue vista (nota-2026-09-21-gen2-celda-d-piloto-3-commit-2-3-v1_2-paro.md, secciones 0 y 4).'
+  consecuencia: 'Por la firma de mesa del 21/sep (FP-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2-a6f5-01): re-correr EMISIONES es legitimo -- procedimiento y semilla intactos, nadie vio cifras. El COMMIT-2 del v1.3 NO es un segundo resultado (E.5): el primero que este procedimiento SELLE es el que se reporta. Declarado por ACTO GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_3.'
 resultados:
 - id: RESULT-GOB-EXE15-2025-FILAS-EVENTOS
   tipo: entero
