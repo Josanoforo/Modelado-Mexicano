@@ -136,3 +136,4 @@ tests/test_wbes2023_descriptiva.py	script	NO	pandas	NO	0.1	NECESITA-DEPENDENCIA(
 tests/test_wbes2023_precision.py	script	NO	pandas	SI	0.1	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
 tests/test_wbes2023_precision_interacciones.py	script	NO	pandas	NO	0.0	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
 tests/test_ya_medido.py	modulo	NO	(ninguna)	NO	1.1	CORRE-EN-CI	exit 0 con -m tests.test_ya_medido (invocacion de script fallaba)
+tests/test_validacion_independiente_pilotos.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus; guardia de GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-v1_0 (ACTO GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1)

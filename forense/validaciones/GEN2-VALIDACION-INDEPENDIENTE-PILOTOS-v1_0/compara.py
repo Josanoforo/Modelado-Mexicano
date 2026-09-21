@@ -9,7 +9,7 @@ Tolerancias:
   * IC (plan de réplicas distinto, declarado en valida_pilotos.py): COINCIDE si
     |Δ inf| y |Δ sup| ≤ 1.0 pp Y razón de semianchos propio/sellado ∈ [0.80, 1.25];
     si no, DIFERENCIA-IC (se explica).
-Escribe comparacion.json y comparacion.md.
+Escribe comparacion-pilotos.json y comparacion-pilotos.md.
 """
 from __future__ import annotations
 
@@ -109,6 +109,7 @@ for c, v in p["celdas"].items():
 # marginales
 md += ["", "Marginales de un eje (D9, ENIF 2024) — propios vs `…-G-C2-MARG-*` sellados del CALC de emisiones y vs los públicos del árbitro citados en la spec:", "",
        "| marginal | n propio | n sellado | p propio | p sellado (CALC) | Δ pp | p público árbitro (spec) | Δ pp vs público |", "|---|---|---|---|---|---|---|---|"]
+ETIQ1 = {"L1": "localidad <15 000", "L2": "localidad >=15 000", "E1": "edad 18-29", "E2": "edad 30-44", "E3": "edad 45-59", "E4": "edad 60+", "NAC": "nacional"}
 for k, v in p["marginales_propios"].items():
     ps = emi[f"RESULT-DIN-LXE8-G-C2-MARG-{k}-D9-P"]
     ns = emi[f"RESULT-DIN-LXE8-G-C2-MARG-{k}-D9-N"]
@@ -116,7 +117,7 @@ for k, v in p["marginales_propios"].items():
     d, cl = clas_punto(v["p"], ps)
     dpub, _ = clas_punto(v["p"], pub)
     filas.append({"celda": k, "tipo": "MARGINAL", "propio": v["p"], "sellado": ps, "n_propio": v["n"], "n_sellado": ns, "d_pp": d, "clase": cl, "publico_arbitro": pub, "d_pp_vs_publico": dpub})
-    md.append(f"| {k} | {v['n']} | {ns} | {v['p']:.6f} | {ps:.6f} | {d:+.4f} | {pub} | {dpub:+.4f} |")
+    md.append(f"| {ETIQ1[k]} | {v['n']} | {ns} | {v['p']:.6f} | {ps:.6f} | {d:+.4f} | {pub} | {dpub:+.4f} |")
 res1 = resumen_piloto(filas, "piloto1", 8)
 punt1 = list(p["celdas"])
 out["pilotos"]["piloto1"] = {"resumen": res1, "filas": filas}
@@ -150,13 +151,14 @@ for c, v in p["celdas"].items():
     md.append(f"| {c} | {v['R']['n']} | {ns} | {v['R']['p']:.6f} | {rs:.6f} | {d:+.4f} | {cl} | [{v['R']['ic95'][0]:.4f}, {v['R']['ic95'][1]:.4f}] | [{ics[0]:.4f}, {ics[1]:.4f}] | {clic} | {v['C2_punto_marginales_sellados']:.6f} | {c2s:.6f} | {d2:+.4f} | {cl2} |")
 md += ["", "Marginales de un eje (ENVIPE 2025) — propios vs `…-G-M25-MARG-*` sellados:", "",
        "| marginal | n propio | n sellado | p propio | p sellado | Δ pp | clase |", "|---|---|---|---|---|---|---|"]
+ETIQ2 = {"S1": "hasta primaria", "S2": "secundaria", "S3": "media superior", "S4": "superior", "D1": "rural", "D2": "complemento urbano", "D3": "urbano", "NAC": "nacional"}
 for k, v in p["marginales_propios"].items():
     key = "P-NACIONAL" if k == "NAC" else f"MARG-{k}-P"
     ps = emi[f"RESULT-TRA-SXD12-G-M25-{key}"]
     ns = emi[f"RESULT-TRA-SXD12-G-M25-MARG-{k}-N"] if k != "NAC" else emi["RESULT-TRA-SXD12-G-M25-FILAS-UNIVERSO"]
     d, cl = clas_punto(v["p"], ps)
     filas.append({"celda": k, "tipo": "MARGINAL", "propio": v["p"], "sellado": ps, "n_propio": v["n"], "n_sellado": ns, "d_pp": d, "clase": cl})
-    md.append(f"| {k} | {v['n']} | {ns} | {v['p']:.6f} | {ps:.6f} | {d:+.4f} | {cl} |")
+    md.append(f"| {ETIQ2[k]} | {v['n']} | {ns} | {v['p']:.6f} | {ps:.6f} | {d:+.4f} | {cl} |")
 res2 = resumen_piloto(filas, "piloto2", 12)
 out["pilotos"]["piloto2"] = {"resumen": res2, "filas": filas}
 out["P4"]["piloto2"] = p4({c: v["R"]["p"] for c, v in p["celdas"].items()},
@@ -228,6 +230,6 @@ for k in ("piloto1", "piloto2", "piloto3"):
 mae_global = sum(m * n for m, n in maes) / tot_n
 out["P4"]["global"] = {"celdas_puntuadas": tot_n, "MAE_ponderado_por_celdas_pp": mae_global, "ic_C2_cubre_R": tot_cub}
 md.append(f"| **total** | {tot_n} | {mae_global:.3f} (media ponderada por celdas) | — | — | {tot_cub}/{tot_n} |")
-(AQUI / "comparacion.json").write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
-(AQUI / "comparacion.md").write_text("\n".join(md) + "\n")
+(AQUI / "comparacion-pilotos.json").write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
+(AQUI / "comparacion-pilotos.md").write_text("\n".join(md) + "\n")
 print("\n".join(md[-12:]))

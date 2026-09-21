@@ -43,3 +43,11 @@ Propio: `forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-v1_0/` (cód
 
 ## 10 · NO HACE · SUCESORES · AUDITORÍA · CIERRE
 No re-adjudica · no sella corridas del programa. Sucesor: el informe del programa cita este veredicto; si hay `DISCREPA`, mesa decide. Auditoría: no afirma nada nuevo sobre México; verifica que lo afirmado esté bien medido — y declara, por piloto, el universo real que encontró al leer el cuestionario, que es donde se cuelan los sesgos de clase (quién tiene el servicio a su nombre, quién es el adulto elegido). `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| **P2 · Comparación** — «para el IC, declara la tuya y por qué»: el IC95 de `C2` se comparó contra tolerancia sólo en el piloto 3 (16/16 `COINCIDE`); en los pilotos 1 y 2 se emitió (`resultados_propios.json`) y no se adjudicó | `DIFERIDO-A:SIN-ASIGNAR` — el objeto pedido es R (punto+IC) y C2 (punto); en el piloto 1 la spec sella punto (marginales públicos) e IC (re-derivados) como dos objetos | ninguno sobre el veredicto `COINCIDE`; la cobertura de P4 se reporta con IC propio y con IC sellado y coinciden (7/8, 11/12) | `NC-260921-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1-7ef3-01` |
+| **P4** — «¿La frase "1.5 pp, 18 de 20" se sostiene…?»: «18 de 20» no se localizó en el árbol ni se reconstruye desde las 35 celdas (26/35 con IC de `C2`; 30/35 con `C2` dentro del IC de `R`) | `DECISIÓN-DE-MESA-PENDIENTE` — dirección cita la fuente y el universo de «18 de 20», o la frase del producto pasa a 26/35 (74 %) | la frase del producto cita una cobertura que el árbol no acredita | `NC-260921-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1-7ef3-02` |
+| **P3 · Causas** — precisión de spec del piloto 3 (universo de los marginales de `C2`: F1-bis vs por eje; la literal es la sellada, la alternativa mueve ≤ 0.19 pp) | `DIFERIDO-A:SIN-ASIGNAR` — una spec sellada no se edita (E.3); lo escribe un sucesor de spec | ninguno sobre lo sellado; un tercer recalculador podría reportar `DIFERENCIA` ≤ 0.19 pp por tomar la otra lectura | `NC-260921-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1-7ef3-03` |
