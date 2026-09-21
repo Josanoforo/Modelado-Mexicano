@@ -106,3 +106,14 @@ Si en tres meses el verificador no ha emitido un solo FAIL ni un solo WARN, se a
 Publicado y **propuesto a mesa; NO fusionado por el ejecutor** (el encargo lo exige y D-10/paso 9 de `/acto` lo confirma: el merge es la autorización, no un trámite).
 
 `cuenta_gen2 = NO` · contadores movidos: **cero**.
+
+## ADENDA DE CIERRE — tercera fila NO-CORRIDO, posterior al PR
+
+Descubierta al correr la suite después de publicar `PR #946`. Se añade aquí,
+al final, sin editar nada por encima (D-a6).
+
+- **qué** — `Cascada de cierre, paso 3 · tools/cierre_acto.py --aplica deriva los tres contadores mecánicos del MÁXIMO de ADR, no del conteo de ÚNICOS.`
+  **por qué** — `FUERA-DE-PERÍMETRO` — `tools/cierre_acto.py` está en la lista `No tocas` del §8 de este encargo, por nombre. Es de dirección.
+  **impacto** — todo acto que tome un `ADR` no contiguo (es decir, todo acto que evite una colisión con otro en vuelo, el caso normal con cinco ramas vivas) cierra con dos FAIL de `T15` que debe corregir a mano, y el paso 3 de la cascada deja de ser todo-o-nada fiable.
+  **sucesor** — dirección (bandeja), acto sucesor sin asignar; el arreglo es derivar el contador del conteo de `ADR` únicos —el mismo universo que `T15` usa— en vez de del máximo.
+  Fila: `NC-260921-GEN2-TUBERIA-SIDECAR-CUERPO-1-3d08-03`.
