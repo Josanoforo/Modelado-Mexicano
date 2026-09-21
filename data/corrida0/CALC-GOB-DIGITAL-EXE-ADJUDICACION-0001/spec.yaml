@@ -51,10 +51,12 @@ inputs:
   origen: repo
   ruta: data/corrida0/CALC-GOB-DIGITAL-EXE-EMISIONES-0002/resultados.json
   nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2
+  sha256: a97fee3e27cb17be3da5798fc095d886985dad8015d7a9a1a03836856750919a
 - id: emisiones_sello
   origen: repo
   ruta: data/corrida0/CALC-GOB-DIGITAL-EXE-EMISIONES-0002/sello.json
   nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2
+  sha256: c04598b22f310fd3de1e8aaee6a84fc9c8d334aab51ca960686564e1a82c8eb3
 variables:
 - archivo: encig2025_04_sec_7.csv
   variable: P7_3
