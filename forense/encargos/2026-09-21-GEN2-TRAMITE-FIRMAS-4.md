@@ -59,3 +59,6 @@ No hace: no escribe el encargo del lote ni el del duelo (dirección) · no corri
   **por qué**: `PARO-ENTORNO` — la trampa conocida de PR #77 (un payload que cae en `data/raw` desde nube vuelca `ENTORNO-DERIVADO` a CAJA sin que la nube tenga corpus compartido real): los dos PDF se removieron de `data/raw/` tras `tests/manifiesto.py --registra` para no dejar un payload huérfano fuera del corpus compartido.
   **impacto**: `enif_2012_cuestionario_pdf` y `enif_2015_cuestionario_pdf` están en `data/manifiesto.yaml` con sha256 y tamaño verdaderos, pero sin archivo físico en ningún corpus hasta que caja lo traiga — el lote ENIF2024 (F2) que necesita leer el texto de las cuatro olas para comparabilidad no puede leerlas todavía.
   **sucesor**: `DIFERIDO-A:caja (--descarga --id enif_2012_cuestionario_pdf --id enif_2015_cuestionario_pdf)` — `tests/manifiesto.py --descarga` verifica el sha256 contra lo que este acto ya registró.
+
+## CONSUMIDO
+Ejecutado por `ACTO GEN2-TRAMITE-FIRMAS-4`, `PR #960` contra `main` (rama `claude/tramite-2026-09-21-b`). Ver `## NO-CORRIDO / RESERVAS` arriba. Nota de cierre: `forense/notas/2026-09-21-GEN2-TRAMITE-FIRMAS-4-nota.md`. `ADR-590`.
