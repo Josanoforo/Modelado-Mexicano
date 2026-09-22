@@ -53,3 +53,18 @@ Latitud: estructura de CALC, reutilización, orden. Pregunta a mesa siguiendo: s
   **sucesor**: `CALC-DIN-CREDITO-PREDICCION-2024-ADJUDICACION-0001`,
   COMMIT-2/3a/3 (otra sesión, F3), regla de adjudicación pendiente de
   `FP-260921-GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-1-7866-02`.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-1` · rama
+`acto/gen2-din-credito-prediccion-2024-commit-1` · **PR #987**
+(21/sep/2026) · ADR
+`ADR-260921-GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-1-7866-01` · nota
+`forense/notas/nota-2026-09-21-gen2-din-credito-prediccion-2024-commit-1.md`.
+P0: `CALC-DIN-CREDITO-PISOS-ENIF2021-RECORTE1870-0001`,
+`CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-0001` sellados, FP-…-ff56-01/02
+cerradas. P1/P2(emisiones)/P3: `CALC-DIN-CREDITO-PREDICCION-2024-EMISIONES-0001`
+sellado — backtest: `PERSISTENCIA` gana en 7/9 conductas. P2(adjudicación):
+`CALC-DIN-CREDITO-PREDICCION-2024-ADJUDICACION-0001` congelado sin
+correr (F3). `FP-260921-GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-1-7866-01..02`;
+`NC-…-7866-01..02`. Mesa fusiona; no adopta.
