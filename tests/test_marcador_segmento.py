@@ -148,11 +148,16 @@ def t_enlace_biyectivo():
     sucedidas = set(M.sucesiones_identidad())
     no_con = [f for f in M.lee_tabla_identidad()
               if f["status"] != "CONSTRUIBLE" and f["cell_id"] not in sucedidas]
+    # el prefijo de `piso_fuente` es el status LITERAL de la tabla
+    # (F-ENUT/F7, GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1, 22/sep/2026: antes
+    # siempre "NO-CONSTRUIBLE:", ahora también "SIN-PISO-POR-DISEÑO:" —
+    # la guardia busca la causa por status, no por un prefijo fijo.
     causas = {f["reason"] for f in no_con if f.get("reason")}
-    sin_piso_con_causa = {f["piso_fuente"].split("NO-CONSTRUIBLE:", 1)[-1]
-                          .split(" · SUCEDE-A:", 1)[0]
-                          for f in marginales
-                          if f["piso_fuente"].startswith("NO-CONSTRUIBLE:")}
+    sin_piso_con_causa = {
+        f["piso_fuente"].split(":", 1)[-1].split(" · SUCEDE-A:", 1)[0]
+        for f in marginales
+        if f["estado"] == "SIN-PISO" and ":" in f["piso_fuente"]
+    }
     for causa in causas:
         if causa not in sin_piso_con_causa:
             _falla("T-ENLACE-BIYECTIVO",
