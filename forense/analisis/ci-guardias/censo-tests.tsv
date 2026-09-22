@@ -48,7 +48,10 @@ tests/test_digesto_nc.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en veri
 tests/test_din_credito_k2_bancaria_historia.py	script	NO	test_din_credito_pisos_enif2021,test_din_credito_pisos_historia	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_din_credito_k8_enfih2019.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_din_credito_pisos_enif2021.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_din_credito_pisos_enif2021_recorte1870.py	script	NO	numpy	NO	1.9	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_din_credito_pisos_historia.py	script	NO	numpy	SI	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_din_credito_prediccion_2024_adjudicacion.py	script	NO	numpy	NO	0.4	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_din_credito_prediccion_2024_emisiones.py	script	NO	(ninguna)	NO	1.3	CORRE-EN-CI	exit 0 sin corpus
 tests/test_duelo_prospectivo.py	script	NO	numpy	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_emisor_fidelidad.py	pytest	NO	pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_emisor_m2.py	modulo	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 con -m tests.test_emisor_m2 (invocacion de script fallaba)
