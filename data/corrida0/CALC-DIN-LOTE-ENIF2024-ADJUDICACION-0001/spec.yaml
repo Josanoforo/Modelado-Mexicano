@@ -49,12 +49,12 @@ inputs:
   origen: repo
   ruta: data/corrida0/CALC-DIN-LOTE-ENIF2024-EMISIONES-0001/resultados.json
   nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2. El COMMIT-3a escribe aqui su sha256 antes de correr.
-  sha256: PENDIENTE-COMMIT-3A
+  sha256: 7018bd3516a4b35ffcc17b5b80d668d79883d06bd9606c4f787fbb0e13c74e0a
 - id: emisiones_sello
   origen: repo
   ruta: data/corrida0/CALC-DIN-LOTE-ENIF2024-EMISIONES-0001/sello.json
   nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2.
-  sha256: PENDIENTE-COMMIT-3A
+  sha256: 5dc484f2a83dd740a4d8a0cba3b2d2954ea50e3a1a9dcab05625b8ba7cccdcad
 variables:
 - archivo: conjunto_de_datos_tmodulo_enif_2021.csv
   variable: P5_1_1..P5_1_6
