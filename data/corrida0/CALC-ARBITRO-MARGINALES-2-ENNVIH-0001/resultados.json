@@ -1,0 +1,9 @@
+{
+ "resultados": {
+  "RESULT-ARB2-ENNVIH-DETALLE": "{\"delta_vs_gen1\":-0.0007850639691654449,\"ic95_hi\":0.19005914464772872,\"ic95_lo\":0.15867589256675352,\"n_con_ponderador_valido\":5855,\"n_intra_persona_pre_filtro_sustantivo\":16187,\"n_ola3_cr_prefiltro_ronda\":24927,\"n_ola3_pr_prefiltro_ronda\":24927,\"n_peso_pares_folio_ls_duplicados\":1928,\"n_universo_analitico_pr02_cr27_validos\":6356,\"nota\":\"n_pre_peso reproduce EXACTO (6356); n_con_ponderador y el punto difieren -- ver A.13 en el propio YAML de GEN1, que ya declara una reconciliacion sin resolver frente a CAL-G3-PUNTUAL (6305). Causa mas probable, medida aqui: la tabla de ponderador ehh05w_b3b.dta trae 1928 pares (folio,ls) duplicados, 584 de ellos con fac_3b distinto entre si -- un defecto de la fuente, no de este medidor.\",\"oro_gen1\":{\"ic95_hi\":0.190543,\"ic95_lo\":0.15925,\"n_con_ponderador\":6028,\"n_pre_peso\":6356,\"p\":0.174804},\"p_tiene_ahorros_ola2\":0.17401893603083454,\"reproduce_gen1\":\"NO-REPRODUCE\"}",
+  "RESULT-ARB2-ENNVIH-N-CON-PONDERADOR": 5855,
+  "RESULT-ARB2-ENNVIH-N-UNIVERSO-ANALITICO": 6356,
+  "RESULT-ARB2-ENNVIH-P-TIENE-AHORROS": 0.17401893603083454
+ },
+ "spec_id": "CALC-ARBITRO-MARGINALES-2-ENNVIH-0001"
+}

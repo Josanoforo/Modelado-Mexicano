@@ -1,0 +1,111 @@
+{
+ "corrida_id": "CALC-ARBITRO-MARGINALES-2-LAPOP-0001--eabda723154d",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pyreadstat": "1.3.6"
+ },
+ "error": null,
+ "etiquetas": {
+  "acto": "GEN2-ARBITRO-MARGINALES-2",
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_nota": "6a pieza de P2, autorizada por mesa 21/sep/2026 para extender el LOTE del encargo GEN2-ARBITRO-MARGINALES-2; no adopta",
+  "generacion": "GEN2",
+  "tipo": "ARBITRO-MARGINALES-POR-EJE"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-22T03:30:35Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 436,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "eabda723154d6e6b93039a769a29051ffd589154",
+  "git_rama": "acto/gen2-arbitro-marginales-2",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "eabda723154d6e6b93039a769a29051ffd589154",
+ "input_ids": [
+  "mexico_lapop_americasbarometer_2019_v1_0_w",
+  "mex_2023_lapop_americasbarometer_v1_0_w"
+ ],
+ "input_sha256": {
+  "mex_2023_lapop_americasbarometer_v1_0_w": "4a9410a53cde9d11edeb23465bdbadce8a6abcc18330b6eebe2a4493be6e765c",
+  "mexico_lapop_americasbarometer_2019_v1_0_w": "c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57"
+ },
+ "parametros": {
+  "bootstrap_replicas": 10000,
+  "guardia_numerador_minimo": 10,
+  "hash_encargo_sha256": "c5e520076a339bf48c747ccea190595a1430d642f4423feb96d580b830ef00e1",
+  "hash_medidor_sha256": "6bd3d2fc2b1380d43f3b2a5735fd72f99fb1fed0d284c41b74cc11113e50fed6",
+  "hash_payload_2019_sha256": "c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57",
+  "hash_payload_2023_sha256": "4a9410a53cde9d11edeb23465bdbadce8a6abcc18330b6eebe2a4493be6e765c",
+  "hash_prereg_sha256": "9818d266860d471e77e85b0617c56884878e978b3a1c67e5f933bb7719cebb98",
+  "metodo_ic": "bootstrap de UPM con reemplazo dentro de ESTRATOPRI sobre marco de cada universo; percentiles 2.5/97.5"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ARB2-LAPOP-AGENCIA-2023",
+  "RESULT-ARB2-LAPOP-N-FILAS-2019",
+  "RESULT-ARB2-LAPOP-N-FILAS-2023",
+  "RESULT-ARB2-LAPOP-PROTESTA-AGRAVIO-URBANO",
+  "RESULT-ARB2-LAPOP-TURNOUT-NO-VOTE-CHOICE"
+ ],
+ "script_blob_sha256": "6bd3d2fc2b1380d43f3b2a5735fd72f99fb1fed0d284c41b74cc11113e50fed6",
+ "script_path": "data/corrida0/CALC-ARBITRO-MARGINALES-2-LAPOP-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 42
+ },
+ "spec_id": "CALC-ARBITRO-MARGINALES-2-LAPOP-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "9818d266860d471e77e85b0617c56884878e978b3a1c67e5f933bb7719cebb98",
+ "spec_yaml_sha256": "8e4adf519151f8641209097ec9ef675a9196e0387fe703c766b711bec6f22367",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "misma semilla y sumas deterministas; enteros/textos comparan exacto",
+  "tipo": "flotante"
+ }
+}

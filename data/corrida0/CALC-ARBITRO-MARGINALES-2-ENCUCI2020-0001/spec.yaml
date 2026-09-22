@@ -1,0 +1,69 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ARBITRO-MARGINALES-2-ENCUCI2020-0001
+spec_md: ../../../forense/prereg-caja/ARBITRO-MARGINALES-2-ENCUCI2020-spec-v1_0.md
+spec_md_sha256: aaa07b02b9cd1da2fb5370bc840295e432b3bc4c18ca4103cc5b123b4ee86dd5
+script: data/corrida0/CALC-ARBITRO-MARGINALES-2-ENCUCI2020-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: ARBITRO-MARGINALES-POR-EJE
+  cuenta_gen2: SI
+  cuenta_gen2_nota: propuesto por el encargo GEN2-ARBITRO-MARGINALES-2 (P2, pieza ENCUCI2020); no adopta
+  acto: GEN2-ARBITRO-MARGINALES-2
+
+inputs:
+  - {id: encuci2020_bd_dbf, origen: manifiesto}
+
+variables:
+  - {archivo: ENCUCI_2020_SEC_6_7_8.dbf, variable: ID_PER, rol: llave de persona seleccionada}
+  - {archivo: ENCUCI_2020_SEC_6_7_8.dbf, variable: AP6_9, rol: "los programas sociales son derecho (2) o ayuda (1); 3=ninguna 9=ns/nr"}
+  - {archivo: ENCUCI_2020_SEC_6_7_8.dbf, variable: AP6_10, rol: "beneficiario de programa social últimos 12 meses; 1=sí 2=no 9=ns/nr"}
+  - {archivo: ENCUCI_2020_SEC_6_7_8.dbf, variable: AP6_11, rol: "le pidieron algo a cambio; 1=sí 2=no 9=ns/nr, blanco=no aplica"}
+  - {archivo: ENCUCI_2020_SEC_6_7_8.dbf, variable: AP7_13, rol: "simpatía de partido, código de 2 dígitos; '07'=MORENA; blanco/'99'=no aplica/ns-nr"}
+  - {archivo: ENCUCI_2020_SEC_6_7_8.dbf, variable: AP7_15, rol: "cree que su voto es secreto(1) o se puede descubrir(2); 9=ns/nr"}
+  - {archivo: ENCUCI_2020_SEC_6_7_8.dbf, variable: FAC_SEL, rol: ponderador de persona seleccionada}
+  - {archivo: ENCUCI_2020_SEC_6_7_8.dbf, variable: EST_DIS, rol: estrato de diseño opaco como texto}
+  - {archivo: ENCUCI_2020_SEC_6_7_8.dbf, variable: UPM_DIS, rol: UPM de diseño opaca como texto}
+
+universo: >-
+  Regla A (entitlement): personas con AP6_9 en {1,2}, n=20868. Regla B (agencia
+  con secreto): personas con AP6_10 en {1,2} x AP7_15 en {1,2} x AP7_13 con
+  código de 2 dígitos no blanco y distinto de '99', n=15083. Ambas dentro de
+  ENCUCI 2020, ola única, persona de 15 años o más (SEC_6_7_8 completa).
+filtros: >-
+  Ningún código 9/blanco/ajeno se convierte en valor sustantivo; se excluye del
+  denominador correspondiente. AP7_13 requiere código exacto de 2 dígitos.
+ponderador: FAC_SEL sin normalizar; unidad persona seleccionada.
+transformacion: >-
+  Regla A: derecho = (AP6_9==2); ejes AP6_10 (beneficiario) y, dentro de
+  beneficiarios, AP6_11. Regla B: morena = (AP7_13=='07'); rama por AP7_15,
+  eje por AP6_10 dentro de cada rama.
+estimando: >-
+  Proporciones ponderadas condicionales por eje, con brecha (pp) e IC95 de la
+  brecha por bootstrap de diseño. Asociativo, no causal (A-bis 1/2).
+dependencias_materiales: [numpy]
+
+parametros:
+  bootstrap_replicas: 10000
+  metodo_ic: bootstrap de UPM_DIS con reemplazo dentro de EST_DIS sobre marco completo; percentiles 2.5/97.5
+  singleton: autorremuestreo; aporta varianza cero y se rotula
+  hash_medidor_sha256: 8fdafe3299ef4a37355fc05159eb4fa6ce73185d0afc4a2804880f6428adc81e
+  hash_payload_sha256: 0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283
+  hash_prereg_sha256: aaa07b02b9cd1da2fb5370bc840295e432b3bc4c18ca4103cc5b123b4ee86dd5
+  hash_encargo_sha256: c5e520076a339bf48c747ccea190595a1430d642f4423feb96d580b830ef00e1
+
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: misma semilla y sumas deterministas; enteros/textos comparan exacto
+
+resultados:
+  - {id: RESULT-ARB2-ENCUCI-N-FILAS, tipo: entero, unidad: filas activas de SEC_6_7_8}
+  - {id: RESULT-ARB2-ENCUCI-LLAVE-IDPER, tipo: texto, unidad: UNICA o NO-UNICA en el marco}
+  - {id: RESULT-ARB2-ENCUCI-N-ESTRATOS, tipo: entero, unidad: EST_DIS distintos del marco}
+  - {id: RESULT-ARB2-ENCUCI-N-UPM, tipo: entero, unidad: pares EST_DIS/UPM_DIS distintos del marco}
+  - {id: RESULT-ARB2-ENCUCI-N-ESTRATOS-SINGLETON, tipo: entero, unidad: estratos con una UPM}
+  - {id: RESULT-ARB2-ENCUCI-METODO-IC, tipo: texto, unidad: método inferencial efectivamente aplicable}
+  - {id: RESULT-ARB2-ENCUCI-ENTITLEMENT, tipo: texto, unidad: "tabla JSON: universo_n, beneficiario_si/no (n/masa/p/ic95), brecha, eje_anidado_ap6_11", permite_no_estimable: true}
+  - {id: RESULT-ARB2-ENCUCI-AGENCIA-SECRETO, tipo: texto, unidad: "tabla JSON: universo_n, ramas SECRETO/OBSERVABLE (beneficiario_si/no, brecha)", permite_no_estimable: true}

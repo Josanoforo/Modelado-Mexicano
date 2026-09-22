@@ -1,0 +1,67 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ARBITRO-MARGINALES-2-ENNVIH-0001
+spec_md: ../../../forense/prereg-caja/ARBITRO-MARGINALES-2-ENNVIH-spec-v1_0.md
+spec_md_sha256: 28e403d646fa550de7d7c538b81c50bcca1f11fe96b52e5eb6b51657ecc97752
+script: data/corrida0/CALC-ARBITRO-MARGINALES-2-ENNVIH-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: ARBITRO-MARGINALES-POR-EJE
+  cuenta_gen2: SI
+  cuenta_gen2_nota: propuesto por el encargo GEN2-ARBITRO-MARGINALES-2 (P2, pieza ENNViH); no adopta
+  acto: GEN2-ARBITRO-MARGINALES-2
+
+inputs:
+  - {id: ennvih2_2005_hogar_dta, origen: manifiesto}
+  - {id: ennvih3_2009_hogar_dta, origen: manifiesto}
+  - {id: ennvih2_2005_ponderador_transversal, origen: manifiesto}
+
+variables:
+  - {archivo: ehh05dta_b3b/iiib_pr.dta, variable: pid_link, rol: llave intra-persona ola 2}
+  - {archivo: ehh05dta_b3b/iiib_pr.dta, variable: pr02, rol: "horizonte temporal 1-7 sustantivo; 8/98 excluidos"}
+  - {archivo: ehh05dta_b3b/iiib_cr.dta, variable: cr27, rol: "tiene ahorros; 1=sí 3=no"}
+  - {archivo: ehh05dta_b3b/iiib_cr.dta, variable: folio, rol: llave de hogar}
+  - {archivo: ehh05dta_b3b/iiib_cr.dta, variable: ls, rol: llave de respondente dentro del hogar}
+  - {archivo: ehh09dta_all/ehh09dta_b3b/iiib_pr.dta, variable: pid_link, rol: "llave intra-persona ola 3; posiciones [6:8) portan el código de ronda AP/BP/CP/CH"}
+  - {archivo: ehh09dta_all/ehh09dta_b3b/iiib_pr.dta, variable: pr02, rol: horizonte temporal ola 3}
+  - {archivo: ehh09dta_all/ehh09dta_b3b/iiib_cr.dta, variable: cr27, rol: tiene ahorros ola 3}
+  - {archivo: ehh05w_all/ehh05w_b3b.dta, variable: fac_3b, rol: ponderador transversal libro 3b, ola 2}
+
+universo: >-
+  Individuos con pr02 y cr27 válidos en ambas olas (panel retenido vía
+  pid_link, ronda C de ola 3 excluida antes de emparejar). n_pre_peso=6356
+  (reproduce exacto el YAML). Con fac_3b finito y >0: n=5855 (GEN1 declara
+  6028; ver spec.md §1 -- defecto de fuente en la tabla de ponderador, no de
+  este medidor).
+filtros: >-
+  pr02 fuera de {1..7} o cr27 fuera de {1,3} en cualquiera de las dos olas
+  excluye la fila del universo analítico. fac_3b nulo o <=0 excluye del
+  universo final.
+ponderador: fac_3b (ola 2) sin normalizar; unidad persona.
+transformacion: >-
+  ahorro = (cr27_ola2 == 1). Tasa base ponderada sobre el universo final.
+estimando: >-
+  Proporción ponderada descriptiva (tasa base), asociativo/no causal (A-bis 1).
+dependencias_materiales: [numpy, pandas, pyreadstat]
+
+parametros:
+  bootstrap_replicas: 10000
+  metodo_ic: "bootstrap por PERSONA con reemplazo (ENNViH SIN_DISENO_PUBLICADO, sin UPM/estrato); percentiles 2.5/97.5; rotulado IC-INFORMAL-SIN-DISENO-PUBLICADO"
+  hash_medidor_sha256: b1544939a7a7d31cc017a58364e97a1c9e75ca2722fbf8a679324fe8cc3ddf38
+  hash_payload_ola2_sha256: fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a
+  hash_payload_ola3_sha256: 00a7649a1839a3523be22612c2fa3555d5e743cf5329d6bcdc432b901e98bd15
+  hash_payload_peso_sha256: 34ee12b0c0d71e76676197089b5fd6048c0fdaa590a220f440d95526b1f4713b
+  hash_prereg_sha256: 28e403d646fa550de7d7c538b81c50bcca1f11fe96b52e5eb6b51657ecc97752
+  hash_encargo_sha256: c5e520076a339bf48c747ccea190595a1430d642f4423feb96d580b830ef00e1
+
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: misma semilla y sumas deterministas; enteros/textos comparan exacto
+
+resultados:
+  - {id: RESULT-ARB2-ENNVIH-N-UNIVERSO-ANALITICO, tipo: entero, unidad: "personas con pr02 y cr27 válidos en ambas olas"}
+  - {id: RESULT-ARB2-ENNVIH-N-CON-PONDERADOR, tipo: entero, unidad: "subconjunto anterior con fac_3b finito y >0"}
+  - {id: RESULT-ARB2-ENNVIH-P-TIENE-AHORROS, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ARB2-ENNVIH-DETALLE, tipo: texto, unidad: "tabla JSON: conteos de cada filtro, IC95, oro GEN1, delta, veredicto REPRODUCE/NO-REPRODUCE"}

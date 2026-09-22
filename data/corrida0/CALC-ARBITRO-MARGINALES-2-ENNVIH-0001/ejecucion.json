@@ -1,0 +1,113 @@
+{
+ "corrida_id": "CALC-ARBITRO-MARGINALES-2-ENNVIH-0001--e19a6f29b7ba",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6"
+ },
+ "error": null,
+ "etiquetas": {
+  "acto": "GEN2-ARBITRO-MARGINALES-2",
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_nota": "propuesto por el encargo GEN2-ARBITRO-MARGINALES-2 (P2, pieza ENNViH); no adopta",
+  "generacion": "GEN2",
+  "tipo": "ARBITRO-MARGINALES-POR-EJE"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-22T03:25:01Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 436,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "e19a6f29b7baf5f900042ff0740a5d8426509949",
+  "git_rama": "acto/gen2-arbitro-marginales-2",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "e19a6f29b7baf5f900042ff0740a5d8426509949",
+ "input_ids": [
+  "ennvih2_2005_hogar_dta",
+  "ennvih3_2009_hogar_dta",
+  "ennvih2_2005_ponderador_transversal"
+ ],
+ "input_sha256": {
+  "ennvih2_2005_hogar_dta": "fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a",
+  "ennvih2_2005_ponderador_transversal": "34ee12b0c0d71e76676197089b5fd6048c0fdaa590a220f440d95526b1f4713b",
+  "ennvih3_2009_hogar_dta": "00a7649a1839a3523be22612c2fa3555d5e743cf5329d6bcdc432b901e98bd15"
+ },
+ "parametros": {
+  "bootstrap_replicas": 10000,
+  "hash_encargo_sha256": "c5e520076a339bf48c747ccea190595a1430d642f4423feb96d580b830ef00e1",
+  "hash_medidor_sha256": "b1544939a7a7d31cc017a58364e97a1c9e75ca2722fbf8a679324fe8cc3ddf38",
+  "hash_payload_ola2_sha256": "fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a",
+  "hash_payload_ola3_sha256": "00a7649a1839a3523be22612c2fa3555d5e743cf5329d6bcdc432b901e98bd15",
+  "hash_payload_peso_sha256": "34ee12b0c0d71e76676197089b5fd6048c0fdaa590a220f440d95526b1f4713b",
+  "hash_prereg_sha256": "28e403d646fa550de7d7c538b81c50bcca1f11fe96b52e5eb6b51657ecc97752",
+  "metodo_ic": "bootstrap por PERSONA con reemplazo (ENNViH SIN_DISENO_PUBLICADO, sin UPM/estrato); percentiles 2.5/97.5; rotulado IC-INFORMAL-SIN-DISENO-PUBLICADO"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ARB2-ENNVIH-DETALLE",
+  "RESULT-ARB2-ENNVIH-N-CON-PONDERADOR",
+  "RESULT-ARB2-ENNVIH-N-UNIVERSO-ANALITICO",
+  "RESULT-ARB2-ENNVIH-P-TIENE-AHORROS"
+ ],
+ "script_blob_sha256": "b1544939a7a7d31cc017a58364e97a1c9e75ca2722fbf8a679324fe8cc3ddf38",
+ "script_path": "data/corrida0/CALC-ARBITRO-MARGINALES-2-ENNVIH-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 42
+ },
+ "spec_id": "CALC-ARBITRO-MARGINALES-2-ENNVIH-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "28e403d646fa550de7d7c538b81c50bcca1f11fe96b52e5eb6b51657ecc97752",
+ "spec_yaml_sha256": "d8866afb9fd7900b46b01e985e182ae2c465d8186ed7f56da7e137718afe0a6a",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "misma semilla y sumas deterministas; enteros/textos comparan exacto",
+  "tipo": "flotante"
+ }
+}

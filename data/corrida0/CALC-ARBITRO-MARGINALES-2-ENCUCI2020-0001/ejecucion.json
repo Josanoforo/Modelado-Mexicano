@@ -1,0 +1,110 @@
+{
+ "corrida_id": "CALC-ARBITRO-MARGINALES-2-ENCUCI2020-0001--4305d18b6f9f",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "acto": "GEN2-ARBITRO-MARGINALES-2",
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_nota": "propuesto por el encargo GEN2-ARBITRO-MARGINALES-2 (P2, pieza ENCUCI2020); no adopta",
+  "generacion": "GEN2",
+  "tipo": "ARBITRO-MARGINALES-POR-EJE"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-22T03:16:18Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 436,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "4305d18b6f9fda3be4b1c8bb48bd149e91eeeb23",
+  "git_rama": "acto/gen2-arbitro-marginales-2",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "4305d18b6f9fda3be4b1c8bb48bd149e91eeeb23",
+ "input_ids": [
+  "encuci2020_bd_dbf"
+ ],
+ "input_sha256": {
+  "encuci2020_bd_dbf": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+ },
+ "parametros": {
+  "bootstrap_replicas": 10000,
+  "hash_encargo_sha256": "c5e520076a339bf48c747ccea190595a1430d642f4423feb96d580b830ef00e1",
+  "hash_medidor_sha256": "8fdafe3299ef4a37355fc05159eb4fa6ce73185d0afc4a2804880f6428adc81e",
+  "hash_payload_sha256": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283",
+  "hash_prereg_sha256": "aaa07b02b9cd1da2fb5370bc840295e432b3bc4c18ca4103cc5b123b4ee86dd5",
+  "metodo_ic": "bootstrap de UPM_DIS con reemplazo dentro de EST_DIS sobre marco completo; percentiles 2.5/97.5",
+  "singleton": "autorremuestreo; aporta varianza cero y se rotula"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ARB2-ENCUCI-AGENCIA-SECRETO",
+  "RESULT-ARB2-ENCUCI-ENTITLEMENT",
+  "RESULT-ARB2-ENCUCI-LLAVE-IDPER",
+  "RESULT-ARB2-ENCUCI-METODO-IC",
+  "RESULT-ARB2-ENCUCI-N-ESTRATOS",
+  "RESULT-ARB2-ENCUCI-N-ESTRATOS-SINGLETON",
+  "RESULT-ARB2-ENCUCI-N-FILAS",
+  "RESULT-ARB2-ENCUCI-N-UPM"
+ ],
+ "script_blob_sha256": "8fdafe3299ef4a37355fc05159eb4fa6ce73185d0afc4a2804880f6428adc81e",
+ "script_path": "data/corrida0/CALC-ARBITRO-MARGINALES-2-ENCUCI2020-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 42
+ },
+ "spec_id": "CALC-ARBITRO-MARGINALES-2-ENCUCI2020-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "aaa07b02b9cd1da2fb5370bc840295e432b3bc4c18ca4103cc5b123b4ee86dd5",
+ "spec_yaml_sha256": "5a51090679bab0e60fe44a612b1212c4d4715d177f4664a75a7a1614d650ed17",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "misma semilla y sumas deterministas; enteros/textos comparan exacto",
+  "tipo": "flotante"
+ }
+}

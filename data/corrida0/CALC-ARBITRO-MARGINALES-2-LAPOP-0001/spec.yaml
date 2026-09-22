@@ -1,0 +1,76 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ARBITRO-MARGINALES-2-LAPOP-0001
+spec_md: ../../../forense/prereg-caja/ARBITRO-MARGINALES-2-LAPOP-spec-v1_0.md
+spec_md_sha256: 9818d266860d471e77e85b0617c56884878e978b3a1c67e5f933bb7719cebb98
+script: data/corrida0/CALC-ARBITRO-MARGINALES-2-LAPOP-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: ARBITRO-MARGINALES-POR-EJE
+  cuenta_gen2: SI
+  cuenta_gen2_nota: "6a pieza de P2, autorizada por mesa 21/sep/2026 para extender el LOTE del encargo GEN2-ARBITRO-MARGINALES-2; no adopta"
+  acto: GEN2-ARBITRO-MARGINALES-2
+
+inputs:
+  - {id: mexico_lapop_americasbarometer_2019_v1_0_w, origen: manifiesto}
+  - {id: mex_2023_lapop_americasbarometer_v1_0_w, origen: manifiesto}
+
+variables:
+  - {archivo: "Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: clien1na, rol: "oferta de dádiva por voto; 1=sí 2=no"}
+  - {archivo: "Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: vb2, rol: "votó en la última elección general; 1=sí 2=no"}
+  - {archivo: "Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: vb3n, rol: "partido por el que votó; 103=PRI"}
+  - {archivo: "Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: prot3, rol: "participó en una protesta; 1=sí 2=no"}
+  - {archivo: "Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: ur, rol: "urbano(1)/rural(2)"}
+  - {archivo: "Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: vic1ext, rol: "víctima de delincuencia últimos 12 meses; 1=sí 2=no"}
+  - {archivo: "Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: estratopri, rol: estrato de diseño}
+  - {archivo: "Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: upm, rol: UPM de diseño}
+  - {archivo: "Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: wt, rol: "ponderador (constante=1 en esta ola)"}
+  - {archivo: "MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: mexwf1_19, rol: "recibe ayuda/transferencia del gobierno; 1=sí 2=no"}
+  - {archivo: "MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: countfair3, rol: "percepción de secreto del voto; 1=siempre secreto 2/3=observable"}
+  - {archivo: "MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: vb20, rol: "votaría por el candidato/partido del oficialismo; ítem de 4 categorías, desenlace binariza código 2"}
+  - {archivo: "MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: estratopri, rol: estrato de diseño}
+  - {archivo: "MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: upm, rol: UPM de diseño}
+  - {archivo: "MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta", variable: wt, rol: "ponderador (constante=1 en esta ola)"}
+
+universo: >-
+  Regla A: clien1na+vb2 válidos (n=1574, pierna asistencia); + votó + vb3n no
+  nulo (n=1035, pierna elección). Regla B: prot3+ur+vic1ext válidos (n=1575).
+  Regla C: mexwf1_19 en {1,2} + countfair3 en {1,2,3} + vb20 en las 4
+  categorías sustantivas (n=1348; vb20 es un ítem de 4 categorías, no binario
+  -- ver spec.md §3, verificado por conteo exacto contra el n que GEN1 declara).
+filtros: >-
+  Cualquier código fuera de los declarados como válidos (incluido NS/NR y
+  blanco) excluye la fila del universo correspondiente. Guardia de celda:
+  numerador ponderado < 10 (en conteo sin ponderar) -> NO-ESTIMABLE.
+ponderador: "wt (constante=1 en ambas olas del corpus)."
+transformacion: >-
+  Regla A: votado=(vb2==1), pri=(vb3n==103), eje=clien1na. Regla B:
+  part=(prot3==1), cruce ur×vic1ext. Regla C: oficialismo=(vb20==2), rama por
+  countfair3, eje por mexwf1_19.
+estimando: >-
+  Proporciones ponderadas condicionales por eje/rama, asociativo no causal
+  (A-bis 1/2), con guardia de celda pre-registrada por GEN1 (numerador < 10).
+dependencias_materiales: [numpy, pyreadstat]
+
+parametros:
+  bootstrap_replicas: 10000
+  metodo_ic: bootstrap de UPM con reemplazo dentro de ESTRATOPRI sobre marco de cada universo; percentiles 2.5/97.5
+  guardia_numerador_minimo: 10
+  hash_medidor_sha256: 6bd3d2fc2b1380d43f3b2a5735fd72f99fb1fed0d284c41b74cc11113e50fed6
+  hash_payload_2019_sha256: c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57
+  hash_payload_2023_sha256: 4a9410a53cde9d11edeb23465bdbadce8a6abcc18330b6eebe2a4493be6e765c
+  hash_prereg_sha256: 9818d266860d471e77e85b0617c56884878e978b3a1c67e5f933bb7719cebb98
+  hash_encargo_sha256: c5e520076a339bf48c747ccea190595a1430d642f4423feb96d580b830ef00e1
+
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: misma semilla y sumas deterministas; enteros/textos comparan exacto
+
+resultados:
+  - {id: RESULT-ARB2-LAPOP-N-FILAS-2019, tipo: entero, unidad: filas del microdato 2019}
+  - {id: RESULT-ARB2-LAPOP-N-FILAS-2023, tipo: entero, unidad: filas del microdato 2023}
+  - {id: RESULT-ARB2-LAPOP-TURNOUT-NO-VOTE-CHOICE, tipo: texto, unidad: "tabla JSON: asistencia y eleccion_pri por eje de oferta", permite_no_estimable: true}
+  - {id: RESULT-ARB2-LAPOP-PROTESTA-AGRAVIO-URBANO, tipo: texto, unidad: "tabla JSON: 4 celdas urbano/rural x victima/no-victima", permite_no_estimable: true}
+  - {id: RESULT-ARB2-LAPOP-AGENCIA-2023, tipo: texto, unidad: "tabla JSON: ramas SECRETO/OBSERVABLE x con/sin ayuda", permite_no_estimable: true}
