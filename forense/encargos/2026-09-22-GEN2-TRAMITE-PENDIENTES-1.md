@@ -65,3 +65,7 @@ Cierre: `## NO-CORRIDO / RESERVAS` y `## CONSUMIDO` los añade /acto al final de
 - **qué:** P1(b) «Corpus, no motor: `cuenta_gen2 = NO` …» · **por qué:** DECISIÓN-DE-MESA-PENDIENTE: choca con la firma 3A del 21/sep (los cuatro CALC ya cuentan SI) · **impacto:** NC-0316/0320/0321/0326 siguen ABIERTAS; `cuenta_gen2` sin cambio · **sucesor:** FP-260922-GEN2-TRAMITE-PENDIENTES-1-18fa-02 · NC-260922-GEN2-TRAMITE-PENDIENTES-1-18fa-01
 - **qué:** criterio de «hecho» `grep -c PENDIENTE-DE-MESA data/corrida0/corridas.tsv` menor en exactamente 4 · **por qué:** DIFERIDO-A: canal de publicación T6 (FP-260922-GEN2-PENDIENTES-CAJA-1-c09b-02, opción a) · **impacto:** `corridas.tsv` no refleja las 4 hasta que corra el canal; `status` sí · **sucesor:** conversación TUBERÍA · NC-260922-GEN2-TRAMITE-PENDIENTES-1-18fa-02
 - **qué:** P3 · 8e53-04 (los huecos de la firma, en blanco) · **por qué:** DECISIÓN-DE-MESA-PENDIENTE: mesa no rellenó los tres valores · **impacto:** la NC sigue ABIERTA con la pregunta escrita · **sucesor:** mesa (bandeja del titular, entrada 11) · NC-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2-8e53-04 (existente)
+
+## CONSUMIDO
+
+Ejecutado por el ACTO GEN2-TRAMITE-PENDIENTES-1 en el PR #1011 (rama `claude/festive-hypatia-cerq3p`), ADR-260922-GEN2-TRAMITE-PENDIENTES-1-18fa-01. Adendas: ninguna.
