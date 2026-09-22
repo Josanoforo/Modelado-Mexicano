@@ -5194,6 +5194,12 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-6.md",
     "forense/notas/2026-09-22-GEN2-TRAMITE-FIRMAS-6-cierre.md",
     "canon/L0/ADR-260922-GEN2-TRAMITE-FIRMAS-6-7c2c-01.md",
+    # ACTO GEN2-DIN-CREDITO-ESCOLARIDAD-2, 22/sep/2026. El encargo archivado
+    # verbatim (A.3) dice en §2 «si mesa la ratifica en E5»: es la ranura de
+    # mesa ya censada (`E5` en canon/registro-rotulos.tsv), no un rótulo que
+    # este acto acuñe; un encargo verbatim no se edita para complacer al test.
+    # El rótulo propio, `GEN2-DIN-CREDITO-ESCOLARIDAD-2`, queda censado.
+    "forense/encargos/2026-09-22-GEN2-DIN-CREDITO-ESCOLARIDAD-2.md",
 }
 
 
