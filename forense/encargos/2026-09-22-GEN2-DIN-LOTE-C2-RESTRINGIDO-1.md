@@ -40,3 +40,13 @@ Propio: `forense/prereg-caja/C2-RESTRINGIDO-ENIF2024-spec-v1_0.md` (+ sidecar, y
 
 ## 10 · NO HACE · SUCESORES · CIERRE
 No evalúa los pares (eso es el lote), no adopta, no compara contra el poblacional. Sucesor: el lote ENIF 2024 consume estos pisos en su siguiente evaluación. Auditoría: no aplica. Cierre por /acto.
+
+## NO-CORRIDO / RESERVAS
+
+| id | qué (verbatim del encargo / perímetro) | por qué | impacto | sucesor |
+|---|---|---|---|---|
+| `NC-260922-GEN2-DIN-LOTE-C2-RESTRINGIDO-1-4e12-01` | «registro y asiento en el mismo acto (E.7)» — la parte «registro»: filas de `CALC-C2-RESTRINGIDO-IC-ENIF2024-0001` en `corridas.tsv`/`resultados.tsv` | FUERA-DE-PERÍMETRO:GEN2-TUBERIA-EFICIENCIA-1 (firma de mesa 21/sep §2(2): ningún PR toca un `# DERIVADO — NO EDITAR`; `registro --lote` quedó fuera del job de `main`). Se derivó (`bc452294`) y se revirtió. El asiento de replay sí viaja. | «sellada en disco, no registrada»: la corrida no aparece en `corrida0 status` | mesa -- tras fusionar, `python3 tools/corrida0.py registro --verifica --escribe --lote CALC-C2-RESTRINGIDO-IC-ENIF2024-0001` sobre `main`, o encargar a TUBERÍA que el job derivador registre |
+| `NC-260922-GEN2-DIN-LOTE-C2-RESTRINGIDO-1-4e12-02` | piso de los 5 pares para el desenlace secundario `informal_cualquiera` (la spec sellada §2 lo declara aquí) | FUERA-DE-PERÍMETRO:GEN2-DIN-LOTE-ENIF2024 (el lote sólo consume D9) | ninguno hoy | mesa -- en `FP-260922-GEN2-DIN-LOTE-C2-RESTRINGIDO-1-4e12-01` |
+| `NC-260922-GEN2-DIN-LOTE-C2-RESTRINGIDO-1-4e12-03` | linaje de la corrida en la vista (`origen_numerico`) | NO-VERIFICABLE-AQUÍ: `IN-DICTAMEN` sin `funcion` en el `spec.yaml` sellado → `FUNCION-INDETERMINADA`; no se edita tras el run (D-18, E.3) | la vía (iii) de relevo no lee el origen numérico hasta que el registro clasifique el dictamen; no afecta puntos, IC ni replay | mesa -- aceptar INDETERMINADO o encargar a TUBERÍA la clasificación del dictamen como METADATO |
+
+Pregunta de §6 («si `cuenta_formal × formalidad` resulta degenerado…»): **no se disparó** — `NO-DEGENERADO` por la regla fijada en la spec antes del dato.
