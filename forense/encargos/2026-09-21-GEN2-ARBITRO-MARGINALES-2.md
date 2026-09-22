@@ -41,3 +41,8 @@ el tablero por comando. Ningún PARO se disparó. La adopción de las 24
 ICPSR-MPS2012, `list::mexico`, CIDE-CSES2015, remanente de ENIF2024) no son
 piezas de este encargo — son recomendaciones a mesa (§6 de la nota de
 cierre), no trabajo pedido y dejado sin correr.
+
+## CONSUMIDO
+
+`PR #989` (rama `acto/gen2-arbitro-marginales-2`). No fusionado en este acto
+— mesa fusiona.
