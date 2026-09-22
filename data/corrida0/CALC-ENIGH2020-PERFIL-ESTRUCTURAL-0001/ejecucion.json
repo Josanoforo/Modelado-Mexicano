@@ -1,5 +1,5 @@
 {
- "corrida_id": "CALC-ENIGH2020-PERFIL-ESTRUCTURAL-0001--dde8b863868d",
+ "corrida_id": "CALC-ENIGH2020-PERFIL-ESTRUCTURAL-0001--ff84ff36db65",
  "dependencias_materiales": {
   "numpy": "2.3.5",
   "pandas": "2.3.3",
@@ -22,7 +22,7 @@
   "version_spec": "v1.0 serie (ACTO GEN2-ENIGH2024-SERIE-Y-COMMIT-1, P1); generalizacion parametrizada por ola de CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003 v1.2 -- oro=reproduccion byte-exacta de las 3 tablas de 2022, verificada en tests/test_enigh_serie_oro.py"
  },
  "exit_code": 0,
- "fecha": "2026-09-22T02:57:13Z",
+ "fecha": "2026-09-22T03:55:05Z",
  "firma_entorno": {
   "acceso_corpus": {
    "archivos_examinados": 436,
@@ -36,7 +36,7 @@
    "scipy": "1.16.3",
    "yaml": "6.0.3"
   },
-  "git_commit": "dde8b863868d06362ce322f1c1872c178cebb720",
+  "git_commit": "ff84ff36db658d048f8b4cdd87e1c8e09232e42a",
   "git_rama": "acto/gen2-enigh2024-serie-y-commit-1",
   "git_status": "LIMPIO",
   "git_status_lineas": 0,
@@ -67,7 +67,7 @@
    "TZ": "sin_variable"
   }
  },
- "git_commit": "dde8b863868d06362ce322f1c1872c178cebb720",
+ "git_commit": "ff84ff36db658d048f8b4cdd87e1c8e09232e42a",
  "input_ids": [
   "enigh2020_nc_csv",
   "IN-CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003-SPEC"
@@ -78,7 +78,7 @@
  },
  "parametros": {
   "bootstrap_replicas": 1000,
-  "demanda_relacionada": "CORR-0076 / RES-0165..RES-0170; aporte descriptivo sin relevo directo",
+  "demanda_relacionada": "RES-0165..RES-0170; aporte descriptivo sin relevo directo (CORR ya no es citable, D-r2, 21/sep/2026)",
   "edad_max": 96,
   "edad_min": 18,
   "fuente_diseno_persona": "concentradohogar (factor/est_dis/upm no existen en poblacion.csv de esta ola; join por folioviv+foliohog, ver spec.md)",
@@ -140,7 +140,7 @@
  "spec_id": "CALC-ENIGH2020-PERFIL-ESTRUCTURAL-0001",
  "spec_md_estado": "NO-EN-MAIN",
  "spec_md_sha256": "7939d600335e54857db60b2731e6632a5ca8686d9b903914cdf08bc314724a32",
- "spec_yaml_sha256": "ad6bac97c5956966b49caad8ea548bc0ff20b6f158fb45dbea292d63cb6687f1",
+ "spec_yaml_sha256": "4d362077c24f68a6e7d3d68133de14f6dd18790b5f9681df601832533a1f6300",
  "tolerancia": {
   "abs": 0.0,
   "exacto_por_seed": true,
