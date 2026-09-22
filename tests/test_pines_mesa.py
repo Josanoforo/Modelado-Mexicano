@@ -179,7 +179,8 @@ def test_vocabulario_afirmativo_se_deriva_y_no_se_teclea():
 
 def test_cada_token_del_vocabulario_real_por_las_dos_vias():
     """Un caso por token de `forense/replay-evidencia.tsv`, por via (i) y por
-    via (ii): la (i) solo acepta `REPRODUCE`; la (ii) acepta el eje."""
+    via (ii): desde TANDA-5 · P1 (firma F-R, 22/sep/2026) las dos leen el
+    mismo eje RESULTADO -- la extension de 4.1 a la via (i)."""
     afirmativos = pines_mesa.veredictos_afirmativos_en_resultado()
     conductas = {"RESULT-REPLAY-P": "milpa/tramite.yaml:r:c"}
     for token in sorted(VOCABULARIO_REPLAY):
@@ -188,9 +189,11 @@ def test_cada_token_del_vocabulario_real_por_las_dos_vias():
                       result_gen2="RESULT-REPLAY-P", via=pines_mesa.VIA_CRUDO)
         estado_i, motivo_i = pines_mesa.valida_pin(
             fila_i, corridas, {"CALC-REPLAY": CON_CRUDO}, conductas)
-        esperado_i = (pines_mesa.ACEPTADO if token == "REPRODUCE"
+        esperado_i = (pines_mesa.ACEPTADO if token in afirmativos
                       else "RECHAZADO-CALC-NO-REPRODUCE")
         assert estado_i == esperado_i, f"via (i) · {token}: {estado_i} {motivo_i}"
+        if estado_i != pines_mesa.ACEPTADO:
+            assert token in motivo_i, "el rechazo debe decir POR QUE"
 
         fila_ii = dict(fila_i, via=pines_mesa.VIA_CONDUCTA)
         estado_ii, motivo_ii = pines_mesa.valida_pin(
@@ -201,6 +204,21 @@ def test_cada_token_del_vocabulario_real_por_las_dos_vias():
             f"via (ii) · {token}: {estado_ii} {motivo_ii}"
         if estado_ii != pines_mesa.ACEPTADO:
             assert token in motivo_ii, "el rechazo debe decir POR QUE"
+
+
+def test_via_i_no_verificable_en_contexto_no_basta_solo():
+    """P1 del encargo: un pin no se cuela por `NO-VERIFICABLE` en el eje
+    RESULTADO. `NO-VERIFICABLE` es limitacion de la sesion (E.3), no un
+    hallazgo sobre el numero, y no esta en el vocabulario CONCLUYENTE -- por
+    tanto tampoco es afirmativo, ni por la via (i) ni por ninguna otra."""
+    conductas = {"RESULT-REPLAY-P": "milpa/tramite.yaml:r:c"}
+    corridas = _corridas_con_replay("NO-VERIFICABLE")
+    for via in (pines_mesa.VIA_CRUDO, pines_mesa.VIA_CONDUCTA):
+        fila = dict(PIN_VALIDO, calc_gen2="CALC-REPLAY",
+                    result_gen2="RESULT-REPLAY-P", via=via)
+        estado, motivo = pines_mesa.valida_pin(
+            fila, corridas, {"CALC-REPLAY": CON_CRUDO}, conductas)
+        assert estado == "RECHAZADO-CALC-NO-REPRODUCE", f"{via}: {estado} {motivo}"
 
 
 # ── P3 (TANDA-4) · clase (iii) `iii-DERIVADO-DE-GEN2` ─────────────────────

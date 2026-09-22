@@ -5137,6 +5137,15 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # vive en el espacio `M`/`E` de actos (no matchea `M\d{1,2}` ni
     # `E\d{1,2}` pelado) y queda censado en `canon/registro-rotulos.tsv`.
     "forense/notas/nota-2026-09-21-gen2-tuberia-cierre-sin-choque-2-cierre.md",
+    # ACTO GEN2-RELEVO-TANDA-5 (22/sep/2026). §2 del encargo (firma F-L,
+    # verbatim, A.3: no se edita) enumera las celdas del marco del duelo en
+    # forma abreviada -- "las seis CIV (M-01, 02, 04, 10, 12, 13)" -- donde
+    # `M-01` es el sufijo de `CIV-M-01`, ya censado (marco-M, canon/
+    # registro-rotulos.tsv) y no un rótulo del espacio `M` (fases MOTOR-3)
+    # que este acto acuñe. El regex ve `M-01` pelado porque el prefijo
+    # `CIV-` vive en la misma paréntesis, no pegado al número; recortar la
+    # cita para complacer el test alteraría el cuerpo sellado (D-a1).
+    "forense/encargos/2026-09-22-GEN2-RELEVO-TANDA-5.md",
 }
 
 
