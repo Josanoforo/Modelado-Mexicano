@@ -66,3 +66,15 @@ no está vacío — ya tiene 20 celdas emitidas por `tools/marcador_segmento.py`
 (19/sep/2026) que no citan el marco M — así que no hizo falta preguntar
 nada a mesa; el `[SUPUESTO]` §3 se verificó con un matiz de granularidad
 (por subcomando de `corrida0.py`, no por archivo) que el mapa ya recoge.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-MARCO-M-CONSUMIDOR-1`, 22/sep/2026, NUBE, Sonnet 5 —
+**PR #999** (`https://github.com/Josanoforo/Modelado-Mexicano/pull/999`),
+rama `claude/gen2-marco-m-consumidor-1`, 0-bis `02e60bb`, cascada de cierre
+`408b897`. ADR `ADR-260922-GEN2-MARCO-M-CONSUMIDOR-1-02e6-01`. Mapa: 116
+filas (46 código + 70 legacy), 65 sin sustituto sobre 7 herramientas. FP de
+retiro `FP-260922-GEN2-MARCO-M-CONSUMIDOR-1-02e6-01`, ABIERTA, recomendación
+del ejecutor `HISTÓRICO-SIN-RETIRO`.
+
+El PR no se fusiona en este acto: mesa fusiona.
