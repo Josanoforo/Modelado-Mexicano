@@ -296,8 +296,11 @@ def errors_for(celda_d, filename):
             es_piso = ganador.get("rol") in {"PISO", "BASELINE_INGENUO"}
             if es_piso and estado_decid not in {"PUNTUADA", "INDECIDIBLE"}:
                 errs.append(f"{filename}: piso adjudicado requiere estado_decidibilidad pertinente")
-            if es_piso and celda_d.get("veredicto") != "SIN-CANDIDATO-SUPERIOR":
-                errs.append(f"{filename}: piso adjudicado requiere veredicto SIN-CANDIDATO-SUPERIOR")
+            # A-bis 6: un piso NO VENCIDO se adopta salvo veto de mesa, aunque el
+            # veredicto B-bis sea FALSADOR-DEBIL (nadie vence, IC admite >0.5pp) --
+            # es una vía de adopción distinta de "no hay candidato superior".
+            if es_piso and celda_d.get("veredicto") not in {"SIN-CANDIDATO-SUPERIOR", "FALSADOR-DEBIL"}:
+                errs.append(f"{filename}: piso adjudicado requiere veredicto SIN-CANDIDATO-SUPERIOR o FALSADOR-DEBIL (A-bis 6)")
         por_celda = celda_d.get("adjudicacion_por_celda")
         if not isinstance(por_celda, dict) or not por_celda:
             errs.append(f"{filename}: falta adjudicacion_por_celda v0.6")
