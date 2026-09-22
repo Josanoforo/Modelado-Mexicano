@@ -241,6 +241,40 @@ def prueba_nc_por_razon_prefijo_exacto():
     afirma(tok2 is None, "prosa sin token al inicio no debe clasificar en ningún token")
 
 
+def prueba_celdas_d_adoptadas_activas_sintetica():
+    """P5 (GEN2-TUBERIA-EFICIENCIA-1, trámite #981): una celda-D sintética
+    con `champion_actual` NO vacío cuenta en `adoptados_activos`; una con
+    `champion_actual: NINGUNO` o sin ese campo, no. Corre sobre un directorio
+    temporal -- nunca toca `data/curacion-registro/celdas-d/` real (D-14/PARO d)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        with open(os.path.join(tmp, "SIN.adoptar.yaml"), "w", encoding="utf-8") as fh:
+            fh.write("celda_d:\n  id: SIN.adoptar\n  champion_actual: NINGUNO\n")
+        with open(os.path.join(tmp, "ADOPTADA.sintetica.yaml"), "w", encoding="utf-8") as fh:
+            fh.write("celda_d:\n  id: ADOPTADA.sintetica\n  champion_actual: C2\n")
+        with open(os.path.join(tmp, "SIN.campo.yaml"), "w", encoding="utf-8") as fh:
+            fh.write("celda_d:\n  id: SIN.campo\n")
+        r = TP._celdas_d_adoptadas_activas(directorio=tmp)
+    afirma(r["total_adoptadas_activas"] == 1,
+           f"una sola celda-D sintética adoptada debe contar (obtuve {r['total_adoptadas_activas']})")
+    afirma(r["detalle"][0]["celda_d"] == "ADOPTADA.sintetica",
+           "el detalle debe citar la celda-D adoptada por id")
+    afirma(set(r["celdas_d_sin_adoptar"]) == {"SIN.adoptar", "SIN.campo"},
+           "NINGUNO y campo ausente deben quedar fuera del conteo, no silenciados")
+
+
+def prueba_celdas_d_adoptadas_activas_universo_real():
+    """Contra el árbol real: el universo examinado son los YAML que existen
+    hoy en data/curacion-registro/celdas-d/, ni más ni menos (A.13)."""
+    import glob as _glob
+    n_real = len(_glob.glob(os.path.join(TP.RAIZ, "data", "curacion-registro", "celdas-d", "*.yaml")))
+    r = TP._celdas_d_adoptadas_activas()
+    afirma(f"{n_real} archivos" in r["universo_examinado"],
+           f"universo_examinado debe declarar los {n_real} archivos reales examinados")
+    afirma(any(d["celda_d"] == "GOB.gobierno_digital.encig2025.edad_x_escolaridad"
+               for d in r["detalle"]),
+           "la celda-D del piloto 3 (champion_actual: C2, firma F3) debe contar como adoptada activa")
+
+
 def main():
     prueba_idempotencia_y_preservacion()
     prueba_ancla_invalida_sin_marcadores()
@@ -251,12 +285,14 @@ def main():
     prueba_render_incluye_marcador_corridas_ramas_nc()
     prueba_render_cola_solo_estados_no_consumido()
     prueba_nc_por_razon_prefijo_exacto()
+    prueba_celdas_d_adoptadas_activas_sintetica()
+    prueba_celdas_d_adoptadas_activas_universo_real()
     if FAILS:
         print(f"FALLÓ ({len(FAILS)}):")
         for m in FAILS:
             print(f"  · {m}")
         return 1
-    print("OK -- test_tablero_programa.py: 9 pruebas, 0 fallos")
+    print("OK -- test_tablero_programa.py: 11 pruebas, 0 fallos")
     return 0
 
 
