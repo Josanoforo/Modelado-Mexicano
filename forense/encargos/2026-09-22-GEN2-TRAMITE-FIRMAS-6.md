@@ -49,3 +49,7 @@ No decide, no adopta, no mide. Sucesor: ninguno propio. Auditoría: no aplica. C
 ## NO-CORRIDO / RESERVAS
 
 Ninguno. Las tres piezas (P1, P2, P3) se ejecutaron completas para las diez firmas de §2. Nota aparte, no NO-CORRIDO: las cuatro filas que el encargo daba por «consumidas por E1–E4/FP374-RESELLO-1» siguen ABIERTA en `origin/main` porque sus actos no han fusionado — no eran una pieza de este encargo (sólo citación si ya estuvieran consumidas), así que no aplica A.14 sobre ellas; quedan declaradas en la nota de cierre.
+
+## CONSUMIDO
+
+PR #1001. `ADR-260922-GEN2-TRAMITE-FIRMAS-6-7c2c-01`.
