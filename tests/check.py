@@ -5146,6 +5146,10 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # `CIV-` vive en la misma paréntesis, no pegado al número; recortar la
     # cita para complacer el test alteraría el cuerpo sellado (D-a1).
     "forense/encargos/2026-09-22-GEN2-RELEVO-TANDA-5.md",
+    # ACTO GEN2-RELEVO-TANDA-6 (22/sep/2026). Mismo defecto que TANDA-5
+    # arriba: §2 cita F-L verbatim (A.3: no se edita) con la misma forma
+    # abreviada "las seis CIV (M-01, 02, 04, 10, 12, 13)".
+    "forense/encargos/2026-09-22-GEN2-RELEVO-TANDA-6.md",
 }
 
 
