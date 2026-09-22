@@ -32,3 +32,9 @@ Latitud: lenguaje, método de varianza (declarado). PAROS: a) leer el código de
 | qué | por qué | impacto | sucesor |
 |---|---|---|---|
 | **P1/P2** — `P2` (persistencia 2021), `R1` (interacción histórica cruda) y `R3` (raking a tres vías): candidatos secundarios. `P2` se calculó como insumo de `δ21` pero no se comparó celda a celda contra el sellado; `R1`/`R3` no se recalcularon | `DIFERIDO-A:SIN-ASIGNAR` — la comparación que adjudica es una sola, `C2` contra `R2` (spec §4: «todo lo demás es secundario»); el `OBJETIVO`/«hecho» del encargo sólo pide `R` y `C2` | Ninguno sobre el veredicto primario (`COINCIDE`, `PROPUESTA-CON-RESERVA` en los dos); si se quisiera blindar también `P2`/`R1`/`R3` haría falta ampliar este acto | `NC-260922-GEN2-VALIDACION-INDEPENDIENTE-LOTE-1-41d6-01` |
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-VALIDACION-INDEPENDIENTE-LOTE-1`, 22/sep/2026, CAJA, Sonnet 5 — **PR #996** (`https://github.com/Josanoforo/Modelado-Mexicano/pull/996`), rama `acto/gen2-validacion-independiente-lote-1`, 0-bis `41d6436b`, P1 a ciegas `97d92016`, comparación `054a8b0f`, cierre `64a18973`, NO-CORRIDO `76b94280`. ADR `ADR-260922-GEN2-VALIDACION-INDEPENDIENTE-LOTE-1-41d6-01`. Veredicto: `COINCIDE` — 44/44 celdas `R` a precisión de punto flotante (`diff_R_pp_max = 0.0`), `ΔMAE` primario idéntico a `7.8e-16 pp`, `PROPUESTA-CON-RESERVA` en los dos.
+
+El PR no se fusiona en este acto: mesa fusiona.
