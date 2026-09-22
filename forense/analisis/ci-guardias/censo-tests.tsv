@@ -166,3 +166,4 @@ tests/test_marco_m_en_seco.py	script	NO	(ninguna)	NO	54.0	CORRE-EN-CI	prueba en 
 tests/test_duelo_envipe2026_ejecucion.py	script	NO	(ninguna)	NO	0.5	CORRE-EN-CI	exit 0 sin corpus (orden de commits se salta en clon shallow, NC-0273)
 tests/test_registro_repite_de_abanico.py	script	NO	(ninguna)	NO	1.0	CORRE-EN-CI	registro: repite_de en abanico no es sucesion (ENIGH 2016/18/20 -> 2022); sintetico + control de la regla vieja + vista (ACTO GEN2-PENDIENTES-CAJA-1)
 tests/test_din_credito_escolaridad_2.py	script	NO	numpy	NO	0.3	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy' (mismo patron que test_din_credito_prediccion_2024_adjudicacion.py, hermano mas parecido; corre en CAJA: PASA, 8 falsadores)
+tests/test_c2_restringido_enif2024_guardia.py	script	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'

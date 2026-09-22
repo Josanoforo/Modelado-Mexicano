@@ -1,0 +1,1927 @@
+# CALC-C2-RESTRINGIDO-IC-ENIF2024-0001 -- cara mecanica de la spec humana.
+# ACTO GEN2-DIN-LOTE-C2-RESTRINGIDO-1 (22/sep/2026, CAJA), COMMIT-1.
+# Gobierna forense/prereg-caja/C2-RESTRINGIDO-ENIF2024-spec-v1_0.md,
+# congelada en este mismo commit -- ANTES de abrir una sola respuesta.
+# UN solo payload: enif_2024_bd_csv.zip :: TMODULO.csv (el del arbitro).
+# `resultados` lo enumera el propio medidor (catalogo_resultados) desde el
+# contrato del lote y el dictamen; tests/test_c2_restringido_enif2024_guardia.py
+# coteja que declare exactamente eso.
+calc_id: CALC-C2-RESTRINGIDO-IC-ENIF2024-0001
+spec_md: ../../../forense/prereg-caja/C2-RESTRINGIDO-ENIF2024-spec-v1_0.md
+spec_md_sha256: 3e529468da4dbed9fb4085e6515faf423eaf4b4efdaad78519a9b762476818cf
+script: data/corrida0/CALC-C2-RESTRINGIDO-IC-ENIF2024-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: C2-RESTRINGIDO-A-UNIVERSO-T-CON-IC-REPLICA-POR-REPLICA
+  unidad_transferencia: 'PERSONA elegida 18+ de T (quien trabaja: P3_13 en 1..7)'
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  estado_de_emision: EMITIDA-SIN-EVALUAR
+  validacion_independiente: 'ORO-CONTRA-CALC-ARBITRO-MARGINALES-ENIF2024-0001 (formalidad re-derivada
+    en T: P e IC a 1e-12, N y B-VALIDAS exactos, DEN-W 1e-6; filas y fuera de T exactos) + PLAN-DE-REPLICAS-IDENTICO-A-_estimate-DEL-PISO
+    (test, sintetico, 1e-12) + GUARDIA-AST-EN-EL-MEDIDOR (auditoria_ast antes de abrir el zip; un control
+    positivo por regla)'
+  fuente_acto: GEN2-DIN-LOTE-C2-RESTRINGIDO-1
+  firma: FP-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-02 opcion B (viaja verbatim en el encargo; A.12)
+  microdato_abierto: 'SOLO enif_2024_bd_csv.zip :: TMODULO.csv, por carga() del arbitro, en COMMIT-2;
+    ningun otro payload'
+  medidor_ejecutado_al_congelar: NO -- solo contra olas FABRICADAS de tests/test_c2_restringido_enif2024_guardia.py
+    (cero microdato, E.5)
+  orden_de_commits: COMMIT-1 spec sellada + este contrato + medidor + test (sin microdato) -> COMMIT-2
+    corrida sellada + registro + replay
+  cruce_derivado: NO -- no existe cruce(); ninguna celda formalidad x eje se deriva; la auditoria AST
+    (R3/R4/R7) lo prueba en cada corrida
+  comparacion_poblacional: NINGUNA (A-bis 4)
+inputs:
+- id: enif_2024_enif_2024_bd_csv
+  origen: manifiesto
+- id: IN-DICTAMEN
+  origen: repo
+  ruta: data/corrida0/c2-compuesto-dictamen-v1_0.tsv
+  sha256: 1e770c086a38fc3856ae04dee2f0260b300b41ae741a2c40adf9aa13d584dc6e
+  rol: 'dictamen de emisibilidad sellado: filas ENIF 2024, D9, NO-EMITIBLE (los 5 pares con formalidad;
+    n_celdas)'
+- id: IN-LOTE-CONTRATO
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-LOTE-ENIF2024-EMISIONES-0001/spec.yaml
+  sha256: afed2eae25cbcfc64504e28530d2c0f34c33d8062d68ba325bde11434c02d416
+  rol: 'contrato sellado del lote: pares y orden (a,b), categorias de cada eje, ids sellados de formalidad
+    y cobertura_arbitro -- categorias identicas al lote por construccion'
+- id: IN-ARBITRO-GEN2
+  origen: repo
+  ruta: data/corrida0/CALC-ARBITRO-MARGINALES-ENIF2024-0001/resultados.json
+  sha256: 552aef42c92cc70ded24bebb4c3e295739b95b346644e624cd22c8392916ecc4
+  rol: 'R sellados del arbitro GEN2 (#971): marginal de formalidad citado para el punto y oro (P, IC,
+    N, DEN-W, B-VALIDAS; G-FILAS-PERSONAS, G-EJE-FORMALIDAD-FUERA)'
+- id: IN-SPEC-SELLADA
+  origen: repo
+  ruta: forense/prereg-caja/C2-RESTRINGIDO-ENIF2024-spec-v1_0.md
+  sha256: 3e529468da4dbed9fb4085e6515faf423eaf4b4efdaad78519a9b762476818cf
+  rol: spec humana congelada en el COMMIT-1, anterior a esta corrida
+- id: IN-ARBITRO-MEDIDOR
+  origen: repo
+  ruta: tools/medidor_ahorro_enif24.py
+  sha256: 58c429598c3cedd6d1f8927e8854bbb6f4461f04a94d4a92568a388c7f1f2c95
+  rol: 'el arbitro: carga() (universo, guardias), desenlaces(), EJES_P2 y EJE_CUENTA_PRINCIPAL; se IMPORTA,
+    no se copia'
+- id: IN-ARBITRO-EJES
+  origen: repo
+  ruta: tools/ejes_maestra35_l1.py
+  sha256: 502f5a4138c6733677f9472947cfe8c112dd04618e6ac325dd816758f7206c4d
+  rol: codificaciones de eje (ESC_ENIF, tramos_edad, SEXO, ordenes) que el arbitro importa
+- id: IN-FORMA-C2-SELLADA
+  origen: repo
+  ruta: tests/test_celda_d_c2.py
+  sha256: 71878f9ca98698a4d770b77e583e5086875509dcd022ba6928b86caa976a12d9
+  rol: 'piso_log_aditivo: la forma se importa, no se reimplementa'
+- id: IN-C2-COMPUESTO
+  origen: repo
+  ruta: tools/c2_compuesto.py
+  sha256: eebadf7f2473266bf87662a444820e40704d66332a5ff128b19640c621af652e
+  rol: _slug y _parte_el_par (mismos ids y mismo partidor que el C2 compuesto); ninguna cifra poblacional
+    se lee de aqui
+variables:
+- archivo: TMODULO.csv
+  variable: P3_13
+  rol: UNIVERSO T -- 1..7 dentro (1-6 con seguridad social, 7 sin); 9 y blanco fuera (FD 2024 TMODULO
+    filas 138-146); y EJE formalidad
+- archivo: TMODULO.csv
+  variable: SEXO
+  rol: 'EJE sexo -- SEXO map {1: 1 Hombre, 2: 2 Mujer}'
+- archivo: TMODULO.csv
+  variable: EDAD_V
+  rol: EJE edad -- 18-29, 30-44, 45-59, 60+ (60..96); guardia de universo del arbitro (>= 18)
+- archivo: TMODULO.csv
+  variable: NIV
+  rol: 'EJE escolaridad -- ESC_ENIF: 00-02 hasta primaria, 03 secundaria, 04-07 media superior, 08-11
+    superior, 99 fuera'
+- archivo: TMODULO.csv
+  variable: TLOC
+  rol: EJE localidad -- 1,2 -> 15 000 y mas; 3,4 -> menor de 15 000
+- archivo: TMODULO.csv
+  variable: P5_1_1
+  rol: DESENLACE -- ahorro informal via 1; alguna == 1 => informal
+- archivo: TMODULO.csv
+  variable: P5_1_2
+  rol: DESENLACE -- ahorro informal via 2; alguna == 1 => informal
+- archivo: TMODULO.csv
+  variable: P5_1_3
+  rol: DESENLACE -- ahorro informal via 3; alguna == 1 => informal
+- archivo: TMODULO.csv
+  variable: P5_1_4
+  rol: DESENLACE -- ahorro informal via 4; alguna == 1 => informal
+- archivo: TMODULO.csv
+  variable: P5_1_5
+  rol: DESENLACE -- ahorro informal via 5; alguna == 1 => informal
+- archivo: TMODULO.csv
+  variable: P5_1_6
+  rol: DESENLACE -- ahorro informal via 6; alguna == 1 => informal
+- archivo: TMODULO.csv
+  variable: P5_6_1
+  rol: DESENLACE -- ahorro formal via 1; ninguna == 1 (con alguna informal) => D9
+- archivo: TMODULO.csv
+  variable: P5_6_2
+  rol: DESENLACE -- ahorro formal via 2; ninguna == 1 (con alguna informal) => D9
+- archivo: TMODULO.csv
+  variable: P5_6_3
+  rol: DESENLACE -- ahorro formal via 3; ninguna == 1 (con alguna informal) => D9
+- archivo: TMODULO.csv
+  variable: P5_6_4
+  rol: DESENLACE -- ahorro formal via 4; ninguna == 1 (con alguna informal) => D9
+- archivo: TMODULO.csv
+  variable: P5_6_5
+  rol: DESENLACE -- ahorro formal via 5; ninguna == 1 (con alguna informal) => D9
+- archivo: TMODULO.csv
+  variable: P5_6_6
+  rol: DESENLACE -- ahorro formal via 6; ninguna == 1 (con alguna informal) => D9
+- archivo: TMODULO.csv
+  variable: P5_6_7
+  rol: DESENLACE -- ahorro formal via 7; ninguna == 1 (con alguna informal) => D9
+- archivo: TMODULO.csv
+  variable: P5_6_8
+  rol: DESENLACE -- ahorro formal via 8; ninguna == 1 (con alguna informal) => D9
+- archivo: TMODULO.csv
+  variable: P5_6_9
+  rol: DESENLACE -- ahorro formal via 9; ninguna == 1 (con alguna informal) => D9
+- archivo: TMODULO.csv
+  variable: P5_4_1
+  rol: EJE cuenta_formal -- alguna == 1 => con cuenta; ninguna en {1,2} => fuera
+- archivo: TMODULO.csv
+  variable: P5_4_2
+  rol: EJE cuenta_formal -- alguna == 1 => con cuenta; ninguna en {1,2} => fuera
+- archivo: TMODULO.csv
+  variable: P5_4_3
+  rol: EJE cuenta_formal -- alguna == 1 => con cuenta; ninguna en {1,2} => fuera
+- archivo: TMODULO.csv
+  variable: P5_4_4
+  rol: EJE cuenta_formal -- alguna == 1 => con cuenta; ninguna en {1,2} => fuera
+- archivo: TMODULO.csv
+  variable: P5_4_5
+  rol: EJE cuenta_formal -- alguna == 1 => con cuenta; ninguna en {1,2} => fuera
+- archivo: TMODULO.csv
+  variable: P5_4_6
+  rol: EJE cuenta_formal -- alguna == 1 => con cuenta; ninguna en {1,2} => fuera
+- archivo: TMODULO.csv
+  variable: P5_4_7
+  rol: EJE cuenta_formal -- alguna == 1 => con cuenta; ninguna en {1,2} => fuera
+- archivo: TMODULO.csv
+  variable: P5_4_8
+  rol: EJE cuenta_formal -- alguna == 1 => con cuenta; ninguna en {1,2} => fuera
+- archivo: TMODULO.csv
+  variable: P5_4_9
+  rol: EJE cuenta_formal -- alguna == 1 => con cuenta; ninguna en {1,2} => fuera
+- archivo: TMODULO.csv
+  variable: FAC_PER
+  rol: 'PONDERADOR de persona (guardia: numerico > 0)'
+- archivo: TMODULO.csv
+  variable: EST_DIS
+  rol: ESTRATO de diseno (plan de replicas)
+- archivo: TMODULO.csv
+  variable: UPM_DIS
+  rol: UPM de diseno (plan de replicas)
+universo: 'T = personas elegidas 18+ de TMODULO.csv (universo de carga() del arbitro: todas las filas;
+  PARA si EDAD_V no numerica o < 18, FAC_PER no positivo, o las 15 variables de la seccion 5 en blanco)
+  con P3_13 en {1..7}. P3_13 == 9 (no sabe) o blanco por secuencia: fuera de T, contados. Ninguna fila
+  se quita del marco de diseno: fuera de T, todo eje vale (fuera).'
+filtros: Solo el de T, aplicado una vez en la construccion de la ola e identico para todos los ejes. Una
+  celda es {eje == categoria} dentro de T sobre la columna que el arbitro derivo; nunca se combinan dos
+  ejes (guardia en codigo, R3/R4).
+ponderador: FAC_PER. Toda proporcion es razon de totales ponderados sum(w*y)/sum(w), en el punto y en
+  cada replica.
+transformacion: 'Ejes por Eje.deriva del arbitro, restringidos a T. D9 := alguna P5_1_1..6 == ''1'' AND
+  ninguna P5_6_1..9 == ''1'' (desenlaces() del arbitro). Plan de replicas = el de _estimate del piso (CALC-PISOS-ENIF2021-EJES-0003/medidor.py:57-95):
+  llaves EST\tUPM ordenadas, estratos ordenados, PCG64(42), bloques de 50, integers(0, n_h, (bloque, n_h))
+  por estrato. C2R := piso_log_aditivo(p_T(a), p_T(b), p_T) con formalidad citada del arbitro GEN2; C2R_k
+  replica a replica; valida <=> los tres en (0,1); IC95 = percentiles 2.5/97.5 si validas >= umbral.'
+estimando: Piso C2 restringido al universo T (proporcion de personas de T) por celda de los 5 pares con
+  formalidad del lote ENIF 2024, bajo ausencia de interaccion en escala logit, con IC95 que mide ruido
+  muestral y no el error del supuesto. No es la conjunta, no es un efecto, no adopta; no se compara contra
+  el universo poblacional. Estado EMITIDA-SIN-EVALUAR.
+precision: IC95 por replica (10 000, PCG64(42), plan del arbitro GEN2) de cada marginal dentro de T y
+  de C2R replica a replica. Cubre ruido muestral; no cubre error de especificacion.
+dependencias_materiales:
+- numpy
+- pandas
+- yaml
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.random.PCG64 (plan de replicas del piso, bloques de 50)
+tolerancia:
+  tipo: bootstrap
+  exacto_por_seed: true
+  abs: 1.0e-10
+  razon: seed 42 + orden de consumo fijado (plan del piso). Enteros EXACTO; flotantes abs = 1e-10.
+parametros:
+  pregunta_consumidora: Que piso tienen los 5 pares formalidad x eje del lote ENIF 2024 cuando los tres
+    marginales de la composicion viven en el mismo universo T de quien trabaja?
+  desenlace: ahorra_solo_informal
+  universo_t: P3_13 en {1,2,3,4,5,6,7}; 9 y blanco fuera
+  bootstrap_replicas: 10000
+  replicas_bloque: 50
+  umbral_replicas_validas: 9900
+  control_arbitro_tol_p: 1.0e-12
+  control_arbitro_tol_ic: 1.0e-12
+  control_arbitro_tol_den_w: 1.0e-06
+  control_arbitro_ids:
+    filas_universo: RESULT-ARBITRO-ENIF2024-G-FILAS-PERSONAS
+    fuera_t: RESULT-ARBITRO-ENIF2024-G-EJE-FORMALIDAD-FUERA
+  control_ramas: REPRODUCE -> IC publicados; NO-REPRODUCE -> todos los IC null, IC-ESTADO=IC-NO-PUBLICADO:CONTROL-ARBITRO-NO-REPRODUCE,
+    G-IC-PUBLICADO=NO; se sella igual y no se ajusta nada
+  c2_forma: 'log-aditiva en T: expit(logit p_T(a) + logit p_T(b) - logit p_T)'
+  c2_funcion_de_referencia: tests/test_celda_d_c2.py::piso_log_aditivo (importada)
+  c2_rotulo_supuesto: ausencia de interaccion en escala logit
+  c2_rotulo_prohibido: independencia
+  c2_rechazo: 'replica con algun marginal en {0,1} o sin denominador: EXCLUIDA y contada; punto SIN-DEFINIR
+    -> IC-NO-CONSTRUIBLE:PUNTO-SIN-DEFINIR'
+  degeneracion_cuenta_formalxformalidad: no colineales por texto (P3_13 derecho a servicios medicos por
+    el trabajo; P5_4 tenencia de cuenta formal). Degenerado <=> algun marginal del par en {0,1} o una
+    categoria sin filas en T -> celdas NO-CONSTRUIBLE, pregunta a mesa
+  tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T
+  percentiles:
+  - 2.5
+  - 97.5
+  adopcion: NINGUNA
+  marcador_actualizado: 'NO'
+resultados:
+- id: RESULT-C2R-ENIF2024-G-INPUT-ENIF-2024-ENIF-2024-BD-CSV-SHA256
+  tipo: texto
+  unidad: sha256 del input enif_2024_enif_2024_bd_csv
+- id: RESULT-C2R-ENIF2024-G-INPUT-IN-DICTAMEN-SHA256
+  tipo: texto
+  unidad: sha256 del input IN-DICTAMEN
+- id: RESULT-C2R-ENIF2024-G-INPUT-IN-LOTE-CONTRATO-SHA256
+  tipo: texto
+  unidad: sha256 del input IN-LOTE-CONTRATO
+- id: RESULT-C2R-ENIF2024-G-INPUT-IN-ARBITRO-GEN2-SHA256
+  tipo: texto
+  unidad: sha256 del input IN-ARBITRO-GEN2
+- id: RESULT-C2R-ENIF2024-G-INPUT-IN-SPEC-SELLADA-SHA256
+  tipo: texto
+  unidad: sha256 del input IN-SPEC-SELLADA
+- id: RESULT-C2R-ENIF2024-G-INPUT-IN-ARBITRO-MEDIDOR-SHA256
+  tipo: texto
+  unidad: sha256 del input IN-ARBITRO-MEDIDOR
+- id: RESULT-C2R-ENIF2024-G-INPUT-IN-ARBITRO-EJES-SHA256
+  tipo: texto
+  unidad: sha256 del input IN-ARBITRO-EJES
+- id: RESULT-C2R-ENIF2024-G-INPUT-IN-FORMA-C2-SELLADA-SHA256
+  tipo: texto
+  unidad: sha256 del input IN-FORMA-C2-SELLADA
+- id: RESULT-C2R-ENIF2024-G-INPUT-IN-C2-COMPUESTO-SHA256
+  tipo: texto
+  unidad: sha256 del input IN-C2-COMPUESTO
+- id: RESULT-C2R-ENIF2024-G-GUARDIA-AST
+  tipo: texto
+  unidad: PASA si auditoria_ast() no reporta violaciones
+- id: RESULT-C2R-ENIF2024-G-GUARDIA-AST-VIOLACIONES
+  tipo: entero
+  unidad: violaciones reportadas por auditoria_ast()
+- id: RESULT-C2R-ENIF2024-G-N-FILAS-DICTAMEN-NO-EMITIBLES
+  tipo: entero
+  unidad: filas del dictamen ENIF 2024, D9, NO-EMITIBLE (A.13)
+- id: RESULT-C2R-ENIF2024-G-N-PARES
+  tipo: entero
+  unidad: pares con formalidad NO-EMITIBLE en el contrato del lote
+- id: RESULT-C2R-ENIF2024-G-N-CELDAS
+  tipo: entero
+  unidad: celdas de esos pares (re-derivado, no copiado)
+- id: RESULT-C2R-ENIF2024-G-PARES
+  tipo: texto
+  unidad: pares, en el orden del contrato del lote
+- id: RESULT-C2R-ENIF2024-G-EJES-USADOS
+  tipo: texto
+  unidad: ejes cuyos marginales dentro de T se derivan
+- id: RESULT-C2R-ENIF2024-G-UNIVERSO
+  tipo: texto
+  unidad: definicion del universo T
+- id: RESULT-C2R-ENIF2024-G-COBERTURA-DECLARADA
+  tipo: proporcion
+  unidad: cobertura de formalidad del arbitro (contrato del lote)
+- id: RESULT-C2R-ENIF2024-G-FILAS-UNIVERSO
+  tipo: entero
+  unidad: personas elegidas 18+ en TMODULO tras las guardias del arbitro
+- id: RESULT-C2R-ENIF2024-G-FILAS-T
+  tipo: entero
+  unidad: personas en T
+- id: RESULT-C2R-ENIF2024-G-FUERA-T
+  tipo: entero
+  unidad: personas fuera de T (P3_13 blanco o 9)
+- id: RESULT-C2R-ENIF2024-G-COBERTURA-T-FILAS
+  tipo: proporcion
+  unidad: filas de T / filas del universo del arbitro
+- id: RESULT-C2R-ENIF2024-G-COBERTURA-T-PONDERADA
+  tipo: proporcion
+  unidad: masa FAC_PER de T / masa del universo del arbitro
+- id: RESULT-C2R-ENIF2024-G-ESTRATOS
+  tipo: entero
+  unidad: EST_DIS distintos (marco entero)
+- id: RESULT-C2R-ENIF2024-G-UPM
+  tipo: entero
+  unidad: UPM distintas (EST_DIS, UPM_DIS), marco entero que se remuestrea
+- id: RESULT-C2R-ENIF2024-G-UPM-CON-T
+  tipo: entero
+  unidad: UPM con al menos una persona de T
+- id: RESULT-C2R-ENIF2024-G-ESTRATOS-UPM-UNICA
+  tipo: entero
+  unidad: estratos con una sola UPM (no remuestrean)
+- id: RESULT-C2R-ENIF2024-G-POBLACION-EXPANDIDA
+  tipo: flotante
+  unidad: suma de FAC_PER del universo del arbitro
+- id: RESULT-C2R-ENIF2024-G-POBLACION-T
+  tipo: flotante
+  unidad: suma de FAC_PER de T
+- id: RESULT-C2R-ENIF2024-G-REPLICAS
+  tipo: entero
+  unidad: replicas del plan compartido
+- id: RESULT-C2R-ENIF2024-G-REPLICAS-BLOQUE
+  tipo: entero
+  unidad: tamano de bloque del plan de replicas (el del piso)
+- id: RESULT-C2R-ENIF2024-G-SEED
+  tipo: entero
+  unidad: semilla PCG64 del plan de replicas
+- id: RESULT-C2R-ENIF2024-G-CONTROL-ARBITRO-VEREDICTO
+  tipo: texto
+  unidad: REPRODUCE si formalidad re-derivada en T = R sellados del arbitro GEN2 (P, IC, N, B-VALIDAS,
+    DEN-W) y filas/fuera exactas
+- id: RESULT-C2R-ENIF2024-G-CONTROL-ARBITRO-DELTA-P-MAX
+  tipo: flotante
+  unidad: peor |delta P| formalidad re-derivada - sellada
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-CONTROL-ARBITRO-DELTA-IC-MAX
+  tipo: flotante
+  unidad: peor |delta IC| formalidad re-derivada - sellada
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-CONTROL-ARBITRO-DELTA-DEN-W-MAX
+  tipo: flotante
+  unidad: peor |delta DEN-W| formalidad
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-CONTROL-ARBITRO-DELTA-FILAS
+  tipo: entero
+  unidad: filas del universo - G-FILAS-PERSONAS sellado
+- id: RESULT-C2R-ENIF2024-G-CONTROL-ARBITRO-DELTA-FUERA-T
+  tipo: entero
+  unidad: fuera de T - G-EJE-FORMALIDAD-FUERA sellado
+- id: RESULT-C2R-ENIF2024-G-IC-PUBLICADO
+  tipo: texto
+  unidad: SI solo si el control del arbitro REPRODUCE; NO deja todos los IC en null
+- id: RESULT-C2R-ENIF2024-G-N-CELDAS-CON-IC
+  tipo: entero
+  unidad: celdas C2R con IC95 publicado
+- id: RESULT-C2R-ENIF2024-G-N-CELDAS-SIN-IC
+  tipo: entero
+  unidad: celdas C2R sin IC (causa en su IC-ESTADO)
+- id: RESULT-C2R-ENIF2024-G-N-CELDAS-SIN-PUNTO
+  tipo: entero
+  unidad: celdas C2R con punto null (NO-CONSTRUIBLE)
+- id: RESULT-C2R-ENIF2024-G-REPLICAS-SIN-DEFINIR-TOTAL
+  tipo: entero
+  unidad: replicas con algun marginal en {0,1} o sin denominador, sumadas sobre celdas
+- id: RESULT-C2R-ENIF2024-G-C2-VECTORIZADO-VS-REFERENCIA-DELTA-MAX
+  tipo: flotante
+  unidad: peor |delta| entre el C2R vectorizado de la primera replica valida y piso_log_aditivo
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-CUENTA-FORMALXFORMALIDAD-DEGENERACION
+  tipo: texto
+  unidad: NO-DEGENERADO o DEGENERADO:<causa> (regla de la spec §8, fijada antes del dato)
+- id: RESULT-C2R-ENIF2024-G-TIPO-INCERTIDUMBRE
+  tipo: texto
+  unidad: rotulo del IC
+- id: RESULT-C2R-ENIF2024-G-ROTULO-SUPUESTO
+  tipo: texto
+  unidad: supuesto del estimador
+- id: RESULT-C2R-ENIF2024-G-COMPARACION-POBLACIONAL
+  tipo: texto
+  unidad: NINGUNA (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-ESTADO-EMISION
+  tipo: texto
+  unidad: estado de las emisiones
+- id: RESULT-C2R-ENIF2024-G-ADOPTA
+  tipo: texto
+  unidad: 'NO'
+- id: RESULT-C2R-ENIF2024-G-CRUCE-DERIVADO
+  tipo: texto
+  unidad: 'NO: no existe cruce() y la auditoria AST lo prueba'
+- id: RESULT-C2R-ENIF2024-G-UNIDAD-DATO
+  tipo: texto
+  unidad: unidad del dato
+- id: RESULT-C2R-ENIF2024-G-PONDERADOR
+  tipo: texto
+  unidad: ponderador
+- id: RESULT-C2R-ENIF2024-G-DESENLACE
+  tipo: texto
+  unidad: desenlace medido
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: C2 restringido (punto) · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de C2R_k validas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-REPLICAS-VALIDAS
+  tipo: entero
+  unidad: replicas con los tres marginales en (0,1) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-IC-ESTADO
+  tipo: texto
+  unidad: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS-UNIVERSO-T o IC-NO-CONSTRUIBLE:<causa>
+    o IC-NO-PUBLICADO:<causa> · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo de la celda y su cobertura · universo T = quien trabaja (P3_13 en 1..7; blanco y 9
+    fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-SEXO-N-DENTRO
+  tipo: entero
+  unidad: filas de T dentro del eje · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-SEXO-N-FUERA-EN-T
+  tipo: entero
+  unidad: filas de T fuera del eje · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-SEXO-1-HOMBRE-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-SEXO-1-HOMBRE-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-SEXO-1-HOMBRE-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-SEXO-1-HOMBRE-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-SEXO-1-HOMBRE-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-SEXO-1-HOMBRE-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-SEXO-1-HOMBRE-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-SEXO-2-MUJER-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-SEXO-2-MUJER-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-SEXO-2-MUJER-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-SEXO-2-MUJER-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-SEXO-2-MUJER-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-SEXO-2-MUJER-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-SEXO-2-MUJER-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-N-DENTRO
+  tipo: entero
+  unidad: filas de T dentro del eje · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-N-FUERA-EN-T
+  tipo: entero
+  unidad: filas de T fuera del eje · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-18-29-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-18-29-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-18-29-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-18-29-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-18-29-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-18-29-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-18-29-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-30-44-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-30-44-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-30-44-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-30-44-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-30-44-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-30-44-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-30-44-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-45-59-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-45-59-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-45-59-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-45-59-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-45-59-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-45-59-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-45-59-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-60-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-60-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-60-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-60-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-60-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-60-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-EDAD-60-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-N-DENTRO
+  tipo: entero
+  unidad: filas de T dentro del eje · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-N-FUERA-EN-T
+  tipo: entero
+  unidad: filas de T fuera del eje · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-HASTA-PRIMARIA-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-HASTA-PRIMARIA-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-HASTA-PRIMARIA-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-SECUNDARIA-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-SECUNDARIA-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-SECUNDARIA-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-SECUNDARIA-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-SECUNDARIA-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-MEDIA-SUPERIOR-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-MEDIA-SUPERIOR-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-MEDIA-SUPERIOR-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-SUPERIOR-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-SUPERIOR-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-SUPERIOR-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-SUPERIOR-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-ESCOLARIDAD-SUPERIOR-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-LOCALIDAD-N-DENTRO
+  tipo: entero
+  unidad: filas de T dentro del eje · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-LOCALIDAD-N-FUERA-EN-T
+  tipo: entero
+  unidad: filas de T fuera del eje · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-LOCALIDAD-MENOR-DE-15-000-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-LOCALIDAD-MENOR-DE-15-000-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-LOCALIDAD-MENOR-DE-15-000-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-LOCALIDAD-MENOR-DE-15-000-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-LOCALIDAD-MENOR-DE-15-000-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-LOCALIDAD-MENOR-DE-15-000-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-LOCALIDAD-MENOR-DE-15-000-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-LOCALIDAD-15-000-Y-MAS-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-LOCALIDAD-15-000-Y-MAS-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-LOCALIDAD-15-000-Y-MAS-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-LOCALIDAD-15-000-Y-MAS-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-LOCALIDAD-15-000-Y-MAS-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-LOCALIDAD-15-000-Y-MAS-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-LOCALIDAD-15-000-Y-MAS-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-CUENTA-FORMAL-N-DENTRO
+  tipo: entero
+  unidad: filas de T dentro del eje · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-CUENTA-FORMAL-N-FUERA-EN-T
+  tipo: entero
+  unidad: filas de T fuera del eje · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-CUENTA-FORMAL-SIN-CUENTA-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-CUENTA-FORMAL-SIN-CUENTA-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-CUENTA-FORMAL-SIN-CUENTA-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-CUENTA-FORMAL-SIN-CUENTA-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-CUENTA-FORMAL-SIN-CUENTA-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-CUENTA-FORMAL-SIN-CUENTA-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-CUENTA-FORMAL-SIN-CUENTA-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-CUENTA-FORMAL-CON-CUENTA-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-CUENTA-FORMAL-CON-CUENTA-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-CUENTA-FORMAL-CON-CUENTA-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-CUENTA-FORMAL-CON-CUENTA-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-CUENTA-FORMAL-CON-CUENTA-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-CUENTA-FORMAL-CON-CUENTA-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-CUENTA-FORMAL-CON-CUENTA-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-N-DENTRO
+  tipo: entero
+  unidad: filas de T dentro del eje · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-N-FUERA-EN-T
+  tipo: entero
+  unidad: filas de T fuera del eje · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DELTA-P
+  tipo: flotante
+  unidad: re-derivado - sellado arbitro GEN2 (P) · universo T = quien trabaja (P3_13 en 1..7; blanco y
+    9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DELTA-IC95INF
+  tipo: flotante
+  unidad: re-derivado - sellado arbitro GEN2 (IC95INF) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DELTA-IC95SUP
+  tipo: flotante
+  unidad: re-derivado - sellado arbitro GEN2 (IC95SUP) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DELTA-DEN-W
+  tipo: flotante
+  unidad: re-derivado - sellado arbitro GEN2 (DEN-W) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DELTA-N
+  tipo: entero
+  unidad: re-derivado - sellado arbitro GEN2 (N) · universo T = quien trabaja (P3_13 en 1..7; blanco y
+    9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DELTA-B-VALIDAS
+  tipo: entero
+  unidad: re-derivado - sellado arbitro GEN2 (B-VALIDAS) · universo T = quien trabaja (P3_13 en 1..7;
+    blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional
+    (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-CON-SEGURIDAD-SOCIAL-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-CON-SEGURIDAD-SOCIAL-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-CON-SEGURIDAD-SOCIAL-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-CON-SEGURIDAD-SOCIAL-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DELTA-P
+  tipo: flotante
+  unidad: re-derivado - sellado arbitro GEN2 (P) · universo T = quien trabaja (P3_13 en 1..7; blanco y
+    9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DELTA-IC95INF
+  tipo: flotante
+  unidad: re-derivado - sellado arbitro GEN2 (IC95INF) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DELTA-IC95SUP
+  tipo: flotante
+  unidad: re-derivado - sellado arbitro GEN2 (IC95SUP) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DELTA-DEN-W
+  tipo: flotante
+  unidad: re-derivado - sellado arbitro GEN2 (DEN-W) · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DELTA-N
+  tipo: entero
+  unidad: re-derivado - sellado arbitro GEN2 (N) · universo T = quien trabaja (P3_13 en 1..7; blanco y
+    9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DELTA-B-VALIDAS
+  tipo: entero
+  unidad: re-derivado - sellado arbitro GEN2 (B-VALIDAS) · universo T = quien trabaja (P3_13 en 1..7;
+    blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional
+    (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-NACIONAL-N-DENTRO
+  tipo: entero
+  unidad: filas de T dentro del eje · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-NACIONAL-N-FUERA-EN-T
+  tipo: entero
+  unidad: filas de T fuera del eje · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-NACIONAL-T-N
+  tipo: entero
+  unidad: personas de T en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura
+    declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-NACIONAL-T-NUMERADOR
+  tipo: entero
+  unidad: personas de T en la celda con D9 · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-NACIONAL-T-DEN-W
+  tipo: flotante
+  unidad: suma de FAC_PER en la celda · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera),
+    cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)
+- id: RESULT-C2R-ENIF2024-G-MARG-T-NACIONAL-T-P
+  tipo: proporcion
+  unidad: p(D9 | celda, T), razon de totales ponderados · universo T = quien trabaja (P3_13 en 1..7; blanco
+    y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo poblacional (A-bis
+    4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-NACIONAL-T-IC95INF
+  tipo: proporcion
+  unidad: percentil 2.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-NACIONAL-T-IC95SUP
+  tipo: proporcion
+  unidad: percentil 97.5 de replicas finitas (plan del arbitro GEN2) · universo T = quien trabaja (P3_13
+    en 1..7; blanco y 9 fuera), cobertura declarada 0.689676 (arbitro); no comparable con el universo
+    poblacional (A-bis 4)
+  permite_no_estimable: true
+- id: RESULT-C2R-ENIF2024-G-MARG-T-NACIONAL-T-B-VALIDAS
+  tipo: entero
+  unidad: replicas finitas · universo T = quien trabaja (P3_13 en 1..7; blanco y 9 fuera), cobertura declarada
+    0.689676 (arbitro); no comparable con el universo poblacional (A-bis 4)

@@ -5165,6 +5165,13 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # arriba: §2 cita F-L verbatim (A.3: no se edita) con la misma forma
     # abreviada "las seis CIV (M-01, 02, 04, 10, 12, 13)".
     "forense/encargos/2026-09-22-GEN2-RELEVO-TANDA-6.md",
+    # ACTO GEN2-DIN-LOTE-C2-RESTRINGIDO-1 (22/sep/2026). §9 del encargo
+    # (verbatim, A.3; sello de cuerpo `53cd0775…`: no se edita) nombra dos
+    # actos de caja de dirección sin prefijo en «no correr a la vez que …»
+    # como aviso de concurrencia; este acto no los acuña, no los ejecuta ni
+    # los cita en ningún otro archivo. Su rótulo propio queda censado en
+    # canon/registro-rotulos.tsv.
+    "forense/encargos/2026-09-22-GEN2-DIN-LOTE-C2-RESTRINGIDO-1.md",
     # ACTO GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3 (21/sep/2026). §5 de la nota de
     # cierre cita `M24` -- el sufijo de ola que el propio módulo del lote usa
     # en sus RESULT (`RESULT-DIN-LOTE24-EM-M24-<eje>-<categoría>-...`), no un
