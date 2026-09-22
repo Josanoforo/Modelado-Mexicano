@@ -471,6 +471,52 @@ def _celdas_validadas() -> dict:
     }
 
 
+def _celdas_d_adoptadas_activas(directorio: str | None = None) -> dict:
+    """Cuenta las celdas-D con `champion_actual` NO vacío y distinto de
+    `NINGUNO` -- el contador `adoptados_activos` que el trámite #981
+    (hallazgo P3, firma de mesa sobre TANDA-5) pidió mover en la misma
+    derivación en que una celda-D adopta (NC-...-3619-01/-02).
+
+    Se deriva directo de `data/curacion-registro/celdas-d/*.yaml`, sin pasar
+    por el marcador: adoptar es un hecho de la celda-D (`champion_actual` en
+    su YAML, firma de mesa citada ahí mismo), no un efecto de que el
+    marcador ya se haya re-derivado. Esto es intencional: el par de
+    `marcador-segmento.tsv` puede seguir `RESERVADA` por diseño de
+    `tools/marcador_segmento.py` (NC-...-3619-01, ajeno a este acto, §9) sin
+    que ese contador quede ciego a la adopción ya firmada.
+
+    `directorio` es un parámetro de prueba (T-CELDAS-D-ADOPTADAS sintético);
+    en producción se deriva siempre de `data/curacion-registro/celdas-d/`.
+    """
+    base = directorio or os.path.join(RAIZ, "data", "curacion-registro", "celdas-d")
+    rutas = sorted(glob.glob(os.path.join(base, "*.yaml")))
+    if yaml is None:
+        return {"error": "PyYAML no disponible", "universo_examinado": len(rutas)}
+    adoptadas, sin_adoptar, ilegibles = [], [], []
+    for ruta in rutas:
+        try:
+            with open(ruta, encoding="utf-8") as fh:
+                d = (yaml.safe_load(fh) or {}).get("celda_d") or {}
+        except (OSError, ValueError):
+            ilegibles.append(os.path.relpath(ruta, RAIZ))
+            continue
+        champ = d.get("champion_actual")
+        cid = d.get("id") or os.path.basename(ruta)
+        if champ and str(champ).strip().upper() not in ("NINGUNO", ""):
+            adoptadas.append({"celda_d": cid, "champion_actual": champ,
+                               "fuente": os.path.relpath(ruta, RAIZ)})
+        else:
+            sin_adoptar.append(cid)
+    return {
+        "total_adoptadas_activas": len(adoptadas),
+        "detalle": adoptadas,
+        "celdas_d_sin_adoptar": sin_adoptar,
+        "celdas_d_ilegibles": ilegibles,
+        "universo_examinado": f"{len(rutas)} archivos en "
+                               f"{os.path.relpath(base, RAIZ) if os.path.isabs(base) else base}",
+    }
+
+
 def _corridas_pendientes_de_contar() -> dict:
     """`corridas.tsv`: filas `estado == SELLADA` repartidas por
     `cuenta_gen2`, más el detalle de `PENDIENTE-DE-MESA` con su
@@ -781,6 +827,11 @@ def derivar_indicadores() -> dict[str, dict]:
         "+ CALC-TRIADA-0002 (resultados.json sellados)",
         "métrica rectora (firma de mesa 20/sep/2026); tres clases que NO se funden: "
         "cruce vs R, persistencia t-1 vs R, duelo de tres nacional")
+    put("celdas_d_adoptadas_activas", _celdas_d_adoptadas_activas(),
+        "data/curacion-registro/celdas-d/*.yaml: champion_actual no vacío y != NINGUNO",
+        "P5 GEN2-TUBERIA-EFICIENCIA-1 / trámite #981: adoptar una celda-D mueve este "
+        "contador en la misma derivación que celdas_validadas, sin depender de que "
+        "el marcador ya haya salido de RESERVADA (NC-...-3619-01, ajeno a este acto)")
     put("marcador_segmento", _marcador_segmento_resumen(),
         "tools/marcador_segmento.py --json + data/corrida0/marcador-segmento.tsv (columnas estado/emision)")
     put("corridas_pendientes_de_contar", _corridas_pendientes_de_contar(),
