@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import importlib.util
 import sys
+import tempfile
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
@@ -446,7 +447,22 @@ def t_marginales_adopcion_por_instrumento():
             _falla("T-MARGINALES-ADOPCION",
                    f"{f['celda_id']} es {f['adopcion_marginal']} pero su "
                    f"instrumento es ENVIPE 2025")
-    yml = M._yaml(M.ESTIMADORES_YAML)
+    # Escribe a un YAML PROPIO, nunca a M.ESTIMADORES_YAML: ese derivado no
+    # viaja committeado en el PR (P4 §2(2), firma de mesa 21/sep/2026 -- el
+    # job del push a `main` lo re-deriva), así que leerlo del árbol en CI
+    # da el archivo VIEJO de `origin/main` y esta guardia falla en falso.
+    tmp = tempfile.NamedTemporaryFile(
+        mode="w", suffix=".yaml", delete=False, encoding="utf-8", dir=str(M.RAIZ))
+    tmp.close()
+    ruta_tmp = Path(tmp.name)
+    ruta_original = M.ESTIMADORES_YAML
+    M.ESTIMADORES_YAML = ruta_tmp
+    try:
+        M.escribe_estimadores_yaml(v["filas"])
+        yml = M._yaml(ruta_tmp)
+    finally:
+        M.ESTIMADORES_YAML = ruta_original
+        ruta_tmp.unlink(missing_ok=True)
     marg_yaml = yml.get("marginales") or {}
     if len(marg_yaml) != 57:
         _falla("T-MARGINALES-ADOPCION",
