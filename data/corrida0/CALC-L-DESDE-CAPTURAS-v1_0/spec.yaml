@@ -1,0 +1,68 @@
+# CALC-L-DESDE-CAPTURAS-v1_0 -- cara mecanica de spec.md (ACTO
+# GEN2-L-DESDE-CAPTURAS-1, 21/sep/2026). Produce L por celda y por
+# variante desde las 224 capturas selladas de corridas-L-completa-v1_0,
+# con el agregador que la spec sellada declara (mediana), mas dispersion
+# e intervalo. CONGELADO en el COMMIT-1 de este acto; el medidor corre en
+# el COMMIT-2.
+calc_id: CALC-L-DESDE-CAPTURAS-v1_0
+spec_md: spec.md
+spec_md_sha256: f8b3e5a26039cdc8e3a4d81ed9674bc6451aaf0be3ee0193da2424b3b787ac61
+
+script: data/corrida0/CALC-L-DESDE-CAPTURAS-v1_0/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: L-CAMPO-DESDE-CAPTURAS-COMPLETA
+  cuenta_gen2: SI
+  cuenta_gen2_firma: 'Propuesta de direccion, encargo GEN2-L-DESDE-CAPTURAS-1, S2: "La corrida de GEN2-L-DESDE-CAPTURAS-1 cuenta (cuenta_gen2 = SI): mide desde capturas selladas con hash, que es la via (i) de 4.1. No pinea: los pines de L los firma mesa con la lista de este acto."'
+  validacion_independiente: NO-HECHA
+  adopta_al_motor: NO
+  pinea: NO
+  metodo_congelado_antes_de_resultados: 'SI; COMMIT-1 de este acto congela spec.md + spec.yaml + tools/agrega_l_v1_0.py + tools/calcula_l_desde_capturas.py + medidor.py + sus tests, antes de leer resultados nuevos (las capturas ya existian, pero ningun resultado de este CALC se derivo antes del COMMIT-1).'
+
+inputs:
+  - {id: IN-F5C-PLAN, origen: repo, ruta: "forense/prereg-duelo-v2/F5-completa-plan-v1_0.json", sha256: ed7734616774bac2f7e6d4c25f5f404f27e8f4c33d49f30957e5b48bfed73307}
+  - {id: IN-F5C-SPEC-SELLADA, origen: repo, ruta: "forense/prereg-duelo-v2/F5-completa-spec-v1_0.md", sha256: 25daa3e35cf493b3cdbb92c6882fc2bce24d78a90f3b575d4055440088c4f74d}
+  - {id: IN-EXTRACTOR-REGLA-INVALIDAS, origen: repo, ruta: "tools/calcula_f5_completa.py", sha256: eeae052d9c39ffdb278d38276b7bfd27d4c92eb5d427f438823c042c760c2f2c}
+  - {id: IN-AGREGADOR-MODULO, origen: repo, ruta: "tools/agrega_l_v1_0.py", sha256: 438fcef5e941e7a39762fe94aaceff9553852e371814ecc1aa4449425c8dd571}
+  - {id: IN-CALCULADOR, origen: repo, ruta: "tools/calcula_l_desde_capturas.py", sha256: 1080e01d57550088bf45ae3f3513b0b701ec98cc85e00acec9de6a225e759d6c}
+  - {id: IN-LEGACY-AGREGADO-V13, origen: repo, ruta: "forense/prereg-duelo-v2/agregado-v1_3-resultado.json", sha256: e0d59d542e141db2d572a3ed4d81e7651f2a0960f25841c0cd1c060774a6ab23}
+  - {id: IN-LEGACY-EXTRAIDO-V12, origen: repo, ruta: "forense/prereg-duelo-v2/L-extraido-v1_2.tsv", sha256: 8c9c5fb4707a7b852dcae6e5bb31618263d2b6d5145e5d8a0d6618f6fba6239c}
+dependencias_materiales: []
+
+variables: []
+
+universo: "Las 14 celdas del duelo, L-spec-v1_4.json, x 2 variantes (L-solo, L+corpus) = 28 slots."
+filtros: "Regla de F5-completa-spec-v1_0.md #4: ultima linea no vacia de texto_crudo; ESTIMACION_PUNTUAL=N% con 0<=N<=100 -> VALIDA; ABSTENCION -> ABSTENCION; otra terminacion -> MALFORMADA; captura sin estado OK -> ERROR_TECNICO. Ningun faltante se sustituye por cero."
+ponderador: NO-APLICA
+transformacion: "Por celda/variante: mediana de replicas VALIDA (agrega_l_v1_0.agregar_celda); dispersion = MAD (mediana de |v-mediana|); IC = bootstrap percentil 2.5-97.5, 10000 replicas, semilla 42, sobre las mismas replicas (con reemplazo)."
+estimando: "Descriptivo: el punto L de cada celda/variante y su incertidumbre entre repeticiones. No es identificacion (A-bis 1): es la lectura del LLM, no una estimacion de un parametro poblacional mexicano."
+dependencias_materiales_nota: "Ninguna: este CALC no abre microdato ni requiere entorno CAJA -- las 224 capturas ya estan en el repo con hash propio."
+
+parametros:
+  k_replicas: 8
+  n_celdas: 14
+  n_variantes: 2
+  n_slots: 28
+  bootstrap_replicas: 10000
+  bootstrap_seed: 42
+  nivel_ic: 0.95
+
+seed:
+  aplica: true
+  valor: 42
+  rng: "random.Random (stdlib), muestreo con reemplazo por indice -- agrega_l_v1_0.agregar_celda"
+  determinismo_probado_en: tools/test_agrega_l_v1_0.py::TestAgregarCeldaOro::test_determinismo_misma_semilla
+
+tolerancia:
+  tipo: flotante
+  valor: 1.0e-6
+  razon: "Mediana, MAD e IC bootstrap son de punto flotante; el bootstrap es determinista por semilla fija, asi que dos corridas del mismo CALC dan el mismo valor exacto salvo error de redondeo de suma en floats."
+
+resultados:
+  - {id: RESULT-LDESC-N-POSICIONES,                tipo: entero, unidad: "capturas totales del plan (esperado 224)"}
+  - {id: RESULT-LDESC-N-SLOTS,                     tipo: entero, unidad: "celda x variante (esperado 28)"}
+  - {id: RESULT-LDESC-N-SLOTS-CON-MEDIANA,         tipo: entero, unidad: "slots con al menos una replica VALIDA"}
+  - {id: RESULT-LDESC-N-SLOTS-SIN-MEDIANA,         tipo: entero, unidad: "slots sin ninguna replica VALIDA (mediana ausente)"}
+  - {id: RESULT-LDESC-TABLA-JSON,                  tipo: texto,  unidad: "JSON: por celda:variante -- n_validas, mediana, dispersion_mad, ic_lo, ic_hi y conteos de estado"}
+  - {id: RESULT-LDESC-DIFERENCIAS-VS-GEN1-JSON,    tipo: texto,  unidad: "JSON: por celda:variante -- gen1_media, mediana_v12 (si reconstruible), mediana_gen2_224, delta_agregador_pp, delta_conjunto_pp, delta_total_gen1_vs_gen2_pp"}
