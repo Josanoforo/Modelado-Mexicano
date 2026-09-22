@@ -32,3 +32,12 @@ Por objeto: los dos CALC sin `ejecucion.json`; ninguna rama con COMMIT-2. Repít
 ## 6 · LATITUD (solo logística) · 7 · PAROS
 Enlazar `data/raw`, instalar dependencias, reintentar sin salida producida. PAROS: a) leer ENIF 2024 por dos variables fuera de `corrida0 run` de estos CALC o antes de que emisiones esté en `origin` · b) editar spec, `spec.yaml` fuera de P3, o `.py` · c) `run` no sella → no se parcha · d) P2 halla un nulo · e) repetir una corrida · f) sesión/entorno equivocados · g) adoptar · h) correr un LLM.
 Compuertas: P0 y «emisiones en origin» protegen abrir dato. Perímetro: `ejecucion/resultados/sello` de los dos CALC, la línea de P3, filas propias, marcador/tablero por comando, nota, cascada. Fuera de eso, PARA. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** «Fila L = `NO-EMITE` con la razón de §2 (L1/L2 del paquete `PAQUETE-L-LOTE-ENIF2024-v1_0`)». · **por qué:** `DIFERIDO-A:FP-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-01`: la firma de mesa del encargo (§2) selló no correr L1/L2 por presupuesto en este lanzamiento; la fila queda `NO-EMITE — nadie corrió el mecanismo` (no una derrota, §2 de las instrucciones). · **impacto:** ninguno sobre el veredicto primario (la regla v0.3 no depende de L1/L2); la pregunta de L sigue abierta en la fila L del duelo ENVIPE 2026 y en el marcador retrospectivo del piloto 1 (10.64 pp). · **sucesor:** `FP-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-01`. `NC-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-01`.
+- **Reservas declaradas, no NC:** los 5 pares con `formalidad` (universo restringido a 68.97 %, A-bis 4) quedan `SIN-PISO-SOLO-P2` — consecuencia directa de la spec ya congelada en `#979` (Q1 de esa acta, aún sin resolver por mesa: `FP-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-02`), no algo que este acto dejó de correr.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3` · rama `acto/gen2-din-lote-enif2024-commit-2-3` · **PR #986** (21/sep/2026) · ADR `ADR-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-01` · nota `forense/notas/2026-09-21-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-cierre.md`. COMMIT-2 (`CALC-DIN-LOTE-ENIF2024-EMISIONES-0001--8e53d38b30c6`), COMMIT-3a (sha256 de emisiones selladas en `ADJUDICACION/spec.yaml`), COMMIT-3 (`CALC-DIN-LOTE-ENIF2024-ADJUDICACION-0001--7645dcf1301a`): veredicto primario `PROPUESTA-CON-RESERVA` (`R2` vs `C2`, regla v0.3, 44 celdas). `FP-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-01..02`; `NC-…-8e53-01`. Mesa fusiona; no adopta.
