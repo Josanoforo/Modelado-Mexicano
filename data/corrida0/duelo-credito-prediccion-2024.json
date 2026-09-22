@@ -1,0 +1,6118 @@
+{
+  "seed": 20260922,
+  "replicas": 10000,
+  "conductas": {
+    "K1": {
+      "conducta": "K1",
+      "n_celdas_elegibles": 12,
+      "celdas_elegibles": [
+        "NACIONAL-TODOS",
+        "SEXO-1",
+        "SEXO-2",
+        "EDAD-18-29",
+        "EDAD-30-44",
+        "EDAD-45-59",
+        "EDAD-60-MAS",
+        "LOCALIDAD-MENOR-DE-15-000",
+        "LOCALIDAD-15-000-Y-MAS",
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+        "UNIVERSO-UNIVERSO-TRABAJA"
+      ],
+      "celdas_excluidas_escolaridad": [
+        "ESCOLARIDAD-HASTA-PRIMARIA",
+        "ESCOLARIDAD-MEDIA-SUPERIOR",
+        "ESCOLARIDAD-SECUNDARIA",
+        "ESCOLARIDAD-SUPERIOR"
+      ],
+      "habilitados": [
+        "TENDENCIA-2",
+        "TENDENCIA-3",
+        "TENDENCIA-SERIE"
+      ],
+      "retador_primario": "TENDENCIA-SERIE",
+      "mae_por_contendiente": {
+        "PERSISTENCIA": {
+          "mae_pp": 4.912094828024652,
+          "n_celdas_puntuadas": 12,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2",
+            "UNIVERSO-UNIVERSO-TRABAJA"
+          ]
+        },
+        "TENDENCIA-2": {
+          "mae_pp": 3.623155206925139,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        },
+        "TENDENCIA-3": {
+          "mae_pp": 2.3871680531589625,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        },
+        "TENDENCIA-SERIE": {
+          "mae_pp": 2.371650648337755,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        }
+      },
+      "adjudicacion_por_retador": {
+        "TENDENCIA-2": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.3425503420858524,
+              "ic95": [
+                0.3173922489031786,
+                0.3685656296613164
+              ],
+              "error_pp": 3.0911313352187553,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.3430630286499572,
+              "ic95": [
+                0.3083695454174231,
+                0.3807172001407347
+              ],
+              "error_pp": 4.4651380761338455,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.34281262671704416,
+              "ic95": [
+                0.30895491057868024,
+                0.3780304898805487
+              ],
+              "error_pp": 1.834502827990353,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.3083786604124625,
+              "ic95": [
+                0.26587308228251977,
+                0.35335797718847917
+              ],
+              "error_pp": 1.4725291920354988,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.3937641990690739,
+              "ic95": [
+                0.3491531343429803,
+                0.4408456142535545
+              ],
+              "error_pp": 3.858084301122089,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.33314094408134265,
+              "ic95": [
+                0.2883354007594719,
+                0.38184435182098325
+              ],
+              "error_pp": 6.9181388173831735,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.3396248507826953,
+              "ic95": [
+                0.2668700270690501,
+                0.4204601579663655
+              ],
+              "error_pp": 6.291373581577475,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.20082280529611596,
+              "ic95": [
+                0.16034114660904597,
+                0.2477249966678571
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.2390831591483152,
+              "ic95": [
+                0.20308648963808287,
+                0.27988233706167925
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.36937016780190574,
+              "ic95": [
+                0.321397421549865,
+                0.42008429108061623
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.5328217007359723,
+              "ic95": [
+                0.4757066182748377,
+                0.5886173784779606
+              ],
+              "error_pp": 22.912516771912685,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.25611263560602016,
+              "ic95": [
+                0.22179183511624753,
+                0.29279234241818947
+              ],
+              "error_pp": 0.39483489365261804,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.3904066947326148,
+              "ic95": [
+                0.35631803153432245,
+                0.42566041412784383
+              ],
+              "error_pp": 4.282663837212441,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 3.623155206925139,
+          "delta_mae_pp": 0.6512126928344468,
+          "delta_ic95": [
+            -1.118818691272704,
+            1.9518858930109593
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "SECUNDARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 5,
+            "proporcion": 0.5555555555555556,
+            "ic95_wilson": [
+              0.26665129180087416,
+              0.8112214802294544
+            ]
+          }
+        },
+        "TENDENCIA-3": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.3469399783790913,
+              "ic95": [
+                0.32764862300930675,
+                0.3663598487611461
+              ],
+              "error_pp": 2.6521677058948647,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.37022178210647244,
+              "ic95": [
+                0.34240130795327195,
+                0.3996650396820123
+              ],
+              "error_pp": 1.7492627304823205,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.32624818444417547,
+              "ic95": [
+                0.30165196645954795,
+                0.3506482086440863
+              ],
+              "error_pp": 3.4909470552772213,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.28765969378176,
+              "ic95": [
+                0.25760073825101876,
+                0.3199308304580447
+              ],
+              "error_pp": 3.5444258551057484,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.4128258286550162,
+              "ic95": [
+                0.38057676448513406,
+                0.44629909009227864
+              ],
+              "error_pp": 1.951921342527857,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.36997425259934347,
+              "ic95": [
+                0.33338195218796696,
+                0.40779707001765664
+              ],
+              "error_pp": 3.2348079655830917,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.28198920923902493,
+              "ic95": [
+                0.23323821616233087,
+                0.33658749338267435
+              ],
+              "error_pp": 0.5278094272104406,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.19124782210922117,
+              "ic95": [
+                0.16290565436585605,
+                0.22501713790348998
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.2754596709549108,
+              "ic95": [
+                0.24535209951986023,
+                0.30730501854895365
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.3442989191871345,
+              "ic95": [
+                0.3094655825040551,
+                0.3799203602482279
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.5457464427156086,
+              "ic95": [
+                0.5057099262753051,
+                0.5863396094336142
+              ],
+              "error_pp": 21.62004257394906,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.2631178311142303,
+              "ic95": [
+                0.23469209790154194,
+                0.29427274725688896
+              ],
+              "error_pp": 0.305684657168398,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.392958475712932,
+              "ic95": [
+                0.36760516811155386,
+                0.41819875527740635
+              ],
+              "error_pp": 4.02748573918072,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 2.387168053158962,
+          "delta_mae_pp": 1.8871998466006237,
+          "delta_ic95": [
+            0.41442508103902265,
+            2.644654869440185
+          ],
+          "veredicto": "PROPUESTA-CON-RESERVA",
+          "rol": "SECUNDARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 5,
+            "proporcion": 0.5555555555555556,
+            "ic95_wilson": [
+              0.26665129180087416,
+              0.8112214802294544
+            ]
+          }
+        },
+        "TENDENCIA-SERIE": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.34671272205644693,
+              "ic95": [
+                0.33134648032499553,
+                0.36245424817993377
+              ],
+              "error_pp": 2.674893338159301,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.3778305868013355,
+              "ic95": [
+                0.3556240134417715,
+                0.40068030418535916
+              ],
+              "error_pp": 0.9883822609960125,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.3198350028945063,
+              "ic95": [
+                0.30024975871245685,
+                0.3396531297541141
+              ],
+              "error_pp": 4.132265210244141,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.2884819347004345,
+              "ic95": [
+                0.263428898809781,
+                0.31490439554477956
+              ],
+              "error_pp": 3.4622017632382986,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.4063332271218408,
+              "ic95": [
+                0.38017546154105464,
+                0.4332121583389071
+              ],
+              "error_pp": 2.6011814958454007,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.3761762467624279,
+              "ic95": [
+                0.34777395414281814,
+                0.4057280718416742
+              ],
+              "error_pp": 2.6146085492746494,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.27656514298524676,
+              "ic95": [
+                0.23821928505325277,
+                0.32004705885559936
+              ],
+              "error_pp": 0.01459719816737648,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.172962339901434,
+              "ic95": [
+                0.15144255325058506,
+                0.19621756851642982
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.2789615188397637,
+              "ic95": [
+                0.25474914047394226,
+                0.30464822451041135
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.3531832666942852,
+              "ic95": [
+                0.32475946862335653,
+                0.382006372916982
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.5601360595616336,
+              "ic95": [
+                0.5272481948759383,
+                0.5932106343886101
+              ],
+              "error_pp": 20.18108088934656,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.2672298715306032,
+              "ic95": [
+                0.2438335896124806,
+                0.29303659716352254
+              ],
+              "error_pp": 0.7168886988056844,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.3918349599016499,
+              "ic95": [
+                0.37207439006322296,
+                0.4119444124626487
+              ],
+              "error_pp": 4.139837320308931,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 2.371650648337755,
+          "delta_mae_pp": 1.902717251421831,
+          "delta_ic95": [
+            0.6196315649035655,
+            2.648953649486308
+          ],
+          "veredicto": "PROPUESTA-CON-RESERVA",
+          "rol": "PRIMARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 5,
+            "proporcion": 0.5555555555555556,
+            "ic95_wilson": [
+              0.26665129180087416,
+              0.8112214802294544
+            ]
+          }
+        }
+      },
+      "estados_celda": {
+        "NACIONAL-TODOS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "SEXO-1": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "SEXO-2": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-18-29": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-30-44": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-45-59": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-60-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-HASTA-PRIMARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-SECUNDARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-MEDIA-SUPERIOR": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-SUPERIOR": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "LOCALIDAD-MENOR-DE-15-000": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "LOCALIDAD-15-000-Y-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "UNIVERSO-UNIVERSO-TRABAJA": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        }
+      },
+      "contexto_oferta": {
+        "NACIONAL-TODOS": {
+          "P": 0.37346165543803994,
+          "K4B-OFERTA": 0.22838598718792563,
+          "K5": 0.18583333799922086
+        },
+        "SEXO-1": {
+          "P": 0.38771440941129565,
+          "K4B-OFERTA": 0.21232953208326852,
+          "K5": 0.23011619598767835
+        },
+        "SEXO-2": {
+          "P": 0.3611576549969477,
+          "K4B-OFERTA": 0.24106581632530413,
+          "K5": 0.14760519589803864
+        },
+        "EDAD-18-29": {
+          "P": 0.32310395233281747,
+          "K4B-OFERTA": 0.2618661321121097,
+          "K5": 0.16526135968695654
+        },
+        "EDAD-30-44": {
+          "P": 0.4323450420802948,
+          "K4B-OFERTA": 0.19780790607433957,
+          "K5": 0.23508577851124834
+        },
+        "EDAD-45-59": {
+          "P": 0.4023223322551744,
+          "K4B-OFERTA": 0.2296671020721648,
+          "K5": 0.1907576535919331
+        },
+        "EDAD-60-MAS": {
+          "P": 0.2767111149669205,
+          "K4B-OFERTA": 0.21180318746764973,
+          "K5": 0.09979067184069045
+        },
+        "LOCALIDAD-MENOR-DE-15-000": {
+          "P": 0.26006098454254634,
+          "K4B-OFERTA": 0.2447627297345355,
+          "K5": 0.13026647741920983
+        },
+        "LOCALIDAD-15-000-Y-MAS": {
+          "P": 0.4332333331047392,
+          "K4B-OFERTA": 0.21583762349752222,
+          "K5": 0.21512174038089338
+        },
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+          "P": 0.1971133819886243,
+          "K4B-OFERTA": 0.2785339046395823,
+          "K5": 0.09032516255898441
+        },
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+          "P": 0.4286557960065445,
+          "K4B-OFERTA": 0.1980020265691924,
+          "K5": 0.2187579647623585
+        },
+        "UNIVERSO-UNIVERSO-TRABAJA": {
+          "P": 0.4190925159608845,
+          "K4B-OFERTA": 0.20323307615112263,
+          "K5": 0.21345336923186245
+        }
+      }
+    },
+    "K2-DEPARTAMENTAL": {
+      "conducta": "K2-DEPARTAMENTAL",
+      "n_celdas_elegibles": 12,
+      "celdas_elegibles": [
+        "NACIONAL-TODOS",
+        "SEXO-1",
+        "SEXO-2",
+        "EDAD-18-29",
+        "EDAD-30-44",
+        "EDAD-45-59",
+        "EDAD-60-MAS",
+        "LOCALIDAD-MENOR-DE-15-000",
+        "LOCALIDAD-15-000-Y-MAS",
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+        "UNIVERSO-UNIVERSO-TRABAJA"
+      ],
+      "celdas_excluidas_escolaridad": [
+        "ESCOLARIDAD-HASTA-PRIMARIA",
+        "ESCOLARIDAD-MEDIA-SUPERIOR",
+        "ESCOLARIDAD-SECUNDARIA",
+        "ESCOLARIDAD-SUPERIOR"
+      ],
+      "habilitados": [
+        "TENDENCIA-2",
+        "TENDENCIA-3",
+        "TENDENCIA-SERIE"
+      ],
+      "retador_primario": "TENDENCIA-2",
+      "mae_por_contendiente": {
+        "PERSISTENCIA": {
+          "mae_pp": 2.685259982060922,
+          "n_celdas_puntuadas": 12,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2",
+            "UNIVERSO-UNIVERSO-TRABAJA"
+          ]
+        },
+        "TENDENCIA-2": {
+          "mae_pp": 2.1228695517358727,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        },
+        "TENDENCIA-3": {
+          "mae_pp": 2.328309596674096,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        },
+        "TENDENCIA-SERIE": {
+          "mae_pp": 2.7910196354236962,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        }
+      },
+      "adjudicacion_por_retador": {
+        "TENDENCIA-2": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.20921379762142844,
+              "ic95": [
+                0.1883339290731054,
+                0.23183549414959917
+              ],
+              "error_pp": 1.6961208025257495,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.19776729599358303,
+              "ic95": [
+                0.16909096169230659,
+                0.22806381095494366
+              ],
+              "error_pp": 1.7953554561295937,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.2193162327060259,
+              "ic95": [
+                0.19108652928406084,
+                0.251243258103467
+              ],
+              "error_pp": 1.5883550124227623,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.21250879742004852,
+              "ic95": [
+                0.17548454540542327,
+                0.2544682527413817
+              ],
+              "error_pp": 0.752480507390324,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.22072870316628948,
+              "ic95": [
+                0.18441907494117127,
+                0.26114648370167337
+              ],
+              "error_pp": 3.3088280798372476,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.2044624804260735,
+              "ic95": [
+                0.1661660294005945,
+                0.24979131809177224
+              ],
+              "error_pp": 2.9102887594636084,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.1992305895437513,
+              "ic95": [
+                0.13931522240408634,
+                0.2740646542673424
+              ],
+              "error_pp": 4.158037314311549,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.12528695701891757,
+              "ic95": [
+                0.09158888325578052,
+                0.16827829512517586
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.14479141683774255,
+              "ic95": [
+                0.11717201598561013,
+                0.1789638806339546
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.213061899647631,
+              "ic95": [
+                0.17421980702891748,
+                0.2586736776488721
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.3401434919014147,
+              "ic95": [
+                0.28607363779820716,
+                0.3978352831636335
+              ],
+              "error_pp": 3.9847936819982444,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.16275919263831484,
+              "ic95": [
+                0.13318024549606802,
+                0.1982663942340612
+              ],
+              "error_pp": 0.8949594698713093,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.23486927147628392,
+              "ic95": [
+                0.2068089644062106,
+                0.26523516825262566
+              ],
+              "error_pp": 2.0014005636707104,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 2.1228695517358727,
+          "delta_mae_pp": 0.29759215883320245,
+          "delta_ic95": [
+            -1.2547862986124751,
+            1.2138811477201379
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "PRIMARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 9,
+            "proporcion": 1.0,
+            "ic95_wilson": [
+              0.700854948272956,
+              1.0
+            ]
+          }
+        },
+        "TENDENCIA-3": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.20011534975697357,
+              "ic95": [
+                0.18441223785966274,
+                0.21642221234015704
+              ],
+              "error_pp": 2.6059655889712374,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.19328290658637004,
+              "ic95": [
+                0.17336941475086493,
+                0.21550266633738335
+              ],
+              "error_pp": 2.243794396850893,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.20615482360093607,
+              "ic95": [
+                0.18535901805098115,
+                0.2278507766488929
+              ],
+              "error_pp": 2.9044959229317464,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.1914478192260483,
+              "ic95": [
+                0.16616095970371086,
+                0.21984320708252797
+              ],
+              "error_pp": 2.8585783267903455,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.22398876558844358,
+              "ic95": [
+                0.19774896587231774,
+                0.25327425958828675
+              ],
+              "error_pp": 2.982821837621838,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.20488963058321785,
+              "ic95": [
+                0.17620739057653378,
+                0.2380042373338154
+              ],
+              "error_pp": 2.8675737437491744,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.16235941580917115,
+              "ic95": [
+                0.12269749588281775,
+                0.21110863271126706
+              ],
+              "error_pp": 0.47091994085353417,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.11306937228203538,
+              "ic95": [
+                0.09036554420869851,
+                0.1397900674687893
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.15721329700570402,
+              "ic95": [
+                0.13468501186448464,
+                0.1835726838387792
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.18622535567100001,
+              "ic95": [
+                0.1598338521817113,
+                0.21539983277217326
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.32950015257198667,
+              "ic95": [
+                0.2918020030713052,
+                0.36983757557992614
+              ],
+              "error_pp": 5.049127614941046,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": false,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.1676955266238887,
+              "ic95": [
+                0.1437280116367307,
+                0.19490938546147632
+              ],
+              "error_pp": 0.4013260713139233,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.2186901717031493,
+              "ic95": [
+                0.19892361334526043,
+                0.2395034167328715
+              ],
+              "error_pp": 3.6193105409841717,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 2.328309596674096,
+          "delta_mae_pp": 0.09215211389497924,
+          "delta_ic95": [
+            -1.025193083049821,
+            0.8296933148870341
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "SECUNDARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 3,
+            "proporcion": 0.3333333333333333,
+            "ic95_wilson": [
+              0.12058381743407343,
+              0.6457978664749412
+            ]
+          }
+        },
+        "TENDENCIA-SERIE": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.19672654044850607,
+              "ic95": [
+                0.18422585205926664,
+                0.2098649700664436
+              ],
+              "error_pp": 2.944846519817987,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.1921019150116202,
+              "ic95": [
+                0.1752764759595557,
+                0.2098348062260864
+              ],
+              "error_pp": 2.361893554325878,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.20127798827798807,
+              "ic95": [
+                0.18544447092623306,
+                0.21879779859612936
+              ],
+              "error_pp": 3.392179455226546,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.19738068353033972,
+              "ic95": [
+                0.17623695208063983,
+                0.22048785507786148
+              ],
+              "error_pp": 2.2652918963612043,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.21567029306775462,
+              "ic95": [
+                0.19504592039345992,
+                0.23842873603943185
+              ],
+              "error_pp": 3.814669089690734,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.2003940446026148,
+              "ic95": [
+                0.17748291887463666,
+                0.22568510027241045
+              ],
+              "error_pp": 3.3171323418094785,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.14458663587010598,
+              "ic95": [
+                0.11679900851545934,
+                0.1789794454172378
+              ],
+              "error_pp": 1.3063580530529832,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.10380121602698357,
+              "ic95": [
+                0.08701478577471117,
+                0.12319062095921383
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.15975870812147025,
+              "ic95": [
+                0.14066040889899514,
+                0.1809179382413657
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.18732758849049352,
+              "ic95": [
+                0.16544033621109536,
+                0.21054746108820183
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.32295204962443563,
+              "ic95": [
+                0.2919750780179106,
+                0.35603722032079554
+              ],
+              "error_pp": 5.703937909696149,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": false,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.18354100056774678,
+              "ic95": [
+                0.16037610494964696,
+                0.2092597074494268
+              ],
+              "error_pp": 1.183221323071884,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.20954743225842531,
+              "ic95": [
+                0.19460506445205608,
+                0.22551765234768292
+              ],
+              "error_pp": 4.533584485456571,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 2.7910196354236962,
+          "delta_mae_pp": -0.37055792485462113,
+          "delta_ic95": [
+            -1.202670080805588,
+            0.49403129028186077
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "SECUNDARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 3,
+            "proporcion": 0.3333333333333333,
+            "ic95_wilson": [
+              0.12058381743407343,
+              0.6457978664749412
+            ]
+          }
+        }
+      },
+      "estados_celda": {
+        "NACIONAL-TODOS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "SEXO-1": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "SEXO-2": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-18-29": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-30-44": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-45-59": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-60-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-HASTA-PRIMARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-SECUNDARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-MEDIA-SUPERIOR": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-SUPERIOR": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "LOCALIDAD-MENOR-DE-15-000": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "LOCALIDAD-15-000-Y-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "UNIVERSO-UNIVERSO-TRABAJA": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        }
+      },
+      "contexto_oferta": {
+        "NACIONAL-TODOS": {
+          "P": 0.22617500564668594,
+          "K4B-OFERTA": 0.22838598718792563,
+          "K5": 0.18583333799922086
+        },
+        "SEXO-1": {
+          "P": 0.21572085055487897,
+          "K4B-OFERTA": 0.21232953208326852,
+          "K5": 0.23011619598767835
+        },
+        "SEXO-2": {
+          "P": 0.23519978283025353,
+          "K4B-OFERTA": 0.24106581632530413,
+          "K5": 0.14760519589803864
+        },
+        "EDAD-18-29": {
+          "P": 0.22003360249395176,
+          "K4B-OFERTA": 0.2618661321121097,
+          "K5": 0.16526135968695654
+        },
+        "EDAD-30-44": {
+          "P": 0.25381698396466196,
+          "K4B-OFERTA": 0.19780790607433957,
+          "K5": 0.23508577851124834
+        },
+        "EDAD-45-59": {
+          "P": 0.2335653680207096,
+          "K4B-OFERTA": 0.2296671020721648,
+          "K5": 0.1907576535919331
+        },
+        "EDAD-60-MAS": {
+          "P": 0.1576502164006358,
+          "K4B-OFERTA": 0.21180318746764973,
+          "K5": 0.09979067184069045
+        },
+        "LOCALIDAD-MENOR-DE-15-000": {
+          "P": 0.17170878733702793,
+          "K4B-OFERTA": 0.2447627297345355,
+          "K5": 0.13026647741920983
+        },
+        "LOCALIDAD-15-000-Y-MAS": {
+          "P": 0.254883277112991,
+          "K4B-OFERTA": 0.21583762349752222,
+          "K5": 0.21512174038089338
+        },
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+          "P": 0.13231534009097135,
+          "K4B-OFERTA": 0.2785339046395823,
+          "K5": 0.09032516255898441
+        },
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+          "P": 0.2547162799266353,
+          "K4B-OFERTA": 0.1980020265691924,
+          "K5": 0.2187579647623585
+        },
+        "UNIVERSO-UNIVERSO-TRABAJA": {
+          "P": 0.24966081537831353,
+          "K4B-OFERTA": 0.20323307615112263,
+          "K5": 0.21345336923186245
+        }
+      }
+    },
+    "K2-NOMINA": {
+      "conducta": "K2-NOMINA",
+      "n_celdas_elegibles": 12,
+      "celdas_elegibles": [
+        "NACIONAL-TODOS",
+        "SEXO-1",
+        "SEXO-2",
+        "EDAD-18-29",
+        "EDAD-30-44",
+        "EDAD-45-59",
+        "EDAD-60-MAS",
+        "LOCALIDAD-MENOR-DE-15-000",
+        "LOCALIDAD-15-000-Y-MAS",
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+        "UNIVERSO-UNIVERSO-TRABAJA"
+      ],
+      "celdas_excluidas_escolaridad": [
+        "ESCOLARIDAD-HASTA-PRIMARIA",
+        "ESCOLARIDAD-MEDIA-SUPERIOR",
+        "ESCOLARIDAD-SECUNDARIA",
+        "ESCOLARIDAD-SUPERIOR"
+      ],
+      "habilitados": [
+        "TENDENCIA-2",
+        "TENDENCIA-3",
+        "TENDENCIA-SERIE"
+      ],
+      "retador_primario": "TENDENCIA-3",
+      "mae_por_contendiente": {
+        "PERSISTENCIA": {
+          "mae_pp": 0.9853096185268005,
+          "n_celdas_puntuadas": 12,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2",
+            "UNIVERSO-UNIVERSO-TRABAJA"
+          ]
+        },
+        "TENDENCIA-2": {
+          "mae_pp": 1.5801043884596682,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        },
+        "TENDENCIA-3": {
+          "mae_pp": 1.0605692278468595,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        },
+        "TENDENCIA-SERIE": {
+          "mae_pp": 1.1229436266321682,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        }
+      },
+      "adjudicacion_por_retador": {
+        "TENDENCIA-2": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.023443289828807747,
+              "ic95": [
+                0.016983789459336762,
+                0.03214492077600611
+              ],
+              "error_pp": 0.8750410576535698,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.03371543420042868,
+              "ic95": [
+                0.022332141104899218,
+                0.05091558725539906
+              ],
+              "error_pp": 0.6509544853395978,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.014591447033345764,
+              "ic95": [
+                0.00884055697169861,
+                0.023934325120427653
+              ],
+              "error_pp": 1.0669077073657658,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.011777234728636055,
+              "ic95": [
+                0.005809360013563139,
+                0.023445487209049848
+              ],
+              "error_pp": 1.169734504137324,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.0221907136079952,
+              "ic95": [
+                0.013229431915702734,
+                0.03722729478689178
+              ],
+              "error_pp": 1.9178820568128692,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.033615082433538,
+              "ic95": [
+                0.018352176984322635,
+                0.05982833803777815
+              ],
+              "error_pp": 0.34337156067281854,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.08735604385197565,
+              "ic95": [
+                0.031407709214760104,
+                0.22476692892824748
+              ],
+              "error_pp": 6.91898950048922,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.042850476593140285,
+              "ic95": [
+                0.009368376789646608,
+                0.18302855353436562
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.009116757842178157,
+              "ic95": [
+                0.004791615111428366,
+                0.017271148733993474
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.01912229110144745,
+              "ic95": [
+                0.0100495037539828,
+                0.036260863946271815
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.05050763216556012,
+              "ic95": [
+                0.03257199241731818,
+                0.07755175392123764
+              ],
+              "error_pp": 5.640147594271948,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.020084748212164827,
+              "ic95": [
+                0.009971794216252472,
+                0.03973596913801255
+              ],
+              "error_pp": 0.011063698797586508,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.025847870964115467,
+              "ic95": [
+                0.017806602635493295,
+                0.037453369278899896
+              ],
+              "error_pp": 1.266994924868262,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 1.5801043884596682,
+          "delta_mae_pp": -0.6376294075957172,
+          "delta_ic95": [
+            -2.2825344042759252,
+            0.006697844178778696
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "SECUNDARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 3,
+            "proporcion": 0.3333333333333333,
+            "ic95_wilson": [
+              0.12058381743407343,
+              0.6457978664749412
+            ]
+          }
+        },
+        "TENDENCIA-3": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.020253011287187088,
+              "ic95": [
+                0.016083949951460657,
+                0.025480166484813466
+              ],
+              "error_pp": 1.1940689118156358,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.028772915098383974,
+              "ic95": [
+                0.021354109066135628,
+                0.03863431262293971
+              ],
+              "error_pp": 1.1452063955440688,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.012867485127124037,
+              "ic95": [
+                0.009024131460266161,
+                0.01822528801601806
+              ],
+              "error_pp": 1.2393038979879387,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.009078960129297266,
+              "ic95": [
+                0.005555237494548222,
+                0.014733678972780518
+              ],
+              "error_pp": 1.439561964071203,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.026198100020343774,
+              "ic95": [
+                0.018394468647506098,
+                0.03743655933030659
+              ],
+              "error_pp": 1.517143415578012,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.027409377307370163,
+              "ic95": [
+                0.017738185099445598,
+                0.04229001687585677
+              ],
+              "error_pp": 0.9639420732896025,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.017104826527650024,
+              "ic95": [
+                0.007699560628694428,
+                0.03738117883859764
+              ],
+              "error_pp": 0.1061322319433431,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.007569708942823751,
+              "ic95": [
+                0.002285874120392051,
+                0.02460646033829505
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.012867447512149051,
+              "ic95": [
+                0.007984080793359834,
+                0.020760634664989827
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.017444980340292546,
+              "ic95": [
+                0.011017293063408757,
+                0.02704574415627112
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.03938821194341029,
+              "ic95": [
+                0.028658851951312125,
+                0.054248787509736884
+              ],
+              "error_pp": 6.752089616486931,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.016666937659713745,
+              "ic95": [
+                0.010040595745980575,
+                0.02732986270042768
+              ],
+              "error_pp": 0.35284475404269466,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.02264862614930573,
+              "ic95": [
+                0.017470071029088003,
+                0.029475303884456735
+              ],
+              "error_pp": 1.5869194063492358,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 1.0605692278468593,
+          "delta_mae_pp": -0.11809424698290827,
+          "delta_ic95": [
+            -0.47671303239985174,
+            0.14733409888293122
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "PRIMARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 3,
+            "proporcion": 0.3333333333333333,
+            "ic95_wilson": [
+              0.12058381743407343,
+              0.6457978664749412
+            ]
+          }
+        },
+        "TENDENCIA-SERIE": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.020538030100006287,
+              "ic95": [
+                0.01691639219736093,
+                0.024909707464522198
+              ],
+              "error_pp": 1.1655670305337158,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.02669996215518579,
+              "ic95": [
+                0.02086500839709969,
+                0.03431544378778339
+              ],
+              "error_pp": 1.3525016898638873,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.01488692088653951,
+              "ic95": [
+                0.01115031824281019,
+                0.019876572714828657
+              ],
+              "error_pp": 1.0373603220463914,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.010784632092191465,
+              "ic95": [
+                0.007091874998914439,
+                0.016483269531950877
+              ],
+              "error_pp": 1.268994767781783,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.02872096833091461,
+              "ic95": [
+                0.02146531065453134,
+                0.038351128453470835
+              ],
+              "error_pp": 1.264856584520928,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.025849013836643217,
+              "ic95": [
+                0.01809304360474183,
+                0.0366988944698663
+              ],
+              "error_pp": 1.1199784203622971,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.009313670247077388,
+              "ic95": [
+                0.005072251712053365,
+                0.017197204289634282
+              ],
+              "error_pp": 0.8852478600006067,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.0031889487175851346,
+              "ic95": [
+                0.0013138056507598001,
+                0.007464316471252597
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.011201033997423799,
+              "ic95": [
+                0.007706762259700302,
+                0.016220223851810708
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.02175857749677324,
+              "ic95": [
+                0.015110889849937288,
+                0.031403987063482394
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.042383046553336794,
+              "ic95": [
+                0.0323295417351685,
+                0.05527843379981096
+              ],
+              "error_pp": 6.452606155494281,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.014773808895344617,
+              "ic95": [
+                0.009536575837885034,
+                0.02289246055842638
+              ],
+              "error_pp": 0.5421576304796074,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.02381953687179513,
+              "ic95": [
+                0.019110989819286786,
+                0.029648082019600546
+              ],
+              "error_pp": 1.4698283341002956,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 1.1229436266321682,
+          "delta_mae_pp": -0.1804686457682172,
+          "delta_ic95": [
+            -0.43231832726601954,
+            0.14945883060929116
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "SECUNDARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 1,
+            "proporcion": 0.1111111111111111,
+            "ic95_wilson": [
+              0.01989088741690992,
+              0.4349997083707909
+            ]
+          }
+        }
+      },
+      "estados_celda": {
+        "NACIONAL-TODOS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "SEXO-1": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "SEXO-2": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-18-29": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-30-44": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-45-59": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-60-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-HASTA-PRIMARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-SECUNDARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-MEDIA-SUPERIOR": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-SUPERIOR": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "LOCALIDAD-MENOR-DE-15-000": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "LOCALIDAD-15-000-Y-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "UNIVERSO-UNIVERSO-TRABAJA": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        }
+      },
+      "contexto_oferta": {
+        "NACIONAL-TODOS": {
+          "P": 0.032193700405343445,
+          "K4B-OFERTA": 0.22838598718792563,
+          "K5": 0.18583333799922086
+        },
+        "SEXO-1": {
+          "P": 0.04022497905382466,
+          "K4B-OFERTA": 0.21232953208326852,
+          "K5": 0.23011619598767835
+        },
+        "SEXO-2": {
+          "P": 0.025260524107003423,
+          "K4B-OFERTA": 0.24106581632530413,
+          "K5": 0.14760519589803864
+        },
+        "EDAD-18-29": {
+          "P": 0.023474579770009295,
+          "K4B-OFERTA": 0.2618661321121097,
+          "K5": 0.16526135968695654
+        },
+        "EDAD-30-44": {
+          "P": 0.04136953417612389,
+          "K4B-OFERTA": 0.19780790607433957,
+          "K5": 0.23508577851124834
+        },
+        "EDAD-45-59": {
+          "P": 0.03704879804026619,
+          "K4B-OFERTA": 0.2296671020721648,
+          "K5": 0.1907576535919331
+        },
+        "EDAD-60-MAS": {
+          "P": 0.018166148847083455,
+          "K4B-OFERTA": 0.21180318746764973,
+          "K5": 0.09979067184069045
+        },
+        "LOCALIDAD-MENOR-DE-15-000": {
+          "P": 0.020195385200140692,
+          "K4B-OFERTA": 0.2447627297345355,
+          "K5": 0.13026647741920983
+        },
+        "LOCALIDAD-15-000-Y-MAS": {
+          "P": 0.038517820212798086,
+          "K4B-OFERTA": 0.21583762349752222,
+          "K5": 0.21512174038089338
+        },
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+          "P": 0.009543407958673844,
+          "K4B-OFERTA": 0.2785339046395823,
+          "K5": 0.09032516255898441
+        },
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+          "P": 0.042866556123242465,
+          "K4B-OFERTA": 0.1980020265691924,
+          "K5": 0.2187579647623585
+        },
+        "UNIVERSO-UNIVERSO-TRABAJA": {
+          "P": 0.04149022686947504,
+          "K4B-OFERTA": 0.20323307615112263,
+          "K5": 0.21345336923186245
+        }
+      }
+    },
+    "K2-AUTOMOTRIZ": {
+      "conducta": "K2-AUTOMOTRIZ",
+      "n_celdas_elegibles": 12,
+      "celdas_elegibles": [
+        "NACIONAL-TODOS",
+        "SEXO-1",
+        "SEXO-2",
+        "EDAD-18-29",
+        "EDAD-30-44",
+        "EDAD-45-59",
+        "EDAD-60-MAS",
+        "LOCALIDAD-MENOR-DE-15-000",
+        "LOCALIDAD-15-000-Y-MAS",
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+        "UNIVERSO-UNIVERSO-TRABAJA"
+      ],
+      "celdas_excluidas_escolaridad": [
+        "ESCOLARIDAD-HASTA-PRIMARIA",
+        "ESCOLARIDAD-MEDIA-SUPERIOR",
+        "ESCOLARIDAD-SECUNDARIA",
+        "ESCOLARIDAD-SUPERIOR"
+      ],
+      "habilitados": [
+        "TENDENCIA-2",
+        "TENDENCIA-3",
+        "TENDENCIA-SERIE"
+      ],
+      "retador_primario": "TENDENCIA-3",
+      "mae_por_contendiente": {
+        "PERSISTENCIA": {
+          "mae_pp": 0.3799341647045325,
+          "n_celdas_puntuadas": 12,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2",
+            "UNIVERSO-UNIVERSO-TRABAJA"
+          ]
+        },
+        "TENDENCIA-2": {
+          "mae_pp": 0.4026758644341508,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        },
+        "TENDENCIA-3": {
+          "mae_pp": 0.2589014340312412,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        },
+        "TENDENCIA-SERIE": {
+          "mae_pp": 0.3939000550602403,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        }
+      },
+      "adjudicacion_por_retador": {
+        "TENDENCIA-2": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.02066157408737502,
+              "ic95": [
+                0.014086414153776964,
+                0.03057442391185061
+              ],
+              "error_pp": 0.2569482628206141,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.03041554029576965,
+              "ic95": [
+                0.017627108499198803,
+                0.051712167859066266
+              ],
+              "error_pp": 0.6034129909581354,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.01280696434210386,
+              "ic95": [
+                0.007117983244715846,
+                0.022927798634010375
+              ],
+              "error_pp": 0.014426449366665949,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.010062235177069187,
+              "ic95": [
+                0.003858404443908749,
+                0.025791973894517164
+              ],
+              "error_pp": 0.5520593905308107,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.03115738268318168,
+              "ic95": [
+                0.01799584183143782,
+                0.05360991184017224
+              ],
+              "error_pp": 0.5561653595213742,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.025402631446365107,
+              "ic95": [
+                0.01283113691637289,
+                0.049930294836628135
+              ],
+              "error_pp": 0.258696723138812,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.011288830973201257,
+              "ic95": [
+                0.0036337051134655656,
+                0.03462971659412869
+              ],
+              "error_pp": 0.6831968297227783,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.0016017408898742578,
+              "ic95": [
+                0.0001466355870292878,
+                0.01664097081279238
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.022195000373251752,
+              "ic95": [
+                0.006494514694531585,
+                0.07516750541743852
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.024443041404638967,
+              "ic95": [
+                0.010571559515967242,
+                0.0548276207035184
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.04494495954291827,
+              "ic95": [
+                0.028009684019522363,
+                0.07191099051333136
+              ],
+              "error_pp": 8.384686509541242,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.003675237305992912,
+              "ic95": [
+                0.001406169389165752,
+                0.009595791061689125
+              ],
+              "error_pp": 0.15402167494330102,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.03033071182135007,
+              "ic95": [
+                0.019862832378810508,
+                0.04591742036579616
+              ],
+              "error_pp": 0.5451550989048658,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 0.4026758644341509,
+          "delta_mae_pp": -0.1432053538989032,
+          "delta_ic95": [
+            -0.7391190190021292,
+            0.07263087043663868
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "SECUNDARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 9,
+            "proporcion": 1.0,
+            "ic95_wilson": [
+              0.700854948272956,
+              1.0
+            ]
+          }
+        },
+        "TENDENCIA-3": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.018208738877595845,
+              "ic95": [
+                0.013573731559718782,
+                0.024507942381722672
+              ],
+              "error_pp": 0.011664741842696766,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.021850749545460006,
+              "ic95": [
+                0.014741563239840452,
+                0.0318426723403549
+              ],
+              "error_pp": 0.25306608407282893,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.015135949757459563,
+              "ic95": [
+                0.009743507298091866,
+                0.02353640548077147
+              ],
+              "error_pp": 0.24732499090223628,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.011031887397209193,
+              "ic95": [
+                0.005124794746697358,
+                0.02383748309924972
+              ],
+              "error_pp": 0.6490246125448114,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.025078570417509542,
+              "ic95": [
+                0.01656358554042545,
+                0.03734451423275697
+              ],
+              "error_pp": 0.05171586704583939,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.021593195900985483,
+              "ic95": [
+                0.012890597263881554,
+                0.03573684475141676
+              ],
+              "error_pp": 0.12224683139915038,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.011803576157544304,
+              "ic95": [
+                0.004367885628199493,
+                0.030856412165576635
+              ],
+              "error_pp": 0.6317223112884737,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.0013705647242331345,
+              "ic95": [
+                0.00025311080864510256,
+                0.0069727568412136665
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.006648987479951015,
+              "ic95": [
+                0.0020847760843913828,
+                0.020514664587590187
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.020344545471317286,
+              "ic95": [
+                0.009768164431594725,
+                0.04093041165733749
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.044127611423983915,
+              "ic95": [
+                0.031037070210958955,
+                0.061674985537032545
+              ],
+              "error_pp": 8.466421321434678,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.0033943334828805405,
+              "ic95": [
+                0.0016363361011830077,
+                0.0071839228020168944
+              ],
+              "error_pp": 0.18211205725453816,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.026691514931607374,
+              "ic95": [
+                0.01962156743782312,
+                0.03637033608080802
+              ],
+              "error_pp": 0.18123540993059614,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 0.2589014340312412,
+          "delta_mae_pp": 0.0005690765040064494,
+          "delta_ic95": [
+            -0.3949480543103942,
+            0.12721777896557324
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "PRIMARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 8,
+            "proporcion": 0.8888888888888888,
+            "ic95_wilson": [
+              0.565000291629209,
+              0.9801091125830901
+            ]
+          }
+        },
+        "TENDENCIA-SERIE": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.02067653090884846,
+              "ic95": [
+                0.016073931766217894,
+                0.026378938309536346
+              ],
+              "error_pp": 0.25844394496795825,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.02427730454572096,
+              "ic95": [
+                0.017412482475193537,
+                0.033474617662918205
+              ],
+              "error_pp": 0.010410584046733479,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.017455083710925894,
+              "ic95": [
+                0.011523279578710827,
+                0.026220823737972902
+              ],
+              "error_pp": 0.4792383862488694,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.012857124622007861,
+              "ic95": [
+                0.006022528675429319,
+                0.027708215230900664
+              ],
+              "error_pp": 0.8315483350246782,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.03268134896132986,
+              "ic95": [
+                0.022395879402264236,
+                0.047453637965986534
+              ],
+              "error_pp": 0.7085619873361926,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.022227990502026493,
+              "ic95": [
+                0.014459391746701479,
+                0.03409367597851848
+              ],
+              "error_pp": 0.058767371295049414,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.010887376062492002,
+              "ic95": [
+                0.005097994427038902,
+                0.022887481536298056
+              ],
+              "error_pp": 0.7233423207937039,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.0013705647242331345,
+              "ic95": [
+                0.0002814961652569715,
+                0.006917675189353506
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.0036089883519137018,
+              "ic95": [
+                0.001607015941914885,
+                0.00824008497408027
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.020551307363489115,
+              "ic95": [
+                0.010712295486794683,
+                0.03904322793264654
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.0540776137016004,
+              "ic95": [
+                0.040126958657441286,
+                0.07260071585560962
+              ],
+              "error_pp": 7.47142109367303,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.0033943334828805405,
+              "ic95": [
+                0.0016341642892174363,
+                0.00711538754314263
+              ],
+              "error_pp": 0.18211205725453816,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.027805915918045803,
+              "ic95": [
+                0.02122990167809356,
+                0.03605718651866944
+              ],
+              "error_pp": 0.292675508574439,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 0.39390005506024023,
+          "delta_mae_pp": -0.13442954452499256,
+          "delta_ic95": [
+            -0.49291494550716797,
+            0.09318134649334955
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "SECUNDARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 8,
+            "proporcion": 0.8888888888888888,
+            "ic95_wilson": [
+              0.565000291629209,
+              0.9801091125830901
+            ]
+          }
+        }
+      },
+      "estados_celda": {
+        "NACIONAL-TODOS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "SEXO-1": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "SEXO-2": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-18-29": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-30-44": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-45-59": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-60-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-HASTA-PRIMARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-SECUNDARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-MEDIA-SUPERIOR": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-SUPERIOR": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "LOCALIDAD-MENOR-DE-15-000": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "LOCALIDAD-15-000-Y-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "UNIVERSO-UNIVERSO-TRABAJA": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        }
+      },
+      "contexto_oferta": {
+        "NACIONAL-TODOS": {
+          "P": 0.018092091459168878,
+          "K4B-OFERTA": 0.22838598718792563,
+          "K5": 0.18583333799922086
+        },
+        "SEXO-1": {
+          "P": 0.024381410386188296,
+          "K4B-OFERTA": 0.21232953208326852,
+          "K5": 0.23011619598767835
+        },
+        "SEXO-2": {
+          "P": 0.0126626998484372,
+          "K4B-OFERTA": 0.24106581632530413,
+          "K5": 0.14760519589803864
+        },
+        "EDAD-18-29": {
+          "P": 0.00454164127176108,
+          "K4B-OFERTA": 0.2618661321121097,
+          "K5": 0.16526135968695654
+        },
+        "EDAD-30-44": {
+          "P": 0.025595729087967936,
+          "K4B-OFERTA": 0.19780790607433957,
+          "K5": 0.23508577851124834
+        },
+        "EDAD-45-59": {
+          "P": 0.022815664214976987,
+          "K4B-OFERTA": 0.2296671020721648,
+          "K5": 0.1907576535919331
+        },
+        "EDAD-60-MAS": {
+          "P": 0.01812079927042904,
+          "K4B-OFERTA": 0.21180318746764973,
+          "K5": 0.09979067184069045
+        },
+        "LOCALIDAD-MENOR-DE-15-000": {
+          "P": 0.005215454055425922,
+          "K4B-OFERTA": 0.2447627297345355,
+          "K5": 0.13026647741920983
+        },
+        "LOCALIDAD-15-000-Y-MAS": {
+          "P": 0.024879160832301413,
+          "K4B-OFERTA": 0.21583762349752222,
+          "K5": 0.21512174038089338
+        },
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+          "P": 0.005092195719568055,
+          "K4B-OFERTA": 0.2785339046395823,
+          "K5": 0.09032516255898441
+        },
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+          "P": 0.02209327926258393,
+          "K4B-OFERTA": 0.1980020265691924,
+          "K5": 0.2187579647623585
+        },
+        "UNIVERSO-UNIVERSO-TRABAJA": {
+          "P": 0.02139109204694516,
+          "K4B-OFERTA": 0.20323307615112263,
+          "K5": 0.21345336923186245
+        }
+      }
+    },
+    "K3": {
+      "conducta": "K3",
+      "n_celdas_elegibles": 12,
+      "celdas_elegibles": [
+        "NACIONAL-TODOS",
+        "SEXO-1",
+        "SEXO-2",
+        "EDAD-18-29",
+        "EDAD-30-44",
+        "EDAD-45-59",
+        "EDAD-60-MAS",
+        "LOCALIDAD-MENOR-DE-15-000",
+        "LOCALIDAD-15-000-Y-MAS",
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+        "UNIVERSO-UNIVERSO-TRABAJA"
+      ],
+      "celdas_excluidas_escolaridad": [
+        "ESCOLARIDAD-HASTA-PRIMARIA",
+        "ESCOLARIDAD-MEDIA-SUPERIOR",
+        "ESCOLARIDAD-SECUNDARIA",
+        "ESCOLARIDAD-SUPERIOR"
+      ],
+      "habilitados": [
+        "TENDENCIA-2",
+        "TENDENCIA-3",
+        "TENDENCIA-SERIE"
+      ],
+      "retador_primario": "TENDENCIA-3",
+      "mae_por_contendiente": {
+        "PERSISTENCIA": {
+          "mae_pp": 2.409032541672358,
+          "n_celdas_puntuadas": 12,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2",
+            "UNIVERSO-UNIVERSO-TRABAJA"
+          ]
+        },
+        "TENDENCIA-2": {
+          "mae_pp": 5.330583419016566,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        },
+        "TENDENCIA-3": {
+          "mae_pp": 1.0598404771523766,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        },
+        "TENDENCIA-SERIE": {
+          "mae_pp": 5.567388053768107,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        }
+      },
+      "adjudicacion_por_retador": {
+        "TENDENCIA-2": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.23436554233738066,
+              "ic95": [
+                0.21480967698184444,
+                0.2547601108856007
+              ],
+              "error_pp": 5.460197333033295,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.2097610171912874,
+              "ic95": [
+                0.18505566070667384,
+                0.2374558100503984
+              ],
+              "error_pp": 8.347910851691134,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.25787033663163816,
+              "ic95": [
+                0.2305358858895156,
+                0.2879143577925143
+              ],
+              "error_pp": 2.7408755316604196,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.23215940927843373,
+              "ic95": [
+                0.19604581157516382,
+                0.2745967631115234
+              ],
+              "error_pp": 6.895364055017813,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.2570039993727438,
+              "ic95": [
+                0.22467014247369607,
+                0.29317415782617096
+              ],
+              "error_pp": 6.301955149104582,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.2460265299232666,
+              "ic95": [
+                0.2082842015479759,
+                0.28779777763900893
+              ],
+              "error_pp": 4.870220124753064,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.16626727495547006,
+              "ic95": [
+                0.12347292584056263,
+                0.2227697642119007
+              ],
+              "error_pp": 1.2214942438227183,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.20852586841380025,
+              "ic95": [
+                0.17520950999458046,
+                0.24678757340119295
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.2733785887445605,
+              "ic95": [
+                0.2314817820681851,
+                0.3195584545331863
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.2472601627078647,
+              "ic95": [
+                0.2082145623905152,
+                0.2908568512515606
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.1982218234661172,
+              "ic95": [
+                0.16222421635211054,
+                0.23952048868895248
+              ],
+              "error_pp": 0.8060566914366796,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.22234477973173847,
+              "ic95": [
+                0.19265564946276295,
+                0.2551503709726067
+              ],
+              "error_pp": 8.116021597567649,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.24109292389238948,
+              "ic95": [
+                0.2152241879533612,
+                0.26876792242865377
+              ],
+              "error_pp": 4.021211884498424,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 5.330583419016567,
+          "delta_mae_pp": -3.8385905055496257,
+          "delta_ic95": [
+            -5.1689822749654475,
+            -2.099210451492238
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "SECUNDARIA",
+          "piso_se_sostiene": true,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 2,
+            "proporcion": 0.2222222222222222,
+            "ic95_wilson": [
+              0.06322510654056959,
+              0.5474110333077882
+            ]
+          }
+        },
+        "TENDENCIA-3": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.28365211204785057,
+              "ic95": [
+                0.2677026864142683,
+                0.30060462350477024
+              ],
+              "error_pp": 0.5315403619863046,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.2666388347620615,
+              "ic95": [
+                0.24498167853307778,
+                0.2895017301989354
+              ],
+              "error_pp": 2.6601290946137226,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.2992865210928023,
+              "ic95": [
+                0.2776719639075334,
+                0.32186033563349237
+              ],
+              "error_pp": 1.4007429144559935,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.30635184239002083,
+              "ic95": [
+                0.2751737035345646,
+                0.3414844008864268
+              ],
+              "error_pp": 0.5238792561408967,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.29775851256208474,
+              "ic95": [
+                0.2712360597039801,
+                0.3256566850368065
+              ],
+              "error_pp": 2.22650383017049,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.29983472991543547,
+              "ic95": [
+                0.26787156365171577,
+                0.3338368087911108
+              ],
+              "error_pp": 0.510599874463824,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.18534646180264192,
+              "ic95": [
+                0.14722178488945226,
+                0.2282311739253669
+              ],
+              "error_pp": 0.6864244408944675,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.27266029550338017,
+              "ic95": [
+                0.24245212430783133,
+                0.3035598000289471
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.3110291055397252,
+              "ic95": [
+                0.27785840820148755,
+                0.3459684315292357
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.2995361703699714,
+              "ic95": [
+                0.26699936216176584,
+                0.3340525137857656
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.23867662557648225,
+              "ic95": [
+                0.20817588540722956,
+                0.2711629863125259
+              ],
+              "error_pp": 4.851536902473185,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": false,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.29956599397672257,
+              "ic95": [
+                0.27351756761063556,
+                0.3276703140124733
+              ],
+              "error_pp": 0.3939001730692393,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.2752565992516092,
+              "ic95": [
+                0.2543328851163665,
+                0.2974523342597373
+              ],
+              "error_pp": 0.6048443485764499,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 1.0598404771523764,
+          "delta_mae_pp": 0.432152436314565,
+          "delta_ic95": [
+            -1.002618491457386,
+            1.115970823042464
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "PRIMARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 8,
+            "proporcion": 0.8888888888888888,
+            "ic95_wilson": [
+              0.565000291629209,
+              0.9801091125830901
+            ]
+          }
+        },
+        "TENDENCIA-SERIE": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.345043582779035,
+              "ic95": [
+                0.3304770144007372,
+                0.3598837497787324
+              ],
+              "error_pp": 5.60760671113214,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.3317541301912886,
+              "ic95": [
+                0.3116620562936878,
+                0.3530494519186725
+              ],
+              "error_pp": 3.8514004483089836,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.35667950837250584,
+              "ic95": [
+                0.33695129833504966,
+                0.3770730196367233
+              ],
+              "error_pp": 7.140041642426348,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.3605077698766985,
+              "ic95": [
+                0.33270058653008144,
+                0.38936276971364026
+              ],
+              "error_pp": 5.939472004808666,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.3760153615740129,
+              "ic95": [
+                0.35160965980521164,
+                0.4016242435040656
+              ],
+              "error_pp": 5.599181071022325,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.3539110926766182,
+              "ic95": [
+                0.3248653319773567,
+                0.3833431689391142
+              ],
+              "error_pp": 5.9182361505820955,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.23077980491959169,
+              "ic95": [
+                0.1945469355742999,
+                0.27118048227196667
+              ],
+              "error_pp": 5.2297587525894444,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.31827293953320085,
+              "ic95": [
+                0.29226827942305916,
+                0.34576820231346383
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.36380414625910684,
+              "ic95": [
+                0.33466918874790336,
+                0.39380295493023165
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.37120924973805064,
+              "ic95": [
+                0.3410565480916295,
+                0.40276694129515234
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.320930601509125,
+              "ic95": [
+                0.28966654213697984,
+                0.35252900023451667
+              ],
+              "error_pp": 13.076934495737461,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.3515720712235234,
+              "ic95": [
+                0.32801093509437396,
+                0.37468727690834147
+              ],
+              "error_pp": 4.806707551610845,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.34144592425169484,
+              "ic95": [
+                0.32266349641204223,
+                0.36106637500508343
+              ],
+              "error_pp": 6.014088151432112,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 5.567388053768107,
+          "delta_mae_pp": -4.075395140301165,
+          "delta_ic95": [
+            -4.8311316067854815,
+            -2.743476416047166
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "SECUNDARIA",
+          "piso_se_sostiene": true,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 0,
+            "proporcion": 0.0,
+            "ic95_wilson": [
+              0.0,
+              0.299145051727044
+            ]
+          }
+        }
+      },
+      "estados_celda": {
+        "NACIONAL-TODOS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "SEXO-1": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "SEXO-2": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-18-29": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-30-44": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-45-59": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-60-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-HASTA-PRIMARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-SECUNDARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-MEDIA-SUPERIOR": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-SUPERIOR": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "LOCALIDAD-MENOR-DE-15-000": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "LOCALIDAD-15-000-Y-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "UNIVERSO-UNIVERSO-TRABAJA": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        }
+      },
+      "contexto_oferta": {
+        "NACIONAL-TODOS": {
+          "P": 0.2889675156677136,
+          "K4B-OFERTA": 0.22838598718792563,
+          "K5": 0.18583333799922086
+        },
+        "SEXO-1": {
+          "P": 0.29324012570819874,
+          "K4B-OFERTA": 0.21232953208326852,
+          "K5": 0.23011619598767835
+        },
+        "SEXO-2": {
+          "P": 0.28527909194824236,
+          "K4B-OFERTA": 0.24106581632530413,
+          "K5": 0.14760519589803864
+        },
+        "EDAD-18-29": {
+          "P": 0.30111304982861187,
+          "K4B-OFERTA": 0.2618661321121097,
+          "K5": 0.16526135968695654
+        },
+        "EDAD-30-44": {
+          "P": 0.32002355086378964,
+          "K4B-OFERTA": 0.19780790607433957,
+          "K5": 0.23508577851124834
+        },
+        "EDAD-45-59": {
+          "P": 0.29472873117079723,
+          "K4B-OFERTA": 0.2296671020721648,
+          "K5": 0.1907576535919331
+        },
+        "EDAD-60-MAS": {
+          "P": 0.17848221739369724,
+          "K4B-OFERTA": 0.21180318746764973,
+          "K5": 0.09979067184069045
+        },
+        "LOCALIDAD-MENOR-DE-15-000": {
+          "P": 0.30350499570741496,
+          "K4B-OFERTA": 0.2447627297345355,
+          "K5": 0.13026647741920983
+        },
+        "LOCALIDAD-15-000-Y-MAS": {
+          "P": 0.2813050427373737,
+          "K4B-OFERTA": 0.21583762349752222,
+          "K5": 0.21512174038089338
+        },
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+          "P": 0.253049130547712,
+          "K4B-OFERTA": 0.2785339046395823,
+          "K5": 0.09032516255898441
+        },
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+          "P": 0.3167858005547385,
+          "K4B-OFERTA": 0.1980020265691924,
+          "K5": 0.2187579647623585
+        },
+        "UNIVERSO-UNIVERSO-TRABAJA": {
+          "P": 0.3141533168819724,
+          "K4B-OFERTA": 0.20323307615112263,
+          "K5": 0.21345336923186245
+        }
+      }
+    },
+    "K4A-AUTOEXCLUSION": {
+      "conducta": "K4A-AUTOEXCLUSION",
+      "n_celdas_elegibles": 12,
+      "celdas_elegibles": [
+        "NACIONAL-TODOS",
+        "SEXO-1",
+        "SEXO-2",
+        "EDAD-18-29",
+        "EDAD-30-44",
+        "EDAD-45-59",
+        "EDAD-60-MAS",
+        "LOCALIDAD-MENOR-DE-15-000",
+        "LOCALIDAD-15-000-Y-MAS",
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+        "UNIVERSO-UNIVERSO-TRABAJA"
+      ],
+      "celdas_excluidas_escolaridad": [
+        "ESCOLARIDAD-HASTA-PRIMARIA",
+        "ESCOLARIDAD-MEDIA-SUPERIOR",
+        "ESCOLARIDAD-SECUNDARIA",
+        "ESCOLARIDAD-SUPERIOR"
+      ],
+      "habilitados": [],
+      "retador_primario": null,
+      "mae_por_contendiente": {
+        "PERSISTENCIA": {
+          "mae_pp": 4.710513758537583,
+          "n_celdas_puntuadas": 12,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2",
+            "UNIVERSO-UNIVERSO-TRABAJA"
+          ]
+        },
+        "TENDENCIA-2": {
+          "mae_pp": null,
+          "n_celdas_puntuadas": 0,
+          "celdas_puntuadas": []
+        },
+        "TENDENCIA-3": {
+          "mae_pp": null,
+          "n_celdas_puntuadas": 0,
+          "celdas_puntuadas": []
+        },
+        "TENDENCIA-SERIE": {
+          "mae_pp": null,
+          "n_celdas_puntuadas": 0,
+          "celdas_puntuadas": []
+        }
+      },
+      "adjudicacion_por_retador": {},
+      "estados_celda": {
+        "NACIONAL-TODOS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "SEXO-1": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "SEXO-2": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "EDAD-18-29": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "EDAD-30-44": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "EDAD-45-59": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "EDAD-60-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "ESCOLARIDAD-HASTA-PRIMARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "ESCOLARIDAD-SECUNDARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "ESCOLARIDAD-MEDIA-SUPERIOR": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "ESCOLARIDAD-SUPERIOR": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "LOCALIDAD-MENOR-DE-15-000": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "LOCALIDAD-15-000-Y-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "UNIVERSO-UNIVERSO-TRABAJA": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        }
+      },
+      "contexto_oferta": {}
+    },
+    "K4B-OFERTA": {
+      "conducta": "K4B-OFERTA",
+      "n_celdas_elegibles": 12,
+      "celdas_elegibles": [
+        "NACIONAL-TODOS",
+        "SEXO-1",
+        "SEXO-2",
+        "EDAD-18-29",
+        "EDAD-30-44",
+        "EDAD-45-59",
+        "EDAD-60-MAS",
+        "LOCALIDAD-MENOR-DE-15-000",
+        "LOCALIDAD-15-000-Y-MAS",
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+        "UNIVERSO-UNIVERSO-TRABAJA"
+      ],
+      "celdas_excluidas_escolaridad": [
+        "ESCOLARIDAD-HASTA-PRIMARIA",
+        "ESCOLARIDAD-MEDIA-SUPERIOR",
+        "ESCOLARIDAD-SECUNDARIA",
+        "ESCOLARIDAD-SUPERIOR"
+      ],
+      "habilitados": [],
+      "retador_primario": null,
+      "mae_por_contendiente": {
+        "PERSISTENCIA": {
+          "mae_pp": 4.682417051629337,
+          "n_celdas_puntuadas": 12,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2",
+            "UNIVERSO-UNIVERSO-TRABAJA"
+          ]
+        },
+        "TENDENCIA-2": {
+          "mae_pp": null,
+          "n_celdas_puntuadas": 0,
+          "celdas_puntuadas": []
+        },
+        "TENDENCIA-3": {
+          "mae_pp": null,
+          "n_celdas_puntuadas": 0,
+          "celdas_puntuadas": []
+        },
+        "TENDENCIA-SERIE": {
+          "mae_pp": null,
+          "n_celdas_puntuadas": 0,
+          "celdas_puntuadas": []
+        }
+      },
+      "adjudicacion_por_retador": {},
+      "estados_celda": {
+        "NACIONAL-TODOS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "SEXO-1": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "SEXO-2": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "EDAD-18-29": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "EDAD-30-44": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "EDAD-45-59": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "EDAD-60-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "ESCOLARIDAD-HASTA-PRIMARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "ESCOLARIDAD-SECUNDARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "ESCOLARIDAD-MEDIA-SUPERIOR": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "ESCOLARIDAD-SUPERIOR": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "LOCALIDAD-MENOR-DE-15-000": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "LOCALIDAD-15-000-Y-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "UNIVERSO-UNIVERSO-TRABAJA": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        }
+      },
+      "contexto_oferta": {}
+    },
+    "K5": {
+      "conducta": "K5",
+      "n_celdas_elegibles": 12,
+      "celdas_elegibles": [
+        "NACIONAL-TODOS",
+        "SEXO-1",
+        "SEXO-2",
+        "EDAD-18-29",
+        "EDAD-30-44",
+        "EDAD-45-59",
+        "EDAD-60-MAS",
+        "LOCALIDAD-MENOR-DE-15-000",
+        "LOCALIDAD-15-000-Y-MAS",
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+        "UNIVERSO-UNIVERSO-TRABAJA"
+      ],
+      "celdas_excluidas_escolaridad": [
+        "ESCOLARIDAD-HASTA-PRIMARIA",
+        "ESCOLARIDAD-MEDIA-SUPERIOR",
+        "ESCOLARIDAD-SECUNDARIA",
+        "ESCOLARIDAD-SUPERIOR"
+      ],
+      "habilitados": [
+        "TENDENCIA-2",
+        "TENDENCIA-3",
+        "TENDENCIA-SERIE"
+      ],
+      "retador_primario": "TENDENCIA-SERIE",
+      "mae_por_contendiente": {
+        "PERSISTENCIA": {
+          "mae_pp": 2.3629733953965704,
+          "n_celdas_puntuadas": 12,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2",
+            "UNIVERSO-UNIVERSO-TRABAJA"
+          ]
+        },
+        "TENDENCIA-2": {
+          "mae_pp": 1.8919943704890163,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        },
+        "TENDENCIA-3": {
+          "mae_pp": 1.1559215589438483,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        },
+        "TENDENCIA-SERIE": {
+          "mae_pp": 1.1028075818945653,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        }
+      },
+      "adjudicacion_por_retador": {
+        "TENDENCIA-2": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.16915579628798325,
+              "ic95": [
+                0.15123038686487578,
+                0.18947653478226265
+              ],
+              "error_pp": 1.6677541711237613,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.1893225023139326,
+              "ic95": [
+                0.16105957722885864,
+                0.22000355001347868
+              ],
+              "error_pp": 4.079369367374575,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.15169756516963007,
+              "ic95": [
+                0.12788340061657924,
+                0.1794059952187109
+              ],
+              "error_pp": 0.40923692715914284,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.13188947534176637,
+              "ic95": [
+                0.10466480511460813,
+                0.16529993325420667
+              ],
+              "error_pp": 3.3371884345190175,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.2138304150313364,
+              "ic95": [
+                0.17963984936756033,
+                0.2515391341801915
+              ],
+              "error_pp": 2.1255363479911944,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.1892604636477293,
+              "ic95": [
+                0.14895597193568236,
+                0.23780271895003716
+              ],
+              "error_pp": 0.14971899442038084,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.11817774578832488,
+              "ic95": [
+                0.07363178580759121,
+                0.18610804350101537
+              ],
+              "error_pp": 1.8387073947634434,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.0985615784943202,
+              "ic95": [
+                0.07069823388855746,
+                0.13416930106952485
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.13593065853191175,
+              "ic95": [
+                0.10705242694326851,
+                0.17057515191922445
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.18709876646063286,
+              "ic95": [
+                0.14996444336501288,
+                0.23029062075156947
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.24321931519032594,
+              "ic95": [
+                0.19703921501315202,
+                0.29647716455609047
+              ],
+              "error_pp": 4.234280678084032,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.10862739545773192,
+              "ic95": [
+                0.08876368518211818,
+                0.13211687450137638
+              ],
+              "error_pp": 2.16390819614779,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.20255644537187498,
+              "ic95": [
+                0.1774760378566667,
+                0.23059248680076774
+              ],
+              "error_pp": 1.25652950090184,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 1.8919943704890163,
+          "delta_mae_pp": -0.038670286227595385,
+          "delta_ic95": [
+            -1.4144518789509775,
+            0.6621764136840754
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "SECUNDARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 8,
+            "proporcion": 0.8888888888888888,
+            "ic95_wilson": [
+              0.565000291629209,
+              0.9801091125830901
+            ]
+          }
+        },
+        "TENDENCIA-3": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.17803153052845283,
+              "ic95": [
+                0.16362124886636173,
+                0.1933751602563522
+              ],
+              "error_pp": 0.780180747076803,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.21084007140161012,
+              "ic95": [
+                0.18840828834414713,
+                0.23513915870149285
+              ],
+              "error_pp": 1.9276124586068226,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.14922952290353902,
+              "ic95": [
+                0.1318698883346577,
+                0.16836511893804829
+              ],
+              "error_pp": 0.16243270055003867,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.17298430572909676,
+              "ic95": [
+                0.14670564284762577,
+                0.20252006203321213
+              ],
+              "error_pp": 0.7722946042140216,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.20833881181471553,
+              "ic95": [
+                0.18354459377359944,
+                0.23523837433449463
+              ],
+              "error_pp": 2.6746966696532812,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.18489937954598834,
+              "ic95": [
+                0.1541645761237842,
+                0.2188269843808021
+              ],
+              "error_pp": 0.5858274045944772,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.11349696505558254,
+              "ic95": [
+                0.08067854137529847,
+                0.1580007619735906
+              ],
+              "error_pp": 1.3706293214892098,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.10584373529967618,
+              "ic95": [
+                0.08455093781184862,
+                0.1313178599964036
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.146656308433268,
+              "ic95": [
+                0.12455512470452246,
+                0.17294240902537197
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.198612375927842,
+              "ic95": [
+                0.16966280378529772,
+                0.23134850483805902
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.25226653704689267,
+              "ic95": [
+                0.21544770347831688,
+                0.2920515826930148
+              ],
+              "error_pp": 5.139002863740705,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": false,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.10921052433456879,
+              "ic95": [
+                0.09273546033769477,
+                0.1274263872012902
+              ],
+              "error_pp": 2.1055953084641033,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.21536198853935215,
+              "ic95": [
+                0.1948779904126139,
+                0.23736918372182333
+              ],
+              "error_pp": 0.024024815845877234,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 1.155921558943848,
+          "delta_mae_pp": 0.6974025253175729,
+          "delta_ic95": [
+            -0.538763685153769,
+            1.1948826056362998
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "SECUNDARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 8,
+            "proporcion": 0.8888888888888888,
+            "ic95_wilson": [
+              0.565000291629209,
+              0.9801091125830901
+            ]
+          }
+        },
+        "TENDENCIA-SERIE": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.18944764805713668,
+              "ic95": [
+                0.17725070569587303,
+                0.20250645548828244
+              ],
+              "error_pp": 0.36143100579158205,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.2169163144791117,
+              "ic95": [
+                0.19808702561078317,
+                0.23732428671050856
+              ],
+              "error_pp": 1.3199881508566658,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.16427132321217902,
+              "ic95": [
+                0.14867189557096877,
+                0.1809376612684303
+              ],
+              "error_pp": 1.6666127314140384,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.1746263070095269,
+              "ic95": [
+                0.15279358461150974,
+                0.19819684362049006
+              ],
+              "error_pp": 0.9364947322570344,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.22830913463807648,
+              "ic95": [
+                0.20599079088631186,
+                0.25202375677177347
+              ],
+              "error_pp": 0.6776643873171867,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.19038016031206742,
+              "ic95": [
+                0.1660968733504635,
+                0.21829100563449214
+              ],
+              "error_pp": 0.03774932798656927,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.1370029773157964,
+              "ic95": [
+                0.09911333426666134,
+                0.18395822747511978
+              ],
+              "error_pp": 3.721230547510594,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.11955192370367364,
+              "ic95": [
+                0.0999629183099436,
+                0.14252003953596012
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.16313134747998467,
+              "ic95": [
+                0.1422426787117305,
+                0.18596155804552256
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.2103409710679084,
+              "ic95": [
+                0.18484613682416673,
+                0.23790054666981783
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.25020709094408183,
+              "ic95": [
+                0.220923991081532,
+                0.281639098532814
+              ],
+              "error_pp": 4.933058253459621,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": false,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.1273105238763499,
+              "ic95": [
+                0.11250128258181916,
+                0.14393349366155544
+              ],
+              "error_pp": 0.2955953542859935,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.2242067603772076,
+              "ic95": [
+                0.20746206043116264,
+                0.24187706526907815
+              ],
+              "error_pp": 0.9085019996314225,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 1.102807581894565,
+          "delta_mae_pp": 0.7505165023668559,
+          "delta_ic95": [
+            -0.5389082012808512,
+            1.3985242937618991
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "PRIMARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 8,
+            "proporcion": 0.8888888888888888,
+            "ic95_wilson": [
+              0.565000291629209,
+              0.9801091125830901
+            ]
+          }
+        }
+      },
+      "estados_celda": {
+        "NACIONAL-TODOS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "SEXO-1": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "SEXO-2": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-18-29": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-30-44": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-45-59": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-60-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-HASTA-PRIMARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-SECUNDARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-MEDIA-SUPERIOR": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-SUPERIOR": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "LOCALIDAD-MENOR-DE-15-000": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "LOCALIDAD-15-000-Y-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "UNIVERSO-UNIVERSO-TRABAJA": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        }
+      },
+      "contexto_oferta": {}
+    },
+    "K6-P-TENEDORES": {
+      "conducta": "K6-P-TENEDORES",
+      "n_celdas_elegibles": 12,
+      "celdas_elegibles": [
+        "NACIONAL-TODOS",
+        "SEXO-1",
+        "SEXO-2",
+        "EDAD-18-29",
+        "EDAD-30-44",
+        "EDAD-45-59",
+        "EDAD-60-MAS",
+        "LOCALIDAD-MENOR-DE-15-000",
+        "LOCALIDAD-15-000-Y-MAS",
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+        "UNIVERSO-UNIVERSO-TRABAJA"
+      ],
+      "celdas_excluidas_escolaridad": [
+        "ESCOLARIDAD-HASTA-PRIMARIA",
+        "ESCOLARIDAD-MEDIA-SUPERIOR",
+        "ESCOLARIDAD-SECUNDARIA",
+        "ESCOLARIDAD-SUPERIOR"
+      ],
+      "habilitados": [
+        "TENDENCIA-2",
+        "TENDENCIA-3",
+        "TENDENCIA-SERIE"
+      ],
+      "retador_primario": "TENDENCIA-SERIE",
+      "mae_por_contendiente": {
+        "PERSISTENCIA": {
+          "mae_pp": 4.541509533780829,
+          "n_celdas_puntuadas": 12,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL",
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2",
+            "UNIVERSO-UNIVERSO-TRABAJA"
+          ]
+        },
+        "TENDENCIA-2": {
+          "mae_pp": 4.161036367478655,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        },
+        "TENDENCIA-3": {
+          "mae_pp": 2.186624458055254,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        },
+        "TENDENCIA-SERIE": {
+          "mae_pp": 1.5782425946542111,
+          "n_celdas_puntuadas": 9,
+          "celdas_puntuadas": [
+            "EDAD-18-29",
+            "EDAD-30-44",
+            "EDAD-45-59",
+            "EDAD-60-MAS",
+            "LOCALIDAD-15-000-Y-MAS",
+            "LOCALIDAD-MENOR-DE-15-000",
+            "NACIONAL-TODOS",
+            "SEXO-1",
+            "SEXO-2"
+          ]
+        }
+      },
+      "adjudicacion_por_retador": {
+        "TENDENCIA-2": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.2607380108465659,
+              "ic95": [
+                0.22294363962711988,
+                0.3021471699640215
+              ],
+              "error_pp": 3.7497819321347574,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.27653662877972207,
+              "ic95": [
+                0.2193616898653463,
+                0.33947517301842345
+              ],
+              "error_pp": 4.6315992601161735,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.24584818440352343,
+              "ic95": [
+                0.19773186435575565,
+                0.3003888542822466
+              ],
+              "error_pp": 2.9082913704282927,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.2553101350670341,
+              "ic95": [
+                0.19150881840379497,
+                0.3328472575837346
+              ],
+              "error_pp": 1.2225063016200828,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.2448219958775465,
+              "ic95": [
+                0.19104951182071203,
+                0.3075470075644609
+              ],
+              "error_pp": 0.9420045233066526,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.31442346623987644,
+              "ic95": [
+                0.23159617962909587,
+                0.4115201705591589
+              ],
+              "error_pp": 10.107736250673764,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.2399937733284558,
+              "ic95": [
+                0.1260878721388288,
+                0.41293082099103134
+              ],
+              "error_pp": 8.051839001494207,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.26812330465456646,
+              "ic95": [
+                0.17852936094824862,
+                0.38275241555215045
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.3262037637952645,
+              "ic95": [
+                0.2512888251716186,
+                0.41383272796218734
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.2675598566033675,
+              "ic95": [
+                0.19795214758928412,
+                0.3531757882296242
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.21939875582956087,
+              "ic95": [
+                0.15900568395489809,
+                0.2930584702112149
+              ],
+              "error_pp": 5.247256060402841,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.2251594619724232,
+              "ic95": [
+                0.1671752875093012,
+                0.2944511284408342
+              ],
+              "error_pp": 0.5752549974626736,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.2734196949919258,
+              "ic95": [
+                0.22739111133322015,
+                0.3244189461706177
+              ],
+              "error_pp": 5.260313670071285,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": false,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 4.161036367478655,
+          "delta_mae_pp": 0.041213624583921415,
+          "delta_ic95": [
+            -3.4322723964406405,
+            1.5614881489108436
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "SECUNDARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 7,
+            "proporcion": 0.7777777777777778,
+            "ic95_wilson": [
+              0.4525889666922117,
+              0.9367748934594303
+            ]
+          }
+        },
+        "TENDENCIA-3": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.20290631167516962,
+              "ic95": [
+                0.1806128636693856,
+                0.2271211763974291
+              ],
+              "error_pp": 2.03338798500487,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.21144602506512117,
+              "ic95": [
+                0.17895165162536217,
+                0.24913961621552294
+              ],
+              "error_pp": 1.877461111343917,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.1952052228357479,
+              "ic95": [
+                0.16618995767686537,
+                0.2278477588304151
+              ],
+              "error_pp": 2.156004786349261,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.22493749881460764,
+              "ic95": [
+                0.18046955520886432,
+                0.2738650541342059
+              ],
+              "error_pp": 1.8147573236225623,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.20170934760332915,
+              "ic95": [
+                0.1676924705349662,
+                0.24061410512112436
+              ],
+              "error_pp": 3.369260304115082,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.21815886658631933,
+              "ic95": [
+                0.17169739070898474,
+                0.2741374872372563
+              ],
+              "error_pp": 0.48127628531805244,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.12457189714850546,
+              "ic95": [
+                0.0749217589308511,
+                0.19896207759664947
+              ],
+              "error_pp": 3.490348616500828,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.19496853306658832,
+              "ic95": [
+                0.14309238817810369,
+                0.2603425353657241
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.2611433878541742,
+              "ic95": [
+                0.21263621419283732,
+                0.31496189367973493
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.21089179440321565,
+              "ic95": [
+                0.1675605589835749,
+                0.2638100994754862
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.16783047267128307,
+              "ic95": [
+                0.132697080263425,
+                0.20990157342127577
+              ],
+              "error_pp": 0.0904277445750612,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.20426327389966364,
+              "ic95": [
+                0.16512921031461308,
+                0.24915696523595107
+              ],
+              "error_pp": 2.6648738047386296,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.20289405923617215,
+              "ic95": [
+                0.1766384344638313,
+                0.23203607321810146
+              ],
+              "error_pp": 1.7922499055040815,
+              "dentro_ic_R": false,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 2.1866244580552543,
+          "delta_mae_pp": 2.015625534007322,
+          "delta_ic95": [
+            -0.45605318181887894,
+            3.570264704659612
+          ],
+          "veredicto": "NADIE-VENCE",
+          "rol": "SECUNDARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 9,
+            "proporcion": 1.0,
+            "ic95_wilson": [
+              0.700854948272956,
+              1.0
+            ]
+          }
+        },
+        "TENDENCIA-SERIE": {
+          "celdas": {
+            "NACIONAL-TODOS": {
+              "p": 0.23770923444025266,
+              "ic95": [
+                0.21609994871205207,
+                0.26034849426480955
+              ],
+              "error_pp": 1.4469042915034342,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-1": {
+              "p": 0.23802118337849937,
+              "ic95": [
+                0.20776459820373686,
+                0.2722325954269786
+              ],
+              "error_pp": 0.7800547199939029,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "SEXO-2": {
+              "p": 0.23701499564510267,
+              "ic95": [
+                0.20899658655465103,
+                0.26727479960685757
+              ],
+              "error_pp": 2.0249724945862164,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-18-29": {
+              "p": 0.26725112817633384,
+              "ic95": [
+                0.22652602716227882,
+                0.3123851725478341
+              ],
+              "error_pp": 2.4166056125500575,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-30-44": {
+              "p": 0.23948054603532548,
+              "ic95": [
+                0.20852040353633744,
+                0.2734598330644057
+              ],
+              "error_pp": 0.4078595390845513,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-45-59": {
+              "p": 0.24363329186089389,
+              "ic95": [
+                0.20104233546738542,
+                0.29139031395979126
+              ],
+              "error_pp": 3.028718812775508,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "EDAD-60-MAS": {
+              "p": 0.14842689160231404,
+              "ic95": [
+                0.09788139868481416,
+                0.21963522920220338
+              ],
+              "error_pp": 1.1048491711199704,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "ESCOLARIDAD-HASTA-PRIMARIA": {
+              "p": 0.2174559362827356,
+              "ic95": [
+                0.17276552484209673,
+                0.2716757036023433
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SECUNDARIA": {
+              "p": 0.2974945294616545,
+              "ic95": [
+                0.25370228956607277,
+                0.3456070185215859
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-MEDIA-SUPERIOR": {
+              "p": 0.23955238830743558,
+              "ic95": [
+                0.19978223494466485,
+                0.28463425854944446
+              ],
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "ESCOLARIDAD-SUPERIOR": {
+              "p": 0.21403193578636948,
+              "ic95": [
+                0.17756665206285163,
+                0.2560698682341888
+              ],
+              "error_pp": 4.710574056083702,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": false,
+              "puntuada": false
+            },
+            "LOCALIDAD-MENOR-DE-15-000": {
+              "p": 0.24548298143936176,
+              "ic95": [
+                0.206659152955269,
+                0.28846201996544385
+              ],
+              "error_pp": 1.457096949231182,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "LOCALIDAD-15-000-Y-MAS": {
+              "p": 0.23618777590164375,
+              "ic95": [
+                0.2119384705016798,
+                0.26231681296785414
+              ],
+              "error_pp": 1.5371217610430783,
+              "dentro_ic_R": true,
+              "R_dentro_ic_cand": true,
+              "puntuada": true
+            },
+            "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            },
+            "UNIVERSO-UNIVERSO-TRABAJA": {
+              "p": null,
+              "ic95": null,
+              "error_pp": null,
+              "dentro_ic_R": null,
+              "R_dentro_ic_cand": null,
+              "puntuada": false
+            }
+          },
+          "mae_pp": 1.5782425946542114,
+          "delta_mae_pp": 2.6240073974083646,
+          "delta_ic95": [
+            0.4456469401184358,
+            3.4954351028807196
+          ],
+          "veredicto": "PROPUESTA-CON-RESERVA",
+          "rol": "PRIMARIA",
+          "piso_se_sostiene": false,
+          "cobertura": {
+            "n_celdas": 9,
+            "exitos": 9,
+            "proporcion": 1.0,
+            "ic95_wilson": [
+              0.700854948272956,
+              1.0
+            ]
+          }
+        }
+      },
+      "estados_celda": {
+        "NACIONAL-TODOS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "SEXO-1": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "SEXO-2": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-18-29": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-30-44": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-45-59": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "EDAD-60-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-HASTA-PRIMARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-SECUNDARIA": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-MEDIA-SUPERIOR": {
+          "R": "SIN-CELDA",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "ESCOLARIDAD-SUPERIOR": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "LOCALIDAD-MENOR-DE-15-000": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "LOCALIDAD-15-000-Y-MAS": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "OK",
+          "TENDENCIA-3": "OK",
+          "TENDENCIA-SERIE": "OK"
+        },
+        "FORMALIDAD-SIN-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "FORMALIDAD-CON-SEGURIDAD-SOCIAL": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        },
+        "UNIVERSO-UNIVERSO-TRABAJA": {
+          "R": "OK",
+          "PERSISTENCIA": "OK",
+          "TENDENCIA-2": "SIN-CELDA",
+          "TENDENCIA-3": "SIN-CELDA",
+          "TENDENCIA-SERIE": "SIN-CELDA"
+        }
+      },
+      "contexto_oferta": {}
+    }
+  }
+}

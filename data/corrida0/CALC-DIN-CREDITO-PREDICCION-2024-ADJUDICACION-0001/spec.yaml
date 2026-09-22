@@ -1,7 +1,7 @@
 # El primer resultado que produzca este procedimiento es el que se reporta.
 calc_id: CALC-DIN-CREDITO-PREDICCION-2024-ADJUDICACION-0001
-spec_md: ../../../forense/prereg-caja/DIN-CREDITO-PREDICCION-2024-ADJUDICACION-spec-v1_0.md
-spec_md_sha256: 01a384aa16985328d3b8e310108209730bafe6ce52d11d48d27dcfa6b577ec78
+spec_md: ../../../forense/prereg-caja/DIN-CREDITO-PREDICCION-2024-ADJUDICACION-spec-v1_1.md
+spec_md_sha256: 8d292bae023c78b17bf8a0307e7ede123e2b8b44f02a5ff8bc222545ecfd6728
 script: data/corrida0/CALC-DIN-CREDITO-PREDICCION-2024-ADJUDICACION-0001/medidor.py
 etiquetas:
   generacion: GEN2
@@ -30,8 +30,22 @@ dependencias_materiales: [numpy, pandas]
 secuencia_commits:
   commit_1: "Este commit: guardia + mapa de columnas + medir() congelados; probado solo sobre sintetico; sin ejecucion.json"
   commit_2: "Otra sesion (F3): corrida0 run sobre este CALC, extrae el marginal real 2024 de las 9 conductas; sella ejecucion.json/resultados.json/sello.json"
-  commit_3a: "Misma sesion del COMMIT-2, commit aparte, ANTES de derivar cualquier R: decide y escribe en este spec.yaml la regla de adjudicacion (spec.md §0/§4) contra las emisiones ya selladas de CALC-DIN-CREDITO-PREDICCION-2024-EMISIONES-0001 (resultados.json sha256 aa0db17c79581516fc326a4728f1b6969c75e8e837e350168771614db3a008cd, ya conocido y citable desde hoy porque esa pieza esta sellada en este mismo acto); preflight VERDE antes de seguir"
-  commit_3: "Adjudica -- veredicto por (conducta, celda) con la regla fijada en 3a"
+  commit_3a: "HECHO -- ACTO GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-2-3, 22/sep/2026, CAJA, commit propio ANTES de correr commit_2: regla de adjudicacion fijada en spec.md §6 (bootstrap sintetico desde el SE analitico, FP-...-7866-02 resuelta; sin umbral de materialidad, VENCE-RETADOR inalcanzable-por-diseno) contra las emisiones ya selladas de CALC-DIN-CREDITO-PREDICCION-2024-EMISIONES-0001 (resultados.json sha256 aa0db17c79581516fc326a4728f1b6969c75e8e837e350168771614db3a008cd); ver regla_adjudicacion mas abajo"
+  commit_3: "Adjudica -- veredicto por conducta con la regla fijada en 3a (tools/duelo/credito_prediccion_2024.py)"
+regla_adjudicacion:
+  fp_resuelta: "FP-260921-GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-1-7866-01-02"
+  metodo: "bootstrap sintetico desde el SE analitico (spec.md §6)"
+  seed: {generador: "numpy.random.Generator(numpy.random.PCG64(20260922))", replicas: 10000}
+  orden_consumo_semilla: "ENTERING (K1,K2-DEPARTAMENTAL,K2-NOMINA,K2-AUTOMOTRIZ,K3,K4A-AUTOEXCLUSION,K4B-OFERTA,K5,K6-P-TENEDORES) x 16 celdas de este CALC en el orden de medir() x (R,PERSISTENCIA,TENDENCIA-2,TENDENCIA-3,TENDENCIA-SERIE) en ese orden, 10000 draws por cantidad siempre, se descartan si la cantidad no existe para esa celda"
+  piso: "PERSISTENCIA"
+  retador_primario: "la TENDENCIA-X habilitada de menor MAE en el punto, por conducta"
+  metrica_primaria: "ΔMAE = MAE_piso(punto) - MAE_retador(punto), pp; IC95 = percentil[2.5,97.5] de ΔMAE(b) sobre 10000 replicas sinteticas"
+  umbral_materialidad: "NO-DECLARADO (a propósito, hereda postura de -EMISIONES-0001 spec.md §4)"
+  vocabulario_alcanzable: ["NADIE-VENCE", "PROPUESTA-CON-RESERVA"]
+  vocabulario_inalcanzable_por_diseno: ["VENCE-RETADOR"]
+  cobertura: "R (punto observado) dentro de [IC-LO,IC-HI] del candidato, por candidato y por conducta, IC binomial Wilson sobre esa proporcion; celdas de una conducta comparten muestra 2024, no independientes"
+  contexto_oferta: "K4B-OFERTA y K5 se publican junto a K1/K2-*/K3 de la misma celda, fuera del computo de ΔMAE de esas conductas"
+  celdas_fuera_de_este_calc: "CUENTA-CON-CUENTA/CUENTA-SIN-CUENTA (eje cuenta, en -EMISIONES-0001 pero no en este CALC) -> SIN-R-EJE-CUENTA-OMITIDO-POR-DISENO, nadie ocupo la fila"
 resultados:
   - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
   - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
