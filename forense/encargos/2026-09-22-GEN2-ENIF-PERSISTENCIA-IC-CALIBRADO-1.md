@@ -47,3 +47,7 @@ No adopta, no re-evalúa prospectivamente, no toca el yaml. Sucesor: `MARGINALES
 - **qué:** «derivados por comando» (re-derivar las vistas) · **por qué:** FUERA-DE-PERÍMETRO:GEN2-PENDIENTES-CAJA-1: el registro proyectó 21 corridas ajenas ya selladas en `main` sin fila; 17 entran `NO-VERIFICADO` (su verify/asiento es E.7 de sus actos, clase i de PENDIENTES-CAJA-1). Ningún veredicto previo cambió (medido contra `origin/main`) · **impacto:** esas 17 filas sin veredicto de replay en la vista · **sucesor:** `GEN2-PENDIENTES-CAJA-1` — `NC-…-2868-04`
 - **qué:** cierre de `NC-260922-GEN2-MARGINALES-ADOPCION-1-c45c-02` (su sucesor «GEN2-ENIF-IC-CALIBRADO-1» es este acto) · **por qué:** FUERA-DE-PERÍMETRO:GEN2-MARGINALES-ADOPCION-1: esa NC vive en una rama aún no fusionada · **impacto:** quedará ABIERTA en `main` aunque su sucesor ya corrió · **sucesor:** mesa -- al fusionar el segundo PR, cerrarla con `cerrado_por` = este acto — `NC-…-2868-05`
 - **qué:** test propio en CI · **por qué:** NO-VERIFICABLE-AQUÍ: `tests/test_enif_persistencia_ic_calibrado.py` PASA en CAJA (con `--oro`); en CI se salta por `NECESITA-DEPENDENCIA(numpy)` · **impacto:** el guardia no corre en CI · **sucesor:** `FP-398` — `NC-…-2868-06`
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1`, PR #1009 (rama `claude/gen2-enif-persistencia-ic-calibrado-1`): COMMIT-1 `e1310d86` (spec congelada), COMMIT-2 `2ea52306` (corrida sellada) y `7fc4e115` (registro y asiento), cierre `59f32da7`. ADR `ADR-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01`. Mesa fusiona.
