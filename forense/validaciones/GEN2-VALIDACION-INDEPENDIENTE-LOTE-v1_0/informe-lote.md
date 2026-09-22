@@ -14,7 +14,7 @@ los marginales sellados de `#971`) coincide igual (`max |Δ error C2| = 1.1e-14`
 sellado — la misma cifra hasta el ruido de coma flotante de Python). El único eje que no
 coincide a esa tolerancia es el ancho del IC95/la cobertura — **esperado y declarado**: es
 método de varianza propio (LATITUD §6 del encargo), no el mismo bootstrap del medidor
-sellado. Detalle celda a celda: `comparacion-lote.json` (script: `compara.py`).
+sellado. Detalle celda a celda: `comparacion-lote.json` (script: `compara_lote.py`).
 
 | cifra | propia | sellada (`#986`) | diferencia |
 |---|---|---|---|
@@ -37,7 +37,7 @@ discrepancia.
 
 ## Independencia — cómo se probó
 
-`valida_lote.py` se escribió y corrió, y `resultados_propios.json` se **commiteó y empujó**
+`valida_lote.py` se escribió y corrió, y `resultados_propios_lote.json` se **commiteó y empujó**
 (`97d92016`) **antes** de abrir ningún archivo de `CALC-DIN-LOTE-ENIF2024-EMISIONES-0001` o
 `…-ADJUDICACION-0001`, y en ningún momento de este acto se abrieron `medidor.py`,
 `adjudicacion.py`, `tools/lote_enif2024/` ni `tools/duelo/cruces_familia.py` (INDEPENDENCIA
@@ -105,6 +105,6 @@ declara para que no se lea como omisión.
 
 ```
 cd forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-LOTE-v1_0
-python3 valida_lote.py    # P1 — escribe resultados_propios.json
-python3 compara.py        # P2 — abre el sellado, escribe comparacion-lote.json
+python3 valida_lote.py    # P1 — escribe resultados_propios_lote.json
+python3 compara_lote.py        # P2 — abre el sellado, escribe comparacion-lote.json
 ```

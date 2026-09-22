@@ -56,7 +56,9 @@ réplicas 2021) de la MISMA k. IC95 = percentiles 2.5/97.5 (interpolación linea
 con UPM única: multiplicidad fija = 1 (varianza cero, contado). Mismo método que #970
 (`valida_pilotos.py`), para continuidad de convención entre actos de validación.
 
-Salida: resultados_propios.json en este directorio.
+Salida: resultados_propios_lote.json en este directorio (sufijo `_lote` — T02: el nombre
+genérico `resultados_propios.json` colisiona con el de `#970`,
+`forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-v1_0/`).
 """
 from __future__ import annotations
 
@@ -519,7 +521,7 @@ def main():
             "celdas_puntuadas": nombres_celda,
         },
     }
-    dest = AQUI / "resultados_propios.json"
+    dest = AQUI / "resultados_propios_lote.json"
     dest.write_text(json.dumps(out, indent=1, ensure_ascii=False, default=lambda o: None) + "\n")
     print("MAE_C2_pp", MAE_C2 * 100)
     print("MAE_R2_pp", MAE_R2 * 100)

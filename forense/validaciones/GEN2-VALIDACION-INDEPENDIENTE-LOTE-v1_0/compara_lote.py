@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """P2 · Comparación celda a celda (GEN2-VALIDACION-INDEPENDIENTE-LOTE-1).
 
-Compara `resultados_propios.json` (P1, a ciegas, commiteado ANTES de este paso) contra los
+Compara `resultados_propios_lote.json` (P1, a ciegas, commiteado ANTES de este paso) contra los
 RESULT sellados de `CALC-DIN-LOTE-ENIF2024-ADJUDICACION-0001` (COMMIT-3). Primera vez que
 este acto abre un sellado del lote.
 
@@ -33,7 +33,7 @@ PARES = [
 
 
 def main():
-    propio = json.loads((AQUI / "resultados_propios.json").read_text())
+    propio = json.loads((AQUI / "resultados_propios_lote.json").read_text())
     sellado_path = Path(__file__).resolve().parents[3] / "data" / "corrida0" / "CALC-DIN-LOTE-ENIF2024-ADJUDICACION-0001" / "resultados.json"
     sellado = json.loads(sellado_path.read_text())["resultados"]
 
