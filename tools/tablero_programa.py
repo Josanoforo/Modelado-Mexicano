@@ -868,7 +868,7 @@ def _linea_celdas_validadas(cv: dict) -> str:
             L.append(f"  - *cruce vs R* · `{c['celda_d']}`: {c['estado']}")
             continue
         L.append(
-            f"  - *cruce vs R* · `{c['celda_d']}` · n `{c['n_celdas']}` · champion `{c['champion']}` · "
+            f"  - *cruce vs R* · `{c['celda_d']}` · n `{c['n_celdas']}` · champion `{c.get('champion_actual')}` · "
             f"error mediano `{c['error_mediano_pp']}` pp (máx `{c['error_max_pp']}` pp) · "
             f"brecha `{c['brecha_anios']}` años (misma ola) · escala cruda del CALC "
             f"`{c['escala_cruda']}` · `{c['fuente']}`")
