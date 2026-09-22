@@ -17,7 +17,9 @@ prueba la guarda.
 """
 from __future__ import annotations
 
+import json
 import sys
+import tempfile
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
@@ -122,6 +124,53 @@ def test_rechaza_via_crudo_sin_manifiesto():
     estado, _ = _valida(calc_gen2="CALC-SIN-CRUDO",
                         result_gen2="RESULT-SC-PUNTO")
     assert estado == "RECHAZADO-SIN-INSUMO-CRUDO"
+
+
+# ── guarda (b), TANDA-7 (22/sep/2026) · reconoce capturas por regla, no
+# por nombre -- precision de direccion: "un input `origen: repo` cuya ruta
+# apunte a un manifiesto o plan de capturas selladas con hash por captura
+# ... es insumo crudo a efectos de la guarda (b). La guarda lo reconoce
+# leyendo el archivo -- que enumere capturas con sha -- y no por nombre." ──
+
+def test_via_crudo_acepta_el_plan_real_de_capturas():
+    """`F5-completa-plan-v1_0.json` (CALC-L-DESDE-CAPTURAS-v1_0/spec.yaml,
+    input IN-F5C-PLAN) no trae "manifiesto-capturas" en el nombre y aun asi
+    es crudo: sus 224 posiciones traen `sha256_prompt`/`sha256_spec_l`/etc.
+    propios por captura -- el defecto que TANDA-6 probo por mutacion."""
+    spec = {"inputs": [{"id": "IN-F5C-PLAN", "origen": "repo",
+                        "ruta": "forense/prereg-duelo-v2/F5-completa-plan-v1_0.json"}]}
+    assert pines_mesa._tiene_crudo(spec)
+
+
+def test_via_crudo_acepta_el_manifiesto_capturas_real():
+    spec = {"inputs": [{"id": "cap", "origen": "repo",
+                        "ruta": "forense/prereg-duelo-v2/manifiesto-capturas-P3-v1_0.json"}]}
+    assert pines_mesa._tiene_crudo(spec)
+
+
+def test_via_crudo_lee_el_archivo_no_el_nombre():
+    """Mutacion sobre el mismo mecanismo: una coleccion CON sha por
+    registro pasa; la MISMA coleccion sin sha, o un `origen: repo` a secas
+    que no enumera nada, se rechazan -- nunca se relaja para `origen: repo`
+    sin hashes de captura (PARO b del encargo)."""
+    con_hash = {"posiciones": [{"id": "a", "sha256_x": "abc123"},
+                               {"id": "b", "sha256_x": "def456"}]}
+    sin_hash = {"posiciones": [{"id": "a"}, {"id": "b"}]}
+    tmp = Path(tempfile.mkdtemp())
+    (tmp / "con-hash.json").write_text(json.dumps(con_hash), encoding="utf-8")
+    (tmp / "sin-hash.json").write_text(json.dumps(sin_hash), encoding="utf-8")
+    raiz_vieja = pines_mesa.RAIZ
+    try:
+        pines_mesa.RAIZ = tmp
+        assert pines_mesa._tiene_crudo(
+            {"inputs": [{"id": "x", "origen": "repo", "ruta": "con-hash.json"}]})
+        assert not pines_mesa._tiene_crudo(
+            {"inputs": [{"id": "x", "origen": "repo", "ruta": "sin-hash.json"}]})
+        assert not pines_mesa._tiene_crudo(
+            {"inputs": [{"id": "x", "origen": "repo",
+                        "ruta": "forense/x-spec-v1_0.md"}]})
+    finally:
+        pines_mesa.RAIZ = raiz_vieja
 
 
 # ── guarda (c) · via (ii) exige conducta GEN2 HOY ─────────────────────────
