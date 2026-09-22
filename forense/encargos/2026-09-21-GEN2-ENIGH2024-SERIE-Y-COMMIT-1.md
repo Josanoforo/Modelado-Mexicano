@@ -27,3 +27,31 @@ Por objeto («ENIGH2024», «duelo», «serie ENIGH»): reserva, diseño, invent
 
 ## 6 · LATITUD · 7 · PAROS
 Latitud: estructura, orden, qué medidores reutilizas. Pregunta a mesa siguiendo: si tras P1 solo `remesas>0` entra (el duelo se congela con un estimando y se dice). PAROS: a) abrir, listar o derivar de `enigh2024*`, o leer sus tabulados · b) elegir variante tras ver el origen móvil · c) congelar sin D-22 · d) editar un sello · e) cambiar procedimiento tras COMMIT-1. Compuerta: «P4 ensayo en verde» protege congelar. Perímetro: series y CALC nuevos, tabla, spec y sidecar, nota, cascada; ajeno: `tools/duelo/`, sellos, celdas-D. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+## NO-CORRIDO / RESERVAS
+
+- **qué**: P4 «Emisiones → adjudicación» — COMMIT-2 real de
+  `CALC-ENIGH-DUELO-EMISIONES-0001` (abrir `enigh2024_ns_csv.zip` y
+  calcular R con la guardia).
+  **por qué**: `DIFERIDO-A:acto sucesor tras firma b7ae-02` — el CALC
+  quedó congelado (spec + medidor + guardia), probado solo contra un
+  zip sintético, con `preflight` VERDE por hash sobre el input real;
+  `run()` nunca se invocó. PARO (a) del encargo prohíbe abrir
+  `enigh2024*` en este acto, y además la firma
+  `FP-260921-GEN2-ENIGH2024-RESERVA-Y-DISENO-1-b7ae-02` (adopción del
+  diseño) sigue PENDIENTE.
+  **impacto**: ningún R de 2024 existe aún; `cuenta_gen2 = NO` en
+  `-EMISIONES-0001` hasta que corra.
+  **sucesor**: `CALC-ENIGH-DUELO-EMISIONES-0001`, COMMIT-2 (otra
+  sesión, F3, tras la firma).
+- **qué**: P4 — `CALC-ENIGH-DUELO-ADJUDICACION-0001` (COMMIT-3), la
+  regla de adjudicación de `DISENO-duelo-prospectivo-ENIGH2024-v1_0.md
+  §5`.
+  **por qué**: `DIFERIDO-A:mismo acto sucesor que corra COMMIT-2` — la
+  regla está completa en prosa (§5, formalizada en
+  `DUELO-PROSPECTIVO-ENIGH2024-spec-v1_0.md §5`); el CALC que la
+  aplique contra el R real depende de que COMMIT-2 exista primero, así
+  que no se escribió en este acto.
+  **impacto**: ningún veredicto del duelo existe aún; B-bis sin
+  evaluar.
+  **sucesor**: `CALC-ENIGH-DUELO-ADJUDICACION-0001`, COMMIT-3 (misma
+  sesión sucesora que COMMIT-2).
