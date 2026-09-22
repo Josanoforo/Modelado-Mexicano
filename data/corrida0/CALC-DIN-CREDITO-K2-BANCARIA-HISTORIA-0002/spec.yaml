@@ -1,0 +1,384 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-0002
+repite_de: CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-0001
+spec_md: ../../../forense/prereg-caja/DIN-CREDITO-K2-BANCARIA-HISTORIA-spec-v1_0.md
+spec_md_sha256: 70add02920eab04b601b3325ee22f21094bba2963a5909082c7caf420c03a4b5
+script: data/corrida0/CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-0002/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: DESCRIPTIVO-ROTULADO-CON-FRONTERA
+  dominio: credito
+  cuenta_gen2: SI
+  cuenta_gen2_firma: 'PROPUESTA DE DIRECCIÓN (encargo GEN2-DIN-CREDITO-HISTORIA-1 §2, 21/sep/2026): cuenta, no adopta; FP-404 (2) FIRMADA: (i) rotulado para el descriptivo, (iii) sin serie 2021<->2024'
+  adopta: 'NO'
+  exposicion_historica: 'CIEGO-A-2024-NO-ABIERTA; 2012/2015/2018/2021 ya abiertas por P2 y #943'
+  estado_al_congelar: 'RUN de la quinta corrida autorizado por FP-260921-GEN2-DIN-CREDITO-HISTORIA-1-ff56-02 (encargo GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1 §2, 22/sep/2026); CALC nuevo porque -0001 está sellado (E.3); spec y medidor idénticos a -0001 salvo calc_id, script, repite_de y estas dos etiquetas'
+  medidor_ejecutado_al_congelar: SI -- medidor.py byte a byte el de -0001 (sha256 7e8d80f931fe63d70f8cbdce4f7be0ac84f440a8ca04a80af5671b24ee279800), ejercido sobre los cuatro payloads sintéticos antes del COMMIT-1 de -0001; este CALC es la corrida sobre microdato ENIF 2012/2015/2018/2021.
+inputs:
+- id: enif_2012_bases_enif2012_dbf
+  origen: manifiesto
+- id: enif_2015_enif_2015_bd_dbf
+  origen: manifiesto
+- id: enif2018_csv
+  origen: manifiesto
+- id: enif2021_csv
+  origen: manifiesto
+- id: MEDIDOR-HISTORIA
+  origen: repo
+  funcion: CODIGO
+  ruta: data/corrida0/CALC-DIN-CREDITO-PISOS-ENIF2018-0001/medidor.py
+  sha256: 2981eed066ac5376425f7829255fc5a75332e8bcdeca58839122f5ccb426bc4a
+- id: MEDIDOR-EJES-0003
+  origen: repo
+  funcion: CODIGO
+  ruta: data/corrida0/CALC-PISOS-ENIF2021-EJES-0003/medidor.py
+  sha256: d069f38bd75c47fd5550015b179c7b2e61f1ab20ce6b22c630c66392afea06a3
+- id: CREDITO-COMPARABILIDAD-TEXTO
+  origen: repo
+  funcion: METADATO
+  ruta: data/credito-comparabilidad-texto-v1_1.tsv
+  sha256: 0245333e57eb750d5acf2b4ab2a13fd13bcfdba354a06aa64b114f5017783205
+- id: MAPA
+  origen: repo
+  funcion: METADATO
+  ruta: forense/prereg-caja/DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv
+  sha256: ab231e9e69453ac9c74254d43fa1ad8c03fc2abc8c7337bd8eaa7050fc5efe02
+variables:
+- archivo: stmodulo1_e2.dbf
+  variable: P6_6_1
+  rol: tarjeta de crédito bancaria 2012 (K2 familia bancaria)
+- archivo: tmodulo2.DBF
+  variable: P6_9_2
+  rol: tarjeta de crédito bancaria 2015 (K2 familia bancaria)
+- archivo: conjunto_de_datos/tmodulo.csv
+  variable: P6_8_2
+  rol: tarjeta de crédito bancaria 2018 (K2 familia bancaria)
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P6_2_2
+  rol: tarjeta de crédito bancaria 2021 (K2 familia bancaria)
+- archivo: por ola (mapa v1.1)
+  variable: filtro y batería de tenencia formal
+  rol: base K1 (tenedores) y blanco→No por pase
+- archivo: por ola (mapa v1.1)
+  variable: FAC_PER / FAC_ELE; EST_DIS × UPM_DIS
+  rol: ponderador y diseño
+universo: Persona elegida de cada ola (18-70 en 2012/2015/2018; 18+ en 2021) con desenlace definido y diseño válido; BANCARIA-ENTRE-TENEDORES sobre K1 = 1
+filtros: ponderador positivo y diseño válido; sin filtro de edad; ENIF 2024 no se abre (RESERVADA, PARO a); sin ejes
+ponderador: FAC_PER (2012-2018) / FAC_ELE (2021)
+transformacion: Tarjeta de crédito bancaria = 1 si el ítem de la ola = 1; 0 si = 2 o blanco de quien dijo No al filtro; indefinido en otro caso; nivel entre tenedores condicionado a K1 = 1; un plan bootstrap por ola; textos de frontera FP-404 (2)
+estimando: 'Nivel nacional por ola (2012-2021) de tenencia de tarjeta de crédito bancaria, general y entre tenedores de crédito formal, con IC95, rotulado con la frontera FP-404 (2): sin diferencia 2021<->2024'
+seed:
+  aplica: true
+  rng: numpy.PCG64
+  valor: 42
+parametros:
+  bootstrap_replicas: 10000
+  metodo_ic: bootstrap UPM estratificado; percentiles 2.5/97.5; un plan por ola
+  n_soporte: 200
+dependencias_materiales:
+- numpy
+- pandas
+resultados:
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-BANCARIA-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-BANCARIA-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-BANCARIA-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-BANCARIA-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-BANCARIA-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-BANCARIA-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-BANCARIA-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-FILAS-PERSONAS
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-TENEDORES-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-BANCARIA-INDEFINIDO-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-UPM-EN-PLAN
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-REACTIVO
+  tipo: texto
+  unidad: declaración rotulada (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-VEREDICTO-TEXTO
+  tipo: texto
+  unidad: declaración rotulada (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-UNIDAD
+  tipo: texto
+  unidad: declaración rotulada (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-TSDEM-LLAVE-DUPLICADA-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-FILAS-SIN-SOCIODEMOGRAFICO-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2012-REGISTROS-DBF-BORRADOS
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-BANCARIA-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-BANCARIA-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-BANCARIA-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-BANCARIA-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-BANCARIA-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-BANCARIA-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-BANCARIA-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-FILAS-PERSONAS
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-TENEDORES-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-BANCARIA-INDEFINIDO-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-UPM-EN-PLAN
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-REACTIVO
+  tipo: texto
+  unidad: declaración rotulada (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-VEREDICTO-TEXTO
+  tipo: texto
+  unidad: declaración rotulada (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-UNIDAD
+  tipo: texto
+  unidad: declaración rotulada (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2015-REGISTROS-DBF-BORRADOS
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-BANCARIA-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-BANCARIA-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-BANCARIA-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-BANCARIA-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-BANCARIA-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-BANCARIA-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-BANCARIA-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-FILAS-PERSONAS
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-TENEDORES-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-BANCARIA-INDEFINIDO-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-UPM-EN-PLAN
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-REACTIVO
+  tipo: texto
+  unidad: declaración rotulada (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-VEREDICTO-TEXTO
+  tipo: texto
+  unidad: declaración rotulada (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2018-UNIDAD
+  tipo: texto
+  unidad: declaración rotulada (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-BANCARIA-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-BANCARIA-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-BANCARIA-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-BANCARIA-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-BANCARIA-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-BANCARIA-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-DEN-W
+  tipo: flotante
+  unidad: suma ponderada del denominador
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas bootstrap definidas
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-BANCARIA-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-SOPORTE
+  tipo: texto
+  unidad: OK si n>=200, si no BAJO-N-MENOR-200
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-FILAS-PERSONAS
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-TENEDORES-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-BANCARIA-INDEFINIDO-N
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-UPM-EN-PLAN
+  tipo: entero
+  unidad: conteo de filas sin ponderar
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-REACTIVO
+  tipo: texto
+  unidad: declaración rotulada (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-VEREDICTO-TEXTO
+  tipo: texto
+  unidad: declaración rotulada (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2021-UNIDAD
+  tipo: texto
+  unidad: declaración rotulada (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2024-BANCARIA
+  tipo: texto
+  unidad: declaración rotulada (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-2024-VEREDICTO-TEXTO
+  tipo: texto
+  unidad: declaración rotulada (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-DIFERENCIA-2021-2024
+  tipo: texto
+  unidad: declaración rotulada (spec §0/§2)
+- id: RESULT-DIN-CREDITO-K2-BANCARIA-HISTORIA-CIFRA-DEL-CORPUS-MAS-5-2-PP
+  tipo: texto
+  unidad: declaración rotulada (spec §0/§2)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
