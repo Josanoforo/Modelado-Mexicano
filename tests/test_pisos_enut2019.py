@@ -22,8 +22,12 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-TABLA = ROOT / "forense/prereg-caja/PISOS-ENUT2019-ejes-metadatos-v1_0.tsv"
-SIDECAR = Path(str(TABLA) + ".sha256")
+# v1_1 sucede a v1_0: F-ENUT (firma de mesa, GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1,
+# 22/sep/2026) cambia el dictamen de estas 11 celdas a SIN-PISO-POR-DISEÑO.
+TABLA = ROOT / "forense/prereg-caja/PISOS-ENUT2019-ejes-metadatos-v1_1.tsv"
+# v1_1 nombra su sidecar sin el ".tsv" (mismo patrón que la tabla EDER
+# hermana de este acto), a diferencia del sidecar de v1_0.
+SIDECAR = TABLA.with_suffix(".sha256")
 YAML_ARBITRO = ROOT / "milpa/tramite-ola5-propuesta-v0.yaml"
 CONSUMER = "familia.cuidado.reparto_mujeres40_ejes_enut2024"
 UNIDAD_POR_EJE = {"sexo_edad": "PERSONA", "reparto_hogar": "HOGAR"}
@@ -57,12 +61,14 @@ def corre() -> list[str]:
     if len(filas) != 11:
         errores.append(f"{len(filas)} filas, esperaba 11 (10 sexo_edad + 1 reparto_hogar)")
 
-    # 2 · dictamen NO-CONSTRUIBLE: una sola causa, unidad por eje del árbitro,
-    #     consumer exacto, ningún RESULT que el marcador pudiera leer como piso
+    # 2 · dictamen SIN-PISO-POR-DISEÑO (F-ENUT, GEN2-LECTURAS-DE-MESA-Y-
+    #     ROTULOS-1, 22/sep/2026, sucede al NO-CONSTRUIBLE de v1_0): una
+    #     sola causa, unidad por eje del árbitro, consumer exacto, ningún
+    #     RESULT que el marcador pudiera leer como piso
     causas = {f["reason"] for f in filas}
-    if {f["status"] for f in filas} != {"NO-CONSTRUIBLE"}:
-        errores.append("toda fila debe ser NO-CONSTRUIBLE (dictamen P0 por texto)")
-    if len(causas) != 1 or not next(iter(causas)).startswith("ENUT 2019 sin tvar_crea"):
+    if {f["status"] for f in filas} != {"SIN-PISO-POR-DISEÑO"}:
+        errores.append("toda fila debe ser SIN-PISO-POR-DISEÑO (dictamen F-ENUT por texto)")
+    if len(causas) != 1 or not next(iter(causas)).startswith("C1 (conducta sellada, PR #976"):
         errores.append(f"causa única esperada, se leyó {causas}")
     for f in filas:
         if f["consumer"] != CONSUMER:
@@ -71,8 +77,8 @@ def corre() -> list[str]:
             errores.append(f"{f['cell_id']}: unit {f['unit']!r} para eje {f['axis']}")
         if f["outcome"] != "horas_cuidado":
             errores.append(f"{f['cell_id']}: outcome {f['outcome']!r}")
-        if not f["cell_id"].startswith("EXCLUSION-PISOS-ENUT2019-"):
-            errores.append(f"{f['cell_id']}: una fila NO-CONSTRUIBLE no lleva id de RESULT")
+        if not f["cell_id"].startswith("DISENO-EXCLUSION-PISOS-ENUT2019-"):
+            errores.append(f"{f['cell_id']}: una fila SIN-PISO-POR-DISEÑO no lleva id de RESULT")
         if (f["source_instrument"], f["source_edition"], f["target_edition"]) != ("ENUT", "2019", "2024"):
             errores.append(f"{f['cell_id']}: olas {f['source_edition']}->{f['target_edition']}")
     if (ROOT / "data/corrida0/CALC-PISOS-ENUT2019-EJES-0001").exists():
@@ -94,8 +100,13 @@ def corre() -> list[str]:
         elif hashlib.sha256(p.read_bytes()).hexdigest() != sha:
             errores.append(f"metadata_source_sha256 no coincide con {ruta}")
 
-    # 4 · el marcador transporta la causa: las 11 celdas salen SIN-PISO con
-    #     `NO-CONSTRUIBLE:<causa de la tabla>`, ni una con piso.
+    # 4 · el marcador transporta la causa: las 11 celdas salen SIN-PISO. Esta
+    #     tabla (v1_0) fue SUCEDIDA por v1_1 (F-ENUT, GEN2-LECTURAS-DE-MESA-
+    #     Y-ROTULOS-1, 22/sep/2026): misma llave, causa nueva (C1
+    #     CAMBIO-DE-INSTRUMENTO en vez de la comparabilidad por texto de
+    #     #908), status SIN-PISO-POR-DISEÑO. v1_0 no se edita (A.10): sigue
+    #     sellada, pero ya no gobierna la celda -- el marcador transporta la
+    #     causa de v1_1, con `· SUCEDE-A:<cell_id de v1_0>`.
     spec = importlib.util.spec_from_file_location(
         "marcador_para_enut2019", ROOT / "tools" / "marcador_segmento.py")
     mod = importlib.util.module_from_spec(spec)
@@ -104,12 +115,14 @@ def corre() -> list[str]:
             if f["tipo"] == "MARGINAL" and f["regla_o_eje_origen"] == CONSUMER]
     if len(marg) != 11:
         errores.append(f"el marcador trae {len(marg)} filas para {CONSUMER}, esperaba 11")
-    causa = next(iter(causas)) if causas else ""
     for f in marg:
-        if f["estado"] != "SIN-PISO" or f["piso_fuente"] != f"NO-CONSTRUIBLE:{causa}":
-            errores.append(f"{f['celda_id']}: estado={f['estado']} piso_fuente={f['piso_fuente'][:50]!r}")
+        pf = f["piso_fuente"]
+        if (f["estado"] != "SIN-PISO"
+                or not pf.startswith("SIN-PISO-POR-DISEÑO:")
+                or " · SUCEDE-A:" not in pf):
+            errores.append(f"{f['celda_id']}: estado={f['estado']} piso_fuente={pf[:50]!r}")
         if f["piso"] not in ("", None):
-            errores.append(f"{f['celda_id']}: trae piso={f['piso']!r} con dictamen NO-CONSTRUIBLE")
+            errores.append(f"{f['celda_id']}: trae piso={f['piso']!r} con dictamen sin piso")
     return errores
 
 
