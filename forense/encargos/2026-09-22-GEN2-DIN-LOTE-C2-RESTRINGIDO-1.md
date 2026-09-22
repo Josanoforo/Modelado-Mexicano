@@ -50,3 +50,7 @@ No evalúa los pares (eso es el lote), no adopta, no compara contra el poblacion
 | `NC-260922-GEN2-DIN-LOTE-C2-RESTRINGIDO-1-4e12-03` | linaje de la corrida en la vista (`origen_numerico`) | NO-VERIFICABLE-AQUÍ: `IN-DICTAMEN` sin `funcion` en el `spec.yaml` sellado → `FUNCION-INDETERMINADA`; no se edita tras el run (D-18, E.3) | la vía (iii) de relevo no lee el origen numérico hasta que el registro clasifique el dictamen; no afecta puntos, IC ni replay | mesa -- aceptar INDETERMINADO o encargar a TUBERÍA la clasificación del dictamen como METADATO |
 
 Pregunta de §6 («si `cuenta_formal × formalidad` resulta degenerado…»): **no se disparó** — `NO-DEGENERADO` por la regla fijada en la spec antes del dato.
+
+## CONSUMIDO
+
+Consumido por el PR #1003 (https://github.com/Josanoforo/Modelado-Mexicano/pull/1003), rama `acto/gen2-din-lote-c2-restringido-1`, 22/sep/2026 — `ADR-260922-GEN2-DIN-LOTE-C2-RESTRINGIDO-1-4e12-01`. CALC `CALC-C2-RESTRINGIDO-IC-ENIF2024-0001` sellado (COMMIT-1 `31b5f734`, COMMIT-2 `e510e6a0`). Queda propuesto; mesa fusiona.
