@@ -59,8 +59,45 @@ Enmendar **en su sitio** la fila C2×2019 (hoy `CAMBIO-MENOR`) a `CAMBIO-DE-INST
 
 ## 4 · Firma de mesa
 
-FIRMA-PENDIENTE-DE-CONFIRMACION
+La propuesta de ADENDA-1 se editó de (a)(b)(c) a (a)(b′)(c). Mesa la confirmó en sesión el 22/sep/2026, verbatim:
+
+> Mesa confirma (a)(b′)(c): (a) la fila C2×2019 pasa a CAMBIO-DE-INSTRUMENTO y la persistencia 2019→2024 del núcleo se rotula así; (b′) las 10 celdas sexo_edad quedan NO-CONSTRUIBLE-POR-CRUCE (o RESERVADA donde ya lo estén) citando la guardia de una variable de tools/enut_nucleo.py; la celda reparto_hogar se enlaza sin medir (piso 2019 = 0.238 y R 2024 = RAZON-NUCLEO-NACIONAL, ambos sellados sobre el núcleo) en un sucesor de nube GEN2-ENUT-ENLACE-MARCADOR-1, cero mediciones; (c) cuenta_gen2 = SI para los tres CALC de ENUT-PISOS-Y-SERIE-1. Enmienda a la FP 308c: son 12 filas del marcador (1 + 10 + 1), no 21. Cierra asentando la firma y la FP como FIRMADA.
+
+Qué se asentó (A.12):
+- **`data/corrida0/decisiones.tsv`:** cuatro objetos, `FP-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01:(a)`, `:(b′)`, `:(c)` y `:enmienda-21`.
+- **`forense/firmas-pendientes.tsv`:** la FP 308c pasa a `FIRMADA`, con la enmienda fechada «21 → 12 filas» añadida al final de su texto. El texto previo no se tocó.
+- **Vehículo de (a):** es una propuesta del ejecutor (§3); mesa confirmó sin objetarla. Va marcada en `decisiones.tsv` como nota del ejecutor, no como texto de mesa.
+
+Valores sellados que usa (b′), leídos de `resultados.json`:
+- `RESULT-ENUT2019-RAZON-NUCLEO-NACIONAL-P` = 0.2379 [0.2301, 0.2456], n = 27 214 hogares;
+- `RESULT-ENUT2024-RAZON-NUCLEO-NACIONAL-P` = 0.2255 [0.2160, 0.2352], n = 29 181.
+
+## 4-bis · Lo que encontró el cierre al re-derivar tras el merge (para el sucesor)
+
+`origin/main` avanzó 8 commits mientras el acto esperaba la firma (entre ellos `#1001` `GEN2-TRAMITE-FIRMAS-6`), y se fusionó sin conflicto (`66feae73`). Dos cosas del árbol afectan directamente a `GEN2-ENUT-ENLACE-MARCADOR-1`:
+
+1. **Dos firmas de mesa ponen rótulos distintos a las mismas 10 celdas.**
+   - `FP-260922-GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1-bda6-02` (FIRMADA hoy) codifica en `forense/prereg-caja/PISOS-ENUT2019-ejes-metadatos-v1_1.tsv` las **11** filas ENUT (razón + 10 `sexo_edad`) como `SIN-PISO-POR-DISEÑO`, con la razón «C1 … CAMBIO-DE-INSTRUMENTO». Su texto dice además «celdas hermanas sobre el núcleo común C2 … mantienen su piso 2019/R 2024 sellados».
+   - (b′) rotula las 10 `sexo_edad` como `NO-CONSTRUIBLE-POR-CRUCE` y **enlaza** la razón.
+   - Este acto no elige entre las dos. El sucesor necesita una `v1_2` de esa tabla que las reconcilie; si las dos no son compatibles, se lo pregunta a mesa.
+2. **El marcador derivado en `main` no coincide con lo que produce su tool.** El marcador es un derivado: se reescribe con `tools/marcador_segmento.py --escribe` y aquí nunca se edita a mano. Hice la prueba en el worktree, comparé con `git diff` y lo restauré con `git checkout --`; este acto no deja nada escrito.
+   - **`marcador-segmento.tsv` (46 líneas de diff):** las 11 filas ENUT pasan de `NO-CONSTRUIBLE:…` a `SIN-PISO-POR-DISEÑO:…`, 4 filas EDER cohorte cambian, y aparecen celdas `CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::…`.
+   - **`milpa/estimadores-por-segmento.yaml` (+130 líneas):** también cambia. Es archivo ajeno, y por eso se restauró de inmediato.
+   - bda6-02 dice «marcador re-derivado por comando», pero el archivo commiteado no trae esa re-derivación.
+
+## 6 · Sucesor escrito: `GEN2-ENUT-ENLACE-MARCADOR-1`
+
+- **ENTORNO:** NUBE. Cero mediciones, sin CALC-id, no abre microdato.
+- **Qué hace:**
+  - (i) Escribe `data/enut-comparabilidad-texto-v1_1.tsv` (+ `.meta`, `SUCEDE-A v1_0`) con la fila C2×2019 en `CAMBIO-DE-INSTRUMENTO` (firma (a)). La `v1_0` no se toca.
+  - (ii) Rotula como `CAMBIO-DE-INSTRUMENTO` la persistencia 2019→2024 del núcleo (`enut-persistencia-dictamen`). Sólo el rótulo cambia: el dictamen prerregistrado `NO-DECIDIBLE` queda como historia (A.10).
+  - (iii) Escribe una tabla de identidad `PISOS-ENUT2019-ejes-metadatos-v1_2.tsv` que reconcilie bda6-02 con (b′). Son 10 `sexo_edad` en `NO-CONSTRUIBLE-POR-CRUCE`, citando la guardia de una variable de `tools/enut_nucleo.py` (`celdas_de_eje`, auditoría AST R1-R6). La razón `reparto_hogar` queda enlazada: piso = `CALC-ENUT2019-NUCLEO-EJES-0001/RESULT-ENUT2019-RAZON-NUCLEO-NACIONAL-P`, R = `CALC-ENUT2024-NUCLEO-EJES-0001/RESULT-ENUT2024-RAZON-NUCLEO-NACIONAL-P`. El cruce `reparto_hogarxsexo_edad` sigue RESERVADA.
+  - (iv) Re-deriva el marcador con `tools/marcador_segmento.py --escribe`, que primero absorbe la deriva de §4-bis.2, y declara qué filas ajenas se mueven.
+- **Hecho =** el marcador muestra la razón con `piso_fuente = CALC-ENUT2019-NUCLEO-EJES-0001`, las 10 `sexo_edad` sin piso por cruce y la reservada sin cambio.
+- **No hace:** adoptar, evaluar retadores ni abrir cruces.
 
 ## 5 · Contador
 
-Cero mediciones, cero CALC, no adopta. El marcador no se editó: `sin_piso` no se mueve desde este acto. `cuenta_gen2` no cambia (los tres CALC de PISOS-Y-SERIE-1 ya lo tenían en `SI` en su `spec.yaml`).
+Cero mediciones, cero CALC, no adopta. El marcador no se editó: `sin_piso` no se mueve desde este acto (`marcador_segmento.py --json` → `sin_piso=15`, `cobertura_de_piso=95`). `cuenta_gen2` no cambia (los tres CALC de PISOS-Y-SERIE-1 ya lo tenían en `SI` en su `spec.yaml`). `firmas-pendientes`: una fila ABIERTA → FIRMADA.
+
+Quedan para el sucesor, sin tocar desde aquí por ser filas de otro acto: `NC-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01` y `-02` (sucesor «FP 308c (b)», ya firmada). Su sucesor efectivo es ahora `GEN2-ENUT-ENLACE-MARCADOR-1`, que las cierra.

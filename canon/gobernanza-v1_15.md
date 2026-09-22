@@ -9482,3 +9482,24 @@ Verificación de existencia (§6, repetida por objeto antes de escribir código)
 **P3 (FP de retiro).** `FP-260922-GEN2-MARCO-M-CONSUMIDOR-1-02e6-01`, vocabulario cerrado del §2 del encargo, `ABIERTA`. Recomendación del ejecutor, marcada como tal: **`HISTÓRICO-SIN-RETIRO`** — no rompe las 7 herramientas hoy ni exige adaptarlas antes de que el relevo termine de vaciar las 43 filas `SIN-CANDIDATO`; `RETIRAR-CON-MAPA` exige antes el acto de tubería sucesor; `CONSUMIDOR-VIGENTE` no aplica (ningún consumidor GEN2 lee el marco).
 
 **CONTADOR:** cero mediciones — no tocó `data/corrida0/decisiones.tsv`, no adoptó nada, `adoptados_activos` y `dependencias_numericas_legacy_activas` sin cambio (medido, no movido: hoy 146, no los 184 que citaba el encargo al redactar — la diferencia la explican los relevos `TANDA-3/4/5`, ajenos a este acto). `tests/check.py --rapido`: VERDE, 0 FAIL, 297 WARN. Nota: `forense/notas/2026-09-22-GEN2-MARCO-M-CONSUMIDOR-1-cierre.md`. `## NO-CORRIDO / RESERVAS`: ver encargo archivado. Rótulo censado. **El PR no se fusiona en este acto: queda propuesto, mesa fusiona.**
+
+**ADR-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-01** (raíz de acto: `9f24` = 4 hex del commit de 0-bis `9f24df72`; no se renumera al fusionar), `ACTO GEN2-ENUT-NUCLEO-CELDAS-1 · LAS 21 CELDAS NO ERAN 21 NI ERAN MARGINALES, Y EL CALC RESERVADO YA ESTABA SELLADO: PARO-PREMISA EN EL ARRANQUE, FIRMA (a)(b′)(c) ASENTADA Y SUCESOR DE NUBE ESCRITO`, 22/sep/2026, entorno **CAJA** (`tools/entorno.py` → `sin_variable`, `git_status=LIMPIO(0)`; **cero microdato abierto**, `data/raw` sin enlazar porque el acto no llegó a abrir dato), Opus 5.5, sin sub-agentes, **MODO RÍGIDO** declarado, que no llegó a aplicarse porque no hubo COMMIT-1. Encargo archivado verbatim desde el adjunto (A.3; el sha256 del adjunto casa byte a byte) con sello de cuerpo: `forense/encargos/2026-09-22-GEN2-ENUT-NUCLEO-CELDAS-1.md` + `.cuerpo.sha256` (`f0c1a728…`). Adenda de mesa sellada al recibirse: `-ADENDA-1.md`. SHA de redacción `ccd7c0eb`; `origin/main` avanzó hasta `0232aad7`+`#1001` y se fusionó sin conflicto (`66feae73`). Guard 0.a-0.d en verde.
+
+- **Qué pasó.** A.8 por objeto encontró tres premisas falsas que tocan qué se mide y una firma, así que el acto paró antes del COMMIT-1 (§4.2 de `/acto`), y mesa aceptó el PARO como entregable (v2.16 §2):
+  - **H1.** `CALC-ENUT2024-NUCLEO-EJES-0001` ya estaba sellado (`REPRODUCE`/`IDENTICO`, PR #976), con las 14 celdas NÚCLEO por un eje y la razón C4 con IC. El negativo del §4 da 1 y no 0 ya en `ccd7c0eb`; su origen, según mesa, es un `ls | head -5` truncado (A.13), y el árbol lo corrobora porque ese directorio ordena sexto.
+  - **H2.** Las celdas del marcador son **10 cruces `sexo_edad`**, más la razón `reparto_hogar` y una reservada: **12 filas**, no «21». La guardia de una variable de `tools/enut_nucleo.py` impide construir cruces, y ninguno de los dos CALC del núcleo los tiene.
+  - **H3.** `FP-…-308c-01` estaba ABIERTA, sin firma en `decisiones.tsv`.
+- **Hallazgo para (a).** `data/enut-comparabilidad-texto-v1_0.tsv` es input fijado por sha256 de tres CALC sellados. Editar la fila en su sitio rompe su `verify` (PARO b), así que la fila corregida va en una `v1_1`.
+- **Firma de mesa asentada (A.12)**, (a)(b)(c) → (a)(b′)(c), verbatim en la nota §4:
+  - `decisiones.tsv` recibe los objetos `…-308c-01:(a)`, `:(b′)`, `:(c)` y `:enmienda-21`.
+  - `FP-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01` pasa a **FIRMADA**, con la enmienda fechada «21 → 12 filas».
+  - Por (b′), la razón se enlaza sin medir: piso 2019 `RESULT-ENUT2019-RAZON-NUCLEO-NACIONAL-P` = 0.2379 y R 2024 `RESULT-ENUT2024-RAZON-NUCLEO-NACIONAL-P` = 0.2255.
+- **Sucesor escrito:** `GEN2-ENUT-ENLACE-MARCADOR-1` (NUBE, cero mediciones, sin CALC-id; nota §6).
+- **Le pasa al sucesor (nota §4-bis):**
+  - las 10 `sexo_edad` llevan dos rótulos de mesa, `SIN-PISO-POR-DISEÑO` en bda6-02 y `NO-CONSTRUIBLE-POR-CRUCE` en (b′);
+  - el marcador commiteado en `main` no coincide con lo que deriva su tool. Se probó y se restauró; no se escribió.
+- **CONTADOR:** cero mediciones, cero CALC, no adopta, marcador no editado (`sin_piso` 15 → 15).
+- **Registros de cierre:**
+  - nota: `forense/notas/2026-09-22-GEN2-ENUT-NUCLEO-CELDAS-1-cierre.md`;
+  - `## NO-CORRIDO / RESERVAS`: ver el encargo archivado (`NC-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-01..03`, las tres PARO-PREMISA);
+  - rótulo censado. → **Propuesto; mesa fusiona.**
