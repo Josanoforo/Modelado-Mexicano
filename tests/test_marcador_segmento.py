@@ -409,11 +409,67 @@ def t_error_piso_derivado():
                    f"{base} (GEN2) lo reclaman {n} filas EVALUADA: {reclamados_g2.get(base, [])}")
 
 
+def t_marginales_adopcion_por_instrumento():
+    """ACTO GEN2-MARGINALES-ADOPCION-1 (22/sep/2026): con la firma
+    `adopcion:piso-t1-marginales-por-instrumento` en decisiones.tsv, las 57
+    marginales EVALUADA se reparten 15 ADOPTADO-POR-FIRMA (ENVIPE) / 42
+    DIFERIDA-o-VETADA-EN-NIVEL (ENIF+ENCIG), y sólo ese estado exacto pasa a
+    `estimadores-por-segmento.yaml::marginales`. Ninguna fila SOLO-PISO o
+    SIN-PISO recibe `adopcion_marginal` -- no hay instrumento contra qué
+    decidir sin R GEN2 sellado."""
+    v = M.deriva()
+    marginales = [f for f in v["filas"] if f["tipo"] == "MARGINAL"]
+    decididas = [f for f in marginales if f.get("adopcion_marginal")]
+    if not decididas:
+        _falla("T-MARGINALES-ADOPCION",
+               "decisiones.tsv trae adopcion:piso-t1-marginales-por-instrumento "
+               "y ninguna fila MARGINAL quedó decidida")
+        return
+    for f in decididas:
+        if f["estado"] != "EVALUADA":
+            _falla("T-MARGINALES-ADOPCION",
+                   f"{f['celda_id']} tiene adopcion_marginal con estado "
+                   f"base {f['estado']!r}, no EVALUADA")
+    adoptadas = [f for f in decididas if f["adopcion_marginal"] == "ADOPTADO-POR-FIRMA"]
+    otras = [f for f in decididas if f["adopcion_marginal"] != "ADOPTADO-POR-FIRMA"]
+    if len(adoptadas) != 15 or len(otras) != 42:
+        _falla("T-MARGINALES-ADOPCION",
+               f"se esperaban 15 adoptadas / 42 diferidas-o-vetadas, salieron "
+               f"{len(adoptadas)} / {len(otras)}")
+    for f in adoptadas:
+        if not f["instrumento"].startswith("ENVIPE 2025"):
+            _falla("T-MARGINALES-ADOPCION",
+                   f"{f['celda_id']} es ADOPTADO-POR-FIRMA con instrumento "
+                   f"{f['instrumento']!r}, no ENVIPE 2025")
+    for f in otras:
+        if f["instrumento"].startswith("ENVIPE 2025"):
+            _falla("T-MARGINALES-ADOPCION",
+                   f"{f['celda_id']} es {f['adopcion_marginal']} pero su "
+                   f"instrumento es ENVIPE 2025")
+    yml = M._yaml(M.ESTIMADORES_YAML)
+    marg_yaml = yml.get("marginales") or {}
+    if len(marg_yaml) != 57:
+        _falla("T-MARGINALES-ADOPCION",
+               f"estimadores-por-segmento.yaml::marginales trae "
+               f"{len(marg_yaml)} celdas, se esperaban 57")
+    n_champion = sum(1 for x in marg_yaml.values() if x.get("champion") == "PERSISTENCIA(t-1)")
+    if n_champion != 57:
+        _falla("T-MARGINALES-ADOPCION",
+               f"{n_champion}/57 celdas de marginales traen champion=PERSISTENCIA(t-1)")
+    n_cobertura = sum(1 for x in marg_yaml.values() if "cobertura" in x)
+    n_veto = sum(1 for x in marg_yaml.values() if "veto" in x)
+    if n_cobertura != 15 or n_veto != 42:
+        _falla("T-MARGINALES-ADOPCION",
+               f"cobertura citada en {n_cobertura} (se esperaban 15), "
+               f"veto citado en {n_veto} (se esperaban 42)")
+
+
 CASOS = (t_reserva_sin_r, t_emisor_no_compara, t_piso_no_circular,
          t_veinte_adoptadas, t_universo_97_nacional,
          t_enlace_biyectivo, t_piso_no_es_m, t_unidad_leida_del_arbitro,
          t_vetados_nunca_se_leen, t_error_piso_derivado,
-         t_precedencia_entre_tablas, t_contrato_de_columnas_de_las_tablas)
+         t_precedencia_entre_tablas, t_contrato_de_columnas_de_las_tablas,
+         t_marginales_adopcion_por_instrumento)
 
 
 def corre() -> list[str]:
