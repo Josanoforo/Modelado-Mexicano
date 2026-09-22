@@ -39,3 +39,11 @@ Propio: `data/manifiesto.yaml` (entradas nuevas; ninguna existente se edita salv
 
 ## 10 · NO HACE · SUCESORES · CIERRE
 No abre payloads, no mide, no decide sobre R08/R02, no relanza F6. Sucesor: si el panel resulta real, un acto de dirección re-sella FP-374 de `EN-ESPERA-PANEL` a lo que corresponda. Auditoría: no aplica. Cierre por /acto.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** P2 · «Adquisición por id para R10 (meses de ENCO que F6 nombra), R11, R03 si es público, R01-2022 si existe»; «Hecho» = «lista los ids nuevos». · **por qué:** SUSTITUIDO-POR: GEN2-ENCO-DOS-OLAS-RESERVADAS-1 (R10, 16/sep) + GEN2-38 (R11, 16/sep) + el registro previo de MOCIBA 2022. Absorben toda la adquisición pública de F6; no queda nada adquirible sin cubrir (R03 y ENCRIGE 2020 no son públicos). · **impacto:** cero ids nuevos en el manifiesto; los 14 que F6 necesita existen (`F6-falta-conseguir-v1_1.tsv`). · **sucesor:** ninguno. `NC-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-01` CERRADA.
+- **qué:** P2 · «R03 si es público». · **por qué:** DIFERIDO-A: BANDEJA-DEL-TITULAR. El microdato de ENAPROCE es confidencial y solo se ofrece por Laboratorio (RNM catalog/330, /518); exige identidad (PARO e). · **impacto:** R03 sin microdato; F6 no gana familia TRA. · **sucesor:** SIN-ASIGNAR (titular). `…-e7be-02`.
+- **qué:** §6 · «PREGUNTAS A MESA: R08 ENCRIGE […] R02 WBES […]». · **por qué:** DECISIÓN-DE-MESA-PENDIENTE: `FP-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-01`. El microdato de ENCRIGE 2020 no es público (catalog/691); el de 2016 queda NO-VERIFICADO. · **impacto:** R02/R08 siguen sin celda. · **sucesor:** la FP. `…-e7be-03`.
+- **qué:** P3 · «las de los 588 sin licencia del mismo dominio (INEGI)» y las de los payloads tocados. · **por qué:** NO-VERIFICABLE-AQUÍ. Se escriben las 34 entradas INEGI; quedan 554 de otros dominios o sin URL, y las de ZA6980, porque GESIS da CONNECT 403 del proxy de nube (NO OBTENIDO POR ESTE AGENTE EN 1 INTENTO; la receta está en la nota §2). · **impacto:** 554 siguen sin licencia; R09 sin licencia leída. · **sucesor:** SIN-ASIGNAR. `…-e7be-04`.
+- **qué:** P2 · «verificación A.1 en tres estados». · **por qué:** NO-VERIFICABLE-AQUÍ. Es NUBE sin corpus: AUSENTE ×6, RAÍZ NO CONFIGURADA ×4, FUERA_DE_PERIMETRO ×2, 0 archivos examinados. · **impacto:** ningún sha re-verificado contra su payload. · **sucesor:** GEN2-F6-FACTIBILIDAD-CAJA-1. `…-e7be-05`.
