@@ -55,3 +55,14 @@ No hace: no retira, no adapta herramientas, no adopta, no toca el marcador ni el
 Sucesores: el acto que ejecute la opción firmada (si RETIRAR-CON-MAPA: adaptar las herramientas del mapa y rotular el marco HISTÓRICO, un acto de tubería); la adopción de marginales (`…ed7d-02`) llena el sustituto.
 Auditoría de rigor extremo: no aplica (afirma sobre el aparato).
 Cierre: `## NO-CORRIDO / RESERVAS` y `## CONSUMIDO` los añade /acto; adendas como archivo propio.
+
+## NO-CORRIDO / RESERVAS
+
+Ninguno. Las tres piezas (P1-P3) se ejecutaron completas, en MODO ABIERTO,
+sin disparar ningún PARO de la lista cerrada de §7. La pregunta de LATITUD
+del §6 (¿sustituto «previsto, no existente» o esperar la firma de
+marginales?) quedó resuelta de facto: `milpa/estimadores-por-segmento.yaml`
+no está vacío — ya tiene 20 celdas emitidas por `tools/marcador_segmento.py`
+(19/sep/2026) que no citan el marco M — así que no hizo falta preguntar
+nada a mesa; el `[SUPUESTO]` §3 se verificó con un matiz de granularidad
+(por subcomando de `corrida0.py`, no por archivo) que el mapa ya recoge.
