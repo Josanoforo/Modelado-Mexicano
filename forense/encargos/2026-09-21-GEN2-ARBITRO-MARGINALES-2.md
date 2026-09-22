@@ -27,3 +27,17 @@ Por objeto («ARBITRO-MARGINALES-2», «ENCUCI», «EDER», «LAPOP» en `data/c
 
 ## 6 · LATITUD · 7 · PAROS
 Latitud: agrupación, orden, cuántos PR. Pregunta a mesa siguiendo: si una regla GEN1 no tiene texto de pregunta reconstruible. PAROS: a) agrupar por dos variables una ola con cruces reservados · b) abrir `envipe2026*`, `enigh2024*` o crédito de ENIF 2024 · c) editar el YAML GEN1 o un sello · d) cambiar procedimiento tras su COMMIT-1 · e) `run` no sella → no se parcha. Compuerta: «COMMIT-1 con oro en verde» protege abrir dato. Perímetro: CALC nuevos y specs, tabla, filas propias, nota, cascada; ajeno: `milpa/`, sellos, celdas-D. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+Ninguno. Las cuatro piezas que el encargo pidió (P1 clasificación, P2
+re-medición, P3 discrepancias, P4 cierre) corrieron completas: P1 clasifica
+las 40 reglas por comando; P2 sella COMMIT-1→COMMIT-2 en las 6 reglas que
+genuinamente lo necesitaban (las otras 18 `RE-MEDIDA` ya estaban selladas
+bajo GEN2, verificado, no re-medidas — E.5 "lo ya sellado se cita, no se
+re-mide"); P3 compara las 24 `RE-MEDIDA` contra GEN1; P4 deriva el marcador y
+el tablero por comando. Ningún PARO se disparó. La adopción de las 24
+`RE-MEDIDA` (A-bis 6) y los actos sucesores por encuesta (ENDUTIH2025,
+ICPSR-MPS2012, `list::mexico`, CIDE-CSES2015, remanente de ENIF2024) no son
+piezas de este encargo — son recomendaciones a mesa (§6 de la nota de
+cierre), no trabajo pedido y dejado sin correr.
