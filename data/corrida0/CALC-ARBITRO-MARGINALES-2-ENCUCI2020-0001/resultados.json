@@ -1,0 +1,13 @@
+{
+ "resultados": {
+  "RESULT-ARB2-ENCUCI-AGENCIA-SECRETO": "{\"ramas\":{\"OBSERVABLE\":{\"beneficiario_no\":{\"ic95_hi\":0.2221097546928346,\"ic95_lo\":0.1865848159461979,\"masa\":14949783.0,\"n\":3152,\"p\":0.20409212628705045},\"beneficiario_si\":{\"ic95_hi\":0.36719590290155757,\"ic95_lo\":0.27181970472694805,\"masa\":4026251.0,\"n\":951,\"p\":0.31974459615160605},\"brecha\":{\"brecha_pp\":11.565246986455561,\"contraste\":\"morena_beneficiario_menos_no_observable\",\"ic95_brecha_pp_hi\":16.580044809431612,\"ic95_brecha_pp_lo\":6.418788887861205}},\"SECRETO\":{\"beneficiario_no\":{\"ic95_hi\":0.2716664904498674,\"ic95_lo\":0.244582138822223,\"masa\":34783586.0,\"n\":7836,\"p\":0.2578248545161502},\"beneficiario_si\":{\"ic95_hi\":0.34376661229212824,\"ic95_lo\":0.2997763649501969,\"masa\":12075888.0,\"n\":3144,\"p\":0.32163348981043877},\"brecha\":{\"brecha_pp\":6.380863529428854,\"contraste\":\"morena_beneficiario_menos_no_secreto\",\"ic95_brecha_pp_hi\":8.87006254372538,\"ic95_brecha_pp_lo\":3.8715606063379697}}},\"universo_n\":15083}",
+  "RESULT-ARB2-ENCUCI-ENTITLEMENT": "{\"beneficiario_no\":{\"ic95_hi\":0.6182013353600428,\"ic95_lo\":0.593624680234278,\"masa\":69944029.0,\"n\":15186,\"p\":0.6060138457279891},\"beneficiario_si\":{\"ic95_hi\":0.5582954413914775,\"ic95_lo\":0.5223797970719576,\"masa\":23639105.0,\"n\":5665,\"p\":0.5402775189669828},\"brecha\":{\"brecha_pp\":-6.573632676100627,\"contraste\":\"derecho_beneficiario_menos_no_beneficiario\",\"ic95_brecha_pp_hi\":-4.421780047731548,\"ic95_brecha_pp_lo\":-8.742758169754568},\"eje_anidado_ap6_11\":{\"brecha\":{\"brecha_pp\":1.2305588558592206,\"contraste\":\"derecho_le_pidieron_menos_no_le_pidieron\",\"ic95_brecha_pp_hi\":9.025042066402289,\"ic95_brecha_pp_lo\":-6.440163753944184},\"le_pidieron_algo_a_cambio\":{\"ic95_hi\":0.629907541475013,\"ic95_lo\":0.4783170044132284,\"masa\":1369424.0,\"n\":294,\"p\":0.5528747853111965},\"no_le_pidieron\":{\"ic95_hi\":0.5588756104564246,\"ic95_lo\":0.5223566944177921,\"masa\":22215833.0,\"n\":5360,\"p\":0.5405691967526043}},\"universo_n\":20868}",
+  "RESULT-ARB2-ENCUCI-LLAVE-IDPER": "UNICA",
+  "RESULT-ARB2-ENCUCI-METODO-IC": "BOOTSTRAP-UPM-EN-ESTRATO-SEED42",
+  "RESULT-ARB2-ENCUCI-N-ESTRATOS": 281,
+  "RESULT-ARB2-ENCUCI-N-ESTRATOS-SINGLETON": 0,
+  "RESULT-ARB2-ENCUCI-N-FILAS": 21519,
+  "RESULT-ARB2-ENCUCI-N-UPM": 3096
+ },
+ "spec_id": "CALC-ARBITRO-MARGINALES-2-ENCUCI2020-0001"
+}
