@@ -1,0 +1,131 @@
+calc_id: CALC-ENIGH-DUELO-ADJUDICACION-0001
+spec_md: ../../../forense/prereg-caja/DUELO-PROSPECTIVO-ENIGH2024-spec-v1_0.md
+spec_md_sha256: fc621d75461d5a5d85b754b6946e4433942f65ba93cf0d5192abc1b1e7ab3b17
+script: data/corrida0/CALC-ENIGH-DUELO-ADJUDICACION-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: ADJUDICACION-DEL-DUELO-PROSPECTIVO (COMMIT-3)
+  cuenta_gen2: SI
+  uso_motor: NO-ADOPTA-NADA
+  fuente_acto: GEN2-ENIGH2024-DUELO-COMMIT-2-3 (22/sep/2026) -- pieza construida aqui porque
+    ACTO GEN2-ENIGH2024-SERIE-Y-COMMIT-1 (#988) solo dejo EMISIONES y ORIGEN-MOVIL sellados
+  diseno: forense/prereg-caja/DISENO-duelo-prospectivo-ENIGH2024-v1_0.md (Sec5 regla de
+    adjudicacion, Sec6 B-bis, con la linea de adopcion de FP-260921-GEN2-ENIGH2024-RESERVA-Y-DISENO-1-b7ae-02)
+  firma_vigente: FP-260921-GEN2-ENIGH2024-RESERVA-Y-DISENO-1-b7ae-02 (adopcion del diseno,
+    asentada por este acto en su Sec2)
+  medidor_ejecutado_al_congelar: "NUNCA sobre ENIGH 2024; este medidor compone RESULT ya
+    sellados de CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001 (real) y no ha visto ninguna cifra de 2024
+    al escribirse -- congelado antes de que corra el run de CALC-ENIGH-DUELO-EMISIONES-0001"
+  consume: CALC-ENIGH-DUELO-EMISIONES-0001 (a sellar en COMMIT-2 de este acto; sha fijado en
+    COMMIT-3a) y CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001 (ya sellado por #988)
+  congelado: "SI -- preflight bloqueado solo por emisiones_selladas (aun no corrida;
+    COMMIT-2/3a pendientes, ver parametros.commit_3a); origen_movil_sellado ya tiene sha real"
+
+inputs:
+- id: emisiones_selladas
+  origen: repo
+  ruta: data/corrida0/CALC-ENIGH-DUELO-EMISIONES-0001/resultados.json
+  sha256: b604c4be9b16d7c0f73ad03840e2cc417439b343e1f994918ae058d4aaa1ebef
+- id: origen_movil_sellado
+  origen: repo
+  ruta: data/corrida0/CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001/resultados.json
+  sha256: 3f9180a6055954db171136ca87c63e0d1a846bf95ae91662a46c5ce03851b944
+
+variables:
+- archivo: CALC-ENIGH-DUELO-EMISIONES-0001/resultados.json
+  variable: RESULT-ENIGHEM-R-P / R-ESTADO / R-IC95-JSON / PREDICCIONES-JSON
+  rol: punto de 2024 y las cinco predicciones ya emitidas (COMMIT-2), consumidas sin re-abrir el zip
+- archivo: CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001/resultados.json
+  variable: 'RESULT-ENIGHDM-{CID}-MAE-PP / COBERTURA-R-EN-IC-CAND'
+  rol: error medio absoluto y cobertura retrospectivos, ya sellados, por contendiente
+
+universo: 'Una sola celda nacional (remesas>0, hogares), adjudicacion del duelo prospectivo
+  ENIGH 2024 sobre el punto de 2024 emitido en COMMIT-2. Nivel cruce y marginal-por-eje:
+  NO-CONSTRUIBLE (DISENO Sec3/Sec4.3) -- no hay historia de cruce ni de marginal-por-eje en
+  ENIGH, se declara fijo, no se calcula.'
+filtros: 'Ninguno propio: compone sobre RESULT ya sellados de los dos CALC de entrada, no lee
+  microdato ni recalcula el punto de 2024 ni la retrospectiva.'
+ponderador: NO-APLICA
+transformacion: 'Por contendiente: error_pp = 100*(p_hat - R_2024) con signo; dentro_IC en las
+  dos direcciones contra los IC95 ya sellados. Veredicto por retador (DISENO Sec5): VENCE-AL-PISO
+  si |error| < |error(C-PISO)| en 2024 Y MAE-retrospectivo < MAE-retrospectivo(C-PISO); solo la
+  primera condicion: PROPUESTA-CON-RESERVA; ninguna: NO-VENCE. Veredicto general: C-PISO-ADOPTADO
+  si ningun retador VENCE. B-bis-1/2/3-4 con vocabulario cerrado, ver medidor.py docstring para
+  la operacionalizacion de B-bis-2 (T2/T3/TS vs C-MEDIA con la misma regla de dos condiciones).'
+estimando: 'Veredicto B-bis del duelo prospectivo ENIGH 2024 a nivel nacional (DISENO Sec5/Sec6);
+  no adopta nada al motor (cuenta_gen2 = SI, no adopta, cabecera del encargo).'
+precision: 'Ninguna propia: hereda el bootstrap UPM-en-estrato de EMISIONES (2000 replicas,
+  seed 20260921) y el metodo delta de ORIGEN-MOVIL (ver tools/enigh_duelo_nacional.py). Esta
+  CALC no re-muestrea ni re-estima nada, solo compone y adjudica.'
+dependencias_materiales: [numpy]
+
+parametros:
+  ola_nueva: 2024
+  contendientes: [C-PISO, C-T2, C-T3, C-TS, C-MEDIA]
+  retadores: [C-T2, C-T3, C-TS, C-MEDIA]
+  retadores_de_tendencia: [C-T2, C-T3, C-TS]
+  commit_3a: 'antes de correr: escribir en inputs.emisiones_selladas.sha256 el sha256 de
+    data/corrida0/CALC-ENIGH-DUELO-EMISIONES-0001/resultados.json SELLADO (COMMIT-2 de este
+    acto); ninguna otra edicion'
+
+seed: {aplica: false}
+tolerancia: {tipo: determinista, exacto_por_seed: true, abs: 0.0, razon: 'composicion
+  deterministica de resultados ya sellados; ningun muestreo propio'}
+
+resultados:
+- {id: RESULT-ENIGHADJ-CPISO-P, tipo: flotante, unidad: proporcion, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CPISO-ERROR-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CPISO-ABS-ERROR-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CPISO-R-DENTRO-IC-CAND, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CPISO-CAND-DENTRO-IC-R, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CPISO-MAE-RETROSPECTIVO-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CPISO-COBERTURA-RETROSPECTIVA-FRAC, tipo: flotante, unidad: fraccion, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CT2-P, tipo: flotante, unidad: proporcion, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CT2-ERROR-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CT2-ABS-ERROR-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CT2-R-DENTRO-IC-CAND, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CT2-CAND-DENTRO-IC-R, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CT2-MAE-RETROSPECTIVO-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CT2-COBERTURA-RETROSPECTIVA-FRAC, tipo: flotante, unidad: fraccion, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CT2-CONDICION-A-2024, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CT2-CONDICION-B-RETROSPECTIVA, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CT2-VEREDICTO, tipo: texto, unidad: 'VENCE-AL-PISO/PROPUESTA-CON-RESERVA/NO-VENCE/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CT3-P, tipo: flotante, unidad: proporcion, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CT3-ERROR-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CT3-ABS-ERROR-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CT3-R-DENTRO-IC-CAND, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CT3-CAND-DENTRO-IC-R, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CT3-MAE-RETROSPECTIVO-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CT3-COBERTURA-RETROSPECTIVA-FRAC, tipo: flotante, unidad: fraccion, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CT3-CONDICION-A-2024, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CT3-CONDICION-B-RETROSPECTIVA, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CT3-VEREDICTO, tipo: texto, unidad: 'VENCE-AL-PISO/PROPUESTA-CON-RESERVA/NO-VENCE/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CTS-P, tipo: flotante, unidad: proporcion, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CTS-ERROR-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CTS-ABS-ERROR-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CTS-R-DENTRO-IC-CAND, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CTS-CAND-DENTRO-IC-R, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CTS-MAE-RETROSPECTIVO-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CTS-COBERTURA-RETROSPECTIVA-FRAC, tipo: flotante, unidad: fraccion, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CTS-CONDICION-A-2024, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CTS-CONDICION-B-RETROSPECTIVA, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CTS-VEREDICTO, tipo: texto, unidad: 'VENCE-AL-PISO/PROPUESTA-CON-RESERVA/NO-VENCE/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CMEDIA-P, tipo: flotante, unidad: proporcion, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CMEDIA-ERROR-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CMEDIA-ABS-ERROR-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CMEDIA-R-DENTRO-IC-CAND, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CMEDIA-CAND-DENTRO-IC-R, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CMEDIA-MAE-RETROSPECTIVO-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CMEDIA-COBERTURA-RETROSPECTIVA-FRAC, tipo: flotante, unidad: fraccion, permite_no_estimable: true}
+- {id: RESULT-ENIGHADJ-CMEDIA-CONDICION-A-2024, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CMEDIA-CONDICION-B-RETROSPECTIVA, tipo: texto, unidad: 'SI/NO/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-CMEDIA-VEREDICTO, tipo: texto, unidad: 'VENCE-AL-PISO/PROPUESTA-CON-RESERVA/NO-VENCE/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-VEREDICTO-GENERAL-NACIONAL, tipo: texto, unidad: 'C-PISO-ADOPTADO/VENCE-AL-PISO:<lista>'}
+- {id: RESULT-ENIGHADJ-GANADOR-RETROSPECTIVO, tipo: texto, unidad: id de contendiente con menor MAE retrospectivo}
+- {id: RESULT-ENIGHADJ-GANADOR-2024, tipo: texto, unidad: id de contendiente con menor error absoluto en 2024}
+- {id: RESULT-ENIGHADJ-BBIS1-DICTAMEN, tipo: texto, unidad: 'CORROBORADA/REFUTADA'}
+- {id: RESULT-ENIGHADJ-BBIS2-DICTAMEN, tipo: texto, unidad: 'ACOTADA/REFUTADA-TENDENCIA-LEGIBLE:<lista>'}
+- {id: RESULT-ENIGHADJ-BBIS3-4-DICTAMEN, tipo: texto, unidad: 'CORROBORADA/FALSADOR-DEBIL/NO-ESTIMABLE'}
+- {id: RESULT-ENIGHADJ-PRIORIDAD-BBIS-NOTA, tipo: texto, unidad: nota fija}
+- {id: RESULT-ENIGHADJ-NIVEL-CRUCE-MARGINAL, tipo: texto, unidad: 'NO-CONSTRUIBLE fijo'}

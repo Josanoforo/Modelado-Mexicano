@@ -10,6 +10,14 @@
 > `DISENO-duelo-prospectivo-ENVIPE2026-v1_0.md` **NO-ENCONTRADO** en
 > `forense/prereg-caja/` al redactar (universo: 56 archivos del directorio, `ls`,
 > 21/sep/2026) — el encargo previó las dos ramas y ésta es la que aplicó.
+>
+> **ADOPTADO 22/sep/2026** por `ACTO GEN2-ENIGH2024-DUELO-COMMIT-2-3`
+> (encargo `forense/encargos/2026-09-22-GEN2-ENIGH2024-DUELO-COMMIT-2-3.md` §2,
+> verbatim: «Se adopta el diseño ... con el alcance que `#988` midió»), resolviendo
+> `forense/firmas-pendientes.tsv:FP-260921-GEN2-ENIGH2024-RESERVA-Y-DISENO-1-b7ae-02`
+> (ahora `FIRMADA`). Única edición de este acto al documento (A.10): el resto de
+> abajo permanece verbatim, incluida la palabra «PROPUESTA» del título, que
+> queda histórica.
 
 ---
 
