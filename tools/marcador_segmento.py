@@ -181,7 +181,35 @@ COLS = [
     # tools/prospectividad.py desde los sellos, nunca tecleadas. Van al final
     # para no mover el orden de ninguna columna que ya tenga lectores.
     "prospectividad", "prospectividad_cita",
+    # ACTO GEN2-MARGINALES-ADOPCION-1 (22/sep/2026): decisión de mesa
+    # `adopcion:piso-t1-marginales-por-instrumento` (decisiones.tsv), por
+    # instrumento -- al final, mismo criterio que prospectividad arriba.
+    "adopcion_marginal", "cobertura_marginal",
 ]
+
+# Instrumento (prefijo del campo `instrumento` de cada fila MARGINAL) ->
+# estado que la firma de mesa del 22/sep/2026 le da, con la cobertura que
+# lo justifica citada verbatim (FP-260921-GEN2-ARBITRO-MARGINALES-1-ed7d-02).
+# `piso_de_orden` marca la única fila que persiste como piso de orden pese
+# al veto en nivel (ENCIG).
+ADOPCION_MARGINAL_POR_INSTRUMENTO = {
+    "ENVIPE 2025": {
+        "estado": "ADOPTADO-POR-FIRMA",
+        "cobertura": "8/15 = 0.53 [0.30, 0.75]",
+        "piso_de_orden": False,
+    },
+    "ENIF 2024": {
+        "estado": "DIFERIDA",
+        "cobertura": "6/32 = 0.19 [0.09, 0.35]",
+        "piso_de_orden": False,
+    },
+    "ENCIG 2025": {
+        "estado": "VETADA-EN-NIVEL",
+        "cobertura": "0/10 [0.00, 0.28]",
+        "piso_de_orden": True,
+    },
+}
+DECISION_MARGINALES_POR_INSTRUMENTO = "adopcion:piso-t1-marginales-por-instrumento"
 
 
 def _yaml(ruta: Path):
@@ -1106,12 +1134,36 @@ def _calcs_para_prospectividad() -> dict:
     return mapa
 
 
+def _aplica_adopcion_marginales_por_instrumento(marginales: list[dict],
+                                                 decisiones: dict) -> None:
+    """P1 (ACTO GEN2-MARGINALES-ADOPCION-1, 22/sep/2026): sólo si la firma
+    `adopcion:piso-t1-marginales-por-instrumento` está en `decisiones.tsv`.
+    Muta en sitio SOLO las filas MARGINAL ya `EVALUADA` (piso t-1 contra R
+    GEN2 sellado) cuyo `instrumento` empieza con una de las tres cadenas de
+    `ADOPCION_MARGINAL_POR_INSTRUMENTO`; ninguna otra fila se toca -- una
+    marginal SOLO-PISO o SIN-PISO no tiene con qué instrumento comparar."""
+    if DECISION_MARGINALES_POR_INSTRUMENTO not in decisiones:
+        return
+    for f in marginales:
+        if f["estado"] != "EVALUADA":
+            continue
+        for prefijo, regla in ADOPCION_MARGINAL_POR_INSTRUMENTO.items():
+            if f["instrumento"].startswith(prefijo):
+                f["adopcion_marginal"] = regla["estado"]
+                f["cobertura_marginal"] = f"{prefijo}, cobertura {regla['cobertura']}"
+                if regla["piso_de_orden"]:
+                    f["cobertura_marginal"] += " · piso_de_orden=SI"
+                f["decision_ref"] = DECISION_MARGINALES_POR_INSTRUMENTO
+                break
+
+
 def deriva() -> dict:
     decisiones = _lee_decisiones()
     veto_activo = "veto:pisos-866" in decisiones
 
     nacionales = filas_nacionales()
     marginales, uni_marginal = filas_marginales(vetados=veto_activo)
+    _aplica_adopcion_marginales_por_instrumento(marginales, decisiones)
     cruce_adoptadas = filas_cruce_adoptadas(decisiones)
     cruce_reservadas, uni_reservadas = filas_cruce_reservadas()
 
@@ -1242,13 +1294,48 @@ def escribe_estimadores_yaml(filas: list[dict]) -> None:
             for f in adoptadas
         },
     }
+    marginales_decididas = [f for f in filas if f["tipo"] == "MARGINAL"
+                             and f.get("adopcion_marginal")]
+    if marginales_decididas:
+        payload["decision_ref_marginales"] = DECISION_MARGINALES_POR_INSTRUMENTO
+        payload["n_celdas_marginales_adoptadas"] = sum(
+            1 for f in marginales_decididas
+            if f["adopcion_marginal"] == "ADOPTADO-POR-FIRMA")
+        payload["n_celdas_marginales_vetadas"] = sum(
+            1 for f in marginales_decididas
+            if f["adopcion_marginal"] != "ADOPTADO-POR-FIRMA")
+        payload["marginales"] = {
+            f["celda_id"]: ({
+                "champion": "PERSISTENCIA(t-1)",
+                "resultado_id": f["resultado_id"],
+                "punto": f["piso"],
+                "ic95_inf": f["piso_ic95"],
+                "instrumento": f["instrumento"],
+                "unidad_dato": f["unidad_dato"],
+                "tipo_incertidumbre": f["tipo_incertidumbre"],
+                "estado": f["adopcion_marginal"],
+                "cobertura": f["cobertura_marginal"],
+                "regla_origen": f["regla_o_eje_origen"],
+            } if f["adopcion_marginal"] == "ADOPTADO-POR-FIRMA" else {
+                "champion": "PERSISTENCIA(t-1)",
+                "resultado_id": f["resultado_id"],
+                "instrumento": f["instrumento"],
+                "estado": f["adopcion_marginal"],
+                "veto": f["cobertura_marginal"],
+            })
+            for f in marginales_decididas
+        }
     ESTIMADORES_YAML.write_text(
         "# DERIVADO — NO EDITAR (tools/marcador_segmento.py, "
         "ACTO GEN2-MARCADOR-REDISENO-1)\n" +
         yaml.safe_dump(payload, allow_unicode=True, sort_keys=False),
         encoding="utf-8")
     print(f"ESCRITO {ESTIMADORES_YAML.relative_to(RAIZ)}: {len(adoptadas)} celdas "
-          f"adoptadas + {len(emitidas)} EMITIDA-SIN-EVALUAR (clave aparte)")
+          f"adoptadas + {len(emitidas)} EMITIDA-SIN-EVALUAR (clave aparte)"
+          + (f" + {len(marginales_decididas)} marginales "
+             f"({payload['n_celdas_marginales_adoptadas']} adoptadas / "
+             f"{payload['n_celdas_marginales_vetadas']} vetadas-o-diferidas)"
+             if marginales_decididas else ""))
 
 
 def main() -> int:

@@ -1,0 +1,1188 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENIF-PERSISTENCIA-IC-CALIBRADO-0001
+spec_md: ../../../forense/prereg-caja/ENIF-PERSISTENCIA-IC-CALIBRADO-spec-v1_0.md
+spec_md_sha256: 55f40e14073faddacf06b1ca965241356f500bd10a47637fe8d1e534b1352f79
+script: data/corrida0/CALC-ENIF-PERSISTENCIA-IC-CALIBRADO-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: IC-PERSISTENCIA-CALIBRADO-RETROSPECTIVO
+  rotulo: RETROSPECTIVA-MECÁNICA
+  cuenta_gen2: SI
+  cuenta_gen2_firma: 'ENCARGO GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1, CABECERA: «+1 corrida sellada y registrada, cuenta_gen2 = SI, no adopta; ningún celdas_validadas se mueve (es RETROSPECTIVA-MECÁNICA por definición)»'
+  adopta: 'NO'
+  acto: GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1
+  exposicion_historica: 'CIEGO-A-2015-2018-ESTRUCTURA-LEIDA; R 2024 VISTA (6/32, FP-260921-GEN2-ARBITRO-MARGINALES-1-ed7d-02) -> RETROSPECTIVA-MECÁNICA'
+  medidor_ejecutado_al_congelar: 'SI -- sobre los payloads sintéticos de tests/test_enif_persistencia_ic_calibrado.py (2021/2018/2015, 60 réplicas) y, para el ORO, mide_2021(armonizada=False) sobre ENIF 2021 18+ (10 000 réplicas) contra los 32 pisos sellados; NUNCA sobre ENIF 2015/2018 ni sobre el dominio 18-70 de 2021 antes del COMMIT-2.'
+inputs:
+  - {id: enif2021_csv, origen: manifiesto}
+  - {id: enif2018_csv, origen: manifiesto}
+  - {id: enif_2015_enif_2015_bd_dbf, origen: manifiesto}
+  - {id: MEDIDOR-EJES-0003, origen: repo, funcion: CODIGO, ruta: data/corrida0/CALC-PISOS-ENIF2021-EJES-0003/medidor.py, sha256: d069f38bd75c47fd5550015b179c7b2e61f1ab20ce6b22c630c66392afea06a3}
+  - {id: MEDIDOR-CREDITO-HISTORIA, origen: repo, funcion: CODIGO, ruta: data/corrida0/CALC-DIN-CREDITO-PISOS-ENIF2018-0001/medidor.py, sha256: 2981eed066ac5376425f7829255fc5a75332e8bcdeca58839122f5ccb426bc4a}
+  - {id: PISO-ENIF2021-EJES, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-PISOS-ENIF2021-EJES-0003/resultados.json, sha256: 3348feb66621470e07b0ad1e97d0081a4533d9b155573cd59fc45540323c17a0, sello_sha256: 795b960b5d23ea9a0ce801cd321f7537664d6c4f1ee9b0e3c59ae1f00524c707}
+  - {id: PISO-ENIF2021-FORMALIDAD, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-PISOS-ENIF2021-FORMALIDAD-0001/resultados.json, sha256: 2b5f1274f3b700900e40366e333cff1a820b6db7aaded0a68a0b81ac95e6e4ff, sello_sha256: 8abf3abb9fce9b2c909f4baaceee19d1fe62762c86fbcd6f5b60c675c405c72b}
+  - {id: R-ENIF2024, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ARBITRO-MARGINALES-ENIF2024-0001/resultados.json, sha256: 552aef42c92cc70ded24bebb4c3e295739b95b346644e624cd22c8392916ecc4, sello_sha256: 4d1aa2d10c3b353964e2d456fc0d817c1fb5ee331ef33c145e9c803f48e52d5e}
+  - {id: ARBITRO-MARGINALES-METADATOS, origen: repo, funcion: METADATO, ruta: forense/prereg-caja/ARBITRO-MARGINALES-metadatos-v1_0.tsv, sha256: 80af0c370bc1bfd987f78a177ead490c59434e833ae98bc7ff7eac46be961f3b}
+  - {id: AHORRO-COMPARABILIDAD-TEXTO, origen: repo, funcion: METADATO, ruta: data/ahorro-comparabilidad-texto-v1_0.tsv, sha256: d3512b93e166dbec1c87b3215f8cce94a8a3da0cd9b9dc6cd627c25bbc7b1e37}
+variables:
+  - {archivo: "conjunto_de_datos_tmodulo_enif_2021.csv", variable: "P5_1_1..P5_1_6", rol: "ahorro-informal (2021)"}
+  - {archivo: "conjunto_de_datos_tmodulo_enif_2021.csv", variable: "P5_4_1..P5_4_9", rol: "tenencia de cuenta; armonizada sin P5_4_8 (2021)"}
+  - {archivo: "conjunto_de_datos_tmodulo_enif_2021.csv", variable: "P5_7_1..P5_7_9", rol: "ahorro-formal; armonizada sin P5_7_8 (2021)"}
+  - {archivo: "conjunto_de_datos_tmodulo_enif_2021.csv", variable: "SEXO, EDAD, P3_1_1, TLOC, P3_10", rol: "ejes (2021)"}
+  - {archivo: "conjunto_de_datos_tmodulo_enif_2021.csv", variable: "FAC_ELE, EST_DIS, UPM_DIS", rol: "ponderador y diseño (2021)"}
+  - {archivo: "conjunto_de_datos/tmodulo.csv", variable: "P5_1_1..P5_1_6", rol: "ahorro-informal (2018)"}
+  - {archivo: "conjunto_de_datos/tmodulo.csv", variable: "P5_4, P5_5", rol: "filtros de cuenta; eje cuenta y pase a 5.9 (2018)"}
+  - {archivo: "conjunto_de_datos/tmodulo.csv", variable: "P5_9_1..P5_9_8", rol: "tenencia por tipo (2018)"}
+  - {archivo: "conjunto_de_datos/tmodulo.csv", variable: "P5_13_1..P5_13_8", rol: "ahorro-formal (2018)"}
+  - {archivo: "conjunto_de_datos/tmodulo.csv", variable: "SEXO, EDAD, NIV, TLOC, P3_11", rol: "ejes (2018)"}
+  - {archivo: "conjunto_de_datos/tmodulo.csv", variable: "FAC_PER, EST_DIS, UPM_DIS", rol: "ponderador y diseño (2018)"}
+  - {archivo: "tmodulo1.DBF", variable: "P5_1_1..P5_1_6", rol: "ahorro-informal (2015, DESCRIPTIVO)"}
+  - {archivo: "tmodulo1.DBF", variable: "SEXO, EDAD, NIV, TLOC", rol: "ejes (2015, DESCRIPTIVO)"}
+  - {archivo: "tmodulo1.DBF", variable: "FAC_PER, EST_DIS, UPM_DIS", rol: "ponderador y diseño (2015)"}
+  - {archivo: "resultados.json", variable: "-P/-IC-LO/-IC-HI/-N", rol: "piso 2021 sellado (centro, error muestral, oro) y R 2024 sellada"}
+universo: "Las 32 celdas ENIF de ARBITRO-MARGINALES-metadatos-v1_0.tsv. Cambio entre olas: persona elegida 18-70 (2018: el marco; 2021: dominio sobre el marco entero); piso y R en su universo sellado (18+)."
+filtros: "Ponderador positivo y diseño válido; desenlace definido; códigos inválidos fuera sólo del eje afectado; 2018: blanco en P5_9_k por pase (P5_4 = 2 y P5_5 = 2) = No."
+ponderador: "FAC_PER (2015, 2018); FAC_ELE (2021)"
+transformacion: "Marginales armonizados 2018 y 2021 (informal cualquiera; D9 como D8, vías formales sin la 8) por celda; Δ = logit h2021 - logit h2018; τ² por grupo desenlace × eje = media de Δ² sin centrar; IC calibrado = expit(logit p2021 ± 1.959964·√(ee_muestral² + τ²)); cobertura de R 2024 con Wilson por celda y por conglomerado; 2015 sólo descriptivo (spec §2-§5)."
+estimando: "Intervalo de persistencia calibrado (muestral + cambio-entre-olas) por celda marginal ENIF y su cobertura de R 2024, RETROSPECTIVA-MECÁNICA."
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+parametros:
+  bootstrap_replicas: 10000
+  metodo_ic: "bootstrap UPM estratificado; percentiles 2.5/97.5; un plan de réplicas por ola (estimador sellado de -0003)"
+  z95: 1.959964
+  pooling: "grupo = desenlace × eje (12 grupos); τ² = media de Δ² sin centrar ni restar ruido"
+  par_de_olas: "2018 -> 2021 (2015 descriptivo)"
+  umbral_x_fp: 0.80
+  umbral_piso: 0.50
+  tolerancia_oro: 1.0e-10
+dependencias_materiales: [numpy, pandas]
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: mismo estimador, misma semilla y mismo marco; replay bit a bit salvo redondeo de punto flotante
+resultados:
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-CUENTA-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-CUENTA-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-CUENTA-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-CUENTA-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-CUENTA-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-CUENTA-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-CUENTA-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-CUENTA-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-CUENTA-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-EDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-EDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-EDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-EDAD-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-EDAD-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-EDAD-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-EDAD-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-EDAD-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-EDAD-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-ESCOLARIDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-ESCOLARIDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-ESCOLARIDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-ESCOLARIDAD-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-ESCOLARIDAD-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-ESCOLARIDAD-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-ESCOLARIDAD-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-ESCOLARIDAD-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-ESCOLARIDAD-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-FORMALIDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-FORMALIDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-FORMALIDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-FORMALIDAD-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-FORMALIDAD-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-FORMALIDAD-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-FORMALIDAD-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-FORMALIDAD-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-FORMALIDAD-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-LOCALIDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-LOCALIDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-LOCALIDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-LOCALIDAD-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-LOCALIDAD-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-LOCALIDAD-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-LOCALIDAD-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-LOCALIDAD-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-LOCALIDAD-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-SEXO-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-SEXO-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-SEXO-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-SEXO-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-SEXO-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-SEXO-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-SEXO-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-SEXO-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-D9-SEXO-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-CUENTA-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-CUENTA-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-CUENTA-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-CUENTA-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-CUENTA-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-CUENTA-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-CUENTA-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-CUENTA-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-CUENTA-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-EDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-EDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-EDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-EDAD-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-EDAD-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-EDAD-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-EDAD-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-EDAD-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-EDAD-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-ESCOLARIDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-ESCOLARIDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-ESCOLARIDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-ESCOLARIDAD-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-ESCOLARIDAD-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-ESCOLARIDAD-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-ESCOLARIDAD-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-ESCOLARIDAD-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-ESCOLARIDAD-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-FORMALIDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-FORMALIDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-FORMALIDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-FORMALIDAD-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-FORMALIDAD-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-FORMALIDAD-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-FORMALIDAD-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-FORMALIDAD-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-FORMALIDAD-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-LOCALIDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-LOCALIDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-LOCALIDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-LOCALIDAD-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-LOCALIDAD-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-LOCALIDAD-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-LOCALIDAD-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-LOCALIDAD-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-LOCALIDAD-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-SEXO-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-SEXO-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-SEXO-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-SEXO-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-SEXO-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-SEXO-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-SEXO-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-SEXO-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-CONGLOMERADO-INFORMAL-CUALQUIERA-SEXO-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-D9-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-D9-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-D9-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-D9-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-D9-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-D9-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-D9-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-D9-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-D9-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-INFORMAL-CUALQUIERA-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-INFORMAL-CUALQUIERA-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-INFORMAL-CUALQUIERA-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-INFORMAL-CUALQUIERA-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-INFORMAL-CUALQUIERA-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-INFORMAL-CUALQUIERA-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-INFORMAL-CUALQUIERA-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-INFORMAL-CUALQUIERA-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-DESENLACE-INFORMAL-CUALQUIERA-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-CUENTA-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-CUENTA-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-CUENTA-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-CUENTA-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-CUENTA-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-CUENTA-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-CUENTA-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-CUENTA-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-CUENTA-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-EDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-EDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-EDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-EDAD-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-EDAD-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-EDAD-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-EDAD-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-EDAD-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-EDAD-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-ESCOLARIDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-ESCOLARIDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-ESCOLARIDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-ESCOLARIDAD-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-ESCOLARIDAD-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-ESCOLARIDAD-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-ESCOLARIDAD-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-ESCOLARIDAD-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-ESCOLARIDAD-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-FORMALIDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-FORMALIDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-FORMALIDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-FORMALIDAD-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-FORMALIDAD-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-FORMALIDAD-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-FORMALIDAD-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-FORMALIDAD-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-FORMALIDAD-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-LOCALIDAD-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-LOCALIDAD-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-LOCALIDAD-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-LOCALIDAD-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-LOCALIDAD-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-LOCALIDAD-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-LOCALIDAD-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-LOCALIDAD-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-LOCALIDAD-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-SEXO-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-SEXO-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-SEXO-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-SEXO-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-EJE-SEXO-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-SEXO-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-SEXO-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-SEXO-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-EJE-SEXO-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-GLOBAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-GLOBAL-COBERTURA-IC-CONGLOMERADO-HI, tipo: proporcion, unidad: "IC95 Wilson con n efectivo = conglomerados", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-GLOBAL-COBERTURA-IC-CONGLOMERADO-LO, tipo: proporcion, unidad: "IC95 Wilson con n efectivo = conglomerados", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-GLOBAL-COBERTURA-IC-HI, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-GLOBAL-COBERTURA-IC-LO, tipo: proporcion, unidad: "IC95 binomial de Wilson", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-GLOBAL-CONTROL-MUESTRAL-COBERTURA, tipo: proporcion, unidad: "N-DENTRO / N (celdas calibrables)", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-AGG-GLOBAL-CONTROL-MUESTRAL-COTEJO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-AGG-GLOBAL-CONTROL-MUESTRAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-GLOBAL-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-GLOBAL-N-CONGLOMERADOS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-GLOBAL-N-DENTRO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-GLOBAL-N-NO-CALIBRABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-AGG-GLOBAL-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-CON-CUENTA-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-CUENTA-SIN-CUENTA-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-18-29-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-30-44-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-45-59-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-EDAD-60-MAS-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-HASTA-PRIMARIA-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-MEDIA-SUPERIOR-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SECUNDARIA-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-ESCOLARIDAD-SUPERIOR-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-15-000-Y-MAS-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-LOCALIDAD-MENOR-DE-15-000-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-1-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-D9-SEXO-2-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-DIAG-2015-FILAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-DIAG-2015-INFORMAL-N-UNIVERSO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-DIAG-2015-REGISTROS-DBF-BORRADOS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-DIAG-2018-CUENTA-FILTRO-SI-BATERIA-NO-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-DIAG-2018-D8-N-UNIVERSO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-DIAG-2018-FILAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-DIAG-2018-INFORMAL-N-UNIVERSO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-DIAG-2018-P5-9-BLANCO-POR-PASE-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-DIAG-2018-SIN-FILTRO-CUENTA-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-DIAG-2021-D8-N-UNIVERSO-18-70, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-DIAG-2021-EN-18-70, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-DIAG-2021-FILAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-DIAG-2021-INFORMAL-N-UNIVERSO-18-70, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-G-D9-CUENTA-DELTA-MEDIO-LOGIT, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-CUENTA-DESCRIPTIVO-N-DELTAS-CON-2015, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-D9-CUENTA-DESCRIPTIVO-TAU2-LOGIT-CON-2015, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-CUENTA-N-CELDAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-G-D9-CUENTA-N-DELTAS, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-D9-CUENTA-OLAS-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-G-D9-CUENTA-RUIDO-MEDIO-LOGIT, tipo: flotante, unidad: "se²(2018)+se²(2021), escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-CUENTA-TAU-LOGIT, tipo: flotante, unidad: "raíz de τ², escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-CUENTA-TAU2-LOGIT, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-EDAD-DELTA-MEDIO-LOGIT, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-EDAD-DESCRIPTIVO-N-DELTAS-CON-2015, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-D9-EDAD-DESCRIPTIVO-TAU2-LOGIT-CON-2015, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-EDAD-N-CELDAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-G-D9-EDAD-N-DELTAS, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-D9-EDAD-OLAS-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-G-D9-EDAD-RUIDO-MEDIO-LOGIT, tipo: flotante, unidad: "se²(2018)+se²(2021), escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-EDAD-TAU-LOGIT, tipo: flotante, unidad: "raíz de τ², escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-EDAD-TAU2-LOGIT, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-ESCOLARIDAD-DELTA-MEDIO-LOGIT, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-ESCOLARIDAD-DESCRIPTIVO-N-DELTAS-CON-2015, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-D9-ESCOLARIDAD-DESCRIPTIVO-TAU2-LOGIT-CON-2015, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-ESCOLARIDAD-N-CELDAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-G-D9-ESCOLARIDAD-N-DELTAS, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-D9-ESCOLARIDAD-OLAS-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-G-D9-ESCOLARIDAD-RUIDO-MEDIO-LOGIT, tipo: flotante, unidad: "se²(2018)+se²(2021), escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-ESCOLARIDAD-TAU-LOGIT, tipo: flotante, unidad: "raíz de τ², escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-ESCOLARIDAD-TAU2-LOGIT, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-FORMALIDAD-DELTA-MEDIO-LOGIT, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-FORMALIDAD-DESCRIPTIVO-N-DELTAS-CON-2015, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-D9-FORMALIDAD-DESCRIPTIVO-TAU2-LOGIT-CON-2015, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-FORMALIDAD-N-CELDAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-G-D9-FORMALIDAD-N-DELTAS, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-D9-FORMALIDAD-OLAS-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-G-D9-FORMALIDAD-RUIDO-MEDIO-LOGIT, tipo: flotante, unidad: "se²(2018)+se²(2021), escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-FORMALIDAD-TAU-LOGIT, tipo: flotante, unidad: "raíz de τ², escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-FORMALIDAD-TAU2-LOGIT, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-LOCALIDAD-DELTA-MEDIO-LOGIT, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-LOCALIDAD-DESCRIPTIVO-N-DELTAS-CON-2015, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-D9-LOCALIDAD-DESCRIPTIVO-TAU2-LOGIT-CON-2015, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-LOCALIDAD-N-CELDAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-G-D9-LOCALIDAD-N-DELTAS, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-D9-LOCALIDAD-OLAS-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-G-D9-LOCALIDAD-RUIDO-MEDIO-LOGIT, tipo: flotante, unidad: "se²(2018)+se²(2021), escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-LOCALIDAD-TAU-LOGIT, tipo: flotante, unidad: "raíz de τ², escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-LOCALIDAD-TAU2-LOGIT, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-SEXO-DELTA-MEDIO-LOGIT, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-SEXO-DESCRIPTIVO-N-DELTAS-CON-2015, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-D9-SEXO-DESCRIPTIVO-TAU2-LOGIT-CON-2015, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-SEXO-N-CELDAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-G-D9-SEXO-N-DELTAS, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-D9-SEXO-OLAS-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-G-D9-SEXO-RUIDO-MEDIO-LOGIT, tipo: flotante, unidad: "se²(2018)+se²(2021), escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-SEXO-TAU-LOGIT, tipo: flotante, unidad: "raíz de τ², escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-D9-SEXO-TAU2-LOGIT, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-CUENTA-DELTA-MEDIO-LOGIT, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-CUENTA-DESCRIPTIVO-N-DELTAS-CON-2015, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-CUENTA-DESCRIPTIVO-TAU2-LOGIT-CON-2015, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-CUENTA-N-CELDAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-CUENTA-N-DELTAS, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-CUENTA-OLAS-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-CUENTA-RUIDO-MEDIO-LOGIT, tipo: flotante, unidad: "se²(2018)+se²(2021), escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-CUENTA-TAU-LOGIT, tipo: flotante, unidad: "raíz de τ², escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-CUENTA-TAU2-LOGIT, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-EDAD-DELTA-MEDIO-LOGIT, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-EDAD-DESCRIPTIVO-N-DELTAS-CON-2015, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-EDAD-DESCRIPTIVO-TAU2-LOGIT-CON-2015, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-EDAD-N-CELDAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-EDAD-N-DELTAS, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-EDAD-OLAS-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-EDAD-RUIDO-MEDIO-LOGIT, tipo: flotante, unidad: "se²(2018)+se²(2021), escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-EDAD-TAU-LOGIT, tipo: flotante, unidad: "raíz de τ², escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-EDAD-TAU2-LOGIT, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-ESCOLARIDAD-DELTA-MEDIO-LOGIT, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-ESCOLARIDAD-DESCRIPTIVO-N-DELTAS-CON-2015, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-ESCOLARIDAD-DESCRIPTIVO-TAU2-LOGIT-CON-2015, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-ESCOLARIDAD-N-CELDAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-ESCOLARIDAD-N-DELTAS, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-ESCOLARIDAD-OLAS-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-ESCOLARIDAD-RUIDO-MEDIO-LOGIT, tipo: flotante, unidad: "se²(2018)+se²(2021), escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-ESCOLARIDAD-TAU-LOGIT, tipo: flotante, unidad: "raíz de τ², escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-ESCOLARIDAD-TAU2-LOGIT, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-FORMALIDAD-DELTA-MEDIO-LOGIT, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-FORMALIDAD-DESCRIPTIVO-N-DELTAS-CON-2015, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-FORMALIDAD-DESCRIPTIVO-TAU2-LOGIT-CON-2015, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-FORMALIDAD-N-CELDAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-FORMALIDAD-N-DELTAS, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-FORMALIDAD-OLAS-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-FORMALIDAD-RUIDO-MEDIO-LOGIT, tipo: flotante, unidad: "se²(2018)+se²(2021), escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-FORMALIDAD-TAU-LOGIT, tipo: flotante, unidad: "raíz de τ², escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-FORMALIDAD-TAU2-LOGIT, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-LOCALIDAD-DELTA-MEDIO-LOGIT, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-LOCALIDAD-DESCRIPTIVO-N-DELTAS-CON-2015, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-LOCALIDAD-DESCRIPTIVO-TAU2-LOGIT-CON-2015, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-LOCALIDAD-N-CELDAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-LOCALIDAD-N-DELTAS, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-LOCALIDAD-OLAS-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-LOCALIDAD-RUIDO-MEDIO-LOGIT, tipo: flotante, unidad: "se²(2018)+se²(2021), escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-LOCALIDAD-TAU-LOGIT, tipo: flotante, unidad: "raíz de τ², escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-LOCALIDAD-TAU2-LOGIT, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-SEXO-DELTA-MEDIO-LOGIT, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-SEXO-DESCRIPTIVO-N-DELTAS-CON-2015, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-SEXO-DESCRIPTIVO-TAU2-LOGIT-CON-2015, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-SEXO-N-CELDAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-SEXO-N-DELTAS, tipo: entero, unidad: "cambio en escala logit"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-SEXO-OLAS-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-SEXO-RUIDO-MEDIO-LOGIT, tipo: flotante, unidad: "se²(2018)+se²(2021), escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-SEXO-TAU-LOGIT, tipo: flotante, unidad: "raíz de τ², escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-G-INFORMAL-CUALQUIERA-SEXO-TAU2-LOGIT, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-DESCRIPTIVO-DELTA-LOGIT-2015-2018, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-DESCRIPTIVO-H2015-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-DESCRIPTIVO-H2015-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-18-29-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-DESCRIPTIVO-DELTA-LOGIT-2015-2018, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-DESCRIPTIVO-H2015-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-DESCRIPTIVO-H2015-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-30-44-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-DESCRIPTIVO-DELTA-LOGIT-2015-2018, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-DESCRIPTIVO-H2015-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-DESCRIPTIVO-H2015-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-45-59-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-DESCRIPTIVO-DELTA-LOGIT-2015-2018, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-DESCRIPTIVO-H2015-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-DESCRIPTIVO-H2015-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-EDAD-60-MAS-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-DESCRIPTIVO-DELTA-LOGIT-2015-2018, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-DESCRIPTIVO-H2015-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-DESCRIPTIVO-H2015-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-DESCRIPTIVO-DELTA-LOGIT-2015-2018, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-DESCRIPTIVO-H2015-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-DESCRIPTIVO-H2015-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-DESCRIPTIVO-DELTA-LOGIT-2015-2018, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-DESCRIPTIVO-H2015-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-DESCRIPTIVO-H2015-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-DESCRIPTIVO-DELTA-LOGIT-2015-2018, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-DESCRIPTIVO-H2015-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-DESCRIPTIVO-H2015-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-DESCRIPTIVO-DELTA-LOGIT-2015-2018, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-DESCRIPTIVO-H2015-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-DESCRIPTIVO-H2015-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-DESCRIPTIVO-DELTA-LOGIT-2015-2018, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-DESCRIPTIVO-H2015-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-DESCRIPTIVO-H2015-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-DESCRIPTIVO-DELTA-LOGIT-2015-2018, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-DESCRIPTIVO-H2015-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-DESCRIPTIVO-H2015-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-1-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-CONSTRUCTO-DEL-CAMBIO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-DELTA-LOGIT-2018-2021, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-DESCRIPTIVO-DELTA-LOGIT-2015-2018, tipo: flotante, unidad: "cambio en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-DESCRIPTIVO-H2015-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-DESCRIPTIVO-H2015-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-EE-LOGIT-CALIBRADO, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-EE-LOGIT-MUESTRAL, tipo: flotante, unidad: "error estándar, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-GRUPO-DE-POOLING, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-H2018-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-H2018-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-H2018-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-H2018-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-H2021-IC-HI, tipo: proporcion, unidad: "límite superior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-H2021-IC-LO, tipo: proporcion, unidad: "límite inferior IC95 bootstrap", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-H2021-N, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-H2021-P, tipo: proporcion, unidad: "proporción ponderada [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-IC-CALIBRADO-INF, tipo: proporcion, unidad: "límite inferior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-IC-CALIBRADO-SUP, tipo: proporcion, unidad: "límite superior del IC95 calibrado (muestral + cambio-entre-olas), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-PISO-IC-HI, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-PISO-IC-LO, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-PISO-P, tipo: proporcion, unidad: "piso 2021 sellado, proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-R-EN-IC-CALIBRADO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-R-EN-IC-MUESTRAL, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-R2024-P, tipo: proporcion, unidad: "R 2024 sellada (CALC-ARBITRO-MARGINALES-ENIF2024-0001), proporción", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-TAU2-LOGIT-GRUPO, tipo: flotante, unidad: "varianza del cambio trienal, escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-INFORMAL-CUALQUIERA-SEXO-2-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-N-CELDAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-ORO-2021-MAX-ABS, tipo: flotante, unidad: "máx |Δ| contra el piso sellado", permite_no_estimable: true}
+  - {id: RESULT-ENIFPIC-ORO-2021-N-DISCORDES, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENIFPIC-ORO-2021-VEREDICTO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-REGLA-X-LECTURA-MECANICA, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-ROTULO, tipo: texto, unidad: "rótulo / categoría"}
+  - {id: RESULT-ENIFPIC-TIPO-INCERTIDUMBRE, tipo: texto, unidad: "rótulo / categoría"}
