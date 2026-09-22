@@ -5216,6 +5216,16 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # `GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1`, queda censado.
     "forense/encargos/2026-09-22-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1.md",
     "forense/notas/2026-09-22-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1-cierre.md",
+    # ACTO GEN2-TUBERIA-CANAL-PUBLICACION-1, 22/sep/2026. El encargo
+    # archivado verbatim (A.3) dice en §9 (PERÍMETRO) «Otro acto en vuelo:
+    # E12–E15 (todos asientan en replay-evidencia.tsv): sin conflicto de
+    # contenido»: son rótulos de OTROS actos hermanos, citados para declarar
+    # que este PR fusiona primero -- concurrencia declarada, no un rótulo
+    # del espacio `E` que este acto acuñe. Un encargo verbatim no se edita
+    # para complacer al test. El rótulo propio de este acto,
+    # `GEN2-TUBERIA-CANAL-PUBLICACION-1`, queda censado en
+    # `canon/registro-rotulos.tsv`.
+    "forense/encargos/2026-09-22-GEN2-TUBERIA-CANAL-PUBLICACION-1.md",
 }
 
 
