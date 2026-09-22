@@ -50,3 +50,7 @@ No adopta, no toca el `-0001`, no cambia candidatos. Sucesor: la adopción de lo
 
 Nada más: la rama «si afecta a las emisiones, re-emite» no se tomó porque su condición es falsa (nota §0), y la pregunta de LATITUD §6 no hizo falta (nota §0).
 Adendas de este encargo: `forense/encargos/2026-09-22-GEN2-DIN-CREDITO-ESCOLARIDAD-2-ADENDA-1.md` (firma de mesa del lanzamiento).
+
+## CONSUMIDO
+
+Ejecutado por ACTO GEN2-DIN-CREDITO-ESCOLARIDAD-2 en **PR #1005** (rama `acto/gen2-din-credito-escolaridad-2`), ADR `ADR-260922-GEN2-DIN-CREDITO-ESCOLARIDAD-2-0af9-01`. El PR queda para que mesa lo fusione.
