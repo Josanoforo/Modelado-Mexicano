@@ -1,0 +1,138 @@
+{
+ "corrida_id": "CALC-ENIGH2020-REMESAS-CONTEXTO-0001--0fcfbe663035",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "Se conocian los resultados sellados 2022 de este mismo medidor y de CALC-B-0001 (prevalencia padre 0.04377543852935772) y de CALC-ENIGH2020-PERFIL-ESTRUCTURAL-0001/CALC-ENIGH2020-INTENSIDAD-REMESAS-0001 (si corrieron antes en este mismo acto); no se conocian remesas por tam_loc o est_socio de 2020 antes de COMMIT-1.",
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "estado_adopcion": "NO-ADOPTADO",
+  "generacion": "GEN2",
+  "tipo": "ESTIMACION-DESCRIPTIVA-CONTEXTO-HOGAR",
+  "validacion_independiente": "PENDIENTE-DE-EJECUCION",
+  "version_spec": "v1.0 serie (ACTO GEN2-ENIGH2024-SERIE-Y-COMMIT-1, P1); generalizacion parametrizada por ola de CALC-ENIGH2022-REMESAS-CONTEXTO-0001 -- oro=reproduccion exacta de 2022 verificada en tests/test_enigh_serie_oro.py"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-22T03:05:01Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 436,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "0fcfbe663035af2a05fa4db12eec35101fa76cbb",
+  "git_rama": "acto/gen2-enigh2024-serie-y-commit-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "0fcfbe663035af2a05fa4db12eec35101fa76cbb",
+ "input_ids": [
+  "enigh2020_nc_csv",
+  "IN-CALC-B-0001-RESULTADOS",
+  "IN-CALC-ENIGH2022-REMESAS-CONTEXTO-0001-SPEC"
+ ],
+ "input_sha256": {
+  "IN-CALC-B-0001-RESULTADOS": "87e20e5aa2923fcc4b206734fa13ec321d3b036d61edd48eb0efd5bd369f263d",
+  "IN-CALC-ENIGH2022-REMESAS-CONTEXTO-0001-SPEC": "12e8312359ccde2185c3d80244bdecea41cdda556e3bcf526952ba7fea69b8ff",
+  "enigh2020_nc_csv": "47417cac13da7dce3a710d86c5767564101086a51666ec674acf27740e0701d4"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "categorias_est_socio": {
+   "1": "Bajo",
+   "2": "Medio bajo",
+   "3": "Medio alto",
+   "4": "Alto"
+  },
+  "categorias_tam_loc": {
+   "1": "100 000 y mas",
+   "2": "15 000 a 99 999",
+   "3": "2 500 a 14 999",
+   "4": "Menos de 2 500"
+  },
+  "contraste_estrato": "est_socio=1 menos est_socio=4",
+  "contraste_localidad": "tam_loc=4 menos tam_loc=1",
+  "controles_nacionales": {
+   "prevalencia": 0.04377543852935772
+  },
+  "cuantila_ponderada": "menor valor observado con CDF ponderada acumulada >=0.5; sin interpolacion",
+  "metodo_ic": "bootstrap de UPM con reemplazo dentro de est_dis, marco completo, multiplicidades comunes, percentiles 2.5/97.5",
+  "miembro_estadistico": "conjunto_de_datos_concentradohogar_enigh_2020_ns/conjunto_de_datos/conjunto_de_datos_concentradohogar_enigh_2020_ns.csv",
+  "tolerancia_componente_pesos": 0.01,
+  "tolerancia_controles": 1e-10,
+  "tratamiento_replicas_degeneradas": "se cuentan; IC con replicas finitas si existe al menos una; si ninguna, null con causa",
+  "tratamiento_upm_unica": "se remuestrea a si misma, variacion cero, se cuenta",
+  "unidad_monetaria": "pesos de 2020 por trimestre normalizado"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENIGH20-REMCTX-CATALOGOS-JSON",
+  "RESULT-ENIGH20-REMCTX-CONTRASTES-JSON",
+  "RESULT-ENIGH20-REMCTX-CONTROLES-JSON",
+  "RESULT-ENIGH20-REMCTX-DISENO-JSON",
+  "RESULT-ENIGH20-REMCTX-ESTADO",
+  "RESULT-ENIGH20-REMCTX-INDEPENDIENTE-JSON",
+  "RESULT-ENIGH20-REMCTX-LLAVE-HOGAR-UNICA",
+  "RESULT-ENIGH20-REMCTX-N-COLUMNAS",
+  "RESULT-ENIGH20-REMCTX-N-FILAS",
+  "RESULT-ENIGH20-REMCTX-RECONSTRUCCION-JSON",
+  "RESULT-ENIGH20-REMCTX-TABLA-JSON"
+ ],
+ "script_blob_sha256": "abb7b0d53d3c84c369c02dc74ea7e8919d3e54b0aae6713f6d59a48862a213eb",
+ "script_path": "data/corrida0/CALC-ENIGH2020-REMESAS-CONTEXTO-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260919
+ },
+ "spec_id": "CALC-ENIGH2020-REMESAS-CONTEXTO-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "e365bd14e23d00206e647678bbefb2fc56c76f59b0fefd462a92f52182fcb2fc",
+ "spec_yaml_sha256": "72eb7d535bbb5497a96450f6ede916710e04ec229122de6fbb5b320848903a08",
+ "tolerancia": {
+  "abs": 0.0,
+  "exacto_por_seed": true,
+  "tipo": "determinista"
+ }
+}

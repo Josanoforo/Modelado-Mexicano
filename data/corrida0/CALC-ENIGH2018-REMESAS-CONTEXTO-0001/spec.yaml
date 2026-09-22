@@ -1,0 +1,70 @@
+calc_id: CALC-ENIGH2018-REMESAS-CONTEXTO-0001
+repite_de: CALC-ENIGH2022-REMESAS-CONTEXTO-0001
+spec_md: spec.md
+spec_md_sha256: bfe2bc12ec355483e6004310ea39bca3d11d616cd9074bb34a339712f1592e8c
+script: data/corrida0/CALC-ENIGH2018-REMESAS-CONTEXTO-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: ESTIMACION-DESCRIPTIVA-CONTEXTO-HOGAR
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: PENDIENTE-DE-EJECUCION
+  estado_adopcion: NO-ADOPTADO
+  version_spec: "v1.0 serie (ACTO GEN2-ENIGH2024-SERIE-Y-COMMIT-1, P1); generalizacion parametrizada por ola de CALC-ENIGH2022-REMESAS-CONTEXTO-0001 -- oro=reproduccion exacta de 2022 verificada en tests/test_enigh_serie_oro.py"
+  contaminacion_declarada: "Se conocian los resultados sellados 2022 de este mismo medidor y de CALC-B-0001 (prevalencia padre 0.04728548395278385) y de CALC-ENIGH2018-PERFIL-ESTRUCTURAL-0001/CALC-ENIGH2018-INTENSIDAD-REMESAS-0001 (si corrieron antes en este mismo acto); no se conocian remesas por tam_loc o est_socio de 2018 antes de COMMIT-1."
+
+inputs:
+  - {id: enigh2018_nc_csv, origen: manifiesto}
+  - {id: IN-CALC-B-0001-RESULTADOS, origen: repo, ruta: data/corrida0/CALC-B-0001/resultados.json, sha256: 87e20e5aa2923fcc4b206734fa13ec321d3b036d61edd48eb0efd5bd369f263d}
+  - {id: IN-CALC-ENIGH2022-REMESAS-CONTEXTO-0001-SPEC, origen: repo, ruta: data/corrida0/CALC-ENIGH2022-REMESAS-CONTEXTO-0001/spec.md, sha256: 12e8312359ccde2185c3d80244bdecea41cdda556e3bcf526952ba7fea69b8ff}
+
+variables:
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2018_ns.csv, variable: folioviv, rol: primera parte de llave hogar como texto}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2018_ns.csv, variable: foliohog, rol: segunda parte de llave hogar como texto}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2018_ns.csv, variable: factor, rol: ponderador de hogar finito positivo}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2018_ns.csv, variable: remesas, rol: P041 ingreso trimestral proveniente de otros paises}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2018_ns.csv, variable: ing_cor, rol: ingreso corriente trimestral que incluye remesas}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2018_ns.csv, variable: tam_loc, rol: categoria nativa de tamaño de localidad del mismo hogar}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2018_ns.csv, variable: est_socio, rol: categoria nativa de estrato socioeconomico del mismo hogar}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2018_ns.csv, variable: est_dis, rol: estrato de diseño como texto opaco}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2018_ns.csv, variable: upm, rol: UPM como texto opaco}
+
+universo: "Marco completo de hogares de concentradohogar; puntos en hogares con factor hogar valido; dominios internos para remesas validas, receptores e ing_cor positivo."
+filtros: "No convertir ausentes, no finitos o negativos en cero; no eliminar incompatibilidades remesas>ing_cor+0.01."
+ponderador: "factor de hogar; nunca peso de persona"
+transformacion: "Perfiles separados total/tam_loc/est_socio; residuo explicito; sin cruce localidad por estrato."
+estimando: "Incidencia en hogares y monto/intensidad contable condicional entre receptores; transversal, descriptivo y no causal."
+dependencias_materiales: [numpy]
+
+parametros:
+  miembro_estadistico: "conjunto_de_datos_concentradohogar_enigh_2018_ns/conjunto_de_datos/conjunto_de_datos_concentradohogar_enigh_2018_ns.csv"
+  unidad_monetaria: pesos de 2018 por trimestre normalizado
+  categorias_tam_loc: {"1": "100 000 y mas", "2": "15 000 a 99 999", "3": "2 500 a 14 999", "4": "Menos de 2 500"}
+  categorias_est_socio: {"1": Bajo, "2": Medio bajo, "3": Medio alto, "4": Alto}
+  contraste_localidad: "tam_loc=4 menos tam_loc=1"
+  contraste_estrato: "est_socio=1 menos est_socio=4"
+  cuantila_ponderada: "menor valor observado con CDF ponderada acumulada >=0.5; sin interpolacion"
+  tolerancia_componente_pesos: 0.01
+  bootstrap_replicas: 2000
+  metodo_ic: "bootstrap de UPM con reemplazo dentro de est_dis, marco completo, multiplicidades comunes, percentiles 2.5/97.5"
+  tratamiento_upm_unica: "se remuestrea a si misma, variacion cero, se cuenta"
+  tratamiento_replicas_degeneradas: "se cuentan; IC con replicas finitas si existe al menos una; si ninguna, null con causa"
+  tolerancia_controles: 1.0e-10
+  controles_nacionales:
+    prevalencia: 0.04728548395278385
+
+seed: {aplica: true, valor: 20260919, rng: numpy.PCG64}
+tolerancia: {tipo: determinista, exacto_por_seed: true, abs: 0.0}
+
+resultados:
+  - {id: RESULT-ENIGH18-REMCTX-ESTADO, tipo: texto, unidad: rotulo}
+  - {id: RESULT-ENIGH18-REMCTX-N-FILAS, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGH18-REMCTX-N-COLUMNAS, tipo: entero, unidad: columnas}
+  - {id: RESULT-ENIGH18-REMCTX-LLAVE-HOGAR-UNICA, tipo: texto, unidad: SI/NO}
+  - {id: RESULT-ENIGH18-REMCTX-CATALOGOS-JSON, tipo: texto, unidad: JSON}
+  - {id: RESULT-ENIGH18-REMCTX-TABLA-JSON, tipo: texto, unidad: JSON}
+  - {id: RESULT-ENIGH18-REMCTX-CONTRASTES-JSON, tipo: texto, unidad: JSON}
+  - {id: RESULT-ENIGH18-REMCTX-DISENO-JSON, tipo: texto, unidad: JSON}
+  - {id: RESULT-ENIGH18-REMCTX-CONTROLES-JSON, tipo: texto, unidad: JSON}
+  - {id: RESULT-ENIGH18-REMCTX-INDEPENDIENTE-JSON, tipo: texto, unidad: JSON}
+  - {id: RESULT-ENIGH18-REMCTX-RECONSTRUCCION-JSON, tipo: texto, unidad: JSON}

@@ -1,0 +1,98 @@
+calc_id: CALC-ENIGH2016-INTENSIDAD-REMESAS-0001
+repite_de: CALC-ENIGH2022-INTENSIDAD-REMESAS-0001
+spec_md: spec.md
+spec_md_sha256: 63734b51e50e23c458460f5b39f2c966edf1bef18d534b2e6a7b29e2a46a6927
+script: data/corrida0/CALC-ENIGH2016-INTENSIDAD-REMESAS-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: ESTIMACION-DESCRIPTIVA-INTENSIDAD-CONTABLE
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: PENDIENTE-DE-EJECUCION
+  estado_adopcion: NO-ADOPTADO
+  version_spec: "v1.0 serie (ACTO GEN2-ENIGH2024-SERIE-Y-COMMIT-1, P1); generalizacion parametrizada por ola de CALC-ENIGH2022-INTENSIDAD-REMESAS-0001 -- oro=reproduccion exacta de 2022 verificada en tests/test_enigh_serie_oro.py"
+  contaminacion_declarada: "Se conocia la prevalencia ponderada padre de esta ola (0.04745859252351374, CALC-B-0001) y los 45 RESULT sellados 2022 de este mismo medidor; no se conocian los montos ni cocientes reales de 2016 al congelar. No es estudio ciego ni confirmatorio."
+
+inputs:
+  - {id: enigh2016_nc_csv, origen: manifiesto}
+  - {id: IN-CALC-B-0001-RESULTADOS, origen: repo, ruta: data/corrida0/CALC-B-0001/resultados.json, sha256: 87e20e5aa2923fcc4b206734fa13ec321d3b036d61edd48eb0efd5bd369f263d}
+  - {id: IN-CALC-ENIGH2022-INTENSIDAD-REMESAS-0001-SPEC, origen: repo, ruta: data/corrida0/CALC-ENIGH2022-INTENSIDAD-REMESAS-0001/spec.md, sha256: e3e845dbc94b6834594f4aeeb4ea1e3d475ecf15ef3d47e8e3228d27a7e7195c}
+
+variables:
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2016_ns.csv, variable: folioviv, rol: primera parte de llave unica de hogar como texto}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2016_ns.csv, variable: foliohog, rol: segunda parte de llave unica de hogar como texto}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2016_ns.csv, variable: factor, rol: ponderador de hogar finito y positivo}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2016_ns.csv, variable: remesas, rol: ingreso trimestral por P041 en pesos de 2016}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2016_ns.csv, variable: ing_cor, rol: ingreso corriente trimestral que incluye remesas via transfer}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2016_ns.csv, variable: est_dis, rol: estrato de diseno como texto opaco}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2016_ns.csv, variable: upm, rol: conglomerado como texto opaco}
+
+universo: "Marco completo de hogares del concentrado ENIGH 2016; dominio receptor remesas>0; dominio de participacion anade ing_cor>0 valido."
+filtros: "Nulos, no finitos y negativos no se convierten en cero. Excluir ing_cor ausente/no finito, cero o negativo solo de participacion y reportar n y masa por motivo."
+ponderador: "factor de hogar, sin normalizar, redondear, truncar ni winsorizar"
+transformacion: "media remesas=sum(w*r)/sum(w); mediana=inversa izquierda CDF ponderada; media hogar=sum(w*r/y)/sum(w); agregada=sum(w*r)/sum(w*y); ge50=sum(w*I[r/y>=.5])/sum(w)"
+estimando: "Cinco descriptores entre receptores; participacion estrictamente contable, transversal y no causal."
+dependencias_materiales: [numpy]
+
+parametros:
+  miembro_estadistico: "conjunto_de_datos_concentradohogar_enigh_2016_ns/conjunto_de_datos/conjunto_de_datos_concentradohogar_enigh_2016_ns.csv"
+  unidad_monetaria: pesos de 2016 por trimestre normalizado
+  anualizacion: NO
+  deflacion_propia: NO
+  cuantila_ponderada: "menor valor con CDF ponderada acumulada >=0.5; sin interpolacion"
+  tolerancia_componente_pesos: 0.01
+  prevalencia_padre: 0.04745859252351374
+  tolerancia_prevalencia: 1.0e-10
+  bootstrap_replicas: 2000
+  metodo_ic: "bootstrap de upm con reemplazo dentro de est_dis sobre marco completo; contribuciones cero fuera del dominio; tres cocientes completos por replica; percentiles 2.5/97.5"
+  tratamiento_upm_unica: "se remuestrea a si misma, aporta variacion cero y se reporta; no se afirma cota inferior garantizada"
+
+seed: {aplica: true, valor: 20260916, rng: numpy.PCG64}
+tolerancia: {tipo: determinista, exacto_por_seed: true, abs: 0.0}
+
+resultados:
+  - {id: RESULT-ENIGH16-REMINT-ESTADO, tipo: texto, unidad: rotulo}
+  - {id: RESULT-ENIGH16-REMINT-N-FILAS, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGH16-REMINT-N-COLUMNAS, tipo: entero, unidad: columnas}
+  - {id: RESULT-ENIGH16-REMINT-LLAVE-HOGAR-UNICA, tipo: texto, unidad: SI/NO}
+  - {id: RESULT-ENIGH16-REMINT-N-PESO-INVALIDO, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGH16-REMINT-N-REMESAS-AUSENTE-NOFINITA, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGH16-REMINT-N-REMESAS-NEGATIVA, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGH16-REMINT-UNIVERSO-VALIDO-N, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGH16-REMINT-UNIVERSO-VALIDO-MASA, tipo: flotante, unidad: hogares expandidos, permite_no_estimable: true}
+  - {id: RESULT-ENIGH16-REMINT-RECEPTORES-N, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGH16-REMINT-RECEPTORES-MASA, tipo: flotante, unidad: hogares expandidos, permite_no_estimable: true}
+  - {id: RESULT-ENIGH16-REMINT-PREVALENCIA, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENIGH16-REMINT-PREVALENCIA-DELTA-PADRE, tipo: flotante, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENIGH16-REMINT-PREVALENCIA-CONTROL-PADRE, tipo: texto, unidad: rotulo}
+  - {id: RESULT-ENIGH16-REMINT-REMESAS-MEDIA, tipo: flotante, unidad: pesos de 2022 por trimestre normalizado, permite_no_estimable: true}
+  - {id: RESULT-ENIGH16-REMINT-REMESAS-MEDIANA, tipo: flotante, unidad: pesos de 2022 por trimestre normalizado, permite_no_estimable: true}
+  - {id: RESULT-ENIGH16-REMINT-PARTICIPACION-N, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGH16-REMINT-PARTICIPACION-MASA, tipo: flotante, unidad: hogares expandidos, permite_no_estimable: true}
+  - {id: RESULT-ENIGH16-REMINT-EXCL-INGCOR-AUSENTE-NOFINITA-N, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGH16-REMINT-EXCL-INGCOR-AUSENTE-NOFINITA-MASA, tipo: flotante, unidad: hogares expandidos}
+  - {id: RESULT-ENIGH16-REMINT-EXCL-INGCOR-CERO-N, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGH16-REMINT-EXCL-INGCOR-CERO-MASA, tipo: flotante, unidad: hogares expandidos}
+  - {id: RESULT-ENIGH16-REMINT-EXCL-INGCOR-NEGATIVO-N, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGH16-REMINT-EXCL-INGCOR-NEGATIVO-MASA, tipo: flotante, unidad: hogares expandidos}
+  - {id: RESULT-ENIGH16-REMINT-R-MAYOR-Y-N, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGH16-REMINT-R-MAYOR-Y-MASA, tipo: flotante, unidad: hogares expandidos}
+  - {id: RESULT-ENIGH16-REMINT-R-MAYOR-Y-MAX-EXCESO, tipo: flotante, unidad: pesos de 2022 por trimestre normalizado}
+  - {id: RESULT-ENIGH16-REMINT-PARTICIPACION-MEDIA-HOGAR, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENIGH16-REMINT-PARTICIPACION-AGREGADA, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENIGH16-REMINT-PARTICIPACION-GE50, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENIGH16-REMINT-PARTICIPACION-MEDIA-HOGAR-IC-LO, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENIGH16-REMINT-PARTICIPACION-MEDIA-HOGAR-IC-HI, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENIGH16-REMINT-PARTICIPACION-AGREGADA-IC-LO, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENIGH16-REMINT-PARTICIPACION-AGREGADA-IC-HI, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENIGH16-REMINT-PARTICIPACION-GE50-IC-LO, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENIGH16-REMINT-PARTICIPACION-GE50-IC-HI, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}
+  - {id: RESULT-ENIGH16-REMINT-DISENO-N-FILAS-MARCO, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGH16-REMINT-DISENO-N-SIN-DISENO, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGH16-REMINT-DISENO-N-ESTRATOS, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENIGH16-REMINT-DISENO-N-UPM, tipo: entero, unidad: UPM}
+  - {id: RESULT-ENIGH16-REMINT-DISENO-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENIGH16-REMINT-IC-N-REPLICAS-NOEST-MEDIA, tipo: entero, unidad: replicas}
+  - {id: RESULT-ENIGH16-REMINT-IC-N-REPLICAS-NOEST-AGREGADA, tipo: entero, unidad: replicas}
+  - {id: RESULT-ENIGH16-REMINT-IC-N-REPLICAS-NOEST-GE50, tipo: entero, unidad: replicas}
+  - {id: RESULT-ENIGH16-REMINT-METODO-IC, tipo: texto, unidad: rotulo}

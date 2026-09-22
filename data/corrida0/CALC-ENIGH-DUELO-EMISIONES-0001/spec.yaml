@@ -1,0 +1,60 @@
+calc_id: CALC-ENIGH-DUELO-EMISIONES-0001
+spec_md: spec.md
+spec_md_sha256: 94931c1afa760b9f3e4b0bbb146bd73076f1de97e1d6fd284694d6013a7e4bcf
+script: data/corrida0/CALC-ENIGH-DUELO-EMISIONES-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: EMISION-BAJO-RESERVA
+  cuenta_gen2: NO
+  validacion_independiente: NO-HECHA
+  estado_adopcion: NO-ADOPTADO
+  uso_motor: NINGUNO
+  version_spec: "v1.0 PREVISTO (ACTO GEN2-ENIGH2024-SERIE-Y-COMMIT-1, P4/P3); COMMIT-2 del duelo prospectivo ENIGH 2024 (forense/prereg-caja/DUELO-PROSPECTIVO-ENIGH2024-spec-v1_0.md); congelado sin correr -- PARO (a) del encargo prohibe abrir enigh2024*"
+  contaminacion_declarada: "Se conocia la serie completa 2016-2022 de remesas>0 y el resultado de la validacion retrospectiva (CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001, sellado, ninguno usa 2024); NO se conoce ningun dato de ENIGH 2024 al escribir esta spec -- el zip nunca se abrio en este acto."
+
+inputs:
+  - {id: enigh2024_nc_csv, origen: manifiesto}
+  - {id: IN-CALC-B-0001-RESULTADOS, origen: repo, ruta: data/corrida0/CALC-B-0001/resultados.json, sha256: 87e20e5aa2923fcc4b206734fa13ec321d3b036d61edd48eb0efd5bd369f263d}
+
+variables:
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2024_ns.csv, variable: folioviv, rol: primera parte de llave hogar como texto}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2024_ns.csv, variable: foliohog, rol: segunda parte de llave hogar como texto}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2024_ns.csv, variable: factor, rol: ponderador de hogar finito positivo}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2024_ns.csv, variable: remesas, rol: ingreso trimestral por P041, comparabilidad confirmada por texto en data/enigh-comparabilidad-texto-v1_0.tsv}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2024_ns.csv, variable: est_dis, rol: estrato de diseño como texto opaco}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh2024_ns.csv, variable: upm, rol: UPM como texto opaco}
+
+universo: "Marco completo de hogares del concentrado ENIGH 2024; una sola celda nacional remesas>0. Guardia: solo estas 6 columnas se leen (tools/enigh_duelo_guardian.py), ninguna otra."
+filtros: "Peso invalido y remesas invalida/negativa se excluyen y cuentan por separado (RESULT-ENIGHEM-R-N-PESO-INVALIDO / R-N-REMESAS-INVALIDO). No se imputa."
+ponderador: "factor de hogar, sin normalizar"
+transformacion: "proporcion = masa(remesas>0) / masa(validos); IC95 bootstrap UPM dentro de est_dis, 2000 replicas; ademas, las cinco predicciones C-PISO/C-T2/C-T3/C-TS/C-MEDIA sobre la serie 2016-2022 (no usan 2024)."
+estimando: "R de 2024 para el duelo prospectivo (DUELO-PROSPECTIVO-ENIGH2024-spec-v1_0.md); no adjudica -- eso es COMMIT-3."
+precision: "Bootstrap de UPM con reemplazo dentro de est_dis sobre el marco valido; ver tools/enigh_duelo_guardian.py::_calcula_nacional."
+dependencias_materiales: [numpy]
+
+parametros:
+  zip_id: enigh2024_nc_csv
+  miembro_concentradohogar: "conjunto_de_datos_concentradohogar_enigh2024_ns/conjunto_de_datos/conjunto_de_datos_concentradohogar_enigh2024_ns.csv"
+  olas_previas: [2016, 2018, 2020, 2022]
+  ola_nueva: 2024
+  bootstrap_replicas: 2000
+  seed_bootstrap: 20260921
+  autorizacion: "emite_bajo_reserva(autoriza=True) -- unico punto de entrada permitido sobre la ola reservada, E.6"
+
+seed: {aplica: true, valor: 20260921, rng: numpy.PCG64}
+tolerancia: {tipo: determinista, exacto_por_seed: true, abs: 0.0, razon: "bootstrap con semilla y orden fijados"}
+
+resultados:
+  - {id: RESULT-ENIGHEM-GUARDIAN-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENIGHEM-MODULO-NACIONAL-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENIGHEM-OLA-NUEVA, tipo: entero, unidad: ola}
+  - {id: RESULT-ENIGHEM-PREDICCIONES-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-ENIGHEM-PREDICCIONES-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENIGHEM-R-ESTADO, tipo: texto, unidad: estado}
+  - {id: RESULT-ENIGHEM-R-IC95-JSON, tipo: texto, unidad: JSON canonico, permite_no_estimable: true}
+  - {id: RESULT-ENIGHEM-R-MARCO-HUELLA, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENIGHEM-R-N-PESO-INVALIDO, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGHEM-R-N-REMESAS-INVALIDO, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGHEM-R-N-VALIDOS, tipo: entero, unidad: hogares}
+  - {id: RESULT-ENIGHEM-R-P, tipo: proporcion, unidad: proporcion, permite_no_estimable: true}

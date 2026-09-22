@@ -1,0 +1,64 @@
+ACTO GEN2-ENIGH2024-SERIE-Y-COMMIT-1 — metadato de universo de data/enigh-comparabilidad-texto-v1_0.tsv
+
+Archivo hermano (mismo patrón que data/credito-comparabilidad-texto-v1_0.tsv.meta,
+ADR-213: no se mezcla como comentario en el TSV principal para no romper el parseo).
+
+fecha_generacion: 2026-09-21
+rama: acto/gen2-enigh2024-serie-y-commit-1
+encargo: forense/encargos/2026-09-21-GEN2-ENIGH2024-SERIE-Y-COMMIT-1.md, pieza P2
+
+qué_es: 14 filas = una por variable de las que usan CALC-ENIGH-0001 (remesas>0, ya
+  sellado en 5 olas) y los tres CALC de P1 (PERFIL-ESTRUCTURAL, INTENSIDAD-REMESAS,
+  REMESAS-CONTEXTO), comparando la definición/construcción/catálogo de ENIGH 2022
+  contra ENIGH 2024, leído del diccionario de datos ("Descripción de la base") de
+  cada ola. No contiene ninguna cifra de ENIGH 2024: la sección de microdato sigue
+  RESERVADA (firma de mesa, #964).
+
+por_qué_la_unidad_de_fila_es_"variable"_y_no_"conducta"×"ola"_como_el_precedente:
+  ENIGH documenta cada variable en un diccionario fijo (tipo, definición,
+  construcción, catálogo de valores), no en un cuestionario con flujo de pase
+  condicional por reactivo como ENIF. La pregunta de comparabilidad para ENIGH es
+  "¿la MISMA variable del diccionario significa lo mismo en 2022 y 2024?", no
+  "¿qué reactivo de la sección X captura esto en la ola Y?". El vocabulario de
+  veredicto se conserva del precedente (MISMO-INSTRUMENTO / CAMBIO-MENOR /
+  CAMBIO-DE-INSTRUMENTO / NO-ESTIMABLE); se omite NO-VERIFICABLE-AQUÍ porque los
+  dos descriptores (2022 y 2024) ya están en el corpus, hasheados.
+
+vocabulario_veredicto (idéntico al precedente, la consecuencia vive sólo aquí):
+  MISMO-INSTRUMENTO      definición, tipo, construcción y catálogo idénticos
+  CAMBIO-MENOR           algo cambió y la columna `nota` dice por qué no entra
+                         en el estimando (aquí: sólo `factor`, por ubicación de
+                         tabla, no por definición -- ver esa fila)
+  CAMBIO-DE-INSTRUMENTO  cambió algo que sí entraría en el estimando (ninguna fila)
+  NO-ESTIMABLE           la variable no existe en la ola; `texto_buscado`
+                         obligatorio (A.15) (ninguna fila -- las 14 existen en
+                         ambas olas)
+
+columnas (17): variable · variable_etiqueta · comparado_con · veredicto ·
+  alcance_del_veredicto · reactivo · texto_literal · opciones_y_codigos ·
+  filtro_y_flujo · unidad · poblacion_base · fuente · secciones_fd_recorridas ·
+  componentes_no_estimables · texto_buscado · limite_fd · nota.
+
+conteo_por_veredicto (derivado: cut -f4 | tail -n +2 | sort | uniq -c):
+  MISMO-INSTRUMENTO 13 · CAMBIO-MENOR 1 (factor, por ubicación de tabla)
+
+documento_leído: enigh2024_descripcion_base_pdf (sha256
+  1b0c698594da41bfe8c976c5d161dcdf99ae4f962a8a5cafe73947582dfdf8a1, verificado
+  contra data/manifiesto.yaml), comparado contra las citas ya sealed de
+  enigh2022_descripcion_base_pdf (sha256
+  7b0c4e6bd36ceb9eae7cc852fce5a38dbcf4f2da6b133d35df6b1443fc76836c, citada en
+  CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003/spec.md y en los otros dos spec.md 2022).
+  NINGÚN miembro de datos (`enigh2024_ns_csv.zip`) fue abierto ni listado — sigue
+  RESERVADO por #964.
+
+extracción: pdftotext -layout (poppler) sobre enigh2024_descripcion_base_pdf.pdf;
+  paginación citada = página del PDF (conteo de form-feeds de pdftotext), no el
+  folio impreso.
+
+test: tests/test_enigh_comparabilidad_texto.py (corre el caso sintético D-22
+  primero, luego la tabla real).
+
+lector_previsto: P3 (spec del duelo ENIGH 2024) y el futuro acto que abra
+  ENIGH2024, para saber qué variables reutilizar sin releer el diccionario.
+falsador: si ese lector tiene que volver a abrir el diccionario 2024 para una de
+  estas 14 variables, la tabla no sirvió y se revisa su diseño de columnas.
