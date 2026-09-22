@@ -4132,7 +4132,7 @@ def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> 
         if o.get("fuente_replay"):
             fuentes_replay[o["calc_id"]] = o["fuente_replay"]
 
-    sucesor_de = {o["repite_de"]: o["calc_id"] for o in oferta if o["repite_de"]}
+    sucesor_de = _sucesor_de(oferta)
 
     filas_corridas, filas_resultados, filas_usos = [], [], []
     vistos_corrida, vistos_resultado = set(), set()
@@ -4667,6 +4667,15 @@ def _para_si_pisa_replay(filas_corridas: list[dict], lote: set) -> None:
         f"`--lote {','.join(ids)}` y di por que en la nota de cierre del "
         f"lote. No existe `--force`: un veredicto ajeno no se mueve sin "
         f"razon explicita.")
+
+
+def _sucesor_de(oferta: list[dict]) -> dict[str, str]:
+    """GEN2-PENDIENTES-CAJA-1: varios hijos con el mismo `repite_de` (misma
+    receta, otras olas: ENIGH 2016/18/20 -> 2022) no son una sucesion."""
+    from collections import Counter as _Counter
+    n_hijos = _Counter(o["repite_de"] for o in oferta if o["repite_de"])
+    return {o["repite_de"]: o["calc_id"] for o in oferta
+            if o["repite_de"] and n_hijos[o["repite_de"]] == 1}
 
 
 def registro(escribe: bool = False, verifica: bool = False,
