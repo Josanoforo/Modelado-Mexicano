@@ -47,3 +47,15 @@ Propio: `tests/check.py`, `tests/baseline.json`, `tests/test_marcador_segmento.p
 
 ## 10 · NO HACE · SUCESORES · CIERRE
 No mide · no re-adjudica · no borra historia de git (los blobs de L0 se quedan). Sucesor: `EFICIENCIA-2` con la medición de P7 si alguna meta no se cumplió. Auditoría §5: no aplica. Falsador a tres meses: si en diciembre CONSUMIDO → merge sigue > 10 min, este lote no sirvió y se anota. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué**: P7 — re-correr los comandos de `#955` sobre los 20 PR siguientes al merge de este lote (las seis cifras de "Hecho" antes/después).
+  **por qué**: `DIFERIDO-A:EFICIENCIA-2` — la meta verificable del lote (merge ≤10 min mediana, ≤1 re-fusión, CI ≤90s, 0 WARN, baseline sin FAIL) solo se puede medir después de que este PR se fusione y corran los 20 PR posteriores.
+  **impacto**: la meta de "Hecho" del §1 del encargo no queda verificada por este acto.
+  **sucesor**: `EFICIENCIA-2`. Fila: `NC-260922-GEN2-TUBERIA-EFICIENCIA-1-0d1b-01`.
+
+- **qué**: `NC-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_3-3619-01` — levantar la reserva del par `CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad` en `marcador-segmento.tsv`. A.8 (`python3 tools/ya_medido.py "tramite.gobierno_digital.util_sin_coercion_ejes_encig2025"`) -> MEDIDA-EN: tramite-ola5-propuesta-v0.yaml:1600 (tier SELLADA, p=0.681276, [NO-DISCRIMINA]) — cita ilustrativa del par ya conocido, no una clasificación nueva de este acto.
+  **por qué**: `FUERA-DE-PERÍMETRO` — de `tools/marcador_segmento.py`, ajeno a este acto (§9 del encargo).
+  **impacto**: el par sigue `RESERVADA`; el contador nuevo `celdas_d_adoptadas_activas` (P5) no depende de ese re-derivado y ya cuenta la celda-D adoptada por otra vía.
+  **sucesor**: acto de aparato sobre `tools/marcador_segmento.py`. Fila: `NC-260922-GEN2-TUBERIA-EFICIENCIA-1-0d1b-02`.
