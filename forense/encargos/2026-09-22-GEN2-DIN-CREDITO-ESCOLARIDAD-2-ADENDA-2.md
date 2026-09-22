@@ -1,0 +1,3 @@
+# ADENDA-2 · ACTO GEN2-DIN-CREDITO-ESCOLARIDAD-2 · mesa, 22/sep/2026 (firma sobre FP-260922-GEN2-DIN-CREDITO-ESCOLARIDAD-2-0af9-01 y FP-260922-GEN2-PENDIENTES-CAJA-1-c09b-02)
+
+Opción (a) en las dos: el job del push a main corre corrida0 registro --verifica --escribe --lote <CALC con asiento nuevo en ese push>, con el lote derivado mecánicamente del diff de forense/replay-evidencia.tsv — sin juicio: solo lo que un acto asentó. Lo diseña y ejecuta la conversación TUBERÍA; mientras, cada acto sigue asentando en replay-evidencia.tsv y el CONTADOR dice «sellada en disco, no registrada» (E.7). Hoy son 22 CALC sin fila por este hueco; la firma cierra los dos FP con una sola decisión.
