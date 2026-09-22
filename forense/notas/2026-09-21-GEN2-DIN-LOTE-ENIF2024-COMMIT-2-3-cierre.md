@@ -116,7 +116,8 @@ COMMIT-3a y verificados `COINCIDE` en el preflight subsecuente. Asientos en
   `PROPUESTA-CON-RESERVA` quedan para que mesa decida si adopta `R2` como
   retador de `θ` sobre los 5 pares primarios, o si pide una ronda con más
   soporte / L1-L2 corridos.
-- `FP-…-2-3-01` (Q: ¿se corre L1/L2 con presupuesto dedicado, dado que la
-  reserva ya no protege esta ola una vez medida?) y `FP-…-2-3-02` (Q: ¿los 5
+- `FP-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-01` (Q: ¿se corre L1/L2
+  con presupuesto dedicado, dado que la reserva ya no protege esta ola una vez
+  medida?) y `FP-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-02` (Q: ¿los 5
   pares `NO-EMITIBLE` por `formalidad` se sellan aparte con `C2-restringido a
   quien trabaja`, como F2 preveía en la Q1 de COMMIT-1?) van a mesa.

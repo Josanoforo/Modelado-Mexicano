@@ -5146,6 +5146,15 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # `CIV-` vive en la misma paréntesis, no pegado al número; recortar la
     # cita para complacer el test alteraría el cuerpo sellado (D-a1).
     "forense/encargos/2026-09-22-GEN2-RELEVO-TANDA-5.md",
+    # ACTO GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3 (21/sep/2026). §5 de la nota de
+    # cierre cita `M24` -- el sufijo de ola que el propio módulo del lote usa
+    # en sus RESULT (`RESULT-DIN-LOTE24-EM-M24-<eje>-<categoría>-...`), no un
+    # rótulo del espacio `M`/`E` de actos. El regex lo ve pelado porque en esa
+    # frase va entre backticks sin el prefijo `RESULT-DIN-LOTE24-EM-` pegado;
+    # el rótulo propio de este acto, `GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3`, no
+    # matchea `M\d{1,2}`/`E\d{1,2}` pelado y queda censado en
+    # `canon/registro-rotulos.tsv`.
+    "forense/notas/2026-09-21-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-cierre.md",
 }
 
 
