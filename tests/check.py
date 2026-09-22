@@ -5207,6 +5207,15 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # este acto acuñe; un encargo verbatim no se edita para complacer al test.
     # El rótulo propio, `GEN2-DIN-CREDITO-ESCOLARIDAD-2`, queda censado.
     "forense/encargos/2026-09-22-GEN2-DIN-CREDITO-ESCOLARIDAD-2.md",
+    # ACTO GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1, 22/sep/2026. §9 del encargo
+    # (verbatim, A.3; sello de cuerpo `9d5ef52a…`) dice «no correr a la vez
+    # que E1/E2»: abreviatura de dirección para los dos hermanos de caja de
+    # la tanda (GEN2-DIN-CREDITO-ESCOLARIDAD-2, GEN2-DIN-LOTE-C2-RESTRINGIDO-1),
+    # no un rótulo que este acto acuñe. La nota de cierre copia verbatim la
+    # respuesta de mesa, que usa la misma abreviatura. El rótulo propio,
+    # `GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1`, queda censado.
+    "forense/encargos/2026-09-22-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1.md",
+    "forense/notas/2026-09-22-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1-cierre.md",
 }
 
 

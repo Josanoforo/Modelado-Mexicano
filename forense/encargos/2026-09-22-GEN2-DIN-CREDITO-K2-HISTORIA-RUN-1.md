@@ -38,3 +38,7 @@ Propio: el CALC (`-0001` o `-0002`) · derivados por comando · `replay-evidenci
 
 ## 10 · NO HACE · SUCESORES · CIERRE
 No adopta, no abre 2024, no cambia nada congelado. Sucesor: `FP-…ff56-01` (recorte 18-70) es otro acto, no éste. Auditoría: no aplica (rotulado descriptivo; la afirmación la hace la lectura, no la corrida). Cierre por /acto.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** P3 · «Vista: registro y asiento en el mismo acto (E.7)» y el criterio de «hecho» «fila en `corridas.tsv`» · **por qué:** DIFERIDO-A:acto TUBERIA — desde #984, `verify.yml:542-546` impide que un PR toque un derivado, y el job de push a main que firmó mesa (`FP-260922-GEN2-PENDIENTES-CAJA-1-c09b-02`, opción (a)) todavía no corre `registro` (`verify.yml:369-370` exige `--lote`). El asiento sí viaja (`forense/replay-evidencia.tsv`, REPRODUCE/IDENTICO). Proyección en seco: `-0001` `SUPERADO→-0002`, `-0002` `SELLADA · GEN2 · cuenta_gen2=SI` · **impacto:** la corrida queda «sellada en disco, no registrada»; `corrida0 status` la cuenta (158 → 159), la vista publicada no; ningún contador de adopción se mueve · **sucesor:** `NC-260922-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1-ef6f-01` → acto TUBERIA (job de push a main); hasta entonces, mesa: `registro --verifica --escribe --lote CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-0002` sobre main.
