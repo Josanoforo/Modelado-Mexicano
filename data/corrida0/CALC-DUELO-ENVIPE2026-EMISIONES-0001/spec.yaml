@@ -13,7 +13,7 @@ etiquetas:
   medidor_ejecutado_al_congelar: sintetico (tests/test_duelo_prospectivo.py, zips fabricados) y ensayo sobre olas abiertas (2023-2025); NUNCA sobre ENVIPE 2026
   tipo: EMISIONES-DEL-DUELO-PROSPECTIVO (COMMIT-2)
   reserva: ENVIPE 2026 RESERVADA (mesa 21/sep/2026); la ola se carga reservada=True; solo marginales de un eje
-  congelado: NO -- envipe2026_csv sin sha en el manifiesto (spec §10); congelar = preflight VERDE cuando entre, sin otra edicion
+  congelado: SI -- preflight VERDE 2026-09-21 en caja, envipe2026_csv COINCIDE (sha256 dd79f589eb6ed7d3675cc86e21ac9bbdbf269913963091d8698d6e28e0540a17); salida cruda en forense/notas/2026-09-21-GEN2-DUELO-ENVIPE2026-CONGELA-1-nota.md
 inputs:
 - id: envipe2023_csv
   origen: manifiesto
