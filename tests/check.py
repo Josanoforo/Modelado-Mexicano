@@ -5159,6 +5159,12 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # matchea `M\d{1,2}`/`E\d{1,2}` pelado y queda censado en
     # `canon/registro-rotulos.tsv`.
     "forense/notas/2026-09-21-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-cierre.md",
+    # ACTO GEN2-DIN-CREDITO-ESCOLARIDAD-2, 22/sep/2026. El encargo archivado
+    # verbatim (A.3) dice en §2 «si mesa la ratifica en E5»: es la ranura de
+    # mesa ya censada (`E5` en canon/registro-rotulos.tsv), no un rótulo que
+    # este acto acuñe; un encargo verbatim no se edita para complacer al test.
+    # El rótulo propio, `GEN2-DIN-CREDITO-ESCOLARIDAD-2`, queda censado.
+    "forense/encargos/2026-09-22-GEN2-DIN-CREDITO-ESCOLARIDAD-2.md",
 }
 
 

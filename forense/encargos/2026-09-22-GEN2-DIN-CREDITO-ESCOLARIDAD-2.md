@@ -40,3 +40,13 @@ Propio: `forense/prereg-caja/DIN-CREDITO-ESCOLARIDAD-2-spec-v1_0.md` (+ sidecar,
 
 ## 10 · NO HACE · SUCESORES · CIERRE
 No adopta, no toca el `-0001`, no cambia candidatos. Sucesor: la adopción de lo que gane, por mesa. Auditoría: no aplica (afirma sobre el aparato; la afirmación sobre México ya la hizo el `-0001`). Cierre por /acto.
+
+## NO-CORRIDO / RESERVAS
+
+| qué (verbatim del encargo) | por qué | impacto | sucesor |
+|---|---|---|---|
+| COMMIT-3 · «registro en la vista»; «Hecho»: «`grep -c ESCOLARIDAD-0002 data/corrida0/corridas.tsv` → 1» | DECISIÓN-DE-MESA-PENDIENTE: la firma P4 (derivados no viajan en PR, guarda `enrutamiento-pr`) choca con E.7, y el job de main no re-deriva `corridas/resultados/usos.tsv`. La re-derivación local se midió (exit 0, 0 transiciones de replay, `usos.tsv` idéntico, +21 CALC ajenos sellados sin fila) y se revirtió | la corrida queda «sellada en disco, no registrada» en la vista publicada; verificada, asentada en `replay-evidencia.tsv` y contada por `corrida0 status` | `FP-260922-GEN2-DIN-CREDITO-ESCOLARIDAD-2-0af9-01` · `NC-260922-GEN2-DIN-CREDITO-ESCOLARIDAD-2-0af9-01` |
+| CONTADOR · «`celdas_validadas` puede subir si las 4 celdas de escolaridad × 9 conductas entran con veredicto (reportado, no prometido)» | DECISIÓN-DE-MESA-PENDIENTE: el veredicto entró (ADJ16), pero la métrica sólo lee el marcador y las celdas-D, y esta línea no pasa por ahí | `celdas_validadas` = 92, sin cambio | `NC-260922-GEN2-DIN-CREDITO-ESCOLARIDAD-2-0af9-02` (mesa) |
+
+Nada más: la rama «si afecta a las emisiones, re-emite» no se tomó porque su condición es falsa (nota §0), y la pregunta de LATITUD §6 no hizo falta (nota §0).
+Adendas de este encargo: `forense/encargos/2026-09-22-GEN2-DIN-CREDITO-ESCOLARIDAD-2-ADENDA-1.md` (firma de mesa del lanzamiento).
