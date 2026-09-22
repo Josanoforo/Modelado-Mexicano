@@ -55,3 +55,8 @@ Latitud: estructura, orden, qué medidores reutilizas. Pregunta a mesa siguiendo
   evaluar.
   **sucesor**: `CALC-ENIGH-DUELO-ADJUDICACION-0001`, COMMIT-3 (misma
   sesión sucesora que COMMIT-2).
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-ENIGH2024-SERIE-Y-COMMIT-1` · rama
+`acto/gen2-enigh2024-serie-y-commit-1` · **PR #988**
