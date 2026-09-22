@@ -315,6 +315,13 @@ jobs:
   guardias:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    # `contents: write` (el resto del workflow se queda en `read`, arriba):
+    # SOLO el paso de re-derivación al final de este job la usa, y SOLO
+    # empuja cuando `github.event_name == 'push' && github.ref ==
+    # 'refs/heads/main'` -- en un PR el permiso está pero el paso no
+    # escribe nada (P4, ver más abajo).
+    permissions:
+      contents: write
     steps:
       - name: Checkout sin marketplace (repo público — cero descargas de action)
         run: |
@@ -347,6 +354,42 @@ jobs:
 
       - name: Guardias huérfanas — censo + invocador correcto por archivo (bloqueante)
         run: python3 tools/ci_guardias.py --ejecuta-huerfanos
+
+      # ACTO GEN2-TUBERIA-EFICIENCIA-1 · P4 (21/sep/2026), firma de mesa
+      # §2(2), mitad push de la misma firma que la guarda de `enrutamiento-pr`
+      # arriba: re-deriva por comando los archivos `# DERIVADO — NO EDITAR`
+      # y commitea `[deriva]` si hubo diff -- nunca si no lo hubo (PARO (e)
+      # del encargo: sin loop). Va en ESTE job por la misma razón que la
+      # guarda: un job nuevo dobla la matriz combinatoria de
+      # `test_check_parallel.py::WorkflowGate` y ese test deja de caber en
+      # el timeout. Solo dos derivadores hoy son deterministas, idempotentes
+      # y corren sin corpus en CI (`tools/marcador_segmento.py --escribe`,
+      # ya usado por `tests/test_marcador_segmento.py`, y
+      # `corrida0.py demanda`, que no toma `--escribe`: siempre escribe);
+      # los demás archivos DERIVADO (`corridas.tsv`/`resultados.tsv`/
+      # `usos.tsv` vía `corrida0.py registro --escribe`) exigen `--lote`
+      # (juicio sobre qué transición de replay puede cambiar) y quedan
+      # fuera de este job a propósito -- D-19: nada en la lista cerrada de
+      # PAROS lo exige, pero automatizar un juicio de mesa sí lo violaría.
+      - name: Re-deriva por comando y commitea [deriva] si hay diff (solo push a main, sin loop)
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: |
+          set -euo pipefail
+          if git log -1 --format=%s | grep -q '^\[deriva\]'; then
+            echo "el commit que disparó este push ya es [deriva]: no se re-deriva sobre sí mismo (evita loop)"
+            exit 0
+          fi
+          python3 tools/marcador_segmento.py --escribe
+          python3 tools/corrida0.py demanda
+          if git diff --quiet -- $(python3 tools/derivados_protegidos.py); then
+            echo "sin diff -- nada que commitear"
+          else
+            git config user.name "gen2-derivador"
+            git config user.email "gen2-derivador@users.noreply.github.com"
+            git add -- $(python3 tools/derivados_protegidos.py)
+            git commit -q -m "[deriva] re-deriva DERIVADO tras $(git rev-parse --short HEAD)"
+            git push origin HEAD:main
+          fi
 
   # ACTO GEN2-TUBERIA-PREFLIGHT-CI-1 (21/sep/2026). `corrida0 preflight` sobre
   # los CALC SIN SELLO que este cambio añade o toca — y sólo sobre ésos.
@@ -483,6 +526,24 @@ jobs:
             --base refs/remotes/origin/base \
             --cabeza refs/remotes/origin/ci \
             --resumen "$GITHUB_STEP_SUMMARY"
+
+      # ACTO GEN2-TUBERIA-EFICIENCIA-1 · P4 (21/sep/2026), firma de mesa
+      # §2(2): «Los archivos derivados no viajan en los PR: un job del push
+      # a main los re-deriva y commitea». Va en ESTE job, no en uno nuevo,
+      # a propósito: `tests/test_check_parallel.py::WorkflowGate` deriva su
+      # matriz de estados como producto cartesiano de TODOS los jobs
+      # (6 ** N combinaciones) -- un job de más aquí pasa de 6**6 a 6**7
+      # combinaciones y ese test, ya bloqueante en el job `suite`, deja de
+      # caber en el timeout de 10 min. La guarda vive donde ya existen los
+      # dos refs (`base` y `ci`) fetcheados, sin checkout propio.
+      - name: Prueba del propio guardián (bloqueante — D-21)
+        run: python3 tests/test_derivados_protegidos.py
+
+      - name: Ningún PR toca un archivo DERIVADO — NO EDITAR (bloqueante)
+        # En un push directo a `main` (fuera de PR) `base` y `ci` son la
+        # misma ref: el diff sale vacío y este paso pasa siempre, así el
+        # job derivador (`guardias`, más abajo) nunca choca con esta guarda.
+        run: python3 tools/derivados_protegidos.py --toca refs/remotes/origin/base refs/remotes/origin/ci
 
   # Conserva el nombre requerido por protección. always() es indispensable:
   # un job fallido/omitido/cancelado debe llegar a una compuerta que NO aprueba.
