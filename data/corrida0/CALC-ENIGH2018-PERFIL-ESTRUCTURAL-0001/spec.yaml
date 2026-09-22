@@ -56,7 +56,7 @@ parametros:
   p3_no_abrir_columna: residencia
   fuente_diseno_persona: concentradohogar (factor/est_dis/upm no existen en poblacion.csv de esta ola; join por folioviv+foliohog, ver spec.md)
   output_dir: forense/analisis/enigh2018-perfil-estructural-serie-1
-  demanda_relacionada: CORR-0076 / RES-0165..RES-0170; aporte descriptivo sin relevo directo
+  demanda_relacionada: RES-0165..RES-0170; aporte descriptivo sin relevo directo (CORR ya no es citable, D-r2, 21/sep/2026)
 
 seed: {aplica: true, valor: 20260919, rng: numpy.PCG64}
 tolerancia: {tipo: determinista, exacto_por_seed: true, abs: 0.0, razon: JSON canónica y bootstrap con semilla/orden fijados}
