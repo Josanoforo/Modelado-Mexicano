@@ -47,3 +47,7 @@ No abre payloads, no mide, no decide sobre R08/R02, no relanza F6. Sucesor: si e
 - **qué:** §6 · «PREGUNTAS A MESA: R08 ENCRIGE […] R02 WBES […]». · **por qué:** DECISIÓN-DE-MESA-PENDIENTE: `FP-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-01`. El microdato de ENCRIGE 2020 no es público (catalog/691); el de 2016 queda NO-VERIFICADO. · **impacto:** R02/R08 siguen sin celda. · **sucesor:** la FP. `…-e7be-03`.
 - **qué:** P3 · «las de los 588 sin licencia del mismo dominio (INEGI)» y las de los payloads tocados. · **por qué:** NO-VERIFICABLE-AQUÍ. Se escriben las 34 entradas INEGI; quedan 554 de otros dominios o sin URL, y las de ZA6980, porque GESIS da CONNECT 403 del proxy de nube (NO OBTENIDO POR ESTE AGENTE EN 1 INTENTO; la receta está en la nota §2). · **impacto:** 554 siguen sin licencia; R09 sin licencia leída. · **sucesor:** SIN-ASIGNAR. `…-e7be-04`.
 - **qué:** P2 · «verificación A.1 en tres estados». · **por qué:** NO-VERIFICABLE-AQUÍ. Es NUBE sin corpus: AUSENTE ×6, RAÍZ NO CONFIGURADA ×4, FUERA_DE_PERIMETRO ×2, 0 archivos examinados. · **impacto:** ningún sha re-verificado contra su payload. · **sucesor:** GEN2-F6-FACTIBILIDAD-CAJA-1. `…-e7be-05`.
+
+## CONSUMIDO
+
+Ejecutado por ACTO GEN2-ADQ-F6-DIRIGIDA-1 en PR #1014 (https://github.com/Josanoforo/Modelado-Mexicano/pull/1014), rama `claude/new-session-ceszds`, 0-bis `e7be565`. ADR-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-01.
