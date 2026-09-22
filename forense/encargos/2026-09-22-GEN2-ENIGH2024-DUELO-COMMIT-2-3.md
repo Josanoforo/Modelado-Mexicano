@@ -37,3 +37,13 @@ variable de `concentradohogar` fuera de las 6 del guardián, cualquier
 corte, cruce, marginal, tabulado o comunicado) permanece `RESERVADA` por
 diseño de P3 — no es una pieza no corrida, es el alcance declarado del
 marcador.
+
+## CONSUMIDO
+
+PR #994. Diseño adoptado (FP b7ae-02 FIRMADA), `CALC-ENIGH-DUELO-EMISIONES-0001`
+(COMMIT-2) y `CALC-ENIGH-DUELO-ADJUDICACION-0001` (construido en este acto,
+COMMIT-3) corridos y sellados. Veredicto: `C-PISO-ADOPTADO`; B-bis-1
+CORROBORADA, B-bis-2 ACOTADA, B-bis-3/4 FALSADOR-DÉBIL. Marcador: reserva de
+ENIGH 2024 levantada solo para `remesas>0` nacional. `tests/check.py
+--baseline`: LÍNEA BASE VERDE, sin FAIL nuevos. El PR no se fusiona en este
+acto: queda propuesto, mesa fusiona.
