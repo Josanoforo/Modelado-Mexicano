@@ -41,3 +41,7 @@ Propio: `milpa/estimadores-por-segmento.yaml` (por tool) · `tools/marcador_segm
 
 ## 10 · NO HACE · SUCESORES · CIERRE
 No mide, no re-evalúa ENIF, no toca los CALC. Sucesor: el IC calibrado de persistencia para ENIF (diseño de dirección). Auditoría: no aplica (no afirma sobre México: adopta números ya sellados con su cobertura). Cierre por /acto.
+
+## NO-CORRIDO / RESERVAS
+- **P3 (parcial) · adoptados_activos.** `NC-260922-GEN2-MARGINALES-ADOPCION-1-c45c-01` — `DECISIÓN-DE-MESA-PENDIENTE`: el mecanismo (`tools/corrida0.py::_estimadores_segmento_para_status`, extendido por este acto) proyecta las 15 celdas ENVIPE `ADOPTADO-POR-FIRMA` como uso activo, pero `aptitud_para_uso` las marca `NO-APTA` porque `origen_numerico` de los `RESULT-PISOS-*` que consumen es `INDETERMINADO` — propiedad de esos CALC, ajena a este acto. Impacto: `N_resultados_gen2_adoptados_activos` se queda en 72 (no sube a 87); `milpa/estimadores-por-segmento.yaml` sí queda con las 15 `ADOPTADO-POR-FIRMA`. Sucesor: `FP-260922-GEN2-MARGINALES-ADOPCION-1-c45c-01` (pregunta a mesa, con recomendación de acreditar el origen_numerico).
+- **P4 · sucesor de ENIF, sin diseñar.** `NC-260922-GEN2-MARGINALES-ADOPCION-1-c45c-02` — `DIFERIDO-A:GEN2-ENIF-IC-CALIBRADO-1`: el IC de persistencia calibrado (varianza del cambio entre olas) que permitiría re-evaluar la cobertura 6/32=0.19 de ENIF 2024 no se diseña en este acto, por mandato explícito del encargo (§10). Impacto: ENIF 2024 permanece `DIFERIDA` (32 celdas) hasta que exista ese IC. Sucesor: `GEN2-ENIF-IC-CALIBRADO-1` (sin lanzar).
