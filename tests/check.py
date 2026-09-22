@@ -5174,6 +5174,18 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # matchea `M\d{1,2}`/`E\d{1,2}` pelado y queda censado en
     # `canon/registro-rotulos.tsv`.
     "forense/notas/2026-09-21-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-cierre.md",
+    # ACTO GEN2-TRAMITE-FIRMAS-6 (22/sep/2026). El encargo (§4, "Ramas vivas
+    # al abrir: declarar cuáles de E1–E4 están en vuelo"), la nota de cierre
+    # y el fragmento L0 citan "E1–E4" como abreviatura de dirección para los
+    # cuatro actos hermanos de trámite de firmas que corrían en paralelo
+    # (marco-M-consumidor-1, fp374-resello-1, pendientes-caja-1,
+    # pendientes-reconcilia-1) -- concurrencia entre actos, no un rótulo del
+    # espacio `E` (fases MOTOR-3) que este acto acuñe. El propio rótulo de
+    # este acto, `GEN2-TRAMITE-FIRMAS-6`, no matchea `E\d{1,2}` pelado y
+    # queda censado en `canon/registro-rotulos.tsv`.
+    "forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-6.md",
+    "forense/notas/2026-09-22-GEN2-TRAMITE-FIRMAS-6-cierre.md",
+    "canon/L0/ADR-260922-GEN2-TRAMITE-FIRMAS-6-7c2c-01.md",
 }
 
 
