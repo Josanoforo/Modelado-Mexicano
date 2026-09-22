@@ -1,0 +1,1096 @@
+{
+ "n_celdas": 44,
+ "n_coincide": 44,
+ "n_coincide_con_diferencia_explicada": 0,
+ "n_discrepa": 0,
+ "n_no_comparable": 0,
+ "diff_R_pp_max": 0.0,
+ "diff_R_pp_mediana": 0.0,
+ "primario_propio": {
+  "MAE_C2_pp": 1.8728716272909456,
+  "MAE_R2_pp": 1.3931129053807683,
+  "delta_MAE_pp_punto": 0.4797587219101772,
+  "delta_MAE_pp_ic95": [
+   0.09679496755056237,
+   0.7142457870831146
+  ],
+  "n_replicas_delta_finitas": 10000,
+  "veredicto": "PROPUESTA-CON-RESERVA",
+  "cobertura_C2_frac": 0.7674418604651163,
+  "cobertura_R2_frac": 0.9069767441860465,
+  "celdas_puntuadas": [
+   "edadxsexo:E1xH",
+   "edadxsexo:E1xM",
+   "edadxsexo:E2xH",
+   "edadxsexo:E2xM",
+   "edadxsexo:E3xH",
+   "edadxsexo:E3xM",
+   "edadxsexo:E4xH",
+   "edadxsexo:E4xM",
+   "escolaridadxsexo:HPxH",
+   "escolaridadxsexo:HPxM",
+   "escolaridadxsexo:SECxH",
+   "escolaridadxsexo:SECxM",
+   "escolaridadxsexo:MSxH",
+   "escolaridadxsexo:MSxM",
+   "escolaridadxsexo:SUPxH",
+   "escolaridadxsexo:SUPxM",
+   "localidadxsexo:L1xH",
+   "localidadxsexo:L1xM",
+   "localidadxsexo:L2xH",
+   "localidadxsexo:L2xM",
+   "edadxescolaridad:E1xSEC",
+   "edadxescolaridad:E1xMS",
+   "edadxescolaridad:E1xSUP",
+   "edadxescolaridad:E2xHP",
+   "edadxescolaridad:E2xSEC",
+   "edadxescolaridad:E2xMS",
+   "edadxescolaridad:E2xSUP",
+   "edadxescolaridad:E3xHP",
+   "edadxescolaridad:E3xSEC",
+   "edadxescolaridad:E3xMS",
+   "edadxescolaridad:E3xSUP",
+   "edadxescolaridad:E4xHP",
+   "edadxescolaridad:E4xSEC",
+   "edadxescolaridad:E4xMS",
+   "edadxescolaridad:E4xSUP",
+   "escolaridadxlocalidad:HPxL1",
+   "escolaridadxlocalidad:HPxL2",
+   "escolaridadxlocalidad:SECxL1",
+   "escolaridadxlocalidad:SECxL2",
+   "escolaridadxlocalidad:MSxL1",
+   "escolaridadxlocalidad:MSxL2",
+   "escolaridadxlocalidad:SUPxL1",
+   "escolaridadxlocalidad:SUPxL2"
+  ]
+ },
+ "primario_sellado": {
+  "MAE_C2_pp": 1.8728716272909454,
+  "MAE_R2_pp": 1.393112905380769,
+  "delta_MAE_pp_punto": 0.47975872191017643,
+  "delta_MAE_pp_ic95": [
+   0.09746514131737907,
+   0.7150813681278729
+  ],
+  "veredicto": "PROPUESTA-CON-RESERVA",
+  "cobertura_C2_frac": 0.75,
+  "cobertura_R2_frac": 0.8863636363636364,
+  "celdas_puntuadas": 43,
+  "n_celdas": 44
+ },
+ "delta_MAE_punto_diff_pp": 7.771561172376096e-16,
+ "celdas": [
+  {
+   "celda": "edadxsexo:E1xH",
+   "sellado_suf": "18-29-X-1-HOMBRE",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1356,
+   "n_sellado": 1356,
+   "R_p_propio": 0.4138381662383007,
+   "R_p_sellado": 0.4138381662383007,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.3782472989944035,
+    0.44991047109279614
+   ],
+   "R_ic95_sellado": [
+    0.37812713435459183,
+    0.4499554281666174
+   ],
+   "C2_p_propio": 0.40548998179903384,
+   "C2_error_pp_propio": 0.8348184439266881,
+   "C2_error_pp_sellado": 0.8348184439266992,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxsexo:E1xM",
+   "sellado_suf": "18-29-X-2-MUJER",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1568,
+   "n_sellado": 1568,
+   "R_p_propio": 0.44888638438622097,
+   "R_p_sellado": 0.44888638438622097,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.4157357014587441,
+    0.48067749412769456
+   ],
+   "R_ic95_sellado": [
+    0.4158081286561317,
+    0.4814191730067829
+   ],
+   "C2_p_propio": 0.4547455713587267,
+   "C2_error_pp_propio": 0.5859186972505703,
+   "C2_error_pp_sellado": 0.5859186972505703,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxsexo:E2xH",
+   "sellado_suf": "30-44-X-1-HOMBRE",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1903,
+   "n_sellado": 1903,
+   "R_p_propio": 0.347682045210425,
+   "R_p_sellado": 0.347682045210425,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.3188375092161686,
+    0.3764201727592162
+   ],
+   "R_ic95_sellado": [
+    0.3202600428886876,
+    0.3762139934893618
+   ],
+   "C2_p_propio": 0.3504633130750075,
+   "C2_error_pp_propio": 0.2781267864582493,
+   "C2_error_pp_sellado": 0.27812678645824374,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxsexo:E2xM",
+   "sellado_suf": "30-44-X-2-MUJER",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 2353,
+   "n_sellado": 2353,
+   "R_p_propio": 0.39898665733132593,
+   "R_p_sellado": 0.39898665733132593,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.3697774533815858,
+    0.4282187555951106
+   ],
+   "R_ic95_sellado": [
+    0.37000255588643827,
+    0.42764674205600606
+   ],
+   "C2_p_propio": 0.3975039262871213,
+   "C2_error_pp_propio": 0.14827310442046548,
+   "C2_error_pp_sellado": 0.14827310442046548,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxsexo:E3xH",
+   "sellado_suf": "45-59-X-1-HOMBRE",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1580,
+   "n_sellado": 1580,
+   "R_p_propio": 0.3034866007169862,
+   "R_p_sellado": 0.3034866007169862,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.2715450166565948,
+    0.33412506576670375
+   ],
+   "R_ic95_sellado": [
+    0.27294637852352793,
+    0.3344386047694228
+   ],
+   "C2_p_propio": 0.3039218930713253,
+   "C2_error_pp_propio": 0.043529235433908964,
+   "C2_error_pp_sellado": 0.04352923543390341,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxsexo:E3xM",
+   "sellado_suf": "45-59-X-2-MUJER",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1831,
+   "n_sellado": 1831,
+   "R_p_propio": 0.34863719485553024,
+   "R_p_sellado": 0.34863719485553024,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.3192115962017047,
+    0.3786282294476832
+   ],
+   "R_ic95_sellado": [
+    0.31913873163792206,
+    0.3790774048507771
+   ],
+   "C2_p_propio": 0.34806305585549463,
+   "C2_error_pp_propio": 0.05741390000356117,
+   "C2_error_pp_sellado": 0.05741390000356117,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxsexo:E4xH",
+   "sellado_suf": "60-X-1-HOMBRE",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1236,
+   "n_sellado": 1236,
+   "R_p_propio": 0.24408210149555326,
+   "R_p_sellado": 0.24408210149555326,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.20949044505779113,
+    0.27997261574854526
+   ],
+   "R_ic95_sellado": [
+    0.20920018440741137,
+    0.27859122371005157
+   ],
+   "C2_p_propio": 0.2559715728816639,
+   "C2_error_pp_propio": 1.1889471386110628,
+   "C2_error_pp_sellado": 1.1889471386110628,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxsexo:E4xM",
+   "sellado_suf": "60-X-2-MUJER",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1665,
+   "n_sellado": 1665,
+   "R_p_propio": 0.3047957519345149,
+   "R_p_sellado": 0.3047957519345149,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.27321666677100254,
+    0.33754995667779275
+   ],
+   "R_ic95_sellado": [
+    0.27283818260127896,
+    0.33762500216794517
+   ],
+   "C2_p_propio": 0.2961110819110787,
+   "C2_error_pp_propio": 0.8684670023436203,
+   "C2_error_pp_sellado": 0.8684670023436147,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "escolaridadxsexo:HPxH",
+   "sellado_suf": "HASTA-PRIMARIA-X-1-HOMBRE",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1368,
+   "n_sellado": 1368,
+   "R_p_propio": 0.3470688461786597,
+   "R_p_sellado": 0.3470688461786597,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.3136660597324117,
+    0.3818357172197762
+   ],
+   "R_ic95_sellado": [
+    0.3127987781734433,
+    0.3814246077215681
+   ],
+   "C2_p_propio": 0.32711913386787106,
+   "C2_error_pp_propio": 1.9949712310788625,
+   "C2_error_pp_sellado": 1.994971231078868,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "escolaridadxsexo:HPxM",
+   "sellado_suf": "HASTA-PRIMARIA-X-2-MUJER",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1877,
+   "n_sellado": 1877,
+   "R_p_propio": 0.3562743483450466,
+   "R_p_sellado": 0.3562743483450466,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.3261460400005133,
+    0.38662658486278395
+   ],
+   "R_ic95_sellado": [
+    0.3256709551493337,
+    0.38661933082430644
+   ],
+   "C2_p_propio": 0.37282489543477787,
+   "C2_error_pp_propio": 1.655054708973125,
+   "C2_error_pp_sellado": 1.655054708973125,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "escolaridadxsexo:SECxH",
+   "sellado_suf": "SECUNDARIA-X-1-HOMBRE",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1631,
+   "n_sellado": 1631,
+   "R_p_propio": 0.3827533294695121,
+   "R_p_sellado": 0.3827533294695121,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.3506887829461803,
+    0.41516108806028146
+   ],
+   "R_ic95_sellado": [
+    0.3514144799819315,
+    0.4143799562938662
+   ],
+   "C2_p_propio": 0.38937941811950216,
+   "C2_error_pp_propio": 0.6626088649990036,
+   "C2_error_pp_sellado": 0.6626088649990036,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "escolaridadxsexo:SECxM",
+   "sellado_suf": "SECUNDARIA-X-2-MUJER",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 2001,
+   "n_sellado": 2001,
+   "R_p_propio": 0.4462179186289576,
+   "R_p_sellado": 0.4462179186289576,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.4163420369776646,
+    0.47670748477254143
+   ],
+   "R_ic95_sellado": [
+    0.41670399850450407,
+    0.47575674103031235
+   ],
+   "C2_p_propio": 0.43812021140573626,
+   "C2_error_pp_propio": 0.809770722322134,
+   "C2_error_pp_sellado": 0.809770722322134,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "escolaridadxsexo:MSxH",
+   "sellado_suf": "MEDIA-SUPERIOR-X-1-HOMBRE",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1522,
+   "n_sellado": 1522,
+   "R_p_propio": 0.369472060083893,
+   "R_p_sellado": 0.369472060083893,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.33348443990613125,
+    0.4048369388550886
+   ],
+   "R_ic95_sellado": [
+    0.3341588420523287,
+    0.4061254176792565
+   ],
+   "C2_p_propio": 0.36371038781303716,
+   "C2_error_pp_propio": 0.5761672270855833,
+   "C2_error_pp_sellado": 0.5761672270855833,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "escolaridadxsexo:MSxM",
+   "sellado_suf": "MEDIA-SUPERIOR-X-2-MUJER",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1885,
+   "n_sellado": 1885,
+   "R_p_propio": 0.40803784418516126,
+   "R_p_sellado": 0.40803784418516126,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.37634329731782235,
+    0.43988168532770916
+   ],
+   "R_ic95_sellado": [
+    0.3767662088991067,
+    0.43997472634629853
+   ],
+   "C2_p_propio": 0.41140288118855195,
+   "C2_error_pp_propio": 0.3365037003390692,
+   "C2_error_pp_sellado": 0.3365037003390692,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "escolaridadxsexo:SUPxH",
+   "sellado_suf": "SUPERIOR-X-1-HOMBRE",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1552,
+   "n_sellado": 1552,
+   "R_p_propio": 0.22586286200778796,
+   "R_p_sellado": 0.22586286200778796,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.19698817755055814,
+    0.2540629793061032
+   ],
+   "R_ic95_sellado": [
+    0.19779507341442068,
+    0.2546578672428843
+   ],
+   "C2_p_propio": 0.2399605886555449,
+   "C2_error_pp_propio": 1.4097726647756936,
+   "C2_error_pp_sellado": 1.4097726647756936,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "escolaridadxsexo:SUPxM",
+   "sellado_suf": "SUPERIOR-X-2-MUJER",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1652,
+   "n_sellado": 1652,
+   "R_p_propio": 0.2937813410073148,
+   "R_p_sellado": 0.2937813410073148,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.26148235751648125,
+    0.325325728821708
+   ],
+   "R_ic95_sellado": [
+    0.26184948036844885,
+    0.3258760081015897
+   ],
+   "C2_p_propio": 0.2785292730058888,
+   "C2_error_pp_propio": 1.5252068001425978,
+   "C2_error_pp_sellado": 1.5252068001425978,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "localidadxsexo:L2xH",
+   "sellado_suf": "15-000-Y-MAS-X-1-HOMBRE",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 4027,
+   "n_sellado": 4027,
+   "R_p_propio": 0.3099477005870485,
+   "R_p_sellado": 0.3099477005870485,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.28992719480786094,
+    0.3295294955683902
+   ],
+   "R_ic95_sellado": [
+    0.28995866320456515,
+    0.32966423444108445
+   ],
+   "C2_p_propio": 0.3061918209361818,
+   "C2_error_pp_propio": 0.37558796508667114,
+   "C2_error_pp_sellado": 0.3755879650866767,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "localidadxsexo:L2xM",
+   "sellado_suf": "15-000-Y-MAS-X-2-MUJER",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 4820,
+   "n_sellado": 4820,
+   "R_p_propio": 0.3496454562389896,
+   "R_p_sellado": 0.3496454562389896,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.32961063760753945,
+    0.3700670392317714
+   ],
+   "R_ic95_sellado": [
+    0.32949029658172824,
+    0.3698472197382339
+   ],
+   "C2_p_propio": 0.35049666020301184,
+   "C2_error_pp_propio": 0.0851203964022218,
+   "C2_error_pp_sellado": 0.08512039640222735,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "localidadxsexo:L1xH",
+   "sellado_suf": "MENOR-DE-15-000-X-1-HOMBRE",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 2048,
+   "n_sellado": 2048,
+   "R_p_propio": 0.37874898386158995,
+   "R_p_sellado": 0.37874898386158995,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.35055335113784347,
+    0.4062231135395938
+   ],
+   "R_ic95_sellado": [
+    0.3515730390936252,
+    0.406319216273444
+   ],
+   "C2_p_propio": 0.38313806005673906,
+   "C2_error_pp_propio": 0.4389076195149111,
+   "C2_error_pp_sellado": 0.4389076195149111,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "localidadxsexo:L1xM",
+   "sellado_suf": "MENOR-DE-15-000-X-2-MUJER",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 2597,
+   "n_sellado": 2597,
+   "R_p_propio": 0.4345358219142432,
+   "R_p_sellado": 0.4345358219142432,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.40365729444035453,
+    0.46428819734474047
+   ],
+   "R_ic95_sellado": [
+    0.4028194539278268,
+    0.4653600112693337
+   ],
+   "C2_p_propio": 0.43164986718326703,
+   "C2_error_pp_propio": 0.28859547309761924,
+   "C2_error_pp_sellado": 0.2885954730976137,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxescolaridad:E1xHP",
+   "sellado_suf": "18-29-X-HASTA-PRIMARIA",
+   "puntuada_sellado": "NO",
+   "soporte_propio": false,
+   "n_propio": 193,
+   "n_sellado": 193,
+   "R_p_propio": 0.3692711065125019,
+   "R_p_sellado": 0.3692711065125019,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.287646163969292,
+    0.46191554180325245
+   ],
+   "R_ic95_sellado": [
+    0.28805728814624576,
+    0.45967401481951603
+   ],
+   "C2_p_propio": 0.4261111613740452,
+   "C2_error_pp_propio": 5.684005486154331,
+   "C2_error_pp_sellado": 5.684005486154331,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxescolaridad:E1xSEC",
+   "sellado_suf": "18-29-X-SECUNDARIA",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 703,
+   "n_sellado": 703,
+   "R_p_propio": 0.505488309431824,
+   "R_p_sellado": 0.505488309431824,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.4592027302610808,
+    0.550615364138942
+   ],
+   "R_ic95_sellado": [
+    0.4582256165398305,
+    0.5525084076722766
+   ],
+   "C2_p_propio": 0.4933970971611196,
+   "C2_error_pp_propio": 1.2091212270704366,
+   "C2_error_pp_sellado": 1.2091212270704366,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxescolaridad:E1xMS",
+   "sellado_suf": "18-29-X-MEDIA-SUPERIOR",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1133,
+   "n_sellado": 1133,
+   "R_p_propio": 0.4583544167588931,
+   "R_p_sellado": 0.4583544167588931,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.4159081700696161,
+    0.5005664540169953
+   ],
+   "R_ic95_sellado": [
+    0.41607409642019455,
+    0.5011566052993016
+   ],
+   "C2_p_propio": 0.4661051872420823,
+   "C2_error_pp_propio": 0.7750770483189173,
+   "C2_error_pp_sellado": 0.7750770483189173,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxescolaridad:E1xSUP",
+   "sellado_suf": "18-29-X-SUPERIOR",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 895,
+   "n_sellado": 895,
+   "R_p_propio": 0.3552418344475013,
+   "R_p_sellado": 0.3552418344475013,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.30637580626801353,
+    0.401782615403304
+   ],
+   "R_ic95_sellado": [
+    0.3072122434239873,
+    0.4024563321807346
+   ],
+   "C2_p_propio": 0.3253292190409877,
+   "C2_error_pp_propio": 2.9912615406513576,
+   "C2_error_pp_sellado": 2.9912615406513576,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxescolaridad:E2xHP",
+   "sellado_suf": "30-44-X-HASTA-PRIMARIA",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 567,
+   "n_sellado": 567,
+   "R_p_propio": 0.45014064456033764,
+   "R_p_sellado": 0.45014064456033764,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.39326764668048036,
+    0.5063145575703607
+   ],
+   "R_ic95_sellado": [
+    0.3926600287139922,
+    0.5053731791775811
+   ],
+   "C2_p_propio": 0.37002784723354254,
+   "C2_error_pp_propio": 8.01127973267951,
+   "C2_error_pp_sellado": 8.01127973267951,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxescolaridad:E2xSEC",
+   "sellado_suf": "30-44-X-SECUNDARIA",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1315,
+   "n_sellado": 1315,
+   "R_p_propio": 0.45313733208001805,
+   "R_p_sellado": 0.45313733208001805,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.41764764545182437,
+    0.48906097967168594
+   ],
+   "R_ic95_sellado": [
+    0.4169125181082382,
+    0.48820605993802496
+   ],
+   "C2_p_propio": 0.4351731968596103,
+   "C2_error_pp_propio": 1.796413522040774,
+   "C2_error_pp_sellado": 1.796413522040774,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxescolaridad:E2xMS",
+   "sellado_suf": "30-44-X-MEDIA-SUPERIOR",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1121,
+   "n_sellado": 1121,
+   "R_p_propio": 0.4037657799585319,
+   "R_p_sellado": 0.4037657799585319,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.36176092769978746,
+    0.4456621152355381
+   ],
+   "R_ic95_sellado": [
+    0.36273865517156045,
+    0.4461449538205788
+   ],
+   "C2_p_propio": 0.4085049227216723,
+   "C2_error_pp_propio": 0.47391427631404137,
+   "C2_error_pp_sellado": 0.47391427631404137,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxescolaridad:E2xSUP",
+   "sellado_suf": "30-44-X-SUPERIOR",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1253,
+   "n_sellado": 1253,
+   "R_p_propio": 0.23009076522161542,
+   "R_p_sellado": 0.23009076522161542,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.1979443588207179,
+    0.26217148002552476
+   ],
+   "R_ic95_sellado": [
+    0.19872062347912814,
+    0.262935327959099
+   ],
+   "C2_p_propio": 0.276128195385034,
+   "C2_error_pp_propio": 4.60374301634186,
+   "C2_error_pp_sellado": 4.603743016341855,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxescolaridad:E3xHP",
+   "sellado_suf": "45-59-X-HASTA-PRIMARIA",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 883,
+   "n_sellado": 883,
+   "R_p_propio": 0.3436420632301447,
+   "R_p_sellado": 0.3436420632301447,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.3030675100355607,
+    0.384076901965457
+   ],
+   "R_ic95_sellado": [
+    0.30394270536539153,
+    0.3847649259611737
+   ],
+   "C2_p_propio": 0.3221769796509999,
+   "C2_error_pp_propio": 2.1465083579144784,
+   "C2_error_pp_sellado": 2.1465083579144784,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxescolaridad:E3xSEC",
+   "sellado_suf": "45-59-X-SECUNDARIA",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1135,
+   "n_sellado": 1135,
+   "R_p_propio": 0.3823997591142211,
+   "R_p_sellado": 0.3823997591142211,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.3422855671122072,
+    0.42279539818924217
+   ],
+   "R_ic95_sellado": [
+    0.342997933173511,
+    0.422498799871046
+   ],
+   "C2_p_propio": 0.38403347748032707,
+   "C2_error_pp_propio": 0.1633718366105985,
+   "C2_error_pp_sellado": 0.1633718366105985,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxescolaridad:E3xMS",
+   "sellado_suf": "45-59-X-MEDIA-SUPERIOR",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 759,
+   "n_sellado": 759,
+   "R_p_propio": 0.32416134575887556,
+   "R_p_sellado": 0.32416134575887556,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.27699665078673974,
+    0.37038215827594984
+   ],
+   "R_ic95_sellado": [
+    0.2776049770395799,
+    0.3726133300300931
+   ],
+   "C2_p_propio": 0.3585099529788849,
+   "C2_error_pp_propio": 3.434860722000932,
+   "C2_error_pp_sellado": 3.434860722000932,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxescolaridad:E3xSUP",
+   "sellado_suf": "45-59-X-SUPERIOR",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 633,
+   "n_sellado": 633,
+   "R_p_propio": 0.1982383336537166,
+   "R_p_sellado": 0.1982383336537166,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.15946285055086737,
+    0.2389121607969072
+   ],
+   "R_ic95_sellado": [
+    0.15996808190585665,
+    0.23963015576533483
+   ],
+   "C2_p_propio": 0.23587364047395393,
+   "C2_error_pp_propio": 3.763530682023733,
+   "C2_error_pp_sellado": 3.7635306820237386,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxescolaridad:E4xHP",
+   "sellado_suf": "60-X-HASTA-PRIMARIA",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1602,
+   "n_sellado": 1602,
+   "R_p_propio": 0.3159319436699439,
+   "R_p_sellado": 0.3159319436699439,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.28402063836311103,
+    0.34857479855112317
+   ],
+   "R_ic95_sellado": [
+    0.2831630689207063,
+    0.3489148127076781
+   ],
+   "C2_p_propio": 0.2724739267763924,
+   "C2_error_pp_propio": 4.34580168935515,
+   "C2_error_pp_sellado": 4.34580168935515,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxescolaridad:E4xSEC",
+   "sellado_suf": "60-X-SECUNDARIA",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 479,
+   "n_sellado": 479,
+   "R_p_propio": 0.2517321651264669,
+   "R_p_sellado": 0.2517321651264669,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.19915777676640647,
+    0.31107269658182146
+   ],
+   "R_ic95_sellado": [
+    0.20005989260461254,
+    0.3108727757654232
+   ],
+   "C2_p_propio": 0.3294254966596719,
+   "C2_error_pp_propio": 7.769333153320501,
+   "C2_error_pp_sellado": 7.769333153320501,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxescolaridad:E4xMS",
+   "sellado_suf": "60-X-MEDIA-SUPERIOR",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 394,
+   "n_sellado": 394,
+   "R_p_propio": 0.23079002344817576,
+   "R_p_sellado": 0.23079002344817576,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.1752523736790918,
+    0.2904407851999704
+   ],
+   "R_ic95_sellado": [
+    0.17559841454645553,
+    0.2916579390840739
+   ],
+   "C2_p_propio": 0.30572991918716325,
+   "C2_error_pp_propio": 7.493989573898749,
+   "C2_error_pp_sellado": 7.493989573898749,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "edadxescolaridad:E4xSUP",
+   "sellado_suf": "60-X-SUPERIOR",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 423,
+   "n_sellado": 423,
+   "R_p_propio": 0.19473639787143077,
+   "R_p_sellado": 0.19473639787143077,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.15287160571074945,
+    0.24018170769338199
+   ],
+   "R_ic95_sellado": [
+    0.1519114825334068,
+    0.23983768031227648
+   ],
+   "C2_p_propio": 0.19564189752632694,
+   "C2_error_pp_propio": 0.09054996548961691,
+   "C2_error_pp_sellado": 0.09054996548961136,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "escolaridadxlocalidad:HPxL2",
+   "sellado_suf": "HASTA-PRIMARIA-X-15-000-Y-MAS",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1461,
+   "n_sellado": 1461,
+   "R_p_propio": 0.35626830430318784,
+   "R_p_sellado": 0.35626830430318784,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.32156173239635205,
+    0.39125517965544776
+   ],
+   "R_ic95_sellado": [
+    0.32136823313859353,
+    0.39062806873843786
+   ],
+   "C2_p_propio": 0.3245196860160478,
+   "C2_error_pp_propio": 3.174861828714004,
+   "C2_error_pp_sellado": 3.174861828714004,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "escolaridadxlocalidad:HPxL1",
+   "sellado_suf": "HASTA-PRIMARIA-X-MENOR-DE-15-000",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1784,
+   "n_sellado": 1784,
+   "R_p_propio": 0.34892817590481834,
+   "R_p_sellado": 0.34892817590481834,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.31829145801071185,
+    0.3796212747959161
+   ],
+   "R_ic95_sellado": [
+    0.3180539191161327,
+    0.37937690508754224
+   ],
+   "C2_p_propio": 0.4033938244779334,
+   "C2_error_pp_propio": 5.446564857311509,
+   "C2_error_pp_sellado": 5.446564857311509,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "escolaridadxlocalidad:SECxL2",
+   "sellado_suf": "SECUNDARIA-X-15-000-Y-MAS",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 2186,
+   "n_sellado": 2186,
+   "R_p_propio": 0.38018261808307513,
+   "R_p_sellado": 0.38018261808307513,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.3515736737617339,
+    0.4103301959372762
+   ],
+   "R_ic95_sellado": [
+    0.3501222169037241,
+    0.4098177541976272
+   ],
+   "C2_p_propio": 0.3865694534764893,
+   "C2_error_pp_propio": 0.638683539341417,
+   "C2_error_pp_sellado": 0.6386835393414059,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "escolaridadxlocalidad:SECxL1",
+   "sellado_suf": "SECUNDARIA-X-MENOR-DE-15-000",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 1446,
+   "n_sellado": 1446,
+   "R_p_propio": 0.4742086012969783,
+   "R_p_sellado": 0.4742086012969783,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.4420756377505396,
+    0.5050924796738859
+   ],
+   "R_ic95_sellado": [
+    0.4425823829538189,
+    0.5062557524015521
+   ],
+   "C2_p_propio": 0.4700305698395662,
+   "C2_error_pp_propio": 0.4178031457412079,
+   "C2_error_pp_sellado": 0.4178031457412079,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "escolaridadxlocalidad:MSxL2",
+   "sellado_suf": "MEDIA-SUPERIOR-X-15-000-Y-MAS",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 2493,
+   "n_sellado": 2493,
+   "R_p_propio": 0.36812696543552476,
+   "R_p_sellado": 0.36812696543552476,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.337403149234113,
+    0.3987126482624716
+   ],
+   "R_ic95_sellado": [
+    0.3375700535538738,
+    0.39867470847297753
+   ],
+   "C2_p_propio": 0.36097615662326216,
+   "C2_error_pp_propio": 0.7150808812262599,
+   "C2_error_pp_sellado": 0.7150808812262599,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "escolaridadxlocalidad:MSxL1",
+   "sellado_suf": "MEDIA-SUPERIOR-X-MENOR-DE-15-000",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 914,
+   "n_sellado": 914,
+   "R_p_propio": 0.44449172448801083,
+   "R_p_sellado": 0.44449172448801083,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.39452941893539684,
+    0.4945378534705531
+   ],
+   "R_ic95_sellado": [
+    0.3960940408152064,
+    0.49518517226651126
+   ],
+   "C2_p_propio": 0.44290118298264725,
+   "C2_error_pp_propio": 0.15905415053635852,
+   "C2_error_pp_sellado": 0.15905415053635852,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "escolaridadxlocalidad:SUPxL2",
+   "sellado_suf": "SUPERIOR-X-15-000-Y-MAS",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 2706,
+   "n_sellado": 2706,
+   "R_p_propio": 0.23866714451769555,
+   "R_p_sellado": 0.23866714451769555,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.21571150296706496,
+    0.2620530015995158
+   ],
+   "R_ic95_sellado": [
+    0.2159548238633403,
+    0.26179782390483786
+   ],
+   "C2_p_propio": 0.23780896544895838,
+   "C2_error_pp_propio": 0.08581790687371693,
+   "C2_error_pp_sellado": 0.08581790687372248,
+   "veredicto": "COINCIDE"
+  },
+  {
+   "celda": "escolaridadxlocalidad:SUPxL1",
+   "sellado_suf": "SUPERIOR-X-MENOR-DE-15-000",
+   "puntuada_sellado": "SI",
+   "soporte_propio": true,
+   "n_propio": 498,
+   "n_sellado": 498,
+   "R_p_propio": 0.3717590967877241,
+   "R_p_sellado": 0.3717590967877241,
+   "diff_R_pp": 0.0,
+   "R_ic95_propio": [
+    0.3090802160720776,
+    0.4311756742856575
+   ],
+   "R_ic95_sellado": [
+    0.31081686492376,
+    0.43079253307859383
+   ],
+   "C2_p_propio": 0.30512814041302505,
+   "C2_error_pp_propio": 6.663095637469906,
+   "C2_error_pp_sellado": 6.663095637469906,
+   "veredicto": "COINCIDE"
+  }
+ ]
+}
