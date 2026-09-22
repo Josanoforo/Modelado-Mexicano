@@ -59,3 +59,7 @@ No mide · no re-adjudica · no borra historia de git (los blobs de L0 se quedan
   **por qué**: `FUERA-DE-PERÍMETRO` — de `tools/marcador_segmento.py`, ajeno a este acto (§9 del encargo).
   **impacto**: el par sigue `RESERVADA`; el contador nuevo `celdas_d_adoptadas_activas` (P5) no depende de ese re-derivado y ya cuenta la celda-D adoptada por otra vía.
   **sucesor**: acto de aparato sobre `tools/marcador_segmento.py`. Fila: `NC-260922-GEN2-TUBERIA-EFICIENCIA-1-0d1b-02`.
+
+## CONSUMIDO
+
+PR #984. ADR-260922-GEN2-TUBERIA-EFICIENCIA-1-0d1b-01. `tests/check.py --rapido`: VERDE, 0 FAIL. `tests/check.py --baseline --parallel`: VERDE, exit 0, sin FAIL. El PR queda propuesto contra `main`; mesa central fusiona.
