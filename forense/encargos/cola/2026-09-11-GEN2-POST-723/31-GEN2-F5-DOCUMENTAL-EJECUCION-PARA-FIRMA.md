@@ -108,3 +108,5 @@ Una vez autorizado y viable, este encargo termina en capturas y análisis; no se
 
 #720/#722 deben estar fusionados. No depende de 27–30.
 Puede correr en paralelo si se separan worktrees, corpus de sólo lectura y contextos del competidor. No modificar cron ni reutilizar sesiones de adquisición para la captura.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · NC-0160 (CERRADA): ACTO GEN2-F5-DOCUMENTAL-RUN-2 -- 32/32 posiciones, FP-373 FIRMADA (PR #756)

@@ -65,3 +65,5 @@ Puede correr junto a 17–20 y 22: no modifica motor, CALC, cron ni evaluación.
 
 
 **Actualización al entregar:** #708 también está fusionado; main=`e7a471bf1499a096abbe58dc298f02243e885135`. Archiva el benchmark sin firmar sus cuatro decisiones; no cambia el alcance de este encargo.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · forense/notas/2026-09-11-GEN2-EXPEDIENTES-ACCESO-21-cierre.md (nombre identico al encargo)

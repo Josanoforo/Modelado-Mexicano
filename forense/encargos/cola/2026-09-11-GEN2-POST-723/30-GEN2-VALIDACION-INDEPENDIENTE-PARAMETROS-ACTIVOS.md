@@ -100,3 +100,5 @@ No fabriques una reserva masiva si una sola familia carece de archivo: resuelve 
 ## Dependencias y convivencia
 
 Requiere #720 fusionado y corpus CAJA. Puede correr con 27/28/29. Su perímetro numérico se congela al inicio; no absorbe nuevas adopciones concurrentes para perseguir un total cambiante. Mantiene separadas las reservas DIN/S6, complementos pendientes y evaluación retenida.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · forense/notas/2026-09-11-GEN2-VALIDACION-INDEPENDIENTE-PARAMETROS-ACTIVOS-cierre.md (nombre identico al encargo)

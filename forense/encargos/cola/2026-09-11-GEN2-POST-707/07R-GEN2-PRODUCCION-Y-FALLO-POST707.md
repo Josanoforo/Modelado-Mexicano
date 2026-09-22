@@ -56,3 +56,5 @@ Al entregar este encargo al ejecutor se autorizan sus fases técnicas, commits, 
 
 
 **Actualización al entregar:** #708 también está fusionado; main=`e7a471bf1499a096abbe58dc298f02243e885135`. Archiva el benchmark sin firmar sus cuatro decisiones; no cambia el alcance de este encargo.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · NC-0133 (CERRADA, 2026-09-11): ACTO GEN2-PRODUCCION-Y-FALLO-POST707

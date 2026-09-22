@@ -45,3 +45,5 @@ Las cuatro decisiones del benchmark siguen abiertas: DIN/FP-371, S6/FP-372, comp
 #707 publica una huella con `sha=c23dce15a917bb6fb0a4e44dabf3767e03c9ded8`, `publicacion=OK`, `exit=1` y duración de 37 segundos. Esto corrige la premisa antigua de un clon observado en #677. Demuestra ejecución identificada y publicación del recibo; todavía hay que explicar el fallo del agente y comprobar el disparador. Los 33 archivos nuevos del censo incluyen documentos de trabajo: no son evidencia de 33 adquisiciones científicas nuevas.
 
 Este paquete contiene encargos listos para despacho. No se ha modificado el repositorio ni se han abierto PR desde esta revisión.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · 07R, 21, 22, ADENDA-18 ejecutados (ver filas hermanas); forense/notas/2026-09-11-GEN2-CNBV-CONDUSEF-FUENTES-Y-SERIES-cierre.md

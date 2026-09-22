@@ -50,3 +50,5 @@ Siguen fuera: adopción causal de N34/R8.2, inferencia DIN/S6 no acreditada, com
 - [#725 · IMOR](https://github.com/Josanoforo/Modelado-Mexicano/pull/725) y [#726 · Adquisición](https://github.com/Josanoforo/Modelado-Mexicano/pull/726): frentes abiertos que esta tanda respeta. [#728 · Preparación F5](https://github.com/Josanoforo/Modelado-Mexicano/pull/728) sigue pendiente de firma; [#727](https://github.com/Josanoforo/Modelado-Mexicano/pull/727) es otro censo.
 - `forense/no-corrido.tsv`: NC-0059, NC-0100, NC-0136, NC-0037, NC-0091/0048 y NC-0164.
 - `tools/corrida0.py`: stub actual de delta; `tests/manifiesto.py`: verificación repetible por ID; extractores y buscador existentes de reactivos.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · forense/notas/2026-09-11-GEN2-CORPUS-COMPARTIDO-UTILIZABLE-cierre.md, -REACTIVOS-CON-TEXTO-Y-BUSQUEDA-cierre.md, -TANDAS-PANEL-ENTRADAS-Y-SALIDAS-cierre.md, -N34-DATOS-PRODUCTO-Y-DANO-cierre.md, -DELTA-COMPARACION-EXPLICITA-cierre.md
