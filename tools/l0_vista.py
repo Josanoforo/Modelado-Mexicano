@@ -4,7 +4,7 @@
 fragmentos por acto), por comando (`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1`,
 21/sep/2026, P-A.5).
 
-Desde ese acto, `canon/estado-programa-v1_14.md` deja de cargar la L0
+Desde ese acto, `canon/estado-programa-v1_15.md` deja de cargar la L0
 completa a mano: su línea `L0` es un puntero corto a
 `canon/L0/HISTORICO.md` (congelado, hash fijado por `T49`) más un
 fragmento nuevo por acto en `canon/L0/<ADR-raíz-del-acto>.md`. Este
