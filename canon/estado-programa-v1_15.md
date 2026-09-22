@@ -1,15 +1,15 @@
 # ESTADO DEL PROGRAMA · Psicología del Mexicano Contemporáneo
-### `estado` · **v1.14** · 17 de septiembre de 2026 · **ÚNICA FUENTE DE ESTADO** · **PROPUESTA — se sella con el merge de mesa**
+### `estado` · **v1.15** · 22 de septiembre de 2026 · **ÚNICA FUENTE DE ESTADO** · **PROPUESTA — se sella con el merge de mesa**
 
-> **Cabecera de era.** GEN2 · 14–17/sep/2026 · instrucciones vigentes `v2.13` · plan vigente `PLAN-DE-OBRA-GEN2 v1.1` + enmienda de fases (`ACTO GEN2-DOCS-ALINEACION-2`, 12/sep) · **régimen de estimación por celda**: `ADR-531` y `FP-383`.
+> **Cabecera de era.** GEN2 · 18–22/sep/2026 · instrucciones vigentes `v2.16` (`ADR-260921-GEN2-V216-d3da-01`) · plantilla de encargo `v2.1` · ids con raíz de acto (`D-24`) · plan de aceleración del 20/sep · **régimen de estimación por celda**: `ADR-531`/`ADR-91` (composición matricial, no estimador por defecto), `FP-383` (emisor fuera del marcador), contrato celda-D `v0.6`.
 >
-> **Enmienda (19/sep/2026, `ADR-544`, `ACTO GEN2-V214`).** instrucciones vigentes v2.14 desde 19/sep/2026 (ADR-544); dos cuerpos: operativo en proyecto y repo, histórico en repo.
+> **Enmienda (22/sep/2026, `ADR-260922-GEN2-ESTADO-V15-1-7e23-01`, `ACTO GEN2-ESTADO-v1_15-1`).** instrucciones vigentes v2.16 desde 21/sep/2026 (`ADR-260921-GEN2-V216-d3da-01`); `v1.14` retirada del árbol por T01 — historia recuperable por SHA del acto que la selló.
 
 > | | |
 > |---|---|
-> | **ARCHIVO** | `estado-programa-v1.14.md` |
-> | **REEMPLAZA A** | `estado-programa-v1.13.md` — **retirada del árbol por T01**; historia recuperable por SHA del acto. |
-> | **VERIFICAS ASÍ** | §0 lista `modelo` en **v4.0** (sin cambio) · §0–§12 y las anotaciones L0 se preservan; §13 incorpora el cierre de 14–17/sep sin convertir decisión de piso en consumo activo. |
+> | **ARCHIVO** | `estado-programa-v1.15.md` |
+> | **REEMPLAZA A** | `estado-programa-v1.14.md` — **retirada del árbol por T01**; historia recuperable por SHA del acto. |
+> | **VERIFICAS ASÍ** | §0 lista `modelo` en **v4.0** (sin cambio) · §0–§13 y las anotaciones L0 se preservan verbatim; §14 retrata el 18–22/sep con cada cifra atada a su comando, sin convertir decisión de piso en consumo activo. |
 > | **NOMBRE ESTABLE** | **`estado`** — cítalo así, **nunca por nombre de archivo** |
 
 > **BLOQUE CONGELADO — no se apendica (`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2`, 21/sep/2026, P2; guarda `T52`).**
@@ -656,3 +656,132 @@ El censo del emisor es 97 y contiene cinco `SIN-CONTRAPARTE`; 117 no es aún
 un universo válido del marcador. Las escalas conflictivas del insumo se dejan
 como reserva: no se completa por suposición una afirmación incompatible entre
 «15→11» y «todas declaradas».
+
+## 14 · GEN2 · 18–22 de septiembre — la raíz de acto reemplaza la renumeración, y el estimador de la celda sigue siendo el piso
+
+Retrata, no opina. Cada afirmación trae comando o cita de nota sellada; nada tecleado. Derivado contra `origin/main = 02eda84` (merge de `PR #998`, 22/sep/2026), tras `git fetch --unshallow`. En el rango `09681ab..02eda84` hay **357** merges de primer padre (`git log --merges --format="%h %s" 09681ab..02eda84 | wc -l`); el `ccd7c0eb` de la cabecera del encargo ya había quedado atrás al abrir esta sesión — re-derivado sin PARO (§2 del aparato).
+
+**Status completo, íntegro de `python3 tools/corrida0.py status` (22/sep, `02eda84`+0-bis propio `7e236d7`):**
+
+```
+N_corridas_requeridas=87
+N_corridas_selladas=154
+N_resultados_activos=211
+N_resultados_sellados=44778
+N_resultados_pendientes=211
+dependencias_numericas_legacy_activas=146
+legacy_activas_por_consumidor__motor=34
+legacy_activas_por_consumidor__procedencia=40
+legacy_activas_por_consumidor__catalogo_de_momentos=23
+legacy_activas_por_consumidor__marco_del_duelo=43
+legacy_activas_por_consumidor__celdas_D=6
+legacy_activas_por_consumidor__otro=0
+relevadas_por_pin_de_mesa__i_CRUDO=14
+relevadas_por_pin_de_mesa__ii_CONDUCTA_GEN2=13
+relevadas_por_pin_de_mesa__iii_DERIVADO_DE_GEN2=1
+legacy_marco_M_por_campo__R=0
+legacy_marco_M_por_campo__M=1
+legacy_marco_M_por_campo__L=28
+legacy_marco_M_por_campo__AGREGADO=14
+legacy_marco_M_celdas_M_pendientes=DIN-M-01
+N_resultados_gen2_sellados=44177
+N_resultados_gen2_pendientes_adopcion=12
+N_resultados_gen2_vetados_por_decision=2
+N_resultados_gen2_adoptados_activos=72
+resultados_con_validacion_independiente=215
+diferencias_materiales=0
+no_corrido_abiertas=213
+replays_legacy_sellados=5
+corredores_envueltos_legacy=30
+# derivado de 303 corridas · 47255 resultados · 231 usos
+```
+
+Las cifras cabecera de dirección (154 selladas · 44 177 RESULT GEN2 · 72 adoptados · 215 validados) coinciden dígito a dígito con la vista de hoy. Dos cifras se movieron mientras esta sesión corría: `no_corrido_abiertas` de 212 a **213** entre la redacción del encargo y la apertura del acto (un merge de por medio); y FP abiertas de **17** (al abrir) a **7** al cerrar — `TRAMITE-FIRMAS-6` fusionó como `PR #1001` a mitad de esta sesión y firmó diez FP (`forense/firmas-pendientes.tsv`, columna `estado`, `es_abierta()`; re-derivado tras el merge de `origin/main`).
+
+**La cifra cabecera y la cifra en disco siguen siendo dos cifras distintas, y hoy difieren en 47, no en 16.** `N_corridas_selladas=154` es la vista publicada; en disco hay **201** `CALC-*/sello.json` (`for d in data/corrida0/CALC-*/; do [ -f "$d/sello.json" ] && echo "$d"; done | wc -l`) sobre **216** directorios `CALC-*` totales. La brecha creció (era 16 el 17/sep) porque la sesión sigue sellando más rápido de lo que `GEN2-REPLAY-ASIENTOS-1` (sucesor nombrado en §13, aún no lanzado) asienta. El CONTADOR de cada acto lo sigue diciendo desde `ADR-540`: "sellada en disco, no registrada" (E.7).
+
+**Régimen v2.16: las instrucciones suben, la plantilla de encargo sube, los ids dejan de renumerarse.** `ADR-260921-GEN2-V216-d3da-01` (`PR #978`, 21/sep/2026) sube `instrucciones_vigentes` a `v2.16` en los dos cuerpos (proyecto y repo, byte a byte, sha256 `afc0280b…`), emite `PLANTILLA-ENCARGO-v2_1.md` y confirma `CLAUDE.md` importando `v2_16` (`grep -n instrucciones-proyecto CLAUDE.md` → `@instrucciones-proyecto-v2_16.md`). El defecto que D-24 (raíz de acto) reemplaza: antes de esta semana, cada PR que fusionaba segundo tenía que **renumerar** el ADR/NC del que fusionó antes (`git log --merges 09681ab..02eda84 | grep -ci renumera` → **34** merges de esta ventana traen la frase "renumera" en su título, la mayoría del propio piloto 3 en vuelo — ver el bloque de `git log` de esta sección). Con raíz de acto (`hhhh` = 4 hex del commit de 0-bis), el espacio numérico viejo queda cerrado y ningún id nuevo se renumera; el propio 0-bis de este acto se acuñó así: `ADR-260922-GEN2-ESTADO-V15-1-7e23-01`. Conteo de ids con raíz de acto hoy, por prefijo: `ADR-` → **35**; `FP-` → **51**; `NC-` → **100** (`grep -coE '^\*\*?ADR-[0-9]{6}-[A-Z0-9-]+-[0-9a-f]{4}-[0-9]{2}' canon/gobernanza-v1_15.md`; mismo patrón sobre `firmas-pendientes.tsv` y `no-corrido.tsv`, columna 1).
+
+**Tres pilotos celda-D, dos veredictos distintos — el tercero es el que manda la lectura.** Los tres corrieron la misma cadena de tres commits (spec sin microdato → emisiones selladas → R y adjudicación), con reserva de evaluación intacta:
+
+| piloto | celda-D | veredicto (vocabulario cerrado) | PR de cierre |
+|---|---|---|---|
+| 1 (DIN, ahorro × localidad-edad, 8 celdas) | `DIN.ahorra_solo_informal…` | `SIN-CANDIDATO-SUPERIOR` | `#849` |
+| 2 (TRA, evade_norma × escolaridad-dominio, 12 celdas) | `TRA.evade_norma…` | `SIN-CANDIDATO-SUPERIOR` | `#858` |
+| 3 (GOB, gobierno_digital × edad-escolaridad, ENCIG, 15 celdas) | `GOB.gobierno_digital.encig2025.edad_x_escolaridad` | **`FALSADOR-DEBIL`** | `#961` (commit 1: `#944`/`#958`) |
+
+(`forense/notas/2026-09-21-GEN2-CELDA-D-PILOTO-2-cierre.md` §2.1; `forense/notas/2026-09-21-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_3-cierre.md`, líneas 3/53/85/101: "El piloto 3 corrió y tiene veredicto: FALSADOR DÉBIL … El piso C2 no fue vencido y, por A-bis 6, su adopción o veto es de mesa — este acto no lo decide.") `champion_actual` de la celda-D del piloto 3 quedó en `NINGUNO`; nada adoptado por los tres. **`celdas_validadas` cuenta los tres exactamente igual** (validada = predicha antes y comparada después, no acertada): las 8+12+15 = **35** celdas de cruce entran a la métrica rectora sin distinguir veredicto.
+
+**Marginales: 57 evaluadas, tres coberturas que no se promedian entre sí.** `ADR-260921-GEN2-ARBITRO-MARGINALES-1-ed7d-01` (`PR #971`) subió el conteo de persistencia de 53 a 57 (`marginales_evaluadas_gen2` en el tablero); `GEN2-ARBITRO-MARGINALES-2` (`PR #989`) re-corrió sin cambiar el universo. Cobertura del IC95 del piso C2, por instrumento (`forense/notas/2026-09-21-GEN2-ARBITRO-MARGINALES-1-cierre.md`, líneas 65–73; intervalo binomial de Wilson):
+
+| instrumento | n | cobertura R-dentro-del-IC95 | |
+|---|---|---|---|
+| ENIF 2024 (brecha 3 años, persona) | 32 | 6/32 = **0.19** | `[0.09, 0.35]` |
+| ENVIPE 2025 (brecha 1 año, delito) | 15 | 8/15 = **0.53** | `[0.30, 0.75]` |
+| ENCIG 2025 (brecha 2 años, trámite) | 10 | 0/10 = **0.00** | `[0.00, 0.28]` |
+
+Ninguna adoptada al abrir esta sesión: `estimador_adoptado` = 36 (las 36 celdas de cruce con `champion_actual: C2`, no marginales; `python3 tools/marcador_segmento.py --json` → `evaluadas: 36, sin_piso: 15, total_filas: 230`). La advertencia de §13 sigue vigente y se repite aquí porque un lector apurado la pierde: las celdas de una misma ola comparten marco muestral y réplicas — **no son ensayos independientes**, así que las tres coberturas de arriba son intervalos demasiado angostos. `canon/informe-programa-v1_2.md` ya existe con la cobertura combinada 26/35 = 0.743 (Wilson95 `[0.579, 0.858]`) para las 35 celdas de **cruce** — cifra de otra unidad de análisis que la marginal de arriba, y no se mezclan.
+
+**`celdas_validadas` = 92, y sus dos sub-cifras que la firma de mesa (20/sep) veda fundir.** `tools/tablero_programa.py::_celdas_validadas()` (docstring: "TRES CLASES QUE NO SE FUNDEN EN UNA CIFRA"):
+
+```
+total_celdas_validadas: 92
+desglose_por_clase:
+  cruce_vs_R: 35                    (los tres pilotos, tabla de arriba)
+  persistencia_t_menos_1_vs_R: 57   (las marginales de la tabla de arriba)
+  duelo_tres_nacional: 12           (CALC-TRIADA-0002 — clase 3, informativa, NO sumada al total)
+```
+`total_celdas_validadas = cruce_vs_R + persistencia_t_menos_1_vs_R = 35 + 57 = 92`; `duelo_tres_nacional` (12) se publica aparte y **no** entra a la suma — la lectura ingenua "35+57+12=104≠92" es un error de quien suma sin leer la clase 3, no una discrepancia del tablero. `MARCADOR-E-INFORME-1` (`PR #969`) llevó el contador de 73 a 88 el 19/sep; entre esa fecha y hoy, `ARBITRO-MARGINALES-1/2` y los pilotos 2/3 lo movieron de 88 a **92**.
+
+**El emisor sigue fuera del marcador (`FP-383`, `FIRMADA` 17/sep, sin cambio de diseño esta semana).** `GEN2-MARCADOR-REDISENO-1` (19/sep, previo a esta ventana) ya construyó el marcador sobre el catálogo de momentos que `FP-383` pedía; ningún acto del 18–22/sep reabrió su diseño. `prospectividad` del marcador hoy (`python3 tools/marcador_segmento.py --json`): `PROSPECTIVA 20 · RETROSPECTIVA 59 · IDENTICO-EMISOR-ES-ARBITRO 89 · SIN-EMISION 30 · EMITIDA-SIN-R 32 · ORDEN-NO-DERIVABLE 0` — sobre `total_filas: 230`; ninguna frase de este párrafo suma PROSPECTIVA+RETROSPECTIVA.
+
+**Los dos duelos con reserva: uno se abrió una rendija, el otro sigue cerrado entero.** ENIGH 2024 (`data/corrida0/decisiones.tsv`, clave `reserva:enigh2024-remesas-nacional-liberada`, autorizada por `FP-260921-GEN2-ENIGH2024-RESERVA-Y-DISENO-1-b7ae-02`, `FIRMADA` 22/sep): la reserva queda **levantada sólo para el estimando remesas>0, proporción de hogares, nivel nacional** (`C-PISO-ADOPTADO`, `PR #994`, `GEN2-ENIGH2024-DUELO-COMMIT-2-3`); todo lo demás de ENIGH 2024 sigue reservado. ENVIPE 2026 (clave `reserva:envipe2026`, `decisiones.tsv`): "ENVIPE 2026 queda RESERVADA desde hoy, entera… bajar el payload está permitido; abrirlo, derivar de él o leer sus tabulados, no" — `GEN2-DUELO-ENVIPE2026-COMMIT-1` (`PR #968`, spec congelada) y `…-CONGELA-1` (`PR #982`) sólo diseñan; ningún acto de esta ventana abrió el microdato. Los dos payloads están en el manifiesto (`data/manifiesto.yaml`, formato ZIP, "no inspeccionado, sólo hasheado").
+
+**Crédito 2024: el eje escolaridad salió mal medido, y es el CALC sellado el que no se toca.** Una fila sigue `ABIERTA` en `forense/firmas-pendientes.tsv`, texto verbatim: `FP-260922-GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-2-3-95ec-01` (22/sep): el eje escolaridad de `CALC-DIN-CREDITO-PREDICCION-2024-ADJUDICACION-0001` (4 celdas × 9 conductas) salió mal medido por un defecto heredado del código sellado en COMMIT-1 (`_code()` le quita el cero inicial a `niv`, incompatible con los códigos 2024 de dos dígitos). El CALC ya sellado no se edita (E.3); pide a mesa autorizar (a) un CALC nuevo con el mapa `niv` corregido, o (b) declarar el eje escolaridad `VENCIDO-EN-ALCANCE` (el resto del CALC, 12/16 celdas, sigue vigente). Sucesor: `NC-260922-GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-2-3-95ec-01`. La segunda fila que esta sección citaba al abrir la sesión, `FP-260921-GEN2-DIN-CREDITO-HISTORIA-1-ff56-01` (pregunta sobre conmensurar pisos históricos de crédito, ENIF 2012/2015/2018 vs ENIF 2021), quedó `FIRMADA` por `TRAMITE-FIRMAS-6` (`PR #1001`) mientras esta sesión corría — ya no cuenta como pieza abierta.
+
+**Vista vs disco, repetido de §13 con la cifra de hoy.** `for d in data/corrida0/CALC-*/; do [ -f "$d/sello.json" ] && echo "$d"; done | wc -l` → **201**; `N_corridas_selladas` de la vista → **154**; brecha de **47** corridas selladas en disco sin fila en la vista (arriba, párrafo 3).
+
+**El carril Codex sigue sin escribir tablero ni ADR por diseño; el conteo exacto de recibo/sin-recibo de esta ventana no se pudo cerrar en esta sesión — va a NO-DERIVADO.** Recibos confirmados por nombre en `canon/gobernanza-v1_15.md`: `RECIBO-CODEX-2` (`#832–#843`), `RECIBO-CODEX-3`, `RECIBO-CODEX-6` (cubre `#904`). `git log --merges --format="%h %s" 09681ab..02eda84 | grep -ci codex` → **0** (los recibos no se anuncian en el título del merge, viven como actos de recibo posteriores) — un negativo de ese grep no es "no hubo Codex", es que el vocabulario no está en el título; se declara así (A.4) y no se afirma un conteo que no se verificó.
+
+**Rutinas.** `forense/rutinas.tsv`, últimas filas de la ventana: `2026-09-21 tramite HIZO:#950` (digesto emitido, 3 FP `ABIERTA` ese día, 175 NC `ABIERTA`); `2026-09-21 despacha CANDADO:5 ramas no exentas`; tres filas `revisa HIZO:#961/#960/#963` el 21/sep; `2026-09-22 despacha NADA-QUE-HACER`; `2026-09-22 tramite HIZO:#990` (digesto del 22/sep, **18** FP `ABIERTA` a 1 día — bajó a 17 tras el re-sello de `FP-374` en `PR #998`, ya reflejado en el status de arriba; **213** NC `ABIERTA`).
+
+**TRÁMITE-FIRMAS: las tres fusionadas — la 6ª fusionó mientras esta sesión estaba en curso.** `TRAMITE-FIRMAS-3` (`ADR-…-578…`, `#940`) propagó veinte firmas de mesa del 21/sep, `N_corridas_selladas` 102→118 en su momento. `TRAMITE-FIRMAS-5` (`ADR-260921-GEN2-TRAMITE-FIRMAS-5-958c-01`, `#981`) asentó nueve NC más cinco de otros actos, adoptó el piso del piloto 3 en la celda-D (`champion_actual: NINGUNO → C2`, sin que el marcador aún la cuente — `NC-…-3619-01/02`), firmó `FP-408/409/405`. `TRAMITE-FIRMAS-6` fusionó como `PR #1001` (`git log --merges --oneline -20 | grep -i tramite-firmas-6` → `31da26e0 Merge pull request #1001 from Josanoforo/acto/gen2-tramite-firmas-6`) después de que este acto abriera su propio PR — re-fusionada `origin/main` sobre esta rama y re-verificado sin PARO (§2 del aparato); el §8 del encargo preveía justo este orden y no era compuerta, así que no bloqueó.
+
+**LIMPIEZA-RAMAS-LOCALES cerró su serie.** Seis tandas (`forense/notas/2026-09-2{0,1}-GEN2-LIMPIEZA-RAMAS-LOCALES-{1,2,3,3-paro,4,5,6}-cierre.md`), la 6ª declarada como la última de la línea, censo de `#910`: 270 → 9 ramas. Ninguna tanda 7 encontrada (`grep -rli LIMPIEZA-RAMAS-LOCALES-7 forense/`  → vacío).
+
+**Contrato celda-D en v0.6, confirmado por grep directo.** `grep -rho "contrato celda-D v0\.[0-9]" --include="*.md" .` → la versión más alta presente en el árbol es **v0.6**; v0.3/v0.4/v0.5 quedan como historia de versiones anteriores citadas en notas de agosto.
+
+**Adquisición ENVIPE 2026 y ENIGH 2024: los dos payloads están en el corpus, los dos bajo reserva (con la rendija de ENIGH 2024 ya citada arriba).** `GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1` (`PR #977`) los bajó; `data/manifiesto.yaml` los registra como ZIP "no inspeccionado, sólo hasheado"; ninguna ola nace sin reserva (E.6) y ninguna de las dos perdió su reserva íntegra salvo la rendija de ENIGH 2024 ya declarada.
+
+**Tabla afirmación → comando/cita, de esta sección:**
+
+| Afirmación | Comando / cita |
+|---|---|
+| Status completo (bloque de arriba) | `python3 tools/corrida0.py status` |
+| 357 merges de primer padre en la ventana | `git log --merges --format="%h %s" 09681ab..02eda84 \| wc -l` |
+| 201 CALC sellados en disco vs 154 en vista | `for d in data/corrida0/CALC-*/; do [ -f "$d/sello.json" ] && echo "$d"; done \| wc -l`; `tools/corrida0.py status` |
+| v2.16 sellada en los dos cuerpos | `ADR-260921-GEN2-V216-d3da-01`; `grep -n instrucciones-proyecto CLAUDE.md` |
+| 34 merges con "renumera" en el título, en la ventana previa a D-24 | `git log --merges --format="%h %s" 09681ab..02eda84 \| grep -ci renumera` |
+| ids raíz de acto por prefijo: `ADR-`→35, `FP-`→51, `NC-`→100 | `grep -coE '^\*\*?ADR-[0-9]{6}-…' canon/gobernanza-v1_15.md`; mismo patrón sobre `firmas-pendientes.tsv`/`no-corrido.tsv` |
+| Tres pilotos, veredictos y PRs | `forense/notas/2026-09-21-GEN2-CELDA-D-PILOTO-2-cierre.md` §2.1; `…-PILOTO-3-COMMIT-2-3-v1_3-cierre.md` líneas 3/53/85/101 |
+| 57 marginales; coberturas 0.19/0.53/0.00 | `forense/notas/2026-09-21-GEN2-ARBITRO-MARGINALES-1-cierre.md` líneas 65–73; `ADR-260921-GEN2-ARBITRO-MARGINALES-1-ed7d-01` |
+| `estimador_adoptado` 36; `sin_piso` 15; `total_filas` 230 | `python3 tools/marcador_segmento.py --json` |
+| `celdas_validadas` = 92 (35+57, duelo-tres 12 aparte) | `python3 tools/tablero_programa.py` → `celdas_validadas`; `tools/tablero_programa.py::_celdas_validadas()` |
+| Cobertura combinada de cruce 26/35 = 0.743 Wilson95 | `canon/informe-programa-v1_2.md` |
+| Emisor fuera del marcador desde `FP-383` | `forense/firmas-pendientes.tsv` fila `FP-383`, columna `estado` |
+| Prospectividad del marcador: 20/59/89/30/32/0 | `python3 tools/marcador_segmento.py --json` → `prospectividad` |
+| ENIGH 2024: reserva parcial levantada (remesas, nacional) | `data/corrida0/decisiones.tsv` clave `reserva:enigh2024-remesas-nacional-liberada`; `PR #994` |
+| ENVIPE 2026: reserva íntegra, sólo COMMIT-1 congelado | `data/corrida0/decisiones.tsv` clave `reserva:envipe2026`; `PR #968`, `PR #982` |
+| Crédito 2024: eje escolaridad mal medido | `forense/firmas-pendientes.tsv` fila `FP-260922-GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-2-3-95ec-01` |
+| Carril Codex: recibos por nombre, 0 en título de merge | `grep -n RECIBO-CODEX canon/gobernanza-v1_15.md`; `git log --merges … \| grep -ci codex` → 0 |
+| Rutinas 21–22/sep | `forense/rutinas.tsv`, últimas 8 filas |
+| TRÁMITE-FIRMAS-6 fusionó como PR #1001 | `git log --merges --oneline -20 \| grep -i tramite-firmas-6` |
+| LIMPIEZA-RAMAS-LOCALES: 6 tandas, sin 7ª | `grep -rli LIMPIEZA-RAMAS-LOCALES forense/notas/` |
+| Contrato celda-D en v0.6 | `grep -rho "contrato celda-D v0\.[0-9]" --include="*.md" .` |
+| 7 FP abiertas (tras `PR #1001`, eran 17 al abrir); 213 NC abiertas | `forense/firmas-pendientes.tsv`, `forense/no-corrido.tsv`, columna `estado` |
+| ids con raíz de acto del propio 0-bis | `ADR-260922-GEN2-ESTADO-V15-1-7e23-01` |
+| `estado-programa-v1_14.md` retirada del árbol por T01 | commit de A.3 del acto que selle esta versión; historia por SHA |
+
+**Lo que este estado deja de decir, a propósito.** No adjudica el piloto 3: `FALSADOR-DEBIL` con `champion_actual: NINGUNO` sigue siendo `DECISIÓN-DE-MESA-PENDIENTE` (`NC-260921-…-3619-01/02`), y este acto no la resuelve — no opina, no adopta, no cierra NC ni FP. No propone qué hacer con el eje escolaridad de crédito 2024: las dos opciones de `FP-…-95ec-01` quedan como las escribió el ejecutor de ese acto, verbatim. No mide, no compara `estimador_adoptado` (36) contra el universo teórico de celdas del árbitro (97) porque esa cifra ya tiene su propio marcador dedicado (`marcador_segmento.py`) y repetirla aquí sería inventar un tercer contador del mismo objeto.
+
+**NO-DERIVADO en esta sección (declarado, no tecleado):** (1) el conteo exacto de PR con recibo Codex vs sin recibo en la ventana 18–22/sep — los recibos no se anuncian en el título de merge y cruzarlos uno por uno contra los 357 merges de la ventana excede lo que esta sesión pudo verificar con rigor; sucesor: el próximo `RECIBO-CODEX-N`. (2) *(resuelto en vuelo: `TRÁMITE-FIRMAS-6` fusionó como `PR #1001` mientras esta sesión corría; ver arriba)*. (3) Si alguna de las 15 celdas del piloto 3 o de las 57 marginales fue adoptada por una firma de mesa posterior a la redacción del encargo (`ccd7c0eb`) y anterior a `02eda84` — el `champion_actual: C2` de la celda-D del piloto 3 (vía `TRÁMITE-FIRMAS-5`) ya está reflejado arriba, pero una revisión celda por celda de las 92 no se repitió aquí porque `celdas_validadas` ya la deriva por comando y repetirla a mano sería tecleada, no derivada. (4) Cuántas de las 47 corridas selladas sin fila en la vista son `cuenta_gen2 = SI` — lo dirá `GEN2-REPLAY-ASIENTOS-1` al asentarlas, igual que en §13.
