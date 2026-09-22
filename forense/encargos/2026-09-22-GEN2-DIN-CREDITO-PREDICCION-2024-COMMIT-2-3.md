@@ -29,3 +29,31 @@ Los dos CALC sin `ejecucion.json`; ninguna rama COMMIT-2. Repítela tú.
 
 ## 6 · LATITUD (solo logística) · 7 · PAROS
 PAROS: a) leer crédito de ENIF 2024 fuera de `corrida0 run` de estos CALC · b) tocar el par «crédito por app» · c) editar spec, `spec.yaml` fuera de P3, o `.py` · d) `run` no sella → no se parcha · e) P2 halla un nulo · f) repetir una corrida · g) sesión/entorno equivocados · h) adoptar. Compuertas: P0 y «emisiones en origin» protegen abrir dato. Perímetro: `ejecucion/resultados/sello` de los dos CALC, la línea de P3, filas propias, marcador/tablero por comando, nota, cascada. Fuera, PARA. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+P1 tal como el encargo la escribió ("`corrida0 run` …-EMISIONES-0001") NO
+se corrió: esa pieza ya estaba sellada desde `#987` (premisa §4 estaba
+basada en un estado intermedio de COMMIT-1, no en el final; verificado
+contra el árbol antes de obedecer, v2.16 §2). PARO-PREMISA declarado y
+replanteado como logística — no bloqueó el objetivo: se ejecutó la
+secuencia real de `-ADJUDICACION-0001/spec.yaml` (`commit_3a` → `commit_2`
+→ `commit_3`), confirmada con dirección antes de abrir el dato.
+
+El eje escolaridad completo (4 de 16 celdas × 9 conductas) no entró a
+ninguna comparación cuantitativa: defecto heredado en el código SELLADO de
+`-ADJUDICACION-0001` (COMMIT-1, `#987`) — `_code()` (importado de
+`-EJES-0003`) quita el cero inicial de `niv`, incompatible con los códigos
+2024 de dos dígitos. Código ya sellado (E.3): no se repara en este acto.
+`NC-260922-GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-2-3-95ec-01`
+(DECISIÓN-DE-MESA-PENDIENTE); `FP-260922-…-95ec-01` pide a mesa la vía de
+corrección. El resto del CALC (12 de 16 celdas por conducta) no está
+afectado.
+
+`FP-260921-GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-1-7866-01` (¿ratifica
+mesa K6-P-TENEDORES, no K6-PR?) sigue ABIERTA — ajena a este acto, no
+gatea nada de él.
+
+## CONSUMIDO
+
+(pendiente: se completa al abrir el PR)
