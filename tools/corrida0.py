@@ -4503,8 +4503,11 @@ def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> 
             "uso_solicitado": USO_MEDICION_GEN2,
             "origen_numerico": destino["origen_numerico"],
             "aptitud_uso": aptitud,
-            "motivo_aptitud": (f"{motivo} · adopcion:piso-C2-20-celdas "
-                               "(firma de mesa 17/sep/2026)"),
+            "motivo_aptitud": (
+                f"{motivo} · adopcion:piso-t1-marginales-por-instrumento "
+                "(firma de mesa 22/sep/2026)" if cid.startswith("MARG::")
+                else f"{motivo} · adopcion:piso-C2-20-celdas "
+                     "(firma de mesa 17/sep/2026)"),
             "camino_linaje": (f"marcador:{cid} -> {marca['resultado_id']} -> "
                               f"{destino['camino_linaje']}"),
             "valor_materializado": marca.get("punto", NO_DECLARADO),
@@ -4530,6 +4533,16 @@ def _estimadores_segmento_para_status(indice_resultados: dict) -> dict:
         return {}
     out = {}
     for cid, marca in (crudo.get("celdas") or {}).items():
+        rid = marca.get("resultado_id")
+        if rid and rid in indice_resultados:
+            out[cid] = marca
+    # ACTO GEN2-MARGINALES-ADOPCION-1 (22/sep/2026): las marginales que la
+    # firma `adopcion:piso-t1-marginales-por-instrumento` adopta (ENVIPE
+    # 2025) se proyectan igual que las celdas de cruce -- DIFERIDA/VETADA
+    # nunca entran aquí, sólo ADOPTADO-POR-FIRMA.
+    for cid, marca in (crudo.get("marginales") or {}).items():
+        if marca.get("estado") != "ADOPTADO-POR-FIRMA":
+            continue
         rid = marca.get("resultado_id")
         if rid and rid in indice_resultados:
             out[cid] = marca
