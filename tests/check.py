@@ -2016,7 +2016,7 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # Insumos A.3 archivados verbatim por GEN2-CONTRATO-Y-TRAMITE-CLI-1;
     # las frases pendientes pertenecen a la firma histórica, no abren fila nueva.
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md",
-    "canon/estado-programa-v1_14.md",
+    "canon/estado-programa-v1_15.md",
     # ACTO GEN2-SENAL-1 (21/sep/2026), encargo archivado verbatim (A.3) y su
     # nota de cierre. Disparan `_T22_MARCADOR_PENDIENTE` por el patron
     # `requiere_decision.*true`, y lo disparan por NARRACION del cierre, no
@@ -5095,7 +5095,7 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/ENCARGO-GEN2-VOCABULARIO-v0_6-2026-09-17.md",
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md",
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/seccion-13.md",
-    "canon/estado-programa-v1_14.md",
+    "canon/estado-programa-v1_15.md",
     # ACTO GEN2-MARCADOR-REDISENO-1, 19/sep/2026: encargo archivado VERBATIM
     # (A.3), que no se edita para complacer un test (misma regla que rige
     # T25 en todo este bloque). Cita `M05` al describir P2: "`tramite.yaml:487`
@@ -5174,6 +5174,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # matchea `M\d{1,2}`/`E\d{1,2}` pelado y queda censado en
     # `canon/registro-rotulos.tsv`.
     "forense/notas/2026-09-21-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-cierre.md",
+    # ACTO GEN2-ESTADO-v1_15-1 (22/sep/2026). §8 del encargo cita `E4` pelado
+    # ("lanzar después de que E4 (adopción de marginales) y TRÁMITE-FIRMAS-6
+    # fusionen") -- es el rótulo de otro acto (adopción de marginales, en
+    # vuelo), citado por referencia cruzada, no un rótulo que este acto
+    # acuñe. A.3 impide editar el cuerpo sellado para agregarle el prefijo.
+    # El rótulo propio de este acto, `GEN2-ESTADO-v1_15-1`, va censado en
+    # `canon/registro-rotulos.tsv`.
+    "forense/encargos/2026-09-22-GEN2-ESTADO-v1_15-1.md",
     # ACTO GEN2-TRAMITE-FIRMAS-6 (22/sep/2026). El encargo (§4, "Ramas vivas
     # al abrir: declarar cuáles de E1–E4 están en vuelo"), la nota de cierre
     # y el fragmento L0 citan "E1–E4" como abreviatura de dirección para los
@@ -7875,7 +7883,7 @@ def t47_ids_unicos():
 #   P-A.4, criterio 2 de la v1.0 convertido en test.)
 #
 #   DEFECTO REAL QUE ATRAPA: la línea `L0` de
-#   `canon/estado-programa-v1_14.md` creció de 797 824 caracteres a
+#   `canon/estado-programa-v1_15.md` creció de 797 824 caracteres a
 #   27 738 504 en cinco merges "conservar ambos lados" en 20-21/sep/2026
 #   (×2.00, ×3.00, ×2.67, ×2.12) sin que ningún test lo viera -- la suite
 #   pasaba en VERDE con una línea de 27 MB. Lo que le habría costado a un
@@ -8108,7 +8116,7 @@ def t51_rotulos_par_unico():
 
 # ───────────────────────────────────────────────────────────────
 # T52 · T-ESTADO-PROGRAMA-SIN-APENDICE — el bloque §0 de
-#   `canon/estado-programa-v1_14.md` que los actos venían apendicando no
+#   `canon/estado-programa-v1_15.md` que los actos venían apendicando no
 #   crece más. (`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2`, 21/sep/2026, P2.)
 #
 #   QUÉ MIDIÓ ESTE ACTO. `#962` congeló la línea `L0` y los tres contadores
@@ -8138,7 +8146,7 @@ def t51_rotulos_par_unico():
 #   apendicar aquí y `estado-programa` no vuelve a aparecer en un conflicto,
 #   se anota y se revisa.
 # ───────────────────────────────────────────────────────────────
-RUTA_ESTADO_PROGRAMA = "canon/estado-programa-v1_14.md"
+RUTA_ESTADO_PROGRAMA = "canon/estado-programa-v1_15.md"
 _T52_N_ANOTACIONES = 96
 _T52_SHA_ANOTACIONES = "ebbfe58cdd53a8ee14ac77499034d30c063e8eab8dc2478149dafbefb387c50f"
 _T52_FILA_GOBERNANZA = (
