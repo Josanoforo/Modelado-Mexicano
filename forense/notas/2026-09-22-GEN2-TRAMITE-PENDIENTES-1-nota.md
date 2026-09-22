@@ -34,3 +34,7 @@ Pregunta de §6 (¿algún RESULT con `verify = NO-REPRODUCE`?): no aplica. Los 1
 ## 3 · Firmas de mesa
 
 Firmas asentadas verbatim desde §2 del encargo: P1(a), P1(c), P3-7ef3-02. No se asentaron dos: P3-8e53-04, porque sus huecos están en blanco, y P1(b), por el choque con 3A. Las firmas ya selladas (T5/T6, `dfbe-01`, E.2, E.6) se citan y no se duplican.
+
+## 4 · Firma recibida con el PR abierto (22/sep/2026), verbatim
+
+Mesa respondió a FP `-18fa-02`: **«a»**. Asentado en este acto (A.12): la FP pasa a FIRMADA. NC-0316, NC-0320, NC-0321 y NC-0326 pasan a CERRADA, con la firma como cita y sucesor «cita en TRA v-siguiente». `NC-…-18fa-01` pasa a CERRADA. Se añade una fila en `decisiones.tsv` sobre el objeto FP; no hay fila de contador y `cuenta_gen2` de los cuatro CALC sigue en SI por 3A.
