@@ -149,3 +149,9 @@ dependencia-pendiente NECESITA-DEPENDENCIA(numpy)`, igual que su hermano;
 1 fallido **ajeno y de entorno**: `tests/test_marco_m_en_seco.py` (#999) hace
 `cp -al` del repo a `$TMPDIR`, y en esta caja `/tmp` y `/home` son
 filesystems distintos (`Invalid cross-device link`). No lo toca este acto.
+
+## 7 · Firma de mesa sobre §5 (ADENDA-2, 22/sep/2026)
+
+Copiada verbatim de `…-ESCOLARIDAD-2-ADENDA-2.md`: «Opción (a) en las dos: el job del push a main corre corrida0 registro --verifica --escribe --lote <CALC con asiento nuevo en ese push>, con el lote derivado mecánicamente del diff de forense/replay-evidencia.tsv — sin juicio: solo lo que un acto asentó. Lo diseña y ejecuta la conversación TUBERÍA; mientras, cada acto sigue asentando en replay-evidencia.tsv y el CONTADOR dice «sellada en disco, no registrada» (E.7). Hoy son 22 CALC sin fila por este hueco; la firma cierra los dos FP con una sola decisión.»
+
+Las dos FP son `FP-260922-GEN2-DIN-CREDITO-ESCOLARIDAD-2-0af9-01` (este acto: pasa a FIRMADA, ejecución PENDIENTE en TUBERÍA) y `FP-260922-GEN2-PENDIENTES-CAJA-1-c09b-02`. Esta última vive sólo en la rama `claude/gen2-pendientes-caja-1` (PR #1004, abierto) y allí ya figura FIRMADA con el mismo texto de (a); su asiento es de ese PR, no de este. La fila de este CALC no requiere acción adicional: su asiento en `replay-evidencia.tsv` es exactamente lo que el job derivará. `NC-…-0af9-01` → `DIFERIDO-A:acto TUBERIA`.

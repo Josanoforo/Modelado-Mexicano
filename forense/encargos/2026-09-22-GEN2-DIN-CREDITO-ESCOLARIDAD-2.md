@@ -54,3 +54,5 @@ Adendas de este encargo: `forense/encargos/2026-09-22-GEN2-DIN-CREDITO-ESCOLARID
 ## CONSUMIDO
 
 Ejecutado por ACTO GEN2-DIN-CREDITO-ESCOLARIDAD-2 en **PR #1005** (rama `acto/gen2-din-credito-escolaridad-2`), ADR `ADR-260922-GEN2-DIN-CREDITO-ESCOLARIDAD-2-0af9-01`. El PR queda para que mesa lo fusione.
+
+Enmienda de cierre, 22/sep/2026: mesa firmó la opción (a) de `FP-260922-GEN2-DIN-CREDITO-ESCOLARIDAD-2-0af9-01` y de `FP-260922-GEN2-PENDIENTES-CAJA-1-c09b-02` con el acto ya corriendo. La firma está archivada y sellada en `forense/encargos/2026-09-22-GEN2-DIN-CREDITO-ESCOLARIDAD-2-ADENDA-2.md`. Con ella, la primera fila de `## NO-CORRIDO / RESERVAS` pasa de DECISIÓN-DE-MESA-PENDIENTE a `DIFERIDO-A:acto TUBERIA` (fila `NC-…-0af9-01`).
