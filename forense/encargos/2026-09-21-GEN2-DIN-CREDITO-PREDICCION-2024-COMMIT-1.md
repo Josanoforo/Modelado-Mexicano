@@ -29,3 +29,27 @@ Por objeto («crédito 2024», «predicción», «lote crédito»): reserva y pi
 
 ## 6 · LATITUD · 7 · PAROS
 Latitud: estructura de CALC, reutilización, orden. Pregunta a mesa siguiendo: si una conducta no tiene 3 puntos comparables (entra solo con persistencia). PAROS: a) abrir cualquier variable de crédito de ENIF 2024 · b) el par «crédito por app» · c) colapsar K3 o K4 · d) presentar como serie olas `CAMBIO-DE-INSTRUMENTO` · e) congelar sin D-22 · f) editar un sello. Compuerta: «P3 en verde» protege congelar. Perímetro: spec y sidecar, CALC nuevos, tests propios, FP/NC, nota, cascada; ajeno: `tools/duelo/`, sellos, celdas-D. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué**: «Contendientes en cruces … C2 compuesto en COMMIT-3» (§5 P1).
+  **por qué**: `DIFERIDO-A:CALC-DIN-CREDITO-PREDICCION-2024-ADJUDICACION-0001·COMMIT-3` —
+  el propio encargo declara que C2 se compone dentro del COMMIT-3, a
+  partir de los marginales que este acto abrió; este acto los abrió
+  (P1/P2/P3 de emisiones) pero no compone C2 sobre ellos.
+  **impacto**: ningún contador de cruces se mueve; los marginales
+  (`-EMISIONES-0001`) sí están sellados y son el insumo de esa
+  composición futura.
+  **sucesor**: `CALC-DIN-CREDITO-PREDICCION-2024-ADJUDICACION-0001`,
+  COMMIT-3 (otra sesión, F3).
+- **qué**: P2 «Emisiones → adjudicación» — la mitad de adjudicación
+  (abrir ENIF 2024 con la guardia, comparar contra las emisiones,
+  veredicto). **por qué**: `DIFERIDO-A:CALC-DIN-CREDITO-PREDICCION-2024-ADJUDICACION-0001·COMMIT-2/3` —
+  F3 de la cabecera: «quien congela no ejecuta el COMMIT-2/3»; esta
+  sesión congela el código guardado (guardia + mapa de columnas +
+  extracción, probado sobre sintético) y se detiene ahí a propósito.
+  **impacto**: `cuenta_gen2 = NO` en `-ADJUDICACION-0001` hasta que
+  corra; ningún contador de adopción se mueve.
+  **sucesor**: `CALC-DIN-CREDITO-PREDICCION-2024-ADJUDICACION-0001`,
+  COMMIT-2/3a/3 (otra sesión, F3), regla de adjudicación pendiente de
+  `FP-260921-GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-1-7866-02`.
