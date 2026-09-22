@@ -43,13 +43,13 @@ este modulo: ninguna se relaja por conveniencia de un pin concreto.
 
   (a) SELLO      el CALC citado esta `SELLADA`/`SUPERADO`, `cuenta_gen2 = SI`
                  y su replay ACREDITA. Un CALC sin sellar, envuelto legacy, o
-                 que no reproduce, no acredita nada. Desde TANDA-4 (P1) el
-                 replay se lee POR EJE: la via (i) exige `REPRODUCE` estricto
-                 (contexto incluido); las vias (ii) y (iii) exigen que el eje
-                 RESULTADO sea afirmativo -- `REPRODUCE` o
-                 `REPLICA-RESULTADO · CONTEXTO-DISTINTO` -- y el CONTEXTO se
-                 declara en la `nota` del pin. `NO-REPRODUCE*` y
-                 `NO-EJECUTABLE` quedan fuera por las tres vias.
+                 que no reproduce, no acredita nada. Desde TANDA-5 (P1, firma
+                 F-R del 22/sep/2026) el replay se lee POR EJE en las TRES
+                 vias por igual: exigen que el eje RESULTADO sea afirmativo --
+                 `REPRODUCE` o `REPLICA-RESULTADO · CONTEXTO-DISTINTO` -- y el
+                 CONTEXTO se declara en la `nota` del pin. `NO-REPRODUCE*` y
+                 `NO-EJECUTABLE` quedan fuera por las tres vias; `NO-VERIFICABLE`
+                 tampoco es afirmativo por si solo.
   (b) CRUDO      `via = i-CRUDO` exige al menos un input `origen: manifiesto`
                  (microdato del corpus) o un manifiesto de capturas selladas.
                  Un CALC que solo lee el repo no produce una cifra desde
@@ -429,21 +429,22 @@ def valida_pin(fila: dict, corridas: dict, specs: dict,
         return ("RECHAZADO-CALC-NO-CUENTA-GEN2",
                 f"{llave}: {calc} declara cuenta_gen2="
                 f"{c.get('cuenta_gen2')!r}; guarda (a) exige SI")
-    # Guarda (a), eje RESULTADO (ACTO GEN2-RELEVO-TANDA-4 · P1). La via (i)
-    # NO se relaja: sigue exigiendo `REPRODUCE` estricto, contexto incluido.
-    # Las vias (ii) y (iii) leen el EJE RESULTADO y declaran el CONTEXTO en
-    # la `nota` del pin (firma de direccion 7bf5-01): un cambio de contexto
-    # ajeno a la lectura -- otro commit en una herramienta del arbol -- no es
-    # un hallazgo sobre el numero, y dejar fuera un sello cuyo resultado
-    # replica era el defecto. `NO-REPRODUCE*` y `NO-EJECUTABLE` siguen fuera
-    # por las dos vias.
+    # Guarda (a), eje RESULTADO (ACTO GEN2-RELEVO-TANDA-4 · P1; extendida a
+    # la via (i) por ACTO GEN2-RELEVO-TANDA-5 · P1, firma de mesa F-R del
+    # 22/sep/2026: «La lectura del eje RESULTADO del replay vale igual para
+    # la via (i); el CONTEXTO se declara en la nota de cada pin»). Las tres
+    # vias leen el EJE RESULTADO del veredicto compuesto y declaran el
+    # CONTEXTO en la `nota` del pin: un cambio de contexto ajeno a la
+    # lectura -- otro commit en una herramienta del arbol -- no es un
+    # hallazgo sobre el numero, y dejar fuera un sello cuyo resultado
+    # replica era el defecto que TANDA-4 corrigio para (ii)/(iii); F-R lo
+    # extiende a (i) porque el mismo razonamiento aplica igual. `NO-REPRODUCE*`
+    # y `NO-EJECUTABLE` siguen fuera por las tres vias; `NO-VERIFICABLE` (el
+    # eje RESULTADO cuando la sesion no pudo pronunciarse) tampoco esta en el
+    # vocabulario CONCLUYENTE y por tanto tampoco es afirmativo -- no basta
+    # por si solo.
     replay = str(c.get("resultado_replay", ""))
-    if via == VIA_CRUDO:
-        if not replay.startswith("REPRODUCE"):
-            return ("RECHAZADO-CALC-NO-REPRODUCE",
-                    f"{llave}: el replay de {calc} dice {replay!r}; la via "
-                    f"(i) exige REPRODUCE estricto y no se relaja")
-    elif replay not in veredictos_afirmativos_en_resultado():
+    if replay not in veredictos_afirmativos_en_resultado():
         return ("RECHAZADO-CALC-NO-REPRODUCE",
                 f"{llave}: el replay de {calc} dice {replay!r}, que no es "
                 f"afirmativo en el eje RESULTADO "
