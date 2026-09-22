@@ -12,7 +12,7 @@
   - *duelo de tres, nacional* · n `12` · MAE `M` `4.987` pp · `L_SOLO` `3.957` pp · `L_CORPUS` `3.889` pp · veredicto `SIN-GANADOR-UNICO` · NO se suma a las otras dos clases (otro universo, otro estimando) · `CALC-TRIADA-0002/resultados.json`
   - *sub-cifra del dominio DINERO* · cruce n `8` (error mediano `0.936` pp) · persistencia n `32` (error mediano `2.145` pp) · ENIF 2024; la brecha de persistencia es de 3 años y no se promedia con las de 1 y 2 años de ENVIPE/ENCIG
   - *NO cuentan* · `89` filas `IDENTICO` (M == R porque `EMISOR=ARBITRO`: el mismo número copiado, no una predicción contrastada) · `2` celdas de `formalidad` con piso y sin `error_piso_pp` (su error es un CALC sucesor) · universo examinado: 214 filas de data/corrida0/marcador-segmento.tsv + 3 CALC sellados
-- **Procedencia.** SHA `c7d807b7` · fecha del commit `2026-09-22` · ¿árbol == origin/main? `False`.
+- **Procedencia.** SHA `1f828964` · fecha del commit `2026-09-22` · ¿árbol == origin/main? `False`.
 - **Motor.** reglas totales `22` · reglas con dato (>=1 conducta MEDIDO*) `21` · reglas sin dato `1` · conductas MEDIDO* `46` · tiers `{'FUERTE': 20, 'MEDIA': 2}`.
 - **Marcador por segmento.** filas por estado: ADOPTADO-POR-FIRMA `20` · CONSUMIDA-SIN-PILOTO `1` · DIAGNOSTICO `8` · EVALUADA `57` · IDENTICO `89` · NO-COMPARABLE `2` · RESERVADA `22` · SIN-PISO `15` (total `214`) · cobertura de piso `95 / 214` · valor añadido / evaluadas `0 / 36` · celdas `emision = EMITIDA-SIN-EVALUAR` `16 / 214` · `veto_pisos_activo` `True`.
 - **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: `NO` 11 · `NO-DERIVACION-CONTEXTUAL` 1 · `NO-SIN-FIRMA-DE-OBJETO` 1 · `PENDIENTE-DE-CASCADA-DIFERIDA` 2 · `PENDIENTE-DE-INTEGRACION-SERIAL` 2 · `PENDIENTE-DE-MESA` 4 · `SI` 120 (selladas total `141`) · `PENDIENTE-DE-MESA`:
@@ -20,19 +20,17 @@
   - `CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0001--f22dc8014aec`: `NO-VERIFICADO`
   - `CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002--cd853c64a584`: `NO-VERIFICADO`
   - `CALC-WBES2023-PRECISION-INTERACCIONES-0001--7f2a0899f700`: `NO-VERIFICADO`
-- **Ramas presentes en origin.** **9 rama(s) presente(s) en origin (política de cero)**:
-  - `acto/gen2-din-credito-escolaridad-2`: 9 delante / 8 detrás de main · último commit `2026-09-22`
-  - `acto/gen2-din-credito-pisos-1870-run-1`: 2 delante / 8 detrás de main · último commit `2026-09-22`
-  - `acto/gen2-din-lote-c2-restringido-1`: 13 delante / 0 detrás de main · último commit `2026-09-22`
-  - `acto/gen2-duelo-envipe2026-ejecucion-1`: 5 delante / 18 detrás de main · último commit `2026-09-22`
-  - `acto/gen2-enut-nucleo-celdas-1`: 6 delante / 0 detrás de main · último commit `2026-09-22`
-  - `acto/gen2-estado-v1_15-1`: 5 delante / 0 detrás de main · último commit `2026-09-22`
-  - `claude/gen2-enif-persistencia-ic-calibrado-1`: 3 delante / 0 detrás de main · último commit `2026-09-22`
-  - `claude/gen2-marginales-adopcion-1`: 9 delante / 30 detrás de main · último commit `2026-09-22`
-  - `claude/gen2-pendientes-caja-1`: 8 delante / 0 detrás de main · último commit `2026-09-22`
+- **Ramas presentes en origin.** **7 rama(s) presente(s) en origin (política de cero)**:
+  - `acto/gen2-din-credito-escolaridad-2`: 11 delante / 14 detrás de main · último commit `2026-09-22`
+  - `acto/gen2-din-lote-c2-restringido-1`: 13 delante / 14 detrás de main · último commit `2026-09-22`
+  - `acto/gen2-duelo-envipe2026-ejecucion-1`: 10 delante / 8 detrás de main · último commit `2026-09-22`
+  - `acto/gen2-enut-nucleo-celdas-1`: 6 delante / 14 detrás de main · último commit `2026-09-22`
+  - `claude/gen2-enif-persistencia-ic-calibrado-1`: 8 delante / 14 detrás de main · último commit `2026-09-22`
+  - `claude/gen2-marginales-adopcion-1`: 13 delante / 14 detrás de main · último commit `2026-09-22`
+  - `claude/gen2-pendientes-caja-1`: 8 delante / 14 detrás de main · último commit `2026-09-22`
 - **Corredor LEGACY (eje x = ∅, GO-MARCADOR).** el marcador por segmento es la línea de arriba. marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
 - **Corpus lógico.** entradas del manifiesto `1646` · filas de registro de curación `158` · filas de relaciones `231` · filas del inventario de reactivos v1.2 `178247`.
-- **Gobernanza operativa.** ADR máximo del espacio numérico CERRADO `593` · FP máximo del mismo espacio `409` · ids con raíz de acto (época vigente) `{'ADR': 38, 'FP': 53, 'NC': 114}` · FP abiertas: FP-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01, FP-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01, FP-260921-GEN2-DIN-CREDITO-HISTORIA-1-ff56-02, FP-260921-GEN2-ARBITRO-MARGINALES-1-ed7d-02, FP-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-02, FP-260922-GEN2-MARCO-M-CONSUMIDOR-1-02e6-01 · encargos archivados `654` (consumidos `595`) · instrucciones vigentes `v2.16` · cola de encargos (solo estados != CONSUMIDO; consumidos `36`):
+- **Gobernanza operativa.** ADR máximo del espacio numérico CERRADO `593` · FP máximo del mismo espacio `409` · ids con raíz de acto (época vigente) `{'ADR': 39, 'FP': 53, 'NC': 117}` · FP abiertas: FP-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01, FP-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01, FP-260921-GEN2-DIN-CREDITO-HISTORIA-1-ff56-02, FP-260921-GEN2-ARBITRO-MARGINALES-1-ed7d-02, FP-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-8e53-02, FP-260922-GEN2-MARCO-M-CONSUMIDOR-1-02e6-01 · encargos archivados `655` (consumidos `596`) · instrucciones vigentes `v2.16` · cola de encargos (solo estados != CONSUMIDO; consumidos `36`):
   - `2026-09-07-ENCARGOS-GEN2-en-orden.md`: GATED
   - `2026-09-08-GEN2-SONDA-3-PILOTO-CAJA.md`: LISTO
   - `2026-09-10-GEN2-POST-685/00-LEEME-LANZAMIENTO-POST-685.md`: GATED
