@@ -44,3 +44,7 @@ No hace: adjudicar celdas-D de otros dominios · tocar ENVIPE 2025 reservada · 
 Fila `NC-260921-GEN2-DUELO-ENVIPE2026-CONGELA-1-69b5-01` en `forense/no-corrido.tsv` (`ABIERTA`).
 
 `NC-260921-GEN2-DUELO-ENVIPE2026-COMMIT-1-8796-01` NO se reabre ni se re-cierra aquí: ya estaba `CERRADA` por `ACTO GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1` (PR #977).
+
+## CONSUMIDO
+
+PARTE A ejecutada por `PR #982` (`acto/gen2-duelo-envipe2026-congela-1`).
