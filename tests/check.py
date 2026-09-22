@@ -1553,6 +1553,14 @@ _T22_MARCADOR_PENDIENTE = re.compile(
 # cualquiera de los dos marcadores es exactamente el defecto que (b)
 # existe para atrapar.
 _T22_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-PENDIENTES-RECONCILIA-1, 22/sep/2026: adjunto A.3 archivado
+    # VERBATIM (`PENDIENTES-PROGRAMA.md`, sha256 citado en la cabecera del
+    # encargo). El inventario cita, entre 806 líneas, la prosa de otros
+    # actos que menciona "pendiente" y "mesa" sin ser una ranura nueva de
+    # este acto: es un derivado de lectura, no una propuesta que abrir.
+    # Las 62 ranuras reales que este acto sí produce quedan en la lista
+    # DE-MESA de `forense/notas/2026-09-22-GEN2-PENDIENTES-RECONCILIA-1-nota.md`.
+    "forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md",
     # ACTO GEN2-SPECS-DEMANDA-2, 15/sep/2026: prereg-caja-ENVIPE-EVASION-NORMA
     # (capa 2 de D-15 sobre una medición YA sellada, CORR-0007/RES-0025-0026).
     # Dispara `_T22_MARCADOR_PENDIENTE` (`PROPUESTA.*mesa`) por CITA, no por
@@ -2922,6 +2930,13 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-PENDIENTES-RECONCILIA-1, 22/sep/2026: adjunto A.3 archivado
+    # VERBATIM (`PENDIENTES-PROGRAMA.md`). El `E03` pelado que el regex ve
+    # sale de una cita verbatim de la fila NC-0029 §1.3 ("E03 para L y E04
+    # para motor/adopciones") -- rótulo de otro acto citado por el
+    # inventario, no acuñado por éste. Recortar la cita destruiría el
+    # registro de qué NC apunta a dónde.
+    "forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md",
     # ACTO GEN2-CUADERNO-DE-MESA-1, 21/sep/2026. El cuaderno de mesa CITA
     # VERBATIM dos líneas de `milpa/src/motor.py` (`:20` y `:129`) porque
     # uno de sus renglones es, precisamente, que esas dos líneas citan
@@ -5159,6 +5174,18 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # matchea `M\d{1,2}`/`E\d{1,2}` pelado y queda censado en
     # `canon/registro-rotulos.tsv`.
     "forense/notas/2026-09-21-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-cierre.md",
+    # ACTO GEN2-TRAMITE-FIRMAS-6 (22/sep/2026). El encargo (§4, "Ramas vivas
+    # al abrir: declarar cuáles de E1–E4 están en vuelo"), la nota de cierre
+    # y el fragmento L0 citan "E1–E4" como abreviatura de dirección para los
+    # cuatro actos hermanos de trámite de firmas que corrían en paralelo
+    # (marco-M-consumidor-1, fp374-resello-1, pendientes-caja-1,
+    # pendientes-reconcilia-1) -- concurrencia entre actos, no un rótulo del
+    # espacio `E` (fases MOTOR-3) que este acto acuñe. El propio rótulo de
+    # este acto, `GEN2-TRAMITE-FIRMAS-6`, no matchea `E\d{1,2}` pelado y
+    # queda censado en `canon/registro-rotulos.tsv`.
+    "forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-6.md",
+    "forense/notas/2026-09-22-GEN2-TRAMITE-FIRMAS-6-cierre.md",
+    "canon/L0/ADR-260922-GEN2-TRAMITE-FIRMAS-6-7c2c-01.md",
 }
 
 
@@ -5738,6 +5765,13 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-PENDIENTES-RECONCILIA-1, 22/sep/2026: adjunto A.3 archivado
+    # VERBATIM (`PENDIENTES-PROGRAMA.md`). Cita `familia.union.libre_ejes_eder2017`
+    # dentro de la fila NC-0411 §1.3 como parte del texto original de otro
+    # acto (GEN2-MARCADOR-ENLACE-2, 20/sep/2026), no como una clasificación
+    # nueva de este acto sobre esa regla -- este acto no pre-registra, carga
+    # ni sella nada del motor (fuera de su perímetro, §9 del encargo).
+    "forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md",
     # GEN2-ENADID-UNION-ACTUAL-CLI-1: encargo A.3 archivado VERBATIM. La
     # cita nombra la regla sucesora que el acto debe medir y no se puede
     # insertar la salida sin romper la custodia literal. A.8 se ejecutó al

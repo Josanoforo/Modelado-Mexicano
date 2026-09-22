@@ -162,3 +162,4 @@ tests/test_ya_medido.py	modulo	NO	(ninguna)	NO	0.9	CORRE-EN-CI	exit 0 con -m tes
 tests/test_derivados_protegidos.py	script	NO	(ninguna)	NO	0.4	CORRE-EN-CI	exit 0 sin corpus (P4, ACTO GEN2-TUBERIA-EFICIENCIA-1)
 tests/test_validacion_independiente_lote.py	script	NO	(ninguna)	NO	0.02	CORRE-EN-CI	exit 0 sin corpus
 tests/test_credito_prediccion_2024_duelo.py	script	NO	numpy	NO	0.3	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy' (mismo patron que test_din_credito_prediccion_2024_adjudicacion.py, hermano mas parecido: usa numpy para las replicas sinteticas)
+tests/test_marco_m_en_seco.py	script	NO	(ninguna)	NO	54.0	CORRE-EN-CI	prueba en seco (cp -al, nunca el clon) de que se rompe si marco-M-sorteado-v1_3.tsv falta; 3 casos, verde
