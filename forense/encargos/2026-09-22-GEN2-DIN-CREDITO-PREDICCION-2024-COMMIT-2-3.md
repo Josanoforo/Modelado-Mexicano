@@ -56,4 +56,10 @@ gatea nada de él.
 
 ## CONSUMIDO
 
-(pendiente: se completa al abrir el PR)
+PR #997. ADR de raíz `ADR-260922-GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-2-3-95ec-01`.
+`CALC-DIN-CREDITO-PREDICCION-2024-ADJUDICACION-0001` corrido y sellado
+(commit_2), adjudicado por conducta (commit_3): `PROPUESTA-CON-RESERVA` en
+K1 y K6-P-TENEDORES, `NADIE-VENCE` en K2-*/K3/K5, sin retador en K4A/K4B.
+`tests/check.py --rapido`: VERDE, 0 FAIL, 299 WARN; `--baseline`: LÍNEA
+BASE VERDE. El PR no se fusiona en este acto: queda propuesto, mesa
+fusiona.
