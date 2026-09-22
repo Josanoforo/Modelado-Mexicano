@@ -13,7 +13,7 @@ etiquetas:
   medidor_ejecutado_al_congelar: sintetico (tests/test_duelo_prospectivo.py, zips fabricados) y ensayo sobre olas abiertas (2023-2025); NUNCA sobre ENVIPE 2026
   tipo: ADJUDICACION-DEL-DUELO-PROSPECTIVO (COMMIT-3)
   consume: CALC-DUELO-ENVIPE2026-EMISIONES-0001 (sellado en COMMIT-2, sha fijado en COMMIT-3a)
-  congelado: NO -- idem emisiones
+  congelado: SI -- preflight 2026-09-21 en caja, BLOQUEADO solo por emisiones_selladas (aun no corrida; COMMIT-2/3a pendientes, spec.yaml:parametros.commit_3a); salida cruda en forense/notas/2026-09-21-GEN2-DUELO-ENVIPE2026-CONGELA-1-nota.md
 inputs:
 - id: envipe2023_csv
   origen: manifiesto
