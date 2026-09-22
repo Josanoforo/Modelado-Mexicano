@@ -63,12 +63,27 @@ ENIF 2024 adentro, la respuesta se afina:
   prueba de tres). Falta el duelo ENVIPE 2026 (§5).
 
 **Contadores que movió el trabajo que produjo este informe** (v2.16 del
-módulo de auditoría): **cero** de los contadores rectores del programa
-(`celdas_validadas` sigue en **92**, `marcador_segmento.total_filas` sigue en
-**230**, `sin_piso` sigue en **15** — todo re-derivado por comando, `python3
-tools/tablero_programa.py` / `python3 tools/marcador_segmento.py`). Lo que sí
-se movió: la **sub-razón** de 15 filas `SIN-PISO` del marcador (11 ENUT + 4
-EDER), que pasó de `NO-CONSTRUIBLE`/`SIN-CONSUMER-EN-TABLA-DE-IDENTIDAD` a
+módulo de auditoría): `celdas_validadas` sigue en **92** y
+`celdas_d_adoptadas_activas` sigue en **6** — esos dos sí re-derivan
+idénticos contra `origin/main`. `marcador_segmento.total_filas` **sí se
+movió**: pasó de **214** (`origin/main`) a **230** (+16), y
+`ADOPTADO-POR-FIRMA` pasó de **20** a **36** celdas, todo re-derivado por
+comando (`python3 tools/tablero_programa.py` / `python3
+tools/marcador_segmento.py --escribe`). La causa no es ENUT ni EDER (esas
+son las 15 filas `SIN-PISO`, sin cambio de conteo, ver abajo): es la
+celda-D `GOB.gobierno_digital.encig2025.edad_x_escolaridad`, que ya tenía
+`champion_actual = C2` adoptado por la firma F3 (`decisiones.tsv:205`, acto
+`GEN2-TRAMITE-FIRMAS-5`, ya fusionado) y quedó re-derivada al marcador —
+16 filas `ADOPTADO-POR-FIRMA` nuevas y sus `RESULT-GOB-EXE15-2025-*-C2-P`
+correspondientes en `milpa/estimadores-por-segmento.yaml` — como efecto
+lateral correcto de correr `tools/marcador_segmento.py --escribe` para P2
+(el fix de `TABLAS_IDENTIDAD`/`_piso_de_fila` para ENUT/EDER). Este
+re-derivado es, además, exactamente el sucesor que pedía
+`NC-260922-GEN2-TUBERIA-EFICIENCIA-1-0d1b-02` ("acto de aparato sobre
+`tools/marcador_segmento.py`"), que queda `CERRADA` por este PR (§ abajo).
+`sin_piso` sigue en **15**; lo que sí se movió ahí es la **sub-razón** de
+esas 15 filas del marcador (11 ENUT + 4 EDER), que pasó de
+`NO-CONSTRUIBLE`/`SIN-CONSUMER-EN-TABLA-DE-IDENTIDAD` a
 `SIN-PISO-POR-DISEÑO:<causa>` por F-ENUT/F-EDER (§1.2), y dos filas de
 `forense/no-corrido.tsv` (`NC-0377`, `NC-0411`) que cerraron.
 
