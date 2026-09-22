@@ -65,27 +65,36 @@ ENIF 2024 adentro, la respuesta se afina:
 **Contadores que movió el trabajo que produjo este informe** (v2.16 del
 módulo de auditoría): `celdas_validadas` sigue en **92** y
 `celdas_d_adoptadas_activas` sigue en **6** — esos dos sí re-derivan
-idénticos contra `origin/main`. `marcador_segmento.total_filas` **sí se
-movió**: pasó de **214** (`origin/main`) a **230** (+16), y
-`ADOPTADO-POR-FIRMA` pasó de **20** a **36** celdas, todo re-derivado por
-comando (`python3 tools/tablero_programa.py` / `python3
-tools/marcador_segmento.py --escribe`). La causa no es ENUT ni EDER (esas
-son las 15 filas `SIN-PISO`, sin cambio de conteo, ver abajo): es la
-celda-D `GOB.gobierno_digital.encig2025.edad_x_escolaridad`, que ya tenía
-`champion_actual = C2` adoptado por la firma F3 (`decisiones.tsv:205`, acto
-`GEN2-TRAMITE-FIRMAS-5`, ya fusionado) y quedó re-derivada al marcador —
-16 filas `ADOPTADO-POR-FIRMA` nuevas y sus `RESULT-GOB-EXE15-2025-*-C2-P`
-correspondientes en `milpa/estimadores-por-segmento.yaml` — como efecto
-lateral correcto de correr `tools/marcador_segmento.py --escribe` para P2
-(el fix de `TABLAS_IDENTIDAD`/`_piso_de_fila` para ENUT/EDER). Este
-re-derivado es, además, exactamente el sucesor que pedía
+idénticos contra `origin/main`. `marcador_segmento.total_filas` **NO se
+movió dentro de este PR**: `data/corrida0/marcador-segmento.tsv` y
+`milpa/estimadores-por-segmento.yaml` son derivados («DERIVADO — NO
+EDITAR») y no viajan commiteados en el PR (`tools/derivados_protegidos.py`
+es la guarda; el job de push a `main` los re-deriva tras fusionar). Lo que
+este PR sí commitea son las fuentes sobre las que corre el derivador — la
+tabla `PISOS-ENUT2019-ejes-metadatos-v1_1.tsv`, la nueva
+`PISOS-EDER2017-cohorte-metadatos-v1_0.tsv` y el fix de
+`TABLAS_IDENTIDAD`/`_piso_de_fila` en `tools/marcador_segmento.py` (§1.2)
+— y la celda-D `GOB.gobierno_digital.encig2025.edad_x_escolaridad`, que ya
+tenía `champion_actual = C2` adoptado por la firma F3
+(`decisiones.tsv:205`, acto `GEN2-TRAMITE-FIRMAS-5`, ya fusionado). Corrido
+localmente contra este commit (no commiteado), `python3
+tools/marcador_segmento.py --escribe` proyecta `total_filas` de **214**
+(`origin/main`) a **230** (+16) y `ADOPTADO-POR-FIRMA` de **20** a **36**
+celdas — la causa es exactamente esa celda-D ya adoptada, no ENUT ni EDER
+(esas son las 15 filas `SIN-PISO`, sin cambio de conteo, ver abajo). El
+salto real de contador (214→230) ocurrirá en la corrida de `main` que
+re-derive tras fusionar este PR, no dentro de él. Este re-derivado es,
+además, exactamente el sucesor que pedía
 `NC-260922-GEN2-TUBERIA-EFICIENCIA-1-0d1b-02` ("acto de aparato sobre
-`tools/marcador_segmento.py`"), que queda `CERRADA` por este PR (§ abajo).
+`tools/marcador_segmento.py`"): el aparato (código + fuentes) queda listo
+y probado en este PR; la fila queda `DIFERIDO-A` la corrida de `main` que
+produce el derivado en disco, y se declara así, no `CERRADA` (§ abajo).
 `sin_piso` sigue en **15**; lo que sí se movió ahí es la **sub-razón** de
-esas 15 filas del marcador (11 ENUT + 4 EDER), que pasó de
+esas 15 filas del marcador (11 ENUT + 4 EDER), que pasa de
 `NO-CONSTRUIBLE`/`SIN-CONSUMER-EN-TABLA-DE-IDENTIDAD` a
-`SIN-PISO-POR-DISEÑO:<causa>` por F-ENUT/F-EDER (§1.2), y dos filas de
-`forense/no-corrido.tsv` (`NC-0377`, `NC-0411`) que cerraron.
+`SIN-PISO-POR-DISEÑO:<causa>` por F-ENUT/F-EDER (§1.2) en cuanto `main`
+re-derive, y dos filas de `forense/no-corrido.tsv` (`NC-0377`, `NC-0411`)
+que cerrarán entonces.
 
 ---
 
@@ -107,7 +116,8 @@ aparte (E.6), y el informe lo reporta en §3, no en el marcador.
 
 ### 1.2 · `SIN-PISO-POR-DISEÑO`, rotulado por comando (F-ENUT + F-EDER)
 
-Antes de este acto, 15 de las 230 filas del marcador salían `SIN-PISO` sin
+Antes de este acto, 15 de las 214 filas del marcador (230 tras la
+re-derivación de `main`, ver arriba) salían `SIN-PISO` sin
 distinguir «nadie midió el piso» de «el diseño de la ola no admite un piso
 t−1». `SIN-PISO-POR-DISEÑO` entra ahora al vocabulario `status` de las tablas
 de identidad (firma F7 del trámite 5, `FP-260921-GEN2-TRAMITE-FIRMAS-5-958c-

@@ -3,7 +3,7 @@ _comentario: 'DERIVADO por tools/marcador_segmento.py — NO EDITAR. ACTO GEN2-M
   (19/sep/2026). Fuente: celdas-D con champion_actual=C2 y sus RESULT sellados; cita
   adopcion:piso-C2-20-celdas de decisiones.tsv.'
 decision_ref: adopcion:piso-C2-20-celdas
-n_celdas: 36
+n_celdas: 20
 n_emitidas_sin_evaluar: 206
 n_emitidas_con_ic_sellado: 174
 emitidas_sin_evaluar:
@@ -3985,134 +3985,6 @@ celdas:
     ic95_inf: 0.23033864321221761
     ic95_sup: 0.2781828364443396
     unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::18-29xHASTA-PRIMARIA:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-P
-    punto: 0.48452491444265666
-    ic95_inf: 0.440786307903583
-    ic95_sup: 0.5289531531785042
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::18-29xSECUNDARIA:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C2-P
-    punto: 0.6568030841330653
-    ic95_inf: 0.6195503021445021
-    ic95_sup: 0.6931977507279221
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::18-29xMEDIA-SUPERIOR:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C2-P
-    punto: 0.7566313129728077
-    ic95_inf: 0.7263639399900934
-    ic95_sup: 0.7861082773960419
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::18-29xSUPERIOR:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C2-P
-    punto: 0.8643775065418697
-    ic95_inf: 0.8437608575070431
-    ic95_sup: 0.8832445294425465
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::30-44xHASTA-PRIMARIA:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C2-P
-    punto: 0.5162501009076711
-    ic95_inf: 0.47874759756924795
-    ic95_sup: 0.5528963243627989
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::30-44xSECUNDARIA:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C2-P
-    punto: 0.6848224108313606
-    ic95_inf: 0.6580862183759106
-    ic95_sup: 0.7111609057110774
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::30-44xMEDIA-SUPERIOR:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C2-P
-    punto: 0.7792398364372125
-    ic95_inf: 0.7581170609275167
-    ic95_sup: 0.7997891049931551
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::30-44xSUPERIOR:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C2-P
-    punto: 0.8785828188181685
-    ic95_inf: 0.864418915219044
-    ic95_sup: 0.8918013529437138
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::45-59xHASTA-PRIMARIA:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C2-P
-    punto: 0.38559588351130086
-    ic95_inf: 0.35137906120007373
-    ic95_sup: 0.4208102641660194
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::45-59xSECUNDARIA:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C2-P
-    punto: 0.5609791903425925
-    ic95_inf: 0.5286353362193754
-    ic95_sup: 0.5933991319252395
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::45-59xMEDIA-SUPERIOR:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C2-P
-    punto: 0.6748833231311685
-    ic95_inf: 0.649041427074107
-    ic95_sup: 0.7003414786792362
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::45-59xSUPERIOR:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C2-P
-    punto: 0.8097199454837418
-    ic95_inf: 0.7919532773080719
-    ic95_sup: 0.8264773705035735
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::60-96xHASTA-PRIMARIA:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C2-P
-    punto: 0.2197701594038772
-    ic95_inf: 0.1931095649958357
-    ic95_sup: 0.2492556029174386
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::60-96xSECUNDARIA:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C2-P
-    punto: 0.36447203158605124
-    ic95_inf: 0.33506944210010475
-    ic95_sup: 0.39450658364802593
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::60-96xMEDIA-SUPERIOR:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C2-P
-    punto: 0.48231049077684934
-    ic95_inf: 0.45390737442093426
-    ic95_sup: 0.5115889609431381
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::60-96xSUPERIOR:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C2-P
-    punto: 0.6563449744105344
-    ic95_inf: 0.6301430827504048
-    ic95_sup: 0.6822532906884965
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
     tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
   CRUCE::TRA.evade_norma.envipe2025.escolaridad_x_dominio::S1xD1:
     regla_origen: TRA.evade_norma.envipe2025.escolaridad_x_dominio
