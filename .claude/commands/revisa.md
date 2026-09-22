@@ -467,7 +467,7 @@ Tres comprobaciones:
    un dígito) no casa ninguna de las dos y `T15` lo marca colgante.
 3. **Cabeceras de conteo — HISTÓRICAS (P-B).** El `**N ADR**` de
    `canon/gobernanza-v1_15.md` línea 2 y el conteo de la línea `L0` de la
-   ÚNICA FUENTE DE ESTADO vigente (`canon/estado-programa-v1_14.md`) ya
+   ÚNICA FUENTE DE ESTADO vigente (`canon/estado-programa-v1_15.md`) ya
    NO se reconcilian por PR — `cierre_acto.py --aplica` dejó de
    escribirlos (P-B). Un PR que SÍ los edita a mano es el error: el
    conteo vigente se deriva por `EC.adr_max()`, nunca se teclea.
