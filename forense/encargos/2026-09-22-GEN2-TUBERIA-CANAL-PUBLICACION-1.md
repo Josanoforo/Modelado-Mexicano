@@ -51,4 +51,8 @@ No registra a mano, no adopta, no cambia E.7 (la cumple). Sucesor: P5 del plan (
 | Cierre de `NC-0257`/`NC-0284`/`NC-0329` citadas en P4 | SUSTITUIDO-POR:ya CERRADAS por otra vía antes de este acto (re-verificado, `estado=CERRADA` en `forense/no-corrido.tsv`) — premisa de logística del encargo, no un hallazgo de este acto. | Ninguno: ya estaban resueltas. | Ninguno — ya cerradas |
 | Cierre de las cuatro NC `DIFERIDO-A: acto TUBERIA` (#1008/#1012/#1005/#1003) | NO-VERIFICABLE-AQUÍ: el encargo pedía "sucesor cumplido → cierra", pero cerrar exigiría que la fila esté PUBLICADA en `corridas.tsv`, y sigue sin estarlo (el mecanismo existe, no se ha ejecutado en `main`). Se ENMENDARON con fecha (mecanismo entregado y probado), no se cerraron — cerrarlas ahora sería falso. | Las cuatro corridas correspondientes siguen "selladas en disco, no registradas". | El propio primer push real (fila de arriba) |
 
+## CONSUMIDO
+
+Ejecutado por PR [#1018](https://github.com/Josanoforo/Modelado-Mexicano/pull/1018), rama `claude/jolly-shannon-6yq4kv`, 22/sep/2026 — `ADR-260922-GEN2-TUBERIA-CANAL-PUBLICACION-1-7d98-01`. Nota: `forense/notas/2026-09-22-GEN2-TUBERIA-CANAL-PUBLICACION-1-cierre.md`. Queda propuesto; mesa fusiona.
+
 
