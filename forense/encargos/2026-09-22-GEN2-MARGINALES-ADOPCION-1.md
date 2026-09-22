@@ -1,0 +1,43 @@
+# ENCARGO · ACTO GEN2-MARGINALES-ADOPCION-1 · Los pisos t−1 de 57 celdas marginales, adoptados o vetados por instrumento según su cobertura medida: el yaml de estimadores por segmento deja de tener solo cruces
+
+> ENTORNO: **NUBE** — cero microdato: todo está sellado. Hook; si no coincide, PARA.
+
+CABECERA · SHA `ccd7c0eb` · una sola sesión · MODELO: Opus · MODO: **ABIERTO** · CONTADOR: cero mediciones; mueve `adoptados_activos` (72 → N, derivado) y `n_celdas` de `milpa/estimadores-por-segmento.yaml` (20 → N); **no** mueve `celdas_validadas` · ids raíz de acto.
+
+## 1 · OBJETIVO
+Que la decisión de `FP-260921-GEN2-ARBITRO-MARGINALES-1-ed7d-02` quede ejecutada por el único que puede escribirla —el marcador— y que cada celda marginal evaluada tenga en el yaml su estimador adoptado **o** su veto con la cobertura que lo justifica. «Hecho» = `python3 tools/marcador_segmento.py` re-derivado sin editar a mano; `awk` sobre el yaml: N celdas `MARGINAL` con `champion = PERSISTENCIA(t−1)` y cobertura citada, M con `veto: <instrumento, cobertura>`; `status` → `adoptados_activos` movido; FP `…ed7d-02` FIRMADA con cita.
+
+## 2 · FIRMAS DE MESA
+- *Propuesta de dirección (recomendación del ejecutor de ARBITRO-MARGINALES-1), mesa sella o edita:* «Piso t−1 en marginales: **ENVIPE 2025 se adopta** (cobertura 8/15 = 0.53 [0.30, 0.75]); **ENIF 2024 se difiere** (6/32 = 0.19 [0.09, 0.35]: el IC de tres años no cubre el cambio real; se re-evalúa con IC de persistencia calibrado); **ENCIG 2025 se veta en nivel** (0/10: persiste el orden, no el nivel) y queda como piso de orden. A-bis 6 «salvo veto»: este es el veto, con dato.» Sin texto → PARA (nada que ejecutar).
+- Ya en el repo: A-bis 6 (v2.16 §4), FP-383, `adopcion:piso-C2-20-celdas` (`decisiones.tsv`).
+
+## 3 · LO QUE DIRECCIÓN SABE
+- `[LEÍDO]` FP `…ed7d-02`: 57 marginales `EVALUADA`, ninguna con retador, coberturas por instrumento (arriba); «milpa/estimadores-por-segmento.yaml sólo lo escribe el marcador tras firma».
+- `[EJECUTADO]` `milpa/estimadores-por-segmento.yaml`: `# DERIVADO — NO EDITAR (tools/marcador_segmento.py, ACTO GEN2-MARCADOR-REDISENO-1)`, `n_celdas: 20`, `n_emitidas_sin_evaluar: 206`, `n_emitidas_con_ic_sellado: 174`, `decision_ref: adopcion:piso-C2-20-celdas`.
+- `[EXISTE]` `CALC-ARBITRO-PERSISTENCIA-ERROR-0001`, `CALC-PISO-PERSISTENCIA-ERROR-0001`. No sé cuál trae la cobertura por celda: el acto lo lee.
+- `[SUPUESTO]` `tools/marcador_segmento.py` acepta una `decision_ref` de adopción de marginales o la lee de `decisiones.tsv`. Si resulta falso —solo sabe de cruces—, rama prevista: se extiende el tool (≤ el mínimo para leer la decisión por instrumento; declarado; test), nunca se edita el yaml a mano.
+- ADJUNTOS: ninguno.
+
+## 4 · YA HECHO / YA DECIDIDO
+`grep -c "adopcion:piso-t1\|marginales" data/corrida0/decisiones.tsv` → reporta (al redactar, solo la fila de cruces); yaml sin celdas `MARGINAL` (n_celdas 20). Ramas vivas: ninguna.
+
+## 5 · PIEZAS
+- **P1 · Fila de decisión** en `decisiones.tsv` (objeto `adopcion:piso-t1-marginales-por-instrumento`, verbatim de §2) y FP `…ed7d-02` → FIRMADA.
+- **P2 · Re-derivación del yaml** por el tool con la decisión: ENVIPE adoptadas (champion, punto, IC, cobertura citada), ENIF `DIFERIDA` (con la cobertura y el sucesor: IC calibrado), ENCIG `VETADA-EN-NIVEL` con `piso_de_orden: SI`. Guardias existentes del marcador en verde (T-RESERVA, T-EMISOR-NO-COMPARA, T-PISO-NO-CIRCULAR).
+- **P3 · Consumo:** `ADOPTADO_ACTIVO` en `status` movido por el mecanismo de la casa (`corrida0.py:4256`: sellado citado por consumidor activo); si el mecanismo no admite adopción por celda marginal, PARO c) **no**: es pregunta a mesa con propuesta, y P1/P2 valen igual.
+- **P4 · Sucesor escrito:** para ENIF, qué haría falta para re-evaluar (IC de persistencia con varianza del cambio entre olas, no solo muestral) — una NC con sucesor nombrado, sin diseñarlo aquí.
+
+## 6 · LATITUD
+DECIDES TÚ: extensión mínima del tool, orden, regenerar derivados. PREGUNTAS A MESA: si ENVIPE tiene celdas individuales con cobertura fuera del IC del instrumento (p. ej. una celda muy desviada), ¿adopción por instrumento igual (recomendado: la firma es por instrumento) o por celda? NO DECIDES: §7.
+
+## 7 · PAROS
+a) no aplica · b) editar el yaml a mano o forzar · c) adoptar **fuera** de lo que la firma dice (p. ej. ENIF) · d) no aplica · e) caja · f) inalcanzable.
+
+## 8 · COMPUERTAS
+«Firma de §2 presente — protege: adoptar.» Ninguna otra.
+
+## 9 · PERÍMETRO
+Propio: `milpa/estimadores-por-segmento.yaml` (por tool) · `tools/marcador_segmento.py` (extensión mínima si hace falta) + su test (huérfano en CI) · `data/corrida0/decisiones.tsv` · `forense/firmas-pendientes.tsv` · derivados por comando · nota · tablero · `canon/L0/<raíz>.md`. Ajeno: los CALC de error (lectura), `tramite.yaml`, celdas-D. Otro acto en vuelo: ninguno verificado; `MARCO-M-CONSUMIDOR-1` lee el mismo yaml sin escribirlo. «Si te encuentras escribiendo fuera de esta lista, PARA.»
+
+## 10 · NO HACE · SUCESORES · CIERRE
+No mide, no re-evalúa ENIF, no toca los CALC. Sucesor: el IC calibrado de persistencia para ENIF (diseño de dirección). Auditoría: no aplica (no afirma sobre México: adopta números ya sellados con su cobertura). Cierre por /acto.
