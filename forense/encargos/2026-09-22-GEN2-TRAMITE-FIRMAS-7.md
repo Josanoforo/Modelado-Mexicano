@@ -61,3 +61,7 @@ No mide, no re-deriva el marcador, no edita CALC. Sucesor: `MARGINALES-ADOPCION-
   **Por qué:** `NO-VERIFICABLE-AQUÍ` — sin materia: verificado que la hoja (`ba50030`) es posterior a los cuatro CALC que cita y nada tocó `verify.yml` ni esos CALC desde entonces. Queda respondida en la nota (§ "Pregunta de mesa"), no en una fila de mesa nueva.
   **Impacto:** ninguno — no bloqueó P1/P3.
   **Sucesor:** se reabre solo si el sucesor de P2 encuentra un `verify` distinto al ejecutar el bloque.
+
+## CONSUMIDO
+
+Ejecutado por PR [#1015](https://github.com/Josanoforo/Modelado-Mexicano/pull/1015), ACTO GEN2-TRAMITE-FIRMAS-7, 22/sep/2026.
