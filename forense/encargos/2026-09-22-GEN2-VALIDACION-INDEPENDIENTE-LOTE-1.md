@@ -26,3 +26,9 @@ Validaciones de pilotos y de la serie ENVIPE; ninguna del lote. Repítela tú.
 
 ## 6 · LATITUD · 7 · PAROS
 Latitud: lenguaje, método de varianza (declarado). PAROS: a) leer el código de los CALC o del módulo antes de P1 en `origin` · b) abrir `localidad × edad` o cualquier cruce RESERVADA · c) editar un sello o veredicto · d) entorno equivocado. Compuerta: «P1 en origin» protege abrir dato (los sellados). Perímetro: `forense/validaciones/GEN2-VALIDACION-INDEPENDIENTE-LOTE-v1_0/`, nota, cascada. Fuera, PARA. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| **P1/P2** — `P2` (persistencia 2021), `R1` (interacción histórica cruda) y `R3` (raking a tres vías): candidatos secundarios. `P2` se calculó como insumo de `δ21` pero no se comparó celda a celda contra el sellado; `R1`/`R3` no se recalcularon | `DIFERIDO-A:SIN-ASIGNAR` — la comparación que adjudica es una sola, `C2` contra `R2` (spec §4: «todo lo demás es secundario»); el `OBJETIVO`/«hecho» del encargo sólo pide `R` y `C2` | Ninguno sobre el veredicto primario (`COINCIDE`, `PROPUESTA-CON-RESERVA` en los dos); si se quisiera blindar también `P2`/`R1`/`R3` haría falta ampliar este acto | `NC-260922-GEN2-VALIDACION-INDEPENDIENTE-LOTE-1-41d6-01` |
