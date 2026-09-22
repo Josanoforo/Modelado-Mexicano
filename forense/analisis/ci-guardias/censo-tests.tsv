@@ -71,6 +71,8 @@ tests/test_enif_poblacion.py	script	NO	(ninguna)	NO	0.1	NECESITA-DEPENDENCIA(num
 tests/test_enigh2022_intensidad_remesas.py	script	NO	(ninguna)	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_enigh2022_perfil_estructural.py	script	NO	(ninguna)	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_enigh2022_remesas_contexto.py	script	NO	(ninguna)	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_enigh_comparabilidad_texto.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
+tests/test_enigh_serie_oro.py	script	NO	(ninguna)	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_ensafi_diseno.py	script	NO	(ninguna)	NO	0.1	NECESITA-DEPENDENCIA(scipy)	ModuleNotFoundError: No module named 'scipy'
 tests/test_ensafi_estrategias_conjuntas.py	script	NO	(ninguna)	NO	0.0	NECESITA-DEPENDENCIA(scipy)	ModuleNotFoundError: No module named 'scipy'
 tests/test_enut2024_distribucion_horas.py	script	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
