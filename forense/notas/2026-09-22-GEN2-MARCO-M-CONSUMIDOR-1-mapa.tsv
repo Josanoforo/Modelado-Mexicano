@@ -1,0 +1,117 @@
+archivo_o_resultado_id	linea_o_tipo_uso	que_lee	se_rompe_si_falta	sustituto	estado
+tools/corrida0.py	125	MARCO_VIGENTE = ruta literal; la usan _consumidores_celdas (cmd numera-res) y cmd_demanda -- confirmado en seco: corrida0.py status NO crashea, corrida0.py demanda SI (FileNotFoundError linea 423)	SI	ninguno declarado	SIN-SUSTITUTO
+tools/corrida0.py	431	f-string base para pin de mesa, dentro de _consumidores_celdas (cmd numera-res) -- corre solo si ese subcomando corre	SI	ninguno declarado	SIN-SUSTITUTO
+tools/pines_mesa.py	13	comentario-guardia: marco-M-sorteado-v1_3.tsv esta SELLADO	SI	ninguno declarado	SIN-SUSTITUTO
+tools/pines_mesa.py	117	comentario: nombre del archivo marco-M-sorteado-v1_3.tsv, no del contenido	SI	ninguno declarado	SIN-SUSTITUTO
+tools/pines_mesa.py	120	regex generica v\d+_\d+ que hoy resuelve contra v1_3.tsv para validar pines de mesa	SI	ninguno declarado	SIN-SUSTITUTO
+tools/tablero_programa.py	697	put(marco_vigente_sorteado, max(version) de marco-M-sorteado-v1_*.tsv) -- hoy resuelve v1_3	SI	ninguno declarado	SIN-SUSTITUTO
+tools/tablero_vista.py	167	abre marco-M-sorteado-v1_2.tsv (hardcoded, YA no es v1_3)	NO	no aplica: ya lee v1_2, no v1_3	NO-APLICA
+tools/score_marco_m.py	8	docstring: censo del universo marco-M-sorteado-v1_1.tsv	NO	no aplica: opera sobre v1_1 por defecto	NO-APLICA
+tools/score_marco_m.py	9	docstring: marco-M-sorteado-v1_0.tsv declarado aparte	NO	no aplica: opera sobre v1_0/v1_1	NO-APLICA
+tools/score_marco_m.py	29	docstring: sin argumentos censa marco-M-sorteado-v1_1.tsv	NO	no aplica: default v1_1	NO-APLICA
+tools/score_marco_m.py	164	docstring de documento combinado de un marco-M-sorteado	NO	no aplica: generico, sin version fija en esta linea	NO-APLICA
+tools/score_marco_m.py	243	help de --marco: sufijo de marco-M-sorteado-<sufijo>.tsv a censar (default v1_1)	NO	PARAMETRIZABLE: si se invoca --marco v1_3 a mano si rompe; por defecto NO	SIN-USO-ACTIVO
+tools/score_marco_m.py	254	ruta_marco = PREREG / marco-M-sorteado-{argumentos.marco}.tsv (default v1_1)	NO	PARAMETRIZABLE: ver linea 243	SIN-USO-ACTIVO
+tools/arbitra.py	892	comentario historico: marco-M-sorteado-v1_2.tsv incrusta el p/M del motor	NO	no aplica: comentario sobre v1_2	NO-APLICA
+tools/emite_m.py	4	docstring: camina marco-M-sorteado-v1_1.tsv	NO	no aplica: opera sobre v1_1/v1_0	NO-APLICA
+tools/emite_m.py	17	docstring: M-TRA-M-01/02.json desde marco-M-sorteado-v1_0.tsv	NO	no aplica: opera sobre v1_0	NO-APLICA
+tools/emite_m.py	51	RUTA_MARCO_V1_1 = DUELO / marco-M-sorteado-v1_1.tsv	NO	no aplica: constante v1_1	NO-APLICA
+tools/emite_m.py	52	RUTA_MARCO_V1_0 = DUELO / marco-M-sorteado-v1_0.tsv	NO	no aplica: constante v1_0	NO-APLICA
+tools/emite_m.py	142	comentario: ya existe el CALC de demostracion CALC-M-marco-M-sorteado-v1_3-ola	NO	no aplica: solo comentario, no abre el archivo	NO-APLICA
+tools/emite_m.py	714	comentario: marco-M-sorteado-v1_0.tsv no trae regla/conducta como columnas	NO	no aplica: comentario sobre v1_0	NO-APLICA
+tools/emite_m.py	722	marco_nombre=marco-M-sorteado-v1_0.tsv (literal, para regresion P2)	NO	no aplica: v1_0	NO-APLICA
+tools/emite_m.py	777	marco_nombre=marco-M-sorteado-v1_1.tsv (literal, emision M)	NO	no aplica: v1_1	NO-APLICA
+tools/emite_m.py	799	print: caminata sobre marco-M-sorteado-v1_1.tsv (elegible_v1_1=SI)	NO	no aplica: v1_1	NO-APLICA
+tools/emite_m.py	805	archivos_abiertos(marco-M-sorteado-v1_1.tsv) para regresion	NO	no aplica: v1_1	NO-APLICA
+tools/arbitra_gen2.py	244	--marco default=forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv	SI	arbitra_gen2 es el sucesor de arbitra; sin sustituto para el default en si	SIN-SUSTITUTO
+tests/check.py	189	T## abre marco-M-sorteado-v1_0.tsv (fixture/prueba historica)	NO	no aplica: v1_0	NO-APLICA
+tests/check.py	6868	comentario: ruta data/corrida0/CALC-{M,AGG}-marco-M-sorteado-v1_3/ejecucion.json	NO	no aplica: solo comentario documental en check.py	NO-APLICA
+tests/test_score_render.py	60	ruta a fixture sintetico marco-M-sorteado-fixture.tsv (no es v1_3 real)	NO	no aplica: fixture propio, no el archivo sellado	NO-APLICA
+tests/test_corredores_gen2.py	33	CALC_M = data/corrida0/CALC-M-marco-M-sorteado-v1_3	SI	gonogo_marcador.py / arbitra_gen2.py (sucesor); sin sustituto GEN2 dedicado	SIN-SUSTITUTO
+tests/test_corredores_gen2.py	34	CALC_AGG = data/corrida0/CALC-AGG-marco-M-sorteado-v1_3	SI	idem linea 33	SIN-SUSTITUTO
+tests/test_corredores_gen2.py	35	MARCO_REL = forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv	SI	idem linea 33	SIN-SUSTITUTO
+tests/test_corredores_gen2.py	84	docstring: pase lo que pase con marco-M-sorteado-v1_1.tsv	NO	no aplica: v1_1	NO-APLICA
+tests/test_corredores_gen2.py	377	string de prueba: A = forense/prereg-duelo-v2/marco-M-sorteado-v1_1.tsv	NO	no aplica: v1_1	NO-APLICA
+tests/test_corredores_gen2.py	380	assert encontrados == [marco-M-sorteado-v1_1.tsv]	NO	no aplica: v1_1	NO-APLICA
+tests/test_corredores_gen2.py	477	tupla de nombres CALC: CALC-M-marco-M-sorteado-v1_3	SI	idem linea 33	SIN-SUSTITUTO
+tests/test_corredores_gen2.py	478	tupla de nombres CALC: CALC-AGG-marco-M-sorteado-v1_3	SI	idem linea 33	SIN-SUSTITUTO
+tests/test_corredores_gen2.py	479	tupla de nombres CALC: CALC-M-marco-M-sorteado-v1_3-ola	SI	idem linea 33	SIN-SUSTITUTO
+tests/test_corredores_gen2.py	480	tupla de nombres CALC: CALC-AGG-marco-M-sorteado-v1_3-ola	SI	idem linea 33	SIN-SUSTITUTO
+tests/test_corredores_gen2.py	482	tupla de nombres CALC: CALC-M-marco-M-sorteado-v1_3-ola-v2	SI	idem linea 33	SIN-SUSTITUTO
+tests/test_corredores_gen2.py	483	tupla de nombres CALC: CALC-AGG-marco-M-sorteado-v1_3-ola-v2	SI	idem linea 33	SIN-SUSTITUTO
+tests/test_corredores_gen2.py	497	carga CALC-M-marco-M-sorteado-v1_3-ola-v2/medidor.py	SI	idem linea 33	SIN-SUSTITUTO
+tests/test_corrida0.py	525	cons = forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:{cid}:M	SI	ninguno declarado (espejo de corrida0.py:431)	SIN-SUSTITUTO
+tests/gonogo_marcador.py	60	MARCO_VIGENTE_REL = forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv	SI	marcador-segmento (milpa/estimadores-por-segmento.yaml) para el eje que ya migro; el go/no-go del eje x=vacio sigue leyendo el marco	SIN-SUSTITUTO
+tests/gonogo_marcador.py	63	CALC_M = data/corrida0/CALC-M-marco-M-sorteado-v1_3	SI	idem linea 60	SIN-SUSTITUTO
+tests/gonogo_marcador.py	64	CALC_AGG = data/corrida0/CALC-AGG-marco-M-sorteado-v1_3	SI	idem linea 60	SIN-SUSTITUTO
+tests/gonogo_marcador.py	82	_RE_MARCO = regex marco-M-sorteado-v1_\d+.tsv (generica, hoy resuelve v1_3)	SI	idem linea 60	SIN-SUSTITUTO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-01:R	celda_R	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::CIV-M-01::R (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-01:M	celda_M	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::CIV-M-01::M (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-01:L:L-solo	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-01:L:L+corpus	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-01:AGREGADO	celda_AGREGADO	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-02:R	celda_R	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::CIV-M-02::R (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-02:M	celda_M	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::CIV-M-02::M (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-02:L:L-solo	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-02:L:L+corpus	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-02:AGREGADO	celda_AGREGADO	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-04:R	celda_R	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::CIV-M-04::R (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-04:M	celda_M	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::CIV-M-04::M (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-04:L:L-solo	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-04:L:L+corpus	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-04:AGREGADO	celda_AGREGADO	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-10:R	celda_R	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::CIV-M-10::R (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-10:M	celda_M	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::CIV-M-10::M (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-10:L:L-solo	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-10:L:L+corpus	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-10:AGREGADO	celda_AGREGADO	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-12:R	celda_R	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::CIV-M-12::R (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-12:M	celda_M	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::CIV-M-12::M (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-12:L:L-solo	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-12:L:L+corpus	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-12:AGREGADO	celda_AGREGADO	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-13:R	celda_R	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::CIV-M-13::R (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-13:M	celda_M	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::CIV-M-13::M (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-13:L:L-solo	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-13:L:L+corpus	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:CIV-M-13:AGREGADO	celda_AGREGADO	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:DIN-M-01:R	celda_R	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::DIN-M-01::R (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:DIN-M-01:M	celda_M	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:DIN-M-01:L:L-solo	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:DIN-M-01:L:L+corpus	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:DIN-M-01:AGREGADO	celda_AGREGADO	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-01:R	celda_R	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::FAM-M-01::R (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-01:M	celda_M	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::FAM-M-01::M (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-01:L:L-solo	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-01:L:L+corpus	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-01:AGREGADO	celda_AGREGADO	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-05:R	celda_R	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::FAM-M-05::R (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-05:M	celda_M	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::FAM-M-05::M (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-4.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-05:L:L-solo	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-05:L:L+corpus	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-05:AGREGADO	celda_AGREGADO	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-06:R	celda_R	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::FAM-M-06::R (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-06:M	celda_M	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::FAM-M-06::M (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-4.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-06:L:L-solo	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-06:L:L+corpus	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-06:AGREGADO	celda_AGREGADO	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-07:R	celda_R	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::FAM-M-07::R (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-07:M	celda_M	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::FAM-M-07::M (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-4.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-07:L:L-solo	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-07:L:L+corpus	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:FAM-M-07:AGREGADO	celda_AGREGADO	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:TRA-M-02:R	celda_R	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::TRA-M-02::R (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:TRA-M-02:M	celda_M	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::TRA-M-02::M (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:TRA-M-02:L:L-solo	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:TRA-M-02:L:L+corpus	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:TRA-M-02:AGREGADO	celda_AGREGADO	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:TRA-M-03:R	celda_R	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::TRA-M-03::R (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:TRA-M-03:M	celda_M	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::TRA-M-03::M (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:TRA-M-03:L:L-solo	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:TRA-M-03:L:L+corpus	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:TRA-M-03:AGREGADO	celda_AGREGADO	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:TRA-M-07:R	celda_R	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::TRA-M-07::R (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:TRA-M-07:M	celda_M	lectura legacy activa (usos.tsv), aptitud_uso=APTA-POR-LINAJE	NO	pin de mesa: marco-M::TRA-M-07::M (forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-3.md)	YA-ADOPTADO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:TRA-M-07:L:L-solo	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:TRA-M-07:L:L+corpus	celda_L	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
+forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:TRA-M-07:AGREGADO	celda_AGREGADO	lectura legacy activa (usos.tsv), aptitud_uso=NO-EVALUADA	SI	SIN-SUSTITUTO	SIN-CANDIDATO
