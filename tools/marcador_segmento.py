@@ -99,6 +99,18 @@ TABLAS_IDENTIDAD = [
     #     existe en ENIF 2021`) el dictamen de #908 §2.1 refutó por texto y
     #     #915 refutó además sobre el dato. Va al final: es la más reciente.
     PREREG / "PISOS-ENIF2021-formalidad-metadatos-v1_0.tsv",
+    # (4) F-ENUT (GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1, 22/sep/2026): las 11
+    #     filas de (2) SUCEDEN aquí -- misma llave (consumer, outcome, axis,
+    #     category), status SIN-PISO-POR-DISEÑO en vez de NO-CONSTRUIBLE:
+    #     razón distinta (C1 CAMBIO-DE-INSTRUMENTO sellada en #976, no la
+    #     comparabilidad por texto de #908). (2) sigue sellada, VENCIDA EN
+    #     ALCANCE para esta lectura (A.10); no se edita ni se borra.
+    PREREG / "PISOS-ENUT2019-ejes-metadatos-v1_1.tsv",
+    # (5) F-EDER (firma F7, FP-…958c-02; ejecutada por el mismo acto):
+    #     4 filas SIN-PISO-POR-DISEÑO para `familia.union.libre_ejes_eder2017`
+    #     (dictamen §2.2 de la nota citada en la tabla), que antes no
+    #     aparecía como `consumer` en ninguna tabla (`SIN-CONSUMER…`).
+    PREREG / "PISOS-EDER2017-cohorte-metadatos-v1_0.tsv",
 ]
 COLS_TABLA_IDENTIDAD = ("cell_id", "outcome", "unit", "axis", "category",
                          "status", "reason", "consumer")
@@ -290,13 +302,14 @@ MAPA_CONSUMER = {
     # social`) y el enlace existe.
     "dinero.ahorro.horizonte_corto_ejes_enif2024":
         "dinero.ahorro.horizonte_corto_ejes_enif2024",
-    # `familia.union.libre_ejes_eder2017` (yaml:2041) NO aparece como
-    # `consumer` en ninguna tabla: la rejilla no midió piso para ella y
-    # `GEN2-PISOS-ENUT2019-EJES-1` la dictaminó SIN-PISO-POR-DISEÑO
-    # (forense/notas/2026-09-19-GEN2-PISOS-ENUT2019-EJES-1-dictamen.md §2.2)
-    # SIN escribir filas: `SIN-PISO-POR-DISEÑO` no existe en el vocabulario
-    # `status` de la tabla e inventarlo es decisión de vocabulario, de mesa.
-    # Queda SIN-PISO por AUSENCIA DE FUENTE, no por fallo de enlace.
+    # `familia.union.libre_ejes_eder2017` (yaml:2041): F-EDER (F7,
+    # GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1, 22/sep/2026) adoptó
+    # `SIN-PISO-POR-DISEÑO` en el vocabulario y escribió la tabla
+    # `PISOS-EDER2017-cohorte-metadatos-v1_0.tsv` (4 filas, mismo id en
+    # ambos lados) con el dictamen §2.2 como `metadata_source`. Antes de
+    # esta tabla salía `SIN-CONSUMER-EN-TABLA-DE-IDENTIDAD` (NC-0377/NC-0411).
+    "familia.union.libre_ejes_eder2017":
+        "familia.union.libre_ejes_eder2017",
 }
 
 # (`consumer` de la tabla, eje del marcador) -> `axis` de la tabla
@@ -548,6 +561,7 @@ def _piso_de_fila(clave: tuple, idx: dict, res: dict,
     sucede_a = {v: k for k, v in (suc or {}).items()}.get(fila["cell_id"], "")
     if fila["status"] != "CONSTRUIBLE":
         return {"construible": False, "causa": fila.get("reason") or fila["status"],
+                "status": fila["status"],
                 "unit": fila.get("unit", ""), "cell_id": fila["cell_id"],
                 "sucede_a": sucede_a, "tabla": fila.get("_tabla", "")}
     base = fila["cell_id"]
@@ -726,8 +740,14 @@ def filas_marginales(vetados: bool) -> tuple[list[dict], dict]:
                 elif not piso["construible"]:
                     estado = "SIN-PISO"
                     piso_tipo = "SIN-PISO"
-                    # la causa la escribe la tabla, no este tool.
-                    piso_fuente = f"NO-CONSTRUIBLE:{piso['causa']}"
+                    # la causa la escribe la tabla, no este tool; el prefijo
+                    # es el status literal de la tabla (F7/F-ENUT, GEN2-
+                    # LECTURAS-DE-MESA-Y-ROTULOS-1, 22/sep/2026): antes se
+                    # forzaba "NO-CONSTRUIBLE:" para cualquier status !=
+                    # CONSTRUIBLE, lo que habría rotulado una fila
+                    # SIN-PISO-POR-DISEÑO como NO-CONSTRUIBLE.
+                    _status = piso.get("status") or "NO-CONSTRUIBLE"
+                    piso_fuente = f"{_status}:{piso['causa']}"
                     if piso["sucede_a"]:
                         piso_fuente += f" · SUCEDE-A:{piso['sucede_a']}"
                 else:
