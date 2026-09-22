@@ -69,3 +69,5 @@ Cierre: `## NO-CORRIDO / RESERVAS` y `## CONSUMIDO` los añade /acto al final de
   **Sucesor**: `SIN-ASIGNAR` — quien procese la lista `DE-MESA` (dirección o `GEN2-TRAMITE-FIRMAS-6`) revisa si alguna de las 62 calza el patrón.
 
 ## CONSUMIDO
+
+Ejecutado por ACTO GEN2-PENDIENTES-RECONCILIA-1, 22/sep/2026. PR: https://github.com/Josanoforo/Modelado-Mexicano/pull/1000. ADR de raíz: ADR-260922-GEN2-PENDIENTES-RECONCILIA-1-38c3-01 (`canon/gobernanza-v1_15.md` §4, `canon/L0/ADR-260922-GEN2-PENDIENTES-RECONCILIA-1-38c3-01.md`).
