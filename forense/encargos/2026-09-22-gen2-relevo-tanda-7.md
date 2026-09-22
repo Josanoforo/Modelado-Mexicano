@@ -36,4 +36,4 @@ No mide · no re-sella. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
 
 ## CONSUMIDO
 
-`PR (pendiente)`. El PR no se fusiona en este acto: mesa fusiona.
+`PR #995`. El PR no se fusiona en este acto: mesa fusiona.
