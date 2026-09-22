@@ -44,3 +44,20 @@ Propio: `data/corrida0/decisiones.tsv` · `forense/firmas-pendientes.tsv` · `fo
 No mide, no re-deriva el marcador, no edita CALC. Sucesor: `MARGINALES-ADOPCION-2` (ENIF con reserva de ancho, por el marcador). Auditoría: no aplica. Cierre por /acto.
 
 
+
+## NO-CORRIDO / RESERVAS
+
+- **Qué:** P2, bloque de adopción de los 10 RESULT `ADOPTAR` de la hoja `18fa-01` (5 Banxico 2024, LAPOP 2019/2023, 3 MOTRAL 2015) marcados `ADOPTADO` por «el mecanismo de la casa» en un commit `[ADOPCION-BLOQUE 18fa-01]`.
+  **Por qué:** `FUERA-DE-PERÍMETRO` de `GEN2-TRAMITE-FIRMAS-7`. El único mecanismo existente para que un RESULT cuente como uso activo GEN2 (`corrida0_resultado_id` + `rol_uso: proxy_descriptivo`, precedente `milpa/tramite.yaml:185-188`; las cuatro reglas de la hoja ya traen esos campos listos en `milpa/tramite-ola5-propuesta-v0.yaml:3985-4090`) exige escribir en `milpa/tramite.yaml`, y este mismo encargo (§9 Perímetro) declara `milpa/` AJENO. El `[SUPUESTO]` de la cabecera resultó FALSO dentro del perímetro declarado — camino que la propia cabecera previó («si resulta falso, P2 abre NC… y el bloque queda en la FP FIRMADA, sin ejecutar»).
+  **Impacto:** `N_resultados_gen2_adoptados_activos` no sube por esta vía (se queda en 72); `N_resultados_gen2_pendientes_adopcion` baja solo por los 2 vetos (12→10), no por los 10 adoptados.
+  **Sucesor:** `NC-260922-GEN2-TRAMITE-FIRMAS-7-369b-01`, acto con `milpa/` en su perímetro (p.ej. `GEN2-TRAMITE-PENDIENTES-2-ADOPCION-BLOQUE`).
+
+- **Qué:** Regenerar `milpa/estimadores-por-segmento.yaml` con `marcador_segmento.py --escribe` para que `N_resultados_gen2_adoptados_activos` refleje el 87 que el commit `5ef1f41` (PR #1002, F4) declaró verificado.
+  **Por qué:** `FUERA-DE-PERÍMETRO`. Es un hallazgo de un acto anterior (`GEN2-MARGINALES-ADOPCION-1`), no de este; la regeneración cae en `milpa/`, ajena a este acto.
+  **Impacto:** `adoptados_activos` sigue en 72, no 87, hasta que un acto con `milpa/` en su perímetro corra `--escribe` y commitee el resultado.
+  **Sucesor:** `NC-260922-GEN2-TRAMITE-FIRMAS-7-369b-02`, mismo sucesor que la fila anterior.
+
+- **Qué:** Pregunta de mesa §6 («¿un RESULT de la hoja que cambió de `verify` desde #1011 se adopta con el veredicto nuevo o se saca del bloque?»).
+  **Por qué:** `NO-VERIFICABLE-AQUÍ` — sin materia: verificado que la hoja (`ba50030`) es posterior a los cuatro CALC que cita y nada tocó `verify.yml` ni esos CALC desde entonces. Queda respondida en la nota (§ "Pregunta de mesa"), no en una fila de mesa nueva.
+  **Impacto:** ninguno — no bloqueó P1/P3.
+  **Sucesor:** se reabre solo si el sucesor de P2 encuentra un `verify` distinto al ejecutar el bloque.
