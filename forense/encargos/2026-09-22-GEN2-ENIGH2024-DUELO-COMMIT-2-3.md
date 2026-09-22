@@ -26,3 +26,14 @@ Series, origen móvil, comparabilidad, COMMIT-1. Sin apertura. Repítela tú.
 
 ## 6 · LATITUD (solo logística) · 7 · PAROS
 PAROS: a) leer `enigh2024*` fuera del guardián o de `corrida0 run` · b) abrir cualquier variable de ENIGH 2024 que no sea las 6 del guardián · c) elegir variante tras ver el origen móvil · d) editar spec/`.py` congelados · e) `run` no sella → no se parcha · f) sesión/entorno equivocados. Compuertas: P0 protege abrir dato. Perímetro: la línea de adopción en el diseño, FP b7ae-02, CALC del duelo (ejecución/resultados/sello; adjudicación nueva si aplica), filas propias, marcador/tablero por comando, nota, cascada. Fuera, PARA. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO`.
+
+## NO-CORRIDO / RESERVAS
+
+Ninguno. Las cuatro piezas (P0-P3) se ejecutaron completas, en MODO RÍGIDO,
+sin disparar ningún PARO de la lista cerrada de §7. El `[SUPUESTO]` de §3
+aplicó (`#988` no dejó `CALC-ENIGH-DUELO-ADJUDICACION-0001`) y se resolvió
+dentro de P0, como el propio encargo previó. El resto de ENIGH 2024 (toda
+variable de `concentradohogar` fuera de las 6 del guardián, cualquier
+corte, cruce, marginal, tabulado o comunicado) permanece `RESERVADA` por
+diseño de P3 — no es una pieza no corrida, es el alcance declarado del
+marcador.
