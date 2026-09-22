@@ -8,6 +8,38 @@
 > | **VERIFICAS ASÍ** | ADR-36 tiene **adenda (c)** sobre series numeradas · §2 lista los tres `milpa-*` · §4 (registro del perímetro del Hito D) trae la corrección de RÓTULO fechada 29/jul — el perímetro sigue en **27** · detalle ADR-44 a ADR-58 (más ADR-62) en **§0.1**, abajo — el último es **ADR-65** (§4; ADR-59/60/61/63/64/65 no están detallados en §0.1, solo en §4) |
 > | **NOMBRE ESTABLE** | **`gobernanza`** — cítalo así, **nunca por nombre de archivo** |
 
+**ADR-260921-GEN2-L-DESDE-CAPTURAS-1-1d7c-01** (raíz de acto — `hhhh` = 4 hex del commit de
+0-bis `1d7cc60`), `ACTO GEN2-L-DESDE-CAPTURAS-1 · LAS CIFRAS DEL LLM EN EL DUELO SE MIDEN DESDE
+SUS CAPTURAS SELLADAS`, 21/sep/2026, entorno **NUBE** (`cloud_default`, capturas ya en el repo,
+cero microdato, cero llamadas a modelo), Sonnet 5, sin sub-agentes, **MODO ABIERTO hasta
+COMMIT-1, RÍGIDO desde ahí**, **COMPUERTA: ninguna** (no declarada en el encargo). Encargo
+archivado verbatim (A.3) con sello de cuerpo:
+`forense/encargos/2026-09-21-GEN2-L-DESDE-CAPTURAS-1.md` + `.cuerpo.sha256`, SHA de redacción
+`fc13cdcc` (re-derivado y confirmado idéntico al abrir). **P1** verificado: la spec sellada
+vigente para el agregador de L es `F5-completa-spec-v1_0.md` §4 (10/sep/2026, mediana), y el
+conjunto vigente de capturas es `corridas-L-completa-v1_0/` (224/224 presentes, identidad
+verificada contra `F5-completa-plan-v1_0.json`, 0 errores) — **no** `corridas-L/` (731, el
+conjunto viejo que `CALC-TRIADA-0001` había usado sin declarar la discrepancia). **P2/P3**
+(`CALC-L-DESDE-CAPTURAS-v1_0`, dos commits): módulo reusable `tools/agrega_l_v1_0.py`
+(mediana, dispersión MAD, IC bootstrap 10 000/seed 42) con test propio (`tests/test_agrega_l_v1_0.py`,
+oro sintético + ramas terminales D-22 ampliada: todas inválidas, una sola válida); medidor
+`tools/calcula_l_desde_capturas.py` agrupa las 224 capturas por celda×variante (28 slots) y
+llama al agregador sin re-decidir la regla de inválidas (sellada, importada de
+`tools/calcula_f5_completa.py::extraer`). `preflight VERDE`, `run` sella 6 RESULT,
+`verify REPRODUCE`/`CONTEXTO=IDENTICO`. 26/28 slots con mediana; 2 sin ninguna réplica válida
+(`DIN-M-01:L+corpus`, `TRA-M-07:L+corpus`, todas abstención). **P4**: tabla de diferencias vs
+GEN1 descompuesta en `delta_agregador_pp` (media→mediana, mismo conjunto v1.2) y
+`delta_conjunto_pp` (v1.2→las 224), en `RESULT-LDESC-DIFERENCIAS-VS-GEN1-JSON`; hallazgo
+derivado: sobre el conjunto vigente, `TRA-M-02:L-solo` da mediana `0.15` (no `0.14` como
+`CALC-TRIADA-0001`) — `delta_conjunto_pp ≈ 0`, la diferencia de `CALC-TRIADA-0001` venía de
+agregar sobre el conjunto viejo. **P5**: lista para mesa en
+`forense/analisis/gen2-l-desde-capturas-1/lista-pineables-v1_0.md` — 18/28 slots pineables sin
+reserva (cobertura 8/8), el resto con reserva de cobertura o sin mediana; **no pinea nada**
+(PARO (b)). No toca `CALC-TRIADA-0001`/`CALC-TRIADA-0002` ni sus RESULT. E.7: fila en
+`forense/replay-evidencia.tsv` (verify aislado, esta sesión) y vista `corrida0 registro
+--escribe` publicada en el mismo acto. `cuenta_gen2=SI` (firma de mesa citada en spec.yaml,
+S2 del encargo); no pinea, no adopta al motor. Cierre: sucesor de mesa firma qué de los 28
+slots se pinea; el lote L del duelo ENIF usa este módulo. → **Propuesto; mesa fusiona.**
 **ADR-260921-GEN2-MARCADOR-E-INFORME-1-48d4-01** (raíz de acto `48d4` = 4 hex del commit
 de 0-bis `48d40ba`, forma sellada por `ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-01`;
 por eso no se renumera al fusionar), `ACTO GEN2-MARCADOR-E-INFORME-1 · EL MARCADOR CUENTA LO
