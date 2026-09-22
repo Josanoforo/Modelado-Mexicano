@@ -2,7 +2,7 @@
 
 ACTO GEN2-DIN-CREDITO-PISOS-1870-RUN-1 · 22/sep/2026 · CAJA · Opus 5.5 (el encargo sugería Sonnet; D-13 permite subir) · MODO RÍGIDO · raíz `009f` (0-bis `009fb76b`) · base `origin/main` `0232aad7`, redactado sobre `ccd7c0eb` (ancestro).
 
-**CONTADOR:** cero corridas nuevas. Una corrida ya sellada (`CALC-DIN-CREDITO-PISOS-ENIF2021-RECORTE1870-0001`) queda re-verificada en caja y asentada (E.7). Su fila en la vista **no** viaja en este PR: sigue «sellada en disco, no registrada» hasta que mesa corra `registro` sobre main (NC -01). No adopta.
+**CONTADOR:** cero corridas nuevas. Una corrida ya sellada (`CALC-DIN-CREDITO-PISOS-ENIF2021-RECORTE1870-0001`) queda re-verificada en caja. Su asiento E.7 lo trae #1004, no este acto (§4). Su fila en la vista **no** viaja en este PR: sigue «sellada en disco, no registrada» hasta que mesa corra `registro` sobre main (NC -01). No adopta.
 
 ## 1 · Premisa que cayó y qué se hizo en su lugar
 
@@ -56,7 +56,7 @@ Tipo del CALC: `PISO-PERSISTENCIA-POR-EJE`. Cifras de cabecera citadas del commi
 
 ## 4 · P3 · asiento y registro
 
-- **Asiento E.7:** una fila nueva en `forense/replay-evidencia.tsv` (`VERIFY-AISLADO · GEN2-DIN-CREDITO-PISOS-1870-RUN-1`) con los tres hashes de identidad (`spec_yaml_sha256`, `script_blob_sha256`, `input_sha256_efectivos` ×6) y la cita a `17d27f82` y `344739d1`. Diff: +1 −0. Escrita como texto separado por tabuladores, sin el módulo `csv`.
+- **Asiento E.7: retirado para no tener dos escritores.** Commiteé una fila propia (`c38af42d`). Al fusionar main para cerrar vi que el PR #1004 (`GEN2-PENDIENTES-CAJA-1`, abierto el 22/sep a las 20:16Z, antes de mi push, `MERGEABLE`) ya asienta el mismo `corrida_id` (`…RECORTE1870-0001--f1469f52d4b3`) con el mismo veredicto, `REPRODUCE`/`IDENTICO` (`VERIFY-AISLADO · GEN2-PENDIENTES-CAJA-1`). Retiré la mía: `forense/replay-evidencia.tsv` queda idéntico a `origin/main`, con cero líneas de diff. El asiento vigente es el de #1004. Mi verify de §3 es una corroboración independiente, en otro worktree y otra sesión, y deja en esta nota los hashes de identidad: `spec_yaml_sha256` `ed44de94…`, `script_blob_sha256` `cd07759e…` y `input_sha256_efectivos` = los 6 de §2. Si #1004 no se fusiona, el asiento queda por hacer (NC -03).
 - **Registro, en seco:** `python3 tools/corrida0.py registro --verifica --lote CALC-DIN-CREDITO-PISOS-ENIF2021-RECORTE1870-0001`, sin `--escribe` porque la guarda de CI no deja que los derivados viajen. La fila que escribiría es `…RECORTE1870-0001--f1469f52d4b3 · OFERTA · SELLADA · GEN2 · cuenta_gen2=SI · adopta=NO · etiqueta de la spec · NUEVO · COINCIDE · REPRODUCE · IDENTICO · VERIFY-EN-ESTA-SESION`.
 - **Estado de la vista, medido en la misma pasada:** el diff que `--escribe` pondría sobre el árbol de main es `corridas.tsv` **+44 / −26**, `resultados.tsv` **+21 951 / −1 502** y `usos.tsv` sin diferencia (231). La vista publicada tiene 285 filas de corrida y la derivación da 303. La vista de main va 18 corridas atrás, no sólo la de este CALC (NC -02).
 - **`status` antes = después**: el `status` corre en memoria, así que ya contaba esta corrida; el PR no toca derivados. `# derivado de 303 corridas · 47255 resultados · 231 usos`, `N_corridas_selladas=154`, `N_resultados_gen2_sellados=44177`, `N_resultados_gen2_adoptados_activos=72`. El contador de `status` no miente. Lo que miente es la vista publicada (`corridas.tsv`), que es lo que lee quien no re-deriva.
@@ -78,4 +78,8 @@ Ver NC -02 y la línea de `forense/hallazgos.md`. `344739d1` hizo lo que manda l
 
 ## 7 · Respuesta de mesa sobre K2
 
-(pendiente al redactar; se copia verbatim al recibirla)
+Verbatim: «termina el encargo». Mesa no confirmó que la sesión de K2 esté muerta. Se aplica la rama conservadora de la adenda: K2 no entra en el lote y este acto no lo toca. Además, #1004 ya asienta K2 (`…K2-BANCARIA-HISTORIA-0001--78664b318a0c`, `REPRODUCE`/`IDENTICO`), así que el asiento de K2 tampoco es de este acto. Queda en `## NO-CORRIDO` (NC -04).
+
+## 8 · Firma ff56-01
+
+`FP-260921-GEN2-DIN-CREDITO-HISTORIA-1-ff56-01` pasó a `FIRMADA` en main al fusionarse #1001 (`31da26e0`, `ADR-260922-GEN2-TRAMITE-FIRMAS-6-7c2c-01`) mientras corría este acto. Ahora es lectura tipo (1). Este acto no la asienta: lo hizo el trámite (A.12).
