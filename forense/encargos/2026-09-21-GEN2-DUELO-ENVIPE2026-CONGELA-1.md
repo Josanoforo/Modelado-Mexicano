@@ -34,3 +34,13 @@ Cierre: nota de diez líneas; cascada.
 **Compuertas:** «P0 en verde» y «emisiones en `origin`» protegen: abrir dato.
 **Perímetro:** `ejecucion.json`, `resultados.json`, `sello.*` de los dos CALC · la línea de P3 · filas propias de vista y replay · marcador/tablero por comando · nota · cascada. Ajeno: todo lo demás. Si te encuentras escribiendo fuera de esta lista, PARA.
 No hace: adjudicar celdas-D de otros dominios · tocar ENVIPE 2025 reservada · correr LLM (la fila L queda `NO-ACREDITABLE` salvo captura sellada previa). Sucesor: lectura de dirección; regla de θ. `## NO-CORRIDO / RESERVAS` · `## CONSUMIDO` en cada parte.
+
+## NO-CORRIDO / RESERVAS
+
+| pieza | por qué | impacto | sucesor |
+|---|---|---|---|
+| PARTE B entera (P0–P5: correr `CALC-DUELO-ENVIPE2026-EMISIONES-0001` y `-ADJUDICACION-0001`, COMMIT-2/3a/3) | `FUERA-DE-PERÍMETRO`: por diseño del propio encargo (F3, "quien congela no ejecuta"), esta rama (`GEN2-DUELO-ENVIPE2026-CONGELA-1`) solo ejecuta la PARTE A | el duelo prospectivo ENVIPE 2026 sigue sin correr; fecha límite COMMIT-2 31/oct/2026 | `DIFERIDO-A:GEN2-DUELO-ENVIPE2026-COMMIT-2-3-1` (otra sesión, tras esta PARTE A en `origin/main`) |
+
+Fila `NC-260921-GEN2-DUELO-ENVIPE2026-CONGELA-1-69b5-01` en `forense/no-corrido.tsv` (`ABIERTA`).
+
+`NC-260921-GEN2-DUELO-ENVIPE2026-COMMIT-1-8796-01` NO se reabre ni se re-cierra aquí: ya estaba `CERRADA` por `ACTO GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1` (PR #977).
